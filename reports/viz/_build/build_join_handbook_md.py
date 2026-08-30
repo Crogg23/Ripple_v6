@@ -20,7 +20,7 @@ from pathlib import Path
 BUILD = Path(__file__).resolve().parent
 VIZ = BUILD.parent
 REPORTS = VIZ.parent
-PAGE = VIZ / "join_handbook.html"
+PAGE = BUILD / "legacy" / "join_handbook_rail.html"  # legacy rail page; the real handbook is built by build_chain_handbook.py
 TEMPLATE = BUILD / "join_handbook_template.html"
 OUT = REPORTS / "JOIN_HANDBOOK.md"
 SNAPSHOT = "2026-08-29"
@@ -37,6 +37,8 @@ TIER_LABEL = {
     "CORROBORATED": "Educated guess (name + ZIP)",
 }
 TIER_ORDER = ["STEEL", "STRONG", "BRIDGE", "MEASURED", "GEO", "SUSPECT"]
+PLACE_NOTES: dict | None = None
+TIME_NOTES: dict | None = None
 
 
 # ---------- pull the JS constants out of the template so names stay in sync ----------
@@ -105,6 +107,10 @@ def edge_line(self, e, key_info, friendly):
     lines = [head, sub]
     if e.get("src") == "pass2":
         extra = f"  <sub>checked {e.get('measured_on', SNAPSHOT)}: {ascii(e.get('verdict', ''))}"
+        if e.get("names_pct") is not None:
+            extra += f" -- {e.get('pairs')} matched pairs spot-checked: names agree **{e['names_pct']}%**"
+            if e.get("states_pct") is not None:
+                extra += f", states agree **{e['states_pct']}%**"
         if e.get("note"):
             extra += f" -- {ascii(e['note'])}"
         lines.append(extra + "</sub>")
@@ -123,17 +129,52 @@ def table_section(t, edges, key_info, friendly):
     hard = sum(len(by[k]) for k in HARD)
     measured = len(by["MEASURED"])
     geo = len(by["GEO"])
-    if hard + measured + geo + len(by["SUSPECT"]) == 0:
+    place = t.get("place") or []
+    place_good = [p for p in place if not p.get("trap")]
+    clocks = t.get("time") or []
+    clocks_good = [c for c in clocks if not c.get("trap")]
+    if hard + measured + geo + len(by["SUSPECT"]) + len(place_good) + len(clocks_good) == 0:
         return None
     parts = [f"{hard} reliable connection{'s' if hard != 1 else ''}"]
     if measured:
         parts.append(f"{measured} measured {SNAPSHOT} (not yet in the spine)")
     if geo:
         parts.append(f"{geo} place-based")
+    if place_good:
+        parts.append(f"{len(place_good)} value-checked place column{'s' if len(place_good) != 1 else ''}")
+    if clocks_good:
+        parts.append(f"{len(clocks_good)} value-checked clock column{'s' if len(clocks_good) != 1 else ''}")
     summary = ", ".join(parts)
     if fuzzy:
         summary += f" -- plus {fuzzy} low-confidence name+ZIP guess{'es' if fuzzy != 1 else ''} not shown here"
     out = [f"### `{name}`", f"*{friendly(name)}*", "", summary + ".", ""]
+    if place:
+        axis_tables = ((PLACE_NOTES or {}).get("axis_tables") or {})
+        out.append(f"**Meets other tables on place** (columns value-checked {place[0].get('measured_on', '')}):")
+        out.append("")
+        for p in place:
+            partners = max(0, axis_tables.get(p["kind"], 0) - 1)
+            flag = "**TRAP** -- " if p.get("trap") else ""
+            tail = "" if p.get("trap") else f" -- {partners} other tables carry a clean {ascii(p['label'])}"
+            note = f" ({ascii(p['note'])})" if p.get("note") else ""
+            out.append(f"- {flag}{ascii(p['label'])}: `{p['column']}` fills {p['fill']:.0f}% of rows, {nf(p.get('distinct'))} distinct -- {ascii(p['verdict'])}{note}{tail}")
+        out.append("")
+    if clocks:
+        grain_tables = ((TIME_NOTES or {}).get("grain_tables") or {})
+        best = t.get("clock")
+        out.append(f"**Runs on a clock** (date columns value-checked {clocks[0].get('measured_on', '')})" +
+                   (f" -- best clock: `{best['column']}`, {ascii(best['label'])}, to the {best['grain']}, {best['lo']} -> {best['hi']}:" if best else ":"))
+        out.append("")
+        for c in clocks:
+            same = max(0, grain_tables.get(c["grain"], 0) - 1)
+            flag = "**NOT A CLOCK** -- " if c.get("trap") else ""
+            tail = "" if c.get("trap") else f" -- {same} other tables keep a clock to the {c['grain']}"
+            desc = f" ({ascii(c['desc'])})" if c.get("desc") else ""
+            out.append(f"- {flag}`{c['column']}`: {ascii(c['label'])}, {c['format']}, {c['lo']} -> {c['hi']}, {nf(c.get('rows'))} rows{desc}{tail}")
+        out.append("")
+    if not edges:
+        out += ["*No shared-ID connections measured -- reachable by place and/or time only.*", ""]
+        return "\n".join(out)
     if any(e["key"] == "DOCKET" for e in edges):
         out += ["> **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.", ""]
     for tier in TIER_ORDER:
@@ -206,6 +247,36 @@ def header(data, key_info, n_tables_listed, n_fuzzy_only, hard_pairs, measured_p
         lines += ["## Traps -- read before joining", ""]
         lines += [f"- {ascii(t)}" for t in notes["traps"]]
         lines.append("")
+    pl = notes.get("place")
+    if pl:
+        lines += [f"## Meeting on place -- every place column value-checked {pl['measured_on']}", "",
+                  f"Time and place are first-class joins (Chris, 2026-08-29). Every place-shaped column in the warehouse was measured live on "
+                  f"{pl['measured_on']} (fill, distinct values, sentinel share, and a shape test per kind). **{pl['tables_with_place']} tables** carry at least "
+                  f"one column that really holds a place; **{pl['place_only_tables']}** of them have no shared-ID connection at all and are reachable by "
+                  f"place only -- they appear below for the first time. Source: `{pl['source']}`.", "",
+                  "| kind of place | tables that carry a clean one |", "|---|---:|"]
+        for k, n in pl["axis_tables"].items():
+            lines.append(f"| {ascii(pl['axis_label'].get(k, k))} | {n:,} |")
+        if pl.get("traps"):
+            lines += ["", "Place traps found (marked **TRAP** on the table): " +
+                      "; ".join(f"{ascii(k)} ({n})" for k, n in pl["traps"].items()) + "."]
+        lines.append("")
+    tm = notes.get("time")
+    if tm:
+        lines += [f"## Meeting on time -- every date column value-checked {tm['measured_on']}", "",
+                  f"Every date / month / quarter / year column in the warehouse was value-scanned on {tm['measured_on']} (the time index) and each one "
+                  f"was read for what its clock means. **{tm['tables_with_time']} tables** run on a real clock; **{tm['time_only_tables']}** of them have "
+                  f"neither a shared-ID connection nor a verified place column. Source: `{tm['source']}`.", "",
+                  "| has a clock to the... | tables |", "|---|---:|"]
+        for k, n in tm["grain_tables"].items():
+            lines.append(f"| {k} | {n:,} |")
+        lines += ["", "| what the clock means | tables |", "|---|---:|"]
+        for k, n in tm["meaning_tables"].items():
+            lines.append(f"| {ascii(tm['meaning_label'].get(k, k))} | {n:,} |")
+        if tm.get("traps"):
+            lines += ["", "Not clocks (marked **NOT A CLOCK** on the table): " +
+                      "; ".join(f"{ascii(tm['meaning_label'].get(k, k))} ({n})" for k, n in tm["traps"].items()) + "."]
+        lines.append("")
     lines += [
         "---",
         "",
@@ -242,6 +313,9 @@ def main() -> int:
             elif e["tier"] == "MEASURED":
                 seen_meas.add(pair)
 
+    global PLACE_NOTES, TIME_NOTES
+    PLACE_NOTES = (data.get("notes") or {}).get("place")
+    TIME_NOTES = (data.get("notes") or {}).get("time")
     sections = []
     for t in sorted(data["tables"], key=lambda t: t["name"]):
         s = table_section(t, data["edges"].get(t["name"], []), key_info, friendly)

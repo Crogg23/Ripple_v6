@@ -50,13 +50,19 @@
     "EIA_UTILITY_ID": {"name": "Power Utility ID (EIA)", "desc": "the Energy Department's ID for an electric utility; plant owners and grid owners point at it"},
     "FERC_DOCKET": {"name": "FERC Docket #", "desc": "the energy regulator's case number for a qualifying facility or wholesale generator — first FERC ids in-house, no FERC table held"},
     "HUD_CONTRACT": {"name": "HUD Section 8 Contract / Property ID", "desc": "HUD's IDs for a subsidized-housing contract and the property it covers"},
-    "USDA_RD_BORROWER": {"name": "USDA Rural Housing Borrower ID", "desc": "the USDA's ID for a rural multifamily borrower"}
+    "USDA_RD_BORROWER": {"name": "USDA Rural Housing Borrower ID", "desc": "the USDA's ID for a rural multifamily borrower"},
+    "PECOS_ENRLMT": {"name": "PECOS Enrollment Record ID", "desc": "Medicare's ID for one enrollment record (one provider in one program at one time) in its provider-enrollment system"},
+    "EIA_PLANT_ID": {"name": "Power Plant ID (EIA / ORIS)", "desc": "the Energy Department's number for one power plant; the EPA's emissions programs (eGRID, CAMPD smokestack monitors) print the same number as the ORIS code"},
+    "AWARD_KEY": {"name": "Federal Award Unique Key", "desc": "USAspending's one-string ID for a whole contract or grant (type + award number + agency); subawards point at the prime award through it"},
+    "EIN": {"name": "Employer Tax ID (EIN)", "desc": "the IRS's 9-digit number for an employer, nonprofit, or benefit-plan sponsor"}
   },
   "corrections": [
     {"was": "Pass 1 called the TRI facility file's FRS column dead.", "now": "That column IS dead, but the same table's EPA registry-id column is live: 64,728 distinct, 99.9% resolve into the EPA facility registry. TRI <-> FRS is a solid edge (listed below)."},
     {"was": "Pass 1 reported ISIN empty after checking a 200-row XBRL flag table.", "now": "Confirmed on the right table: 48,990 rows, 100% blank. ISIN is not held."},
     {"was": "Pass 1 left the nursing-home 'affiliation entity id' unverified as a possible PECOS id.", "now": "It is the nursing-home chain id (635 distinct, identical to CHAIN_ID); 0% match to PECOS."},
-    {"was": "The 08-05 catalog listed 37 ID systems as 'not held'.", "now": "They are held (device IDs, malpractice bank, adverse events, Coast Guard vessels, UK ownership, retractions, single audits, EIA plant/utility ids, ...)."}
+    {"was": "The 08-05 catalog listed 37 ID systems as 'not held'.", "now": "They are held (device IDs, malpractice bank, adverse events, Coast Guard vessels, UK ownership, retractions, single audits, EIA plant/utility ids, ...)."},
+    {"was": "Pass 1 (08-29) said 92.5% of contract recipients resolve into the new SAM registry by UEI.", "now": "That was the small recent-years contracts copy. On the full 93M-row contracts file it is 33.1% (192,931 of 582,656 UEIs) -- re-measured 2026-08-30. Older UEIs are missing from the current public SAM extract, the same gap the parent-UEI edge shows."},
+    {"was": "The old HMDA lender id -> bank cert edge was marked SUSPECT (~half wrong).", "now": "Split by agency code (2026-08-30): bank-regulator rows (agency 1-3) resolve 69.8% into FDIC certs, HUD rows (agency 7) are tax ids and resolve 40.4% into benefit-plan sponsor EINs. Name-checked 2026-08-30 (60 pairs each): bank rows 83% names agree (misses are banks renamed under the same cert), HUD rows 93%. Both split edges are SOLID; the unsplit edge stays SUSPECT."}
   ],
   "traps": [
     "Drug codes: the price file prints an 11-digit NDC, the FDA directory prints a dashed 9-digit one. Zero-pad both to 5-4 before joining; a raw string join gives 0%.",
@@ -64,6 +70,9 @@
     "Trucking-company DUNS shows 3.85M 'junk' values because 86% of carriers report 0. The 372K real values are fine — filter the zeros, don't discard the column.",
     "Debarred parties' UEIs mostly do NOT resolve into the contractor registry (0.3%). Expected: excluded parties are people and defunct firms, not a load failure.",
     "Contracts 'parent award id' is an umbrella-contract (IDV) id. Joining it to the contract-id column is the wrong test (0.2%); the IDV file is a separate download that is not held — 387K parent ids point nowhere.",
-    "The SBIR awards 'state' column is not a state code (0% agreement with the contractor registry on confirmed name matches). Do not use it as geography."
+    "The SBIR awards 'state' column is not a state code (0% agreement with the contractor registry on confirmed name matches). Do not use it as geography.",
+    "FDIC failed-banks and OCC national-bank / thrift lists store the bank cert and Fed id as float text ('19117.0', 'nan'). A raw join into the bank master gets 4% / 12% / 0%; repair the text first -- these are not listed as connections until then.",
+    "Bank cert # and Fed RSSD id collide on 2.4% of values (660 numbers exist in both systems). Never treat them as one number system.",
+    "The PECOS enrollment file is loaded twice under two names (the 'PECOS provider enrollment' and 'Medicare fee-for-service enrollment' tables). Same 2.46M owner ids, same 2.98M enrollment ids -- join to either, not both."
   ]
 }

@@ -1,4 +1,4 @@
-"""Rebuild reports/viz/join_handbook.html from the template + the inlined edge data.
+"""LEGACY rail-and-detail page (kept at reports/viz/_build/legacy/join_handbook_rail.html) - only the data source for build_chain_handbook.py, which builds the real Join Handbook (the chain explorer).
 
 The measured-overlap payload lives inside the existing built page (a single
 `const DATA = {...}` line). This script lifts it out, drops it into the current
@@ -28,7 +28,7 @@ from pathlib import Path
 BUILD = Path(__file__).resolve().parent
 VIZ = BUILD.parent
 TEMPLATE = BUILD / "join_handbook_template.html"
-PAGE = VIZ / "join_handbook.html"
+PAGE = BUILD / "legacy" / "join_handbook_rail.html"  # legacy rail page; the real handbook is built by build_chain_handbook.py
 PASS2_EDGES = BUILD / "handbook_pass2_edges_2026-08-29.csv"
 PASS2_NOTES = BUILD / "handbook_pass2_notes_2026-08-29.json"
 MARKER = "const DATA = "
@@ -85,7 +85,8 @@ def merge_pass2(data: dict, edges_csv: Path, notes_json: Path) -> tuple[int, int
         a, b = r["table_a"], r["table_b"]
         base = dict(key=r["key"], tier=r["tier"], rate=_num(r["match_rate"]), matched=_num(r["matched"]),
                     verdict=r["verdict"], note=r["note"], norm=r["norm"], src="pass2",
-                    measured_on=json.loads(notes_json.read_text(encoding="utf-8"))["measured_on"])
+                    measured_on=r.get("measured_on") or json.loads(notes_json.read_text(encoding="utf-8"))["measured_on"],
+                    pairs=_num(r.get("pairs")), names_pct=_num(r.get("names_pct")), states_pct=_num(r.get("states_pct")))
         directions = [(a, b, r["col_a"], r["col_b"], r["distinct_a"], r["distinct_b"])]
         if a != b:  # a same-table pointer (successor cert -> cert) is listed once, not twice
             directions.append((b, a, r["col_b"], r["col_a"], r["distinct_b"], r["distinct_a"]))
@@ -109,11 +110,171 @@ def merge_pass2(data: dict, edges_csv: Path, notes_json: Path) -> tuple[int, int
     return added, new_tables
 
 
+PLACE_CSV = BUILD.parents[1] / "location_index" / "location_columns_verified.csv"
+PLACE_MEASURED_ON = "2026-08-30"
+PLACE_USABLE = ("clean", "text place", "state names", "county name", "county code", "country name", "country code")
+PLACE_TRAP = ("ZIP with leading zeros lost", "FIPS with leading zeros lost", "coordinate with 0,0 trap",
+              "state as a numeric code", "coded place", "foreign postal code", "coordinate, partly")
+PLACE_KIND_LABEL = {
+    "state": "state", "zip": "ZIP code", "county": "county", "fips": "FIPS / GEOID code", "coordinates": "lat / lon",
+    "city": "city", "address": "street address", "country": "country", "metro": "metro area", "cong_district": "congressional district",
+    "census_tract": "census tract", "facility_site": "site / place name", "region": "region", "airport_port": "airport / port",
+    "geometry": "map shape", "watershed": "watershed",
+}
+
+
+def strip_place(data: dict) -> dict:
+    """Remove the place layer so a rebuild from the built page never doubles it."""
+    for t in data["tables"]:
+        t.pop("place", None)
+        t.pop("n_place", None)
+    keep = [t for t in data["tables"] if not (t.get("src") == "place" and not data["edges"].get(t["name"]))]
+    dropped = {t["name"] for t in data["tables"]} - {t["name"] for t in keep}
+    data["tables"] = keep
+    for name in dropped:
+        data["edges"].pop(name, None)
+    if isinstance(data.get("notes"), dict):
+        data["notes"].pop("place", None)
+    return data
+
+
+def merge_place(data: dict, csv_path: Path) -> tuple[int, int, int]:
+    """Attach the value-verified place columns to every table (creating place-only tables).
+
+    Returns (tables with a usable place column, tables new to the handbook, usable columns)."""
+    with csv_path.open(encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    tables = {t["name"]: t for t in data["tables"]}
+    axis_tables: dict[str, set] = {}
+    trap_counts: dict[str, int] = {}
+    new_tables = usable_cols = 0
+    for r in rows:
+        v = r["verdict"]
+        usable = v.startswith(PLACE_USABLE) and "98%+" not in v
+        trap = v.startswith(PLACE_TRAP)
+        if not (usable or trap):
+            continue
+        mart = r["table"]
+        name = mart.split("__", 1)[1] if "__" in mart else mart
+        t = tables.get(name)
+        if t is None:
+            t = dict(name=name, n_conn=0, n_hard=0, tiers=[], src="place")
+            tables[name] = t
+            data["tables"].append(t)
+            data["edges"].setdefault(name, [])
+            new_tables += 1
+        n_rows = _num(r["rows"]) or 0
+        real = _num(r["real"]) or 0
+        fill = round(100.0 * real / n_rows, 1) if n_rows else 0
+        t.setdefault("place", []).append(dict(kind=r["kind"], label=PLACE_KIND_LABEL.get(r["kind"], r["kind"]), column=r["column"],
+                                             verdict=v, note=r["note"], fill=fill, distinct=_num(r["distinct"]), trap=trap,
+                                             mart=mart, measured_on=PLACE_MEASURED_ON))
+        if usable:
+            usable_cols += 1
+            t["n_place"] = t.get("n_place", 0) + 1
+            axis_tables.setdefault(r["kind"], set()).add(name)
+        else:
+            trap_counts[v] = trap_counts.get(v, 0) + 1
+    for t in data["tables"]:
+        if t.get("place"):
+            t["place"].sort(key=lambda p: (p["trap"], -p["fill"], p["kind"]))
+    place_only = sum(1 for t in data["tables"] if t.get("n_place") and not data["edges"].get(t["name"]))
+    notes = data.setdefault("notes", {}) if isinstance(data.get("notes"), dict) else {}
+    notes["place"] = dict(measured_on=PLACE_MEASURED_ON, source=str(csv_path.relative_to(BUILD.parents[2])).replace("\\", "/"),
+                          axis_tables={k: len(v) for k, v in sorted(axis_tables.items(), key=lambda kv: -len(kv[1]))},
+                          axis_label=PLACE_KIND_LABEL, traps=trap_counts, place_only_tables=place_only,
+                          tables_with_place=sum(1 for t in data["tables"] if t.get("n_place")))
+    data["notes"] = notes
+    return notes["place"]["tables_with_place"], new_tables, usable_cols
+
+
+TIME_CSV = BUILD.parents[1] / "time_index" / "date_columns_all.csv"
+TIME_MEASURED_ON = "2026-08-20"
+TIME_MEANING_LABEL = {
+    "happened": "when it happened", "decided": "when it was decided", "reported": "when it was reported / filed",
+    "span_start": "start of a period", "span_end": "end of a period", "": "unlabeled clock", "unclear": "unclear clock",
+    "not_a_date": "NOT a clock (a duration, vintage, or count that looks like a year)", "ingest": "our own download stamp -- never the clock",
+}
+TIME_MEANING_RANK = {"happened": 0, "decided": 1, "reported": 2, "span_start": 3, "span_end": 4, "": 5, "unclear": 6}
+TIME_GRAIN_RANK = {"day": 0, "month": 1, "quarter": 2, "year": 3}
+TIME_TRAP = ("not_a_date", "ingest")
+
+
+def strip_time(data: dict) -> dict:
+    for t in data["tables"]:
+        t.pop("time", None)
+        t.pop("n_time", None)
+        t.pop("clock", None)
+    keep = [t for t in data["tables"] if not (t.get("src") == "time" and not data["edges"].get(t["name"]) and not t.get("place"))]
+    dropped = {t["name"] for t in data["tables"]} - {t["name"] for t in keep}
+    data["tables"] = keep
+    for name in dropped:
+        data["edges"].pop(name, None)
+    if isinstance(data.get("notes"), dict):
+        data["notes"].pop("time", None)
+    return data
+
+
+def merge_time(data: dict, csv_path: Path) -> tuple[int, int, int]:
+    """Attach the value-verified date columns (the 08-20 time index) to every table.
+
+    Returns (tables with a usable clock, tables new to the handbook, usable columns)."""
+    with csv_path.open(encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    tables = {t["name"]: t for t in data["tables"]}
+    grain_tables: dict[str, set] = {}
+    meaning_tables: dict[str, set] = {}
+    trap_counts: dict[str, int] = {}
+    new_tables = usable_cols = 0
+    for r in rows:
+        mart = r["table"]
+        name = mart.split("__", 1)[1] if "__" in mart else mart
+        meaning = (r["what it means"] or "").strip()
+        trap = meaning in TIME_TRAP
+        t = tables.get(name)
+        if t is None:
+            t = dict(name=name, n_conn=0, n_hard=0, tiers=[], src="time")
+            tables[name] = t
+            data["tables"].append(t)
+            data["edges"].setdefault(name, [])
+            new_tables += 1
+        t.setdefault("time", []).append(dict(column=r["column"], format=r["format"], grain=r["grain"], meaning=meaning,
+                                            label=TIME_MEANING_LABEL.get(meaning, meaning), rows=_num(r["rows_nonnull"]),
+                                            lo=r["min"], hi=r["max"], desc=(r["description"] or "")[:240], trap=trap,
+                                            mart=mart, measured_on=TIME_MEASURED_ON))
+        if trap:
+            trap_counts[meaning] = trap_counts.get(meaning, 0) + 1
+        else:
+            usable_cols += 1
+            t["n_time"] = t.get("n_time", 0) + 1
+            grain_tables.setdefault(r["grain"], set()).add(name)
+            meaning_tables.setdefault(meaning or "unlabeled", set()).add(name)
+    for t in data["tables"]:
+        lst = t.get("time")
+        if not lst:
+            continue
+        lst.sort(key=lambda c: (c["trap"], TIME_MEANING_RANK.get(c["meaning"], 9), TIME_GRAIN_RANK.get(c["grain"], 9), -(c["rows"] or 0)))
+        best = next((c for c in lst if not c["trap"]), None)
+        if best:
+            t["clock"] = dict(column=best["column"], grain=best["grain"], meaning=best["meaning"], label=best["label"], lo=best["lo"], hi=best["hi"])
+    time_only = sum(1 for t in data["tables"] if t.get("n_time") and not data["edges"].get(t["name"]) and not t.get("n_place"))
+    notes = data.setdefault("notes", {}) if isinstance(data.get("notes"), dict) else {}
+    notes["time"] = dict(measured_on=TIME_MEASURED_ON, source=str(csv_path.relative_to(BUILD.parents[2])).replace("\\", "/"),
+                         grain_tables={k: len(grain_tables[k]) for k in ("day", "month", "quarter", "year") if k in grain_tables},
+                         meaning_tables={k: len(v) for k, v in sorted(meaning_tables.items(), key=lambda kv: -len(kv[1]))},
+                         meaning_label=TIME_MEANING_LABEL, traps=trap_counts, time_only_tables=time_only,
+                         tables_with_time=sum(1 for t in data["tables"] if t.get("n_time")))
+    data["notes"] = notes
+    return notes["time"]["tables_with_time"], new_tables, usable_cols
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", type=Path, help="JSON payload to build from (default: reuse the built page's)")
     ap.add_argument("--out", type=Path, default=PAGE)
     ap.add_argument("--no-pass2", action="store_true", help="skip the measured-not-in-spine layer")
+    ap.add_argument("--no-place", action="store_true", help="skip the value-verified place-column layer")
+    ap.add_argument("--no-time", action="store_true", help="skip the value-verified date-column layer")
     ap.add_argument("--dump-data", type=Path, help="also write the merged payload to this JSON file")
     args = ap.parse_args()
 
@@ -124,10 +285,18 @@ def main() -> int:
             raise SystemExit(f"{PAGE} does not exist and no --data given")
         data = extract_data(PAGE.read_text(encoding="utf-8"))
 
+    data = strip_time(data)
+    data = strip_place(data)
     data = strip_pass2(data)
     added = new_tables = 0
     if not args.no_pass2:
         added, new_tables = merge_pass2(data, PASS2_EDGES, PASS2_NOTES)
+    place_tables = place_new = place_cols = 0
+    if not args.no_place and PLACE_CSV.exists():
+        place_tables, place_new, place_cols = merge_place(data, PLACE_CSV)
+    time_tables = time_new = time_cols = 0
+    if not args.no_time and TIME_CSV.exists():
+        time_tables, time_new, time_cols = merge_time(data, TIME_CSV)
 
     template = TEMPLATE.read_text(encoding="utf-8")
     if PLACEHOLDER not in template:
@@ -147,6 +316,10 @@ def main() -> int:
     print(f"  {len(data['tables']):,} tables, {edges:,} measured connections")
     if not args.no_pass2:
         print(f"  pass-2 layer: {added} directed edges merged ({added // 2} pairs approx), {new_tables} tables new to the handbook")
+    if not args.no_place:
+        print(f"  place layer: {place_cols} usable place columns on {place_tables} tables; {place_new} tables reachable by place only (new to the handbook)")
+    if not args.no_time:
+        print(f"  time layer: {time_cols} usable clock columns on {time_tables} tables; {time_new} tables new to the handbook (clock only)")
     return 0
 
 

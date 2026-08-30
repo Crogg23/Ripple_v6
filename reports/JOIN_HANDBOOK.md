@@ -5,9 +5,9 @@ to, measured against the live data -- not guessed from column names. Built from 
 own measured-overlap table (`CONNECT_EDGES`), snapshot 2026-08-29, plus the connections pass 2
 measured live on 2026-08-29 that are not registered in the spine yet.
 
-- **256 tables** have at least one measured connection.
+- **573 tables** have at least one measured connection.
 - **1,859 reliable connections** (hard ID, strong code, or known translation), each counted once.
-- **56 more connections measured 2026-08-29** and name-checked, but not yet in the
+- **86 more connections measured 2026-08-29** and name-checked, but not yet in the
   spine's edge table -- listed under their own heading on each table so they are never mistaken for spine-verified ones.
 - Fuzzy name+ZIP guesses exist for almost every table but are **left out of this file** (mostly noise --
   median match rate across all of them is 0.7%). Full CSV with everything, including those:
@@ -45,13 +45,14 @@ the other one, when checked live -- not a guess.
 | **Defense Contractor Code (CAGE)** | the DoD's 5-character code for a supplier location |
 | **Detention Facility Code** | ICE's ID for a specific immigration detention site |
 | **Drug Product Code (NDC, 9-digit)** | the FDA's code for one drug product from one maker -- the first 9 digits of the 11-digit NDC on a price file; the two only line up after padding to 5-4 |
-| **Employer Tax ID (EIN)** | the IRS tax ID for a company, nonprofit, or other organization -- like an SSN for a business |
+| **Employer Tax ID (EIN)** | the IRS's 9-digit number for an employer, nonprofit, or benefit-plan sponsor |
 | **EPA Facility ID** | the ID the EPA assigns to any site it regulates -- a factory, landfill, power plant, etc. |
 | **Facility ID <-> Provider ID** | a Medicare facility linked to the individual provider(s) who work there |
 | **Falls inside (map boundary)** | one record's coordinates fall inside the other's mapped area -- e.g., a facility located inside a county |
 | **FDA Drug Approval # (NDA / ANDA / BLA)** | the application number under which the FDA approved a drug -- brand (NDA), generic (ANDA), or biologic (BLA); 13,093 in-house, no approvals file held to receive them |
 | **FDA Drug Master File #** | the FDA's file number for a confidential manufacturing dossier a supplier keeps on file |
 | **FDIC Bank Certificate #** | the FDIC's ID for an insured bank; also used for successor, direct-parent, and ultimate-parent bank pointers |
+| **Federal Award Unique Key** | USAspending's one-string ID for a whole contract or grant (type + award number + agency); subawards point at the prime award through it |
 | **Federal Candidate ID** | the FEC's ID for a specific candidate for federal office |
 | **Federal Contract ID (PIID)** | the ID for one federal contract; the 'parent award' version is an umbrella-contract (IDV) ID whose file is NOT held |
 | **Federal Contractor ID (UEI)** | the current ID the government assigns to anyone who does business with it (replaced DUNS in 2022) |
@@ -85,8 +86,10 @@ the other one, when checked live -- not a guess.
 | **Old <-> New Contractor ID** | the same organization's retired DUNS number and its current UEI |
 | **OpenSanctions ID** | the cross-regime ID for a sanctioned person, company, or vessel; its bag of other identifiers (Wikidata, IMO, tax ids) still needs parsing |
 | **OSHA Establishment ID** | OSHA's ID for one workplace in the injury-summary filings -- about half persist year to year |
+| **PECOS Enrollment Record ID** | Medicare's ID for one enrollment record (one provider in one program at one time) in its provider-enrollment system |
 | **PECOS Owner / Associate ID** | Medicare's ID for an owner or affiliated organization in its provider-enrollment system |
 | **Police Agency ID (ORI)** | the FBI's ID for a law-enforcement agency; 4,878 present on the police-violence data, no agency master held |
+| **Power Plant ID (EIA / ORIS)** | the Energy Department's number for one power plant; the EPA's emissions programs (eGRID, CAMPD smokestack monitors) print the same number as the ORIS code |
 | **Power Utility ID (EIA)** | the Energy Department's ID for an electric utility; plant owners and grid owners point at it |
 | **Practitioner # (NPDB)** | the anonymous per-practitioner key inside the malpractice / discipline reporting bank -- links reports to each other, not to a named person |
 | **Provider Number (NPI)** | the federal ID every individual doctor or healthcare organization is assigned |
@@ -125,6 +128,8 @@ the other one, when checked live -- not a guess.
 | Pass 1 reported ISIN empty after checking a 200-row XBRL flag table. | Confirmed on the right table: 48,990 rows, 100% blank. ISIN is not held. |
 | Pass 1 left the nursing-home 'affiliation entity id' unverified as a possible PECOS id. | It is the nursing-home chain id (635 distinct, identical to CHAIN_ID); 0% match to PECOS. |
 | The 08-05 catalog listed 37 ID systems as 'not held'. | They are held (device IDs, malpractice bank, adverse events, Coast Guard vessels, UK ownership, retractions, single audits, EIA plant/utility ids, ...). |
+| Pass 1 (08-29) said 92.5% of contract recipients resolve into the new SAM registry by UEI. | That was the small recent-years contracts copy. On the full 93M-row contracts file it is 33.1% (192,931 of 582,656 UEIs) -- re-measured 2026-08-30. Older UEIs are missing from the current public SAM extract, the same gap the parent-UEI edge shows. |
+| The old HMDA lender id -> bank cert edge was marked SUSPECT (~half wrong). | Split by agency code (2026-08-30): bank-regulator rows (agency 1-3) resolve 69.8% into FDIC certs, HUD rows (agency 7) are tax ids and resolve 40.4% into benefit-plan sponsor EINs. Name-checked 2026-08-30 (60 pairs each): bank rows 83% names agree (misses are banks renamed under the same cert), HUD rows 93%. Both split edges are SOLID; the unsplit edge stays SUSPECT. |
 
 ## Traps -- read before joining
 
@@ -134,6 +139,56 @@ the other one, when checked live -- not a guess.
 - Debarred parties' UEIs mostly do NOT resolve into the contractor registry (0.3%). Expected: excluded parties are people and defunct firms, not a load failure.
 - Contracts 'parent award id' is an umbrella-contract (IDV) id. Joining it to the contract-id column is the wrong test (0.2%); the IDV file is a separate download that is not held -- 387K parent ids point nowhere.
 - The SBIR awards 'state' column is not a state code (0% agreement with the contractor registry on confirmed name matches). Do not use it as geography.
+- FDIC failed-banks and OCC national-bank / thrift lists store the bank cert and Fed id as float text ('19117.0', 'nan'). A raw join into the bank master gets 4% / 12% / 0%; repair the text first -- these are not listed as connections until then.
+- Bank cert # and Fed RSSD id collide on 2.4% of values (660 numbers exist in both systems). Never treat them as one number system.
+- The PECOS enrollment file is loaded twice under two names (the 'PECOS provider enrollment' and 'Medicare fee-for-service enrollment' tables). Same 2.46M owner ids, same 2.98M enrollment ids -- join to either, not both.
+
+## Meeting on place -- every place column value-checked 2026-08-30
+
+Time and place are first-class joins (Chris, 2026-08-29). Every place-shaped column in the warehouse was measured live on 2026-08-30 (fill, distinct values, sentinel share, and a shape test per kind). **324 tables** carry at least one column that really holds a place; **160** of them have no shared-ID connection at all and are reachable by place only -- they appear below for the first time. Source: `reports/location_index/location_columns_verified.csv`.
+
+| kind of place | tables that carry a clean one |
+|---|---:|
+| state | 230 |
+| city | 175 |
+| ZIP code | 125 |
+| street address | 115 |
+| county | 80 |
+| site / place name | 54 |
+| lat / lon | 52 |
+| country | 50 |
+| region | 41 |
+| FIPS / GEOID code | 33 |
+| metro area | 20 |
+| congressional district | 14 |
+| map shape | 4 |
+| airport / port | 3 |
+| watershed | 1 |
+
+Place traps found (marked **TRAP** on the table): coded place (numbers) (171); foreign postal code (7); FIPS with leading zeros lost (27); ZIP with leading zeros lost (10); coordinate with 0,0 trap (19); coordinate, partly out of range (6); state as a numeric code (FIPS / ICPSR) (21).
+
+## Meeting on time -- every date column value-checked 2026-08-20
+
+Every date / month / quarter / year column in the warehouse was value-scanned on 2026-08-20 (the time index) and each one was read for what its clock means. **427 tables** run on a real clock; **143** of them have neither a shared-ID connection nor a verified place column. Source: `reports/time_index/date_columns_all.csv`.
+
+| has a clock to the... | tables |
+|---|---:|
+| day | 309 |
+| month | 13 |
+| quarter | 15 |
+| year | 195 |
+
+| what the clock means | tables |
+|---|---:|
+| when it happened | 230 |
+| when it was reported / filed | 155 |
+| end of a period | 123 |
+| when it was decided | 81 |
+| start of a period | 79 |
+| unlabeled | 42 |
+| unclear clock | 11 |
+
+Not clocks (marked **NOT A CLOCK** on the table): NOT a clock (a duration, vintage, or count that looks like a year) (153); our own download stamp -- never the clock (59).
 
 ---
 
@@ -141,13 +196,351 @@ the other one, when checked live -- not a guess.
 
 Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
-236 tables have at least one reliable, measured, or place-based connection and are listed below.
-(20 more tables only have fuzzy name+ZIP guesses -- see the CSV.)
+559 tables have at least one reliable, measured, or place-based connection and are listed below.
+(14 more tables only have fuzzy name+ZIP guesses -- see the CSV.)
+
+### `BILLS`
+*Bills*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INTRODUCED_DATE`, when it happened, to the day, 2023-01-03 -> 2026-06-26:
+
+- `INTRODUCED_DATE`: when it happened, date (typed), 2023-01-03 -> 2026-06-26, 36,465 rows (The day the bill was introduced - the row's own birth event; try_to_date cast in staging and used as the dedup ordering key.) -- 308 other tables keep a clock to the day
+- `LATEST_ACTION_DATE`: when it was decided, date as text (iso), 2023-01-03 -> 2026-06-26, 36,460 rows (Date of the most recent legislative action (referral, floor vote, signature) - an authority acting; NOTE staging leaves it as trimmed TEXT (no try_to_date) unlike introduced_date, so it is an uncast date string.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `BILL_COSPONSORS`
+*BILL Cosponsors*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `COSPONSOR_STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SPONSORSHIP_DATE`, when it happened, to the day, 2023-01-09 -> 2026-06-25:
+
+- `SPONSORSHIP_DATE`: when it happened, date (typed), 2023-01-09 -> 2026-06-25, 367,735 rows (The day the member actually signed on as cosponsor; staging casts it with try_to_date on a trimmed non-empty string.) -- 308 other tables keep a clock to the day
+- `SPONSORSHIP_WITHDRAWN_DATE`: when it happened, date (typed), 2023-01-11 -> 2026-06-25, 650 rows (The day the member withdrew the cosponsorship - a second real event on the same row, try_to_date cast, null on the rows that never withdrew.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `CA_LOBBY_AMENDMENTS`
+*California state source: Lobby Amendments*
+
+0 reliable connections, 10 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EXEC_DATE`, when it was reported / filed, to the day, 1823-10-01 -> 2028-07-28:
+
+- `EXEC_DATE`: when it was reported / filed, date (typed), 1823-10-01 -> 2028-07-28, 25,249 rows (try_to_date(split_part(EXEC_DATE,' ',1),'MM/DD/YYYY') -- the date the Form 605 amendment was executed and submitted; the row's own filing event.) -- 308 other tables keep a clock to the day
+- `FROM_DATE`: start of a period, date (typed), 1987-01-31 -> 2026-07-31, 25,249 rows (Same MM/DD/YYYY cast; opens the period the amendment covers.) -- 308 other tables keep a clock to the day
+- `THRU_DATE`: end of a period, date (typed), 2000-12-04 -> 2026-12-31, 25,249 rows (Same MM/DD/YYYY cast; closes the covered period. The census's 0107-10-31 / 5201-11-18 extremes and 15 far-future rows are published CAL-ACCESS typo years surviving a strict-format parse, not a cast bug.) -- 308 other tables keep a clock to the day
+- `ADD_LE_EFF`: unlabeled clock, date (typed), 1935-11-20 -> 2028-02-20, 10,279 rows -- 308 other tables keep a clock to the day
+- `OTHER_EFF`: unlabeled clock, date (typed), 2000-12-04 -> 2026-08-03, 6,060 rows -- 308 other tables keep a clock to the day
+- `DEL_LE_EFF`: unlabeled clock, date (typed), 1999-04-01 -> 2026-12-05, 5,282 rows -- 308 other tables keep a clock to the day
+- `ADD_L_EFF`: unlabeled clock, date (typed), 2001-01-16 -> 2028-04-27, 2,496 rows -- 308 other tables keep a clock to the day
+- `DEL_L_EFF`: unlabeled clock, date (typed), 1928-06-29 -> 2026-09-30, 2,479 rows -- 308 other tables keep a clock to the day
+- `ADD_LF_EFF`: unlabeled clock, date (typed), 1999-01-01 -> 2026-07-31, 950 rows -- 308 other tables keep a clock to the day
+- `DEL_LF_EFF`: unlabeled clock, date (typed), 1999-01-01 -> 2026-06-30, 563 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `CA_LOBBY_CHG_LOG`
+*California state source: Lobby CHG LOG*
+
+0 reliable connections, 4 value-checked place columns, 3 value-checked clock columns -- plus 43 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `FILER_CITY` fills 23% of rows, 964 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `FILER_ZIP` fills 23% of rows, 1,938 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `ENTITY_CITY` fills 2% of rows, 281 distinct -- text place (only 2.2% of rows filled) -- 174 other tables carry a clean city
+- ZIP code: `ENTITY_ZIP` fills 2% of rows, 488 distinct -- clean ZIP (only 2.2% of rows filled) -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EFFECT_DT`, when it happened, to the day, 1900-01-01 -> 2030-07-01:
+
+- `EFFECT_DT`: when it happened, date (typed), 1900-01-01 -> 2030-07-01, 74,509 rows (MM/DD/YYYY date for when the logged attribute change takes effect -- the truer real-world clock than log_dt, but I could not verify its fill rate with the warehouse down, so log_dt is the safer primary.) -- 308 other tables keep a clock to the day
+- `ETHICS_DT`: when it happened, date (typed), 1900-01-01 -> 2025-01-16, 620 rows (Real MM/DD/YYYY date column, but I could not confirm what it dates; by CAL-ACCESS convention it is the filer's ethics-training completion date. Treat the meaning as unverified.) -- 308 other tables keep a clock to the day
+- `LOG_DT`: when it was reported / filed, date (typed), 1999-10-12 -> 2026-08-03, 85,752 rows (try_to_date(...,'MM/DD/YYYY') -- the date the registry logged the change; for a change-log grain this is the row's own recorded event and the one column certain to carry a value on every row.) -- 308 other tables keep a clock to the day
+
+
+### `CA_LOBBY_CONTRIBUTIONS`
+*California state source: Lobby Contributions*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILING_PERIOD_START_DT`, start of a period, to the day, 2000-01-01 -> 2001-04-01:
+
+- `FILING_PERIOD_START_DT`: start of a period, date (typed), 2000-01-01 -> 2001-04-01, 6,505 rows (try_to_date(...,'MM/DD/YYYY') -- opens the disclosure period the contribution was reported in; the dense fallback placement for rows whose contribution_dt is blank.) -- 308 other tables keep a clock to the day
+- `FILING_PERIOD_END_DT`: end of a period, date (typed), 2000-03-31 -> 2031-03-01, 6,505 rows (Same cast; closes the disclosure period.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `CA_LOBBY_COVER`
+*California state source: Lobby Cover*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `FIRM_CITY` fills 100% of rows, 2,546 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RPT_DATE`, when it was reported / filed, to the day, 1724-01-01 00:00:00.000 -> 2035-07-18 00:00:00.000:
+
+- `RPT_DATE`: when it was reported / filed, datetime (typed), 1724-01-01 00:00:00.000 -> 2035-07-18 00:00:00.000, 524,828 rows (try_to_timestamp(RPT_DATE,'MM/DD/YYYY HH12:MI:SS AM') -- the report date on the disclosure cover page; the time part is midnight padding so the real resolution is a day.) -- 308 other tables keep a clock to the day
+- `FROM_DATE`: start of a period, datetime (typed), 1899-12-30 00:00:00.000 -> 2033-07-01 00:00:00.000, 524,816 rows (Same timestamp cast; opens the period the cover page reports on.) -- 308 other tables keep a clock to the day
+- `THRU_DATE`: end of a period, datetime (typed), 1899-12-30 00:00:00.000 -> 2035-12-31 00:00:00.000, 524,816 rows (Same timestamp cast; closes the reported period. The 0001-07-01 / 8201-04-01 extremes and 219 far-future rows are published typo years passing a strict format, not a cast defect.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `CA_LOBBY_EMPLOYER`
+*California state source: Lobby Employer*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SESSION_YR_1`, start of a period, to the year, 1999 -> 1999:
+
+- `SESSION_YR_1`: start of a period, year only, 1999 -> 1999, 1,730 rows (Kept as trimmed text while every amount column beside it got try_to_number(18,2), so it reads as the first calendar year of the two-year legislative session -- the only real clock on this employer-session table.) -- 194 other tables keep a clock to the year
+- `SESSION_YR_2`: end of a period, year only, 2000 -> 2000, 1,730 rows (Same treatment as session_yr_1; the second calendar year of the session, closing the span.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `CA_LOBBY_FIRM`
+*California state source: Lobby FIRM*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SESSION_YR_1`, start of a period, to the year, 2001 -> 2001:
+
+- `SESSION_YR_1`: start of a period, year only, 2001 -> 2001, 256 rows (Left as trimmed text while every neighbouring amount got try_to_number(18,2) -- the first calendar year of the two-year session, and the only real clock on this firm-session table.) -- 194 other tables keep a clock to the year
+- `SESSION_YR_2`: end of a period, year only, 2002 -> 2002, 256 rows (Second calendar year of the session, closing the span.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `CA_LOBBY_FIRM_EMPLOYER`
+*California state source: Lobby FIRM Employer*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RPT_START`, start of a period, to the day, 2001-04-01 -> 2001-04-01:
+
+- `RPT_START`: start of a period, date (typed), 2001-04-01 -> 2001-04-01, 170 rows (try_to_date(...,'MM/DD/YYYY') -- opens the billing period the firm-employer line covers; the grain is literally firm-filing-employer-period, so this is the row's own clock.) -- 308 other tables keep a clock to the day
+- `RPT_END`: end of a period, date (typed), 2001-06-30 -> 2001-06-30, 170 rows (Same cast; closes the billing period. The census's 2026-08-05 max is the ingest timestamp bleeding in, not a real report end.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `COUNTY_DOUBLE_BURDEN`
+*County Double Burden*
+
+0 reliable connections, 4 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY_NAME` fills 100% of rows, 3,011 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `FIPS` fills 100% of rows, 3,023 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `STATE_ABBR` fills 100% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 45 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `JAIL_RATE_YEAR`, when it happened, to the year, 1970 -> 2024:
+
+- `JAIL_RATE_YEAR`: when it happened, year only, 1970 -> 2024, 3,029 rows (The compiled mart selects j.jail_year (Vera county-year panel year) as jail_rate_year -- the year the jail-rate measurement refers to.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `DEBT_REPAYMENT_CLIFF`
+*DEBT Repayment Cliff*
+
+0 reliable connections, 3 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_CODE` fills 100% of rows, 136 distinct -- country code -- 49 other tables carry a clean country
+- country: `COUNTRY_NAME` fills 100% of rows, 134 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_YEAR_ID` fills 100% of rows, 925 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2026 -> 2032:
+
+- `DATA_YEAR`: when it happened, year only, 2026 -> 2032, 938 rows (try_to_number(substr(year_col,3,4)) unpivoted from the c_2025..c_2032 columns - the year a scheduled debt-service payment falls due. The mart filters to data_year >= 2026, so this entire table sits in the FUTURE: it is a contractual schedul) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `DIM_GEOGRAPHY`
+*DIM Geography*
+
+0 reliable connections, 5 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `CENTROID_LATITUDE` fills 100% of rows, 6,939 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CENTROID_LONGITUDE` fills 100% of rows, 6,855 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `STATE_ABBR` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `COUNTY_NAME` fills 99% of rows, 2,445 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE_NAME` fills 98% of rows, 58 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- **TRAP** -- region: `EPA_REGION` fills 99% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- FIPS / GEOID code: `COUNTY_FIPS_SUFFIX` fills 99% of rows, 413 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `DIM_STATE`
+*DIM State*
+
+0 reliable connections, 4 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `CENSUS_REGION` fills 100% of rows, 5 distinct -- text place -- 40 other tables carry a clean region
+- state: `STATE_ABBR` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 56 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `EPA_PENALTY_GAP`
+*EPA Penalty GAP*
+
+0 reliable connections, 6 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 94% of rows, 3,050 distinct -- county name -- 79 other tables carry a clean county
+- lat / lon: `LATITUDE` fills 94% of rows, 69,818 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 94% of rows, 72,148 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `STATE` fills 94% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- FIPS / GEOID code: `FIPS_CODE` fills 93% of rows, 3,198 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- city: `CITY` fills 78% of rows, 13,973 distinct -- text place -- 174 other tables carry a clean city
+- **TRAP** -- region: `EPA_REGION` fills 92% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `TRI_ON_SITE_RELEASES` fills 3% of rows, 2,389 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 3.4% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_LAST_INSPECTION`, when it happened, to the day, 1978-08-25 -> 2026-06-18:
+
+- `DATE_LAST_INSPECTION`: when it happened, date (typed), 1978-08-25 -> 2026-06-18, 52,494 rows (try_to_date of ECHO FAC_DATE_LAST_INSPECTION: the day the most recent inspection actually took place at the facility.) -- 308 other tables keep a clock to the day
+- `DATE_LAST_FORMAL_ACTION`: when it was decided, date (typed), 1903-12-01 -> 2026-06-18, 37,027 rows (try_to_date of ECHO FAC_DATE_LAST_FORMAL_ACTION: the day a regulator took its most recent formal enforcement action.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `PENALTY_PER_QUARTER_NC`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2028, 93,808 rows (Derived in the mart as round(total_penalties / quarters_with_noncompliance, 2): dollars per quarter, a rate, not a date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FEC_CANDIDATE`
+*FEC Candidate*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- congressional district: `OFFICE_DISTRICT` fills 63% of rows, 69 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAND_ELECTION_YR`, when it happened, to the year, 1980 -> 2035:
+
+- `CAND_ELECTION_YR`: when it happened, year only, 1980 -> 2035, 17,900 rows (Year of the election the candidate registered for - the event year, try_to_number integer; also the mart's dedup ordering key.) -- 194 other tables keep a clock to the year
+- `CYCLE`: end of a period, year only, 2024 -> 2026, 17,900 rows (FEC two-year cycle label (raw CYCLE passthrough) that keys the row; names the closing year of the covered period, not a point event.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FEC_CANDIDATE_SUMMARY`
+*FEC Candidate Summary*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `COVERAGE_END_DATE`, end of a period, to the day, 2023-01-01 -> 2026-12-31:
+
+- `COVERAGE_END_DATE`: end of a period, date as text (us), 2023-01-01 -> 2026-12-31, 7,933 rows (Last day of the financial reporting period the dollar totals cover; HAZARD - staging leaves it as a trimmed MM/DD/YYYY TEXT string (no try_to_date), so any bare parse must be told the US format.) -- 308 other tables keep a clock to the day
+- `CYCLE`: end of a period, year only, 2024 -> 2026, 7,933 rows (FEC two-year cycle label keying the financial summary; a period label, coarser than coverage_end_date on the same row.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FEC_CAND_CMTE_LINK`
+*FEC CAND CMTE LINK*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAND_ELECTION_YR`, when it happened, to the year, 1980 -> 2034:
+
+- `CAND_ELECTION_YR`: when it happened, year only, 1980 -> 2034, 16,229 rows (Year of the election the candidate is contesting - the real-world event year; stored via try_to_number so it is an integer, and a bare date-parse of it would collapse to 1970.) -- 194 other tables keep a clock to the year
+- `FEC_ELECTION_YR`: when it happened, year only, 2024 -> 2026, 16,229 rows (FEC's own coded election year for the linkage; same integer shape as cand_election_yr (try_to_number) and can disagree with it, which is why both are kept.) -- 194 other tables keep a clock to the year
+- `CYCLE`: end of a period, year only, 2024 -> 2026, 16,229 rows (FEC two-year election-cycle label (raw CYCLE passthrough, a number not a date) naming the closing year of the reporting period the linkage file covers.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FEC_COMMITTEE`
+*FEC Committee*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CMTE_CITY` fills 100% of rows, 4,483 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `CMTE_ZIP` fills 100% of rows, 10,365 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE`, unlabeled clock, to the year, 2024 -> 2026:
+
+- `CYCLE`: unlabeled clock, year only, 2024 -> 2026, 40,945 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ATF_FFL`
+*ATF (Firearms & Explosives): FFL*
+
+0 reliable connections, 10 value-checked place columns -- plus 39 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `MAIL_STREET` fills 100% of rows, 62,782 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `PREMISE_STREET` fills 100% of rows, 71,927 distinct -- text place -- 114 other tables carry a clean street address
+- city: `MAIL_CITY` fills 100% of rows, 11,056 distinct -- text place -- 174 other tables carry a clean city
+- city: `PREMISE_CITY` fills 100% of rows, 11,141 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 73,344 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 71,091 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `MAIL_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PREMISE_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `MAIL_ZIP_CODE` fills 100% of rows, 24,915 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `PREMISE_ZIP_CODE` fills 100% of rows, 25,035 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- congressional district: `LIC_DISTRICT` fills 100% of rows, 65 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- region: `LIC_REGION` fills 100% of rows, 7 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+
+### `FED_BJS_DATA`
+*BJS DATA*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it was reported / filed, to the year, 1993 -> 1993:
+
+- `YEAR`: when it was reported / filed, year only, 1993 -> 1993, 1,000 rows (Raw passthrough of YEAR (no cast): the NCVS data year. LOW - the compiled SQL shows only a passthrough, so whether it means the incident year or the collection year is not established from files; treated as the survey year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
 
 ### `FED_BLS_QCEW`
 *BLS (Labor Statistics): QCEW*
 
-0 reliable connections, 12 place-based.
+0 reliable connections, 12 place-based, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- FIPS / GEOID code: `AREA_FIPS` fills 100% of rows, 4,532 distinct -- FIPS with leading zeros lost (84% have a FIPS length; modal length 5 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2022 -> 2022:
+
+- `YEAR`: when it happened, year only, 2022 -> 2022, 3,619,437 rows (try_to_number(YEAR) in the mart SQL; the row is a county-industry-ownership measurement for that calendar year, so the year is when the measured thing was true.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `ANNUAL_AVG_WEEKLY_WAGE`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 3,619,437 rows (try_to_number(ANNUAL_AVG_WKLY_WAGE) is a dollar amount; it only matched the name sweep because 'weekly' contains 'week'.)
 
 **Same location:**
 
@@ -177,10 +570,66 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_BLS_QCEW.AREA_FIPS` = `FED_EPA_FRS_FULL.FIPS_CODE` &middot; key: `FIPS`</sub>
 
 
+### `FED_BOP_STATISTICS`
+*BOP Statistics*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORT_DATE`, unlabeled clock, to the day, 2026-07-01 -> 2026-07-01:
+
+- `REPORT_DATE`: unlabeled clock, date (typed), 2026-07-01 -> 2026-07-01, 50 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CDC_ANXIETY_DEPRESSION`
+*CDC (Public Health): Anxiety Depression*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 52 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TIME_PERIOD_START_DATE`, start of a period, to the day, 2020-04-23 00:00:00.000 -> 2024-08-20 00:00:00.000:
+
+- `TIME_PERIOD_START_DATE`: start of a period, datetime (typed), 2020-04-23 00:00:00.000 -> 2024-08-20 00:00:00.000, 16,794 rows (try_to_timestamp of the survey collection window start; census 2020-04-23 to 2024-09-16 is sane.) -- 308 other tables keep a clock to the day
+- `TIME_PERIOD_END_DATE`: end of a period, datetime (typed), 2020-05-05 00:00:00.000 -> 2024-09-16 00:00:00.000, 16,794 rows (try_to_timestamp of the window end, pairs with the start column.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CDC_DATA_PORTAL`
+*CDC (Public Health): DATA Portal*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CREATED_AT`, when it happened, to the day, 2013-06-10 19:09:30.000 -> 2026-07-07 15:32:14.000:
+
+- `CREATED_AT`: when it happened, datetime (typed), 2013-06-10 19:09:30.000 -> 2026-07-07 15:32:14.000, 1,471 rows (Row is a dataset; created_at is when it came into existence on data.cdc.gov, parsed with an explicit ISO format.) -- 308 other tables keep a clock to the day
+- `DATA_UPDATED_AT`: when it was reported / filed, datetime (typed), 2013-06-19 14:45:55.000 -> 2026-08-11 14:00:20.000, 1,471 rows (When CDC last refreshed the dataset's data - publisher bookkeeping.) -- 308 other tables keep a clock to the day
+- `METADATA_UPDATED_AT`: when it was reported / filed, datetime (typed), 2015-08-18 21:49:28.000 -> 2026-08-10 18:30:27.000, 1,471 rows (When CDC last touched the metadata - publisher bookkeeping.) -- 308 other tables keep a clock to the day
+- `PUBLICATION_DATE`: when it was reported / filed, date (typed), 2013-06-19 -> 2026-08-07, 1,471 rows (try_to_date - when CDC published the dataset.) -- 308 other tables keep a clock to the day
+- `UPDATED_AT`: when it was reported / filed, datetime (typed), 2015-08-18 21:49:28.000 -> 2026-08-11 14:00:20.000, 1,471 rows (Publisher-side last-touch stamp - a vintage, not an event.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_CDC_DRUG_POISONING_COUNTY`
 *CDC (Public Health): DRUG Poisoning County*
 
-0 reliable connections, 12 place-based.
+0 reliable connections, 12 place-based, 3 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 3,122 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `FIPS` fills 100% of rows, 3,149 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `STATE` fills 100% of rows, 51 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `FIPS_STATE` fills 100% of rows, 51 distinct -- FIPS with leading zeros lost (90% have a FIPS length; modal length 2 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1999 -> 2015:
+
+- `YEAR`: when it happened, year only, 1999 -> 2015, 53,387 rows (try_to_number(YEAR) - year the county's drug-poisoning deaths occurred; a bare date-parse would epoch-collapse it.) -- 194 other tables keep a clock to the year
 
 **Same location:**
 
@@ -210,10 +659,37 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_CDC_DRUG_POISONING_COUNTY.FIPS` = `FED_EPA_TRI_FACILITY.STATE_COUNTY_FIPS_CODE` &middot; key: `FIPS`</sub>
 
 
+### `FED_CDC_HEALTH_INSURANCE`
+*CDC (Public Health): Health Insurance*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 52 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TIME_PERIOD_START_DATE`, start of a period, to the day, 2020-04-23 00:00:00.000 -> 2024-08-20 00:00:00.000:
+
+- `TIME_PERIOD_START_DATE`: start of a period, datetime (typed), 2020-04-23 00:00:00.000 -> 2024-08-20 00:00:00.000, 16,056 rows (try_to_timestamp of the survey window start; census 2020-2024 is sane.) -- 308 other tables keep a clock to the day
+- `TIME_PERIOD_END_DATE`: end of a period, datetime (typed), 2020-05-05 00:00:00.000 -> 2024-09-16 00:00:00.000, 16,056 rows (try_to_timestamp of the survey window end.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_CDC_INJURY_VIOLENCE_COUNTY`
 *CDC (Public Health): Injury Violence County*
 
-0 reliable connections, 12 place-based -- plus 1 low-confidence name+ZIP guess not shown here.
+0 reliable connections, 12 place-based, 2 value-checked place columns, 2 value-checked clock columns -- plus 1 low-confidence name+ZIP guess not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- FIPS / GEOID code: `GEOID` fills 100% of rows, 3,153 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `ST_GEOID` fills 100% of rows, 51 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIOD`, when it happened, to the year, 2019 -> 2024:
+
+- `PERIOD`: when it happened, year only, 2019 -> 2024, 132,000 rows (Uncast text window label on a trailing-multi-year county file; the only real time reference here, value shape unverified.) -- 194 other tables keep a clock to the year
+- `DATA_AS_OF`: when it was reported / filed, date as text (iso), 2026-05-14 -> 2026-06-22, 132,000 rows (Uncast text snapshot vintage from CDC.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -243,10 +719,119 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_CDC_INJURY_VIOLENCE_COUNTY.GEOID` = `FED_EPA_TRI_FACILITY.STATE_COUNTY_FIPS_CODE` &middot; key: `FIPS`</sub>
 
 
+### `FED_CDC_LEADING_CAUSES_STATE`
+*CDC (Public Health): Leading Causes State*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 52 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1999 -> 2017:
+
+- `YEAR`: when it happened, year only, 1999 -> 2017, 10,868 rows (try_to_number(trim(YEAR)) in staging; year of death, 1999-2017.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CDC_NNDSS_WEEKLY_2024`
+*CDC (Public Health): Nndss Weekly 2024*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CURRENT_MMWR_YEAR`, when it was reported / filed, to the year, 2022 -> 2026:
+
+- `CURRENT_MMWR_YEAR`: when it was reported / filed, year only, 2022 -> 2026, 1,932,840 rows (MMWR reporting year (uncast text); the only standalone time coordinate.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `PREVIOUS_52_WEEK_MAX`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,721,787 rows (Max weekly case count over the prior 52 weeks - a count.)
+- **NOT A CLOCK** -- `CUMULATIVE_YTD_PREVIOUS_MMWR_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 705,658 rows (Prior-year YTD case count.)
+- **NOT A CLOCK** -- `CUMULATIVE_YTD_CURRENT_MMWR_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 654,814 rows (Year-to-date case count.)
+- **NOT A CLOCK** -- `CURRENT_WEEK`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2034, 200,273 rows (NNDSS 'current week' is the CASE COUNT reported that week, not a date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CDC_OVERDOSE`
+*CDC (Public Health): Overdose*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 54 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2015 -> 2026:
+
+- `YEAR`: when it happened, year only, 2015 -> 2026, 83,790 rows (try_to_number(YEAR) - year of the provisional overdose-death window; only standalone coordinate.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CDC_SUICIDE_RATES`
+*CDC (Public Health): Suicide Rates*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1950 -> 2018:
+
+- `YEAR`: when it happened, year only, 1950 -> 2018, 6,390 rows (try_to_number(YEAR) - year the rate describes; nulls on any range-valued rows.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CDC_WONDER`
+*CDC (Public Health): Wonder*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1999 -> 2020:
+
+- `YEAR`: when it happened, year only, 1999 -> 2020, 880 rows (try_to_number(trim(YEAR)) in staging; year of death for the national mortality grid.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CFPB_COMPLAINTS`
+*CFPB (Consumer Finance): Complaints*
+
+0 reliable connections, 1 value-checked place column, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 63 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_RECEIVED`, when it was reported / filed, to the day, 2011-12-01 -> 2026-07-23:
+
+- `DATE_RECEIVED`: when it was reported / filed, date (typed), 2011-12-01 -> 2026-07-23, 17,168,287 rows (try_to_date on the left 10 characters of CFPB's 'Date received': the day the agency received the complaint -- the harm itself has no date anywhere in this source, so this reporting stamp is the honest axis for all 17.2M rows.) -- 308 other tables keep a clock to the day
+- `RECEIVED_MONTH`: when it was reported / filed, date (typed), 2011-12-01 -> 2026-07-01, 17,168,287 rows (The mart computes it as date_trunc('month', date_received): a real date value carrying the same reporting clock, rolled to month grain.) -- 308 other tables keep a clock to the day
+- `RECEIVED_YEAR`: when it was reported / filed, date (typed), 2011-01-01 -> 2026-01-01, 17,168,287 rows (The mart computes it as date_trunc('year', date_received): the same reporting clock rolled to year grain.) -- 308 other tables keep a clock to the day
+- `DATE_SENT_TO_COMPANY`: when it was reported / filed, date (typed), 2011-12-01 -> 2026-07-23, 17,051,764 rows (try_to_date on the left 10 characters: the day CFPB forwarded the complaint to the company -- a second step in the reporting pipeline, not an event in the world.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DAYS_RECEIVED_TO_COMPANY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1748 -> 1962, 17,051,764 rows (The mart computes it as datediff('day', date_received, date_sent_to_company) -- this is the exact duration column named in the brief as an already-confirmed trap.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_CFPB_HMDA`
 *CFPB -- Mortgage Lending Data (HMDA)*
 
-6 reliable connections.
+6 reliable connections, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- census tract: `TRACT_MEDIAN_AGE_OF_HOUSING_UNITS` fills 100% of rows, 53 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_MINORITY_POPULATION_PERCENT` fills 100% of rows, 200 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_ONE_TO_FOUR_FAMILY_HOMES` fills 100% of rows, 193 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_OWNER_OCCUPIED_UNITS` fills 100% of rows, 184 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_POPULATION` fills 100% of rows, 201 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_TO_MSA_INCOME_PERCENTAGE` fills 100% of rows, 179 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME` fills 100% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `CENSUS_TRACT` fills 98% of rows, 207 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `DERIVED_MSA_MD` fills 98% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVITY_YEAR`, when it happened, to the year, 2022 -> 2022:
+
+- `ACTIVITY_YEAR`: when it happened, year only, 2022 -> 2022, 28,301 rows (nullif(trim(ACTIVITY_YEAR),'') keeps it as TEXT year; HMDA's activity year is the calendar year the action on the application was taken. This slice is a single state-year (DC 2023), so the whole table sits on one point.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -288,13 +873,85 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **47%** of the old hmda lender id (pre-2018 respondent id) values also appear in `FED_FDIC_BANK_DATA` (2,522 matching) -- **but about half of those pairs are different organizations**
   <sub>joins on: `FED_CFPB_HMDA_ARID2017_LEI_XREF.ARID_2017` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `HMDA_ARID`</sub>
-  <sub>checked 2026-08-29: SUSPECT: about half the matched pairs are different banks -- the old respondent id is only a bank certificate # for some regulators (agency codes 1-3); for others it is something else. Do NOT use until split by agency; go through the LEI crosswalk instead</sub>
+  <sub>checked 2026-08-29: SUSPECT: about half the matched pairs are different banks -- 60 matched pairs spot-checked: names agree **56.7%** -- the old respondent id is only a bank certificate # for some regulators (agency codes 1-3); for others it is something else. Do NOT use until split by agency; go through the LEI crosswalk instead</sub>
+
+
+### `FED_CFPB_HMDA_DC_ONLY`
+*CFPB -- Mortgage Lending Data (HMDA): DC ONLY*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- census tract: `CENSUS_TRACT` fills 98% of rows, 207 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_MINORITY_POPULATION_PERCENT` fills 98% of rows, 192 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_POPULATION` fills 98% of rows, 202 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `DERIVED_MSA_MD` fills 98% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME` fills 98% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_OWNER_OCCUPIED_UNITS` fills 98% of rows, 184 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_ONE_TO_FOUR_FAMILY_HOMES` fills 97% of rows, 192 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_TO_MSA_INCOME_PERCENTAGE` fills 97% of rows, 177 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_MEDIAN_AGE_OF_HOUSING_UNITS` fills 61% of rows, 54 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVITY_YEAR`, when it happened, to the year, 2022 -> 2022:
+
+- `ACTIVITY_YEAR`: when it happened, year only, 2022 -> 2022, 28,301 rows (Raw ACTIVITY_YEAR passthrough from LANDING with no cast; HMDA's activity year is the calendar year the action was taken. Table is 100% DC, so it is one state on one year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CFPB_HMDA_HISTORIC`
+*CFPB -- Mortgage Lending Data (HMDA): Historic*
+
+0 reliable connections, 3 measured 2026-08-29 (not yet in the spine), 3 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_ABBR` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 53 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `COUNTY_NAME` fills 100% of rows, 1,975 distinct -- county name -- 79 other tables carry a clean county
+- **TRAP** -- state: `STATE_CODE` fills 100% of rows, 53 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- census tract: `CENSUS_TRACT_NUMBER` fills 100% of rows, 24,123 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_TO_MSAMD_INCOME` fills 100% of rows, 391 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AS_OF_YEAR`, when it happened, to the year, 2015 -> 2017:
+
+- `AS_OF_YEAR`: when it happened, year only, 2015 -> 2017, 19,136,434 rows (trim(AS_OF_YEAR) TEXT; schema.yml calls it 'HMDA reporting year (2015, 2016, or 2017 only)' - the year the loan action was taken. Only three distinct values across 19.1M rows.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `SOURCE_YEAR`: our own download stamp -- never the clock, year only, 2015 -> 2017, 19,136,434 rows (schema.yml: 'Year of the source file the record was loaded from' - a vintage label for OUR download, not a world event. Mistaking it for a lending clock is exactly the trap this index exists to catch.)
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **70%** of the old hmda lender id (pre-2018 respondent id) values also appear in `FED_FDIC_BANK_DATA` (2,678 matching)
+  <sub>joins on: `FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `HMDA_ARID`</sub>
+  <sub>checked 2026-08-30: SOLID (split by agency code) -- 60 matched pairs spot-checked: names agree **83.3%** -- BANK-REGULATOR ROWS ONLY (agency code 1, 2 or 3): there the old lender id is a bank certificate #. This is the split-by-agency fix for the suspect unsplit edge; name-checked 2026-08-30 through the crosswalk's lender names -- the misses are banks renamed under the same cert</sub>
+- `FED_DOL_FORM5500_FULL` (Dept. of Labor: Form5500 FULL) -- **40%** of the employer tax id (ein) values also appear in `FED_DOL_FORM5500_FULL` (411 matching)
+  <sub>joins on: `FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID` = `FED_DOL_FORM5500_FULL.SPONS_DFE_EIN` &middot; key: `EIN`</sub>
+  <sub>checked 2026-08-30: SOLID (split by agency code) -- 60 matched pairs spot-checked: names agree **93.3%** -- HUD ROWS ONLY (agency code 7): there the old lender id is the lender's tax id, and 4 in 10 have a benefit-plan filing; name-checked 2026-08-30</sub>
+- `FED_IRS_BMF` (IRS: BMF) -- **2%** of the employer tax id (ein) values also appear in `FED_IRS_BMF` (19 matching)
+  <sub>joins on: `FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID` = `FED_IRS_BMF.EIN` &middot; key: `EIN`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- HUD ROWS ONLY (agency code 7); mortgage lenders are rarely nonprofits, so low overlap is expected</sub>
 
 
 ### `FED_CFPB_HMDA_LAR`
 *CFPB -- Mortgage Lending Data (HMDA): LAR*
 
-6 reliable connections.
+6 reliable connections, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- census tract: `TRACT_MINORITY_POPULATION_PERCENT` fills 100% of rows, 196 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_TO_MSA_INCOME_PERCENTAGE` fills 100% of rows, 177 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `CENSUS_TRACT` fills 99% of rows, 203 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_POPULATION` fills 99% of rows, 198 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `DERIVED_MSA_MD` fills 99% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME` fills 99% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_OWNER_OCCUPIED_UNITS` fills 99% of rows, 183 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_ONE_TO_FOUR_FAMILY_HOMES` fills 98% of rows, 189 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_MEDIAN_AGE_OF_HOUSING_UNITS` fills 62% of rows, 53 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVITY_YEAR`, when it happened, to the year, 2023 -> 2023:
+
+- `ACTIVITY_YEAR`: when it happened, year only, 2023 -> 2023, 17,474 rows (try_to_number(trim(ACTIVITY_YEAR)) - a NUMBER year; HMDA's activity year is the calendar year the action was taken. A number, not a date.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -312,10 +969,132 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_CFPB_HMDA_LAR.LEI` = `INTL_ISO_MIC_REGISTRY.LEI` &middot; key: `LEI`</sub>
 
 
+### `FED_CFTC_COT_FINANCIAL`
+*CFTC COT Financial*
+
+0 reliable connections, 11 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `CONC_GROSS_LE_4_TDR_LONG_ALL` fills 100% of rows, 926 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONC_GROSS_LE_8_TDR_LONG_ALL` fills 100% of rows, 858 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONC_NET_LE_4_TDR_LONG_ALL` fills 100% of rows, 930 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONC_NET_LE_8_TDR_LONG_ALL` fills 100% of rows, 880 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `PCT_OF_OI_LEV_MONEY_LONG_ALL` fills 100% of rows, 899 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `PCT_OF_OI_NONREPT_LONG_ALL` fills 100% of rows, 701 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `PCT_OF_OI_TOT_REPT_LONG_ALL` fills 100% of rows, 704 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_LEV_MONEY_LONG_ALL` fills 83% of rows, 169 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_ASSET_MGR_LONG_ALL` fills 78% of rows, 197 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_DEALER_LONG_ALL` fills 72% of rows, 102 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_OTHER_REPT_LONG_ALL` fills 61% of rows, 368 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- lat / lon: `PCT_OF_OI_ASSET_MGR_LONG_ALL` fills 100% of rows, 894 distinct -- coordinate with 0,0 trap (8% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `PCT_OF_OI_DEALER_LONG_ALL` fills 100% of rows, 928 distinct -- coordinate with 0,0 trap (7% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `PCT_OF_OI_OTHER_REPT_LONG_ALL` fills 100% of rows, 896 distinct -- coordinate with 0,0 trap (17% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `TRADERS_TOT_REPT_LONG_ALL` fills 100% of rows, 594 distinct -- coordinate, partly out of range (82% parse in range)
+- **TRAP** -- region: `CFTC_REGION_CODE` fills 7% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AS_OF_DATE_IN_FORM_YYMMDD`, when it happened, to the day, 2013-01-08 -> 2026-08-04:
+
+- `AS_OF_DATE_IN_FORM_YYMMDD`: when it happened, date (typed), 2013-01-08 -> 2026-08-04, 34,683 rows (try_to_date(AS_OF_DATE_IN_FORM_YYMMDD,'YYMMDD') - the COT as-of Tuesday when the reported positions were actually held; same date as the ISO twin but the 2-digit year pivots wrong outside 1970-2069.) -- 308 other tables keep a clock to the day
+- `REPORT_DATE_AS_YYYY_MM_DD`: when it happened, date (typed), 2013-01-08 -> 2026-08-04, 34,683 rows (try_to_date(REPORT_DATE_AS_YYYY_MM_DD) - the same COT as-of date in ISO form, a safer cast than the YYMMDD twin, and the day the open-interest positions existed.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CFTC_COT_FUTURES`
+*CFTC COT Futures*
+
+0 reliable connections, 22 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `CONCENTRATION_GROSS_LT_4_TDR_LONG_ALL` fills 100% of rows, 967 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_GROSS_LT_8_TDR_LONG_ALL` fills 100% of rows, 955 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_NET_LT_4_TDR_LONG_ALL` fills 100% of rows, 988 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_NET_LT_8_TDR_LONG_ALL` fills 100% of rows, 992 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `OF_OI_COMMERCIAL_LONG_ALL` fills 100% of rows, 1,018 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `OF_OI_COMMERCIAL_LONG_OLD` fills 100% of rows, 1,018 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `OF_OI_TOTAL_REPORTABLE_LONG_ALL` fills 100% of rows, 948 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `OF_OI_TOTAL_REPORTABLE_LONG_OLD` fills 100% of rows, 962 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_GROSS_LT_4_TDR_LONG_OLD` fills 100% of rows, 977 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_GROSS_LT_8_TDR_LONG_OLD` fills 100% of rows, 960 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_NET_LT_4_TDR_LONG_OLD` fills 100% of rows, 993 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_NET_LT_8_TDR_LONG_OLD` fills 100% of rows, 993 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_COMMERCIAL_LONG_ALL` fills 99% of rows, 370 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_COMMERCIAL_LONG_OLD` fills 98% of rows, 344 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_NONCOMMERCIAL_LONG_ALL` fills 91% of rows, 403 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_NONCOMMERCIAL_LONG_OLD` fills 90% of rows, 394 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_GROSS_LT_4_TDR_LONG_OTHER` fills 14% of rows, 989 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_GROSS_LT_8_TDR_LONG_OTHER` fills 14% of rows, 989 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_NET_LT_4_TDR_LONG_OTHER` fills 14% of rows, 998 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `CONCENTRATION_NET_LT_8_TDR_LONG_OTHER` fills 14% of rows, 998 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_COMMERCIAL_LONG_OTHER` fills 13% of rows, 278 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `TRADERS_NONCOMMERCIAL_LONG_OTHER` fills 12% of rows, 229 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- lat / lon: `OF_OI_COMMERCIAL_LONG_OTHER` fills 100% of rows, 1,014 distinct -- coordinate with 0,0 trap (87% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_NONCOMMERCIAL_LONG_ALL` fills 100% of rows, 998 distinct -- coordinate with 0,0 trap (10% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_NONCOMMERCIAL_LONG_OLD` fills 100% of rows, 1,000 distinct -- coordinate with 0,0 trap (10% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_NONCOMMERCIAL_LONG_OTHER` fills 100% of rows, 993 distinct -- coordinate with 0,0 trap (89% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_NONREPORTABLE_LONG_ALL` fills 100% of rows, 943 distinct -- coordinate with 0,0 trap (7% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_NONREPORTABLE_LONG_OLD` fills 100% of rows, 967 distinct -- coordinate with 0,0 trap (7% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_NONREPORTABLE_LONG_OTHER` fills 100% of rows, 997 distinct -- coordinate with 0,0 trap (84% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `OF_OI_TOTAL_REPORTABLE_LONG_OTHER` fills 100% of rows, 996 distinct -- coordinate with 0,0 trap (86% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `TRADERS_TOTAL_REPORTABLE_LONG_ALL` fills 100% of rows, 698 distinct -- coordinate, partly out of range (91% parse in range)
+- **TRAP** -- lat / lon: `TRADERS_TOTAL_REPORTABLE_LONG_OLD` fills 100% of rows, 685 distinct -- coordinate, partly out of range (92% parse in range)
+- **TRAP** -- region: `CFTC_REGION_CODE` fills 65% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- lat / lon: `NONREPORTABLE_POSITIONS_LONG_OTHER` fills 16% of rows, 15,248 distinct -- coordinate with 0,0 trap (84% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `TOTAL_REPORTABLE_POSITIONS_LONG_OTHER` fills 14% of rows, 24,371 distinct -- coordinate with 0,0 trap (86% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `TRADERS_TOTAL_REPORTABLE_LONG_OTHER` fills 14% of rows, 497 distinct -- coordinate with 0,0 trap (86% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `COMMERCIAL_POSITIONS_LONG_OTHER` fills 13% of rows, 22,340 distinct -- coordinate with 0,0 trap (87% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `NONCOMMERCIAL_POSITIONS_LONG_OTHER` fills 12% of rows, 15,400 distinct -- coordinate with 0,0 trap (89% are exactly 0 (Gulf of Guinea rows))
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AS_OF_DATE_IN_FORM_YYMMDD`, when it happened, to the day, 1986-01-15 -> 2026-08-04:
+
+- `AS_OF_DATE_IN_FORM_YYMMDD`: when it happened, date (typed), 1986-01-15 -> 2026-08-04, 287,053 rows (try_to_date(...,'YYMMDD') of the COT as-of Tuesday; duplicate of the ISO column with 2-digit-year century risk on this 1986-start file.) -- 308 other tables keep a clock to the day
+- `AS_OF_DATE_IN_FORM_YYYY_MM_DD`: when it happened, date (typed), 1986-01-15 -> 2026-08-04, 287,053 rows (try_to_date on the ISO-formatted COT as-of date - when the reported futures positions were held; census range 1986-2026 matches the real COT history.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CISA_KEV`
+*CISA KEV*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_ADDED`, when it was decided, to the day, 2021-11-03 -> 2026-07-01:
+
+- `DATE_ADDED`: when it was decided, date (typed), 2021-11-03 -> 2026-07-01, 1,631 rows (try_to_date(DATE_ADDED): the date CISA added the vulnerability to the Known Exploited Vulnerabilities catalog -- an agency designation act.) -- 308 other tables keep a clock to the day
+- `DUE_DATE`: end of a period, date (typed), 2021-11-17 -> 2026-07-04, 1,631 rows (try_to_date(DUE_DATE): the federal remediation deadline; it closes the required-action window that date_added opens, so it bounds a period rather than marking an event.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_CLINICALTRIALS`
+*Clinicaltrials*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FIRST_POSTED_DATE`, when it was reported / filed, to the day, 1999-09-21 -> 2026-06-11:
+
+- `FIRST_POSTED_DATE`: when it was reported / filed, date (typed), 1999-09-21 -> 2026-06-11, 500 rows (try_to_date 'YYYY-MM-DD' - when the registration first appeared publicly.) -- 308 other tables keep a clock to the day
+- `LAST_UPDATE_POSTED_DATE`: when it was reported / filed, date (typed), 2005-06-24 -> 2026-06-16, 500 rows (Registry last-update posting stamp - the source's vintage, not an event.) -- 308 other tables keep a clock to the day
+- `RESULTS_FIRST_POSTED_DATE`: when it was reported / filed, date (typed), 2010-06-22 -> 2026-06-04, 62 rows (When results were first posted to the registry.) -- 308 other tables keep a clock to the day
+- `START_DATE`: start of a period, date (typed), 1997-01-01 -> 2026-09-15, 320 rows (try_to_date 'YYYY-MM-DD' - the trial's period-of-performance start.) -- 308 other tables keep a clock to the day
+- `COMPLETION_DATE`: end of a period, date (typed), 2009-06-10 -> 2032-06-06, 289 rows (Trial period end; the 3 far-future rows (max 2032) are real, not corruption.) -- 308 other tables keep a clock to the day
+- `PRIMARY_COMPLETION_DATE`: end of a period, date (typed), 2009-06-10 -> 2031-10-22, 289 rows (End of the primary-outcome collection window; legitimately future-dated.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `STUDY_DURATION_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2006, 283 rows (datediff('day', start_date, completion_date) - a duration.)
+- **NOT A CLOCK** -- `DAYS_TO_RESULTS_POSTING`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1767 -> 2011, 62 rows (datediff between two posting dates - a duration.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS`
 *Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants*
 
-40 reliable connections.
+40 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 49 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Rock-solid match:**
 
@@ -407,7 +1186,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_DIALYSIS`
 *Medicare & Medicaid (CMS): Dialysis*
 
-19 reliable connections -- plus 27 low-confidence name+ZIP guesses not shown here.
+19 reliable connections, 8 value-checked place columns, 1 value-checked clock column -- plus 27 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 7,527 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 2,936 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_PARISH` fills 100% of rows, 1,231 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 5,361 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- lat / lon: `NUMBER_OF_PATIENTS_IN_LONG_TERM_CATHETER_SUMMARY` fills 97% of rows, 270 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `PERCENTAGE_OF_ADULT_PATIENTS_WITH_LONG_TERM_CATHETER_IN_USE` fills 93% of rows, 76 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- street address: `ADDRESS_LINE_2` fills 17% of rows, 617 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- lat / lon: `LONG_TERM_CATHETER_DATA_AVAILABILITY_CODE` fills 100% of rows, 5 distinct -- coordinate, partly out of range (93% parse in range)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CERTIFICATION_DATE`, when it was decided, to the day, 1968-01-01 -> 2026-02-09:
+
+- `CERTIFICATION_DATE`: when it was decided, date (typed), 1968-01-01 -> 2026-02-09, 7,557 rows (try_to_date of the Medicare certification date - the only per-facility clock on this table.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -457,7 +1252,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_FACILITY_AFFILIATION`
 *Medicare & Medicaid (CMS): Facility Affiliation*
 
-50 reliable connections.
+50 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -565,11 +1360,26 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (HRSA UDS Service Delivery Sites) -- **0%** of the facility id <-> provider id values also appear in `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (5 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (937,541 matching)
+  <sub>joins on: `FED_CMS_FACILITY_AFFILIATION.IND_PAC_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- the clinician-to-facility affiliation file keys on the same PECOS owner/associate id as the enrollment file</sub>
+
 
 ### `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY`
 *Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency*
 
-28 reliable connections -- plus 43 low-confidence name+ZIP guesses not shown here.
+28 reliable connections, 5 value-checked place columns -- plus 43 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 5,113 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_NAME` fills 100% of rows, 1,712 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 9,229 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- lat / lon: `LONG_STAY_PERCENT` fills 10% of rows, 8,757 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- FIPS / GEOID code: `FIPS_COUNTY_CODE` fills 100% of rows, 298 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
 
 **Rock-solid match:**
 
@@ -637,7 +1447,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS`
 *Medicare & Medicaid (CMS): Federally Qualified Health Center Enrollments*
 
-11 reliable connections -- plus 25 low-confidence name+ZIP guesses not shown here.
+11 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 7 value-checked place columns, 1 value-checked clock column -- plus 25 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 10,725 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 3,798 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENROLLMENT_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 10,276 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `INCORPORATION_STATE` fills 82% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 21% of rows, 891 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1817-01-01 -> 2024-08-26:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1817-01-01 -> 2024-08-26, 9,092 rows (try_to_date of incorporation; 281 rows on 1970-01-01 and an 1817 floor are sentinels.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -663,6 +1487,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS.NPI` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.RNDRNG_NPI` &middot; key: `NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **0%** of the provider number (npi) values also appear in `FED_CMS_MEDICARE_PROVIDER` (9 matching)
   <sub>joins on: `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS.NPI` = `FED_CMS_MEDICARE_PROVIDER.NPI` &middot; key: `NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (1,558 matching)
+  <sub>joins on: `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **99%** of the pecos enrollment record id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (10,936 matching)
+  <sub>joins on: `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS.ENROLLMENT_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
 
 
 ### `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING`
@@ -772,7 +1605,30 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_HCRIS`
 *Medicare & Medicaid (CMS) -- Hospital Cost Reports*
 
-26 reliable connections -- plus 65 low-confidence name+ZIP guesses not shown here.
+26 reliable connections, 5 value-checked place columns, 3 value-checked clock columns -- plus 65 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 5,924 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 3,074 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE_CODE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- metro area: `RURAL_VERSUS_URBAN` fills 99% of rows, 3 distinct -- text place -- 19 other tables carry a clean metro area
+- county: `COUNTY` fills 91% of rows, 1,561 distinct -- county name -- 79 other tables carry a clean county
+- **TRAP** -- metro area: `MEDICARE_CBSA_NUMBER` fills 99% of rows, 470 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FISCAL_YEAR_BEGIN_DATE`, start of a period, to the day, 2022-10-01 -> 2023-09-28:
+
+- `FISCAL_YEAR_BEGIN_DATE`: start of a period, date (typed), 2022-10-01 -> 2023-09-28, 6,103 rows (try_to_date in staging; start of the cost-report period.) -- 308 other tables keep a clock to the day
+- `FISCAL_YEAR_END_DATE`: end of a period, date (typed), 2022-11-30 -> 2024-09-30, 6,103 rows (try_to_date in staging; end of the cost report's fiscal year.) -- 308 other tables keep a clock to the day
+- `FISCAL_YEAR_END_DATE_KEY`: end of a period, date (typed), 2022-11-30 -> 2024-09-30, 6,103 rows (A copy of fiscal_year_end_date exposed as a join key, not a second clock.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `TOTAL_BED_DAYS_AVAILABLE`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2033, 5,991 rows (A count of bed-days (capacity).)
+- **NOT A CLOCK** -- `HOSPITAL_TOTAL_BED_DAYS_AVAILABLE_ADULTS_PEDS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1701 -> 2033, 5,988 rows (A count of bed-days.)
+- **NOT A CLOCK** -- `TOTAL_DAYS_ALL`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 5,984 rows (Total patient-days; used as the occupancy numerator in this same model.)
+- **NOT A CLOCK** -- `TOTAL_DAYS_TITLE_XVIII`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1701 -> 2035, 5,920 rows (A count of patient-days under Title XVIII.)
+- **NOT A CLOCK** -- `HOSPITAL_TOTAL_DAYS_TITLE_XVIII_ADULTS_PEDS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1701 -> 2034, 5,906 rows (A count of patient-days.)
+- **NOT A CLOCK** -- `TOTAL_DAYS_TITLE_XIX`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1701 -> 2035, 5,056 rows (A count of patient-days under Title XIX.)
+- **NOT A CLOCK** -- `TOTAL_DAYS_TITLE_V`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1761 -> 1943, 127 rows (A count of patient-days under Title V.)
+- **NOT A CLOCK** -- `HOSPITAL_TOTAL_DAYS_TITLE_V_ADULTS_PEDS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1720 -> 1825, 116 rows (A count of patient-days.)
 
 **Rock-solid match:**
 
@@ -836,7 +1692,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_HOME_HEALTH`
 *Medicare & Medicaid (CMS): HOME Health*
 
-21 reliable connections -- plus 35 low-confidence name+ZIP guesses not shown here.
+21 reliable connections, 5 value-checked place columns, 1 value-checked clock column -- plus 35 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 12,547 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 2,694 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 4,777 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `FOOTNOTE_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY` fills 30% of rows, 5 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- street address: `DENOMINATOR_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY` fills 70% of rows, 2,348 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY` fills 70% of rows, 2,277 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `NUMERATOR_FOR_HOW_OFTEN_PHYSICIAN_RECOMMENDED_ACTIONS_TO_ADDRESS_MEDICATION_ISSUES_WERE_COMPLETELY_TIMELY` fills 70% of rows, 2,305 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CERTIFICATION_DATE`, when it was decided, to the day, 1966-07-01 -> 2025-10-09:
+
+- `CERTIFICATION_DATE`: when it was decided, date (typed), 1966-07-01 -> 2025-10-09, 12,391 rows (try_to_date of the Medicare certification date; 26 rows land on 1970-01-01.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -890,7 +1761,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS`
 *Medicare & Medicaid (CMS): HOME Health Agency Enrollments*
 
-29 reliable connections -- plus 47 low-confidence name+ZIP guesses not shown here.
+29 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 7 value-checked place columns, 1 value-checked clock column -- plus 47 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 9,796 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 2,636 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENROLLMENT_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 10,409 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `INCORPORATION_STATE` fills 81% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 71% of rows, 1,962 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1808-03-08 -> 2024-08-09:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1808-03-08 -> 2024-08-09, 9,211 rows (try_to_date of incorporation; 7 epoch-1970 rows and an 1808 floor are sentinels.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -956,11 +1841,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (4 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **98%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (9,986 matching)
+  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **98%** of the pecos enrollment record id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (11,220 matching)
+  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.ENROLLMENT_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+
 
 ### `FED_CMS_HOSPICE`
 *Medicare & Medicaid (CMS): Hospice*
 
-20 reliable connections -- plus 30 low-confidence name+ZIP guesses not shown here.
+20 reliable connections, 5 value-checked place columns, 1 value-checked clock column -- plus 30 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 6,987 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 2,003 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 3,233 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `COUNTY_PARISH` fills 99% of rows, 1,005 distinct -- county name -- 79 other tables carry a clean county
+- **TRAP** -- region: `CMS_REGION` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CERTIFICATION_DATE`, when it was decided, to the day, 1983-11-01 -> 2025-10-15:
+
+- `CERTIFICATION_DATE`: when it was decided, date (typed), 1983-11-01 -> 2025-10-15, 6,852 rows (try_to_date of the Medicare certification date for the hospice.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -1012,7 +1919,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_HOSPICE_ENROLLMENTS`
 *Medicare & Medicaid (CMS): Hospice Enrollments*
 
-22 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 45 low-confidence name+ZIP guesses not shown here.
+22 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 7 value-checked place columns, 1 value-checked clock column -- plus 45 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 5,570 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 1,965 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENROLLMENT_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 5,750 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `INCORPORATION_STATE` fills 80% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 70% of rows, 1,166 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1848-05-29 -> 2024-09-14:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1848-05-29 -> 2024-09-14, 4,818 rows (try_to_date of incorporation; 6 epoch-1970 rows and an 1848 floor are sentinels. Note this CMS hospice table is mis-filed under the IMMIGRATION schema.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -1066,15 +1987,51 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **94%** of the pecos enrollment record id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (5,670 matching)
+  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.ENROLLMENT_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **93%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (5,003 matching)
   <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
-  <sub>checked 2026-08-29: SOLID -- hospices join the PECOS ownership axis</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%**, states agree **98.3%** -- hospices join the PECOS ownership axis</sub>
+
+
+### `FED_CMS_HOSPITAL_COMPARE`
+*Medicare & Medicaid (CMS): Hospital Compare*
+
+0 reliable connections, 5 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 5,417 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 3,032 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_PARISH` fills 100% of rows, 1,557 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 4,872 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_CMS_HOSPITAL_ENROLLMENTS`
 *Medicare & Medicaid (CMS): Hospital Enrollments*
 
-38 reliable connections -- plus 60 low-confidence name+ZIP guesses not shown here.
+38 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 9 value-checked place columns, 2 value-checked clock columns -- plus 60 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 6,495 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 3,117 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENROLLMENT_STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 6,389 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `PRACTICE_LOCATION_TYPE` fills 92% of rows, 6 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `INCORPORATION_STATE` fills 67% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 8% of rows, 594 distinct -- text place -- 114 other tables carry a clean street address
+- site / place name: `LOCATION_OTHER_TYPE_TEXT` fills 8% of rows, 251 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1800-01-01 -> 2024-10-01:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1800-01-01 -> 2024-10-01, 6,026 rows (try_to_date of incorporation; 60 epoch-1970 rows and an 1800-01-01 floor.) -- 308 other tables keep a clock to the day
+- `REH_CONVERSION_DATE`: when it happened, date (typed), 2023-02-10 -> 2026-03-14, 45 rows (try_to_date of the Rural Emergency Hospital conversion; sparse, only set for converters.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -1158,11 +2115,28 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (5,264 matching)
+  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **99%** of the pecos enrollment record id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (9,103 matching)
+  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.ENROLLMENT_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- enrollment record -> the same record in the master enrollment file</sub>
+
 
 ### `FED_CMS_HOSPITAL_GENERAL`
 *Medicare & Medicaid (CMS): Hospital General*
 
-25 reliable connections -- plus 65 low-confidence name+ZIP guesses not shown here.
+25 reliable connections, 5 value-checked place columns -- plus 65 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 5,417 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 3,032 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_PARISH` fills 100% of rows, 1,557 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 4,872 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
 
 **Rock-solid match:**
 
@@ -1224,7 +2198,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_IRF`
 *Medicare & Medicaid (CMS): IRF*
 
-19 reliable connections -- plus 48 low-confidence name+ZIP guesses not shown here.
+19 reliable connections, 6 value-checked place columns, 1 value-checked clock column -- plus 48 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 1,239 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 837 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_PARISH` fills 100% of rows, 533 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 1,140 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_LINE_2` fills 6% of rows, 68 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- region: `CMS_REGION` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CERTIFICATION_DATE`, when it was decided, to the day, 1983-10-01 -> 2026-10-01:
+
+- `CERTIFICATION_DATE`: when it was decided, date (typed), 1983-10-01 -> 2026-10-01, 1,222 rows (try_to_date of the Medicare certification date for the rehab facility.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -1274,7 +2262,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_LTCH`
 *Medicare & Medicaid (CMS): LTCH*
 
-23 reliable connections -- plus 21 low-confidence name+ZIP guesses not shown here.
+23 reliable connections, 5 value-checked place columns, 1 value-checked clock column -- plus 21 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 319 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 263 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_PARISH` fills 100% of rows, 221 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 47 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 308 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- region: `CMS_REGION` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CERTIFICATION_DATE`, when it was decided, to the day, 1966-07-01 -> 2025-02-01:
+
+- `CERTIFICATION_DATE`: when it was decided, date (typed), 1966-07-01 -> 2025-02-01, 311 rows (try_to_date of the Medicare certification date; 1 epoch-1970 row.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -1332,7 +2333,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM`
 *Medicare & Medicaid (CMS): Medicare Diabetes Prevention Program*
 
-11 reliable connections -- plus 37 low-confidence name+ZIP guesses not shown here.
+11 reliable connections, 7 value-checked place columns -- plus 37 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS_LINE_1` fills 100% of rows, 1,001 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 661 distinct -- text place -- 174 other tables carry a clean city
+- site / place name: `LOCATION_1` fills 100% of rows, 1,020 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `LOCATION_NAME` fills 100% of rows, 434 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 870 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `STREET_ADDRESS_LINE_2` fills 30% of rows, 238 distinct -- text place -- 114 other tables carry a clean street address
 
 **Rock-solid match:**
 
@@ -1366,7 +2377,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_DIALYSIS_FACILITIES`
 *Medicare & Medicaid (CMS): Medicare Dialysis Facilities*
 
-34 reliable connections.
+34 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 3,069 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_COL`, when it happened, to the year, 2021 -> 2024:
+
+- `YEAR_COL`: when it happened, year only, 2021 -> 2024, 11,622,422 rows (try_to_number(YEAR) - the measurement year for the facility-measure row.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -1446,7 +2466,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER`
 *Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer*
 
-46 reliable connections -- plus 24 low-confidence name+ZIP guesses not shown here.
+46 reliable connections, 5 value-checked place columns -- plus 24 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RFRG_PRVDR_CITY` fills 100% of rows, 9,566 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `RFRG_PRVDR_STATE_FIPS` fills 100% of rows, 60 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RFRG_PRVDR_STATE_ABRVTN` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RFRG_PRVDR_ZIP5` fills 100% of rows, 16,802 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RFRG_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RFRG_PRVDR_RUCA` fills 100% of rows, 22 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `BENE_AGE_65_74_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1774 -> 1774, 89,204 rows (Count of beneficiaries aged 65-74.)
 
 **Rock-solid match:**
 
@@ -1550,7 +2583,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL`
 *Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Suppl*
 
-26 reliable connections -- plus 58 low-confidence name+ZIP guesses not shown here.
+26 reliable connections, 6 value-checked place columns -- plus 58 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `SUPLR_PRVDR_CITY` fills 100% of rows, 6,640 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `SUPLR_PRVDR_STATE_FIPS` fills 100% of rows, 55 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- metro area: `SUPLR_PRVDR_RUCA_CAT` fills 100% of rows, 3 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `SUPLR_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- state: `SUPLR_PRVDR_STATE_ABRVTN` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `SUPLR_PRVDR_ZIP5` fills 100% of rows, 12,792 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- metro area: `SUPLR_PRVDR_RUCA` fills 100% of rows, 22 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -1614,7 +2657,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT`
 *Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment*
 
-49 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+49 reliable connections, 14 measured 2026-08-29 (not yet in the spine), 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_CD` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Rock-solid match:**
 
@@ -1722,15 +2769,72 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (2,456,135 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: SOLID (by construction) -- the same enrollment file loaded twice under two names; identical id sets</sub>
+- `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS` (Medicare & Medicaid (CMS): Federally Qualified Health Center Enrollments) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS` (1,558 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_FACILITY_AFFILIATION` (Medicare & Medicaid (CMS): Facility Affiliation) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_FACILITY_AFFILIATION` (937,541 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_FACILITY_AFFILIATION.IND_PAC_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- the clinician-to-facility affiliation file keys on the same PECOS owner/associate id as the enrollment file</sub>
+- `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (5,264 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_HOSPITAL_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (2,490 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **99%** of the pecos enrollment record id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (9,103 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` = `FED_CMS_HOSPITAL_ENROLLMENTS.ENROLLMENT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- enrollment record -> the same record in the master enrollment file</sub>
+- `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS` (Medicare & Medicaid (CMS): Federally Qualified Health Center Enrollments) -- **99%** of the pecos enrollment record id values also appear in `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS` (10,936 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` = `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS.ENROLLMENT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **99%** of the pecos enrollment record id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (5,462 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.ENROLLMENT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **99%** of the pecos owner / associate id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (12,042 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **98%** of the pecos enrollment record id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (14,207 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ENROLLMENT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **98%** of the pecos owner / associate id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (9,986 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **98%** of the pecos enrollment record id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (11,220 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.ENROLLMENT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **94%** of the pecos enrollment record id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (5,670 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` = `FED_CMS_HOSPICE_ENROLLMENTS.ENROLLMENT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **93%** of the pecos owner / associate id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (5,003 matching)
   <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_HOSPICE_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
-  <sub>checked 2026-08-29: SOLID -- hospices join the PECOS ownership axis</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%**, states agree **98.3%** -- hospices join the PECOS ownership axis</sub>
 
 
 ### `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER`
 *Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider*
 
-22 reliable connections -- plus 60 low-confidence name+ZIP guesses not shown here.
+22 reliable connections, 5 value-checked place columns -- plus 60 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RNDRNG_PRVDR_CITY` fills 100% of rows, 1,846 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `RNDRNG_PRVDR_STATE_FIPS` fills 100% of rows, 51 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RNDRNG_PRVDR_STATE_ABRVTN` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RNDRNG_PRVDR_ZIP5` fills 100% of rows, 2,863 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RNDRNG_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RNDRNG_PRVDR_RUCA` fills 100% of rows, 19 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `TOT_CVRD_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1701 -> 2035, 3,044 rows (Total covered inpatient days - a count.)
+- **NOT A CLOCK** -- `TOT_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1703 -> 2032, 3,044 rows (Total inpatient days - a count.)
+- **NOT A CLOCK** -- `BENE_AGE_65_74_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1703 -> 2034, 2,998 rows (Count of beneficiaries aged 65-74.)
+- **NOT A CLOCK** -- `BENE_AGE_75_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1702 -> 2034, 2,981 rows (Count of beneficiaries aged 75-84.)
+- **NOT A CLOCK** -- `BENE_AGE_LT_65_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1704 -> 1990, 2,761 rows (Count of beneficiaries under 65.)
+- **NOT A CLOCK** -- `BENE_AGE_GT_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2000, 2,753 rows (Count of beneficiaries over 84.)
 
 **Rock-solid match:**
 
@@ -1786,7 +2890,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE`
 *Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service*
 
-22 reliable connections -- plus 60 low-confidence name+ZIP guesses not shown here.
+22 reliable connections, 5 value-checked place columns -- plus 60 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RNDRNG_PRVDR_CITY` fills 100% of rows, 1,782 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `RNDRNG_PRVDR_STATE_FIPS` fills 100% of rows, 51 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RNDRNG_PRVDR_STATE_ABRVTN` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RNDRNG_PRVDR_ZIP5` fills 100% of rows, 2,752 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RNDRNG_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RNDRNG_PRVDR_RUCA` fills 100% of rows, 19 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -1842,7 +2955,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE`
 *Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service*
 
-25 reliable connections -- plus 61 low-confidence name+ZIP guesses not shown here.
+25 reliable connections, 5 value-checked place columns -- plus 61 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RNDRNG_PRVDR_CITY` fills 100% of rows, 1,843 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `RNDRNG_PRVDR_STATE_FIPS` fills 100% of rows, 50 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RNDRNG_PRVDR_STATE_ABRVTN` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RNDRNG_PRVDR_ZIP5` fills 100% of rows, 2,863 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RNDRNG_PRVDR_RUCA_DESC` fills 100% of rows, 14 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RNDRNG_PRVDR_RUCA` fills 100% of rows, 18 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -1904,7 +3026,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER`
 *Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider*
 
-40 reliable connections -- plus 73 low-confidence name+ZIP guesses not shown here.
+40 reliable connections, 5 value-checked place columns -- plus 73 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RNDRNG_PRVDR_CITY` fills 100% of rows, 12,678 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `RNDRNG_PRVDR_STATE_FIPS` fills 100% of rows, 61 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RNDRNG_PRVDR_STATE_ABRVTN` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RNDRNG_PRVDR_ZIP5` fills 100% of rows, 21,267 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RNDRNG_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RNDRNG_PRVDR_RUCA` fills 100% of rows, 22 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `BENE_AGE_65_74_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,049,599 rows (Count of beneficiaries aged 65-74.)
+- **NOT A CLOCK** -- `BENE_AGE_75_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2034, 928,335 rows (Count of beneficiaries aged 75-84.)
+- **NOT A CLOCK** -- `BENE_AGE_GT_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 618,327 rows (Count of beneficiaries over 84.)
+- **NOT A CLOCK** -- `BENE_AGE_LT_65_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1705 -> 2031, 605,938 rows (Count of beneficiaries under 65.)
 
 **Rock-solid match:**
 
@@ -1996,7 +3134,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI`
 *Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi*
 
-40 reliable connections -- plus 73 low-confidence name+ZIP guesses not shown here.
+40 reliable connections, 6 value-checked place columns -- plus 73 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RNDRNG_PRVDR_CITY` fills 100% of rows, 12,475 distinct -- text place -- 174 other tables carry a clean city
+- site / place name: `PLACE_OF_SRVC` fills 100% of rows, 2 distinct -- text place -- 53 other tables carry a clean site / place name
+- FIPS / GEOID code: `RNDRNG_PRVDR_STATE_FIPS` fills 100% of rows, 61 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RNDRNG_PRVDR_STATE_ABRVTN` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RNDRNG_PRVDR_ZIP5` fills 100% of rows, 20,976 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RNDRNG_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RNDRNG_PRVDR_RUCA` fills 100% of rows, 22 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `TOT_BENE_DAY_SRVCS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 9,781,673 rows (Total beneficiary day-services - a service count.)
 
 **Rock-solid match:**
 
@@ -2088,7 +3240,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_MEDICARE_PROVIDER`
 *Medicare & Medicaid (CMS): Medicare Provider*
 
-40 reliable connections -- plus 73 low-confidence name+ZIP guesses not shown here.
+40 reliable connections, 5 value-checked place columns -- plus 73 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RNDRNG_PRVDR_CITY` fills 100% of rows, 12,678 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `RNDRNG_PRVDR_STATE_FIPS` fills 100% of rows, 61 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RNDRNG_PRVDR_STATE_ABRVTN` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RNDRNG_PRVDR_ZIP5` fills 100% of rows, 21,267 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `RNDRNG_PRVDR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `RNDRNG_PRVDR_RUCA` fills 100% of rows, 22 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `BENE_AGE_65_74_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,049,599 rows (Count of beneficiaries aged 65-74.)
+- **NOT A CLOCK** -- `BENE_AGE_75_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2034, 928,335 rows (Count of beneficiaries aged 75-84.)
+- **NOT A CLOCK** -- `BENE_AGE_GT_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 618,327 rows (Count of beneficiaries over 84.)
+- **NOT A CLOCK** -- `BENE_AGE_LT_65_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1705 -> 2031, 605,938 rows (Count of beneficiaries under 65.)
 
 **Rock-solid match:**
 
@@ -2180,19 +3348,115 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_NADAC`
 *Medicare & Medicaid (CMS): Nadac*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EFFECTIVE_DATE`, when it happened, to the day, 2022-11-23 -> 2024-12-25:
+
+- `EFFECTIVE_DATE`: when it happened, date (typed), 2022-11-23 -> 2024-12-25, 359,514 rows (try_to_date; the date the surveyed acquisition price took effect, and half the declared grain key.) -- 308 other tables keep a clock to the day
+- `GENERIC_EFFECTIVE_DATE`: when it happened, date (typed), 2023-01-18 -> 2024-12-25, 8,994 rows (try_to_date; effective date of the corresponding generic's price.) -- 308 other tables keep a clock to the day
+- `AS_OF_DATE`: when it was reported / filed, date (typed), 2024-01-03 -> 2024-12-25, 359,514 rows (try_to_date of the CMS file's as-of stamp - the publisher's snapshot vintage.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_FDA_NDC_DIRECTORY` (FDA (Food & Drug): NDC Directory) -- **82%** of the drug product code (ndc, 9-digit) values also appear in `FED_FDA_NDC_DIRECTORY` (17,958 matching)
   <sub>joins on: `FED_CMS_NADAC.NDC` = `FED_FDA_NDC_DIRECTORY.PRODUCTNDC` &middot; key: `NDC9`</sub>
-  <sub>checked 2026-08-29: SOLID -- only joins after both sides are padded to 5-4 digits (labeler-product); a raw string join gives 0%</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **86.7%** -- only joins after both sides are padded to 5-4 digits (labeler-product); a raw string join gives 0%</sub>
 
 
 ### `FED_CMS_NPPES`
 *Medicare & Medicaid (CMS) -- National Provider Registry*
 
-50 reliable connections.
+50 reliable connections, 75 value-checked place columns, 5 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `PROVIDER_FIRST_LINE_BUSINESS_MAILING_ADDRESS` fills 96% of rows, 3,828,276 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS` fills 96% of rows, 2,970,929 distinct -- text place -- 114 other tables carry a clean street address
+- city: `PROVIDER_BUSINESS_MAILING_ADDRESS_CITY_NAME` fills 96% of rows, 28,020 distinct -- text place -- 174 other tables carry a clean city
+- city: `PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME` fills 96% of rows, 28,327 distinct -- text place -- 174 other tables carry a clean city
+- state: `PROVIDER_BUSINESS_MAILING_ADDRESS_STATE_NAME` fills 96% of rows, 1,166 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME` fills 96% of rows, 1,089 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE` fills 96% of rows, 3,216,563 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE` fills 96% of rows, 2,079,881 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_1` fills 64% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_1` fills 15% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `PROVIDER_SECOND_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS` fills 14% of rows, 245,831 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `PROVIDER_SECOND_LINE_BUSINESS_MAILING_ADDRESS` fills 13% of rows, 225,375 distinct -- text place -- 114 other tables carry a clean street address
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_2` fills 13% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_2` fills 5% of rows, 59 distinct -- clean 2-letter state (only 4.8% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_3` fills 4% of rows, 59 distinct -- clean 2-letter state (only 3.7% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_3` fills 2% of rows, 59 distinct -- clean 2-letter state (only 2.2% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_4` fills 1% of rows, 59 distinct -- clean 2-letter state (only 1.2% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_4` fills 1% of rows, 58 distinct -- clean 2-letter state (only 1.2% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_5` fills 1% of rows, 59 distinct -- clean 2-letter state (only 0.7% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_6` fills 0% of rows, 58 distinct -- clean 2-letter state (only 0.5% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_5` fills 0% of rows, 57 distinct -- clean 2-letter state (only 0.5% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_7` fills 0% of rows, 58 distinct -- clean 2-letter state (only 0.4% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_8` fills 0% of rows, 56 distinct -- clean 2-letter state (only 0.3% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_9` fills 0% of rows, 58 distinct -- clean 2-letter state (only 0.2% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_6` fills 0% of rows, 56 distinct -- clean 2-letter state (only 0.2% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_10` fills 0% of rows, 57 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_11` fills 0% of rows, 58 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_12` fills 0% of rows, 57 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_13` fills 0% of rows, 55 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_7` fills 0% of rows, 57 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_8` fills 0% of rows, 56 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_9` fills 0% of rows, 54 distinct -- clean 2-letter state (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_14` fills 0% of rows, 56 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_15` fills 0% of rows, 53 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_16` fills 0% of rows, 52 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_17` fills 0% of rows, 52 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_18` fills 0% of rows, 51 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_19` fills 0% of rows, 52 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_20` fills 0% of rows, 51 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_21` fills 0% of rows, 50 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_22` fills 0% of rows, 48 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_23` fills 0% of rows, 49 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_24` fills 0% of rows, 49 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_25` fills 0% of rows, 49 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_26` fills 0% of rows, 47 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_27` fills 0% of rows, 45 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_28` fills 0% of rows, 43 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_29` fills 0% of rows, 46 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_30` fills 0% of rows, 46 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_31` fills 0% of rows, 43 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_32` fills 0% of rows, 46 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_33` fills 0% of rows, 41 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_34` fills 0% of rows, 39 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_35` fills 0% of rows, 38 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_36` fills 0% of rows, 40 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_37` fills 0% of rows, 33 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_38` fills 0% of rows, 34 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_39` fills 0% of rows, 33 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_40` fills 0% of rows, 32 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_41` fills 0% of rows, 29 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_42` fills 0% of rows, 26 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_43` fills 0% of rows, 29 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_44` fills 0% of rows, 27 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_45` fills 0% of rows, 27 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_46` fills 0% of rows, 25 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_47` fills 0% of rows, 23 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_48` fills 0% of rows, 19 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_49` fills 0% of rows, 15 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `OTHER_PROVIDER_IDENTIFIER_STATE_50` fills 0% of rows, 12 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_10` fills 0% of rows, 54 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_11` fills 0% of rows, 54 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_12` fills 0% of rows, 54 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_13` fills 0% of rows, 54 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_14` fills 0% of rows, 54 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- state: `PROVIDER_LICENSE_NUMBER_STATE_CODE_15` fills 0% of rows, 53 distinct -- clean 2-letter state (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- **TRAP** -- street address: `PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_TELEPHONE_NUMBER` fills 96% of rows, 3,732,697 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `PROVIDER_BUSINESS_MAILING_ADDRESS_TELEPHONE_NUMBER` fills 81% of rows, 3,932,547 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_FAX_NUMBER` fills 36% of rows, 1,339,375 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `PROVIDER_BUSINESS_MAILING_ADDRESS_FAX_NUMBER` fills 34% of rows, 1,186,604 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_UPDATE_DATE`, unlabeled clock, to the day, 2007-07-08 -> 2026-06-08:
+
+- `LAST_UPDATE_DATE`: unlabeled clock, date (typed), 2007-07-08 -> 2026-06-08, 9,260,504 rows -- 308 other tables keep a clock to the day
+- `PROVIDER_ENUMERATION_DATE`: unlabeled clock, date (typed), 2005-05-23 -> 2026-06-06, 9,260,504 rows -- 308 other tables keep a clock to the day
+- `CERTIFICATION_DATE`: unlabeled clock, date (typed), 2010-11-24 -> 2026-06-08, 4,941,497 rows -- 308 other tables keep a clock to the day
+- `NPI_DEACTIVATION_DATE`: unlabeled clock, date (typed), 2005-05-23 -> 2026-06-07, 364,602 rows -- 308 other tables keep a clock to the day
+- `NPI_REACTIVATION_DATE`: unlabeled clock, date (typed), 2005-05-24 -> 2026-06-05, 18,426 rows -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -2304,7 +3568,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_NURSING_HOME`
 *Medicare & Medicaid (CMS): Nursing HOME*
 
-28 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based -- plus 43 low-confidence name+ZIP guesses not shown here.
+28 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based, 11 value-checked place columns -- plus 43 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 14,755 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 5,113 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 13,960 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 10,618 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_PARISH` fills 100% of rows, 1,712 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `LOCATION` fills 100% of rows, 14,859 distinct -- text place -- 53 other tables carry a clean site / place name
+- metro area: `URBAN` fills 100% of rows, 2 distinct -- text place -- 19 other tables carry a clean metro area
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 9,229 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `PROVIDER_SSA_COUNTY_CODE` fills 98% of rows, 302 distinct -- county code -- 79 other tables carry a clean county
+- lat / lon: `LONG_STAY_QM_RATING` fills 96% of rows, 5 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
 
 **Rock-solid match:**
 
@@ -2372,7 +3650,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_NURSINGHOME411` (Nursinghome411) -- **91%** of the nursing-home chain id values also appear in `FED_NURSINGHOME411` (576 matching)
   <sub>joins on: `FED_CMS_NURSING_HOME.CHAIN_ID` = `FED_NURSINGHOME411.CHAIN_ID` &middot; key: `CHAIN_ID`</sub>
-  <sub>checked 2026-08-29: SOLID -- chain = owner group; there is no chain master table, names only</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- chain = owner group; there is no chain master table, names only</sub>
 
 **Same location:**
 
@@ -2387,7 +3665,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_NURSING_HOME_DEFICIENCIES`
 *Medicare & Medicaid (CMS): Nursing HOME Deficiencies*
 
-28 reliable connections -- plus 43 low-confidence name+ZIP guesses not shown here.
+28 reliable connections, 5 value-checked place columns, 3 value-checked clock columns -- plus 43 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `PROVIDER_ADDRESS` fills 100% of rows, 14,720 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 5,099 distinct -- text place -- 174 other tables carry a clean city
+- site / place name: `LOCATION` fills 100% of rows, 14,790 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 9,193 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SURVEY_DATE`, when it happened, to the day, 2017-03-23 -> 2026-05-20:
+
+- `SURVEY_DATE`: when it happened, date (typed), 2017-03-23 -> 2026-05-20, 418,479 rows (try_to_date - the inspection that produced the citation; census 2002-2026 is clean.) -- 308 other tables keep a clock to the day
+- `CORRECTION_DATE`: when it happened, date (typed), 2002-04-08 -> 2026-06-29, 415,956 rows (try_to_date - when the deficiency was corrected; also readable as the span_end of the open-citation window.) -- 308 other tables keep a clock to the day
+- `PROCESSING_DATE`: when it was reported / filed, date (typed), 2026-06-01 -> 2026-06-01, 418,479 rows (CMS file-processing stamp - the row's publication vintage.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -2455,7 +3747,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES`
 *Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies*
 
-29 reliable connections -- plus 41 low-confidence name+ZIP guesses not shown here.
+29 reliable connections, 5 value-checked place columns, 3 value-checked clock columns -- plus 41 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `PROVIDER_ADDRESS` fills 100% of rows, 13,990 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 4,952 distinct -- text place -- 174 other tables carry a clean city
+- site / place name: `LOCATION` fills 100% of rows, 14,036 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 8,876 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SURVEY_DATE`, when it happened, to the day, 2016-07-28 -> 2026-05-21:
+
+- `SURVEY_DATE`: when it happened, date (typed), 2016-07-28 -> 2026-05-21, 200,030 rows (try_to_date - the fire-safety inspection date.) -- 308 other tables keep a clock to the day
+- `CORRECTION_DATE`: when it happened, date (typed), 2016-01-15 -> 2027-05-30, 198,424 rows (try_to_date - when corrected; the table's 2027-05-30 census max most likely sits here.) -- 308 other tables keep a clock to the day
+- `PROCESSING_DATE`: when it was reported / filed, date (typed), 2026-06-01 -> 2026-06-01, 200,030 rows (CMS file-processing stamp.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -2525,7 +3831,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_NURSING_HOME_PENALTIES`
 *Medicare & Medicaid (CMS): Nursing HOME Penalties*
 
-26 reliable connections -- plus 33 low-confidence name+ZIP guesses not shown here.
+26 reliable connections, 5 value-checked place columns, 3 value-checked clock columns -- plus 33 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `PROVIDER_ADDRESS` fills 100% of rows, 6,849 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 3,167 distinct -- text place -- 174 other tables carry a clean city
+- site / place name: `LOCATION` fills 100% of rows, 6,924 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 5,254 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PENALTY_DATE`, when it was decided, to the day, 2023-06-17 -> 2026-05-13:
+
+- `PENALTY_DATE`: when it was decided, date (typed), 2023-06-17 -> 2026-05-13, 16,180 rows (try_to_date - the date CMS imposed the fine or denial.) -- 308 other tables keep a clock to the day
+- `PROCESSING_DATE`: when it was reported / filed, date (typed), 2026-06-01 -> 2026-06-01, 16,180 rows (CMS file-processing stamp.) -- 308 other tables keep a clock to the day
+- `PAYMENT_DENIAL_START_DATE`: start of a period, date (typed), 2023-06-30 -> 2026-05-15, 2,470 rows (try_to_date - start of the payment-denial period, bounded by the length-in-days column.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -2589,7 +3909,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_OPEN_PAYMENTS`
 *Medicare & Medicaid (CMS): OPEN Payments*
 
-46 reliable connections -- plus 2 low-confidence name+ZIP guesses not shown here.
+46 reliable connections, 4 value-checked place columns, 2 value-checked clock columns -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RECIPIENT_CITY` fills 100% of rows, 13,823 distinct -- text place -- 174 other tables carry a clean city
+- state: `RECIPIENT_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RECIPIENT_ZIP_CODE` fills 100% of rows, 268,860 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_STATE` fills 100% of rows, 49 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_PAYMENT`, when it happened, to the day, 2024-01-01 -> 2024-12-31:
+
+- `DATE_OF_PAYMENT`: when it happened, date as text (us), 2024-01-01 -> 2024-12-31, 15,385,047 rows (The date the manufacturer paid the doctor, but passed through UNCAST from landing - 15.4M rows of text, which is why the census measured nothing.) -- 308 other tables keep a clock to the day
+- `PROGRAM_YEAR`: when it happened, year only, 2024 -> 2024, 15,385,047 rows (Program year = the calendar year the payment was made; a bare date-parse of it is the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -2693,7 +4025,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_OPEN_PAYMENTS_2022`
 *Medicare & Medicaid (CMS): OPEN Payments 2022*
 
-46 reliable connections -- plus 2 low-confidence name+ZIP guesses not shown here.
+46 reliable connections, 4 value-checked place columns, 2 value-checked clock columns -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RECIPIENT_CITY` fills 100% of rows, 13,773 distinct -- text place -- 174 other tables carry a clean city
+- state: `RECIPIENT_STATE` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RECIPIENT_ZIP_CODE` fills 100% of rows, 258,425 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_STATE` fills 100% of rows, 47 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_PAYMENT`, when it happened, to the day, 2022-01-01 -> 2022-12-31:
+
+- `DATE_OF_PAYMENT`: when it happened, date as text (us), 2022-01-01 -> 2022-12-31, 13,250,000 rows (Payment date, uncast text from landing (13.3M rows).) -- 308 other tables keep a clock to the day
+- `PROGRAM_YEAR`: when it happened, year only, 2022 -> 2022, 13,250,000 rows (Calendar year of the payment; near-constant on this single-year table.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -2797,7 +4141,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_OPEN_PAYMENTS_2023`
 *Medicare & Medicaid (CMS): OPEN Payments 2023*
 
-46 reliable connections -- plus 2 low-confidence name+ZIP guesses not shown here.
+46 reliable connections, 4 value-checked place columns, 2 value-checked clock columns -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RECIPIENT_CITY` fills 100% of rows, 13,796 distinct -- text place -- 174 other tables carry a clean city
+- state: `RECIPIENT_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `RECIPIENT_ZIP_CODE` fills 100% of rows, 277,259 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_STATE` fills 100% of rows, 47 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_PAYMENT`, when it happened, to the day, 2023-01-01 -> 2023-12-31:
+
+- `DATE_OF_PAYMENT`: when it happened, date as text (us), 2023-01-01 -> 2023-12-31, 14,700,786 rows (Payment date, uncast text from landing (14.7M rows).) -- 308 other tables keep a clock to the day
+- `PROGRAM_YEAR`: when it happened, year only, 2023 -> 2023, 14,700,786 rows (Calendar year of the payment; near-constant on this single-year table.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -2901,7 +4257,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT`
 *Medicare & Medicaid (CMS): OPEN Payments Profile Supplement*
 
-46 reliable connections.
+46 reliable connections, 10 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 578,673 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 13,680 distinct -- text place -- 174 other tables carry a clean city
+- state: `LICENSE_STATE_CODE_1` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIPCODE` fills 100% of rows, 391,910 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `LICENSE_STATE_CODE_2` fills 41% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 23% of rows, 84,018 distinct -- text place -- 114 other tables carry a clean street address
+- state: `LICENSE_STATE_CODE_3` fills 16% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `LICENSE_STATE_CODE_4` fills 7% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `LICENSE_STATE_CODE_5` fills 3% of rows, 58 distinct -- clean 2-letter state (only 3.4% of rows filled) -- 229 other tables carry a clean state
 
 **Rock-solid match:**
 
@@ -3005,7 +4374,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS`
 *Medicare & Medicaid (CMS): Opioid Treatment Program Providers*
 
-12 reliable connections -- plus 26 low-confidence name+ZIP guesses not shown here.
+12 reliable connections, 5 value-checked place columns, 1 value-checked clock column -- plus 26 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 1,536 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 930 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 1,526 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_LINE_2` fills 36% of rows, 341 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `MEDICARE_ID_EFFECTIVE_DATE`, start of a period, to the day, 2014-10-25 -> 2026-05-20:
+
+- `MEDICARE_ID_EFFECTIVE_DATE`: start of a period, date (typed), 2014-10-25 -> 2026-05-20, 1,558 rows (try_to_date - when the provider's Medicare ID became effective, the start of enrollment; no paired end column.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -3041,7 +4422,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_OPT_OUT_AFFIDAVITS`
 *Medicare & Medicaid (CMS): OPT OUT Affidavits*
 
-36 reliable connections -- plus 16 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 5 value-checked place columns, 3 value-checked clock columns -- plus 16 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `FIRST_LINE_STREET_ADDRESS` fills 100% of rows, 37,379 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_NAME` fills 100% of rows, 4,650 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE_CODE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 35,962 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `SECOND_LINE_STREET_ADDRESS` fills 54% of rows, 5,910 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_UPDATED`, when it was reported / filed, to the day, 2024-04-15 -> 2026-07-13:
+
+- `LAST_UPDATED`: when it was reported / filed, date (typed), 2024-04-15 -> 2026-07-13, 57,209 rows (try_to_date of a file refresh stamp - flagged as bookkeeping; could instead be a per-record update stamp, unverified without values.) -- 308 other tables keep a clock to the day
+- `OPTOUT_EFFECTIVE_DATE`: start of a period, date (typed), 1998-01-01 -> 2026-10-01, 57,209 rows (try_to_date - start of the physician's Medicare opt-out period.) -- 308 other tables keep a clock to the day
+- `OPTOUT_END_DATE`: end of a period, date (typed), 2026-06-30 -> 2028-10-01, 57,209 rows (try_to_date - end of the opt-out period; the 2028-10-01 census max is a live future end date, not corruption.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -3226,6 +4621,24 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
+### `FED_CMS_PARTD_PRESCRIBERS`
+*Medicare & Medicaid (CMS): Partd Prescribers*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `PRESCRIBER_CITY` fills 100% of rows, 11,944 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `PRESCRIBER_STATE_FIPS` fills 100% of rows, 61 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `PRESCRIBER_STATE` fills 100% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `TOTAL_DAY_SUPPLY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 25,869,521 rows (try_to_number('Tot_Day_Suply') - total days of drug supplied; the table's only timestamp is _loaded_at, which is what the census reported as its range.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_CMS_PARTD_PRESCRIBER_DRUG`
 *Medicare & Medicaid (CMS): Partd Prescriber DRUG*
 
@@ -3333,7 +4746,25 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_PART_D_PRESCRIBERS`
 *Medicare & Medicaid (CMS): PART D Prescribers*
 
-46 reliable connections -- plus 41 low-confidence name+ZIP guesses not shown here.
+46 reliable connections, 5 value-checked place columns -- plus 41 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `PRSCRBR_CITY` fills 100% of rows, 12,695 distinct -- text place -- 174 other tables carry a clean city
+- state: `PRSCRBR_STATE_ABRVTN` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `PRSCRBR_ZIP5` fills 100% of rows, 21,041 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- FIPS / GEOID code: `PRSCRBR_STATE_FIPS` fills 100% of rows, 55 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- metro area: `PRSCRBR_RUCA_DESC` fills 100% of rows, 15 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- metro area: `PRSCRBR_RUCA` fills 100% of rows, 22 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `BENE_AGE_65_74_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1750 -> 2018, 1,416,883 rows (Count of beneficiaries aged 65-74.)
+- **NOT A CLOCK** -- `BENE_AGE_75_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2023, 1,416,883 rows (Count of beneficiaries aged 75-84.)
+- **NOT A CLOCK** -- `BENE_AGE_GT_84_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1734 -> 2001, 1,416,883 rows (Count of beneficiaries over 84.)
+- **NOT A CLOCK** -- `BENE_AGE_LT_65_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1737 -> 2030, 1,416,883 rows (Count of beneficiaries under 65.)
+- **NOT A CLOCK** -- `GE65_TOT_DAY_SUPLY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,416,883 rows (Days of supply for the 65+ cohort - a count.)
+- **NOT A CLOCK** -- `TOT_DAY_SUPLY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,416,883 rows (Total days of drug supplied - a count.)
 
 **Rock-solid match:**
 
@@ -3437,7 +4868,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_PECOS_PROVIDER_ENROLLMENT`
 *Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment*
 
-49 reliable connections.
+49 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -3542,6 +4973,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (37,029 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (2,456,135 matching)
+  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: SOLID (by construction) -- the same enrollment file loaded twice under two names; identical id sets</sub>
 
 
 ### `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS`
@@ -3669,7 +5106,30 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_POS_OTHER`
 *Medicare & Medicaid (CMS): POS Other*
 
-28 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 68 low-confidence name+ZIP guesses not shown here.
+28 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 5 value-checked place columns, 8 value-checked clock columns -- plus 68 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY_NAME` fills 100% of rows, 7,755 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE_CD` fills 100% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CD` fills 99% of rows, 13,707 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- FIPS / GEOID code: `FIPS_STATE_CD` fills 99% of rows, 55 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- metro area: `CBSA_URBN_RRL_IND` fills 99% of rows, 2 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- state: `SSA_STATE_CD` fills 100% of rows, 58 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- FIPS / GEOID code: `FIPS_CNTY_CD` fills 99% of rows, 320 distinct -- FIPS with leading zeros lost (59% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- metro area: `CBSA_CD` fills 99% of rows, 460 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CHOW_DT`, when it happened, to the day, 1973-06-30 -> 2026-01-01:
+
+- `CHOW_DT`: when it happened, date as text (yyyymmdd), 1973-06-30 -> 2026-01-01, 44,429 rows (Change-of-ownership date, UNCAST; CMS POS ships YYYYMMDD text so a bare cast would epoch-collapse it.) -- 308 other tables keep a clock to the day
+- `CHOW_PRIOR_DT`: when it happened, date as text (yyyymmdd), 1966-07-01 -> 2024-08-30, 44,429 rows (Prior change-of-ownership date - uncast text.) -- 308 other tables keep a clock to the day
+- `CRTFCTN_DT`: when it was decided, date as text (yyyymmdd), 1966-07-01 -> 2026-03-26, 44,429 rows (Medicare certification date - uncast text, but the most broadly populated clock here (chow_dt only exists for ownership changes).) -- 308 other tables keep a clock to the day
+- `NCRY_PRVDR_DSGNTD_DT`: when it was decided, date as text (yyyymmdd), 1993-12-01 -> 2023-02-27, 44,429 rows (Date the necessary-provider designation was granted.) -- 308 other tables keep a clock to the day
+- `ORGNL_PRTCPTN_DT`: when it was decided, date as text (yyyymmdd), 1966-07-01 -> 2026-03-24, 44,429 rows (Original Medicare participation date - uncast text.) -- 308 other tables keep a clock to the day
+- `ACRDTN_EFCTV_DT`: start of a period, date as text (yyyymmdd), 1966-07-01 -> 2028-11-08, 44,429 rows (Accreditation effective date - start of the accreditation span.) -- 308 other tables keep a clock to the day
+- `ACRDTN_EXPRTN_DT`: end of a period, date as text (yyyymmdd), 1969-07-01 -> 2034-06-17, 44,429 rows (Accreditation expiration date - end of the accreditation span.) -- 308 other tables keep a clock to the day
+- `TRMNTN_EXPRTN_DT`: end of a period, date as text (yyyymmdd), 1963-05-07 -> 2026-03-19, 44,429 rows (Termination/expiration of Medicare participation - end of the participation span.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `FQHC_APPROVED_RHC_PROVIDER_NUM`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1838 -> 1838, 44,429 rows (A provider NUMBER, not a date.)
 
 **Rock-solid match:**
 
@@ -3737,16 +5197,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **97%** of the medicare facility number (ccn) values also appear in `FED_CMS_POS_OTHER` (5,405 matching)
   <sub>joins on: `FED_CMS_POS_OTHER.CROSS_REF_PROVIDER_NUMBER` = `FED_CMS_POS_OTHER.CCN` &middot; key: `CCN`</sub>
-  <sub>checked 2026-08-29: SOLID (lineage) -- predecessor facility number -> current number; names differ by design, states agree 100%</sub>
+  <sub>checked 2026-08-29: SOLID (lineage) -- 60 matched pairs spot-checked: names agree **56.7%**, states agree **100%** -- predecessor facility number -> current number; names differ by design, states agree 100%</sub>
 - `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (HRSA UDS Service Delivery Sites) -- **90%** of the medicare facility number (ccn) values also appear in `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (7,559 matching)
   <sub>joins on: `FED_CMS_POS_OTHER.CCN` = `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_MEDICARE_BILLING_NUMBER` &middot; key: `CCN`</sub>
-  <sub>checked 2026-08-29: SOLID (site -> parent org) -- states agree 100%; site name vs org name</sub>
+  <sub>checked 2026-08-29: SOLID (site -> parent org) -- 60 matched pairs spot-checked: names agree **58.3%**, states agree **100%** -- states agree 100%; site name vs org name</sub>
 
 
 ### `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE`
 *Medicare & Medicaid (CMS): Quality Payment Program Experience*
 
-46 reliable connections.
+46 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `PRACTICE_STATE_OR_US_TERRITORY` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Rock-solid match:**
 
@@ -3850,7 +5314,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS`
 *Medicare & Medicaid (CMS): Rural Health Clinic Enrollments*
 
-25 reliable connections -- plus 30 low-confidence name+ZIP guesses not shown here.
+25 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 7 value-checked place columns, 1 value-checked clock column -- plus 30 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 5,401 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 2,949 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENROLLMENT_STATE` fills 100% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 5,409 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `INCORPORATION_STATE` fills 65% of rows, 46 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 21% of rows, 476 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1859-01-28 -> 2024-08-19:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1859-01-28 -> 2024-08-19, 3,541 rows (try_to_date of incorporation; 22 epoch-1970 rows and an 1859 floor are sentinels.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -3908,11 +5386,34 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (5 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (2,490 matching)
+  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **99%** of the pecos enrollment record id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (5,462 matching)
+  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.ENROLLMENT_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+
 
 ### `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS`
 *Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments*
 
-30 reliable connections -- plus 43 low-confidence name+ZIP guesses not shown here.
+30 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 7 value-checked place columns, 1 value-checked clock column -- plus 43 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 14,654 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 5,098 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENROLLMENT_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 14,108 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `INCORPORATION_STATE` fills 63% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 4% of rows, 585 distinct -- text place (only 4.3% of rows filled) -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1800-01-01 -> 2024-09-17:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1800-01-01 -> 2024-09-17, 8,989 rows (try_to_date of incorporation; 36 epoch-1970 rows and an 1800-01-01 floor.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -3980,6 +5481,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **99%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (12,042 matching)
+  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **98%** of the pecos enrollment record id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (14,207 matching)
+  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ENROLLMENT_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.ENRLMT_ID` &middot; key: `PECOS_ENRLMT`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked)</sub>
+
 
 ### `FED_CONGRESS_COMMITTEE_MEMBERSHIP`
 *Congress Committee Membership*
@@ -4001,7 +5511,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CONGRESS_LEGISLATORS`
 *Congress Legislators*
 
-6 reliable connections.
+6 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- congressional district: `DISTRICT` fills 82% of rows, 55 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TERM_END`, end of a period, to the day, 1790-06-01 -> 2031-01-03:
+
+- `TERM_END`: end of a period, date as text (iso), 1790-06-01 -> 2031-01-03, 12,847 rows (End of the person's service span (staging names it last_term_end); for sitting members this is a scheduled future date, so far-future values here are legitimate.) -- 308 other tables keep a clock to the day
+- `TERM_START`: unclear clock, date as text (iso), 1789-03-04 -> 2026-06-10, 12,847 rows (Start of the person's service span (staging names it first_term_start); one row per legislator, so it bounds a career, not a single term - raw trimmed TEXT, never cast to date.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -4022,19 +5542,32 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_CONSOLIDATED_SCREENING_LIST`
 *Consolidated Screening LIST*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `START_DATE`, start of a period, to the day, 1974-11-17 -> 2026-03-26:
+
+- `START_DATE`: start of a period, date (typed), 1974-11-17 -> 2026-03-26, 5,094 rows (Staging casts try_to_date(nullif(trim(START_DATE),'')); paired with END_DATE it bounds the period the screening-list entry is in force.) -- 308 other tables keep a clock to the day
+- `END_DATE`: end of a period, date (typed), 2000-04-04 -> 2035-03-13, 1,551 rows (try_to_date(nullif(trim(END_DATE),'')) -- the close of the entry's in-force period; the census's 129 far-future rows are genuine future expiry dates, not corruption.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATES_OF_BIRTH`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (iso), 1921-05-06 -> 2006-01-01, 7,466 rows (Staging keeps it as nullif(trim(DATES_OF_BIRTH),'') raw text and the name is plural -- a multi-valued DOB string, never cast to a date.)
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_OFAC_SDN` (OFAC (Sanctions List): SDN) -- **97%** of the sanctions entry # (ofac) values also appear in `FED_OFAC_SDN` (18,985 matching)
   <sub>joins on: `FED_CONSOLIDATED_SCREENING_LIST.ENTITY_NUMBER` = `FED_OFAC_SDN.ENT_NUM` &middot; key: `OFAC_ENT_NUM`</sub>
-  <sub>checked 2026-08-29: SOLID -- same number system; the screening list is the SDN list plus other agencies' lists</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- same number system; the screening list is the SDN list plus other agencies' lists</sub>
 
 
 ### `FED_COURTLISTENER_COURTHOUSES`
 *CourtListener (Federal Court Records): Courthouses*
 
-3 reliable connections.
+3 reliable connections, 4 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 63 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 0% of rows, 7 distinct -- text place (only 0.3% of rows filled) -- 174 other tables carry a clean city
+- street address: `ADDRESS1` fills 0% of rows, 2 distinct -- text place (only 0.1% of rows filled) -- 114 other tables carry a clean street address
+- ZIP code: `ZIP_CODE` fills 0% of rows, 2 distinct -- clean ZIP (only 0.1% of rows filled) -- 124 other tables carry a clean ZIP code
 
 **Rock-solid match:**
 
@@ -4049,7 +5582,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_COURTS`
 *CourtListener (Federal Court Records): Courts*
 
-3 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+3 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `JURISDICTION` fills 100% of rows, 21 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `START_DATE`, start of a period, to the day, 1701-01-01 -> 2023-06-09:
+
+- `START_DATE`: start of a period, date (typed), 1701-01-01 -> 2023-06-09, 437 rows (try_to_date(START_DATE) on a court record: the date the court was established, paired with END_DATE (abolished) -- a period, not a point. The census's 1200-01-01 floor is a historical/placeholder founding date, not an epoch artefact.) -- 308 other tables keep a clock to the day
+- `END_DATE`: end of a period, date (typed), 1776-07-03 -> 2012-09-15, 403 rows (try_to_date(END_DATE): when the court ceased to exist; null for courts still operating.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2013-08-14 -> 2026-06-12, 3,361 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
 
 **Rock-solid match:**
 
@@ -4067,10 +5610,46 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- parent court pointer</sub>
 
 
+### `FED_COURTLISTENER_DISCLOSURE_REIMBURSEMENTS`
+*CourtListener (Federal Court Records): Disclosure Reimbursements*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `LOCATION` fills 75% of rows, 4,736 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2021-01-03 -> 2023-08-31, 33,472 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2021-01-03 -> 2023-08-31, 33,472 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_RAW`: NOT a clock (a duration, vintage, or count that looks like a year), date (typed), 1970-01-01 -> 2030-11-06, 1,839 rows (DATE_RAW across this whole disclosure family is CourtListener's as-extracted OCR text off scanned PDFs (confirmed samples in the sibling models: 'See VIII', "'84-presnt", '1987-2002'). LIVE BUG: unlike its siblings this model still wraps it)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_COURTLISTENER_DOCKETS`
 *CourtListener (Federal Court Records): Dockets*
 
-10 reliable connections.
+10 reliable connections, 1 value-checked place column, 8 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `JURISDICTION_TYPE` fills 14% of rows, 12 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_ARGUED`, when it happened, to the day, 1802-01-08 -> 2026-06-26:
+
+- `DATE_ARGUED`: when it happened, date (typed), 1802-01-08 -> 2026-06-26, 236,172 rows (try_to_date(DATE_ARGUED): the day oral argument actually took place.) -- 308 other tables keep a clock to the day
+- `DATE_REARGUED`: when it happened, date (typed), 1870-01-10 -> 2016-03-05, 1,632 rows (try_to_date(DATE_REARGUED): the day the case was reargued.) -- 308 other tables keep a clock to the day
+- `DATE_TERMINATED`: when it was decided, date (typed), 1899-12-31 -> 2029-11-18, 56,109,958 rows (try_to_date(DATE_TERMINATED): when the court closed the case.) -- 308 other tables keep a clock to the day
+- `DATE_REARGUMENT_DENIED`: when it was decided, date (typed), 1842-03-26 -> 2020-12-19, 108,277 rows (try_to_date(DATE_REARGUMENT_DENIED): the court's refusal to rehear -- a ruling.) -- 308 other tables keep a clock to the day
+- `DATE_CERT_DENIED`: when it was decided, date (typed), 1925-08-03 -> 2011-09-22, 7,941 rows (try_to_date(DATE_CERT_DENIED): the date certiorari was denied -- an authority ruling.) -- 308 other tables keep a clock to the day
+- `DATE_CERT_GRANTED`: when it was decided, date (typed), 1941-10-07 -> 2007-10-15, 156 rows (try_to_date(DATE_CERT_GRANTED): the date certiorari was granted -- an authority ruling.) -- 308 other tables keep a clock to the day
+- `DATE_FILED`: when it was reported / filed, date (typed), 1871-10-12 -> 2030-01-28, 62,556,368 rows (try_to_date(DATE_FILED): when the case was filed with the court. Chosen as primary because it is the only case-level date populated across the whole 71.7M-row docket universe; the 'happened' candidates (argument dates) exist on a tiny minor) -- 308 other tables keep a clock to the day
+- `DATE_LAST_FILING`: when it was reported / filed, date (typed), 1918-08-20 -> 2030-12-29, 57,444,459 rows (try_to_date(DATE_LAST_FILING): the date of the most recent document filed on the docket.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2014-10-30 -> 2026-06-30, 71,677,647 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2014-10-30 -> 2026-06-30, 71,677,647 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `IA_DATE_FIRST_CHANGE`: our own download stamp -- never the clock, date (typed), 2018-01-01 -> 2026-06-30, 60,859,783 rows (try_to_date(IA_DATE_FIRST_CHANGE): part of the Internet Archive upload block (ia_needs_upload, ia_upload_failure_count) -- archival plumbing, not a case event.)
 
 **Rock-solid match:**
 
@@ -4099,7 +5678,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_FINANCIAL_DISCLOSURES`
 *CourtListener (Federal Court Records): Financial Disclosures*
 
-7 reliable connections.
+7 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_COL`, start of a period, to the year, 1700 -> 2022:
+
+- `YEAR_COL`: start of a period, year only, 1700 -> 2022, 34,011 rows (try_to_number("YEAR") -- the calendar year the disclosure report covers, so it opens a one-year reporting period. Stored as a NUMBER: a bare date-parse would read '2019' as epoch seconds and dump every row on 1970-01-01.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 1970-01-01 -> 2023-08-31, 33,285 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 1970-01-01 -> 2024-11-15, 33,073 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
 
 **Rock-solid match:**
 
@@ -4119,10 +5704,66 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_COURTLISTENER_FINANCIAL_DISCLOSURES.PERSON_ID` = `FED_COURTLISTENER_JUDGE_EDUCATIONS.PERSON_ID` &middot; key: `CL_PERSON_ID`</sub>
 
 
+### `FED_COURTLISTENER_FJC_IDB_CL_LINKED`
+*CourtListener (Federal Court Records): FJC IDB CL Linked*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- congressional district: `DISTRICT_ID` fills 100% of rows, 95 distinct -- text place -- 13 other tables carry a clean congressional district
+- **TRAP** -- region: `JURISDICTION` fills 91% of rows, 5 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_TERMINATED`, when it was decided, to the day, 1973-03-28 -> 2022-03-31:
+
+- `DATE_TERMINATED`: when it was decided, date (typed), 1973-03-28 -> 2022-03-31, 9,222,733 rows (try_to_date(DATE_TERMINATED): when the court terminated the case.) -- 308 other tables keep a clock to the day
+- `DATE_TRANSFER`: when it was decided, date (typed), 1931-01-01 -> 2031-01-01, 84,533 rows (try_to_date(DATE_TRANSFER): the date the case was transferred between courts -- a court-ordered action.) -- 308 other tables keep a clock to the day
+- `DATE_FILED`: when it was reported / filed, date (typed), 1901-01-01 -> 2022-03-31, 10,323,280 rows (try_to_date(DATE_FILED): when the case was filed with the district court -- the only date populated on every linked IDB record, so it is the timeline anchor.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2017-09-17 -> 2022-06-03, 10,323,280 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2017-09-17 -> 2022-06-03, 10,323,280 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `YEAR_OF_TAPE`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1988 -> 2022, 10,323,280 rows (YEAR_OF_TAPE passes through as raw text: the FJC data-tape (annual release) the record came from -- a snapshot/vintage label about the data release, not about the case.)
+- **NOT A CLOCK** -- `AMOUNT_RECEIVED`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 8,221,685 rows (try_to_double(AMOUNT_RECEIVED) -- a dollar figure. It only matched because of the word 'received'.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_COURTLISTENER_INVESTMENTS`
+*CourtListener (Federal Court Records): Investments*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRANSACTION_DATE`, when it happened, to the day, 1969-12-31 -> 2022-12-27:
+
+- `TRANSACTION_DATE`: when it happened, date (typed), 1969-12-31 -> 2022-12-27, 686,226 rows (try_to_date(TRANSACTION_DATE) -- the clean, already-working sibling of the OCR column per the model's comment: when the judge's reported trade actually occurred.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2020-12-31 -> 2023-08-31, 1,901,599 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2020-12-31 -> 2025-02-05, 1,901,599 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `TRANSACTION_DATE_RAW`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1720-01-12 -> 2020-12-22, 770,977 rows (The model's own comment documents TRANSACTION_DATE_RAW as CourtListener's OCR text off scanned PDFs ('04/01/20', garbled fragments); a bare try_to_date() epoch-mangled 57,859 of 57,860 rows, which is exactly the census's epoch1970 count for)
+- **NOT A CLOCK** -- `TRANSACTION_DURING_REPORTING_PERIOD`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1720 -> 2008, 937,102 rows (Raw passthrough text/flag saying whether (and what kind of) a transaction occurred in the period -- not a date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_COURTLISTENER_JUDGES`
 *CourtListener (Federal Court Records): Judges*
 
-7 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+7 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 4 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `DOB_CITY` fills 27% of rows, 1,826 distinct -- text place -- 174 other tables carry a clean city
+- state: `DOB_STATE` fills 26% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `DOD_CITY` fills 9% of rows, 623 distinct -- text place -- 174 other tables carry a clean city
+- state: `DOD_STATE` fills 9% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_DOB`, when it happened, to the day, 1707-01-01 -> 1999-12-14:
+
+- `DATE_DOB`: when it happened, date (typed), 1707-01-01 -> 1999-12-14, 7,362 rows (try_to_date(DATE_DOB): the judge's date of birth -- the only real-world event on a person row, so it is the timeline anchor for this table.) -- 308 other tables keep a clock to the day
+- `DATE_DOD`: when it happened, date (typed), 1764-01-01 -> 2023-12-01, 4,449 rows (try_to_date(DATE_DOD): the judge's date of death.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2025-05-14, 16,191 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2016-04-26 -> 2026-06-24, 16,191 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_COMPLETED`: our own download stamp -- never the clock, date (typed), 2020-12-23 -> 2022-08-09, 1,341 rows (try_to_date(DATE_COMPLETED): when CourtListener finished compiling this judge record -- data-entry bookkeeping, not a life or career event.)
+- **NOT A CLOCK** -- `FTM_TOTAL_RECEIVED`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 2030 -> 2030, 409 rows (FollowTheMoney total dollars received -- a money amount; it only matched on 'received'.)
+- **NOT A CLOCK** -- `IS_ALIAS_OF_ID`: NOT a clock (a duration, vintage, or count that looks like a year), quarter, 1810 -> 1810, 394 rows (A self-referencing record ID pointing at the canonical judge row -- an identifier, not a date.)
 
 **Rock-solid match:**
 
@@ -4154,7 +5795,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_JUDGE_EDUCATIONS`
 *CourtListener (Federal Court Records): Judge Educations*
 
-7 reliable connections.
+7 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DEGREE_YEAR`, when it happened, to the year, 1751 -> 2023:
+
+- `DEGREE_YEAR`: when it happened, year only, 1751 -> 2023, 7,915 rows (DEGREE_YEAR passes through as raw text: the year the degree was awarded. Year grain only, and it is a bare year string, so it must never be handed to a plain date-parse.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2023-11-08, 12,777 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2023-11-08, 12,777 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
 
 **Rock-solid match:**
 
@@ -4177,7 +5824,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_JUDGE_POLITICAL_AFFILIATIONS`
 *CourtListener (Federal Court Records): Judge Political Affiliations*
 
-7 reliable connections.
+7 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_START`, start of a period, to the day, 1798-04-11 -> 2022-03-30:
+
+- `DATE_START`: start of a period, date (typed), 1798-04-11 -> 2022-03-30, 4,117 rows (try_to_date(DATE_START): when the judge's affiliation with that party began -- paired with DATE_END it is a tenure span.) -- 308 other tables keep a clock to the day
+- `DATE_END`: end of a period, date (typed), 1806-02-21 -> 2017-04-09, 64 rows (try_to_date(DATE_END): when the affiliation ended.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2022-08-09, 8,486 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2022-08-09, 8,486 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
 
 **Rock-solid match:**
 
@@ -4220,10 +5874,37 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_COURTLISTENER_JUDGE_RACES.PERSON_ID` = `FED_COURTLISTENER_FINANCIAL_DISCLOSURES.PERSON_ID` &middot; key: `CL_PERSON_ID`</sub>
 
 
+### `FED_COURTLISTENER_OPINION_CLUSTERS`
+*CourtListener (Federal Court Records): Opinion Clusters*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_FILED`, when it was decided, to the day, 1700-05-08 -> 2028-04-13:
+
+- `DATE_FILED`: when it was decided, date (typed), 1700-05-08 -> 2028-04-13, 10,070,727 rows (try_to_date(DATE_FILED): the day the opinion was handed down by the court. The model's comment records that the ~49,791 rows landing in 1970 are real 1970 opinions, not sentinel garbage -- so the census's epoch count here is NOT corruption.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2014-10-30 -> 2026-06-30, 10,070,727 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2014-10-30 -> 2026-06-30, 10,070,727 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_BLOCKED`: our own download stamp -- never the clock, date (typed), 2010-07-20 -> 2026-06-30, 811,772 rows (When CourtListener flagged the cluster to be hidden from search engines -- aggregator site administration.)
+- **NOT A CLOCK** -- `OTHER_DATES`: NOT a clock (a duration, vintage, or count that looks like a year), date (typed), 1947-09-25 -> 2017-09-22, 81 rows (A plural free-text field of miscellaneous case dates ('argued...; decided...') wrapped in try_to_date(); it is prose, not a single point in time.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_COURTLISTENER_ORIGINATING_COURT_INFO`
 *CourtListener (Federal Court Records): Originating Court INFO*
 
-7 reliable connections.
+7 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_JUDGMENT`, when it was decided, to the day, 1971-08-08 -> 2030-09-06:
+
+- `DATE_JUDGMENT`: when it was decided, date (typed), 1971-08-08 -> 2030-09-06, 174,969 rows (try_to_date(DATE_JUDGMENT): when the lower court entered judgment.) -- 308 other tables keep a clock to the day
+- `DATE_JUDGMENT_EOD`: when it was decided, date (typed), 1985-06-26 -> 2026-12-19, 15,393 rows (try_to_date(DATE_JUDGMENT_EOD): judgment entered-on-docket date -- the clerk recording the court's own ruling.) -- 308 other tables keep a clock to the day
+- `DATE_DISPOSED`: when it was decided, date (typed), 1975-07-01 -> 2026-05-13, 4,405 rows (try_to_date(DATE_DISPOSED): when the originating court disposed of the case.) -- 308 other tables keep a clock to the day
+- `DATE_FILED`: when it was reported / filed, date (typed), 1951-01-25 -> 2029-09-09, 45,004 rows (try_to_date(DATE_FILED): when the case was filed in the originating (district) court -- the anchor date present on the broadest slice of rows.) -- 308 other tables keep a clock to the day
+- `DATE_FILED_NOA`: when it was reported / filed, date (typed), 1935-09-26 -> 2029-09-18, 41,187 rows (try_to_date(DATE_FILED_NOA): when the notice of appeal was filed by a party.) -- 308 other tables keep a clock to the day
+- `DATE_RECEIVED_COA`: when it was reported / filed, date (typed), 1984-05-23 -> 2030-06-25, 27,325 rows (try_to_date(DATE_RECEIVED_COA): when the court of appeals received the case -- a receipt date.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2018-06-27 -> 2026-06-30, 973,419 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2018-06-27 -> 2026-06-30, 973,419 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
 
 **Rock-solid match:**
 
@@ -4246,7 +5927,26 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_POSITIONS`
 *CourtListener (Federal Court Records): Positions*
 
-10 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+10 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 2 value-checked place columns, 9 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `LOCATION_STATE` fills 25% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `LOCATION_CITY` fills 20% of rows, 1,973 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_ELECTED`, when it happened, to the day, 1980-11-04 -> 2022-11-08:
+
+- `DATE_ELECTED`: when it happened, date (typed), 1980-11-04 -> 2022-11-08, 1,728 rows (try_to_date(DATE_ELECTED): the day the judge was elected to the seat -- an election event.) -- 308 other tables keep a clock to the day
+- `DATE_HEARING`: when it happened, date (typed), 1983-02-23 -> 2022-02-16, 862 rows (try_to_date(DATE_HEARING): the day the confirmation hearing took place.) -- 308 other tables keep a clock to the day
+- `DATE_NOMINATED`: when it was decided, date (typed), 1789-09-24 -> 2023-02-01, 4,274 rows (try_to_date(DATE_NOMINATED): the day the appointing authority (usually the President) nominated the person.) -- 308 other tables keep a clock to the day
+- `DATE_CONFIRMATION`: when it was decided, date (typed), 1789-09-25 -> 2022-05-18, 4,216 rows (try_to_date(DATE_CONFIRMATION): the day the Senate confirmed the appointment.) -- 308 other tables keep a clock to the day
+- `DATE_JUDICIAL_COMMITTEE_ACTION`: when it was decided, date (typed), 1826-05-22 -> 2022-07-19, 3,976 rows (try_to_date(...): the day the committee acted on the nomination (paired with judicial_committee_action naming what it did).) -- 308 other tables keep a clock to the day
+- `DATE_REFERRED_TO_JUDICIAL_COMMITTEE`: when it was decided, date (typed), 1826-05-08 -> 2021-04-19, 3,881 rows (try_to_date(...): the day the Senate referred the nomination to committee -- an authority acting.) -- 308 other tables keep a clock to the day
+- `DATE_RECESS_APPOINTMENT`: when it was decided, date (typed), 1789-11-18 -> 2026-12-31, 327 rows (try_to_date(DATE_RECESS_APPOINTMENT): the day a recess appointment was made -- an executive act.) -- 308 other tables keep a clock to the day
+- `DATE_START`: start of a period, date (typed), 1742-01-01 -> 2024-12-31, 50,421 rows (try_to_date(DATE_START): when the person actually took the seat. Chosen as primary over the 'happened' candidates because a position row IS a tenure, and date_start is the field populated across the file while hearing/election dates are spa) -- 308 other tables keep a clock to the day
+- `DATE_TERMINATION`: end of a period, date (typed), 1750-01-01 -> 2035-12-31, 42,458 rows (try_to_date(DATE_TERMINATION): when the tenure ended; paired with TERMINATION_REASON.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2025-05-21, 51,290 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2016-04-20 -> 2025-06-16, 51,290 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
 
 **Rock-solid match:**
 
@@ -4285,6 +5985,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 *CourtListener (Federal Court Records): Schools*
 
 22 reliable connections.
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `DATE_CREATED`: our own download stamp -- never the clock, date (typed), 2010-06-08 -> 2022-08-09, 6,011 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, date (typed), 2010-06-08 -> 2025-06-16, 6,011 rows (CourtListener's own row bookkeeping (when the aggregator's database created/last-touched the row), not a real-world event; same class as our ingest stamps.)
+- **NOT A CLOCK** -- `IS_ALIAS_OF_ID`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1707 -> 2019, 2,378 rows (A self-referencing school record ID -- an identifier, not a date.)
 
 **Rock-solid match:**
 
@@ -4337,10 +6043,120 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
+### `FED_CPSC_NEISS`
+*CPSC Neiss*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- site / place name: `LOCATION_CODE` fills 71% of rows, 9 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TREATMENT_DATE`, when it happened, to the day, 1999-01-01 -> 2025-12-31:
+
+- `TREATMENT_DATE`: when it happened, date (typed), 1999-01-01 -> 2025-12-31, 9,794,877 rows (try_to_date("TREATMENT_DATE",'MM/DD/YYYY') - the day the patient was treated in the emergency department for the injury.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATA_YEAR`: our own download stamp -- never the clock, year only, 1999 -> 2025, 9,794,971 rows (try_to_number("_SRC_YEAR") - our own loader's provenance tag for which annual NEISS file the row came from, not an independently observed date; it mirrors the treatment year but must never be the clock.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_DEA_ARCOS`
+*DEA (Drug Enforcement): Arcos*
+
+0 reliable connections, 6 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `BUYER_CITY` fills 100% of rows, 10,550 distinct -- text place -- 174 other tables carry a clean city
+- city: `REPORTER_CITY` fills 100% of rows, 420 distinct -- text place -- 174 other tables carry a clean city
+- county: `BUYER_COUNTY` fills 100% of rows, 1,871 distinct -- county name -- 79 other tables carry a clean county
+- county: `REPORTER_COUNTY` fills 100% of rows, 251 distinct -- county name -- 79 other tables carry a clean county
+- state: `BUYER_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `REPORTER_STATE` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRANSACTION_DATE`, when it happened, to the day, 2006-01-01 -> 2012-12-31:
+
+- `TRANSACTION_DATE`: when it happened, date (typed), 2006-01-01 -> 2012-12-31, 178,598,021 rows (try_to_date(trim(TRANSACTION_DATE),'MMDDYYYY') with an explicit format - when the controlled-substance shipment moved; 178.6M rows, the cleanest big event clock in this batch.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_DHS_HIFLD`
+*DHS Hifld*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SOURCE_DATE`, when it was reported / filed, to the day, 2014-06-12 -> 2021-05-26:
+
+- `SOURCE_DATE`: when it was reported / filed, date (typed), 2014-06-12 -> 2021-05-26, 500 rows (try_to_date(left(nullif(trim(SOURCE_DATE),''),10)) in staging: the date of the underlying source the facility record was compiled from, i.e. the vintage of the data rather than anything the facility did; the only candidate on a 500-row SAMP) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_DHS_OHSS`
+*DHS OHSS*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FISCAL_YEAR`, when it happened, to the year, 2014 -> 2025:
+
+- `FISCAL_YEAR`: when it happened, year only, 2014 -> 2025, 50,740 rows (Uncast passthrough of the multi-sheet spreadsheet's fiscal-year label: a federal fiscal year (Oct-Sep), so it is offset about three months from calendar time and must not be aligned as a calendar year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_DHS_YEARBOOK`
+*DHS Yearbook*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FISCAL_YEAR`, when it was reported / filed, to the year, 1996 -> 2022:
+
+- `FISCAL_YEAR`: when it was reported / filed, year only, 1996 -> 2022, 27 rows (try_to_number in the mart and carries both not_null and unique tests across the 27 rows, so it is a fully populated one-row-per-year key -- a federal fiscal year (Oct-Sep), not a calendar year.) -- 194 other tables keep a clock to the year
+- `YEARBOOK_EDITION`: when it was reported / filed, year only, 1996 -> 2022, 27 rows (Uncast varchar naming which published edition of the DHS Yearbook a row came from -- a publication vintage label, the class the brief explicitly calls out as not a date.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_DOJ_FCA_SETTLEMENTS`
+*DOJ FCA Settlements*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FISCAL_YEAR`, when it was decided, to the year, 2023 -> 2026:
+
+- `FISCAL_YEAR`: when it was decided, year only, 2023 -> 2026, 11 rows (try_to_number(trim(FISCAL_YEAR)) -- DOJ's fiscal year for the same settlement, a coarse duplicate of settlement_date. It is a NUMBER: a bare date-parse would read '2019' as epoch seconds and collapse every row onto 1970-01-01.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_DOL_EBSA_FORM5500_SCHEDULE_SB`
 *Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB*
 
-35 reliable connections -- plus 1 low-confidence name+ZIP guess not shown here.
+35 reliable connections, 5 value-checked place columns, 4 value-checked clock columns -- plus 1 low-confidence name+ZIP guess not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `SB_ACTUARY_US_ADDRESS1` fills 100% of rows, 3,150 distinct -- text place -- 114 other tables carry a clean street address
+- city: `SB_ACTUARY_US_CITY` fills 100% of rows, 637 distinct -- text place -- 174 other tables carry a clean city
+- state: `SB_ACTUARY_US_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `SB_ACTUARY_US_ZIP` fills 100% of rows, 979 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `SB_ACTUARY_US_ADDRESS2` fills 31% of rows, 523 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- airport / port: `SB_PORT_PREFNDNG_FNDNG_CAR_AMT` fills 2% of rows, 868 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 2.2% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SB_SIGNATURE_DATE`, when it was reported / filed, to the day, 1956-09-26 -> 2028-09-06:
+
+- `SB_SIGNATURE_DATE`: when it was reported / filed, date (typed), 1956-09-26 -> 2028-09-06, 41,461 rows (try_to_date(trim(SB_SIGNATURE_DATE),'YYYY-MM-DD'): the date the enrolled actuary signed and certified the schedule to DOL/IRS, always at or after the plan year it covers - and the likeliest home for the census's single far-future 2055-09-17) -- 308 other tables keep a clock to the day
+- `SB_PLAN_YEAR_BEGIN_DATE`: start of a period, date (typed), 2008-01-01 -> 2025-03-01, 41,802 rows (try_to_date(trim(SB_PLAN_YEAR_BEGIN_DATE),'YYYY-MM-DD') in staging: the first day of the plan year this actuarial filing covers, so it opens the filing's period and is the one date every SB row must carry; chosen as primary over sb_value_da) -- 308 other tables keep a clock to the day
+- `SB_VALUE_DATE`: start of a period, date (typed), 2008-12-31 -> 2025-12-30, 41,716 rows (try_to_date(trim(SB_VALUE_DATE),'YYYY-MM-DD'): the actuarial valuation as-of date the funding numbers were measured at (for most single-employer plans this equals the plan-year begin date), a real measurement point rather than a filing act.) -- 308 other tables keep a clock to the day
+- `SB_TAX_PRD`: unlabeled clock, date (typed), 2008-12-31 -> 2025-12-31, 41,802 rows -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `SB_CARRYOVER_PR_YR_TOT_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1760-05-04 -> 1982-03-10, 41,249 rows (try_to_number(): a prior-year carryover total in dollars (_TOT_AMT).)
+- **NOT A CLOCK** -- `SB_PRE_FNDNG_PR_YR_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1770-02-17 -> 1950-12-12, 41,236 rows (try_to_number(): a prior-year prefunding balance in dollars (_AMT).)
+- **NOT A CLOCK** -- `SB_CARRYOVER_PR_YR_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1760-05-04 -> 1855-01-15, 41,053 rows (try_to_number(): a prior-year carryover balance in dollars (_AMT); the 'PR_YR' fragment is what pulled it into the candidate list.)
+- **NOT A CLOCK** -- `SB_PRE_FNDNG_USED_PR_YR_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1717-08-02 -> 1798-04-03, 39,491 rows (try_to_number(): dollars of prefunding balance used in the prior year (_AMT).)
+- **NOT A CLOCK** -- `SB_CARRYOVER_USED_PR_YR_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1721 -> 2012, 39,226 rows (try_to_number(): dollars of carryover balance used in the prior year (_AMT).)
+- **NOT A CLOCK** -- `SB_TERM_FNDNG_TGT_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1710-10-25 -> 1987-12-24, 41,777 rows (try_to_number(): a dollar funding-target amount for terminated-vested participants (_AMT), no time content.)
+- **NOT A CLOCK** -- `SB_TERM_PARTCP_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1702 -> 2031, 41,777 rows (try_to_number(): a count of terminated-vested participants (_CNT), not a date - 'TERM' here means terminated, not term dates.)
 
 **Rock-solid match:**
 
@@ -4422,7 +6238,37 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_DOL_FORM5500`
 *Dept. of Labor: Form5500*
 
-35 reliable connections -- plus 26 low-confidence name+ZIP guesses not shown here.
+35 reliable connections, 20 value-checked place columns, 3 value-checked clock columns -- plus 26 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `SPONS_DFE_MAIL_US_ADDRESS1` fills 100% of rows, 28,432 distinct -- text place -- 114 other tables carry a clean street address
+- city: `SPONS_DFE_MAIL_US_CITY` fills 100% of rows, 5,250 distinct -- text place -- 174 other tables carry a clean city
+- state: `SPONS_DFE_MAIL_US_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `SPONS_DFE_MAIL_US_ZIP` fills 100% of rows, 13,720 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `SPONS_DFE_MAIL_US_ADDRESS2` fills 17% of rows, 2,186 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `SPONS_DFE_LOC_US_ADDRESS1` fills 8% of rows, 2,246 distinct -- text place -- 114 other tables carry a clean street address
+- city: `SPONS_DFE_LOC_US_CITY` fills 8% of rows, 1,259 distinct -- text place -- 174 other tables carry a clean city
+- state: `SPONS_DFE_LOC_US_STATE` fills 8% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `SPONS_DFE_LOC_US_ZIP` fills 8% of rows, 2,147 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADMIN_US_ADDRESS1` fills 4% of rows, 679 distinct -- text place (only 3.5% of rows filled) -- 114 other tables carry a clean street address
+- city: `ADMIN_US_CITY` fills 4% of rows, 470 distinct -- text place (only 3.5% of rows filled) -- 174 other tables carry a clean city
+- state: `ADMIN_US_STATE` fills 4% of rows, 51 distinct -- clean 2-letter state (only 3.5% of rows filled) -- 229 other tables carry a clean state
+- ZIP code: `ADMIN_US_ZIP` fills 4% of rows, 637 distinct -- clean ZIP (only 3.5% of rows filled) -- 124 other tables carry a clean ZIP code
+- street address: `ADMIN_US_ADDRESS2` fills 1% of rows, 70 distinct -- text place (only 1.0% of rows filled) -- 114 other tables carry a clean street address
+- street address: `SPONS_DFE_LOC_US_ADDRESS2` fills 1% of rows, 186 distinct -- text place (only 0.9% of rows filled) -- 114 other tables carry a clean street address
+- city: `SPONS_DFE_MAIL_FOREIGN_CITY` fills 0% of rows, 13 distinct -- text place (only 0.4% of rows filled) -- 174 other tables carry a clean city
+- state: `SPONS_DFE_MAIL_FORGN_PROV_ST` fills 0% of rows, 9 distinct -- state names (not codes) (only 0.4% of rows filled) -- 229 other tables carry a clean state
+- street address: `SPONS_DFE_LOC_FOREIGN_ADDRESS1` fills 0% of rows, 2 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- street address: `SPONS_DFE_LOC_FOREIGN_ADDRESS2` fills 0% of rows, 2 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- city: `SPONS_DFE_LOC_FOREIGN_CITY` fills 0% of rows, 2 distinct -- text place (only 0.0% of rows filled) -- 174 other tables carry a clean city
+- **TRAP** -- ZIP code: `SPONS_DFE_MAIL_FORGN_POSTAL_CD` fills 0% of rows, 12 distinct -- foreign postal code (only 2% look like US ZIPs; only 0.4% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PLAN_EFF_DATE`, when it happened, to the day, 1878-01-01 -> 2026-01-01:
+
+- `PLAN_EFF_DATE`: when it happened, date (typed), 1878-01-01 -> 2026-01-01, 33,066 rows (try_to_date(PLAN_EFF_DATE) is when the benefit plan came into existence, a real-world event, but it predates the filing by decades so it must not be used to place the filing; it is also the likely source of the census floor of 1878-01-01 an) -- 308 other tables keep a clock to the day
+- `DATE_RECEIVED`: when it was reported / filed, date (typed), 2026-01-02 -> 2026-06-24, 33,484 rows (try_to_date(DATE_RECEIVED) is when DOL received the filing, the one clock that dates the filing event itself rather than the plan behind it, so it is the honest placement for a filing table.) -- 308 other tables keep a clock to the day
+- `FORM_PLAN_YEAR_BEGIN_DATE`: start of a period, date (typed), 1923-01-01 -> 2026-01-01, 33,484 rows (try_to_date(FORM_PLAN_YEAR_BEGIN_DATE); the plan-year opening bound as printed on the form header, a near-duplicate of plan_year_begin_date.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -4504,19 +6350,165 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_DOL_FORM5500_FULL`
 *Dept. of Labor: Form5500 FULL*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_CFPB_HMDA_HISTORIC` (CFPB -- Mortgage Lending Data (HMDA): Historic) -- **40%** of the employer tax id (ein) values also appear in `FED_CFPB_HMDA_HISTORIC` (411 matching)
+  <sub>joins on: `FED_DOL_FORM5500_FULL.SPONS_DFE_EIN` = `FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID` &middot; key: `EIN`</sub>
+  <sub>checked 2026-08-30: SOLID (split by agency code) -- 60 matched pairs spot-checked: names agree **93.3%** -- HUD ROWS ONLY (agency code 7): there the old lender id is the lender's tax id, and 4 in 10 have a benefit-plan filing; name-checked 2026-08-30</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **28%** of the employer tax id (ein) values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (31,883 matching)
   <sub>joins on: `FED_DOL_FORM5500_FULL.SPONS_DFE_EIN` = `FED_OSHA_ITA_300A_SUMMARY_2024.EIN` &middot; key: `EIN`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- injury logs <-> benefit plans by employer tax id; use the FULL 5500 table, the 33K sample's EIN column is empty</sub>
 
 
+### `FED_DOL_OFLC`
+*Dept. of Labor: OFLC*
+
+0 reliable connections, 59 value-checked place columns, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `EMPLOYER_ADDRESS1` fills 100% of rows, 63,710 distinct -- text place -- 114 other tables carry a clean street address
+- city: `EMPLOYER_CITY` fills 100% of rows, 5,033 distinct -- text place -- 174 other tables carry a clean city
+- city: `WORKSITE_CITY_1` fills 100% of rows, 7,957 distinct -- text place -- 174 other tables carry a clean city
+- state: `EMPLOYER_STATE` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `WORKSITE_COUNTY_1` fills 100% of rows, 3,880 distinct -- county name -- 79 other tables carry a clean county
+- street address: `WORKSITE_ADDRESS1_1` fills 95% of rows, 149,398 distinct -- text place -- 114 other tables carry a clean street address
+- city: `AGENT_ATTORNEY_CITY` fills 67% of rows, 1,011 distinct -- text place -- 174 other tables carry a clean city
+- street address: `AGENT_ATTORNEY_ADDRESS1` fills 67% of rows, 6,517 distinct -- text place -- 114 other tables carry a clean street address
+- country: `AGENT_ATTORNEY_COUNTRY` fills 67% of rows, 9 distinct -- country name -- 49 other tables carry a clean country
+- state: `NAME_OF_HIGHEST_STATE_COURT` fills 67% of rows, 54 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `STATE_OF_HIGHEST_COURT` fills 67% of rows, 948 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `AGENT_ATTORNEY_STATE` fills 64% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `AGENT_ATTORNEY_ADDRESS2` fills 47% of rows, 2,030 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `EMPLOYER_ADDRESS2` fills 47% of rows, 8,142 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_1` fills 23% of rows, 24,164 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS1_2` fills 9% of rows, 26,651 distinct -- text place -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_2` fills 9% of rows, 3,159 distinct -- text place -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_2` fills 9% of rows, 1,494 distinct -- county name -- 79 other tables carry a clean county
+- street address: `WORKSITE_ADDRESS2_2` fills 3% of rows, 5,426 distinct -- text place (only 2.7% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS1_3` fills 2% of rows, 7,696 distinct -- text place (only 2.1% of rows filled) -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_3` fills 2% of rows, 1,927 distinct -- text place (only 2.1% of rows filled) -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_3` fills 2% of rows, 895 distinct -- county name (only 2.1% of rows filled) -- 79 other tables carry a clean county
+- street address: `WORKSITE_ADDRESS1_4` fills 1% of rows, 2,715 distinct -- text place (only 0.6% of rows filled) -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_4` fills 1% of rows, 1,086 distinct -- text place (only 0.6% of rows filled) -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_4` fills 1% of rows, 583 distinct -- county name (only 0.6% of rows filled) -- 79 other tables carry a clean county
+- state: `WORKSITE_STATE_4` fills 1% of rows, 52 distinct -- state names (not codes) (only 0.6% of rows filled) -- 229 other tables carry a clean state
+- street address: `WORKSITE_ADDRESS2_3` fills 0% of rows, 1,630 distinct -- text place (only 0.5% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS1_5` fills 0% of rows, 1,454 distinct -- text place (only 0.3% of rows filled) -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_5` fills 0% of rows, 746 distinct -- text place (only 0.3% of rows filled) -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_5` fills 0% of rows, 415 distinct -- county name (only 0.3% of rows filled) -- 79 other tables carry a clean county
+- state: `WORKSITE_STATE_5` fills 0% of rows, 49 distinct -- state names (not codes) (only 0.3% of rows filled) -- 229 other tables carry a clean state
+- street address: `WORKSITE_ADDRESS1_6` fills 0% of rows, 865 distinct -- text place (only 0.2% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_4` fills 0% of rows, 586 distinct -- text place (only 0.2% of rows filled) -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_6` fills 0% of rows, 525 distinct -- text place (only 0.2% of rows filled) -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_6` fills 0% of rows, 333 distinct -- county name (only 0.2% of rows filled) -- 79 other tables carry a clean county
+- state: `WORKSITE_STATE_6` fills 0% of rows, 48 distinct -- state names (not codes) (only 0.2% of rows filled) -- 229 other tables carry a clean state
+- street address: `WORKSITE_ADDRESS1_7` fills 0% of rows, 599 distinct -- text place (only 0.1% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS1_8` fills 0% of rows, 412 distinct -- text place (only 0.1% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS1_9` fills 0% of rows, 285 distinct -- text place (only 0.1% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_5` fills 0% of rows, 318 distinct -- text place (only 0.1% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_6` fills 0% of rows, 201 distinct -- text place (only 0.1% of rows filled) -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_7` fills 0% of rows, 368 distinct -- text place (only 0.1% of rows filled) -- 174 other tables carry a clean city
+- city: `WORKSITE_CITY_8` fills 0% of rows, 275 distinct -- text place (only 0.1% of rows filled) -- 174 other tables carry a clean city
+- city: `WORKSITE_CITY_9` fills 0% of rows, 215 distinct -- text place (only 0.1% of rows filled) -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_7` fills 0% of rows, 235 distinct -- county name (only 0.1% of rows filled) -- 79 other tables carry a clean county
+- county: `WORKSITE_COUNTY_8` fills 0% of rows, 187 distinct -- county name (only 0.1% of rows filled) -- 79 other tables carry a clean county
+- county: `WORKSITE_COUNTY_9` fills 0% of rows, 159 distinct -- county name (only 0.1% of rows filled) -- 79 other tables carry a clean county
+- state: `WORKSITE_STATE_7` fills 0% of rows, 44 distinct -- state names (not codes) (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `WORKSITE_STATE_8` fills 0% of rows, 44 distinct -- state names (not codes) (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- state: `WORKSITE_STATE_9` fills 0% of rows, 41 distinct -- state names (not codes) (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- street address: `WORKSITE_ADDRESS1_10` fills 0% of rows, 197 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_10` fills 0% of rows, 62 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_7` fills 0% of rows, 152 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_8` fills 0% of rows, 106 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- street address: `WORKSITE_ADDRESS2_9` fills 0% of rows, 87 distinct -- text place (only 0.0% of rows filled) -- 114 other tables carry a clean street address
+- city: `WORKSITE_CITY_10` fills 0% of rows, 150 distinct -- text place (only 0.0% of rows filled) -- 174 other tables carry a clean city
+- county: `WORKSITE_COUNTY_10` fills 0% of rows, 123 distinct -- county name (only 0.0% of rows filled) -- 79 other tables carry a clean county
+- state: `WORKSITE_STATE_10` fills 0% of rows, 44 distinct -- state names (not codes) (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- ZIP code: `WORKSITE_POSTAL_CODE_10` fills 0% of rows, 180 distinct -- clean ZIP (only 0.0% of rows filled) -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DECISION_DATE`, when it was decided, to the day, 2018-10-01 -> 2019-09-30:
+
+- `DECISION_DATE`: when it was decided, date (typed), 2018-10-01 -> 2019-09-30, 664,616 rows (try_to_date on DOL's decision date: the day the Office of Foreign Labor Certification ruled on the case, which is this table's own dated event and matches the census range 2012-09-17 to 2023-12-31.) -- 308 other tables keep a clock to the day
+- `ORIGINAL_CERT_DATE`: when it was decided, date (typed), 2014-03-10 -> 2019-09-30, 46,946 rows (try_to_date: the day the original labor certification was granted, an earlier authority decision carried on amended or extended cases.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_EMPLOYMENT_START_DATE`: start of a period, date (typed), 2012-09-17 -> 2020-03-31, 664,616 rows (try_to_date: the first day of the certified employment period, the opening bound of an explicit start/end pair.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_EMPLOYMENT_END_DATE`: end of a period, date (typed), 2015-09-16 -> 2023-12-31, 664,616 rows (try_to_date: the last day of the certified employment period, the closing bound of that pair.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `PW_NON_OES_YEAR_1`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1977 -> 2020, 664,616 rows (Uncast varchar non-OES wage-survey vintage label for worksite 1, same class as pw_oes_year_1.)
+- **NOT A CLOCK** -- `PW_NON_OES_YEAR_2`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2009 -> 2020, 664,616 rows (Uncast varchar non-OES wage-survey vintage label for worksite 2.)
+- **NOT A CLOCK** -- `PW_NON_OES_YEAR_3`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2015 -> 2020, 664,616 rows (Uncast varchar non-OES wage-survey vintage label for worksite 3.)
+- **NOT A CLOCK** -- `PW_OES_YEAR_1`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2001 -> 2020, 664,616 rows (Uncast varchar sitting in worksite 1's prevailing-wage block beside pw_survey_publisher_1 and pw_survey_name_1: the OES wage-survey vintage label (published as a range string like '7/1/2021 - 6/30/2022'), an attribute of the wage source rat)
+- **NOT A CLOCK** -- `PW_OES_YEAR_2`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2008 -> 2019, 664,616 rows (Uncast varchar OES wage-survey vintage label for worksite 2, one of ten repeated worksite blocks.)
+- **NOT A CLOCK** -- `PW_OES_YEAR_3`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2013 -> 2019, 664,616 rows (Uncast varchar OES wage-survey vintage label for worksite 3.)
+- **NOT A CLOCK** -- `PW_OES_YEAR_4`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2013 -> 2019, 664,616 rows (Uncast varchar OES wage-survey vintage label for worksite 4.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_DOL_OLMS`
+*Dept. of Labor: OLMS*
+
+0 reliable connections, 4 value-checked place columns, 9 value-checked clock columns -- plus 21 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 14,318 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 127 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 56,870 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `STREET_ADDRESS` fills 80% of rows, 101,054 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- street address: `ADDRESS_ID` fills 100% of rows, 489,702 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ESTABLISHED_DATE`, when it happened, to the day, 1970-12-01 -> 2026-06-18:
+
+- `ESTABLISHED_DATE`: when it happened, date (typed), 1970-12-01 -> 2026-06-18, 617,630 rows (try_to_date(trim(EST_DATE)): when the union local was established - but the staging model carries a live-confirmed warning that 395,053 of 617,710 rows (64%) hold the literal string '1970-12-01', DOL's own 'not on file' sentinel, which is m) -- 308 other tables keep a clock to the day
+- `NEXT_ELECTION_DATE`: when it happened, date (typed), 1806-03-01 -> 2032-11-01, 384,326 rows (coalesce of three explicit formats (MM/DD/YY, MM/YYYY, MMYYYY) after a documented 2026-08-18 epoch-bug fix; it is a union-self-reported FUTURE officer-election date, month-precision for ~384k of 617k rows (only 2,247 carry a day), so it mus) -- 308 other tables keep a clock to the day
+- `TERMINATION_DATE`: when it happened, date (typed), 1970-01-04 -> 2026-07-15, 167,837 rows (try_to_date(trim(TERM_DATE)) bare cast: when the union unit terminated; the likeliest home for the 9999-01-01 'never' sentinel behind the census's 28 far-future rows, unverifiable with the warehouse down.) -- 308 other tables keep a clock to the day
+- `YEAR_COVERED`: when it happened, year only, 2000 -> 2026, 617,552 rows (try_to_number(trim(YR_COVERED)): the fiscal year whose money the LM filing reports, i.e. when the union's finances actually moved; picked as primary because it is a clean integer year with no cast risk while every date column on this table ) -- 194 other tables keep a clock to the year
+- `RECEIVE_DATE`: when it was reported / filed, date (typed), 1899-12-30 -> 2026-08-07, 617,552 rows (try_to_date(trim(RECEIVE_DATE)) bare cast: when DOL received the LM filing - the classic reported clock, always after the year it covers.) -- 308 other tables keep a clock to the day
+- `REGISTER_DATE`: when it was reported / filed, date (typed), 1999-04-10 -> 2026-08-07, 617,225 rows (try_to_date(trim(REGISTER_DATE)) bare cast, filed by the staging model under 'filing period / lifecycle dates': when OLMS registered the union or filing in its system.) -- 308 other tables keep a clock to the day
+- `REPORT_YEAR_RAW`: when it was reported / filed, year only, 2000 -> 2026, 617,710 rows (trim(REPORT_YEAR) deliberately kept as raw TEXT (the _raw suffix says so): a year label for the report itself, not a date, and whether it differs from year_covered is unverified.) -- 194 other tables keep a clock to the year
+- `PERIOD_COVERED_FROM`: start of a period, date (typed), 1999-01-01 -> 2026-01-01, 617,708 rows (try_to_date(trim(PD_COVERED_FROM)) with NO format string: the first day of the period the filing covers; the bare cast is the same epoch/garbage trap that produced this table's CORRUPT_RANGE verdict.) -- 308 other tables keep a clock to the day
+- `PERIOD_COVERED_TO`: end of a period, date (typed), 1970-01-03 -> 2026-07-31, 617,708 rows (try_to_date(trim(PD_COVERED_TO)) with NO format string: the last day of the covered period, closing the span opened by period_covered_from.) -- 308 other tables keep a clock to the day
+
+
+### `FED_EAC_EAVS`
+*EAC EAVS*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `JURISDICTION_NAME` fills 100% of rows, 5,186 distinct -- text place -- 40 other tables carry a clean region
+- state: `STATE_ABBR` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_FULL` fills 100% of rows, 55 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_ED_COLLEGE_SCORECARD_INSTITUTION`
 *ED College Scorecard Institution*
 
-0 reliable connections, 4 place-based.
+0 reliable connections, 4 place-based, 5 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 2,286 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 5,788 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- lat / lon: `LATITUDE` fills 91% of rows, 5,742 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 91% of rows, 5,745 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 58 distinct -- FIPS with leading zeros lost (82% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- region: `REGION_CODE` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `TUITION_IN_STATE` fills 58% of rows, 2,729 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- state: `TUITION_OUT_OF_STATE` fills 58% of rows, 2,803 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `COST_OF_ATTENDANCE_ACADEMIC_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), quarter, 1700 -> 2035, 3,199 rows (try_to_number(trim(COSTT4_A)) -- a dollar cost of attendance for academic-year programs; matched only on the word 'year'.)
+- **NOT A CLOCK** -- `COST_OF_ATTENDANCE_PROGRAM_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), quarter, 1706 -> 2033, 1,836 rows (try_to_number(trim(COSTT4_P)) -- a dollar cost of attendance for program-year schools.)
+- **NOT A CLOCK** -- `AVG_FACULTY_SALARY_MONTHLY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1757 -> 2032, 3,781 rows (try_to_number(trim(AVGFACSAL)) -- average monthly faculty salary in dollars; matched only on 'monthly'.)
+- **NOT A CLOCK** -- `TUITION_PROGRAM_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1709 -> 2029, 2,062 rows (try_to_number(trim(TUITIONFEE_PROG)) -- a tuition dollar figure.)
 
 **Same location:**
 
@@ -4533,16 +6525,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EIA860_1_UTILITY`
 *EIA (Dept. of Energy -- Statistics): 860 1 Utility*
 
-0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 2 place-based -- plus 46 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 5 measured 2026-08-29 (not yet in the spine), 2 place-based, 3 value-checked place columns -- plus 46 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 3,733 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 1,812 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **100%** of the power utility id (eia) values also appear in `FED_EIA860_2_PLANT` (6,640 matching)
+  <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EIA860_2_PLANT.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- plant -> the utility that operates it</sub>
+- `FED_EPA_EGRID_PLANT_2022` (EPA (Environment): Egrid Plant 2022) -- **95%** of the power utility id (eia) values also appear in `FED_EPA_EGRID_PLANT_2022` (4,842 matching)
+  <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EPA_EGRID_PLANT_2022.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- emissions plant -> its utility</sub>
 - `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **51%** of the power utility id (eia) values also appear in `FED_EIA860_2_PLANT` (553 matching)
   <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EIA860_2_PLANT.TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID` &middot; key: `EIA_UTILITY_ID`</sub>
-  <sub>checked 2026-08-29: SOLID -- owners are often not utilities, hence half resolve</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- owners are often not utilities, hence half resolve</sub>
+- `FED_EIA861_UTILITY_DATA` (EIA (Dept. of Energy -- Statistics): 861 Utility DATA) -- **22%** of the power utility id (eia) values also appear in `FED_EIA861_UTILITY_DATA` (373 matching)
+  <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EIA861_UTILITY_DATA.UTILITY_NUMBER` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- same id system, different reporting universe (861 = retail sellers, 860 = plant operators), so low overlap is expected</sub>
 - `FED_EIA860_4_OWNER` (EIA (Dept. of Energy -- Statistics): 860 4 Owner) -- **16%** of the power utility id (eia) values also appear in `FED_EIA860_4_OWNER` (305 matching)
   <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EIA860_4_OWNER.OWNERSHIP_ID` &middot; key: `EIA_UTILITY_ID`</sub>
-  <sub>checked 2026-08-29: SOLID -- plant owners are mostly non-utilities; no owner master held</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- plant owners are mostly non-utilities; no owner master held</sub>
 
 **Same location:**
 
@@ -4555,13 +6562,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EIA860_2_PLANT`
 *EIA (Dept. of Energy -- Statistics): 860 2 Plant*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based -- plus 48 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 6 measured 2026-08-29 (not yet in the spine), 3 place-based, 8 value-checked place columns -- plus 48 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `COUNTY` fills 100% of rows, 1,477 distinct -- county name -- 79 other tables carry a clean county
+- city: `CITY` fills 100% of rows, 5,800 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 45 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 93 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- street address: `STREET_ADDRESS` fills 99% of rows, 14,390 distinct -- text place -- 114 other tables carry a clean street address
+- region: `NERC_REGION` fills 98% of rows, 7 distinct -- text place -- 40 other tables carry a clean region
+- state: `TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_STATE` fills 94% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **100%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (6,640 matching)
+  <sub>joins on: `FED_EIA860_2_PLANT.UTILITY_ID` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- plant -> the utility that operates it</sub>
+- `FED_EIA860_3_1_GENERATOR` (EIA (Dept. of Energy -- Statistics): 860 3 1 Generator) -- **100%** of the power plant id (eia / oris) values also appear in `FED_EIA860_3_1_GENERATOR` (13,370 matching)
+  <sub>joins on: `FED_EIA860_2_PLANT.PLANT_CODE` = `FED_EIA860_3_1_GENERATOR.PLANT_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- generator -> its plant</sub>
+- `FED_EIA860_4_OWNER` (EIA (Dept. of Energy -- Statistics): 860 4 Owner) -- **100%** of the power plant id (eia / oris) values also appear in `FED_EIA860_4_OWNER` (2,329 matching)
+  <sub>joins on: `FED_EIA860_2_PLANT.PLANT_CODE` = `FED_EIA860_4_OWNER.PLANT_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- plant owner row -> its plant</sub>
+- `FED_EPA_EGRID_PLANT_2022` (EPA (Environment): Egrid Plant 2022) -- **99%** of the power plant id (eia / oris) values also appear in `FED_EPA_EGRID_PLANT_2022` (11,802 matching)
+  <sub>joins on: `FED_EIA860_2_PLANT.PLANT_CODE` = `FED_EPA_EGRID_PLANT_2022.DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- emissions plant -> the EIA plant master; the EIA plant code and the EPA ORIS code are the same number</sub>
+- `FED_EPA_CAMPD_FACILITY` (EPA (Environment): Campd Facility) -- **81%** of the power plant id (eia / oris) values also appear in `FED_EPA_CAMPD_FACILITY` (1,587 matching)
+  <sub>joins on: `FED_EIA860_2_PLANT.PLANT_CODE` = `FED_EPA_CAMPD_FACILITY.FACILITY_ID` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- smokestack-monitored units -> the EIA plant master; the 19% that miss are retired or non-EIA units. Emissions (16.5M unit-days) ride on the same id</sub>
 - `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **51%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (553 matching)
   <sub>joins on: `FED_EIA860_2_PLANT.TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
-  <sub>checked 2026-08-29: SOLID -- owners are often not utilities, hence half resolve</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- owners are often not utilities, hence half resolve</sub>
 
 **Same location:**
 
@@ -4573,16 +6606,120 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EIA860_2_PLANT.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
-### `FED_EIA860_4_OWNER`
-*EIA (Dept. of Energy -- Statistics): 860 4 Owner*
+### `FED_EIA860_3_1_GENERATOR`
+*EIA (Dept. of Energy -- Statistics): 860 3 1 Generator*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 1 place-based -- plus 16 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 value-checked place columns, 5 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 1,417 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- site / place name: `RTO_ISO_LOCATION_DESIGNATION_FOR_REPORTING_WHOLESALE_SALES_DATA_TO_FERC` fills 16% of rows, 2,434 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `OPERATING_YEAR`, when it happened, to the year, 1891 -> 2024:
+
+- `OPERATING_YEAR`: when it happened, year only, 1891 -> 2024, 26,854 rows (try_to_number() year; schema.yml documents it as the year the generator began operation - the real in-service event and the only broadly-populated clock on the table.) -- 194 other tables keep a clock to the year
+- `PLANNED_UPRATE_YEAR`: when it happened, year only, 2024 -> 2035, 148 rows (try_to_number() year of a scheduled future capacity uprate - a real-world event clock but forward-dated, so it sits to the right of today on a timeline.) -- 194 other tables keep a clock to the year
+- `YEAR_UPRATE_OR_DERATE_COMPLETED`: when it happened, year only, 2024 -> 2024, 53 rows (try_to_number() year integer - the year the uprate/derate was completed, a real-world change to the generator. It is a NUMBER, not a date; never bare-date-parse it.) -- 194 other tables keep a clock to the year
+- `PLANNED_DERATE_YEAR`: when it happened, year only, 2025 -> 2026, 5 rows (try_to_number() year of a scheduled future capacity derate - a forward-dated plan, not an occurred event.) -- 194 other tables keep a clock to the year
+- `PLANNED_RETIREMENT_YEAR`: end of a period, year only, 2025 -> 2035, 534 rows (try_to_number() year; schema.yml 'Planned retirement year, if reported' - the forward-looking end of the generator's service span, so for live units it lands in the future.) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **100%** of the power plant id (eia / oris) values also appear in `FED_EIA860_2_PLANT` (13,370 matching)
+  <sub>joins on: `FED_EIA860_3_1_GENERATOR.PLANT_CODE` = `FED_EIA860_2_PLANT.PLANT_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- generator -> its plant</sub>
+
+
+### `FED_EIA860_3_2_WIND`
+*EIA (Dept. of Energy -- Statistics): 860 3 2 WIND*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 439 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 43 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `OPERATING_YEAR`, when it happened, to the year, 1981 -> 2024:
+
+- `OPERATING_YEAR`: when it happened, year only, 1981 -> 2024, 1,563 rows (try_to_number(trim(OPERATING_YEAR)) - the year the wind generator entered commercial service; the only clock on this 2024-snapshot table.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA860_3_3_SOLAR`
+*EIA (Dept. of Energy -- Statistics): 860 3 3 Solar*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 876 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `OPERATING_YEAR`, when it happened, to the year, 2001 -> 2024:
+
+- `OPERATING_YEAR`: when it happened, year only, 2001 -> 2024, 7,153 rows (try_to_number(trim(OPERATING_YEAR)) - the year the solar generator entered commercial service; the only clock on this 2024-snapshot table.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA860_3_4_ENERGY_STORAGE`
+*EIA (Dept. of Energy -- Statistics): 860 3 4 Energy Storage*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 274 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 42 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `OPERATING_YEAR`, when it happened, to the year, 1991 -> 2024:
+
+- `OPERATING_YEAR`: when it happened, year only, 1991 -> 2024, 786 rows (try_to_number(trim(OPERATING_YEAR)) - the year the battery/storage unit entered commercial service; the only clock on this 2024-snapshot table.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA860_3_5_MULTIFUEL`
+*EIA (Dept. of Energy -- Statistics): 860 3 5 Multifuel*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 500 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `OPERATING_YEAR`, when it happened, to the year, 1915 -> 2024:
+
+- `OPERATING_YEAR`: when it happened, year only, 1915 -> 2024, 2,893 rows (try_to_number(trim(OPERATING_YEAR)) - the year the generator entered commercial service; the only real clock on this 2024-snapshot table.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA860_4_OWNER`
+*EIA (Dept. of Energy -- Statistics): 860 4 Owner*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 1 place-based, 4 value-checked place columns -- plus 16 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `OWNER_STREET_ADDRESS` fills 99% of rows, 1,047 distinct -- text place -- 114 other tables carry a clean street address
+- city: `OWNER_CITY` fills 99% of rows, 550 distinct -- text place -- 174 other tables carry a clean city
+- state: `OWNER_STATE` fills 98% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **100%** of the power plant id (eia / oris) values also appear in `FED_EIA860_2_PLANT` (2,329 matching)
+  <sub>joins on: `FED_EIA860_4_OWNER.PLANT_CODE` = `FED_EIA860_2_PLANT.PLANT_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- plant owner row -> its plant</sub>
 - `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **16%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (305 matching)
   <sub>joins on: `FED_EIA860_4_OWNER.OWNERSHIP_ID` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
-  <sub>checked 2026-08-29: SOLID -- plant owners are mostly non-utilities; no owner master held</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- plant owners are mostly non-utilities; no owner master held</sub>
 
 **Same location:**
 
@@ -4590,10 +6727,332 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EIA860_4_OWNER.OWNER_ZIP` = `FED_EIA860_1_UTILITY.ZIP` &middot; key: `ZIP`</sub>
 
 
+### `FED_EIA860_6_2_ENVIROEQUIP`
+*EIA (Dept. of Energy -- Statistics): 860 6 2 Enviroequip*
+
+0 reliable connections, 1 value-checked place column, 5 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `NEW_SOURCE_REVIEW_YEAR`, when it was decided, to the year, 1974 -> 2026:
+
+- `NEW_SOURCE_REVIEW_YEAR`: when it was decided, year only, 1974 -> 2026, 938 rows (try_to_number() year the New Source Review permit was issued - an authority acting on the boiler. Best real clock here, but sparse: only boilers that went through NSR carry it.) -- 194 other tables keep a clock to the year
+- `COMPLIANCE_YEAR_NITROGEN`: start of a period, year only, 1949 -> 2027, 3,085 rows (try_to_number() year the boiler is expected to comply with the NOx standard - start of a compliance period, forward-looking; values unverified.) -- 194 other tables keep a clock to the year
+- `COMPLIANCE_YEAR_PARTICULATE`: start of a period, year only, 1934 -> 2025, 2,847 rows (try_to_number() year the boiler is expected to comply with the particulate standard - start of a compliance period; values unverified.) -- 194 other tables keep a clock to the year
+- `COMPLIANCE_YEAR_SULFUR`: start of a period, year only, 1949 -> 2027, 2,807 rows (try_to_number() year; EIA documents this as the year the boiler is expected to be in compliance with the SO2 standard - the opening of a compliance period, not an event that occurred. Values not verified (warehouse down).) -- 194 other tables keep a clock to the year
+- `COMPLIANCE_YEAR_MERCURY`: start of a period, year only, 1960 -> 2034, 1,490 rows (try_to_number() year the boiler is expected to comply with the mercury standard - start of a compliance period; values unverified.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_ADVANCED_METERS`
+*EIA (Dept. of Energy -- Statistics): 861 Advanced Meters*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 2,724 rows (try_to_number(nullif(trim(DATA_YEAR),'.')) - a plain NUMBER year (2024), the survey year the meter counts describe. Year grain, and it is a number not a date: bare-date-parsing it is what produced this batch's junk census ranges.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_DELIVERY_COMPANIES`
+*EIA (Dept. of Energy -- Statistics): 861 Delivery Companies*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 7 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - a NUMBER year recovered positionally after the loader ate the Excel header; per the model it is the 2024 reporting year the revenue/sales describe.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_DEMAND_RESPONSE`
+*EIA (Dept. of Energy -- Statistics): 861 Demand Response*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 49 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 339 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally from a header-damaged load; the 2024 program year the demand-response savings occurred in.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_DISTRIBUTION_SYSTEMS`
+*EIA (Dept. of Energy -- Statistics): 861 Distribution Systems*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 1,353 rows (try_to_number(nullif(trim(C_2024),'.')) - the loader consumed the header row so the source column is literally named C_2024; it holds the reporting year the circuit counts describe.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_DYNAMIC_PRICING`
+*EIA (Dept. of Energy -- Statistics): 861 Dynamic Pricing*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 857 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 program year the enrollment counts describe. Only clock on the table.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_ENERGY_EFFICIENCY`
+*EIA (Dept. of Energy -- Statistics): 861 Energy Efficiency*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 458 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 program year the efficiency savings occurred in. Only clock on the table.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `TOTAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1750 -> 2017, 455 rows (try_to_number() of an MWh quantity, not a date.)
+- **NOT A CLOCK** -- `RESIDENTIAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1709 -> 2028, 448 rows (try_to_number() of an MWh quantity - energy saved over the measure's life; 'life_cycle' names the accounting basis, not a time.)
+- **NOT A CLOCK** -- `RESIDENTIAL_LIFE_CYCLE_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1704 -> 2033, 445 rows (try_to_number(trim(CUSTOMER_INCENTIVES_THOUSAND_DOLLARS_1)) - a dollar amount, not a date.)
+- **NOT A CLOCK** -- `COMMERCIAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1736 -> 2008, 388 rows (try_to_number() of an MWh quantity, not a date.)
+- **NOT A CLOCK** -- `INDUSTRIAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1730 -> 1911, 243 rows (try_to_number() of an MWh quantity, not a date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_FRAME`
+*EIA (Dept. of Energy -- Statistics): 861 Frame*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 3,412 rows (try_to_number(nullif(trim(C_2024),'.')) - the header row was consumed at load so the source column is literally named C_2024; it carries the reporting year of the respondent frame.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_MERGERS`
+*EIA (Dept. of Energy -- Statistics): 861 Mergers*
+
+0 reliable connections, 4 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 4 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 4 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 2 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 4 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EFFECTIVE_DATE`, when it happened, to the day, 2024-01-01 -> 2024-11-20:
+
+- `EFFECTIVE_DATE`: when it happened, date (typed), 2024-01-01 -> 2024-11-20, 4 rows (try_to_date(trim(C_03_01_2024),'MM/DD/YYYY') - the day the utility merger/acquisition took legal effect; a real corporate event at day grain, and the only true date in the whole EIA-861 family.) -- 308 other tables keep a clock to the day
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 4 rows (try_to_number(nullif(trim(C_2024),'.')) - the survey reporting year, a NUMBER not a date; coarser than effective_date on the same row.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_NET_METERING`
+*EIA (Dept. of Energy -- Statistics): 861 NET Metering*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 1,004 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 reporting year the net-metering capacity describes.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_NON_NET_METERING_DISTRIBUTED`
+*EIA (Dept. of Energy -- Statistics): 861 NON NET Metering Distributed*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 48 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 506 rows (try_to_number(nullif(trim(YEAR),'.')) - a NUMBER year (2024) naming the reporting year of the distributed-capacity figures.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_OPERATIONAL_DATA`
+*EIA (Dept. of Energy -- Statistics): 861 Operational DATA*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- region: `NERC_REGION` fills 81% of rows, 18 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 1,711 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 year the peak demand and energy flows occurred in.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `WHEELED_POWER_RECEIVED_MWH`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1872 -> 2024, 404 rows (try_to_number(trim(WHEELED_POWER)) - an MWh energy quantity, not a receipt date.)
+- **NOT A CLOCK** -- `EXCHANGE_ENERGY_RECEIVED_MWH`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1727 -> 2011, 397 rows (try_to_number(trim(POWER_EXCHANGED)) - an MWh energy quantity; 'received' names a direction of flow, not a receipt date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_RELIABILITY`
+*EIA (Dept. of Energy -- Statistics): 861 Reliability*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 971 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 year the SAIDI/SAIFI outage metrics were measured over.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_SALES_ULT_CUST`
+*EIA (Dept. of Energy -- Statistics): 861 Sales ULT CUST*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 2,815 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 year the sales and revenue occurred in.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_SALES_ULT_CUST_CS`
+*EIA (Dept. of Energy -- Statistics): 861 Sales ULT CUST CS*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 38 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 674 rows (try_to_number(nullif(trim(UNNAMED_0),'.')) - NUMBER year recovered positionally; the 2024 year the customer-sited sales occurred in.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_SERVICE_TERRITORY`
+*EIA (Dept. of Energy -- Statistics): 861 Service Territory*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 1,851 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 11,775 rows (try_to_number(nullif(trim(C_2024),'.')) - header row consumed at load so the column is named C_2024; it carries the year this county-service footprint was reported for.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_SHORT_FORM`
+*EIA (Dept. of Energy -- Statistics): 861 Short FORM*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 47 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 1,723 rows (try_to_number(nullif(trim(C_2024),'.')) - header row consumed at load; the reporting year the short-form revenue/sales describe.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EIA861_UTILITY_DATA`
+*EIA (Dept. of Energy -- Statistics): 861 Utility DATA*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- region: `NERC_REGION` fills 82% of rows, 18 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: when it happened, year only, 2024 -> 2024, 1,701 rows (try_to_number(nullif(trim(DATA_YEAR),'.')) - a clean NUMBER year (2024) naming the year this utility profile describes.) -- 194 other tables keep a clock to the year
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **22%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (373 matching)
+  <sub>joins on: `FED_EIA861_UTILITY_DATA.UTILITY_NUMBER` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- same id system, different reporting universe (861 = retail sellers, 860 = plant operators), so low overlap is expected</sub>
+
+
+### `FED_EIA_861_BALANCING_AUTHORITY`
+*EIA (Dept. of Energy -- Statistics): 861 Balancing Authority*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, unclear clock, to the year, 2024 -> 2024:
+
+- `DATA_YEAR`: unclear clock, year only, 2024 -> 2024, 189 rows (try_to_number(trim(DATA_YEAR)) - a plain NUMBER year (2024). The census's recorded range of year 56,602,308 on all 189 rows is proof the old scan date-parsed a number: this column is a year, never a timestamp.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS`
 *EPA (Environment): AIR Emissions POLL RPT Combined Emissions*
 
-16 reliable connections.
+16 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORTING_YEAR`, when it happened, to the year, 2008 -> 2024:
+
+- `REPORTING_YEAR`: when it happened, year only, 2008 -> 2024, 10,411,826 rows (Raw passthrough of REPORTING_YEAR (no cast): the inventory year the emissions occurred in. Integer year - date-parsing it is the epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -4634,7 +7093,36 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_AQS_SITES`
 *EPA (Environment): AQS Sites*
 
-0 reliable connections, 3 place-based -- plus 34 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 3 place-based, 15 value-checked place columns, 2 value-checked clock columns -- plus 34 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY_NAME` fills 100% of rows, 3,844 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_CODE` fills 100% of rows, 249 distinct -- county code -- 79 other tables carry a clean county
+- county: `COUNTY_NAME` fills 100% of rows, 1,378 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `AQS_SITE_ID` fills 100% of rows, 21,135 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE_NAME` fills 100% of rows, 56 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- street address: `ADDRESS` fills 100% of rows, 20,619 distinct -- text place -- 114 other tables carry a clean street address
+- lat / lon: `LATITUDE` fills 96% of rows, 47 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 96% of rows, 85 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- site / place name: `LOCATION_SETTING` fills 91% of rows, 4 distinct -- text place -- 53 other tables carry a clean site / place name
+- metro area: `CBSA_NAME` fills 88% of rows, 850 distinct -- text place -- 19 other tables carry a clean metro area
+- ZIP code: `ZIP_CODE` fills 52% of rows, 5,824 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `LOCAL_SITE_NAME` fills 31% of rows, 6,157 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `MET_SITE_TYPE` fills 10% of rows, 6 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `MET_SITE_DIRECTION` fills 3% of rows, 16 distinct -- text place (only 2.8% of rows filled) -- 53 other tables carry a clean site / place name
+- county: `MET_SITE_COUNTY_CODE` fills 2% of rows, 71 distinct -- county code (only 2.1% of rows filled) -- 79 other tables carry a clean county
+- **TRAP** -- site / place name: `SITE_NUMBER` fills 100% of rows, 1,235 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `STATE_CODE` fills 100% of rows, 56 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- site / place name: `MET_SITE_DISTANCE` fills 3% of rows, 470 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 3.1% of rows filled)
+- **TRAP** -- site / place name: `MET_SITE_SITE_NUMBER` fills 2% of rows, 115 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 2.1% of rows filled)
+- **TRAP** -- state: `MET_SITE_STATE_CODE` fills 2% of rows, 33 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining; only 2.1% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SITE_ESTABLISHED_DATE`, start of a period, to the day, 1957-01-01 -> 2026-12-01:
+
+- `SITE_ESTABLISHED_DATE`: start of a period, date (typed), 1957-01-01 -> 2026-12-01, 20,994 rows (Staging casts try_to_date(SITE_ESTABLISHED_DATE,'YYYY-MM-DD'); with site_closed_date it bounds the monitoring site's operating tenure, so it is the span start and the best row anchor.) -- 308 other tables keep a clock to the day
+- `SITE_CLOSED_DATE`: end of a period, date (typed), 1957-12-31 -> 2026-03-27, 16,250 rows (try_to_date(SITE_CLOSED_DATE,'YYYY-MM-DD') - the close of the site's operating tenure; null for still-open sites.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `EXTRACTION_DATE`: our own download stamp -- never the clock, date (typed), 2026-06-26 -> 2026-06-26, 20,994 rows (try_to_date(EXTRACTION_DATE,'YYYY-MM-DD') - the date EPA cut the AQS file we downloaded; file vintage, not a site event. Never use as an event clock.)
 
 **Same location:**
 
@@ -4646,10 +7134,42 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_AQS_SITES.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_EPA_CAMPD_FACILITY`
+*EPA (Environment): Campd Facility*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **81%** of the power plant id (eia / oris) values also appear in `FED_EIA860_2_PLANT` (1,587 matching)
+  <sub>joins on: `FED_EPA_CAMPD_FACILITY.FACILITY_ID` = `FED_EIA860_2_PLANT.PLANT_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- smokestack-monitored units -> the EIA plant master; the 19% that miss are retired or non-EIA units. Emissions (16.5M unit-days) ride on the same id</sub>
+
+
 ### `FED_EPA_ECHO`
 *EPA -- Enforcement & Compliance*
 
-25 reliable connections, 12 place-based.
+25 reliable connections, 12 place-based, 8 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 98% of rows, 1,793,262 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 98% of rows, 1,973,514 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `STATE` fills 98% of rows, 89 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- FIPS / GEOID code: `FIPS_CODE` fills 91% of rows, 3,267 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- county: `COUNTY` fills 88% of rows, 4,186 distinct -- county name -- 79 other tables carry a clean county
+- city: `CITY` fills 86% of rows, 48,316 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP` fills 86% of rows, 42,851 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `STREET` fills 86% of rows, 2,399,126 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- region: `EPA_REGION` fills 81% of rows, 11 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `TRI_ON_SITE_RELEASES` fills 0% of rows, 7,048 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 0.4% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_LAST_INSPECTION`, when it happened, to the day, 1908-07-09 -> 2026-06-19:
+
+- `DATE_LAST_INSPECTION`: when it happened, date (typed), 1908-07-09 -> 2026-06-19, 565,448 rows (try_to_date(FAC_DATE_LAST_INSPECTION): the day the facility's most recent inspection occurred; the best whole-table anchor for a facility row.) -- 308 other tables keep a clock to the day
+- `DATE_LAST_FORMAL_ACTION`: when it was decided, date (typed), 1900-01-01 -> 2026-06-18, 245,549 rows (try_to_date(FAC_DATE_LAST_FORMAL_ACTION): the day an authority last took formal enforcement action.) -- 308 other tables keep a clock to the day
+- `DATE_LAST_PENALTY`: when it was decided, date (typed), 1900-01-01 -> 2026-06-18, 121,824 rows (try_to_date(FAC_DATE_LAST_PENALTY): the day a penalty was last assessed by the regulator.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DAYS_SINCE_LAST_INSPECTION`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 565,448 rows (try_to_number(FAC_DAYS_LAST_INSPECTION): a DURATION in days, the exact class of column that has corrupted date censuses before.)
 
 **Rock-solid match:**
 
@@ -4735,7 +7255,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_EGRID_PLANT_2022`
 *EPA (Environment): Egrid Plant 2022*
 
-0 reliable connections, 3 place-based.
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 3 place-based, 7 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `PLANT_LATITUDE` fills 100% of rows, 11,466 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `PLANT_LONGITUDE` fills 100% of rows, 11,498 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- FIPS / GEOID code: `PLANT_FIPS_STATE_CODE` fills 100% of rows, 53 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `NERC_REGION_ACRONYM` fills 100% of rows, 10 distinct -- text place -- 40 other tables carry a clean region
+- state: `PLANT_STATE_ABBREVIATION` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `PLANT_COUNTY_NAME` fills 100% of rows, 1,402 distinct -- county name -- 79 other tables carry a clean county
+- region: `PLANT_ASSOCIATED_ISO_RTO_TERRITORY` fills 64% of rows, 8 distinct -- text place -- 40 other tables carry a clean region
+- **TRAP** -- FIPS / GEOID code: `PLANT_FIPS_COUNTY_CODE` fills 100% of rows, 256 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2022 -> 2022:
+
+- `DATA_YEAR`: when it happened, year only, 2022 -> 2022, 11,974 rows (Raw passthrough of DATA_YEAR (no cast) in a 2022-vintage eGRID extract: the calendar year the generation and emissions figures describe. Integer year, not a date.) -- 194 other tables keep a clock to the year
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **99%** of the power plant id (eia / oris) values also appear in `FED_EIA860_2_PLANT` (11,802 matching)
+  <sub>joins on: `FED_EPA_EGRID_PLANT_2022.DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE` = `FED_EIA860_2_PLANT.PLANT_CODE` &middot; key: `EIA_PLANT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- emissions plant -> the EIA plant master; the EIA plant code and the EPA ORIS code are the same number</sub>
+- `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **95%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (4,842 matching)
+  <sub>joins on: `FED_EPA_EGRID_PLANT_2022.UTILITY_ID` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- emissions plant -> its utility</sub>
 
 **Same location:**
 
@@ -4747,10 +7291,57 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_EGRID_PLANT_2022.PLANT_LATITUDE/PLANT_LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_EPA_ENVIROFACTS`
+*EPA (Environment): Envirofacts*
+
+0 reliable connections, 3 value-checked place columns -- plus 20 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY_NAME` fills 100% of rows, 826 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_NAME` fills 100% of rows, 138 distinct -- county name -- 79 other tables carry a clean county
+- ZIP code: `POSTAL_CODE` fills 100% of rows, 1,539 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+
+### `FED_EPA_FRS_FACILITIES`
+*EPA -- Facility Registry: Facilities*
+
+0 reliable connections, 10 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_CODE` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 96% of rows, 134 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- site / place name: `SITE_TYPE` fills 95% of rows, 13 distinct -- text place -- 53 other tables carry a clean site / place name
+- county: `COUNTY` fills 91% of rows, 4,477 distinct -- county name -- 79 other tables carry a clean county
+- city: `CITY` fills 90% of rows, 63,362 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `POSTAL_CODE` fills 90% of rows, 647,702 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS` fills 89% of rows, 3,767,673 distinct -- text place -- 114 other tables carry a clean street address
+- lat / lon: `LATITUDE` fills 79% of rows, 2,447,002 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 79% of rows, 2,855,282 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- site / place name: `SUPPLEMENTAL_LOCATION` fills 6% of rows, 230,004 distinct -- text place -- 53 other tables carry a clean site / place name
+- **TRAP** -- region: `EPA_REGION` fills 90% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- FIPS / GEOID code: `FIPS_CODE` fills 80% of rows, 7,643 distinct -- FIPS with leading zeros lost (85% have a FIPS length; modal length 5 -- pad before joining)
+- **TRAP** -- congressional district: `CONGRESSIONAL_DISTRICT` fills 76% of rows, 55 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_EPA_FRS_FRS_FACILITIES`
 *EPA -- Facility Registry: FRS Facilities*
 
-16 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 100 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 7 value-checked place columns -- plus 100 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `FAC_STATE` fills 98% of rows, 88 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `FAC_COUNTY` fills 88% of rows, 4,330 distinct -- county name -- 79 other tables carry a clean county
+- city: `FAC_CITY` fills 87% of rows, 50,570 distinct -- text place -- 174 other tables carry a clean city
+- street address: `FAC_STREET` fills 85% of rows, 2,459,499 distinct -- text place -- 114 other tables carry a clean street address
+- ZIP code: `FAC_ZIP` fills 85% of rows, 43,126 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- lat / lon: `LATITUDE_MEASURE` fills 81% of rows, 1,889,794 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE_MEASURE` fills 81% of rows, 2,060,512 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- region: `FAC_EPA_REGION` fills 81% of rows, 11 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -4791,7 +7382,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_EPA_TRI_FACILITY` (EPA (Environment): TRI Facility) -- **100%** of the epa facility id values also appear in `FED_EPA_TRI_FACILITY` (64,631 matching)
   <sub>joins on: `FED_EPA_FRS_FRS_FACILITIES.REGISTRY_ID` = `FED_EPA_TRI_FACILITY.EPA_REGISTRY_ID` &middot; key: `FRS_ID`</sub>
-  <sub>checked 2026-08-29: SOLID (site key, name drift) -- use this column, NOT the dead FRS_ID column on the same table; name mismatches are ownership changes at the same site</sub>
+  <sub>checked 2026-08-29: SOLID (site key, name drift) -- 60 matched pairs spot-checked: names agree **70%**, states agree **100%** -- use this column, NOT the dead FRS_ID column on the same table; name mismatches are ownership changes at the same site</sub>
 
 
 ### `FED_EPA_FRS_FRS_NAICS_CODES`
@@ -4838,7 +7429,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_FRS_FRS_PROGRAM_LINKS`
 *EPA -- Facility Registry: FRS Program Links*
 
-16 reliable connections, 12 place-based -- plus 100 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 12 place-based, 7 value-checked place columns -- plus 100 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_CODE` fills 90% of rows, 88 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY_NAME` fills 88% of rows, 65,516 distinct -- text place -- 174 other tables carry a clean city
+- street address: `LOCATION_ADDRESS` fills 87% of rows, 2,812,360 distinct -- text place -- 114 other tables carry a clean street address
+- ZIP code: `POSTAL_CODE` fills 87% of rows, 360,803 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `STATE_NAME` fills 76% of rows, 266 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `COUNTY_NAME` fills 65% of rows, 4,192 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `SUPPLEMENTAL_LOCATION` fills 7% of rows, 160,097 distinct -- text place -- 53 other tables carry a clean site / place name
+- **TRAP** -- FIPS / GEOID code: `FIPS_CODE` fills 66% of rows, 6,750 distinct -- FIPS with leading zeros lost (66% have a FIPS length; modal length 5 -- pad before joining)
 
 **Rock-solid match:**
 
@@ -5012,10 +7614,38 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_FRS_FULL.FIPS_CODE` = `FED_BLS_QCEW.AREA_FIPS` &middot; key: `FIPS`</sub>
 
 
+### `FED_EPA_GHGRP_EMISSION`
+*EPA (Environment): Ghgrp Emission*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORTING_YEAR`, when it happened, to the year, 2010 -> 2023:
+
+- `REPORTING_YEAR`: when it happened, year only, 2010 -> 2023, 346,683 rows (Staging casts try_to_number(trim(YEAR)) and renames it reporting_year: the calendar year the emissions were emitted and reported for, 2010+. Integer year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_EPA_GHGRP_FACILITY`
 *EPA (Environment): Ghgrp Facility*
 
-16 reliable connections, 12 place-based -- plus 52 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 12 place-based, 9 value-checked place columns, 1 value-checked clock column -- plus 52 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 4,106 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 13,797 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 13,335 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 55 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 99% of rows, 6,087 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `COUNTY` fills 92% of rows, 2,542 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `COUNTY_FIPS` fills 92% of rows, 2,155 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- street address: `ADDRESS1` fills 92% of rows, 9,813 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORTING_YEAR`, when it happened, to the year, 2010 -> 2023:
+
+- `REPORTING_YEAR`: when it happened, year only, 2010 -> 2023, 136,005 rows (try_to_number(trim(YEAR)): the GHGRP reporting year this facility row describes; facility_id + year is the declared grain.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -5083,7 +7713,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES`
 *EPA (Environment): ICIS AIR ICIS AIR Facilities*
 
-16 reliable connections -- plus 85 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 7 value-checked place columns -- plus 85 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 24,485 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_NAME` fills 100% of rows, 1,882 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `STREET_ADDRESS` fills 100% of rows, 251,460 distinct -- text place -- 114 other tables carry a clean street address
+- ZIP code: `ZIP_CODE` fills 98% of rows, 58,175 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- region: `LOCAL_CONTROL_REGION_CODE` fills 4% of rows, 62 distinct -- text place (only 4.2% of rows filled) -- 40 other tables carry a clean region
+- region: `LOCAL_CONTROL_REGION_NAME` fills 4% of rows, 61 distinct -- text place (only 4.2% of rows filled) -- 40 other tables carry a clean region
+- **TRAP** -- region: `EPA_REGION` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -5121,10 +7762,89 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_ICIS_AIR_ICIS_AIR_FACILITIES.REGISTRY_ID` = `FED_EPA_NPDES_NPDES_INSPECTIONS.REGISTRY_ID` &middot; key: `FRS_ID`</sub>
 
 
+### `FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS`
+*EPA (Environment): ICIS AIR ICIS AIR Formal Actions*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SETTLEMENT_ENTERED_DATE`, when it was decided, to the day, 1972-10-25 -> 2026-07-30:
+
+- `SETTLEMENT_ENTERED_DATE`: when it was decided, date (typed), 1972-10-25 -> 2026-07-30, 105,968 rows (try_to_date(SETTLEMENT_ENTERED_DATE): the day the authority entered the settlement on a formal Clean Air Act enforcement action.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS`
+*EPA (Environment): ICIS AIR ICIS AIR Informal Actions*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACHIEVED_DATE`, when it was decided, to the day, 1900-01-01 -> 2027-11-07:
+
+- `ACHIEVED_DATE`: when it was decided, date (typed), 1900-01-01 -> 2027-11-07, 175,562 rows (try_to_date(ACHIEVED_DATE): the day the informal enforcement action was issued/achieved by the agency. Census max 8888-01-01 with 5 far-future rows = publisher sentinel values, and min 0001-01-01 is try_to_date junk.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS`
+*EPA (Environment): ICIS AIR ICIS AIR Programs*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATED_DATE`, when it was reported / filed, to the day, 2014-10-19 -> 2026-07-31:
+
+- `UPDATED_DATE`: when it was reported / filed, date (typed), 2014-10-19 -> 2026-07-31, 457,581 rows (try_to_date(UPDATED_DATE): when the ICIS-Air program record was last maintained in EPA's system. Record housekeeping - census max 2028-10-29 and 109 epoch-1970 rows show it also carries junk.) -- 308 other tables keep a clock to the day
+- `BEGIN_DATE`: start of a period, date (typed), 1940-01-03 -> 2028-10-29, 457,581 rows (try_to_date(BEGIN_DATE): the day the facility's air-program coverage/operating status began - the start of a coverage period, and the only real-world clock here.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS`
+*EPA (Environment): ICIS AIR ICIS AIR Stack Tests*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_END_DATE`, when it happened, to the day, 1955-03-15 -> 2026-07-29:
+
+- `ACTUAL_END_DATE`: when it happened, date (typed), 1955-03-15 -> 2026-07-29, 620,298 rows (try_to_date(ACTUAL_END_DATE): the day the stack test was performed/completed. Census min 0201-07-24 plus 1 epoch-1970 row = try_to_date passing malformed source strings.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_ICIS_AIR_ICIS_AIR_TITLEV_CERTS`
+*EPA (Environment): ICIS AIR ICIS AIR Titlev Certs*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_END_DATE`, when it was reported / filed, to the day, 1916-02-25 -> 2026-07-30:
+
+- `ACTUAL_END_DATE`: when it was reported / filed, date (typed), 1916-02-25 -> 2026-07-30, 493,116 rows (try_to_date(ACTUAL_END_DATE), the only clock: the completion/receipt date of a Title V annual compliance certification the facility submits to the regulator. LOW - the compiled SQL proves the cast but not whether EPA means 'received' or 'pe) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_ICIS_AIR_ICIS_AIR_VIOLATION_HISTORY`
+*EPA (Environment): ICIS AIR ICIS AIR Violation History*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_CODE` fills 95% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_EPA_ICIS_FEC_CASE_ENFORCEMENT_CONCLUSION_FACILITIES`
 *EPA (Environment): ICIS FEC CASE Enforcement Conclusion Facilities*
 
-16 reliable connections -- plus 74 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 3 value-checked place columns -- plus 74 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `FACILITY_STATE` fills 100% of rows, 70 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `FACILITY_CITY` fills 99% of rows, 14,800 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `FACILITY_ZIP` fills 98% of rows, 36,164 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
 
 **Rock-solid match:**
 
@@ -5165,7 +7885,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_ICIS_FEC_CASE_FACILITIES`
 *EPA (Environment): ICIS FEC CASE Facilities*
 
-16 reliable connections -- plus 74 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 4 value-checked place columns -- plus 74 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_CODE` fills 100% of rows, 70 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 99% of rows, 15,245 distinct -- text place -- 174 other tables carry a clean city
+- street address: `LOCATION_ADDRESS` fills 99% of rows, 116,636 distinct -- text place -- 114 other tables carry a clean street address
+- ZIP code: `ZIP` fills 99% of rows, 38,223 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
 
 **Rock-solid match:**
 
@@ -5206,7 +7933,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS`
 *EPA (Environment): ICIS FEC EPA Informal Enforcement Actions*
 
-16 reliable connections.
+16 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACHIEVED_DATE`, when it was decided, to the day, 1970-06-01 -> 2026-07-17:
+
+- `ACHIEVED_DATE`: when it was decided, date (typed), 1970-06-01 -> 2026-07-17, 20,011 rows (try_to_date(ACHIEVED_DATE): the day the informal federal enforcement action was achieved by the agency. Census min 1970-06-01 with 1 epoch-1970 row - one junk row only. (An environment table living in the FINANCE schema.)) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5247,7 +7978,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS`
 *EPA (Environment): ICIS FEC ICIS FEC EPA Inspections*
 
-16 reliable connections.
+16 reliable connections, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- region: `EPA_REGION_CODE` fills 99% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_BEGIN_DATE`, start of a period, to the day, 1958-05-30 -> 2026-07-24:
+
+- `ACTUAL_BEGIN_DATE`: start of a period, date (typed), 1958-05-30 -> 2026-07-24, 260,483 rows (try_to_date(ACTUAL_BEGIN_DATE): the day the federal inspection started; with actual_end_date it bounds the inspection. Census min 0201-08-01 is try_to_date junk, not a real 3rd-century row.) -- 308 other tables keep a clock to the day
+- `ACTUAL_END_DATE`: end of a period, date (typed), 1986-07-08 -> 2026-07-24, 252,235 rows (try_to_date(ACTUAL_END_DATE): the day the federal inspection finished.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5288,7 +8028,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_ICIS_FACILITIES`
 *EPA (Environment): Npdes ICIS Facilities*
 
-9 reliable connections -- plus 91 low-confidence name+ZIP guesses not shown here.
+9 reliable connections, 8 value-checked place columns -- plus 91 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_CODE` fills 100% of rows, 68 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `LOCATION_ADDRESS` fills 94% of rows, 885,759 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 93% of rows, 33,557 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `GEOCODE_LATITUDE` fills 93% of rows, 731,583 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `GEOCODE_LONGITUDE` fills 93% of rows, 780,360 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- ZIP code: `ZIP` fills 92% of rows, 99,654 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `COUNTY_CODE` fills 58% of rows, 3,268 distinct -- county name -- 79 other tables carry a clean county
+- street address: `SUPPLEMENTAL_ADDRESS_TEXT` fills 10% of rows, 69,154 distinct -- text place -- 114 other tables carry a clean street address
 
 **Rock-solid match:**
 
@@ -5315,7 +8066,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_CS_VIOLATIONS`
 *EPA (Environment): Npdes Npdes CS Violations*
 
-9 reliable connections.
+9 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_DATE`, when it happened, to the day, 1977-02-25 -> 2026-07-31:
+
+- `ACTUAL_DATE`: when it happened, date (typed), 1977-02-25 -> 2026-07-31, 75,537 rows (try_to_date(ACTUAL_DATE): the day the scheduled compliance event actually occurred; the violation is the gap between this and schedule_date.) -- 308 other tables keep a clock to the day
+- `RNC_DETECTION_DATE`: when it was decided, date (typed), 1973-12-08 -> 2026-07-31, 31,928 rows (try_to_date(RNC_DETECTION_DATE): the day the agency's system flagged reportable noncompliance - an authority determination, not the underlying discharge.) -- 308 other tables keep a clock to the day
+- `RNC_RESOLUTION_DATE`: when it was decided, date (typed), 1977-11-18 -> 2026-07-31, 31,928 rows (try_to_date(RNC_RESOLUTION_DATE): the day the agency recorded the reportable noncompliance as resolved.) -- 308 other tables keep a clock to the day
+- `REPORT_RECEIVED_DATE`: when it was reported / filed, date (typed), 1977-02-25 -> 2026-07-31, 75,895 rows (try_to_date(REPORT_RECEIVED_DATE): the day the permittee's report reached the agency - textbook reporting clock.) -- 308 other tables keep a clock to the day
+- `SCHEDULE_DATE`: end of a period, date (typed), 1973-09-09 -> 2026-07-30, 82,187 rows (try_to_date(SCHEDULE_DATE): the DEADLINE the compliance schedule set for that milestone - the end of the window the permittee was given, not something that happened.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5342,7 +8101,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_FORMAL_ENFORCEMENT_ACTIONS`
 *EPA (Environment): Npdes Npdes Formal Enforcement Actions*
 
-9 reliable connections.
+9 reliable connections, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- state: `STATE_LOCAL_PENALTY_AMT` fills 42% of rows, 11,139 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SETTLEMENT_ENTERED_DATE`, when it was decided, to the day, 1970-09-07 -> 2026-07-30:
+
+- `SETTLEMENT_ENTERED_DATE`: when it was decided, date (typed), 1970-09-07 -> 2026-07-30, 109,481 rows (try_to_date(SETTLEMENT_ENTERED_DATE): the day the authority entered the settlement on a Clean Water Act formal enforcement action. Census min 1970-09-07 with 1 epoch-1970 row - one junk row, not a systemic collapse.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5369,7 +8136,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS`
 *EPA (Environment): Npdes Npdes Informal Enforcement Actions*
 
-25 reliable connections.
+25 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACHIEVED_DATE`, when it was decided, to the day, 1969-01-12 -> 2029-06-24:
+
+- `ACHIEVED_DATE`: when it was decided, date (typed), 1969-01-12 -> 2029-06-24, 472,529 rows (try_to_date(ACHIEVED_DATE): the day the informal enforcement action was achieved by the agency. Census 0001-01-01 to 8202-06-10 with 3 far-future rows = source sentinels/typos surviving try_to_date.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5428,7 +8199,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_INSPECTIONS`
 *EPA (Environment): Npdes Npdes Inspections*
 
-25 reliable connections.
+25 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_BEGIN_DATE`, start of a period, to the day, 1917-09-13 -> 2026-07-31:
+
+- `ACTUAL_BEGIN_DATE`: start of a period, date (typed), 1917-09-13 -> 2026-07-31, 983,969 rows (try_to_date(ACTUAL_BEGIN_DATE): the day the inspection started; paired with actual_end_date it bounds the inspection, and it is the best anchor for the row.) -- 308 other tables keep a clock to the day
+- `ACTUAL_END_DATE`: end of a period, date (typed), 1917-09-13 -> 2026-07-31, 1,899,804 rows (try_to_date(ACTUAL_END_DATE): the day the inspection finished.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5514,7 +8290,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_PS_VIOLATIONS`
 *EPA (Environment): Npdes Npdes PS Violations*
 
-9 reliable connections.
+9 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_DATE`, when it happened, to the day, 1974-05-06 -> 2026-07-29:
+
+- `ACTUAL_DATE`: when it happened, date (typed), 1974-05-06 -> 2026-07-29, 331,294 rows (try_to_date(ACTUAL_DATE): the day the permit-schedule milestone actually happened - the real-world clock on this table.) -- 308 other tables keep a clock to the day
+- `RNC_DETECTION_DATE`: when it was decided, date (typed), 1974-06-28 -> 2026-07-31, 182,274 rows (try_to_date(RNC_DETECTION_DATE): the day the agency flagged reportable noncompliance.) -- 308 other tables keep a clock to the day
+- `RNC_RESOLUTION_DATE`: when it was decided, date (typed), 1974-07-01 -> 2026-07-31, 182,274 rows (try_to_date(RNC_RESOLUTION_DATE): the day the agency recorded the noncompliance as resolved.) -- 308 other tables keep a clock to the day
+- `REPORT_RECEIVED_DATE`: when it was reported / filed, date (typed), 1974-05-06 -> 2026-07-29, 332,314 rows (try_to_date(REPORT_RECEIVED_DATE): the day the permittee's report reached the agency.) -- 308 other tables keep a clock to the day
+- `SCHEDULE_DATE`: end of a period, date (typed), 1974-03-30 -> 2026-07-28, 397,615 rows (try_to_date(SCHEDULE_DATE): the permit schedule's DEADLINE for that milestone - the end of the allowed window.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5541,7 +8325,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_QNCR_HISTORY`
 *EPA (Environment): Npdes Npdes QNCR History*
 
-9 reliable connections.
+9 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEARQTR`, when it happened, to the quarter, 1973 -> 2033:
+
+- `YEARQTR`: when it happened, quarter, 1973 -> 2033, 7,951,656 rows (Raw passthrough of YEARQTR (no cast) on a quarterly-noncompliance-report history table: a YYYYQ-style year+quarter code naming the quarter the status applied to. Quarter grain - date-parsing it is the collapse-to-1970 trap.) -- 14 other tables keep a clock to the quarter
 
 **Rock-solid match:**
 
@@ -5568,7 +8356,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_NPDES_NPDES_SE_VIOLATIONS`
 *EPA (Environment): Npdes Npdes SE Violations*
 
-9 reliable connections.
+9 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SINGLE_EVENT_VIOLATION_DATE`, when it happened, to the day, 1976-07-01 -> 2026-07-30:
+
+- `SINGLE_EVENT_VIOLATION_DATE`: when it happened, date (typed), 1976-07-01 -> 2026-07-30, 305,478 rows (try_to_date(SINGLE_EVENT_VIOLATION_DATE): the day the single-event violation occurred - the cleanest 'happened' clock in the NPDES family.) -- 308 other tables keep a clock to the day
+- `RNC_DETECTION_DATE`: when it was decided, date (typed), 1979-05-01 -> 2026-07-31, 77,458 rows (try_to_date(RNC_DETECTION_DATE): the day the agency flagged reportable noncompliance.) -- 308 other tables keep a clock to the day
+- `RNC_RESOLUTION_DATE`: when it was decided, date (typed), 1984-08-10 -> 2026-07-31, 77,458 rows (try_to_date(RNC_RESOLUTION_DATE): the day the agency recorded the noncompliance as resolved.) -- 308 other tables keep a clock to the day
+- `SINGLE_EVENT_END_DATE`: end of a period, date (typed), 1976-07-01 -> 2026-07-31, 275,211 rows (try_to_date(SINGLE_EVENT_END_DATE): the close of a violation that ran longer than a day.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5619,10 +8414,110 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_NPDES_NPDES_SICS.NPDES_ID` = `FED_EPA_NPDES_NPDES_QNCR_HISTORY.NPDES_ID` &middot; key: `NPDES_ID`</sub>
 
 
+### `FED_EPA_RCRA_ENFORCEMENTS`
+*EPA (Environment): RCRA Enforcements*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `ACTIVITY_LOCATION` fills 100% of rows, 61 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ENFORCEMENT_ACTION_DATE`, when it was decided, to the day, 1887-03-13 -> 2026-07-31:
+
+- `ENFORCEMENT_ACTION_DATE`: when it was decided, date (typed), 1887-03-13 -> 2026-07-31, 383,519 rows (Staging casts try_to_date(trim(ENFORCEMENT_ACTION_DATE)) and it is part of the record key: the day the hazardous-waste enforcement action was taken. Census min 0999-02-04 = try_to_date junk, not a real 10th-century row.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_RCRA_EVALUATIONS`
+*EPA (Environment): RCRA Evaluations*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `ACTIVITY_LOCATION` fills 100% of rows, 63 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EVALUATION_START_DATE`, when it happened, to the day, 1901-05-29 -> 2026-07-31:
+
+- `EVALUATION_START_DATE`: when it happened, date (typed), 1901-05-29 -> 2026-07-31, 1,166,410 rows (try_to_date(trim(EVALUATION_START_DATE)) - the day the RCRA compliance evaluation (inspection) was conducted. No end column exists, so it is the event date, not half a span. Census min 0005-05-17 = parse junk.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_RCRA_FACILITIES`
+*EPA (Environment): RCRA Facilities*
+
+0 reliable connections, 5 value-checked place columns -- plus 100 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `ACTIVITY_LOCATION` fills 100% of rows, 66 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE_CODE` fills 100% of rows, 69 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `STREET_ADDRESS` fills 100% of rows, 1,418,396 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_NAME` fills 100% of rows, 23,395 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP_CODE` fills 100% of rows, 218,284 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+
+### `FED_EPA_RCRA_RCRA_NAICS`
+*EPA (Environment): RCRA RCRA Naics*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `ACTIVITY_LOCATION` fills 100% of rows, 57 distinct -- text place -- 53 other tables carry a clean site / place name
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_RCRA_VIOLATIONS`
+*EPA (Environment): RCRA Violations*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `ACTIVITY_LOCATION` fills 100% of rows, 62 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_RTC_DATE`, when it happened, to the day, 1900-01-10 -> 2026-07-31:
+
+- `ACTUAL_RTC_DATE`: when it happened, date (typed), 1900-01-10 -> 2026-07-31, 697,968 rows (try_to_date(trim(ACTUAL_RTC_DATE)): the day the facility actually returned to compliance - a real-world fix, but only present once the violation closes.) -- 308 other tables keep a clock to the day
+- `DATE_VIOLATION_DETERMINED`: when it was decided, date (typed), 1901-02-12 -> 2026-07-24, 708,114 rows (try_to_date(trim(DATE_VIOLATION_DETERMINED)): the day the agency determined the violation. Chosen as primary over actual_rtc_date because it is part of the record key and populated on every row, while RTC exists only for closed violations.) -- 308 other tables keep a clock to the day
+- `SCHEDULED_COMPLIANCE_DATE`: end of a period, date (typed), 1919-06-20 -> 2033-03-05, 262,624 rows (try_to_date(trim(SCHEDULED_COMPLIANCE_DATE)): the DEADLINE the facility was given, so it closes an allowed window rather than recording an event. The census's 78 far-future rows and 9999-04-26 max are exactly the sentinel deadlines you woul) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_EPA_RCRA_VIOSNC_HISTORY`
+*EPA (Environment): RCRA Viosnc History*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `ACTIVITY_LOCATION` fills 100% of rows, 62 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YRMONTH`, when it happened, to the month, 1980 -> 2026:
+
+- `YRMONTH`: when it happened, month-year, 1980 -> 2026, 2,675,581 rows (trim(YRMONTH) kept as text: the YYYYMM month whose violation / significant-noncompliance status the row reports. Month grain - do not date-parse.) -- 12 other tables keep a clock to the month
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_EPA_SDWA_SDWA_EVENTS_MILESTONES`
 *EPA (Environment): SDWA SDWA Events Milestones*
 
-9 reliable connections.
+9 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EVENT_ACTUAL_DATE`, when it happened, to the day, 1991-07-01 -> 2032-12-31:
+
+- `EVENT_ACTUAL_DATE`: when it happened, date (typed), 1991-07-01 -> 2032-12-31, 394,075 rows (try_to_date(EVENT_ACTUAL_DATE): the day the milestone was actually achieved - the real-world clock on this table.) -- 308 other tables keep a clock to the day
+- `FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 2000-12-08 -> 2026-07-01, 394,075 rows (try_to_date(FIRST_REPORTED_DATE): the day the row first appeared in a state submission to SDWIS.) -- 308 other tables keep a clock to the day
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 2000-12-08 -> 2026-07-01, 358,480 rows (try_to_date(LAST_REPORTED_DATE): the day the row was most recently re-submitted to SDWIS - record maintenance.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 394,075 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
+- `EVENT_END_DATE`: end of a period, date (typed), 1993-09-27 -> 2028-03-25, 222,896 rows (try_to_date(EVENT_END_DATE): the scheduled close of the milestone window. The census's 2099-06-30 max and 2 far-future rows are sentinel deadlines, which is what you expect from a target date rather than an actual.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5649,7 +8544,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_FACILITIES`
 *EPA (Environment): SDWA SDWA Facilities*
 
-9 reliable connections.
+9 reliable connections, 1 value-checked place column, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_FACILITY_ID` fills 70% of rows, 290,378 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FACILITY_DEACTIVATION_DATE`, when it happened, to the day, 1900-02-01 -> 2027-10-31:
+
+- `FACILITY_DEACTIVATION_DATE`: when it happened, date (typed), 1900-02-01 -> 2027-10-31, 570,319 rows (try_to_date(FACILITY_DEACTIVATION_DATE): the day the water-system facility went out of service. Real-world, but only populated for deactivated facilities, so it cannot anchor the table.) -- 308 other tables keep a clock to the day
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1995-07-22 -> 2026-06-30, 1,543,399 rows (try_to_date(LAST_REPORTED_DATE): most recent re-submission of the facility record.) -- 308 other tables keep a clock to the day
+- `FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 2005-10-27 -> 2026-06-30, 704,646 rows (try_to_date(FIRST_REPORTED_DATE): the day the facility first appeared in a state SDWIS submission. Made primary over the 'happened' deactivation date because it is the only clock present on every row of a registry table.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 1,554,832 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
 
 **Rock-solid match:**
 
@@ -5676,7 +8582,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS`
 *EPA (Environment): SDWA SDWA Geographic Areas*
 
-9 reliable connections.
+9 reliable connections, 4 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY_SERVED` fills 70% of rows, 1,944 distinct -- county name -- 79 other tables carry a clean county
+- city: `CITY_SERVED` fills 27% of rows, 18,258 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE_SERVED` fills 27% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE_SERVED` fills 1% of rows, 1,647 distinct -- clean ZIP (only 1.2% of rows filled) -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_REPORTED_DATE`, when it was reported / filed, to the day, 1995-07-22 -> 2026-06-30:
+
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1995-07-22 -> 2026-06-30, 578,198 rows (try_to_date(LAST_REPORTED_DATE), the only date cast on the table: when the state last submitted this water-system-to-place link. A lookup table with no event of its own.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 578,198 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
 
 **Rock-solid match:**
 
@@ -5703,7 +8621,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_LCR_SAMPLES`
 *EPA (Environment): SDWA SDWA LCR Samples*
 
-9 reliable connections.
+9 reliable connections, 7 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SAMPLE_FIRST_REPORTED_DATE`, when it was reported / filed, to the day, 1992-08-22 -> 2026-06-30:
+
+- `SAMPLE_FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 1992-08-22 -> 2026-06-30, 924,785 rows (try_to_date(SAMPLE_FIRST_REPORTED_DATE): first state submission of the sample record.) -- 308 other tables keep a clock to the day
+- `SAMPLE_LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1993-05-20 -> 2026-06-30, 874,711 rows (try_to_date(SAMPLE_LAST_REPORTED_DATE): most recent re-submission of the sample record.) -- 308 other tables keep a clock to the day
+- `SAR_FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 2006-02-28 -> 2026-06-30, 692,189 rows (try_to_date(SAR_FIRST_REPORTED_DATE): first submission of the associated sample-analytical-result (SAR) record.) -- 308 other tables keep a clock to the day
+- `SAR_LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 2006-02-28 -> 2026-06-30, 643,344 rows (try_to_date(SAR_LAST_REPORTED_DATE): most recent submission of the sample-analytical-result record.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 927,415 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
+- `SAMPLING_START_DATE`: start of a period, date (typed), 1991-07-01 -> 2026-01-01, 927,415 rows (try_to_date(SAMPLING_START_DATE): the start of the monitoring period the water was actually sampled in. Primary over the four reported dates because it is the only clock tied to the water, not to SDWIS paperwork.) -- 308 other tables keep a clock to the day
+- `SAMPLING_END_DATE`: end of a period, date (typed), 1992-01-01 -> 2033-12-31, 927,415 rows (try_to_date(SAMPLING_END_DATE): the close of the lead-and-copper monitoring period the sample belongs to.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5730,7 +8658,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_PN_VIOLATION_ASSOC`
 *EPA (Environment): SDWA SDWA PN Violation Assoc*
 
-9 reliable connections.
+9 reliable connections, 7 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FIRST_REPORTED_DATE`, when it was reported / filed, to the day, 2002-02-16 -> 2026-07-01:
+
+- `FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 2002-02-16 -> 2026-07-01, 387,624 rows (try_to_date(FIRST_REPORTED_DATE): first state submission of this public-notice-to-violation link.) -- 308 other tables keep a clock to the day
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 2002-02-16 -> 2026-07-01, 378,773 rows (try_to_date(LAST_REPORTED_DATE): most recent re-submission of the link.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 387,627 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
+- `COMPL_PER_BEGIN_DATE`: start of a period, date (typed), 1992-06-30 -> 2026-05-10, 387,627 rows (try_to_date(COMPL_PER_BEGIN_DATE): the start of the compliance period the violation is scored against - the SDWIS field ECHO surfaces as the violation start, and the only clock populated on essentially every row.) -- 308 other tables keep a clock to the day
+- `NON_COMPL_PER_BEGIN_DATE`: start of a period, date (typed), 1992-06-30 -> 2026-05-10, 387,627 rows (try_to_date(NON_COMPL_PER_BEGIN_DATE): the start of the actual noncompliance window - closer to the harm than the compliance period, but sparser.) -- 308 other tables keep a clock to the day
+- `NON_COMPL_PER_END_DATE`: end of a period, date (typed), 1950-01-01 -> 2026-06-22, 380,401 rows (try_to_date(NON_COMPL_PER_END_DATE): the close of the noncompliance window.) -- 308 other tables keep a clock to the day
+- `COMPL_PER_END_DATE`: end of a period, date (typed), 1992-09-30 -> 2026-06-30, 352,143 rows (try_to_date(COMPL_PER_END_DATE): the close of that compliance period.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5757,7 +8695,28 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS`
 *EPA (Environment): SDWA SDWA PUB Water Systems*
 
-9 reliable connections -- plus 78 low-confidence name+ZIP guesses not shown here.
+9 reliable connections, 6 value-checked place columns, 8 value-checked clock columns -- plus 78 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY_NAME` fills 97% of rows, 28,628 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE_CODE` fills 97% of rows, 66 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 94% of rows, 53,785 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_LINE1` fills 62% of rows, 186,355 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `ADDRESS_LINE2` fills 43% of rows, 116,394 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `EMAIL_ADDR` fills 24% of rows, 76,175 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- region: `EPA_REGION` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PWS_DEACTIVATION_DATE`, when it happened, to the day, 1900-02-01 -> 2026-06-30:
+
+- `PWS_DEACTIVATION_DATE`: when it happened, date (typed), 1900-02-01 -> 2026-06-30, 291,116 rows (try_to_date(PWS_DEACTIVATION_DATE): the day the public water system stopped operating. Real-world, but only present for deactivated systems.) -- 308 other tables keep a clock to the day
+- `FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 1979-02-10 -> 2026-06-30, 434,040 rows (try_to_date(FIRST_REPORTED_DATE): the day the water system first appeared in a state SDWIS submission. Primary because it is the only clock covering every row of this registry.) -- 308 other tables keep a clock to the day
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1995-07-22 -> 2026-06-30, 433,506 rows (try_to_date(LAST_REPORTED_DATE): most recent re-submission of the system record.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 434,040 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
+- `REDUCED_MONITORING_BEGIN_DATE`: start of a period, date (typed), 1980-01-01 -> 2026-06-09, 18,734 rows (try_to_date(REDUCED_MONITORING_BEGIN_DATE): the day reduced RTCR monitoring started for this system.) -- 308 other tables keep a clock to the day
+- `SOURCE_PROTECTION_BEGIN_DATE`: start of a period, date (typed), 1986-12-31 -> 2031-05-29, 16,595 rows (try_to_date(SOURCE_PROTECTION_BEGIN_DATE): the day the system's source-water-protection status began - opens a status period.) -- 308 other tables keep a clock to the day
+- `OUTSTANDING_PERFORM_BEGIN_DATE`: start of a period, date (typed), 1987-01-01 -> 2026-12-04, 4,420 rows (try_to_date(OUTSTANDING_PERFORM_BEGIN_DATE): the day the system's 'outstanding performer' designation began.) -- 308 other tables keep a clock to the day
+- `REDUCED_MONITORING_END_DATE`: end of a period, date (typed), 2016-04-01 -> 2026-06-30, 697 rows (try_to_date(REDUCED_MONITORING_END_DATE): the day reduced monitoring ended. The census's 2031-05-29 max is a forward-dated end, which is normal for an open window.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5784,7 +8743,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_SERVICE_AREAS`
 *EPA (Environment): SDWA SDWA Service Areas*
 
-9 reliable connections.
+9 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_REPORTED_DATE`, when it was reported / filed, to the day, 1995-07-22 -> 2026-06-30:
+
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1995-07-22 -> 2026-06-30, 421,176 rows (try_to_date(LAST_REPORTED_DATE): most recent re-submission of the service-area row.) -- 308 other tables keep a clock to the day
+- `FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 2005-10-27 -> 2026-06-30, 89,554 rows (try_to_date(FIRST_REPORTED_DATE): the day the state first submitted this water-system service-area row. A link table with no event of its own, so the reporting clock is all there is. (An environment table living in the IMMIGRATION schema.)) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 422,464 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
 
 **Rock-solid match:**
 
@@ -5811,7 +8776,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_SITE_VISITS`
 *EPA (Environment): SDWA SDWA SITE Visits*
 
-9 reliable connections.
+9 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `VISIT_DATE`, when it happened, to the day, 1900-01-01 -> 2026-06-24:
+
+- `VISIT_DATE`: when it happened, date (typed), 1900-01-01 -> 2026-06-24, 2,495,234 rows (try_to_date(VISIT_DATE): the day the sanitary survey / site visit actually took place. Census min 1900-01-01 with 32 epoch-1970 rows = a small pocket of junk, not a broken column.) -- 308 other tables keep a clock to the day
+- `FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 1995-07-22 -> 2026-07-01, 2,495,249 rows (try_to_date(FIRST_REPORTED_DATE): first state submission of the visit record.) -- 308 other tables keep a clock to the day
+- `LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 2005-11-15 -> 2026-07-01, 2,010,869 rows (try_to_date(LAST_REPORTED_DATE): most recent re-submission of the visit record.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 2,495,249 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
 
 **Rock-solid match:**
 
@@ -5838,7 +8810,26 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT`
 *EPA (Environment): SDWA SDWA Violations Enforcement*
 
-9 reliable connections.
+9 reliable connections, 12 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- state: `STATE_MCL` fills 4% of rows, 157 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining; only 3.7% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PWS_DEACTIVATION_DATE`, when it happened, to the day, 1902-02-02 -> 2026-06-30:
+
+- `PWS_DEACTIVATION_DATE`: when it happened, date (typed), 1902-02-02 -> 2026-06-30, 4,164,749 rows (try_to_date(PWS_DEACTIVATION_DATE): the day the water system shut down - denormalized from the system record onto every violation row, so it describes the system, not this violation.) -- 308 other tables keep a clock to the day
+- `ENFORCEMENT_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-06-29, 14,933,439 rows (try_to_date(ENFORCEMENT_DATE): the day the primacy agency took the enforcement action. The best 'decided' clock here, but null on the ~1M rows that are violation-only.) -- 308 other tables keep a clock to the day
+- `CALCULATED_RTC_DATE`: when it was decided, date (typed), 1900-01-31 -> 2026-06-29, 14,328,539 rows (try_to_date(CALCULATED_RTC_DATE): the return-to-compliance date EPA calculates for the violation - an authority-derived determination, not a raw observation.) -- 308 other tables keep a clock to the day
+- `ENF_FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 1980-09-30 -> 2026-07-01, 14,933,436 rows (try_to_date(ENF_FIRST_REPORTED_DATE): first state submission of the enforcement record.) -- 308 other tables keep a clock to the day
+- `ENF_LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1980-09-30 -> 2026-07-01, 14,465,718 rows (try_to_date(ENF_LAST_REPORTED_DATE): most recent re-submission of the enforcement record.) -- 308 other tables keep a clock to the day
+- `VIOL_FIRST_REPORTED_DATE`: when it was reported / filed, date (typed), 1980-09-30 -> 2026-07-01, 14,430,178 rows (try_to_date(VIOL_FIRST_REPORTED_DATE): first state submission of the violation record.) -- 308 other tables keep a clock to the day
+- `VIOL_LAST_REPORTED_DATE`: when it was reported / filed, date (typed), 1980-09-30 -> 2026-07-01, 14,319,637 rows (try_to_date(VIOL_LAST_REPORTED_DATE): most recent re-submission of the violation record.) -- 308 other tables keep a clock to the day
+- `SUBMISSIONYEARQUARTER`: when it was reported / filed, quarter, 2026 -> 2026, 15,432,737 rows (Raw passthrough of SUBMISSIONYEARQUARTER (no cast): the YYYYQn SDWIS federal-reporting cycle in which the state submitted this row. A submission label, not an event - quarter grain, never date-parse it.) -- 14 other tables keep a clock to the quarter
+- `COMPL_PER_BEGIN_DATE`: start of a period, date (typed), 1900-01-01 -> 2026-06-09, 14,430,187 rows (try_to_date(COMPL_PER_BEGIN_DATE): the start of the compliance period the drinking-water violation is scored against - the field ECHO treats as the violation start, and the broadest-coverage clock on a 15.4M-row mixed violation/enforcement ) -- 308 other tables keep a clock to the day
+- `NON_COMPL_PER_BEGIN_DATE`: start of a period, date (typed), 1900-01-01 -> 2026-06-09, 14,430,187 rows (try_to_date(NON_COMPL_PER_BEGIN_DATE): the start of the actual noncompliance window.) -- 308 other tables keep a clock to the day
+- `NON_COMPL_PER_END_DATE`: end of a period, date (typed), 1900-01-31 -> 2027-12-31, 14,329,356 rows (try_to_date(NON_COMPL_PER_END_DATE): the close of the noncompliance window.) -- 308 other tables keep a clock to the day
+- `COMPL_PER_END_DATE`: end of a period, date (typed), 1900-01-31 -> 2028-12-31, 12,973,124 rows (try_to_date(COMPL_PER_END_DATE): the close of that compliance period.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -5862,10 +8853,66 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT.PWSID` = `FED_EPA_SDWA_SDWA_SITE_VISITS.PWSID` &middot; key: `PWSID`</sub>
 
 
+### `FED_EPA_SUPERFUND_SITE_BOUNDARIES`
+*EPA (Environment): Superfund SITE Boundaries*
+
+0 reliable connections, 15 value-checked place columns, 2 value-checked clock columns -- plus 19 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 1,378 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY` fills 100% of rows, 634 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `SITE_NAME` fills 100% of rows, 1,911 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE_CODE` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `STREET_ADDRESS` fills 100% of rows, 1,908 distinct -- text place -- 114 other tables carry a clean street address
+- ZIP code: `ZIP_CODE` fills 100% of rows, 1,627 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `SITE_URL` fills 100% of rows, 1,920 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_FEATURE_TYPE` fills 100% of rows, 14 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_FEATURE_DESCRIPTION` fills 99% of rows, 1,491 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_FEATURE_NAME` fills 99% of rows, 1,516 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_CONTACT_NAME` fills 98% of rows, 489 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_CONTACT_EMAIL` fills 98% of rows, 489 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_CONTACT_PHONE` fills 98% of rows, 476 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_FEATURE_SOURCE` fills 86% of rows, 986 distinct -- text place -- 53 other tables carry a clean site / place name
+- street address: `ADDRESS_COMMENT` fills 36% of rows, 539 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- site / place name: `SITE_FEATURE_CLASS` fills 100% of rows, 3 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- region: `EPA_REGION_CODE` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ORIGINALLY_CREATED_AT`, when it was reported / filed, to the day, 2003-11-05 00:00:00.000 -> 2026-04-14 18:45:46.000:
+
+- `ORIGINALLY_CREATED_AT`: when it was reported / filed, datetime (typed), 2003-11-05 00:00:00.000 -> 2026-04-14 18:45:46.000, 1,859 rows (Staging does to_timestamp_ntz(try_to_number(ORIGINAL_CREATION_DATE)/1000) - an epoch-MILLISECONDS string, decoded correctly here: when EPA first created the boundary feature record in its public GIS layer. Publication of the record, not con) -- 308 other tables keep a clock to the day
+- `LAST_CHANGE_AT`: unlabeled clock, datetime (typed), 2008-12-01 00:00:00.000 -> 2026-08-04 00:00:00.000, 1,907 rows -- 308 other tables keep a clock to the day
+
+
 ### `FED_EPA_TRI_BASIC_2023`
 *EPA (Environment): TRI Basic 2023*
 
-16 reliable connections, 3 place-based -- plus 37 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 3 place-based, 6 value-checked place columns, 1 value-checked clock column -- plus 37 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `C_5_STREET_ADDRESS` fills 100% of rows, 22,411 distinct -- text place -- 114 other tables carry a clean street address
+- city: `C_6_CITY` fills 100% of rows, 5,401 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `C_12_LATITUDE` fills 100% of rows, 21,054 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `C_13_LONGITUDE` fills 100% of rows, 21,276 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `C_7_COUNTY` fills 100% of rows, 1,527 distinct -- county name -- 79 other tables carry a clean county
+- ZIP code: `C_9_ZIP` fills 100% of rows, 8,931 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- site / place name: `C_109_8_1_A_ON_SITE_CONTAINED` fills 100% of rows, 2,855 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_110_8_1_B_ON_SITE_OTHER` fills 100% of rows, 23,320 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_111_8_1_C_OFF_SITE_CONTAIN` fills 100% of rows, 9,029 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_112_8_1_D_OFF_SITE_OTHER_R` fills 100% of rows, 9,836 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_115_8_4_RECYCLING_ON_SITE` fills 100% of rows, 3,343 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_117_8_6_TREATMENT_ON_SITE` fills 100% of rows, 12,651 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_118_8_7_TREATMENT_OFF_SITE` fills 100% of rows, 7,617 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_97_OFF_SITE_ENERGY_RECOVERY_T` fills 100% of rows, 4,939 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_65_ON_SITE_RELEASE_TOTAL` fills 71% of rows, 25,055 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_88_OFF_SITE_RELEASE_TOTAL` fills 34% of rows, 14,571 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_94_OFF_SITE_RECYCLED_TOTAL` fills 24% of rows, 14,421 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `C_104_OFF_SITE_TREATED_TOTAL` fills 15% of rows, 7,894 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `C_1_YEAR`, when it happened, to the year, 2023 -> 2023:
+
+- `C_1_YEAR`: when it happened, year only, 2023 -> 2023, 78,647 rows (Raw passthrough of C_1_YEAR in the 2023 TRI basic file: the reporting year the releases occurred in. Integer year - the classic column that a bare date-parse turns into 1970.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -5915,16 +8962,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_TRI_FACILITY`
 *EPA (Environment): TRI Facility*
 
-0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 12 place-based -- plus 50 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 12 place-based, 13 value-checked place columns -- plus 50 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 65,691 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_NAME` fills 100% of rows, 7,905 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY_NAME` fills 100% of rows, 1,770 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE_ABBR` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 18,718 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- FIPS / GEOID code: `STATE_COUNTY_FIPS_CODE` fills 100% of rows, 2,859 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- street address: `MAIL_STREET_ADDRESS` fills 98% of rows, 52,696 distinct -- text place -- 114 other tables carry a clean street address
+- city: `MAIL_CITY` fills 98% of rows, 7,390 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `MAIL_ZIP_CODE` fills 98% of rows, 19,754 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `MAIL_STATE_ABBR` fills 98% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- lat / lon: `PREF_LATITUDE` fills 57% of rows, 43 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `PREF_LONGITUDE` fills 57% of rows, 83 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `MAIL_PROVINCE` fills 0% of rows, 4 distinct -- state names (not codes) (only 0.0% of rows filled) -- 229 other tables carry a clean state
+- **TRAP** -- region: `REGION` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_EPA_FRS_FRS_FACILITIES` (EPA -- Facility Registry: FRS Facilities) -- **100%** of the epa facility id values also appear in `FED_EPA_FRS_FRS_FACILITIES` (64,631 matching)
   <sub>joins on: `FED_EPA_TRI_FACILITY.EPA_REGISTRY_ID` = `FED_EPA_FRS_FRS_FACILITIES.REGISTRY_ID` &middot; key: `FRS_ID`</sub>
-  <sub>checked 2026-08-29: SOLID (site key, name drift) -- use this column, NOT the dead FRS_ID column on the same table; name mismatches are ownership changes at the same site</sub>
+  <sub>checked 2026-08-29: SOLID (site key, name drift) -- 60 matched pairs spot-checked: names agree **70%**, states agree **100%** -- use this column, NOT the dead FRS_ID column on the same table; name mismatches are ownership changes at the same site</sub>
 - `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **20%** of the old federal contractor id (duns) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (2,103 matching)
   <sub>joins on: `FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM` = `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` &middot; key: `DUNS`</sub>
-  <sub>checked 2026-08-29: SOLID -- polluter's parent company -> federal contractor</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **73.3%** -- polluter's parent company -> federal contractor</sub>
 
 **Same location:**
 
@@ -5957,19 +9021,69 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FAA_AIRCRAFT_REGISTRY`
 *FAA (Aviation): Aircraft Registry*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 65 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 6 value-checked place columns, 5 value-checked clock columns -- plus 65 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `REGION` fills 99% of rows, 10 distinct -- text place -- 40 other tables carry a clean region
+- street address: `STREET` fills 98% of rows, 173,036 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 98% of rows, 14,009 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP_CODE` fills 98% of rows, 171,161 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `STATE` fills 98% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `COUNTY_CODE` fills 98% of rows, 333 distinct -- county code -- 79 other tables carry a clean county
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_MFR`, when it happened, to the year, 1909 -> 2026:
+
+- `YEAR_MFR`: when it happened, year only, 1909 -> 2026, 246,050 rows (try_to_number on a 4-digit year string: the year the airframe was manufactured, a real-world event but an attribute of the aircraft rather than of the registration record (staging header notes it is blank on ~22% of rows).) -- 194 other tables keep a clock to the year
+- `LAST_ACTION_DATE`: when it was decided, date (typed), 1971-11-24 -> 2026-08-07, 315,447 rows (try_to_date with an explicit 'YYYYMMDD' format: the date the FAA last processed an action on the registration record, i.e. the agency acting, though it can also be read as a record-currency stamp.) -- 308 other tables keep a clock to the day
+- `CERT_ISSUE_DATE`: when it was decided, date (typed), 1940-12-26 -> 2026-08-07, 307,544 rows (try_to_date with explicit 'YYYYMMDD': the day the FAA issued this registration certificate, the record's own dated event and the only near-fully-populated day-grain column here.) -- 308 other tables keep a clock to the day
+- `AIRWORTHINESS_DATE`: when it was decided, date (typed), 1920-12-09 -> 2026-07-09, 272,456 rows (try_to_date with explicit 'YYYYMMDD': the day the airworthiness certificate was issued; the staging comment records that the 2,325 rows landing in 1970 were checked live on 2026-08-18 and are genuinely old aircraft spread over ~230 distinct) -- 308 other tables keep a clock to the day
+- `EXPIRATION_DATE`: end of a period, date (typed), 2018-02-28 -> 2033-08-31, 307,510 rows (try_to_date with explicit 'YYYYMMDD': the end of the current registration's validity period, which is why the census counted 64,406 'far future' rows (2027-2033 expiries) -- legitimate, not corruption.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_NTSB_AVIATION_AIRCRAFT` (NTSB (Transportation Safety): Aviation Aircraft) -- **45%** of the aircraft tail number (n-number) values also appear in `FED_NTSB_AVIATION_AIRCRAFT` (13,528 matching)
   <sub>joins on: `FED_FAA_AIRCRAFT_REGISTRY.N_NUMBER` = `FED_NTSB_AVIATION_AIRCRAFT.REGIS_NO` &middot; key: `N_NUMBER`</sub>
-  <sub>checked 2026-08-29: SOLID -- the registry is current owners only, so old crashes miss; serial numbers agree 90%, the rest are reissued tail numbers</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **90%** -- the registry is current owners only, so old crashes miss; serial numbers agree 90%, the rest are reissued tail numbers</sub>
+
+
+### `FED_FAA_REGISTRY`
+*FAA (Aviation): Registry*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_MFR`, when it happened, to the year, 1909 -> 2026:
+
+- `YEAR_MFR`: when it happened, year only, 1909 -> 2026, 314,417 rows (Passed through as a raw varchar year with no cast, so it escaped the epoch bug that destroyed all four date columns on this table and is the only honest time value left on it -- the year the airframe was built.) -- 194 other tables keep a clock to the year
+- `LAST_ACTION_DATE`: when it was decided, date (typed), 1970-08-17 -> 1970-08-23, 314,417 rows (Semantically the FAA's last action on the registration, but the mart calls bare try_to_date on an 8-digit 'YYYYMMDD' string so Snowflake read it as epoch seconds -- this is one of the four columns behind the table's 1,199,875 epoch-1970 valu) -- 308 other tables keep a clock to the day
+- `CERT_ISSUE_DATE`: when it was decided, date (typed), 1970-08-13 -> 1970-08-23, 306,526 rows (The registration certificate issue date, destroyed by the same bare try_to_date on 'YYYYMMDD' -- values in this mart are epoch-collapsed and unusable as landed.) -- 308 other tables keep a clock to the day
+- `AIR_WORTH_DATE`: when it was decided, date (typed), 1970-08-11 -> 1970-08-23, 272,438 rows (The airworthiness certificate issue date, destroyed by the same bare try_to_date on 'YYYYMMDD'; the live replacement table spells the same field airworthiness_date and casts it correctly.) -- 308 other tables keep a clock to the day
+- `EXPIRATION_DATE`: end of a period, date (typed), 1970-08-22 -> 1970-08-24, 306,494 rows (The end of the registration's validity window, also epoch-collapsed by the bare try_to_date -- note the census saw zero far-future rows here precisely because every expiry got crushed into August 1970.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FAC_SINGLE_AUDIT`
 *FAC Single Audit*
 
-27 reliable connections -- plus 80 low-confidence name+ZIP guesses not shown here.
+27 reliable connections, 7 value-checked place columns, 4 value-checked clock columns -- plus 80 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `AUDITEE_ADDRESS_LINE_1` fills 100% of rows, 109,894 distinct -- text place -- 114 other tables carry a clean street address
+- city: `AUDITEE_CITY` fills 100% of rows, 12,200 distinct -- text place -- 174 other tables carry a clean city
+- city: `AUDITOR_CITY` fills 100% of rows, 3,978 distinct -- text place -- 174 other tables carry a clean city
+- state: `AUDITEE_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `AUDITEE_ZIP` fills 100% of rows, 31,819 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `AUDITOR_ZIP` fills 100% of rows, 8,657 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `AUDITOR_STATE` fills 100% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FAC_ACCEPTED_DATE`, when it was reported / filed, to the day, 2016-07-17 -> 2026-07-26:
+
+- `FAC_ACCEPTED_DATE`: when it was reported / filed, date (typed), 2016-07-17 -> 2026-07-26, 411,638 rows (try_to_date(FAC_ACCEPTED_DATE) is when the Federal Audit Clearinghouse accepted the submission; it dates the filing event, is present on essentially every row, and drives the census ceiling of 2026-07-26.) -- 308 other tables keep a clock to the day
+- `FY_START_DATE`: start of a period, date (typed), 2002-07-01 -> 2026-06-29, 411,638 rows (try_to_date(FY_START_DATE); opening bound of the fiscal year the single audit covers.) -- 308 other tables keep a clock to the day
+- `AUDIT_YEAR`: start of a period, year only, 2016 -> 2026, 411,638 rows (Raw TEXT passthrough of AUDIT_YEAR, the year label of the audited fiscal period that fy_start_date/fy_end_date bound precisely.) -- 194 other tables keep a clock to the year
+- `FY_END_DATE`: end of a period, date (typed), 2016-01-01 -> 2026-06-30, 411,638 rows (try_to_date(FY_END_DATE); closing bound of the audited fiscal year, the best period anchor if you want to trend by year audited rather than by year filed.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -6032,7 +9146,28 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FARA_BULK`
 *FARA BULK*
 
-0 reliable connections, 2 place-based.
+0 reliable connections, 2 place-based, 7 value-checked place columns, 8 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_1` fills 40% of rows, 7,874 distinct -- text place -- 114 other tables carry a clean street address
+- state: `STATE` fills 30% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 29% of rows, 1,192 distinct -- text place -- 174 other tables carry a clean city
+- country: `FOREIGN_PRINCIPAL_COUNTRY` fills 25% of rows, 251 distinct -- country name -- 49 other tables carry a clean country
+- ZIP code: `ZIP` fills 22% of rows, 1,620 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- country: `COUNTRY_LOCATION_REPRESENTED` fills 17% of rows, 246 distinct -- country name -- 49 other tables carry a clean country
+- street address: `ADDRESS_2` fills 14% of rows, 2,162 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_STAMPED`, when it was reported / filed, to the day, 1942-07-01 -> 2026-07-30:
+
+- `DATE_STAMPED`: when it was reported / filed, date (typed), 1942-07-01 -> 2026-07-30, 27,522 rows (try_to_date(DATE_STAMPED,'MM/DD/YYYY') - DOJ's receipt stamp on the document; note staging also reuses it (coalesced with current_timestamp) as the incremental watermark, so it does double duty as pipeline metadata.) -- 308 other tables keep a clock to the day
+- `DATE`: when it was reported / filed, date (typed), 1942-07-03 -> 2026-06-08, 12,303 rows (The mart aliases staging's registration_date - try_to_date(...,'MM/DD/YYYY') - to `date`: the day the agent registered with DOJ under FARA.) -- 308 other tables keep a clock to the day
+- `FOREIGN_PRINCIPAL_REGISTRATION_DATE`: when it was reported / filed, date (typed), 1942-07-03 -> 2026-06-11, 8,278 rows (try_to_date(...,'MM/DD/YYYY') - when this foreign principal was registered under the registrant.) -- 308 other tables keep a clock to the day
+- `REGISTRANT_DATE`: when it was reported / filed, date (typed), 1942-07-03 -> 2026-06-08, 8,278 rows (try_to_date(REGISTRANT_DATE,'MM/DD/YYYY') - a second registrant-level filing date whose exact meaning is documented nowhere in the model; treat as reported until someone checks values.) -- 308 other tables keep a clock to the day
+- `SHORT_FORM_DATE`: when it was reported / filed, date (typed), 1942-01-16 -> 2026-06-12, 5,219 rows (try_to_date(...,'MM/DD/YYYY') - when the short-form registration statement for an individual agent was filed.) -- 308 other tables keep a clock to the day
+- `FOREIGN_PRINCIPAL_TERMINATION_DATE`: end of a period, date (typed), 1942-07-03 -> 2026-06-11, 7,759 rows (try_to_date(...,'MM/DD/YYYY') - when the foreign-principal relationship ended; drives the mart's active-principal flag.) -- 308 other tables keep a clock to the day
+- `TERMINATION_DATE`: end of a period, date (typed), 1942-07-03 -> 2026-05-28, 6,504 rows (try_to_date(...,'MM/DD/YYYY') - when the registration ended, closing the active-registration period; the mart's is_active flag is derived from it.) -- 308 other tables keep a clock to the day
+- `SHORT_FORM_TERMINATION_DATE`: end of a period, date (typed), 1942-06-01 -> 2026-05-12, 4,864 rows (try_to_date(...,'MM/DD/YYYY') - when the individual agent's short-form registration ended.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -6040,6 +9175,295 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_FARA_BULK.ZIP` = `FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT.ZIP_CODE` &middot; key: `ZIP`</sub>
 - `FED_SEC_CLOSED_END_FUND_INFORMATION` (SEC (Securities Regulator): Closed END FUND Information) -- same location as `FED_SEC_CLOSED_END_FUND_INFORMATION`
   <sub>joins on: `FED_FARA_BULK.ZIP` = `FED_SEC_CLOSED_END_FUND_INFORMATION.ZIP_CODE` &middot; key: `ZIP`</sub>
+
+
+### `FED_FATCA_FFI`
+*Fatca FFI*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_NAME` fills 100% of rows, 229 distinct -- country name -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FBI_CDE`
+*FBI CDE*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `MONTH_DATE`, when it happened, to the day, 1985-01-01 -> 2023-12-01:
+
+- `MONTH_DATE`: when it happened, date (typed), 1985-01-01 -> 2023-12-01, 238,680 rows (Staging: try_to_date(trim(MONTH),'MM-YYYY') with the day defaulting to the 1st -- the month the offenses/clearances were counted in. Month grain only; the day component is manufactured.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FBI_NICS_CHECKS`
+*FBI NICS Checks*
+
+0 reliable connections, 5 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 55 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- lat / lon: `PREPAWN_LONG_GUN` fills 48% of rows, 137 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `RETURNED_LONG_GUN` fills 20% of rows, 193 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `RETURN_TO_SELLER_LONG_GUN` fills 10% of rows, 51 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `RENTALS_LONG_GUN` fills 1% of rows, 14 distinct -- clean coordinate (only 0.9% of rows filled) -- 51 other tables carry a clean lat / lon
+- **TRAP** -- lat / lon: `PRIVATE_SALE_LONG_GUN` fills 23% of rows, 359 distinct -- coordinate with 0,0 trap (44% are exactly 0 (Gulf of Guinea rows))
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `MONTH`, when it happened, to the month, 1998 -> 2023:
+
+- `MONTH`: when it happened, month-year, 1998 -> 2023, 16,445 rows ("MONTH" is a raw text passthrough (no cast in either the mart or the minimal staging view); the file is a state x month panel of background checks, so it marks the month the checks were run. Format not verifiable with the warehouse down.) -- 12 other tables keep a clock to the month
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FCC_LICENSING`
+*FCC (Communications): Licensing*
+
+0 reliable connections, 4 value-checked place columns, 4 value-checked clock columns -- plus 39 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 99% of rows, 29,899 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 99% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 99% of rows, 228,996 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_LINE1` fills 92% of rows, 1,283,244 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_ACTION_DATE`, when it was decided, to the day, 1917-07-11 -> 2026-06-27:
+
+- `LAST_ACTION_DATE`: when it was decided, date (typed), 1917-07-11 -> 2026-06-27, 1,668,609 rows (Date the FCC last touched the licence record - the publisher's maintenance clock, not ours, so not 'ingest'; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `GRANT_DATE`: when it was decided, date (typed), 1984-05-29 -> 2026-06-27, 1,667,754 rows (The day the FCC granted the license - the authority's act and the best single anchor for a licence row; explicit try_to_date in the mart.) -- 308 other tables keep a clock to the day
+- `CANCELLATION_DATE`: when it was decided, date (typed), 1917-07-11 -> 2026-06-27, 861,493 rows (The day the FCC cancelled the licence - an authority action, try_to_date cast; null on live licences.) -- 308 other tables keep a clock to the day
+- `EXPIRED_DATE`: end of a period, date (typed), 1994-05-29 -> 2035-12-31, 1,668,292 rows (End of the licence term (10-year terms are normal), which explains the census's 373,860 'far future' rows and the 2036 max - those are legitimate expirations, not corruption.) -- 308 other tables keep a clock to the day
+
+
+### `FED_FDA_CAERS`
+*FDA (Food & Drug): Caers*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INITIAL_RECEIVED_DATE`, when it was reported / filed, to the day, 2001-08-09 -> 2025-08-29:
+
+- `INITIAL_RECEIVED_DATE`: when it was reported / filed, date (typed), 2001-08-09 -> 2025-08-29, 85,511 rows (try_to_date 'YYYYMMDD' - when FDA first received the report; the event itself is not dated in this file.) -- 308 other tables keep a clock to the day
+- `LATEST_RECEIVED_DATE`: when it was reported / filed, date (typed), 2001-08-09 -> 2025-08-29, 85,511 rows (try_to_date 'YYYYMMDD' - when FDA last received a follow-up on the case.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_DEVICE_510K`
+*FDA (Food & Drug): Device 510K*
+
+0 reliable connections, 5 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_CODE` fills 100% of rows, 93 distinct -- country code -- 49 other tables carry a clean country
+- city: `CITY` fills 100% of rows, 8,459 distinct -- text place -- 174 other tables carry a clean city
+- street address: `ADDRESS_1` fills 100% of rows, 34,578 distinct -- text place -- 114 other tables carry a clean street address
+- state: `STATE` fills 83% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_2` fills 18% of rows, 7,419 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DECISION_DATE`, when it was decided, to the day, 1976-07-15 -> 2026-07-26:
+
+- `DECISION_DATE`: when it was decided, date (typed), 1976-07-15 -> 2026-07-26, 175,686 rows (try_to_date 'YYYY-MM-DD' - when FDA ruled on the clearance; the better anchor for 'devices cleared per year' even though the primary rule prefers date_received.) -- 308 other tables keep a clock to the day
+- `DATE_RECEIVED`: when it was reported / filed, date (typed), 1976-05-26 -> 2026-07-17, 175,686 rows (try_to_date 'YYYY-MM-DD' - when the submitter filed the 510(k) with FDA.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_DEVICE_ENFORCEMENT`
+*FDA (Food & Drug): Device Enforcement*
+
+0 reliable connections, 6 value-checked place columns, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_1` fills 100% of rows, 3,140 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 1,361 distinct -- text place -- 174 other tables carry a clean city
+- country: `COUNTRY` fills 100% of rows, 38 distinct -- country name -- 49 other tables carry a clean country
+- state: `STATE` fills 91% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `POSTAL_CODE` fills 91% of rows, 2,236 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_2` fills 6% of rows, 357 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECALL_INITIATION_DATE`, when it happened, to the day, 1930-12-11 -> 2026-07-07:
+
+- `RECALL_INITIATION_DATE`: when it happened, date (typed), 1930-12-11 -> 2026-07-07, 39,635 rows (try_to_date 'YYYYMMDD' - the firm actually started pulling product on this date.) -- 308 other tables keep a clock to the day
+- `CENTER_CLASSIFICATION_DATE`: when it was decided, date (typed), 2012-06-08 -> 2026-07-23, 39,634 rows (try_to_date 'YYYYMMDD' - when FDA's center classified the recall.) -- 308 other tables keep a clock to the day
+- `REPORT_DATE`: when it was reported / filed, date (typed), 2012-06-20 -> 2026-07-29, 39,635 rows (try_to_date 'YYYYMMDD' - when the recall appeared in FDA's enforcement report.) -- 308 other tables keep a clock to the day
+- `TERMINATION_DATE`: end of a period, date (typed), 2012-06-15 -> 2026-07-24, 25,450 rows (try_to_date 'YYYYMMDD' - closes the open-recall span.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_DEVICE_PMA`
+*FDA (Food & Drug): Device PMA*
+
+0 reliable connections, 5 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 488 distinct -- text place -- 174 other tables carry a clean city
+- street address: `STREET_1` fills 100% of rows, 869 distinct -- text place -- 114 other tables carry a clean street address
+- ZIP code: `ZIP` fills 99% of rows, 615 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `STATE` fills 95% of rows, 37 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `STREET_2` fills 16% of rows, 174 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DECISION_DATE`, when it was decided, to the day, 1960-10-14 -> 2026-07-26:
+
+- `DECISION_DATE`: when it was decided, date (typed), 1960-10-14 -> 2026-07-26, 56,853 rows (try_to_date 'YYYY-MM-DD' - FDA's approval decision; the 1900-01-01 floor and 5 epoch rows are source sentinels.) -- 308 other tables keep a clock to the day
+- `DATE_RECEIVED`: when it was reported / filed, date (typed), 1900-01-01 -> 2026-07-17, 56,853 rows (try_to_date 'YYYY-MM-DD' - when the PMA application or supplement was filed.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_DRUG_ENFORCEMENT`
+*FDA (Food & Drug): DRUG Enforcement*
+
+0 reliable connections, 6 value-checked place columns, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_1` fills 100% of rows, 1,576 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 870 distinct -- text place -- 174 other tables carry a clean city
+- country: `COUNTRY` fills 100% of rows, 24 distinct -- country name -- 49 other tables carry a clean country
+- state: `STATE` fills 94% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `POSTAL_CODE` fills 94% of rows, 1,379 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_2` fills 10% of rows, 191 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECALL_INITIATION_DATE`, when it happened, to the day, 2006-02-24 -> 2026-06-29:
+
+- `RECALL_INITIATION_DATE`: when it happened, date (typed), 2006-02-24 -> 2026-06-29, 17,816 rows (try_to_date 'YYYYMMDD' - when the firm began the drug recall.) -- 308 other tables keep a clock to the day
+- `CENTER_CLASSIFICATION_DATE`: when it was decided, date (typed), 2012-06-11 -> 2026-07-16, 17,815 rows (try_to_date 'YYYYMMDD' - FDA's classification of the recall.) -- 308 other tables keep a clock to the day
+- `REPORT_DATE`: when it was reported / filed, date (typed), 2012-06-20 -> 2026-07-15, 17,816 rows (try_to_date 'YYYYMMDD' - publication in FDA's enforcement report.) -- 308 other tables keep a clock to the day
+- `TERMINATION_DATE`: end of a period, date (typed), 2012-07-05 -> 2026-07-01, 14,801 rows (try_to_date 'YYYYMMDD' - closes the recall span; feeds the model's days-open metric.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_DRUG_MASTER_FILES`
+*FDA (Food & Drug): DRUG Master Files*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SUBMIT_DATE`, when it was reported / filed, to the day, 1939-07-18 -> 2026-06-30:
+
+- `SUBMIT_DATE`: when it was reported / filed, date (typed), 1939-07-18 -> 2026-06-30, 41,252 rows (try_to_date 'YYYY-MM-DD HH24:MI:SS' - when the holder submitted the DMF to FDA; 140 rows sit on 1970-01-01.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_ESTABLISHMENT_REG`
+*FDA (Food & Drug): Establishment REG*
+
+0 reliable connections, 5 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 24,965 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 8,687 distinct -- text place -- 174 other tables carry a clean city
+- country: `ISO_COUNTRY_CODE` fills 100% of rows, 108 distinct -- country code -- 49 other tables carry a clean country
+- state: `STATE_CODE` fills 46% of rows, 52 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 24% of rows, 5,237 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REG_EXPIRY_DATE_YEAR`, end of a period, to the year, 2026 -> 2026:
+
+- `REG_EXPIRY_DATE_YEAR`: end of a period, year only, 2026 -> 2026, 263,374 rows (A YEAR string pulled straight from the registration JSON - the year the registration lapses; device registrations renew annually so it is near-constant and weak for trending.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_FAERS_DEMO`
+*FDA (Food & Drug): Faers DEMO*
+
+0 reliable connections, 2 value-checked place columns, 6 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `REPORTER_COUNTRY` fills 92% of rows, 401 distinct -- country name -- 49 other tables carry a clean country
+- country: `OCCR_COUNTRY` fills 23% of rows, 186 distinct -- country code -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EVENT_DT`, when it happened, to the day, 1908-07-29 -> 2033-10-23:
+
+- `EVENT_DT`: when it happened, date as text (yyyymmdd), 1908-07-29 -> 2033-10-23, 4,899,585 rows (Date the adverse event occurred, passed through UNCAST; FAERS ships variable-precision YYYY/YYYYMM/YYYYMMDD so many rows resolve only to year.) -- 308 other tables keep a clock to the day
+- `FDA_DT`: when it was reported / filed, date as text (yyyymmdd), 2012-01-06 -> 2014-06-30, 5,811,086 rows (Date FDA received this version of the case - uncast text.) -- 308 other tables keep a clock to the day
+- `MFR_DT`: when it was reported / filed, date as text (yyyymmdd), 1886-01-01 -> 2014-06-30, 5,755,807 rows (Date the manufacturer first received the report - uncast text, variable precision.) -- 308 other tables keep a clock to the day
+- `REPT_DT`: when it was reported / filed, date as text (yyyymmdd), 1913-05-03 -> 2016-11-14, 5,273,782 rows (Date of the report as filed - uncast text.) -- 308 other tables keep a clock to the day
+- `INIT_FDA_DT`: when it was reported / filed, date as text (yyyymmdd), 1989-12-07 -> 2014-06-30, 1,534,886 rows (Date FDA received the INITIAL version of the case - uncast text.) -- 308 other tables keep a clock to the day
+- `SRC_QUARTER`: when it was reported / filed, quarter, 2004 -> 2014, 5,811,086 rows (_SRC_QUARTER is underscore-prefixed like our bookkeeping columns, but its VALUE is FDA's quarterly release - a publication clock, not our load time; worth a value check.) -- 14 other tables keep a clock to the quarter
+- **NOT A CLOCK** -- `AGE`: NOT a clock (a duration, vintage, or count that looks like a year), quarter, 1704 -> 2035, 4,239,745 rows (Patient age, paired with an age-unit code.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_FAERS_DRUG`
+*FDA (Food & Drug): Faers DRUG*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SRC_QUARTER`, when it was reported / filed, to the quarter, 2004 -> 2014:
+
+- `SRC_QUARTER`: when it was reported / filed, quarter, 2004 -> 2014, 20,914,284 rows (FDA's quarterly release tag - the only usable clock on this 20.9M-row table.) -- 14 other tables keep a clock to the quarter
+- `EXP_DT`: end of a period, month-year, 1915-06-01 -> 2025-12-31, 3,641,576 rows (Drug expiration date on the reported product, uncast; sparsely populated in FAERS.) -- 12 other tables keep a clock to the month
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_FAERS_INDI`
+*FDA (Food & Drug): Faers INDI*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SRC_QUARTER`, when it was reported / filed, to the quarter, 2004 -> 2014:
+
+- `SRC_QUARTER`: when it was reported / filed, quarter, 2004 -> 2014, 9,833,260 rows (FDA's quarterly release tag - the only time column on this 9.8M-row indication table.) -- 14 other tables keep a clock to the quarter
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_FAERS_OUTC`
+*FDA (Food & Drug): Faers OUTC*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SRC_QUARTER`, when it was reported / filed, to the quarter, 2004 -> 2014:
+
+- `SRC_QUARTER`: when it was reported / filed, quarter, 2004 -> 2014, 1,134,815 rows (FDA's quarterly release tag - the only time column here, and part of the dedupe key.) -- 14 other tables keep a clock to the quarter
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_FAERS_REAC`
+*FDA (Food & Drug): Faers REAC*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SRC_QUARTER`, when it was reported / filed, to the quarter, 2004 -> 2014:
+
+- `SRC_QUARTER`: when it was reported / filed, quarter, 2004 -> 2014, 20,621,386 rows (FDA's quarterly release tag - the only time column on 20.6M rows; the header notes a 2004Q1-2012Q3 legacy-layout era, so quarter mix is not uniform.) -- 14 other tables keep a clock to the quarter
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FDA_GUDID`
+*FDA (Food & Drug): Gudid*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PUBLIC_VERSION_DATE`, when it was reported / filed, to the day, 2018-03-29 -> 2026-04-30:
+
+- `PUBLIC_VERSION_DATE`: when it was reported / filed, date (typed), 2018-03-29 -> 2026-04-30, 5,083,948 rows (try_to_date 'YYYY-MM-DD' - date of the current public version of the record.) -- 308 other tables keep a clock to the day
+- `PUBLISH_DATE`: when it was reported / filed, date (typed), 2013-02-20 -> 2026-04-22, 5,083,948 rows (try_to_date 'YYYY-MM-DD' - when the device record was published into GUDID.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FDA_GUDID_FULL_DEVICE`
@@ -6054,7 +9478,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- same publisher, two files; the partner files (MAUDE adverse events, device recalls) are not loaded yet</sub>
 - `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **17%** of the old federal contractor id (duns) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (2,096 matching)
   <sub>joins on: `FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER` = `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` &middot; key: `DUNS`</sub>
-  <sub>checked 2026-08-29: SOLID -- device makers that are also federal contractors</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **96.7%** -- device makers that are also federal contractors</sub>
 
 
 ### `FED_FDA_GUDID_FULL_IDENTIFIERS`
@@ -6069,6 +9493,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- same publisher, two files; the partner files (MAUDE adverse events, device recalls) are not loaded yet</sub>
 
 
+### `FED_FDA_MAUDE`
+*FDA (Food & Drug): Maude*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_EVENT`, when it happened, to the day, 1900-01-01 -> 2026-06-04:
+
+- `DATE_OF_EVENT`: when it happened, date (typed), 1900-01-01 -> 2026-06-04, 2,379,083 rows (try_to_date 'YYYYMMDD' - when the device injured or malfunctioned; the true harm clock, though the 1900-01-01 floor and 1 epoch row need a filter.) -- 308 other tables keep a clock to the day
+- `DATE_RECEIVED`: when it was reported / filed, date (typed), 2020-01-01 -> 2021-09-30, 2,743,561 rows (try_to_date 'YYYYMMDD' from a _raw text column - when FDA received the report.) -- 308 other tables keep a clock to the day
+- `DATE_REPORT`: when it was reported / filed, date (typed), 1979-08-06 -> 2026-06-30, 2,497,805 rows (try_to_date 'YYYYMMDD' - the date the reporter filed the report.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_FDA_NDC_DIRECTORY`
 *FDA (Food & Drug): NDC Directory*
 
@@ -6078,13 +9516,54 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_CMS_NADAC` (Medicare & Medicaid (CMS): Nadac) -- **82%** of the drug product code (ndc, 9-digit) values also appear in `FED_CMS_NADAC` (17,958 matching)
   <sub>joins on: `FED_FDA_NDC_DIRECTORY.PRODUCTNDC` = `FED_CMS_NADAC.NDC` &middot; key: `NDC9`</sub>
-  <sub>checked 2026-08-29: SOLID -- only joins after both sides are padded to 5-4 digits (labeler-product); a raw string join gives 0%</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **86.7%** -- only joins after both sides are padded to 5-4 digits (labeler-product); a raw string join gives 0%</sub>
+
+
+### `FED_FDA_PURPLE_BOOK`
+*FDA (Food & Drug): Purple BOOK*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `APPROVAL_DATE`, when it was decided, to the day, 1930-06-14 -> 2026-06-05:
+
+- `APPROVAL_DATE`: when it was decided, date (typed), 1930-06-14 -> 2026-06-05, 2,213 rows (try_to_date 'DD-MON-YY' with a -100-year rollback when the 2-digit year parses into the future; FDA's approval of the BLA product row.) -- 308 other tables keep a clock to the day
+- `INTERCHANGEABLE_APPROVAL_DATE`: when it was decided, date (typed), 2021-07-28 -> 2026-06-05, 131 rows (Same DD-MON-YY parse plus century rollback - FDA's interchangeability approval.) -- 308 other tables keep a clock to the day
+- `DATE_OF_FIRST_LICENSURE`: when it was decided, date (typed), 2011-11-18 -> 2025-03-05, 38 rows (Same parse plus rollback - when the biologic was first licensed.) -- 308 other tables keep a clock to the day
+- `ORPHAN_EXCLUSIVITY_EXP_DATE`: end of a period, date (typed), 1990-07-20 -> 2033-04-23, 576 rows (Orphan exclusivity end, future-capable by design.) -- 308 other tables keep a clock to the day
+- `REF_PRODUCT_EXCLUSIVITY_EXP_DATE`: end of a period, date (typed), 2024-02-29 -> 2035-06-22, 37 rows (Reference-product exclusivity end, future-capable by design.) -- 308 other tables keep a clock to the day
+- `FIRST_INTERCHANGEABLE_EXCLUSIVITY_EXP_DATE`: end of a period, date (typed), 2022-11-15 -> 2026-10-22, 30 rows (Exclusivity period end, deliberately future-capable.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FDIC_BANK_DATA`
 *FDIC (Bank Insurance): BANK DATA*
 
-1 reliable connection, 7 measured 2026-08-29 (not yet in the spine), 3 place-based -- plus 21 low-confidence name+ZIP guesses not shown here.
+1 reliable connection, 10 measured 2026-08-29 (not yet in the spine), 3 place-based, 10 value-checked place columns, 6 value-checked clock columns -- plus 21 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 23,497 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 7,140 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY` fills 100% of rows, 1,767 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `FIPS` fills 100% of rows, 2,980 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `FDIC_REGION` fills 100% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+- ZIP code: `ZIP` fills 100% of rows, 12,700 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `CBSA` fills 83% of rows, 920 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `CBSA_METRO_NAME` fills 68% of rows, 389 distinct -- text place -- 19 other tables carry a clean metro area
+- city: `HOLDING_COMPANY_CITY` fills 61% of rows, 3,992 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `OCC_DISTRICT` fills 6% of rows, 4 distinct -- text place -- 13 other tables carry a clean congressional district
+- **TRAP** -- lat / lon: `LATITUDE` fills 100% of rows, 21,221 distinct -- coordinate with 0,0 trap (10% are exactly 0 (Gulf of Guinea rows))
+- **TRAP** -- lat / lon: `LONGITUDE` fills 100% of rows, 21,756 distinct -- coordinate with 0,0 trap (10% are exactly 0 (Gulf of Guinea rows))
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INSURANCE_DROPPED_DATE`, end of a period, to the day, 1985-02-19 -> 2018-03-28:
+
+- `INSURANCE_DROPPED_DATE`: end of a period, date (typed), 1985-02-19 -> 2018-03-28, 161 rows (try_to_date(left(INSDROPDATE,10)) - the day insurance coverage ended, closing the coverage period; a likely home for the census's 9999-12-31 sentinel rows.) -- 308 other tables keep a clock to the day
+- `ENDEFYMD`: unlabeled clock, date (typed), 1970-01-01 -> 2026-07-17, 27,836 rows -- 308 other tables keep a clock to the day
+- `ESTYMD`: unlabeled clock, date (typed), 1782-01-01 -> 2026-06-22, 27,836 rows -- 308 other tables keep a clock to the day
+- `REPDTE`: unlabeled clock, date (typed), 1984-03-31 -> 2026-03-31, 23,828 rows -- 308 other tables keep a clock to the day
+- `INSURED_DATE`: unclear clock, date (typed), 1934-01-01 -> 2026-06-22, 27,836 rows (try_to_date(left(INSDATE,10)) - the day FDIC insurance coverage began, opening the coverage period it shares with insurance_dropped_date; best of the three listed columns.) -- 308 other tables keep a clock to the day
+- `DATEUPDT`: unclear clock, date (typed), 1975-02-28 -> 2026-08-05, 27,815 rows (try_to_date(left(DATEUPDT,10)) - FDIC's own record-last-updated stamp, bookkeeping about when the directory row was refreshed rather than a world event; never a table clock.) -- 308 other tables keep a clock to the day
 
 > **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
@@ -6100,22 +9579,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- direct-parent bank pointer (tiny)</sub>
 - `FED_FHFA_FHLB_MEMBERSHIP` (FHFA (Housing Finance Regulator): FHLB Membership) -- **100%** of the fdic bank certificate # values also appear in `FED_FHFA_FHLB_MEMBERSHIP` (3,983 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_FHFA_FHLB_MEMBERSHIP.CERT` &middot; key: `FDIC_CERT`</sub>
-  <sub>checked 2026-08-29: SOLID</sub>
+  <sub>checked 2026-08-29: SOLID -- 59 matched pairs spot-checked: names agree **93.2%**, states agree **100%**</sub>
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (7,942 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.NEWCERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
-  <sub>checked 2026-08-29: SOLID (lineage) -- successor bank pointer; the successor is a different bank by definition, states agree 90%</sub>
+  <sub>checked 2026-08-29: SOLID (lineage) -- 60 matched pairs spot-checked: names agree **25%**, states agree **90%** -- successor bank pointer; the successor is a different bank by definition, states agree 90%</sub>
+- `FED_FDIC_SOD_BRANCH_DEPOSITS` (FDIC (Bank Insurance): SOD Branch Deposits) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_SOD_BRANCH_DEPOSITS` (15,497 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_FDIC_SOD_BRANCH_DEPOSITS.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- branch -> its bank; strip leading zeros on both sides</sub>
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (5,191 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.ULTCERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- ultimate-parent bank pointer</sub>
 - `FED_FHFA_FHLB_MEMBERSHIP` (FHFA (Housing Finance Regulator): FHLB Membership) -- **100%** of the federal reserve bank id (rssd) values also appear in `FED_FHFA_FHLB_MEMBERSHIP` (3,976 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.FED_RSSD` = `FED_FHFA_FHLB_MEMBERSHIP.FED_ID` &middot; key: `RSSD`</sub>
-  <sub>checked 2026-08-29: SOLID</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **96.7%**, states agree **96.7%**</sub>
 - `FED_SBA_LOANS` (SBA Loans) -- **100%** of the fdic bank certificate # values also appear in `FED_SBA_LOANS` (3,938 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_SBA_LOANS.BANKFDICNUMBER` &middot; key: `FDIC_CERT`</sub>
-  <sub>checked 2026-08-29: SOLID -- SBA lender -> bank</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **100%** -- SBA lender -> bank</sub>
+- `FED_FDIC_SOD_BRANCH_DEPOSITS` (FDIC (Bank Insurance): SOD Branch Deposits) -- **98%** of the federal reserve bank id (rssd) values also appear in `FED_FDIC_SOD_BRANCH_DEPOSITS` (15,304 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.FED_RSSD` = `FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDID` &middot; key: `RSSD`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- branch -> its bank by Fed id</sub>
 - `FED_FDIC_SOD_BRANCH_DEPOSITS` (FDIC (Bank Insurance): SOD Branch Deposits) -- **83%** of the bank holding-company id (rssd) values also appear in `FED_FDIC_SOD_BRANCH_DEPOSITS` (7,243 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.RSSDHCR` = `FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR` &middot; key: `RSSD_HC`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- both sides are holding-company pointers; the holding-company master (Fed NIC file) is NOT held, so neither resolves to a name</sub>
+- `FED_CFPB_HMDA_HISTORIC` (CFPB -- Mortgage Lending Data (HMDA): Historic) -- **70%** of the old hmda lender id (pre-2018 respondent id) values also appear in `FED_CFPB_HMDA_HISTORIC` (2,678 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID` &middot; key: `HMDA_ARID`</sub>
+  <sub>checked 2026-08-30: SOLID (split by agency code) -- 60 matched pairs spot-checked: names agree **83.3%** -- BANK-REGULATOR ROWS ONLY (agency code 1, 2 or 3): there the old lender id is a bank certificate #. This is the split-by-agency fix for the suspect unsplit edge; name-checked 2026-08-30 through the crosswalk's lender names -- the misses are banks renamed under the same cert</sub>
 
 **Same location:**
 
@@ -6130,13 +9618,74 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_CFPB_HMDA_ARID2017_LEI_XREF` (CFPB -- Mortgage Lending Data (HMDA): Arid2017 LEI XREF) -- **47%** of the old hmda lender id (pre-2018 respondent id) values also appear in `FED_CFPB_HMDA_ARID2017_LEI_XREF` (2,522 matching) -- **but about half of those pairs are different organizations**
   <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_CFPB_HMDA_ARID2017_LEI_XREF.ARID_2017` &middot; key: `HMDA_ARID`</sub>
-  <sub>checked 2026-08-29: SUSPECT: about half the matched pairs are different banks -- the old respondent id is only a bank certificate # for some regulators (agency codes 1-3); for others it is something else. Do NOT use until split by agency; go through the LEI crosswalk instead</sub>
+  <sub>checked 2026-08-29: SUSPECT: about half the matched pairs are different banks -- 60 matched pairs spot-checked: names agree **56.7%** -- the old respondent id is only a bank certificate # for some regulators (agency codes 1-3); for others it is something else. Do NOT use until split by agency; go through the LEI crosswalk instead</sub>
+
+
+### `FED_FDIC_FAILED_BANKS`
+*FDIC (Bank Insurance): Failed Banks*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 1,862 distinct -- text place -- 174 other tables carry a clean city
+- city: `CITY_STATE` fills 100% of rows, 2,073 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FAIL_DATE`, when it happened, to the day, 1970-02-22 -> 2026-05-01:
+
+- `FAIL_DATE`: when it happened, date (typed), 1970-02-22 -> 2026-05-01, 3,584 rows (Staging parses FAILDATE with two strict formats (YYYY-MM-DD then MM/DD/YYYY); it is the day the bank actually failed, the real-world event this table exists to record.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FDIC_SOD_BRANCH_DEPOSITS`
 *FDIC (Bank Insurance): SOD Branch Deposits*
 
-1 reliable connection, 1 measured 2026-08-29 (not yet in the spine).
+1 reliable connection, 3 measured 2026-08-29 (not yet in the spine), 22 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `BRANCH_ADDRESS` fills 100% of rows, 277,908 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `INSTITUTION_ADDRESS` fills 100% of rows, 25,966 distinct -- text place -- 114 other tables carry a clean street address
+- city: `BRANCH_CITY` fills 100% of rows, 15,168 distinct -- text place -- 174 other tables carry a clean city
+- city: `BRANCH_CITY_ALT` fills 100% of rows, 11,526 distinct -- text place -- 174 other tables carry a clean city
+- city: `INSTITUTION_CITY` fills 100% of rows, 6,166 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `FED_DISTRICT_NAME` fills 100% of rows, 13 distinct -- text place -- 13 other tables carry a clean congressional district
+- county: `BRANCH_COUNTY_NAME` fills 100% of rows, 1,962 distinct -- county name -- 79 other tables carry a clean county
+- region: `FDIC_REGION_NAME` fills 100% of rows, 8 distinct -- text place -- 40 other tables carry a clean region
+- state: `BRANCH_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `BRANCH_STATE_NAME` fills 100% of rows, 61 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `INSTITUTION_STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `INSTITUTION_STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- ZIP code: `BRANCH_ZIP` fills 100% of rows, 24,446 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `INSTITUTION_ZIP` fills 100% of rows, 10,563 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- congressional district: `OCC_DISTRICT_NAME` fills 96% of rows, 19 distinct -- text place -- 13 other tables carry a clean congressional district
+- lat / lon: `SIMS_LATITUDE` fills 92% of rows, 522,223 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `SIMS_LONGITUDE` fills 92% of rows, 525,230 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- city: `HOLDING_COMPANY_CITY` fills 87% of rows, 4,502 distinct -- text place -- 174 other tables carry a clean city
+- state: `HOLDING_COMPANY_STATE` fills 82% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- metro area: `BRANCH_MSA_NAME` fills 78% of rows, 505 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `BRANCH_CSA_NAME` fills 72% of rows, 291 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `BRANCH_CBSA_DIVISION_NAME` fills 24% of rows, 52 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- congressional district: `FED_DISTRICT_CODE` fills 100% of rows, 13 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- FIPS / GEOID code: `BRANCH_COUNTY_FIPS` fills 100% of rows, 333 distinct -- FIPS with leading zeros lost (59% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- FIPS / GEOID code: `BRANCH_STATE_COUNTY_FIPS` fills 100% of rows, 3,329 distinct -- FIPS with leading zeros lost (85% have a FIPS length; modal length 5 -- pad before joining)
+- **TRAP** -- FIPS / GEOID code: `BRANCH_STATE_FIPS` fills 100% of rows, 58 distinct -- FIPS with leading zeros lost (85% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- FIPS / GEOID code: `INSTITUTION_STATE_COUNTY_FIPS` fills 100% of rows, 2,918 distinct -- FIPS with leading zeros lost (88% have a FIPS length; modal length 5 -- pad before joining)
+- **TRAP** -- region: `FDIC_REGION_CODE` fills 100% of rows, 8 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `OCC_DISTRICT_CODE` fills 95% of rows, 14 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `BRANCH_MSA_CODE` fills 78% of rows, 407 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `BRANCH_METRO_FLAG` fills 76% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `BRANCH_PLACE_CODE` fills 74% of rows, 21,827 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `BRANCH_CSA_CODE` fills 72% of rows, 209 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `BRANCH_CBSA_DIVISION_CODE` fills 24% of rows, 43 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SIMS_ESTABLISHED_DATE`, when it happened, to the day, 1782-01-01 -> 2025-06-30:
+
+- `SIMS_ESTABLISHED_DATE`: when it happened, date (typed), 1782-01-01 -> 2025-06-30, 2,644,701 rows (try_to_date(...,'MM/DD/YYYY') - the day the branch was established; the staging comment records the 2026-08-18 finding that its 26,581 rows at 1970-01-01 are real 1970 establishments, not the epoch trap.) -- 308 other tables keep a clock to the day
+- `SIMS_ACQUIRED_DATE`: when it happened, date (typed), 1970-01-02 -> 2025-06-27, 1,423,014 rows (try_to_date(split_part(SIMS_ACQUIRED_DATE,' ',1),'MM/DD/YYYY') - the day the branch was acquired by the institution.) -- 308 other tables keep a clock to the day
+- `SURVEY_YEAR`: when it happened, year only, 1994 -> 2025, 2,823,000 rows (try_to_number(YEAR) - the SOD survey year the branch-deposit figures describe and half the table's own grain; a number, so it must never be bare date-parsed.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `INSURED_BRANCH_TIME_SAVINGS_DEPOSITS_THOUSANDS`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1793 -> 1945, 1,535,367 rows (try_to_number(INSBRTS) - a dollar amount in thousands; only the words 'time savings' made it look time-shaped.)
 
 > **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
@@ -6147,9 +9696,44 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (15,497 matching)
+  <sub>joins on: `FED_FDIC_SOD_BRANCH_DEPOSITS.CERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- branch -> its bank; strip leading zeros on both sides</sub>
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **98%** of the federal reserve bank id (rssd) values also appear in `FED_FDIC_BANK_DATA` (15,304 matching)
+  <sub>joins on: `FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDID` = `FED_FDIC_BANK_DATA.FED_RSSD` &middot; key: `RSSD`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- branch -> its bank by Fed id</sub>
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **83%** of the bank holding-company id (rssd) values also appear in `FED_FDIC_BANK_DATA` (7,243 matching)
   <sub>joins on: `FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR` = `FED_FDIC_BANK_DATA.RSSDHCR` &middot; key: `RSSD_HC`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- both sides are holding-company pointers; the holding-company master (Fed NIC file) is NOT held, so neither resolves to a name</sub>
+
+
+### `FED_FEC_API`
+*FEC (Campaign Finance): API*
+
+0 reliable connections, 2 value-checked place columns, 2 value-checked clock columns -- plus 3 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `CONTRIBUTOR_STATE` fills 97% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `CONTRIBUTOR_ZIP` fills 94% of rows, 310 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRIBUTION_RECEIPT_DATE`, when it happened, to the day, 2000-09-01 -> 2022-05-26:
+
+- `CONTRIBUTION_RECEIPT_DATE`: when it happened, date as text (iso), 2000-09-01 -> 2022-05-26, 500 rows (The date the committee received the contribution -- the real-world money event; note the staging model explicitly keeps all casts as landed TEXT, so it is an unparsed string today.) -- 308 other tables keep a clock to the day
+- `LOAD_DATE`: when it was reported / filed, date as text (iso), 2025-02-25 -> 2026-06-30, 500 rows (The FEC's own stamp for when the transaction entered their published database -- publisher bookkeeping, not Ripple's ingest, and never the event clock.) -- 308 other tables keep a clock to the day
+
+
+### `FED_FEC_BULK`
+*FEC (Campaign Finance): BULK*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CMTE_CITY` fills 100% of rows, 3,786 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `CMTE_ZIP` fills 100% of rows, 8,604 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FEC_BULK_CANDIDATES`
@@ -6198,7 +9782,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_BULK_COMMITTEES`
 *FEC (Campaign Finance): BULK Committees*
 
-17 reliable connections.
+17 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CMTE_CITY` fills 100% of rows, 3,632 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `CMTE_ZIP` fills 100% of rows, 8,404 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE`, when it was reported / filed, to the year, 2026 -> 2026:
+
+- `CYCLE`: when it was reported / filed, year only, 2026 -> 2026, 20,007 rows (Raw CYCLE passthrough - the two-year FEC election cycle the committee registration file belongs to; a year-grain label, not a date, and the table's only time-shaped column.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -6309,7 +9902,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_CANDIDATES`
 *FEC (Campaign Finance): Candidates*
 
-17 reliable connections.
+17 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CAND_CITY` fills 100% of rows, 4,918 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `CAND_ZIP` fills 98% of rows, 10,276 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- congressional district: `CAND_OFFICE_DISTRICT` fills 66% of rows, 71 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAND_ELECTION_YR`, when it happened, to the year, 1980 -> 2035:
+
+- `CAND_ELECTION_YR`: when it happened, year only, 1980 -> 2035, 33,506 rows (try_to_number(C4) - the election year the candidate is running in; the mart's own comment warns this landing table has no cycle column at all, so this is the only time anchor it has.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -6352,7 +9955,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_CAND_CMTE_LINKAGE`
 *FEC (Campaign Finance): CAND CMTE Linkage*
 
-17 reliable connections.
+17 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAND_ELECTION_YR`, when it happened, to the year, 1980 -> 2034:
+
+- `CAND_ELECTION_YR`: when it happened, year only, 1980 -> 2034, 30,536 rows (try_to_number(C2) - the year of the election the candidate is contesting; a number, never bare date-parse it.) -- 194 other tables keep a clock to the year
+- `FEC_ELECTION_YR`: when it was reported / filed, year only, 2018 -> 2024, 30,536 rows (try_to_number(C3) - the FEC's own cycle tag for the linkage record rather than the candidate's election.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -6395,7 +10003,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_COMMITTEES`
 *FEC (Campaign Finance): Committees*
 
-17 reliable connections.
+17 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CMTE_CITY` fills 100% of rows, 5,475 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `CMTE_ZIP` fills 100% of rows, 13,637 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
 
 **Rock-solid match:**
 
@@ -6438,7 +10051,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_COMMITTEE_TO_CANDIDATE`
 *FEC (Campaign Finance): Committee TO Candidate*
 
-17 reliable connections -- plus 40 low-confidence name+ZIP guesses not shown here.
+17 reliable connections, 3 value-checked place columns, 1 value-checked clock column -- plus 40 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 3,129 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 10,279 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE`, when it was reported / filed, to the year, 2024 -> 2026:
+
+- `CYCLE`: when it was reported / filed, year only, 2024 -> 2026, 866,730 rows (Raw CYCLE passthrough - the two-year FEC filing cycle the transaction file belongs to.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -6478,10 +10101,36 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_FEC_COMMITTEE_TO_CANDIDATE.CMTE_ID` = `FED_FEC_CANDIDATES.C10` &middot; key: `FEC_CMTE_ID`</sub>
 
 
+### `FED_FEC_INDEPENDENT_EXPENDITURES`
+*FEC (Campaign Finance): Independent Expenditures*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `CAN_OFFICE_STATE` fills 88% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FEC_ELECTION_YR`, when it was reported / filed, to the year, 2018 -> 2024:
+
+- `FEC_ELECTION_YR`: when it was reported / filed, year only, 2018 -> 2024, 261,033 rows (Uncast year label naming the election cycle the FEC filed the expenditure under.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_FEC_INDIV_CONTRIBUTIONS`
 *FEC (Campaign Finance): Indiv Contributions*
 
-9 reliable connections -- plus 69 low-confidence name+ZIP guesses not shown here.
+9 reliable connections, 3 value-checked place columns, 1 value-checked clock column -- plus 69 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 47,537 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 78 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 2,869,783 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRANSACTION_DATE`, when it happened, to the day, 2000-01-01 -> 2029-05-21:
+
+- `TRANSACTION_DATE`: when it happened, date (typed), 2000-01-01 -> 2029-05-21, 84,171,529 rows (try_to_date(transaction_dt,'MMDDYYYY') - the day the individual contribution was made; the explicit format rules out the epoch trap, and the 4 far-future rows (max 3312) are source typos.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -6508,7 +10157,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_LEADERSHIP_PAC`
 *FEC (Campaign Finance): Leadership PAC*
 
-17 reliable connections.
+17 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAND_ELECTION_YR`, when it happened, to the year, 1980 -> 2034:
+
+- `CAND_ELECTION_YR`: when it happened, year only, 1980 -> 2034, 8,619 rows (Raw year passthrough - the election year the linked candidate is contesting; the only real time anchor on this crosswalk.) -- 194 other tables keep a clock to the year
+- `FEC_ELECTION_YR`: when it was reported / filed, year only, 2024 -> 2024, 8,619 rows (Raw year passthrough - the FEC's own cycle tag for the leadership-PAC linkage record.) -- 194 other tables keep a clock to the year
+- `CAND_ELECTION_YR`: unlabeled clock, year only, 1980 -> 2034, 8,619 rows -- 194 other tables keep a clock to the year
+- `FEC_ELECTION_YR`: unlabeled clock, year only, 2024 -> 2024, 8,619 rows -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -6551,7 +10207,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_FEC_PAC_SUMMARY`
 *FEC (Campaign Finance): PAC Summary*
 
-9 reliable connections.
+9 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `COVERAGE_END_DATE`, end of a period, to the day, 2017-01-01 -> 2025-01-31:
+
+- `COVERAGE_END_DATE`: end of a period, date (typed), 2017-01-01 -> 2025-01-31, 37,812 rows (Last day of the committee's reporting period - cast try_to_date(trim(C27),'MM/DD/YYYY') in staging and part of the table's grain key, so it is the honest anchor; the census max of 2026-07-24 02:13:26 is a timestamp and must have come from _) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `CASH_BEGINNING_OF_PERIOD`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2032, 37,812 rows (FALSE POSITIVE - a DOLLAR amount (coh_bop, try_to_double) that matched only on the word 'period' in its name.)
+- **NOT A CLOCK** -- `CASH_CLOSE_OF_PERIOD`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2032, 37,812 rows (FALSE POSITIVE - a DOLLAR amount (coh_cop, try_to_double), matched on 'period'.)
+- **NOT A CLOCK** -- `NONFEDERAL_TRANSFERS_RECEIVED`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2000, 37,812 rows (FALSE POSITIVE - a DOLLAR amount (nonfed_trans_received, try_to_double), matched on 'received'.)
 
 **Rock-solid match:**
 
@@ -6575,10 +10238,49 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_FEC_PAC_SUMMARY.C1` = `FED_FEC_BULK_CANDIDATES.CAND_PCC` &middot; key: `FEC_CMTE_ID`</sub>
 
 
+### `FED_FEDERAL_REGISTER_DOCUMENTS`
+*Federal Register Documents*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PUBLICATION_DATE`, when it was reported / filed, to the day, 2023-01-03 -> 2026-06-16:
+
+- `PUBLICATION_DATE`: when it was reported / filed, date (typed), 2023-01-03 -> 2026-06-16, 94,731 rows (try_to_date(publication_date) in staging - the day the document appeared in the Federal Register. Publication is a reporting clock, and it is the anchor every derived part on this table is built from.) -- 308 other tables keep a clock to the day
+- `PUBLICATION_QUARTER`: when it was reported / filed, date (typed), 2023-01-01 -> 2026-04-01, 94,731 rows (The mart computes date_trunc('quarter', publication_date) - a real DATE, but only quarter resolution; do not read it as a day.) -- 308 other tables keep a clock to the day
+- `PUBLICATION_YEAR`: when it was reported / filed, year only, 2023 -> 2026, 94,731 rows (The mart computes year(publication_date) - a coarsened copy of the publication clock.) -- 194 other tables keep a clock to the year
+- `EFFECTIVE_ON`: start of a period, date (typed), 2010-12-14 -> 2033-03-07, 11,450 rows (try_to_date(effective_on) - when the rule starts applying, opening its effective period. Legitimately future-dated: the census max 2033-03-07 with 1 far-future row is a long-lead rule, not corruption.) -- 308 other tables keep a clock to the day
+- `COMMENTS_CLOSE_ON`: unlabeled clock, date (typed), 2013-10-28 -> 2026-12-31, 29,545 rows -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `END_PAGE`: NOT a clock (a duration, vintage, or count that looks like a year), quarter, 1700 -> 2035, 94,731 rows (try_to_number(end_page) - the page the document ends on; a page number, not an end time.)
+- **NOT A CLOCK** -- `START_PAGE`: NOT a clock (a duration, vintage, or count that looks like a year), quarter, 1700 -> 2035, 94,731 rows (try_to_number(start_page) in staging - the Federal Register page the document starts on; a page number, not a start time.)
+- **NOT A CLOCK** -- `DAYS_UNTIL_EFFECTIVE`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1731 -> 1731, 11,450 rows (The mart computes datediff('day', publication_date, effective_on) - a duration in days, not a point in time.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_FEMA_IA_HOUSING_REGISTRATIONS`
 *FEMA (Disaster Aid): IA Housing Registrations*
 
-0 reliable connections, 12 place-based.
+0 reliable connections, 12 place-based, 10 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `DAMAGED_CITY` fills 100% of rows, 40,698 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY` fills 100% of rows, 2,055 distinct -- county name -- 79 other tables carry a clean county
+- state: `DAMAGED_STATE_ABBREVIATION` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `DAMAGED_ZIP_CODE` fills 100% of rows, 33,727 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `CURRENT_LOCATION` fills 100% of rows, 16 distinct -- text place -- 53 other tables carry a clean site / place name
+- FIPS / GEOID code: `FIPS` fills 74% of rows, 3,379 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- site / place name: `HIGH_WATER_LOCATION` fills 14% of rows, 9 distinct -- text place -- 53 other tables carry a clean site / place name
+- city: `RENTAL_RESOURCE_CITY` fills 0% of rows, 7,726 distinct -- text place (only 0.4% of rows filled) -- 174 other tables carry a clean city
+- state: `RENTAL_RESOURCE_STATE_ABBREV` fills 0% of rows, 57 distinct -- clean 2-letter state (only 0.4% of rows filled) -- 229 other tables carry a clean state
+- ZIP code: `RENTAL_RESOURCE_ZIP_CODE` fills 0% of rows, 10,431 distinct -- clean ZIP (only 0.4% of rows filled) -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DECLARATION_DATE`, when it was decided, to the day, 2002-10-24 -> 2026-08-03:
+
+- `DECLARATION_DATE`: when it was decided, date (typed), 2002-10-24 -> 2026-08-03, 3,080,000 rows (try_to_date(trim(DECLARATIONDATE)); schema.yml: 'Date the disaster was declared' - an authority acting, and the same value repeats across every registration under that disaster.) -- 308 other tables keep a clock to the day
+- `APPLIED_DATE`: when it was reported / filed, date (typed), 2000-01-15 -> 2026-08-05, 3,079,996 rows (try_to_date(trim(APPLIEDDATE)); schema.yml: 'Date the applicant registered for assistance' - the moment a person told FEMA. There is no incident/damage date on this table, so this is the best anchor.) -- 308 other tables keep a clock to the day
+- `RENTAL_ASSISTANCE_END_DATE`: end of a period, date (typed), 2006-02-28 -> 2026-11-30, 11,499 rows (try_to_date(trim(RENTALASSISTANCEENDDATE)) - closes the rental-assistance period for that household; bounds a span rather than marking an event.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `CENSUS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2000 -> 2020, 3,080,000 rows (trim() TEXT with no date cast - the census vintage used for the row's geographic coding (a reference-geography label), not when anything happened to the applicant.)
 
 **Same location:**
 
@@ -6608,22 +10310,278 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_FEMA_IA_HOUSING_REGISTRATIONS.FIPS` = `FED_HRSA_HPSA_PRIMARY_CARE.COMMON_STATE_COUNTY_FIPS_CODE` &middot; key: `FIPS`</sub>
 
 
+### `FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK`
+*FEMA (Disaster Aid): NFIP Community Status BOOK*
+
+0 reliable connections, 2 value-checked place columns, 7 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 2,525 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_REFRESH_AT`, unlabeled clock, to the day, 2026-06-30 15:16:07.336 -> 2026-08-07 00:21:05.352:
+
+- `LAST_REFRESH_AT`: unlabeled clock, datetime (typed), 2026-06-30 15:16:07.336 -> 2026-08-07 00:21:05.352, 25,122 rows -- 308 other tables keep a clock to the day
+- `REGULAR_EMERGENCY_PROGRAM_DATE`: unlabeled clock, date (typed), 1970-02-03 -> 2026-08-05, 24,667 rows -- 308 other tables keep a clock to the day
+- `INITIAL_FLOOD_INSURANCE_RATE_MAP_DATE`: unlabeled clock, date (typed), 1970-02-03 -> 2026-12-10, 24,033 rows -- 308 other tables keep a clock to the day
+- `CURRENTLY_EFFECTIVE_MAP_DATE`: unlabeled clock, date (typed), 1972-05-12 -> 2026-12-10, 23,268 rows -- 308 other tables keep a clock to the day
+- `INITIAL_FLOOD_HAZARD_BOUNDARY_MAP_DATE`: unlabeled clock, date (typed), 1970-02-08 -> 2020-05-29, 20,046 rows -- 308 other tables keep a clock to the day
+- `CLASS_RATING_EFFECTIVE_DATE`: unlabeled clock, date (typed), 1991-10-01 -> 2026-04-01, 1,775 rows -- 308 other tables keep a clock to the day
+- `ORIGINAL_ENTRY_DATE`: unlabeled clock, date (typed), 1991-10-01 -> 2026-04-01, 1,775 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_FHFA_FHLB_MEMBERSHIP`
 *FHFA (Housing Finance Regulator): FHLB Membership*
 
-0 reliable connections, 3 measured 2026-08-29 (not yet in the spine) -- plus 26 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 3 measured 2026-08-29 (not yet in the spine), 4 value-checked place columns, 2 value-checked clock columns -- plus 26 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 2,920 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `DISTRICT` fills 100% of rows, 11 distinct -- text place -- 13 other tables carry a clean congressional district
+- state: `STATE` fills 100% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 4,722 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `APPR_DATE`, when it was decided, to the day, 1990-04-27 -> 2026-03-25:
+
+- `APPR_DATE`: when it was decided, date (typed), 1990-04-27 -> 2026-03-25, 5,809 rows (try_to_date(APPR_DATE,'MM/DD/YY') - the day the membership application was approved; the 2-digit-year format is why 88 rows land in 2066 (a 1966 value read forward a century).) -- 308 other tables keep a clock to the day
+- `MEM_DATE`: start of a period, date (typed), 1973-01-02 -> 2035-12-28, 6,327 rows (try_to_date(MEM_DATE,'MM/DD/YY') - the day FHLB membership began, opening the membership period; same 2-digit-year century risk.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (3,983 matching)
   <sub>joins on: `FED_FHFA_FHLB_MEMBERSHIP.CERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
-  <sub>checked 2026-08-29: SOLID</sub>
+  <sub>checked 2026-08-29: SOLID -- 59 matched pairs spot-checked: names agree **93.2%**, states agree **100%**</sub>
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the federal reserve bank id (rssd) values also appear in `FED_FDIC_BANK_DATA` (3,976 matching)
   <sub>joins on: `FED_FHFA_FHLB_MEMBERSHIP.FED_ID` = `FED_FDIC_BANK_DATA.FED_RSSD` &middot; key: `RSSD`</sub>
-  <sub>checked 2026-08-29: SOLID</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **96.7%**, states agree **96.7%**</sub>
 - `FED_NCUA_CALL_REPORTS_FOICU` (NCUA (Credit Union Regulator): CALL Reports Foicu) -- **99%** of the credit union charter # values also appear in `FED_NCUA_CALL_REPORTS_FOICU` (1,618 matching)
   <sub>joins on: `FED_FHFA_FHLB_MEMBERSHIP.NCUA_ID` = `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` &middot; key: `NCUA_CHARTER`</sub>
-  <sub>checked 2026-08-29: SOLID -- strip leading zeros on both sides</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **100%** -- strip leading zeros on both sides</sub>
+
+
+### `FED_FHFA_HPI`
+*FHFA (Housing Finance Regulator): HPI*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `PLACE_ID` fills 100% of rows, 467 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `PLACE_NAME` fills 100% of rows, 472 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YR`, when it happened, to the year, 1975 -> 2026:
+
+- `YR`: when it happened, year only, 1975 -> 2026, 184,807 rows (Raw YR passthrough from LANDING with no cast in the mart - the calendar year of the index observation. On its own it is year grain; only `period` plus `frequency` can sharpen it.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FHFA_NMDB`
+*FHFA (Housing Finance Regulator): NMDB*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIOD_VALUE`, when it happened, to the month, 1998 -> 2025:
+
+- `PERIOD_VALUE`: when it happened, month-year, 1998 -> 2025, 7,137 rows (try_to_double(PERIOD_VALUE) - the period the mortgage statistic covers, but its resolution is defined by period_type on the same row, so grain is year or quarter depending. Must be decoded before it can go on a shared axis.) -- 12 other tables keep a clock to the month
+- `RELEASE_DATE`: when it was reported / filed, date (typed), 2026-07-01 -> 2026-07-01, 7,204 rows (try_to_date(RELEASE_DATE) - when FHFA published the file. The census read min=max=2026-07-01, so it is a single constant and useless as a timeline axis.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FHFA_SUSPENDED_COUNTERPARTIES`
+*FHFA (Housing Finance Regulator): Suspended Counterparties*
+
+0 reliable connections, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 167 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 37 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EFFECTIVE_DATE`, start of a period, to the day, 2013-04-15 -> 2026-07-29:
+
+- `EFFECTIVE_DATE`: start of a period, date (typed), 2013-04-15 -> 2026-07-29, 222 rows (try_to_date(EFFECTIVE_DATESORT_ASCENDING): the day the suspension order takes effect -- the opening bound of the ban period.) -- 308 other tables keep a clock to the day
+- `SUSPENSION_END_DATE`: end of a period, date (typed), 2026-08-26 -> 2033-03-08, 72 rows (try_to_date(SUSPENSION_END_DATE): the close of the ban. The mart's own header records that most rows read 'Indefinite' and go NULL after the cast; the census's 13 far-future rows are real future end dates.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FINRA_MPID_LIST`
+*Finra MPID LIST*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `LOCATION` fills 31% of rows, 532 distinct -- text place -- 53 other tables carry a clean site / place name
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FJC_IDB_APPELLATE`
+*Federal Judicial Center: IDB Appellate*
+
+0 reliable connections, 8 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- congressional district: `DISTRICT_DEFENDANT_NUMBER` fills 100% of rows, 158 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT_DOCKET` fills 100% of rows, 178,771 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- region: `JURISDICTION` fills 100% of rows, 6 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT_COURT` fills 100% of rows, 94 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT_OFFICE` fills 99% of rows, 14 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT_CIRCUIT` fills 99% of rows, 13 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `HEARING_DATE`, when it happened, to the day, 1900-01-01 -> 2026-03-31:
+
+- `HEARING_DATE`: when it happened, date (typed), 1900-01-01 -> 2026-03-31, 988,183 rows (try_to_date(trim(HEARDATE)): the day oral argument was heard.) -- 308 other tables keep a clock to the day
+- `SUBMISSION_DATE`: when it happened, date (typed), 1900-01-01 -> 2026-03-31, 988,183 rows (try_to_date(trim(SUBDATE)): the day the case was submitted to the panel -- a proceeding, not a party filing.) -- 308 other tables keep a clock to the day
+- `JUDGMENT_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-03-31, 988,183 rows (try_to_date(trim(JUDGDATE)): the day the court of appeals entered judgment.) -- 308 other tables keep a clock to the day
+- `TRANSFER_DATE`: when it was decided, date (typed), 1900-01-01 -> 2013-10-29, 988,183 rows (try_to_date(trim(TRANSDATE)), paired with TRANSCODE: the day the case was transferred -- a court-ordered action.) -- 308 other tables keep a clock to the day
+- `APPEAL_DATE`: when it was reported / filed, date (typed), 1900-01-01 -> 2026-03-31, 988,183 rows (try_to_date(trim(APPDATE)): when the appeal was taken/filed below.) -- 308 other tables keep a clock to the day
+- `COURT_RECORD_DATE`: when it was reported / filed, date (typed), 1900-01-01 -> 1900-01-01, 988,183 rows (try_to_date(trim(CRECDATE)): when the record was received from the court below -- a receipt date.) -- 308 other tables keep a clock to the day
+- `DISTRICT_DOCKET_DATE`: when it was reported / filed, date (typed), 1900-01-01 -> 2026-03-20, 988,183 rows (try_to_date(trim(DDKTDATE)): when the underlying case was docketed in the district court.) -- 308 other tables keep a clock to the day
+- `DOCKET_DATE`: when it was reported / filed, date (typed), 1967-02-06 -> 2026-03-31, 988,183 rows (try_to_date(trim(DKTDATE)): when the appeal was docketed in the court of appeals. Primary because it is part of the source's exactly-unique key, so it is populated on every row, while hearing/submission dates exist only for a minority of ap) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `BRIEFS_FILED`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (us), 1900-01-01 -> 2026-03-23, 988,183 rows (trim(BRFILED) -- a code/flag for whether briefs were filed, passed through as text with no date cast.)
+- **NOT A CLOCK** -- `TAPE_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2008 -> 2026, 988,183 rows (trim(TAPEYEAR) raw text -- which annual FJC data tape (release) the record came from. A snapshot/vintage label about the data release, not about the appeal.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FJC_IDB_BANKRUPTCY`
+*Federal Judicial Center: IDB Bankruptcy*
+
+0 reliable connections, 5 value-checked place columns, 7 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- ZIP code: `DEBTOR1_ZIP` fills 100% of rows, 239,072 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- congressional district: `DISTRICT` fills 100% of rows, 93 distinct -- text place -- 13 other tables carry a clean congressional district
+- county: `DEBTOR1_COUNTY` fills 100% of rows, 3,250 distinct -- county code -- 79 other tables carry a clean county
+- county: `DEBTOR2_COUNTY` fills 20% of rows, 3,212 distinct -- county code -- 79 other tables carry a clean county
+- ZIP code: `DEBTOR2_ZIP` fills 20% of rows, 72,261 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CLOSE_DATE`, when it was decided, to the day, 2020-10-01 -> 2026-04-15:
+
+- `CLOSE_DATE`: when it was decided, date (typed), 2020-10-01 -> 2026-04-15, 2,810,400 rows (try_to_date(trim(CLOSEDT)): the day the court closed the case.) -- 308 other tables keep a clock to the day
+- `FILE_DATE`: when it was reported / filed, date (typed), 1950-06-03 -> 2026-03-31, 6,965,441 rows (try_to_date(trim(FILEDATE)): the filing date for this snapshot of the case -- the anchor date, populated on every row of the 7.0M-row file.) -- 308 other tables keep a clock to the day
+- `ORIGINAL_FILING_DATE`: when it was reported / filed, date (typed), 1923-08-25 -> 2026-03-31, 6,965,441 rows (try_to_date(trim(ORGFLDT)): when the petition was originally filed with the bankruptcy court.) -- 308 other tables keep a clock to the day
+- `DEBTOR1_CHANGE_DATE`: when it was reported / filed, date (typed), 2006-10-15 -> 2026-04-08, 102,985 rows (try_to_date(trim(D1CHGDT)) in the debtor block -- the date debtor 1's record (name/address) was changed on the court's file. Read as 'when the change was recorded'; the codebook meaning is not documented in this repo.) -- 308 other tables keep a clock to the day
+- `DEBTOR2_CHANGE_DATE`: when it was reported / filed, date (typed), 2006-10-17 -> 2026-04-08, 23,487 rows (try_to_date(trim(D2CHGDT)) -- same as debtor1_change_date for the second debtor.) -- 308 other tables keep a clock to the day
+- `FILING_CALENDAR_YEAR`: when it was reported / filed, year only, 1950 -> 2026, 6,965,441 rows (trim(FILECY) raw text -- the calendar year of the filing, a coarse duplicate of file_date. A bare year string: never hand it to a plain date-parse.) -- 194 other tables keep a clock to the year
+- `FILING_FISCAL_YEAR`: when it was reported / filed, year only, 1950 -> 2026, 6,965,441 rows (trim(FILEFY) raw text -- the federal FISCAL year of the filing (Oct-Sep), so it does not line up with the calendar year.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `AVG_MONTHLY_EXPENSES`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 6,642,740 rows (try_to_number(trim(AVGMNTHE)) -- a dollar amount per month, not a date.)
+- **NOT A CLOCK** -- `AVG_MONTHLY_INCOME`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 6,642,691 rows (try_to_number(trim(AVGMNTHI)) -- a dollar amount per month, not a date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FJC_IDB_CIVIL`
+*Federal Judicial Center: IDB Civil*
+
+0 reliable connections, 1 value-checked place column, 5 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 99% of rows, 3,264 distinct -- county code -- 79 other tables carry a clean county
+- **TRAP** -- region: `JURISDICTION` fills 100% of rows, 6 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT` fills 100% of rows, 93 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PRETRIAL_DATE`, when it happened, to the day, 1909-09-07 -> 2026-03-31:
+
+- `PRETRIAL_DATE`: when it happened, date (typed), 1909-09-07 -> 2026-03-31, 813,782 rows (try_to_date(trim(PRETRIAL)): the date of the pretrial conference -- a proceeding that took place.) -- 308 other tables keep a clock to the day
+- `TERM_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-03-31, 10,857,390 rows (try_to_date(trim(TERMDATE)): the day the court terminated the case.) -- 308 other tables keep a clock to the day
+- `TRANSFER_DATE`: when it was decided, date (typed), 1931-01-01 -> 2031-01-01, 114,932 rows (try_to_date(trim(TRANSDAT)): the day the case was transferred to another court -- a court-ordered action.) -- 308 other tables keep a clock to the day
+- `FILE_DATE`: when it was reported / filed, date (typed), 1901-01-01 -> 2026-03-31, 10,857,396 rows (try_to_date(trim(FILEDATE)): when the civil case was filed. Primary because it is part of the near-unique natural key, so it is populated across all 10.9M rows.) -- 308 other tables keep a clock to the day
+- `ISSUE_JOINED_DATE`: when it was reported / filed, date (typed), 1900-05-21 -> 2035-05-21, 3,744,484 rows (try_to_date(trim(DJOINED)): the date issue was joined (the answer filed) -- a party filing with the court.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `FILE_DATE_USE`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (us), 1901-01-01 -> 2026-03-01, 10,857,396 rows (trim(FDATEUSE) -- FJC's code describing how the filing date should be used/interpreted; a code, no date cast.)
+- **NOT A CLOCK** -- `TERM_DATE_USE`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (us), 1987-07-01 -> 2026-03-01, 10,857,396 rows (trim(TDATEUSE) -- FJC's code describing how the termination date should be used; a code, no date cast.)
+- **NOT A CLOCK** -- `AMOUNT_RECEIVED`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 10,857,396 rows (try_to_number(trim(AMTREC)) -- a dollar amount awarded/received; it matched only on 'received'.)
+- **NOT A CLOCK** -- `TAPE_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1988 -> 2026, 10,857,396 rows (trim(TAPEYEAR) raw text -- which annual FJC release the record came from; a snapshot/vintage label, not a case event.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FJC_IDB_CRIMINAL`
+*Federal Judicial Center: IDB Criminal*
+
+0 reliable connections, 1 value-checked place column, 9 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 3,233 distinct -- county code -- 79 other tables carry a clean county
+- **TRAP** -- congressional district: `TRANSFER_DISTRICT` fills 100% of rows, 93 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT` fills 100% of rows, 93 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PROCEEDING_DATE`, when it happened, to the day, 1907-07-22 -> 2026-03-31:
+
+- `PROCEEDING_DATE`: when it happened, date (typed), 1907-07-22 -> 2026-03-31, 6,299,908 rows (try_to_date(trim(PROCDATE)), paired with PROCCD naming which proceeding: the day that proceeding took place. Shares the format-string latent risk flagged in the model comment.) -- 308 other tables keep a clock to the day
+- `APP_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-04-10, 6,299,908 rows (try_to_date(trim(APPDATE)), paired with APPCD (appeal code): read as the date of the appellate action. The codebook meaning is not documented in this repo, so the clock is a reasoned guess.) -- 308 other tables keep a clock to the day
+- `DISPOSITION_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-03-31, 6,299,908 rows (try_to_date(trim(DISPDATE)): the day the charge was disposed of -- an adjudication.) -- 308 other tables keep a clock to the day
+- `SENTENCE_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-03-31, 6,299,908 rows (try_to_date(trim(SENTDATE)): the day sentence was imposed.) -- 308 other tables keep a clock to the day
+- `TERM_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-03-31, 6,299,908 rows (try_to_date(trim(TERMDATE)): the day the defendant's case was terminated.) -- 308 other tables keep a clock to the day
+- `FILE_DATE`: when it was reported / filed, date (typed), 1904-03-23 -> 2026-04-01, 6,299,908 rows (try_to_date(trim(FILEDATE)): when the criminal case was filed against the defendant. Primary: the anchor populated across the 6.3M-row file. The model's comment confirms the 6,731 rows in 1970 are real (1970 is the first year of FJC crimina) -- 308 other tables keep a clock to the day
+- `FISCAL_YEAR`: when it was reported / filed, year only, 1996 -> 2026, 6,299,908 rows (trim(FISCALYR) raw text -- FJC's fiscal-year label for the defendant record and part of its natural key. It indexes the statistical year the record was counted in; it is a bare year string, never a date.) -- 194 other tables keep a clock to the year
+- `FUGITIVE_START_DATE`: start of a period, date (typed), 1900-01-01 -> 2026-04-09, 6,299,908 rows (try_to_date(trim(FGSTRTDATE)), paired with FGENDDATE: opens the period the defendant was a fugitive.) -- 308 other tables keep a clock to the day
+- `FUGITIVE_END_DATE`: end of a period, date (typed), 1900-01-01 -> 2026-04-13, 6,299,908 rows (try_to_date(trim(FGENDDATE)): closes the fugitive period.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `C_UPDATE`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (us), 1900-01-01 -> 2012-02-13, 6,299,908 rows (trim(C_UPDATE) sits in the geography/transfer block and is passed through as raw text with no date cast; its meaning is undocumented here. Treated as not-a-date because nothing in the model treats it as one.)
+- **NOT A CLOCK** -- `TAPE_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1996 -> 2026, 6,299,908 rows (trim(TAPEYEAR) raw text -- which annual FJC release the record came from; a vintage label.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FJC_JUDGES`
+*Federal Judicial Center: Judges*
+
+0 reliable connections, 4 value-checked place columns, 8 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `BIRTH_STATE` fills 100% of rows, 107 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `BIRTH_CITY` fills 99% of rows, 1,716 distinct -- text place -- 174 other tables carry a clean city
+- state: `DEATH_STATE` fills 42% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `DEATH_CITY` fills 42% of rows, 688 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `BIRTH_YEAR`, when it happened, to the year, 1732 -> 1991:
+
+- `BIRTH_YEAR`: when it happened, year only, 1732 -> 1991, 4,067 rows (Year the judge was born - a real event at year grain; raw passthrough number, so a bare date-parse would read it as epoch seconds and land on 1970-01-01.) -- 194 other tables keep a clock to the year
+- `DEATH_YEAR`: when it happened, year only, 1790 -> 2026, 4,067 rows (Year the judge died - a real event at year grain; raw passthrough number with the same epoch-parse hazard as birth_year.) -- 194 other tables keep a clock to the year
+- `NOMINATION_DATE_1`: when it was decided, date (typed), 1789-09-24 -> 2026-04-14, 4,056 rows (Day the President formally nominated the judge to seat 1 - an authority acting; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `CONFIRMATION_DATE_1`: when it was decided, date (typed), 1789-09-25 -> 2026-06-24, 4,033 rows (Day the full Senate confirmed the judge to seat 1 - the ruling; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `COMMITTEE_REFERRAL_DATE_1`: when it was decided, date (typed), 1826-05-08 -> 2026-04-14, 3,888 rows (Day the Senate referred nomination 1 to the Judiciary Committee - an authority acting; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `COMMITTEE_ACTION_DATE_1`: when it was decided, date (typed), 1826-05-22 -> 2026-06-18, 3,873 rows (Day the committee voted/reported on nomination 1 - an authority acting; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `HEARING_DATE_1`: when it was decided, date (typed), 1890-02-17 -> 2026-04-29, 2,761 rows (Day the Judiciary Committee held the confirmation hearing for seat 1 - a formal proceeding by the authority; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `RECESS_APPOINTMENT_DATE_1`: when it was decided, date (typed), 1789-11-18 -> 2004-02-20, 289 rows (Day the President made a recess appointment to the judge's 1st seat - an authority acting; explicit try_to_date in the mart.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FJC_SERVICE`
+*Federal Judicial Center: Service*
+
+0 reliable connections, 12 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `COMMISSION_DATE`, when it was decided, to the day, 1789-09-26 -> 2026-06-18:
+
+- `COMMISSION_DATE`: when it was decided, date (typed), 1789-09-26 -> 2026-06-18, 4,731 rows (Day the commission was signed and judicial service in this seat actually began - the most complete, most meaningful anchor for a service record; try_to_date cast, and it pairs with termination_date to bound the tenure.) -- 308 other tables keep a clock to the day
+- `NOMINATION_DATE`: when it was decided, date (typed), 1789-09-24 -> 2026-04-14, 4,605 rows (Day the President formally nominated the judge to this seat; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `CONFIRMATION_DATE`: when it was decided, date (typed), 1789-09-25 -> 2026-06-24, 4,577 rows (Day the full Senate confirmed the judge - the ruling; try_to_date cast, and the gap from nomination_date is the confirmation-delay finding.) -- 308 other tables keep a clock to the day
+- `COMMITTEE_REFERRAL_DATE`: when it was decided, date (typed), 1826-05-08 -> 2026-04-14, 4,413 rows (Day the Senate referred the nomination to the Judiciary Committee; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `COMMITTEE_ACTION_DATE`: when it was decided, date (typed), 1826-05-22 -> 2026-06-18, 4,393 rows (Day the committee voted/reported (the companion judiciary_committee_action holds what it decided); try_to_date cast.) -- 308 other tables keep a clock to the day
+- `HEARING_DATE`: when it was decided, date (typed), 1890-02-17 -> 2026-04-29, 3,064 rows (Day the committee held the confirmation hearing - a formal proceeding by the authority; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `SENIOR_STATUS_DATE`: when it was decided, date (typed), 1919-10-06 -> 2026-06-21, 2,071 rows (Day the judge's senior status took effect - a formal status change; try_to_date cast.) -- 308 other tables keep a clock to the day
+- `RECESS_APPOINTMENT_DATE`: when it was decided, date (typed), 1789-11-18 -> 2004-02-20, 331 rows (Day the President made a recess appointment to this seat - an authority acting; explicit try_to_date in the mart.) -- 308 other tables keep a clock to the day
+- `C_2ND_SERVICE_AS_CHIEF_JUDGE_BEGIN`: start of a period, year only, 1966 -> 2024, 4,766 rows (Start of a SECOND chief-judge tenure in the same seat, published as a YEAR; uncast raw passthrough.) -- 194 other tables keep a clock to the year
+- `SERVICE_AS_CHIEF_JUDGE_BEGIN`: start of a period, year only, 1801 -> 2026, 4,766 rows (Start of the chief-judge tenure, published by FJC as a YEAR - the mart deliberately does NOT wrap it in try_to_date while wrapping every neighbouring date column, and a bare parse of those year strings is the likeliest source of the census') -- 194 other tables keep a clock to the year
+- `C_2ND_SERVICE_AS_CHIEF_JUDGE_END`: end of a period, year only, 1968 -> 2021, 4,766 rows (End of a SECOND chief-judge tenure, published as a YEAR; uncast raw passthrough.) -- 194 other tables keep a clock to the year
+- `SERVICE_AS_CHIEF_JUDGE_END`: end of a period, year only, 1802 -> 2026, 4,766 rows (End of the chief-judge tenure, published as a YEAR; uncast raw passthrough - same epoch-1970 hazard.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FMCSA_COMPANY_CENSUS`
@@ -6638,31 +10596,258 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- reincorporation pointer; only 557 carriers carry one</sub>
 - `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **4%** of the old federal contractor id (duns) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (13,089 matching)
   <sub>joins on: `FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO` = `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` &middot; key: `DUNS`</sub>
-  <sub>checked 2026-08-29: SOLID -- 86% of carriers report DUNS 0 -- those are not junk rows, the 372K real values are fine; states agree 80% (HQ vs place of performance)</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **88.3%**, states agree **80%** -- 86% of carriers report DUNS 0 -- those are not junk rows, the 372K real values are fine; states agree 80% (HQ vs place of performance)</sub>
+
+
+### `FED_FOREIGNASSISTANCE`
+*Foreignassistance*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 259 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FISCAL_YEAR`, when it happened, to the year, 1946 -> 2026:
+
+- `FISCAL_YEAR`: when it happened, year only, 1946 -> 2026, 95,658 rows (Raw passthrough of FISCAL_YEAR and the only time-shaped column; it is the fiscal year the assistance transaction occurred in, so it places the row at year resolution -- never date-parse it, a bare cast would read '2012' as epoch seconds.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FRACFOCUS_DISCLOSURE_LIST`
+*Fracfocus Disclosure LIST*
+
+0 reliable connections, 4 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 211,049 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 224,368 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_NAME` fills 100% of rows, 529 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE_NAME` fills 100% of rows, 27 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FRACFOCUS_REGISTRY`
+*Fracfocus Registry*
+
+0 reliable connections, 4 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 211,049 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 224,368 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_NAME` fills 100% of rows, 529 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE_NAME` fills 100% of rows, 27 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FRACFOCUS_WATER_SOURCE`
+*Fracfocus Water Source*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY_NAME` fills 100% of rows, 280 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE_NAME` fills 100% of rows, 19 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FRA_CASUALTIES`
 *FRA Casualties*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 10 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_NAME` fills 100% of rows, 51 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- site / place name: `SPECIFIC_LOCATION` fills 51% of rows, 21 distinct -- text place -- 53 other tables carry a clean site / place name
+- county: `COUNTY_CODE` fills 25% of rows, 277 distinct -- county code -- 79 other tables carry a clean county
+- county: `COUNTY_NAME` fills 25% of rows, 1,601 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `GENERAL_LOCATION_OF_PERSON` fills 25% of rows, 22 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `GENERAL_LOCATION_OF_PERSON_CODE` fills 25% of rows, 23 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SPECIFIC_LOCATION_OF_PERSON` fills 25% of rows, 49 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SPECIFIC_LOCATION_OF_PERSON_CODE` fills 25% of rows, 49 distinct -- text place -- 53 other tables carry a clean site / place name
+- lat / lon: `LATITUDE` fills 6% of rows, 50,429 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 6% of rows, 48,831 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- congressional district: `DISTRICT` fills 100% of rows, 9 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `STATE_CODE` fills 100% of rows, 52 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- site / place name: `LOCATION_OF_INJURY_ON_BODY` fills 97% of rows, 14 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 1997-01-01 -> 2026-05-31:
+
+- `DATE`: when it happened, date (typed), 1997-01-01 -> 2026-05-31, 285,648 rows (try_to_date with an explicit 'MM/DD/YYYY' format -- the full calendar date the casualty occurred, and the one column that puts one row (one reported casualty) on a shared timeline.) -- 308 other tables keep a clock to the day
+- `INCIDENT_YEAR`: when it happened, year only, 1975 -> 2026, 1,150,788 rows (try_to_number on a comma-stripped string: the year the casualty occurred, part of the FRA report key alongside railroad code and incident number.) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_FRA_EQUIPMENT_ACCIDENTS` (FRA Equipment Accidents) -- **71%** of the railroad reporting code values also appear in `FED_FRA_EQUIPMENT_ACCIDENTS` (770 matching)
   <sub>joins on: `FED_FRA_CASUALTIES.REPORTING_PARENT_RAILROAD_CODE` = `FED_FRA_EQUIPMENT_ACCIDENTS.REPORTING_RAILROAD_CODE` &middot; key: `RR_CODE`</sub>
-  <sub>checked 2026-08-29: SOLID -- parent railroad -> reporting railroad</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- parent railroad -> reporting railroad</sub>
+
+
+### `FED_FRA_CROSSING_INCIDENTS`
+*FRA Crossing Incidents*
+
+0 reliable connections, 5 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_NAME` fills 100% of rows, 51 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `COUNTY_NAME` fills 100% of rows, 2,302 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_CODE` fills 99% of rows, 285 distinct -- county code -- 79 other tables carry a clean county
+- site / place name: `CROSSING_WARNING_LOCATION` fills 96% of rows, 3 distinct -- text place -- 53 other tables carry a clean site / place name
+- city: `CITY_NAME` fills 83% of rows, 17,790 distinct -- text place -- 174 other tables carry a clean city
+- **TRAP** -- state: `STATE_CODE` fills 100% of rows, 52 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- site / place name: `CROSSING_WARNING_LOCATION_CODE` fills 96% of rows, 6 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `DISTRICT` fills 90% of rows, 9 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 1975-01-01 -> 2026-05-31:
+
+- `DATE`: when it happened, date (typed), 1975-01-01 -> 2026-05-31, 251,139 rows (try_to_date with an explicit 'MM/DD/YYYY' format -- the calendar date of the crossing collision and the only full date on the table.) -- 308 other tables keep a clock to the day
+- `REPORT_YEAR`: when it was reported / filed, year only, 1975 -> 2026, 251,149 rows (Uncast varchar sitting with the reporting railroad's identifiers: the FRA reporting year of the filing rather than the year the collision happened.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_FRA_EQUIPMENT_ACCIDENTS`
 *FRA Equipment Accidents*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 6 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_ABBREVIATION` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 50 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `COUNTY_NAME` fills 98% of rows, 1,653 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `LOCATION` fills 31% of rows, 27,466 distinct -- text place -- 53 other tables carry a clean site / place name
+- lat / lon: `LATITUDE` fills 17% of rows, 27,680 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 17% of rows, 26,574 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- congressional district: `DISTRICT` fills 100% of rows, 8 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `STATE_CODE` fills 100% of rows, 50 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 1975-01-01 -> 2026-05-31:
+
+- `DATE`: when it happened, date (typed), 1975-01-01 -> 2026-05-31, 224,940 rows (try_to_date with an explicit 'MM/DD/YYYY' format -- the calendar date of the equipment accident; note the table repeats one accident per reporting railroad, so counts on this clock double-count multi-railroad events.) -- 308 other tables keep a clock to the day
+- `YEAR`: when it was reported / filed, year only, 1975 -> 2026, 224,941 rows (Uncast varchar sandwiched between reporting_railroad_name and accident_number, i.e. the reporting-year element of the FRA report key rather than the accident's own year (which is accident_year).) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_FRA_CASUALTIES` (FRA Casualties) -- **71%** of the railroad reporting code values also appear in `FED_FRA_CASUALTIES` (770 matching)
   <sub>joins on: `FED_FRA_EQUIPMENT_ACCIDENTS.REPORTING_RAILROAD_CODE` = `FED_FRA_CASUALTIES.REPORTING_PARENT_RAILROAD_CODE` &middot; key: `RR_CODE`</sub>
-  <sub>checked 2026-08-29: SOLID -- parent railroad -> reporting railroad</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- parent railroad -> reporting railroad</sub>
+
+
+### `FED_FRA_RAIL_DEATHS_BY_RAILROAD`
+*FRA RAIL Deaths BY Railroad*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCIDENT_YEAR`, when it happened, to the year, 1975 -> 2026:
+
+- `INCIDENT_YEAR`: when it happened, year only, 1975 -> 2026, 5,152 rows (The mart derives it from the casualty table's incident_year with two-digit years normalized ('20' to 2020), it carries a not_null test and is part of the model's unique key, so it is a real fully-populated year of death.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_FTC_DATASETS`
+*FTC Datasets*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_FILED`, when it was reported / filed, to the day, 2021-07-28 -> 2026-07-07:
+
+- `DATE_FILED`: when it was reported / filed, date (typed), 2021-07-28 -> 2026-07-07, 1,004 rows (try_to_date(DATE_FILED). Ambiguous: on a real FTC enforcement action this is the day the agency filed the case (a 'decided'-type act), but the model's own dedup note says the sampled rows are FTC news/blog/event listings with no case fields) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_GOOGLE_POLADS_ADVERTISER_DECLARED_STATS`
+*Google Polads Advertiser Declared Stats*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `REGION` fills 100% of rows, 2 distinct -- text place -- 40 other tables carry a clean region
+- street address: `ADVERTISER_DECLARED_PROMOTER_ADDRESS` fills 6% of rows, 28 distinct -- text place -- 114 other tables carry a clean street address
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_GOOGLE_POLADS_ADVERTISER_GEO_SPEND`
+*Google Polads Advertiser GEO Spend*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_SUBDIVISION_PRIMARY` fills 98% of rows, 56 distinct -- country code -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_GOOGLE_POLADS_ADVERTISER_STATS`
+*Google Polads Advertiser Stats*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `REGIONS` fills 100% of rows, 13 distinct -- text place -- 40 other tables carry a clean region
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND`
+*Google Polads Advertiser Weekly Spend*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `WEEK_START_DATE`, start of a period, to the day, 2018-05-27 -> 2026-08-02:
+
+- `WEEK_START_DATE`: start of a period, date (typed), 2018-05-27 -> 2026-08-02, 298,884 rows (try_to_date(WEEK_START_DATE) in the mart; it is the Monday that opens each weekly spend bucket, so it is a real date whose underlying fact covers a week.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_GOOGLE_POLADS_CREATIVE_STATS`
+*Google Polads Creative Stats*
+
+0 reliable connections, 1 value-checked place column, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `REGIONS` fills 100% of rows, 13 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_RANGE_START`, start of a period, to the day, 2018-05-31 -> 2026-08-04:
+
+- `DATE_RANGE_START`: start of a period, date (typed), 2018-05-31 -> 2026-08-04, 1,562,870 rows (try_to_date(DATE_RANGE_START) -- the reported first day of the window this ad's stats cover; the only properly typed DATE on the table.) -- 308 other tables keep a clock to the day
+- `FIRST_SERVED_TIMESTAMP`: start of a period, date as text (iso), 2018-05-31 -> 2026-08-04, 1,562,870 rows (Pass-through with no cast at all, so its stored type is whatever landed; by name it is when the creative first actually served, i.e. the real start of the serving window.) -- 308 other tables keep a clock to the day
+- `DATE_RANGE_END`: end of a period, date (typed), 2019-08-05 -> 2026-08-05, 1,562,870 rows (try_to_date(DATE_RANGE_END) -- the last day of the same reported stats window.) -- 308 other tables keep a clock to the day
+- `LAST_SERVED_TIMESTAMP`: end of a period, date as text (iso), 2019-08-05 -> 2026-08-05, 1,562,870 rows (Pass-through with no cast; by name it closes the actual serving window of the creative.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `NUM_OF_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1725 -> 1861, 1,562,870 rows (try_to_number(NUM_OF_DAYS) -- a duration count in days, the same bug class as days_received_to_company; never parse as a date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_GOOGLE_POLADS_GEO_SPEND`
+*Google Polads GEO Spend*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 12 distinct -- country code -- 49 other tables carry a clean country
+- country: `COUNTRY_SUBDIVISION_SECONDARY` fills 100% of rows, 1,286 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_SUBDIVISION_PRIMARY` fills 99% of rows, 202 distinct -- country name -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_GOVINFO_BILLSTATUS`
@@ -6699,10 +10884,34 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_GOVINFO_BILL_COSPONSORS.COSPONSOR_BIOGUIDE` = `FED_VOTEVIEW_MEMBERS.BIOGUIDE_ID` &middot; key: `BIOGUIDE`</sub>
 
 
+### `FED_GRANTS_GOV`
+*Grants GOV*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `POSTED_DATE`, when it was reported / filed, to the day, 2026-06-25 -> 2026-07-01:
+
+- `POSTED_DATE`: when it was reported / filed, date (typed), 2026-06-25 -> 2026-07-01, 100 rows (try_to_date(POSTED_DATE); the day the funding opportunity was published on Grants.gov, which is the event this row records.) -- 308 other tables keep a clock to the day
+- `CLOSE_DATE`: end of a period, date (typed), 2026-07-02 -> 2027-06-07, 90 rows (try_to_date(CLOSE_DATE); the application deadline, i.e. the closing bound of the open-for-applications window, so future values are correct not corrupt.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_HHS_OIG_LEIE`
 *HHS Inspector General -- Excluded Providers: LEIE*
 
-35 reliable connections -- plus 16 low-confidence name+ZIP guesses not shown here.
+35 reliable connections, 4 value-checked place columns, 1 value-checked clock column -- plus 16 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 100% of rows, 76,704 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 10,060 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 18,375 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EXCLUSION_DATE`, when it was decided, to the day, 1977-07-01 -> 2026-06-18:
+
+- `EXCLUSION_DATE`: when it was decided, date as text (yyyymmdd), 1977-07-01 -> 2026-06-18, 83,369 rows (When OIG excluded the provider - but the mart exposes trim(exclusion_date_raw), i.e. RAW 'YYYYMMDD' TEXT, discarding the parsed date staging builds; staging warns a bare CAST collapses all 83,464 rows onto ~7 garbage 1970 dates.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -6784,7 +10993,43 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_HRSA_HPSA_PRIMARY_CARE`
 *HRSA HPSA Primary CARE*
 
-0 reliable connections, 16 place-based -- plus 49 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 16 place-based, 24 value-checked place columns, 4 value-checked clock columns -- plus 49 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COMMON_COUNTY_NAME` fills 100% of rows, 3,212 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_EQUIVALENT_NAME` fills 100% of rows, 1,985 distinct -- county name -- 79 other tables carry a clean county
+- county: `US_MEXICO_BORDER_COUNTY_INDICATOR` fills 100% of rows, 3 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `COMMON_STATE_COUNTY_FIPS_CODE` fills 100% of rows, 3,268 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `COMMON_STATE_FIPS_CODE` fills 100% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `PRIMARY_STATE_FIPS_CODE` fills 100% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `STATE_COUNTY_FIPS_CODE` fills 100% of rows, 3,269 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `STATE_FIPS_CODE` fills 100% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `COMMON_REGION_NAME` fills 100% of rows, 11 distinct -- text place -- 40 other tables carry a clean region
+- state: `COMMON_STATE_ABBREVIATION` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `COMMON_STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `PRIMARY_STATE_ABBREVIATION` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PRIMARY_STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `STATE_ABBREVIATION` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `COMPONENT_STATE_ABBREVIATION` fills 90% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- metro area: `METROPOLITAN_INDICATOR` fills 35% of rows, 4 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `METROPOLITAN_INDICATOR_CODE` fills 35% of rows, 4 distinct -- text place -- 19 other tables carry a clean metro area
+- lat / lon: `LATITUDE` fills 10% of rows, 7,410 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 10% of rows, 7,340 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- city: `HPSA_CITY` fills 10% of rows, 3,444 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `COMMON_POSTAL_CODE` fills 10% of rows, 4,851 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `HPSA_POSTAL_CODE` fills 10% of rows, 6,639 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `HPSA_ADDRESS` fills 9% of rows, 6,573 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- site / place name: `HPSA_GEOGRAPHY_ID` fills 100% of rows, 39,929 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- FIPS / GEOID code: `COUNTY_FIPS_CODE` fills 100% of rows, 346 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DESIGNATION_DATE`, when it was decided, to the day, 1970-01-01 -> 2026-08-05:
+
+- `DESIGNATION_DATE`: when it was decided, date (typed), 1970-01-01 -> 2026-08-05, 79,158 rows (try_to_date 'MM/DD/YYYY' - HRSA designating the shortage area.) -- 308 other tables keep a clock to the day
+- `WITHDRAWN_DATE`: when it was decided, date (typed), 1980-04-11 -> 2026-07-01, 48,511 rows (try_to_date 'MM/DD/YYYY' - HRSA withdrawing the designation.) -- 308 other tables keep a clock to the day
+- `DESIGNATION_LAST_UPDATE_DATE`: when it was reported / filed, date (typed), 1980-04-11 -> 2026-08-05, 79,158 rows (try_to_date 'MM/DD/YYYY' - HRSA's last touch on the designation record.) -- 308 other tables keep a clock to the day
+- `RECORD_CREATE_DATE`: when it was reported / filed, date (typed), 2026-08-07 -> 2026-08-07, 79,158 rows (HRSA's own data-warehouse record-create stamp - the publisher's bookkeeping, not a world event and not ours.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -6822,10 +11067,70 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_HRSA_HPSA_PRIMARY_CARE.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_HRSA_NPDB`
+*HRSA NPDB*
+
+0 reliable connections, 3 value-checked place columns, 7 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `LICENSE_STATE` fills 92% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `HOME_STATE` fills 71% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `WORK_STATE` fills 43% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `GRAD_YEAR`, when it happened, to the year, 1900 -> 2020:
+
+- `GRAD_YEAR`: when it happened, year only, 1900 -> 2020, 1,640,256 rows (try_to_number(GRAD) - year the practitioner graduated; a person attribute, useless as the row's event clock.) -- 194 other tables keep a clock to the year
+- `MALPRACTICE_YEAR_1`: when it happened, year only, 1900 -> 2026, 532,086 rows (try_to_number(MALYEAR1) - year of the malpractice incident; only on malpractice-payment reports.) -- 194 other tables keep a clock to the year
+- `MALPRACTICE_YEAR_2`: when it happened, year only, 1902 -> 2025, 91,612 rows (try_to_number(MALYEAR2) - year of a second malpractice incident on the same report.) -- 194 other tables keep a clock to the year
+- `ADVERSE_ACTION_YEAR`: when it was decided, year only, 1944 -> 2026, 1,378,478 rows (try_to_number(AAYEAR) - year the licensing or hospital authority took the adverse action.) -- 194 other tables keep a clock to the year
+- `AA_SIGNED_YEAR`: when it was decided, year only, 1900 -> 2026, 1,304,780 rows (try_to_number(AASIGYR) - year the adverse-action order was signed.) -- 194 other tables keep a clock to the year
+- `ORIG_YEAR`: when it was reported / filed, year only, 1990 -> 2026, 1,911,185 rows (try_to_number(ORIGYEAR) - year the malpractice/disciplinary report was originally submitted; the only year populated on every row.) -- 194 other tables keep a clock to the year
+- `AA_EFFECTIVE_YEAR`: start of a period, year only, 1900 -> 2029, 1,378,469 rows (try_to_number(AAEFYEAR) - year the adverse action took effect, the start of the sanction period.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_HRSA_SHORTAGE_AREAS`
 *HRSA Shortage Areas*
 
-0 reliable connections, 13 place-based -- plus 50 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 13 place-based, 25 value-checked place columns, 4 value-checked clock columns -- plus 50 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COMMON_COUNTY_NAME` fills 100% of rows, 3,283 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_EQUIVALENT_NAME` fills 100% of rows, 2,011 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_OR_COUNTY_EQUIVALENT_FEDERAL_INFORMATION_PROCESSING_STANDARD_CODE` fills 100% of rows, 358 distinct -- county code -- 79 other tables carry a clean county
+- county: `STATE_AND_COUNTY_FEDERAL_INFORMATION_PROCESSING_STANDARD_CODE` fills 100% of rows, 3,326 distinct -- county code -- 79 other tables carry a clean county
+- county: `U_S_MEXICO_BORDER_COUNTY_INDICATOR` fills 100% of rows, 3 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `COMMON_STATE_COUNTY_FIPS_CODE` fills 100% of rows, 3,324 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `COMMON_STATE_FIPS_CODE` fills 100% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `PRIMARY_STATE_FIPS_CODE` fills 100% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `STATE_FIPS_CODE` fills 100% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `COMMON_REGION_NAME` fills 100% of rows, 11 distinct -- text place -- 40 other tables carry a clean region
+- state: `COMMON_STATE_ABBREVIATION` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `COMMON_STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `PRIMARY_STATE_ABBREVIATION` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PRIMARY_STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `STATE_ABBREVIATION` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `HPSA_COMPONENT_STATE_ABBREVIATION` fills 86% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- metro area: `HPSA_METROPOLITAN_INDICATOR_CODE` fills 27% of rows, 4 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `METROPOLITAN_INDICATOR` fills 27% of rows, 4 distinct -- text place -- 19 other tables carry a clean metro area
+- lat / lon: `LATITUDE` fills 14% of rows, 8,302 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 14% of rows, 8,377 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- city: `HPSA_CITY` fills 13% of rows, 3,536 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `COMMON_POSTAL_CODE` fills 13% of rows, 5,082 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `HPSA_POSTAL_CODE` fills 13% of rows, 7,160 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `HPSA_ADDRESS` fills 13% of rows, 7,201 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- site / place name: `HPSA_GEOGRAPHY_IDENTIFICATION_NUMBER` fills 100% of rows, 47,035 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `HPSA_DESIGNATION_DATE`, when it was decided, to the day, 1970-01-01 -> 2026-06-26:
+
+- `HPSA_DESIGNATION_DATE`: when it was decided, date (typed), 1970-01-01 -> 2026-06-26, 165,531 rows (try_to_date (bare, from landing) - HRSA designating the shortage area; census 1970-2026 with only 2 epoch rows.) -- 308 other tables keep a clock to the day
+- `WITHDRAWN_DATE`: when it was decided, date (typed), 1979-12-14 -> 2026-04-07, 85,715 rows (try_to_date - HRSA withdrawing the designation.) -- 308 other tables keep a clock to the day
+- `DATA_WAREHOUSE_RECORD_CREATE_DATE`: when it was reported / filed, date (typed), 2026-06-30 -> 2026-06-30, 165,531 rows (HRSA's data-warehouse record-create stamp - publisher bookkeeping, must not be read as an event clock.) -- 308 other tables keep a clock to the day
+- `HPSA_DESIGNATION_LAST_UPDATE_DATE`: when it was reported / filed, date (typed), 1979-12-14 -> 2026-06-29, 165,531 rows (try_to_date - HRSA's last touch on the designation record.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -6860,7 +11165,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_HRSA_UDS_HEALTH_CENTER_INFO`
 *HRSA UDS Health Center INFO*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORTINGYEAR`, when it was reported / filed, to the year, 2025 -> 2025:
+
+- `REPORTINGYEAR`: when it was reported / filed, year only, 2025 -> 2025, 1,356 rows (nullif(trim(REPORTINGYEAR)) - TEXT year of the UDS reporting cycle; likely one constant across all 1,356 rows, so it anchors the snapshot but cannot trend.) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -6872,7 +11181,49 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_HRSA_UDS_SERVICE_DELIVERY_SITES`
 *HRSA UDS Service Delivery Sites*
 
-12 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 44 low-confidence name+ZIP guesses not shown here.
+12 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 26 value-checked place columns, 2 value-checked clock columns -- plus 44 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `HEALTH_CENTER_STREET_ADDRESS` fills 100% of rows, 1,516 distinct -- text place -- 114 other tables carry a clean street address
+- city: `HEALTH_CENTER_CITY` fills 100% of rows, 968 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `CONGRESSIONAL_DISTRICT_CODE` fills 100% of rows, 449 distinct -- text place -- 13 other tables carry a clean congressional district
+- site / place name: `LOCATION_TYPE_DESCRIPTION` fills 100% of rows, 3 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_NAME` fills 100% of rows, 18,355 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `SITE_TYPE_DESCRIPTION` fills 100% of rows, 3 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `HEALTH_CENTER_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 60 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- ZIP code: `HEALTH_CENTER_ZIP_CODE` fills 100% of rows, 1,530 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `COMPLETE_COUNTY_NAME` fills 100% of rows, 1,516 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `SITE_TELEPHONE_NUMBER` fills 100% of rows, 11,457 distinct -- text place -- 53 other tables carry a clean site / place name
+- street address: `SITE_ADDRESS` fills 99% of rows, 17,373 distinct -- text place -- 114 other tables carry a clean street address
+- city: `SITE_CITY` fills 99% of rows, 4,395 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `CONGRESSIONAL_DISTRICT_NAME` fills 99% of rows, 443 distinct -- text place -- 13 other tables carry a clean congressional district
+- lat / lon: `LATITUDE` fills 99% of rows, 17,242 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 99% of rows, 16,709 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_DESCRIPTION` fills 99% of rows, 11 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_EQUIVALENT_NAME` fills 99% of rows, 1,488 distinct -- county name -- 79 other tables carry a clean county
+- county: `US_MEXICO_BORDER_COUNTY_INDICATOR` fills 99% of rows, 2 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `STATE_COUNTY_FIPS_CODE` fills 99% of rows, 2,318 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `STATE_FIPS_CODE` fills 99% of rows, 59 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `HHS_REGION_NAME` fills 99% of rows, 10 distinct -- text place -- 40 other tables carry a clean region
+- state: `SITE_STATE_ABBREVIATION` fills 99% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `SITE_POSTAL_CODE` fills 99% of rows, 16,338 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `LOCATION_SETTING_DESCRIPTION` fills 97% of rows, 8 distinct -- text place -- 53 other tables carry a clean site / place name
+- street address: `SITE_WEB_ADDRESS` fills 54% of rows, 2,793 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- site / place name: `LOCATION_TYPE_ID` fills 100% of rows, 3 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `SITE_TYPE_ID` fills 100% of rows, 3 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS_CONGRESSIONAL_DISTRICT_CODE` fills 99% of rows, 444 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 4 -- pad before joining)
+- **TRAP** -- region: `HHS_REGION_CODE` fills 99% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `LOCATION_SETTING_ID` fills 97% of rows, 8 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- congressional district: `CONGRESSIONAL_DISTRICT_NUMBER` fills 97% of rows, 56 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `FQHC_SITE_MEDICARE_BILLING_NUMBER` fills 45% of rows, 8,438 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `FQHC_SITE_NPI_NUMBER` fills 32% of rows, 6,074 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SITE_ADDED_TO_SCOPE_DATE`, when it was decided, to the day, 1966-01-01 -> 2026-08-06:
+
+- `SITE_ADDED_TO_SCOPE_DATE`: when it was decided, date (typed), 1966-01-01 -> 2026-08-06, 19,038 rows (try_to_date 'MM/DD/YYYY' of SITE_ADDED_TO_SCOPE_THIS_DATE - HRSA approving the site into scope; readable as 'happened' too, 32 epoch-1970 rows need a filter.) -- 308 other tables keep a clock to the day
+- `RECORD_CREATE_DATE`: when it was reported / filed, date (typed), 2026-08-07 -> 2026-08-07, 19,038 rows (HRSA's data-warehouse record-create stamp - publisher bookkeeping.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -6908,7 +11259,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **90%** of the medicare facility number (ccn) values also appear in `FED_CMS_POS_OTHER` (7,559 matching)
   <sub>joins on: `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_MEDICARE_BILLING_NUMBER` = `FED_CMS_POS_OTHER.CCN` &middot; key: `CCN`</sub>
-  <sub>checked 2026-08-29: SOLID (site -> parent org) -- states agree 100%; site name vs org name</sub>
+  <sub>checked 2026-08-29: SOLID (site -> parent org) -- 60 matched pairs spot-checked: names agree **58.3%**, states agree **100%** -- states agree 100%; site name vs org name</sub>
 - `FED_HRSA_UDS_HEALTH_CENTER_INFO` (HRSA UDS Health Center INFO) -- **88%** of the hrsa health center id values also appear in `FED_HRSA_UDS_HEALTH_CENTER_INFO` (1,344 matching)
   <sub>joins on: `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.BHCMIS_ORGANIZATION_IDENTIFICATION_NUMBER` = `FED_HRSA_UDS_HEALTH_CENTER_INFO.BHCMISID` &middot; key: `BHCMIS`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grantee <-> its sites</sub>
@@ -6917,7 +11268,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_HUD_ASSISTED_HOUSING_PROJECTS`
 *HUD (Housing): Assisted Housing Projects*
 
-0 reliable connections, 3 place-based -- plus 29 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 3 place-based, 5 value-checked place columns -- plus 29 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 25,227 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 26,241 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- city: `STD_CITY` fills 100% of rows, 5,645 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `STD_ADDR` fills 96% of rows, 27,658 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- site / place name: `PLACE` fills 95% of rows, 6,279 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `CBSA` fills 89% of rows, 919 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Same location:**
 
@@ -6929,10 +11290,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_HUD_ASSISTED_HOUSING_PROJECTS.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_HUD_DATA`
+*HUD (Housing): DATA*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2000 -> 2000:
+
+- `YEAR`: when it happened, year only, 2000 -> 2000, 19 rows (try_to_number("YEAR") in the mart - a NUMBER year attached to a value in a scraped HUD dataset listing. The model carries no description and only 77 rows, so what the year refers to may vary row to row; low confidence.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT`
 *HUD (Housing): FHA SF Portfolio Snapshot*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 4 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `PROPERTY_CITY` fills 100% of rows, 7,265 distinct -- text place -- 174 other tables carry a clean city
+- county: `PROPERTY_COUNTY` fills 100% of rows, 1,621 distinct -- county name -- 79 other tables carry a clean county
+- state: `PROPERTY_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `PROPERTY_ZIP` fills 100% of rows, 13,103 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ENDORSEMENT_YEAR`, when it was decided, to the year, 2026 -> 2026:
+
+- `ENDORSEMENT_YEAR`: when it was decided, year only, 2026 -> 2026, 61,647 rows (try_to_number(trim(ENDORSEMENT_YEAR)) - the year FHA endorsed (insured) the loan, i.e. the agency's approval action. A NUMBER year, never date-parse it bare.) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -6941,10 +11325,86 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- sponsor lender -> originating lender (same file)</sub>
 
 
+### `FED_HUD_MF_FIRM_COMMITMENTS`
+*HUD (Housing): MF FIRM Commitments*
+
+0 reliable connections, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `PROJECT_CITY` fills 100% of rows, 3,941 distinct -- text place -- 174 other tables carry a clean city
+- state: `PROJECT_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FIRM_ACTIVITY_DATE`, when it was decided, to the day, 2000-10-02 -> 2026-06-30:
+
+- `FIRM_ACTIVITY_DATE`: when it was decided, date (typed), 2000-10-02 -> 2026-06-30, 25,557 rows (coalesce(try_to_date(left(raw,10),'YYYY-MM-DD'), try_to_date(raw,'MM/DD/YYYY')) - the day HUD acted on the multifamily firm commitment; census floor 2000-10-02 matches the stated FY2001 start.) -- 308 other tables keep a clock to the day
+- `FISCAL_YEAR_AT_FIRM_ACTIVITY`: when it was decided, year only, 2001 -> 2026, 25,557 rows (try_to_number(fiscal_year_raw) - the federal FISCAL year of the same action. Fiscal years run Oct-Sep, so laying this on a calendar axis shifts rows by up to a quarter.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_HUD_MF_SECTION8_CONTRACTS`
+*HUD (Housing): MF Section8 Contracts*
+
+0 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRACS_EFFECTIVE_DATE`, start of a period, to the day, 1977-11-21 -> 2027-05-01:
+
+- `TRACS_EFFECTIVE_DATE`: start of a period, date (typed), 1977-11-21 -> 2027-05-01, 24,309 rows (try_to_date(left(trim(...),10),'YYYY-MM-DD') - the day the Section 8 contract took effect. The table has no happened/reported column, so the span start is the anchor. Census floor 1900-01-02 says some rows carry a sentinel low date.) -- 308 other tables keep a clock to the day
+- `TRACS_CURRENT_EXPIRATION_DATE`: end of a period, date (typed), 1900-01-02 -> 2035-12-31, 24,309 rows (try_to_date(left(trim(...),10),'YYYY-MM-DD') - the end of the CURRENT contract term, a different span from the overall expiration on the same row.) -- 308 other tables keep a clock to the day
+- `TRACS_OVERALL_EXPIRATION_DATE`: end of a period, date (typed), 1997-07-31 -> 2035-12-31, 24,309 rows (try_to_date(left(trim(...),10),'YYYY-MM-DD') - the outer end of the contract span. 17,283 of 24,309 rows sit past 2030 (max 2056-02-29): plausible for long HAP contracts, but unverified and worth a value check.) -- 308 other tables keep a clock to the day
+- `TRACS_OVERALL_EXP_FISCAL_YEAR`: end of a period, year only, 1997 -> 2035, 24,309 rows (try_to_number(trim(...)) - the federal FISCAL year the overall contract expires; a year NUMBER, offset from the calendar year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_HUD_PUBLIC_HOUSING_AUTHORITIES`
 *HUD (Housing): Public Housing Authorities*
 
-0 reliable connections, 3 place-based -- plus 25 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 3 place-based, 22 value-checked place columns, 6 value-checked clock columns -- plus 25 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `STD_CITY` fills 100% of rows, 2,690 distinct -- text place -- 174 other tables carry a clean city
+- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 55 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `STD_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- lat / lon: `LATITUDE` fills 100% of rows, 3,704 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LAT_GEOCODED` fills 100% of rows, 3,669 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 3,639 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LON_GEOCODED` fills 100% of rows, 3,639 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_LEVEL_KEY` fills 100% of rows, 2,092 distinct -- county code -- 79 other tables carry a clean county
+- county: `COUNTY_NAME` fills 100% of rows, 1,392 distinct -- county name -- 79 other tables carry a clean county
+- county: `CURRENT_COUNTY_NAME` fills 100% of rows, 1,395 distinct -- county name -- 79 other tables carry a clean county
+- county: `CURRENT_COUNTY_SUBDIVISION` fills 100% of rows, 2,837 distinct -- county code -- 79 other tables carry a clean county
+- county: `CURRENT_COUNTY_SUBDIVISION_NAME` fills 100% of rows, 2,591 distinct -- county name -- 79 other tables carry a clean county
+- ZIP code: `STD_ZIP5` fills 100% of rows, 3,543 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- metro area: `URBAN_RURAL_FLAG` fills 99% of rows, 2 distinct -- text place -- 19 other tables carry a clean metro area
+- ZIP code: `ZCTA` fills 99% of rows, 3,512 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `PLACE_NAME` fills 98% of rows, 3,011 distinct -- text place -- 53 other tables carry a clean site / place name
+- street address: `HA_EMAIL_ADDRESS` fills 97% of rows, 3,415 distinct -- text place -- 114 other tables carry a clean street address
+- FIPS / GEOID code: `PLACE_FIPS` fills 95% of rows, 2,910 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- street address: `ADDRESS_TYPE` fills 94% of rows, 4 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `STD_ADDRESS` fills 94% of rows, 3,451 distinct -- text place -- 114 other tables carry a clean street address
+- metro area: `CBSA_NAME` fills 74% of rows, 817 distinct -- text place -- 19 other tables carry a clean metro area
+- metro area: `MSA_NAME` fills 42% of rows, 330 distinct -- text place -- 19 other tables carry a clean metro area
+- **TRAP** -- census tract: `CENSUS_TRACT` fills 100% of rows, 1,801 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TRACT_LEVEL_KEY` fills 100% of rows, 3,575 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- FIPS / GEOID code: `COUNTY_FIPS` fills 100% of rows, 259 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
+- **TRAP** -- FIPS / GEOID code: `CURRENT_COUNTY_FIPS` fills 100% of rows, 268 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
+- **TRAP** -- metro area: `MSA_CODE` fills 100% of rows, 326 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- site / place name: `PLACE_LEVEL_KEY` fills 99% of rows, 3,266 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `CBSA_CODE` fills 74% of rows, 809 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `METRO_FLAG` fills 54% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- ZIP code: `ZIP_CLASS` fills 1% of rows, 2 distinct -- foreign postal code (only 0% look like US ZIPs; only 1.2% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_UPDATED_AT`, unlabeled clock, to the day, 2025-07-16 22:56:19.000 -> 2025-07-16 22:56:19.000:
+
+- `LAST_UPDATED_AT`: unlabeled clock, datetime (typed), 2025-07-16 22:56:19.000 -> 2025-07-16 22:56:19.000, 3,787 rows -- 308 other tables keep a clock to the day
+- `ANNUAL_EXPENSE_AMOUNT_PREV_YR`: unlabeled clock, month-year, 1700 -> 2031, 3,787 rows -- 12 other tables keep a clock to the month
+- `CAPITAL_FUND_AMOUNT_PREV_YR`: unlabeled clock, month-year, 1701 -> 2034, 3,787 rows -- 12 other tables keep a clock to the month
+- `OPERATING_FUND_AMOUNT_PREV_YR`: unlabeled clock, month-year, 1700 -> 2033, 3,787 rows -- 12 other tables keep a clock to the month
+- `SPENDING_PER_MONTH`: unlabeled clock, year only, 1701 -> 2016, 3,787 rows -- 194 other tables keep a clock to the year
+- `SPENDING_PER_MONTH_PREV_YR`: unlabeled clock, year only, 1708 -> 2023, 3,787 rows -- 194 other tables keep a clock to the year
 
 **Same location:**
 
@@ -6959,7 +11419,28 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_ICE_DETAINERS`
 *ICE (Immigration Enforcement): Detainers*
 
-2 reliable connections.
+2 reliable connections, 8 value-checked place columns, 7 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `FACILITY_CITY` fills 100% of rows, 3,093 distinct -- text place -- 174 other tables carry a clean city
+- site / place name: `TOD_CURRENT_DUTY_SITE` fills 100% of rows, 464 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `FACILITY_STATE` fills 100% of rows, 55 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- country: `CITIZENSHIP_COUNTRY` fills 100% of rows, 210 distinct -- country name -- 49 other tables carry a clean country
+- country: `BIRTH_COUNTRY` fills 100% of rows, 232 distinct -- country name -- 49 other tables carry a clean country
+- airport / port: `PORT_OF_DEPARTURE` fills 31% of rows, 189 distinct -- text place -- 2 other tables carry a clean airport / port
+- country: `DEPARTURE_COUNTRY` fills 31% of rows, 196 distinct -- country name -- 49 other tables carry a clean country
+- street address: `CRIMINAL_STREET_GANG_YES_NO` fills 28% of rows, 2 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ENTRY_DATE`, when it happened, to the day, 1921-03-15 -> 2026-03-11:
+
+- `ENTRY_DATE`: when it happened, date (typed), 1921-03-15 -> 2026-03-11, 80,943 rows (try_to_date (no format) on the person's date of entry to the US -- a real-world event, but a life-history attribute rather than the detainer's own date, and the likely source of the census's 1919-07-12 floor.) -- 308 other tables keep a clock to the day
+- `BIRTH_YEAR`: when it happened, year only, 1903 -> 2025, 609,729 rows (try_to_number on the anonymized birth year: a real event at year grain but a demographic attribute of the person, never the record's clock.) -- 194 other tables keep a clock to the year
+- `DETAINER_PREPARE_DATE`: when it was decided, date (typed), 2022-10-01 -> 2026-08-25, 609,769 rows (try_to_date on the date ICE prepared the detainer -- the enforcement action this table is one-row-per, and the staging header warns some prepare dates run slightly past the publication date as landed.) -- 308 other tables keep a clock to the day
+- `FINAL_ORDER_DATE`: when it was decided, date (typed), 1919-07-12 -> 2026-03-10, 193,330 rows (try_to_date on the date a final order of removal was issued -- an authority ruling, and the outcome half of the detainer story.) -- 308 other tables keep a clock to the day
+- `MSC_CONVICTION_DATE`: when it was decided, date (typed), 1968-06-14 -> 2026-03-09, 169,665 rows (try_to_date on the date a court convicted the person of the most serious charge -- an adjudication, and prior history rather than this row's event.) -- 308 other tables keep a clock to the day
+- `MSC_CHARGE_DATE`: when it was reported / filed, date (typed), 1931-05-01 -> 2026-03-09, 169,660 rows (try_to_date on the most-serious-conviction charge date: when charges were filed, which is later than the underlying offence and must never be read as the offence date.) -- 308 other tables keep a clock to the day
+- `APPREHENSION_AT`: unlabeled clock, datetime (typed), 1989-09-25 00:00:00.000 -> 2027-01-12 19:40:04.000, 153,241 rows -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -6972,7 +11453,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_ICE_DETENTION_FACILITY_CODES`
 *ICE (Immigration Enforcement): Detention Facility Codes*
 
-2 reliable connections, 2 place-based -- plus 32 low-confidence name+ZIP guesses not shown here.
+2 reliable connections, 2 place-based, 6 value-checked place columns -- plus 32 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 100% of rows, 886 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 37 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 74 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY` fills 99% of rows, 621 distinct -- county name -- 79 other tables carry a clean county
+- street address: `ADDRESS` fills 96% of rows, 1,367 distinct -- text place -- 114 other tables carry a clean street address
 
 **Rock-solid match:**
 
@@ -6989,10 +11479,45 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_ICE_DETENTION_FACILITY_CODES.LATITUDE/LONGITUDE` = `FED_MAPPING_INEQUALITY.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_ICE_DETENTION_FACILITY_LIST`
+*ICE (Immigration Enforcement): Detention Facility LIST*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 151 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_ICE_DETENTION_STINTS`
 *ICE (Immigration Enforcement): Detention Stints*
 
-2 reliable connections.
+2 reliable connections, 7 value-checked place columns, 9 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `BIRTH_COUNTRY` fills 100% of rows, 221 distinct -- country name -- 49 other tables carry a clean country
+- country: `CITIZENSHIP_COUNTRY` fills 100% of rows, 207 distinct -- country name -- 49 other tables carry a clean country
+- site / place name: `BOOK_IN_SITE` fills 100% of rows, 220 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 85% of rows, 424 distinct -- text place -- 174 other tables carry a clean city
+- county: `COUNTY` fills 85% of rows, 343 distinct -- county name -- 79 other tables carry a clean county
+- country: `DEPARTURE_COUNTRY` fills 71% of rows, 217 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ENTRY_DATE`, when it happened, to the day, 1916-12-26 -> 2026-03-11:
+
+- `ENTRY_DATE`: when it happened, date (typed), 1916-12-26 -> 2026-03-11, 1,552,125 rows (try_to_date on the person's US entry date, a life-history event and the likely source of the census's 1919-07-12 floor.) -- 308 other tables keep a clock to the day
+- `BIRTH_YEAR`: when it happened, year only, 1930 -> 2025, 2,571,974 rows (try_to_number on the anonymized birth year: a demographic attribute of the person at year grain, not the stint's clock.) -- 194 other tables keep a clock to the year
+- `MSC_CONVICTION_DATE`: when it was decided, date (typed), 1966-11-09 -> 2026-03-10, 822,802 rows (try_to_date on the court's conviction date for the most serious charge -- an adjudication in the person's prior history.) -- 308 other tables keep a clock to the day
+- `MSC_CHARGE_DATE`: when it was reported / filed, date (typed), 1923-02-19 -> 2027-02-01, 803,679 rows (try_to_date on the date charges were filed for the most serious conviction, later than the offence itself.) -- 308 other tables keep a clock to the day
+- `STAY_BOOK_OUT_DATE`: end of a period, date (typed), 2022-10-01 -> 2026-03-11, 2,397,989 rows (try_to_date on the date the person was booked out of the detention stay -- the closing bound of the stint, chosen as primary only because the candidate list omitted the book-IN timestamps that actually open the span; the staging header notes) -- 308 other tables keep a clock to the day
+- `BOOK_IN_AT`: unlabeled clock, datetime (typed), 2004-12-05 22:30:00.000 -> 2026-03-11 00:30:00.000, 2,571,975 rows -- 308 other tables keep a clock to the day
+- `STAY_BOOK_IN_AT`: unlabeled clock, datetime (typed), 2004-12-05 22:30:00.000 -> 2026-03-11 00:30:00.000, 2,571,975 rows -- 308 other tables keep a clock to the day
+- `BOOK_OUT_AT`: unlabeled clock, datetime (typed), 2022-10-01 01:25:00.000 -> 2026-03-11 00:27:00.000, 2,510,343 rows -- 308 other tables keep a clock to the day
+- `STAY_BOOK_OUT_AT`: unlabeled clock, datetime (typed), 2022-10-01 05:40:00.000 -> 2026-03-11 00:22:00.000, 2,397,989 rows -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7002,10 +11527,161 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_ICE_DETENTION_STINTS.DETENTION_FACILITY_CODE` = `FED_ICE_DETAINERS.DETENTION_FACILITY_CODE` &middot; key: `ICE_FACILITY`</sub>
 
 
+### `FED_ICE_STATISTICS`
+*ICE (Immigration Enforcement): Statistics*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_OF_CITIZENSHIP` fills 96% of rows, 196 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `SNAPSHOT_DATE`: our own download stamp -- never the clock, date (typed), 2026-07-02 -> 2026-07-02, 204 rows (try_to_date on a value the census measured as identical across every row (min = max = 2026-07-02), i.e. the single scrape/snapshot stamp for the whole file -- it carries zero within-table time signal and the dedup note shows 18 blank placeho)
+- **NOT A CLOCK** -- `FISCAL_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1986 -> 1986, 197 rows (try_to_number in the mart: the federal fiscal year (Oct-Sep) the published ICE counts cover, and the only column that can place these 221 aggregate rows on a timeline.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ICIJ_OFFSHORELEAKS_ADDRESSES`
+*ICIJ Offshoreleaks Addresses*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS` fills 95% of rows, 377,516 distinct -- text place -- 114 other tables carry a clean street address
+- country: `COUNTRIES` fills 69% of rows, 370 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_CODES` fills 69% of rows, 226 distinct -- country code -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ICIJ_OFFSHORELEAKS_ENTITIES`
+*ICIJ Offshoreleaks Entities*
+
+0 reliable connections, 5 value-checked place columns, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `JURISDICTION_DESCRIPTION` fills 99% of rows, 81 distinct -- text place -- 40 other tables carry a clean region
+- region: `JURISDICTION` fills 99% of rows, 98 distinct -- text place -- 40 other tables carry a clean region
+- country: `COUNTRIES` fills 62% of rows, 1,093 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_CODES` fills 62% of rows, 1,106 distinct -- country name -- 49 other tables carry a clean country
+- street address: `ADDRESS` fills 37% of rows, 20,077 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1865-10-26 -> 2029-04-15:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1865-10-26 -> 2029-04-15, 788,454 rows (try_to_date(INCORPORATION_DATE,'DD-MON-YYYY') - the day the offshore entity was incorporated.) -- 308 other tables keep a clock to the day
+- `STRUCK_OFF_DATE`: when it was decided, date (typed), 1919-02-02 -> 2024-06-14, 343,843 rows (try_to_date(...,'DD-MON-YYYY') - when the registrar struck the entity off the register, an authority action.) -- 308 other tables keep a clock to the day
+- `INACTIVATION_DATE`: when it was decided, date (typed), 1930-11-30 -> 2017-12-07, 144,773 rows (try_to_date(...,'DD-MON-YYYY') - when the registry or service provider marked the entity inactive.) -- 308 other tables keep a clock to the day
+- `DORM_DATE`: when it was decided, date (typed), 1997-11-07 -> 2010-03-16, 20,207 rows (try_to_date(...,'DD-MON-YYYY') - when the entity was declared dormant by the registry.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES`
+*ICIJ Offshoreleaks Intermediaries*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRIES` fills 86% of rows, 287 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_CODES` fills 86% of rows, 289 distinct -- country code -- 49 other tables carry a clean country
+- street address: `ADDRESS` fills 32% of rows, 8,658 distinct -- text place -- 114 other tables carry a clean street address
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ICIJ_OFFSHORELEAKS_OFFICERS`
+*ICIJ Offshoreleaks Officers*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_CODES` fills 61% of rows, 4,815 distinct -- country code -- 49 other tables carry a clean country
+- country: `COUNTRIES` fills 61% of rows, 4,127 distinct -- country name -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ICIJ_OFFSHORELEAKS_OTHERS`
+*ICIJ Offshoreleaks Others*
+
+0 reliable connections, 4 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `JURISDICTION` fills 32% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+- region: `JURISDICTION_DESCRIPTION` fills 32% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+- country: `COUNTRIES` fills 13% of rows, 63 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_CODES` fills 13% of rows, 63 distinct -- country code -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1933-08-05 -> 2016-09-22:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1933-08-05 -> 2016-09-22, 888 rows (try_to_date(INCORPORATION_DATE,'DD-MON-YYYY') - the day the foundation/partnership was formed.) -- 308 other tables keep a clock to the day
+- `CLOSED_DATE`: when it was decided, date (typed), 1994-12-21 -> 2016-12-29, 117 rows (try_to_date(CLOSED_DATE,'DD-MON-YYYY') - when the entity was closed out by the registry or provider.) -- 308 other tables keep a clock to the day
+- `STRUCK_OFF_DATE`: when it was decided, date (typed), 1991-11-14 -> 2013-08-12, 45 rows (try_to_date(...,'DD-MON-YYYY') - when the registrar struck the node off the register.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS`
+*ICIJ Offshoreleaks Relationships*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `START_DATE`, start of a period, to the day, 1759-12-30 -> 2029-11-02:
+
+- `START_DATE`: start of a period, date (typed), 1759-12-30 -> 2029-11-02, 704,064 rows (try_to_date(START_DATE,'DD-MON-YYYY') - when the relationship (officer_of, intermediary_of, registered_address) began, opening the edge's period.) -- 308 other tables keep a clock to the day
+- `END_DATE`: end of a period, date (typed), 1899-12-30 -> 2028-12-01, 238,130 rows (try_to_date(END_DATE,'DD-MON-YYYY') - when the relationship ended, closing the edge's period.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `NODE_ID_END`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (yyyymmdd), 2000-01-01 -> 2017-12-31, 3,339,267 rows (nullif(trim(NODE_ID_END)) - the graph edge's target node identifier, a plain ID string.)
+- **NOT A CLOCK** -- `NODE_ID_START`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (yyyymmdd), 2000-02-02 -> 2017-12-04, 3,339,267 rows (nullif(trim(NODE_ID_START)) - the graph edge's source node identifier, a plain ID string.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_IHS_FACILITIES`
+*IHS Facilities*
+
+0 reliable connections, 7 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 729 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 955 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 945 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- site / place name: `LOCATION_TYPE` fills 100% of rows, 6 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 37 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 720 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `STREET` fills 95% of rows, 888 distinct -- text place -- 114 other tables carry a clean street address
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_IHS_SCB_FACILITY`
+*IHS SCB Facility*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `LOCATION_TYPE` fills 32% of rows, 7 distinct -- text place -- 53 other tables carry a clean site / place name
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_IRS_990`
 *IRS: 990*
 
-8 reliable connections.
+8 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TAX_YEAR`, start of a period, to the month, 2023 -> 2025:
+
+- `TAX_YEAR`: start of a period, month-year, 2023 -> 2025, 200 rows (try_to_number(taxyr) is a plain year integer labelling the same covered period at coarser resolution; safe as a number, dangerous if ever cast to a date.) -- 12 other tables keep a clock to the month
 
 **Rock-solid match:**
 
@@ -7033,7 +11709,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_IRS_990_EFILE_INDEX`
 *IRS: 990 Efile Index*
 
-27 reliable connections.
+27 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SUB_DATE`, when it was reported / filed, to the day, 2017-01-03 -> 2026-01-01:
+
+- `SUB_DATE`: when it was reported / filed, date (typed), 2017-01-03 -> 2026-01-01, 5,544,625 rows (The submission date to the IRS, now parsed by three explicit strict formats after the documented 2026-08-18 fix; grain is only YEAR because the model's own comment records that 3,192,934 rows (57.6%) carry a bare 4-digit filing year, not a ) -- 308 other tables keep a clock to the day
+- `TAX_PERIOD`: end of a period, month-year, 1916 -> 2026, 5,544,626 rows (Raw passthrough of TAX_PERIOD, the IRS YYYYMM period-ending code; month grain at best and never safe to date-parse bare.) -- 12 other tables keep a clock to the month
+- `SUB_DATE_RAW`: unlabeled clock, year only, 2017-01-05 -> 2020-01-28, 5,544,626 rows -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -7099,7 +11781,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_IRS_AUTO_REVOCATIONS`
 *IRS: AUTO Revocations*
 
-29 reliable connections -- plus 77 low-confidence name+ZIP guesses not shown here.
+29 reliable connections, 4 value-checked place columns, 3 value-checked clock columns -- plus 77 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 30,295 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP_CODE` fills 100% of rows, 1,009,584 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ORGANIZATION_ADDRESS` fills 100% of rows, 912,826 distinct -- text place -- 114 other tables carry a clean street address
+- state: `STATE` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REVOCATION_DATE`, when it was decided, to the day, 2010-05-15 -> 2026-05-15:
+
+- `REVOCATION_DATE`: when it was decided, date (typed), 2010-05-15 -> 2026-05-15, 1,207,295 rows (try_to_date(REVOCATION_DATE); the day the IRS revoked exempt status. Chosen over the 'reported' posting date despite the stated preference because the posting date is a monthly batch-publication artifact that would pile every revocation ont) -- 308 other tables keep a clock to the day
+- `REINSTATEMENT_DATE`: when it was decided, date (typed), 2010-05-15 -> 2026-05-15, 180,455 rows (try_to_date(REINSTATEMENT_DATE); the day the IRS restored exempt status, populated only for the subset that came back.) -- 308 other tables keep a clock to the day
+- `REVOCATION_POSTING_DATE`: when it was reported / filed, date (typed), 2011-06-09 -> 2026-08-04, 1,207,295 rows (try_to_date(REVOCATION_POSTING_DATE); when the IRS published the revocation to the public list, always later than the revocation itself -- the gap is measurable here.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7169,7 +11864,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_IRS_BMF`
 *IRS: BMF*
 
-35 reliable connections -- plus 88 low-confidence name+ZIP guesses not shown here.
+35 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 4 value-checked place columns, 2 value-checked clock columns -- plus 88 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET` fills 100% of rows, 1,338,840 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 24,236 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP` fills 100% of rows, 1,494,909 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `STATE` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RULING_DATE`, when it was decided, to the month, 1900 -> 2026:
+
+- `RULING_DATE`: when it was decided, month-year, 1900 -> 2026, 1,974,830 rows (trim(ruling) aliased to ruling_date -- the BMF RULING field, the YYYYMM in which the IRS granted the organization's exemption; it is the only real event clock here and places every nonprofit by when it was recognised. Stored as TEXT and neve) -- 12 other tables keep a clock to the month
+- `TAX_PERIOD`: end of a period, month-year, 1979 -> 2026, 1,974,830 rows (trim(tax_period) only -- a raw TEXT YYYYMM period-ending code from the Business Master File; month grain, and an 6-digit bare date-parse would epoch-collapse it.) -- 12 other tables keep a clock to the month
 
 **Rock-solid match:**
 
@@ -7247,11 +11954,30 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_SEC_EDGAR_FINANCIALS` (SEC (Securities Regulator): Edgar Financials) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_FINANCIALS` (3 matching)
   <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CFPB_HMDA_HISTORIC` (CFPB -- Mortgage Lending Data (HMDA): Historic) -- **2%** of the employer tax id (ein) values also appear in `FED_CFPB_HMDA_HISTORIC` (19 matching)
+  <sub>joins on: `FED_IRS_BMF.EIN` = `FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID` &middot; key: `EIN`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- HUD ROWS ONLY (agency code 7); mortgage lenders are rarely nonprofits, so low overlap is expected</sub>
+
 
 ### `FED_IRS_EO_BMF`
 *IRS -- Nonprofit / Charity Master File*
 
-35 reliable connections -- plus 87 low-confidence name+ZIP guesses not shown here.
+35 reliable connections, 4 value-checked place columns, 3 value-checked clock columns -- plus 87 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET` fills 100% of rows, 1,351,657 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 24,365 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP` fills 100% of rows, 1,500,517 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `STATE` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RULING_DATE`, when it was decided, to the day, 1900-01-01 -> 2026-06-01:
+
+- `RULING_DATE`: when it was decided, date (typed), 1900-01-01 -> 2026-06-01, 1,971,976 rows (try_to_date(RULING||'01','YYYYMMDD') - the month the IRS ruled the organization tax-exempt; RULING is a YYYYMM string per the staging header, so the day part is synthetic.) -- 308 other tables keep a clock to the day
+- `TAX_PERIOD_MONTH`: end of a period, date (typed), 1979-06-01 -> 2026-11-01, 1,549,047 rows (try_to_date(TAX_PERIOD||'01','YYYYMMDD') - the same YYYYMM value in date form with a synthetic day, a duplicate of tax_period_yyyymm rather than an independent clock.) -- 308 other tables keep a clock to the day
+- `TAX_PERIOD_YYYYMM`: end of a period, month-year, 1979 -> 2026, 1,549,047 rows (Raw trimmed YYYYMM text (staging header states it explicitly) - the tax period whose asset/income figures the row reports, ending in that month.) -- 12 other tables keep a clock to the month
 
 **Rock-solid match:**
 
@@ -7330,10 +12056,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
+### `FED_IRS_EO_PR`
+*IRS: EO PR*
+
+0 reliable connections, 3 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET` fills 100% of rows, 2,443 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 114 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP` fills 100% of rows, 1,896 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TAX_PERIOD`, end of a period, to the month, 2011 -> 2026:
+
+- `TAX_PERIOD`: end of a period, month-year, 2011 -> 2026, 2,587 rows (Raw TEXT passthrough of the BMF YYYYMM period-ending code; it is the only candidate on this Puerto Rico exempt-org extract, so it is the primary by default even though it is a period bound, not an event.) -- 12 other tables keep a clock to the month
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_IRS_PUB78_ELIGIBLE_DONEES`
 *IRS: Pub78 Eligible Donees*
 
-25 reliable connections.
+25 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 22,237 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Rock-solid match:**
 
@@ -7395,7 +12144,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_IRS_REVOCATION`
 *IRS: Revocation*
 
-29 reliable connections -- plus 77 low-confidence name+ZIP guesses not shown here.
+29 reliable connections, 4 value-checked place columns, 3 value-checked clock columns -- plus 77 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 30,295 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP_CODE` fills 100% of rows, 1,008,024 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS` fills 100% of rows, 911,885 distinct -- text place -- 114 other tables carry a clean street address
+- state: `STATE` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REINSTATEMENT_DATE`, when it was decided, to the day, 2010-05-15 -> 2026-04-15:
+
+- `REINSTATEMENT_DATE`: when it was decided, date as text (dd_mon_yyyy), 2010-05-15 -> 2026-04-15, 1,187,367 rows (trim(exemption_reinstatement_date), unparsed TEXT; the day exempt status was restored, and the model uses its non-emptiness to build was_reinstated.) -- 308 other tables keep a clock to the day
+- `REVOCATION_DATE`: when it was decided, date as text (dd_mon_yyyy), 2010-05-15 -> 2026-03-15, 1,187,367 rows (trim(revocation_date) over a staging model that is itself a bare TEXT rename -- the day the IRS revoked exempt status, stored unparsed. Same reasoning as the auto_revocations twin: the decided date beats the batch posting date for honest pla) -- 308 other tables keep a clock to the day
+- `REVOCATION_POSTING_DATE`: when it was reported / filed, date as text (dd_mon_yyyy), 2011-06-09 -> 2026-06-09, 1,187,367 rows (trim() of an unparsed TEXT column; when the IRS published the revocation to the list.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7462,10 +12224,37 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
+### `FED_IRS_SOI`
+*IRS: SOI*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 51 distinct -- FIPS with leading zeros lost (87% have a FIPS length; modal length 2 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TAX_YEAR`, when it happened, to the year, 2016 -> 2016:
+
+- `TAX_YEAR`: when it happened, year only, 2016 -> 2016, 179,796 rows (Raw TAX_YEAR passthrough - the tax year whose income/return statistics the aggregate row describes; a bare year number and exactly the shape that collapses to 1970 if date-parsed.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_IRS_SOI_CHARITIES`
 *IRS: SOI Charities*
 
-10 reliable connections -- plus 5 low-confidence name+ZIP guesses not shown here.
+10 reliable connections, 3 value-checked place columns, 1 value-checked clock column -- plus 5 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET` fills 100% of rows, 2,224 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 208 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP` fills 100% of rows, 859 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TAX_PERIOD`, end of a period, to the month, 2000 -> 2026:
+
+- `TAX_PERIOD`: end of a period, month-year, 2000 -> 2026, 1,782 rows (Raw TEXT passthrough of the YYYYMM period-ending code and the only candidate on this 2,450-row SOI extract.) -- 12 other tables keep a clock to the month
 
 **Rock-solid match:**
 
@@ -7494,10 +12283,241 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
+### `FED_ITIS_COMMENTS`
+*ITIS Comments*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `COMMENT_TIME_STAMP`, when it happened, to the day, 1996-06-13 14:51:08.000 -> 2026-07-28 12:30:13.000:
+
+- `COMMENT_TIME_STAMP`: when it happened, datetime (typed), 1996-06-13 14:51:08.000 -> 2026-07-28 12:30:13.000, 70,524 rows (try_to_timestamp_ntz(trim(COMMENT_TIME_STAMP)) in staging: when the curator wrote the comment - the row IS the comment, so its creation is the event itself; census min 1996-06-13 14:51:08 matches ITIS's founding era.) -- 308 other tables keep a clock to the day
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-17 -> 2026-07-28, 70,524 rows (try_to_date(trim(UPDATE_DATE),'YYYY-MM-DD'): ITIS's own record-last-modified date - the upstream register's clock, NOT Ripple's loader, which is the separate _loaded_at column that supplies the census's 2026-08-08 04:44:10.570840 maximum.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_EXPERTS`
+*ITIS Experts*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1998-04-28 -> 2024-06-25:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1998-04-28 -> 2024-06-25, 197 rows (same ITIS pattern verified in the sibling staging models: try_to_date(trim(UPDATE_DATE),'YYYY-MM-DD'), the date ITIS curators last touched this expert record - the only clock this 197-row table has, and it is the register's, not Ripple's.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_GEOGRAPHIC_DIV`
+*ITIS Geographic DIV*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `GEOGRAPHIC_VALUE` fills 100% of rows, 14 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `ITIS_GEOGRAPHIC_DIV_KEY` fills 100% of rows, 484,300 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1900-01-01 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1900-01-01 -> 2026-07-28, 480,351 rows (the ITIS UPDATE_DATE pattern (try_to_date with an explicit YYYY-MM-DD format in every sibling staging model): when curators last touched this taxon-by-region row; note the census minimum is exactly 1900-01-01, which reads as a placeholder r) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_JURISDICTION`
+*ITIS Jurisdiction*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `ITIS_JURISDICTION_KEY` fills 100% of rows, 163,061 distinct -- text place -- 40 other tables carry a clean region
+- region: `JURISDICTION_VALUE` fills 100% of rows, 7 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1997-10-27 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1997-10-27 -> 2026-07-28, 161,922 rows (the ITIS UPDATE_DATE pattern: when curators last touched this taxon-by-jurisdiction row; the only clock the table carries, and it dates the register's curation, not the species.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_KINGDOMS`
+*ITIS Kingdoms*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-03-26 -> 2014-08-20:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-03-26 -> 2014-08-20, 7 rows (the ITIS UPDATE_DATE pattern on a 7-row lookup of the kingdoms of life: the curator edit date, the table's only clock and of essentially no timeline value at this grain.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_NODC_IDS`
+*ITIS NODC IDS*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-06-24 -> 1997-03-10:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-24 -> 1997-03-10, 209,565 rows (the ITIS UPDATE_DATE pattern on the legacy NODC-to-TSN crosswalk: when curators last touched the mapping row.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_OTHER_SOURCES`
+*ITIS Other Sources*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACQUISITION_DATE`, when it happened, to the day, 1996-01-01 -> 2026-04-17:
+
+- `ACQUISITION_DATE`: when it happened, date (typed), 1996-01-01 -> 2026-04-17, 1,071 rows (try_to_date(trim(ACQUISITION_DATE),'YYYY-MM-DD') in staging: when ITIS acquired the cited database or website - a real acquisition event on a row that IS a source, so it beats update_date as the anchor.) -- 308 other tables keep a clock to the day
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-07-29 -> 2026-07-28, 1,071 rows (try_to_date(trim(UPDATE_DATE),'YYYY-MM-DD'): ITIS's record-last-modified date for this source entry - upstream curation, not Ripple's _loaded_at.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_PUBLICATIONS`
+*ITIS Publications*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `PUB_PLACE` fills 13% of rows, 837 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTUAL_PUB_DATE`, when it happened, to the day, 1753-01-01 -> 2026-07-15:
+
+- `ACTUAL_PUB_DATE`: when it happened, date (typed), 1753-01-01 -> 2026-07-15, 30,772 rows (try_to_date(trim(ACTUAL_PUB_DATE),'YYYY-MM-DD') in staging: the real publication date of the cited work - on a bibliographic table the publication IS the event, so this is the honest anchor.) -- 308 other tables keep a clock to the day
+- `LISTED_PUB_DATE`: when it happened, date (typed), 1753-01-01 -> 2026-07-15, 30,772 rows (try_to_date(trim(LISTED_PUB_DATE),'YYYY-MM-DD'): the publication date as printed on the work; the census minimum is exactly 1753-01-01, which is genuine (Linnaeus, the start of botanical nomenclature) but its January-1 shape says many entri) -- 308 other tables keep a clock to the day
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1997-07-01 -> 2026-07-28, 30,772 rows (try_to_date(trim(UPDATE_DATE),'YYYY-MM-DD'): ITIS's record-last-modified date; note the census counted 255 epoch-1970 rows on this table, and because all three date columns use an EXPLICIT format those must be literal '1970-01-01' sentinels) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_REFERENCE_LINKS`
+*ITIS Reference Links*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-11-12 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-11-12 -> 2026-07-28, 1,970,107 rows (the ITIS UPDATE_DATE pattern on the 1.97M-row taxon-to-document bridge: when curators last touched the link row - the register's clock, the table's only one.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_SYNONYM_LINKS`
+*ITIS Synonym Links*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-06-24 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-24 -> 2026-07-28, 315,254 rows (the ITIS UPDATE_DATE pattern on the synonym-to-accepted-TSN mapping: when curators last recorded or revised this synonymy.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_TAXONOMIC_UNITS`
+*ITIS Taxonomic Units*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INITIAL_TIME_STAMP`, when it was reported / filed, to the day, 1996-06-13 14:51:08.000 -> 2026-07-28 12:29:46.000:
+
+- `INITIAL_TIME_STAMP`: when it was reported / filed, datetime (typed), 1996-06-13 14:51:08.000 -> 2026-07-28 12:29:46.000, 993,346 rows (try_to_timestamp_ntz(trim(INITIAL_TIME_STAMP)) in staging: when ITIS first recorded this taxon; the taxon itself long predates the record, so this is the register reporting, and it beats update_date as an anchor because it does not drift wi) -- 308 other tables keep a clock to the day
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-24 -> 2026-07-28, 993,346 rows (try_to_date(trim(UPDATE_DATE),'YYYY-MM-DD'): when curators last revised the taxon record - a moving target, so it is the weaker of the two anchors.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_TAXON_AUTHORS_LKP`
+*ITIS Taxon Authors LKP*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-06-13 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-13 -> 2026-07-28, 214,445 rows (the ITIS UPDATE_DATE pattern on the taxon-author lookup: the curator edit date, the only clock present.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_TAXON_UNIT_TYPES`
+*ITIS Taxon UNIT Types*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-06-13 -> 2024-07-18:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-13 -> 2024-07-18, 182 rows (the ITIS UPDATE_DATE pattern on a 182-row rank-definition lookup: the curator edit date, of little timeline value at this grain.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_TU_COMMENTS_LINKS`
+*ITIS TU Comments Links*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1996-06-17 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1996-06-17 -> 2026-07-28, 192,851 rows (the ITIS UPDATE_DATE pattern on the taxon-to-comment bridge: the curator edit date, the table's only clock.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_VERNACULARS`
+*ITIS Vernaculars*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1997-08-20 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1997-08-20 -> 2026-07-28, 166,778 rows (try_to_date(trim(UPDATE_DATE),'YYYY-MM-DD') in staging: when curators last touched this common-name row - the only clock the table has.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_ITIS_VERN_REF_LINKS`
+*ITIS VERN REF Links*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPDATE_DATE`, when it was reported / filed, to the day, 1900-01-01 -> 2026-07-28:
+
+- `UPDATE_DATE`: when it was reported / filed, date (typed), 1900-01-01 -> 2026-07-28, 93,078 rows (the ITIS UPDATE_DATE pattern on the vernacular-name-to-document bridge; as with geographic_div the census minimum is exactly 1900-01-01, which reads as a placeholder rather than a real edit date.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_JPML_PENDING_MDLS`
+*JPML Pending MDLS*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- congressional district: `DISTRICT` fills 100% of rows, 58 distinct -- text place -- 13 other tables carry a clean congressional district
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_MAPPING_INEQUALITY`
 *Mapping Inequality*
 
-0 reliable connections, 19 place-based.
+0 reliable connections, 19 place-based, 5 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 299 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LAT` fills 100% of rows, 1,146 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LON` fills 100% of rows, 1,146 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- map shape: `GEOMETRY` fills 100% of rows, 1,156 distinct -- text place -- 3 other tables carry a clean map shape
+- state: `STATE` fills 100% of rows, 42 distinct -- clean 2-letter state -- 229 other tables carry a clean state
 
 **Same location:**
 
@@ -7541,10 +12561,78 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_MAPPING_INEQUALITY.GEOMETRY` = `FED_NID_DAMS.LATITUDE/LONGITUDE` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_MEDSL_HOUSE_RETURNS`
+*Medsl House Returns*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_ABBR` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 50 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 50 distinct -- FIPS with leading zeros lost (82% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- congressional district: `DISTRICT` fills 98% of rows, 54 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ELECTION_YEAR`, when it happened, to the year, 1976 -> 2018:
+
+- `ELECTION_YEAR`: when it happened, year only, 1976 -> 2018, 29,636 rows (Year the House election was held - the event; try_to_number(year) so it is an INTEGER, which is why the census logged no date range and why a bare date-parse would collapse the table to 1970.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `CANDIDATE_VOTES`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1700 -> 2035, 29,636 rows (FALSE POSITIVE - a vote COUNT, try_to_number(candidatevotes); matched on the same 'candi-DATE' substring.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_MEDSL_PRESIDENT_RETURNS`
+*Medsl President Returns*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_ABBR` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 51 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 51 distinct -- FIPS with leading zeros lost (85% have a FIPS length; modal length 2 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ELECTION_YEAR`, when it happened, to the year, 1976 -> 2016:
+
+- `ELECTION_YEAR`: when it happened, year only, 1976 -> 2016, 3,740 rows (Year the presidential election was held; try_to_number(year) integer, so year grain is the finest real resolution.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `CANDIDATE_VOTES`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1702 -> 2035, 3,740 rows (FALSE POSITIVE - a vote COUNT, try_to_number(candidatevotes).)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_MEDSL_SENATE_RETURNS`
+*Medsl Senate Returns*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_ABBR` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_NAME` fills 100% of rows, 50 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 50 distinct -- FIPS with leading zeros lost (85% have a FIPS length; modal length 2 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ELECTION_YEAR`, when it happened, to the year, 1976 -> 2024:
+
+- `ELECTION_YEAR`: when it happened, year only, 1976 -> 2024, 3,945 rows (Year the Senate election was held; try_to_number(year) integer.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `CANDIDATE_VOTES`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1701 -> 2033, 3,945 rows (FALSE POSITIVE - a vote COUNT, try_to_number(candidatevotes).)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_MSHA_ACCIDENTS`
 *MSHA (Mine Safety): Accidents*
 
-2 reliable connections.
+2 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- FIPS / GEOID code: `FIPS_STATE_CD` fills 100% of rows, 54 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACCIDENT_DATE`, when it happened, to the day, 2000-01-01 -> 2026-07-14:
+
+- `ACCIDENT_DATE`: when it happened, date (typed), 2000-01-01 -> 2026-07-14, 273,623 rows (try_to_date(accident_dt,'MM/DD/YYYY') in the mart - an explicit format, no epoch risk - dating the moment the mining accident occurred; census graded CLEAN, 2000-01-01 onward.) -- 308 other tables keep a clock to the day
+- `CAL_YR`: when it happened, year only, 2000 -> 2026, 273,623 rows (try_to_number(cal_yr): the calendar year of the accident as an INTEGER, not a date - a bare date-parse of it is exactly the 1970 collapse bug.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `DAYS_LOST`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1980 -> 1980, 226,711 rows (try_to_number(days_lost): a duration - number of workdays the injured miner was away.)
 
 **Rock-solid match:**
 
@@ -7557,7 +12645,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_MSHA_MINES`
 *MSHA (Mine Safety): Mines*
 
-2 reliable connections.
+2 reliable connections, 4 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `NEAREST_TOWN` fills 59% of rows, 11,870 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 52% of rows, 29,660 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 52% of rows, 34,139 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- FIPS / GEOID code: `FIPS_CNTY_CD` fills 100% of rows, 298 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CURRENT_STATUS_DT`, when it happened, to the day, 1925-01-01 -> 2026-07-17:
+
+- `CURRENT_STATUS_DT`: when it happened, date (typed), 1925-01-01 -> 2026-07-17, 91,906 rows (try_to_date(current_status_dt,'MM/DD/YYYY') in the mart: the date the mine entered its CURRENT status (active/abandoned/temporarily idled), so it is a real change of state at the mine - though MSHA is the one recording it, and because the m) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7570,7 +12670,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_MSHA_VIOLATIONS`
 *MSHA (Mine Safety): Violations*
 
-2 reliable connections.
+2 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `VIOLATION_OCCUR_DATE`, when it happened, to the day, 1994-09-09 -> 2026-07-18:
+
+- `VIOLATION_OCCUR_DATE`: when it happened, date (typed), 1994-09-09 -> 2026-07-18, 3,087,265 rows (try_to_date(violation_occur_dt,'MM/DD/YYYY') in the mart with an explicit format: when the violating condition actually existed at the mine, which is earlier than or equal to the citation date.) -- 308 other tables keep a clock to the day
+- `CAL_YR`: when it happened, year only, 1994 -> 2026, 3,087,265 rows (try_to_number(cal_yr): an integer calendar year for the violation; the previous census groups it beside the issue date, so whether it keys to occurrence or issue is unverified.) -- 194 other tables keep a clock to the year
+- `VIOLATION_ISSUE_DATE`: when it was decided, date (typed), 1994-09-09 -> 2026-07-18, 3,087,265 rows (try_to_date(violation_issue_dt,'MM/DD/YYYY'): when the MSHA inspector issued the citation - the enforcement act, and the gap from violation_occur_date is itself measurable.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `VIOLATOR_INSPECTION_DAY_CNT`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 3,019,763 rows (try_to_number(violator_inspection_day_cnt): a COUNT of inspection days for that violator (_CNT), a duration-style tally, not a date.)
 
 **Rock-solid match:**
 
@@ -7580,10 +12687,75 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_MSHA_VIOLATIONS.MINE_ID` = `FED_MSHA_ACCIDENTS.MINE_ID` &middot; key: `MINE_ID`</sub>
 
 
+### `FED_MSRB_REGISTRANTS`
+*MSRB Registrants*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 49 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_NAAG_MULTISTATE_SETTLEMENTS`
+*NAAG Multistate Settlements*
+
+0 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATERESOLVED`, when it happened, to the day, 1983-03-25 -> 2021-07-23:
+
+- `DATERESOLVED`: when it happened, date as text (us), 1983-03-25 -> 2021-07-23, 882 rows (raw passthrough - this mart applies NO casts at all, selecting straight from the landing table - naming the date the multistate settlement was resolved, the event the dataset exists to record; the census could not measure it (UNMEASURED_CLO) -- 308 other tables keep a clock to the day
+- `YEAR`: when it happened, year only, 1980 -> 2019, 882 rows (raw passthrough integer year of the settlement - the year-grain twin of dateresolved, and the safer of the two if the text dates turn out to be messy.) -- 194 other tables keep a clock to the year
+- `DATE_ENTRY_CREATED`: when it was reported / filed, date as text (us), 2021-07-12 -> 2021-07-12, 882 rows (raw passthrough: when a NAAG researcher typed this row into their database - curation bookkeeping that tracks NAAG's own data-entry campaigns, not the settlement's timing; the same hazard class as an ingest column even though it is the upst) -- 308 other tables keep a clock to the day
+- `DATE_FILED`: when it was reported / filed, date as text (us), 2019-07-22 -> 2019-07-26, 882 rows (raw passthrough: when the complaint was filed with the court - a filing act preceding the resolution.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_NASA_OPEN_DATA`
+*NASA OPEN DATA*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RESPONSE_DATE`, when it happened, to the day, 1998-05-02 -> 2026-07-02:
+
+- `RESPONSE_DATE`: when it happened, date (typed), 1998-05-02 -> 2026-07-02, 54 rows (try_to_date(RESPONSE_DATE) on a 54-row API crawl; the census range starts 1998-05-02, which rules out a request stamp, so it appears to be the date carried by the item the NASA API returned -- meaning unverified, and the model has no descrip) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_NCUA_CALL_REPORTS`
+*NCUA (Credit Union Regulator): CALL Reports*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE_DATE`, unlabeled clock, to the day, 2015-03-31 -> 2015-03-31:
+
+- `CYCLE_DATE`: unlabeled clock, date (typed), 2015-03-31 -> 2015-03-31, 121,675 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_NCUA_CALL_REPORTS_FOICU`
 *NCUA (Credit Union Regulator): CALL Reports Foicu*
 
-3 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 1 place-based -- plus 38 low-confidence name+ZIP guesses not shown here.
+3 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 1 place-based, 3 value-checked place columns, 5 value-checked clock columns -- plus 38 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 1,887 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 3,916 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AM_DATEHELD`, when it happened, to the day, 2019-03-24 00:00:00.000 -> 2026-05-19 05:00:00.000:
+
+- `AM_DATEHELD`: when it happened, datetime (typed), 2019-03-24 00:00:00.000 -> 2026-05-19 05:00:00.000, 4,333 rows (Dual-format try_to_timestamp kept as a timestamp; reads as the credit union's annual-meeting date held, but the meaning is inferred from the NCUA field name and was not confirmed against values.) -- 308 other tables keep a clock to the day
+- `YEAR_OPENED`: when it happened, year only, 1900 -> 2025, 4,336 rows (try_to_number(YEAR_OPENED) - the year the credit union opened, the one per-row real-world event on this roster that spreads across decades; a number, never date-parse it.) -- 194 other tables keep a clock to the year
+- `ISSUE_DATE`: when it was decided, date (typed), 1899-12-30 -> 2025-12-05, 4,336 rows (Dual-format try_to_timestamp cast to date - reads as the day the charter was issued by the regulator; the staging header confirms the mixed 12/24-hour formats were handled deliberately to dodge the epoch trap.) -- 308 other tables keep a clock to the day
+- `INSURED_DATE`: start of a period, date (typed), 1899-12-30 -> 2025-12-05, 4,336 rows (Dual-format try_to_timestamp cast to date - the day NCUA share insurance took effect, opening the coverage period.) -- 308 other tables keep a clock to the day
+- `CYCLE_DATE`: end of a period, date (typed), 2026-03-31 -> 2026-03-31, 4,336 rows (Dual-format try_to_timestamp of CYCLE_DATE cast to date - the quarter-end the call-report cycle covers (2026-03-31), constant across the file.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7598,10 +12770,10 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_FHFA_FHLB_MEMBERSHIP` (FHFA (Housing Finance Regulator): FHLB Membership) -- **99%** of the credit union charter # values also appear in `FED_FHFA_FHLB_MEMBERSHIP` (1,618 matching)
   <sub>joins on: `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` = `FED_FHFA_FHLB_MEMBERSHIP.NCUA_ID` &middot; key: `NCUA_CHARTER`</sub>
-  <sub>checked 2026-08-29: SOLID -- strip leading zeros on both sides</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **100%** -- strip leading zeros on both sides</sub>
 - `FED_SBA_LOANS` (SBA Loans) -- **97%** of the credit union charter # values also appear in `FED_SBA_LOANS` (570 matching)
   <sub>joins on: `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` = `FED_SBA_LOANS.BANKNCUANUMBER` &middot; key: `NCUA_CHARTER`</sub>
-  <sub>checked 2026-08-29: SOLID -- SBA lender -> credit union; strip leading zeros</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **100%** -- SBA lender -> credit union; strip leading zeros</sub>
 
 **Same location:**
 
@@ -7612,7 +12784,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NCUA_CALL_REPORTS_FS220`
 *NCUA (Credit Union Regulator): CALL Reports Fs220*
 
-3 reliable connections.
+3 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE_DATE`, end of a period, to the day, 2026-03-31 -> 2026-03-31:
+
+- `CYCLE_DATE`: end of a period, date (typed), 2026-03-31 -> 2026-03-31, 4,336 rows (Dual-format try_to_timestamp cast to date - the quarter-end (2026-03-31) the financial statement covers; the only world-facing clock on the table.) -- 308 other tables keep a clock to the day
+- `UPDATE_DATE`: unclear clock, datetime (typed), 2026-04-01 22:01:28.000 -> 2026-05-20 22:02:49.000, 4,336 rows (Dual-format try_to_timestamp of UPDATE_DATE - NCUA's record-refresh stamp (census max 2026-05-20, weeks after the 2026-03-31 cycle), bookkeeping about the file rather than a world event.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7627,7 +12804,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NCUA_CHARTER_MERGER_EVENTS`
 *NCUA (Credit Union Regulator): Charter Merger Events*
 
-3 reliable connections.
+3 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `CONTINUING_LOCATION` fills 100% of rows, 26 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `MERGING_LOCATION` fills 100% of rows, 26 distinct -- text place -- 53 other tables carry a clean site / place name
+- **TRAP** -- region: `REGION` fills 100% of rows, 3 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -7642,7 +12825,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NCUA_FEDERALLY_INSURED_CU_LIST`
 *NCUA (Credit Union Regulator): Federally Insured CU LIST*
 
-3 reliable connections, 1 place-based -- plus 38 low-confidence name+ZIP guesses not shown here.
+3 reliable connections, 1 place-based, 4 value-checked place columns -- plus 38 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_MAILING_ADDRESS` fills 100% of rows, 4,193 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_MAILING_ADDRESS` fills 100% of rows, 1,862 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE_MAILING_ADDRESS` fills 100% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE_MAILING_ADDRESS` fills 100% of rows, 3,314 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- region: `NCUA_REGION` fills 100% of rows, 4 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `TOTAL_LOANS_4_QUARTER_GROWTH`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1704 -> 1704, 4,250 rows (try_to_number of a 4-quarter growth rate, not a date.)
 
 **Rock-solid match:**
 
@@ -7659,10 +12854,77 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_NCUA_FEDERALLY_INSURED_CU_LIST.ZIP_CODE_MAILING_ADDRESS` = `FED_NCUA_CALL_REPORTS_FOICU.ZIP_CODE` &middot; key: `ZIP`</sub>
 
 
+### `FED_NHTSA_COMPLAINTS`
+*Nhtsa Complaints*
+
+0 reliable connections, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 62,495 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 87 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FAIL_DATE`, when it happened, to the day, 1900-01-01 -> 2026-07-21:
+
+- `FAIL_DATE`: when it happened, date (typed), 1900-01-01 -> 2026-07-21, 2,117,797 rows (try_to_date(C8,'YYYYMMDD') - the day the component failed or the incident occurred; the year-0003 minimum is source typos, not the cast.) -- 308 other tables keep a clock to the day
+- `DATE_RECEIVED`: when it was reported / filed, date (typed), 1995-01-01 -> 2026-07-22, 2,227,930 rows (try_to_date(C17,'YYYYMMDD') - the day NHTSA ODI received the complaint; the gap from fail_date is directly measurable.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `MODEL_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1949 -> 2027, 2,227,941 rows (trim(C6) YEARTXT kept as text while every real date in the same staging model is try_to_date'd - a vehicle model-year vintage label (NHTSA uses 9999 for unknown), a product designation rather than an event.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_NHTSA_INVESTIGATIONS`
+*Nhtsa Investigations*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `OPEN_DATE`, when it was decided, to the day, 1972-03-10 -> 2026-07-13:
+
+- `OPEN_DATE`: when it was decided, date (typed), 1972-03-10 -> 2026-07-13, 154,052 rows (try_to_date(C7,'YYYYMMDD') - the day NHTSA opened the investigation, an agency action.) -- 308 other tables keep a clock to the day
+- `CLOSE_DATE`: when it was decided, date (typed), 1972-05-30 -> 2026-07-22, 78,621 rows (try_to_date(C8,'YYYYMMDD') - the day NHTSA closed the investigation; with open_date it also bounds how long the investigation stayed open.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `MODEL_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1965 -> 2026, 154,209 rows (trim(C4) YEAR_TXT kept as text and used as part of the dedupe key - a vehicle model-year vintage label, not an event date.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_NHTSA_RECALLS`
+*Nhtsa Recalls*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `NOTIFICATION_DATE`, when it happened, to the day, 1980-12-31 -> 2027-08-16:
+
+- `NOTIFICATION_DATE`: when it happened, date (typed), 1980-12-31 -> 2027-08-16, 239,027 rows (try_to_date(C13,'YYYYMMDD') aliased from NHTSA's ODATE - the day owners were notified of the recall; the 11 far-future rows (max 3019) are source typos, and the staging model also holds RCDATE (report received) which the mart does not expos) -- 308 other tables keep a clock to the day
+- `BEGIN_MANUFACTURE_DATE`: start of a period, date (typed), 1900-01-01 -> 2026-06-25, 81,509 rows (try_to_date(C9,'YYYYMMDD') as BGMAN - the start of the manufacturing date range of the recalled vehicles.) -- 308 other tables keep a clock to the day
+- `END_MANUFACTURE_DATE`: end of a period, date (typed), 1900-01-01 -> 2029-01-09, 81,328 rows (try_to_date(C10,'YYYYMMDD') as ENDMAN - the end of the manufacturing date range of the recalled vehicles.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `MODEL_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1965 -> 2027, 242,993 rows (trim(C5) YEARTXT kept as text - the affected vehicles' model-year vintage label, a product designation rather than an event.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_NID_DAMS`
 *NID DAMS*
 
-0 reliable connections, 3 place-based.
+0 reliable connections, 3 place-based, 8 value-checked place columns, 5 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `IS_STATE_REGULATED` fills 100% of rows, 2 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `STATE` fills 100% of rows, 52 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- congressional district: `CONGRESSIONAL_DISTRICT` fills 100% of rows, 422 distinct -- text place -- 13 other tables carry a clean congressional district
+- lat / lon: `LATITUDE` fills 100% of rows, 84,620 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 87,206 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY` fills 100% of rows, 1,791 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE_REGULATORY_AGENCY` fills 75% of rows, 100 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- city: `CITY` fills 65% of rows, 14,426 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_INSPECTION_DATE`, when it happened, to the day, 1901-01-01 -> 2026-11-05:
+
+- `LAST_INSPECTION_DATE`: when it happened, date (typed), 1901-01-01 -> 2026-11-05, 58,178 rows (try_to_date(LAST_INSPECTION_DATE,'MM/DD/YYYY'): the day the dam was last physically inspected. The strongest day-grain clock here and the one the harm lens uses.) -- 308 other tables keep a clock to the day
+- `EAP_LAST_REVISION_DATE`: when it happened, date (typed), 1960-01-17 -> 2027-05-31, 17,799 rows (try_to_date(EAP_LAST_REVISION_DATE,'MM/DD/YYYY'): the day the owner last revised the emergency action plan. The census's 5023-05-25 max and 2 far-future rows are typo years surviving the MM/DD/YYYY parse.) -- 308 other tables keep a clock to the day
+- `YEAR_COMPLETED`: when it happened, year only, 1700 -> 2026, 73,724 rows (try_to_number(YEAR_COMPLETED): the year the dam was finished - the structure's own birth date, populated for nearly every dam, so it is the honest way to lay an inventory of dams on a timeline. Integer year, not a date.) -- 194 other tables keep a clock to the year
+- `CONDITION_ASSESSMENT_DATE`: when it was decided, date (typed), 1965-01-01 -> 2031-06-30, 40,665 rows (try_to_date(CONDITION_ASSESSMENT_DATE,'MM/DD/YYYY'): the day the regulator assigned the dam's condition rating - an authority's call.) -- 308 other tables keep a clock to the day
+- `DATA_LAST_UPDATED`: when it was reported / filed, date (typed), 2015-09-30 -> 2026-08-05, 92,766 rows (try_to_date(DATA_LAST_UPDATED,'MM/DD/YYYY'). The loader note records that the NID national CSV carries a file-level 'Data Last Updated: 2026-8-5' stamp, so this is the vintage of the file we downloaded, not a dam event.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -7677,7 +12939,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NIH_REPORTER`
 *NIH (Medical Research): Reporter*
 
-27 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+27 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 7 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FISCAL_YEAR`, when it happened, to the year, 2000 -> 2026:
+
+- `FISCAL_YEAR`: when it happened, year only, 2000 -> 2026, 2,122,611 rows (try_to_number on the NIH fiscal year of the award (Oct-Sep, so offset from calendar time); it is the fully populated year-grain fallback but too coarse to be the table's primary clock.) -- 194 other tables keep a clock to the year
+- `AWARD_NOTICE_DATE`: when it was decided, date (typed), 1999-10-20 -> 2026-08-08, 1,858,660 rows (try_to_date on the left 10 characters: the day NIH issued the notice of award, the crisp day-grain moment the money was committed and the best axis for this table (fiscal_year is the coarser fully-populated fallback).) -- 308 other tables keep a clock to the day
+- `DATE_ADDED`: when it was reported / filed, datetime (typed), 2011-01-01 00:00:00.000 -> 2026-08-08 17:03:55.000, 2,122,611 rows (try_to_timestamp_ntz on the date the record first appeared in the public RePORTER database -- a publisher-side disclosure stamp (the gap to award_notice_date is a publication lag), not the award event and not Ripple's loader.) -- 308 other tables keep a clock to the day
+- `BUDGET_START_DATE`: start of a period, date (typed), 1978-03-01 -> 2026-08-08, 1,993,071 rows (try_to_date on the left 10 characters: the opening bound of this application's budget period, a narrower span nested inside the project period.) -- 308 other tables keep a clock to the day
+- `PROJECT_START_DATE`: start of a period, date (typed), 1965-06-01 -> 2026-08-25, 1,895,660 rows (try_to_date on the left 10 characters of an ISO string: the opening bound of the funded project's period, paired with project_end_date.) -- 308 other tables keep a clock to the day
+- `BUDGET_END_DATE`: end of a period, date (typed), 1899-12-31 -> 2031-02-28, 1,993,239 rows (try_to_date on the left 10 characters: the closing bound of the budget period.) -- 308 other tables keep a clock to the day
+- `PROJECT_END_DATE`: end of a period, date (typed), 1987-05-31 -> 2035-09-29, 1,899,434 rows (try_to_date on the left 10 characters: the closing bound of the project period, and the plausible source of the census's 445 non-ingest far-future values since multi-year grants legitimately end past 2030.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7743,31 +13015,98 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **80%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (9,643 matching)
   <sub>joins on: `FED_NIH_REPORTER.ORG_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- misses are affiliates registered under a sibling legal name</sub>
+  <sub>checked 2026-08-29: SOLID -- 57 matched pairs spot-checked: names agree **82.5%** -- misses are affiliates registered under a sibling legal name</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **10%** of the nih project # values also appear in `FED_SBIR_STTR_AWARDS` (16,831 matching)
   <sub>joins on: `FED_NIH_REPORTER.CORE_PROJECT_NUM` = `FED_SBIR_STTR_AWARDS.AGENCY_TRACKING_NUMBER` &middot; key: `NIH_PROJECT`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR tracking number -> NIH project</sub>
 
 
+### `FED_NLM_DAILYMED_SPL_SETID_MAP`
+*NLM Dailymed SPL Setid MAP*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- ZIP code: `ZIP_FILE_NAME` fills 100% of rows, 161,574 distinct -- foreign postal code (only 0% look like US ZIPs)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `UPLOAD_DATE`, when it was reported / filed, to the day, 2006-07-13 -> 2026-08-07:
+
+- `UPLOAD_DATE`: when it was reported / filed, date (typed), 2006-07-13 -> 2026-08-07, 158,452 rows (try_to_date on the trimmed value - when the drug label file was uploaded to DailyMed; the 2026 census max is _ingested_at leakage.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_NOAA_AIS`
 *NOAA (Weather / Ocean): AIS*
 
-0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 2 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 2,690,340 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 3,396,652 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `BASE_DATETIME`, when it happened, to the day, 2024-01-01 00:00:00.000 -> 2024-01-08 23:59:59.000:
+
+- `BASE_DATETIME`: when it happened, datetime (typed), 2024-01-01 00:00:00.000 -> 2024-01-08 23:59:59.000, 58,104,610 rows (try_to_timestamp on BASEDATETIME: the exact moment the vessel broadcast its position, the finest and truest clock on the table -- real resolution is seconds, recorded as 'day' only because the grain vocabulary has no sub-day option.) -- 308 other tables keep a clock to the day
+- `BASE_DATETIME_HOUR`: when it happened, datetime (typed), 2024-01-01 00:00:00.000 -> 2024-01-08 23:00:00.000, 58,104,610 rows (The mart computes it as date_trunc('hour', base_datetime): the same event clock bucketed to the hour, again recorded as 'day' because the grain vocabulary stops there.) -- 308 other tables keep a clock to the day
+- `DATE`: when it happened, date (typed), 2024-01-01 -> 2024-01-08, 58,104,610 rows (try_to_date on the AIS file's DATE field: the calendar day of the vessel position report, the day-grain twin of base_datetime.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_USCG_VESSEL_DOCUMENTATION` (USCG Vessel Documentation) -- **33%** of the ship hull number (imo) values also appear in `FED_USCG_VESSEL_DOCUMENTATION` (2,313 matching)
   <sub>joins on: `FED_NOAA_AIS.IMO` = `FED_USCG_VESSEL_DOCUMENTATION.IMO_NUMBER` &middot; key: `IMO`</sub>
-  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; a third of AIS ships are US-documented vessels</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- pass-1 edge, name-checked in pass 2; a third of AIS ships are US-documented vessels</sub>
 - `FED_USCG_VESSEL_DOCUMENTATION` (USCG Vessel Documentation) -- **33%** of the ship radio call sign values also appear in `FED_USCG_VESSEL_DOCUMENTATION` (5,759 matching)
   <sub>joins on: `FED_NOAA_AIS.CALLSIGN` = `FED_USCG_VESSEL_DOCUMENTATION.CALL_SIGN` &middot; key: `CALLSIGN`</sub>
-  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **93.3%** -- pass-1 edge, name-checked in pass 2</sub>
+
+
+### `FED_NOAA_STORM_EVENTS`
+*NOAA (Weather / Ocean): Storm Events*
+
+0 reliable connections, 8 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 70 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- site / place name: `BEGIN_LOCATION` fills 62% of rows, 51,401 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `END_LOCATION` fills 62% of rows, 51,594 distinct -- text place -- 53 other tables carry a clean site / place name
+- lat / lon: `BEGIN_LAT` fills 59% of rows, 135,995 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `BEGIN_LON` fills 59% of rows, 185,312 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `END_LAT` fills 59% of rows, 145,079 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `END_LON` fills 59% of rows, 204,543 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `TOR_OTHER_CZ_STATE` fills 0% of rows, 48 distinct -- clean 2-letter state (only 0.2% of rows filled) -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `CZ_FIPS` fills 100% of rows, 670 distinct -- FIPS with leading zeros lost (58% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 70 distinct -- FIPS with leading zeros lost (89% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- FIPS / GEOID code: `TOR_OTHER_CZ_FIPS` fills 0% of rows, 206 distinct -- FIPS with leading zeros lost (0% have a FIPS length; modal length 3 -- pad before joining; only 0.2% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1996 -> 2025:
+
+- `YEAR`: when it happened, year only, 1996 -> 2025, 1,780,730 rows (try_to_number(YEAR): the year the storm event occurred - a real but coarse duplicate of begin_date_time, so it is not the primary.) -- 194 other tables keep a clock to the year
+- `BEGIN_YEARMONTH`: start of a period, month-year, 1996 -> 2025, 1,780,730 rows (Raw passthrough of BEGIN_YEARMONTH: a YYYYMM INTEGER giving the month the storm event began. Month grain, coarse duplicate of begin_date_time - never date-parse the integer.) -- 12 other tables keep a clock to the month
+- `END_YEARMONTH`: end of a period, month-year, 1996 -> 2025, 1,780,730 rows (Raw END_YEARMONTH: YYYYMM integer for the month the event ended.) -- 12 other tables keep a clock to the month
+- **NOT A CLOCK** -- `BEGIN_TIME`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,780,730 rows (Raw BEGIN_TIME: an HHMM clock-time integer component, not a date.)
+- **NOT A CLOCK** -- `END_TIME`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 1,780,730 rows (Raw END_TIME: HHMM clock-time integer component.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_NOAA_WEATHER_API`
 *NOAA (Weather / Ocean): Weather API*
 
-0 reliable connections, 16 place-based.
+0 reliable connections, 16 place-based, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `ZONE_UGC` fills 100% of rows, 225 distinct -- text place -- 40 other tables carry a clean region
+- map shape: `GEOMETRY` fills 11% of rows, 31 distinct -- text place -- 3 other tables carry a clean map shape
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EFFECTIVE`, start of a period, to the day, 2026-07-01 -> 2026-07-03:
+
+- `EFFECTIVE`: start of a period, date as text (iso), 2026-07-01 -> 2026-07-03, 287 rows (Raw passthrough of EFFECTIVE (no cast): the moment a National Weather Service alert takes effect, paired with expires. Chosen as primary because it is alert-side and cannot be a fetch stamp.) -- 308 other tables keep a clock to the day
+- `EXPIRES`: end of a period, date (typed), 2026-07-01 -> 2026-07-04, 287 rows (try_to_date(EXPIRES) - the only cast column here: when the alert stops being in force.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -7808,7 +13147,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NSF_AWARDS`
 *NSF (Science Foundation): Awards*
 
-0 reliable connections, 2 place-based.
+0 reliable connections, 2 place-based, 3 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 81 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 40 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 100% of rows, 98 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AWARD_DATE`, when it was decided, to the day, 2026-01-16 -> 2026-07-01:
+
+- `AWARD_DATE`: when it was decided, date (typed), 2026-01-16 -> 2026-07-01, 115 rows (try_to_date(AWARD_DATE) -- when NSF granted the award; an authority acting, and the best anchor on a 125-row sample table.) -- 308 other tables keep a clock to the day
+- `START_DATE`: start of a period, date (typed), 2026-09-15 -> 2027-03-01, 115 rows (try_to_date(START_DATE) -- opens the award's period of performance.) -- 308 other tables keep a clock to the day
+- `END_DATE`: end of a period, date (typed), 2027-06-30 -> 2031-12-31, 115 rows (try_to_date(END_DATE) -- closes the period of performance; the 17 far-future rows and the 2031-12-31 census max are legitimately forward-dated grant end dates, not corruption.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -7821,19 +13172,81 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NTSB_AVIATION_AIRCRAFT`
 *NTSB (Transportation Safety): Aviation Aircraft*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 35 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 17 value-checked place columns, 1 value-checked clock column -- plus 35 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `OWNER_COUNTRY` fills 94% of rows, 149 distinct -- country code -- 49 other tables carry a clean country
+- country: `OPER_COUNTRY` fills 93% of rows, 150 distinct -- country code -- 49 other tables carry a clean country
+- site / place name: `SITE_SEEING` fills 88% of rows, 3 distinct -- text place -- 53 other tables carry a clean site / place name
+- city: `OWNER_CITY` fills 84% of rows, 6,329 distinct -- text place -- 174 other tables carry a clean city
+- state: `OWNER_STATE` fills 82% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `OPER_CITY` fills 81% of rows, 6,360 distinct -- text place -- 174 other tables carry a clean city
+- country: `DPRT_COUNTRY` fills 80% of rows, 146 distinct -- country code -- 49 other tables carry a clean country
+- state: `OPER_STATE` fills 80% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `OWNER_ZIP` fills 79% of rows, 18,473 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `DPRT_CITY` fills 78% of rows, 6,552 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `OPER_ZIP` fills 75% of rows, 16,987 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- country: `DEST_COUNTRY` fills 73% of rows, 151 distinct -- country code -- 49 other tables carry a clean country
+- state: `DPRT_STATE` fills 72% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `DEST_CITY` fills 70% of rows, 6,117 distinct -- text place -- 174 other tables carry a clean city
+- state: `DEST_STATE` fills 65% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `OWNER_STREET` fills 33% of rows, 8,328 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `OPER_STREET` fills 26% of rows, 7,040 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_LAST_INSP`, when it happened, to the day, 1980-06-20 -> 2026-07-15:
+
+- `DATE_LAST_INSP`: when it happened, date (typed), 1980-06-20 -> 2026-07-15, 20,662 rows (try_to_date on the left 10 characters of an ISO string: the date the aircraft's last inspection actually took place, and the only real-world event date on this table -- the crash date itself lives on the events table via ev_id.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `LCHG_DATE`: our own download stamp -- never the clock, date (typed), 2020-09-25 -> 2026-07-31, 31,503 rows (NTSB's own 'last change' stamp on the database row (it sits next to lchg_userid on the sibling injury model): record-maintenance bookkeeping that says when the row was last edited, never when anything happened -- mistaking it for an event cl)
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_FAA_AIRCRAFT_REGISTRY` (FAA (Aviation): Aircraft Registry) -- **45%** of the aircraft tail number (n-number) values also appear in `FED_FAA_AIRCRAFT_REGISTRY` (13,528 matching)
   <sub>joins on: `FED_NTSB_AVIATION_AIRCRAFT.REGIS_NO` = `FED_FAA_AIRCRAFT_REGISTRY.N_NUMBER` &middot; key: `N_NUMBER`</sub>
-  <sub>checked 2026-08-29: SOLID -- the registry is current owners only, so old crashes miss; serial numbers agree 90%, the rest are reissued tail numbers</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **90%** -- the registry is current owners only, so old crashes miss; serial numbers agree 90%, the rest are reissued tail numbers</sub>
+
+
+### `FED_NTSB_AVIATION_EVENTS`
+*NTSB (Transportation Safety): Aviation Events*
+
+0 reliable connections, 7 value-checked place columns, 2 value-checked clock columns -- plus 36 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `EV_CITY` fills 100% of rows, 10,571 distinct -- text place -- 174 other tables carry a clean city
+- country: `EV_COUNTRY` fills 100% of rows, 185 distinct -- country code -- 49 other tables carry a clean country
+- lat / lon: `DEC_LATITUDE` fills 89% of rows, 21,980 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `DEC_LONGITUDE` fills 89% of rows, 23,180 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `EV_STATE` fills 85% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `EV_SITE_ZIPCODE` fills 78% of rows, 9,162 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- map shape: `LATLONG_ACQ` fills 71% of rows, 3 distinct -- text place -- 3 other tables carry a clean map shape
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `EV_DATE`, when it happened, to the day, 2008-01-01 -> 2026-07-29:
+
+- `EV_DATE`: when it happened, date (typed), 2008-01-01 -> 2026-07-29, 30,968 rows (try_to_date on the left 10 characters of an ISO string: the date the aviation accident or incident occurred, one row per event, which is the table's true clock.) -- 308 other tables keep a clock to the day
+- `EV_YEAR`: when it happened, year only, 2008 -> 2026, 30,968 rows (Uncast varchar year of the accident, a redundant decomposition of ev_date.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `LCHG_DATE`: our own download stamp -- never the clock, date (typed), 2020-09-25 -> 2026-07-31, 30,968 rows (NTSB's own last-change stamp on the database row: bookkeeping about when the record was last edited, not about the accident.)
 
 
 ### `FED_NURSINGHOME411`
 *Nursinghome411*
 
-33 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based.
+33 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based, 7 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `PROVIDER_ADDRESS` fills 100% of rows, 14,803 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY_TOWN` fills 100% of rows, 5,115 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 13,955 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 10,612 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_PARISH` fills 100% of rows, 1,710 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `LOCATION` fills 100% of rows, 14,870 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- region: `CMS_REGION_NUMBER` fills 100% of rows, 10 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES`, when it was decided, to the day, 1967-01-01 -> 2025-12-12:
+
+- `DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES`: when it was decided, date (typed), 1967-01-01 -> 2025-12-12, 14,713 rows (try_to_date (bare) - CMS approving the facility; 153 epoch-1970 rows on this table.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -7911,7 +13324,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **91%** of the nursing-home chain id values also appear in `FED_CMS_NURSING_HOME` (576 matching)
   <sub>joins on: `FED_NURSINGHOME411.CHAIN_ID` = `FED_CMS_NURSING_HOME.CHAIN_ID` &middot; key: `CHAIN_ID`</sub>
-  <sub>checked 2026-08-29: SOLID -- chain = owner group; there is no chain master table, names only</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- chain = owner group; there is no chain master table, names only</sub>
 
 **Same location:**
 
@@ -7923,6 +13336,34 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_NURSINGHOME411.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_OCC_NATIONAL_BANKS`
+*OCC (National Bank Regulator): National Banks*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LOC` fills 100% of rows, 704 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 569 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_OCC_THRIFTS`
+*OCC (National Bank Regulator): Thrifts*
+
+0 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LOC` fills 100% of rows, 216 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 201 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 48 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_OFAC_SDN`
 *OFAC (Sanctions List): SDN*
 
@@ -7932,16 +13373,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_CONSOLIDATED_SCREENING_LIST` (Consolidated Screening LIST) -- **97%** of the sanctions entry # (ofac) values also appear in `FED_CONSOLIDATED_SCREENING_LIST` (18,985 matching)
   <sub>joins on: `FED_OFAC_SDN.ENT_NUM` = `FED_CONSOLIDATED_SCREENING_LIST.ENTITY_NUMBER` &middot; key: `OFAC_ENT_NUM`</sub>
-  <sub>checked 2026-08-29: SOLID -- same number system; the screening list is the SDN list plus other agencies' lists</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- same number system; the screening list is the SDN list plus other agencies' lists</sub>
 - `INTL_UK_SANCTIONS_LIST` (International source: UK Sanctions LIST) -- **44%** of the ship hull number (imo) values also appear in `INTL_UK_SANCTIONS_LIST` (291 matching)
   <sub>joins on: `FED_OFAC_SDN.IMO` = `INTL_UK_SANCTIONS_LIST.IMO_NUMBER` &middot; key: `IMO`</sub>
-  <sub>checked 2026-08-29: SOLID (hull key, name drift) -- sanctioned ships get renamed; the IMO hull number never changes</sub>
+  <sub>checked 2026-08-29: SOLID (hull key, name drift) -- 60 matched pairs spot-checked: names agree **71.7%** -- sanctioned ships get renamed; the IMO hull number never changes</sub>
 
 
 ### `FED_OSHA_ITA_300A_SUMMARY_2023`
 *OSHA (Workplace Safety): ITA 300A Summary 2023*
 
-36 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 92 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 4 value-checked place columns, 2 value-checked clock columns -- plus 92 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 347,143 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 17,644 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 25,668 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_FILING_FOR`, when it happened, to the year, 2023 -> 2023:
+
+- `YEAR_FILING_FOR`: when it happened, year only, 2023 -> 2023, 394,234 rows (raw passthrough integer naming the recordkeeping year the 300A summary covers; the injury counts on the row are that year's injuries, so this is the honest year-grain placement - anchoring on created_timestamp instead would misdate the whol) -- 194 other tables keep a clock to the year
+- `CREATED_TIMESTAMP`: when it was reported / filed, datetime (typed), 2024-01-01 00:00:00.000 -> 2024-12-31 00:00:00.000, 394,234 rows (try_to_timestamp(CREATED_TIMESTAMP): when the establishment's 300A submission was created in OSHA's ITA portal - the census range for this 2023 file is exactly 2024-01-01 to 2024-12-31, a full year after the year it covers, which proves thi) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `TOTAL_DAFW_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 394,234 rows (raw passthrough total of days-away-from-work across the establishment's cases - a duration tally, not a date.)
+- **NOT A CLOCK** -- `TOTAL_DJTR_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2033, 394,234 rows (raw passthrough total of job-transfer/restriction days - a duration tally, not a date.)
+- **NOT A CLOCK** -- `NAICS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2012 -> 2022, 391,937 rows (raw passthrough sitting immediately beside NAICS_CODE: the NAICS revision vintage the industry code belongs to (a classification version label), not a time for the row.)
 
 **Rock-solid match:**
 
@@ -8031,7 +13487,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_OSHA_ITA_300A_SUMMARY_2024`
 *OSHA (Workplace Safety): ITA 300A Summary 2024*
 
-36 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 91 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 3 value-checked place columns, 2 value-checked clock columns -- plus 91 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 364,650 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 17,241 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_FILING_FOR`, when it happened, to the year, 2024 -> 2024:
+
+- `YEAR_FILING_FOR`: when it happened, year only, 2024 -> 2024, 398,620 rows (raw passthrough integer naming the recordkeeping year the 300A summary covers; the counts are that year's injuries, and the file's created_timestamp range (2025) confirms the submission year is one later.) -- 194 other tables keep a clock to the year
+- `CREATED_TIMESTAMP`: when it was reported / filed, datetime (typed), 2025-01-01 00:00:00.000 -> 2025-12-31 00:00:00.000, 398,620 rows (try_to_timestamp(CREATED_TIMESTAMP): the ITA portal submission timestamp; census range 2025-01-01 to 2025-12-31 for a file covering 2024, i.e. the reporting lag made visible.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `NAICS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2012 -> 2022, 398,620 rows (raw passthrough beside NAICS_CODE: the NAICS revision vintage, a classification version label.)
+- **NOT A CLOCK** -- `TOTAL_DAFW_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2032, 398,620 rows (raw passthrough total of days-away-from-work - a duration tally.)
+- **NOT A CLOCK** -- `TOTAL_DJTR_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 398,620 rows (raw passthrough total of job-transfer/restriction days - a duration tally.)
 
 **Rock-solid match:**
 
@@ -8124,7 +13594,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_OSHA_ITA_300A_SUMMARY_2025`
 *OSHA (Workplace Safety): ITA 300A Summary 2025*
 
-37 reliable connections -- plus 91 low-confidence name+ZIP guesses not shown here.
+37 reliable connections, 4 value-checked place columns, 2 value-checked clock columns -- plus 91 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 350,418 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 16,617 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 24,632 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_FILING_FOR`, when it happened, to the year, 2025 -> 2025:
+
+- `YEAR_FILING_FOR`: when it happened, year only, 2025 -> 2025, 383,277 rows (raw passthrough integer naming the recordkeeping year (2025) the summary covers, one row per establishment; the year-grain anchor for this annual file.) -- 194 other tables keep a clock to the year
+- `CREATED_TIMESTAMP`: when it was reported / filed, datetime (typed), 2026-01-01 00:00:00.000 -> 2026-03-15 00:00:00.000, 383,277 rows (try_to_timestamp(CREATED_TIMESTAMP): ITA portal submission timestamp; census range 2026-01-01 to 2026-03-15 shows this file is still mid-submission-window (graded SHORT_SPAN), so row counts here are not final.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `NAICS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1801 -> 2025, 383,280 rows (raw passthrough beside NAICS_CODE: the NAICS revision vintage, a classification version label.)
+- **NOT A CLOCK** -- `TOTAL_DAFW_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1706 -> 2033, 383,280 rows (raw passthrough total of days-away-from-work - a duration tally.)
+- **NOT A CLOCK** -- `TOTAL_DJTR_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1701 -> 2032, 383,280 rows (raw passthrough total of job-transfer/restriction days - a duration tally.)
 
 **Rock-solid match:**
 
@@ -8210,7 +13695,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_OSHA_ITA_CASE_DETAIL_2023`
 *OSHA (Workplace Safety): ITA CASE Detail 2023*
 
-36 reliable connections -- plus 75 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 5 value-checked place columns, 3 value-checked clock columns -- plus 75 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 89,884 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 9,425 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 17,331 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- site / place name: `NEW_INCIDENT_LOCATION` fills 99% of rows, 270,217 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_INCIDENT`, when it happened, to the day, 2022-02-26 -> 2024-12-12:
+
+- `DATE_OF_INCIDENT`: when it happened, date (typed), 2022-02-26 -> 2024-12-12, 890,934 rows (try_to_date(DATE_OF_INCIDENT) in the mart: the day the injury or illness incident happened to a named worker - the true event clock for this case-grain table.) -- 308 other tables keep a clock to the day
+- `DATE_OF_DEATH`: when it happened, date (typed), 2023-01-01 -> 2024-05-04, 282 rows (try_to_date(DATE_OF_DEATH): when the injured worker died; populated only for fatalities, so it cannot serve as the table's clock.) -- 308 other tables keep a clock to the day
+- `YEAR_FILING_FOR`: when it was reported / filed, year only, 2023 -> 2023, 890,934 rows (raw passthrough integer recordkeeping year the case was logged under; this file's earliest incident is 2022-02-26, proving the log year can trail the incident, so it is a reporting-year label rather than the event year.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `NAICS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2012 -> 2022, 889,661 rows (raw passthrough beside NAICS_CODE: the NAICS revision vintage, a classification version label, not a row time.)
 
 **Rock-solid match:**
 
@@ -8294,7 +13794,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_OSHA_ITA_CASE_DETAIL_2024`
 *OSHA (Workplace Safety): ITA CASE Detail 2024*
 
-34 reliable connections -- plus 73 low-confidence name+ZIP guesses not shown here.
+34 reliable connections, 4 value-checked place columns, 1 value-checked clock column -- plus 73 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 62,976 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 7,807 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- site / place name: `NEW_INCIDENT_LOCATION` fills 100% of rows, 216,590 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_OF_FILING`, when it was reported / filed, to the year, 2024 -> 2024:
+
+- `YEAR_OF_FILING`: when it was reported / filed, year only, 2024 -> 2024, 688,649 rows (raw passthrough integer (the 2024/2025 marts rename this YEAR_OF_FILING where 2023 called it YEAR_FILING_FOR): the recordkeeping year the case was logged under, which can trail the incident year.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `NAICS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2012 -> 2022, 688,649 rows (raw passthrough beside NAICS_CODE: the NAICS revision vintage, a classification version label.)
 
 **Rock-solid match:**
 
@@ -8374,7 +13886,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_OSHA_ITA_CASE_DETAIL_2025`
 *OSHA (Workplace Safety): ITA CASE Detail 2025*
 
-36 reliable connections -- plus 71 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 4 value-checked place columns, 2 value-checked clock columns -- plus 71 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `STREET_ADDRESS` fills 100% of rows, 34,963 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 6,124 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- site / place name: `NEW_INCIDENT_LOCATION` fills 100% of rows, 122,874 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_INCIDENT`, when it happened, to the day, 2024-01-01 -> 2025-12-31:
+
+- `DATE_OF_INCIDENT`: when it happened, date (typed), 2024-01-01 -> 2025-12-31, 330,447 rows (try_to_date(DATE_OF_INCIDENT) in the mart: the day the injury or illness happened; census CLEAN, 2024-01-01 to 2025-12-31 (incidents from the prior year still appear on the 2025 log).) -- 308 other tables keep a clock to the day
+- `YEAR_OF_FILING`: when it was reported / filed, year only, 2025 -> 2025, 330,447 rows (raw passthrough integer recordkeeping year the case was logged under; the census range proves incidents from 2024 sit on the 2025 log, so this is a reporting year, not the event year.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `NAICS_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2012 -> 2022, 330,447 rows (raw passthrough beside NAICS_CODE: the NAICS revision vintage, a classification version label.)
 
 **Rock-solid match:**
 
@@ -8458,7 +13983,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_OYEZ`
 *Oyez (Supreme Court Archive)*
 
-1 reliable connection.
+1 reliable connection, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it was decided, to the day, 1966-01-17 -> 1973-01-22:
+
+- `DATE`: when it was decided, date (typed), 1966-01-17 -> 1973-01-22, 25 rows (a straight alias of decision_date in the mart (select decision_date as date) - a duplicate column kept as the cross-source join name, so it must not be counted as a second clock.) -- 308 other tables keep a clock to the day
+- `DECISION_DATE`: when it was decided, date (typed), 1966-01-17 -> 1973-01-22, 25 rows (try_to_date(DECISION_DATE) in staging: when the Court handed down its ruling - the mart itself aliases this very column as the canonical 'date' for cross-source joins, so it is the table's own chosen anchor.) -- 308 other tables keep a clock to the day
+- `ARGUMENT_DATE`: when it was decided, date (typed), 1971-10-19 -> 1972-04-20, 16 rows (try_to_date(ARGUMENT_DATE) in staging: when oral argument was heard - a court proceeding (the authority acting) that precedes the ruling, not a real-world harm event; census min 1966-01-17 comes from this or decision_date.) -- 308 other tables keep a clock to the day
+- `TERM`: when it was decided, year only, 1966 -> 1971, 25 rows (try_to_number(TERM) in staging: the SCOTUS term year as an integer, and a term runs October to June so the label is not a calendar year - year grain at best, and never date-parse it.) -- 194 other tables keep a clock to the year
 
 > **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
@@ -8466,6 +13998,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_SCDB` (Supreme Court Database) -- **88%** of the court docket / case number values also appear in `FED_SCDB` (22 matching)
   <sub>joins on: `FED_OYEZ.DOCKET` = `FED_SCDB.DOCKET` &middot; key: `DOCKET`</sub>
+
+
+### `FED_PBGC_DATA`
+*PBGC (Pension Insurance): DATA*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 6% of rows, 80 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_YEAR`, when it happened, to the year, 2010 -> 2023:
+
+- `DATA_YEAR`: when it happened, year only, 2010 -> 2023, 134,534 rows (Raw passthrough of DATA_YEAR, the year each pension-insurance metric describes; it is the year the measured thing was true, and it is part of the model's dedup partition key so it is populated.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_PBGC_TRUSTEED_PENSION_PLANS`
@@ -8553,7 +14101,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_PBGC_TRUSTEED_PLANS`
 *PBGC (Pension Insurance): Trusteed Plans*
 
-25 reliable connections.
+25 reliable connections, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 99% of rows, 1,683 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 99% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_PLAN_TERMINATION`, when it happened, to the day, 1972-04-01 -> 2026-04-30:
+
+- `DATE_OF_PLAN_TERMINATION`: when it happened, date (typed), 1972-04-01 -> 2026-04-30, 5,176 rows (try_to_date(left(trim(DATE_OF_PLAN_TERMINATION),10)) in staging: the day the pension plan terminated - the real-world failure this one-row-per-case table exists to record, and the census min of 1972-04-01 is a plausible genuine value.) -- 308 other tables keep a clock to the day
+- `DATE_OF_PBGC_TRUSTEESHIP`: when it was decided, date (typed), 1975-02-27 -> 2026-06-12, 5,176 rows (try_to_date(left(trim(DATE_OF_PBGC_TRUSTEESHIP),10)): the day the federal insurer acted to take the failed plan over - an authority's action, at or after termination, and the gap between the two is itself a finding.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -8615,7 +14173,20 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_PCAOB_FORM_AP_FILINGS`
 *Pcaob FORM AP Filings*
 
-32 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+32 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 5 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `SIGNED_EMAIL_ADDRESS` fills 100% of rows, 2,068 distinct -- text place -- 114 other tables carry a clean street address
+- city: `FIRM_ISSUING_CITY` fills 100% of rows, 762 distinct -- text place -- 174 other tables carry a clean city
+- country: `FIRM_COUNTRY` fills 100% of rows, 55 distinct -- country name -- 49 other tables carry a clean country
+- country: `FIRM_ISSUING_COUNTRY` fills 100% of rows, 63 distinct -- country name -- 49 other tables carry a clean country
+- state: `FIRM_ISSUING_STATE` fills 90% of rows, 53 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AUDIT_DUAL_DATE`, when it happened, to the day, 2016-02-17 -> 2026-08-04:
+
+- `AUDIT_DUAL_DATE`: when it happened, date as text (iso), 2016-02-17 -> 2026-08-04, 5,394 rows (Left as raw trimmed TEXT while every real date in this model is try_to_date'd - semantically the report's dual date, but it can carry qualifier prose and is unusable until parsed.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `AUDIT_PERIOD_INFORMATION`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (us), 2011-03-31 -> 2023-12-31, 4,196 rows (nullif(trim(...)) - free text describing the audit period, not a parseable date.)
 
 **Rock-solid match:**
 
@@ -8691,13 +14262,28 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_SEC_INSIDER_SUBMISSION` (SEC (Securities Regulator): Insider Submission) -- **34%** of the sec filer id (cik) values also appear in `FED_SEC_INSIDER_SUBMISSION` (9,844 matching)
   <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK` = `FED_SEC_INSIDER_SUBMISSION.ISSUERCIK` &middot; key: `CIK`</sub>
-  <sub>checked 2026-08-29: SOLID -- audit engagement -> the audited company's insider filings; misses are corporate renames under the same CIK</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **93.3%** -- audit engagement -> the audited company's insider filings; misses are corporate renames under the same CIK</sub>
 
 
 ### `FED_PHMSA_FLAGGED_INCIDENTS`
 *Phmsa Flagged Incidents*
 
-0 reliable connections, 2 place-based -- plus 7 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 2 place-based, 7 value-checked place columns, 2 value-checked clock columns -- plus 7 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `OPERATOR_STREET_ADDRESS` fills 100% of rows, 218 distinct -- text place -- 114 other tables carry a clean street address
+- city: `OPERATOR_CITY` fills 100% of rows, 90 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LOCATION_LATITUDE` fills 100% of rows, 25 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LOCATION_LONGITUDE` fills 100% of rows, 57 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `OPERATOR_STATE` fills 100% of rows, 38 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `OPERATOR_POSTAL_CODE` fills 100% of rows, 136 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- region: `TIME_ZONE` fills 42% of rows, 5 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCIDENT_YEAR`, when it happened, to the year, 2010 -> 2026:
+
+- `INCIDENT_YEAR`: when it happened, year only, 2010 -> 2026, 2,039 rows (try_to_number(trim(IYEAR)): the year the pipeline incident occurred. A coarse integer duplicate of local_datetime.) -- 194 other tables keep a clock to the year
+- `REPORT_RECEIVED_DATE`: when it was reported / filed, date (typed), 2010-03-10 -> 2026-07-31, 2,039 rows (Staging casts try_to_date(trim(REPORT_RECEIVED_DATE)): the day PHMSA received the operator's incident report - always after the incident, and the gap is itself a finding.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -8707,46 +14293,84 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_PHMSA_FLAGGED_INCIDENTS.LOCATION_LATITUDE/LOCATION_LONGITUDE` = `FED_MAPPING_INEQUALITY.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_RETRACTION_WATCH`
+*Retraction Watch*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRIES` fills 98% of rows, 3,628 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ORIGINAL_PAPER_DATE`, when it happened, to the day, 1753-01-01 -> 2026-05-04:
+
+- `ORIGINAL_PAPER_DATE`: when it happened, date (typed), 1753-01-01 -> 2026-05-04, 71,377 rows (Same explicit 'MM/DD/YYYY' cast: the day the original paper was published, the antecedent event -- the gap to retraction_date is the response lag, and genuinely old papers explain the 1753 census floor (15 epoch-1970 values are the suspect p) -- 308 other tables keep a clock to the day
+- `RETRACTION_DATE`: when it was decided, date (typed), 1756-06-24 -> 2026-07-17, 71,377 rows (try_to_date with an explicit 'MM/DD/YYYY' format after splitting the time off 'M/D/YYYY H:MM' text: the day the journal or publisher issued the retraction, which is the event this row IS.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_SAM_ENTITY_PUBLIC`
 *SAM.gov (Federal Contractor Registry): Entity Public*
 
-0 reliable connections, 9 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 12 measured 2026-08-29 (not yet in the spine).
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **93%** of the defense contractor code (cage) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (85,857 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.CAGE_CODE` = `FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE` &middot; key: `CAGE`</sub>
-  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; 1 in 60 is a CAGE reassigned to a new firm</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **93.1%** -- pass-1 edge, name-checked in pass 2; 1 in 60 is a CAGE reassigned to a new firm</sub>
+- `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **92%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_CONTRACTS` (85,832 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_CONTRACTS.RECIPIENT_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- recent-years contracts copy (5.7M rows) -> SAM registrant</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **80%** of the federal contractor id (uei) values also appear in `FED_NIH_REPORTER` (9,643 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_NIH_REPORTER.ORG_UEI` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- misses are affiliates registered under a sibling legal name</sub>
+  <sub>checked 2026-08-29: SOLID -- 57 matched pairs spot-checked: names agree **82.5%** -- misses are affiliates registered under a sibling legal name</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **74%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (39,436 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_uei` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- grant recipient's parent company</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- grant recipient's parent company</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **71%** of the federal contractor id (uei) values also appear in `FED_SBIR_STTR_AWARDS` (12,144 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_SBIR_STTR_AWARDS.UEI` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- names agree 98%; the SBIR 'state' column is NOT a state code (0% agreement) -- a column-meaning trap, not a key problem</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **0%** -- names agree 98%; the SBIR 'state' column is NOT a state code (0% agreement) -- a column-meaning trap, not a key problem</sub>
 - `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **68%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (50,415 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_PARENT_UEI` &middot; key: `UEI`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subrecipient's parent company</sub>
 - `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **67%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (148,253 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_UEI` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **96.7%**, states agree **98.3%**</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **55%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (123,076 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_ASSISTANCE_FULL.recipient_uei` &middot; key: `UEI`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grant recipient</sub>
 - `XC_EPA_CORPORATE_CROSSWALK` (Cross-reference / bridge table: EPA Corporate Crosswalk) -- **55%** of the federal contractor id (uei) values also appear in `XC_EPA_CORPORATE_CROSSWALK` (17,373 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `XC_EPA_CORPORATE_CROSSWALK.PARENT_UEI` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID (n=6 sampled) -- 8.1% of crosswalk rows carry one</sub>
+  <sub>checked 2026-08-29: SOLID (n=6 sampled) -- 6 matched pairs spot-checked: names agree **100%** -- 8.1% of crosswalk rows carry one</sub>
+- `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **38%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (160,157 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_CONTRACTS_FULL.recipient_uei` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- 20M-row contracts copy -> SAM registrant; same older-UEI gap as the full file</sub>
+- `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **33%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (192,931 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- contractor -> its SAM registration. The 92.5% quoted in the pass-1 report was measured on the small recent-years contracts copy; on the full 93M-row file two thirds of recipient UEIs are older registrations missing from the current public SAM extract</sub>
 - `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **32%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (178,303 matching)
   <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_PARENT_UEI` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- contractor's parent company; older UEIs are missing from the current SAM file, hence the low rate</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- contractor's parent company; older UEIs are missing from the current SAM file, hence the low rate</sub>
 
 
 ### `FED_SAM_EXCLUSIONS`
 *SAM.gov -- Federal Debarment List*
 
-5 reliable connections -- plus 17 low-confidence name+ZIP guesses not shown here.
+5 reliable connections, 3 value-checked place columns, 2 value-checked clock columns -- plus 17 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 187 distinct -- country code -- 49 other tables carry a clean country
+- city: `CITY` fills 88% of rows, 12,550 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 78% of rows, 833 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVATION_DATE`, start of a period, to the day, 1908-04-20 -> 2026-08-06:
+
+- `ACTIVATION_DATE`: start of a period, date (typed), 1908-04-20 -> 2026-08-06, 156,912 rows (Day the debarment/suspension took effect - it opens the exclusion period the model itself describes ('and for how long?') and is cast try_to_date(...,'YYYY-MM-DD'); the census's 1908 minimum is a source typo, not a parse bug.) -- 308 other tables keep a clock to the day
+- `TERMINATION_DATE`: end of a period, date (typed), 2026-03-02 -> 2035-12-29, 9,172 rows (Day the exclusion lapses - the parsed half of the pair, NULL on the ~95% 'Indefinite' rows; the census's 2227 max and 1,690 far-future rows are real source placeholder dates for effectively permanent debarments.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `TERMINATION_DATE_RAW`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (iso), 2026-03-02 -> 2035-12-29, 167,928 rows (FALSE POSITIVE - the model header states this is the LITERAL TEXT 'Indefinite' on about 95% of rows; it is the uncast string kept beside the parsed column, so it is mostly not a date at all.)
 
 **Rock-solid match:**
 
@@ -8768,7 +14392,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SAM_EXCLUSIONS_FULL_R2`
 *SAM.gov -- Federal Debarment List: FULL R2*
 
-27 reliable connections -- plus 24 low-confidence name+ZIP guesses not shown here.
+27 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 24 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -8830,26 +14454,91 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the old <-> new contractor id values also appear in `FED_NIH_REPORTER` (3 matching)
   <sub>joins on: via a crosswalk table &middot; key: `DUNS~UEI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **46%** of the defense contractor code (cage) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (182 matching)
+  <sub>joins on: `FED_SAM_EXCLUSIONS_FULL_R2.CAGE` = `FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE` &middot; key: `CAGE`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- debarred firms that also show up as contractors; only 435 of 168K exclusion rows carry a CAGE, so the exclusions side is thin</sub>
+
 
 ### `FED_SBA_LOANS`
 *SBA Loans*
 
-0 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 12 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 6 value-checked place columns, 5 value-checked clock columns -- plus 12 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `BORROWER_CITY` fills 100% of rows, 31,783 distinct -- text place -- 174 other tables carry a clean city
+- county: `PROJECT_COUNTY` fills 100% of rows, 1,954 distinct -- county name -- 79 other tables carry a clean county
+- state: `BORROWER_STATE` fills 100% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PROJECT_STATE` fills 100% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `CDC_STATE` fills 10% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `LENDER_STATE` fills 6% of rows, 61 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- congressional district: `CONGRESSIONAL_DISTRICT` fills 96% of rows, 54 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FIRST_DISBURSEMENT_DATE`, when it happened, to the day, 1987-04-01 -> 2028-06-18:
+
+- `FIRST_DISBURSEMENT_DATE`: when it happened, date (typed), 1987-04-01 -> 2028-06-18, 1,869,773 rows (try_to_date(FIRSTDISBURSEMENTDATE); the day the money actually moved -- the truest real-world event here, but sparsely populated relative to approval_date.) -- 308 other tables keep a clock to the day
+- `PAID_IN_FULL_DATE`: when it happened, date (typed), 2005-05-31 -> 2026-02-28, 1,283,167 rows (try_to_date(PAIDINFULLDATE); the day the loan was repaid, an outcome event on a subset of rows.) -- 308 other tables keep a clock to the day
+- `CHARGEOFF_DATE`: when it happened, date (typed), 1991-10-08 -> 2026-10-22, 251,499 rows (try_to_date(CHARGEOFFDATE); the day the loan was written off -- the harm-side outcome clock on this table.) -- 308 other tables keep a clock to the day
+- `APPROVAL_DATE`: when it was decided, date (typed), 1990-10-01 -> 2026-03-31, 2,174,502 rows (try_to_date(APPROVALDATE); SBA approving the loan is an authority acting, and the model's own grain comment shows APPROVALDATE is part of the row identity, so it is the one date present on every loan -- first_disbursement_date is 'happened' ) -- 308 other tables keep a clock to the day
+- `APPROVAL_FISCAL_YEAR`: when it was decided, year only, 1991 -> 2026, 2,174,502 rows (try_to_number(APPROVALFY) is a fiscal-year integer restating approval_date at year grain; safe because it is a number, and it must stay one.) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (3,938 matching)
   <sub>joins on: `FED_SBA_LOANS.BANKFDICNUMBER` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
-  <sub>checked 2026-08-29: SOLID -- SBA lender -> bank</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **100%** -- SBA lender -> bank</sub>
 - `FED_NCUA_CALL_REPORTS_FOICU` (NCUA (Credit Union Regulator): CALL Reports Foicu) -- **97%** of the credit union charter # values also appear in `FED_NCUA_CALL_REPORTS_FOICU` (570 matching)
   <sub>joins on: `FED_SBA_LOANS.BANKNCUANUMBER` = `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` &middot; key: `NCUA_CHARTER`</sub>
-  <sub>checked 2026-08-29: SOLID -- SBA lender -> credit union; strip leading zeros</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **100%** -- SBA lender -> credit union; strip leading zeros</sub>
+
+
+### `FED_SBA_PPP`
+*SBA PPP*
+
+0 reliable connections, 8 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `BORROWER_CITY` fills 100% of rows, 16,272 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `CONGRESSIONAL_DISTRICT` fills 100% of rows, 461 distinct -- text place -- 13 other tables carry a clean congressional district
+- county: `PROJECT_COUNTY` fills 100% of rows, 1,922 distinct -- county name -- 79 other tables carry a clean county
+- metro area: `RURAL_URBAN_INDICATOR` fills 100% of rows, 2 distinct -- text place -- 19 other tables carry a clean metro area
+- state: `BORROWER_STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PROJECT_STATE` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `SERVICING_LENDER_STATE` fills 100% of rows, 55 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `BORROWER_ZIP` fills 100% of rows, 507,978 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_APPROVED`, when it was decided, to the day, 2020-04-03 -> 2021-07-19:
+
+- `DATE_APPROVED`: when it was decided, date (typed), 2020-04-03 -> 2021-07-19, 968,524 rows (try_to_date(DATEAPPROVED); SBA approval of the PPP loan, present on every row and used as the dedup ordering key in the model, and it matches the census window 2020-04-03 to 2024-09-30.) -- 308 other tables keep a clock to the day
+- `LOAN_STATUS_DATE`: when it was decided, date (typed), 2020-04-30 -> 2024-09-30, 957,196 rows (try_to_date(LOANSTATUSDATE); the date SBA set the loan's current status (paid in full, charged off, etc.), so it is an authority action, later than approval.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_SBIR_STTR_AWARDS`
 *SBIR (Small Business Research Grants): STTR Awards*
 
-12 reliable connections, 3 measured 2026-08-29 (not yet in the spine) -- plus 18 low-confidence name+ZIP guesses not shown here.
+12 reliable connections, 3 measured 2026-08-29 (not yet in the spine), 4 value-checked place columns, 7 value-checked clock columns -- plus 18 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 4,024 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 55 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- street address: `ADDRESS1` fills 100% of rows, 32,680 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `ADDRESS2` fills 17% of rows, 3,913 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `AWARD_YEAR`, when it happened, to the year, 1983 -> 2026:
+
+- `AWARD_YEAR`: when it happened, year only, 1983 -> 2026, 219,503 rows (try_to_number on the award year, which the staging model also uses as part of the surrogate key: the year the award was made, at year grain.) -- 194 other tables keep a clock to the year
+- `PROPOSAL_AWARD_DATE`: when it was decided, date (typed), 1905-07-01 -> 2026-12-20, 112,951 rows (try_to_date with no format on the day the agency awarded the contract -- the row's own dated event, but the bare cast lets junk source values through, which is why the census shows a 0001-01-01 floor and a 5025-05-05 ceiling (3 far-future va) -- 308 other tables keep a clock to the day
+- `DATE_OF_NOTIFICATION`: when it was decided, date (typed), 1900-02-01 -> 2025-11-03, 88,075 rows (try_to_date on the day the applicant was notified of the agency's decision -- the communication of the ruling, usually at or after proposal_award_date.) -- 308 other tables keep a clock to the day
+- `PROPOSAL_RECEIPT_DATE`: when it was reported / filed, date (typed), 1987-01-01 -> 2025-10-17, 65,874 rows (try_to_date on the day the agency received the proposal -- a receipt date, the textbook 'reported' clock.) -- 308 other tables keep a clock to the day
+- `SOLICITATION_YEAR`: when it was reported / filed, year only, 1985 -> 2025, 133,161 rows (try_to_number on the year the agency issued the solicitation this proposal answered -- an attribute of the solicitation, one step before the award.) -- 194 other tables keep a clock to the year
+- `CONTRACT_END_DATE`: end of a period, date (typed), 1905-07-02 -> 2032-09-12, 107,932 rows (try_to_date: the closing bound of the award's period of performance.) -- 308 other tables keep a clock to the day
+- `SOLICITATION_CLOSE_DATE`: end of a period, date (typed), 1989-01-01 -> 2025-11-05, 82,241 rows (try_to_date on the day the solicitation window closed -- the deadline bound of the application period, not an action on this award.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -8885,7 +14574,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **71%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (12,144 matching)
   <sub>joins on: `FED_SBIR_STTR_AWARDS.UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- names agree 98%; the SBIR 'state' column is NOT a state code (0% agreement) -- a column-meaning trap, not a key problem</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **0%** -- names agree 98%; the SBIR 'state' column is NOT a state code (0% agreement) -- a column-meaning trap, not a key problem</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **10%** of the nih project # values also appear in `FED_NIH_REPORTER` (16,831 matching)
   <sub>joins on: `FED_SBIR_STTR_AWARDS.AGENCY_TRACKING_NUMBER` = `FED_NIH_REPORTER.CORE_PROJECT_NUM` &middot; key: `NIH_PROJECT`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR tracking number -> NIH project</sub>
@@ -8897,7 +14586,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SCDB`
 *Supreme Court Database*
 
-1 reliable connection.
+1 reliable connection, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- region: `JURISDICTION_CODE` fills 100% of rows, 11 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `RESPONDENT_STATE_CODE` fills 28% of rows, 55 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- state: `CASE_ORIGIN_STATE_CODE` fills 27% of rows, 53 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- state: `CASE_SOURCE_STATE_CODE` fills 23% of rows, 53 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- state: `PETITIONER_STATE_CODE` fills 20% of rows, 56 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- state: `ADMIN_ACTION_STATE_CODE` fills 7% of rows, 52 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_ARGUMENT`, when it happened, to the day, 1944-10-08 -> 2025-05-15:
+
+- `DATE_ARGUMENT`: when it happened, date (typed), 1944-10-08 -> 2025-05-15, 74,160 rows (try_to_date(DATEARGUMENT,'MM/DD/YYYY') -- the day oral argument took place; null for cases decided without argument.) -- 308 other tables keep a clock to the day
+- `DATE_REARGUMENT`: when it happened, date (typed), 1946-10-14 -> 2019-01-16, 1,599 rows (try_to_date(DATEREARG,'MM/DD/YYYY') -- the day the case was reargued.) -- 308 other tables keep a clock to the day
+- `DATE_DECISION`: when it was decided, date (typed), 1946-11-18 -> 2025-06-30, 83,644 rows (Staging: try_to_date(DATEDECISION,'MM/DD/YYYY') -- the day the Supreme Court handed down the decision. Chosen as primary over date_argument despite the happened>decided preference: SCOTUS cases are canonically dated by decision and many are) -- 308 other tables keep a clock to the day
+- `TERM`: start of a period, year only, 1946 -> 2024, 83,644 rows (try_to_number(TERM) -- the Supreme Court TERM (e.g. 1994 = the term starting Oct 1994 and running to Jun 1995), so it opens a term-long period. It is a NUMBER: a bare date-parse would read it as epoch seconds.) -- 194 other tables keep a clock to the year
 
 > **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
@@ -8907,10 +14612,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_SCDB.DOCKET` = `FED_OYEZ.DOCKET` &middot; key: `DOCKET`</sub>
 
 
+### `FED_SEC_13F_FILERS`
+*SEC (Securities Regulator): 13F Filers*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns -- plus 38 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `FILINGMANAGER_CITY` fills 100% of rows, 2,288 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATEDENIEDEXPIRED`, when it was decided, to the day, 2012-10-01 -> 2027-05-17:
+
+- `DATEDENIEDEXPIRED`: when it was decided, date (typed), 2012-10-01 -> 2027-05-17, 1,581 rows (try_to_date(DATEDENIEDEXPIRED) - when the SEC denied a confidential-treatment request or it expired; legitimately future-dated, which explains the census max of 2027-05-17.) -- 308 other tables keep a clock to the day
+- `DATEREPORTED`: when it was reported / filed, date as text (dd_mon_yyyy), 2007-02-06 -> 2026-05-15, 1,581 rows (Raw uncast DATEREPORTED - when previously-confidential holdings were finally reported; sparse, confidential-treatment rows only, so a poor table clock.) -- 308 other tables keep a clock to the day
+- `REPORTCALENDARORQUARTER`: end of a period, date as text (dd_mon_yyyy), 1900-01-01 -> 2026-03-31, 344,109 rows (Raw uncast passthrough of the 13F report calendar quarter-end - the period the filing covers, and the only column populated on every row.) -- 308 other tables keep a clock to the day
+
+
 ### `FED_SEC_13F_SUBMISSIONS`
 *SEC (Securities Regulator): 13F Submissions*
 
-23 reliable connections.
+23 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILING_DATE`, when it was reported / filed, to the day, 2013-05-20 -> 2026-05-29:
+
+- `FILING_DATE`: when it was reported / filed, date as text (dd_mon_yyyy), 2013-05-20 -> 2026-05-29, 336,124 rows (Raw FILING_DATE passthrough - when the 13F submission was filed with the SEC; uncast text, so never bare date-parse it.) -- 308 other tables keep a clock to the day
+- `PERIODOFREPORT`: end of a period, date as text (dd_mon_yyyy), 1987-03-31 -> 2026-03-31, 336,124 rows (Raw PERIODOFREPORT passthrough - the quarter-end the reported holdings are as of, closing the covered period.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -8968,7 +14694,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT`
 *SEC (Securities Regulator): Business Development Company Report*
 
-14 reliable connections, 3 place-based.
+14 reliable connections, 3 place-based, 5 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_1` fills 100% of rows, 154 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 54 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 27 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 99% of rows, 94 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_2` fills 54% of rows, 77 distinct -- text place -- 114 other tables carry a clean street address
 
 **Rock-solid match:**
 
@@ -9014,7 +14748,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_CLOSED_END_FUND_INFORMATION`
 *SEC (Securities Regulator): Closed END FUND Information*
 
-6 reliable connections, 3 place-based -- plus 2 low-confidence name+ZIP guesses not shown here.
+6 reliable connections, 3 place-based, 5 value-checked place columns -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_1` fills 100% of rows, 459 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 133 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 40 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 98% of rows, 237 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_2` fills 51% of rows, 207 distinct -- text place -- 114 other tables carry a clean street address
 
 **Rock-solid match:**
 
@@ -9044,7 +14786,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2024Q1`
 *SEC (Securities Regulator): DERA SUB 2024q1*
 
-38 reliable connections.
+38 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2024-01-02 -> 2024-03-29:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2024-01-02 -> 2024-03-29, 6,028 rows (Raw FILED passthrough - the YYYYMMDD date the submission was filed with the SEC; uncast text, so never bare date-parse it.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2016-09-30 -> 2024-02-29, 6,026 rows (Raw PERIOD passthrough - the DERA balance-sheet date, rounded by SEC to the nearest month end, bounding the period the filing reports; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2016 -> 2025, 5,671 rows (try_to_number(FY) - the fiscal-year focus labelling the period the filing covers; a bare year number and the canonical epoch-1970 trap in this warehouse.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9132,7 +14880,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2024Q2`
 *SEC (Securities Regulator): DERA SUB 2024q2*
 
-37 reliable connections.
+37 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2024-04-01 -> 2024-06-28:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2024-04-01 -> 2024-06-28, 7,675 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2020-06-30 -> 2024-12-31, 7,674 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end, bounding the reported period; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2020 -> 2025, 7,243 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9218,7 +14972,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2024Q3`
 *SEC (Securities Regulator): DERA SUB 2024q3*
 
-38 reliable connections.
+38 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2024-07-01 -> 2024-09-30:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2024-07-01 -> 2024-09-30, 6,699 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2022-03-31 -> 2024-08-31, 6,699 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2022 -> 2025, 6,374 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9306,7 +15066,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2024Q4`
 *SEC (Securities Regulator): DERA SUB 2024q4*
 
-37 reliable connections.
+37 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2024-10-01 -> 2024-12-31:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2024-10-01 -> 2024-12-31, 6,491 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2019-03-31 -> 2024-11-30, 6,490 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2019 -> 2025, 6,143 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9392,7 +15158,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2025Q1`
 *SEC (Securities Regulator): DERA SUB 2025q1*
 
-39 reliable connections.
+39 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2025-01-02 -> 2025-03-31:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2025-01-02 -> 2025-03-31, 6,231 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2018-12-31 -> 2025-02-28, 6,228 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2018 -> 2025, 5,844 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9482,7 +15254,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2025Q2`
 *SEC (Securities Regulator): DERA SUB 2025q2*
 
-39 reliable connections.
+39 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2025-04-01 -> 2025-06-30:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2025-04-01 -> 2025-06-30, 7,009 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2021-12-31 -> 2025-12-31, 7,008 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2023 -> 2026, 6,639 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9572,7 +15350,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2025Q3`
 *SEC (Securities Regulator): DERA SUB 2025q3*
 
-39 reliable connections.
+39 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2025-07-01 -> 2025-09-30:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2025-07-01 -> 2025-09-30, 6,541 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2020-12-31 -> 2025-08-31, 6,541 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2021 -> 2026, 6,199 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9662,7 +15446,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2025Q4`
 *SEC (Securities Regulator): DERA SUB 2025q4*
 
-38 reliable connections.
+38 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2025-10-01 -> 2025-12-31:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2025-10-01 -> 2025-12-31, 6,304 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2022-03-31 -> 2025-12-31, 6,304 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2022 -> 2027, 6,003 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9750,7 +15540,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_DERA_SUB_2026Q1`
 *SEC (Securities Regulator): DERA SUB 2026q1*
 
-40 reliable connections.
+40 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2026-01-02 -> 2026-03-31:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2026-01-02 -> 2026-03-31, 6,169 rows (Raw FILED passthrough - the YYYYMMDD SEC filing date; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2023-04-30 -> 2026-02-28, 6,167 rows (Raw PERIOD passthrough - the DERA balance-sheet date rounded to month end; uncast YYYYMMDD text.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2023 -> 2026, 5,893 rows (try_to_number(FY) - fiscal-year focus of the filing; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -9839,6 +15635,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
+### `FED_SEC_EDGAR`
+*SEC (Securities Regulator): Edgar*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORTDATE`, end of a period, to the day, 2025-09-28 -> 2026-07-02:
+
+- `REPORTDATE`: end of a period, date as text (iso), 2025-09-28 -> 2026-07-02, 200 rows (Raw TEXT passthrough of the data.sec.gov 'reportDate', the period the filing reports on (period end), and the only usable clock in the candidate list; note the model also carries FILEDAT, the true filing date, which the name sweep missed.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_SEC_EDGAR_COMPANY_TICKERS`
 *SEC (Securities Regulator): Edgar Company Tickers*
 
@@ -9914,7 +15722,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_EDGAR_FINANCIALS`
 *SEC (Securities Regulator): Edgar Financials*
 
-39 reliable connections.
+39 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED`, when it was reported / filed, to the day, 2023-01-03 -> 2024-12-31:
+
+- `FILED`: when it was reported / filed, date as text (yyyymmdd), 2023-01-03 -> 2024-12-31, 55,635 rows (Raw FILED passthrough - the YYYYMMDD date the filing reached the SEC; uncast text.) -- 308 other tables keep a clock to the day
+- `PERIOD`: end of a period, date as text (yyyymmdd), 2012-11-30 -> 2024-12-31, 55,635 rows (Raw PERIOD passthrough (same generated shape as the DERA sub marts) - the balance-sheet date rounded to month end, bounding the reported period.) -- 308 other tables keep a clock to the day
+- `FY`: end of a period, year only, 2012 -> 2025, 52,603 rows (try_to_number(FY) - fiscal-year focus labelling the covered period; a bare year number, the classic epoch-1970 trap.) -- 194 other tables keep a clock to the year
 
 **Rock-solid match:**
 
@@ -10004,7 +15818,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_EDGAR_INSIDERS`
 *SEC (Securities Regulator): Edgar Insiders*
 
-29 reliable connections.
+29 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIOD_OF_REPORT`, when it happened, to the day, 2002-02-26 -> 2026-03-31:
+
+- `PERIOD_OF_REPORT`: when it happened, date as text (dd_mon_yyyy), 2002-02-26 -> 2026-03-31, 69,259 rows (Raw uncast passthrough; on Forms 3/4/5 the period of report is the date of the event requiring the statement (the transaction), so it is the closest thing to a real event clock here - inferred from SEC form semantics, not confirmed against ) -- 308 other tables keep a clock to the day
+- `FILING_DATE`: when it was reported / filed, date (typed), 2026-01-02 -> 2026-03-31, 69,259 rows (try_to_date(FILING_DATE) - when the Form 3/4/5 was filed with the SEC.) -- 308 other tables keep a clock to the day
+- `DATE_OF_ORIG_SUB`: when it was reported / filed, date (typed), 2020-11-06 -> 2026-03-30, 1,162 rows (try_to_date(DATE_OF_ORIG_SUB) - when the original submission was filed, populated for amendments.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -10071,10 +15891,43 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
+### `FED_SEC_INSIDER_DERIV_TRANS`
+*SEC (Securities Regulator): Insider Deriv Trans*
+
+0 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRANS_DATE`, when it happened, to the day, 2000-04-20 -> 2035-01-10:
+
+- `TRANS_DATE`: when it happened, date (typed), 2000-04-20 -> 2035-01-10, 1,049,121 rows (try_to_date(TRANS_DATE) - the day the derivative transaction occurred; the year-0018 minimum is source typos, not the cast.) -- 308 other tables keep a clock to the day
+- `DEEMED_EXECUTION_DATE`: when it happened, date (typed), 2006-02-27 -> 2034-01-12, 10,187 rows (try_to_date(DEEMED_EXECUTION_DATE) - the date the transaction is deemed to have executed.) -- 308 other tables keep a clock to the day
+- `EXCERCISE_DATE`: start of a period, date (typed), 1988-08-08 -> 2035-04-20, 229,067 rows (try_to_date(EXCERCISE_DATE) - Form 4 Table II 'date exercisable', the day the derivative first becomes exercisable, opening the exercise window.) -- 308 other tables keep a clock to the day
+- `EXPIRATION_DATE`: end of a period, date (typed), 1988-08-08 -> 2035-12-31, 505,231 rows (try_to_date(EXPIRATION_DATE) - the derivative's expiration, closing the exercise window; legitimately future-dated, which explains most of the 64,164 far-future rows the census flagged.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_SEC_INSIDER_NONDERIV_TRANS`
+*SEC (Securities Regulator): Insider Nonderiv Trans*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRANSACTION_DATE`, when it happened, to the day, 1987-10-07 -> 2033-12-11:
+
+- `TRANSACTION_DATE`: when it happened, date (typed), 1987-10-07 -> 2033-12-11, 2,672,840 rows (try_to_date(trans_date,'DD-MON-YYYY') - the day the non-derivative insider transaction occurred; the explicit format rules out the epoch trap and the year-0022 minimum is source typos.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_SEC_INSIDER_REPORTINGOWNER`
 *SEC (Securities Regulator): Insider Reportingowner*
 
-25 reliable connections.
+25 reliable connections, 3 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 6,322 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 170 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 99% of rows, 11,010 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
 
 **Rock-solid match:**
 
@@ -10136,7 +15989,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_INSIDER_SUBMISSION`
 *SEC (Securities Regulator): Insider Submission*
 
-0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIOD_OF_REPORT`, when it happened, to the day, 1982-04-25 -> 2025-03-31:
+
+- `PERIOD_OF_REPORT`: when it happened, date (typed), 1982-04-25 -> 2025-03-31, 1,772,088 rows (try_to_date(period_of_report,'DD-MON-YYYY'); on Forms 3/4/5 the period of report is the date of the event requiring the statement, i.e. the transaction itself, making it the closest real event clock - inferred from SEC form semantics.) -- 308 other tables keep a clock to the day
+- `FILING_DATE`: when it was reported / filed, date (typed), 2016-07-01 -> 2025-03-31, 1,772,088 rows (try_to_date(filing_date,'DD-MON-YYYY') - when the Form 3/4/5 was filed with the SEC.) -- 308 other tables keep a clock to the day
+- `DATE_OF_ORIGINAL_SUBMISSION`: when it was reported / filed, date (typed), 1998-11-13 -> 2027-06-04, 36,421 rows (try_to_date(date_of_orig_sub,'DD-MON-YYYY') - when the original submission was filed, populated for amendments.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -10145,13 +16004,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- 2.3% of crosswalk rows carry one</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **34%** of the sec filer id (cik) values also appear in `FED_PCAOB_FORM_AP_FILINGS` (9,844 matching)
   <sub>joins on: `FED_SEC_INSIDER_SUBMISSION.ISSUERCIK` = `FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK` &middot; key: `CIK`</sub>
-  <sub>checked 2026-08-29: SOLID -- audit engagement -> the audited company's insider filings; misses are corporate renames under the same CIK</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **93.3%** -- audit engagement -> the audited company's insider filings; misses are corporate renames under the same CIK</sub>
 
 
 ### `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS`
 *SEC (Securities Regulator): Investment Company Series Class*
 
-2 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 place-based -- plus 2 low-confidence name+ZIP guesses not shown here.
+2 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 place-based, 5 value-checked place columns -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_1` fills 100% of rows, 720 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 238 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 48 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 98% of rows, 423 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `ADDRESS_2` fills 42% of rows, 298 distinct -- text place -- 114 other tables carry a clean street address
 
 **Rock-solid match:**
 
@@ -10177,7 +16044,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_MONEY_MARKET_FUND_INFORMATION`
 *SEC (Securities Regulator): Money Market FUND Information*
 
-2 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+2 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `REPORTMONTH`, end of a period, to the day, 2026-04-30 -> 2026-04-30:
+
+- `REPORTMONTH`: end of a period, date as text (iso), 2026-04-30 -> 2026-04-30, 1,206 rows (Raw REPORTMONTH passthrough - the month of money-market-fund filings this fund/class listing summarizes; uncast text at month grain and the table's only time column.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -10193,10 +16064,160 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- money-market fund -> its registered series</sub>
 
 
+### `FED_SENATE_LDA_FILINGS`
+*Senate LDA Filings*
+
+0 reliable connections, 4 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `REGISTRANT_CITY` fills 100% of rows, 1,406 distinct -- text place -- 174 other tables carry a clean city
+- state: `REGISTRANT_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- country: `CLIENT_COUNTRY` fills 99% of rows, 127 distinct -- country code -- 49 other tables carry a clean country
+- state: `CLIENT_STATE` fills 86% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DT_POSTED`, when it was reported / filed, to the day, 2020-01-02 -> 2026-07-24:
+
+- `DT_POSTED`: when it was reported / filed, date as text (iso), 2020-01-02 -> 2026-07-24, 174,871 rows (When the Senate posted the filing to the public LDA database -- the classic reported clock; note the mart applies no cast, so its stored type is whatever landed, and the census's 2020-2021 range cannot have come from it.) -- 308 other tables keep a clock to the day
+- `FILING_YEAR`: start of a period, year only, 2020 -> 2021, 174,871 rows (Uncast pass-through of FILING_YEAR -- a bare calendar year naming the year the lobbying report covers; real year, but a bare date-parse of '2020' is exactly the epoch-1970 collapse bug.) -- 194 other tables keep a clock to the year
+- `TERMINATION_DATE`: end of a period, date (typed), 2020-01-01 -> 2021-12-31, 7,855 rows (try_to_date(TERMINATION_DATE) -- closes the registrant/client lobbying engagement; the only DATE-typed column here, so the census's 2020-01-01..2021-12-31 range describes this column, not the file's coverage.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_SLAVEVOYAGES_INTRAAMERICAN`
+*Slavevoyages Intraamerican*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- **TRAP** -- airport / port: `SLA1PORT` fills 69% of rows, 119 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_BUY1`, when it happened, to the day, 1788-03-01 -> 1788-03-01:
+
+- `DATE_BUY1`: when it happened, date as text (us), 1788-03-01 -> 1788-03-01, 11,521 rows (Raw uncast landing column (this mart applies no casts at all); the SlaveVoyages codebook has it as the date slave purchase began, but the stored format and real resolution are unverified with the warehouse down.) -- 308 other tables keep a clock to the day
+- `DATE_LAND1`: when it happened, date as text (us), 1700-01-08 -> 1841-11-12, 11,521 rows (Raw uncast landing column; codebook meaning is the date of arrival at the first place of landing, format unverified.) -- 308 other tables keep a clock to the day
+- `DATE_LAND2`: when it happened, date as text (us), 1702-05-01 -> 1809-07-31, 11,521 rows (Raw uncast landing column; date of arrival at the second place of landing per the codebook, format unverified and sparsely populated by nature.) -- 308 other tables keep a clock to the day
+- `DATE_LEFTAFR`: when it happened, date as text (us), 1700-01-05 -> 1841-10-30, 11,521 rows (Raw uncast landing column; codebook meaning is the date the vessel left the African coast, but format and resolution are unverified.) -- 308 other tables keep a clock to the day
+- `DATEDEPC`: when it happened, year only, 1744 -> 1799, 11,521 rows (Per the same codebook comment, the YEAR component of the voyage departure date - the only one of the three that stands alone.) -- 194 other tables keep a clock to the year
+- `YEARAM`: when it happened, year only, 1700 -> 1841, 11,521 rows (The sibling staging model's codebook comment states 'YEARAM = Year of arrival at port of disembarkation' - the canonical voyage year. In this mart it is a raw uncast landing column.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_TREASURY_AVG_INTEREST_RATES`
+*Treasury AVG Interest Rates*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECORD_DATE`, when it happened, to the day, 2001-01-31 -> 2026-05-31:
+
+- `RECORD_DATE`: when it happened, date (typed), 2001-01-31 -> 2026-05-31, 4,961 rows (The Treasury observation date, part of the model's surrogate key; the file is monthly (census window 2001-01-01 to 2026-05-31 over 4,961 rows), so day grain would be a false claim.) -- 308 other tables keep a clock to the day
+- `REPORT_MONTH`: when it happened, date (typed), 2001-01-01 -> 2026-05-01, 4,961 rows (Literally date_trunc('month', record_date) in the mart -- a derived convenience truncation of the same observation clock, so it is a real DATE at month grain.) -- 308 other tables keep a clock to the day
+- `REPORT_YEAR`: when it happened, date (typed), 2001-01-01 -> 2026-01-01, 4,961 rows (Literally date_trunc('year', record_date) -- a derived DATE at year grain off the same observation clock.) -- 308 other tables keep a clock to the day
+- `RECORD_CALENDAR_YEAR`: when it happened, year only, 2001 -> 2026, 4,961 rows (Passthrough of the calendar-year component of record_date; a plain year value.) -- 194 other tables keep a clock to the year
+- `RECORD_FISCAL_YEAR`: when it happened, year only, 2001 -> 2026, 4,961 rows (Passthrough of the Treasury Fiscal Data API's own fiscal-year component of record_date; a plain year value, safe only as a number.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_TREASURY_DEBT_OUTSTANDING`
+*Treasury DEBT Outstanding*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECORD_DATE`, when it happened, to the day, 1790-01-01 -> 2025-09-30:
+
+- `RECORD_DATE`: when it happened, date (typed), 1790-01-01 -> 2025-09-30, 237 rows (try_to_date(RECORD_DATE); 237 rows spanning 1790 to 2025 is one row per year, so this is an ANNUAL series and day grain would be a false claim -- the census CORRUPT_RANGE flag is a false alarm, US debt outstanding genuinely starts in 1790 an) -- 308 other tables keep a clock to the day
+- `RECORD_CALENDAR_YEAR`: when it happened, year only, 1790 -> 2025, 237 rows (Raw passthrough of the calendar-year component of record_date.) -- 194 other tables keep a clock to the year
+- `RECORD_FISCAL_YEAR`: when it happened, year only, 1790 -> 2025, 237 rows (Raw passthrough of the API's fiscal-year component of record_date.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_TREASURY_DEBT_TO_PENNY`
+*Treasury DEBT TO Penny*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECORD_DATE`, when it happened, to the day, 1993-04-01 -> 2026-06-15:
+
+- `RECORD_DATE`: when it happened, date (typed), 1993-04-01 -> 2026-06-15, 8,329 rows (The model description states each row is one daily debt snapshot, and the census window 1993-04-01 to 2026-06-15 over 8,329 rows matches business-daily coverage.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_TREASURY_DTS_DEPOSITS`
+*Treasury DTS Deposits*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECORD_DATE`, when it happened, to the day, 2005-10-03 -> 2026-08-07:
+
+- `RECORD_DATE`: when it happened, date (typed), 2005-10-03 -> 2026-08-07, 478,149 rows (try_to_date(RECORD_DATE) on the Daily Treasury Statement deposits feed; 478k rows over 2005-10-03 to 2026-08-07 is a genuine daily series.) -- 308 other tables keep a clock to the day
+- `RECORD_CALENDAR_YEAR`: when it happened, year only, 2005 -> 2026, 478,149 rows (Passthrough of the calendar-year component of record_date.) -- 194 other tables keep a clock to the year
+- `RECORD_FISCAL_YEAR`: when it happened, year only, 2006 -> 2026, 478,149 rows (Passthrough of the API's fiscal-year component of record_date.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_TREASURY_MTS_RECEIPTS`
+*Treasury MTS Receipts*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECORD_DATE`, when it happened, to the day, 2015-03-31 -> 2026-06-30:
+
+- `RECORD_DATE`: when it happened, date (typed), 2015-03-31 -> 2026-06-30, 7,490 rows (try_to_date(RECORD_DATE) on the Monthly Treasury Statement receipts feed; the census window 2015-03-31 to 2026-06-30 sits on month-ends, so month is the true resolution.) -- 308 other tables keep a clock to the day
+- `RECORD_CALENDAR_YEAR`: when it happened, year only, 2015 -> 2026, 7,490 rows (Passthrough of the calendar-year component of record_date.) -- 194 other tables keep a clock to the year
+- `RECORD_FISCAL_YEAR`: when it happened, year only, 2015 -> 2026, 7,490 rows (Passthrough of the API's fiscal-year component of record_date.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `CURRENT_MONTH_GROSS_RCPT_AMT`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (yyyymmdd), 1781 -> 1795, 5,429 rows (try_to_double(...) -- a dollar amount that matched the name sweep only because it starts with 'current_month'.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_USASPENDING_ASSISTANCE_FULL`
 *USAspending (Federal Contracts & Grants): Assistance FULL*
 
-30 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+30 reliable connections, 3 measured 2026-08-29 (not yet in the spine), 21 value-checked place columns, 5 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_RECIPIENT_STATE_FIPS_CODE` fills 100% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RECIPIENT_STATE_CODE` fills 100% of rows, 75 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `RECIPIENT_STATE_NAME` fills 99% of rows, 59 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `PRIMARY_PLACE_OF_PERFORMANCE_STATE_NAME` fills 99% of rows, 642 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- site / place name: `PRIMARY_PLACE_OF_PERFORMANCE_CODE` fills 98% of rows, 97,132 distinct -- text place -- 53 other tables carry a clean site / place name
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_STATE_FIPS_CODE` fills 96% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- county: `RECIPIENT_COUNTY_NAME` fills 96% of rows, 4,674 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `PRIMARY_PLACE_OF_PERFORMANCE_SCOPE` fills 93% of rows, 6 distinct -- text place -- 53 other tables carry a clean site / place name
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE` fills 92% of rows, 3,767 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- site / place name: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_CD_ORIGINAL` fills 90% of rows, 2,065 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_CD_CURRENT` fills 88% of rows, 729 distinct -- text place -- 53 other tables carry a clean site / place name
+- county: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTY_NAME` fills 87% of rows, 1,964 distinct -- county name -- 79 other tables carry a clean county
+- city: `RECIPIENT_CITY_NAME` fills 78% of rows, 27,521 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `RECIPIENT_ZIP_CODE` fills 78% of rows, 38,859 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `RECIPIENT_ADDRESS_LINE_1` fills 69% of rows, 1,769,893 distinct -- text place -- 114 other tables carry a clean street address
+- city: `PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME` fills 65% of rows, 20,399 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `PRIMARY_PLACE_OF_PERFORMANCE_ZIP_4` fills 65% of rows, 532,000 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `RECIPIENT_ADDRESS_LINE_2` fills 8% of rows, 125,728 distinct -- text place -- 114 other tables carry a clean street address
+- site / place name: `PRIMARY_PLACE_OF_PERFORMANCE_FOREIGN_LOCATION` fills 0% of rows, 2,640 distinct -- text place (only 0.4% of rows filled) -- 53 other tables carry a clean site / place name
+- city: `RECIPIENT_FOREIGN_CITY_NAME` fills 0% of rows, 5,350 distinct -- text place (only 0.3% of rows filled) -- 174 other tables carry a clean city
+- state: `RECIPIENT_FOREIGN_PROVINCE_NAME` fills 0% of rows, 697 distinct -- state names (not codes) (only 0.1% of rows filled) -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE` fills 99% of rows, 7,107 distinct -- FIPS with leading zeros lost (88% have a FIPS length; modal length 5 -- pad before joining)
+- **TRAP** -- city: `RECIPIENT_CITY_CODE` fills 69% of rows, 26,205 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- ZIP code: `RECIPIENT_ZIP_LAST_4_CODE` fills 59% of rows, 10,013 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
+- **TRAP** -- ZIP code: `RECIPIENT_FOREIGN_POSTAL_CODE` fills 0% of rows, 1,247 distinct -- ZIP with leading zeros lost (30% are 1-4 digits (00501 -> 501); only 0.0% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTION_DATE`, when it happened, to the day, 2006-10-01 -> 2026-02-12:
+
+- `ACTION_DATE`: when it happened, date as text (iso), 2006-10-01 -> 2026-02-12, 19,902,879 rows (The day the assistance transaction was executed -- the real-world money event and the natural clock for a 19.9M-row transaction table; note this model is a pure quoted passthrough with NO cast, so it is still TEXT, which is why the census ne) -- 308 other tables keep a clock to the day
+- `INITIAL_REPORT_DATE`: when it was reported / filed, date as text (iso), 2010-01-19 -> 2026-07-02, 19,902,879 rows (When the transaction was first reported into the federal award system, later than action_date; the action-to-report gap is itself measurable here.) -- 308 other tables keep a clock to the day
+- `LAST_MODIFIED_DATE`: when it was reported / filed, date as text (iso), 2006-10-01 -> 2026-07-02, 19,902,872 rows (USASpending's record-maintenance stamp for the last edit to this transaction record -- publisher bookkeeping, not an event.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_START_DATE`: start of a period, date as text (iso), 1954-07-01 -> 2027-06-29, 19,902,879 rows (Opening bound of the award's performance window; raw TEXT passthrough, no cast in the model.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_CURRENT_END_DATE`: end of a period, date as text (iso), 1991-08-31 -> 2035-12-31, 19,902,879 rows (Current closing bound of the performance window; raw TEXT passthrough, and 'current' means it moves as the award is modified.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `ACTION_DATE_FISCAL_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2007 -> 2026, 19,902,879 rows (Fiscal-year restatement of action_date, kept as raw TEXT here (unlike the contracts_full twin, which was cast to a date and destroyed) -- leave it as a number/string, never date-parse it.)
 
 **Rock-solid match:**
 
@@ -10268,7 +16289,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **74%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (39,436 matching)
   <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_uei` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- grant recipient's parent company</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- grant recipient's parent company</sub>
 - `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **56%** of the federal grant award id (fain) values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (94,073 matching)
   <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.award_id_fain` = `FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_FAIN` &middot; key: `FAIN`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subaward -> the grant it came from</sub>
@@ -10277,10 +16298,77 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grant recipient</sub>
 
 
+### `FED_USASPENDING_BULK`
+*USAspending (Federal Contracts & Grants): BULK*
+
+0 reliable connections, 31 value-checked place columns, 6 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `RECIPIENT_ADDRESS_LINE_1` fills 100% of rows, 10,455 distinct -- text place -- 114 other tables carry a clean street address
+- airport / port: `AIRPORT_AUTHORITY` fills 100% of rows, 2 distinct -- text place -- 2 other tables carry a clean airport / port
+- airport / port: `PORT_AUTHORITY` fills 100% of rows, 2 distinct -- text place -- 2 other tables carry a clean airport / port
+- city: `CITY_LOCAL_GOVERNMENT` fills 100% of rows, 2 distinct -- text place -- 174 other tables carry a clean city
+- city: `MUNICIPALITY_LOCAL_GOVERNMENT` fills 100% of rows, 2 distinct -- text place -- 174 other tables carry a clean city
+- city: `RECIPIENT_CITY_NAME` fills 100% of rows, 2,839 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `SCHOOL_DISTRICT_LOCAL_GOVERNMENT` fills 100% of rows, 2 distinct -- text place -- 13 other tables carry a clean congressional district
+- county: `COUNTY_LOCAL_GOVERNMENT` fills 100% of rows, 2 distinct -- county name -- 79 other tables carry a clean county
+- region: `HISTORICALLY_UNDERUTILIZED_BUSINESS_ZONE_HUBZONE_FIRM` fills 100% of rows, 2 distinct -- text place -- 40 other tables carry a clean region
+- ZIP code: `RECIPIENT_ZIP_4_CODE` fills 100% of rows, 10,065 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `RECIPIENT_STATE_NAME` fills 100% of rows, 88 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `RECIPIENT_COUNTY_NAME` fills 99% of rows, 951 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE` fills 99% of rows, 1,308 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_RECIPIENT_STATE_FIPS_CODE` fills 99% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RECIPIENT_STATE_CODE` fills 99% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- country: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTRY_CODE` fills 91% of rows, 133 distinct -- country code -- 49 other tables carry a clean country
+- country: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTRY_NAME` fills 91% of rows, 133 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_OF_PRODUCT_OR_SERVICE_ORIGIN` fills 91% of rows, 119 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_OF_PRODUCT_OR_SERVICE_ORIGIN_CODE` fills 91% of rows, 118 distinct -- country code -- 49 other tables carry a clean country
+- site / place name: `PLACE_OF_MANUFACTURE` fills 91% of rows, 10 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `PLACE_OF_MANUFACTURE_CODE` fills 91% of rows, 10 distinct -- text place -- 53 other tables carry a clean site / place name
+- ZIP code: `PRIMARY_PLACE_OF_PERFORMANCE_ZIP_4` fills 90% of rows, 7,919 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME` fills 89% of rows, 2,288 distinct -- text place -- 174 other tables carry a clean city
+- county: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTY_NAME` fills 89% of rows, 953 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_CD_CURRENT` fills 89% of rows, 446 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_CD_ORIGINAL` fills 89% of rows, 446 distinct -- text place -- 53 other tables carry a clean site / place name
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE` fills 89% of rows, 1,277 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_STATE_FIPS_CODE` fills 89% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE` fills 89% of rows, 58 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PRIMARY_PLACE_OF_PERFORMANCE_STATE_NAME` fills 89% of rows, 58 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- street address: `RECIPIENT_ADDRESS_LINE_2` fills 7% of rows, 598 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTION_DATE`, when it happened, to the day, 2026-05-26 -> 2026-06-04:
+
+- `ACTION_DATE`: when it happened, date as text (iso), 2026-05-26 -> 2026-06-04, 49,613 rows (Day the contract action (award or modification) was signed - the transaction event and part of the table's uniqueness key; NOTE the staging model states plainly 'Casts kept as landed (TEXT)', so this is an UNCAST date string.) -- 308 other tables keep a clock to the day
+- `SOLICITATION_DATE`: when it happened, date as text (iso), 1977-05-11 -> 2026-06-04, 49,613 rows (Day the agency issued the solicitation that led to this award - a real event earlier than action_date, so the gap is a procurement-speed measure; uncast TEXT and sparsely populated in FPDS.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_START_DATE`: start of a period, date as text (iso), 1981-01-25 -> 2027-06-14, 49,613 rows (Opens the contract's period of performance; uncast TEXT per the staging header.) -- 308 other tables keep a clock to the day
+- `ORDERING_PERIOD_END_DATE`: end of a period, date as text (iso), 2007-10-30 -> 2035-11-30, 49,613 rows (Last day orders can be placed against the vehicle (IDV ordering window) - a different span from the performance period; uncast TEXT.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_CURRENT_END_DATE`: end of a period, date as text (iso), 2007-09-30 -> 2035-05-09, 49,613 rows (Closes the currently-exercised period of performance; legitimately in the future for live contracts; uncast TEXT.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_POTENTIAL_END_DATE`: end of a period, date as text (iso), 2007-09-30 -> 2035-12-31, 49,613 rows (Closes the period of performance if every option is exercised - a HYPOTHETICAL end, always at or after the current end; uncast TEXT.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `ACTION_DATE_FISCAL_YEAR`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2026 -> 2026, 49,613 rows (THE KNOWN TRAP - a bare 4-digit FISCAL-year label ('2012') landed as TEXT; it is not a calendar date (federal FY runs Oct-Sep), it is redundant with action_date on the same row, and a bare date-parse reads it as epoch seconds and collapses )
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_USASPENDING_CONTRACTS`
 *USAspending (Federal Contracts & Grants): Contracts*
 
-12 reliable connections -- plus 84 low-confidence name+ZIP guesses not shown here.
+12 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 5 value-checked place columns, 4 value-checked clock columns -- plus 84 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `RECIPIENT_CITY_NAME` fills 100% of rows, 10,775 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `RECIPIENT_ZIP_4_CODE` fills 100% of rows, 92,721 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `RECIPIENT_STATE_CODE` fills 98% of rows, 60 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME` fills 97% of rows, 8,466 distinct -- text place -- 174 other tables carry a clean city
+- state: `PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE` fills 97% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTION_DATE`, when it happened, to the day, 2024-10-01 -> 2025-09-30:
+
+- `ACTION_DATE`: when it happened, date as text (iso), 2024-10-01 -> 2025-09-30, 6,325,622 rows (The day the contract transaction was executed, the real-world event for this 6.3M-row transaction table; the model is a bare column list with no casts, so it is still TEXT and the census could not measure it.) -- 308 other tables keep a clock to the day
+- `LAST_MODIFIED_DATE`: when it was reported / filed, date as text (iso), 2024-09-30 -> 2026-06-23, 6,325,622 rows (USASpending's own last-edit stamp on the record -- publisher bookkeeping, never an event clock.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_START_DATE`: start of a period, date as text (iso), 1977-01-17 -> 2032-09-29, 6,325,622 rows (Opening bound of the contract's performance window; uncast TEXT passthrough.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_CURRENT_END_DATE`: end of a period, date as text (iso), 2000-05-15 -> 2035-12-31, 6,325,622 rows (Current closing bound of the performance window; uncast TEXT passthrough.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -10312,47 +16400,123 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_DIRECTORS_OFFICERS` (4 matching)
   <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **92%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (85,832 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS.RECIPIENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- recent-years contracts copy (5.7M rows) -> SAM registrant</sub>
+
 
 ### `FED_USASPENDING_CONTRACTS_FULL`
 *USAspending (Federal Contracts & Grants): Contracts FULL*
 
-0 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 4 measured 2026-08-29 (not yet in the spine), 33 value-checked place columns, 7 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `RECIPIENT_ADDRESS_LINE_1` fills 100% of rows, 528,662 distinct -- text place -- 114 other tables carry a clean street address
+- airport / port: `AIRPORT_AUTHORITY` fills 100% of rows, 2 distinct -- text place -- 2 other tables carry a clean airport / port
+- airport / port: `PORT_AUTHORITY` fills 100% of rows, 2 distinct -- text place -- 2 other tables carry a clean airport / port
+- city: `CITY_LOCAL_GOVERNMENT` fills 100% of rows, 3 distinct -- text place -- 174 other tables carry a clean city
+- city: `MUNICIPALITY_LOCAL_GOVERNMENT` fills 100% of rows, 2 distinct -- text place -- 174 other tables carry a clean city
+- city: `RECIPIENT_CITY_NAME` fills 100% of rows, 20,801 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `SCHOOL_DISTRICT_LOCAL_GOVERNMENT` fills 100% of rows, 2 distinct -- text place -- 13 other tables carry a clean congressional district
+- county: `COUNTY_LOCAL_GOVERNMENT` fills 100% of rows, 3 distinct -- county name -- 79 other tables carry a clean county
+- region: `HISTORICALLY_UNDERUTILIZED_BUSINESS_ZONE_HUBZONE_FIRM` fills 100% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+- country: `RECIPIENT_COUNTRY_CODE` fills 100% of rows, 366 distinct -- country code -- 49 other tables carry a clean country
+- country: `RECIPIENT_COUNTRY_NAME` fills 99% of rows, 212 distinct -- country name -- 49 other tables carry a clean country
+- ZIP code: `RECIPIENT_ZIP_4_CODE` fills 99% of rows, 426,926 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_RECIPIENT_STATE_FIPS_CODE` fills 97% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `RECIPIENT_STATE_CODE` fills 97% of rows, 71 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- country: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTRY_CODE` fills 95% of rows, 246 distinct -- country code -- 49 other tables carry a clean country
+- country: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTRY_NAME` fills 95% of rows, 266 distinct -- country name -- 49 other tables carry a clean country
+- ZIP code: `PRIMARY_PLACE_OF_PERFORMANCE_ZIP_4` fills 91% of rows, 479,146 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_STATE_FIPS_CODE` fills 90% of rows, 56 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- state: `PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE` fills 90% of rows, 62 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `PRIMARY_PLACE_OF_PERFORMANCE_STATE_NAME` fills 90% of rows, 67 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- city: `PRIMARY_PLACE_OF_PERFORMANCE_CITY_NAME` fills 90% of rows, 13,971 distinct -- text place -- 174 other tables carry a clean city
+- country: `COUNTRY_OF_PRODUCT_OR_SERVICE_ORIGIN_CODE` fills 90% of rows, 268 distinct -- country code -- 49 other tables carry a clean country
+- county: `PRIMARY_PLACE_OF_PERFORMANCE_COUNTY_NAME` fills 90% of rows, 2,030 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_CD_CURRENT` fills 90% of rows, 545 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_CD_ORIGINAL` fills 90% of rows, 588 distinct -- text place -- 53 other tables carry a clean site / place name
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE` fills 90% of rows, 3,289 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- site / place name: `PLACE_OF_MANUFACTURE` fills 86% of rows, 23 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `PLACE_OF_MANUFACTURE_CODE` fills 86% of rows, 17 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `RECIPIENT_STATE_NAME` fills 75% of rows, 1,471 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `RECIPIENT_COUNTY_NAME` fills 74% of rows, 1,903 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `PRIME_AWARD_TRANSACTION_RECIPIENT_COUNTY_FIPS_CODE` fills 74% of rows, 3,202 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- country: `COUNTRY_OF_PRODUCT_OR_SERVICE_ORIGIN` fills 68% of rows, 252 distinct -- country name -- 49 other tables carry a clean country
+- street address: `RECIPIENT_ADDRESS_LINE_2` fills 2% of rows, 9,734 distinct -- text place (only 1.9% of rows filled) -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTION_DATE`, when it happened, to the day, 2007-07-17 -> 2026-07-04:
+
+- `ACTION_DATE`: when it happened, date (typed), 2007-07-17 -> 2026-07-04, 20,000,000 rows (try_to_date("action_date") in the mart; the day the contract transaction was executed, the real clock for all 20M rows -- and unaffected by the fiscal-year bug that poisoned this table's census reading.) -- 308 other tables keep a clock to the day
+- `SOLICITATION_DATE`: when it was reported / filed, date (typed), 1966-06-29 -> 2026-07-03, 5,827,697 rows (try_to_date("solicitation_date"); when the agency issued the solicitation publicly, before the award action -- sparsely populated.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_START_DATE`: start of a period, date (typed), 1940-09-29 -> 2035-06-09, 19,999,983 rows (try_to_date("period_of_performance_start_date"); opening bound of the contract's performance window.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_CURRENT_END_DATE`: end of a period, date (typed), 1929-08-30 -> 2035-12-31, 19,085,253 rows (try_to_date(...); the currently-agreed closing bound, which moves with each contract modification.) -- 308 other tables keep a clock to the day
+- `PERIOD_OF_PERFORMANCE_POTENTIAL_END_DATE`: end of a period, date (typed), 1988-06-30 -> 2035-12-31, 18,815,441 rows (try_to_date(...); the if-all-options-exercised closing bound, and the likeliest carrier of the 9999-12-31 ceiling and most of the 32,611 far-future rows the census counted.) -- 308 other tables keep a clock to the day
+- `ORDERING_PERIOD_END_DATE`: end of a period, date (typed), 1975-05-30 -> 2035-12-31, 913,760 rows (try_to_date(...); the last day orders can be placed against the vehicle -- another period bound that legitimately sits in the future.) -- 308 other tables keep a clock to the day
+- `ACTION_DATE_FISCAL_YEAR`: unclear clock, year only, 2007 -> 2026, 20,000,000 rows (THIS IS THE 20M-ROW EPOCH BUG: git shows the line was try_to_date("action_date_fiscal_year") until commit a650975e (2026-08-18) changed it to try_to_number, so the deployed column is a DATE holding 1970-01-01 for every row -- the census's ep) -- 194 other tables keep a clock to the year
 
 **Measured 2026-08-29, not yet in the spine:**
 
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **38%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (160,157 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_uei` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- 20M-row contracts copy -> SAM registrant; same older-UEI gap as the full file</sub>
 - `FED_EPA_TRI_FACILITY` (EPA (Environment): TRI Facility) -- **20%** of the old federal contractor id (duns) values also appear in `FED_EPA_TRI_FACILITY` (2,103 matching)
   <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` = `FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM` &middot; key: `DUNS`</sub>
-  <sub>checked 2026-08-29: SOLID -- polluter's parent company -> federal contractor</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **73.3%** -- polluter's parent company -> federal contractor</sub>
 - `FED_FDA_GUDID_FULL_DEVICE` (FDA (Food & Drug): Gudid FULL Device) -- **17%** of the old federal contractor id (duns) values also appear in `FED_FDA_GUDID_FULL_DEVICE` (2,096 matching)
   <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` = `FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER` &middot; key: `DUNS`</sub>
-  <sub>checked 2026-08-29: SOLID -- device makers that are also federal contractors</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **96.7%** -- device makers that are also federal contractors</sub>
 - `FED_FMCSA_COMPANY_CENSUS` (Fmcsa Company Census) -- **4%** of the old federal contractor id (duns) values also appear in `FED_FMCSA_COMPANY_CENSUS` (13,089 matching)
   <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` = `FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO` &middot; key: `DUNS`</sub>
-  <sub>checked 2026-08-29: SOLID -- 86% of carriers report DUNS 0 -- those are not junk rows, the 372K real values are fine; states agree 80% (HQ vs place of performance)</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **88.3%**, states agree **80%** -- 86% of carriers report DUNS 0 -- those are not junk rows, the 372K real values are fine; states agree 80% (HQ vs place of performance)</sub>
 
 
 ### `FED_USASPENDING_CONTRACTS_FULL_R2`
 *USAspending (Federal Contracts & Grants): Contracts FULL R2*
 
-0 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 6 measured 2026-08-29 (not yet in the spine).
 
 **Measured 2026-08-29, not yet in the spine:**
 
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **93%** of the defense contractor code (cage) values also appear in `FED_SAM_ENTITY_PUBLIC` (85,857 matching)
   <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE` = `FED_SAM_ENTITY_PUBLIC.CAGE_CODE` &middot; key: `CAGE`</sub>
-  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; 1 in 60 is a CAGE reassigned to a new firm</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **98.3%**, states agree **93.1%** -- pass-1 edge, name-checked in pass 2; 1 in 60 is a CAGE reassigned to a new firm</sub>
+- `FED_SAM_EXCLUSIONS_FULL_R2` (SAM.gov -- Federal Debarment List: FULL R2) -- **46%** of the defense contractor code (cage) values also appear in `FED_SAM_EXCLUSIONS_FULL_R2` (182 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE` = `FED_SAM_EXCLUSIONS_FULL_R2.CAGE` &middot; key: `CAGE`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- debarred firms that also show up as contractors; only 435 of 168K exclusion rows carry a CAGE, so the exclusions side is thin</sub>
+- `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **39%** of the federal award unique key values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (110,195 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.CONTRACT_AWARD_UNIQUE_KEY` = `FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_UNIQUE_KEY` &middot; key: `AWARD_KEY`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subaward -> the prime contract it came from; the contracts copy stops at FY2021, hence the low rate</sub>
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **33%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (192,931 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-30: level 2 only (overlap measured live; matched pairs not name-checked) -- contractor -> its SAM registration. The 92.5% quoted in the pass-1 report was measured on the small recent-years contracts copy; on the full 93M-row file two thirds of recipient UEIs are older registrations missing from the current public SAM extract</sub>
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **32%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (178,303 matching)
   <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_PARENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID -- contractor's parent company; older UEIs are missing from the current SAM file, hence the low rate</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- contractor's parent company; older UEIs are missing from the current SAM file, hence the low rate</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **9%** of the federal contract id (piid) values also appear in `FED_SBIR_STTR_AWARDS` (14,530 matching)
   <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.AWARD_ID_PIID` = `FED_SBIR_STTR_AWARDS.CONTRACT` &middot; key: `PIID`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR contract number -> the contract record</sub>
 
 
+### `FED_USASPENDING_SUBAWARDS`
+*USAspending (Federal Contracts & Grants): Subawards*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTION_DATE`, when it happened, to the day, 2008-08-01 -> 2026-05-29:
+
+- `ACTION_DATE`: when it happened, date (typed), 2008-08-01 -> 2026-05-29, 5,000 rows (Day the subaward action occurred, pulled from the JSON record with try_to_date; the census max of 2026-06-10 16:00:23.716 carries a millisecond time and must have bled in from _ingested_at, since this column is date-typed.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_USASPENDING_SUBAWARDS_FULL`
 *USAspending (Federal Contracts & Grants): Subawards FULL*
 
-0 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 4 measured 2026-08-29 (not yet in the spine).
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -10361,16 +16525,46 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subrecipient's parent company</sub>
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **67%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (148,253 matching)
   <sub>joins on: `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **96.7%**, states agree **98.3%**</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **56%** of the federal grant award id (fain) values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (94,073 matching)
   <sub>joins on: `FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_FAIN` = `FED_USASPENDING_ASSISTANCE_FULL.award_id_fain` &middot; key: `FAIN`</sub>
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subaward -> the grant it came from</sub>
+- `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **39%** of the federal award unique key values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (110,195 matching)
+  <sub>joins on: `FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_UNIQUE_KEY` = `FED_USASPENDING_CONTRACTS_FULL_R2.CONTRACT_AWARD_UNIQUE_KEY` &middot; key: `AWARD_KEY`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subaward -> the prime contract it came from; the contracts copy stops at FY2021, hence the low rate</sub>
+
+
+### `FED_USASPENDING_TOPTIER_AGENCIES`
+*USAspending (Federal Contracts & Grants): Toptier Agencies*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- congressional district: `CONGRESSIONAL_JUSTIFICATION_URL` fills 88% of rows, 98 distinct -- text place -- 13 other tables carry a clean congressional district
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `ACTIVE_FY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2026 -> 2026, 111 rows (Raw TEXT passthrough of ACTIVE_FY, the fiscal year the outlay and budget-authority figures on each of the 111 agency rows are current for; it is the only candidate, but it is almost certainly a single constant snapshot vintage, so it places)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `FED_USCG_NRC_INCIDENTS`
 *USCG NRC Incidents*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 72 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 value-checked place columns, 2 value-checked clock columns -- plus 72 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `RESPONSIBLE_STATE` fills 65% of rows, 131 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `RESPONSIBLE_CITY` fills 63% of rows, 30,595 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_TIME_RECEIVED`, when it was reported / filed, to the day, 1990-01-01 00:01:00.000 -> 2026-08-02 23:07:00.000:
+
+- `DATE_TIME_RECEIVED`: when it was reported / filed, datetime (typed), 1990-01-01 00:01:00.000 -> 2026-08-02 23:07:00.000, 1,029,020 rows (try_to_timestamp(trim(DATE_TIME_RECEIVED)): the moment the National Response Center took the spill/release call - the best clock on the table.) -- 308 other tables keep a clock to the day
+- `DATE_TIME_COMPLETE`: when it was reported / filed, datetime (typed), 1990-01-29 04:43:35.000 -> 2026-08-02 23:17:00.000, 1,026,993 rows (try_to_timestamp(trim(DATE_TIME_COMPLETE)): when NRC closed out the report write-up.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `SRC_YEAR`: our own download stamp -- never the clock, year only, 1990 -> 2026, 1,029,020 rows (OUR OWN bookkeeping: the loader writes df['_SRC_YEAR'] = y while walking CY90..CY26 of nrc.uscg.mil/FOIAFiles/CY<yy>.xlsx, so it names the source FILE we downloaded, not the incident. Exactly the class of column that corrupted the previous )
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -10382,7 +16576,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_USCG_NRC_INCIDENT_REPORTS`
 *USCG NRC Incident Reports*
 
-0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 55 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 value-checked place columns, 2 value-checked clock columns -- plus 55 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `RESPONSIBLE_STATE` fills 54% of rows, 92 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `RESPONSIBLE_CITY` fills 52% of rows, 8,755 distinct -- text place -- 174 other tables carry a clean city
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_TIME_RECEIVED`, when it was reported / filed, to the day, 2020-01-01 00:14:00.000 -> 2024-12-31 22:24:00.000:
+
+- `DATE_TIME_RECEIVED`: when it was reported / filed, datetime (typed), 2020-01-01 00:14:00.000 -> 2024-12-31 22:24:00.000, 116,662 rows (try_to_timestamp(trim(DATE_TIME_RECEIVED)): the moment the National Response Center took the call. It is a report-receipt clock, not the spill itself, though NRC calls usually come in within hours.) -- 308 other tables keep a clock to the day
+- `DATE_TIME_COMPLETE`: when it was reported / filed, datetime (typed), 2020-01-01 00:21:00.000 -> 2024-12-31 22:27:00.000, 116,656 rows (try_to_timestamp(trim(DATE_TIME_COMPLETE)): when the NRC finished writing up the report - a second, later reporting milestone.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -10400,16 +16604,34 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_NOAA_AIS` (NOAA (Weather / Ocean): AIS) -- **33%** of the ship hull number (imo) values also appear in `FED_NOAA_AIS` (2,313 matching)
   <sub>joins on: `FED_USCG_VESSEL_DOCUMENTATION.IMO_NUMBER` = `FED_NOAA_AIS.IMO` &middot; key: `IMO`</sub>
-  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; a third of AIS ships are US-documented vessels</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- pass-1 edge, name-checked in pass 2; a third of AIS ships are US-documented vessels</sub>
 - `FED_NOAA_AIS` (NOAA (Weather / Ocean): AIS) -- **33%** of the ship radio call sign values also appear in `FED_NOAA_AIS` (5,759 matching)
   <sub>joins on: `FED_USCG_VESSEL_DOCUMENTATION.CALL_SIGN` = `FED_NOAA_AIS.CALLSIGN` &middot; key: `CALLSIGN`</sub>
-  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **93.3%** -- pass-1 edge, name-checked in pass 2</sub>
 
 
 ### `FED_USDA_RD_MFH_ACTIVE_PROJECTS`
 *USDA RD MFH Active Projects*
 
-0 reliable connections, 15 place-based.
+0 reliable connections, 15 place-based, 9 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- FIPS / GEOID code: `STATE_COUNTY_FIPS_CODE` fills 100% of rows, 2,719 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- city: `CITY` fills 100% of rows, 5,362 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 100% of rows, 13,202 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 12,639 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `STATE_ABBREVIATION` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP_CODE` fills 100% of rows, 7,509 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `MAIN_ADDRESS_LINE1` fills 100% of rows, 12,933 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `MAIN_ADDRESS_LINE2` fills 6% of rows, 662 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `MAIN_ADDRESS_LINE3` fills 1% of rows, 112 distinct -- text place (only 0.8% of rows filled) -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_OPERATION`, unlabeled clock, to the day, 1964-04-29 -> 2019-09-11:
+
+- `DATE_OF_OPERATION`: unlabeled clock, date (typed), 1964-04-29 -> 2019-09-11, 13,550 rows -- 308 other tables keep a clock to the day
+- `DATE_RESTRICTIVE_CLAUSE_EXPIRES`: unlabeled clock, date (typed), 1944-12-20 -> 2035-12-30, 12,748 rows -- 308 other tables keep a clock to the day
+- `DATE_TAX_CREDIT_EXPIRES`: unlabeled clock, date (typed), 1933-09-28 -> 2035-12-31, 6,102 rows -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -10445,10 +16667,227 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_USDA_RD_MFH_ACTIVE_PROJECTS.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_USGS_EARTHQUAKES`
+*USGS Earthquakes*
+
+0 reliable connections, 3 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 297,636 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 343,111 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- site / place name: `PLACE` fills 100% of rows, 177,726 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TIME`, when it happened, to the day, 2010-01-01 -> 2026-06-13:
+
+- `TIME`: when it happened, date as text (iso), 2010-01-01 -> 2026-06-13, 443,274 rows (The USGS catalog's event origin time -- exactly when the quake occurred -- but the mart passes "TIME" through with NO cast, so it is an unparsed string today and needs a real timestamp cast; grain is nominally sub-second, capped at day by thi) -- 308 other tables keep a clock to the day
+- `UPDATED`: when it was reported / filed, date (typed), 2013-02-27 -> 2026-06-28, 443,274 rows (try_to_date(UPDATED) -- when USGS last revised the catalog record for that quake; publisher record maintenance, and since it is the only DATE-typed column here the census's 2013-2026 range likely describes revisions rather than event times.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_USGS_GNIS_ALL_NAMES`
+*USGS GNIS ALL Names*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PUBLICATION_DATE`, when it was reported / filed, to the day, 1700-12-31 -> 2023-03-17:
+
+- `PUBLICATION_DATE`: when it was reported / filed, date (typed), 1700-12-31 -> 2023-03-17, 989,023 rows (try_to_date(trim(PUBLICATIONDATE)) with NO format string: the publication date of the map or document that cites this name, and since one row IS one name-citation this dates the attestation; WARNING - the bare cast is the epoch trap, year-o) -- 308 other tables keep a clock to the day
+- `DATE_CREATED`: start of a period, date (typed), 1700-12-31 -> 2026-06-29, 1,122,278 rows (try_to_date(trim(DATE_CREATED)) bare cast: when the name record was created in GNIS, which pairs with ending_date as the name's validity window - though it could equally be read as pure record-creation (a reported clock), which is why confi) -- 308 other tables keep a clock to the day
+- `ENDING_DATE`: end of a period, date (typed), 2000-01-01 -> 2020-08-01, 299 rows (try_to_date(trim(ENDING_DATE)) bare cast: when the name stopped applying to the feature - the closing bound of the name's validity window.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_USGS_MINERALS`
+*USGS Minerals*
+
+0 reliable connections, 7 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 221,144 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 239,388 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- country: `COUNTRY` fills 100% of rows, 163 distinct -- country name -- 49 other tables carry a clean country
+- site / place name: `SITE_NAME` fills 96% of rows, 178,322 distinct -- text place -- 53 other tables carry a clean site / place name
+- state: `STATE` fills 96% of rows, 914 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `COUNTY` fills 83% of rows, 2,042 distinct -- county name -- 79 other tables carry a clean county
+- region: `REGION` fills 10% of rows, 8 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DISC_YR`, when it happened, to the year, 1700 -> 2002:
+
+- `DISC_YR`: when it happened, year only, 1700 -> 2002, 304,632 rows (Raw passthrough DISC_YR: the year the mineral deposit was discovered, with DY_BA as its basis code. Integer year.) -- 194 other tables keep a clock to the year
+- `YR_FST_PRD`: start of a period, year only, 1700 -> 2007, 304,632 rows (Raw passthrough YR_FST_PRD: year of FIRST production at the deposit, opening the site's producing life. Integer year, sits next to its YFP_BA basis code.) -- 194 other tables keep a clock to the year
+- `YR_LST_PRD`: end of a period, year only, 1760 -> 2013, 304,632 rows (Raw passthrough YR_LST_PRD: year of LAST production, closing the producing life. Integer year, sits next to its YLP_BA basis code.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_USGS_ORPHANED_OIL_GAS_WELLS`
+*USGS Orphaned OIL GAS Wells*
+
+0 reliable connections, 5 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 30 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 57 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- state: `STATE` fills 100% of rows, 27 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- county: `COUNTY` fills 100% of rows, 792 distinct -- county name -- 79 other tables carry a clean county
+- site / place name: `LOCATION_NOTES` fills 47% of rows, 1,318 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATA_FILE_DATE`, when it was reported / filed, to the day, 2019-07-01 -> 2022-12-10:
+
+- `DATA_FILE_DATE`: when it was reported / filed, date (typed), 2019-07-01 -> 2022-12-10, 117,672 rows (try_to_date(trim(DATA_FILE_DATE),'MM/DD/YYYY'): the date of the state agency's data file the well record came from. It is file vintage - the table carries no drilling, plugging or orphaning date at all, so this is the only clock available a) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_USGS_TOPOVIEW`
+*USGS Topoview*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PUBLICATIONDATE`, when it happened, to the day, 1943-01-01 -> 1994-01-01:
+
+- `PUBLICATIONDATE`: when it happened, date as text (iso), 1943-01-01 -> 1994-01-01, 250 rows (raw passthrough with NO cast in the mart: the original publication date of the historical topographic map, the only column that dates the MAP rather than its scan; it is unmeasured by the census precisely because it was never typed as a dat) -- 308 other tables keep a clock to the day
+- `DATECREATED`: when it was reported / filed, date (typed), 2018-02-18 -> 2025-03-26, 250 rows (try_to_date(DATECREATED) in the mart: when USGS created the digital product record; this and lastupdated are the ONLY source of the census's whole 2018-02-18 to 2025-09-22 range, i.e. the scanning programme's clock, not the maps'.) -- 308 other tables keep a clock to the day
+- `LASTUPDATED`: when it was reported / filed, date (typed), 2025-09-17 -> 2025-09-22, 250 rows (try_to_date(LASTUPDATED) in the mart: when the USGS product record was last revised - source-side bookkeeping about the digital file.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_USGS_WATER`
+*USGS Water*
+
+0 reliable connections, 4 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 3,717 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 3,768 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_CD` fills 100% of rows, 734 distinct -- county code -- 79 other tables carry a clean county
+- site / place name: `SITE_NAME` fills 100% of rows, 3,767 distinct -- text place -- 53 other tables carry a clean site / place name
+- **TRAP** -- site / place name: `SITE_NO` fills 100% of rows, 3,774 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `STATE_CD` fills 100% of rows, 10 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- watershed: `HUC_CD` fills 100% of rows, 1,005 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATETIME`, when it happened, to the day, 2026-06-25 -> 2026-07-02:
+
+- `DATETIME`: when it happened, date as text (iso), 2026-06-25 -> 2026-07-02, 6,694,816 rows (Raw passthrough of DATETIME (no cast anywhere in the mart): the moment the water measurement was taken at the gauge. A real event clock, but still an uncast string - the census recording no min/max is consistent with that.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_USGS_WBD_HUC8`
+*USGS WBD HUC8*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- watershed: `WATERSHED_NAME` fills 100% of rows, 2,334 distinct -- text place -- 0 other tables carry a clean watershed
+- **TRAP** -- map shape: `SHAPE_AREA` fills 100% of rows, 2,430 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- map shape: `SHAPE_LENGTH` fills 100% of rows, 2,483 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- watershed: `HUC8` fills 100% of rows, 2,452 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `LOAD_DATE`: our own download stamp -- never the clock, datetime (typed), 2012-06-11 07:54:56.000 -> 2024-12-28 10:42:38.000, 2,455 rows (Staging decodes to_timestamp_ntz(cast(LOADDATE/1000 as bigint)) - an epoch-milliseconds field meaning when the boundary feature was loaded into the national Watershed Boundary Dataset. Pure data-management bookkeeping; a watershed polygon h)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_US_SEC_EDGAR`
+*US SEC Edgar*
+
+0 reliable connections, 2 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `BUSINESS_ADDRESS` fills 100% of rows, 25 distinct -- text place -- 114 other tables carry a clean street address
+- state: `STATE_OF_INCORPORATION` fills 97% of rows, 7 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FILED_AT`, when it was reported / filed, to the day, 1995-05-19 -> 2026-07-01:
+
+- `FILED_AT`: when it was reported / filed, date (typed), 1995-05-19 -> 2026-07-01, 48,984 rows (Staging does try_to_date(filed_at), so it is a DATE (time dropped): the day the filer submitted to EDGAR, populated on every filing, matching the census window 1995-05-19 to 2026-07-01.) -- 308 other tables keep a clock to the day
+- `FILED_YEAR`: when it was reported / filed, year only, 1995 -> 2026, 48,984 rows (Literally year(filed_at) in the mart -- a 4-digit year integer restating the filing clock at year grain.) -- 194 other tables keep a clock to the year
+- `PERIOD_OF_REPORT`: end of a period, date (typed), 2001-12-31 -> 2026-07-01, 17,542 rows (Staging does try_to_date(period_of_report); it is the end of the period the filing covers, which is why it always sits earlier than filed_at.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_US_USASPENDING_API`
+*US Usaspending API*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `PLACE_OF_PERFORMANCE_STATE` fills 65% of rows, 40 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_MODIFIED_DATE`, when it was reported / filed, to the day, 2023-10-31 -> 2026-06-29:
+
+- `LAST_MODIFIED_DATE`: when it was reported / filed, date (typed), 2023-10-31 -> 2026-06-29, 300 rows (USASpending's own record-maintenance stamp for when the award record was last changed in their system -- publisher bookkeeping about the row, not about the world, so never a primary clock.) -- 308 other tables keep a clock to the day
+- `START_DATE`: start of a period, date (typed), 1978-09-15 -> 2024-09-27, 300 rows (Period-of-performance opening bound, and the mart uses it in datediff('day', start_date, end_date), which proves it is a real DATE; chosen over the year-grain fiscal_year because it is finer and over last_modified_date because that one is r) -- 308 other tables keep a clock to the day
+- `END_DATE`: end of a period, date (typed), 2006-05-31 -> 2035-12-31, 200 rows (Period-of-performance closing bound, also used in the datediff; it carries the 2100-12-31 sentinel that produced all 13 far-future rows in the census.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `AWARD_DURATION_DAYS`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1791 -> 2008, 200 rows (Literally datediff('day', start_date, end_date) in the mart -- a duration in days, the same bug shape as days_received_to_company.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_VA_ALLCAUSE_MORTALITY`
+*VA Allcause Mortality*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2018 -> 2023:
+
+- `YEAR`: when it happened, year only, 2018 -> 2023, 2,808 rows (try_to_number(trim(YEAR)) in staging - year of veteran death, 2018-2023; the census's 2026 range is _ingested_at leakage.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_VA_SUICIDE_NATIONAL`
+*VA Suicide National*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_OF_DEATH`, when it happened, to the year, 2001 -> 2023:
+
+- `YEAR_OF_DEATH`: when it happened, year only, 2001 -> 2023, 690 rows (try_to_number(trim(YEAR_OF_DEATH)) in staging - the year the veterans died.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_VA_SUICIDE_STATE`
+*VA Suicide State*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `GEOGRAPHIC_REGION` fills 100% of rows, 5 distinct -- text place -- 40 other tables carry a clean region
+- state: `STATE` fills 100% of rows, 52 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR_OF_DEATH`, when it happened, to the year, 2001 -> 2023:
+
+- `YEAR_OF_DEATH`: when it happened, year only, 2001 -> 2023, 1,196 rows (coalesce(try_to_number(YEAR_OF_DEATH), try_to_number(YEAR)) in staging so every row carries a year of death.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `FED_VOTEVIEW_MEMBERS`
 *Voteview Members*
 
-6 reliable connections.
+6 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE_ABBREV` fills 100% of rows, 57 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- state: `STATE_ICPSR` fills 100% of rows, 56 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- congressional district: `DISTRICT_CODE` fills 81% of rows, 109 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
 
 **Rock-solid match:**
 
@@ -10477,6 +16916,386 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_VOTEVIEW_ROLLCALLS.ICPSR` = `FED_VOTEVIEW_MEMBERS.ICPSR` &middot; key: `ICPSR`</sub>
 - `FED_CONGRESS_LEGISLATORS` (Congress Legislators) -- **60%** of the legislator voting-record id values also appear in `FED_CONGRESS_LEGISLATORS` (386 matching)
   <sub>joins on: `FED_VOTEVIEW_ROLLCALLS.ICPSR` = `FED_CONGRESS_LEGISLATORS.ICPSR` &middot; key: `ICPSR`</sub>
+
+
+### `FED_VOTEVIEW_ROLLCALL_META`
+*Voteview Rollcall META*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 1789-05-16 -> 2026-08-08:
+
+- `DATE`: when it happened, date as text (iso), 1789-05-16 -> 2026-08-08, 113,512 rows (The day the roll-call vote was taken; this mart passes raw DATE through UNCAST, but the sibling staging model documents it landing as 'YYYY-MM-DD' and parses it with that explicit format.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_WPA_SLAVE_NARRATIVES`
+*WPA Slave Narratives*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 17 distinct -- state names (not codes) -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INTERVIEW_DATE`, when it happened, to the day, 1937-01-01 -> 1938-01-01:
+
+- `INTERVIEW_DATE`: when it happened, date (typed), 1937-01-01 -> 1938-01-01, 98 rows (try_to_date(interview_date,'YYYY-MM-DD') in staging with an explicit format: when the WPA interview actually took place; census CLEAN with a 1937-01-01 minimum, matching the 1936-38 field programme.) -- 308 other tables keep a clock to the day
+- `INTERVIEW_YEAR`: when it happened, year only, 1937 -> 1938, 98 rows (literally year(interview_date) in the mart - a derived INTEGER year, correct but redundant with interview_date and never to be date-parsed.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FED_WQP_MONITORING_STATIONS`
+*WQP Monitoring Stations*
+
+0 reliable connections, 7 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `MONITORING_LOCATION_IDENTIFIER` fills 100% of rows, 5,738 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `MONITORING_LOCATION_TYPE_NAME` fills 100% of rows, 36 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `MONITORING_LOCATION_NAME` fills 100% of rows, 5,213 distinct -- text place -- 53 other tables carry a clean site / place name
+- lat / lon: `LATITUDE` fills 95% of rows, 3 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 95% of rows, 3 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY_CODE` fills 95% of rows, 6 distinct -- county code -- 79 other tables carry a clean county
+- site / place name: `MONITORING_LOCATION_DESCRIPTION_TEXT` fills 14% of rows, 379 distinct -- text place -- 53 other tables carry a clean site / place name
+- **TRAP** -- watershed: `HUC_EIGHT_DIGIT_CODE` fills 94% of rows, 7 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONSTRUCTION_DATE_TEXT`, when it happened, to the day, 1918-11-09 -> 2022-05-10:
+
+- `CONSTRUCTION_DATE_TEXT`: when it happened, date as text (yyyymmdd), 1918-11-09 -> 2022-05-10, 2,928 rows (Staging keeps trim(CONSTRUCTIONDATETEXT) as TEXT with no cast: free-form text for when a monitoring well was constructed. LOW - a real event date in principle but unparsed, mixed-format, and only meaningful for well-type stations; the censu) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FJC_APPOINTMENT`
+*FJC Appointment*
+
+0 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `COMMISSION_DATE`, unlabeled clock, to the day, 1789-09-26 -> 2026-06-18:
+
+- `COMMISSION_DATE`: unlabeled clock, date as text (iso), 1789-09-26 -> 2026-06-18, 4,731 rows -- 308 other tables keep a clock to the day
+- `NOMINATION_DATE`: unlabeled clock, date as text (iso), 1789-09-24 -> 2026-04-14, 4,605 rows -- 308 other tables keep a clock to the day
+- `CONFIRMATION_DATE`: unlabeled clock, date as text (iso), 1789-09-25 -> 2026-06-24, 4,577 rows -- 308 other tables keep a clock to the day
+- `TERMINATION_DATE`: unlabeled clock, date as text (iso), 1790-05-18 -> 2026-06-27, 3,296 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FJC_JUDGE`
+*FJC Judge*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `BIRTH_YEAR`, unlabeled clock, to the year, 1732 -> 1991:
+
+- `BIRTH_YEAR`: unlabeled clock, year only, 1732 -> 1991, 4,065 rows -- 194 other tables keep a clock to the year
+- `DEATH_YEAR`: unlabeled clock, year only, 1790 -> 2026, 2,383 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `FJC_SCOTUS_CROSSWALK`
+*FJC Scotus Crosswalk*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `_BUILT_AT`, unlabeled clock, to the day, 2026-06-30 20:47:45.146 -0700 -> 2026-06-30 20:47:45.146 -0700:
+
+- `_BUILT_AT`: unlabeled clock, datetime (typed), 2026-06-30 20:47:45.146 -0700 -> 2026-06-30 20:47:45.146 -0700, 40 rows -- 308 other tables keep a clock to the day
+- `FIRST_TERM`: unlabeled clock, year only, 1946 -> 2022, 40 rows -- 194 other tables keep a clock to the year
+- `LAST_TERM`: unlabeled clock, year only, 1948 -> 2024, 40 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_AR_DATOSGOB`
+*International source: AR Datosgob*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_MODIFIED`, unclear clock, to the day, 2025-03-24 -> 2026-07-02:
+
+- `LAST_MODIFIED`: unclear clock, date as text (iso), 2025-03-24 -> 2026-07-02, 3,556 rows (Raw pass-through with no cast -- the Argentine portal's own stamp for when the dataset record was last changed; publisher record-maintenance, not Ripple's ingest.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_CA_OPEN_CANADA`
+*International source: CA OPEN Canada*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `METADATA_MODIFIED`, when it was reported / filed, to the day, 2026-07-01 -> 2026-07-02:
+
+- `METADATA_MODIFIED`: when it was reported / filed, date as text (iso), 2026-07-01 -> 2026-07-02, 500 rows (Uncast TEXT -- when the portal last edited the catalog record; record maintenance by the publisher, always later than creation.) -- 308 other tables keep a clock to the day
+- `TIME_PERIOD_COVERAGE_START`: start of a period, date as text (iso), 1760-01-01 -> 2026-05-28, 500 rows (Uncast TEXT bounding the period the DATA covers, not when anything was published; publisher-entered coverage strings vary in precision.) -- 308 other tables keep a clock to the day
+- `TIME_PERIOD_COVERAGE_END`: end of a period, date as text (iso), 1935-12-31 -> 2030-01-01, 500 rows (Uncast TEXT closing the data-coverage period; same precision caveat.) -- 308 other tables keep a clock to the day
+- `DATE_PUBLISHED`: unclear clock, date as text (iso), 2012-06-26 -> 2026-07-02, 500 rows (Uncast TEXT -- the dataset's declared publication date; semantically the better publication clock than metadata_created but its fill rate is unverified.) -- 308 other tables keep a clock to the day
+- `METADATA_CREATED`: unclear clock, date as text (iso), 2016-09-23 -> 2026-07-02, 500 rows (Uncast TEXT (the staging header says casts are kept as landed) holding the CKAN record-creation stamp -- when the dataset was registered on the portal; the densest publication clock on a catalog row.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_CH_OPENDATASWISS`
+*International source: CH Opendataswiss*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ISSUED`, when it was reported / filed, to the day, 1767-01-01 -> 2026-07-01:
+
+- `ISSUED`: when it was reported / filed, date as text (iso), 1767-01-01 -> 2026-07-01, 5,000 rows (Uncast TEXT (casts kept as landed) -- the DCAT issued date, i.e. when the dataset was published.) -- 308 other tables keep a clock to the day
+- `METADATA_CREATED`: when it was reported / filed, date as text (iso), 2015-11-25 -> 2023-09-17, 5,000 rows (Uncast TEXT CKAN record-creation stamp -- when the dataset appeared on opendata.swiss; the portal-core field most likely populated on every row.) -- 308 other tables keep a clock to the day
+- `METADATA_MODIFIED`: when it was reported / filed, date as text (iso), 2025-03-18 -> 2026-07-02, 5,000 rows (Uncast TEXT -- when the portal last edited the catalog record; publisher record maintenance.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_CL_DATOSGOB`
+*International source: CL Datosgob*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `METADATA_CREATED`, when it was reported / filed, to the day, 2015-10-30 -> 2026-07-02:
+
+- `METADATA_CREATED`: when it was reported / filed, date as text (iso), 2015-10-30 -> 2026-07-02, 1,000 rows (Uncast TEXT CKAN record-creation stamp -- when the dataset was registered on datos.gob.cl.) -- 308 other tables keep a clock to the day
+- `METADATA_MODIFIED`: when it was reported / filed, date as text (iso), 2024-01-22 -> 2026-07-02, 1,000 rows (Uncast TEXT -- when the portal last edited the catalog record.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_DE_GOVDATA`
+*International source: DE Govdata*
+
+0 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `METADATA_CREATED`, when it was reported / filed, to the day, 2013-02-17 -> 2025-08-12:
+
+- `METADATA_CREATED`: when it was reported / filed, date as text (iso), 2013-02-17 -> 2025-08-12, 5,000 rows (Uncast TEXT CKAN record-creation stamp -- when the dataset was registered on GovData.de.) -- 308 other tables keep a clock to the day
+- `METADATA_MODIFIED`: when it was reported / filed, date as text (iso), 2021-03-26 -> 2025-08-12, 5,000 rows (Uncast TEXT -- when the portal last edited the catalog record.) -- 308 other tables keep a clock to the day
+- `TEMPORAL_START`: start of a period, date as text (iso), 1849-12-30 -> 2025-08-06, 5,000 rows (Uncast TEXT opening the period the DATA covers, not a publication event; publisher-entered precision varies.) -- 308 other tables keep a clock to the day
+- `TEMPORAL_END`: end of a period, date as text (iso), 1971-11-08 -> 2028-12-31, 5,000 rows (Uncast TEXT closing the data-coverage period; same caveat.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EC_SERCOP`
+*International source: EC Sercop*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRACT_DATE_SIGNED`, when it happened, to the day, 2023-12-26 -> 2026-12-17:
+
+- `CONTRACT_DATE_SIGNED`: when it happened, date (typed), 2023-12-26 -> 2026-12-17, 13,543 rows (Day the contract was actually signed - the real-world event the row exists to record; try_to_date(CONTRACT_DATESIGNED) in staging; note the census's 2026-12-17 max is beyond today, so at least one date column here carries future or bad valu) -- 308 other tables keep a clock to the day
+- `AWARD_DATE`: when it was decided, date (typed), 2023-12-20 -> 2026-06-05, 17,194 rows (Day the buying authority awarded the contract - the authority's ruling; try_to_date(AWARD_DATE) in staging.) -- 308 other tables keep a clock to the day
+- `RECORD_DATE`: when it was reported / filed, date (typed), 2025-01-01 -> 2026-06-05, 132,995 rows (The OCDS record's own release date - when SERCOP published or refreshed this contracting record, not when anything happened; try_to_date(DATE) in staging.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_ELECTIONS_CANADA_CONTRIBUTIONS`
+*International source: Elections Canada Contributions*
+
+0 reliable connections, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CONTRIBUTOR_CITY` fills 100% of rows, 19,842 distinct -- text place -- 174 other tables carry a clean city
+- congressional district: `ELECTORAL_DISTRICT` fills 11% of rows, 600 distinct -- text place -- 13 other tables carry a clean congressional district
+- **TRAP** -- ZIP code: `CONTRIBUTOR_POSTAL_CODE` fills 100% of rows, 401,212 distinct -- foreign postal code (only 0% look like US ZIPs)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRIBUTION_RECEIVED_DATE`, when it happened, to the day, 1900-01-02 -> 2035-01-01:
+
+- `CONTRIBUTION_RECEIVED_DATE`: when it happened, date (typed), 1900-01-02 -> 2035-01-01, 12,600,658 rows (try_to_date(trim(CONTRIBUTION_RECEIVED_DATE)) -- when the contribution was received; the 0025-04-07 / 4002-06-15 extremes, 2 epoch rows and 77 far-future rows are published typos surviving a permissive parse.) -- 308 other tables keep a clock to the day
+- `FISCAL_ELECTION_DATE`: end of a period, date (typed), 2004-01-20 -> 2026-12-31, 12,646,465 rows (try_to_date(trim(...)) with no format; it carries the fiscal-period end or the election date of the financial return the contribution was reported on, so it closes the return's period rather than dating the gift.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EMBER_ELEC`
+*International source: Ember ELEC*
+
+0 reliable connections, 2 value-checked place columns, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 230 distinct -- country name -- 49 other tables carry a clean country
+- region: `EMBER_REGION` fills 94% of rows, 8 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 2000-01-01 -> 2025-01-01:
+
+- `DATE`: when it happened, date (typed), 2000-01-01 -> 2025-01-01, 369,264 rows (Staging casts try_to_date(trim(DATE),'YYYY'), so every value is a bare year snapped to Jan-1; real resolution is YEAR not day, and the census range 2000-01-01..2025-01-01 confirms it.) -- 308 other tables keep a clock to the day
+- `YEAR`: when it happened, year only, 2000 -> 2025, 369,264 rows (The mart computes year(date) - a derived duplicate of the same clock, so it adds nothing beyond `date`.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EMBL_ENSEMBL`
+*International source: EMBL Ensembl*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `REGION` fills 100% of rows, 472 distinct -- text place -- 40 other tables carry a clean region
+- **TRAP** -- region: `SEQ_REGION_NAME` fills 100% of rows, 11 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_ES_BORME`
+*International source: ES Borme*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACT_MONTH`, when it was reported / filed, to the day, 2026-06-01 -> 2026-06-01:
+
+- `ACT_MONTH`: when it was reported / filed, date (typed), 2026-06-01 -> 2026-06-01, 3 rows (date_trunc('month', date) computed in the mart - a derived truncation of the same publication clock, not an independent date.) -- 308 other tables keep a clock to the day
+- `ACT_YEAR`: when it was reported / filed, date (typed), 2026-01-01 -> 2026-01-01, 3 rows (date_trunc('year', date) computed in the mart - a derived truncation of the same publication clock.) -- 308 other tables keep a clock to the day
+- `DATE`: when it was reported / filed, date (typed), 2026-06-01 -> 2026-06-01, 3 rows (try_to_date(DATE,'YYYY-MM-DD') in staging - the BORME gazette date on which the corporate act was published (publication, not necessarily when the act itself occurred).) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_ES_DATOSGOB`
+*International source: ES Datosgob*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- site / place name: `GEOGRAPHIC_COVERAGE` fills 42% of rows, 73 distinct -- text place -- 53 other tables carry a clean site / place name
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EURLEX_CELLAR`
+*International source: Eurlex Cellar*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_DOCUMENT`, when it was decided, to the day, 1987-01-28 -> 2026-03-26:
+
+- `DATE_OF_DOCUMENT`: when it was decided, date (typed), 1987-01-28 -> 2026-03-26, 53 rows (try_to_date(DATE_OF_DOCUMENT) -- the document's own date, i.e. when the institution adopted/signed the act. Chosen as primary over date_published (against the reported>decided preference) because the adoption date is EUR-Lex's canonical anc) -- 308 other tables keep a clock to the day
+- `DATE_PUBLISHED`: when it was reported / filed, date (typed), 1987-01-28 -> 2026-03-26, 53 rows (try_to_date(DATE_PUBLISHED) -- when the act appeared in the Official Journal.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EUROSTAT`
+*International source: Eurostat*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TIME`, unclear clock, to the year, 2020 -> 2023:
+
+- `TIME`: unclear clock, year only, 2020 -> 2023, 450 rows (raw passthrough of the SDMX TIME_PERIOD string ("TIME" as time, no cast): the period each observation covers - but the mart also carries a FREQ column, so the shape varies by series (annual / quarterly / monthly) and the real grain cannot b) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EU_SANCTIONS`
+*International source: EU Sanctions*
+
+0 reliable connections, 11 value-checked place columns, 7 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `CITI_COUNTRY` fills 6% of rows, 85 distinct -- country code -- 49 other tables carry a clean country
+- country: `BIRT_COUNTRY` fills 6% of rows, 82 distinct -- country code -- 49 other tables carry a clean country
+- street address: `ADDR_LEBA_NUMTITLE` fills 6% of rows, 369 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `ADDR_LEBA_URL` fills 6% of rows, 369 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `ADDR_PROGRAMME` fills 6% of rows, 33 distinct -- text place -- 114 other tables carry a clean street address
+- country: `ADDR_COUNTRY` fills 6% of rows, 89 distinct -- country code -- 49 other tables carry a clean country
+- site / place name: `BIRT_PLACE` fills 5% of rows, 1,077 distinct -- text place (only 4.9% of rows filled) -- 53 other tables carry a clean site / place name
+- city: `ADDR_CITY` fills 5% of rows, 673 distinct -- text place (only 4.7% of rows filled) -- 174 other tables carry a clean city
+- street address: `ADDR_STREET` fills 4% of rows, 1,704 distinct -- text place (only 4.2% of rows filled) -- 114 other tables carry a clean street address
+- country: `IDEN_COUNTRY` fills 3% of rows, 70 distinct -- country code (only 3.4% of rows filled) -- 49 other tables carry a clean country
+- street address: `ADDR_OTHER` fills 2% of rows, 884 distinct -- text place (only 2.3% of rows filled) -- 114 other tables carry a clean street address
+- **TRAP** -- street address: `ADDR_LOGICAL_ID` fills 6% of rows, 2,457 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `BIRT_DATE`, when it happened, to the day, 1925-01-25 -> 2004-05-20:
+
+- `BIRT_DATE`: when it happened, date (typed), 1925-01-25 -> 2004-05-20, 3,421 rows (try_to_date(BIRT_DATE) -- the designated person's date of birth (a real-world event, but a person attribute, not the row's designation clock).) -- 308 other tables keep a clock to the day
+- `LEBA_PUBLICATION_DATE`: when it was reported / filed, date (typed), 2002-05-29 -> 2026-04-23, 42,347 rows (try_to_date(LEBA_PUBLICATION_DATE) -- the Official Journal publication date of the legal basis that designated this entity. The entity-level designation clock and the best anchor on the row.) -- 308 other tables keep a clock to the day
+- `NAAL_LEBA_PUBLICATION_DATE`: when it was reported / filed, date (typed), 2002-05-29 -> 2026-04-23, 30,242 rows (Same OJ publication clock for the NAME-ALIAS sub-record's legal basis.) -- 308 other tables keep a clock to the day
+- `BIRT_LEBA_PUBLICATION_DATE`: when it was reported / filed, date (typed), 2002-05-29 -> 2026-04-23, 4,340 rows (Same OJ publication clock for the BIRTH-DETAIL sub-record's legal basis.) -- 308 other tables keep a clock to the day
+- `CITI_LEBA_PUBLICATION_DATE`: when it was reported / filed, date (typed), 2002-05-29 -> 2026-04-23, 2,702 rows (Same OJ publication clock for the CITIZENSHIP sub-record's legal basis.) -- 308 other tables keep a clock to the day
+- `IDEN_LEBA_PUBLICATION_DATE`: when it was reported / filed, date (typed), 2003-05-20 -> 2026-04-23, 2,618 rows (Same OJ publication clock for the IDENTITY-DOCUMENT sub-record's legal basis.) -- 308 other tables keep a clock to the day
+- `ADDR_LEBA_PUBLICATION_DATE`: when it was reported / filed, date (typed), 2002-05-29 -> 2026-04-23, 2,445 rows (Same OJ publication clock for the ADDRESS sub-record's legal basis.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_FILE`: our own download stamp -- never the clock, date (typed), 2026-05-06 -> 2026-05-06, 42,347 rows (try_to_date(DATE_FILE) -- the generation date of the EU consolidated-list export file we downloaded, i.e. the snapshot vintage, not a designation event.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_EU_SOCTA_EUROPOL`
+*International source: EU Socta Europol*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PUBLISH_DATE`, when it was reported / filed, to the day, 2025-03-18 -> 2025-03-18:
+
+- `PUBLISH_DATE`: when it was reported / filed, date (typed), 2025-03-18 -> 2025-03-18, 26 rows (try_to_date(PUBLISH_DATE) on a row that IS a published report -- the day Europol published it.) -- 308 other tables keep a clock to the day
+- `REPORT_YEAR`: when it was reported / filed, year only, 2025 -> 2025, 26 rows (REPORT_YEAR raw text passthrough -- the report's edition year, a coarse duplicate of publish_date. A bare year string, not a date.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `UPDATE_DATE`: our own download stamp -- never the clock, date (typed), 2025-05-27 -> 2025-05-27, 26 rows (try_to_date(UPDATE_DATE) -- when the publisher's listing entry for the report was last touched; catalogue maintenance rather than a world event.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_FAO_FAOSTAT`
+*International source: FAO Faostat*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATEUPDATE`, when it was reported / filed, to the day, 1991-12-31 -> 2026-06-17:
+
+- `DATEUPDATE`: when it was reported / filed, date as text (iso), 1991-12-31 -> 2026-06-17, 69 rows (Raw TEXT passthrough of FAO's own DATEUPDATE on a 69-row dataset catalogue (one row per FAOSTAT dataset); it is when FAO last refreshed that dataset file, so it dates the publication, not any real-world event, and the string format is unver) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_FAO_FAOSTAT_FOOD_SECURITY`
+*International source: FAO Faostat FOOD Security*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2000 -> 2025:
+
+- `YEAR`: when it happened, year only, 2000 -> 2025, 144,366 rows (try_to_number("YEAR") gives the year the indicator value describes; caveat worth checking on the rebuild -- FAOSTAT food-security rows that carry a range label like '2000-2002' will silently become NULL under try_to_number.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `YEAR_CODE`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2000 -> 2025, 279,470 rows (Raw TEXT passthrough of FAOSTAT's Year Code, which for this food-security suite is often an 8-digit range code such as '20002002' for a three-year average rather than a plain year -- an 8-digit bare date-parse is exactly the epoch/garbage tr)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_FREEDOMHOUSE`
+*International source: Freedomhouse*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_TERRITORY` fills 100% of rows, 211 distinct -- country name -- 49 other tables carry a clean country
+- region: `REGION` fills 100% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_FR_DATA_GOUV`
+*International source: FR DATA GOUV*
+
+0 reliable connections, 4 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CREATED_AT`, when it was reported / filed, to the day, 1827-01-01 00:00:00.000 -> 2028-07-01 00:00:00.000:
+
+- `CREATED_AT`: when it was reported / filed, datetime (typed), 1827-01-01 00:00:00.000 -> 2028-07-01 00:00:00.000, 130,431 rows (try_to_timestamp_ntz(left(created_at,19),'YYYY-MM-DD"T"HH24:MI:SS') per the mart's own sampled-format note -- when the dataset was created on data.gouv.fr; the dense, clean publication clock.) -- 308 other tables keep a clock to the day
+- `LAST_MODIFIED`: when it was reported / filed, datetime (typed), 1991-01-01 08:56:11.000 -> 2026-08-11 05:45:01.000, 130,431 rows (Same ISO timestamp cast -- when the dataset record was last changed on the portal; publisher record maintenance, not Ripple's ingest.) -- 308 other tables keep a clock to the day
+- `TEMPORAL_COVERAGE_START`: start of a period, date (typed), 1700-01-01 -> 2030-04-19, 16,856 rows (try_to_date(left(temporal_coverage_start,10),'YYYY-MM-DD') -- opens the period the DATA covers; publisher-typed free text, so this is where the census's 0001-01-01 minimum, 9999-12-31 maximum, 68 epoch rows and 583 far-future rows come from,) -- 308 other tables keep a clock to the day
+- `TEMPORAL_COVERAGE_END`: end of a period, date (typed), 1738-12-31 -> 2035-12-31, 15,827 rows (Same YYYY-MM-DD cast closing the data-coverage period; equally polluted by publisher-typed placeholder years.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `INTL_FR_DATA_GOUV_FULL`
@@ -10526,10 +17345,77 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `INTL_FR_DATA_GOUV_FULL.SPATIAL_GEOM` = `XC_WAPO_FATAL_FORCE.LATITUDE/LONGITUDE` &middot; key: `GEO_IN`</sub>
 
 
+### `INTL_GDELT`
+*International source: Gdelt*
+
+0 reliable connections, 2 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `ACTOR2GEO_LAT` fills 100% of rows, 19 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `ACTOR2GEO_LONG` fills 100% of rows, 3 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- **TRAP** -- lat / lon: `ACTOR1GEO_LAT` fills 100% of rows, 76 distinct -- coordinate, partly out of range (89% parse in range)
+- **TRAP** -- lat / lon: `ACTOR1GEO_LONG` fills 100% of rows, 66 distinct -- coordinate, partly out of range (92% parse in range)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `SQLDATE`, when it happened, to the day, 2025-07-02 -> 2026-07-02:
+
+- `SQLDATE`: when it happened, date as text (yyyymmdd), 2025-07-02 -> 2026-07-02, 1,015 rows (raw passthrough with no cast: GDELT's event date in YYYYMMDD form; it is the true event clock and the finest one here, but it is NOT a date type - parsing it needs an explicit 'YYYYMMDD' format, and a bare parse is the documented epoch trap) -- 308 other tables keep a clock to the day
+- `MONTHYEAR`: when it happened, month-year, 2025 -> 2026, 1,015 rows (raw passthrough: the same event date in YYYYMM form - month grain by construction, and a number rather than a date.) -- 12 other tables keep a clock to the month
+- `YEAR`: when it happened, year only, 2025 -> 2026, 1,015 rows (try_to_number("YEAR") in the mart: the integer year of the event - the coarsest of GDELT's three redundant date encodings.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_GEM_HAZARD`
+*International source: GEM Hazard*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 12 distinct -- country name -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `INTL_GLEIF`
 *International source: Gleif*
 
-6 reliable connections, 5 measured 2026-08-29 (not yet in the spine).
+6 reliable connections, 5 measured 2026-08-29 (not yet in the spine), 18 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `ENTITY_HEADQUARTERSADDRESS_COUNTRY` fills 100% of rows, 240 distinct -- country code -- 49 other tables carry a clean country
+- country: `ENTITY_LEGALADDRESS_COUNTRY` fills 100% of rows, 239 distinct -- country code -- 49 other tables carry a clean country
+- city: `ENTITY_HEADQUARTERSADDRESS_CITY` fills 100% of rows, 122,476 distinct -- text place -- 174 other tables carry a clean city
+- city: `ENTITY_LEGALADDRESS_CITY` fills 100% of rows, 119,982 distinct -- text place -- 174 other tables carry a clean city
+- region: `ENTITY_HEADQUARTERSADDRESS_REGION` fills 66% of rows, 2,827 distinct -- text place -- 40 other tables carry a clean region
+- region: `ENTITY_LEGALADDRESS_REGION` fills 66% of rows, 2,845 distinct -- text place -- 40 other tables carry a clean region
+- city: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_1_CITY` fills 2% of rows, 5,443 distinct -- text place (only 2.3% of rows filled) -- 174 other tables carry a clean city
+- city: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_2_CITY` fills 2% of rows, 5,365 distinct -- text place (only 2.3% of rows filled) -- 174 other tables carry a clean city
+- country: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_1_COUNTRY` fills 2% of rows, 60 distinct -- country code (only 2.3% of rows filled) -- 49 other tables carry a clean country
+- country: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_2_COUNTRY` fills 2% of rows, 46 distinct -- country code (only 2.3% of rows filled) -- 49 other tables carry a clean country
+- region: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_1_REGION` fills 2% of rows, 354 distinct -- text place (only 2.1% of rows filled) -- 40 other tables carry a clean region
+- region: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_2_REGION` fills 2% of rows, 319 distinct -- text place (only 2.0% of rows filled) -- 40 other tables carry a clean region
+- city: `ENTITY_OTHERADDRESSES_OTHERADDRESS_1_CITY` fills 1% of rows, 3,473 distinct -- text place (only 1.4% of rows filled) -- 174 other tables carry a clean city
+- country: `ENTITY_OTHERADDRESSES_OTHERADDRESS_1_COUNTRY` fills 1% of rows, 101 distinct -- country code (only 1.4% of rows filled) -- 49 other tables carry a clean country
+- city: `ENTITY_OTHERADDRESSES_OTHERADDRESS_2_CITY` fills 1% of rows, 3,101 distinct -- text place (only 1.3% of rows filled) -- 174 other tables carry a clean city
+- country: `ENTITY_OTHERADDRESSES_OTHERADDRESS_2_COUNTRY` fills 1% of rows, 81 distinct -- country code (only 1.3% of rows filled) -- 49 other tables carry a clean country
+- region: `ENTITY_OTHERADDRESSES_OTHERADDRESS_1_REGION` fills 1% of rows, 477 distinct -- text place (only 0.8% of rows filled) -- 40 other tables carry a clean region
+- region: `ENTITY_OTHERADDRESSES_OTHERADDRESS_2_REGION` fills 1% of rows, 395 distinct -- text place (only 0.7% of rows filled) -- 40 other tables carry a clean region
+- **TRAP** -- ZIP code: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_1_POSTALCODE` fills 2% of rows, 14,671 distinct -- ZIP with leading zeros lost (42% are 1-4 digits (00501 -> 501); only 2.3% of rows filled)
+- **TRAP** -- ZIP code: `ENTITY_TRANSLITERATEDOTHERADDRESSES_TRANSLITERATEDOTHERADDRESS_2_POSTALCODE` fills 2% of rows, 14,476 distinct -- ZIP with leading zeros lost (43% are 1-4 digits (00501 -> 501); only 2.3% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20):
+
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_POSTALCODE`: NOT a clock (a duration, vintage, or count that looks like a year), month-year, 1700 -> 2035, 3,382,301 rows (Passthrough of the HQ postal code; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_ADDITIONALADDRESSLINE_1`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2033, 3,382,301 rows (Passthrough of an extra HQ address line; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_ADDITIONALADDRESSLINE_2`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1703 -> 2001, 3,382,301 rows (Passthrough of an extra HQ address line; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_ADDRESSNUMBER`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2031, 3,382,301 rows (Passthrough of the HQ street number; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_ADDRESSNUMBERWITHINBUILDING`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2001-09-25 -> 2012-02-13, 3,382,301 rows (Passthrough of the HQ suite/unit number; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_CITY`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 2010 -> 2019, 3,382,301 rows (Passthrough of the HQ city name; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_FIRSTADDRESSLINE`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2015, 3,382,301 rows (Passthrough of the HQ street address first line; a false hit from 'headQUARTERs'.)
+- **NOT A CLOCK** -- `ENTITY_HEADQUARTERSADDRESS_MAILROUTING`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1777 -> 1969, 3,382,301 rows (Passthrough of the HQ mail-routing line; a false hit from 'headQUARTERs'.)
 
 **Rock-solid match:**
 
@@ -10562,13 +17448,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- child company in the corporate parent tree (Level 2): ultimate parent 132.6K, direct parent 126.4K, fund-managed 149.4K, subfund 73.2K, branch 1.9K</sub>
 - `INT_UK_COMPANIES_HOUSE` (INT UK Companies House) -- **86%** of the uk company number values also appear in `INT_UK_COMPANIES_HOUSE` (94,652 matching)
   <sub>joins on: `INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityEntityID` = `INT_UK_COMPANIES_HOUSE.CompanyNumber` &middot; key: `COMPANY_NO`</sub>
-  <sub>checked 2026-08-29: SOLID -- UK-registered rows only (registration authority RA000585); pad the number to 8 digits. 132,901 Delaware file numbers sit in the same column with no Delaware registry to receive them</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- UK-registered rows only (registration authority RA000585); pad the number to 8 digits. 132,901 Delaware file numbers sit in the same column with no Delaware registry to receive them</sub>
 
 
 ### `INTL_GLEIF_RELATIONSHIPS`
 *International source: Gleif Relationships*
 
-0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RELATIONSHIP_PERIOD_1_STARTDATE`, start of a period, to the day, 1832-02-18 -> 2030-05-30:
+
+- `RELATIONSHIP_PERIOD_1_STARTDATE`: start of a period, date as text (iso), 1832-02-18 -> 2030-05-30, 483,886 rows (Opening bound of period slot 1 on a parent/child relationship row and the best available anchor for when a corporate ownership link began. TRAP: the slots are a flattened repeating group, so slot 1 is not the same KIND of period on every ro) -- 308 other tables keep a clock to the day
+- `RELATIONSHIP_PERIOD_2_STARTDATE`: start of a period, date as text (iso), 1824-01-01 -> 2032-05-27, 296,251 rows (Opening bound of period slot 2; meaning depends on relationship_period_2_periodtype.) -- 308 other tables keep a clock to the day
+- `RELATIONSHIP_PERIOD_3_STARTDATE`: start of a period, date as text (iso), 1823-12-04 -> 2028-12-10, 73,708 rows (Opening bound of period slot 3; meaning depends on its periodtype.) -- 308 other tables keep a clock to the day
+- `RELATIONSHIP_PERIOD_1_ENDDATE`: end of a period, date as text (iso), 1925-06-23 -> 2035-12-31, 154,164 rows (Closing bound of period slot 1; same slot-is-not-a-type trap as the start date.) -- 308 other tables keep a clock to the day
+- `RELATIONSHIP_PERIOD_2_ENDDATE`: end of a period, date as text (iso), 1852-01-01 -> 2035-12-31, 104,732 rows (Closing bound of period slot 2; meaning depends on its periodtype.) -- 308 other tables keep a clock to the day
+- `RELATIONSHIP_PERIOD_3_ENDDATE`: end of a period, date as text (iso), 2006-12-31 -> 2035-12-31, 10,026 rows (Closing bound of period slot 3; meaning depends on its periodtype.) -- 308 other tables keep a clock to the day
 
 **Measured 2026-08-29, not yet in the spine:**
 
@@ -10601,10 +17496,106 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `INTL_GLEIF_REPEX.LEI` = `INTL_ISO_MIC_REGISTRY.LEI` &middot; key: `LEI`</sub>
 
 
+### `INTL_GLOBAL_WITNESS_DEFENDERS`
+*International source: Global Witness Defenders*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 22% of rows, 6 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2005 -> 2026:
+
+- `YEAR`: when it happened, year only, 2005 -> 2026, 66 rows (try_to_number(YEAR): the year the land/environmental defender was killed or attacked - the only clock on the table and a genuine event year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_GR_DATAGOV`
+*International source: GR Datagov*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_CREATED`, when it was reported / filed, to the day, 2025-11-17 -> 2026-07-02:
+
+- `DATE_CREATED`: when it was reported / filed, date as text (iso), 2025-11-17 -> 2026-07-02, 4,988 rows (Uncast TEXT record-creation stamp -- when the dataset was registered on data.gov.gr.) -- 308 other tables keep a clock to the day
+- `METADATA_MODIFIED`: when it was reported / filed, date as text (iso), 2026-05-25 -> 2026-07-02, 4,988 rows (Uncast TEXT -- when the portal last edited the catalog record.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_HEALTHCANADA_DPD_DRUG`
+*International source: Healthcanada DPD DRUG*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LAST_UPDATE_DATE`, when it was reported / filed, to the day, 2025-03-22 -> 2026-07-31:
+
+- `LAST_UPDATE_DATE`: when it was reported / filed, date (typed), 2025-03-22 -> 2026-07-31, 13,383 rows (try_to_date(C_24_DEC_2025,'DD-MON-YYYY') - the source column name shows the loader ate the header row, and this reads as Health Canada's record-update stamp, not a drug event.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_HUDOC`
+*International source: Hudoc*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 48 distinct -- country code -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_IE_CRO`
+*International source: IE CRO*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `REGISTERED_ADDRESS` fills 100% of rows, 511,015 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1753-01-01 -> 2026-08-07:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1753-01-01 -> 2026-08-07, 805,501 rows (try_to_date(COMPANY_REG_DATE,'YYYY-MM-DD') - the day the Irish company was incorporated; the staging comment records that its 1970 rows were re-checked and are real, not the epoch trap.) -- 308 other tables keep a clock to the day
+- `INCORPORATION_YEAR`: when it happened, year only, 1753 -> 2026, 805,501 rows (year(incorporation_date) computed in the mart - a derived year of the same incorporation clock.) -- 194 other tables keep a clock to the year
+- `FINANCIAL_YEAR_END`: when it was reported / filed, date (typed), 1753-01-01 -> 2033-06-30, 495,062 rows (MISNAMED COLUMN - staging maps LAST_ACCOUNTS_DATE into it and its own header says there is no recurring financial-year-end field, so this is the date the last annual accounts were FILED, not a period end.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_IPC_FOOD_INSECURITY_GLOBAL`
+*International source: IPC FOOD Insecurity Global*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 100% of rows, 50 distinct -- country code -- 49 other tables carry a clean country
+- country: `TOTAL_COUNTRY_POPULATION` fills 96% of rows, 49 distinct -- country name -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `INTL_ISO_MIC_REGISTRY`
 *International source: ISO MIC Registry*
 
-6 reliable connections.
+6 reliable connections, 2 value-checked place columns, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 360 distinct -- text place -- 174 other tables carry a clean city
+- country: `ISO_COUNTRY_CODE_ISO_3166` fills 100% of rows, 150 distinct -- country code -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CREATION_DATE`, when it was reported / filed, to the day, 2003-04-01 -> 2026-07-27:
+
+- `CREATION_DATE`: when it was reported / filed, date (typed), 2003-04-01 -> 2026-07-27, 2,864 rows (try_to_date(CREATION_DATE,'YYYYMMDD') - when the market identifier code was first entered in the ISO 10383 registry.) -- 308 other tables keep a clock to the day
+- `EXPIRY_DATE`: end of a period, date (typed), 2003-04-28 -> 2026-07-27, 558 rows (try_to_date(EXPIRY_DATE,'YYYYMMDD') - when the MIC expires or was deactivated, closing its validity period.) -- 308 other tables keep a clock to the day
+- `LAST_UPDATE_DATE`: unclear clock, date (typed), 2003-04-28 -> 2026-07-27, 2,864 rows (try_to_date(LAST_UPDATE_DATE,'YYYYMMDD') - the registry's own record-refresh stamp, bookkeeping about the file rather than a world event.) -- 308 other tables keep a clock to the day
+- `LAST_VALIDATION_DATE`: unclear clock, date (typed), 2010-08-23 -> 2026-07-27, 949 rows (try_to_date(LAST_VALIDATION_DATE,'YYYYMMDD') - the registry's periodic re-validation stamp of the record; maintenance metadata, not an event.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -10622,15 +17613,167 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `INTL_ISO_MIC_REGISTRY.LEI` = `FED_CFPB_HMDA_ARID2017_LEI_XREF.LEI_2018` &middot; key: `LEI`</sub>
 
 
+### `INTL_IT_ISTAT`
+*International source: IT Istat*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 2020-01-01 -> 2023-01-01:
+
+- `DATE`: when it happened, date (typed), 2020-01-01 -> 2023-01-01, 213,284 rows (Staging builds it with a regex-guarded parse: 'YYYY' rows become Jan-1 of that year and 'YYYY-MM' rows become the 1st of that month, so it is the observation-period start. Month is the finest resolution present, but the staging comment reco) -- 308 other tables keep a clock to the day
+- `OBS_YEAR`: when it happened, year only, 2020 -> 2023, 213,284 rows (Literally year(date) in the mart -- a 4-digit year integer restating the observation clock.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_LEIDEN_RUSSIAN_OPS_EUROPE`
+*International source: Leiden Russian OPS Europe*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCIDENTDATEEND`, end of a period, to the day, 2022-08-30 -> 2025-12-31:
+
+- `INCIDENTDATEEND`: end of a period, date as text (iso), 2022-08-30 -> 2025-12-31, 153 rows (Closes the incident window; equals the start for single-day incidents; uncast raw passthrough.) -- 308 other tables keep a clock to the day
+- `INCIDENTDATESTART`: unclear clock, date as text (iso), 2022-01-01 -> 2025-10-01, 153 rows (Opens the window in which the incident occurred - the finest real clock on this 153-row table (incidentyear is only year grain); uncast raw passthrough, so the stored format is unverified.) -- 308 other tables keep a clock to the day
+- `INCIDENTYEAR`: unclear clock, year only, 2022 -> 2025, 153 rows (Year the incident occurred - a raw uncast passthrough year value, coarser than the start/end pair on the same row.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `INTL_NTI_CNS_DPRK_MISSILE_TESTS`
 *International source: NTI CNS DPRK Missile Tests*
 
-0 reliable connections, 1 place-based.
+0 reliable connections, 1 place-based, 4 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `FACILITY_LATITUDE` fills 95% of rows, 46 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `FACILITY_LONGITUDE` fills 95% of rows, 47 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- site / place name: `FACILITY_LOCATION` fills 95% of rows, 32 distinct -- text place -- 53 other tables carry a clean site / place name
+- site / place name: `LANDING_LOCATION` fills 88% of rows, 6 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 1984-04-09 -> 2024-11-04:
+
+- `DATE`: when it happened, date as text (iso), 1984-04-09 -> 2024-11-04, 303 rows ("DATE" is a raw text passthrough (no cast) on a missile-test row -- the day of the launch. It is the real event clock, but it must be parsed with an explicit format before use.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_ENTERED_UPDATED`: our own download stamp -- never the clock, date (typed), 2016-12-23 -> 2024-11-18, 303 rows (try_to_date(DATE_ENTERED_UPDATED) -- when the CNS/NTI database entry was created or edited; publisher bookkeeping, not the launch.)
 
 **Same location:**
 
 - `INTL_FR_DATA_GOUV_FULL` (International source: FR DATA GOUV FULL) -- same location as `INTL_FR_DATA_GOUV_FULL`
   <sub>joins on: `INTL_NTI_CNS_DPRK_MISSILE_TESTS.FACILITY_LATITUDE/FACILITY_LONGITUDE` = `INTL_FR_DATA_GOUV_FULL.SPATIAL_GEOM` &middot; key: `GEO_IN`</sub>
+
+
+### `INTL_OPENSANCTIONS`
+*International source: Opensanctions*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRIES` fills 81% of rows, 1,412 distinct -- country code -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `BIRTH_DATE`, when it happened, to the day, 1921-05-06 -> 2022-06-08:
+
+- `BIRTH_DATE`: when it happened, date (typed), 1921-05-06 -> 2022-06-08, 21,670 rows (The mart's guarded CASE only lets exact 'YYYY-MM-DD', non-future values become dates -- the sanctioned person's date of birth. The only real-world clock among this table's candidates.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `BIRTH_DATE_RAW`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (iso), 1905-05-11 -> 2022-06-08, 71,011 rows (The model's own comment: BIRTH_DATE arrives in mixed precision (full dates, year-only '1997', impossible future dates); a bare try_to_date() read year-only values as epoch SECONDS and collapsed ~6.8k rows onto 1970-01-01. Kept as raw text o)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_OPENSANCTIONS_DEFAULT`
+*International source: Opensanctions Default*
+
+0 reliable connections, 1 value-checked place column, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRIES` fills 92% of rows, 5,089 distinct -- country code -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `BIRTH_DATE`, when it happened, to the day, 1900-01-01 -> 2026-03-29:
+
+- `BIRTH_DATE`: when it happened, date as text (iso), 1900-01-01 -> 2026-03-29, 519,521 rows (Staging keeps it as nullif(trim(BIRTH_DATE),'') -- raw, never cast; the sibling OpenSanctions model documents this field as mixed precision (full dates and year-only), so grain is unknown. NOTE: the census's range for this table (min 2018-0) -- 308 other tables keep a clock to the day
+- `FIRST_SEEN`: unlabeled clock, datetime (typed), 2018-03-08 00:00:00.000 -> 2026-08-05 18:46:24.000, 1,281,846 rows -- 308 other tables keep a clock to the day
+- `LAST_CHANGE`: unlabeled clock, datetime (typed), 2022-01-01 00:00:00.000 -> 2026-08-05 18:48:06.000, 1,281,846 rows -- 308 other tables keep a clock to the day
+- `LAST_SEEN`: unlabeled clock, datetime (typed), 2025-04-03 16:06:48.000 -> 2026-08-05 18:53:01.000, 1,281,846 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_OSFI_REGULATED_FI`
+*International source: OSFI Regulated FI*
+
+0 reliable connections, 4 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `ADDRESS_LINE_1` fills 100% of rows, 234 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 100% of rows, 42 distinct -- text place -- 174 other tables carry a clean city
+- state: `PROVINCE_STATE` fills 100% of rows, 10 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- street address: `ADDRESS_LINE_2` fills 62% of rows, 120 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- ZIP code: `POSTAL_ZIP_CODE` fills 100% of rows, 189 distinct -- foreign postal code (only 0% look like US ZIPs)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_OWID_MILSPEND`
+*International source: OWID Milspend*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `WORLD_REGION_ACCORDING_TO_OWID` fills 92% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1949 -> 2025:
+
+- `YEAR`: when it happened, year only, 1949 -> 2025, 9,112 rows (The observation year of an annual country-level military-spending series; try_to_number(YEAR) so it is an INTEGER, not a date - year is the finest real resolution.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_UCDP_GED`
+*International source: UCDP GED*
+
+0 reliable connections, 6 value-checked place columns, 4 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 53,320 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 53,733 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- country: `COUNTRY` fills 100% of rows, 122 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_ID` fills 100% of rows, 125 distinct -- country name -- 49 other tables carry a clean country
+- map shape: `GEOM_WKT` fills 100% of rows, 55,566 distinct -- text place -- 3 other tables carry a clean map shape
+- region: `REGION` fills 100% of rows, 5 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1989 -> 2024:
+
+- `YEAR`: when it happened, year only, 1989 -> 2024, 385,918 rows (try_to_number("YEAR") -- the year the violent event occurred, as a NUMBER. This is almost certainly what produced the census's epoch1970 = 385,918 (every row): a bare date-parse reads '1989' as epoch seconds and dumps the file on 1970-01-01) -- 194 other tables keep a clock to the year
+- `SOURCE_DATE`: when it was reported / filed, date (typed), 1989-01-05 -> 2025-03-20, 211,184 rows (try_to_date(SOURCE_DATE) -- the date of the source report the event was coded from; always at or after the event.) -- 308 other tables keep a clock to the day
+- `DATE_START`: start of a period, date (typed), 1989-01-01 -> 2024-12-31, 385,918 rows (try_to_date(DATE_START) -- the first day the event could have occurred; with date_end it bounds the event window. Primary because it is day grain (vs. year for `year`) and is the event's own clock.) -- 308 other tables keep a clock to the day
+- `DATE_END`: end of a period, date (typed), 1989-01-01 -> 2024-12-31, 385,918 rows (try_to_date(DATE_END) -- the last day the event could have occurred; the census's 13 far-future rows (to 2055) live here.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_UK_COMPANIES_HOUSE`
+*International source: UK Companies House*
+
+0 reliable connections, 6 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_OF_ORIGIN` fills 100% of rows, 215 distinct -- country name -- 49 other tables carry a clean country
+- street address: `ADDRESS_LINE_1` fills 99% of rows, 2,243,690 distinct -- text place -- 114 other tables carry a clean street address
+- city: `POST_TOWN` fills 98% of rows, 43,992 distinct -- text place -- 174 other tables carry a clean city
+- country: `COUNTRY` fills 84% of rows, 206 distinct -- country name -- 49 other tables carry a clean country
+- street address: `ADDRESS_LINE_2` fills 60% of rows, 331,206 distinct -- text place -- 114 other tables carry a clean street address
+- county: `COUNTY` fills 29% of rows, 14,890 distinct -- county name -- 79 other tables carry a clean county
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCORPORATION_DATE`, when it happened, to the day, 1701-06-16 -> 2026-06-30:
+
+- `INCORPORATION_DATE`: when it happened, date (typed), 1701-06-16 -> 2026-06-30, 5,734,779 rows (try_to_date("IncorporationDate",'DD/MM/YYYY') - the day the company was incorporated; the in-file 2026-08-18 note says only 9 rows sit at 1970-01-01 and that the census's 2,237 epoch count and 1327 minimum could NOT be reproduced live.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `INTL_UK_SANCTIONS_LIST`
@@ -10642,7 +17785,32 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `FED_OFAC_SDN` (OFAC (Sanctions List): SDN) -- **44%** of the ship hull number (imo) values also appear in `FED_OFAC_SDN` (291 matching)
   <sub>joins on: `INTL_UK_SANCTIONS_LIST.IMO_NUMBER` = `FED_OFAC_SDN.IMO` &middot; key: `IMO`</sub>
-  <sub>checked 2026-08-29: SOLID (hull key, name drift) -- sanctioned ships get renamed; the IMO hull number never changes</sub>
+  <sub>checked 2026-08-29: SOLID (hull key, name drift) -- 60 matched pairs spot-checked: names agree **71.7%** -- sanctioned ships get renamed; the IMO hull number never changes</sub>
+
+
+### `INTL_VOETEN_UNGA_VOTES`
+*International source: Voeten UNGA Votes*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1946 -> 2024:
+
+- `YEAR`: when it happened, year only, 1946 -> 2024, 1,823,352 rows (Year of the UN General Assembly session the vote-agreement row covers; try_to_number(YEAR) integer - do NOT read day grain into this 1.8M-row table.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `INTL_WB_IDS`
+*International source: WB IDS*
+
+0 reliable connections, 2 value-checked place columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY_CODE` fills 100% of rows, 136 distinct -- country code -- 49 other tables carry a clean country
+- country: `COUNTRY_NAME` fills 100% of rows, 136 distinct -- country name -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `INT_UK_COMPANIES_HOUSE`
@@ -10659,13 +17827,26 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
 - `INTL_GLEIF` (International source: Gleif) -- **86%** of the uk company number values also appear in `INTL_GLEIF` (94,652 matching)
   <sub>joins on: `INT_UK_COMPANIES_HOUSE.CompanyNumber` = `INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityEntityID` &middot; key: `COMPANY_NO`</sub>
-  <sub>checked 2026-08-29: SOLID -- UK-registered rows only (registration authority RA000585); pad the number to 8 digits. 132,901 Delaware file numbers sit in the same column with no Delaware registry to receive them</sub>
+  <sub>checked 2026-08-29: SOLID -- 60 matched pairs spot-checked: names agree **100%** -- UK-registered rows only (registration authority RA000585); pad the number to 8 digits. 132,901 Delaware file numbers sit in the same column with no Delaware registry to receive them</sub>
 
 
 ### `IRS527_8871_ORGS`
 *IRS -- Political Groups (527s): 8871 ORGS*
 
-31 reliable connections -- plus 26 low-confidence name+ZIP guesses not shown here.
+31 reliable connections, 5 value-checked place columns, 2 value-checked clock columns -- plus 26 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `EMAIL_ADDRESS` fills 100% of rows, 40,303 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `MAILING_ADDR1` fills 100% of rows, 48,849 distinct -- text place -- 114 other tables carry a clean street address
+- city: `MAILING_CITY` fills 100% of rows, 7,664 distinct -- text place -- 174 other tables carry a clean city
+- state: `MAILING_STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `MAILING_ZIP` fills 100% of rows, 15,155 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ESTABLISHED_DATE`, when it happened, to the day, 1808-01-01 -> 2026-07-24:
+
+- `ESTABLISHED_DATE`: when it happened, date (typed), 1808-01-01 -> 2026-07-24, 70,767 rows (try_to_date(ESTABLISHED_DATE,'YYYYMMDD') -- when the 527 organization was established; the only real-world event clock here, though it dates the org rather than the notice, and the 1808 minimum plus 34 epoch rows are published typos.) -- 308 other tables keep a clock to the day
+- `INSERT_DATETIME`: when it was reported / filed, datetime (typed), 2001-05-13 21:20:54.000 -> 2026-07-24 20:46:44.000, 77,476 rows (try_to_timestamp(INSERT_DATETIME,'YYYY-MM-DD HH24:MI:SS') -- the IRS's own stamp for when the notice was inserted into their disclosure database; a publisher load stamp, not Ripple's ingest, and dating rows by it is the mistake that corrupte) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -10739,7 +17920,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `IRS527_8872_REPORTS`
 *IRS -- Political Groups (527s): 8872 Reports*
 
-3 reliable connections -- plus 10 low-confidence name+ZIP guesses not shown here.
+3 reliable connections, 16 value-checked place columns, 5 value-checked clock columns -- plus 10 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `EMAIL_ADDRESS` fills 100% of rows, 4,170 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `MAILING_ADDR1` fills 100% of rows, 5,276 distinct -- text place -- 114 other tables carry a clean street address
+- city: `BUSINESS_CITY` fills 100% of rows, 1,558 distinct -- text place -- 174 other tables carry a clean city
+- city: `CONTACT_CITY` fills 100% of rows, 1,584 distinct -- text place -- 174 other tables carry a clean city
+- city: `MAILING_CITY` fills 100% of rows, 1,552 distinct -- text place -- 174 other tables carry a clean city
+- state: `BUSINESS_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `CONTACT_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `MAILING_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `BUSINESS_ZIP` fills 100% of rows, 2,869 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `CONTACT_ZIP` fills 100% of rows, 2,881 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- ZIP code: `MAILING_ZIP` fills 100% of rows, 2,809 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `CUSTODIAN_CITY` fills 100% of rows, 1,580 distinct -- text place -- 174 other tables carry a clean city
+- state: `CUSTODIAN_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `CUSTODIAN_ZIP` fills 100% of rows, 2,855 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `MAILING_ADDR2` fills 23% of rows, 906 distinct -- text place -- 114 other tables carry a clean street address
+- state: `PRE_OR_POST_ELECT_STATE` fills 16% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- ZIP code: `CUSTODIAN_ZIP_EXT` fills 19% of rows, 1,001 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
+- **TRAP** -- ZIP code: `CONTACT_ZIP_EXT` fills 18% of rows, 987 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
+- **TRAP** -- ZIP code: `MAILING_ZIP_EXT` fills 18% of rows, 879 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
+- **TRAP** -- ZIP code: `BUSINESS_ZIP_EXT` fills 18% of rows, 893 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
+- **TRAP** -- street address: `CHANGE_OF_ADDRESS_IND` fills 2% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 1.5% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ORG_FORMATION_DATE`, when it happened, to the day, 1869-09-01 -> 2026-06-01:
+
+- `ORG_FORMATION_DATE`: when it happened, date (typed), 1869-09-01 -> 2026-06-01, 55,579 rows (try_to_date(...,'YYYYMMDD') for when the organization was formed -- a real event, but it dates the org, not this report row; the 1869 minimum and 123 epoch rows are published typos.) -- 308 other tables keep a clock to the day
+- `PRE_OR_POST_ELECT_DATE`: when it happened, date (typed), 2000-11-07 -> 2026-05-19, 8,685 rows (try_to_date(...,'YYYYMMDD') carrying the date of the election a pre- or post-election report is tied to; a real event date, but the election's, not the report's.) -- 308 other tables keep a clock to the day
+- `INSERT_DATETIME`: when it was reported / filed, datetime (typed), 2000-11-17 16:41:01.000 -> 2026-07-23 20:42:11.000, 55,579 rows (try_to_timestamp_ntz of the IRS's own database insert stamp; publisher bookkeeping, not Ripple's ingest, and it is what pushed the census max to 2026-08-05.) -- 308 other tables keep a clock to the day
+- `PERIOD_BEGIN_DATE`: start of a period, date (typed), 2000-01-01 -> 2026-07-01, 55,566 rows (try_to_date(...,'YYYYMMDD') -- opens the period the 8872 report covers; the row is a periodic report, so this is its own clock.) -- 308 other tables keep a clock to the day
+- `PERIOD_END_DATE`: end of a period, date (typed), 2000-08-31 -> 2026-07-23, 55,566 rows (Same YYYYMMDD cast; closes the reported period.) -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
@@ -10754,7 +17967,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `IRS527_DIRECTORS_OFFICERS`
 *IRS -- Political Groups (527s): Directors Officers*
 
-32 reliable connections -- plus 22 low-confidence name+ZIP guesses not shown here.
+32 reliable connections, 3 value-checked place columns -- plus 22 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `ENTITY_CITY` fills 100% of rows, 9,130 distinct -- text place -- 174 other tables carry a clean city
+- state: `ENTITY_STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ENTITY_ZIP` fills 100% of rows, 17,241 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- **TRAP** -- ZIP code: `ENTITY_ZIP_EXT` fills 15% of rows, 6,481 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
 
 **Rock-solid match:**
 
@@ -10830,7 +18050,14 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `IRS527_RELATED_ENTITIES`
 *IRS -- Political Groups (527s): Related Entities*
 
-10 reliable connections -- plus 54 low-confidence name+ZIP guesses not shown here.
+10 reliable connections, 3 value-checked place columns -- plus 54 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `ENTITY_STATE` fills 100% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ENTITY_ZIP` fills 100% of rows, 4,284 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `ENTITY_CITY` fills 100% of rows, 2,078 distinct -- text place -- 174 other tables carry a clean city
+- **TRAP** -- ZIP code: `ENTITY_ZIP_EXT` fills 29% of rows, 1,237 distinct -- ZIP with leading zeros lost (100% are 1-4 digits (00501 -> 501))
 
 **Rock-solid match:**
 
@@ -10859,15 +18086,662 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
+### `JCS_MEDIANS`
+*JCS Medians*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `_BUILT_AT`, unlabeled clock, to the day, 2026-06-30 21:08:25.743 -0700 -> 2026-06-30 21:08:25.743 -0700:
+
+- `_BUILT_AT`: unlabeled clock, datetime (typed), 2026-06-30 21:08:25.743 -0700 -> 2026-06-30 21:08:25.743 -0700, 102 rows -- 308 other tables keep a clock to the day
+- `TERM`: unlabeled clock, year only, 1936 -> 2023, 102 rows -- 194 other tables keep a clock to the year
+- `YEAR`: unlabeled clock, year only, 1924 -> 2024, 102 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `JUDGE_IDEOLOGY_COA`
+*Judge Ideology COA*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `_BUILT_AT`, unlabeled clock, to the day, 2026-06-30 21:08:24.607 -0700 -> 2026-06-30 21:08:24.607 -0700:
+
+- `_BUILT_AT`: unlabeled clock, datetime (typed), 2026-06-30 21:08:24.607 -0700 -> 2026-06-30 21:08:24.607 -0700, 703 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `JUDGE_IDEOLOGY_SCOTUS`
+*Judge Ideology Scotus*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `_BUILT_AT`, unlabeled clock, to the day, 2026-06-30 21:08:22.950 -0700 -> 2026-06-30 21:08:22.950 -0700:
+
+- `_BUILT_AT`: unlabeled clock, datetime (typed), 2026-06-30 21:08:22.950 -0700 -> 2026-06-30 21:08:22.950 -0700, 782 rows -- 308 other tables keep a clock to the day
+- `TERM`: unlabeled clock, year only, 1937 -> 2022, 782 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_BILL_RECORD`
+*Member BILL Record*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_CROSSWALK`
+*Member Crosswalk*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `LAST_STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- congressional district: `LAST_DISTRICT` fills 82% of rows, 55 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FIRST_TERM_START`, start of a period, to the day, 1789-03-04 -> 2026-06-10:
+
+- `FIRST_TERM_START`: start of a period, date as text (iso), 1789-03-04 -> 2026-06-10, 12,794 rows (Start of the member's congressional career on a one-row-per-member table - the only forward-looking anchor here; raw trimmed TEXT in staging, never cast to date.) -- 308 other tables keep a clock to the day
+- `LAST_TERM_END`: end of a period, date as text (iso), 1790-06-01 -> 2031-01-03, 12,794 rows (End of the member's most recent term; for sitting members it is a SCHEDULED FUTURE date, so far-future values are legitimate here; raw trimmed TEXT.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_FEC_ID`
+*Member FEC ID*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_INDIV_DONATIONS`
+*Member Indiv Donations*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE`, unlabeled clock, to the year, 2024 -> 2026:
+
+- `CYCLE`: unlabeled clock, year only, 2024 -> 2026, 1,057 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_MONEY_RAISED`
+*Member Money Raised*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE`, end of a period, to the year, 2024 -> 2026:
+
+- `CYCLE`: end of a period, year only, 2024 -> 2026, 1,050 rows (FEC two-year election cycle the money total covers, inherited from fec_candidate_summary and part of the (bioguide, cycle) key; a period label naming its closing year, not a point event.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_PAC_MONEY`
+*Member PAC Money*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CYCLE`, unlabeled clock, to the year, 2024 -> 2026:
+
+- `CYCLE`: unlabeled clock, year only, 2024 -> 2026, 1,258 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_SPINE`
+*Member Spine*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 59 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `FIRST_TERM_START`, start of a period, to the day, 1789-03-04 -> 2026-06-10:
+
+- `FIRST_TERM_START`: start of a period, date as text (iso), 1789-03-04 -> 2026-06-10, 12,794 rows (Start of the member's career, passed straight through from the crosswalk; raw TEXT upstream, never cast to date.) -- 308 other tables keep a clock to the day
+- `LAST_TERM_END`: end of a period, date as text (iso), 1790-06-01 -> 2031-01-03, 12,794 rows (End of the member's most recent term, from the crosswalk; scheduled future dates are legitimate for sitting members.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `MEMBER_VOTING_RECORD`
+*Member Voting Record*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `PHARMA_MEAL_CAP_FINGERPRINT`
+*Pharma MEAL CAP Fingerprint*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PROGRAM_YEAR`, when it happened, to the year, 2022 -> 2024:
+
+- `PROGRAM_YEAR`: when it happened, year only, 2022 -> 2024, 2,462 rows (try_to_number(program_year) and half the declared grain key - the Open Payments program year the food-and-beverage payments were made in.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `RACIAL_JAIL_DISPARITY`
+*Racial JAIL Disparity*
+
+0 reliable connections, 6 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY_NAME` fills 100% of rows, 1,838 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_YEAR_KEY` fills 100% of rows, 126,816 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `FIPS` fills 100% of rows, 3,069 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 45 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `REGION` fills 100% of rows, 4 distinct -- text place -- 40 other tables carry a clean region
+- state: `STATE_ABBR` fills 100% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1970 -> 2026:
+
+- `YEAR`: when it happened, year only, 1970 -> 2026, 128,507 rows (The Vera county-year panel year carried through from staging (try_to_number(trim(YEAR))) -- the year the jail populations were measured.) -- 194 other tables keep a clock to the year
+- **NOT A CLOCK** -- `TOTAL_WORKING_AGE_POP`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 126,786 rows (total_pop_15to64 -- a population count, not a date.)
+- **NOT A CLOCK** -- `WHITE_WORKING_AGE_POP`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 98,829 rows (white_pop_15to64 -- a population count, not a date.)
+- **NOT A CLOCK** -- `LATINX_WORKING_AGE_POP`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 98,494 rows (latinx_pop_15to64 -- a population count, not a date.)
+- **NOT A CLOCK** -- `BLACK_WORKING_AGE_POP`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 96,340 rows (black_pop_15to64 -- a population count (the rate denominator). It matched only on 'age'.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `SCOTUS_JUSTICE`
+*Scotus Justice*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `_BUILT_AT`, unlabeled clock, to the day, 2026-06-30 20:16:35.621 -0700 -> 2026-06-30 20:16:35.621 -0700:
+
+- `_BUILT_AT`: unlabeled clock, datetime (typed), 2026-06-30 20:16:35.621 -0700 -> 2026-06-30 20:16:35.621 -0700, 40 rows -- 308 other tables keep a clock to the day
+- `FIRST_TERM`: unlabeled clock, year only, 1946 -> 2022, 40 rows -- 194 other tables keep a clock to the year
+- `LAST_TERM`: unlabeled clock, year only, 1948 -> 2024, 40 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `SENATE_TRADES`
+*Senate Trades*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TRANSACTION_DATE`, unlabeled clock, to the day, 2012-06-14 -> 2020-12-02:
+
+- `TRANSACTION_DATE`: unlabeled clock, date (typed), 2012-06-14 -> 2020-12-02, 8,350 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `STATE_MO_SEX_OFFENDER_REGISTRY`
+*State MO SEX Offender Registry*
+
+0 reliable connections, 5 value-checked place columns, 1 value-checked clock column -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 56 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `ADDRESS` fills 97% of rows, 16,255 distinct -- text place -- 114 other tables carry a clean street address
+- city: `CITY` fills 84% of rows, 997 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIP` fills 84% of rows, 1,051 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `COUNTY` fills 83% of rows, 114 distinct -- county name -- 79 other tables carry a clean county
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_BIRTH`, when it happened, to the day, 1926-04-17 -> 2008-06-06:
+
+- `DATE_OF_BIRTH`: when it happened, date (typed), 1926-04-17 -> 2008-06-06, 28,185 rows (Staging: try_to_date(nullif(trim(DATE_OF_BIRTH),'')) with a header note that the source is an ISO timestamp string -- the registrant's birth date. It is the only clock available here (no registration or offense date is exposed), and the cen) -- 308 other tables keep a clock to the day
+
+
+### `ST_CANNABIS_POLICY_BUNDLES`
+*State-level source: Cannabis Policy Bundles*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 50 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- state: `STATE_AB` fills 100% of rows, 50 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- FIPS / GEOID code: `FIPS` fills 100% of rows, 50 distinct -- FIPS with leading zeros lost (86% have a FIPS length; modal length 2 -- pad before joining)
+- **TRAP** -- congressional district: `LEGISLATIVE_ACTION` fills 16% of rows, 2 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- state: `STATE_SALES_TAX_HIGH_RCL_APP` fills 6% of rows, 2 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining)
+- **TRAP** -- state: `STATE_SALES_TAX_HIGH_RCL_IMP` fills 4% of rows, 2 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining; only 4.0% of rows filled)
+- **TRAP** -- state: `STATE_COURT_SIG_ACTION` fills 3% of rows, 2 distinct -- state as a numeric code (FIPS / ICPSR) (not a 2-letter code -- needs a code translation before joining; only 2.9% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1994 -> 2023:
+
+- `YEAR`: when it happened, year only, 1994 -> 2023, 1,500 rows (Panel-observation year of a state-year policy grid (the repo's spine backfill records the natural key as FIPS+YEAR; 1,500 rows is 50 states x 30 years); try_to_number(YEAR) integer.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION`
+*State-level source: NYC CFB Campaign 2001 Contribution*
+
+0 reliable connections, 14 value-checked place columns, 1 value-checked clock column -- plus 31 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `BOROUGH_CODE` fills 99% of rows, 6 distinct -- county name -- 79 other tables carry a clean county
+- city: `CITY` fills 99% of rows, 3,543 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 99% of rows, 84 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 98% of rows, 3,416 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- state: `EMPLOYER_STATE` fills 59% of rows, 83 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `EMPLOYER_CITY` fills 58% of rows, 1,949 distinct -- text place -- 174 other tables carry a clean city
+- street address: `EMPLOYER_STREET_NAME` fills 51% of rows, 15,559 distinct -- text place -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_CITY` fills 8% of rows, 222 distinct -- text place -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_STATE` fills 8% of rows, 15 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `INTERMEDIARY_EMPLOYER_CITY` fills 7% of rows, 116 distinct -- text place -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_EMPLOYER_STATE` fills 7% of rows, 13 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `INTERMEDIARY_EMPLOYER_STREET_NAME` fills 7% of rows, 606 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `STREET_NAME` fills 6% of rows, 3,221 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `INTERMEDIARY_STREET_NAME` fills 0% of rows, 28 distinct -- text place (only 0.2% of rows filled) -- 114 other tables carry a clean street address
+- **TRAP** -- street address: `EMPLOYER_STREET_NUMBER` fills 50% of rows, 7,644 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `INTERMEDIARY_EMPLOYER_STREET_NUMBER` fills 7% of rows, 536 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `STREET_NUMBER` fills 6% of rows, 1,871 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `INTERMEDIARY_STREET_NUMBER` fills 0% of rows, 30 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 0.2% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ELECTION_CYCLE`, end of a period, to the year, 2001 -> 2001:
+
+- `ELECTION_CYCLE`: end of a period, year only, 2001 -> 2001, 193,741 rows (trim(ELECTION) -- the election year the contribution was raised for; the cycle closes in that year, and on this single-cycle table it is effectively constant.) -- 194 other tables keep a clock to the year
+
+
+### `ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION`
+*State-level source: NYC CFB Campaign 2009 Contribution*
+
+0 reliable connections, 13 value-checked place columns, 3 value-checked clock columns -- plus 22 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 99% of rows, 3,099 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 99% of rows, 82 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `BOROUGH_CODE` fills 99% of rows, 6 distinct -- county name -- 79 other tables carry a clean county
+- ZIP code: `ZIP` fills 99% of rows, 3,652 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `EMPLOYER_CITY` fills 64% of rows, 1,862 distinct -- text place -- 174 other tables carry a clean city
+- state: `EMPLOYER_STATE` fills 64% of rows, 73 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `EMPLOYER_STREET_NAME` fills 54% of rows, 13,198 distinct -- text place -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_CITY` fills 3% of rows, 104 distinct -- text place (only 3.1% of rows filled) -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_STATE` fills 3% of rows, 8 distinct -- clean 2-letter state (only 3.1% of rows filled) -- 229 other tables carry a clean state
+- ZIP code: `INTERMEDIARY_ZIP` fills 3% of rows, 186 distinct -- clean ZIP (only 3.1% of rows filled) -- 124 other tables carry a clean ZIP code
+- city: `INTERMEDIARY_EMPLOYER_CITY` fills 3% of rows, 53 distinct -- text place (only 2.8% of rows filled) -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_EMPLOYER_STATE` fills 3% of rows, 8 distinct -- clean 2-letter state (only 2.8% of rows filled) -- 229 other tables carry a clean state
+- street address: `INTERMEDIARY_EMPLOYER_STREET_NAME` fills 2% of rows, 231 distinct -- text place (only 2.5% of rows filled) -- 114 other tables carry a clean street address
+- **TRAP** -- street address: `EMPLOYER_STREET_NUMBER` fills 53% of rows, 7,506 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `INTERMEDIARY_EMPLOYER_STREET_NUMBER` fills 2% of rows, 245 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 2.4% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRIBUTION_DATE`, when it happened, to the day, 2000-05-02 -> 2010-01-11:
+
+- `CONTRIBUTION_DATE`: when it happened, date (typed), 2000-05-02 -> 2010-01-11, 145,943 rows (try_to_date(trim(DATE)) -- when the contribution was made; the census's 2000-05-02 minimum shows the permissive parse does land real values here, unlike the 2001 table.) -- 308 other tables keep a clock to the day
+- `REFUND_DATE`: when it happened, date (typed), 2004-01-06 -> 2010-01-11, 3,062 rows (try_to_date(trim(REFUNDDATE)) -- when the contribution was refunded, a real second event on the same row.) -- 308 other tables keep a clock to the day
+- `ELECTION_CYCLE`: end of a period, year only, 2009 -> 2009, 146,112 rows (trim(ELECTION) -- the election year the money was raised for; the cycle closes in that year.) -- 194 other tables keep a clock to the year
+
+
+### `ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION`
+*State-level source: NYC CFB Campaign 2013 Contribution*
+
+0 reliable connections, 13 value-checked place columns, 3 value-checked clock columns -- plus 24 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 3,669 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 84 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `ZIP` fills 99% of rows, 4,990 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- county: `BOROUGH_CODE` fills 99% of rows, 6 distinct -- county name -- 79 other tables carry a clean county
+- city: `EMPLOYER_CITY` fills 66% of rows, 2,516 distinct -- text place -- 174 other tables carry a clean city
+- state: `EMPLOYER_STATE` fills 66% of rows, 79 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `EMPLOYER_STREET_NAME` fills 55% of rows, 17,048 distinct -- text place -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_CITY` fills 9% of rows, 207 distinct -- text place -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_STATE` fills 9% of rows, 10 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- ZIP code: `INTERMEDIARY_ZIP` fills 9% of rows, 322 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- city: `INTERMEDIARY_EMPLOYER_CITY` fills 8% of rows, 120 distinct -- text place -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_EMPLOYER_STATE` fills 8% of rows, 12 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `INTERMEDIARY_EMPLOYER_STREET_NAME` fills 7% of rows, 550 distinct -- text place -- 114 other tables carry a clean street address
+- **TRAP** -- street address: `EMPLOYER_STREET_NUMBER` fills 55% of rows, 8,527 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `INTERMEDIARY_EMPLOYER_STREET_NUMBER` fills 7% of rows, 516 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRIBUTION_DATE`, when it happened, to the day, 1913-06-13 -> 2014-01-11:
+
+- `CONTRIBUTION_DATE`: when it happened, date (typed), 1913-06-13 -> 2014-01-11, 197,886 rows (try_to_date(trim(DATE)) -- when the contribution was made; the census's 1913-06-13 minimum is a published '13-for-2013' typo that the no-format parse accepted.) -- 308 other tables keep a clock to the day
+- `REFUND_DATE`: when it happened, date (typed), 2001-01-10 -> 2014-01-11, 4,441 rows (try_to_date(trim(REFUNDDATE)) -- when the contribution was refunded.) -- 308 other tables keep a clock to the day
+- `ELECTION_CYCLE`: end of a period, year only, 2013 -> 2013, 197,968 rows (trim(ELECTION) -- the election year the money was raised for; the cycle closes in that year.) -- 194 other tables keep a clock to the year
+
+
+### `ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS`
+*State-level source: NYC CFB Campaign 2021 Contributions*
+
+0 reliable connections, 12 value-checked place columns, 3 value-checked clock columns -- plus 31 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 7,323 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `BOROUGH_CODE` fills 100% of rows, 6 distinct -- county name -- 79 other tables carry a clean county
+- city: `EMPLOYER_CITY` fills 73% of rows, 6,075 distinct -- text place -- 174 other tables carry a clean city
+- state: `EMPLOYER_STATE` fills 73% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- street address: `EMPLOYER_STREET_NAME` fills 72% of rows, 62,164 distinct -- text place -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_CITY` fills 2% of rows, 88 distinct -- text place (only 1.9% of rows filled) -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_STATE` fills 2% of rows, 11 distinct -- clean 2-letter state (only 1.9% of rows filled) -- 229 other tables carry a clean state
+- ZIP code: `INTERMEDIARY_ZIP` fills 2% of rows, 185 distinct -- clean ZIP (only 1.9% of rows filled) -- 124 other tables carry a clean ZIP code
+- street address: `INTERMEDIARY_EMPLOYER_STREET_NAME` fills 1% of rows, 265 distinct -- text place (only 1.0% of rows filled) -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_EMPLOYER_CITY` fills 1% of rows, 56 distinct -- text place (only 1.0% of rows filled) -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_EMPLOYER_STATE` fills 1% of rows, 10 distinct -- clean 2-letter state (only 1.0% of rows filled) -- 229 other tables carry a clean state
+- **TRAP** -- street address: `EMPLOYER_STREET_NUMBER` fills 70% of rows, 18,272 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `INTERMEDIARY_EMPLOYER_STREET_NUMBER` fills 1% of rows, 259 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 1.0% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRIBUTION_DATE`, when it happened, to the day, 2011-03-11 -> 2023-12-04:
+
+- `CONTRIBUTION_DATE`: when it happened, date (typed), 2011-03-11 -> 2023-12-04, 457,476 rows (try_to_date(trim(DATE)) -- when the contribution was made; census minimum 2011-03-11 shows real values land here.) -- 308 other tables keep a clock to the day
+- `REFUND_DATE`: when it happened, date (typed), 2017-11-30 -> 2024-01-04, 8,813 rows (try_to_date(trim(REFUNDDATE)) -- when the contribution was refunded.) -- 308 other tables keep a clock to the day
+- `ELECTION_CYCLE`: end of a period, year only, 2021 -> 2021, 457,521 rows (trim(ELECTION) -- the election year the money was raised for; the cycle closes in that year.) -- 194 other tables keep a clock to the year
+
+
+### `ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS`
+*State-level source: NYC CFB Campaign 2025 Contributions*
+
+0 reliable connections, 12 value-checked place columns, 3 value-checked clock columns -- plus 28 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `CITY` fills 100% of rows, 6,219 distinct -- text place -- 174 other tables carry a clean city
+- state: `STATE` fills 100% of rows, 54 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- county: `BOROUGH_CODE` fills 99% of rows, 6 distinct -- county name -- 79 other tables carry a clean county
+- state: `EMPLOYER_STATE` fills 72% of rows, 53 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `EMPLOYER_CITY` fills 72% of rows, 4,396 distinct -- text place -- 174 other tables carry a clean city
+- street address: `EMPLOYER_STREET_NAME` fills 72% of rows, 34,178 distinct -- text place -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_CITY` fills 3% of rows, 82 distinct -- text place (only 3.1% of rows filled) -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_STATE` fills 3% of rows, 11 distinct -- clean 2-letter state (only 3.1% of rows filled) -- 229 other tables carry a clean state
+- ZIP code: `INTERMEDIARY_ZIP` fills 3% of rows, 164 distinct -- clean ZIP (only 3.1% of rows filled) -- 124 other tables carry a clean ZIP code
+- street address: `INTERMEDIARY_EMPLOYER_STREET_NAME` fills 3% of rows, 245 distinct -- text place (only 2.6% of rows filled) -- 114 other tables carry a clean street address
+- city: `INTERMEDIARY_EMPLOYER_CITY` fills 3% of rows, 51 distinct -- text place (only 2.6% of rows filled) -- 174 other tables carry a clean city
+- state: `INTERMEDIARY_EMPLOYER_STATE` fills 3% of rows, 9 distinct -- clean 2-letter state (only 2.6% of rows filled) -- 229 other tables carry a clean state
+- **TRAP** -- street address: `EMPLOYER_STREET_NUMBER` fills 71% of rows, 13,824 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- street address: `INTERMEDIARY_EMPLOYER_STREET_NUMBER` fills 3% of rows, 224 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place; only 2.6% of rows filled)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CONTRIBUTION_DATE`, when it happened, to the day, 2014-07-31 -> 2025-11-27:
+
+- `CONTRIBUTION_DATE`: when it happened, date (typed), 2014-07-31 -> 2025-11-27, 259,480 rows (try_to_date(trim(DATE)) -- when the contribution was made; census minimum 2014-07-31 shows real values land here.) -- 308 other tables keep a clock to the day
+- `REFUND_DATE`: when it happened, date (typed), 2022-03-25 -> 2025-11-27, 3,608 rows (try_to_date(trim(REFUNDDATE)) -- when the contribution was refunded.) -- 308 other tables keep a clock to the day
+- `ELECTION_CYCLE`: end of a period, year only, 2025 -> 2025, 259,537 rows (trim(ELECTION) -- the election year the money was raised for; the cycle closes in that year.) -- 194 other tables keep a clock to the year
+
+
+### `ST_OEHHA_PROPOSITION_65_LIST`
+*State-level source: Oehha Proposition 65 LIST*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_LISTED`, when it was decided, to the day, 1987-02-27 -> 2026-07-17:
+
+- `DATE_LISTED`: when it was decided, date (typed), 1987-02-27 -> 2026-07-17, 924 rows (try_to_date on the trimmed value (staging notes an explicit MM/DD/YYYY format nulled 100% of rows, so the bare parse is deliberate) - the state listing the chemical; census 1987-2026 is clean.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_AWARDS`
+*TX Lobby Awards*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIODSTARTDT`, start of a period, to the day, 2005-01-01 -> 2026-06-01:
+
+- `PERIODSTARTDT`: start of a period, date (typed), 2005-01-01 -> 2026-06-01, 1,589 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period the award expenditure falls in; the finest real clock on the table since award rows carry no activity date.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2005 -> 2026, 1,589 rows (Kept as trimmed text (no cast) -- the calendar year the lobby report applies to; a real year label, but bare-date-parsing it is the epoch-1970 bug class.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2005-01-31 -> 2026-06-30, 1,589 rows (try_to_date(...,'YYYYMMDD') -- closes the same reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2005-02-10 -> 2026-07-10, 1,589 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2005-02-09 -> 2026-07-09, 1,589 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_COVER`
+*TX Lobby Cover*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `RECEIVED_DT`, when it was reported / filed, to the day, 1988-08-10 -> 2026-08-04:
+
+- `RECEIVED_DT`: when it was reported / filed, date (typed), 1988-08-10 -> 2026-08-04, 283,803 rows (try_to_date(RECEIVEDDT,'YYYYMMDD') -- when the Ethics Commission received the report.) -- 308 other tables keep a clock to the day
+- `FILED_DT`: when it was reported / filed, date (typed), 1988-08-10 -> 2026-08-04, 283,802 rows (try_to_date(FILEDDT,'YYYYMMDD') -- when the lobby report was filed; the report's own event and the best shared-timeline anchor, with received_dt as a near-duplicate. The 0205-02-28 census minimum is a published typo year, not a cast bug.) -- 308 other tables keep a clock to the day
+- `PERIOD_START_DT`: start of a period, date (typed), 1991-10-01 -> 2026-12-01, 244,662 rows (try_to_date(PERIODSTARTDT,'YYYYMMDD') -- opens the activity period the cover sheet reports on.) -- 308 other tables keep a clock to the day
+- `APPLICABLE_YEAR`: start of a period, year only, 1991 -> 2026, 283,803 rows (Raw pass-through of APPLICABLEYEAR with no cast -- the calendar year the cover sheet applies to; a real year label, not a date value.) -- 194 other tables keep a clock to the year
+- `DUE_DT`: end of a period, date (typed), 1992-01-03 -> 2027-04-12, 283,803 rows (try_to_date(DUEDT,'YYYYMMDD') -- the regulatory deadline that closes the filing window; a real date, but a scheduled deadline rather than an event, and the gap to filed_dt measures lateness.) -- 308 other tables keep a clock to the day
+- `PERIOD_END_DT`: end of a period, date (typed), 1991-12-31 -> 2026-12-31, 244,670 rows (try_to_date(PERIODENDDT,'YYYYMMDD') -- closes that activity period; the census's 2027-04-12 max is a forward-dated period end or a published typo.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_DOCKETS`
+*TX Lobby Dockets*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIODSTARTDT`, start of a period, to the day, 2001-05-01 -> 2026-01-01:
+
+- `PERIODSTARTDT`: start of a period, date (typed), 2001-05-01 -> 2026-01-01, 1,207 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period the docket line falls in; the finest clock available on this table.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2001 -> 2026, 1,207 rows (Trimmed text year the docket designation applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2001-05-31 -> 2026-07-14, 1,207 rows (try_to_date(...,'YYYYMMDD') -- closes the same reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2001-06-11 -> 2027-01-11, 1,207 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2001-06-07 -> 2026-07-14, 1,207 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_ENTERTAINMENT`
+*TX Lobby Entertainment*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVITYDATE`, when it happened, to the day, 2005-01-01 -> 2026-06-15:
+
+- `ACTIVITYDATE`: when it happened, date (typed), 2005-01-01 -> 2026-06-15, 2,836 rows (try_to_date(ACTIVITYDATE,'YYYYMMDD') -- the day the entertainment was actually provided to the official; the true event clock.) -- 308 other tables keep a clock to the day
+- `PERIODSTARTDT`: start of a period, date (typed), 2005-01-01 -> 2026-06-01, 2,836 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period containing the entertainment expenditure.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2005 -> 2026, 2,836 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2005-01-31 -> 2026-06-30, 2,836 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2005-02-10 -> 2026-07-10, 2,836 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2005-02-04 -> 2026-07-10, 2,836 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_EVENTS`
+*TX Lobby Events*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVITYDATE`, when it happened, to the day, 2005-01-10 -> 2026-06-04:
+
+- `ACTIVITYDATE`: when it happened, date (typed), 2005-01-10 -> 2026-06-04, 2,246 rows (try_to_date(ACTIVITYDATE,'YYYYMMDD') -- the day the ceremony or reception for officials was held; the true event clock.) -- 308 other tables keep a clock to the day
+- `PERIODSTARTDT`: start of a period, date (typed), 2005-01-01 -> 2026-06-01, 3,107 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period containing the event expenditure.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2005 -> 2026, 3,107 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2005-02-28 -> 2026-06-30, 3,107 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2005-03-10 -> 2026-07-10, 3,107 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2005-06-29 -> 2026-07-10, 3,107 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_FOOD_BEVERAGE`
+*TX Lobby FOOD Beverage*
+
+0 reliable connections, 6 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ACTIVITYDATE`, when it happened, to the day, 2004-11-02 -> 2026-06-23:
+
+- `ACTIVITYDATE`: when it happened, date (typed), 2004-11-02 -> 2026-06-23, 14,452 rows (try_to_date(ACTIVITYDATE,'YYYYMMDD') -- the day the meal was bought for the state official; the true event clock.) -- 308 other tables keep a clock to the day
+- `PERIODSTARTDT`: start of a period, date (typed), 2004-01-01 -> 2026-06-01, 14,452 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period containing the food and beverage spend.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2004 -> 2026, 14,452 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2004-12-31 -> 2026-06-30, 14,452 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2005-01-10 -> 2026-07-10, 14,452 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2005-01-07 -> 2026-07-10, 14,452 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_GIFTS`
+*TX Lobby Gifts*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIODSTARTDT`, start of a period, to the day, 2004-01-01 -> 2026-06-01:
+
+- `PERIODSTARTDT`: start of a period, date (typed), 2004-01-01 -> 2026-06-01, 4,084 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period containing the gift; gift rows carry no activity date, so this is the finest clock here.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2004 -> 2026, 4,084 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2004-12-31 -> 2026-06-30, 4,084 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2005-01-10 -> 2026-07-10, 4,084 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2005-01-05 -> 2026-07-02, 4,084 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_INDIVIDUAL_REPORTING`
+*TX Lobby Individual Reporting*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIODSTARTDT`, start of a period, to the day, 2000-07-01 -> 2026-07-01:
+
+- `PERIODSTARTDT`: start of a period, date (typed), 2000-07-01 -> 2026-07-01, 38,661 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period the on-behalf-of line falls in; the finest clock on this table.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 2000 -> 2026, 38,662 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2000-07-31 -> 2026-12-31, 38,661 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2000-08-10 -> 2027-01-11, 38,662 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2000-09-08 -> 2026-08-04, 38,662 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_SUBJECT_MATTER`
+*TX Lobby Subject Matter*
+
+0 reliable connections, 5 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PERIODSTARTDT`, start of a period, to the day, 1999-08-01 -> 2026-07-01:
+
+- `PERIODSTARTDT`: start of a period, date (typed), 1999-08-01 -> 2026-07-01, 209,939 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period the subject-matter line belongs to; the finest clock on this table.) -- 308 other tables keep a clock to the day
+- `APPLICABLEYEAR`: start of a period, year only, 1999 -> 2026, 209,957 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 1999-08-31 -> 2026-12-31, 209,957 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period; the 2027-04-12 census max is a forward-dated or typo period end.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 1999-09-10 -> 2027-04-12, 209,957 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2001-01-10 -> 2026-08-04, 209,957 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `TX_LOBBY_TRANSPORTATION`
+*TX Lobby Transportation*
+
+0 reliable connections, 9 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `APPLICABLEYEAR`, start of a period, to the year, 2004 -> 2026:
+
+- `APPLICABLEYEAR`: start of a period, year only, 2004 -> 2026, 3,697 rows (Trimmed text year the report applies to; a real year label, uncast.) -- 194 other tables keep a clock to the year
+- `PERIODENDDT`: end of a period, date (typed), 2004-12-31 -> 2026-06-30, 3,697 rows (try_to_date(...,'YYYYMMDD') -- closes that reporting period; the 2028-06-26 census max is a forward-dated or typo period end worth a look.) -- 308 other tables keep a clock to the day
+- `DUEDT`: unlabeled clock, date (typed), 2005-01-10 -> 2026-07-10, 3,697 rows -- 308 other tables keep a clock to the day
+- `RECEIVEDDT`: unlabeled clock, date (typed), 2005-01-05 -> 2026-07-10, 3,697 rows -- 308 other tables keep a clock to the day
+- `ARRIVALDT`: unlabeled clock, date (typed), 2004-12-02 -> 2026-06-18, 2,597 rows -- 308 other tables keep a clock to the day
+- `DEPARTUREDT`: unlabeled clock, date (typed), 2004-12-01 -> 2026-06-18, 2,597 rows -- 308 other tables keep a clock to the day
+- `CHECKINDT`: unlabeled clock, date (typed), 2000-02-06 -> 2028-06-26, 2,337 rows -- 308 other tables keep a clock to the day
+- `CHECKOUTDT`: unlabeled clock, date (typed), 2004-12-03 -> 2026-06-18, 2,337 rows -- 308 other tables keep a clock to the day
+- `PERIODSTARTDT`: unclear clock, date (typed), 2004-01-01 -> 2026-06-01, 3,697 rows (try_to_date(...,'YYYYMMDD') -- opens the reporting period the travel leg falls in; travel rows carry no activity date, so this is the finest clock here.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `UK_COMPANIES_HOUSE_PSC`
 *United Kingdom source: Companies House PSC*
 
-1 reliable connection.
+1 reliable connection, 6 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- city: `ADDRESS_LOCALITY` fills 94% of rows, 139,234 distinct -- text place -- 174 other tables carry a clean city
+- street address: `ADDRESS_LINE_1` fills 90% of rows, 1,251,804 distinct -- text place -- 114 other tables carry a clean street address
+- country: `NATIONALITY` fills 87% of rows, 4,732 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_OF_RESIDENCE` fills 87% of rows, 4,488 distinct -- country name -- 49 other tables carry a clean country
+- country: `ADDRESS_COUNTRY` fills 84% of rows, 1,343 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_REGISTERED` fills 6% of rows, 3,442 distinct -- country name -- 49 other tables carry a clean country
+- **TRAP** -- ZIP code: `ADDRESS_POSTAL_CODE` fills 93% of rows, 1,409,767 distinct -- foreign postal code (only 1% look like US ZIPs)
+- **TRAP** -- street address: `ADDRESS_PREMISES` fills 92% of rows, 1,822,927 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DOB_YEAR`, when it happened, to the year, 1775 -> 2024:
+
+- `DOB_YEAR`: when it happened, year only, 1775 -> 2024, 6,489,408 rows (try_to_number(DOB_YEAR) - the beneficial owner's birth year, the only clock among the two columns offered; note the staging model also carries notified_on and ceased_on, which are far better table clocks but were not in this batch.) -- 194 other tables keep a clock to the year
+- `NOTIFIED_ON`: unlabeled clock, date (typed), 1776-07-04 -> 2026-06-04, 6,999,759 rows -- 308 other tables keep a clock to the day
+- `CEASED_ON`: unlabeled clock, date (typed), 1962-09-16 -> 2026-08-04, 1,200,411 rows -- 308 other tables keep a clock to the day
 
 **Rock-solid match:**
 
 - `INT_UK_COMPANIES_HOUSE` (INT UK Companies House) -- **97%** of the uk company number values also appear in `INT_UK_COMPANIES_HOUSE` (5,582,726 matching)
   <sub>joins on: `UK_COMPANIES_HOUSE_PSC.COMPANY_NUMBER` = `INT_UK_COMPANIES_HOUSE.CompanyNumber` &middot; key: `COMPANY_NO`</sub>
+
+
+### `VOTEVIEW_ROLLCALLS`
+*Voteview Rollcalls*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `VOTE_DATE`, when it happened, to the day, 2023-01-03 -> 2026-06-25:
+
+- `VOTE_DATE`: when it happened, date (typed), 2023-01-03 -> 2026-06-25, 3,364 rows (The day the roll-call vote was taken; staging parses it with an explicit try_to_date(...,'YYYY-MM-DD') after sampling the landed format on 2026-08-11.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `WHO_WON`
+*WHO WON*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- **TRAP** -- congressional district: `DISTRICT` fills 99% of rows, 55 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, unlabeled clock, to the year, 1976 -> 2024:
+
+- `YEAR`: unlabeled clock, year only, 1976 -> 2024, 10,976 rows -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_BIORXIV_MEDRXIV`
+*Cross-reference / bridge table: Biorxiv Medrxiv*
+
+0 reliable connections, 3 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `PREPRINT_DATE`, when it was reported / filed, to the day, 2021-06-18 -> 2026-05-06:
+
+- `PREPRINT_DATE`: when it was reported / filed, date (typed), 2021-06-18 -> 2026-05-06, 372 rows (try_to_date on the posting date as reported by the publication-link endpoint -- the same posting event seen from a second endpoint, which is why the mart coalesces it with preprint_posted_date.) -- 308 other tables keep a clock to the day
+- `PUBLISHED_DATE`: when it was reported / filed, date (typed), 2026-05-18 -> 2026-06-01, 372 rows (try_to_date on the day the peer-reviewed journal version appeared -- a publication date later than the preprint posting.) -- 308 other tables keep a clock to the day
+- `PREPRINT_POSTED_DATE`: when it was reported / filed, date (typed), 2026-05-18 -> 2026-05-18, 60 rows (try_to_date on the API's 'date' field: the day the preprint was posted to bioRxiv/medRxiv, the row's own public-disclosure event and the first term in the mart's own preprint-to-publication datediff.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DAYS_PREPRINT_TO_PUBLICATION`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1795 -> 1795, 372 rows (The mart computes it as datediff('day', coalesce(preprint_date, preprint_posted_date), published_date) -- a duration in days, proven in the SQL.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `XC_EPA_CORPORATE_CROSSWALK`
@@ -10932,13 +18806,75 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- 2.3% of crosswalk rows carry one</sub>
 - `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **55%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (17,373 matching)
   <sub>joins on: `XC_EPA_CORPORATE_CROSSWALK.PARENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
-  <sub>checked 2026-08-29: SOLID (n=6 sampled) -- 8.1% of crosswalk rows carry one</sub>
+  <sub>checked 2026-08-29: SOLID (n=6 sampled) -- 6 matched pairs spot-checked: names agree **100%** -- 8.1% of crosswalk rows carry one</sub>
+
+
+### `XC_GUTTMACHER_MONTHLY_ABORTION`
+*Cross-reference / bridge table: Guttmacher Monthly Abortion*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `MONTH`, when it happened, to the day, 2023-01-15 -> 2026-03-15:
+
+- `MONTH`: when it happened, date as text (iso), 2023-01-15 -> 2026-03-15, 2,040 rows (Uncast text month key of the monthly abortion estimate - the row's own period; census measured nothing because it is text.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_JCS_MEDIANS`
+*Cross-reference / bridge table: JCS Medians*
+
+0 reliable connections, 2 value-checked clock columns.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TERM`, when it happened, to the year, 1936 -> 2023:
+
+- `TERM`: when it happened, year only, 1936 -> 2023, 102 rows (Supreme Court TERM label (a year number in the Judicial Common Space files), sitting beside year and congress; raw uncast passthrough - a SCOTUS term straddles Oct-Sep, so it is not a clean calendar year.) -- 194 other tables keep a clock to the year
+- `YEAR`: when it happened, year only, 1924 -> 2024, 102 rows (Observation year of an annual institution-ideology panel (102 rows, roughly one per year); try_to_number(YEAR) integer.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_JCS_SCOTUS`
+*Cross-reference / bridge table: JCS Scotus*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `TERM`, when it happened, to the year, 1937 -> 2022:
+
+- `TERM`: when it happened, year only, 1937 -> 2022, 782 rows (Supreme Court term the justice's ideology score belongs to (782 rows = justice x term) - the only time-shaped column on the table; raw uncast passthrough year number, and a SCOTUS term runs Oct-Sep so it is not exactly a calendar year.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 
 
 ### `XC_MAPPING_POLICE_VIOLENCE`
 *Cross-reference / bridge table: Mapping Police Violence*
 
-0 reliable connections, 3 place-based -- plus 2 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 3 place-based, 12 value-checked place columns, 1 value-checked clock column -- plus 2 low-confidence name+ZIP guesses not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY` fills 100% of rows, 1,396 distinct -- county name -- 79 other tables carry a clean county
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 100% of rows, 4,497 distinct -- text place -- 174 other tables carry a clean city
+- ZIP code: `ZIPCODE` fills 99% of rows, 8,058 distinct -- clean ZIP -- 124 other tables carry a clean ZIP code
+- street address: `STREET_ADDRESS_OF_INCIDENT` fills 97% of rows, 14,795 distinct -- text place -- 114 other tables carry a clean street address
+- congressional district: `CONGRESSIONAL_DISTRICT` fills 95% of rows, 433 distinct -- text place -- 13 other tables carry a clean congressional district
+- congressional district: `CONGRESSIONAL_REPRESENTATIVE_FULL_NAME_HTTPS_BALLOTPEDIA_ORG_UNITED_STATES_HOUSE_OF_REPRESENTATIVES` fills 95% of rows, 449 distinct -- text place -- 13 other tables carry a clean congressional district
+- congressional district: `CONGRESSIONAL_REPRESENTATIVE_PARTY_HTTPS_BALLOTPEDIA_ORG_UNITED_STATES_HOUSE_OF_REPRESENTATIVES` fills 95% of rows, 2 distinct -- text place -- 13 other tables carry a clean congressional district
+- metro area: `NCHS_URBAN_RURAL_CLASSIFICATION_SCHEME_CODES_HTTPS_WWW_CDC_GOV_NCHS_DATA_ACCESS_URBAN_RURAL_HTM` fills 94% of rows, 6 distinct -- text place -- 19 other tables carry a clean metro area
+- lat / lon: `LATITUDE` fills 94% of rows, 13,953 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 94% of rows, 14,178 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- site / place name: `HUD_UPSAI_GEOGRAPHY` fills 65% of rows, 3 distinct -- text place -- 53 other tables carry a clean site / place name
+- **TRAP** -- ZIP code: `GEOGRAPHY_VIA_TRULIA_METHODOLOGY_BASED_ON_ZIPCODE_POPULATION_DENSITY_HTTP_JEDKOLKO_COM_WP_CONTENT_UPLOADS_2015_05_FULL_ZCTA_URBAN_SUBURBAN_RURAL_CLASSIFICATION_XLSX` fills 94% of rows, 3 distinct -- foreign postal code (only 0% look like US ZIPs)
+- **TRAP** -- census tract: `CENSUS_TRACT_CODE` fills 91% of rows, 6,634 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `TOTAL_POPULATION_OF_CENSUS_TRACT_2019_ACS_5_YEAR_ESTIMATES` fills 91% of rows, 3,091 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- census tract: `MEDIAN_HOUSEHOLD_INCOME_ACS_CENSUS_TRACT` fills 85% of rows, 9,734 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_OF_INCIDENT_MONTH_DAY_YEAR`, when it happened, to the day, 2013-01-01 -> 2026-07-22:
+
+- `DATE_OF_INCIDENT_MONTH_DAY_YEAR`: when it happened, date (typed), 2013-01-01 -> 2026-07-22, 15,476 rows (try_to_date(DATE_OF_INCIDENT_MONTH_DAY_YEAR) -- the day the killing occurred.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `TOTAL_POPULATION_OF_CENSUS_TRACT_2019_ACS_5_YEAR_ESTIMATES`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1700 -> 2035, 14,151 rows (A census-tract population count from the 2019 ACS 5-year estimates, raw passthrough. It matched only on '2019' and '5_year'.)
+- **NOT A CLOCK** -- `CHIEF_PROSECUTOR_TERM`: NOT a clock (a duration, vintage, or count that looks like a year), year only, 1998 -> 2019, 56 rows (CHIEF_PROSECUTOR_TERM sits in the prosecutor block as raw uncast text -- a tenure label (and possibly a range) rather than a parseable date.)
 
 **Same location:**
 
@@ -10950,10 +18886,314 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `XC_MAPPING_POLICE_VIOLENCE.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `XC_NAGIX_DPRK_MISSILE_TESTS`
+*Cross-reference / bridge table: Nagix DPRK Missile Tests*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE`, when it happened, to the day, 1984-04-09 -> 2026-05-26:
+
+- `DATE`: when it happened, date as text (iso), 1984-04-09 -> 2026-05-26, 340 rows ("DATE" raw text passthrough on a missile-test row -- the day of the launch. Real event clock, but uncast text.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OSF_REGISTRATIONS`
+*Cross-reference / bridge table: OSF Registrations*
+
+0 reliable connections, 1 value-checked place column, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `REGION_ID` fills 100% of rows, 2 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_CREATED`, when it was reported / filed, to the day, 2025-12-12 14:24:31.823 -> 2026-08-08 01:49:36.351:
+
+- `DATE_CREATED`: when it was reported / filed, datetime (typed), 2025-12-12 14:24:31.823 -> 2026-08-08 01:49:36.351, 10 rows (try_to_timestamp_ntz on OSF's attributes.date_created: when the researcher created the object on the platform, earlier than the registration itself.) -- 308 other tables keep a clock to the day
+- `DATE_REGISTERED`: when it was reported / filed, datetime (typed), 2025-12-12 14:24:31.802 -> 2026-08-08 01:49:36.333, 10 rows (try_to_timestamp_ntz on attributes.date_registered: the moment the preregistration was frozen and posted to the public registry -- the event this row IS; note the mart is an explicit 10-row proof slice, not the full dataset.) -- 308 other tables keep a clock to the day
+- `EMBARGO_END_DATE`: end of a period, datetime (typed), 2029-01-01 00:00:00.000 -> 2029-01-01 00:00:00.000, 1 rows (try_to_timestamp_ntz on attributes.embargo_end_date: the closing bound of the embargo period during which the registration stays private, which legitimately explains the 2029-01-01 census max.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `DATE_MODIFIED`: our own download stamp -- never the clock, datetime (typed), 2026-07-31 03:49:36.983 -> 2026-08-08 01:42:16.104, 10 rows (try_to_timestamp_ntz on OSF's attributes.date_modified: a mutable record last-touched stamp that tells you when the row was last edited, not when anything happened.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_AI_INCIDENTS_ANNUAL`
+*Cross-reference / bridge table: OWID AI Incidents Annual*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2012 -> 2025:
+
+- `YEAR`: when it happened, year only, 2012 -> 2025, 14 rows (try_to_number("YEAR") -- a genuine calendar year, and on a 14-row annual incident-count series it is the year the incidents occurred; stored as a NUMBER, so a bare date-parse would read 2012 as epoch seconds, the exact bug that collapsed 20M) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_CO2`
+*Cross-reference / bridge table: OWID CO2*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1750 -> 2024:
+
+- `YEAR`: when it happened, year only, 1750 -> 2024, 29,384 rows (try_to_number(YEAR) on an OWID annual series (annual CO2 emissions): the calendar year the measurement describes. Year grain by construction - this table is a time series and year is its whole clock.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_CPI`
+*Cross-reference / bridge table: OWID CPI*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `WORLD_REGION_ACCORDING_TO_OWID` fills 100% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 2012 -> 2024:
+
+- `YEAR`: when it happened, year only, 2012 -> 2024, 2,312 rows (Observation year of the annual Corruption Perceptions Index country panel; try_to_number(YEAR) integer, year grain only.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_FERTILITY`
+*Cross-reference / bridge table: OWID Fertility*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1891 -> 2023:
+
+- `YEAR`: when it happened, year only, 1891 -> 2023, 19,402 rows (try_to_number("YEAR") in the mart: the year the fertility rate describes, one row per entity-year - an integer, not a date, so a bare date-parse would collapse the whole 19,402-row series onto 1970.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_FOSSIL_SHARE`
+*Cross-reference / bridge table: OWID Fossil Share*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1965 -> 2024:
+
+- `YEAR`: when it happened, year only, 1965 -> 2024, 6,379 rows (try_to_number(YEAR) on an OWID annual series (fossil share of primary energy): the calendar year the measurement describes. Year grain by construction - this table is a time series and year is its whole clock.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_GINI`
+*Cross-reference / bridge table: OWID GINI*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `WORLD_REGION_ACCORDING_TO_OWID` fills 95% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1963 -> 2025:
+
+- `YEAR`: when it happened, year only, 1963 -> 2025, 2,389 rows (try_to_number("YEAR") and the only time column; the year the Gini coefficient was measured for that country.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_HOMICIDE`
+*Cross-reference / bridge table: OWID Homicide*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `WORLD_REGION_ACCORDING_TO_OWID` fills 86% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1990 -> 2024:
+
+- `YEAR`: when it happened, year only, 1990 -> 2024, 4,912 rows (try_to_number("YEAR") -- the year the homicide rate refers to, as a NUMBER. Year grain; a bare date-parse would read it as epoch seconds.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_LIFE_EXPECTANCY`
+*Cross-reference / bridge table: OWID LIFE Expectancy*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1703 -> 2023:
+
+- `YEAR`: when it happened, year only, 1703 -> 2023, 21,565 rows (try_to_number(YEAR) - the year the life-expectancy figure describes.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_NUCLEAR_WARHEADS`
+*Cross-reference / bridge table: OWID Nuclear Warheads*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1945 -> 2026:
+
+- `YEAR`: when it happened, year only, 1945 -> 2026, 902 rows (try_to_number("YEAR") -- the year the warhead stockpile estimate refers to, as a NUMBER. Year grain; a bare date-parse would read it as epoch seconds.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_REFUGEES`
+*Cross-reference / bridge table: OWID Refugees*
+
+0 reliable connections, 2 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `REFUGEES_BY_COUNTRY_OF_ORIGIN` fills 97% of rows, 4,229 distinct -- country name -- 49 other tables carry a clean country
+- region: `WORLD_REGION_ACCORDING_TO_OWID` fills 97% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1951 -> 2024:
+
+- `YEAR`: when it happened, year only, 1951 -> 2024, 7,442 rows (try_to_number in the mart and part of the model's unique combination (entity, year, code): the calendar year the refugee population was measured, and the table's only clock.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_TEMP_ANOMALY`
+*Cross-reference / bridge table: OWID TEMP Anomaly*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1850 -> 2026:
+
+- `YEAR`: when it happened, year only, 1850 -> 2026, 531 rows (try_to_number(YEAR) on an OWID annual series (global temperature anomaly): the calendar year the measurement describes. Year grain by construction - this table is a time series and year is its whole clock.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_OWID_TERRORISM_DEATHS`
+*Cross-reference / bridge table: OWID Terrorism Deaths*
+
+0 reliable connections, 1 value-checked place column, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- region: `WORLD_REGION_ACCORDING_TO_OWID` fills 88% of rows, 6 distinct -- text place -- 40 other tables carry a clean region
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1970 -> 2021:
+
+- `YEAR`: when it happened, year only, 1970 -> 2021, 10,481 rows (try_to_number("YEAR") -- the year the terrorism death count refers to, as a NUMBER. Year grain; a bare date-parse would read it as epoch seconds.) -- 194 other tables keep a clock to the year
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_RANSOMWARELIVE_VICTIMS`
+*Cross-reference / bridge table: Ransomwarelive Victims*
+
+0 reliable connections, 1 value-checked place column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRY` fills 74% of rows, 186 distinct -- country code -- 49 other tables carry a clean country
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_RETRACTION_WATCH_DATABASE`
+*Cross-reference / bridge table: Retraction Watch Database*
+
+0 reliable connections, 1 value-checked place column, 2 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `COUNTRIES` fills 99% of rows, 3,628 distinct -- country name -- 49 other tables carry a clean country
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ORIGINAL_PAPER_DATE`, when it happened, to the day, 1753-01-01 -> 2026-05-04:
+
+- `ORIGINAL_PAPER_DATE`: when it happened, date (typed), 1753-01-01 -> 2026-05-04, 71,388 rows (Same explicit 'MM/DD/YYYY' cast: the original paper's publication day, the antecedent whose distance from retraction_date is the response lag; the 1753 floor is genuinely old scholarship, the 15 epoch-1970 values are not.) -- 308 other tables keep a clock to the day
+- `RETRACTION_DATE`: when it was decided, date (typed), 1756-06-24 -> 2026-07-17, 71,388 rows (try_to_date with an explicit 'MM/DD/YYYY' format after splitting the time off 'M/D/YYYY H:MM' text (the staging model documents that format): the day the retraction was issued, the row's own event.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_ROR_RESEARCH_ORGANIZATIONS`
+*Cross-reference / bridge table: ROR Research Organizations*
+
+0 reliable connections, 5 value-checked place columns, 3 value-checked clock columns.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- lat / lon: `LATITUDE` fills 100% of rows, 18,698 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 100% of rows, 18,781 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- country: `COUNTRY_CODE` fills 100% of rows, 235 distinct -- country code -- 49 other tables carry a clean country
+- country: `COUNTRY_NAME` fills 100% of rows, 232 distinct -- country name -- 49 other tables carry a clean country
+- site / place name: `LOCATION_NAME` fills 100% of rows, 16,911 distinct -- text place -- 53 other tables carry a clean site / place name
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `ESTABLISHED_YEAR`, when it happened, to the year, 1700 -> 2026:
+
+- `ESTABLISHED_YEAR`: when it happened, year only, 1700 -> 2026, 109,276 rows (try_to_number(trim(ESTABLISHED)) in staging: the year the research organisation was founded - the only real-world event on the row, and an integer year rather than a date; confidence is medium because ROR leaves ESTABLISHED blank for a larg) -- 194 other tables keep a clock to the year
+- `RECORD_CREATED_DATE`: when it was reported / filed, date (typed), 2018-11-14 -> 2026-08-03, 135,710 rows (try_to_date(trim(ADMIN_CREATED_DATE)): when the ROR registry record was created; the census minimum of 2018-11-14 is ROR's own launch, which proves this column dates the registry, not the organisation.) -- 308 other tables keep a clock to the day
+- `RECORD_LAST_MODIFIED_DATE`: when it was reported / filed, date (typed), 2024-12-11 -> 2026-08-03, 135,710 rows (try_to_date(trim(ADMIN_LAST_MODIFIED_DATE)): when the ROR registry record was last edited - registry maintenance, not an event at the organisation.) -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_UK_SANCTIONS_LIST`
+*Cross-reference / bridge table: UK Sanctions LIST*
+
+0 reliable connections, 5 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- country: `ADDRESS_COUNTRY` fills 66% of rows, 106 distinct -- country name -- 49 other tables carry a clean country
+- country: `COUNTRY_OF_BIRTH` fills 60% of rows, 132 distinct -- country name -- 49 other tables carry a clean country
+- city: `TOWN_OF_BIRTH` fills 56% of rows, 1,516 distinct -- text place -- 174 other tables carry a clean city
+- street address: `ADDRESS_LINE_1` fills 36% of rows, 1,632 distinct -- text place -- 114 other tables carry a clean street address
+- street address: `ADDRESS_LINE_2` fills 21% of rows, 954 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `DATE_DESIGNATED`, when it was decided, to the day, 2000-04-12 -> 2026-07-22:
+
+- `DATE_DESIGNATED`: when it was decided, date (typed), 2000-04-12 -> 2026-07-22, 33,828 rows (try_to_date(nullif(trim(DATE_DESIGNATED),''),'DD/MM/YYYY') -- the day OFSI designated the person/entity under a UK sanctions regime; the authority's act and the row's anchor.) -- 308 other tables keep a clock to the day
+- **NOT A CLOCK** -- `LAST_UPDATED`: our own download stamp -- never the clock, date (typed), 2021-12-18 -> 2026-08-04, 33,828 rows (try_to_date(nullif(trim(LAST_UPDATED),''),'DD/MM/YYYY') -- when OFSI last edited the list entry; publisher record maintenance, not a world event.)
+- **NOT A CLOCK** -- `DATE_OF_BIRTH_RAW`: NOT a clock (a duration, vintage, or count that looks like a year), date as text (us), 1933-05-07 -> 2002-12-09, 23,356 rows (nullif(trim(D_O_B),'') -- kept deliberately as raw uncast text (the model's own _raw suffix); mixed/partial formats, not usable as a date without parsing.)
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_UN_CONSOLIDATED_SANCTIONS_LIST`
+*Cross-reference / bridge table: UN Consolidated Sanctions LIST*
+
+0 reliable connections, 4 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- street address: `INDIVIDUAL_ADDRESS` fills 73% of rows, 238 distinct -- text place -- 114 other tables carry a clean street address
+- site / place name: `INDIVIDUAL_PLACE_OF_BIRTH` fills 73% of rows, 421 distinct -- text place -- 53 other tables carry a clean site / place name
+- country: `NATIONALITY` fills 63% of rows, 77 distinct -- country name -- 49 other tables carry a clean country
+- street address: `ENTITY_ADDRESS` fills 27% of rows, 149 distinct -- text place -- 114 other tables carry a clean street address
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `LISTED_ON`, unlabeled clock, to the day, 2000-04-12 -> 2026-07-22:
+
+- `LISTED_ON`: unlabeled clock, date (typed), 2000-04-12 -> 2026-07-22, 1,002 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
 ### `XC_VERA_INCARCERATION_TRENDS`
 *Cross-reference / bridge table: VERA Incarceration Trends*
 
-0 reliable connections, 12 place-based -- plus 1 low-confidence name+ZIP guess not shown here.
+0 reliable connections, 12 place-based, 7 value-checked place columns, 1 value-checked clock column -- plus 1 low-confidence name+ZIP guess not shown here.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- county: `COUNTY_CODE` fills 100% of rows, 3,053 distinct -- county name -- 79 other tables carry a clean county
+- county: `COUNTY_NAME` fills 100% of rows, 1,838 distinct -- county name -- 79 other tables carry a clean county
+- FIPS / GEOID code: `COUNTY_FIPS` fills 100% of rows, 3,069 distinct -- clean FIPS (5-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- FIPS / GEOID code: `STATE_FIPS` fills 100% of rows, 45 distinct -- clean FIPS (2-digit) -- 32 other tables carry a clean FIPS / GEOID code
+- region: `REGION` fills 100% of rows, 4 distinct -- text place -- 40 other tables carry a clean region
+- state: `STATE_ABBR` fills 100% of rows, 45 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- state: `STATE_CODE` fills 100% of rows, 45 distinct -- state names (not codes) -- 229 other tables carry a clean state
+- **TRAP** -- region: `COMMUTING_ZONE` fills 100% of rows, 676 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+- **TRAP** -- metro area: `METRO_AREA` fills 59% of rows, 899 distinct -- coded place (numbers) (codes, not names -- needs a lookup to become a place)
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `YEAR`, when it happened, to the year, 1970 -> 2026:
+
+- `YEAR`: when it happened, year only, 1970 -> 2026, 128,507 rows (Staging: try_to_number(trim(YEAR)) on a county x year panel (source columns are all TEXT) -- the year the incarceration measures refer to. Year grain, stored as a NUMBER.) -- 194 other tables keep a clock to the year
 
 **Same location:**
 
@@ -10986,7 +19226,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `XC_WAPO_FATAL_FORCE`
 *Cross-reference / bridge table: WAPO Fatal Force*
 
-0 reliable connections, 3 place-based.
+0 reliable connections, 3 place-based, 5 value-checked place columns, 1 value-checked clock column.
+
+**Meets other tables on place** (columns value-checked 2026-08-30):
+
+- state: `STATE` fills 100% of rows, 51 distinct -- clean 2-letter state -- 229 other tables carry a clean state
+- city: `CITY` fills 99% of rows, 3,764 distinct -- text place -- 174 other tables carry a clean city
+- lat / lon: `LATITUDE` fills 89% of rows, 9,248 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- lat / lon: `LONGITUDE` fills 89% of rows, 9,161 distinct -- clean coordinate -- 51 other tables carry a clean lat / lon
+- county: `COUNTY` fills 55% of rows, 993 distinct -- county name -- 79 other tables carry a clean county
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `INCIDENT_DATE`, when it happened, to the day, 2015-01-02 -> 2024-12-31:
+
+- `INCIDENT_DATE`: when it happened, date (typed), 2015-01-02 -> 2024-12-31, 10,430 rows (try_to_date(date,'YYYY-MM-DD') with an explicit format -- the day of the fatal police encounter.) -- 308 other tables keep a clock to the day
 
 **Same location:**
 
@@ -10996,4 +19248,40 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `XC_WAPO_FATAL_FORCE.LATITUDE/LONGITUDE` = `FED_MAPPING_INEQUALITY.GEOMETRY` &middot; key: `GEO_IN`</sub>
 - `FED_NOAA_WEATHER_API` (NOAA (Weather / Ocean): Weather API) -- same location as `FED_NOAA_WEATHER_API`
   <sub>joins on: `XC_WAPO_FATAL_FORCE.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
+
+
+### `XC_WAYBACK_DOJ_EPSTEIN`
+*Cross-reference / bridge table: Wayback DOJ Epstein*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAPTURED_AT`, unlabeled clock, to the day, 2025-12-19 21:13:27.000 -> 2026-06-09 02:03:36.000:
+
+- `CAPTURED_AT`: unlabeled clock, datetime (typed), 2025-12-19 21:13:27.000 -> 2026-06-09 02:03:36.000, 1,537,352 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_WAYBACK_REPLAY_DOJ_DEEP_PAGES`
+*Cross-reference / bridge table: Wayback Replay DOJ DEEP Pages*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAPTURED_AT`, unlabeled clock, to the day, 2026-02-15 14:31:21.000 -> 2026-06-04 07:26:55.000:
+
+- `CAPTURED_AT`: unlabeled clock, datetime (typed), 2026-02-15 14:31:21.000 -> 2026-06-04 07:26:55.000, 2,542 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
+
+
+### `XC_WAYBACK_REPLAY_DOJ_LISTING`
+*Cross-reference / bridge table: Wayback Replay DOJ Listing*
+
+0 reliable connections, 1 value-checked clock column.
+
+**Runs on a clock** (date columns value-checked 2026-08-20) -- best clock: `CAPTURED_AT`, unlabeled clock, to the day, 2025-12-19 21:13:27.000 -> 2026-06-03 04:27:34.000:
+
+- `CAPTURED_AT`: unlabeled clock, datetime (typed), 2025-12-19 21:13:27.000 -> 2026-06-03 04:27:34.000, 24,897 rows -- 308 other tables keep a clock to the day
+
+*No shared-ID connections measured -- reachable by place and/or time only.*
 

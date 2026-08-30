@@ -1,0 +1,17 @@
+00:24:57 columns FED_EPA_CAMPD_FACILITY: ['STATE', 'FACILITY_NAME', 'FACILITY_ID', 'UNIT_ID', 'ASSOCIATED_STACKS', 'YEAR', 'PROGRAM_CODE', 'PRIMARY_REP_INFO', 'EPA_REGION', 'NERC_REGION', 'COUNTY', 'COUNTY_CODE', 'FIPS_CODE', 'SOURCE_CATEGORY', 'LATITUDE', 'LONGITUDE', 'OWNER_OPERATOR', 'SO2_PHASE', 'NOX_PHASE', 'UNIT_TYPE', 'PRIMARY_FUEL_TYPE', 'SECONDARY_FUEL_TYPE', 'SO2_CONTROLS', 'NOX_CONTROLS', 'PM_CONTROLS', 'HG_CONTROLS', 'COMMERCIAL_OPERATION_DATE', 'OPERATING_STATUS', 'MAX_HOURLY_HI_RATE_MMBTU_HR', 'ASSOCIATED_GENERATORS_NAMEPLATE_CAPACITY_MWE', '_INGESTED_AT', '_SOURCE_RUN_ID', '_SRC_SHA256', '_SRC_FILE']
+00:24:58 columns FED_CFPB_HMDA_HISTORIC: ['AS_OF_YEAR', 'SOURCE_YEAR', 'RESPONDENT_ID', 'AGENCY_NAME', 'AGENCY_ABBR', 'AGENCY_CODE', 'LOAN_TYPE_NAME', 'LOAN_TYPE', 'PROPERTY_TYPE_NAME', 'PROPERTY_TYPE', 'LOAN_PURPOSE_NAME', 'LOAN_PURPOSE', 'OWNER_OCCUPANCY_NAME', 'OWNER_OCCUPANCY', 'LOAN_AMOUNT_000S', 'PREAPPROVAL_NAME', 'PREAPPROVAL', 'ACTION_TAKEN_NAME', 'ACTION_TAKEN', 'MSAMD_NAME', 'MSAMD', 'STATE_NAME', 'STATE_ABBR', 'STATE_CODE', 'COUNTY_NAME', 'COUNTY_CODE', 'CENSUS_TRACT_NUMBER', 'APPLICANT_ETHNICITY_NAME', 'APPLICANT_ETHNICITY', 'CO_APPLICANT_ETHNICITY_NAME', 'CO_APPLICANT_ETHNICITY', 'APPLICANT_RACE_NAME_1', 'APPLICANT_RACE_1', 'APPLICANT_RACE_NAME_2', 'APPLICANT_RACE_2', 'APPLICANT_RACE_NAME_3', 'APPLICANT_RACE_3', 'APPLICANT_RACE_NAME_4', 'APPLICANT_RACE_4', 'APPLICANT_RACE_NAME_5']
+00:24:59 CAMPD facility id (ORISPL) -> EIA-860 plant code: 1,587 of 1,959 (81.0%) | right distinct 16,132
+00:25:04 Contracts (R2) recipient UEI -> SAM registrant UEI: 192,931 of 582,656 (33.1%) | right distinct 887,310
+00:25:07 Old-HMDA respondent id, bank-regulator rows (agency 1-3) -> FDIC cert: 2,678 of 3,835 (69.8%) | right distinct 27,836
+00:25:09 Old-HMDA respondent id, HUD rows (agency 7) -> IRS BMF EIN: 19 of 1,018 (1.9%) | right distinct 1,974,830
+00:25:11 Old-HMDA respondent id, HUD rows (agency 7) -> Form 5500 sponsor EIN: 411 of 1,018 (40.4%) | right distinct 466,446
+00:25:15 Home-health agency associate id -> PECOS PAC id: 9,986 of 10,223 (97.7%) | right distinct 2,456,135
+00:25:16 FQHC associate id -> PECOS PAC id: 1,558 of 1,559 (99.9%) | right distinct 2,456,135
+00:25:17 Rural health clinic associate id -> PECOS PAC id: 2,490 of 2,500 (99.6%) | right distinct 2,456,135
+00:25:18 SNF enrollment id -> PECOS enrollment id: 14,207 of 14,425 (98.5%) | right distinct 2,978,925
+00:25:19 Home-health enrollment id -> PECOS enrollment id: 11,220 of 11,508 (97.5%) | right distinct 2,978,925
+00:25:20 Hospice enrollment id -> PECOS enrollment id: 5,670 of 6,066 (93.5%) | right distinct 2,978,925
+00:25:21 FQHC enrollment id -> PECOS enrollment id: 10,936 of 11,063 (98.9%) | right distinct 2,978,925
+00:25:21 Rural health clinic enrollment id -> PECOS enrollment id: 5,462 of 5,530 (98.8%) | right distinct 2,978,925
+00:25:23 PECOS enrollment twin: PAC id -> FFS enrollment PAC id: 2,456,135 of 2,456,135 (100.0%) | right distinct 2,456,135
+00:25:23 DONE

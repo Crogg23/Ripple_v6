@@ -264,6 +264,22 @@ kbd {
 .t-SUSPECT .dot { background: var(--t-suspect); }
 .t-SUSPECT .bar > i { background: var(--t-suspect); }
 .t-SUSPECT .pct { color: var(--t-suspect); }
+.panel.place .prows { display: flex; flex-direction: column; gap: 4px; }
+.panel.place .prow { display: grid; grid-template-columns: 150px 1fr; gap: 6px 10px; align-items: center; font-size: 12px; padding: 4px 0; border-top: 1px solid var(--line); }
+.panel.place .prow:first-child { border-top: 0; }
+.panel.place .prow .pk { font-weight: 600; color: var(--t-geo); }
+.panel.place .prow .pc code { font-size: 11px; }
+.panel.place .prow .pf { display: flex; align-items: center; gap: 6px; }
+.panel.place .prow .pf .bar { display: inline-block; width: 90px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.panel.place .prow .pf .bar > i { display: block; height: 100%; background: var(--t-geo); }
+.panel.place .prow .pf .pct { font-variant-numeric: tabular-nums; min-width: 34px; }
+.panel.place .prow .pv { grid-column: 1 / -1; color: var(--ink-2); font-size: 11.5px; }
+.panel.place .prow.trap .pk { color: var(--t-suspect); }
+.panel.place .prow.trap .pf .bar > i { background: var(--t-suspect); }
+.rail-item .count .pl { margin-left: 6px; color: var(--t-geo); font-size: 10px; }
+.rail-item .count .tm { margin-left: 6px; color: var(--t-bridge); font-size: 10px; }
+.panel.time .prow .pk { color: var(--t-bridge); }
+.panel.time .prow { grid-template-columns: 170px 1fr; }
 .verdict { margin: 8px 0 0; font-size: 12px; color: var(--ink-2); }
 .verdict b { color: var(--ink); }
 .verdict.bad b { color: var(--t-suspect); }
@@ -586,7 +602,7 @@ let railCursor = -1;
 function renderRail() {
   const q = searchInput.value.trim().toUpperCase();
   let list = allTables;
-  if (hideWeak) list = list.filter(t => t.n_hard > 0 || (t.n_measured || 0) > 0);
+  if (hideWeak) list = list.filter(t => t.n_hard > 0 || (t.n_measured || 0) > 0 || (t.n_place || 0) > 0 || (t.n_time || 0) > 0);
   if (q) list = list.filter(t => t.name.indexOf(q) > -1 || friendlyName(t.name).toUpperCase().indexOf(q) > -1);
   list = list.slice().sort(railSort === 'name'
     ? (a, b) => a.name.localeCompare(b.name)
@@ -608,10 +624,12 @@ function renderRail() {
     const btn = document.createElement('button');
     btn.className = 'rail-item' + (t.name === activeTable ? ' active' : '');
     btn.dataset.idx = idx;
-    btn.title = t.n_hard + ' reliable of ' + t.n_conn + ' measured connections';
+    btn.title = t.n_hard + ' reliable of ' + t.n_conn + ' measured connections' + (t.n_place ? '; ' + t.n_place + ' verified place columns' : '');
     btn.innerHTML =
       '<div class="r1"><span class="name">' + esc(t.name) + '</span>' +
-      '<span class="count">' + (t.n_hard ? t.n_hard + '&#8239;/&#8239;' : '') + t.n_conn + '</span></div>' +
+      '<span class="count">' + (t.n_hard ? t.n_hard + '&#8239;/&#8239;' : '') + t.n_conn +
+      (t.n_place ? '<span class="pl" title="verified place columns">&#9679;' + t.n_place + '</span>' : '') +
+      (t.n_time ? '<span class="tm" title="verified clock columns">&#9719;' + t.n_time + '</span>' : '') + '</span></div>' +
       '<div class="friendly">' + esc(friendlyName(t.name)) + '</div>' +
       '<div class="mix">' + mix + '</div>';
     btn.addEventListener('click', () => { selectTable(t.name); rail.classList.remove('open'); });
@@ -689,8 +707,43 @@ function renderDetail() {
        '<h2>' + esc(name) + '</h2>' +
        '<div class="friendly">' + esc(friendlyName(name)) + '</div></div>';
 
+  const tbl = allTables.find(t => t.name === name) || {};
+  const place = tbl.place || [];
+  const placeGood = place.filter(p => !p.trap);
   h += '<div class="tally">' + cell(hardCount, 'reliable joins') + cell(measuredCount, 'measured, not in spine') + cell(agencies, 'other agencies') +
-       cell(geoCount, 'place-based') + cell(fuzzyCount, 'name guesses') + '</div>';
+       cell(geoCount, 'place-based') + cell(placeGood.length, 'verified place columns') + cell((tbl.time || []).filter(c => !c.trap).length, 'verified clock columns') + cell(fuzzyCount, 'name guesses') + '</div>';
+  const clocks = tbl.time || [];
+  if (clocks.length) {
+    const TN = NOTES.time || {};
+    h += '<div class="panel place time"><h3>Runs on a clock &mdash; date columns value-checked ' + esc(clocks[0].measured_on || '') + '</h3>';
+    if (tbl.clock) h += '<p class="d"><b>Best clock:</b> <code>' + esc(tbl.clock.column) + '</code> &mdash; ' + esc(tbl.clock.label) + ', to the ' + esc(tbl.clock.grain) + ', ' + esc(tbl.clock.lo) + ' &rarr; ' + esc(tbl.clock.hi) + '.</p>';
+    h += '<div class="prows">';
+    clocks.forEach(c => {
+      const same = (TN.grain_tables || {})[c.grain] || 0;
+      h += '<div class="prow' + (c.trap ? ' trap' : '') + '">' +
+           '<span class="pk">' + esc(c.grain) + ' &middot; ' + esc(c.format) + '</span>' +
+           '<span class="pc"><code>' + esc(c.column) + '</code> &nbsp;' + esc(c.lo) + ' &rarr; ' + esc(c.hi) + ' &nbsp;<span class="d">' + nf(c.rows) + ' rows</span></span>' +
+           '<span class="pv">' + (c.trap ? '&#9888; ' : '') + '<b>' + esc(c.label) + '</b>' + (c.desc ? ' &mdash; ' + esc(c.desc) : '') +
+           (c.trap ? '' : ' &middot; <b>' + nf(Math.max(0, same - 1)) + '</b> other tables keep a clock to the ' + esc(c.grain)) + '</span></div>';
+    });
+    h += '</div></div>';
+  }
+  if (place.length) {
+    const PN = NOTES.place || {};
+    h += '<div class="panel place"><h3>Meets other tables on place &mdash; value-checked ' + esc(place[0].measured_on || '') + '</h3>' +
+         '<p class="d">Each line is a column on THIS table that really holds a place (measured live, not guessed from its name), ' +
+         'how much of the table it fills, and how many other tables carry a clean version of the same kind of place.</p><div class="prows">';
+    place.forEach(p => {
+      const partners = (PN.axis_tables || {})[p.kind] || 0;
+      h += '<div class="prow' + (p.trap ? ' trap' : '') + '">' +
+           '<span class="pk">' + esc(p.label) + '</span>' +
+           '<span class="pc"><code>' + esc(p.column) + '</code></span>' +
+           '<span class="pf"><span class="bar"><i style="width:' + Math.min(100, p.fill) + '%"></i></span><span class="pct">' + p.fill.toFixed(0) + '%</span></span>' +
+           '<span class="pv">' + (p.trap ? '&#9888; ' : '') + esc(p.verdict) + (p.note ? ' &mdash; ' + esc(p.note) : '') +
+           (p.trap ? '' : ' &middot; <b>' + nf(Math.max(0, partners - 1)) + '</b> other tables have a clean ' + esc(p.label)) + '</span></div>';
+    });
+    h += '</div></div>';
+  }
   if (suspectCount) {
     h += '<div class="notice"><span class="ic">&#9888;</span><div><b>Heads up.</b> This table has a connection marked <b>suspect</b>: the ID values overlap, ' +
          'but when matched pairs were checked by name about half were different organizations. Open the row for what to use instead.</div></div>';
@@ -728,7 +781,7 @@ function renderDetail() {
 
   const list = visibleEdges();
   if (!all.length) {
-    h += '<p class="none">No measured connections for this table yet.</p>';
+    h += '<p class="none">' + ((place.length || clocks.length) ? 'No shared-ID connections measured for this table &mdash; it is reachable by place and/or time only (see above).' : 'No measured connections for this table yet.') + '</p>';
   } else if (!list.length) {
     h += '<p class="none">Nothing matches those filters.</p>';
   } else if (sortMode === 'tier') {
@@ -787,8 +840,13 @@ function groupHTML(tier, list, self) {
       h += '<div class="expand">';
       h += '<p class="say">' + joinSentence(e) + '</p>';
       if (e.src === 'pass2') {
+        let spot = '';
+        if (e.names_pct != null) {
+          spot = ' &middot; ' + e.pairs + ' matched pairs spot-checked: names agree <b>' + e.names_pct + '%</b>' +
+                 (e.states_pct != null ? ', states agree <b>' + e.states_pct + '%</b>' : '');
+        }
         h += '<p class="verdict' + (e.tier === 'SUSPECT' ? ' bad' : '') + '">checked ' + esc(e.measured_on || '') + ': <b>' + esc(e.verdict || '') + '</b>' +
-             (e.note ? ' &mdash; ' + esc(e.note) : '') + '</p>';
+             spot + (e.note ? ' &mdash; ' + esc(e.note) : '') + '</p>';
       }
       h += '<div class="facts">' +
            '<span>distinct IDs here <b>' + nf(e.distinct_self) + '</b></span>' +
@@ -878,6 +936,19 @@ function renderIntro() {
         '<div class="d" style="font-size:11.5px">' + esc(friendlyName(t.name)) + '</div></div>' +
         '<button class="link-btn" data-goto="' + esc(t.name) + '">' + t.n_hard + ' reliable &rarr;</button></div>').join('') +
     '</div></div>' +
+    (NOTES.place ? '<div class="panel place"><h3>Meeting on place &mdash; every place column value-checked ' + esc(NOTES.place.measured_on) + '</h3>' +
+      '<p class="d"><b>' + nf(NOTES.place.tables_with_place) + '</b> tables carry at least one place column that really holds a place; <b>' + nf(NOTES.place.place_only_tables) +
+      '</b> of them have no shared-ID connection at all and are reachable by place only. Tables that can meet on each kind of place:</p><div class="prows">' +
+      Object.keys(NOTES.place.axis_tables).map(k => '<div class="prow"><span class="pk">' + esc((NOTES.place.axis_label || {})[k] || k) + '</span><span class="pv"><b>' + nf(NOTES.place.axis_tables[k]) + '</b> tables</span></div>').join('') +
+      '</div>' + (Object.keys(NOTES.place.traps || {}).length ? '<p class="d" style="margin-top:8px">Place traps found (shown with &#9888; on the table): ' +
+      Object.keys(NOTES.place.traps).map(k => esc(k) + ' (' + NOTES.place.traps[k] + ')').join(' &middot; ') + '.</p>' : '') + '</div>' : '') +
+    (NOTES.time ? '<div class="panel place time"><h3>Meeting on time &mdash; every date column value-checked ' + esc(NOTES.time.measured_on) + '</h3>' +
+      '<p class="d"><b>' + nf(NOTES.time.tables_with_time) + '</b> tables run on a real clock (a date, month, quarter or year column that survived the value check); <b>' + nf(NOTES.time.time_only_tables) +
+      '</b> of them have neither a shared-ID connection nor a verified place column. How many tables keep a clock at each grain, and what their clocks mean:</p><div class="prows">' +
+      Object.keys(NOTES.time.grain_tables).map(k => '<div class="prow"><span class="pk">to the ' + esc(k) + '</span><span class="pv"><b>' + nf(NOTES.time.grain_tables[k]) + '</b> tables</span></div>').join('') +
+      Object.keys(NOTES.time.meaning_tables).map(k => '<div class="prow"><span class="pk">' + esc((NOTES.time.meaning_label || {})[k] || k) + '</span><span class="pv"><b>' + nf(NOTES.time.meaning_tables[k]) + '</b> tables</span></div>').join('') +
+      '</div>' + (Object.keys(NOTES.time.traps || {}).length ? '<p class="d" style="margin-top:8px">Not clocks, shown with &#9888; on the table: ' +
+      Object.keys(NOTES.time.traps).map(k => esc((NOTES.time.meaning_label || {})[k] || k) + ' (' + NOTES.time.traps[k] + ')').join(' &middot; ') + '.</p>' : '') + '</div>' : '') +
     ((NOTES.traps || []).length ? '<div class="panel traps"><h3>Traps &mdash; read before joining (pass 2, ' + esc(NOTES.measured_on || '') + ')</h3><ul>' +
       NOTES.traps.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul></div>' : '') +
     ((NOTES.corrections || []).length ? '<div class="panel"><h3>Corrections carried in from pass 2</h3><table class="corr">' +

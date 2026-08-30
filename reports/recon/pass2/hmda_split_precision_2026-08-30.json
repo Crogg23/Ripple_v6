@@ -1,0 +1,78 @@
+[
+ {
+  "label": "Old-HMDA id, bank-regulator rows (agency 1-3) -> FDIC cert",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 83.3,
+  "mismatches": [
+   [
+    "20412",
+    "Integrity First Bank, National Associati",
+    "Town & Country State Bank of Winona"
+   ],
+   [
+    "11953",
+    "The Grant County Bank",
+    "Highlands Bank"
+   ],
+   [
+    "24604",
+    "Dakota Community Bank & Trust, National ",
+    "Sunbelt National Bank"
+   ],
+   [
+    "22905",
+    "QUANTUM NATIONAL BANK",
+    "Big Stone Gap Bank and Trust Company"
+   ],
+   [
+    "2068",
+    "First Dakota National Bank",
+    "The Fahey Banking Company"
+   ],
+   [
+    "24858",
+    "NEW HORIZON BANK, NATIONAL ASSOCIATION",
+    "Stone County National Bank"
+   ],
+   [
+    "15264",
+    "People's Savings Bank of Rhineland",
+    "Peoples Savings Bank of Rhineland"
+   ],
+   [
+    "14252",
+    "First National Bank",
+    "The Citizens Savings Bank"
+   ]
+  ]
+ },
+ {
+  "label": "Old-HMDA id, HUD rows (agency 7) -> Form 5500 sponsor EIN",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 93.3,
+  "mismatches": [
+   [
+    "954539084",
+    "AMWEST FUNDING CORP.",
+    "PMAC LENDING SERVICES, INC."
+   ],
+   [
+    "260813134",
+    "Mortgage Lenders Investment Trading Corp",
+    "RP FUNDING, INC."
+   ],
+   [
+    "611306242",
+    "CENTURY MORTGAGE COMPANY",
+    "KIND LENDING, LLC"
+   ],
+   [
+    "261193089",
+    "RoundPoint Advance Issuer Trust",
+    "ROUNDPOINT MORTGAGE SERVICING CORPORATIO"
+   ]
+  ]
+ }
+]
