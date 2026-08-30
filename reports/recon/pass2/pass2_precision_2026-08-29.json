@@ -1,0 +1,765 @@
+[
+ {
+  "label": "Drug price NDC -> drug label NDC",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 86.7,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "002282128",
+    "CLONIDINE HCL 0.2 MG TABLET",
+    "Clonidine Hydrochloride"
+   ],
+   [
+    "004093796",
+    "KETOROLAC 60 MG/2 ML VIAL",
+    "Ketorolac Tromethamine"
+   ],
+   [
+    "516721368",
+    "NAFTIFINE HCL 2% CREAM",
+    "Naftifine Hydrochloride"
+   ]
+  ]
+ },
+ {
+  "label": "Clinic NPI -> provider registry",
+  "pairs": 60,
+  "name_scored": 59,
+  "name_match_pct": 35.6,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "1619028446",
+    "Smith County Health Department Community",
+    "STATE OF TENNESSEE"
+   ],
+   [
+    "1831644731",
+    "Greater Portland Health at Gerald E. Tal",
+    "PORTLAND COMMUNITY HEALTH CENTER"
+   ],
+   [
+    "1992132682",
+    "CVHS Children's Dental",
+    "CENTRAL VIRGINIA HEALTH SERVICES INC"
+   ]
+  ]
+ },
+ {
+  "label": "Clinic Medicare billing # -> provider-of-services CCN",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 58.3,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "501916",
+    "Sea Mar CHC - Monroe W. Main St.",
+    "SEA MAR COMMUNITY HEALTH CENTERS"
+   ],
+   [
+    "281803",
+    "CAPWN Health Center",
+    "PANHANDLE COMMUNITY SERV HEALTH CTR"
+   ],
+   [
+    "851170",
+    "MedCura Doraville",
+    "MEDCURA HEALTH, INC."
+   ]
+  ]
+ },
+ {
+  "label": "Hospice associate id -> PECOS PAC id",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 60,
+  "state_match_pct": 98.3,
+  "mismatches": []
+ },
+ {
+  "label": "Predecessor CCN -> CCN (lineage; names may differ)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 56.7,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "130010",
+    "NORTH CANYON MEDICAL CENTER",
+    "GOODING COUNTY MEMORIAL HOSPITAL"
+   ],
+   [
+    "528540",
+    "ST JOSEPHS HEALTH SVCS HILLSBORO CLINIC",
+    "GUNDERSEN ST JOSEPHS HSPTL AND CLINICS H"
+   ],
+   [
+    "201830",
+    "E GRAND HLTH CTR",
+    "EAST GRAND HEALTH CENTER"
+   ]
+  ]
+ },
+ {
+  "label": "Nursing-home chain id CMS -> 411",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "TRI EPA registry id -> FRS registry",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 70.0,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "110000581718",
+    "OGS TECHNOLOGIES INC",
+    "WATERBURY COMPANIES INC"
+   ],
+   [
+    "110002651041",
+    "METALLURGICAL SERVICES GROUP CAL-DORAN D",
+    "BODYCOTE INC/BODYCOTE THERMAL PROCESSING"
+   ],
+   [
+    "110020518322",
+    "AAM METAL FORMING | WOOSTER MANUFACTURIN",
+    "TEKFOR USA"
+   ]
+  ]
+ },
+ {
+  "label": "TRI parent DUNS -> contract recipient DUNS",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 73.3,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "057711152",
+    "HIS PAINT MANUFACTURING CO",
+    "H-I-S PAINT MANUFACTURING COMPANY, LLC"
+   ],
+   [
+    "001109685",
+    "HOWELL LABS INC",
+    "HOWELL LABORATORIES INC"
+   ],
+   [
+    "102221942",
+    "DENTSPLY INTL INC",
+    "DENTSPLY SIRONA INC"
+   ]
+  ]
+ },
+ {
+  "label": "FDIC successor cert -> cert (lineage; state)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 25.0,
+  "state_scored": 60,
+  "state_match_pct": 90.0,
+  "mismatches": [
+   [
+    "16419",
+    "Wright City State Bank",
+    "1st Bank & Trust"
+   ],
+   [
+    "20179",
+    "Metropolitan Capital Bank & Trust",
+    "First Independence Bank"
+   ],
+   [
+    "13028",
+    "Wisconsin State Bank",
+    "Lincoln State Bank"
+   ]
+  ]
+ },
+ {
+  "label": "FHLB member cert -> FDIC cert",
+  "pairs": 60,
+  "name_scored": 59,
+  "name_match_pct": 93.2,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "28080",
+    "The Harrison B & La",
+    "The Harrison Building and Loan Associati"
+   ],
+   [
+    "12299",
+    "Lone Star Bank, SSB",
+    "SouthStar Bank, S.S.B."
+   ],
+   [
+    "11953",
+    "Grant County Bank",
+    "Highlands Bank"
+   ]
+  ]
+ },
+ {
+  "label": "FHLB member Fed id -> FDIC Fed RSSD",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 96.7,
+  "state_scored": 60,
+  "state_match_pct": 96.7,
+  "mismatches": [
+   [
+    "828174",
+    "First FSLA of Valdosta",
+    "First Federal Savings and Loan Associati"
+   ],
+   [
+    "144678",
+    "First FS & LA",
+    "First Federal Savings and Loan Associati"
+   ]
+  ]
+ },
+ {
+  "label": "FHLB member NCUA id -> credit-union charter",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 98.3,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "5487",
+    "Kaua'i Federal Credit Union",
+    "KAUAI"
+   ]
+  ]
+ },
+ {
+  "label": "SBA lender FDIC # -> FDIC cert",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 98.3,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "35261",
+    "Twin City Bank",
+    "Increase Bank"
+   ]
+  ]
+ },
+ {
+  "label": "SBA lender NCUA # -> credit-union charter",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 98.3,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "62604",
+    "Boeing Empl CU",
+    "BOEING EMPLOYEES"
+   ]
+  ]
+ },
+ {
+  "label": "HMDA legacy id (agency-stripped) -> FDIC cert",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 56.7,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "13675",
+    "First National Bank of Bosque County",
+    "Firstmerit Bank, National Association"
+   ],
+   [
+    "24814",
+    "WINSTON-SALEM",
+    "First Savings Company of Lexington, Inc."
+   ],
+   [
+    "18054",
+    "Community National Bank",
+    "Citizens State Bank of Nevada, Missouri"
+   ]
+  ]
+ },
+ {
+  "label": "HMDA xref LEI -> global LEI registry",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 93.3,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "549300RA8E6JQC2S7K66",
+    "SCHOOL SYSTEMS",
+    "Next Step Federal Credit Union"
+   ],
+   [
+    "254900SG0DG9VHV3LR79",
+    "First Commercial Bank",
+    "Story Bank DBA Story Financial Partners"
+   ],
+   [
+    "549300C1TKOTJP9R4O15",
+    "Justin State Bank",
+    "Charis Bank"
+   ]
+  ]
+ },
+ {
+  "label": "Market-venue LEI -> global LEI registry",
+  "pairs": 60,
+  "name_scored": 34,
+  "name_match_pct": 91.2,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "213800AFQW3ASUKG7I91",
+    "JP JENKINS LIMITED",
+    "J P JENKINS LIMITED"
+   ],
+   [
+    "254900LXHEVKYGERER05",
+    "BURSA DE VALORI BUCURESTI SA",
+    "DEPOZITARUL CENTRAL SA"
+   ],
+   [
+    "254900POTH6KDGTI8089",
+    "CASABLANCA STOCK EXCHANGE",
+    "BOURSE DE CASABLANCA"
+   ]
+  ]
+ },
+ {
+  "label": "LEI national company # (UK) -> Companies House",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "Screening-list entity # -> OFAC SDN #",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "UK-sanctioned ship IMO -> OFAC IMO",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 71.7,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "9322827",
+    "PICTOR",
+    "PERIA"
+   ],
+   [
+    "9412995",
+    "KRUGER",
+    "OSPEROUS"
+   ],
+   [
+    "9271327",
+    "VIEW",
+    "CUP"
+   ]
+  ]
+ },
+ {
+  "label": "SAM exclusion NPI -> provider registry (people)",
+  "pairs": 60,
+  "name_scored": 52,
+  "name_match_pct": 96.2,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "1225047517",
+    "ROMERO",
+    "GROSS"
+   ],
+   [
+    "1962441618",
+    "NJOKU",
+    "MOSER"
+   ]
+  ]
+ },
+ {
+  "label": "SAM exclusion NPI -> health exclusion list",
+  "pairs": 60,
+  "name_scored": 59,
+  "name_match_pct": 100.0,
+  "state_scored": 60,
+  "state_match_pct": 100.0,
+  "mismatches": []
+ },
+ {
+  "label": "ICE stint facility code -> facility codes",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 95.0,
+  "state_scored": 59,
+  "state_match_pct": 100.0,
+  "mismatches": [
+   [
+    "BASILLA",
+    "SOUTH LOUISIANA ICE PROC CTR",
+    "Basile Detention Center"
+   ],
+   [
+    "KRNRCTX",
+    "KARNES CO IMMIGRATION PROCESS CTR",
+    "Karnes County Residential Center"
+   ],
+   [
+    "EAZ",
+    "ELOY FED CTR FACILITY (CORE CIVIC)",
+    "Eloy Federal Contract Fac"
+   ]
+  ]
+ },
+ {
+  "label": "Crash N-number -> FAA registry (serial #)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 90.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "21177",
+    "18261466",
+    "177-01578                     "
+   ],
+   [
+    "234VV",
+    "26",
+    "1056                          "
+   ],
+   [
+    "536RH",
+    "11960757",
+    "1581F6BUB252J001PU69          "
+   ]
+  ]
+ },
+ {
+  "label": "Rail parent code -> reporting railroad code",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "Subawardee UEI -> SAM registrant",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 96.7,
+  "state_scored": 58,
+  "state_match_pct": 98.3,
+  "mismatches": [
+   [
+    "F8B7H76EBCC5",
+    "G K N AEROSPACE PRECISION MACHINING INC",
+    "GKN AEROSPACE PRECISION MACHINING INC"
+   ],
+   [
+    "KXSLPE88C2B8",
+    "FONTANA JOINT SCHOOL DIST 8",
+    "FONTANA SCHOOL DISTRICT"
+   ]
+  ]
+ },
+ {
+  "label": "Grant recipient parent UEI -> SAM registrant",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "Contract recipient parent UEI -> SAM registrant",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "Contract CAGE -> SAM CAGE (pass-1 edge)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 98.3,
+  "state_scored": 58,
+  "state_match_pct": 93.1,
+  "mismatches": [
+   [
+    "78741",
+    "SGL COMPOSITES INC.",
+    "TEX-TECH ENGINEERED COMPOSITES, LLC"
+   ]
+  ]
+ },
+ {
+  "label": "NIH org UEI -> SAM registrant",
+  "pairs": 60,
+  "name_scored": 57,
+  "name_match_pct": 82.5,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "N2DCB9SB7NE4",
+    "LOWER EASTSIDE SERVICE CENTER, INC.",
+    "LESC GP, INC."
+   ],
+   [
+    "CZ6LSS7VPWY1",
+    "JAMES J PETERS VA  MEDICAL CENTER",
+    "VETERANS HEALTH ADMINISTRATION"
+   ],
+   [
+    "LDJULX8K6M85",
+    "PEDIATRIX SCREENING, INC.",
+    "REVVITY OMICS INC"
+   ]
+  ]
+ },
+ {
+  "label": "SBIR UEI -> SAM registrant",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 98.3,
+  "state_scored": 60,
+  "state_match_pct": 0.0,
+  "mismatches": [
+   [
+    "JENFAUM1C7L6",
+    "CREE RESEARCH, INC.",
+    "WOLFSPEED INC"
+   ]
+  ]
+ },
+ {
+  "label": "Device-maker DUNS -> contract recipient DUNS",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 96.7,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "047785845",
+    "Anacom Medtek",
+    "ANACOM GENERAL CORPORATION"
+   ],
+   [
+    "021628771",
+    "DERMATOLOGIC LAB AND SUPPLY, INC.",
+    "DELASCO, LLC"
+   ]
+  ]
+ },
+ {
+  "label": "Trucker DUNS -> contract recipient DUNS",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 88.3,
+  "state_scored": 60,
+  "state_match_pct": 80.0,
+  "mismatches": [
+   [
+    "781498480",
+    "SOUTHBAY SANDBLASTING & TANK CLEANING IN",
+    "SOUTH BAY SAND BLASTING AND TANK CLEANIN"
+   ],
+   [
+    "868449893",
+    "GREG KONOPKA",
+    "EMBARCADERO TECHNOLOGIES INC"
+   ],
+   [
+    "137596839",
+    "BRUCE NEIL",
+    "NEIL'S EXCAVATION AND GENERAL CONTRACTIN"
+   ]
+  ]
+ },
+ {
+  "label": "Transmission owner id -> EIA utility id",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "Plant owner id -> EIA utility id",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "Bill sponsor bioguide -> member roster",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 76.7,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "F000468",
+    "Rep. Fletcher, Lizzie [D-TX-7]",
+    "FLETCHER, Elizabeth"
+   ],
+   [
+    "G000578",
+    "Rep. Gaetz, Matt [R-FL-1]",
+    "GAETZ, Matthew L. II"
+   ],
+   [
+    "D000623",
+    "Rep. DeSaulnier, Mark [D-CA-10]",
+    "DESAULNIER, Mark James"
+   ]
+  ]
+ },
+ {
+  "label": "Audit issuer CIK -> insider-filing issuer CIK",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 93.3,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "949721",
+    "Meridian Waste Solutions, Inc.",
+    "Attis Industries Inc."
+   ],
+   [
+    "1826889",
+    "Forest Road Acquisition Corp.",
+    "Beachbody Company, Inc."
+   ],
+   [
+    "1286681",
+    "Domino's Pizza 401(k) Savings Plan",
+    "DOMINOS PIZZA INC"
+   ]
+  ]
+ },
+ {
+  "label": "EPA crosswalk parent UEI -> SAM registrant",
+  "pairs": 60,
+  "name_scored": 6,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "US-documented vessel IMO -> AIS IMO (pass-1 edge)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 100.0,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": []
+ },
+ {
+  "label": "US-documented call sign -> AIS call sign (pass-1 edge)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 93.3,
+  "state_scored": 0,
+  "state_match_pct": null,
+  "mismatches": [
+   [
+    "WDB8945",
+    "SPRING POINT",
+    "PILOT BOAT SPRING PT"
+   ],
+   [
+    "WDG5964",
+    "BELLE OF MEMPHIS",
+    "BECKY THATCHER"
+   ],
+   [
+    "WDN9395",
+    "SIR WINSTON 1",
+    "GRAND PRINCESS"
+   ]
+  ]
+ },
+ {
+  "label": "Committee's candidate id -> FEC candidate (office state)",
+  "pairs": 60,
+  "name_scored": 60,
+  "name_match_pct": 25.0,
+  "state_scored": 60,
+  "state_match_pct": 90.0,
+  "mismatches": [
+   [
+    "H6VA09128",
+    "BRANDI HALL FOR US SENATE",
+    "HALL, BRANDI"
+   ],
+   [
+    "H6CO04228",
+    "JENNA PRESTON FOR COLORADO",
+    "PRESTON, JENNA MICHALIK"
+   ],
+   [
+    "H6TN06197",
+    "CAMPAIGN FUND DALE BRADEN",
+    "BRADEN, RONNIE DALE"
+   ]
+  ]
+ }
+]

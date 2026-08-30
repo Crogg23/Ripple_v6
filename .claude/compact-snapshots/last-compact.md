@@ -1,83 +1,79 @@
 # Snapshot taken right before context compaction
 
 ## STATUS.md at compaction time
-# RIPPLE STATUS — 2026-08-29 — Full-rebuild ritual retired: `apply-config` applies key/spec changes as bounded reslices; 08-29 ID batch flipped ON in code, waiting for Chris to run the one command
+# RIPPLE STATUS — 2026-08-29 (very late) — Join Handbook now carries the pass-2 connections as its own "measured, not yet in spine" tier; markdown handbook is generated, not hand-written
 
 *One screen. Rewritten (never appended) at the end of every session.*
 
 ## 🚨 Read this first
 
-1. **The "every new key needs a 4.5h rebuild" rule is dead — and the 4.5h was never
-   true.** Query history: the 08-28 rebuild was ~50 busy-minutes on X-Small (~$2–3);
-   the 08-11 one took 25 min. The stale "$10–15 / 4.5h" quote had been repeated since
-   08-08. Logged as feedback memory.
-2. **New system (shipped, tested offline, not yet run live):** config is pinned per
-   unit (per key family / per spine spec / per table's graph keys). On drift,
-   `python -m connect apply-config` classifies the change and reslices ONLY the tables
-   it touches (new family → its tables; changed normalizer → tables carrying it; new
-   extra key → that table; removed spec → retract). The heartbeat auto-applies drift
-   instead of refusing. A full rebuild re-pins and stays the equivalence backstop.
-   Design + measured numbers: `reports/recon/apply_config_design_2026-08-29.md`.
-3. **The 08-29 ID batch is now ON in code** (CAGE, award key, PECOS PAC/enrollment ids,
-   FDIC cert, Fed RSSD, EIA plant + utility ids; verified live earlier today —
-   `reports/recon/bucket_b_wiring_2026-08-29.md`). Offline plan: 19 spine reslices +
-   11 graph reslices, 0 retractions; the 93M-row contracts table is the long pole.
-   First run auto-pins the flags-off baseline (proven: it reproduces the live sentinel).
-4. **🚨 Pre-existing bug found and fixed in the incremental engine:** the "what changed"
-   set was written as `NEW MINUS OLD UNION OLD MINUS NEW` without parentheses;
-   Snowflake reads that left-to-right, so it collapsed to `OLD MINUS NEW` — every
-   incremental run since the engine shipped has silently skipped ADDED keys in the
-   entity map / nodes / pairs (index + golden were unaffected). Live-proven: a new
-   table previewed affected=0 with 54,406 keys; after the fix 54,406. No live damage
-   today (no incremental run since the 08-28 full rebuild), but any earlier
-   incremental-only period may have under-merged — the 08-28 rebuild reset it.
-   Pinned by a test.
-5. **Chris's move (the classifier blocks the spine write from this session; the
-   dry-run ran and pinned the baseline):** `python -m connect apply-config`.
-   Expect minutes, not hours. Then `python -m connect validate-incremental` for the
-   equivalence proof.
-6. **Pre-existing, unchanged:** incremental-vs-backstop drift test red (9 keyset tables
-   from the 08-28 rebuild; apply-config's re-pin + a later re-seed clears it); 8 spatial
-   join errors (EPA TRI + NTSB coordinates); overnight loads (MAUDE, subawards 4.74M so
-   far, LDA) not checked; Snowflake MCP token rejected.
-7. **Working tree uncommitted:** keys.py, entity_index_specs.py, discover.py,
-   incremental.py, __main__.py, 2 new test files, 6 report files, STATUS.md.
+1. **Standing rules from Chris today (in memory):** (a) answer the question asked, no build plans / costs /
+   next steps unless he says "think it through"; (b) time + geography are first-class joins; the ID spine is
+   deprioritized. Don't restate limits he already knows.
+2. **The Join Handbook (both the markdown file and the standalone web page) now shows the pass-2 findings:**
+   56 new connection pairs under a separate purple "measured 2026-08-29, not yet in the spine" heading on each
+   table (never mixed with the 1,859 spine-verified ones), 1 red "suspect — do not use" edge (old HMDA lender
+   id → bank cert, ~half wrong; the LEI crosswalk is the safe route), 49 new plain-English glossary rows, a
+   6-item traps list, and a 4-row corrections table (TRI↔FRS is live via the registry-id column, ISIN really
+   dead, nursing-home "affiliation id" = chain id, catalog wrong on 37). 21 tables appear in the handbook for
+   the first time (drug prices, device registry, NDC directory, sanctions lists, contractor registry, FMCSA,
+   subawards, Coast Guard vessels, ship tracking, rail accidents, GLEIF parent tree…).
+3. **Yellow-lane call made:** the new edges were NOT registered in the spine. They live in a small pass-2 edge
+   file that the handbook build merges in as its own tier. Reason: apply-config hasn't run (drift test is red),
+   so registering families tonight would have left the handbook and spine disagreeing anyway. When the pass-2
+   families are registered, delete them from the pass-2 file and they move into the spine tier automatically.
+4. **9 of the 66 pass-2 edges were already in the spine at the same rates** (clinic NPI, xref LEI, venue LEI,
+   both exclusion-list NPI edges, OSHA EIN→BMF, ICE facility, bill sponsor, committee→candidate) — a free
+   confirmation that the pass-2 numbers agree with the spine. They were skipped, not duplicated.
+5. **Unchanged:** apply-config not yet run (drift test red until it is); 8 spatial join errors (TRI + NTSB
+   coords); DOCKET ~40% wrong; Snowflake MCP token rejected (direct python connection works — use it);
+   overnight loads (MAUDE, subawards, LDA) unchecked; SAM public extract has no DUNS; IDV file and Fed
+   holding-company file still not held.
+6. **Git:** working tree holds the pass-2 report + scripts + JSON (from the earlier session) and tonight's
+   handbook rebuild (5 new build files, 2 modified build files, both regenerated handbooks, this file).
+   Nothing committed.
 
 ## BROKE
 
-Nothing new broke. Offline suites 143 passed (apply-config classifier, batch pins,
-incremental, keys, visibility, honesty, leads).
+Nothing broke. Seven follow-up overlap counts that the earlier session ran by hand (and never logged) were
+re-run tonight so the handbook carries real matched counts, not estimates — every one reproduced exactly.
+The page's script passes a syntax check; it was not opened in a browser this session.
 
 ## YOUR MOVE (Chris)
 
-Run `python -m connect apply-config` (item 5). Then say whether to commit.
+Nothing blocking.
 
-## NEXT
+## NEXT (only when asked)
 
-1. After apply-config lands: measure edges for the 8 new families; refresh the graph
-   map snapshot (`connect fingerprint`) so the map sees them (08-18 lesson).
-2. Retire the staged-batch flags entirely (apply-config makes them unnecessary).
-3. Repair float-text CERT/RSSD in failed-banks + OCC tables → add 3 scoped keys.
-4. NDC segment-aware normalizer.
-5. Verify overnight loads; re-run subawards↔contracts award-key overlap once both
-   finish.
-6. EPA TRI + NTSB coordinates; DOCKET issuer namespace; optional bucket-C census via
-   the 338k-dataset portal index.
+- Value scan of the 2,244 place columns (~$1–2).
+- Parse the OpenSanctions / CSL identifier blobs into typed keys.
+- Check the overnight MAUDE load — the partner the 5.2M device IDs are waiting for.
+- Land the IDV file and the Fed holding-company file (both free bulk).
+- Split the old HMDA lender id by agency code and re-test; if it holds, promote it out of "suspect".
 
-**Cost note:** ~$2–3 warehouse compute this session (verify passes over ~100M rows,
-normalizer dry-runs, two runs of the live incremental test). apply-config itself:
-expected minutes on X-Small.
+**Cost note:** ~7 small read-only warehouse queries (well under $1). No storage added.
 
 ## Working tree at compaction time
 ## main...origin/main
  M .claude/compact-snapshots/last-compact.md
+ M STATUS.md
+ M reports/JOIN_HANDBOOK.md
+ M reports/viz/_build/build_join_handbook.py
  M reports/viz/_build/join_handbook_template.html
  M reports/viz/join_handbook.html
-?? reports/viz/_build/build_join_handbook.py
+?? reports/recon/master_connections_pass2_2026-08-29.md
+?? reports/recon/pass2/
+?? reports/viz/_build/build_join_handbook_md.py
+?? reports/viz/_build/handbook_pass2_edges_2026-08-29.csv
+?? reports/viz/_build/handbook_pass2_notes_2026-08-29.json
+?? reports/viz/_build/pass2_edges_source_2026-08-29.py
+?? reports/viz/_build/patch_template_pass2_2026-08-29.py
+?? scripts/pass2_connections_check_2026_08_29.py
+?? scripts/pass2_precision_check_2026_08_29.py
 
 ## Recent commits
+cab809cc Add loader script for "no-brainer" acquisitions and update report
+b2a367bf Refactor code structure for improved readability and maintainability
 3f2839a4 Add tests for apply-config changes and introduce join_handbook.html
 38843a2c Update checkpoint data and add report on unregistered ID candidates
 83c2e991 Refactor code structure for improved readability and maintainability
-08b3376d Add spine wiring preparation script and update test acknowledgments
-3f4fc4bd STATUS: depth triage results, gotcha-pass results, auto-push discovery

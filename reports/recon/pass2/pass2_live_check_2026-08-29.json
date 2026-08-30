@@ -1,0 +1,4552 @@
+{
+ "profiles": [
+  {
+   "rows": 5182695,
+   "filled": 5182695,
+   "distinct_nonblank": 5182695,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 23,
+   "sample": [
+    "00888480539001",
+    "00888480538998",
+    "00888480538981"
+   ],
+   "cand": "GUDID primary DI (UDI-DI)",
+   "table": "FED_FDA_GUDID_FULL_DEVICE",
+   "col": "PRIMARYDI"
+  },
+  {
+   "rows": 6767219,
+   "filled": 6767219,
+   "distinct_nonblank": 5182695,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 23,
+   "sample": [
+    "00613647000809",
+    "00613647000809",
+    "00613647000793"
+   ],
+   "cand": "GUDID primary DI (UDI-DI)",
+   "table": "FED_FDA_GUDID_FULL_IDENTIFIERS",
+   "col": "PRIMARYDI"
+  },
+  {
+   "rows": 6767219,
+   "filled": 6767219,
+   "distinct_nonblank": 6696187,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 23,
+   "sample": [
+    "M6334949350",
+    "M633494930M0",
+    "M6334949300"
+   ],
+   "cand": "GUDID device id (all pkg levels)",
+   "table": "FED_FDA_GUDID_FULL_IDENTIFIERS",
+   "col": "DEVICEID"
+  },
+  {
+   "rows": 5182695,
+   "filled": 5182695,
+   "distinct_nonblank": 12272,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 9,
+   "sample": [
+    "018577570",
+    "018577570",
+    "018577570"
+   ],
+   "cand": "GUDID labeler DUNS",
+   "table": "FED_FDA_GUDID_FULL_DEVICE",
+   "col": "DUNSNUMBER"
+  },
+  {
+   "rows": 5182695,
+   "filled": 5182695,
+   "distinct_nonblank": 5182695,
+   "junk": 0,
+   "minlen": 36,
+   "maxlen": 36,
+   "sample": [
+    "29decd57-cc91-4ecb-9d4d-cf20b32765af",
+    "dd02f014-e57a-4c6b-9fa6-f18d443d7987",
+    "45f9cda2-ab95-4075-b39f-42d93c19da53"
+   ],
+   "cand": "GUDID device record key",
+   "table": "FED_FDA_GUDID_FULL_DEVICE",
+   "col": "PUBLICDEVICERECORDKEY"
+  },
+  {
+   "rows": 115802,
+   "filled": 115802,
+   "distinct_nonblank": 114649,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 10,
+   "sample": [
+    "0002-0152",
+    "0002-0213",
+    "0002-0243"
+   ],
+   "cand": "NDC directory product NDC",
+   "table": "FED_FDA_NDC_DIRECTORY",
+   "col": "PRODUCTNDC"
+  },
+  {
+   "rows": 115802,
+   "filled": 115802,
+   "distinct_nonblank": 115802,
+   "junk": 0,
+   "minlen": 46,
+   "maxlen": 47,
+   "sample": [
+    "0002-0152_86a64015-7f78-4281-8b7f-579b6c3dc1f7",
+    "0002-0213_42527ae4-c593-4e13-8b77-c0511198c708",
+    "0002-0243_86a64015-7f78-4281-8b7f-579b6c3dc1f7"
+   ],
+   "cand": "NDC directory product id (NDC+SPL set)",
+   "table": "FED_FDA_NDC_DIRECTORY",
+   "col": "PRODUCTID"
+  },
+  {
+   "rows": 115802,
+   "filled": 115802,
+   "distinct_nonblank": 13093,
+   "junk": 16284,
+   "minlen": 0,
+   "maxlen": 13,
+   "sample": [
+    "NDA217806",
+    "BLA018780",
+    "NDA217806"
+   ],
+   "cand": "FDA application # (NDA/ANDA/BLA)",
+   "table": "FED_FDA_NDC_DIRECTORY",
+   "col": "APPLICATIONNUMBER"
+  },
+  {
+   "rows": 41253,
+   "filled": 41253,
+   "distinct_nonblank": 41253,
+   "junk": 1,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "1",
+    "2",
+    "5"
+   ],
+   "cand": "FDA drug master file #",
+   "table": "FED_FDA_DRUG_MASTER_FILES",
+   "col": "DMF"
+  },
+  {
+   "rows": 1497925,
+   "filled": 1497925,
+   "distinct_nonblank": 32881,
+   "junk": 0,
+   "minlen": 11,
+   "maxlen": 11,
+   "sample": [
+    "24385005452",
+    "70000047501",
+    "46122038576"
+   ],
+   "cand": "NADAC NDC (11-digit)",
+   "table": "FED_CMS_NADAC",
+   "col": "NDC"
+  },
+  {
+   "rows": 22059,
+   "filled": 22059,
+   "distinct_nonblank": 359,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 5,
+   "sample": [
+    "21989",
+    "21989",
+    "21989"
+   ],
+   "cand": "HIOS issuer id",
+   "table": "FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF",
+   "col": "ISSUERID"
+  },
+  {
+   "rows": 22059,
+   "filled": 22059,
+   "distinct_nonblank": 5144,
+   "junk": 0,
+   "minlen": 14,
+   "maxlen": 14,
+   "sample": [
+    "21989AK0030001",
+    "21989AK0030001",
+    "21989AK0050001"
+   ],
+   "cand": "HIOS standard component id",
+   "table": "FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF",
+   "col": "STANDARDCOMPONENTID"
+  },
+  {
+   "rows": 22059,
+   "filled": 22059,
+   "distinct_nonblank": 22059,
+   "junk": 0,
+   "minlen": 17,
+   "maxlen": 17,
+   "sample": [
+    "21989AK0030001-00",
+    "21989AK0030001-01",
+    "21989AK0050001-00"
+   ],
+   "cand": "HIOS plan id (variant)",
+   "table": "FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF",
+   "col": "PLANID"
+  },
+  {
+   "rows": 22059,
+   "filled": 22059,
+   "distinct_nonblank": 906,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "21989AK003",
+    "21989AK003",
+    "21989AK005"
+   ],
+   "cand": "HIOS product id",
+   "table": "FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF",
+   "col": "HIOSPRODUCTID"
+  },
+  {
+   "rows": 19038,
+   "filled": 19038,
+   "distinct_nonblank": 1526,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "H80CS07928",
+    "H80CS02458",
+    "H80CS00118"
+   ],
+   "cand": "HRSA health center #",
+   "table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+   "col": "HEALTH_CENTER_NUMBER"
+  },
+  {
+   "rows": 19038,
+   "filled": 19038,
+   "distinct_nonblank": 1525,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 8,
+   "sample": [
+    "013600",
+    "0518280",
+    "058470"
+   ],
+   "cand": "HRSA BHCMIS org id",
+   "table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+   "col": "BHCMIS_ORGANIZATION_IDENTIFICATION_NUMBER"
+  },
+  {
+   "rows": 19038,
+   "filled": 19038,
+   "distinct_nonblank": 19038,
+   "junk": 0,
+   "minlen": 14,
+   "maxlen": 14,
+   "sample": [
+    "BPS-H80-000156",
+    "BPS-H80-037803",
+    "BPS-H80-034132"
+   ],
+   "cand": "HRSA BPHC site #",
+   "table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+   "col": "BPHC_ASSIGNED_NUMBER"
+  },
+  {
+   "rows": 19038,
+   "filled": 6096,
+   "distinct_nonblank": 6048,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "1346218294",
+    "1669663415",
+    "1386492171"
+   ],
+   "cand": "HRSA site NPI",
+   "table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+   "col": "FQHC_SITE_NPI_NUMBER"
+  },
+  {
+   "rows": 19038,
+   "filled": 8546,
+   "distinct_nonblank": 8426,
+   "junk": 11,
+   "minlen": 1,
+   "maxlen": 41,
+   "sample": [
+    "220031",
+    "C51043",
+    "311830"
+   ],
+   "cand": "HRSA site Medicare billing # (CCN?)",
+   "table": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES",
+   "col": "FQHC_SITE_MEDICARE_BILLING_NUMBER"
+  },
+  {
+   "rows": 1356,
+   "filled": 1356,
+   "distinct_nonblank": 1356,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 8,
+   "sample": [
+    "010030",
+    "010040",
+    "010060"
+   ],
+   "cand": "HRSA BHCMIS id (center info)",
+   "table": "FED_HRSA_UDS_HEALTH_CENTER_INFO",
+   "col": "BHCMISID"
+  },
+  {
+   "rows": 1356,
+   "filled": 1356,
+   "distinct_nonblank": 1356,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "H80CS00803",
+    "H80CS00443",
+    "H80CS00741"
+   ],
+   "cand": "HRSA grant #",
+   "table": "FED_HRSA_UDS_HEALTH_CENTER_INFO",
+   "col": "GRANTNUMBER"
+  },
+  {
+   "rows": 165531,
+   "filled": 165531,
+   "distinct_nonblank": 42318,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 10,
+   "sample": [
+    "1688361205",
+    "1688361205",
+    "1688361205"
+   ],
+   "cand": "HRSA HPSA id",
+   "table": "FED_HRSA_SHORTAGE_AREAS",
+   "col": "HPSA_ID"
+  },
+  {
+   "rows": 1911185,
+   "filled": 1911185,
+   "distinct_nonblank": 985019,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 6,
+   "sample": [
+    "711168",
+    "774057",
+    "774058"
+   ],
+   "cand": "NPDB practitioner #",
+   "table": "FED_HRSA_NPDB",
+   "col": "PRACTNUM"
+  },
+  {
+   "rows": 44429,
+   "filled": 44429,
+   "distinct_nonblank": 4374,
+   "junk": 39727,
+   "minlen": 0,
+   "maxlen": 15,
+   "sample": [
+    "GRE7102A",
+    "630709266",
+    "01-1955"
+   ],
+   "cand": "CMS POS Medicaid vendor #",
+   "table": "FED_CMS_POS_OTHER",
+   "col": "MDCD_VNDR_NUM"
+  },
+  {
+   "rows": 44429,
+   "filled": 44429,
+   "distinct_nonblank": 5557,
+   "junk": 38661,
+   "minlen": 0,
+   "maxlen": 10,
+   "sample": [
+    "010163",
+    "011308",
+    "011306"
+   ],
+   "cand": "CMS POS cross-ref provider #",
+   "table": "FED_CMS_POS_OTHER",
+   "col": "CROSS_REF_PROVIDER_NUMBER"
+  },
+  {
+   "rows": 6066,
+   "filled": 6066,
+   "distinct_nonblank": 5372,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "3274440268",
+    "3476461872",
+    "4789591710"
+   ],
+   "cand": "PECOS associate id (hospice)",
+   "table": "FED_CMS_HOSPICE_ENROLLMENTS",
+   "col": "ASSOCIATE_ID"
+  },
+  {
+   "rows": 14700,
+   "filled": 14700,
+   "distinct_nonblank": 635,
+   "junk": 4221,
+   "minlen": 0,
+   "maxlen": 3,
+   "sample": [
+    "419",
+    "610",
+    "66"
+   ],
+   "cand": "Nursing-home chain id",
+   "table": "FED_CMS_NURSING_HOME",
+   "col": "CHAIN_ID"
+  },
+  {
+   "rows": 14713,
+   "filled": 14713,
+   "distinct_nonblank": 617,
+   "junk": 4551,
+   "minlen": 0,
+   "maxlen": 3,
+   "sample": [
+    "690",
+    "333",
+    "333"
+   ],
+   "cand": "Nursing-home chain id (411)",
+   "table": "FED_NURSINGHOME411",
+   "col": "CHAIN_ID"
+  },
+  {
+   "rows": 14425,
+   "filled": 10225,
+   "distinct_nonblank": 635,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 3,
+   "sample": [
+    "487",
+    "120",
+    "323"
+   ],
+   "cand": "SNF affiliation entity id",
+   "table": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+   "col": "AFFILIATION_ENTITY_ID"
+  },
+  {
+   "rows": 20994,
+   "filled": 20994,
+   "distinct_nonblank": 1231,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 4,
+   "sample": [
+    "0001",
+    "0002",
+    "0003"
+   ],
+   "cand": "EPA AQS site # (needs state+county)",
+   "table": "FED_EPA_AQS_SITES",
+   "col": "SITE_NUMBER"
+  },
+  {
+   "rows": 1029020,
+   "filled": 1029020,
+   "distinct_nonblank": 1029020,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 7,
+   "sample": [
+    "318636",
+    "318637",
+    "318638"
+   ],
+   "cand": "NRC incident seq # (incidents)",
+   "table": "FED_USCG_NRC_INCIDENTS",
+   "col": "SEQNOS"
+  },
+  {
+   "rows": 116662,
+   "filled": 116662,
+   "distinct_nonblank": 116662,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 7,
+   "sample": [
+    "1267707",
+    "1267708",
+    "1267709"
+   ],
+   "cand": "NRC incident seq # (reports)",
+   "table": "FED_USCG_NRC_INCIDENT_REPORTS",
+   "col": "SEQNOS"
+  },
+  {
+   "rows": 25122,
+   "filled": 25122,
+   "distinct_nonblank": 25122,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 6,
+   "sample": [
+    "220169",
+    "220170",
+    "220221"
+   ],
+   "cand": "NFIP community id",
+   "table": "FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK",
+   "col": "COMMUNITYIDNUMBER"
+  },
+  {
+   "rows": 25125,
+   "filled": 25125,
+   "distinct_nonblank": 25125,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 6,
+   "sample": [
+    "220169",
+    "220170",
+    "220221"
+   ],
+   "cand": "NFIP community id (R2)",
+   "table": "FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK_FULL_R2",
+   "col": "COMMUNITYIDNUMBER"
+  },
+  {
+   "rows": 5818,
+   "filled": 5818,
+   "distinct_nonblank": 5818,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 41,
+   "sample": [
+    "USGS-01117351",
+    "USGS-01117455",
+    "USGS-01118030"
+   ],
+   "cand": "WQP monitoring location id",
+   "table": "FED_WQP_MONITORING_STATIONS",
+   "col": "MONITORINGLOCATIONIDENTIFIER"
+  },
+  {
+   "rows": 64990,
+   "filled": 37485,
+   "distinct_nonblank": 10736,
+   "junk": 1,
+   "minlen": 3,
+   "maxlen": 9,
+   "sample": [
+    "080532250",
+    "626532535",
+    "009122532"
+   ],
+   "cand": "TRI parent DUNS",
+   "table": "FED_EPA_TRI_FACILITY",
+   "col": "PARENT_CO_DB_NUM"
+  },
+  {
+   "rows": 64990,
+   "filled": 1952,
+   "distinct_nonblank": 521,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 9,
+   "sample": [
+    "409528911",
+    "315000554",
+    "409528911"
+   ],
+   "cand": "TRI foreign parent DUNS",
+   "table": "FED_EPA_TRI_FACILITY",
+   "col": "FOREIGN_PARENT_CO_DB_NUM"
+  },
+  {
+   "rows": 78647,
+   "filled": 53388,
+   "distinct_nonblank": 3792,
+   "junk": 0,
+   "minlen": 8,
+   "maxlen": 9,
+   "sample": [
+    "091136535",
+    "028968691",
+    "082686916"
+   ],
+   "cand": "TRI parent DUNS (basic 2023)",
+   "table": "FED_EPA_TRI_BASIC_2023",
+   "col": "C_16_PARENT_CO_DB_NUM"
+  },
+  {
+   "rows": 64990,
+   "filled": 64990,
+   "distinct_nonblank": 64728,
+   "junk": 0,
+   "minlen": 12,
+   "maxlen": 12,
+   "sample": [
+    "110002085207",
+    "110007807258",
+    "110007809737"
+   ],
+   "cand": "TRI EPA registry id",
+   "table": "FED_EPA_TRI_FACILITY",
+   "col": "EPA_REGISTRY_ID"
+  },
+  {
+   "rows": 128525,
+   "filled": 110174,
+   "distinct_nonblank": 4858,
+   "junk": 0,
+   "minlen": 11,
+   "maxlen": 1135,
+   "sample": [
+    "Alabama Power Company (Owner)|Alabama Power Company (Operato",
+    "Alabama Power Company (Owner)|Alabama Power Company (Operato",
+    "Alabama Power Company (Owner)|Alabama Power Company (Operato"
+   ],
+   "cand": "CAMPD owner/operator (text)",
+   "table": "FED_EPA_CAMPD_FACILITY",
+   "col": "OWNER_OPERATOR"
+  },
+  {
+   "rows": 136005,
+   "filled": 134602,
+   "distinct_nonblank": 14012,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 3776,
+   "sample": [
+    "WILLIAMS PARTNERS, LP (100%)",
+    "WILLIAMS PARTNERS, LP (100%)",
+    "WILLIAMS PARTNERS, LP (100%)"
+   ],
+   "cand": "GHGRP parent company (text)",
+   "table": "FED_EPA_GHGRP_FACILITY",
+   "col": "PARENT_COMPANY"
+  },
+  {
+   "rows": 27836,
+   "filled": 27836,
+   "distinct_nonblank": 27836,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 6,
+   "sample": [
+    "10004",
+    "10005",
+    "10006"
+   ],
+   "cand": "FDIC UNINUM",
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "UNINUM"
+  },
+  {
+   "rows": 27836,
+   "filled": 27836,
+   "distinct_nonblank": 7953,
+   "junk": 5191,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "29140",
+    "28834",
+    "28338"
+   ],
+   "cand": "FDIC NEWCERT (successor cert)",
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "NEWCERT"
+  },
+  {
+   "rows": 27836,
+   "filled": 23828,
+   "distinct_nonblank": 50,
+   "junk": 23771,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "28753",
+    "18516",
+    "9846"
+   ],
+   "cand": "FDIC PARCERT (parent cert)",
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "PARCERT"
+  },
+  {
+   "rows": 27836,
+   "filled": 27036,
+   "distinct_nonblank": 5199,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 5,
+   "sample": [
+    "57890",
+    "26416",
+    "3511"
+   ],
+   "cand": "FDIC ULTCERT (ultimate cert)",
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "ULTCERT"
+  },
+  {
+   "rows": 27836,
+   "filled": 17072,
+   "distinct_nonblank": 8736,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 7,
+   "sample": [
+    "4399177",
+    "2062815",
+    "1076039"
+   ],
+   "cand": "FDIC RSSDHCR (holding co RSSD)",
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "RSSDHCR"
+  },
+  {
+   "rows": 27836,
+   "filled": 27836,
+   "distinct_nonblank": 11818,
+   "junk": 16004,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "1857",
+    "1861",
+    "1862"
+   ],
+   "cand": "FDIC OTS docket",
+   "table": "FED_FDIC_BANK_DATA",
+   "col": "DOCKET"
+  },
+  {
+   "rows": 2822977,
+   "filled": 2822977,
+   "distinct_nonblank": 15544,
+   "junk": 23,
+   "minlen": 1,
+   "maxlen": 8,
+   "sample": [
+    "979375",
+    "979375",
+    "979375"
+   ],
+   "cand": "FDIC SOD RSSDID",
+   "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+   "col": "RSSDID"
+  },
+  {
+   "rows": 2822977,
+   "filled": 2822977,
+   "distinct_nonblank": 9729,
+   "junk": 356651,
+   "minlen": 1,
+   "maxlen": 7,
+   "sample": [
+    "1199705",
+    "1114799",
+    "1114799"
+   ],
+   "cand": "FDIC SOD RSSDHCR",
+   "table": "FED_FDIC_SOD_BRANCH_DEPOSITS",
+   "col": "RSSDHCR"
+  },
+  {
+   "rows": 6327,
+   "filled": 6327,
+   "distinct_nonblank": 6327,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 5,
+   "sample": [
+    "00007",
+    "00041",
+    "00057"
+   ],
+   "cand": "FHLB member FHFA id",
+   "table": "FED_FHFA_FHLB_MEMBERSHIP",
+   "col": "FHFA_ID"
+  },
+  {
+   "rows": 6327,
+   "filled": 3984,
+   "distinct_nonblank": 3984,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 5,
+   "sample": [
+    "27619",
+    "27643",
+    "27654"
+   ],
+   "cand": "FHLB member FDIC cert",
+   "table": "FED_FHFA_FHLB_MEMBERSHIP",
+   "col": "CERT"
+  },
+  {
+   "rows": 6327,
+   "filled": 3984,
+   "distinct_nonblank": 3984,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 7,
+   "sample": [
+    "0864471",
+    "0207470",
+    "0804374"
+   ],
+   "cand": "FHLB member Fed RSSD",
+   "table": "FED_FHFA_FHLB_MEMBERSHIP",
+   "col": "FED_ID"
+  },
+  {
+   "rows": 6327,
+   "filled": 1638,
+   "distinct_nonblank": 1638,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 5,
+   "sample": [
+    "24563",
+    "00619",
+    "11674"
+   ],
+   "cand": "FHLB member NCUA id",
+   "table": "FED_FHFA_FHLB_MEMBERSHIP",
+   "col": "NCUA_ID"
+  },
+  {
+   "rows": 6327,
+   "filled": 619,
+   "distinct_nonblank": 618,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 5,
+   "sample": [
+    "61689",
+    "63088",
+    "13773"
+   ],
+   "cand": "FHLB member NAIC id (insurers!)",
+   "table": "FED_FHFA_FHLB_MEMBERSHIP",
+   "col": "NAIC_ID"
+  },
+  {
+   "rows": 2174502,
+   "filled": 2174502,
+   "distinct_nonblank": 3950,
+   "junk": 419917,
+   "minlen": 0,
+   "maxlen": 5,
+   "sample": [
+    "628",
+    "9846",
+    "588"
+   ],
+   "cand": "SBA lender FDIC #",
+   "table": "FED_SBA_LOANS",
+   "col": "BANKFDICNUMBER"
+  },
+  {
+   "rows": 2174502,
+   "filled": 2174502,
+   "distinct_nonblank": 589,
+   "junk": 2135220,
+   "minlen": 0,
+   "maxlen": 5,
+   "sample": [
+    "24692",
+    "68510",
+    "24692"
+   ],
+   "cand": "SBA lender NCUA #",
+   "table": "FED_SBA_LOANS",
+   "col": "BANKNCUANUMBER"
+  },
+  {
+   "rows": 2174502,
+   "filled": 2174502,
+   "distinct_nonblank": 6965,
+   "junk": 2249,
+   "minlen": 0,
+   "maxlen": 6,
+   "sample": [
+    "188309",
+    "188200",
+    "188200"
+   ],
+   "cand": "SBA location id",
+   "table": "FED_SBA_LOANS",
+   "col": "LOCATIONID"
+  },
+  {
+   "rows": 2174502,
+   "filled": 2174502,
+   "distinct_nonblank": 9381,
+   "junk": 2000728,
+   "minlen": 0,
+   "maxlen": 5,
+   "sample": [
+    "80979",
+    "78760",
+    "16920"
+   ],
+   "cand": "SBA franchise code",
+   "table": "FED_SBA_LOANS",
+   "col": "FRANCHISECODE"
+  },
+  {
+   "rows": 968524,
+   "filled": 968524,
+   "distinct_nonblank": 5037,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 6,
+   "sample": [
+    "53803",
+    "9551",
+    "48270"
+   ],
+   "cand": "PPP originating lender location id",
+   "table": "FED_SBA_PPP",
+   "col": "ORIGINATINGLENDERLOCATIONID"
+  },
+  {
+   "rows": 968524,
+   "filled": 968524,
+   "distinct_nonblank": 4533,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 6,
+   "sample": [
+    "90226",
+    "48270",
+    "48270"
+   ],
+   "cand": "PPP servicing lender location id",
+   "table": "FED_SBA_PPP",
+   "col": "SERVICINGLENDERLOCATIONID"
+  },
+  {
+   "rows": 19136434,
+   "filled": 19136434,
+   "distinct_nonblank": 6936,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "26-2049351",
+    "84-1496821",
+    "0000023041"
+   ],
+   "cand": "HMDA legacy respondent id",
+   "table": "FED_CFPB_HMDA_HISTORIC",
+   "col": "RESPONDENT_ID"
+  },
+  {
+   "rows": 19136434,
+   "filled": 19136434,
+   "distinct_nonblank": 6,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 1,
+   "sample": [
+    "9",
+    "7",
+    "9"
+   ],
+   "cand": "HMDA legacy agency code",
+   "table": "FED_CFPB_HMDA_HISTORIC",
+   "col": "AGENCY_CODE"
+  },
+  {
+   "rows": 5399,
+   "filled": 5399,
+   "distinct_nonblank": 5399,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 11,
+   "sample": [
+    "110004",
+    "110045",
+    "110118"
+   ],
+   "cand": "HMDA ARID 2017 (xref)",
+   "table": "FED_CFPB_HMDA_ARID2017_LEI_XREF",
+   "col": "ARID_2017"
+  },
+  {
+   "rows": 5399,
+   "filled": 5399,
+   "distinct_nonblank": 5399,
+   "junk": 0,
+   "minlen": 20,
+   "maxlen": 20,
+   "sample": [
+    "5493003EW6T31TGECO83",
+    "549300XOTES5TCS8T794",
+    "5493003XLOX5FDT9R120"
+   ],
+   "cand": "HMDA LEI 2018 (xref)",
+   "table": "FED_CFPB_HMDA_ARID2017_LEI_XREF",
+   "col": "LEI_2018"
+  },
+  {
+   "rows": 61647,
+   "filled": 61647,
+   "distinct_nonblank": 962,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 13,
+   "sample": [
+    "Not Available",
+    "Not Available",
+    "12511"
+   ],
+   "cand": "FHA originating mortgagee #",
+   "table": "FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT",
+   "col": "ORIGINATING_MORTGAGEE_NUMBER"
+  },
+  {
+   "rows": 61647,
+   "filled": 61647,
+   "distinct_nonblank": 148,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 13,
+   "sample": [
+    "25574",
+    "28095",
+    "Not Available"
+   ],
+   "cand": "FHA sponsor #",
+   "table": "FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT",
+   "col": "SPONSOR_NUMBER"
+  },
+  {
+   "rows": 61647,
+   "filled": 61647,
+   "distinct_nonblank": 79,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 10,
+   "sample": [
+    "Not Avail",
+    "Not Avail",
+    "Not Avail"
+   ],
+   "cand": "FHA non-profit #",
+   "table": "FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT",
+   "col": "NON_PROFIT_NUMBER"
+  },
+  {
+   "rows": 24309,
+   "filled": 24309,
+   "distinct_nonblank": 24308,
+   "junk": 0,
+   "minlen": 11,
+   "maxlen": 11,
+   "sample": [
+    "NH36T791024",
+    "MO16T791008",
+    "FL29Q921001"
+   ],
+   "cand": "HUD Section 8 contract #",
+   "table": "FED_HUD_MF_SECTION8_CONTRACTS",
+   "col": "CONTRACT_NUMBER"
+  },
+  {
+   "rows": 24309,
+   "filled": 24309,
+   "distinct_nonblank": 23610,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 9,
+   "sample": [
+    "800000008",
+    "800000012",
+    "800000013"
+   ],
+   "cand": "HUD Section 8 property id",
+   "table": "FED_HUD_MF_SECTION8_CONTRACTS",
+   "col": "PROPERTY_ID"
+  },
+  {
+   "rows": 35601,
+   "filled": 35601,
+   "distinct_nonblank": 29455,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 18,
+   "sample": [
+    "800000082 176HD004",
+    "800000083 17635019",
+    "800000084 17644020"
+   ],
+   "cand": "HUD assisted-housing code",
+   "table": "FED_HUD_ASSISTED_HOUSING_PROJECTS",
+   "col": "CODE"
+  },
+  {
+   "rows": 13550,
+   "filled": 13550,
+   "distinct_nonblank": 12397,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 9,
+   "sample": [
+    "000123850",
+    "000325444",
+    "000346622"
+   ],
+   "cand": "USDA RD borrower id",
+   "table": "FED_USDA_RD_MFH_ACTIVE_PROJECTS",
+   "col": "BORROWER_ID"
+  },
+  {
+   "rows": 43123,
+   "filled": 43121,
+   "distinct_nonblank": 19340,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "S000007561",
+    "S000089337",
+    "S000089337"
+   ],
+   "cand": "SEC series id",
+   "table": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+   "col": "SERIES_ID"
+  },
+  {
+   "rows": 43123,
+   "filled": 43121,
+   "distinct_nonblank": 43121,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "C000020626",
+    "C000255856",
+    "C000256150"
+   ],
+   "cand": "SEC class id",
+   "table": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+   "col": "CLASS_ID"
+  },
+  {
+   "rows": 43123,
+   "filled": 43122,
+   "distinct_nonblank": 2038,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 18,
+   "sample": [
+    "002-33165",
+    "333-282435",
+    "333-282435"
+   ],
+   "cand": "SEC 1940-Act file # (series/class)",
+   "table": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+   "col": "REPORTING_FILE_NUMBER"
+  },
+  {
+   "rows": 43123,
+   "filled": 29077,
+   "distinct_nonblank": 28844,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 7,
+   "sample": [
+    "FSTBX",
+    "FSBCX",
+    "FSBKX"
+   ],
+   "cand": "SEC class ticker",
+   "table": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS",
+   "col": "CLASS_TICKER"
+  },
+  {
+   "rows": 1206,
+   "filled": 1206,
+   "distinct_nonblank": 320,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "S000000048",
+    "S000000112",
+    "S000000112"
+   ],
+   "cand": "SEC MMF series id",
+   "table": "FED_SEC_MONEY_MARKET_FUND_INFORMATION",
+   "col": "SERIES_ID"
+  },
+  {
+   "rows": 1206,
+   "filled": 1206,
+   "distinct_nonblank": 1048,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "C000000083",
+    "C000000251",
+    "C000000252"
+   ],
+   "cand": "SEC MMF class id",
+   "table": "FED_SEC_MONEY_MARKET_FUND_INFORMATION",
+   "col": "CLASS_ID"
+  },
+  {
+   "rows": 344109,
+   "filled": 47063,
+   "distinct_nonblank": 6229,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 9,
+   "sample": [
+    "000125401",
+    "000314622",
+    "000314622"
+   ],
+   "cand": "FINRA CRD # (13F filers)",
+   "table": "FED_SEC_13F_FILERS",
+   "col": "CRDNUMBER"
+  },
+  {
+   "rows": 344109,
+   "filled": 44233,
+   "distinct_nonblank": 5896,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 12,
+   "sample": [
+    "801-126262",
+    "801-79035",
+    "801-30601"
+   ],
+   "cand": "SEC file # (13F filers)",
+   "table": "FED_SEC_13F_FILERS",
+   "col": "SECFILENUMBER"
+  },
+  {
+   "rows": 344109,
+   "filled": 344109,
+   "distinct_nonblank": 16341,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 12,
+   "sample": [
+    "028-12039",
+    "028-16141",
+    "028-06854"
+   ],
+   "cand": "13F file #",
+   "table": "FED_SEC_13F_FILERS",
+   "col": "FORM13FFILENUMBER"
+  },
+  {
+   "rows": 155384,
+   "filled": 155384,
+   "distinct_nonblank": 737,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 4,
+   "sample": [
+    "248",
+    "248",
+    "248"
+   ],
+   "cand": "PCAOB firm id",
+   "table": "FED_PCAOB_FORM_AP_FILINGS",
+   "col": "FIRM_ID"
+  },
+  {
+   "rows": 155384,
+   "filled": 153390,
+   "distinct_nonblank": 33323,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 7,
+   "sample": [
+    "611338",
+    "649306",
+    "649308"
+   ],
+   "cand": "PCAOB issuer id",
+   "table": "FED_PCAOB_FORM_AP_FILINGS",
+   "col": "ISSUER_ID"
+  },
+  {
+   "rows": 155384,
+   "filled": 154462,
+   "distinct_nonblank": 34112,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 10,
+   "sample": [
+    "0001633408",
+    "0001676020",
+    "0001676022"
+   ],
+   "cand": "PCAOB issuer CIK",
+   "table": "FED_PCAOB_FORM_AP_FILINGS",
+   "col": "ISSUER_CIK"
+  },
+  {
+   "rows": 155384,
+   "filled": 155384,
+   "distinct_nonblank": 9305,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "0024800018",
+    "0024800018",
+    "0024800055"
+   ],
+   "cand": "PCAOB engagement partner id",
+   "table": "FED_PCAOB_FORM_AP_FILINGS",
+   "col": "ENGAGEMENT_PARTNER_ID"
+  },
+  {
+   "rows": 2864,
+   "filled": 2864,
+   "distinct_nonblank": 2864,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 4,
+   "sample": [
+    "DRSP",
+    "XCNQ",
+    "PURE"
+   ],
+   "cand": "ISO MIC",
+   "table": "INTL_ISO_MIC_REGISTRY",
+   "col": "MIC"
+  },
+  {
+   "rows": 2864,
+   "filled": 2864,
+   "distinct_nonblank": 1594,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 4,
+   "sample": [
+    "DRSP",
+    "XCNQ",
+    "XCNQ"
+   ],
+   "cand": "ISO MIC operating MIC",
+   "table": "INTL_ISO_MIC_REGISTRY",
+   "col": "OPERATING_MIC"
+  },
+  {
+   "rows": 48990,
+   "filled": 48990,
+   "distinct_nonblank": 0,
+   "junk": 48990,
+   "minlen": 0,
+   "maxlen": 0,
+   "sample": [],
+   "cand": "ISIN (US SEC EDGAR table)",
+   "table": "FED_US_SEC_EDGAR",
+   "col": "ISIN"
+  },
+  {
+   "rows": 1934673,
+   "filled": 1934665,
+   "distinct_nonblank": 10904,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 14,
+   "sample": [
+    "001-36453",
+    "001-31567",
+    "001-34887"
+   ],
+   "cand": "SEC insider file #",
+   "table": "FED_SEC_INSIDER_REPORTINGOWNER",
+   "col": "FILE_NUMBER"
+  },
+  {
+   "rows": 19115,
+   "filled": 19115,
+   "distinct_nonblank": 19115,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "36",
+    "173",
+    "306"
+   ],
+   "cand": "OFAC SDN entity #",
+   "table": "FED_OFAC_SDN",
+   "col": "ENT_NUM"
+  },
+  {
+   "rows": 25988,
+   "filled": 25988,
+   "distinct_nonblank": 19637,
+   "junk": 6255,
+   "minlen": 0,
+   "maxlen": 5,
+   "sample": [
+    "15268",
+    "30882",
+    "30902"
+   ],
+   "cand": "CSL entity #",
+   "table": "FED_CONSOLIDATED_SCREENING_LIST",
+   "col": "ENTITY_NUMBER"
+  },
+  {
+   "rows": 25988,
+   "filled": 25988,
+   "distinct_nonblank": 15117,
+   "junk": 7292,
+   "minlen": 0,
+   "maxlen": 9354,
+   "sample": [
+    "SWIFT/BIC CKLBCNBJ",
+    "Unified Social Credit Code (USCC) 9111000071093019X7 CN; Iss",
+    "Unified Social Credit Code (USCC) 91110000MA005UCQ5P CN; Tar"
+   ],
+   "cand": "CSL ids blob",
+   "table": "FED_CONSOLIDATED_SCREENING_LIST",
+   "col": "IDS"
+  },
+  {
+   "rows": 42347,
+   "filled": 42347,
+   "distinct_nonblank": 5994,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 11,
+   "sample": [
+    "EU.27.28",
+    "EU.27.28",
+    "EU.27.28"
+   ],
+   "cand": "EU sanctions ref #",
+   "table": "INTL_EU_SANCTIONS",
+   "col": "EU_REF_NUM"
+  },
+  {
+   "rows": 42347,
+   "filled": 42347,
+   "distinct_nonblank": 2603,
+   "junk": 39729,
+   "minlen": 0,
+   "maxlen": 341,
+   "sample": [
+    "34409/129 (other-Other identification number) (july 1997)",
+    "488555 (passport-National passport) ",
+    "D 0001203 (passport-National passport) ((afghan passport))"
+   ],
+   "cand": "EU sanctions id-doc #",
+   "table": "INTL_EU_SANCTIONS",
+   "col": "IDEN_NUMBER"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 5127,
+   "junk": 3458,
+   "minlen": 0,
+   "maxlen": 5,
+   "sample": [
+    "12703",
+    "12703",
+    "12703"
+   ],
+   "cand": "UK OFSI group id",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "OFSI_GROUP_ID"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 995,
+   "junk": 37684,
+   "minlen": 0,
+   "maxlen": 7,
+   "sample": [
+    "TAe.010",
+    "TAe.010",
+    "TAe.010"
+   ],
+   "cand": "UK sanctions UN ref #",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "UN_REFERENCE_NUMBER"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 719,
+   "junk": 53246,
+   "minlen": 0,
+   "maxlen": 170,
+   "sample": [
+    "(\u0423\u041d\u041d/\u0418\u041d\u041d): 190950894 (Belarus),  7704734000/770301001 (Russi",
+    "(\u0423\u041d\u041d/\u0418\u041d\u041d): 190950894 (Belarus),  7704734000/770301001 (Russi",
+    "UK Company no. 06527449"
+   ],
+   "cand": "UK sanctions business reg # (text)",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "BUSINESS_REGISTRATION_NUMBER_S"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 663,
+   "junk": 57448,
+   "minlen": 0,
+   "maxlen": 10,
+   "sample": [
+    "IMO9562233",
+    "IMO9562233",
+    "IMO9562233"
+   ],
+   "cand": "UK sanctions IMO",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "IMO_NUMBER"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 456,
+   "junk": 51094,
+   "minlen": 0,
+   "maxlen": 29,
+   "sample": [
+    "2132370",
+    "812673",
+    "812673"
+   ],
+   "cand": "UK sanctions national id #",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "NATIONAL_IDENTIFIER_NUMBER"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 752,
+   "junk": 47538,
+   "minlen": 0,
+   "maxlen": 72,
+   "sample": [
+    "P04581926",
+    "P04581926",
+    "P04581926"
+   ],
+   "cand": "UK sanctions passport #",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "PASSPORT_NUMBER"
+  },
+  {
+   "rows": 58336,
+   "filled": 58336,
+   "distinct_nonblank": 0,
+   "junk": 58336,
+   "minlen": 0,
+   "maxlen": 0,
+   "sample": [],
+   "cand": "UK sanctions HIN",
+   "table": "INTL_UK_SANCTIONS_LIST",
+   "col": "HULL_IDENTIFICATION_NUMBER_HIN"
+  },
+  {
+   "rows": 1281846,
+   "filled": 1281846,
+   "distinct_nonblank": 1281846,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 200,
+   "sample": [
+    "NK-223BSVnvKHYB96adihNXXZ",
+    "NK-223CQDBzp8MRkdJMDiqXn3",
+    "NK-223yQP6hRaMuiALDCJ6xbY"
+   ],
+   "cand": "OpenSanctions id",
+   "table": "INTL_OPENSANCTIONS_DEFAULT",
+   "col": "ID"
+  },
+  {
+   "rows": 1281846,
+   "filled": 1281846,
+   "distinct_nonblank": 712279,
+   "junk": 554523,
+   "minlen": 0,
+   "maxlen": 3231,
+   "sample": [
+    "IMO9422964",
+    "103919088;GQBPAV1TFF41;PW2USM6LNCJ9;PW2XZT68KVW9;PW3LMJ5YB3M",
+    "1187746408761;46.90;62.09;69.10;69.20;69.20.2;70.10.1;70.10."
+   ],
+   "cand": "OpenSanctions identifiers blob",
+   "table": "INTL_OPENSANCTIONS_DEFAULT",
+   "col": "IDENTIFIERS"
+  },
+  {
+   "rows": 3382301,
+   "filled": 3382301,
+   "distinct_nonblank": 3007097,
+   "junk": 292544,
+   "minlen": 0,
+   "maxlen": 125,
+   "sample": [
+    "024643941000",
+    "24371",
+    "1071120"
+   ],
+   "cand": "GLEIF RA entity id (national co #)",
+   "table": "INTL_GLEIF",
+   "col": "Entity.RegistrationAuthority.RegistrationAuthorityEntityID"
+  },
+  {
+   "rows": 3382301,
+   "filled": 3382301,
+   "distinct_nonblank": 941,
+   "junk": 0,
+   "minlen": 8,
+   "maxlen": 8,
+   "sample": [
+    "RA999999",
+    "RA000591",
+    "RA999999"
+   ],
+   "cand": "GLEIF RA id",
+   "table": "INTL_GLEIF",
+   "col": "Entity.RegistrationAuthority.RegistrationAuthorityID"
+  },
+  {
+   "rows": 3382301,
+   "filled": 3382301,
+   "distinct_nonblank": 27279,
+   "junk": 3348120,
+   "minlen": 0,
+   "maxlen": 20,
+   "sample": [
+    "2138009GT3GEHSQVRJ07",
+    "2138001TD2MSZQT66F42",
+    "549300BBK38MPT8QZI59"
+   ],
+   "cand": "GLEIF successor LEI",
+   "table": "INTL_GLEIF",
+   "col": "Entity.SuccessorEntity.1.SuccessorLEI"
+  },
+  {
+   "rows": 485285,
+   "filled": 485285,
+   "distinct_nonblank": 301482,
+   "junk": 0,
+   "minlen": 20,
+   "maxlen": 20,
+   "sample": [
+    "54930039TBDYX8TFI926",
+    "54930039TBDYX8TFI926",
+    "54930039WXMYIHH7DG97"
+   ],
+   "cand": "GLEIF L2 start node LEI",
+   "table": "INTL_GLEIF_RELATIONSHIPS",
+   "col": "RELATIONSHIP_STARTNODE_NODEID"
+  },
+  {
+   "rows": 485285,
+   "filled": 485285,
+   "distinct_nonblank": 77251,
+   "junk": 0,
+   "minlen": 20,
+   "maxlen": 20,
+   "sample": [
+    "5493001ZHNPAW2EPPX73",
+    "5493002BI0S2ZQUY3437",
+    "5493002BI0S2ZQUY3437"
+   ],
+   "cand": "GLEIF L2 end node LEI",
+   "table": "INTL_GLEIF_RELATIONSHIPS",
+   "col": "RELATIONSHIP_ENDNODE_NODEID"
+  },
+  {
+   "rows": 485285,
+   "filled": 485285,
+   "distinct_nonblank": 6,
+   "junk": 0,
+   "minlen": 12,
+   "maxlen": 29,
+   "sample": [
+    "IS_FUND-MANAGED_BY",
+    "IS_SUBFUND_OF",
+    "IS_FUND-MANAGED_BY"
+   ],
+   "cand": "GLEIF L2 relationship type",
+   "table": "INTL_GLEIF_RELATIONSHIPS",
+   "col": "RELATIONSHIP_RELATIONSHIPTYPE"
+  },
+  {
+   "rows": 221900,
+   "filled": 221900,
+   "distinct_nonblank": 7060,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 10,
+   "sample": [
+    "7736",
+    "7734",
+    "7732"
+   ],
+   "cand": "FARA registration #",
+   "table": "FED_FARA_BULK",
+   "col": "REGISTRATION_NUMBER"
+  },
+  {
+   "rows": 1974830,
+   "filled": 1974830,
+   "distinct_nonblank": 3990,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 4,
+   "sample": [
+    "0000",
+    "0000",
+    "0000"
+   ],
+   "cand": "IRS group exemption #",
+   "table": "FED_IRS_BMF",
+   "col": "C_GROUP"
+  },
+  {
+   "rows": 1974830,
+   "filled": 1974830,
+   "distinct_nonblank": 8,
+   "junk": 5514,
+   "minlen": 1,
+   "maxlen": 1,
+   "sample": [
+    "9",
+    "9",
+    "3"
+   ],
+   "cand": "IRS affiliation code",
+   "table": "FED_IRS_BMF",
+   "col": "AFFILIATION"
+  },
+  {
+   "rows": 4493662,
+   "filled": 4493662,
+   "distinct_nonblank": 4493662,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 7,
+   "sample": [
+    "286031",
+    "286032",
+    "286033"
+   ],
+   "cand": "FMCSA USDOT #",
+   "table": "FED_FMCSA_COMPANY_CENSUS",
+   "col": "DOT_NUMBER"
+  },
+  {
+   "rows": 4493662,
+   "filled": 1788156,
+   "distinct_nonblank": 1744122,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 8,
+   "sample": [
+    "629697",
+    "629698",
+    "629700"
+   ],
+   "cand": "FMCSA MC docket 1",
+   "table": "FED_FMCSA_COMPANY_CENSUS",
+   "col": "DOCKET1"
+  },
+  {
+   "rows": 4493662,
+   "filled": 1788161,
+   "distinct_nonblank": 3,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 2,
+   "sample": [
+    "MC",
+    "MC",
+    "MC"
+   ],
+   "cand": "FMCSA docket 1 prefix",
+   "table": "FED_FMCSA_COMPANY_CENSUS",
+   "col": "DOCKET1PREFIX"
+  },
+  {
+   "rows": 4493662,
+   "filled": 642,
+   "distinct_nonblank": 557,
+   "junk": 86,
+   "minlen": 1,
+   "maxlen": 8,
+   "sample": [
+    "2886824",
+    "1441415",
+    "2890884"
+   ],
+   "cand": "FMCSA prior revoked USDOT #",
+   "table": "FED_FMCSA_COMPANY_CENSUS",
+   "col": "PRIOR_REVOKE_DOT_NUMBER"
+  },
+  {
+   "rows": 4493662,
+   "filled": 4227391,
+   "distinct_nonblank": 372261,
+   "junk": 3852069,
+   "minlen": 1,
+   "maxlen": 9,
+   "sample": [
+    "164025280",
+    "932263197",
+    "826247694"
+   ],
+   "cand": "FMCSA DUNS",
+   "table": "FED_FMCSA_COMPANY_CENSUS",
+   "col": "DUN_BRADSTREET_NO"
+  },
+  {
+   "rows": 4493662,
+   "filled": 709178,
+   "distinct_nonblank": 3,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 1,
+   "sample": [
+    "1",
+    "3",
+    "1"
+   ],
+   "cand": "FMCSA business org id",
+   "table": "FED_FMCSA_COMPANY_CENSUS",
+   "col": "BUSINESS_ORG_ID"
+  },
+  {
+   "rows": 895429,
+   "filled": 586,
+   "distinct_nonblank": 579,
+   "junk": 0,
+   "minlen": 9,
+   "maxlen": 9,
+   "sample": [
+    "DODW66QKZ",
+    "DODFF4803",
+    "DODF2ETG1"
+   ],
+   "cand": "SAM DoDAAC",
+   "table": "FED_SAM_ENTITY_PUBLIC",
+   "col": "DODAAC"
+  },
+  {
+   "rows": 168328,
+   "filled": 168328,
+   "distinct_nonblank": 168328,
+   "junk": 0,
+   "minlen": 36,
+   "maxlen": 36,
+   "sample": [
+    "9e881fc8-aec1-455f-a5c5-4a0b4b3a8d8c",
+    "daa98661-e34c-44f8-9520-be83b2e6259e",
+    "7c82641b-be67-49ab-a45c-bafb021e9a93"
+   ],
+   "cand": "SAM exclusions SAM #",
+   "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+   "col": "SAM_NUMBER"
+  },
+  {
+   "rows": 168328,
+   "filled": 47686,
+   "distinct_nonblank": 38427,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 12,
+   "sample": [
+    "FWEHSMM47RG8",
+    "FW7VFLDBZGK9",
+    "CP8JCZHJGVX5"
+   ],
+   "cand": "SAM exclusions UEI",
+   "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+   "col": "UNIQUE_ENTITY_ID"
+  },
+  {
+   "rows": 168328,
+   "filled": 19238,
+   "distinct_nonblank": 4867,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 10,
+   "sample": [
+    "0000000000",
+    "0000000000",
+    "1841517737"
+   ],
+   "cand": "SAM exclusions NPI",
+   "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+   "col": "NPI"
+  },
+  {
+   "rows": 168328,
+   "filled": 40852,
+   "distinct_nonblank": 28033,
+   "junk": 0,
+   "minlen": 8,
+   "maxlen": 3044,
+   "sample": [
+    "(also Aaron Suleske)",
+    "(also Young's Convalescent Service)",
+    "(also Young's Convalescent Service)"
+   ],
+   "cand": "SAM exclusions cross-reference",
+   "table": "FED_SAM_EXCLUSIONS_FULL_R2",
+   "col": "CROSS_REFERENCE"
+  },
+  {
+   "rows": 391684,
+   "filled": 391684,
+   "distinct_nonblank": 391684,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 7,
+   "sample": [
+    "385993",
+    "1661881",
+    "148781"
+   ],
+   "cand": "USCG vessel id",
+   "table": "FED_USCG_VESSEL_DOCUMENTATION",
+   "col": "VESSEL_ID"
+  },
+  {
+   "rows": 391684,
+   "filled": 357513,
+   "distinct_nonblank": 301539,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 7,
+   "sample": [
+    "2963399",
+    "2299735",
+    "2006476"
+   ],
+   "cand": "USCG party id (owner)",
+   "table": "FED_USCG_VESSEL_DOCUMENTATION",
+   "col": "PARTY_ID"
+  },
+  {
+   "rows": 391684,
+   "filled": 120004,
+   "distinct_nonblank": 120004,
+   "junk": 0,
+   "minlen": 10,
+   "maxlen": 15,
+   "sample": [
+    "FMLT4107L021",
+    "SWT42035E020",
+    "HLG310040377"
+   ],
+   "cand": "USCG HIN",
+   "table": "FED_USCG_VESSEL_DOCUMENTATION",
+   "col": "HIN"
+  },
+  {
+   "rows": 391684,
+   "filled": 197765,
+   "distinct_nonblank": 178920,
+   "junk": 10,
+   "minlen": 1,
+   "maxlen": 26,
+   "sample": [
+    "SERF9651D303",
+    "BE0609A549C616",
+    "GLA36923L203"
+   ],
+   "cand": "USCG hull #",
+   "table": "FED_USCG_VESSEL_DOCUMENTATION",
+   "col": "HULL_NUMBER"
+  },
+  {
+   "rows": 394234,
+   "filled": 394234,
+   "distinct_nonblank": 394231,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 7,
+   "sample": [
+    "1065594",
+    "1065052",
+    "1065566"
+   ],
+   "cand": "OSHA ITA establishment id 2023",
+   "table": "FED_OSHA_ITA_300A_SUMMARY_2023",
+   "col": "ESTABLISHMENT_ID"
+  },
+  {
+   "rows": 398620,
+   "filled": 398620,
+   "distinct_nonblank": 398620,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 7,
+   "sample": [
+    "283508",
+    "388293",
+    "470345"
+   ],
+   "cand": "OSHA ITA establishment id 2024",
+   "table": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "col": "ESTABLISHMENT_ID"
+  },
+  {
+   "rows": 398620,
+   "filled": 355360,
+   "distinct_nonblank": 114606,
+   "junk": 2,
+   "minlen": 1,
+   "maxlen": 9,
+   "sample": [
+    "460915223",
+    "366103252",
+    "823106264"
+   ],
+   "cand": "OSHA ITA EIN 2024",
+   "table": "FED_OSHA_ITA_300A_SUMMARY_2024",
+   "col": "EIN"
+  },
+  {
+   "rows": 5611412,
+   "filled": 3083533,
+   "distinct_nonblank": 1546481,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 18,
+   "sample": [
+    "N043    000000641",
+    "N043    000000378",
+    "N043    000000394"
+   ],
+   "cand": "OSHA inspections host est key",
+   "table": "FED_DOL_OSHA_INSPECTIONS",
+   "col": "HOST_EST_KEY"
+  },
+  {
+   "rows": 5611412,
+   "filled": 5611412,
+   "distinct_nonblank": 508,
+   "junk": 0,
+   "minlen": 6,
+   "maxlen": 7,
+   "sample": [
+    "0626000",
+    "0626000",
+    "0626000"
+   ],
+   "cand": "OSHA inspections reporting id",
+   "table": "FED_DOL_OSHA_INSPECTIONS",
+   "col": "REPORTING_ID"
+  },
+  {
+   "rows": 664616,
+   "filled": 664616,
+   "distinct_nonblank": 1694,
+   "junk": 662479,
+   "minlen": 0,
+   "maxlen": 19,
+   "sample": [
+    "P-100-19058-020768",
+    "P-100-18116-163657",
+    "P-200-19044-046134"
+   ],
+   "cand": "OFLC prevailing-wage tracking #",
+   "table": "FED_DOL_OFLC",
+   "col": "PW_TRACKING_NUMBER_1"
+  },
+  {
+   "rows": 617710,
+   "filled": 617708,
+   "distinct_nonblank": 21,
+   "junk": 291016,
+   "minlen": 0,
+   "maxlen": 26,
+   "sample": [
+    "F",
+    "F",
+    "F"
+   ],
+   "cand": "OLMS subsidiary (text)",
+   "table": "FED_DOL_OLMS",
+   "col": "SUBSIDIARY"
+  },
+  {
+   "rows": 1490,
+   "filled": 1490,
+   "distinct_nonblank": 1490,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 7,
+   "sample": [
+    "AAORDMD",
+    "ABIRJVA",
+    "ABQHOLD"
+   ],
+   "cand": "ICE detention facility code (codes)",
+   "table": "FED_ICE_DETENTION_FACILITY_CODES",
+   "col": "DETENTION_FACILITY_CODE"
+  },
+  {
+   "rows": 2617844,
+   "filled": 2617844,
+   "distinct_nonblank": 707,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 7,
+   "sample": [
+    "SLRDCAZ",
+    "PINEPLA",
+    "PINEPLA"
+   ],
+   "cand": "ICE detention facility code (stints)",
+   "table": "FED_ICE_DETENTION_STINTS",
+   "col": "DETENTION_FACILITY_CODE"
+  },
+  {
+   "rows": 2617844,
+   "filled": 2617844,
+   "distinct_nonblank": 1014866,
+   "junk": 7341,
+   "minlen": 0,
+   "maxlen": 40,
+   "sample": [
+    "51400fc34a4c6e8c305b79d909db3ae9defa3883",
+    "75b22ed0ca288306e933db4e1bd9e5bb3d990547",
+    "4d44642bfa86f1873d1d11439916d33966fd33e9"
+   ],
+   "cand": "ICE stint unique identifier (person)",
+   "table": "FED_ICE_DETENTION_STINTS",
+   "col": "UNIQUE_IDENTIFIER"
+  },
+  {
+   "rows": 2617844,
+   "filled": 2617844,
+   "distinct_nonblank": 1087417,
+   "junk": 7341,
+   "minlen": 0,
+   "maxlen": 60,
+   "sample": [
+    "33342b2832acf82179e0df53a43d957099d262e4_2004-12-05 22:30:00",
+    "de10c6a3d0027b9a7bf15e7ae0726e67f733bd81_2011-01-11 23:59:00",
+    "ad00adabb36933a9ae532721b36b572b7a70b09f_2011-05-11 13:00:35"
+   ],
+   "cand": "ICE stay id",
+   "table": "FED_ICE_DETENTION_STINTS",
+   "col": "STAY_ID"
+  },
+  {
+   "rows": 15476,
+   "filled": 15473,
+   "distinct_nonblank": 4878,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 77,
+   "sample": [
+    "WI0130100",
+    "OKDI06200",
+    "CA0560900"
+   ],
+   "cand": "MPV ORI agency id",
+   "table": "XC_MAPPING_POLICE_VIOLENCE",
+   "col": "ORI_AGENCY_IDENTIFIER_IF_AVAILABLE"
+  },
+  {
+   "rows": 15476,
+   "filled": 10381,
+   "distinct_nonblank": 10381,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "11287",
+    "11285",
+    "11283"
+   ],
+   "cand": "MPV WaPo id",
+   "table": "XC_MAPPING_POLICE_VIOLENCE",
+   "col": "WAPO_ID_IF_INCLUDED_IN_WAPO_DATABASE"
+  },
+  {
+   "rows": 15476,
+   "filled": 9853,
+   "distinct_nonblank": 9851,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 5,
+   "sample": [
+    "31492",
+    "31497",
+    "31466"
+   ],
+   "cand": "MPV fatal encounters id",
+   "table": "XC_MAPPING_POLICE_VIOLENCE",
+   "col": "FATAL_ENCOUNTERS_ID"
+  },
+  {
+   "rows": 51290,
+   "filled": 148,
+   "distinct_nonblank": 139,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 5,
+   "sample": [
+    "3544",
+    "3174",
+    "1213"
+   ],
+   "cand": "CL positions predecessor id",
+   "table": "FED_COURTLISTENER_POSITIONS",
+   "col": "PREDECESSOR_ID"
+  },
+  {
+   "rows": 51290,
+   "filled": 160,
+   "distinct_nonblank": 130,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 5,
+   "sample": [
+    "1250",
+    "2905",
+    "1635"
+   ],
+   "cand": "CL positions supervisor id",
+   "table": "FED_COURTLISTENER_POSITIONS",
+   "col": "SUPERVISOR_ID"
+  },
+  {
+   "rows": 51290,
+   "filled": 230,
+   "distinct_nonblank": 114,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 4,
+   "sample": [
+    "2624",
+    "6405",
+    "5690"
+   ],
+   "cand": "CL positions school id",
+   "table": "FED_COURTLISTENER_POSITIONS",
+   "col": "SCHOOL_ID"
+  },
+  {
+   "rows": 3361,
+   "filled": 2819,
+   "distinct_nonblank": 128,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 13,
+   "sample": [
+    "moctapp",
+    "nysurct",
+    "usdistct"
+   ],
+   "cand": "CL courts parent court id",
+   "table": "FED_COURTLISTENER_COURTS",
+   "col": "PARENT_COURT_ID"
+  },
+  {
+   "rows": 71677647,
+   "filled": 0,
+   "distinct_nonblank": 0,
+   "junk": 0,
+   "minlen": null,
+   "maxlen": null,
+   "sample": [],
+   "cand": "CL dockets parent docket id",
+   "table": "FED_COURTLISTENER_DOCKETS",
+   "col": "PARENT_DOCKET_ID"
+  },
+  {
+   "rows": 2000,
+   "filled": 2000,
+   "distinct_nonblank": 739,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 2117,
+   "sample": [
+    "17201/23",
+    "17201/23",
+    "79795/17"
+   ],
+   "cand": "ECHR application #",
+   "table": "INTL_HUDOC",
+   "col": "APPNO"
+  },
+  {
+   "rows": 2000,
+   "filled": 2000,
+   "distinct_nonblank": 747,
+   "junk": 0,
+   "minlen": 34,
+   "maxlen": 34,
+   "sample": [
+    "ECLI:CE:ECHR:2026:0616JUD001720123",
+    "ECLI:CE:ECHR:2026:0616JUD001720123",
+    "ECLI:CE:ECHR:2026:0616JUD007979517"
+   ],
+   "cand": "ECLI",
+   "table": "INTL_HUDOC",
+   "col": "ECLI"
+  },
+  {
+   "rows": 315447,
+   "filled": 315447,
+   "distinct_nonblank": 315447,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 5,
+   "sample": [
+    "79SC ",
+    "79SD ",
+    "79SF "
+   ],
+   "cand": "FAA N-number",
+   "table": "FED_FAA_AIRCRAFT_REGISTRY",
+   "col": "N_NUMBER"
+  },
+  {
+   "rows": 315447,
+   "filled": 315447,
+   "distinct_nonblank": 315447,
+   "junk": 0,
+   "minlen": 8,
+   "maxlen": 8,
+   "sample": [
+    "52533477",
+    "52533500",
+    "52533502"
+   ],
+   "cand": "FAA Mode S code",
+   "table": "FED_FAA_AIRCRAFT_REGISTRY",
+   "col": "MODE_S_CODE"
+  },
+  {
+   "rows": 315447,
+   "filled": 315447,
+   "distinct_nonblank": 315447,
+   "junk": 1,
+   "minlen": 8,
+   "maxlen": 8,
+   "sample": [
+    "00311819",
+    "00953312",
+    "01320220"
+   ],
+   "cand": "FAA registry unique id",
+   "table": "FED_FAA_AIRCRAFT_REGISTRY",
+   "col": "UNIQUE_ID"
+  },
+  {
+   "rows": 31503,
+   "filled": 31503,
+   "distinct_nonblank": 30260,
+   "junk": 59,
+   "minlen": 1,
+   "maxlen": 11,
+   "sample": [
+    "N530NA",
+    "N8037W",
+    "N15EX"
+   ],
+   "cand": "NTSB registration # (N-number)",
+   "table": "FED_NTSB_AVIATION_AIRCRAFT",
+   "col": "REGIS_NO"
+  },
+  {
+   "rows": 31503,
+   "filled": 31503,
+   "distinct_nonblank": 740,
+   "junk": 30365,
+   "minlen": 2,
+   "maxlen": 11,
+   "sample": [
+    "R61A758X",
+    "USAA105A",
+    "SWAA304A"
+   ],
+   "cand": "NTSB operator cert #",
+   "table": "FED_NTSB_AVIATION_AIRCRAFT",
+   "col": "OPER_CERT_NUM"
+  },
+  {
+   "rows": 31503,
+   "filled": 31503,
+   "distinct_nonblank": 1123,
+   "junk": 29518,
+   "minlen": 1,
+   "maxlen": 4,
+   "sample": [
+    "S4EA",
+    "XVES",
+    "SWIA"
+   ],
+   "cand": "NTSB operator code",
+   "table": "FED_NTSB_AVIATION_AIRCRAFT",
+   "col": "OPER_CODE"
+  },
+  {
+   "rows": 31503,
+   "filled": 31503,
+   "distinct_nonblank": 6881,
+   "junk": 9694,
+   "minlen": 1,
+   "maxlen": 4,
+   "sample": [
+    "O69 ",
+    "OQ3 ",
+    "T20 "
+   ],
+   "cand": "NTSB departure airport id",
+   "table": "FED_NTSB_AVIATION_AIRCRAFT",
+   "col": "DPRT_APT_ID"
+  },
+  {
+   "rows": 224941,
+   "filled": 224941,
+   "distinct_nonblank": 174438,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 10,
+   "sample": [
+    "101008",
+    "0910004",
+    "CA1007106"
+   ],
+   "cand": "FRA accident #",
+   "table": "FED_FRA_EQUIPMENT_ACCIDENTS",
+   "col": "ACCIDENT_NUMBER"
+  },
+  {
+   "rows": 1150788,
+   "filled": 1150788,
+   "distinct_nonblank": 1091,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 4,
+   "sample": [
+    "ATK",
+    "ATK",
+    "ATK"
+   ],
+   "cand": "FRA parent railroad code (casualties)",
+   "table": "FED_FRA_CASUALTIES",
+   "col": "REPORTING_PARENT_RAILROAD_CODE"
+  },
+  {
+   "rows": 1150788,
+   "filled": 1150788,
+   "distinct_nonblank": 50,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 44,
+   "sample": [
+    "Union Pacific Railroad Company",
+    "Union Pacific Railroad Company",
+    "BNSF Railway Company"
+   ],
+   "cand": "FRA holding company (text)",
+   "table": "FED_FRA_CASUALTIES",
+   "col": "REPORTING_RAILROAD_HOLDING_COMPANY"
+  },
+  {
+   "rows": 58106517,
+   "filled": 58106517,
+   "distinct_nonblank": 22759,
+   "junk": 7545,
+   "minlen": 1,
+   "maxlen": 10,
+   "sample": [
+    "368219290",
+    "367648550",
+    "367183730"
+   ],
+   "cand": "AIS MMSI",
+   "table": "FED_NOAA_AIS",
+   "col": "MMSI"
+  },
+  {
+   "rows": 2039,
+   "filled": 2039,
+   "distinct_nonblank": 262,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 5,
+   "sample": [
+    "31728",
+    "13769",
+    "405"
+   ],
+   "cand": "PHMSA operator id",
+   "table": "FED_PHMSA_FLAGGED_INCIDENTS",
+   "col": "PHMSA_OPERATOR_ID"
+  },
+  {
+   "rows": 9794977,
+   "filled": 9794974,
+   "distinct_nonblank": 9794970,
+   "junk": 0,
+   "minlen": 2,
+   "maxlen": 220,
+   "sample": [
+    "90101432",
+    "90101434",
+    "90101435"
+   ],
+   "cand": "CPSC NEISS case #",
+   "table": "FED_CPSC_NEISS",
+   "col": "CPSC_CASE_NUMBER"
+  },
+  {
+   "rows": 17179788,
+   "filled": 17179785,
+   "distinct_nonblank": 17168286,
+   "junk": 11499,
+   "minlen": 0,
+   "maxlen": 8,
+   "sample": [
+    "8910313",
+    "8910307",
+    "8910301"
+   ],
+   "cand": "CFPB complaint id",
+   "table": "FED_CFPB_COMPLAINTS",
+   "col": "Complaint ID"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 2135506,
+   "junk": 1204,
+   "minlen": 0,
+   "maxlen": 102,
+   "sample": [
+    "03790-001 2",
+    "P272992-1",
+    "4500386858"
+   ],
+   "cand": "Subaward number",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "SUBAWARD_NUMBER"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 4742460,
+   "junk": 0,
+   "minlen": 36,
+   "maxlen": 36,
+   "sample": [
+    "AA426FE8-FCB8-11EF-8E2A-E7034F2D18CD",
+    "E5DA1125-BC7F-49A8-8C5A-9B0DEC2F1797",
+    "9DF76A99-EDB0-4888-A65B-12B966B22DB5"
+   ],
+   "cand": "Subaward SAM report id",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "SUBAWARD_SAM_REPORT_ID"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 168225,
+   "junk": 1443687,
+   "minlen": 0,
+   "maxlen": 30,
+   "sample": [
+    "H027A250076",
+    "25E55EE000100",
+    "S424F220022"
+   ],
+   "cand": "Subaward prime FAIN",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "PRIME_AWARD_FAIN"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 11061,
+   "junk": 4074000,
+   "minlen": 0,
+   "maxlen": 18,
+   "sample": [
+    "N6523620D8001",
+    "75N91019D00024",
+    "N6523620D8001"
+   ],
+   "cand": "Subaward prime parent PIID",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "PRIME_AWARD_PARENT_PIID"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 220704,
+   "junk": 0,
+   "minlen": 12,
+   "maxlen": 12,
+   "sample": [
+    "KJ2QKVQM1VE7",
+    "T64FXXH7T8Q7",
+    "LNXWSPWCY1K5"
+   ],
+   "cand": "Subawardee UEI",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "SUBAWARDEE_UEI"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 74245,
+   "junk": 2290888,
+   "minlen": 0,
+   "maxlen": 12,
+   "sample": [
+    "KAC8RKFCXZ81",
+    "DT8KJHZXVJH5",
+    "UU26FKF1MML6"
+   ],
+   "cand": "Subawardee parent UEI",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "SUBAWARDEE_PARENT_UEI"
+  },
+  {
+   "rows": 4742460,
+   "filled": 4742460,
+   "distinct_nonblank": 163262,
+   "junk": 324496,
+   "minlen": 0,
+   "maxlen": 9,
+   "sample": [
+    "116012659",
+    "196701002",
+    "071220487"
+   ],
+   "cand": "Subawardee DUNS",
+   "table": "FED_USASPENDING_SUBAWARDS_FULL",
+   "col": "SUBAWARDEE_DUNS"
+  },
+  {
+   "rows": 20000000,
+   "filled": 20000000,
+   "distinct_nonblank": 386831,
+   "junk": 6121030,
+   "minlen": 0,
+   "maxlen": 34,
+   "sample": [
+    "V797P4090A",
+    "W9113M05A0002",
+    "V797P4337A"
+   ],
+   "cand": "Contracts parent award PIID (20M copy)",
+   "table": "FED_USASPENDING_CONTRACTS_FULL",
+   "col": "parent_award_id_piid"
+  },
+  {
+   "rows": 93153424,
+   "filled": 93153424,
+   "distinct_nonblank": 563618,
+   "junk": 54771,
+   "minlen": 0,
+   "maxlen": 12,
+   "sample": [
+    "D5YGBJ26T1A8",
+    "DBQGN324ULK3",
+    "PKY8AMMMHL38"
+   ],
+   "cand": "Contracts recipient parent UEI (R2)",
+   "table": "FED_USASPENDING_CONTRACTS_FULL_R2",
+   "col": "RECIPIENT_PARENT_UEI"
+  },
+  {
+   "rows": 20000000,
+   "filled": 20000000,
+   "distinct_nonblank": 405720,
+   "junk": 12242,
+   "minlen": 0,
+   "maxlen": 12,
+   "sample": [
+    "DCS1AC7C9ZT9",
+    "GAK8HYWJHFM4",
+    "WAEXQLBVJF56"
+   ],
+   "cand": "Contracts recipient parent UEI (20M copy)",
+   "table": "FED_USASPENDING_CONTRACTS_FULL",
+   "col": "recipient_parent_uei"
+  },
+  {
+   "rows": 20000000,
+   "filled": 20000000,
+   "distinct_nonblank": 332674,
+   "junk": 6668392,
+   "minlen": 0,
+   "maxlen": 9,
+   "sample": [
+    "152122982",
+    "051010890",
+    "080232168"
+   ],
+   "cand": "Contracts recipient parent DUNS (20M copy)",
+   "table": "FED_USASPENDING_CONTRACTS_FULL",
+   "col": "recipient_parent_duns"
+  },
+  {
+   "rows": 19902879,
+   "filled": 19902879,
+   "distinct_nonblank": 53380,
+   "junk": 15627616,
+   "minlen": 0,
+   "maxlen": 12,
+   "sample": [
+    "NUDGYLBB4S99",
+    "F7BAGMPLN697",
+    "HT6FA2BL8JG7"
+   ],
+   "cand": "Assistance recipient parent UEI",
+   "table": "FED_USASPENDING_ASSISTANCE_FULL",
+   "col": "recipient_parent_uei"
+  },
+  {
+   "rows": 19902879,
+   "filled": 19902879,
+   "distinct_nonblank": 36215,
+   "junk": 16258880,
+   "minlen": 0,
+   "maxlen": 9,
+   "sample": [
+    "073151011",
+    "078396475",
+    "055671879"
+   ],
+   "cand": "Assistance recipient parent DUNS",
+   "table": "FED_USASPENDING_ASSISTANCE_FULL",
+   "col": "recipient_parent_duns"
+  },
+  {
+   "rows": 50000,
+   "filled": 50000,
+   "distinct_nonblank": 8007,
+   "junk": 37811,
+   "minlen": 0,
+   "maxlen": 25,
+   "sample": [
+    "FCIS-JB-980001-B",
+    "30471PR250000007",
+    "70Z03826QB0000124"
+   ],
+   "cand": "Solicitation id (bulk sample)",
+   "table": "FED_USASPENDING_BULK",
+   "col": "SOLICITATION_IDENTIFIER"
+  },
+  {
+   "rows": 2122611,
+   "filled": 0,
+   "distinct_nonblank": 0,
+   "junk": 0,
+   "minlen": null,
+   "maxlen": null,
+   "sample": [],
+   "cand": "NIH org IPF code",
+   "table": "FED_NIH_REPORTER",
+   "col": "ORG_IPF_CODE"
+  },
+  {
+   "rows": 2122611,
+   "filled": 2116867,
+   "distinct_nonblank": 262757,
+   "junk": 1621,
+   "minlen": 0,
+   "maxlen": 223,
+   "sample": [
+    "6572196",
+    "2131801",
+    "9579248"
+   ],
+   "cand": "NIH PI profile ids",
+   "table": "FED_NIH_REPORTER",
+   "col": "PI_PROFILE_IDS"
+  },
+  {
+   "rows": 2122611,
+   "filled": 1982680,
+   "distinct_nonblank": 12050,
+   "junk": 0,
+   "minlen": 12,
+   "maxlen": 222,
+   "sample": [
+    "GY8NMUZQXVS7",
+    "HD1WMN6945W6",
+    "PXS8JBQFYCZ9"
+   ],
+   "cand": "NIH org UEI",
+   "table": "FED_NIH_REPORTER",
+   "col": "ORG_UEI"
+  },
+  {
+   "rows": 2122611,
+   "filled": 2017778,
+   "distinct_nonblank": 15054,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 86,
+   "sample": [
+    "800772139",
+    "121911077",
+    "071298814"
+   ],
+   "cand": "NIH org DUNS",
+   "table": "FED_NIH_REPORTER",
+   "col": "ORG_DUNS"
+  },
+  {
+   "rows": 2122611,
+   "filled": 380148,
+   "distinct_nonblank": 6864,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 4,
+   "sample": [
+    "0002",
+    "0001",
+    "9001"
+   ],
+   "cand": "NIH subproject id",
+   "table": "FED_NIH_REPORTER",
+   "col": "SUBPROJECT_ID"
+  },
+  {
+   "rows": 219503,
+   "filled": 219182,
+   "distinct_nonblank": 171228,
+   "junk": 2,
+   "minlen": 1,
+   "maxlen": 52,
+   "sample": [
+    "DE-AR0001963",
+    "DE-AR0001984",
+    "F2D-19027"
+   ],
+   "cand": "SBIR agency tracking #",
+   "table": "FED_SBIR_STTR_AWARDS",
+   "col": "AGENCY_TRACKING_NUMBER"
+  },
+  {
+   "rows": 219503,
+   "filled": 167388,
+   "distinct_nonblank": 156779,
+   "junk": 1,
+   "minlen": 1,
+   "maxlen": 33,
+   "sample": [
+    "DE-AR0001963",
+    "DE-AR0001984",
+    "FA2541-26-C-B007"
+   ],
+   "cand": "SBIR contract #",
+   "table": "FED_SBIR_STTR_AWARDS",
+   "col": "CONTRACT"
+  },
+  {
+   "rows": 219503,
+   "filled": 115091,
+   "distinct_nonblank": 1574,
+   "junk": 0,
+   "minlen": 1,
+   "maxlen": 55,
+   "sample": [
+    "DE-FOA-0002785",
+    "DE-FOA-0002785",
+    "25.4"
+   ],
+   "cand": "SBIR solicitation #",
+   "table": "FED_SBIR_STTR_AWARDS",
+   "col": "SOLICITATION_NUMBER"
+  },
+  {
+   "rows": 219503,
+   "filled": 152800,
+   "distinct_nonblank": 17161,
+   "junk": 0,
+   "minlen": 11,
+   "maxlen": 12,
+   "sample": [
+    "QWLJC8MK86W5",
+    "HTMHV7AL9A86",
+    "SATYSBWG3FL7"
+   ],
+   "cand": "SBIR UEI",
+   "table": "FED_SBIR_STTR_AWARDS",
+   "col": "UEI"
+  },
+  {
+   "rows": 219503,
+   "filled": 178867,
+   "distinct_nonblank": 21599,
+   "junk": 4,
+   "minlen": 1,
+   "maxlen": 9,
+   "sample": [
+    "080736386",
+    "030817290",
+    "184629491"
+   ],
+   "cand": "SBIR DUNS",
+   "table": "FED_SBIR_STTR_AWARDS",
+   "col": "DUNS"
+  },
+  {
+   "rows": 125,
+   "filled": 125,
+   "distinct_nonblank": 0,
+   "junk": 125,
+   "minlen": 0,
+   "maxlen": 0,
+   "sample": [],
+   "cand": "NSF EIN (stub)",
+   "table": "FED_NSF_AWARDS",
+   "col": "EIN"
+  },
+  {
+   "rows": 16132,
+   "filled": 447,
+   "distinct_nonblank": 440,
+   "junk": 0,
+   "minlen": 5,
+   "maxlen": 59,
+   "sample": [
+    "93-36-000",
+    "86-512-001",
+    "99-74-000"
+   ],
+   "cand": "EIA FERC cogeneration docket",
+   "table": "FED_EIA860_2_PLANT",
+   "col": "FERC_COGENERATION_DOCKET_NUMBER"
+  },
+  {
+   "rows": 16132,
+   "filled": 4734,
+   "distinct_nonblank": 4550,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 60,
+   "sample": [
+    "98-53-000",
+    "98-95-000",
+    "98-52-000"
+   ],
+   "cand": "EIA FERC small-power docket",
+   "table": "FED_EIA860_2_PLANT",
+   "col": "FERC_SMALL_POWER_PRODUCER_DOCKET_NUMBER"
+  },
+  {
+   "rows": 16132,
+   "filled": 1520,
+   "distinct_nonblank": 1197,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 58,
+   "sample": [
+    "98-69-000",
+    "99-109-000",
+    "98-93-000, 07-23-000"
+   ],
+   "cand": "EIA FERC EWG docket",
+   "table": "FED_EIA860_2_PLANT",
+   "col": "FERC_EXEMPT_WHOLESALE_GENERATOR_DOCKET_NUMBER"
+  },
+  {
+   "rows": 16132,
+   "filled": 16132,
+   "distinct_nonblank": 1080,
+   "junk": 123,
+   "minlen": 0,
+   "maxlen": 5,
+   "sample": [
+    "63560",
+    "195",
+    "195"
+   ],
+   "cand": "EIA transmission owner id",
+   "table": "FED_EIA860_2_PLANT",
+   "col": "TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID"
+  },
+  {
+   "rows": 5496,
+   "filled": 5496,
+   "distinct_nonblank": 1945,
+   "junk": 0,
+   "minlen": 3,
+   "maxlen": 5,
+   "sample": [
+    "195",
+    "12686",
+    "195"
+   ],
+   "cand": "EIA ownership id",
+   "table": "FED_EIA860_4_OWNER",
+   "col": "OWNERSHIP_ID"
+  },
+  {
+   "rows": 20007,
+   "filled": 20007,
+   "distinct_nonblank": 6921,
+   "junk": 12784,
+   "minlen": 0,
+   "maxlen": 9,
+   "sample": [
+    "H6WA05023",
+    "H6CA24048",
+    "H6NY36015"
+   ],
+   "cand": "Committee's candidate id",
+   "table": "FED_FEC_BULK_COMMITTEES",
+   "col": "FEC_CAND_ID"
+  },
+  {
+   "rows": 36465,
+   "filled": 36465,
+   "distinct_nonblank": 632,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 7,
+   "sample": [
+    "M000871",
+    "B001282",
+    "M001195"
+   ],
+   "cand": "Bill sponsor bioguide",
+   "table": "FED_GOVINFO_BILLSTATUS",
+   "col": "SPONSOR_BIOGUIDE"
+  },
+  {
+   "rows": 367742,
+   "filled": 367742,
+   "distinct_nonblank": 635,
+   "junk": 0,
+   "minlen": 7,
+   "maxlen": 7,
+   "sample": [
+    "L000569",
+    "D000628",
+    "W000804"
+   ],
+   "cand": "Cosponsor bioguide",
+   "table": "FED_GOVINFO_BILL_COSPONSORS",
+   "col": "COSPONSOR_BIOGUIDE"
+  },
+  {
+   "rows": 7490,
+   "filled": 6402,
+   "distinct_nonblank": 1632,
+   "junk": 0,
+   "minlen": 8,
+   "maxlen": 8,
+   "sample": [
+    "12662456",
+    "12662559",
+    "12662559"
+   ],
+   "cand": "Treasury MTS parent id",
+   "table": "FED_TREASURY_MTS_RECEIPTS",
+   "col": "PARENT_ID"
+  },
+  {
+   "rows": 9606683,
+   "filled": 9606683,
+   "distinct_nonblank": 1,
+   "junk": 9450117,
+   "minlen": 0,
+   "maxlen": 9,
+   "sample": [
+    "<UNAVAIL>",
+    "<UNAVAIL>",
+    "<UNAVAIL>"
+   ],
+   "cand": "NPPES parent org TIN (known masked)",
+   "table": "FED_CMS_NPPES",
+   "col": "PARENT_ORGANIZATION_TIN"
+  },
+  {
+   "rows": 9606683,
+   "filled": 9606683,
+   "distinct_nonblank": 56304,
+   "junk": 9450466,
+   "minlen": 0,
+   "maxlen": 81,
+   "sample": [
+    "PATRICK J. WELCH, M.D. (A PROFESSIONAL MEDICAL CORPORATION)",
+    "FMM HOME CARE CORPORATION",
+    "FLORIDA DEPARTMENT OF HEALTH"
+   ],
+   "cand": "NPPES parent org LBN",
+   "table": "FED_CMS_NPPES",
+   "col": "PARENT_ORGANIZATION_LBN"
+  },
+  {
+   "rows": 5300149,
+   "filled": 37640,
+   "distinct_nonblank": 1174,
+   "junk": 0,
+   "minlen": 20,
+   "maxlen": 20,
+   "sample": [
+    "5493001FVXBVS3EZVD12",
+    "529900GB7KCA94ACC940",
+    "WD6L6041MNRW1JE49D58"
+   ],
+   "cand": "EPA crosswalk ultimate parent LEI",
+   "table": "XC_EPA_CORPORATE_CROSSWALK",
+   "col": "ULTIMATE_PARENT_LEI"
+  },
+  {
+   "rows": 5300149,
+   "filled": 119382,
+   "distinct_nonblank": 704,
+   "junk": 0,
+   "minlen": 4,
+   "maxlen": 7,
+   "sample": [
+    "821189",
+    "773840",
+    "1489393"
+   ],
+   "cand": "EPA crosswalk parent CIK",
+   "table": "XC_EPA_CORPORATE_CROSSWALK",
+   "col": "PARENT_CIK"
+  },
+  {
+   "rows": 5300149,
+   "filled": 427515,
+   "distinct_nonblank": 31685,
+   "junk": 389581,
+   "minlen": 0,
+   "maxlen": 12,
+   "sample": [
+    "SCLPDHTAPQ13",
+    "TGBKEJGKTXL8",
+    "DJHCLMBYJM78"
+   ],
+   "cand": "EPA crosswalk parent UEI",
+   "table": "XC_EPA_CORPORATE_CROSSWALK",
+   "col": "PARENT_UEI"
+  }
+ ],
+ "overlaps": [
+  {
+   "left_distinct": 21866,
+   "right_distinct": 114649,
+   "matched": 17958,
+   "share": 82.1,
+   "label": "NADAC NDC -> NDC directory (9-digit labeler+product)",
+   "left": "FED_CMS_NADAC.NDC",
+   "right": "FED_FDA_NDC_DIRECTORY.PRODUCTNDC",
+   "norm": "ndc9"
+  },
+  {
+   "left_distinct": 5182695,
+   "right_distinct": 5182695,
+   "matched": 5182695,
+   "share": 100.0,
+   "label": "GUDID DI -> GUDID identifiers DI",
+   "left": "FED_FDA_GUDID_FULL_DEVICE.PRIMARYDI",
+   "right": "FED_FDA_GUDID_FULL_IDENTIFIERS.PRIMARYDI",
+   "norm": null
+  },
+  {
+   "left_distinct": 12272,
+   "right_distinct": 357876,
+   "matched": 2096,
+   "share": 17.1,
+   "label": "GUDID labeler DUNS -> contracts recipient DUNS (20M)",
+   "left": "FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER",
+   "right": "FED_USASPENDING_CONTRACTS_FULL.recipient_duns",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 12272,
+   "right_distinct": 372261,
+   "matched": 106,
+   "share": 0.9,
+   "label": "GUDID labeler DUNS -> FMCSA DUNS",
+   "left": "FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER",
+   "right": "FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 12272,
+   "right_distinct": 15052,
+   "matched": 403,
+   "share": 3.3,
+   "label": "GUDID labeler DUNS -> NIH org DUNS",
+   "left": "FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER",
+   "right": "FED_NIH_REPORTER.ORG_DUNS",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 6048,
+   "right_distinct": 9606683,
+   "matched": 6003,
+   "share": 99.3,
+   "label": "HRSA site NPI -> NPPES NPI",
+   "left": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_NPI_NUMBER",
+   "right": "FED_CMS_NPPES.NPI",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 1525,
+   "right_distinct": 1356,
+   "matched": 1344,
+   "share": 88.1,
+   "label": "HRSA BHCMIS (sites) -> BHCMIS (center info)",
+   "left": "FED_HRSA_UDS_SERVICE_DELIVERY_SITES.BHCMIS_ORGANIZATION_IDENTIFICATION_NUMBER",
+   "right": "FED_HRSA_UDS_HEALTH_CENTER_INFO.BHCMISID",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 5372,
+   "right_distinct": 2456135,
+   "matched": 5003,
+   "share": 93.1,
+   "label": "Hospice associate id -> PECOS PAC id",
+   "left": "FED_CMS_HOSPICE_ENROLLMENTS.ASSOCIATE_ID",
+   "right": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 635,
+   "right_distinct": 2456135,
+   "matched": 0,
+   "share": 0.0,
+   "label": "SNF affiliation entity id -> PECOS PAC id",
+   "left": "FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.AFFILIATION_ENTITY_ID",
+   "right": "FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 5557,
+   "right_distinct": 44429,
+   "matched": 5405,
+   "share": 97.3,
+   "label": "POS cross-ref provider # -> POS CCN",
+   "left": "FED_CMS_POS_OTHER.CROSS_REF_PROVIDER_NUMBER",
+   "right": "FED_CMS_POS_OTHER.CCN",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 635,
+   "right_distinct": 617,
+   "matched": 576,
+   "share": 90.7,
+   "label": "Nursing-home chain id -> 411 chain id",
+   "left": "FED_CMS_NURSING_HOME.CHAIN_ID",
+   "right": "FED_NURSINGHOME411.CHAIN_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 1029020,
+   "right_distinct": 116662,
+   "matched": 116662,
+   "share": 11.3,
+   "label": "NRC seq # incidents -> reports",
+   "left": "FED_USCG_NRC_INCIDENTS.SEQNOS",
+   "right": "FED_USCG_NRC_INCIDENT_REPORTS.SEQNOS",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 10733,
+   "right_distinct": 357876,
+   "matched": 2103,
+   "share": 19.6,
+   "label": "TRI parent DUNS -> contracts recipient DUNS (20M)",
+   "left": "FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM",
+   "right": "FED_USASPENDING_CONTRACTS_FULL.recipient_duns",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 10733,
+   "right_distinct": 372261,
+   "matched": 488,
+   "share": 4.5,
+   "label": "TRI parent DUNS -> FMCSA DUNS",
+   "left": "FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM",
+   "right": "FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 10733,
+   "right_distinct": 12272,
+   "matched": 114,
+   "share": 1.1,
+   "label": "TRI parent DUNS -> GUDID labeler DUNS",
+   "left": "FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM",
+   "right": "FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 10733,
+   "right_distinct": 4101,
+   "matched": 36,
+   "share": 0.3,
+   "label": "TRI parent DUNS -> subaward prime DUNS",
+   "left": "FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM",
+   "right": "FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARDEE_DUNS",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 64728,
+   "right_distinct": 0,
+   "matched": 0,
+   "share": 0.0,
+   "label": "TRI EPA registry id -> TRI FRS_ID (same table)",
+   "left": "FED_EPA_TRI_FACILITY.EPA_REGISTRY_ID",
+   "right": "FED_EPA_TRI_FACILITY.FRS_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 49,
+   "right_distinct": 27836,
+   "matched": 49,
+   "share": 100.0,
+   "label": "FDIC PARCERT -> FDIC CERT",
+   "left": "FED_FDIC_BANK_DATA.PARCERT",
+   "right": "FED_FDIC_BANK_DATA.CERT",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 5199,
+   "right_distinct": 27836,
+   "matched": 5191,
+   "share": 99.8,
+   "label": "FDIC ULTCERT -> FDIC CERT",
+   "left": "FED_FDIC_BANK_DATA.ULTCERT",
+   "right": "FED_FDIC_BANK_DATA.CERT",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 7952,
+   "right_distinct": 27836,
+   "matched": 7942,
+   "share": 99.9,
+   "label": "FDIC NEWCERT -> FDIC CERT",
+   "left": "FED_FDIC_BANK_DATA.NEWCERT",
+   "right": "FED_FDIC_BANK_DATA.CERT",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 8736,
+   "right_distinct": 26577,
+   "matched": 2,
+   "share": 0.0,
+   "label": "FDIC RSSDHCR -> FDIC FED_RSSD (bank RSSDs)",
+   "left": "FED_FDIC_BANK_DATA.RSSDHCR",
+   "right": "FED_FDIC_BANK_DATA.FED_RSSD",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 8736,
+   "right_distinct": 9728,
+   "matched": 7243,
+   "share": 82.9,
+   "label": "FDIC RSSDHCR -> SOD RSSDHCR",
+   "left": "FED_FDIC_BANK_DATA.RSSDHCR",
+   "right": "FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 3984,
+   "right_distinct": 27836,
+   "matched": 3983,
+   "share": 100.0,
+   "label": "FHLB CERT -> FDIC CERT",
+   "left": "FED_FHFA_FHLB_MEMBERSHIP.CERT",
+   "right": "FED_FDIC_BANK_DATA.CERT",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 3984,
+   "right_distinct": 26577,
+   "matched": 3976,
+   "share": 99.8,
+   "label": "FHLB FED_ID -> FDIC FED_RSSD",
+   "left": "FED_FHFA_FHLB_MEMBERSHIP.FED_ID",
+   "right": "FED_FDIC_BANK_DATA.FED_RSSD",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 3950,
+   "right_distinct": 27836,
+   "matched": 3938,
+   "share": 99.7,
+   "label": "SBA lender FDIC # -> FDIC CERT",
+   "left": "FED_SBA_LOANS.BANKFDICNUMBER",
+   "right": "FED_FDIC_BANK_DATA.CERT",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 6936,
+   "right_distinct": 5399,
+   "matched": 0,
+   "share": 0.0,
+   "label": "HMDA legacy respondent id -> ARID 2017 xref",
+   "left": "FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID",
+   "right": "FED_CFPB_HMDA_ARID2017_LEI_XREF.ARID_2017",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 5399,
+   "right_distinct": 3382301,
+   "matched": 5397,
+   "share": 100.0,
+   "label": "HMDA xref LEI 2018 -> GLEIF LEI",
+   "left": "FED_CFPB_HMDA_ARID2017_LEI_XREF.LEI_2018",
+   "right": "INTL_GLEIF.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 5399,
+   "right_distinct": 538,
+   "matched": 462,
+   "share": 8.6,
+   "label": "HMDA xref LEI 2018 -> HMDA LEI",
+   "left": "FED_CFPB_HMDA_ARID2017_LEI_XREF.LEI_2018",
+   "right": "FED_CFPB_HMDA.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 147,
+   "right_distinct": 961,
+   "matched": 120,
+   "share": 81.6,
+   "label": "FHA sponsor # -> FHA originating mortgagee #",
+   "left": "FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.SPONSOR_NUMBER",
+   "right": "FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.ORIGINATING_MORTGAGEE_NUMBER",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 320,
+   "right_distinct": 19340,
+   "matched": 314,
+   "share": 98.1,
+   "label": "SEC MMF series id -> series/class table",
+   "left": "FED_SEC_MONEY_MARKET_FUND_INFORMATION.SERIES_ID",
+   "right": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.SERIES_ID",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 2046,
+   "right_distinct": 10401,
+   "matched": 15,
+   "share": 0.7,
+   "label": "SEC series/class CIK -> insider issuer CIK",
+   "left": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CIK_NUMBER",
+   "right": "FED_SEC_INSIDER_SUBMISSION.ISSUERCIK",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 28775,
+   "right_distinct": 10401,
+   "matched": 9844,
+   "share": 34.2,
+   "label": "PCAOB issuer CIK -> insider issuer CIK",
+   "left": "FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK",
+   "right": "FED_SEC_INSIDER_SUBMISSION.ISSUERCIK",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 28775,
+   "right_distinct": 5786,
+   "matched": 5774,
+   "share": 20.1,
+   "label": "PCAOB issuer CIK -> DERA sub CIK 2025Q4",
+   "left": "FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK",
+   "right": "FED_SEC_DERA_SUB_2025Q4.CIK",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 138006,
+   "right_distinct": 10401,
+   "matched": 717,
+   "share": 0.5,
+   "label": "Insider reporting-owner CIK -> insider issuer CIK",
+   "left": "FED_SEC_INSIDER_REPORTINGOWNER.RPTOWNERCIK",
+   "right": "FED_SEC_INSIDER_SUBMISSION.ISSUERCIK",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 1061,
+   "right_distinct": 3382301,
+   "matched": 1059,
+   "share": 99.8,
+   "label": "MIC registry LEI -> GLEIF LEI",
+   "left": "INTL_ISO_MIC_REGISTRY.LEI",
+   "right": "INTL_GLEIF.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 28844,
+   "right_distinct": 10414,
+   "matched": 7,
+   "share": 0.0,
+   "label": "SEC class ticker -> company-tickers ticker",
+   "left": "FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CLASS_TICKER",
+   "right": "FED_SEC_EDGAR_COMPANY_TICKERS.TICKER",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 19637,
+   "right_distinct": 19114,
+   "matched": 18985,
+   "share": 96.7,
+   "label": "CSL entity # -> OFAC SDN ent #",
+   "left": "FED_CONSOLIDATED_SCREENING_LIST.ENTITY_NUMBER",
+   "right": "FED_OFAC_SDN.ENT_NUM",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 663,
+   "right_distinct": 2030,
+   "matched": 291,
+   "share": 43.9,
+   "label": "UK sanctions IMO -> OFAC SDN IMO",
+   "left": "INTL_UK_SANCTIONS_LIST.IMO_NUMBER",
+   "right": "FED_OFAC_SDN.IMO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 663,
+   "right_distinct": 6304,
+   "matched": 0,
+   "share": 0.0,
+   "label": "UK sanctions IMO -> USCG IMO",
+   "left": "INTL_UK_SANCTIONS_LIST.IMO_NUMBER",
+   "right": "FED_USCG_VESSEL_DOCUMENTATION.IMO_NUMBER",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 663,
+   "right_distinct": 6934,
+   "matched": 9,
+   "share": 1.4,
+   "label": "UK sanctions IMO -> AIS IMO",
+   "left": "INTL_UK_SANCTIONS_LIST.IMO_NUMBER",
+   "right": "FED_NOAA_AIS.IMO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 0,
+   "right_distinct": 120004,
+   "matched": 0,
+   "share": null,
+   "label": "UK sanctions HIN -> USCG HIN",
+   "left": "INTL_UK_SANCTIONS_LIST.HULL_IDENTIFICATION_NUMBER_HIN",
+   "right": "FED_USCG_VESSEL_DOCUMENTATION.HIN",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 2030,
+   "right_distinct": 6934,
+   "matched": 4,
+   "share": 0.2,
+   "label": "OFAC SDN IMO -> AIS IMO",
+   "left": "FED_OFAC_SDN.IMO",
+   "right": "FED_NOAA_AIS.IMO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 27279,
+   "right_distinct": 3382301,
+   "matched": 27279,
+   "share": 100.0,
+   "label": "GLEIF successor LEI -> GLEIF LEI",
+   "left": "INTL_GLEIF.Entity.SuccessorEntity.1.SuccessorLEI",
+   "right": "INTL_GLEIF.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 301482,
+   "right_distinct": 3382301,
+   "matched": 299509,
+   "share": 99.3,
+   "label": "GLEIF L2 start node -> GLEIF LEI",
+   "left": "INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_STARTNODE_NODEID",
+   "right": "INTL_GLEIF.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 77251,
+   "right_distinct": 3382301,
+   "matched": 77108,
+   "share": 99.8,
+   "label": "GLEIF L2 end node -> GLEIF LEI",
+   "left": "INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_ENDNODE_NODEID",
+   "right": "INTL_GLEIF.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 110426,
+   "right_distinct": 5734779,
+   "matched": 94652,
+   "share": 85.7,
+   "label": "GLEIF RA entity id (UK RA000585) -> UK Companies House #",
+   "left": "INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityEntityID",
+   "right": "INT_UK_COMPANIES_HOUSE.CompanyNumber",
+   "norm": "ukch"
+  },
+  {
+   "left_distinct": 1174,
+   "right_distinct": 3382301,
+   "matched": 1174,
+   "share": 100.0,
+   "label": "EPA crosswalk ultimate parent LEI -> GLEIF LEI",
+   "left": "XC_EPA_CORPORATE_CROSSWALK.ULTIMATE_PARENT_LEI",
+   "right": "INTL_GLEIF.LEI",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 704,
+   "right_distinct": 10401,
+   "matched": 662,
+   "share": 94.0,
+   "label": "EPA crosswalk parent CIK -> insider issuer CIK",
+   "left": "XC_EPA_CORPORATE_CROSSWALK.PARENT_CIK",
+   "right": "FED_SEC_INSIDER_SUBMISSION.ISSUERCIK",
+   "norm": "ltrim0"
+  },
+  {
+   "left_distinct": 31685,
+   "right_distinct": 887310,
+   "matched": 17373,
+   "share": 54.8,
+   "label": "EPA crosswalk parent UEI -> SAM UEI",
+   "left": "XC_EPA_CORPORATE_CROSSWALK.PARENT_UEI",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 556,
+   "right_distinct": 4493662,
+   "matched": 555,
+   "share": 99.8,
+   "label": "FMCSA prior revoked USDOT -> FMCSA USDOT",
+   "left": "FED_FMCSA_COMPANY_CENSUS.PRIOR_REVOKE_DOT_NUMBER",
+   "right": "FED_FMCSA_COMPANY_CENSUS.DOT_NUMBER",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 38427,
+   "right_distinct": 887310,
+   "matched": 104,
+   "share": 0.3,
+   "label": "SAM exclusions UEI -> SAM entity UEI",
+   "left": "FED_SAM_EXCLUSIONS_FULL_R2.UNIQUE_ENTITY_ID",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 4867,
+   "right_distinct": 9606683,
+   "matched": 4854,
+   "share": 99.7,
+   "label": "SAM exclusions NPI -> NPPES NPI",
+   "left": "FED_SAM_EXCLUSIONS_FULL_R2.NPI",
+   "right": "FED_CMS_NPPES.NPI",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 4867,
+   "right_distinct": 8661,
+   "matched": 4688,
+   "share": 96.3,
+   "label": "SAM exclusions NPI -> LEIE NPI",
+   "left": "FED_SAM_EXCLUSIONS_FULL_R2.NPI",
+   "right": "FED_HHS_OIG_LEIE.NPI",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 579,
+   "right_distinct": 7486,
+   "matched": 0,
+   "share": 0.0,
+   "label": "SAM DoDAAC -> contracts awarding office code (20M copy)",
+   "left": "FED_SAM_ENTITY_PUBLIC.DODAAC",
+   "right": "FED_USASPENDING_CONTRACTS_FULL.awarding_office_code",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 398620,
+   "right_distinct": 394231,
+   "matched": 219860,
+   "share": 55.2,
+   "label": "OSHA ITA establishment id 2024 -> 2023",
+   "left": "FED_OSHA_ITA_300A_SUMMARY_2024.ESTABLISHMENT_ID",
+   "right": "FED_OSHA_ITA_300A_SUMMARY_2023.ESTABLISHMENT_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 114605,
+   "right_distinct": 1974830,
+   "matched": 6414,
+   "share": 5.6,
+   "label": "OSHA ITA EIN 2024 -> IRS BMF EIN",
+   "left": "FED_OSHA_ITA_300A_SUMMARY_2024.EIN",
+   "right": "FED_IRS_BMF.EIN",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 114605,
+   "right_distinct": 466446,
+   "matched": 31883,
+   "share": 27.8,
+   "label": "OSHA ITA EIN 2024 -> Form 5500 sponsor EIN",
+   "left": "FED_OSHA_ITA_300A_SUMMARY_2024.EIN",
+   "right": "FED_DOL_FORM5500_FULL.SPONS_DFE_EIN",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 0,
+   "right_distinct": 1974830,
+   "matched": 0,
+   "share": null,
+   "label": "Form 5500 sponsor EIN -> IRS BMF EIN",
+   "left": "FED_DOL_FORM5500.SPONSOR_DFE_EIN",
+   "right": "FED_IRS_BMF.EIN",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 707,
+   "right_distinct": 1490,
+   "matched": 705,
+   "share": 99.7,
+   "label": "ICE stints facility code -> ICE facility codes",
+   "left": "FED_ICE_DETENTION_STINTS.DETENTION_FACILITY_CODE",
+   "right": "FED_ICE_DETENTION_FACILITY_CODES.DETENTION_FACILITY_CODE",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 139,
+   "right_distinct": 16191,
+   "matched": 139,
+   "share": 100.0,
+   "label": "CL positions predecessor -> CL people id",
+   "left": "FED_COURTLISTENER_POSITIONS.PREDECESSOR_ID",
+   "right": "FED_COURTLISTENER_JUDGES.ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 130,
+   "right_distinct": 16191,
+   "matched": 130,
+   "share": 100.0,
+   "label": "CL positions supervisor -> CL people id",
+   "left": "FED_COURTLISTENER_POSITIONS.SUPERVISOR_ID",
+   "right": "FED_COURTLISTENER_JUDGES.ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 128,
+   "right_distinct": 3361,
+   "matched": 128,
+   "share": 100.0,
+   "label": "CL courts parent court -> CL courts id",
+   "left": "FED_COURTLISTENER_COURTS.PARENT_COURT_ID",
+   "right": "FED_COURTLISTENER_COURTS.ID",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 0,
+   "right_distinct": 71677647,
+   "matched": 0,
+   "share": null,
+   "label": "CL dockets parent docket -> CL dockets id",
+   "left": "FED_COURTLISTENER_DOCKETS.PARENT_DOCKET_ID",
+   "right": "FED_COURTLISTENER_DOCKETS.ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 30249,
+   "right_distinct": 315447,
+   "matched": 13528,
+   "share": 44.7,
+   "label": "NTSB N-number -> FAA N-number",
+   "left": "FED_NTSB_AVIATION_AIRCRAFT.REGIS_NO",
+   "right": "FED_FAA_AIRCRAFT_REGISTRY.N_NUMBER",
+   "norm": "nnum"
+  },
+  {
+   "left_distinct": 1091,
+   "right_distinct": 1030,
+   "matched": 770,
+   "share": 70.6,
+   "label": "FRA parent railroad code -> FRA reporting railroad code",
+   "left": "FED_FRA_CASUALTIES.REPORTING_PARENT_RAILROAD_CODE",
+   "right": "FED_FRA_EQUIPMENT_ACCIDENTS.REPORTING_RAILROAD_CODE",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 168225,
+   "right_distinct": 10319582,
+   "matched": 94073,
+   "share": 55.9,
+   "label": "Subaward prime FAIN -> assistance FAIN",
+   "left": "FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_FAIN",
+   "right": "FED_USASPENDING_ASSISTANCE_FULL.award_id_fain",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 220704,
+   "right_distinct": 887310,
+   "matched": 148253,
+   "share": 67.2,
+   "label": "Subawardee UEI -> SAM UEI",
+   "left": "FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_UEI",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 74245,
+   "right_distinct": 887310,
+   "matched": 50415,
+   "share": 67.9,
+   "label": "Subawardee parent UEI -> SAM UEI",
+   "left": "FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_PARENT_UEI",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 563618,
+   "right_distinct": 887310,
+   "matched": 178303,
+   "share": 31.6,
+   "label": "Contracts recipient parent UEI (R2) -> SAM UEI",
+   "left": "FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_PARENT_UEI",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 53380,
+   "right_distinct": 887310,
+   "matched": 39436,
+   "share": 73.9,
+   "label": "Assistance recipient parent UEI -> SAM UEI",
+   "left": "FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_uei",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 223721,
+   "right_distinct": 887310,
+   "matched": 123076,
+   "share": 55.0,
+   "label": "Assistance recipient UEI -> SAM UEI",
+   "left": "FED_USASPENDING_ASSISTANCE_FULL.recipient_uei",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 36215,
+   "right_distinct": 372261,
+   "matched": 633,
+   "share": 1.7,
+   "label": "Assistance recipient parent DUNS -> FMCSA DUNS",
+   "left": "FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_duns",
+   "right": "FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 386828,
+   "right_distinct": 63135848,
+   "matched": 775,
+   "share": 0.2,
+   "label": "Contracts parent PIID (20M) -> contracts PIID (R2)",
+   "left": "FED_USASPENDING_CONTRACTS_FULL.parent_award_id_piid",
+   "right": "FED_USASPENDING_CONTRACTS_FULL_R2.AWARD_ID_PIID",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 12050,
+   "right_distinct": 887310,
+   "matched": 9643,
+   "share": 80.0,
+   "label": "NIH org UEI -> SAM UEI",
+   "left": "FED_NIH_REPORTER.ORG_UEI",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 15052,
+   "right_distinct": 372261,
+   "matched": 59,
+   "share": 0.4,
+   "label": "NIH org DUNS -> FMCSA DUNS",
+   "left": "FED_NIH_REPORTER.ORG_DUNS",
+   "right": "FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 17161,
+   "right_distinct": 887310,
+   "matched": 12144,
+   "share": 70.8,
+   "label": "SBIR UEI -> SAM UEI",
+   "left": "FED_SBIR_STTR_AWARDS.UEI",
+   "right": "FED_SAM_ENTITY_PUBLIC.UEI_SAM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 156776,
+   "right_distinct": 63135848,
+   "matched": 14530,
+   "share": 9.3,
+   "label": "SBIR contract # -> contracts PIID (R2)",
+   "left": "FED_SBIR_STTR_AWARDS.CONTRACT",
+   "right": "FED_USASPENDING_CONTRACTS_FULL_R2.AWARD_ID_PIID",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 171223,
+   "right_distinct": 439228,
+   "matched": 16831,
+   "share": 9.8,
+   "label": "SBIR agency tracking # -> NIH project #",
+   "left": "FED_SBIR_STTR_AWARDS.AGENCY_TRACKING_NUMBER",
+   "right": "FED_NIH_REPORTER.CORE_PROJECT_NUM",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 1080,
+   "right_distinct": 6643,
+   "matched": 553,
+   "share": 51.2,
+   "label": "EIA transmission owner id -> EIA utility id",
+   "left": "FED_EIA860_2_PLANT.TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID",
+   "right": "FED_EIA860_1_UTILITY.UTILITY_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 1945,
+   "right_distinct": 6643,
+   "matched": 305,
+   "share": 15.7,
+   "label": "EIA ownership id -> EIA utility id",
+   "left": "FED_EIA860_4_OWNER.OWNERSHIP_ID",
+   "right": "FED_EIA860_1_UTILITY.UTILITY_ID",
+   "norm": "digits"
+  },
+  {
+   "left_distinct": 632,
+   "right_distinct": 12584,
+   "matched": 632,
+   "share": 100.0,
+   "label": "Bill sponsor bioguide -> VoteView bioguide",
+   "left": "FED_GOVINFO_BILLSTATUS.SPONSOR_BIOGUIDE",
+   "right": "FED_VOTEVIEW_MEMBERS.BIOGUIDE_ID",
+   "norm": "upper"
+  },
+  {
+   "left_distinct": 1632,
+   "right_distinct": 7490,
+   "matched": 1632,
+   "share": 100.0,
+   "label": "Treasury MTS parent id -> classification id",
+   "left": "FED_TREASURY_MTS_RECEIPTS.PARENT_ID",
+   "right": "FED_TREASURY_MTS_RECEIPTS.CLASSIFICATION_ID",
+   "norm": "digits"
+  }
+ ],
+ "errors": [
+  {
+   "step": "overlap",
+   "label": "Committee's candidate id -> FEC candidates",
+   "err": "missing ['FED_FEC_BULK_CANDIDATES.FEC_CAND_ID']"
+  }
+ ],
+ "extras": {
+  "aqs_site_composite_distinct": [
+   [
+    "20994"
+   ]
+  ],
+  "gleif_l2_relationship_types": [
+   [
+    "IS_FUND-MANAGED_BY",
+    "ACTIVE",
+    "149428"
+   ],
+   [
+    "IS_ULTIMATELY_CONSOLIDATED_BY",
+    "ACTIVE",
+    "132558"
+   ],
+   [
+    "IS_DIRECTLY_CONSOLIDATED_BY",
+    "ACTIVE",
+    "126406"
+   ],
+   [
+    "IS_SUBFUND_OF",
+    "ACTIVE",
+    "73179"
+   ],
+   [
+    "IS_INTERNATIONAL_BRANCH_OF",
+    "ACTIVE",
+    "1947"
+   ],
+   [
+    "IS_FEEDER_TO",
+    "ACTIVE",
+    "1385"
+   ],
+   [
+    "IS_SUBFUND_OF",
+    "None",
+    "159"
+   ],
+   [
+    "IS_FUND-MANAGED_BY",
+    "None",
+    "156"
+   ],
+   [
+    "IS_ULTIMATELY_CONSOLIDATED_BY",
+    "INACTIVE",
+    "37"
+   ],
+   [
+    "IS_DIRECTLY_CONSOLIDATED_BY",
+    "INACTIVE",
+    "21"
+   ],
+   [
+    "IS_ULTIMATELY_CONSOLIDATED_BY",
+    "None",
+    "5"
+   ],
+   [
+    "IS_DIRECTLY_CONSOLIDATED_BY",
+    "None",
+    "2"
+   ]
+  ],
+  "gleif_ra_top": [
+   [
+    "RA999999",
+    "268353"
+   ],
+   [
+    "RA000407",
+    "235776"
+   ],
+   [
+    "RA000463",
+    "191967"
+   ],
+   [
+    "RA000394",
+    "183002"
+   ],
+   [
+    "RA000189",
+    "159960"
+   ],
+   [
+    "RA000533",
+    "158166"
+   ],
+   [
+    "RA000754",
+    "147244"
+   ],
+   [
+    "RA000602",
+    "127030"
+   ],
+   [
+    "RA000170",
+    "111425"
+   ],
+   [
+    "RA000585",
+    "110601"
+   ],
+   [
+    "RA000544",
+    "109386"
+   ],
+   [
+    "RA000092",
+    "106509"
+   ],
+   [
+    "RA000025",
+    "64514"
+   ],
+   [
+    "RA000472",
+    "62574"
+   ],
+   [
+    "RA000188",
+    "59107"
+   ]
+  ],
+  "gleif_us_ra_count": [
+   [
+    "US-DE",
+    "141098",
+    "132901"
+   ],
+   [
+    "US",
+    "25718",
+    "21932"
+   ],
+   [
+    "US-CA",
+    "20453",
+    "15910"
+   ],
+   [
+    "US-NY",
+    "16672",
+    "13613"
+   ],
+   [
+    "US-FL",
+    "13904",
+    "12697"
+   ],
+   [
+    "US-TX",
+    "13453",
+    "12172"
+   ],
+   [
+    "US-OH",
+    "9268",
+    "8171"
+   ],
+   [
+    "US-PA",
+    "9146",
+    "7437"
+   ],
+   [
+    "US-MA",
+    "8617",
+    "5804"
+   ],
+   [
+    "US-IL",
+    "8180",
+    "5874"
+   ],
+   [
+    "US-MI",
+    "6598",
+    "6067"
+   ],
+   [
+    "US-NJ",
+    "6474",
+    "5718"
+   ]
+  ],
+  "fmcsa_docket_prefix": [
+   [
+    "None",
+    "2705501",
+    "0"
+   ],
+   [
+    "MC",
+    "1735821",
+    "1718406"
+   ],
+   [
+    "FF",
+    "28217",
+    "27749"
+   ],
+   [
+    "MX",
+    "24123",
+    "24082"
+   ]
+  ],
+  "fhlb_member_types": [
+   [
+    "Commercial Bank",
+    "State",
+    "2843",
+    "0"
+   ],
+   [
+    "Credit Union",
+    "Federal",
+    "850",
+    "0"
+   ],
+   [
+    "Credit Union",
+    "State",
+    "788",
+    "0"
+   ],
+   [
+    "Insurance Company",
+    "None",
+    "622",
+    "619"
+   ],
+   [
+    "Commercial Bank",
+    "National",
+    "614",
+    "0"
+   ],
+   [
+    "Savings Bank",
+    "State",
+    "264",
+    "0"
+   ],
+   [
+    "Saving Associate",
+    "Federal",
+    "206",
+    "0"
+   ],
+   [
+    "Community Development Financial Institution",
+    "None",
+    "83",
+    "0"
+   ],
+   [
+    "Saving Associate",
+    "State",
+    "52",
+    "0"
+   ],
+   [
+    "Savings Bank",
+    "Federal",
+    "5",
+    "0"
+   ]
+  ],
+  "hmda_historic_agency_x_respondent": [
+   [
+    "7",
+    "9774792",
+    "1018"
+   ],
+   [
+    "9",
+    "4682992",
+    "141"
+   ],
+   [
+    "3",
+    "1813859",
+    "2414"
+   ],
+   [
+    "5",
+    "1313688",
+    "2050"
+   ],
+   [
+    "1",
+    "921002",
+    "874"
+   ],
+   [
+    "2",
+    "630101",
+    "586"
+   ]
+  ],
+  "sam_exclusion_classification": [
+   [
+    "Individual",
+    "133131",
+    "13502",
+    "19026",
+    "0"
+   ],
+   [
+    "Special Entity Designation",
+    "25584",
+    "25579",
+    "0",
+    "0"
+   ],
+   [
+    "Firm",
+    "8291",
+    "7694",
+    "212",
+    "435"
+   ],
+   [
+    "Vessel",
+    "1322",
+    "911",
+    "0",
+    "0"
+   ]
+  ],
+  "ndc_dir_marketing_category": [
+   [
+    "ANDA",
+    "50567",
+    "9642"
+   ],
+   [
+    "OTC MONOGRAPH DRUG",
+    "35872",
+    "99"
+   ],
+   [
+    "UNAPPROVED HOMEOPATHIC",
+    "13707",
+    "1"
+   ],
+   [
+    "NDA",
+    "7425",
+    "2561"
+   ],
+   [
+    "BLA",
+    "4087",
+    "686"
+   ],
+   [
+    "UNAPPROVED DRUG OTHER",
+    "2222",
+    "1"
+   ],
+   [
+    "NDA AUTHORIZED GENERIC",
+    "1182",
+    "390"
+   ],
+   [
+    "UNAPPROVED MEDICAL GAS",
+    "289",
+    "1"
+   ],
+   [
+    "OTC MONOGRAPH FINAL",
+    "218",
+    "25"
+   ],
+   [
+    "OTC MONOGRAPH NOT FINAL",
+    "166",
+    "7"
+   ]
+  ],
+  "ice_stints_person_reuse": [
+   [
+    "2617844",
+    "1014867",
+    "1087418"
+   ]
+  ],
+  "opensanctions_schema": [
+   [
+    "Person",
+    "1075115"
+   ],
+   [
+    "Company",
+    "83555"
+   ],
+   [
+    "LegalEntity",
+    "66760"
+   ],
+   [
+    "Security",
+    "20472"
+   ],
+   [
+    "CryptoWallet",
+    "13918"
+   ],
+   [
+    "Organization",
+    "12669"
+   ],
+   [
+    "Vessel",
+    "8979"
+   ],
+   [
+    "Airplane",
+    "344"
+   ],
+   [
+    "Address",
+    "19"
+   ],
+   [
+    "PublicBody",
+    "15"
+   ]
+  ],
+  "opensanctions_identifier_kinds": [
+   [
+    "Q",
+    "364261"
+   ],
+   [
+    "None",
+    "266028"
+   ],
+   [
+    "B",
+    "8587"
+   ],
+   [
+    "IMO",
+    "6632"
+   ],
+   [
+    "RU",
+    "4362"
+   ],
+   [
+    "A",
+    "4102"
+   ],
+   [
+    "R",
+    "2125"
+   ],
+   [
+    "E",
+    "1910"
+   ],
+   [
+    "G",
+    "1865"
+   ],
+   [
+    "C",
+    "1861"
+   ],
+   [
+    "D",
+    "1419"
+   ],
+   [
+    "BQ",
+    "1386"
+   ]
+  ],
+  "fdic_docket_nonzero": [
+   [
+    "27836",
+    "11832"
+   ]
+  ],
+  "cl_positions_types_with_predecessor": [
+   [
+    "None",
+    "21224",
+    "2"
+   ],
+   [
+    "jud",
+    "17326",
+    "28"
+   ],
+   [
+    "prac",
+    "3677",
+    "0"
+   ],
+   [
+    "pres-jud",
+    "1975",
+    "0"
+   ],
+   [
+    "trial-jud",
+    "1710",
+    "0"
+   ],
+   [
+    "mag",
+    "969",
+    "2"
+   ],
+   [
+    "legis",
+    "702",
+    "0"
+   ],
+   [
+    "jus",
+    "597",
+    "2"
+   ]
+  ]
+ },
+ "elapsed_s": 298
+}

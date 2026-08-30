@@ -1,58 +1,51 @@
-# RIPPLE STATUS — 2026-08-29 (evening) — Joins re-founded: time + place are first-class joins; master connections list (pass 1) shipped; four no-brainer sources landed
+# RIPPLE STATUS — 2026-08-29 (very late) — Join Handbook now carries the pass-2 connections as its own "measured, not yet in spine" tier; markdown handbook is generated, not hand-written
 
 *One screen. Rewritten (never appended) at the end of every session.*
 
 ## 🚨 Read this first
 
-1. **Two standing rules from Chris today, both in memory:** (a) *stop jumping ahead* — answer
-   the question asked, no build plans / costs / next steps unless he says "think it through";
-   (b) *time and geography are joins* — same day/month + same state/district/county is a
-   first-class connection with no ID needed. The ID spine is deprioritized ("waste of time").
-   Do not restate limits he already knows.
-2. **The SAM public extract does NOT carry DUNS anymore** (column present, 100% empty). The
-   "fix the 94% orphaned assistance-table DUNS" promise is NOT delivered. What landed instead:
-   CAGE↔UEI for 795K entities (93% of contract CAGEs / 92% of contract UEIs resolve).
-3. **Landed today (raw layer, gate PASS):** SAM entity registry 895,429; USCG documented vessels
-   391,684 (Dec-2025 release via Wayback — the Coast Guard site 403s every bot); FMCSA carrier
-   census 4,493,662; EPA CAMPD plant/unit attributes 128,525 (1995–2025) + daily unit emissions
-   16,513,971 (2015–2025). Loader: `scripts/nobrainer_bulk_load_2026_08_29.py`.
-   Measured: 1 in 3 AIS vessels now resolve to a US-documented vessel (by IMO and by call sign);
-   81% of CAMPD plants match EIA plant ids; sanctioned vessels 0 (foreign flag, expected).
-4. **Already held before today (my "not held" call was wrong):** GLEIF Level-2 parent links
-   (485K), FDA NDC directory (116K), GUDID device registry (5.2M). Check landing tables, not
-   mart column names, before calling anything missing.
-5. **Pass-1 master connections list** (beyond-reasonable-doubt noun joins) is at
-   `reports/recon/master_connections_pass1_2026-08-29.md`: 22 wired families with measured
-   edges, 11 wired-not-mapped, 5 crosswalks, ~50 newly value-verified ID systems (section G:
-   95 candidates × 391 live columns checked), dead/masked list, today's landings (section H).
-   The 08-05 "747-key sweep" was web research with 5 verified — now fully checked.
-6. **Inventories filed:** every real date/datetime/month/year column (1,275 cols / 453 tables,
-   value-verified) at `reports/time_index/DATE_COLUMNS_ALL.md`; every location-shaped column
-   (2,244 / 386 tables, NAME-scan only) at `reports/location_index/LOCATION_COLUMNS_ALL.md`.
-7. **Unchanged from this morning:** apply-config not yet run (drift test red until it is);
-   8 spatial join errors (TRI + NTSB coords); DOCKET ~40% wrong; Snowflake MCP token rejected
-   (the direct python connection works fine — use it); overnight loads (MAUDE, subawards, LDA)
-   unchecked. Contradiction flag: FDIC LEI is 8% filled / 2,241 distinct, not "empty".
-8. **Git:** an auto-commit ("Refactor code structure…") landed mid-session; working tree now
-   holds the loader, its checkpoint, and the updated pass-1 file.
+1. **Standing rules from Chris today (in memory):** (a) answer the question asked, no build plans / costs /
+   next steps unless he says "think it through"; (b) time + geography are first-class joins; the ID spine is
+   deprioritized. Don't restate limits he already knows.
+2. **The Join Handbook (both the markdown file and the standalone web page) now shows the pass-2 findings:**
+   56 new connection pairs under a separate purple "measured 2026-08-29, not yet in the spine" heading on each
+   table (never mixed with the 1,859 spine-verified ones), 1 red "suspect — do not use" edge (old HMDA lender
+   id → bank cert, ~half wrong; the LEI crosswalk is the safe route), 49 new plain-English glossary rows, a
+   6-item traps list, and a 4-row corrections table (TRI↔FRS is live via the registry-id column, ISIN really
+   dead, nursing-home "affiliation id" = chain id, catalog wrong on 37). 21 tables appear in the handbook for
+   the first time (drug prices, device registry, NDC directory, sanctions lists, contractor registry, FMCSA,
+   subawards, Coast Guard vessels, ship tracking, rail accidents, GLEIF parent tree…).
+3. **Yellow-lane call made:** the new edges were NOT registered in the spine. They live in a small pass-2 edge
+   file that the handbook build merges in as its own tier. Reason: apply-config hasn't run (drift test is red),
+   so registering families tonight would have left the handbook and spine disagreeing anyway. When the pass-2
+   families are registered, delete them from the pass-2 file and they move into the spine tier automatically.
+4. **9 of the 66 pass-2 edges were already in the spine at the same rates** (clinic NPI, xref LEI, venue LEI,
+   both exclusion-list NPI edges, OSHA EIN→BMF, ICE facility, bill sponsor, committee→candidate) — a free
+   confirmation that the pass-2 numbers agree with the spine. They were skipped, not duplicated.
+5. **Unchanged:** apply-config not yet run (drift test red until it is); 8 spatial join errors (TRI + NTSB
+   coords); DOCKET ~40% wrong; Snowflake MCP token rejected (direct python connection works — use it);
+   overnight loads (MAUDE, subawards, LDA) unchecked; SAM public extract has no DUNS; IDV file and Fed
+   holding-company file still not held.
+6. **Git:** working tree holds the pass-2 report + scripts + JSON (from the earlier session) and tonight's
+   handbook rebuild (5 new build files, 2 modified build files, both regenerated handbooks, this file).
+   Nothing committed.
 
 ## BROKE
 
-Nothing broke. All five new tables passed the quality gate. The one miss is item 2
-(DUNS not in the public SAM file) — a source limitation, not a failure.
+Nothing broke. Seven follow-up overlap counts that the earlier session ran by hand (and never logged) were
+re-run tonight so the handbook carries real matched counts, not estimates — every one reproduced exactly.
+The page's script passes a syntax check; it was not opened in a browser this session.
 
 ## YOUR MOVE (Chris)
 
-Nothing blocking. Pass 2 of the master list (name-scan-only IDs, the 747 reach list,
-parent/owner pointers) and the time/place inventories are ready whenever you point at them.
+Nothing blocking.
 
 ## NEXT (only when asked)
 
-- Pass 2 of the connections list.
-- Value scan of the 2,244 place columns (same shape as the time scan, ~$1–2).
-- DUNS alternatives: pre-2022 SAM monthly files via Wayback, or the FOUO extract.
-- Register the new families (CAGE↔UEI from SAM, USCG official #, USDOT #, CAMPD facility id)
-  once Chris wants them in the join map.
+- Value scan of the 2,244 place columns (~$1–2).
+- Parse the OpenSanctions / CSL identifier blobs into typed keys.
+- Check the overnight MAUDE load — the partner the 5.2M device IDs are waiting for.
+- Land the IDV file and the Fed holding-company file (both free bulk).
+- Split the old HMDA lender id by agency code and re-test; if it holds, promote it out of "suspect".
 
-**Cost note:** ~$4 warehouse compute this session (live column checks ~$1, five loads ~$2,
-overlap measurements ~$1). Storage added ≈ 22M rows.
+**Cost note:** ~7 small read-only warehouse queries (well under $1). No storage added.

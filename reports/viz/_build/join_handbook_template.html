@@ -19,6 +19,8 @@
   --t-bridge: #9a6413;
   --t-geo: #2f6f55;
   --t-corrob: #776c8c;
+  --t-measured: #6b4c9a;
+  --t-suspect: #a33a3a;
   --warn: #9c4a2f;
   --warn-bg: #fbf0ea;
   --warn-br: #e6cbbd;
@@ -32,7 +34,7 @@
     --border: #2a303b; --border-soft: #23282f;
     --ink: #e8eaef; --ink-2: #a8aebc; --ink-3: #767d8c;
     --accent: #8fb2dc; --accent-soft: #1e2f42; --on-accent: #101318;
-    --t-steel: #9dc0ea; --t-bridge: #ddad64; --t-geo: #7fc9a4; --t-corrob: #b3a9cb;
+    --t-steel: #9dc0ea; --t-bridge: #ddad64; --t-geo: #7fc9a4; --t-corrob: #b3a9cb; --t-measured: #b9a1e6; --t-suspect: #e08a8a;
     --warn: #e59b83; --warn-bg: #2e1f19; --warn-br: #513227; --track: #262b34; --focus: #9dc0ea;
   }
 }
@@ -41,7 +43,7 @@
   --border: #2a303b; --border-soft: #23282f;
   --ink: #e8eaef; --ink-2: #a8aebc; --ink-3: #767d8c;
   --accent: #8fb2dc; --accent-soft: #1e2f42; --on-accent: #101318;
-  --t-steel: #9dc0ea; --t-bridge: #ddad64; --t-geo: #7fc9a4; --t-corrob: #b3a9cb;
+  --t-steel: #9dc0ea; --t-bridge: #ddad64; --t-geo: #7fc9a4; --t-corrob: #b3a9cb; --t-measured: #b9a1e6; --t-suspect: #e08a8a;
   --warn: #e59b83; --warn-bg: #2e1f19; --warn-br: #513227; --track: #262b34; --focus: #9dc0ea;
 }
 
@@ -256,6 +258,20 @@ kbd {
 .t-CORROBORATED .dot { background: var(--t-corrob); }
 .t-CORROBORATED .bar > i { background: var(--t-corrob); }
 .t-CORROBORATED .pct { color: var(--t-corrob); }
+.t-MEASURED .dot { background: var(--t-measured); }
+.t-MEASURED .bar > i { background: var(--t-measured); }
+.t-MEASURED .pct { color: var(--t-measured); }
+.t-SUSPECT .dot { background: var(--t-suspect); }
+.t-SUSPECT .bar > i { background: var(--t-suspect); }
+.t-SUSPECT .pct { color: var(--t-suspect); }
+.verdict { margin: 8px 0 0; font-size: 12px; color: var(--ink-2); }
+.verdict b { color: var(--ink); }
+.verdict.bad b { color: var(--t-suspect); }
+.traps li { margin: 0 0 8px; font-size: 12.5px; line-height: 1.45; }
+.traps ul { margin: 0; padding-left: 18px; }
+.corr { width: 100%; border-collapse: collapse; font-size: 12px; }
+.corr td { padding: 5px 8px; border-top: 1px solid var(--border-soft); vertical-align: top; }
+.corr td:first-child { color: var(--ink-3); width: 38%; }
 
 /* ---------------- overlay ---------------- */
 .overlay {
@@ -348,7 +364,7 @@ kbd {
     <h3>How to read a connection</h3>
     <p>Every row says: <b>this table</b> and <b>that table</b> both have a column holding the same kind of ID number. We counted how many of the ID values in one table also show up in the other. That percentage is the confidence score. Click any row to see the exact join, the raw counts behind it, and a copy button for the SQL.</p>
 
-    <h3>The five kinds of connection</h3>
+    <h3>The kinds of connection, most to least sure</h3>
     <div class="stack" id="help-legend"></div>
 
     <h3>Keyboard</h3>
@@ -373,10 +389,14 @@ const TIER_INFO = {
             desc: 'The two tables use two different ID systems for the same kind of thing (say, an old ID and its replacement) &mdash; there is a known, verified way to translate one into the other.' },
   GEO:    { label: 'Same location', short: 'same place &mdash; not necessarily the same organization', color: 'var(--t-geo)',
             desc: 'Matched on geography &mdash; same county, same coordinates &mdash; not on an identity number. Good for "what else happened near here," not for "is this the same organization."' },
+  MEASURED: { label: 'Measured, not yet in the spine', short: 'same official ID, checked live on 2026-08-29, awaiting spine registration', color: 'var(--t-measured)',
+            desc: 'Both tables print the same official ID and the overlap was measured against live data in connections pass 2 (2026-08-29). Where the row says SOLID, 60 random matched pairs were also checked by name and state. These are not yet registered in the spine\'s edge table, so the spine\'s own joins don\'t use them yet.' },
+  SUSPECT: { label: 'Suspect &mdash; do not use', short: 'values overlap, but the matched pairs are often different organizations', color: 'var(--t-suspect)',
+            desc: 'The ID values overlap, but a name check showed that many of the matched pairs are different organizations. Listed so nobody rediscovers it by accident &mdash; the row says what to use instead.' },
   CORROBORATED: { label: 'Educated guess (name + ZIP)', short: 'no shared ID at all &mdash; least reliable by far', color: 'var(--t-corrob)',
             desc: 'No shared ID at all. Matched because the name and ZIP code look similar. Least reliable by far &mdash; most of these guesses turn out to be different organizations that just share a name or a ZIP. Hidden until you switch them on.' },
 };
-const TIER_ORDER = ['STEEL','STRONG','BRIDGE','GEO','CORROBORATED'];
+const TIER_ORDER = ['STEEL','STRONG','BRIDGE','MEASURED','GEO','SUSPECT','CORROBORATED'];
 const HARD_TIERS = ['STEEL','STRONG','BRIDGE'];
 
 const KEY_INFO = {
@@ -411,6 +431,8 @@ const KEY_INFO = {
   'CIK~EIN': { name: 'SEC Filer ID ↔ Tax ID', desc: 'the same company’s SEC filer number and IRS tax ID' },
   'DUNS~UEI': { name: 'Old ↔ New Contractor ID', desc: 'the same organization’s retired DUNS number and its current UEI' },
 };
+const NOTES = DATA.notes || { keys: {}, traps: [], corrections: [] };
+Object.keys(NOTES.keys || {}).forEach(k => { if (!KEY_INFO[k]) KEY_INFO[k] = NOTES.keys[k]; });
 const keyInfo = k => KEY_INFO[k] || { name: k, desc: 'a shared identifier between these two tables' };
 
 const AGENCY_MAP = [
@@ -544,17 +566,18 @@ $('menu-btn').addEventListener('click', () => rail.classList.toggle('open'));
 
 const allTables = DATA.tables.slice();
 // Every connection is stored on both tables, so count each undirected pair once.
-const _seen = new Set(), _seenHard = new Set();
+const _seen = new Set(), _seenHard = new Set(), _seenMeasured = new Set();
 Object.keys(DATA.edges).forEach(self => DATA.edges[self].forEach(e => {
   const pair = [self, e.other].sort().join(' ') + ' ' + e.key +
                ' ' + [e.col_self, e.col_other].sort().join(' ');
   _seen.add(pair);
   if (HARD_TIERS.indexOf(e.tier) > -1) _seenHard.add(pair);
+  if (e.tier === 'MEASURED') _seenMeasured.add(pair);
 }));
 const totalJoins = _seen.size;
 const hardJoins = _seenHard.size;
 $('meter').innerHTML = '<b>' + nf(allTables.length) + '</b> tables &nbsp;&middot;&nbsp; <b>' +
-  nf(hardJoins) + '</b> reliable joins &nbsp;&middot;&nbsp; ' + nf(totalJoins) + ' measured';
+  nf(hardJoins) + '</b> reliable joins &nbsp;&middot;&nbsp; <b>' + nf(_seenMeasured.size) + '</b> measured, not in spine yet &nbsp;&middot;&nbsp; ' + nf(totalJoins) + ' measured in all';
 
 /* ---------------- rail ---------------- */
 let railView = [];
@@ -563,11 +586,11 @@ let railCursor = -1;
 function renderRail() {
   const q = searchInput.value.trim().toUpperCase();
   let list = allTables;
-  if (hideWeak) list = list.filter(t => t.n_hard > 0);
+  if (hideWeak) list = list.filter(t => t.n_hard > 0 || (t.n_measured || 0) > 0);
   if (q) list = list.filter(t => t.name.indexOf(q) > -1 || friendlyName(t.name).toUpperCase().indexOf(q) > -1);
   list = list.slice().sort(railSort === 'name'
     ? (a, b) => a.name.localeCompare(b.name)
-    : (a, b) => b.n_hard - a.n_hard || b.n_conn - a.n_conn || a.name.localeCompare(b.name));
+    : (a, b) => b.n_hard - a.n_hard || (b.n_measured || 0) - (a.n_measured || 0) || b.n_conn - a.n_conn || a.name.localeCompare(b.name));
   railView = list;
   railCount.textContent = q
     ? nf(list.length) + ' match' + (list.length === 1 ? '' : 'es')
@@ -625,6 +648,9 @@ function joinSentence(e) {
     return 'Matched by <b>' + esc(info.name.toLowerCase()) + '</b> only &mdash; no shared ID number. Take this one with a grain of salt.';
   if (e.tier === 'GEO')
     return 'Matched on <b>' + esc(info.name.toLowerCase()) + '</b> &mdash; same place, not necessarily the same organization.';
+  if (e.tier === 'SUSPECT')
+    return 'About <b>' + rate.toFixed(0) + '%</b> of the ' + esc(info.name.toLowerCase()) + ' values also show up in ' + esc(e.other) +
+           ' &mdash; but roughly half of those pairs are <b>different organizations</b>. Do not use this join as-is.';
   return 'About <b>' + rate.toFixed(0) + '%</b> of the ' + esc(info.name.toLowerCase()) +
          ' values in this table also show up in ' + esc(e.other) + ' &mdash; ' + nf(e.matched) + ' matching values in all.';
 }
@@ -652,6 +678,8 @@ function renderDetail() {
   const hardCount = HARD_TIERS.reduce((s, t) => s + count(t), 0);
   const geoCount = count('GEO');
   const fuzzyCount = count('CORROBORATED');
+  const measuredCount = count('MEASURED');
+  const suspectCount = count('SUSPECT');
   const agencies = new Set(all.filter(e => HARD_TIERS.indexOf(e.tier) > -1).map(e => agencyOf(e.other))).size;
   const hasDocket = all.some(e => e.key === 'DOCKET');
 
@@ -661,8 +689,12 @@ function renderDetail() {
        '<h2>' + esc(name) + '</h2>' +
        '<div class="friendly">' + esc(friendlyName(name)) + '</div></div>';
 
-  h += '<div class="tally">' + cell(hardCount, 'reliable joins') + cell(agencies, 'other agencies') +
+  h += '<div class="tally">' + cell(hardCount, 'reliable joins') + cell(measuredCount, 'measured, not in spine') + cell(agencies, 'other agencies') +
        cell(geoCount, 'place-based') + cell(fuzzyCount, 'name guesses') + '</div>';
+  if (suspectCount) {
+    h += '<div class="notice"><span class="ic">&#9888;</span><div><b>Heads up.</b> This table has a connection marked <b>suspect</b>: the ID values overlap, ' +
+         'but when matched pairs were checked by name about half were different organizations. Open the row for what to use instead.</div></div>';
+  }
 
   if (hasDocket) {
     h += '<div class="notice"><span class="ic">&#9888;</span><div><b>Heads up.</b> This table has a docket/case-number ' +
@@ -754,6 +786,10 @@ function groupHTML(tier, list, self) {
       const sql = hasCols ? (self + '.' + e.col_self + ' = ' + e.other + '.' + e.col_other) : '';
       h += '<div class="expand">';
       h += '<p class="say">' + joinSentence(e) + '</p>';
+      if (e.src === 'pass2') {
+        h += '<p class="verdict' + (e.tier === 'SUSPECT' ? ' bad' : '') + '">checked ' + esc(e.measured_on || '') + ': <b>' + esc(e.verdict || '') + '</b>' +
+             (e.note ? ' &mdash; ' + esc(e.note) : '') + '</p>';
+      }
       h += '<div class="facts">' +
            '<span>distinct IDs here <b>' + nf(e.distinct_self) + '</b></span>' +
            '<span>distinct IDs there <b>' + nf(e.distinct_other) + '</b></span>' +
@@ -835,13 +871,17 @@ function renderIntro() {
     '<h2>Pick a table on the left.</h2>' +
     '<p class="lede">Every table with at least one measured connection is listed there. Pick one and this side shows every ' +
     'other table it links to, the column they share, and how much the values actually overlapped when the join was run.</p>' +
-    '<div class="panel"><h3>The five kinds of connection &mdash; most to least sure</h3>' +
+    '<div class="panel"><h3>The kinds of connection &mdash; most to least sure</h3>' +
     '<div class="stack">' + legendHTML(true) + '</div></div>' +
     '<div class="panel"><h3>Best connected tables</h3><div class="stack">' +
       top.map(t => '<div class="srow wide"><div><b class="m" style="font-size:12px">' + esc(t.name) + '</b>' +
         '<div class="d" style="font-size:11.5px">' + esc(friendlyName(t.name)) + '</div></div>' +
         '<button class="link-btn" data-goto="' + esc(t.name) + '">' + t.n_hard + ' reliable &rarr;</button></div>').join('') +
     '</div></div>' +
+    ((NOTES.traps || []).length ? '<div class="panel traps"><h3>Traps &mdash; read before joining (pass 2, ' + esc(NOTES.measured_on || '') + ')</h3><ul>' +
+      NOTES.traps.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul></div>' : '') +
+    ((NOTES.corrections || []).length ? '<div class="panel"><h3>Corrections carried in from pass 2</h3><table class="corr">' +
+      NOTES.corrections.map(c => '<tr><td>' + esc(c.was) + '</td><td>' + esc(c.now) + '</td></tr>').join('') + '</table></div>' : '') +
     '<div class="panel"><h3>Shortcuts</h3><div class="tips">' + tipsHTML + '</div></div>' +
     '</div></div>';
   main.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => selectTable(b.dataset.goto)));

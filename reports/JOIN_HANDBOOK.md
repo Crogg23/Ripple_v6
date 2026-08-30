@@ -2,13 +2,16 @@
 
 **What this is:** every table in the Ripple warehouse, and every other table it can be joined
 to, measured against the live data -- not guessed from column names. Built from the spine's
-own measured-overlap table (`CONNECT_EDGES`), snapshot 2026-08-29.
+own measured-overlap table (`CONNECT_EDGES`), snapshot 2026-08-29, plus the connections pass 2
+measured live on 2026-08-29 that are not registered in the spine yet.
 
-- **235 tables** have at least one measured connection.
+- **256 tables** have at least one measured connection.
 - **1,859 reliable connections** (hard ID, strong code, or known translation), each counted once.
+- **56 more connections measured 2026-08-29** and name-checked, but not yet in the
+  spine's edge table -- listed under their own heading on each table so they are never mistaken for spine-verified ones.
 - Fuzzy name+ZIP guesses exist for almost every table but are **left out of this file** (mostly noise --
   median match rate across all of them is 0.7%). Full CSV with everything, including those:
-  `reports/handbook_edges_2026-08-29.csv`.
+  `reports/handbook_edges_2026-08-29.csv`. The pass-2 layer: `reports/viz/_build/handbook_pass2_edges_2026-08-29.csv`.
 
 ## How to read a connection
 
@@ -16,52 +19,121 @@ Every line under a table says: **this table** and **that table** both have a col
 same kind of ID. The percentage is how many of the ID values in this table actually showed up in
 the other one, when checked live -- not a guess.
 
-## The four kinds of connection, most to least sure
+## The kinds of connection, most to least sure
 
 - **Rock-solid match** -- Both tables print the exact same official ID number. As close to certain as it gets.
 - **Strong code match** -- Same official code in both tables, but this code system occasionally reuses numbers, so treat as very likely rather than certain.
 - **Different number, known translation** -- Two different ID systems for the same kind of thing (e.g. an old ID and its replacement) -- a verified way to translate one into the other.
+- **Measured 2026-08-29, not yet in the spine** -- Same official ID in both tables, overlap measured live, and (where marked SOLID) 60 random matched pairs were checked by name and state. Not yet registered in the spine's edge table, so the spine's own joins don't use them yet.
 - **Same location** -- Matched on geography, not on an identity number. Good for "what else happened near here," not "is this the same org."
+- **Suspect -- do not use** -- The values overlap, but a name check showed the matched pairs are often different organizations. Listed so nobody rediscovers it; the line says what to use instead.
 - **Educated guess (name + ZIP)** -- No shared ID at all -- matched because the name and ZIP look similar. Least reliable by far; most of these are false positives.
 
 ## ID glossary
 
 | ID | What it actually is |
 |---|---|
-| **Member of Congress ID** | the official ID for a current or former member of the U.S. Congress |
-| **Medicare Facility Number (CCN)** | the ID a hospital, nursing home, or clinic uses to bill Medicare |
-| **Facility ID <-> Provider ID** | a Medicare facility linked to the individual provider(s) who work there |
-| **SEC Filer ID (CIK)** | the number the SEC assigns to anyone who files public paperwork -- stock filings, 10-Ks, etc. |
-| **SEC Filer ID <-> Tax ID** | the same company's SEC filer number and IRS tax ID |
-| **Federal Court ID** | an ID for a specific federal court |
-| **Federal Judge ID** | an ID for a specific federal judge |
-| **UK Company Number** | the official ID the UK government assigns to a registered company |
-| **Court Docket / Case Number** | a court case number -- currently unreliable, see warning |
-| **Old Federal Contractor ID (DUNS)** | the ID system UEI replaced -- still shows up in older contract and grant records |
-| **Old <-> New Contractor ID** | the same organization's retired DUNS number and its current UEI |
-| **Employer Tax ID (EIN)** | the IRS tax ID for a company, nonprofit, or other organization -- like an SSN for a business |
-| **Tax ID <-> Contractor ID** | the same organization's IRS tax ID and its federal contractor ID |
-| **Federal Candidate ID** | the FEC's ID for a specific candidate for federal office |
+| **Air Monitor Site ID (AQS)** | the EPA's state + county + site code for one air-quality monitor; joins by place |
+| **Aircraft Tail Number (N-number)** | the FAA registration mark painted on a U.S. aircraft -- reissued after an aircraft leaves the registry |
+| **Audit Firm / Engagement IDs (PCAOB)** | the audit regulator's IDs for an audit firm, the company it audited, and the engagement partner |
+| **Bank Holding-Company ID (RSSD)** | the Fed's ID for the holding company that owns a bank -- the holding-company master file is NOT held, so this only links tables that both point at it |
+| **Broker / Adviser # (CRD)** | FINRA's ID for a brokerage or investment-adviser firm -- held on 13F filers only; the discipline records (IAPD / BrokerCheck) are not held |
 | **Campaign Committee ID** | the FEC's ID for a specific political committee or PAC |
 | **County/State Code (FIPS)** | the standard federal numeric code for a U.S. state or county |
-| **EPA Facility ID** | the ID the EPA assigns to any site it regulates -- a factory, landfill, power plant, etc. |
-| **Falls inside (map boundary)** | one record's coordinates fall inside the other's mapped area |
+| **Court Docket / Case Number** | a court case number -- currently unreliable here, see the warning on the table |
+| **Credit Union Charter #** | the ID the federal credit union regulator assigns to a credit union |
+| **Defense Contractor Code (CAGE)** | the DoD's 5-character code for a supplier location |
 | **Detention Facility Code** | ICE's ID for a specific immigration detention site |
-| **Legislator Voting-Record ID** | an ID political scientists use to track one lawmaker's votes over their whole career |
+| **Drug Product Code (NDC, 9-digit)** | the FDA's code for one drug product from one maker -- the first 9 digits of the 11-digit NDC on a price file; the two only line up after padding to 5-4 |
+| **Employer Tax ID (EIN)** | the IRS tax ID for a company, nonprofit, or other organization -- like an SSN for a business |
+| **EPA Facility ID** | the ID the EPA assigns to any site it regulates -- a factory, landfill, power plant, etc. |
+| **Facility ID <-> Provider ID** | a Medicare facility linked to the individual provider(s) who work there |
+| **Falls inside (map boundary)** | one record's coordinates fall inside the other's mapped area -- e.g., a facility located inside a county |
+| **FDA Drug Approval # (NDA / ANDA / BLA)** | the application number under which the FDA approved a drug -- brand (NDA), generic (ANDA), or biologic (BLA); 13,093 in-house, no approvals file held to receive them |
+| **FDA Drug Master File #** | the FDA's file number for a confidential manufacturing dossier a supplier keeps on file |
+| **FDIC Bank Certificate #** | the FDIC's ID for an insured bank; also used for successor, direct-parent, and ultimate-parent bank pointers |
+| **Federal Candidate ID** | the FEC's ID for a specific candidate for federal office |
+| **Federal Contract ID (PIID)** | the ID for one federal contract; the 'parent award' version is an umbrella-contract (IDV) ID whose file is NOT held |
+| **Federal Contractor ID (UEI)** | the current ID the government assigns to anyone who does business with it (replaced DUNS in 2022) |
+| **Federal Court ID** | an ID for a specific federal court |
+| **Federal Grant Award ID (FAIN)** | the ID for one federal grant or assistance award |
+| **Federal Judge ID** | an ID for a specific federal judge |
+| **Federal Reserve Bank ID (RSSD)** | the Fed's ID for a bank |
+| **FERC Docket #** | the energy regulator's case number for a qualifying facility or wholesale generator -- first FERC ids in-house, no FERC table held |
+| **FHA Lender #** | HUD's ID for a lender approved to make FHA-insured mortgages |
+| **Flood Program Community ID** | FEMA's ID for a town or county that takes part in the flood insurance program; joins disasters by place, not by id |
+| **Foreign Agent Registration #** | the Justice Department's ID for a registered foreign agent or lobbyist |
 | **Global Legal Entity ID (LEI)** | a 20-character ID used worldwide to identify companies in financial markets |
+| **Health Plan ID (HIOS)** | the marketplace ID for a health insurer, plus longer versions for one of its products or plans -- the first health-plan key in-house, no partner table yet |
+| **Home Loan Bank Member ID (FHFA)** | the FHFA's ID for a member of the Federal Home Loan Bank system |
+| **HRSA Health Center ID** | the grant-program ID for a federally funded community health center (the parent of its clinic sites) |
+| **HUD Section 8 Contract / Property ID** | HUD's IDs for a subsidized-housing contract and the property it covers |
+| **Hull ID Number (HIN)** | the serial number stamped on a boat's hull |
+| **Insurance Company ID (NAIC)** | the state insurance regulators' shared ID for an insurer -- the first insurance key in the warehouse (618 insurers on the home-loan-bank membership file); no insurer master held |
+| **IRS Group Exemption #** | the IRS number for a nonprofit umbrella (a church body, a chapter system) covering many local groups |
+| **Legislator Voting-Record ID** | an ID political scientists use to track one lawmaker's votes over their whole career |
+| **Market Identifier Code (MIC)** | the ISO code for a stock exchange or trading venue |
+| **Medical Device ID (UDI-DI)** | the FDA's ID for one model of medical device, as printed on its label |
+| **Medicare Facility Number (CCN)** | the ID a hospital, nursing home, or clinic uses to bill Medicare |
+| **Member of Congress ID** | the official ID for a current or former member of the U.S. Congress |
 | **Mine ID** | the ID the mine safety regulator assigns to a specific mine |
+| **National Company # (via LEI record)** | the home-country registry number each LEI record carries -- a UK company number, a Delaware file number, etc.; only the UK registry is held to receive them |
+| **NIH Project #** | the core number for one NIH-funded research project |
+| **Nursing-Home Chain ID** | Medicare's ID for the ownership group a nursing home belongs to -- there is no master list, names only |
+| **Old Federal Contractor ID (DUNS)** | the ID system UEI replaced -- still shows up in older contract and grant records |
+| **Old HMDA Lender ID (pre-2018 respondent id)** | the pre-2018 mortgage-lending lender ID -- two number systems in one column, told apart by the agency code: bank-regulator rows are a bank certificate #, HUD rows are a tax ID. Currently unreliable as a bank join; use the official crosswalk to LEI instead |
+| **Old <-> New Contractor ID** | the same organization's retired DUNS number and its current UEI |
+| **OpenSanctions ID** | the cross-regime ID for a sanctioned person, company, or vessel; its bag of other identifiers (Wikidata, IMO, tax ids) still needs parsing |
+| **OSHA Establishment ID** | OSHA's ID for one workplace in the injury-summary filings -- about half persist year to year |
+| **PECOS Owner / Associate ID** | Medicare's ID for an owner or affiliated organization in its provider-enrollment system |
+| **Police Agency ID (ORI)** | the FBI's ID for a law-enforcement agency; 4,878 present on the police-violence data, no agency master held |
+| **Power Utility ID (EIA)** | the Energy Department's ID for an electric utility; plant owners and grid owners point at it |
+| **Practitioner # (NPDB)** | the anonymous per-practitioner key inside the malpractice / discipline reporting bank -- links reports to each other, not to a named person |
+| **Provider Number (NPI)** | the federal ID every individual doctor or healthcare organization is assigned |
+| **Railroad Reporting Code** | the FRA's short code for a railroad company |
+| **Sanctions Entry # (OFAC)** | Treasury's number for one entry on the sanctions list; the consolidated screening list reuses it |
+| **SEC File #** | the SEC's filing-series number for a registrant (1940-Act, 13F, and insider filings each have their own) |
+| **SEC Filer ID (CIK)** | the number the SEC assigns to anyone who files public paperwork -- stock filings, 10-Ks, etc. |
+| **SEC Filer ID <-> Tax ID** | the same company's SEC filer number and IRS tax ID |
+| **SEC Fund Series ID** | the SEC's ID for a registered investment fund (its share classes get class IDs) |
+| **Ship Hull Number (IMO)** | the permanent international ID for a ship -- survives renames and reflagging |
+| **Ship Radio Call Sign** | the radio call sign assigned to a vessel |
+| **Ship Radio ID (MMSI)** | the 9-digit radio ID a ship broadcasts; 22,759 in the ship-tracking data with no owner registry held |
 | **Similar name + county** | no shared ID -- matched only because the name and county look alike |
 | **Similar name + ZIP** | no shared ID -- matched only because the name and ZIP code look alike |
-| **Credit Union Charter #** | the ID the federal credit union regulator assigns to a credit union |
+| **Spill / Incident Report # (NRC)** | the National Response Center's number for one reported spill, leak, or incident |
+| **Tax ID <-> Contractor ID** | the same organization's IRS tax ID and its federal contractor ID |
+| **Trucking Company # (USDOT)** | the federal safety ID for a trucking or bus company |
+| **Trucking Operating Authority # (MC / FF / MX)** | the federal permit number for a carrier, freight forwarder, or Mexican carrier -- 40% of carriers carry one |
+| **UK Company Number** | the official ID the UK government assigns to a registered company |
+| **USDA Rural Housing Borrower ID** | the USDA's ID for a rural multifamily borrower |
+| **Vessel Owner ID (Coast Guard)** | the Coast Guard's ID for a person or company on a vessel document |
 | **Water Discharge Permit ID** | the EPA's ID for a permit to release treated water or waste into a waterway |
-| **Provider Number (NPI)** | the federal ID every individual doctor or healthcare organization is assigned |
+| **Water Monitoring Station ID** | the ID for one water-quality sampling station (shares its numbering with USGS gauges) |
 | **Water System ID (PWSID)** | the EPA's ID for a specific public water utility or system |
-| **Federal Contractor ID (UEI)** | the current ID the government assigns to anyone who does business with it (replaced DUNS in 2022) |
 | **ZIP Code** | a U.S. postal ZIP code |
 
 > **Heads up: docket / case number is currently unreliable.** Bank ID numbers and Supreme Court
 > case numbers accidentally look the same, so roughly 4 in 10 of those matches are wrong. Treat
 > any DOCKET connection below as unverified until it's fixed.
+
+## Corrections carried in from connections pass 2 (2026-08-29)
+
+| Earlier claim | What pass 2 found |
+|---|---|
+| Pass 1 called the TRI facility file's FRS column dead. | That column IS dead, but the same table's EPA registry-id column is live: 64,728 distinct, 99.9% resolve into the EPA facility registry. TRI <-> FRS is a solid edge (listed below). |
+| Pass 1 reported ISIN empty after checking a 200-row XBRL flag table. | Confirmed on the right table: 48,990 rows, 100% blank. ISIN is not held. |
+| Pass 1 left the nursing-home 'affiliation entity id' unverified as a possible PECOS id. | It is the nursing-home chain id (635 distinct, identical to CHAIN_ID); 0% match to PECOS. |
+| The 08-05 catalog listed 37 ID systems as 'not held'. | They are held (device IDs, malpractice bank, adverse events, Coast Guard vessels, UK ownership, retractions, single audits, EIA plant/utility ids, ...). |
+
+## Traps -- read before joining
+
+- Drug codes: the price file prints an 11-digit NDC, the FDA directory prints a dashed 9-digit one. Zero-pad both to 5-4 before joining; a raw string join gives 0%.
+- Old HMDA lender id (pre-2018) is two number systems in one column. Bank-regulator rows (agency codes 1-3) are a bank certificate #; HUD rows (agency 7) are a tax ID. Split by agency code or the join is half wrong.
+- Trucking-company DUNS shows 3.85M 'junk' values because 86% of carriers report 0. The 372K real values are fine -- filter the zeros, don't discard the column.
+- Debarred parties' UEIs mostly do NOT resolve into the contractor registry (0.3%). Expected: excluded parties are people and defunct firms, not a load failure.
+- Contracts 'parent award id' is an umbrella-contract (IDV) id. Joining it to the contract-id column is the wrong test (0.2%); the IDV file is a separate download that is not held -- 387K parent ids point nowhere.
+- The SBIR awards 'state' column is not a state code (0% agreement with the contractor registry on confirmed name matches). Do not use it as geography.
 
 ---
 
@@ -69,8 +141,8 @@ the other one, when checked live -- not a guess.
 
 Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 
-209 tables have at least one reliable or place-based connection and are listed below.
-(26 more tables only have fuzzy name+ZIP guesses -- see the CSV.)
+236 tables have at least one reliable, measured, or place-based connection and are listed below.
+(20 more tables only have fuzzy name+ZIP guesses -- see the CSV.)
 
 ### `FED_BLS_QCEW`
 *BLS (Labor Statistics): QCEW*
@@ -212,6 +284,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `INTL_ISO_MIC_REGISTRY` (International source: ISO MIC Registry) -- **0%** of the global legal entity id (lei) values also appear in `INTL_ISO_MIC_REGISTRY` (5 matching)
   <sub>joins on: `FED_CFPB_HMDA_ARID2017_LEI_XREF.LEI_2018` = `INTL_ISO_MIC_REGISTRY.LEI` &middot; key: `LEI`</sub>
 
+**Suspect -- do not use:**
+
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **47%** of the old hmda lender id (pre-2018 respondent id) values also appear in `FED_FDIC_BANK_DATA` (2,522 matching) -- **but about half of those pairs are different organizations**
+  <sub>joins on: `FED_CFPB_HMDA_ARID2017_LEI_XREF.ARID_2017` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `HMDA_ARID`</sub>
+  <sub>checked 2026-08-29: SUSPECT: about half the matched pairs are different banks -- the old respondent id is only a bank certificate # for some regulators (agency codes 1-3); for others it is something else. Do NOT use until split by agency; go through the LEI crosswalk instead</sub>
+
 
 ### `FED_CFPB_HMDA_LAR`
 *CFPB -- Mortgage Lending Data (HMDA): LAR*
@@ -285,45 +363,45 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **12%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (50 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **7%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (445 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **7%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (441 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (192 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (206 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (208 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (146 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (8 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **2%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (50 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (45 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (45 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (44 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (43 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (43 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **1%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (45 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (19 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (25 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (17 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (16 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (10 matching)
-  <sub>joins on: `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_DIALYSIS`
@@ -341,39 +419,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (28,749 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (27,907 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (27,907 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (21,321 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (21,310 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (21,210 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (20,976 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (20,976 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (20,832 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (20,749 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (20,352 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (17,840 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (17,468 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (16,405 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (12,416 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **96%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (7,275 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS` (Medicare & Medicaid (CMS): Opioid Treatment Program Providers) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS` (4 matching)
-  <sub>joins on: `FED_CMS_DIALYSIS.` = `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_FACILITY_AFFILIATION`
@@ -481,11 +559,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM` (Medicare & Medicaid (CMS): Medicare Diabetes Prevention Program) -- **15%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM` (46 matching)
-  <sub>joins on: `FED_CMS_FACILITY_AFFILIATION.` = `FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS` (Medicare & Medicaid (CMS): Opioid Treatment Program Providers) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS` (15 matching)
-  <sub>joins on: `FED_CMS_FACILITY_AFFILIATION.` = `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (HRSA UDS Service Delivery Sites) -- **0%** of the facility id <-> provider id values also appear in `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (5 matching)
-  <sub>joins on: `FED_CMS_FACILITY_AFFILIATION.` = `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY`
@@ -513,47 +591,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (50,372 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (50,017 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (50,017 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (36,087 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (36,037 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (35,675 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (33,958 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (33,958 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (33,623 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (33,511 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (32,658 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (31,035 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (21,250 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (21,065 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (20,543 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (11,941 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (45 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (37 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (4 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS`
@@ -648,47 +726,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,653 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (2,604 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (59,554 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (60,614 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (24,783 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (24,450 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (21,310 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (34,175 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (36,037 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (36,039 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (36,046 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (15,043 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (35,824 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (35,533 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (15,987 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (10,786 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (15,930 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **78%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (2,448 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **51%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (1,545 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **40%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (16,345 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **30%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (880 matching)
-  <sub>joins on: `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_HCRIS`
@@ -720,39 +798,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (20,808 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (20,748 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (20,748 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (15,043 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (14,889 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (13,404 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (12,651 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (11,350 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (8,755 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (8,731 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (8,551 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (8,115 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **80%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (4,823 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (192 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (60 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (9 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_HCRIS.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_HOME_HEALTH`
@@ -770,43 +848,43 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (72,050 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (71,534 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (71,534 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (60,701 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (60,614 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (59,683 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (55,134 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (53,899 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (53,239 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (41,902 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (41,147 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (39,354 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (20,015 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **7%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (445 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (38 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (14 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (7 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking NON Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS` (7 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (6 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS`
@@ -844,39 +922,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (59,640 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (59,554 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (58,641 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (54,175 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (52,976 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (52,277 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (41,212 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (40,450 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (38,684 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (19,659 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **7%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (441 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (38 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (13 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (6 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking NON Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS` (7 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (4 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (4 matching)
-  <sub>joins on: `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_HOSPICE`
@@ -894,47 +972,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (29,613 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (29,377 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (29,377 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (24,801 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (24,783 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (24,492 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (23,079 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (21,625 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (20,787 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (14,207 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (14,150 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (13,773 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (7,261 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (24 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (17 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (7 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (4 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_HOSPICE.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_HOSPICE_ENROLLMENTS`
 *Medicare & Medicaid (CMS): Hospice Enrollments*
 
-22 reliable connections -- plus 45 low-confidence name+ZIP guesses not shown here.
+22 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 45 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -958,33 +1036,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (24,467 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (24,450 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (24,144 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (22,739 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (21,317 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (20,492 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (14,038 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (13,966 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (13,594 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (7,171 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (24 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (16 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (7 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (4 matching)
-  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **93%** of the pecos owner / associate id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (5,003 matching)
+  <sub>joins on: `FED_CMS_HOSPICE_ENROLLMENTS.ASSOCIATE_ID` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: SOLID -- hospices join the PECOS ownership axis</sub>
 
 
 ### `FED_CMS_HOSPITAL_ENROLLMENTS`
@@ -1046,33 +1130,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (15,930 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (15,776 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (14,237 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (13,419 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (12,074 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (9,277 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (9,251 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (9,051 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **99%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (8,595 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **58%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (5,049 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (206 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (27 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (11 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_ENROLLMENTS.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_HOSPITAL_GENERAL`
@@ -1102,39 +1186,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (15,968 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (15,924 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (15,924 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (10,786 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (10,627 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (9,351 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (8,867 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (7,852 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (6,074 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (5,928 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (5,573 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (5,316 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **56%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (2,931 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (146 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (63 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (8 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_HOSPITAL_GENERAL.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_IRF`
@@ -1158,33 +1242,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (3,018 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (3,011 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (3,011 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (2,608 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (2,604 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (2,498 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (2,241 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (2,173 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (2,028 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (1,482 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (1,478 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (1,424 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (1,168 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **12%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (50 matching)
-  <sub>joins on: `FED_CMS_IRF.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_LTCH`
@@ -1210,39 +1294,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (2,963 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (2,952 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (2,952 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (2,654 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (2,653 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (2,566 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (2,566 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (2,547 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (2,478 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (2,364 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (2,116 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (1,967 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (1,699 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (1,667 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (1,611 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (999 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (8 matching)
-  <sub>joins on: `FED_CMS_LTCH.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM`
@@ -1276,7 +1360,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_FACILITY_AFFILIATION` (Medicare & Medicaid (CMS): Facility Affiliation) -- **15%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_AFFILIATION` (46 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM.` = `FED_CMS_FACILITY_AFFILIATION.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_DIALYSIS_FACILITIES`
@@ -1332,31 +1416,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **2%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (48 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (63 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (36 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (36 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (60 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (68 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (7 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (6 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (4 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (4 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (4 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (4 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (4 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER`
@@ -1420,47 +1504,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (1,967 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (2,028 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (52,277 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (53,239 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (21,625 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (21,317 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (30,980 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (32,658 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (32,660 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (32,665 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (32,482 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (32,226 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (14,348 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (12,416 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (8,755 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (9,277 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (5,316 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **33%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (1,035 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **23%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (9,454 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **20%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (600 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **12%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (353 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL`
@@ -1522,15 +1606,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (3 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (3 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT`
 *Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment*
 
-49 reliable connections.
+49 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -1602,39 +1686,45 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,952 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (3,011 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (71,534 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (29,377 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (27,907 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (47,410 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (50,017 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (50,019 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (50,015 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (49,749 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (20,748 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (22,515 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (15,924 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (5,435 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (4,451 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (3,686 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (37,029 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **93%** of the pecos owner / associate id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (5,003 matching)
+  <sub>joins on: `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.PECOS_ASCT_CNTL_ID` = `FED_CMS_HOSPICE_ENROLLMENTS.ASSOCIATE_ID` &middot; key: `PECOS_PAC`</sub>
+  <sub>checked 2026-08-29: SOLID -- hospices join the PECOS ownership axis</sub>
 
 
 ### `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER`
@@ -1662,35 +1752,35 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (4,470 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (4,451 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (4,451 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **51%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (1,545 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **49%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (1,485 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **42%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (1,292 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **42%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (1,279 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **34%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (1,051 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **30%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (899 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **29%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (880 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **27%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (821 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **20%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (600 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **14%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (413 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (36 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (19 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE`
@@ -1718,35 +1808,35 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (3,703 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (3,686 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (3,686 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **30%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (880 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **29%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (835 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **26%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (760 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **25%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (726 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **20%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (594 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **19%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (540 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **18%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (523 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **17%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (504 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **12%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (353 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **7%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (214 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (36 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (10 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE`
@@ -1778,37 +1868,37 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (5,458 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (5,435 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (5,435 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **78%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (2,448 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **76%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (2,375 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **67%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (2,101 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **63%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (1,976 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **53%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (1,644 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **46%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (1,441 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **45%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (1,418 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **43%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (1,344 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **33%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (1,035 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **22%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (686 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **2%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (50 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **2%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (48 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (3 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER`
@@ -1884,23 +1974,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,566 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (20,976 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (32,197 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (33,958 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (33,960 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (33,967 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (33,772 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (33,487 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (15,034 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI`
@@ -1976,23 +2066,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,547 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (20,832 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (31,771 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (33,511 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (33,513 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (33,520 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (33,325 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (33,046 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (14,837 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_MEDICARE_PROVIDER`
@@ -2068,23 +2158,35 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,566 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (20,976 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (32,197 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (33,958 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (33,960 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (33,967 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (33,772 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (33,487 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (15,034 matching)
-  <sub>joins on: `FED_CMS_MEDICARE_PROVIDER.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+
+### `FED_CMS_NADAC`
+*Medicare & Medicaid (CMS): Nadac*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDA_NDC_DIRECTORY` (FDA (Food & Drug): NDC Directory) -- **82%** of the drug product code (ndc, 9-digit) values also appear in `FED_FDA_NDC_DIRECTORY` (17,958 matching)
+  <sub>joins on: `FED_CMS_NADAC.NDC` = `FED_FDA_NDC_DIRECTORY.PRODUCTNDC` &middot; key: `NDC9`</sub>
+  <sub>checked 2026-08-29: SOLID -- only joins after both sides are padded to 5-4 digits (labeler-product); a raw string join gives 0%</sub>
 
 
 ### `FED_CMS_NPPES`
@@ -2164,45 +2266,45 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,963 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (3,018 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (72,050 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (29,613 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (28,749 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (47,759 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (50,372 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (50,377 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (50,378 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (50,100 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (20,808 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (22,698 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (15,968 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (5,458 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (4,470 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (3,703 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (37,249 matching)
-  <sub>joins on: `FED_CMS_NPPES.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_NURSING_HOME`
 *Medicare & Medicaid (CMS): Nursing HOME*
 
-28 reliable connections, 3 place-based -- plus 43 low-confidence name+ZIP guesses not shown here.
+28 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based -- plus 43 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -2224,47 +2326,53 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (50,377 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (50,019 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (50,019 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (36,089 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (36,039 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (35,677 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (33,960 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (33,960 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (33,625 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (33,513 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (32,660 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (31,037 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (21,252 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (21,066 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (20,544 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (11,941 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (45 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (37 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (4 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_NURSINGHOME411` (Nursinghome411) -- **91%** of the nursing-home chain id values also appear in `FED_NURSINGHOME411` (576 matching)
+  <sub>joins on: `FED_CMS_NURSING_HOME.CHAIN_ID` = `FED_NURSINGHOME411.CHAIN_ID` &middot; key: `CHAIN_ID`</sub>
+  <sub>checked 2026-08-29: SOLID -- chain = owner group; there is no chain master table, names only</sub>
 
 **Same location:**
 
@@ -2301,47 +2409,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (50,100 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (49,749 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (49,749 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (35,873 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (35,824 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (35,466 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (33,772 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (33,772 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (33,433 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (33,325 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (32,482 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (30,869 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (21,146 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (20,961 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (20,446 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **82%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (11,873 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (44 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (35 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (4 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_DEFICIENCIES.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES`
@@ -2369,49 +2477,49 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (47,759 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (47,410 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (47,410 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (34,224 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (34,175 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (33,836 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (32,197 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (32,197 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (31,889 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (31,771 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (30,980 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (29,409 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (20,122 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (19,941 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (19,425 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (11,382 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (43 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (35 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (4 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Suppl) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL` (3 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_NURSING_HOME_PENALTIES`
@@ -2439,43 +2547,43 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (22,698 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (22,515 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (22,515 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (16,007 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (15,987 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (15,811 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (15,034 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (15,034 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (14,837 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (14,792 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (14,348 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (13,751 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (9,326 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (9,249 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (8,967 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **78%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (5,279 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (25 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (14 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (5 matching)
-  <sub>joins on: `FED_CMS_NURSING_HOME_PENALTIES.` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_OPEN_PAYMENTS`
@@ -2539,47 +2647,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (1,699 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (1,482 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (41,212 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (41,902 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (14,150 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (17,840 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (13,966 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (21,065 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (21,066 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (20,961 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (19,941 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (21,066 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (8,731 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (20,805 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (9,249 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (6,074 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (9,251 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **46%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (1,441 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **30%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (899 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **23%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (9,404 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **19%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (540 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_OPEN_PAYMENTS_2022`
@@ -2643,47 +2751,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (1,611 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (1,424 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (38,684 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (39,354 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (13,773 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (13,594 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (16,405 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (20,543 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (20,544 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (20,446 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (20,541 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (19,425 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (20,286 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (8,115 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (8,967 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (5,573 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **99%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (8,595 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **43%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (1,344 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **27%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (821 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **21%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (8,769 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **17%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (504 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2022.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_OPEN_PAYMENTS_2023`
@@ -2747,47 +2855,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (1,667 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (1,478 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (40,450 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (41,147 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (14,207 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (14,038 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (17,468 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (21,250 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (21,252 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (21,146 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (20,122 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (21,253 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (21,011 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (8,551 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (9,326 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (5,928 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (9,051 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **45%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (1,418 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **29%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (880 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **22%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (9,224 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **18%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (523 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_2023.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT`
@@ -2851,47 +2959,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,364 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (2,241 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (52,976 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (53,899 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (20,787 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (20,492 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (20,749 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (31,035 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (29,409 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (31,037 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (31,040 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (30,869 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (30,658 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (12,651 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (13,751 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (8,867 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (13,419 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **67%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (2,101 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **42%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (1,292 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **33%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (13,721 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **26%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (760 matching)
-  <sub>joins on: `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS`
@@ -2925,9 +3033,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_FACILITY_AFFILIATION` (Medicare & Medicaid (CMS): Facility Affiliation) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_AFFILIATION` (15 matching)
-  <sub>joins on: `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS.` = `FED_CMS_FACILITY_AFFILIATION.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (4 matching)
-  <sub>joins on: `FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_OPT_OUT_AFFIDAVITS`
@@ -2981,37 +3089,37 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (24 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (24 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (37 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (38 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (38 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (37 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (35 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (37 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (37 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (8 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (35 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (14 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (9 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (11 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (3 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (11 matching)
-  <sub>joins on: `FED_CMS_OPT_OUT_AFFIDAVITS.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_ORDER_AND_REFERRING`
@@ -3075,47 +3183,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,654 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (2,608 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (59,640 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (60,701 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (24,801 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (24,467 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (21,321 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (34,224 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (36,087 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (36,089 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (36,096 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (35,873 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (35,583 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (14,889 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (16,007 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (10,627 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (15,776 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **76%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (2,375 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **49%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (1,485 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **39%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (16,185 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **29%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (835 matching)
-  <sub>joins on: `FED_CMS_ORDER_AND_REFERRING.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_PARTD_PRESCRIBER_DRUG`
@@ -3179,47 +3287,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,116 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (2,173 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (54,175 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (23,079 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (55,134 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (22,739 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (20,352 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (31,889 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (33,623 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (33,625 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (33,629 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (33,433 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (33,161 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (14,792 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (11,350 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (7,852 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (12,074 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **53%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (1,644 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **34%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (1,051 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **30%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (12,364 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **20%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (594 matching)
-  <sub>joins on: `FED_CMS_PARTD_PRESCRIBER_DRUG.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_PART_D_PRESCRIBERS`
@@ -3283,47 +3391,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,478 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (2,498 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (58,641 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (59,683 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (24,492 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (24,144 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (21,210 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (33,836 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (35,675 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (35,677 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (35,684 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (35,466 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (35,181 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (15,811 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (13,404 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (9,351 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (14,237 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **63%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (1,976 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **42%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (1,279 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **35%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (14,594 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **25%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (726 matching)
-  <sub>joins on: `FED_CMS_PART_D_PRESCRIBERS.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_PECOS_PROVIDER_ENROLLMENT`
@@ -3401,39 +3509,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (2,952 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (3,011 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (71,534 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (29,377 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (27,907 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (47,410 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (50,017 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (50,019 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **100%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (50,015 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (49,749 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (20,748 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (22,515 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (15,924 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (5,435 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (4,451 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (3,686 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (37,029 matching)
-  <sub>joins on: `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS`
@@ -3487,9 +3595,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (7 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (7 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS`
@@ -3545,23 +3653,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (9 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (9 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (9 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (9 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (9 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (9 matching)
-  <sub>joins on: `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_POS_OTHER`
 *Medicare & Medicaid (CMS): POS Other*
 
-28 reliable connections -- plus 68 low-confidence name+ZIP guesses not shown here.
+28 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 68 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -3591,39 +3699,48 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (37,249 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (37,029 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **90%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (37,029 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **40%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (16,345 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **39%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (16,185 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **35%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (14,594 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **33%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (13,721 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **30%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (12,364 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **23%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (9,454 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **23%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (9,404 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **22%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (9,224 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **21%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (8,769 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **12%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (5,157 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **3%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (208 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (68 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (11 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_CMS_POS_OTHER.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **97%** of the medicare facility number (ccn) values also appear in `FED_CMS_POS_OTHER` (5,405 matching)
+  <sub>joins on: `FED_CMS_POS_OTHER.CROSS_REF_PROVIDER_NUMBER` = `FED_CMS_POS_OTHER.CCN` &middot; key: `CCN`</sub>
+  <sub>checked 2026-08-29: SOLID (lineage) -- predecessor facility number -> current number; names differ by design, states agree 100%</sub>
+- `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (HRSA UDS Service Delivery Sites) -- **90%** of the medicare facility number (ccn) values also appear in `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (7,559 matching)
+  <sub>joins on: `FED_CMS_POS_OTHER.CCN` = `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_MEDICARE_BILLING_NUMBER` &middot; key: `CCN`</sub>
+  <sub>checked 2026-08-29: SOLID (site -> parent org) -- states agree 100%; site name vs org name</sub>
 
 
 ### `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE`
@@ -3687,47 +3804,47 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_LTCH` (Medicare & Medicaid (CMS): LTCH) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_LTCH` (999 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_LTCH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_IRF` (Medicare & Medicaid (CMS): IRF) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_IRF` (1,168 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_IRF.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (19,659 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (20,015 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (7,261 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (7,171 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_DIALYSIS` (Medicare & Medicaid (CMS): Dialysis) -- **96%** of the facility id <-> provider id values also appear in `FED_CMS_DIALYSIS` (7,275 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_DIALYSIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (11,382 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (11,941 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **83%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (11,949 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (11,941 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **82%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (11,873 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (Medicare & Medicaid (CMS): Skilled Nursing Facility Enrollments) -- **82%** of the facility id <-> provider id values also appear in `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS` (11,804 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **80%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (4,823 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **78%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (5,279 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **58%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (5,049 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **56%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (2,931 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Outpatient Hospitals BY Provider AND Service) -- **22%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (686 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_MEDICARE_OUTPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider) -- **14%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER` (413 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **12%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (5,157 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (Medicare & Medicaid (CMS): Medicare Inpatient Hospitals BY Provider AND Service) -- **7%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE` (214 matching)
-  <sub>joins on: `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` = `FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS`
@@ -3779,17 +3896,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (14 matching)
-  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (16 matching)
-  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (13 matching)
-  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (7 matching)
-  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (7 matching)
-  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_PENALTIES` (Medicare & Medicaid (CMS): Nursing HOME Penalties) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_PENALTIES` (5 matching)
-  <sub>joins on: `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` = `FED_CMS_NURSING_HOME_PENALTIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS`
@@ -3829,39 +3946,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (35,583 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (35,533 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (35,181 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (33,487 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (33,487 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (33,161 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (33,046 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (32,226 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (30,658 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (21,011 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (20,805 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (20,286 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **82%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (11,804 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (43 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (37 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (4 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
-  <sub>joins on: `FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_CONGRESS_COMMITTEE_MEMBERSHIP`
@@ -3902,6 +4019,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_CONGRESS_LEGISLATORS.ICPSR` = `FED_VOTEVIEW_ROLLCALLS.ICPSR` &middot; key: `ICPSR`</sub>
 
 
+### `FED_CONSOLIDATED_SCREENING_LIST`
+*Consolidated Screening LIST*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_OFAC_SDN` (OFAC (Sanctions List): SDN) -- **97%** of the sanctions entry # (ofac) values also appear in `FED_OFAC_SDN` (18,985 matching)
+  <sub>joins on: `FED_CONSOLIDATED_SCREENING_LIST.ENTITY_NUMBER` = `FED_OFAC_SDN.ENT_NUM` &middot; key: `OFAC_ENT_NUM`</sub>
+  <sub>checked 2026-08-29: SOLID -- same number system; the screening list is the SDN list plus other agencies' lists</sub>
+
+
 ### `FED_COURTLISTENER_COURTHOUSES`
 *CourtListener (Federal Court Records): Courthouses*
 
@@ -3920,7 +4049,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_COURTS`
 *CourtListener (Federal Court Records): Courts*
 
-3 reliable connections.
+3 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -3930,6 +4059,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_COURTLISTENER_COURTS.ID` = `FED_COURTLISTENER_DOCKETS.COURT_ID` &middot; key: `CL_COURT_ID`</sub>
 - `FED_COURTLISTENER_POSITIONS` (CourtListener (Federal Court Records): Positions) -- **100%** of the federal court id values also appear in `FED_COURTLISTENER_POSITIONS` (1,033 matching)
   <sub>joins on: `FED_COURTLISTENER_COURTS.ID` = `FED_COURTLISTENER_POSITIONS.COURT_ID` &middot; key: `CL_COURT_ID`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_COURTLISTENER_COURTS` (CourtListener (Federal Court Records): Courts) -- **100%** of the federal court id values also appear in `FED_COURTLISTENER_COURTS` (128 matching)
+  <sub>joins on: `FED_COURTLISTENER_COURTS.PARENT_COURT_ID` = `FED_COURTLISTENER_COURTS.ID` &middot; key: `CL_COURT_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- parent court pointer</sub>
 
 
 ### `FED_COURTLISTENER_DOCKETS`
@@ -3987,7 +4122,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_JUDGES`
 *CourtListener (Federal Court Records): Judges*
 
-7 reliable connections.
+7 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -4005,6 +4140,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_COURTLISTENER_JUDGES.ID` = `FED_COURTLISTENER_POSITIONS.PERSON_ID` &middot; key: `CL_PERSON_ID`</sub>
 - `FED_COURTLISTENER_FINANCIAL_DISCLOSURES` (CourtListener (Federal Court Records): Financial Disclosures) -- **99%** of the federal judge id values also appear in `FED_COURTLISTENER_FINANCIAL_DISCLOSURES` (3,340 matching)
   <sub>joins on: `FED_COURTLISTENER_JUDGES.ID` = `FED_COURTLISTENER_FINANCIAL_DISCLOSURES.PERSON_ID` &middot; key: `CL_PERSON_ID`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_COURTLISTENER_POSITIONS` (CourtListener (Federal Court Records): Positions) -- **100%** of the federal judge id values also appear in `FED_COURTLISTENER_POSITIONS` (139 matching)
+  <sub>joins on: `FED_COURTLISTENER_JUDGES.ID` = `FED_COURTLISTENER_POSITIONS.PREDECESSOR_ID` &middot; key: `CL_PERSON_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- the judge this one replaced (tiny)</sub>
+- `FED_COURTLISTENER_POSITIONS` (CourtListener (Federal Court Records): Positions) -- **100%** of the federal judge id values also appear in `FED_COURTLISTENER_POSITIONS` (130 matching)
+  <sub>joins on: `FED_COURTLISTENER_JUDGES.ID` = `FED_COURTLISTENER_POSITIONS.SUPERVISOR_ID` &middot; key: `CL_PERSON_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- supervising judge (tiny)</sub>
 
 
 ### `FED_COURTLISTENER_JUDGE_EDUCATIONS`
@@ -4102,7 +4246,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_COURTLISTENER_POSITIONS`
 *CourtListener (Federal Court Records): Positions*
 
-10 reliable connections.
+10 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -4126,6 +4270,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_COURTLISTENER_POSITIONS.PERSON_ID` = `FED_COURTLISTENER_FINANCIAL_DISCLOSURES.PERSON_ID` &middot; key: `CL_PERSON_ID`</sub>
 - `FED_COURTLISTENER_DOCKETS` (CourtListener (Federal Court Records): Dockets) -- **45%** of the federal court id values also appear in `FED_COURTLISTENER_DOCKETS` (465 matching)
   <sub>joins on: `FED_COURTLISTENER_POSITIONS.COURT_ID` = `FED_COURTLISTENER_DOCKETS.COURT_ID` &middot; key: `CL_COURT_ID`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_COURTLISTENER_JUDGES` (CourtListener (Federal Court Records): Judges) -- **100%** of the federal judge id values also appear in `FED_COURTLISTENER_JUDGES` (139 matching)
+  <sub>joins on: `FED_COURTLISTENER_POSITIONS.PREDECESSOR_ID` = `FED_COURTLISTENER_JUDGES.ID` &middot; key: `CL_PERSON_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- the judge this one replaced (tiny)</sub>
+- `FED_COURTLISTENER_JUDGES` (CourtListener (Federal Court Records): Judges) -- **100%** of the federal judge id values also appear in `FED_COURTLISTENER_JUDGES` (130 matching)
+  <sub>joins on: `FED_COURTLISTENER_POSITIONS.SUPERVISOR_ID` = `FED_COURTLISTENER_JUDGES.ID` &middot; key: `CL_PERSON_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- supervising judge (tiny)</sub>
 
 
 ### `FED_COURTLISTENER_SCHOOLS`
@@ -4177,11 +4330,11 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **57%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (1,467 matching)
-  <sub>joins on: `FED_COURTLISTENER_SCHOOLS.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **20%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (520 matching)
-  <sub>joins on: `FED_COURTLISTENER_SCHOOLS.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **10%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_CONTRACTS` (264 matching)
-  <sub>joins on: `FED_COURTLISTENER_SCHOOLS.` = `FED_USASPENDING_CONTRACTS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `FED_DOL_EBSA_FORM5500_SCHEDULE_SB`
@@ -4249,21 +4402,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **6%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (345 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **4%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (346 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **1%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (392 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **1%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (119 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **1%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (375 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (54 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (87 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_CONTRACTS` (93 matching)
-  <sub>joins on: `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` = `FED_USASPENDING_CONTRACTS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `FED_DOL_FORM5500`
@@ -4333,19 +4486,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **6%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (333 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **4%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (342 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **3%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (959 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **2%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (211 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **1%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (408 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (28 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (32 matching)
-  <sub>joins on: `FED_DOL_FORM5500.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
+
+
+### `FED_DOL_FORM5500_FULL`
+*Dept. of Labor: Form5500 FULL*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **28%** of the employer tax id (ein) values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (31,883 matching)
+  <sub>joins on: `FED_DOL_FORM5500_FULL.SPONS_DFE_EIN` = `FED_OSHA_ITA_300A_SUMMARY_2024.EIN` &middot; key: `EIN`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- injury logs <-> benefit plans by employer tax id; use the FULL 5500 table, the 33K sample's EIN column is empty</sub>
 
 
 ### `FED_ED_COLLEGE_SCORECARD_INSTITUTION`
@@ -4368,7 +4533,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EIA860_1_UTILITY`
 *EIA (Dept. of Energy -- Statistics): 860 1 Utility*
 
-0 reliable connections, 2 place-based -- plus 46 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 2 place-based -- plus 46 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_2_PLANT` (EIA (Dept. of Energy -- Statistics): 860 2 Plant) -- **51%** of the power utility id (eia) values also appear in `FED_EIA860_2_PLANT` (553 matching)
+  <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EIA860_2_PLANT.TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: SOLID -- owners are often not utilities, hence half resolve</sub>
+- `FED_EIA860_4_OWNER` (EIA (Dept. of Energy -- Statistics): 860 4 Owner) -- **16%** of the power utility id (eia) values also appear in `FED_EIA860_4_OWNER` (305 matching)
+  <sub>joins on: `FED_EIA860_1_UTILITY.UTILITY_ID` = `FED_EIA860_4_OWNER.OWNERSHIP_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: SOLID -- plant owners are mostly non-utilities; no owner master held</sub>
 
 **Same location:**
 
@@ -4381,7 +4555,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EIA860_2_PLANT`
 *EIA (Dept. of Energy -- Statistics): 860 2 Plant*
 
-0 reliable connections, 3 place-based -- plus 48 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based -- plus 48 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **51%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (553 matching)
+  <sub>joins on: `FED_EIA860_2_PLANT.TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: SOLID -- owners are often not utilities, hence half resolve</sub>
 
 **Same location:**
 
@@ -4396,7 +4576,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EIA860_4_OWNER`
 *EIA (Dept. of Energy -- Statistics): 860 4 Owner*
 
-0 reliable connections, 1 place-based -- plus 16 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 1 place-based -- plus 16 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EIA860_1_UTILITY` (EIA (Dept. of Energy -- Statistics): 860 1 Utility) -- **16%** of the power utility id (eia) values also appear in `FED_EIA860_1_UTILITY` (305 matching)
+  <sub>joins on: `FED_EIA860_4_OWNER.OWNERSHIP_ID` = `FED_EIA860_1_UTILITY.UTILITY_ID` &middot; key: `EIA_UTILITY_ID`</sub>
+  <sub>checked 2026-08-29: SOLID -- plant owners are mostly non-utilities; no owner master held</sub>
 
 **Same location:**
 
@@ -4564,7 +4750,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_FRS_FRS_FACILITIES`
 *EPA -- Facility Registry: FRS Facilities*
 
-16 reliable connections -- plus 100 low-confidence name+ZIP guesses not shown here.
+16 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 100 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -4600,6 +4786,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_FRS_FRS_FACILITIES.REGISTRY_ID` = `FED_EPA_ICIS_FEC_EPA_INFORMAL_ENFORCEMENT_ACTIONS.REGISTRY_ID` &middot; key: `FRS_ID`</sub>
 - `FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS` (EPA (Environment): ICIS FEC ICIS FEC EPA Inspections) -- **36%** of the epa facility id values also appear in `FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS` (56,648 matching)
   <sub>joins on: `FED_EPA_FRS_FRS_FACILITIES.REGISTRY_ID` = `FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS.REGISTRY_ID` &middot; key: `FRS_ID`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EPA_TRI_FACILITY` (EPA (Environment): TRI Facility) -- **100%** of the epa facility id values also appear in `FED_EPA_TRI_FACILITY` (64,631 matching)
+  <sub>joins on: `FED_EPA_FRS_FRS_FACILITIES.REGISTRY_ID` = `FED_EPA_TRI_FACILITY.EPA_REGISTRY_ID` &middot; key: `FRS_ID`</sub>
+  <sub>checked 2026-08-29: SOLID (site key, name drift) -- use this column, NOT the dead FRS_ID column on the same table; name mismatches are ownership changes at the same site</sub>
 
 
 ### `FED_EPA_FRS_FRS_NAICS_CODES`
@@ -5723,7 +5915,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_EPA_TRI_FACILITY`
 *EPA (Environment): TRI Facility*
 
-0 reliable connections, 12 place-based -- plus 50 low-confidence name+ZIP guesses not shown here.
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 12 place-based -- plus 50 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EPA_FRS_FRS_FACILITIES` (EPA -- Facility Registry: FRS Facilities) -- **100%** of the epa facility id values also appear in `FED_EPA_FRS_FRS_FACILITIES` (64,631 matching)
+  <sub>joins on: `FED_EPA_TRI_FACILITY.EPA_REGISTRY_ID` = `FED_EPA_FRS_FRS_FACILITIES.REGISTRY_ID` &middot; key: `FRS_ID`</sub>
+  <sub>checked 2026-08-29: SOLID (site key, name drift) -- use this column, NOT the dead FRS_ID column on the same table; name mismatches are ownership changes at the same site</sub>
+- `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **20%** of the old federal contractor id (duns) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (2,103 matching)
+  <sub>joins on: `FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM` = `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` &middot; key: `DUNS`</sub>
+  <sub>checked 2026-08-29: SOLID -- polluter's parent company -> federal contractor</sub>
 
 **Same location:**
 
@@ -5751,6 +5952,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_EPA_TRI_FACILITY.STATE_COUNTY_FIPS_CODE` = `XC_VERA_INCARCERATION_TRENDS.COUNTY_FIPS` &middot; key: `FIPS`</sub>
 - `FED_USDA_RD_MFH_ACTIVE_PROJECTS` (USDA RD MFH Active Projects) -- same location as `FED_USDA_RD_MFH_ACTIVE_PROJECTS`
   <sub>joins on: `FED_EPA_TRI_FACILITY.STATE_COUNTY_FIPS_CODE` = `FED_USDA_RD_MFH_ACTIVE_PROJECTS.STATE_COUNTY_FIPS_CODE` &middot; key: `FIPS`</sub>
+
+
+### `FED_FAA_AIRCRAFT_REGISTRY`
+*FAA (Aviation): Aircraft Registry*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 65 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_NTSB_AVIATION_AIRCRAFT` (NTSB (Transportation Safety): Aviation Aircraft) -- **45%** of the aircraft tail number (n-number) values also appear in `FED_NTSB_AVIATION_AIRCRAFT` (13,528 matching)
+  <sub>joins on: `FED_FAA_AIRCRAFT_REGISTRY.N_NUMBER` = `FED_NTSB_AVIATION_AIRCRAFT.REGIS_NO` &middot; key: `N_NUMBER`</sub>
+  <sub>checked 2026-08-29: SOLID -- the registry is current owners only, so old crashes miss; serial numbers agree 90%, the rest are reissued tail numbers</sub>
 
 
 ### `FED_FAC_SINGLE_AUDIT`
@@ -5829,15 +6042,80 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_FARA_BULK.ZIP` = `FED_SEC_CLOSED_END_FUND_INFORMATION.ZIP_CODE` &middot; key: `ZIP`</sub>
 
 
+### `FED_FDA_GUDID_FULL_DEVICE`
+*FDA (Food & Drug): Gudid FULL Device*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDA_GUDID_FULL_IDENTIFIERS` (FDA (Food & Drug): Gudid FULL Identifiers) -- **100%** of the medical device id (udi-di) values also appear in `FED_FDA_GUDID_FULL_IDENTIFIERS` (5,182,695 matching)
+  <sub>joins on: `FED_FDA_GUDID_FULL_DEVICE.PRIMARYDI` = `FED_FDA_GUDID_FULL_IDENTIFIERS.PRIMARYDI` &middot; key: `UDI_DI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- same publisher, two files; the partner files (MAUDE adverse events, device recalls) are not loaded yet</sub>
+- `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **17%** of the old federal contractor id (duns) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (2,096 matching)
+  <sub>joins on: `FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER` = `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` &middot; key: `DUNS`</sub>
+  <sub>checked 2026-08-29: SOLID -- device makers that are also federal contractors</sub>
+
+
+### `FED_FDA_GUDID_FULL_IDENTIFIERS`
+*FDA (Food & Drug): Gudid FULL Identifiers*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDA_GUDID_FULL_DEVICE` (FDA (Food & Drug): Gudid FULL Device) -- **100%** of the medical device id (udi-di) values also appear in `FED_FDA_GUDID_FULL_DEVICE` (5,182,695 matching)
+  <sub>joins on: `FED_FDA_GUDID_FULL_IDENTIFIERS.PRIMARYDI` = `FED_FDA_GUDID_FULL_DEVICE.PRIMARYDI` &middot; key: `UDI_DI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- same publisher, two files; the partner files (MAUDE adverse events, device recalls) are not loaded yet</sub>
+
+
+### `FED_FDA_NDC_DIRECTORY`
+*FDA (Food & Drug): NDC Directory*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_NADAC` (Medicare & Medicaid (CMS): Nadac) -- **82%** of the drug product code (ndc, 9-digit) values also appear in `FED_CMS_NADAC` (17,958 matching)
+  <sub>joins on: `FED_FDA_NDC_DIRECTORY.PRODUCTNDC` = `FED_CMS_NADAC.NDC` &middot; key: `NDC9`</sub>
+  <sub>checked 2026-08-29: SOLID -- only joins after both sides are padded to 5-4 digits (labeler-product); a raw string join gives 0%</sub>
+
+
 ### `FED_FDIC_BANK_DATA`
 *FDIC (Bank Insurance): BANK DATA*
 
-1 reliable connection, 3 place-based -- plus 21 low-confidence name+ZIP guesses not shown here.
+1 reliable connection, 7 measured 2026-08-29 (not yet in the spine), 3 place-based -- plus 21 low-confidence name+ZIP guesses not shown here.
+
+> **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
 **Strong code match:**
 
 - `FED_FDIC_SOD_BRANCH_DEPOSITS` (FDIC (Bank Insurance): SOD Branch Deposits) -- **73%** of the court docket / case number values also appear in `FED_FDIC_SOD_BRANCH_DEPOSITS` (7,905 matching)
   <sub>joins on: `FED_FDIC_BANK_DATA.DOCKET` = `FED_FDIC_SOD_BRANCH_DEPOSITS.DOCKET` &middot; key: `DOCKET`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (49 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.PARCERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- direct-parent bank pointer (tiny)</sub>
+- `FED_FHFA_FHLB_MEMBERSHIP` (FHFA (Housing Finance Regulator): FHLB Membership) -- **100%** of the fdic bank certificate # values also appear in `FED_FHFA_FHLB_MEMBERSHIP` (3,983 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_FHFA_FHLB_MEMBERSHIP.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: SOLID</sub>
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (7,942 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.NEWCERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: SOLID (lineage) -- successor bank pointer; the successor is a different bank by definition, states agree 90%</sub>
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (5,191 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.ULTCERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- ultimate-parent bank pointer</sub>
+- `FED_FHFA_FHLB_MEMBERSHIP` (FHFA (Housing Finance Regulator): FHLB Membership) -- **100%** of the federal reserve bank id (rssd) values also appear in `FED_FHFA_FHLB_MEMBERSHIP` (3,976 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.FED_RSSD` = `FED_FHFA_FHLB_MEMBERSHIP.FED_ID` &middot; key: `RSSD`</sub>
+  <sub>checked 2026-08-29: SOLID</sub>
+- `FED_SBA_LOANS` (SBA Loans) -- **100%** of the fdic bank certificate # values also appear in `FED_SBA_LOANS` (3,938 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_SBA_LOANS.BANKFDICNUMBER` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: SOLID -- SBA lender -> bank</sub>
+- `FED_FDIC_SOD_BRANCH_DEPOSITS` (FDIC (Bank Insurance): SOD Branch Deposits) -- **83%** of the bank holding-company id (rssd) values also appear in `FED_FDIC_SOD_BRANCH_DEPOSITS` (7,243 matching)
+  <sub>joins on: `FED_FDIC_BANK_DATA.RSSDHCR` = `FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR` &middot; key: `RSSD_HC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- both sides are holding-company pointers; the holding-company master (Fed NIC file) is NOT held, so neither resolves to a name</sub>
 
 **Same location:**
 
@@ -5848,16 +6126,30 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_NOAA_WEATHER_API` (NOAA (Weather / Ocean): Weather API) -- same location as `FED_NOAA_WEATHER_API`
   <sub>joins on: `FED_FDIC_BANK_DATA.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
+**Suspect -- do not use:**
+
+- `FED_CFPB_HMDA_ARID2017_LEI_XREF` (CFPB -- Mortgage Lending Data (HMDA): Arid2017 LEI XREF) -- **47%** of the old hmda lender id (pre-2018 respondent id) values also appear in `FED_CFPB_HMDA_ARID2017_LEI_XREF` (2,522 matching) -- **but about half of those pairs are different organizations**
+  <sub>joins on: `FED_FDIC_BANK_DATA.CERT` = `FED_CFPB_HMDA_ARID2017_LEI_XREF.ARID_2017` &middot; key: `HMDA_ARID`</sub>
+  <sub>checked 2026-08-29: SUSPECT: about half the matched pairs are different banks -- the old respondent id is only a bank certificate # for some regulators (agency codes 1-3); for others it is something else. Do NOT use until split by agency; go through the LEI crosswalk instead</sub>
+
 
 ### `FED_FDIC_SOD_BRANCH_DEPOSITS`
 *FDIC (Bank Insurance): SOD Branch Deposits*
 
-1 reliable connection.
+1 reliable connection, 1 measured 2026-08-29 (not yet in the spine).
+
+> **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
 **Strong code match:**
 
 - `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **73%** of the court docket / case number values also appear in `FED_FDIC_BANK_DATA` (7,905 matching)
   <sub>joins on: `FED_FDIC_SOD_BRANCH_DEPOSITS.DOCKET` = `FED_FDIC_BANK_DATA.DOCKET` &middot; key: `DOCKET`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **83%** of the bank holding-company id (rssd) values also appear in `FED_FDIC_BANK_DATA` (7,243 matching)
+  <sub>joins on: `FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR` = `FED_FDIC_BANK_DATA.RSSDHCR` &middot; key: `RSSD_HC`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- both sides are holding-company pointers; the holding-company master (Fed NIC file) is NOT held, so neither resolves to a name</sub>
 
 
 ### `FED_FEC_BULK_CANDIDATES`
@@ -6316,6 +6608,63 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_FEMA_IA_HOUSING_REGISTRATIONS.FIPS` = `FED_HRSA_HPSA_PRIMARY_CARE.COMMON_STATE_COUNTY_FIPS_CODE` &middot; key: `FIPS`</sub>
 
 
+### `FED_FHFA_FHLB_MEMBERSHIP`
+*FHFA (Housing Finance Regulator): FHLB Membership*
+
+0 reliable connections, 3 measured 2026-08-29 (not yet in the spine) -- plus 26 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (3,983 matching)
+  <sub>joins on: `FED_FHFA_FHLB_MEMBERSHIP.CERT` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: SOLID</sub>
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the federal reserve bank id (rssd) values also appear in `FED_FDIC_BANK_DATA` (3,976 matching)
+  <sub>joins on: `FED_FHFA_FHLB_MEMBERSHIP.FED_ID` = `FED_FDIC_BANK_DATA.FED_RSSD` &middot; key: `RSSD`</sub>
+  <sub>checked 2026-08-29: SOLID</sub>
+- `FED_NCUA_CALL_REPORTS_FOICU` (NCUA (Credit Union Regulator): CALL Reports Foicu) -- **99%** of the credit union charter # values also appear in `FED_NCUA_CALL_REPORTS_FOICU` (1,618 matching)
+  <sub>joins on: `FED_FHFA_FHLB_MEMBERSHIP.NCUA_ID` = `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` &middot; key: `NCUA_CHARTER`</sub>
+  <sub>checked 2026-08-29: SOLID -- strip leading zeros on both sides</sub>
+
+
+### `FED_FMCSA_COMPANY_CENSUS`
+*Fmcsa Company Census*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FMCSA_COMPANY_CENSUS` (Fmcsa Company Census) -- **100%** of the trucking company # (usdot) values also appear in `FED_FMCSA_COMPANY_CENSUS` (555 matching)
+  <sub>joins on: `FED_FMCSA_COMPANY_CENSUS.PRIOR_REVOKE_DOT_NUMBER` = `FED_FMCSA_COMPANY_CENSUS.DOT_NUMBER` &middot; key: `USDOT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- reincorporation pointer; only 557 carriers carry one</sub>
+- `FED_USASPENDING_CONTRACTS_FULL` (USAspending (Federal Contracts & Grants): Contracts FULL) -- **4%** of the old federal contractor id (duns) values also appear in `FED_USASPENDING_CONTRACTS_FULL` (13,089 matching)
+  <sub>joins on: `FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO` = `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` &middot; key: `DUNS`</sub>
+  <sub>checked 2026-08-29: SOLID -- 86% of carriers report DUNS 0 -- those are not junk rows, the 372K real values are fine; states agree 80% (HQ vs place of performance)</sub>
+
+
+### `FED_FRA_CASUALTIES`
+*FRA Casualties*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FRA_EQUIPMENT_ACCIDENTS` (FRA Equipment Accidents) -- **71%** of the railroad reporting code values also appear in `FED_FRA_EQUIPMENT_ACCIDENTS` (770 matching)
+  <sub>joins on: `FED_FRA_CASUALTIES.REPORTING_PARENT_RAILROAD_CODE` = `FED_FRA_EQUIPMENT_ACCIDENTS.REPORTING_RAILROAD_CODE` &middot; key: `RR_CODE`</sub>
+  <sub>checked 2026-08-29: SOLID -- parent railroad -> reporting railroad</sub>
+
+
+### `FED_FRA_EQUIPMENT_ACCIDENTS`
+*FRA Equipment Accidents*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FRA_CASUALTIES` (FRA Casualties) -- **71%** of the railroad reporting code values also appear in `FED_FRA_CASUALTIES` (770 matching)
+  <sub>joins on: `FED_FRA_EQUIPMENT_ACCIDENTS.REPORTING_RAILROAD_CODE` = `FED_FRA_CASUALTIES.REPORTING_PARENT_RAILROAD_CODE` &middot; key: `RR_CODE`</sub>
+  <sub>checked 2026-08-29: SOLID -- parent railroad -> reporting railroad</sub>
+
+
 ### `FED_GOVINFO_BILLSTATUS`
 *Govinfo Billstatus*
 
@@ -6407,29 +6756,29 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_HOME_HEALTH` (Medicare & Medicaid (CMS): HOME Health) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH` (6 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_HOME_HEALTH.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE` (Medicare & Medicaid (CMS): Hospice) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_HOSPICE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_GENERAL` (Medicare & Medicaid (CMS): Hospital General) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_GENERAL` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_HOSPITAL_GENERAL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (Medicare & Medicaid (CMS): Facility Level Minimum DATA SET Frequency) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HCRIS` (Medicare & Medicaid (CMS) -- Hospital Cost Reports) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HCRIS` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_HCRIS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (4 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_NURSING_HOME.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_DEFICIENCIES` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_NURSING_HOME_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (Medicare & Medicaid (CMS): Nursing HOME FIRE Deficiencies) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_POS_OTHER` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_CMS_POS_OTHER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_NURSINGHOME411` (Nursinghome411) -- **0%** of the facility id <-> provider id values also appear in `FED_NURSINGHOME411` (3 matching)
-  <sub>joins on: `FED_HHS_OIG_LEIE.` = `FED_NURSINGHOME411.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 
 
 ### `FED_HRSA_HPSA_PRIMARY_CARE`
@@ -6508,10 +6857,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_HRSA_SHORTAGE_AREAS.COMMON_POSTAL_CODE` = `FED_HRSA_HPSA_PRIMARY_CARE.COMMON_POSTAL_CODE` &middot; key: `ZIP`</sub>
 
 
+### `FED_HRSA_UDS_HEALTH_CENTER_INFO`
+*HRSA UDS Health Center INFO*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (HRSA UDS Service Delivery Sites) -- **88%** of the hrsa health center id values also appear in `FED_HRSA_UDS_SERVICE_DELIVERY_SITES` (1,344 matching)
+  <sub>joins on: `FED_HRSA_UDS_HEALTH_CENTER_INFO.BHCMISID` = `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.BHCMIS_ORGANIZATION_IDENTIFICATION_NUMBER` &middot; key: `BHCMIS`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grantee <-> its sites</sub>
+
+
 ### `FED_HRSA_UDS_SERVICE_DELIVERY_SITES`
 *HRSA UDS Service Delivery Sites*
 
-12 reliable connections -- plus 44 low-confidence name+ZIP guesses not shown here.
+12 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 44 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -6541,7 +6902,16 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_FACILITY_AFFILIATION` (Medicare & Medicaid (CMS): Facility Affiliation) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_FACILITY_AFFILIATION` (5 matching)
-  <sub>joins on: `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.` = `FED_CMS_FACILITY_AFFILIATION.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_POS_OTHER` (Medicare & Medicaid (CMS): POS Other) -- **90%** of the medicare facility number (ccn) values also appear in `FED_CMS_POS_OTHER` (7,559 matching)
+  <sub>joins on: `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_MEDICARE_BILLING_NUMBER` = `FED_CMS_POS_OTHER.CCN` &middot; key: `CCN`</sub>
+  <sub>checked 2026-08-29: SOLID (site -> parent org) -- states agree 100%; site name vs org name</sub>
+- `FED_HRSA_UDS_HEALTH_CENTER_INFO` (HRSA UDS Health Center INFO) -- **88%** of the hrsa health center id values also appear in `FED_HRSA_UDS_HEALTH_CENTER_INFO` (1,344 matching)
+  <sub>joins on: `FED_HRSA_UDS_SERVICE_DELIVERY_SITES.BHCMIS_ORGANIZATION_IDENTIFICATION_NUMBER` = `FED_HRSA_UDS_HEALTH_CENTER_INFO.BHCMISID` &middot; key: `BHCMIS`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grantee <-> its sites</sub>
 
 
 ### `FED_HUD_ASSISTED_HOUSING_PROJECTS`
@@ -6557,6 +6927,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_HUD_ASSISTED_HOUSING_PROJECTS.LATITUDE/LONGITUDE` = `FED_MAPPING_INEQUALITY.GEOMETRY` &middot; key: `GEO_IN`</sub>
 - `FED_NOAA_WEATHER_API` (NOAA (Weather / Ocean): Weather API) -- same location as `FED_NOAA_WEATHER_API`
   <sub>joins on: `FED_HUD_ASSISTED_HOUSING_PROJECTS.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
+
+
+### `FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT`
+*HUD (Housing): FHA SF Portfolio Snapshot*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT` (HUD (Housing): FHA SF Portfolio Snapshot) -- **82%** of the fha lender # values also appear in `FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT` (120 matching)
+  <sub>joins on: `FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.SPONSOR_NUMBER` = `FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.ORIGINATING_MORTGAGEE_NUMBER` &middot; key: `FHA_MORTGAGEE`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- sponsor lender -> originating lender (same file)</sub>
 
 
 ### `FED_HUD_PUBLIC_HOUSING_AUTHORITIES`
@@ -6645,7 +7027,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **4%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (8 matching)
-  <sub>joins on: `FED_IRS_990.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `FED_IRS_990_EFILE_INDEX`
@@ -6703,15 +7085,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **16%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (1,923 matching)
-  <sub>joins on: `FED_IRS_990_EFILE_INDEX.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **9%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (20,030 matching)
-  <sub>joins on: `FED_IRS_990_EFILE_INDEX.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **1%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_CONTRACTS` (1,218 matching)
-  <sub>joins on: `FED_IRS_990_EFILE_INDEX.` = `FED_USASPENDING_CONTRACTS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SAM_EXCLUSIONS_FULL_R2` (SAM.gov -- Federal Debarment List: FULL R2) -- **0%** of the tax id <-> contractor id values also appear in `FED_SAM_EXCLUSIONS_FULL_R2` (3 matching)
-  <sub>joins on: `FED_IRS_990_EFILE_INDEX.` = `FED_SAM_EXCLUSIONS_FULL_R2.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **0%** of the tax id <-> contractor id values also appear in `FED_SBIR_STTR_AWARDS` (4 matching)
-  <sub>joins on: `FED_IRS_990_EFILE_INDEX.` = `FED_SBIR_STTR_AWARDS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `FED_IRS_AUTO_REVOCATIONS`
@@ -6767,21 +7149,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (649 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (24 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_DERA_SUB_2025Q3` (SEC (Securities Regulator): DERA SUB 2025q3) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q3` (3 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_SEC_DERA_SUB_2025Q3.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2026Q1` (SEC (Securities Regulator): DERA SUB 2026q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2026Q1` (3 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_SEC_DERA_SUB_2026Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (3 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (4 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q2` (SEC (Securities Regulator): DERA SUB 2025q2) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q2` (3 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_SEC_DERA_SUB_2025Q2.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (3 matching)
-  <sub>joins on: `FED_IRS_AUTO_REVOCATIONS.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_IRS_BMF`
@@ -6839,31 +7221,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **16%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (1,946 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **9%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (20,403 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_DERA_SUB_2024Q1` (SEC (Securities Regulator): DERA SUB 2024q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q1` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2024Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2024Q4` (SEC (Securities Regulator): DERA SUB 2024q4) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q4` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2024Q4.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q1` (SEC (Securities Regulator): DERA SUB 2025q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q1` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2025Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q3` (SEC (Securities Regulator): DERA SUB 2025q3) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q3` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2025Q3.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q4` (SEC (Securities Regulator): DERA SUB 2025q4) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q4` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2025Q4.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2026Q1` (SEC (Securities Regulator): DERA SUB 2026q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2026Q1` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2026Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **0%** of the tax id <-> contractor id values also appear in `FED_SBIR_STTR_AWARDS` (4 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SBIR_STTR_AWARDS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_DERA_SUB_2024Q2` (SEC (Securities Regulator): DERA SUB 2024q2) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q2` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2024Q2.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2024Q3` (SEC (Securities Regulator): DERA SUB 2024q3) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q3` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2024Q3.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q2` (SEC (Securities Regulator): DERA SUB 2025q2) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q2` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_DERA_SUB_2025Q2.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_FINANCIALS` (SEC (Securities Regulator): Edgar Financials) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_FINANCIALS` (3 matching)
-  <sub>joins on: `FED_IRS_BMF.` = `FED_SEC_EDGAR_FINANCIALS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_IRS_EO_BMF`
@@ -6921,31 +7303,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **16%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (1,947 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **9%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (20,390 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_DERA_SUB_2024Q1` (SEC (Securities Regulator): DERA SUB 2024q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q1` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2024Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2024Q4` (SEC (Securities Regulator): DERA SUB 2024q4) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q4` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2024Q4.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q1` (SEC (Securities Regulator): DERA SUB 2025q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q1` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2025Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q3` (SEC (Securities Regulator): DERA SUB 2025q3) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q3` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2025Q3.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q4` (SEC (Securities Regulator): DERA SUB 2025q4) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q4` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2025Q4.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2026Q1` (SEC (Securities Regulator): DERA SUB 2026q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2026Q1` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2026Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **0%** of the tax id <-> contractor id values also appear in `FED_SBIR_STTR_AWARDS` (4 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SBIR_STTR_AWARDS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_DERA_SUB_2024Q2` (SEC (Securities Regulator): DERA SUB 2024q2) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q2` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2024Q2.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2024Q3` (SEC (Securities Regulator): DERA SUB 2024q3) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2024Q3` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2024Q3.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q2` (SEC (Securities Regulator): DERA SUB 2025q2) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q2` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_DERA_SUB_2025Q2.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_FINANCIALS` (SEC (Securities Regulator): Edgar Financials) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_FINANCIALS` (3 matching)
-  <sub>joins on: `FED_IRS_EO_BMF.` = `FED_SEC_EDGAR_FINANCIALS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_IRS_PUB78_ELIGIBLE_DONEES`
@@ -7001,13 +7383,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **16%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (1,851 matching)
-  <sub>joins on: `FED_IRS_PUB78_ELIGIBLE_DONEES.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **8%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (18,567 matching)
-  <sub>joins on: `FED_IRS_PUB78_ELIGIBLE_DONEES.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **1%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_CONTRACTS` (1,114 matching)
-  <sub>joins on: `FED_IRS_PUB78_ELIGIBLE_DONEES.` = `FED_USASPENDING_CONTRACTS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **0%** of the tax id <-> contractor id values also appear in `FED_SBIR_STTR_AWARDS` (4 matching)
-  <sub>joins on: `FED_IRS_PUB78_ELIGIBLE_DONEES.` = `FED_SBIR_STTR_AWARDS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `FED_IRS_REVOCATION`
@@ -7063,21 +7445,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (642 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (24 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_DERA_SUB_2025Q3` (SEC (Securities Regulator): DERA SUB 2025q3) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q3` (3 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_SEC_DERA_SUB_2025Q3.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2026Q1` (SEC (Securities Regulator): DERA SUB 2026q1) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2026Q1` (3 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_SEC_DERA_SUB_2026Q1.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (3 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (4 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_DERA_SUB_2025Q2` (SEC (Securities Regulator): DERA SUB 2025q2) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_DERA_SUB_2025Q2` (3 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_SEC_DERA_SUB_2025Q2.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (3 matching)
-  <sub>joins on: `FED_IRS_REVOCATION.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_IRS_SOI_CHARITIES`
@@ -7107,9 +7489,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **1%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (30 matching)
-  <sub>joins on: `FED_IRS_SOI_CHARITIES.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (6 matching)
-  <sub>joins on: `FED_IRS_SOI_CHARITIES.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `FED_MAPPING_INEQUALITY`
@@ -7201,7 +7583,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NCUA_CALL_REPORTS_FOICU`
 *NCUA (Credit Union Regulator): CALL Reports Foicu*
 
-3 reliable connections, 1 place-based -- plus 38 low-confidence name+ZIP guesses not shown here.
+3 reliable connections, 2 measured 2026-08-29 (not yet in the spine), 1 place-based -- plus 38 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -7211,6 +7593,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` = `FED_NCUA_FEDERALLY_INSURED_CU_LIST.CHARTER_NUMBER` &middot; key: `NCUA_CHARTER`</sub>
 - `FED_NCUA_CHARTER_MERGER_EVENTS` (NCUA (Credit Union Regulator): Charter Merger Events) -- **89%** of the credit union charter # values also appear in `FED_NCUA_CHARTER_MERGER_EVENTS` (24 matching)
   <sub>joins on: `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` = `FED_NCUA_CHARTER_MERGER_EVENTS.MERGING_CREDIT_UNION_CHARTER` &middot; key: `NCUA_CHARTER`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FHFA_FHLB_MEMBERSHIP` (FHFA (Housing Finance Regulator): FHLB Membership) -- **99%** of the credit union charter # values also appear in `FED_FHFA_FHLB_MEMBERSHIP` (1,618 matching)
+  <sub>joins on: `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` = `FED_FHFA_FHLB_MEMBERSHIP.NCUA_ID` &middot; key: `NCUA_CHARTER`</sub>
+  <sub>checked 2026-08-29: SOLID -- strip leading zeros on both sides</sub>
+- `FED_SBA_LOANS` (SBA Loans) -- **97%** of the credit union charter # values also appear in `FED_SBA_LOANS` (570 matching)
+  <sub>joins on: `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` = `FED_SBA_LOANS.BANKNCUANUMBER` &middot; key: `NCUA_CHARTER`</sub>
+  <sub>checked 2026-08-29: SOLID -- SBA lender -> credit union; strip leading zeros</sub>
 
 **Same location:**
 
@@ -7286,7 +7677,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_NIH_REPORTER`
 *NIH (Medical Research): Reporter*
 
-27 reliable connections.
+27 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -7306,47 +7697,71 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_COURTLISTENER_SCHOOLS` (CourtListener (Federal Court Records): Schools) -- **20%** of the tax id <-> contractor id values also appear in `FED_COURTLISTENER_SCHOOLS` (520 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_COURTLISTENER_SCHOOLS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **16%** of the tax id <-> contractor id values also appear in `FED_IRS_EO_BMF` (1,947 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_EO_BMF.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_BMF` (IRS: BMF) -- **16%** of the tax id <-> contractor id values also appear in `FED_IRS_BMF` (1,946 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_BMF.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_990_EFILE_INDEX` (IRS: 990 Efile Index) -- **16%** of the tax id <-> contractor id values also appear in `FED_IRS_990_EFILE_INDEX` (1,923 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_990_EFILE_INDEX.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_PUB78_ELIGIBLE_DONEES` (IRS: Pub78 Eligible Donees) -- **16%** of the tax id <-> contractor id values also appear in `FED_IRS_PUB78_ELIGIBLE_DONEES` (1,851 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_PUB78_ELIGIBLE_DONEES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **3%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (318 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **2%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (295 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **2%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (287 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **2%** of the tax id <-> contractor id values also appear in `FED_DOL_FORM5500` (211 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_DOL_FORM5500.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **1%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (127 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **1%** of the tax id <-> contractor id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (119 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **1%** of the tax id <-> contractor id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (121 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **1%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (108 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **1%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (73 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_AUTO_REVOCATIONS` (24 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_REVOCATION` (24 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_REVOCATION.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_SOI_CHARITIES` (IRS: SOI Charities) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_SOI_CHARITIES` (6 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_IRS_SOI_CHARITIES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SAM_EXCLUSIONS` (SAM.gov -- Federal Debarment List) -- **0%** of the old <-> new contractor id values also appear in `FED_SAM_EXCLUSIONS` (3 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_SAM_EXCLUSIONS.` &middot; key: `DUNS~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `DUNS~UEI`</sub>
 - `FED_SAM_EXCLUSIONS_FULL_R2` (SAM.gov -- Federal Debarment List: FULL R2) -- **0%** of the old <-> new contractor id values also appear in `FED_SAM_EXCLUSIONS_FULL_R2` (3 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `FED_SAM_EXCLUSIONS_FULL_R2.` &middot; key: `DUNS~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `DUNS~UEI`</sub>
 - `IRS527_8871_ORGS` (IRS -- Political Groups (527s): 8871 ORGS) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_8871_ORGS` (3 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `IRS527_8871_ORGS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_DIRECTORS_OFFICERS` (3 matching)
-  <sub>joins on: `FED_NIH_REPORTER.` = `IRS527_DIRECTORS_OFFICERS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **80%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (9,643 matching)
+  <sub>joins on: `FED_NIH_REPORTER.ORG_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- misses are affiliates registered under a sibling legal name</sub>
+- `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **10%** of the nih project # values also appear in `FED_SBIR_STTR_AWARDS` (16,831 matching)
+  <sub>joins on: `FED_NIH_REPORTER.CORE_PROJECT_NUM` = `FED_SBIR_STTR_AWARDS.AGENCY_TRACKING_NUMBER` &middot; key: `NIH_PROJECT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR tracking number -> NIH project</sub>
+
+
+### `FED_NOAA_AIS`
+*NOAA (Weather / Ocean): AIS*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_USCG_VESSEL_DOCUMENTATION` (USCG Vessel Documentation) -- **33%** of the ship hull number (imo) values also appear in `FED_USCG_VESSEL_DOCUMENTATION` (2,313 matching)
+  <sub>joins on: `FED_NOAA_AIS.IMO` = `FED_USCG_VESSEL_DOCUMENTATION.IMO_NUMBER` &middot; key: `IMO`</sub>
+  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; a third of AIS ships are US-documented vessels</sub>
+- `FED_USCG_VESSEL_DOCUMENTATION` (USCG Vessel Documentation) -- **33%** of the ship radio call sign values also appear in `FED_USCG_VESSEL_DOCUMENTATION` (5,759 matching)
+  <sub>joins on: `FED_NOAA_AIS.CALLSIGN` = `FED_USCG_VESSEL_DOCUMENTATION.CALL_SIGN` &middot; key: `CALLSIGN`</sub>
+  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2</sub>
 
 
 ### `FED_NOAA_WEATHER_API`
@@ -7403,10 +7818,22 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_NSF_AWARDS.ZIP` = `FED_EIA860_1_UTILITY.ZIP` &middot; key: `ZIP`</sub>
 
 
+### `FED_NTSB_AVIATION_AIRCRAFT`
+*NTSB (Transportation Safety): Aviation Aircraft*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 35 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FAA_AIRCRAFT_REGISTRY` (FAA (Aviation): Aircraft Registry) -- **45%** of the aircraft tail number (n-number) values also appear in `FED_FAA_AIRCRAFT_REGISTRY` (13,528 matching)
+  <sub>joins on: `FED_NTSB_AVIATION_AIRCRAFT.REGIS_NO` = `FED_FAA_AIRCRAFT_REGISTRY.N_NUMBER` &middot; key: `N_NUMBER`</sub>
+  <sub>checked 2026-08-29: SOLID -- the registry is current owners only, so old crashes miss; serial numbers agree 90%, the rest are reissued tail numbers</sub>
+
+
 ### `FED_NURSINGHOME411`
 *Nursinghome411*
 
-33 reliable connections, 3 place-based.
+33 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 3 place-based.
 
 **Rock-solid match:**
 
@@ -7428,57 +7855,63 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_CMS_NPPES` (Medicare & Medicaid (CMS) -- National Provider Registry) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_NPPES` (50,378 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_NPPES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS): Medicare FEE FOR Service Public Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT` (50,015 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_FEE_FOR_SERVICE_PUBLIC_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (Medicare & Medicaid (CMS) -- Provider Enrollment (PECOS): Provider Enrollment) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PECOS_PROVIDER_ENROLLMENT` (50,015 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_PECOS_PROVIDER_ENROLLMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_ORDER_AND_REFERRING` (Medicare & Medicaid (CMS): Order AND Referring) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_ORDER_AND_REFERRING` (36,096 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_ORDER_AND_REFERRING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (Medicare & Medicaid (CMS): Fiscal Intermediary Shared System Attending AND Rendering) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING` (36,046 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_FISCAL_INTERMEDIARY_SHARED_SYSTEM_ATTENDING_AND_RENDERING.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PART_D_PRESCRIBERS` (Medicare & Medicaid (CMS): PART D Prescribers) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PART_D_PRESCRIBERS` (35,684 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_PART_D_PRESCRIBERS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER` (33,967 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PROVIDER` (Medicare & Medicaid (CMS): Medicare Provider) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PROVIDER` (33,967 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_PROVIDER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PARTD_PRESCRIBER_DRUG` (Medicare & Medicaid (CMS): Partd Prescriber DRUG) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_PARTD_PRESCRIBER_DRUG` (33,629 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_PARTD_PRESCRIBER_DRUG.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (Medicare & Medicaid (CMS): Medicare Physician Other Practitioners BY Provider AND Servi) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI` (33,520 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Refer) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER` (32,665 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_REFER.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (Medicare & Medicaid (CMS): OPEN Payments Profile Supplement) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT` (31,040 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_OPEN_PAYMENTS_PROFILE_SUPPLEMENT.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2023` (Medicare & Medicaid (CMS): OPEN Payments 2023) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2023` (21,253 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_OPEN_PAYMENTS_2023.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS` (Medicare & Medicaid (CMS): OPEN Payments) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS` (21,066 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_OPEN_PAYMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPEN_PAYMENTS_2022` (Medicare & Medicaid (CMS): OPEN Payments 2022) -- **100%** of the facility id <-> provider id values also appear in `FED_CMS_OPEN_PAYMENTS_2022` (20,541 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_OPEN_PAYMENTS_2022.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (Medicare & Medicaid (CMS): Quality Payment Program Experience) -- **83%** of the facility id <-> provider id values also appear in `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE` (11,949 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_QUALITY_PAYMENT_PROGRAM_EXPERIENCE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (Medicare & Medicaid (CMS): Ambulatory Specialty Model Participants) -- **1%** of the facility id <-> provider id values also appear in `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS` (45 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPITAL_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospital Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPITAL_ENROLLMENTS` (27 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_HOSPITAL_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_OPT_OUT_AFFIDAVITS` (Medicare & Medicaid (CMS): OPT OUT Affidavits) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_OPT_OUT_AFFIDAVITS` (37 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_OPT_OUT_AFFIDAVITS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (Medicare & Medicaid (CMS): Rural Health Clinic Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS` (16 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOSPICE_ENROLLMENTS` (Medicare & Medicaid (CMS): Hospice Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOSPICE_ENROLLMENTS` (4 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_HOSPICE_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (Medicare & Medicaid (CMS): Pending Initial Logging AND Tracking Physicians) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS` (9 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (Medicare & Medicaid (CMS): HOME Health Agency Enrollments) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS` (4 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (Medicare & Medicaid (CMS): Medicare Dialysis Facilities) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DIALYSIS_FACILITIES` (4 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_DIALYSIS_FACILITIES.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL` (Medicare & Medicaid (CMS): Medicare Durable Medical Equipment Devices Supplies BY Suppl) -- **0%** of the facility id <-> provider id values also appear in `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL` (3 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_CMS_MEDICARE_DURABLE_MEDICAL_EQUIPMENT_DEVICES_SUPPLIES_BY_SUPPL.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
 - `FED_HHS_OIG_LEIE` (HHS Inspector General -- Excluded Providers: LEIE) -- **0%** of the facility id <-> provider id values also appear in `FED_HHS_OIG_LEIE` (3 matching)
-  <sub>joins on: `FED_NURSINGHOME411.` = `FED_HHS_OIG_LEIE.` &middot; key: `CCN~NPI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CCN~NPI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CMS_NURSING_HOME` (Medicare & Medicaid (CMS): Nursing HOME) -- **91%** of the nursing-home chain id values also appear in `FED_CMS_NURSING_HOME` (576 matching)
+  <sub>joins on: `FED_NURSINGHOME411.CHAIN_ID` = `FED_CMS_NURSING_HOME.CHAIN_ID` &middot; key: `CHAIN_ID`</sub>
+  <sub>checked 2026-08-29: SOLID -- chain = owner group; there is no chain master table, names only</sub>
 
 **Same location:**
 
@@ -7490,10 +7923,25 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_NURSINGHOME411.LATITUDE/LONGITUDE` = `FED_NOAA_WEATHER_API.GEOMETRY` &middot; key: `GEO_IN`</sub>
 
 
+### `FED_OFAC_SDN`
+*OFAC (Sanctions List): SDN*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_CONSOLIDATED_SCREENING_LIST` (Consolidated Screening LIST) -- **97%** of the sanctions entry # (ofac) values also appear in `FED_CONSOLIDATED_SCREENING_LIST` (18,985 matching)
+  <sub>joins on: `FED_OFAC_SDN.ENT_NUM` = `FED_CONSOLIDATED_SCREENING_LIST.ENTITY_NUMBER` &middot; key: `OFAC_ENT_NUM`</sub>
+  <sub>checked 2026-08-29: SOLID -- same number system; the screening list is the SDN list plus other agencies' lists</sub>
+- `INTL_UK_SANCTIONS_LIST` (International source: UK Sanctions LIST) -- **44%** of the ship hull number (imo) values also appear in `INTL_UK_SANCTIONS_LIST` (291 matching)
+  <sub>joins on: `FED_OFAC_SDN.IMO` = `INTL_UK_SANCTIONS_LIST.IMO_NUMBER` &middot; key: `IMO`</sub>
+  <sub>checked 2026-08-29: SOLID (hull key, name drift) -- sanctioned ships get renamed; the IMO hull number never changes</sub>
+
+
 ### `FED_OSHA_ITA_300A_SUMMARY_2023`
 *OSHA (Workplace Safety): ITA 300A Summary 2023*
 
-36 reliable connections -- plus 92 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 92 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -7559,25 +8007,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **11%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (571 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **7%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (581 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **3%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (318 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **3%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (3,144 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **2%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (689 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (17 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (97 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **55%** of the osha establishment id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (219,860 matching)
+  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2023.ESTABLISHMENT_ID` = `FED_OSHA_ITA_300A_SUMMARY_2024.ESTABLISHMENT_ID` &middot; key: `OSHA_EST_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- the same workplace across two years of injury summaries</sub>
 
 
 ### `FED_OSHA_ITA_300A_SUMMARY_2024`
 *OSHA (Workplace Safety): ITA 300A Summary 2024*
 
-36 reliable connections -- plus 91 low-confidence name+ZIP guesses not shown here.
+36 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 91 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -7643,19 +8097,28 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **10%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (553 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **7%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (567 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **3%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (3,007 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **2%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (295 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **2%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (654 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (15 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (95 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **55%** of the osha establishment id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (219,860 matching)
+  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.ESTABLISHMENT_ID` = `FED_OSHA_ITA_300A_SUMMARY_2023.ESTABLISHMENT_ID` &middot; key: `OSHA_EST_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- the same workplace across two years of injury summaries</sub>
+- `FED_DOL_FORM5500_FULL` (Dept. of Labor: Form5500 FULL) -- **28%** of the employer tax id (ein) values also appear in `FED_DOL_FORM5500_FULL` (31,883 matching)
+  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2024.EIN` = `FED_DOL_FORM5500_FULL.SPONS_DFE_EIN` &middot; key: `EIN`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- injury logs <-> benefit plans by employer tax id; use the FULL 5500 table, the 33K sample's EIN column is empty</sub>
 
 
 ### `FED_OSHA_ITA_300A_SUMMARY_2025`
@@ -7729,19 +8192,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **10%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (539 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **7%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (548 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **3%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (2,805 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **2%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (287 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **2%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (641 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (17 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (96 matching)
-  <sub>joins on: `FED_OSHA_ITA_300A_SUMMARY_2025.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_OSHA_ITA_CASE_DETAIL_2023`
@@ -7813,19 +8276,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **4%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (192 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **3%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (1,151 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **2%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (191 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **1%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (127 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **1%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (216 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (39 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (6 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2023.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_OSHA_ITA_CASE_DETAIL_2024`
@@ -7893,19 +8356,19 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **5%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (1,020 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **3%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (174 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **2%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (174 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **1%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (108 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **1%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (190 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (32 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (5 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2024.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_OSHA_ITA_CASE_DETAIL_2025`
@@ -7977,25 +8440,27 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **6%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (734 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **2%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (129 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **2%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (128 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **1%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (135 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **1%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (73 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (23 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (5 matching)
-  <sub>joins on: `FED_OSHA_ITA_CASE_DETAIL_2025.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_OYEZ`
 *Oyez (Supreme Court Archive)*
 
 1 reliable connection.
+
+> **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
 **Strong code match:**
 
@@ -8068,21 +8533,21 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **6%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (340 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **4%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (340 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **2%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (386 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **2%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (364 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **1%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (121 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_INSIDER_REPORTINGOWNER` (SEC (Securities Regulator): Insider Reportingowner) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_INSIDER_REPORTINGOWNER` (86 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_SEC_INSIDER_REPORTINGOWNER.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_CONTRACTS` (90 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_USASPENDING_CONTRACTS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_SEC_13F_SUBMISSIONS` (SEC (Securities Regulator): 13F Submissions) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_13F_SUBMISSIONS` (52 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PENSION_PLANS.` = `FED_SEC_13F_SUBMISSIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_PBGC_TRUSTEED_PLANS`
@@ -8140,17 +8605,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **1%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (27 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PLANS.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (8 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PLANS.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (3 matching)
-  <sub>joins on: `FED_PBGC_TRUSTEED_PLANS.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_PCAOB_FORM_AP_FILINGS`
 *Pcaob FORM AP Filings*
 
-32 reliable connections.
+32 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -8194,33 +8659,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (689 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (654 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (641 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **2%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (386 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **1%** of the sec filer id <-> tax id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (392 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **1%** of the sec filer id <-> tax id values also appear in `FED_DOL_FORM5500` (408 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_DOL_FORM5500.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **1%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (135 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **1%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (190 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **1%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (216 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PBGC_TRUSTEED_PLANS` (PBGC (Pension Insurance): Trusteed Plans) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PLANS` (8 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_PBGC_TRUSTEED_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_AUTO_REVOCATIONS` (4 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_REVOCATION` (4 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `FED_IRS_REVOCATION.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `IRS527_8871_ORGS` (IRS -- Political Groups (527s): 8871 ORGS) -- **0%** of the sec filer id <-> tax id values also appear in `IRS527_8871_ORGS` (5 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `IRS527_8871_ORGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the sec filer id <-> tax id values also appear in `IRS527_DIRECTORS_OFFICERS` (5 matching)
-  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.` = `IRS527_DIRECTORS_OFFICERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SEC_INSIDER_SUBMISSION` (SEC (Securities Regulator): Insider Submission) -- **34%** of the sec filer id (cik) values also appear in `FED_SEC_INSIDER_SUBMISSION` (9,844 matching)
+  <sub>joins on: `FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK` = `FED_SEC_INSIDER_SUBMISSION.ISSUERCIK` &middot; key: `CIK`</sub>
+  <sub>checked 2026-08-29: SOLID -- audit engagement -> the audited company's insider filings; misses are corporate renames under the same CIK</sub>
 
 
 ### `FED_PHMSA_FLAGGED_INCIDENTS`
@@ -8234,6 +8705,42 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_PHMSA_FLAGGED_INCIDENTS.LOCATION_LATITUDE/LOCATION_LONGITUDE` = `INTL_FR_DATA_GOUV_FULL.SPATIAL_GEOM` &middot; key: `GEO_IN`</sub>
 - `FED_MAPPING_INEQUALITY` (Mapping Inequality) -- same location as `FED_MAPPING_INEQUALITY`
   <sub>joins on: `FED_PHMSA_FLAGGED_INCIDENTS.LOCATION_LATITUDE/LOCATION_LONGITUDE` = `FED_MAPPING_INEQUALITY.GEOMETRY` &middot; key: `GEO_IN`</sub>
+
+
+### `FED_SAM_ENTITY_PUBLIC`
+*SAM.gov (Federal Contractor Registry): Entity Public*
+
+0 reliable connections, 9 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **93%** of the defense contractor code (cage) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (85,857 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.CAGE_CODE` = `FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE` &middot; key: `CAGE`</sub>
+  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; 1 in 60 is a CAGE reassigned to a new firm</sub>
+- `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **80%** of the federal contractor id (uei) values also appear in `FED_NIH_REPORTER` (9,643 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_NIH_REPORTER.ORG_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- misses are affiliates registered under a sibling legal name</sub>
+- `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **74%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (39,436 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_uei` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- grant recipient's parent company</sub>
+- `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **71%** of the federal contractor id (uei) values also appear in `FED_SBIR_STTR_AWARDS` (12,144 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_SBIR_STTR_AWARDS.UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- names agree 98%; the SBIR 'state' column is NOT a state code (0% agreement) -- a column-meaning trap, not a key problem</sub>
+- `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **68%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (50,415 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_PARENT_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subrecipient's parent company</sub>
+- `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **67%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (148,253 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID</sub>
+- `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **55%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (123,076 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_ASSISTANCE_FULL.recipient_uei` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grant recipient</sub>
+- `XC_EPA_CORPORATE_CROSSWALK` (Cross-reference / bridge table: EPA Corporate Crosswalk) -- **55%** of the federal contractor id (uei) values also appear in `XC_EPA_CORPORATE_CROSSWALK` (17,373 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `XC_EPA_CORPORATE_CROSSWALK.PARENT_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID (n=6 sampled) -- 8.1% of crosswalk rows carry one</sub>
+- `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **32%** of the federal contractor id (uei) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (178,303 matching)
+  <sub>joins on: `FED_SAM_ENTITY_PUBLIC.UEI_SAM` = `FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_PARENT_UEI` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- contractor's parent company; older UEIs are missing from the current SAM file, hence the low rate</sub>
 
 
 ### `FED_SAM_EXCLUSIONS`
@@ -8255,7 +8762,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the old <-> new contractor id values also appear in `FED_NIH_REPORTER` (3 matching)
-  <sub>joins on: `FED_SAM_EXCLUSIONS.` = `FED_NIH_REPORTER.` &middot; key: `DUNS~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `DUNS~UEI`</sub>
 
 
 ### `FED_SAM_EXCLUSIONS_FULL_R2`
@@ -8319,15 +8826,30 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_990_EFILE_INDEX` (IRS: 990 Efile Index) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_990_EFILE_INDEX` (3 matching)
-  <sub>joins on: `FED_SAM_EXCLUSIONS_FULL_R2.` = `FED_IRS_990_EFILE_INDEX.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the old <-> new contractor id values also appear in `FED_NIH_REPORTER` (3 matching)
-  <sub>joins on: `FED_SAM_EXCLUSIONS_FULL_R2.` = `FED_NIH_REPORTER.` &middot; key: `DUNS~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `DUNS~UEI`</sub>
+
+
+### `FED_SBA_LOANS`
+*SBA Loans*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine) -- plus 12 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_FDIC_BANK_DATA` (FDIC (Bank Insurance): BANK DATA) -- **100%** of the fdic bank certificate # values also appear in `FED_FDIC_BANK_DATA` (3,938 matching)
+  <sub>joins on: `FED_SBA_LOANS.BANKFDICNUMBER` = `FED_FDIC_BANK_DATA.CERT` &middot; key: `FDIC_CERT`</sub>
+  <sub>checked 2026-08-29: SOLID -- SBA lender -> bank</sub>
+- `FED_NCUA_CALL_REPORTS_FOICU` (NCUA (Credit Union Regulator): CALL Reports Foicu) -- **97%** of the credit union charter # values also appear in `FED_NCUA_CALL_REPORTS_FOICU` (570 matching)
+  <sub>joins on: `FED_SBA_LOANS.BANKNCUANUMBER` = `FED_NCUA_CALL_REPORTS_FOICU.CU_NUMBER` &middot; key: `NCUA_CHARTER`</sub>
+  <sub>checked 2026-08-29: SOLID -- SBA lender -> credit union; strip leading zeros</sub>
 
 
 ### `FED_SBIR_STTR_AWARDS`
 *SBIR (Small Business Research Grants): STTR Awards*
 
-12 reliable connections -- plus 18 low-confidence name+ZIP guesses not shown here.
+12 reliable connections, 3 measured 2026-08-29 (not yet in the spine) -- plus 18 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -8351,19 +8873,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_990_EFILE_INDEX` (IRS: 990 Efile Index) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_990_EFILE_INDEX` (4 matching)
-  <sub>joins on: `FED_SBIR_STTR_AWARDS.` = `FED_IRS_990_EFILE_INDEX.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_BMF` (4 matching)
-  <sub>joins on: `FED_SBIR_STTR_AWARDS.` = `FED_IRS_BMF.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_EO_BMF` (4 matching)
-  <sub>joins on: `FED_SBIR_STTR_AWARDS.` = `FED_IRS_EO_BMF.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_PUB78_ELIGIBLE_DONEES` (IRS: Pub78 Eligible Donees) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_PUB78_ELIGIBLE_DONEES` (4 matching)
-  <sub>joins on: `FED_SBIR_STTR_AWARDS.` = `FED_IRS_PUB78_ELIGIBLE_DONEES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **71%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (12,144 matching)
+  <sub>joins on: `FED_SBIR_STTR_AWARDS.UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- names agree 98%; the SBIR 'state' column is NOT a state code (0% agreement) -- a column-meaning trap, not a key problem</sub>
+- `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **10%** of the nih project # values also appear in `FED_NIH_REPORTER` (16,831 matching)
+  <sub>joins on: `FED_SBIR_STTR_AWARDS.AGENCY_TRACKING_NUMBER` = `FED_NIH_REPORTER.CORE_PROJECT_NUM` &middot; key: `NIH_PROJECT`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR tracking number -> NIH project</sub>
+- `FED_USASPENDING_CONTRACTS_FULL_R2` (USAspending (Federal Contracts & Grants): Contracts FULL R2) -- **9%** of the federal contract id (piid) values also appear in `FED_USASPENDING_CONTRACTS_FULL_R2` (14,530 matching)
+  <sub>joins on: `FED_SBIR_STTR_AWARDS.CONTRACT` = `FED_USASPENDING_CONTRACTS_FULL_R2.AWARD_ID_PIID` &middot; key: `PIID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR contract number -> the contract record</sub>
 
 
 ### `FED_SCDB`
 *Supreme Court Database*
 
 1 reliable connection.
+
+> **Heads up:** this table has a docket / case-number connection, which is currently ~40% wrong. See the warning at the top.
 
 **Strong code match:**
 
@@ -8410,23 +8946,23 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **0%** of the sec filer id <-> tax id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (54 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (52 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **0%** of the sec filer id <-> tax id values also appear in `FED_DOL_FORM5500` (28 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_DOL_FORM5500.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (17 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (15 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (17 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (6 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (5 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (5 matching)
-  <sub>joins on: `FED_SEC_13F_SUBMISSIONS.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_BUSINESS_DEVELOPMENT_COMPANY_REPORT`
@@ -8588,9 +9124,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q1.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q1.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2024Q2`
@@ -8674,9 +9210,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q2.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q2.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2024Q3`
@@ -8762,9 +9298,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q3.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q3.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2024Q4`
@@ -8848,9 +9384,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q4.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2024Q4.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2025Q1`
@@ -8938,9 +9474,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q1.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q1.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2025Q2`
@@ -9024,13 +9560,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_AUTO_REVOCATIONS` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q2.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q2.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q2.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_REVOCATION` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q2.` = `FED_IRS_REVOCATION.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2025Q3`
@@ -9114,13 +9650,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_AUTO_REVOCATIONS` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q3.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q3.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q3.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_REVOCATION` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q3.` = `FED_IRS_REVOCATION.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2025Q4`
@@ -9206,9 +9742,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q4.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2025Q4.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_DERA_SUB_2026Q1`
@@ -9294,13 +9830,13 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_AUTO_REVOCATIONS` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2026Q1.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2026Q1.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2026Q1.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_REVOCATION` (3 matching)
-  <sub>joins on: `FED_SEC_DERA_SUB_2026Q1.` = `FED_IRS_REVOCATION.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_EDGAR_COMPANY_TICKERS`
@@ -9346,33 +9882,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **7%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (581 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **7%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (567 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **7%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (548 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **4%** of the sec filer id <-> tax id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (346 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **4%** of the sec filer id <-> tax id values also appear in `FED_DOL_FORM5500` (342 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_DOL_FORM5500.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **4%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (340 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (191 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (174 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (128 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PBGC_TRUSTEED_PLANS` (PBGC (Pension Insurance): Trusteed Plans) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PLANS` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_PBGC_TRUSTEED_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `IRS527_8871_ORGS` (IRS -- Political Groups (527s): 8871 ORGS) -- **0%** of the sec filer id <-> tax id values also appear in `IRS527_8871_ORGS` (5 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `IRS527_8871_ORGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the sec filer id <-> tax id values also appear in `IRS527_DIRECTORS_OFFICERS` (5 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `IRS527_DIRECTORS_OFFICERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_AUTO_REVOCATIONS` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_REVOCATION` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_COMPANY_TICKERS.` = `FED_IRS_REVOCATION.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_EDGAR_FINANCIALS`
@@ -9460,9 +9996,9 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_IRS_BMF` (IRS: BMF) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_FINANCIALS.` = `FED_IRS_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_EO_BMF` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_FINANCIALS.` = `FED_IRS_EO_BMF.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_EDGAR_INSIDERS`
@@ -9508,31 +10044,31 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **11%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (571 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **10%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (553 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **10%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (539 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **6%** of the sec filer id <-> tax id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (345 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **6%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (340 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **6%** of the sec filer id <-> tax id values also appear in `FED_DOL_FORM5500` (333 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_DOL_FORM5500.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **4%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (192 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **3%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (174 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **2%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (129 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_AUTO_REVOCATIONS` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the sec filer id <-> tax id values also appear in `FED_IRS_REVOCATION` (3 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `FED_IRS_REVOCATION.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `IRS527_8871_ORGS` (IRS -- Political Groups (527s): 8871 ORGS) -- **0%** of the sec filer id <-> tax id values also appear in `IRS527_8871_ORGS` (4 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `IRS527_8871_ORGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the sec filer id <-> tax id values also appear in `IRS527_DIRECTORS_OFFICERS` (4 matching)
-  <sub>joins on: `FED_SEC_EDGAR_INSIDERS.` = `IRS527_DIRECTORS_OFFICERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 
 
 ### `FED_SEC_INSIDER_REPORTINGOWNER`
@@ -9578,29 +10114,44 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (86 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **0%** of the sec filer id <-> tax id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (87 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (32 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (23 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **0%** of the sec filer id <-> tax id values also appear in `FED_DOL_FORM5500` (32 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_DOL_FORM5500.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (97 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (95 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (96 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **0%** of the sec filer id <-> tax id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (39 matching)
-  <sub>joins on: `FED_SEC_INSIDER_REPORTINGOWNER.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
+
+
+### `FED_SEC_INSIDER_SUBMISSION`
+*SEC (Securities Regulator): Insider Submission*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `XC_EPA_CORPORATE_CROSSWALK` (Cross-reference / bridge table: EPA Corporate Crosswalk) -- **94%** of the sec filer id (cik) values also appear in `XC_EPA_CORPORATE_CROSSWALK` (662 matching)
+  <sub>joins on: `FED_SEC_INSIDER_SUBMISSION.ISSUERCIK` = `XC_EPA_CORPORATE_CROSSWALK.PARENT_CIK` &middot; key: `CIK`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- 2.3% of crosswalk rows carry one</sub>
+- `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **34%** of the sec filer id (cik) values also appear in `FED_PCAOB_FORM_AP_FILINGS` (9,844 matching)
+  <sub>joins on: `FED_SEC_INSIDER_SUBMISSION.ISSUERCIK` = `FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK` &middot; key: `CIK`</sub>
+  <sub>checked 2026-08-29: SOLID -- audit engagement -> the audited company's insider filings; misses are corporate renames under the same CIK</sub>
 
 
 ### `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS`
 *SEC (Securities Regulator): Investment Company Series Class*
 
-2 reliable connections, 2 place-based -- plus 2 low-confidence name+ZIP guesses not shown here.
+2 reliable connections, 1 measured 2026-08-29 (not yet in the spine), 2 place-based -- plus 2 low-confidence name+ZIP guesses not shown here.
 
 **Rock-solid match:**
 
@@ -9608,6 +10159,12 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CIK_NUMBER` = `FED_SEC_MONEY_MARKET_FUND_INFORMATION.REGISTRANT_CIK` &middot; key: `CIK`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **98%** of the sec filer id (cik) values also appear in `FED_PCAOB_FORM_AP_FILINGS` (2,013 matching)
   <sub>joins on: `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CIK_NUMBER` = `FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK` &middot; key: `CIK`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SEC_MONEY_MARKET_FUND_INFORMATION` (SEC (Securities Regulator): Money Market FUND Information) -- **98%** of the sec fund series id values also appear in `FED_SEC_MONEY_MARKET_FUND_INFORMATION` (314 matching)
+  <sub>joins on: `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.SERIES_ID` = `FED_SEC_MONEY_MARKET_FUND_INFORMATION.SERIES_ID` &middot; key: `SEC_SERIES_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- money-market fund -> its registered series</sub>
 
 **Same location:**
 
@@ -9620,7 +10177,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `FED_SEC_MONEY_MARKET_FUND_INFORMATION`
 *SEC (Securities Regulator): Money Market FUND Information*
 
-2 reliable connections.
+2 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -9629,11 +10186,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 - `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS` (SEC (Securities Regulator): Investment Company Series Class) -- **99%** of the sec filer id (cik) values also appear in `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS` (175 matching)
   <sub>joins on: `FED_SEC_MONEY_MARKET_FUND_INFORMATION.REGISTRANT_CIK` = `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CIK_NUMBER` &middot; key: `CIK`</sub>
 
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS` (SEC (Securities Regulator): Investment Company Series Class) -- **98%** of the sec fund series id values also appear in `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS` (314 matching)
+  <sub>joins on: `FED_SEC_MONEY_MARKET_FUND_INFORMATION.SERIES_ID` = `FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.SERIES_ID` &middot; key: `SEC_SERIES_ID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- money-market fund -> its registered series</sub>
+
 
 ### `FED_USASPENDING_ASSISTANCE_FULL`
 *USAspending (Federal Contracts & Grants): Assistance FULL*
 
-30 reliable connections.
+30 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -9657,49 +10220,61 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_COURTLISTENER_SCHOOLS` (CourtListener (Federal Court Records): Schools) -- **57%** of the tax id <-> contractor id values also appear in `FED_COURTLISTENER_SCHOOLS` (1,467 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_COURTLISTENER_SCHOOLS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_BMF` (IRS: BMF) -- **9%** of the tax id <-> contractor id values also appear in `FED_IRS_BMF` (20,403 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_BMF.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_EO_BMF` (IRS -- Nonprofit / Charity Master File) -- **9%** of the tax id <-> contractor id values also appear in `FED_IRS_EO_BMF` (20,390 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_EO_BMF.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_990_EFILE_INDEX` (IRS: 990 Efile Index) -- **9%** of the tax id <-> contractor id values also appear in `FED_IRS_990_EFILE_INDEX` (20,030 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_990_EFILE_INDEX.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_PUB78_ELIGIBLE_DONEES` (IRS: Pub78 Eligible Donees) -- **8%** of the tax id <-> contractor id values also appear in `FED_IRS_PUB78_ELIGIBLE_DONEES` (18,567 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_PUB78_ELIGIBLE_DONEES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2025` (OSHA (Workplace Safety): ITA CASE Detail 2025) -- **6%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2025` (734 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_OSHA_ITA_CASE_DETAIL_2025.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2024` (OSHA (Workplace Safety): ITA CASE Detail 2024) -- **5%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2024` (1,020 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_OSHA_ITA_CASE_DETAIL_2024.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_990` (IRS: 990) -- **4%** of the tax id <-> contractor id values also appear in `FED_IRS_990` (8 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_990.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_CASE_DETAIL_2023` (OSHA (Workplace Safety): ITA CASE Detail 2023) -- **3%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_CASE_DETAIL_2023` (1,151 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_OSHA_ITA_CASE_DETAIL_2023.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_DOL_FORM5500` (Dept. of Labor: Form5500) -- **3%** of the tax id <-> contractor id values also appear in `FED_DOL_FORM5500` (959 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_DOL_FORM5500.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2023` (OSHA (Workplace Safety): ITA 300A Summary 2023) -- **3%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2023` (3,144 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_OSHA_ITA_300A_SUMMARY_2023.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2024` (OSHA (Workplace Safety): ITA 300A Summary 2024) -- **3%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2024` (3,007 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_OSHA_ITA_300A_SUMMARY_2024.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_OSHA_ITA_300A_SUMMARY_2025` (OSHA (Workplace Safety): ITA 300A Summary 2025) -- **3%** of the tax id <-> contractor id values also appear in `FED_OSHA_ITA_300A_SUMMARY_2025` (2,805 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_OSHA_ITA_300A_SUMMARY_2025.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **2%** of the tax id <-> contractor id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (364 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_SOI_CHARITIES` (IRS: SOI Charities) -- **1%** of the tax id <-> contractor id values also appear in `FED_IRS_SOI_CHARITIES` (30 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_SOI_CHARITIES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **1%** of the tax id <-> contractor id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (375 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PBGC_TRUSTEED_PLANS` (PBGC (Pension Insurance): Trusteed Plans) -- **1%** of the tax id <-> contractor id values also appear in `FED_PBGC_TRUSTEED_PLANS` (27 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_PBGC_TRUSTEED_PLANS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_AUTO_REVOCATIONS` (IRS: AUTO Revocations) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_AUTO_REVOCATIONS` (649 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_AUTO_REVOCATIONS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_REVOCATION` (IRS: Revocation) -- **0%** of the tax id <-> contractor id values also appear in `FED_IRS_REVOCATION` (642 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `FED_IRS_REVOCATION.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `IRS527_8871_ORGS` (IRS -- Political Groups (527s): 8871 ORGS) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_8871_ORGS` (27 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `IRS527_8871_ORGS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_DIRECTORS_OFFICERS` (27 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `IRS527_DIRECTORS_OFFICERS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `IRS527_RELATED_ENTITIES` (IRS -- Political Groups (527s): Related Entities) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_RELATED_ENTITIES` (3 matching)
-  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.` = `IRS527_RELATED_ENTITIES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **74%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (39,436 matching)
+  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_uei` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- grant recipient's parent company</sub>
+- `FED_USASPENDING_SUBAWARDS_FULL` (USAspending (Federal Contracts & Grants): Subawards FULL) -- **56%** of the federal grant award id (fain) values also appear in `FED_USASPENDING_SUBAWARDS_FULL` (94,073 matching)
+  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.award_id_fain` = `FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_FAIN` &middot; key: `FAIN`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subaward -> the grant it came from</sub>
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **55%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (123,076 matching)
+  <sub>joins on: `FED_USASPENDING_ASSISTANCE_FULL.recipient_uei` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- grant recipient</sub>
 
 
 ### `FED_USASPENDING_CONTRACTS`
@@ -9725,17 +10300,110 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_COURTLISTENER_SCHOOLS` (CourtListener (Federal Court Records): Schools) -- **10%** of the tax id <-> contractor id values also appear in `FED_COURTLISTENER_SCHOOLS` (264 matching)
-  <sub>joins on: `FED_USASPENDING_CONTRACTS.` = `FED_COURTLISTENER_SCHOOLS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_990_EFILE_INDEX` (IRS: 990 Efile Index) -- **1%** of the tax id <-> contractor id values also appear in `FED_IRS_990_EFILE_INDEX` (1,218 matching)
-  <sub>joins on: `FED_USASPENDING_CONTRACTS.` = `FED_IRS_990_EFILE_INDEX.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_IRS_PUB78_ELIGIBLE_DONEES` (IRS: Pub78 Eligible Donees) -- **1%** of the tax id <-> contractor id values also appear in `FED_IRS_PUB78_ELIGIBLE_DONEES` (1,114 matching)
-  <sub>joins on: `FED_USASPENDING_CONTRACTS.` = `FED_IRS_PUB78_ELIGIBLE_DONEES.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PBGC_TRUSTEED_PENSION_PLANS` (PBGC (Pension Insurance): Trusteed Pension Plans) -- **0%** of the tax id <-> contractor id values also appear in `FED_PBGC_TRUSTEED_PENSION_PLANS` (90 matching)
-  <sub>joins on: `FED_USASPENDING_CONTRACTS.` = `FED_PBGC_TRUSTEED_PENSION_PLANS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (Dept. of Labor -- Pension Plans (EBSA): Form5500 Schedule SB) -- **0%** of the tax id <-> contractor id values also appear in `FED_DOL_EBSA_FORM5500_SCHEDULE_SB` (93 matching)
-  <sub>joins on: `FED_USASPENDING_CONTRACTS.` = `FED_DOL_EBSA_FORM5500_SCHEDULE_SB.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `IRS527_DIRECTORS_OFFICERS` (IRS -- Political Groups (527s): Directors Officers) -- **0%** of the tax id <-> contractor id values also appear in `IRS527_DIRECTORS_OFFICERS` (4 matching)
-  <sub>joins on: `FED_USASPENDING_CONTRACTS.` = `IRS527_DIRECTORS_OFFICERS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
+
+
+### `FED_USASPENDING_CONTRACTS_FULL`
+*USAspending (Federal Contracts & Grants): Contracts FULL*
+
+0 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_EPA_TRI_FACILITY` (EPA (Environment): TRI Facility) -- **20%** of the old federal contractor id (duns) values also appear in `FED_EPA_TRI_FACILITY` (2,103 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` = `FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM` &middot; key: `DUNS`</sub>
+  <sub>checked 2026-08-29: SOLID -- polluter's parent company -> federal contractor</sub>
+- `FED_FDA_GUDID_FULL_DEVICE` (FDA (Food & Drug): Gudid FULL Device) -- **17%** of the old federal contractor id (duns) values also appear in `FED_FDA_GUDID_FULL_DEVICE` (2,096 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` = `FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER` &middot; key: `DUNS`</sub>
+  <sub>checked 2026-08-29: SOLID -- device makers that are also federal contractors</sub>
+- `FED_FMCSA_COMPANY_CENSUS` (Fmcsa Company Census) -- **4%** of the old federal contractor id (duns) values also appear in `FED_FMCSA_COMPANY_CENSUS` (13,089 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL.recipient_duns` = `FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO` &middot; key: `DUNS`</sub>
+  <sub>checked 2026-08-29: SOLID -- 86% of carriers report DUNS 0 -- those are not junk rows, the 372K real values are fine; states agree 80% (HQ vs place of performance)</sub>
+
+
+### `FED_USASPENDING_CONTRACTS_FULL_R2`
+*USAspending (Federal Contracts & Grants): Contracts FULL R2*
+
+0 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **93%** of the defense contractor code (cage) values also appear in `FED_SAM_ENTITY_PUBLIC` (85,857 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.CAGE_CODE` = `FED_SAM_ENTITY_PUBLIC.CAGE_CODE` &middot; key: `CAGE`</sub>
+  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; 1 in 60 is a CAGE reassigned to a new firm</sub>
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **32%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (178,303 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_PARENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID -- contractor's parent company; older UEIs are missing from the current SAM file, hence the low rate</sub>
+- `FED_SBIR_STTR_AWARDS` (SBIR (Small Business Research Grants): STTR Awards) -- **9%** of the federal contract id (piid) values also appear in `FED_SBIR_STTR_AWARDS` (14,530 matching)
+  <sub>joins on: `FED_USASPENDING_CONTRACTS_FULL_R2.AWARD_ID_PIID` = `FED_SBIR_STTR_AWARDS.CONTRACT` &middot; key: `PIID`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- SBIR contract number -> the contract record</sub>
+
+
+### `FED_USASPENDING_SUBAWARDS_FULL`
+*USAspending (Federal Contracts & Grants): Subawards FULL*
+
+0 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **68%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (50,415 matching)
+  <sub>joins on: `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_PARENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subrecipient's parent company</sub>
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **67%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (148,253 matching)
+  <sub>joins on: `FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID</sub>
+- `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **56%** of the federal grant award id (fain) values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (94,073 matching)
+  <sub>joins on: `FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_FAIN` = `FED_USASPENDING_ASSISTANCE_FULL.award_id_fain` &middot; key: `FAIN`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- subaward -> the grant it came from</sub>
+
+
+### `FED_USCG_NRC_INCIDENTS`
+*USCG NRC Incidents*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 72 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_USCG_NRC_INCIDENT_REPORTS` (USCG NRC Incident Reports) -- **100%** of the spill / incident report # (nrc) values also appear in `FED_USCG_NRC_INCIDENT_REPORTS` (116,662 matching)
+  <sub>joins on: `FED_USCG_NRC_INCIDENTS.SEQNOS` = `FED_USCG_NRC_INCIDENT_REPORTS.SEQNOS` &middot; key: `NRC_SEQ`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- report detail -> the incident it describes</sub>
+
+
+### `FED_USCG_NRC_INCIDENT_REPORTS`
+*USCG NRC Incident Reports*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine) -- plus 55 low-confidence name+ZIP guesses not shown here.
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_USCG_NRC_INCIDENTS` (USCG NRC Incidents) -- **100%** of the spill / incident report # (nrc) values also appear in `FED_USCG_NRC_INCIDENTS` (116,662 matching)
+  <sub>joins on: `FED_USCG_NRC_INCIDENT_REPORTS.SEQNOS` = `FED_USCG_NRC_INCIDENTS.SEQNOS` &middot; key: `NRC_SEQ`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- report detail -> the incident it describes</sub>
+
+
+### `FED_USCG_VESSEL_DOCUMENTATION`
+*USCG Vessel Documentation*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_NOAA_AIS` (NOAA (Weather / Ocean): AIS) -- **33%** of the ship hull number (imo) values also appear in `FED_NOAA_AIS` (2,313 matching)
+  <sub>joins on: `FED_USCG_VESSEL_DOCUMENTATION.IMO_NUMBER` = `FED_NOAA_AIS.IMO` &middot; key: `IMO`</sub>
+  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2; a third of AIS ships are US-documented vessels</sub>
+- `FED_NOAA_AIS` (NOAA (Weather / Ocean): AIS) -- **33%** of the ship radio call sign values also appear in `FED_NOAA_AIS` (5,759 matching)
+  <sub>joins on: `FED_USCG_VESSEL_DOCUMENTATION.CALL_SIGN` = `FED_NOAA_AIS.CALLSIGN` &middot; key: `CALLSIGN`</sub>
+  <sub>checked 2026-08-29: SOLID -- pass-1 edge, name-checked in pass 2</sub>
 
 
 ### `FED_USDA_RD_MFH_ACTIVE_PROJECTS`
@@ -9861,7 +10529,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `INTL_GLEIF`
 *International source: Gleif*
 
-6 reliable connections.
+6 reliable connections, 5 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -9877,6 +10545,39 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `INTL_GLEIF.LEI` = `INTL_ISO_MIC_REGISTRY.LEI` &middot; key: `LEI`</sub>
 - `INTL_GLEIF_REPEX` (International source: Gleif Repex) -- **99%** of the global legal entity id (lei) values also appear in `INTL_GLEIF_REPEX` (3,142,422 matching)
   <sub>joins on: `INTL_GLEIF.LEI` = `INTL_GLEIF_REPEX.LEI` &middot; key: `LEI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `INTL_GLEIF` (International source: Gleif) -- **100%** of the global legal entity id (lei) values also appear in `INTL_GLEIF` (27,279 matching)
+  <sub>joins on: `INTL_GLEIF.Entity.SuccessorEntity.1.SuccessorLEI` = `INTL_GLEIF.LEI` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- entity lineage pointer (same file)</sub>
+- `XC_EPA_CORPORATE_CROSSWALK` (Cross-reference / bridge table: EPA Corporate Crosswalk) -- **100%** of the global legal entity id (lei) values also appear in `XC_EPA_CORPORATE_CROSSWALK` (1,174 matching)
+  <sub>joins on: `INTL_GLEIF.LEI` = `XC_EPA_CORPORATE_CROSSWALK.ULTIMATE_PARENT_LEI` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- 0.7% of crosswalk rows carry one</sub>
+- `INTL_GLEIF_RELATIONSHIPS` (International source: Gleif Relationships) -- **100%** of the global legal entity id (lei) values also appear in `INTL_GLEIF_RELATIONSHIPS` (77,108 matching)
+  <sub>joins on: `INTL_GLEIF.LEI` = `INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_ENDNODE_NODEID` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- parent company in the corporate parent tree (Level 2)</sub>
+- `INTL_GLEIF_RELATIONSHIPS` (International source: Gleif Relationships) -- **99%** of the global legal entity id (lei) values also appear in `INTL_GLEIF_RELATIONSHIPS` (299,509 matching)
+  <sub>joins on: `INTL_GLEIF.LEI` = `INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_STARTNODE_NODEID` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- child company in the corporate parent tree (Level 2): ultimate parent 132.6K, direct parent 126.4K, fund-managed 149.4K, subfund 73.2K, branch 1.9K</sub>
+- `INT_UK_COMPANIES_HOUSE` (INT UK Companies House) -- **86%** of the uk company number values also appear in `INT_UK_COMPANIES_HOUSE` (94,652 matching)
+  <sub>joins on: `INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityEntityID` = `INT_UK_COMPANIES_HOUSE.CompanyNumber` &middot; key: `COMPANY_NO`</sub>
+  <sub>checked 2026-08-29: SOLID -- UK-registered rows only (registration authority RA000585); pad the number to 8 digits. 132,901 Delaware file numbers sit in the same column with no Delaware registry to receive them</sub>
+
+
+### `INTL_GLEIF_RELATIONSHIPS`
+*International source: Gleif Relationships*
+
+0 reliable connections, 2 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `INTL_GLEIF` (International source: Gleif) -- **100%** of the global legal entity id (lei) values also appear in `INTL_GLEIF` (77,108 matching)
+  <sub>joins on: `INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_ENDNODE_NODEID` = `INTL_GLEIF.LEI` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- parent company in the corporate parent tree (Level 2)</sub>
+- `INTL_GLEIF` (International source: Gleif) -- **99%** of the global legal entity id (lei) values also appear in `INTL_GLEIF` (299,509 matching)
+  <sub>joins on: `INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_STARTNODE_NODEID` = `INTL_GLEIF.LEI` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- child company in the corporate parent tree (Level 2): ultimate parent 132.6K, direct parent 126.4K, fund-managed 149.4K, subfund 73.2K, branch 1.9K</sub>
 
 
 ### `INTL_GLEIF_REPEX`
@@ -9932,15 +10633,33 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `INTL_NTI_CNS_DPRK_MISSILE_TESTS.FACILITY_LATITUDE/FACILITY_LONGITUDE` = `INTL_FR_DATA_GOUV_FULL.SPATIAL_GEOM` &middot; key: `GEO_IN`</sub>
 
 
+### `INTL_UK_SANCTIONS_LIST`
+*International source: UK Sanctions LIST*
+
+0 reliable connections, 1 measured 2026-08-29 (not yet in the spine).
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `FED_OFAC_SDN` (OFAC (Sanctions List): SDN) -- **44%** of the ship hull number (imo) values also appear in `FED_OFAC_SDN` (291 matching)
+  <sub>joins on: `INTL_UK_SANCTIONS_LIST.IMO_NUMBER` = `FED_OFAC_SDN.IMO` &middot; key: `IMO`</sub>
+  <sub>checked 2026-08-29: SOLID (hull key, name drift) -- sanctioned ships get renamed; the IMO hull number never changes</sub>
+
+
 ### `INT_UK_COMPANIES_HOUSE`
 *INT UK Companies House*
 
-1 reliable connection.
+1 reliable connection, 1 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
 - `UK_COMPANIES_HOUSE_PSC` (United Kingdom source: Companies House PSC) -- **97%** of the uk company number values also appear in `UK_COMPANIES_HOUSE_PSC` (5,582,726 matching)
   <sub>joins on: `INT_UK_COMPANIES_HOUSE.CompanyNumber` = `UK_COMPANIES_HOUSE_PSC.COMPANY_NUMBER` &middot; key: `COMPANY_NO`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `INTL_GLEIF` (International source: Gleif) -- **86%** of the uk company number values also appear in `INTL_GLEIF` (94,652 matching)
+  <sub>joins on: `INT_UK_COMPANIES_HOUSE.CompanyNumber` = `INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityEntityID` &middot; key: `COMPANY_NO`</sub>
+  <sub>checked 2026-08-29: SOLID -- UK-registered rows only (registration authority RA000585); pad the number to 8 digits. 132,901 Delaware file numbers sit in the same column with no Delaware registry to receive them</sub>
 
 
 ### `IRS527_8871_ORGS`
@@ -10006,15 +10725,15 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (5 matching)
-  <sub>joins on: `IRS527_8871_ORGS.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (4 matching)
-  <sub>joins on: `IRS527_8871_ORGS.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (3 matching)
-  <sub>joins on: `IRS527_8871_ORGS.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (5 matching)
-  <sub>joins on: `IRS527_8871_ORGS.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (27 matching)
-  <sub>joins on: `IRS527_8871_ORGS.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `IRS527_8872_REPORTS`
@@ -10095,17 +10814,17 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_SEC_EDGAR_COMPANY_TICKERS` (SEC (Securities Regulator): Edgar Company Tickers) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_COMPANY_TICKERS` (5 matching)
-  <sub>joins on: `IRS527_DIRECTORS_OFFICERS.` = `FED_SEC_EDGAR_COMPANY_TICKERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_SEC_EDGAR_INSIDERS` (SEC (Securities Regulator): Edgar Insiders) -- **0%** of the sec filer id <-> tax id values also appear in `FED_SEC_EDGAR_INSIDERS` (4 matching)
-  <sub>joins on: `IRS527_DIRECTORS_OFFICERS.` = `FED_SEC_EDGAR_INSIDERS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_NIH_REPORTER` (NIH (Medical Research): Reporter) -- **0%** of the tax id <-> contractor id values also appear in `FED_NIH_REPORTER` (3 matching)
-  <sub>joins on: `IRS527_DIRECTORS_OFFICERS.` = `FED_NIH_REPORTER.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_PCAOB_FORM_AP_FILINGS` (Pcaob FORM AP Filings) -- **0%** of the sec filer id <-> tax id values also appear in `FED_PCAOB_FORM_AP_FILINGS` (5 matching)
-  <sub>joins on: `IRS527_DIRECTORS_OFFICERS.` = `FED_PCAOB_FORM_AP_FILINGS.` &middot; key: `CIK~EIN`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `CIK~EIN`</sub>
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (27 matching)
-  <sub>joins on: `IRS527_DIRECTORS_OFFICERS.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 - `FED_USASPENDING_CONTRACTS` (USAspending (Federal Contracts & Grants): Contracts) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_CONTRACTS` (4 matching)
-  <sub>joins on: `IRS527_DIRECTORS_OFFICERS.` = `FED_USASPENDING_CONTRACTS.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `IRS527_RELATED_ENTITIES`
@@ -10137,7 +10856,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 **Different number, known translation:**
 
 - `FED_USASPENDING_ASSISTANCE_FULL` (USAspending (Federal Contracts & Grants): Assistance FULL) -- **0%** of the tax id <-> contractor id values also appear in `FED_USASPENDING_ASSISTANCE_FULL` (3 matching)
-  <sub>joins on: `IRS527_RELATED_ENTITIES.` = `FED_USASPENDING_ASSISTANCE_FULL.` &middot; key: `EIN~UEI`</sub>
+  <sub>joins on: via a crosswalk table &middot; key: `EIN~UEI`</sub>
 
 
 ### `UK_COMPANIES_HOUSE_PSC`
@@ -10154,7 +10873,7 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
 ### `XC_EPA_CORPORATE_CROSSWALK`
 *Cross-reference / bridge table: EPA Corporate Crosswalk*
 
-22 reliable connections.
+22 reliable connections, 3 measured 2026-08-29 (not yet in the spine).
 
 **Rock-solid match:**
 
@@ -10202,6 +10921,18 @@ Search this file for a table name (`Ctrl+F` / `grep`), or scan the list below.
   <sub>joins on: `XC_EPA_CORPORATE_CROSSWALK.MATCHED_LEI` = `FED_CFPB_HMDA_LAR.LEI` &middot; key: `LEI`</sub>
 - `INTL_ISO_MIC_REGISTRY` (International source: ISO MIC Registry) -- **1%** of the global legal entity id (lei) values also appear in `INTL_ISO_MIC_REGISTRY` (6 matching)
   <sub>joins on: `XC_EPA_CORPORATE_CROSSWALK.MATCHED_LEI` = `INTL_ISO_MIC_REGISTRY.LEI` &middot; key: `LEI`</sub>
+
+**Measured 2026-08-29, not yet in the spine:**
+
+- `INTL_GLEIF` (International source: Gleif) -- **100%** of the global legal entity id (lei) values also appear in `INTL_GLEIF` (1,174 matching)
+  <sub>joins on: `XC_EPA_CORPORATE_CROSSWALK.ULTIMATE_PARENT_LEI` = `INTL_GLEIF.LEI` &middot; key: `LEI`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- 0.7% of crosswalk rows carry one</sub>
+- `FED_SEC_INSIDER_SUBMISSION` (SEC (Securities Regulator): Insider Submission) -- **94%** of the sec filer id (cik) values also appear in `FED_SEC_INSIDER_SUBMISSION` (662 matching)
+  <sub>joins on: `XC_EPA_CORPORATE_CROSSWALK.PARENT_CIK` = `FED_SEC_INSIDER_SUBMISSION.ISSUERCIK` &middot; key: `CIK`</sub>
+  <sub>checked 2026-08-29: level 2 only (overlap measured live; matched pairs not name-checked) -- 2.3% of crosswalk rows carry one</sub>
+- `FED_SAM_ENTITY_PUBLIC` (SAM.gov (Federal Contractor Registry): Entity Public) -- **55%** of the federal contractor id (uei) values also appear in `FED_SAM_ENTITY_PUBLIC` (17,373 matching)
+  <sub>joins on: `XC_EPA_CORPORATE_CROSSWALK.PARENT_UEI` = `FED_SAM_ENTITY_PUBLIC.UEI_SAM` &middot; key: `UEI`</sub>
+  <sub>checked 2026-08-29: SOLID (n=6 sampled) -- 8.1% of crosswalk rows carry one</sub>
 
 
 ### `XC_MAPPING_POLICE_VIOLENCE`

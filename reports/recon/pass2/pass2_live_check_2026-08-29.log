@@ -1,0 +1,301 @@
+22:44:39 A. profiling 200 candidate columns
+22:44:42   [1] GUDID primary DI (UDI-DI): FED_FDA_GUDID_FULL_DEVICE.PRIMARYDI rows=5182695 filled=5182695 distinct=5182695 junk=0 ['00888480539001', '00888480538998']
+22:44:44   [2] GUDID primary DI (UDI-DI): FED_FDA_GUDID_FULL_IDENTIFIERS.PRIMARYDI rows=6767219 filled=6767219 distinct=5182695 junk=0 ['00613647000809', '00613647000809']
+22:44:46   [3] GUDID device id (all pkg levels): FED_FDA_GUDID_FULL_IDENTIFIERS.DEVICEID rows=6767219 filled=6767219 distinct=6696187 junk=0 ['M6334949350', 'M633494930M0']
+22:44:47   [4] GUDID labeler DUNS: FED_FDA_GUDID_FULL_DEVICE.DUNSNUMBER rows=5182695 filled=5182695 distinct=12272 junk=0 ['018577570', '018577570']
+22:44:49   [5] GUDID device record key: FED_FDA_GUDID_FULL_DEVICE.PUBLICDEVICERECORDKEY rows=5182695 filled=5182695 distinct=5182695 junk=0 ['29decd57-cc91-4ecb-9d4d-cf20b32765af', 'dd02f014-e57a-4c6b-9fa6-f18d443d7987']
+22:44:50   [6] NDC directory product NDC: FED_FDA_NDC_DIRECTORY.PRODUCTNDC rows=115802 filled=115802 distinct=114649 junk=0 ['0002-0152', '0002-0213']
+22:44:51   [7] NDC directory product id (NDC+SPL set): FED_FDA_NDC_DIRECTORY.PRODUCTID rows=115802 filled=115802 distinct=115802 junk=0 ['0002-0152_86a64015-7f78-4281-8b7f-579b6c3dc1f7', '0002-0213_42527ae4-c593-4e13-8b77-c0511198c708']
+22:44:51   [8] FDA application # (NDA/ANDA/BLA): FED_FDA_NDC_DIRECTORY.APPLICATIONNUMBER rows=115802 filled=115802 distinct=13093 junk=16284 ['NDA217806', 'BLA018780']
+22:44:52   [9] FDA drug master file #: FED_FDA_DRUG_MASTER_FILES.DMF rows=41253 filled=41253 distinct=41253 junk=1 ['1', '2']
+22:44:53   [10] NADAC NDC (11-digit): FED_CMS_NADAC.NDC rows=1497925 filled=1497925 distinct=32881 junk=0 ['24385005452', '70000047501']
+22:44:54   [11] HIOS issuer id: FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF.ISSUERID rows=22059 filled=22059 distinct=359 junk=0 ['21989', '21989']
+22:44:55   [12] HIOS standard component id: FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF.STANDARDCOMPONENTID rows=22059 filled=22059 distinct=5144 junk=0 ['21989AK0030001', '21989AK0030001']
+22:44:56   [13] HIOS plan id (variant): FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF.PLANID rows=22059 filled=22059 distinct=22059 junk=0 ['21989AK0030001-00', '21989AK0030001-01']
+22:44:56   [14] HIOS product id: FED_CMS_MARKETPLACE_PLAN_ATTRIBUTES_PUF.HIOSPRODUCTID rows=22059 filled=22059 distinct=906 junk=0 ['21989AK003', '21989AK003']
+22:44:57   [15] HRSA health center #: FED_HRSA_UDS_SERVICE_DELIVERY_SITES.HEALTH_CENTER_NUMBER rows=19038 filled=19038 distinct=1526 junk=0 ['H80CS07928', 'H80CS02458']
+22:44:58   [16] HRSA BHCMIS org id: FED_HRSA_UDS_SERVICE_DELIVERY_SITES.BHCMIS_ORGANIZATION_IDENTIFICATION_NUMBER rows=19038 filled=19038 distinct=1525 junk=0 ['013600', '0518280']
+22:44:59   [17] HRSA BPHC site #: FED_HRSA_UDS_SERVICE_DELIVERY_SITES.BPHC_ASSIGNED_NUMBER rows=19038 filled=19038 distinct=19038 junk=0 ['BPS-H80-000156', 'BPS-H80-037803']
+22:44:59   [18] HRSA site NPI: FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_NPI_NUMBER rows=19038 filled=6096 distinct=6048 junk=0 ['1346218294', '1669663415']
+22:45:00   [19] HRSA site Medicare billing # (CCN?): FED_HRSA_UDS_SERVICE_DELIVERY_SITES.FQHC_SITE_MEDICARE_BILLING_NUMBER rows=19038 filled=8546 distinct=8426 junk=11 ['220031', 'C51043']
+22:45:01   [20] HRSA BHCMIS id (center info): FED_HRSA_UDS_HEALTH_CENTER_INFO.BHCMISID rows=1356 filled=1356 distinct=1356 junk=0 ['010030', '010040']
+22:45:02   [21] HRSA grant #: FED_HRSA_UDS_HEALTH_CENTER_INFO.GRANTNUMBER rows=1356 filled=1356 distinct=1356 junk=0 ['H80CS00803', 'H80CS00443']
+22:45:03   [22] HRSA HPSA id: FED_HRSA_SHORTAGE_AREAS.HPSA_ID rows=165531 filled=165531 distinct=42318 junk=0 ['1688361205', '1688361205']
+22:45:04   [23] NPDB practitioner #: FED_HRSA_NPDB.PRACTNUM rows=1911185 filled=1911185 distinct=985019 junk=0 ['711168', '774057']
+22:45:06   [24] CMS POS Medicaid vendor #: FED_CMS_POS_OTHER.MDCD_VNDR_NUM rows=44429 filled=44429 distinct=4374 junk=39727 ['GRE7102A', '630709266']
+22:45:07   [25] CMS POS cross-ref provider #: FED_CMS_POS_OTHER.CROSS_REF_PROVIDER_NUMBER rows=44429 filled=44429 distinct=5557 junk=38661 ['010163', '011308']
+22:45:08   [26] PECOS associate id (hospice): FED_CMS_HOSPICE_ENROLLMENTS.ASSOCIATE_ID rows=6066 filled=6066 distinct=5372 junk=0 ['3274440268', '3476461872']
+22:45:09   [27] Nursing-home chain id: FED_CMS_NURSING_HOME.CHAIN_ID rows=14700 filled=14700 distinct=635 junk=4221 ['419', '610']
+22:45:09   [28] Nursing-home chain id (411): FED_NURSINGHOME411.CHAIN_ID rows=14713 filled=14713 distinct=617 junk=4551 ['690', '333']
+22:45:10   [29] SNF affiliation entity id: FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.AFFILIATION_ENTITY_ID rows=14425 filled=10225 distinct=635 junk=0 ['487', '120']
+22:45:11   [30] EPA AQS site # (needs state+county): FED_EPA_AQS_SITES.SITE_NUMBER rows=20994 filled=20994 distinct=1231 junk=0 ['0001', '0002']
+22:45:13   [31] NRC incident seq # (incidents): FED_USCG_NRC_INCIDENTS.SEQNOS rows=1029020 filled=1029020 distinct=1029020 junk=0 ['318636', '318637']
+22:45:13   [32] NRC incident seq # (reports): FED_USCG_NRC_INCIDENT_REPORTS.SEQNOS rows=116662 filled=116662 distinct=116662 junk=0 ['1267707', '1267708']
+22:45:14   [33] NFIP community id: FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK.COMMUNITYIDNUMBER rows=25122 filled=25122 distinct=25122 junk=0 ['220169', '220170']
+22:45:16   [34] NFIP community id (R2): FED_FEMA_NFIP_COMMUNITY_STATUS_BOOK_FULL_R2.COMMUNITYIDNUMBER rows=25125 filled=25125 distinct=25125 junk=0 ['220169', '220170']
+22:45:16   [35] WQP monitoring location id: FED_WQP_MONITORING_STATIONS.MONITORINGLOCATIONIDENTIFIER rows=5818 filled=5818 distinct=5818 junk=0 ['USGS-01117351', 'USGS-01117455']
+22:45:18   [36] TRI parent DUNS: FED_EPA_TRI_FACILITY.PARENT_CO_DB_NUM rows=64990 filled=37485 distinct=10736 junk=1 ['080532250', '626532535']
+22:45:18   [37] TRI foreign parent DUNS: FED_EPA_TRI_FACILITY.FOREIGN_PARENT_CO_DB_NUM rows=64990 filled=1952 distinct=521 junk=0 ['409528911', '315000554']
+22:45:19   [38] TRI parent DUNS (basic 2023): FED_EPA_TRI_BASIC_2023.C_16_PARENT_CO_DB_NUM rows=78647 filled=53388 distinct=3792 junk=0 ['091136535', '028968691']
+22:45:20   [39] TRI EPA registry id: FED_EPA_TRI_FACILITY.EPA_REGISTRY_ID rows=64990 filled=64990 distinct=64728 junk=0 ['110002085207', '110007807258']
+22:45:21   [40] CAMPD owner/operator (text): FED_EPA_CAMPD_FACILITY.OWNER_OPERATOR rows=128525 filled=110174 distinct=4858 junk=0 ['Alabama Power Company (Owner)|Alabama Power Company (Operato', 'Alabama Power Company (Owner)|Alabama Power Company (Operato']
+22:45:22   [41] GHGRP parent company (text): FED_EPA_GHGRP_FACILITY.PARENT_COMPANY rows=136005 filled=134602 distinct=14012 junk=0 ['WILLIAMS PARTNERS, LP (100%)', 'WILLIAMS PARTNERS, LP (100%)']
+22:45:22   [42] FDIC UNINUM: FED_FDIC_BANK_DATA.UNINUM rows=27836 filled=27836 distinct=27836 junk=0 ['10004', '10005']
+22:45:23   [43] FDIC NEWCERT (successor cert): FED_FDIC_BANK_DATA.NEWCERT rows=27836 filled=27836 distinct=7953 junk=5191 ['29140', '28834']
+22:45:24   [44] FDIC PARCERT (parent cert): FED_FDIC_BANK_DATA.PARCERT rows=27836 filled=23828 distinct=50 junk=23771 ['28753', '18516']
+22:45:25   [45] FDIC ULTCERT (ultimate cert): FED_FDIC_BANK_DATA.ULTCERT rows=27836 filled=27036 distinct=5199 junk=0 ['57890', '26416']
+22:45:25   [46] FDIC RSSDHCR (holding co RSSD): FED_FDIC_BANK_DATA.RSSDHCR rows=27836 filled=17072 distinct=8736 junk=0 ['4399177', '2062815']
+22:45:26   [47] FDIC OTS docket: FED_FDIC_BANK_DATA.DOCKET rows=27836 filled=27836 distinct=11818 junk=16004 ['1857', '1861']
+22:45:27   [48] FDIC SOD RSSDID: FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDID rows=2822977 filled=2822977 distinct=15544 junk=23 ['979375', '979375']
+22:45:28   [49] FDIC SOD RSSDHCR: FED_FDIC_SOD_BRANCH_DEPOSITS.RSSDHCR rows=2822977 filled=2822977 distinct=9729 junk=356651 ['1199705', '1114799']
+22:45:29   [50] FHLB member FHFA id: FED_FHFA_FHLB_MEMBERSHIP.FHFA_ID rows=6327 filled=6327 distinct=6327 junk=0 ['00007', '00041']
+22:45:30   [51] FHLB member FDIC cert: FED_FHFA_FHLB_MEMBERSHIP.CERT rows=6327 filled=3984 distinct=3984 junk=0 ['27619', '27643']
+22:45:30   [52] FHLB member Fed RSSD: FED_FHFA_FHLB_MEMBERSHIP.FED_ID rows=6327 filled=3984 distinct=3984 junk=0 ['0864471', '0207470']
+22:45:31   [53] FHLB member NCUA id: FED_FHFA_FHLB_MEMBERSHIP.NCUA_ID rows=6327 filled=1638 distinct=1638 junk=0 ['24563', '00619']
+22:45:31   [54] FHLB member NAIC id (insurers!): FED_FHFA_FHLB_MEMBERSHIP.NAIC_ID rows=6327 filled=619 distinct=618 junk=0 ['61689', '63088']
+22:45:32   [55] SBA lender FDIC #: FED_SBA_LOANS.BANKFDICNUMBER rows=2174502 filled=2174502 distinct=3950 junk=419917 ['628', '9846']
+22:45:33   [56] SBA lender NCUA #: FED_SBA_LOANS.BANKNCUANUMBER rows=2174502 filled=2174502 distinct=589 junk=2135220 ['24692', '68510']
+22:45:34   [57] SBA location id: FED_SBA_LOANS.LOCATIONID rows=2174502 filled=2174502 distinct=6965 junk=2249 ['188309', '188200']
+22:45:34   [58] SBA franchise code: FED_SBA_LOANS.FRANCHISECODE rows=2174502 filled=2174502 distinct=9381 junk=2000728 ['80979', '78760']
+22:45:35   [59] PPP originating lender location id: FED_SBA_PPP.ORIGINATINGLENDERLOCATIONID rows=968524 filled=968524 distinct=5037 junk=0 ['53803', '9551']
+22:45:37   [60] PPP servicing lender location id: FED_SBA_PPP.SERVICINGLENDERLOCATIONID rows=968524 filled=968524 distinct=4533 junk=0 ['90226', '48270']
+22:45:38   [61] HMDA legacy respondent id: FED_CFPB_HMDA_HISTORIC.RESPONDENT_ID rows=19136434 filled=19136434 distinct=6936 junk=0 ['26-2049351', '84-1496821']
+22:45:39   [62] HMDA legacy agency code: FED_CFPB_HMDA_HISTORIC.AGENCY_CODE rows=19136434 filled=19136434 distinct=6 junk=0 ['9', '7']
+22:45:39   [63] HMDA ARID 2017 (xref): FED_CFPB_HMDA_ARID2017_LEI_XREF.ARID_2017 rows=5399 filled=5399 distinct=5399 junk=0 ['110004', '110045']
+22:45:40   [64] HMDA LEI 2018 (xref): FED_CFPB_HMDA_ARID2017_LEI_XREF.LEI_2018 rows=5399 filled=5399 distinct=5399 junk=0 ['5493003EW6T31TGECO83', '549300XOTES5TCS8T794']
+22:45:41   [65] FHA originating mortgagee #: FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.ORIGINATING_MORTGAGEE_NUMBER rows=61647 filled=61647 distinct=962 junk=0 ['Not Available', 'Not Available']
+22:45:42   [66] FHA sponsor #: FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.SPONSOR_NUMBER rows=61647 filled=61647 distinct=148 junk=0 ['25574', '28095']
+22:45:43   [67] FHA non-profit #: FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT.NON_PROFIT_NUMBER rows=61647 filled=61647 distinct=79 junk=0 ['Not Avail', 'Not Avail']
+22:45:44   [68] HUD Section 8 contract #: FED_HUD_MF_SECTION8_CONTRACTS.CONTRACT_NUMBER rows=24309 filled=24309 distinct=24308 junk=0 ['NH36T791024', 'MO16T791008']
+22:45:44   [69] HUD Section 8 property id: FED_HUD_MF_SECTION8_CONTRACTS.PROPERTY_ID rows=24309 filled=24309 distinct=23610 junk=0 ['800000008', '800000012']
+22:45:45   [70] HUD assisted-housing code: FED_HUD_ASSISTED_HOUSING_PROJECTS.CODE rows=35601 filled=35601 distinct=29455 junk=0 ['800000082 176HD004', '800000083 17635019']
+22:45:46   [71] USDA RD borrower id: FED_USDA_RD_MFH_ACTIVE_PROJECTS.BORROWER_ID rows=13550 filled=13550 distinct=12397 junk=0 ['000123850', '000325444']
+22:45:46   [72] SEC series id: FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.SERIES_ID rows=43123 filled=43121 distinct=19340 junk=0 ['S000007561', 'S000089337']
+22:45:47   [73] SEC class id: FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CLASS_ID rows=43123 filled=43121 distinct=43121 junk=0 ['C000020626', 'C000255856']
+22:45:48   [74] SEC 1940-Act file # (series/class): FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.REPORTING_FILE_NUMBER rows=43123 filled=43122 distinct=2038 junk=0 ['002-33165', '333-282435']
+22:45:48   [75] SEC class ticker: FED_SEC_INVESTMENT_COMPANY_SERIES_CLASS.CLASS_TICKER rows=43123 filled=29077 distinct=28844 junk=0 ['FSTBX', 'FSBCX']
+22:45:49   [76] SEC MMF series id: FED_SEC_MONEY_MARKET_FUND_INFORMATION.SERIES_ID rows=1206 filled=1206 distinct=320 junk=0 ['S000000048', 'S000000112']
+22:45:50   [77] SEC MMF class id: FED_SEC_MONEY_MARKET_FUND_INFORMATION.CLASS_ID rows=1206 filled=1206 distinct=1048 junk=0 ['C000000083', 'C000000251']
+22:45:51   [78] FINRA CRD # (13F filers): FED_SEC_13F_FILERS.CRDNUMBER rows=344109 filled=47063 distinct=6229 junk=0 ['000125401', '000314622']
+22:45:52   [79] SEC file # (13F filers): FED_SEC_13F_FILERS.SECFILENUMBER rows=344109 filled=44233 distinct=5896 junk=0 ['801-126262', '801-79035']
+22:45:53   [80] 13F file #: FED_SEC_13F_FILERS.FORM13FFILENUMBER rows=344109 filled=344109 distinct=16341 junk=0 ['028-12039', '028-16141']
+22:45:54   [81] PCAOB firm id: FED_PCAOB_FORM_AP_FILINGS.FIRM_ID rows=155384 filled=155384 distinct=737 junk=0 ['248', '248']
+22:45:54   [82] PCAOB issuer id: FED_PCAOB_FORM_AP_FILINGS.ISSUER_ID rows=155384 filled=153390 distinct=33323 junk=0 ['611338', '649306']
+22:45:55   [83] PCAOB issuer CIK: FED_PCAOB_FORM_AP_FILINGS.ISSUER_CIK rows=155384 filled=154462 distinct=34112 junk=0 ['0001633408', '0001676020']
+22:45:56   [84] PCAOB engagement partner id: FED_PCAOB_FORM_AP_FILINGS.ENGAGEMENT_PARTNER_ID rows=155384 filled=155384 distinct=9305 junk=0 ['0024800018', '0024800018']
+22:45:56   [85] ISO MIC: INTL_ISO_MIC_REGISTRY.MIC rows=2864 filled=2864 distinct=2864 junk=0 ['DRSP', 'XCNQ']
+22:45:57   [86] ISO MIC operating MIC: INTL_ISO_MIC_REGISTRY.OPERATING_MIC rows=2864 filled=2864 distinct=1594 junk=0 ['DRSP', 'XCNQ']
+22:45:58   [87] ISIN (US SEC EDGAR table): FED_US_SEC_EDGAR.ISIN rows=48990 filled=48990 distinct=0 junk=48990 []
+22:45:59   [88] SEC insider file #: FED_SEC_INSIDER_REPORTINGOWNER.FILE_NUMBER rows=1934673 filled=1934665 distinct=10904 junk=0 ['001-36453', '001-31567']
+22:46:00   [89] OFAC SDN entity #: FED_OFAC_SDN.ENT_NUM rows=19115 filled=19115 distinct=19115 junk=0 ['36', '173']
+22:46:01   [90] CSL entity #: FED_CONSOLIDATED_SCREENING_LIST.ENTITY_NUMBER rows=25988 filled=25988 distinct=19637 junk=6255 ['15268', '30882']
+22:46:01   [91] CSL ids blob: FED_CONSOLIDATED_SCREENING_LIST.IDS rows=25988 filled=25988 distinct=15117 junk=7292 ['SWIFT/BIC CKLBCNBJ', 'Unified Social Credit Code (USCC) 9111000071093019X7 CN; Iss']
+22:46:02   [92] EU sanctions ref #: INTL_EU_SANCTIONS.EU_REF_NUM rows=42347 filled=42347 distinct=5994 junk=0 ['EU.27.28', 'EU.27.28']
+22:46:03   [93] EU sanctions id-doc #: INTL_EU_SANCTIONS.IDEN_NUMBER rows=42347 filled=42347 distinct=2603 junk=39729 ['34409/129 (other-Other identification number) (july 1997)', '488555 (passport-National passport) ']
+22:46:04   [94] UK OFSI group id: INTL_UK_SANCTIONS_LIST.OFSI_GROUP_ID rows=58336 filled=58336 distinct=5127 junk=3458 ['12703', '12703']
+22:46:05   [95] UK sanctions UN ref #: INTL_UK_SANCTIONS_LIST.UN_REFERENCE_NUMBER rows=58336 filled=58336 distinct=995 junk=37684 ['TAe.010', 'TAe.010']
+22:46:05   [96] UK sanctions business reg # (text): INTL_UK_SANCTIONS_LIST.BUSINESS_REGISTRATION_NUMBER_S rows=58336 filled=58336 distinct=719 junk=53246 ['(УНН/ИНН): 190950894 (Belarus),  7704734000/770301001 (Russi', '(УНН/ИНН): 190950894 (Belarus),  7704734000/770301001 (Russi']
+22:46:06   [97] UK sanctions IMO: INTL_UK_SANCTIONS_LIST.IMO_NUMBER rows=58336 filled=58336 distinct=663 junk=57448 ['IMO9562233', 'IMO9562233']
+22:46:07   [98] UK sanctions national id #: INTL_UK_SANCTIONS_LIST.NATIONAL_IDENTIFIER_NUMBER rows=58336 filled=58336 distinct=456 junk=51094 ['2132370', '812673']
+22:46:08   [99] UK sanctions passport #: INTL_UK_SANCTIONS_LIST.PASSPORT_NUMBER rows=58336 filled=58336 distinct=752 junk=47538 ['P04581926', 'P04581926']
+22:46:09   [100] UK sanctions HIN: INTL_UK_SANCTIONS_LIST.HULL_IDENTIFICATION_NUMBER_HIN rows=58336 filled=58336 distinct=0 junk=58336 []
+22:46:10   [101] OpenSanctions id: INTL_OPENSANCTIONS_DEFAULT.ID rows=1281846 filled=1281846 distinct=1281846 junk=0 ['NK-223BSVnvKHYB96adihNXXZ', 'NK-223CQDBzp8MRkdJMDiqXn3']
+22:46:10   [102] OpenSanctions identifiers blob: INTL_OPENSANCTIONS_DEFAULT.IDENTIFIERS rows=1281846 filled=1281846 distinct=712279 junk=554523 ['IMO9422964', '103919088;GQBPAV1TFF41;PW2USM6LNCJ9;PW2XZT68KVW9;PW3LMJ5YB3M']
+22:46:11   [103] GLEIF RA entity id (national co #): INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityEntityID rows=3382301 filled=3382301 distinct=3007097 junk=292544 ['024643941000', '24371']
+22:46:12   [104] GLEIF RA id: INTL_GLEIF.Entity.RegistrationAuthority.RegistrationAuthorityID rows=3382301 filled=3382301 distinct=941 junk=0 ['RA999999', 'RA000591']
+22:46:13   [105] GLEIF successor LEI: INTL_GLEIF.Entity.SuccessorEntity.1.SuccessorLEI rows=3382301 filled=3382301 distinct=27279 junk=3348120 ['2138009GT3GEHSQVRJ07', '2138001TD2MSZQT66F42']
+22:46:14   [106] GLEIF L2 start node LEI: INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_STARTNODE_NODEID rows=485285 filled=485285 distinct=301482 junk=0 ['54930039TBDYX8TFI926', '54930039TBDYX8TFI926']
+22:46:15   [107] GLEIF L2 end node LEI: INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_ENDNODE_NODEID rows=485285 filled=485285 distinct=77251 junk=0 ['5493001ZHNPAW2EPPX73', '5493002BI0S2ZQUY3437']
+22:46:16   [108] GLEIF L2 relationship type: INTL_GLEIF_RELATIONSHIPS.RELATIONSHIP_RELATIONSHIPTYPE rows=485285 filled=485285 distinct=6 junk=0 ['IS_FUND-MANAGED_BY', 'IS_SUBFUND_OF']
+22:46:17   [109] FARA registration #: FED_FARA_BULK.REGISTRATION_NUMBER rows=221900 filled=221900 distinct=7060 junk=0 ['7736', '7734']
+22:46:18   [110] IRS group exemption #: FED_IRS_BMF.C_GROUP rows=1974830 filled=1974830 distinct=3990 junk=0 ['0000', '0000']
+22:46:19   [111] IRS affiliation code: FED_IRS_BMF.AFFILIATION rows=1974830 filled=1974830 distinct=8 junk=5514 ['9', '9']
+22:46:20   [112] FMCSA USDOT #: FED_FMCSA_COMPANY_CENSUS.DOT_NUMBER rows=4493662 filled=4493662 distinct=4493662 junk=0 ['286031', '286032']
+22:46:21   [113] FMCSA MC docket 1: FED_FMCSA_COMPANY_CENSUS.DOCKET1 rows=4493662 filled=1788156 distinct=1744122 junk=0 ['629697', '629698']
+22:46:22   [114] FMCSA docket 1 prefix: FED_FMCSA_COMPANY_CENSUS.DOCKET1PREFIX rows=4493662 filled=1788161 distinct=3 junk=0 ['MC', 'MC']
+22:46:22   [115] FMCSA prior revoked USDOT #: FED_FMCSA_COMPANY_CENSUS.PRIOR_REVOKE_DOT_NUMBER rows=4493662 filled=642 distinct=557 junk=86 ['2886824', '1441415']
+22:46:24   [116] FMCSA DUNS: FED_FMCSA_COMPANY_CENSUS.DUN_BRADSTREET_NO rows=4493662 filled=4227391 distinct=372261 junk=3852069 ['164025280', '932263197']
+22:46:24   [117] FMCSA business org id: FED_FMCSA_COMPANY_CENSUS.BUSINESS_ORG_ID rows=4493662 filled=709178 distinct=3 junk=0 ['1', '3']
+22:46:25   [118] SAM DoDAAC: FED_SAM_ENTITY_PUBLIC.DODAAC rows=895429 filled=586 distinct=579 junk=0 ['DODW66QKZ', 'DODFF4803']
+22:46:26   [119] SAM exclusions SAM #: FED_SAM_EXCLUSIONS_FULL_R2.SAM_NUMBER rows=168328 filled=168328 distinct=168328 junk=0 ['9e881fc8-aec1-455f-a5c5-4a0b4b3a8d8c', 'daa98661-e34c-44f8-9520-be83b2e6259e']
+22:46:27   [120] SAM exclusions UEI: FED_SAM_EXCLUSIONS_FULL_R2.UNIQUE_ENTITY_ID rows=168328 filled=47686 distinct=38427 junk=0 ['FWEHSMM47RG8', 'FW7VFLDBZGK9']
+22:46:28   [121] SAM exclusions NPI: FED_SAM_EXCLUSIONS_FULL_R2.NPI rows=168328 filled=19238 distinct=4867 junk=0 ['0000000000', '0000000000']
+22:46:29   [122] SAM exclusions cross-reference: FED_SAM_EXCLUSIONS_FULL_R2.CROSS_REFERENCE rows=168328 filled=40852 distinct=28033 junk=0 ['(also Aaron Suleske)', "(also Young's Convalescent Service)"]
+22:46:30   [123] USCG vessel id: FED_USCG_VESSEL_DOCUMENTATION.VESSEL_ID rows=391684 filled=391684 distinct=391684 junk=0 ['385993', '1661881']
+22:46:31   [124] USCG party id (owner): FED_USCG_VESSEL_DOCUMENTATION.PARTY_ID rows=391684 filled=357513 distinct=301539 junk=0 ['2963399', '2299735']
+22:46:32   [125] USCG HIN: FED_USCG_VESSEL_DOCUMENTATION.HIN rows=391684 filled=120004 distinct=120004 junk=0 ['FMLT4107L021', 'SWT42035E020']
+22:46:33   [126] USCG hull #: FED_USCG_VESSEL_DOCUMENTATION.HULL_NUMBER rows=391684 filled=197765 distinct=178920 junk=10 ['SERF9651D303', 'BE0609A549C616']
+22:46:34   [127] OSHA ITA establishment id 2023: FED_OSHA_ITA_300A_SUMMARY_2023.ESTABLISHMENT_ID rows=394234 filled=394234 distinct=394231 junk=0 ['1065594', '1065052']
+22:46:35   [128] OSHA ITA establishment id 2024: FED_OSHA_ITA_300A_SUMMARY_2024.ESTABLISHMENT_ID rows=398620 filled=398620 distinct=398620 junk=0 ['283508', '388293']
+22:46:36   [129] OSHA ITA EIN 2024: FED_OSHA_ITA_300A_SUMMARY_2024.EIN rows=398620 filled=355360 distinct=114606 junk=2 ['460915223', '366103252']
+22:46:38   [130] OSHA inspections host est key: FED_DOL_OSHA_INSPECTIONS.HOST_EST_KEY rows=5611412 filled=3083533 distinct=1546481 junk=0 ['N043    000000641', 'N043    000000378']
+22:46:38   [131] OSHA inspections reporting id: FED_DOL_OSHA_INSPECTIONS.REPORTING_ID rows=5611412 filled=5611412 distinct=508 junk=0 ['0626000', '0626000']
+22:46:39   [132] OFLC prevailing-wage tracking #: FED_DOL_OFLC.PW_TRACKING_NUMBER_1 rows=664616 filled=664616 distinct=1694 junk=662479 ['P-100-19058-020768', 'P-100-18116-163657']
+22:46:40   [133] OLMS subsidiary (text): FED_DOL_OLMS.SUBSIDIARY rows=617710 filled=617708 distinct=21 junk=291016 ['F', 'F']
+22:46:41   [134] ICE detention facility code (codes): FED_ICE_DETENTION_FACILITY_CODES.DETENTION_FACILITY_CODE rows=1490 filled=1490 distinct=1490 junk=0 ['AAORDMD', 'ABIRJVA']
+22:46:42   [135] ICE detention facility code (stints): FED_ICE_DETENTION_STINTS.DETENTION_FACILITY_CODE rows=2617844 filled=2617844 distinct=707 junk=0 ['SLRDCAZ', 'PINEPLA']
+22:46:44   [136] ICE stint unique identifier (person): FED_ICE_DETENTION_STINTS.UNIQUE_IDENTIFIER rows=2617844 filled=2617844 distinct=1014866 junk=7341 ['51400fc34a4c6e8c305b79d909db3ae9defa3883', '75b22ed0ca288306e933db4e1bd9e5bb3d990547']
+22:46:45   [137] ICE stay id: FED_ICE_DETENTION_STINTS.STAY_ID rows=2617844 filled=2617844 distinct=1087417 junk=7341 ['33342b2832acf82179e0df53a43d957099d262e4_2004-12-05 22:30:00', 'de10c6a3d0027b9a7bf15e7ae0726e67f733bd81_2011-01-11 23:59:00']
+22:46:46   [138] MPV ORI agency id: XC_MAPPING_POLICE_VIOLENCE.ORI_AGENCY_IDENTIFIER_IF_AVAILABLE rows=15476 filled=15473 distinct=4878 junk=0 ['WI0130100', 'OKDI06200']
+22:46:47   [139] MPV WaPo id: XC_MAPPING_POLICE_VIOLENCE.WAPO_ID_IF_INCLUDED_IN_WAPO_DATABASE rows=15476 filled=10381 distinct=10381 junk=0 ['11287', '11285']
+22:46:47   [140] MPV fatal encounters id: XC_MAPPING_POLICE_VIOLENCE.FATAL_ENCOUNTERS_ID rows=15476 filled=9853 distinct=9851 junk=0 ['31492', '31497']
+22:46:48   [141] CL positions predecessor id: FED_COURTLISTENER_POSITIONS.PREDECESSOR_ID rows=51290 filled=148 distinct=139 junk=0 ['3544', '3174']
+22:46:49   [142] CL positions supervisor id: FED_COURTLISTENER_POSITIONS.SUPERVISOR_ID rows=51290 filled=160 distinct=130 junk=0 ['1250', '2905']
+22:46:49   [143] CL positions school id: FED_COURTLISTENER_POSITIONS.SCHOOL_ID rows=51290 filled=230 distinct=114 junk=0 ['2624', '6405']
+22:46:50   [144] CL courts parent court id: FED_COURTLISTENER_COURTS.PARENT_COURT_ID rows=3361 filled=2819 distinct=128 junk=0 ['moctapp', 'nysurct']
+22:46:51   [145] CL dockets parent docket id: FED_COURTLISTENER_DOCKETS.PARENT_DOCKET_ID rows=71677647 filled=0 distinct=0 junk=0 []
+22:46:52   [146] ECHR application #: INTL_HUDOC.APPNO rows=2000 filled=2000 distinct=739 junk=0 ['17201/23', '17201/23']
+22:46:53   [147] ECLI: INTL_HUDOC.ECLI rows=2000 filled=2000 distinct=747 junk=0 ['ECLI:CE:ECHR:2026:0616JUD001720123', 'ECLI:CE:ECHR:2026:0616JUD001720123']
+22:46:54   [148] FAA N-number: FED_FAA_AIRCRAFT_REGISTRY.N_NUMBER rows=315447 filled=315447 distinct=315447 junk=0 ['79SC ', '79SD ']
+22:46:54   [149] FAA Mode S code: FED_FAA_AIRCRAFT_REGISTRY.MODE_S_CODE rows=315447 filled=315447 distinct=315447 junk=0 ['52533477', '52533500']
+22:46:55   [150] FAA registry unique id: FED_FAA_AIRCRAFT_REGISTRY.UNIQUE_ID rows=315447 filled=315447 distinct=315447 junk=1 ['00311819', '00953312']
+22:46:56   [151] NTSB registration # (N-number): FED_NTSB_AVIATION_AIRCRAFT.REGIS_NO rows=31503 filled=31503 distinct=30260 junk=59 ['N530NA', 'N8037W']
+22:46:57   [152] NTSB operator cert #: FED_NTSB_AVIATION_AIRCRAFT.OPER_CERT_NUM rows=31503 filled=31503 distinct=740 junk=30365 ['R61A758X', 'USAA105A']
+22:46:58   [153] NTSB operator code: FED_NTSB_AVIATION_AIRCRAFT.OPER_CODE rows=31503 filled=31503 distinct=1123 junk=29518 ['S4EA', 'XVES']
+22:46:58   [154] NTSB departure airport id: FED_NTSB_AVIATION_AIRCRAFT.DPRT_APT_ID rows=31503 filled=31503 distinct=6881 junk=9694 ['O69 ', 'OQ3 ']
+22:46:59   [155] FRA accident #: FED_FRA_EQUIPMENT_ACCIDENTS.ACCIDENT_NUMBER rows=224941 filled=224941 distinct=174438 junk=0 ['101008', '0910004']
+22:47:00   [156] FRA parent railroad code (casualties): FED_FRA_CASUALTIES.REPORTING_PARENT_RAILROAD_CODE rows=1150788 filled=1150788 distinct=1091 junk=0 ['ATK', 'ATK']
+22:47:01   [157] FRA holding company (text): FED_FRA_CASUALTIES.REPORTING_RAILROAD_HOLDING_COMPANY rows=1150788 filled=1150788 distinct=50 junk=0 ['Union Pacific Railroad Company', 'Union Pacific Railroad Company']
+22:47:03   [158] AIS MMSI: FED_NOAA_AIS.MMSI rows=58106517 filled=58106517 distinct=22759 junk=7545 ['368219290', '367648550']
+22:47:04   [159] PHMSA operator id: FED_PHMSA_FLAGGED_INCIDENTS.PHMSA_OPERATOR_ID rows=2039 filled=2039 distinct=262 junk=0 ['31728', '13769']
+22:47:06   [160] CPSC NEISS case #: FED_CPSC_NEISS.CPSC_CASE_NUMBER rows=9794977 filled=9794974 distinct=9794970 junk=0 ['90101432', '90101434']
+22:47:07   [161] CFPB complaint id: FED_CFPB_COMPLAINTS.Complaint ID rows=17179788 filled=17179785 distinct=17168286 junk=11499 ['8910313', '8910307']
+22:47:08   [162] Subaward number: FED_USASPENDING_SUBAWARDS_FULL.SUBAWARD_NUMBER rows=4742460 filled=4742460 distinct=2135506 junk=1204 ['03790-001 2', 'P272992-1']
+22:47:09   [163] Subaward SAM report id: FED_USASPENDING_SUBAWARDS_FULL.SUBAWARD_SAM_REPORT_ID rows=4742460 filled=4742460 distinct=4742460 junk=0 ['AA426FE8-FCB8-11EF-8E2A-E7034F2D18CD', 'E5DA1125-BC7F-49A8-8C5A-9B0DEC2F1797']
+22:47:11   [164] Subaward prime FAIN: FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_FAIN rows=4742460 filled=4742460 distinct=168225 junk=1443687 ['H027A250076', '25E55EE000100']
+22:47:11   [165] Subaward prime parent PIID: FED_USASPENDING_SUBAWARDS_FULL.PRIME_AWARD_PARENT_PIID rows=4742460 filled=4742460 distinct=11061 junk=4074000 ['N6523620D8001', '75N91019D00024']
+22:47:12   [166] Subawardee UEI: FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_UEI rows=4742460 filled=4742460 distinct=220704 junk=0 ['KJ2QKVQM1VE7', 'T64FXXH7T8Q7']
+22:47:13   [167] Subawardee parent UEI: FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_PARENT_UEI rows=4742460 filled=4742460 distinct=74245 junk=2290888 ['KAC8RKFCXZ81', 'DT8KJHZXVJH5']
+22:47:14   [168] Subawardee DUNS: FED_USASPENDING_SUBAWARDS_FULL.SUBAWARDEE_DUNS rows=4742460 filled=4742460 distinct=163262 junk=324496 ['116012659', '196701002']
+22:47:16   [169] Contracts parent award PIID (20M copy): FED_USASPENDING_CONTRACTS_FULL.parent_award_id_piid rows=20000000 filled=20000000 distinct=386831 junk=6121030 ['V797P4090A', 'W9113M05A0002']
+22:47:19   [170] Contracts recipient parent UEI (R2): FED_USASPENDING_CONTRACTS_FULL_R2.RECIPIENT_PARENT_UEI rows=93153424 filled=93153424 distinct=563618 junk=54771 ['D5YGBJ26T1A8', 'DBQGN324ULK3']
+22:47:21   [171] Contracts recipient parent UEI (20M copy): FED_USASPENDING_CONTRACTS_FULL.recipient_parent_uei rows=20000000 filled=20000000 distinct=405720 junk=12242 ['DCS1AC7C9ZT9', 'GAK8HYWJHFM4']
+22:47:22   [172] Contracts recipient parent DUNS (20M copy): FED_USASPENDING_CONTRACTS_FULL.recipient_parent_duns rows=20000000 filled=20000000 distinct=332674 junk=6668392 ['152122982', '051010890']
+22:47:23   [173] Assistance recipient parent UEI: FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_uei rows=19902879 filled=19902879 distinct=53380 junk=15627616 ['NUDGYLBB4S99', 'F7BAGMPLN697']
+22:47:24   [174] Assistance recipient parent DUNS: FED_USASPENDING_ASSISTANCE_FULL.recipient_parent_duns rows=19902879 filled=19902879 distinct=36215 junk=16258880 ['073151011', '078396475']
+22:47:25   [175] Solicitation id (bulk sample): FED_USASPENDING_BULK.SOLICITATION_IDENTIFIER rows=50000 filled=50000 distinct=8007 junk=37811 ['FCIS-JB-980001-B', '30471PR250000007']
+22:47:26   [176] NIH org IPF code: FED_NIH_REPORTER.ORG_IPF_CODE rows=2122611 filled=0 distinct=0 junk=0 []
+22:47:27   [177] NIH PI profile ids: FED_NIH_REPORTER.PI_PROFILE_IDS rows=2122611 filled=2116867 distinct=262757 junk=1621 ['6572196', '2131801']
+22:47:27   [178] NIH org UEI: FED_NIH_REPORTER.ORG_UEI rows=2122611 filled=1982680 distinct=12050 junk=0 ['GY8NMUZQXVS7', 'HD1WMN6945W6']
+22:47:28   [179] NIH org DUNS: FED_NIH_REPORTER.ORG_DUNS rows=2122611 filled=2017778 distinct=15054 junk=0 ['800772139', '121911077']
+22:47:29   [180] NIH subproject id: FED_NIH_REPORTER.SUBPROJECT_ID rows=2122611 filled=380148 distinct=6864 junk=0 ['0002', '0001']
+22:47:30   [181] SBIR agency tracking #: FED_SBIR_STTR_AWARDS.AGENCY_TRACKING_NUMBER rows=219503 filled=219182 distinct=171228 junk=2 ['DE-AR0001963', 'DE-AR0001984']
+22:47:31   [182] SBIR contract #: FED_SBIR_STTR_AWARDS.CONTRACT rows=219503 filled=167388 distinct=156779 junk=1 ['DE-AR0001963', 'DE-AR0001984']
+22:47:31   [183] SBIR solicitation #: FED_SBIR_STTR_AWARDS.SOLICITATION_NUMBER rows=219503 filled=115091 distinct=1574 junk=0 ['DE-FOA-0002785', 'DE-FOA-0002785']
+22:47:32   [184] SBIR UEI: FED_SBIR_STTR_AWARDS.UEI rows=219503 filled=152800 distinct=17161 junk=0 ['QWLJC8MK86W5', 'HTMHV7AL9A86']
+22:47:32   [185] SBIR DUNS: FED_SBIR_STTR_AWARDS.DUNS rows=219503 filled=178867 distinct=21599 junk=4 ['080736386', '030817290']
+22:47:33   [186] NSF EIN (stub): FED_NSF_AWARDS.EIN rows=125 filled=125 distinct=0 junk=125 []
+22:47:34   [187] EIA FERC cogeneration docket: FED_EIA860_2_PLANT.FERC_COGENERATION_DOCKET_NUMBER rows=16132 filled=447 distinct=440 junk=0 ['93-36-000', '86-512-001']
+22:47:34   [188] EIA FERC small-power docket: FED_EIA860_2_PLANT.FERC_SMALL_POWER_PRODUCER_DOCKET_NUMBER rows=16132 filled=4734 distinct=4550 junk=0 ['98-53-000', '98-95-000']
+22:47:35   [189] EIA FERC EWG docket: FED_EIA860_2_PLANT.FERC_EXEMPT_WHOLESALE_GENERATOR_DOCKET_NUMBER rows=16132 filled=1520 distinct=1197 junk=0 ['98-69-000', '99-109-000']
+22:47:36   [190] EIA transmission owner id: FED_EIA860_2_PLANT.TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID rows=16132 filled=16132 distinct=1080 junk=123 ['63560', '195']
+22:47:36   [191] EIA ownership id: FED_EIA860_4_OWNER.OWNERSHIP_ID rows=5496 filled=5496 distinct=1945 junk=0 ['195', '12686']
+22:47:37   [192] Committee's candidate id: FED_FEC_BULK_COMMITTEES.FEC_CAND_ID rows=20007 filled=20007 distinct=6921 junk=12784 ['H6WA05023', 'H6CA24048']
+22:47:38   [193] Bill sponsor bioguide: FED_GOVINFO_BILLSTATUS.SPONSOR_BIOGUIDE rows=36465 filled=36465 distinct=632 junk=0 ['M000871', 'B001282']
+22:47:39   [194] Cosponsor bioguide: FED_GOVINFO_BILL_COSPONSORS.COSPONSOR_BIOGUIDE rows=367742 filled=367742 distinct=635 junk=0 ['L000569', 'D000628']
+22:47:39   [195] Treasury MTS parent id: FED_TREASURY_MTS_RECEIPTS.PARENT_ID rows=7490 filled=6402 distinct=1632 junk=0 ['12662456', '12662559']
+22:47:41   [196] NPPES parent org TIN (known masked): FED_CMS_NPPES.PARENT_ORGANIZATION_TIN rows=9606683 filled=9606683 distinct=1 junk=9450117 ['<UNAVAIL>', '<UNAVAIL>']
+22:47:41   [197] NPPES parent org LBN: FED_CMS_NPPES.PARENT_ORGANIZATION_LBN rows=9606683 filled=9606683 distinct=56304 junk=9450466 ['PATRICK J. WELCH, M.D. (A PROFESSIONAL MEDICAL CORPORATION)', 'FMM HOME CARE CORPORATION']
+22:47:42   [198] EPA crosswalk ultimate parent LEI: XC_EPA_CORPORATE_CROSSWALK.ULTIMATE_PARENT_LEI rows=5300149 filled=37640 distinct=1174 junk=0 ['5493001FVXBVS3EZVD12', '529900GB7KCA94ACC940']
+22:47:43   [199] EPA crosswalk parent CIK: XC_EPA_CORPORATE_CROSSWALK.PARENT_CIK rows=5300149 filled=119382 distinct=704 junk=0 ['821189', '773840']
+22:47:45   [200] EPA crosswalk parent UEI: XC_EPA_CORPORATE_CROSSWALK.PARENT_UEI rows=5300149 filled=427515 distinct=31685 junk=389581 ['SCLPDHTAPQ13', 'TGBKEJGKTXL8']
+22:47:45 A2. extras
+22:47:45   aqs_site_composite_distinct: [['20994']]
+22:47:45   gleif_l2_relationship_types: [['IS_FUND-MANAGED_BY', 'ACTIVE', '149428'], ['IS_ULTIMATELY_CONSOLIDATED_BY', 'ACTIVE', '132558'], ['IS_DIRECTLY_CONSOLIDATED_BY', 'ACTIVE', '126406'], ['IS_SUBFUND_OF', 'ACTIVE', '73179']]
+22:47:45   gleif_ra_top: [['RA999999', '268353'], ['RA000407', '235776'], ['RA000463', '191967'], ['RA000394', '183002']]
+22:47:46   gleif_us_ra_count: [['US-DE', '141098', '132901'], ['US', '25718', '21932'], ['US-CA', '20453', '15910'], ['US-NY', '16672', '13613']]
+22:47:46   fmcsa_docket_prefix: [['None', '2705501', '0'], ['MC', '1735821', '1718406'], ['FF', '28217', '27749'], ['MX', '24123', '24082']]
+22:47:47   fhlb_member_types: [['Commercial Bank', 'State', '2843', '0'], ['Credit Union', 'Federal', '850', '0'], ['Credit Union', 'State', '788', '0'], ['Insurance Company', 'None', '622', '619']]
+22:47:48   hmda_historic_agency_x_respondent: [['7', '9774792', '1018'], ['9', '4682992', '141'], ['3', '1813859', '2414'], ['5', '1313688', '2050']]
+22:47:48   sam_exclusion_classification: [['Individual', '133131', '13502', '19026', '0'], ['Special Entity Designation', '25584', '25579', '0', '0'], ['Firm', '8291', '7694', '212', '435'], ['Vessel', '1322', '911', '0', '0']]
+22:47:48   ndc_dir_marketing_category: [['ANDA', '50567', '9642'], ['OTC MONOGRAPH DRUG', '35872', '99'], ['UNAPPROVED HOMEOPATHIC', '13707', '1'], ['NDA', '7425', '2561']]
+22:47:49   ice_stints_person_reuse: [['2617844', '1014867', '1087418']]
+22:47:49   opensanctions_schema: [['Person', '1075115'], ['Company', '83555'], ['LegalEntity', '66760'], ['Security', '20472']]
+22:47:50   opensanctions_identifier_kinds: [['Q', '364261'], ['None', '266028'], ['B', '8587'], ['IMO', '6632']]
+22:47:50   fdic_docket_nonzero: [['27836', '11832']]
+22:47:50   cl_positions_types_with_predecessor: [['None', '21224', '2'], ['jud', '17326', '28'], ['prac', '3677', '0'], ['pres-jud', '1975', '0']]
+22:47:50 B/C. 83 overlap / resolution tests
+22:47:52   [1] NADAC NDC -> NDC directory (9-digit labeler+product): 17958/21866 = 82.1%  (right 114649)
+22:47:53   [2] GUDID DI -> GUDID identifiers DI: 5182695/5182695 = 100.0%  (right 5182695)
+22:47:55   [3] GUDID labeler DUNS -> contracts recipient DUNS (20M): 2096/12272 = 17.1%  (right 357876)
+22:47:56   [4] GUDID labeler DUNS -> FMCSA DUNS: 106/12272 = 0.9%  (right 372261)
+22:47:57   [5] GUDID labeler DUNS -> NIH org DUNS: 403/12272 = 3.3%  (right 15052)
+22:47:58   [6] HRSA site NPI -> NPPES NPI: 6003/6048 = 99.3%  (right 9606683)
+22:47:58   [7] HRSA BHCMIS (sites) -> BHCMIS (center info): 1344/1525 = 88.1%  (right 1356)
+22:47:59   [8] Hospice associate id -> PECOS PAC id: 5003/5372 = 93.1%  (right 2456135)
+22:48:00   [9] SNF affiliation entity id -> PECOS PAC id: 0/635 = 0.0%  (right 2456135)
+22:48:00   [10] POS cross-ref provider # -> POS CCN: 5405/5557 = 97.3%  (right 44429)
+22:48:01   [11] Nursing-home chain id -> 411 chain id: 576/635 = 90.7%  (right 617)
+22:48:02   [12] NRC seq # incidents -> reports: 116662/1029020 = 11.3%  (right 116662)
+22:48:03   [13] TRI parent DUNS -> contracts recipient DUNS (20M): 2103/10733 = 19.6%  (right 357876)
+22:48:04   [14] TRI parent DUNS -> FMCSA DUNS: 488/10733 = 4.5%  (right 372261)
+22:48:05   [15] TRI parent DUNS -> GUDID labeler DUNS: 114/10733 = 1.1%  (right 12272)
+22:48:05   [16] TRI parent DUNS -> subaward prime DUNS: 36/10733 = 0.3%  (right 4101)
+22:48:06   [17] TRI EPA registry id -> TRI FRS_ID (same table): 0/64728 = 0.0%  (right 0)
+22:48:07   [18] FDIC PARCERT -> FDIC CERT: 49/49 = 100.0%  (right 27836)
+22:48:08   [19] FDIC ULTCERT -> FDIC CERT: 5191/5199 = 99.8%  (right 27836)
+22:48:09   [20] FDIC NEWCERT -> FDIC CERT: 7942/7952 = 99.9%  (right 27836)
+22:48:09   [21] FDIC RSSDHCR -> FDIC FED_RSSD (bank RSSDs): 2/8736 = 0.0%  (right 26577)
+22:48:10   [22] FDIC RSSDHCR -> SOD RSSDHCR: 7243/8736 = 82.9%  (right 9728)
+22:48:11   [23] FHLB CERT -> FDIC CERT: 3983/3984 = 100.0%  (right 27836)
+22:48:12   [24] FHLB FED_ID -> FDIC FED_RSSD: 3976/3984 = 99.8%  (right 26577)
+22:48:13   [25] SBA lender FDIC # -> FDIC CERT: 3938/3950 = 99.7%  (right 27836)
+22:48:15   [26] HMDA legacy respondent id -> ARID 2017 xref: 0/6936 = 0.0%  (right 5399)
+22:48:15   [27] HMDA xref LEI 2018 -> GLEIF LEI: 5397/5399 = 100.0%  (right 3382301)
+22:48:16   [28] HMDA xref LEI 2018 -> HMDA LEI: 462/5399 = 8.6%  (right 538)
+22:48:17   [29] FHA sponsor # -> FHA originating mortgagee #: 120/147 = 81.6%  (right 961)
+22:48:18   [30] SEC MMF series id -> series/class table: 314/320 = 98.1%  (right 19340)
+22:48:19   [31] SEC series/class CIK -> insider issuer CIK: 15/2046 = 0.7%  (right 10401)
+22:48:19   [32] PCAOB issuer CIK -> insider issuer CIK: 9844/28775 = 34.2%  (right 10401)
+22:48:20   [33] PCAOB issuer CIK -> DERA sub CIK 2025Q4: 5774/28775 = 20.1%  (right 5786)
+22:48:21   [34] Insider reporting-owner CIK -> insider issuer CIK: 717/138006 = 0.5%  (right 10401)
+22:48:22   [35] MIC registry LEI -> GLEIF LEI: 1059/1061 = 99.8%  (right 3382301)
+22:48:23   [36] SEC class ticker -> company-tickers ticker: 7/28844 = 0.0%  (right 10414)
+22:48:24   [37] CSL entity # -> OFAC SDN ent #: 18985/19637 = 96.7%  (right 19114)
+22:48:27   [38] UK sanctions IMO -> OFAC SDN IMO: 291/663 = 43.9%  (right 2030)
+22:48:27   [39] UK sanctions IMO -> USCG IMO: 0/663 = 0.0%  (right 6304)
+22:48:31   [40] UK sanctions IMO -> AIS IMO: 9/663 = 1.4%  (right 6934)
+22:48:31   [41] UK sanctions HIN -> USCG HIN: 0/0 = None%  (right 120004)
+22:48:35   [42] OFAC SDN IMO -> AIS IMO: 4/2030 = 0.2%  (right 6934)
+22:48:36   [43] GLEIF successor LEI -> GLEIF LEI: 27279/27279 = 100.0%  (right 3382301)
+22:48:37   [44] GLEIF L2 start node -> GLEIF LEI: 299509/301482 = 99.3%  (right 3382301)
+22:48:38   [45] GLEIF L2 end node -> GLEIF LEI: 77108/77251 = 99.8%  (right 3382301)
+22:48:39   [46] GLEIF RA entity id (UK RA000585) -> UK Companies House #: 94652/110426 = 85.7%  (right 5734779)
+22:48:40   [47] EPA crosswalk ultimate parent LEI -> GLEIF LEI: 1174/1174 = 100.0%  (right 3382301)
+22:48:41   [48] EPA crosswalk parent CIK -> insider issuer CIK: 662/704 = 94.0%  (right 10401)
+22:48:41   [49] EPA crosswalk parent UEI -> SAM UEI: 17373/31685 = 54.8%  (right 887310)
+22:48:42   [50] FMCSA prior revoked USDOT -> FMCSA USDOT: 555/556 = 99.8%  (right 4493662)
+22:48:43   [51] SAM exclusions UEI -> SAM entity UEI: 104/38427 = 0.3%  (right 887310)
+22:48:44   [52] SAM exclusions NPI -> NPPES NPI: 4854/4867 = 99.7%  (right 9606683)
+22:48:46   [53] SAM exclusions NPI -> LEIE NPI: 4688/4867 = 96.3%  (right 8661)
+22:48:47   [54] SAM DoDAAC -> contracts awarding office code (20M copy): 0/579 = 0.0%  (right 7486)
+22:48:48   [55] OSHA ITA establishment id 2024 -> 2023: 219860/398620 = 55.2%  (right 394231)
+22:48:49   [56] OSHA ITA EIN 2024 -> IRS BMF EIN: 6414/114605 = 5.6%  (right 1974830)
+22:48:50   [57] OSHA ITA EIN 2024 -> Form 5500 sponsor EIN: 31883/114605 = 27.8%  (right 466446)
+22:48:50   [58] Form 5500 sponsor EIN -> IRS BMF EIN: 0/0 = None%  (right 1974830)
+22:48:51   [59] ICE stints facility code -> ICE facility codes: 705/707 = 99.7%  (right 1490)
+22:48:52   [60] CL positions predecessor -> CL people id: 139/139 = 100.0%  (right 16191)
+22:48:52   [61] CL positions supervisor -> CL people id: 130/130 = 100.0%  (right 16191)
+22:48:52   [62] CL courts parent court -> CL courts id: 128/128 = 100.0%  (right 3361)
+22:48:57   [63] CL dockets parent docket -> CL dockets id: 0/0 = None%  (right 71677647)
+22:48:58   [64] NTSB N-number -> FAA N-number: 13528/30249 = 44.7%  (right 315447)
+22:48:59   [65] FRA parent railroad code -> FRA reporting railroad code: 770/1091 = 70.6%  (right 1030)
+22:49:01   [66] Subaward prime FAIN -> assistance FAIN: 94073/168225 = 55.9%  (right 10319582)
+22:49:02   [67] Subawardee UEI -> SAM UEI: 148253/220704 = 67.2%  (right 887310)
+22:49:03   [68] Subawardee parent UEI -> SAM UEI: 50415/74245 = 67.9%  (right 887310)
+22:49:11   [69] Contracts recipient parent UEI (R2) -> SAM UEI: 178303/563618 = 31.6%  (right 887310)
+22:49:12   [70] Assistance recipient parent UEI -> SAM UEI: 39436/53380 = 73.9%  (right 887310)
+22:49:14   [71] Assistance recipient UEI -> SAM UEI: 123076/223721 = 55.0%  (right 887310)
+22:49:15   [72] Assistance recipient parent DUNS -> FMCSA DUNS: 633/36215 = 1.7%  (right 372261)
+22:49:24   [73] Contracts parent PIID (20M) -> contracts PIID (R2): 775/386828 = 0.2%  (right 63135848)
+22:49:25   [74] NIH org UEI -> SAM UEI: 9643/12050 = 80.0%  (right 887310)
+22:49:26   [75] NIH org DUNS -> FMCSA DUNS: 59/15052 = 0.4%  (right 372261)
+22:49:26   [76] SBIR UEI -> SAM UEI: 12144/17161 = 70.8%  (right 887310)
+22:49:33   [77] SBIR contract # -> contracts PIID (R2): 14530/156776 = 9.3%  (right 63135848)
+22:49:34   [78] SBIR agency tracking # -> NIH project #: 16831/171223 = 9.8%  (right 439228)
+22:49:35   [79] EIA transmission owner id -> EIA utility id: 553/1080 = 51.2%  (right 6643)
+22:49:36   [80] EIA ownership id -> EIA utility id: 305/1945 = 15.7%  (right 6643)
+22:49:36   [81] SKIP Committee's candidate id -> FEC candidates: missing ['FED_FEC_BULK_CANDIDATES.FEC_CAND_ID']
+22:49:36   [82] Bill sponsor bioguide -> VoteView bioguide: 632/632 = 100.0%  (right 12584)
+22:49:37   [83] Treasury MTS parent id -> classification id: 1632/1632 = 100.0%  (right 7490)
+22:49:37 DONE in 298s -> C:\Code\Ripple_v6\reports\recon\pass2\pass2_live_check_2026-08-29.json
