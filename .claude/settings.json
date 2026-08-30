@@ -13,6 +13,9 @@
       "Bash(git show*)",
       "Bash(git branch --list*)",
       "Bash(python scripts/price_it.py *)",
+      "Bash(python scripts/doors.py*)",
+      "Bash(python scripts/drift_audit.py*)",
+      "Bash(bash .claude/hooks/test-gate.sh*)",
       "Read(//c/Code/**)",
       "Read(//c//**)",
       "Read(//c/Users/wroge/**)",
@@ -25,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/greenlight.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/chris-words.sh",
             "timeout": 10
           }
         ]
@@ -64,6 +67,16 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/warehouse-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/drawer-guard.sh",
+            "timeout": 10
           }
         ]
       },

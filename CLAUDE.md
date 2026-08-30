@@ -50,6 +50,13 @@ During long jobs: a short heartbeat — still running, roughly how far.
 Close: short free-form wrap — done, not done, waiting on Chris — plus a rough cost.
 Save on purpose only two things: Chris's corrections, and data traps (columns that look real but aren't).
 
+## Chris's words (the machine listens for these)
+- `/riff` `/build` — set the mode. `/skeptic` — fresh-context pass on the last claim. `/wrap` — close the session.
+- `/price <pattern>` — what it cost last time. `/doors` — which warehouse door is broken. `/drift` — how often rules broke lately.
+- `/correction <text>` — save a correction; it's injected into every prompt from then on (`.claude/corrections.md`).
+- `greenlight spine|rebuild|destroy|spend` on its own line — opens that gate for the session, only if a price was shown in the last hour.
+- `hooks off` / `hooks on` — kill switch for the command hooks when they misbehave. The git guard never turns off.
+
 ## Mistakes
 A separate reader checks each message after it goes out, for nonsense, wrong, self-contradiction, dense, unverified "done."
 If it flags, the next message opens with "reader flagged the last one: X" and the fix. No loop.

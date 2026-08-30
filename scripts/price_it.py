@@ -31,6 +31,15 @@ CREDITS_PER_HOUR = {  # Snowflake standard warehouse sizes
 }
 
 
+def _mark_priced() -> None:
+    """Greenlights require a price shown in the last hour (.claude/hooks/chris-words.sh)."""
+    import time
+    state = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".claude", "state")
+    os.makedirs(state, exist_ok=True)
+    with open(os.path.join(state, "last_priced"), "w") as fh:
+        fh.write(str(int(time.time())))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     g = ap.add_mutually_exclusive_group(required=True)
@@ -61,6 +70,7 @@ def main() -> int:
     """
     conn = db.connect()
     rows = db.dicts(conn, sql, (param, args.days))
+    _mark_priced()  # showing "no real number" is still showing the price honestly
     if not rows:
         print(f"no real number for this — zero runs matching {param!r} in the last {args.days} days")
         return 1

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Gate on hard-to-undo warehouse work and spine commands (CLAUDE.md — Don't do damage).
 # Blocks unless a session greenlight marker exists for the matching kind.
+[ -f "$CLAUDE_PROJECT_DIR/.claude/state/hooks.off" ] && exit 0
 INPUT=$(cat)
 SESSION=$(python -c "import json,sys; print(json.load(sys.stdin).get('session_id',''))" <<< "$INPUT")
 STATE="$CLAUDE_PROJECT_DIR/.claude/state"
