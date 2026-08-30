@@ -198,6 +198,29 @@ The 08-17 batch rejected "FDIC LEI" as empty. Today: FDIC bank data LEI = 8.1% f
 (GLEIF-shaped values). Not empty — thin. Worth a second look before it stays rejected.
 
 
+## H. Landed 2026-08-29 (this session) — the "no-brainer" acquisitions, with measured overlap
+
+Loader: scripts/nobrainer_bulk_load_2026_08_29.py. All raw VARCHAR, provenance stamps, quality gate PASS.
+
+| New table | Rows | Key columns (distinct) | Measured connection to what we already hold |
+|---|---:|---|---|
+| SAM Entity Management public extract (Aug 2026) | 895,429 | UEI 887,310; CAGE 794,845; **legacy DUNS 0 (column empty — SAM stopped publishing DUNS in the public file)** | contracts CAGE 85,857 / 92,530 found (92.8%); contracts UEI 85,832 / 92,833 found (92.5%) |
+| USCG Merchant Vessels (Dec 2025 release, via Wayback) | 391,684 | official # 391,676; IMO 6,304; call sign 75,450 | AIS IMO 2,313 / 6,934 found (33%); AIS call sign 5,759 / 17,437 (33%); OFAC vessel IMOs 0 / 2,030 (sanctioned ships are foreign-flagged — expected) |
+| FMCSA Company Census | 4,493,662 | USDOT 4,493,662; DUNS non-zero 372,260 | no DUNS partner in-house (SAM public DUNS empty); name/address only for now |
+| EPA CAMPD facility attributes 1995–2025 | 128,525 unit-years | facility id (ORISPL) 1,959 | 1,587 / 1,959 match EIA plant codes (81%); EIA side: 1,587 of 16,132 plants are CAMPD-monitored (fossil units only — expected) |
+| EPA CAMPD daily unit emissions 2015–2025 | 16,513,971 | facility id + unit id + date | joins EIA via facility id as above |
+
+### H1. What this did and did not fix
+
+- CAGE↔UEI crosswalk: DONE — 795K CAGE codes with their UEI on one row; 93% of contract CAGEs resolve.
+- DUNS orphan problem (478K historic grant recipients): NOT fixed — the public SAM extract no longer carries DUNS.
+  Paths that still exist: the USAspending assistance table's own UEI column for post-2022 rows; the FOUO SAM extract
+  (needs a role); or the historical SAM monthly files from before April 2022 (Wayback may hold them).
+- Ship axis: partially revived — one third of AIS vessels (by IMO and by call sign) now resolve to a documented US vessel
+  with owner name/address. Sanctioned vessels stay dark (foreign flag).
+- Trucking: new domain landed; connects by place/time and by name until a DUNS/UEI partner exists.
+- Power plants: emissions now attach to 81% of CAMPD plants via EIA plant id.
+
 ## PARKED for a later pass — TIME and GEOGRAPHY links
 
 Time: 1,275 verified date columns / 453 tables (reports/time_index/DATE_COLUMNS_ALL.md).

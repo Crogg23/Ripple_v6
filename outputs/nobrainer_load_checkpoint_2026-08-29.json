@@ -1,0 +1,2399 @@
+{
+ "campd_facility": {
+  "1995": {
+   "rows": 1947,
+   "sha": "73ec87b9f55f4b54db589a5b22b6cf3d3bebf4a8e7f93119b5d400994a3ab8b2"
+  },
+  "1996": {
+   "rows": 2255,
+   "sha": "52e549452ab58dd95e328a5094e6a7ceb655f48f6d64ea132f106730a7df8127"
+  },
+  "1997": {
+   "rows": 2271,
+   "sha": "6e36027144ddcf4a9e98d4a4db735b7e7e0f0266c6de2b762be4966d6b3999fe"
+  },
+  "1998": {
+   "rows": 2405,
+   "sha": "abe047f82b2f64df7dcbd343c641e4fb7a7564ddc356f83d5e068cbe561e0f9f"
+  },
+  "1999": {
+   "rows": 2982,
+   "sha": "588cdf0985b09f2aa73528ef3fdcf37230f5bfd2204ad54724e6a6888edd3b00"
+  },
+  "2000": {
+   "rows": 3204,
+   "sha": "921c282a44ed3f9dd4a465d477e6bb9e463c9b8fafe5033c14edba67918b9b01"
+  },
+  "2001": {
+   "rows": 3656,
+   "sha": "045d24dbee5d4108489cca681960b9ee52cb97138e2acab78fc75e8bf82379b7"
+  },
+  "2002": {
+   "rows": 4169,
+   "sha": "19ee8a382fbfcbeba08711c9766b8fea47103f0e89bea33ea94c2c995ae635a5"
+  },
+  "2003": {
+   "rows": 4644,
+   "sha": "ce8f9d2ac2851ad8090576bfc6b26d949bac797aaec39dbc5418e5d9403c008d"
+  },
+  "2004": {
+   "rows": 4855,
+   "sha": "d16ed114e801fce70774c979e55e1cd03676f917e27e7455c73df3254a007317"
+  },
+  "2005": {
+   "rows": 4799,
+   "sha": "4effbfeaf711f68f775dd970c669f22eac2357a029867ce3e1068f7059de13f3"
+  },
+  "2006": {
+   "rows": 4807,
+   "sha": "c2688fd99d6355dc0fb326b2fc5fccc41dcec0c2cf12d3a400a722b5c0727070"
+  },
+  "2007": {
+   "rows": 4617,
+   "sha": "f5426c3230ce17224db278185a7ed46b31f62a9afb84ff6247820c8b6f5d6273"
+  },
+  "2008": {
+   "rows": 4965,
+   "sha": "c5940e45aec4fa855b6f76997994b0139d56bd9bf7f5422a0d62193bdf043deb"
+  },
+  "2009": {
+   "rows": 4868,
+   "sha": "8f49fb1b8d02a1f3ff8059e765fb36d31257d24d81b47f98f2ec63ed446659b1"
+  },
+  "2010": {
+   "rows": 4854,
+   "sha": "faaeb320ce22de20a75fb9afddde5d6d474b29a8cbeee8dbd316651e6566dbf4"
+  },
+  "2011": {
+   "rows": 4866,
+   "sha": "ae86981964e289de1282847d947adbb8e44d746228a653f836402c49e6e9bc9f"
+  },
+  "2012": {
+   "rows": 4888,
+   "sha": "e25c07183bcddfc262d0563d77b38c96c7c6703bce3bc6922f799ea2ca14d945"
+  },
+  "2013": {
+   "rows": 4828,
+   "sha": "d7e42f37665df4ef6355751ac28edf857bdcc8fa36f3359ece1fbbb34127a0c2"
+  },
+  "2014": {
+   "rows": 4760,
+   "sha": "7cf5d0bea566353c37e6d1024ff2bb73571729ff1bbe2ffdf5fc0d7ff9ca0db6"
+  },
+  "2015": {
+   "rows": 4773,
+   "sha": "aa23d42cde7e67c5163047b1c20a6f1655c3b6bb4781e01db23b495b23246c51"
+  },
+  "2016": {
+   "rows": 4636,
+   "sha": "d8182aebe2a0fe6adc65f1550f5e43184ca9021de5678b83bcb8f2dd5f01a12d"
+  },
+  "2017": {
+   "rows": 4470,
+   "sha": "51e2128e26457acb3723cc09f50a52f82634d5dfe695983f6e607403bc6fb679"
+  },
+  "2018": {
+   "rows": 4469,
+   "sha": "ed2f0fce6f09012f7f2dc8299bbe5e0ea7d47b94468d6598e928f80a803afbb5"
+  },
+  "2019": {
+   "rows": 4401,
+   "sha": "d6b074ba7e5173d4c3318b8178b85b055885b11c1c186c15180dc8af698d375d"
+  },
+  "2020": {
+   "rows": 4342,
+   "sha": "a01207414a475b5841d5d63ac6934d5cd23d780286cd29c7524c2434646adff3"
+  },
+  "2021": {
+   "rows": 4266,
+   "sha": "fb9b4342ede6ca6d79e92b854cc378a8b6eea4794b3898e2ff21142524ee3884"
+  },
+  "2022": {
+   "rows": 4211,
+   "sha": "1350b90f4d0713f13b3cae7176da990d6f1c780d6560d5c0551630cf4f54616f"
+  },
+  "2023": {
+   "rows": 4166,
+   "sha": "dc7b3afdff4b3242b91ef221ffae24a0aa25114ffcde238ae1f0df04be17e51f"
+  },
+  "2024": {
+   "rows": 4093,
+   "sha": "f7144faa0dea6cdaa310ccf2c72ae5b37a56652f624950076ecad19607d96e2b"
+  },
+  "2025": {
+   "rows": 4058,
+   "sha": "378aa6b32b1ffa6c37a79d7eb312b2e9d7a7c7ae4a5aa4fda73036534ecc5ca0"
+  }
+ },
+ "campd_daily": {
+  "2015-al": {
+   "rows": 39879,
+   "sha": "1addc0463649e90e8ee0d58272fcdc3e09957c45e7532bd05e59db80ea6c6878"
+  },
+  "2015-ak": {
+   "missing": true
+  },
+  "2015-az": {
+   "rows": 32393,
+   "sha": "3aa0de5f9828d832b2d63493f97e2bd0dcdc8ffed725ca290ca84c8c726e3fa6"
+  },
+  "2015-ar": {
+   "rows": 14965,
+   "sha": "a46a3aa30502b6e94574db2d7c61827c35d6e30522587ba9f55386f9d350305b"
+  },
+  "2015-ca": {
+   "rows": 89603,
+   "sha": "a72fec897e4cce40fcb0cd3f877c67b4815e1d0642352197ab7e9eb6f09d0a30"
+  },
+  "2015-co": {
+   "rows": 26648,
+   "sha": "bac5c27f276bc55d279736cccea7ce6a8aa9aa62401385ef7a693fcb31dd6108"
+  },
+  "2015-ct": {
+   "rows": 21179,
+   "sha": "7d4bfd837410470af34075d8525f27ee2b7b9d14b730c4355429d6a155309323"
+  },
+  "2015-de": {
+   "rows": 8217,
+   "sha": "07f47d0cd9c474def853950f1c79705ca065e3b96921b5b7501d39b321981bb8"
+  },
+  "2015-dc": {
+   "rows": 1095,
+   "sha": "eb3f1fd81d8c3555ffc5eaa3e669f7774cc789817213f2d7aed2083e5af9df54"
+  },
+  "2015-fl": {
+   "rows": 108789,
+   "sha": "2aa9b36b2ab766cd952a6c039490f124a9df4134559b39745be729dd519ac8d7"
+  },
+  "2015-ga": {
+   "rows": 56925,
+   "sha": "14292e60047002e68ea248f396a18fc02278b31610aee4fc37abf0f9a37b0faf"
+  },
+  "2015-hi": {
+   "missing": true
+  },
+  "2015-id": {
+   "rows": 2920,
+   "sha": "43f43cf5760bbb2bbb246211b571ff7a486d1d07daaa32bb3a6f8db8cce6de1f"
+  },
+  "2015-il": {
+   "rows": 87061,
+   "sha": "4e1a61f7eba4a2e6dbfdf076a6a7cda697a6b8f6762187c47312ceed4f2ee0a3"
+  },
+  "2015-in": {
+   "rows": 53569,
+   "sha": "051830857197ec1a5935f05a0dccd6baffb04d760fd6cd7daf34587bd1ed5d24"
+  },
+  "2015-ia": {
+   "rows": 21170,
+   "sha": "4f5ab17711246b3215615f388a4ac0d10a6b7a284e284aa275a8135458d62b34"
+  },
+  "2015-ks": {
+   "rows": 20621,
+   "sha": "f9690580133f75759a4430c5b9e164ff55a1a29af882cba0aeb02e87a9d33768"
+  },
+  "2015-ky": {
+   "rows": 36771,
+   "sha": "86ed18030adc0a29fb48f2acb474534949cea21226f518fb78f73bbc165146e8"
+  },
+  "2015-la": {
+   "rows": 31752,
+   "sha": "aad370d11552956951eb214dc0566df4e3c95465259ecef353fc4acac33541c6"
+  },
+  "2015-me": {
+   "rows": 4745,
+   "sha": "5125ef54c4a4de0f50ab8efa7dc03773b5f36a1451666eb8858cef6e43eba030"
+  },
+  "2015-md": {
+   "rows": 17704,
+   "sha": "74e0f0736d9fe869e2e920359af6037ff3d725f4d4d31cefdb9a120ef838c057"
+  },
+  "2015-ma": {
+   "rows": 26556,
+   "sha": "59e6e2e8b3a4c3fb4822de83dd71f3054677fb55be711e3527f1c03ae7eec3cc"
+  },
+  "2015-mi": {
+   "rows": 52839,
+   "sha": "79296dcf797953bba33c881c9aa7103d93326da0b40b155666bfefdd8adc5468"
+  },
+  "2015-mn": {
+   "rows": 25182,
+   "sha": "0c1a253b93fc673c1ac25a8a6cdbeebdcd29c4be976395c5521c1b70928e5f1d"
+  },
+  "2015-ms": {
+   "rows": 24817,
+   "sha": "f60bb79c243d81bef8b494a64a35580d6d6e20bf4cca2535f317f9ba5c38df24"
+  },
+  "2015-mo": {
+   "rows": 44710,
+   "sha": "7467b27921226465a78d78512319fd21c9510af2975b2274e45d104756bd0f45"
+  },
+  "2015-mt": {
+   "rows": 5472,
+   "sha": "9c0675bc6dd0e032d1817827ad17dd0b98cb45c3e6120d2acfefcfc7a4a2a61f"
+  },
+  "2015-ne": {
+   "rows": 16790,
+   "sha": "bd91b4334d8eac967b9197b6e2853fa3ee7f148d09fe253889eb6d3ac32bd86b"
+  },
+  "2015-nv": {
+   "rows": 23090,
+   "sha": "94161e51f72c0bb8f610567f8ffe2f00af5877195a82c24d8f195e3ecbdc114f"
+  },
+  "2015-nh": {
+   "rows": 4930,
+   "sha": "b30e0743cf28d9558e691ceb036dffb1107fcd7dda964a553f736c84dddb6006"
+  },
+  "2015-nj": {
+   "rows": 46669,
+   "sha": "7ba53f1cffe50d73d53c0328ca24f30661656fc0969ebaafba630debf370544f"
+  },
+  "2015-nm": {
+   "rows": 12775,
+   "sha": "55bba591f0e79bebe586bb41d561864fd2fab8744d677d566f51868d0cad49bd"
+  },
+  "2015-ny": {
+   "rows": 101328,
+   "sha": "9c78ffbcdebb8d8a0414ea67c77067e6698d690db17ed4b61f00ff5661d7e23e"
+  },
+  "2015-nc": {
+   "rows": 54755,
+   "sha": "af2ec986c41bb6b150e633785df94cf375f11a2ac764c3d941be15a9078b72e6"
+  },
+  "2015-nd": {
+   "rows": 7120,
+   "sha": "ad9a9c8bae2510722a5ebf6c8b2c0b3d7e62d7a78cfd948c079799be5d5777e1"
+  },
+  "2015-oh": {
+   "rows": 50730,
+   "sha": "11a7dbe8e7f68160691da4652553c662a13c9660bbb88a8c113f6bea42495093"
+  },
+  "2015-ok": {
+   "rows": 31404,
+   "sha": "91cd4e39dfc379b007f2329d0c96d5a3f8bffb537b5f80c74493189b719b7f61"
+  },
+  "2015-or": {
+   "rows": 5110,
+   "sha": "86450cdfab77f4572acdbca7cf3f7959198ee98dc4f663a6b50902c5e7abca94"
+  },
+  "2015-pa": {
+   "rows": 62328,
+   "sha": "ed4b58d6a520f032d5464e5bb364f2c559f51331abf42b150d1d3664023059d8"
+  },
+  "2015-pr": {
+   "rows": 368,
+   "sha": "4d850229ede4eb521e56376c29d781b6901975bd4ade4e9a785f46ec29b36f3c"
+  },
+  "2015-ri": {
+   "rows": 4015,
+   "sha": "e431cc7a02978341d132907d56db8cce161e9783c130100656b43694d7e09fd3"
+  },
+  "2015-sc": {
+   "rows": 28839,
+   "sha": "9bf60032c51305cff80ab27847cb5e98a96f33971ecaa86c8f066ee541f61a1b"
+  },
+  "2015-sd": {
+   "rows": 4380,
+   "sha": "ca4d063a3bc70a2d48a0c4daabee69ccd7227e433ed3e047d6bce4349b103a24"
+  },
+  "2015-tn": {
+   "rows": 34864,
+   "sha": "19661aa15c4ec18a7dc4b84a7131c4052b0e99a717236131cb4c6a5349611af4"
+  },
+  "2015-tx": {
+   "rows": 139982,
+   "sha": "e3036ad577185cea72c59a871f22f10ca69d2f8398c8b4d7f4843a20870db6bc"
+  },
+  "2015-ut": {
+   "rows": 11134,
+   "sha": "8ac8bc67ef34c149f1dbc8afbf44a04b2e25a30038cee8430126d27031970637"
+  },
+  "2015-vt": {
+   "rows": 1825,
+   "sha": "7a16f9f15e92e9728d7a5e367b61a32f9438f51c78430996ec1c3bfcd730ad26"
+  },
+  "2015-va": {
+   "rows": 48367,
+   "sha": "fcffc25627e1c4cc8920755fa3fe5a18fa5b75c7f2a6ffe3f58d45ceb7004deb"
+  },
+  "2015-wa": {
+   "rows": 6570,
+   "sha": "2ad131dc5bd4005c7c85ffd6adf72066a81110fcda844085583fd81e8003f8b8"
+  },
+  "2015-wv": {
+   "rows": 20806,
+   "sha": "7dffff5335dfb9dd534f2b60be4486ef0ee3441a36eb7e81235fda849cc00781"
+  },
+  "2015-wi": {
+   "rows": 39598,
+   "sha": "caa12c1139d94bd2fefadf1b7f09542fd7a75e56d713e033399d03853570f5f0"
+  },
+  "2015-wy": {
+   "rows": 9125,
+   "sha": "2ca288297dfe7ad4a77e06ff936548e812f887d42fb1cd128f53d66edc4493a8"
+  },
+  "2016-al": {
+   "rows": 37142,
+   "sha": "65701b0286cb3ca02f19476b1d9447432f9ee4accb9b3a665c42786ddc7f25af"
+  },
+  "2016-ak": {
+   "missing": true
+  },
+  "2016-az": {
+   "rows": 32483,
+   "sha": "e2f79607f602a75e4858ca407abbc2f173fe4c5af10b7526944cb9642d25710f"
+  },
+  "2016-ar": {
+   "rows": 15006,
+   "sha": "13aaaa75ed324980a83c3d7c936fa9a24736c3e817d530be3c7083147b261cfa"
+  },
+  "2016-ca": {
+   "rows": 91048,
+   "sha": "1f90c87a8da3735ce782533514822286202dc00baacea8d17867622a95e16e68"
+  },
+  "2016-co": {
+   "rows": 26810,
+   "sha": "5579ddefe5769734b1900dea1d6682f73002e5be28ab32ba443547fbb9bade93"
+  },
+  "2016-ct": {
+   "rows": 21228,
+   "sha": "c420ca2a2fd7c6569929dbafad50c7e5c3b0eca99aa6632a90ee3a109592d434"
+  },
+  "2016-de": {
+   "rows": 8418,
+   "sha": "b7cc77e4d8efe85867ce7d9b81a29ee24f95c16439e801f05f2a32912237b0e2"
+  },
+  "2016-dc": {
+   "rows": 1098,
+   "sha": "958ab681a0afb667df096524e5cc42f0bb4014961b80e03001a2e333c9f8d7d9"
+  },
+  "2016-fl": {
+   "rows": 107236,
+   "sha": "cf3d417b5f4f2a8a5bc295c8d1aef8b42f901864c49f78780e1b0fe39c69c5aa"
+  },
+  "2016-ga": {
+   "rows": 53342,
+   "sha": "0cec2573e01e232def278dccbb394406ac4c331df1f9398b65c43a93fe35610d"
+  },
+  "2016-hi": {
+   "missing": true
+  },
+  "2016-id": {
+   "rows": 2928,
+   "sha": "d7a8a7d646b31ce2c3a44fb686e569883bf507dbf3f84db5baa0515b570cb360"
+  },
+  "2016-il": {
+   "rows": 87015,
+   "sha": "cdabe6dddd82c4bdb4fd8d2635abf2becec0f4023e16c639a95c5402ad2695f8"
+  },
+  "2016-in": {
+   "rows": 51231,
+   "sha": "227373d1d3b41c9ac011e44c78b936d6b946615f2c64ce5b92e2d1cdb3b25010"
+  },
+  "2016-ia": {
+   "rows": 20312,
+   "sha": "3924af4efdf9cfef07f37e91ddf0f9fa31748d7eca24899f43ffde5e29b67b9a"
+  },
+  "2016-ks": {
+   "rows": 19398,
+   "sha": "b861ffa99d1152aef13bc12896bb4a9625251705ee883a992ed2b86782332b2b"
+  },
+  "2016-ky": {
+   "rows": 35137,
+   "sha": "a675fd6fe61061a1d28fb34db1d8935aefdbaa43ae879986c503090e679a98f0"
+  },
+  "2016-la": {
+   "rows": 29913,
+   "sha": "0435ced1151cd1c692dbd4051fe6f9219668d576a7e6e270ae54a1ddb94c2829"
+  },
+  "2016-me": {
+   "rows": 4758,
+   "sha": "9cab12df94bfccd685f029550afc2f9c84e2d0f837bb634b82f155499ece490b"
+  },
+  "2016-md": {
+   "rows": 18300,
+   "sha": "fbb53658cc2d364d7225b6fef1d27189e5afd9fc21f4e399368a262ad1c0a9f7"
+  },
+  "2016-ma": {
+   "rows": 26169,
+   "sha": "fbae333cf8ef566695bc7cae349ae6b94fdc855502358d47a1b93d777a4e7067"
+  },
+  "2016-mi": {
+   "rows": 50861,
+   "sha": "fd0fcd91f567b7a8ac5ac54436d32227921e003d171d90b5a5197cf94090d851"
+  },
+  "2016-mn": {
+   "rows": 23972,
+   "sha": "26aecae4a964b60a106b2d5110f1c84703fdfe2c0d4cf48b76697dd95b0ab4d0"
+  },
+  "2016-ms": {
+   "rows": 24338,
+   "sha": "5d7e5cf368d078b3874ffb68f91151caae1d056b0455aa2a649a9a707c709826"
+  },
+  "2016-mo": {
+   "rows": 44286,
+   "sha": "e102783ce181484b04b0abdaf3f9ad787c40e76dbf842c8915dd57a2144b7925"
+  },
+  "2016-mt": {
+   "rows": 5124,
+   "sha": "b1cdc4c7098aeb1bdde49290daab15e8aa68e320aa06d237901bfb27c7fbd865"
+  },
+  "2016-ne": {
+   "rows": 16836,
+   "sha": "feb041f4014f8bce2f497cdec74fe4ba30f5e3f1d9c9b012ef76b532643f34da"
+  },
+  "2016-nv": {
+   "rows": 23424,
+   "sha": "803424dc84c36c2b2dcf81f18ac844d2c79b5b81acb3277669e5b614ab6e1990"
+  },
+  "2016-nh": {
+   "rows": 4941,
+   "sha": "a5007bed4c0bb939a4cdd22101a8b8b67e45d9a676d29d2d5510aab2aba9075c"
+  },
+  "2016-nj": {
+   "rows": 38064,
+   "sha": "566d0efee4b9674de788924643669bed1f4630ff8578dad2392abf4bad991c36"
+  },
+  "2016-nm": {
+   "rows": 12626,
+   "sha": "07ac12feca97099ee7a63e0a04cd04a8673fe981e55ce0712d884323e8f31850"
+  },
+  "2016-ny": {
+   "rows": 101289,
+   "sha": "048b95ca498542b2334d84c14a49ad9e787999357eb7d43657ca8388410080d4"
+  },
+  "2016-nc": {
+   "rows": 53069,
+   "sha": "282b0824f26c784c4f44ef5160bea8121d31a76bc0134686f68bc3b596bfd356"
+  },
+  "2016-nd": {
+   "rows": 7596,
+   "sha": "c42ee942ebdf308c99c0c131eca20096a35fee859636764a7e6c5d557debd3b5"
+  },
+  "2016-oh": {
+   "rows": 46481,
+   "sha": "5154e842f37d1aa4aaa1ce78d58a0488c9368368f93969796705b2c10b7c936a"
+  },
+  "2016-ok": {
+   "rows": 31292,
+   "sha": "559a488b0ef32335411fdf9a01d61d3e9054675e829c68f5bf4fee11483eedfd"
+  },
+  "2016-or": {
+   "rows": 5308,
+   "sha": "b399e473ca115a53df7e3165225d9f9e55166254df652ad573529c2cefab164e"
+  },
+  "2016-pa": {
+   "rows": 61583,
+   "sha": "9e693c0e1a44c2b8ca67c444669c33a288894a5cb0c1b740077bb93e0b9fe9ed"
+  },
+  "2016-pr": {
+   "missing": true
+  },
+  "2016-ri": {
+   "rows": 4026,
+   "sha": "700a75f88fe4ac76fbf9b96db5575f815db5db48936a625b3960baa90ba9a608"
+  },
+  "2016-sc": {
+   "rows": 28365,
+   "sha": "52c78ebc7b914ee60cb683928649eb3d4d2c06c41273961bd522a3becbc8e0b7"
+  },
+  "2016-sd": {
+   "rows": 4392,
+   "sha": "eb150700c42ce49bfe1515bcb4845361e8a5e6ae0f5c0816060b79ad025313e2"
+  },
+  "2016-tn": {
+   "rows": 34953,
+   "sha": "9e9c2d9239ae9c378e17c18653a47928caba00a91e5c747ac3f5f4aa6850ec46"
+  },
+  "2016-tx": {
+   "rows": 139718,
+   "sha": "f95acd2a47ecd2cd000c35915d0927f3670ce2467589fc0fc8d1758eadce1a50"
+  },
+  "2016-ut": {
+   "rows": 11346,
+   "sha": "9984b02b1142ed6142e6928d41ec055b74715f76ee3d344a7bda47284a30f1ef"
+  },
+  "2016-vt": {
+   "rows": 1830,
+   "sha": "3fb5d5ddb5be1f17cc069efc73b7e018fd3c4854047a564d960a97c80f1917c6"
+  },
+  "2016-va": {
+   "rows": 47856,
+   "sha": "a9627e047c2c689227e72d2bc32eff6e980aae3d5662644fed960019f7c2093c"
+  },
+  "2016-wa": {
+   "rows": 6588,
+   "sha": "22f88b039e4a1d14eaad5730418e84f24c7f5506eea50384809c6fbbab9a3dd8"
+  },
+  "2016-wv": {
+   "rows": 18849,
+   "sha": "471f78c209961135c9f4e53633d176ea0230dd5d5d441f225a1f83ad53f2b024"
+  },
+  "2016-wi": {
+   "rows": 37332,
+   "sha": "9630ab1e3d78622ee162610840e058d0e3de4646ff53360d8a9d173d1da79b6e"
+  },
+  "2016-wy": {
+   "rows": 9150,
+   "sha": "3106e1291c6319797c84f97fad67771bebb0d4e93eab142e810ce61ad0c0d6d4"
+  },
+  "2017-al": {
+   "rows": 35773,
+   "sha": "1a33131db489cadcfebd3d5a2d2f1306c30067208ab191231b3977b88365a922"
+  },
+  "2017-ak": {
+   "missing": true
+  },
+  "2017-az": {
+   "rows": 32485,
+   "sha": "b2e6a1b070a40a92685ce4b0e938d9b04230815a3cf6b00c9772440c33c0b88f"
+  },
+  "2017-ar": {
+   "rows": 14965,
+   "sha": "597478dbb18023729aaf42454060d9265c75c038fdc8c2ca604135834149a634"
+  },
+  "2017-ca": {
+   "rows": 89607,
+   "sha": "3e51ce2f4948be925bf70c45922d32d97f9a7e25915e8e696d8f128441811ac6"
+  },
+  "2017-co": {
+   "rows": 26645,
+   "sha": "ba97ab41f284b4ad0afe976c3205aa4f2ac3ddd00f352d75205337ba38a4f700"
+  },
+  "2017-ct": {
+   "rows": 21179,
+   "sha": "f80f112831fbdb5e7e6e4dc3bbc8b89f16e871d87f1262e90c37dd83f65fc6a2"
+  },
+  "2017-de": {
+   "rows": 8214,
+   "sha": "d144163278182479c30699a2e4a31ccf9b1876e89edaaeb3f70c1e295d35b635"
+  },
+  "2017-dc": {
+   "rows": 1095,
+   "sha": "c8a740d13d938cf432c5d5e4508e05881cc0f504dc0a90bd06c4aa6725554329"
+  },
+  "2017-fl": {
+   "rows": 77197,
+   "sha": "28a8aa64d0d150eca10e8a19e5134dd4f87ea4bfd9ce0e94eca9c38d77739aa2"
+  },
+  "2017-ga": {
+   "rows": 52105,
+   "sha": "98489cf0eb1c79ba8e691edf1a8f69453c942837faab19fbd1707d0be3ca4900"
+  },
+  "2017-hi": {
+   "missing": true
+  },
+  "2017-id": {
+   "rows": 2920,
+   "sha": "f55fa8bfa7e6da9e41dd3064046554800bc180685a676c4293e86ac6dc4a8722"
+  },
+  "2017-il": {
+   "rows": 86600,
+   "sha": "2fc6b2ccb8ea59f5423d51ea38547d722429b1dca7adb94c1c41848efc1fdc2f"
+  },
+  "2017-in": {
+   "rows": 49470,
+   "sha": "3b2c5a4a8e086cb21f2cbe009723ada0cfc81ba4ad4eabc2003dbaf0297194b0"
+  },
+  "2017-ia": {
+   "rows": 19336,
+   "sha": "197d0d83d824d543613c4e59b2811209320cfb7c0384d1a315d229db30601a14"
+  },
+  "2017-ks": {
+   "rows": 19345,
+   "sha": "861b0e34ab3b6483b04825ab32e1caf161f8a3b602f6f3c0ce079746b5d10d17"
+  },
+  "2017-ky": {
+   "rows": 35952,
+   "sha": "fa15c332761630923762226ca67b91be1cbca1fc0db3afe21cb29eedd90926ea"
+  },
+  "2017-la": {
+   "rows": 27461,
+   "sha": "c51a13a6f54bf41c0a968e9bf0661bb6db3a3e838a9248d72fd45fab0b6e6ac3"
+  },
+  "2017-me": {
+   "rows": 4745,
+   "sha": "8c934c63af73718242b7eaf7033fc78451de025947c29b1b142f00d8e49d2e63"
+  },
+  "2017-md": {
+   "rows": 18250,
+   "sha": "b2a94daead50016f21642de27a25092c71f0d2317ce898fc4f700888bd74cf87"
+  },
+  "2017-ma": {
+   "rows": 25183,
+   "sha": "51fa72e9a62bdf4da61f9a8bd473660eaa3fe8d7ae27afd29793a18026d37834"
+  },
+  "2017-mi": {
+   "rows": 48368,
+   "sha": "036ed8841fb2598c00211f35743ef37c02b83aaa5c986272d0b540bde8f9f136"
+  },
+  "2017-mn": {
+   "rows": 23725,
+   "sha": "7e4722f99855e2a4132f77367d9232fe586999f98a36441965ad70e3cf372f35"
+  },
+  "2017-ms": {
+   "rows": 23725,
+   "sha": "c52e848aed5af70537a6ed4135adc89fbf2650c0751a2e998fc48562b512e2b2"
+  },
+  "2017-mo": {
+   "rows": 43800,
+   "sha": "630c7c679f36648109abdcc734a553c08307642f24238dc6ddc17d630e96566a"
+  },
+  "2017-mt": {
+   "rows": 5110,
+   "sha": "6018a7c57b72ea99ca1307bae273bc8f23fabe0b86fb5cb779558cdddfdeb44e"
+  },
+  "2017-ne": {
+   "rows": 16698,
+   "sha": "dd007988bdada38538b5b088662c2d58bf3325eb635e960af4229c3833d39441"
+  },
+  "2017-nv": {
+   "rows": 21625,
+   "sha": "61e3ccc0e4c35dfb2ed0bd88add3e4653b5af3634e2707f540b8adfc36163e51"
+  },
+  "2017-nh": {
+   "rows": 4930,
+   "sha": "f0ff5c135ec60bf95de1f04f069b1fb4f5a125f610de1d1afc7f5ec86c1bb2f8"
+  },
+  "2017-nj": {
+   "rows": 37408,
+   "sha": "ab848f41550ccfb46f62d0d31f6977c69adbbec8163d8cd83b1afcf934cb11ca"
+  },
+  "2017-nm": {
+   "rows": 12410,
+   "sha": "e1984ddc661cd00237827e42b07908d03686105cff3c3fbdc17103007aa35fb5"
+  },
+  "2017-ny": {
+   "rows": 100780,
+   "sha": "83084450f3e0926535ba34d06eeca1a7db92d3be689a24ecefe677ffd92b2fe8"
+  },
+  "2017-nc": {
+   "rows": 52563,
+   "sha": "0c53d882441e59f6c66dfd29feecc515b48baaad89cd8a2ae735cb82632ee2ed"
+  },
+  "2017-nd": {
+   "rows": 7662,
+   "sha": "f7a383b12ceec460bb4c9db46a60cc2be28f9090fc1dfd442ccc189a8fdbe2be"
+  },
+  "2017-oh": {
+   "rows": 46920,
+   "sha": "d2f7ddab711aacf877d9555bcdb7f3e7c46f2feb37b240aac24e99142bcdcc41"
+  },
+  "2017-ok": {
+   "rows": 31213,
+   "sha": "1dc1377c9c6b000cc40ad6e21fed78c3d49ee7b26e5c176b919e454c9a6d2233"
+  },
+  "2017-or": {
+   "rows": 5475,
+   "sha": "6fa887afcb5ff753837c8d6eb39a8d6a58aa6bf46692324f8eac0bfaa9ee696e"
+  },
+  "2017-pa": {
+   "rows": 61506,
+   "sha": "f839b98c912d9c74f189de6db915e853100a3ef7ba63bec139960433351668fd"
+  },
+  "2017-pr": {
+   "missing": true
+  },
+  "2017-ri": {
+   "rows": 4015,
+   "sha": "be2d5a54c4f1d78631bd3dfb5e118643491295ee1f681f0a23e73a22029b8bda"
+  },
+  "2017-sc": {
+   "rows": 27925,
+   "sha": "9e756b8ec3f9cf98ecf75344581463fba5200a1d490e7041b9a4014606a373af"
+  },
+  "2017-sd": {
+   "rows": 4380,
+   "sha": "5e5a729eb3300080f3599216a248264e0e23217d61fc2319023c38707f088c71"
+  },
+  "2017-tn": {
+   "rows": 35598,
+   "sha": "9cdb029ab0132d8922029808845c99613a035c92fc6c5fed7259b7c78f49822c"
+  },
+  "2017-tx": {
+   "rows": 140800,
+   "sha": "89388209c940d26896b1e351f873b4597211d79a4de593f19d296b38c59d3817"
+  },
+  "2017-ut": {
+   "rows": 10585,
+   "sha": "2f94fbf5d6c9059ea87f4f6d338a290d120ffe5ec52d1c723b19376d9cbd39eb"
+  },
+  "2017-vt": {
+   "rows": 1825,
+   "sha": "d5115651135407b8eddb6356f476218dd93bab5a4e87c95f9debc25a5d0fe495"
+  },
+  "2017-va": {
+   "rows": 48187,
+   "sha": "ee1d030b1802c7bd24dc59ec170cb0371ad58bffb4e8269af40ab5a38a7fbf00"
+  },
+  "2017-wa": {
+   "rows": 6570,
+   "sha": "ad91021b818bfd2c1c91be8a1134ca1b5365adb8f24e648c550a81c4aa17ade5"
+  },
+  "2017-wv": {
+   "rows": 17888,
+   "sha": "b621aef91503a056bd3b2ef321685a9b7134196e2f5182b590b796dee57cdaab"
+  },
+  "2017-wi": {
+   "rows": 37960,
+   "sha": "6ad7211a8ec0f038074fa7c293132a19ac50165b09962c327ccdcbbd53283fe2"
+  },
+  "2017-wy": {
+   "rows": 9125,
+   "sha": "7a5bc88b09a2d6e9b0a8eee7b7fbc008f3502b97e63bf0d1e7aa043669dde6ff"
+  },
+  "2018-al": {
+   "rows": 35681,
+   "sha": "d5f1413ffae93961291d9d8efd1d2f0f566fc8bc3901c4e061062be8796d76c2"
+  },
+  "2018-ak": {
+   "missing": true
+  },
+  "2018-az": {
+   "rows": 32485,
+   "sha": "eb48df685ba5604adabe71bd0698327871be9c4848a4ced9baf8625605375ce3"
+  },
+  "2018-ar": {
+   "rows": 14965,
+   "sha": "758e5014984778da6a368b1ddface937e4e6168ef5d92eeae5e97c349308c64b"
+  },
+  "2018-ca": {
+   "rows": 90249,
+   "sha": "a1f508097b694b210664aadd7342e16b9d4435d7c7fdf2b06c05b244a6ecef66"
+  },
+  "2018-co": {
+   "rows": 25915,
+   "sha": "8b25c4fabffcb07fc7986c122df4c49b8136430494be519906c6911dbf7ffc64"
+  },
+  "2018-ct": {
+   "rows": 22279,
+   "sha": "32b6d6af430edc8b26f109f57cb8ccee126bc510b0ffa97ac75b5e0b79c466c4"
+  },
+  "2018-de": {
+   "rows": 8032,
+   "sha": "22c20b0e5672fad50dee467f2bd930dfd85c841b0934afd0ccf698bf006fd7c3"
+  },
+  "2018-dc": {
+   "rows": 1095,
+   "sha": "ec4f0918d7c4af5c5772ba85dad73ae49628a6863117db67b303d7badf83fd16"
+  },
+  "2018-fl": {
+   "rows": 76285,
+   "sha": "7a16cd1dc0254e3161914e1d8827f162b60acb84fb136654063ace6d90f2e708"
+  },
+  "2018-ga": {
+   "rows": 52195,
+   "sha": "aad41bccdce998011e47c4c0df31578f36e019c6eef9410667022bb74e62fd96"
+  },
+  "2018-hi": {
+   "missing": true
+  },
+  "2018-id": {
+   "rows": 2920,
+   "sha": "2f8fea29e6574881bc639452dfe9420c5a29d6587b8f1f5b32dcac4d36957cf5"
+  },
+  "2018-il": {
+   "rows": 85869,
+   "sha": "41241fbfd99f06fb3041e546ca3fce50874da589f1adaf7c43a186614a27f2aa"
+  },
+  "2018-in": {
+   "rows": 50560,
+   "sha": "b0f51b1fb344789d31425dd8f5d1dfc4369e2bb7042c9c20d0db5cf316226fab"
+  },
+  "2018-ia": {
+   "rows": 16971,
+   "sha": "77460a95ce9dd248593caf4e044ae5e928029e8f3336c43d6fa346a6949a1b91"
+  },
+  "2018-ks": {
+   "rows": 19069,
+   "sha": "02315137158d9373817278e7403cddb28e937f28945ac0e8e9e03f74ed357d06"
+  },
+  "2018-ky": {
+   "rows": 35773,
+   "sha": "a90d54bffd05ff84e2a93649cf34ddc7cc20ed7c93fc769fea1b0826b5e7b674"
+  },
+  "2018-la": {
+   "rows": 27010,
+   "sha": "5cf2d5ba223d86e054c2a6023c4e6ddb5e6c1a862b14dde081d74dfaef0d9fb7"
+  },
+  "2018-me": {
+   "rows": 4561,
+   "sha": "a0febdf9c27b90f5fd44d948e839e5cd99200208623cc5dcfb855d44e6366d31"
+  },
+  "2018-md": {
+   "rows": 21457,
+   "sha": "17028cbea6f32b8034c031042d2c2e295c7e0e06efc5df65f50ddd664a965789"
+  },
+  "2018-ma": {
+   "rows": 25009,
+   "sha": "46ef7cb3c826029c2b04a7f5a1d551a8a5ddbb2b8292f309173e1854e2a2e24f"
+  },
+  "2018-mi": {
+   "rows": 47820,
+   "sha": "6e32f7acba2e2734dc369baada2e3855cd386f61c54b38b3faa6c4d4ef1e8e7b"
+  },
+  "2018-mn": {
+   "rows": 23635,
+   "sha": "6e54dbee800c4b415df37dac392b6038a300e614f2fbf99d2805f142a95591e3"
+  },
+  "2018-ms": {
+   "rows": 23265,
+   "sha": "0f60d5b20adb62f5ce884a94e8202192247803f0e498bb025138d3e4f50b0057"
+  },
+  "2018-mo": {
+   "rows": 43708,
+   "sha": "2eca004f010b880c0f31faf6dfed18abc3d2127dbc321eabb7e92c2dcb056927"
+  },
+  "2018-mt": {
+   "rows": 5110,
+   "sha": "269763a954790ff51266d1be11bbbd5145e4d23d7f02b837ff88d1d4729a87c9"
+  },
+  "2018-ne": {
+   "rows": 16425,
+   "sha": "5f00539152037a600059feac7e6f2a6c61f055d24d48ff49ba2dae336fb2496c"
+  },
+  "2018-nv": {
+   "rows": 21535,
+   "sha": "778d324c2186485b3e4efb386598951ffb8b4cd030b82cac984f2d22d846b911"
+  },
+  "2018-nh": {
+   "rows": 4930,
+   "sha": "1c531e644e44a176e5eb71e60c700b33713acced4b483a5913910e28d32cb066"
+  },
+  "2018-nj": {
+   "rows": 36863,
+   "sha": "fe14ced4ab8d57011971d4bd389f732dd9417e52a060556177011874fc5aca23"
+  },
+  "2018-nm": {
+   "rows": 11680,
+   "sha": "38e0606a4e9397531a0d0f8685677de03f97e466e551a04e4626a2da41d86b96"
+  },
+  "2018-ny": {
+   "rows": 99863,
+   "sha": "f93b1c1e81e74e1f709ef1a49edfea981254cd5054152c766411713b9bd1b0f5"
+  },
+  "2018-nc": {
+   "rows": 52013,
+   "sha": "9ea5e3d380fe0c6841d2e6d82df482ad209fa9bce55f4afcf62c5a675901b5eb"
+  },
+  "2018-nd": {
+   "rows": 7300,
+   "sha": "417ed7be0747cfd1fe770653d02f7f4a9a22798745ac86657f55663a6455311c"
+  },
+  "2018-oh": {
+   "rows": 47369,
+   "sha": "d31103f6843ed204c116f858879291acaa73dceca2b27fffd6d34fc86ed92978"
+  },
+  "2018-ok": {
+   "rows": 33129,
+   "sha": "714dc10e707f4458be19febe1640521b23fc6d13b52549f42df15e3005ab9e8b"
+  },
+  "2018-or": {
+   "rows": 5475,
+   "sha": "897e2cf30ac3df3bfd37995637646903c02938e80d83166e2a703a065511868c"
+  },
+  "2018-pa": {
+   "rows": 63620,
+   "sha": "c554f5f292ee9cc0d0c1194d80eec7c4c46511899a82dc2888819e4f870e1b6b"
+  },
+  "2018-pr": {
+   "rows": 730,
+   "sha": "48bba54046d87ea163c893115e832ea317c30aaabc0433df6885c1939f06febb"
+  },
+  "2018-ri": {
+   "rows": 4015,
+   "sha": "d841fe0bc1ed431a20dd8ea436b29b61028cb9905bc4f3ec2764205d0c836ccb"
+  },
+  "2018-sc": {
+   "rows": 27929,
+   "sha": "e26fb04f342b4cc2e091cb659f3f13f68c2b9e7a6a2e2f129c2cb636790c752f"
+  },
+  "2018-sd": {
+   "rows": 4380,
+   "sha": "087ee7dcd38c5dac2dd653a2b2f44e7020c4c1109381a247a340d2ad599f92d4"
+  },
+  "2018-tn": {
+   "rows": 33040,
+   "sha": "43852dcf2e012e1c9952456f3cf393bfb089f126a32b909dbba6c9d64b7bd174"
+  },
+  "2018-tx": {
+   "rows": 139150,
+   "sha": "0a1ee3554938c32dd5e332b795b207ff0543f24798697e8bf182b7e476ee50a2"
+  },
+  "2018-ut": {
+   "rows": 10585,
+   "sha": "372540f78138420c17b5d2b97669fb387586c72861a5cdb36dea1a20ecbed505"
+  },
+  "2018-vt": {
+   "rows": 1825,
+   "sha": "8dafd4259f41acfd54f967b14ba23f63aae33fdc59b2c69b0e2cab30dfd33466"
+  },
+  "2018-va": {
+   "rows": 48179,
+   "sha": "0d81ece466edafabe80594d4eba7fd6f3ebf12c6a1137f23438e718ae266018d"
+  },
+  "2018-wa": {
+   "rows": 6570,
+   "sha": "47d32f5ad7f3597ddc30c3229488dfda232fee8935e45c778cc51f71ed5d04b8"
+  },
+  "2018-wv": {
+   "rows": 17890,
+   "sha": "c57c25a3c96ba3c55924c5fea9ee6c1d933d505d04e9502e72fe6bb8db3ccf46"
+  },
+  "2018-wi": {
+   "rows": 37500,
+   "sha": "8fa800626cd1e00ae6eab2459ad5b00d277fc0d595dd61eecf6cbae6efb4a613"
+  },
+  "2018-wy": {
+   "rows": 9125,
+   "sha": "58fe28fd0111f6b83841f1405908984662d41d9ca870ba67088c580f506a69b0"
+  },
+  "2019-al": {
+   "rows": 34856,
+   "sha": "2c15a0fd2df568e432c706ba3cfc4148e5491491271155f02610d928941d24a1"
+  },
+  "2019-ak": {
+   "rows": 365,
+   "sha": "477f82ad613075e070bc431cbb63d106b4fd75e5164bc7035bd42d4eb0ea5804"
+  },
+  "2019-az": {
+   "rows": 33764,
+   "sha": "f5b882743fb758ce3b004870725d560cf35646080842f80141fa9a2ef5b95da0"
+  },
+  "2019-ar": {
+   "rows": 14965,
+   "sha": "9baba34217d04b2cc7708950b479316274a96d8f73fb667b7f0f5d185447eb68"
+  },
+  "2019-ca": {
+   "rows": 88877,
+   "sha": "8fde9805acdc4db6ef71652254cd875ddb3514d9564eb536ce20932c02684563"
+  },
+  "2019-co": {
+   "rows": 25915,
+   "sha": "c6d584eb68357a94b79248ffc7368165f810587bc57b3d2b53a033873fd7b213"
+  },
+  "2019-ct": {
+   "rows": 22547,
+   "sha": "9177c69797723cf75f9adcc3fe4ed86bc18828aecb05fb0e23bc26f2230ddaf4"
+  },
+  "2019-de": {
+   "rows": 8032,
+   "sha": "f6e75214f8f766b40644952d88ee951f36182b5caa21a2fd447387038ce67398"
+  },
+  "2019-dc": {
+   "rows": 1095,
+   "sha": "3756fa8e795914b887ad6ae6347d4d0cd2880eb5016f3f06540be110a408841a"
+  },
+  "2019-fl": {
+   "rows": 74733,
+   "sha": "465d77c3fd6c86654811af4a448292d50446f27f53693e83ce1a142d49053a9d"
+  },
+  "2019-ga": {
+   "rows": 51735,
+   "sha": "42f55d77b2109714061ffd27e864a62cf9e59e06bf01d7c824b5a8e07487f34b"
+  },
+  "2019-hi": {
+   "missing": true
+  },
+  "2019-id": {
+   "rows": 2920,
+   "sha": "d3b4d09a092839ae5310307901190437cd6c72e48c712b749b5494becea7147c"
+  },
+  "2019-il": {
+   "rows": 86147,
+   "sha": "b866d98d228128cd384feb885e725a991fba29eb4d499a23ecc895ae5d290c0d"
+  },
+  "2019-in": {
+   "rows": 49561,
+   "sha": "2de07abda7f76ae4837df692e26fc59e70ed05b0448eec33095380bb242195ff"
+  },
+  "2019-ia": {
+   "rows": 16790,
+   "sha": "1ad885761455846d0d4fa56588019a8b74594bdb0c7ecc37149ec93fc989b491"
+  },
+  "2019-ks": {
+   "rows": 17336,
+   "sha": "8ce1ac8b95301d0c935e78f9a922e6047b0c7b652f048e68c6767f66ea47a5e5"
+  },
+  "2019-ky": {
+   "rows": 35223,
+   "sha": "e958f3d4739c3bc7a679ecafa0be1384b056027f1e4a472227e32a62eb75154c"
+  },
+  "2019-la": {
+   "rows": 27560,
+   "sha": "ee01ecbe31c9914ded9709f41bf73ff3af8e4b3d1518a611b25ccaebfb6c196b"
+  },
+  "2019-me": {
+   "rows": 4015,
+   "sha": "0379f6391eab69d53f98ffa091f6d4d7537465c47d65b38652192bbd0f9b5e5a"
+  },
+  "2019-md": {
+   "rows": 21988,
+   "sha": "a993d3932277a423ec1a2fd986e4ffb282a628c679b626c6cd01070737d0fcbd"
+  },
+  "2019-ma": {
+   "rows": 25741,
+   "sha": "9c0bcc6d1fcc0f10334352785f63f7a6b367b782c230cdc35537074276f45625"
+  },
+  "2019-mi": {
+   "rows": 45526,
+   "sha": "1aaf628259bdded2e5e498e100cabbd0c406e7fc2ce1f572be70c0f8fd1354c0"
+  },
+  "2019-mn": {
+   "rows": 22905,
+   "sha": "6cff23829836d64822132fe06461c9f6fa26676a1053e8daf3da22ffdc79f7b8"
+  },
+  "2019-ms": {
+   "rows": 21808,
+   "sha": "970ba37be88893bd268ea23f93d45cfcd95038d2609ca8ef1d3346333308713c"
+  },
+  "2019-mo": {
+   "rows": 41610,
+   "sha": "1db81ed9cd6f89cc7973071b68ee1ac5dabe0eb7ea763b9c533ccc8bc2b00ecc"
+  },
+  "2019-mt": {
+   "rows": 5110,
+   "sha": "fcc82f75c376f56796a3ef2f3d295b90bcef88480cea1a0bf79425fecfdae2c5"
+  },
+  "2019-ne": {
+   "rows": 16425,
+   "sha": "edd16310ebf648d4e68de16732ed55343bc73550915888c214e12f2b8a9cef82"
+  },
+  "2019-nv": {
+   "rows": 21535,
+   "sha": "ffb70c1a246b67ea8b3054713e99dcb1c067233cc05da758ee763130513e0720"
+  },
+  "2019-nh": {
+   "rows": 4930,
+   "sha": "7a58962bab233f19d6d9b39c65b99e58f56bccdf98fea2a6dc0e37d23dcb4068"
+  },
+  "2019-nj": {
+   "rows": 36132,
+   "sha": "78fadb5040189cdc9c9fc75bc53451e99e4f998a1351f457e690319fc32256ee"
+  },
+  "2019-nm": {
+   "rows": 11680,
+   "sha": "23e411b4245ffa7f8eb43f55d133e259aa92c54527b9aab20e61d4cd864c1c8d"
+  },
+  "2019-ny": {
+   "rows": 98772,
+   "sha": "4426a21300c2a6728268b16cc88a0ec24c36f1f2e64e7b9da9684e37dcfcf7cf"
+  },
+  "2019-nc": {
+   "rows": 51284,
+   "sha": "fb179e91896aa6f5d253ec0da82d374fff973d67675389366ccc57b21783e1ce"
+  },
+  "2019-nd": {
+   "rows": 7300,
+   "sha": "210f78af7ef9c1587a6005f8a56a7394df7bb5285144036f66142063451e800b"
+  },
+  "2019-oh": {
+   "rows": 46732,
+   "sha": "a6c69493740c4df77bcb14b182d679d093c661c0bf03638d50fa8a376bb00b09"
+  },
+  "2019-ok": {
+   "rows": 33036,
+   "sha": "4c538b2abd6e8901726f9c24f00c50df9629025d9eb91bc589c15f4da0b76517"
+  },
+  "2019-or": {
+   "rows": 5475,
+   "sha": "f4cd620d1188c80b1bc69a894ae28cc93b89f7e23f5510fe9658da4d1af95523"
+  },
+  "2019-pa": {
+   "rows": 65253,
+   "sha": "9758815003147abb6589b6cfadc4abd9dfb23c977e1ad344c546bd51a367180a"
+  },
+  "2019-pr": {
+   "rows": 730,
+   "sha": "e15301a6442c0447105d1c9fac758406a301ec45671dc05b7757ef08b3c2dc4e"
+  },
+  "2019-ri": {
+   "rows": 4015,
+   "sha": "64709a99e1c4863bcdcc12c892f106dfec99f75add24623bc4f4771ca797aedd"
+  },
+  "2019-sc": {
+   "rows": 27928,
+   "sha": "c58cde9ce1dcca4d5a2aeebae8a0c07470a3a320805604e3e0d8083067fd747b"
+  },
+  "2019-sd": {
+   "rows": 4380,
+   "sha": "da532deec55f1a3cf547d765ab37bef477cf8134b8fa7e80fa2ab73cbb15af2a"
+  },
+  "2019-tn": {
+   "rows": 31945,
+   "sha": "8d32926953e0c2329d1bba121081f453d2f5a957830479d3f0609aa27325b450"
+  },
+  "2019-tx": {
+   "rows": 138425,
+   "sha": "3dace76f4af6847679c55355a55b1fb47075760550e3e55261a4b5a5a0722785"
+  },
+  "2019-ut": {
+   "rows": 10585,
+   "sha": "92889aa86cf08868be46855f3504d464bdf38f3493e9f5f6ae939d2c1df9ddab"
+  },
+  "2019-vt": {
+   "rows": 1825,
+   "sha": "430b93793e191ebfa0201a41fb7ce3e51b602edb4f87fb38e19203e7345d2200"
+  },
+  "2019-va": {
+   "rows": 43326,
+   "sha": "a0547f7b4fa5d1bf9a75053d09b62bb0f9cba6b339447713af6d2823108ba577"
+  },
+  "2019-wa": {
+   "rows": 6570,
+   "sha": "e09ac2e8b8630d306c5bf07fed57829a1b4681ba900fd27213b08b4398cc1716"
+  },
+  "2019-wv": {
+   "rows": 17890,
+   "sha": "73872a3208712126b5743578842c966e33ddea45ac26e5f63d4c74cdecd06fbb"
+  },
+  "2019-wi": {
+   "rows": 36135,
+   "sha": "1448e77c851297eac6e0be79e41db37459c8cfc418a8c1d78be9eab5513aead3"
+  },
+  "2019-wy": {
+   "rows": 9125,
+   "sha": "4583ba282611dc83ee78492bfc846e1d7bb8839a3e973ae7501ed445ebc7627e"
+  },
+  "2020-al": {
+   "rows": 34404,
+   "sha": "23e5fb640e63d0e7a3374c65ec8b0ec4e55652eab4f92673102d755ee0449c82"
+  },
+  "2020-ak": {
+   "rows": 366,
+   "sha": "0609aabb9227b9b0a5fe851a743eb21a986ab7590412fbc5a2f99b760ddb986f"
+  },
+  "2020-az": {
+   "rows": 31842,
+   "sha": "7e0b8f3624327742b4acd32cf72c9f6003102a62d79d8028749abf77303ce3a0"
+  },
+  "2020-ar": {
+   "rows": 15006,
+   "sha": "a21cc039e0457932542dc2def6d03223f5a0801cd4945b13d25d7ad789adb877"
+  },
+  "2020-ca": {
+   "rows": 88664,
+   "sha": "dbe818753bde4cfd5c014ac2c3d9f62aedbe607bba51ebaa96345b89149a0fab"
+  },
+  "2020-co": {
+   "rows": 25068,
+   "sha": "a8ad4574c3d236019200fa1c13ddac0ebdf86d5380387445a78423e708d961ae"
+  },
+  "2020-ct": {
+   "rows": 22692,
+   "sha": "d7bbe29265a4f151516cf9e5d1ef876934ccbe3e47455590e48dfc56b7b5ddb4"
+  },
+  "2020-de": {
+   "rows": 8052,
+   "sha": "f6623a4fabaec640464948d2e6bba3846870fdcdea9ec90a4ed1e2e67aa85053"
+  },
+  "2020-dc": {
+   "rows": 1098,
+   "sha": "fabf27df5bef61ba726ff621515aeea2c685b5fe744330c4ab8a5c98d1ad518c"
+  },
+  "2020-fl": {
+   "rows": 74662,
+   "sha": "b29e9d96fe54f28702d9b3ada1c8c9299f1b1d5adede8adba35143ab69275834"
+  },
+  "2020-ga": {
+   "rows": 50416,
+   "sha": "ef994c9540f6671566ba94a3917c7f9b90e855e81f90ad2761a7e4512e636ca1"
+  },
+  "2020-hi": {
+   "missing": true
+  },
+  "2020-id": {
+   "rows": 2928,
+   "sha": "0ab27df6964fe6d87a92cead0102d00ccd9835d513ccf1c9a91b834cac552f07"
+  },
+  "2020-il": {
+   "rows": 84180,
+   "sha": "62d8e4e5d6150c773f4884a68838dfacdc3695470a8782a235fbe9214d68268d"
+  },
+  "2020-in": {
+   "rows": 47395,
+   "sha": "dfca79c474d11fd51a868951a0ce3090d2e9ee91a70064d9e66674204e584b4b"
+  },
+  "2020-ia": {
+   "rows": 16836,
+   "sha": "fa278c7768f05bc35576b6b4789c994ada775c1e5c089f53031545ec292a02db"
+  },
+  "2020-ks": {
+   "rows": 16836,
+   "sha": "e8afb9b4ddf15f683f768c64020df17b3519e0e270365f4ab17eea9872d2b461"
+  },
+  "2020-ky": {
+   "rows": 34400,
+   "sha": "b355a44cfc942cbf3d6904d532be743226f065f8a944d60d4ef8dad3c58d985c"
+  },
+  "2020-la": {
+   "rows": 28732,
+   "sha": "e82bda5d8c9bc5ce7219ffa344967e93957ca94e3bb44336310db47ab7aa72e2"
+  },
+  "2020-me": {
+   "rows": 4026,
+   "sha": "4302b67f2690aa46e7a92432e3fe85adb499169c940be1b3824dd210173670d6"
+  },
+  "2020-md": {
+   "rows": 21134,
+   "sha": "b6fdfcf8aa23c686c3ea977dbaa27b3e4d8bc352730646b52fe9f95cb5d55be2"
+  },
+  "2020-ma": {
+   "rows": 26077,
+   "sha": "a40fc95ef81aa632443e0ae4966bd0f90206ae7fd2940512445e04ca8d309a1b"
+  },
+  "2020-mi": {
+   "rows": 43919,
+   "sha": "ae06a3dc79c4752849e0669b7eee55435da7205f34c5dd5807e5c0fc57c10d2d"
+  },
+  "2020-mn": {
+   "rows": 23058,
+   "sha": "cb408c85ce7bb3893b9873f443d62096f31a4ea72aece7650693aa7c4ba4f449"
+  },
+  "2020-ms": {
+   "rows": 21960,
+   "sha": "2df4ec299db0255578bf9eb2eecd394e657b4004b7089e25af75142d7e4626a5"
+  },
+  "2020-mo": {
+   "rows": 41265,
+   "sha": "a8bcc72b2db86d800a6a3c271fcb0664d144709765b7d319584d7a5bb6680f55"
+  },
+  "2020-mt": {
+   "rows": 4574,
+   "sha": "6a4f05ddaa6f17b95dc1300b413cf1d88492e43bec08c22ab283603177913995"
+  },
+  "2020-ne": {
+   "rows": 16470,
+   "sha": "2502b04089cfd78df714fedd17fec08b7412d906b4da618066b8931ae50bb6d0"
+  },
+  "2020-nv": {
+   "rows": 21594,
+   "sha": "1cb33a3d511d6e434fb886b89b2b7df035c9abc206315a4e458999d0c9358bb3"
+  },
+  "2020-nh": {
+   "rows": 4941,
+   "sha": "d4d80208efa962cee97182e8f8d750cf71b6053923d5d063a7b9d9a1010307a5"
+  },
+  "2020-nj": {
+   "rows": 34770,
+   "sha": "c498a446ac8094702c86de84a8d8a27bcd0d31d21b0a75e11966615759bb2074"
+  },
+  "2020-nm": {
+   "rows": 11620,
+   "sha": "d605bd2c9093f39158fd829747d815289911a3f342509c53a9987f653a74a928"
+  },
+  "2020-ny": {
+   "rows": 98906,
+   "sha": "3aee747bb0e6320a32a734cffecf3de4098d8800a4e6b3f07a05a58e52835c53"
+  },
+  "2020-nc": {
+   "rows": 51329,
+   "sha": "170da2d65369f0064193cc15f38a90c07383354a014ec14873a9305dcb218e7b"
+  },
+  "2020-nd": {
+   "rows": 7320,
+   "sha": "11792bf53c61f518918ed7f38cdb4a3c9be21d8c5ed2f43e269bcc5edd837d01"
+  },
+  "2020-oh": {
+   "rows": 45016,
+   "sha": "6c0a22599068a8f2a5360ae8b170938cd624ba5c4d45c8975725b4f24c05de41"
+  },
+  "2020-ok": {
+   "rows": 33306,
+   "sha": "f150d4a31989db45ead373f4db87baf82a55df056ed00496ac0ac92818ec7063"
+  },
+  "2020-or": {
+   "rows": 5490,
+   "sha": "06d6d3403ed7f8d2ad0d2a6f9ce5bbeb84fa091226a10340834664f5a49fe321"
+  },
+  "2020-pa": {
+   "rows": 65146,
+   "sha": "cd41a46536e5badb0f7ce7a57ec4f04938232545194cbdc1c60232bdb2d3fee2"
+  },
+  "2020-pr": {
+   "rows": 732,
+   "sha": "8bf591eef6c6f02cc67428407f93ab503508546f7d9c47649299753fccba90c4"
+  },
+  "2020-ri": {
+   "rows": 4026,
+   "sha": "888638bbb9171f5bb4dd017ab6de35cab7ee4c51c6635ea28f874e92b27981f2"
+  },
+  "2020-sc": {
+   "rows": 25616,
+   "sha": "6a5e6cf6da148f5adafa74109c880aec8016f04b7ebfd5ce9452a161c59bb525"
+  },
+  "2020-sd": {
+   "rows": 4392,
+   "sha": "9b97d53bbcac1f5f80c35f69f41120a7b725a636cbc916d6b02900ca737cea66"
+  },
+  "2020-tn": {
+   "rows": 32025,
+   "sha": "ef6571db4aeeaad6c6a2fe556929fab12b6036acdf4e7176a439b0efaf689251"
+  },
+  "2020-tx": {
+   "rows": 138436,
+   "sha": "986dfedb63c3db7ed47b3b91825003533d3e2872155ea0864a1c37f41325b8a8"
+  },
+  "2020-ut": {
+   "rows": 10614,
+   "sha": "5f9ddea7f2dbf15edb35ae3a064c2696db116ef6dd042e625b6c5db47fbdd7aa"
+  },
+  "2020-vt": {
+   "rows": 1830,
+   "sha": "a8f7e8e073f8c6752b75aebabb181ec0fd11815c9132d4d2c38ad2a14d62a9ab"
+  },
+  "2020-va": {
+   "rows": 41358,
+   "sha": "6519b068547e485dfa7ff82923740047e9413d264ab143a15e0998d66c4a81d6"
+  },
+  "2020-wa": {
+   "rows": 6588,
+   "sha": "fca09b6749308013535e6ff2fc12d7077428ed803fe902be2fd70a38dbdfdac9"
+  },
+  "2020-wv": {
+   "rows": 17934,
+   "sha": "ab014e94c90101772b5aa812c8607a2be11e9a526bdf7e4cc5b4ed25535215a5"
+  },
+  "2020-wi": {
+   "rows": 35496,
+   "sha": "fd8d0d7b6bd90957bb65c478ec20d7fb1586f606f4857584ebb5e81cf2f97aca"
+  },
+  "2020-wy": {
+   "rows": 9150,
+   "sha": "8dbc80187eb5e76468c9df06b48d6b464d2761a371c388e8b70f46934f031e9f"
+  },
+  "2021-al": {
+   "rows": 33218,
+   "sha": "699503cecc8a1af9ee74c0c312927501498c16fc8b8927a59638a6e3ca28f0cf"
+  },
+  "2021-ak": {
+   "rows": 365,
+   "sha": "c47d10f77452796c23fb6665b8a085ca9d2828656cbd8c21a98bfe8c4c4eb417"
+  },
+  "2021-az": {
+   "rows": 31390,
+   "sha": "f026e26b0b54705d2e8ffc3b596c0acbf768fb0eef2cd8797ed11c65dc99303c"
+  },
+  "2021-ar": {
+   "rows": 14965,
+   "sha": "eb1efc1bd7214cf8abb94c6452e5244aee76b7ed820776081162112bd37f9f75"
+  },
+  "2021-ca": {
+   "rows": 89063,
+   "sha": "782196c5a5f360ce5bc6ce3b01be9dcc79a031bffbdd341dcccaba62e706f254"
+  },
+  "2021-co": {
+   "rows": 24455,
+   "sha": "06bb64c71b10221c55b21110e02578d39226beb52921dc998f731336a5b92f45"
+  },
+  "2021-ct": {
+   "rows": 22087,
+   "sha": "78e27062ebc2fa7cb4cc8c27121493131a792420b93fe88b8c96df834949990c"
+  },
+  "2021-de": {
+   "rows": 7848,
+   "sha": "b6fdc22d57cba4a7035befe83ca43a4f8b42deb5c30d0917bbb46d72096c682a"
+  },
+  "2021-dc": {
+   "rows": 1095,
+   "sha": "362c983f3036b41410598166f02c26bebbf5eaa5a287f62d45e680ae37123e43"
+  },
+  "2021-fl": {
+   "rows": 74279,
+   "sha": "4421beddb893c7ec33f35f564c52bdb6867c965da857d61d21854e1de1be4df0"
+  },
+  "2021-ga": {
+   "rows": 50005,
+   "sha": "225448c5407bc04a261dd3c3cf928a7b19f87b0c0da885901318886265715dae"
+  },
+  "2021-hi": {
+   "missing": true
+  },
+  "2021-id": {
+   "rows": 2920,
+   "sha": "36adbb247aa93287e5d6871b8cb7727044fe3fcd1cbef54a6c30c64a27aec8dd"
+  },
+  "2021-il": {
+   "rows": 82497,
+   "sha": "26ba8ab4f9e5beaa47e1de59763572574efe884af33d0b58c589a383d8e8f29b"
+  },
+  "2021-in": {
+   "rows": 46362,
+   "sha": "14d4b8dede3286477c98c2ad1c7033d6eec652f631dcd4b57d27ee3c6ec0e4d2"
+  },
+  "2021-ia": {
+   "rows": 16425,
+   "sha": "93ec914551b9953e79291f8d08358784aa5f12dd9141644fc1736b720e0778c8"
+  },
+  "2021-ks": {
+   "rows": 16790,
+   "sha": "35676e59f1176dc8265bc1189cf8ac6256f5317b6d6d84fdaf287417059ea3e3"
+  },
+  "2021-ky": {
+   "rows": 30663,
+   "sha": "1e073971ec383812943cf6f4d3e6d5271eec0362764f47281c173856667c7835"
+  },
+  "2021-la": {
+   "rows": 29200,
+   "sha": "bab98b645d3d86412bd2d47ebb42189a103ea444b17288a6ae648f02bf941f3e"
+  },
+  "2021-me": {
+   "rows": 4015,
+   "sha": "65241932ff9743974fca9e7c8c4da8b2f6c584fb88751f3587bf21424938204a"
+  },
+  "2021-md": {
+   "rows": 19707,
+   "sha": "7d78a9b13ffd35855d17bc390b43b0004dead567a0e60b99c9ea01e1e4037884"
+  },
+  "2021-ma": {
+   "rows": 25094,
+   "sha": "341b2cd40843e96c55ac6694c51f9f31cddca901a3da4a1926b3f8b19269280e"
+  },
+  "2021-mi": {
+   "rows": 42431,
+   "sha": "4d1e66d8565a14ea789cb738023e6db76db117e86c82a337122f22eaec5fa83f"
+  },
+  "2021-mn": {
+   "rows": 22627,
+   "sha": "1add4036ad33f978ec38443f4080228b4de875343c2e9f17f5f81020ba024d7a"
+  },
+  "2021-ms": {
+   "rows": 21900,
+   "sha": "5ae4ca8af5f6eb6d42aa80d7a2c83662936bed93faebc8e9a32ccc18f37a7d3c"
+  },
+  "2021-mo": {
+   "rows": 39785,
+   "sha": "4af560f58de0a4b71f45ab69471eb4eab1eee8a09a77d6a0d980159fda7303de"
+  },
+  "2021-mt": {
+   "rows": 4105,
+   "sha": "c4e21b56dbc0e7f01d28a2bbdba3fcd44b20720e013b915b5b26389ba71b4304"
+  },
+  "2021-ne": {
+   "rows": 16425,
+   "sha": "4360f46a4c5d5e17c498c539cac234d34914403ca35c97eab633aa1df263c69c"
+  },
+  "2021-nv": {
+   "rows": 21535,
+   "sha": "0885259f8f26d66e56eb6811bb7aa49125ce2b868aa4e6c5fab24a9a82bd5c17"
+  },
+  "2021-nh": {
+   "rows": 4930,
+   "sha": "b5f4de0d6e3a265a01405a2cae1934a6efd7245b5cd47d6294428eecbfdbb950"
+  },
+  "2021-nj": {
+   "rows": 34675,
+   "sha": "36a68e39643d36d979905ae5827d25a43dcd58a9e4c16ed5eb4e1b0d6bfe959c"
+  },
+  "2021-nm": {
+   "rows": 11315,
+   "sha": "243259039c8a0b2278476b5549a0c0685e762664869fa9862c54644a1e4e67e6"
+  },
+  "2021-ny": {
+   "rows": 105672,
+   "sha": "6438e1a928f95dce8e0a274fc009e48780ec0296f1aa94403e2c51708d5c7050"
+  },
+  "2021-nc": {
+   "rows": 47439,
+   "sha": "fb9904460c844b2039f1944120b5da5cd8fb9168bb259f26da157b7ea32a85cf"
+  },
+  "2021-nd": {
+   "rows": 7392,
+   "sha": "61a59aa89a3417c04e22aa2d616927d958f463e4c6ac9f2efa7149b2392f08de"
+  },
+  "2021-oh": {
+   "rows": 43902,
+   "sha": "96f6009f04aed973e88ceac516356a08943ace5acba0588480948b1017b3d585"
+  },
+  "2021-ok": {
+   "rows": 33218,
+   "sha": "668373565b127b13a93146c79271db58e812e42213a44509524f7de453d10850"
+  },
+  "2021-or": {
+   "rows": 5475,
+   "sha": "3600dc2077b75f40131bbdf068c9b0b31179b0c2def8557772f364a7b86e6a97"
+  },
+  "2021-pa": {
+   "rows": 63329,
+   "sha": "321bd671ff5f0e1a09e1349f09f2e9608ddee0632966ccff4ba9df142346c1e0"
+  },
+  "2021-pr": {
+   "rows": 730,
+   "sha": "b239cd98e32fc09754b621eb691a1d33bc983b05d4cf5c392cbcd621fa1ba4a6"
+  },
+  "2021-ri": {
+   "rows": 3740,
+   "sha": "7bfe6ec521758e2f25b409b76a6917edaa4d24142e2a5435baca0eb52eddcbcc"
+  },
+  "2021-sc": {
+   "rows": 23361,
+   "sha": "74db710798d6846e1f660a9c24604d104c318c9f557bb839d651eafe5d1e05d5"
+  },
+  "2021-sd": {
+   "rows": 4655,
+   "sha": "eccec8a26095169c2c07bf01d59a5d6b51ce5448bba5b7ca29185da3bb9a6c6c"
+  },
+  "2021-tn": {
+   "rows": 31945,
+   "sha": "421be15877d5d6b41f0b87bbb36652d1006ffddde6e51c184843010dd5e3c55b"
+  },
+  "2021-tx": {
+   "rows": 141089,
+   "sha": "423ba88344718c55730a6b5cfa3b2e9bc8de4fdf5a4d9f510ca9ab5ac9df56e3"
+  },
+  "2021-ut": {
+   "rows": 10585,
+   "sha": "07e1ef7b2c59da580803b0b2736a0ec750cbfd5c677d3b1d28f061dab2d90ffe"
+  },
+  "2021-vt": {
+   "rows": 1825,
+   "sha": "d52d0799fb3e93dd5637268aa2f38b11bb2b6320cd8d08c6b3cbb5a0b3b6f29b"
+  },
+  "2021-va": {
+   "rows": 40243,
+   "sha": "05f45ad337de9e8321b4aa9868a7f86cece9cf62edb955fe5f590f5c48578b9c"
+  },
+  "2021-wa": {
+   "rows": 6295,
+   "sha": "3288beb38aed909bb3021fab0e0cae94786f6de59c3c82efa961144cdd54643e"
+  },
+  "2021-wv": {
+   "rows": 17890,
+   "sha": "33af1862d2a0266fc432d4380f0c4b5b74b277a8e83953c1f55cb1669152d3e5"
+  },
+  "2021-wi": {
+   "rows": 34126,
+   "sha": "24e400a4b0f85eca02de9a8051da22b8612fbb7deb0c263e644cc13eabb34d30"
+  },
+  "2021-wy": {
+   "rows": 9125,
+   "sha": "219eef4647a9bcf957c182620d5ab65710dd919bba0e3f00519cd279f0477ef4"
+  },
+  "2022-al": {
+   "rows": 31664,
+   "sha": "942be09f30480693de3a331ea14b23aedf8c5f91ac1ba87faa54f5b31b689a7d"
+  },
+  "2022-ak": {
+   "rows": 365,
+   "sha": "7bb8cb5be876fd024a6dae3e601c72ce97fc01dac2134f584400caf441e91068"
+  },
+  "2022-az": {
+   "rows": 32126,
+   "sha": "da53783eeeb295497b8cd9fe15c09b9e798edd7521051637446995512f54c7bb"
+  },
+  "2022-ar": {
+   "rows": 14965,
+   "sha": "29f35afd1940c6e4ab7976cc052d9a7e96d1e5504339b01397b8dc4d36dec51a"
+  },
+  "2022-ca": {
+   "rows": 89063,
+   "sha": "3ab3966d6a64ec71ae0651d3cddd0995f209ce2962eebd9ab23705e70246f0af"
+  },
+  "2022-co": {
+   "rows": 24271,
+   "sha": "283ba8c314f44923e0d987197070e8ef131224db0a3c6a4f1fe74e8cae90ba59"
+  },
+  "2022-ct": {
+   "rows": 21725,
+   "sha": "c3a7cfb4bbc1e894a8350bc12df31bd9cb6b334523b1b1d54a51e7ebd8547dd0"
+  },
+  "2022-de": {
+   "rows": 7667,
+   "sha": "251ce67f8692eef46113c9448b20db310adf413af29230b99f0f4b1aa3e8fc1e"
+  },
+  "2022-dc": {
+   "rows": 1095,
+   "sha": "c948f94d302b871647838351b5336f1186bc4af545b6fb978f81a4bf80f4c4b0"
+  },
+  "2022-fl": {
+   "rows": 75740,
+   "sha": "94e62f53486ce6b2c740392a14abce745e96db0bcc876d72c11f1eb5f128a8ca"
+  },
+  "2022-ga": {
+   "rows": 49364,
+   "sha": "d0c26dfa7c29588c5f8a1374f92acfa9699ef281b8348e1f94a99717c5394fe5"
+  },
+  "2022-hi": {
+   "missing": true
+  },
+  "2022-id": {
+   "rows": 2920,
+   "sha": "8dc1c7a61f6e179fa44adf66a515b7cfde2f7445787828ccc03f4774c7c72e2c"
+  },
+  "2022-il": {
+   "rows": 81489,
+   "sha": "c0b872096d91c8b67e08b91d45a6d10542fe4d30b0f9511bd3b004f409646f51"
+  },
+  "2022-in": {
+   "rows": 45635,
+   "sha": "1061414ad44156a0302b652cb049ebed4c51844fe96ed2665406e8ee06941c59"
+  },
+  "2022-ia": {
+   "rows": 16425,
+   "sha": "21567ed2dec1c68b394e6dffc581eba01c1c49a14bbadffbc04e8522190f33d6"
+  },
+  "2022-ks": {
+   "rows": 16790,
+   "sha": "4aa593556fc8bbd4bb3b483ea54113e3211f7b7a8e163cad4042bb258a80ce27"
+  },
+  "2022-ky": {
+   "rows": 30663,
+   "sha": "8e0411632b0e855f3fe2f600a895fa947720d5b59396f8611e58d99a6d5ac7e5"
+  },
+  "2022-la": {
+   "rows": 28835,
+   "sha": "38bc31fe6e07e65575f55742d1ddb4d68ca60ce4daeaee109097960b151fa3b8"
+  },
+  "2022-me": {
+   "rows": 4015,
+   "sha": "4ee114191b6668dc05fc90de82c4f6c30912a92fea2230a071451998d9751aa3"
+  },
+  "2022-md": {
+   "rows": 18977,
+   "sha": "f9c0b3077d96ad523cdf18fd808748fd85df01c32a687d696bf104f65cfe7721"
+  },
+  "2022-ma": {
+   "rows": 23632,
+   "sha": "5d9833d2006312fb3db738e9bde1348feb912915b3d9a1266d05382f1663df70"
+  },
+  "2022-mi": {
+   "rows": 42804,
+   "sha": "e64579182e087e66393f56639075998c9dfdb8f6e7e2afc12750b27e8dd73d3f"
+  },
+  "2022-mn": {
+   "rows": 22265,
+   "sha": "a956554d055b4a41ec069b4db64b94b9be4b24fbea2bd5bd4aa0156f28d82ab5"
+  },
+  "2022-ms": {
+   "rows": 21992,
+   "sha": "2ebf92e976de846da1c57c9e77c5df0903ca31cb8f614bd853b220df756e2b54"
+  },
+  "2022-mo": {
+   "rows": 39785,
+   "sha": "a0ac7043c6e400cd06780ce9306ea914f4fe2ec0f5fd679a59cafd021d420320"
+  },
+  "2022-mt": {
+   "rows": 4015,
+   "sha": "e05d0efbf13516c859839558954fc3ecde954e53f4f4e3306a06cbf335151473"
+  },
+  "2022-ne": {
+   "rows": 16425,
+   "sha": "0433bd5f10a5fea039a568da98239cb130f2035eb3f3b3a7e5d64186e53982af"
+  },
+  "2022-nv": {
+   "rows": 21535,
+   "sha": "b9dc8965950b118fcb90714fafca0a7881e9a423741e5bcfdbced5fce2e802d1"
+  },
+  "2022-nh": {
+   "rows": 4930,
+   "sha": "e9450ab5201e6470845113def7f00a01a868b7d94eba7cdbd05f6714365f3a38"
+  },
+  "2022-nj": {
+   "rows": 34215,
+   "sha": "c8f30712fea10a5a41c73cf96834be786bc905bda16f7337a69297e15eec7674"
+  },
+  "2022-nm": {
+   "rows": 11315,
+   "sha": "c7b9ac6684c7c7401fb52bf1cf0b88c54d003e69be974528dda6d70bf5b9e984"
+  },
+  "2022-ny": {
+   "rows": 103025,
+   "sha": "caaa48dec675038c4d43b80a10bc6384a10bfacee9f3d5f7e18adef289007986"
+  },
+  "2022-nc": {
+   "rows": 45809,
+   "sha": "341a08d38b5d6c085975c720a8169e61aeed07ea0175012ee8645658dc3cdf8b"
+  },
+  "2022-nd": {
+   "rows": 7390,
+   "sha": "da3a54b4435eeeb98ec1d8892eea899e298d1e31eee252f3938d8cf3845dfdab"
+  },
+  "2022-oh": {
+   "rows": 43438,
+   "sha": "fe1934442bf7bcee1af4f9bddc3090082957eb5cd81a22dff432fb1edefe0f90"
+  },
+  "2022-ok": {
+   "rows": 33218,
+   "sha": "dffa58a3254c38304602205991a4a9938bfce574bd63977aa9b43753e634e21d"
+  },
+  "2022-or": {
+   "rows": 5110,
+   "sha": "b3bdb1e77a2c4d15ec9a489e7131d06d582dff158a92011cde6a41504a197496"
+  },
+  "2022-pa": {
+   "rows": 61964,
+   "sha": "bd87ffd13b767b06a4ce481ed1cb90e6dcfd0067698b5e2e41ed05aafb40293f"
+  },
+  "2022-pr": {
+   "rows": 730,
+   "sha": "b885161adb369b94c09aa6b63f4db95faa5876c4f252d5537e8cee38a2a1ec59"
+  },
+  "2022-ri": {
+   "rows": 3650,
+   "sha": "fae9af344527989c1507de7cdcacc38dace77a404afc7db7d2d5341002dbc42c"
+  },
+  "2022-sc": {
+   "rows": 22536,
+   "sha": "e01010d0e73ce075f1d699a847147f05e49180f631224a0bf9cb94318cdfc7a2"
+  },
+  "2022-sd": {
+   "rows": 4745,
+   "sha": "f454e64f9098c145b40ac5188e3febb662e66f7d30af14eaff48b38e5321806d"
+  },
+  "2022-tn": {
+   "rows": 32677,
+   "sha": "80b25a091d330bebd55271ea45374207154fa6420b3ac087e093fff46468986f"
+  },
+  "2022-tx": {
+   "rows": 145923,
+   "sha": "c307d84b92adf8288a619cd77445d00d6d84b2423aa023ca229e47c15d580b7b"
+  },
+  "2022-ut": {
+   "rows": 10585,
+   "sha": "43cac387d85482ca97695d869c95f2ffeb9a90a920feffb96c6777da5c79525d"
+  },
+  "2022-vt": {
+   "rows": 1825,
+   "sha": "dabba3365b6fdb133a5d22953d237d64810738bb1a3f124ff875086473748386"
+  },
+  "2022-va": {
+   "rows": 39061,
+   "sha": "a9a516a3ddaf6745f7bf03a889464468d85840123da427786853b1f9cd361a94"
+  },
+  "2022-wa": {
+   "rows": 6205,
+   "sha": "47db03cb68d069267fdb20ce7743f09120cf4d56218616be0326a01a0dfd0397"
+  },
+  "2022-wv": {
+   "rows": 17890,
+   "sha": "5d5656308755f5965726364622801e8516fd6ff2ae15ade77b4b4a796058b93e"
+  },
+  "2022-wi": {
+   "rows": 33670,
+   "sha": "4cc8011c1fadc0beba86b612d03ff3bfbebfd9fcae0dd3afa8b9fb3e97e42265"
+  },
+  "2022-wy": {
+   "rows": 9125,
+   "sha": "4201d7613aa3a8480cf9570e5fb6f9efc0bb4a55f9db565e07004019b2b8fdbd"
+  },
+  "2023-al": {
+   "rows": 30847,
+   "sha": "6199f45772cf0b9a9415837aacadd39b94bb4fdd5d6d0554b3c8d0c070e653d7"
+  },
+  "2023-ak": {
+   "rows": 365,
+   "sha": "8375b24b9b84aad20c50b598221049adc257ea17e231b4ba4f26a50400f0a832"
+  },
+  "2023-az": {
+   "rows": 32850,
+   "sha": "971c3c7c0433d89a47c1508475d2506933b25436f3bbfbadfb31f9b04fdd36ec"
+  },
+  "2023-ar": {
+   "rows": 14965,
+   "sha": "9bbda5b70f7fec1360460e1102a93dbd5e3042bbc65f5b2e3271a2ce88839cbd"
+  },
+  "2023-ca": {
+   "rows": 89057,
+   "sha": "8c3504eedefb3f3e8ffce07f29a97ea183df3be96315b66feaba1854b42ec69d"
+  },
+  "2023-co": {
+   "rows": 25010,
+   "sha": "af299325f06590d5432b4c77ba9a8d5bc925f985cd756fac0259d98b2ba37957"
+  },
+  "2023-ct": {
+   "rows": 20069,
+   "sha": "6adc5ad67cf4c26d2b5a1a83498742867cf07ccf7870bf430e8a4e0d77bc3ea0"
+  },
+  "2023-de": {
+   "rows": 7667,
+   "sha": "ed0e4d9905e7666fb21f782b704a519936ecd0a36aa63606fc10ddf5ee21cc1b"
+  },
+  "2023-dc": {
+   "rows": 1095,
+   "sha": "b7aad18ffa9cc04df746c89dd7d75d068a162bfaf883ecb01831dde861e883ba"
+  },
+  "2023-fl": {
+   "rows": 76466,
+   "sha": "e4d868dad7eeec8371a89f43af7743c853da93a0a6caa6972291503c0a1fe88a"
+  },
+  "2023-ga": {
+   "rows": 47815,
+   "sha": "01159a5aff4e2f9b060bfe864dec85f10f2853df4f5424c69e0a80132c9a4a5e"
+  },
+  "2023-hi": {
+   "missing": true
+  },
+  "2023-id": {
+   "rows": 2920,
+   "sha": "24eb5f3d58591fe6fe75556c4fceb40d4a156a85f2edab0b0cba771d7e05d3d9"
+  },
+  "2023-il": {
+   "rows": 77210,
+   "sha": "162ca34194c7c61df3eda8680dbdd3e9a74ec2f034636889e1b85d0bd8f911ce"
+  },
+  "2023-in": {
+   "rows": 45451,
+   "sha": "7506d60f3433ff67fdeb79a5d8805eb5eb11a709920d18a9d0356fe23cb081d0"
+  },
+  "2023-ia": {
+   "rows": 16241,
+   "sha": "b83e7003a8aaa5c8d50badc8fefe032ea098856333bb7a88e9cdd48c55349a14"
+  },
+  "2023-ks": {
+   "rows": 16790,
+   "sha": "2497ccffe454ea658a2105713cd7eb135d460c45b7095efc62e6b98c5ad69dc8"
+  },
+  "2023-ky": {
+   "rows": 30663,
+   "sha": "dfa2069fd9a8bb6b7b138a20c3d6ed5a0408e78220670b6743191abb37352e9a"
+  },
+  "2023-la": {
+   "rows": 28835,
+   "sha": "7ffb23d1283fdcbf471888332828357adcc0687619ed9b27bc8eb7f9e7fd2e59"
+  },
+  "2023-me": {
+   "rows": 3190,
+   "sha": "8cb324d5153bd02fa79d49dce145adba5f5c04dec88d11d8456b1c576c3792c0"
+  },
+  "2023-md": {
+   "rows": 18063,
+   "sha": "92cbf5a14ab098beebcfb09716613b02d16f8001032e01185735560baf13a9a7"
+  },
+  "2023-ma": {
+   "rows": 22997,
+   "sha": "6def5a9b3e249000c7e0bf36dac572f168ad6f9e35dcf9053c022fa94fe0e92b"
+  },
+  "2023-mi": {
+   "rows": 41066,
+   "sha": "f66380b55ff3b4fa9b5218154e9a15c65ce8be2e33da2711c291824d7dd695ca"
+  },
+  "2023-mn": {
+   "rows": 21715,
+   "sha": "5ca1b366583319dd22c867fff3086331ec30432fa2bf3f29f0abadae46b42b8a"
+  },
+  "2023-ms": {
+   "rows": 22081,
+   "sha": "a9dc3ec273806e879208a26563707903ea04a65260b2e5282518e3707fa93cfe"
+  },
+  "2023-mo": {
+   "rows": 38681,
+   "sha": "1e53b78beed9451b34aaeaf4ae52dda164d936dc73fc3d89834cd0872441d9ce"
+  },
+  "2023-mt": {
+   "rows": 4015,
+   "sha": "0d6a2aa7cd97947fe0451419362fbcb93dc5f3093994cc16dd2efa1d5527f390"
+  },
+  "2023-ne": {
+   "rows": 16425,
+   "sha": "8ea922fd811a4f6e8d85a8c70a17bab0c06aa650ceb8b76b230e4f2948725878"
+  },
+  "2023-nv": {
+   "rows": 22085,
+   "sha": "d832c03089b39286c4078e1be97fa09d3c908b627f6789ea8a98ac9ac271f4b7"
+  },
+  "2023-nh": {
+   "rows": 4930,
+   "sha": "16e9868648b65506244f8bc6998e4bb3971556c73e805fcac6a4e8a390463afa"
+  },
+  "2023-nj": {
+   "rows": 31936,
+   "sha": "056cef08e53c7635e233f1842dc77108ce02794b7854ee1c84c2cb7717158706"
+  },
+  "2023-nm": {
+   "rows": 10585,
+   "sha": "86ce6d18d4e95ad1aea7bf8824f785eb173f1896beaad700fdbe7e84d106f9f0"
+  },
+  "2023-ny": {
+   "rows": 101381,
+   "sha": "c10b652eb642d70729ba61fec85d5db9f3b592f918e29385a7116d9bc32f2da7"
+  },
+  "2023-nc": {
+   "rows": 45079,
+   "sha": "d11756da1969a950f95a0449a7dfe1fdc3950b601f3a375a041555f67568823e"
+  },
+  "2023-nd": {
+   "rows": 7300,
+   "sha": "960b222946962e481db19025470de9826a9ffa09f75cc8de685a2100f7b6875e"
+  },
+  "2023-oh": {
+   "rows": 41979,
+   "sha": "a799faae9b493ed1ddf90e609c862660cf3dd8e778988b877c6eea9107c188fb"
+  },
+  "2023-ok": {
+   "rows": 33218,
+   "sha": "aa5c29b2152fa3a1ed87d77a67e9b1cdbc8e3f775c69119c576b56101b6f27b0"
+  },
+  "2023-or": {
+   "rows": 5110,
+   "sha": "24cf63c5c2394296569ba60a5dfe604671d62e4db0ae58890c34b6f8c17307ed"
+  },
+  "2023-pa": {
+   "rows": 61323,
+   "sha": "fec80665ce51872f9fda52ab740ee976de6922ea5c2d510bfef877820f38f2d8"
+  },
+  "2023-pr": {
+   "rows": 730,
+   "sha": "f657c37acbc6cd14d63e736d283c2eb9ed1d33822427f842cbd20b1496522d4a"
+  },
+  "2023-ri": {
+   "rows": 3650,
+   "sha": "a4b0acbdf7a6547d0646f27e0e37647c772e8ecec631787f2ba13d64230b3b2a"
+  },
+  "2023-sc": {
+   "rows": 21900,
+   "sha": "197bb6ff2e36de822700c8d15ef4646f5c9e88e19ca7ceb40c102ace3fe46292"
+  },
+  "2023-sd": {
+   "rows": 4745,
+   "sha": "e7a4d1684010fb126fb1f2d2247234cbc028b959f206b54d2d58c14c6073217b"
+  },
+  "2023-tn": {
+   "rows": 32677,
+   "sha": "d405aebed794483e15b663861e8ad01c0bab486c297d199e41dca5e22da76e0a"
+  },
+  "2023-tx": {
+   "rows": 151668,
+   "sha": "d695d006b51e160234b9ca2baf4ad0c401f3167cb5c2ebd8d5e0a36189d5b9ab"
+  },
+  "2023-ut": {
+   "rows": 10585,
+   "sha": "e1bbc69d85c0a949e11ce3edc42701cd7ca89bdc660d5abe40f4b8a531437b0d"
+  },
+  "2023-vt": {
+   "rows": 1825,
+   "sha": "927564cca567a86d7cfeb66f884bab823742eae4ac1cf7727d01f27b2c3530f0"
+  },
+  "2023-va": {
+   "rows": 38509,
+   "sha": "886ee9b75a389a7ba0f8e54b328e51e28719942682db0bc076cd018fce5aee85"
+  },
+  "2023-wa": {
+   "rows": 6205,
+   "sha": "21e7c2892e8f6e5e2b94850d2749bbfd580ba97ef50b6f8ae53dea5949d9b33d"
+  },
+  "2023-wv": {
+   "rows": 17890,
+   "sha": "f9e5b1aaeef4aa196ce078a10acda1be03f32312295c4328cae27a04846d1cce"
+  },
+  "2023-wi": {
+   "rows": 33121,
+   "sha": "013655fc8585b54b898d66124a69082ddbc80976936df2d2398ee7b59ecf0c6d"
+  },
+  "2023-wy": {
+   "rows": 9125,
+   "sha": "76ad01b64dbf56e63695b9a2ade993f1b73f959eba099c9e3f880c7877650cc7"
+  },
+  "2024-al": {
+   "rows": 32208,
+   "sha": "18cdb3d95474a75b984676c0e0ce4365806e86ac269cca487e7bd2460cb91966"
+  },
+  "2024-ak": {
+   "rows": 366,
+   "sha": "a64bc3b94454d3428aa2fa3eed2f24d53952d7e49d0eb6b8761ce77233462fae"
+  },
+  "2024-az": {
+   "rows": 33490,
+   "sha": "4b95e6d82fb20dcb679f319d830a64621948d82413cb4d4322a7cc2961c4567d"
+  },
+  "2024-ar": {
+   "rows": 15006,
+   "sha": "162b80d3e6f5e1f946f50f94b1205a44cb946cd8a346d1b64fe6c11ed92add3a"
+  },
+  "2024-ca": {
+   "rows": 87840,
+   "sha": "278f7221ac17394e958f201762b157cfb438ff853d304bec4a4fd5402139778d"
+  },
+  "2024-co": {
+   "rows": 25620,
+   "sha": "3874dbd0a21e023c095dc16096d89a253964d46690d2ccfa16e9a384b455cfdb"
+  },
+  "2024-ct": {
+   "rows": 18483,
+   "sha": "6855ef658456f32886e58936025e08a3cd0338b7d2a18e6f6e05f16efc4cb26d"
+  },
+  "2024-de": {
+   "rows": 7686,
+   "sha": "cdceb647ea1d25e62a5bc061daff17226d0b62048c59f8b86514179f90d4206b"
+  },
+  "2024-dc": {
+   "rows": 1098,
+   "sha": "c55be2760ea307560d1dcddb4f3a8aa8755164d6e955afcb5ae2c7fbcec8e2fc"
+  },
+  "2024-fl": {
+   "rows": 75853,
+   "sha": "e211baa707f1cbab9ee0e7eafcd88b58f076c0f6af863f804d30cce94524f937"
+  },
+  "2024-ga": {
+   "rows": 47946,
+   "sha": "3ba5c635a286faf68496db0a6a388f88205180988dd9671469a3df32d67819fd"
+  },
+  "2024-hi": {
+   "missing": true
+  },
+  "2024-id": {
+   "rows": 2928,
+   "sha": "83eac70989f1c97956a028ef9ad5a3fbb21f94c29bd84bf82ac62972d99ae6b9"
+  },
+  "2024-il": {
+   "rows": 73921,
+   "sha": "8495058d058005d824ac8502c21fc621e7b13562e1147c46d94b638c4054dd67"
+  },
+  "2024-in": {
+   "rows": 45016,
+   "sha": "d93e95bda217be8b3cd5c3040fdf30bc7468bba170aefbc6564a2057bc83fe5d"
+  },
+  "2024-ia": {
+   "rows": 16104,
+   "sha": "1344a912369ddd7f079a4abbaa233c964da28c77215df4c53df04084af6c5165"
+  },
+  "2024-ks": {
+   "rows": 16836,
+   "sha": "86b45b34fb3d4939b679e38993a5bc9037b4bd8aee209ecf5e460f223b5e0c6b"
+  },
+  "2024-ky": {
+   "rows": 31842,
+   "sha": "aa14214985f6e3742a886e8bc6d216acdeced6dd258aa33bf8126ea30692a413"
+  },
+  "2024-la": {
+   "rows": 28730,
+   "sha": "41266e81ebfd2219152f579a5cc059e2833ea4fd071882c1284e0d6725e13d23"
+  },
+  "2024-me": {
+   "rows": 2928,
+   "sha": "d777e2c95fc8a6d45fbc97d70fc116d67b61c2fd33760f3af66264b210fb1f58"
+  },
+  "2024-md": {
+   "rows": 17384,
+   "sha": "7e58142f6bf4f247a0df3c4d4b0e1e87a5a404030a807c0f26ebd68cb7ebcdcf"
+  },
+  "2024-ma": {
+   "rows": 22872,
+   "sha": "d132cb85c7198412846e2732a420bfe3894ec17dee4cf4eaf74e9b071acafb14"
+  },
+  "2024-mi": {
+   "rows": 40809,
+   "sha": "58b3e5265ddd0c38f00991e86df4a589760cd5c8144acbdfb9ff31d1b3b9f0b3"
+  },
+  "2024-mn": {
+   "rows": 21228,
+   "sha": "e0989a9f71f6b5a601c5062262955653b659aae59706c36389451f8e4812b15a"
+  },
+  "2024-ms": {
+   "rows": 21960,
+   "sha": "c72d935447e7781869efcddeb7ad82725b89d0b22aeb9fe0d2908e1f45f85a3e"
+  },
+  "2024-mo": {
+   "rows": 37698,
+   "sha": "950e58fa4479b4656391f6839953b1317d36043644a1c5fda00168166056deb7"
+  },
+  "2024-mt": {
+   "missing": true
+  },
+  "2024-ne": {
+   "rows": 16470,
+   "sha": "7ec038f15a4d71bc66e577b59a239701093ce8e6ff3fb038333f9f9d985a5756"
+  },
+  "2024-nv": {
+   "rows": 23792,
+   "sha": "c165c203fc45f59d45809f465b00f9a1cbc94c455c08a31cb2bc0634fafcb797"
+  },
+  "2024-nh": {
+   "rows": 4941,
+   "sha": "bff31fc6bb1746b660969db833e695c6cdbdd448b84330862720303720687841"
+  },
+  "2024-nj": {
+   "rows": 30283,
+   "sha": "b4e971dec7baa21a3429de7470e7a3fe0f892eda08d8433fe041789425f4ed35"
+  },
+  "2024-nm": {
+   "rows": 10614,
+   "sha": "47c902ceb03b48b472615d2c5f6997e734e75489c52297a56d565a31ef3dc0b2"
+  },
+  "2024-ny": {
+   "rows": 90945,
+   "sha": "5532bc92142a18f0ea38f2a76d45819f5708a961597968cb41ecd137e66c4251"
+  },
+  "2024-nc": {
+   "rows": 45109,
+   "sha": "c52b096d4bec391b21d24778d382f26079f75f8a968634e0997f6ef2197ea4e3"
+  },
+  "2024-nd": {
+   "rows": 7595,
+   "sha": "cd51ea929169310fb51d0ea6a32d92ae1ce50008588a908cb35aeea58e8b02a1"
+  },
+  "2024-oh": {
+   "rows": 41175,
+   "sha": "503b41fdb21b0332aeb7562530eee3de0b4e34a4f26719efdc4c6175a8bdc11a"
+  },
+  "2024-ok": {
+   "rows": 33306,
+   "sha": "ca933c6485d6b3c213e10c320b9ee807a465b0986e3c6b3f21fdc8e984c60e74"
+  },
+  "2024-or": {
+   "rows": 5124,
+   "sha": "8f44a196911437dc519d81a23ab397908acddcfac70fcab5c17ef00945fc64fd"
+  },
+  "2024-pa": {
+   "rows": 60207,
+   "sha": "25cff5a8bc16713e7e9d3acd52cce676d78074392aac234dfa8088549dfde1be"
+  },
+  "2024-pr": {
+   "rows": 732,
+   "sha": "e88fe4a64f1a312781ab8efbd5486517cf78ef585eeae5ea25aab472bcd54b5d"
+  },
+  "2024-ri": {
+   "rows": 3660,
+   "sha": "b28bf09ef7cc577c5f557708e75fef811672d2fb9849427797201f38d40aded6"
+  },
+  "2024-sc": {
+   "rows": 22144,
+   "sha": "e10c611c612bb73b4f58b831ebbf01181c8502e812053d5d7d1b5da827b78f25"
+  },
+  "2024-sd": {
+   "missing": true
+  },
+  "2024-tn": {
+   "rows": 32391,
+   "sha": "66e5addee9876f043c7688c55bc553f47fdab20af569314c7c34eab28eee2afe"
+  },
+  "2024-tx": {
+   "rows": 154915,
+   "sha": "a0a664f22883a58c8517e454433db2e00da529994e262c5d412e14f8457f5f6b"
+  },
+  "2024-ut": {
+   "rows": 10614,
+   "sha": "9fb6a0c837909d935bbeebc102114f96b6616e5737d14b230be013215f720aac"
+  },
+  "2024-vt": {
+   "rows": 1830,
+   "sha": "68880748cf6c6c6d965c1bb2e7071cd7a660fa67d3fce629106f5dd97cb0db20"
+  },
+  "2024-va": {
+   "rows": 38064,
+   "sha": "abe808c98c6980126374736ad27bc5d95bc1db63ef2418a20ce60ac83e177810"
+  },
+  "2024-wa": {
+   "rows": 6222,
+   "sha": "ad3e9b599ede6ed4e72fc2793fc0d2bad53b08e1f826eac8a1dc948ff03221f5"
+  },
+  "2024-wv": {
+   "rows": 17934,
+   "sha": "153e4e3ec9218d41ba3b00cb5ae4675c421ecad09eed204f7e056a699b79e267"
+  },
+  "2024-wi": {
+   "rows": 31656,
+   "sha": "b46bdf75822c78354db80a67a05381b08c46bd3c11b563c064ee58c3b5d7adee"
+  },
+  "2024-wy": {
+   "rows": 9150,
+   "sha": "cdaa5207f20ae5924733bb9846d7bb9e67d7e23128a341a288d3158b4ddeada5"
+  },
+  "2025-al": {
+   "rows": 32120,
+   "sha": "24978969231661908a2315ee84637162c9e58f0f9cfa74e80995d4bf17f47efa"
+  },
+  "2025-ak": {
+   "rows": 365,
+   "sha": "1e9746c6d488eb43e542b19119147892f96a06513bed998ad3be2d74dc7dab29"
+  },
+  "2025-az": {
+   "rows": 34132,
+   "sha": "8a41797d5b09799a581d080a27e2468f20f0cc6a6b2dc8ac1707365fa4bac213"
+  },
+  "2025-ar": {
+   "rows": 14965,
+   "sha": "35eecc6b42b6e278f4d503f6e312c94cace9df9510787c34d21fedee0689efe1"
+  },
+  "2025-ca": {
+   "rows": 87600,
+   "sha": "ed7f6352a28047c1cd4d2b4bb86655cf64709b8c7879c89cd33521d7bf7ebd2f"
+  },
+  "2025-co": {
+   "rows": 26102,
+   "sha": "6d151b4afb672532b307f91b1e7b45f90e6423f0d0d12cbcf179c6af115c8cb3"
+  },
+  "2025-ct": {
+   "rows": 18439,
+   "sha": "a4fe622a3367a6361058b8ede6fd73d56732d7a58164fb02906d804de434b5a3"
+  },
+  "2025-de": {
+   "rows": 7667,
+   "sha": "d59c08bea272afb409c00ccdc179c27865c1e440a1ae5a1ff2f737aba33b10b5"
+  },
+  "2025-dc": {
+   "rows": 1095,
+   "sha": "f56fb718791851416a17093c24b4a0c92a52a64ab5aec3e24e38f985b618ad20"
+  },
+  "2025-fl": {
+   "rows": 74825,
+   "sha": "0e2dc561972ff2f5ff79f72bf624189ebaf50a9ecc2a5eee6cfe1eed131b19fb"
+  },
+  "2025-ga": {
+   "rows": 47815,
+   "sha": "833cbde121b59414ccf0df17aee47cc86bb25865cf3969f994353115ea868834"
+  },
+  "2025-hi": {
+   "missing": true
+  },
+  "2025-id": {
+   "rows": 2920,
+   "sha": "b2b50512a46a3ab8e303e6af44fde14b57e79507cf53c70c0a3034137113e158"
+  },
+  "2025-il": {
+   "rows": 71730,
+   "sha": "2ebbe62f479ba6ebd51ca01c683d10df2422442f307f8e8b23d420c19f98be90"
+  },
+  "2025-in": {
+   "rows": 44816,
+   "sha": "78c110ea75bbd612dbaf426a40fb07c64678413d84843f1858dfb73327862ae4"
+  },
+  "2025-ia": {
+   "rows": 16060,
+   "sha": "eb14940f2ec48dfd263653967e2d0209970c9e1586195f42c5831276a69f0bbc"
+  },
+  "2025-ks": {
+   "rows": 16790,
+   "sha": "2f7e9fac20c2cf10ef81e86a6bf23ce69f594af0161362d7f6c45a2d19892fa7"
+  },
+  "2025-ky": {
+   "rows": 31393,
+   "sha": "cbec713b42ee9e742702a9eb090e2698e408fe6e3b1e70f695aaa988fde3be5f"
+  },
+  "2025-la": {
+   "rows": 28470,
+   "sha": "a9eecb2f69cf3a67d4760dc47106c0668606923cb66c694aa8f68765835fbc72"
+  },
+  "2025-me": {
+   "rows": 2920,
+   "sha": "fbce89abe6d3e3a5816548ac26e1f1b817ccf905c5ee148343d055f94ae73b5e"
+  },
+  "2025-md": {
+   "rows": 17155,
+   "sha": "c0b36ba1b2c7b8e810a1c19e3895cfcd323141613b14f690100d6f4e5376387e"
+  },
+  "2025-ma": {
+   "rows": 21172,
+   "sha": "d64978a24e9e733527caf77cc9280a86cdb568b1b06dcb2086c3154c5b127672"
+  },
+  "2025-mi": {
+   "rows": 40521,
+   "sha": "52297746462d3bc0ec1b63ce7c8caa4f2745d731cbb52c93f36f57686fb735b0"
+  },
+  "2025-mn": {
+   "rows": 19609,
+   "sha": "e6a6f823db82f4845872cbb9d5ae4ccaa9573ceac68f1cff8a7bb11c593bd18c"
+  },
+  "2025-ms": {
+   "rows": 21900,
+   "sha": "b86761df9e51370ede6eecab5dcb94de4b34e029d870dad0154ec5b699cebebd"
+  },
+  "2025-mo": {
+   "rows": 36865,
+   "sha": "fd29d37a8b6e0db8ec314f41d0cfab8ba72ae9a26cd8df8e79080b3016655db0"
+  },
+  "2025-mt": {
+   "rows": 4015,
+   "sha": "10e7cc8021316e502d2551e875965221e29366a1d8a716fbfc4dc04393009537"
+  },
+  "2025-ne": {
+   "rows": 16975,
+   "sha": "b225bc896fb0f18dbc2fa12c599d6a7371f9ce684826458e1fb2a314abef95c4"
+  },
+  "2025-nv": {
+   "rows": 24090,
+   "sha": "106a9a65801126ef2c8ccbf11c82b819a4387e71fbb1e090de17f639b048aa70"
+  },
+  "2025-nh": {
+   "rows": 4930,
+   "sha": "aab78edb31a876351f55f47a9f05c63942c0b1e11974248fe987e2b4861a292c"
+  },
+  "2025-nj": {
+   "rows": 29565,
+   "sha": "218505e220427bf8eedd0c2bfc10ea5c35735f8dae61083ff6ed847f893712aa"
+  },
+  "2025-nm": {
+   "rows": 10493,
+   "sha": "db71a3b34ab35dcbe6b55f95d476cc7cbd16c14479892d422900f573a67783c6"
+  },
+  "2025-ny": {
+   "rows": 83772,
+   "sha": "0f74bcbfc13e3cacec751f3a61b844934dbaddc1f5ee341a4204d280f389bd1e"
+  },
+  "2025-nc": {
+   "rows": 44349,
+   "sha": "3caf68ca3747fb2e25efc6be232d1dd2ba9397a7fafdae0d201e530c5941d8ed"
+  },
+  "2025-nd": {
+   "rows": 7941,
+   "sha": "504e14921319a923f765f014269f957da76c25719ab1183e0c949a9b44feab9b"
+  },
+  "2025-oh": {
+   "rows": 41254,
+   "sha": "1ff6ba7147107a1c8ec7ecef1bfc77f7ac7e75919f031e4548b553bfb46ae028"
+  },
+  "2025-ok": {
+   "rows": 32212,
+   "sha": "93de5a4020f4a10585347b0c2ef81f02000bb55d887c2aff566ecc8b47a677d7"
+  },
+  "2025-or": {
+   "rows": 5110,
+   "sha": "10db476498889a5253921d368480f63d37d5d82b2af6d424190ffc9c09c3002a"
+  },
+  "2025-pa": {
+   "rows": 60048,
+   "sha": "a821a2fe90086ebd9b6a8b376e26ad18ef05908208b42670612db1b6ff5b84e2"
+  },
+  "2025-pr": {
+   "rows": 730,
+   "sha": "fa3c0936a325644dd8b9bc333d875fbc8fa4474b0d1e18b02ae1aab10317799a"
+  },
+  "2025-ri": {
+   "rows": 3650,
+   "sha": "0f5d4fd652796fdb2842614b40c76a8a3acbc52bd8d02d37108bb0555fe0ccbe"
+  },
+  "2025-sc": {
+   "rows": 22633,
+   "sha": "ce3e0c6868b11131d2161f5d9a6bada6efdb9872b1b5fd99b605008b722fd0e8"
+  },
+  "2025-sd": {
+   "rows": 4015,
+   "sha": "2af22d44e36923d216da18d6dfe1859cfe05ce05a4d2ddde944ccbe0c054143f"
+  },
+  "2025-tn": {
+   "rows": 32772,
+   "sha": "ac1a5d1c83654bf63cd8ecb9779579f5226dc7c1485666d80283238ba4176e34"
+  },
+  "2025-tx": {
+   "rows": 155946,
+   "sha": "ccc1c9a921129f382aaeceb1e4b3a2503db957923c3a5d7f7e4eae12e2beec77"
+  },
+  "2025-ut": {
+   "rows": 10861,
+   "sha": "e8449ffb1ec0daafc6729f0a0a48e8c95e0897f5bc5d8912f17839622ab8b529"
+  },
+  "2025-vt": {
+   "rows": 1825,
+   "sha": "afee36e5aedac4438993744aa425dcef788556aa456b912e5e054bc8b74f0ad7"
+  },
+  "2025-va": {
+   "rows": 37966,
+   "sha": "b035b7644c17b84dc5cfc8f78eb9399032eaad75cba48b24814e6a86c9346a16"
+  },
+  "2025-wa": {
+   "rows": 6205,
+   "sha": "33ab722a65fbc8b56e49c7325e8c902d1c687d117eea2272643851100bd6bda5"
+  },
+  "2025-wv": {
+   "rows": 17890,
+   "sha": "e73dfc11b015902fa38a1dbd5291ae3210cc2295a91a6aac9ae473ec89eedf42"
+  },
+  "2025-wi": {
+   "rows": 30289,
+   "sha": "d23018c08e3d61312ca41c66b9bb199973d38e44f1ace537958572bb81e7c966"
+  },
+  "2025-wy": {
+   "rows": 9125,
+   "sha": "862e1571aa952112439ee7e25336137736c2bbb4f95cb626795194bfc4496a8d"
+  }
+ }
+}
