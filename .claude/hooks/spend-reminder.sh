@@ -1,1 +1,1 @@
-echo "REMINDER (CLAUDE.md 8.7): this spawns real API cost. Before proceeding, has Chris seen a one-line price tag (what + rough cost) and given a go-ahead? If not, show one now instead of proceeding silently."
+echo "REMINDER (CLAUDE.md — Money): this spawns real API cost. Has Chris seen a one-line price tag and said go, or is there a session greenlight for this kind of thing? If not, show the price tag now instead of proceeding."

@@ -1,53 +1,22 @@
 {
+  "outputStyle": "scannable",
   "permissions": {
     "allow": [
       "Bash(pytest *)",
       "Bash(python -m pytest *)",
       "Bash(python3 -m pytest *)",
       "Bash(dbt test *)",
-      "Bash(dbt build *)",
+      "Bash(dbt list *)",
       "Bash(git status*)",
       "Bash(git log*)",
       "Bash(git diff*)",
       "Bash(git show*)",
       "Bash(git branch --list*)",
-      "Bash(python3 scripts/bridge_fuel_load.py:*)",
-      "Bash(python3 -m connect leads:*)",
-      "Bash(python3 -m connect harvest:*)",
-      "Bash(python3 -m connect fingerprint:*)",
-      "Bash(python3 -m connect discover:*)",
-      "Bash(python3 scripts/lead_receipt.py:*)",
-      "Bash(python3 -)",
-      "Bash(python3 -m connect discover)",
-      "Bash(tee /tmp/discover_run.log)",
-      "Bash(python3 -m connect spine)",
-      "Bash(tee /tmp/spine_run.log)",
-      "Bash(python3 -c ' *)",
-      "Bash(tee /tmp/discover_run2.log)",
-      "Bash(tee /tmp/spine_run2.log)",
-      "Bash(dbt list *)",
-      "Bash(python3 scripts/build_epa_corporate_crosswalk.py --run)",
-      "Bash(tee /tmp/crosswalk_run.log)",
-      "Bash(echo \"=== CROSSWALK RUN DONE \\(exit $?\\) ===\")",
-      "Bash(python3 -m dbt run --select economics__intl_gleif_rr)",
-      "Read(//tmp/**)",
-      "Bash(echo \"=== DBT GLEIF_RR FIX DONE \\(exit $?\\) ===\")",
+      "Bash(python scripts/price_it.py *)",
       "Read(//c/Code/**)",
       "Read(//c//**)",
-      "Bash(dbt run *)",
-      "Bash(echo \"=== DBT GLEIF_RR FIX2 DONE \\(exit $?\\) ===\")",
-      "Bash(echo \"=== DBT GLEIF_RR FIX3 DONE \\(exit $?\\) ===\")",
-      "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" run --select economics__intl_gleif_rr)",
-      "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" run --select stg_intl_ie_cro__cro_companies corporate_registry__intl_ie_cro)",
-      "Bash(python3 \"C:\\\\Users\\\\wroge\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Code-Ripple-v6\\\\b210958a-f764-4a67-876a-d2dbc8f4a979\\\\scratchpad\\\\run_dbt.py\" test --select stg_intl_ie_cro__cro_companies corporate_registry__intl_ie_cro economics__intl_gleif_rr)",
-      "Read(//c/Users/wroge/.claude/debug/**)",
-      "Read(//c/Users/wroge/.claude/**)",
       "Read(//c/Users/wroge/**)",
-      "PowerShell($path = \"C:\\\\Users\\\\wroge\\\\.claude\\\\debug\\\\30a6d885-7ee6-4396-ad05-ee3f32ec88dd.txt\"; if \\(Test-Path $path\\) { Write-Output \"EXISTS\"; \\(Get-Content $path | Measure-Object -Line\\).Lines } else { Write-Output \"NOT FOUND\" })",
-      "Bash(python -c ' *)",
-      "Bash(awk -F: '{s+=$2} END {print \"test funcs:\",s}')",
-      "Bash(PYTHONUTF8=1 ../../.dbt-venv/Scripts/dbt.exe parse --profiles-dir .)",
-      "Bash(python -m honesty)"
+      "Read(//tmp/**)"
     ]
   },
   "hooks": {
@@ -56,7 +25,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cat .claude/contract-reminder.md",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/greenlight.sh",
             "timeout": 10
           }
         ]
@@ -67,7 +36,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/session-brief.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-brief.sh",
             "timeout": 15
           }
         ]
@@ -78,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/precompact-save.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/precompact-save.sh",
             "timeout": 15
           }
         ]
@@ -91,6 +60,10 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-dangerous-git.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/warehouse-gate.sh"
           }
         ]
       },
@@ -99,8 +72,20 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/spend-reminder.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/spend-reminder.sh",
             "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "model": "haiku",
+            "timeout": 30,
+            "prompt": "You are the message reader for Chris (solo builder, ADHD). Read the assistant's last message in the hook input (field last_assistant_message). If the input has stop_hook_active true, or the message is under 300 characters, or it is only a question to Chris, return {\"ok\": true}. Otherwise flag ONLY clear problems — not style preferences: (1) nonsense or self-contradiction inside the message; (2) a claim of done / works / fine / fixed / verified with no evidence that the disproving check actually ran and no skeptic verdict mentioned; (3) a dense block — any paragraph over 4 lines, or a run of same-size same-weight text with no headers, tables, or blank lines; (4) a plan with prices or next steps when Chris's last message was clearly thinking-out-loud or contained the word riff. If nothing is clearly wrong return {\"ok\": true}. If something is, return {\"ok\": false, \"reason\": \"reader flagged the last message: <one short line naming the problem>. Open your next message with exactly that line, then the fix. Do not apologize or explain.\"}. Never flag twice in a row for the same message."
           }
         ]
       }

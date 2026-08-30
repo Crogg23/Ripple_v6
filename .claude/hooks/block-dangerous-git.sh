@@ -10,7 +10,7 @@ DANGEROUS_PATTERNS=(
   "git branch -D"
   "git checkout \."
   "git restore \."
-  "\-\-force"
+  "git .*\-\-force"
 )
 
 for pattern in "${DANGEROUS_PATTERNS[@]}"; do
