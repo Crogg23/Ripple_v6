@@ -110,3 +110,6 @@ outputs/_fracfocus.zip
 outputs/_eia860.zip
 outputs/_eia861.zip
 outputs/_dol_olms_cookies.txt
+
+# session greenlight markers (per-session, never committed)
+.claude/state/

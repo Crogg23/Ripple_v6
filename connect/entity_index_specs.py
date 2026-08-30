@@ -973,7 +973,7 @@ DISPLAY_SPECS: dict[str, dict] = {
     # artifact, superseded) to the real full re-pull -- test_spine_inputs_live.py's
     # shadowed-sibling check caught the old table still being wired here. The old
     # table is flagged for a DROP TABLE (Chris's call, repo policy blocks agents
-    # running raw DDL) -- see STATUS.md.
+    # running raw DDL) -- see _JUNK_DRAWER/rules_v1_2026-08-30/STATUS_last_2026-08-30.md.
     #
     # FED_USASPENDING_CONTRACTS_FULL_R2 entry REMOVED from here 2026-08-26 (merge
     # reconciliation): a duplicate key had formed across two independent sessions

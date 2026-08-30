@@ -6,13 +6,15 @@ Per-query warehouse credits are not stored by Snowflake; they are derived here f
 actual past runtime x warehouse size, which is how Snowflake bills. That derivation
 is labeled in the output.
 
-Usage:
-  python scripts/price_it.py --like "%connect spine%"        # match query text
-  python scripts/price_it.py --tag  spine_rebuild            # match QUERY_TAG
-  python scripts/price_it.py --days 60 --like "%dbt%"        # look-back window
+The log holds SQL text, not shell commands — match on a table or statement the job runs:
+  python scripts/price_it.py --like "%ENTITY_INDEX%"          # a table the spine writes
+  python scripts/price_it.py --like "%create or replace table%MARTS.%"
+  python scripts/price_it.py --tag  spine_rebuild             # QUERY_TAG, if the job sets one (none do yet)
+  python scripts/price_it.py --days 60 --like "%HMDA%"        # look-back window
 
-Prints: runs found, p50 / max runtime, p50 / max credits, dollars at RIPPLE_CREDIT_USD
-(default 2.00 $/credit — set the env var to your contract rate). Zero runs -> says so.
+Prints: runs found (capped at 500 — a cap means "many small statements", not one job),
+p50 / max runtime, p50 / max credits, dollars at RIPPLE_CREDIT_USD. If the env var is unset the
+$/credit is a DEFAULT and is labeled as such. Zero runs -> says so.
 """
 from __future__ import annotations
 
@@ -37,7 +39,9 @@ def main() -> int:
     ap.add_argument("--days", type=int, default=90)
     args = ap.parse_args()
 
-    usd = float(os.environ.get("RIPPLE_CREDIT_USD", "2.00"))
+    usd_env = os.environ.get("RIPPLE_CREDIT_USD")
+    usd = float(usd_env) if usd_env else 2.00
+    usd_label = f"${usd:.2f}/credit (RIPPLE_CREDIT_USD)" if usd_env else f"${usd:.2f}/credit (DEFAULT, not your contract rate — set RIPPLE_CREDIT_USD)"
     where = "query_text ILIKE %s" if args.like else "query_tag = %s"
     param = args.like or args.tag
 
@@ -72,11 +76,12 @@ def main() -> int:
     p50 = lambda xs: xs[len(xs) // 2]  # noqa: E731
     ok = sum(1 for r in rows if r["EXECUTION_STATUS"] == "SUCCESS")
 
-    print(f"runs found:      {len(rows)}  ({ok} succeeded)  last {args.days} days  match {param!r}")
+    cap = "  (CAPPED at 500 — many small statements, not one job; tighten the pattern)" if len(rows) == 500 else ""
+    print(f"runs found:      {len(rows)}  ({ok} succeeded)  last {args.days} days  match {param!r}{cap}")
     print(f"warehouse sizes: {sorted({r['WAREHOUSE_SIZE'] for r in rows})}")
     print(f"runtime:         p50 {p50(secs)/60:.1f} min   max {secs[-1]/60:.1f} min")
     print(f"credits:         p50 {p50(creds):.3f}   max {creds[-1]:.3f}   (runtime x size — how Snowflake bills)")
-    print(f"dollars:         p50 ${p50(creds)*usd:.2f}   max ${creds[-1]*usd:.2f}   at ${usd:.2f}/credit (RIPPLE_CREDIT_USD)")
+    print(f"dollars:         p50 ${p50(creds)*usd:.2f}   max ${creds[-1]*usd:.2f}   at {usd_label}")
     print(f"most recent:     {rows[0]['START_TIME']}")
     return 0
 
