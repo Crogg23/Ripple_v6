@@ -13,3 +13,4 @@
 2026-08-31 — visual variety required: headers, bullets, emojis. Not all same size and color. Every update message.
 2026-08-31 — BAR SPEAK, the master register: explain everything like telling a sharp friend at a bar. Plain words, short lines, every fact survives. Compress by word choice, never by leaving things out.
 2026-08-31 — methodology: "through simplicity, comes complexity." Every finding walks its chain — what was checked, what a hit means, what a miss means. A label ("vintage drift") is not a chain. "It's complicated" is where work starts, never where it ends.
+2026-08-30 — the spine is dead, full stop. Calling any new thing a spine is wrong.

@@ -15,3 +15,6 @@
 2026-08-31 — USAspending landing tables carry case-sensitive lowercase and digit-leading column names; unquoted SQL resolves uppercase and misses.
 2026-08-31 — the timeline rollup tables freeze the planned/actual tag at build time; it ages past current_date. Guard green also ≠ TIMELINE schema clean — nothing walks warehouse→registry.
 2026-08-31 — identical row counts ≠ identical tables: 8 ICIJ "duplicate" copies matched counts exactly but failed content hashes — different snapshot vintages. Hash before dropping, always.
+2026-08-30 — portal_recon/ looks dead by import scan; connect/keys.py sys.path-imports its tagger by bare file name. Grep file names before retiring a folder.
+2026-08-30 — "1,121" is the hard-ID edge count in lab_map facts, NOT the test count. The two got copy-crossed once already.
+2026-08-30 — typing-layer tests query live marts but carried no snowflake marker until today; unmarked tests can burn credits from a plain pytest run.

@@ -13,7 +13,7 @@ The spine is dead. Nothing new gets called a spine.
 | `loadkit/` | atomic load / checkpoint / preflight toolkit |
 | `library-onboarding/` | dbt project + source downloaders |
 | `scripts/` | operational tools; slash-command backends live here |
-| `tests/` | the suite; 1,121 tests collect clean |
+| `tests/` | the suite; 724 collect, 694 pass offline |
 | `data/` | loader resume logs, staged dumps, `raw_dropins/` |
 | `docs/` | canonical prose: RIPPLE.md, tech spec, Laboratory |
 | `reports/recon/` | pass-1/pass-2 connections work — current |

@@ -3,7 +3,7 @@
     python -m connect fingerprint           # profile landed tables -> keys + population
     python -m connect discover              # compute the real connection edge-list
     python -m connect explore               # render the interactive map
-    python -m connect all                   # do all three (the usual run)
+    python -m connect all                   # the usual run
     python -m connect probe --a A --akey C --b B --bkey C --key NPI   # one pair, ad hoc
 """
 
@@ -24,8 +24,8 @@ def main() -> int:
     d.add_argument("--fanout-max", type=int, default=40, help="drop crosswalk values mapping to > this many targets")
     sub.add_parser("explore", help="render the interactive map")
     sub.add_parser("plane", help="render The Plane — Google-Earth flythrough of the warehouse")
-    sub.add_parser("spine", help="build the persisted entity spine (who's who)")
-    a = sub.add_parser("all", help="fingerprint -> discover -> spine -> explore")
+    sub.add_parser("spine", help="RETIRED 2026-08-30 (exits with a pointer to the drawer)")
+    a = sub.add_parser("all", help="fingerprint -> discover -> explore -> entity-index")
     a.add_argument("--name-max-rows", type=int, default=None)
     a.add_argument("--no-bridge", action="store_true")
     a.add_argument("--fanout-max", type=int, default=40)
