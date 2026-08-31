@@ -16,3 +16,5 @@ One row per thing in here. Add a row when you put something in. Never remove a r
 | 2026-08-30 | `retired_2026-08-30/outputs_stale/` | Jun–Jul outputs sediment, run logs, 08-05 ID-sweep, 08-11 audit clusters, dedup/tier batches, vendored js, giant html maps | same | same |
 | 2026-08-30 | `retired_2026-08-30/` (root files) | RIPPLE.bat, START_HERE.bat, the 6MB design-system browser dump | platform is macOS; the html was a known anti-pattern | — |
 | 2026-08-30 | `retired_2026-08-30/spine_era/` | the spine: code (spine.py, spine_entity.py), 5 tests, 6 scripts, wiring drafts, plans, audits, outputs | Chris greenlit the drawer; shared name/addr SQL lifted to connect/normalize.py first, importers repointed | you need the old resolver logic, its specs, or its wiring evidence |
+
+| 2026-08-31 | investigations_html | 15 rendered HTML plus vendored plotly | The .py generators were retired here on 2026-08-30; their outputs were left at the repo root. Reunited with the scripts that made them. |

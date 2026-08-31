@@ -1,15 +1,21 @@
 """The shape counter is the only guard that never has an opinion.
 
-These tests are the disproving check for it: they assert that a message which
-breaks a countable rule is blocked, that a clean one passes silently, and that
-`hooks off` and the loop guard both open the gate. If the counter ever starts
-guessing, one of these goes red.
+These tests are the disproving check for it. The counter runs as a Stop hook,
+which fires AFTER the message has already been printed to Chris's terminal, so
+blocking there cannot unprint anything — it can only force a rewrite that shows
+up as a SECOND copy. That is why every test below asserts exit code 0: the
+counter must never block. It writes what it found to a per-session carry file,
+and the prompt hook injects that at the top of the next turn.
+
+So the contract under test is: exit 0 always, carry file written when broken,
+carry file absent when clean.
 """
 
 from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import uuid
 import subprocess
@@ -24,7 +30,17 @@ GATE = REPO / ".claude" / "hooks" / "shape-gate.sh"
 OFF_SWITCH = REPO / ".claude" / "state" / "hooks.off"
 
 
+def _carry_path(session: str) -> Path:
+    safe = re.sub(r"[^\w.\-]", "_", session)
+    return REPO / ".claude" / "state" / f"{safe}.shape_carry"
+
+
 def _check(message: str, session: str | None = None):
+    """Run the counter and return (exit code, what it parked for next turn).
+
+    The second element used to be stderr. It is now the carry file's contents,
+    because that is where findings go under the non-blocking contract.
+    """
     if session is None:
         session = f"fresh-{uuid.uuid4()}"
     payload = json.dumps({"last_assistant_message": message, "session_id": session})
@@ -36,7 +52,9 @@ def _check(message: str, session: str | None = None):
         encoding="utf-8",
         env={**os.environ, "CLAUDE_PROJECT_DIR": str(REPO)},
     )
-    return proc.returncode, (proc.stderr or "").strip()
+    carry = _carry_path(session)
+    parked = carry.read_text(encoding="utf-8").strip() if carry.exists() else ""
+    return proc.returncode, parked
 
 
 def _gate(message: str, hooks_off: bool = False):
@@ -63,17 +81,22 @@ def _gate(message: str, hooks_off: bool = False):
         )
     finally:
         OFF_SWITCH.unlink(missing_ok=True)
-    return proc.returncode, (proc.stderr or "").strip()
+    carry = _carry_path("gate-test")
+    parked = carry.read_text(encoding="utf-8").strip() if carry.exists() else ""
+    return proc.returncode, parked
 
 
 @pytest.fixture(autouse=True)
-def _fresh_retry_budget():
-    """The budget lives on disk, so a previous run would leak into this one."""
-    for stale in (REPO / ".claude" / "state").glob("*.shape_tries"):
-        stale.unlink(missing_ok=True)
+def _fresh_carry_files():
+    """Carry files live on disk, so a previous run would leak into this one."""
+    state = REPO / ".claude" / "state"
+    for pattern in ("*.shape_carry", "*.shape_tries"):
+        for stale in state.glob(pattern):
+            stale.unlink(missing_ok=True)
     yield
-    for stale in (REPO / ".claude" / "state").glob("*.shape_tries"):
-        stale.unlink(missing_ok=True)
+    for pattern in ("*.shape_carry", "*.shape_tries"):
+        for stale in state.glob(pattern):
+            stale.unlink(missing_ok=True)
 
 
 CLEAN = "## Header\n\nShort line here.\n\nAnother short line.\n\n- clean bullet\n"
@@ -88,25 +111,25 @@ def test_clean_message_passes_silently():
 def test_long_line_is_counted():
     long_line = "This line is deliberately far too long because it keeps adding clauses forever."
     code, err = _check(long_line)
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "words, max is 12" in err
 
 
 def test_parenthesis_is_counted():
     code, err = _check("A line with (a parenthesis) in it.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "parenthesis" in err
 
 
 def test_two_dashes_are_counted():
     code, err = _check("A line - with two - dashes.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "2 dashes" in err
 
 
 def test_bare_path_is_counted():
     code, err = _check("The builder lives in connect/incremental.py today.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "path in chat" in err
 
 
@@ -134,40 +157,58 @@ def test_one_report_link_is_allowed():
 def test_second_report_link_is_blocked():
     two = "Receipts: [one](reports/a.md)\n\nAlso: [two](reports/b.md)\n"
     code, err = _check(two)
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "second report link" in err
 
 
-def test_rewrites_are_still_counted():
-    """The skeptic's blocker: attempt two used to sail through unchecked."""
+def test_a_repeat_offence_is_parked_again():
+    """The old retry budget is gone; there is nothing left to run out.
+
+    Under the blocking design a rewrite loop was possible, so the counter kept a
+    budget and surrendered after three tries. Nothing blocks now, so every turn
+    is judged fresh on its own and the same break parks the same note again.
+    """
     bad = "A line - with two - dashes."
     first = _check(bad, session="retry-a")
     second = _check(bad, session="retry-a")
-    assert first[0] == 2
-    assert second[0] == 2, "a broken rewrite must not stand"
-    assert "Attempt 2" in second[1]
+    assert first[0] == 0 and second[0] == 0
+    assert "2 dashes" in first[1]
+    assert "2 dashes" in second[1]
+    assert "Attempt" not in second[1], "no retry counter should survive"
 
 
-def test_retry_budget_runs_out_and_lets_it_stand():
-    """And it must never trap the session in a rewrite loop."""
-    bad = "A line - with two - dashes."
-    codes = [_check(bad, session="retry-b")[0] for _ in range(5)]
-    assert codes[:3] == [2, 2, 2]
-    assert codes[3] == 0, "gate must give up after the budget"
-    last = _check(bad, session="retry-b")
-    assert last[0] == 2, "budget resets once it has given up"
-
-
-def test_a_clean_rewrite_clears_the_budget():
+def test_a_clean_turn_clears_the_carry_file():
+    """A clean message must not leave last turn's complaint lying around."""
     _check("A line - with two - dashes.", session="retry-c")
-    assert _check(CLEAN, session="retry-c")[0] == 0
-    assert "Attempt 1" in _check("A line - with two - dashes.", session="retry-c")[1]
+    assert _carry_path("retry-c").exists()
+    code, parked = _check(CLEAN, session="retry-c")
+    assert code == 0
+    assert parked == ""
+    assert not _carry_path("retry-c").exists()
+
+
+def test_the_counter_never_blocks_however_broken():
+    """The double-output bug in one assertion.
+
+    Blocking here printed the message, then the rewrite. Whatever the counter
+    finds, its exit code stays 0 so Chris only ever sees one copy.
+    """
+    worst = chr(10).join(
+        [
+            "This line is far too long and it keeps adding clauses forever",
+            "A line - with two - dashes and (parens) here",
+            "See connect/incremental.py and reports/a.md and reports/b.md",
+        ]
+    )
+    code, parked = _check(worst)
+    assert code == 0, "a Stop hook that blocks prints the message twice"
+    assert parked, "but it must still record what it found"
 
 
 def test_tight_em_dashes_are_counted():
     """Tight em-dashes were invisible. That was the whole dash rule in practice."""
     code, err = _check("Bar speak—plain words—short lines—here.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "dashes" in err
 
 
@@ -179,18 +220,18 @@ def test_hyphenated_words_are_still_legal():
 def test_long_link_text_cannot_smuggle_receipts():
     dump = "[Table shows 2.1M rows, 4 distinct ids, joins orphan, door two broken](reports/x.md)"
     code, err = _check(dump)
-    assert code == 2, "a receipts dump must not ship as a pointer"
+    assert err, "a receipts dump must not ship as a pointer"
 
 
 def test_windows_path_is_counted():
     code, err = _check(r"The file C:\Code\Ripple_v6\scripts was updated.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "path in chat" in err
 
 
 def test_inline_code_does_not_hide_a_long_line():
     code, err = _check("`this is a very long backticked sentence that runs on` and on and on and on here.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "words" in err
 
 
@@ -201,7 +242,7 @@ def test_bare_url_is_not_a_path():
 
 def test_fullwidth_parens_are_counted():
     code, err = _check("A line with （fullwidth） parens.")
-    assert code == 2
+    assert code == 0, "the counter must never block"
     assert "parenthesis" in err
 
 
@@ -210,10 +251,11 @@ def test_pipe_table_without_leading_pipe_is_exempt():
     assert code == 0, err
 
 
-def test_gate_blocks_a_bad_message():
+def test_gate_parks_a_bad_message_without_blocking():
     code, err = _gate("A line - with two - dashes and (parens) here.")
-    assert code == 2
-    assert "shape counter blocked" in err
+    assert code == 0, "the counter must never block"
+    assert "on your LAST message" in err
+    assert "parenthesis" in err and "2 dashes" in err
 
 
 def test_gate_passes_a_clean_message():

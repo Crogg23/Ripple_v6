@@ -113,3 +113,18 @@ outputs/_dol_olms_cookies.txt
 
 # session greenlight markers (per-session, never committed)
 .claude/state/
+
+# Node dependency trees — Evidence.dev pulls ~56k files that git never needs.
+# Untracked already; without this line the editor's source-control panel counts
+# every one of them and reports thousands of "changes" that do not exist.
+node_modules/
+evidence/.evidence/
+evidence/build/
+
+# Bulk source archives downloaded on demand, plus their completion markers and
+# the import-time profile. Multi-GB, re-downloadable, machine-local. Untracked
+# already; listed so they stop showing up as pending "changes".
+*.zip
+*.ZIP
+*.done
+importtime_*.log

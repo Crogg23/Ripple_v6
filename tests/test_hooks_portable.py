@@ -105,16 +105,30 @@ def test_corrections_still_inject_on_a_mac(mac_like):
 
 
 def test_shape_gate_still_counts_on_a_mac(mac_like):
+    """Portability check for the counter, under its non-blocking contract.
+
+    It must never exit non-zero — a blocking Stop hook prints the message twice
+    — so what proves it ran on a Mac-shaped machine is the carry file it leaves
+    behind, not an exit code.
+    """
+    session = f"mac-{uuid.uuid4()}"
+    carry = STATE / f"{session}.shape_carry"
     for stale in STATE.glob("*.shape_tries"):
         stale.unlink(missing_ok=True)
+    carry.unlink(missing_ok=True)
     code, _, err = _run(
         "shape-gate.sh",
-        {"session_id": f"mac-{uuid.uuid4()}", "last_assistant_message": "A line - with two - dashes."},
+        {"session_id": session, "last_assistant_message": "A line - with two - dashes."},
         mac_like,
     )
-    for stale in STATE.glob("*.shape_tries"):
-        stale.unlink(missing_ok=True)
-    assert code == 2, err
+    try:
+        assert code == 0, err
+        assert carry.exists(), "the counter left nothing for the next turn"
+        assert "2 dashes" in carry.read_text(encoding="utf-8")
+    finally:
+        carry.unlink(missing_ok=True)
+        for stale in STATE.glob("*.shape_tries"):
+            stale.unlink(missing_ok=True)
 
 
 @pytest.fixture

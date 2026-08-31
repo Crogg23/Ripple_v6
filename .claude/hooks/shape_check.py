@@ -5,12 +5,17 @@ Not a judge. A counter. Reads the Stop-hook payload on stdin and reports every
 line that breaks a rule that can be counted. Rules that need judgment — bar
 speak, walking the chain — are left to the prompt reader that runs after this.
 
-Exit 0  = clean, or out of retries. Say nothing.
-Exit 2  = broken. stderr goes back to Claude and stopping is blocked.
+Always exits 0. It never blocks.
 
-The retry budget is what keeps this from looping forever. Every rewrite IS
-counted; after MAX_TRIES failed attempts the gate gives up loudly and lets the
-message stand, so a rule the counter cannot express can never trap the session.
+Why: a Stop hook fires AFTER the message has already streamed to Chris's
+terminal. Blocking cannot unprint it, so a block produced two copies of every
+corrected message on screen — the broken one, then the rewrite. That double
+output is worse than the shape break it was catching.
+
+So the counter carries forward instead. Violations are written to a state file
+and injected at the top of the NEXT turn by chris-words.sh, where they read as
+"last message broke these, do not repeat." One message, one copy, correction
+lands on the following one.
 """
 
 from __future__ import annotations
@@ -22,7 +27,6 @@ import sys
 from pathlib import Path
 
 MAX_WORDS = 12
-MAX_TRIES = 3
 MAX_LINK_TEXT = 40
 
 # Forward-slash paths and this repo's native backslash ones, plus bare filenames
@@ -119,12 +123,13 @@ def check(message: str) -> list[str]:
     return problems
 
 
-def _tries_file(session: str) -> Path:
+def _carry_file(session: str) -> Path:
+    """Where this turn's violations wait for the next turn to pick them up."""
     root = Path(os.environ.get("CLAUDE_PROJECT_DIR") or Path(__file__).parents[2])
     state = root / ".claude" / "state"
     state.mkdir(parents=True, exist_ok=True)
     safe = re.sub(r"[^\w.\-]", "_", session or "nosession")
-    return state / f"{safe}.shape_tries"
+    return state / f"{safe}.shape_carry"
 
 
 def main() -> int:
@@ -134,48 +139,28 @@ def main() -> int:
         return 0
 
     message = payload.get("last_assistant_message") or ""
+    carry = _carry_file(payload.get("session_id", ""))
+
     if not message.strip():
         return 0
 
-    tries_path = _tries_file(payload.get("session_id", ""))
     problems = check(message)
 
     if not problems:
-        tries_path.unlink(missing_ok=True)
+        carry.unlink(missing_ok=True)
         return 0
 
-    try:
-        tries = int(tries_path.read_text().strip())
-    except Exception:
-        tries = 0
-
-    if tries >= MAX_TRIES:
-        tries_path.unlink(missing_ok=True)
-        print(
-            f"shape counter gave up after {MAX_TRIES} rewrites. Still broken:\n"
-            + "\n".join(f"  {p}" for p in problems[:6])
-            + "\nLetting it stand so the session is not trapped.",
-            file=sys.stderr,
-        )
-        return 0
-
-    tries_path.write_text(str(tries + 1))
-
-    shown = problems[:12]
+    shown = problems[:8]
     more = len(problems) - len(shown)
     lines = [
-        f"shape counter blocked the last message. Countable rules, not opinions. "
-        f"Attempt {tries + 1} of {MAX_TRIES}.",
+        "shape counter, on your LAST message. Do not repeat these:",
         *(f"  {p}" for p in shown),
     ]
     if more:
         lines.append(f"  ...and {more} more")
-    lines.append(
-        "Rewrite the whole message so every one of these is gone, then stop. "
-        "Do not apologize and do not explain the fix."
-    )
-    print("\n".join(lines), file=sys.stderr)
-    return 2
+    lines.append("Do not re-send the last message. Do not apologise. Just do not repeat it.")
+    carry.write_text(chr(10).join(lines), encoding="utf-8")
+    return 0
 
 
 if __name__ == "__main__":

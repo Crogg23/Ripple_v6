@@ -1,2 +1,5 @@
 # Hidden from ripgrep (the Grep tool) so retired things don't leak back into sessions. Glob still sees it — the README and CLAUDE.md carry the no-go rule. Git still tracks them.
 _JUNK_DRAWER/
+node_modules/
+evidence/.evidence/
+evidence/build/

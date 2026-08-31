@@ -31,6 +31,15 @@ for kind in spine rebuild destroy spend; do
   fi
 done
 
+# Shape violations from the previous turn. The counter runs as a Stop hook, which
+# fires after the message is already on screen — blocking there printed the message
+# twice. So it parks its findings here and they land at the top of the next turn.
+CARRY="$STATE/$SESSION.shape_carry"
+if [ -s "$CARRY" ]; then
+  cat "$CARRY"
+  rm -f "$CARRY"
+fi
+
 if [ -s "$CLAUDE_PROJECT_DIR/.claude/corrections.md" ]; then
   echo "=== Chris's corrections (newest last; these are rules) ==="
   grep -vE '^\s*(#|$)' "$CLAUDE_PROJECT_DIR/.claude/corrections.md" | tail -40
