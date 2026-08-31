@@ -1,0 +1,655 @@
+{
+ "edges": [
+  {
+   "label": "HRSA site grantee id -> health center info",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 35.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "0612740",
+     "NeoHealth Muskogee Medical Clinic",
+     "NORTHEASTERN OKLAHOMA COMMUNITY HEALTH C"
+    ],
+    [
+     "11E01386",
+     "Walung Health Center",
+     "KOSRAE COMMUNITY HEALTH CENTER"
+    ],
+    [
+     "091750",
+     "Mt. Shasta Health Center",
+     "MOUNTAIN VALLEYS HEALTH CENTERS, INC"
+    ]
+   ]
+  },
+  {
+   "label": "NRC report seq -> incident seq",
+   "pairs": 60,
+   "name_scored": 29,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "FDIC ultimate-parent cert -> cert",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 70.0,
+   "state_scored": 60,
+   "state_match_pct": 91.7,
+   "mismatches": [
+    [
+     "12978",
+     "Home City Federal Savings Bank of Spring",
+     "The Richwood Banking Company"
+    ],
+    [
+     "17514",
+     "Heartland National Bank",
+     "Banterra Bank"
+    ],
+    [
+     "20429",
+     "The Peoples Bank",
+     "Liberty Bank"
+    ]
+   ]
+  },
+  {
+   "label": "FDIC direct-parent cert -> cert (tiny)",
+   "pairs": 49,
+   "name_scored": 49,
+   "name_match_pct": 36.7,
+   "state_scored": 49,
+   "state_match_pct": 57.1,
+   "mismatches": [
+    [
+     "5615",
+     "Decatur State Bank",
+     "Chambers Bank"
+    ],
+    [
+     "33184",
+     "Centura Card Bank",
+     "RBC Bank (USA)"
+    ],
+    [
+     "3878",
+     "TrustBanc",
+     "Liberty Bank of Arkansas"
+    ]
+   ]
+  },
+  {
+   "label": "MMF series id -> SEC series registry",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "GLEIF successor LEI -> LEI",
+   "pairs": 60,
+   "name_scored": 0,
+   "name_match_pct": null,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "EPA crosswalk ultimate-parent LEI -> GLEIF",
+   "pairs": 60,
+   "name_scored": 57,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "EPA crosswalk parent CIK -> insider issuer CIK",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 96.7,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "1662684",
+     "KULR TECHNOLOGY GROUP, INC.",
+     "KT High-Tech Marketing Inc."
+    ],
+    [
+     "1156039",
+     "ELEVANCE HEALTH, INC.",
+     "Anthem, Inc."
+    ]
+   ]
+  },
+  {
+   "label": "FMCSA prior-revoke DOT -> DOT (reincorporation)",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 98.3,
+   "state_scored": 60,
+   "state_match_pct": 98.3,
+   "mismatches": [
+    [
+     "1288971",
+     "WORLDWIDE TRANSPORT LTD",
+     "CHARLE R & DIANE LEE"
+    ]
+   ]
+  },
+  {
+   "label": "OSHA injury log EIN -> Form 5500 sponsor EIN",
+   "pairs": 60,
+   "name_scored": 56,
+   "name_match_pct": 80.4,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "872348206",
+     "Lift Solutuions Holdings, LLC",
+     "LIFT SOLUTIONS HOLDINGS, LLC"
+    ],
+    [
+     "760628189",
+     "i.e. Smart Systems",
+     "IESMARTSYSTEMS LLC"
+    ],
+    [
+     "560591307",
+     "THE YMCA OF THE TRIANGLE AREA",
+     "Y.M.C.A. OF THE TRIANGLE AREA, INC."
+    ]
+   ]
+  },
+  {
+   "label": "OSHA injury log EIN -> IRS nonprofit EIN",
+   "pairs": 60,
+   "name_scored": 57,
+   "name_match_pct": 70.2,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "221574538",
+     "Springpoint Senior Living",
+     "MARCUS L WARD HOME"
+    ],
+    [
+     "300173798",
+     "WindsorMeade of Williamsburg",
+     "VIRGINIA UNITED METHODIST HOMES OF WILLI"
+    ],
+    [
+     "133238626",
+     "Phipps Houses Inc.",
+     "JOSEPH J YANCY JR HOUSING DEVELOPMENT FU"
+    ]
+   ]
+  },
+  {
+   "label": "OSHA establishment across years",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "Subaward FAIN -> its grant",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 98.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "UG3NS125023",
+     "UNIVERSITY OF CINCINNATI",
+     "CINCINNATI UNIV OF"
+    ]
+   ]
+  },
+  {
+   "label": "Subawardee parent UEI -> SAM",
+   "pairs": 60,
+   "name_scored": 35,
+   "name_match_pct": 94.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "FTDKFHKP6JK3",
+     "FRAUNHOFER-GESELLSCHAFT ZUR F\u00d6RDERUNG DE",
+     "FRAUNHOFER USA INC"
+    ],
+    [
+     "EWEGC2NRETY7",
+     "PALMERTON AREA SCHOOL DISTRICT",
+     "COMMODORE PERRY SCHOOL DISTRICT"
+    ]
+   ]
+  },
+  {
+   "label": "Grant recipient UEI -> SAM",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "SBIR contract # -> contract record",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 93.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "140D0424C0011",
+     "KRYPTOWIRE, LLC",
+     "A2 LABS, LLC"
+    ],
+    [
+     "140D0424C0012",
+     "KRYPTOWIRE, LLC",
+     "A2 LABS, LLC"
+    ],
+    [
+     "247",
+     "American Research Corporation of Virgini",
+     "JUNEAU SERVICE COMPANY"
+    ]
+   ]
+  },
+  {
+   "label": "SBIR tracking # -> NIH project",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 93.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "R44EY025447",
+     "BIOTISSUE HOLDINGS INC.",
+     "TISSUETECH, INC."
+    ],
+    [
+     "R44HL107000",
+     "DISCOVERY LABORATORIES, INC.",
+     "WINDTREE THERAPEUTICS, INC."
+    ],
+    [
+     "R41DK122904",
+     "NeuroFx, Inc.",
+     "THERATOME BIO, INC."
+    ]
+   ]
+  },
+  {
+   "label": "Hospital enrollment PAC -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 96.7,
+   "mismatches": []
+  },
+  {
+   "label": "SNF enrollment PAC -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 98.3,
+   "mismatches": []
+  },
+  {
+   "label": "HHA enrollment PAC -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "FQHC enrollment PAC -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "RHC enrollment PAC -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 93.3,
+   "mismatches": []
+  },
+  {
+   "label": "Hospital enrollment id -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "SNF enrollment id -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 98.3,
+   "mismatches": []
+  },
+  {
+   "label": "HHA enrollment id -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "FQHC enrollment id -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "RHC enrollment id -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "Hospice enrollment id -> PECOS master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 60,
+   "state_match_pct": 100.0,
+   "mismatches": []
+  },
+  {
+   "label": "Subaward award key -> prime contract",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 96.7,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "CONT_AWD_N0042118F0989_9700_N0042118D0001_9700",
+     "KBRWYLE TECHNOLOGY SOLUTIONS, LLC",
+     "KBR WYLE SERVICES, LLC"
+    ],
+    [
+     "CONT_AWD_HDTRA117C0027_9700_-NONE-_-NONE-",
+     "SCIENCE APPLICATIONS INTERNATIONAL CORPO",
+     "ENGILITY SERVICES, LLC"
+    ]
+   ]
+  },
+  {
+   "label": "Debarred CAGE -> contract CAGE",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 96.7,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "1QWV6",
+     "Aaron\u2019s Supply Company",
+     "AARONS SUPPLY INC"
+    ],
+    [
+     "54PF9",
+     "Applied Machining",
+     "AM CONTRACTING CORP."
+    ]
+   ]
+  },
+  {
+   "label": "Branch cert -> bank cert",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 90.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "12061",
+     "Johnstown Savings Bank",
+     "Johnstown Interim Bank"
+    ],
+    [
+     "24045",
+     "Pacific Western Bank",
+     "Banc of California"
+    ],
+    [
+     "26007",
+     "Frankford Bank, National Association",
+     "Keystone Bank, National Association"
+    ]
+   ]
+  },
+  {
+   "label": "Branch RSSD -> bank RSSD",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 86.7,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "514963",
+     "Key Bank of Idaho",
+     "KeyBank National Association"
+    ],
+    [
+     "502652",
+     "The Farmers Bank, Woodland Mills, Tennes",
+     "Bank3"
+    ],
+    [
+     "491251",
+     "Central Bank of Missouri",
+     "The Missouri Bank II"
+    ]
+   ]
+  },
+  {
+   "label": "eGRID plant -> EIA plant master",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 98.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "2081",
+     "Northeast Generating Station",
+     "Northeast (MO)"
+    ]
+   ]
+  },
+  {
+   "label": "Generator -> its plant",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "Plant -> its operating utility",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "eGRID plant -> its utility",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "EIA-861 seller -> EIA-860 utility",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 98.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "65439",
+     "CPV Retail Energy LP",
+     "Lotus Infrastructure Global Operations, "
+    ]
+   ]
+  },
+  {
+   "label": "CAMPD smokestack facility -> EIA plant",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 88.3,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": [
+    [
+     "7693",
+     "Anaheim Combustion Turbine",
+     "Anaheim GT"
+    ],
+    [
+     "55710",
+     "Springdale Generating Station (55710)",
+     "Allegheny Energy Units 3 4 & 5"
+    ],
+    [
+     "1893",
+     "Boswell Energy Center",
+     "Clay Boswell"
+    ]
+   ]
+  },
+  {
+   "label": "Contractor UEI -> SAM (R2 full file)",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 56,
+   "state_match_pct": 94.6,
+   "mismatches": []
+  },
+  {
+   "label": "Contractor UEI -> SAM (recent copy)",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "Contractor UEI -> SAM (20M truncated copy)",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  },
+  {
+   "label": "FHA sponsor # -> originating mortgagee # (same file)",
+   "pairs": 60,
+   "name_scored": 60,
+   "name_match_pct": 100.0,
+   "state_scored": 0,
+   "state_match_pct": null,
+   "mismatches": []
+  }
+ ],
+ "name_free": [
+  {
+   "label": "GUDID DEVICE -> IDENTIFIERS",
+   "reason": "same publisher, same DI, join is by construction"
+  },
+  {
+   "label": "FDIC/SOD RSSDHCR both sides",
+   "reason": "holding-company pointers; the Fed NIC master is not held, no name resolves"
+  },
+  {
+   "label": "GLEIF relationships start/end node",
+   "reason": "relationship rows carry no name; both ends resolve only through GLEIF itself"
+  },
+  {
+   "label": "CourtListener predecessor/supervisor/parent-court",
+   "reason": "pointer's own name not stored on the left row; tiny edges"
+  },
+  {
+   "label": "EIA owner row -> its plant",
+   "reason": "owner name vs plant name differ by design"
+  },
+  {
+   "label": "CMS facility-affiliation IND_PAC_ID",
+   "reason": "person-grain: clinician names vs org master; needs a person-name spec"
+  },
+  {
+   "label": "PECOS_PROVIDER_ENROLLMENT dup",
+   "reason": "same file loaded twice, by construction"
+  },
+  {
+   "label": "HMDA HUD rows -> IRS BMF",
+   "reason": "HMDA historic carries no lender name; 19 matched keys anyway"
+  },
+  {
+   "label": "GLEIF successor LEI -> LEI",
+   "reason": "successor NAME column is 100% empty where a successor LEI exists; 0 of 34,181 scoreable"
+  }
+ ],
+ "hrsa_two_hop": {
+  "pairs": 60,
+  "site_vs_nppes": 28.3,
+  "parent_vs_nppes": 94.6,
+  "either": 96.6,
+  "parent_scored": 56
+ }
+}

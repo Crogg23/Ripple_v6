@@ -1,0 +1,47 @@
+14:42:41 42 edges, 60 pairs each
+14:42:42 [1] HRSA site grantee id -> health center info: names 35.0% of 60 | states None% of 0
+14:42:44 [2] NRC report seq -> incident seq: names 100.0% of 29 | states None% of 0
+14:42:45 [3] FDIC ultimate-parent cert -> cert: names 70.0% of 60 | states 91.7% of 60
+14:42:47 [4] FDIC direct-parent cert -> cert (tiny): names 36.7% of 49 | states 57.1% of 49
+14:42:47 [5] ERR FHA sponsor # -> originating mortgagee # (same file): 000904 (42000): SQL compilation error: error line 1 at position 335
+invalid identifier 'ORIGINATING_MORTGAGEE'
+14:42:48 [6] MMF series id -> SEC series registry: names 100.0% of 60 | states None% of 0
+14:42:50 [7] GLEIF successor LEI -> LEI: names None% of 0 | states None% of 0
+14:42:52 [8] EPA crosswalk ultimate-parent LEI -> GLEIF: names 100.0% of 57 | states None% of 0
+14:42:53 [9] EPA crosswalk parent CIK -> insider issuer CIK: names 96.7% of 60 | states None% of 0
+14:42:55 [10] FMCSA prior-revoke DOT -> DOT (reincorporation): names 98.3% of 60 | states 98.3% of 60
+14:42:57 [11] OSHA injury log EIN -> Form 5500 sponsor EIN: names 80.4% of 56 | states None% of 0
+14:42:58 [12] OSHA injury log EIN -> IRS nonprofit EIN: names 70.2% of 57 | states None% of 0
+14:43:00 [13] OSHA establishment across years: names 100.0% of 60 | states None% of 0
+14:43:03 [14] Subaward FAIN -> its grant: names 98.3% of 60 | states None% of 0
+14:43:04 [15] Subawardee parent UEI -> SAM: names 94.3% of 35 | states None% of 0
+14:43:05 [16] Grant recipient UEI -> SAM: names 100.0% of 60 | states None% of 0
+14:43:07 [17] SBIR contract # -> contract record: names 93.3% of 60 | states None% of 0
+14:43:08 [18] SBIR tracking # -> NIH project: names 93.3% of 60 | states None% of 0
+14:43:09 [19] Hospital enrollment PAC -> PECOS master: names 100.0% of 60 | states 96.7% of 60
+14:43:10 [20] SNF enrollment PAC -> PECOS master: names 100.0% of 60 | states 98.3% of 60
+14:43:11 [21] HHA enrollment PAC -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:11 [22] FQHC enrollment PAC -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:13 [23] RHC enrollment PAC -> PECOS master: names 100.0% of 60 | states 93.3% of 60
+14:43:13 [24] Hospital enrollment id -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:14 [25] SNF enrollment id -> PECOS master: names 100.0% of 60 | states 98.3% of 60
+14:43:14 [26] HHA enrollment id -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:15 [27] FQHC enrollment id -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:15 [28] RHC enrollment id -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:16 [29] Hospice enrollment id -> PECOS master: names 100.0% of 60 | states 100.0% of 60
+14:43:18 [30] Subaward award key -> prime contract: names 96.7% of 60 | states None% of 0
+14:43:20 [31] Debarred CAGE -> contract CAGE: names 96.7% of 60 | states None% of 0
+14:43:21 [32] Branch cert -> bank cert: names 90.0% of 60 | states None% of 0
+14:43:22 [33] Branch RSSD -> bank RSSD: names 86.7% of 60 | states None% of 0
+14:43:22 [34] eGRID plant -> EIA plant master: names 98.3% of 60 | states None% of 0
+14:43:23 [35] Generator -> its plant: names 100.0% of 60 | states None% of 0
+14:43:24 [36] Plant -> its operating utility: names 100.0% of 60 | states None% of 0
+14:43:24 [37] eGRID plant -> its utility: names 100.0% of 60 | states None% of 0
+14:43:24 [38] EIA-861 seller -> EIA-860 utility: names 98.3% of 60 | states None% of 0
+14:43:25 [39] CAMPD smokestack facility -> EIA plant: names 88.3% of 60 | states None% of 0
+14:43:27 [40] Contractor UEI -> SAM (R2 full file): names 100.0% of 60 | states 94.6% of 56
+14:43:28 [41] Contractor UEI -> SAM (recent copy): names 100.0% of 60 | states None% of 0
+14:43:29 [42] Contractor UEI -> SAM (20M truncated copy): names 100.0% of 60 | states None% of 0
+14:43:29 two-hop HRSA->NPPES stress test
+14:43:32 two-hop: site 28.3% | parent 94.6% | either 96.6%
+14:43:32 DONE

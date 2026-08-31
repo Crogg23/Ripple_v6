@@ -1,0 +1,121 @@
+[
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+  "duplicate": "XC_ICIJ_OFFSHORE_RELATIONSHIPS",
+  "rows": 3339267,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+  "duplicate": "ICIJ_OFFSHORE_LEAKS_RELATIONSHIPS",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 8,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "duplicate": "XC_ICIJ_OFFSHORE_NODES_ENTITIES",
+  "rows": 814344,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+  "duplicate": "ICIJ_OFFSHORE_LEAKS_ENTITIES",
+  "rows": 814344,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+  "duplicate": "XC_ICIJ_OFFSHORE_NODES_OFFICERS",
+  "rows": 771315,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+  "duplicate": "ICIJ_OFFSHORE_LEAKS_OFFICERS",
+  "rows": 771315,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+  "duplicate": "XC_ICIJ_OFFSHORE_NODES_ADDRESSES",
+  "rows": 402246,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+  "duplicate": "ICIJ_OFFSHORE_LEAKS_ADDRESSES",
+  "rows": 402246,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+  "duplicate": "XC_ICIJ_OFFSHORE_NODES_INTERMEDIARIES",
+  "rows": 26768,
+  "content_identical": false,
+  "action": "SKIPPED \u2014 content differs"
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+  "duplicate": "ICIJ_OFFSHORE_LEAKS_INTERMEDIARIES",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 10,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_OTHERS",
+  "duplicate": "XC_ICIJ_OFFSHORE_NODES_OTHERS",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 13,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_ICIJ_OFFSHORELEAKS_OTHERS",
+  "duplicate": "ICIJ_OFFSHORE_LEAKS_OTHERS",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 13,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_EPA_RCRA_FACILITIES",
+  "duplicate": "FED_EPA_RCRA_RCRA_FACILITIES",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 15,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_EPA_RCRA_EVALUATIONS",
+  "duplicate": "FED_EPA_RCRA_RCRA_EVALUATIONS",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 8,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_EPA_RCRA_VIOLATIONS",
+  "duplicate": "FED_EPA_RCRA_RCRA_VIOLATIONS",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 8,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_EPA_RCRA_VIOSNC_HISTORY",
+  "duplicate": "FED_EPA_RCRA_RCRA_VIOSNC_HISTORY",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 5,
+  "dup_cols": 0
+ },
+ {
+  "canonical": "FED_EPA_RCRA_ENFORCEMENTS",
+  "duplicate": "FED_EPA_RCRA_RCRA_ENFORCEMENTS",
+  "action": "SKIPPED \u2014 column sets differ",
+  "canon_cols": 11,
+  "dup_cols": 0
+ }
+]

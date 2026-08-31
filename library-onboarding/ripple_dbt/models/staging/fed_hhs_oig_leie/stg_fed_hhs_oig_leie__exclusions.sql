@@ -70,8 +70,9 @@ renamed_cast as (
         nullif(trim(EXCLDATE), '')                          as exclusion_date_raw,
 
         -- pipeline audit columns
-        to_timestamp_ntz(_INGESTED_AT)                      as _ingested_at,
-        nullif(trim(_SOURCE_RUN_ID), '')                    as _source_run_id
+        -- this loader wrote unprefixed audit columns (INGESTED_AT, not _INGESTED_AT)
+        to_timestamp_ntz(INGESTED_AT)                       as _ingested_at,
+        nullif(trim(SOURCE_RUN_ID), '')                     as _source_run_id
 
     from source
 

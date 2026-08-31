@@ -33,7 +33,7 @@ TABLES = {
 "FED_CFPB_COMPLAINTS": "Complaints Americans filed against banks, credit card companies, debt collectors and mortgage servicers, to the federal consumer finance watchdog.",
 "FED_CPSC_NEISS": "Emergency room visits caused by consumer products, sampled from a national panel of hospitals — the government's injury early-warning system.",
 "FED_NHTSA_COMPLAINTS": "Complaints drivers filed with federal auto safety regulators about faults in their vehicles.",
-"FED_NHTSA_RECALLS": "Every vehicle and car-part recall announced in the United States.",
+"FED_NHTSA_RECALLS": "Vehicle and car-part recalls announced in the United States since 2010 (the pre-2010 file is not loaded).",
 "FED_NHTSA_INVESTIGATIONS": "Federal investigations into suspected vehicle defects — the step that sometimes leads to a recall.",
 
 # ---- Company registries and offshore ---------------------------------------
@@ -50,8 +50,8 @@ TABLES = {
 "FED_BJS_DATA": "A small sample from the federal statistics office that tracks crime, courts and prisons.",
 
 # ---- Federal money in and out ----------------------------------------------
-"FED_USASPENDING_CONTRACTS_FULL": "Every contract the US federal government signed — who got paid, how much, for what. The complete ledger.",
-"FED_USASPENDING_ASSISTANCE_FULL": "Every federal grant, loan and aid payment — money the government gave out rather than bought with.",
+"FED_USASPENDING_CONTRACTS_FULL": "Federal contracts — who got paid, how much, for what. This copy is truncated at exactly 20M rows by a loader bug (found 2026-08-31); the R2 table is the full 93M-row ledger.",
+"FED_USASPENDING_ASSISTANCE_FULL": "Federal grants, loans and aid payments. This copy holds about 1M rows per year, a slice of each year's ledger (loader truncation, found 2026-08-31).",
 "FED_USASPENDING_CONTRACTS": "Federal contract transactions, a second and smaller cut of the government's purchasing ledger.",
 "FED_IRS_990_EFILE_INDEX": "An index of every annual tax return filed electronically by a US charity or nonprofit.",
 "FED_BLS_QCEW": "Employment and wages by industry and county, counted from the payroll tax records nearly every US employer files.",
@@ -87,7 +87,7 @@ TABLES = {
 "FED_GOOGLE_POLADS_CREATIVE_STATS": "Every political advert run on Google and YouTube — who paid, who saw it, and how much it cost.",
 "FED_GOOGLE_POLADS_ADVERTISER_WEEKLY_SPEND": "Weekly spending by each political advertiser on Google and YouTube.",
 "FED_CFTC_COT_FUTURES": "Who holds bets on commodity prices — the weekly breakdown of futures positions by trader type.",
-"FED_SENATE_LDA_FILINGS": "Lobbying disclosures filed with the US Senate — who is being paid to influence which issues.",
+"FED_SENATE_LDA_FILINGS": "Lobbying disclosures filed with the US Senate — who is being paid to influence which issues. Covers 1999-2010 and 2020-2021 only; 14 years are missing (verified 2026-08-30).",
 "FED_CFTC_COT_FINANCIAL": "Who holds bets on financial futures — the weekly breakdown by trader type.",
 
 # ---- Energy -----------------------------------------------------------------
@@ -169,7 +169,7 @@ TABLES.update({
 "INTL_GLOBAL_WITNESS_DEFENDERS": "Environmental and land defenders killed around the world, documented by an investigative NGO.",
 
 # ---- Money, markets, banking ------------------------------------------------
-"FED_FEC_INDIV_CONTRIBUTIONS": "Every reported donation an individual made to a federal political campaign — donor name, employer, amount and date.",
+"FED_FEC_INDIV_CONTRIBUTIONS": "Reported donations individuals made to federal political campaigns — donor name, employer, amount and date. The 2023-2026 cycles only; earlier cycles are not loaded.",
 "FED_FDIC_SOD_BRANCH_DEPOSITS": "How much money is held at every single bank branch in America, year by year.",
 "FED_SEC_INSIDER_NONDERIV_TRANS": "Company executives and directors buying and selling their own company's shares.",
 "FED_SEC_INSIDER_SUBMISSION": "The filings themselves in which insiders disclose their share dealings.",
@@ -212,16 +212,16 @@ TABLES.update({
 
 # ---- Drugs, devices, doctors, care homes ------------------------------------
 "FED_DEA_ARCOS": "Every shipment of prescription opioids in America from 2006 to 2012 - manufacturer to distributor to pharmacy, pill by pill. The dataset behind the opioid litigation.",
-"FED_FDA_FAERS_DRUG": "The drugs named in reports of suspected side effects sent to US medicines regulators.",
+"FED_FDA_FAERS_DRUG": "The drugs named in reports of suspected side effects sent to US medicines regulators. Quarters 2004 through mid-2014 only - 18% of the published report corpus (verified 2026-08-31).",
 "FED_FDA_FAERS_REAC": "What actually happened to patients in those side effect reports - the reactions themselves.",
-"FED_CMS_OPEN_PAYMENTS": "Payments and gifts from drug and device companies to individual doctors and teaching hospitals.",
+"FED_CMS_OPEN_PAYMENTS": "Payments and gifts from drug and device companies to individual doctors and teaching hospitals — program year 2024; the 2022 and 2023 tables sit alongside, earlier years are not loaded.",
 "FED_CMS_OPEN_PAYMENTS_2023": "Drug and device company payments to doctors in 2023.",
 "FED_CMS_OPEN_PAYMENTS_2022": "Drug and device company payments to doctors in 2022.",
 "FED_CMS_MEDICARE_DIALYSIS_FACILITIES": "Dialysis clinics and their reported quality and outcome measures.",
 "FED_FDA_FAERS_INDI": "What each drug was being taken for in reports of suspected side effects.",
-"FED_FDA_FAERS_DEMO": "Who the patient was in each suspected side effect report - age, sex, weight, outcome.",
+"FED_FDA_FAERS_DEMO": "Who the patient was in each suspected side effect report - age, sex, weight, outcome. Quarters 2004 through mid-2014 only, with 2014q1 missing (verified 2026-08-31).",
 "FED_FDA_GUDID": "Every medical device sold in the US and its identifying details.",
-"FED_FDA_MAUDE": "Reports of medical devices injuring or killing patients, or malfunctioning.",
+"FED_FDA_MAUDE": "Reports of medical devices injuring or killing patients, or malfunctioning. A thin slice: the FULL landing copy holds 13,042 of the publisher's 25.7M reports (verified 2026-08-30); this mart is a partial pull too.",
 "FED_CDC_NNDSS_WEEKLY_2024": "Weekly counts of notifiable diseases reported by states in 2024.",
 "FED_HRSA_NPDB": "The national database of malpractice payouts and disciplinary actions against health practitioners.",
 "FED_FDA_FAERS_OUTC": "How each suspected side effect case ended - recovery, hospitalisation, death.",
@@ -282,15 +282,15 @@ TABLES.update({
 "FED_WPA_SLAVE_NARRATIVES": "First-person accounts recorded from formerly enslaved Americans in the 1930s.",
 
 # ---- Housing and mortgages --------------------------------------------------
-"FED_CFPB_HMDA_HISTORIC": "Every US mortgage application on record - who applied, for how much, and whether they were turned down. The core dataset for lending discrimination.",
+"FED_CFPB_HMDA_HISTORIC": "US mortgage applications, 2015-2017 only - who applied, for how much, and whether they were turned down. Three years of an eleven-year historic series; the lending-discrimination core sample, not the full record.",
 "FED_FEMA_IA_HOUSING_REGISTRATIONS": "Households that applied for federal disaster housing assistance.",
 "FED_FHFA_HPI": "House price indexes tracking how property values move.",
 "FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT": "Government-insured single family mortgages currently outstanding.",
-"FED_CFPB_HMDA": "Recent mortgage application records.",
+"FED_CFPB_HMDA": "Mortgage application records for Washington DC only, despite the general name (verified 2026-08-30).",
 "FED_CFPB_HMDA_DC_ONLY": "Mortgage application records for Washington DC.",
 "FED_HUD_MF_FIRM_COMMITMENTS": "Government commitments to insure apartment building mortgages.",
 "FED_HUD_MF_SECTION8_CONTRACTS": "Subsidised housing contracts - which buildings, how many units, and for how long.",
-"FED_CFPB_HMDA_LAR": "Loan-level mortgage application records.",
+"FED_CFPB_HMDA_LAR": "Loan-level mortgage application records for Washington DC only, despite the general name (verified 2026-08-30).",
 "FED_FHFA_NMDB": "A statistical sample of US mortgages tracked over their lifetime.",
 "FED_HUD_DATA": "A small sample from the federal housing department.",
 
@@ -370,7 +370,7 @@ TABLES.update({
 
 # ---- Multi-state settlements, shipping, open data ---------------------------
 "FED_NAAG_MULTISTATE_SETTLEMENTS": "Settlements where groups of state attorneys general sued a company together.",
-"FED_NOAA_AIS": "Ship movement tracking - where vessels have been, minute by minute, from their transponders.",
+"FED_NOAA_AIS": "Ship movement tracking - where vessels have been, minute by minute, from their transponders. Eight days of January 2024 only - a tap of a 30-billion-position archive.",
 "MONEY__DEBT_REPAYMENT_CLIFF": "A Ripple-built view of debt repayments bunching up at particular dates.",
 "INTL_FR_DATA_GOUV": "The catalogue of datasets the French government publishes.",
 "INTL_CH_OPENDATASWISS": "The catalogue of datasets the Swiss government publishes.",
@@ -438,7 +438,7 @@ TABLES.update({
 "FED_SAM_EXCLUSIONS": "People and companies barred from receiving US government contracts or grants, and for how long.",
 "INTL_EC_SERCOP": "Public procurement records from Ecuador's government purchasing system.",
 "FED_USASPENDING_BULK": "Federal award records pulled in bulk.",
-"FED_USASPENDING_SUBAWARDS": "Money passed down from a prime contractor to subcontractors.",
+"FED_USASPENDING_SUBAWARDS": "Money passed down from a prime contractor to subcontractors. Coverage stops at May 2019; later subawards are not loaded (verified 2026-08-30).",
 
 # ---- Reference lists --------------------------------------------------------
 "FED_ITIS_REFERENCE_LINKS": "Links between species records and the scientific publications describing them.",

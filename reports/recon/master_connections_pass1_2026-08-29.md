@@ -224,7 +224,7 @@ Loader: scripts/nobrainer_bulk_load_2026_08_29.py. All raw VARCHAR, provenance s
 ## PARKED for a later pass — TIME and GEOGRAPHY links
 
 Time: 1,275 verified date columns / 453 tables (reports/time_index/DATE_COLUMNS_ALL.md).
-Place: 2,244 name-scanned place columns / 386 tables (reports/location_index/LOCATION_COLUMNS_ALL.md).
+Place: 2,238 value-verified place columns / 386 marts (reports/location_index/LOCATION_VALUES.md, 2026-08-30 scan; supersedes the earlier 2,244 name-scan figure — the scan both dropped false hits, incl. 36 false "coordinates", and re-classified others, so the totals don't subtract cleanly).
 Both are joins by Chris's 2026-08-29 decision; excluded here only because they apply to most tables.
 
 ## Pass 2 scope (not done)

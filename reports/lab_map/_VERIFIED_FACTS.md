@@ -103,7 +103,7 @@ Live counts today (`LIBRARY_META.CONNECT`):
 - `CONNECT_NODES` / `ENTITY_INDEX` / `SPINE_KEYSET` 84,382,504 each.
 - `ENTITY_GOLDEN` / `ENTITY_MAP` 33,312,349 — resolved entities. `ENTITY_MAP.SOURCE_COUNT` is **degree, already computed**, and `MEMBER_TABLES` is an ARRAY of the tables each entity appears in.
 - `ENTITY_XREF` 2,672,384 — KEY_A/VALUE_A → KEY_B/VALUE_B with **RELATION** and **FANOUT**: the closest thing to a typed edge list in META.
-- `CONNECT_EDGES` **4,910** — this is a **table-to-table** graph (A, B, KEY, TIER, MATCH_RATE, CONFIDENCE), i.e. a schema map, not people or companies.
+- `CONNECT_EDGES` **4,512** (was 4,910 pre-08-28 rebuild; corrected 2026-08-30 against live) — this is a **table-to-table** graph (A, B, KEY, TIER, MATCH_RATE, CONFIDENCE), i.e. a schema map, not people or companies.
 - `LEADS` 17,598 — LEFT_ENTITY_ID → RIGHT_ENTITY_ID with SCORE and EVIDENCE.
 - `BRIDGE_ENTITIES` is **empty (0 rows)**.
 - `DOMAIN_OVERLAP_MATRIX` has **7 rows**; `SOURCE_OVERLAP_MATRIX` has **36**. The
@@ -114,7 +114,7 @@ Live counts today (`LIBRARY_META.CONNECT`):
 happened in the world.
 
 **Documented tier reality** (from `reports/question_ladder_2026-08-12.md`, when the
-map held 4,538 edges; it holds 4,910 today, so this split is close but not exact):
+map held 4,538 edges; it holds 4,512 as of the 2026-08-28 rebuild (was 4,910 before it), so this split is close but not exact):
 1,121 edges are hard-ID across 14 key families (EIN, NPI, FRS_ID, CIK, CCN,
 PWSID, LEI, FEC_CAND_ID, UEI, BIOGUIDE, FEC_CMTE_ID, DUNS, ICPSR, MINE_ID).
 2,606 — the entire "corroborated" tier — are **name-plus-address matches, not IDs**.

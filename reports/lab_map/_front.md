@@ -37,7 +37,7 @@ the actual finding:
    on the whole map that needs something from outside.
 
 3. **The best connection maps in the building are not in the connection layer.**
-   The official map holds 4,910 table-to-table links, of which roughly a
+   The official map holds 4,512 table-to-table links (2026-08-28 rebuild; was 4,910), of which roughly a
    quarter are hard-identifier matches and the rest are name-and-address
    guesses. Meanwhile several source tables carry clean, hard-identifier,
    directed, *dated* edge lists on their own — opioid shipments (178.6M),

@@ -1,0 +1,145 @@
+{
+ "CONTRACT_AWARD_UNIQUE_KEY": {
+  "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS",
+  "rows": 6325622,
+  "filled": 6325622,
+  "distinct": 5719566,
+  "samples": [
+   "CONT_AWD_SPE7LX25F706N_9700_SPE7M117D000",
+   "CONT_AWD_12505B24P0204_12H2_-NONE-_-NONE",
+   "CONT_AWD_47QMCA25F0LLG_4732_47QMCA22D000",
+   "CONT_AWD_SPE3SU25FH7PR_9700_SPE30025DSA5",
+   "CONT_AWD_47QSSC25FFZS8_4732_47QSMA24A08N"
+  ]
+ },
+ "TICKER": {
+  "table": "LIBRARY_RAW.LANDING.FED_SENATE_STOCK_WATCHER",
+  "rows": 8350,
+  "filled": 8350,
+  "distinct": 1009,
+  "samples": [
+   "LOW",
+   "ROST",
+   "WSTMX",
+   "NUAN",
+   "SLY"
+  ]
+ },
+ "UPIN": {
+  "table": "LIBRARY_RAW.LANDING.FED_HHS_OIG_LEIE",
+  "rows": 83842,
+  "filled": 5955,
+  "distinct": 5786,
+  "samples": [
+   "R08850",
+   "D63439",
+   "B84537",
+   "E02672",
+   "T46887"
+  ]
+ },
+ "CLIENT_ID": {
+  "table": "LIBRARY_RAW.LANDING.FED_SENATE_LDA_FILINGS",
+  "rows": 831376,
+  "filled": 831376,
+  "distinct": 88607,
+  "samples": [
+   "190534",
+   "121352",
+   "180527",
+   "209305",
+   "146966"
+  ]
+ },
+ "REGISTRANT_ID": {
+  "table": "LIBRARY_RAW.LANDING.FED_SENATE_LDA_FILINGS",
+  "rows": 831376,
+  "filled": 831376,
+  "distinct": 11723,
+  "samples": [
+   "10503",
+   "35035",
+   "44537",
+   "65590",
+   "7612"
+  ]
+ },
+ "NID_judge": {
+  "table": "LIBRARY_MARTS.POLITICS.POLITICS__FJC_JUDGE",
+  "rows": 4067,
+  "filled": 4067,
+  "distinct": 4067,
+  "samples": [
+   "1392901",
+   "1390251",
+   "1387371",
+   "1385291",
+   "1379671"
+  ]
+ },
+ "NID_appt": {
+  "table": "LIBRARY_MARTS.POLITICS.POLITICS__FJC_APPOINTMENT",
+  "rows": 4766,
+  "filled": 4766,
+  "distinct": 4067,
+  "samples": [
+   "1385531",
+   "1392596",
+   "1392626",
+   "1380836",
+   "1386671"
+  ]
+ },
+ "COMMITTEE_CODE": {
+  "table": "LIBRARY_RAW.LANDING.FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+  "rows": 3879,
+  "filled": 3879,
+  "distinct": 228,
+  "samples": [
+   "SSCM33",
+   "HSAS29",
+   "SSFR",
+   "HLIG02",
+   "HSJU08"
+  ]
+ },
+ "BILL_NUMBER": {
+  "table": "LIBRARY_MARTS.POLITICS.POLITICS__BILLS",
+  "rows": 36465,
+  "filled": 36465,
+  "distinct": 10564,
+  "samples": [
+   "3226",
+   "9097",
+   "8475",
+   "807",
+   "4335"
+  ]
+ },
+ "JUSTICE_CODE": {
+  "table": "LIBRARY_MARTS.POLITICS.POLITICS__JUDGE_IDEOLOGY_SCOTUS",
+  "rows": 782,
+  "filled": 750,
+  "distinct": 40,
+  "samples": [
+   "113",
+   "98",
+   "80",
+   "92",
+   "87"
+  ]
+ },
+ "SUB_ID": {
+  "table": "LIBRARY_RAW.LANDING.FED_FEC_INDIV_CONTRIBUTIONS",
+  "rows": 84172112,
+  "filled": 84172112,
+  "distinct": 84172112,
+  "samples": [
+   "4042220261461208261",
+   "4072020231755109964",
+   "4011320251129523060",
+   "4021120261306621246",
+   "4040720261435253538"
+  ]
+ }
+}

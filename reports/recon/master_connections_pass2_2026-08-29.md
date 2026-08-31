@@ -266,7 +266,7 @@ Column-semantics flag: the SBIR awards "state" column is not a state code (0% ag
 
 ## PARKED for later passes
 
-- Time / place joins (1,275 date columns, 2,244 place columns — the value scan of place columns is still pending).
+- Time / place joins (1,275 date columns; place columns: the 2026-08-30 value scan verified 2,238 live-measured — see reports/location_index/LOCATION_VALUES.md; 2,244 was the earlier name-scan figure and includes 36 false coordinate hits).
 - Parsing the OpenSanctions and CSL `IDENTIFIERS` blobs into typed keys (IMO, tax ids, USCC, wikidata).
 - Pairwise tests among the three SEC file-number columns and the four FDIC/FHLB/SBA/NCUA bank ids.
 - Registering the pass-2 families in the spine (a spec batch, not a rebuild — apply-config handles it).

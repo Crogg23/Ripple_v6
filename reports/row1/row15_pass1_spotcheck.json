@@ -1,0 +1,35 @@
+{
+ "dea_no": {
+  "claim": "148.6K distinct, one-sided",
+  "reporter_distinct": 656,
+  "buyer_distinct": 148588
+ },
+ "mine_id": {
+  "claim": "violations->mines ~100%",
+  "distinct": 31277,
+  "matched": 31277,
+  "pct": 100.0
+ },
+ "pwsid": {
+  "claim": "violations->systems ~99%",
+  "distinct_sampled": 182518,
+  "matched": 182518,
+  "pct": 100.0
+ },
+ "cl_court": {
+  "claim": "dockets->courts 100%",
+  "distinct": 2199,
+  "matched": 2199,
+  "pct": 100.0
+ },
+ "imo_uscg": {
+  "claim": "8.7K distinct",
+  "distinct": 6304
+ },
+ "uk_company_no": {
+  "claim": "pass-1 said 97, pass-2 said 85.7",
+  "distinct": 110426,
+  "matched": 94652,
+  "pct": 85.7
+ }
+}

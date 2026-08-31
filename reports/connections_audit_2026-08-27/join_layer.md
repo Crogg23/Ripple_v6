@@ -48,7 +48,7 @@ ENABLE_SPINE_BATCH_2026_08 = True (the batch is live).
 LIBRARY_META."CONNECT" (26 tables): the ones that matter —
 - **ENTITY_INDEX** (90.0M rows) — entity_id / key_type / key_value / source_table; the spine.
 - **KEYSET_LIVE** (177.0M) — (table, key, val), de-duplicated (rows == distinct per table): the per-table key inventory.
-- **CONNECT_EDGES** (4,910) — table-pair edges with key, tier, matched counts.
+- **CONNECT_EDGES** (4,910 at audit time; 4,512 after the 2026-08-28 rebuild) — table-pair edges with key, tier, matched counts.
 - ENTITY_GOLDEN / ENTITY_MAP (35.95M), SPINE_KEYSET(_LIVE) (90.0M), MATCH_PAIRS (182.4M), GOLD_PAIRS, BRIDGE_ENTITIES, LEADS, ENTITY_LINKS (lane-blocked as leads — correct behavior, the libel firewall fired mid-audit).
 
 LIBRARY_META.REGISTRY: SOURCE_REGISTRY (2,780 rows; JOIN_KEYS_STD / JOIN_KEY_TIER

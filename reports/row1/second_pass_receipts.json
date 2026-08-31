@@ -1,0 +1,321 @@
+{
+ "assistance_full_by_fy": {
+  "2007": 1000000,
+  "2008": 1000000,
+  "2009": 1000000,
+  "2010": 1000000,
+  "2011": 1000000,
+  "2012": 1000000,
+  "2013": 1000000,
+  "2014": 902879,
+  "2015": 1000000,
+  "2016": 1000000,
+  "2017": 1000000,
+  "2018": 1000000,
+  "2019": 1000000,
+  "2020": 1000000,
+  "2021": 1000000,
+  "2022": 1000000,
+  "2023": 1000000,
+  "2024": 1000000,
+  "2025": 1000000,
+  "2026": 1000000
+ },
+ "mds_by_report_date": {
+  "Q2, 2026": 31403215
+ },
+ "dialysis_count_star": 12456456,
+ "partd_ingest_run": {
+  "source_id": "FED_CMS_PARTD_PRESCRIBER_DRUG",
+  "run_id": "431c13fc-5535-493a-9536-fe7c55070255",
+  "row_count": 25869521,
+  "source_url": "https://data.cms.gov/sites/default/files/2024-05/18f82097-61a6-4889-9941-9a0b6ad7523c/MUP_DPR_RY24_P04_V10_DY22_NPIBN.csv",
+  "message": "CMS Medicare Part D Prescribers - by Provider and Drug (DY2022). Server-side bulk load of 25,869,521 rows (fetch->stage->COPY->atomic swap). density=83.20% (source_cols=22, all_blank_cols=0, rows_sampled=2000)."
+ },
+ "zip_spec_ingest_runs": [
+  {
+   "source_id": "FED_CFPB_COMPLAINTS",
+   "started_at": "2026-07-23 17:19:21.009719",
+   "status": "success",
+   "row_count": 17179788
+  },
+  {
+   "source_id": "FED_FEC_CANDIDATES",
+   "started_at": "2026-07-24 02:11:49.823747",
+   "status": "success",
+   "row_count": 33506
+  },
+  {
+   "source_id": "FED_FEC_CAND_CMTE_LINKAGE",
+   "started_at": "2026-07-24 02:12:38.628276",
+   "status": "success",
+   "row_count": 30536
+  },
+  {
+   "source_id": "FED_FEC_COMMITTEES",
+   "started_at": "2026-07-24 02:10:52.018268",
+   "status": "success",
+   "row_count": 78039
+  },
+  {
+   "source_id": "FED_FEC_PAC_SUMMARY",
+   "started_at": "2026-07-24 02:13:26.739932",
+   "status": "success",
+   "row_count": 48395
+  },
+  {
+   "source_id": "FED_MSHA_ACCIDENTS",
+   "started_at": "2026-07-24 00:47:40.967423",
+   "status": "success",
+   "row_count": 273623
+  },
+  {
+   "source_id": "FED_MSHA_MINES",
+   "started_at": "2026-07-24 00:48:11.589799",
+   "status": "success",
+   "row_count": 91906
+  },
+  {
+   "source_id": "FED_MSHA_VIOLATIONS",
+   "started_at": "2026-07-24 00:46:22.357512",
+   "status": "success",
+   "row_count": 3087266
+  },
+  {
+   "source_id": "FED_NHTSA_COMPLAINTS",
+   "started_at": "2026-07-24 00:39:18.913704",
+   "status": "failed",
+   "row_count": null
+  },
+  {
+   "source_id": "FED_NHTSA_COMPLAINTS",
+   "started_at": "2026-07-24 00:42:26.028039",
+   "status": "success",
+   "row_count": 2227941
+  },
+  {
+   "source_id": "FED_NHTSA_INVESTIGATIONS",
+   "started_at": "2026-07-24 00:40:53.520657",
+   "status": "success",
+   "row_count": 154209
+  },
+  {
+   "source_id": "FED_NHTSA_INVESTIGATIONS",
+   "started_at": "2026-07-24 00:43:24.650582",
+   "status": "success",
+   "row_count": 154209
+  },
+  {
+   "source_id": "FED_NHTSA_RECALLS",
+   "started_at": "2026-07-24 00:44:13.594243",
+   "status": "success",
+   "row_count": 242993
+  },
+  {
+   "source_id": "FED_USASPENDING_ASSISTANCE_FULL",
+   "started_at": "2026-07-24 02:58:22.110254",
+   "status": "success",
+   "row_count": 19902879
+  },
+  {
+   "source_id": "FED_USASPENDING_CONTRACTS_FULL",
+   "started_at": "2026-07-24 02:06:23.335905",
+   "status": "success",
+   "row_count": 20000000
+  },
+  {
+   "source_id": "INTL_GLEIF",
+   "started_at": "2026-07-23 19:38:06.947855",
+   "status": "success",
+   "row_count": 3382301
+  },
+  {
+   "source_id": "fed_cfpb_complaints",
+   "started_at": "2026-06-17 14:28:03.509265",
+   "status": "success",
+   "row_count": 250
+  },
+  {
+   "source_id": "fed_cfpb_complaints",
+   "started_at": "2026-06-17 14:28:40.548340",
+   "status": "success",
+   "row_count": 250
+  },
+  {
+   "source_id": "intl_gleif",
+   "started_at": "2026-07-02 20:17:50.770583",
+   "status": "failed",
+   "row_count": null
+  },
+  {
+   "source_id": "intl_gleif",
+   "started_at": "2026-07-05 22:19:41.017277",
+   "status": "empty",
+   "row_count": 41
+  },
+  {
+   "source_id": "intl_gleif",
+   "started_at": "2026-07-05 22:25:05.567422",
+   "status": "success",
+   "row_count": 20000
+  }
+ ],
+ "zip_spec_landing_counts": {
+  "INTL_GLEIF": 3382301,
+  "FED_FEC_PAC_SUMMARY": 48395,
+  "FED_USASPENDING_CONTRACTS_FULL": 20000000,
+  "FED_FEC_COMMITTEES": 60031,
+  "FED_MSHA_MINES": 91906,
+  "FED_MSHA_VIOLATIONS": 3087266,
+  "FED_NHTSA_INVESTIGATIONS": 154209,
+  "FED_FEC_CANDIDATES": 27095,
+  "FED_MSHA_ACCIDENTS": 273623,
+  "FED_NHTSA_COMPLAINTS": 2227941,
+  "FED_CFPB_COMPLAINTS": 17179788,
+  "FED_USASPENDING_ASSISTANCE_FULL": 19902879,
+  "FED_FEC_CAND_CMTE_LINKAGE": 30536,
+  "FED_NHTSA_RECALLS": 241861
+ },
+ "shrunk_tables_count_star": {
+  "FED_FEC_CANDIDATES": 27095,
+  "FED_FEC_COMMITTEES": 60031,
+  "FED_NHTSA_RECALLS": 241861
+ },
+ "sec13f": {
+  "zips_in_checkpoint": [
+   "01dec2024-28feb2025_form13f.zip",
+   "01dec2025-28feb2026_form13f.zip",
+   "01jan2024-29feb2024_form13f.zip",
+   "01jun2024-31aug2024_form13f.zip",
+   "01jun2025-31aug2025_form13f.zip",
+   "01mar2024-31may2024_form13f.zip",
+   "01mar2025-31may2025_form13f.zip",
+   "01mar2026-31may2026_form13f.zip",
+   "01sep2024-30nov2024_form13f.zip",
+   "01sep2025-30nov2025_form13f.zip",
+   "2013q2_form13f.zip",
+   "2013q3_form13f.zip",
+   "2013q4_form13f.zip",
+   "2014q1_form13f.zip",
+   "2014q2_form13f.zip",
+   "2014q3_form13f.zip",
+   "2014q4_form13f.zip",
+   "2015q1_form13f.zip",
+   "2015q2_form13f.zip",
+   "2015q3_form13f.zip",
+   "2015q4_form13f.zip",
+   "2016q1_form13f.zip",
+   "2016q2_form13f.zip",
+   "2016q3_form13f.zip",
+   "2016q4_form13f.zip",
+   "2017q1_form13f.zip",
+   "2017q2_form13f.zip",
+   "2017q3_form13f.zip",
+   "2017q4_form13f.zip",
+   "2018q1_form13f.zip",
+   "2018q2_form13f.zip",
+   "2018q3_form13f.zip",
+   "2018q4_form13f.zip",
+   "2019q1_form13f.zip",
+   "2019q2_form13f.zip",
+   "2019q3_form13f.zip",
+   "2019q4_form13f.zip",
+   "2020q1_form13f.zip",
+   "2020q2_form13f.zip",
+   "2020q3_form13f.zip",
+   "2020q4_form13f.zip",
+   "2021q1_form13f.zip",
+   "2021q2_form13f.zip",
+   "2022q1_form13f.zip",
+   "2022q2_form13f.zip",
+   "2022q3_form13f.zip"
+  ],
+  "infotable_sum": 101261252
+ },
+ "faers_checkpoint_quarters": [
+  "2004q1",
+  "2004q2",
+  "2004q3",
+  "2004q4",
+  "2005q1",
+  "2005q2",
+  "2005q3",
+  "2005q4",
+  "2006q1",
+  "2006q2",
+  "2006q3",
+  "2006q4",
+  "2007q1",
+  "2007q2",
+  "2007q3",
+  "2007q4",
+  "2008q1",
+  "2008q2",
+  "2008q3",
+  "2008q4",
+  "2009q1",
+  "2009q2",
+  "2009q3",
+  "2009q4",
+  "2010q1",
+  "2010q2",
+  "2010q3",
+  "2010q4",
+  "2011q1",
+  "2011q2",
+  "2011q3",
+  "2011q4",
+  "2012q1",
+  "2012q2",
+  "2012q3",
+  "2012q4",
+  "2013q1",
+  "2013q2",
+  "2013q3",
+  "2013q4",
+  "2014q2"
+ ],
+ "campd": {
+  "campd_facility": {
+   "rows": 128525,
+   "chunks": 31,
+   "missing": []
+  },
+  "campd_daily": {
+   "rows": 16513971,
+   "chunks": 572,
+   "missing": [
+    "2015-ak",
+    "2015-hi",
+    "2016-ak",
+    "2016-hi",
+    "2016-pr",
+    "2017-ak",
+    "2017-hi",
+    "2017-pr",
+    "2018-ak",
+    "2018-hi",
+    "2019-hi",
+    "2020-hi",
+    "2021-hi",
+    "2022-hi",
+    "2023-hi",
+    "2024-hi",
+    "2024-mt",
+    "2024-sd",
+    "2025-hi"
+   ]
+  }
+ },
+ "row16_landing": {
+  "FED_SEC_13F_HOLDINGS": 101261252,
+  "FED_EPA_CAMPD_EMISSIONS_DAILY": 16513971,
+  "FED_EPA_CAMPD_FACILITY": 128525,
+  "FED_CPSC_NEISS": 9794977,
+  "FED_FDA_FAERS_DEMO": 5811086,
+  "FED_FDA_FAERS_DRUG": 20914284,
+  "FED_FDA_FAERS_REAC": 20621386,
+  "FED_FDA_FAERS_INDI": 9833260,
+  "FED_FDA_FAERS_OUTC": 5147466
+ }
+}
