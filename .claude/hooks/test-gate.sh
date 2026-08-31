@@ -1,13 +1,14 @@
 #!/bin/bash
 # Self-test for warehouse-gate.sh + greenlight.sh. Run: bash .claude/hooks/test-gate.sh
 export CLAUDE_PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
+source "$(dirname "$0")/_py.sh"
 H="$CLAUDE_PROJECT_DIR/.claude/hooks"
 S="gatetest"
 rm -f "$CLAUDE_PROJECT_DIR/.claude/state/$S."*
 fail=0
-run() { python -c "import json,sys; print(json.dumps({'session_id':'$S','tool_input':{'command':sys.argv[1]}}))" "$1" | bash "$H/warehouse-gate.sh" 2>/dev/null; echo $?; }
+run() { "$PY" -c "import json,sys; print(json.dumps({'session_id':'$S','tool_input':{'command':sys.argv[1]}}))" "$1" | bash "$H/warehouse-gate.sh" 2>/dev/null; echo $?; }
 t() { r=$(run "$2"); if [ "$r" = "$1" ]; then echo "ok   ($1) $3"; else echo "FAIL (got $r want $1) $3"; fail=1; fi; }
-gl() { python -c "import json,sys; print(json.dumps({'session_id':'$S','prompt':sys.argv[1]}))" "$1" | bash "$H/chris-words.sh" >/dev/null; }
+gl() { "$PY" -c "import json,sys; print(json.dumps({'session_id':'$S','prompt':sys.argv[1]}))" "$1" | bash "$H/chris-words.sh" >/dev/null; }
 
 echo "--- should block"
 t 2 'python -m connect spine' "spine cmd"
@@ -50,9 +51,9 @@ t 0 'dbt build' "hooks off → gate open"
 rm -f "$CLAUDE_PROJECT_DIR/.claude/state/hooks.off"
 t 2 'dbt build' "hooks on → gate closed"
 echo "--- drawer guard"
-dg=$(python -c "import json; print(json.dumps({'tool_input':{'file_path':'c:/x/_JUNK_DRAWER/rules_v1/CLAUDE.md'}}))" | bash "$H/drawer-guard.sh")
+dg=$("$PY" -c "import json; print(json.dumps({'tool_input':{'file_path':'c:/x/_JUNK_DRAWER/rules_v1/CLAUDE.md'}}))" | bash "$H/drawer-guard.sh")
 if echo "$dg" | grep -q '"ask"'; then echo "ok   drawer read → ask"; else echo "FAIL drawer read did not ask"; fail=1; fi
-dg=$(python -c "import json; print(json.dumps({'tool_input':{'file_path':'c:/x/CLAUDE.md'}}))" | bash "$H/drawer-guard.sh")
+dg=$("$PY" -c "import json; print(json.dumps({'tool_input':{'file_path':'c:/x/CLAUDE.md'}}))" | bash "$H/drawer-guard.sh")
 if [ -z "$dg" ]; then echo "ok   normal read → silent"; else echo "FAIL normal read produced output"; fail=1; fi
 rm -f "$CLAUDE_PROJECT_DIR/.claude/state/last_priced"
 rm -f "$CLAUDE_PROJECT_DIR/.claude/state/$S."*
