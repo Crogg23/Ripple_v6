@@ -72,4 +72,7 @@ When Chris corrects: fix it next message, save the correction, no explanation, n
 
 ## The junk drawer
 `_JUNK_DRAWER/` holds retired attempts — old rules, old pages, old data. Reference only. Never build from it, never clean it. Add a row to its LEDGER.md when something goes in.
-The spine's code still lives in the repo because too much imports it; it is retired, not deleted. Its commands are gated (see Don't do damage).
+The old five-hour full-rebuild resolver is in the drawer, code and all, and nothing in live code imports it. Verified 2026-08-31: zero importers.
+What replaced it is `connect/incremental.py`, which updates only the tables that changed. Its commands are still gated (see Don't do damage).
+Two things keep the dead word alive and confuse every session: the warehouse tables are still named `SPINE_KEYSET` and `SPINE_KEYSET_LIVE`, and about 500 mentions sit in live Python. Renaming them is an open decision, not a done thing.
+Until they are renamed: those tables are live and growing. The concept is dead. Say which one you mean.
