@@ -1,7 +1,9 @@
 #!/bin/bash
 
+source "$(dirname "${BASH_SOURCE[0]}")/_py.sh"
+py_or_block "the git guard"
 INPUT=$(cat)
-COMMAND=$(python -c "import json,sys; print(json.load(sys.stdin).get('tool_input',{}).get('command',''))" <<< "$INPUT")
+COMMAND=$("$PY" -c "import json,sys; print(json.load(sys.stdin).get('tool_input',{}).get('command',''))" <<< "$INPUT")
 
 DANGEROUS_PATTERNS=(
   "git reset --hard"

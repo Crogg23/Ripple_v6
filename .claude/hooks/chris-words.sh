@@ -4,9 +4,11 @@
 #   greenlight <kind>   (spine|rebuild|destroy|spend) — only if a price was shown this hour
 #   riff / build        — sets the mode marker (also /riff, /build)
 #   hooks off / hooks on — kill switch for the command hooks (git guard stays on)
+source "$(dirname "${BASH_SOURCE[0]}")/_py.sh"
+py_or_skip "the prompt reader"
 INPUT=$(cat)
-PROMPT=$(python -c "import json,sys; print(json.load(sys.stdin).get('prompt',''))" <<< "$INPUT")
-SESSION=$(python -c "import json,sys; print(json.load(sys.stdin).get('session_id',''))" <<< "$INPUT")
+PROMPT=$("$PY" -c "import json,sys; print(json.load(sys.stdin).get('prompt',''))" <<< "$INPUT")
+SESSION=$("$PY" -c "import json,sys; print(json.load(sys.stdin).get('session_id',''))" <<< "$INPUT")
 STATE="$CLAUDE_PROJECT_DIR/.claude/state"
 mkdir -p "$STATE"
 

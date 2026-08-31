@@ -1,16 +1,18 @@
 #!/bin/bash
 # Gate on hard-to-undo warehouse work and spine commands (CLAUDE.md — Don't do damage).
 # Blocks unless a session greenlight marker exists for the matching kind.
+source "$(dirname "${BASH_SOURCE[0]}")/_py.sh"
 [ -f "$CLAUDE_PROJECT_DIR/.claude/state/hooks.off" ] && exit 0
+py_or_block "the warehouse gate"
 INPUT=$(cat)
-SESSION=$(python -c "import json,sys; print(json.load(sys.stdin).get('session_id',''))" <<< "$INPUT")
+SESSION=$("$PY" -c "import json,sys; print(json.load(sys.stdin).get('session_id',''))" <<< "$INPUT")
 STATE="$CLAUDE_PROJECT_DIR/.claude/state"
 
 # Normalise: replace -m "..." commit messages, then split into segments on && || ; | newline
 # (heredoc bodies included — SQL hides in them).
 # Segments that are pure read/print (echo, grep, rg, cat, ls, head, tail, git log/show/status/diff) are exempt,
 # so mentioning "dbt build" in a message doesn't trip the gate.
-KIND=$(python - "$INPUT" <<'PYEOF'
+KIND=$("$PY" - "$INPUT" <<'PYEOF'
 import json, re, sys
 c = json.loads(sys.argv[1]).get('tool_input', {}).get('command', '')
 
@@ -18,7 +20,7 @@ c = json.loads(sys.argv[1]).get('tool_input', {}).get('command', '')
 c = re.sub(r'''-m\s+("[^"]*"|'[^']*')''', '-m MSG', c)
 
 segs = [s.strip() for s in re.split(r'&&|\|\||;|\||\n', c) if s.strip()]
-exempt = re.compile(r'^(echo|printf|grep|rg|cat|ls|head|tail|wc|sort|uniq|git (log|show|status|diff|branch)|python -c "import json)\b')
+exempt = re.compile(r'^(echo|printf|grep|rg|cat|ls|head|tail|wc|sort|uniq|git (log|show|status|diff|branch)|"$PY" -c "import json)\b')
 rules = [
   ('spine',   r'(^|\s)(python3?\s+(-m\s+)?)?connect[ ./](spine|all|seed|entity-index|apply-config|connect-one|connect-changed|discover|harvest)\b|spine_rebuild|gen_spine_specs|spine_wiring_prep|add_spine_columns'),
   ('rebuild', r'(^|\s)dbt(\.exe)?\s+(-\S+\s+)*(run|build|seed|snapshot|retry)\b|dbt\.cli\.main|rebuild_frozen_marts|--full-refresh|full_refresh'),
