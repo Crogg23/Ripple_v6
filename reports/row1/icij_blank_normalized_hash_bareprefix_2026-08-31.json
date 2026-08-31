@@ -1,0 +1,29 @@
+[
+  {
+    "canon": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+    "dup": "ICIJ_OFFSHORE_LEAKS_ENTITIES",
+    "identical_after_full_blank_normalize": false,
+    "rows": [
+      814344,
+      814344
+    ]
+  },
+  {
+    "canon": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+    "dup": "ICIJ_OFFSHORE_LEAKS_OFFICERS",
+    "identical_after_full_blank_normalize": true,
+    "rows": [
+      771315,
+      771315
+    ]
+  },
+  {
+    "canon": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+    "dup": "ICIJ_OFFSHORE_LEAKS_ADDRESSES",
+    "identical_after_full_blank_normalize": true,
+    "rows": [
+      402246,
+      402246
+    ]
+  }
+]

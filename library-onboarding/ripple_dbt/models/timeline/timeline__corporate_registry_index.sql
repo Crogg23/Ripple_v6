@@ -12,7 +12,7 @@
 -- reading as a real New Year's Day spike -- always filter or facet on
 -- it before drawing a daily chart.
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__fed_icij_offshoreleaks_entities') }}
@@ -20,7 +20,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__fed_icij_offshoreleaks_others') }}
@@ -28,7 +28,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__fed_icij_offshoreleaks_relationships') }}
@@ -36,7 +36,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'decided', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__fed_irs_eo_bmf') }}
@@ -44,7 +44,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__intl_es_borme') }}
@@ -52,7 +52,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__intl_ie_cro') }}
@@ -60,7 +60,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__intl_uk_companies_house') }}
@@ -68,7 +68,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__corporate_registry__uk_companies_house_psc') }}

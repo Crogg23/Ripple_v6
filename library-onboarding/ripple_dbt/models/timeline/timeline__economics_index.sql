@@ -12,7 +12,7 @@
 -- reading as a real New Year's Day spike -- always filter or facet on
 -- it before drawing a daily chart.
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_bls_qcew') }}
@@ -20,7 +20,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_dol_form5500') }}
@@ -28,7 +28,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_fac_single_audit') }}
@@ -36,7 +36,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_fdic_failed_banks') }}
@@ -44,7 +44,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_foreignassistance') }}
@@ -52,7 +52,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_grants_gov') }}
@@ -60,7 +60,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_990') }}
@@ -68,7 +68,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_990_efile_index') }}
@@ -76,7 +76,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_auto_revocations') }}
@@ -84,7 +84,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'decided', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_bmf') }}
@@ -92,7 +92,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_eo_pr') }}
@@ -100,7 +100,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_revocation') }}
@@ -108,7 +108,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_irs_soi_charities') }}
@@ -116,7 +116,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_pbgc_data') }}
@@ -124,7 +124,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_sba_loans') }}
@@ -132,7 +132,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'decided', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_sba_ppp') }}
@@ -140,7 +140,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_sec_edgar') }}
@@ -148,7 +148,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_treasury_avg_interest_rates') }}
@@ -156,7 +156,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_treasury_debt_outstanding') }}
@@ -164,7 +164,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_treasury_debt_to_penny') }}
@@ -172,7 +172,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_treasury_dts_deposits') }}
@@ -180,7 +180,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_treasury_mts_receipts') }}
@@ -188,7 +188,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_usaspending_assistance_full') }}
@@ -196,7 +196,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_usaspending_contracts') }}
@@ -204,7 +204,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_usaspending_contracts_full') }}
@@ -212,7 +212,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_us_sec_edgar') }}
@@ -220,7 +220,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__fed_us_usaspending_api') }}
@@ -228,7 +228,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__intl_fao_faostat') }}
@@ -236,7 +236,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__intl_fao_faostat_food_security') }}
@@ -244,7 +244,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__intl_gleif_relationships') }}
@@ -252,7 +252,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__intl_it_istat') }}
@@ -260,7 +260,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__economics__xc_owid_gini') }}

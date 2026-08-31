@@ -1,0 +1,335 @@
+{
+  "database": "LIBRARY_RAW",
+  "located": {
+    "ICIJ_OFFSHORE_LEAKS_ADDRESSES": "LANDING",
+    "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES": "LANDING",
+    "XC_ICIJ_OFFSHORE_NODES_ADDRESSES": "LANDING",
+    "FED_ICIJ_OFFSHORELEAKS_ENTITIES": "LANDING",
+    "XC_ICIJ_OFFSHORE_NODES_INTERMEDIARIES": "LANDING",
+    "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS": "LANDING",
+    "XC_ICIJ_OFFSHORE_RELATIONSHIPS": "LANDING",
+    "FED_ICIJ_OFFSHORELEAKS_OTHERS": "LANDING",
+    "FED_ICIJ_OFFSHORELEAKS_ADDRESSES": "LANDING",
+    "XC_ICIJ_OFFSHORE_NODES_OFFICERS": "LANDING",
+    "FED_ICIJ_OFFSHORELEAKS_OFFICERS": "LANDING",
+    "ICIJ_OFFSHORE_LEAKS_OFFICERS": "LANDING",
+    "XC_ICIJ_OFFSHORE_NODES_ENTITIES": "LANDING",
+    "ICIJ_OFFSHORE_LEAKS_ENTITIES": "LANDING"
+  },
+  "families": {
+    "RELATIONSHIPS": [
+      {
+        "table": "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 11,
+        "rows": 3339267,
+        "audit": {
+          "INGESTED_AT": {
+            "min": "1785965377933493",
+            "max": "1785965377933493"
+          },
+          "SOURCE_RUN_ID": {
+            "min": "6ae1f747-3ad9-4f19-ad12-c7e1cb090283",
+            "max": "6ae1f747-3ad9-4f19-ad12-c7e1cb090283"
+          }
+        }
+      },
+      {
+        "table": "XC_ICIJ_OFFSHORE_RELATIONSHIPS",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 11,
+        "rows": 3339267,
+        "audit": {
+          "SOURCE_RUN_ID": {
+            "min": "54aa9ce7-c722-4caf-a974-4d76667346d2",
+            "max": "54aa9ce7-c722-4caf-a974-4d76667346d2"
+          },
+          "INGESTED_AT": {
+            "min": "1786165289023852",
+            "max": "1786165289023852"
+          }
+        }
+      },
+      {
+        "table": "ICIJ_OFFSHORE_LEAKS_RELATIONSHIPS",
+        "exists": false
+      }
+    ],
+    "ENTITIES": [
+      {
+        "table": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 24,
+        "rows": 814344,
+        "audit": {
+          "SOURCE_RUN_ID": {
+            "min": "93d9ff30-8121-4718-9d78-854025c6998c",
+            "max": "93d9ff30-8121-4718-9d78-854025c6998c"
+          },
+          "INGESTED_AT": {
+            "min": "1785965270036203",
+            "max": "1785965270036203"
+          }
+        },
+        "node_id_range": [
+          "66978",
+          "240554209"
+        ]
+      },
+      {
+        "table": "XC_ICIJ_OFFSHORE_NODES_ENTITIES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 24,
+        "rows": 814344,
+        "audit": {
+          "INGESTED_AT": {
+            "min": "1786165289023852",
+            "max": "1786165289023852"
+          },
+          "SOURCE_RUN_ID": {
+            "min": "54aa9ce7-c722-4caf-a974-4d76667346d2",
+            "max": "54aa9ce7-c722-4caf-a974-4d76667346d2"
+          }
+        },
+        "node_id_range": [
+          "66978",
+          "240554209"
+        ]
+      },
+      {
+        "table": "ICIJ_OFFSHORE_LEAKS_ENTITIES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 24,
+        "rows": 814344,
+        "audit": {
+          "_INGESTED_AT": {
+            "min": "1785965469371032",
+            "max": "1785965469371032"
+          },
+          "_SOURCE_RUN_ID": {
+            "min": "manual-1785965462",
+            "max": "manual-1785965462"
+          }
+        },
+        "node_id_range": [
+          "66978",
+          "240554209"
+        ]
+      }
+    ],
+    "OFFICERS": [
+      {
+        "table": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 10,
+        "rows": 771315,
+        "audit": {
+          "INGESTED_AT": {
+            "min": "1785965306469507",
+            "max": "1785965306469507"
+          },
+          "SOURCE_RUN_ID": {
+            "min": "de72ca3a-d04f-4d0d-b775-38dcc29ba933",
+            "max": "de72ca3a-d04f-4d0d-b775-38dcc29ba933"
+          }
+        },
+        "node_id_range": [
+          "1",
+          "240556394"
+        ]
+      },
+      {
+        "table": "XC_ICIJ_OFFSHORE_NODES_OFFICERS",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 10,
+        "rows": 771315,
+        "audit": {
+          "INGESTED_AT": {
+            "min": "1786165289023852",
+            "max": "1786165289023852"
+          },
+          "SOURCE_RUN_ID": {
+            "min": "54aa9ce7-c722-4caf-a974-4d76667346d2",
+            "max": "54aa9ce7-c722-4caf-a974-4d76667346d2"
+          }
+        },
+        "node_id_range": [
+          "1",
+          "240556394"
+        ]
+      },
+      {
+        "table": "ICIJ_OFFSHORE_LEAKS_OFFICERS",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 10,
+        "rows": 771315,
+        "audit": {
+          "_SOURCE_RUN_ID": {
+            "min": "manual-1785965462",
+            "max": "manual-1785965462"
+          },
+          "_INGESTED_AT": {
+            "min": "1785965572180892",
+            "max": "1785965572180892"
+          }
+        },
+        "node_id_range": [
+          "1",
+          "240556394"
+        ]
+      }
+    ],
+    "ADDRESSES": [
+      {
+        "table": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 11,
+        "rows": 402246,
+        "audit": {
+          "INGESTED_AT": {
+            "min": "1785965326584375",
+            "max": "1785965326584375"
+          },
+          "SOURCE_RUN_ID": {
+            "min": "bac977af-b459-4eba-89ee-155a2745e62c",
+            "max": "bac977af-b459-4eba-89ee-155a2745e62c"
+          }
+        },
+        "node_id_range": [
+          "67268",
+          "240492577"
+        ]
+      },
+      {
+        "table": "XC_ICIJ_OFFSHORE_NODES_ADDRESSES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 11,
+        "rows": 402246,
+        "audit": {
+          "SOURCE_RUN_ID": {
+            "min": "54aa9ce7-c722-4caf-a974-4d76667346d2",
+            "max": "54aa9ce7-c722-4caf-a974-4d76667346d2"
+          },
+          "INGESTED_AT": {
+            "min": "1786165289023852",
+            "max": "1786165289023852"
+          }
+        },
+        "node_id_range": [
+          "67268",
+          "240492577"
+        ]
+      },
+      {
+        "table": "ICIJ_OFFSHORE_LEAKS_ADDRESSES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 11,
+        "rows": 402246,
+        "audit": {
+          "_SOURCE_RUN_ID": {
+            "min": "manual-1785965462",
+            "max": "manual-1785965462"
+          },
+          "_INGESTED_AT": {
+            "min": "1785965639660100",
+            "max": "1785965639660100"
+          }
+        },
+        "node_id_range": [
+          "67268",
+          "240492577"
+        ]
+      }
+    ],
+    "INTERMEDIARIES": [
+      {
+        "table": "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 13,
+        "rows": 26768,
+        "audit": {
+          "SOURCE_RUN_ID": {
+            "min": "1b2bd146-2fdf-4dbe-9919-84c985d6d995",
+            "max": "1b2bd146-2fdf-4dbe-9919-84c985d6d995"
+          },
+          "INGESTED_AT": {
+            "min": "1785965350518259",
+            "max": "1785965350518259"
+          }
+        },
+        "node_id_range": [
+          "21309",
+          "240099001"
+        ]
+      },
+      {
+        "table": "XC_ICIJ_OFFSHORE_NODES_INTERMEDIARIES",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 13,
+        "rows": 26768,
+        "audit": {
+          "SOURCE_RUN_ID": {
+            "min": "54aa9ce7-c722-4caf-a974-4d76667346d2",
+            "max": "54aa9ce7-c722-4caf-a974-4d76667346d2"
+          },
+          "INGESTED_AT": {
+            "min": "1786165289023852",
+            "max": "1786165289023852"
+          }
+        },
+        "node_id_range": [
+          "21309",
+          "240099001"
+        ]
+      },
+      {
+        "table": "ICIJ_OFFSHORE_LEAKS_INTERMEDIARIES",
+        "exists": false
+      }
+    ],
+    "OTHERS": [
+      {
+        "table": "FED_ICIJ_OFFSHORELEAKS_OTHERS",
+        "exists": true,
+        "schema": "LANDING",
+        "n_cols": 16,
+        "rows": 2989,
+        "audit": {
+          "SOURCE_RUN_ID": {
+            "min": "58fe6553-497a-4e22-a46d-1cbe237f232d",
+            "max": "58fe6553-497a-4e22-a46d-1cbe237f232d"
+          },
+          "INGESTED_AT": {
+            "min": "1785965368925071",
+            "max": "1785965368925071"
+          }
+        },
+        "node_id_range": [
+          "80000012",
+          "240558070"
+        ]
+      },
+      {
+        "table": "XC_ICIJ_OFFSHORE_NODES_OTHERS",
+        "exists": false
+      },
+      {
+        "table": "ICIJ_OFFSHORE_LEAKS_OTHERS",
+        "exists": false
+      }
+    ]
+  }
+}

@@ -12,7 +12,7 @@
 -- reading as a real New Year's Day spike -- always filter or facet on
 -- it before drawing a daily chart.
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__science_research__fed_nih_reporter') }}
@@ -20,7 +20,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__science_research__fed_retraction_watch') }}
@@ -28,7 +28,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__science_research__fed_sbir_sttr_awards') }}
@@ -36,7 +36,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__science_research__xc_biorxiv_medrxiv') }}
@@ -44,7 +44,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__science_research__xc_osf_registrations') }}
@@ -52,7 +52,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__science_research__xc_retraction_watch_database') }}

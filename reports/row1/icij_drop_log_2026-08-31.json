@@ -1,0 +1,50 @@
+[
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+    "duplicate": "XC_ICIJ_OFFSHORE_RELATIONSHIPS",
+    "rows": 3339267,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+    "duplicate": "XC_ICIJ_OFFSHORE_NODES_ENTITIES",
+    "rows": 814344,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+    "duplicate": "XC_ICIJ_OFFSHORE_NODES_OFFICERS",
+    "rows": 771315,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+    "duplicate": "XC_ICIJ_OFFSHORE_NODES_ADDRESSES",
+    "rows": 402246,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES",
+    "duplicate": "XC_ICIJ_OFFSHORE_NODES_INTERMEDIARIES",
+    "rows": 26768,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_ENTITIES",
+    "duplicate": "ICIJ_OFFSHORE_LEAKS_ENTITIES",
+    "rows": 814344,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+    "duplicate": "ICIJ_OFFSHORE_LEAKS_OFFICERS",
+    "rows": 771315,
+    "action": "DROPPED"
+  },
+  {
+    "canonical": "FED_ICIJ_OFFSHORELEAKS_ADDRESSES",
+    "duplicate": "ICIJ_OFFSHORE_LEAKS_ADDRESSES",
+    "rows": 402246,
+    "action": "DROPPED"
+  }
+]

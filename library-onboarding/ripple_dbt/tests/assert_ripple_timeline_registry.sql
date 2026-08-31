@@ -1,3 +1,36 @@
+-- depends_on hints: the rollup union below builds its refs inside a jinja
+-- loop over the graph, which dbt cannot see at parse time. (2026-08-31)
+-- depends_on: {{ ref('timeline__consumer_protection_index') }}
+-- depends_on: {{ ref('timeline__consumer_safety_index') }}
+-- depends_on: {{ ref('timeline__corporate_registry_index') }}
+-- depends_on: {{ ref('timeline__criminal_justice_index') }}
+-- depends_on: {{ ref('timeline__economics_index') }}
+-- depends_on: {{ ref('timeline__education_index') }}
+-- depends_on: {{ ref('timeline__energy_index') }}
+-- depends_on: {{ ref('timeline__environment_index') }}
+-- depends_on: {{ ref('timeline__finance_index') }}
+-- depends_on: {{ ref('timeline__foreign_influence_index') }}
+-- depends_on: {{ ref('timeline__health_index') }}
+-- depends_on: {{ ref('timeline__historical_records_index') }}
+-- depends_on: {{ ref('timeline__history_index') }}
+-- depends_on: {{ ref('timeline__housing_index') }}
+-- depends_on: {{ ref('timeline__immigration_index') }}
+-- depends_on: {{ ref('timeline__investigations_index') }}
+-- depends_on: {{ ref('timeline__judiciary_index') }}
+-- depends_on: {{ ref('timeline__justice_index') }}
+-- depends_on: {{ ref('timeline__labor_index') }}
+-- depends_on: {{ ref('timeline__legal_enforcement_index') }}
+-- depends_on: {{ ref('timeline__maritime_index') }}
+-- depends_on: {{ ref('timeline__money_finance_index') }}
+-- depends_on: {{ ref('timeline__open_data_index') }}
+-- depends_on: {{ ref('timeline__politics_index') }}
+-- depends_on: {{ ref('timeline__procurement_index') }}
+-- depends_on: {{ ref('timeline__reference_index') }}
+-- depends_on: {{ ref('timeline__regulatory_index') }}
+-- depends_on: {{ ref('timeline__review_index') }}
+-- depends_on: {{ ref('timeline__science_index') }}
+-- depends_on: {{ ref('timeline__science_research_index') }}
+-- depends_on: {{ ref('timeline__transport_index') }}
 {#
     assert_ripple_timeline_registry.sql -- the guard on the canonical-clock layer.
 
@@ -94,18 +127,64 @@ out_of_window as (
 --    decided day that silently is. Either means a FLOW rule reading this data
 --    could mistake a scheduled, not-yet-final date for something that already
 --    occurred -- the exact bug this split exists to prevent.
+--    2026-08-31 redesign: the tag is no longer frozen anywhere. The domain
+--    rollup TABLES store only base clock kinds (the generator folds any
+--    build-time 'planned' back to base), and timeline__warehouse is a VIEW
+--    that derives 'planned' fresh against current_date at read time. Two
+--    checks enforce the split:
+--      7a. the shared view never shows a mistagged row (catches a source the
+--          registry cannot restore, since the view falls back to 'planned');
+--      7b. no rollup table stores 'planned' at all — a frozen tag is the
+--          staleness bug this redesign removed, so its mere presence fails.
+rollups as (
+    {% set idx = [] %}
+    {% for node in graph.nodes.values()
+       if node.resource_type == 'model'
+          and node.name.startswith('timeline__')
+          and node.name.endswith('_index')
+          and node.name.count('__') == 1 %}
+        {% do idx.append("select * from " ~ ref(node.name)) %}
+    {% endfor %}
+    {{ idx | join('\n    union all\n    ') }}
+),
+
 mistagged_planned as (
     select ripple_source as subject,
            'planned/actual split disagrees with the timestamp it is tagging' as problem
     from timeline
     where (ripple_clock = 'planned' and ripple_day <= current_date())
        or (ripple_clock in ('happened', 'reported', 'decided') and ripple_day > current_date())
+),
+
+frozen_planned_in_rollup as (
+    select ripple_source as subject,
+           'rollup table stores a frozen planned tag; rollups must hold base clock kinds only' as problem
+    from rollups
+    where ripple_clock = 'planned'
+),
+
+-- 8. The reverse of #1 (added 2026-08-31, closing the named blind spot): a
+--    view sitting in the TIMELINE schema that the registry does not claim.
+--    Until now nothing walked warehouse->registry, so a stray view that no
+--    index unions was permanently invisible -- guard green did not mean the
+--    schema was clean. TIMELINE__WAREHOUSE is the one legitimate
+--    non-registry view: the shared-timeline union itself, a view since
+--    2026-08-31 so the planned/actual tag derives at read time.
+stray_view as (
+    select v.table_name as subject,
+           'view exists in TIMELINE but the registry does not claim it' as problem
+    from existing_views v
+    left join registry r on r.table_name = v.table_name
+    where (r.table_name is null or not r.has_view)
+      and v.table_name != 'TIMELINE__WAREHOUSE'
 )
 
 select * from missing_view
+union all select * from stray_view
 union all select * from bad_clock
 union all select * from bad_grain
 union all select * from incoherent
 union all select * from orphan_source
 union all select * from out_of_window
 union all select * from mistagged_planned
+union all select * from frozen_planned_in_rollup

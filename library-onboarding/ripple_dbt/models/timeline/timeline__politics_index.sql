@@ -12,7 +12,7 @@
 -- reading as a real New Year's Day spike -- always filter or facet on
 -- it before drawing a daily chart.
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__bills') }}
@@ -20,7 +20,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__bill_cosponsors') }}
@@ -28,7 +28,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_amendments') }}
@@ -36,7 +36,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_chg_log') }}
@@ -44,7 +44,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_contributions') }}
@@ -52,7 +52,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_cover') }}
@@ -60,7 +60,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_employer') }}
@@ -68,7 +68,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_firm') }}
@@ -76,7 +76,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__ca_lobby_firm_employer') }}
@@ -84,7 +84,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fec_candidate') }}
@@ -92,7 +92,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fec_candidate_summary') }}
@@ -100,7 +100,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fec_cand_cmte_link') }}
@@ -108,7 +108,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_congress_legislators') }}
@@ -116,7 +116,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'decided', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_fcc_licensing') }}
@@ -124,7 +124,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_fec_api') }}
@@ -132,7 +132,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_fec_pac_summary') }}
@@ -140,7 +140,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_fjc_judges') }}
@@ -148,7 +148,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'decided', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_fjc_service') }}
@@ -156,7 +156,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_medsl_house_returns') }}
@@ -164,7 +164,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_medsl_president_returns') }}
@@ -172,7 +172,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_medsl_senate_returns') }}
@@ -180,7 +180,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__fed_voteview_rollcall_meta') }}
@@ -188,7 +188,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__intl_elections_canada_contributions') }}
@@ -196,7 +196,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__intl_owid_milspend') }}
@@ -204,7 +204,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__intl_voeten_unga_votes') }}
@@ -212,7 +212,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__irs527_8871_orgs') }}
@@ -220,7 +220,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__irs527_8872_reports') }}
@@ -228,7 +228,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__member_crosswalk') }}
@@ -236,7 +236,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__member_money_raised') }}
@@ -244,7 +244,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__member_spine') }}
@@ -252,7 +252,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__st_cannabis_policy_bundles') }}
@@ -260,7 +260,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__st_nyc_cfb_campaign_2001_contribution') }}
@@ -268,7 +268,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__st_nyc_cfb_campaign_2009_contribution') }}
@@ -276,7 +276,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__st_nyc_cfb_campaign_2013_contribution') }}
@@ -284,7 +284,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__st_nyc_cfb_campaign_2021_contributions') }}
@@ -292,7 +292,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__st_nyc_cfb_campaign_2025_contributions') }}
@@ -300,7 +300,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_awards') }}
@@ -308,7 +308,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'reported', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_cover') }}
@@ -316,7 +316,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_dockets') }}
@@ -324,7 +324,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_entertainment') }}
@@ -332,7 +332,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_events') }}
@@ -340,7 +340,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_food_beverage') }}
@@ -348,7 +348,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_gifts') }}
@@ -356,7 +356,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_individual_reporting') }}
@@ -364,7 +364,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_subject_matter') }}
@@ -372,7 +372,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, ripple_clock as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__tx_lobby_transportation') }}
@@ -380,7 +380,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__voteview_rollcalls') }}
@@ -388,7 +388,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__xc_jcs_medians') }}
@@ -396,7 +396,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__xc_jcs_scotus') }}
@@ -404,7 +404,7 @@ where ripple_ts is not null
 group by 1, 2, 3, 4
 union all
 
-select ripple_source, ripple_clock, ripple_grain,
+select ripple_source, iff(ripple_clock = 'planned', 'happened', ripple_clock) as ripple_clock, ripple_grain,
        date_trunc('day', ripple_ts)::date as ripple_day,
        count(*) as n_rows
 from {{ ref('timeline__politics__xc_owid_cpi') }}
