@@ -73,17 +73,3 @@ def test_snapshot_write_is_atomic(tmp_path, monkeypatch):
     with pytest.raises(ConnectionError):
         catalog.snapshot_write(path)
     assert catalog.snapshot_read(path) == first, "the old snapshot was clobbered"
-
-
-def test_bench_data_wrappers_swallow_offline(monkeypatch):
-    from bench import data as bench_data
-
-    def boom(*a, **k):
-        raise ConnectionError("no warehouse")
-
-    monkeypatch.setattr(catalog, "snapshot_write", boom)
-    assert bench_data.catalog_refresh() is None
-    assert bench_data.LAST_CATALOG_ERROR and "ConnectionError" in bench_data.LAST_CATALOG_ERROR
-
-    monkeypatch.setattr(catalog, "snapshot_read", lambda: {"tables": []})
-    assert bench_data.catalog_snapshot() == {"tables": []}

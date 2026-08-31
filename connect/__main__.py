@@ -120,9 +120,11 @@ def main() -> int:
         if getattr(args, "name_max_rows", None):
             kw["name_max_rows"] = args.name_max_rows
         discover.run(**kw)
-    if args.cmd in ("spine", "all"):
-        from . import spine
-        spine.run()
+    if args.cmd == "spine":
+        raise SystemExit(
+            "the spine is retired (2026-08-30); its code lives in "
+            "_JUNK_DRAWER/retired_2026-08-30/. 'all' no longer runs it."
+        )
     if args.cmd == "seed":
         from . import incremental
         incremental.seed(reseed=getattr(args, "reseed", False))
@@ -153,7 +155,9 @@ def main() -> int:
             print(value_overlap(conn, args.a, args.akey, args.b, args.bkey, args.key))
         finally:
             conn.close()
-    if args.cmd == "entity-index":
+    if args.cmd in ("entity-index", "all"):
+        # 2026-08-30: the retired full rebuild refreshed this as a tail step;
+        # 'all' keeps that guarantee so the index can't silently go stale.
         from . import entity_index
         entity_index.run()
     if args.cmd == "dossier":

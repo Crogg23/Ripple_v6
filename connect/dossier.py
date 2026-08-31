@@ -217,7 +217,7 @@ def run(npi=None, ccn=None, ein=None, entity_id=None, q=None, as_json=False, as_
             return
         d = _dossier(conn, eid)
         if not d["golden"]:
-            print(f"No entity {eid} in the spine (run `connect spine` first).")
+            print(f"No entity {eid} in the spine (run `connect seed` / `connect entity-index` first).")
             return
         if as_json:
             _write_json(d)

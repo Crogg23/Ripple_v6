@@ -9,6 +9,10 @@ without an explicit human decision; auto-publish is structurally blocked.
 
 ## Read this first
 
+**[`STARTING_ROSTER.md`](STARTING_ROSTER.md)** — the line between live and
+dead work. If a folder isn't on the roster, it's retired; retired work lives
+in `_JUNK_DRAWER/` with a LEDGER.md row.
+
 **[`docs/RIPPLE.md`](docs/RIPPLE.md)** — the whole thing in one document:
 the plain-English story, a decoder for every jargon word, a room-by-room map
 of this repo, how to turn it on, and the deep tour of how it works.
@@ -26,10 +30,10 @@ Then, as needed:
 
 ## Quick start
 
-Double-click **`START_HERE.bat`** — it installs what it needs and opens the
-Reading Room (the human review queue) in your browser.
+macOS setup lives in [`docs/MAC_SETUP.md`](docs/MAC_SETUP.md). The old
+Windows `.bat` launchers and the Reading Room app are retired to the drawer.
 
-Or from a terminal, after `pip install -r requirements.txt` into a venv and
+From a terminal, after `pip install -r requirements.txt` into a venv and
 dropping your Snowflake token into `library-onboarding/.env` (template beside
 it):
 

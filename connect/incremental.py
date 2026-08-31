@@ -62,7 +62,7 @@ from .discover import (
 from .entity_index_specs import DISPLAY_SPECS, table_keys
 from .entity_index_specs import entity_type_sql as _entity_type_sql_shared
 from .keys import NORM_RULES, edge_norm_sql, normalize_sql, quote_ident
-from .spine import _addr_expr, _name_expr  # one definition of name/addr, shared
+from .normalize import _addr_expr, _name_expr  # one definition of name/addr, shared
 
 # --- persisted state (all NEW, all additive) -------------------------------- #
 WATERMARK_FQN = store.cfqn("CONNECT_WATERMARK")     # per-table change signal
@@ -212,7 +212,7 @@ def _upsert_watermark(conn, table: str, wm: dict) -> None:
 # =========================================================================== #
 # CONFIG GUARD — a NORM_RULES / DISPLAY_SPECS edit silently re-keys entities, so
 # an incremental MERGE would create duplicates/orphans. Pin the config; refuse to
-# run incrementally when it drifts (the human must run the full `connect spine`).
+# run incrementally when it drifts (no incremental path; the retired full rebuild covered this).
 # =========================================================================== #
 def _config_fingerprint() -> str:
     """A digest over the ENTITY re-keying + survivorship surface. ENTITY_ID =
@@ -254,7 +254,7 @@ def _guard_config(conn) -> None:
         raise RuntimeError(
             "keys.py NORM_RULES / TABLE_COLUMN_KEYS / DISPLAY_SPECS changed since the last "
             "pin. Run `python -m connect apply-config` (bounded: reslices only the tables the "
-            "change touches, then re-pins) -- a full `connect spine` is NOT required.")
+            "change touches, then re-pins) -- no full rebuild is required.")
 
 
 # =========================================================================== #
@@ -532,7 +532,7 @@ def _apply_config_conn(conn, dry_run: bool = False) -> dict:
                     "no per-unit pins yet AND the legacy config sentinel matches neither the "
                     "current code nor the flags-off baseline, so the live spine's config is "
                     "unknown. Either check out the code the last rebuild ran with and "
-                    "`apply-config` once to pin it, or run the full `connect spine` backstop.")
+                    "`apply-config` once to pin it, the retired full-rebuild backstop is gone.")
         plan = classify_config_drift(stored, current)
         plan["mode"] = "preview" if dry_run else "applied"
         print(f"apply-config: {len(plan['changes'])} config change(s) -> "

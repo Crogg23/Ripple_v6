@@ -5,7 +5,8 @@ how many rows it has there, and a small preview object. The dossier verb rolls u
 every source row for an entity from here; name search resolves against ENTITY_GOLDEN
 (one row per entity) and then reads this for the cross-domain breakdown.
 
-Rebuilt as a tail step of ``connect spine``; also exposed as ``connect entity-index``.
+The retired full rebuild used to run this as a tail step; since 2026-08-30
+run it via ``connect entity-index`` (nothing runs it automatically).
 """
 
 from __future__ import annotations
@@ -14,7 +15,7 @@ from . import db, store
 from .discover import domain_of
 from .entity_index_specs import DISPLAY_SPECS, table_keys
 from .keys import normalize_sql, quote_ident
-from .spine import _addr_expr, _name_expr  # one definition of name/addr, shared
+from .normalize import _addr_expr, _name_expr  # one definition of name/addr, shared
 
 INDEX_FQN = store.cfqn("ENTITY_INDEX")
 EMAP_FQN = store.cfqn("ENTITY_MAP")

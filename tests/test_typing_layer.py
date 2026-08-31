@@ -18,6 +18,8 @@ from pathlib import Path
 
 import pytest
 
+pytestmark = pytest.mark.snowflake  # queries live marts via scripts/_snowflake_conn
+
 _REPO = Path(__file__).resolve().parents[1]
 RULINGS = _REPO / "reports" / "typing_index" / "typing_rulings.csv"
 MODELS = _REPO / "library-onboarding" / "ripple_dbt" / "models" / "marts"
