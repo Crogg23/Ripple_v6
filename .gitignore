@@ -128,3 +128,17 @@ evidence/build/
 *.ZIP
 *.done
 importtime_*.log
+
+# Evidence.dev credential files. connection.options.yaml holds the base64
+# Snowflake private key for this box — the file says so on its own first line,
+# but nothing was enforcing it, so a `git add .` would have committed the key.
+evidence/sources/**/connection.options.yaml
+**/connection.options.yaml
+
+# Key material of any shape, wherever it lands.
+*.pem
+*.p8
+*.key
+*_rsa
+*_rsa.pub
+id_ed25519*

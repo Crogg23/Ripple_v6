@@ -58,6 +58,37 @@ ACKNOWLEDGED = {
         "committee name vs supported candidate",
     ("FED_FEC_COMMITTEE_TO_CANDIDATE", "FED_FEC_INDIV_CONTRIBUTIONS"):
         "supported candidate vs donor - neither is the committee's own name",
+
+    # --- Utah open-data portal, checked 2026-08-31 by sampling the joined
+    # names out of the entity index. Three CCN pairs and one NPDES pair, all
+    # four the same shape: the CCN or NPDES_ID is right and the join is real,
+    # the two publishers just name different things about it.
+
+    # CCN: the federal enrollment file names the LEGAL OWNER, the Utah cost
+    # report names the FACILITY. One owner runs many facilities, so the strings
+    # cannot match: IHC HEALTH SERVICES INC appears against LDS HOSPITAL,
+    # INTERMOUNTAIN MEDICAL CENTER and UTAH VALLEY REGIONAL MED CTR, which are
+    # three separate hospitals under one company. Same pattern already
+    # acknowledged above for the CMS nursing-home pairs.
+    ("FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS", "PORTAL_SOC_UTAH_OPEN_DATA_P_A5AE4FD7A4"):
+        "owning legal entity vs facility name, Utah 2019 nursing cost report",
+    ("FED_CMS_HOSPITAL_ENROLLMENTS", "PORTAL_SOC_UTAH_OPEN_DATA_P_A9B7E273C8"):
+        "owning legal entity vs facility name, Utah 2019 hospital cost report",
+    ("FED_CMS_HOSPITAL_ENROLLMENTS", "PORTAL_SOC_UTAH_OPEN_DATA_P_DCD75231F6"):
+        "owning legal entity vs facility name, Utah 2015 hospital cost report",
+
+    # NPDES_ID: the EPA facility file names the SITE, Utah's assessed-waters
+    # file names the PERMITTEE. These are mostly construction stormwater
+    # permits, so the site is a subdivision or a lot and the permittee is the
+    # builder: LEDGES OF ST GEORGE PHASE 7 against JENNINGS MANAGEMENT INC.
+    # Where the permittee is a company the token overlap already agrees, e.g.
+    # UNION PACIFIC RAILROAD CLEARFIELD YARD against UNION PACIFIC RAILROAD.
+    # WATCH THIS ONE: some permittees are private individuals, so BOWEN
+    # RESIDENCE joins ROBERT BOWEN. The permit is one thing but the entity
+    # carries both a place name and a person's name. Anything downstream that
+    # treats an NPDES entity as a facility will occasionally get a human.
+    ("FED_EPA_NPDES_ICIS_FACILITIES", "PORTAL_SOC_UTAH_OPEN_DATA_P_589CC47A29"):
+        "permitted site name vs permit holder, Utah assessed waters",
 }
 
 
