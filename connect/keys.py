@@ -456,11 +456,14 @@ _CMS_FACILITY_ENROLLMENT_TABLES = (
 _BATCH_2026_08_29_TABLE_COLUMN_KEYS: dict[tuple[str, str], tuple[str, str]] = {
     # CAGE
     ("FED_USASPENDING_CONTRACTS_FULL_R2", "CAGE_CODE"): ("CAGE", "STEEL"),
-    ("FED_USASPENDING_CONTRACTS", "CAGE_CODE"): ("CAGE", "STEEL"),
+    # FED_USASPENDING_CONTRACTS entries REMOVED 2026-08-31: that table is the
+    # superseded 6.3M early pull (see entity_index_specs.py, ruled 2026-08-26;
+    # FULL_R2 carries the same rows and both keys). Its discover reslice also
+    # dies hard: the pair query overflows Snowflake's 128MB LOB cap on the 6.3M
+    # AWARD_KEY values, which is what killed apply-config mid-loop all day.
     ("FED_SAM_EXCLUSIONS_FULL_R2", "CAGE"): ("CAGE", "STEEL"),
     # AWARD_KEY (graph only)
     ("FED_USASPENDING_CONTRACTS_FULL_R2", "CONTRACT_AWARD_UNIQUE_KEY"): ("AWARD_KEY", "STEEL"),
-    ("FED_USASPENDING_CONTRACTS", "CONTRACT_AWARD_UNIQUE_KEY"): ("AWARD_KEY", "STEEL"),
     ("FED_USASPENDING_SUBAWARDS_FULL", "PRIME_AWARD_UNIQUE_KEY"): ("AWARD_KEY", "STEEL"),
     ("FED_USASPENDING_ASSISTANCE_FULL", "assistance_award_unique_key"): ("AWARD_KEY", "STEEL"),
     # PECOS

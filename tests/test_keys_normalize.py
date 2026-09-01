@@ -298,3 +298,20 @@ def test_placeholder_ids_normalize_to_null(sf, key, value):
 ])
 def test_real_ids_survive_the_placeholder_guard(sf, key, value, expect):
     assert _norm(sf, key, value) == expect
+
+
+def test_key_type_names_fit_varchar_32():
+    """KEY_TYPE columns in the warehouse are VARCHAR(32) (widened 2026-08-31
+    after 'EIA_UTILITY_ID' overflowed the CTAS-inferred 12 and crashed the
+    2026-08-29 batch mid-merge). Every key type a spec can emit must fit, and
+    the entity-index CTAS must pin the width so a rebuild can't re-narrow it."""
+    import re
+    from connect.entity_index_specs import DISPLAY_SPECS, table_keys
+    keys = {k for spec in DISPLAY_SPECS.values() for k, _ in table_keys(spec)}
+    too_long = sorted(k for k in keys if len(k) > 32)
+    assert not too_long, f"key types over VARCHAR(32): {too_long}"
+    import inspect
+    import connect.entity_index as ei
+    src = inspect.getsource(ei.build)
+    assert re.search(r"CAST\('\{key\}' AS VARCHAR\(32\)\)", src), \
+        "entity_index CTAS no longer pins KEY_TYPE to VARCHAR(32)"

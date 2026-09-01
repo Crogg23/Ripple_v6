@@ -2274,6 +2274,28 @@ def _maybe_enable_spine_batch_2026_08_29() -> None:
 
 _maybe_enable_spine_batch_2026_08_29()
 
+# =========================================================================== #
+# 2026-08-31 BATCH-A WIRING -- Chris's "go" on wiring hard-key sources by row
+# volume (this session). Existing axes only; no new key types, so no NORM_RULES
+# change and no staging flag -- `python -m connect apply-config` re-pins.
+# The rest of batch A dissolved on inspection, all documented in
+# reports/recon/wiring_gap_rederive_2026-08-31.md:
+#   FED_USASPENDING_CONTRACTS_FULL (20M, zip-truncated) + FED_USASPENDING_
+#   CONTRACTS (6.3M early pull) -- both superseded by the wired 93.2M
+#   FED_USASPENDING_CONTRACTS_FULL_R2; registry rows point at dead copies.
+#   FED_US_SEC_EDGAR -- ruled a ~25-company capped sample 2026-07-28; stays out.
+#   FED_SAM_EXCLUSIONS (10K sample) -- superseded by wired FED_SAM_
+#   EXCLUSIONS_FULL_R2.
+# =========================================================================== #
+# FED_DOL_FORM5500 wired here 2026-08-31, then REMOVED the same day after the
+# session-close skeptic re-ran the shadow check by hand: it is a 33K 2022-2023
+# slice of FED_DOL_FORM5500_FULL (4.3M rows, 466,444 distinct EINs, already
+# wired), and only 1,663 of its 29,069 EINs are not in FULL. The guard measured
+# the pair as a 97.5% self-join. The shadow test that used to catch this was
+# drawered with the old resolver (test_no_spec_table_is_shadowed_by_an_
+# unacknowledged_newer_sibling); until it has a live replacement, check for a
+# _FULL sibling by hand before wiring any table.
+
 # spine scope = every table with a nameable hard key (health + money/maritime/corporate).
 SPINE_TABLES = list(DISPLAY_SPECS)
 

@@ -468,6 +468,10 @@ def retract_spine_table(conn, table: str, run_id: str) -> dict:
                   f"SELECT DISTINCT {_entity_id_sql('KEY_TYPE', 'VAL')} AS ENTITY_ID FROM _AFFECTED")
     db.rows(conn, f"DELETE FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
     db.rows(conn, f"DELETE FROM {INDEX_FQN} WHERE SOURCE_TABLE = '{lit}'")
+    # Drop the watermark too (2026-08-31 skeptic): a surviving content-key makes
+    # any future re-wiring of this table a silent no-op — connect_one sees
+    # "unchanged" and never reslices, the exact stranded-table bug of this date.
+    db.rows(conn, f"DELETE FROM {WATERMARK_FQN} WHERE TABLE_NAME = '{lit}'")
     stats = {"table": table, "old_keys": n_old, "mode": "retracted"}
     stats.update(_merge_entity_map(conn, run_id))
     db.rows(conn, f"DELETE FROM {NODES_FQN} WHERE TABLE_NAME = '{lit}'")

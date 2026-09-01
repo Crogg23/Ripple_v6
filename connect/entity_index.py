@@ -32,7 +32,7 @@ def build(conn, run_id: str = "") -> int:
             norm = normalize_sql(key, quote_ident(key_col))
             parts.append(f"""
               SELECT e.ENTITY_ID, ANY_VALUE(e.ENTITY_TYPE) AS ENTITY_TYPE,
-                     '{key}' AS KEY_TYPE, ANY_VALUE({norm}) AS KEY_VALUE,
+                     CAST('{key}' AS VARCHAR(32)) AS KEY_TYPE, ANY_VALUE({norm}) AS KEY_VALUE,
                      '{tbl}' AS SOURCE_TABLE, '{domain_of(tbl)}' AS DOMAIN,
                      ANY_VALUE({_name_expr(spec)}) AS DISPLAY_LABEL,
                      COUNT(*) AS ROW_COUNT, {preview} AS PREVIEW

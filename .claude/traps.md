@@ -18,3 +18,7 @@
 2026-08-30 — portal_recon/ looks dead by import scan; connect/keys.py sys.path-imports its tagger by bare file name. Grep file names before retiring a folder.
 2026-08-30 — "1,121" is the hard-ID edge count in lab_map facts, NOT the test count. The two got copy-crossed once already.
 2026-08-30 — typing-layer tests query live marts but carried no snowflake marker until today; unmarked tests can burn credits from a plain pytest run.
+- 2026-08-31 — CONNECT_WATERMARK content-key survives things it shouldn't: a table can be pinned "current" while SPINE_KEYSET_LIVE holds zero rows for it. connect-one then silently no-ops. Check keyset count, never the watermark, to know if a table is wired.
+- 2026-08-31 — KEY_TYPE columns were CTAS-inferred VARCHAR(12)/(8); any key name over the width crashes MERGEs mid-run, leaving keyset-without-index half-states. All widened to 32; regression test in tests/test_keys_normalize.py.
+- 2026-08-31 — reslice_discover's pair query has no size cap: a non-spec table with millions of keys blows Snowflake's 128MB LOB limit and kills the whole run BEFORE config pinning, so the next run redoes everything. FED_USASPENDING_CONTRACTS was the trigger; its graph keys are removed, the class remains.
+- 2026-08-31 — registry SOURCE_ID is mixed-case and the index's SOURCE_TABLE is upper: name joins silently drop every lowercase registry row. Map via SOURCE_FRESHNESS.LANDING_FQN first, case-blind name second.
