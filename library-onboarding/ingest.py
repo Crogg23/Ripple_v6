@@ -422,6 +422,21 @@ def run_ingest(config: dict, code: str) -> dict:
                 )
                 result["skipped"] = True
                 return result
+
+        # NEVER-SHRINK FLOOR: a snapshot-replace carrying far fewer rows than the
+        # last good run is a truncated/partial pull, not a real refresh (the SAM
+        # exclusions failure: 1k landed of ~167k, logged 'success'). Refuse to
+        # overwrite a healthy table; ONBOARD_ALLOW_SHRINK=1 overrides on purpose.
+        if not incremental:
+            refusal = _shrink_refusal(conn, source_id, len(df))
+            if refusal:
+                ended = _utcnow()
+                _log_run(conn, source_id, run_id, "failed", len(df), file_bytes,
+                         sha, url, started, ended, refusal)
+                result["status"] = refusal
+                result["shrink_refused"] = True
+                return result
+
         try:
             _load_landing(conn, df, table, overwrite=not incremental)
             ended = _utcnow()
@@ -523,6 +538,7 @@ def _run_chunked(config: dict, code: str, run_id: str, started, source_id: str,
         appended, manifest_sha, file_bytes, columns, sample, density = _load_landing_chunked(
             conn, chunk_iter, table, run_id, started,
             resume_from_row=resume_from, fresh=not resume, max_rows=max_rows,
+            source_id=source_id,
         )
         ended = _utcnow()
         total = resume_from + appended
@@ -625,7 +641,8 @@ def _execute_fetch_chunks(config: dict, code: str, resume_from_row: int,
 
 
 def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
-                          resume_from_row: int, fresh: bool, max_rows: int):
+                          resume_from_row: int, fresh: bool, max_rows: int,
+                          source_id: Optional[str] = None):
     """Write a stream of DataFrame chunks to the landing table, bounded memory.
 
     ATOMIC (fresh loads): writes to {table}__STAGING then SWAPs into the live
@@ -713,6 +730,16 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
     if use_staging and appended > 0:
         live_fqt = f'"{database}"."{schema}"."{table}"'
         staging_fqt = f'"{database}"."{schema}"."{staging_table}"'
+        # NEVER-SHRINK FLOOR (chunked): a fresh chunked load REPLACES the live
+        # table via SWAP -- same truncated-pull risk as snapshot-replace, on the
+        # biggest tables. Refuse before the swap; staging is dropped, live kept.
+        # (A deliberate ONBOARD_CHUNK_MAX_ROWS slice trips this too -- that's a
+        # replace with fewer rows; set ONBOARD_ALLOW_SHRINK=1 on purpose.)
+        if source_id is not None:
+            refusal = _shrink_refusal(conn, source_id, appended)
+            if refusal:
+                snow.execute(conn, f"DROP TABLE IF EXISTS {staging_fqt}")
+                raise RuntimeError(refusal)
         # Ensure live table exists (for SWAP to work, both must exist)
         snow.execute(conn, f"CREATE TABLE IF NOT EXISTS {live_fqt} LIKE {staging_fqt}")
         snow.execute(conn, f"ALTER TABLE {staging_fqt} SWAP WITH {live_fqt}")
@@ -998,17 +1025,64 @@ def _load_landing(conn, df, table: str, overwrite: bool = True) -> None:
     overwrite=True  -> snapshot-replace (the default, idempotent mirror).
     overwrite=False -> append (incremental; landing becomes an append log and
                        staging dedups to current-state-per-key).
+
+    The append path stages into <TABLE>__STAGE_APPEND first and lands with ONE
+    INSERT..SELECT. A bare multi-chunk write_pandas append is not atomic: a crash
+    mid-write left half the slice in the table, the next run read MAX(cursor) off
+    the half-loaded table and advanced past the gap -- permanent silent data loss.
+    A crash now leaves the target untouched; the orphan stage table is overwritten
+    by the next run and dropped on success.
     """
     from snowflake.connector.pandas_tools import write_pandas
 
     database, schema = settings.raw_database, settings.raw_schema
     snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{database}"."{schema}"')
-    ok, _chunks, nrows, _ = write_pandas(
-        conn, df, table_name=table, database=database, schema=schema,
-        auto_create_table=True, overwrite=overwrite, quote_identifiers=False,
-    )
-    if not ok:
-        raise RuntimeError(f"write_pandas reported failure loading {table}.")
+
+    if overwrite:
+        ok, _chunks, nrows, _ = write_pandas(
+            conn, df, table_name=table, database=database, schema=schema,
+            auto_create_table=True, overwrite=True, quote_identifiers=False,
+        )
+        if not ok:
+            raise RuntimeError(f"write_pandas reported failure loading {table}.")
+        return
+
+    stage = f"{table}__STAGE_APPEND"
+    fq_stage = f'"{database}"."{schema}"."{stage}"'
+    fq_target = f'"{database}"."{schema}"."{table}"'
+    try:
+        ok, _chunks, nrows, _ = write_pandas(
+            conn, df, table_name=stage, database=database, schema=schema,
+            auto_create_table=True, overwrite=True, quote_identifiers=False,
+        )
+        if not ok:
+            raise RuntimeError(f"write_pandas reported failure staging {stage}.")
+        # Pin INFORMATION_SCHEMA to the target database (same reason as
+        # loadkit.atomic_load: unqualified it resolves against the session db).
+        target_exists = snow.fetch_scalar(
+            conn,
+            f'SELECT COUNT(*) FROM "{database}".INFORMATION_SCHEMA.TABLES '
+            "WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s",
+            (schema, table),
+        )
+        if not target_exists:
+            # First incremental run: the staged backfill BECOMES the table.
+            snow.execute(conn, f"ALTER TABLE {fq_stage} RENAME TO {fq_target}")
+            return
+        # Name the columns on BOTH sides: write_pandas created them unquoted in
+        # frame order, but the live target's physical order may differ. A column
+        # missing from the target errors loudly instead of landing shifted data.
+        cols = ", ".join(str(c) for c in df.columns)
+        snow.execute(conn, f"INSERT INTO {fq_target} ({cols}) SELECT {cols} FROM {fq_stage}")
+    finally:
+        # Best-effort cleanup MUST NOT mask the real load error: if the
+        # connection died, this DROP dies too, and raising it here would
+        # replace the actual cause in the 'failed' log. Orphan stage tables
+        # are harmless -- next run's CREATE OR REPLACE overwrites them.
+        try:
+            snow.execute(conn, f"DROP TABLE IF EXISTS {fq_stage}")
+        except Exception:
+            pass
 
 
 def _watermark_orderable(value) -> bool:
@@ -1036,8 +1110,22 @@ def _watermark(conn, table: str, cursor_field: str) -> Optional[str]:
     fqt = f'"{settings.raw_database}"."{settings.raw_schema}"."{table}"'
     try:
         return snow.fetch_scalar(conn, f"SELECT MAX({col}) FROM {fqt}")
-    except Exception:
-        return None  # table not created yet
+    except Exception as exc:
+        # Only a MISSING TABLE means "first run, backfill from the start".
+        # Anything else (permissions, network, bad column) used to return None
+        # too -- silently triggering a full re-backfill APPEND onto a healthy
+        # table. Those now raise. Snowflake folds missing and unauthorized into
+        # ONE message ("does not exist or not authorized"), so confirm absence
+        # with an INFORMATION_SCHEMA probe before treating it as a first run.
+        if "does not exist" in str(exc).lower():
+            probe = snow.fetch_scalar(
+                conn,
+                f'SELECT COUNT(*) FROM "{settings.raw_database}".INFORMATION_SCHEMA.TABLES '
+                "WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s",
+                (settings.raw_schema, table))
+            if not probe:
+                return None  # genuinely absent -> first run
+        raise
 
 
 def _latest_success_sha(conn, source_id: str) -> Optional[str]:
@@ -1066,6 +1154,23 @@ def _latest_success_rows(conn, source_id: str) -> Optional[int]:
         (source_id,),
     )
     return int(val) if val is not None else None
+
+
+def _shrink_refusal(conn, source_id: str, new_rows: int) -> Optional[str]:
+    """Refusal message if a snapshot-replace would shrink the table; None if fine.
+
+    Compares against _latest_success_rows (the never-shrink floor). Disabled by
+    ONBOARD_ALLOW_SHRINK=1 for a deliberate, known-smaller refresh.
+    """
+    if settings.allow_shrink:
+        return None
+    floor = _latest_success_rows(conn, source_id)
+    if floor is None or new_rows >= floor:
+        return None
+    return (f"SHRINK REFUSED -- new frame has {new_rows:,} rows, last "
+            f"successful run landed {floor:,}. Looks like a truncated "
+            "pull; table left untouched. Set ONBOARD_ALLOW_SHRINK=1 "
+            "to overwrite anyway.")
 
 
 def _latest_status(conn, source_id: str) -> Optional[str]:

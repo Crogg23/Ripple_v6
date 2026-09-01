@@ -28,7 +28,9 @@ except Exception:
     pass
 
 import snow  # noqa: E402
+sys.path.insert(0, str(_REPO))
 import _bulk_load_utils as bulk  # noqa: E402
+from loadkit.archive import pick_member  # noqa: E402
 
 USER_AGENT = {"User-Agent": "Ripple-Library/1.0 (data research; w.rogers9999@gmail.com)"}
 
@@ -185,13 +187,11 @@ def load_zip_csv(conn, entry, max_rows):
     resp.raise_for_status()
     sha, run_id, started = _provenance(resp.content)
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-        csv_files = [n for n in zf.namelist()
-                     if n.lower().endswith(('.csv', '.txt'))
-                     and '__MACOSX' not in n]
-        if not csv_files:
-            raise RuntimeError(f"No CSV/TXT in ZIP")
-        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-        with zf.open(csv_files[0]) as f:
+        # ONE member or entry["member"] pattern -- never largest-wins
+        # (the EIA-860 multi-file truncation trap).
+        chosen = pick_member(zf, pattern=entry.get("member"),
+                             suffixes=(".csv", ".txt"))
+        with zf.open(chosen) as f:
             content = f.read()
     df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace")
@@ -249,7 +249,8 @@ def load_zip_multi_google(conn, entry, max_rows):
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
         csv_files = [n for n in zf.namelist()
                      if n.lower().endswith('.csv') and '__MACOSX' not in n]
-        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
+        # Deliberate multi-file load: top-8 by size, every pick printed.
+        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)  # archive-gate: allow
         print(f"  Found {len(csv_files)} CSVs in bundle")
         for name in csv_files[:8]:
             stem = Path(name).stem.replace("google-political-ads-", "")

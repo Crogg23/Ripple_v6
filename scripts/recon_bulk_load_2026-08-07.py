@@ -50,7 +50,9 @@ except Exception:
     pass
 
 import snow  # noqa: E402
+sys.path.insert(0, str(_REPO))
 import _bulk_load_utils as bulk  # noqa: E402
+from loadkit.archive import pick_member  # noqa: E402
 
 USER_AGENT = {"User-Agent": "Ripple-Library/1.0 (data research; w.rogers9999@gmail.com)"}
 
@@ -820,14 +822,11 @@ def load_zip_csv(conn, entry: dict, max_rows: int) -> int:
     content = _get(entry["url"], timeout=600)
     sha, run_id, started = _provenance(content)
     with zipfile.ZipFile(io.BytesIO(content)) as zf:
-        csv_files = [n for n in zf.namelist()
-                     if n.lower().endswith(('.csv', '.txt'))
-                     and not n.startswith('__MACOSX')]
-        if not csv_files:
-            raise RuntimeError(f"No CSV/TXT in ZIP for {entry['table']}")
-        # Take the largest
-        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-        with zf.open(csv_files[0]) as f:
+        # ONE member or entry["member"] pattern -- never largest-wins
+        # (the EIA-860 multi-file truncation trap this file documented).
+        chosen = pick_member(zf, pattern=entry.get("member"),
+                             suffixes=(".csv", ".txt"))
+        with zf.open(chosen) as f:
             content = f.read()
     df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace",
@@ -851,8 +850,8 @@ def load_zip_multi(conn, entry: dict, max_rows: int) -> int:
     with zipfile.ZipFile(io.BytesIO(content)) as zf:
         csv_files = [n for n in zf.namelist()
                      if n.lower().endswith('.csv') and not n.startswith('__MACOSX')]
-        # Load up to 5 largest CSVs
-        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
+        # Deliberate multi-file load: top-5 by size, every pick printed.
+        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)  # archive-gate: allow
         for name in csv_files[:5]:
             tbl = bulk.table_name(entry["table"].rsplit("_", 1)[0], Path(name).stem)
             try:
@@ -896,13 +895,8 @@ def load_zip_xlsx(conn, entry: dict, max_rows: int) -> int:
                     f"(zip contains: {zf.namelist()[:10]})")
             chosen = matches[0]
         else:
-            xlsx_files = [n for n in zf.namelist()
-                          if n.lower().endswith(('.xlsx', '.xls'))
-                          and not n.startswith('__MACOSX')]
-            if not xlsx_files:
-                raise RuntimeError(f"No Excel in ZIP for {entry['table']}")
-            xlsx_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-            chosen = xlsx_files[0]
+            # ONE Excel member or entry["member"] -- never largest-wins.
+            chosen = pick_member(zf, suffixes=(".xlsx", ".xls"))
         with zf.open(chosen) as f:
             xlsx_content = f.read()
     sheet = entry.get("sheet", 0)
@@ -975,11 +969,9 @@ def load_mdb(conn, entry: dict, max_rows: int) -> int:
     sha, run_id, started = _provenance(content)
     total = 0
     with zipfile.ZipFile(io.BytesIO(content)) as zf:
-        mdb_files = [n for n in zf.namelist() if n.lower().endswith(('.mdb', '.accdb'))]
-        if not mdb_files:
-            raise RuntimeError(f"No .mdb/.accdb in ZIP for {entry['table']}")
-        mdb_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-        mdb_name = mdb_files[0]
+        # ONE Access db or entry["member"] -- never largest-wins.
+        mdb_name = pick_member(zf, pattern=entry.get("member"),
+                               suffixes=(".mdb", ".accdb"))
 
         with tempfile.TemporaryDirectory() as tmpdir:
             mdb_path = Path(tmpdir) / "extracted.mdb"

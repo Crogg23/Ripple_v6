@@ -41,7 +41,9 @@ except Exception:
 
 import ingest  # noqa: E402
 import snow  # noqa: E402
+sys.path.insert(0, str(_REPO))
 import _bulk_load_utils as bulk  # noqa: E402
+from loadkit.archive import pick_member  # noqa: E402
 from config import settings  # noqa: E402
 
 SID = "fed_sam_exclusions"
@@ -88,7 +90,8 @@ def _fetch_latest() -> tuple[Path, str]:
 
 def _read(path: Path) -> pd.DataFrame:
     z = zipfile.ZipFile(path)
-    name = z.namelist()[0]
+    # ONE member expected; ambiguity raises instead of blind-first pick.
+    name = pick_member(z)
     with z.open(name) as fh:
         txt = io.TextIOWrapper(fh, encoding="utf-8", errors="replace")
         rdr = csv.reader(txt)

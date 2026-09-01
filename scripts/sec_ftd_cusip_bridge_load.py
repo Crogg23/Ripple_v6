@@ -19,6 +19,8 @@ import pandas as pd
 import requests
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from loadkit.archive import pick_member  # noqa: E402
 from _small_flat_loader import load_and_register
 
 SID = "fed_sec_ftd_cusip_bridge"
@@ -57,7 +59,8 @@ def fetch_one(url: str) -> pd.DataFrame:
     r = requests.get(url, headers=HEADERS, timeout=300)
     r.raise_for_status()
     with zipfile.ZipFile(io.BytesIO(r.content)) as zf:
-        name = zf.namelist()[0]
+        # ONE member expected; ambiguity raises instead of blind-first pick.
+        name = pick_member(zf)
         with zf.open(name) as f:
             df = pd.read_csv(f, sep="|", dtype=str, low_memory=False,
                              encoding="cp1252", encoding_errors="replace")

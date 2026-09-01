@@ -26,6 +26,9 @@ _REPO = Path(__file__).resolve().parents[1]
 _LIB = _REPO / "library-onboarding"
 if str(_LIB) not in sys.path:
     sys.path.insert(0, str(_LIB))
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+from loadkit.archive import pick_member, pick_sheet  # noqa: E402
 try:
     from dotenv import load_dotenv
     load_dotenv(_LIB / ".env", override=True)
@@ -89,7 +92,8 @@ def _to_df(content: bytes, fmt: str, opts: dict | None = None) -> pd.DataFrame:
     whose real header/data is not where pandas guesses (discovery-sweep fixes):
       header       header row index for csv/xlsx (FreedomHouse #62, NTI #109 -> 1)
       skiprows     rows to skip before the header (csv/xlsx)
-      sheet        explicit xlsx sheet name (else largest sheet wins)
+      sheet        explicit xlsx sheet name (required when several sheets)
+      member       regex picking THE zip_csv member (required when several)
       json_explode "<container>.<child>": take obj[container], then concat each
                    element's [child] list -> the real event grain (Nagix #45).
     """
@@ -99,8 +103,9 @@ def _to_df(content: bytes, fmt: str, opts: dict | None = None) -> pd.DataFrame:
                            header=opts.get("header", 0), skiprows=opts.get("skiprows"))
     if fmt == "zip_csv":
         zf = zipfile.ZipFile(io.BytesIO(content))
-        csvs = [n for n in zf.namelist() if n.lower().endswith(".csv")]
-        name = max(csvs, key=lambda n: zf.getinfo(n).file_size)
+        # ONE csv or an explicit opts["member"] pattern -- never largest-wins
+        # (the EIA-860 trap: multi-file zips silently truncated).
+        name = pick_member(zf, pattern=opts.get("member"), suffixes=(".csv",))
         with zf.open(name) as fh:
             return pd.read_csv(fh, dtype=str, keep_default_na=False, low_memory=False, encoding_errors="replace",
                                header=opts.get("header", 0), skiprows=opts.get("skiprows"))
@@ -116,7 +121,7 @@ def _to_df(content: bytes, fmt: str, opts: dict | None = None) -> pd.DataFrame:
             df = pd.read_excel(io.BytesIO(content), sheet_name=sheet, dtype=str, header=header)
         else:
             sheets = pd.read_excel(io.BytesIO(content), sheet_name=None, dtype=str, header=header)
-            df = sheets[max(sheets, key=lambda s: len(sheets[s]))]   # largest sheet = the data
+            df = pick_sheet(sheets)  # ONE sheet or opts["sheet"] -- never biggest-wins
         return df.fillna("")
     if fmt == "json":
         obj = json.loads(content)

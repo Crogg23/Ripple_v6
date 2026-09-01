@@ -29,7 +29,8 @@ try:
         names = zf.namelist()
         print(f"Files in ZIP: {len(names)}")
         csv_files = [n for n in names if n.lower().endswith(".csv")]
-        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
+        # print-only diagnostic: sizes listed, nothing loaded
+        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)  # archive-gate: allow
         for n in csv_files[:10]:
             print(f"  {zf.getinfo(n).file_size:>12,} {n}")
 except Exception as e:

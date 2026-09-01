@@ -64,6 +64,7 @@ except Exception:
     pass
 
 import _bulk_load_utils as bulk  # noqa: E402
+from loadkit.archive import pick_member  # noqa: E402
 
 CHUNK_ROWS = 100_000
 UA = {"User-Agent": "Ripple/1.0 (public-records research; bulk loader)"}
@@ -238,7 +239,8 @@ def load_sam(conn, run: bool, existing: dict) -> tuple[str, int, str]:
     tbl = SOURCES["sam"]["table"]
     run_id, started, total = str(uuid.uuid4()), dt.datetime.utcnow(), 0
     with zipfile.ZipFile(dest) as z:
-        name = z.infolist()[0].filename
+        # ONE member expected; ambiguity raises instead of blind-first pick.
+        name = pick_member(z)
         extract_date = re.search(r"(\d{8})", name)
         with z.open(name) as raw:
             text = io.TextIOWrapper(raw, encoding="latin-1", errors="replace", newline="")
@@ -280,7 +282,9 @@ def load_uscg(conn, run: bool, existing: dict, archive_url: str | None) -> tuple
     run_id, started, total = str(uuid.uuid4()), dt.datetime.utcnow(), 0
     release = re.search(r"vesdoc([A-Za-z]{3}\d{2})", url)
     with zipfile.ZipFile(dest) as z:
-        member = max(z.infolist(), key=lambda i: i.file_size).filename
+        # ONE member expected; ambiguity raises instead of guessing by size
+        # (the EIA-860 multi-file truncation trap).
+        member = pick_member(z)
         with z.open(member) as raw:
             text = io.TextIOWrapper(raw, encoding="latin-1", errors="replace", newline="")
             reader = csv.reader(text)

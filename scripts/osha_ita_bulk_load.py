@@ -24,6 +24,8 @@ import requests
 _REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO / "library-onboarding"))
+sys.path.insert(0, str(_REPO))
+from loadkit.archive import pick_member  # noqa: E402
 try:
     from dotenv import load_dotenv
     load_dotenv(_REPO / "library-onboarding/.env", override=True)
@@ -156,13 +158,11 @@ def load_zip_csv(conn, entry, max_rows):
     resp.raise_for_status()
     sha, run_id, started = _provenance(resp.content)
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-        csv_files = [n for n in zf.namelist()
-                     if n.lower().endswith(('.csv', '.txt'))
-                     and '__MACOSX' not in n]
-        if not csv_files:
-            raise RuntimeError("No CSV/TXT in ZIP")
-        csv_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-        with zf.open(csv_files[0]) as f:
+        # ONE data member or an explicit entry["member"] pattern -- never
+        # largest-wins (the EIA-860 multi-file truncation trap).
+        member = pick_member(zf, pattern=entry.get("member"),
+                             suffixes=(".csv", ".txt"))
+        with zf.open(member) as f:
             content = f.read()
     df = pd.read_csv(io.BytesIO(content), dtype=str, nrows=max_rows + 1,
                      low_memory=False, encoding_errors="replace", on_bad_lines="skip")

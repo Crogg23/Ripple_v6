@@ -20,3 +20,4 @@
 2026-08-31 — cap the count before he asks. He requests "5 bullets" / "3-4 per option" constantly. Promise a number and hit it.
 2026-08-31 — auto mode runs a safety classifier on every shell command; it reads the command text only, not the conversation, so it cannot see that Chris authorised something. It denies immediate irreversible deletes. Do not try to edit its own config to get past it. Say what is blocked, in one line, and ask him to shift-tab out of auto mode.
 2026-08-31 — measure before naming a cause. The 6.95 GB pack was blamed on .venv in history; it was actually three recent unreachable blobs, and the real fix was gc with the window set to now, not a history rewrite. Reachable bytes versus pack size is the check that separates the two.
+2026-09-01 — one sentence or one question at a time when a decision is needed. His mind is all over the place; the walked-chain detail goes in the file, chat gets the one-liner.

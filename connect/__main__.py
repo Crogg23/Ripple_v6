@@ -30,9 +30,9 @@ def main() -> int:
     a.add_argument("--no-bridge", action="store_true")
     a.add_argument("--fanout-max", type=int, default=40)
 
-    # --- incremental engine (additive; full rebuild above stays the backstop) ---
-    si = sub.add_parser("seed", help="incremental: init persisted keyset twins + watermark (run AFTER a full rebuild)")
-    si.add_argument("--reseed", action="store_true", help="overwrite the twins from the current backstop output")
+    # --- incremental engine (the ONLY engine; the full rebuild is RETIRED) ---
+    si = sub.add_parser("seed", help="incremental: init persisted keyset twins + watermark (derives from landing when no rebuild scratch survives)")
+    si.add_argument("--reseed", action="store_true", help="overwrite the twins from rebuild scratch if present, else from landing")
     c1 = sub.add_parser("connect-one", help="incremental: link ONE just-landed table into the spine/graph")
     c1.add_argument("--source", required=True, help="source_id or landing table")
     c1.add_argument("--dry-run", action="store_true")
@@ -40,7 +40,10 @@ def main() -> int:
     cch.add_argument("--scope", choices=["spine", "all"], default="spine")
     cch.add_argument("--dry-run", action="store_true")
     # `validate-incremental` here == the module CLI's `validate` verb (incremental.py:915); both dispatch to incremental.validate()
-    vi = sub.add_parser("validate-incremental", help="non-destructive proof incremental == full rebuild")
+    vi = sub.add_parser("validate-incremental",
+                        help="BROKEN until re-pointed: needs scratch twins only the "
+                             "retired rebuild wrote; offline MERGE coverage lives in "
+                             "tests/test_connect_merge_offline.py")
     vi.add_argument("--table", default=None)
     ac = sub.add_parser("apply-config", help="incremental: apply a new key family / spec change with bounded reslices (no full rebuild)")
     ac.add_argument("--dry-run", action="store_true")

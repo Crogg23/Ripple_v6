@@ -206,5 +206,8 @@ def _enrich(config: dict) -> dict:
             max_tokens=1024,
         )
         return extract_json(raw)
-    except Exception:
+    except Exception as exc:
+        # Enrichment is best-effort, but a silent {} hid real failures (LLM
+        # auth, JSON drift) for whole batches. Say what died, keep going.
+        print(f"  WARNING: registry enrichment failed, continuing without it: {exc}")
         return {}

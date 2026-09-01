@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+import re
 from typing import Any, Optional
 
 _REPO = Path(__file__).resolve().parents[1]
@@ -69,9 +70,28 @@ def scalar(conn, sql: str, params: Optional[tuple] = None):
     return snow.fetch_scalar(conn, sql, params)
 
 
+_IDENT = re.compile(r"^[A-Z0-9_$]+$")
+
+
+def ident(name: str) -> str:
+    """Validate one SQL identifier for safe interpolation into DDL/DML text.
+
+    Everything in connect/ builds SQL by f-string; the values are table and
+    column names from our own registry, but nothing ENFORCED that before a
+    reviewer had to prove it call site by call site (hiring review, connect
+    W4). Uppercase alnum + underscore + $ or it raises -- no quoting games.
+    """
+    n = name.strip().upper()
+    if not _IDENT.match(n):
+        raise ValueError(f"unsafe SQL identifier: {name!r}")
+    return n
+
+
 def fqn(table: str) -> str:
-    """Fully-qualified landing table name from a bare table or SOURCE_ID."""
+    """Fully-qualified landing table name from a bare table or SOURCE_ID.
+    Every part is validated by ident() -- an unsafe name raises here, not
+    somewhere inside a MERGE five calls later."""
     t = table.strip().upper()
     if t.count(".") == 2:
-        return t
-    return f"{RAW_DB}.{RAW_SCHEMA}.{t}"
+        return ".".join(ident(p) for p in t.split("."))
+    return f"{RAW_DB}.{RAW_SCHEMA}.{ident(t)}"

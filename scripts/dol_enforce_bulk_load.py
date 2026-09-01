@@ -27,6 +27,8 @@ import requests
 _REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO / "library-onboarding"))
+sys.path.insert(0, str(_REPO))
+from loadkit.archive import pick_member  # noqa: E402
 try:
     from dotenv import load_dotenv
     load_dotenv(_REPO / "library-onboarding/.env", override=True)
@@ -137,15 +139,14 @@ def _load_dol_zip(conn, entry: dict, max_rows: int) -> int:
     import zipfile, hashlib, datetime as dt, uuid
     try:
         with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-            data_files = [n for n in zf.namelist()
-                          if n.lower().endswith(('.txt', '.csv'))
-                          and 'definition' not in n.lower()
-                          and not n.startswith('__MACOSX')]
-            if not data_files:
-                print(f"    No data file found in ZIP")
-                return 0
-            data_files.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-            target = data_files[0]
+            # ONE data member or an explicit entry["member"] pattern -- never
+            # largest-wins (the EIA-860 multi-file truncation trap).
+            # 'definition' files excluded via the pattern default below.
+            target = pick_member(
+                zf,
+                pattern=entry.get("member", r"^(?!.*definition)"),
+                suffixes=(".txt", ".csv"),
+            )
             with zf.open(target) as f:
                 content = f.read()
 

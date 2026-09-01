@@ -144,7 +144,7 @@ probabilistic matching (confidence-scored, e.g. `0.108`–`0.999`), used to surf
 ## 5. Entity resolution
 
 - **33,312,349 entities** resolved — one row per real-world person/org/vessel/facility,
-  built by clustering on hard IDs, never name-similarity alone.
+  built by clustering on hard IDs — no name matching in the identity layer. Name+geo composites live only in the discover edge lane (CORROBORATED tier), never in ENTITY_MAP.
 - Zero false-merge rule: two records only collapse into one entity if they share
   a government-issued identifier. Name-based candidates stay in the probabilistic
   layer (`CONNECT_EDGES_INC`) until a human promotes them.

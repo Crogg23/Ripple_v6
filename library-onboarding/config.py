@@ -102,6 +102,10 @@ class Config:
         default_factory=lambda: os.getenv("ONBOARD_SKIP_IF_UNCHANGED", "1").strip().lower()
         in ("1", "true", "yes", "on")
     )
+    # ONBOARD_ALLOW_SHRINK=1 lets a snapshot-replace land FEWER rows than the last
+    # successful run. Off by default: a sudden shrink is usually a truncated pull
+    # (the SAM exclusions failure: 1k landed of ~167k, logged 'success').
+    allow_shrink: bool = field(default_factory=lambda: _flag("ONBOARD_ALLOW_SHRINK"))
     # ONBOARD_FAKE_LLM=1 short-circuits every Claude call AND Snowflake write with
     # deterministic fixtures so the flow runs offline (no API key / network / db).
     fake_llm: bool = field(default_factory=lambda: _flag("ONBOARD_FAKE_LLM"))

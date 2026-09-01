@@ -10,10 +10,13 @@ every run, regardless of what actually changed. On a ~30 credit/mo cap that's th
     ->  diff old-slice vs new-slice = the affected (key_type, value) set
     ->  MERGE just those entities into the live spine (never a full rebuild)
 
-ADDITIVE BY CONSTRUCTION. This module never rewrites discover.run()/spine.run() —
-those stay as the reconciliation backstop. It writes NEW persisted tables
+ADDITIVE BY CONSTRUCTION — but the old full rebuild is RETIRED (in the junk
+drawer, zero importers, verified 2026-08-31). There is NO live reconciliation
+backstop: validate() below needs the retired rebuild's transient scratch twins
+and cannot run against a warehouse that no longer has them. This module writes
+NEW persisted tables
 (CONNECT_WATERMARK, SPINE_KEYSET_LIVE, KEYSET_LIVE, CONNECT_EDGES_INC) and MERGEs
-into the SAME live spine tables the backstop rebuilds (ENTITY_MAP / ENTITY_GOLDEN /
+into the SAME live tables the old rebuild once built (ENTITY_MAP / ENTITY_GOLDEN /
 CONNECT_NODES / MATCH_PAIRS / ENTITY_INDEX). Because every id is content-addressed
 (ENTITY_ID = 'ENT_'||LEFT(MD5(key_type|val),16)), a MERGE upsert renumbers no one —
 incremental and full-rebuild converge on byte-identical rows.
@@ -41,6 +44,7 @@ CLI (also dispatched from `python -m connect ...` — see __main__.py edit spec)
 
 from __future__ import annotations
 
+import os
 import argparse
 import hashlib
 import sys
@@ -241,13 +245,26 @@ def _config_fingerprint() -> str:
     return hashlib.md5(blob.encode("utf-8")).hexdigest()
 
 
-def _guard_config(conn) -> None:
-    """Config drift is applied, not refused (2026-08-29): when per-unit pins exist
-    and the code moved, run the bounded apply first. The legacy whole-config
-    sentinel check below only bites when there are no per-unit pins yet."""
+def _apply_config_drift_or_raise(conn) -> None:
+    """NOT read-only (renamed from _guard_config, which sounded like a check):
+    on drift with per-unit pins present this MUTATES the warehouse -- it runs
+    the bounded apply (reslices + re-pins) before continuing. The legacy
+    whole-config sentinel check below only bites when there are no per-unit
+    pins yet, and that path raises instead of mutating."""
     if _config_drifted(conn):
-        print("config drift detected -> applying bounded config change first")
-        _apply_config_conn(conn, dry_run=False)
+        # GATED (2026-09-01): auto-applying here reshapes warehouse tables and
+        # spends credits without a price shown -- a big staged batch drifting
+        # in silently was the risk. Explicit `apply-config` stays ungated;
+        # this implicit path refuses unless the env flag says go.
+        if os.getenv("RIPPLE_APPLY_CONFIG", "").strip().lower() in ("1", "true", "yes", "on"):
+            print("config drift detected -> applying bounded config change first "
+                  "(RIPPLE_APPLY_CONFIG=1)")
+            _apply_config_conn(conn, dry_run=False)
+        else:
+            raise RuntimeError(
+                "config drift detected. Refusing to auto-reslice mid-run: preview with "
+                "`python -m connect apply-config --dry-run`, price it, then either run "
+                "`python -m connect apply-config` or set RIPPLE_APPLY_CONFIG=1.")
     stored = db.scalar(conn, f"SELECT CONTENT_KEY FROM {WATERMARK_FQN} "
                             f"WHERE TABLE_NAME = '{CONFIG_SENTINEL}'")
     if stored is not None and stored != _config_fingerprint():
@@ -331,6 +348,14 @@ def _baseline_units_and_fingerprint():
     from . import keys as K
     from . import entity_index_specs as S
     staged = []
+    # BOTH staged batches strip, or the flags-off baseline is a half-truth:
+    # the 2026-08 batch was forgotten here and the baseline was only correct
+    # for one of two flags (hiring review, connect W3).
+    if getattr(K, "ENABLE_SPINE_BATCH_2026_08", False):
+        staged.append(("2026_08", K._SPINE_BATCH_NORM_RULES, {},
+                       {**S.COURTLISTENER_DISPLAY_SPECS,
+                        **S.SPINE_BATCH_2026_08_DISPLAY_SPECS},
+                       {}))
     if getattr(K, "ENABLE_SPINE_BATCH_2026_08_29", False):
         staged.append(("2026_08_29", K._BATCH_2026_08_29_NORM_RULES,
                        K._BATCH_2026_08_29_TABLE_COLUMN_KEYS,
@@ -511,72 +536,71 @@ def _config_drifted(conn) -> bool:
 
 def _apply_config_conn(conn, dry_run: bool = False) -> dict:
     run_id = uuid.uuid4().hex[:16]
-    if True:
-        _ddl_pins(conn)
-        current = _config_units()
-        stored = _stored_pins(conn)
-        if not stored:
-            sentinel = db.scalar(conn, f"SELECT CONTENT_KEY FROM {WATERMARK_FQN} "
-                                       f"WHERE TABLE_NAME = '{CONFIG_SENTINEL}'")
-            if sentinel == _config_fingerprint():
-                n = _pin_units(conn, current)
-                return {"mode": "pinned-initial", "units": n}
-            # The live spine was pinned by a rebuild that ran with the staged batch
-            # flags OFF. If the flags-off config reproduces the sentinel, that IS the
-            # baseline: pin it, then fall through and apply the flagged batch as an
-            # ordinary bounded drift -- one command, no rebuild.
-            base_units, base_fp = _baseline_units_and_fingerprint()
-            if base_units is not None and sentinel == base_fp:
-                _pin_units(conn, base_units)
-                stored = _stored_pins(conn)
-                print("apply-config: pinned the flags-off baseline (matches the live sentinel); "
-                      "applying the staged batch as bounded drift")
-            else:
-                raise RuntimeError(
-                    "no per-unit pins yet AND the legacy config sentinel matches neither the "
-                    "current code nor the flags-off baseline, so the live spine's config is "
-                    "unknown. Either check out the code the last rebuild ran with and "
-                    "`apply-config` once to pin it, the retired full-rebuild backstop is gone.")
-        plan = classify_config_drift(stored, current)
-        plan["mode"] = "preview" if dry_run else "applied"
-        print(f"apply-config: {len(plan['changes'])} config change(s) -> "
-              f"reslice {len(plan['reslice'])}, retract {len(plan['retract'])}, "
-              f"discover {len(plan['discover'])} table(s)")
-        for kind, name, how in plan["changes"]:
-            print(f"  [{kind}] {name}: {how}")
-        if not plan["changes"]:
-            return plan
-        exists = _landing_tables(conn)
-        results = []
-        for t in plan["reslice"]:
-            if t not in exists:
-                results.append({"table": t, "mode": "skip (no landing table)"})
-                continue
-            r = reslice_spine(conn, t, run_id, dry_run=dry_run)
-            print(f"  reslice {t}: {r.get('mode')} affected={r.get('affected'):,}")
-            results.append(r)
-        for t in plan["retract"]:
-            if dry_run:
-                results.append({"table": t, "mode": "preview-retract"})
-                continue
-            r = retract_spine_table(conn, t, run_id)
-            print(f"  retract {t}: {r}")
-            results.append(r)
-        for t in plan["discover"]:
-            if t not in exists:
-                results.append({"table": t, "mode": "skip (no landing table)"})
-                continue
-            r = reslice_discover(conn, t, run_id, dry_run=dry_run)
-            if not dry_run:
-                _upsert_watermark(conn, t, compute_watermarks(conn).get(t, {}))
-            print(f"  discover {t}: {r.get('mode')}")
-            results.append(r)
-        plan["results"] = results
+    _ddl_pins(conn)
+    current = _config_units()
+    stored = _stored_pins(conn)
+    if not stored:
+        sentinel = db.scalar(conn, f"SELECT CONTENT_KEY FROM {WATERMARK_FQN} "
+                                   f"WHERE TABLE_NAME = '{CONFIG_SENTINEL}'")
+        if sentinel == _config_fingerprint():
+            n = _pin_units(conn, current)
+            return {"mode": "pinned-initial", "units": n}
+        # The live spine was pinned by a rebuild that ran with the staged batch
+        # flags OFF. If the flags-off config reproduces the sentinel, that IS the
+        # baseline: pin it, then fall through and apply the flagged batch as an
+        # ordinary bounded drift -- one command, no rebuild.
+        base_units, base_fp = _baseline_units_and_fingerprint()
+        if base_units is not None and sentinel == base_fp:
+            _pin_units(conn, base_units)
+            stored = _stored_pins(conn)
+            print("apply-config: pinned the flags-off baseline (matches the live sentinel); "
+                  "applying the staged batch as bounded drift")
+        else:
+            raise RuntimeError(
+                "no per-unit pins yet AND the legacy config sentinel matches neither the "
+                "current code nor the flags-off baseline, so the live spine's config is "
+                "unknown. Either check out the code the last rebuild ran with and "
+                "`apply-config` once to pin it, the retired full-rebuild backstop is gone.")
+    plan = classify_config_drift(stored, current)
+    plan["mode"] = "preview" if dry_run else "applied"
+    print(f"apply-config: {len(plan['changes'])} config change(s) -> "
+          f"reslice {len(plan['reslice'])}, retract {len(plan['retract'])}, "
+          f"discover {len(plan['discover'])} table(s)")
+    for kind, name, how in plan["changes"]:
+        print(f"  [{kind}] {name}: {how}")
+    if not plan["changes"]:
+        return plan
+    exists = _landing_tables(conn)
+    results = []
+    for t in plan["reslice"]:
+        if t not in exists:
+            results.append({"table": t, "mode": "skip (no landing table)"})
+            continue
+        r = reslice_spine(conn, t, run_id, dry_run=dry_run)
+        print(f"  reslice {t}: {r.get('mode')} affected={r.get('affected'):,}")
+        results.append(r)
+    for t in plan["retract"]:
+        if dry_run:
+            results.append({"table": t, "mode": "preview-retract"})
+            continue
+        r = retract_spine_table(conn, t, run_id)
+        print(f"  retract {t}: {r}")
+        results.append(r)
+    for t in plan["discover"]:
+        if t not in exists:
+            results.append({"table": t, "mode": "skip (no landing table)"})
+            continue
+        r = reslice_discover(conn, t, run_id, dry_run=dry_run)
         if not dry_run:
-            _pin_units(conn, current)
-            _upsert_watermark(conn, CONFIG_SENTINEL,
-                              {"source_id": None, "content_key": _config_fingerprint(),
-                               "last_change_at": None, "n_success": 0})
+            _upsert_watermark(conn, t, compute_watermarks(conn).get(t, {}))
+        print(f"  discover {t}: {r.get('mode')}")
+        results.append(r)
+    plan["results"] = results
+    if not dry_run:
+        _pin_units(conn, current)
+        _upsert_watermark(conn, CONFIG_SENTINEL,
+                          {"source_id": None, "content_key": _config_fingerprint(),
+                           "last_change_at": None, "n_success": 0})
     return plan
 
 
@@ -600,9 +624,9 @@ def seed(reseed: bool = False) -> dict:
 
 
 def sync_after_rebuild(conn, reseed: bool = True) -> dict:
-    """Make the persisted twins + watermark agree with the current backstop output.
-    Called by seed(), and (via the spine.py edit spec) at the tail of a full
-    `connect spine` so the backstop and the incremental state never diverge."""
+    """Make the persisted twins + watermark agree with the last rebuild output.
+    The full rebuild is RETIRED: its transient tables only exist if a pre-drawer
+    run left them behind; otherwise the twins are derived fresh from landing."""
     _reset_caches()
     _ddl(conn)
     # Persisted spine keyset twin <- transient SPINE_KEYSET (the last full-rebuild result).
@@ -786,8 +810,11 @@ def _merge_entity_map(conn, run_id: str) -> dict:
 def _merge_nodes(conn, table: str, run_id: str) -> None:
     # one row per (key_type, val, table). For THIS table, only affected vals move.
     lit = table.replace("'", "''")
+    # (KEY_TYPE, KEY_VALUE) pair scope, matching the re-INSERT's join: a value
+    # colliding across key types on a multi-key table must not be deleted for
+    # a key type that wasn't affected -- it would never be restored.
     db.rows(conn, f"DELETE FROM {NODES_FQN} WHERE TABLE_NAME = '{lit}' "
-                  f"AND KEY_VALUE IN (SELECT VAL FROM _AFFECTED)")
+                  f"AND (KEY_TYPE, KEY_VALUE) IN (SELECT KEY_TYPE, VAL FROM _AFFECTED)")
     db.rows(conn, f"""
         INSERT INTO {NODES_FQN} (NODE_ID, KEY_TYPE, KEY_VALUE, TABLE_NAME, RUN_ID, BUILT_AT)
         SELECT MD5(n.KEY_TYPE || '|' || n.VAL), n.KEY_TYPE, n.VAL, '{lit}',
@@ -817,7 +844,7 @@ def _merge_index(conn, table: str, key: str, key_col: str, spec: dict, run_id: s
 
     db.rows(conn, f"DELETE FROM {INDEX_FQN} WHERE SOURCE_TABLE = '{lit}' AND KEY_TYPE = '{key}' "
                   f"AND KEY_VALUE IN (SELECT VAL FROM {scope} WHERE KEY_TYPE = '{key}')")
-    db.rows(conn, f"""
+    inserted = db.rows(conn, f"""
         INSERT INTO {INDEX_FQN}
           (ENTITY_ID, ENTITY_TYPE, KEY_TYPE, KEY_VALUE, SOURCE_TABLE, DOMAIN,
            DISPLAY_LABEL, ROW_COUNT, PREVIEW, DISPLAY_NORM)
@@ -834,9 +861,9 @@ def _merge_index(conn, table: str, key: str, key_col: str, spec: dict, run_id: s
           WHERE {norm} IS NOT NULL AND {norm} IN (SELECT VAL FROM {scope} WHERE KEY_TYPE = '{key}')
           GROUP BY {eid}
         )""")
-    return int(db.scalar(conn, f"SELECT COUNT(*) FROM {INDEX_FQN} "
-                              f"WHERE SOURCE_TABLE = '{lit}' AND KEY_TYPE = '{key}' "
-                              f"AND KEY_VALUE IN (SELECT VAL FROM {scope} WHERE KEY_TYPE = '{key}')") or 0)
+    # rows actually inserted this call -- not a recount of the slice, which
+    # overstated work done when the scope overlapped rows already present.
+    return _rowcount(inserted)
 
 
 def _golden_attrs(scope_fqn: str = "_AFFECTED") -> str:
@@ -952,13 +979,14 @@ def _merge_pairs(conn, table: str, run_id: str) -> dict:
 def _backfill_leads(conn) -> int:
     if not _table_exists(conn, "LEADS"):
         return 0
-    db.rows(conn, f"""
+    restamped = db.rows(conn, f"""
         UPDATE {LEADS_FQN} t SET LEFT_ENTITY_ID = e.ENTITY_ID
         FROM {EMAP_FQN} e
         WHERE e.KEY_TYPE = t.LEFT_KEY_TYPE AND e.KEY_VALUE = t.LEFT_KEY_VALUE
           AND (t.LEFT_KEY_TYPE, t.LEFT_KEY_VALUE) IN (SELECT KEY_TYPE, VAL FROM _AFFECTED)""")
-    return int(db.scalar(conn, f"SELECT COUNT(*) FROM {LEADS_FQN} "
-                              f"WHERE LEFT_ENTITY_ID IS NOT NULL") or 0)
+    # rows this UPDATE actually touched -- the old COUNT of every non-null
+    # LEFT_ENTITY_ID in the table overstated the run's work by orders.
+    return _rowcount(restamped)
 
 
 # =========================================================================== #
@@ -1092,7 +1120,7 @@ def connect_one(source_id: str, landing_table: str | None = None, dry_run: bool 
         _reset_caches()
         validate_key_config()
         _ddl(conn)
-        _guard_config(conn)
+        _apply_config_drift_or_raise(conn)
         if int(db.scalar(conn, f"SELECT COUNT(*) FROM {SKEYSET_FQN}") or 0) == 0:
             raise RuntimeError("incremental state not seeded. Run `python -m connect.incremental seed` once.")
         wm = compute_watermarks(conn).get(table)
@@ -1127,7 +1155,7 @@ def connect_changed(scope: str = "spine", dry_run: bool = False) -> dict:
         _reset_caches()
         validate_key_config()
         _ddl(conn)
-        _guard_config(conn)
+        _apply_config_drift_or_raise(conn)
         if int(db.scalar(conn, f"SELECT COUNT(*) FROM {SKEYSET_FQN}") or 0) == 0:
             raise RuntimeError("incremental state not seeded. Run `python -m connect.incremental seed` once.")
         changed = changed_tables(conn, scope)
@@ -1146,9 +1174,12 @@ def connect_changed(scope: str = "spine", dry_run: bool = False) -> dict:
 
 
 # =========================================================================== #
-# NON-DESTRUCTIVE EQUIVALENCE VALIDATION — proves incremental == full-rebuild on
-# CURRENT data without CREATE-OR-REPLACE of any live table. Reads live tables and
-# writes only session TEMP/scratch.
+# NON-DESTRUCTIVE EQUIVALENCE VALIDATION — CANNOT CURRENTLY RUN. It compares
+# against transient scratch twins that only the RETIRED full rebuild wrote;
+# with the rebuild in the junk drawer, those tables are stale or absent, so
+# this is not a live backstop. Offline coverage for the MERGE logic lives in
+# tests/test_connect_merge_offline.py (DuckDB). Reads live tables and writes
+# only session TEMP/scratch when it does run.
 # =========================================================================== #
 def validate(table: str | None = None) -> dict:
     table = (table or "FED_HHS_OIG_LEIE").strip().upper()
@@ -1271,7 +1302,7 @@ def _rowcount(result) -> int:
 def _table_exists(conn, name: str) -> bool:
     return bool(db.scalar(conn,
         f"SELECT COUNT(*) FROM {CONNECT_DB}.INFORMATION_SCHEMA.TABLES "
-        f"WHERE TABLE_SCHEMA = '{CONNECT_SCHEMA}' AND TABLE_NAME = '{name}'"))
+        f"WHERE TABLE_SCHEMA = '{CONNECT_SCHEMA}' AND TABLE_NAME = '{db.ident(name)}'"))
 
 
 def _landing_tables(conn) -> set[str]:
@@ -1299,14 +1330,17 @@ def main(argv=None) -> int:
                                  description="Incremental CONNECT — O(changed tables)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("seed", help="one-time: init state tables + pin current content-keys") \
-        .add_argument("--reseed", action="store_true", help="overwrite persisted twins from the backstop")
+        .add_argument("--reseed", action="store_true", help="overwrite persisted twins (rebuild scratch if present, else landing)")
     co = sub.add_parser("connect-one", help="link one just-landed table")
     co.add_argument("--source", required=True, help="source_id or landing table name")
     co.add_argument("--dry-run", action="store_true")
     cc = sub.add_parser("connect-changed", help="reslice every table whose content-key moved")
     cc.add_argument("--scope", choices=["spine", "all"], default="spine")
     cc.add_argument("--dry-run", action="store_true")
-    va = sub.add_parser("validate", help="non-destructive equivalence proof vs the backstop")
+    va = sub.add_parser("validate",
+                        help="BROKEN until re-pointed: needs scratch twins only the "
+                             "retired rebuild wrote; offline MERGE coverage lives in "
+                             "tests/test_connect_merge_offline.py")
     va.add_argument("--table", default=None)
     ac = sub.add_parser("apply-config", help="apply a keys.py / DISPLAY_SPECS change with bounded reslices (no full rebuild)")
     ac.add_argument("--dry-run", action="store_true")

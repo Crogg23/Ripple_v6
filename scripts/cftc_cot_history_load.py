@@ -50,6 +50,8 @@ import requests
 _REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO / "library-onboarding"))
+sys.path.insert(0, str(_REPO))
+from loadkit.archive import pick_member  # noqa: E402
 try:
     from dotenv import load_dotenv
     load_dotenv(_REPO / "library-onboarding/.env", override=True)
@@ -107,12 +109,10 @@ def _fetch_zip_df(url: str) -> tuple[pd.DataFrame, str]:
     resp.raise_for_status()
     sha = hashlib.sha256(resp.content).hexdigest()
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-        members = [n for n in zf.namelist()
-                   if n.lower().endswith(('.txt', '.csv')) and not n.startswith('__MACOSX')]
-        if not members:
-            raise RuntimeError(f"No TXT/CSV member in {url}")
-        members.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
-        with zf.open(members[0]) as f:
+        # CFTC yearly zips carry ONE text member; ambiguity raises rather
+        # than guessing by size (the EIA-860 largest-member trap).
+        member = pick_member(zf, suffixes=(".txt", ".csv"))
+        with zf.open(member) as f:
             content = f.read()
     df = pd.read_csv(io.BytesIO(content), dtype=str, low_memory=False,
                      encoding_errors="replace")

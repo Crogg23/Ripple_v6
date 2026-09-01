@@ -96,3 +96,30 @@ def test_symmetric_difference_sql_is_parenthesized():
     54,406 keys, affected=0)."""
     sql = " ".join(inc.AFFECTED_SQL.split())
     assert "(SELECT KEY_TYPE, VAL FROM _NEW MINUS SELECT KEY_TYPE, VAL FROM _OLD) UNION (SELECT KEY_TYPE, VAL FROM _OLD MINUS SELECT KEY_TYPE, VAL FROM _NEW)" in sql
+
+
+def test_baseline_strips_both_staged_batches():
+    """The flags-off baseline must remove BOTH staged batches (hiring review
+    connect W3: only 2026_08_29 was stripped, so the baseline was correct for
+    one of two flags). Verified 2026-09-01 against the live warehouse: the
+    stored CONFIG_SENTINEL equals the CURRENT fingerprint (both flags on,
+    already pinned), so the baseline branch is inert there and this change
+    cannot trip a spurious apply."""
+    from connect import incremental as inc
+    from connect import keys as K
+
+    units, fp = inc._baseline_units_and_fingerprint()
+    assert fp is not None and fp != inc._config_fingerprint()
+    norm_keys = {name for kind, name in units if kind == "norm"}
+    # Both batches' NORM_RULES gone from the baseline (token-map and
+    # TABLE_COLUMN_KEYS mentions are unconditional and rightly remain).
+    for k in K._SPINE_BATCH_NORM_RULES:
+        assert k not in norm_keys, f"2026-08 batch key {k} not stripped"
+    for k in K._BATCH_2026_08_29_NORM_RULES:
+        assert k not in norm_keys, f"2026-08-29 batch key {k} not stripped"
+    spec_tables = {name for kind, name in units if kind == "spec"}
+    from connect import entity_index_specs as S
+    for t in S.SPINE_BATCH_2026_08_DISPLAY_SPECS:
+        assert t not in spec_tables, f"2026-08 spec table {t} not stripped"
+    # and the strip restored the live dicts afterwards
+    assert "NPDES_ID" in K.NORM_RULES and "CAGE" in K.NORM_RULES

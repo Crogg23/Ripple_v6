@@ -341,7 +341,7 @@ NORM_RULES: dict[str, tuple[str, int]] = {
 #
 # THE FLAG: flipping this changes the incremental-config fingerprint, which
 # freezes `connect-one`/`connect-changed` until the next FULL spine rebuild
-# re-pins it (incremental._guard_config, by design). The full rebuild is a
+# re-pins it (incremental._apply_config_drift_or_raise, by design). The full rebuild is a
 # parked money decision (~$10-15). So the whole batch ships dark: flip to True
 # in the same session that runs `python -m connect spine`, never before.
 ENABLE_SPINE_BATCH_2026_08 = True

@@ -106,7 +106,7 @@ Live in `LIBRARY_META.CONNECT.LEADS`. All ~1,030 are `review_state='pending'`, `
   entity_type ('provider'|'facility'|'organization'|'vessel'),
   source_rows: [ every row across every source carrying this ID ] }
 ```
-The spine resolves source ID values into **~9.68M entities (9,678,735)**, of which **~953k are multi-source** (appear in 2+ datasets) — **hard-ID only, never fuzzy-merged.** That conservatism *is* the safety guarantee made visible; the ~953k multi-source subset is the interesting set to design a corkboard around.
+The spine resolves source ID values into **~9.68M entities (9,678,735)**, of which **~953k are multi-source** (appear in 2+ datasets) — **no name matching in the identity layer — hard IDs only there; NAME@ZIP / NAME@FIPS composites exist ONLY in the discover edge lane, tiered CORROBORATED, never merged into ENTITY_MAP.** That conservatism *is* the safety guarantee made visible; the ~953k multi-source subset is the interesting set to design a corkboard around.
 
 **A NODE / EDGE** (for any map): nodes carry `{id, rows, domain, keys[], x, y}`; edges carry `{a, b, key, tier, matched, match_rate, sample[]}`. The bbox is real geometry, **not [-1,1]:** x ∈ [-6.74, 7.82], y ∈ [-7.43, 5.47], extent ≈ 14.5. Build zoom math off that.
 

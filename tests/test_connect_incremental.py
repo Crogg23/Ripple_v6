@@ -140,7 +140,7 @@ def test_connect_one_skips_a_source_with_no_ingest_runs_row(monkeypatch):
     monkeypatch.setattr(inc.db, "connect", lambda: _FakeConn())
     monkeypatch.setattr(inc, "validate_key_config", lambda: None)
     monkeypatch.setattr(inc, "_ddl", lambda conn: None)
-    monkeypatch.setattr(inc, "_guard_config", lambda conn: None)
+    monkeypatch.setattr(inc, "_apply_config_drift_or_raise", lambda conn: None)
     monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: 1)  # SKEYSET_FQN already seeded
     monkeypatch.setattr(inc, "compute_watermarks", lambda conn: {})  # no watermark at all
     monkeypatch.setattr(inc, "_stored_keys", lambda conn: {})
@@ -154,7 +154,7 @@ def test_connect_one_skips_a_source_with_no_landing_table(monkeypatch):
     monkeypatch.setattr(inc.db, "connect", lambda: _FakeConn())
     monkeypatch.setattr(inc, "validate_key_config", lambda: None)
     monkeypatch.setattr(inc, "_ddl", lambda conn: None)
-    monkeypatch.setattr(inc, "_guard_config", lambda conn: None)
+    monkeypatch.setattr(inc, "_apply_config_drift_or_raise", lambda conn: None)
     monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: 1)
     monkeypatch.setattr(inc, "compute_watermarks", lambda conn: {"FED_PORTAL_ONLY": {"content_key": "x"}})
     monkeypatch.setattr(inc, "_stored_keys", lambda conn: {})
@@ -170,7 +170,7 @@ def test_connect_one_is_a_noop_when_content_key_unchanged(monkeypatch):
     monkeypatch.setattr(inc.db, "connect", lambda: _FakeConn())
     monkeypatch.setattr(inc, "validate_key_config", lambda: None)
     monkeypatch.setattr(inc, "_ddl", lambda conn: None)
-    monkeypatch.setattr(inc, "_guard_config", lambda conn: None)
+    monkeypatch.setattr(inc, "_apply_config_drift_or_raise", lambda conn: None)
     monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: 1)
     monkeypatch.setattr(inc, "compute_watermarks", lambda conn: {"FED_A": {"content_key": "same"}})
     monkeypatch.setattr(inc, "_stored_keys", lambda conn: {"FED_A": "same"})
@@ -186,7 +186,7 @@ def test_connect_one_raises_if_never_seeded(monkeypatch):
     monkeypatch.setattr(inc.db, "connect", lambda: _FakeConn())
     monkeypatch.setattr(inc, "validate_key_config", lambda: None)
     monkeypatch.setattr(inc, "_ddl", lambda conn: None)
-    monkeypatch.setattr(inc, "_guard_config", lambda conn: None)
+    monkeypatch.setattr(inc, "_apply_config_drift_or_raise", lambda conn: None)
     monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: 0)  # SKEYSET_FQN empty -> never seeded
 
     with pytest.raises(RuntimeError, match="not seeded"):
@@ -198,7 +198,7 @@ def test_connect_one_routes_spine_table_to_reslice_spine_not_discover(monkeypatc
     monkeypatch.setattr(inc.db, "connect", lambda: _FakeConn())
     monkeypatch.setattr(inc, "validate_key_config", lambda: None)
     monkeypatch.setattr(inc, "_ddl", lambda conn: None)
-    monkeypatch.setattr(inc, "_guard_config", lambda conn: None)
+    monkeypatch.setattr(inc, "_apply_config_drift_or_raise", lambda conn: None)
     monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: 1)
     monkeypatch.setattr(inc, "compute_watermarks", lambda conn: {"FED_A": {"content_key": "new"}})
     monkeypatch.setattr(inc, "_stored_keys", lambda conn: {"FED_A": "old"})
@@ -220,7 +220,7 @@ def test_connect_one_routes_nonspine_table_to_reslice_discover(monkeypatch):
     monkeypatch.setattr(inc.db, "connect", lambda: _FakeConn())
     monkeypatch.setattr(inc, "validate_key_config", lambda: None)
     monkeypatch.setattr(inc, "_ddl", lambda conn: None)
-    monkeypatch.setattr(inc, "_guard_config", lambda conn: None)
+    monkeypatch.setattr(inc, "_apply_config_drift_or_raise", lambda conn: None)
     monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: 1)
     monkeypatch.setattr(inc, "compute_watermarks", lambda conn: {"FED_B": {"content_key": "new"}})
     monkeypatch.setattr(inc, "_stored_keys", lambda conn: {"FED_B": "old"})
@@ -308,16 +308,15 @@ def _twin_lag(conn):
 
 @pytest.mark.snowflake
 def test_incremental_state_matches_full_rebuild_backstop(sf):
-    """Runs connect/incremental.py's OWN validate() (read-only, writes only
-    session TEMP tables) against a real spine table and asserts every check
-    passes -- proving the persisted incremental state genuinely agrees with
-    the full-rebuild backstop right now, not just in theory.
+    """EFFECTIVELY RETIRED with the full rebuild (2026-08-30): validate()
+    compares against transient scratch twins that only the retired rebuild
+    wrote, so the staleness skip below fires on every run and this test never
+    executes its assertion. It stays as the harness for a future re-pointed
+    validate(); offline executing coverage for the MERGE logic lives in
+    tests/test_connect_merge_offline.py (DuckDB).
 
-    Skips when the rebuild twins are older than the live keysets. The check
-    only means something when both sides describe the same moment; comparing a
-    fresh live table against a twin from two days ago fails on staleness and
-    tells you nothing about the incremental logic. Rebuild the twins to turn
-    this back on.
+    Skips when the rebuild twins are older than the live keysets -- with the
+    rebuild retired, that is always.
     """
     lag = _twin_lag(sf)
     if lag:
@@ -327,3 +326,28 @@ def test_incremental_state_matches_full_rebuild_backstop(sf):
     checks = inc.validate(table="FED_HHS_OIG_LEIE")
     failed = {k: v for k, v in checks.items() if not (v == "PASS" or v.startswith("PASS") or v.startswith("SKIP"))}
     assert not failed, f"incremental state diverged from the full-rebuild backstop: {failed}"
+
+
+def test_drift_gate_refuses_implicit_apply(monkeypatch):
+    """Implicit config drift inside connect_one/connect_changed must NOT
+    reslice on its own -- it raises with the preview instructions unless
+    RIPPLE_APPLY_CONFIG says go (2026-09-01 gate)."""
+    monkeypatch.delenv("RIPPLE_APPLY_CONFIG", raising=False)
+    monkeypatch.setattr(inc, "_config_drifted", lambda conn: True)
+    applied = []
+    monkeypatch.setattr(inc, "_apply_config_conn",
+                        lambda conn, dry_run=False: applied.append(dry_run))
+    with pytest.raises(RuntimeError, match="apply-config --dry-run"):
+        inc._apply_config_drift_or_raise(None)
+    assert applied == []
+
+
+def test_drift_gate_opens_with_the_env_flag(monkeypatch):
+    monkeypatch.setenv("RIPPLE_APPLY_CONFIG", "1")
+    monkeypatch.setattr(inc, "_config_drifted", lambda conn: True)
+    applied = []
+    monkeypatch.setattr(inc, "_apply_config_conn",
+                        lambda conn, dry_run=False: applied.append(dry_run))
+    monkeypatch.setattr(inc.db, "scalar", lambda conn, sql: None)
+    inc._apply_config_drift_or_raise(None)
+    assert applied == [False]

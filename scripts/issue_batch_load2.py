@@ -34,6 +34,10 @@ import ingest        # noqa: E402
 import register      # noqa: E402
 import snow          # noqa: E402
 from config import settings  # noqa: E402
+_REPO = Path(__file__).resolve().parents[1]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+from loadkit.archive import pick_sheet  # noqa: E402
 
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 MAX_BYTES = 260_000_000
@@ -127,8 +131,8 @@ def _df_from_bytes(content, fname):
         return pd.read_stata(io.BytesIO(content), convert_categoricals=False).astype(str)
     if fl.endswith((".xlsx", ".xls")):
         sheets = pd.read_excel(io.BytesIO(content), sheet_name=None, dtype=str)
-        name = max(sheets, key=lambda s: len(sheets[s]))
-        return sheets[name].fillna("")
+        # ONE sheet or raise -- never biggest-wins (EIA-860-style truncation)
+        return pick_sheet(sheets).fillna("")
     sep = "\t" if fl.endswith((".tab", ".tsv")) else ","
     return pd.read_csv(io.BytesIO(content), dtype=str, sep=sep, keep_default_na=False,
                        low_memory=False, encoding_errors="replace")

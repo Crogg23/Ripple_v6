@@ -29,12 +29,20 @@ def test_fqn_uppercases_and_trims():
     assert db.fqn("  fed_x  ") == "LIBRARY_RAW.LANDING.FED_X"
 
 
-def test_fqn_does_not_misqualify_a_two_part_name():
-    """Exactly one dot (schema.table, not database.schema.table) must still
-    get the RAW_DB/RAW_SCHEMA prefix -- the count('.')==2 branch is the only
-    thing distinguishing 'already fully qualified' from 'needs prefixing',
-    and getting the boundary wrong silently misroutes a query."""
-    assert db.fqn("SOME_SCHEMA.SOME_TABLE") == "LIBRARY_RAW.LANDING.SOME_SCHEMA.SOME_TABLE"
+def test_fqn_rejects_a_two_part_name():
+    """Exactly one dot (schema.table) is neither a bare table nor a fully
+    qualified name. The old code prefixed it into a 4-part garbage identifier
+    that silently misrouted the query; ident() validation now raises instead
+    (2026-09-01, hiring review connect W4)."""
+    with pytest.raises(ValueError):
+        db.fqn("SOME_SCHEMA.SOME_TABLE")
+
+
+def test_ident_rejects_injection_shapes():
+    for bad in ("T; DROP TABLE X", "T'||'", "T T", "T-1", ""):
+        with pytest.raises(ValueError):
+            db.ident(bad)
+    assert db.ident(" fed_x ") == "FED_X"
 
 
 # --------------------------------------------------------------------------- #

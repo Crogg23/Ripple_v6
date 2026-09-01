@@ -125,8 +125,11 @@ def _apply_session_guards(conn) -> None:
             raise TypeError(f"statement_timeout_s must be int, got {type(secs).__name__}")
         cur.execute(f"ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = {secs}")
         cur.execute("ALTER SESSION SET ABORT_DETACHED_QUERY = TRUE")
-    except Exception:
-        pass
+    except Exception as exc:
+        # The cost guard being silently OFF is worse than a noisy line: a hung
+        # COPY then bills the warehouse for the account-default 48h.
+        print(f"  WARNING: session cost guards NOT applied "
+              f"(statement timeout / abort-detached): {exc}")
     finally:
         cur.close()
 

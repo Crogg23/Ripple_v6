@@ -35,6 +35,8 @@ _REPO = Path(__file__).resolve().parents[1]
 _LIB = _REPO / "library-onboarding"
 if str(_LIB) not in sys.path:
     sys.path.insert(0, str(_LIB))
+sys.path.insert(0, str(_LIB.parent))
+from loadkit.archive import pick_member  # noqa: E402
 
 try:
     from dotenv import load_dotenv
@@ -148,7 +150,8 @@ def main(argv=None) -> int:
                 r.raise_for_status()
                 zpath.write_bytes(r.content)
             with zipfile.ZipFile(zpath) as z:
-                inner_name = z.namelist()[0]
+                # ONE member per PSC chunk zip; ambiguity raises, no blind-first
+                inner_name = pick_member(z)
                 txt_path = DOWNLOAD_DIR / inner_name
                 if not txt_path.exists():
                     z.extractall(DOWNLOAD_DIR)

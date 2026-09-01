@@ -67,6 +67,7 @@ import snow          # noqa: E402  library-onboarding/snow.py
 from config import settings  # noqa: E402
 
 from loadkit import atomic_load  # noqa: E402  staging-swap atomicity for chunked loads
+from loadkit.archive import pick_member  # noqa: E402  one-member-or-raise zip picking
 
 UA = {"User-Agent": "Mozilla/5.0 (ripple-bridge-fuel-loader)"}
 
@@ -243,17 +244,10 @@ def _open_csv_source(s: dict, tmp: Path):
     if kind == "zip_csv":
         zpath = _download(url, tmp / "src.zip")
         with zipfile.ZipFile(zpath) as zf:
-            members = [n for n in zf.namelist() if n.lower().endswith((".csv", ".txt", ".tsv"))]
-            pat = s.get("member")
-            chosen = None
-            if pat:
-                rx = re.compile(pat, re.I)
-                chosen = next((m for m in members if rx.search(m)), None)
-            if not chosen:
-                # default: the largest CSV member
-                chosen = max(members, key=lambda m: zf.getinfo(m).file_size) if members else None
-            if not chosen:
-                raise RuntimeError(f"no CSV member in zip; members={zf.namelist()[:10]}")
+            # ONE member or an explicit spec "member" pattern -- the old
+            # largest-CSV fallback was the EIA-860 multi-file truncation trap.
+            chosen = pick_member(zf, pattern=s.get("member"),
+                                 suffixes=(".csv", ".txt", ".tsv"))
             print(f"    zip member: {chosen}")
             out = tmp / "member.csv"
             with zf.open(chosen) as src, open(out, "wb") as dst:
