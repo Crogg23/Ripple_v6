@@ -266,6 +266,19 @@ What the skeptic added, both loader fixes applied:
 - Committed: c19036ec — loader + this report. settings.json session cruft
   left uncommitted deliberately.
 
+## 11. 13F clone dropped, 2026-09-01, greenlit
+
+- Final proof before the drop: zero rows differ on all substance columns —
+  the earlier hash mismatch came from meta columns only. True byte-clone,
+  both loaded 2026-07-27 one minute apart.
+- Reference check first: zero rows in either keyset, zero in ENTITY_INDEX.
+- Dropped FED_SEC_13F_SUBMISSION; POSITIONS intact at 3,822,885.
+  Ghost watermark row deleted too. Time Travel undo window: 1 day.
+- Registry note: the 13F family is five tables — HOLDINGS (101.3M) is the
+  real dataset; POSITIONS is a 3.8M slice; FILERS/SUBMISSIONS are dimensions.
+- Also this sitting: 18 landed-but-blank registry rows stamped INCLUDE='Y';
+  859 wishlist rows remain for triage.
+
 ## Verdicts not reached
 
 - Whether the 633-table hard gap is backlog or policy — needs the wiring
