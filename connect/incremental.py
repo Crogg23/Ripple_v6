@@ -15,7 +15,7 @@ drawer, zero importers, verified 2026-08-31). There is NO live reconciliation
 backstop: validate() below needs the retired rebuild's transient scratch twins
 and cannot run against a warehouse that no longer has them. This module writes
 NEW persisted tables
-(CONNECT_WATERMARK, SPINE_KEYSET_LIVE, KEYSET_LIVE, CONNECT_EDGES_INC) and MERGEs
+(CONNECT_WATERMARK, DISPLAY_KEYSET_LIVE, KEYSET_LIVE, CONNECT_EDGES_INC) and MERGEs
 into the SAME live tables the old rebuild once built (ENTITY_MAP / ENTITY_GOLDEN /
 CONNECT_NODES / MATCH_PAIRS / ENTITY_INDEX). Because every id is content-addressed
 (ENTITY_ID = 'ENT_'||LEFT(MD5(key_type|val),16)), a MERGE upsert renumbers no one —
@@ -70,7 +70,7 @@ from .normalize import _addr_expr, _name_expr  # one definition of name/addr, sh
 
 # --- persisted state (all NEW, all additive) -------------------------------- #
 WATERMARK_FQN = store.cfqn("CONNECT_WATERMARK")     # per-table change signal
-SKEYSET_FQN = store.cfqn("SPINE_KEYSET_LIVE")       # durable twin of SPINE_KEYSET (15 spec tables)
+SKEYSET_FQN = store.cfqn("DISPLAY_KEYSET_LIVE")     # durable twin of DISPLAY_KEYSET_SCRATCH (spec tables); renamed from SPINE_KEYSET_LIVE 2026-09-01
 KEYSET_FQN = store.cfqn("KEYSET_LIVE")              # durable twin of KEYSET_SCRATCH (all 762 tables)
 EDGES_FQN = store.cfqn("CONNECT_EDGES_INC")         # on-land discover edges (queryable immediately)
 
@@ -83,7 +83,7 @@ INDEX_FQN = store.cfqn("ENTITY_INDEX")
 LEADS_FQN = store.cfqn("LEADS")
 
 # --- the transient backstop keysets we seed FROM (read-only) ---------------- #
-TRANSIENT_SPINE_FQN = store.cfqn("SPINE_KEYSET")
+TRANSIENT_SPINE_FQN = store.cfqn("DISPLAY_KEYSET_SCRATCH")  # renamed from SPINE_KEYSET 2026-09-01
 TRANSIENT_DISCOVER_FQN = store.cfqn("KEYSET_SCRATCH")
 
 # --- bounded blocking (seam #4) --------------------------------------------- #
@@ -618,7 +618,7 @@ def seed(reseed: bool = False) -> dict:
         out = sync_after_rebuild(conn, reseed=reseed)
     finally:
         conn.close()
-    print(f"seed: SPINE_KEYSET_LIVE={out['spine_keyset']:,}  KEYSET_LIVE={out['discover_keyset']:,}  "
+    print(f"seed: DISPLAY_KEYSET_LIVE={out['spine_keyset']:,}  KEYSET_LIVE={out['discover_keyset']:,}  "
           f"watermarks={out['watermarks']:,} pinned")
     return out
 
@@ -662,7 +662,7 @@ def sync_after_rebuild(conn, reseed: bool = True) -> dict:
 
 
 def _rebuild_spine_keyset_from_landing(conn) -> None:
-    """Fallback seed: the transient SPINE_KEYSET is gone, so derive the persisted
+    """Fallback seed: the transient DISPLAY_KEYSET_SCRATCH is gone, so derive the persisted
     twin directly from the spec tables (same per-(table, key) INSERT the backstop
     uses -- see entity_index_specs.table_keys for tables with more than one key)."""
     db.rows(conn, f"TRUNCATE TABLE {SKEYSET_FQN}")
@@ -755,7 +755,7 @@ def reslice_spine(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
 
     # KEYSET_LIVE fix: a spine table ALSO carries a discover KEYSET_LIVE partition
     # (its FULL key surface — BIOGUIDE + ICPSR + NAME@geo, not just the one spine key).
-    # reslice_spine used to refresh only SPINE_KEYSET_LIVE, leaving that discover
+    # reslice_spine used to refresh only DISPLAY_KEYSET_LIVE, leaving that discover
     # partition stale. Refresh it here from the same fingerprint helper reslice_discover
     # uses, so both keysets stay coherent after a spine-table reslice.
     disc_keys = _refresh_discover_keyset(conn, table)

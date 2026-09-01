@@ -74,5 +74,5 @@ When Chris corrects: fix it next message, save the correction, no explanation, n
 `_JUNK_DRAWER/` holds retired attempts — old rules, old pages, old data. Reference only. Never build from it, never clean it. Add a row to its LEDGER.md when something goes in.
 The old five-hour full-rebuild resolver is in the drawer, code and all, and nothing in live code imports it. Verified 2026-08-31: zero importers.
 What replaced it is `connect/incremental.py`, which updates only the tables that changed. Its commands are still gated (see Don't do damage).
-Two things keep the dead word alive and confuse every session: the warehouse tables are still named `SPINE_KEYSET` and `SPINE_KEYSET_LIVE`, and about 500 mentions sit in live Python. Renaming them is an open decision, not a done thing.
-Until they are renamed: those tables are live and growing. The concept is dead. Say which one you mean.
+Renamed 2026-09-01, Chris's pick: `DISPLAY_KEYSET_LIVE` (was SPINE_KEYSET_LIVE) and `DISPLAY_KEYSET_SCRATCH` (was SPINE_KEYSET). Code mentions swept the same day — live Python is clean. The dead word now lives only in the drawer.
+The two keysets: `DISPLAY_KEYSET_LIVE` is the display slice (spec tables); `KEYSET_LIVE` is the discover book (all tables). Say which one you mean.

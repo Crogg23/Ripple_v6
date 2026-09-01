@@ -764,13 +764,13 @@ def tier_reconcile(run: bool, budget: dict) -> dict:
             res["note"] = f"failed at stage '{stage_name}': {res.get('note', res.get('status'))}"
             return res
 
-    # Verify SPINE_KEYSET_LIVE is populated after the full run.
-    n = _with_timeout(lambda: _scalar('SELECT COUNT(*) FROM LIBRARY_META."CONNECT".SPINE_KEYSET_LIVE'),
+    # Verify DISPLAY_KEYSET_LIVE is populated after the full run.
+    n = _with_timeout(lambda: _scalar('SELECT COUNT(*) FROM LIBRARY_META."CONNECT".DISPLAY_KEYSET_LIVE'),
                       120, None)
     result = {"tier": "reconcile", "status": "ok", "dur_s": sum(h for _, _, h in stages)}
     if not n:
         result["status"] = "ok_twins_unverified"
-        result["note"] = f"rebuild completed but SPINE_KEYSET_LIVE count={n} — seed may have failed"
+        result["note"] = f"rebuild completed but DISPLAY_KEYSET_LIVE count={n} — seed may have failed"
     return result
 
 

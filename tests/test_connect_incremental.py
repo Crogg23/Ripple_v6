@@ -289,12 +289,12 @@ def _twin_lag(conn):
         SELECT TABLE_NAME, ROW_COUNT, LAST_ALTERED
         FROM LIBRARY_META.INFORMATION_SCHEMA.TABLES
         WHERE TABLE_SCHEMA = 'CONNECT'
-          AND TABLE_NAME IN ('SPINE_KEYSET_LIVE', 'SPINE_KEYSET',
+          AND TABLE_NAME IN ('DISPLAY_KEYSET_LIVE', 'DISPLAY_KEYSET_SCRATCH',
                              'KEYSET_LIVE', 'KEYSET_SCRATCH')
     """)
     seen = {name: (count, altered) for name, count, altered in rows}
     lag = []
-    for live, twin in (("SPINE_KEYSET_LIVE", "SPINE_KEYSET"),
+    for live, twin in (("DISPLAY_KEYSET_LIVE", "DISPLAY_KEYSET_SCRATCH"),
                        ("KEYSET_LIVE", "KEYSET_SCRATCH")):
         if live not in seen or twin not in seen:
             continue
