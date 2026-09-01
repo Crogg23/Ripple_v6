@@ -345,7 +345,8 @@ ACTIONS = [
                 "WHERE TABLE_SCHEMA='RETIRED' AND TABLE_NAME='FED_IRS_EO_BMF'"),
     dict(id="A05", seq=5, path="scripts/rebuild_frozen_marts.py", depends="A04",
          desc="RE-PREVIEW MANDATORY: of its 7 targets only 3 still exist (BORME=3 rows frozen, "
-              "FCA=12 frozen, FED_REGISTER=5000); CRO survives only in _RESTORE_20260701; "
+              "FCA=12 frozen, FED_REGISTER=5000); CRO is live in LANDING (821K) and its mart "
+              "(_RESTORE_20260701 was dropped 2026-09-01, stale note removed); "
               "SLAVEVOYAGES/NAAG/TAGGS were dropped 07-01 and never rebuilt.",
          verify="SELECT 1 FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES "
                 "WHERE TABLE_SCHEMA='DBT_CROGERS' "

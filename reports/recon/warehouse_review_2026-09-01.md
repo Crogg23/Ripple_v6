@@ -279,6 +279,30 @@ What the skeptic added, both loader fixes applied:
 - Also this sitting: 18 landed-but-blank registry rows stamped INCLUDE='Y';
   859 wishlist rows remain for triage.
 
+## 12. Backup sweep executed, 2026-09-01, greenlit destroy
+
+Dropped after per-object coverage verification: LIBRARY_MARTS_PREDBT_20260729
+(whole DB, 34.4 GB), MARTS._RESTORE_20260701 (12 stubs), _RESTORE_20260731
+(28 tables, all covered), META CONNECT_BAK_20260730 + CONNECT_PRESPINE_20260730.
+~51 GB. Kept: RAW.RETIRED (drawer), REGISTRY _BAK tables, CONNECT scratch twins.
+
+Skeptic pass, post-drop, inside the undo window:
+
+- 568 live views executed, zero broke. Repo references all exclusion lists.
+- Coverage logic stress-tested: five backup-bigger-than-mart cases all matched
+  LANDING exactly, row for row — backups were copies of the landing vintage.
+- ONE real loss found: the July GLEIF_RR vintage. GLEIF prunes ended
+  relationships (landing holds 60 INACTIVE of 485,285) — dead ownership links
+  from July existed nowhere else. RESCUED: schema undropped, table copied to
+  LIBRARY_RAW.RETIRED.INTL_GLEIF_RR_VINTAGE_20260731 (481,933 rows verified),
+  schema re-dropped.
+- Lesson for the next destroy script: count parity is not coverage when the
+  source prunes. A bigger new table can still be missing old rows.
+- Stale CRO note in build_registry_setup.py:348 corrected.
+- Pre-existing mart-build gaps surfaced, not caused by the drop:
+  NARA_WRA_AAD mart 1 row vs landing 36; ES_BORME mart 3 vs 25;
+  CFPB mart 11,501 short; FEC_PAC_SUMMARY mart 2,686 short.
+
 ## Verdicts not reached
 
 - Whether the 633-table hard gap is backlog or policy — needs the wiring
