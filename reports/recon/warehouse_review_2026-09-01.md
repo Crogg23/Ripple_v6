@@ -245,6 +245,27 @@ What the skeptic added, both loader fixes applied:
   post-run, so completeness rests on the never-shrink floor and future re-runs.
 - Cost: ~21 minutes on X-Small, well under the itcont precedent of ~$1.70.
 
+## 10. Open-list follow-ups, 2026-09-01 second sitting
+
+- **13F twins resolved: same data twice.** Same 18 columns, same 3,822,885
+  rows, same 9,716 ACCESSION_NUMBERs, same 3,822,885 INFOTABLE_SKs — full
+  intersect both ways. Row hashes differ, so some value column drifted between
+  the two loads, but the key coverage is identical. One table is redundant.
+  Dropping either is destroy-gated — Chris's call which name survives.
+- **AUDIT/BUILD frozen has a cause, not a fault.** No live code writes
+  COLUMN_HEALTH / TABLE_VITALS / DEFECTS — their writers went into the junk
+  drawer with the July-era audit workflow (LEDGER rows retired_2026-08-30).
+  The tables are relics of a retired process, last written 2026-07-28.
+  Options: drop the schemas (destroy-gated) or leave as inert history.
+- **Registry limbo sized: 877 rows, only 18 ever landed.** By prefix:
+  fed_* 293 (17 landed), other 258, intl_* 230 (1 landed), st_* 96.
+  859 rows are pure wishlist — registered, never loaded, never decided.
+  Proposed mechanical fix: stamp the 18 landed rows INCLUDE='Y' (convention:
+  landed sources carry Y). BLOCKED by the auto-mode classifier — script staged
+  at scratchpad limbo_stamp.py, needs a non-auto run.
+- Committed: c19036ec — loader + this report. settings.json session cruft
+  left uncommitted deliberately.
+
 ## Verdicts not reached
 
 - Whether the 633-table hard gap is backlog or policy — needs the wiring
