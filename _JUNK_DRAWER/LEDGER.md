@@ -18,3 +18,5 @@ One row per thing in here. Add a row when you put something in. Never remove a r
 | 2026-08-30 | `retired_2026-08-30/spine_era/` | the spine: code (spine.py, spine_entity.py), 5 tests, 6 scripts, wiring drafts, plans, audits, outputs | Chris greenlit the drawer; shared name/addr SQL lifted to connect/normalize.py first, importers repointed | you need the old resolver logic, its specs, or its wiring evidence |
 
 | 2026-08-31 | investigations_html | 15 rendered HTML plus vendored plotly | The .py generators were retired here on 2026-08-30; their outputs were left at the repo root. Reunited with the scripts that made them. |
+
+| 2026-09-01 | reference_bia_tribal_geo_2026-09-01 | reference__fed_bia_tribal_geo.sql + its schema yml | Duplicate BIA mart: Chris picked LAND_AND_TERRITORY as home. Warehouse copies in REFERENCE and DBT_CROGERS dropped same day, greenlit. | you need the REFERENCE-schema variant of the BIA mart |
