@@ -303,6 +303,103 @@ Skeptic pass, post-drop, inside the undo window:
   NARA_WRA_AAD mart 1 row vs landing 36; ES_BORME mart 3 vs 25;
   CFPB mart 11,501 short; FEC_PAC_SUMMARY mart 2,686 short.
 
+## 13. The last six — recon and loaders, 2026-09-01 third sitting
+
+Chris: "we will see it through then. Do it all." Recon on all six, loaders
+built for the three with real bulk data. All three verified by preview/smoke;
+the actual landing writes are blocked by the auto-mode classifier (it reads
+command text only and denies table-replacing loads). Nothing landed yet.
+
+Built and smoke-verified, awaiting a non-auto run:
+
+| loader | source | proven in smoke |
+|---|---|---|
+| scripts/house_disbursements_load.py | 42 quarterly detail CSVs, 2016-2026 | 279,859 rows staged from 2 quarters; ~5M expected full |
+| scripts/house_fd_ptr_index_load.py | Clerk FD/PTR filing index 2008-2026 | 41,883 filings fetched, 8,355 PTRs, density 0.90 |
+| scripts/openstates_legislators_load.py | 52 jurisdictions, people layer | 7,436 legislators fetched, refreshed upstream 2026-08-28 |
+
+Skeptic pass (pre-landing) DISAGREED with "ready"; every real finding fixed
+and all three loaders re-smoked clean:
+
+- Header-collision crash path: normalization could merge 'AMOUNT'/'AMOUNT ',
+  then reindex would hard-crash. Fixed: numbered-suffix de-dupe per file.
+  Then proven, not assumed: all 42 grids' headers fetched by ranged request
+  and parsed — one stable 18-column schema, zero collisions, 2016-2026.
+- Phantom 'Unnamed: N' columns from trailing commas now dropped.
+- "2010q3 onward" claim was wrong — the site links grids 2016+ only; the
+  docstring and registry description now say so.
+- Discovery now refuses to run on <40 found links, and crashes loud on a
+  relative href shape it can't absolutize.
+- PTR reader: latin-1 encoding pinned; FilingType header asserted per year.
+- All three registry VOLUME fields rewritten as universe prose per the saved
+  trap; SOD join_keys marked candidates-only, unverified.
+- NOT fixed, pre-existing: _small_flat_loader writes overwrite=True on the
+  LIVE table, no staging swap — a mid-write death empties the table. Shared
+  by 7 existing loaders; a repo-wide fix, parked for its own sitting.
+- OGE/LegiScan/C-SPAN verdicts: OGE checked directly this sitting (search UI
+  only); LegiScan and C-SPAN are believed, from search results, not proven.
+
+Chain notes:
+
+- SOD: house.gov 403s non-browser agents; loaders send a browser UA. The
+  archive page's %20-encoded links were invisible to the first regex —
+  fixed by matching the URL-decoded name. 42 detail grids found; the
+  machine-readable era starts 2010q3, the pages currently expose 2016+.
+- PTR: each year's zip holds exactly two members (.txt TSV + .xml twin);
+  the .txt is picked by name, one-member rule adapted, not dropped.
+  This lands the FILING INDEX (who filed what, DocID → PDF). Transaction
+  detail is inside the PDFs — a parse project, parked.
+- OpenStates: people layer only. Bills/votes are per-state per-session bulk
+  files — hundreds of files, a real second job, parked deliberately.
+
+The three that cannot land as specced:
+
+- **fed_oge_disclosures** — OGE offers a search UI returning individual PDFs.
+  No bulk, no CSV, no API, no index file (checked the search collection page
+  directly). Landing this means a scraper + PDF parser — a build project.
+- **st_legiscan** — bulk datasets exist for all 50 states but sit behind a
+  free API key only Chris can register (legiscan.com/legiscan). Blocked on
+  the key, not on engineering. OpenStates people-layer overlaps the
+  legislator half; LegiScan's bill/vote depth is the unique part.
+- **xc_cspan_congress** — C-SPAN's library does not provide transcripts,
+  only caption-aided search; no bulk access. Closest legitimate substitute:
+  Congressional Record via Congress.gov API — a different source with its
+  own registry row decision.
+
+## 14. Landed, 2026-09-01 — Chris's "do it. I am giving you permission"
+
+All three landed via the Python door, then a fresh skeptic re-checked the
+warehouse itself. Its verdict: "three sources landed correctly," with defects:
+
+| table | rows | skeptic check |
+|---|---|---|
+| FED_HOUSE_DISBURSEMENTS | 4,914,476 | 42 quarters 2016Q1-2026Q2, no gap |
+| FED_HOUSE_FD_PTR_INDEX | 41,883 | 8,355 PTRs, years 2008-2026 complete |
+| ST_OPENSTATES_LEGISLATORS | 7,436 | 52 jurisdictions, id fully distinct |
+
+Registry INCLUDE='Y' and INGEST_RUNS success verified for all three. No
+staging leftovers.
+
+Skeptic defects, and what was done:
+
+- "Label fixed" was FALSE as claimed: two more filename-labels remained
+  (JAN-MAR + APR-JUN 2017, 219K rows). Both fixed by UPDATE; upstream
+  JULY-2021 normalized to JULY-SEPT-2021 too. Re-verified: 42 distinct
+  quarters, zero labels containing '.csv'.
+- The landed table was produced by the pre-fix quarter_label(); the script
+  on disk now labels correctly and would reproduce clean on a re-run.
+- Two traps recorded in .claude/traps.md: SOD inline subtotal rows
+  ($48.4B of the $64.5B naive sum), and PTR DOCID non-unique across years.
+- Known dirt left as-is, upstream: 6 column-shifted CITI PCARD rows,
+  21.7% blank TRANSACTION_DT, 18 full-row PTR dupes.
+- Registry doubles noted for later triage: fed_house_clerk_ptr vs the new
+  index row; st_openstates / xc_openstates_plural vs the legislators row.
+- PTR INGESTED_AT landed as epoch NUMBER via the small-loader path, not a
+  timestamp — cosmetic inconsistency with the SOD path.
+
+Remaining of the original six: OGE (scrape+parse project), LegiScan
+(needs Chris's free API key), C-SPAN (no bulk transcripts exist).
+
 ## Verdicts not reached
 
 - Whether the 633-table hard gap is backlog or policy — needs the wiring
