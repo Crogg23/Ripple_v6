@@ -3,10 +3,12 @@ version: 2
 models:
   - name: finance__fed_fec_committees_dim
     description: >
-      One-row-per-committee labeling dimension over the multi-cycle
-      FED_FEC_COMMITTEES landing table. Exists to join names onto money
-      tables without fan-out. IS_AMBIGUOUS marks ids whose cycle copies
-      disagree on name/type/party/designation/state/cand_id.
+      One-row-per-committee labeling dimension, union of two sources:
+      cm26 bulk rows win (SRC=bulk_cm26, real CYCLE), the multi-cycle
+      FED_FEC_COMMITTEES file fills the rest (SRC=cm_multicycle, CYCLE
+      null, 55% of rows). Exists to join names onto money tables without
+      fan-out. IS_AMBIGUOUS, applied to BOTH sources, marks ids whose
+      cm cycle copies disagree on name/type/party/designation/state/cand_id.
     columns:
       - name: cmte_id
         description: FEC committee id, the one property this dim exists for.

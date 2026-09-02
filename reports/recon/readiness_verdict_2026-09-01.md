@@ -190,6 +190,21 @@ B. BIA home = LAND_AND_TERRITORY, the hand-built mart. The REFERENCE model
    LIBRARY_MARTS.DBT_CROGERS.LAND_AND_TERRITORY__FED_BIA_TRIBAL_GEO.
    Verified after: exactly one BIA mart remains, LAND_AND_TERRITORY, 335 rows.
 
+### Wrap skeptic — one blocker caught in the shipped work, fixed before close
+
+- The union dim's first version hardcoded is_ambiguous=false on all bulk rows,
+  so the flag caught 1,414 money rows (0.07%) while 270,519 (14.1%) actually
+  sit on cross-cycle-conflicted ids — 99.5% of the dangerous rows flagged safe.
+  A bulk row is an unambiguous PICK; the id's history still conflicts.
+  FIXED: conflict set computed once from cm, applied to both sources; rebuilt;
+  recount confirms 270,519 flagged. dbt tests still pass. Trap line corrected.
+- New trap written: CYCLE is null on 55% of dim rows — faceting on it drops most.
+- YML description was stale from before the union — rewritten.
+- Naming nit: the rebuilt EPA mart is CASE_ENFORCEMENT_CONCLUSION_FACILITIES,
+  not its sibling CASE_FACILITIES at 204,019 rows.
+- Skeptic also noted: recipient-side OTHER_ID hit rate was never re-measured
+  after the union dim — open, small, read-only to answer.
+
 ### Untouched, by rule
 - SOD vendor matching: a project, parked.
 - New-table keyset wiring: not asked for in this fix round.
