@@ -33,3 +33,8 @@
 2026-09-01 — FED_FEC_COMMITTEES repeats 16,943 ids across cycles with NO cycle column; a raw name join inflates itoth money 2.14x. Join FINANCE__FED_FEC_COMMITTEES_DIM instead; 14.1% of real money rows (270,519) carry IS_AMBIGUOUS=true — that id's type/party/name conflicts across cycles, filter or caveat before any spend-by-attribute chart. (First shipped version flagged only cm rows, 0.07% — wrap skeptic caught it, fixed same day.)
 2026-09-01 — FINANCE__FED_FEC_COMMITTEES_DIM.CYCLE is null on 55% of rows (the cm_multicycle fills); filtering or faceting on CYCLE silently drops the majority of the dimension.
 2026-09-01 — FED_HOUSE_DISBURSEMENTS.AMOUNT is TEXT and 6 rows hold column-shifted junk from embedded commas; bare sum() throws — always try_to_number. SOD_QUARTER has 42 spellings in 6 styles; parse with care.
+
+## Registry domain column mislabels tables (found 2026-09-01, via the Things tab)
+- What was checked: HANDBOOK_CONTEXT dom, fed by the marts registry domain column.
+- The hit: 12 tables carry domain "immigration" that are not immigration — CMS Medicare FFS enrollment, CMS Hospice Enrollments, EPA SDWA service areas among them.
+- What it means: never group or filter by the registry domain column without eyeballing; the label lies on at least 12 rows. Fix belongs in the marts registry, not downstream.

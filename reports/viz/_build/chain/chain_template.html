@@ -297,6 +297,7 @@
     <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b3;">Ripple · join handbook · snapshot {{ snapshotDate }}</div>
     <h1 style="font-size: 32px; line-height: 1.12; font-weight: 600; margin: 12px 0 12px; letter-spacing: -0.035em; background: linear-gradient(90deg, #ffffff, #b6c9e0); -webkit-background-clip: text; background-clip: text; color: transparent;">Follow the joins out, one step at a time, until they run out.</h1>
     <p style="font-size: 16.5px; line-height: 1.6; color: #c8ced5; max-width: 72ch; margin: 0 0 14px; text-wrap: pretty;">{{ intro }}</p>
+    <a href="#traps-panel" style="display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: #e5a49f; text-decoration: none; border: 1px solid rgba(229,83,75,0.35); border-radius: 999px; padding: 6px 13px; margin: 0 0 16px; background: rgba(229,83,75,0.07);">&#9888; {{ trapLine }}</a>
     <div style="display: flex; gap: 28px; flex-wrap: wrap; margin: 0 0 20px;">
       <div style="flex: 1; min-width: 300px;">
         <div style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a95a3; margin-bottom: 6px;">How to read it</div>
@@ -327,6 +328,7 @@
         </div>
       </sc-for>
       <span style="margin-left: auto; font-size: 12.5px; color: #c8ced5; white-space: nowrap;">{{ chainVerdict }}</span>
+      <span sc-camel-on-click="{{ togglePlain }}" title="Switch between plain-English and official table names" style="font-size: 11.5px; color: #9fc4f5; cursor: pointer; white-space: nowrap; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(76,154,255,0.35);" style-hover="background: rgba(76,154,255,0.15);">{{ plainLabel }}</span>
       <span sc-camel-on-click="{{ reset }}" style="font-size: 11.5px; color: #9fc4f5; cursor: pointer; white-space: nowrap; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(76,154,255,0.35);" style-hover="background: rgba(76,154,255,0.15);">↺ reset</span>
     </div>
 
@@ -424,10 +426,12 @@
               </sc-for>
             </div>
           </sc-if>
-          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 14px; padding-top: 11px; border-top: 1px solid #22303e;">
+          <div sc-camel-on-click="{{ view.toggleSrcCols }}" title="Show or hide this table's column list" style="display: flex; align-items: baseline; gap: 8px; margin-top: 14px; padding-top: 11px; border-top: 1px solid #22303e; cursor: pointer; user-select: none;">
             <span style="font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #7fb6ff;">Columns</span>
             <span style="font-size: 10.5px; color: #9aa5b3;">{{ view.colCount }}</span>
+            <span style="margin-left: auto; font-size: 11px; color: #9fc4f5;">{{ view.srcColsCaret }}</span>
           </div>
+          <sc-if value="{{ view.srcColsOpen }}" hint-placeholder-val="{{ false }}">
           <div style="font-size: 11.5px; line-height: 1.55; color: #a4aeba; margin-top: 8px; padding: 9px 11px; border-radius: 8px; background: rgba(76,154,255,0.05); border: 1px solid rgba(76,154,255,0.12); text-wrap: pretty;">{{ view.colSource }}</div>
 
           <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px;">
@@ -446,6 +450,7 @@
               </div>
             </sc-for>
           </div>
+          </sc-if>
         </div>
 
         <sc-for list="{{ view.heads }}" as="h" hint-placeholder-count="2">
@@ -612,12 +617,30 @@
           </sc-for>
         </div>
       </div>
+      <div style="grid-column: 1 / -1; border-top: 1px solid #1c232c; padding-top: 12px;">
+        <div id="traps-panel" style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #e5534b; margin-bottom: 6px;">&#9888; Traps — columns that lie</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; font-size: 12.5px; line-height: 1.6; color: #c8ced5;">
+          <sc-for list="{{ traps }}" as="tr" hint-placeholder-count="4">
+            <div style="display: flex; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: #e5534b; flex-shrink: 0; margin-top: 8px;"></span><span>{{ tr }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="grid-column: 1 / -1; border-top: 1px solid #1c232c; padding-top: 12px;">
+        <div style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #d9a441; margin-bottom: 6px;">Corrections — what an earlier pass got wrong</div>
+        <div style="display: flex; flex-direction: column; gap: 7px; font-size: 12.5px; line-height: 1.6;">
+          <sc-for list="{{ corrections }}" as="co" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: #d9a441; flex-shrink: 0; margin-top: 8px;"></span><span><span style="color: #8a95a3; text-decoration: line-through;">{{ co.was }}</span> <span style="color: #e8eaed;">{{ co.now }}</span></span></div>
+          </sc-for>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1560, &quot;height&quot;: 950}}">
 const TABLES = window.HANDBOOK_TABLES || [];
+const HUMAN = window.HANDBOOK_HUMAN || {};
+let PLAIN = true;
 const META = window.HANDBOOK_META || { snapshotDate: '' };
 const CTX = window.HANDBOOK_CONTEXT || {};
 const BY_ID = {};
@@ -631,7 +654,7 @@ const TIER_LEGEND = [
   ['solid', 'certain', 'The same official ID appears in both datasets'],
   ['strong', 'very likely', 'The same code in both — but codes can be reused'],
   ['translation', 'verified translation', 'Two different ID systems, with a known conversion between them'],
-  ['measured', 'measured, not in the spine yet', 'Overlap measured live on 08-29/30; where the card says so, 60 matched pairs were name-checked. The live machine does not use these joins yet — only the tiers above are wired in'],
+  ['measured', 'measured, not in the spine yet', 'Overlap measured live, latest ' + (META.measuredOn || '2026-08-31') + '; where the card says so, 60 matched pairs were name-checked. The live machine does not use these joins yet — only the tiers above are wired in'],
   ['location', 'same place only', 'Geography. Never proof that two records are the same thing'],
 ];
 const KEY_TITLE = {
@@ -671,7 +694,12 @@ function cleanLabel(s) {
     .replace(/\b[A-Z][A-Z0-9]+\b/g, w => (ACRONYMS[w] ? w : w.charAt(0) + w.slice(1).toLowerCase()))
     .replace(/(\S)\s(For|And|By|Of|The|To|In|On|Or|With|A|An)\s/g, (m, pre, w) => `${pre} ${w.toLowerCase()} `);
 }
+function cardLabel(c) {
+  if (PLAIN && HUMAN[c.id]) return HUMAN[c.id];
+  return cleanLabel(c.lbl) || c.id;
+}
 function labelOf(id) {
+  if (PLAIN && HUMAN[id]) return HUMAN[id];
   const t = BY_ID[id];
   return t ? (cleanLabel(t.label) || id) : id;
 }
@@ -707,13 +735,22 @@ function spotCheck(c) {
 }
 const PLACE_COLOR = { state: '#8fceac', zip: '#8fceac', county: '#8fceac', fips: '#8fceac', coordinates: '#8fceac', city: '#7fb6ff' };
 function placeRows(s) {
-  return (s.place || []).map(p => ({
+  const all = s.place || [];
+  const junk = all.filter(p => !p.trap && p.fill != null && p.fill < 1);
+  const keep = junk.length > 3 ? all.filter(p => junk.indexOf(p) < 0) : all;
+  const rows = keep.map(p => ({
     label: p.label || p.kind, column: p.column, color: p.trap ? '#e5534b' : (PLACE_COLOR[p.kind] || '#9aa5b3'),
     fill: p.fill == null ? '' : p.fill + '% filled', verdict: p.verdict || '',
     others: p.others ? Math.max(0, p.others - 1) + ' other tables carry a clean ' + (p.label || p.kind) : '',
     hasNote: !!(p.note || p.trap), note: (p.trap ? '⚠ trap — ' : '') + (p.note || ''),
     title: p.column + ' · ' + (p.verdict || '') + (p.distinct != null ? ' · ' + Number(p.distinct).toLocaleString() + ' distinct values' : '') + ' · value-checked ' + ((META.place || {}).measuredOn || ''),
   }));
+  if (junk.length > 3) rows.push({
+    label: 'near-empty', column: junk.length + ' more place columns hidden', color: '#6b7684',
+    fill: '', verdict: 'each under 1% filled — nothing to join on', others: '', hasNote: false, note: '',
+    title: junk.map(p => p.column).join(', '),
+  });
+  return rows;
 }
 function timeRows(s) {
   return (s.time || []).map(c => ({
@@ -875,23 +912,32 @@ function dossierOf(id, width) {
   notes.forEach(n => { h += 18 + lines(n.text, Math.floor(per * 0.9)) * 19; });
   if (d.hasPlace) { h += 48; d.place.forEach(p => { h += 42 + (p.hasNote ? lines(p.note, per) * 17 : 0); }); }
   if (d.hasTime) { h += 48 + (d.clock ? lines(d.clock, per) * 18 : 0); d.time.forEach(c => { h += 30 + (c.hasDesc ? lines(c.desc, Math.floor(per * 0.9)) * 17 : 0); }); }
+  const hNoCols = Math.round((h + 40) * 1.03) + 14;
   h += 34 + lines(d.colSource, per) * 18 + 28;
   cols.forEach(c => {
-    const chipChars = c.tags.reduce((n, t) => n + t.text.length + 4, 0);
-    h += lines(c.name, Math.floor(per * 0.95)) * 16 + lines(c.desc, Math.floor(per * 0.9)) * 19 + Math.ceil(chipChars / (per * 0.75)) * 24 + 16 + 16;
+    h += lines(c.name, Math.floor(per * 0.95)) * 16 + lines(c.desc, Math.floor(per * 0.9)) * 19 + c.tags.length * 28 + 24 + 16;
     if (c.hasExpr) h += lines(c.expr, per) * 14;
   });
   d.h = Math.round(h * 1.03) + 14;
+  d.hNoCols = hNoCols;
   return d;
 }
 
 class Component extends DCLogic {
-  state = { chain: [{ id: SOURCE.id, via: null }], hover: null, open: {}, pick: '', pickOpen: false };
+  state = { chain: [{ id: SOURCE.id, via: null }], hover: null, open: {}, pick: '', pickOpen: false, srcColsOpen: false, pad: 0 };
   onFilter = e => this.setState({ pick: e.target.value, pickOpen: true });
   togglePick = () => this.setState(s => ({ pickOpen: !s.pickOpen }));
-  pickTable = id => { if (BY_ID[id]) this.setState({ chain: [{ id, via: null }], hover: null, open: {}, pickOpen: false, pick: '' }); };
+  toggleSrcCols = () => this.setState(s => ({ srcColsOpen: !s.srcColsOpen, pad: 0 }));
+  _fitCanvas = () => {
+    const inner = document.querySelector('[data-canvas="scroll"] > div');
+    if (!inner) return;
+    const need = inner.scrollHeight - inner.clientHeight;
+    if (need > 4) this.setState(s => ({ pad: (s.pad || 0) + need + 10 }));
+  };
+  pickTable = id => { if (BY_ID[id]) this.setState({ chain: [{ id, via: null }], hover: null, open: {}, pickOpen: false, pick: '', srcColsOpen: false, pad: 0 }); };
 
   componentDidUpdate() {
+    window.requestAnimationFrame(this._fitCanvas);
     const n = this.state.chain.length;
     const el = document.querySelector('[data-canvas="scroll"]');
     if (el && this._lastDepth !== undefined && n > this._lastDepth) {
@@ -899,12 +945,12 @@ class Component extends DCLogic {
     }
     this._lastDepth = n;
   }
-  componentDidMount() { this._lastDepth = this.state.chain.length; }
+  componentDidMount() { this._lastDepth = this.state.chain.length; window.__openPivot = this.pickTable; window.requestAnimationFrame(this._fitCanvas); }
 
   openAt = (depth, id, via) => {
-    this.setState(s => ({ chain: s.chain.slice(0, depth + 1).concat([{ id, via }]), hover: null }));
+    this.setState(s => ({ chain: s.chain.slice(0, depth + 1).concat([{ id, via }]), hover: null, pad: 0 }));
   };
-  truncate = depth => this.setState(s => ({ chain: s.chain.slice(0, depth + 1), hover: null }));
+  truncate = depth => this.setState(s => ({ chain: s.chain.slice(0, depth + 1), hover: null, pad: 0 }));
 
   renderVals() {
     const chain = this.state.chain;
@@ -1030,7 +1076,7 @@ class Component extends DCLogic {
               this.setState(s => {
                 const open = Object.assign({}, s.open);
                 if (open[key]) delete open[key]; else open[key] = true;
-                return { open };
+                return { open, pad: 0 };
               });
             },
             follow: e => {
@@ -1038,9 +1084,9 @@ class Component extends DCLogic {
               if (kind === 'loop') { const at = chain.map(x => x.id).indexOf(c.id); if (at >= 0) this.truncate(at); return; }
               if (onwardTotal) this.openAt(depth, c.id, c.jk);
             },
-            label: (kind === 'loop' ? '↩ ' : '') + (cleanLabel(c.lbl) || c.id),
-            labelPre: (() => { const full = cleanLabel(c.lbl) || c.id; const m = full.match(/^(.*?(?:\)|\w))\s*(?::|—)\s*(.+)$/); return m ? m[1] : ''; })(),
-            labelMain: (() => { const full = cleanLabel(c.lbl) || c.id; const m = full.match(/^(.*?(?:\)|\w))\s*(?::|—)\s*(.+)$/); return (kind === 'loop' ? '↩ ' : '') + (m ? m[2] : full); })(),
+            label: (kind === 'loop' ? '↩ ' : '') + (cardLabel(c)),
+            labelPre: (() => { const full = cardLabel(c); const m = full.match(/^(.*?(?:\)|\w))\s*(?::|—)\s*(.+)$/); return m ? m[1] : ''; })(),
+            labelMain: (() => { const full = cardLabel(c); const m = full.match(/^(.*?(?:\)|\w))\s*(?::|—)\s*(.+)$/); return (kind === 'loop' ? '↩ ' : '') + (m ? m[2] : full); })(),
             fg: kind === 'known' || kind === 'loop' ? '#a4aeba' : '#e8eaed',
             status: kind === 'open'
               ? 'open — its joins are the next column'
@@ -1048,7 +1094,7 @@ class Component extends DCLogic {
                 ? 'loops back — already in your chain'
                 : kind === 'known'
                   ? 'already reachable in ' + seen[c.id] + (seen[c.id] === 1 ? ' step' : ' steps')
-                  : 'new at step ' + (depth + 1) + ' · ' + [c.tier === 'measured' ? verdictShort(c) : '', fmtRows(ctx.rows), (() => { const full = cleanLabel(c.lbl) || c.id; const m = full.match(/^(.*?(?:\)|\w))\s*(?::|—)\s*(.+)$/); return m ? m[1] : agencyOf(c.id); })()].filter(Boolean).join(' · '),
+                  : 'new at step ' + (depth + 1) + ' · ' + [c.tier === 'measured' ? verdictShort(c) : '', fmtRows(ctx.rows), (() => { const full = cardLabel(c); const m = full.match(/^(.*?(?:\)|\w))\s*(?::|—)\s*(.+)$/); return m ? m[1] : agencyOf(c.id); })()].filter(Boolean).join(' · '),
             statusColor: kind === 'open' ? '#7fb6ff' : (kind === 'new' ? '#9aa5b3' : '#8f9aa8'),
             pct: c.pct != null ? c.pct + '%' : (c.tier === 'location' ? 'place' : '—'),
             hasPct: c.pct != null,
@@ -1062,7 +1108,7 @@ class Component extends DCLogic {
             bg: isNext ? '#141e29' : (hover === depth + ':' + c.id ? '#161f29' : '#10161d'),
             op: hover === null || hot ? 1 : 0.36,
             cursor: onwardTotal ? 'pointer' : 'default',
-            title: 'Click to open this table\u2019s columns and notes. ' + (cleanLabel(c.lbl) || c.id) + ' · ' + c.id
+            title: 'Click to open this table\u2019s columns and notes. ' + (cardLabel(c)) + ' · ' + c.id
               + ' · joined on ' + c.jk + ': ' + step.id + '.' + c.lc + ' = ' + c.id + '.' + c.rc
               + (c.pct != null ? ' · ' + c.pct + '% of ' + shortOf(step.id) + '\u2019s ' + c.jk + ' values were found there' : ' · geography only')
               + (onwardTotal ? ' · ' + onwardTotal + ' joins of its own (' + onwardNew + ' of them new from here)' : ' · no joins of its own')
@@ -1087,7 +1133,7 @@ class Component extends DCLogic {
     });
 
     // the start box is content-sized; make sure the canvas is at least as tall as it
-    maxBottom = Math.max(maxBottom, TOP + 250 + (this.state.pickOpen ? 330 : 0) + dossierOf(chain[0].id, C0_W).h);
+    maxBottom = Math.max(maxBottom, TOP + 250 + (this.state.pickOpen ? 330 : 0) + (this.state.srcColsOpen ? dossierOf(chain[0].id, C0_W).h : dossierOf(chain[0].id, C0_W).hNoCols));
     const last = chain[chain.length - 1];
     const lastTable = BY_ID[last.id];
     const lastConns = lastTable ? lastTable.conns : [];
@@ -1113,6 +1159,9 @@ class Component extends DCLogic {
         'Every table\u2019s + panel lists its value-checked place columns (' + ((META.place || {}).tables || 0) + ' tables, checked ' + ((META.place || {}).measuredOn || '') + ') and its clocks (' + ((META.time || {}).tables || 0) + ' tables). Same state / ZIP / county / day is a real join in Ripple, with no ID needed — but never proof that two records are the same thing.',
       ],
       legend: TIER_LEGEND.map(([t, label, title]) => ({ color: TIER_COLOR[t], label, title })),
+      traps: META.traps || [],
+      trapLine: (META.traps || []).length + ' traps and ' + (META.corrections || []).length + ' corrections live at the bottom — read them before you join',
+      corrections: (META.corrections || []).map(c => ({ was: c.was || '', now: c.now || '' })),
       chain: chain.map((c, i) => ({
         label: shortOf(c.id),
         hasVia: !!c.via,
@@ -1131,7 +1180,9 @@ class Component extends DCLogic {
         click: () => this.truncate(i),
       })),
       chainVerdict,
-      reset: () => this.setState({ chain: [{ id: chain[0].id, via: null }], hover: null, open: {} }),
+      reset: () => this.setState({ chain: [{ id: chain[0].id, via: null }], hover: null, open: {}, pad: 0 }),
+      plainLabel: PLAIN ? 'official names' : 'plain names',
+      togglePlain: () => { PLAIN = !PLAIN; this.setState(s => ({ chain: s.chain, hover: s.hover, open: s.open, pick: s.pick, pickOpen: s.pickOpen, srcColsOpen: s.srcColsOpen, pad: 0 })); },
       view: {
         pickText: this.state.pick || '',
         pickOpen: !!this.state.pickOpen,
@@ -1156,7 +1207,7 @@ class Component extends DCLogic {
         })(),
         onFilter: this.onFilter,
         width: colX(chain.length) + COL_W + 20,
-        height: maxBottom + TOP,
+        height: maxBottom + TOP + (this.state.pad || 0),
         sourceTop: TOP,
         sourceLabel: labelOf(src.id),
         sourceId: src.id,
@@ -1178,7 +1229,10 @@ class Component extends DCLogic {
         colSource: ((SCHEMA[src.id] || {}).cols || []).some(c => !c.x)
           ? 'The full select list of the dbt model that builds this table — exactly what you can select.'
           : 'This table\u2019s model selects everything straight from the raw landing table, so the repo holds no explicit column list. These are only the columns the join map and the key audit prove exist; the rest needs an INFORMATION_SCHEMA.COLUMNS dump from Snowflake.',
-        sourceCols: ((SCHEMA[src.id] || {}).cols || []).map(colEntry),
+        sourceCols: this.state.srcColsOpen ? ((SCHEMA[src.id] || {}).cols || []).map(colEntry) : [],
+        srcColsOpen: !!this.state.srcColsOpen,
+        srcColsCaret: this.state.srcColsOpen ? 'hide \u25b4' : 'show \u25be',
+        toggleSrcCols: this.toggleSrcCols,
         sourceHasPlace: !!((SCHEMA[src.id] || {}).place || []).length, sourcePlace: placeRows(SCHEMA[src.id] || {}), sourcePlaceSummary: placeSummary(SCHEMA[src.id] || {}),
         sourceHasTime: !!((SCHEMA[src.id] || {}).time || []).length, sourceTime: timeRows(SCHEMA[src.id] || {}), sourceClock: clockLine(SCHEMA[src.id] || {}), sourceTimeSummary: timeSummary(SCHEMA[src.id] || {}),
         heads, groups, cards, lines: paths,
