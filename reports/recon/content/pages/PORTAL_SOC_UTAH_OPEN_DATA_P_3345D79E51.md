@@ -1,0 +1,223 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_3345D79E51
+
+rows 616  columns 93  scan 4.0s
+
+roles: amount 22, audit 2, category 39, date 2, other 27, who 2
+
+## when
+
+DOC_CTRL_NUM
+  2011       421  ##############################
+  2014       195  ##############
+
+INGESTED_AT
+  2026       616  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| C_5_1_FUGITIVE_AIR | 616 | 0 | 0 | 18.7K | 46.0K | 452.1K |
+| C_5_2_STACK_AIR | 616 | 0 | 0 | 21.7K | 60.7K | 554.7K |
+| C_5_5_3_SURFACE_IMPOUNDMENT | 616 | 0 | 0 | 0 | 1.1K | 1.1K |
+| C_5_5_3B_OTHER_SURFACE_IMP | 616 | 0 | 0 | 0 | 288 | 434.58 |
+| ON_SITE_RELEASE_TOTAL | 616 | 0 | 0 | 154.7K | 213.2K | 4.59M |
+| C_6_1_POTW_TRANSFERS_FOR_RELEASE | 616 | 0 | 0 | 405.90 | 750 | 8.8K |
+
+## who
+
+UNIT_OF_MEASURE by rows
+       616  Pounds
+
+UNIT_OF_MEASURE by dollars
+       4.59M      616 rows  Pounds
+
+SRC_SHA256 by rows
+       616  690ba90683664fc0c061252c098f822e2935241f07f8e762eff83a6ca49cd877
+
+SRC_SHA256 by dollars
+       4.59M      616 rows  690ba90683664fc0c061252c098f822e2935241f07f8e762eff83a6ca49c
+
+## who x when
+
+UNIT_OF_MEASURE by DOC_CTRL_NUM, dollars = ON_SITE_RELEASE_TOTAL
+  Pounds                                    2011:3.14M 2014:1.45M
+
+SRC_SHA256 by DOC_CTRL_NUM, dollars = ON_SITE_RELEASE_TOTAL
+  690ba90683664fc0c061252c098f822e2935241f  2011:3.14M 2014:1.45M
+
+## what
+
+YEAR: 2009 10%, 2013 9%, 2006 9%, 2005 9%, 2000 9%, 2007 8%, 2002 8%, 2008 8%, 2004 8%, 2001 8%, 2003 8%, 2011 7%
+
+TRI_FACILITY_ID: 84321LNDHL710NO 30%, 84321GSSNR1051N 19%, 84321JRDNP1070W 16%, 84335CCHVL6350N 7%, 84321BCRXX1895N 6%, 84319MLLRN410NO 5%, 84321SCHRB885N6 4%, 84335SCHRB218W6 3%, 84321BRNSN1400N 3%, 84321LGNCC870WE 3%, 84321CMPBL815W1 2%, 84321NVRNC1073W 2%
+
+FACILITY_NAME: TTM TECHNOLOGIES INC 29%, GOSSNER FOODS INC. 18%, THOMAS PETROLEUM LLC LOGAN 16%, SCHREIBER FOODS INC 7%, UTAH PROTEIN LLC 6%, BAICOR 6%, SWIFT BEEF CO 5%, LOGAN COACH INC. 5%, BOURNS NETWORKS 3%, CAMPBELL SCIENTIFIC INC 2%, INOVAR INC 2%, YESCO ELECTRONICS LLC 1%
+
+STREET_ADDRESS: 710 N 600 W 30%, 1051 N 1000 W 19%, 1070 W 200 N 16%, 6350 N 2150 W 7%, 1895 N 600 W 6%, 410 N 200 W 5%, 885 N 600 W 4%, 2180 W 6550 N 3%, 1400 N. 1000 W. 3%, 870 W. 800 N. 3%, 815 W 1800 N 2%, 1073 W 1700 N 2%
+
+PRIMARY_SIC: nan 39%, 3672 18%, 2022 13%, 5171 8%, 2026 5%, 3799 5%, 2011 3%, 3676 3%, 2875 2%, 3699 2%, 3949 1%, 3273 1%
+
+SIC_2: nan 84%, NA 16%
+
+PRIMARY_NAICS: 334412 30%, 311513 24%, 424710 16%, 311511 6%, 325314 6%, 311611 5%, 334415 3%, 339999 3%, 334513 2%, 334418 2%, 336999 2%, 311510 2%
+
+CHEMICAL: NITRIC ACID 23%, NITRATE COMPOUNDS 20%, AMMONIA 11%, LEAD 8%, LEAD COMPOUNDS 7%, PHOSPHORIC ACID 7%, XYLENE (MIXED ISOMERS) 5%, COPPER COMPOUNDS 5%, HYDROCHLORIC ACID (1995 AND AF 4%, TOLUENE 4%, FORMALDEHYDE 4%, CERTAIN GLYCOL ETHERS 4%
+
+CAS_COMPOUND_ID: 7697372 23%, N511 20%, 7664417 11%, 7439921 8%, N420 7%, 7664382 7%, 1330207 5%, N100 5%, 7647010 4%, 108883 4%, 50000 4%, N230 4%
+
+CLEAR_AIR_ACT_CHEMICAL: NO 59%, YES 41%
+
+CLASSIFICATION: TRI 93%, PBT 7%
+
+METAL: NO 80%, YES 20%
+
+METAL_CATEGORY: 0 80%, 1 20%
+
+CARCINOGEN: NO 87%, YES 13%
+
+FORM_TYPE: R 81%, A 19%
+
+C_5_3_WATER: 0 99%, 530 0%, 1486 0%, 17677 0%, 31873 0%, 88778 0%, 61579 0%, 17162 0%
+
+C_5_5_1B_OTHER_LANDFILLS: 0 99%, 39 0%, 1010 0%, 1015 0%, 35 0%, 45 0%, 50 0%, 42 0%
+
+C_5_5_2_LAND_TREATMENT: 0 98%, 5 0%, 71077 0%, 111179 0%, 12 0%, 56525 0%, 107351 0%, 49963 0%, 8 0%, 123997 0%, 45401 0%, 111495 0%
+
+C_5_5_4_OTHER_DISPOSAL: 0 100%, 40 0%, 4 0%
+
+C_6_2_M72: 0 97%, 5 1%, 14000 0%, 39 0%, 135325 0%, 10536 0%, 142846 0%, 2918 0%, 1010 0%, 1015 0%, 380 0%, 20000 0%
+
+C_6_2_M63: 0 100%, 128702 0%
+
+C_6_2_M67: 0 99%, 144548 0%, 174100 0%, 170970 0%, 152589 0%
+
+C_6_2_M64: 0 98%, 250 2%, 5 0%
+
+C_6_2_M65: 0 98%, 102 0%, 294 0%, 3037 0%, 214 0%, 314 0%, 2968 0%, 1167 0%, 347 0%, 334 0%, 619 0%, 3130 0%
+
+C_6_2_M73: 0 99%, 5 0%, 27 0%, 13 0%, 14 0%, 44 0%, 750 0%
+
+C_6_2_M79: 0 100%, 488 0%
+
+C_6_2_M90: 0 99%, 250 0%, 255 0%, 10 0%, 5 0%
+
+C_6_2_M26: 0 98%, 1500 0%, 2983 0%, 491 0%, 1098 0%, 2956 0%, 3407 0%, 3085 0%, 3166 0%, 3063 0%, 4776 0%, 4337 0%
+
+C_6_2_M56: 0 98%, 755 0%, 5659 0%, 1887 0%, 5353 0%, 2449 0%, 1382 0%, 2600 0%, 3500 0%, 4100 0%, 10000 0%, 3800 0%
+
+C_6_2_M92: 0 99%, 490 0%, 522 0%, 3812 0%, 1271 0%, 1257 0%, 3770 0%
+
+C_6_2_M61: 0 97%, 250 1%, 9963 0%, 12766 0%, 29282 0%, 15380 0%, 54584 0%, 18332 0%, 24384 0%, 23349 0%, 13460 0%, 17311 0%
+
+C_6_2_M69: 0 98%, 250 1%, 5654 0%, 4105 0%, 67991 0%, 16400 0%, 12700 0%, 70627 0%, 60361 0%, 12500 0%, 12100 0%, 11000 0%
+
+C_8_3_ENERGY_RECOVERY_OFF_SITE: 0 98%, 755 0%, 490 0%, 522 0%, 3812 0%, 1271 0%, 1257 0%, 3770 0%, 5660 0%, 1887 0%, 5353 0%, 2449 0%
+
+C_8_4_RECYCLING_ON_SITE: 0 98%, 14170 0%, 16659 0%, 16584 0%, 20664 0%, 51986 0%, 48417 0%, 2031 0%, 1582 0%, 1314 0%, 2270 0%, 2280 0%
+
+PARENT_COMPANY_NAME: TTM TECHNOLOGIES INC 29%, NA 27%, THOMAS PETROLEUM LLC 15%, SCHREIBER FOODS INC 7%, PROTIENT INC 6%, JBS USA LLC 5%, BOURNS INC 3%, LOGAN COACH INC 3%, INOVAR 2%, YOUNG ELECTRIC SIGN CO 1%, ICON HEALTH & FITNESS INC 1%, OLDCASTLE MATERIALS INC 1%
+
+PARENT_COMPANY_DB_NUMBER: NA 30%, 92280015 28%, 39846068 15%, 2812865 7%, nan 6%, 48124978 5%, 8255754 3%, 8.31E+08 2%, 24945706 1%, 9082918 1%, 83922229 1%, 6.09E+08 1%
+
+LOCATION_1: {"latitude": "41.74506", "long 30%, {"latitude": "41.7511", "longi 19%, {"latitude": "41.73567", "long 16%, {"latitude": "41.84777", "long 7%, {"latitude": "41.76676", "long 6%, {"latitude": "41.64377", "long 5%, {"latitude": "41.74838", "long 4%, {"latitude": "41.85091", "long 3%, {"latitude": "41.75796", "long 3%, {"latitude": "41.74697", "long 3%, {"latitude": "41.76534", "long 2%, {"latitude": "41.76358", "long 2%
+
+C_8_8_ONE_TIME_RELEASE: nan 62%, 0 37%, 534 0%, 1 0%, 5 0%, 100 0%, 500 0%, 3400 0%
+
+NAICS_2: nan 97%, 311511 2%, 334516 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| YEAR | category | 24 | 0 | 2009 37; 2013 33; 2006 33; 2005 33 |
+| TRI_FACILITY_ID | category | 24 | 0 | 84321LNDHL710NO 173; 84321GSSNR1051N 106; 84321JRDNP1070W 92; 84335CCHVL6350N 38 |
+| FACILITY_NAME | category | 20 | 0 | TTM TECHNOLOGIES INC 173; GOSSNER FOODS INC. 106; THOMAS PETROLEUM LLC LOGA 92; SCHREIBER FOODS INC 40 |
+| STREET_ADDRESS | category | 24 | 0 | 710 N 600 W 173; 1051 N 1000 W 106; 1070 W 200 N 92; 6350 N 2150 W 38 |
+| COUNTY | other | 1 | 0 | CACHE 616 |
+| ST | other | 1 | 0 | UT 616 |
+| FEDERAL_FACILITY | other | 1 | 0 | NO 616 |
+| PRIMARY_SIC | category | 16 | 0 | nan 238; 3672 109; 2022 80; 5171 51 |
+| SIC_2 | category | 2 | 0 | nan 518; NA 98 |
+| PRIMARY_NAICS | category | 19 | 0 | 334412 173; 311513 140; 424710 92; 311511 35 |
+| DOC_CTRL_NUM | date | 4 | 0 | 1310000000000 270; 1300000000000 151; 1400000000000 101; 1390000000000 94 |
+| CHEMICAL | category | 37 | 0 | NITRIC ACID 103; NITRATE COMPOUNDS 89; AMMONIA 49; LEAD 38 |
+| CAS_COMPOUND_ID | category | 36 | 0 | 7697372 103; N511 89; 7664417 49; 7439921 38 |
+| CLEAR_AIR_ACT_CHEMICAL | category | 2 | 0 | NO 362; YES 254 |
+| CLASSIFICATION | category | 2 | 0 | TRI 575; PBT 41 |
+| METAL | category | 2 | 0 | NO 493; YES 123 |
+| METAL_CATEGORY | category | 2 | 0 | 0 493; 1 123 |
+| CARCINOGEN | category | 2 | 0 | NO 538; YES 78 |
+| FORM_TYPE | category | 2 | 0 | R 500; A 116 |
+| UNIT_OF_MEASURE | who | 1 | 0 | Pounds 616 |
+| C_5_1_FUGITIVE_AIR | amount | 94 | 0 | 0 403; 5 49; 250 35; 1 10 |
+| C_5_2_STACK_AIR | amount | 105 | 0 | 0 395; 250 44; 750 27; 5 18 |
+| C_5_3_WATER | category | 8 | 0 | 0 609; 530 1; 1486 1; 17677 1 |
+| C_5_4_1_UNDERGROUND_CLASS_I | other | 1 | 0 | 0 616 |
+| C_5_4_2_UNDERGROUND_CLASS_II_V | other | 1 | 0 | 0 616 |
+| C_5_5_1A_RCRA_C_LANDFILLS | other | 1 | 0 | 0 616 |
+| C_5_5_1B_OTHER_LANDFILLS | category | 8 | 0 | 0 608; 39 2; 1010 1; 1015 1 |
+| C_5_5_2_LAND_TREATMENT | category | 38 | 0 | 0 577; 5 2; 71077 2; 111179 1 |
+| C_5_5_3_SURFACE_IMPOUNDMENT | amount | 2 | 0 | 0 615; 1105.95 1 |
+| C_5_5_3A_RCRA_C_SURFACE_IMP | other | 1 | 0 | 0 616 |
+| C_5_5_3B_OTHER_SURFACE_IMP | amount | 6 | 0 | 0 611; 23 1; 22.96 1; 23.3 1 |
+| C_5_5_4_OTHER_DISPOSAL | category | 3 | 0 | 0 614; 40 1; 4 1 |
+| ON_SITE_RELEASE_TOTAL | amount | 192 | 0 | 0 318; 755 16; 10 14; 500 13 |
+| C_6_1_POTW_TRANSFERS_FOR_RELEASE | amount | 61 | 0 | 0 539; 250 8; 750 4; 9 2 |
+| C_6_1_POTW_TRANSFERS_FOR_TREATM | other | 54 | 0 | 0 548; 5 9; 750 6; 250 3 |
+| C_6_1_POTW_TOTAL_TRANSFERS | amount | 61 | 0 | 0 539; 250 8; 750 4; 9 2 |
+| C_6_2_M10 | other | 1 | 0 | 0 616 |
+| C_6_2_M41 | other | 1 | 0 | 0 616 |
+| C_6_2_M62 | other | 1 | 0 | 0 616 |
+| C_6_2_M71 | other | 1 | 0 | 0 616 |
+| C_6_2_M81 | other | 1 | 0 | 0 616 |
+| C_6_2_M82 | other | 1 | 0 | 0 616 |
+| C_6_2_M72 | category | 23 | 0 | 0 589; 5 4; 14000 2; 39 2 |
+| C_6_2_M63 | category | 2 | 0 | 0 615; 128702 1 |
+| C_6_2_M66 | other | 1 | 0 | 0 616 |
+| C_6_2_M67 | category | 5 | 0 | 0 612; 144548 1; 174100 1; 170970 1 |
+| C_6_2_M64 | category | 3 | 0 | 0 603; 250 11; 5 2 |
+| C_6_2_M65 | category | 19 | 0 | 0 598; 102 1; 294 1; 3037 1 |
+| C_6_2_M73 | category | 7 | 0 | 0 609; 5 2; 27 1; 13 1 |
+| C_6_2_M79 | category | 2 | 0 | 0 615; 488 1 |
+| C_6_2_M90 | category | 5 | 0 | 0 610; 250 3; 255 1; 10 1 |
+| C_6_2_M94 | amount | 4 | 0 | 0 613; 1.5 1; 17.5 1; 3.78 1 |
+| C_6_2_M99 | amount | 6 | 0 | 0 609; 750 3; 0.01 1; 339 1 |
+| OFF_SITE_RELEASE_TOTAL | amount | 62 | 0 | 0 530; 250 14; 5 8; 750 4 |
+| C_6_2_M20 | other | 1 | 0 | 0 616 |
+| C_6_2_M24 | amount | 75 | 0 | 0 543; 4638.88 1; 317.14 1; 27 1 |
+| C_6_2_M26 | category | 39 | 0 | 0 577; 1500 2; 2983 1; 491 1 |
+| C_6_2_M28 | other | 1 | 0 | 0 616 |
+| C_6_2_M93 | amount | 27 | 0 | 0 589; 21000 2; 0.156 1; 476.17 1 |
+| OFF_SITE_RECYCLED_TOTAL | amount | 128 | 0 | 0 489; 21000 2; 2983 1; 4638.88 1 |
+| C_6_2_M56 | category | 14 | 0 | 0 603; 755 1; 5659 1; 1887 1 |
+| C_6_2_M92 | category | 7 | 0 | 0 610; 490 1; 522 1; 3812 1 |
+| OFF_SITE_RECOVERY_TOTAL | amount | 20 | 0 | 0 597; 755 1; 490 1; 522 1 |
+| C_6_2_M40 | other | 1 | 0 | 0 616 |
+| C_6_2_M50 | other | 1 | 0 | 0 616 |
+| C_6_2_M54 | other | 1 | 0 | 0 616 |
+| C_6_2_M61 | category | 17 | 0 | 0 593; 250 7; 9963 2; 12766 1 |
+| C_6_2_M69 | category | 16 | 0 | 0 598; 250 4; 5654 1; 4105 1 |
+| C_6_2_M95 | other | 1 | 0 | 0 616 |
+| OFF_SITE_TREATED_TOTAL | amount | 31 | 0 | 0 575; 250 11; 9963 2; 12766 1 |
+| TOTAL_RELEASES | amount | 254 | 0 | 0 277; 755 16; 5 13; 255 11 |
+| C_8_1_RELEASES | other | 130 | 0 | 0 449; 5 8; 10 4; 400 4 |
+| C_8_1A_ON_SITE_CONTAINED_REL | other | 1 | 0 | 0 616 |
+| C_8_1B_ON_SITE_OTHER_RELEASES | amount | 114 | 0 | 0 466; 3 8; 1.8 7; 6 7 |
+| C_8_1C_OFF_SITE_CONTAINED_REL | amount | 23 | 0 | 0 583; 250 11; 5 2; 0.15926399999999999 1 |
+| C_8_1D_OFF_SITE_OTHER_RELEASES | amount | 66 | 0 | 0 538; 250 4; 9 2; 0.010999999999999999 2 |
+| C_8_2_ENERGY_RECOVERY_ON_SITE | other | 1 | 0 | 0 616 |
+| C_8_3_ENERGY_RECOVERY_OFF_SITE | category | 19 | 0 | 0 597; 755 1; 490 1; 522 1 |
+| C_8_4_RECYCLING_ON_SITE | category | 20 | 0 | 0 597; 14170 1; 16659 1; 16584 1 |
+| C_8_5_RECYCLING_OFF_SITE | amount | 119 | 0 | 0 495; 33000 3; 27000 2; 21000 2 |
+| C_8_6_TREATMENT_ON_SITE | other | 203 | 0 | 0 385; 20000 4; 17000 4; 69000 3 |
+| C_8_7_TREATMENT_OFF_SITE | other | 69 | 0 | 0 538; 200 5; 5 2; 80 2 |
+| PROD_WASTE_8_1_THRU_8_7 | amount | 460 | 0 | 0 142; 10 4; 112815 3; 111179 3 |
+| PARENT_COMPANY_NAME | category | 17 | 0 | TTM TECHNOLOGIES INC 173; NA 166; THOMAS PETROLEUM LLC 92; SCHREIBER FOODS INC 40 |
+| PARENT_COMPANY_DB_NUMBER | category | 13 | 0 | NA 184; 92280015 173; 39846068 92; 2812865 40 |
+| LOCATION_1 | category | 24 | 0 | {"latitude": "41.74506",  173; {"latitude": "41.7511", " 106; {"latitude": "41.73567",  92; {"latitude": "41.84777",  38 |
+| COMPUTED_REGION_9Z68_3KQ5 | other | 1 | 0 | 2986 616 |
+| C_8_8_ONE_TIME_RELEASE | category | 8 | 0 | nan 385; 0 225; 534 1; 1 1 |
+| C_8_9_PRODUCTION_RATIO | amount | 106 | 0 | nan 111; 0 71; 1.1499999999999999 24; 0.98 20 |
+| NAICS_2 | category | 3 | 0 | nan 600; 311511 15; 334516 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:49:33.08129 616 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 73452ac5-d518-46d9-ba64-c 616 |
+| SRC_SHA256 | who | 1 | 0 | 690ba90683664fc0c061252c0 616 |

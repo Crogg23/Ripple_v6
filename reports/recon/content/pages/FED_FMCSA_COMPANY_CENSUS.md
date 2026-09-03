@@ -1,0 +1,765 @@
+# FED_FMCSA_COMPANY_CENSUS
+
+rows 4.49M  columns 150  scan 14.7s
+
+roles: amount 6, audit 2, category 42, date 6, id 7, other 77, state 2, who 9
+
+## errors
+  _INGESTED_AT: 100039 (22003): Numeric value '56662979' is out of range
+
+## when
+
+ADD_DATE
+  1974    122.6K  ##############
+  1981      2.4K  
+  1982     12.6K  #
+  1983      9.1K  #
+  1984      9.2K  #
+  1985     10.7K  #
+  1986     13.5K  ##
+  1987     21.7K  ##
+  1988     30.5K  ###
+  1989     37.7K  ####
+  1990     42.2K  #####
+  1991     34.2K  ####
+  1992     41.0K  #####
+  1993     36.5K  ####
+  1994     38.5K  ####
+  1995     40.1K  #####
+  1996     45.1K  #####
+  1997     51.3K  ######
+  1998     65.3K  #######
+  1999     58.5K  #######
+  2000     77.5K  #########
+  2001     70.3K  ########
+  2002     86.7K  ##########
+  2003    111.9K  #############
+  2004    117.0K  #############
+  2005    126.3K  ##############
+  2006    140.3K  ################
+  2007    130.1K  ###############
+  2008    119.0K  #############
+  2009    137.8K  ################
+  2010    126.9K  ##############
+  2011    152.1K  #################
+  2012    107.2K  ############
+  2013     96.7K  ###########
+  2014    104.6K  ############
+  2015    266.7K  ##############################
+  2016    122.0K  ##############
+  2017    123.2K  ##############
+  2018    145.3K  ################
+  2019    148.6K  #################
+  2020    166.4K  ###################
+  2021    247.9K  ############################
+  2022    214.0K  ########################
+  2023    169.1K  ###################
+  2024    166.4K  ###################
+  2025    171.6K  ###################
+  2026    125.2K  ##############
+
+MCSIPDATE
+  1995         1  
+  1996         1  
+  1997         1  
+  1999         1  
+  2000         2  
+  2001       134  
+  2002       361  
+  2003       972  
+  2004      3.3K  
+  2005      4.0K  
+  2006      6.0K  #
+  2007      5.4K  #
+  2008     10.0K  #
+  2009     16.3K  ##
+  2010    162.6K  ##################
+  2011     10.7K  #
+  2012     11.1K  #
+  2013     11.5K  #
+  2014     81.7K  #########
+  2015     30.5K  ###
+  2016    277.4K  ##############################
+  2017     47.9K  #####
+  2018     50.1K  #####
+  2019     56.5K  ######
+  2020     62.0K  #######
+  2021     61.6K  #######
+  2022     69.7K  ########
+  2023     93.1K  ##########
+  2024    115.2K  ############
+  2025    152.7K  #################
+  2026     89.9K  ##########
+
+CARRIER_MAILING_UND_DATE
+  1991       256  
+  2000        13  
+  2002      8.6K  #####
+  2003     42.1K  ##########################
+  2004     49.4K  ##############################
+  2005     17.9K  ###########
+  2006     17.1K  ##########
+  2007     13.5K  ########
+  2008     11.5K  #######
+  2009     16.0K  ##########
+  2010     11.0K  #######
+  2011     10.3K  ######
+  2012      8.3K  #####
+  2013      9.8K  ######
+  2014     17.5K  ###########
+  2015      9.8K  ######
+  2016     11.0K  #######
+  2017      9.1K  ######
+  2018      6.5K  ####
+  2019      5.5K  ###
+  2020      5.0K  ###
+  2021      5.8K  ####
+  2022      9.4K  ######
+  2023     12.5K  ########
+  2024     12.4K  ########
+  2025     10.2K  ######
+  2026      1.5K  #
+
+REVIEW_DATE
+  1900         6  
+  1902         1  
+  1906         1  
+  1918         1  
+  1920         1  
+  1930         1  
+  1932         2  
+  1933         1  
+  1941         1  
+  1943         1  
+  1944         4  
+  1946         2  
+  1947         4  
+  1948         3  
+  1949         5  
+  1950         9  
+  1951         7  
+  1952         3  
+  1953        11  
+  1954        10  
+  1955        19  
+  1956        50  
+  1957       125  
+  1958       176  
+  1959       243  #
+  1960       376  #
+  1961       386  #
+  1962       534  #
+  1963       584  #
+  1964       811  ##
+  1965       891  ##
+  1966       955  ##
+  1967       756  ##
+  1968       548  #
+  1969       618  #
+  1970       697  ##
+  1971       725  ##
+  1972       763  ##
+  1973       794  ##
+  1974       857  ##
+  1975       451  #
+  1976       517  #
+  1977       602  #
+  1978       763  ##
+  1979       801  ##
+  1980       846  ##
+  1981      1.5K  ###
+  1982      1.7K  ####
+  1983      1.5K  ###
+  1984      1.3K  ###
+  1985      1.1K  ##
+  1986      1.7K  ####
+  1987     11.9K  ##########################
+  1988     13.4K  #############################
+  1989     10.2K  ######################
+  1990     12.3K  ###########################
+  1991     13.9K  ##############################
+  1992     11.8K  #########################
+  1993     10.1K  ######################
+  1994      6.6K  ##############
+  1995      4.3K  #########
+  1996      3.6K  ########
+  1997       769  ##
+  1998      1.9K  ####
+  1999      2.9K  ######
+  2000      4.4K  ##########
+  2001      3.9K  #########
+  2002      4.6K  ##########
+  2003      4.5K  ##########
+  2004      4.1K  #########
+  2005      5.1K  ###########
+  2006      6.4K  ##############
+  2007      6.6K  ##############
+  2008      7.3K  ################
+  2009      8.7K  ###################
+  2010      8.1K  #################
+  2011      5.0K  ###########
+  2012      4.3K  #########
+  2013      3.6K  ########
+  2014      3.2K  #######
+  2015      3.6K  ########
+  2016      3.4K  #######
+  2017      3.6K  ########
+  2018      3.4K  #######
+  2019      3.0K  #######
+  2020      1.3K  ###
+  2021      1.7K  ####
+  2022      2.5K  #####
+  2023      3.1K  #######
+  2024      3.7K  ########
+  2025      2.0K  ####
+  2026      1.4K  ###
+
+SAFETY_RATING_DATE
+  1963         1  
+  1980     11.9K  ##########################
+  1981      1.7K  ####
+  1982      1.7K  ####
+  1983      1.6K  ###
+  1984      1.2K  ###
+  1985      1.0K  ##
+  1986       965  ##
+  1987     10.1K  ######################
+  1988     10.3K  ######################
+  1989     13.8K  ##############################
+  1990     12.4K  ###########################
+  1991     13.7K  ##############################
+  1992     12.0K  ##########################
+  1993     10.7K  #######################
+  1994      7.4K  ################
+  1995      4.3K  #########
+  1996      3.7K  ########
+  1997       951  ##
+  1998      1.9K  ####
+  1999      2.6K  ######
+  2000      4.5K  ##########
+  2001      4.1K  #########
+  2002      4.5K  ##########
+  2003      4.5K  ##########
+  2004      4.1K  #########
+  2005      5.0K  ###########
+  2006      6.3K  ##############
+  2007      6.5K  ##############
+  2008      7.1K  ###############
+  2009      8.4K  ##################
+  2010      7.9K  #################
+  2011      4.8K  ###########
+  2012      4.3K  #########
+  2013      3.5K  ########
+  2014      3.2K  #######
+  2015      3.6K  ########
+  2016      3.4K  #######
+  2017      3.7K  ########
+  2018      3.4K  #######
+  2019      3.2K  #######
+  2020      1.8K  ####
+  2021      1.8K  ####
+  2022      2.5K  #####
+  2023      3.1K  #######
+  2024      3.8K  ########
+  2025      2.4K  #####
+  2026      1.5K  ###
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTAL_CARS | 665 | 1 | 1 | 88.04 | 835 | 5.3K |
+| RECORDABLE_CRASH_RATE | 934.9K | 0 | 0 | 28.39 | 1.0K | 1.61M |
+| TOTAL_INTRASTATE_DRIVERS | 4.49M | -1 | 0 | 12.00 | 200.0K | 9.46M |
+| TOTAL_CDL | 3.96M | -2 | 1 | 23.55 | 100.0K | 11.70M |
+| TOTAL_DRIVERS | 4.08M | 0 | 1 | 39.67 | 400.0K | 25.76M |
+| DRIVER_INTER_TOTAL | 4.49M | 0 | 1 | 24.97 | 200.0K | 16.29M |
+
+## who
+
+LEGAL_NAME by rows
+       498  NONE
+       269  FIRST BAPTIST CHURCH
+       224  NA
+        99  JOSE RODRIGUEZ
+        88  NOT APPLICABLE
+        85  GURPREET SINGH
+        82  JOSE HERNANDEZ
+        80  RANJIT SINGH
+        76  CALVARY BAPTIST CHURCH
+        74  DAVID SMITH
+        74  JOSE GONZALEZ
+        73  DAVID JOHNSON
+        72  INDIVIDUAL
+        71  ROBERT SMITH
+        70  JASWINDER SINGH
+        67  JAMES JOHNSON
+        67  CORPORATION
+        63  JOSE MARTINEZ
+        63  WILLIAMS TRUCKING
+        62  JUAN HERNANDEZ
+
+LEGAL_NAME by dollars
+      200.0K        1 rows  S&D LOGISTICS INC
+      200.0K        1 rows  GLENN UNSELL TRUCKING SERVICE LLC
+      185.0K        1 rows  XCLUSIVE XPRESS INCORPARATED
+      100.0K        1 rows  HODGEPODGE TRUCKING LLC
+      100.0K        1 rows  GRUBHUB HOLDINGS INC
+      100.0K        1 rows  PROGRAMS EMPLOYING PEOPLE (PEP)
+      100.0K        1 rows  POINT2POINTXPRESS
+      100.0K        1 rows  MARRY TRANSPORTATION
+       99.7K        1 rows  PRISKAPO ENTERPRISES INC
+       95.0K        6 rows  MYSTIC TRUCKING LLC
+       85.0K        2 rows  FIERRO TRUCKING
+       80.0K        9 rows  MARTINEZ TRUCKING INC
+       80.0K        1 rows  DLD SERVICES LLC
+       80.0K        1 rows  RANDALL WALSTON
+       80.0K        1 rows  FIVE STAR TRUCK
+       75.0K        1 rows  OSVEL & GEIDY TRUCKING INC
+       70.0K        3 rows  GQ TRUCKING INC
+       69.0K        1 rows  EL RAYO TRUCKING LLC
+       60.0K        4 rows  PREFERRED TOWING LLC
+       60.0K        2 rows  HUNTERS TREE SERVICE INC
+
+DBA_NAME by rows
+      1.9K  OWNER
+      1.7K  NA
+      1.5K  NO
+      1.3K  NONE
+       532  TRANSPORTATION
+       460  TRUCKING
+       448  J & J TRUCKING
+       370  MATCO TOOLS
+       349  CONSTRUCTION
+       348  JOHNSON TRUCKING
+       345  SNAP ON TOOLS
+       308  WILLIAMS TRUCKING
+       294  FARMER
+       285  DAVIS TRUCKING
+       282  LANDSCAPING
+       275  TWO MEN AND A TRUCK
+       275  R & R TRUCKING
+       271  GONZALEZ TRUCKING
+       269  FARM
+       267  SMITH TRUCKING
+
+DBA_NAME by dollars
+      200.0K        1 rows  GUTS
+      185.0K        1 rows  XCLUSIVE XPRESS INCORPARATEDQ
+      100.0K        2 rows  PEP
+       80.0K        2 rows  JEMS
+       54.0K        1 rows  CORBIN D TRUCKING COMPANY
+       52.0K        1 rows  TRANSPORTATION MOVING BROKERAGE
+       45.0K        2 rows  TA HOWARD & SON
+       35.0K        1 rows  EXPO FLOORING
+       34.8K        3 rows  CORDOVA TRANSPORTATION
+       30.0K        1 rows  AFEBEST
+       30.0K        1 rows  E J P WELDING
+       30.0K        1 rows  READY CARGO SERVICES
+       25.0K        2 rows  ARMANDO TORRES TRUCKING
+       20.0K        1 rows  GALEN & SHANNON RELIFORD
+       20.0K        1 rows  SHARP'S TIMBER
+       19.8K        9 rows  AT&T
+       15.8K        1 rows  LAPD
+       15.0K        1 rows  CHU-EAN CONSTRUCTION
+       13.2K       65 rows  WM
+       11.1K        1 rows  GRACE TOWING INC
+
+COMPANY_OFFICER_1 by rows
+       761  GURPREET  SINGH
+       516  HARPREET  SINGH
+       370  AMANDEEP  SINGH
+       364  MANPREET  SINGH
+       346  MANDEEP  SINGH
+       339  NESTOR  NAVIA
+       293  SANDEEP  SINGH
+       291  JASWINDER  SINGH
+       283  RANJIT  SINGH
+       282  JOSE  RODRIGUEZ
+       282  SUKHWINDER  SINGH
+       280  MICHAEL  JOHNSON
+       276  KURT  OLIVER
+       272  JATINDER  SINGH
+       270  MICHAEL  SMITH
+       263  JOSE  HERNANDEZ
+       244  JOSE  GARCIA
+       238  HARDEEP  SINGH
+       235  MICHAEL  KIRKLAND
+       232  LOVEPREET  SINGH
+
+COMPANY_OFFICER_1 by dollars
+      200.0K        1 rows  PAM  MARIE ROGERS
+      200.0K        1 rows  DONNA  BIAS
+      100.0K        1 rows  STEVE  MARSALA SR.
+      100.0K        1 rows  AUGUSTUS  D NYEKAN SR.
+      100.0K        1 rows  BRADLEY  STRAUSS
+      100.0K        1 rows  KHEMAIS  NANE BOUHMIRA II
+       99.7K        1 rows  JOE  PRESTIPINO
+       85.0K        2 rows  EVELYN  J RODRIGUEZ
+       80.0K       11 rows  CRISTINA  MARTINEZ
+       80.0K        1 rows  RANDALL WALSTON
+       80.0K        1 rows  SAID  JAMAL HASCHIME SR.
+       80.0K        2 rows  MILTON  ALVARADO
+       75.0K        1 rows  OSVEL  DIAZ
+       69.0K        1 rows  RUBEN ARREOLA
+       60.0K        3 rows  RYAN  RUBIN
+       60.0K        1 rows  W  DAVID LORD
+       60.0K        1 rows  BART  MCKAY
+       59.0K        4 rows  MARK  FITZPATRICK
+       57.0K        1 rows  ASHLEY  AZENETH ESPINOZA
+       55.0K        1 rows  MARY  E BEAUCHEMI
+
+COMPANY_OFFICER_2 by rows
+       375  NESTOR  NAVIA
+       216  MICHAEL  KIRKLAND
+       200  KURT  OLIVER
+       146  ADRIANA  QUINTANILLA
+       143  ULIANA  BOGASH
+       123  KENT  BICEHOUSE BICEHOUSE CONSULTING & SERVICES
+       106  LD
+        91  KENNETH  REEVES
+        86  LACY  SMITH
+        83  OWNER
+        73  GREG  THOMPSON
+        69  BETH  KINGSBURY
+        63  KRISTOPHER  FARRELL
+        63  APRIL  ESCAMILLA
+        55  CHRISTIAN  BECKSTEAD
+        51  SUSAN  PAUL
+        50  N A
+        49  RANDALL  BRANSCOME
+        49  CHRIS  GENERALE
+        45  MICHAEL  JOHNSON
+
+COMPANY_OFFICER_2 by dollars
+      200.0K        1 rows  GLENN  HARRY UNSELL IV
+      100.0K        1 rows  MARGO  DRUCKER
+       85.0K        1 rows  AARON  A RODRIGUEZ
+       80.0K        2 rows  VICTOR  M MARTINEZ
+       80.0K        1 rows  SHIRLEY  ROMERO
+       60.0K        1 rows  DOUGLAS  E RENKEN
+       59.0K        1 rows  BRIAN  DENEAULT
+       55.0K        1 rows  MICHAEL  BEAUCHEMIN
+       50.0K        1 rows  KEVIN  D BURCK
+       37.8K        3 rows  JOE  SCHWADERER
+       30.0K        1 rows  AUGUSTINE  FORSON
+       30.0K        2 rows  CHAD  SWEET
+       30.0K        1 rows  ANDERS  BERMUDEZ
+       29.4K        1 rows  BEVERLY  WYCKOFF
+       20.0K        1 rows  GALEN  RELIFORD
+       20.0K        1 rows  Thomas Wuensch
+       20.0K        1 rows  CAMERON  NICHOLAS FLAHERTY
+       15.8K        1 rows  RICHARD  SIMAS
+        8.9K        1 rows  PATTI  POPPE
+        8.0K        1 rows  NERZELL  PERSON GENERAL PARTNER
+
+## who x when
+
+LEGAL_NAME by ADD_DATE, dollars = TOTAL_INTRASTATE_DRIVERS
+  CALVARY BAPTIST CHURCH                    1989:0 1994:13 1995:19 1996:0 1997:5 1999:3 2001:7 2002:0 2003:2 2004:3 2005:0 2006:3 2007:1 2008:3 2010:0 2013:14 2015:14 2017:2 2018:0 2019:5
+  CORPORATION                               1991:0 1992:1 1995:0 2002:0 2003:0 2004:0 2005:8 2006:20 2007:17 2008:17 2012:0 2014:1 2019:0
+  DAVID JOHNSON                             1974:0 1990:1 1993:2 1996:0 1998:1 1999:1 2000:3 2001:0 2002:7 2003:3 2004:4 2005:1 2007:0 2008:2 2009:3 2010:4 2011:0 2012:1 2013:0 2014:1 2016:0 2017:2 2018:0 2020:1 2021:1 2022:2 2023:0 2024:1 2026:0
+  DAVID SMITH                               1986:0 1987:0 1989:0 1992:1 1994:0 1995:0 1997:0 2000:0 2001:1 2002:0 2003:0 2004:2 2005:3 2006:1 2007:8 2008:3 2009:2 2010:2 2011:3 2012:0 2014:5 2015:3 2016:2 2018:0 2020:1 2021:2 2025:6
+  FIRST BAPTIST CHURCH                      1986:0 1992:0 1994:46 1995:50 1996:39 1997:30 1998:3 1999:12 2000:3 2001:4 2002:0 2003:8 2004:0 2005:0 2006:24 2007:19 2008:32 2009:1 2010:4 2011:8 2012:6 2013:4 2014:3 2015:12 2016:0 2017:2 2018:2 2023:0 2025:5
+  GLENN UNSELL TRUCKING SERVICE LLC         2016:200.0K
+  GRUBHUB HOLDINGS INC                      2022:100.0K
+  GURPREET SINGH                            1998:0 2000:0 2001:0 2004:0 2005:0 2006:0 2007:0 2008:0 2009:0 2010:0 2011:2 2012:0 2013:1 2014:0 2015:6 2016:8 2017:0 2018:1 2019:3 2020:0 2021:0 2023:0 2025:0
+  HODGEPODGE TRUCKING LLC                   2022:100.0K
+  INDIVIDUAL                                2002:1 2003:0 2004:1 2005:5 2006:7 2007:6 2008:5 2014:0 2016:2 2017:4 2018:0 2019:3 2021:1 2024:0 2025:1 2026:2
+  JAMES JOHNSON                             1989:0 1991:0 1992:0 1994:0 1995:0 1996:1 1997:0 1998:0 2000:0 2001:0 2002:1 2003:0 2004:2 2005:2 2006:1 2007:1 2008:6 2009:0 2010:2 2011:3 2012:0 2013:1 2014:3 2015:3 2016:1 2020:0 2026:2
+  JASWINDER SINGH                           1993:0 1997:0 2001:0 2002:0 2003:0 2005:0 2006:0 2007:0 2008:0 2009:0 2010:0 2011:1 2013:0 2014:1 2015:12 2016:8 2017:0 2018:0 2019:0 2022:0 2026:0
+  JOSE GONZALEZ                             1995:0 1998:0 2000:0 2001:3 2002:1 2003:0 2004:2 2005:0 2006:4 2007:2 2008:9 2009:3 2010:2 2011:2 2012:2 2013:2 2014:1 2015:5 2016:4 2017:1 2018:1 2019:5 2020:2 2021:2 2022:1 2023:1 2024:0
+  JOSE HERNANDEZ                            1992:0 1993:0 1994:0 1996:6 1997:0 1998:0 1999:2 2000:1 2003:1 2004:1 2005:1 2006:3 2007:2 2008:2 2009:3 2010:7 2011:1 2012:1 2013:2 2014:1 2015:11 2016:0 2017:3 2018:0 2020:0 2023:1 2024:0 2025:4 2026:1
+  JOSE MARTINEZ                             1974:0 1998:0 1999:0 2000:1 2001:0 2002:0 2003:0 2004:0 2005:7 2006:1 2007:0 2008:0 2009:2 2010:1 2011:1 2012:1 2013:0 2014:2 2015:13 2016:9 2018:0 2019:1 2020:0 2021:2 2022:1 2023:0 2025:0 2026:1
+  JOSE RODRIGUEZ                            1974:0 1991:0 1997:0 1998:0 2001:0 2002:0 2003:1 2004:0 2005:0 2006:0 2007:2 2008:2 2009:7 2010:5 2011:1 2012:10 2013:4 2014:2 2015:4 2016:4 2017:4 2018:0 2019:3 2020:3 2021:1 2022:1 2023:1 2024:2 2026:2
+  JUAN HERNANDEZ                            1974:0 2001:0 2002:0 2003:1 2004:1 2005:0 2006:1 2007:1 2008:3 2009:5 2010:1 2011:0 2012:0 2013:2 2015:16 2016:2 2017:1 2018:1 2019:4 2021:1 2022:1 2024:6 2026:1
+  MARRY TRANSPORTATION                      2019:100.0K
+  MYSTIC TRUCKING LLC                       2011:1 2015:2 2016:11 2017:0 2025:2 2026:95.0K
+  NA                                        2007:1 2009:0 2010:3 2011:0 2014:0 2015:5 2016:130 2017:13 2018:28 2019:113 2020:15 2021:14 2022:12 2023:31 2024:29 2025:19 2026:4
+  NONE                                      2001:1 2002:0 2003:0 2007:2 2009:0 2011:0 2012:2 2014:1 2015:2 2016:152 2017:83 2018:29 2019:76 2020:55 2021:53 2022:32 2023:126 2024:34 2025:310 2026:17
+  NOT APPLICABLE                            2016:6 2017:11 2018:7 2019:6 2020:11 2021:5 2022:2 2023:6 2024:14 2025:7 2026:8
+  POINT2POINTXPRESS                         2016:100.0K
+  PRISKAPO ENTERPRISES INC                  2017:99.7K
+  PROGRAMS EMPLOYING PEOPLE (PEP)           2016:100.0K
+  RANJIT SINGH                              1998:0 1999:0 2002:0 2004:0 2005:0 2006:1 2007:0 2008:0 2009:0 2010:0 2011:0 2012:0 2013:0 2015:13 2016:1 2017:1 2018:0 2019:1 2021:3 2024:1
+  ROBERT SMITH                              1974:1 1985:0 1991:0 1992:0 1993:0 1997:0 1998:0 1999:0 2000:2 2001:1 2002:1 2003:2 2004:0 2005:1 2006:1 2007:0 2008:1 2009:2 2010:3 2011:1 2012:1 2014:1 2015:1 2019:0 2020:0 2021:1 2022:3 2023:1 2024:6 2025:1
+  S&D LOGISTICS INC                         2016:200.0K
+  WILLIAMS TRUCKING                         1974:0 1982:0 1983:0 1985:0 1987:0 1988:0 1989:0 1991:0 1992:0 1994:3 1996:1 1999:0 2001:1 2002:1 2003:2 2004:1 2005:0 2006:0 2007:0 2008:1 2009:0 2010:3 2011:1 2014:2 2015:3 2016:2 2017:1 2018:5 2020:0 2022:2 2023:3 2024:0
+  XCLUSIVE XPRESS INCORPARATED              2003:185.0K
+
+DBA_NAME by ADD_DATE, dollars = TOTAL_INTRASTATE_DRIVERS
+  AFEBEST                                   2019:30.0K
+  CONSTRUCTION                              1988:0 1989:0 1990:5 1991:0 1995:3 1996:0 1997:0 1998:0 1999:4 2001:0 2002:3 2003:11 2004:10 2005:12 2006:17 2007:5 2008:35 2009:31 2010:17 2011:5 2012:7 2013:5 2014:11 2015:10 2016:6 2017:18 2018:21 2019:28 2020:28 2021:27 2022:21 2023:22 2024:10 2025:11 2026:15
+  CORBIN D TRUCKING COMPANY                 2019:54.0K
+  CORDOVA TRANSPORTATION                    2006:34.8K 2026:2
+  DAVIS TRUCKING                            1974:0 1981:0 1982:0 1984:0 1985:0 1986:0 1987:0 1988:0 1990:0 1991:1 1992:0 1993:0 1994:0 1995:2 1996:3 1997:3 1998:3 1999:2 2000:4 2001:5 2002:2 2003:11 2004:8 2005:1 2006:3 2007:20 2008:1 2009:4 2010:4 2011:2 2012:2 2013:0 2014:5 2015:12 2016:0 2017:1 2018:0 2019:2 2020:3 2021:1 2022:2 2023:1 2025:1
+  EXPO FLOORING                             2022:35.0K
+  FARM                                      1992:1 1993:0 1994:1 1996:0 1997:0 1998:0 1999:0 2001:2 2002:1 2003:0 2004:1 2005:6 2006:18 2007:2 2008:7 2009:18 2010:13 2011:14 2012:9 2013:11 2014:5 2015:6 2016:14 2017:16 2018:8 2019:319 2020:19 2021:13 2022:13 2023:17 2024:22 2025:13
+  FARMER                                    1982:0 1988:0 1990:4 1991:4 1992:6 1993:2 1994:0 1995:1 1996:2 1997:0 1998:0 1999:0 2000:1 2001:0 2002:1 2003:12 2004:11 2005:23 2006:14 2007:18 2008:11 2009:19 2010:29 2011:15 2012:8 2013:1 2014:1 2015:4 2017:5 2018:0 2019:5 2021:2 2022:10 2023:1 2024:3 2025:4 2026:2
+  GONZALEZ TRUCKING                         1987:0 1993:0 1994:0 1996:0 1997:0 1998:0 1999:0 2000:1 2001:0 2002:2 2003:8 2004:2 2005:1 2006:5 2007:6 2008:2 2009:23 2010:22 2011:5 2012:7 2013:6 2014:17 2015:58 2016:10 2017:7 2018:2 2019:6 2020:2 2021:3 2022:1 2023:3 2025:2
+  GUTS                                      2016:200.0K
+  J & J TRUCKING                            1974:0 1982:0 1983:0 1984:0 1985:0 1986:0 1987:0 1988:1 1989:0 1990:0 1991:1 1992:7 1993:0 1994:8 1995:0 1996:1 1997:3 1998:6 1999:12 2000:5 2001:12 2002:28 2003:0 2004:4 2005:7 2006:5 2007:7 2008:2 2009:4 2010:7 2011:3 2012:3 2013:8 2014:6 2015:11 2016:19 2017:5 2018:1 2019:3 2020:2 2021:4 2022:2 2023:2 2025:2 2026:1
+  JEMS                                      2019:80.0K 2021:2
+  JOHNSON TRUCKING                          1974:0 1982:0 1984:0 1986:0 1987:0 1988:0 1989:0 1990:0 1991:3 1992:0 1993:9 1994:0 1995:0 1996:0 1997:4 1998:3 1999:4 2000:5 2001:7 2002:4 2003:19 2004:0 2005:3 2006:106 2007:4 2008:2 2009:3 2010:6 2011:3 2012:1 2013:10 2014:1 2015:5 2016:1 2017:0 2018:1 2019:5 2020:2 2021:1 2022:2 2023:0 2024:5
+  LANDSCAPING                               1997:0 2000:0 2003:10 2004:1 2005:1 2006:17 2007:5 2008:15 2009:8 2010:16 2011:2 2012:12 2013:5 2014:12 2015:8 2016:5 2017:19 2018:13 2019:23 2020:18 2021:18 2022:27 2023:17 2024:15 2025:24 2026:16
+  MATCO TOOLS                               1992:0 1996:1 1997:0 1998:1 1999:4 2000:0 2001:2 2002:4 2003:99 2004:14 2005:15 2006:14 2007:29 2008:19 2009:16 2010:14 2011:4 2012:16 2013:5 2014:12 2015:38 2016:9 2017:1 2018:7 2019:4 2020:2 2021:3 2022:3 2023:5 2024:6 2025:13 2026:1
+  NA                                        1974:5 1985:0 1992:1 1995:0 1996:9 1997:1 1999:0 2000:11 2001:5 2002:25 2003:26 2004:30 2005:24 2006:21 2007:45 2008:5.0K 2009:18 2010:9 2011:12 2012:4 2013:6 2014:11 2015:218 2016:216 2017:152 2018:107 2019:552 2020:90 2021:209 2022:234 2023:731 2024:144 2025:184 2026:64
+  NO                                        1989:5 1991:16 1994:1 2000:0 2007:1 2010:0 2011:0 2012:1 2013:0 2014:4 2015:2 2016:91 2017:91 2018:278 2019:176 2020:180 2021:105 2022:181 2023:329 2024:99 2025:213 2026:111
+  NONE                                      1986:0 1993:1 1994:16 1997:0 2000:0 2001:0 2002:0 2003:33 2004:8 2005:3 2006:13 2007:6 2008:5 2009:15 2010:6 2011:1 2012:17 2013:11 2014:5 2015:5 2016:102 2017:320 2018:110 2019:176 2020:110 2021:159 2022:97 2023:477 2024:193 2025:196 2026:39
+  OWNER                                     1983:0 1986:0 1988:0 1989:2 1991:2 1993:0 1994:0 1995:1 1996:1 1997:2 1998:2 1999:0 2000:2 2001:1 2002:2 2003:27 2004:22 2005:297 2006:40 2007:140 2008:90 2009:67 2010:62 2011:77 2012:55 2013:52 2014:55 2015:59 2016:9 2017:19 2018:27 2019:27 2020:48 2021:13 2022:15 2023:15 2024:4 2025:30 2026:6
+  PEP                                       2016:100.0K 2025:1
+  R & R TRUCKING                            1974:0 1983:0 1984:0 1985:0 1988:0 1989:0 1990:0 1991:0 1992:1 1993:2 1994:0 1995:7 1996:1 1997:1 1998:3 1999:3 2000:4 2001:2 2002:4 2003:4 2004:7 2005:1 2006:5 2007:2 2008:5 2009:2 2010:12 2011:12 2012:1 2013:0 2014:5 2015:9 2016:4 2017:0 2018:2 2019:1 2020:3 2026:1
+  SMITH TRUCKING                            1974:0 1983:0 1984:0 1985:0 1988:0 1989:1 1991:0 1992:0 1993:0 1994:0 1995:1 1996:3 1997:7 1998:4 1999:3 2000:7 2001:1 2002:3 2003:0 2004:5 2005:501 2006:6 2007:6 2008:3 2009:1 2010:4 2011:12 2012:2 2013:1 2014:0 2015:7 2016:0 2017:2 2018:0 2019:0 2020:3 2021:2 2022:1 2023:1 2024:0
+  SNAP ON TOOLS                             1989:0 1990:2 1992:1 1995:1 1997:0 1998:7 1999:4 2000:3 2001:4 2002:8 2003:30 2004:17 2005:38 2006:10 2007:14 2008:19 2009:7 2010:11 2011:6 2012:9 2013:6 2014:8 2015:6.1K 2016:5 2017:7 2018:3 2019:11 2020:5 2021:3 2022:1 2023:1 2024:7 2025:2
+  TA HOWARD & SON                           2011:22.5K 2022:22.5K
+  TRANSPORTATION                            1996:0 2002:0 2003:0 2004:1 2005:4 2006:1 2007:4 2008:0 2009:1 2010:1 2011:1 2012:2 2013:1 2014:20 2015:42 2016:18 2017:285 2018:41 2019:2.0K 2020:444 2021:99 2022:366 2023:63 2024:44 2025:109 2026:22
+  TRANSPORTATION MOVING BROKERAGE           2022:52.0K
+  TRUCKING                                  1987:1 1988:0 1992:0 1995:0 1996:1 1997:2 1998:0 1999:0 2000:0 2001:0 2002:0 2003:1 2004:6 2005:1 2006:3 2007:5 2008:6 2009:4 2010:2 2011:5 2012:2 2013:1 2014:2 2015:3 2016:15 2017:10 2018:6 2019:20 2020:22 2021:34 2022:745 2023:53 2024:40 2025:41 2026:10.0K
+  TWO MEN AND A TRUCK                       1990:0 1995:0 1997:29 1998:35 1999:9 2000:62 2001:21 2002:72 2003:16 2004:58 2005:22 2006:6 2007:36 2008:25 2009:20 2010:51 2011:41 2012:32 2013:109 2014:23 2015:32 2016:19 2017:15 2018:42 2019:98 2020:21 2021:6 2022:12 2023:7 2024:1 2025:29 2026:4
+  WILLIAMS TRUCKING                         1974:0 1981:0 1986:0 1988:0 1989:1 1990:2 1991:1 1992:0 1993:1 1994:0 1995:0 1996:1 1997:4 1998:4 1999:5 2000:7 2001:7 2002:2 2003:7 2004:7 2005:9 2006:4 2007:4 2008:5 2009:2 2010:3 2011:1 2012:4 2013:6 2014:5 2015:12 2016:4 2017:1 2018:0 2019:2 2020:4 2021:1 2022:0 2024:2 2025:1 2026:0
+  XCLUSIVE XPRESS INCORPARATEDQ             2003:185.0K
+
+## where
+
+PHY_STATE: CA 502.3K, TX 375.2K, FL 287.7K, GA 221.2K, NY 213.4K, PA 169.0K, IL 144.5K, NC 134.0K, NJ 130.9K, MI 130.7K, OH 122.6K, MN 120.8K
+
+CARRIER_MAILING_STATE: CA 507.3K, TX 387.1K, FL 288.7K, GA 221.6K, NY 214.7K, PA 167.9K, IL 144.9K, NC 133.4K, MI 130.6K, NJ 130.5K, OH 122.2K, MN 120.9K
+
+## what
+
+STATUS_CODE: I 50%, A 50%, P 0%
+
+PHY_OMC_REGION: 04 21%, 05 17%, 01 15%, 03 10%, 06 10%, 07 8%, 09 7%, 08 6%, 10 5%, 00 0%
+
+CARRIER_OPERATION: A 57%, C 41%, B 1%
+
+BUSINESS_ORG_ID: 3 66%, 1 31%, 2 3%
+
+MCS150_UPDATE_CODE_ID: 3 69%, 1 20%, 2 11%
+
+PRIOR_REVOKE_FLAG: N 100%, Y 0%
+
+BUSINESS_ORG_DESC: CORPORATION 66%, INDIVIDUAL 31%, PARTNERSHIP 3%
+
+FLEETSIZE: A 56%, B 19%, 0 13%, C 7%, D 2%, E 1%, F 1%, G 0%, I 0%, J 0%, H 0%, O 0%
+
+MAIL_NATIONALITY_INDICATOR: U 96%, C 3%, M 1%
+
+PHY_NATIONALITY_INDICATOR: U 95%, C 3%, M 2%
+
+MAIL_BARRIO: CENTRO 15%, SEC LIBERTAD 8%, RANCHRIA JUAREZ 8%, N/A 8%, 2516052259 8%, LA MESA 8%, 259084NADA 8%, COL FRACC RESIDENCIAL PER 8%, S 8%, CONJ U ORIZBA 8%, CORONIA ENSINOS 8%, SECC DORADA INDUSTRIAL OT 8%
+
+DOCKET1PREFIX: MC 97%, FF 2%, MX 1%
+
+DOCKET2PREFIX: MC 59%, FF 40%, MX 0%, WC 0%
+
+DOCKET3PREFIX: MC 67%, FF 31%, MX 2%
+
+POINTNUM: S 52%, P 48%
+
+MCSIPSTEP: 99 53%, 0 32%, 63 12%, 64 1%, 57 1%, 55 0%, 53 0%, 58 0%, 59 0%, 52 0%, 54 0%, 69 0%
+
+HM_IND: N 94%, Y 6%
+
+AVG_DRIVERS_LEASED_PER_MONTH: 0 100%, 1 0%, 2 0%, 8 0%, 3 0%, 4 0%, 5 0%, 6 0%, 7 0%, 11 0%, 32 0%, 39 0%
+
+PHY_COUNTRY: US 98%, CA 1%, MX 1%, GT 0%, SV 0%, HN 0%, CR 0%, NI 0%, BZ 0%, GB 0%, CN 0%, FR 0%
+
+CARRIER_MAILING_COUNTRY: US 98%, CA 1%, MX 0%, GT 0%, HN 0%, SV 0%, CR 0%, NI 0%, GB 0%, BZ 0%, CN 0%, IN 0%
+
+REVIEW_TYPE: C 59%, S 27%, U 12%, J 1%, G 0%, E 0%, N 0%
+
+SAFETY_RATING: S 64%, C 30%, U 7%
+
+UNDELIV_PHY: U 100%, N 0%
+
+OWNLIMO_9_15: 1 66%, 2 18%, 3 7%, 4 4%, 5 2%, 6 1%, 10 1%, 7 0%, 8 0%, 9 0%, 15 0%, 11 0%
+
+OWNLIMO_16: 1 64%, 2 18%, 3 8%, 4 4%, 5 3%, 6 1%, 7 1%, 9 1%, 8 0%, 10 0%, 16 0%, 20 0%
+
+TRMSCHOOL_1_8: 1 52%, 2 16%, 4 6%, 3 5%, 10 3%, 5 3%, 6 3%, 9 3%, 7 2%, 99999 2%, 8 2%, 12 2%
+
+TRMSCHOOL_9_15: 1 45%, 2 16%, 3 10%, 4 6%, 5 5%, 6 4%, 10 4%, 9 3%, 7 2%, 20 1%, 99999 1%, 12 1%
+
+TRMLIMO_1_8: 1 60%, 2 16%, 3 8%, 4 4%, 5 4%, 6 2%, 10 1%, 8 1%, 7 1%, 11 1%, 99999 1%, 36 1%
+
+TRMLIMO_9_15: 1 64%, 2 16%, 3 8%, 4 3%, 5 2%, 10 2%, 6 1%, 12 1%, 7 1%, 99999 0%, 48 0%, 11 0%
+
+TRMLIMO_16: 1 54%, 2 21%, 3 10%, 4 4%, 10 3%, 5 2%, 99999 2%, 6 2%, 12 1%, 16 1%, 60 0%, 269 0%
+
+TRPSCHOOL_1_8: 1 75%, 3 5%, 2 5%, 11 3%, 99999 3%, 10 2%, 25 2%, 7 2%, 6 2%, 19 1%, 18 1%, 150 1%
+
+TRPSCHOOL_9_15: 1 77%, 2 5%, 3 4%, 99999 3%, 10 3%, 9 2%, 5 2%, 4 2%, 6 1%, 15 1%, 12 1%, 30 1%
+
+TRPSCHOOL_16: 1 69%, 2 8%, 3 8%, 10 2%, 99999 2%, 16 2%, 6 2%, 4 2%, 5 2%, 15 1%, 30 1%, 7 1%
+
+TRPBUS_16: 1 76%, 2 8%, 4 4%, 10 3%, 3 2%, 99999 2%, 5 2%, 30 1%, 9 1%, 80 0%, 94 0%, 21 0%
+
+TRPVAN_1_8: 1 71%, 2 12%, 3 4%, 4 3%, 5 2%, 99999 2%, 10 1%, 8 1%, 12 1%, 7 1%, 6 1%, 20 1%
+
+TRPVAN_9_15: 1 66%, 2 15%, 3 5%, 4 4%, 5 2%, 6 2%, 10 2%, 15 1%, 99999 1%, 12 1%, 8 1%, 20 0%
+
+TRPLIMO_1_8: 1 75%, 2 8%, 3 4%, 99999 3%, 4 2%, 10 2%, 5 1%, 60 1%, 6 1%, 25 1%, 44 1%, 100 0%
+
+TRPLIMO_9_15: 1 72%, 2 11%, 3 4%, 4 2%, 5 2%, 99999 2%, 10 2%, 7 1%, 140 1%, 25 1%, 12 1%, 30 1%
+
+TRPLIMO_16: 1 77%, 3 6%, 2 6%, 99999 3%, 4 1%, 16 1%, 5 1%, 9 1%, 7 1%, 10 1%
+
+DOCKET1_STATUS_CODE: A 94%, I 6%, P 0%
+
+DOCKET2_STATUS_CODE: I 72%, A 28%, P 0%
+
+DOCKET3_STATUS_CODE: I 79%, A 21%, P 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| MCS150_DATE | who | 177.4K | 575.4K | 20260128 0000 8.4K; 20260114 0000 7.8K; 20251009 0000 7.8K; 20250512 0000 7.6K |
+| ADD_DATE | date | 14.1K | 0 | 19740601 125.5K; 20150612 77.0K; 20111119 40.8K; 20150701 28.4K |
+| STATUS_CODE | category | 3 | 0 | I 2.26M; A 2.23M; P 1.2K |
+| DOT_NUMBER | id | 4.54M | 0 | 1674033 3.0K; 1674032 3.0K; 1674031 3.0K; 1674030 3.0K |
+| DUN_BRADSTREET_NO | other | 379.8K | 266.3K | 0 3.85M; 672100883 325; 294505784 325; 418151341 325 |
+| PHY_OMC_REGION | category | 10 | 3.57M | 04 198.4K; 05 157.5K; 01 140.4K; 03 97.0K |
+| SAFETY_INV_TERR | other | 492 | 3.58M | A 105.0K; B 99.4K; D 89.8K; C 84.1K |
+| CARRIER_OPERATION | category | 3 | 186.1K | A 2.47M; C 1.78M; B 58.4K |
+| BUSINESS_ORG_ID | category | 3 | 3.78M | 3 469.6K; 1 216.8K; 2 22.8K |
+| MCS150_MILEAGE | other | 256.1K | 185.2K | 0 1.96M; 1 427.4K; 10000 173.1K; 20000 78.4K |
+| MCS150_MILEAGE_YEAR | other | 745 | 199.9K | 0 1.94M; 2024 391.9K; 2025 317.8K; 2023 222.5K |
+| MCS151_MILEAGE | other | 6.3K | 4.46M | 0 14.8K; 1 864; 10000 750; 50000 630 |
+| TOTAL_CARS | amount | 49 | 4.49M | 1 433; 2 69; 3 30; 4 12 |
+| MCS150_UPDATE_CODE_ID | category | 3 | 3.57M | 3 633.9K; 1 187.4K; 2 103.7K |
+| PRIOR_REVOKE_FLAG | category | 2 | 4.37M | N 118.5K; Y 498 |
+| PRIOR_REVOKE_DOT_NUMBER | other | 561 | 4.49M | 0 86; 2413404 1; 2411324 1; 2403637 1 |
+| PHONE | other | 3.82M | 148.2K | 1112223333 3.8K; 2029182132 3.1K; 7024596616 3.0K; 7156829199 3.0K |
+| FAX | other | 986.5K | 3.33M | 0 24.9K; 3236938150 1.8K; 6785672316 963; 6788676815 963 |
+| CELL_PHONE | id | 116.7K | 4.38M | 4235043163 131; 5067795366 126; 4782319143 125; 6318335655 125 |
+| COMPANY_OFFICER_1 | who | 3.07M | 659.4K | EUGENE  GERARD BELANGER 2.9K; TAMIE  RUEDT 2.9K; DENIS  EDWARDS 2.9K; GREG  MORGAN 2.9K |
+| COMPANY_OFFICER_2 | who | 653.4K | 3.76M | MICHAEL  KIRKLAND 961; DON  J HAYHURST 544; VALADA  WILSON PAIGE 544; JOHN  ROCKER 544 |
+| BUSINESS_ORG_DESC | category | 3 | 3.78M | CORPORATION 469.6K; INDIVIDUAL 216.8K; PARTNERSHIP 22.8K |
+| TRUCK_UNITS | other | 2.0K | 0 | 1 2.41M; 0 750.0K; 2 564.5K; 3 236.4K |
+| POWER_UNITS | other | 2.1K | 50 | 1 2.47M; 2 599.5K; 0 597.2K; 3 248.3K |
+| BUS_UNITS | other | 528 | 221.3K | 0 4.16M; 1 57.8K; 2 19.1K; 3 9.0K |
+| FLEETSIZE | category | 27 | 20 | A 2.47M; B 847.8K; 0 597.5K; C 294.1K |
+| REVIEW_ID | id | 22.5K | 4.47M | 1747969 21; 2104378 21; 1949851 21; 1830593 21 |
+| RECORDABLE_CRASH_RATE | amount | 4.9K | 3.56M | 0.000 890.7K; 10.000 2.3K; 20.000 1.6K; 5.000 1.1K |
+| MAIL_NATIONALITY_INDICATOR | category | 3 | 4.46M | U 32.3K; C 1.1K; M 300 |
+| PHY_NATIONALITY_INDICATOR | category | 3 | 4.46M | U 31.9K; C 1.1K; M 681 |
+| PHY_BARRIO | other | 238 | 4.49M | CENTRO 16; ZONA CENTRO 8; MATAMOROS 3; GUERRERO 3 |
+| MAIL_BARRIO | category | 35 | 4.49M | CENTRO 2; SEC LIBERTAD 1; RANCHRIA JUAREZ 1; N/A 1 |
+| CARSHIP | other | 56 | 0 | C 3.90M; R 180.9K; C;S 140.5K; B 92.3K |
+| DOCKET1PREFIX | category | 3 | 2.71M | MC 1.74M; FF 28.2K; MX 24.1K |
+| DOCKET1 | id | 1.70M | 2.71M | 615248 1.4K; 713859 1.4K; 621421 1.4K; 615246 1.4K |
+| DOCKET2PREFIX | category | 4 | 4.41M | MC 47.4K; FF 32.3K; MX 388; WC 1 |
+| DOCKET2 | id | 77.8K | 4.41M | 525992 67; 460019 67; 439068 67; 934498 67 |
+| DOCKET3PREFIX | category | 3 | 4.49M | MC 2.4K; FF 1.1K; MX 55 |
+| DOCKET3 | id | 3.5K | 4.49M | 934498 4; 436496 4; 486682 4; 1654597 4 |
+| POINTNUM | category | 2 | 4.41M | S 44.2K; P 41.1K |
+| TOTAL_INTRASTATE_DRIVERS | amount | 862 | 0 | 0 2.76M; 1 1.01M; 2 379.1K; 3 102.3K |
+| MCSIPSTEP | category | 14 | 3.06M | 99 753.4K; 0 461.4K; 63 176.6K; 64 18.8K |
+| MCSIPDATE | date | 8.1K | 3.06M | 20160111 162.5K; 20101211 147.2K; 20141027 29.6K; 20160208 8.1K |
+| HM_IND | category | 2 | 0 | N 4.21M; Y 287.0K |
+| INTERSTATE_BEYOND_100_MILES | other | 1.0K | 531.1K | 0 2.12M; 1 1.20M; 2 297.6K; 3 105.9K |
+| INTERSTATE_WITHIN_100_MILES | other | 751 | 538.7K | 0 3.07M; 1 544.1K; 2 149.9K; 3 60.8K |
+| INTRASTATE_BEYOND_100_MILES | other | 369 | 542.6K | 0 3.19M; 1 577.0K; 2 98.9K; 3 32.7K |
+| INTRASTATE_WITHIN_100_MILES | other | 760 | 542.6K | 0 2.75M; 1 753.4K; 2 203.4K; 3 83.2K |
+| TOTAL_CDL | amount | 1.1K | 530.4K | 0 1.63M; 1 1.52M; 2 363.6K; 3 137.5K |
+| TOTAL_DRIVERS | amount | 1.6K | 412.3K | 1 2.27M; 2 743.5K; 3 246.9K; 4 239.2K |
+| AVG_DRIVERS_LEASED_PER_MONTH | category | 15 | 4.42M | 0 68.6K; 1 89; 2 21; 8 6 |
+| CLASSDEF | who | 1.2K | 410.5K | AUTHORIZED FOR HIRE 2.00M; PRIVATE PROPERTY 1.46M; PRIVATE PROPERTY;AUTHORIZ 248.2K; AUTHORIZED FOR HIRE;EXEMP 228.9K |
+| LEGAL_NAME | who | 3.87M | 88 | HOLLAND TRUCKING LLC 3.0K; SOUTH SHORE BREWERY INC 3.0K; GROUNDS MAINTENANCE SERVI 3.0K; D V EXPRESS INC 3.0K |
+| DBA_NAME | who | 931.5K | 3.28M | UNISHIPPERS 948; P & P EXCAVATING 913; CARRASCO V TRUCKING 913; DCORP TRANSPORT 913 |
+| PHY_STREET | other | 3.94M | 9 | UNKNOWN 14.3K; 3377 CALIFORNIA AVE 3.0K; 834 CHURCH RD 3.0K; 4002 CATLETT RD 3.0K |
+| PHY_CITY | who | 61.3K | 95 | HOUSTON 49.8K; MIAMI 35.4K; LOS ANGELES 30.1K; DALLAS 23.2K |
+| PHY_COUNTRY | category | 30 | 16 | US 4.40M; CA 67.3K; MX 27.2K; GT 245 |
+| PHY_STATE | state | 118 | 18 | CA 502.3K; TX 375.2K; FL 287.7K; GA 221.2K |
+| PHY_ZIP | other | 792.7K | 1.5K | 85207 9.0K; 85008 8.5K; 30331 8.5K; MEXICO 6.3K |
+| PHY_CNTY | other | 336 | 16.1K | 037 185.2K; 031 131.0K; 003 116.2K; 013 104.0K |
+| CARRIER_MAILING_STREET | other | 3.59M | 62 | PO BOX 244 6.0K; 3377 CALIFORNIA AVE 3.0K; 834 CHURCH RD 3.0K; 1530 NORTH NELLIS BL 3.0K |
+| CARRIER_MAILING_STATE | state | 116 | 80 | CA 507.3K; TX 387.1K; FL 288.7K; GA 221.6K |
+| CARRIER_MAILING_CITY | who | 61.0K | 146 | HOUSTON 49.9K; MIAMI 35.7K; LOS ANGELES 29.5K; DALLAS 23.2K |
+| CARRIER_MAILING_COUNTRY | category | 29 | 68 | US 4.42M; CA 67.4K; MX 8.0K; GT 89 |
+| CARRIER_MAILING_ZIP | other | 1.18M | 1.3K | 78045 8.5K; 95828 6.0K; 35085 6.0K; 30331 6.0K |
+| CARRIER_MAILING_CNTY | other | 341 | 11.2K | 037 185.8K; 031 130.6K; 003 115.7K; 013 104.8K |
+| CARRIER_MAILING_UND_DATE | date | 4.7K | 4.16M | 20151022 2.3K; 20250522 945; 20130624 862; 20220302 767 |
+| DRIVER_INTER_TOTAL | amount | 1.3K | 0 | 0 2.01M; 1 1.43M; 2 505.8K; 3 153.1K |
+| EMAIL_ADDRESS | id | 2.82M | 1.53M | cooklaura@aol.com 2.4K; bo@southshorebrewery.com 2.4K; GMSWI@YAHOO 2.4K; meconcrete1@aol.com 2.4K |
+| REVIEW_TYPE | category | 7 | 4.25M | C 147.6K; S 68.3K; U 30.9K; J 1.6K |
+| REVIEW_DATE | date | 17.6K | 4.25M | 20220803 542; 20240227 535; 20230726 535; 20230524 535 |
+| SAFETY_RATING | category | 3 | 4.26M | S 150.7K; C 70.4K; U 15.9K |
+| SAFETY_RATING_DATE | date | 14.2K | 4.26M | 19800910 11.7K; 19871015 4.9K; 19871208 616; 20230926 513 |
+| UNDELIV_PHY | category | 2 | 4.20M | U 289.1K; N 267 |
+| CRGO_GENFREIGHT | other | 1 | 2.47M | X 2.02M |
+| CRGO_HOUSEHOLD | other | 1 | 4.28M | X 210.5K |
+| CRGO_METALSHEET | other | 1 | 4.23M | X 266.4K |
+| CRGO_MOTOVEH | other | 1 | 4.14M | X 350.9K |
+| CRGO_DRIVETOW | other | 1 | 4.36M | X 134.9K |
+| CRGO_LOGPOLE | other | 1 | 4.12M | X 372.5K |
+| CRGO_BLDGMAT | other | 1 | 4.48M | X 16.9K |
+| CRGO_MOBILEHOME | other | 1 | 4.46M | X 33.8K |
+| CRGO_MACHLRG | other | 1 | 4.01M | X 481.8K |
+| CRGO_PRODUCE | other | 1 | 4.23M | X 265.9K |
+| CRGO_LIQGAS | other | 1 | 4.40M | X 90.4K |
+| CRGO_INTERMODAL | other | 1 | 4.39M | X 103.1K |
+| CRGO_PASSENGERS | other | 1 | 4.37M | X 119.6K |
+| CRGO_OILFIELD | other | 1 | 4.42M | X 77.6K |
+| CRGO_LIVESTOCK | other | 1 | 4.37M | X 128.3K |
+| CRGO_GRAINFEED | other | 1 | 4.13M | X 364.2K |
+| CRGO_COALCOKE | other | 1 | 4.46M | X 33.8K |
+| CRGO_MEAT | other | 1 | 4.49M | X 2.9K |
+| CRGO_GARBAGE | other | 1 | 4.35M | X 141.8K |
+| CRGO_USMAIL | other | 1 | 4.43M | X 61.2K |
+| CRGO_CHEM | other | 1 | 4.44M | X 50.7K |
+| CRGO_DRYBULK | other | 1 | 4.29M | X 201.4K |
+| CRGO_COLDFOOD | other | 1 | 4.26M | X 236.3K |
+| CRGO_BEVERAGES | other | 1 | 4.33M | X 160.3K |
+| CRGO_PAPERPROD | other | 1 | 4.27M | X 219.2K |
+| CRGO_UTILITY | other | 1 | 4.37M | X 123.3K |
+| CRGO_FARMSUPP | other | 1 | 4.23M | X 262.5K |
+| CRGO_CONSTRUCT | other | 1 | 3.60M | X 889.7K |
+| CRGO_WATERWELL | other | 1 | 4.47M | X 26.7K |
+| CRGO_CARGOOTHR | other | 1 | 3.34M | X 1.16M |
+| CRGO_CARGOOTHR_DESC | who | 188.5K | 3.51M | OTHER 119.8K; UNSPECIFIED 41.8K; PAPER PRODUCT 22.7K; BEVERAGES 16.8K |
+| OWNTRUCK | other | 1.1K | 2.38M | 1 1.40M; 2 325.9K; 3 134.2K; 4 71.3K |
+| OWNTRACT | other | 850 | 2.85M | 1 1.14M; 2 222.5K; 3 90.8K; 4 48.3K |
+| OWNTRAIL | other | 1.4K | 2.85M | 1 961.3K; 2 282.1K; 3 123.5K; 4 68.8K |
+| OWNCOACH | other | 204 | 4.46M | 1 19.9K; 2 4.6K; 3 2.1K; 4 1.2K |
+| OWNSCHOOL_1_8 | other | 103 | 4.49M | 1 1.8K; 2 555; 3 300; 4 187 |
+| OWNSCHOOL_9_15 | other | 114 | 4.49M | 1 2.3K; 2 677; 3 291; 4 193 |
+| OWNSCHOOL_16 | other | 313 | 4.48M | 1 5.2K; 2 1.8K; 3 878; 4 566 |
+| OWNBUS_16 | other | 131 | 4.48M | 1 9.7K; 2 2.4K; 3 1.1K; 4 657 |
+| OWNVAN_1_8 | other | 150 | 4.47M | 1 12.6K; 2 3.5K; 3 1.5K; 4 983 |
+| OWNVAN_9_15 | other | 145 | 4.46M | 1 18.1K; 2 5.5K; 3 2.2K; 4 1.3K |
+| OWNLIMO_1_8 | other | 60 | 4.49M | 1 3.9K; 2 1.1K; 3 489; 4 256 |
+| OWNLIMO_9_15 | category | 29 | 4.49M | 1 3.7K; 2 993; 3 414; 4 198 |
+| OWNLIMO_16 | category | 31 | 4.49M | 1 1.2K; 2 343; 3 147; 4 77 |
+| TRMTRUCK | other | 600 | 4.32M | 1 104.0K; 2 23.1K; 3 10.0K; 4 6.1K |
+| TRMTRACT | other | 643 | 4.31M | 1 87.3K; 2 25.5K; 3 13.9K; 4 9.1K |
+| TRMTRAIL | other | 770 | 4.30M | 1 105.4K; 2 25.2K; 3 12.0K; 4 7.9K |
+| TRMCOACH | other | 117 | 4.49M | 1 2.2K; 2 715; 3 341; 4 210 |
+| TRMSCHOOL_1_8 | category | 36 | 4.49M | 1 154; 2 49; 4 18; 3 16 |
+| TRMSCHOOL_9_15 | category | 39 | 4.49M | 1 125; 2 45; 3 27; 4 17 |
+| TRMSCHOOL_16 | other | 99 | 4.49M | 1 208; 2 79; 3 52; 4 41 |
+| TRMBUS_16 | other | 67 | 4.49M | 1 556; 2 192; 3 101; 4 50 |
+| TRMVAN_1_8 | other | 82 | 4.49M | 1 1.1K; 2 305; 3 152; 4 101 |
+| TRMVAN_9_15 | other | 87 | 4.49M | 1 1.5K; 2 536; 3 280; 4 230 |
+| TRMLIMO_1_8 | category | 35 | 4.49M | 1 298; 2 82; 3 40; 4 21 |
+| TRMLIMO_9_15 | category | 30 | 4.49M | 1 260; 2 65; 3 32; 4 13 |
+| TRMLIMO_16 | category | 12 | 4.49M | 1 109; 2 42; 3 20; 4 7 |
+| TRPTRUCK | other | 220 | 4.46M | 1 23.2K; 2 2.9K; 3 1.0K; 4 545 |
+| TRPTRACT | other | 222 | 4.48M | 1 9.6K; 2 1.6K; 3 751; 4 425 |
+| TRPTRAIL | other | 425 | 4.45M | 1 29.0K; 2 4.5K; 3 1.9K; 4 1.3K |
+| TRPCOACH | other | 51 | 4.49M | 1 868; 2 162; 3 46; 4 35 |
+| TRPSCHOOL_1_8 | category | 21 | 4.49M | 1 99; 3 7; 2 6; 11 4 |
+| TRPSCHOOL_9_15 | category | 15 | 4.49M | 1 96; 2 6; 3 5; 99999 4 |
+| TRPSCHOOL_16 | category | 24 | 4.49M | 1 124; 2 15; 3 14; 10 4 |
+| TRPBUS_16 | category | 20 | 4.49M | 1 173; 2 19; 4 8; 10 6 |
+| TRPVAN_1_8 | category | 28 | 4.49M | 1 461; 2 79; 3 28; 4 22 |
+| TRPVAN_9_15 | category | 35 | 4.49M | 1 505; 2 115; 3 37; 4 28 |
+| TRPLIMO_1_8 | category | 24 | 4.49M | 1 171; 2 19; 3 10; 99999 6 |
+| TRPLIMO_9_15 | category | 15 | 4.49M | 1 121; 2 18; 3 7; 4 4 |
+| TRPLIMO_16 | category | 10 | 4.49M | 1 54; 3 4; 2 4; 99999 2 |
+| DOCKET1_STATUS_CODE | category | 3 | 2.71M | A 1.69M; I 99.4K; P 83 |
+| DOCKET2_STATUS_CODE | category | 3 | 4.41M | I 57.5K; A 22.6K; P 22 |
+| DOCKET3_STATUS_CODE | category | 3 | 4.49M | I 2.8K; A 738; P 2 |
+| _INGESTED_AT | audit date | 1 | 0 | 56662979-09-03 19:44:35.0 4.49M |
+| _SOURCE_RUN_ID | audit | 1 | 0 | 567945c1-7953-4f40-a960-5 4.49M |
+| _SRC_SHA256 | other | 1 | 0 | 083a25ecae010b8303f1dd0de 4.49M |

@@ -1,0 +1,301 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_D4ACA49A9B
+
+rows 2.0K  columns 23  scan 4.3s
+
+roles: amount 2, audit 2, category 6, date 1, other 4, who 9
+
+## when
+
+INGESTED_AT
+  2026      2.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTAL_OF_PATIENTS_WHO_WERE | 2.0K | 11 | 136 | 11.7K | 150.1K | 1.72M |
+| RATE | 2.0K | 0 | 0.44 | 1 | 1 | 774.90 |
+
+## who
+
+PROVIDER_NAME by rows
+        25  IHC HEALTH SERVICES INC
+        17  CARBON MEDICAL SERVICE ASSOCIATION, INCORPORATED
+        12  GUNNISON VALLEY HOSPITAL
+        12  INTERMOUNTAIN SENIOR CARE, LLC
+        12  NEW HORIZON MEDICAL CARE INC
+        11  PARK CITY SPECIALTY
+        11  THE HEALTH SPOT
+        11  CIRCLE OF LIFE WOMEN CENTER
+        11  ONSITE CARE
+        11  PINE TOP MEDICAL P.C.
+        11  MEDICAL ARTS CENTER CLINIC OF BRIGHAM CITY INC
+        11  CONNECT CARE
+        10  BRYANT J. BROWN, M.D., A PROFESSIONAL CORPORATION
+        10  DESERT EDGE MEDICAL
+        10  PACIFIC MEDICAL ASSOCIATES PC
+        10  MOUNTAIN TOP MEDICAL, PLLC
+        10  IMED PHYSICIANS BILLING
+        10  BUDGE CLINIC MEDICAL SPECIALISTS
+         9  SHELLY SAVAGE M D LLC
+         9  STEP MOUNTAIN MEDICAL INC.
+
+PROVIDER_NAME by dollars
+      153.1K        4 rows  UTAH VALLEY PEDIATRICS L.L.C.
+      131.1K        5 rows  REVERE HEALTH
+      117.1K        5 rows  OGDEN CLINIC PC
+       84.6K        4 rows  GRANGER MEDICAL CLINIC PC
+       49.0K        9 rows  FOOTHILL FAMILY CLINIC
+       44.7K        7 rows  UNIVERSITY OF UTAH ADULT SERVICES
+       43.1K        4 rows  PREMIER FAMILY MEDICAL
+       33.5K        2 rows  TANNER MEMORIAL CLINIC
+       33.5K        6 rows  SPANISH FORK CLINIC
+       23.6K        5 rows  THE MAGNA CENTER FOR FAMILY MEDICINE
+       22.1K       11 rows  CONNECT CARE
+       21.9K        5 rows  LAYTON CLINIC
+       20.8K        3 rows  NORTHEASTERN UTAH MEDICAL GROUP
+       17.6K        5 rows  OLYMPUS CLINIC
+       16.5K        3 rows  LAYTON PARKWAY NORTHERN UTAH PEDIATRICS
+       14.9K        4 rows  WASATCH PEDIATRICS, INC
+       14.6K        5 rows  JORDAN RIDGE FAMILY MEDICINE LLC
+       14.1K        8 rows  INTERMOUNTAIN WASATCH OB/GYN
+       14.1K        6 rows  INTERMOUNTAIN HURRICANE VALLEY CLINIC
+       13.3K        6 rows  TAYLORSVILLE CLINIC
+
+ORGANIZATION_NAME by rows
+       614  IHC HEALTH SERVICES INC
+        30  COMMUNITY HEALTH CENTERS, INC.
+        17  CARBON MEDICAL SERVICE ASSOCIATION, INCORPORATED
+        17  VALLEY OBSTETRICS AND GYNECOLOGY, PC
+        16  SAN JUAN COUNTY HOSPITAL
+        13  GUNNISON VALLEY HOSPITAL
+        12  INTEGRATED MEDICAL SERVICES
+        12  NEW HORIZON MEDICAL CARE INC
+        11  CIRCLE OF LIFE INC
+        11  VALLEY OBSTETRICS AND GYNECOLOGY, P.C.
+        11  PINE TOP MEDICAL P.C.
+        11  ONSITE CARE INC
+        11  IHC HEALTH SERVICES, INC
+        11  MEDICAL ARTS CENTER CLINIC OF BRIGHAM CITY INC
+        10  THE HEALTH SPOT, INC.
+        10  PACIFIC MEDICAL ASSOCIATES PC
+        10  MOUNTAIN TOP MEDICAL, PLLC
+        10  BRYANT J. BROWN, M.D., A PROFESSIONAL CORPORATION
+        10  DESERT EDGE MEDICAL
+         9  FOOTHILL CLINIC, LLC
+
+ORGANIZATION_NAME by dollars
+      425.5K      614 rows  IHC HEALTH SERVICES INC
+      153.1K        4 rows  UTAH VALLEY PEDIATRICS L.L.C.
+      131.1K        5 rows  CENTRAL UTAH CLINIC, P.C.
+      117.1K        5 rows  OGDEN CLINIC PC
+       84.6K        4 rows  GRANGER MEDICAL CLINIC PC
+       49.0K        9 rows  FOOTHILL CLINIC, LLC
+       44.7K        7 rows  UNIVERSITY OF UTAH ADULT SERVICES
+       43.1K        4 rows  PREMIER FAMILY MEDICAL
+       33.7K        8 rows  CANYON VIEW MEDICAL GROUP LLC
+       33.5K        2 rows  TANNER MEMORIAL CLINIC
+       23.6K        5 rows  EXODUS HEALTHCARE NETWORK PLLC
+       20.8K        3 rows  NORTHEASTERN UTAH MEDICAL GROUP
+       18.5K       11 rows  IHC HEALTH SERVICES, INC
+       17.6K        5 rows  OLYMPUS CLINIC
+       14.9K        4 rows  WASATCH PEDIATRICS, INC
+       14.6K        5 rows  JORDAN RIDGE FAMILY MEDICINE LLC
+       14.1K       17 rows  VALLEY OBSTETRICS AND GYNECOLOGY, PC
+       13.3K        7 rows  CEDAR CITY INSTITUTE OF WOMEN'S HEALTH PC
+       12.8K        6 rows  WASATCH PEAK FAMILY PRACTICE INC
+       12.7K        4 rows  MIDTOWN COMMUNITY HEALTH CENTER INC
+
+PROVIDER_CITY_NAME by rows
+       809  SALT LAKE CITY
+        88  PROVO
+        59  ST GEORGE
+        50  WEST JORDAN
+        48  SANDY
+        44  WEST VALLEY CITY
+        44  TOOELE
+        44  SOUTH JORDAN
+        43  LOGAN
+        39  MURRAY
+        36  OREM
+        33  BRIGHAM CITY
+        33  PRICE
+        31  BOUNTIFUL
+        29  RIVERTON
+        28  OGDEN
+        27  LAYTON
+        24  DRAPER
+        22  CEDAR CITY
+        20  VERNAL
+
+PROVIDER_CITY_NAME by dollars
+      615.8K      809 rows  SALT LAKE CITY
+      326.0K       88 rows  PROVO
+      139.1K       28 rows  OGDEN
+       99.7K       44 rows  WEST VALLEY CITY
+       48.8K       27 rows  LAYTON
+       43.2K        6 rows  PLEASANT GROVE
+       41.6K       50 rows  WEST JORDAN
+       34.0K       11 rows  SPANISH FORK
+       31.5K       59 rows  ST GEORGE
+       26.6K       44 rows  SOUTH JORDAN
+       23.6K        7 rows  MAGNA
+       23.3K       22 rows  CEDAR CITY
+       22.1K        8 rows  ROOSEVELT
+       16.8K       33 rows  BRIGHAM CITY
+       16.1K       29 rows  RIVERTON
+       14.2K       31 rows  BOUNTIFUL
+       13.7K       44 rows  TOOELE
+       13.4K        6 rows  NORTH LOGAN
+       12.3K       20 rows  VERNAL
+       10.3K        5 rows  NEPHI
+
+PROVIDER_NPI by rows
+        12  1912136862
+        12  1114289980
+        11  1205066495
+        11  1679956445
+        11  1548284078
+        11  1700259207
+        11  1649375270
+        11  1679749196
+        11  1518250109
+        10  1629260880
+        10  1417354945
+        10  1588162911
+        10  1669738662
+        10  1912307901
+        10  1124261185
+        10  1235783994
+         9  1437251279
+         9  1447460811
+         9  1306843750
+         9  1447436332
+
+PROVIDER_NPI by dollars
+      153.1K        4 rows  1497812721
+      131.1K        5 rows  1093764805
+      117.1K        5 rows  1578550083
+       84.6K        4 rows  1184657041
+       44.7K        7 rows  1114321981
+       43.1K        4 rows  1750725735
+       36.1K        7 rows  1407947005
+       33.5K        2 rows  1447239355
+       33.5K        6 rows  1538194477
+       23.6K        5 rows  1306952783
+       22.1K       11 rows  1700259207
+       21.9K        5 rows  1467597005
+       20.8K        3 rows  1982664199
+       17.6K        5 rows  1508810508
+       16.5K        3 rows  1306367867
+       14.9K        4 rows  1124102595
+       14.6K        5 rows  1770509754
+       14.1K        8 rows  1891998852
+       14.1K        6 rows  1386789477
+       13.3K        6 rows  1043340359
+
+## who x when
+
+PROVIDER_NAME by INGESTED_AT  LOAD STAMP, not an event date, dollars = TOTAL_OF_PATIENTS_WHO_WERE
+  BRYANT J. BROWN, M.D., A PROFESSIONAL CO  2026:497
+  BUDGE CLINIC MEDICAL SPECIALISTS          2026:1.3K
+  CARBON MEDICAL SERVICE ASSOCIATION, INCO  2026:1.9K
+  CIRCLE OF LIFE WOMEN CENTER               2026:7.1K
+  CONNECT CARE                              2026:22.1K
+  DESERT EDGE MEDICAL                       2026:2.8K
+  FOOTHILL FAMILY CLINIC                    2026:49.0K
+  GRANGER MEDICAL CLINIC PC                 2026:84.6K
+  GUNNISON VALLEY HOSPITAL                  2026:714
+  IHC HEALTH SERVICES INC                   2026:6.2K
+  IMED PHYSICIANS BILLING                   2026:4.7K
+  INTERMOUNTAIN SENIOR CARE, LLC            2026:1.8K
+  MEDICAL ARTS CENTER CLINIC OF BRIGHAM CI  2026:9.8K
+  MOUNTAIN TOP MEDICAL, PLLC                2026:1.6K
+  NEW HORIZON MEDICAL CARE INC              2026:4.6K
+  OGDEN CLINIC PC                           2026:117.1K
+  ONSITE CARE                               2026:9.1K
+  PACIFIC MEDICAL ASSOCIATES PC             2026:3.6K
+  PARK CITY SPECIALTY                       2026:2.9K
+  PINE TOP MEDICAL P.C.                     2026:2.8K
+  PREMIER FAMILY MEDICAL                    2026:43.1K
+  REVERE HEALTH                             2026:131.1K
+  SHELLY SAVAGE M D LLC                     2026:4.6K
+  SPANISH FORK CLINIC                       2026:33.5K
+  STEP MOUNTAIN MEDICAL INC.                2026:1.6K
+  TANNER MEMORIAL CLINIC                    2026:33.5K
+  THE HEALTH SPOT                           2026:342
+  THE MAGNA CENTER FOR FAMILY MEDICINE      2026:23.6K
+  UNIVERSITY OF UTAH ADULT SERVICES         2026:44.7K
+  UTAH VALLEY PEDIATRICS L.L.C.             2026:153.1K
+
+ORGANIZATION_NAME by INGESTED_AT  LOAD STAMP, not an event date, dollars = TOTAL_OF_PATIENTS_WHO_WERE
+  BRYANT J. BROWN, M.D., A PROFESSIONAL CO  2026:497
+  CANYON VIEW MEDICAL GROUP LLC             2026:33.7K
+  CARBON MEDICAL SERVICE ASSOCIATION, INCO  2026:1.9K
+  CENTRAL UTAH CLINIC, P.C.                 2026:131.1K
+  CIRCLE OF LIFE INC                        2026:7.1K
+  COMMUNITY HEALTH CENTERS, INC.            2026:10.8K
+  DESERT EDGE MEDICAL                       2026:2.8K
+  EXODUS HEALTHCARE NETWORK PLLC            2026:23.6K
+  FOOTHILL CLINIC, LLC                      2026:49.0K
+  GRANGER MEDICAL CLINIC PC                 2026:84.6K
+  GUNNISON VALLEY HOSPITAL                  2026:805
+  IHC HEALTH SERVICES INC                   2026:425.5K
+  IHC HEALTH SERVICES, INC                  2026:18.5K
+  INTEGRATED MEDICAL SERVICES               2026:1.8K
+  MEDICAL ARTS CENTER CLINIC OF BRIGHAM CI  2026:9.8K
+  MOUNTAIN TOP MEDICAL, PLLC                2026:1.6K
+  NEW HORIZON MEDICAL CARE INC              2026:4.6K
+  NORTHEASTERN UTAH MEDICAL GROUP           2026:20.8K
+  OGDEN CLINIC PC                           2026:117.1K
+  ONSITE CARE INC                           2026:9.1K
+  PACIFIC MEDICAL ASSOCIATES PC             2026:3.6K
+  PINE TOP MEDICAL P.C.                     2026:2.8K
+  PREMIER FAMILY MEDICAL                    2026:43.1K
+  SAN JUAN COUNTY HOSPITAL                  2026:1.8K
+  TANNER MEMORIAL CLINIC                    2026:33.5K
+  THE HEALTH SPOT, INC.                     2026:324
+  UNIVERSITY OF UTAH ADULT SERVICES         2026:44.7K
+  UTAH VALLEY PEDIATRICS L.L.C.             2026:153.1K
+  VALLEY OBSTETRICS AND GYNECOLOGY, P.C.    2026:531
+  VALLEY OBSTETRICS AND GYNECOLOGY, PC      2026:14.1K
+
+## what
+
+REPORTING_PERIOD: 2023 52%, 2022 48%
+
+MEASURE_ID: CCS_2022C 10%, CDC_A1C_L8_2022C 9%, COL_NON_MCR_2022C 9%, HDO_2022C 9%, PQA_STA_2020 9%, CDC_EYE_NON_MCR_2022C 8%, CHL_TOTAL_2022C 8%, BCS_NON_MCR_2022C 8%, CBP_2022C 8%, HPC_T_TOTAL_2022C 8%, AMM_EAPT_2022C 8%, UOP_NUM1_2022C 7%
+
+MEASURE_DESCRIPTION: Cervical Cancer Screening 10%, Comprehensive Diabetes Care: H 9%, Colorectal Cancer Screening (N 9%, Use of Opioids at High Dosage 9%, Percentage of members 18 years 9%, Comprehensive Diabetes Care: E 8%, Chlamydia Screening in Women ( 8%, Breast Cancer Screening (Non M 8%, Controlling High Blood Pressur 8%, Hospitalization for Potentiall 8%, Antidepressant Medication Mana 8%, Use of Opioids from Multiple P 7%
+
+NQF_NUMBER: 2950 14%, nan 11%, 34 11%, 2372 10%, 105 10%, 55 9%, 32 6%, 575 6%, 2940 6%, 541 6%, 33 5%, 18 5%
+
+COMPUTED_REGION_5D9V_6BUI: nan 42%, 26 23%, 5 11%, 8 5%, 22 4%, 6 3%, 11 3%, 16 2%, 14 2%, 4 2%, 15 1%, 10 1%
+
+COMPUTED_REGION_MI24_NG5Q: nan 42%, 29 23%, 19 11%, 15 5%, 23 4%, 12 3%, 9 3%, 4 2%, 11 2%, 28 2%, 2 1%, 13 1%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| REPORTING_PERIOD | category | 2 | 0 | 2023 1.0K; 2022 960 |
+| ORGANIZATION_NAME | who | 331 | 0 | IHC HEALTH SERVICES INC 614; COMMUNITY HEALTH CENTERS, 30; CARBON MEDICAL SERVICE AS 17; VALLEY OBSTETRICS AND GYN 17 |
+| PROVIDER_NPI | who | 526 | 0 | 1518250109 14; 1912307901 13; 1700259207 12; 1912136862 12 |
+| PROVIDER_NAME | who | 521 | 0 | IHC HEALTH SERVICES INC 25; CARBON MEDICAL SERVICE AS 17; ONSITE CARE 14; PACIFIC MEDICAL ASSOCIATE 13 |
+| PROVIDER_FIRST_LINE_ADDRESS | who | 318 | 0 | PO BOX 27128 626; 1455 W 2200 S STE 300 30; 585 N 500 W 21; 2356 N 400 E 18 |
+| PROVIDER_CITY_NAME | who | 85 | 0 | SALT LAKE CITY 809; PROVO 88; ST GEORGE 59; WEST JORDAN 50 |
+| PROVIDER_POSTAL_CODE | who | 304 | 0 | 84127-0128 626; 84119-7219 30; 84601-1548 20; 84074 18 |
+| MEASURE_ID | category | 22 | 0 | CCS_2022C 120; CDC_A1C_L8_2022C 116; COL_NON_MCR_2022C 116; HDO_2022C 110 |
+| MEASURE_DESCRIPTION | category | 22 | 0 | Cervical Cancer Screening 120; Comprehensive Diabetes Ca 116; Colorectal Cancer Screeni 116; Use of Opioids at High Do 110 |
+| NQF_NUMBER | category | 14 | 0 | 2950 259; nan 213; 34 199; 2372 191 |
+| OF_PATIENTS_WHO_RECEIVED | other | 524 | 0 | 0 292; 2 56; 4 53; 8 53 |
+| TOTAL_OF_PATIENTS_WHO_WERE | amount | 786 | 0 | 16 39; 14 35; 12 35; 20 28 |
+| RATE | amount | 100 | 0 | 0 315; 0.01 73; 0.02 52; 0.03 38 |
+| GEOCODING | who | 260 | 0 | nan 824; {"type": "Point", "coordi 30; {"type": "Point", "coordi 21; {"type": "Point", "coordi 19 |
+| COMPUTED_REGION_5D9V_6BUI | category | 19 | 0 | nan 824; 26 456; 5 221; 8 103 |
+| COMPUTED_REGION_QMWN_IMPY | other | 60 | 0 | nan 911; 204 84; 159 78; 220 74 |
+| COMPUTED_REGION_JDNU_JMST | other | 82 | 0 | nan 824; 171 55; 64 51; 221 50 |
+| COMPUTED_REGION_2FPW_SWV9 | other | 56 | 0 | nan 824; 59 78; 3 66; 42 55 |
+| COMPUTED_REGION_MI24_NG5Q | category | 19 | 0 | nan 824; 29 456; 19 221; 15 103 |
+| PROVIDER_SECOND_LINE_ADDRESS | who | 69 | 0 | nan 1.7K; SUITE 200 15; SUITE 14 15; SUITE 101 12 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:45:52.26253 2.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | 511490c2-f51c-45df-95e1-c 2.0K |
+| SRC_SHA256 | who | 1 | 0 | 4b9e8d6bc0f96bc08578ad62e 2.0K |

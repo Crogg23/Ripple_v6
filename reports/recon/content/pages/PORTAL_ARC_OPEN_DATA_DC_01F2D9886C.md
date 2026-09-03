@@ -1,0 +1,296 @@
+# PORTAL_ARC_OPEN_DATA_DC_01F2D9886C
+
+rows 437  columns 59  scan 3.9s
+
+roles: amount 16, audit 2, category 22, date 4, empty 1, other 12, who 3
+
+## when
+
+REPORTDATE
+  2019       116  ###########################
+  2020       116  ###########################
+  2021       129  ##############################
+  2022        76  ##################
+
+FROMDATE
+  2019       116  ###########################
+  2020       116  ###########################
+  2021       127  ##############################
+  2022        76  ##################
+
+LASTUPDATEDATE
+  2020       106  ########################
+  2021       131  ##############################
+  2022        78  ##################
+  2023         6  #
+
+INGESTED_AT
+  2026       437  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| MEASURE | 437 | 8.32 | 1.6K | 3.8K | 3.8K | 738.5K |
+| OFFSET | 437 | 0.01 | 13.05 | 46.14 | 49.86 | 6.3K |
+| LATITUDE | 437 | 38.86 | 38.86 | 38.87 | 38.87 | 17.0K |
+| LONGITUDE | 437 | -76.99 | -76.97 | -76.97 | -76.97 | -33.6K |
+| XCOORD | 437 | 401.3K | 402.4K | 402.9K | 402.9K | 175.77M |
+| YCOORD | 437 | 132.4K | 132.8K | 133.3K | 133.3K | 58.05M |
+
+## who
+
+ADDRESS by rows
+        27  2300 GOOD HOPE ROAD SE
+        25  2400 GOOD HOPE ROAD SE
+        20  2529 GOOD HOPE ROAD SE
+        17  2800 ALABAMA AVENUE SE
+        14  2713 GOOD HOPE ROAD SE
+        14  2501 GOOD HOPE ROAD SE
+        11  1600 GOOD HOPE ROAD SE
+        10  1537 GOOD HOPE ROAD SE
+        10  2451 GOOD HOPE ROAD SE
+         9  2728 GOOD HOPE ROAD SE
+         9  2200 GOOD HOPE ROAD SE
+         8  2509 GOOD HOPE ROAD SE
+         7  2718 GOOD HOPE ROAD SE
+         7  1500 GOOD HOPE ROAD SE
+         7  2226 GOOD HOPE ROAD SE
+         6  2441 GOOD HOPE ROAD SE
+         6  2410 GOOD HOPE ROAD SE
+         6  2365 GOOD HOPE ROAD SE
+         6  1800 GOOD HOPE ROAD SE
+         6  2503 GOOD HOPE ROAD SE
+
+ADDRESS by dollars
+       64.8K       17 rows  2800 ALABAMA AVENUE SE
+       46.3K       25 rows  2400 GOOD HOPE ROAD SE
+       43.9K       20 rows  2529 GOOD HOPE ROAD SE
+       42.9K       27 rows  2300 GOOD HOPE ROAD SE
+       31.7K       14 rows  2713 GOOD HOPE ROAD SE
+       29.8K       14 rows  2501 GOOD HOPE ROAD SE
+       21.2K       10 rows  2451 GOOD HOPE ROAD SE
+       21.2K        9 rows  2728 GOOD HOPE ROAD SE
+       19.1K        5 rows  2845 ALABAMA AVENUE SE
+       17.6K        8 rows  2509 GOOD HOPE ROAD SE
+       15.8K        7 rows  2718 GOOD HOPE ROAD SE
+       13.0K        9 rows  2200 GOOD HOPE ROAD SE
+       13.0K        4 rows  2801 ALABAMA AVENUE SE
+       12.8K        6 rows  GOOD HOPE ROAD SE & 25TH STREET SE
+       12.8K        6 rows  2503 GOOD HOPE ROAD SE
+       12.7K        6 rows  2441 GOOD HOPE ROAD SE
+       11.6K        6 rows  2365 GOOD HOPE ROAD SE
+       11.0K        6 rows  2410 GOOD HOPE ROAD SE
+       10.6K        5 rows  2449 GOOD HOPE ROAD SE
+       10.3K        7 rows  2226 GOOD HOPE ROAD SE
+
+MAR_ADDRESS by rows
+        27  2300 GOOD HOPE ROAD SE
+        25  2400 GOOD HOPE ROAD SE
+        20  2529 GOOD HOPE ROAD SE
+        19  2451 GOOD HOPE ROAD SE
+        17  2800 ALABAMA AVENUE SE
+        14  2501 GOOD HOPE ROAD SE
+        14  2713 GOOD HOPE ROAD SE
+        14  1600 GOOD HOPE ROAD SE
+        10  1537 GOOD HOPE ROAD SE
+         9  2200 GOOD HOPE ROAD SE
+         9  2509 GOOD HOPE ROAD SE
+         9  2728 GOOD HOPE ROAD SE
+         7  2410 GOOD HOPE ROAD SE
+         7  2718 GOOD HOPE ROAD SE
+         7  1500 GOOD HOPE ROAD SE
+         6  1800 GOOD HOPE ROAD SE
+         6  2365 GOOD HOPE ROAD SE
+         6  2503 GOOD HOPE ROAD SE
+         6  2441 GOOD HOPE ROAD SE
+         6  2226 GOOD HOPE ROAD SE
+
+MAR_ADDRESS by dollars
+       64.8K       17 rows  2800 ALABAMA AVENUE SE
+       46.3K       25 rows  2400 GOOD HOPE ROAD SE
+       43.9K       20 rows  2529 GOOD HOPE ROAD SE
+       42.9K       27 rows  2300 GOOD HOPE ROAD SE
+       38.9K       19 rows  2451 GOOD HOPE ROAD SE
+       31.7K       14 rows  2713 GOOD HOPE ROAD SE
+       29.8K       14 rows  2501 GOOD HOPE ROAD SE
+       21.2K        9 rows  2728 GOOD HOPE ROAD SE
+       19.7K        9 rows  2509 GOOD HOPE ROAD SE
+       19.1K        5 rows  2845 ALABAMA AVENUE SE
+       15.8K        7 rows  2718 GOOD HOPE ROAD SE
+       13.0K        6 rows  2503 GOOD HOPE ROAD SE
+       13.0K        9 rows  2200 GOOD HOPE ROAD SE
+       13.0K        4 rows  2801 ALABAMA AVENUE SE
+       12.8K        7 rows  2410 GOOD HOPE ROAD SE
+       12.7K        6 rows  2441 GOOD HOPE ROAD SE
+       12.4K       14 rows  1600 GOOD HOPE ROAD SE
+       11.6K        6 rows  2365 GOOD HOPE ROAD SE
+       11.4K        5 rows  2720 GOOD HOPE ROAD SE
+        8.9K        6 rows  2226 GOOD HOPE ROAD SE
+
+SRC_SHA256 by rows
+       437  3bc251f29d52a86b41c542839d6ec2e74938be9bb94e6da9b2697ab7f8c91efe
+
+SRC_SHA256 by dollars
+      738.5K      437 rows  3bc251f29d52a86b41c542839d6ec2e74938be9bb94e6da9b2697ab7f8c9
+
+## who x when
+
+ADDRESS by REPORTDATE, dollars = MEASURE
+  1500 GOOD HOPE ROAD SE                    2020:1.7K 2021:2.3K 2022:1.4K
+  1537 GOOD HOPE ROAD SE                    2020:888.79 2021:5.3K 2022:2.6K
+  1600 GOOD HOPE ROAD SE                    2019:3.5K 2020:2.7K 2021:2.7K 2022:894.07
+  1800 GOOD HOPE ROAD SE                    2019:2.4K 2020:2.3K 2021:1.1K 2022:1.2K
+  2200 GOOD HOPE ROAD SE                    2019:3.1K 2020:2.9K 2021:4.2K 2022:2.8K
+  2226 GOOD HOPE ROAD SE                    2019:3.0K 2020:1.5K 2021:1.5K 2022:4.4K
+  2300 GOOD HOPE ROAD SE                    2019:17.2K 2020:11.1K 2021:14.6K
+  2365 GOOD HOPE ROAD SE                    2020:3.9K 2021:3.9K 2022:3.8K
+  2400 GOOD HOPE ROAD SE                    2019:11.2K 2020:11.5K 2021:14.7K 2022:8.9K
+  2410 GOOD HOPE ROAD SE                    2019:3.7K 2020:3.6K 2022:3.7K
+  2441 GOOD HOPE ROAD SE                    2019:4.3K 2021:6.4K 2022:2.1K
+  2449 GOOD HOPE ROAD SE                    2019:2.1K 2020:2.1K 2021:4.2K 2022:2.1K
+  2451 GOOD HOPE ROAD SE                    2020:10.6K 2021:4.3K 2022:6.3K
+  2501 GOOD HOPE ROAD SE                    2019:6.4K 2020:12.8K 2021:8.5K 2022:2.2K
+  2503 GOOD HOPE ROAD SE                    2019:2.1K 2020:6.4K 2021:4.3K
+  2509 GOOD HOPE ROAD SE                    2019:2.1K 2022:15.5K
+  2529 GOOD HOPE ROAD SE                    2019:17.8K 2020:17.4K 2021:8.8K
+  2713 GOOD HOPE ROAD SE                    2019:9.0K 2020:11.3K 2021:6.8K 2022:4.5K
+  2718 GOOD HOPE ROAD SE                    2021:6.8K 2022:9.0K
+  2728 GOOD HOPE ROAD SE                    2021:16.5K 2022:4.7K
+  2800 ALABAMA AVENUE SE                    2019:11.5K 2020:26.7K 2021:19.0K 2022:7.6K
+  2801 ALABAMA AVENUE SE                    2019:5.4K 2020:7.5K
+  2845 ALABAMA AVENUE SE                    2019:3.8K 2020:7.6K 2021:7.6K
+  GOOD HOPE ROAD SE & 25TH STREET SE        2019:2.1K 2020:8.5K 2021:2.1K
+
+MAR_ADDRESS by REPORTDATE, dollars = MEASURE
+  1500 GOOD HOPE ROAD SE                    2020:1.7K 2021:2.3K 2022:1.4K
+  1537 GOOD HOPE ROAD SE                    2020:888.79 2021:5.3K 2022:2.6K
+  1600 GOOD HOPE ROAD SE                    2019:5.3K 2020:3.6K 2021:2.7K 2022:894.07
+  1800 GOOD HOPE ROAD SE                    2019:2.4K 2020:2.3K 2021:1.1K 2022:1.2K
+  2200 GOOD HOPE ROAD SE                    2019:3.1K 2020:2.9K 2021:4.2K 2022:2.8K
+  2226 GOOD HOPE ROAD SE                    2019:3.0K 2020:1.5K 2021:1.5K 2022:2.9K
+  2300 GOOD HOPE ROAD SE                    2019:17.2K 2020:11.1K 2021:14.6K
+  2365 GOOD HOPE ROAD SE                    2020:3.9K 2021:3.9K 2022:3.8K
+  2400 GOOD HOPE ROAD SE                    2019:11.2K 2020:11.5K 2021:14.7K 2022:8.9K
+  2410 GOOD HOPE ROAD SE                    2019:3.7K 2020:3.6K 2021:1.9K 2022:3.7K
+  2441 GOOD HOPE ROAD SE                    2019:4.3K 2021:6.4K 2022:2.1K
+  2451 GOOD HOPE ROAD SE                    2019:2.8K 2020:19.1K 2021:10.6K 2022:6.3K
+  2501 GOOD HOPE ROAD SE                    2019:6.4K 2020:12.8K 2021:8.5K 2022:2.2K
+  2503 GOOD HOPE ROAD SE                    2019:2.1K 2020:6.4K 2021:4.5K
+  2509 GOOD HOPE ROAD SE                    2019:2.1K 2020:2.1K 2022:15.5K
+  2529 GOOD HOPE ROAD SE                    2019:17.8K 2020:17.4K 2021:8.8K
+  2713 GOOD HOPE ROAD SE                    2019:9.0K 2020:11.3K 2021:6.8K 2022:4.5K
+  2718 GOOD HOPE ROAD SE                    2021:6.8K 2022:9.0K
+  2720 GOOD HOPE ROAD SE                    2019:2.3K 2020:2.3K 2021:2.3K 2022:4.6K
+  2728 GOOD HOPE ROAD SE                    2021:16.5K 2022:4.7K
+  2800 ALABAMA AVENUE SE                    2019:11.5K 2020:26.7K 2021:19.0K 2022:7.6K
+  2801 ALABAMA AVENUE SE                    2019:5.4K 2020:7.5K
+  2845 ALABAMA AVENUE SE                    2019:3.8K 2020:7.6K 2021:7.6K
+
+## what
+
+ROUTEID: 13040752 85%, 13009362 7%, 13001602 2%, 13040782 1%, 13002402 1%, 13063502 1%, 13094282 1%, 13001502 0%, 13002502 0%, 13061162 0%, 13001932 0%, 13001702 0%
+
+STREETSEGID: nan 83%, 0.0 8%, -9.0 4%, 13581.0 1%, 8420.0 1%, 400.0 1%, 7178.0 1%, 1700.0 0%, 8447.0 0%, 13809.0 0%, 485.0 0%, 9986.0 0%
+
+ROADWAYSEGID: nan 85%, 0.0 8%, 31931.0 2%, 34094.0 1%, 29308.0 1%, 9009.0 1%, 670.0 1%, 20756.0 1%, 2341.0 0%, 3785.0 0%, 36332.0 0%, 856.0 0%
+
+WARD: Ward 8 55%, Ward 7 45%
+
+MAR_SCORE: 200 83%, 100 17%
+
+MINORINJURIES_BICYCLIST: 0 99%, 1 1%
+
+MAJORINJURIES_DRIVER: 0 99%, 1 1%
+
+MINORINJURIES_DRIVER: 0 83%, 1 15%, 2 2%, 3 0%
+
+UNKNOWNINJURIES_DRIVER: 0 87%, 1 11%, 2 2%, 4 0%
+
+MAJORINJURIES_PEDESTRIAN: 0 99%, 1 1%
+
+MINORINJURIES_PEDESTRIAN: 0 98%, 1 2%
+
+UNKNOWNINJURIES_PEDESTRIAN: 0 100%, 1 0%
+
+PEDESTRIANSIMPAIRED: 0 100%, 2 0%, 1 0%
+
+DRIVERSIMPAIRED: 0 98%, 1 1%, 2 0%
+
+SPEEDING_INVOLVED: 0 97%, 1 2%, 2 0%
+
+NEARESTINTROUTEID: 13002502 22%, 13063502 14%, 13001602 13%, 58024942 8%, 13094282 7%, 13040752 7%, 13061162 6%, 13009942 6%, 13001502 5%, 13002402 4%, 13001802 4%, 13001932 4%
+
+NEARESTINTSTREETNAME: 25TH ST SE 22%, NAYLOR RD SE 14%, 16TH ST SE 13%, Driveway-58024942 8%, WOODMONT PL SE 7%, GOOD HOPE RD SE 7%, MINNESOTA AVE SE 6%, ALTAMONT PL SE 6%, 15TH ST SE 5%, 24TH ST SE 4%, 18TH ST SE 4%, 19TH PL SE 4%
+
+INTAPPROACHDIRECTION: Northwest 28%, Southeast 27%, East 17%, West 13%, Southwest 7%, South 3%, Northeast 3%, North 2%
+
+LOCATIONERROR: nan 94%, b67da919f4b5abdf0e19ffe52755ba 6%, 2c57059ad8d2a728dadc1276bc5e6b 1%
+
+MAJORINJURIESPASSENGER: 0 100%, 1 0%
+
+MINORINJURIESPASSENGER: 0 93%, 1 5%, 2 1%, 3 1%
+
+UNKNOWNINJURIESPASSENGER: 0 97%, 1 2%, 2 0%, 3 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | other | 438 | 0 | 1209 3; 1208 3; 1207 3; 1206 3 |
+| CRIMEID | other | 434 | 0 | 39165101372 3; 38760930562 3; 38578854567 3; 38131293832 3 |
+| CCN | other | 438 | 0 | 22187700 3; 22175377 3; 22170091 3; 22164708 3 |
+| REPORTDATE | date | 435 | 0 | 1672090440000 3; 1670040900000 3; 1669124880000 3; 1668209520000 3 |
+| ROUTEID | category | 13 | 0 | 13040752 372; 13009362 32; 13001602 7; 13040782 5 |
+| MEASURE | amount | 127 | 0 | 2125.73 65; 888.79 28; 3817.42 28; 1534.8 21 |
+| OFFSET | amount | 327 | 0 | 26.7 9; 19.67 8; 18.900000000000002 5; 24.62 5 |
+| STREETSEGID | category | 25 | 0 | nan 352; 0.0 33; -9.0 16; 13581.0 4 |
+| ROADWAYSEGID | category | 32 | 0 | nan 352; 0.0 33; 31931.0 7; 34094.0 4 |
+| FROMDATE | date | 375 | 0 | 1577682000000.0 4; 1672084800000.0 3; 1670013240000.0 3; 1668468600000.0 3 |
+| TODATE | empty | 1 | 437 |  |
+| ADDRESS | who | 133 | 0 | 2300 GOOD HOPE ROAD SE 27; 2400 GOOD HOPE ROAD SE 25; 2529 GOOD HOPE ROAD SE 20; 2800 ALABAMA AVENUE SE 17 |
+| LATITUDE | amount | 153 | 0 | 38.864303 21; 38.860386999999996 18; 38.862974 17; 38.860828 14 |
+| LONGITUDE | amount | 160 | 0 | -76.97360499999999 21; -76.96843799999999 18; -76.972556 17; -76.969633 13 |
+| XCOORD | amount | 175 | 0 | 402290.716 21; 402739.365 18; 402381.864 17; 402635.636 13 |
+| YCOORD | amount | 177 | 0 | 132942.916 21; 132508.407 18; 132795.403 17; 132557.258 13 |
+| WARD | category | 2 | 0 | Ward 8 240; Ward 7 197 |
+| MAR_ADDRESS | who | 123 | 0 | 2300 GOOD HOPE ROAD SE 27; 2400 GOOD HOPE ROAD SE 25; 2529 GOOD HOPE ROAD SE 20; 2451 GOOD HOPE ROAD SE 19 |
+| MAR_SCORE | category | 2 | 0 | 200 364; 100 73 |
+| MAJORINJURIES_BICYCLIST | other | 1 | 0 | 0 437 |
+| MINORINJURIES_BICYCLIST | category | 2 | 0 | 0 434; 1 3 |
+| UNKNOWNINJURIES_BICYCLIST | other | 1 | 0 | 0 437 |
+| FATAL_BICYCLIST | other | 1 | 0 | 0 437 |
+| MAJORINJURIES_DRIVER | category | 2 | 0 | 0 432; 1 5 |
+| MINORINJURIES_DRIVER | category | 4 | 0 | 0 362; 1 66; 2 8; 3 1 |
+| UNKNOWNINJURIES_DRIVER | category | 4 | 0 | 0 380; 1 48; 2 8; 4 1 |
+| FATAL_DRIVER | other | 1 | 0 | 0 437 |
+| MAJORINJURIES_PEDESTRIAN | category | 2 | 0 | 0 434; 1 3 |
+| MINORINJURIES_PEDESTRIAN | category | 2 | 0 | 0 428; 1 9 |
+| UNKNOWNINJURIES_PEDESTRIAN | category | 2 | 0 | 0 436; 1 1 |
+| FATAL_PEDESTRIAN | other | 1 | 0 | 0 437 |
+| TOTAL_VEHICLES | amount | 6 | 0 | 2 340; 1 52; 3 36; 4 4 |
+| TOTAL_BICYCLES | amount | 2 | 0 | 0 434; 1 3 |
+| TOTAL_PEDESTRIANS | amount | 2 | 0 | 0 422; 1 15 |
+| PEDESTRIANSIMPAIRED | category | 3 | 0 | 0 435; 2 1; 1 1 |
+| BICYCLISTSIMPAIRED | other | 1 | 0 | 0 437 |
+| DRIVERSIMPAIRED | category | 3 | 0 | 0 430; 1 6; 2 1 |
+| TOTAL_TAXIS | amount | 2 | 0 | 0 434; 1 3 |
+| TOTAL_GOVERNMENT | amount | 2 | 0 | 0 394; 1 43 |
+| SPEEDING_INVOLVED | category | 3 | 0 | 0 426; 1 10; 2 1 |
+| NEARESTINTROUTEID | category | 28 | 0 | 13002502 76; 13063502 49; 13001602 45; 58024942 28 |
+| NEARESTINTSTREETNAME | category | 28 | 0 | 25TH ST SE 76; NAYLOR RD SE 49; 16TH ST SE 45; Driveway-58024942 28 |
+| OFFINTERSECTION | amount | 342 | 0 | 41.99 9; 25.82 8; 24.02 6; 0.01 6 |
+| INTAPPROACHDIRECTION | category | 8 | 0 | Northwest 121; Southeast 120; East 74; West 57 |
+| LOCATIONERROR | category | 3 | 0 | nan 409; b67da919f4b5abdf0e19ffe52 25; 2c57059ad8d2a728dadc1276b 3 |
+| LASTUPDATEDATE | date | 320 | 0 | nan 116; 1672426233000.0 2; 1669476628000.0 2; 1668439889000.0 2 |
+| MPDLATITUDE | amount | 349 | 0 | 38.86025 9; 38.86313 8; 38.86051 5; 38.862966 4 |
+| MPDLONGITUDE | amount | 361 | 0 | -76.96728999999999 9; -76.97245 8; -76.98214 5; -76.96820000000001 5 |
+| MPDGEOX | amount | 118 | 0 | nan 117; 402243.42 21; 402701.19 18; 402390.94 16 |
+| MPDGEOY | amount | 117 | 0 | nan 117; 132967.69 21; 132463.44 18; 132812.67 16 |
+| FATALPASSENGER | other | 1 | 0 | 0 437 |
+| MAJORINJURIESPASSENGER | category | 2 | 0 | 0 436; 1 1 |
+| MINORINJURIESPASSENGER | category | 4 | 0 | 0 407; 1 21; 2 6; 3 3 |
+| UNKNOWNINJURIESPASSENGER | category | 4 | 0 | 0 426; 1 8; 2 2; 3 1 |
+| MAR_ID | other | 121 | 0 | 286775 27; 145437 25; 287098 20; 287068 19 |
+| GEOMETRY | other | 364 | 0 | {"type": "Point", "coordi 9; {"type": "Point", "coordi 8; {"type": "Point", "coordi 5; {"type": "Point", "coordi 4 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:32:57.40361 437 |
+| SOURCE_RUN_ID | audit | 1 | 0 | b81a49d6-8496-48d2-92de-6 437 |
+| SRC_SHA256 | who | 1 | 0 | 3bc251f29d52a86b41c542839 437 |

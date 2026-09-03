@@ -1,0 +1,588 @@
+# FED_FEMA_IA_HOUSING_REGISTRATIONS
+
+rows 26.25M  columns 103  scan 49.0s
+
+roles: amount 21, audit 2, category 62, date 5, id 1, other 5, state 2, who 6
+
+## when
+
+APPLIEDDATE
+  2000         7  
+  2001         1  
+  2002      5.5K  
+  2003     78.0K  
+  2004    264.7K  #
+  2005     3.08M  #################
+  2006    183.5K  #
+  2007    159.8K  #
+  2008     1.76M  ##########
+  2009    138.9K  #
+  2010    421.4K  ##
+  2011    619.6K  ###
+  2012    884.4K  #####
+  2013    190.6K  #
+  2014    199.9K  #
+  2015    190.0K  #
+  2016    518.4K  ###
+  2017     5.35M  ##############################
+  2018    453.9K  ###
+  2019     86.0K  
+  2020    590.6K  ###
+  2021     2.31M  #############
+  2022     2.76M  ###############
+  2023    461.1K  ###
+  2024     4.87M  ###########################
+  2025    496.5K  ###
+  2026    179.1K  #
+
+DECLARATIONDATE
+  2002      9.3K  
+  2003     78.5K  
+  2004    295.1K  ##
+  2005     3.13M  #################
+  2006    141.8K  #
+  2007    164.2K  #
+  2008     1.76M  ##########
+  2009    103.9K  #
+  2010    413.4K  ##
+  2011    625.6K  ###
+  2012    905.5K  #####
+  2013    163.9K  #
+  2014    199.4K  #
+  2015    195.7K  #
+  2016    517.8K  ###
+  2017     5.38M  ##############################
+  2018    420.3K  ##
+  2019     84.2K  
+  2020     1.31M  #######
+  2021     1.88M  ##########
+  2022     2.55M  ##############
+  2023    420.8K  ##
+  2024     4.87M  ###########################
+  2025    459.8K  ###
+  2026    177.9K  #
+
+LASTREFRESH
+  2025    16.67M  ##############################
+  2026     9.58M  #################
+
+RENTALASSISTANCEENDDATE
+  2005         3  
+  2006       209  
+  2007       998  ##
+  2008      4.1K  #######
+  2009     19.0K  ##############################
+  2010      2.9K  #####
+  2011      5.3K  ########
+  2012      8.4K  #############
+  2013     13.8K  ######################
+  2014      5.5K  #########
+  2015      1.3K  ##
+  2016      2.4K  ####
+  2017      5.0K  ########
+  2018      5.2K  ########
+  2019      4.1K  #######
+  2020      2.0K  ###
+  2021      2.3K  ####
+  2022      3.6K  ######
+  2023      3.3K  #####
+  2024      3.9K  ######
+  2025      9.5K  ###############
+  2026      9.6K  ###############
+  2027         6  
+
+_INGESTED_AT
+  2026    26.25M  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| FIPAMOUNT | 26.25M | 0 | 0 | 600.00 | 4.8K | 342.14M |
+| FLOODDAMAGEAMOUNT | 26.25M | 0 | 0 | 24.1K | 19.76M | 27.79B |
+| FOUNDATIONDAMAGEAMOUNT | 26.25M | 0 | 0 | 158.88 | 369.8K | 413.38M |
+| HAAMOUNT | 26.25M | 0 | 0 | 17.4K | 166.4K | 24.66B |
+| IHPAMOUNT | 26.25M | 0 | 0 | 22.0K | 199.7K | 40.26B |
+| ONAAMOUNT | 26.25M | 0 | 0 | 9.0K | 57.6K | 15.60B |
+
+## who
+
+HASTATUS by rows
+     4.50M  TSA - Transitional Sheltering Assistance
+     2.64M  IID- Ineligible - Insufficient Damage
+     2.23M  INS - Insured
+     1.51M  ER - Eligible - Rental Assistance
+    949.4K  INR- Ineligible - No Relocation
+    779.7K  EHR - Eligible - Home Repairs
+    777.6K  WVO - Withdrawn - Applicant Withdrew Voluntarily
+    755.0K  IRND- Ineligible - Reported No Damage
+    483.0K  INCI - Ineligible - No Contact for Inspection
+    475.9K  ERU - Eligible - Utilities Out
+    389.7K  EAH - Eligible - Expedited Housing Assistance
+    254.1K  IID,INS - Ineligible Insufficient Damage, Insured
+    226.2K  INO - Ineligible - Other
+    224.9K  INI - Ineligible - Ineligible Insurance
+    205.8K  TSAI - Transitional Shelter Assistance Information
+    193.8K  IDUPA - Duplicate Application
+    189.0K  INSS - Ineligible - No substantiation submitted
+    160.6K  IID,ILDOBR - Ineligible Insufficient Damage, Ineligible Linked For Dup
+    146.3K  INR,INS - Ineligible No Relocation, Insured
+    115.7K  ILDOBR,WVO - Ineligible Ineligible Linked For Duplicate Review, Withdr
+
+HASTATUS by dollars
+     111.20M    1.51M rows  ER - Eligible - Rental Assistance
+      51.54M    4.50M rows  TSA - Transitional Sheltering Assistance
+      47.04M    58.6K rows  EHRZ - Eligible - Home Repairs, Flood Insurance Required
+      12.79M   949.4K rows  INR- Ineligible - No Relocation
+      11.25M    2.64M rows  IID- Ineligible - Insufficient Damage
+      10.26M   226.2K rows  INO - Ineligible - Other
+       9.26M    79.6K rows  IRCT - Ineligible Recertification 
+       7.37M    76.5K rows  ERCT - Eligible - Recertification  
+       7.11M   205.8K rows  TSAI - Transitional Shelter Assistance Information
+       6.72M   189.0K rows  INSS - Ineligible - No substantiation submitted
+       6.14M    75.0K rows  ERFD - Eligible - Readily Fabricated Dwelling
+       4.92M    47.7K rows  408-CLC
+       3.83M    44.9K rows  ENC - Eligible - No change on appeal, original eligible stat
+       3.80M    55.3K rows  IAW - Ineligible - Same Address
+       3.62M    77.1K rows  ILER - Ineligible Lodging Expenses Reimbursement
+       3.15M   779.7K rows  EHR - Eligible - Home Repairs
+       2.20M    2.23M rows  INS - Insured
+       2.11M    46.4K rows  ETR - Eligible - Transient Housing
+       1.89M    48.5K rows  IOWNV - Ownership Not Verified
+       1.72M    64.5K rows  INC - Ineligible - No change on appeal, original ineligible 
+
+CENSUSGEOID by rows
+    161.9K  NO_INTERSECT
+     18.5K  220790105003
+      9.7K  111111111111
+      8.2K  481576729001
+      8.2K  721079549021
+      8.0K  780109702002
+      7.7K  721419573001
+      7.2K  720034303003
+      7.0K  720757104001
+      6.8K  720133019001
+      6.6K  720252027013
+      6.5K  721537501021
+      6.5K  780309612002
+      6.5K  721355106021
+      6.4K  120570140071
+      6.3K  720412405003
+      6.1K  721455607022
+      5.8K  721019554011
+      5.7K  720851901021
+      5.6K  721519508002
+
+CENSUSGEOID by dollars
+       1.47M     2.2K rows  121010303041
+       1.08M   161.9K rows  NO_INTERSECT
+      866.4K     1.1K rows  121010303042
+      862.8K     1.6K rows  121010302041
+      848.4K     1.8K rows  121030278022
+      768.0K     1.8K rows  120570141041
+      736.2K     1.6K rows  121010302023
+      726.0K     2.8K rows  220950702003
+      722.4K     2.0K rows  120150103022
+      705.6K     1.2K rows  120570141081
+      698.4K     1.6K rows  120570117121
+      686.4K      955 rows  120810011082
+      672.0K     1.8K rows  121030245191
+      648.6K      924 rows  121010302021
+      642.0K     1.5K rows  120810007042
+      640.8K     1.0K rows  121030280062
+      624.0K     1.0K rows  120150210032
+      616.8K     1.1K rows  121010301023
+      615.6K      736 rows  121010302031
+      612.0K      949 rows  121030279052
+
+DAMAGEDCITY by rows
+     1.61M  HOUSTON
+    659.2K  NEW ORLEANS
+    520.3K  MIAMI
+    386.0K  TAMPA
+    302.6K  ORLANDO
+    284.9K  CHICAGO
+    278.4K  SAN JUAN
+    275.5K  DETROIT
+    253.8K  BATON ROUGE
+    216.3K  LAKE CHARLES
+    200.1K  BEAUMONT
+    188.5K  LOS ANGELES
+    184.3K  JACKSONVILLE
+    177.7K  ST PETERSBURG
+    160.8K  METAIRIE
+    146.6K  FORT MYERS
+    146.6K  BAYAMON
+    129.9K  NAPLES
+    127.9K  MOBILE
+    125.0K  PONCE
+
+DAMAGEDCITY by dollars
+      43.98M   659.2K rows  NEW ORLEANS
+      15.63M   177.7K rows  ST PETERSBURG
+      12.11M   386.0K rows  TAMPA
+       6.39M   146.6K rows  FORT MYERS
+       5.52M    40.0K rows  NEW PORT RICHEY
+       5.31M    1.61M rows  HOUSTON
+       4.82M    38.6K rows  PUNTA GORDA
+       4.40M   253.8K rows  BATON ROUGE
+       3.87M    27.7K rows  ENGLEWOOD
+       3.79M    67.3K rows  GALVESTON
+       3.60M    18.5K rows  HUDSON
+       3.39M   129.9K rows  NAPLES
+       3.28M   160.8K rows  METAIRIE
+       3.16M    76.6K rows  SLIDELL
+       2.96M    58.3K rows  DAYTONA BEACH
+       2.95M   102.8K rows  SARASOTA
+       2.93M    20.2K rows  PORT RICHEY
+       2.67M    89.2K rows  KENNER
+       2.67M   104.2K rows  FORT LAUDERDALE
+       2.49M    38.0K rows  NORTH FORT MYERS
+
+RENTALRESOURCECITY by rows
+      6.1K  HOUSTON
+      6.0K  CHICAGO
+      3.2K  BATON ROUGE
+      2.2K  MILWAUKEE
+      1.6K  DETROIT
+      1.2K  GALVESTON
+      1.2K  BROOKLYN
+      1.1K  NEW ORLEANS
+      1.1K  PHILADELPHIA
+       732  HAMMOND
+       629  LAKE CHARLES
+       625  BEAUMONT
+       554  STATEN ISLAND
+       511  HOUMA
+       500  TOMS RIVER
+       499  Milwaukee
+       480  TAMPA
+       477  FORT MYERS
+       470  MEMPHIS
+       454  TEXAS CITY
+
+RENTALRESOURCECITY by dollars
+      315.6K     3.2K rows  BATON ROUGE
+      302.4K      406 rows  ST PETERSBURG
+      292.2K      477 rows  FORT MYERS
+      271.2K     6.1K rows  HOUSTON
+      250.8K     1.2K rows  GALVESTON
+      208.2K      480 rows  TAMPA
+      139.8K      207 rows  NAPLES
+      117.6K      195 rows  CAPE CORAL
+      103.2K      105 rows  St Petersburg
+      100.8K     1.1K rows  NEW ORLEANS
+       91.2K      197 rows  Tampa
+       87.0K     1.2K rows  BROOKLYN
+       85.8K      454 rows  TEXAS CITY
+       85.2K      128 rows  CLEARWATER
+       82.2K      100 rows  LARGO
+       72.6K      288 rows  ORLANDO
+       67.2K      732 rows  HAMMOND
+       65.4K      386 rows  DENHAM SPRINGS
+       64.2K       65 rows  PORT RICHEY
+       63.6K      554 rows  STATEN ISLAND
+
+## who x when
+
+HASTATUS by DECLARATIONDATE, dollars = FIPAMOUNT
+  408-CLC                                   2005:4.92M 2010:0 2011:0
+  EAH - Eligible - Expedited Housing Assis  2005:1.50M
+  EHR - Eligible - Home Repairs             2002:12.0K 2003:1.8K 2004:2.4K 2005:16.8K 2006:12.0K 2007:1.2K 2008:8.4K 2009:4.8K 2010:1.2K 2011:1.8K 2012:4.8K 2013:0 2014:1.8K 2015:8.4K 2016:48.0K 2017:84.0K 2018:8.4K 2019:9.6K 2020:28.8K 2021:117.6K 2022:338.4K 2023:81.6K 2024:1.81M 2025:540.0K 2026:4.8K
+  EHRZ - Eligible - Home Repairs, Flood In  2002:0 2003:159.6K 2004:148.2K 2005:380.4K 2006:181.8K 2007:271.2K 2008:628.8K 2009:90.6K 2010:190.2K 2011:418.2K 2012:630.0K 2013:40.2K 2014:22.8K 2015:196.8K 2016:1.69M 2017:1.36M 2018:157.8K 2019:328.8K 2020:338.4K 2021:1.14M 2022:4.27M 2023:763.2K 2024:26.30M 2025:7.22M 2026:108.0K
+  ENC - Eligible - No change on appeal, or  2002:1.8K 2003:19.8K 2004:19.8K 2005:3.72M 2006:43.8K 2007:25.8K 2008:4.2K 2011:0 2018:0
+  ER - Eligible - Rental Assistance         2002:44.4K 2003:272.4K 2004:198.6K 2005:33.55M 2006:558.0K 2007:1.00M 2008:2.77M 2009:590.4K 2010:1.11M 2011:1.95M 2012:2.94M 2013:221.4K 2014:169.2K 2015:880.8K 2016:9.17M 2017:3.84M 2018:857.4K 2019:1.43M 2020:1.97M 2021:5.35M 2022:16.95M 2023:5.48M 2024:17.66M 2025:2.13M 2026:100.8K
+  ERCT - Eligible - Recertification         2005:163.2K 2006:2.4K 2007:100.8K 2008:1.56M 2009:59.4K 2010:132.6K 2011:201.6K 2012:810.6K 2013:20.4K 2014:9.0K 2015:44.4K 2016:589.8K 2017:112.2K 2018:35.4K 2019:58.2K 2020:36.0K 2021:187.2K 2022:744.0K 2023:213.6K 2024:2.08M 2025:208.8K 2026:0
+  ERFD - Eligible - Readily Fabricated Dwe  2002:0 2003:11.4K 2004:38.4K 2005:3.24M 2006:39.6K 2007:24.0K 2008:409.2K 2009:13.2K 2010:600 2011:75.6K 2012:27.6K 2013:1.8K 2014:0 2015:0 2016:588.6K 2017:181.2K 2018:40.8K 2019:0 2020:38.4K 2021:242.4K 2022:554.4K 2023:28.8K 2024:564.0K 2025:19.2K
+  ERU - Eligible - Utilities Out            2002:1.8K 2003:1.8K 2004:0 2005:600 2006:0 2007:0 2008:3.6K 2009:600 2010:600 2011:2.4K 2012:12.0K 2013:600 2014:0 2015:1.2K 2016:4.8K 2017:23.4K 2018:3.0K 2019:600 2020:4.8K 2021:657.6K 2022:28.8K 2023:2.4K 2024:7.2K 2025:0 2026:0
+  ETR - Eligible - Transient Housing        2002:0 2003:6.6K 2004:3.0K 2005:64.8K 2006:15.0K 2007:31.8K 2008:82.8K 2009:6.6K 2010:31.8K 2011:34.8K 2012:114.6K 2013:3.6K 2014:3.0K 2015:11.4K 2016:348.0K 2017:116.4K 2018:12.6K 2019:13.2K 2020:48.0K 2021:405.6K 2022:484.8K 2023:160.8K 2024:103.2K 2025:4.8K 2026:2.4K
+  IAW - Ineligible - Same Address           2002:600 2003:7.2K 2004:5.4K 2005:973.8K 2006:3.6K 2007:18.6K 2008:695.4K 2009:18.6K 2010:65.4K 2011:93.6K 2012:410.4K 2013:12.0K 2014:600 2015:24.6K 2016:787.8K 2017:128.4K 2018:13.2K 2019:18.6K 2020:19.2K 2021:134.4K 2022:175.2K 2023:62.4K 2024:115.2K 2025:19.2K 2026:0
+  IDUPA - Duplicate Application             2002:0 2003:0 2004:0 2005:189.6K 2006:0 2007:0 2008:7.2K 2009:0 2010:600 2011:0 2012:6.6K 2013:0 2014:0 2015:1.2K 2016:8.4K 2017:21.6K 2018:600 2019:0 2020:2.4K 2021:31.2K 2022:14.4K 2023:9.6K 2024:57.6K 2025:12.0K 2026:0
+  IID,ILDOBR - Ineligible Insufficient Dam  2010:10.8K 2011:16.8K 2012:100.2K 2013:3.6K 2014:0 2015:9.0K 2016:93.6K 2017:180.6K 2018:7.2K 2019:16.8K 2020:2.4K 2021:57.6K 2022:69.6K 2023:48.0K 2024:199.2K 2025:7.2K 2026:2.4K
+  IID,INS - Ineligible Insufficient Damage  2008:10.8K 2009:3.0K 2010:4.2K 2011:5.4K 2012:3.0K 2013:600 2014:0 2015:0 2016:3.6K 2017:4.2K 2018:1.8K 2019:600 2020:0 2021:7.2K 2022:7.2K 2023:0 2024:12.0K 2025:7.2K 2026:0
+  IID- Ineligible - Insufficient Damage     2002:6.6K 2003:79.8K 2004:87.0K 2005:702.6K 2006:158.4K 2007:221.4K 2008:594.6K 2009:99.0K 2010:97.8K 2011:327.6K 2012:529.8K 2013:63.6K 2014:61.8K 2015:181.2K 2016:804.0K 2017:649.8K 2018:88.2K 2019:286.8K 2020:256.8K 2021:724.8K 2022:1.39M 2023:1.05M 2024:2.40M 2025:355.2K 2026:36.0K
+  ILDOBR,WVO - Ineligible Ineligible Linke  2004:0 2010:600 2011:0 2012:600 2013:0 2014:0 2015:0 2016:600 2017:1.2K 2018:0 2019:600 2020:0 2021:19.2K 2022:0 2023:0 2024:98.4K 2025:4.8K 2026:0
+  ILER - Ineligible Lodging Expenses Reimb  2005:0 2007:0 2008:54.6K 2009:4.2K 2010:13.8K 2011:11.4K 2012:66.0K 2013:3.0K 2014:2.4K 2015:9.6K 2016:102.0K 2017:64.8K 2018:21.0K 2019:15.0K 2020:33.6K 2021:232.8K 2022:405.6K 2023:170.4K 2024:2.32M 2025:84.0K 2026:2.4K
+  INCI - Ineligible - No Contact for Inspe  2002:0 2007:0 2008:4.8K 2009:0 2010:0 2011:600 2012:1.2K 2013:0 2014:0 2015:0 2016:1.2K 2017:8.4K 2018:0 2019:0 2020:9.6K 2021:115.2K 2022:24.0K 2023:9.6K 2024:369.6K 2025:108.0K 2026:0
+  INI - Ineligible - Ineligible Insurance   2002:0 2003:0 2004:1.2K 2005:10.8K 2006:2.4K 2007:4.2K 2008:22.8K 2009:0 2010:3.0K 2011:13.2K 2012:37.2K 2013:1.2K 2014:600 2015:4.8K 2016:34.8K 2017:54.0K 2018:23.4K 2019:11.4K 2020:7.2K 2021:72.0K 2022:290.4K 2023:26.4K 2024:734.4K 2025:93.6K 2026:0
+  INO - Ineligible - Other                  2002:600 2003:27.0K 2004:23.4K 2005:5.37M 2006:35.4K 2007:25.2K 2008:200.4K 2009:33.0K 2010:33.0K 2011:82.2K 2012:256.2K 2013:15.6K 2014:9.0K 2015:75.0K 2016:528.0K 2017:267.6K 2018:40.8K 2019:79.8K 2020:45.6K 2021:141.6K 2022:674.4K 2023:168.0K 2024:1.66M 2025:470.4K 2026:2.4K
+  INR,INS - Ineligible No Relocation, Insu  2008:10.2K 2009:3.0K 2010:600 2011:83.4K 2012:62.4K 2013:3.6K 2014:1.8K 2015:19.8K 2016:53.4K 2017:111.0K 2018:15.6K 2019:4.2K 2020:4.8K 2021:36.0K 2022:120.0K 2023:26.4K 2024:4.8K
+  INR- Ineligible - No Relocation           2002:0 2005:0 2006:0 2007:24.6K 2008:919.2K 2009:256.2K 2010:264.0K 2011:660.0K 2012:460.2K 2013:49.2K 2014:51.6K 2015:259.2K 2016:1.15M 2017:1.40M 2018:161.4K 2019:266.4K 2020:271.2K 2021:1.48M 2022:3.41M 2023:1.53M 2024:182.4K 2025:0 2026:0
+  INS - Insured                             2002:0 2003:0 2004:0 2005:6.0K 2006:0 2007:1.2K 2008:15.0K 2009:1.2K 2010:600 2011:47.4K 2012:77.4K 2013:600 2014:1.2K 2015:15.0K 2016:74.4K 2017:150.0K 2018:24.6K 2019:9.0K 2020:33.6K 2021:81.6K 2022:285.6K 2023:12.0K 2024:1.25M 2025:110.4K 2026:0
+  INSS - Ineligible - No substantiation su  2002:0 2004:0 2005:6.14M 2006:16.2K 2007:66.0K 2008:128.4K 2009:5.4K 2010:1.2K 2011:3.6K 2012:3.0K 2013:0 2014:0 2015:0 2016:2.4K 2017:6.6K 2018:600 2019:0 2020:0 2021:24.0K 2022:69.6K 2023:28.8K 2024:189.6K 2025:36.0K 2026:0
+  IOWNV - Ownership Not Verified            2008:0 2009:0 2010:8.4K 2011:31.8K 2012:34.2K 2013:1.8K 2014:1.2K 2015:5.4K 2016:209.4K 2017:136.2K 2018:14.4K 2019:48.6K 2020:33.6K 2021:127.2K 2022:206.4K 2023:14.4K 2024:734.4K 2025:271.2K 2026:7.2K
+  IRCT - Ineligible Recertification         2005:252.0K 2006:0 2007:12.6K 2008:108.6K 2009:30.0K 2010:129.0K 2011:262.8K 2012:1.16M 2013:27.0K 2014:14.4K 2015:54.6K 2016:1.08M 2017:270.0K 2018:72.6K 2019:117.6K 2020:134.4K 2021:585.6K 2022:1.36M 2023:484.8K 2024:2.75M 2025:362.4K 2026:0
+  IRND- Ineligible - Reported No Damage     2010:0 2017:0 2018:0 2020:16.8K 2021:0 2022:40.8K 2024:175.2K
+  TSA - Transitional Sheltering Assistance  2002:0 2005:0 2008:1.44M 2010:0 2011:305.4K 2012:4.95M 2013:63.0K 2015:0 2016:989.4K 2017:2.79M 2018:49.8K 2021:302.4K 2022:993.6K 2023:0 2024:39.65M 2025:0
+  TSAI - Transitional Shelter Assistance I  2005:154.2K 2008:687.0K 2011:36.0K 2012:177.6K 2013:16.2K 2015:0 2016:740.4K 2017:1.19M 2018:34.8K 2020:0 2021:300.0K 2022:424.8K 2023:0 2024:3.34M 2025:0
+  WVO - Withdrawn - Applicant Withdrew Vol  2002:0 2003:0 2004:600 2005:81.6K 2006:600 2007:1.2K 2008:34.8K 2009:6.6K 2010:21.0K 2011:34.2K 2012:118.8K 2013:12.0K 2014:1.8K 2015:9.0K 2016:64.2K 2017:25.8K 2018:1.2K 2019:1.8K 2020:2.4K 2021:132.0K 2022:105.6K 2023:12.0K 2024:576.0K 2025:57.6K 2026:0
+
+CENSUSGEOID by DECLARATIONDATE, dollars = FIPAMOUNT
+  111111111111                              2020:0 2023:24.0K
+  120150103022                              2017:9.6K 2020:0 2022:7.2K 2023:9.6K 2024:696.0K
+  120570117121                              2012:0 2017:4.8K 2022:0 2023:0 2024:693.6K
+  120570140071                              2017:0 2020:0 2022:0 2023:0 2024:2.4K
+  120570141041                              2004:0 2012:0 2017:0 2022:2.4K 2023:7.2K 2024:758.4K
+  120570141081                              2012:0 2017:0 2022:12.0K 2023:100.8K 2024:592.8K
+  121010302023                              2012:1.2K 2016:17.4K 2017:0 2020:0 2022:0 2023:120.0K 2024:597.6K
+  121010302041                              2012:3.6K 2016:1.2K 2017:1.2K 2022:0 2023:4.8K 2024:852.0K
+  121010303041                              2022:0 2023:81.6K 2024:1.39M
+  121010303042                              2022:0 2023:196.8K 2024:669.6K
+  121030278022                              2012:1.2K 2017:0 2022:0 2023:50.4K 2024:796.8K
+  220790105003                              2008:0 2016:0 2020:12.0K 2021:0
+  220950702003                              2012:190.8K 2020:0 2021:535.2K 2024:0
+  481576729001                              2005:0 2008:0 2015:0 2016:0 2017:0 2019:0 2020:0 2021:0
+  720034303003                              2017:11.4K 2020:2.4K 2022:0
+  720133019001                              2017:58.8K
+  720252027013                              2011:0 2017:2.4K
+  720412405003                              2011:0 2017:0 2022:0
+  720757104001                              2011:0 2017:15.0K 2020:0 2022:0
+  720851901021                              2004:0 2008:0 2011:0 2017:600 2022:0
+  721019554011                              2004:0 2017:0 2020:0 2022:0
+  721079549021                              2004:0 2011:0 2017:0
+  721355106021                              2017:600
+  721419573001                              2004:0 2017:9.6K 2020:0 2022:0
+  721455607022                              2004:0 2017:13.2K 2022:0
+  721519508002                              2003:0 2004:600 2008:0 2011:0 2017:0
+  721537501021                              2003:0 2017:7.8K
+  780109702002                              2017:3.0K
+  780309612002                              2017:1.2K
+  NO_INTERSECT                              2002:2.4K 2003:1.8K 2004:600 2005:76.2K 2006:600 2007:0 2008:93.0K 2009:62.4K 2010:15.0K 2011:78.0K 2012:45.6K 2013:6.6K 2014:1.2K 2015:0 2016:600 2017:29.4K 2018:600 2019:0 2020:14.4K 2021:21.6K 2022:254.4K 2023:50.4K 2024:235.2K 2025:67.2K 2026:26.4K
+
+## where
+
+DAMAGEDSTATEABBREVIATION: FL 6.91M, TX 4.70M, LA 3.50M, PR 2.88M, MS 836.1K, SC 718.8K, GA 700.6K, NC 668.1K, IL 594.3K, NY 584.9K, CA 564.9K, NJ 547.3K
+
+RENTALRESOURCESTATEABBREV: TX 18.7K, LA 17.8K, FL 10.9K, IL 10.4K, NY 6.7K, NJ 6.3K, WI 3.1K, NC 2.9K, CA 2.8K, PR 2.7K, MI 2.6K, MS 2.3K
+
+## what
+
+ACCESSFUNCTIONALNEEDS: False 90%, True 10%
+
+APPLICANTAGE: 35-49 32%, 50-64 27%, 19-34 24%, 65+ 16%, <19 1%
+
+AUTODAMAGE: False 90%, True 10%
+
+CENSUSYEAR: 2020 35%, 2000 29%, 2010 27%, 2020.0 4%, nan 3%, 2010.0 2%, 2000.0 1%
+
+CURRENTLOCATION: D 66%, F 18%, O 6%, H 5%, R 1%, S 1%, SR 1%, C 0%, NH 0%, RVT 0%, PRU 0%, E 0%
+
+DESTROYED: False 99%, True 1%
+
+EMERGENCYNEEDS: True 57%, False 43%
+
+FLOODDAMAGE: False 88%, True 12%
+
+FLOODINSURANCE: False 92%, True 8%
+
+FOODNEED: True 100%, False 0%
+
+FOUNDATIONDAMAGE: False 99%, True 1%
+
+GROSSINCOME: 0 24%, $30,001-$60,000 20%, $15,000-$30,000 20%, <$15,000 19%, $60,001-$120,000 12%, $120,001-$175,000 2%, >$175,000 2%
+
+HAELIGIBLE: False 79%, True 21%
+
+HAMAX: False 98%, True 2%
+
+HAREFERRAL: True 67%, False 33%
+
+HABITABILITYREPAIRSREQUIRED: True 51%, False 49%
+
+HIGHWATERLOCATION: 1 45%, B 44%, N 8%, O 2%, S 1%, 2 1%, A 0%, R 0%, 3 0%
+
+HOMEDAMAGE: True 69%, False 31%
+
+HOMEOWNERSINSURANCE: False 64%, True 36%
+
+HOUSEHOLDCOMPOSITION: 1 37%, 2 27%, 3 16%, 4 11%, 5 6%, >5 4%
+
+IHPELIGIBLE: False 55%, True 45%
+
+IHPMAX: False 100%, True 0%
+
+IHPREFERRAL: True 82%, False 18%
+
+INCIDENTTYPECODE: H 76%, W 8%, F 6%, B 3%, R 2%, O 2%, 4 2%, 5 1%, T 0%, E 0%, J 0%, K 0%
+
+INELIGIBLEINSURANCE: False 98%, True 2%
+
+INELIGIBLEREASON: 1 42%, 2 26%, 3 20%, 4 8%, 5 2%, 7 2%, 9 1%, 8 0%, 6 0%
+
+INSPNISSUED: True 50%, False 50%
+
+INSPNRETURNED: True 50%, False 50%
+
+INSUFFICIENTDAMAGE: False 72%, True 28%
+
+OCCUPANTS19TO64: 1 47%, 2 31%, 0 13%, 3 7%, 4 2%, 5 0%, >5 0%
+
+OCCUPANTS2TO5: 0 89%, 1 9%, 2 2%, 3 0%, 4 0%, 5 0%, >5 0%
+
+OCCUPANTS65ANDOVER: 0 79%, 1 16%, 2 5%, 3 0%, 4 0%, 5 0%, >5 0%
+
+OCCUPANTS6TO18: 0 73%, 1 14%, 2 9%, 3 3%, 4 1%, 5 0%, >5 0%
+
+OCCUPANTSUNDERTWO: 0 95%, 1 5%, 2 0%, 3 0%, 4 0%, 5 0%, >5 0%
+
+ONADENTALASSISTELIGIBLE: False 100%, True 0%
+
+ONAELIGIBLE: False 66%, True 34%
+
+ONAFUNERALASSISTELIGIBLE: False 98%, True 2%
+
+ONAMAX: False 100%, True 0%
+
+ONAMEDICALASSISTELIGIBLE: False 100%, True 0%
+
+ONAMOVINGASSISTELIGIBLE: False 100%, True 0%
+
+ONAOTHERASSISTELIGIBLE: False 75%, True 25%
+
+ONAREFERRAL: True 58%, False 42%
+
+OWNRENT: O 56%, R 44%
+
+PERSONALPROPERTYELIGIBLE: False 91%, True 9%
+
+PRIMARYRESIDENCE: True 95%, False 5%
+
+REGISTRATIONMETHOD: I 48%, C 32%, M 19%, D 1%
+
+RENTALASSISTANCEELIGIBLE: False 88%, True 12%
+
+RENTERDAMAGELEVEL: 5530 83%, 5532 10%, 5533 4%, 5531 3%
+
+REPAIRASSISTANCEELIGIBLE: False 90%, True 10%
+
+REPLACEMENTASSISTANCEELIGIBLE: False 100%, True 0%
+
+REPORTEDDAMAGE: True 74%, False 26%
+
+RESIDENCETYPE: H 65%, A 16%, M 9%, O 5%, TH 3%, C 2%, T 1%, ALF 0%, B 0%, MIL 0%, CD 0%, CF 0%
+
+ROOFDAMAGE: False 94%, True 6%
+
+SBAAPPROVED: False 98%, True 2%
+
+SELFASSESSMENTINFORMATION: 1 52%, 2 19%, 3 12%, 6 10%, 5 4%, 4 3%
+
+SHELTERNEED: True 96%, False 4%
+
+TRANSIENTACCOMMODELIGIBLE: False 99%, True 1%
+
+TSACHECKEDIN: False 99%, True 1%
+
+TSAELIGIBLE: False 77%, True 23%
+
+UTILITIESOUT: True 53%, False 47%
+
+VERIFIEDOCCUPANCY: True 80%, False 20%
+
+VERIFIEDOWNERSHIP: False 59%, True 41%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| ACCESSFUNCTIONALNEEDS | category | 2 | 0 | False 23.66M; True 2.59M |
+| APPLICANTAGE | category | 5 | 56.2K | 35-49 8.36M; 50-64 7.10M; 19-34 6.27M; 65+ 4.30M |
+| APPLIEDDATE | date | 7.9K | 5 | 2024-10-12T00:00:00.000Z 305.0K; 2024-10-13T00:00:00.000Z 199.7K; 2017-09-15T00:00:00.000Z 195.5K; 2017-09-14T00:00:00.000Z 185.9K |
+| AUTODAMAGE | category | 2 | 296 | False 23.75M; True 2.50M |
+| CENSUSGEOID | who | 230.9K | 6.89M | NO_INTERSECT 170.7K; 721419573001 26.7K; 220790105003 23.4K; 371939602002 16.1K |
+| CENSUSYEAR | category | 7 | 22.75M | 2020 1.21M; 2000 1.01M; 2010 951.8K; 2020.0 137.5K |
+| COUNTY | who | 2.0K | 0 | Harris (County) 2.24M; Miami-Dade (County) 891.2K; Hillsborough (County) 649.9K; Orleans (Parish) 641.2K |
+| CURRENTLOCATION | category | 16 | 90.4K | D 17.32M; F 4.79M; O 1.57M; H 1.39M |
+| DAMAGEDCITY | who | 41.6K | 5 | HOUSTON 1.63M; NEW ORLEANS 684.0K; MIAMI 523.7K; TAMPA 382.8K |
+| DAMAGEDSTATEABBREVIATION | state | 57 | 0 | FL 6.91M; TX 4.70M; LA 3.50M; PR 2.88M |
+| DAMAGEDZIPCODE | other | 33.7K | 28 | 00725 95.9K; 70117 94.8K; 70119 92.4K; 70072 90.3K |
+| DECLARATIONDATE | date | 495 | 0 | 2017-09-10T00:00:00.000Z 2.96M; 2005-08-29T00:00:00.000Z 1.54M; 2022-09-21T00:00:00.000Z 1.41M; 2017-09-20T00:00:00.000Z 1.29M |
+| DESTROYED | category | 2 | 0 | False 26.07M; True 177.7K |
+| DISASTERNUMBER | other | 620 | 0 | 4337 2.96M; 4671 1.41M; 4339 1.26M; 4798 1.23M |
+| EMERGENCYNEEDS | category | 2 | 6.9K | True 14.85M; False 11.40M |
+| FIPAMOUNT | amount | 6 | 0 | 0 25.93M; 600 240.2K; 2400 82.5K; 1200 9 |
+| FIPS | other | 3.4K | 6.77M | 48201 1.70M; 12086 709.9K; 12057 615.9K; 12103 527.8K |
+| FLOODDAMAGE | category | 2 | 0 | False 23.17M; True 3.08M |
+| FLOODDAMAGEAMOUNT | amount | 1.15M | 0 | 0.0 18.41M; 0 4.85M; 1500.0 21.9K; 1665.0 15.1K |
+| FLOODINSURANCE | category | 2 | 0 | False 24.19M; True 2.06M |
+| FOODNEED | category | 2 | 13.18M | True 13.05M; False 13.0K |
+| FOUNDATIONDAMAGE | category | 2 | 0 | False 25.87M; True 380.4K |
+| FOUNDATIONDAMAGEAMOUNT | amount | 75.2K | 0 | 0 14.65M; 0.0 11.22M; 190.63 5.6K; 174.83 4.5K |
+| GROSSINCOME | category | 7 | 5 | 0 6.34M; $30,001-$60,000 5.35M; $15,000-$30,000 5.34M; <$15,000 4.92M |
+| HAAMOUNT | amount | 878.8K | 0 | 0.0 19.98M; 0 733.9K; 2000.0 513.3K; 4358.0 205.1K |
+| HAELIGIBLE | category | 2 | 0 | False 20.71M; True 5.54M |
+| HAMAX | category | 2 | 0 | False 25.65M; True 602.4K |
+| HAREFERRAL | category | 2 | 0 | True 17.54M; False 8.71M |
+| HASTATUS | who | 688 | 7.06M | TSA - Transitional Shelte 4.50M; IID- Ineligible - Insuffi 2.64M; INS - Insured 2.23M; ER - Eligible - Rental As 1.51M |
+| HABITABILITYREPAIRSREQUIRED | category | 2 | 15.38M | True 5.49M; False 5.38M |
+| HIGHWATERLOCATION | category | 9 | 22.66M | 1 1.60M; B 1.57M; N 288.2K; O 69.3K |
+| HOMEDAMAGE | category | 2 | 1.15M | True 17.40M; False 7.70M |
+| HOMEOWNERSINSURANCE | category | 2 | 0 | False 16.91M; True 9.34M |
+| HOUSEHOLDCOMPOSITION | category | 6 | 0 | 1 9.59M; 2 7.06M; 3 4.11M; 4 3.01M |
+| ID | id | 26.07M | 0 | 2213845439 19.5K; 2213845438 19.5K; 2213845437 19.5K; 2213845436 19.5K |
+| IHPAMOUNT | amount | 1.29M | 0 | 0.0 14.40M; 500.0 1.01M; 750.0 931.3K; 700.0 815.1K |
+| IHPELIGIBLE | category | 2 | 0 | False 14.40M; True 11.85M |
+| IHPMAX | category | 2 | 0 | False 26.18M; True 70.3K |
+| IHPREFERRAL | category | 2 | 0 | True 21.55M; False 4.70M |
+| INCIDENTTYPECODE | category | 18 | 0 | H 19.98M; W 2.10M; F 1.68M; B 690.6K |
+| INELIGIBLEINSURANCE | category | 2 | 3.77M | False 22.09M; True 389.2K |
+| INELIGIBLEREASON | category | 9 | 16.66M | 1 3.99M; 2 2.50M; 3 1.88M; 4 744.5K |
+| INSPNISSUED | category | 2 | 0 | True 13.17M; False 13.08M |
+| INSPNRETURNED | category | 2 | 0 | True 13.17M; False 13.08M |
+| INSUFFICIENTDAMAGE | category | 2 | 3.77M | False 16.26M; True 6.22M |
+| LASTREFRESH | date | 503 | 0 | 2026-08-05T06:01:35.110Z 3.08M; 2025-06-07T09:02:10.000Z 2.63M; 2025-06-07T12:20:49.000Z 1.24M; 2025-06-07T10:49:59.000Z 1.12M |
+| OCCUPANTS19TO64 | category | 7 | 0 | 1 12.28M; 2 8.03M; 0 3.32M; 3 1.89M |
+| OCCUPANTS2TO5 | category | 7 | 0 | 0 23.38M; 1 2.33M; 2 491.3K; 3 49.4K |
+| OCCUPANTS65ANDOVER | category | 7 | 0 | 0 20.77M; 1 4.18M; 2 1.27M; 3 30.0K |
+| OCCUPANTS6TO18 | category | 7 | 0 | 0 19.07M; 1 3.74M; 2 2.28M; 3 825.4K |
+| OCCUPANTSUNDERTWO | category | 7 | 0 | 0 24.87M; 1 1.30M; 2 80.0K; 3 5.5K |
+| ONAAMOUNT | amount | 640.4K | 0 | 0.0 17.37M; 500.0 1.43M; 750.0 912.5K; 700.0 863.9K |
+| ONADENTALASSISTAMOUNT | amount | 2.0K | 0 | 0 23.93M; 0.0 2.32M; 1200 59; 1500 39 |
+| ONADENTALASSISTELIGIBLE | category | 2 | 0 | False 26.25M; True 3.7K |
+| ONAELIGIBLE | category | 2 | 0 | False 17.41M; True 8.84M |
+| ONAFUNERALASSISTAMOUNT | amount | 151.7K | 0 | 0 19.01M; 0.0 6.66M; 9000.0 213.5K; 18000.0 2.7K |
+| ONAFUNERALASSISTELIGIBLE | category | 2 | 0 | False 25.67M; True 579.3K |
+| ONAMAX | category | 2 | 0 | False 26.25M; True 378 |
+| ONAMEDICALASSISTAMOUNT | amount | 6.4K | 0 | 0.0 16.47M; 0 9.77M; 499.99 176; 450.0 37 |
+| ONAMEDICALASSISTELIGIBLE | category | 2 | 0 | False 26.24M; True 9.0K |
+| ONAMOVINGASSISTAMOUNT | amount | 16.0K | 0 | 0.0 17.07M; 0 9.16M; 300.0 106; 900.0 77 |
+| ONAMOVINGASSISTELIGIBLE | category | 2 | 0 | False 26.23M; True 24.3K |
+| ONAOTHERASSISTAMOUNT | amount | 28.6K | 0 | 0.0 17.97M; 0 1.75M; 500.0 1.57M; 750.0 881.5K |
+| ONAOTHERASSISTELIGIBLE | category | 2 | 0 | False 19.71M; True 6.54M |
+| ONAREFERRAL | category | 2 | 0 | True 15.28M; False 10.97M |
+| OWNRENT | category | 2 | 198.6K | O 14.65M; R 11.40M |
+| PERSONALPROPERTYAMOUNT | amount | 511.8K | 0 | 0.0 19.98M; 0 3.96M; 341.7 69.6K; 10391.51 56.1K |
+| PERSONALPROPERTYELIGIBLE | category | 2 | 0 | False 23.94M; True 2.31M |
+| PPFVL | amount | 726.3K | 0 | 0.0 16.95M; 0 4.18M; 300.0 520.2K; 341.7 113.7K |
+| PRIMARYRESIDENCE | category | 2 | 235.9K | True 24.64M; False 1.37M |
+| REGISTRATIONMETHOD | category | 4 | 187.3K | I 12.48M; C 8.33M; M 4.90M; D 349.5K |
+| RENTALASSISTANCEAMOUNT | amount | 54.7K | 0 | 0.0 14.11M; 0 8.95M; 2358.0 259.9K; 1061.0 96.5K |
+| RENTALASSISTANCEELIGIBLE | category | 2 | 0 | False 23.05M; True 3.20M |
+| RENTALASSISTANCEENDDATE | date | 1.5K | 26.14M | 2009-05-31T00:00:00.000Z 9.1K; 2009-03-31T00:00:00.000Z 3.8K; 2009-04-30T00:00:00.000Z 3.1K; 2012-02-29T00:00:00.000Z 2.1K |
+| RENTALRESOURCECITY | who | 9.2K | 26.14M | HOUSTON 6.2K; CHICAGO 6.1K; BATON ROUGE 3.3K; MILWAUKEE 2.2K |
+| RENTALRESOURCESTATEABBREV | state | 57 | 26.14M | TX 18.7K; LA 17.8K; FL 10.9K; IL 10.4K |
+| RENTALRESOURCEZIPCODE | other | 10.5K | 26.14M | 70068 636; 60628 534; 77550 523; 96761 509 |
+| RENTERDAMAGELEVEL | category | 4 | 25.42M | 5530 693.3K; 5532 83.1K; 5533 29.7K; 5531 28.6K |
+| REPAIRAMOUNT | amount | 728.4K | 0 | 0.0 19.52M; 0 4.00M; 5200.0 47.1K; 1500.0 35.5K |
+| REPAIRASSISTANCEELIGIBLE | category | 2 | 0 | False 23.52M; True 2.73M |
+| REPLACEMENTAMOUNT | amount | 8.8K | 0 | 0.0 14.75M; 0 11.44M; 10500.0 23.8K; 5300.0 1.6K |
+| REPLACEMENTASSISTANCEELIGIBLE | category | 2 | 0 | False 26.19M; True 60.0K |
+| REPORTEDDAMAGE | category | 2 | 211 | True 19.48M; False 6.77M |
+| RESIDENCETYPE | category | 12 | 12.9K | H 17.18M; A 4.10M; M 2.25M; O 1.25M |
+| ROOFDAMAGE | category | 2 | 0 | False 24.60M; True 1.65M |
+| ROOFDAMAGEAMOUNT | amount | 124.3K | 0 | 0 14.64M; 0.0 9.96M; 198.0 11.0K; 247.0 7.2K |
+| RPFVL | amount | 1.04M | 0 | 0.0 16.14M; 0 4.18M; 499.5 173.6K; 5200.0 103.0K |
+| SBAAPPROVED | category | 2 | 0 | False 25.80M; True 450.5K |
+| SELFASSESSMENTINFORMATION | category | 6 | 16.25M | 1 5.16M; 2 1.91M; 3 1.21M; 6 958.7K |
+| SHELTERNEED | category | 2 | 21.41M | True 4.66M; False 181.4K |
+| TRANSIENTACCOMMODAMOUNT | amount | 16.6K | 0 | 0.0 19.52M; 0 6.59M; 550.0 22.3K; 250.0 11.8K |
+| TRANSIENTACCOMMODELIGIBLE | category | 2 | 0 | False 26.11M; True 145.5K |
+| TSACHECKEDIN | category | 2 | 0 | False 25.92M; True 334.1K |
+| TSAELIGIBLE | category | 2 | 0 | False 20.34M; True 5.91M |
+| UNMETNEEDPP | amount | 462.6K | 0 | 0.0 19.50M; 0 4.17M; 0.01 56.1K; 341.7 44.9K |
+| UNMETNEEDRP | amount | 708.7K | 0 | 0.0 18.51M; 0 4.18M; 499.5 159.3K; 5200.0 85.5K |
+| UTILITIESOUT | category | 2 | 3.09M | True 12.26M; False 10.90M |
+| VERIFIEDOCCUPANCY | category | 2 | 0 | True 21.00M; False 5.25M |
+| VERIFIEDOWNERSHIP | category | 2 | 0 | False 15.56M; True 10.69M |
+| WATERLEVEL | other | 394 | 0 | 0 22.69M; 1 491.3K; 2 321.3K; 3 263.7K |
+| _INGESTED_AT | audit date | 7 | 0 | 2026-08-10T16:56:44.81864 16.44M; 2026-08-05T21:35:54.28176 3.08M; 2026-08-11T13:42:47.55518 2.21M; 2026-08-25T16:33:35.90172 1.82M |
+| _SOURCE_RUN_ID | audit | 7 | 0 | e3622e30-945e-4367-812c-d 16.44M; fb103801-909d-498a-945f-5 3.08M; d6b14c64-2e15-4fbe-808c-e 2.21M; 79b39593-6cc0-4128-9179-b 1.82M |
+| _SRC_SHA256 | who | 2.7K | 0 | 4e3e416485f31ca1 20.0K; cd0b59692495d834 20.0K; 6a34cfdd3e0314d3 20.0K; b1f9210262a17ffd 20.0K |

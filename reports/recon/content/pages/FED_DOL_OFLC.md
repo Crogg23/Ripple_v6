@@ -1,0 +1,805 @@
+# FED_DOL_OFLC
+
+rows 664.6K  columns 263  scan 13.8s
+
+roles: amount 31, audit 2, category 116, date 5, empty 8, id 1, other 34, state 2, who 64
+
+## when
+
+CASE_SUBMITTED
+  2012         1  
+  2013         1  
+  2014         1  
+  2015       288  
+  2016      5.8K  
+  2017      8.7K  
+  2018    104.0K  ######
+  2019    545.7K  ##############################
+
+DECISION_DATE
+  2018     97.5K  #####
+  2019    567.1K  ##############################
+
+ORIGINAL_CERT_DATE
+  2014         1  
+  2015       224  
+  2016      4.9K  ########
+  2017      7.6K  #############
+  2018     16.1K  ###########################
+  2019     18.1K  ##############################
+
+PERIOD_OF_EMPLOYMENT_START_DATE
+  2012         1  
+  2013         1  
+  2014         1  
+  2015        85  
+  2016      5.3K  
+  2017      8.6K  
+  2018     34.1K  ##
+  2019    553.5K  ##############################
+  2020     12.6K  #
+
+PERIOD_OF_EMPLOYMENT_END_DATE
+  2015         1  
+  2016         1  
+  2017         2  
+  2018       174  
+  2019      9.3K  #
+  2020     22.0K  #
+  2021     57.8K  ###
+  2022    515.2K  ##############################
+  2023      9.8K  #
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTAL_WORKER_POSITIONS | 664.6K | 1 | 1 | 19.80 | 594 | 1.07M |
+| WAGE_RATE_OF_PAY_FROM_1 | 664.6K | 7.50 | 90.0K | 235.2K | 3.30M | 62.36B |
+| WAGE_RATE_OF_PAY_TO_1 | 332.9K | 0 | 100.0K | 268.9K | 3.00M | 35.87B |
+| PREVAILING_WAGE_1 | 631.4K | 7.25 | 84.2K | 184.9K | 849.7K | 53.24B |
+| WAGE_RATE_OF_PAY_FROM_2 | 101.8K | 7.50 | 95.0K | 300.0K | 3.50M | 10.44B |
+| WAGE_RATE_OF_PAY_TO_2 | 40.7K | 0 | 115.1K | 359.6K | 1.33M | 5.09B |
+
+## who
+
+EMPLOYER_NAME by rows
+     28.5K  COGNIZANT TECHNOLOGY SOLUTIONS US CORP
+     21.4K  INFOSYS LIMITED
+     11.9K  TATA CONSULTANCY SERVICES LIMITED
+     10.0K  GOOGLE LLC
+      8.8K  ERNST & YOUNG U.S. LLP
+      7.9K  CAPGEMINI AMERICA INC
+      7.8K  DELOITTE CONSULTING LLP
+      7.3K  AMAZON.COM SERVICES, INC.
+      6.0K  MICROSOFT CORPORATION
+      5.7K  ACCENTURE LLP
+      5.1K  IBM CORPORATION
+      4.7K  HCL AMERICA, INC.
+      4.3K  WIPRO LIMITED
+      3.6K  LARSEN & TOUBRO INFOTECH LIMITED
+      2.9K  TECH MAHINDRA (AMERICAS),INC.
+      2.7K  FACEBOOK, INC.
+      2.3K  WAL-MART ASSOCIATES, INC.
+      2.2K  IBM INDIA PRIVATE LIMITED
+      2.0K  L&T TECHNOLOGY SERVICES LIMITED
+      1.9K  SYNTEL INC
+
+EMPLOYER_NAME by dollars
+       85.5K     7.8K rows  DELOITTE CONSULTING LLP
+       28.5K    28.5K rows  COGNIZANT TECHNOLOGY SOLUTIONS US CORP
+       26.7K     1.7K rows  APPLE INC.
+       22.2K      426 rows  QUALCOMM TECHNOLOGIES, INC.
+       21.4K    21.4K rows  INFOSYS LIMITED
+       15.8K    11.9K rows  TATA CONSULTANCY SERVICES LIMITED
+       15.3K      723 rows  KFORCE INC.
+       14.2K      847 rows  CISCO SYSTEMS, INC.
+       13.0K     4.3K rows  WIPRO LIMITED
+       12.4K     7.3K rows  AMAZON.COM SERVICES, INC.
+       10.1K     6.0K rows  MICROSOFT CORPORATION
+       10.0K    10.0K rows  GOOGLE LLC
+        9.7K     4.7K rows  HCL AMERICA, INC.
+        9.2K      341 rows  NVIDIA CORPORATION
+        8.9K     7.9K rows  CAPGEMINI AMERICA INC
+        8.9K     8.8K rows  ERNST & YOUNG U.S. LLP
+        8.5K      605 rows  ORACLE AMERICA, INC.
+        7.6K      210 rows  SYNOPSYS, INC.
+        7.5K      269 rows  HEWLETT PACKARD ENTERPRISE COMPANY
+        7.5K     1.7K rows  INTEL CORPORATION
+
+SECONDARY_ENTITY_BUSINESS_NAME_1 by rows
+      1.5K  Wells Fargo
+      1.5K  Apple, Inc.
+      1.3K  Verizon
+      1.2K  Ford Motor Company
+      1.1K  AT&T
+       991  WELLS FARGO
+       882  Comcast
+       876  Apple Inc.
+       847  American Express
+       819  American Express Travel Related Services Company,
+       807  Capital One
+       744  AT&T Services Inc
+       729  Fidelity Investments
+       703  Fannie Mae
+       659  BANK OF AMERICA
+       580  VERIZON
+       570  Bank of America
+       558  Kaiser Permanente
+       508  Aetna Life Insurance Company
+       505  T-Mobile
+
+SECONDARY_ENTITY_BUSINESS_NAME_1 by dollars
+        2.1K     1.1K rows  AT&T
+        1.9K     1.5K rows  Wells Fargo
+        1.9K      427 rows  PNC Bank
+        1.7K     1.3K rows  Verizon
+        1.6K     1.2K rows  Ford Motor Company
+        1.5K     1.5K rows  Apple, Inc.
+        1.4K      991 rows  WELLS FARGO
+        1.4K      876 rows  Apple Inc.
+        1.3K       46 rows  Quest Diagnostics Incorporated
+        1.1K      882 rows  Comcast
+        1.0K      703 rows  Fannie Mae
+         919      847 rows  American Express
+         910      807 rows  Capital One
+         888      729 rows  Fidelity Investments
+         819      819 rows  American Express Travel Related Services Company,
+         802      558 rows  Kaiser Permanente
+         760      744 rows  AT&T Services Inc
+         758      445 rows  Walmart
+         751      659 rows  BANK OF AMERICA
+         751       26 rows  MICROSTRATEGY INCORPORATED
+
+SECONDARY_ENTITY_BUSINESS_NAME_2 by rows
+       341  CAPGEMINI AMERICA, INC.
+       157  Orion Systems Integrators LLC
+       134  GAP INC
+       130  Discover Financial Services
+        83  ANJS TECHNOLOGIES LLC
+        76  Visionet Systems Inc.
+        71  Citigroup
+        67  CHARLES SCHWAB
+        66  HM Health Solutions
+        62  Microsoft Corporation
+        61  Employee's home address
+        56  Microsoft
+        55  Geeksoft LLC
+        55  Fannie Mae
+        52  SYRAINFOTEK LLC
+        51  Telecommute - Work From Home
+        50  WELLS FARGO
+        49  AT&T
+        48  Verizon
+        44  ICC
+
+SECONDARY_ENTITY_BUSINESS_NAME_2 by dollars
+         387       37 rows  Verizon Sourcing LLC
+         341      341 rows  CAPGEMINI AMERICA, INC.
+         310       34 rows  Wells Fargo Bank
+         237       18 rows  Cisco Systems, Inc.
+         229       21 rows  Hewlett Packard Enterprise
+         210        7 rows  Qualcomm, Inc.
+         184       30 rows  Anthem, Inc.
+         176       48 rows  Verizon
+         169      157 rows  Orion Systems Integrators LLC
+         156       16 rows  Health Care Service Corporation
+         152       41 rows  Wells Fargo
+         139       67 rows  CHARLES SCHWAB
+         138      134 rows  GAP INC
+         130      130 rows  Discover Financial Services
+         129       29 rows  Anthem
+         127       71 rows  Citigroup
+         121       43 rows  Employer - TechDemocracy, LLC
+         120        3 rows  IBM Center For Innovation
+         116       14 rows  Exelon Corporation
+         113       17 rows  FIRST REPUBLIC BANK
+
+AGENT_ATTORNEY_LAW_FIRM_BUSINESS_NAME by rows
+     50.2K  FRAGOMEN, DEL REY, BERNSEN & LOEWY, LLP
+     23.4K  BERRY APPLEMAN & LEIDEN LLP
+     10.0K  EY LAW LLP
+      8.7K  OGLETREE, DEAKINS, NASH, SMOAK & STEWART, P.C.
+      8.4K  FRAGOMEN, DEL REY, BERNSEN & LOEWY LLP
+      7.9K  SEYFARTH SHAW LLP
+      7.1K  LAW OFFICE OF THOMAS V. ALLEN
+      6.2K  GARSON LLP
+      5.9K  ERICKSON IMMIGRATION GROUP
+      5.5K  FAKHOURY GLOBAL IMMIGRATION, USA PC
+      4.0K  GOEL & ANDERSON, LLC
+      3.8K  INTERNATIONAL LEGAL AND BUSINESS SERVICES GROUP LLP
+      3.7K  FRAGOMEN, DEL REY, BERNSEN & LOEWY, LLP.
+      3.6K  CHUGH, LLP
+      3.3K  FRAGOMEN, DEL REY, BERNSEN & LOEWY
+      3.3K  GLOBAL IMMIGRATION PARTNERS, INC
+      3.3K  GLOBAL IMMIGRATION ASSOCIATES, PC
+      3.1K  JETHMALANI & NALLASETH PLLC
+      2.9K  PEARL LAW GROUP
+      2.9K  PWC LAW LLP
+
+AGENT_ATTORNEY_LAW_FIRM_BUSINESS_NAME by dollars
+      131.4K    50.2K rows  FRAGOMEN, DEL REY, BERNSEN & LOEWY, LLP
+       79.2K     6.2K rows  GARSON LLP
+       46.9K     1.7K rows  FRAGOMEN, DEL REY, BERNSEN AND LOEWY LLP
+       42.9K    23.4K rows  BERRY APPLEMAN & LEIDEN LLP
+       24.4K     3.3K rows  FRAGOMEN, DEL REY, BERNSEN & LOEWY
+       16.2K     1.1K rows  MASUDA FUNAI EIFERT & MITCHELL, LTD.
+       15.4K     7.9K rows  SEYFARTH SHAW LLP
+       14.1K     8.4K rows  FRAGOMEN, DEL REY, BERNSEN & LOEWY LLP
+       13.1K     1.9K rows  TAFAPOLSKY SMITH MEHLMAN LLP
+       11.5K     1.7K rows  FRAGOMEN, DEL REY, BERNSEN AND LOEWY, LLP
+       10.7K     5.9K rows  ERICKSON IMMIGRATION GROUP
+       10.0K    10.0K rows  EY LAW LLP
+        9.3K     3.7K rows  FRAGOMEN, DEL REY, BERNSEN & LOEWY, LLP.
+        8.9K     8.7K rows  OGLETREE, DEAKINS, NASH, SMOAK & STEWART, P.C.
+        8.7K     3.6K rows  CHUGH, LLP
+        7.1K     7.1K rows  LAW OFFICE OF THOMAS V. ALLEN
+        6.3K     2.2K rows  USILAW, INC
+        6.2K      386 rows  FRAGOMEN DEL REY BERSEN & LOEWY LLP
+        5.8K     5.5K rows  FAKHOURY GLOBAL IMMIGRATION, USA PC
+        4.7K     4.0K rows  GOEL & ANDERSON, LLC
+
+## who x when
+
+EMPLOYER_NAME by DECISION_DATE, dollars = TOTAL_WORKER_POSITIONS
+  ACCENTURE LLP                             2018:883 2019:6.5K
+  AMAZON.COM SERVICES, INC.                 2018:5.5K 2019:6.9K
+  APPLE INC.                                2018:16.8K 2019:9.9K
+  CAPGEMINI AMERICA INC                     2018:1.9K 2019:7.0K
+  CISCO SYSTEMS, INC.                       2018:1.3K 2019:13.0K
+  COGNIZANT TECHNOLOGY SOLUTIONS US CORP    2018:4.8K 2019:23.7K
+  DELOITTE CONSULTING LLP                   2018:18.7K 2019:66.9K
+  ERNST & YOUNG U.S. LLP                    2018:2.0K 2019:6.9K
+  FACEBOOK, INC.                            2018:4.1K 2019:2.4K
+  GOOGLE LLC                                2018:1.2K 2019:8.8K
+  HCL AMERICA, INC.                         2018:5.3K 2019:4.4K
+  HEWLETT PACKARD ENTERPRISE COMPANY        2018:456 2019:7.1K
+  IBM CORPORATION                           2018:337 2019:4.7K
+  IBM INDIA PRIVATE LIMITED                 2018:662 2019:1.5K
+  INFOSYS LIMITED                           2018:1.8K 2019:19.6K
+  INTEL CORPORATION                         2018:2.9K 2019:4.5K
+  KFORCE INC.                               2018:10.3K 2019:5.0K
+  L&T TECHNOLOGY SERVICES LIMITED           2018:306 2019:1.7K
+  LARSEN & TOUBRO INFOTECH LIMITED          2018:741 2019:3.5K
+  MICROSOFT CORPORATION                     2018:2.1K 2019:8.0K
+  NVIDIA CORPORATION                        2018:2.3K 2019:6.9K
+  ORACLE AMERICA, INC.                      2018:1.5K 2019:7.0K
+  QUALCOMM TECHNOLOGIES, INC.               2018:3.5K 2019:18.7K
+  SYNOPSYS, INC.                            2018:517 2019:7.1K
+  SYNTEL INC                                2018:485 2019:1.4K
+  TATA CONSULTANCY SERVICES LIMITED         2018:1.5K 2019:14.3K
+  TECH MAHINDRA (AMERICAS),INC.             2018:316 2019:2.6K
+  WAL-MART ASSOCIATES, INC.                 2018:290 2019:2.0K
+  WIPRO LIMITED                             2018:988 2019:12.0K
+
+SECONDARY_ENTITY_BUSINESS_NAME_1 by DECISION_DATE, dollars = TOTAL_WORKER_POSITIONS
+  AT&T                                      2018:61 2019:2.1K
+  AT&T Services Inc                         2018:32 2019:728
+  Aetna Life Insurance Company              2018:15 2019:493
+  American Express                          2018:92 2019:827
+  American Express Travel Related Services  2018:38 2019:781
+  Apple Inc.                                2018:39 2019:1.4K
+  Apple, Inc.                               2018:41 2019:1.4K
+  BANK OF AMERICA                           2018:29 2019:722
+  Bank of America                           2018:47 2019:549
+  Capital One                               2018:65 2019:845
+  Comcast                                   2018:45 2019:1.1K
+  Fannie Mae                                2018:103 2019:938
+  Fidelity Investments                      2018:43 2019:845
+  Ford Motor Company                        2018:93 2019:1.5K
+  Kaiser Permanente                         2018:39 2019:763
+  MICROSTRATEGY INCORPORATED                2018:750 2019:1
+  PNC Bank                                  2018:168 2019:1.7K
+  Quest Diagnostics Incorporated            2018:5 2019:1.3K
+  T-Mobile                                  2018:18 2019:580
+  VERIZON                                   2018:28 2019:688
+  Verizon                                   2018:73 2019:1.6K
+  WELLS FARGO                               2018:222 2019:1.2K
+  Walmart                                   2018:39 2019:719
+  Wells Fargo                               2018:141 2019:1.8K
+
+## where
+
+EMPLOYER_STATE: CA 120.1K, TX 100.0K, NJ 80.9K, NY 45.2K, IL 39.8K, MA 27.0K, PA 26.7K, WA 25.2K, MI 24.7K, MD 19.8K, VA 19.1K, NC 16.8K
+
+AGENT_ATTORNEY_STATE: CA 75.6K, NY 62.0K, TX 44.5K, MA 36.2K, IL 26.2K, VA 23.5K, MI 23.3K, NJ 21.7K, GA 20.7K, DC 11.9K, OH 10.2K
+
+## what
+
+CASE_STATUS: CERTIFIED 89%, CERTIFIED-WITHDRAWN 7%, WITHDRAWN 3%, DENIED 1%
+
+VISA_CLASS: H-1B 98%, E-3 Australian 2%, H-1B1 Singapore 0%, H-1B1 Chile 0%
+
+FULL_TIME_POSITION: Y 98%, N 2%
+
+CONTINUED_EMPLOYMENT: 0 76%, 1 23%, 5 1%, 2 0%, 4 0%, 10 0%, 3 0%, 01 0%, 25 0%, 8 0%, 15 0%, 20 0%
+
+CHANGE_PREVIOUS_EMPLOYMENT: 0 92%, 1 7%, 2 0%, 5 0%, 4 0%, 10 0%, 20 0%, 3 0%, 15 0%, 01 0%, 8 0%, 6 0%
+
+NEW_CONCURRENT_EMPLOYMENT: 0 99%, 1 0%, 2 0%, 5 0%, 4 0%, 10 0%, 3 0%, 00 0%, 99 0%, 9 0%
+
+CHANGE_EMPLOYER: 0 83%, 1 15%, 5 1%, 2 0%, 4 0%, 10 0%, 3 0%, 15 0%, 01 0%, 50 0%, 20 0%, 8 0%
+
+AMENDED_PETITION: 0 86%, 1 12%, 5 1%, 2 0%, 3 0%, 4 0%, 10 0%, 15 0%, 01 0%, 11 0%, 8 0%, 20 0%
+
+EMPLOYER_COUNTRY: UNITED STATES OF AMERICA 100%, CANADA 0%, AUSTRALIA 0%, INDIA 0%, ALBANIA 0%, GUATEMALA 0%, AFGHANISTAN 0%, TURKEY 0%
+
+AGENT_REPRESENTING_EMPLOYER: Y 70%, N 30%
+
+AGENT_ATTORNEY_COUNTRY: UNITED STATES OF AMERICA 95%, CANADA 5%, AUSTRALIA 0%, UNITED KINGDOM 0%, CHILE 0%, ISRAEL 0%, GERMANY 0%, SOUTH KOREA 0%, FRANCE 0%
+
+SECONDARY_ENTITY_1: N 61%, Y 39%
+
+WAGE_UNIT_OF_PAY_1: Year 93%, Hour 7%, Month 0%, Week 0%, Bi-Weekly 0%
+
+PW_UNIT_OF_PAY_1: Year 93%, Hour 7%, Month 0%, Week 0%, Bi-Weekly 0%
+
+PW_WAGE_LEVEL_1: Level II 53%, Level III 20%, Level I 15%, Level IV 12%
+
+PW_OES_YEAR_1: 2018 85%, 2019 11%, 2017 2%, 2016 1%, 2015 0%, 2014 0%, 2013 0%, 2011 0%, 2008 0%, 2010 0%, 2001 0%
+
+PW_NON_OES_YEAR_1: 2018 50%, 2019 44%, 2020 5%, 2017 0%, 2016 0%, 2009 0%, 1 0%, 2013 0%, 2008 0%, 2015 0%, 2012 0%
+
+PW_SURVEY_PUBLISHER_1: 2018 59%, 2019 34%, 2017 4%, 2016 2%, 2015 1%, 2014 0%, 2011 0%, 2008 0%, 2013 0%, 2001 0%, 2010 0%
+
+WORKSITE_WORKERS_2: 1 89%, 15 4%, 3 2%, 5 1%, 10 1%, 2 1%, 25 1%, 50 0%, 20 0%, 30 0%, 4 0%
+
+SECONDARY_ENTITY_2: N 71%, Y 29%
+
+WAGE_UNIT_OF_PAY_2: Year 94%, Hour 6%, Month 0%, Week 0%, Bi-Weekly 0%
+
+PW_UNIT_OF_PAY_2: Year 94%, Hour 6%, Bi-Weekly 0%, Week 0%, Month 0%
+
+PW_WAGE_LEVEL_2: Level II 48%, Level III 22%, Level I 15%, Level IV 15%
+
+PW_OES_YEAR_2: 2018 88%, 2019 9%, 2017 2%, 2016 1%, 2015 0%, 2008 0%, 2011 0%, 2014 0%, 2013 0%, 2918 0%
+
+PW_NON_OES_YEAR_2: 2018 50%, 2019 45%, 2020 5%, 2017 0%, 2016 0%, 2010 0%, 2015 0%, 18 0%, 209 0%, 2009 0%, 2012 0%
+
+PW_SURVEY_PUBLISHER_2: 2018 69%, 2019 25%, 2017 3%, 2016 1%, 2015 0%, 2008 0%, 2011 0%, 2013 0%, 2918 0%, 2014 0%
+
+WORKSITE_WORKERS_3: 1 82%, 15 8%, 3 2%, 5 2%, 25 2%, 10 1%, 2 1%, 50 1%, 20 1%, 30 0%, 4 0%
+
+SECONDARY_ENTITY_3: N 69%, Y 31%
+
+WAGE_UNIT_OF_PAY_3: Year 94%, Hour 6%, Month 0%, Week 0%, Bi-Weekly 0%
+
+PW_UNIT_OF_PAY_3: Year 93%, Hour 7%, Bi-Weekly 0%, Month 0%, Week 0%
+
+PW_WAGE_LEVEL_3: Level II 43%, Level III 23%, Level I 18%, Level IV 16%
+
+PW_OES_YEAR_3: 2018 86%, 2019 10%, 2017 3%, 2016 1%, 2015 0%, 2013 0%
+
+PW_OTHER_SOURCE_3: OFLC ONLINE DATA CENTER 56%, Other 33%, CBA 8%, SKYWEST AND PILOT ASSOC. CBA 1%, RADFORD GLOBAL TECHNOLOGY SURV 1%, RADFORD GLOBAL TECHNOLOGY SURV 1%, US MBD MERCER BENCHMARK DATABA 0%, SCA 0%, AAMC SURVEY OF RESIDENT/FELLOW 0%, OFLC ONLINE DATA CENTER' 0%, AAMC SURVEY OF RESIDENT/FELLOW 0%
+
+PW_NON_OES_YEAR_3: 2018 52%, 2019 43%, 2020 5%, 2017 0%, 2015 0%, 8 0%
+
+PW_SURVEY_PUBLISHER_3: 2018 68%, 2019 25%, 2017 5%, 2016 1%, 2015 0%, 2013 0%
+
+WORKSITE_WORKERS_4: 1 80%, 15 11%, 10 3%, 2 1%, 3 1%, 20 1%, 5 1%, 25 1%, 30 1%, 4 0%, 7 0%
+
+SECONDARY_ENTITY_4: N 67%, Y 33%
+
+PW_TRACKING_NUMBER_4: P-200-18130-535033 18%, P-200-18152-001921 15%, P-200-19064-910389 13%, P-200-18136-800836 10%, P-200-17216-631653 8%, P-200-18151-158449 8%, P-200-18240-783679 8%, P-200-19028-227954 5%, P-200-19116-155937 5%, P-200-18338-227192 5%, P-200-19050-529720 5%
+
+PW_WAGE_LEVEL_4: Level II 45%, Level I 21%, Level III 18%, Level IV 16%
+
+PW_OES_YEAR_4: 2018 70%, 2019 22%, 2017 6%, 2016 1%, 2015 0%, 2013 0%, 218 0%
+
+PW_OTHER_SOURCE_4: Other 75%, CBA 24%, SCA 0%
+
+PW_NON_OES_YEAR_4: 2018 54%, 2019 42%, 2020 4%, 2017 0%
+
+PW_SURVEY_PUBLISHER_4: 2018 70%, 2019 22%, 2017 6%, 2016 1%, 2015 0%, 2013 0%, 218 0%
+
+PW_SURVEY_NAME_4: AAMC 25%, Association of American Medica 22%, Association of American Medica 20%, Radford 15%, Radford Global Technology Surv 6%, AON PLC 3%, Willis Towers Watson 3%, RADFORD 2%, AAMC (Association of American  2%, AAMC SURVEY OF RESIDENT/FELLOW 2%, ASSOCIATION OF AMERICAN MEDICA 1%
+
+WORKSITE_WORKERS_5: 1 84%, 15 10%, 10 2%, 20 1%, 2 1%, 3 1%, 5 1%, 30 0%, 4 0%, 7 0%, 8 0%
+
+SECONDARY_ENTITY_5: N 64%, Y 36%
+
+WORKSITE_STATE_5: TEXAS 17%, NEW YORK 16%, CALIFORNIA 15%, PENNSYLVANIA 12%, ILLINOIS 7%, OHIO 6%, MASSACHUSETTS 6%, GEORGIA 6%, INDIANA 6%, MICHIGAN 5%, FLORIDA 4%
+
+PW_TRACKING_NUMBER_5: P-200-18130-535033 19%, P-200-19064-910389 16%, P-200-18152-001921 13%, P-200-18151-158449 10%, P-200-18240-783679 10%, P-200-18338-227192 6%, P-200-18136-800836 6%, P-200-19050-529720 6%, P-200-18263-839554 6%, P-200-19102-585502 3%, P-200-19154-403782 3%
+
+PW_WAGE_LEVEL_5: Level II 47%, Level I 23%, Level III 17%, Level IV 13%
+
+PW_OES_YEAR_5: 2018 73%, 2019 17%, 2017 7%, 2016 1%, 2013 0%, 2015 0%
+
+PW_OTHER_SOURCE_5: Other 61%, CBA 39%, SCA 0%
+
+PW_NON_OES_YEAR_5: 2018 54%, 2019 41%, 2020 4%, 2017 0%, 15 0%
+
+PW_SURVEY_PUBLISHER_5: 2018 73%, 2019 17%, 2017 7%, 2016 1%, 2013 0%, 2015 0%
+
+PW_SURVEY_NAME_5: Association of American Medica 34%, AAMC 30%, Association of American Medica 24%, Radford 5%, AAMC SURVEY OF RESIDENT/FELLOW 2%, ASSOCIATION OF AMERICAN MEDICA 1%, DC SHRM 1%, Willis Towers Watson 1%, Medical Group Management Assoc 1%, Mercer Human Resource Consulti 1%, AAMC Survey of Resident/Fellow 1%
+
+WORKSITE_WORKERS_6: 1 84%, 15 8%, 10 3%, 20 2%, 2 1%, 3 1%, 30 0%, 5 0%, 8 0%, 6 0%, 35 0%
+
+SECONDARY_ENTITY_6: N 65%, Y 35%
+
+WORKSITE_STATE_6: CALIFORNIA 17%, PENNSYLVANIA 16%, TEXAS 14%, NEW YORK 12%, OHIO 7%, GEORGIA 7%, ILLINOIS 6%, INDIANA 6%, MASSACHUSETTS 6%, FLORIDA 4%, ARIZONA 4%
+
+WAGE_UNIT_OF_PAY_6: Year 87%, Hour 12%, Month 0%, Bi-Weekly 0%, Week 0%
+
+PW_UNIT_OF_PAY_6: Year 87%, Hour 13%, Bi-Weekly 0%, Month 0%, Week 0%
+
+PW_TRACKING_NUMBER_6: P-200-19064-910389 15%, P-200-18240-783679 15%, P-200-18338-227192 10%, P-200-19050-529720 10%, P-200-18130-535033 10%, P-200-18152-001921 10%, P-200-18263-839554 10%, P-200-19102-585502 5%, P-200-18318-606564 5%, P-200-18227-997230 5%, P-200-18297-147627 5%
+
+PW_WAGE_LEVEL_6: Level II 47%, Level I 24%, Level III 17%, Level IV 12%
+
+PW_OES_YEAR_6: 2018 78%, 2019 15%, 2017 5%, 2013 1%, 2015 1%, 2016 1%
+
+PW_OTHER_SOURCE_6: Other 58%, CBA 42%
+
+PW_NON_OES_YEAR_6: 2018 55%, 2019 40%, 2020 5%
+
+PW_SURVEY_PUBLISHER_6: 2018 78%, 2019 15%, 2017 5%, 2013 1%, 2015 1%, 2016 1%
+
+PW_SURVEY_NAME_6: Association of American Medica 35%, AAMC 31%, Association of American Medica 26%, Medical Group Management Assoc 2%, ASSOCIATION OF AMERICAN MEDICA 1%, Survey of Resident/Fellow Stip 1%, Willis Towers Watson 1%, AAMD 1%, Assocation of American Medical 1%, Association for American Medic 1%, MEDICAL GROUP MANAGEMENT ASSOC 1%
+
+WORKSITE_WORKERS_7: 1 82%, 15 8%, 10 4%, 20 2%, 2 1%, 3 1%, 30 1%, 8 0%, 5 0%, 6 0%, 35 0%
+
+SECONDARY_ENTITY_7: N 63%, Y 37%
+
+WORKSITE_STATE_7: PENNSYLVANIA 18%, CALIFORNIA 15%, TEXAS 15%, NEW YORK 12%, OHIO 9%, GEORGIA 8%, ARIZONA 6%, MINNESOTA 5%, ILLINOIS 4%, MICHIGAN 4%, MASSACHUSETTS 4%
+
+PW_TRACKING_NUMBER_7: P-200-19064-910389 21%, P-200-18240-783679 21%, P-200-19050-529720 14%, P-200-18263-839554 14%, P-200-19102-585502 7%, P-200-18227-997230 7%, P-200-18297-147627 7%, P-200-19119-700040 7%
+
+PW_WAGE_LEVEL_7: Level II 45%, Level I 26%, Level III 18%, Level IV 12%
+
+PW_OES_YEAR_7: 2018 77%, 2019 19%, 2017 4%, 2013 1%
+
+PW_OTHER_SOURCE_7: Other 52%, CBA 48%
+
+PW_NON_OES_YEAR_7: 2018 54%, 2019 41%, 2020 5%
+
+PW_SURVEY_PUBLISHER_7: 2018 77%, 2019 19%, 2017 4%, 2013 1%
+
+PW_SURVEY_NAME_7: Association of American Medica 38%, Association of American Medica 27%, AAMC 24%, ASSOCIATION OF AMERICAN MEDICA 1%, Survey of Resident/Fellow Stip 1%, Willis Towers Watson 1%, Association of Ameican Medical 1%, Mercer LLC 1%, Radford 1%, Assoc of American Medical Coll 1%, MEDICAL GROUP MANAGEMENT ASSOC 1%
+
+WORKSITE_WORKERS_8: 1 80%, 15 9%, 10 5%, 2 2%, 3 1%, 30 1%, 20 1%, 5 0%, 6 0%, 35 0%, 16 0%
+
+SECONDARY_ENTITY_8: N 67%, Y 33%
+
+WORKSITE_STATE_8: PENNSYLVANIA 19%, CALIFORNIA 14%, NEW YORK 14%, TEXAS 13%, OHIO 10%, ILLINOIS 6%, MASSACHUSETTS 5%, OREGON 5%, GEORGIA 5%, SOUTH CAROLINA 4%, ARIZONA 4%
+
+PW_TRACKING_NUMBER_8: P-200-19064-910389 27%, P-200-18240-783679 27%, P-200-19050-529720 18%, P-200-19102-585502 9%, P-200-18227-997230 9%, P-200-19119-700040 9%
+
+PW_WAGE_LEVEL_8: Level II 44%, Level I 27%, Level III 18%, Level IV 11%
+
+PW_OES_YEAR_8: 2018 72%, 2019 23%, 2017 5%, 2013 1%
+
+PW_OTHER_SOURCE_8: CBA 58%, Other 42%
+
+PW_NON_OES_YEAR_8: 2018 58%, 2019 38%, 2020 3%
+
+PW_SURVEY_PUBLISHER_8: 2018 72%, 2019 23%, 2017 5%, 2013 1%
+
+PW_SURVEY_NAME_8: Association of American Medica 30%, AAMC 28%, Association of American Medica 24%, Survey of Resident/Fellow Stip 2%, Willis Towers Watson 2%, Association of American Medica 2%, Mercer LLC 2%, Radford 2%, Assoc of American Medical Coll 2%, MEDICAL GROUP MANAGEMENT ASSOC 2%, 2018 Survey of Resident/Fellow 2%
+
+WORKSITE_WORKERS_9: 1 78%, 15 8%, 10 7%, 2 3%, 20 1%, 3 1%, 6 1%, 35 1%, 7 0%, 60 0%, 9 0%
+
+SECONDARY_ENTITY_9: N 67%, Y 33%
+
+WORKSITE_STATE_9: PENNSYLVANIA 19%, NEW YORK 15%, TEXAS 14%, CALIFORNIA 13%, OHIO 12%, MICHIGAN 6%, UTAH 6%, SOUTH CAROLINA 5%, ILLINOIS 4%, GEORGIA 4%, COLORADO 3%
+
+WAGE_UNIT_OF_PAY_9: Year 85%, Hour 15%
+
+PW_UNIT_OF_PAY_9: Year 85%, Hour 15%
+
+PW_TRACKING_NUMBER_9: P-200-18240-783679 43%, P-200-19050-529720 29%, P-200-19102-585502 14%, P-200-19119-700040 14%
+
+PW_WAGE_LEVEL_9: Level II 46%, Level I 27%, Level III 16%, Level IV 11%
+
+PW_OES_YEAR_9: 2018 71%, 2019 25%, 2017 3%, 2013 1%
+
+PW_OTHER_SOURCE_9: CBA 63%, Other 37%
+
+PW_NON_OES_YEAR_9: 2018 62%, 2019 35%, 2020 3%
+
+PW_SURVEY_PUBLISHER_9: 2018 71%, 2019 25%, 2017 3%, 2013 1%
+
+PW_SURVEY_NAME_9: AAMC 32%, Association of American Medica 29%, Association of American Medica 21%, Survey of Resident/Fellow Stip 3%, Willis Towers Watson 3%, Mercer LLC 3%, Associaton of American Medical 3%, Assoc of American Medical Coll 3%, 2018 Survey of Resident/Fellow 3%
+
+WORKSITE_WORKERS_10: 1 80%, 10 9%, 15 7%, 3 1%, 2 1%, 6 1%, 35 1%, 7 0%, 14 0%, 20 0%, 45 0%
+
+SECONDARY_ENTITY_10: N 70%, Y 30%
+
+WORKSITE_STATE_10: PENNSYLVANIA 20%, NEW YORK 15%, OHIO 12%, CALIFORNIA 12%, TEXAS 10%, ARIZONA 7%, IDAHO 7%, MICHIGAN 6%, SOUTH CAROLINA 5%, ILLINOIS 4%, COLORADO 4%
+
+WAGE_UNIT_OF_PAY_10: Year 85%, Hour 15%, Month 0%
+
+PW_UNIT_OF_PAY_10: Year 85%, Hour 15%
+
+PW_TRACKING_NUMBER_10: P-200-19050-529720 67%, P-200-18240-783679 33%
+
+PW_WAGE_LEVEL_10: Level II 47%, Level I 24%, Level III 18%, Level IV 10%
+
+PW_OES_YEAR_10: 2018 67%, 2019 29%, 2017 4%
+
+PW_OTHER_SOURCE_10: CBA 72%, Other 28%
+
+PW_NON_OES_YEAR_10: 2018 62%, 2019 35%, 2020 3%
+
+PW_SURVEY_PUBLISHER_10: 2018 67%, 2019 29%, 2017 4%
+
+PW_SURVEY_NAME_10: Association of American Medica 36%, AAMC 32%, Association of American Medica 23%, Assoc of American Medical Coll 5%, Mercer LLC 5%
+
+H_1B_DEPENDENT: N 63%, Y 37%
+
+WILLFUL_VIOLATOR: N 100%, Y 0%
+
+SUPPORT_H1B: Y 99%, N 1%
+
+STATUTORY_BASIS: WAGE 73%, BOTH 26%, DEGREE 1%
+
+MASTERS_EXEMPTION: Y 100%, N 0%
+
+PUBLIC_DISCLOSURE: PLACE OF BUSINESS 97%, PLACE OF EMPLOYMENT 2%, BOTH 1%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| CASE_NUMBER | id | 659.5K | 0 | I-200-19044-504943 482; I-200-19030-546104 482; I-200-19043-643958 482; I-200-19038-920317 482 |
+| CASE_STATUS | category | 4 | 0 | CERTIFIED 592.1K; CERTIFIED-WITHDRAWN 46.9K; WITHDRAWN 19.7K; DENIED 5.9K |
+| CASE_SUBMITTED | date | 601.2K | 0 | 2018-09-25 00:00:00 2.2K; 2018-09-27 00:00:00 2.1K; 2018-09-28 00:00:00 1.8K; 2018-09-26 00:00:00 868 |
+| DECISION_DATE | date | 46.9K | 0 | 2018-10-04 00:00:00 2.9K; 2018-10-03 00:00:00 2.5K; 2018-10-01 00:00:00 2.2K; 2019-02-11 22:00:46 1.1K |
+| ORIGINAL_CERT_DATE | date | 13.0K | 617.7K | 2018-03-22 00:00:00 678; 2018-03-15 00:00:00 411; 2018-03-27 00:00:00 337; 2018-03-26 00:00:00 335 |
+| VISA_CLASS | category | 4 | 0 | H-1B 649.1K; E-3 Australian 13.1K; H-1B1 Singapore 1.3K; H-1B1 Chile 1.2K |
+| JOB_TITLE | who | 111.8K | 1 | SOFTWARE DEVELOPER 35.0K; SOFTWARE ENGINEER 34.9K; SENIOR SYSTEMS ANALYST JC 13.4K; SENIOR SOFTWARE ENGINEER 9.1K |
+| SOC_CODE | other | 573 | 4 | 15-1132 216.8K; 15-1121 73.0K; 15-1199 63.6K; 15-1133 31.8K |
+| SOC_TITLE | who | 938 | 4 | SOFTWARE DEVELOPERS, APPL 216.6K; COMPUTER OCCUPATIONS, ALL 56.6K; COMPUTER SYSTEMS ANALYST 40.9K; COMPUTER SYSTEMS ANALYSTS 32.1K |
+| FULL_TIME_POSITION | category | 2 | 0 | Y 653.4K; N 11.2K |
+| PERIOD_OF_EMPLOYMENT_START_DATE | date | 1.8K | 0 | 2019-09-01 00:00:00 19.8K; 2019-08-01 00:00:00 19.2K; 2019-07-01 00:00:00 12.6K; 2019-09-10 00:00:00 9.6K |
+| PERIOD_OF_EMPLOYMENT_END_DATE | date | 2.7K | 0 | 2022-08-31 00:00:00 14.7K; 2022-07-31 00:00:00 13.0K; 2022-09-01 00:00:00 11.0K; 2022-06-30 00:00:00 8.8K |
+| TOTAL_WORKER_POSITIONS | amount | 61 | 2 | 1 626.3K; 3 6.7K; 2 5.6K; 10 5.2K |
+| NEW_EMPLOYMENT | other | 57 | 0 | 0 369.0K; 1 274.3K; 2 6.1K; 5 5.1K |
+| CONTINUED_EMPLOYMENT | category | 30 | 0 | 0 502.2K; 1 151.0K; 5 4.9K; 2 2.6K |
+| CHANGE_PREVIOUS_EMPLOYMENT | category | 24 | 0 | 0 613.1K; 1 44.6K; 2 2.4K; 5 1.7K |
+| NEW_CONCURRENT_EMPLOYMENT | category | 11 | 1 | 0 660.1K; 1 3.1K; 2 711; 5 312 |
+| CHANGE_EMPLOYER | category | 25 | 0 | 0 552.3K; 1 99.7K; 5 5.5K; 2 2.6K |
+| AMENDED_PETITION | category | 20 | 0 | 0 569.0K; 1 82.9K; 5 5.7K; 2 2.0K |
+| EMPLOYER_NAME | who | 70.4K | 10 | COGNIZANT TECHNOLOGY SOLU 29.8K; INFOSYS LIMITED 21.8K; TATA CONSULTANCY SERVICES 12.3K; GOOGLE LLC 10.0K |
+| EMPLOYER_BUSINESS_DBA | who | 11.5K | 613.5K | MASTECH DIGITAL TECHNOLOG 1.2K; FIDELITY INVESTMENTS 716; SLK AMERICA, INC. 583; BLOOMBERG 479 |
+| EMPLOYER_ADDRESS1 | who | 63.7K | 3 | 211 QUALITY CIRCLE 30.0K; 2400 N. GLENVILLE DR. 19.8K; 9201 CORPORATE BOULEVARD 12.3K; 1600 AMPHITHEATRE PARKWAY 10.4K |
+| EMPLOYER_ADDRESS2 | who | 8.1K | 354.1K | STE. C150 19.5K; SUITE 300 15.1K; SUITE 500 10.0K; SUITE 2222 9.0K |
+| EMPLOYER_CITY | who | 5.0K | 5 | NEW YORK 32.8K; COLLEGE STATION 29.7K; CHICAGO 23.8K; RICHARDSON 22.6K |
+| EMPLOYER_STATE | state | 58 | 41 | CA 120.1K; TX 100.0K; NJ 80.9K; NY 45.2K |
+| EMPLOYER_POSTAL_CODE | who | 11.3K | 10 | 77845 29.8K; 75082 21.0K; 20850 13.0K; 94043 12.8K |
+| EMPLOYER_COUNTRY | category | 9 | 28.1K | UNITED STATES OF AMERICA 636.4K; CANADA 27; AUSTRALIA 3; INDIA 3 |
+| EMPLOYER_PROVINCE | who | 340 | 659.6K | MIDDLESEX 974; COOK 480; NEW JERSEY 266; USA 180 |
+| EMPLOYER_PHONE | who | 68.6K | 28.1K | 2019661249 30.0K; 9132323225 19.7K; 3012319083 12.3K; 2062661000 10.3K |
+| EMPLOYER_PHONE_EXT | who | 1.1K | 637.0K | 226 3.4K; 0 2.3K; 9553 1.5K; 100 1.1K |
+| NAICS_CODE | other | 2.0K | 2 | 541511 210.2K; 541512 66.4K; 611310 27.6K; 5416 19.2K |
+| AGENT_REPRESENTING_EMPLOYER | category | 3 | 28.1K | Y 447.5K; N 189.0K |
+| AGENT_ATTORNEY_LAW_FIRM_BUSINESS_NAME | who | 6.8K | 217.3K | FRAGOMEN, DEL REY, BERNSE 50.2K; BERRY APPLEMAN & LEIDEN L 23.4K; EY LAW LLP 10.0K; OGLETREE, DEAKINS, NASH,  8.7K |
+| AGENT_ATTORNEY_ADDRESS1 | who | 6.5K | 220.6K | 7 HANOVER SQUARE 17.3K; 100 HIGH STREET 15.7K; 100 ADELAIDE STREET WEST 8.8K; 50 CRAGWOOD ROAD 6.4K |
+| AGENT_ATTORNEY_ADDRESS2 | who | 2.0K | 352.8K | SUITE 100 18.8K; 3RD FLOOR 15.6K; SUITE 1100 10.9K; FLOOR 31 9.6K |
+| AGENT_ATTORNEY_CITY | who | 1.0K | 217.2K | NEW YORK 53.6K; BOSTON 25.3K; SAN FRANCISCO 24.2K; TORONTO 19.9K |
+| AGENT_ATTORNEY_STATE | state | 55 | 238.1K | CA 75.6K; NY 62.0K; TX 44.5K; MA 36.2K |
+| AGENT_ATTORNEY_POSTAL_CODE | other | 2.5K | 220.6K | 2110 16.5K; 10004 15.4K; 75082 13.5K; 60606 10.8K |
+| AGENT_ATTORNEY_COUNTRY | category | 10 | 220.6K | UNITED STATES OF AMERICA 423.5K; CANADA 20.2K; AUSTRALIA 202; UNITED KINGDOM 91 |
+| AGENT_ATTORNEY_PROVINCE | other | 163 | 638.3K | ONTARIO 16.9K; NEW YORK 3.0K; ON 2.7K; PA 328 |
+| AGENT_ATTORNEY_PHONE | who | 6.0K | 220.6K | 2126888555 16.0K; 6175740400 15.0K; 7328327978 7.3K; 4169435411 6.1K |
+| AGENT_ATTORNEY_PHONE_EXT | other | 916 | 626.3K | 104 4.3K; 222 3.8K; 82877 2.1K; 101 1.9K |
+| STATE_OF_HIGHEST_COURT | who | 949 | 221.5K | SUPREME COURT 131.7K; COURT OF APPEALS 34.4K; SUPREME JUDICIAL COURT 32.4K; SUPREME COURT OF TEXAS 19.3K |
+| NAME_OF_HIGHEST_STATE_COURT | who | 55 | 221.4K | NEW YORK 99.7K; CALIFORNIA 67.9K; MASSACHUSETTS 38.2K; TEXAS 33.6K |
+| WORKSITE_WORKERS_1 | other | 229 | 83.7K | 1 549.3K; 3 5.3K; 2 5.0K; 15 4.9K |
+| SECONDARY_ENTITY_1 | category | 3 | 83.7K | N 355.4K; Y 225.5K |
+| SECONDARY_ENTITY_BUSINESS_NAME_1 | who | 51.9K | 423.1K | Apple, Inc. 1.8K; Wells Fargo 1.6K; Ford Motor Company 1.4K; Verizon 1.4K |
+| WORKSITE_ADDRESS1_1 | who | 181.8K | 33.3K | One Microsoft Way 4.2K; 1600 AMPHITHEATRE PARKWAY 4.0K; 1 HACKER WAY 1.9K; 1860 LINCOLN STREET 1.3K |
+| WORKSITE_ADDRESS2_1 | who | 27.1K | 511.0K | Suite 200 3.0K; Suite 300 2.5K; Suite 100 2.4K; SUITE 200 2.1K |
+| WORKSITE_CITY_1 | who | 12.0K | 93 | New York 20.9K; NEW YORK 19.5K; SAN FRANCISCO 10.4K; San Francisco 9.3K |
+| WORKSITE_COUNTY_1 | who | 6.1K | 773 | SANTA CLARA 24.9K; Santa Clara 23.3K; NEW YORK 21.6K; New York 18.6K |
+| WORKSITE_STATE_1 | who | 115 | 18 | CALIFORNIA 115.5K; TEXAS 58.4K; NEW YORK 50.2K; NEW JERSEY 34.4K |
+| WORKSITE_POSTAL_CODE_1 | other | 15.4K | 102 | 94043 8.6K; 94105 7.4K; 98052 7.1K; 95054 5.4K |
+| WAGE_RATE_OF_PAY_FROM_1 | amount | 65.2K | 8 | 100000 9.7K; 90000 9.6K; 110000 9.1K; 120000 8.8K |
+| WAGE_RATE_OF_PAY_TO_1 | amount | 38.9K | 331.8K | 97000 8.2K; 120000 6.8K; 100000 6.8K; 110000 6.6K |
+| WAGE_UNIT_OF_PAY_1 | category | 6 | 8 | Year 619.0K; Hour 44.8K; Month 530; Week 142 |
+| PREVAILING_WAGE_1 | amount | 30.9K | 33.2K | 109242 8.8K; 96366 8.1K; 113318 5.8K; 93538 5.6K |
+| PW_UNIT_OF_PAY_1 | category | 6 | 33.2K | Year 588.0K; Hour 42.9K; Month 237; Week 126 |
+| PW_TRACKING_NUMBER_1 | other | 1.7K | 662.5K | P-200-18130-535033 16; P-200-18152-001921 12; P-200-18131-829834 11; P-200-18152-024114 10 |
+| PW_WAGE_LEVEL_1 | category | 5 | 64.0K | Level II 321.0K; Level III 118.3K; Level I 91.9K; Level IV 69.4K |
+| PW_OES_YEAR_1 | category | 24 | 589.3K | 2018 64.4K; 2019 8.4K; 2017 1.6K; 2016 516 |
+| PW_OTHER_SOURCE_1 | who | 521 | 589.9K | OFLC ONLINE DATA CENTER 47.0K; Other 21.3K; CBA 3.6K; RADFORD GLOBAL TECHNOLOGY 740 |
+| PW_NON_OES_YEAR_1 | category | 32 | 110.6K | 2018 279.4K; 2019 245.2K; 2020 29.3K; 2017 128 |
+| PW_SURVEY_PUBLISHER_1 | category | 24 | 639.7K | 2018 14.7K; 2019 8.4K; 2017 1.0K; 2016 416 |
+| PW_SURVEY_NAME_1 | who | 1.2K | 643.3K | Radford 2.8K; Willis Towers Watson 1.7K; RADFORD 1.4K; WILLIS TOWERS WATSON 1.1K |
+| WORKSITE_WORKERS_2 | category | 46 | 613.2K | 1 45.6K; 15 2.2K; 3 1.0K; 5 569 |
+| SECONDARY_ENTITY_2 | category | 3 | 613.2K | N 36.5K; Y 14.9K |
+| SECONDARY_ENTITY_BUSINESS_NAME_2 | who | 7.6K | 647.9K | CAPGEMINI AMERICA, INC. 344; Orion Systems Integrators 162; Discover Financial Servic 148; GAP INC 139 |
+| WORKSITE_ADDRESS1_2 | who | 29.0K | 606.7K | 8779 HILLCREST DRIVE 449; 901 International Parkway 313; 5000 148TH AVE NE 311; 1050 CROWN POINTE PARKWAY 276 |
+| WORKSITE_ADDRESS2_2 | who | 6.2K | 646.5K | BUILDING 1024 415; SUITE 1000 256; Suite 100 192; Suite 703 182 |
+| WORKSITE_CITY_2 | who | 4.6K | 606.7K | SAN FRANCISCO 1.4K; New York 923; San Jose 888; NEW YORK 842 |
+| WORKSITE_COUNTY_2 | who | 2.2K | 606.7K | Santa Clara 2.0K; Middlesex 1.5K; SAN FRANCISCO 1.3K; SANTA CLARA 1.3K |
+| WORKSITE_STATE_2 | who | 109 | 606.7K | CALIFORNIA 8.9K; TEXAS 5.2K; NEW JERSEY 4.2K; ILLINOIS 3.1K |
+| WORKSITE_POSTAL_CODE_2 | other | 6.4K | 606.7K | 94105 1.2K; 95131 610; 98052 605; 32746 539 |
+| WAGE_RATE_OF_PAY_FROM_2 | amount | 20.3K | 562.8K | 100000 1.5K; 120000 1.3K; 110000 1.2K; 90000 1.2K |
+| WAGE_RATE_OF_PAY_TO_2 | amount | 8.8K | 623.9K | 100000 1.1K; 120000 939; 110000 841; 97000 680 |
+| WAGE_UNIT_OF_PAY_2 | category | 6 | 562.8K | Year 95.8K; Hour 5.9K; Month 88; Week 55 |
+| PREVAILING_WAGE_2 | amount | 10.4K | 606.7K | 96366 1.0K; 208000 751; 93538 612; 84240 609 |
+| PW_UNIT_OF_PAY_2 | category | 6 | 606.7K | Year 54.7K; Hour 3.2K; Bi-Weekly 26; Week 21 |
+| PW_TRACKING_NUMBER_2 | other | 236 | 664.3K | P-200-18130-535033 15; P-200-18152-001921 11; P-100-18107-893605 8; P-200-18087-791094 7 |
+| PW_WAGE_LEVEL_2 | category | 5 | 611.6K | Level II 25.6K; Level III 11.4K; Level I 8.0K; Level IV 7.9K |
+| PW_OES_YEAR_2 | category | 11 | 654.5K | 2018 8.8K; 2019 901; 2017 247; 2016 77 |
+| PW_OTHER_SOURCE_2 | who | 121 | 654.6K | OFLC ONLINE DATA CENTER 6.0K; Other 3.0K; CBA 526; RADFORD GLOBAL TECHNOLOGY 59 |
+| PW_NON_OES_YEAR_2 | category | 12 | 617.1K | 2018 23.8K; 2019 21.2K; 2020 2.5K; 2017 13 |
+| PW_SURVEY_PUBLISHER_2 | category | 11 | 661.1K | 2018 2.4K; 2019 901; 2017 123; 2016 46 |
+| PW_SURVEY_NAME_2 | who | 271 | 661.6K | AAMC 283; Radford 279; Association of American M 232; Association of American M 186 |
+| WORKSITE_WORKERS_3 | category | 26 | 652.4K | 1 10.0K; 15 978; 3 303; 5 221 |
+| SECONDARY_ENTITY_3 | category | 3 | 652.4K | N 8.4K; Y 3.8K |
+| SECONDARY_ENTITY_BUSINESS_NAME_3 | who | 2.3K | 660.6K | CHARLES SCHWAB 58; GAP INC 56; Global Payments 51; CAPGEMINI AMERICA, INC. 51 |
+| WORKSITE_ADDRESS1_3 | other | 8.5K | 650.5K | 5863 Rue Ferrari 156; 10200 ABILITIES WAY 131; 5200 NE Elam Young Pkwy 100; 4440 ROSEWOOD DRIVE 85 |
+| WORKSITE_ADDRESS2_3 | who | 1.8K | 661.0K | SUITE 100 61; North Tower 47; SUITE 701 34; Suite 200 31 |
+| WORKSITE_CITY_3 | who | 2.6K | 650.5K | San Jose 234; SAN FRANCISCO 222; San Francisco 216; NEW YORK 187 |
+| WORKSITE_COUNTY_3 | who | 1.3K | 650.5K | Santa Clara 400; Cook 265; COOK 256; MIDDLESEX 226 |
+| WORKSITE_STATE_3 | who | 100 | 650.5K | CALIFORNIA 1.8K; TEXAS 1.0K; NEW JERSEY 892; NEW YORK 871 |
+| WORKSITE_POSTAL_CODE_3 | other | 3.7K | 650.5K | 95138 178; 32746 176; 97124 151; 94105 138 |
+| WAGE_RATE_OF_PAY_FROM_3 | amount | 14.7K | 602.0K | 100000 777; 120000 657; 110000 645; 90000 602 |
+| WAGE_RATE_OF_PAY_TO_3 | amount | 4.6K | 647.0K | 97000 468; 200000 368; 150000 360; 110000 337 |
+| WAGE_UNIT_OF_PAY_3 | category | 6 | 602.0K | Year 58.6K; Hour 3.9K; Month 54; Week 53 |
+| PREVAILING_WAGE_3 | amount | 4.9K | 650.5K | 208000 394; 96366 102; 61256 99; 113256 98 |
+| PW_UNIT_OF_PAY_3 | category | 6 | 650.5K | Year 13.1K; Hour 993; Bi-Weekly 18; Month 6 |
+| PW_TRACKING_NUMBER_3 | other | 76 | 664.5K | P-200-18130-535033 10; P-200-18087-791094 7; P-200-18152-001921 6; P-200-19064-910389 5 |
+| PW_WAGE_LEVEL_3 | category | 5 | 652.4K | Level II 5.2K; Level III 2.8K; Level I 2.2K; Level IV 2.0K |
+| PW_OES_YEAR_3 | category | 7 | 661.4K | 2018 2.8K; 2019 324; 2017 88; 2016 32 |
+| PW_OTHER_SOURCE_3 | category | 43 | 661.4K | OFLC ONLINE DATA CENTER 1.8K; Other 1.0K; CBA 251; SKYWEST AND PILOT ASSOC.  35 |
+| PW_NON_OES_YEAR_3 | category | 7 | 653.8K | 2018 5.6K; 2019 4.7K; 2020 513; 2017 2 |
+| PW_SURVEY_PUBLISHER_3 | category | 7 | 663.3K | 2018 869; 2019 324; 2017 66; 2016 16 |
+| PW_SURVEY_NAME_3 | who | 99 | 663.6K | AAMC 204; Association of American M 149; Association of American M 126; Radford 105 |
+| WORKSITE_WORKERS_4 | category | 22 | 660.5K | 1 3.2K; 15 434; 10 120; 2 54 |
+| SECONDARY_ENTITY_4 | category | 3 | 660.5K | N 2.8K; Y 1.3K |
+| SECONDARY_ENTITY_BUSINESS_NAME_4 | who | 1.0K | 663.2K | General Motors 13; PennDOT 13; Hewlett Packard Enterpris 13; Thelma C Davidson Adair M 11 |
+| WORKSITE_ADDRESS1_4 | other | 2.8K | 660.5K | 3585 S.W. 198th Avenue 67; One Main Street 25; 2955 Campus Dr Ste 100 25; 2955 Campus Dr., Ste. 100 24 |
+| WORKSITE_ADDRESS2_4 | who | 642 | 663.5K | Suite 100 21; University Drive 18; 2021 Grand Concourse 17; 30009 Van Dyke Dr 17 |
+| WORKSITE_CITY_4 | who | 1.3K | 660.5K | Pittsburgh 93; New York 73; San Mateo 66; Houston 60 |
+| WORKSITE_COUNTY_4 | who | 804 | 660.5K | Allegheny 99; Cook 86; San Mateo 80; New York 72 |
+| WORKSITE_STATE_4 | who | 53 | 660.5K | CALIFORNIA 474; NEW YORK 371; TEXAS 354; PENNSYLVANIA 259 |
+| WORKSITE_POSTAL_CODE_4 | other | 1.8K | 660.5K | 94403 77; 97007 66; 32746 50; 15213 35 |
+| WAGE_RATE_OF_PAY_FROM_4 | amount | 1.8K | 660.5K | 208000 56; 350000 42; 250000 41; 100000 37 |
+| WAGE_RATE_OF_PAY_TO_4 | amount | 799 | 662.5K | 240000 27; 350000 25; 218000 25; 130000 23 |
+| WAGE_UNIT_OF_PAY_4 | empty | 1 | 664.6K |  |
+| PREVAILING_WAGE_4 | amount | 2.0K | 660.5K | 208000 226; 100 34; 58067.19 25; 55640 24 |
+| PW_UNIT_OF_PAY_4 | empty | 1 | 664.6K |  |
+| PW_TRACKING_NUMBER_4 | category | 44 | 664.5K | P-200-18130-535033 7; P-200-18152-001921 6; P-200-19064-910389 5; P-200-18136-800836 4 |
+| PW_WAGE_LEVEL_4 | category | 5 | 661.5K | Level II 1.4K; Level I 657; Level III 573; Level IV 501 |
+| PW_OES_YEAR_4 | category | 8 | 663.9K | 2018 482; 2019 152; 2017 40; 2016 8 |
+| PW_OTHER_SOURCE_4 | category | 4 | 663.9K | Other 517; CBA 168; SCA 2 |
+| PW_NON_OES_YEAR_4 | category | 5 | 661.3K | 2018 1.8K; 2019 1.4K; 2020 125; 2017 1 |
+| PW_SURVEY_PUBLISHER_4 | category | 8 | 663.9K | 2018 482; 2019 152; 2017 40; 2016 8 |
+| PW_SURVEY_NAME_4 | category | 48 | 664.1K | AAMC 118; Association of American M 102; Association of American M 91; Radford 68 |
+| WORKSITE_WORKERS_5 | category | 18 | 662.6K | 1 1.7K; 15 196; 10 48; 20 23 |
+| SECONDARY_ENTITY_5 | category | 3 | 662.6K | N 1.3K; Y 739 |
+| SECONDARY_ENTITY_BUSINESS_NAME_5 | who | 569 | 663.8K | AMES 11; International Vitamin Cor 11; William F. Ryan Community 11; cleveland clinic foundati 7 |
+| WORKSITE_ADDRESS1_5 | other | 1.5K | 662.6K | 1 Park Plaza 17; George Bush Intercontinen 16; 10 West Nationwide Blvd. 13; MONTEFIORE MEDICAL CENTER 13 |
+| WORKSITE_ADDRESS2_5 | other | 335 | 664.1K | Suite 800 17; 3100 North Terminal Road 16; Suite 110 10; 501 S. Washington Avenue 10 |
+| WORKSITE_CITY_5 | who | 863 | 662.6K | Houston 43; New York 41; Pittsburgh 38; Bronx 31 |
+| WORKSITE_COUNTY_5 | who | 565 | 662.6K | Allegheny 47; Harris 44; New York 43; Maricopa 32 |
+| WORKSITE_STATE_5 | category | 50 | 662.6K | TEXAS 215; NEW YORK 207; CALIFORNIA 196; PENNSYLVANIA 153 |
+| WORKSITE_POSTAL_CODE_5 | other | 1.1K | 662.6K | 10467 29; 92614 18; 29425 16; 35233 15 |
+| WAGE_RATE_OF_PAY_FROM_5 | amount | 968 | 662.6K | 208000 33; 250000 26; 58067.19 25; 350000 25 |
+| WAGE_RATE_OF_PAY_TO_5 | amount | 452 | 663.6K | 50 21; 350000 18; 240000 17; 200000 17 |
+| WAGE_UNIT_OF_PAY_5 | empty | 1 | 664.6K |  |
+| PREVAILING_WAGE_5 | amount | 1.1K | 662.6K | 208000 141; 58067.19 25; 55640 23; 50 22 |
+| PW_UNIT_OF_PAY_5 | empty | 1 | 664.6K |  |
+| PW_TRACKING_NUMBER_5 | category | 26 | 664.6K | P-200-18130-535033 6; P-200-19064-910389 5; P-200-18152-001921 4; P-200-18151-158449 3 |
+| PW_WAGE_LEVEL_5 | category | 5 | 663.0K | Level II 734; Level I 363; Level III 269; Level IV 202 |
+| PW_OES_YEAR_5 | category | 7 | 664.3K | 2018 225; 2019 53; 2017 23; 2016 4 |
+| PW_OTHER_SOURCE_5 | category | 4 | 664.3K | Other 186; CBA 120; SCA 1 |
+| PW_NON_OES_YEAR_5 | category | 6 | 662.9K | 2018 921; 2019 694; 2020 75; 2017 1 |
+| PW_SURVEY_PUBLISHER_5 | category | 7 | 664.3K | 2018 225; 2019 53; 2017 23; 2016 4 |
+| PW_SURVEY_NAME_5 | category | 24 | 664.4K | Association of American M 59; AAMC 53; Association of American M 41; Radford 8 |
+| WORKSITE_WORKERS_6 | category | 17 | 663.4K | 1 1.0K; 15 102; 10 34; 20 21 |
+| SECONDARY_ENTITY_6 | category | 3 | 663.4K | N 783; Y 424 |
+| SECONDARY_ENTITY_BUSINESS_NAME_6 | who | 340 | 664.2K | AMES 18; International Vitamin Cor 7; Cleveland clinic Foundati 7; International Vitamin Com 5 |
+| WORKSITE_ADDRESS1_6 | other | 876 | 663.4K | 465 Railroad Ave 20; Los Angeles International 16; Albert Einstein College o 14; VA Pittsburgh Healthcare  13 |
+| WORKSITE_ADDRESS2_6 | who | 206 | 664.3K | 800 World Way 16; Jack and Pearl Resnick Ca 14; University Drive 13; Suite 800 12 |
+| WORKSITE_CITY_6 | who | 595 | 663.4K | Pittsburgh 37; Camp Hill 20; Bronx 20; Atlanta 20 |
+| WORKSITE_COUNTY_6 | who | 420 | 663.4K | Allegheny 44; Franklin 25; Harris 21; Cumberland 21 |
+| WORKSITE_STATE_6 | category | 49 | 663.4K | CALIFORNIA 138; PENNSYLVANIA 131; TEXAS 112; NEW YORK 93 |
+| WORKSITE_POSTAL_CODE_6 | other | 716 | 663.4K | 10461 26; 17011 20; 90045 16; 15240 13 |
+| WAGE_RATE_OF_PAY_FROM_6 | amount | 602 | 663.4K | 58067.19 26; 50 21; 208000 21; 230000 18 |
+| WAGE_RATE_OF_PAY_TO_6 | amount | 302 | 664.0K | 50 21; 200000 16; 250000 12; 180000 10 |
+| WAGE_UNIT_OF_PAY_6 | category | 6 | 663.4K | Year 1.1K; Hour 150; Month 3; Bi-Weekly 3 |
+| PREVAILING_WAGE_6 | amount | 697 | 663.4K | 208000 90; 58067.19 25; 55640 23; 50 21 |
+| PW_UNIT_OF_PAY_6 | category | 6 | 663.4K | Year 1.1K; Hour 152; Bi-Weekly 3; Month 1 |
+| PW_TRACKING_NUMBER_6 | category | 16 | 664.6K | P-200-19064-910389 3; P-200-18240-783679 3; P-200-18338-227192 2; P-200-19050-529720 2 |
+| PW_WAGE_LEVEL_6 | category | 5 | 663.7K | Level II 429; Level I 216; Level III 152; Level IV 108 |
+| PW_OES_YEAR_6 | category | 7 | 664.4K | 2018 153; 2019 29; 2017 10; 2013 1 |
+| PW_OTHER_SOURCE_6 | category | 3 | 664.4K | Other 114; CBA 81 |
+| PW_NON_OES_YEAR_6 | category | 4 | 663.6K | 2018 539; 2019 396; 2020 53 |
+| PW_SURVEY_PUBLISHER_6 | category | 7 | 664.4K | 2018 153; 2019 29; 2017 10; 2013 1 |
+| PW_SURVEY_NAME_6 | category | 22 | 664.5K | Association of American M 36; AAMC 32; Association of American M 27; Medical Group Management  2 |
+| WORKSITE_WORKERS_7 | category | 17 | 663.8K | 1 685; 15 70; 10 32; 20 19 |
+| SECONDARY_ENTITY_7 | category | 3 | 663.8K | N 532; Y 312 |
+| SECONDARY_ENTITY_BUSINESS_NAME_7 | who | 230 | 664.3K | Land O' Lakes, Inc. 9; AMES 7; Cleveland Clinic Foundati 7; Schlumberger 5 |
+| WORKSITE_ADDRESS1_7 | other | 607 | 663.8K | 3400 E. Sky Harbor Blvd 15; Memorial Sloan Kettering  13; 5950 North Course Drive 12; The Wright Ctr for Commun 11 |
+| WORKSITE_ADDRESS2_7 | other | 160 | 664.4K | 1275 York Avenue 17; 1145 Northern Blvd. 11; 400 Northwinds STE 550 9; Suite B 6 |
+| WORKSITE_CITY_7 | who | 411 | 663.8K | Pittsburgh 25; Houston 24; New York 24; Columbus 17 |
+| WORKSITE_COUNTY_7 | who | 302 | 663.8K | Allegheny 32; Harris 24; New York 24; Maricopa 22 |
+| WORKSITE_STATE_7 | category | 45 | 663.8K | PENNSYLVANIA 99; CALIFORNIA 83; TEXAS 82; NEW YORK 65 |
+| WORKSITE_POSTAL_CODE_7 | other | 504 | 663.8K | 10065 22; 85034 16; 77072 13; 18411 13 |
+| WAGE_RATE_OF_PAY_FROM_7 | amount | 453 | 663.8K | 58067.19 24; 50 21; 208000 17; 55640 16 |
+| WAGE_RATE_OF_PAY_TO_7 | amount | 224 | 664.2K | 50 22; 250000 10; 200000 9; 240000 9 |
+| WAGE_UNIT_OF_PAY_7 | empty | 1 | 664.6K |  |
+| PREVAILING_WAGE_7 | amount | 473 | 663.8K | 208000 61; 58067.19 24; 55640 23; 50 21 |
+| PW_UNIT_OF_PAY_7 | empty | 1 | 664.6K |  |
+| PW_TRACKING_NUMBER_7 | category | 9 | 664.6K | P-200-19064-910389 3; P-200-18240-783679 3; P-200-19050-529720 2; P-200-18263-839554 2 |
+| PW_WAGE_LEVEL_7 | category | 5 | 664.0K | Level II 285; Level I 163; Level III 112; Level IV 73 |
+| PW_OES_YEAR_7 | category | 5 | 664.5K | 2018 108; 2019 27; 2017 5; 2013 1 |
+| PW_OTHER_SOURCE_7 | category | 3 | 664.5K | Other 73; CBA 68 |
+| PW_NON_OES_YEAR_7 | category | 4 | 663.9K | 2018 373; 2019 280; 2020 36 |
+| PW_SURVEY_PUBLISHER_7 | category | 5 | 664.5K | 2018 108; 2019 27; 2017 5; 2013 1 |
+| PW_SURVEY_NAME_7 | category | 14 | 664.5K | Association of American M 27; Association of American M 19; AAMC 17; ASSOCIATION OF AMERICAN M 1 |
+| WORKSITE_WORKERS_8 | category | 17 | 664.0K | 1 464; 15 51; 10 32; 2 13 |
+| SECONDARY_ENTITY_8 | category | 3 | 664.0K | N 395; Y 192 |
+| SECONDARY_ENTITY_BUSINESS_NAME_8 | who | 165 | 664.4K | CLEVELAND CLINIC FOUNDATI 7; St. Luke's Hospital - Blu 5; Wells Fargo 4; Cigna 4 |
+| WORKSITE_ADDRESS1_8 | other | 419 | 664.0K | 7909 NE Airport Way 16; The Wright Ctr for Comm H 13; Bronx Park Medical Pavili 10; 76 Summer Street 9 |
+| WORKSITE_ADDRESS2_8 | other | 113 | 664.4K | 2016 Bronxdale Avenue 17; 326 Adams Avenue 13; 4th Floor 11; 815 Freeport Road 3 |
+| WORKSITE_CITY_8 | who | 310 | 664.0K | Bronx 23; Scranton 20; Columbus 15; Boston 15 |
+| WORKSITE_COUNTY_8 | who | 234 | 664.0K | Allegheny 22; Bronx 21; Suffolk 20; Franklin 18 |
+| WORKSITE_STATE_8 | category | 45 | 664.0K | PENNSYLVANIA 75; CALIFORNIA 54; NEW YORK 52; TEXAS 51 |
+| WORKSITE_POSTAL_CODE_8 | other | 365 | 664.0K | 18503 21; 10462 21; 97218 16; 2110 11 |
+| WAGE_RATE_OF_PAY_FROM_8 | amount | 329 | 664.0K | 58067.19 24; 50 21; 55640 16; 210000 12 |
+| WAGE_RATE_OF_PAY_TO_8 | amount | 148 | 664.3K | 50 20; 180000 8; 250000 8; 240000 7 |
+| WAGE_UNIT_OF_PAY_8 | empty | 1 | 664.6K |  |
+| PREVAILING_WAGE_8 | amount | 345 | 664.0K | 208000 36; 58067.19 24; 55640 23; 50 21 |
+| PW_UNIT_OF_PAY_8 | empty | 1 | 664.6K |  |
+| PW_TRACKING_NUMBER_8 | category | 7 | 664.6K | P-200-19064-910389 3; P-200-18240-783679 3; P-200-19050-529720 2; P-200-19102-585502 1 |
+| PW_WAGE_LEVEL_8 | category | 5 | 664.2K | Level II 192; Level I 118; Level III 79; Level IV 50 |
+| PW_OES_YEAR_8 | category | 5 | 664.5K | 2018 79; 2019 25; 2017 5; 2013 1 |
+| PW_OTHER_SOURCE_8 | category | 3 | 664.5K | CBA 64; Other 46 |
+| PW_NON_OES_YEAR_8 | category | 4 | 664.1K | 2018 271; 2019 179; 2020 16 |
+| PW_SURVEY_PUBLISHER_8 | category | 5 | 664.5K | 2018 79; 2019 25; 2017 5; 2013 1 |
+| PW_SURVEY_NAME_8 | category | 12 | 664.6K | Association of American M 14; AAMC 13; Association of American M 11; Survey of Resident/Fellow 1 |
+| WORKSITE_WORKERS_9 | category | 16 | 664.2K | 1 313; 15 32; 10 29; 2 10 |
+| SECONDARY_ENTITY_9 | category | 3 | 664.2K | N 271; Y 132 |
+| SECONDARY_ENTITY_BUSINESS_NAME_9 | who | 119 | 664.5K | cleveland clinic foundati 7; St. Luke's Hospital - Blu 5; Cigna 3; U.T. Physicians 2 |
+| WORKSITE_ADDRESS1_9 | other | 287 | 664.2K | Geisinger Wyoming Valley  15; Arthur Avenue Comprehensi 15; 135 Lafayette Avenue 9; 444 S River Road 8 |
+| WORKSITE_ADDRESS2_9 | other | 90 | 664.5K | 2385 Arthur Avenue 18; 1000 E. Mountain Blvd. 15; Building H 4; Ditmars Blvd & 94th Stree 4 |
+| WORKSITE_CITY_9 | who | 235 | 664.2K | Bronx 23; Wilkes-Barre 15; Palmerton 9; Houston 8 |
+| WORKSITE_COUNTY_9 | who | 190 | 664.2K | Bronx 22; Luzerne 15; Allegheny 13; Cuyahoga 12 |
+| WORKSITE_STATE_9 | category | 42 | 664.2K | PENNSYLVANIA 53; NEW YORK 40; TEXAS 38; CALIFORNIA 37 |
+| WORKSITE_POSTAL_CODE_9 | other | 257 | 664.2K | 10457 21; 18711 15; 84790 12; 18071 9 |
+| WAGE_RATE_OF_PAY_FROM_9 | amount | 228 | 664.2K | 58067.19 24; 50 20; 55640 15; 210000 12 |
+| WAGE_RATE_OF_PAY_TO_9 | amount | 103 | 664.4K | 50 20; 210000 7; 240000 6; 55 5 |
+| WAGE_UNIT_OF_PAY_9 | category | 3 | 664.2K | Year 342; Hour 61 |
+| PREVAILING_WAGE_9 | amount | 240 | 664.2K | 58067.19 24; 50 21; 208000 19; 55640 17 |
+| PW_UNIT_OF_PAY_9 | category | 3 | 664.2K | Year 341; Hour 62 |
+| PW_TRACKING_NUMBER_9 | category | 5 | 664.6K | P-200-18240-783679 3; P-200-19050-529720 2; P-200-19102-585502 1; P-200-19119-700040 1 |
+| PW_WAGE_LEVEL_9 | category | 5 | 664.3K | Level II 132; Level I 76; Level III 46; Level IV 31 |
+| PW_OES_YEAR_9 | category | 5 | 664.5K | 2018 66; 2019 23; 2017 3; 2013 1 |
+| PW_OTHER_SOURCE_9 | category | 3 | 664.5K | CBA 59; Other 34 |
+| PW_NON_OES_YEAR_9 | category | 4 | 664.3K | 2018 187; 2019 107; 2020 9 |
+| PW_SURVEY_PUBLISHER_9 | category | 5 | 664.5K | 2018 66; 2019 23; 2017 3; 2013 1 |
+| PW_SURVEY_NAME_9 | category | 10 | 664.6K | AAMC 11; Association of American M 10; Association of American M 7; Survey of Resident/Fellow 1 |
+| WORKSITE_WORKERS_10 | category | 12 | 664.3K | 1 230; 10 25; 15 21; 3 2 |
+| SECONDARY_ENTITY_10 | category | 3 | 664.3K | N 202; Y 86 |
+| SECONDARY_ENTITY_BUSINESS_NAME_10 | who | 78 | 664.5K | cleveland clinic foundati 7; Express Scripts Inc. 3; Wells Fargo bank 2; The Children's Center 2 |
+| WORKSITE_ADDRESS1_10 | other | 200 | 664.3K | The Wright Ctr for Infect 14; 3201 Airport Way, #390 13; Southern Medical Group 11; SOUTHERN MEDICAL GROUP 9 |
+| WORKSITE_ADDRESS2_10 | other | 69 | 664.5K | 640 Madison Ave 14; 326 East 149 Street 7; 326 East 149th Street 6; Building I 4 |
+| WORKSITE_CITY_10 | who | 165 | 664.3K | Scranton 16; Bronx 13; Boise 10; BRONX 8 |
+| WORKSITE_COUNTY_10 | who | 146 | 664.3K | Lackawanna 15; Bronx 15; Franklin 11; Ada 10 |
+| WORKSITE_STATE_10 | category | 45 | 664.3K | PENNSYLVANIA 40; NEW YORK 29; OHIO 24; CALIFORNIA 23 |
+| WORKSITE_POSTAL_CODE_10 | other | 181 | 664.3K | 10451 21; 18510 14; 83705 13; 44011 7 |
+| WAGE_RATE_OF_PAY_FROM_10 | amount | 153 | 664.3K | 58067.19 24; 50 19; 55640 15; 210000 11 |
+| WAGE_RATE_OF_PAY_TO_10 | amount | 65 | 664.5K | 50 19; 210000 6; 240000 5; 55 5 |
+| WAGE_UNIT_OF_PAY_10 | category | 4 | 664.3K | Year 245; Hour 42; Month 1 |
+| PREVAILING_WAGE_10 | amount | 165 | 664.3K | 58067.19 24; 50 20; 55640 17; 208000 13 |
+| PW_UNIT_OF_PAY_10 | category | 3 | 664.3K | Year 245; Hour 43 |
+| PW_TRACKING_NUMBER_10 | category | 3 | 664.6K | P-200-19050-529720 2; P-200-18240-783679 1 |
+| PW_WAGE_LEVEL_10 | category | 5 | 664.4K | Level II 91; Level I 47; Level III 35; Level IV 19 |
+| PW_OES_YEAR_10 | category | 4 | 664.5K | 2018 53; 2019 23; 2017 3 |
+| PW_OTHER_SOURCE_10 | category | 3 | 664.5K | CBA 57; Other 22 |
+| PW_NON_OES_YEAR_10 | category | 4 | 664.4K | 2018 128; 2019 72; 2020 6 |
+| PW_SURVEY_PUBLISHER_10 | category | 4 | 664.5K | 2018 53; 2019 23; 2017 3 |
+| PW_SURVEY_NAME_10 | category | 6 | 664.6K | Association of American M 8; AAMC 7; Association of American M 5; Assoc of American Medical 1 |
+| H_1B_DEPENDENT | category | 3 | 15.1K | N 411.9K; Y 237.7K |
+| WILLFUL_VIOLATOR | category | 3 | 15.1K | N 649.3K; Y 280 |
+| SUPPORT_H1B | category | 3 | 426.3K | Y 236.0K; N 2.2K |
+| STATUTORY_BASIS | category | 4 | 456.6K | WAGE 152.3K; BOTH 54.4K; DEGREE 1.3K |
+| MASTERS_EXEMPTION | category | 3 | 663.3K | Y 1.3K; N 1 |
+| PUBLIC_DISCLOSURE | category | 4 | 33.3K | PLACE OF BUSINESS 614.2K; PLACE OF EMPLOYMENT 11.4K; BOTH 5.7K |
+| _INGESTED_AT | audit | 1 | 0 | 1782944074069242 664.6K |
+| _SOURCE_RUN_ID | audit | 1 | 0 | 30393f6c-dba8-4cbf-aff2-a 664.6K |
+| _SRC_SHA256 | other | 1 | 0 | a9be8704db6bd4e1dd9bf84a1 664.6K |

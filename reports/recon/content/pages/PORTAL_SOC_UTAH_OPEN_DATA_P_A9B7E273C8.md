@@ -1,0 +1,345 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_A9B7E273C8
+
+rows 61  columns 121  scan 5.2s
+
+roles: amount 96, audit 2, category 14, date 3, other 4, who 3
+
+## when
+
+FISCAL_YEAR_BEGIN_DATE
+  2018         3  ##
+  2019        58  ##############################
+
+FISCAL_YEAR_END_DATE
+  2019        42  ##############################
+  2020        19  ##############
+
+INGESTED_AT
+  2026        61  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| FTE_EMPLOYEES_ON_PAYROLL | 59 | 17 | 225 | 6.4K | 10.4K | 38.2K |
+| TOTAL_DAYS_TITLE_XVIII | 59 | 6 | 1.6K | 29.4K | 34.1K | 218.4K |
+| TOTAL_DAYS_TITLE_XIX | 57 | 12 | 914 | 23.7K | 28.5K | 158.1K |
+| TOTAL_DAYS_V_XVIII_XIX_UNKNOWN | 59 | 866 | 6.2K | 137.8K | 157.7K | 1.15M |
+| TOTAL_BED_DAYS_AVAILABLE | 59 | 2.6K | 14.6K | 185.7K | 201.1K | 2.06M |
+| TOTAL_DISCHARGES_TITLE_XVIII | 59 | 3 | 320 | 6.1K | 6.3K | 47.8K |
+
+## who
+
+HOSPITAL_NAME by rows
+         2  KPC PROMISE HOSPITAL OF SALT LAKE
+         1  PROVO CANYON HOSPITAL
+         1  CACHE VALLEY HOSPITAL
+         1  SOUTH DAVIS COMMUNITY HOSPITAL
+         1  BENCHMARK BEHAVIORAL HEALTH SYSTEM
+         1  UINTAH BASIN MEDICAL CENTER
+         1  U OF U HOSPITALS & CLINICS
+         1  DAVIS HOSPITAL & MEDICAL CENTER
+         1  MILFORD VALLEY MEMORIAL HOSPITAL
+         1  SALT LAKE REGIONAL MEDICAL CENTER
+         1  CENTRAL VALLEY MEDICAL CENTER
+         1  KANE COUNTY HOSPITAL
+         1  SANPETE VALLEY HOSPITAL
+         1  LAYTON HOSPITAL
+         1  PARK CITY HOSPITAL
+         1  BLUE MOUNTAIN HOSPITAL
+         1  RIVERTON HOSPITAL
+         1  FILLMORE COMMUNITY HOSPITAL
+         1  ST MARKS HOSPITAL
+         1  OGDEN REGIONAL MEDICAL CENTER
+
+HOSPITAL_NAME by dollars
+       10.4K        1 rows  U OF U HOSPITALS & CLINICS
+        3.5K        1 rows  INTERMOUNTAIN MEDICAL CENTER
+        2.7K        1 rows  PRIMARY CHILDRENS HOSPITAL
+        2.4K        1 rows  UTAH VALLEY HOSPITAL
+        1.9K        1 rows  DIXIE REGIONAL MEDICAL CENTER
+        1.9K        1 rows  MCKAY-DEE HOSPITAL
+        1.1K        1 rows  LDS HOSPITAL
+        1.1K        1 rows  ST MARKS HOSPITAL
+      926.26        1 rows  JORDAN VALLEY MEDICAL CENTER
+         825        1 rows  UTAH STATE HOSPITAL
+      722.68        1 rows  LOGAN REGIONAL HOSPITAL
+      691.11        1 rows  OGDEN REGIONAL MEDICAL CENTER
+      616.22        1 rows  DAVIS HOSPITAL & MEDICAL CENTER
+      606.57        1 rows  AMERICAN FORK HOSPITAL
+         569        1 rows  RIVERTON HOSPITAL
+      468.64        1 rows  UINTAH BASIN MEDICAL CENTER
+         447        1 rows  SOUTH DAVIS COMMUNITY HOSPITAL
+         431        1 rows  ALTA VIEW HOSPITAL
+      428.55        1 rows  TIMPANOGOS REGIONAL HOSPITAL
+      351.50        1 rows  LAKEVIEW HOSPITAL
+
+PROVIDER_CCN by rows
+         3  462004
+         1  461305
+         1  461310
+         1  464001
+         1  460023
+         1  460009
+         1  460014
+         1  461333
+         1  460043
+         1  460047
+         1  461335
+         1  460003
+         1  463302
+         1  462005
+         1  460015
+         1  462006
+         1  460058
+         1  464014
+         1  460007
+         1  460052
+
+PROVIDER_CCN by dollars
+       10.4K        1 rows  460009
+        3.5K        1 rows  460010
+        2.7K        1 rows  463301
+        2.4K        1 rows  460001
+        1.9K        1 rows  460021
+        1.9K        1 rows  460004
+        1.1K        1 rows  460006
+        1.1K        1 rows  460047
+      926.26        1 rows  460051
+         825        1 rows  464001
+      722.68        1 rows  460015
+      691.11        1 rows  460005
+      616.22        1 rows  460041
+      606.57        1 rows  460023
+         569        1 rows  460058
+      558.27        3 rows  462004
+      468.64        1 rows  460019
+         447        1 rows  462003
+         431        1 rows  460044
+      428.55        1 rows  460052
+
+SRC_SHA256 by rows
+        61  f2cd05779564784386eebf27d92b524f785d826f2ee877e307b9065c02888c33
+
+SRC_SHA256 by dollars
+       38.2K       61 rows  f2cd05779564784386eebf27d92b524f785d826f2ee877e307b9065c0288
+
+## who x when
+
+HOSPITAL_NAME by FISCAL_YEAR_BEGIN_DATE, dollars = FTE_EMPLOYEES_ON_PAYROLL
+  AMERICAN FORK HOSPITAL                    2019:606.57
+  BENCHMARK BEHAVIORAL HEALTH SYSTEM        2019:1
+  BLUE MOUNTAIN HOSPITAL                    2018:94.46
+  CACHE VALLEY HOSPITAL                     2019:139.48
+  CENTRAL VALLEY MEDICAL CENTER             2019:233.64
+  DAVIS HOSPITAL & MEDICAL CENTER           2019:616.22
+  DIXIE REGIONAL MEDICAL CENTER             2019:1.9K
+  FILLMORE COMMUNITY HOSPITAL               2019:42.29
+  INTERMOUNTAIN MEDICAL CENTER              2019:3.5K
+  JORDAN VALLEY MEDICAL CENTER              2019:926.26
+  KANE COUNTY HOSPITAL                      2019:73.82
+  KPC PROMISE HOSPITAL OF SALT LAKE         2019:333.27
+  LAYTON HOSPITAL                           2018:309.26
+  LDS HOSPITAL                              2019:1.1K
+  LOGAN REGIONAL HOSPITAL                   2019:722.68
+  MCKAY-DEE HOSPITAL                        2019:1.9K
+  MILFORD VALLEY MEMORIAL HOSPITAL          2019:32.47
+  OGDEN REGIONAL MEDICAL CENTER             2019:691.11
+  PARK CITY HOSPITAL                        2019:300.60
+  PRIMARY CHILDRENS HOSPITAL                2019:2.7K
+  PROVO CANYON HOSPITAL                     2019:131.46
+  RIVERTON HOSPITAL                         2019:569
+  SALT LAKE REGIONAL MEDICAL CENTER         2019:320.50
+  SANPETE VALLEY HOSPITAL                   2019:90.56
+  SOUTH DAVIS COMMUNITY HOSPITAL            2019:447
+  ST MARKS HOSPITAL                         2019:1.1K
+  U OF U HOSPITALS & CLINICS                2019:10.4K
+  UINTAH BASIN MEDICAL CENTER               2019:468.64
+  UTAH STATE HOSPITAL                       2019:825
+  UTAH VALLEY HOSPITAL                      2019:2.4K
+
+PROVIDER_CCN by FISCAL_YEAR_BEGIN_DATE, dollars = FTE_EMPLOYEES_ON_PAYROLL
+  460001                                    2019:2.4K
+  460003                                    2019:320.50
+  460004                                    2019:1.9K
+  460005                                    2019:691.11
+  460006                                    2019:1.1K
+  460007                                    2019:318.92
+  460009                                    2019:10.4K
+  460010                                    2019:3.5K
+  460014                                    2019:254.90
+  460015                                    2019:722.68
+  460019                                    2019:468.64
+  460021                                    2019:1.9K
+  460023                                    2019:606.57
+  460041                                    2019:616.22
+  460043                                    2019:152.20
+  460047                                    2019:1.1K
+  460051                                    2019:926.26
+  460052                                    2019:428.55
+  460058                                    2019:569
+  461305                                    2019:32.47
+  461310                                    2018:94.46
+  461333                                    2019:75.69
+  461335                                    2019:96.46
+  462004                                    2019:558.27
+  462005                                    2019:106.74
+  462006                                    2019:17
+  463301                                    2019:2.7K
+  463302                                    2019:1
+  464001                                    2019:825
+  464014                                    2019:131.46
+
+## what
+
+CITY: SALT LAKE CITY 34%, PROVO 9%, OREM 9%, MURRAY 9%, OGDEN 6%, LAYTON 6%, SANDY 6%, BOUNTIFUL 6%, GUNNISON 3%, NEPHI 3%, BEAVER 3%, SOUTH OGDEN 3%
+
+COUNTY: SALT LAKE 26%, nan 22%, UTAH 13%, WEBER 7%, DAVIS 7%, SANPETE 4%, BEAVER 4%, CACHE 4%, BOX ELDER 4%, MILLARD 4%, JUAB 2%, UINTAH 2%
+
+MEDICARE_CBSA_NUMBER: 41620 33%, 99946 30%, 39340 15%, 36260 15%, 30860 3%, nan 3%, 41100 2%
+
+RURAL_VERSUS_URBAN: U 64%, R 33%, NA 3%
+
+CCN_FACILITY_TYPE: STH 52%, CAH 21%, LTCH 10%, PH 10%, RH 3%, CH 3%
+
+PROVIDER_TYPE: 1 52%, 2 39%, 5 8%
+
+TYPE_OF_CONTROL: 2 44%, 4 38%, 9 5%, 10 3%, 6 3%, 5 3%, 12 2%, 11 2%
+
+NUMBER_OF_BEDS: 40 15%, 25 15%, 41 12%, 39 8%, 21 8%, 18 8%, 36 8%, 37 8%, nan 8%, 216 4%, 87 4%, 246 4%
+
+NUMBER_OF_BEDS_TOTAL_FOR: 40 15%, 25 15%, 36 11%, 41 11%, 39 7%, 21 7%, 18 7%, 37 7%, nan 7%, 256 4%, 87 4%, 284 4%
+
+HOSPITAL_NUMBER_OF_BEDS_FOR: 40 14%, 25 14%, 33 11%, 41 11%, 74 7%, 342 7%, 18 7%, 32 7%, 80 7%, nan 7%, 35 4%, 188 4%
+
+NET_REVENUE_FROM_MEDICAID: nan 56%, 1152878.00 4%, 2517196.00 4%, 1256096.00 4%, 8197079.00 4%, 32717694.00 4%, 7998047.00 4%, 1288162.00 4%, 1262328.00 4%, 6105808.00 4%, 45050724.00 4%, 69840283.00 4%
+
+NUMBER_OF_INTERNS_AND: nan 84%, 4.8 2%, 22.4 2%, 19.47 2%, 72.36 2%, 420.25 2%, 8.33 2%, 0.25 2%, 13.59 2%, 367.98 2%, 134.16 2%
+
+WAGE_RELATED_COSTS_RHC_FQHC: nan 98%, 168351.00 2%
+
+NOTES_RECEIVABLE: nan 97%, 2826242.00 2%, 377812.00 2%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| RPT_REC_NUM | other | 61 | 0 | 719889 1; 719633 1; 718976 1; 715664 1 |
+| PROVIDER_CCN | who | 59 | 0 | 462004 3; 462005 1; 461306 1; 461304 1 |
+| HOSPITAL_NAME | who | 59 | 0 | KPC PROMISE HOSPITAL OF S 2; UTAH VALLEY SPECIALTY HOS 1; GUNNISON VALLEY HOSPITAL 1; CENTRAL VALLEY MEDICAL CE 1 |
+| STREET_ADDRESS | other | 59 | 0 | 8TH AVENUE C STREET 3; 306 WEST RIVER BEND LANE 1; 64 EAST 100 NORTH 1; 48 WEST 1500 NORTH 1 |
+| CITY | category | 41 | 0 | SALT LAKE CITY 11; PROVO 3; OREM 3; MURRAY 3 |
+| STATE_CODE | other | 1 | 0 | UT 61 |
+| ZIP_CODE | other | 55 | 0 | 84143 3; 84604 2; 84057- 2; 84010 2 |
+| COUNTY | category | 27 | 0 | SALT LAKE 12; nan 10; UTAH 6; WEBER 3 |
+| MEDICARE_CBSA_NUMBER | category | 7 | 0 | 41620 20; 99946 18; 39340 9; 36260 9 |
+| RURAL_VERSUS_URBAN | category | 3 | 0 | U 39; R 20; NA 2 |
+| CCN_FACILITY_TYPE | category | 6 | 0 | STH 32; CAH 13; LTCH 6; PH 6 |
+| PROVIDER_TYPE | category | 3 | 0 | 1 32; 2 24; 5 5 |
+| TYPE_OF_CONTROL | category | 8 | 0 | 2 27; 4 23; 9 3; 10 2 |
+| FISCAL_YEAR_BEGIN_DATE | date | 9 | 0 | 2019-01-01T00:00:00.000 37; 2019-07-01T00:00:00.000 11; 2019-09-01T00:00:00.000 4; 2019-02-01T00:00:00.000 2 |
+| FISCAL_YEAR_END_DATE | date | 10 | 0 | 2019-12-31T00:00:00.000 37; 2020-06-30T00:00:00.000 11; 2020-08-31T00:00:00.000 4; 2020-03-31T00:00:00.000 2 |
+| FTE_EMPLOYEES_ON_PAYROLL | amount | 59 | 0 | 225 2; nan 2; 106.74 1; 109.81 1 |
+| TOTAL_DAYS_TITLE_XVIII | amount | 60 | 0 | nan 2; 3907 1; 1585 1; 2182 1 |
+| TOTAL_DAYS_TITLE_XIX | amount | 58 | 0 | nan 4; 2544 1; 249 1; 183 1 |
+| TOTAL_DAYS_V_XVIII_XIX_UNKNOWN | amount | 60 | 0 | nan 2; 9524 1; 2695 1; 3538 1 |
+| NUMBER_OF_BEDS | category | 47 | 0 | 40 4; 25 4; 41 3; 39 2 |
+| TOTAL_BED_DAYS_AVAILABLE | amount | 53 | 0 | 9150 3; 14640 2; 14600 2; 14235 2 |
+| TOTAL_DISCHARGES_TITLE_XVIII | amount | 58 | 0 | 100 2; 31 2; nan 2; 153 1 |
+| TOTAL_DISCHARGES_TITLE_XIX | amount | 52 | 0 | nan 6; 71 2; 10 2; 22 2 |
+| TOTAL_DISCHARGES_V_XVIII | amount | 60 | 0 | nan 2; 335 1; 637 1; 721 1 |
+| TOTAL_DAYS_TITLE_XVIII_TOTAL | amount | 60 | 0 | nan 2; 3907 1; 11445 1; 14890 1 |
+| TOTAL_DAYS_TITLE_XIX_TOTAL | amount | 57 | 0 | nan 4; 1742 2; 2544 1; 4130 1 |
+| TOTAL_DAYS_V_XVIII_XIX_UNKNOWN_1 | amount | 60 | 0 | nan 2; 9524 1; 31513 1; 39708 1 |
+| NUMBER_OF_BEDS_TOTAL_FOR | category | 46 | 0 | 40 4; 25 4; 36 3; 41 3 |
+| TOTAL_BED_DAYS_AVAILABLE_1 | amount | 52 | 0 | 9150 3; 14640 2; 14600 2; 14235 2 |
+| TOTAL_DISCHARGES_TITLE_XVIII_1 | amount | 58 | 0 | 100 2; 31 2; nan 2; 153 1 |
+| TOTAL_DISCHARGES_TITLE_XIX_1 | amount | 51 | 0 | nan 6; 71 2; 10 2; 22 2 |
+| TOTAL_DISCHARGES_V_XVIII_1 | amount | 60 | 0 | nan 2; 335 1; 637 1; 721 1 |
+| HOSPITAL_TOTAL_DAYS_TITLE_1 | amount | 58 | 0 | 762 2; nan 2; 3907 1; 741 1 |
+| HOSPITAL_TOTAL_DAYS_TITLE_2 | amount | 55 | 0 | nan 4; 556 2; 152 2; 2544 1 |
+| HOSPITAL_TOTAL_DAYS_V_XVIII | amount | 59 | 0 | nan 2; 9524 1; 1558 1; 2212 1 |
+| HOSPITAL_NUMBER_OF_BEDS_FOR | category | 45 | 0 | 40 4; 25 4; 33 3; 41 3 |
+| HOSPITAL_TOTAL_BED_DAYS | amount | 51 | 0 | 9150 3; 14640 2; 14600 2; 27010 2 |
+| HOSPITAL_TOTAL_DISCHARGES_1 | amount | 58 | 0 | 100 2; 31 2; nan 2; 153 1 |
+| HOSPITAL_TOTAL_DISCHARGES_2 | amount | 52 | 0 | nan 6; 71 2; 10 2; 22 2 |
+| HOSPITAL_TOTAL_DISCHARGES_3 | amount | 60 | 0 | nan 2; 335 1; 637 1; 721 1 |
+| COST_OF_CHARITY_CARE | amount | 44 | 0 | nan 17; 172151.00 1; 302152.00 1; 160433.00 1 |
+| TOTAL_BAD_DEBT_EXPENSE | amount | 47 | 0 | nan 14; 2579414.00 1; 1501788.00 1; 487398.00 1 |
+| COST_OF_UNCOMPENSATED_CARE | amount | 49 | 0 | nan 13; 1822393.00 1; 1089283.00 1; 702894.00 1 |
+| TOTAL_UNREIMBURSED_AND | amount | 49 | 0 | nan 13; 2009665.00 1; 1089283.00 1; 710163.00 1 |
+| TOTAL_SALARIES_FROM_WORKSHEET | amount | 60 | 0 | nan 2; 7472023.00 1; 7225538.00 1; 12996832.00 1 |
+| OVERHEAD_NON_SALARY_COSTS | amount | 60 | 0 | nan 2; 7408724.00 1; 69769962.00 1; 28472876.00 1 |
+| DEPRECIATION_COST | amount | 60 | 0 | nan 2; 589199.00 1; 1289478.00 1; 2069348.00 1 |
+| TOTAL_COSTS | amount | 59 | 0 | nan 2; 16029213.00 1; 18581438.00 1; 25870567.00 1 |
+| INPATIENT_TOTAL_CHARGES | amount | 60 | 0 | nan 2; 35964727.00 1; 9041052.00 1; 18116459.00 1 |
+| OUTPATIENT_TOTAL_CHARGES | amount | 57 | 0 | nan 5; 7510.00 1; 19908311.00 1; 30134710.00 1 |
+| COMBINED_OUTPATIENT_INPATIENT | amount | 60 | 0 | nan 2; 35972237.00 1; 28949363.00 1; 48251169.00 1 |
+| CASH_ON_HAND_AND_IN_BANKS | amount | 58 | 0 | nan 4; 142453.00 1; 22955679.00 1; 21900241.00 1 |
+| TEMPORARY_INVESTMENTS | amount | 9 | 0 | nan 53; 6493006.00 1; 853309.00 1; 34277027.00 1 |
+| ACCOUNTS_RECEIVABLE | amount | 57 | 0 | nan 3; 6646070.00 1; 7341987.00 1; 7055907.00 1 |
+| LESS_ALLOWANCES_FOR | amount | 49 | 0 | nan 13; -4209687.00 1; -1873776.00 1; -509762.00 1 |
+| INVENTORY | amount | 54 | 0 | nan 7; 133328.00 1; 1392644.00 1; 2438930.00 1 |
+| PREPAID_EXPENSES | amount | 44 | 0 | nan 18; 222233.00 1; 233925.00 1; 600758.00 1 |
+| TOTAL_CURRENT_ASSETS | amount | 58 | 0 | nan 3; 3127283.00 1; 37579777.00 1; 41158074.00 1 |
+| LAND | amount | 43 | 0 | nan 19; 468860.00 1; 48504457.00 1; 155971.00 1 |
+| LAND_IMPROVEMENTS | amount | 40 | 0 | nan 22; 11924.00 1; 1089927.00 1; 2640072.00 1 |
+| BUILDINGS | amount | 50 | 0 | nan 11; 91768.00 1; 19937275.00 1; 5092507.00 1 |
+| FIXED_EQUIPMENT | amount | 45 | 0 | nan 17; 334217.00 1; 5659386.00 1; 436429.00 1 |
+| MAJOR_MOVABLE_EQUIPMENT | amount | 57 | 0 | nan 5; 5713896.00 1; 15697783.00 1; 5900068.00 1 |
+| HEALTH_INFORMATION_TECHNOLOGY | amount | 22 | 0 | nan 40; 10900521.00 1; 4127708.00 1; 1139085.00 1 |
+| TOTAL_FIXED_ASSETS | amount | 59 | 0 | nan 3; 563649 1; 16281998 1; 48504457 1 |
+| INVESTMENTS | amount | 12 | 0 | nan 50; 5404608.00 1; 14826412.00 1; 1.00 1 |
+| OTHER_ASSETS | amount | 50 | 0 | nan 11; 261747682.00 1; 7894086.00 1; 2799323.00 1 |
+| TOTAL_OTHER_ASSETS | amount | 54 | 0 | nan 7; 261747682.00 1; 13298694.00 1; 17625735.00 1 |
+| TOTAL_ASSETS | amount | 59 | 0 | nan 3; 265438614.00 1; 67160469.00 1; 107288266.00 1 |
+| ACCOUNTS_PAYABLE | amount | 58 | 0 | nan 4; 517486.00 1; 2576254.00 1; 13551554.00 1 |
+| SALARIES_WAGES_AND_FEES | amount | 40 | 0 | nan 21; 5290.00 2; 932375.00 1; 806103.00 1 |
+| NOTES_AND_LOANS_PAYABLE_SHORT | amount | 18 | 0 | nan 44; 694856.00 1; 833456.00 1; 785213.00 1 |
+| OTHER_CURRENT_LIABILITIES | amount | 56 | 0 | nan 6; 272609007.00 1; 8210568.00 1; 59062.00 1 |
+| TOTAL_CURRENT_LIABILITIES | amount | 58 | 0 | nan 3; 274244020.00 1; 20772706.00 1; 16807194.00 1 |
+| NOTES_PAYABLE | amount | 23 | 0 | nan 39; 1830810.00 1; 22929393.00 1; 388084.00 1 |
+| TOTAL_LONG_TERM_LIABILITIES | amount | 54 | 0 | nan 8; 562636.00 1; 5005754.00 1; 22929393.00 1 |
+| TOTAL_LIABILITIES | amount | 59 | 0 | nan 3; 274806656.00 1; 25778460.00 1; 39736587.00 1 |
+| GENERAL_FUND_BALANCE | amount | 59 | 0 | nan 3; -9368042.00 1; 41382009.00 1; 67551679.00 1 |
+| TOTAL_FUND_BALANCES | amount | 59 | 0 | nan 3; -9368042.00 1; 41382009.00 1; 67551679.00 1 |
+| TOTAL_LIABILITIES_AND_FUND | amount | 59 | 0 | nan 3; 265438614.00 1; 67160469.00 1; 107288266.00 1 |
+| INPATIENT_REVENUE | amount | 59 | 0 | nan 3; 35963907.00 1; 9064953.00 1; 18102618.00 1 |
+| OUTPATIENT_REVENUE | amount | 54 | 0 | nan 7; 7510.00 1; 85106008.00 1; 40889622.00 1 |
+| GROSS_REVENUE | amount | 58 | 0 | nan 3; 35971417.00 1; 94170961.00 1; 58992240.00 1 |
+| LESS_CONTRACTUAL_ALLOWANCE | amount | 58 | 0 | nan 3; 22151531.00 1; 15716333.00 1; 17699259.00 1 |
+| NET_PATIENT_REVENUE | amount | 59 | 0 | nan 3; 13819886.00 1; 78454628.00 1; 41292981.00 1 |
+| LESS_TOTAL_OPERATING_EXPENSE | amount | 59 | 0 | nan 2; 14880747.00 1; 76995500.00 1; 41469708.00 1 |
+| NET_INCOME_FROM_SERVICE_TO | amount | 59 | 0 | nan 2; -1060861.00 1; 1459128.00 1; -176727.00 1 |
+| TOTAL_OTHER_INCOME | amount | 57 | 0 | nan 4; 256617.00 1; 1437833.00 1; 2183644.00 1 |
+| TOTAL_INCOME | amount | 60 | 0 | nan 2; -804244.00 1; 2896961.00 1; 2006917.00 1 |
+| NET_INCOME | amount | 60 | 0 | nan 2; -804244.00 1; 2892069.00 1; 133710.00 1 |
+| COST_TO_CHARGE_RATIO | amount | 32 | 0 | nan 14; 0.34 4; 0.29 4; 0.19 3 |
+| NET_REVENUE_FROM_MEDICAID | category | 48 | 0 | nan 14; 1152878.00 1; 2517196.00 1; 1256096.00 1 |
+| MEDICAID_CHARGES | amount | 47 | 0 | nan 15; 2087486.00 1; 3724809.00 1; 1044179.00 1 |
+| NET_REVENUE_FROM_STAND_ALONE | amount | 31 | 0 | nan 31; 9404.00 1; 19075.00 1; 101926.00 1 |
+| STAND_ALONE_SCHIP_CHARGES | amount | 31 | 0 | nan 31; 13184.00 1; 24032.00 1; 180924.00 1 |
+| PAYROLL_TAXES_PAYABLE | amount | 23 | 0 | nan 39; 185152.00 1; 37861.00 1; 86311.00 1 |
+| WAGE_RELATED_COSTS_CORE | amount | 34 | 0 | nan 28; 2669002.00 1; 22152957.00 1; 12273357.00 1 |
+| TOTAL_SALARIES_ADJUSTED | amount | 35 | 0 | nan 27; 15021649.00 1; 75621133.00 1; 38509814.00 1 |
+| CONTRACT_LABOR | amount | 27 | 0 | nan 35; 644930.00 1; 12127.00 1; 287668.00 1 |
+| OTHER_LONG_TERM_LIABILITIES | amount | 41 | 0 | nan 21; 562636.00 1; 3174944.00 1; 394883.00 1 |
+| NUMBER_OF_INTERNS_AND | category | 11 | 0 | nan 51; 4.8 1; 22.4 1; 19.47 1 |
+| OTHER_CURRENT_ASSETS | amount | 35 | 0 | nan 27; 192886.00 1; 308027.00 1; 829313.00 1 |
+| LEASEHOLD_IMPROVEMENTS | amount | 43 | 0 | nan 18; 12648.00 1; 59469.00 1; 1098251.00 1 |
+| MINOR_EQUIPMENT_DEPRECIABLE | amount | 17 | 0 | nan 45; 2271270.00 1; 5519433.00 1; 2257225.00 1 |
+| DEFERRED_INCOME | amount | 5 | 0 | nan 57; 3666197.00 1; 38244363.00 1; 15171.00 1 |
+| MORTGAGE_PAYABLE | amount | 6 | 0 | nan 56; 3490324.00 1; -170377651.00 1; -301155917.00 1 |
+| TOTAL_OTHER_EXPENSES | amount | 23 | 0 | nan 39; 4892.00 1; 1873207.00 1; 13790.00 1 |
+| WAGE_RELATED_COSTS_FOR_PART | amount | 8 | 0 | nan 54; 3117.00 1; 16433.00 1; 52709.00 1 |
+| DRG_AMOUNTS_BEFORE_OCTOBER | amount | 32 | 0 | nan 30; 1713080.00 1; 8407211.00 1; 2689908.00 1 |
+| DRG_AMOUNTS_AFTER_OCTOBER | amount | 33 | 0 | nan 29; 560273.00 1; 2710930.00 1; 993571.00 1 |
+| MANAGED_CARE_SIMULATED | amount | 24 | 0 | nan 38; 8126034.00 1; 3198539.00 1; 19460.00 1 |
+| WAGE_RELATED_COSTS_FOR_INTERNS | amount | 6 | 0 | nan 56; 1112265.00 1; 600406.00 1; 324092.00 1 |
+| UNSECURED_LOANS | amount | 9 | 0 | nan 53; -84032586.00 1; -61162499.00 1; 506416.00 1 |
+| DISPROPORTIONATE_SHARE | amount | 29 | 0 | nan 33; 68201.00 1; 263500.00 1; 32323.00 1 |
+| ALLOWABLE_DSH_PERCENTAGE | amount | 14 | 0 | nan 33; 0.12 6; 0.08 4; 0.09 3 |
+| TOTAL_IME_PAYMENT | amount | 9 | 0 | nan 53; 46963.00 1; 1192563.00 1; 1245770.00 1 |
+| WAGE_RELATED_COSTS_RHC_FQHC | category | 2 | 0 | nan 60; 168351.00 1 |
+| NOTES_RECEIVABLE | category | 3 | 0 | nan 59; 2826242.00 1; 377812.00 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:45:47.05159 61 |
+| SOURCE_RUN_ID | audit | 1 | 0 | f1ac7272-5e33-4248-8721-d 61 |
+| SRC_SHA256 | who | 1 | 0 | f2cd05779564784386eebf27d 61 |

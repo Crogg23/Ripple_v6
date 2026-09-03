@@ -1,0 +1,192 @@
+# PORTAL_ARC_HARRIS_COUNTY_OP_1A53499962
+
+rows 372  columns 35  scan 3.7s
+
+roles: amount 2, audit 2, category 9, date 5, other 12, who 6
+
+## when
+
+SOURCEDATE
+  2021       372  ##############################
+
+VAL_DATE
+  2016        37  #####
+  2018         1  
+  2019        10  #
+  2020       205  ##############################
+  2022       119  #################
+
+CREATIONDATE
+  2026       372  ##############################
+
+EDITDATE
+  2026       372  ##############################
+
+INGESTED_AT
+  2026       372  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE | 372 | 29.49 | 29.70 | 29.95 | 29.95 | 11.1K |
+| LONGITUDE | 372 | -95.48 | -95.20 | -94.94 | -94.91 | -35.4K |
+
+## who
+
+NAME by rows
+         3  FOR CHILDREN ONLY DAY SCHOOL
+         2  LAND OF THE LITTLE PEOPLE
+         2  USA KARATE
+         1  LITTLE BO PEEP CHILD CARE CENTER
+         1  KOALA KARE NO 2 -
+         1  DISTINCT ABILITIES
+         1  WORLD OF WISDOM
+         1  FIREFLY DUAL LANGUAGE ACADEMY, LLC
+         1  FRIENDSWOOD MONTESSORI SCHOOL
+         1  SAN JACINTO COLLEGE CENTRAL CAMPUS
+         1  KOOL KIDS DAYCARE
+         1  LITTLE PEOPLE'S EARLY LEARNING CENTER
+         1  KLC DBA CHAMPIONS AT CARTER LOMAX MIDDLE SCHOOL
+         1  KIDZ COME 1ST DC AND LEARNING CENTER
+         1  KLAZZY KIDZ PRESCHOOL AND CHILDCARE
+         1  BUSHI BAN INTERNATIONAL
+         1  LUV - N - CARE LEARNING CENTER TOO
+         1  WEE SCHOOL - FIRST BAPTIST CHURCH
+         1  GREGG HEAD START
+         1  MOUNT OLIVE LUTHERAN CHURCH
+
+NAME by dollars
+       88.56        3 rows  FOR CHILDREN ONLY DAY SCHOOL
+       59.31        2 rows  LAND OF THE LITTLE PEOPLE
+       59.17        2 rows  USA KARATE
+       29.95        1 rows  LBJ CREATIVE IDEAS LEARNING ACADEMY
+       29.95        1 rows  EARLY EDUCATION ENRICHMENT ACADEMY, INC.
+       29.95        1 rows  HARVEST CHRISTIAN ACADEMY
+       29.95        1 rows  ALL STARS DAY CARE AND PRESCHOOL
+       29.95        1 rows  LEARNING PALACE, INC.
+       29.95        1 rows  ALL STAR LEARNING CENTER
+       29.95        1 rows  YMCA AFTER SCHOOL AT SPENCE
+       29.95        1 rows  ALL AMERICAN LEARNING ACADEMY
+       29.94        1 rows  LIONHEART CHILDREN'S ACADEMY AT GRACE CHURCH
+       29.94        1 rows  EC LEARNING ACADEMY, INC
+       29.94        1 rows  LA PETITE ACADEMY
+       29.94        1 rows  CANDYLAND VTM
+       29.94        1 rows  BIG DREAMS AND LIL WONDERS CHRISTIAN ACADEMY NUMBER 2
+       29.93        1 rows  STAY AND PLAY DAY CARE CENTER
+       29.93        1 rows  ALDINE ISD TRANSPORTATION EARLY CHILDHOOD DEVELOPMENT CENTER
+       29.92        1 rows  BRIGHT STARS CDC
+       29.92        1 rows  LITTLE LAUGHTER'S CHILDCARE CENTER
+
+SOURCE by rows
+       372  http://www.dfps.state.tx.us/child_care/search_texas_child_care/ppfacil
+
+SOURCE by dollars
+       11.1K      372 rows  http://www.dfps.state.tx.us/child_care/search_texas_child_ca
+
+WEBSITE by rows
+       372  NOT AVAILABLE
+
+WEBSITE by dollars
+       11.1K      372 rows  NOT AVAILABLE
+
+CREATOR by rows
+       372  JGuerraPct2
+
+CREATOR by dollars
+       11.1K      372 rows  JGuerraPct2
+
+## who x when
+
+NAME by VAL_DATE, dollars = LATITUDE
+  ALL AMERICAN LEARNING ACADEMY             2020:29.95
+  ALL STAR LEARNING CENTER                  2020:29.95
+  ALL STARS DAY CARE AND PRESCHOOL          2020:29.95
+  BUSHI BAN INTERNATIONAL                   2020:29.66
+  DISTINCT ABILITIES                        2016:29.59
+  EARLY EDUCATION ENRICHMENT ACADEMY, INC.  2020:29.95
+  EC LEARNING ACADEMY, INC                  2020:29.94
+  FIREFLY DUAL LANGUAGE ACADEMY, LLC        2018:29.62
+  FOR CHILDREN ONLY DAY SCHOOL              2020:88.56
+  FRIENDSWOOD MONTESSORI SCHOOL             2020:29.52
+  GREGG HEAD START                          2020:29.67
+  HARVEST CHRISTIAN ACADEMY                 2020:29.95
+  KIDZ COME 1ST DC AND LEARNING CENTER      2020:29.60
+  KLAZZY KIDZ PRESCHOOL AND CHILDCARE       2020:29.69
+  KLC DBA CHAMPIONS AT CARTER LOMAX MIDDLE  2022:29.63
+  KOALA KARE NO 2 -                         2016:29.55
+  KOOL KIDS DAYCARE                         2020:29.65
+  LAND OF THE LITTLE PEOPLE                 2020:29.65 2022:29.66
+  LBJ CREATIVE IDEAS LEARNING ACADEMY       2020:29.95
+  LEARNING PALACE, INC.                     2016:29.95
+  LIONHEART CHILDREN'S ACADEMY AT GRACE CH  2022:29.94
+  LITTLE BO PEEP CHILD CARE CENTER          2016:29.72
+  LITTLE PEOPLE'S EARLY LEARNING CENTER     2020:29.63
+  LUV - N - CARE LEARNING CENTER TOO        2020:29.69
+  MOUNT OLIVE LUTHERAN CHURCH               2020:29.58
+  SAN JACINTO COLLEGE CENTRAL CAMPUS        2016:29.66
+  USA KARATE                                2016:29.59 2020:29.58
+  WEE SCHOOL - FIRST BAPTIST CHURCH         2022:29.76
+  WORLD OF WISDOM                           2020:29.54
+  YMCA AFTER SCHOOL AT SPENCE               2022:29.95
+
+SOURCE by VAL_DATE, dollars = LATITUDE
+  http://www.dfps.state.tx.us/child_care/s  2016:1.1K 2018:29.62 2019:296.53 2020:6.1K 2022:3.5K
+
+## what
+
+CITY: HOUSTON 59%, PASADENA 12%, BAYTOWN 8%, FRIENDSWOOD 4%, DEER PARK 3%, LA PORTE 3%, WEBSTER 3%, PEARLAND 3%, LEAGUE CITY 2%, SEABROOK 2%, CHANNELVIEW 1%, HIGHLANDS 1%
+
+TYPE: CENTER BASED 64%, SCHOOL BASED 19%, RELIGIOUS FACILITY 8%, HEAD START 8%
+
+STATUS: OPEN 94%, X 6%
+
+COUNTY: HARRIS 93%, GALVESTON 4%, BRAZORIA 3%, CHAMBERS 0%
+
+COUNTYFIPS: 48201 93%, 48167 4%, 48039 3%, 48071 0%
+
+NAICS_DESC: CHILD DAY CARE CENTERS 85%, HEAD START PROGRAMS, SEPARATE  8%, CHILD DAY CARE, BEFORE OR AFTE 6%
+
+VAL_METHOD: IMAGERY/OTHER 83%, GEOCODE 9%, IMAGERY 8%, UNVERIFIED 1%
+
+ST_SUBTYPE: LICENSED CENTER - CHILD CARE P 85%, LICENSED CENTER - SCHOOL AGE P 10%, LICENSED CENTER - BEFORE/AFTER 5%
+
+EDITOR: JGuerraPct2 94%, camerondavis1 6%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID_1 | other | 370 | 0 | 372 2; 371 2; 370 2; 369 2 |
+| OBJECTID | other | 366 | 0 | 113916 2; 115357 2; 110956 2; 110932 2 |
+| ID | other | 375 | 0 | 0408477060 2; 0560777060 2; 0256977060 2; 0222477067 2 |
+| NAME | who | 372 | 0 | FOR CHILDREN ONLY DAY SCH 3; HARVEST CHRISTIAN ACADEMY 2; LEARNING PALACE, INC. 2; ALL STARS DAY CARE AND PR 2 |
+| ADDRESS | other | 361 | 0 | 607 NORTHWOOD ST 3; 2902 JENSEN DR 3; 1410 LEE ST 3; 17770 IMPERIAL VALLEY DR 2 |
+| CITY | category | 18 | 0 | HOUSTON 213; PASADENA 43; BAYTOWN 29; FRIENDSWOOD 14 |
+| STATE | other | 1 | 0 | TX 372 |
+| ZIP | other | 60 | 0 | 77520 18; 77089 18; 77015 15; 77504 14 |
+| ZIP4 | who | 1 | 0 | NOT AVAILABLE 372 |
+| TELEPHONE | other | 355 | 0 | (713) 353-5208 4; (713) 692-3457 3; (281) 427-1797 3; (281) 423-3616 2 |
+| TYPE | category | 4 | 0 | CENTER BASED 239; SCHOOL BASED 72; RELIGIOUS FACILITY 31; HEAD START 30 |
+| STATUS | category | 2 | 0 | OPEN 351; X 21 |
+| POPULATION | other | 158 | 0 | 60 15; 50 11; 85 11; 100 11 |
+| COUNTY | category | 4 | 0 | HARRIS 345; GALVESTON 16; BRAZORIA 10; CHAMBERS 1 |
+| COUNTYFIPS | category | 4 | 0 | 48201 345; 48167 16; 48039 10; 48071 1 |
+| COUNTRY | other | 1 | 0 | USA 372 |
+| LATITUDE | amount | 368 | 0 | 29.79707 3; 29.78803 3; 29.779361 3; 29.95498 2 |
+| LONGITUDE | amount | 361 | 0 | -95.398051 3; -95.377991 3; -95.341982 3; -95.321102 3 |
+| NAICS_CODE | other | 1 | 0 | 624410 372 |
+| NAICS_DESC | category | 3 | 0 | CHILD DAY CARE CENTERS 318; HEAD START PROGRAMS, SEPA 30; CHILD DAY CARE, BEFORE OR 24 |
+| SOURCE | who | 1 | 0 | http://www.dfps.state.tx. 372 |
+| SOURCEDATE | date | 1 | 0 | 1633586400000 372 |
+| VAL_METHOD | category | 4 | 0 | IMAGERY/OTHER 307; GEOCODE 33; IMAGERY 30; UNVERIFIED 2 |
+| VAL_DATE | date | 53 | 0 | 1654149600000 119; 1589263200000 23; 1589176800000 21; 1585720800000 20 |
+| WEBSITE | who | 1 | 0 | NOT AVAILABLE 372 |
+| ST_SUBTYPE | category | 3 | 0 | LICENSED CENTER - CHILD C 318; LICENSED CENTER - SCHOOL  37; LICENSED CENTER - BEFORE/ 17 |
+| GLOBALID | other | 372 | 0 | b83400bf-bd6f-40df-852a-1 2; 9dacf8a8-681e-4f92-bed5-2 2; 65de0578-807f-45a5-9858-6 2; f8023fd7-01eb-4edd-815e-6 2 |
+| CREATIONDATE | date | 1 | 0 | 1768918784036 372 |
+| CREATOR | who | 1 | 0 | JGuerraPct2 372 |
+| EDITDATE | date | 22 | 0 | 1768918784036 351; 1774545067666 1; 1774544985207 1; 1774544887284 1 |
+| EDITOR | category | 2 | 0 | JGuerraPct2 351; camerondavis1 21 |
+| GEOMETRY | other | 364 | 0 | {"type": "Point", "coordi 3; {"type": "Point", "coordi 3; {"type": "Point", "coordi 3; {"type": "Point", "coordi 2 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:23:19.41425 372 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 2992bb3f-f89c-4f15-94e6-4 372 |
+| SRC_SHA256 | who | 1 | 0 | 605777ee71252f025d7ccf0bc 372 |

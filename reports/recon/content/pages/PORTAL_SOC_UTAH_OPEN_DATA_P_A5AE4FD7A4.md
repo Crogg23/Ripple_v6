@@ -1,0 +1,330 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_A5AE4FD7A4
+
+rows 94  columns 98  scan 6.7s
+
+roles: amount 45, audit 2, category 18, date 3, other 28, who 3
+
+## when
+
+FISCAL_YEAR_BEGIN_DATE
+  2018         1  
+  2019        93  ##############################
+
+FISCAL_YEAR_END_DATE
+  2019        48  ##############################
+  2020        46  #############################
+
+INGESTED_AT
+  2026        94  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTAL_DAYS_TITLE_XVIII | 94 | 107 | 2.1K | 11.2K | 12.2K | 298.6K |
+| TOTAL_DAYS_TITLE_XIX | 76 | 558 | 12.2K | 34.8K | 41.5K | 1.01M |
+| TOTAL_DAYS_OTHER | 94 | 127 | 5.4K | 34.9K | 38.1K | 671.1K |
+| TOTAL_DAYS_TOTAL | 94 | 433 | 19.5K | 47.8K | 61.4K | 1.98M |
+| TOTAL_BED_DAYS_AVAILABLE | 94 | 920 | 30.2K | 73.7K | 80.7K | 2.92M |
+| TOTAL_DISCHARGES_TITLE_XVIII | 92 | 2 | 58.50 | 469.18 | 471 | 10.1K |
+
+## who
+
+FACILITY_NAME by rows
+         2  WASHINGTON TERRACE CENTER
+         2  BEAVER VALLEY HOSPITAL  DBA CASCADES
+         2  POINTE MEADOW HEALTHCARE  INC.
+         1  MAPLE SPRINGS OF NORTH LOGAN
+         1  BEAVER VALLEY HOSPITAL (MT OLYMPUS)
+         1  ROCKY MOUNTAIN CARE - THE LODGE
+         1  STONEHENGE OF OREM
+         1  SILVERADO SENIOR LIVING-ASPEN PARK
+         1  WILLOW WOOD CARE CENTER
+         1  THATCHER BROOK REHAB CENTER
+         1  SOUTHERN UTAH VETERANS HOME - IVINS
+         1  SUNSHINE TERRACE
+         1  AVALON CARE CENTER - VA PAYSON
+         1  CAPITOL HILL SENIOR LIVING
+         1  WEST 5600 HEALTHCARE  INC.
+         1  ASPEN RIDGE WEST TRANSITIONAL REHAB
+         1  BEAVER VALLEY HOSPITAL (PARKDALE)
+         1  THE PEAKS NURSING & REHAB
+         1  PINNACLE NURSING AND REHABILIATION
+         1  NORTH CANYON CARE CENTER
+
+FACILITY_NAME by dollars
+       12.2K        1 rows  ADVANCED HEALTH CARE OF ST. GEORGE
+       11.1K        1 rows  ASPEN RIDGE WEST TRANSITIONAL REHAB
+       10.4K        1 rows  FAIRFIELD VILLAGE OF LAYTON
+        9.5K        1 rows  ASPEN RIDGE TRANSITIONAL REHAB
+        8.9K        2 rows  BEAVER VALLEY HOSPITAL  DBA CASCADES
+        8.8K        1 rows  LEGACY VILLAGE OF TAYLORSVILLE
+        8.7K        1 rows  PINE VIEW TRANSITIONAL REHAB
+        8.7K        1 rows  RED CLIFFS HEALTHCARE  INC.
+        8.4K        2 rows  POINTE MEADOW HEALTHCARE  INC.
+        7.7K        1 rows  STONEHENGE OF AMERICAN FORK
+        7.1K        1 rows  MAPLE SPRINGS OF NORTH LOGAN
+        7.0K        1 rows  STONEHENGE OF OGDEN
+        6.3K        1 rows  STONEHENGE OF SOUTH JORDAN
+        6.1K        1 rows  ROCKY MOUNTAIN CARE - WILLOW SPRINGS
+        6.1K        1 rows  ASPEN RIDGE OF UTAH VALLEY
+        5.8K        1 rows  ROCKY MOUNTAIN - RIVERTON
+        5.5K        1 rows  LIFE CARE CENTER OF BOUNTIFUL
+        5.5K        1 rows  STONEHENGE OF OREM
+        5.0K        1 rows  BEAVER VALLEY HOSPITAL DBA HIGHLAND
+        4.9K        1 rows  RMC - CLEARFIELD
+
+PROVIDER_CCN by rows
+         2  465188
+         2  465115
+         1  465185
+         1  465085
+         1  465144
+         1  465124
+         1  465146
+         1  465107
+         1  465101
+         1  465003
+         1  465111
+         1  465093
+         1  465104
+         1  465066
+         1  465109
+         1  465006
+         1  465112
+         1  465162
+         1  465064
+         1  465176
+
+PROVIDER_CCN by dollars
+       12.2K        1 rows  465190
+       11.1K        1 rows  465166
+       10.4K        1 rows  465174
+        9.5K        1 rows  465159
+        8.8K        1 rows  465171
+        8.7K        1 rows  465155
+        8.7K        1 rows  465160
+        8.4K        2 rows  465188
+        7.7K        1 rows  465178
+        7.1K        1 rows  465186
+        7.0K        1 rows  465182
+        6.3K        1 rows  465184
+        6.3K        1 rows  465176
+        6.1K        1 rows  465089
+        6.1K        1 rows  465170
+        5.8K        1 rows  465168
+        5.5K        1 rows  465112
+        5.5K        1 rows  465167
+        5.0K        1 rows  465078
+        4.9K        1 rows  465067
+
+SRC_SHA256 by rows
+        94  a9a9738b0456cb8e3688c2b32d38c4a9bce46fd06bd812d80f0f17a5454f9f19
+
+SRC_SHA256 by dollars
+      298.6K       94 rows  a9a9738b0456cb8e3688c2b32d38c4a9bce46fd06bd812d80f0f17a5454f
+
+## who x when
+
+FACILITY_NAME by FISCAL_YEAR_BEGIN_DATE, dollars = TOTAL_DAYS_TITLE_XVIII
+  ADVANCED HEALTH CARE OF ST. GEORGE        2019:12.2K
+  ASPEN RIDGE TRANSITIONAL REHAB            2019:9.5K
+  ASPEN RIDGE WEST TRANSITIONAL REHAB       2019:11.1K
+  AVALON CARE CENTER - VA PAYSON            2019:1.7K
+  BEAVER VALLEY HOSPITAL  DBA CASCADES      2019:8.9K
+  BEAVER VALLEY HOSPITAL (MT OLYMPUS)       2019:1.9K
+  BEAVER VALLEY HOSPITAL (PARKDALE)         2019:3.4K
+  CAPITOL HILL SENIOR LIVING                2019:3.2K
+  FAIRFIELD VILLAGE OF LAYTON               2019:10.4K
+  LEGACY VILLAGE OF TAYLORSVILLE            2019:8.8K
+  MAPLE SPRINGS OF NORTH LOGAN              2019:7.1K
+  NORTH CANYON CARE CENTER                  2019:2.6K
+  PINE VIEW TRANSITIONAL REHAB              2019:8.7K
+  PINNACLE NURSING AND REHABILIATION        2019:4.4K
+  POINTE MEADOW HEALTHCARE  INC.            2019:8.4K
+  RED CLIFFS HEALTHCARE  INC.               2019:8.7K
+  ROCKY MOUNTAIN CARE - THE LODGE           2019:4.0K
+  ROCKY MOUNTAIN CARE - WILLOW SPRINGS      2019:6.1K
+  SILVERADO SENIOR LIVING-ASPEN PARK        2019:306
+  SOUTHERN UTAH VETERANS HOME - IVINS       2019:1.9K
+  STONEHENGE OF AMERICAN FORK               2019:7.7K
+  STONEHENGE OF OGDEN                       2019:7.0K
+  STONEHENGE OF OREM                        2019:5.5K
+  STONEHENGE OF SOUTH JORDAN                2019:6.3K
+  SUNSHINE TERRACE                          2019:1.0K
+  THATCHER BROOK REHAB CENTER               2019:4.8K
+  THE PEAKS NURSING & REHAB                 2019:463
+  WASHINGTON TERRACE CENTER                 2019:530
+  WEST 5600 HEALTHCARE  INC.                2019:4.5K
+  WILLOW WOOD CARE CENTER                   2019:549
+
+PROVIDER_CCN by FISCAL_YEAR_BEGIN_DATE, dollars = TOTAL_DAYS_TITLE_XVIII
+  465003                                    2019:4.5K
+  465006                                    2019:1.9K
+  465064                                    2019:1.8K
+  465066                                    2019:1.8K
+  465085                                    2019:1.7K
+  465093                                    2019:708
+  465101                                    2019:2.3K
+  465104                                    2019:1.8K
+  465107                                    2019:641
+  465109                                    2019:2.9K
+  465111                                    2019:3.1K
+  465112                                    2019:5.5K
+  465115                                    2019:530
+  465124                                    2019:463
+  465144                                    2019:1.4K
+  465146                                    2019:2.0K
+  465155                                    2019:8.7K
+  465159                                    2019:9.5K
+  465160                                    2019:8.7K
+  465162                                    2019:306
+  465166                                    2019:11.1K
+  465171                                    2019:8.8K
+  465174                                    2019:10.4K
+  465176                                    2019:6.3K
+  465178                                    2019:7.7K
+  465182                                    2019:7.0K
+  465185                                    2019:532
+  465186                                    2019:7.1K
+  465188                                    2019:8.4K
+  465190                                    2019:12.2K
+
+## what
+
+CITY: SALT LAKE CITY 35%, OGDEN 13%, OREM 9%, ST. GEORGE 9%, BOUNTIFUL 7%, MURRAY 5%, LOGAN 4%, PRICE 4%, BRIGHAM 4%, AMERICAN FORK 4%, CEDAR CITY 4%, CLEARFIELD 4%
+
+COUNTY: SALT LAKE 36%, UTAH 19%, WEBER 12%, DAVIS 8%, WASHINGTON 8%, CACHE 4%, BOX ELDER 4%, CARBON 2%, IRON 2%, SEVIER 2%, WASATCH 1%, TOOELE 1%
+
+MEDICARE_CBSA_NUMBER: 41620 34%, 36260 22%, 39340 18%, 99946 14%, 41100 9%, 30860 3%
+
+RURAL_VERSUS_URBAN: U 86%, R 14%
+
+TYPE_OF_CONTROL: 4 31%, 11 19%, 6 12%, 2 10%, 5 10%, 9 6%, 8 6%, 12 4%, 13 2%
+
+SNF_ADMISSIONS_TITLE_XIX: nan 46%, 28 8%, 16 6%, 9 6%, 23 6%, 20 4%, 26 4%, 37 4%, 75 4%, 39 4%, 62 4%, 15 4%
+
+LAND_IMPROVEMENTS: nan 87%, 19701 1%, 4735 1%, 18151 1%, 33448 1%, 34003 1%, 16582 1%, 57017 1%, 1022318 1%, 6084 1%, 74559 1%, 123768 1%
+
+OTHER_ASSETS: nan 85%, 3019503 1%, 1060466 1%, 7544032 1%, 394027 1%, 3441261 1%, 28212 1%, 2676435 1%, 6363222 1%, 14394381 1%, 12673090 1%, 2793043 1%
+
+DEFERRED_INCOME: nan 87%, 320000 2%, 121380 1%, 315000 1%, 245156 1%, 275000 1%, 639944 1%, 246201 1%, 295000 1%, 153711 1%, 400000 1%, 355000 1%
+
+OTHER_CURRENT_ASSETS: nan 83%, 90703 2%, 1101518 2%, 4778925 2%, 1864998 2%, 6213785 2%, 201599 2%, 67075 2%, 10167 2%, 283607 2%, 53223 2%, 1177565 2%
+
+INVESTMENTS: nan 98%, 5278247 1%, -1591741 1%
+
+OTHER_LONG_TERM_LIABILITIES: nan 86%, 3006292 1%, 1059496 1%, 7550006 1%, 6139 1%, 3440174 1%, 25658 1%, 2679048 1%, 6363223 1%, 14394381 1%, 12340254 1%, -57501 1%
+
+NOTES_RECEIVABLE: nan 95%, 1666215 1%, 150852 1%, 1663587 1%, 825792 1%, 2230895 1%
+
+INVENTORY: nan 83%, 1800 3%, 8266 1%, 13291 1%, 13005 1%, 1900 1%, 37012 1%, 20492 1%, 11939 1%, 28014 1%, 1300 1%, 30634 1%
+
+LAND: nan 87%, 306459 1%, 600000 1%, 218508 1%, 2217937 1%, 202000 1%, 1172967 1%, 956700 1%, 610000 1%, 1617165 1%, 250000 1%, 679000 1%
+
+BUILDINGS: nan 87%, 3047981 1%, 713894 1%, 3673213 1%, 6577977 1%, 2640 1%, 3320711 1%, 8913920 1%, 5422260 1%, 7654542 1%, 3580225 1%, 8329764 1%
+
+MINOR_EQUIPMENT_DEPRECIABLE: nan 99%, 3467 1%
+
+FIXED_EQUIPMENT: nan 85%, 247159 1%, 197728 1%, 193472 1%, 115157 1%, 1632 1%, 267626 1%, 143346 1%, 682156 1%, 287682 1%, 151737 1%, 117307 1%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| RPT_REC_NUM | other | 95 | 0 | 1323385 1; 1323383 1; 1321074 1; 1320761 1 |
+| PROVIDER_CCN | who | 93 | 0 | 465188 2; 465115 2; 465184 1; 465116 1 |
+| FACILITY_NAME | who | 92 | 0 | BEAVER VALLEY HOSPITAL  D 2; POINTE MEADOW HEALTHCARE  2; WASHINGTON TERRACE CENTER 2; RMC - LOGAN 1 |
+| STREET_ADDRESS | other | 92 | 0 | 2750 NORTH DIGITAL DRIVE 2; 400 EAST 5350 SOUTH 2; 1012 W JORDAN RIVER BLVD 1; 1480 N 400 E 1 |
+| CITY | category | 46 | 0 | SALT LAKE CITY 19; OGDEN 7; OREM 5; ST. GEORGE 5 |
+| STATE_CODE | other | 1 | 0 | UT 94 |
+| ZIP_CODE | other | 58 | 0 | 84405 5; 84790 4; 84010 4; 84117 4 |
+| COUNTY | category | 21 | 0 | SALT LAKE 31; UTAH 16; WEBER 10; DAVIS 7 |
+| MEDICARE_CBSA_NUMBER | category | 6 | 0 | 41620 32; 36260 21; 39340 17; 99946 13 |
+| RURAL_VERSUS_URBAN | category | 2 | 0 | U 81; R 13 |
+| FISCAL_YEAR_BEGIN_DATE | date | 6 | 0 | 2019-07-01T00:00:00.000 46; 2019-01-01T00:00:00.000 44; 2018-10-01T00:00:00.000 1; 2019-06-01T00:00:00.000 1 |
+| FISCAL_YEAR_END_DATE | date | 9 | 0 | 2020-06-30T00:00:00.000 44; 2019-12-31T00:00:00.000 43; 2019-09-30T00:00:00.000 1; 2019-02-15T00:00:00.000 1 |
+| TYPE_OF_CONTROL | category | 9 | 0 | 4 29; 11 18; 6 11; 2 9 |
+| TOTAL_DAYS_TITLE_XVIII | amount | 92 | 0 | 503 2; 463 2; 6254 1; 1494 1 |
+| TOTAL_DAYS_TITLE_XIX | amount | 78 | 0 | nan 18; 18623 1; 19037 1; 16415 1 |
+| TOTAL_DAYS_OTHER | amount | 94 | 0 | 7295 1; 5498 1; 4764 1; 4291 1 |
+| TOTAL_DAYS_TOTAL | amount | 93 | 0 | 32172 1; 26029 1; 25175 1; 17248 1 |
+| NUMBER_OF_BEDS | other | 58 | 0 | 120 9; 52 4; 80 3; 40 3 |
+| TOTAL_BED_DAYS_AVAILABLE | amount | 69 | 0 | 43920 5; 29280 3; 39528 3; 10950 3 |
+| TOTAL_DISCHARGES_TITLE_XVIII | amount | 79 | 0 | 14 4; 18 3; 6 3; 38 2 |
+| TOTAL_DISCHARGES_TITLE_XIX | amount | 56 | 0 | nan 23; 25 3; 48 3; 23 3 |
+| TOTAL_DISCHARGES_TITLE_OTHER | amount | 84 | 0 | 18 3; 21 3; 74 2; 123 2 |
+| TOTAL_DISCHARGES_TOTAL | amount | 89 | 0 | 107 2; 525 2; 55 2; 145 2 |
+| SNF_AVERAGE_LENGTH_OF_STAY_1 | amount | 91 | 0 | 39.33 2; 28.11 2; nan 2; 39.32 1 |
+| SNF_AVERAGE_LENGTH_OF_STAY_2 | amount | 73 | 0 | nan 23; 251.66 1; 307.05 1; 176.51 1 |
+| SNF_AVERAGE_LENGTH_OF_STAY_3 | amount | 93 | 0 | nan 2; 60.36 1; 91.01 1; 59.52 1 |
+| SNF_ADMISSIONS_TITLE_XVIII | other | 83 | 0 | 38 3; 45 3; nan 3; 69 2 |
+| SNF_ADMISSIONS_TITLE_XIX | category | 50 | 0 | nan 23; 28 4; 16 3; 9 3 |
+| SNF_ADMISSIONS_OTHER | other | 81 | 0 | 15 3; 134 3; 80 2; 115 2 |
+| SNF_ADMISSIONS_TOTAL | amount | 85 | 0 | 317 2; 101 2; 88 2; 265 2 |
+| SNF_DAYS_TITLE_XVIII | other | 92 | 0 | 503 2; 463 2; 6254 1; 1494 1 |
+| SNF_DAYS_TITLE_XIX | other | 78 | 0 | nan 18; 18623 1; 19037 1; 16415 1 |
+| SNF_DAYS_OTHER | other | 94 | 0 | 7295 1; 5498 1; 4764 1; 4291 1 |
+| SNF_DAYS_TOTAL | amount | 93 | 0 | 32172 1; 26029 1; 25175 1; 17248 1 |
+| SNF_NUMBER_OF_BEDS | other | 58 | 0 | 120 9; 52 4; 80 3; 40 3 |
+| SNF_BED_DAYS_AVAILABLE | other | 69 | 0 | 43920 5; 29280 3; 39528 3; 10950 3 |
+| SNF_DISCHARGES_TITLE_XVIII | other | 79 | 0 | 14 4; 18 3; 6 3; 38 2 |
+| SNF_DISCHARGES_TITLE_XIX | other | 56 | 0 | nan 23; 25 3; 48 3; 23 3 |
+| SNF_DISCHARGES_TITLE_OTHER | other | 82 | 0 | 18 3; 93 3; 21 3; 74 2 |
+| SNF_DISCHARGES_TOTAL | amount | 90 | 0 | 107 2; 525 2; 55 2; 145 2 |
+| TOTAL_RUG_DAYS | amount | 88 | 0 | nan 5; 463 2; 371 2; 1417 1 |
+| TOTAL_SALARIES_FROM_WORKSHEET | amount | 92 | 0 | 6 3; 4435509 1; 2751002 1; 2710872 1 |
+| OVERHEAD_NON_SALARY_COSTS | amount | 94 | 0 | 8871163 1; 4565861 1; 7038336 1; 2280403 1 |
+| TOTAL_CHARGES | amount | 94 | 0 | 5346931 1; 1735333 1; 3466465 1; 2215921 1 |
+| TOTAL_COSTS | amount | 94 | 0 | 2865317 1; 792462 1; 1795478 1; 1104801 1 |
+| WAGE_RELATED_COSTS_CORE | amount | 93 | 0 | 1 3; 675906 1; 472682 1; 365435 1 |
+| TOTAL_SALARIES_ADJUSTED | amount | 92 | 0 | 6 3; 4435509 1; 2751002 1; 2710872 1 |
+| CASH_ON_HAND_AND_IN_BANKS | other | 93 | 0 | nan 2; 1256897 1; 949271 1; 1040911 1 |
+| ACCOUNTS_RECEIVABLE | other | 95 | 0 | 1718510 1; 1684390 1; 2064263 1; 599556 1 |
+| LESS_ALLOWANCES_FOR | other | 63 | 0 | nan 31; 10000 2; 459626 1; 5841 1 |
+| PREPAID_EXPENSES | other | 58 | 0 | nan 37; 17453 1; 16722 1; 26669 1 |
+| TOTAL_CURRENT_ASSETS | amount | 93 | 0 | 2612594 1; 2741086 1; 4233361 1; 5486330 1 |
+| LAND_IMPROVEMENTS | category | 20 | 0 | nan 75; 19701 1; 4735 1; 18151 1 |
+| LEASEHOLD_IMPROVEMENTS | other | 56 | 0 | nan 39; 407771 1; 225839 1; 130236 1 |
+| MAJOR_MOVABLE_EQUIPMENT | other | 62 | 0 | nan 33; 18954 1; 99440 1; 273651 1 |
+| TOTAL_FIXED_ASSETS | amount | 77 | 0 | nan 18; 18954 1; 1644636 1; 57075 1 |
+| OTHER_ASSETS | category | 33 | 0 | nan 62; 3019503 1; 1060466 1; 7544032 1 |
+| TOTAL_OTHER_ASSETS | amount | 41 | 0 | nan 54; 6728 1; 3019503 1; 1060466 1 |
+| TOTAL_ASSETS | amount | 94 | 0 | 2638276 1; 4385722 1; 4290436 1; 8857000 1 |
+| ACCOUNTS_PAYABLE | amount | 94 | 0 | 364322 1; 562948 1; 991858 1; 54725 1 |
+| SALARIES_WAGES_AND_FEES | amount | 77 | 0 | nan 17; 223278 1; 209047 1; 132235 1 |
+| NOTES_AND_LOANS_PAYABLE_SHORT | amount | 26 | 0 | nan 69; 1646544 1; 2862745 1; 836353 1 |
+| DEFERRED_INCOME | category | 16 | 0 | nan 78; 320000 2; 121380 1; 315000 1 |
+| OTHER_CURRENT_LIABILITIES | other | 65 | 0 | nan 30; 1358045 1; 1155962 1; 748332 1 |
+| TOTAL_CURRENT_LIABILITIES | amount | 92 | 0 | 1945645 1; 1965298 1; 1931234 1; 917355 1 |
+| MORTGAGE_PAYABLE | amount | 18 | 0 | nan 77; 1912483 1; 2338498 1; 11015859 1 |
+| TOTAL_LONG_TERM_LIABILITIES | amount | 63 | 0 | nan 32; 750397 1; 535118 1; 3006292 1 |
+| TOTAL_LIABILITIES | amount | 93 | 0 | 1945645 1; 2715695 1; 2466352 1; 3923647 1 |
+| GENERAL_FUND_BALANCE | other | 86 | 0 | nan 8; 692631 1; 1670027 1; 1824084 1 |
+| TOTAL_FUND_BALANCES | amount | 86 | 0 | nan 8; 692631 1; 1670027 1; 1824084 1 |
+| TOTAL_LIABILITIES_AND_FUND | amount | 94 | 0 | 2638276 1; 4385722 1; 4290436 1; 8857000 1 |
+| TOTAL_GENERAL_INPATIENT_CARE | amount | 94 | 0 | 9015091 1; 14523188 1; 13176897 1; 2982290 1 |
+| INPATIENT_REVENUE | amount | 94 | 0 | 14362022 1; 14601657 1; 13354550 1; 5198207 1 |
+| GROSS_REVENUE | amount | 94 | 0 | 14362022 1; 14601657 1; 13354550 1; 5198207 1 |
+| LESS_CONTRACTUAL_ALLOWANCE | other | 89 | 0 | nan 4; 1043883 1; 7610557 1; 4161611 1 |
+| NET_PATIENT_REVENUE | amount | 91 | 0 | 13318139 1; 6991100 1; 9192939 1; 5738435 1 |
+| LESS_TOTAL_OPERATING_EXPENSE | amount | 94 | 0 | 13306672 1; 7237867 1; 9749208 1; 4611979 1 |
+| NET_INCOME_FROM_SERVICE_TO | other | 95 | 0 | 11467 1; -246767 1; -556269 1; 1126456 1 |
+| TOTAL_INCOME | amount | 87 | 0 | nan 8; 692631 1; 513563 1; 447456 1 |
+| NET_INCOME | other | 87 | 0 | nan 8; 692631 1; 513563 1; 447456 1 |
+| INPATIENT_PPS_AMOUNT | amount | 95 | 0 | 3636611 1; 771760 1; 2288300 1; 2438856 1 |
+| ALLOWABLE_BAD_DEBTS | other | 81 | 0 | nan 11; 5968 2; 8866 2; 42619 1 |
+| CONTRACT_LABOR | other | 54 | 0 | nan 41; 1374339 1; 22959 1; 100002 1 |
+| OTHER_CURRENT_ASSETS | category | 40 | 0 | nan 55; 90703 1; 1101518 1; 4778925 1 |
+| INVESTMENTS | category | 3 | 0 | nan 92; 5278247 1; -1591741 1 |
+| PAYROLL_TAXES_PAYABLE | amount | 69 | 0 | nan 27; 29839 1; 36243 1; 48849 1 |
+| OTHER_LONG_TERM_LIABILITIES | category | 25 | 0 | nan 70; 3006292 1; 1059496 1; 7550006 1 |
+| TOTAL_OTHER_INCOME | amount | 84 | 0 | nan 9; 681164 1; 760330 1; 1003725 1 |
+| NOTES_RECEIVABLE | category | 6 | 0 | nan 89; 1666215 1; 150852 1; 1663587 1 |
+| INVENTORY | category | 34 | 0 | nan 60; 1800 2; 8266 1; 13291 1 |
+| LAND | category | 19 | 0 | nan 76; 306459 1; 600000 1; 218508 1 |
+| BUILDINGS | category | 20 | 0 | nan 75; 3047981 1; 713894 1; 3673213 1 |
+| NOTES_PAYABLE | amount | 16 | 0 | nan 79; 750397 1; 535118 1; 1039399 1 |
+| MINOR_EQUIPMENT_DEPRECIABLE | category | 2 | 0 | nan 93; 3467 1 |
+| FIXED_EQUIPMENT | category | 31 | 0 | nan 62; 247159 1; 197728 1; 193472 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:46:05.33414 94 |
+| SOURCE_RUN_ID | audit | 1 | 0 | f7c8a46d-4cca-4af6-8d61-d 94 |
+| SRC_SHA256 | who | 1 | 0 | a9a9738b0456cb8e3688c2b32 94 |

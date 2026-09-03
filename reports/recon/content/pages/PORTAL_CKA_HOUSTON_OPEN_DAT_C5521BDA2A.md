@@ -1,0 +1,280 @@
+# PORTAL_CKA_HOUSTON_OPEN_DAT_C5521BDA2A
+
+rows 10.0K  columns 57  scan 4.9s
+
+roles: audit 2, category 22, date 6, empty 1, id 2, other 4, state 1, who 20
+
+## when
+
+INSPECTIONDATE
+  2010      4.8K  ###########################
+  2011      5.2K  ##############################
+
+INSPECTIONENTEREDDATE
+  2010      4.8K  ###########################
+  2011      5.2K  ##############################
+
+INSPECTIONDATETIMEADDED
+  2010      4.8K  ###########################
+  2011      5.2K  ##############################
+
+INSPECTIONFOLLOWUPDATE
+  1900         8  
+  2010      1.1K  ####
+  2011      8.2K  ##############################
+  2012       762  ###
+
+INSPECTIONDATESIGNED
+  1900      1.3K  #########
+  2010      4.2K  ##############################
+  2011      4.2K  ##############################
+
+INGESTED_AT
+  2026     10.0K  ##############################
+
+## who
+
+FACILITYNAME by rows
+        62  MINUTE MAID PARK - ARAMARK
+        61  MEMORIAL HERMANN HOSPITAL
+        41  MEMORIAL HERMANN NORTHWEST HOSPITAL
+        31  LYNDON B. JOHNSON GENERAL HOSPITAL
+        30  ST LUKE'S FOOD/NUTRITION SERVICES 2-229
+        28  KIM SON RESTAURANT
+        28  MEMORIAL HERMANN / T.I.R.R. HOSPITAL
+        25  UNIVERSITY PLACE RETIREMENT CT
+        25  SHIPLEY DONUTS
+        24  EAST HOUSTON REGIONAL MEDICAL CENTER
+        23  MEMORIAL HERMANN SOUTHWEST HOSPITAL
+        21  HEARTLAND OF WEST HOUSTON HEALTH CARE
+        21  MCDONALD'S
+        20  WEST OAKS HOSPITAL
+        20  SUBWAY
+        19  SCHOOL OF CULINARY ARTS
+        19  MENNINGER CLINIC
+        19  HEARTLAND HEALTH CARE CENTER
+        17  FIESTA MART #09
+        17  LA MICHOACANA
+
+FACILITYACCOUNTNUMBER by rows
+        62  203500
+        61  900572
+        41  900776
+        31  220323
+        30  900472
+        28  931278
+        28  407699
+        25  910035
+        24  961367
+        23  900459
+        21  920114
+        20  993137
+        19  941456
+        19  218058
+        19  931174
+        17  914946
+        16  410081
+        16  900566
+        16  911002
+        16  219585
+
+FACILITYOWNER by rows
+       949  HOUSTON I.S.D.
+       150  MEMORIAL HERMANN HEALTHCARE SY
+       144  KROGER TEXAS LP
+       135  SPRING BRANCH I.S.D.
+       115  ALIEF I.S.D.
+       115  FIESTA MART, INC.
+       108  ALDINE I.S.D.
+        87  RANDALL'S FOOD & DRUGS, INC.
+        66  PASADENA I.S.D.
+        63  HUMBLE I.S.D.
+        62  ARAMARK CONESSION SERVICES
+        58  WAL-MART STORES TEXAS, LP
+        43  NORTH FOREST I.S.D.
+        43  JACK IN THE BOX EASTERN DIV LP
+        39  CLEAR CREEK I.S.D.
+        38  H E BUTT GROCERY CORP.
+        34  CA ONE SERVICES, INC.
+        34  WHATABURGER, INC.
+        33  HCA
+        32  ARAMARK CORPORATION
+
+FACILITYSUITE by rows
+       284  A
+       120  B
+        69  100
+        60  C
+        45  200
+        35  D
+        22  G
+        20  F
+        20  E
+        19  4 FL
+        17  500
+        15  103
+        15  7TH FLOOR
+        13  J
+        12  105
+        12  104
+        12  H
+        12  400
+        11  4
+        11  160
+
+## who x when
+
+FACILITYNAME by INSPECTIONDATESIGNED
+  EAST HOUSTON REGIONAL MEDICAL CENTER      2010:18 2011:6
+  FIESTA MART #09                           1900:1 2010:7 2011:9
+  HEARTLAND HEALTH CARE CENTER              2010:12 2011:7
+  HEARTLAND OF WEST HOUSTON HEALTH CARE     2010:10 2011:11
+  KIM SON RESTAURANT                        1900:2 2010:5 2011:20
+  LA MICHOACANA                             1900:2 2010:11 2011:4
+  LYNDON B. JOHNSON GENERAL HOSPITAL        2010:20 2011:11
+  MCDONALD'S                                1900:1 2010:12 2011:7
+  MEMORIAL HERMANN / T.I.R.R. HOSPITAL      2010:17 2011:11
+  MEMORIAL HERMANN HOSPITAL                 2010:40 2011:21
+  MEMORIAL HERMANN NORTHWEST HOSPITAL       2010:23 2011:18
+  MEMORIAL HERMANN SOUTHWEST HOSPITAL       2010:23
+  MENNINGER CLINIC                          2010:12 2011:7
+  MINUTE MAID PARK - ARAMARK                1900:60 2011:1
+  SCHOOL OF CULINARY ARTS                   1900:1 2010:9 2011:9
+  SHIPLEY DONUTS                            1900:4 2010:6 2011:13
+  ST LUKE'S FOOD/NUTRITION SERVICES 2-229   2010:29 2011:1
+  SUBWAY                                    1900:2 2010:8 2011:10
+  UNIVERSITY PLACE RETIREMENT CT            2010:17 2011:8
+  WEST OAKS HOSPITAL                        2010:9 2011:11
+
+FACILITYACCOUNTNUMBER by INSPECTIONDATESIGNED
+  203500                                    1900:60 2011:1
+  218058                                    2010:12 2011:7
+  219585                                    2010:8 2011:8
+  220323                                    2010:20 2011:11
+  407699                                    2010:17 2011:11
+  410081                                    1900:2 2010:4 2011:8
+  900459                                    2010:23
+  900472                                    2010:29 2011:1
+  900566                                    1900:1 2010:7 2011:8
+  900572                                    2010:40 2011:21
+  900776                                    2010:23 2011:18
+  910035                                    2010:17 2011:8
+  911002                                    1900:1 2010:8 2011:7
+  914946                                    1900:1 2010:7 2011:9
+  920114                                    2010:10 2011:11
+  931174                                    1900:1 2010:9 2011:9
+  931278                                    1900:2 2010:5 2011:20
+  941456                                    2010:12 2011:7
+  961367                                    2010:18 2011:6
+  993137                                    2010:9 2011:11
+
+## where
+
+FACILITYMAILINGSTATE: TX 3.4K, CA 6, KY 6, NY 3, IL 3
+
+## what
+
+INSPECTIONSCORE: 1 70%, 2 16%, 3 9%, 5 4%, 4 2%, 0 0%
+
+INSPECTIONTYPE: Routine Inspection (001) 70%, Complaint (003) 9%, Reinspection (002) 8%, Pre-Opening Inspection (006) 6%, Change of Ownership Inspection 4%, Consultative Visit - Sanitaria 3%, Consultative Visit - Superviso 0%
+
+INSPECTIONSTAFFCODE: IFC1 12%, CPY1 11%, GAB1 10%, ZYW1 9%, MRW1 9%, YYW1 8%, RJL1 8%, PIC1 7%, JBB1 7%, MXR1 7%, SLA1 6%, JCR1 6%
+
+INSPECTIONCATERING: NO 96%, YES 4%
+
+INSPECTIONSTATUS: PASS 90%, FAIL 10%
+
+INSPECTIONSMOKING: N/A 94%, NO 6%, YES 0%
+
+FACILITYCURRENTPERMITS: F,G 58%, F,D,G 24%, F 10%, H 7%, F,D 1%, V 0%, B 0%, D,H 0%
+
+FACILITYCURRENTSTATUS: Active 68%, Inactive 31%, Plan Review 0%
+
+FACILITYSTREETNUMBERFRACTION: 1/2 72%, C 9%, AA 4%, A 2%, 7295 2%, TCNF6 2%, 4 2%, 200 2%, PARK'S OF 2%, H&J 2%
+
+FACILITYSTREETPREFIX: W 40%, S 30%, N 23%, E 7%
+
+FACILITYSTREETTYPE: RD 24%, DR 20%, FWY 16%, BLVD 14%, ST 10%, PKWY 7%, AVE 5%, WAY 2%, LN 1%, HWY 0%, MALL 0%
+
+FACILITYSTREETSUFFIX: E 43%, S 29%, N 18%, W 10%
+
+FACILITYCITY: HOUSTON 95%, KINGWOOD 2%, HUMBLE 1%, Houston 1%, HOUSTON, 0%, HUFFMAN 0%, FRIENDSWOOD 0%, WEBSTER 0%, MISSOURI CITY 0%, ROSENBERG 0%, SPRING 0%
+
+FACILITYSTATE: TX 100%
+
+FACILITYMAILINGADDRESS2: SUITE A 43%, S. Marshall, General Food Mana 19%, www.elpollobravo.com 14%, 281-221-3550-RANDY 10%, TSU Nabrit Bld. 10%, NHAT D. BUI 5%
+
+FACILITYMAILINGCITY: HOUSTON 93%, KINGWOOD 2%, HOUSTON, 2%, HUMBLE 1%, Houston 1%, Humble 0%, HUFFMAN 0%, FRIENDSWOOD 0%, MISSOURI CITY 0%, LOUISVILLE 0%, SOUTH HOUSTON 0%
+
+FACILITYDISTRICT: 505 13%, 407 11%, 103 9%, 203 8%, 403 8%, 301 8%, 201 7%, 302 7%, 105 7%, 106 7%, 405 7%, 303 7%
+
+FACILITYNONPROFIT: NO 78%, YES 22%
+
+ESTABLISHMENTTYPE: Restaurant - Full Service 27%, Restaurant - Single Service 21%, School Cafeteria - Intermediat 13%, Retail Food Market - Multi Ser 10%, Hospitals 6%, School Cafeteria - Elementary 5%, Convenience Grocery - Packaged 4%, Mobile - Conventional, Unrestr 4%, Day Care Center - Open Foods 3%, Mobile - Conventional, Unrestr 3%, Convenience Grocery - Open foo 3%, Bakery - Retail  2%
+
+CUISINE: MEXICAN / HISPANIC 22%, LOCAL / CONTINENTAL 20%, BURGERS, ETC. 12%, BEVERAGES, ETC. 8%, CHINESE 6%, CHICKEN 6%, SEAFOOD 6%, DELI 6%, BAR & GRILL 6%, SANDWICHES 5%, OTHER 4%
+
+FACILITYRISKSCORE: 0 26%, 7 16%, 6 13%, 8 12%, 9 9%, 5 6%, 4 4%, 3 4%, 10 4%, 2 3%, 1 3%, 11 1%
+
+FACILITYRISKPROFILE: HIGH 66%, MEDIUM 23%, LOW 11%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| INSPECTIONUID | id | 9.9K | 0 | 1529173 50; 1529169 50; 1022552 50; 1269742 50 |
+| FACILITYHASHID | who | 4.0K | 0 | 4907 102; 42161 90; 61929 76; 4951 75 |
+| INSPECTIONDATE | date | 345 | 0 | 2011-05-18 00:00:00 78; 2010-10-19 00:00:00 78; 2011-03-30 00:00:00 77; 2010-09-28 00:00:00 76 |
+| INSPECTIONSCORE | category | 6 | 0 | 1 7.0K; 2 1.6K; 3 883; 5 387 |
+| INSPECTIONNUMBEROFEMPLOYEES | other | 131 | 0 | 0 1.9K; 2 765; 3 671; 4 633 |
+| INSPECTIONTYPE | category | 8 | 152 | Routine Inspection (001) 6.9K; Complaint (003) 931; Reinspection (002) 764; Pre-Opening Inspection (0 600 |
+| INSPECTIONSTAFFCODE | category | 35 | 0 | IFC1 667; CPY1 620; GAB1 546; ZYW1 513 |
+| INSPECTIONENTEREDDATE | date | 348 | 0 | 2011-03-31 00:00:00 86; 2011-03-09 00:00:00 79; 2010-09-28 00:00:00 78; 2010-10-19 00:00:00 78 |
+| INSPECTIONDATETIMEADDED | date | 10.2K | 0 | 2011-06-10 12:17:11 50; 2011-06-10 12:03:26 50; 2010-07-07 08:39:26 50; 2010-12-07 18:11:55 50 |
+| INSPECTIONFOLLOWUPDATE | date | 638 | 0 | 2011-09-28 00:00:00 68; 2011-09-20 00:00:00 63; 2011-04-19 00:00:00 59; 2012-02-16 00:00:00 58 |
+| INSPECTIONCITATIONNUM | other | 251 | 9.7K | N24440543 3; N24442695 2; 24868191 2; N23447934 2 |
+| INSPECTIONSTARTTIME | who | 210 | 0 | 07:00:00.0000000 282; 08:00:00.0000000 203; 10:00:00.0000000 188; 08:30:00.0000000 180 |
+| INSPECTIONENDTIME | who | 223 | 0 | 12:00:00.0000000 278; 11:00:00.0000000 233; 10:00:00.0000000 224; 11:30:00.0000000 214 |
+| INSPECTIONCATERING | category | 3 | 1 | NO 9.6K; YES 443 |
+| INSPECTIONSTATUS | category | 3 | 24 | PASS 9.0K; FAIL 986 |
+| INSPECTIONSMOKING | category | 3 | 0 | N/A 9.4K; NO 609; YES 7 |
+| INSPECTIONCOMMENTS | empty | 1 | 10.0K |  |
+| INSPECTIONDATESIGNED | date | 8.3K | 366 | 1900-01-01 00:00:00 1.3K; 2011-06-10 12:22:05 43; 2011-06-10 12:21:29 43; 2010-07-07 08:42:00 43 |
+| INPSECTIONSITE | who | 1.5K | 0 | 0 3.2K; Kitchen 1.2K; KITCHEN 522; Premises 420 |
+| INPSECTIONTYPE | other | 1 | 0 | FOOD 10.0K |
+| INPSECTIONHASHID | id | 10.0K | 0 | 7A57C8D6-9BF9-0A2B-0B28CF 50; 7A4B308F-C2AD-C0D4-61E744 50; ACEAFC7B-0EAA-118A-32CEEC 50; C31B033B-D3C8-3902-3585F8 50 |
+| FACILITYACCOUNTNUMBER | who | 4.0K | 9 | 900572 102; 203500 90; 220323 76; 900776 75 |
+| FACILITYCURRENTPERMITS | category | 9 | 15 | F,G 5.8K; F,D,G 2.4K; F 1.0K; H 664 |
+| FACILITYCURRENTSTATUS | category | 4 | 9 | Active 6.8K; Inactive 3.1K; Plan Review 37 |
+| FACILITYNAME | who | 3.7K | 9 | MEMORIAL HERMANN HOSPITAL 102; MINUTE MAID PARK - ARAMAR 90; LYNDON B. JOHNSON GENERAL 76; MEMORIAL HERMANN NORTHWES 75 |
+| FACILITYSTREETNUMBER | who | 2.6K | 137 | 1800 103; 6411 101; 5656 76; 1635 74 |
+| FACILITYSTREETNUMBERFRACTION | category | 11 | 10.0K | 1/2 33; C 4; AA 2; A 1 |
+| FACILITYSTREETPREFIX | category | 5 | 8.5K | W 604; S 450; N 340; E 109 |
+| FACILITYSTREET | who | 911 | 66 | WESTHEIMER 398; RICHMOND 169; MAIN 169; SHEPHERD 156 |
+| FACILITYSTREETTYPE | category | 19 | 6.5K | RD 824; DR 706; FWY 570; BLVD 495 |
+| FACILITYSTREETSUFFIX | category | 5 | 9.9K | E 57; S 39; N 24; W 13 |
+| FACILITYSUITE | who | 292 | 8.5K | A 284; B 120; 100 69; C 60 |
+| FACILITYFULLSTREETADDRESS | who | 3.9K | 69 | 6411 FANNIN 102; 1800 CONGRESS 90; 5656 KELLEY 76; 1635 NORTH LOOP WEST 75 |
+| FACILITYCITY | category | 20 | 16 | HOUSTON 9.5K; KINGWOOD 249; HUMBLE 97; Houston 51 |
+| FACILITYSTATE | category | 2 | 11 | TX 10.0K |
+| FACILITYZIP | who | 220 | 42 | 77339 284; 77057 272; 77002 242; 77030 235 |
+| FACILITYMAILINGADDRESS1 | who | 87 | 9.7K | Willowbrook3281-DIETITIAN 19; msolid59@yahoo.com 16; 10810 S POST OAK RD 12; PO Box1958 10 |
+| FACILITYMAILINGADDRESS2 | category | 7 | 10.0K | SUITE A 9; S. Marshall, General Food 4; www.elpollobravo.com 3; 281-221-3550-RANDY 2 |
+| FACILITYMAILINGCITY | category | 33 | 3.3K | HOUSTON 6.2K; KINGWOOD 162; HOUSTON, 133; HUMBLE 75 |
+| FACILITYMAILINGSTATE | state | 7 | 11 | TX 3.4K; CA 6; KY 6; NY 3 |
+| FACILITYMAILINGZIP | who | 134 | 3.3K | 77339 206; 77057 200; 77074 176; 77030 171 |
+| FACILITYPHONE | who | 280 | 9.0K | (614) 314-9676 30; (713) 704-3682 29; (713) 875-4918 28; (713) 566-5239 25 |
+| FACILITYDISTRICT | category | 38 | 9 | 505 605; 407 530; 103 395; 203 392 |
+| FACILITYNONPROFIT | category | 3 | 9 | NO 7.7K; YES 2.2K |
+| FACILITYOWNERID | who | 367 | 6.6K | 100007 945; 100006 144; 100009 135; 100034 115 |
+| FACILITYOWNER | who | 1.7K | 3.1K | HOUSTON I.S.D. 949; MEMORIAL HERMANN HEALTHCA 161; KROGER TEXAS LP 144; SPRING BRANCH I.S.D. 135 |
+| FACILITYLICENSETAG | who | 261 | 9.4K | 51C ZV7 11; 31Z-KGN 10; 11Z-GWR 9; 837-64C 8 |
+| FACILITYVEHICLE | who | 151 | 7.8K | SURVEY DONE 1.6K; CUSTOM TRAILER 120; TRAILER CUSTOM 64; TRAILER 44 |
+| FACILITYCOMMISSIONARYNO | who | 87 | 9.8K | 403303 11; 983819 10; 988044 8; 207311 6 |
+| ESTABLISHMENTTYPECODE | other | 59 | 29 | 001 2.4K; 002 1.8K; 031 1.2K; 091 911 |
+| ESTABLISHMENTTYPE | category | 45 | 61 | Restaurant - Full Service 2.4K; Restaurant - Single Servi 1.8K; School Cafeteria - Interm 1.2K; Retail Food Market - Mult 911 |
+| CUISINE | category | 33 | 6.5K | MEXICAN / HISPANIC 591; LOCAL / CONTINENTAL 554; BURGERS, ETC. 334; BEVERAGES, ETC. 225 |
+| FACILITYRISKSCORE | category | 13 | 11 | 0 2.6K; 7 1.6K; 6 1.3K; 8 1.2K |
+| FACILITYRISKPROFILE | category | 4 | 9 | HIGH 6.6K; MEDIUM 2.3K; LOW 1.1K |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 22:43:51.14595 10.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | b1f8c082-4537-4bc8-8c68-6 10.0K |
+| SRC_SHA256 | who | 1 | 0 | b3df0490b02ed09140397caad 10.0K |

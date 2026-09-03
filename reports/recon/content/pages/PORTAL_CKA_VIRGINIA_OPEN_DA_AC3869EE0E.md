@@ -1,0 +1,397 @@
+# PORTAL_CKA_VIRGINIA_OPEN_DA_AC3869EE0E
+
+rows 10.0K  columns 40  scan 5.2s
+
+roles: amount 3, audit 2, category 3, date 2, id 6, other 16, state 1, who 8
+
+## when
+
+DATE_TRAN
+  1900       213  #########
+  1910         1  
+  1920         1  
+  1951         1  
+  1953         1  
+  1954         2  
+  1955         3  
+  1956         4  
+  1957         2  
+  1958         2  
+  1959         7  
+  1960         4  
+  1961         5  
+  1962         8  
+  1963        11  
+  1964         7  
+  1965         9  
+  1966        11  
+  1967         9  
+  1968         8  
+  1969         9  
+  1970        11  
+  1971        17  #
+  1972        14  #
+  1973        22  #
+  1974        24  #
+  1975        20  #
+  1976        21  #
+  1977        29  #
+  1978        28  #
+  1979        34  #
+  1980        15  #
+  1981        11  
+  1982        18  #
+  1983        32  #
+  1984        26  #
+  1985        41  ##
+  1986        70  ###
+  1987        68  ###
+  1988        69  ###
+  1989        53  ##
+  1990        54  ##
+  1991        52  ##
+  1992        65  ###
+  1993        84  ###
+  1994        66  ###
+  1995        76  ###
+  1996        77  ###
+  1997       103  ####
+  1998       108  ####
+  1999       103  ####
+  2000       110  ####
+  2001       140  ######
+  2002       143  ######
+  2003       140  ######
+  2004       149  ######
+  2005       205  ########
+  2006       195  ########
+  2007       153  ######
+  2008       181  #######
+  2009       166  #######
+  2010       127  #####
+  2011       155  ######
+  2012       188  ########
+  2013       226  #########
+  2014       227  #########
+  2015       318  #############
+  2016       330  #############
+  2017       360  ###############
+  2018       438  ##################
+  2019       412  #################
+  2020       478  ###################
+  2021       680  ###########################
+  2022       678  ###########################
+  2023       545  ######################
+  2024       612  #########################
+  2025       744  ##############################
+  2026       171  #######
+
+INGESTED_AT
+  2026     10.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| AC | 10.0K | 0 | 0.22 | 8.19 | 223.63 | 7.0K |
+| SHAPE__AREA | 10.0K | 15.05 | 1.5K | 55.2K | 1.44M | 46.17M |
+| SHAPE__LENGTH | 10.0K | 15.52 | 166.10 | 1.4K | 7.1K | 2.18M |
+
+## who
+
+OWNER_N by rows
+        40  STAUNTON, CITY OF                       
+        20  RIVER ROCK PROPERTIES LLC               
+        18  PAD RENTALS, LLC                        
+        17  AUGUSTA OPPORTUNITIES, INC
+        17  THREE HENS, LLC
+        15  ELAINE D CRAWFORD FAMILY LLC            
+        14  D.R. HORTON, INC
+        14  STAUNTON MACHINE WORKS, INC             
+        12  PARK HILL APARTMENTS LLC                
+        12  ROBERTS, ROY D III & BARBARA A          
+        11  THE MACKER LLC                          
+        11  BOOTH, DARIS
+        11  MARY BALDWIN COLLEGE                    
+        10  KISER, E REECE                          
+         9  CREEK VILLAGE INVESTMENTS LLC           
+         9  AREHART FAMILY INVESTMENTS, L.L.C.      
+         9  STAUNTON AUGUSTA PROPERTIES, LLC
+         8  SCHOOL BOARD OF THE CITY OF STAUNTON
+         8  MASK, JACK S & CHARLOTTE A              
+         8  JACE PROPERTIES, LLC                    
+
+OWNER_N by dollars
+       2.93M       40 rows  STAUNTON, CITY OF                       
+       2.29M        5 rows  SCHREIBER, ELIZABETH M                  
+       1.23M        3 rows  SHENANDOAH VISTAS DEVELOPMENT, LLC
+       1.16M        8 rows  APPOMATTOX LIME CO,INC                  
+      883.0K        2 rows  FORD, CAROLYN RUSSELL MOORE; TRUSTEE
+      804.0K        4 rows  THOMPSON, PARK W & SANDRA H             
+      762.4K        3 rows  MILL POND STOCK FARM LLC                
+      566.2K        3 rows  HARRIET ECHOLS HANGER REVOCABLE TR      
+      436.0K        1 rows  SHENANDOAH VISTAS DEVELOPMENT, LLC      
+      426.4K        1 rows  IRIS REALTY HOLDINGS LLC                
+      389.4K        1 rows  MOCOMP, INC
+      372.7K        2 rows  HEREFORD, WILLIAM LEE                   
+      367.6K        2 rows  DAHL, ALLEN P & DAHL, CAROLYN M ETAL
+      326.4K        1 rows  2300 MM PROJECT 1 LLC & 2300 MM PROJECT 2 LLC & 2300 MM PROJ
+      278.4K        1 rows  SHENANDOAH PROPERTIES L.C.              
+      275.8K       11 rows  MARY BALDWIN COLLEGE                    
+      273.6K        1 rows  HARDY, HENRY J II & MARY JANE           
+      265.1K        1 rows  ROBSON, STEPHANIE LEE                   
+      243.3K        2 rows  SPURLOCK, HAROLD N; TRUSTEE & SPURLOCK, KATHERINE C; TRUSTEE
+      231.9K        1 rows  MOORE, LEWIS W                          
+
+OWNER_A by rows
+        53  2903 N AUGUSTA ST,  STAUNTON, VA 24401
+        40  P O BOX 58,  STAUNTON, VA 24402
+        31  P O BOX 232,  WEYERS CAVE, VA 24486
+        24  608 RICHMOND AVE,  STAUNTON, VA 24401
+        22  P O BOX 642,  STUARTS DRAFT, VA 24477
+        20  10 TERRY CT,  STAUNTON, VA 24401
+        18  622 A ST,  STAUNTON, VA 24401
+        18  417 N COALTER ST,  STAUNTON, VA 24401
+        15  19 E FREDERICK ST,  STAUNTON, VA 24401
+        14  216 TRINITY POINT RD,  SWOOPE, VA 24479
+        12  P.O. BOX 2648,  STAUNTON, VA 24402
+        12  P O BOX 1159,  VERONA, VA 24482
+        12  2410 BARE ST, APT 1 STAUNTON, VA 24401
+        11  PO BOX 388,  STAUNTON, VA 24402-0388
+        11  P O BOX 2442,  STAUNTON, VA 24402
+        11  P O BOX 1500,  STAUNTON, VA 24402
+        11  116 W BEVERLEY ST,  STAUNTON, VA 24401
+        11  DEPT OF TRANSPORTATION, P O BOX 2249 STAUNTON, VA 24402
+        11  P O BOX 3212,  STAUNTON, VA 24402
+        10  223 SMOKY ROW RD,  STAUNTON, VA 24401
+
+OWNER_A by dollars
+       2.75M       40 rows  P O BOX 58,  STAUNTON, VA 24402
+       2.33M        6 rows  268 BELLS LN,  STAUNTON, VA 24401
+       1.66M        3 rows  610 W RIO RD,  CHARLOTTESVILLE, VA 22901
+      850.1K        5 rows  685 NEW HOPE RD,  STAUNTON, VA 24401
+      831.0K        7 rows  C/O GORDON WILLIS,JR, P O BOX 8425 ROANOKE, VA 24014
+      764.7K        4 rows  35 WOODLAND DR,  STAUNTON, VA 24401
+      566.2K        3 rows  P O BOX 1268,  STAUNTON, VA 24402-1268
+      546.8K       53 rows  2903 N AUGUSTA ST,  STAUNTON, VA 24401
+      523.5K        1 rows  272 BELLS LANE,  STAUNTON, VA 24401-9022
+      464.7K        2 rows  44 MORRIS MILL RD,  STAUNTON, VA 24401
+      431.3K        2 rows  502 WILLOUGHBY LANE,  STAUNTON, VA 24401
+      389.4K        1 rows  401 COMMERCE TD STE 403,  STAUNTON, VA 24401-4433
+      383.4K        5 rows  1350 COMMERCE RD,  STAUNTON, VA 24401
+      376.1K       11 rows  116 W BEVERLEY ST,  STAUNTON, VA 24401
+      359.5K        1 rows  272 BELLS LN,  STAUNTON, VA 24401-9022
+      327.8K        1 rows  ROCKYDALE QUARRIE CORP, 2343 HIGHLAND FARM RD NW, ROANOKE, V
+      304.5K        6 rows  P O BOX 388,  STAUNTON, VA 24402
+      275.8K       11 rows  P O BOX 1500,  STAUNTON, VA 24402
+      273.6K        1 rows  1861 SPRINGHILL RD,  STAUNTON, VA 24401
+      265.1K        1 rows  29349 LESTER RD,  LESTER, AL 35647
+
+TRANSFER_D by rows
+       213  1900/01/01 00:00:00+00
+        18  2025/07/03 00:00:00+00
+        16  2011/09/06 00:00:00+00
+        15  2015/05/08 00:00:00+00
+        14  2024/07/01 00:00:00+00
+        12  2024/04/30 00:00:00+00
+        11  2022/01/14 00:00:00+00
+        11  2009/10/08 00:00:00+00
+        11  2015/02/19 00:00:00+00
+        10  2020/10/08 00:00:00+00
+        10  2021/07/16 00:00:00+00
+        10  2025/03/28 00:00:00+00
+        10  2007/09/26 00:00:00+00
+        10  2018/02/15 00:00:00+00
+         9  2024/09/25 00:00:00+00
+         9  2024/03/01 00:00:00+00
+         9  2021/12/29 00:00:00+00
+         9  2025/10/31 00:00:00+00
+         9  2021/06/28 00:00:00+00
+         9  2025/09/11 00:00:00+00
+
+TRANSFER_D by dollars
+       5.49M      213 rows  1900/01/01 00:00:00+00
+       1.66M        3 rows  2012/12/21 00:00:00+00
+       1.22M        3 rows  2018/07/30 00:00:00+00
+      884.7K        3 rows  2022/07/12 00:00:00+00
+      765.2K        4 rows  2004/01/05 00:00:00+00
+      606.6K        2 rows  2001/10/29 00:00:00+00
+      577.3K        4 rows  1988/06/29 00:00:00+00
+      570.5K        6 rows  2015/08/04 00:00:00+00
+      474.9K        8 rows  2023/09/29 00:00:00+00
+      446.9K        3 rows  2005/03/15 00:00:00+00
+      433.2K        3 rows  2012/12/27 00:00:00+00
+      389.4K        1 rows  2023/11/15 00:00:00+00
+      370.1K        4 rows  2018/12/03 00:00:00+00
+      364.8K        4 rows  2012/12/13 00:00:00+00
+      278.4K        1 rows  2004/09/21 00:00:00+00
+      273.6K        1 rows  1998/03/10 00:00:00+00
+      247.1K        6 rows  2025/02/14 00:00:00+00
+      241.5K        9 rows  2021/12/29 00:00:00+00
+      231.9K        1 rows  1987/12/31 00:00:00+00
+      227.7K        6 rows  2022/02/28 00:00:00+00
+
+NEIGHBORHO by rows
+       666  STANTON PARK
+       642  SKYMONT
+       590  HILLCREST
+       481  SELMA
+       393  NEW TOWN
+       337  BASIC WITZ
+       335  SEARS HILL
+       315  GREENSPRING
+       311  WEST END
+       291  BETSY BELL
+       283  COLLEGE PARK
+       269  CEN BUS DIST
+       227  BALDWN ACRES
+       214  GOSPEL HILL
+       199  OVERBROOK
+       192  LOCUST HILL
+       188  OLD LEE HIGH
+       188  PARK HILL
+       170  SUNNYSIDE
+       157  KINZLEY CT
+
+NEIGHBORHO by dollars
+       4.81M       21 rows  BELLS LANE
+       3.75M      103 rows  SPRNGHILL RD
+       2.53M      110 rows  NEW HOPE
+       2.21M       35 rows  BELMONT TRAP
+       2.15M       53 rows  MNTGMRY HALL
+       2.00M      666 rows  STANTON PARK
+       1.60M       74 rows  INGLESIDE
+       1.59M      590 rows  HILLCREST
+       1.52M      128 rows  SHTRLEE MILL
+       1.45M      291 rows  BETSY BELL
+       1.41M      136 rows  VISTA HTS
+       1.25M      315 rows  GREENSPRING
+       1.15M      642 rows  SKYMONT
+       1.12M      110 rows  RICHMOND RD
+      913.6K      227 rows  BALDWN ACRES
+      789.5K       24 rows  UNIFI
+      759.0K      481 rows  SELMA
+      758.3K      192 rows  LOCUST HILL
+      726.3K       52 rows  STATLER BLVD
+      635.9K       98 rows  MT VIEW
+
+## who x when
+
+OWNER_N by DATE_TRAN, dollars = SHAPE__AREA
+  APPOMATTOX LIME CO,INC                    1900:530.2K 1986:56.5K 1988:572.1K
+  AREHART FAMILY INVESTMENTS, L.L.C.        2007:21.6K 2009:3.1K 2016:1.6K
+  AUGUSTA OPPORTUNITIES, INC                2022:22.0K 2025:17.3K
+  BOOTH, DARIS                              2018:1.8K 2019:2.7K 2022:34.5K 2023:756.93 2024:3.1K 2025:1.1K 2026:1.4K
+  CREEK VILLAGE INVESTMENTS LLC             2015:32.3K
+  D.R. HORTON, INC                          2025:11.6K 2026:8.2K
+  ELAINE D CRAWFORD FAMILY LLC              2011:113.6K
+  FORD, CAROLYN RUSSELL MOORE; TRUSTEE      2022:883.0K
+  HARRIET ECHOLS HANGER REVOCABLE TR        2015:566.2K
+  IRIS REALTY HOLDINGS LLC                  2012:426.4K
+  JACE PROPERTIES, LLC                      2013:950.37 2014:5.2K 2015:877.71 2016:2.1K
+  KISER, E REECE                            1990:448.17 1991:971.12 1992:411.36 1994:754.51 1995:1.3K 1996:1.1K 2002:785.64 2003:2.2K 2005:2.6K
+  MARY BALDWIN COLLEGE                      1900:212.7K 1959:5.3K 1988:56.6K 2001:1.2K
+  MASK, JACK S & CHARLOTTE A                1973:624.90 1977:1.1K 1979:4.9K 1980:17.9K 1982:10.2K 1994:932.29 1996:1.8K 2001:834.09
+  MILL POND STOCK FARM LLC                  2004:762.4K
+  MOCOMP, INC                               2023:389.4K
+  PAD RENTALS, LLC                          2002:2.5K 2006:3.5K 2007:5.8K 2008:5.9K 2009:981.23 2010:811.92
+  PARK HILL APARTMENTS LLC                  2009:135.0K
+  RIVER ROCK PROPERTIES LLC                 2004:2.4K 2005:925.05 2006:2.4K 2007:3.7K 2008:9.2K 2009:2.4K
+  ROBERTS, ROY D III & BARBARA A            1986:791.26 1995:877.20 1996:2.4K 1998:1.7K 2001:2.6K 2005:919.16 2009:862.67 2016:1.5K
+  SCHOOL BOARD OF THE CITY OF STAUNTON      2017:120.4K 2025:48.4K
+  SCHREIBER, ELIZABETH M                    2001:606.6K 2012:1.66M 2013:29.6K
+  SHENANDOAH VISTAS DEVELOPMENT, LLC        2005:10.1K 2018:1.21M 2021:6.5K
+  SHENANDOAH VISTAS DEVELOPMENT, LLC        2005:436.0K
+  STAUNTON AUGUSTA PROPERTIES, LLC          2024:201.5K
+  STAUNTON MACHINE WORKS, INC               1976:3.9K 1979:17.8K 1983:2.3K 1991:2.9K 2004:14.6K 2007:7.9K
+  STAUNTON, CITY OF                         1900:2.64M 1954:56.3K 1961:33.89 1963:540.25 1964:365.16 1965:228.08 1968:120.5K 1972:341.97 1975:22.0K 1986:3.9K 1990:2.3K 1991:12.5K 1992:5.2K 1997:3.6K 2001:590.04 2002:3.0K 2003:429.84 2007:60.5K
+  THE MACKER LLC                            2015:14.1K
+  THOMPSON, PARK W & SANDRA H               1900:752.6K 1988:51.5K
+  THREE HENS, LLC                           2020:7.1K 2021:4.0K 2023:264.52 2025:9.8K
+
+OWNER_A by DATE_TRAN, dollars = SHAPE__AREA
+  10 TERRY CT,  STAUNTON, VA 24401          1998:5.6K 1999:17.1K 2002:36.9K 2013:7.7K 2015:6.2K 2018:3.1K 2021:782.96
+  116 W BEVERLEY ST,  STAUNTON, VA 24401    1900:59.8K 1968:120.5K 2017:120.4K 2023:27.0K 2025:48.4K
+  19 E FREDERICK ST,  STAUNTON, VA 24401    1998:295.73 2007:630.86 2013:1.8K 2014:5.2K 2015:877.71 2016:3.7K 2019:384.23 2020:1.1K
+  216 TRINITY POINT RD,  SWOOPE, VA 24479   2015:5.1K 2016:2.0K 2017:4.0K 2019:796.05 2022:1.2K
+  223 SMOKY ROW RD,  STAUNTON, VA 24401     1988:6.4K 1992:613.19 1995:232.05 1998:1.9K 2000:2.8K
+  2410 BARE ST, APT 1 STAUNTON, VA 24401    2009:135.0K
+  268 BELLS LN,  STAUNTON, VA 24401         2001:606.6K 2012:1.66M 2013:29.6K 2026:36.2K
+  272 BELLS LANE,  STAUNTON, VA 24401-9022  2022:523.5K
+  2903 N AUGUSTA ST,  STAUNTON, VA 24401    1991:2.6K 1997:13.2K 2001:4.4K 2002:34.9K 2004:6.1K 2005:31.2K 2006:2.8K 2009:18.7K 2014:4.0K 2015:23.4K 2016:13.4K 2017:11.8K 2018:367.6K 2021:3.4K 2022:3.7K 2025:3.3K 2026:2.3K
+  35 WOODLAND DR,  STAUNTON, VA 24401       1974:2.3K 2004:762.4K
+  401 COMMERCE TD STE 403,  STAUNTON, VA 2  2023:389.4K
+  417 N COALTER ST,  STAUNTON, VA 24401     1999:4.1K 2004:1.2K 2006:318.08 2008:2.6K 2009:1.9K 2011:3.7K 2012:740.20 2013:877 2015:1.5K 2018:8.6K 2022:1.1K
+  44 MORRIS MILL RD,  STAUNTON, VA 24401    2023:464.7K
+  502 WILLOUGHBY LANE,  STAUNTON, VA 24401  2009:4.9K 2012:426.4K
+  608 RICHMOND AVE,  STAUNTON, VA 24401     1976:3.9K 1979:17.8K 1983:2.3K 1991:2.9K 2004:14.6K 2007:29.6K 2009:8.5K 2016:1.6K
+  610 W RIO RD,  CHARLOTTESVILLE, VA 22901  2005:446.1K 2018:1.21M
+  622 A ST,  STAUNTON, VA 24401             1900:794.74 1972:802.89 2011:113.6K 2013:1.5K
+  685 NEW HOPE RD,  STAUNTON, VA 24401      1900:752.6K 1988:51.5K 2016:46.1K
+  C/O GORDON WILLIS,JR, P O BOX 8425 ROANO  1900:202.4K 1986:56.5K 1988:572.1K
+  DEPT OF TRANSPORTATION, P O BOX 2249 STA  1900:5.9K 1987:2.2K 1989:1.0K 1998:5.8K 2001:2.4K 2005:1.9K
+  P O BOX 1159,  VERONA, VA 24482           1986:791.26 1995:877.20 1996:2.4K 1998:1.7K 2001:2.6K 2005:919.16 2009:862.67 2016:1.5K
+  P O BOX 1268,  STAUNTON, VA 24402-1268    2015:566.2K
+  P O BOX 1500,  STAUNTON, VA 24402         1900:212.7K 1959:5.3K 1988:56.6K 2001:1.2K
+  P O BOX 232,  WEYERS CAVE, VA 24486       2004:2.4K 2005:925.05 2006:2.4K 2007:3.7K 2008:9.2K 2009:3.0K 2012:707.15 2013:1.1K 2014:3.1K 2015:1.7K 2016:2.4K 2017:1.2K 2024:923.52
+  P O BOX 2442,  STAUNTON, VA 24402         1900:6.0K 1979:13.0K 1983:4.1K 1996:100.3K 2006:77.32 2008:4.1K 2013:82.52 2015:2.5K 2022:18.7K
+  P O BOX 3212,  STAUNTON, VA 24402         1988:2.0K 1990:448.17 1991:971.12 1992:411.36 1994:754.51 1995:1.3K 1996:1.1K 2002:785.64 2003:2.2K 2005:2.6K
+  P O BOX 58,  STAUNTON, VA 24402           1900:2.58M 1954:56.3K 1961:33.89 1963:540.25 1964:365.16 1965:228.08 1972:341.97 1975:22.0K 1986:3.9K 1990:2.3K 1991:12.5K 1992:5.2K 1997:3.6K 2001:590.04 2002:3.0K 2003:429.84 2007:60.5K 2008:2.1K 2012:217.50
+  P O BOX 642,  STUARTS DRAFT, VA 24477     1900:1.1K 2002:2.5K 2005:859.69 2006:5.1K 2007:5.8K 2008:8.0K 2009:981.23 2010:811.92
+  P.O. BOX 2648,  STAUNTON, VA 24402        2022:173.3K 2025:8.9K
+  PO BOX 388,  STAUNTON, VA 24402-0388      2015:14.1K
+
+## where
+
+STATE: VA 9.4K, VA  219, MD 53, CA 33, FL 30, TX 25, PA 23, NY 20, NC 20, NJ 18, GA 15, SC 12
+
+## what
+
+IN_FLOODZONE: NO 93%, YES 7%
+
+VACANT: No 92%, Yes 8%
+
+TAXDUE: N 95%, Y 5%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | id | 10.0K | 0 | 10001 50; 10000 50; 9999 50; 9998 50 |
+| PARCEL_ID | id | 9.9K | 1 | 7362 50; 12061 50; 101863 50; 11356 50 |
+| BUILDING_N | other | 1.6K | 1 | 102 63; 100 63; 101 61; 107 58 |
+| APT_NO | other | 105 | 9.5K | A 249; B 31; C 15; D 8 |
+| STREET_NO | other | 520 | 1 | W BEVERLEY ST 247; N AUGUSTA ST 203; SPRINGHILL RD 201; N COALTER ST 132 |
+| USE_CODE | other | 70 | 1 | DWELLING, SINGLE-FAMILY 7.3K; RESIDENTIAL LAND (LOW DEN 1.0K; GENERAL BUSINESS DISTRICT 238; CONDOMINIUM 175 |
+| NEIGHBORHO | who | 70 | 8 | STANTON PARK 666; SKYMONT 642; HILLCREST 590; SELMA 481 |
+| ZONING | other | 71 | 0 | R2 4.0K; R3 2.1K; R1 1.2K; R4 969 |
+| MAP_INFO | id | 10.1K | 0 | 2604 W BEVERLEY ST 50; 423 CAMPBELL ST 50; 25 N NEW ST 50; 840 COMMERCE RD 50 |
+| LABEL_FLD | other | 2.0K | 0 | 102 62; 107 58; 105 58; 101 57 |
+| PARCEL_IDA | id | 9.9K | 0 | 7362 50; 12061 50; 101863 50; 11356 50 |
+| O_ACCT | other | 8.5K | 0 | 1940000 71; 1150314 61; 1151385 59; 1145756 53 |
+| OWNER_N | who | 8.6K | 2 | STAUNTON, CITY OF         72; AUGUSTA OPPORTUNITIES, IN 61; D.R. HORTON, INC 59; CREEK VILLAGE INVESTMENTS 53 |
+| OWNER_A | who | 8.2K | 1 | P O BOX 58,  STAUNTON, VA 72; 2903 N AUGUSTA ST,  STAUN 62; P.O. BOX 2648,  STAUNTON, 56; P.O. BOX 2648, STAUNTON,  53 |
+| STREET | other | 7.8K | 1 | P O BOX 58 72; 2903 N AUGUSTA ST 69; P.O. BOX 2648 62; PO BOX 388 56 |
+| CITY | who | 367 | 1 | STAUNTON 8.5K; WAYNESBORO 128; VERONA 82; CHARLOTTESVILLE 73 |
+| STATE | state | 49 | 2 | VA 9.4K; VA  219; MD 53; CA 33 |
+| ZIP | other | 775 | 4 | 24401 7.8K; 24402 341; 22980 123; 24482 81 |
+| TRANSFER_D | who | 5.0K | 1 | 1900/01/01 00:00:00+00 213; 2025/07/03 00:00:00+00 62; 2015/05/08 00:00:00+00 54; 2025/07/21 00:00:00+00 52 |
+| LOC_DESC | other | 7.9K | 35 | BLK B LOT 5               50; LOT 20                    50; UNIT 25 SUBMITTED LAND OF 50; PARCEL 3, LITTLE FIELDS A 50 |
+| LEGAL_DESC | other | 7.9K | 36 | BLK B LOT 5               50; LOT 20                    50; UNIT 25 SUBMITTED LAND OF 50; PARCEL 3, LITTLE FIELDS A 50 |
+| P_ADDRESS | id | 10.0K | 0 | 2604 W BEVERLEY ST        50; 423 CAMPBELL ST           50; 25 N NEW ST               50; 840 COMMERCE RD           50 |
+| IN_FLOODZONE | category | 2 | 0 | NO 9.3K; YES 732 |
+| FLOODZONE_URL | other | 1 | 0 | http://www.codepublishing 10.0K |
+| DATE_TRAN | date | 4.9K | 0 | 1/1/1900 213; 7/3/2025 62; 5/8/2015 54; 7/21/2025 52 |
+| GLOBALID | id | 10.0K | 0 | 79a2f366-aa73-4fdd-87fc-d 50; 88c66519-f8dd-4843-ba99-4 50; a214a1fb-ad09-499b-b8ee-5 50; 4533bdd3-b6cb-401a-a325-5 50 |
+| SQFT | other | 1.7K | 0 | 7492 323; 5967 293; 4965 173; 5183 135 |
+| AC | amount | 1.5K | 2 | 0.172 326; 0.137 293; 0.114 173; 0.119 140 |
+| LOTS_SPLITS | who | 69 | 0 | 1 8.9K; 2 631; 3 104; 1/2 of a lot 91 |
+| P_CITY | who | 1 | 0 | STAUNTON 10.0K |
+| P_STATE | other | 1 | 0 | VA 10.0K |
+| P_ZIP | other | 1 | 0 | 24401 10.0K |
+| VACANT | category | 2 | 0 | No 9.2K; Yes 843 |
+| TAXDUE | category | 2 | 0 | N 9.5K; Y 500 |
+| EPL | other | 1 | 0 | Tax 10.0K |
+| SHAPE__AREA | amount | 9.9K | 0 | 991.875 50; 3746.90625 50; 248.5390625 50; 21770.81640625 50 |
+| SHAPE__LENGTH | amount | 9.9K | 0 | 141.210493467518 50; 279.085640401219 50; 70.936311277981 50; 575.58412748377 50 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 22:25:58.21005 10.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | fb2bf015-e4f9-42f4-84b3-2 10.0K |
+| SRC_SHA256 | who | 1 | 0 | e3f86db0888ef74d3fda31b44 10.0K |

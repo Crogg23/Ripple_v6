@@ -1,0 +1,617 @@
+# PORTAL_ARC_OPEN_DATA_DC_D359158BC8
+
+rows 733  columns 184  scan 7.7s
+
+roles: amount 2, audit 2, category 85, date 2, empty 47, other 31, who 16
+
+## when
+
+PRODUCTION_DATE
+  2023       733  ##############################
+
+INGESTED_AT
+  2026       733  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| XCOORD | 733 | 390.8K | 397.9K | 406.3K | 407.5K | 292.07M |
+| YCOORD | 733 | 128.3K | 137.8K | 144.7K | 146.1K | 101.08M |
+
+## who
+
+COMPANY_NAME by rows
+         6  FANNIE MAE
+         5  GREAT CLIPS
+         4  DRYBAR
+         3  PR AT PARTNERS
+         3  BANG SALON
+         2  IZZY SALON
+         2  YELP DALLAS' DRYBAR BLOWOUT
+         2  SHE'S THE BARBER
+         2  MIMOSA SALON
+         2  SUPERCUTS
+         2  BARBER & ASSOC LLC
+         2  HAIR DESIGNS BY NORAH CRITZOS
+         2  MISCHO BEAUTY LLC
+         2  DUPONT THREADING
+         2  SALON L'EAU
+         2  ELOCIN NICOLE HAIR COLLECT LLC
+         1  ROYAL SCENT
+         1  MELISSA'S BEAUTY SALON
+         1  SHOP
+         1  BASIC NECESSITY HAIR SALON
+
+COMPANY_NAME by dollars
+       2.39M        6 rows  FANNIE MAE
+       2.00M        5 rows  GREAT CLIPS
+       1.58M        4 rows  DRYBAR
+       1.19M        3 rows  BANG SALON
+       1.18M        3 rows  PR AT PARTNERS
+      801.8K        2 rows  SHE'S THE BARBER
+      800.1K        2 rows  MISCHO BEAUTY LLC
+      800.1K        2 rows  ELOCIN NICOLE HAIR COLLECT LLC
+      795.6K        2 rows  BARBER & ASSOC LLC
+      795.4K        2 rows  HAIR DESIGNS BY NORAH CRITZOS
+      793.6K        2 rows  DUPONT THREADING
+      792.6K        2 rows  MIMOSA SALON
+      791.9K        2 rows  YELP DALLAS' DRYBAR BLOWOUT
+      790.6K        2 rows  IZZY SALON
+      789.8K        2 rows  SALON L'EAU
+      789.3K        2 rows  SUPERCUTS
+      407.5K        1 rows  LUV BUGGS NATRL HAIR CARE LLC
+      407.3K        1 rows  HIGH END BEAUTY AESTHETICS LLC
+      406.9K        1 rows  LOCS & STYLES BY HAIRPERFECT
+      406.9K        1 rows  A W ESTHETICS LLC
+
+CONTACT_NAME by rows
+       272  nan
+         3  NANCY SPOMER
+         3  DELENO JARRETT
+         2  BLANE SOPHER
+         2  CAROLINE WIENTZEN
+         2  ADELINE KONE
+         2  GERARD PELAYO
+         2  VERNON MARTIN
+         1  BETTIE WILLIAMSON
+         1  SILVIO TORRES
+         1  JOSE FIGUEROA
+         1  MARU AROSTEGUI
+         1  KATE BENGAARD
+         1  GEORGE GAGINIS
+         1  HELEN MCINTOSH
+         1  COURTNEY BARFIELD
+         1  ERNEST MYERS
+         1  MOZEL BEENE
+         1  F MCLEAN
+         1  SERKAN SUT
+
+CONTACT_NAME by dollars
+     108.50M      272 rows  nan
+       1.20M        3 rows  DELENO JARRETT
+       1.19M        3 rows  NANCY SPOMER
+      798.4K        2 rows  VERNON MARTIN
+      795.2K        2 rows  ADELINE KONE
+      790.4K        2 rows  GERARD PELAYO
+      788.6K        2 rows  CAROLINE WIENTZEN
+      784.8K        2 rows  BLANE SOPHER
+      407.5K        1 rows  DAVID PENN
+      406.9K        1 rows  TENISHA H GILMORE
+      406.9K        1 rows  ASHLEY D WILLIAMS
+      406.8K        1 rows  LINDA WESTPOINT
+      406.7K        1 rows  BRANDON MILLER
+      406.3K        1 rows  ISAIAH PALMER
+      406.3K        1 rows  KEYARA DOWDLE
+      406.2K        1 rows  DASHE ROBINSON
+      406.1K        1 rows  ANTHONY STOKES
+      406.0K        1 rows  FADOU OUEDAOGO
+      405.6K        1 rows  ARTHUR LEE
+      405.4K        1 rows  SHERI JOHNSON
+
+FIRST_NAME by rows
+       272  nan
+         5  DAVID
+         4  LINDA
+         3  NANCY
+         3  MARIA
+         3  GEORGE
+         3  MICHAEL
+         3  DELENO
+         2  JAMES
+         2  PATRICK
+         2  JANICE
+         2  JOSE
+         2  VERNON
+         2  DEBBIE
+         2  ANN
+         2  JEAN
+         2  ADELINE
+         2  TONI
+         2  CAROLINE
+         2  TRACY
+
+FIRST_NAME by dollars
+     108.50M      272 rows  nan
+       1.99M        5 rows  DAVID
+       1.60M        4 rows  LINDA
+       1.20M        3 rows  DELENO
+       1.19M        3 rows  NANCY
+       1.19M        3 rows  MARIA
+       1.19M        3 rows  MICHAEL
+       1.18M        3 rows  GEORGE
+      804.5K        2 rows  TONI
+      804.3K        2 rows  EUGENE
+      804.2K        2 rows  ANTHONY
+      803.4K        2 rows  ANGELA
+      802.5K        2 rows  JESSICA
+      801.8K        2 rows  ANN
+      801.4K        2 rows  ASHLEIGH
+      801.4K        2 rows  JAMES
+      801.2K        2 rows  ANDRE
+      801.0K        2 rows  ALEXIS
+      799.7K        2 rows  ANTONIO
+      799.2K        2 rows  KEVIN
+
+LAST_NAME by rows
+       272  nan
+         9  NGUYEN
+         6  LEE
+         6  JONES
+         5  BROWN
+         5  ROBINSON
+         4  DAVIS
+         4  GREEN
+         4  POWELL
+         4  WILLIAMS
+         3  JACKSON
+         3  LAI
+         3  TAYLOR
+         3  SMITH
+         3  MITCHELL
+         3  JARRETT
+         3  SPOMER
+         2  WILSON
+         2  PAYNE
+         2  STEVENS
+
+LAST_NAME by dollars
+     108.50M      272 rows  nan
+       3.58M        9 rows  NGUYEN
+       2.39M        6 rows  LEE
+       2.39M        6 rows  JONES
+       2.01M        5 rows  ROBINSON
+       1.99M        5 rows  BROWN
+       1.61M        4 rows  POWELL
+       1.60M        4 rows  GREEN
+       1.60M        4 rows  WILLIAMS
+       1.60M        4 rows  DAVIS
+       1.20M        3 rows  MITCHELL
+       1.20M        3 rows  TAYLOR
+       1.20M        3 rows  JACKSON
+       1.20M        3 rows  JARRETT
+       1.20M        3 rows  SMITH
+       1.19M        3 rows  SPOMER
+       1.18M        3 rows  LAI
+      807.8K        2 rows  JOHNSON
+      802.0K        2 rows  STEVENS
+      801.9K        2 rows  KING
+
+## who x when
+
+COMPANY_NAME by PRODUCTION_DATE, dollars = XCOORD
+  A W ESTHETICS LLC                         2023:406.9K
+  BANG SALON                                2023:1.19M
+  BARBER & ASSOC LLC                        2023:795.6K
+  BASIC NECESSITY HAIR SALON                2023:397.6K
+  DRYBAR                                    2023:1.58M
+  DUPONT THREADING                          2023:793.6K
+  ELOCIN NICOLE HAIR COLLECT LLC            2023:800.1K
+  FANNIE MAE                                2023:2.39M
+  GREAT CLIPS                               2023:2.00M
+  HAIR DESIGNS BY NORAH CRITZOS             2023:795.4K
+  HIGH END BEAUTY AESTHETICS LLC            2023:407.3K
+  IZZY SALON                                2023:790.6K
+  LOCS & STYLES BY HAIRPERFECT              2023:406.9K
+  LUV BUGGS NATRL HAIR CARE LLC             2023:407.5K
+  MELISSA'S BEAUTY SALON                    2023:397.2K
+  MIMOSA SALON                              2023:792.6K
+  MISCHO BEAUTY LLC                         2023:800.1K
+  PR AT PARTNERS                            2023:1.18M
+  ROYAL SCENT                               2023:404.4K
+  SALON L'EAU                               2023:789.8K
+  SHE'S THE BARBER                          2023:801.8K
+  SHOP                                      2023:398.0K
+  SUPERCUTS                                 2023:789.3K
+  YELP DALLAS' DRYBAR BLOWOUT               2023:791.9K
+
+CONTACT_NAME by PRODUCTION_DATE, dollars = XCOORD
+  ADELINE KONE                              2023:795.2K
+  ANTHONY STOKES                            2023:406.1K
+  ASHLEY D WILLIAMS                         2023:406.9K
+  BETTIE WILLIAMSON                         2023:401.6K
+  BLANE SOPHER                              2023:784.8K
+  BRANDON MILLER                            2023:406.7K
+  CAROLINE WIENTZEN                         2023:788.6K
+  COURTNEY BARFIELD                         2023:397.7K
+  DASHE ROBINSON                            2023:406.2K
+  DAVID PENN                                2023:407.5K
+  DELENO JARRETT                            2023:1.20M
+  ERNEST MYERS                              2023:398.0K
+  F MCLEAN                                  2023:397.9K
+  FADOU OUEDAOGO                            2023:406.0K
+  GEORGE GAGINIS                            2023:392.8K
+  GERARD PELAYO                             2023:790.4K
+  HELEN MCINTOSH                            2023:397.2K
+  ISAIAH PALMER                             2023:406.3K
+  JOSE FIGUEROA                             2023:396.7K
+  KATE BENGAARD                             2023:394.5K
+  KEYARA DOWDLE                             2023:406.3K
+  LINDA WESTPOINT                           2023:406.8K
+  MARU AROSTEGUI                            2023:396.2K
+  MOZEL BEENE                               2023:397.1K
+  NANCY SPOMER                              2023:1.19M
+  SERKAN SUT                                2023:393.9K
+  SILVIO TORRES                             2023:393.8K
+  TENISHA H GILMORE                         2023:406.9K
+  VERNON MARTIN                             2023:798.4K
+  nan                                       2023:108.50M
+
+## what
+
+PRIMARY_ZIP_CODE: 20007 11%, 20011 10%, 20002 10%, 20001 10%, 20009 9%, 20020 9%, 20036 8%, 20019 8%, 20003 7%, 20010 7%, 20032 6%, 20016 5%
+
+METRO_MICRO_INDICATOR: 2 100%, nan 0%
+
+CENSUS_BLOCK_GROUP: 1 44%, 2 37%, 3 9%, 4 9%, 5 0%, 6 0%
+
+MATCH_LEVEL_CODE: P 98%, X 1%, 4 1%, nan 0%
+
+SECONDARY_ZIP_CODE: 20007 11%, 20011 10%, 20002 10%, 20001 10%, 20009 9%, 20020 9%, 20036 8%, 20019 8%, 20003 7%, 20010 7%, 20032 6%, 20016 5%
+
+FAX_NUMBER: nan 98%, 2029124199 0%, 2023388659 0%, 2023644944 0%, 2022932634 0%, 2028823802 0%, 2026251680 0%, 2023421482 0%, 2023155840 0%, 2028359049 0%, 2022930820 0%, 2025436995 0%
+
+TOLL_FREE_NUMBER: nan 98%, 800-297-9152 0%, 833-846-4262 0%, 800-641-9646 0%, 888-527-0011 0%, 800-241-3333 0%, 888-694-6735 0%, 866-270-5110 0%, 800-473-2825 0%, 888-421-1442 0%, 800-543-3448 0%, 866-594-5153 0%
+
+SELECTED_SIC_CODE: 723106 80%, 724101 13%, 723119 5%, 723114 2%, 723113 0%, 723123 0%, 723112 0%, 723118 0%
+
+SELECTED_SIC_DESC: BEAUTY SALONS 80%, BARBERS 13%, SPAS-BEAUTY & DAY 5%, EYELASHES-ARTIFICIAL 2%, ESTHETICIANS 0%, EYEBROW THREADING 0%, HEALTH & BEAUTY CONSULTANTS 0%, AROMATHERAPY 0%
+
+FRANCHISE_SPECIALTY_CODE_1: nan 100%, 199 0%, 228 0%
+
+FRANCHISE_SPECIALTY_DESC_1: nan 100%, GREAT CLIPS 0%, SUPERCUTS 0%
+
+TRUE_FRANCHISE: nan 99%, Y 1%
+
+PRIMARY_SIC_CODE: 723106 80%, 724101 13%, 723119 5%, 723114 2%, 723113 0%, 723123 0%, 723112 0%, 723118 0%
+
+PRIMARY_SIC_DESC: BEAUTY SALONS 80%, BARBERS 13%, SPAS-BEAUTY & DAY 5%, EYELASHES-ARTIFICIAL 2%, ESTHETICIANS 0%, EYEBROW THREADING 0%, HEALTH & BEAUTY CONSULTANTS 0%, AROMATHERAPY 0%
+
+SECONDARY_SIC_CODE_1: nan 91%, 724101 2%, 723106 2%, 723102 1%, 723119 1%, 599917 1%, 799105 1%, 999966 1%, 569928 1%, 723101 0%, 723105 0%, 723112 0%
+
+SECONDARY_SIC_DESC_1: nan 91%, BARBERS 2%, BEAUTY SALONS 2%, MANICURING 1%, SPAS-BEAUTY & DAY 1%, HOT TUBS & SPAS 1%, HEALTH SPAS 1%, FEDERAL GOVERNMENT CONTRACTORS 1%, HAIR GOODS & SUPPLIES-RETAIL 1%, SKIN TREATMENTS 0%, BEAUTY SCHOOLS 0%, HEALTH & BEAUTY CONSULTANTS 0%
+
+SECONDARY_SIC_CODE_2: nan 97%, 724101 1%, 729910 0%, 723119 0%, 599992 0%, 799105 0%, 723122 0%, 651303 0%, 723103 0%, 824903 0%, 723106 0%, 729912 0%
+
+SECONDARY_SIC_DESC_2: nan 97%, BARBERS 1%, HAIR REMOVING 0%, SPAS-BEAUTY & DAY 0%, COSMETICS & PERFUMES-RETAIL 0%, HEALTH SPAS 0%, HAIR CUTTING/STYLING WIGS/HAIR 0%, APARTMENTS 0%, CHILDREN'S HAIR SALON 0%, SCHOOLS-TRADE & VOCATIONAL 0%, BEAUTY SALONS 0%, HAIR WEAVING 0%
+
+SECONDARY_SIC_CODE_3: nan 98%, 729917 0%, 724101 0%, 729913 0%, 609914 0%, 799105 0%, 723101 0%, 723114 0%, 769951 0%, 653111 0%, 723122 0%
+
+SECONDARY_SIC_DESC_3: nan 98%, MASSAGE THERAPISTS 0%, BARBERS 0%, HAIR REPLACEMENT 0%, MONEY ORDER SYSTEMS 0%, HEALTH SPAS 0%, SKIN TREATMENTS 0%, EYELASHES-ARTIFICIAL 0%, BEAUTY SUPPLIES & EQUIPMENT-RE 0%, APARTMENT FINDING & RENTAL SER 0%, HAIR CUTTING/STYLING WIGS/HAIR 0%
+
+SECONDARY_SIC_CODE_4: nan 99%, 723119 0%, 729963 0%, 729912 0%, 999966 0%, 724103 0%
+
+SECONDARY_SIC_DESCRIPTION_4: nan 99%, SPAS-BEAUTY & DAY 0%, MASSAGE 0%, HAIR WEAVING 0%, FEDERAL GOVERNMENT CONTRACTORS 0%, MEN'S HAIRSTYLING 0%
+
+NAICS_CODE: 81211202 80%, 81211101 13%, 81211210 5%, 81211206 2%, 81211204 0%, 81211214 0%, 81211209 0%, 81211201 0%
+
+NAICS_DESC: BEAUTY SALONS 87%, BARBER SHOPS 13%
+
+LOCATION_EMPLOYMENT_SIZE_CODE: A 53%, nan 26%, B 12%, C 6%, D 3%, E 0%, F 0%
+
+LOCATION_EMPLOYMENT_SIZE_DESC: 1-4 53%, nan 26%, 5-9 12%, 10-19 6%, 20-49 3%, 50-99 0%, 100-249 0%
+
+ACTUAL_LOC_EMPLOYMENT_SIZE: nan 27%, 4 19%, 3 19%, 2 15%, 5 4%, 1 4%, 6 3%, 8 3%, 10 2%, 7 2%, 12 1%, 15 1%
+
+MODELED_EMPLOYMENT_SIZE: C 64%, A 35%, nan 0%
+
+LOCATION_SALES_VOLUME_CODE: nan 48%, A 43%, B 6%, C 3%, F 0%
+
+LOCATION_SALES_VOLUME_DESC: nan 48%, LESS THAN $500,000 43%, $500,000-$1 MILLION 6%, $1-2.5 MILLION 3%, $10-20 MILLION 0%
+
+ACTUAL_LOCATION_SALES_VOLUME: nan 55%, 231 16%, 116 6%, 173 5%, 138 4%, 58 3%, 289 2%, 462 2%, 346 2%, 577 2%, 692 2%, 69 2%
+
+SALUTATION: nan 43%, MS 34%, MR 24%
+
+GENDER: nan 38%, F 34%, M 24%, U 4%
+
+TITLE_CODE: nan 38%, 1 35%, ] 15%, 3 9%, C 1%, W 1%, 2 1%, ( 0%, A 0%, > 0%, K 0%, ) 0%
+
+TITLE_DESC: nan 38%, OWNER 35%, OTHER 15%, MANAGER 9%, CEO 1%, EXECUTIVE OFFICER 1%, PRESIDENT 1%, DIRECTOR 0%, CHAIRMAN 0%, GENERAL MANAGER 0%, VICE PRESIDENT 0%, EXECUTIVE 0%
+
+KEY_CODE: VERIFIED 53%, PRE-VERIFIED 47%
+
+INFOUSA_SUBSIDIARY_ID: nan 100%, 759767290 0%
+
+INFOUSA_PARENT_ID: nan 99%, 425729251 0%, 446236176 0%, 725459913 0%, 725456033 0%, 378377048 0%, 007566292 0%
+
+HQ_BRANCH_CODE: 9 99%, 2 1%
+
+HQ_BRANCH_DESC: SINGLE LOCATION 99%, BRANCH 1%
+
+PUBLIC_COMPANY_INDICATOR_CODE: 0 100%, 2 0%
+
+INDIVIDUAL_FIRM_CODE: 2 99%, nan 0%, 1 0%
+
+INDIVIDUAL_FIRM_DESC: FIRM 99%, nan 0%, INDIVIDUAL 0%
+
+YEAR_FIRST_IN_YELLOW_PAGES: 2023 42%, 2021 12%, 2022 12%, 1984 6%, 2013 5%, 2016 4%, 2015 4%, 2012 3%, 2006 3%, 2020 3%, 2014 3%, 2018 3%
+
+YEAR_ESTABLISHED: nan 90%, 2021 2%, 2022 2%, 2019 1%, 2012 1%, 2008 1%, 2002 1%, 2018 1%, 2015 1%, 2017 1%, 2016 1%, 2004 1%
+
+YELLOW_PAGE_CODE: nan 64%, 07204 21%, 06508 7%, 39708 5%, 10110 1%, 77917 1%, 79615 1%, 39629 1%, 23599 0%
+
+TRANSACTION_DATE: 202308 29%, 202307 20%, 202206 11%, 202306 9%, 202202 6%, 202303 5%, 202309 4%, 202104 4%, 202304 3%, 202107 3%, 202205 3%, 202305 2%
+
+CALL_STATUS_CODE: nan 50%, M 13%, A 12%, R 7%, S 6%, W 5%, C 4%, B 2%, N 1%, P 1%, F 0%, D 0%
+
+CALL_STATUS_DESC: nan 50%, ANSWERING MACHINE 13%, NO ANSWER 12%, CONAME/PHONE VERIFY 7%, MISCELLANEOUS 6%, EMP COUNT VERIFIED 5%, CONTACT/EMP VERIFIED 4%, BUSY 2%, REFUSAL 1%, CONTACT VERIFIED 1%, FOREIGN LANGUAGE 0%, DISCONNECT 0%
+
+CREDIT_SCORE_CODE: C+ 37%, U 28%, C 18%, B 15%, B+ 2%
+
+CREDIT_SCORE_DESC: 75 TO 79 37%, UNKNOWN - LESS THAN 70 28%, 70 TO 74 18%, 80 TO 84 15%, 85 TO 89 2%
+
+ACTUAL_CREDIT_SCORE: 53 26%, 76 20%, 73 15%, 75 11%, 78 7%, 80 7%, 81 5%, 55 2%, 79 2%, 71 2%, 70 2%, 84 2%
+
+AD_SIZE_CODE: nan 64%, B 28%, A 8%
+
+AD_SIZE_DESC: nan 64%, BOLD 28%, REGULAR 8%
+
+POPULATION_CODE: 7 52%, 8 22%, 6 15%, 5 6%, 3 2%, 4 1%, 1 1%, 0 1%, nan 0%
+
+POPULATION_DESC: 20,000 - 49,999 52%, 50,000 OR MORE 22%, 10,000 - 19,999 15%, 5,000 - 9,999 6%, 1,000 - 2,499 2%, 2,500 - 4,999 1%, LESS THAN 250 1%, UNKNOWN 1%, nan 0%
+
+WORK_AT_HOME_BUSINESS: nan 88%, C 12%
+
+OWN_LEASE_CODE: nan 99%, L 1%, U 0%, O 0%
+
+SQUARE_FOOTAGE_CODE: nan 48%, 2 20%, 1 14%, 3 9%, 5 3%, 4 2%, 6 1%, 7 1%, 8 0%
+
+SQUARE_FOOTAGE_DESC: nan 48%, 1,500 - 2,499 20%, 1 - 1,499 14%, 2,500 - 4,999 9%, 10,000 - 19,999 3%, 5,000 - 9,999 2%, 20,000 - 39,999 1%, 40,000 - 99,999 1%, 100,000+ 0%
+
+ACTNUMBUS_MULTITENANT_LOCATION: nan 61%, 1 15%, 2 12%, 3 5%, 4 3%, 6 1%, 16 1%, 7 1%, 14 1%, 13 1%, 5 1%, 10 1%
+
+MULTITENANT_CODE: nan 70%, A 18%, C 10%, B 3%
+
+MULTITENANT_DESC: nan 70%, 2 - 4 18%, 10+ 10%, 5 - 9 3%
+
+FLEET_CODE: nan 98%, A 2%, B 0%
+
+FLEET_DESCRIPTION: nan 98%, 1-10 VEHICLES (LOCATION & CORP 2%, 11-19 VEHICLES (LOCATION & COR 0%
+
+AFFLUENT_NEIGHBORHOOD_LOCATION: N 71%, Y 29%
+
+BIG_BUSINESS: N 100%, Y 0%
+
+FEMALE_OWNER_EXEC: N 97%, Y 3%
+
+BUSINESS_SIZE_CHANGE: nan 56%, C 43%, - 1%, + 1%, I 0%, G 0%, S 0%
+
+HIGHINCOMEEXEC: N 96%, Y 4%
+
+HIGHTECHBUSINESS: N 100%, Y 0%
+
+MEDIUM_SIZE_BUS_ENTREPRENEUR: N 95%, Y 5%
+
+SMALL_BUSINESS_ENTREPRENEUR: N 74%, Y 26%
+
+TERTIARY_ADDRESS: nan 97%, L'ENFANT PLZ 0%, GEORGETOWN BLDG 0%, FAIRFAX VILLAGE SHOPPING CTR 0%, CONNECTICUT BLDG 0%, THE YARDS 0%, MAZZA GALLERIE 0%, MCPHERSON BLDG 0%, NATIONAL PRESS BLDG 0%, GEORGETOWN CT 0%, DUPONT MEDICAL BLDG 0%, RAILWAY EXPRESS BLDG 0%
+
+TERTIARY_CITY: nan 94%, WASHINGTON 6%
+
+TERTIARY_STATE: nan 94%, DC 6%
+
+TERTIARY_ZIP_CODE: nan 95%, 20036 1%, 20007 1%, 20024 1%, 20005 1%, 20004 0%, 20020 0%, 20003 0%, 20002 0%, 20037 0%, 20015 0%, 20045 0%
+
+TERTIARY_ZIP10: nan 95%, 20036 1%, 20007 1%, 20024 1%, 20005 1%, 20004 0%, 20020 0%, 20003 0%, 20002 0%, 20037 0%, 20015 0%, 20045 0%
+
+WHITE_COLLAR_PERCENTAGE: 16 87%, 8 13%
+
+BOOKNO: nan 35%, 11360 35%, EPF 9%, DAX 4%, DPP 4%, CDC 3%, OYP 3%, 11361 2%, TEL 2%, WMD 1%, BUS 1%, DPN 1%
+
+IMPEXPCD: nan 100%, I 0%
+
+CONTACT_ETHNIC_CODE: nan 40%, 00 25%, E5 15%, H5 5%, S3 3%, B5 3%, VN 2%, IT 2%, FR 2%, W4 1%, DE 1%, J4 1%
+
+CONTACT_ETHNIC_DESCRIPTION: nan 40%, UNKNOWN 25%, ENGLISH 15%, HISPANIC 5%, SCOTTISH (SCOTCH) 3%, AFRICAN AMERICAN 2 3%, VIETNAMESE 2%, ITALIAN 2%, FRENCH 2%, WELSH 1%, GERMAN 1%, JEWISH 1%
+
+CURRENT_TRANSACTION_CODE: nan 81%, A 18%, C 1%
+
+WARD: Ward 2 27%, Ward 1 13%, Ward 6 11%, Ward 8 11%, Ward 5 11%, Ward 4 10%, Ward 7 9%, Ward 3 8%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | other | 716 | 0 | 733 4; 732 4; 731 4; 730 4 |
+| CONTACT_NAME | who | 452 | 0 | nan 272; EDDIE GOLDMAN 3; MARISSA ROBINSON 3; JESSICA JACKSON 3 |
+| COMPANY_NAME | who | 720 | 0 | FANNIE MAE 8; GREAT CLIPS 6; YELP DALLAS' DRYBAR BLOWO 5; BOMB ASS HAIR LLC 4 |
+| PRIMARY_ADDRESS | other | 691 | 0 | 4229 FORT DUPONT TER SE 4; 5925 EADS ST NE # 1 4; 727 K ST NE 4; 5747 13TH ST NW 4 |
+| PRIMARY_ZIP_CODE | category | 30 | 0 | 20007 62; 20011 59; 20002 58; 20001 56 |
+| PRIMARY_CITY | who | 1 | 0 | WASHINGTON 733 |
+| PRIMARY_STATE | other | 1 | 0 | DC 733 |
+| PRIMARY_ZIP4 | other | 593 | 0 | nan 13; 3802 6; 6015 4; 6973 4 |
+| PRIMARY_ZIP10 | other | 630 | 0 | 20036-3802 5; 20020 5; 20020-6015 4; 20019-6973 4 |
+| PRIMARY_CARRIER_ROUTE_CODE | other | 83 | 0 | C001 35; C039 28; C020 24; C018 22 |
+| PRIMARY_STATE_CODE | other | 1 | 0 | 11 733 |
+| COUNTY_CODE | other | 1 | 0 | 1 733 |
+| COUNTY_NAME | who | 1 | 0 | DISTRICT OF CO 733 |
+| MSA_CODE | empty | 1 | 733 |  |
+| MSA_DESC | empty | 1 | 733 |  |
+| CBSA_CODE | other | 1 | 0 | 47900 733 |
+| CBSA_DESCR | who | 1 | 0 | WASHINGTON-ARLIN 733 |
+| METRO_MICRO_INDICATOR | category | 2 | 0 | 2 730; nan 3 |
+| CSA_CODE | other | 1 | 0 | 548 733 |
+| CSA_DESCR | who | 1 | 0 | WASHINGTON-BALTIMORE-ARLI 733 |
+| CENSUS_TRACT | other | 157 | 0 | 10700 48; 100 31; 202 21; 5800 19 |
+| CENSUS_BLOCK_GROUP | category | 6 | 0 | 1 326; 2 270; 3 68; 4 64 |
+| MATCH_LEVEL_CODE | category | 4 | 0 | P 715; X 9; 4 6; nan 3 |
+| SECONDARY_ADDRESS | other | 691 | 0 | 4229 FORT DUPONT TER SE 4; 5925 EADS ST NE # 1 4; 727 K ST NE 4; 5747 13TH ST NW 4 |
+| SECONDARY_CITY | who | 1 | 0 | WASHINGTON 733 |
+| SECONDARY_STATE | other | 1 | 0 | DC 733 |
+| SECONDARY_STATE_CODE | other | 1 | 0 | 11 733 |
+| SECONDARY_ZIP_CODE | category | 30 | 0 | 20007 62; 20011 59; 20002 57; 20001 56 |
+| SECONDARY_ZIP4 | other | 593 | 0 | nan 13; 3802 6; 6015 4; 6973 4 |
+| SECONDARY_ZIP10 | other | 631 | 0 | 20036-3802 5; 20020 5; 20020-6015 4; 20019-6973 4 |
+| SECONDARY_CARRIER_ROUTE_CODE | other | 83 | 0 | C001 35; C039 28; C020 24; C018 22 |
+| PHONE | who | 384 | 0 | nan 341; 2023422675 3; 2026241100 3; 2024814394 2 |
+| FAX_NUMBER | category | 22 | 0 | nan 712; 2029124199 1; 2023388659 1; 2023644944 1 |
+| TOLL_FREE_NUMBER | category | 18 | 0 | nan 716; 800-297-9152 1; 833-846-4262 1; 800-641-9646 1 |
+| WEB_SITE | who | 192 | 0 | nan 532; PLACENEARME.ORG 3; BANGSALON.COM 3; MOXEESALON.NET 2 |
+| SELECTED_SIC_CODE | category | 8 | 0 | 723106 585; 724101 92; 723119 33; 723114 17 |
+| SELECTED_SIC_DESC | category | 8 | 0 | BEAUTY SALONS 585; BARBERS 92; SPAS-BEAUTY & DAY 33; EYELASHES-ARTIFICIAL 17 |
+| FRANCHISE_SPECIALTY_CODE_1 | category | 3 | 0 | nan 730; 199 2; 228 1 |
+| FRANCHISE_SPECIALTY_DESC_1 | category | 3 | 0 | nan 730; GREAT CLIPS 2; SUPERCUTS 1 |
+| FRANCHISE_SPECIALTY_CODE_2 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_DESC_2 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_CODE_3 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_DESC_3 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_CODE_4 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_DESC_4 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_CODE_5 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_DESC_5 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_CODE_6 | empty | 1 | 733 |  |
+| FRANCHISE_SPECIALTY_DESC_6 | empty | 1 | 733 |  |
+| TRUE_FRANCHISE | category | 2 | 0 | nan 725; Y 8 |
+| INDUSTRY_SPECIFIC_CODE | empty | 1 | 733 |  |
+| INDUSTRY_SPECIFIC_DESCRIPTION | empty | 1 | 733 |  |
+| PRIMARY_SIC_CODE | category | 8 | 0 | 723106 585; 724101 92; 723119 33; 723114 17 |
+| PRIMARY_SIC_DESC | category | 8 | 0 | BEAUTY SALONS 585; BARBERS 92; SPAS-BEAUTY & DAY 33; EYELASHES-ARTIFICIAL 17 |
+| SECONDARY_SIC_CODE_1 | category | 34 | 0 | nan 643; 724101 11; 723106 11; 723102 10 |
+| SECONDARY_SIC_DESC_1 | category | 33 | 0 | nan 643; BARBERS 11; BEAUTY SALONS 11; MANICURING 10 |
+| SECONDARY_SIC_CODE_2 | category | 18 | 0 | nan 702; 724101 4; 729910 3; 723119 3 |
+| SECONDARY_SIC_DESC_2 | category | 18 | 0 | nan 702; BARBERS 4; HAIR REMOVING 3; SPAS-BEAUTY & DAY 3 |
+| SECONDARY_SIC_CODE_3 | category | 11 | 0 | nan 722; 729917 2; 724101 1; 729913 1 |
+| SECONDARY_SIC_DESC_3 | category | 11 | 0 | nan 722; MASSAGE THERAPISTS 2; BARBERS 1; HAIR REPLACEMENT 1 |
+| SECONDARY_SIC_CODE_4 | category | 6 | 0 | nan 727; 723119 2; 729963 1; 729912 1 |
+| SECONDARY_SIC_DESCRIPTION_4 | category | 6 | 0 | nan 727; SPAS-BEAUTY & DAY 2; MASSAGE 1; HAIR WEAVING 1 |
+| NAICS_CODE | category | 8 | 0 | 81211202 585; 81211101 92; 81211210 33; 81211206 17 |
+| NAICS_DESC | category | 2 | 0 | BEAUTY SALONS 641; BARBER SHOPS 92 |
+| LOCATION_EMPLOYMENT_SIZE_CODE | category | 7 | 0 | A 392; nan 187; B 88; C 45 |
+| LOCATION_EMPLOYMENT_SIZE_DESC | category | 7 | 0 | 1-4 392; nan 187; 5-9 88; 10-19 45 |
+| ACTUAL_LOC_EMPLOYMENT_SIZE | category | 31 | 0 | nan 187; 4 132; 3 131; 2 103 |
+| CORPORATE_EMPLOYMENT_SIZE_CODE | empty | 1 | 733 |  |
+| CORPORATE_EMPLOYMENT_SIZE_DESC | empty | 1 | 733 |  |
+| ACTUAL_CORP_EMPLOYMENT_SIZE | empty | 1 | 733 |  |
+| MODELED_EMPLOYMENT_SIZE | category | 3 | 0 | C 471; A 259; nan 3 |
+| LOCATION_SALES_VOLUME_CODE | category | 5 | 0 | nan 355; A 313; B 42; C 22 |
+| LOCATION_SALES_VOLUME_DESC | category | 5 | 0 | nan 355; LESS THAN $500,000 313; $500,000-$1 MILLION 42; $1-2.5 MILLION 22 |
+| ACTUAL_LOCATION_SALES_VOLUME | category | 45 | 0 | nan 355; 231 100; 116 36; 173 33 |
+| CORPORATE_SALES_VOLUME_CODE | empty | 1 | 733 |  |
+| CORPORATE_SALES_VOLUME_DESC | empty | 1 | 733 |  |
+| ACTUAL_CORPORATE_SALES_VOLUME | empty | 1 | 733 |  |
+| ASSET_SIZE | other | 1 | 0 | S 733 |
+| LAST_NAME | who | 383 | 0 | nan 272; NGUYEN 9; ROBINSON 6; JONES 6 |
+| FIRST_NAME | who | 413 | 0 | nan 272; DAVID 5; JESSICA 4; LINDA 4 |
+| SALUTATION | category | 3 | 0 | nan 312; MS 246; MR 175 |
+| GENDER | category | 4 | 0 | nan 282; F 249; M 175; U 27 |
+| PROFESSIONAL_TITLE | empty | 1 | 733 |  |
+| TITLE_CODE | category | 17 | 0 | nan 276; 1 256; ] 106; 3 65 |
+| TITLE_DESC | category | 17 | 0 | nan 273; OWNER 257; OTHER 108; MANAGER 65 |
+| KEY_CODE | category | 2 | 0 | VERIFIED 390; PRE-VERIFIED 343 |
+| TITLE_ADDRESS | empty | 1 | 733 |  |
+| INFOUSA_ID | other | 745 | 0 | 796138540 4; 794420136 4; 793165103 4; 770024521 4 |
+| INFOUSA_SUBSIDIARY_ID | category | 2 | 0 | nan 732; 759767290 1 |
+| INFOUSA_PARENT_ID | category | 7 | 0 | nan 723; 425729251 3; 446236176 2; 725459913 2 |
+| SITE_NUMBER | other | 735 | 0 | 796138540 4; 794420136 4; 793165103 4; 770024521 4 |
+| HQ_BRANCH_CODE | category | 2 | 0 | 9 723; 2 10 |
+| HQ_BRANCH_DESC | category | 2 | 0 | SINGLE LOCATION 723; BRANCH 10 |
+| PUBLIC_COMPANY_INDICATOR_CODE | category | 2 | 0 | 0 732; 2 1 |
+| STOCK_EXCHANGE_CODE | empty | 1 | 733 |  |
+| STOCK_EXCHANGE_DESC | empty | 1 | 733 |  |
+| STOCK_TICKER_SYMBOL | empty | 1 | 733 |  |
+| PUBLIC_FILING_INDICATOR | other | 1 | 0 | N 733 |
+| FORTUNE_RANKING | empty | 1 | 733 |  |
+| INDIVIDUAL_FIRM_CODE | category | 3 | 0 | 2 729; nan 3; 1 1 |
+| INDIVIDUAL_FIRM_DESC | category | 3 | 0 | FIRM 729; nan 3; INDIVIDUAL 1 |
+| YEAR_SIC_ADDED | who | 89 | 0 | 202308 117; 202305 113; 202307 71; 201912 50 |
+| YEAR_FIRST_IN_YELLOW_PAGES | category | 40 | 0 | 2023 230; 2021 65; 2022 63; 1984 34 |
+| YEAR_ESTABLISHED | category | 37 | 0 | nan 621; 2021 12; 2022 11; 2019 9 |
+| YELLOW_PAGE_CODE | category | 9 | 0 | nan 470; 07204 151; 06508 52; 39708 35 |
+| TRANSACTION_DATE | category | 43 | 0 | 202308 179; 202307 124; 202206 70; 202306 56 |
+| FILLER | empty | 1 | 733 |  |
+| CALL_STATUS_CODE | category | 12 | 0 | nan 366; M 97; A 86; R 53 |
+| CALL_STATUS_DESC | category | 12 | 0 | nan 366; ANSWERING MACHINE 97; NO ANSWER 86; CONAME/PHONE VERIFY 53 |
+| CREDIT_SCORE_CODE | category | 5 | 0 | C+ 269; U 205; C 135; B 108 |
+| CREDIT_SCORE_DESC | category | 5 | 0 | 75 TO 79 269; UNKNOWN - LESS THAN 70 205; 70 TO 74 135; 80 TO 84 108 |
+| ACTUAL_CREDIT_SCORE | category | 26 | 0 | 53 171; 76 132; 73 97; 75 72 |
+| AD_SIZE_CODE | category | 3 | 0 | nan 468; B 203; A 62 |
+| AD_SIZE_DESC | category | 3 | 0 | nan 468; BOLD 203; REGULAR 62 |
+| OFFICE_SIZE_CODE | empty | 1 | 733 |  |
+| OFFICE_SIZE_DESC | empty | 1 | 733 |  |
+| POPULATION_CODE | category | 9 | 0 | 7 383; 8 161; 6 107; 5 47 |
+| POPULATION_DESC | category | 9 | 0 | 20,000 - 49,999 383; 50,000 OR MORE 161; 10,000 - 19,999 107; 5,000 - 9,999 47 |
+| WORK_AT_HOME_BUSINESS | category | 2 | 0 | nan 647; C 86 |
+| OWN_LEASE_CODE | category | 4 | 0 | nan 725; L 6; U 1; O 1 |
+| SQUARE_FOOTAGE_CODE | category | 9 | 0 | nan 353; 2 146; 1 106; 3 67 |
+| SQUARE_FOOTAGE_DESC | category | 9 | 0 | nan 353; 1,500 - 2,499 146; 1 - 1,499 106; 2,500 - 4,999 67 |
+| RADIAL_DIST_FROM_TARGET_ELEM | empty | 1 | 733 |  |
+| ACTNUMBUS_MULTITENANT_LOCATION | category | 47 | 0 | nan 409; 1 104; 2 78; 3 32 |
+| MULTITENANT_CODE | category | 4 | 0 | nan 511; A 129; C 70; B 23 |
+| MULTITENANT_DESC | category | 4 | 0 | nan 511; 2 - 4 129; 10+ 70; 5 - 9 23 |
+| BUILDING_NUM_MULTI_TENANT | other | 403 | 0 | nan 247; 105343 6; 652597 4; 204108 4 |
+| FLEET_CODE | category | 3 | 0 | nan 716; A 16; B 1 |
+| FLEET_DESCRIPTION | category | 3 | 0 | nan 716; 1-10 VEHICLES (LOCATION & 16; 11-19 VEHICLES (LOCATION  1 |
+| AFFLUENT_NEIGHBORHOOD_LOCATION | category | 2 | 0 | N 521; Y 212 |
+| BIG_BUSINESS | category | 2 | 0 | N 732; Y 1 |
+| FEMALE_OWNER_EXEC | category | 2 | 0 | N 713; Y 20 |
+| BUSINESS_SIZE_CHANGE | category | 7 | 0 | nan 407; C 313; - 5; + 5 |
+| HIGHINCOMEEXEC | category | 2 | 0 | N 704; Y 29 |
+| HIGHTECHBUSINESS | category | 2 | 0 | N 732; Y 1 |
+| MEDIUM_SIZE_BUS_ENTREPRENEUR | category | 2 | 0 | N 696; Y 37 |
+| SMALL_BUSINESS_ENTREPRENEUR | category | 2 | 0 | N 546; Y 187 |
+| DELIVERY_POINT_BAR_CODE | empty | 1 | 733 |  |
+| PRESORT_ENDORSEMENT_LINE | empty | 1 | 733 |  |
+| PRESORT_BAG_NUMBER | empty | 1 | 733 |  |
+| PRESORT_BUNDLE_NUMBER | empty | 1 | 733 |  |
+| PRESORT_LINE_OF_TRAVEL | empty | 1 | 733 |  |
+| TERTIARY_ADDRESS | category | 32 | 0 | nan 689; L'ENFANT PLZ 3; GEORGETOWN BLDG 3; FAIRFAX VILLAGE SHOPPING  3 |
+| TERTIARY_CITY | category | 2 | 0 | nan 689; WASHINGTON 44 |
+| TERTIARY_STATE | category | 2 | 0 | nan 689; DC 44 |
+| TERTIARY_ZIP_CODE | category | 17 | 0 | nan 689; 20036 7; 20007 7; 20024 4 |
+| TERTIARY_ZIP4 | empty | 1 | 733 |  |
+| TERTIARY_ZIP10 | category | 17 | 0 | nan 689; 20036 7; 20007 7; 20024 4 |
+| TERTIARY_CARRIER_ROUTE_CODE | empty | 1 | 733 |  |
+| WHITE_COLLAR_PERCENTAGE | category | 2 | 0 | 16 641; 8 92 |
+| WHITE_COLLAR_INDICATOR | other | 1 | 0 | 0 733 |
+| PRODUCTION_DATE | date | 1 | 0 | 20230927 733 |
+| SEQUENCE_NUMBER | empty | 1 | 733 |  |
+| OBSOLESCENCE_DATE | who | 1 | 0 | MARCH 25, 2024 733 |
+| PRODUCTION_DATE1 | who | 1 | 0 | SEPTEMBER 27, 2023 733 |
+| SOURCE | who | 1 | 0 | INFOUSA 733 |
+| BOOKNO | category | 30 | 0 | nan 247; 11360 246; EPF 66; DAX 29 |
+| GOVSEGCD | empty | 1 | 733 |  |
+| FORGNPAR | empty | 1 | 733 |  |
+| IMPEXPCD | category | 2 | 0 | nan 732; I 1 |
+| END_OF_RECORD_MARKER | other | 1 | 0 | X 733 |
+| LATITUDE | other | 637 | 0 | 38908911 5; 38860399 5; 38868496 4; 38895639 4 |
+| LONGITUDE | other | 653 | 0 | 77042658 5; 76973100 5; 76941585 4; 76915334 4 |
+| XCOORD | amount | 662 | 0 | 396300.34 5; 405069.60000000003 4; 407344.89 4; 400413.37 4 |
+| YCOORD | amount | 650 | 0 | 137894.47 5; 133409.03 4; 136423.72 4; 137156.55 4 |
+| CONTACT_ETHNIC_CODE | category | 37 | 0 | nan 272; 00 173; E5 103; H5 33 |
+| CONTACT_ETHNIC_DESCRIPTION | category | 37 | 0 | nan 272; UNKNOWN 173; ENGLISH 103; HISPANIC 33 |
+| MAR_ID | other | 658 | 0 | 279123 5; 24979 4; 5938 4; 78099 4 |
+| FILLER_1 | empty | 1 | 733 |  |
+| FILLER_2 | empty | 1 | 733 |  |
+| FILLER_3 | empty | 1 | 733 |  |
+| FILLER_4 | empty | 1 | 733 |  |
+| FILLER_5 | empty | 1 | 733 |  |
+| FILLER_6 | empty | 1 | 733 |  |
+| CURRENT_TRANSACTION_CODE | category | 3 | 0 | nan 594; A 135; C 4 |
+| FULLADDRESS | other | 658 | 0 | 1365 CONNECTICUT AVENUE N 5; 4229 FORT DUPONT TERRACE  4; 5925 EADS STREET NE 4; 727 K STREET NE 4 |
+| WARD | category | 8 | 0 | Ward 2 200; Ward 1 92; Ward 6 83; Ward 8 83 |
+| GIS_ID | other | 718 | 0 | BusinessPt_202867 4; BusinessPt_202832 4; BusinessPt_202806 4; BusinessPt_202796 4 |
+| SE_ANNO_CAD_DATA | empty | 1 | 733 |  |
+| GLOBALID | other | 713 | 0 | 1c46db31-4ff0-45fe-b088-2 4; bebeb189-8958-4b49-94af-e 4; 198a3f77-11c8-49d0-be87-d 4; 556511a9-424c-4dab-bce1-2 4 |
+| GEOMETRY | other | 659 | 0 | {"type": "Point", "coordi 5; {"type": "Point", "coordi 4; {"type": "Point", "coordi 4; {"type": "Point", "coordi 4 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:25:35.23470 733 |
+| SOURCE_RUN_ID | audit | 1 | 0 | bb59d565-2749-40f4-896f-7 733 |
+| SRC_SHA256 | who | 1 | 0 | 1e36e13c27f7490bf428be4f1 733 |

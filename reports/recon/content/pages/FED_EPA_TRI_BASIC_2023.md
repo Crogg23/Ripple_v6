@@ -1,0 +1,417 @@
+# FED_EPA_TRI_BASIC_2023
+
+rows 78.6K  columns 125  scan 6.2s
+
+roles: amount 62, audit 2, category 18, date 1, empty 7, other 18, state 1, who 16
+
+## when
+
+C_36_DOC_CTRL_NUM
+  2011     78.6K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| C_12_LATITUDE | 78.6K | -14.27 | 38.42 | 47.88 | 70.25 | 2.95M |
+| C_13_LONGITUDE | 78.6K | -170.70 | -88.34 | -70.80 | 145.73 | -7.16M |
+| C_51_5_1_FUGITIVE_AIR | 78.6K | 0 | 0 | 26.7K | 15.40M | 141.46M |
+| C_52_5_2_STACK_AIR | 78.6K | 0 | 0.25 | 86.9K | 7.16M | 381.51M |
+| C_53_5_3_WATER | 78.6K | 0 | 0 | 7.4K | 11.91M | 187.10M |
+| C_55_5_4_1_UNDERGROUND_CL_I | 78.6K | 0 | 0 | 0 | 13.75M | 156.34M |
+
+## who
+
+C_4_FACILITY_NAME by rows
+       371  SHERWIN-WILLIAMS CO
+       204  HERITAGE THERMAL SERVICES
+       198  CLEAN HARBORS EL DORADO LLC
+       190  TESORO LOS ANGELES REFINERY-CARSON OPERATIONS
+       185  BASF CORP
+       181  VEOLIA ES TECHNICAL SOLUTIONS LLC PORT ARTHUR FACILITY
+       176  UNIVAR SOLUTIONS USA
+       168  CLEAN HARBORS DEER PARK LLC
+       152  ADM DECATUR COMPLEX
+       148  SUN COAST RESOURCES LLC
+       128  DOW CHEMICAL CO FREEPORT FACILITY
+       116  ROSS INCINERATION SERVICES INC
+       110  CLEAN HARBORS ENVIRONMENTAL SERVICES INC
+       103  ADM CORN PROCESSING
+       102  CLEAN HARBORS ARAGONITE LLC
+        98  CITGO PETROLEUM CORP
+        92  VEOLIA N.A. INC.
+        91  WESTLAKE CHEMICALS & VINYLS LLC
+        91  SUPERIOR INDUSTRIAL SOLUTIONS INC.
+        89  PRECOAT METALS
+
+C_4_FACILITY_NAME by dollars
+       14.0K      371 rows  SHERWIN-WILLIAMS CO
+        8.3K      204 rows  HERITAGE THERMAL SERVICES
+        6.7K      176 rows  UNIVAR SOLUTIONS USA
+        6.6K      198 rows  CLEAN HARBORS EL DORADO LLC
+        6.6K      185 rows  BASF CORP
+        6.4K      190 rows  TESORO LOS ANGELES REFINERY-CARSON OPERATIONS
+        6.1K      152 rows  ADM DECATUR COMPLEX
+        5.4K      181 rows  VEOLIA ES TECHNICAL SOLUTIONS LLC PORT ARTHUR FACILITY
+        5.0K      168 rows  CLEAN HARBORS DEER PARK LLC
+        4.8K      116 rows  ROSS INCINERATION SERVICES INC
+        4.6K      148 rows  SUN COAST RESOURCES LLC
+        4.5K      110 rows  CLEAN HARBORS ENVIRONMENTAL SERVICES INC
+        4.3K      103 rows  ADM CORN PROCESSING
+        4.1K      102 rows  CLEAN HARBORS ARAGONITE LLC
+        4.1K       86 rows  BASIN ELECTRIC ANTELOPE VALLEY STATION
+        3.7K      128 rows  DOW CHEMICAL CO FREEPORT FACILITY
+        3.6K       91 rows  SUPERIOR INDUSTRIAL SOLUTIONS INC.
+        3.5K       92 rows  VEOLIA N.A. INC.
+        3.5K       98 rows  CITGO PETROLEUM CORP
+        3.3K       89 rows  PRECOAT METALS
+
+C_15_PARENT_CO_NAME by rows
+      1.1K  CLEAN HARBORS INC
+      1.0K  MARATHON PETROLEUM CORP
+       777  CRH AMERICAS INC
+       727  BERKSHIRE HATHAWAY INC
+       706  US DEPARTMENT OF DEFENSE
+       686  VALERO ENERGY CORP
+       494  EXXON MOBIL CORP
+       441  THE SHERWIN-WILLIAMS CO
+       439  KOCH INC.
+       428  PHILLIPS 66
+       415  PHILLIPS 66 CO
+       388  NUCOR CORP
+       367  ARCHER DANIELS MIDLAND CO
+       352  INTERNATIONAL PAPER CO
+       346  BASF CORP
+       320  RELADYNE LLC
+       304  BRENNTAG N.A. INC
+       301  REPUBLIC SERVICES INC
+       282  DOW INC
+       273  GENERAL MOTORS LLC
+
+C_15_PARENT_CO_NAME by dollars
+       40.8K     1.0K rows  MARATHON PETROLEUM CORP
+       40.0K     1.1K rows  CLEAN HARBORS INC
+       29.4K      777 rows  CRH AMERICAS INC
+       27.7K      727 rows  BERKSHIRE HATHAWAY INC
+       26.0K      706 rows  US DEPARTMENT OF DEFENSE
+       22.8K      686 rows  VALERO ENERGY CORP
+       16.7K      441 rows  THE SHERWIN-WILLIAMS CO
+       15.4K      428 rows  PHILLIPS 66
+       15.2K      415 rows  PHILLIPS 66 CO
+       15.2K      439 rows  KOCH INC.
+       15.1K      494 rows  EXXON MOBIL CORP
+       14.8K      367 rows  ARCHER DANIELS MIDLAND CO
+       14.5K      388 rows  NUCOR CORP
+       11.9K      346 rows  BASF CORP
+       11.9K      352 rows  INTERNATIONAL PAPER CO
+       11.1K      301 rows  REPUBLIC SERVICES INC
+       11.1K      320 rows  RELADYNE LLC
+       11.0K      273 rows  GENERAL MOTORS LLC
+       11.0K      304 rows  BRENNTAG N.A. INC
+       10.8K      265 rows  CLEVELAND-CLIFFS INC
+
+C_17_STANDARD_PARENT_CO_NAME by rows
+      1.3K  MARATHON PETROLEUM CORP
+      1.1K  CLEAN HARBORS INC
+       844  BERKSHIRE HATHAWAY INC
+       843  PHILLIPS 66 CO
+       824  US DEPARTMENT OF DEFENSE
+       816  CRH AMERICAS INC
+       716  VALERO ENERGY CORP
+       701  KOCH INC
+       516  EXXON MOBIL CORP
+       458  DOW INC
+       443  THE SHERWIN-WILLIAMS CO
+       406  VEOLIA NORTH AMERICA
+       392  BRENNTAG NORTH AMERICA INC
+       388  NUCOR CORP
+       371  ARCHER DANIELS MIDLAND CO
+       368  WESTLAKE CORP
+       367  REPUBLIC SERVICES INC
+       366  BASF CORP
+       362  UNIVAR SOLUTIONS USA INC
+       357  SHELL PETROLEUM INC
+
+C_17_STANDARD_PARENT_CO_NAME by dollars
+       51.7K     1.3K rows  MARATHON PETROLEUM CORP
+       40.0K     1.1K rows  CLEAN HARBORS INC
+       32.1K      844 rows  BERKSHIRE HATHAWAY INC
+       30.8K      816 rows  CRH AMERICAS INC
+       30.7K      843 rows  PHILLIPS 66 CO
+       30.7K      824 rows  US DEPARTMENT OF DEFENSE
+       24.7K      701 rows  KOCH INC
+       23.8K      716 rows  VALERO ENERGY CORP
+       16.8K      443 rows  THE SHERWIN-WILLIAMS CO
+       15.8K      516 rows  EXXON MOBIL CORP
+       15.0K      371 rows  ARCHER DANIELS MIDLAND CO
+       15.0K      458 rows  DOW INC
+       14.5K      388 rows  NUCOR CORP
+       14.0K      392 rows  BRENNTAG NORTH AMERICA INC
+       13.9K      367 rows  REPUBLIC SERVICES INC
+       13.7K      406 rows  VEOLIA NORTH AMERICA
+       13.5K      362 rows  UNIVAR SOLUTIONS USA INC
+       12.6K      366 rows  BASF CORP
+       12.5K      357 rows  SHELL PETROLEUM INC
+       12.0K      368 rows  WESTLAKE CORP
+
+C_18_FOREIGN_PARENT_CO_NAME by rows
+       549  CRH PLC
+       269  VEOLIA ENVIRONNEMENT SA
+       233  BASF SE
+       224  PDVSA PETROLEOS S.A.
+       224  SHELL PLC
+       207  BRENNTAG AG
+       203  SMURFIT WESTROCK PUBLIC LTD CO
+       169  BUZZI SPA
+       162  INEOS LTD
+       161  CRH PUBLIC LTD CO
+       158  HOLCIM LTD
+       132  LYONDELLBASELL INDUSTRIES N.V.
+       132  VEOLIA ENVIRONMENT SA
+       122  SYENSQO SA
+       115  EVONIK INDUSTRIES AG
+       113  COMPAGNIE DE SAINT GOBAIN
+       104  FORTALEZA MATERIALES S A P I
+       102  CEMEX SAB DE CV
+       101  HOLCIM LTD.
+       101  HEIDELBERG MATERIALS
+
+C_18_FOREIGN_PARENT_CO_NAME by dollars
+       21.2K      549 rows  CRH PLC
+        8.8K      269 rows  VEOLIA ENVIRONNEMENT SA
+        8.3K      224 rows  SHELL PLC
+        7.8K      233 rows  BASF SE
+        7.8K      207 rows  BRENNTAG AG
+        7.6K      224 rows  PDVSA PETROLEOS S.A.
+        7.1K      203 rows  SMURFIT WESTROCK PUBLIC LTD CO
+        6.4K      169 rows  BUZZI SPA
+        5.9K      158 rows  HOLCIM LTD
+        5.6K      162 rows  INEOS LTD
+        5.6K      161 rows  CRH PUBLIC LTD CO
+        4.6K      132 rows  VEOLIA ENVIRONMENT SA
+        4.4K      132 rows  LYONDELLBASELL INDUSTRIES N.V.
+        4.4K      113 rows  COMPAGNIE DE SAINT GOBAIN
+        4.3K      122 rows  SYENSQO SA
+        4.2K      115 rows  EVONIK INDUSTRIES AG
+        3.9K      101 rows  HOLCIM LTD.
+        3.8K      104 rows  FORTALEZA MATERIALES S A P I
+        3.8K      101 rows  HEIDELBERG MATERIALS
+        3.5K       90 rows  BAYER AG
+
+## who x when
+
+C_4_FACILITY_NAME by C_36_DOC_CTRL_NUM, dollars = C_12_LATITUDE
+  ADM CORN PROCESSING                       2011:4.3K
+  ADM DECATUR COMPLEX                       2011:6.1K
+  BASF CORP                                 2011:6.6K
+  BASIN ELECTRIC ANTELOPE VALLEY STATION    2011:4.1K
+  CITGO PETROLEUM CORP                      2011:3.5K
+  CLEAN HARBORS ARAGONITE LLC               2011:4.1K
+  CLEAN HARBORS DEER PARK LLC               2011:5.0K
+  CLEAN HARBORS EL DORADO LLC               2011:6.6K
+  CLEAN HARBORS ENVIRONMENTAL SERVICES INC  2011:4.5K
+  DOW CHEMICAL CO FREEPORT FACILITY         2011:3.7K
+  HERITAGE THERMAL SERVICES                 2011:8.3K
+  PRECOAT METALS                            2011:3.3K
+  ROSS INCINERATION SERVICES INC            2011:4.8K
+  SHERWIN-WILLIAMS CO                       2011:14.0K
+  SUN COAST RESOURCES LLC                   2011:4.6K
+  SUPERIOR INDUSTRIAL SOLUTIONS INC.        2011:3.6K
+  TESORO LOS ANGELES REFINERY-CARSON OPERA  2011:6.4K
+  UNIVAR SOLUTIONS USA                      2011:6.7K
+  VEOLIA ES TECHNICAL SOLUTIONS LLC PORT A  2011:5.4K
+  VEOLIA N.A. INC.                          2011:3.5K
+  WESTLAKE CHEMICALS & VINYLS LLC           2011:2.8K
+
+C_15_PARENT_CO_NAME by C_36_DOC_CTRL_NUM, dollars = C_12_LATITUDE
+  ARCHER DANIELS MIDLAND CO                 2011:14.8K
+  BASF CORP                                 2011:11.9K
+  BERKSHIRE HATHAWAY INC                    2011:27.7K
+  BRENNTAG N.A. INC                         2011:11.0K
+  CLEAN HARBORS INC                         2011:40.0K
+  CLEVELAND-CLIFFS INC                      2011:10.8K
+  CRH AMERICAS INC                          2011:29.4K
+  DOW INC                                   2011:9.6K
+  EXXON MOBIL CORP                          2011:15.1K
+  GENERAL MOTORS LLC                        2011:11.0K
+  INTERNATIONAL PAPER CO                    2011:11.9K
+  KOCH INC.                                 2011:15.2K
+  MARATHON PETROLEUM CORP                   2011:40.8K
+  NUCOR CORP                                2011:14.5K
+  PHILLIPS 66                               2011:15.4K
+  PHILLIPS 66 CO                            2011:15.2K
+  RELADYNE LLC                              2011:11.1K
+  REPUBLIC SERVICES INC                     2011:11.1K
+  THE SHERWIN-WILLIAMS CO                   2011:16.7K
+  US DEPARTMENT OF DEFENSE                  2011:26.0K
+  VALERO ENERGY CORP                        2011:22.8K
+
+## where
+
+C_8_ST: TX 9.5K, OH 4.8K, CA 3.5K, IL 3.5K, PA 3.4K, IN 3.3K, LA 3.0K, MI 3.0K, WI 2.7K, GA 2.2K, NC 2.2K, AL 2.2K
+
+## what
+
+C_10_BIA: 906 28%, 907 15%, 801 11%, 908 10%, 905 9%, 687 8%, 115 7%, 780 4%, 614 3%, 610 2%, 433 2%, 802 2%
+
+C_11_TRIBE: The Chickasaw Nation 28%, The Choctaw Nation of Oklahoma 15%, Cheyenne and Arapaho Tribes, O 11%, The Muscogee (Creek) Nation 10%, Cherokee Nation 9%, Ute Indian Tribe of the Uintah 8%, Puyallup Tribe of the Puyallup 7%, Navajo Nation, Arizona, New Me 4%, Gila River Indian Community of 3%, Tohono O'odham Nation of Arizo 2%, Oneida Nation 2%, Kiowa Indian Tribe of Oklahoma 2%
+
+C_21_FEDERAL_FACILITY: NO 99%, YES 1%
+
+C_22_INDUSTRY_SECTOR_CODE: 325 27%, 332 12%, 331 9%, 324 8%, 327 8%, 336 7%, 4247 6%, 311 6%, 2211 5%, 562 5%, 333 4%, 326 4%
+
+C_23_INDUSTRY_SECTOR: Chemicals 27%, Fabricated Metals 12%, Primary Metals 9%, Petroleum 8%, Nonmetallic Mineral Product 8%, Transportation Equipment 7%, Petroleum Bulk Terminals 6%, Food 6%, Electric Utilities 5%, Hazardous Waste 5%, Machinery 4%, Plastics and Rubber 4%
+
+C_34_NAICS_5: 325211 23%, 327910 14%, 336211 14%, 325194 12%, 325180 8%, 311224 7%, 331492 4%, 327331 4%, 238220 4%, 332811 4%, 562219 3%, 332420 3%
+
+C_35_NAICS_6: 325611 38%, 325998 26%, 325312 14%, 332811 5%, 311520 3%, 424430 3%, 321999 2%, 335312 2%, 333511 2%, 332813 2%, 311512 2%, 334220 2%
+
+C_38_ELEMENTAL_METAL_INCLUDED: NO 93%, YES 7%
+
+C_42_CLEAN_AIR_ACT_CHEMICAL: YES 62%, NO 38%
+
+C_43_CLASSIFICATION: TRI 84%, PBT 15%, Dioxin 1%
+
+C_44_METAL: NO 63%, YES 37%
+
+C_45_METAL_CATEGORY: Non_Metal 55%, Metal complound categories 19%, Elemental metals 19%, May contain metal 5%, Individually-listed compounds  1%, Metals with qualifiers 1%
+
+C_46_CARCINOGEN: NO 72%, YES 28%
+
+C_47_PBT: NO 84%, YES 16%
+
+C_48_PFAS: NO 100%, YES 0%
+
+C_49_FORM_TYPE: R 89%, A 11%
+
+C_50_UNIT_OF_MEASURE: Pounds 99%, Grams 1%
+
+C_121_PROD_RATIO_OR__ACTIVITY: PRODUCTION 84%, ACTIVITY 16%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| C_1_YEAR | other | 1 | 0 | 2023 78.6K |
+| C_2_TRIFD | who | 21.6K | 0 | 62201TRDWS7MOBI 394; 70765GRGGLHIGHW 393; 45449CWMRS4301I 393; 5544WPRTLB85WYB 393 |
+| C_3_FRS_ID | other | 21.8K | 142 | 110000438893 394; 110071732588 393; 110013831201 392; 110000613747 392 |
+| C_4_FACILITY_NAME | who | 19.3K | 0 | SHERWIN-WILLIAMS CO 408; VEOLIA N.A. INC. 396; UNIVAR SOLUTIONS USA 393; WESTLAKE CHEMICALS & VINY 393 |
+| C_5_STREET_ADDRESS | who | 22.4K | 0 | 2301 N BRAZOSPORT BLVD 394; 7 MOBILE AVE 394; 26100 HWY 405 S 393; 4301 INFIRMARY RD 393 |
+| C_6_CITY | who | 5.4K | 0 | HOUSTON 686; PASADENA 494; COLUMBUS 419; BEAUMONT 410 |
+| C_7_COUNTY | who | 1.5K | 0 | HARRIS 2.2K; JEFFERSON 1.7K; LOS ANGELES 1.4K; COOK 997 |
+| C_8_ST | state | 56 | 0 | TX 9.5K; OH 4.8K; CA 3.5K; IL 3.5K |
+| C_9_ZIP | other | 8.9K | 0 | 77571 396; 70669 395; 77536 395; 43207 394 |
+| C_10_BIA | category | 31 | 78.1K | 906 131; 907 69; 801 53; 908 45 |
+| C_11_TRIBE | category | 31 | 78.1K | The Chickasaw Nation 131; The Choctaw Nation of Okl 69; Cheyenne and Arapaho Trib 53; The Muscogee (Creek) Nati 45 |
+| C_12_LATITUDE | amount | 20.9K | 0 | 29.710922 395; 28.984158 394; 38.598038 394; 30.273136 393 |
+| C_13_LONGITUDE | amount | 21.6K | 0 | -95.119288 395; -95.377954 394; -90.182110 394; -91.180275 393 |
+| C_14_HORIZONTAL_DATUM | empty | 0 | 78.6K |  |
+| C_15_PARENT_CO_NAME | who | 4.3K | 16.8K | CLEAN HARBORS INC 1.1K; MARATHON PETROLEUM CORP 1.0K; CRH AMERICAS INC 777; BERKSHIRE HATHAWAY INC 727 |
+| C_16_PARENT_CO_DB_NUM | other | 3.8K | 25.3K | 968393996 1.0K; 157793639 936; 037176591 696; 001024314 569 |
+| C_17_STANDARD_PARENT_CO_NAME | who | 4.3K | 9.4K | MARATHON PETROLEUM CORP 1.3K; CLEAN HARBORS INC 1.1K; BERKSHIRE HATHAWAY INC 844; PHILLIPS 66 CO 843 |
+| C_18_FOREIGN_PARENT_CO_NAME | who | 933 | 67.4K | CRH PLC 549; VEOLIA ENVIRONNEMENT SA 269; BASF SE 233; SHELL PLC 224 |
+| C_19_FOREIGN_PARENT_CO_DB_NUM | other | 514 | 71.2K | 494763675 442; 219509155 419; 315000554 229; 885354373 225 |
+| C_20_STANDARD_FOREIGN_PARENT_CO_NAME | who | 758 | 63.0K | CRH PUBLIC LTD CO 814; VEOLIA ENVIRONNEMENT SA 451; BRENNTAG AG 392; BASF SE 367 |
+| C_21_FEDERAL_FACILITY | category | 2 | 0 | NO 77.5K; YES 1.2K |
+| C_22_INDUSTRY_SECTOR_CODE | category | 30 | 0 | 325 17.9K; 332 7.9K; 331 5.7K; 324 5.4K |
+| C_23_INDUSTRY_SECTOR | category | 30 | 0 | Chemicals 17.9K; Fabricated Metals 7.9K; Primary Metals 5.7K; Petroleum 5.4K |
+| C_24_PRIMARY_SIC | empty | 0 | 78.6K |  |
+| C_25_SIC_2 | empty | 0 | 78.6K |  |
+| C_26_SIC_3 | empty | 0 | 78.6K |  |
+| C_27_SIC_4 | empty | 0 | 78.6K |  |
+| C_28_SIC_5 | empty | 0 | 78.6K |  |
+| C_29_SIC_6 | empty | 0 | 78.6K |  |
+| C_30_PRIMARY_NAICS | who | 421 | 0 | 424710 4.0K; 324110 3.6K; 325199 3.4K; 221112 3.0K |
+| C_31_NAICS_2 | who | 331 | 69.6K | 325199 654; 325211 547; 325180 448; 424710 345 |
+| C_32_NAICS_3 | who | 160 | 76.1K | 325199 242; 325211 183; 325180 182; 484230 117 |
+| C_33_NAICS_4 | who | 73 | 77.8K | 325998 87; 562998 81; 562112 75; 562211 57 |
+| C_34_NAICS_5 | category | 42 | 78.4K | 325211 43; 327910 26; 336211 26; 325194 22 |
+| C_35_NAICS_6 | category | 16 | 78.6K | 325611 22; 325998 15; 325312 8; 332811 3 |
+| C_36_DOC_CTRL_NUM | date | 78.5K | 0 | 1323221566173 226; 1323221940190 226; 1323221578331 226; 1323222041598 226 |
+| C_37_CHEMICAL | who | 555 | 0 | Lead 4.1K; Zinc compounds 2.9K; Nickel 2.5K; Chromium 2.5K |
+| C_38_ELEMENTAL_METAL_INCLUDED | category | 2 | 0 | NO 72.8K; YES 5.8K |
+| C_39_TRI_CHEMICAL_COMPOUND_ID | other | 540 | 0 | 0007439921 4.1K; N420 3.6K; N982 2.9K; 0007440020 2.5K |
+| C_40_CAS | who | 547 | 0 | 7439-92-1 4.1K; N420 3.6K; N982 2.9K; 7440-02-0 2.5K |
+| C_41_SRS_ID | other | 542 | 70 | 149583 4.1K; 650002 3.6K; 649699 2.9K; 149674 2.5K |
+| C_42_CLEAN_AIR_ACT_CHEMICAL | category | 2 | 0 | YES 48.7K; NO 29.9K |
+| C_43_CLASSIFICATION | category | 3 | 0 | TRI 65.7K; PBT 12.2K; Dioxin 770 |
+| C_44_METAL | category | 2 | 0 | NO 49.5K; YES 29.2K |
+| C_45_METAL_CATEGORY | category | 6 | 0 | Non_Metal 43.3K; Metal complound categorie 14.9K; Elemental metals 14.9K; May contain metal 4.1K |
+| C_46_CARCINOGEN | category | 2 | 0 | NO 56.4K; YES 22.2K |
+| C_47_PBT | category | 2 | 0 | NO 65.7K; YES 13.0K |
+| C_48_PFAS | category | 2 | 0 | NO 78.5K; YES 181 |
+| C_49_FORM_TYPE | category | 2 | 0 | R 69.8K; A 8.8K |
+| C_50_UNIT_OF_MEASURE | category | 2 | 0 | Pounds 77.9K; Grams 770 |
+| C_51_5_1_FUGITIVE_AIR | amount | 10.7K | 0 | 0.000 40.0K; 5.000 3.1K; 1.000 1.2K; 250.000 1.1K |
+| C_52_5_2_STACK_AIR | amount | 15.2K | 0 | 0.000 34.5K; 5.000 1.7K; 1.000 932; 250.000 793 |
+| C_53_5_3_WATER | amount | 4.0K | 0 | 0.000 68.4K; 5.000 613; 1.000 467; 2.000 222 |
+| C_54_5_4_UNDERGROUND | other | 1 | 0 | 0.000 78.6K |
+| C_55_5_4_1_UNDERGROUND_CL_I | amount | 599 | 0 | 0.000 78.0K; 1.000 12; 13.000 7; 6.000 7 |
+| C_56_5_4_2_UNDERGROUND_C_II_V | amount | 131 | 0 | 0.000 78.5K; 5.000 12; 4.000 5; 1.000 4 |
+| C_57_5_5_1_LANDFILLS | other | 1 | 0 | 0.000 78.6K |
+| C_58_5_5_1A_RCRA_C_LANDFILL | amount | 632 | 0 | 0.000 77.9K; 3179.000 7; 1.000 6; 430.000 6 |
+| C_59_5_5_1B_OTHER_LANDFILLS | amount | 1.9K | 0 | 0.000 76.1K; 1.000 49; 5.000 36; 2.000 30 |
+| C_60_5_5_2_LAND_TREATMENT | amount | 423 | 0 | 0.000 78.1K; 1.000 17; 0.001 7; 0.260 5 |
+| C_61_5_5_3_SURFACE_IMPNDMNT | other | 1 | 0 | 0.000 78.6K |
+| C_62_5_5_3A_RCRA_SURFACE_IM | amount | 42 | 0 | 0.000 78.6K; 36.000 2; 24971.000 1; 32.000 1 |
+| C_63_5_5_3B_OTHER_SURFACE_I | amount | 1.3K | 0 | 0.000 77.0K; 0.002 22; 5.000 22; 1.000 19 |
+| C_64_5_5_4_OTHER_DISPOSAL | amount | 1.4K | 0 | 0.000 76.6K; 5.000 185; 1.000 71; 2.000 30 |
+| C_65_ON_SITE_RELEASE_TOTAL | amount | 25.1K | 0 | 0.000 22.5K; 10.000 1.0K; 5.000 1.0K; 1.000 817 |
+| C_66_6_1_POTW_TRNS_RLSE | amount | 4.3K | 0 | 0.000 69.5K; 5.000 337; 1.000 262; 2.000 123 |
+| C_67_6_1_POTW_TRNS_TRT | amount | 2.9K | 0 | 0.000 75.2K; 5.000 56; 250.000 28; 1.000 20 |
+| C_68_POTW_TOTAL_TRANSFERS | amount | 4.6K | 0 | 0.000 68.7K; 5.000 413; 1.000 317; 2.000 149 |
+| C_69_6_2_M10 | amount | 732 | 0 | 0.000 77.7K; 1.000 31; 3.000 17; 2.000 17 |
+| C_70_6_2_M41 | amount | 1.6K | 0 | 0.000 76.6K; 1.000 36; 5.000 23; 3.000 19 |
+| C_71_6_2_M62 | amount | 645 | 0 | 0.000 77.6K; 1.000 31; 0.100 23; 3.000 21 |
+| C_72_6_2_M40_METAL | other | 1 | 0 | 0.000 78.6K |
+| C_73_6_2_M61_METAL | other | 1 | 0 | 0.000 78.6K |
+| C_74_6_2_M71 | other | 1 | 0 | 0.000 78.6K |
+| C_75_6_2_M81 | amount | 627 | 0 | 0.000 77.9K; 1.000 17; 2.000 10; 3.000 10 |
+| C_76_6_2_M82 | amount | 366 | 0 | 0.000 78.1K; 5250.000 27; 250.000 23; 105.000 20 |
+| C_77_6_2_M72 | other | 1 | 0 | 0.000 78.6K |
+| C_78_6_2_M63 | other | 1 | 0 | 0.000 78.6K |
+| C_79_6_2_M66 | amount | 34 | 0 | 0.000 78.6K; 5.000 2; 1513.000 1; 45.750 1 |
+| C_80_6_2_M67 | amount | 61 | 0 | 0.000 78.6K; 2269.000 4; 18666.000 4; 911.000 3 |
+| C_81_6_2_M64 | amount | 6.0K | 0 | 0.000 67.5K; 1.000 320; 5.000 318; 2.000 172 |
+| C_82_6_2_M65 | amount | 2.3K | 0 | 0.000 74.7K; 1.000 179; 2.000 75; 5.000 62 |
+| C_83_6_2_M73 | amount | 473 | 0 | 0.000 78.1K; 1.000 11; 5.000 9; 2.000 5 |
+| C_84_6_2_M79 | amount | 514 | 0 | 0.000 78.0K; 3.000 11; 1.000 9; 5.000 9 |
+| C_85_6_2_M90 | amount | 1.7K | 0 | 0.000 76.0K; 1.000 56; 0.100 36; 5.000 36 |
+| C_86_6_2_M94 | amount | 1.8K | 0 | 0.000 75.5K; 1.000 97; 5.000 72; 250.000 48 |
+| C_87_6_2_M99 | amount | 1.3K | 0 | 0.000 76.6K; 1.000 63; 2.000 40; 5.000 37 |
+| C_88_OFF_SITE_RELEASE_TOTAL | amount | 14.4K | 0 | 0.000 52.3K; 1.000 509; 5.000 509; 2.000 289 |
+| C_89_6_2_M20 | amount | 1.4K | 0 | 0.000 76.7K; 5.000 23; 1.000 22; 250.000 21 |
+| C_90_6_2_M24 | amount | 7.5K | 0 | 0.000 70.0K; 3.000 26; 39.960 25; 1556.000 25 |
+| C_91_6_2_M26 | amount | 3.2K | 0 | 0.000 73.9K; 1.000 107; 5.000 57; 2.000 53 |
+| C_92_6_2_M28 | amount | 16 | 0 | 0.000 78.6K; 0.300 1; 3190.000 1; 11.400 1 |
+| C_93_6_2_M93 | amount | 4.5K | 0 | 0.000 73.4K; 1.000 39; 250.000 31; 0.010 27 |
+| C_94_OFF_SITE_RECYCLED_TOTAL | amount | 14.3K | 0 | 0.000 59.8K; 1.000 134; 250.000 106; 5.000 101 |
+| C_95_6_2_M56 | amount | 4.2K | 0 | 0.000 72.8K; 1.000 110; 2.000 67; 3.000 54 |
+| C_96_6_2_M92 | amount | 1.6K | 0 | 0.000 76.6K; 1.000 39; 2.000 26; 3.000 17 |
+| C_97_OFF_SITE_ENERGY_RECOVERY_T | amount | 4.9K | 0 | 0.000 71.3K; 1.000 140; 2.000 87; 3.000 65 |
+| C_98_6_2_M40_NON_METAL | amount | 517 | 0 | 0.000 78.0K; 5.000 19; 1.000 11; 10.000 10 |
+| C_99_6_2_M50 | amount | 3.5K | 0 | 0.000 72.8K; 1.000 110; 2.000 68; 5.000 67 |
+| C_100_6_2_M54 | amount | 908 | 0 | 0.000 77.3K; 1.000 53; 2.000 23; 5.000 19 |
+| C_101_6_2_M61_NON_METAL | amount | 1.1K | 0 | 0.000 77.3K; 5.000 29; 1.000 21; 250.000 19 |
+| C_102_6_2_M69 | amount | 756 | 0 | 0.000 77.6K; 1.000 45; 2.000 30; 5.000 14 |
+| C_103_6_2_M95 | amount | 474 | 0 | 0.000 78.0K; 1.000 25; 2.000 18; 4.000 11 |
+| C_104_OFF_SITE_TREATED_TOTAL | amount | 7.7K | 0 | 0.000 66.8K; 1.000 188; 5.000 137; 2.000 113 |
+| C_105_6_2_UNCLASSIFIED | other | 1 | 0 | 0.000 78.6K |
+| C_106_6_2_TOTAL_TRANSFER | amount | 28.9K | 0 | 0.000 35.9K; 1.000 338; 5.000 324; 250.000 274 |
+| C_107_TOTAL_RELEASES | amount | 33.8K | 0 | 0.000 17.2K; 10.000 732; 5.000 686; 1.000 508 |
+| C_108_8_1_RELEASES | other | 1 | 0 | 0.000 78.6K |
+| C_109_8_1A_ON_SITE_CONTAINED | amount | 2.9K | 0 | 0.000 74.9K; 1.000 64; 5.000 37; 2.000 36 |
+| C_110_8_1B_ON_SITE_OTHER | amount | 23.3K | 0 | 0.000 23.0K; 10.000 1.0K; 5.000 1.0K; 1.000 839 |
+| C_111_8_1C_OFF_SITE_CONTAIN | amount | 9.0K | 0 | 0.000 61.9K; 1.000 382; 5.000 332; 2.000 221 |
+| C_112_8_1D_OFF_SITE_OTHER_R | amount | 9.8K | 0 | 0.000 60.8K; 5.000 337; 1.000 302; 2.000 174 |
+| C_113_8_2_ENERGY_RECOVER_ON | amount | 1.9K | 0 | 0.000 76.5K; 2600.000 12; 155231.000 12; 150000.000 12 |
+| C_114_8_3_ENERGY_RECOVER_OF | amount | 4.9K | 0 | 0.000 71.3K; 1.000 140; 2.000 87; 3.000 65 |
+| C_115_8_4_RECYCLING_ON_SITE | amount | 3.3K | 0 | 0.000 74.8K; 1.000 21; 118.500 21; 500.000 20 |
+| C_116_8_5_RECYCLING_OFF_SIT | amount | 14.2K | 0 | 0.000 59.8K; 1.000 136; 250.000 102; 5.000 101 |
+| C_117_8_6_TREATMENT_ON_SITE | amount | 12.7K | 0 | 0.000 61.9K; 1.000 90; 54000.000 85; 20000.000 85 |
+| C_118_8_7_TREATMENT_OFF_SITE | amount | 7.6K | 0 | 0.000 66.9K; 1.000 190; 5.000 138; 2.000 113 |
+| C_119_PRODUCTION_WSTE_8_1_8_7 | amount | 50.0K | 0 | 0.000 12.6K; 10.000 361; 5.000 334; 8.000 332 |
+| C_120_8_8_ONE_TIME_RELEASE | other | 981 | 67.8K | 0.000 9.3K; 1.000 78; 2.000 48; 3.000 25 |
+| C_121_PROD_RATIO_OR__ACTIVITY | category | 2 | 10.5K | PRODUCTION 57.1K; ACTIVITY 11.1K |
+| C_122_8_9_PRODUCTION_RATIO | amount | 848 | 1.6K | 0.000 9.0K; 1.000 8.8K; 1.100 1.7K; 0.950 1.6K |
+| INGESTED_AT | audit | 1 | 0 | 1785098745533207 78.6K |
+| SOURCE_RUN_ID | audit | 1 | 0 | b291cf4e-8028-4771-aeea-5 78.6K |
+| SRC_SHA256 | who | 1 | 0 | 4f9d689effb212528256b7f1c 78.6K |

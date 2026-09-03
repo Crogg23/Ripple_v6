@@ -38,3 +38,7 @@
 - What was checked: HANDBOOK_CONTEXT dom, fed by the marts registry domain column.
 - The hit: 12 tables carry domain "immigration" that are not immigration — CMS Medicare FFS enrollment, CMS Hospice Enrollments, EPA SDWA service areas among them.
 - What it means: never group or filter by the registry domain column without eyeballing; the label lies on at least 12 rows. Fix belongs in the marts registry, not downstream.
+2026-09-02 — PORTAL_ landing tables never exceed 10,000 rows; 169 of 1,563 sit at exactly 10,000, the scraper's page cap. Those 169 are samples, not datasets; any count or sum on them is a floor.
+2026-09-02 — _INGESTED_AT reads year ~56,660,000 on at least 7 tables (EPA CAMPD, GUDID x2, GLEIF REPEX, FMCSA census, SAM entity, USCG vessels): loaders stamped epoch microseconds as seconds. year() on it throws; never trust _INGESTED_AT as a date without a range check.
+2026-09-02 — ArcGIS PORTAL_ARC_ date columns land as epoch MILLISECONDS with a trailing '.0' (e.g. 1555977600000.0), often under names like LASTCHANGE or ST_REVIEW; a bare sum reads as trillions. Detect 13-digit values, divide by 1000, dateadd from 1970.
+2026-09-02 — FED_CMS_OPEN_PAYMENTS APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_ID is a 12-digit numeric id (100000000xxx); any 'PAYMENT' name-match that sums it reads $1.5 quadrillion. Column name says PAYMENT, content says id.

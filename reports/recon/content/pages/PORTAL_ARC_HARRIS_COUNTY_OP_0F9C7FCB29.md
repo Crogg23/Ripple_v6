@@ -1,0 +1,440 @@
+# PORTAL_ARC_HARRIS_COUNTY_OP_0F9C7FCB29
+
+rows 12  columns 182  scan 5.5s
+
+roles: amount 4, audit 2, category 97, date 3, empty 41, other 20, who 16
+
+## when
+
+OBSOLDATE
+  2029        12  ##############################
+
+PRODDATE
+  2019        12  ##############################
+
+INGESTED_AT
+  2026        12  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE | 12 | 29.49 | 29.75 | 30.68 | 30.73 | 358.34 |
+| LONGITUDE | 12 | -95.54 | -95.41 | -95.04 | -95.02 | -1.1K |
+| AREA | 12 | 0.10 | 0.43 | 0.43 | 0.43 | 4.43 |
+| PERIMETER | 12 | 1.96 | 3.57 | 3.57 | 3.57 | 38.62 |
+
+## who
+
+CSA by rows
+        12  HOUSTON-THE WOODLANDS, TX
+
+CSA by dollars
+      358.34       12 rows  HOUSTON-THE WOODLANDS, TX
+
+SELSICCD by rows
+        12  832241
+
+SELSICCD by dollars
+      358.34       12 rows  832241
+
+SELSIC by rows
+        12  HOMELESS SHELTERS
+
+SELSIC by dollars
+      358.34       12 rows  HOMELESS SHELTERS
+
+PRISICCD by rows
+        12  832241
+
+PRISICCD by dollars
+      358.34       12 rows  832241
+
+## who x when
+
+CSA by OBSOLDATE, dollars = LATITUDE
+  HOUSTON-THE WOODLANDS, TX                 2029:358.34
+
+SELSICCD by OBSOLDATE, dollars = LATITUDE
+  832241                                    2029:358.34
+
+## what
+
+OBJECTID: 12 8%, 11 8%, 10 8%, 9 8%, 8 8%, 7 8%, 6 8%, 5 8%, 4 8%, 3 8%, 2 8%, 1 8%
+
+FID_INFOGROUP_BUSINESS_2019_HOM: 10 8%, 6 8%, 11 8%, 8 8%, 12 8%, 7 8%, 5 8%, 1 8%, 4 8%, 3 8%, 2 8%, 9 8%
+
+CONTACT: LATOYA CARTER 11%, ALLEN RICE 11%, DONALD RICHARDSON 11%, ISHA DESELLES 11%, CHARLES FUSSELL 11%, SHIRAS VILLEGAS 11%, JAMES E TALLENT 11%, ALTONETTE PERRY 11%, CALVIN POWITZKY 11%
+
+COMPANY: GOOD SHEPHERD MISSION 8%, FAMILY PROMISE 8%, SPIRIT KEY INC 8%, LYDIA'S PLACE 8%, TURNING POINT CTR 8%, STAR OF HOPE WOMEN/FAMILY 8%, SALVATION ARMY EMERGENCY SHLTR 8%, ALLIANCE FOR THE HOMELESS 8%, STAR OF HOPE MISSION 8%, BRIDGE OVER TROUBLED WATERS 8%, STAR OF HOPE 8%, GENERAL SHELTERS DICKINSON TX 8%
+
+PRIADDR: 1005 MARTIN LUTHER KING DR 8%, 1401 BETTES ST 8%, 13617 KALTENBRUN RD 8%, 2417 GLASGOW ST 8%, 1701 JACQUELYN DR 8%, 419 EMANCIPATION AVE 8%, 1603 MCGOWEN ST 8%, 2726 BISSONNET ST # 240-350 8%, 4848 LOOP CENTRAL DR # 500 8%, PO BOX 3488 8%, 2575 REED RD 8%, 4823 FM 646 RD E 8%
+
+PRICITY: HOUSTON 67%, HUNTSVILLE 8%, CONROE 8%, PASADENA 8%, DICKINSON 8%
+
+PRIZIP: 77320 8%, 77301 8%, 77086 8%, 77026 8%, 77055 8%, 77003 8%, 77004 8%, 77005 8%, 77081 8%, 77501 8%, 77051 8%, 77539 8%
+
+PRIZIP4: 4709 8%, 1712 8%, 1517 8%, 4278 8%, 3643 8%, 2211 8%, 1146 8%, 1319 8%, 2356 8%, 3488 8%, 2216 8%, 7788 8%
+
+PRIZIP10: 77320-4709 8%, 77301-1712 8%, 77086-1517 8%, 77026-4278 8%, 77055-3643 8%, 77003-2211 8%, 77004-1146 8%, 77005-1319 8%, 77081-2356 8%, 77501-3488 8%, 77051-2216 8%, 77539-7788 8%
+
+PRICARRC: C005 17%, C001 8%, C072 8%, C006 8%, C018 8%, C004 8%, C008 8%, C024 8%, B024 8%, C014 8%, R007 8%
+
+COUNTYCD: 201 75%, 471 8%, 339 8%, 167 8%
+
+COUNTY: HARRIS 75%, WALKER 8%, MONTGOMERY 8%, GALVESTON 8%
+
+CBSACD: 26420 92%, 26660 8%
+
+CBSA: HOUSTON, TX 92%, HUNTSVILLE, TX 8%
+
+MTMCINDCD: 2 92%, 1 8%
+
+MTMCIND: Metro 92%, Micro 8%
+
+CENSUSTR: 790600 8%, 693500 8%, 533802 8%, 210800 8%, 520300 8%, 310100 8%, 312500 8%, 411800 8%, 411700 8%, 323600 8%, 334100 8%, 720600 8%
+
+CENSUSBG: 2 50%, 1 42%, 3 8%
+
+MATCHLCCD: P 83%, 0 17%
+
+MATCHLC: Parcel Centroid 83%, Site-Level 17%
+
+SECADDR: 1005 MARTIN LUTHER KING DR 8%, 1401 BETTES ST 8%, 13617 KALTENBRUN RD 8%, 2417 GLASGOW ST 8%, 1701 JACQUELYN DR 8%, 419 EMANCIPATION AVE 8%, 1603 MCGOWEN ST 8%, 2726 BISSONNET ST # 240-350 8%, 4848 LOOP CENTRAL DR # 500 8%, 3811 ALLEN GENOA RD 8%, 2575 REED RD 8%, 4823 FM 646 RD E 8%
+
+SECCITY: HOUSTON 67%, HUNTSVILLE 8%, CONROE 8%, PASADENA 8%, DICKINSON 8%
+
+SECZIP: 77320 8%, 77301 8%, 77086 8%, 77026 8%, 77055 8%, 77003 8%, 77004 8%, 77005 8%, 77081 8%, 77504 8%, 77051 8%, 77539 8%
+
+SECZIP4: 4709 8%, 1712 8%, 1517 8%, 4278 8%, 3643 8%, 2211 8%, 1146 8%, 1319 8%, 2356 8%, 2723 8%, 2216 8%, 7788 8%
+
+SECZIP10: 77320-4709 8%, 77301-1712 8%, 77086-1517 8%, 77026-4278 8%, 77055-3643 8%, 77003-2211 8%, 77004-1146 8%, 77005-1319 8%, 77081-2356 8%, 77504-2723 8%, 77051-2216 8%, 77539-7788 8%
+
+SECCARRC: C005 17%, C001 8%, C072 8%, C006 8%, C018 8%, C004 8%, C008 8%, C024 8%, C054 8%, C014 8%, R007 8%
+
+PHONE: 713-222-2220 18%, 936-291-8156 9%, 330-253-8081 9%, 281-813-0093 9%, 713-692-4900 9%, 713-957-0099 9%, 713-650-6530 9%, 713-748-0700 9%, 713-472-0753 9%, 281-884-8768 9%
+
+TOLLFREENO: 800-272-0039 33%, 800-725-2769 33%, 800-525-1978 33%
+
+WEBSITE: http://SOHMISSION.ORG 30%, http://THEGMISSION.COM 10%, http://FAMILYPROMISEGWINNETT.O 10%, http://SPIRITKEY.ORG 10%, http://TURNINGPOINTCENTER.ORG 10%, http://SALVATIONARMYUSA.ORG 10%, http://TBOTW.ORG 10%, http://METALBUILDINGSFM646.COM 10%
+
+SECSICCD1: 593222 12%, 832215 12%, 769962 12%, 836115 12%, 833102 12%, 832218 12%, 836198 12%, 075203 12%
+
+SECSIC1: THRIFT SHOPS 12%, MARRIAGE & FAMILY COUNSELORS 12%, LOCKS & LOCKSMITHS 12%, SHELTERS FOR BATTERED WOMEN 12%, REHABILITATION SERVICES 12%, SOCIAL SERVICE & WELFARE ORGAN 12%, RESIDENTIAL CARE 12%, ANIMAL SHELTERS 12%
+
+SECSICCD2: 832240 25%, 836115 25%, 839998 25%, 832208 25%
+
+SECSIC2: FOOD BANKS 25%, SHELTERS FOR BATTERED WOMEN 25%, NON-PROFIT ORGANIZATIONS 25%, CRISIS INTERVENTION SERVICE 25%
+
+SECSICCD3: 999966 50%, 839908 25%, 832215 25%
+
+SECSIC3: FEDERAL GOVERNMENT CONTRACTORS 50%, HUMAN SERVICES ORGANIZATIONS 25%, MARRIAGE & FAMILY COUNSELORS 25%
+
+SECSICCD4: 839998 100%
+
+SECSIC4: NON-PROFIT ORGANIZATIONS 100%
+
+LOCEMPSZCD: B 42%, A 33%, D 8%, F 8%, E 8%
+
+LOCEMPSZ: 5-9 42%, 1-4 33%, 20-49 8%, 100-249 8%, 50-99 8%
+
+ACLOCEMPSZ: 00005 42%, 00002 8%, 00003 8%, 00001 8%, 00023 8%, 00201 8%, 00080 8%, 00004 8%
+
+MODEMPSZCD: A 58%, C 42%
+
+MODEMPSZ: Actual 58%, Modeled by SIC 42%
+
+LOCSALVOCD: A 75%, G 8%, E 8%, D 8%
+
+LOCSALVO: LESS THAN $500,000 75%, $20-50 MILLION 8%, $5-10 MILLION 8%, $2.5-5 MILLION 8%
+
+ACLOCSALVO: 000000210 25%, 000000189 8%, 000000222 8%, 000000084 8%, 000000126 8%, 000000042 8%, 000027050 8%, 000008416 8%, 000003350 8%, 000000164 8%
+
+LASTNAME: CARTER 11%, RICE 11%, RICHARDSON 11%, DESELLES 11%, FUSSELL 11%, VILLEGAS 11%, TALLENT 11%, PERRY 11%, POWITZKY 11%
+
+FIRSTNAME: LATOYA 11%, ALLEN 11%, DONALD 11%, ISHA 11%, CHARLES 11%, SHIRAS 11%, JAMES E 11%, ALTONETTE 11%, CALVIN 11%
+
+SALUTATION: MR 62%, MS 38%
+
+GENDER: Mal 42%, Unk 33%, Fem 25%
+
+TITLECD: 4 22%, 3 22%, 1 22%, ( 22%, 2 11%
+
+TITLE: EXEC DIRECTOR 22%, MANAGER 22%, OWNER 22%, DIRECTOR 22%, PRESIDENT 11%
+
+ETHNICCD: 00 25%, E5 25%, W4 17%, B5 8%, FR 8%, H5 8%, HU 8%
+
+ETHNIC: UNKNOWN 25%, ENGLISH 25%, WELSH 17%, AFRICAN AMERICAN 2 8%, FRENCH 8%, HISPANIC 8%, HUNGARIAN 8%
+
+IUSAID: 426302545 8%, 709890038 8%, 408865131 8%, 421731620 8%, 645852757 8%, 438673100 8%, 162098263 8%, 717474147 8%, 714656879 8%, 970305330 8%, 724909193 8%, 723325846 8%
+
+IUSAPARID: 466104361 100%
+
+SITENUMBER: 426302545 8%, 709890038 8%, 408865131 8%, 421731620 8%, 645852757 8%, 438673100 8%, 162098263 8%, 717474147 8%, 714656879 8%, 424944109 8%, 724909193 8%, 723325846 8%
+
+HQBRANCHCD: 9 92%, 2 8%
+
+HQBRANCH: SINGLE LOC 92%, BRANCH 8%
+
+YRSICADDED: 2019-03 17%, 2015-10 8%, 2017-03 8%, 2016-01 8%, 2015-07 8%, 2007-10 8%, 2015-04 8%, 2015-11 8%, 2016-03 8%, 2018-02 8%, 2017-02 8%
+
+YRAPPYP: 2015 33%, 2012 17%, 2017 17%, 2011 8%, 2006 8%, 1984 8%, 1997 8%
+
+YRESTAB: 1988 25%, 2015 25%, 1978 25%, 2017 25%
+
+YPCD: 76221 100%
+
+TRANSDATE: 2019-03 50%, 2019-02 17%, 2017-03 8%, 2018-06 8%, 2015-11 8%, 2018-05 8%
+
+CALLSTATCD: R 40%, M 30%, B 10%, S 10%, A 10%
+
+CALLSTAT: CONAME/PHONE VERIFY 40%, ANSWERING MACHINE 30%, BUSY 10%, MISCELLANEOUS 10%, NO ANSWER 10%
+
+ACCRSCORE: 080 25%, 086 17%, 076 17%, 083 8%, 074 8%, 098 8%, 093 8%, 075 8%
+
+ADSIZECD: A 100%
+
+ADSIZE: REGULAR 100%
+
+POPCD: 7 83%, 6 17%
+
+POP: 20,000 - 49,999 83%, 10,000 - 19,999 17%
+
+OWNLEASECD: O 100%
+
+OWNLEASE: Own 100%
+
+SQFTCD: 4 25%, 3 25%, 2 17%, 8 17%, 6 8%, 5 8%
+
+SQFT: 5,000 - 9,999 25%, 2,500 - 4,999 25%, 1,500 - 2,499 17%, 100,000+ 17%, 20,000 - 39,999 8%, 10,000 - 19,999 8%
+
+ACNMBZXTEN: 0000002 40%, 0000001 30%, 0000044 10%, 0000012 10%, 0000004 10%
+
+XTENANTCD: A 71%, C 29%
+
+XTENANT: 2 - 4 71%, 10+ 29%
+
+BLDNUMXTEN: 2855764 10%, 4471192 10%, 4009805 10%, 4542545 10%, 4701169 10%, 1491388 10%, 1847896 10%, 1500881 10%, 4150157 10%, 3204082 10%
+
+BIGBUS: N 92%, Y 8%
+
+BUSSZCHGCD: C 80%, + 20%
+
+BUSSZCHG: Growing business 100%
+
+HIGHINCEXE: N 92%, Y 8%
+
+MEDSZBZENT: N 92%, Y 8%
+
+SMBZENT: N 83%, Y 17%
+
+DELPTBARCD: 773204709056 8%, 773011712010 8%, 770861517170 8%, 770264278999 8%, 770553643019 8%, 770032211197 8%, 770041146037 8%, 770051319999 8%, 770812356993 8%, 775013488881 8%, 770512216757 8%, 775397788234 8%
+
+TERADDR: LOOP CENTRAL II 100%
+
+TERCITY: HOUSTON 100%
+
+TERST: TX 100%
+
+TERZIP: 77081 100%
+
+TERZIP10: 77081 100%
+
+BOOKNO: CDC 17%, T59 8%, T72 8%, T61 8%, T56 8%, BWP 8%, INT 8%, DAX 8%, T81 8%, 71123 8%, FUI 8%
+
+FID_HGAC_REGIONAL_COUNTY_BOUNDA: 5 75%, 1 8%, 2 8%, 13 8%
+
+CO48_D00: 202 75%, 172 8%, 185 8%, 223 8%
+
+CO48_D00_I: 201 75%, 171 8%, 184 8%, 222 8%
+
+COUNTY_1: 201 75%, 471 8%, 339 8%, 167 8%
+
+NAME: Harris 75%, Walker 8%, Montgomery 8%, Galveston 8%
+
+GEOMETRY: {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%, {"type": "Point", "coordinates 8%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | category | 12 | 0 | 12 1; 11 1; 10 1; 9 1 |
+| FID_INFOGROUP_BUSINESS_2019_HOM | category | 12 | 0 | 10 1; 6 1; 11 1; 8 1 |
+| CONTACT | category | 10 | 3 | LATOYA CARTER 1; ALLEN RICE 1; DONALD RICHARDSON 1; ISHA DESELLES 1 |
+| COMPANY | category | 12 | 0 | GOOD SHEPHERD MISSION 1; FAMILY PROMISE 1; SPIRIT KEY INC 1; LYDIA'S PLACE 1 |
+| PRIADDR | category | 12 | 0 | 1005 MARTIN LUTHER KING D 1; 1401 BETTES ST 1; 13617 KALTENBRUN RD 1; 2417 GLASGOW ST 1 |
+| PRICITY | category | 5 | 0 | HOUSTON 8; HUNTSVILLE 1; CONROE 1; PASADENA 1 |
+| PRIST | other | 1 | 0 | TX 12 |
+| PRIZIP | category | 12 | 0 | 77320 1; 77301 1; 77086 1; 77026 1 |
+| PRIZIP4 | category | 12 | 0 | 4709 1; 1712 1; 1517 1; 4278 1 |
+| PRIZIP10 | category | 12 | 0 | 77320-4709 1; 77301-1712 1; 77086-1517 1; 77026-4278 1 |
+| PRICARRC | category | 11 | 0 | C005 2; C001 1; C072 1; C006 1 |
+| PRISTCD | other | 1 | 0 | 48 12 |
+| COUNTYCD | category | 4 | 0 | 201 9; 471 1; 339 1; 167 1 |
+| COUNTY | category | 4 | 0 | HARRIS 9; WALKER 1; MONTGOMERY 1; GALVESTON 1 |
+| CBSACD | category | 2 | 0 | 26420 11; 26660 1 |
+| CBSA | category | 2 | 0 | HOUSTON, TX 11; HUNTSVILLE, TX 1 |
+| MTMCINDCD | category | 2 | 0 | 2 11; 1 1 |
+| MTMCIND | category | 2 | 0 | Metro 11; Micro 1 |
+| CSACD | other | 1 | 0 | 288 12 |
+| CSA | who | 1 | 0 | HOUSTON-THE WOODLANDS, TX 12 |
+| CENSUSTR | category | 12 | 0 | 790600 1; 693500 1; 533802 1; 210800 1 |
+| CENSUSBG | category | 3 | 0 | 2 6; 1 5; 3 1 |
+| LATITUDE | amount | 12 | 0 | 30.7251 1; 30.3214 1; 29.9323 1; 29.8088 1 |
+| LONGITUDE | amount | 12 | 0 | -95.5433 1; -95.4694 1; -95.48 1; -95.3468 1 |
+| MATCHLCCD | category | 2 | 0 | P 10; 0 2 |
+| MATCHLC | category | 2 | 0 | Parcel Centroid 10; Site-Level 2 |
+| SECADDR | category | 12 | 0 | 1005 MARTIN LUTHER KING D 1; 1401 BETTES ST 1; 13617 KALTENBRUN RD 1; 2417 GLASGOW ST 1 |
+| SECCITY | category | 5 | 0 | HOUSTON 8; HUNTSVILLE 1; CONROE 1; PASADENA 1 |
+| SECSTCD | other | 1 | 0 | 48 12 |
+| SECST | other | 1 | 0 | TX 12 |
+| SECZIP | category | 12 | 0 | 77320 1; 77301 1; 77086 1; 77026 1 |
+| SECZIP4 | category | 12 | 0 | 4709 1; 1712 1; 1517 1; 4278 1 |
+| SECZIP10 | category | 12 | 0 | 77320-4709 1; 77301-1712 1; 77086-1517 1; 77026-4278 1 |
+| SECCARRC | category | 11 | 0 | C005 2; C001 1; C072 1; C006 1 |
+| PHONE | category | 11 | 1 | 713-222-2220 2; 936-291-8156 1; 330-253-8081 1; 281-813-0093 1 |
+| FAX | empty | 1 | 12 |  |
+| TOLLFREENO | category | 4 | 9 | 800-272-0039 1; 800-725-2769 1; 800-525-1978 1 |
+| WEBSITE | category | 9 | 2 | http://SOHMISSION.ORG 3; http://THEGMISSION.COM 1; http://FAMILYPROMISEGWINN 1; http://SPIRITKEY.ORG 1 |
+| SELSICCD | who | 1 | 0 | 832241 12 |
+| SELSIC | who | 1 | 0 | HOMELESS SHELTERS 12 |
+| FRANSPCCD1 | empty | 1 | 12 |  |
+| FRANSPC1 | empty | 1 | 12 |  |
+| FRANSPCCD2 | empty | 1 | 12 |  |
+| FRANSPC2 | empty | 1 | 12 |  |
+| FRANSPCCD3 | empty | 1 | 12 |  |
+| FRANSPC3 | empty | 1 | 12 |  |
+| FRANSPCCD4 | empty | 1 | 12 |  |
+| FRANSPC4 | empty | 1 | 12 |  |
+| FRANSPCCD5 | empty | 1 | 12 |  |
+| FRANSPC5 | empty | 1 | 12 |  |
+| FRANSPCCD6 | empty | 1 | 12 |  |
+| FRANSPC6 | empty | 1 | 12 |  |
+| TRUEFRANCH | empty | 1 | 12 |  |
+| INDSPECCD | empty | 1 | 12 |  |
+| INDSPEC | empty | 1 | 12 |  |
+| PRISICCD | who | 1 | 0 | 832241 12 |
+| PRISIC | who | 1 | 0 | HOMELESS SHELTERS 12 |
+| SECSICCD1 | category | 9 | 4 | 593222 1; 832215 1; 769962 1; 836115 1 |
+| SECSIC1 | category | 9 | 4 | THRIFT SHOPS 1; MARRIAGE & FAMILY COUNSEL 1; LOCKS & LOCKSMITHS 1; SHELTERS FOR BATTERED WOM 1 |
+| SECSICCD2 | category | 5 | 8 | 832240 1; 836115 1; 839998 1; 832208 1 |
+| SECSIC2 | category | 5 | 8 | FOOD BANKS 1; SHELTERS FOR BATTERED WOM 1; NON-PROFIT ORGANIZATIONS 1; CRISIS INTERVENTION SERVI 1 |
+| SECSICCD3 | category | 4 | 8 | 999966 2; 839908 1; 832215 1 |
+| SECSIC3 | category | 4 | 8 | FEDERAL GOVERNMENT CONTRA 2; HUMAN SERVICES ORGANIZATI 1; MARRIAGE & FAMILY COUNSEL 1 |
+| SECSICCD4 | category | 2 | 11 | 839998 1 |
+| SECSIC4 | category | 2 | 11 | NON-PROFIT ORGANIZATIONS 1 |
+| NAICSCD | who | 1 | 0 | 62422102 12 |
+| NAICS | who | 1 | 0 | TEMPORARY SHELTERS 12 |
+| LOCEMPSZCD | category | 5 | 0 | B 5; A 4; D 1; F 1 |
+| LOCEMPSZ | category | 5 | 0 | 5-9 5; 1-4 4; 20-49 1; 100-249 1 |
+| ACLOCEMPSZ | category | 8 | 0 | 00005 5; 00002 1; 00003 1; 00001 1 |
+| CRPEMPSZCD | empty | 1 | 12 |  |
+| CRPEMPSZ | empty | 1 | 12 |  |
+| ACCRPEMPSZ | empty | 1 | 12 |  |
+| MODEMPSZCD | category | 2 | 0 | A 7; C 5 |
+| MODEMPSZ | category | 2 | 0 | Actual 7; Modeled by SIC 5 |
+| LOCSALVOCD | category | 4 | 0 | A 9; G 1; E 1; D 1 |
+| LOCSALVO | category | 4 | 0 | LESS THAN $500,000 9; $20-50 MILLION 1; $5-10 MILLION 1; $2.5-5 MILLION 1 |
+| ACLOCSALVO | category | 10 | 0 | 000000210 3; 000000189 1; 000000222 1; 000000084 1 |
+| CRPSALVOCD | empty | 1 | 12 |  |
+| CRPSALVO | empty | 1 | 12 |  |
+| ACCRPSALVO | empty | 1 | 12 |  |
+| ASSETSZCD | other | 1 | 0 | B 12 |
+| ASSETSZ | who | 1 | 0 | Both Assets and Sales 12 |
+| LASTNAME | category | 10 | 3 | CARTER 1; RICE 1; RICHARDSON 1; DESELLES 1 |
+| FIRSTNAME | category | 10 | 3 | LATOYA 1; ALLEN 1; DONALD 1; ISHA 1 |
+| SALUTATION | category | 3 | 4 | MR 5; MS 3 |
+| GENDER | category | 3 | 0 | Mal 5; Unk 4; Fem 3 |
+| PROTITLECD | empty | 1 | 12 |  |
+| PROTITLE | empty | 1 | 12 |  |
+| TITLECD | category | 6 | 3 | 4 2; 3 2; 1 2; ( 2 |
+| TITLE | category | 6 | 3 | EXEC DIRECTOR 2; MANAGER 2; OWNER 2; DIRECTOR 2 |
+| ETHNICCD | category | 7 | 0 | 00 3; E5 3; W4 2; B5 1 |
+| ETHNIC | category | 7 | 0 | UNKNOWN 3; ENGLISH 3; WELSH 2; AFRICAN AMERICAN 2 1 |
+| IUSAID | category | 12 | 0 | 426302545 1; 709890038 1; 408865131 1; 421731620 1 |
+| IUSASUBID | empty | 1 | 12 |  |
+| IUSAPARID | category | 2 | 11 | 466104361 1 |
+| SITENUMBER | category | 12 | 0 | 426302545 1; 709890038 1; 408865131 1; 421731620 1 |
+| HQBRANCHCD | category | 2 | 0 | 9 11; 2 1 |
+| HQBRANCH | category | 2 | 0 | SINGLE LOC 11; BRANCH 1 |
+| PUBCOINDCD | other | 1 | 0 | 0 12 |
+| PUBCOIND | who | 1 | 0 | Private Company 12 |
+| STOCKEXCD | empty | 1 | 12 |  |
+| STOCKEX | empty | 1 | 12 |  |
+| STOCKTS | empty | 1 | 12 |  |
+| PUBFILIND | other | 1 | 0 | N 12 |
+| FORTUNERNK | empty | 1 | 12 |  |
+| INDFIRMCD | other | 1 | 0 | 2 12 |
+| INDFIRM | who | 1 | 0 | FIRM/BUSINESS 12 |
+| YRSICADDED | category | 11 | 0 | 2019-03 2; 2015-10 1; 2017-03 1; 2016-01 1 |
+| YRAPPYP | category | 7 | 0 | 2015 4; 2012 2; 2017 2; 2011 1 |
+| YRESTAB | category | 5 | 8 | 1988 1; 2015 1; 1978 1; 2017 1 |
+| YPCD | category | 2 | 11 | 76221 1 |
+| TRANSDATE | category | 6 | 0 | 2019-03 6; 2019-02 2; 2017-03 1; 2018-06 1 |
+| TRANTYPECD | empty | 1 | 12 |  |
+| TRANTYPE | empty | 1 | 12 |  |
+| CALLSTATCD | category | 6 | 2 | R 4; M 3; B 1; S 1 |
+| CALLSTAT | category | 6 | 2 | CONAME/PHONE VERIFY 4; ANSWERING MACHINE 3; BUSY 1; MISCELLANEOUS 1 |
+| CRSCORECD | other | 1 | 0 | I 12 |
+| CRSCORE | who | 1 | 0 | INSTITUTION 12 |
+| ACCRSCORE | category | 8 | 0 | 080 3; 086 2; 076 2; 083 1 |
+| ADSIZECD | category | 2 | 11 | A 1 |
+| ADSIZE | category | 2 | 11 | REGULAR 1 |
+| OFFICESZCD | empty | 1 | 12 |  |
+| OFFICESZ | empty | 1 | 12 |  |
+| POPCD | category | 2 | 0 | 7 10; 6 2 |
+| POP | category | 2 | 0 | 20,000 - 49,999 10; 10,000 - 19,999 2 |
+| WRKHOMEBIZ | other | 1 | 0 | N 12 |
+| OWNLEASECD | category | 2 | 11 | O 1 |
+| OWNLEASE | category | 2 | 11 | Own 1 |
+| SQFTCD | category | 6 | 0 | 4 3; 3 3; 2 2; 8 2 |
+| SQFT | category | 6 | 0 | 5,000 - 9,999 3; 2,500 - 4,999 3; 1,500 - 2,499 2; 100,000+ 2 |
+| DISTTARGET | empty | 1 | 12 |  |
+| ACNMBZXTEN | category | 6 | 2 | 0000002 4; 0000001 3; 0000044 1; 0000012 1 |
+| XTENANTCD | category | 3 | 5 | A 5; C 2 |
+| XTENANT | category | 3 | 5 | 2 - 4 5; 10+ 2 |
+| BLDNUMXTEN | category | 11 | 2 | 2855764 1; 4471192 1; 4009805 1; 4542545 1 |
+| AFFNBHDLOC | other | 1 | 0 | N 12 |
+| BIGBUS | category | 2 | 0 | N 11; Y 1 |
+| FEMALEOWN | empty | 1 | 12 |  |
+| BUSSZCHGCD | category | 3 | 2 | C 8; + 2 |
+| BUSSZCHG | category | 2 | 10 | Growing business 2 |
+| HIGHINCEXE | category | 2 | 0 | N 11; Y 1 |
+| HIGHTECHBZ | other | 1 | 0 | N 12 |
+| MEDSZBZENT | category | 2 | 0 | N 11; Y 1 |
+| SMBZENT | category | 2 | 0 | N 10; Y 2 |
+| DELPTBARCD | category | 12 | 0 | 773204709056 1; 773011712010 1; 770861517170 1; 770264278999 1 |
+| TERADDR | category | 2 | 11 | LOOP CENTRAL II 1 |
+| TERCITY | category | 2 | 11 | HOUSTON 1 |
+| TERST | category | 2 | 11 | TX 1 |
+| TERZIP | category | 2 | 11 | 77081 1 |
+| TERZIP4 | empty | 1 | 12 |  |
+| TERZIP10 | category | 2 | 11 | 77081 1 |
+| TERCARRC | empty | 1 | 12 |  |
+| WCPCT | other | 1 | 0 | 46 12 |
+| WCINDCD | other | 1 | 0 | 0 12 |
+| WCIND | who | 1 | 0 | Less than 50% of Employee 12 |
+| OBSOLDATE | date | 1 | 0 | 1885248000 12 |
+| PRODDATE | date | 1 | 0 | 20190328 12 |
+| SOURCE | who | 1 | 0 | infoUSA 12 |
+| BOOKNO | category | 11 | 0 | CDC 2; T59 1; T72 1; T61 1 |
+| GOVSEGCD | empty | 1 | 12 |  |
+| GOVSEG | empty | 1 | 12 |  |
+| FORGNPAR | other | 1 | 0 | N 12 |
+| IMPEXPCD | empty | 1 | 12 |  |
+| IMPEXP | empty | 1 | 12 |  |
+| KEYCODE | who | 1 | 0 | Business-Verified 12 |
+| FID_HGAC_REGIONAL_COUNTY_BOUNDA | category | 4 | 0 | 5 9; 1 1; 2 1; 13 1 |
+| AREA | amount | 4 | 0 | 0.42922 9; 0.19554 1; 0.26157 1; 0.09868 1 |
+| PERIMETER | amount | 4 | 0 | 3.57033 9; 2.02391 1; 2.51417 1; 1.96248 1 |
+| CO48_D00 | category | 4 | 0 | 202 9; 172 1; 185 1; 223 1 |
+| CO48_D00_I | category | 4 | 0 | 201 9; 171 1; 184 1; 222 1 |
+| STATE | other | 1 | 0 | 48 12 |
+| COUNTY_1 | category | 4 | 0 | 201 9; 471 1; 339 1; 167 1 |
+| NAME | category | 4 | 0 | Harris 9; Walker 1; Montgomery 1; Galveston 1 |
+| LSAD | other | 1 | 0 | 06 12 |
+| LSAD_TRANS | who | 1 | 0 | County 12 |
+| GLOBAL_DBO | other | 1 | 0 | 0 12 |
+| GLOBAL_D_1 | other | 1 | 0 | 0 12 |
+| GEOMETRY | category | 12 | 0 | {"type": "Point", "coordi 1; {"type": "Point", "coordi 1; {"type": "Point", "coordi 1; {"type": "Point", "coordi 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:13:17.64078 12 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 55b90f9e-b2a8-42b5-b34b-b 12 |
+| SRC_SHA256 | who | 1 | 0 | e9a99497f5c97b1c5e5e63922 12 |

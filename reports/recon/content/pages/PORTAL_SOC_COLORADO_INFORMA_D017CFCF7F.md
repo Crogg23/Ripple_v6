@@ -1,0 +1,154 @@
+# PORTAL_SOC_COLORADO_INFORMA_D017CFCF7F
+
+rows 327  columns 20  scan 4.5s
+
+roles: amount 3, audit 2, category 11, date 1, other 2, who 2
+
+## when
+
+INGESTED_AT
+  2026       327  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| HELDWORKS_ASSETSINCLUDEDAMT | 13 | 0 | 0 | 544.5K | 546.8K | 3.05M |
+| ASSETSINCLUDEDAMT | 36 | 0 | 784.4K | 37.32M | 37.68M | 362.10M |
+| REVENUESINCLUDEDAMT | 14 | 0 | 13.8K | 19.05M | 21.84M | 22.90M |
+
+## who
+
+BUSINESSNAME1 by rows
+         7  VILAR CENTER FOR THE ARTS FOUNDATION
+         6  BOULDER PHILHARMONIC ORCHESTRA
+         6  HINSDALE COUNTY HISTORICAL SOCIETY
+         6  OLD COLORADO CITY HISTORICAL
+         6  COLORADO ROCKY MOUNTAIN SCHOOL
+         6  MUSEUM OF CONTEMPORARY ART DENVER
+         5  MANITOU SPRINGS HISTORICAL SOCIETY
+         5  COLORADO SEMINARY
+         4  BUENA VISTA HERITAGE MUSEUM
+         4  CHINA PARTNER
+         4  BERGER COLLECTION EDUCATION TRUST
+         4  Western Colorado Center for the Arts Inc
+         4  JOHNS HOPKINS UNIVERSITY
+         4  ASPEN HISTORICAL SOCIETY
+         4  WINGS OVER THE ROCKIES AIR & SPACE MUSEUM
+         4  American Numismatic Association Inc
+         3  Western Colorado Center for the Arts
+         3  UNIVERSAL CHASTITY EDUCATION INC
+         3  THE PARK PEOPLE
+         3  Colorado Springs Fine Arts Center
+
+BUSINESSNAME1 by dollars
+     144.91M        4 rows  American Numismatic Association Inc
+      66.72M        3 rows  BERGER COLLECTION EDUCATIONAL TRUST
+      66.59M        4 rows  BERGER COLLECTION EDUCATION TRUST
+      37.68M        1 rows  AMERICAN NUMISMATIC ASSOCIATION
+      21.95M        2 rows  DREXEL UNIVERSITY
+       8.93M        2 rows  FORNEY MUSEUM
+       8.88M        2 rows  BEREA COLLEGE
+       2.06M        3 rows  UNITED STATES FIGURE
+       1.42M        2 rows  PUEBLO RAILWAY FOUNDATION
+      850.0K        1 rows  The Shelby American Collection
+      495.5K        7 rows  VILAR CENTER FOR THE ARTS FOUNDATION
+      404.1K        3 rows  Western Colorado Center for the Arts
+      289.4K        1 rows  Doane College
+      263.9K        1 rows  METROPOLITAN STATE UNIVERSITY OF DENVER
+      254.1K        1 rows  Focus on the Family
+      210.6K        1 rows  DENVER MUSEUM OF MINIATURESDOLLS & TOYS
+      165.2K        1 rows  Vilar Center for The Arts Foundation
+       29.1K        1 rows  GLOBAL VILLAGE MUSEUM OF ARTS & CUL
+           0        5 rows  COLORADO SEMINARY
+           0        1 rows  THE COLORADO CONGRESS OF PARENTS
+
+SRC_SHA256 by rows
+       327  8446c2e30187801346b4012b5173799c2e05ced8ae724fee747ca9d09c294266
+
+SRC_SHA256 by dollars
+     362.10M      327 rows  8446c2e30187801346b4012b5173799c2e05ced8ae724fee747ca9d09c29
+
+## who x when
+
+BUSINESSNAME1 by INGESTED_AT  LOAD STAMP, not an event date, dollars = ASSETSINCLUDEDAMT
+  AMERICAN NUMISMATIC ASSOCIATION           2026:37.68M
+  ASPEN HISTORICAL SOCIETY                  2026:4
+  American Numismatic Association Inc       2026:144.91M
+  BEREA COLLEGE                             2026:8.88M
+  BERGER COLLECTION EDUCATION TRUST         2026:66.59M
+  BERGER COLLECTION EDUCATIONAL TRUST       2026:66.72M
+  BOULDER PHILHARMONIC ORCHESTRA            2026:6
+  BUENA VISTA HERITAGE MUSEUM               2026:4
+  CHINA PARTNER                             2026:4
+  COLORADO ROCKY MOUNTAIN SCHOOL            2026:6
+  COLORADO SEMINARY                         2026:0
+  Colorado Springs Fine Arts Center         2026:3
+  DREXEL UNIVERSITY                         2026:21.95M
+  Doane College                             2026:289.4K
+  FORNEY MUSEUM                             2026:8.93M
+  HINSDALE COUNTY HISTORICAL SOCIETY        2026:6
+  JOHNS HOPKINS UNIVERSITY                  2026:4
+  MANITOU SPRINGS HISTORICAL SOCIETY        2026:5
+  METROPOLITAN STATE UNIVERSITY OF DENVER   2026:263.9K
+  MUSEUM OF CONTEMPORARY ART DENVER         2026:6
+  OLD COLORADO CITY HISTORICAL              2026:6
+  PUEBLO RAILWAY FOUNDATION                 2026:1.42M
+  THE PARK PEOPLE                           2026:3
+  The Shelby American Collection            2026:850.0K
+  UNITED STATES FIGURE                      2026:2.06M
+  UNIVERSAL CHASTITY EDUCATION INC          2026:3
+  VILAR CENTER FOR THE ARTS FOUNDATION      2026:495.5K
+  WINGS OVER THE ROCKIES AIR & SPACE MUSEU  2026:4
+  Western Colorado Center for the Arts      2026:404.1K
+  Western Colorado Center for the Arts Inc  2026:4
+
+SRC_SHA256 by INGESTED_AT  LOAD STAMP, not an event date, dollars = ASSETSINCLUDEDAMT
+  8446c2e30187801346b4012b5173799c2e05ced8  2026:362.10M
+
+## what
+
+TAXYR: 2011 39%, 2010 16%, 2015 10%, 2016 9%, 2014 8%, 2013 6%, 2012 6%, 2009 4%, 2017 0%
+
+COLLECTIONSOFARTIND: f 56%, t 44%
+
+COLLECTIONUSEDPUBEXHIBITIONIND: f 66%, t 34%
+
+COLLUSEDSCHOLARLYRSRCHIND: f 83%, t 17%
+
+COLLECTIONUSEDPRESERVATIONIND: f 73%, t 27%
+
+COLLUSEDLOANOREXCHPROGIND: f 93%, t 7%
+
+COLLECTIONUSEDOTHERPURPOSESIND: f 98%, t 2%
+
+SOLICITEDASSETSSALEIND: f 97%, t 3%
+
+HELDWORKS_REVENUESINCLUDEDAMT: nan 98%, 0 2%
+
+BUSINESSNAME2: nan 83%, INC 3%, SOCIETY 2%, FKA-BEAVER CREEK FOUNDATION 2%, FOUNDATION INC 2%, ATTN TIMOTHY STANDRING 1%, ATTN DAVID HAYES 1%, Endowment Foundation Inc 1%, CENTER 1%, SERVICES 1%, SKATING ASSOCIATION 1%, OF THE ROCKIES 1%
+
+OTHERPURPOSESDESC: nan 98%, Education 1%, Operations and Offer Rides 1%, NA 0%, WORKSHOPS/CLASS PROJECTS 0%, EDUCATIONAL SERVICE 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| ID | other | 328 | 0 | 201602569349300220 2; 201241309349300909 2; 201200889349300225 2; 201100749349301015 2 |
+| TAXYR | category | 9 | 0 | 2011 129; 2010 53; 2015 34; 2016 31 |
+| BUSINESSNAME1 | who | 197 | 0 | VILAR CENTER FOR THE ARTS 7; BOULDER PHILHARMONIC ORCH 6; OLD COLORADO CITY HISTORI 6; MUSEUM OF CONTEMPORARY AR 6 |
+| EIN | other | 185 | 0 | 841316133 8; 336258491 7; 846037740 6; 840855158 6 |
+| COLLECTIONSOFARTIND | category | 2 | 0 | f 182; t 145 |
+| COLLECTIONUSEDPUBEXHIBITIONIND | category | 2 | 0 | f 216; t 111 |
+| COLLUSEDSCHOLARLYRSRCHIND | category | 2 | 0 | f 273; t 54 |
+| COLLECTIONUSEDPRESERVATIONIND | category | 2 | 0 | f 239; t 88 |
+| COLLUSEDLOANOREXCHPROGIND | category | 2 | 0 | f 305; t 22 |
+| COLLECTIONUSEDOTHERPURPOSESIND | category | 2 | 0 | f 320; t 7 |
+| SOLICITEDASSETSSALEIND | category | 2 | 0 | f 316; t 11 |
+| HELDWORKS_REVENUESINCLUDEDAMT | category | 2 | 0 | nan 320; 0 7 |
+| HELDWORKS_ASSETSINCLUDEDAMT | amount | 6 | 0 | nan 314; 0 7; 528014 3; 546778 1 |
+| BUSINESSNAME2 | category | 44 | 0 | nan 241; INC 10; SOCIETY 6; FKA-BEAVER CREEK FOUNDATI 6 |
+| ASSETSINCLUDEDAMT | amount | 26 | 0 | nan 291; 22239588 4; 165172 4; 134706 3 |
+| OTHERPURPOSESDESC | category | 6 | 0 | nan 320; Education 2; Operations and Offer Ride 2; NA 1 |
+| REVENUESINCLUDEDAMT | amount | 11 | 0 | nan 313; 0 5; 21840 1; 20559 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:42:05.85324 327 |
+| SOURCE_RUN_ID | audit | 1 | 0 | c111df19-3e30-491a-bd29-8 327 |
+| SRC_SHA256 | who | 1 | 0 | 8446c2e30187801346b4012b5 327 |

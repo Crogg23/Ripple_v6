@@ -1,0 +1,172 @@
+# PORTAL_ARC_ATLANTA_DATAATLA_4AB9F9E31E
+
+rows 681  columns 30  scan 3.9s
+
+roles: amount 2, audit 2, category 8, date 3, other 11, who 5
+
+## when
+
+SOURCEDATE
+  2021       681  ##############################
+
+VAL_DATE
+  2015       151  #################
+  2016        20  ##
+  2018        16  ##
+  2019       200  ######################
+  2020        27  ###
+  2022       267  ##############################
+
+INGESTED_AT
+  2026       681  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE | 681 | 33.66 | 33.76 | 33.88 | 33.88 | 23.0K |
+| LONGITUDE | 681 | -84.55 | -84.39 | -84.31 | -84.29 | -57.5K |
+
+## who
+
+NAME by rows
+         3  ECLECTIC MUSIC
+         3  YOUNG GROWERS SUMMER CAMP AND AFTER SCHOOL PROGRAM
+         3  BUCKHEAD PREPARATORY SCHOOL
+         3  NOVASKYE YOUTH FOUNDATION
+         3  ANDREW P. STEWART CENTER
+         2  INCREDIBLE KIDS
+         2  WESTMINSTER SCHOOLS INC.
+         2  INTERNATIONAL MONTESSORI ACADEMY
+         2  MUSTARD SEEDS PMO INC.
+         2  CONTACT POINT
+         2  WHITEFOORD INC.
+         2  ATLANTA INTERNATIONAL SCHOOL
+         2  3E EDUCATIONAL SERVICES STEM SEEKERS
+         2  THE ATTENTION CENTER C / O E.S.T.H.E.R. PROJECT
+         2  KIDS 'R SPECIAL INC.
+         2  MONTESSORI IN TOWN
+         2  THE REMARKABLE YOUTH PROJECT
+         2  THE GODDARD SCHOOL
+         1  ATLANTA PUBLIC SCHOOLS - BURGESS - PETERSON ELEMENTARY
+         1  ATLANTA PUBLIC SCHOOLS - DUNBAR ELEMENTARY
+
+NAME by dollars
+      101.52        3 rows  BUCKHEAD PREPARATORY SCHOOL
+      101.35        3 rows  ECLECTIC MUSIC
+      101.19        3 rows  ANDREW P. STEWART CENTER
+      101.13        3 rows  YOUNG GROWERS SUMMER CAMP AND AFTER SCHOOL PROGRAM
+      101.11        3 rows  NOVASKYE YOUTH FOUNDATION
+       67.70        2 rows  WESTMINSTER SCHOOLS INC.
+       67.66        2 rows  ATLANTA INTERNATIONAL SCHOOL
+       67.63        2 rows  MUSTARD SEEDS PMO INC.
+       67.54        2 rows  INTERNATIONAL MONTESSORI ACADEMY
+       67.54        2 rows  THE GODDARD SCHOOL
+       67.53        2 rows  CONTACT POINT
+       67.52        2 rows  MONTESSORI IN TOWN
+       67.51        2 rows  THE ATTENTION CENTER C / O E.S.T.H.E.R. PROJECT
+       67.50        2 rows  3E EDUCATIONAL SERVICES STEM SEEKERS
+       67.50        2 rows  THE REMARKABLE YOUTH PROJECT
+       67.49        2 rows  WHITEFOORD INC.
+       67.48        2 rows  INCREDIBLE KIDS
+       67.41        2 rows  KIDS 'R SPECIAL INC.
+       33.88        1 rows  KNUCKLEHEAD CAMPS
+       33.88        1 rows  CHASTAIN ARTS CENTER - ART A LA CARTE SUMMER CAMP
+
+SOURCE by rows
+       681  https://families.decal.ga.gov/provider/data
+
+SOURCE by dollars
+       23.0K      681 rows  https://families.decal.ga.gov/provider/data
+
+WEBSITE by rows
+       681  NOT AVAILABLE
+
+WEBSITE by dollars
+       23.0K      681 rows  NOT AVAILABLE
+
+ZIP4 by rows
+       681  NOT AVAILABLE
+
+ZIP4 by dollars
+       23.0K      681 rows  NOT AVAILABLE
+
+## who x when
+
+NAME by VAL_DATE, dollars = LATITUDE
+  3E EDUCATIONAL SERVICES STEM SEEKERS      2022:67.50
+  ANDREW P. STEWART CENTER                  2022:101.19
+  ATLANTA INTERNATIONAL SCHOOL              2015:33.83 2022:33.83
+  ATLANTA PUBLIC SCHOOLS - BURGESS - PETER  2019:33.74
+  ATLANTA PUBLIC SCHOOLS - DUNBAR ELEMENTA  2022:33.74
+  BUCKHEAD PREPARATORY SCHOOL               2019:33.87 2020:33.79 2022:33.86
+  CHASTAIN ARTS CENTER - ART A LA CARTE SU  2022:33.88
+  CONTACT POINT                             2019:33.76 2022:33.77
+  ECLECTIC MUSIC                            2022:101.35
+  INCREDIBLE KIDS                           2019:33.74 2022:33.74
+  INTERNATIONAL MONTESSORI ACADEMY          2015:33.77 2022:33.77
+  KIDS 'R SPECIAL INC.                      2015:33.68 2022:33.73
+  KNUCKLEHEAD CAMPS                         2022:33.88
+  MONTESSORI IN TOWN                        2015:33.75 2019:33.77
+  MUSTARD SEEDS PMO INC.                    2019:33.82 2022:33.81
+  NOVASKYE YOUTH FOUNDATION                 2019:33.68 2022:67.43
+  THE ATTENTION CENTER C / O E.S.T.H.E.R.   2022:67.51
+  THE GODDARD SCHOOL                        2015:33.78 2020:33.76
+  THE REMARKABLE YOUTH PROJECT              2022:67.50
+  WESTMINSTER SCHOOLS INC.                  2015:33.85 2022:33.85
+  WHITEFOORD INC.                           2019:33.74 2022:33.75
+  YOUNG GROWERS SUMMER CAMP AND AFTER SCHO  2022:101.13
+
+SOURCE by VAL_DATE, dollars = LATITUDE
+  https://families.decal.ga.gov/provider/d  2015:5.1K 2016:675.06 2018:540.11 2019:6.8K 2020:911.83 2022:9.0K
+
+## what
+
+CITY: ATLANTA 100%, DECATUR 0%, SANDY SPRINGS 0%
+
+ZIP: 30318 14%, 30315 11%, 30331 10%, 30310 10%, 30311 9%, 30327 8%, 30305 8%, 30312 7%, 30307 6%, 30316 6%, 30314 6%, 30317 6%
+
+TYPE: CENTER BASED 70%, SCHOOL BASED 26%, RELIGIOUS FACILITY 4%, HEAD START 0%
+
+COUNTY: FULTON 89%, DEKALB 11%
+
+COUNTYFIPS: 13121 89%, 13089 11%
+
+NAICS_DESC: CHILD DAY CARE CENTERS 81%, CHILD DAY CARE, BEFORE OR AFTE 18%, HEAD START PROGRAMS, SEPARATE  1%
+
+VAL_METHOD: IMAGERY/OTHER 75%, GEOCODE 13%, IMAGERY 11%, UNVERIFIED 1%
+
+ST_SUBTYPE: EXEMPT ONLY 69%, CHILD CARE LEARNING CENTER 31%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | other | 668 | 0 | 681 4; 680 4; 679 4; 678 4 |
+| ID | other | 681 | 0 | 1222338176 4; 1222338175 4; 1222338159 4; 1222338155 4 |
+| COUNT | other | 1 | 0 | 1 681 |
+| NAME | who | 648 | 0 | YOUNG GROWERS SUMMER CAMP 6; WHITEFOORD INC. 5; WESTMINSTER SCHOOLS INC. 5; NOVASKYE YOUTH FOUNDATION 5 |
+| ADDRESS | other | 600 | 0 | 20 EVELYN WAY NW 5; 1015 EDGEWOOD AVENUE NE 5; 3100 NORTHSIDE DRIVE NW 5; 3434 ROSWELL ROAD NW 5 |
+| CITY | category | 3 | 0 | ATLANTA 678; DECATUR 2; SANDY SPRINGS 1 |
+| STATE | other | 1 | 0 | GA 681 |
+| ZIP | category | 30 | 0 | 30318 69; 30315 57; 30331 50; 30310 49 |
+| ZIP4 | who | 1 | 0 | NOT AVAILABLE 681 |
+| TELEPHONE | other | 561 | 0 | (404) 802-5834 16; (770) 739-1462 10; (404) 272-5877 6; (678) 973-0997 6 |
+| TYPE | category | 4 | 0 | CENTER BASED 475; SCHOOL BASED 178; RELIGIOUS FACILITY 26; HEAD START 2 |
+| STATUS | other | 1 | 0 | OPEN 681 |
+| POPULATION | other | 134 | 0 | -999 469; 100 10; 50 8; 84 6 |
+| COUNTY | category | 2 | 0 | FULTON 604; DEKALB 77 |
+| COUNTYFIPS | category | 2 | 0 | 13121 604; 13089 77 |
+| COUNTRY | other | 1 | 0 | USA 681 |
+| LATITUDE | amount | 643 | 0 | 33.841311 5; 33.770231 5; 33.733961 4; 33.8059457 4 |
+| LONGITUDE | amount | 628 | 0 | -84.408042 5; -84.339312 5; -84.373612 4; -84.3404233 4 |
+| NAICS_CODE | other | 1 | 0 | 624410 681 |
+| NAICS_DESC | category | 3 | 0 | CHILD DAY CARE CENTERS 549; CHILD DAY CARE, BEFORE OR 123; HEAD START PROGRAMS, SEPA 9 |
+| SOURCE | who | 1 | 0 | https://families.decal.ga 681 |
+| SOURCEDATE | date | 1 | 0 | 1634774400000 681 |
+| VAL_METHOD | category | 4 | 0 | IMAGERY/OTHER 512; GEOCODE 88; IMAGERY 77; UNVERIFIED 4 |
+| VAL_DATE | date | 33 | 0 | 1654128000000 267; 1554940800000 29; 1554768000000 27; 1554422400000 26 |
+| WEBSITE | who | 1 | 0 | NOT AVAILABLE 681 |
+| ST_SUBTYPE | category | 2 | 0 | EXEMPT ONLY 469; CHILD CARE LEARNING CENTE 212 |
+| GEOMETRY | other | 634 | 0 | {"type": "Point", "coordi 5; {"type": "Point", "coordi 5; {"type": "Point", "coordi 4; {"type": "Point", "coordi 4 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:25:29.68291 681 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 77c7a621-2460-4a22-9b91-c 681 |
+| SRC_SHA256 | who | 1 | 0 | 18ededef679704e8f71410918 681 |

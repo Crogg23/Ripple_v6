@@ -1,0 +1,207 @@
+# PORTAL_SOC_COLORADO_INFORMA_F0E162D7A8
+
+rows 2.0K  columns 17  scan 5.7s
+
+roles: amount 9, audit 2, category 1, date 1, id 1, other 1, who 3
+
+## when
+
+INGESTED_AT
+  2026      2.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTALREVENUEAMT | 2.0K | -72.8K | 58.5K | 193.5K | 475.9K | 137.22M |
+| GRANTSANDSIMILARAMOUNTSPAIDAMT | 1.0K | 0 | 4.7K | 153.2K | 793.4K | 22.33M |
+| BENEFITSPAIDTOORFORMEMBERSAMT | 629 | 0 | 0 | 120.9K | 212.5K | 3.96M |
+| SALARIESOTHERCOMPEMPLBNFTAMT | 1.1K | 0 | 10.0K | 123.6K | 336.6K | 24.23M |
+| FEESANDOTHERPYMTTOINDCNTRCTAMT | 1.6K | 0 | 1.5K | 85.6K | 170.2K | 13.76M |
+| OCCUPANCYRENTUTLTSANDMAINTAMT | 1.2K | 0 | 2.6K | 83.2K | 158.9K | 11.25M |
+
+## who
+
+BUSINESSNAME1 by rows
+        31  PTA COLORADO CONGRESS
+        16  CHERRY CREEK SCHOOL DISTRICT PARENT TEACHER COMMUNITY COUNCIL INC
+        13  CHERRY CREEK SCHOOL DISTRIC PARENT TEACHER COMMUNITY COUNCIL INC
+         6  BRIANNA BADGER FOUNDATION
+         6  CRABTREE APARTMENTS
+         6  GOSPEL OF GRACE MINISTRIES
+         6  Ouray Mountain Rescue Team Inc
+         6  PROJECT V E T S
+         6  PUEBLO HISTORICAL AIRCRAFT SOCIETY
+         6  COLORADO STATE SCIENCE FAIR INC
+         6  ROCKY MOUNTAIN ROWING CLUB INC
+         5  FOUR CORNERS GEOLOGICAL SOCIETY
+         5  SOUTHWEST LAND ALLIANCE
+         5  DELTA GUNNISON VALLEY CHURCH OF THE NAZARENE
+         5  PROFESSIONAL WILD HORSE RACERS INC
+         5  GREELEY CHILDREN'S CHORALE INC
+         5  NEW BEES THRIFT STORE
+         5  PLATTE CANYON LITTLE LEAGUE INC
+         5  BMW CCA Rocky Mountain Chapter
+         5  Coronado Elementary PTA
+
+BUSINESSNAME1 by dollars
+       1.86M       31 rows  PTA COLORADO CONGRESS
+      797.3K        5 rows  NORTH BOULDER LITTLE LEAGUE
+      741.0K        5 rows  NEW BEES THRIFT STORE
+      728.5K        5 rows  COLORADO SPRINGS EXECUTIVES
+      683.2K        4 rows  NESHAMA CENTER
+      677.8K        5 rows  GLENWOOD SPRINGS YOUTH HOCKEY ASSOC
+      668.4K        4 rows  MARS SOCIETY INC
+      640.3K       13 rows  CHERRY CREEK SCHOOL DISTRIC PARENT TEACHER COMMUNITY COUNCIL
+      630.4K        4 rows  RED BRICK COUNCIL FOR THE ARTS
+      629.4K        4 rows  LES DAMES D'ASPEN LTD
+      606.0K       16 rows  CHERRY CREEK SCHOOL DISTRICT PARENT TEACHER COMMUNITY COUNCI
+      554.3K        5 rows  All Ways Fundraising
+      553.9K        4 rows  You Can Live History Inc
+      553.0K        4 rows  POLARIS PTO INC
+      548.4K        4 rows  PRAIRIE WILDLIFE RESEARCH INC
+      545.6K        4 rows  FRIENDS OF COLORADO CREW
+      538.4K        6 rows  COLORADO STATE SCIENCE FAIR INC
+      532.4K        4 rows  Seniors in Community Living Inc
+      518.9K        6 rows  PROJECT V E T S
+      516.4K        3 rows  HOMES FOR SENIOR CITIZENS INC
+
+BUSINESSNAME2 by rows
+      1.8K  nan
+         7  ASSOCIATION
+         5  REVITALIZATION TEAM INC
+         5  PREVENTION FUND INC
+         4  C/O KENT WATSON
+         4  PARENT TEACHER ORGANIZATION
+         4  of Corporate Directors
+         3  ATTN GARY HORVATH TREASURER
+         3  Fairmount Elementary PTA
+         3  EDUCATION FOUNDATION INC
+         3  COMPREHENSIVE CHILD CARE CORP
+         3  BELLEVIEW ELEMENTARY SCHOOL PTCO
+         3  FOUNDATION INC
+         3  ROCKY MOUNTAIN BRANCH
+         3  Intermediary Services
+         2  PHYSICIANS FOUNDATION
+         2  THERAPEUTIC RIDING CENTER
+         2  ASSOCIATION INC
+         2  INTEGRATION
+         2  BARTENDERS & SERVERS ASSOCIATION
+
+BUSINESSNAME2 by dollars
+     125.34M     1.8K rows  nan
+      949.5K        7 rows  ASSOCIATION
+      570.9K        4 rows  C/O KENT WATSON
+      461.1K        4 rows  of Corporate Directors
+      358.1K        3 rows  ROCKY MOUNTAIN BRANCH
+      339.3K        3 rows  BELLEVIEW ELEMENTARY SCHOOL PTCO
+      326.6K        5 rows  REVITALIZATION TEAM INC
+      290.4K        2 rows  OF STERLING
+      257.4K        2 rows  OF COLORADO
+      222.0K        2 rows  ASSOCIATION INC
+      200.5K        2 rows  DBA ROCKY MOUNTAIN LADY ROUGHRIDERS
+      199.5K        1 rows  DBA Educo Leadership Adventures
+      192.7K        3 rows  Fairmount Elementary PTA
+      188.7K        1 rows  84-1286744
+      188.5K        2 rows  SWEET ADELINES INTERNATIONAL
+      181.8K        2 rows  ANALYTICAL CHEMISTRY INC
+      178.7K        1 rows  SECTION 9 INC
+      177.2K        2 rows  SOUTHERN COLORADO INC
+      173.0K        1 rows  DBA THE MARS SOCIETY
+      159.7K        1 rows  C/O SMOKE FREE GAMING OF COLORADO
+
+SRC_SHA256 by rows
+      2.0K  f988e7b20d1c35d318900c4d13d7ed840028696c64eef69c24329530659774c9
+
+SRC_SHA256 by dollars
+     137.22M     2.0K rows  f988e7b20d1c35d318900c4d13d7ed840028696c64eef69c243295306597
+
+## who x when
+
+BUSINESSNAME1 by INGESTED_AT  LOAD STAMP, not an event date, dollars = TOTALREVENUEAMT
+  All Ways Fundraising                      2026:554.3K
+  BMW CCA Rocky Mountain Chapter            2026:99.7K
+  BRIANNA BADGER FOUNDATION                 2026:37.6K
+  CHERRY CREEK SCHOOL DISTRIC PARENT TEACH  2026:640.3K
+  CHERRY CREEK SCHOOL DISTRICT PARENT TEAC  2026:606.0K
+  COLORADO SPRINGS EXECUTIVES               2026:728.5K
+  COLORADO STATE SCIENCE FAIR INC           2026:538.4K
+  CRABTREE APARTMENTS                       2026:425.2K
+  Coronado Elementary PTA                   2026:219.0K
+  DELTA GUNNISON VALLEY CHURCH OF THE NAZA  2026:438.6K
+  FOUR CORNERS GEOLOGICAL SOCIETY           2026:52.6K
+  GLENWOOD SPRINGS YOUTH HOCKEY ASSOC       2026:677.8K
+  GOSPEL OF GRACE MINISTRIES                2026:302.8K
+  GREELEY CHILDREN'S CHORALE INC            2026:276.0K
+  LES DAMES D'ASPEN LTD                     2026:629.4K
+  MARS SOCIETY INC                          2026:668.4K
+  NESHAMA CENTER                            2026:683.2K
+  NEW BEES THRIFT STORE                     2026:741.0K
+  NORTH BOULDER LITTLE LEAGUE               2026:797.3K
+  Ouray Mountain Rescue Team Inc            2026:244.2K
+  PLATTE CANYON LITTLE LEAGUE INC           2026:156.4K
+  POLARIS PTO INC                           2026:553.0K
+  PROFESSIONAL WILD HORSE RACERS INC        2026:120.0K
+  PROJECT V E T S                           2026:518.9K
+  PTA COLORADO CONGRESS                     2026:1.86M
+  PUEBLO HISTORICAL AIRCRAFT SOCIETY        2026:365.6K
+  RED BRICK COUNCIL FOR THE ARTS            2026:630.4K
+  ROCKY MOUNTAIN ROWING CLUB INC            2026:369.7K
+  SOUTHWEST LAND ALLIANCE                   2026:218.1K
+  You Can Live History Inc                  2026:553.9K
+
+BUSINESSNAME2 by INGESTED_AT  LOAD STAMP, not an event date, dollars = TOTALREVENUEAMT
+  84-1286744                                2026:188.7K
+  ANALYTICAL CHEMISTRY INC                  2026:181.8K
+  ASSOCIATION                               2026:949.5K
+  ASSOCIATION INC                           2026:222.0K
+  ATTN GARY HORVATH TREASURER               2026:130.4K
+  BARTENDERS & SERVERS ASSOCIATION          2026:33.2K
+  BELLEVIEW ELEMENTARY SCHOOL PTCO          2026:339.3K
+  C/O KENT WATSON                           2026:570.9K
+  COMPREHENSIVE CHILD CARE CORP             2026:145.0K
+  DBA Educo Leadership Adventures           2026:199.5K
+  DBA ROCKY MOUNTAIN LADY ROUGHRIDERS       2026:200.5K
+  DBA THE MARS SOCIETY                      2026:173.0K
+  EDUCATION FOUNDATION INC                  2026:134.5K
+  FOUNDATION INC                            2026:87.5K
+  Fairmount Elementary PTA                  2026:192.7K
+  INTEGRATION                               2026:117.8K
+  Intermediary Services                     2026:46.8K
+  OF COLORADO                               2026:257.4K
+  OF STERLING                               2026:290.4K
+  PARENT TEACHER ORGANIZATION               2026:44.6K
+  PHYSICIANS FOUNDATION                     2026:56.4K
+  PREVENTION FUND INC                       2026:104.7K
+  REVITALIZATION TEAM INC                   2026:326.6K
+  ROCKY MOUNTAIN BRANCH                     2026:358.1K
+  SECTION 9 INC                             2026:178.7K
+  SOUTHERN COLORADO INC                     2026:177.2K
+  SWEET ADELINES INTERNATIONAL              2026:188.5K
+  THERAPEUTIC RIDING CENTER                 2026:33.7K
+  nan                                       2026:125.34M
+  of Corporate Directors                    2026:461.1K
+
+## what
+
+TAXYR: 2014 26%, 2015 20%, 2012 20%, 2010 14%, 2013 11%, 2011 6%, 2009 2%, 2016 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| ID | id | 2.0K | 0 | 201641329349201719 10; 201641319349201009 10; 201641319349200214 10; 201641279349200489 10 |
+| TAXYR | category | 8 | 0 | 2014 516; 2015 409; 2012 396; 2010 281 |
+| BUSINESSNAME1 | who | 1.1K | 0 | PTA COLORADO CONGRESS 31; CHERRY CREEK SCHOOL DISTR 16; CHERRY CREEK SCHOOL DISTR 13; Met Ed Co 10 |
+| EIN | other | 1.0K | 0 | 841054300 11; 473204389 10; 742128267 10; 208212881 10 |
+| TOTALREVENUEAMT | amount | 1.9K | 0 | 0 28; nan 12; 100 11; 139850 10 |
+| GRANTSANDSIMILARAMOUNTSPAIDAMT | amount | 547 | 0 | nan 999; 0 353; 5000 14; 1000 11 |
+| BENEFITSPAIDTOORFORMEMBERSAMT | amount | 131 | 0 | nan 1.4K; 0 497; 1500 2; 2838 2 |
+| SALARIESOTHERCOMPEMPLBNFTAMT | amount | 623 | 0 | nan 929; 0 405; 3000 8; 12000 5 |
+| FEESANDOTHERPYMTTOINDCNTRCTAMT | amount | 1.1K | 0 | nan 374; 0 281; 500 20; 400 15 |
+| OCCUPANCYRENTUTLTSANDMAINTAMT | amount | 849 | 0 | nan 816; 0 295; 263 7; 17463 5 |
+| PRINTINGPUBLICATIONSPOSTAGEAMT | amount | 939 | 0 | nan 629; 0 175; 49 8; 52 7 |
+| OTHEREXPENSESTOTALAMT | amount | 1.8K | 0 | 0 89; nan 87; 87443 10; 4404 10 |
+| TOTALEXPENSESAMT | amount | 1.9K | 0 | 0 28; nan 14; 67380 11; 87443 10 |
+| BUSINESSNAME2 | who | 114 | 0 | nan 1.8K; ASSOCIATION 7; PREVENTION FUND INC 5; REVITALIZATION TEAM INC 5 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:42:47.91407 2.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | 34a9fbf4-f390-48a4-9ea5-8 2.0K |
+| SRC_SHA256 | who | 1 | 0 | f988e7b20d1c35d318900c4d1 2.0K |

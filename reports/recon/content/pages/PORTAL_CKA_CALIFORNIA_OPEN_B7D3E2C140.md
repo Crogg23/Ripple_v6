@@ -1,0 +1,77 @@
+# PORTAL_CKA_CALIFORNIA_OPEN_B7D3E2C140
+
+rows 41  columns 15  scan 4.3s
+
+roles: amount 2, audit 2, category 6, date 3, other 1, who 2
+
+## when
+
+START_DATE_TIME
+  2026        41  ##############################
+
+ESTIMATED_RESTORATION_DATE_TIME
+  2026        40  ##############################
+
+INGESTED_AT
+  2026        41  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| SHAPE__AREA | 41 | 4.6K | 32.0K | 35.14M | 49.16M | 86.56M |
+| SHAPE__LENGTH | 41 | 294.21 | 879.90 | 69.5K | 101.7K | 226.7K |
+
+## who
+
+OUTAGE_STATUS by rows
+        41  Active
+
+OUTAGE_STATUS by dollars
+      86.56M       41 rows  Active
+
+SRC_SHA256 by rows
+        41  277c9889c13b2e5ae48c51d1c391433b950bc51a03e0f503a911f38f927b86e6
+
+SRC_SHA256 by dollars
+      86.56M       41 rows  277c9889c13b2e5ae48c51d1c391433b950bc51a03e0f503a911f38f927b
+
+## who x when
+
+OUTAGE_STATUS by START_DATE_TIME, dollars = SHAPE__AREA
+  Active                                    2026:86.56M
+
+SRC_SHA256 by START_DATE_TIME, dollars = SHAPE__AREA
+  277c9889c13b2e5ae48c51d1c391433b950bc51a  2026:86.56M
+
+## what
+
+OBJECTID: 10379198 8%, 10379197 8%, 10379196 8%, 10379195 8%, 10379194 8%, 10379193 8%, 10379192 8%, 10379191 8%, 10379190 8%, 10379189 8%, 10379188 8%, 10379187 8%
+
+CAUSE: EMERG REPAIRS 32%, PATROLLING 18%, PLNND SHUTDOWN 11%, BRKN UG EQUIPMNT 11%, THRD PARTY 7%, REPAIR WIRE DWN 4%, TREE CONTACT 4%, REPLCE SRVC 4%, DAMGE UG CABLE 4%, FOREIGN OBJ 4%, BRKN POLE EQUIPMNT 4%
+
+IMPACTED_CUSTOMERS: 1 51%, 7 11%, 4 8%, 5 5%, 10 5%, 110 3%, 19 3%, 44 3%, 27 3%, 43 3%, 42 3%, 28 3%
+
+COUNTY: SAN JOAQUIN 22%, FRESNO 12%, MONTEREY 9%, SAN FRANCISCO 9%, SANTA CLARA 9%, EL DORADO 9%, SHASTA 6%, MARIN 6%, BUTTE 6%, SONOMA 3%, KERN 3%, TEHAMA 3%
+
+OUTAGE_TYPE: Not Planned 93%, Planned 7%
+
+INDICENT_ID: 295579 8%, 295569 8%, 295482 8%, 295456 8%, 295585 8%, 295576 8%, 295493 8%, 295451 8%, 295441 8%, 295313 8%, 295302 8%, 295572 8%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | category | 41 | 0 | 10379198 1; 10379197 1; 10379196 1; 10379195 1 |
+| UTILITYCOMPANY | other | 1 | 0 | PGE 41 |
+| START_DATE_TIME | date | 40 | 0 | 7/2/2026 8:27:00 AM 1; 7/2/2026 7:17:06 AM 1; 7/2/2026 3:00:00 AM 1; 7/2/2026 1:45:21 AM 1 |
+| ESTIMATED_RESTORATION_DATE_TIME | date | 24 | 1 | 7/2/2026 10:00:00 AM 5; 7/2/2026 11:00:00 AM 4; 7/2/2026 1:00:00 PM 3; 7/2/2026 12:00:00 PM 3 |
+| CAUSE | category | 14 | 11 | EMERG REPAIRS 9; PATROLLING 5; PLNND SHUTDOWN 3; BRKN UG EQUIPMNT 3 |
+| IMPACTED_CUSTOMERS | category | 16 | 0 | 1 19; 7 4; 4 3; 5 2 |
+| SHAPE__AREA | amount | 41 | 0 | 2503102.77734375 1; 1141150.8515625 1; 32015.26171875 1; 10200.53125 1 |
+| SHAPE__LENGTH | amount | 41 | 0 | 9946.52723292692 1; 8051.38402298547 1; 994.462352252826 1; 582.02199900223 1 |
+| COUNTY | category | 21 | 0 | SAN JOAQUIN 7; FRESNO 4; MONTEREY 3; SAN FRANCISCO 3 |
+| OUTAGE_STATUS | who | 1 | 0 | Active 41 |
+| OUTAGE_TYPE | category | 2 | 0 | Not Planned 38; Planned 3 |
+| INDICENT_ID | category | 41 | 0 | 295579 1; 295569 1; 295482 1; 295456 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 21:18:07.49532 41 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 898553b6-59b9-4322-aeaf-1 41 |
+| SRC_SHA256 | who | 1 | 0 | 277c9889c13b2e5ae48c51d1c 41 |

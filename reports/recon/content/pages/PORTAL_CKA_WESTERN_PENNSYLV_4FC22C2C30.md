@@ -1,0 +1,224 @@
+# PORTAL_CKA_WESTERN_PENNSYLV_4FC22C2C30
+
+rows 427  columns 22  scan 4.6s
+
+roles: amount 4, audit 2, category 7, date 3, other 4, who 3
+
+## when
+
+PERMIT_ISSUE_DATE
+  2025       194  #########################
+  2026       233  ##############################
+
+PERMIT_EXPIRE_DATE
+  2025       114  ############
+  2026       279  ##############################
+  2027        34  ####
+
+INGESTED_AT
+  2026       427  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| PERMIT_FEE | 427 | 0 | 375 | 2.6K | 2.9K | 250.9K |
+| SQUARE_FEET | 35 | 0 | 1.4K | 32.3K | 44.9K | 101.1K |
+| LONGITUDE | 419 | -80.27 | -79.96 | -79.72 | -79.71 | -33.5K |
+| LATITUDE | 419 | 40.27 | 40.44 | 40.62 | 40.66 | 16.9K |
+
+## who
+
+FACILITY_NAME by rows
+        37  VACANT RESIDENCE
+        16  RESIDENTIAL
+         5  CITY OF PITTSBURGH
+         4  PNC BANK
+         4  AHN JEFFERSON HOSPITAL
+         4  WESTERN PA SCHOOL FOR THE DEAF
+         4  FORMER NIKE MISSLE SITE
+         4  HARRISON TOWNSHIP
+         3  FAMILY DWELLING
+         3  CONDEMNED BUILDING RESIDENCE
+         3  VACANT HOUSE RESIDENCE
+         3  ESPLANANDE
+         3  COMMERCIAL STRUCTURE
+         2  MAY BUILDING
+         2  CITY OF MCKEESPORT
+         2  PPG INDUSTRIAL COATINGS
+         2  WINCHESTER THURSTON SCHOOL
+         2  US STEEL CLAIRTON PLANT
+         2  MELLON HALL
+         2  SUBURBAN GENERAL HOSPITAL
+
+FACILITY_NAME by dollars
+       12.3K       37 rows  VACANT RESIDENCE
+        4.1K       16 rows  RESIDENTIAL
+        4.0K        2 rows  UNITED STEELWORKERS BUILDING
+        3.8K        4 rows  FORMER NIKE MISSLE SITE
+        3.6K        2 rows  PITTSBURGH OBAMA
+        3.5K        4 rows  AHN JEFFERSON HOSPITAL
+        2.9K        1 rows  THE FORMER NORTH AMERICAN MARTYRS CATHOLIC ELEMENTARY SCHOOL
+        2.6K        1 rows  SOUTHERN PLAZA
+        2.6K        1 rows  PITTSBURGH WESTWOOD K-5
+        2.6K        1 rows  AMTRAK TRAIN STATION
+        2.6K        1 rows  1415
+        2.6K        1 rows  PINE-RICHLAND MIDDLE SCHOOL
+        2.6K        1 rows  PITTSBURGH CONROY
+        2.5K        2 rows  SACRED HEART ELEMENTARY SCHOOL
+        2.5K        2 rows  UPMC PRESBYTERIAN HOSPITAL
+        2.4K        2 rows  ALLEGHENY GENERAL HOSPITAL
+        2.2K        2 rows  CARNEGIE MELLON UNIVERSITY
+        2.2K        4 rows  HARRISON TOWNSHIP
+        2.1K        2 rows  SUBURBAN GENERAL HOSPITAL
+        2.1K        2 rows  ALLEGHENY VALLEY HOSPITAL
+
+CONTRACTOR_NAME by rows
+        74  AMERICAN CONTRACTING ENTERPRISES, INC.
+        26  MINNIEFIELD DEMOLITION SERVICES
+        17  GRAY WASTE MANAGEMENT
+        16  BRISTOL ENVIRONMENTAL, LLC
+        15  BRISTOL ENVIRONMENTAL, INC.
+        12  BLT CONTRACTING, INC.
+        10  SPECTRUM ENVIRONMENTAL, LLC
+        10  AMERICAN INDUSTRIAL CONTRACTING, INC
+         9  SUPERIOR ENVIRONMENTAL CONTRACTING
+         8  TACTICAL REMEDIATION
+         7  BLT CONTRACTING,INC.
+         6  ABMECH ACQUISITIONS, LLC
+         6  MASA LLC DBA CANFIELD DEVELOPMENT
+         6  UNIS DEMOLITION CO.
+         6  SPECTRUM ENVIRONMENTAL
+         5  ABMECH ACQUISITIONS
+         5  NOVA ENVIRONMENTAL SERVICES INC.
+         5  PRISM RESPONSE, LLC DBA ALLOY
+         5  PRISM RESPONSE LLC
+         4  CARL/FRANK INDUSTRIES
+
+CONTRACTOR_NAME by dollars
+       42.2K       74 rows  AMERICAN CONTRACTING ENTERPRISES, INC.
+       13.6K       15 rows  BRISTOL ENVIRONMENTAL, INC.
+       12.9K       26 rows  MINNIEFIELD DEMOLITION SERVICES
+       12.9K       12 rows  BLT CONTRACTING, INC.
+       10.4K       16 rows  BRISTOL ENVIRONMENTAL, LLC
+       10.0K       10 rows  SPECTRUM ENVIRONMENTAL, LLC
+        7.4K       17 rows  GRAY WASTE MANAGEMENT
+        7.2K        8 rows  TACTICAL REMEDIATION
+        7.1K        6 rows  ABMECH ACQUISITIONS, LLC
+        7.0K        6 rows  MASA LLC DBA CANFIELD DEVELOPMENT
+        6.0K       10 rows  AMERICAN INDUSTRIAL CONTRACTING, INC
+        5.7K        6 rows  SPECTRUM ENVIRONMENTAL
+        5.2K        5 rows  NOVA ENVIRONMENTAL SERVICES INC.
+        4.3K        5 rows  ABMECH ACQUISITIONS
+        4.1K        9 rows  SUPERIOR ENVIRONMENTAL CONTRACTING
+        3.8K        3 rows  NOVA ENVIRONMENTAL SERVICES, INC.
+        3.5K        3 rows  NEUMEYER ENVIRONMENTAL SERVICES, INC.
+        3.4K        5 rows  PRISM RESPONSE, LLC DBA ALLOY
+        3.2K        2 rows  RICHARD STEINMETZ
+        3.1K        5 rows  PRISM RESPONSE LLC
+
+SRC_SHA256 by rows
+       427  5a65131bbf77b1a2359dc5bfeeae427843422f26569ea641d5a7d13f8dfe8442
+
+SRC_SHA256 by dollars
+      250.9K      427 rows  5a65131bbf77b1a2359dc5bfeeae427843422f26569ea641d5a7d13f8dfe
+
+## who x when
+
+FACILITY_NAME by PERMIT_ISSUE_DATE, dollars = PERMIT_FEE
+  1415                                      2026:2.6K
+  AHN JEFFERSON HOSPITAL                    2025:1.3K 2026:2.1K
+  AMTRAK TRAIN STATION                      2026:2.6K
+  CITY OF MCKEESPORT                        2026:750
+  CITY OF PITTSBURGH                        2026:1.5K
+  COMMERCIAL STRUCTURE                      2025:1.8K
+  CONDEMNED BUILDING RESIDENCE              2025:700
+  ESPLANANDE                                2025:1.6K
+  FAMILY DWELLING                           2026:1.1K
+  FORMER NIKE MISSLE SITE                   2026:3.8K
+  HARRISON TOWNSHIP                         2026:2.2K
+  MAY BUILDING                              2025:600
+  MELLON HALL                               2026:1.2K
+  PINE-RICHLAND MIDDLE SCHOOL               2026:2.6K
+  PITTSBURGH CONROY                         2026:2.6K
+  PITTSBURGH OBAMA                          2026:3.6K
+  PITTSBURGH WESTWOOD K-5                   2026:2.6K
+  PNC BANK                                  2025:212 2026:600
+  PPG INDUSTRIAL COATINGS                   2026:975
+  RESIDENTIAL                               2025:350 2026:3.8K
+  SACRED HEART ELEMENTARY SCHOOL            2025:477 2026:2.0K
+  SOUTHERN PLAZA                            2026:2.6K
+  SUBURBAN GENERAL HOSPITAL                 2026:2.1K
+  THE FORMER NORTH AMERICAN MARTYRS CATHOL  2026:2.9K
+  UNITED STEELWORKERS BUILDING              2025:2.0K 2026:2.0K
+  US STEEL CLAIRTON PLANT                   2025:954
+  VACANT HOUSE RESIDENCE                    2025:0
+  VACANT RESIDENCE                          2025:12.3K 2026:0
+  WESTERN PA SCHOOL FOR THE DEAF            2026:1.2K
+  WINCHESTER THURSTON SCHOOL                2025:477 2026:600
+
+CONTRACTOR_NAME by PERMIT_ISSUE_DATE, dollars = PERMIT_FEE
+  ABMECH ACQUISITIONS                       2026:4.3K
+  ABMECH ACQUISITIONS, LLC                  2025:6.7K 2026:375
+  AMERICAN CONTRACTING ENTERPRISES, INC.    2025:12.7K 2026:29.5K
+  AMERICAN INDUSTRIAL CONTRACTING, INC      2025:901 2026:5.1K
+  BLT CONTRACTING, INC.                     2026:12.9K
+  BLT CONTRACTING,INC.                      2025:2.8K
+  BRISTOL ENVIRONMENTAL, INC.               2025:6.6K 2026:7.0K
+  BRISTOL ENVIRONMENTAL, LLC                2025:1.1K 2026:9.3K
+  CARL/FRANK INDUSTRIES                     2026:1.9K
+  GRAY WASTE MANAGEMENT                     2025:2.0K 2026:5.4K
+  MASA LLC DBA CANFIELD DEVELOPMENT         2026:7.0K
+  MINNIEFIELD DEMOLITION SERVICES           2025:5.8K 2026:7.2K
+  NEUMEYER ENVIRONMENTAL SERVICES, INC.     2026:3.5K
+  NOVA ENVIRONMENTAL SERVICES INC.          2026:5.2K
+  NOVA ENVIRONMENTAL SERVICES, INC.         2025:477 2026:3.3K
+  PRISM RESPONSE LLC                        2025:477 2026:2.6K
+  PRISM RESPONSE, LLC DBA ALLOY             2025:3.4K
+  RICHARD STEINMETZ                         2026:3.2K
+  SPECTRUM ENVIRONMENTAL                    2026:5.7K
+  SPECTRUM ENVIRONMENTAL, LLC               2025:10.0K
+  SUPERIOR ENVIRONMENTAL CONTRACTING        2025:1.4K 2026:2.7K
+  TACTICAL REMEDIATION                      2026:7.2K
+  UNIS DEMOLITION CO.                       2026:2.2K
+
+## what
+
+CITY: PITTSBURGH 72%, MC KEES ROCKS 5%, BRADDOCK 4%, CLAIRTON 3%, MCKEESPORT 3%, NATRONA HEIGHTS 3%, WILMERDING 2%, MCDONALD 2%, MONROEVILLE 2%, SEWICKLEY 2%, DUQUESNE 2%, TARENTUM 1%
+
+PA_LICENSE_NO: 010 17%, 015 13%, 051 10%, 012 9%, 995 9%, 940 9%, 049 8%, 908 7%, 029 6%, 034 6%, 905 6%
+
+PERMIT_SPECIFICATIONS: Demolish Structure 19%, Abate floor tile and mastic 19%, All materials assumed ACM - De 12%, Abate Transite Roof Cap 6%, Abate pipe insulation 6%, Unsafe Structure - All materia 6%, All materials being treated AC 6%, Demolish structure 6%, All materials treated as ACM 6%, Remove asbestos containing mat 6%, Abate Roofing Material 6%
+
+IS_BUILDING_OCCUPIED: No 55%, Yes 45%, NA 0%
+
+PROJECT_TYPE: PAA 71%, UND 11%, DEM 11%, RES 8%
+
+STATUS: Active - Issued 43%, Closed - Completed 27%, Approved - Renovation 19%, Approved - Demolition 11%, Closed - Cancelled 0%, Issued 0%
+
+JOB_COMPLETE: False 73%, True 27%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| PERMIT_NUMBER | other | 425 | 0 | UND2600743 3; UND2600702 3; UND2600701 3; UND2600666 3 |
+| FACILITY_NAME | who | 326 | 0 | VACANT RESIDENCE 37; RESIDENTIAL 16; CITY OF PITTSBURGH 6; FORMER NIKE MISSLE SITE 5 |
+| S_ADDRESS | other | 389 | 0 | 208 LION CUB LN 5; 300 E SWISSVALE AVE BLDG  4; 565 COAL VALLEY RD 4; 400 STATE ST 4 |
+| CITY | category | 36 | 0 | PITTSBURGH 278; MC KEES ROCKS 20; BRADDOCK 14; CLAIRTON 12 |
+| ZIP_CODE | other | 78 | 0 | 15213 28; 15210 27; 15221 24; 15136 20 |
+| PERMIT_FEE | amount | 20 | 0 | 0 113; 375 62; 350 54; 1050 31 |
+| PA_LICENSE_NO | category | 48 | 225 | 010 19; 015 15; 051 11; 012 10 |
+| CONTRACTOR_NAME | who | 74 | 100 | AMERICAN CONTRACTING ENTE 74; MINNIEFIELD DEMOLITION SE 26; GRAY WASTE MANAGEMENT 17; BRISTOL ENVIRONMENTAL, LL 16 |
+| PERMIT_SPECIFICATIONS | category | 24 | 399 | Demolish Structure 3; Abate floor tile and mast 3; All materials assumed ACM 2; Abate Transite Roof Cap 1 |
+| SQUARE_FEET | amount | 35 | 392 | 1962 2; 141 1; 30 1; 1894 1 |
+| IS_BUILDING_OCCUPIED | category | 3 | 0 | No 235; Yes 191; NA 1 |
+| PERMIT_ISSUE_DATE | date | 169 | 0 | 2026-01-01 17; 2026-06-15 14; 2026-05-04 9; 2025-10-29 9 |
+| PERMIT_EXPIRE_DATE | date | 161 | 0 | 2025-12-31 53; 2026-12-31 34; 2026-07-31 16; 2026-06-30 16 |
+| PROJECT_TYPE | category | 4 | 0 | PAA 302; UND 45; DEM 45; RES 35 |
+| STATUS | category | 6 | 0 | Active - Issued 185; Closed - Completed 114; Approved - Renovation 79; Approved - Demolition 46 |
+| JOB_COMPLETE | category | 2 | 0 | False 313; True 114 |
+| LONGITUDE | amount | 382 | 8 | -80.16671078 5; -79.88183365 4; -79.93365251 4; -79.87431636 4 |
+| LATITUDE | amount | 372 | 8 | 40.37160296 5; 40.43471217 4; 40.31790306 4; 40.29401101 4 |
+| PARCEL_ID | other | 381 | 1 | 0233N00150000000 5; 0327E00001000000 5; 0560J00050000000 4; 0027P00080000003 4 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 21:40:43.12997 427 |
+| SOURCE_RUN_ID | audit | 1 | 0 | c2c7faba-5386-41f1-ac6d-6 427 |
+| SRC_SHA256 | who | 1 | 0 | 5a65131bbf77b1a2359dc5bfe 427 |

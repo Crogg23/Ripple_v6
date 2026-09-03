@@ -1,0 +1,43 @@
+# PORTAL_CKA_VIRGINIA_OPEN_DA_39C6E329F1
+
+rows 136  columns 9  scan 2.3s
+
+roles: audit 2, category 4, date 1, other 2, who 1
+
+## when
+
+INGESTED_AT
+  2026       136  ##############################
+
+## who
+
+SRC_SHA256 by rows
+       136  96afc8494c11bf19e79df76625b1c6ec62e9cb5f4d0e425534c1f6bceca7d63c
+
+## who x when
+
+SRC_SHA256 by INGESTED_AT  LOAD STAMP, not an event date
+  96afc8494c11bf19e79df76625b1c6ec62e9cb5f  2026:136
+
+## what
+
+INFLUENZA_SEASON: 2021/2022 18%, 2020/2021 18%, 2019/2020 18%, 2018/2019 18%, 2023/2024 15%, 2022/2023 15%
+
+HOSPITAL_NAME: SELECT SPECIALTY HOSPITAL - RI 18%, LAKE TAYLOR TRANSITIONAL CARE  18%, HOSPITAL FOR EXTENDED RECOVERY 18%, HAMPTON ROADS SPECIALTY HOSPIT 18%, CENTRA SPECIALTY HOSPITAL 18%, UNIVERSITY OF VIRGINIA TRANSIT 12%
+
+PERSONNEL_TYPE: All Healthcare Workers 25%, studVol 25%, LIP 25%, Employee 25%
+
+COMPARISON_TO_HEALTHY_PEOPLE_2020_GOAL_90: Worse 42%, Better 36%, N/A 22%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| INFLUENZA_SEASON | category | 6 | 0 | 2021/2022 24; 2020/2021 24; 2019/2020 24; 2018/2019 24 |
+| HOSPITAL_NAME | category | 6 | 0 | SELECT SPECIALTY HOSPITAL 24; LAKE TAYLOR TRANSITIONAL  24; HOSPITAL FOR EXTENDED REC 24; HAMPTON ROADS SPECIALTY H 24 |
+| PERSONNEL_TYPE | category | 4 | 0 | All Healthcare Workers 34; studVol 34; LIP 34; Employee 34 |
+| SUM_OF_PERCENT_VACCINATED | other | 82 | 0 | N/A 30; 100.00% 18; 96.30% 2; 92.20% 2 |
+| HEALTHY_PEOPLE_2020_GOAL | other | 1 | 0 | 0.900 136 |
+| COMPARISON_TO_HEALTHY_PEOPLE_2020_GOAL_90 | category | 3 | 0 | Worse 57; Better 49; N/A 30 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 23:16:04.47339 136 |
+| SOURCE_RUN_ID | audit | 1 | 0 | c8c9891a-4752-4fe7-923f-3 136 |
+| SRC_SHA256 | who | 1 | 0 | 96afc8494c11bf19e79df7662 136 |

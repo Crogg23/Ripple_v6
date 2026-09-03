@@ -1,0 +1,110 @@
+# PORTAL_ARC_ORANGE_COUNTY_OP_DD64A3F2B8
+
+rows 31  columns 28  scan 3.2s
+
+roles: amount 2, audit 2, category 10, date 3, empty 2, other 6, who 4
+
+## when
+
+CREATIONDATE
+  2025        31  ##############################
+
+EDITDATE
+  2025        31  ##############################
+
+INGESTED_AT
+  2026        31  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| GIS_LATITUDE | 31 | 33.66 | 33.79 | 33.87 | 33.88 | 1.0K |
+| GIS_LONGITUDE | 31 | -118.07 | -117.89 | 47.36 | 118.07 | -3.4K |
+
+## who
+
+EXISTING_DEVELOPMENT by rows
+        31  Commercial Facilities
+
+EXISTING_DEVELOPMENT by dollars
+        1.0K       31 rows  Commercial Facilities
+
+CREATOR by rows
+        31  vickie.bach@ocpw.ocgov.com_OCPW
+
+CREATOR by dollars
+        1.0K       31 rows  vickie.bach@ocpw.ocgov.com_OCPW
+
+EDITOR by rows
+        31  vickie.bach@ocpw.ocgov.com_OCPW
+
+EDITOR by dollars
+        1.0K       31 rows  vickie.bach@ocpw.ocgov.com_OCPW
+
+SRC_SHA256 by rows
+        31  95c141708aa36e1eb0cc57c04e166d4b7796cc5951884cf28a247fb6df5a6748
+
+SRC_SHA256 by dollars
+        1.0K       31 rows  95c141708aa36e1eb0cc57c04e166d4b7796cc5951884cf28a247fb6df5a
+
+## who x when
+
+EXISTING_DEVELOPMENT by CREATIONDATE, dollars = GIS_LATITUDE
+  Commercial Facilities                     2025:1.0K
+
+CREATOR by CREATIONDATE, dollars = GIS_LATITUDE
+  vickie.bach@ocpw.ocgov.com_OCPW           2025:1.0K
+
+## what
+
+OBJECTID: 31 8%, 30 8%, 29 8%, 28 8%, 27 8%, 26 8%, 25 8%, 24 8%, 23 8%, 22 8%, 21 8%, 20 8%
+
+FACILITY_ID: FA0042587 8%, FA0014379 8%, FA0007503 8%, FA0004228 8%, FA0002929 8%, FA0070323 8%, FA0021189 8%, FA0013952 8%, FA0052604 8%, FA0009978 8%, FA0009432 8%, FA0008221 8%
+
+NAME: FUEL UP! 8%, CANYON INN 8%, YORBA LINDA COUNTRY CLUB 8%, KENNYS DONUT 8%, DEL TACO #711 8%, SMRPD 8%, SILVERADO CANYON MARKET AND KI 8%, SILVER CAFE 8%, TJ MAXX #1048 8%, TACO BELL #3111^ 8%, SANTA ANA COUNTRY CLUB^ 8%, ORANGE COUNTY MINING CO^ 8%
+
+ADDRESS: 19851 ESPERANZA RD  8%, 6821 FAIRLYNN BLVD 8%, 19400 MOUNTAIN VIEW  8%, 6821 FAIRLYNN BLVD  8%, 19701 ESPERANZA RD  8%, 27641 SILVERADO CANYON RD 8%, 28192 SILVERADO CANYON RD STE  8%, 28272 SILVERADO CANYON RD  8%, 3900 S BRISTOL AVE  8%, 16252 S HARBOR BLVD  8%, 20382 NEWPORT BLVD  8%, 10000 CRAWFORD CANYON RD  8%
+
+CITY: LOS ALAMITOS 23%, YORBA LINDA 16%, ORANGE 16%, MIDWAY CITY 16%, SANTA ANA 13%, SILVERADO  10%, COSTA MESA 6%
+
+ZIP: 90720 23%, 92655 16%, 92886 13%, 92869 13%, 92676 10%, 92627 6%, 92686 3%, 92661 3%, 92704 3%, 92707 3%, 92705 3%, 92862 3%
+
+PHONE: 7147773145 8%, 7147790880 8%, 7147792461 8%, 7147775044 8%, 7147798208 8%, 9492801736 8%, 7142222607 8%, 7146492622 8%, 7146411362 8%, 7145316878 8%, 7145563000 8%, 7149977411 8%
+
+PE: 0136 19%, 0112 12%, 0391 12%, 0312 8%, 0133 8%, 0111 8%, 0132 8%, 0131 8%, 0392 8%, 0261 4%, 0315 4%, 0311 4%
+
+PROGRAM_ELEMENT: RESTAURANT 201+ PERSONS - COMP 19%, RESTAURANT 31-60 PERSONS - NON 12%, FOOD MARKET - PACKAGED FOOD 1- 12%, FOOD MARKET NON-COMPLEX 2000-5 8%, RESTAURANT 61-100 PERSONS - CO 8%, RESTAURANT UNDER 31 PERSONS -  8%, RESTAURANT 31-60 PERSONS - COM 8%, RESTAURANT UNDER 31 PERSONS -  8%, FOOD MARKET - PACKAGED FOOD 20 8%, SENIOR FEEDING NUTRITION SITE 4%, FOOD MARKET W/ 1 PREP AREA 200 4%, FOOD MARKET NON-COMPLEX UNDER  4%
+
+GLOBALID: cbd27294-db4c-440b-b099-4e4c9d 8%, 7707557f-14bc-465b-b0a5-096465 8%, e9b56c49-1cc9-4bcb-b164-caff45 8%, ed141cdb-fdfb-4f89-b1f5-46bdc3 8%, 31c33aa2-31b2-4564-a59c-f64538 8%, 111e7171-b0f0-4c69-a244-1305cd 8%, dcee68d2-47b9-4df4-90d7-f5ad0a 8%, 8269a14a-c04f-472f-9835-dc34c6 8%, d4103a41-8084-497f-a5b2-038813 8%, 8468276d-aee0-48bb-8b73-e99368 8%, 9b16e08a-4626-44a8-b428-79845e 8%, fb3d429c-0986-4b62-a84a-213cd1 8%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | category | 31 | 0 | 31 1; 30 1; 29 1; 28 1 |
+| FACILITY_ID | category | 31 | 1 | FA0042587 1; FA0014379 1; FA0007503 1; FA0004228 1 |
+| OPERATIONAL_STATUS | other | 1 | 0 | OPEN 31 |
+| NAME | category | 31 | 0 | FUEL UP! 1; CANYON INN 1; YORBA LINDA COUNTRY CLUB 1; KENNYS DONUT 1 |
+| ADDRESS | category | 31 | 0 | 19851 ESPERANZA RD  1; 6821 FAIRLYNN BLVD 1; 19400 MOUNTAIN VIEW  1; 6821 FAIRLYNN BLVD  1 |
+| CITY | category | 7 | 0 | LOS ALAMITOS 7; YORBA LINDA 5; ORANGE 5; MIDWAY CITY 5 |
+| ZIP | category | 12 | 0 | 90720 7; 92655 5; 92886 4; 92869 4 |
+| INSPECTION_DATE | other | 1 | 0 | N/A 31 |
+| PHONE | category | 31 | 0 | 7147773145 1; 7147790880 1; 7147792461 1; 7147775044 1 |
+| PE | category | 17 | 1 | 0136 5; 0112 3; 0391 3; 0312 2 |
+| PROGRAM_ELEMENT | category | 17 | 1 | RESTAURANT 201+ PERSONS - 5; RESTAURANT 31-60 PERSONS  3; FOOD MARKET - PACKAGED FO 3; FOOD MARKET NON-COMPLEX 2 2 |
+| GIS_LATITUDE | amount | 31 | 0 | 33.86306 1; 33.86345 1; 33.877163 1; 33.863648 1 |
+| GIS_LONGITUDE | amount | 30 | 0 | -117.885461 2; -117.786508285133 1; -117.78678570584 1; -117.795628 1 |
+| EXISTING_DEVELOPMENT | who | 1 | 0 | Commercial Facilities 31 |
+| MOBILE_BUSINESS | other | 1 | 0 | NO 31 |
+| NAICS_ICS | empty | 1 | 31 |  |
+| NOI_WDID | other | 1 | 0 | N/A 31 |
+| POLLUTANTS_IDENTIFICATION | empty | 1 | 31 |  |
+| ADJACENCY_TO_ESA__Y_N | other | 1 | 0 | N/A 31 |
+| WATER_BODY_SEGMENT_IMPAIRED__Y | other | 1 | 0 | N/A 31 |
+| GLOBALID | category | 31 | 0 | cbd27294-db4c-440b-b099-4 1; 7707557f-14bc-465b-b0a5-0 1; e9b56c49-1cc9-4bcb-b164-c 1; ed141cdb-fdfb-4f89-b1f5-4 1 |
+| CREATIONDATE | date | 1 | 0 | 1755810815999 31 |
+| CREATOR | who | 1 | 0 | vickie.bach@ocpw.ocgov.co 31 |
+| EDITDATE | date | 1 | 0 | 1755810815999 31 |
+| EDITOR | who | 1 | 0 | vickie.bach@ocpw.ocgov.co 31 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:15:37.34846 31 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 9f6198ca-0e9d-4e83-9437-0 31 |
+| SRC_SHA256 | who | 1 | 0 | 95c141708aa36e1eb0cc57c04 31 |

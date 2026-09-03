@@ -1,0 +1,419 @@
+# PORTAL_SOC_COLORADO_INFORMA_9A760AEFAA
+
+rows 732  columns 111  scan 4.9s
+
+roles: amount 48, audit 2, category 27, date 2, other 20, who 13
+
+## when
+
+DOC_CTRL_NUM
+  2011       732  ##############################
+
+INGESTED_AT
+  2026       732  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE | 732 | 37.19 | 39.80 | 40.86 | 40.86 | 29.0K |
+| LONGITUDE | 732 | -108.63 | -104.94 | -102.68 | -102.61 | -76.9K |
+| FUGITIVEAIR | 732 | 0 | 0.02 | 10.8K | 34.0K | 379.3K |
+| STACKAIR | 732 | 0 | 0.14 | 37.6K | 190.0K | 1.41M |
+| WATER | 732 | 0 | 0 | 9.2K | 576.3K | 1.33M |
+| BOTHERLANDFILLS | 732 | 0 | 0 | 71.3K | 1.00M | 4.55M |
+
+## who
+
+FACILITYNAME by rows
+        30  SUNCOR ENERGY COMMERCE CITY REFINERY
+        15  GCC RIO GRANDE INC
+        14  PUBLIC SERVICE CO OF COLORADO PAWNEE STATION
+        14  TRI-STATE GENERATION & TRANSMISSION-CRAIG STATION
+        13  PUBLIC SERVICE CO OF COLORADO COMANCHE STATION
+        12  GOLDEN ALUMINUM
+        12  PHILLIPS 66 CO DENVER TERMINAL
+        12  COLORADO SPRINGS UTILITIES RAY NIXON POWER PLANT
+        11  PUBLIC SERVICE CO OF COLORADO HAYDEN STATION
+        10  SINCLAIR DENVER PRODUCTS TERMINAL
+        10  CLIMAX MOLYBDENUM CO-CLIMAX MINE
+        10  CLEAN HARBORS DEER TRAIL LLC
+         9  INTERSTATE CHEMICAL CO INC
+         9  CRIPPLE CREEK & VICTOR GOLD MINING CO
+         9  RAWHIDE ENERGY STATION
+         8  CORDEN PHARMA COLORADO INC
+         8  BOULDER SCIENTIFIC CO LLC - MEAD FACILITY
+         8  INDUSTRIAL CHEMICALS CORP
+         8  GOODRICH CARBON OPERATIONS
+         8  EVRAZ ROCKY MOUNTAIN STEEL
+
+FACILITYNAME by dollars
+        1.2K       30 rows  SUNCOR ENERGY COMMERCE CITY REFINERY
+      571.95       15 rows  GCC RIO GRANDE INC
+      566.44       14 rows  TRI-STATE GENERATION & TRANSMISSION-CRAIG STATION
+      563.08       14 rows  PUBLIC SERVICE CO OF COLORADO PAWNEE STATION
+      496.60       13 rows  PUBLIC SERVICE CO OF COLORADO COMANCHE STATION
+      481.20       12 rows  GOLDEN ALUMINUM
+      477.60       12 rows  PHILLIPS 66 CO DENVER TERMINAL
+      463.56       12 rows  COLORADO SPRINGS UTILITIES RAY NIXON POWER PLANT
+      445.39       11 rows  PUBLIC SERVICE CO OF COLORADO HAYDEN STATION
+      398.70       10 rows  SINCLAIR DENVER PRODUCTS TERMINAL
+      397.40       10 rows  CLEAN HARBORS DEER TRAIL LLC
+      393.70       10 rows  CLIMAX MOLYBDENUM CO-CLIMAX MINE
+      367.74        9 rows  RAWHIDE ENERGY STATION
+      348.48        9 rows  CRIPPLE CREEK & VICTOR GOLD MINING CO
+      345.15        9 rows  INTERSTATE CHEMICAL CO INC
+      321.92        8 rows  BOULDER SCIENTIFIC CO LLC - MEAD FACILITY
+      320.16        8 rows  CORDEN PHARMA COLORADO INC
+      318.40        8 rows  INDUSTRIAL CHEMICALS CORP
+      307.12        8 rows  HOLCIM (US) INC PORTLAND PLANT
+      306.24        8 rows  GOODRICH CARBON OPERATIONS
+
+STANDARDPARENTCONAME by rows
+       134  nan
+        41  MARTIN MARIETTA MATERIALS INC
+        38  XCEL ENERGY
+        30  SUNCOR ENERGY (USA) INC
+        19  FREEPORT-MCMORAN INC
+        16  CLEAN HARBORS INC
+        16  COLORADO SPRINGS UTILITIES
+        15  GCC OF AMERICA
+        14  WORLD FUEL SERVICES CORP
+        13  CORDEN US INC
+        12  US DEPARTMENT OF DEFENSE
+        12  PHILLIPS 66 CO
+        11  MOLSON COORS BEVERAGE CO
+        10  SINCLAIR OIL CORP
+        10  UNIVAR SOLUTIONS USA INC
+         9  KILGORE COS LLC
+         9  PLATTE RIVER POWER AUTHORITY
+         9  NEWMONT MINING CORP
+         9  AGGREGATE INDUSTRIES MANAGEMENT INC
+         9  BOULDER SCIENTIFIC CO
+
+STANDARDPARENTCONAME by dollars
+        5.3K      134 rows  nan
+        1.6K       41 rows  MARTIN MARIETTA MATERIALS INC
+        1.5K       38 rows  XCEL ENERGY
+        1.2K       30 rows  SUNCOR ENERGY (USA) INC
+      751.94       19 rows  FREEPORT-MCMORAN INC
+      634.57       16 rows  CLEAN HARBORS INC
+      618.84       16 rows  COLORADO SPRINGS UTILITIES
+      571.95       15 rows  GCC OF AMERICA
+      530.67       14 rows  WORLD FUEL SERVICES CORP
+      520.31       13 rows  CORDEN US INC
+      477.60       12 rows  PHILLIPS 66 CO
+      465.80       12 rows  US DEPARTMENT OF DEFENSE
+      437.42       11 rows  MOLSON COORS BEVERAGE CO
+      398.70       10 rows  SINCLAIR OIL CORP
+      397.94       10 rows  UNIVAR SOLUTIONS USA INC
+      367.74        9 rows  PLATTE RIVER POWER AUTHORITY
+      362.06        9 rows  BOULDER SCIENTIFIC CO
+      354.11        9 rows  AGGREGATE INDUSTRIES MANAGEMENT INC
+      353.75        9 rows  KILGORE COS LLC
+      348.48        9 rows  NEWMONT MINING CORP
+
+PARENTCONAME by rows
+       170  nan
+        41  MARTIN MARIETTA MATERIALS INC
+        38  XCEL ENERGY
+        30  SUNCOR ENERGY (USA) INC
+        19  FREEPORT-MCMORAN INC
+        16  CLEAN HARBORS INC
+        16  COLORADO SPRINGS UTILITIES
+        15  GCC OF AMERICA
+        14  WORLD FUEL SERVICES CORP
+        12  PHILLIPS 66 CO
+        11  MOLSON COORS BEVERAGE CO
+        11  US DEPARTMENT OF DEFENSE
+        10  SINCLAIR OIL CORP
+         9  AGGREGATE INDUSTRIES MANAGEMENT INC
+         9  INTERSTATE CHEMICAL CO INC
+         9  KILGORE COS LLC
+         9  PLATTE RIVER POWER AUTHORITY
+         9  NEWMONT MINING CORP
+         8  RAYTHEON TECHNOLOGIES CORP
+         8  HOLCIM (US) INC
+
+PARENTCONAME by dollars
+        6.8K      170 rows  nan
+        1.6K       41 rows  MARTIN MARIETTA MATERIALS INC
+        1.5K       38 rows  XCEL ENERGY
+        1.2K       30 rows  SUNCOR ENERGY (USA) INC
+      751.94       19 rows  FREEPORT-MCMORAN INC
+      634.57       16 rows  CLEAN HARBORS INC
+      618.84       16 rows  COLORADO SPRINGS UTILITIES
+      571.95       15 rows  GCC OF AMERICA
+      530.67       14 rows  WORLD FUEL SERVICES CORP
+      477.60       12 rows  PHILLIPS 66 CO
+      437.42       11 rows  MOLSON COORS BEVERAGE CO
+      427.57       11 rows  US DEPARTMENT OF DEFENSE
+      398.70       10 rows  SINCLAIR OIL CORP
+      367.74        9 rows  PLATTE RIVER POWER AUTHORITY
+      354.11        9 rows  AGGREGATE INDUSTRIES MANAGEMENT INC
+      353.75        9 rows  KILGORE COS LLC
+      348.48        9 rows  NEWMONT MINING CORP
+      345.15        9 rows  INTERSTATE CHEMICAL CO INC
+      320.16        8 rows  CORDEN US INC
+      307.12        8 rows  HOLCIM (US) INC
+
+TRIFD by rows
+        30  80022CNCDN5801B
+        15  81004GCCRG3372L
+        14  80723PBLCS14940
+        14  81626TRSTT2201R
+        13  81006PBLCS2005L
+        12  80817RYNXN14020
+        12  80022PHLLP3960E
+        12  80621GLDNL1405E
+        11  81639PBLCS12795
+        10  80640SNCLR8581E
+        10  80105SFTYK10855
+        10  8042WCLMXMHIGHW
+         9  80549RWHDN2700E
+         9  80860CRPPL2755S
+         9  81007NTRST646NS
+         8  81001BFGDR50WIL
+         8  80002NDLCH4711W
+         8  81226HLNMN3500S
+         8  81004CFSTL225CA
+         8  80301SYNTX2075N
+
+TRIFD by dollars
+        1.2K       30 rows  80022CNCDN5801B
+      571.95       15 rows  81004GCCRG3372L
+      566.44       14 rows  81626TRSTT2201R
+      563.08       14 rows  80723PBLCS14940
+      496.60       13 rows  81006PBLCS2005L
+      481.20       12 rows  80621GLDNL1405E
+      477.60       12 rows  80022PHLLP3960E
+      463.56       12 rows  80817RYNXN14020
+      445.39       11 rows  81639PBLCS12795
+      398.70       10 rows  80640SNCLR8581E
+      397.40       10 rows  80105SFTYK10855
+      393.70       10 rows  8042WCLMXMHIGHW
+      367.74        9 rows  80549RWHDN2700E
+      348.48        9 rows  80860CRPPL2755S
+      345.15        9 rows  81007NTRST646NS
+      321.92        8 rows  80542BLDRS5983R
+      320.16        8 rows  80301SYNTX2075N
+      318.40        8 rows  80002NDLCH4711W
+      307.12        8 rows  81226HLNMN3500S
+      306.24        8 rows  81001BFGDR50WIL
+
+## who x when
+
+FACILITYNAME by DOC_CTRL_NUM, dollars = LATITUDE
+  BOULDER SCIENTIFIC CO LLC - MEAD FACILIT  2011:321.92
+  CLEAN HARBORS DEER TRAIL LLC              2011:397.40
+  CLIMAX MOLYBDENUM CO-CLIMAX MINE          2011:393.70
+  COLORADO SPRINGS UTILITIES RAY NIXON POW  2011:463.56
+  CORDEN PHARMA COLORADO INC                2011:320.16
+  CRIPPLE CREEK & VICTOR GOLD MINING CO     2011:348.48
+  EVRAZ ROCKY MOUNTAIN STEEL                2011:305.84
+  GCC RIO GRANDE INC                        2011:571.95
+  GOLDEN ALUMINUM                           2011:481.20
+  GOODRICH CARBON OPERATIONS                2011:306.24
+  HOLCIM (US) INC PORTLAND PLANT            2011:307.12
+  INDUSTRIAL CHEMICALS CORP                 2011:318.40
+  INTERSTATE CHEMICAL CO INC                2011:345.15
+  PHILLIPS 66 CO DENVER TERMINAL            2011:477.60
+  PUBLIC SERVICE CO OF COLORADO COMANCHE S  2011:496.60
+  PUBLIC SERVICE CO OF COLORADO HAYDEN STA  2011:445.39
+  PUBLIC SERVICE CO OF COLORADO PAWNEE STA  2011:563.08
+  RAWHIDE ENERGY STATION                    2011:367.74
+  SINCLAIR DENVER PRODUCTS TERMINAL         2011:398.70
+  SUNCOR ENERGY COMMERCE CITY REFINERY      2011:1.2K
+  TRI-STATE GENERATION & TRANSMISSION-CRAI  2011:566.44
+
+STANDARDPARENTCONAME by DOC_CTRL_NUM, dollars = LATITUDE
+  AGGREGATE INDUSTRIES MANAGEMENT INC       2011:354.11
+  BOULDER SCIENTIFIC CO                     2011:362.06
+  CLEAN HARBORS INC                         2011:634.57
+  COLORADO SPRINGS UTILITIES                2011:618.84
+  CORDEN US INC                             2011:520.31
+  FREEPORT-MCMORAN INC                      2011:751.94
+  GCC OF AMERICA                            2011:571.95
+  KILGORE COS LLC                           2011:353.75
+  MARTIN MARIETTA MATERIALS INC             2011:1.6K
+  MOLSON COORS BEVERAGE CO                  2011:437.42
+  NEWMONT MINING CORP                       2011:348.48
+  PHILLIPS 66 CO                            2011:477.60
+  PLATTE RIVER POWER AUTHORITY              2011:367.74
+  SINCLAIR OIL CORP                         2011:398.70
+  SUNCOR ENERGY (USA) INC                   2011:1.2K
+  UNIVAR SOLUTIONS USA INC                  2011:397.94
+  US DEPARTMENT OF DEFENSE                  2011:465.80
+  WORLD FUEL SERVICES CORP                  2011:530.67
+  XCEL ENERGY                               2011:1.5K
+  nan                                       2011:5.3K
+
+## what
+
+COUNTY: ADAMS 27%, WELD 15%, PUEBLO 14%, EL PASO 9%, BOULDER 7%, DENVER 6%, JEFFERSON 6%, LARIMER 5%, MORGAN 4%, MOFFAT 3%, MESA 3%, ROUTT 2%
+
+FEDERALFACILITY: False 97%, True 3%
+
+INDUSTRYSECTORCODE: 327 22%, 325 15%, 2211 12%, 332 10%, 324 8%, 4247 7%, 4246 6%, 311 6%, 2122 4%, 331 4%, 334 4%, 999 4%
+
+INDUSTRYSECTOR: Nonmetallic Mineral Product 22%, Chemicals 15%, Electric Utilities 12%, Fabricated Metals 10%, Petroleum 8%, Petroleum Bulk Terminals 7%, Chemical Wholesalers 6%, Food 6%, Metal Mining 4%, Primary Metals 4%, Computers and Electronic Produ 4%, Other 4%
+
+ELEMENTALMETALINCLUDED: False 90%, True 10%
+
+CLEANAIRACTCHEMICAL: True 67%, False 33%
+
+CLASSIFICATION: TRI 77%, PBT 21%, Dioxin 2%
+
+METAL: False 63%, True 37%
+
+METALCATEGORY: 0 60%, 1 37%, 3 2%, 2 1%, 4 1%
+
+CARCINOGEN: False 79%, True 21%
+
+FORMTYPE: R 90%, A 10%
+
+UNITOFMEASURE: Pounds 98%, Grams 2%
+
+UNDERGROUNDCLI: 0 100%, 5 0%
+
+UNDERGROUNDCIIV: 0 100%, 5 0%
+
+ARCRACLANDFILL: 0 98%, 5 0%, 107 0%, 174407 0%, 16686 0%, 29444 0%, 33371 0%, 41131 0%, 11118 0%, 23357 0%, 13078 0%, 24649 0%
+
+ARCRASURFACEIM: 0 100%, 5 0%
+
+M_12: 0 99%, 21112 0%, 4 0%, 5 0%, 12000 0%
+
+M_17: 0 99%, 1 0%, 2 0%, 49405 0%, 30000 0%, 1519 0%, 5 0%, 371 0%, 1108 0%, 2703 0%
+
+M_23: 0 98%, 250 0%, 24200 0%, 1300 0%, 1043 0%, 1346 0%, 41 0%, 541 0%, 5510 0%, 1770 0%, 2039 0%, 432 0%
+
+MNONMETAL: 0 100%, 1650 0%
+
+M_25: 0 99%, 16192 0%, 11818 0%, 15111 0%, 67 0%, 39 0%, 17700 0%, 336 0%, 230000 0%
+
+M_26: 0 99%, 688 0%, 250 0%, 1709 0%, 7090 0%
+
+M_27: 0 100%, 1 0%, 1830 0%, 792 0%
+
+ENERGYRECOVERON: 0 98%, 8116 0%, 13016 0%, 11393 0%, 4534908 0%, 11026 0%, 4601 0%, 188841 0%, 25270 0%, 16686 0%, 2 0%, 6066 0%
+
+PROD_RATIO_OR_ACTIVITY: PRODUCTION 76%, nan 15%, ACTIVITY 10%
+
+ONETIMERELEASE: nan 88%, 0.0 11%, 6.0 0%, 14.8 0%, 33.0 0%, 0.75 0%, 89.5 0%, 195.0 0%, 1.25 0%, 122.0 0%, 2.6 0%, 767.0 0%
+
+NAICS_2: nan 100%, 541330.0 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| YEAR | other | 1 | 0 | 2020 732 |
+| TRIFD | who | 241 | 0 | 80022CNCDN5801B 30; 81004GCCRG3372L 15; 80723PBLCS14940 14; 81626TRSTT2201R 14 |
+| FRSID | who | 237 | 0 | 110032913024 30; 110037262636 15; 110000600234 14; 110041086393 14 |
+| FACILITYNAME | who | 236 | 0 | SUNCOR ENERGY COMMERCE CI 30; GCC RIO GRANDE INC 15; PUBLIC SERVICE CO OF COLO 14; TRI-STATE GENERATION & TR 14 |
+| STREETADDRESS | who | 237 | 0 | 5801 BRIGHTON BLVD 30; 3372 LIME RD 15; 14940 COUNTY RD 24 14; 2101 S RANNEY ST 14 |
+| CITY | who | 57 | 0 | PUEBLO 78; DENVER 73; COMMERCE CITY 57; COLORADO SPRINGS 33 |
+| COUNTY | category | 28 | 0 | ADAMS 169; WELD 97; PUEBLO 87; EL PASO 56 |
+| ST | other | 1 | 0 | CO 732 |
+| ZIP | other | 90 | 0 | 80022 57; 80216 48; 81004 28; 80640 27 |
+| LATITUDE | amount | 239 | 0 | 39.805556 30; 38.129058 15; 40.220084 14; 40.4627 14 |
+| LONGITUDE | amount | 235 | 0 | -104.944444 30; -104.606741 15; -103.678999 14; -107.5912 14 |
+| HORIZONTALDATUM | other | 1 | 0 | NAD83 732 |
+| FEDERALFACILITY | category | 2 | 0 | False 710; True 22 |
+| INDUSTRYSECTORCODE | category | 24 | 0 | 327 141; 325 96; 2211 77; 332 66 |
+| INDUSTRYSECTOR | category | 24 | 0 | Nonmetallic Mineral Produ 141; Chemicals 96; Electric Utilities 77; Fabricated Metals 66 |
+| PRIMARYNAICS | who | 90 | 0 | 327320 77; 221112 77; 424710 42; 424690 39 |
+| DOC_CTRL_NUM | date | 717 | 0 | 1320219350093 4; 1320219231697 4; 1320218889792 4; 1320218810101 4 |
+| CHEMICAL | who | 102 | 0 | Nitrate compounds (water  54; Lead  And Lead Compounds 39; Lead 31; Zinc compounds 25 |
+| ELEMENTALMETALINCLUDED | category | 2 | 0 | False 657; True 75 |
+| TRICHEMICALCOMPOUNDID | who | 98 | 0 | N420 64; N511 54; 0007439921 31; N982 25 |
+| CAS | who | 98 | 0 | N420 64; N511 54; 7439-92-1 31; N982 25 |
+| SRSID | who | 99 | 0 | 650002.0 64; 649616.0 54; 149583.0 31; 649699.0 25 |
+| CLEANAIRACTCHEMICAL | category | 2 | 0 | True 487; False 245 |
+| CLASSIFICATION | category | 3 | 0 | TRI 563; PBT 157; Dioxin 12 |
+| METAL | category | 2 | 0 | False 461; True 271 |
+| METALCATEGORY | category | 5 | 0 | 0 439; 1 271; 3 12; 2 6 |
+| CARCINOGEN | category | 2 | 0 | False 578; True 154 |
+| PFAS | other | 1 | 0 | False 732 |
+| FORMTYPE | category | 2 | 0 | R 661; A 71 |
+| UNITOFMEASURE | category | 2 | 0 | Pounds 720; Grams 12 |
+| FUGITIVEAIR | amount | 269 | 0 | 0.0 340; 5.0 36; 250.0 24; 1.0 15 |
+| STACKAIR | amount | 320 | 0 | 0.0 320; 5.0 22; 250.0 13; 1.0 6 |
+| WATER | amount | 51 | 0 | 0.0 671; 5.0 4; 1.0 3; 0.1 2 |
+| UNDERGROUND | other | 1 | 0 | 0 732 |
+| UNDERGROUNDCLI | category | 2 | 0 | 0 729; 5 3 |
+| UNDERGROUNDCIIV | category | 2 | 0 | 0 729; 5 3 |
+| LANDFILLS | other | 1 | 0 | 0 732 |
+| ARCRACLANDFILL | category | 12 | 0 | 0 719; 5 3; 107 1; 174407 1 |
+| BOTHERLANDFILLS | amount | 49 | 0 | 0.0 680; 5.0 3; 16.0 2; 28000.0 2 |
+| LANDTREATMENT | amount | 3 | 0 | 0.0 727; 5.0 4; 0.6 1 |
+| SURFACEIMPNDMNT | other | 1 | 0 | 0 732 |
+| ARCRASURFACEIM | category | 2 | 0 | 0 729; 5 3 |
+| BOTHERSURFACEI | amount | 44 | 0 | 0.0 684; 5.0 3; 33000.0 2; 11000.0 2 |
+| OTHERDISPOSAL | amount | 26 | 0 | 0.0 704; 5.0 4; 1222.0 1; 1.8 1 |
+| ONSITERELEASETOTAL | amount | 443 | 0 | 0.0 211; 10.0 10; 500.0 7; 5.0 7 |
+| POTWTRNSRLSE | amount | 71 | 0 | 0.0 651; 5.0 8; 1.0 3; 250.0 2 |
+| POTWTRNSTRT | amount | 31 | 0 | 0.0 699; 250.0 3; 5.0 2; 108.0 1 |
+| POTWTOTALTRANSFERS | amount | 78 | 0 | 0.0 643; 5.0 7; 1.0 3; 35.0 3 |
+| M | amount | 3 | 0 | 0.0 730; 2.08 1; 70.77 1 |
+| M_1 | amount | 6 | 0 | 0.0 727; 139.065 1; 23.5 1; 17478.07 1 |
+| M_2 | other | 1 | 0 | 0 732 |
+| MMETAL | other | 1 | 0 | 0 732 |
+| MMETAL_1 | other | 1 | 0 | 0 732 |
+| M_3 | other | 1 | 0 | 0 732 |
+| M_4 | amount | 3 | 0 | 0.0 730; 1.0377 1; 902.4 1 |
+| M_5 | other | 1 | 0 | 0 732 |
+| M_6 | other | 1 | 0 | 0 732 |
+| M_7 | other | 1 | 0 | 0 732 |
+| M_8 | other | 1 | 0 | 0 732 |
+| M_9 | other | 1 | 0 | 0 732 |
+| M_10 | amount | 49 | 0 | 0.0 680; 1.0 4; 5.0 2; 5.4 1 |
+| M_11 | amount | 28 | 0 | 0.0 701; 5.0 2; 0.05 2; 1.0 2 |
+| M_12 | category | 5 | 0 | 0 728; 21112 1; 4 1; 5 1 |
+| M_13 | amount | 10 | 0 | 0.0 723; 24400.0 1; 9780.0 1; 584000.0 1 |
+| M_14 | amount | 12 | 0 | 0.0 721; 25.64 1; 1.4 1; 194.91 1 |
+| M_15 | amount | 20 | 0 | 0.0 712; 0.001 2; 456.598 1; 1.919 1 |
+| M_16 | amount | 7 | 0 | 0.0 726; 0.01 1; 934.0 1; 13842.81 1 |
+| OFFSITERELEASETOTAL | amount | 152 | 0 | 0.0 559; 5.0 11; 1.0 3; 255.0 2 |
+| M_17 | category | 10 | 0 | 0 722; 1 2; 2 1; 49405 1 |
+| M_18 | amount | 50 | 0 | 0.0 682; 19.0 2; 3830.0 1; 388.75 1 |
+| M_19 | amount | 60 | 0 | 0.0 672; 2.0 2; 14137.0 1; 7363.0 1 |
+| M_20 | other | 1 | 0 | 0 732 |
+| M_21 | amount | 30 | 0 | 0.0 703; 170.0 1; 8.77 1; 35606.0 1 |
+| OFFSITERECYCLEDTOTAL | amount | 138 | 0 | 0.0 590; 2.0 3; 1.0 2; 9.0 2 |
+| M_22 | amount | 50 | 0 | 0.0 681; 250.0 2; 1800.0 2; 93000.0 1 |
+| M_23 | category | 23 | 0 | 0 710; 250 1; 24200 1; 1300 1 |
+| OFFSITEENERGYRECOVERYT | amount | 72 | 0 | 0.0 659; 250.0 3; 1800.0 2; 93000.0 1 |
+| MNONMETAL | category | 2 | 0 | 0 731; 1650 1 |
+| M_24 | amount | 63 | 0 | 0.0 663; 1.0 3; 250.0 3; 5.0 2 |
+| M_25 | category | 9 | 0 | 0 724; 16192 1; 11818 1; 15111 1 |
+| MNONMETAL_1 | amount | 4 | 0 | 0.0 729; 1368.5 1; 20897.0 1; 1566.07 1 |
+| M_26 | category | 5 | 0 | 0 727; 688 2; 250 1; 1709 1 |
+| M_27 | category | 4 | 0 | 0 729; 1 1; 1830 1; 792 1 |
+| OFFSITETREATEDTOTAL | amount | 96 | 0 | 0.0 630; 1.0 4; 5.0 3; 250.0 3 |
+| UNCLASSIFIED | other | 1 | 0 | 0 732 |
+| TOTALTRANSFER | amount | 299 | 0 | 0.0 411; 1.0 5; 250.0 3; 2.0 3 |
+| TOTALRELEASES | amount | 514 | 0 | 0.0 157; 500.0 7; 10.0 7; 5.0 6 |
+| RELEASES | other | 1 | 0 | 0 732 |
+| AONSITECONTAINED | amount | 60 | 0 | 0.0 670; 15.0 3; 16.0 2; 61000.0 1 |
+| BONSITEOTHER | amount | 438 | 0 | 0.0 214; 10.0 9; 5.0 8; 255.0 7 |
+| COFFSITECONTAIN | amount | 95 | 0 | 0.0 629; 5.0 6; 1.0 4; 5.4 1 |
+| DOFFSITEOTHERR | amount | 112 | 0 | 0.0 613; 1.0 4; 5.0 4; 0.02 2 |
+| ENERGYRECOVERON | category | 14 | 0 | 0 719; 8116 1; 13016 1; 11393 1 |
+| ENERGYRECOVEROF | amount | 72 | 0 | 0.0 659; 250.0 3; 1800.0 2; 93000.0 1 |
+| RECYCLINGONSITE | amount | 47 | 0 | 0.0 686; 151.737 1; 8.244 1; 15.8 1 |
+| RECYCLINGOFFSIT | amount | 139 | 0 | 0.0 590; 2.0 3; 1.0 2; 9.0 2 |
+| TREATMENTONSITE | amount | 133 | 0 | 0.0 594; 380.0 2; 12000.0 2; 1500.0 2 |
+| TREATMENTOFFSITE | amount | 97 | 0 | 0.0 630; 1.0 5; 5.0 2; 250.0 2 |
+| PRODUCTIONWSTE | amount | 588 | 0 | 0.0 121; 95071.0 4; 6.5 4; 608.335 4 |
+| PROD_RATIO_OR_ACTIVITY | category | 3 | 0 | PRODUCTION 553; nan 108; ACTIVITY 71 |
+| PRODUCTIONRATIO | amount | 109 | 0 | 0.0 72; 1.0 67; 0.97 37; nan 37 |
+| PARENTCONAME | who | 109 | 0 | nan 170; MARTIN MARIETTA MATERIALS 41; XCEL ENERGY 38; SUNCOR ENERGY (USA) INC 30 |
+| PARENTCODBNUM | amount | 94 | 0 | nan 232; 809750912.0 41; 848381245.0 38; 241804681.0 30 |
+| STANDARDPARENTCONAME | who | 117 | 0 | nan 134; MARTIN MARIETTA MATERIALS 41; XCEL ENERGY 38; SUNCOR ENERGY (USA) INC 30 |
+| NAICS | amount | 15 | 0 | nan 647; 424710.0 30; 324121.0 16; 221320.0 12 |
+| ONETIMERELEASE | category | 16 | 0 | nan 639; 0.0 79; 6.0 1; 14.8 1 |
+| NAICS_1 | amount | 5 | 0 | nan 724; 311613.0 4; 311612.0 2; 484230.0 1 |
+| NAICS_2 | category | 2 | 0 | nan 731; 541330.0 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:44:52.17876 732 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 3feff875-2512-417b-9955-1 732 |
+| SRC_SHA256 | who | 1 | 0 | 6b54d8b30f73db78bc023a75d 732 |

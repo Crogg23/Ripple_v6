@@ -1,0 +1,326 @@
+# PORTAL_SOC_COLORADO_INFORMA_4BAD70F01F
+
+rows 2.5K  columns 31  scan 4.8s
+
+roles: amount 3, audit 2, category 14, date 1, id 4, other 2, who 6
+
+## when
+
+INGESTED_AT
+  2026      2.5K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| ASSETAMT | 2.2K | 0 | 0 | 23.97M | 201.02M | 2.80B |
+| INCOMEAMT | 2.2K | 0 | 0 | 9.66M | 174.34M | 1.36B |
+| REVENUEAMT | 2.2K | 0 | 0 | 7.81M | 69.73M | 968.32M |
+
+## who
+
+NAME by rows
+         9  NATIONAL FEDERATION OF MUSIC CLUBS
+         7  TOASTMASTERS INTERNATIONAL
+         7  SOCIETY FOR PRESERVATION & ENCRGMNT OF BARBERSHOP QUARTET SINGING AMER
+         6  MUSIC TEACHERS NATIONAL ASSOCIATION INC
+         5  SWEET ADELINES INTERNATIONAL
+         4  SOCIETY FOR PRESERVATION & ENCOURMT OF BARBERSHOP QUARTET SINGING AMER
+         4  UNITED SQUARE DANCERS OF AMERICA INC
+         4  MUSEUM STORE ASSOCATION INC
+         4  COUNTRY DANCE & SONG SOCIETY INC
+         3  AMERICAN SEWING GUILD INC
+         3  MODERN QUILT GUILD INC
+         3  NORTH AMERICAN FOLK MUSIC AND DANCE ALLIANCE INC
+         2  DAUGHTERS OF UNION VETERANS OF THE CIVIL WAR 1861-1865
+         2  DEMOLAY INTERNATIONAL
+         2  AMERICAN FEDERATION OF MUSICIANS OF THE US & CANADA
+         2  ASSOCIATION OF TRADITIONAL HOOKING ARTISTS
+         1  SPRINGS ENSEMBLE THEATRE
+         1  RUSSIAN CENTER FOR THE ARTS ANDHUMANITIES
+         1  RHETORIC SOCIETY OF AMERICA
+         1  DENVER POLICE LAW ENFORCEMENT MUSEUM
+
+NAME by dollars
+     201.02M        1 rows  DENVER ART MUSEUM FOUNDATION
+     179.38M        1 rows  DENVER ART MUSEUM INC
+     161.30M        1 rows  DMNS FOUNDATION
+     152.23M        1 rows  CLYFFORD STILL MUSEUM FOUNDATION
+     137.69M        1 rows  MUSIC ASSOCIATES OF ASPEN INC
+     105.40M        1 rows  DENVER CENTER FOR THE PERFORMING ARTS
+      94.23M        1 rows  UNITED STATES OLYMPIC & PARALYMPIC MUSEUM
+      88.77M        1 rows  THE SYMPHONY FUND
+      69.49M        1 rows  ROCKY MOUNTAIN PUBLIC MEDIA INC
+      58.50M        1 rows  PUBLIC BROADCASTING OF COLORADO INC
+      58.19M        1 rows  BOHEMIAN OPERATING FOUNDATION
+      47.71M        1 rows  ASPEN ART MUSEUM
+      44.35M        1 rows  ASPEN ART MUSEUM FOUNDATION
+      40.66M        1 rows  NATIONAL TRUST FOR LOCAL NEWS
+      37.03M        1 rows  HELEN G BONFILS FOUNDATION
+      34.67M        1 rows  JAZZ AT ASPEN-SNOWMASS
+      34.40M        1 rows  THE COLORADO MUSEUM OF NATURAL HISTORY
+      32.18M        1 rows  CROW CANYON ARCHAEOLOGICAL CENTER
+      30.43M        1 rows  LION GLOBAL FOUNDATION
+      28.52M        1 rows  CHILDRENS MUSEUM OF DENVER INC
+
+SORTNAME by rows
+         1  PAONIA CHERRY DAYS
+         1  21 COLORADO TENT
+         1  PHOENIX ASYLUM
+         1  DENVER METRO MODERN QUILT GUILD
+         1  KEYBAND USA FEDERATION OF MUSIC CLU
+         1  YAMPA EGERIA HISTORICAL SOCIETY
+         1  ROCKY MOUNTAIN DISTRICT
+         1  ACSD
+         1  KSUT RADIO STATION
+         1  COLORADO YOUTH MARIACHI PROGRAM
+         1  BMDCO
+         1  ASPEN MUSIC FESTIVAL AND SCHOOL
+         1  FRIENDS OF THE SLV INFORMATION CTR
+         1  SAMBOS ILLIMANI COLORADO USA
+         1  HIGH COUNTRY BRASS DRUM & BUGLE
+         1  MAMA
+         1  DWNP
+         1  BOULDER MODERN QUILT GUILD
+         1  CFAA
+         1  ASPEN POETS SOCIETY INK
+
+SORTNAME by dollars
+     137.69M        1 rows  ASPEN MUSIC FESTIVAL AND SCHOOL
+      34.40M        1 rows  DENVER MUSEUM OF NATURE AND SCIENCE
+      23.25M        1 rows  BERGER WILLIAM TTEE
+      16.07M        1 rows  MUSEUM OF BOULDER
+      13.79M        1 rows  CLEO PARER ROBINSON DANCE
+       9.23M        1 rows  DBA MINERS ALLEY PLAYHOUSE
+       6.73M        1 rows  DISCOVERY CENTER SCIENCE MUSEUM
+       4.06M        1 rows  NCECA
+       3.06M        1 rows  LIMON HERITAGE SOCIETY
+       2.90M        1 rows  THE ARTS HUB
+       2.36M        1 rows  KSUT RADIO STATION
+       1.89M        1 rows  MANCOS COMMON PRESS
+       1.60M        1 rows  PHAMALY INC
+       1.50M        1 rows  20-623 LOCAL DENVER MUSICIANS ASSOC
+       1.45M        1 rows  TOWN HALL ARTS CENTER
+       1.30M        1 rows  RMHF
+       1.22M        1 rows  NEPALI GHAR
+       1.00M        1 rows  KVNF FM
+      922.6K        1 rows  STEAMBOAT SYMPHONY ORCHESTRA
+      910.0K        1 rows  DURANGO RAILROAD MUSEUM
+
+RULING by rows
+        28  202507
+        24  202410
+        22  202506
+        20  202303
+        20  202405
+        20  202404
+        19  201408
+        19  202311
+        19  202508
+        18  201903
+        18  201407
+        18  202310
+        18  202402
+        17  201409
+        16  201912
+        16  202210
+        16  202403
+        16  201905
+        15  202502
+        15  202207
+
+RULING by dollars
+     243.10M        2 rows  195503
+     201.36M        2 rows  198807
+     179.38M        1 rows  193508
+     161.38M        2 rows  198802
+     153.30M        6 rows  201703
+      94.29M        6 rows  201311
+      88.79M        2 rows  200707
+      69.49M        1 rows  196112
+      59.57M        3 rows  200712
+      58.50M        1 rows  198412
+      55.13M        2 rows  197804
+      48.48M        4 rows  197401
+      44.35M        1 rows  200001
+      40.68M       14 rows  202205
+      37.03M        1 rows  196705
+      34.67M        1 rows  199303
+      34.40M        1 rows  193909
+      32.18M        2 rows  197304
+      30.80M        9 rows  200312
+      27.80M        1 rows  199210
+
+ACTIVITY by rows
+      1.8K  0
+        61  90000000
+        46  60000000
+        24  88000000
+        24  119000000
+        19  119059000
+        18  91000000
+        15  994090000
+        14  995090000
+        14  89000000
+        13  62000000
+        11  119602281
+        10  998000000
+        10  123000000
+         9  994089000
+         9  121000000
+         8  994060000
+         7  59000000
+         7  60062000
+         7  88090000
+
+ACTIVITY by dollars
+     981.22M     1.8K rows  0
+     202.87M        7 rows  602000000
+     201.02M        1 rows  922602000
+     179.38M        1 rows  119059060
+     137.69M        1 rows  46030927
+     127.23M        7 rows  59000000
+     101.13M       19 rows  119059000
+     100.41M       46 rows  60000000
+      98.17M       61 rows  90000000
+      64.20M        9 rows  121000000
+      54.65M       18 rows  91000000
+      50.47M        4 rows  60059000
+      32.18M        1 rows  46030000
+      30.47M       24 rows  88000000
+      27.80M        1 rows  602922000
+      26.96M        8 rows  994060000
+      25.77M       14 rows  995090000
+      23.57M        3 rows  59119000
+      22.49M        7 rows  60062000
+      21.86M        1 rows  915000000
+
+## who x when
+
+NAME by INGESTED_AT  LOAD STAMP, not an event date, dollars = ASSETAMT
+  AMERICAN FEDERATION OF MUSICIANS OF THE   2026:1.55M
+  AMERICAN SEWING GUILD INC                 2026:3
+  ASSOCIATION OF TRADITIONAL HOOKING ARTIS  2026:399.4K
+  CLYFFORD STILL MUSEUM FOUNDATION          2026:152.23M
+  COUNTRY DANCE & SONG SOCIETY INC          2026:135.4K
+  DAUGHTERS OF UNION VETERANS OF THE CIVIL  2026:0
+  DEMOLAY INTERNATIONAL                     2026:0
+  DENVER ART MUSEUM FOUNDATION              2026:201.02M
+  DENVER ART MUSEUM INC                     2026:179.38M
+  DENVER CENTER FOR THE PERFORMING ARTS     2026:105.40M
+  DENVER POLICE LAW ENFORCEMENT MUSEUM      2026:435.6K
+  DMNS FOUNDATION                           2026:161.30M
+  MODERN QUILT GUILD INC                    2026:0
+  MUSEUM STORE ASSOCATION INC               2026:0
+  MUSIC ASSOCIATES OF ASPEN INC             2026:137.69M
+  MUSIC TEACHERS NATIONAL ASSOCIATION INC   2026:0
+  NATIONAL FEDERATION OF MUSIC CLUBS        2026:0
+  NORTH AMERICAN FOLK MUSIC AND DANCE ALLI  2026:274.1K
+  PUBLIC BROADCASTING OF COLORADO INC       2026:58.50M
+  RHETORIC SOCIETY OF AMERICA               2026:1.23M
+  ROCKY MOUNTAIN PUBLIC MEDIA INC           2026:69.49M
+  RUSSIAN CENTER FOR THE ARTS ANDHUMANITIE  2026:0
+  SOCIETY FOR PRESERVATION & ENCOURMT OF B  2026:0
+  SOCIETY FOR PRESERVATION & ENCRGMNT OF B  2026:61.5K
+  SPRINGS ENSEMBLE THEATRE                  2026:0
+  SWEET ADELINES INTERNATIONAL              2026:866.6K
+  THE SYMPHONY FUND                         2026:88.77M
+  TOASTMASTERS INTERNATIONAL                2026:0
+  UNITED SQUARE DANCERS OF AMERICA INC      2026:40.9K
+  UNITED STATES OLYMPIC & PARALYMPIC MUSEU  2026:94.23M
+
+SORTNAME by INGESTED_AT  LOAD STAMP, not an event date, dollars = ASSETAMT
+  21 COLORADO TENT                          2026:0
+  ACSD                                      2026:0
+  ASPEN MUSIC FESTIVAL AND SCHOOL           2026:137.69M
+  ASPEN POETS SOCIETY INK                   2026:0
+  BERGER WILLIAM TTEE                       2026:23.25M
+  BMDCO                                     2026:0
+  BOULDER MODERN QUILT GUILD                2026:0
+  CFAA                                      2026:389.3K
+  CLEO PARER ROBINSON DANCE                 2026:13.79M
+  COLORADO YOUTH MARIACHI PROGRAM           2026:14.2K
+  DBA MINERS ALLEY PLAYHOUSE                2026:9.23M
+  DENVER METRO MODERN QUILT GUILD           2026:0
+  DENVER MUSEUM OF NATURE AND SCIENCE       2026:34.40M
+  DISCOVERY CENTER SCIENCE MUSEUM           2026:6.73M
+  DWNP                                      2026:0
+  FRIENDS OF THE SLV INFORMATION CTR        2026:0
+  HIGH COUNTRY BRASS DRUM & BUGLE           2026:40.2K
+  KEYBAND USA FEDERATION OF MUSIC CLU       2026:0
+  KSUT RADIO STATION                        2026:2.36M
+  LIMON HERITAGE SOCIETY                    2026:3.06M
+  MAMA                                      2026:0
+  MANCOS COMMON PRESS                       2026:1.89M
+  MUSEUM OF BOULDER                         2026:16.07M
+  NCECA                                     2026:4.06M
+  PAONIA CHERRY DAYS                        2026:18.6K
+  PHOENIX ASYLUM                            2026:0
+  ROCKY MOUNTAIN DISTRICT                   2026:0
+  SAMBOS ILLIMANI COLORADO USA              2026:0
+  THE ARTS HUB                              2026:2.90M
+  YAMPA EGERIA HISTORICAL SOCIETY           2026:0
+
+## what
+
+C_GROUP: 0 97%, 943 0%, 3832 0%, 6387 0%, 820 0%, 3539 0%, 7205 0%, 1321 0%, 9228 0%, 8047 0%, 3534 0%, 4363 0%
+
+SUBSECTION: 3 98%, 7 1%, 4 0%, 6 0%, 5 0%, 92 0%, 40 0%
+
+AFFILIATION: 3 96%, 9 3%, 6 0%, 1 0%, 0 0%
+
+CLASSIFICATION: 1000 41%, 2000 30%, 1200 21%, 3000 2%, 1230 2%, 2100 1%, 2300 1%, 1270 1%, 1280 0%, 2800 0%, 7000 0%, 1700 0%
+
+DEDUCTIBILITY: 1 98%, 2 2%, 0 0%
+
+FOUNDATION: 15 47%, 16 45%, 4 3%, 0 2%, 3 1%, 17 1%, 11 1%, 21 0%, 10 0%, 22 0%, 14 0%, 13 0%
+
+C_ORGANIZATION: 1 93%, 5 7%, 0 0%, 2 0%
+
+STATUS: 1 100%, 25 0%, 12 0%
+
+TAXPERIOD: 202412 55%, 202312 21%, 202406 9%, 202409 3%, 202408 3%, 202212 2%, 202407 2%, 202506 2%, 202405 2%, 202505 1%, 202501 1%
+
+ASSETCD: 0 60%, 4 11%, 3 10%, 6 6%, 5 4%, 1 4%, 2 2%, 8 2%, 7 1%, 9 0%
+
+INCOMECD: 0 60%, 4 16%, 3 10%, 6 5%, 5 4%, 1 3%, 2 2%, 7 1%, 8 1%, 9 0%
+
+FILINGREQCD: 2 62%, 1 33%, 0 4%, 6 0%, 14 0%
+
+PFFILINGREQCD: 0 96%, 1 4%
+
+ACCTPD: 12 75%, 6 10%, 9 3%, 8 3%, 7 3%, 5 2%, 4 1%, 3 1%, 1 1%, 2 1%, 10 1%, 11 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| EIN | id | 2.5K | 0 | 846040591 13; 841104977 13; 841099188 13; 841044232 13 |
+| NAME | who | 2.4K | 0 | MUSIC TEACHERS NATIONAL A 18; SOCIETY FOR PRESERVATION  17; NATIONAL FEDERATION OF MU 15; SOCIETY FOR PRESERVATION  15 |
+| ICO | id | 1.6K | 760 | % TREASURER 16; % EXECUTIVE DIRECTOR 12; % VINCE MADISON 9; % DONNA CAULFIELD 9 |
+| STREET | id | 2.4K | 0 | PO BOX 3861 15; 2820 NEWLAND CT 13; 1851 SILVER MEADOW CIR 13; 202 N 52ND AVE 13 |
+| CITY | who | 241 | 0 | DENVER 407; BOULDER 170; COLORADO SPGS 168; FORT COLLINS 103 |
+| STATE | other | 1 | 0 | CO 2.5K |
+| ZIP | id | 2.3K | 0 | 80155-3861 15; 80214-8044 13; 80951-9746 13; 80634-4263 13 |
+| C_GROUP | category | 27 | 0 | 0 2.4K; 943 11; 3832 9; 6387 7 |
+| SUBSECTION | category | 7 | 0 | 3 2.4K; 7 13; 4 12; 6 8 |
+| AFFILIATION | category | 5 | 0 | 3 2.4K; 9 77; 6 6; 1 5 |
+| CLASSIFICATION | category | 32 | 0 | 1000 996; 2000 721; 1200 500; 3000 45 |
+| RULING | who | 604 | 0 | 202507 29; 202410 25; 202303 24; 202402 24 |
+| DEDUCTIBILITY | category | 3 | 0 | 1 2.4K; 2 37; 0 10 |
+| FOUNDATION | category | 13 | 0 | 15 1.2K; 16 1.1K; 4 75; 0 37 |
+| ACTIVITY | who | 212 | 0 | 0 1.8K; 90000000 61; 60000000 46; 88000000 24 |
+| C_ORGANIZATION | category | 4 | 0 | 1 2.3K; 5 166; 0 10; 2 6 |
+| STATUS | category | 3 | 0 | 1 2.5K; 25 2; 12 1 |
+| TAXPERIOD | category | 40 | 221 | 202412 1.2K; 202312 453; 202406 182; 202409 68 |
+| ASSETCD | category | 10 | 0 | 0 1.5K; 4 282; 3 239; 6 145 |
+| INCOMECD | category | 10 | 0 | 0 1.5K; 4 385; 3 236; 6 112 |
+| FILINGREQCD | category | 5 | 0 | 2 1.5K; 1 822; 0 102; 6 3 |
+| PFFILINGREQCD | category | 2 | 0 | 0 2.4K; 1 93 |
+| ACCTPD | category | 12 | 0 | 12 1.8K; 6 246; 9 76; 8 67 |
+| ASSETAMT | amount | 981 | 224 | 0 1.2K; 1 11; 500 6; 40939 5 |
+| INCOMEAMT | amount | 973 | 224 | 0 1.2K; 1 11; 21623 5; 12895 5 |
+| REVENUEAMT | amount | 910 | 291 | 0 1.2K; 20349 5; 12895 5; 105577 5 |
+| NTEECD | other | 146 | 144 | A20 275; A68 174; A80 158; A23 137 |
+| SORTNAME | who | 303 | 2.2K | DENVER AREA MTA 2; PIKES PEAK MTA 2; GREELEY AREA MTA 2; SOUTHERN COLORADO MTA 2 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-27 03:37:00.38582 2.5K |
+| SOURCE_RUN_ID | audit | 1 | 0 | 586fe7ef-9e68-47c3-8303-f 2.5K |
+| SRC_SHA256 | who | 1 | 0 | c5e8b549a7154c47cb5c7129d 2.5K |

@@ -1,0 +1,464 @@
+# PORTAL_ARC_TUCSON_OPEN_DATA_BDA54FB1D9
+
+rows 2.0K  columns 91  scan 4.5s
+
+roles: amount 13, audit 2, category 26, date 2, empty 5, id 7, other 23, who 14
+
+## when
+
+RECORDDATE
+  1963         2  
+  1964         1  
+  1965         1  
+  1967        11  ##
+  1968         6  #
+  1969         5  #
+  1970         5  #
+  1971        14  ###
+  1972         6  #
+  1973         4  #
+  1974        15  ###
+  1975         4  #
+  1976        10  ##
+  1977         6  #
+  1978        10  ##
+  1979        28  #####
+  1980        10  ##
+  1981         6  #
+  1982        17  ###
+  1983         9  ##
+  1984         6  #
+  1985        15  ###
+  1986        21  ####
+  1987        29  ######
+  1988        15  ###
+  1989        17  ###
+  1990         8  ##
+  1991        28  #####
+  1992        31  ######
+  1993        28  #####
+  1994        21  ####
+  1995        47  #########
+  1996        55  ###########
+  1997        37  #######
+  1998        54  ###########
+  1999        40  ########
+  2000       150  #############################
+  2001        41  ########
+  2002        65  #############
+  2003        46  #########
+  2004        57  ###########
+  2005        63  ############
+  2006        86  #################
+  2007       122  ########################
+  2008        50  ##########
+  2009        69  #############
+  2010        56  ###########
+  2011        76  ###############
+  2012        78  ###############
+  2013       119  #######################
+  2014       154  ##############################
+
+INGESTED_AT
+  2026      2.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| AREA | 2.0K | 5.59 | 6.8K | 194.4K | 1.23M | 35.53M |
+| PERIMETER | 2.0K | 9.59 | 393.50 | 2.3K | 4.9K | 940.0K |
+| LANDRATIO | 2.0K | 1 | 15 | 18 | 18 | 29.0K |
+| LANDMEAS | 2.0K | 0.06 | 6.8K | 195.3K | 1.09M | 34.70M |
+| IMPRATIO | 2.0K | 0 | 10 | 18 | 18 | 21.4K |
+| TOTALFCV | 2.0K | 500 | 119.2K | 10.26M | 67.89M | 1.15B |
+
+## who
+
+STREETNAME by rows
+       131  STONE AV
+        39  9TH ST
+        37  6TH AV
+        35  CONGRESS ST
+        34  4TH AV
+        31  ORACLE RD
+        26  CALLE DE LOS HIGOS
+        26  SAHUARO ST
+        22  AVENIDA DEL SEMBRADOR
+        21  1ST AV
+        19  8TH ST
+        19  FLORES ST
+        19  AVENIDA DEL PALO FIERO
+        18  RILLITO ST
+        17  SENTINEL AV
+        17  LEE ST
+        17  BROADWAY BL
+        17  MAIN AV
+        16  7TH AV
+        16  JACOBUS AV
+
+STREETNAME by dollars
+      78.62M      131 rows  STONE AV
+      53.94M       10 rows  5TH AV
+      52.11M       14 rows  ALAMEDA ST
+      52.10M       35 rows  CONGRESS ST
+      24.89M       17 rows  BROADWAY BL
+      20.29M       11 rows  CHURCH AV
+      19.71M       39 rows  9TH ST
+      16.35M        1 rows  FIRE CENTRAL PL
+      14.25M       31 rows  ORACLE RD
+      11.41M        8 rows  PENNINGTON ST
+      11.20M       37 rows  6TH AV
+       9.16M       34 rows  4TH AV
+       7.60M        4 rows  GRANADA AV
+       7.53M       12 rows  SCOTT AV
+       7.02M        6 rows  PASEO REDONDO
+       6.31M       12 rows  FREEWAY
+       6.06M       14 rows  6TH ST
+       5.51M       13 rows  CUSHING ST
+       5.46M       21 rows  1ST AV
+       4.99M       22 rows  AVENIDA DEL SEMBRADOR
+
+OWNERIDX by rows
+       183  CITY
+       105  REDON
+        76  STATE
+        64  BP PO
+        56  THE F
+        40  PIMA
+        25  TUCSO
+        21  MERCA
+        19  TICOR
+        13  DE LA
+        12  FIRST
+        12  CONGR
+        11  ARIZO
+        11  BEACO
+        11  MAIN
+        10  PROVI
+        10  UNION
+        10  ROYAL
+         9  FLORE
+         9  BNY W
+
+OWNERIDX by dollars
+     228.33M      183 rows  CITY
+     211.36M       40 rows  PIMA
+      67.32M       25 rows  TUCSO
+      66.06M        7 rows  RIO N
+      51.84M        4 rows  US BA
+      40.20M        3 rows  DISTR
+      27.24M       76 rows  STATE
+      20.47M        3 rows  HUB P
+      15.41M        4 rows  UNITE
+      12.30M        4 rows  PUEBL
+      11.42M        5 rows  BANK
+      11.22M        6 rows  HOLUA
+      11.14M        1 rows  HRB T
+       7.81M       10 rows  ROYAL
+       7.63M        5 rows  URBAN
+       7.02M        9 rows  STONE
+       6.74M        1 rows  TA BU
+       6.32M        2 rows  HSL L
+       6.26M       12 rows  FIRST
+       6.10M       12 rows  CONGR
+
+MAIL1 by rows
+       181  CITY OF TUCSON
+       104  REDONDO TOWER APARTMENTS LTD
+        74  STATE OF ARIZONA
+        63  BP POST DEVELOPERS LLC
+        56  THE FLATS AT JULIAN DREW BLOCK LLC
+        22  PIMA COUNTY COMMUNITY COLLEGE DISTRICT
+        20  MERCADO DISTRICT MAINTENANCE ASSN
+        19  TICOR TITLE AGENCY OF AZ TR 12270
+        17  PIMA COUNTY
+        11  CONGRESS STREET MARKET HALL LLC
+        10  PROVIDENCE SERVICE CORP
+        10  DE LA WARR INVESTMENT CORP
+        10  UNION PACIFIC RAILROAD
+        10  ROYAL TUCSON ENTRADA REAL LP
+         9  BNY WESTERN TRUST CO
+         9  BEACON GROUP SW INC
+         8  ROADWAY EXPRESS INC
+         8  QUATTRO NINOS LLC
+         7  KAHN FAMILY TR
+         7  FLORES WILLIAM A JR & CLARA O TR
+
+MAIL1 by dollars
+     228.11M      181 rows  CITY OF TUCSON
+     182.56M       17 rows  PIMA COUNTY
+      66.06M        7 rows  RIO NUEVO MULTIPURPOSE FACILITIES DISTRICT
+      51.84M        4 rows  US BANK NATIONAL ASSN TR
+      40.51M        1 rows  TUCSON ELECTRIC POWER CO
+      40.20M        3 rows  DISTRICT ON 5TH TUCSON AZ LLC
+      26.79M       22 rows  PIMA COUNTY COMMUNITY COLLEGE DISTRICT
+      26.51M       74 rows  STATE OF ARIZONA
+      20.47M        3 rows  HUB PROPERTIES TR
+      15.41M        4 rows  UNITED STATES OF AMERICA
+      11.14M        1 rows  HRB TUCSON LLC
+      11.00M        1 rows  PUEBLO CENTER PARTNERS LP
+       8.50M        1 rows  HOLUALOA PIONEER LLC
+       8.20M        3 rows  BANK OF NEW YORK MELLON TR CO NA
+       7.81M       10 rows  ROYAL TUCSON ENTRADA REAL LP
+       7.15M        1 rows  URBAN TUCSON LP
+       6.74M        1 rows  TA BUILDING CORP
+       6.32M        2 rows  HSL LA PLACITA LLC
+       6.00M        1 rows  TUCSON PROPERTIES LIMITED PARTNERSHIP
+       5.83M        5 rows  SAINT AUGUSTINE CATHEDRAL ROMAN
+
+MAIL2 by rows
+       180  .
+       105  ATTN: SHAKER LAKES APARTMENTS COMPANY
+        59  3915 E BROADWAY BLVD FL 4
+        56  PO BOX 43426
+        30  REAL ESTATE DIVISION
+        30  DEPT OF TRANSPORTATION
+        22  PO BOX 3010
+        20  ATTN:  CADDEN COMMUNITY MANAGEMENT
+        19  ATTN: FIDELITY NATIONAL TITLE
+        13  700 S FLOWER ST STE 200
+        13  127 W FRANKLIN ST
+        12  33 N STONE AVE STE 850
+        11  2140 W MOORE RD
+        11  PO BOX 5091
+        10  64 E BROADWAY BLVD
+        10  ATTN: ROBERT BRENNER ASST DIR PROP TAX
+        10  PO BOX 530292
+        10  PO BOX 50544
+         9  1202 N MAIN AVE
+         8  5901 S BELVEDERE AVE
+
+MAIL2 by dollars
+     375.56M      180 rows  .
+      54.44M        1 rows  ATTN: PROPERTY MANAGEMENT
+      40.51M        1 rows  88 E BROADWAY BLVD STOP HQE910
+      40.20M        3 rows  ATTN: OLAN BREVARD
+      37.43M        2 rows  (LEASED BACK TO PIMA COUNTY)
+      34.36M       30 rows  REAL ESTATE DIVISION
+      26.79M       22 rows  PO BOX 3010
+      20.47M        3 rows  255 WASHINGTON ST STE 230
+      14.92M        2 rows  DEPT OF ADMINISTRATION
+      14.45M        2 rows  ATTN: TUCSON PROPERTIES I LLC
+      14.41M        2 rows  (LEASED BACK TO STATE OF AZ)
+      11.63M       13 rows  700 S FLOWER ST STE 200
+      11.33M        2 rows  3901 E BROADWAY BLVD
+      11.14M        1 rows  ATTN: JOHN BUCK CO
+       9.84M        5 rows  75-5706 HANAMA PL STE 104
+       9.12M        1 rows  & CITY OF TUCSON
+       7.81M       10 rows  PO BOX 530292
+       7.15M        1 rows  261 GORHAM RD
+       6.74M        1 rows  177 N CHURCH AVE STE 200
+       6.32M        2 rows  ATTN: OMAR MIRELES
+
+## who x when
+
+STREETNAME by RECORDDATE, dollars = TOTALFCV
+  1ST AV                                    1963:112.6K 1971:123.3K 1976:127.5K 1992:122.2K 1993:74.6K 1995:128.4K 1997:234.2K 1998:2.95M 2001:158.8K 2004:615.3K 2006:98.2K 2009:60.8K 2011:408.9K 2013:240.2K
+  4TH AV                                    1974:194.4K 1978:85.8K 1984:90.0K 1986:140.3K 1987:118.6K 1988:237.2K 1989:388.1K 1990:311.9K 1991:485.8K 1992:1.04M 1995:166.3K 1997:142.6K 2000:183.7K 2001:814.3K 2003:726.5K 2004:1.71M 2005:100.1K 2006:201.7K 2009:785.9K 2010:270.5K 2011:477.1K 2012:165.8K 2014:164.8K
+  5TH AV                                    1998:11.52M 2005:191.8K 2006:571.9K 2011:424.3K 2012:39.73M 2013:1.41M 2014:88.5K
+  6TH AV                                    1972:200.2K 1977:281.0K 1983:219.9K 1984:327.8K 1985:153.7K 1986:907.9K 1987:147.0K 1988:1.09M 1990:680.4K 1992:1.22M 1994:123.8K 1995:206.8K 1997:181.3K 1998:1.09M 2001:712.0K 2005:336.6K 2007:220.0K 2010:309.1K 2012:220.8K 2013:344.5K 2014:1.34M
+  6TH ST                                    1985:803.6K 1989:140.2K 1993:160.6K 1997:104.0K 1998:104.5K 1999:93.9K 2004:590.0K 2008:325.9K 2009:298.5K 2013:103.2K 2014:144.1K
+  7TH AV                                    1978:36.5K 1983:128.0K 1997:91.0K 1998:489.2K 2002:251.7K 2004:34.3K 2005:82.7K 2006:86.1K 2012:79.4K 2013:299.5K 2014:355.6K
+  8TH ST                                    1983:171.6K 1984:133.1K 1992:36.5K 1993:163.1K 1994:127.6K 1995:244.1K 1996:164.8K 2002:1.87M 2004:120.3K 2005:265.0K 2006:77.2K 2007:131.7K 2009:179.1K 2011:82.9K 2012:186.0K 2014:117.5K
+  9TH ST                                    1973:108.0K 1976:312.8K 1979:138.4K 1981:278.5K 1993:156.2K 1996:209.3K 1997:278.4K 1999:430.6K 2000:427.0K 2001:219.2K 2004:739.8K 2005:926.2K 2006:724.4K 2008:212.0K 2009:523.7K 2010:815.4K 2011:1.01M 2013:595.6K 2014:62.3K
+  ALAMEDA ST                                1967:126.1K 1978:1.06M 1980:633.1K 1988:159.4K 1992:18.52M 2000:174.9K 2005:152.2K 2010:22.08M
+  AVENIDA DEL PALO FIERO                    2009:199.0K 2011:372.0K 2012:278.1K 2013:250.0K 2014:199.0K
+  AVENIDA DEL SEMBRADOR                     2006:642.8K 2007:1.16M 2008:360.3K 2009:677.0K 2010:316.7K 2011:560.6K 2012:569.3K 2013:250.0K 2014:446.3K
+  BROADWAY BL                               1963:815.8K 1986:944.7K 1989:868.9K 1991:960.4K 1998:103.2K 2005:495.3K 2006:140.6K 2007:256.6K 2011:1.10M 2013:40.0K
+  CALLE DE LOS HIGOS                        2007:678.1K 2008:50.0K 2009:648.8K 2010:100.0K 2011:100.0K 2012:735.0K 2013:150.0K 2014:124.5K
+  CHURCH AV                                 1992:5.76M 1997:20.1K 2000:1.80M 2002:879.9K 2003:2.28M 2007:184.6K 2008:807.6K 2012:86.5K 2013:109.6K
+  CONGRESS ST                               1970:58.7K 1971:9.21M 1974:14.2K 1979:801.4K 1980:69.9K 1982:17.74M 1987:1.75M 1989:431.2K 1991:294.6K 1996:153.8K 1998:1.01M 2000:1.63M 2001:166.9K 2003:222.6K 2004:224.0K 2005:3.20M 2006:837.5K 2007:268.8K 2008:241.7K 2009:700.1K 2011:365.3K 2013:589.0K 2014:6.70M
+  FIRE CENTRAL PL                           2006:16.35M
+  FLORES ST                                 1975:53.8K 1979:396.4K 1989:348.9K 1991:68.7K 1995:113.4K 2000:105.1K 2003:320.4K 2005:269.0K 2006:96.5K 2008:189.0K 2009:234.9K 2010:34.2K 2011:294.5K 2013:566.4K
+  FREEWAY                                   1976:164.3K 1993:83.6K 1996:352.5K 1997:3.4K 1998:1.34M 2000:371.5K 2006:622.4K 2014:1.68M
+  GRANADA AV                                1973:542.5K 1997:5.13M 2000:1.33M 2002:594.6K
+  JACOBUS AV                                1974:156.0K 1982:130.1K 1990:16.2K 2000:66.8K 2003:219.9K 2004:22.5K 2006:362.2K 2007:251.0K 2011:128.9K 2012:92.9K 2013:138.9K
+  LEE ST                                    1991:96.9K 1993:62.7K 1995:123.8K 1999:85.1K 2001:289.9K 2005:55.5K 2010:223.9K 2011:59.1K 2012:72.3K 2013:320.9K
+  MAIN AV                                   1970:1.02M 1974:113.1K 2001:413.9K 2002:109.1K 2004:22.6K 2006:336.2K 2007:620.2K
+  ORACLE RD                                 1971:165.3K 1979:270.9K 1991:489.2K 1994:194.4K 1997:854.2K 1999:120.4K 2002:448.5K 2003:231.4K 2005:657.7K 2006:641.2K 2007:164.8K 2008:634.7K 2011:1.04M 2012:3.21M 2014:2.04M
+  PASEO REDONDO                             1979:767.0K 1997:419.1K 2000:1.1K 2010:3.29M 2013:2.54M
+  PENNINGTON ST                             1968:67.2K 1972:9.44M 1987:246.7K 1994:51.2K 2007:728.6K 2009:561.4K 2013:314.0K
+  RILLITO ST                                1976:169.9K 1989:97.4K 1995:67.6K 1996:219.8K 1998:214.6K 1999:210.0K 2000:553.1K 2001:252.9K 2003:545.0K 2004:121.8K 2013:563.5K 2014:159.1K
+  SAHUARO ST                                1983:261.7K 1986:102.3K 1990:244.8K 1991:34.3K 1993:414.8K 1995:79.3K 2002:27.4K 2004:151.6K 2006:595.7K 2007:58.8K 2008:274.1K 2009:330.8K 2010:239.9K 2012:473.7K
+  SCOTT AV                                  1982:366.6K 1986:347.4K 1992:1.72M 1996:90.1K 1997:93.9K 1998:265.9K 2002:989.3K 2003:91.8K 2004:2.70M 2005:262.4K 2009:37.8K 2011:560.7K
+  SENTINEL AV                               1975:82.3K 1980:43.4K 1982:56.2K 1995:203.0K 1996:63.7K 1997:164.1K 2002:57.5K 2010:56.0K 2011:45.9K 2014:63.0K
+  STONE AV                                  1964:585.0K 1969:153.2K 1971:725.0K 1974:310.6K 1976:143.1K 1977:160.0K 1979:445.6K 1981:48.6K 1982:236.2K 1985:540.3K 1986:270.8K 1987:183.9K 1988:119.3K 1989:489.6K 1990:151.4K 1991:153.2K 1992:535.3K 1993:1.50M 1994:1.22M 1995:465.4K 1996:1.58M 1998:867.8K 1999:876.1K 2000:752.1K 2001:61.8K 2002:16.05M 2003:1.11M 2004:6.60M 2005:1.01M 2006:3.31M 2007:1.21M 2008:23.45M 2009:1.09M 2010:37.1K 2011:2.07M 2012:2.48M 2013:821.5K 2014:1.78M
+
+OWNERIDX by RECORDDATE, dollars = TOTALFCV
+  ARIZO                                     1963:815.8K 1965:1.16M 1974:70.0K 1996:153.8K 2008:563.5K
+  BANK                                      1994:87.3K
+  BEACO                                     1967:34.4K 2004:2.03M 2005:425.1K
+  BNY W                                     2001:292.5K
+  BP PO                                     2005:500.0K 2007:568.5K
+  CITY                                      1967:853.8K 1968:3.13M 1969:22.4K 1970:1.10M 1971:174.0K 1972:11.38M 1974:49.2K 1978:141.2K 1979:1.10M 1980:2.61M 1982:743.5K 1986:27.11M 1987:2.48M 1988:49.2K 1989:197.1K 1991:960.4K 1992:26.08M 1993:1.50M 1994:51.2K 1995:184.6K 1997:194.9K 1998:19.81M 1999:77.2K 2000:205.7K 2002:19.58M 2003:997.4K 2005:1.08M 2006:27.63M 2007:434.3K 2009:412.5K 2010:11.26M 2011:141.2K 2013:3.74M 2014:115.3K
+  CONGR                                     1982:5.34M 2011:754.1K
+  DE LA                                     1988:354.9K 1991:623.3K 1998:414.0K
+  DISTR                                     2012:40.20M
+  FIRST                                     1971:725.0K 1978:1.06M 1985:477.2K 1993:567.4K 1999:767.2K 2000:439.6K 2001:50.1K
+  FLORE                                     1969:14.4K 1974:113.1K 1981:96.8K 2001:61.8K
+  HOLUA                                     2003:1.24M 2004:8.50M 2012:1.37M 2013:100.0K
+  HUB P                                     2002:20.47M
+  MAIN                                      1999:722.1K 2001:135.1K 2004:22.6K 2005:596.2K 2007:188.7K 2008:83.6K
+  MERCA                                     2010:701.8K 2013:10.0K
+  PIMA                                      2002:27.00M 2004:5.72M 2005:3.92M 2007:16.38M 2009:46.53M 2011:1.24M 2012:1.04M
+  PROVI                                     2010:1.74M 2011:550
+  PUEBL                                     2009:1.30M
+  REDON                                     1994:33.0K 2000:3.58M
+  RIO N                                     2004:424.2K 2005:1.69M 2007:54.44M 2014:6.70M
+  ROYAL                                     1998:7.48M 1999:319.8K 2001:13.2K
+  STATE                                     1973:542.5K 1982:14.97M 1985:1.21M 1986:1.66M 1987:324.9K 1988:863.7K 1989:1.05M 1991:242.8K 1993:30.3K 1994:21.1K 1995:285.9K 1996:1.30M 1997:183.2K 1998:513.1K 2008:725.8K 2009:162.4K
+  THE F                                     2014:1.97M
+  TICOR                                     2009:819.7K 2011:637.4K
+  TUCSO                                     1974:541.2K 1987:7.16M 1997:9.21M 1998:453.8K 2000:585.4K 2006:626.9K 2007:1.40M 2008:50.0K 2009:44.4K 2011:40.51M 2013:1.69M
+  UNITE                                     1971:9.21M 1989:104.6K 1995:2.47M
+  URBAN                                     2010:78.0K 2011:7.15M 2014:407.0K
+  US BA                                     2008:21.35M 2010:14.41M
+
+## what
+
+PARCELIDX: 11706 16%, 11620 14%, 11619 12%, 11507 9%, 11704 9%, 11515 7%, 11712 7%, 11505 6%, 11717 5%, 11705 5%, 11714 4%, 11713 4%
+
+MP_OL: 03071 23%, 03117 19%, 02004 11%, 60083 8%, 03070 8%, 06074 8%, 38012 7%, 64051 4%, 62061 4%, 04045 4%, 03058 3%
+
+SEQ_NUM_S: 20060280869 36%, 20090700490 19%, 20070970591 19%, 20031240088 7%, 20121360229 4%, 20091320555 4%, 20111930049 4%, 20141000504 2%, 88031276 2%, 20110840249 2%, 20113320574 2%
+
+ASRAREA: 0150 77%, 0163 23%
+
+EXEMPT: 0 100%, 1 0%
+
+LANDUNIT: F 91%, S 9%, A 0%
+
+IMPSOURCE: 1 58%, 0 25%, 2 13%, 8 3%, 4 0%
+
+TRS_OL: 141312E 43%, 141301E 17%, 141313E 15%, 141314E 13%, 141302E 7%, 141407E 3%, 141311E 2%
+
+TRS: 121413E 38%, 011413E 17%, 131413E 15%, 141413E 13%, 021413E 7%, 111413E 7%, 071414E 3%
+
+SECTMODIF: * 100%
+
+MAIL5: TUCSON AZ 66%, STUDIO CITY CA 20%, PHOENIX AZ 5%, GULF BREEZE FL 1%, TUBAC AZ 1%, VERO BEACH FL 1%, ANAHEIM CA 1%, . 1%, SPRINGERVILLE AZ 1%, NEW HYDE PARK NY 1%, MESA AZ 1%
+
+STREETDIR: N 37%, W 26%, E 22%, S 16%
+
+STREETCITY: TUC 100%
+
+LEGAL4: TOTAL VAL OF OP PROP-GROUP 704 24%, ELEVATOR 14%, PER ARS 42-12104(A) 10%, WALKWAYS/SIDEWALKS/UTILITIES/ 10%, GROUP NO 704 10%, TAXPAYER GROUP NO 704 10%, HISTORIC PROPERTY (potential a 5%, TOTAL VAL OF OP PROP-GROUP NO  5%, TOTAL VAL OF OP PROP-GROUP NO  5%, PROP-TAXPAYER GROUP #660 (RD 1 5%, (RD: 6686/1)(11295/610) 5%
+
+LEGAL5: LANDSCAPE & PLANTERS 29%, . 14%, tax ) per ARS 42-12104(A) 14%, CORRIDORS/ TRASH CHUTE/ ETC 14%, SERVICES/ MECHANICAL & MAINT F 14%, (D 6391 P 930 10/23/80) 14%
+
+MRKT: 60 41%, 21 39%, 100 12%, 111 9%
+
+CENSUS: 1302 22%,  400 21%,  100 19%, 2501 9%,  300 8%,  200 8%,  900 5%, 1000 5%,  800 2%, 4401 0%
+
+CURZONE_OL: C-3 38%, I-1 15%, OCR-2 14%, R-2 7%, PAD-10 6%, C-2 5%, R-3 5%, HC-3 3%, O-3 2%, C-1 1%, PAD-2 1%, HR-3 1%
+
+SPT: 92 19%, 20 13%, 69 13%, 25 10%, 0 9%, 40 8%, 44 7%, 2 5%, 70 5%, 21 4%, 73 3%, 50 3%
+
+SPT_DESC: MISC REL/GVT/IN      19%, RES SINGLE FAM       13%, COM OTHER            13%, RES COND/TWHS        10%, VAC RES SUB URB      9%, COM STORES           8%, COM OFFICE           7%, VAC C/I SUB URB      5%, IND MANUF NOPRK      5%, RES TWOPLEX          4%, IND WHS & TRK TER    3%, COM RESTRNT/BAR      3%
+
+PPT: C 31%, R 30%, M 20%, V 13%, I 7%
+
+PPT_DESC: Commercial                31%, Residential               30%, Miscellaneous             20%, Vacant Land               13%, Industrial                7%
+
+PPT_1: Commercial 30%, Residential 30%, Miscellaneous 20%, Vacant Land 13%, Industrial 7%, Commercial                0%, Residential               0%
+
+SPT_1: MISC REL/GVT/IN 19%, RES SINGLE FAM 13%, COM OTHER 12%, RES COND/TWHS 10%, VAC RES SUB URB 9%, COM STORES 8%, COM OFFICE 7%, VAC C/I SUB URB 5%, IND MANUF NOPRK 5%, RES TWOPLEX 4%, IND WHS & TRK TER 3%, COM RESTRNT/BAR 3%
+
+MISC_RECAT_FINAL: Vacant 20%, Residential Single-family 20%, Commercial / Other 15%, Commercial / Retail 12%, Commercial / Office 7%, Institutional 5%, Residential Other 5%, Residential Multi-family 4%, Industrial / Manufacturing 4%, Residential Duplex 3%, Industrial / Warehouse 3%, Commercial / Hotel 1%
+
+RECAT_NOTES: - 96%, page 105 95-9 (*) SCHOOL. - Ve 1%, Page 107 97-0 (*) VACANT LAND. 1%, Team decided Limited Use would 1%, nan 0%, Utility? it says Public in SPT 0%, Early versions had originally  0%, Utility 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | id | 2.0K | 0 | 2000 10; 1999 10; 1998 10; 1997 10 |
+| AREA | amount | 1.9K | 0 | 21.96875 33; 23.453125 32; 1295.3984375 13; 578.90625 12 |
+| PERIMETER | amount | 1.9K | 0 | 18.75 33; 19.375 32; 192.3899848 13; 107.6875 12 |
+| PARCELIDX | category | 31 | 0 | 11706 239; 11620 210; 11619 168; 11507 136 |
+| DPARCEL | id | 2.0K | 0 | 116206230 18; 116206240 12; 117090340 10; 11708165B 10 |
+| PARCEL | id | 2.0K | 0 | 116206230 18; 116206240 12; 117090340 10; 11708165B 10 |
+| OID | other | 1 | 0 | 0 2.0K |
+| FILEID | empty | 1 | 2.0K |  |
+| MP | other | 57 | 86 | 03071 371; 03117 279; 02004 150; 03070 128 |
+| MP_OL | category | 50 | 134 | 03071 330; 03117 277; 02004 163; 60083 122 |
+| SEQ_NUM_S | category | 14 | 1.7K | 20060280869 122; 20090700490 63; 20070970591 63; 20031240088 25 |
+| ASRAREA | category | 2 | 0 | 0150 1.5K; 0163 454 |
+| EXEMPT | category | 3 | 12 | 0 2.0K; 1 1 |
+| PRIORLMTD | other | 1.6K | 0 | 32989 102; 26250 59; 500 51; 18527 40 |
+| CURRENTLMT | other | 1.6K | 0 | 32989 102; 27563 59; 500 49; 19453 40 |
+| PARCEL_USE | other | 154 | 0 | 0131 124; 0011 121; 1120 113; 0730 98 |
+| LANDCLASS | other | 93 | 0 | 0020 245; 9720 187; 0740 154; 1110 139 |
+| LANDRATIO | amount | 45 | 0 | 18.0 732; 15.0 600; 10.0 573; 5.0 30 |
+| LANDMEAS | amount | 1.2K | 0 |      1.00 168;   6840.00 106;  12197.00 51;   3872.00 38 |
+| LANDUNIT | category | 3 | 0 | F 1.8K; S 171; A 10 |
+| LANDFCV | other | 1.1K | 0 | 0 262; 15000 59; 500 55; 6000 44 |
+| IMPCLASS | other | 89 | 0 | 0000 250; 0740 154; 1110 140; 9700 131 |
+| IMPRATIO | amount | 41 | 0 | 18.0 717; 10.0 550; 0.0 508; 15.0 145 |
+| IMPFCV | other | 940 | 0 | 0 770; 550 107; 25000 54; 26989 43 |
+| IMPSOURCE | category | 5 | 0 | 1 1.2K; 0 498; 2 269; 8 68 |
+| TOTALFCV | amount | 1.6K | 0 | 32989 102; 40000 56; 500 52; 50000 42 |
+| DOCKET | other | 844 | 142 | 0 425; 11394 107; 13054 63; 13712 25 |
+| PAGE | other | 868 | 142 | 0 425; 4186 107; 2311 63; 405 24 |
+| SEQ_NUM_D | other | 885 | 631 | 20001900903 72; 20001900950 58; 20070270424 45; 94219021 38 |
+| RECORDDATE | date | 1.1K | 146 | 20000929 108; 20070514 64; 20140307 61; 20091224 27 |
+| TRS_OL | category | 7 | 0 | 141312E 868; 141301E 334; 141313E 295; 141314E 264 |
+| TRS | category | 7 | 0 | 121413E 757; 011413E 334; 131413E 295; 141413E 267 |
+| SECTMODIF | category | 2 | 1.9K | * 145 |
+| OWNERIDX | who | 798 | 0 | CITY 183; REDON 109; STATE 78; BP PO 68 |
+| TRACT | empty | 1 | 2.0K |  |
+| BLOCK | other | 149 | 524 | 003 59; 004 46; 001 42; 002 40 |
+| LOT | other | 244 | 208 | 00001 208; 00002 126; 00005 111; 00003 108 |
+| LOT_R | other | 237 | 211 | 1 208; 2 126; 5 111; 3 108 |
+| MAIL1 | who | 1.0K | 0 | CITY OF TUCSON 181; REDONDO TOWER APARTMENTS  108; STATE OF ARIZONA 76; BP POST DEVELOPERS LLC 67 |
+| MAIL2 | who | 929 | 32 | . 180; ATTN: SHAKER LAKES APARTM 109; 3915 E BROADWAY BLVD FL 4 63; PO BOX 43426 60 |
+| MAIL3 | who | 316 | 33 | TUCSON AZ 968; . 210; 302 E MONTE VISTA RD	 92; PHOENIX AZ 35 |
+| MAIL4 | who | 84 | 1.4K | TUCSON AZ 255; PHOENIX AZ 108; PO BOX 27210 31; 11947 SUNSHINE TER 19 |
+| MAIL5 | category | 12 | 1.9K | TUCSON AZ 63; STUDIO CITY CA 19; PHOENIX AZ 5; GULF BREEZE FL 1 |
+| ZIP9 | who | 726 | 0 | 000000000 245; 850041409 108; 857113422 69; 857333426 60 |
+| STREETIDX | other | 92 | 968 | STONE 131; AVENI 42; 9TH S 39; 6TH A 37 |
+| STREETNO | other | 584 | 968 | 25 11; 31 10; 601 8; 300 8 |
+| STREETNO_R | other | 585 | 0 | 0 968; 25 11; 31 10; 601 8 |
+| STREETDIR | category | 5 | 968 | N 377; W 265; E 229; S 161 |
+| STREETNAME | who | 95 | 968 | STONE AV 131; 9TH ST 39; 6TH AV 37; CONGRESS ST 35 |
+| STREETCITY | category | 2 | 968 | TUC 1.0K |
+| JURIS_OL | who | 1 | 0 | TUCSON 2.0K |
+| LEGAL1 | other | 1.9K | 0 | PLAZA CENTRO RAILYARD SQ2 20; MERCADO DISTRICT OF MENLO 17; THE FLATS AT JULIAN DREW  17; 44 EAST BROADWAY CONDOMIN 15 |
+| LEGAL2 | other | 537 | 1.2K | PTN SW4 SEC 12 PTN SE4 SE 105; & ANY INT IN LIMITED COMM 60; PRIVATE ALLEYS 12; SEC 14-14-13 8 |
+| LEGAL3 | who | 131 | 1.7K | 5 & PTN LOTS 1 6 9 BLK 11 104; DEED RESTRICTIONS 9; & 2.12% INT GENERAL & RES 8; & 1.97% INT GENERAL & RES 8 |
+| LEGAL4 | category | 25 | 2.0K | TOTAL VAL OF OP PROP-GROU 5; ELEVATOR 3; PER ARS 42-12104(A) 2; WALKWAYS/SIDEWALKS/UTILIT 2 |
+| LEGAL5 | category | 7 | 2.0K | LANDSCAPE & PLANTERS 2; . 1; tax ) per ARS 42-12104(A) 1; CORRIDORS/ TRASH CHUTE/ E 1 |
+| LASTCHANGE | who | 656 | 0 | 050712 161; 120803 98; 120731 67; 140407 61 |
+| MRKT | category | 4 | 0 | 60 813; 21 773; 100 234; 111 180 |
+| CENSUS | category | 10 | 0 | 1302 439;  400 427;  100 386; 2501 180 |
+| CURZONE | empty | 1 | 2.0K |  |
+| CURZONE_OL | category | 19 | 0 | C-3 747; I-1 302; OCR-2 277; R-2 144 |
+| ZONEAUTH | empty | 1 | 2.0K |  |
+| ZONEFLAG | empty | 1 | 2.0K |  |
+| LINK | id | 2.0K | 0 | HTTP://GIS.PIMA.GOV/D.HTM 18; HTTP://GIS.PIMA.GOV/D.HTM 12; HTTP://GIS.PIMA.GOV/D.HTM 10; HTTP://GIS.PIMA.GOV/D.HTM 10 |
+| ACRES | amount | 1.8K | 0 | 0.00050432 33; 0.00053839 32; 0.0297372 13; 0.0132894 12 |
+| X_HPGN | amount | 2.0K | 0 | 993451.812499 12; 992575.9375 11; 992561.593743 11; 992556.8125 11 |
+| Y_HPGN | amount | 1.9K | 0 | 445643.15625 19; 445647.90625 18; 445652.65625 18; 445657.40625 18 |
+| LON | id | 2.0K | 0 | -110.96916308 10; -110.97693001 10; -110.9777884 10; -110.97682789 10 |
+| LAT | id | 2.0K | 0 | 32.20922559 10; 32.21034591 10; 32.20949355 10; 32.21126655 10 |
+| OBJECTID_1 | other | 158 | 0 | 66 124; 9 121; 502 113; 283 98 |
+| PARCEL_USE_1 | other | 154 | 0 | 0131 124; 0011 121; 1120 113; 0730 98 |
+| USE_DESC | who | 157 | 0 | SFR GRADE 010-3 URBAN SUB 124; VACANT RESIDENTIAL URBAN  121; STORE FRONT COMMERCIAL BL 113; CONDO/TWNHM/ROW/PATIO GRA 98 |
+| SPT | category | 43 | 0 | 92 323; 20 222; 69 210; 25 172 |
+| SPT_DESC | category | 43 | 0 | MISC REL/GVT/IN      323; RES SINGLE FAM       222; COM OTHER            210; RES COND/TWHS        172 |
+| PPT | category | 5 | 0 | C 616; R 594; M 391; V 255 |
+| DATASOURCE | who | 1 | 0 | PARCEL_USE_REF 2.0K |
+| PPT_DESC | category | 5 | 0 | Commercial                616; Residential               594; Miscellaneous             391; Vacant Land               255 |
+| PARCEL_USE_12 | other | 154 | 0 | 0131 124; 0011 121; 1120 113; 0730 98 |
+| PPT_1 | category | 7 | 0 | Commercial 609; Residential 593; Miscellaneous 391; Vacant Land 255 |
+| SPT_1 | category | 46 | 0 | MISC REL/GVT/IN 323; RES SINGLE FAM 222; COM OTHER 207; RES COND/TWHS 172 |
+| USE | who | 155 | 0 | SFR GRADE 010-3 URBAN SUB 124; VACANT RESIDENTIAL URBAN  121; STORE FRONT COMMERCIAL BL 113; CONDO/TWNHM/ROW/PATIO GRA 98 |
+| CNT_USE | amount | 122 | 0 | 140518.0 124; 3465.0 121; 1054.0 113; 24789.0 98 |
+| MISC_RECAT_FINAL | category | 16 | 0 | Vacant 403; Residential Single-family 396; Commercial / Other 289; Commercial / Retail 228 |
+| RECAT_NOTES | category | 8 | 0 | - 1.9K; page 105 95-9 (*) SCHOOL. 24; Page 107 97-0 (*) VACANT  17; Team decided Limited Use  14 |
+| ACRES_1 | amount | 1.9K | 0 | 0.0005043331 33; 0.0005383918 19; 0.0005384276 19; 0.02973826 13 |
+| SHAPE__AREA | amount | 1.9K | 0 | 21.96875 26; 23.45391845703125 16; 23.45233154296875 15; 1295.3984375 13 |
+| SHAPE__LENGTH | amount | 1.9K | 0 | 18.75 33; 19.374671913683414 19; 19.375328086316586 19; 32.81342055247727 11 |
+| GEOMETRY | id | 2.0K | 0 | {"type": "Polygon", "coor 10; {"type": "Polygon", "coor 10; {"type": "Polygon", "coor 10; {"type": "Polygon", "coor 10 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:56:27.21572 2.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | f7b425cb-a502-42f0-b83b-a 2.0K |
+| SRC_SHA256 | who | 1 | 0 | 5908de062d501049c57a7b5c1 2.0K |

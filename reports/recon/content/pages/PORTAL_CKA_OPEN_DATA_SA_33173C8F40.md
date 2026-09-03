@@ -1,0 +1,57 @@
+# PORTAL_CKA_OPEN_DATA_SA_33173C8F40
+
+rows 46  columns 14  scan 3.6s
+
+roles: amount 9, audit 2, category 2, date 1, who 1
+
+## when
+
+INGESTED_AT
+  2026        46  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| HIGHSCHOOLORLESS | 46 | 0.19 | 0.38 | 0.44 | 0.44 | 16.15 |
+| LESSTHAN9THGRADE | 46 | 0.03 | 0.06 | 0.14 | 0.14 | 3.25 |
+| NINTHTO12THGRADENODIPLOMA | 46 | 0.03 | 0.07 | 0.10 | 0.10 | 3.12 |
+| HIGHSCHOOLGRADUATEINCLUDESEQUIVALENCY | 46 | 0.12 | 0.23 | 0.29 | 0.29 | 9.90 |
+| SOMECOLLEGEORASSOCIATESDEGREE | 46 | 0.19 | 0.28 | 0.32 | 0.32 | 12 |
+| SOMECOLLEGENODEGREE | 46 | 0.13 | 0.19 | 0.25 | 0.26 | 8.62 |
+
+## who
+
+SRC_SHA256 by rows
+        46  5f97d7b3c5ad8c121946a97b54e47ee373f56b321c41df004813067606f2da9e
+
+SRC_SHA256 by dollars
+       16.15       46 rows  5f97d7b3c5ad8c121946a97b54e47ee373f56b321c41df004813067606f2
+
+## who x when
+
+SRC_SHA256 by INGESTED_AT  LOAD STAMP, not an event date, dollars = HIGHSCHOOLORLESS
+  5f97d7b3c5ad8c121946a97b54e47ee373f56b32  2026:16.15
+
+## what
+
+YEAR: 2023 22%, 2021 20%, 2018 20%, 2022 20%, 2019 20%
+
+GEOGRAPHICAREANAMECITY: United States 11%, San Diego 11%, San Antonio 11%, Phoenix 11%, Jacksonville 11%, Houston 11%, Dallas 11%, Charlotte 11%, Austin 11%, Texas 2%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| YEAR | category | 5 | 0 | 2023 10; 2021 9; 2018 9; 2022 9 |
+| GEOGRAPHICAREANAMECITY | category | 10 | 0 | United States 5; San Diego 5; San Antonio 5; Phoenix 5 |
+| HIGHSCHOOLORLESS | amount | 42 | 0 | 0.386000000 2; 0.397000000 2; 0.384000000 2; 0.364000000 2 |
+| LESSTHAN9THGRADE | amount | 36 | 0 | 0.084000000 3; 0.048000000 2; 0.047000000 2; 0.073000000 2 |
+| NINTHTO12THGRADENODIPLOMA | amount | 28 | 0 | 0.045000000 4; 0.075000000 4; 0.048000000 3; 0.085000000 3 |
+| HIGHSCHOOLGRADUATEINCLUDESEQUIVALENCY | amount | 40 | 0 | 0.263000000 2; 0.269000000 2; 0.144000000 2; 0.142000000 2 |
+| SOMECOLLEGEORASSOCIATESDEGREE | amount | 38 | 0 | 0.281000000 3; 0.283000000 2; 0.265000000 2; 0.254000000 2 |
+| SOMECOLLEGENODEGREE | amount | 35 | 0 | 0.220000000 3; 0.203000000 2; 0.191000000 2; 0.200000000 2 |
+| ASSOCIATESDEGREE | amount | 31 | 0 | 0.079000000 5; 0.088000000 3; 0.052000000 3; 0.086000000 2 |
+| BACHELORSDEGREE | amount | 40 | 0 | 0.200000000 2; 0.218000000 2; 0.216000000 2; 0.203000000 2 |
+| GRADUATEORPROFESSIONALDEGREE | amount | 39 | 0 | 0.126000000 2; 0.193000000 2; 0.110000000 2; 0.127000000 2 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 23:12:28.46617 46 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 79717120-763d-4b12-b9b5-0 46 |
+| SRC_SHA256 | who | 1 | 0 | 5f97d7b3c5ad8c121946a97b5 46 |

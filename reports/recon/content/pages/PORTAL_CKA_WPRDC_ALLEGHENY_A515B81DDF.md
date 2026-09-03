@@ -1,0 +1,341 @@
+# PORTAL_CKA_WPRDC_ALLEGHENY_A515B81DDF
+
+rows 10.0K  columns 42  scan 4.9s
+
+roles: amount 1, audit 2, category 13, date 2, empty 2, id 3, other 15, who 5
+
+## when
+
+EDIT_DATE
+  2013      3.1K  ##############################
+  2014       275  ###
+  2015       458  ####
+  2016       394  ####
+  2017       523  #####
+  2018      1.8K  #################
+  2019       566  #####
+  2020       200  ##
+  2021       223  ##
+  2022       409  ####
+  2023       399  ####
+  2024      1.4K  ##############
+  2025       274  ###
+
+INGESTED_AT
+  2026     10.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| SHAPE_LENG | 10.0K | 7.96 | 263.51 | 2.2K | 10.2K | 3.99M |
+
+## who
+
+FULL_NAME by rows
+      1.1K  ALLEY
+       235  5TH AVE
+       184  3RD ST
+       143  2ND ST
+       137  BABCOCK BLVD
+       132  6TH ST
+       129  4TH ST
+       128  1ST ST
+       122  5TH ST
+        90  BEAVER ST
+        84  ALLEGHENY AVE
+        79  9TH ST
+        76  7TH ST
+        71  BEECHWOOD BLVD
+        67  2ND AVE
+        63  ARLINGTON AVE
+        61  6TH AVE
+        60  1ST AVE
+        57  8TH ST
+        53  11TH ST
+
+FULL_NAME by dollars
+      383.0K     1.1K rows  ALLEY
+       85.9K      235 rows  5TH AVE
+       84.8K      137 rows  BABCOCK BLVD
+       52.1K      184 rows  3RD ST
+       48.5K       52 rows  BAKERSTOWN RD
+       37.2K       46 rows  BEAVER GRADE RD
+       36.0K      128 rows  1ST ST
+       35.6K      143 rows  2ND ST
+       35.5K       67 rows  2ND AVE
+       35.3K      132 rows  6TH ST
+       34.2K      129 rows  4TH ST
+       32.2K      122 rows  5TH ST
+       30.8K       30 rows  BIGELOW BLVD
+       30.6K       31 rows  ALLEGHENY RIVER BLVD
+       30.0K       71 rows  BEECHWOOD BLVD
+       29.7K       46 rows  ARDMORE BLVD
+       29.2K       19 rows  BATTLE RIDGE RD
+       28.7K       28 rows  BALDWIN RD
+       27.0K       84 rows  ALLEGHENY AVE
+       26.8K       25 rows  BAKERSTOWN CULMERVILLE RD
+
+ST_NAME by rows
+      1.1K  ALLEY
+       395  5TH
+       263  3RD
+       257  2ND
+       245  6TH
+       218  1ST
+       213  4TH
+       158  7TH
+       157  8TH
+       149  9TH
+       137  BABCOCK
+       134  BEAVER
+       116  10TH
+       101  11TH
+       101  ALLEGHENY
+        94  BEECH
+        88  BEECHWOOD
+        75  ARLINGTON
+        71  12TH
+        65  13TH
+
+ST_NAME by dollars
+      383.0K     1.1K rows  ALLEY
+      133.8K      395 rows  5TH
+       85.3K      257 rows  2ND
+       84.8K      137 rows  BABCOCK
+       79.4K      263 rows  3RD
+       73.0K      245 rows  6TH
+       65.8K      218 rows  1ST
+       63.2K      213 rows  4TH
+       52.1K      157 rows  8TH
+       50.4K       55 rows  BAKERSTOWN
+       49.1K      158 rows  7TH
+       45.7K      134 rows  BEAVER
+       39.2K      149 rows  9TH
+       37.4K       49 rows  BIGELOW
+       37.2K       46 rows  BEAVER GRADE
+       36.8K       88 rows  BEECHWOOD
+       34.6K       39 rows  BALDWIN
+       34.5K      101 rows  ALLEGHENY
+       33.8K       94 rows  BEECH
+       31.3K       55 rows  ANDERSON
+
+LMUNI by rows
+      2.8K  PITTSBURGH
+       493  MCKEESPORT
+       267  ROSS
+       202  OAKMONT
+       196  CLAIRTON
+       195  TARENTUM
+       180  PENN HILLS
+       151  HARRISON
+       150  MCCANDLESS
+       146  BETHEL PARK
+       145  DORMONT
+       144  CARNEGIE
+       131  MUNHALL
+       119  MT LEBANON
+       119  BRADDOCK
+       118  FOREST HILLS
+       113  SHALER
+       110  WEST DEER
+       108  MOON
+       105  WEST MIFFLIN
+
+LMUNI by dollars
+      885.9K     2.8K rows  PITTSBURGH
+      125.1K      267 rows  ROSS
+      122.5K      493 rows  MCKEESPORT
+       99.6K      180 rows  PENN HILLS
+       91.3K      110 rows  WEST DEER
+       81.0K      150 rows  MCCANDLESS
+       75.1K      202 rows  OAKMONT
+       74.2K      108 rows  MOON
+       73.6K      146 rows  BETHEL PARK
+       71.9K      151 rows  HARRISON
+       66.1K       99 rows  SOUTH FAYETTE
+       63.2K       95 rows  MONROEVILLE
+       61.4K       85 rows  PLUM
+       58.8K      105 rows  WEST MIFFLIN
+       57.5K       77 rows  RICHLAND
+       56.9K      118 rows  FOREST HILLS
+       55.8K      195 rows  TARENTUM
+       54.3K      113 rows  SHALER
+       52.7K       66 rows  ROBINSON
+       52.0K      196 rows  CLAIRTON
+
+RMUNI by rows
+      2.8K  PITTSBURGH
+       488  MCKEESPORT
+       263  ROSS
+       202  OAKMONT
+       197  CLAIRTON
+       193  TARENTUM
+       189  PENN HILLS
+       151  HARRISON
+       150  MCCANDLESS
+       145  DORMONT
+       144  CARNEGIE
+       136  MUNHALL
+       135  BETHEL PARK
+       119  MT LEBANON
+       117  BRADDOCK
+       116  FOREST HILLS
+       114  SHALER
+       110  WEST DEER
+       107  MOON
+       102  WEST MIFFLIN
+
+RMUNI by dollars
+      878.2K     2.8K rows  PITTSBURGH
+      123.3K      263 rows  ROSS
+      120.4K      488 rows  MCKEESPORT
+      103.8K      189 rows  PENN HILLS
+       91.3K      110 rows  WEST DEER
+       81.0K      150 rows  MCCANDLESS
+       75.1K      202 rows  OAKMONT
+       74.0K      107 rows  MOON
+       71.9K      151 rows  HARRISON
+       71.0K      135 rows  BETHEL PARK
+       66.1K       99 rows  SOUTH FAYETTE
+       63.1K       94 rows  MONROEVILLE
+       61.4K       85 rows  PLUM
+       57.5K       78 rows  RICHLAND
+       55.5K      193 rows  TARENTUM
+       54.8K      102 rows  WEST MIFFLIN
+       54.4K      114 rows  SHALER
+       54.2K      116 rows  FOREST HILLS
+       52.2K      197 rows  CLAIRTON
+       51.8K       65 rows  ROBINSON
+
+## who x when
+
+FULL_NAME by EDIT_DATE, dollars = SHAPE_LENG
+  11TH ST                                   2013:6.2K 2014:974.96 2015:561.27 2016:63.54 2017:431.19 2018:808.08 2019:763.43 2022:1.1K 2024:1.1K
+  1ST AVE                                   2013:3.8K 2015:546.37 2017:1.1K 2018:1.8K 2019:363.38 2020:748.28 2022:669.97 2024:10.5K 2025:376.85
+  1ST ST                                    2013:14.5K 2014:1.2K 2015:1.9K 2016:521.25 2017:2.2K 2018:7.1K 2019:546.63 2020:2.3K 2021:584.18 2022:922.97 2023:2.3K 2024:889.10 2025:1.1K
+  2ND AVE                                   2013:5.0K 2015:1.3K 2017:642.22 2018:766.86 2019:8.7K 2020:240.65 2023:2.7K 2024:14.1K 2025:2.1K
+  2ND ST                                    2013:16.2K 2014:2.3K 2015:1.5K 2016:1.6K 2017:3.1K 2018:3.6K 2019:795.71 2020:1.5K 2021:884.09 2022:197.69 2023:3.7K 2024:277.64
+  3RD ST                                    2013:20.2K 2014:2.5K 2015:3.2K 2016:1.6K 2017:2.2K 2018:8.4K 2019:158.02 2020:3.0K 2021:481.55 2022:3.5K 2023:2.4K 2024:1.7K 2025:2.9K
+  4TH ST                                    2013:15.5K 2014:1.9K 2015:688.33 2016:1.6K 2017:1.5K 2018:3.6K 2019:4.4K 2020:769.64 2021:419.22 2022:2.4K 2023:1.3K
+  5TH AVE                                   2013:5.2K 2014:533.48 2015:663.33 2016:180.10 2017:2.1K 2018:1.8K 2019:12.5K 2020:1.2K 2021:8.9K 2022:5.0K 2023:3.1K 2024:40.7K 2025:4.1K
+  5TH ST                                    2013:16.5K 2014:2.3K 2015:1.9K 2017:343.33 2018:1.5K 2019:2.7K 2020:764.70 2021:1.1K 2022:681.41 2023:431.63 2024:3.1K 2025:870.84
+  6TH AVE                                   2013:9.5K 2014:665.31 2015:494.41 2017:588.13 2018:261.31 2019:334.12 2020:245.18 2022:411.82 2024:5.1K 2025:959.75
+  6TH ST                                    2013:10.9K 2014:895.35 2015:1.7K 2016:2.1K 2017:1.7K 2018:3.4K 2019:173.75 2020:1.5K 2022:1.1K 2023:354.89 2024:11.2K 2025:343.69
+  7TH ST                                    2013:8.9K 2014:705.75 2015:1.1K 2016:274.19 2017:2.4K 2018:1.2K 2019:1.5K 2020:1.1K 2021:706.36 2022:1.2K 2023:464.30 2024:975.11
+  8TH ST                                    2013:11.4K 2015:619.78 2016:425 2017:315.59 2018:151.76 2019:488.51 2020:732.52 2022:530.27 2024:153.31
+  9TH ST                                    2013:11.1K 2015:1.7K 2016:606.69 2017:482.07 2018:1.8K 2019:262.24 2021:870.22 2024:1.2K
+  ALLEGHENY AVE                             2013:5.8K 2014:642.71 2015:126.70 2016:1.3K 2017:203.36 2018:2.4K 2022:906.13 2023:2.7K 2024:11.6K 2025:1.5K
+  ALLEGHENY RIVER BLVD                      2013:559.07 2015:645.92 2017:9.4K 2018:1.6K 2022:2.7K 2023:11.5K 2024:4.3K
+  ALLEY                                     2013:18.1K 2014:6.0K 2015:48.7K 2016:26.0K 2017:8.5K 2018:232.0K 2019:13.0K 2020:1.8K 2021:2.2K 2022:7.4K 2023:8.1K 2024:7.9K 2025:3.2K
+  ARDMORE BLVD                              2019:414.90 2020:56.69 2021:20.5K 2022:3.8K 2023:3.2K 2024:648.19 2025:1.1K
+  ARLINGTON AVE                             2013:2.2K 2014:884.27 2016:740.46 2017:1.3K 2023:2.8K 2024:12.9K 2025:1.4K
+  BABCOCK BLVD                              2013:3.9K 2014:347.40 2015:182.75 2017:4.7K 2018:33.7K 2019:4.2K 2021:1.9K 2022:6.7K 2023:3.9K 2024:23.2K 2025:2.1K
+  BAKERSTOWN CULMERVILLE RD                 2013:13.8K 2014:823.88 2016:243.93 2018:2.3K 2020:1.3K 2022:2.1K 2023:2.9K 2024:3.3K
+  BAKERSTOWN RD                             2016:959.05 2017:2.3K 2018:33.4K 2022:3.5K 2023:436.56 2024:7.9K
+  BALDWIN RD                                2018:5.3K 2019:9.8K 2024:11.2K 2025:2.4K
+  BATTLE RIDGE RD                           2015:319.36 2018:5.5K 2019:12.7K 2020:379.30 2021:980.16 2022:2.1K 2023:1.7K 2025:5.6K
+  BEAVER GRADE RD                           2013:10.2K 2014:238.94 2015:1.5K 2016:243.27 2017:4.3K 2018:8.3K 2019:255.90 2021:1.8K 2022:6.2K 2023:1.7K 2024:1.6K 2025:865
+  BEAVER ST                                 2013:413.12 2016:5.7K 2018:584.45 2024:14.3K 2025:356.75
+  BEECHWOOD BLVD                            2017:75.04 2019:2.1K 2023:58.93 2024:22.8K 2025:4.9K
+  BIGELOW BLVD                              2014:85.56 2018:1.5K 2019:18.9K 2020:188.79 2022:352.98 2024:9.7K
+
+ST_NAME by EDIT_DATE, dollars = SHAPE_LENG
+  10TH                                      2013:14.5K 2014:1.2K 2015:674.71 2016:1.1K 2017:4.3K 2018:2.3K 2019:132.99 2020:686.66 2021:309.72 2022:795.21 2024:3.1K
+  11TH                                      2013:12.7K 2014:974.96 2015:1.5K 2016:782.98 2017:1.7K 2018:1.2K 2019:763.43 2020:798.69 2021:953.64 2022:3.1K 2023:371.46 2024:1.1K
+  12TH                                      2013:8.8K 2014:1.2K 2015:1.6K 2016:293.29 2017:1.1K 2018:842.82 2020:530.73 2022:3.2K 2023:202.11 2025:879.87
+  13TH                                      2013:8.9K 2014:1.6K 2015:1.2K 2016:177.74 2017:295.01 2018:2.6K 2019:1.1K 2021:730.56 2022:276.52
+  1ST                                       2013:19.4K 2014:1.2K 2015:4.4K 2016:521.25 2017:5.2K 2018:9.4K 2019:2.0K 2020:4.0K 2021:1.1K 2022:2.6K 2023:2.8K 2024:11.7K 2025:1.4K
+  2ND                                       2013:25.2K 2014:2.4K 2015:3.9K 2016:1.8K 2017:4.5K 2018:7.8K 2019:10.6K 2020:2.6K 2021:1.2K 2022:1.3K 2023:7.5K 2024:14.4K 2025:2.1K
+  3RD                                       2013:25.3K 2014:3.2K 2015:3.5K 2016:2.0K 2017:7.2K 2018:12.4K 2019:421.49 2020:3.5K 2021:1.3K 2022:4.0K 2023:2.9K 2024:10.0K 2025:3.6K
+  4TH                                       2013:20.3K 2014:3.2K 2015:2.2K 2016:1.6K 2017:3.8K 2018:6.3K 2019:9.8K 2020:2.8K 2021:1.4K 2022:4.3K 2023:1.9K 2024:5.7K
+  5TH                                       2013:25.8K 2014:2.9K 2015:2.8K 2016:1.4K 2017:3.1K 2018:7.1K 2019:15.3K 2020:2.5K 2021:10.0K 2022:6.2K 2023:3.5K 2024:48.3K 2025:4.9K
+  6TH                                       2013:26.0K 2014:3.1K 2015:2.8K 2016:2.1K 2017:5.2K 2018:4.7K 2019:1.8K 2020:1.9K 2021:1.0K 2022:3.6K 2023:856.50 2024:18.7K 2025:1.3K
+  7TH                                       2013:18.0K 2014:1.3K 2015:1.6K 2016:3.1K 2017:2.8K 2018:2.4K 2019:4.2K 2020:3.2K 2021:1.1K 2022:2.0K 2023:464.30 2024:8.8K 2025:197.45
+  8TH                                       2013:26.1K 2014:1.6K 2015:2.5K 2016:2.7K 2017:507.61 2018:444.27 2019:8.6K 2020:1.2K 2021:489.35 2022:2.8K 2023:801.11 2024:3.0K 2025:1.2K
+  9TH                                       2013:22.7K 2014:499.74 2015:2.0K 2016:2.1K 2017:744.42 2018:5.0K 2019:3.1K 2020:1.0K 2021:870.22 2023:70.73 2024:1.2K
+  ALLEGHENY                                 2013:8.5K 2014:782.82 2015:854.48 2016:1.3K 2017:1.8K 2018:2.4K 2019:1.5K 2022:906.13 2023:3.5K 2024:11.6K 2025:1.5K
+  ALLEY                                     2013:18.1K 2014:6.0K 2015:48.7K 2016:26.0K 2017:8.5K 2018:232.0K 2019:13.0K 2020:1.8K 2021:2.2K 2022:7.4K 2023:8.1K 2024:7.9K 2025:3.2K
+  ANDERSON                                  2013:10.1K 2014:944.32 2015:3.0K 2016:804.27 2017:703.26 2018:1.4K 2019:624.65 2022:679.59 2024:12.8K 2025:171.79
+  ARLINGTON                                 2013:2.8K 2014:884.27 2016:740.46 2017:2.1K 2018:1.7K 2020:548.01 2023:4.0K 2024:12.9K 2025:1.4K
+  BABCOCK                                   2013:3.9K 2014:347.40 2015:182.75 2017:4.7K 2018:33.7K 2019:4.2K 2021:1.9K 2022:6.7K 2023:3.9K 2024:23.2K 2025:2.1K
+  BAKERSTOWN                                2016:959.05 2017:2.3K 2018:35.3K 2022:3.5K 2023:436.56 2024:7.9K
+  BALDWIN                                   2013:1.3K 2016:2.1K 2018:5.3K 2019:9.8K 2020:1.2K 2022:896.76 2024:11.2K 2025:2.8K
+  BEAVER                                    2013:1.5K 2014:33.08 2015:2.7K 2016:5.7K 2018:1.7K 2020:369.32 2021:1.1K 2024:32.2K 2025:425.06
+  BEAVER GRADE                              2013:10.2K 2014:238.94 2015:1.5K 2016:243.27 2017:4.3K 2018:8.3K 2019:255.90 2021:1.8K 2022:6.2K 2023:1.7K 2024:1.6K 2025:865
+  BEECH                                     2013:16.7K 2014:195.44 2015:254.90 2016:1.1K 2017:1.1K 2018:6.5K 2019:163.07 2020:2.6K 2021:818.94 2023:2.9K 2024:1.5K
+  BEECHWOOD                                 2013:3.1K 2015:102.46 2017:75.04 2019:2.1K 2022:2.0K 2023:1.1K 2024:23.4K 2025:4.9K
+  BIGELOW                                   2013:1.1K 2014:85.56 2018:3.1K 2019:18.9K 2020:188.79 2022:352.98 2023:426.90 2024:11.9K 2025:1.4K
+
+## what
+
+A1: SARP 36%, SNC 19%, MPWS 17%, SMB 11%, MAWS 7%, SZC 4%, SB 3%, SS 2%, SSNC 1%
+
+A2: MAWS 40%, SARP 33%, MPWS 10%, SZC 8%, SSNC 6%, SMB 4%
+
+EDIT_USER: T096517 46%, t096517 32%, k009498 6%, t109141 5%, T116489 5%, T109141 4%, T112211 1%, k009355 1%, K014926 0%, T117304 0%
+
+FCC: A41 73%, A73 14%, A31 5%, A42 3%, A32 3%, A74 1%, A21 1%, A63 0%, A72 0%, A61 0%, A43 0%, A62 0%
+
+LCOUNTY: ALLEGHENY 100%, BUTLER 0%, BEAVER 0%, WASHINGTON 0%, WESTMORELAND 0%
+
+ONEWAY: B 88%, TF 6%, FT 6%
+
+RCOUNTY: ALLEGHENY 100%, WASHINGTON 0%, BUTLER 0%, WESTMORELAND 0%
+
+SOURCE: EAMS 86%, MUNICIPALITY 14%, ACES-911 0%, USPS 0%, DBMS 0%, DRE 0%
+
+SOURCE_ID: 0 97%, 380 1%, 837 0%, 148 0%, 30 0%, 51 0%, 19 0%, 8 0%, 885 0%, 130 0%, 978 0%
+
+SPEED: 25 83%, 35 14%, 15 2%, 0 0%, 5 0%, 45 0%, 55 0%, 1 0%, 10 0%
+
+ST_PREFIX: S 41%, E 28%, N 16%, W 15%
+
+ST_SUFFIX: E 60%, W 40%
+
+ST_TYPE: ST 43%, AVE 24%, RD 9%, DR 9%, WAY 5%, BLVD 4%, ALY 2%, LN 1%, CT 1%, PL 1%, RAMP 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| A1 | category | 10 | 9.5K | SARP 182; SNC 94; MPWS 85; SMB 55 |
+| A2 | category | 7 | 9.9K | MAWS 21; SARP 17; MPWS 5; SZC 4 |
+| CAD_LHI | other | 1.6K | 0 | 0 4.0K; 199 268; 299 223; 399 167 |
+| CAD_LLO | other | 1.5K | 0 | 0 4.0K; 101 363; 201 272; 301 212 |
+| CAD_RHI | other | 1.6K | 0 | 0 4.1K; 198 264; 298 213; 398 175 |
+| CAD_RLO | other | 1.4K | 0 | 0 4.1K; 100 370; 200 268; 300 207 |
+| EDIT_DATE | date | 1.3K | 0 | 2013-06-13 3.0K; 2024-08-23 902; 2018-03-05 686; 2024-10-10 221 |
+| EDIT_USER | category | 11 | 3.0K | T096517 3.2K; t096517 2.3K; k009498 387; t109141 373 |
+| FCC | category | 13 | 0 | A41 7.3K; A73 1.4K; A31 511; A42 283 |
+| FEATURE_KE | id | 9.8K | 0 | 35196 50; 34651 50; 34650 50; 19663 50 |
+| FULL_NAME | who | 1.5K | 0 | ALLEY 1.2K; 5TH AVE 235; 3RD ST 184; BABCOCK BLVD 155 |
+| GLOBALID | id | 10.0K | 0 | {8A579C50-6962-44C2-9CC6- 50; {0267F7BC-9CCA-45A3-B897- 50; {B58B9D1A-FA31-4B0B-907B- 50; {06B435CC-F15B-495B-BB88- 50 |
+| LARDIR | empty | 1 | 10.0K |  |
+| LCOUNTY | category | 5 | 0 | ALLEGHENY 10.0K; BUTLER 3; BEAVER 2; WASHINGTON 1 |
+| LHI | other | 2.1K | 0 | 0 4.2K; 199 59; 299 36; 899 33 |
+| LLO | other | 1.8K | 0 | 0 4.2K; 101 159; 201 140; 1 102 |
+| LMUNI | who | 130 | 0 | PITTSBURGH 2.8K; MCKEESPORT 493; ROSS 267; OAKMONT 202 |
+| LSTATE | other | 1 | 0 | PA 10.0K |
+| L_STREET_I | other | 2.4K | 0 | 1068 134; 2364 108; 463 104; 2276 82 |
+| L_ZIP | other | 107 | 0 | 15132 553; 15201 360; 15210 301; 15120 289 |
+| OBJECTID | other | 1 | 0 | 0 10.0K |
+| ONEWAY | category | 3 | 0 | B 8.8K; TF 618; FT 610 |
+| RCOUNTY | category | 4 | 0 | ALLEGHENY 10.0K; WASHINGTON 1; BUTLER 1; WESTMORELAND 1 |
+| RHI | other | 2.0K | 0 | 0 4.3K; 198 53; 298 39; 110 37 |
+| RLO | other | 1.7K | 0 | 0 4.3K; 100 161; 200 137; 300 103 |
+| RMUNI | who | 130 | 0 | PITTSBURGH 2.8K; MCKEESPORT 488; ROSS 263; OAKMONT 202 |
+| RSTATE | other | 1 | 0 | PA 10.0K |
+| R_STREET_I | other | 2.4K | 0 | 1068 134; 2364 108; 463 104; 2276 82 |
+| R_ZIP | other | 106 | 0 | 15132 554; 15201 355; 15210 297; 15084 294 |
+| SOURCE | category | 7 | 7.1K | EAMS 2.5K; MUNICIPALITY 399; ACES-911 12; USPS 2 |
+| SOURCE_ID | category | 11 | 0 | 0 9.7K; 380 58; 837 42; 148 39 |
+| SPEED | category | 9 | 0 | 25 8.3K; 35 1.4K; 15 194; 0 35 |
+| ST_NAME | who | 995 | 0 | ALLEY 1.1K; 5TH 395; 3RD 263; 2ND 257 |
+| ST_POSTMOD | empty | 1 | 10.0K |  |
+| ST_PREFIX | category | 5 | 9.1K | S 358; E 250; N 145; W 130 |
+| ST_SUFFIX | category | 3 | 10.0K | E 3; W 2 |
+| ST_TYPE | category | 24 | 1.2K | ST 3.7K; AVE 2.1K; RD 803; DR 785 |
+| SHAPE_LENG | amount | 10.1K | 0 | 764.465364008 50; 644.187413253 50; 256.408599261 50; 330.248384346 50 |
+| GEOMETRY | id | 9.9K | 0 | LINESTRING (564335.104680 50; LINESTRING (563933.019037 50; LINESTRING (563794.102991 50; LINESTRING (564189.683799 50 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 23:02:39.27796 10.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | b61b5f21-cceb-4546-8a5c-a 10.0K |
+| SRC_SHA256 | who | 1 | 0 | 36574a93a333529c670ff8e59 10.0K |

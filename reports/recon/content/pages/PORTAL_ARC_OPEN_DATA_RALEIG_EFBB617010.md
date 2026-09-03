@@ -1,0 +1,615 @@
+# PORTAL_ARC_OPEN_DATA_RALEIG_EFBB617010
+
+rows 2.0K  columns 179  scan 7.7s
+
+roles: amount 9, audit 2, category 83, date 4, empty 24, id 3, other 32, who 23
+
+## when
+
+PRODUCTION_DATE
+  2019      2.0K  ##############################
+
+OBSOLESCENCE_DATE
+  2020      2.0K  ##############################
+
+PRODUCTION_DATE1
+  2019      2.0K  ##############################
+
+INGESTED_AT
+  2026      2.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE | 2.0K | 35.73 | 35.77 | 35.83 | 35.86 | 71.5K |
+| LONGITUDE | 2.0K | -78.84 | -78.78 | -78.74 | -78.68 | -157.6K |
+| SECONDARY_ZIP4 | 2.0K | 8 | 4.8K | 8.7K | 9.7K | 10.32M |
+| PHONE | 1.6K | 2.03B | 9.19B | 9.20B | 9.84B | 14671.62B |
+| ACTUAL_LOCATION_EMPLOYMENT_SIZE | 1.8K | 1 | 4 | 100 | 300 | 16.4K |
+| ACTUAL_LOCATION_SALES_VOLUME | 1.6K | 20 | 487 | 36.9K | 515.3K | 3.81M |
+
+## who
+
+COMPANY_NAME by rows
+        26  RE/MAX UNITED
+         4  LORD CORP
+         4  WELLS FARGO BANK
+         4  SUBWAY
+         4  U-HAUL NEIGHBORHOOD DEALER
+         3  EDWARD JONES
+         3  CAROLINA FOOT & ANKLE SPECLSTS
+         3  STARBUCKS
+         2  PRESTIGE COMMUNICATIONS
+         2  METCALF PROFESSIONAL PAINTING
+         2  PNC BANK
+         2  HENDRICK AUTOMOTIVE GROUP
+         2  TRIANGLE TELEPHONE
+         2  WYNNS FAMILY PSYCHOLOGY
+         2  FIDELITY BANK
+         2  REX SURGERY CTR OF CARY LLC
+         2  STAPLES
+         2  C ED WOOTEN AGENCY
+         2  WAKE UROLOGICAL ASSOC
+         2  CARY INSURANCE GROUP INC
+
+COMPANY_NAME by dollars
+      930.02       26 rows  RE/MAX UNITED
+      143.16        4 rows  WELLS FARGO BANK
+      143.15        4 rows  U-HAUL NEIGHBORHOOD DEALER
+      143.06        4 rows  SUBWAY
+      142.95        4 rows  LORD CORP
+      107.33        3 rows  EDWARD JONES
+      107.30        3 rows  STARBUCKS
+      107.25        3 rows  CAROLINA FOOT & ANKLE SPECLSTS
+       71.58        2 rows  PRESTIGE COMMUNICATIONS
+       71.56        2 rows  DOLLAR GENERAL
+       71.56        2 rows  FIDELITY BANK
+       71.56        2 rows  PNC BANK
+       71.56        2 rows  WYNNS FAMILY PSYCHOLOGY
+       71.54        2 rows  MC DONALD'S
+       71.54        2 rows  WENDY'S
+       71.54        2 rows  C ED WOOTEN AGENCY
+       71.53        2 rows  LA PETITE ACADEMY
+       71.53        2 rows  CARY INSURANCE GROUP INC
+       71.52        2 rows  TRIANGLE TELEPHONE
+       71.52        2 rows  KELLER WILLIAMS
+
+CONTACT_NAME by rows
+       538  nan
+         3  CASEY E WENTZ
+         2  QIANG XUE
+         2  RANDY WALKER
+         2  DENISE MC MAINS
+         2  DANNY WILLIAMS
+         2  GLENDA WESTBROOK-NEIL
+         2  SUSAN JOHNSON
+         2  RICHARD MC NEEL
+         2  ELIVORIO NAVARRO
+         2  TOMMY LAAKSO
+         2  SLAV STOYANOVICH
+         2  LINDA WILLIAMS
+         2  MARCO FREGENAL
+         1  JIAN Y JIANG
+         1  IAN W HENSHAW
+         1  CHRIS WILDER
+         1  REUBEN MOORE
+         1  MARUF K MUMINOV
+         1  CHENG FENG
+
+CONTACT_NAME by dollars
+       19.2K      538 rows  nan
+      107.34        3 rows  CASEY E WENTZ
+       71.58        2 rows  QIANG XUE
+       71.57        2 rows  GLENDA WESTBROOK-NEIL
+       71.56        2 rows  ELIVORIO NAVARRO
+       71.56        2 rows  MARCO FREGENAL
+       71.56        2 rows  RANDY WALKER
+       71.55        2 rows  SUSAN JOHNSON
+       71.53        2 rows  LINDA WILLIAMS
+       71.53        2 rows  DENISE MC MAINS
+       71.53        2 rows  SLAV STOYANOVICH
+       71.49        2 rows  RICHARD MC NEEL
+       71.48        2 rows  TOMMY LAAKSO
+       71.48        2 rows  DANNY WILLIAMS
+       35.83        1 rows  WILLIAM PULLY
+       35.83        1 rows  AMBER CORBIN
+       35.83        1 rows  KRISTOFER DOROUGH
+       35.83        1 rows  TICA LEMA
+       35.83        1 rows  GERRY OLIVER
+       35.83        1 rows  JENNIFER MURPHY
+
+LAST_NAME by rows
+       538  nan
+        18  SMITH
+        11  WILLIAMS
+         7  JONES
+         7  PATEL
+         7  WANG
+         7  WILSON
+         7  JOHNSON
+         6  THOMPSON
+         6  MILLER
+         5  SULLIVAN
+         5  MURRAY
+         5  BROWN
+         5  LIU
+         4  HARRIS
+         4  ANDERSON
+         4  THOMAS
+         4  RUSSELL
+         4  KELLY
+         3  HUNTER
+
+LAST_NAME by dollars
+       19.2K      538 rows  nan
+      643.89       18 rows  SMITH
+      393.38       11 rows  WILLIAMS
+      250.50        7 rows  PATEL
+      250.45        7 rows  JOHNSON
+      250.39        7 rows  WANG
+      250.39        7 rows  WILSON
+      250.38        7 rows  JONES
+      214.68        6 rows  MILLER
+      214.60        6 rows  THOMPSON
+      178.94        5 rows  MURRAY
+      178.89        5 rows  SULLIVAN
+      178.83        5 rows  BROWN
+      178.83        5 rows  LIU
+      143.09        4 rows  HARRIS
+      143.08        4 rows  ANDERSON
+      143.07        4 rows  KELLY
+      143.06        4 rows  RUSSELL
+      143.03        4 rows  THOMAS
+      107.40        3 rows  LEWIS
+
+FIRST_NAME by rows
+       538  nan
+        22  JOHN
+        17  DAVID
+        16  MICHAEL
+        14  MIKE
+        12  CHRIS
+        12  PAUL
+        11  ROBERT
+        11  SCOTT
+        11  STEVE
+        11  BOB
+        10  JAMES
+         9  THOMAS
+         8  KEITH
+         8  JOE
+         7  JENNIFER
+         7  STEPHEN
+         7  JOSEPH
+         7  TOM
+         6  DANIEL
+
+FIRST_NAME by dollars
+       19.2K      538 rows  nan
+      787.06       22 rows  JOHN
+      607.99       17 rows  DAVID
+      572.26       16 rows  MICHAEL
+      500.69       14 rows  MIKE
+      429.25       12 rows  PAUL
+      429.17       12 rows  CHRIS
+      393.53       11 rows  SCOTT
+      393.52       11 rows  STEVE
+      393.50       11 rows  ROBERT
+      393.48       11 rows  BOB
+      357.59       10 rows  JAMES
+      322.05        9 rows  THOMAS
+      286.23        8 rows  JOE
+      286.22        8 rows  KEITH
+      250.52        7 rows  JENNIFER
+      250.45        7 rows  STEPHEN
+      250.40        7 rows  TOM
+      250.40        7 rows  JOSEPH
+      214.70        6 rows  DENNIS
+
+## who x when
+
+COMPANY_NAME by PRODUCTION_DATE, dollars = LATITUDE
+  C ED WOOTEN AGENCY                        2019:71.54
+  CAROLINA FOOT & ANKLE SPECLSTS            2019:107.25
+  CARY INSURANCE GROUP INC                  2019:71.53
+  DOLLAR GENERAL                            2019:71.56
+  EDWARD JONES                              2019:107.33
+  FIDELITY BANK                             2019:71.56
+  HENDRICK AUTOMOTIVE GROUP                 2019:71.48
+  KELLER WILLIAMS                           2019:71.52
+  LA PETITE ACADEMY                         2019:71.53
+  LORD CORP                                 2019:142.95
+  MC DONALD'S                               2019:71.54
+  METCALF PROFESSIONAL PAINTING             2019:71.50
+  PNC BANK                                  2019:71.56
+  PRESTIGE COMMUNICATIONS                   2019:71.58
+  RE/MAX UNITED                             2019:930.02
+  REX SURGERY CTR OF CARY LLC               2019:71.50
+  STAPLES                                   2019:71.49
+  STARBUCKS                                 2019:107.30
+  SUBWAY                                    2019:143.06
+  TRIANGLE TELEPHONE                        2019:71.52
+  U-HAUL NEIGHBORHOOD DEALER                2019:143.15
+  WAKE UROLOGICAL ASSOC                     2019:71.50
+  WELLS FARGO BANK                          2019:143.16
+  WENDY'S                                   2019:71.54
+  WYNNS FAMILY PSYCHOLOGY                   2019:71.56
+
+CONTACT_NAME by PRODUCTION_DATE, dollars = LATITUDE
+  AMBER CORBIN                              2019:35.83
+  CASEY E WENTZ                             2019:107.34
+  CHENG FENG                                2019:35.79
+  CHRIS WILDER                              2019:35.76
+  DANNY WILLIAMS                            2019:71.48
+  DENISE MC MAINS                           2019:71.53
+  ELIVORIO NAVARRO                          2019:71.56
+  GERRY OLIVER                              2019:35.83
+  GLENDA WESTBROOK-NEIL                     2019:71.57
+  IAN W HENSHAW                             2019:35.79
+  JENNIFER MURPHY                           2019:35.83
+  JIAN Y JIANG                              2019:35.79
+  KRISTOFER DOROUGH                         2019:35.83
+  LINDA WILLIAMS                            2019:71.53
+  MARCO FREGENAL                            2019:71.56
+  MARUF K MUMINOV                           2019:35.77
+  QIANG XUE                                 2019:71.58
+  RANDY WALKER                              2019:71.56
+  REUBEN MOORE                              2019:35.77
+  RICHARD MC NEEL                           2019:71.49
+  SLAV STOYANOVICH                          2019:71.53
+  SUSAN JOHNSON                             2019:71.55
+  TICA LEMA                                 2019:35.83
+  TOMMY LAAKSO                              2019:71.48
+  WILLIAM PULLY                             2019:35.83
+  nan                                       2019:19.2K
+
+## what
+
+PRIMARY_CITY: CARY 98%, RALEIGH 1%, DURHAM 0%, APEX 0%, GREENSBORO 0%, SANFORD 0%, WINSTON SALEM 0%, NEW HILL 0%, PITTSBORO 0%, WAKE FOREST 0%, MORRISVILLE 0%, FRANKLIN 0%
+
+PRIMARY_STATE: NC 100%, TN 0%
+
+PRIMARY_ZIP_CODE: 27511 86%, 27513 8%, 27512 4%, 27519 1%, 27704 0%, 27518 0%, 27502 0%, 27707 0%, 27606 0%, 27612 0%, 27419 0%, 27636 0%
+
+PRIMARY_STATE_CODE: 37 100%, 47 0%
+
+CENSUS_TRACT: 53506 21%, 53517 19%, 53519 16%, 53516 9%, 53507 9%, 53419 8%, 53509 5%, 53518 4%, 53523 2%, 53505 2%, 53512 2%, 53522 1%
+
+CENSUS_BLOCK_GROUP: 3 34%, 1 31%, 2 27%, 4 8%
+
+MATCH_LEVEL_CODE: P 89%, 0 8%, X 3%, 4 0%, 2 0%
+
+SECONDARY_CITY: CARY 100%, APEX 0%, RALEIGH 0%
+
+SECONDARY_ZIP_CODE: 27511 89%, 27513 8%, 27512 3%, 27502 0%, 27612 0%
+
+FRANCHISE_SPECIALTY_DESC_2: nan 99%, INDEPENDENT AGENTS 0%, KINDERGARTEN 0%, INSURANCE 0%, SURGERY 0%, ESTATE PLANNING 0%, ENDODONTICS 0%, RESIDENTIAL & COMMERCIAL 0%, OSTEOPATHY (D.O.) 0%, DODGE 0%, ORTHODONTICS 0%, HYUNDAI 0%
+
+FRANCHISE_SPECIALTY_DESC_3: nan 99%, PUBLIC 0%, LABOR RELATIONS 0%, ORAL SURGERY 0%, TAXATION 0%, RESIDENTIAL 0%, INDEPENDENT AGENTS 0%, STATE FARM 0%, LITIGATION/TRIAL 0%
+
+FRANCHISE_SPECIALTY_DESC_4: nan 100%, PERIODONTICS 0%, LITIGATION/TRIAL 0%, KEMPER GROUP 0%, REAL ESTATE 0%
+
+FRANCHISE_SPECIALTY_DESC_5: nan 100%, PROSTHODONTICS 0%, TRAVELERS 0%
+
+TRUE_FRANCHISE: nan 95%, Y 5%
+
+INDUSTRY_SPECIFIC_CODE: nan 97%, D 1%, V 1%, C 0%, 3 0%, E 0%, J 0%, Y 0%, F 0%, B 0%, X 0%, 0 0%
+
+INDUSTRY_SPECIFIC_DESCRIPTION: nan 97%, MEXICAN 1%, DELI 0%, AMERICAN 0%, JAPANESE 0%, ASIAN 0%, CHINESE 0%, BURGERS 0%, BARBECUE 0%, 500 - 999 STUDENTS 0%, NO DIESEL 0%, STEAK HOUSES 0%
+
+LOCATION_EMPLOYMENT_SIZE_CODE: A 50%, B 20%, nan 12%, C 10%, D 5%, E 2%, F 1%, G 0%
+
+LOCATION_EMPLOYMENT_SIZE_DESC: 4-Jan 50%, 9-May 20%, nan 12%, 19-Oct 10%, 20-49 5%, 50-99 2%, 100-249 1%, 250-499 0%
+
+CORPORATE_EMPLOYMENT_SIZE_CODE: nan 100%, F 0%, D 0%, I 0%, K 0%, H 0%
+
+CORPORATE_EMPLOYMENT_SIZE_DESC: nan 100%, 100-249 0%, 20-49 0%, 1000-4999 0%, 10000+ 0%, 500-999 0%
+
+ACTUAL_CORPORATE_EMPLOYMENT_SIZ: nan 100%, 119 0%, 43 0%, 3100 0%, 20000 0%, 503 0%
+
+MODELED_EMPLOYMENT_SIZE: A 41%, C 34%, nan 12%, D 10%, B 4%
+
+LOCATION_SALES_VOLUME_CODE: A 41%, nan 19%, B 16%, C 14%, D 6%, E 2%, G 1%, F 1%, I 0%, H 0%, J 0%
+
+LOCATION_SALES_VOLUME_DESC: LESS THAN $500,000 41%, nan 19%, $500,000-$1 MILLION 16%, $1-2.5 MILLION 14%, $2.5-5 MILLION 6%, $5-10 MILLION 2%, $20-50 MILLION 1%, $10-20 MILLION 1%, $100-500 MILLION 0%, $50-100 MILLION 0%, $500M-$1 BILLION 0%
+
+CORPORATE_SALES_VOLUME_CODE: nan 100%, J 0%, G 0%, K 0%, I 0%
+
+CORPORATE_SALES_VOLUME_DESC: nan 100%, $500M-$1 BILLION 0%, $20-50 MILLION 0%, OVER $1 BILLION 0%, $100-500 MILLION 0%
+
+ACTUAL_CORPORATE_SALES_VOLUME: nan 100%, 814546 0%, 33650 0%, 789000 0%, 3800000 0%, 438663 0%
+
+SALUTATION: MR 43%, nan 29%, MS 25%, DR 3%, 5 0%, 14 0%, 11 0%
+
+GENDER: M 45%, nan 29%, F 26%
+
+PROFESSIONAL_TITLE: nan 94%, AGT 2%, MD 1%, CPA 1%, DDS 1%, DC 0%, NP 0%, PHD 0%, PE 0%, DVM 0%, DPM 0%, PA 0%
+
+TITLE_CODE: nan 38%, 1 25%, 3 17%, 2 9%, ] 3%, _ 2%, C 2%, ( 1%, 4 1%, K 1%, 8 1%, ? 0%
+
+TITLE_DESC: nan 38%, OWNER 25%, MANAGER 17%, PRESIDENT 9%, OTHER 3%, SITE MANAGER 2%, CEO 2%, DIRECTOR 1%, EXECUTIVE DIRECTOR 1%, VICE PRESIDENT 1%, RELIGIOUS LEADER 1%, OFFICE MANAGER 0%
+
+CONTACT_ETHNIC_CODE: nan 29%, E5 29%, IE 6%, S3 6%, 0 6%, DE 5%, CN 4%, H5 4%, IT 3%, W4 3%, J4 2%, FR 2%
+
+CONTACT_ETHNIC_DESCRIPTION: nan 29%, ENGLISH 29%, IRISH 6%, SCOTTISH (SCOTCH) 6%, UNKNOWN 6%, GERMAN 5%, CHINESE 4%, HISPANIC 4%, ITALIAN 3%, WELSH 3%, JEWISH 2%, FRENCH 2%
+
+HQ_BRANCH_CODE: 9 88%, 2 12%, 1 0%, 3 0%
+
+HQ_BRANCH_DESC: SINGLE LOCATION 88%, BRANCH 12%, HEADQUARTERS 0%, SUBSIDIARY HEADQUART 0%
+
+PUBLIC_COMPANY_INDICATOR_CODE: 0 95%, 2 5%
+
+PUBLIC_FILING_INDICATOR: N 100%, Y 0%
+
+INDIVIDUAL_FIRM_CODE: 2 90%, 1 10%
+
+INDIVIDUAL_FIRM_DESC: FIRM 90%, INDIVIDUAL 10%
+
+YEAR_FIRST_APPEARED_IN_YELLOW_P: 2015 19%, 2016 13%, 2017 11%, 2011 11%, 2014 10%, 2018 8%, 2012 5%, 2013 5%, 2009 5%, 2010 5%, 2005 4%, 2006 4%
+
+CURRENT_TRANSACTION_CODE: nan 100%, C 0%
+
+CALL_STATUS_CODE: M 29%, nan 25%, R 13%, A 10%, S 7%, C 6%, P 5%, B 3%, W 1%, E 1%, N 1%
+
+CALL_STATUS_DESC: ANSWERING MACHINE 29%, nan 25%, CONAME/PHONE VERIFY 13%, NO ANSWER 10%, MISCELLANEOUS 7%, CONTACT/EMP VERIFIED 6%, CONTACT VERIFIED 5%, BUSY 3%, EMP COUNT VERIFIED 1%, ELECTRONIC DEVICE 1%, REFUSAL 1%
+
+CREDIT_SCORE_CODE: B+ 19%, A 19%, B 17%, U 12%, C+ 11%, A+ 11%, I 5%, C 5%, P 3%
+
+CREDIT_SCORE_DESC: 85 TO 89 19%, 90 TO 94 19%, 80 TO 84 17%, UNKNOWN - LESS THAN 70 12%, 75 TO 79 11%, 95 TO 100 11%, INSTITUTION 5%, 70 TO 74 5%, PROFESSIONAL INDIVIDUAL 3%
+
+ACTUAL_CREDIT_SCORE: 90 11%, 86 11%, 85 9%, 81 9%, 83 9%, 80 8%, 91 8%, 93 8%, 78 8%, 88 8%, 76 6%, 96 6%
+
+AD_SIZE_CODE: nan 65%, B 23%, A 11%, C 1%, D 0%
+
+AD_SIZE_DESC: nan 65%, BOLD 23%, REGULAR 11%, IN-COLUMN 1%, DISPLAY AD 0%
+
+OFFICE_SIZE_CODE: nan 78%, A 19%, B 1%, C 1%, D 0%, E 0%, F 0%
+
+OFFICE_SIZE_DESC: nan 78%, 1 PROFESSIONAL 19%, 2 PROFESSIONAL 1%, 3 PROFESSIONAL 1%, 4 PROFESSIONAL 0%, 5-9 PROFESSIONAL 0%, 10+ PROFESSIONAL 0%
+
+POPULATION_CODE: 7 97%, 1 3%
+
+POPULATION_DESC: 20,000 - 49,999 97%, LESS THAN 250 3%
+
+WORK_AT_HOME_BUSINESS: nan 90%, C 10%
+
+OWN_LEASE_CODE: nan 97%, O 1%, L 1%, U 0%
+
+SQUARE_FOOTAGE_CODE: 3.0 24%, 2.0 22%, 1.0 16%, 4.0 12%, 5.0 9%, 6.0 5%, 7.0 5%, nan 4%, 8.0 2%
+
+SQUARE_FOOTAGE_DESC: 2,500 - 4,999 24%, 1,500 - 2,499 22%, 1 - 1,499 16%, 5,000 - 9,999 12%, 10,000 - 19,999 9%, 20,000 - 39,999 5%, 40,000 - 99,999 5%, nan 4%, 100,000+ 2%
+
+MULTITENANT_CODE: C 40%, nan 29%, A 17%, B 14%
+
+MULTITENANT_DESC: 10+ 40%, nan 29%, 4-Feb 17%, 9-May 14%
+
+FLEET_CODE: nan 53%, A 41%, C 3%, B 2%, D 1%, F 0%
+
+FLEET_DESCRIPTION: nan 53%, 1-10 VEHICLES (LOCATION & CORP 41%, 20-49 VEHICLES (LOCATION & COR 3%, 11-19 VEHICLES (LOCATION & COR 2%, 50+ VEHICLES (LOCATION ONLY) 1%, 100+ VEHICLES (CORPORATE ONLY) 0%
+
+AFFLUENT_NEIGHBORHOOD_LOCATION: N 54%, Y 46%
+
+BIG_BUSINESS: N 99%, Y 1%
+
+FEMALE_OWNER_EXEC: N 93%, Y 7%
+
+BUSINESS_SIZE_CHANGE: C 60%, nan 25%, I 10%, + 3%, - 1%, S 0%, G 0%
+
+HIGHINCOMEEXEC: N 85%, Y 15%
+
+HIGHTECHBUSINESS: N 98%, Y 2%
+
+MEDIUM_SIZE_BUSINESS_ENTREPRENE: N 95%, Y 5%
+
+SMALL_BUSINESS_ENTREPRENEUR: N 69%, Y 31%
+
+TERTIARY_ADDRESS: nan 83%, CARY TOWNE CTR 3%, LAWRENCE EXECUTIVE SUITES 2%, CHATHAM SQUARE SHOPPING CTR 2%, SALTBOX VLG 2%, CARY VILLAGE SQUARE SHPG CTR 2%, MACGREGOR VLG 2%, SHOPPES OF KILDAIRE 2%, VILLAGE SQUARE OFFICE BLDG 1%, MAYFAIR SHOPPING PLZ 1%, REX CARY MEDICAL OFFICE BLDG 1%, KROGER PLZ 1%
+
+TERTIARY_CITY: nan 80%, CARY 20%, RALEIGH 0%
+
+TERTIARY_STATE: nan 80%, NC 20%
+
+TERTIARY_ZIP_CODE: nan 80%, 27511 19%, 27513 1%, 27612 0%
+
+TERTIARY_ZIP10: nan 80%, 27511 19%, 27513 1%, 27612 0%
+
+WHITE_COLLAR_INDICATOR: 1 56%, 0 44%
+
+FORGNPAR: nan 100%, Y 0%
+
+IMPEXPCD: nan 100%, I 0%, E 0%
+
+FRANCHISE_SPECIALTY_CODE_2: nan 99%, 211.0 0%, 244.0 0%, 210.0 0%, 200.0 0%, 216.0 0%, 243.0 0%, 93.0 0%, 229.0 0%, 249.0 0%, 242.0 0%, 129.0 0%
+
+FRANCHISE_SPECIALTY_CODE_3: nan 99%, 213 0%, 217 0%, 245 0%, 230 0%, 108 0%, 211 0%, 232 0%, 226 0%
+
+FRANCHISE_SPECIALTY_CODE_4: nan 100%, 247 0%, 226 0%, 212 0%, 229 0%
+
+FRANCHISE_SPECIALTY_CODE_5: nan 100%, 248 0%, 231 0%
+
+SECTOR: 62 16%, 99 13%, 81 13%, 54 12%, 44 9%, 53 8%, 72 7%, 52 6%, 23 5%, 45 4%, 56 3%, 51 3%
+
+SECTORNAME: Health Care and Social Assista 15%, Retail Trade 13%, Other 13%, Other Services (except Public  12%, Professional, Scientific, and  11%, Real Estate and Rental and Lea 7%, Accommodation and Food Service 7%, Finance and Insurance 6%, Construction 5%, Administrative and Support and 3%, Information 3%, Educational Services 3%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| OBJECTID | id | 2.0K | 0 | 3237 10; 3236 10; 3235 10; 3234 10 |
+| CONTACT_NAME | who | 1.4K | 0 | nan 538; ALASTAIR MCEWAN 8; STEPHEN KOVACS 8; JEFF REESE 8 |
+| COMPANY_NAME | who | 2.0K | 0 | RE/MAX UNITED 28; WELLS FARGO BANK 11; OCEAN THERAPEUTICS INC 10; BERKTREE LLC 10 |
+| PRIMARY_ADDRESS | other | 1.6K | 0 | 1135 KILDAIRE FARM RD # 2 35; 51 KILMAYNE DR # 100 30; 1601 WALNUT ST # 201 21; 201 SHANNON OAKS CIR # 10 14 |
+| PRIMARY_CITY | category | 12 | 0 | CARY 2.0K; RALEIGH 11; DURHAM 9; APEX 4 |
+| PRIMARY_STATE | category | 2 | 0 | NC 2.0K; TN 1 |
+| PRIMARY_ZIP_CODE | category | 29 | 0 | 27511 1.7K; 27513 154; 27512 86; 27519 11 |
+| PRIMARY_ZIP4 | other | 837 | 0 | 4587 41; 5523 40; 7719 38; 4980 28 |
+| PRIMARY_ZIP10 | who | 850 | 0 | 27511-4587 41; 27511-5523 40; 27511-7719 38; 27511-4980 28 |
+| PRIMARY_CARRIER_ROUTE_CODE | other | 91 | 0 | C012 233; C022 199; C024 149; R007 141 |
+| PRIMARY_STATE_CODE | category | 2 | 0 | 37 2.0K; 47 1 |
+| COUNTY_CODE | other | 1 | 0 | 183 2.0K |
+| COUNTY_NAME | other | 1 | 0 | WAKE 2.0K |
+| MSA_CODE | empty | 1 | 2.0K |  |
+| MSA_DESC | empty | 1 | 2.0K |  |
+| CBSA_CODE | other | 1 | 0 | 39580 2.0K |
+| CBSA_DESCR | who | 1 | 0 | RALEIGH-CARY, NC 2.0K |
+| METRO_MICRO_INDICATOR | other | 1 | 0 | 2 2.0K |
+| CSA_CODE | other | 1 | 0 | 450 2.0K |
+| CSA_DESCR | who | 1 | 0 | RALEIGH-DURHAM-CARY, NC 2.0K |
+| CENSUS_TRACT | category | 22 | 0 | 53506 409; 53517 378; 53519 320; 53516 182 |
+| CENSUS_BLOCK_GROUP | category | 4 | 0 | 3 682; 1 617; 2 545; 4 156 |
+| LATITUDE | amount | 862 | 0 | 35.763355 61; 35.773777 47; 35.767906 47; 35.76847 39 |
+| LONGITUDE | amount | 824 | 0 | -78.786659 61; -78.760253 47; -78.781562 47; -78.780303 39 |
+| MATCH_LEVEL_CODE | category | 5 | 0 | P 1.8K; 0 156; X 63; 4 3 |
+| SECONDARY_ADDRESS | other | 1.5K | 0 | 1135 KILDAIRE FARM RD # 2 36; 51 KILMAYNE DR # 100 31; 1601 WALNUT ST # 201 21; 201 SHANNON OAKS CIR # 10 14 |
+| SECONDARY_CITY | category | 3 | 0 | CARY 2.0K; APEX 2; RALEIGH 1 |
+| SECONDARY_STATE | other | 1 | 0 | NC 2.0K |
+| SECONDARY_STATE_CODE | other | 1 | 0 | 37 2.0K |
+| SECONDARY_ZIP_CODE | category | 5 | 0 | 27511 1.8K; 27513 155; 27512 55; 27502 2 |
+| SECONDARY_ZIP4 | amount | 799 | 0 | 4587.0 43; 5523.0 40; 7719.0 39; 4980.0 28 |
+| SECONDARY_ZIP10 | who | 808 | 0 | 27511-4587 43; 27511-5523 40; 27511-7719 39; 27511-4980 28 |
+| SECONDARY_CARRIER_ROUTE_CODE | other | 70 | 0 | C012 244; C022 208; C024 150; R007 149 |
+| PHONE | amount | 1.6K | 0 | nan 388; 9192286467.0 9; 9195215942.0 9; 9194606010.0 9 |
+| FAX_NUMBER | other | 333 | 0 | nan 1.7K; 9194600226.0 3; 9196788599.0 2; 9196778633.0 2 |
+| TOLL_FREE_NUMBER | other | 213 | 0 | nan 1.8K; 800-869-3557 4; 800-468-4285 4; 800-772-1213 3 |
+| WEB_SITE | who | 1.1K | 0 | nan 714; REMAX.COM 24; NCHA.ORG 8; HARRISTEETER.COM 8 |
+| SELECTED_SIC_CODE | other | 579 | 0 | 999977 231; 653118 66; 581208 63; 723106 55 |
+| SELECTED_SIC_DESC | who | 570 | 0 | NONCLASSIFIED ESTABLISHME 231; REAL ESTATE 66; RESTAURANTS 63; BEAUTY SALONS 55 |
+| FILLER_1 | empty | 1 | 2.0K |  |
+| FRANCHISE_SPECIALTY_DESC_1 | who | 216 | 0 | nan 1.7K; RE/MAX OF AMERICA 26; CERTIFIED PUBLIC ACCOUNTI 15; GENERAL DENTISTRY 13 |
+| FILLER_2 | empty | 1 | 2.0K |  |
+| FRANCHISE_SPECIALTY_DESC_2 | category | 27 | 0 | nan 2.0K; INDEPENDENT AGENTS 3; KINDERGARTEN 3; INSURANCE 2 |
+| FILLER_3 | empty | 1 | 2.0K |  |
+| FRANCHISE_SPECIALTY_DESC_3 | category | 9 | 0 | nan 2.0K; PUBLIC 3; LABOR RELATIONS 2; ORAL SURGERY 1 |
+| FILLER_4 | empty | 1 | 2.0K |  |
+| FRANCHISE_SPECIALTY_DESC_4 | category | 5 | 0 | nan 2.0K; PERIODONTICS 1; LITIGATION/TRIAL 1; KEMPER GROUP 1 |
+| FILLER_5 | empty | 1 | 2.0K |  |
+| FRANCHISE_SPECIALTY_DESC_5 | category | 3 | 0 | nan 2.0K; PROSTHODONTICS 1; TRAVELERS 1 |
+| FILLER_6 | empty | 1 | 2.0K |  |
+| FRANCHISE_SPECIALTY_DESC_6 | empty | 1 | 2.0K |  |
+| TRUE_FRANCHISE | category | 2 | 0 | nan 1.9K; Y 100 |
+| INDUSTRY_SPECIFIC_CODE | category | 20 | 0 | nan 1.9K; D 11; V 10; C 8 |
+| INDUSTRY_SPECIFIC_DESCRIPTION | category | 29 | 0 | nan 1.9K; MEXICAN 10; DELI 9; AMERICAN 8 |
+| PRIMARY_SIC_CODE | other | 557 | 0 | 999977 231; 581208 86; 653118 76; 723106 57 |
+| PRIMARY_SIC_DESC | who | 545 | 0 | NONCLASSIFIED ESTABLISHME 231; RESTAURANTS 86; REAL ESTATE 76; BEAUTY SALONS 57 |
+| SECONDARY_SIC_CODE_1 | other | 346 | 0 | nan 1.3K; 596104.0 36; 581206.0 30; 999966.0 30 |
+| SECONDARY_SIC_DESC_1 | who | 352 | 0 | nan 1.3K; E-COMMERCE 36; FOODS-CARRY OUT 30; FEDERAL GOVERNMENT CONTRA 30 |
+| SECONDARY_SIC_CODE_2 | other | 204 | 0 | nan 1.7K; 999966.0 13; 596104.0 8; 753801.0 8 |
+| SECONDARY_SIC_DESC_2 | who | 201 | 0 | nan 1.7K; FEDERAL GOVERNMENT CONTRA 13; E-COMMERCE 8; AUTOMOBILE REPAIRING & SE 8 |
+| SECONDARY_SIC_CODE_3 | other | 108 | 0 | nan 1.8K; 753801.0 9; 641109.0 8; 999966.0 7 |
+| SECONDARY_SIC_DESC_3 | who | 110 | 0 | nan 1.8K; AUTOMOBILE REPAIRING & SE 9; INSURANCE-LIFE (AGENTS) 8; FEDERAL GOVERNMENT CONTRA 7 |
+| SECONDARY_SIC_CODE_4 | other | 86 | 0 | nan 1.9K; 641111.0 10; 581219.0 5; 641109.0 3 |
+| SECONDARY_SIC_DESCRIPTION_4 | who | 85 | 0 | nan 1.9K; INSURANCE-AUTOMOBILE 10; SANDWICHES 5; INSURANCE-LIFE (AGENTS) 3 |
+| NAICS_CODE | other | 548 | 0 | 99999004 231; 53121003 76; 72251117 64; 81211202 57 |
+| NAICS_DESC | who | 315 | 0 | UNCLASSIFIED ESTABLISHMEN 242; OFFICES OF REAL ESTATE AG 94; FULL-SERVICE RESTAURANTS 67; BEAUTY SALONS 61 |
+| LOCATION_EMPLOYMENT_SIZE_CODE | category | 8 | 0 | A 1.0K; B 405; nan 230; C 192 |
+| LOCATION_EMPLOYMENT_SIZE_DESC | category | 8 | 0 | 4-Jan 1.0K; 9-May 405; nan 230; 19-Oct 192 |
+| ACTUAL_LOCATION_EMPLOYMENT_SIZE | amount | 63 | 0 | 3.0 295; 2.0 284; nan 230; 1.0 222 |
+| CORPORATE_EMPLOYMENT_SIZE_CODE | category | 6 | 0 | nan 2.0K; F 1; D 1; I 1 |
+| CORPORATE_EMPLOYMENT_SIZE_DESC | category | 6 | 0 | nan 2.0K; 100-249 1; 20-49 1; 1000-4999 1 |
+| ACTUAL_CORPORATE_EMPLOYMENT_SIZ | category | 6 | 0 | nan 2.0K; 119 1; 43 1; 3100 1 |
+| MODELED_EMPLOYMENT_SIZE | category | 5 | 0 | A 825; C 683; nan 230; D 191 |
+| LOCATION_SALES_VOLUME_CODE | category | 11 | 0 | A 822; nan 380; B 330; C 272 |
+| LOCATION_SALES_VOLUME_DESC | category | 11 | 0 | LESS THAN $500,000 822; nan 380; $500,000-$1 MILLION 330; $1-2.5 MILLION 272 |
+| ACTUAL_LOCATION_SALES_VOLUME | amount | 614 | 0 | nan 380; 60.0 50; 481.0 40; 161.0 39 |
+| CORPORATE_SALES_VOLUME_CODE | category | 5 | 0 | nan 2.0K; J 2; G 1; K 1 |
+| CORPORATE_SALES_VOLUME_DESC | category | 5 | 0 | nan 2.0K; $500M-$1 BILLION 2; $20-50 MILLION 1; OVER $1 BILLION 1 |
+| ACTUAL_CORPORATE_SALES_VOLUME | category | 6 | 0 | nan 2.0K; 814546 1; 33650 1; 789000 1 |
+| ASSET_SIZE | other | 1 | 0 | S 2.0K |
+| LAST_NAME | who | 1.2K | 0 | nan 538; SMITH 18; WILLIAMS 11; JONES 9 |
+| FIRST_NAME | who | 972 | 0 | nan 538; JOHN 22; DAVID 17; MICHAEL 16 |
+| SALUTATION | category | 7 | 0 | MR 851; nan 577; MS 505; DR 64 |
+| GENDER | category | 3 | 0 | M 899; nan 578; F 523 |
+| PROFESSIONAL_TITLE | category | 21 | 0 | nan 1.9K; AGT 35; MD 24; CPA 13 |
+| TITLE_CODE | category | 32 | 0 | nan 736; 1 494; 3 327; 2 171 |
+| TITLE_DESC | category | 32 | 0 | nan 736; OWNER 494; MANAGER 327; PRESIDENT 171 |
+| CONTACT_ETHNIC_CODE | category | 46 | 0 | nan 523; E5 519; IE 113; S3 108 |
+| CONTACT_ETHNIC_DESCRIPTION | category | 46 | 0 | nan 523; ENGLISH 519; IRISH 113; SCOTTISH (SCOTCH) 108 |
+| KEY_CODE | other | 1 | 0 | VERIFIED 2.0K |
+| TITLE_ADDRESS | empty | 1 | 2.0K |  |
+| INFOUSA_ID | id | 2.0K | 0 | 440225505 10; 414936623 10; 414931478 10; 414923909 10 |
+| INFOUSA_SUBSIDIARY_ID | other | 113 | 0 | nan 1.9K; 1191071.0 5; 422507277.0 4; 422996389.0 4 |
+| INFOUSA_PARENT_ID | other | 196 | 0 | nan 1.8K; 386034649.0 5; 424318450.0 5; 1615111.0 4 |
+| SITE_NUMBER | id | 1.9K | 0 | 594213209 28; 951621614 11; 951622885 11; 440225505 10 |
+| HQ_BRANCH_CODE | category | 4 | 0 | 9 1.8K; 2 241; 1 3; 3 2 |
+| HQ_BRANCH_DESC | category | 4 | 0 | SINGLE LOCATION 1.8K; BRANCH 241; HEADQUARTERS 3; SUBSIDIARY HEADQUART 2 |
+| PUBLIC_COMPANY_INDICATOR_CODE | category | 2 | 0 | 0 1.9K; 2 98 |
+| STOCK_EXCHANGE_CODE | empty | 1 | 2.0K |  |
+| STOCK_EXCHANGE_DESC | empty | 1 | 2.0K |  |
+| STOCK_TICKER_SYMBOL | empty | 1 | 2.0K |  |
+| PUBLIC_FILING_INDICATOR | category | 2 | 0 | N 2.0K; Y 5 |
+| FORTUNE_RANKING | empty | 1 | 2.0K |  |
+| INDIVIDUAL_FIRM_CODE | category | 2 | 0 | 2 1.8K; 1 201 |
+| INDIVIDUAL_FIRM_DESC | category | 2 | 0 | FIRM 1.8K; INDIVIDUAL 201 |
+| YEAR_SIC_ADDED | who | 180 | 0 | 201811 160; 201807 118; 201501 64; 201502 50 |
+| YEAR_FIRST_APPEARED_IN_YELLOW_P | category | 36 | 0 | 2015 266; 2016 186; 2017 154; 2011 147 |
+| YEAR_ESTABLISHED | amount | 90 | 0 | nan 1.4K; 2016.0 113; 2017.0 70; 2015.0 54 |
+| YELLOW_PAGE_CODE | other | 302 | 0 | nan 1.3K; 72002.0 53; 7204.0 29; 4208.0 21 |
+| TRANSACTION_DATE | who | 56 | 0 | 201906 559; 201907 389; 201812 104; 201905 75 |
+| CURRENT_TRANSACTION_CODE | category | 2 | 0 | nan 2.0K; C 6 |
+| FILLER | empty | 1 | 2.0K |  |
+| CALL_STATUS_CODE | category | 11 | 0 | M 575; nan 502; R 253; A 207 |
+| CALL_STATUS_DESC | category | 11 | 0 | ANSWERING MACHINE 575; nan 502; CONAME/PHONE VERIFY 253; NO ANSWER 207 |
+| CREDIT_SCORE_CODE | category | 9 | 0 | B+ 376; A 371; B 338; U 244 |
+| CREDIT_SCORE_DESC | category | 9 | 0 | 85 TO 89 376; 90 TO 94 371; 80 TO 84 338; UNKNOWN - LESS THAN 70 244 |
+| ACTUAL_CREDIT_SCORE | category | 46 | 0 | 90 130; 86 126; 85 113; 81 105 |
+| AD_SIZE_CODE | category | 5 | 0 | nan 1.3K; B 456; A 218; C 25 |
+| AD_SIZE_DESC | category | 5 | 0 | nan 1.3K; BOLD 456; REGULAR 218; IN-COLUMN 25 |
+| OFFICE_SIZE_CODE | category | 7 | 0 | nan 1.6K; A 371; B 23; C 19 |
+| OFFICE_SIZE_DESC | category | 7 | 0 | nan 1.6K; 1 PROFESSIONAL 371; 2 PROFESSIONAL 23; 3 PROFESSIONAL 19 |
+| POPULATION_CODE | category | 2 | 0 | 7 1.9K; 1 55 |
+| POPULATION_DESC | category | 2 | 0 | 20,000 - 49,999 1.9K; LESS THAN 250 55 |
+| WORK_AT_HOME_BUSINESS | category | 2 | 0 | nan 1.8K; C 210 |
+| OWN_LEASE_CODE | category | 4 | 0 | nan 1.9K; O 27; L 18; U 9 |
+| SQUARE_FOOTAGE_CODE | category | 9 | 0 | 3.0 486; 2.0 447; 1.0 323; 4.0 235 |
+| SQUARE_FOOTAGE_DESC | category | 9 | 0 | 2,500 - 4,999 486; 1,500 - 2,499 447; 1 - 1,499 323; 5,000 - 9,999 235 |
+| RADIAL_DISTANCE_FROM_TARGET_ELE | other | 1 | 0 | 0 2.0K |
+| ACTNUMBUS_MULTITENANT_LOCATION | amount | 41 | 0 | nan 419; 2.0 172; 1.0 157; 3.0 107 |
+| MULTITENANT_CODE | category | 4 | 0 | C 802; nan 576; A 345; B 277 |
+| MULTITENANT_DESC | category | 4 | 0 | 10+ 802; nan 576; 4-Feb 345; 9-May 277 |
+| BUILDING_NUM_MULTI_TENANT | other | 491 | 0 | nan 419; 98042.0 51; 407005.0 47; 98051.0 41 |
+| FLEET_CODE | category | 6 | 0 | nan 1.1K; A 820; C 69; B 36 |
+| FLEET_DESCRIPTION | category | 6 | 0 | nan 1.1K; 1-10 VEHICLES (LOCATION & 820; 20-49 VEHICLES (LOCATION  69; 11-19 VEHICLES (LOCATION  36 |
+| AFFLUENT_NEIGHBORHOOD_LOCATION | category | 2 | 0 | N 1.1K; Y 915 |
+| BIG_BUSINESS | category | 2 | 0 | N 2.0K; Y 24 |
+| FEMALE_OWNER_EXEC | category | 2 | 0 | N 1.9K; Y 136 |
+| BUSINESS_SIZE_CHANGE | category | 7 | 0 | C 1.2K; nan 499; I 199; + 53 |
+| HIGHINCOMEEXEC | category | 2 | 0 | N 1.7K; Y 307 |
+| HIGHTECHBUSINESS | category | 2 | 0 | N 2.0K; Y 44 |
+| MEDIUM_SIZE_BUSINESS_ENTREPRENE | category | 2 | 0 | N 1.9K; Y 105 |
+| SMALL_BUSINESS_ENTREPRENEUR | category | 2 | 0 | N 1.4K; Y 628 |
+| DELIVERY_POINT_BAR_CODE | empty | 1 | 2.0K |  |
+| PRESORT_ENDORSEMENT_LINE | empty | 1 | 2.0K |  |
+| PRESORT_BAG_NUMBER | empty | 1 | 2.0K |  |
+| PRESORT_BUNDLE_NUMBER | empty | 1 | 2.0K |  |
+| PRESORT_LINE_OF_TRAVEL | empty | 1 | 2.0K |  |
+| TERTIARY_ADDRESS | category | 32 | 0 | nan 1.6K; CARY TOWNE CTR 53; LAWRENCE EXECUTIVE SUITES 47; CHATHAM SQUARE SHOPPING C 41 |
+| TERTIARY_CITY | category | 3 | 0 | nan 1.6K; CARY 393; RALEIGH 1 |
+| TERTIARY_STATE | category | 2 | 0 | nan 1.6K; NC 394 |
+| TERTIARY_ZIP_CODE | category | 4 | 0 | nan 1.6K; 27511 372; 27513 21; 27612 1 |
+| TERTIARY_ZIP4 | empty | 1 | 2.0K |  |
+| TERTIARY_ZIP10 | category | 4 | 0 | nan 1.6K; 27511 372; 27513 21; 27612 1 |
+| TERTIARY_CARRIER_ROUTE_CODE | empty | 1 | 2.0K |  |
+| WHITE_COLLAR_PERCENTAGE | other | 75 | 0 | 0 274; 70 126; 94 121; 99 116 |
+| WHITE_COLLAR_INDICATOR | category | 2 | 0 | 1 1.1K; 0 872 |
+| PRODUCTION_DATE | date | 1 | 0 | 20190726 2.0K |
+| SEQUENCE_NUMBER | empty | 1 | 2.0K |  |
+| OBSOLESCENCE_DATE | date | 1 | 0 | 22-Jan-20 2.0K |
+| PRODUCTION_DATE1 | date | 1 | 0 | 26-Jul-19 2.0K |
+| SOURCE | who | 1 | 0 | INFOUSA 2.0K |
+| BOOKNO | other | 103 | 0 | 54301 707; CDC 247; CDB 116; NPI 77 |
+| GOVSEGCD | amount | 5 | 0 | nan 2.0K; 8.0 2; 6.0 2; 7.0 1 |
+| FORGNPAR | category | 2 | 0 | nan 2.0K; Y 2 |
+| IMPEXPCD | category | 3 | 0 | nan 2.0K; I 2; E 1 |
+| FRANCHISE_SPECIALTY_CODE_1 | other | 65 | 0 | nan 1.7K; 246.0 31; 195.0 23; 242.0 16 |
+| FRANCHISE_SPECIALTY_CODE_2 | category | 20 | 0 | nan 2.0K; 211.0 6; 244.0 4; 210.0 4 |
+| FRANCHISE_SPECIALTY_CODE_3 | category | 9 | 0 | nan 2.0K; 213 3; 217 2; 245 1 |
+| FRANCHISE_SPECIALTY_CODE_4 | category | 5 | 0 | nan 2.0K; 247 1; 226 1; 212 1 |
+| FRANCHISE_SPECIALTY_CODE_5 | category | 3 | 0 | nan 2.0K; 248 1; 231 1 |
+| FRANCHISE_SPECIALTY_CODE_6 | empty | 1 | 2.0K |  |
+| END_OF_RECORD_MARKER | other | 1 | 0 | X 2.0K |
+| NAICS6 | who | 548 | 0 | 99999004 231; 53121003 76; 72251117 64; 81211202 57 |
+| SECTOR | category | 26 | 0 | 62 283; 99 241; 81 230; 54 212 |
+| SECTORNAME | category | 22 | 0 | Health Care and Social As 284; Retail Trade 243; Other 242; Other Services (except Pu 229 |
+| GEOMETRY | who | 890 | 0 | {"type": "Point", "coordi 62; {"type": "Point", "coordi 47; {"type": "Point", "coordi 47; {"type": "Point", "coordi 39 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:36:42.84798 2.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | 9b76df13-1fd9-4b8b-b48b-4 2.0K |
+| SRC_SHA256 | who | 1 | 0 | 7b7a40a6d830d127e0cb30b90 2.0K |

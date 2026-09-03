@@ -1,0 +1,248 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_A4022A1A2D
+
+rows 468  columns 95  scan 4.1s
+
+roles: amount 8, audit 2, category 51, date 2, other 31, who 2
+
+## when
+
+DOC_CTRL_NUM
+  2014       468  ##############################
+
+INGESTED_AT
+  2026       468  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| ON_SITE_RELEASE_TOTAL | 468 | 0 | 250 | 1.70M | 4.10M | 28.87M |
+| C_6_1_POTW_TOTAL_TRANSFERS | 468 | 0 | 0 | 108.01 | 500 | 1.8K |
+| OFF_SITE_RELEASE_TOTAL | 468 | 0 | 0 | 9.1K | 38.4K | 240.2K |
+| OFF_SITE_RECYCLED_TOTAL | 468 | 0 | 0 | 314.5K | 2.90M | 10.40M |
+| OFF_SITE_RECOVERY_TOTAL | 468 | 0 | 0 | 3.1K | 8.9K | 51.1K |
+| OFF_SITE_TREATED_TOTAL | 468 | 0 | 0 | 12.4K | 26.1K | 248.3K |
+
+## who
+
+UNIT_OF_MEASURE by rows
+       468  Pounds
+
+UNIT_OF_MEASURE by dollars
+      28.87M      468 rows  Pounds
+
+SRC_SHA256 by rows
+       468  3987368e86f28fef39fe8310d63ac97d98d3ccc6523777eff3061d183aa3939f
+
+SRC_SHA256 by dollars
+      28.87M      468 rows  3987368e86f28fef39fe8310d63ac97d98d3ccc6523777eff3061d183aa3
+
+## who x when
+
+UNIT_OF_MEASURE by DOC_CTRL_NUM, dollars = ON_SITE_RELEASE_TOTAL
+  Pounds                                    2014:28.87M
+
+SRC_SHA256 by DOC_CTRL_NUM, dollars = ON_SITE_RELEASE_TOTAL
+  3987368e86f28fef39fe8310d63ac97d98d3ccc6  2014:28.87M
+
+## what
+
+YEAR: 1998 12%, 1990 11%, 1999 11%, 1997 11%, 1993 10%, 1992 10%, 1996 10%, 1991 9%, 1995 8%, 1994 8%
+
+TRI_FACILITY_ID: 84404WSTRN10000 20%, 84409LVLRN1330W 14%, 84404CHRML2150N 11%, 84401KNXMC815W2 8%, 84404PTRSN1527N 7%, 84404CRRWR1160W 7%, 84404GRTSL765N1 7%, 84401GSCFN2738C 6%, 84402HCDYC450EX 6%, 84401LBNLB2332B 6%, 84401HRCND200WE 5%, 84409JTWYN3100S 3%
+
+FACILITY_NAME: WESTERN ZIRCONIUM 20%, LEVOLOR-KIRSCH WINDOW FASHIONS 14%, CHROMALOX INC 11%, WILBUR-ELLIS CO 8%, PETERSEN INC 7%, CERRO WIRE LLC 7%, GREAT SALT LAKE MINERALS CORP 7%, GSC FOUNDRIES 6%, BRENNTAG PACIFIC INC 6%, OGDEN LIQUID PRODUCTS 6%, HURCO INDUSTRIES 5%, JBT AEROTECH JETWAY SYSTEMS 3%
+
+STREET_ADDRESS: 10,000 W 900 S 20%, 1330 W. 3300 S. 14%, 2150 N RULON WHITE BLVD 11%, 815 W 24TH ST 8%, 1527 N 2000 W 7%, 1160 W 2150 N 7%, 765 N 10500 W 7%, 2738 COMMERCE WAY 6%, 450 EXCHANGE RD 6%, 2332 B AVE 6%, 200 WEST 33 RD ST 5%, 3100 S PENNSYLVANIA AVE 3%
+
+FEDERAL_FACILITY: NO 100%, YES 0%
+
+PRIMARY_SIC: 3356 20%, 2591 14%, 3567 11%, 2048 8%, 3443 7%, 3357 7%, 2819 6%, 3324 6%, 5169 6%, 2879 5%, 2041 5%, 2541 5%
+
+SIC_2: NA 55%, nan 39%, 3361 2%, 3365 2%, 3537 1%, 3599 0%, 2024 0%, 3672 0%
+
+PRIMARY_NAICS: 331419 17%, 337920 16%, 333994 12%, 311119 9%, 325188 7%, 332999 7%, 424690 6%, 311211 6%, 331524 5%, 337212 5%, 339999 5%, 331491 5%
+
+CHEMICAL: ZINC COMPOUNDS 13%, CHLORINE 11%, CHROMIUM 10%, MANGANESE COMPOUNDS 10%, NICKEL 9%, COPPER 8%, AMMONIA 8%, TOLUENE 8%, MANGANESE 6%, NITRIC ACID 6%, 1,1,1-TRICHLOROETHANE 6%, XYLENE (MIXED ISOMERS) 5%
+
+CAS_COMPOUND_ID: N982 13%, 7782505 11%, 7440473 10%, N450 10%, 7440020 9%, 7440508 8%, 7664417 8%, 108883 8%, 7439965 6%, 7697372 6%, 71556 6%, 1330207 5%
+
+CLEAR_AIR_ACT_CHEMICAL: YES 61%, NO 39%
+
+METAL: NO 58%, YES 42%
+
+METAL_CATEGORY: 0 58%, 1 42%, 3 0%
+
+CARCINOGEN: NO 84%, YES 16%
+
+FORM_TYPE: R 89%, A 11%
+
+C_5_3_WATER: 0 93%, 250 2%, 5 2%, 750 1%, 10 1%, 78 0%, 540 0%, 600 0%, 27 0%, 15 0%
+
+C_5_4_1_UNDERGROUND_CLASS_I: 0 100%, 250 0%
+
+C_5_5_1A_RCRA_C_LANDFILLS: 0 99%, 8636 0%, 2522 0%, 12959 0%, 3790 0%, 2042 0%, 13369 0%
+
+C_5_5_2_LAND_TREATMENT: 0 98%, 5 2%
+
+C_5_5_3_SURFACE_IMPOUNDMENT: 0 94%, 5 2%, 1200000 1%, 250 1%, 390000 0%, 360000 0%, 1300 0%, 3 0%, 8500 0%, 370000 0%, 2900 0%, 1100000 0%
+
+C_5_5_4_OTHER_DISPOSAL: 0 94%, 10 2%, 5 2%, 250 1%, 20 0%, 32000 0%, 750 0%, 1400 0%
+
+C_6_1_POTW_TRANSFERS_FOR_RELEASE: 0 95%, 5 3%, 250 0%, 2 0%, 344 0%, 500 0%, 240 0%, 3 0%, 28 0%, 43 0%, 31 0%
+
+C_6_1_POTW_TRANSFERS_FOR_TREATM: 0 98%, 5 1%, 13000 0%, 1 0%, 3 0%
+
+C_6_2_M10: 0 100%, 410 0%, 3 0%
+
+C_6_2_M41: 0 99%, 250 1%, 2371 0%, 8121 0%
+
+C_6_2_M72: 0 88%, 250 6%, 5 2%, 750 2%, 3695 0%, 2044 0%, 6760 0%, 4 0%, 31 0%, 10053 0%, 28448 0%, 2273 0%
+
+C_6_2_M73: 0 100%, 250 0%
+
+C_6_2_M79: 0 99%, 250 1%
+
+C_6_2_M90: 0 99%, 6426 0%, 250 0%, 750 0%
+
+C_6_2_M99: 0 100%, 5 0%
+
+C_6_2_M20: 0 99%, 1200 0%, 7916 0%, 10632 0%, 1800 0%
+
+C_6_2_M24: 0 97%, 9400 0%, 5800 0%, 3700 0%, 26587 0%, 15406 0%, 25330 0%, 14225 0%, 1175 0%, 18152 0%, 4639 0%, 21141 0%
+
+C_6_2_M26: 0 98%, 1943 0%, 5661 0%, 7800 0%, 6672 0%, 3462 0%, 31000 0%, 1680 0%, 474 0%, 175 0%, 185 0%, 1300 0%
+
+C_6_2_M93: 0 97%, 750 0%, 500 0%, 10000 0%, 7514 0%, 10167 0%, 461 0%, 7347 0%, 545 0%, 89594 0%, 12903 0%, 38709 0%
+
+C_6_2_M56: 0 97%, 250 0%, 183 0%, 2203 0%, 2066 0%, 3210 0%, 2854 0%, 2981 0%, 2061 0%, 1525 0%, 2880 0%, 123 0%
+
+C_6_2_M92: 0 99%, 3357 0%, 25 0%, 3680 0%, 3599 0%, 226 0%
+
+C_6_2_M40: 0 97%, 250 2%, 1438 0%, 21692 0%, 8707 0%, 7103 0%
+
+C_6_2_M50: 0 96%, 5 1%, 1405 0%, 1860 0%, 10 0%, 1867 0%, 1365 0%, 526 0%, 250 0%, 6710 0%, 2037 0%, 1700 0%
+
+C_6_2_M54: 0 97%, 5 0%, 2641 0%, 936 0%, 3673 0%, 3465 0%, 3960 0%, 1200 0%, 1206 0%, 142 0%, 150 0%, 37 0%
+
+C_6_2_M61: 0 99%, 16157 0%, 14731 0%, 2604 0%, 5624 0%
+
+C_6_2_M69: 0 98%, 250 0%, 10554 0%, 3804 0%, 4937 0%, 11304 0%, 11319 0%, 3825 0%, 810 0%, 6061 0%, 6596 0%, 26097 0%
+
+C_8_3_ENERGY_RECOVERY_OFF_SITE: 0 97%, 334 0%, 183 0%, 16085 0%, 3767 0%, 28 0%, 2203 0%, 3680 0%, 2066 0%, 3599 0%, 3210 0%, 226 0%
+
+C_8_4_RECYCLING_ON_SITE: 0 97%, 150000 0%, 160000 0%, 15 0%, 2900 0%, 4000 0%, 1600 0%, 13202 0%, 32168 0%, 21398 0%, 10000 0%, 3600 0%
+
+C_8_7_TREATMENT_OFF_SITE: 0 94%, 10 1%, 1405 1%, 4 1%, 6 1%, 461 0%, 3673 0%, 290 0%, 87 0%, 1500 0%, 1 0%, 96 0%
+
+PARENT_COMPANY_NAME: WESTINGHOUSE ELECTRIC CO LLC 19%, NA 16%, NEWELL RUBBERMAID 13%, CHROMALOX INC 11%, PETERSEN INC 7%, BERKSHIRE HATHAWAY 6%, COMPASS MINERALS INTERNATIONAL 6%, PRECISION CASTPARTS CORP 6%, BRENNTAG N.A. INC 5%, ALBION GROUP 5%, CARGILL INC 3%, JOHN BEAN TECHNOLOGIES CORP 3%
+
+PARENT_COMPANY_DB_NUMBER: NA 29%, 62661272 17%, 1.45E+08 11%, 38470915 10%, 99313462 6%, 8.49E+08 6%, 9027970 5%, 6.25E+08 5%, 6249189 3%, 8.27E+08 3%, 1145481 3%, 58924598 2%
+
+LOCATION_1: {"latitude": "41.26037", "long 20%, {"latitude": "41.20515", "long 14%, {"latitude": "41.29582", "long 11%, {"latitude": "41.2231", "longi 8%, {"latitude": "41.28497", "long 7%, {"latitude": "41.29741", "long 7%, {"latitude": "41.27017", "long 7%, {"latitude": "41.21583", "long 6%, {"latitude": "41.2239", "longi 6%, {"latitude": "41.22417", "long 6%, {"latitude": "41.20345", "long 5%, {"latitude": "41.2088", "longi 3%
+
+SIC_3: nan 95%, 3544 4%, 3541 1%, 3679 0%
+
+SIC_4: nan 95%, 3599 3%, NA 1%, 3365 0%, 3695 0%
+
+SIC_5: nan 96%, NA 4%
+
+C_8_8_ONE_TIME_RELEASE: 0 67%, nan 30%, 1 1%, 5 0%, 10 0%, 47 0%, 1700 0%, 830 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| YEAR | category | 10 | 0 | 1998 57; 1990 53; 1999 52; 1997 51 |
+| TRI_FACILITY_ID | category | 29 | 0 | 84404WSTRN10000 76; 84409LVLRN1330W 54; 84404CHRML2150N 43; 84401KNXMC815W2 32 |
+| FACILITY_NAME | category | 30 | 0 | WESTERN ZIRCONIUM 76; LEVOLOR-KIRSCH WINDOW FAS 54; CHROMALOX INC 43; WILBUR-ELLIS CO 32 |
+| STREET_ADDRESS | category | 30 | 0 | 10,000 W 900 S 76; 1330 W. 3300 S. 54; 2150 N RULON WHITE BLVD 43; 815 W 24TH ST 32 |
+| COUNTY | other | 1 | 0 | WEBER 468 |
+| ST | other | 1 | 0 | UT 468 |
+| FEDERAL_FACILITY | category | 2 | 0 | NO 466; YES 2 |
+| PRIMARY_SIC | category | 28 | 0 | 3356 76; 2591 54; 3567 43; 2048 32 |
+| SIC_2 | category | 8 | 0 | NA 256; nan 183; 3361 11; 3365 10 |
+| PRIMARY_NAICS | category | 35 | 0 | 331419 59; 337920 54; 333994 43; 311119 30 |
+| DOC_CTRL_NUM | date | 2 | 0 | 1400000000000 244; 1390000000000 224 |
+| CHEMICAL | category | 48 | 0 | ZINC COMPOUNDS 36; CHLORINE 30; CHROMIUM 29; MANGANESE COMPOUNDS 27 |
+| CAS_COMPOUND_ID | category | 48 | 0 | N982 36; 7782505 30; 7440473 29; N450 27 |
+| CLEAR_AIR_ACT_CHEMICAL | category | 2 | 0 | YES 284; NO 184 |
+| CLASSIFICATION | other | 1 | 0 | TRI 468 |
+| METAL | category | 2 | 0 | NO 271; YES 197 |
+| METAL_CATEGORY | category | 3 | 0 | 0 270; 1 197; 3 1 |
+| CARCINOGEN | category | 2 | 0 | NO 391; YES 77 |
+| FORM_TYPE | category | 2 | 0 | R 415; A 53 |
+| UNIT_OF_MEASURE | who | 1 | 0 | Pounds 468 |
+| C_5_1_FUGITIVE_AIR | other | 110 | 0 | 0 212; 250 68; 5 48; 750 12 |
+| C_5_2_STACK_AIR | other | 113 | 0 | 0 265; 250 40; 5 29; 50 4 |
+| C_5_3_WATER | category | 10 | 0 | 0 437; 250 10; 5 8; 750 4 |
+| C_5_4_1_UNDERGROUND_CLASS_I | category | 2 | 0 | 0 467; 250 1 |
+| C_5_4_2_UNDERGROUND_CLASS_II_V | other | 1 | 0 | 0 468 |
+| C_5_5_1A_RCRA_C_LANDFILLS | category | 7 | 0 | 0 462; 8636 1; 2522 1; 12959 1 |
+| C_5_5_1B_OTHER_LANDFILLS | other | 1 | 0 | 0 468 |
+| C_5_5_2_LAND_TREATMENT | category | 2 | 0 | 0 460; 5 8 |
+| C_5_5_3_SURFACE_IMPOUNDMENT | category | 26 | 0 | 0 428; 5 9; 1200000 4; 250 4 |
+| C_5_5_3A_RCRA_C_SURFACE_IMP | other | 1 | 0 | 0 468 |
+| C_5_5_3B_OTHER_SURFACE_IMP | other | 1 | 0 | 0 468 |
+| C_5_5_4_OTHER_DISPOSAL | category | 8 | 0 | 0 441; 10 9; 5 8; 250 5 |
+| ON_SITE_RELEASE_TOTAL | amount | 217 | 0 | 0 109; 5 34; 250 24; 10 21 |
+| C_6_1_POTW_TRANSFERS_FOR_RELEASE | category | 11 | 0 | 0 443; 5 14; 250 2; 2 2 |
+| C_6_1_POTW_TRANSFERS_FOR_TREATM | category | 5 | 0 | 0 459; 5 5; 13000 2; 1 1 |
+| C_6_1_POTW_TOTAL_TRANSFERS | amount | 11 | 0 | 0 443; 5 14; 250 2; 2 2 |
+| C_6_2_M10 | category | 3 | 0 | 0 466; 410 1; 3 1 |
+| C_6_2_M41 | category | 4 | 0 | 0 462; 250 4; 2371 1; 8121 1 |
+| C_6_2_M62 | other | 1 | 0 | 0 468 |
+| C_6_2_M71 | other | 1 | 0 | 0 468 |
+| C_6_2_M81 | other | 1 | 0 | 0 468 |
+| C_6_2_M82 | other | 1 | 0 | 0 468 |
+| C_6_2_M72 | category | 46 | 0 | 0 378; 250 27; 5 8; 750 7 |
+| C_6_2_M63 | other | 1 | 0 | 0 468 |
+| C_6_2_M66 | other | 1 | 0 | 0 468 |
+| C_6_2_M67 | other | 1 | 0 | 0 468 |
+| C_6_2_M64 | other | 1 | 0 | 0 468 |
+| C_6_2_M65 | other | 1 | 0 | 0 468 |
+| C_6_2_M73 | category | 2 | 0 | 0 467; 250 1 |
+| C_6_2_M79 | category | 2 | 0 | 0 465; 250 3 |
+| C_6_2_M90 | category | 4 | 0 | 0 465; 6426 1; 250 1; 750 1 |
+| C_6_2_M94 | other | 1 | 0 | 0 468 |
+| C_6_2_M99 | category | 2 | 0 | 0 466; 5 2 |
+| OFF_SITE_RELEASE_TOTAL | amount | 54 | 0 | 0 365; 250 30; 5 9; 750 8 |
+| C_6_2_M20 | category | 5 | 0 | 0 464; 1200 1; 7916 1; 10632 1 |
+| C_6_2_M24 | category | 39 | 0 | 0 427; 9400 2; 5800 2; 3700 2 |
+| C_6_2_M26 | category | 13 | 0 | 0 456; 1943 1; 5661 1; 7800 1 |
+| C_6_2_M28 | other | 1 | 0 | 0 468 |
+| C_6_2_M93 | category | 29 | 0 | 0 439; 750 2; 500 1; 10000 1 |
+| OFF_SITE_RECYCLED_TOTAL | amount | 82 | 0 | 0 383; 750 2; 10000 2; 9400 2 |
+| C_6_2_M56 | category | 18 | 0 | 0 449; 250 2; 183 2; 2203 1 |
+| C_6_2_M92 | category | 6 | 0 | 0 463; 3357 1; 25 1; 3680 1 |
+| OFF_SITE_RECOVERY_TOTAL | amount | 23 | 0 | 0 444; 250 2; 183 2; 3357 1 |
+| C_6_2_M40 | category | 6 | 0 | 0 453; 250 9; 1438 2; 21692 2 |
+| C_6_2_M50 | category | 18 | 0 | 0 445; 5 4; 1405 2; 1860 2 |
+| C_6_2_M54 | category | 13 | 0 | 0 455; 5 2; 2641 1; 936 1 |
+| C_6_2_M61 | category | 5 | 0 | 0 464; 16157 1; 14731 1; 2604 1 |
+| C_6_2_M69 | category | 13 | 0 | 0 456; 250 1; 10554 1; 3804 1 |
+| C_6_2_M95 | other | 1 | 0 | 0 468 |
+| OFF_SITE_TREATED_TOTAL | amount | 47 | 0 | 0 404; 250 10; 5 6; 1405 2 |
+| TOTAL_RELEASES | amount | 242 | 0 | 0 72; 250 28; 5 23; 500 18 |
+| C_8_1_RELEASES | other | 239 | 0 | 0 137; 10 32; 20 11; 50 5 |
+| C_8_1A_ON_SITE_CONTAINED_REL | other | 1 | 0 | 0 468 |
+| C_8_1B_ON_SITE_OTHER_RELEASES | other | 1 | 0 | 0 468 |
+| C_8_1C_OFF_SITE_CONTAINED_REL | other | 1 | 0 | 0 468 |
+| C_8_1D_OFF_SITE_OTHER_RELEASES | other | 1 | 0 | 0 468 |
+| C_8_2_ENERGY_RECOVERY_ON_SITE | other | 1 | 0 | 0 468 |
+| C_8_3_ENERGY_RECOVERY_OFF_SITE | category | 24 | 0 | 0 442; 334 2; 183 2; 16085 1 |
+| C_8_4_RECYCLING_ON_SITE | category | 15 | 0 | 0 451; 150000 2; 160000 2; 15 2 |
+| C_8_5_RECYCLING_OFF_SITE | other | 77 | 0 | 0 390; 10000 2; 9400 2; 3700 2 |
+| C_8_6_TREATMENT_ON_SITE | other | 88 | 0 | 0 371; 1200000 7; 1100000 4; 33000 2 |
+| C_8_7_TREATMENT_OFF_SITE | category | 42 | 0 | 0 408; 10 4; 1405 4; 4 3 |
+| PROD_WASTE_8_1_THRU_8_7 | other | 296 | 0 | 0 121; 10 11; 50 5; 10510 3 |
+| PARENT_COMPANY_NAME | category | 24 | 0 | WESTINGHOUSE ELECTRIC CO  76; NA 64; NEWELL RUBBERMAID 54; CHROMALOX INC 43 |
+| PARENT_COMPANY_DB_NUMBER | category | 19 | 0 | NA 129; 62661272 76; 1.45E+08 48; 38470915 43 |
+| LOCATION_1 | category | 30 | 0 | {"latitude": "41.26037",  76; {"latitude": "41.20515",  54; {"latitude": "41.29582",  43; {"latitude": "41.2231", " 32 |
+| COMPUTED_REGION_9Z68_3KQ5 | other | 1 | 0 | 3201 468 |
+| SIC_3 | category | 4 | 0 | nan 444; 3544 20; 3541 3; 3679 1 |
+| SIC_4 | category | 5 | 0 | nan 444; 3599 16; NA 5; 3365 2 |
+| SIC_5 | category | 2 | 0 | nan 451; NA 17 |
+| C_8_8_ONE_TIME_RELEASE | category | 8 | 0 | 0 315; nan 140; 1 7; 5 2 |
+| C_8_9_PRODUCTION_RATIO | amount | 89 | 0 | nan 137; 1 37; 0 31; 1.04 17 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:43:15.58000 468 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 81f870d8-ee87-4b2d-ae2b-0 468 |
+| SRC_SHA256 | who | 1 | 0 | 3987368e86f28fef39fe8310d 468 |

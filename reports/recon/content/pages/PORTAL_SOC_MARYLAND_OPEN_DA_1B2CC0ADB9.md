@@ -1,0 +1,175 @@
+# PORTAL_SOC_MARYLAND_OPEN_DA_1B2CC0ADB9
+
+rows 64  columns 17  scan 3.3s
+
+roles: audit 2, category 3, date 1, other 6, who 6
+
+## when
+
+INGESTED_AT
+  2026        64  ##############################
+
+## who
+
+FACILITY_NAME by rows
+         1  BON SECOURS HOSPITAL
+         1  EDWARD MCCREADY MEMORIAL HOSPITAL
+         1  SAINT LUKE INSTITUTE
+         1  JOHNS HOPKINS BAYVIEW MEDICAL CENTER
+         1  THOMAS B FINAN CENTER
+         1  MEDSTAR FRANKLIN SQUARE MEDICAL CENTER
+         1  UNIVERSITY OF MD MEDICAL CENTER MIDTOWN CAMPUS
+         1  SAINT AGNES HOSPITAL
+         1  ANNE ARUNDEL MEDICAL CENTER
+         1  PENINSULA REGIONAL MEDICAL CENTER
+         1  ADVENTIST HEALTHCARE SHADY GROVE MEDICAL CENTER
+         1  UNIVERSITY OF MD SHORE MEDICAL CTR AT CHESTERTOWN
+         1  CARROLL HOSPITAL CENTER
+         1  SUBURBAN HOSPITAL
+         1  MEDSTAR SAINT MARY'S HOSPITAL
+         1  MEDSTAR MONTGOMERY MEDICAL CENTER
+         1  BROOK LANE HEALTH SERVICES
+         1  SPRINGFIELD HOSPITAL CENTER
+         1  GREATER BALTIMORE MEDICAL CENTER
+         1  SHEPPARD AND ENOCH PRATT HOSPITAL, THE
+
+FACILITY_CONTACT by rows
+         3  KENNETH KOZEL
+         2  CHRISTINE WRAY
+         2  LYLE SHELDON
+         2  MOHAN SUNTHA
+         2  BRADLEY CHAMBERS
+         1  DENNIS PULLIN
+         1  RICHARD BENNETT
+         1  HARSH TRIVEDI
+         1  LYNN RUSHING
+         1  JOHN ROBISON
+         1  KAREN OLSCAMP
+         1  THOMAS SMYTH
+         1  SAMUEL ROSS
+         1  NEIL MOORE
+         1  THOMAS KLEINHANZL
+         1  PEGGY NAIPPA
+         1  MICHAEL FRANKLIN
+         1  JAMES ROSS
+         1  MARK BOUCOT, MBA, FACHE
+         1  JOHN SACKETT
+
+FACILITY_ADDRESS by rows
+         1  5601 LOCH RAVEN BOULEVARD
+         1  4940 EASTERN AVENUE
+         1  10102 COUNTRY CLUB ROAD,  POST OFFICE BOX 1722
+         1  106 BOW STREET
+         1  500 UPPER CHESAPEAKE DRIVE
+         1  2434 WEST BELVEDERE AVENUE
+         1  7600 CARROLL AVENUE
+         1  220 TILGHMAN ROAD
+         1  9000 FRANKLIN SQUARE DRIVE
+         1  201 HALL HIGHWAY
+         1  900 CATON AVENUE
+         1  501 SOUTH  UNION AVENUE
+         1  7300 VAN DUSEN ROAD
+         1  5755 CEDAR LANE
+         1  6701 NORTH  CHARLES STREET
+         1  251 NORTH  FOURTH STREET
+         1  9909 MEDICAL CENTER DRIVE
+         1  11711 LIVINGSTON ROAD
+         1  5401 OLD COURT ROAD
+         1  201 EAST UNIVERSITY PARKWAY
+
+FACILITY_PHONE by rows
+         2  (443) 643-3303
+         1  (443) 481-1307
+         1  (443) 777-7850
+         1  (443) 923-9301
+         1  (410) 740-7890
+         1  (410) 228-5511
+         1  (301) 725-4300
+         1  (410) 332-9237
+         1  (410) 328-8667
+         1  (410) 221-2525
+         1  (410) 368-2101
+         1  (301) 533-4173
+         1  (410) 535-8239
+         1  (410) 521-5995
+         1  (301) 292-7000
+         1  (301) 552-8085
+         1  (443) 849-2000
+         1  (410) 554-2227
+         1  (410) 337-1000
+         1  (301) 777-2240
+
+## who x when
+
+FACILITY_NAME by INGESTED_AT  LOAD STAMP, not an event date
+  ADVENTIST HEALTHCARE SHADY GROVE MEDICAL  2026:1
+  ANNE ARUNDEL MEDICAL CENTER               2026:1
+  BON SECOURS HOSPITAL                      2026:1
+  BROOK LANE HEALTH SERVICES                2026:1
+  CARROLL HOSPITAL CENTER                   2026:1
+  EDWARD MCCREADY MEMORIAL HOSPITAL         2026:1
+  GREATER BALTIMORE MEDICAL CENTER          2026:1
+  JOHNS HOPKINS BAYVIEW MEDICAL CENTER      2026:1
+  MEDSTAR FRANKLIN SQUARE MEDICAL CENTER    2026:1
+  MEDSTAR MONTGOMERY MEDICAL CENTER         2026:1
+  MEDSTAR SAINT MARY'S HOSPITAL             2026:1
+  PENINSULA REGIONAL MEDICAL CENTER         2026:1
+  SAINT AGNES HOSPITAL                      2026:1
+  SAINT LUKE INSTITUTE                      2026:1
+  SHEPPARD AND ENOCH PRATT HOSPITAL, THE    2026:1
+  SPRINGFIELD HOSPITAL CENTER               2026:1
+  SUBURBAN HOSPITAL                         2026:1
+  THOMAS B FINAN CENTER                     2026:1
+  UNIVERSITY OF MD MEDICAL CENTER MIDTOWN   2026:1
+  UNIVERSITY OF MD SHORE MEDICAL CTR AT CH  2026:1
+
+FACILITY_CONTACT by INGESTED_AT  LOAD STAMP, not an event date
+  BRADLEY CHAMBERS                          2026:2
+  CHRISTINE WRAY                            2026:2
+  DENNIS PULLIN                             2026:1
+  HARSH TRIVEDI                             2026:1
+  JAMES ROSS                                2026:1
+  JOHN ROBISON                              2026:1
+  JOHN SACKETT                              2026:1
+  KAREN OLSCAMP                             2026:1
+  KENNETH KOZEL                             2026:3
+  LYLE SHELDON                              2026:2
+  LYNN RUSHING                              2026:1
+  MARK BOUCOT, MBA, FACHE                   2026:1
+  MICHAEL FRANKLIN                          2026:1
+  MOHAN SUNTHA                              2026:2
+  NEIL MOORE                                2026:1
+  PEGGY NAIPPA                              2026:1
+  RICHARD BENNETT                           2026:1
+  SAMUEL ROSS                               2026:1
+  THOMAS KLEINHANZL                         2026:1
+  THOMAS SMYTH                              2026:1
+
+## what
+
+COUNTY: BALTIMORE CITY 28%, MONTGOMERY COUNTY 15%, BALTIMORE COUNTY 11%, PRINCE GEORGE'S COUNTY 11%, DORCHESTER COUNTY 6%, WICOMICO COUNTY 6%, WASHINGTON COUNTY 6%, HARFORD COUNTY 4%, HOWARD COUNTY 4%, CARROLL COUNTY 4%, ALLEGANY COUNTY 4%, ANNE ARUNDEL COUNTY 4%
+
+FACILITY_CITY: BALTIMORE 46%, CAMBRIDGE 8%, SALISBURY 8%, ROCKVILLE 8%, HAGERSTOWN 8%, SILVER SPRING 5%, CUMBERLAND 5%, BEL AIR 3%, RANDALLSTOWN 3%, GERMANTOWN 3%, COLUMBIA 3%, TOWSON 3%
+
+TYPE: Acute, General and Special Hos 75%, Psychiatric Hospital 16%, Children Hospital 3%, Rehabilitation Hospital 3%, Geriatric Care Hospital 3%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| THE_GEOM | other | 65 | 0 | {"type": "Point", "coordi 1; {"type": "Point", "coordi 1; {"type": "Point", "coordi 1; {"type": "Point", "coordi 1 |
+| OBJECTID | other | 63 | 0 | 81 1; 79 1; 96 1; 100 1 |
+| COUNTY | category | 22 | 0 | BALTIMORE CITY 15; MONTGOMERY COUNTY 8; BALTIMORE COUNTY 6; PRINCE GEORGE'S COUNTY 6 |
+| FACILITY_NAME | who | 63 | 0 | UNIVERSITY OF MARYLAND ME 1; SINAI HOSPITAL OF BALTIMO 1; EASTERN SHORE HOSPITAL CE 1; UNIVERSITY OF M D UPPER C 1 |
+| FACILITY_ADDRESS | who | 63 | 0 | 22 SOUTH  GREENE STREET 1; 2401 WEST BELVEDERE AVENU 1; POST OFFICE BOX 800 1; 500 UPPER CHESAPEAKE DRIV 1 |
+| FACILITY_CITY | category | 37 | 0 | BALTIMORE 18; CAMBRIDGE 3; SALISBURY 3; ROCKVILLE 3 |
+| FACILITY_STATE | other | 1 | 0 | MD 64 |
+| FACILITY_ZIP | who | 53 | 0 | 21613 3; 21204 3; 20850 3; 21742 3 |
+| FACILITY_PHONE | who | 63 | 0 | (443) 643-3303 2; (410) 328-8667 1; (410) 601-5131 1; (410) 221-2525 1 |
+| FACILITY_CONTACT | who | 57 | 0 | KENNETH KOZEL 3; MOHAN SUNTHA 2; LYLE SHELDON 2; BRADLEY CHAMBERS 2 |
+| LICENSE_CAPACITY | other | 58 | 0 | nan 3; 192 2; 87 2; 232 2 |
+| LICENSE_INFO | other | 57 | 0 | Licensed from: 06/17/2016 4; Licensed from: 12/18/2015 3; Licensed from: 10/25/2014 2; Licensed from: 05/07/2016 2 |
+| CCN | other | 61 | 0 | nan 4; 210002 1; 210012 1; 214002 1 |
+| TYPE | category | 5 | 0 | Acute, General and Specia 48; Psychiatric Hospital 10; Children Hospital 2; Rehabilitation Hospital 2 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:45:35.82883 64 |
+| SOURCE_RUN_ID | audit | 1 | 0 | aa6c6595-cf7e-4b68-8785-f 64 |
+| SRC_SHA256 | who | 1 | 0 | 2414c8dc6f8d7a8a19afdd17e 64 |

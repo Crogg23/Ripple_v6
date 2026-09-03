@@ -1,0 +1,210 @@
+# FED_CMS_NADAC
+
+rows 1.50M  columns 15  scan 7.3s
+
+roles: amount 2, audit 2, category 4, date 3, other 2, who 2
+
+## when
+
+EFFECTIVE_DATE
+  2022         2  
+  2023     80.5K  ##
+  2024     1.42M  ##############################
+
+CORRESPONDING_GENERIC_DRUG_EFFECTIVE_DATE
+  2023      1.9K  #
+  2024     47.2K  ##############################
+
+AS_OF_DATE
+  2024     1.50M  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| NADAC_PER_UNIT | 1.50M | 0 | 0.19 | 136.57 | 27.0K | 27.41M |
+| CORRESPONDING_GENERIC_DRUG_NADAC_PER_UNIT | 49.0K | 0 | 0.40 | 114.95 | 989.70 | 334.1K |
+
+## who
+
+NDC by rows
+        52  72606056601
+        52  00904687406
+        52  00904731460
+        52  73059000160
+        52  82249001012
+        52  69367032304
+        52  00536132710
+        52  64950037416
+        52  00904672024
+        52  50268004211
+        52  51645070601
+        52  60687012195
+        52  70010016101
+        52  70000041001
+        52  50268004911
+        52  82293000110
+        52  00904677361
+        52  69543012010
+        52  49483034010
+        52  00054014125
+
+NDC by dollars
+       1.39M       52 rows  57894006103
+       1.39M       52 rows  57894006003
+       1.06M       52 rows  00074105001
+       1.05M       52 rows  00074210001
+      780.9K       37 rows  00078100768
+      696.1K       52 rows  57894064011
+      615.5K       52 rows  57894007002
+      417.5K       52 rows  59627022205
+      417.2K       52 rows  59627033304
+      374.0K       28 rows  57894064001
+      349.8K       52 rows  00074012402
+      309.0K       52 rows  00074334603
+      288.1K       52 rows  50474071079
+      285.6K       24 rows  57894007001
+      282.3K       32 rows  51759052010
+      280.8K       32 rows  51759063010
+      259.2K       52 rows  00074366303
+      248.9K       37 rows  00074012403
+      230.6K       32 rows  00078063968
+      212.9K       32 rows  00002144511
+
+NDC_DESCRIPTION by rows
+      3.1K  BUPROPION HCL XL 150 MG TABLET
+      3.0K  POTASSIUM CL ER 10 MEQ TABLET
+      3.0K  ESOMEPRAZOLE MAG DR 20 MG CAP
+      3.0K  BUPROPION HCL XL 300 MG TABLET
+      3.0K  ATORVASTATIN 10 MG TABLET
+      2.9K  ATORVASTATIN 20 MG TABLET
+      2.9K  ATORVASTATIN 40 MG TABLET
+      2.8K  GABAPENTIN 300 MG CAPSULE
+      2.8K  ATORVASTATIN 80 MG TABLET
+      2.7K  METFORMIN HCL 500 MG TABLET
+      2.7K  GABAPENTIN 100 MG CAPSULE
+      2.7K  METOPROLOL SUCC ER 100 MG TAB
+      2.6K  METFORMIN HCL 1,000 MG TABLET
+      2.6K  GABAPENTIN 600 MG TABLET
+      2.6K  METOPROLOL SUCC ER 50 MG TAB
+      2.5K  ESOMEPRAZOLE MAG DR 40 MG CAP
+      2.5K  GABAPENTIN 800 MG TABLET
+      2.5K  BACLOFEN 20 MG TABLET
+      2.4K  METOPROLOL SUCC ER 25 MG TAB
+      2.4K  GABAPENTIN 400 MG CAPSULE
+
+NDC_DESCRIPTION by dollars
+       1.39M       52 rows  STELARA 90 MG/ML SYRINGE
+       1.39M       52 rows  STELARA 45 MG/0.5 ML SYRINGE
+       1.06M       52 rows  SKYRIZI 150 MG/ML SYRINGE
+       1.05M       52 rows  SKYRIZI 150 MG/ML PEN
+      780.9K       37 rows  KESIMPTA 20 MG/0.4 ML PEN
+      696.1K       52 rows  TREMFYA 100 MG/ML INJECTOR
+      615.5K       52 rows  SIMPONI 50 MG/0.5 ML PEN INJEC
+      425.8K       64 rows  TALTZ 80 MG/ML AUTOINJECTOR
+      417.5K       52 rows  AVONEX PREFILLED SYR 30 MCG KIT
+      417.2K       52 rows  AVONEX PEN 30 MCG/0.5 ML KIT
+      375.6K       56 rows  TALTZ 80 MG/ML SYRINGE
+      374.0K       28 rows  TREMFYA 100 MG/ML SYRINGE
+      349.8K       52 rows  HUMIRA(CF) PEN 80 MG/0.8 ML
+      323.6K       38 rows  SKYRIZI 360 MG/2.4 ML ON-BODY
+      309.0K       52 rows  LUPRON DEPOT 22.5 MG 3MO KIT
+      288.1K       52 rows  CIMZIA 2X200 MG/ML SYRINGE KIT
+      285.6K       24 rows  SIMPONI 50 MG/0.5 ML SYRINGE
+      282.3K       32 rows  UZEDY ER 100 MG/0.28 ML SYRING
+      280.8K       32 rows  UZEDY ER 125 MG/0.35 ML SYRING
+      280.0K      104 rows  ABILIFY MAINTENA ER 400 MG VL
+
+## who x when
+
+NDC by EFFECTIVE_DATE, dollars = NADAC_PER_UNIT
+  00054014125                               2023:0.44 2024:8.21
+  00074105001                               2023:19.3K 2024:1.04M
+  00074210001                               2023:19.1K 2024:1.03M
+  00078100768                               2024:780.9K
+  00536132710                               2023:0.04 2024:1.18
+  00904672024                               2023:0.06 2024:1.55
+  00904677361                               2023:0.04 2024:1.18
+  00904687406                               2023:10.35 2024:22.25
+  00904731460                               2023:0.14 2024:3.36
+  49483034010                               2023:0.04 2024:1.18
+  50268004211                               2023:0.68 2024:15.68
+  50268004911                               2023:10.35 2024:22.25
+  51645070601                               2023:0.06 2024:1.55
+  57894006003                               2023:102.1K 2024:1.28M
+  57894006103                               2023:102.3K 2024:1.29M
+  57894007002                               2023:45.7K 2024:569.8K
+  57894064001                               2024:374.0K
+  57894064011                               2023:51.4K 2024:644.7K
+  59627022205                               2023:7.7K 2024:409.7K
+  59627033304                               2023:7.7K 2024:409.5K
+  60687012195                               2023:1.04 2024:23.57
+  64950037416                               2023:0.15 2024:14.88
+  69367032304                               2023:0.04 2024:1.04
+  69543012010                               2023:0.38 2024:7.46
+  70000041001                               2023:0.06 2024:1.55
+  70010016101                               2023:0.06 2024:1.55
+  72606056601                               2023:7.07 2024:39.73
+  73059000160                               2023:8.47 2024:458.48
+  82249001012                               2023:7.07 2024:39.73
+  82293000110                               2023:7.07 2024:39.73
+
+NDC_DESCRIPTION by EFFECTIVE_DATE, dollars = NADAC_PER_UNIT
+  ATORVASTATIN 10 MG TABLET                 2023:3 2024:81.22
+  ATORVASTATIN 20 MG TABLET                 2023:3.84 2024:100.43
+  ATORVASTATIN 40 MG TABLET                 2023:5.76 2024:148.67
+  ATORVASTATIN 80 MG TABLET                 2023:8.46 2024:206.97
+  AVONEX PEN 30 MCG/0.5 ML KIT              2023:7.7K 2024:409.5K
+  AVONEX PREFILLED SYR 30 MCG KIT           2023:7.7K 2024:409.7K
+  BACLOFEN 20 MG TABLET                     2023:6.44 2024:145.97
+  BUPROPION HCL XL 150 MG TABLET            2023:12.54 2024:314.37
+  BUPROPION HCL XL 300 MG TABLET            2023:19.80 2024:446.30
+  ESOMEPRAZOLE MAG DR 20 MG CAP             2023:29.84 2024:624.49
+  ESOMEPRAZOLE MAG DR 40 MG CAP             2023:16.66 2024:362.16
+  GABAPENTIN 100 MG CAPSULE                 2023:3.06 2024:58.73
+  GABAPENTIN 300 MG CAPSULE                 2023:4.24 2024:103.16
+  GABAPENTIN 400 MG CAPSULE                 2023:4.50 2024:116.62
+  GABAPENTIN 600 MG TABLET                  2023:10.34 2024:220.83
+  GABAPENTIN 800 MG TABLET                  2023:11.96 2024:260.71
+  KESIMPTA 20 MG/0.4 ML PEN                 2024:780.9K
+  METFORMIN HCL 1,000 MG TABLET             2023:1.96 2024:56.24
+  METFORMIN HCL 500 MG TABLET               2023:2 2024:34.97
+  METOPROLOL SUCC ER 100 MG TAB             2023:9.80 2024:283.47
+  METOPROLOL SUCC ER 25 MG TAB              2023:7.04 2024:147.65
+  METOPROLOL SUCC ER 50 MG TAB              2023:7.20 2024:162.79
+  POTASSIUM CL ER 10 MEQ TABLET             2023:14.96 2024:334.86
+  SIMPONI 50 MG/0.5 ML PEN INJEC            2023:45.7K 2024:569.8K
+  SKYRIZI 150 MG/ML PEN                     2023:19.1K 2024:1.03M
+  SKYRIZI 150 MG/ML SYRINGE                 2023:19.3K 2024:1.04M
+  STELARA 45 MG/0.5 ML SYRINGE              2023:102.1K 2024:1.28M
+  STELARA 90 MG/ML SYRINGE                  2023:102.3K 2024:1.29M
+  TALTZ 80 MG/ML AUTOINJECTOR               2024:425.8K
+  TREMFYA 100 MG/ML INJECTOR                2023:51.4K 2024:644.7K
+
+## what
+
+PRICING_UNIT: EA 83%, ML 11%, GM 6%
+
+OTC: N 91%, Y 9%
+
+EXPLANATION_CODE: 1 75%, 1, 5 15%, 1, 6 3%, 4 2%, 4, 5 1%, 1, 5, 6 1%, 2 1%, 2, 5 0%, 4, 6 0%, 4, 5, 6 0%, 3 0%, 2, 6 0%
+
+CLASSIFICATION_FOR_RATE_SETTING: G 92%, B 8%, B-ANDA 0%, B-BIO 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| NDC_DESCRIPTION | who | 6.5K | 0 | ESOMEPRAZOLE MAG DR 20 MG 3.9K; ESOMEPRAZOLE MAG DR 40 MG 3.9K; FAMOTIDINE 20 MG TABLET 3.9K; EZETIMIBE 10 MG TABLET 3.8K |
+| NDC | who | 32.9K | 0 | 31722013631 2.5K; 27241017529 2.5K; 00591405094 2.5K; 54838014440 2.5K |
+| NADAC_PER_UNIT | amount | 47.0K | 0 | 0.03591 5.1K; 0.03282 5.1K; 0.08319 3.8K; 0.18633 3.8K |
+| EFFECTIVE_DATE | date | 177 | 0 | 09/18/2024 147.7K; 07/17/2024 145.5K; 04/17/2024 141.6K; 01/17/2024 121.9K |
+| PRICING_UNIT | category | 3 | 0 | EA 1.24M; ML 167.9K; GM 85.7K |
+| PHARMACY_TYPE_INDICATOR | other | 1 | 0 | C/I 1.50M |
+| OTC | category | 2 | 0 | N 1.36M; Y 136.1K |
+| EXPLANATION_CODE | category | 15 | 0 | 1 1.12M; 1, 5 223.4K; 1, 6 48.1K; 4 32.9K |
+| CLASSIFICATION_FOR_RATE_SETTING | category | 4 | 0 | G 1.38M; B 112.5K; B-ANDA 3.8K; B-BIO 487 |
+| CORRESPONDING_GENERIC_DRUG_NADAC_PER_UNIT | amount | 8.0K | 1.45M | 0.07092 115; 0.05861 95; 0.05616 95; 0.10984 95 |
+| CORRESPONDING_GENERIC_DRUG_EFFECTIVE_DATE | date | 42 | 1.45M | 09/18/2024 5.3K; 07/17/2024 5.2K; 04/17/2024 5.1K; 11/20/2024 4.3K |
+| AS_OF_DATE | date | 51 | 0 | 12/25/2024 30.1K; 12/18/2024 30.1K; 11/13/2024 29.9K; 10/30/2024 29.9K |
+| INGESTED_AT | audit | 1 | 0 | 1782620007061540 1.50M |
+| SOURCE_RUN_ID | audit | 1 | 0 | 222108d7-9206-45c0-be84-9 1.50M |
+| SRC_SHA256 | other | 1 | 0 | f9ed76c6c40402c061052f362 1.50M |

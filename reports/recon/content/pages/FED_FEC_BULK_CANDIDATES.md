@@ -1,0 +1,91 @@
+# FED_FEC_BULK_CANDIDATES
+
+rows 17.9K  columns 19  scan 2.5s
+
+roles: audit 2, category 4, other 9, state 1, who 3
+
+## who
+
+CAND_NAME by rows
+        36  FARMS, WILLIAM
+        34  LOPEZ, DANIEL J
+        24  BERMAN, JOHN
+        13  GRAYSON, RICHARD
+        12  TOULME, ALIX CHRISTOPHER MR. JR.
+        12  DAVENPORT, DANIEL
+        11  EKPETE KAMA, ULOMA
+        11  FULKERSON, HEATH VINCENT
+        10  SIGMON, MICHAEL R
+         9  SOLOMON, GAVIN
+         9  ROSSI, AIDAN PATRICK MR
+         9  SIGMON, MICHAEL RAY
+         9  WATERS, ALLEN
+         9  CAPPARELL, CHRIS
+         8  DAMMEN, KHALEB IAN
+         8  RODRIGUEZ, JOSHUA
+         8  HORGES, BRADLEY MR JR
+         8  WALLS-WINDHAUSER, ANGELA MARIE
+         8  TEMURI, PRINCE MUHAMMAD ALI HH
+         8  HORGES, BRADLEY LAMAR MR JR
+
+CAND_CITY by rows
+       185  HOUSTON
+       180  WASHINGTON
+       177  CHICAGO
+       166  NEW YORK
+       164  LAS VEGAS
+       159  LOS ANGELES
+       150  CLAREMONT
+       123  DALLAS
+       110  PHOENIX
+        99  SAN ANTONIO
+        94  RALEIGH
+        88  BROOKLYN
+        87  ATLANTA
+        78  MIAMI
+        78  AUSTIN
+        78  DENVER
+        76  PHILADELPHIA
+        74  ALEXANDRIA
+        73  COLUMBUS
+        72  TUCSON
+
+_SRC_SHA256 by rows
+     17.9K  0fabee74a41ccf92885c42ea6673c4891743f3a65ce1f3cd3c3362450bd2620f
+
+## where
+
+CAND_ST: CA 2.0K, TX 1.4K, FL 1.3K, NY 926, GA 614, IL 583, OH 558, NC 549, MI 534, VA 524, NJ 522, PA 499
+
+## what
+
+CAND_OFFICE: H 65%, P 20%, S 14%
+
+CAND_ICI: C 71%, O 21%, I 9%
+
+CAND_STATUS: N 53%, C 26%, P 21%, F 0%
+
+CYCLE: 2024 55%, 2026 45%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| CAND_ID | other | 13.6K | 0 | S8WY00213 90; S8WV00143 90; S8WV00127 90; S8WV00119 90 |
+| CAND_NAME | who | 12.2K | 1 | LOPEZ, DANIEL J 99; SOLOMON, GAVIN 94; DAVENPORT, DANIEL 92; BERMAN, JOHN 92 |
+| CAND_PTY_AFFILIATION | other | 143 | 24 | REP 7.2K; DEM 6.5K; IND 1.4K; LIB 448 |
+| CAND_ELECTION_YR | other | 54 | 0 | 2024 7.3K; 2026 4.3K; 2022 2.2K; 2020 1.8K |
+| CAND_OFFICE_ST | other | 57 | 0 | US 3.6K; CA 1.4K; TX 1.1K; FL 1.1K |
+| CAND_OFFICE | category | 3 | 0 | H 11.7K; P 3.6K; S 2.6K |
+| CAND_OFFICE_DISTRICT | other | 70 | 430 | 00 6.1K; 01 1.3K; 02 1.1K; 03 1.0K |
+| CAND_ICI | category | 4 | 1.2K | C 11.8K; O 3.4K; I 1.5K |
+| CAND_STATUS | category | 5 | 3 | N 9.5K; C 4.6K; P 3.8K; F 2 |
+| CAND_PCC | other | 10.7K | 2.6K | C00776807 80; C00904672 78; C00651075 77; C00548271 77 |
+| CAND_ST1 | other | 12.0K | 143 | 1742 WOODBEND DR 183; 340 S. ORANGE AVENUE 98; 401 E 34TH STREET 93; 248 SILVER RIDGE DRIVE 92 |
+| CAND_ST2 | other | 1.8K | 15.1K | S11P 21; APT 1 18; #1 17; APT 2 16 |
+| CAND_CITY | who | 4.0K | 7 | HOUSTON 189; CLAREMONT 186; WASHINGTON 180; CHICAGO 178 |
+| CAND_ST | state | 57 | 87 | CA 2.0K; TX 1.4K; FL 1.3K; NY 926 |
+| CAND_ZIP | other | 7.8K | 128 | 91711 189; 91702 100; 10016 94; 30157 92 |
+| CYCLE | category | 2 | 0 | 2024 9.8K; 2026 8.1K |
+| _INGESTED_AT | audit | 1 | 0 | 1782768831819036 17.9K |
+| _SOURCE_RUN_ID | audit | 1 | 0 | 33d8f8b5-1d12-4749-a11f-a 17.9K |
+| _SRC_SHA256 | who | 1 | 0 | 0fabee74a41ccf92885c42ea6 17.9K |

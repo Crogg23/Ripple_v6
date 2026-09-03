@@ -1,0 +1,72 @@
+# FED_BLS_QCEW
+
+rows 3.62M  columns 41  scan 7.3s
+
+roles: amount 24, audit 2, category 5, other 10
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTAL_ANNUAL_WAGES | 3.62M | 0 | 0 | 864.56M | 10499.74B | 381820.60B |
+| TAXABLE_ANNUAL_WAGES | 3.62M | 0 | 0 | 169.51M | 2001.73B | 73226.57B |
+| ANNUAL_CONTRIBUTIONS | 3.62M | 0 | 0 | 2.83M | 34.81B | 1285.45B |
+| ANNUAL_AVG_WKLY_WAGE | 3.62M | 0 | 0 | 2.8K | 140.8K | 1.77B |
+| AVG_ANNUAL_PAY | 3.62M | 0 | 0 | 143.3K | 7.32M | 92.21B |
+| LQ_ANNUAL_AVG_ESTABS | 3.62M | 0 | 1.33 | 80.97 | 166.9K | 37.10M |
+
+## what
+
+OWN_CODE: 5 86%, 3 6%, 2 4%, 1 3%, 0 0%, 8 0%, 9 0%
+
+AGGLVL_CODE: 78 29%, 77 25%, 76 16%, 75 8%, 48 7%, 47 5%, 74 3%, 46 3%, 73 2%, 58 2%, 57 1%, 45 1%
+
+DISCLOSURE_CODE: N 100%
+
+LQ_DISCLOSURE_CODE: N 100%
+
+OTY_DISCLOSURE_CODE: N 100%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| AREA_FIPS | other | 4.5K | 0 | US000 9.8K; 34000 8.0K; 32000 7.8K; 33000 7.8K |
+| OWN_CODE | category | 7 | 0 | 5 3.12M; 3 227.2K; 2 149.2K; 1 121.3K |
+| INDUSTRY_CODE | other | 2.1K | 0 | 10 19.5K; 32599 8.9K; 812 8.8K; 561110 7.4K |
+| AGGLVL_CODE | category | 44 | 0 | 78 1.02M; 77 865.1K; 76 551.0K; 75 271.4K |
+| SIZE_CODE | other | 1 | 0 | 0 3.62M |
+| YEAR | other | 1 | 0 | 2022 3.62M |
+| QTR | other | 1 | 0 | A 3.62M |
+| DISCLOSURE_CODE | category | 2 | 1.61M | N 2.01M |
+| ANNUAL_AVG_ESTABS | other | 10.1K | 0 | 1 1.13M; 2 494.1K; 3 290.8K; 4 198.3K |
+| ANNUAL_AVG_EMPLVL | other | 33.9K | 0 | 0 2.03M; 1 20.9K; 3 20.0K; 5 19.7K |
+| TOTAL_ANNUAL_WAGES | amount | 853.6K | 0 | 0 2.02M; 1889018 2.3K; 39172755 2.3K; 1741355 2.3K |
+| TAXABLE_ANNUAL_WAGES | amount | 745.6K | 0 | 0 2.30M; 11459521 1.0K; 2252510 1.0K; 717329 1.0K |
+| ANNUAL_CONTRIBUTIONS | amount | 291.9K | 0 | 0 2.31M; 5470 1.8K; 232258 1.0K; 41099 1.0K |
+| ANNUAL_AVG_WKLY_WAGE | amount | 6.4K | 0 | 0 2.02M; 1123 5.8K; 965 4.9K; 944 4.3K |
+| AVG_ANNUAL_PAY | amount | 142.3K | 0 | 0 2.02M; 62149 3.3K; 90632 2.3K; 73544 2.3K |
+| LQ_DISCLOSURE_CODE | category | 2 | 1.60M | N 2.02M |
+| LQ_ANNUAL_AVG_ESTABS | amount | 22.0K | 0 | 0.00 36.2K; 1.00 25.5K; 0.74 18.6K; 0.80 18.6K |
+| LQ_ANNUAL_AVG_EMPLVL | amount | 12.9K | 0 | 0 2.02M; 1.00 16.0K; 0.00 15.1K; 0.38 9.4K |
+| LQ_TOTAL_ANNUAL_WAGES | amount | 14.1K | 0 | 0 2.02M; 1.00 14.7K; 0.00 12.8K; 0.16 9.8K |
+| LQ_TAXABLE_ANNUAL_WAGES | amount | 11.8K | 0 | 0 2.02M; 0.00 284.6K; 1.00 14.1K; 0.36 8.3K |
+| LQ_ANNUAL_CONTRIBUTIONS | amount | 12.6K | 0 | 0 2.02M; 0.00 290.4K; 1.00 14.8K; 0.11 9.1K |
+| LQ_ANNUAL_AVG_WKLY_WAGE | amount | 787 | 0 | 0 2.02M; 1.00 31.8K; 1.02 23.7K; 0.99 23.4K |
+| LQ_AVG_ANNUAL_PAY | amount | 783 | 0 | 0 2.02M; 1.00 31.8K; 1.02 23.6K; 0.99 23.4K |
+| OTY_DISCLOSURE_CODE | category | 2 | 1.16M | N 2.46M |
+| OTY_ANNUAL_AVG_ESTABS_CHG | other | 3.5K | 0 | 0 1.91M; 1 581.4K; -1 268.6K; 2 193.9K |
+| OTY_ANNUAL_AVG_ESTABS_PCT_CHG | amount | 2.0K | 0 | 0.0 1.88M; 100.0 566.6K; 50.0 59.7K; 33.3 47.0K |
+| OTY_ANNUAL_AVG_EMPLVL_CHG | other | 9.7K | 0 | 0 2.55M; 1 63.0K; -1 60.4K; 2 46.5K |
+| OTY_ANNUAL_AVG_EMPLVL_PCT_CHG | amount | 3.7K | 0 | 0 2.46M; 0.0 86.5K; 2.9 5.8K; 4.3 5.7K |
+| OTY_TOTAL_ANNUAL_WAGES_CHG | amount | 629.6K | 0 | 0 2.47M; -262850 1.6K; 1804121 1.6K; 527207 1.6K |
+| OTY_TOTAL_ANNUAL_WAGES_PCT_CHG | amount | 5.5K | 0 | 0 2.46M; 0.0 6.6K; 8.1 5.8K; 6.8 5.8K |
+| OTY_TAXABLE_ANNUAL_WAGES_CHG | amount | 495.7K | 0 | 0 2.62M; 1678816 762; 1125746 762; 1174840 762 |
+| OTY_TAXABLE_ANNUAL_WAGES_PCT_CHG | amount | 5.0K | 0 | 0 2.46M; 0.0 160.9K; 9.1 5.0K; 9.6 5.0K |
+| OTY_ANNUAL_CONTRIBUTIONS_CHG | amount | 185.7K | 0 | 0 2.62M; 57512 761; 46663 761; 49169 761 |
+| OTY_ANNUAL_CONTRIBUTIONS_PCT_CHG | amount | 8.4K | 0 | 0 2.46M; 0.0 160.7K; -8.1 4.3K; 7.7 3.8K |
+| OTY_ANNUAL_AVG_WKLY_WAGE_CHG | amount | 4.8K | 0 | 0 2.47M; 38 8.1K; 45 8.0K; 41 8.0K |
+| OTY_ANNUAL_AVG_WKLY_WAGE_PCT_CHG | amount | 2.9K | 0 | 0 2.46M; 0.0 8.6K; 4.9 7.8K; 6.2 7.8K |
+| OTY_AVG_ANNUAL_PAY_CHG | amount | 56.1K | 0 | 0 2.47M; 597 3.0K; 5015 2.4K; -446 2.4K |
+| OTY_AVG_ANNUAL_PAY_PCT_CHG | amount | 3.0K | 0 | 0 2.46M; 0.0 7.9K; 4.9 7.7K; 4.7 7.7K |
+| _INGESTED_AT | audit | 1 | 0 | 1783285434329068 3.62M |
+| _SOURCE_RUN_ID | audit | 1 | 0 | cab8799e-e142-452e-bae7-4 3.62M |
+| _SRC_SHA256 | other | 1 | 0 | 19e5dac181d5db37568ba5787 3.62M |

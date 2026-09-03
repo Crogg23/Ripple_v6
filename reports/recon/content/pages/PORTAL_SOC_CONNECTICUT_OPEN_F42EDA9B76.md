@@ -1,0 +1,62 @@
+# PORTAL_SOC_CONNECTICUT_OPEN_F42EDA9B76
+
+rows 20  columns 14  scan 2.4s
+
+roles: audit 2, category 11, date 1, who 1
+
+## when
+
+INGESTED_AT
+  2026        20  ##############################
+
+## who
+
+SRC_SHA256 by rows
+        20  649718f7c50b6e7cc4618240a7359e8da3fc8a867d89c59403279bd6e53b2b00
+
+## who x when
+
+SRC_SHA256 by INGESTED_AT  LOAD STAMP, not an event date
+  649718f7c50b6e7cc4618240a7359e8da3fc8a86  2026:20
+
+## what
+
+NAICS_CODE_AND_INDUSTRY_GROUP: Total Corporation Business Tax 8%, 999999 Not Yet Assigned 8%, 81-92 Other Services 8%, 72 Accomodation and Food Servi 8%, 71 Arts, Entertainment, and Re 8%, 61-62 Education, Health Care a 8%, 56 Administrative and Support  8%, 55 Management of Companies and 8%, 54 Professional, Scientific an 8%, 53 Real Estate and Rental and  8%, 52 Finance and Insurance 8%, 51 Information 8%
+
+DIGITAL_ANIMATION: 0 80%, 9937805 5%, 9050499 5%, 287230 5%, 600076 5%
+
+ELECTRONIC_DATA_PROCESSING: 24885537 8%, 666036 8%, 107747 8%, 28035 8%, 114333 8%, 911781 8%, 669469 8%, 1250374 8%, 537196 8%, 63100 8%, 11371644 8%, 2641488 8%
+
+FILM_PRODUCTION: 0 45%, 61853280 5%, 320000 5%, 6424235 5%, 8166787 5%, 886531 5%, 37252950 5%, 5671510 5%, 393773 5%, 745015 5%, 871014 5%, 1121465 5%
+
+FILM_PRODUCTION_INFRASTRUCTURE: 0 65%, 25542458 5%, 1643844 5%, 6306560 5%, 350000 5%, 13481791 5%, 3342280 5%, 417983 5%
+
+FIXED_CAPITAL: 46141931 8%, 2744745 8%, 226073 8%, 78558 8%, 426751 8%, 442697 8%, 529334 8%, 6463733 8%, 2460645 8%, 78685 8%, 678400 8%, 3299582 8%
+
+JOB_EXPANSION: 0 55%, 4803728 5%, 102000 5%, 10800 5%, 95800 5%, 23716 5%, 342960 5%, 687339 5%, 3534504 5%, 6609 5%
+
+RESEARCH_DEVELOPMENT: 0 31%, 8329083 6%, 325200 6%, 162721 6%, 207105 6%, 60112 6%, 315490 6%, 345945 6%, 79 6%, 5775 6%, 97632 6%, 2420 6%
+
+RESEARCH_EXPERIMENTAL: 0 15%, 24148881 8%, 434393 8%, 80730 8%, 26179 8%, 328147 8%, 597732 8%, 2372265 8%, 2509499 8%, 35632 8%, 204132 8%, 1531001 8%
+
+URBAN_INDUSTRIAL_SITE_REINVESTMENT: 0 55%, 35556221 5%, 900000 5%, 23339494 5%, 70558 5%, 4385381 5%, 1425000 5%, 591735 5%, 703488 5%, 4140565 5%
+
+NONE: nan 100%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| NAICS_CODE_AND_INDUSTRY_GROUP | category | 20 | 0 | Total Corporation Busines 1; 999999 Not Yet Assigned 1; 81-92 Other Services 1; 72 Accomodation and Food  1 |
+| DIGITAL_ANIMATION | category | 5 | 0 | 0 16; 9937805 1; 9050499 1; 287230 1 |
+| ELECTRONIC_DATA_PROCESSING | category | 20 | 0 | 24885537 1; 666036 1; 107747 1; 28035 1 |
+| FILM_PRODUCTION | category | 12 | 0 | 0 9; 61853280 1; 320000 1; 6424235 1 |
+| FILM_PRODUCTION_INFRASTRUCTURE | category | 8 | 0 | 0 13; 25542458 1; 1643844 1; 6306560 1 |
+| FIXED_CAPITAL | category | 20 | 0 | 46141931 1; 2744745 1; 226073 1; 78558 1 |
+| JOB_EXPANSION | category | 10 | 0 | 0 11; 4803728 1; 102000 1; 10800 1 |
+| RESEARCH_DEVELOPMENT | category | 16 | 0 | 0 5; 8329083 1; 325200 1; 162721 1 |
+| RESEARCH_EXPERIMENTAL | category | 19 | 0 | 0 2; 24148881 1; 434393 1; 80730 1 |
+| URBAN_INDUSTRIAL_SITE_REINVESTMENT | category | 10 | 0 | 0 11; 35556221 1; 900000 1; 23339494 1 |
+| NONE | category | 2 | 1 | nan 19 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:48:35.95841 20 |
+| SOURCE_RUN_ID | audit | 1 | 0 | c77b3ed1-0bda-4341-a530-8 20 |
+| SRC_SHA256 | who | 1 | 0 | 649718f7c50b6e7cc4618240a 20 |

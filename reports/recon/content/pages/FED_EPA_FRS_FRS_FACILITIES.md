@@ -1,0 +1,170 @@
+# FED_EPA_FRS_FRS_FACILITIES
+
+rows 3.28M  columns 13  scan 5.0s
+
+roles: amount 2, audit 2, category 1, id 1, other 3, state 1, who 3
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE_MEASURE | 2.65M | -14.36 | 37.60 | 47.77 | 71.58 | 98.64M |
+| LONGITUDE_MEASURE | 2.65M | -179 | -90.83 | -70.96 | 179.26 | -254.45M |
+
+## who
+
+FAC_NAME by rows
+     34.8K  RESIDENCE
+     14.3K  CON EDISON
+      9.9K  UNKNOWN
+      2.0K  SUNOCO SERVICE STATION
+      1.5K  PACIFIC BELL
+      1.4K  MI DEPT/TRANSPORTATION
+      1.0K  NEW CINGULAR WIRELESS PCS LLC
+       844  MI DEPT/STATE POLICE
+       804  PENSKE TRUCK LEASING CO LP
+       781  SHELL SERVICE STATION
+       776  DOLLAR GENERAL
+       640  LA DOTD
+       623  MI DEPT/NATURAL RESOURCES AND ENVIRONMENT
+       600  SHELL OIL CO
+       523  ASPEN DENTAL
+       503  AT&T MOBILITY
+       481  CHEVRON USA INC
+       476  EXXON MOBIL CORPORATION
+       460  BANK OF AMERICA
+       459  STAR ENTERPRISE
+
+FAC_NAME by dollars
+       1.21M    34.8K rows  RESIDENCE
+      552.8K    14.3K rows  CON EDISON
+       95.0K     9.9K rows  UNKNOWN
+       76.9K     2.0K rows  SUNOCO SERVICE STATION
+       49.6K     1.5K rows  PACIFIC BELL
+       34.5K     1.0K rows  NEW CINGULAR WIRELESS PCS LLC
+       34.0K     1.4K rows  MI DEPT/TRANSPORTATION
+       32.4K      844 rows  MI DEPT/STATE POLICE
+       29.9K      804 rows  PENSKE TRUCK LEASING CO LP
+       27.0K      781 rows  SHELL SERVICE STATION
+       25.6K      776 rows  DOLLAR GENERAL
+       23.5K      623 rows  MI DEPT/NATURAL RESOURCES AND ENVIRONMENT
+       21.3K      600 rows  SHELL OIL CO
+       20.2K      523 rows  ASPEN DENTAL
+       17.7K      445 rows  VALVOLINE INSTANT OIL CHANGE
+       16.9K      503 rows  AT&T MOBILITY
+       16.8K      392 rows  FAMILY DOLLAR STORES
+       16.6K      407 rows  AMOCO OIL CO
+       16.0K      460 rows  BANK OF AMERICA
+       15.8K      372 rows  SPEEDWAY LLC
+
+FAC_CITY by rows
+     53.2K  UNKNOWN
+     30.4K  SAN DIEGO
+     29.3K  LOS ANGELES
+     25.5K  NEW YORK
+     19.9K  BROOKLYN
+     17.4K  SAN FRANCISCO
+     17.3K  SAN JOSE
+     15.1K  HOUSTON
+     10.4K  CHICAGO
+      9.7K  SACRAMENTO
+      9.4K  OAKLAND
+      9.3K  JACKSONVILLE
+      9.2K  FRESNO
+      9.0K  DALLAS
+      8.7K  SAN ANTONIO
+      8.7K  ORLANDO
+      7.6K  BAKERSFIELD
+      7.3K  LONG BEACH
+      7.2K  ANAHEIM
+      7.2K  DENVER
+
+FAC_CITY by dollars
+      981.0K    25.5K rows  NEW YORK
+      972.1K    29.3K rows  LOS ANGELES
+      960.9K    30.4K rows  SAN DIEGO
+      781.3K    19.9K rows  BROOKLYN
+      637.1K    17.4K rows  SAN FRANCISCO
+      623.8K    17.3K rows  SAN JOSE
+      578.1K    53.2K rows  UNKNOWN
+      435.8K    15.1K rows  HOUSTON
+      424.6K    10.4K rows  CHICAGO
+      358.0K     9.7K rows  SACRAMENTO
+      344.8K     9.4K rows  OAKLAND
+      323.4K     9.2K rows  FRESNO
+      293.3K     9.0K rows  DALLAS
+      276.4K     7.1K rows  BRONX
+      275.8K     7.2K rows  DENVER
+      275.8K     9.3K rows  JACKSONVILLE
+      251.1K     7.6K rows  BAKERSFIELD
+      248.5K     8.7K rows  SAN ANTONIO
+      244.7K     6.5K rows  WASHINGTON
+      243.0K     6.4K rows  SPRINGFIELD
+
+FAC_COUNTY by rows
+    157.3K  LOS ANGELES
+     85.8K  ORANGE
+     62.0K  SAN DIEGO
+     36.6K  SANTA CLARA
+     33.5K  ALAMEDA
+     27.7K  SAN BERNARDINO
+     27.3K  JEFFERSON
+     25.5K  NEW YORK
+     23.9K  RIVERSIDE
+     23.2K  COOK
+     21.5K  KINGS
+     20.7K  CONTRA COSTA
+     18.2K  SAN MATEO
+     18.1K  MONTGOMERY
+     18.0K  WASHINGTON
+     17.6K  MIDDLESEX
+     17.2K  SAN FRANCISCO
+     17.0K  QUEENS
+     16.8K  VENTURA
+     15.9K  WELD
+
+FAC_COUNTY by dollars
+       5.23M   157.3K rows  LOS ANGELES
+       2.76M    85.8K rows  ORANGE
+       1.99M    62.0K rows  SAN DIEGO
+       1.34M    36.6K rows  SANTA CLARA
+       1.23M    33.5K rows  ALAMEDA
+      985.0K    25.5K rows  NEW YORK
+      914.2K    23.2K rows  COOK
+      905.5K    27.3K rows  JEFFERSON
+      884.7K    27.7K rows  SAN BERNARDINO
+      835.1K    21.5K rows  KINGS
+      764.1K    23.9K rows  RIVERSIDE
+      762.4K    20.7K rows  CONTRA COSTA
+      689.2K    17.6K rows  MIDDLESEX
+      664.8K    18.2K rows  SAN MATEO
+      655.2K    17.0K rows  QUEENS
+      631.2K    17.2K rows  SAN FRANCISCO
+      628.2K    18.0K rows  WASHINGTON
+      617.8K    18.1K rows  MONTGOMERY
+      581.9K    15.8K rows  SACRAMENTO
+      560.4K    16.8K rows  VENTURA
+
+## where
+
+FAC_STATE: CA 676.5K, TX 177.5K, GA 172.9K, FL 166.3K, NY 159.4K, IL 111.1K, PA 99.7K, CO 86.3K, MN 76.9K, OH 75.1K, LA 74.1K, NJ 74.0K
+
+## what
+
+FAC_EPA_REGION: 04 22%, 05 16%, 06 12%, 09 11%, 03 8%, 02 8%, 08 7%, 07 5%, 01 5%, 10 4%, 00 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| FAC_NAME | who | 2.78M | 43 | RESIDENCE 39.1K; CON EDISON 15.3K; SRM URBAN 10.6K; UNKNOWN 9.5K |
+| FAC_STREET | other | 2.46M | 391.5K | UNKNOWN 76.6K; LAT/LONG_USED 9.2K; OFF-SHORE PLATFORM 7.8K; 16027 HIDDEN RIDGE LN 4.0K |
+| FAC_CITY | who | 50.6K | 380.0K | UNKNOWN 53.2K; SAN DIEGO 32.5K; LOS ANGELES 31.2K; NEW YORK 26.6K |
+| FAC_STATE | state | 88 | 61.5K | CA 676.5K; TX 177.5K; GA 172.9K; FL 166.3K |
+| FAC_ZIP | other | 43.1K | 371.5K | 00000 102.4K; 70000 11.7K; 84078 8.5K; 84008 7.8K |
+| REGISTRY_ID | id | 3.25M | 0 | 110072031174 2.3K; 110072031167 2.3K; 110072031160 2.3K; 110072030746 2.3K |
+| FAC_COUNTY | who | 4.3K | 405.8K | LOS ANGELES 157.4K; ORANGE 85.8K; SAN DIEGO 62.7K; SANTA CLARA 37.8K |
+| FAC_EPA_REGION | category | 11 | 613.3K | 04 591.2K; 05 436.0K; 06 331.3K; 09 305.6K |
+| LATITUDE_MEASURE | amount | 1.82M | 626.6K | 34.429768 3.8K; 33.885454 3.8K; 32.723778 3.8K; 39.082888 3.1K |
+| LONGITUDE_MEASURE | amount | 1.99M | 626.6K | -118.070359 3.8K; -117.15946 3.8K; -90.553413 3.1K; -117.708813 2.0K |
+| _INGESTED_AT | audit | 1 | 0 | 1785965830970473 3.28M |
+| _SOURCE_RUN_ID | audit | 1 | 0 | 2b998581-72e7-4452-9522-8 3.28M |
+| _SRC_SHA256 | other | 1 | 0 | 5b4b9e46f401f60cd0cc90d7a 3.28M |

@@ -1,0 +1,47 @@
+# FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAM_SUBPARTS
+
+rows 191.0K  columns 8  scan 1.9s
+
+roles: audit 2, category 2, other 3, who 1
+
+## who
+
+AIR_PROGRAM_SUBPART_DESC by rows
+     28.1K  MACT Part 63 - Subpart ZZZZ - STATIONARY RECIPROCATING INTERNAL COMBUS
+     18.3K  NSPS Part 60 - Subpart JJJJ - STATIONARY SPARK IGNITION INTERNAL COMBU
+     12.5K  NSPS Part 60 - Subpart IIII - STATIONARY COMPRESSION IGNITION INTERNAL
+      8.8K  MACT Part 63 - Subpart M - DRY CLEANERS PERCHLOROETHYLENE
+      7.8K  NSPS Part 60 - Subpart A - GENERAL PROVISIONS
+      7.0K  NSPS Part 60 - Subpart Dc - SMALL INDUS-COMMER-INSTITUTL STEAM GENERAT
+      6.8K  NSPS Part 60 - Subpart OOO - NONMETALLIC MINERAL PROCESSING PLANTS
+      6.4K  40 CFR Part 63 Area Sources - Subpart ZZZZ - STATIONARY RECIPROCATING 
+      5.3K  NSPS Part 60 - Subpart OOOO - CRUDE OIL/NATURAL GAS PRODUCTION/TRANSMI
+      5.1K  MACT Part 63 - Subpart A - GENERAL PROVISIONS
+      4.8K  NSPS Part 60 - Subpart OOOOa - CRUDE OIL/NATURAL GAS PRODUCTION/TRANSM
+      4.0K  MACT Part 63 - Subpart HH - OIL AND NATURAL GAS PRODUCTION FACILITIES
+      3.3K  NSPS Part 60 - Subpart Kb - VOLATILE LIQUID STORAGE VESSEL CONSTRUCT, 
+      3.2K  NSPS Part 60 - Subpart I - HOT MIX ASPHALT FACILITIES
+      3.2K  MACT Part 63 - Subpart HHHHHH - PAINT STRIP & MISC SURFACE COATING OPE
+      3.2K  NSPS Part 60 - Subpart LLL - SO2 EMISS, ONSHORE NATURAL GAS PROCESSING
+      3.1K  NSPS Part 60 - Subpart KKK - EQUIPT LEAK VOC ONSHORE NATURAL GAS PROC 
+      2.8K  MACT Part 63 - Subpart DDDDD - MAJOR SOURCES: INDUSTRIAL/COMMERCIAL/IN
+      2.4K  40 CFR Part 63 Area Sources - Subpart HH - OIL AND NATURAL GAS PRODUCT
+      2.4K  40 CFR Part 63 Area Sources - Subpart A - GENERAL PROVISIONS
+
+## what
+
+PROGRAM_CODE: CAANSPS 47%, CAAMACT 37%, CAAGACTM 11%, CAANESH 3%, CAANSPSM 2%, CAAGHG 0%, CAASFP 0%, CAASIP 0%
+
+PROGRAM_DESC: New Source Performance Standar 47%, MACT Standards (40 CFR Part 63 37%, 40 CFR Part 63 Area Sources 11%, National Emission Standards fo 3%, New Source Performance Standar 2%, The Mandatory Greenhouse Gas R 0%, Part 62 - State and Federal Pl 0%, State Implementation Plan for  0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| PGM_SYS_ID | other | 89.7K | 0 | MN0000002702500061 960; IALIN0001911301432 959; LA0000002203101897 959; NC0000003704101292 958 |
+| PROGRAM_CODE | category | 8 | 0 | CAANSPS 90.6K; CAAMACT 70.6K; CAAGACTM 20.4K; CAANESH 5.3K |
+| PROGRAM_DESC | category | 8 | 0 | New Source Performance St 90.6K; MACT Standards (40 CFR Pa 70.6K; 40 CFR Part 63 Area Sourc 20.4K; National Emission Standar 5.3K |
+| AIR_PROGRAM_SUBPART_CODE | other | 395 | 0 | CAAMACTZZZZ 28.1K; CAANSPSJJJJ 18.3K; CAANSPSIIII 12.5K; CAAMACTM 8.8K |
+| AIR_PROGRAM_SUBPART_DESC | who | 400 | 0 | MACT Part 63 - Subpart ZZ 28.1K; NSPS Part 60 - Subpart JJ 18.3K; NSPS Part 60 - Subpart II 12.5K; MACT Part 63 - Subpart M  8.8K |
+| _INGESTED_AT | audit | 1 | 0 | 1785966143017381 191.0K |
+| _SOURCE_RUN_ID | audit | 1 | 0 | bfdcc1e5-eaf7-455c-9b6b-a 191.0K |
+| _SRC_SHA256 | other | 1 | 0 | 64e91451518a6a524d98bb297 191.0K |

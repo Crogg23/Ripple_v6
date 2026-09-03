@@ -1,0 +1,610 @@
+# PORTAL_CKA_CALIFORNIA_OPEN_E87D6ED57D
+
+rows 3.2K  columns 143  scan 6.9s
+
+roles: amount 22, audit 2, category 104, date 3, id 3, other 5, who 5
+
+## when
+
+FAILING_START_DATE
+  2017       110  ##############################
+  2018        46  #############
+  2019        16  ####
+  2020         8  ##
+  2021        34  #########
+  2022        28  ########
+  2023        23  ######
+  2024        52  ##############
+  2025        59  ################
+  2026        50  ##############
+
+CREATED_DATE
+  2026      3.2K  ##############################
+
+INGESTED_AT
+  2026      3.2K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| LATITUDE_MEASURE | 3.2K | 0 | 37.10 | 41.58 | 41.97 | 118.3K |
+| LONGITUDE_MEASURE | 3.2K | -124.29 | -120.69 | -115.52 | 0 | -384.9K |
+| CALENVIRO_SCREEN_SCORE | 3.2K | 1.37 | 21.34 | 60.67 | 70.42 | 76.7K |
+| TOTAL_WEIGHTED_RISK_SCORE_BEFORE_DIVIDING_BY_CATEGORY_COUNT | 3.0K | 0 | 2.33 | 8 | 10.01 | 8.0K |
+| WEIGHTED_WATER_QUALITY_SCORE | 3.0K | 0 | 0.25 | 4.50 | 6 | 2.6K |
+| WATER_QUALITY_SCORE | 3.0K | 0 | 0.08 | 1.50 | 2 | 849.76 |
+
+## who
+
+SYSTEM_NAME by rows
+         2  SPRING VALLEY SCHOOL
+         1  RIVER PINES PUD
+         1  KEEFER CREEK ESTATES
+         1  ALAMEDA COUNTY WATER DISTRICT
+         1  FARRAR PARK PROPERTY OWNERS
+         1  CCWD - EBBETTS PASS
+         1  VINE & BRANCH FELLOWSHIP
+         1  CALAVERAS PUD
+         1  BIG ROCK C.S.D.
+         1  REDWOOD PARK C.S.D.
+         1  FIRST MACE MEADOWS UNIT NO. 2
+         1  WEST PARK PROPERTIES
+         1  PINE GROVE MOBILE HOME PARK
+         1  CAMINO MOBILEHOME
+         1  CCWD - WALLACE
+         1  VOLCANO COMMUNITY SERVICE DIST
+         1  LAS PALMAS MOBILE HOME PARK
+         1  NORD COUNTRY SCHOOL
+         1  HOPE FOUNDATION/MORIAH HEIGHTS
+         1  FEATHER RIVER SCHOOL
+
+SYSTEM_NAME by dollars
+       10.01        1 rows  OLD RIVER MUTUAL WATER COMPANY
+        9.92        1 rows  TOOLEVILLE MUTUAL NON PROFIT WATER ASSN
+        9.84        1 rows  VALENZUELA WATER SYSTEM
+        9.59        1 rows  EAST WILSON ROAD WATER COMPANY
+        9.33        1 rows  V & P TRAILER COURT WATER SYSTEM
+        9.33        1 rows  CARVER TRACT MUTUAL WATER COMP
+        9.25        1 rows  SOUTH KERN MUTUAL WATER COMPANY
+        9.08        1 rows  RAMONA WATER COMPANY
+           9        1 rows  WILSON ROAD WATER COMMUNITY
+           9        1 rows  SIX ACRES WATER COMPANY
+        8.92        1 rows  R.S. MUTUAL WATER COMPANY
+        8.84        1 rows  RIO BRAVO GREELEY SCHOOL WATER SYSTEM
+        8.84        1 rows  FREMONT ONE
+        8.83        1 rows  ENCINAL RD WS #01
+        8.76        1 rows  PSMCSD - SPRINGFIELD WS
+        8.66        1 rows  BAR ""H"" MWC
+        8.50        1 rows  CORDA RD WS
+        8.34        1 rows  YOKOHL MUTUAL WATER CO
+        8.33        1 rows  ATHAL MUTUAL WATER SYSTEM
+        8.28        1 rows  LSID - TONYVILLE
+
+PL_ADDRESS_CITY_NAME by rows
+        68  SALINAS
+        52  SANTA ROSA
+        51  BAKERSFIELD
+        50  STOCKTON
+        36  FRESNO
+        33  RED BLUFF
+        30  LANCASTER
+        30  BISHOP
+        29  SACRAMENTO
+        24  HOLLISTER
+        24  MADERA
+        23  MODESTO
+        22  REDDING
+        21  LOS GATOS
+        20  SONORA
+        20  WATSONVILLE
+        20  OXNARD
+        19  SAN LUIS OBISPO
+        18  PORTERVILLE
+        18  SEBASTOPOL
+
+PL_ADDRESS_CITY_NAME by dollars
+      211.25       51 rows  BAKERSFIELD
+      186.95       50 rows  STOCKTON
+      176.17       68 rows  SALINAS
+      130.18       36 rows  FRESNO
+      118.11       52 rows  SANTA ROSA
+      113.27       30 rows  LANCASTER
+       91.61       33 rows  RED BLUFF
+       81.23       23 rows  MODESTO
+       80.82       24 rows  MADERA
+       73.15       24 rows  HOLLISTER
+       70.52       20 rows  WATSONVILLE
+       69.23       18 rows  PORTERVILLE
+       58.77       16 rows  ROYAL OAKS
+       56.31       29 rows  SACRAMENTO
+       55.55       20 rows  OXNARD
+       51.44       15 rows  OROVILLE
+       47.50       30 rows  BISHOP
+       46.48       15 rows  LUCERNE VALLEY
+       45.13       18 rows  MORGAN HILL
+       44.90       14 rows  SANTA MARIA
+
+REGULATING_AGENCY by rows
+       156  DISTRICT 18 - SONOMA
+       130  DISTRICT 06 - SANTA BARBARA
+       128  DISTRICT 01 - KLAMATH
+       127  DISTRICT 19 - TEHACHAPI
+       121  DISTRICT 23 - FRESNO
+       115  DISTRICT 17 - SANTA CLARA
+       103  DISTRICT 09 - SACRAMENTO
+        98  DISTRICT 03 - MENDOCINO
+        97  DISTRICT 12 - VISALIA
+        95  DISTRICT 24 - TULARE
+        91  LPA69 - SAN JOAQUIN COUNTY
+        85  DISTRICT 10 - STOCKTON
+        81  DISTRICT 05 - MONTEREY
+        80  DISTRICT 29 - MOSS LANDING
+        77  DISTRICT 11 - MERCED
+        75  DISTRICT 21 - VALLEY
+        74  DISTRICT 13 - SAN BERNARDINO
+        69  DISTRICT 02 - LASSEN
+        66  LPA66 - SAN BERNARDINO COUNTY
+        65  DISTRICT 27 - MOJAVE
+
+REGULATING_AGENCY by dollars
+      459.34      127 rows  DISTRICT 19 - TEHACHAPI
+      422.22      121 rows  DISTRICT 23 - FRESNO
+      388.32       97 rows  DISTRICT 12 - VISALIA
+      348.58       95 rows  DISTRICT 24 - TULARE
+      330.06      156 rows  DISTRICT 18 - SONOMA
+      311.42      128 rows  DISTRICT 01 - KLAMATH
+      309.36       91 rows  LPA69 - SAN JOAQUIN COUNTY
+      240.02       80 rows  DISTRICT 29 - MOSS LANDING
+      225.46       77 rows  DISTRICT 11 - MERCED
+      224.49      130 rows  DISTRICT 06 - SANTA BARBARA
+      221.30       98 rows  DISTRICT 03 - MENDOCINO
+      205.51       62 rows  LPA50 - MADERA COUNTY
+      201.62       66 rows  LPA66 - SAN BERNARDINO COUNTY
+      198.39       85 rows  DISTRICT 10 - STOCKTON
+      183.13      115 rows  DISTRICT 17 - SANTA CLARA
+      183.05       81 rows  DISTRICT 05 - MONTEREY
+      182.78       50 rows  LPA80 - STANISLAUS COUNTY
+      176.40       54 rows  DISTRICT 26 - IMPERIAL
+      172.86       63 rows  DISTRICT 30 - BIG SUR
+      172.33       75 rows  DISTRICT 21 - VALLEY
+
+COUNTY by rows
+       203  LOS ANGELES
+       178  KERN
+       169  MONTEREY
+       156  SONOMA
+       152  SAN BERNARDINO
+       131  FRESNO
+       116  SAN JOAQUIN
+       114  TULARE
+        97  RIVERSIDE
+        88  SAN DIEGO
+        86  MADERA
+        80  SAN LUIS OBISPO
+        79  SANTA CLARA
+        76  STANISLAUS
+        73  SACRAMENTO
+        73  VENTURA
+        72  SHASTA
+        66  SANTA BARBARA
+        64  TEHAMA
+        58  SANTA CRUZ
+
+COUNTY by dollars
+      689.19      178 rows  KERN
+      464.32      169 rows  MONTEREY
+      442.94      131 rows  FRESNO
+      426.35      114 rows  TULARE
+      420.56      203 rows  LOS ANGELES
+      367.01      116 rows  SAN JOAQUIN
+      365.31      152 rows  SAN BERNARDINO
+      330.06      156 rows  SONOMA
+      264.10       86 rows  MADERA
+      234.95       76 rows  STANISLAUS
+      232.86       97 rows  RIVERSIDE
+      205.46       88 rows  SAN DIEGO
+      190.31       80 rows  SAN LUIS OBISPO
+      178.58       73 rows  SACRAMENTO
+      165.36       64 rows  TEHAMA
+      146.44       58 rows  SANTA CRUZ
+      143.02       73 rows  VENTURA
+      142.08       39 rows  MERCED
+      138.55       72 rows  SHASTA
+      131.39       66 rows  SANTA BARBARA
+
+## who x when
+
+SYSTEM_NAME by FAILING_START_DATE, dollars = TOTAL_WEIGHTED_RISK_SCORE_BEFORE_DIVIDING_BY_CATEGORY_COUNT
+  CARVER TRACT MUTUAL WATER COMP            2026:9.33
+  EAST WILSON ROAD WATER COMPANY            2017:9.59
+  FEATHER RIVER SCHOOL                      2019:5.66
+  OLD RIVER MUTUAL WATER COMPANY            2017:10.01
+  RAMONA WATER COMPANY                      2017:9.08
+  SIX ACRES WATER COMPANY                   2017:9
+  SOUTH KERN MUTUAL WATER COMPANY           2017:9.25
+  SPRING VALLEY SCHOOL                      2025:5
+  TOOLEVILLE MUTUAL NON PROFIT WATER ASSN   2024:9.92
+  V & P TRAILER COURT WATER SYSTEM          2025:9.33
+  VALENZUELA WATER SYSTEM                   2018:9.84
+  WILSON ROAD WATER COMMUNITY               2017:9
+
+PL_ADDRESS_CITY_NAME by FAILING_START_DATE, dollars = TOTAL_WEIGHTED_RISK_SCORE_BEFORE_DIVIDING_BY_CATEGORY_COUNT
+  BAKERSFIELD                               2017:52.95 2018:36.59 2019:11.01 2026:8.84
+  BISHOP                                    2017:5.67 2024:1.75
+  FRESNO                                    2017:5 2018:12.75 2020:6.67 2022:4.20 2025:5
+  HOLLISTER                                 2018:9.84 2023:4.83 2024:6.08 2025:6.50
+  LANCASTER                                 2017:26.01 2021:5.16 2025:6.83 2026:2
+  LOS GATOS                                 2018:3.75 2025:4.50 2026:1.58
+  LUCERNE VALLEY                            2021:15.07 2025:4.84
+  MADERA                                    2017:5.41 2019:12.67 2020:2
+  MODESTO                                   2017:15.25 2018:6 2019:5.17 2024:16.01
+  MORGAN HILL                               2017:1.17 2023:5.67 2024:3.83 2025:5.33 2026:4.33
+  OROVILLE                                  2019:5.66 2023:7.83 2025:8.16
+  OXNARD                                    2017:3.92 2018:4.63 2021:4.08 2022:3.91 2024:7.68
+  PORTERVILLE                               2017:5.72 2019:7.34 2022:7.34
+  ROYAL OAKS                                2017:8.76 2022:6 2025:5.17
+  SALINAS                                   2017:18 2021:3.25 2022:7.91 2023:4.08 2024:5.67
+  SAN LUIS OBISPO                           2021:7.17
+  SANTA MARIA                               2021:8 2024:7.42 2025:9.58 2026:3.83
+  SANTA ROSA                                2019:10.71 2021:8.24 2022:4.16 2025:2.75 2026:9.66
+  SEBASTOPOL                                2026:3.91
+  SONORA                                    2023:1.92
+  STOCKTON                                  2017:13.34 2021:8.84 2024:5.33 2025:9.33 2026:5.34
+  WATSONVILLE                               2024:6.34 2025:5.25
+
+## what
+
+FEDERAL_CLASSIFICATION_TYPE: COMMUNITY 88%, NON-TRANSIENT NON-COMMUNITY 12%, TRANSIENT NON-COMMUNITY 0%
+
+OWNER_TYPE: PRIVATE 56%, LOCAL 41%, STATE GOVERNMENT 1%, FEDERAL GOVERNMENT 1%, MIXED (PUBLIC/PRIVATE) 0%
+
+SERVICE_AREA_ECONOMIC_STATUS: SDAC 37%, Non-DAC 33%, DAC 29%, Missing 0%
+
+RISK_ASSESSMENT_RESULT: Not At-Risk 49%, At-Risk 30%, Potentially At-Risk 15%, Not Assessed 6%
+
+CURRENT_FAILING: Not Failing 87%, Failing 13%
+
+FINAL_SAFER_STATUS: Not At-Risk 47%, At-Risk 20%, Potentially At-Risk 14%, Failing 13%, Not Assessed 6%
+
+PRIMARY_MCL_VIOLATION: NO 92%, YES 8%
+
+PRIMARY_ANALYTES: N/A 93%, ARSENIC 2%, NITRATE 2%, 1,2,3-TRICHLOROPROPANE 1%, TOTAL HALOACETIC ACIDS (HAA5); 0%, 1,2,3-TRICHLOROPROPANE; NITRAT 0%, COMBINED URANIUM 0%, FLUORIDE 0%, TOTAL HALOACETIC ACIDS (HAA5) 0%, TTHM 0%, COMBINED URANIUM; NITRATE 0%, 1,2,3-TRICHLOROPROPANE; ARSENI 0%
+
+SECONDARY_MCL_VIOLATION: NO 97%, YES 3%
+
+SECONDARY_ANALYTES: N/A 97%, MANGANESE 1%, IRON; MANGANESE 1%, IRON 0%, ALUMINUM; IRON; MANGANESE 0%, CONDUCTIVITY @ 25 C UMHOS/CM;  0%, IRON; MANGANESE; TURBIDITY 0%, CHLORIDE; CONDUCTIVITY @ 25 C  0%, ARSENIC; MANGANESE 0%, CONDUCTIVITY @ 25 C UMHOS/CM;  0%
+
+E_COLI_VIOLATION: NO 100%, YES 0%
+
+E_COLI_ANALYTES: N/A 100%, E. COLI 0%, REVISED TOTAL COLIFORM RULE (R 0%
+
+TREATMENT_TECHNIQUE_VIOLATION: NO 98%, YES 2%
+
+TT_ANALYTES: N/A 99%, SWTR 0%, TURBIDITY 0%, GROUNDWATER RULE 0%, LT2ESWTR 0%, ARSENIC 0%, LT2ESWTR; SWTR 0%, CHLORINE 0%, FAILURE TO CONDUCT LEVEL 1 ASS 0%, CARBON, TOTAL; TURBIDITY 0%, IESWTR 0%, GROUNDWATER RULE; SWTR 0%
+
+MONITORING_AND_REPORTING_VIOLATION: NO 98%, YES 2%
+
+MONITORING_AND_REPORTING_ANALYTES: N/A 99%, TOTAL HALOACETIC ACIDS (HAA5); 0%, REVISED TOTAL COLIFORM RULE (R 0%, REVISED TOTAL COLIFORM RULE (R 0%, E. COLI; REVISED TOTAL COLIFOR 0%, LEAD & COPPER RULE 0%, 1,2-DIBROMO-3-CHLOROPROPANE; 2 0%, 1,2,3-TRICHLOROPROPANE; LEAD & 0%, ARSENIC; NITRATE 0%, MANGANESE 0%, COMBINED URANIUM; NITRATE 0%, COMBINED URANIUM; LEAD & COPPE 0%
+
+SOURCE_CAPACITY_VIOLATION: NO 98%, YES 2%
+
+SOURCE_CAPACITY_ANALYTES: N/A 98%, CCR ?64554 ? SRC CAPACITY 1%, CCR ?64602 ? WATER OUTAGE (DRO 0%, CCR ?64602 ? WATER OUTAGE (OTH 0%, CCR ?64554 ? SRC CAPACITY; CCR 0%, CCR ?64554 ? SRC CAPACITY (CUR 0%, CCR ?64554 ? SRC CAPACITY; CCR 0%, CCR ?64554 ? SRC CAPACITY (CUR 0%
+
+WATER_QUALITY_RISK_LEVEL: LOW 40%, HIGH 30%, MEDIUM 20%, Not Assessed 10%
+
+ASSESSIBILITY_RISK_LEVEL: HIGH 45%, LOW 35%, MEDIUM 13%, Not Assessed 7%
+
+AFFORDABILITY_RISK_LEVEL: LOW 36%, HIGH 29%, MEDIUM 26%, Not Assessed 9%
+
+TMF_CAPACITY_RISK_LEVEL: LOW 66%, MEDIUM 17%, Not Assessed 10%, HIGH 8%
+
+HISTORY_OF_E_COLI_PRESENCE_RISK_LEVEL: Not Assessed 65%, HIGH 35%
+
+HISTORY_OF_E_COLI_PRESENCE_THRESHOLD_MET: No history of E. coli presence 92%, Not Assessed 6%, Yes history of E. coli presenc 3%
+
+HISTORY_OF_E_COLI_PRESENCE_RAW_SCORE: 0 92%, Not Assessed 6%, 1 3%
+
+HISTORY_OF_E_COLI_PRESENCE_WEIGHTED_SCORE: 0 92%, Not Assessed 6%, 3 3%
+
+INCREASING_PRESENCE_OF_WATER_QUALITY_TRENDS_TOWARD_MCL_RISK_LEV: MEDIUM 58%, HIGH 27%, Not Assessed 15%
+
+INCREASING_PRESENCE_OF_WATER_QUALITY_TRENDS_TOWARD_MCL_THRESHOL: Less than 25% sources meeting  63%, 25% or more sources meeting th 21%, 25% or more sources meeting th 10%, Not Assessed 6%
+
+TREATMENT_TECHNIUQE_VIOLATIONS_RISK_LEVEL: Not Assessed 73%, HIGH 27%
+
+TREATMENT_TECHNIUQE_VIOLATIONS_THRESHOLD_MET: No violation over the last thr 92%, Not Assessed 6%, 1 or more violations over the  2%
+
+TREATMENT_TECHNIUQE_VIOLATIONS_RAW_SCORE: 0 92%, Not Assessed 6%, 1 2%
+
+TREATMENT_TECHNIUQE_VIOLATIONS_WEIGHTED_SCORE: 0 92%, Not Assessed 6%, 1 2%
+
+PAST_PRESENCE_ON_THE_FAILING_LIST_RISK_LEVEL: MEDIUM 72%, Not Assessed 23%, HIGH 5%
+
+PAST_PRESENCE_ON_THE_FAILING_LIST_THRESHOLD_MET: No Failing list occurrence ove 76%, 1 Failing list occurrence over 18%, Not Assessed 6%, 2 or more Failing list occurre 1%
+
+PAST_PRESENCE_ON_THE_FAILING_LIST_RAW_SCORE: 0.0 76%, 0.5 18%, Not Assessed 6%, 1.0 1%
+
+PAST_PRESENCE_ON_THE_FAILING_LIST_WEIGHTED_SCORE: 0.0 76%, 1.0 18%, Not Assessed 6%, 2.0 1%
+
+CONSTITUENTS_OF_EMERGING_CONCERN_RISK_LEVEL: HIGH 48%, MEDIUM 28%, Not Assessed 24%
+
+CONSTITUENTS_OF_EMERGING_CONCERN_THRESHOLD_MET: Less than 25% sources meeting  76%, 25% or more sources meeting th 11%, 25% or more sources meeting th 7%, Not Assessed 6%
+
+PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_RISK_LEVEL: HIGH 77%, Not Assessed 23%
+
+PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_THRESHOLD_MET: Less than 50% sources exceed a 76%, 50% or more sources exceed an  18%, Not Assessed 6%
+
+PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_RAW_SCORE: 0 76%, 1 18%, Not Assessed 6%
+
+PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_WEIGHTED_SCORE: 0 76%, 3 18%, Not Assessed 6%
+
+NUMBER_OF_WATER_SOURCES_RISK_LEVEL: HIGH 87%, Not Assessed 13%, VERY HIGH 0%
+
+NUMBER_OF_WATER_SOURCES_THRESHOLD_MET: 2 or more sources 56%, 1 source 38%, Not Assessed 6%, 0 source (automatically At-Ris 0%
+
+NUMBER_OF_WATER_SOURCES_RAW_SCORE: 0 56%, 1 39%, Not Assessed 6%
+
+NUMBER_OF_WATER_SOURCES_WEIGHTED_RAW_SCORE: 0 56%, 3 39%, Not Assessed 6%
+
+ABESENCE_OF_INTERTIES_RISK_LEVEL: HIGH 93%, Not Assessed 7%
+
+ABESENCE_OF_INTERTIES_THRESHOLD_MET: No intertie 73%, 1 or more interties 15%, Not Applicable 7%, Not Assessed 6%
+
+ABESENCE_OF_INTERTIES_RAW_SCORE: 1 73%, 0 21%, Not Assessed 6%
+
+ABESENCE_OF_INTERTIES_WEIGHTED_SCORE: 1 73%, 0 21%, Not Assessed 6%
+
+SOURCE_CAPACITY_VIOLATION_RISK_LEVEL: Not Assessed 71%, HIGH 29%
+
+SOURCE_CAPACITY_VIOLATIONS_THRESHOLD_MET: No source capacity violations; 92%, Not Assessed 6%, 1 or more source capacity viol 2%
+
+SOURCE_CAPACITY_VIOLATIONS_RAW_SCORE: 0 92%, Not Assessed 6%, 1 2%
+
+SOURCE_CAPACITY_VIOLATIONS_WEIGHTED_SCORE: 0 92%, Not Assessed 6%, 3 2%
+
+BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_RISK_LEVEL: VERY HIGH 54%, Not Assessed 46%
+
+BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_THRESHOLD_MET: No occurrences of bottled/haul 88%, 1 or more occurrence(s) of bot 7%, Not Assessed 6%
+
+BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_RAW_SCORE: 0 88%, 1 7%, Not Assessed 6%
+
+BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_WEIGHTED_SCORE: 0 88%, 3 7%, Not Assessed 6%
+
+DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_RISK: Systems not assessed by DWR 37%, LOW 27%, HIGH 23%, Not Assessed 14%
+
+DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_THRES: Below top 25% of systems most  59%, Systems not assessed by DWR 15%, Top 25% of systems most at ris 11%, Top 10% of systems most at ris 9%, Not Assessed 6%
+
+DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_RAW_S: 0.00 59%, Systems not assessed by DWR 15%, 0.25 11%, 1.00 9%, Not Assessed 6%
+
+DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_WEIGH: 0.00 59%, Systems not assessed by DWR 15%, 0.50 11%, 2.00 9%, Not Assessed 6%
+
+CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_RISK_LEVEL: HIGH 76%, Not Assessed 24%
+
+CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_THRESHOLD_MET: No sources within a Critically 77%, 1 or more source(s) within a C 17%, Not Assessed 6%
+
+CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_RAW_SCORE: 0 77%, 1 17%, Not Assessed 6%
+
+CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_WEIGHTED_SCORE: 0 77%, 2 17%, Not Assessed 6%
+
+PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_RISK_LEVEL: MEDIUM 32%, HIGH 25%, UNKNOWN 24%, Not Assessed 19%
+
+PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_THRESHOLD_MET: Less than 1.5% 37%, System does not charge custome 34%, 1.5% or greater AND less than  9%, 2.5% or greater 7%, UNKNOWN 7%, Not Assessed 6%
+
+PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_RAW_SCORE: 0 71%, 0.75 9%, 1.0 7%, MISSING 7%, Not Assessed 6%
+
+PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_WEIGHTED_SCORE: 0.00 71%, 2.40 9%, 3.00 7%, MISSING 7%, Not Assessed 6%
+
+EXTREME_WATER_BILL_RISK_LEVEL: UNKNOWN 32%, Not Assessed 26%, HIGH 22%, MEDIUM 20%
+
+EXTREME_WATER_BILL_THRESHOLD_MET: Below 150% of statewide averag 48%, System does not charge custome 30%, UNKNOWN 7%, Not Assessed 6%, Equal to or greater than 200%  5%, Equal to or greater than 150%  4%
+
+EXTREME_WATER_BILL_RAW_SCORE: 0 79%, MISSING 7%, Not Assessed 6%, 1.0 5%, 0.5 4%
+
+EXTREME_WATER_BILL_WEIGHTED_SCORE: 0.00 79%, MISSING 7%, Not Assessed 6%, 1.00 5%, 0.50 4%
+
+HOUSEHOLD_SOCIOECONOMIC_BURDEN_RISK_LEVEL: MEDIUM 49%, HIGH 41%, Not Assessed 10%
+
+HOUSEHOLD_SOCIOECONOMIC_BURDEN_THRESHOLD_MET: Combined score of 0 - 0.125 45%, Combined score of 0.25 - 0.5 27%, Combined score of 0.625 - 1.0 22%, Not Assessed 6%
+
+HOUSEHOLD_SOCIOECONOMIC_BURDEN_RAW_SCORE: 0 45%, 0.5 27%, 1 22%, Not Assessed 6%
+
+HOUSEHOLD_SOCIOECONOMIC_BURDEN_WEIGHTED_SCORE: 0.00 45%, 1.00 27%, 2.00 22%, Not Assessed 6%
+
+TOTAL_NET_ANNUAL_INCOME_RISK_LEVEL: HIGH 79%, Not Assessed 11%, MEDIUM 5%, UNKNOWN 4%
+
+TOTAL_NET_ANNUAL_INCOME_THRESHOLD_MET: Less than $0 39%, Greater than $0 39%, Systems serving military bases 12%, Not Assessed 6%, $0 2%, UNKNOWN 2%
+
+TOTAL_NET_ANNUAL_INCOME_RAW_SCORE: 0 51%, 1 39%, Not Assessed 6%, 0.5 2%, MISSING 2%
+
+TOTAL_NET_ANNUAL_INCOME_WEIGHTED_SCORE: 0.00 51%, 1.00 39%, Not Assessed 6%, 0.50 2%, MISSING 2%
+
+OPERATING_RATIO_RISK_LEVEL: HIGH 80%, Not Assessed 15%, UNKNOWN 5%
+
+OPERATING_RATIO_THRESHOLD_MET: 1 or greater 51%, Less than 1 30%, Systems serving military bases 12%, Not Assessed 6%, UNKNOWN 2%
+
+OPERATING_RATIO_RAW_SCORE: 0 63%, 1 30%, Not Assessed 6%, MISSING 2%
+
+OPERATING_RATIO_WEIGHTED_SCORE: 0.00 63%, 1.00 30%, Not Assessed 6%, MISSING 2%
+
+DAYS_CASH_ON_HAND_RISK_LEVEL: HIGH 49%, Not Assessed 44%, UNKNOWN 7%
+
+DAYS_CASH_ON_HAND_THRESHOLD_MET: 1 or greater 58%, Less than 1 15%, Not Assessed 13%, Systems serving military bases 12%, UNKNOWN 2%
+
+DAYS_CASH_ON_HAND_RAW_SCORE: 0 70%, 1 15%, 0.5 8%, Not Assessed 6%, MISSING 2%
+
+DAYS_CASH_ON_HAND_WEIGHTED_SCORE: 0.00 70%, 1.00 15%, 0.50 8%, Not Assessed 6%, MISSING 2%
+
+OPERATOR_CERTIFICATION_VIOLATIONS_RISK_LEVEL: Not Assessed 87%, HIGH 13%
+
+OPERATOR_CERTIFICATION_VIOLATIONS_THRESHOLD_MET: No Operator Certification viol 94%, Not Assessed 6%, 1 or more Operator Certificati 1%
+
+OPERATOR_CERTIFICATION_VIOLATIONS_RAW_SCORE: 0 94%, Not Assessed 6%, 1 1%
+
+OPERATOR_CERTIFICATION_VIOLATIONS_WEIGHTED_SCORE: 0.0 94%, Not Assessed 6%, 3.0 1%
+
+MONITORING_AND_REPORTING_VIOLATIONS_RISK_LEVEL: HIGH 51%, Not Assessed 49%
+
+MONITORING_AND_REPORTING_VIOLATIONS_THRESHOLD_MET: Less than 2 violations 89%, 2 or more violations 6%, Not Assessed 6%
+
+MONITORING_AND_REPORTING_VIOLATIONS_SCORE: 0 89%, 1 6%, Not Assessed 6%
+
+MONITORING_AND_REPORTING_VIOLATIONS_WEIGHTED_SCORE: 0.0 89%, 2.0 6%, Not Assessed 6%
+
+SIGNIFICANT_DEFICIENCIES_RISK_LEVEL: Not Assessed 79%, HIGH 21%
+
+SIGNIFICANT_DEFICIENCIES_THRESHOLD_MET: No Significant Deficiencies ov 93%, Not Assessed 6%, 1 or more Significant Deficien 1%
+
+SIGNIFICANT_DEFICIENCIES_RAW_SCORE: 0 93%, Not Assessed 6%, 1 1%
+
+SIGNIFICANT_DEFICIENCIES_WEIGHTED_SCORE: 0.0 93%, Not Assessed 6%, 3.0 1%
+
+REGIONAL_BOARD: Region 5 Central Valley (Reddi 17%, Region 5 Central Valley (Sacra 16%, Region 3 Central Coast 14%, Region 5 Central Valley (Fresn 12%, Region 1 North Coast 10%, Region 4 Los Angeles 7%, Region 6 Lahontan (Victorville 7%, Region 2 San Francisco 6%, Region 8 Santa Ana 4%, Region 7 Colarado River 4%, Region 9 San Diego 3%, Region 6 Lahontan (South Lake  2%
+
+AUTOMATICALLY_AT_RISK_REASON: BOTTLED OR HAULED WATER 92%, BOTTLED OR HAULED WATER / ADMI 6%, RECEIVERSHIP 1%, ADMINISTRATOR 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| TINWSYS_IS_NUMBER | id | 3.2K | 0 | 6230 16; 6229 16; 6228 16; 6227 16 |
+| WATER_SYSTEM_NUMBER | id | 3.2K | 0 | CA5810700 16; CA5810006 16; CA5810005 16; CA5810004 16 |
+| SYSTEM_NAME | who | 3.2K | 0 | BEALE AIR FORCE BASE 16; NORTH YUBA WATER DISTRICT 16; NEVADA ID - SMARTSVILLE 16; CITY OF WHEATLAND 16 |
+| REGULATING_AGENCY | who | 52 | 0 | DISTRICT 18 - SONOMA 156; DISTRICT 06 - SANTA BARBA 130; DISTRICT 01 - KLAMATH 128; DISTRICT 19 - TEHACHAPI 127 |
+| COUNTY | who | 58 | 0 | LOS ANGELES 203; KERN 178; MONTEREY 169; SONOMA 156 |
+| FEDERAL_CLASSIFICATION_TYPE | category | 3 | 0 | COMMUNITY 2.8K; NON-TRANSIENT NON-COMMUNI 379; TRANSIENT NON-COMMUNITY 12 |
+| SERVICE_CONNECTIONS | other | 1.1K | 0 | 1 157; 2 67; 16 46; 4 41 |
+| POPULATION | other | 1.5K | 0 | 100 56; 50 44; 150 43; 200 42 |
+| OWNER_TYPE | category | 5 | 0 | PRIVATE 1.8K; LOCAL 1.3K; STATE GOVERNMENT 47; FEDERAL GOVERNMENT 35 |
+| PL_ADDRESS | id | 3.0K | 123 | ,  26; 311 Main Road, Suite 1 18; 52810 NETHERLANDS ROAD 17; 2439 West Hillcrest Drive 17 |
+| PL_ADDRESS_CITY_NAME | who | 1.0K | 0 | SALINAS 71; SANTA ROSA 61; STOCKTON 56; BAKERSFIELD 51 |
+| PL_ADDRESS_STATE_CODE | other | 1 | 0 | CA 3.2K |
+| PL_ADDRESS_ZIP_CODE | other | 1.1K | 0 | 93907 44; 96080 43; 95076 43; 95370 31 |
+| LATITUDE_MEASURE | amount | 3.1K | 0 | 39.123155 16; 39.425561 16; 39.207559 16; 39.049826 16 |
+| LONGITUDE_MEASURE | amount | 3.2K | 0 | -121.392209 16; -121.229467 16; -121.300650 16; -121.413621 16 |
+| SERVICE_AREA_ECONOMIC_STATUS | category | 5 | 12 | SDAC 1.2K; Non-DAC 1.1K; DAC 937; Missing 3 |
+| MHI | other | 2.2K | 12 | 94209 26; 76120 24; 8004 21; 47151 21 |
+| CALENVIRO_SCREEN_SCORE | amount | 1.8K | 12 | 11.7797725251016 26; 21.6663002424148 26; 27.3458856949192 25; Missing 24 |
+| RISK_ASSESSMENT_RESULT | category | 4 | 0 | Not At-Risk 1.6K; At-Risk 975; Potentially At-Risk 494; Not Assessed 178 |
+| CURRENT_FAILING | category | 2 | 0 | Not Failing 2.8K; Failing 426 |
+| FINAL_SAFER_STATUS | category | 5 | 0 | Not At-Risk 1.5K; At-Risk 629; Potentially At-Risk 456; Failing 426 |
+| FAILING_START_DATE | date | 261 | 0 | N/A 2.8K; 2017-01-01 97; 2024-05-01 20; 2026-03-24 14 |
+| PRIMARY_MCL_VIOLATION | category | 2 | 0 | NO 2.9K; YES 262 |
+| PRIMARY_ANALYTES | category | 41 | 0 | N/A 2.9K; ARSENIC 57; NITRATE 53; 1,2,3-TRICHLOROPROPANE 36 |
+| SECONDARY_MCL_VIOLATION | category | 2 | 0 | NO 3.1K; YES 88 |
+| SECONDARY_ANALYTES | category | 10 | 0 | N/A 3.1K; MANGANESE 37; IRON; MANGANESE 33; IRON 11 |
+| E_COLI_VIOLATION | category | 2 | 0 | NO 3.2K; YES 11 |
+| E_COLI_ANALYTES | category | 3 | 0 | N/A 3.2K; E. COLI 10; REVISED TOTAL COLIFORM RU 1 |
+| TREATMENT_TECHNIQUE_VIOLATION | category | 2 | 0 | NO 3.2K; YES 49 |
+| TT_ANALYTES | category | 19 | 0 | N/A 3.2K; SWTR 14; TURBIDITY 7; GROUNDWATER RULE 5 |
+| MONITORING_AND_REPORTING_VIOLATION | category | 2 | 0 | NO 3.1K; YES 56 |
+| MONITORING_AND_REPORTING_ANALYTES | category | 49 | 0 | N/A 3.1K; TOTAL HALOACETIC ACIDS (H 4; REVISED TOTAL COLIFORM RU 2; REVISED TOTAL COLIFORM RU 2 |
+| SOURCE_CAPACITY_VIOLATION | category | 2 | 0 | NO 3.1K; YES 59 |
+| SOURCE_CAPACITY_ANALYTES | category | 8 | 0 | N/A 3.1K; CCR ?64554 ? SRC CAPACITY 29; CCR ?64602 ? WATER OUTAGE 10; CCR ?64602 ? WATER OUTAGE 10 |
+| TOTAL_WEIGHTED_RISK_SCORE_BEFORE_DIVIDING_BY_CATEGORY_COUNT | amount | 291 | 0 | Not Assessed 178; 1.33 161; 0.33 119; 2.00 114 |
+| WEIGHTED_WATER_QUALITY_SCORE | amount | 106 | 0 | 0.00 1.4K; 1.50 271; 0.25 253; Not Assessed 178 |
+| WATER_QUALITY_SCORE | amount | 89 | 0 | 0.00 1.4K; 0.50 273; 0.08 253; Not Assessed 178 |
+| WATER_QUALITY_PERCENTAGE_OF_TOTAL_RISK_SCORE | amount | 92 | 0 | 0.00 1.3K; Not Assessed 178; 0.43 90; 0.60 65 |
+| WATER_QUALITY_RISK_LEVEL | category | 5 | 1.4K | LOW 746; HIGH 557; MEDIUM 366; Not Assessed 178 |
+| WEIGHTED_ACCESSIBILITY_SCORE | amount | 22 | 0 | 0.33 835; 1.33 533; 0.00 493; 1.00 336 |
+| ACCESSIBILITY_SCORE | amount | 22 | 0 | 0.17 835; 0.67 533; 0.00 493; 0.50 336 |
+| ACCESSIBILITY_PERCENTAGE_OF_TOTAL_RISK_SCORE | amount | 94 | 0 | 0.00 431; 1.00 234; Not Assessed 178; 0.50 124 |
+| ASSESSIBILITY_RISK_LEVEL | category | 5 | 493 | HIGH 1.2K; LOW 943; MEDIUM 358; Not Assessed 178 |
+| WEIGHTED_AFFORDABILITY_SCORE | amount | 21 | 0 | 0.00 1.2K; 0.33 668; 0.67 476; Not Assessed 178 |
+| AFFORDABILITY_SCORE | amount | 21 | 0 | 0.00 1.2K; 0.33 668; 0.67 476; Not Assessed 178 |
+| AFFORDABILITY_PERCENTAGE_OF_TOTAL_RISK_SCORE | amount | 88 | 0 | 0.00 1.1K; Not Assessed 178; 0.20 97; 0.25 79 |
+| AFFORDABILITY_RISK_LEVEL | category | 5 | 1.2K | LOW 736; HIGH 591; MEDIUM 536; Not Assessed 178 |
+| WEIGHTED_TMF_CAPACITY_SCORE | amount | 19 | 0 | 0.00 1.4K; 0.67 581; 0.33 334; 1.00 306 |
+| TMF_CAPACITY_SCORE | amount | 19 | 0 | 0.00 1.4K; 0.33 581; 0.17 334; 0.50 306 |
+| TMF_CAPACITY_PERCENTAGE_OF_TOTAL_RISK_SCORE | amount | 75 | 0 | 0.00 1.3K; Not Assessed 178; 0.50 72; 0.20 62 |
+| TMF_CAPACITY_RISK_LEVEL | category | 5 | 1.4K | LOW 1.2K; MEDIUM 308; Not Assessed 178; HIGH 142 |
+| HISTORY_OF_E_COLI_PRESENCE_RISK_LEVEL | category | 3 | 2.9K | Not Assessed 178; HIGH 94 |
+| HISTORY_OF_E_COLI_PRESENCE_THRESHOLD_MET | category | 3 | 0 | No history of E. coli pre 2.9K; Not Assessed 178; Yes history of E. coli pr 94 |
+| HISTORY_OF_E_COLI_PRESENCE_RAW_SCORE | category | 3 | 0 | 0 2.9K; Not Assessed 178; 1 94 |
+| HISTORY_OF_E_COLI_PRESENCE_WEIGHTED_SCORE | category | 3 | 0 | 0 2.9K; Not Assessed 178; 3 94 |
+| INCREASING_PRESENCE_OF_WATER_QUALITY_TRENDS_TOWARD_MCL_RISK_LEV | category | 4 | 2.0K | MEDIUM 679; HIGH 319; Not Assessed 178 |
+| INCREASING_PRESENCE_OF_WATER_QUALITY_TRENDS_TOWARD_MCL_THRESHOL | category | 4 | 0 | Less than 25% sources mee 2.0K; 25% or more sources meeti 679; 25% or more sources meeti 319; Not Assessed 178 |
+| INCREASING_PRESENCE_OF_WATER_QUALITY_TRENDS_TOWARD_MCL_RAW_SCOR | amount | 32 | 0 | 0.00 2.0K; 0.25 445; 1.00 258; Not Assessed 178 |
+| INCREASING_PRESENCE_OF_WATER_QUALITY_TRENDS_TOWARD_MCL_WEIGHTED | amount | 32 | 0 | 0.00 2.0K; 0.50 445; 2.00 258; Not Assessed 178 |
+| TREATMENT_TECHNIUQE_VIOLATIONS_RISK_LEVEL | category | 3 | 3.0K | Not Assessed 178; HIGH 65 |
+| TREATMENT_TECHNIUQE_VIOLATIONS_THRESHOLD_MET | category | 3 | 0 | No violation over the las 3.0K; Not Assessed 178; 1 or more violations over 65 |
+| TREATMENT_TECHNIUQE_VIOLATIONS_RAW_SCORE | category | 3 | 0 | 0 3.0K; Not Assessed 178; 1 65 |
+| TREATMENT_TECHNIUQE_VIOLATIONS_WEIGHTED_SCORE | category | 3 | 0 | 0 3.0K; Not Assessed 178; 1 65 |
+| PAST_PRESENCE_ON_THE_FAILING_LIST_RISK_LEVEL | category | 4 | 2.4K | MEDIUM 561; Not Assessed 178; HIGH 36 |
+| PAST_PRESENCE_ON_THE_FAILING_LIST_THRESHOLD_MET | category | 4 | 0 | No Failing list occurrenc 2.4K; 1 Failing list occurrence 561; Not Assessed 178; 2 or more Failing list oc 36 |
+| PAST_PRESENCE_ON_THE_FAILING_LIST_RAW_SCORE | category | 4 | 0 | 0.0 2.4K; 0.5 561; Not Assessed 178; 1.0 36 |
+| PAST_PRESENCE_ON_THE_FAILING_LIST_WEIGHTED_SCORE | category | 4 | 0 | 0.0 2.4K; 1.0 561; Not Assessed 178; 2.0 36 |
+| CONSTITUENTS_OF_EMERGING_CONCERN_RISK_LEVEL | category | 4 | 2.4K | HIGH 365; MEDIUM 211; Not Assessed 178 |
+| CONSTITUENTS_OF_EMERGING_CONCERN_THRESHOLD_MET | category | 4 | 0 | Less than 25% sources mee 2.4K; 25% or more sources meeti 365; 25% or more sources meeti 211; Not Assessed 178 |
+| CONSTITUENTS_OF_EMERGING_CONCERN_RAW_SCORE | amount | 25 | 0 | 0.00 2.4K; 1.00 253; 0.50 211; Not Assessed 178 |
+| CONSTITUENTS_OF_EMERGING_CONCERN_WEIGHTED_SCORE | amount | 25 | 0 | 0.00 2.4K; 3.00 253; 1.50 211; Not Assessed 178 |
+| PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_RISK_LEVEL | category | 3 | 2.4K | HIGH 581; Not Assessed 178 |
+| PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_THRESHOLD_MET | category | 3 | 0 | Less than 50% sources exc 2.4K; 50% or more sources excee 581; Not Assessed 178 |
+| PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_RAW_SCORE | category | 3 | 0 | 0 2.4K; 1 581; Not Assessed 178 |
+| PERCENTAGE_OF_SOURCES_EXCEEDING_AN_MCL_WEIGHTED_SCORE | category | 3 | 0 | 0 2.4K; 3 581; Not Assessed 178 |
+| NUMBER_OF_WATER_SOURCES_RISK_LEVEL | category | 4 | 1.8K | HIGH 1.2K; Not Assessed 178; VERY HIGH 7 |
+| NUMBER_OF_WATER_SOURCES_THRESHOLD_MET | category | 4 | 0 | 2 or more sources 1.8K; 1 source 1.2K; Not Assessed 178; 0 source (automatically A 7 |
+| NUMBER_OF_WATER_SOURCES_RAW_SCORE | category | 3 | 0 | 0 1.8K; 1 1.2K; Not Assessed 178 |
+| NUMBER_OF_WATER_SOURCES_WEIGHTED_RAW_SCORE | category | 3 | 0 | 0 1.8K; 3 1.2K; Not Assessed 178 |
+| ABESENCE_OF_INTERTIES_RISK_LEVEL | category | 3 | 686 | HIGH 2.3K; Not Assessed 178 |
+| ABESENCE_OF_INTERTIES_THRESHOLD_MET | category | 4 | 0 | No intertie 2.3K; 1 or more interties 473; Not Applicable 213; Not Assessed 178 |
+| ABESENCE_OF_INTERTIES_RAW_SCORE | category | 3 | 0 | 1 2.3K; 0 686; Not Assessed 178 |
+| ABESENCE_OF_INTERTIES_WEIGHTED_SCORE | category | 3 | 0 | 1 2.3K; 0 686; Not Assessed 178 |
+| SOURCE_CAPACITY_VIOLATION_RISK_LEVEL | category | 3 | 2.9K | Not Assessed 178; HIGH 74 |
+| SOURCE_CAPACITY_VIOLATIONS_THRESHOLD_MET | category | 3 | 0 | No source capacity violat 2.9K; Not Assessed 178; 1 or more source capacity 74 |
+| SOURCE_CAPACITY_VIOLATIONS_RAW_SCORE | category | 3 | 0 | 0 2.9K; Not Assessed 178; 1 74 |
+| SOURCE_CAPACITY_VIOLATIONS_WEIGHTED_SCORE | category | 3 | 0 | 0 2.9K; Not Assessed 178; 3 74 |
+| BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_RISK_LEVEL | category | 3 | 2.8K | VERY HIGH 209; Not Assessed 178 |
+| BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_THRESHOLD_MET | category | 3 | 0 | No occurrences of bottled 2.8K; 1 or more occurrence(s) o 209; Not Assessed 178 |
+| BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_RAW_SCORE | category | 3 | 0 | 0 2.8K; 1 209; Not Assessed 178 |
+| BOTTLED_WATER_OR_HAULED_WATER_RELIANCE_WEIGHTED_SCORE | category | 3 | 0 | 0 2.8K; 3 209; Not Assessed 178 |
+| DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_RISK | category | 5 | 1.9K | Systems not assessed by D 484; LOW 347; HIGH 293; Not Assessed 178 |
+| DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_THRES | category | 5 | 0 | Below top 25% of systems  1.9K; Systems not assessed by D 484; Top 25% of systems most a 347; Top 10% of systems most a 293 |
+| DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_RAW_S | category | 5 | 0 | 0.00 1.9K; Systems not assessed by D 484; 0.25 347; 1.00 293 |
+| DWR_DROUGHT_AND_WATER_SHORTAGE_RISK_ASSESSMENT_PERCENTILE_WEIGH | category | 5 | 0 | 0.00 1.9K; Systems not assessed by D 484; 0.50 347; 2.00 293 |
+| CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_RISK_LEVEL | category | 3 | 2.5K | HIGH 550; Not Assessed 178 |
+| CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_THRESHOLD_MET | category | 3 | 0 | No sources within a Criti 2.5K; 1 or more source(s) withi 550; Not Assessed 178 |
+| CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_RAW_SCORE | category | 3 | 0 | 0 2.5K; 1 550; Not Assessed 178 |
+| CRITICALLY_OVERDRAFTED_GROUNDWATER_BASIN_WEIGHTED_SCORE | category | 3 | 0 | 0 2.5K; 2 550; Not Assessed 178 |
+| PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_RISK_LEVEL | category | 5 | 2.3K | MEDIUM 290; HIGH 234; UNKNOWN 217; Not Assessed 178 |
+| PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_THRESHOLD_MET | category | 6 | 0 | Less than 1.5% 1.2K; System does not charge cu 1.1K; 1.5% or greater AND less  290; 2.5% or greater 234 |
+| PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_RAW_SCORE | category | 5 | 0 | 0 2.3K; 0.75 290; 1.0 234; MISSING 217 |
+| PERCENT_OF_MEDIAN_HOUSEHOLD_INCOME_MHI_WEIGHTED_SCORE | category | 5 | 0 | 0.00 2.3K; 2.40 290; 3.00 234; MISSING 217 |
+| EXTREME_WATER_BILL_RISK_LEVEL | category | 5 | 2.5K | UNKNOWN 217; Not Assessed 178; HIGH 152; MEDIUM 137 |
+| EXTREME_WATER_BILL_THRESHOLD_MET | category | 6 | 0 | Below 150% of statewide a 1.6K; System does not charge cu 966; UNKNOWN 217; Not Assessed 178 |
+| EXTREME_WATER_BILL_RAW_SCORE | category | 5 | 0 | 0 2.5K; MISSING 217; Not Assessed 178; 1.0 152 |
+| EXTREME_WATER_BILL_WEIGHTED_SCORE | category | 5 | 0 | 0.00 2.5K; MISSING 217; Not Assessed 178; 1.00 152 |
+| HOUSEHOLD_SOCIOECONOMIC_BURDEN_RISK_LEVEL | category | 4 | 1.4K | MEDIUM 865; HIGH 711; Not Assessed 178 |
+| HOUSEHOLD_SOCIOECONOMIC_BURDEN_THRESHOLD_MET | category | 4 | 0 | Combined score of 0 - 0.1 1.4K; Combined score of 0.25 -  865; Combined score of 0.625 - 711; Not Assessed 178 |
+| HOUSEHOLD_SOCIOECONOMIC_BURDEN_RAW_SCORE | category | 4 | 0 | 0 1.4K; 0.5 865; 1 711; Not Assessed 178 |
+| HOUSEHOLD_SOCIOECONOMIC_BURDEN_WEIGHTED_SCORE | category | 4 | 0 | 0.00 1.4K; 1.00 865; 2.00 711; Not Assessed 178 |
+| TOTAL_NET_ANNUAL_INCOME_RISK_LEVEL | category | 5 | 1.6K | HIGH 1.3K; Not Assessed 178; MEDIUM 80; UNKNOWN 65 |
+| TOTAL_NET_ANNUAL_INCOME_THRESHOLD_MET | category | 6 | 0 | Less than $0 1.3K; Greater than $0 1.2K; Systems serving military  375; Not Assessed 178 |
+| TOTAL_NET_ANNUAL_INCOME_RAW_SCORE | category | 5 | 0 | 0 1.6K; 1 1.3K; Not Assessed 178; 0.5 80 |
+| TOTAL_NET_ANNUAL_INCOME_WEIGHTED_SCORE | category | 5 | 0 | 0.00 1.6K; 1.00 1.3K; Not Assessed 178; 0.50 80 |
+| OPERATING_RATIO_RISK_LEVEL | category | 4 | 2.0K | HIGH 945; Not Assessed 178; UNKNOWN 65 |
+| OPERATING_RATIO_THRESHOLD_MET | category | 5 | 0 | 1 or greater 1.6K; Less than 1 945; Systems serving military  375; Not Assessed 178 |
+| OPERATING_RATIO_RAW_SCORE | category | 4 | 0 | 0 2.0K; 1 945; Not Assessed 178; MISSING 65 |
+| OPERATING_RATIO_WEIGHTED_SCORE | category | 4 | 0 | 0.00 2.0K; 1.00 945; Not Assessed 178; MISSING 65 |
+| DAYS_CASH_ON_HAND_RISK_LEVEL | category | 4 | 2.2K | HIGH 477; Not Assessed 427; UNKNOWN 65 |
+| DAYS_CASH_ON_HAND_THRESHOLD_MET | category | 5 | 0 | 1 or greater 1.9K; Less than 1 477; Not Assessed 427; Systems serving military  375 |
+| DAYS_CASH_ON_HAND_RAW_SCORE | category | 5 | 0 | 0 2.2K; 1 477; 0.5 249; Not Assessed 178 |
+| DAYS_CASH_ON_HAND_WEIGHTED_SCORE | category | 5 | 0 | 0.00 2.2K; 1.00 477; 0.50 249; Not Assessed 178 |
+| OPERATOR_CERTIFICATION_VIOLATIONS_RISK_LEVEL | category | 3 | 3.0K | Not Assessed 178; HIGH 27 |
+| OPERATOR_CERTIFICATION_VIOLATIONS_THRESHOLD_MET | category | 3 | 0 | No Operator Certification 3.0K; Not Assessed 178; 1 or more Operator Certif 27 |
+| OPERATOR_CERTIFICATION_VIOLATIONS_RAW_SCORE | category | 3 | 0 | 0 3.0K; Not Assessed 178; 1 27 |
+| OPERATOR_CERTIFICATION_VIOLATIONS_WEIGHTED_SCORE | category | 3 | 0 | 0.0 3.0K; Not Assessed 178; 3.0 27 |
+| MONITORING_AND_REPORTING_VIOLATIONS_RISK_LEVEL | category | 3 | 2.8K | HIGH 187; Not Assessed 178 |
+| MONITORING_AND_REPORTING_VIOLATIONS_THRESHOLD_MET | category | 3 | 0 | Less than 2 violations 2.8K; 2 or more violations 187; Not Assessed 178 |
+| MONITORING_AND_REPORTING_VIOLATIONS_SCORE | category | 3 | 0 | 0 2.8K; 1 187; Not Assessed 178 |
+| MONITORING_AND_REPORTING_VIOLATIONS_WEIGHTED_SCORE | category | 3 | 0 | 0.0 2.8K; 2.0 187; Not Assessed 178 |
+| SIGNIFICANT_DEFICIENCIES_RISK_LEVEL | category | 3 | 3.0K | Not Assessed 178; HIGH 46 |
+| SIGNIFICANT_DEFICIENCIES_THRESHOLD_MET | category | 3 | 0 | No Significant Deficienci 3.0K; Not Assessed 178; 1 or more Significant Def 46 |
+| SIGNIFICANT_DEFICIENCIES_RAW_SCORE | category | 3 | 0 | 0 3.0K; Not Assessed 178; 1 46 |
+| SIGNIFICANT_DEFICIENCIES_WEIGHTED_SCORE | category | 3 | 0 | 0.0 3.0K; Not Assessed 178; 3.0 46 |
+| FUNDING_RECEIVED_SINCE_2017 | amount | 328 | 0 | 0.00 2.8K; 500000.00 7; 3095960.57 7; 1970580.56 6 |
+| TECHNICAL_ASSISTANCE_FUNDING_SINCE_2017 | amount | 695 | 0 | 0.00 2.4K; 37011.55 17; 20677.39 14; 7480.00 13 |
+| REGIONAL_BOARD | category | 13 | 0 | Region 5 Central Valley ( 529; Region 5 Central Valley ( 490; Region 3 Central Coast 437; Region 5 Central Valley ( 380 |
+| AUTOMATICALLY_AT_RISK_REASON | category | 5 | 3.0K | BOTTLED OR HAULED WATER 197; BOTTLED OR HAULED WATER / 12; RECEIVERSHIP 3; ADMINISTRATOR 1 |
+| CREATED_DATE | date | 1 | 0 | 2026-07-02 3.2K |
+| INGESTED_AT | audit date | 1 | 0 | 2026-07-02 22:05:45.88038 3.2K |
+| SOURCE_RUN_ID | audit | 1 | 0 | 604e926c-7fdc-45e2-b861-8 3.2K |
+| SRC_SHA256 | who | 1 | 0 | 83b61ec0df922d14be02ad586 3.2K |

@@ -1,0 +1,55 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_FB07CFAF59
+
+rows 37  columns 11  scan 2.9s
+
+roles: amount 1, audit 2, category 5, date 1, other 2, who 1
+
+## when
+
+INGESTED_AT
+  2026        37  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| TOTAL_PERFORMANCE_SCORE | 37 | 55 | 94 | 100 | 100 | 3.3K |
+
+## who
+
+SRC_SHA256 by rows
+        37  e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574c464
+
+SRC_SHA256 by dollars
+        3.3K       37 rows  e7ed64f2a6292d59ec6471004e2fc8defaa0588030fc8397c5cdd63ef574
+
+## who x when
+
+SRC_SHA256 by INGESTED_AT  LOAD STAMP, not an event date, dollars = TOTAL_PERFORMANCE_SCORE
+  e7ed64f2a6292d59ec6471004e2fc8defaa05880  2026:3.3K
+
+## what
+
+FACILITY_NAME: UNIVERSITY OF UTAH PROVO DIALY 8%, UINTAH BASIN MED CTR DIALYSIS- 8%, MARK LINDSAY DIALYSIS CENTER 8%, OQUIRRH ARTIFICIAL KIDNEY CENT 8%, TIMPANOGOS DIALYSIS CENTER (DV 8%, LIBERTY DIALYSIS - OGDEN (FMC) 8%, WEST BOUNTIFUL DIALYSIS (DVA) 8%, PAYSON REGIONAL DIALYSIS 8%, FARMINGTON BAY DIALYSIS CENTER 8%, LONE PEAK DIALYSIS (DVA) 8%, SEVIER VALLEY DIALYSIS 8%, LOGAN REGIONAL HOSPITAL DIALYS 8%
+
+CMS_CERTIFICATION_NUMBER: 462504 8%, 463506 8%, 462544 8%, 462529 8%, 462524 8%, 462540 8%, 462520 8%, 462543 8%, 462500 8%, 462535 8%, 463504 8%, 460015 8%
+
+ALTERNATE_CCN_1: nan 78%, 460006 3%, 462307 3%, 460019 3%, 462308 3%, 462319 3%, 460010 3%, 462300 3%, 460001 3%
+
+ZIP_CODE: 84604 16%, 84405 11%, 84041 11%, 84003 11%, 84010 11%, 84107 11%, 84078 5%, 84118 5%, 84403 5%, 84087 5%, 84651 5%, 84701 5%
+
+LOCATION_1: {"latitude": "40.2567610950000 8%, {"latitude": "40.4484235860000 8%, {"latitude": "41.1864437920000 8%, {"latitude": "40.6676479830000 8%, {"latitude": "40.2482756190000 8%, {"latitude": "41.1761886490000 8%, {"latitude": "40.8843018360000 8%, {"latitude": "40.0432801480000 8%, {"latitude": "41.0461064020000 8%, {"latitude": "40.3757158460000 8%, {"latitude": "38.7829938070000 8%, {"latitude": "41.7565823270000 8%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| FACILITY_NAME | category | 37 | 0 | UNIVERSITY OF UTAH PROVO  1; UINTAH BASIN MED CTR DIAL 1; MARK LINDSAY DIALYSIS CEN 1; OQUIRRH ARTIFICIAL KIDNEY 1 |
+| CMS_CERTIFICATION_NUMBER | category | 36 | 0 | 462504 1; 463506 1; 462544 1; 462529 1 |
+| ALTERNATE_CCN_1 | category | 9 | 0 | nan 29; 460006 1; 462307 1; 460019 1 |
+| ZIP_CODE | category | 30 | 0 | 84604 3; 84405 2; 84041 2; 84003 2 |
+| NETWORK | other | 1 | 0 | 15 37 |
+| TOTAL_PERFORMANCE_SCORE | amount | 14 | 0 | 100 10; 94 6; 97 5; 82 3 |
+| NATIONAL_AVG_TOTAL_PERFORMANCE_SCORE | other | 1 | 0 | 82 37 |
+| LOCATION_1 | category | 37 | 0 | {"latitude": "40.25676109 1; {"latitude": "40.44842358 1; {"latitude": "41.18644379 1; {"latitude": "40.66764798 1 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 04:45:00.63102 37 |
+| SOURCE_RUN_ID | audit | 1 | 0 | f5937748-59d1-4cb3-8e80-c 37 |
+| SRC_SHA256 | who | 1 | 0 | e7ed64f2a6292d59ec6471004 37 |

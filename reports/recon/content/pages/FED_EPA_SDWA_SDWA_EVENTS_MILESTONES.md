@@ -1,0 +1,262 @@
+# FED_EPA_SDWA_SDWA_EVENTS_MILESTONES
+
+rows 394.1K  columns 13  scan 4.1s
+
+roles: audit 2, category 2, date 4, other 3, who 2
+
+## when
+
+EVENT_END_DATE
+  1993         3  
+  1994        35  
+  1995        65  
+  1996        72  
+  1997        71  
+  1998        65  
+  1999        77  
+  2000       105  
+  2001        66  
+  2002        93  
+  2003       187  
+  2004       155  
+  2005        81  
+  2006       102  
+  2007        96  
+  2008        70  
+  2009        78  
+  2010      1.2K  #
+  2011      2.3K  #
+  2012      3.7K  ##
+  2013      4.4K  ###
+  2014      4.2K  ##
+  2015      4.3K  ##
+  2016     10.6K  ######
+  2017     14.0K  ########
+  2018     15.1K  #########
+  2019     16.3K  #########
+  2020     13.5K  ########
+  2021     14.7K  ########
+  2022     14.5K  ########
+  2023     15.7K  #########
+  2024     52.3K  ##############################
+  2025     26.5K  ###############
+  2026      8.2K  #####
+  2027         1  
+  2028         1  
+
+EVENT_ACTUAL_DATE
+  1991         9  
+  1992       419  
+  1993      5.6K  ###
+  1994     25.0K  ############
+  1995      6.6K  ###
+  1996      2.9K  #
+  1997      2.4K  #
+  1998      2.5K  #
+  1999      2.3K  #
+  2000     14.8K  #######
+  2001      2.4K  #
+  2002      2.0K  #
+  2003      1.5K  #
+  2004      1.5K  #
+  2005      1.2K  #
+  2006       947  
+  2007       980  
+  2008       893  
+  2009      1.0K  
+  2010      2.0K  #
+  2011      3.6K  ##
+  2012      5.0K  ##
+  2013      5.1K  ##
+  2014      5.0K  ##
+  2015      5.5K  ###
+  2016     12.0K  ######
+  2017     15.3K  #######
+  2018     16.4K  ########
+  2019     18.0K  #########
+  2020     14.5K  #######
+  2021     16.0K  ########
+  2022     16.1K  ########
+  2023     16.0K  ########
+  2024     63.5K  ##############################
+  2025     31.2K  ###############
+  2026     18.1K  #########
+  2027     55.6K  ##########################
+  2028       104  
+  2029        20  
+  2030         2  
+  2031         1  
+  2032         1  
+
+FIRST_REPORTED_DATE
+  2000         3  
+  2001      3.3K  #
+  2002     10.0K  ####
+  2003      4.6K  ##
+  2004      4.9K  ##
+  2005     23.9K  ##########
+  2006      8.4K  ###
+  2007      4.5K  ##
+  2008      3.7K  ##
+  2009      2.7K  #
+  2010      2.3K  #
+  2011      1.8K  #
+  2012      4.7K  ##
+  2013      5.2K  ##
+  2014      5.0K  ##
+  2015      8.7K  ####
+  2016     10.3K  ####
+  2017     14.5K  ######
+  2018     15.3K  ######
+  2019     20.9K  #########
+  2020     15.1K  ######
+  2021     14.8K  ######
+  2022     15.4K  ######
+  2023     14.2K  ######
+  2024     38.8K  ################
+  2025     69.3K  #############################
+  2026     71.8K  ##############################
+
+LAST_REPORTED_DATE
+  2000         3  
+  2001      3.3K  #
+  2002      9.6K  #
+  2003      4.2K  #
+  2004      2.5K  
+  2005      2.9K  
+  2006      3.5K  #
+  2007      6.3K  #
+  2008      9.4K  #
+  2009      3.1K  
+  2010      1.1K  
+  2011      5.7K  #
+  2012      3.0K  
+  2013      2.3K  
+  2014      2.1K  
+  2015      2.6K  
+  2016      2.9K  
+  2017      2.3K  
+  2018      7.3K  #
+  2019      9.2K  #
+  2020     10.8K  ##
+  2021     16.7K  ###
+  2022     14.4K  ##
+  2023     12.3K  ##
+  2024     13.1K  ##
+  2025     13.3K  ##
+  2026    194.7K  ##############################
+
+## who
+
+PWSID by rows
+       153  NM3528522
+       134  NM3527305
+       114  MP0000001
+       114  LA1055067
+       107  NM3510701
+        91  NM3502507
+        91  LA1079001
+        88  MO4031631
+        83  NM3510524
+        81  NM3531904
+        76  MO4061660
+        75  NE3108701
+        73  NE3104502
+        72  LA2099096
+        72  LA1049010
+        72  NM3521308
+        72  LA1015030
+        71  NE3120023
+        69  LA1079016
+        67  WV3303516
+
+EVENT_COMMENTS_TEXT by rows
+     33.6K  SUBMIT LEAD SERVICE LINE INVENTORY
+     24.9K  INITIAL MONITORING FOR PFOA (2806)
+     24.9K  INITIAL MONITORING FOR PFOS (2805)
+     16.4K  CERTIFY LEAD SL NOTIFICATION
+      6.4K  LVL1 TTT MULTIPLE TC+;0;Sample Lab ID: Sample Collection Date: Assessm
+      3.2K  LVL2 TTT MULTIPLE TC+ 2ND LVL 1-12 MN;0;Sample Lab ID: Sample Collecti
+      3.1K  Migrated Lead and Copper Rule Status Milestone. Created May 12, 2006.
+      2.3K  LSLI - SUBMIT LEAD SERVICE LINE INVENTOR
+      1.5K  LVL1 TTT TC+/EC- WO RPTS;0;Sample Lab ID: Sample Collection Date: Asse
+      1.0K  SUBMIT UPDATED SERVICE LINE INVENTORY
+      1.0K  INITIAL MONITORING, PFOA (2806)
+      1.0K  INITIAL MONITORING, PFAS (2805)
+       795  OPTIMAL WQPS HAVE NOT BEEN ESTABLISHED BY THE STATE; SYSTEMS WERE DEEM
+       777  GWR CORRECT SIG DEF WITHIN 120 DAYS;SRC-Public water system does not h
+       762  RESOLVE SIGNIFICANT DEFICIENCY;F310-STORAGE CONDITION; The condition o
+       762  GWR ADDRESS TT45 DEFICIENCIES;SO38-SRC WL - LAC 51.XII.319.D.7 - Pathw
+       761  RESOLVE SIGNIFICANT DEFICIENCY;S030-SOURCE CONSTRUCTION; Supplier's gr
+       744  CORRECT DEFICIENCY;001K-20.7.10.400.C-Inadequate surface construction 
+       727  SUBMIT LEAD SERVICE LINE INVENTORY : Achieved Date migrated from Excel
+       709  LEAD SL KNOWN OR POTENTIAL NOTIFICATION
+
+## who x when
+
+PWSID by EVENT_ACTUAL_DATE
+  LA1015030                                 2011:8 2015:6 2017:3 2018:4 2019:7 2021:6 2022:5 2023:10 2024:11 2025:7 2026:3 2027:2
+  LA1049010                                 2014:2 2015:4 2018:10 2019:24 2020:1 2023:18 2024:2 2025:8 2026:1 2027:2
+  LA1055067                                 2017:3 2018:3 2019:29 2020:11 2021:6 2022:14 2023:18 2024:11 2025:9 2026:8 2027:2
+  LA1079001                                 1993:1 2016:7 2018:35 2020:1 2021:12 2023:24 2024:1 2025:7 2026:1 2027:2
+  LA1079016                                 1994:1 2011:6 2012:8 2015:1 2019:14 2022:9 2023:12 2024:9 2026:7 2027:2
+  LA2099096                                 2022:31 2023:26 2024:1 2025:12 2027:2
+  MO4031631                                 2016:1 2017:21 2018:28 2019:13 2020:6 2021:15 2022:1 2023:2 2024:1
+  MO4061660                                 2020:15 2021:24 2022:14 2023:16 2024:7
+  MP0000001                                 2019:65 2021:23 2022:1 2023:4 2024:4 2025:12 2026:3 2027:2
+  NE3104502                                 2000:1 2017:1 2018:2 2019:16 2020:15 2021:10 2022:7 2023:2 2024:7 2025:12
+  NE3108701                                 2000:1 2017:13 2018:4 2019:19 2020:3 2022:15 2023:1 2024:1 2025:15 2026:3
+  NE3120023                                 2000:1 2018:1 2019:5 2020:2 2021:1 2022:24 2023:29 2024:7 2025:1
+  NM3502507                                 2016:34 2020:8 2024:45 2025:2 2027:2
+  NM3510524                                 2014:1 2015:3 2016:61 2017:7 2019:1 2021:1 2024:7 2027:2
+  NM3510701                                 2014:5 2015:1 2018:4 2023:11 2024:1 2025:77 2026:6 2027:2
+  NM3521308                                 2013:7 2015:3 2018:14 2024:14 2026:32 2027:2
+  NM3527305                                 2012:62 2015:11 2019:31 2020:1 2023:25 2024:1 2025:1 2027:2
+  NM3528522                                 2011:53 2012:13 2014:15 2015:10 2019:26 2020:1 2023:28 2024:5 2027:2
+  NM3531904                                 2012:1 2015:12 2018:32 2022:5 2023:20 2024:1 2025:8 2027:2
+  WV3303516                                 1993:1 2018:18 2021:4 2022:1 2024:38 2025:3 2026:2
+
+EVENT_COMMENTS_TEXT by EVENT_ACTUAL_DATE
+  CERTIFY LEAD SL NOTIFICATION              2025:9.6K 2026:6.2K 2027:649 2028:4
+  CORRECT DEFICIENCY;001K-20.7.10.400.C-In  2013:12 2014:54 2015:59 2016:53 2017:41 2018:78 2019:147 2020:58 2021:14 2022:50 2023:66 2024:60 2025:45 2026:7
+  GWR ADDRESS TT45 DEFICIENCIES;SO38-SRC W  2012:1 2015:10 2016:57 2017:94 2018:174 2019:272 2020:116 2021:38
+  GWR CORRECT SIG DEF WITHIN 120 DAYS;SRC-  2011:7 2012:44 2013:100 2014:114 2015:166 2016:87 2017:15 2018:30 2019:54 2020:48 2021:25 2022:41 2023:35 2024:10 2025:1
+  INITIAL MONITORING FOR PFOA (2806)        2027:24.9K 2028:1
+  INITIAL MONITORING FOR PFOS (2805)        2027:24.9K
+  INITIAL MONITORING, PFAS (2805)           2027:1.0K
+  INITIAL MONITORING, PFOA (2806)           2027:1.0K
+  LEAD SL KNOWN OR POTENTIAL NOTIFICATION   2025:336 2026:347 2027:26
+  LSLI - SUBMIT LEAD SERVICE LINE INVENTOR  2024:2.3K
+  LVL1 TTT MULTIPLE TC+;0;Sample Lab ID: S  2016:455 2017:558 2018:621 2019:581 2020:571 2021:761 2022:759 2023:710 2024:804 2025:463 2026:113
+  LVL1 TTT TC+/EC- WO RPTS;0;Sample Lab ID  2016:73 2017:102 2018:182 2019:136 2020:110 2021:148 2022:196 2023:214 2024:166 2025:95 2026:35
+  LVL2 TTT MULTIPLE TC+ 2ND LVL 1-12 MN;0;  2016:100 2017:182 2018:271 2019:364 2020:354 2021:412 2022:448 2023:364 2024:404 2025:286 2026:57
+  Migrated Lead and Copper Rule Status Mil  1993:104 1994:2.5K 1995:491
+  OPTIMAL WQPS HAVE NOT BEEN ESTABLISHED B  1994:6 1995:2 1996:2 1998:22 1999:22 2000:26 2001:36 2002:39 2003:56 2004:119 2005:40 2006:41 2007:29 2008:35 2009:67 2010:77 2011:76 2012:32 2013:17 2014:19 2015:30 2020:2
+  RESOLVE SIGNIFICANT DEFICIENCY;F310-STOR  2012:1 2013:1 2014:1 2016:57 2017:83 2018:69 2019:85 2020:41 2021:84 2022:34 2023:73 2024:89 2025:86 2026:58
+  RESOLVE SIGNIFICANT DEFICIENCY;S030-SOUR  2011:1 2015:1 2016:24 2017:56 2018:34 2019:57 2020:23 2021:54 2022:32 2023:82 2024:164 2025:133 2026:100
+  SUBMIT LEAD SERVICE LINE INVENTORY        2024:33.5K 2025:60 2026:16 2027:5
+  SUBMIT LEAD SERVICE LINE INVENTORY : Ach  2024:727
+  SUBMIT UPDATED SERVICE LINE INVENTORY     2026:5 2027:1.0K 2028:2
+
+## what
+
+EVENT_MILESTONE_CODE: SDFF 29%, PFAS 13%, LSLI 12%, DEEM 12%, RTL1 11%, DONE 9%, RTL2 7%, PBSL 5%, SDFI 1%, FICF 0%, LALE 0%, LSLR 0%
+
+EVENT_REASON_CODE: GW 22%, B1 17%, IMON 14%, INIT 12%, L1TD 9%, RTCR 6%, L2TB 5%, SLCN 5%, SH 3%, L1TC 2%, L2TA 2%, UPDT 1%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| SUBMISSIONYEARQUARTER | other | 1 | 0 | 2026Q2 394.1K |
+| PWSID | who | 97.8K | 0 | NE3105305 1.1K; NE3113504 1.0K; IN2430254 1.0K; TX1690003 1.0K |
+| EVENT_SCHEDULE_ID | other | 329.5K | 0 | 150 3.1K; 201 3.1K; 2 1.7K; 1 1.0K |
+| EVENT_END_DATE | date | 6.0K | 171.2K | 10/16/2024 8.4K; 10/15/2024 2.9K; 10/14/2024 2.0K; 10/10/2024 1.4K |
+| EVENT_ACTUAL_DATE | date | 8.8K | 0 | 04/26/2027 52.1K; 10/16/2024 44.9K; 04/11/2000 12.8K; 07/01/2025 11.4K |
+| EVENT_COMMENTS_TEXT | who | 84.5K | 106.4K | SUBMIT LEAD SERVICE LINE  33.6K; INITIAL MONITORING FOR PF 24.9K; INITIAL MONITORING FOR PF 24.9K; CERTIFY LEAD SL NOTIFICAT 16.4K |
+| EVENT_MILESTONE_CODE | category | 13 | 0 | SDFF 112.8K; PFAS 52.0K; LSLI 49.2K; DEEM 47.8K |
+| EVENT_REASON_CODE | category | 15 | 14.8K | GW 82.1K; B1 65.6K; IMON 52.0K; INIT 46.8K |
+| FIRST_REPORTED_DATE | date | 1.8K | 0 | 06/26/2026 16.4K; 03/20/2026 9.3K; 08/10/2002 7.0K; 12/30/2024 6.6K |
+| LAST_REPORTED_DATE | date | 1.4K | 35.6K | 06/23/2026 24.9K; 06/26/2026 24.1K; 06/30/2026 23.1K; 06/29/2026 20.8K |
+| _INGESTED_AT | audit | 1 | 0 | 1786044135751029 394.1K |
+| _SOURCE_RUN_ID | audit | 1 | 0 | 02cce58e-a65f-4283-a85e-0 394.1K |
+| _SRC_SHA256 | other | 1 | 0 | 85e998ace35b2f7a54e8d07c1 394.1K |

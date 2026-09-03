@@ -1,0 +1,206 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_FE79F02E34
+
+rows 307  columns 92  scan 3.9s
+
+roles: amount 22, audit 2, category 31, date 2, other 34, who 2
+
+## when
+
+DOC_CTRL_NUM
+  2011       255  ##############################
+  2014        52  ######
+
+INGESTED_AT
+  2026       307  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| C_5_1_FUGITIVE_AIR | 307 | 0 | 0 | 250 | 486.90 | 5.5K |
+| C_5_2_STACK_AIR | 307 | 0 | 0.80 | 362.3K | 585.0K | 7.73M |
+| C_5_5_1B_OTHER_LANDFILLS | 307 | 0 | 0 | 163.7K | 216.0K | 3.28M |
+| ON_SITE_RELEASE_TOTAL | 307 | 0 | 33.10 | 362.3K | 585.0K | 11.02M |
+| C_6_2_M10 | 307 | 0 | 0 | 0 | 36.50 | 52.80 |
+| C_6_2_M41 | 307 | 0 | 0 | 0 | 65 | 110.20 |
+
+## who
+
+COUNTY by rows
+       307  CARBON
+
+COUNTY by dollars
+      11.02M      307 rows  CARBON
+
+SRC_SHA256 by rows
+       307  383a729401823ed5fa4228bf17256d450f3a79ab5ab92f20cfd864f2c65a83c1
+
+SRC_SHA256 by dollars
+      11.02M      307 rows  383a729401823ed5fa4228bf17256d450f3a79ab5ab92f20cfd864f2c65a
+
+## who x when
+
+COUNTY by DOC_CTRL_NUM, dollars = ON_SITE_RELEASE_TOTAL
+  CARBON                                    2011:9.24M 2014:1.78M
+
+SRC_SHA256 by DOC_CTRL_NUM, dollars = ON_SITE_RELEASE_TOTAL
+  383a729401823ed5fa4228bf17256d450f3a79ab  2011:9.24M 2014:1.78M
+
+## what
+
+YEAR: 2007 11%, 2006 11%, 2008 10%, 2012 8%, 2011 8%, 2010 8%, 2013 8%, 2000 8%, 2009 7%, 2005 7%, 2003 7%, 2002 7%
+
+TRI_FACILITY_ID: 84526PCFCRINTER 33%, 84539SNNYSONEPO 28%, 84501KLFGL1510S 15%, 84501CSTLC352WM 8%, 8454WCVLNG1865W 6%, 84501DTTHL4722S 4%, 8452WTHMRC794CC 3%, 8452WTHMRCLILAM 3%, 84501WNDNC206W2 1%
+
+FACILITY_NAME: PACIFICORP CARBON PLANT 33%, SUNNYSIDE COGENERATION ASSOCIA 28%, KILFOYLE KRAFTS 15%, CASTLE COUNTRY OIL 8%, BRC WELLINGTON LLC 6%, DTE UTAH II LLC 4%, UTAH AMERICAN ENERGY - WESTRID 3%, UTAHAMERICAN ENERGY INC - LILA 3%, WEN-DON CORP. 1%
+
+STREET_ADDRESS: INTERSECTION HWY 6 & 191 33%, ONE POWER PLANT RD 28%, 1510 S CARBON ON HAY 10 15%, 352 W MAIN ST 8%, 1865 W RIDGE RD 6%, 4722 S 2000 E RD 4%, 794 C CANYON RD 3%, LILA MINE, E OF MILE POST 271  3%, 206 W. 2ND ST. 1%
+
+PRIMARY_SIC: nan 53%, 4911 31%, 2491 14%, 2999 1%, 2899 1%
+
+PRIMARY_NAICS: 221112 60%, 321114 15%, 424710 8%, 212111 6%, 212112 6%, 324199 4%, 325998 1%, 221100 1%
+
+CHEMICAL: HYDROCHLORIC ACID (1995 AND AF 12%, MERCURY 11%, LEAD 11%, DIOXIN AND DIOXIN-LIKE COMPOUN 11%, POLYCYCLIC AROMATIC COMPOUNDS 8%, BARIUM COMPOUNDS 7%, HYDROGEN FLUORIDE 7%, MERCURY COMPOUNDS 7%, COPPER COMPOUNDS 7%, CHROMIUM COMPOUNDS(EXCEPT CHRO 7%, LEAD COMPOUNDS 6%, ARSENIC COMPOUNDS 5%
+
+CAS_COMPOUND_ID: 7647010 12%, 7439976 11%, 7439921 11%, N150 11%, N590 8%, N040 7%, 7664393 7%, N458 7%, N100 7%, N090 7%, N420 6%, N020 5%
+
+CLEAR_AIR_ACT_CHEMICAL: YES 82%, NO 18%
+
+CLASSIFICATION: TRI 63%, PBT 28%, Dioxin 9%
+
+METAL: NO 51%, YES 49%
+
+METAL_CATEGORY: 1 49%, 0 45%, 3 6%
+
+CARCINOGEN: NO 82%, YES 18%
+
+FORM_TYPE: R 85%, A 15%
+
+UNIT_OF_MEASURE: Pounds 91%, Grams 9%
+
+C_5_3_WATER: 0 95%, 5 1%, 100 1%, 81 0%, 84 0%, 99 0%, 74 0%, 73 0%, 67 0%, 85 0%, 80 0%, 110 0%
+
+C_5_5_3_SURFACE_IMPOUNDMENT: 0 95%, 250 4%, 5 1%
+
+C_5_5_4_OTHER_DISPOSAL: 0 99%, 250 1%
+
+C_6_1_POTW_TRANSFERS_FOR_TREATM: 0 99%, 250 1%, 750 0%
+
+C_6_2_M72: 0 94%, 250 4%, 500 2%
+
+C_6_2_M79: 0 96%, 2747 0%, 4660 0%, 2087 0%, 3516 0%, 16097 0%, 5235 0%, 6540 0%, 8667 0%, 11683 0%, 15484 0%, 7635 0%
+
+C_6_2_M69: 0 100%, 29941 0%
+
+C_8_2_ENERGY_RECOVERY_ON_SITE: 0 99%, 1489 1%
+
+C_8_4_RECYCLING_ON_SITE: 0 96%, 160 0%, 260 0%, 230 0%, 216 0%, 242 0%, 144 0%, 182 0%, 203 0%, 122 0%, 194 0%, 174 0%
+
+C_8_6_TREATMENT_ON_SITE: 0 96%, 17943 0%, 11041 0%, 14360 0%, 19353 0%, 10187 0%, 18028 0%, 17384 0%, 9610 0%, 9648 0%, 11497 0%, 12267 0%
+
+PARENT_COMPANY_NAME: NA 50%, BERKSHIRE HATHAWAY 33%, HAYCOCK PETROLEUM 8%, BOWIE REFINED COAL LLC 6%, DTE ENERGY 4%
+
+PARENT_COMPANY_DB_NUMBER: NA 55%, 7909013 33%, 35316439 8%, 8.39E+08 4%
+
+LOCATION_1: {"latitude": "39.72505", "long 33%, {"latitude": "39.54764", "long 28%, {"latitude": "39.59951", "long 15%, {"latitude": "39.60026", "long 8%, {"latitude": "39.52413", "long 6%, {"latitude": "39.56954", "long 4%, {"latitude": "39.61206", "long 3%, {"latitude": "39.42728", "long 3%, {"latitude": "39.59602", "long 1%
+
+COMPUTED_REGION_9Z68_3KQ5: 2987 97%, 2990 3%
+
+C_8_8_ONE_TIME_RELEASE: nan 81%, 0 19%
+
+SIC_2: nan 94%, NA 6%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| YEAR | category | 24 | 0 | 2007 24; 2006 24; 2008 22; 2012 19 |
+| TRI_FACILITY_ID | category | 9 | 0 | 84526PCFCRINTER 101; 84539SNNYSONEPO 86; 84501KLFGL1510S 45; 84501CSTLC352WM 24 |
+| FACILITY_NAME | category | 9 | 0 | PACIFICORP CARBON PLANT 101; SUNNYSIDE COGENERATION AS 86; KILFOYLE KRAFTS 45; CASTLE COUNTRY OIL 24 |
+| STREET_ADDRESS | category | 9 | 0 | INTERSECTION HWY 6 & 191 101; ONE POWER PLANT RD 86; 1510 S CARBON ON HAY 10 45; 352 W MAIN ST 24 |
+| COUNTY | who | 1 | 0 | CARBON 307 |
+| ST | other | 1 | 0 | UT 307 |
+| FEDERAL_FACILITY | other | 1 | 0 | NO 307 |
+| PRIMARY_SIC | category | 5 | 0 | nan 162; 4911 94; 2491 44; 2999 4 |
+| PRIMARY_NAICS | category | 8 | 0 | 221112 185; 321114 45; 424710 24; 212111 18 |
+| DOC_CTRL_NUM | date | 4 | 0 | 1310000000000 179; 1300000000000 76; 1400000000000 34; 1390000000000 18 |
+| CHEMICAL | category | 28 | 0 | HYDROCHLORIC ACID (1995 A 32; MERCURY 29; LEAD 28; DIOXIN AND DIOXIN-LIKE CO 27 |
+| CAS_COMPOUND_ID | category | 28 | 0 | 7647010 32; 7439976 29; 7439921 28; N150 27 |
+| CLEAR_AIR_ACT_CHEMICAL | category | 2 | 0 | YES 251; NO 56 |
+| CLASSIFICATION | category | 3 | 0 | TRI 193; PBT 87; Dioxin 27 |
+| METAL | category | 2 | 0 | NO 157; YES 150 |
+| METAL_CATEGORY | category | 3 | 0 | 1 150; 0 138; 3 19 |
+| CARCINOGEN | category | 2 | 0 | NO 251; YES 56 |
+| FORM_TYPE | category | 2 | 0 | R 260; A 47 |
+| UNIT_OF_MEASURE | category | 2 | 0 | Pounds 280; Grams 27 |
+| C_5_1_FUGITIVE_AIR | amount | 79 | 0 | 0 177; 250 13; 5 11; 1 8 |
+| C_5_2_STACK_AIR | amount | 154 | 0 | 0 106; 5 14; 250 10; 10 8 |
+| C_5_3_WATER | category | 16 | 0 | 0 287; 5 4; 100 3; 81 1 |
+| C_5_4_1_UNDERGROUND_CLASS_I | other | 1 | 0 | 0 307 |
+| C_5_4_2_UNDERGROUND_CLASS_II_V | other | 1 | 0 | 0 307 |
+| C_5_5_1A_RCRA_C_LANDFILLS | other | 1 | 0 | 0 307 |
+| C_5_5_1B_OTHER_LANDFILLS | amount | 89 | 0 | 0 219; 83.26 1; 15040 1; 127000 1 |
+| C_5_5_2_LAND_TREATMENT | other | 1 | 0 | 0 307 |
+| C_5_5_3_SURFACE_IMPOUNDMENT | category | 3 | 0 | 0 293; 250 11; 5 3 |
+| C_5_5_3A_RCRA_C_SURFACE_IMP | other | 1 | 0 | 0 307 |
+| C_5_5_3B_OTHER_SURFACE_IMP | other | 1 | 0 | 0 307 |
+| C_5_5_4_OTHER_DISPOSAL | category | 2 | 0 | 0 304; 250 3 |
+| ON_SITE_RELEASE_TOTAL | amount | 218 | 0 | 0 70; 0.00050000000000000001 3; 0.5 3; 0.04 3 |
+| C_6_1_POTW_TRANSFERS_FOR_RELEASE | other | 1 | 0 | 0 307 |
+| C_6_1_POTW_TRANSFERS_FOR_TREATM | category | 3 | 0 | 0 304; 250 2; 750 1 |
+| C_6_1_POTW_TOTAL_TRANSFERS | other | 1 | 0 | 0 307 |
+| C_6_2_M10 | amount | 3 | 0 | 0 305; 36.5 1; 16.3 1 |
+| C_6_2_M41 | amount | 4 | 0 | 0 304; 45 1; 65 1; 0.2 1 |
+| C_6_2_M62 | other | 1 | 0 | 0 307 |
+| C_6_2_M71 | other | 1 | 0 | 0 307 |
+| C_6_2_M81 | other | 1 | 0 | 0 307 |
+| C_6_2_M82 | other | 1 | 0 | 0 307 |
+| C_6_2_M72 | category | 3 | 0 | 0 289; 250 12; 500 6 |
+| C_6_2_M63 | other | 1 | 0 | 0 307 |
+| C_6_2_M66 | other | 1 | 0 | 0 307 |
+| C_6_2_M67 | other | 1 | 0 | 0 307 |
+| C_6_2_M64 | amount | 31 | 0 | 0 277; 4.74 1; 857 1; 209 1 |
+| C_6_2_M65 | other | 1 | 0 | 0 307 |
+| C_6_2_M73 | other | 1 | 0 | 0 307 |
+| C_6_2_M79 | category | 12 | 0 | 0 296; 2747 1; 4660 1; 2087 1 |
+| C_6_2_M90 | other | 1 | 0 | 0 307 |
+| C_6_2_M94 | amount | 4 | 0 | 0 302; 250 3; 60 1; 14.5 1 |
+| C_6_2_M99 | other | 1 | 0 | 0 307 |
+| OFF_SITE_RELEASE_TOTAL | amount | 51 | 0 | 0 238; 250 15; 500 6; 4.74 1 |
+| C_6_2_M20 | amount | 2 | 0 | 0 306; 0.9 1 |
+| C_6_2_M24 | other | 1 | 0 | 0 307 |
+| C_6_2_M26 | amount | 14 | 0 | 0 293; 0.9 2; 2.1 1; 2.9 1 |
+| C_6_2_M28 | other | 1 | 0 | 0 307 |
+| C_6_2_M93 | other | 1 | 0 | 0 307 |
+| OFF_SITE_RECYCLED_TOTAL | amount | 14 | 0 | 0 292; 0.9 3; 2.1 1; 2.9 1 |
+| C_6_2_M56 | other | 1 | 0 | 0 307 |
+| C_6_2_M92 | other | 1 | 0 | 0 307 |
+| OFF_SITE_RECOVERY_TOTAL | other | 1 | 0 | 0 307 |
+| C_6_2_M40 | other | 1 | 0 | 0 307 |
+| C_6_2_M50 | other | 1 | 0 | 0 307 |
+| C_6_2_M54 | other | 1 | 0 | 0 307 |
+| C_6_2_M61 | other | 1 | 0 | 0 307 |
+| C_6_2_M69 | category | 2 | 0 | 0 306; 29941 1 |
+| C_6_2_M95 | other | 1 | 0 | 0 307 |
+| OFF_SITE_TREATED_TOTAL | amount | 2 | 0 | 0 306; 29941 1 |
+| TOTAL_RELEASES | amount | 218 | 0 | 0 52; 250 13; 500 6; 260 5 |
+| C_8_1_RELEASES | amount | 62 | 0 | 0 231; 150 6; 125 6; 75 3 |
+| C_8_1A_ON_SITE_CONTAINED_REL | amount | 59 | 0 | 0 249; 83.26 1; 15040 1; 127000 1 |
+| C_8_1B_ON_SITE_OTHER_RELEASES | amount | 148 | 0 | 0 135; 11 8; 2 7; 0.00050000000000000001 3 |
+| C_8_1C_OFF_SITE_CONTAINED_REL | amount | 25 | 0 | 0 283; 4.74 1; 857 1; 209 1 |
+| C_8_1D_OFF_SITE_OTHER_RELEASES | amount | 8 | 0 | 0 300; 60 1; 14.5 1; 36.5 1 |
+| C_8_2_ENERGY_RECOVERY_ON_SITE | category | 2 | 0 | 0 305; 1489 2 |
+| C_8_3_ENERGY_RECOVERY_OFF_SITE | other | 1 | 0 | 0 307 |
+| C_8_4_RECYCLING_ON_SITE | category | 19 | 0 | 0 289; 160 1; 260 1; 230 1 |
+| C_8_5_RECYCLING_OFF_SITE | amount | 14 | 0 | 0 292; 0.9 3; 2.1 1; 2.9 1 |
+| C_8_6_TREATMENT_ON_SITE | category | 17 | 0 | 0 291; 17943 1; 11041 1; 14360 1 |
+| C_8_7_TREATMENT_OFF_SITE | other | 1 | 0 | 0 307 |
+| PROD_WASTE_8_1_THRU_8_7 | amount | 232 | 0 | 0 56; 0.00050000000000000001 3; 0.5 3; 0.04 3 |
+| PARENT_COMPANY_NAME | category | 5 | 0 | NA 152; BERKSHIRE HATHAWAY 101; HAYCOCK PETROLEUM 24; BOWIE REFINED COAL LLC 18 |
+| PARENT_COMPANY_DB_NUMBER | category | 4 | 0 | NA 170; 7909013 101; 35316439 24; 8.39E+08 12 |
+| LOCATION_1 | category | 9 | 0 | {"latitude": "39.72505",  101; {"latitude": "39.54764",  86; {"latitude": "39.59951",  45; {"latitude": "39.60026",  24 |
+| COMPUTED_REGION_9Z68_3KQ5 | category | 2 | 0 | 2987 299; 2990 8 |
+| C_8_8_ONE_TIME_RELEASE | category | 2 | 0 | nan 250; 0 57 |
+| C_8_9_PRODUCTION_RATIO | amount | 38 | 0 | nan 85; 0 31; 0.96 20; 0.97 18 |
+| SIC_2 | category | 2 | 0 | nan 288; NA 19 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:38:25.25430 307 |
+| SOURCE_RUN_ID | audit | 1 | 0 | 9860b726-f57c-4585-84c4-d 307 |
+| SRC_SHA256 | who | 1 | 0 | 383a729401823ed5fa4228bf1 307 |

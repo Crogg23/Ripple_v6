@@ -1,0 +1,144 @@
+# FED_IRS_990_EFILE_INDEX
+
+rows 5.54M  columns 12  scan 5.1s
+
+roles: audit 2, category 1, date 1, id 3, other 3, who 3
+
+## when
+
+_INGESTED_AT
+  2026     5.54M  ##############################
+
+## who
+
+TAXPAYER_NAME by rows
+      2.0K  LITTLE LEAGUE BASEBALL INC
+      1.4K  KNIGHTS OF COLUMBUS
+      1.4K  AMERICAN LEGION
+      1.3K  FRATERNAL ORDER OF EAGLES
+      1.2K  PTA TEXAS CONGRESS
+      1.1K  INTERNATIONAL ASSOCIATION OF MACHINISTS & AEROSPACE WORKERS
+       829  AMERICAN FEDERATION OF TEACHERS
+       806  ROTARY INTERNATIONAL
+       706  NATIONAL ASSOCIATION OF LETTER CARRIERS
+       654  INTERNATIONAL ASSOCIATION OF LIONS CLUBS
+       647  AMERICAN FEDERATION OF GOVERNMENT EMPLOYEES
+       623  AMERICAN POSTAL WORKERS UNION
+       596  PTA CALIFORNIA CONGRESS OF PARENTS TEACHERS & STUDENTS INC
+       564  SHRINERS INTERNATIONAL
+       542  INTERNATIONAL ASSOCIATION OF FIRE FIGHTERS
+       516  BENEVOLENT & PROTECTIVE ORDER OF ELKS OF THE USA
+       514  United Steelworkers
+       504  VETERANS OF FOREIGN WARS
+       486  FRATERNAL ORDER OF POLICE
+       453  PTA FLORIDA CONGRESS
+
+TAX_PERIOD by rows
+    477.1K  202412
+    470.9K  202312
+    457.3K  202212
+    440.8K  202112
+    396.7K  202012
+    298.3K  201812
+    282.1K  201712
+    265.7K  201612
+    212.7K  202512
+    148.3K  201912
+    138.4K  202406
+    137.3K  202306
+    135.7K  202206
+    134.8K  202506
+    127.9K  202106
+    101.6K  201806
+     99.0K  201706
+     93.2K  201606
+     92.6K  201512
+     89.8K  201906
+
+SUB_DATE by rows
+    748.9K  2025
+    728.7K  2024
+    705.2K  2023
+    656.5K  2022
+    353.6K  2026
+       299  9/16/2020 7:00:07 AM
+       240  10/16/2020 12:26:45 PM
+       239  10/13/2020 2:34:43 PM
+       227  10/21/2020 6:50:48 AM
+       210  9/29/2020 6:45:44 PM
+       210  10/14/2020 11:32:21 PM
+       210  10/22/2020 8:27:20 AM
+       210  9/1/2020 7:08:45 PM
+       210  10/29/2020 11:40:03 AM
+       210  10/2/2020 6:51:40 PM
+       210  10/22/2020 8:06:01 AM
+       210  10/21/2020 8:23:50 AM
+       196  8/28/2020 4:50:13 PM
+       187  10/22/2020 9:05:51 PM
+       185  9/16/2020 10:35:54 AM
+
+## who x when
+
+TAXPAYER_NAME by _INGESTED_AT  LOAD STAMP, not an event date
+  AMERICAN FEDERATION OF GOVERNMENT EMPLOY  2026:647
+  AMERICAN FEDERATION OF TEACHERS           2026:829
+  AMERICAN LEGION                           2026:1.4K
+  AMERICAN POSTAL WORKERS UNION             2026:623
+  BENEVOLENT & PROTECTIVE ORDER OF ELKS OF  2026:516
+  FRATERNAL ORDER OF EAGLES                 2026:1.3K
+  FRATERNAL ORDER OF POLICE                 2026:486
+  INTERNATIONAL ASSOCIATION OF FIRE FIGHTE  2026:542
+  INTERNATIONAL ASSOCIATION OF LIONS CLUBS  2026:654
+  INTERNATIONAL ASSOCIATION OF MACHINISTS   2026:1.1K
+  KNIGHTS OF COLUMBUS                       2026:1.4K
+  LITTLE LEAGUE BASEBALL INC                2026:2.0K
+  NATIONAL ASSOCIATION OF LETTER CARRIERS   2026:706
+  PTA CALIFORNIA CONGRESS OF PARENTS TEACH  2026:596
+  PTA FLORIDA CONGRESS                      2026:453
+  PTA TEXAS CONGRESS                        2026:1.2K
+  ROTARY INTERNATIONAL                      2026:806
+  SHRINERS INTERNATIONAL                    2026:564
+  United Steelworkers                       2026:514
+  VETERANS OF FOREIGN WARS                  2026:504
+
+TAX_PERIOD by _INGESTED_AT  LOAD STAMP, not an event date
+  201512                                    2026:92.6K
+  201606                                    2026:93.2K
+  201612                                    2026:265.7K
+  201706                                    2026:99.0K
+  201712                                    2026:282.1K
+  201806                                    2026:101.6K
+  201812                                    2026:298.3K
+  201906                                    2026:89.8K
+  201912                                    2026:148.3K
+  202012                                    2026:396.7K
+  202106                                    2026:127.9K
+  202112                                    2026:440.8K
+  202206                                    2026:135.7K
+  202212                                    2026:457.3K
+  202306                                    2026:137.3K
+  202312                                    2026:470.9K
+  202406                                    2026:138.4K
+  202412                                    2026:477.1K
+  202506                                    2026:134.8K
+  202512                                    2026:212.7K
+
+## what
+
+RETURN_TYPE: 990 47%, 990EZ 27%, 990PF 16%, 990O 4%, 990EO 3%, 990T 2%, 990PR 1%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| RETURN_ID | id | 4.53M | 942.9K | 20793968 3.8K; 20793964 3.8K; 20793963 3.8K; 20793948 3.8K |
+| FILING_TYPE | other | 1 | 0 | EFILE 5.54M |
+| EIN | other | 893.1K | 0 | 411368101 4.6K; 384133258 4.6K; 912164203 4.6K; 852422042 4.6K |
+| TAX_PERIOD | who | 161 | 0 | 202412 477.1K; 202312 470.9K; 202212 457.3K; 202112 440.8K |
+| SUB_DATE | who | 952.4K | 0 | 2025 753.7K; 2024 733.7K; 2023 707.9K; 2022 662.1K |
+| TAXPAYER_NAME | who | 1.25M | 0 | THE GILBERT & SULLIVAN VE 4.6K; OAKLASH 4.6K; RISING SEAS INSTITUTE INC 4.6K; DANIEL MISSION CENTER INC 4.6K |
+| RETURN_TYPE | category | 7 | 0 | 990 2.62M; 990EZ 1.50M; 990PF 904.3K; 990O 228.6K |
+| DLN | id | 5.47M | 0 | 93492135005342 4.6K; 93492135004042 4.6K; 93492135003292 4.6K; 93492135021242 4.6K |
+| OBJECT_ID | id | 5.62M | 0 | 202241359349200534 4.6K; 202241359349200404 4.6K; 202241359349200329 4.6K; 202241359349202124 4.6K |
+| _INGESTED_AT | audit date | 1 | 0 | 2026-07-24 02:10:40.000 5.54M |
+| _SOURCE_RUN_ID | audit | 1 | 0 | 32ca4fdd-55e8-49bf-b10b-5 5.54M |
+| _SRC_SHA256 | other | 1 | 0 | manifest:10:index_2026.cs 5.54M |

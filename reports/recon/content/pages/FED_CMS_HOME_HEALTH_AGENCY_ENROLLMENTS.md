@@ -1,0 +1,312 @@
+# FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS
+
+rows 11.5K  columns 24  scan 3.4s
+
+roles: audit 2, category 3, date 2, empty 1, id 4, other 4, state 3, who 7
+
+## when
+
+INCORPORATION_DATE
+  1808         1  
+  1848         1  
+  1853         1  
+  1863         1  
+  1867         1  
+  1872         1  
+  1879         1  
+  1880         6  
+  1883         2  
+  1884         1  
+  1886         1  
+  1889         1  
+  1890         1  
+  1891         2  
+  1892         1  
+  1893         1  
+  1895         4  
+  1897         2  
+  1898         2  
+  1899         2  
+  1900         4  
+  1901         2  
+  1903         3  
+  1904         3  
+  1905         4  
+  1906         3  
+  1907         3  
+  1908        14  #
+  1909         2  
+  1910         2  
+  1911         1  
+  1912         1  
+  1913         2  
+  1914         1  
+  1916         4  
+  1917         1  
+  1918         7  
+  1919         2  
+  1920        12  #
+  1921         2  
+  1922        24  #
+  1923         5  
+  1924         3  
+  1925         3  
+  1926         1  
+  1927         3  
+  1929         3  
+  1930         4  
+  1931         1  
+  1934         4  
+  1935         3  
+  1936         3  
+  1938         6  
+  1939         1  
+  1940         2  
+  1941         3  
+  1942         1  
+  1943         1  
+  1944         3  
+  1945        10  
+  1946         5  
+  1947         6  
+  1948        22  #
+  1949         6  
+  1950         2  
+  1951         2  
+  1952         3  
+  1953         4  
+  1954        11  #
+  1955         6  
+  1956         4  
+  1957         2  
+  1958         6  
+  1959         6  
+  1960         2  
+  1961         3  
+  1962         1  
+  1963        16  #
+  1964         6  
+  1965         7  
+  1966         9  
+  1967        11  #
+  1968        12  #
+  1969        14  #
+  1970         7  
+  1971        17  #
+  1972         8  
+  1973        14  #
+  1974        13  #
+  1975        97  #####
+  1976        20  #
+  1977        14  #
+  1978        22  #
+  1979        12  #
+  1980         8  
+  1981        17  #
+  1982        38  ##
+  1983       123  ######
+  1984        42  ##
+  1985        49  ##
+  1986        53  ###
+  1987        35  ##
+  1988        86  ####
+  1989        34  ##
+  1990        37  ##
+  1991        38  ##
+  1992        61  ###
+  1993        79  ####
+  1994       119  ######
+  1995       116  ######
+  1996       125  ######
+  1997       101  #####
+  1998       123  ######
+  1999        93  #####
+  2000       104  #####
+  2001       168  ########
+  2002       239  ############
+  2003       298  ###############
+  2004       332  #################
+  2005       344  #################
+  2006       404  ####################
+  2007       423  #####################
+  2008       352  ##################
+  2009       329  ################
+  2010       300  ###############
+  2011       255  #############
+  2012       202  ##########
+  2013       223  ###########
+  2014       260  #############
+  2015       233  ############
+  2016       283  ##############
+  2017       262  #############
+  2018       332  #################
+  2019       392  ####################
+  2020       522  ##########################
+  2021       601  ##############################
+  2022       245  ############
+  2023       120  ######
+  2024        31  ##
+
+_INGESTED_AT
+  2026     11.5K  ##############################
+
+## who
+
+ORGANIZATION_NAME by rows
+        91  BAYADA HOME HEALTH CARE, INC.
+        80  CENTERWELL CERTIFIED HEALTHCARE CORP
+        54  MAXIM HEALTHCARE SERVICES INC
+        20  PEDIATRIC SERVICES OF AMERICA, LLC
+        19  CENTERWELL HEALTH SERVICES CERTIFIED, INC.
+        19  THE EVANGELICAL LUTHERAN GOOD SAMARITAN SOCIETY
+        18  LIBERTY HEALTHCARE GROUP LLC
+        17  AMEDISYS HOME HEALTH OF ALABAMA, LLC
+        17  NHC-OP LP
+        16  ADORATION HOME HEALTH CARE VIRGINIA, LLC
+        16  KAISER FOUNDATION HOSPITALS
+        16  PREMIER HEALTHCARE SERVICES, LLC
+        14  AMEDISYS GEORGIA, L.L.C.
+        13  PRUITTHEALTH HOME HEALTH, INC.
+        13  SUTTER VISITING NURSE ASSOCIATION AND HOSPICE
+        12  HOME CARE NETWORK, INC.
+        11  TRINITY HOME HEALTH SERVICES
+        11  CENTERWELL HEALTH SERVICES USA, LLC
+        11  ACCENTCARE HOME HEALTH OF CALIFORNIA INC
+        11  WESTERN HEALTH RESOURCES
+
+DOING_BUSINESS_AS_NAME by rows
+       225  CENTERWELL HOME HEALTH
+       132  ENHABIT HOME HEALTH
+        67  AVEANNA HEALTHCARE
+        60  ADORATION HOME HEALTH
+        59  AMEDISYS HOME HEALTH
+        53  ELARA CARING
+        43  AVEANNA HOME HEALTH
+        30  VITALCARING GROUP
+        29  AMEDISYS HOME HEALTH CARE
+        26  ANGELS CARE HOME HEALTH
+        23  CONCIERGE HOME CARE
+        23  ELITE HOME HEALTH
+        21  INTERIM HEALTHCARE
+        20  CARETENDERS
+        20  MEDERI CARETENDERS
+        14  TEAM SELECT HOME CARE
+        14  ASCENSION AT HOME
+        14  SUNCREST HOME HEALTH
+        13  CHOICE HEALTH AT HOME
+        13  SUTTER CARE AT HOME
+
+PRACTICE_LOCATION_TYPE by rows
+      2.5K  HHA BRANCH
+
+ORGANIZATION_OTHER_TYPE_TEXT by rows
+        37  GOVERNMENT
+        27  LIMITED PARTNERSHIP
+        15  HOSPITAL DISTRICT
+        12  GOVERNMENTAL
+        11  GOVERNMENT ENTITY
+         9  S CORP
+         9  COUNTY GOVERNMENT
+         9  S CORPORATION
+         7  NON-PROFIT
+         7  COUNTY HOSPITAL
+         7  DISREGARDED ENTITY
+         7  COUNTY OWNED
+         6  LOCAL GOVERNMENT
+         6  501(C)(3)
+         5  S-CORPORATION
+         5  GOVERNMENT AGENCY
+         5  MUNICIPALITY
+         5  SOLE OWNER
+         5  FEDERAL AND/OR STATE GOVERNMENT TYPE
+         4  POLITICAL SUBDIVISION
+
+## who x when
+
+ORGANIZATION_NAME by INCORPORATION_DATE
+  ACCENTCARE HOME HEALTH OF CALIFORNIA INC  1993:10 1994:1
+  ADORATION HOME HEALTH CARE VIRGINIA, LLC  2018:15
+  AMEDISYS GEORGIA, L.L.C.                  2002:14
+  AMEDISYS HOME HEALTH OF ALABAMA, LLC      1998:16
+  BAYADA HOME HEALTH CARE, INC.             1975:84 2023:1
+  CENTERWELL CERTIFIED HEALTHCARE CORP      1983:80
+  CENTERWELL HEALTH SERVICES CERTIFIED, IN  1998:19
+  CENTERWELL HEALTH SERVICES USA, LLC       2012:1
+  HOME CARE NETWORK, INC.                   1993:1 1994:10 2001:1
+  KAISER FOUNDATION HOSPITALS               1948:16
+  LIBERTY HEALTHCARE GROUP LLC              1994:1 2002:16
+  MAXIM HEALTHCARE SERVICES INC             1988:52 1998:1
+  NHC-OP LP                                 1997:10 2000:6
+  PEDIATRIC SERVICES OF AMERICA, LLC        2020:20
+  PREMIER HEALTHCARE SERVICES, LLC          2005:16
+  PRUITTHEALTH HOME HEALTH, INC.            1999:13
+  SUTTER VISITING NURSE ASSOCIATION AND HO  1908:13
+  THE EVANGELICAL LUTHERAN GOOD SAMARITAN   1922:19
+  TRINITY HOME HEALTH SERVICES              1985:10
+  WESTERN HEALTH RESOURCES                  1983:11
+
+DOING_BUSINESS_AS_NAME by INCORPORATION_DATE
+  ADORATION HOME HEALTH                     1986:3 1990:1 1994:1 1998:4 2001:1 2003:3 2004:3 2005:4 2006:4 2007:1 2008:4 2009:2 2010:1 2013:4 2015:2 2018:14 2019:1 2023:3
+  AMEDISYS HOME HEALTH                      1983:4 1986:1 1998:2 1999:1 2000:3 2001:16 2002:5 2003:1 2004:4 2005:5 2006:1 2007:9 2009:2 2022:1
+  AMEDISYS HOME HEALTH CARE                 1972:1 1982:4 1990:1 2000:2 2001:1 2002:2 2004:11 2007:4
+  ANGELS CARE HOME HEALTH                   1994:1 1997:1 1999:1 2001:1 2002:1 2003:1 2004:1 2005:2 2006:1 2007:1 2009:2 2010:1 2014:1 2016:2 2017:1 2019:1 2021:1
+  ASCENSION AT HOME                         1986:1 1993:1 1998:2 2014:4 2015:3 2020:1 2021:1
+  AVEANNA HEALTHCARE                        1985:3 1993:7 1998:4 2002:1 2004:2 2005:16 2006:2 2007:2 2008:1 2011:2 2015:1 2020:25
+  AVEANNA HOME HEALTH                       1981:1 1984:6 1988:6 1994:1 1998:5 2001:2 2005:1 2007:1 2009:1 2010:1 2013:1 2014:1 2015:1 2017:3 2019:3 2021:6
+  CARETENDERS                               1996:1 2005:1 2007:6 2008:2 2009:1 2010:1 2011:1 2013:1 2015:2
+  CENTERWELL HOME HEALTH                    1982:1 1983:78 1984:1 1985:5 1986:1 1991:7 1992:1 1994:1 1996:5 1998:23 1999:2 2000:8 2003:2 2004:2 2008:1 2012:2
+  CHOICE HEALTH AT HOME                     2004:1 2005:1 2010:1 2014:1 2020:1 2022:1
+  CONCIERGE HOME CARE                       1998:1 2002:1 2003:1 2005:4 2007:2 2008:3 2019:2 2020:7
+  ELARA CARING                              1984:1 1986:1 1989:1 1991:2 1993:1 1995:1 1996:1 1997:2 1998:1 1999:3 2000:1 2001:1 2002:3 2003:9 2004:7 2005:2 2006:1 2007:2 2010:1 2012:1 2013:3 2014:2 2018:4
+  ELITE HOME HEALTH                         2003:1 2004:3 2005:1 2006:1 2007:2 2008:4 2011:1 2012:1 2013:5 2014:2 2016:1
+  ENHABIT HOME HEALTH                       1985:2 1994:1 1996:2 2001:1 2004:1 2006:1 2007:1 2009:2 2010:2 2011:1 2012:4 2014:1 2016:2 2019:3 2020:14 2021:5
+  INTERIM HEALTHCARE                        1976:1 1979:1 1989:4 1990:3 1992:1 1993:1 1995:2 2000:1 2001:3 2006:1 2007:2 2015:1
+  MEDERI CARETENDERS                        2001:1 2003:3 2004:1 2005:1 2006:1 2007:3 2008:1 2010:1 2020:2
+  SUNCREST HOME HEALTH                      1988:2 2006:1 2008:2 2010:2 2011:2 2016:1
+  SUTTER CARE AT HOME                       1908:13
+  TEAM SELECT HOME CARE                     2004:8 2008:1 2014:1 2015:1
+  VITALCARING GROUP                         1986:1 1992:1 1993:1 1997:2 1999:2 2001:1 2003:4 2004:4 2005:2 2006:1 2007:1 2008:2 2009:1 2010:1 2016:1 2019:2 2023:1
+
+## where
+
+ENROLLMENT_STATE: CA 3.0K, TX 1.7K, FL 1.1K, OH 708, IL 510, PA 382, MI 312, MA 236, NV 216, VA 213, CO 212, OK 200
+
+INCORPORATION_STATE: CA 2.3K, TX 1.3K, FL 827, OH 578, IL 423, DE 420, PA 283, MI 274, NV 213, MA 186, VA 174, CO 174
+
+STATE: CA 3.0K, TX 1.7K, FL 1.1K, OH 708, IL 511, PA 382, MI 315, MA 236, NV 220, VA 213, CO 212, OK 202
+
+## what
+
+MULTIPLE_NPI_FLAG: N 99%, Y 1%
+
+ORGANIZATION_TYPE_STRUCTURE: CORPORATION 61%, LLC 35%, OTHER 3%, PARTNERSHIP 1%, SOLE PROPRIETOR 0%
+
+PROPRIETARY_NONPROFIT: P 88%, N 12%, D 0%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| ENROLLMENT_ID | id | 11.5K | 0 | O20260224000672 58; O20260217000774 58; O20260128001260 58; O20251226001221 58 |
+| ENROLLMENT_STATE | state | 55 | 0 | CA 3.0K; TX 1.7K; FL 1.1K; OH 708 |
+| PROVIDER_TYPE_CODE | other | 1 | 0 | 00-06 11.5K |
+| PROVIDER_TYPE_TEXT | who | 1 | 0 | PART A PROVIDER - HOME HE 11.5K |
+| NPI | id | 11.4K | 0 | 1366101115 58; 1043040462 58; 1275953713 58; 1881999738 58 |
+| MULTIPLE_NPI_FLAG | category | 2 | 0 | N 11.4K; Y 153 |
+| CCN | id | 11.8K | 0 | 747120 58; 687420 58; 369151 58; 227545 58 |
+| ASSOCIATE_ID | other | 10.3K | 0 | 2860309671 91; 7618884529 80; 6002898160 65; 9830133941 63 |
+| ORGANIZATION_NAME | who | 10.1K | 0 | BAYADA HOME HEALTH CARE,  91; CENTERWELL CERTIFIED HEAL 80; CENTERWELL HEALTH SERVICE 65; ADVENTHEALTH HOME HEALTH  63 |
+| DOING_BUSINESS_AS_NAME | who | 3.4K | 6.6K | CENTERWELL HOME HEALTH 225; ENHABIT HOME HEALTH 132; AVEANNA HEALTHCARE 67; ADORATION HOME HEALTH 61 |
+| INCORPORATION_DATE | date | 5.3K | 2.3K | 01/17/1975 84; 04/19/1983 80; 01/10/2022 50; 01/13/2022 50 |
+| INCORPORATION_STATE | state | 55 | 2.2K | CA 2.3K; TX 1.3K; FL 827; OH 578 |
+| ORGANIZATION_TYPE_STRUCTURE | category | 5 | 0 | CORPORATION 7.0K; LLC 4.0K; OTHER 362; PARTNERSHIP 84 |
+| ORGANIZATION_OTHER_TYPE_TEXT | who | 157 | 11.1K | GOVERNMENT 37; LIMITED PARTNERSHIP 27; HOSPITAL DISTRICT 15; GOVERNMENTAL 12 |
+| PROPRIETARY_NONPROFIT | category | 3 | 0 | P 10.1K; N 1.4K; D 25 |
+| ADDRESS_LINE_1 | other | 9.8K | 0 | 14545 FRIAR ST 89; 12444 VICTORY BLVD 76; 14531 HAMLIN ST 66; 225 E BROADWAY 65 |
+| ADDRESS_LINE_2 | who | 2.0K | 3.3K | STE 200 230; STE A 230; STE 100 188; STE B 175 |
+| CITY | who | 2.6K | 0 | GLENDALE 358; VAN NUYS 280; COLUMBUS 233; HOUSTON 208 |
+| STATE | state | 55 | 0 | CA 3.0K; TX 1.7K; FL 1.1K; OH 708 |
+| ZIP_CODE | other | 10.4K | 0 | 916063199 72; 914112397 71; 912032230 60; 913452600 59 |
+| PRACTICE_LOCATION_TYPE | who | 1 | 9.0K | HHA BRANCH 2.5K |
+| LOCATION_OTHER_TYPE_TEXT | empty | 0 | 11.5K |  |
+| _INGESTED_AT | audit date | 1 | 0 | 2026-07-26 11:45:31.288 11.5K |
+| _SOURCE_RUN_ID | audit id | 11.7K | 0 | eed1312c-d511-423c-82c0-6 58; 0bb6b533-53fb-4058-84ac-d 58; 1fb61bde-e4f3-465b-ab52-9 58; 0896702b-f470-4275-ad0c-7 58 |

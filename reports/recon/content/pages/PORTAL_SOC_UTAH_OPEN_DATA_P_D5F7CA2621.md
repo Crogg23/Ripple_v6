@@ -1,0 +1,442 @@
+# PORTAL_SOC_UTAH_OPEN_DATA_P_D5F7CA2621
+
+rows 2.0K  columns 114  scan 4.4s
+
+roles: amount 49, audit 2, category 28, date 2, other 24, who 10
+
+## when
+
+C_32_DOC_CTRL_NUM
+  2011      2.0K  ##############################
+
+INGESTED_AT
+  2026      2.0K  ##############################
+
+## how big
+| column | n | min | median | p99 | max | sum |
+|---|---|---|---|---|---|---|
+| C_44_5_1_FUGITIVE_AIR | 2.0K | 0 | 0.12 | 13.8K | 341.5K | 2.11M |
+| C_45_5_2_STACK_AIR | 2.0K | 0 | 0.26 | 53.2K | 7.80M | 17.77M |
+| C_46_5_3_WATER | 2.0K | 0 | 0 | 500 | 110.7K | 341.4K |
+| C_51_5_5_1A_RCRA_C_LANDFILL | 2.0K | 0 | 0 | 47.9K | 699.5K | 5.45M |
+| C_52_5_5_1B_OTHER_LANDFILLS | 2.0K | 0 | 0 | 329.2K | 5.18M | 29.58M |
+| C_56_5_5_3B_OTHER_SURFACE | 2.0K | 0 | 0 | 222.3K | 49.76M | 156.49M |
+
+## who
+
+C_4_FACILITY_NAME by rows
+       251  CLEAN HARBORS ARAGONITE LLC
+        84  TESORO REFINING & MARKETING COMPANY LLC - SLC
+        71  CHEVRON PRODUCTS CO - SALT LAKE REFINERY
+        54  INTERMOUNTAIN POWER GENERATING STATION
+        53  HOLLYFRONTIER WOODS CROSS REFINING LLC
+        51  BIG WEST OIL LLC
+        48  KENNECOTT UTAH COPPER SMELTER & REFINERY
+        37  SILVER EAGLE REFINING WOODS CROSS
+        37  KENNECOTT UTAH COPPER MINE CONCENTRATORS & POWER PLANT
+        34  RELADYNE WEST
+        33  PHILLIPS 66 CO NORTH SALT LAKE PRODUCT TERMINAL
+        33  BONANZA POWER PLANT
+        32  CLEAN HARBORS GRASSY MOUNTAIN LLC
+        32  PACIFICORP ENERGY-HUNTINGTON PLANT
+        25  PACIFICORP HUNTER PLANT
+        24  US MAGNESIUM LLC
+        23  ASAHI REFINING USA INC
+        23  THOMAS PETROLEUM LLC NORTH SALT LAKE
+        22  THOMAS PETROLEUM SAINT GEORGE BULK PLANT
+        22  BRENNTAG PACIFIC INC
+
+C_4_FACILITY_NAME by dollars
+      778.6K       12 rows  ATK LAUNCH SYSTEMS PROMONTORY
+      295.7K       24 rows  US MAGNESIUM LLC
+      169.2K        3 rows  US ARMY DUGWAY PROVING GROUND
+      150.3K       53 rows  HOLLYFRONTIER WOODS CROSS REFINING LLC
+      111.3K       51 rows  BIG WEST OIL LLC
+       99.3K       84 rows  TESORO REFINING & MARKETING COMPANY LLC - SLC
+       73.7K       71 rows  CHEVRON PRODUCTS CO - SALT LAKE REFINERY
+       64.0K       10 rows  LISBON VALLEY MINING CO LLC
+       58.1K       16 rows  HEXCEL CORP
+       37.7K        6 rows  NESTLE USA-PREPARED FOODS DIV INC
+       33.5K       20 rows  AMERICAN PACIFIC CORP UTAH OPERATIONS
+       32.5K        3 rows  GENEVA NITROGEN LLC
+       21.8K       48 rows  KENNECOTT UTAH COPPER SMELTER & REFINERY
+       18.0K        8 rows  WILLIAMS INTERNATIONAL CO LLC OGDEN
+       14.8K       13 rows  VAREX IMAGING CORP
+       11.4K        8 rows  WEIR MINERALS LINATEX- SALT LAKE CITY
+       11.3K       37 rows  KENNECOTT UTAH COPPER MINE CONCENTRATORS & POWER PLANT
+       11.0K       37 rows  SILVER EAGLE REFINING WOODS CROSS
+       10.2K        3 rows  AUTOLIV ASP INC
+        8.2K       16 rows  WESTERN ZIRCONIUM
+
+C_14_PARENT_CO_NAME by rows
+       285  CLEAN HARBORS INC
+       214  NA
+       104  TESORO CORP
+        85  RIO TINTO AMERICA INC
+        77  BERKSHIRE HATHAWAY INC
+        71  CHEVRON CORP
+        62  MAXUM ENTERPRISES LLC
+        54  INTERMOUNTAIN POWER AGENCY
+        53  HOLLYFRONTIER CORP
+        51  FJ MANAGEMENT INC.
+        44  CRH AMERICAS INC
+        41  US DEPARTMENT OF DEFENSE
+        37  THE INTERNATIONAL GROUP INC
+        37  NUCOR CORP
+        33  PHILLIPS 66 CO
+        33  DESERET POWER
+        26  NORTHROP GRUMMAN CORP
+        24  THE RENCO GROUP INC
+        22  BRENNTAG N.A. INC
+        21  ENERGYSOLUTIONS LLC
+
+C_14_PARENT_CO_NAME by dollars
+      778.6K       26 rows  NORTHROP GRUMMAN CORP
+      295.7K       24 rows  THE RENCO GROUP INC
+      175.9K       41 rows  US DEPARTMENT OF DEFENSE
+      150.3K       53 rows  HOLLYFRONTIER CORP
+      118.7K      214 rows  NA
+      111.3K       51 rows  FJ MANAGEMENT INC.
+      101.3K      104 rows  TESORO CORP
+       73.7K       71 rows  CHEVRON CORP
+       58.1K       16 rows  HEXCEL CORP
+       37.7K        6 rows  NESTLE USA INC
+       33.5K       20 rows  AMERICAN PACIFIC CORP
+       33.0K       85 rows  RIO TINTO AMERICA INC
+       18.0K        8 rows  WILLIAMS INTERNATIONAL CO LLC
+       14.8K       13 rows  VAREX IMAGING CORP
+       11.4K        8 rows  WEIR GROUP PLC
+       11.0K       37 rows  THE INTERNATIONAL GROUP INC
+       10.2K       12 rows  AUTOLIV INC
+        8.3K      285 rows  CLEAN HARBORS INC
+        8.2K       16 rows  WESTINGHOUSE ELECTRIC CO LLC
+        7.8K       14 rows  MATERION CORP
+
+C_16_STANDARD_PARENT_CO_NAME by rows
+       285  CLEAN HARBORS INC
+       175  NA
+        85  RIO TINTO AMERICA INC
+        84  MARATHON PETROLEUM CORP
+        77  BERKSHIRE HATHAWAY INC
+        71  CHEVRON CORP
+        62  MAXUM ENTERPRISES LLC
+        55  CRH AMERICAS INC
+        54  INTERMOUNTAIN POWER AGENCY
+        53  HOLLYFRONTIER CORP
+        51  FJ MANAGEMENT INC
+        41  US DEPARTMENT OF DEFENSE
+        37  THE INTERNATIONAL GROUP INC
+        37  NUCOR CORP
+        35  RELADYNE LLC
+        33  DESERET POWER
+        33  PHILLIPS 66
+        26  NORTHROP GRUMMAN CORP
+        24  THE RENCO GROUP INC
+        22  BRENNTAG NORTH AMERICA INC
+
+C_16_STANDARD_PARENT_CO_NAME by dollars
+      778.6K       26 rows  NORTHROP GRUMMAN CORP
+      295.7K       24 rows  THE RENCO GROUP INC
+      175.9K       41 rows  US DEPARTMENT OF DEFENSE
+      150.3K       53 rows  HOLLYFRONTIER CORP
+      118.4K      175 rows  NA
+      111.3K       51 rows  FJ MANAGEMENT INC
+       99.3K       84 rows  MARATHON PETROLEUM CORP
+       73.7K       71 rows  CHEVRON CORP
+       58.1K       16 rows  HEXCEL CORP
+       37.7K        6 rows  NESTLE USA INC
+       33.5K       20 rows  AMERICAN PACIFIC CORP
+       33.0K       85 rows  RIO TINTO AMERICA INC
+       18.0K        8 rows  WILLIAMS INTERNATIONAL CO LLC
+       14.8K       13 rows  VAREX IMAGING CORP
+       11.4K        8 rows  WEIR GROUP PLC
+       11.0K       37 rows  THE INTERNATIONAL GROUP INC
+       10.2K       12 rows  AUTOLIV INC
+        8.3K      285 rows  CLEAN HARBORS INC
+        8.2K       16 rows  WESTINGHOUSE ELECTRIC CO LLC
+        8.1K       15 rows  MATERION CORP
+
+C_2_TRIFD by rows
+       251  84029SFTYK11600
+        84  84103MCLCM474WE
+        71  84116CHVRN2351N
+        54  84624NTRMN850BR
+        53  84087PHLLP393SO
+        51  84054BGWST333WE
+        48  84006KNNCT8362W
+        37  84006KNNCT12300
+        37  84087CRYSN2355S
+        33  84054CNCNR245E1
+        33  84078BNNZP12500
+        32  84074PPMNCI80XX
+        32  84528PCFCR10MIL
+        25  84513PCFCR3MILE
+        24  84074MXMGNROWLE
+        23  84054JRDNP1117N
+        23  84120JHNSN4601W
+        22  84770HYCCK845NI
+        21  84029NVRCRUSINT
+        20  84720MRCNZ10622
+
+C_2_TRIFD by dollars
+      778.6K       12 rows  84302MRTNT9160N
+      295.7K       24 rows  84074MXMGNROWLE
+      169.2K        3 rows  84022SRMYDSTEDP
+      150.3K       53 rows  84087PHLLP393SO
+      111.3K       51 rows  84054BGWST333WE
+       99.3K       84 rows  84103MCLCM474WE
+       73.7K       71 rows  84116CHVRN2351N
+       64.0K       10 rows  84530LSBNV92SCU
+       58.1K       16 rows  84044HRCLS6800W
+       37.7K        6 rows  84663STFFR815WE
+       33.5K       20 rows  84720MRCNZ10622
+       32.5K        3 rows  84057LRCHN1165N
+       21.8K       48 rows  84006KNNCT8362W
+       18.0K        8 rows  84403WLLMS3450S
+       14.8K       13 rows  84104VRNMC1678S
+       11.4K        8 rows  84119RBBRN3459S
+       11.3K       37 rows  84006KNNCT12300
+       11.0K       37 rows  84087CRYSN2355S
+       10.2K        3 rows  84337NCXXX1360N
+        8.2K       16 rows  84404WSTRN10000
+
+## who x when
+
+C_4_FACILITY_NAME by C_32_DOC_CTRL_NUM, dollars = C_44_5_1_FUGITIVE_AIR
+  AMERICAN PACIFIC CORP UTAH OPERATIONS     2011:33.5K
+  ASAHI REFINING USA INC                    2011:55.03
+  ATK LAUNCH SYSTEMS PROMONTORY             2011:778.6K
+  BIG WEST OIL LLC                          2011:111.3K
+  BONANZA POWER PLANT                       2011:1.6K
+  BRENNTAG PACIFIC INC                      2011:4.6K
+  CHEVRON PRODUCTS CO - SALT LAKE REFINERY  2011:73.7K
+  CLEAN HARBORS ARAGONITE LLC               2011:8.2K
+  CLEAN HARBORS GRASSY MOUNTAIN LLC         2011:140.31
+  GENEVA NITROGEN LLC                       2011:32.5K
+  HEXCEL CORP                               2011:58.1K
+  HOLLYFRONTIER WOODS CROSS REFINING LLC    2011:150.3K
+  INTERMOUNTAIN POWER GENERATING STATION    2011:6.4K
+  KENNECOTT UTAH COPPER MINE CONCENTRATORS  2011:11.3K
+  KENNECOTT UTAH COPPER SMELTER & REFINERY  2011:21.8K
+  LISBON VALLEY MINING CO LLC               2011:64.0K
+  NESTLE USA-PREPARED FOODS DIV INC         2011:37.7K
+  PACIFICORP ENERGY-HUNTINGTON PLANT        2011:2.1K
+  PACIFICORP HUNTER PLANT                   2011:563.10
+  PHILLIPS 66 CO NORTH SALT LAKE PRODUCT T  2011:3.6K
+  RELADYNE WEST                             2011:13.49
+  SILVER EAGLE REFINING WOODS CROSS         2011:11.0K
+  TESORO REFINING & MARKETING COMPANY LLC   2011:99.3K
+  THOMAS PETROLEUM LLC NORTH SALT LAKE      2011:8.44
+  THOMAS PETROLEUM SAINT GEORGE BULK PLANT  2011:0.04
+  US ARMY DUGWAY PROVING GROUND             2011:169.2K
+  US MAGNESIUM LLC                          2011:295.7K
+  VAREX IMAGING CORP                        2011:14.8K
+  WEIR MINERALS LINATEX- SALT LAKE CITY     2011:11.4K
+  WILLIAMS INTERNATIONAL CO LLC OGDEN       2011:18.0K
+
+C_14_PARENT_CO_NAME by C_32_DOC_CTRL_NUM, dollars = C_44_5_1_FUGITIVE_AIR
+  AMERICAN PACIFIC CORP                     2011:33.5K
+  AUTOLIV INC                               2011:10.2K
+  BERKSHIRE HATHAWAY INC                    2011:3.3K
+  BRENNTAG N.A. INC                         2011:4.6K
+  CHEVRON CORP                              2011:73.7K
+  CLEAN HARBORS INC                         2011:8.3K
+  CRH AMERICAS INC                          2011:171
+  DESERET POWER                             2011:1.6K
+  ENERGYSOLUTIONS LLC                       2011:0
+  FJ MANAGEMENT INC.                        2011:111.3K
+  HEXCEL CORP                               2011:58.1K
+  HOLLYFRONTIER CORP                        2011:150.3K
+  INTERMOUNTAIN POWER AGENCY                2011:6.4K
+  MATERION CORP                             2011:7.8K
+  MAXUM ENTERPRISES LLC                     2011:8.50
+  NA                                        2011:118.7K
+  NESTLE USA INC                            2011:37.7K
+  NORTHROP GRUMMAN CORP                     2011:778.6K
+  NUCOR CORP                                2011:6.6K
+  PHILLIPS 66 CO                            2011:3.6K
+  RIO TINTO AMERICA INC                     2011:33.0K
+  TESORO CORP                               2011:101.3K
+  THE INTERNATIONAL GROUP INC               2011:11.0K
+  THE RENCO GROUP INC                       2011:295.7K
+  US DEPARTMENT OF DEFENSE                  2011:175.9K
+  VAREX IMAGING CORP                        2011:14.8K
+  WEIR GROUP PLC                            2011:11.4K
+  WESTINGHOUSE ELECTRIC CO LLC              2011:8.2K
+  WILLIAMS INTERNATIONAL CO LLC             2011:18.0K
+
+## what
+
+C_1_YEAR: 2017 26%, 2016 25%, 2015 25%, 2018 24%
+
+C_7_COUNTY: SALT LAKE 30%, TOOELE 18%, DAVIS 15%, UTAH 7%, WEBER 7%, BOX ELDER 5%, MILLARD 5%, UINTAH 3%, CACHE 3%, EMERY 3%, WASHINGTON 2%, IRON 2%
+
+C_8_ST: UT 100%, TX 0%
+
+C_17_FEDERAL_FACILITY: False 98%, True 2%
+
+C_18_INDUSTRY_SECTOR_CODE: 324 17%, 562 17%, 331 10%, 4247 10%, 2211 9%, 332 8%, 327 7%, 325 7%, 311 5%, 4246 4%, 334 4%, 2122 3%
+
+C_19_INDUSTRY_SECTOR: Petroleum 17%, Hazardous Waste 17%, Primary Metals 10%, Petroleum Bulk Terminals 10%, Electric Utilities 9%, Fabricated Metals 8%, Nonmetallic Mineral Product 7%, Chemicals 7%, Food 5%, Chemical Wholesalers 4%, Computers and Electronic Produ 4%, Metal Mining 3%
+
+C_34_ELEMENTAL_METAL_INCLUDED: False 98%, True 2%
+
+C_37_CLEAN_AIR_ACT_CHEMICAL: True 67%, False 33%
+
+C_38_CLASSIFICATION: TRI 79%, PBT 20%, Dioxin 2%
+
+C_39_METAL: False 64%, True 36%
+
+C_40_METAL_CATEGORY: 0 60%, 1 36%, 2 1%, 3 1%, 4 1%
+
+C_41_CARCINOGEN: False 73%, True 27%
+
+C_42_FORM_TYPE: R 92%, A 8%
+
+C_43_UNIT_OF_MEASURE: Pounds 98%, Grams 2%
+
+C_49_5_4_2_UNDERGROUND_C_II: 0 100%, 9 0%, 10 0%
+
+C_53_5_5_2_LAND_TREATMENT: 0 99%, 1 0%, 140 0%, 34660 0%, 39 0%, 174 0%, 12 0%, 47868 0%, 86 0%, 48 0%, 85 0%, 41 0%
+
+C_85_6_2_M28: 0 100%, 25804 0%, 15071 0%
+
+C_89_6_2_M92: 0 99%, 21 0%, 647 0%, 56085 0%, 104500 0%, 128 0%, 120 0%, 1500 0%, 20 0%, 1126 0%, 27 0%, 68682 0%
+
+C_94_6_2_M61_NON_METAL: 0 100%, 17867 0%, 13235 0%, 15643 0%
+
+C_96_6_2_M95: 0 100%, 1100 0%, 8 0%, 1 0%
+
+C_114_PROD_RATIO_OR_ACTIVITY: PRODUCTION 64%, ACTIVITY 25%, nan 11%
+
+COMPUTED_REGION_5D9V_6BUI: 26 26%, 22 19%, 11 18%, 5 7%, 16 7%, 14 5%, 2 5%, 10 4%, 6 4%, 17 3%, 8 2%, 15 2%
+
+COMPUTED_REGION_QMWN_IMPY: nan 52%, 220 15%, 44 7%, 148 4%, 98 4%, 29 3%, 38 3%, 48 3%, 43 3%, 159 2%, 16 2%, 109 2%
+
+COMPUTED_REGION_2FPW_SWV9: 43 25%, 16 21%, 55 8%, 19 8%, 21 6%, 54 6%, 5 5%, 57 5%, 9 4%, 15 4%, 2 4%, 3 4%
+
+COMPUTED_REGION_MI24_NG5Q: 29 26%, 23 19%, 9 18%, 19 7%, 4 7%, 11 5%, 16 5%, 13 4%, 12 4%, 26 3%, 15 2%, 2 2%
+
+C_27_NAICS_2: nan 74%, 562213 13%, 424710 4%, 221112 2%, 325998 2%, 424720 2%, 562211 1%, 331491 1%, 212112 1%, 331513 1%, 325220 1%, 213113 1%
+
+C_10_BIA: nan 98%, 687 2%
+
+C_11_TRIBE: nan 98%, Ute Indian Tribe of the Uintah 2%
+
+## every column
+| column | roles | distinct | blank | top values |
+|---|---|---|---|---|
+| C_1_YEAR | category | 4 | 0 | 2017 510; 2016 509; 2015 500; 2018 481 |
+| C_2_TRIFD | who | 208 | 0 | 84029SFTYK11600 251; 84103MCLCM474WE 84; 84116CHVRN2351N 71; 84624NTRMN850BR 54 |
+| C_4_FACILITY_NAME | who | 200 | 0 | CLEAN HARBORS ARAGONITE L 251; TESORO REFINING & MARKETI 84; CHEVRON PRODUCTS CO - SAL 71; INTERMOUNTAIN POWER GENER 54 |
+| C_5_STREET_ADDRESS | who | 206 | 0 | 11600 NORTH APTUS ROAD 251; 474 W 900 N 84; 2351 NORTH 1100 WEST 71; 850 W BRUSH WELLMAN RD 54 |
+| C_6_CITY | who | 68 | 0 | SALT LAKE CITY 372; GRANTSVILLE 335; OGDEN 122; NORTH SALT LAKE 120 |
+| C_7_COUNTY | category | 21 | 0 | SALT LAKE 575; TOOELE 351; DAVIS 294; UTAH 139 |
+| C_8_ST | category | 2 | 0 | UT 2.0K; TX 1 |
+| C_9_ZIP | other | 79 | 0 | 84029 347; 84054 120; 84116 117; 84103 107 |
+| C_14_PARENT_CO_NAME | who | 120 | 0 | CLEAN HARBORS INC 285; NA 214; TESORO CORP 104; RIO TINTO AMERICA INC 85 |
+| C_15_PARENT_CO_DB_NUM | other | 112 | 0 | 157793639 285; nan 214; NA 203; 8133480 104 |
+| C_16_STANDARD_PARENT_CO_NAME | who | 119 | 0 | CLEAN HARBORS INC 285; NA 175; RIO TINTO AMERICA INC 85; MARATHON PETROLEUM CORP 84 |
+| C_17_FEDERAL_FACILITY | category | 2 | 0 | False 2.0K; True 41 |
+| C_18_INDUSTRY_SECTOR_CODE | category | 21 | 0 | 324 315; 562 307; 331 188; 4247 174 |
+| C_19_INDUSTRY_SECTOR | category | 21 | 0 | Petroleum 315; Hazardous Waste 307; Primary Metals 188; Petroleum Bulk Terminals 174 |
+| C_26_PRIMARY_NAICS | who | 103 | 0 | 562211 304; 324110 275; 424710 174; 221112 158 |
+| C_32_DOC_CTRL_NUM | date | 2.0K | 0 | 1315214919615 10; 1316215441763 10; 1318217017730 10; 1317217563877 10 |
+| C_33_CHEMICAL | who | 176 | 0 | LEAD 87; LEAD COMPOUNDS 85; NITRATE COMPOUNDS 84; ZINC COMPOUNDS 70 |
+| C_34_ELEMENTAL_METAL_INCLUDED | category | 2 | 0 | False 2.0K; True 30 |
+| C_35_CAS_COMPOUND_ID | other | 167 | 0 | N420 96; 7439921 87; N511 84; N982 70 |
+| C_36_SRS_ID | other | 170 | 0 | 650002 96; 149583 87; 649616 84; 649699 70 |
+| C_37_CLEAN_AIR_ACT_CHEMICAL | category | 2 | 0 | True 1.3K; False 666 |
+| C_38_CLASSIFICATION | category | 3 | 0 | TRI 1.6K; PBT 390; Dioxin 36 |
+| C_39_METAL | category | 2 | 0 | False 1.3K; True 730 |
+| C_40_METAL_CATEGORY | category | 5 | 0 | 0 1.2K; 1 730; 2 28; 3 25 |
+| C_41_CARCINOGEN | category | 2 | 0 | False 1.5K; True 544 |
+| C_42_FORM_TYPE | category | 2 | 0 | R 1.9K; A 150 |
+| C_43_UNIT_OF_MEASURE | category | 2 | 0 | Pounds 2.0K; Grams 36 |
+| C_44_5_1_FUGITIVE_AIR | amount | 670 | 0 | 0 845; 5 125; 250 50; 0.01 36 |
+| C_45_5_2_STACK_AIR | amount | 727 | 0 | 0 738; 250 73; 5 68; 0.03 36 |
+| C_46_5_3_WATER | amount | 101 | 0 | 0 1.8K; 500 26; 5 24; 1 3 |
+| C_47_5_4_UNDERGROUND | other | 1 | 0 | 0 2.0K |
+| C_48_5_4_1_UNDERGROUND_CL | other | 1 | 0 | 0 2.0K |
+| C_49_5_4_2_UNDERGROUND_C_II | category | 3 | 0 | 0 2.0K; 9 1; 10 1 |
+| C_50_5_5_1_LANDFILLS | other | 1 | 0 | 0 2.0K |
+| C_51_5_5_1A_RCRA_C_LANDFILL | amount | 76 | 0 | 0 1.9K; 83611.1969609 1; 58962 1; 429172.8 1 |
+| C_52_5_5_1B_OTHER_LANDFILLS | amount | 213 | 0 | 0 1.8K; 1 12; 2 5; 3 4 |
+| C_53_5_5_2_LAND_TREATMENT | category | 19 | 0 | 0 2.0K; 1 1; 140 1; 34660 1 |
+| C_54_5_5_3_SURFACE_IMPNDMNT | other | 1 | 0 | 0 2.0K |
+| C_55_5_5_3A_RCRA_SURFACE_IM | other | 1 | 0 | 0 2.0K |
+| C_56_5_5_3B_OTHER_SURFACE | amount | 167 | 0 | 0 1.8K; 11000 4; 222335 3; 250 3 |
+| C_57_5_5_4_OTHER_DISPOSAL | amount | 82 | 0 | 0 1.9K; 1 11; 5 7; 0.1 7 |
+| C_58_ON_SITE_RELEASE_TOTAL | amount | 1.2K | 0 | 0 398; 10 40; 5 36; 255 20 |
+| C_59_6_1_POTW_TRNS_RLSE | amount | 187 | 0 | 0 1.8K; 5 23; 250 5; 0.05 3 |
+| C_60_6_1_POTW_TRNS_TRT | amount | 135 | 0 | 0 1.9K; 5 7; 250 3; 225 2 |
+| C_61_POTW_TOTAL_TRANSFERS | amount | 209 | 0 | 0 1.7K; 5 32; 250 14; 0.1 4 |
+| C_62_6_2_M10 | amount | 10 | 0 | 0 2.0K; 0.05 2; 6.71 1; 255 1 |
+| C_63_6_2_M41 | amount | 31 | 0 | 0 1.9K; 12 7; 18 7; 24 5 |
+| C_64_6_2_M62 | other | 1 | 0 | 0 2.0K |
+| C_65_6_2_M40_METAL | other | 1 | 0 | 0 2.0K |
+| C_66_6_2_M61_METAL | other | 1 | 0 | 0 2.0K |
+| C_67_6_2_M71 | other | 1 | 0 | 0 2.0K |
+| C_68_6_2_M81 | other | 1 | 0 | 0 2.0K |
+| C_69_6_2_M82 | other | 1 | 0 | 0 2.0K |
+| C_70_6_2_M72 | other | 1 | 0 | 0 2.0K |
+| C_71_6_2_M63 | other | 1 | 0 | 0 2.0K |
+| C_72_6_2_M66 | other | 1 | 0 | 0 2.0K |
+| C_73_6_2_M67 | amount | 3 | 0 | 0 2.0K; 63 1; 14.11 1 |
+| C_74_6_2_M64 | amount | 199 | 0 | 0 1.8K; 5 13; 1 12; 250 6 |
+| C_75_6_2_M65 | amount | 221 | 0 | 0 1.7K; 0.01 26; 1 8; 0.02 4 |
+| C_76_6_2_M73 | amount | 5 | 0 | 0 2.0K; 5 2; 47 1; 2.1 1 |
+| C_77_6_2_M79 | amount | 11 | 0 | 0 2.0K; 0.36 2; 31177 1; 39326 1 |
+| C_78_6_2_M90 | amount | 30 | 0 | 0 2.0K; 250 4; 0.17 2; 0.2 2 |
+| C_79_6_2_M94 | amount | 79 | 0 | 0 1.9K; 1 3; 0.05 2; 35 2 |
+| C_80_6_2_M99 | amount | 66 | 0 | 0 1.9K; 1 3; 2 3; 5 2 |
+| C_81_OFF_SITE_RELEASE_TOTAL | amount | 588 | 0 | 0 1.3K; 0.01 25; 5 17; 1 12 |
+| C_82_6_2_M20 | amount | 14 | 0 | 0 2.0K; 4450 1; 2400 1; 2880 1 |
+| C_83_6_2_M24 | amount | 150 | 0 | 0 1.8K; 250 3; 750 2; 17644 1 |
+| C_84_6_2_M26 | amount | 116 | 0 | 0 1.9K; 1 8; 0.38 5; 0.27 4 |
+| C_85_6_2_M28 | category | 3 | 0 | 0 2.0K; 25804 1; 15071 1 |
+| C_86_6_2_M93 | amount | 110 | 0 | 0 1.9K; 255 4; 0.5 4; 0.2 4 |
+| C_87_OFF_SITE_RECYCLED_TOTAL | amount | 368 | 0 | 0 1.6K; 1 9; 250 5; 0.38 5 |
+| C_88_6_2_M56 | amount | 32 | 0 | 0 2.0K; 2200 2; 9004.39 1; 500 1 |
+| C_89_6_2_M92 | category | 16 | 0 | 0 2.0K; 21 1; 647 1; 56085 1 |
+| C_90_OFF_SITE_ENERGY_RECOVERY | amount | 47 | 0 | 0 2.0K; 2200 2; 21 1; 9004.39 1 |
+| C_91_6_2_M40_NON_METAL | amount | 15 | 0 | 0 2.0K; 9.25 1; 14.16 1; 14.92 1 |
+| C_92_6_2_M50 | amount | 308 | 0 | 0 1.7K; 0.05 7; 3 5; 1 5 |
+| C_93_6_2_M54 | amount | 46 | 0 | 0 2.0K; 68 2; 26.1 1; 275 1 |
+| C_94_6_2_M61_NON_METAL | category | 4 | 0 | 0 2.0K; 17867 1; 13235 1; 15643 1 |
+| C_95_6_2_M69 | amount | 10 | 0 | 0 2.0K; 250 1; 4400 1; 4272 1 |
+| C_96_6_2_M95 | category | 4 | 0 | 0 2.0K; 1100 1; 8 1; 1 1 |
+| C_97_OFF_SITE_TREATED_TOTAL | amount | 449 | 0 | 0 1.5K; 0.05 7; 5 6; 1 6 |
+| C_98_6_2_UNCLASSIFIED | other | 1 | 0 | 0 2.0K |
+| C_99_6_2_TOTAL_TRANSFER | amount | 1.0K | 0 | 0 885; 1 16; 250 10; 12 9 |
+| C_100_TOTAL_RELEASES | amount | 1.4K | 0 | 0 279; 5 31; 10 29; 250 15 |
+| C_101_8_1_RELEASES | other | 1 | 0 | 0 2.0K |
+| C_102_8_1A_ON_SITE_CONTAINED | amount | 268 | 0 | 0 1.7K; 1 12; 2 5; 3 4 |
+| C_103_8_1B_ON_SITE_OTHER | amount | 1.1K | 0 | 0 427; 10 39; 5 34; 0.03 20 |
+| C_104_8_1C_OFF_SITE_CONTAIN | amount | 398 | 0 | 0 1.5K; 0.01 25; 1 14; 2 6 |
+| C_105_8_1D_OFF_SITE_OTHER | amount | 367 | 0 | 0 1.6K; 12 9; 5 8; 3.1 7 |
+| C_106_8_2_ENERGY_RECOVER_ON | amount | 9 | 0 | 0 2.0K; 7976268 1; 5394883 1; 163.7 1 |
+| C_107_8_3_ENERGY_RECOVER_OF | amount | 46 | 0 | 0 2.0K; 2200 2; 19 1; 9004.39 1 |
+| C_108_8_4_RECYCLING_ON_SITE | amount | 74 | 0 | 0 1.9K; 12.5 3; 0.25 2; 7779 1 |
+| C_109_8_5_RECYCLING_OFF_SIT | amount | 367 | 0 | 0 1.6K; 1 9; 0.38 5; 0.5 5 |
+| C_110_8_6_TREATMENT_ON_SITE | other | 481 | 0 | 0 1.5K; 2200 5; 250 5; 150000 4 |
+| C_111_8_7_TREATMENT_OFF_SITE | amount | 449 | 0 | 0 1.5K; 5 6; 0.05 6; 1 6 |
+| C_112_PRODUCTION_WSTE_8_1 | amount | 1.7K | 0 | 0 210; 5 13; 1015 10; 750 10 |
+| C_3_FRS_ID | other | 204 | 0 | 110000906985 251; 110000469243 84; 110000469485 71; 110000470053 54 |
+| C_12_LATITUDE | amount | 199 | 0 | 40.7344 251; 40.7889 84; 40.8249 71; 39.5103 54 |
+| C_13_LONGITUDE | amount | 197 | 0 | -112.9681 251; -111.90441 84; -111.9238 71; -112.5804 54 |
+| C_114_PROD_RATIO_OR_ACTIVITY | category | 3 | 0 | PRODUCTION 1.3K; ACTIVITY 506; nan 213 |
+| C_115_8_9_PRODUCTION_RATIO | amount | 196 | 0 | 1 259; 0 150; 0.95 93; 1.2 90 |
+| GEOCODED_COLUMN | who | 200 | 0 | {"type": "Point", "coordi 251; {"type": "Point", "coordi 84; {"type": "Point", "coordi 71; {"type": "Point", "coordi 54 |
+| COMPUTED_REGION_5D9V_6BUI | category | 21 | 0 | 26 498; 22 365; 11 350; 5 129 |
+| COMPUTED_REGION_QMWN_IMPY | category | 49 | 0 | nan 879; 220 251; 44 125; 148 74 |
+| COMPUTED_REGION_JDNU_JMST | other | 74 | 0 | 231 347; 79 191; 78 107; 94 105 |
+| COMPUTED_REGION_2FPW_SWV9 | category | 48 | 0 | 43 350; 16 296; 55 111; 19 107 |
+| COMPUTED_REGION_MI24_NG5Q | category | 21 | 0 | 29 498; 23 365; 9 350; 19 129 |
+| C_27_NAICS_2 | category | 22 | 0 | nan 1.5K; 562213 251; 424710 71; 221112 37 |
+| C_113_8_8_ONE_TIME_RELEASE | other | 59 | 0 | nan 1.7K; 0 226; 1 6; 35 6 |
+| C_10_BIA | category | 2 | 0 | nan 2.0K; 687 33 |
+| C_11_TRIBE | category | 2 | 0 | nan 2.0K; Ute Indian Tribe of the U 33 |
+| INGESTED_AT | audit date | 1 | 0 | 2026-06-24 05:40:34.32319 2.0K |
+| SOURCE_RUN_ID | audit | 1 | 0 | ac4a7008-2408-47dd-97d7-d 2.0K |
+| SRC_SHA256 | who | 1 | 0 | e59889ea06c4e803792e9b86c 2.0K |
