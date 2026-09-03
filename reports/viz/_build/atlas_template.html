@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Atlas</title>
+<style>
+  :root {
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink-2:#c3c2b7;
+    --muted:#898781; --hairline:rgba(255,255,255,0.10);
+    --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  }
+  html, body { margin:0; height:100%; overflow:hidden; background:var(--page); }
+  body { font:13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink-2); }
+  #c { display:block; width:100vw; height:100vh; cursor:grab; }
+  #c.dragging { cursor:grabbing; }
+  .panel {
+    position:fixed; background:rgba(26,26,25,0.92); border:1px solid var(--hairline);
+    border-radius:10px; padding:12px 16px; backdrop-filter:blur(6px);
+  }
+  #brand { left:16px; top:16px; user-select:none; pointer-events:none; }
+  #brand h1 { margin:0 0 2px; font-size:15px; font-weight:700; color:var(--ink); letter-spacing:0.4px; }
+  #brand .stats { color:var(--muted); font-size:12px; }
+  #brand .stats b { color:var(--ink-2); font-weight:600; font-variant-numeric:tabular-nums; }
+  #legend { left:16px; bottom:16px; user-select:none; pointer-events:none; font-size:12px; }
+  #legend .row { display:flex; align-items:center; gap:8px; margin:3px 0; }
+  #legend .sw { width:10px; height:10px; border-radius:3px; flex:none; }
+  #legend .ln { width:22px; height:0; border-top:2px solid; flex:none; }
+  #legend .dot { border-top:2px dotted var(--muted); }
+  #legend h2 { margin:0 0 6px; font-size:11px; font-weight:600; color:var(--muted);
+               text-transform:uppercase; letter-spacing:0.8px; }
+  #legend .cols { display:flex; gap:26px; }
+  #hint { right:16px; bottom:16px; color:var(--muted); font-size:12px;
+          user-select:none; pointer-events:none; }
+  #hint b { color:var(--ink-2); font-weight:600; }
+  #typefly { left:50%; top:16px; transform:translateX(-50%); color:var(--ink);
+             font-weight:600; letter-spacing:1px; display:none; pointer-events:none; }
+  #typefly .n { color:var(--warn); }
+  #route { left:50%; bottom:16px; transform:translateX(-50%);
+           max-width:min(1100px, 92vw); display:none; }
+  #route .hop { margin:3px 0; color:var(--ink-2); }
+  #route .hop b { color:var(--ink); font-weight:600; }
+  #route .k { font-family:Consolas, monospace; color:var(--warn); }
+  #route .pct { font-weight:600; font-variant-numeric:tabular-nums; }
+  #route .note { color:var(--muted); font-size:12px; }
+  #route button { margin:8px 8px 0 0; background:#262624; color:var(--ink-2);
+                  border:1px solid var(--hairline); border-radius:6px; padding:5px 14px;
+                  font:12px system-ui, sans-serif; cursor:pointer; }
+  #route button:hover { background:#333331; color:var(--ink); }
+  #route pre { display:none; margin:8px 0 0; padding:10px; background:var(--page);
+               border-radius:6px; color:var(--ink-2); font:12px/1.5 Consolas, monospace;
+               max-height:200px; overflow:auto; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="brand" class="panel">
+  <h1>THE ATLAS</h1>
+  <div class="stats" id="stats"></div>
+</div>
+<div id="legend" class="panel"></div>
+<div id="hint">scroll <b>zoom</b> · drag <b>pan</b> · type <b>fly</b> · click two tables <b>route</b> · Esc <b>clear</b></div>
+<div id="typefly" class="panel"></div>
+<div id="route" class="panel"></div>
+<script>
+const DATA = __DATA__;
+
+/* domain hues — validated categorical order (dark surface), do not reshuffle */
+const HUES = ['#3987e5','#d95926','#199e70','#c98500','#d55181','#008300','#9085e9'];
+const UNCHARTED_HUE = '#5a5a56';
+const hueOf = slot => slot < 7 ? HUES[slot] : UNCHARTED_HUE;
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W=0, H=0;
+let cam = { x:0, y:0, z:0.2 };
+let hoverNode=null, selA=null, selB=null, reachable=null, routeEdges=null;
+let typeBuf='', typeTimer=null;
+
+const nodes = DATA.nodes;
+const byName = new Map(nodes.map(n=>[n.name,n]));
+const regions = DATA.regions;
+const regionSlot = new Map(regions.map(r=>[r.name,r.slot]));
+const paved = DATA.paved.filter(e=>byName.has(e.a)&&byName.has(e.b));
+const ghost = DATA.ghost.filter(e=>byName.has(e.a)&&byName.has(e.b));
+
+const adj = new Map();
+for (const e of paved) {
+  if (!adj.has(e.a)) adj.set(e.a, []);
+  if (!adj.has(e.b)) adj.set(e.b, []);
+  adj.get(e.a).push({to:e.b, e}); adj.get(e.b).push({to:e.a, e});
+}
+/* best road first: when a pair has several measured edges, highest match rate wins */
+for (const l of adj.values()) l.sort((x,y)=>(y.e.match_rate??0)-(x.e.match_rate??0));
+const degree = n => adj.get(n)?.length || 0;
+const pairKey = e => [e.a,e.b].sort().join('|');
+const pavedPairs = new Set(paved.map(pairKey)).size;
+const ghostPairs = new Set(ghost.map(pairKey)).size;
+const isolated = nodes.filter(n=>!adj.has(n.name)).length;
+const statsHome =
+  `<b>${nodes.length}</b> tables · <b>${pavedPairs}</b> measured joins · `+
+  `<b>${ghostPairs}</b> untested pairs<br>`+
+  `<b>${isolated}</b> tables have no measured join yet`;
+document.getElementById('stats').innerHTML = statsHome;
+
+document.getElementById('legend').innerHTML =
+  `<div class="cols"><div><h2>Regions</h2>`+
+  regions.map(r=>`<div class="row"><span class="sw" style="background:${hueOf(r.slot)}"></span>`+
+    `${r.name.toLowerCase().replace(/(^|[ &] ?)([a-z])/g, s=>s.toUpperCase())} · ${r.count}</div>`).join('')+
+  `</div><div><h2>Joins</h2>`+
+  `<div class="row"><span class="ln" style="border-color:var(--good)"></span>solid · 70%+ match</div>`+
+  `<div class="row"><span class="ln" style="border-color:var(--warn)"></span>shaky · 30–70%</div>`+
+  `<div class="row"><span class="ln" style="border-color:var(--crit)"></span>weak · under 30%</div>`+
+  `<div class="row"><span class="ln dot"></span>shared key, never tested</div>`+
+  `</div></div>`;
+
+/* ---------- helpers ---------- */
+const s2w = (px,py)=>({ x:(px-W/2)/cam.z+cam.x, y:(py-H/2)/cam.z+cam.y });
+const w2s = (wx,wy)=>({ x:(wx-cam.x)*cam.z+W/2, y:(wy-cam.y)*cam.z+H/2 });
+const cssVar = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const GOOD=cssVar('--good'), WARN=cssVar('--warn'), CRIT=cssVar('--crit');
+const rateColor = r => r==null?'#898781':(r>=70?GOOD:(r>=30?WARN:CRIT));
+const rateWord = r => r==null?'?':(r>=70?'solid':(r>=30?'shaky':'weak'));
+
+function nodeAt(px,py){
+  const w=s2w(px,py); let best=null,bd=Infinity;
+  for (const n of nodes){ const d=Math.hypot(n.x-w.x,n.y-w.y); if(d<bd){bd=d;best=n;} }
+  return (bd*cam.z<38)?best:null;
+}
+function bfs(a,b){
+  const prev=new Map([[a,null]]); const q=[a];
+  while(q.length){ const c=q.shift(); if(c===b)break;
+    for(const {to,e} of (adj.get(c)||[])) if(!prev.has(to)){prev.set(to,{from:c,e});q.push(to);} }
+  if(!prev.has(b)) return null;
+  const hops=[]; let cur=b;
+  while(prev.get(cur)){hops.unshift(prev.get(cur)); cur=prev.get(cur).from;}
+  return hops;
+}
+function reachSet(a){
+  const seen=new Set([a]); const q=[a];
+  while(q.length){const c=q.shift(); for(const {to} of (adj.get(c)||[])) if(!seen.has(to)){seen.add(to);q.push(to);}}
+  return seen;
+}
+function routeSQL(a,hops){
+  const qual=t=>`LIBRARY_RAW.LANDING.${t}`;
+  const qc=c=>/^[A-Z0-9_]+$/.test(c)?c:`"${c}"`;   // quote mixed-case / dotted columns
+  const warns=hops.filter(h=>h.e.norm).map(h=>
+    `-- WARNING: ${h.e.a} <-> ${h.e.b} needs normalization (${h.e.norm}) — raw equality under-matches. See the note.`);
+  let sql=(warns.length?warns.join('\n')+'\n':'')+`select *\nfrom ${qual(a)} t0`;
+  let cur=a;
+  hops.forEach((h,i)=>{
+    const e=h.e; const fwd=e.a===cur; const nxt=fwd?e.b:e.a;
+    const cs=fwd?e.col_a:e.col_b, co=fwd?e.col_b:e.col_a;
+    sql+=`\njoin ${qual(nxt)} t${i+1} on t${i}.${qc(cs)} = t${i+1}.${qc(co)}  -- ${e.key}, ${e.match_rate}%`;
+    cur=nxt;
+  });
+  return sql+'\nlimit 100;';
+}
+function wrap(text,max){
+  const words=(text||'').split(/\s+/); const lines=[]; let line='';
+  for(const w of words){
+    if((line+' '+w).trim().length>max){lines.push(line.trim()); line=w; if(lines.length>3){lines.push('…'); return lines;}}
+    else line+=' '+w;
+  }
+  if(line.trim()) lines.push(line.trim());
+  return lines;
+}
+function litSet(){
+  if (selA && !selB) return reachable;
+  if (hoverNode && adj.has(hoverNode.name)) {
+    const s=new Set([hoverNode.name]);
+    for (const {to} of adj.get(hoverNode.name)) s.add(to);
+    return s;
+  }
+  return null;
+}
+
+/* ---------- rendering ---------- */
+function resize(){
+  const dpr=window.devicePixelRatio||1;
+  W=window.innerWidth; H=window.innerHeight;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  draw();
+}
+function roundRect(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+
+function draw(){
+  ctx.fillStyle='#0d0d0d'; ctx.fillRect(0,0,W,H);
+  const z=cam.z;
+  const lit=litSet();
+  const routeNodes=new Set();
+  if (routeEdges){ routeNodes.add(selA.name);
+    for (const h of routeEdges){ routeNodes.add(h.e.a); routeNodes.add(h.e.b);} }
+
+  /* one collision ledger for every label on screen */
+  const labelBoxes=[];
+  const fits=(x,y,w,h)=>{
+    for (const b of labelBoxes)
+      if (x<b.x+b.w && x+w>b.x && y<b.y+b.h && y+h>b.y) return false;
+    labelBoxes.push({x,y,w,h}); return true;
+  };
+
+  /* region grounds + labels */
+  for (const r of regions){
+    const p=w2s(r.x,r.y); const rw=r.w*z, rh=r.h*z;
+    if (p.x>W||p.y>H||p.x+rw<0||p.y+rh<0) continue;
+    const hue=hueOf(r.slot);
+    ctx.fillStyle=hue+'22';
+    ctx.strokeStyle=hue+'40';
+    ctx.lineWidth=1;
+    roundRect(p.x,p.y,rw,rh,18*Math.min(z,1)+4); ctx.fill(); ctx.stroke();
+    let fs=Math.max(12, Math.min(34, 90*z));
+    fs=Math.min(fs, (rw-30)/(r.name.length*0.62));   // never wider than the region
+    ctx.textBaseline='top';
+    const lx=Math.max(p.x+14, 14), ly=Math.max(p.y+10, 116);   // clear of the brand panel
+    if (fs>=9){
+      if (lx < p.x+rw-40 && ly < p.y+rh-20){
+        ctx.font=`700 ${fs}px system-ui, sans-serif`;
+        ctx.fillStyle= z<0.55 ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.25)';
+        ctx.fillText(r.name, lx, ly);
+        fits(lx, ly, r.name.length*fs*0.62, fs*1.2);
+      }
+    } else {
+      /* region too small for an inside label: 10px above it, collision-culled */
+      const tw=r.name.length*6.2;
+      if (fits(p.x+2, p.y-15, tw, 12)){
+        ctx.font='600 10px system-ui, sans-serif';
+        ctx.fillStyle='rgba(255,255,255,0.6)';
+        ctx.fillText(r.name, p.x+2, p.y-14);
+      }
+    }
+  }
+
+  /* ghost threads — faint, hover/selection brings the relevant ones up */
+  if (z>0.12){
+    ctx.setLineDash([3,8]);
+    for (const e of ghost){
+      const on = lit && (lit.has(e.a)||lit.has(e.b));
+      if (z<0.45 && !on) continue;
+      const a=byName.get(e.a), b=byName.get(e.b);
+      const pa=w2s(a.x,a.y), pb=w2s(b.x,b.y);
+      ctx.strokeStyle=on?'rgba(195,194,183,0.35)':'rgba(137,135,129,0.08)';
+      ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y); ctx.stroke();
+    }
+    ctx.setLineDash([]);
+  }
+
+  /* proven joins — status color = quality, thickness = match rate.
+     Cross-region highways arc gently and stay quiet until lit or zoomed. */
+  for (const e of paved){
+    const a=byName.get(e.a), b=byName.get(e.b);
+    const pa=w2s(a.x,a.y), pb=w2s(b.x,b.y);
+    const onRoute=routeEdges&&routeEdges.some(h=>h.e===e);
+    const dim=lit&&!(lit.has(e.a)&&lit.has(e.b));
+    const cross=a.region!==b.region;
+    ctx.strokeStyle=onRoute?'#ffffff':rateColor(e.match_rate);
+    let alpha=onRoute?1:(dim?0.07:0.8);
+    if (cross&&!onRoute&&!dim&&!(lit&&lit.has(e.a)&&lit.has(e.b))) alpha=Math.min(alpha, z<0.5?0.18:0.45);
+    ctx.globalAlpha=alpha;
+    ctx.lineWidth=onRoute?3.5:Math.max(1.2,((e.match_rate||20)/100)*3.5);
+    ctx.beginPath(); ctx.moveTo(pa.x,pa.y);
+    if (cross){
+      const mx=(pa.x+pb.x)/2, my=(pa.y+pb.y)/2;
+      const dx=pb.x-pa.x, dy=pb.y-pa.y, len=Math.hypot(dx,dy)||1;
+      ctx.quadraticCurveTo(mx-dy/len*len*0.12, my+dx/len*len*0.12, pb.x, pb.y);
+    } else ctx.lineTo(pb.x,pb.y);
+    ctx.stroke();
+    ctx.globalAlpha=1;
+  }
+
+  /* nodes — hubs first so their labels win the space fight */
+  ctx.textBaseline='top';
+  const drawOrder=[...nodes].sort((a,b)=>degree(b.name)-degree(a.name));
+  for (const n of drawOrder){
+    const p=w2s(n.x,n.y);
+    if (p.x<-280||p.x>W+280||p.y<-220||p.y>H+220) continue;
+    const deg=degree(n.name);
+    const isLit=!lit||lit.has(n.name);
+    const onRoute=routeNodes.has(n.name);
+    const sel=(selA===n||selB===n);
+    const hue=hueOf(regionSlot.get(n.region)??7);
+    ctx.globalAlpha=onRoute||sel?1:(isLit?0.95:0.12);
+
+    if (z<=0.75){
+      /* map view: domain-tinted dot, size = connectedness */
+      const r=(deg?5+Math.min(deg,10)*0.9:3.2)*Math.max(0.7,Math.min(z*2.4,1.15));
+      if (deg||sel){
+        const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,r*2.6);
+        g.addColorStop(0,hue); g.addColorStop(1,'transparent');
+        ctx.fillStyle=g; ctx.globalAlpha*=0.5;
+        ctx.beginPath(); ctx.arc(p.x,p.y,r*2.6,0,7); ctx.fill();
+        ctx.globalAlpha=onRoute||sel?1:(isLit?0.95:0.12);
+      }
+      ctx.fillStyle=sel?'#ffffff':hue;
+      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,7); ctx.fill();
+      if (sel||onRoute){ ctx.strokeStyle='#ffffff'; ctx.lineWidth=2;
+        ctx.beginPath(); ctx.arc(p.x,p.y,r+2.5,0,7); ctx.stroke(); }
+      const wantLabel = sel||onRoute||hoverNode===n||(z>0.32&&deg>0)||(z>0.5);
+      if (wantLabel){
+        const short=n.name.length>34?n.name.slice(0,32)+'…':n.name;
+        const tw=short.length*6.4;
+        if (sel||onRoute||hoverNode===n||fits(p.x+r+4,p.y-7,tw,14)){
+          ctx.font='11px Consolas, monospace';
+          ctx.fillStyle=sel||onRoute?'#ffffff':'#c3c2b7';
+          ctx.fillText(short,p.x+r+4,p.y-6);
+        }
+      }
+    } else {
+      /* street view: the card */
+      const cw=250,ch=124;
+      if (!sel&&!onRoute&&!fits(p.x-cw/2,p.y-ch/2,cw+8,ch+8)){
+        ctx.fillStyle=hue; ctx.beginPath(); ctx.arc(p.x,p.y,4,0,7); ctx.fill();
+        ctx.globalAlpha=1; continue;
+      }
+      ctx.fillStyle='#1a1a19';
+      ctx.strokeStyle=sel||onRoute?'#ffffff':'rgba(255,255,255,0.12)';
+      ctx.lineWidth=sel||onRoute?1.8:1;
+      roundRect(p.x-cw/2,p.y-ch/2,cw,ch,8); ctx.fill(); ctx.stroke();
+      ctx.fillStyle=hue; roundRect(p.x-cw/2,p.y-ch/2,4,ch,2); ctx.fill();
+      const lx=p.x-cw/2+14; let ty=p.y-ch/2+10;
+      ctx.font='600 12px system-ui, sans-serif'; ctx.fillStyle='#ffffff';
+      ctx.fillText((n.title||n.name).slice(0,34),lx,ty); ty+=16;
+      ctx.font='10px Consolas, monospace'; ctx.fillStyle='#898781';
+      ctx.fillText(n.name.slice(0,38),lx,ty); ty+=15;
+      ctx.font='11px system-ui, sans-serif'; ctx.fillStyle='#c3c2b7';
+      for (const line of wrap(n.desc||'no card in the registry yet',42)){ ctx.fillText(line,lx,ty); ty+=13; }
+      ctx.font='10px Consolas, monospace'; ctx.fillStyle='#898781';
+      const foot=`${deg} measured join${deg===1?'':'s'}`+(n.keys.length?` · ${n.keys.slice(0,4).join(' ')}`:'');
+      ctx.fillText(foot.slice(0,44),lx,p.y+ch/2-16);
+    }
+    ctx.globalAlpha=1;
+  }
+
+  /* status line under the brand */
+  const st=document.getElementById('stats');
+  if (selA&&!selB){
+    const r=reachable.size-1;
+    st.innerHTML=`<b>${selA.name}</b><br>`+(r
+      ?`reaches <b>${r}</b> table${r===1?'':'s'} on measured joins — click a lit one`
+      :`no measured joins yet — Esc clears`);
+  }
+  else if (selA&&selB)
+    st.innerHTML=`route <b>${selA.name}</b> → <b>${selB.name}</b><br>Esc clears`;
+  else
+    st.innerHTML=statsHome;
+}
+
+/* ---------- route panel ---------- */
+function showRoute(hops){
+  const el=document.getElementById('route');
+  let cur=selA.name;
+  const lines=hops.map(h=>{
+    const e=h.e; const fwd=e.a===cur; const nxt=fwd?e.b:e.a;
+    const html=`<div class="hop">${cur} → <b>${nxt}</b> on <span class="k">${e.key}</span> `+
+      `<span class="pct" style="color:${rateColor(e.match_rate)}">${e.match_rate??'?'}% ${rateWord(e.match_rate)}</span>`+
+      (e.note?`<div class="note">${e.note.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>`:'')+`</div>`;
+    cur=nxt; return html;
+  });
+  const sql=routeSQL(selA.name,hops);
+  el.innerHTML=lines.join('')+
+    `<button onclick="const p=this.parentNode.querySelector('pre');p.style.display=p.style.display==='block'?'none':'block'">show SQL</button>`+
+    `<button onclick="copySQL(this)">copy SQL</button>`+
+    `<pre>${sql.replace(/</g,'&lt;')}</pre>`;
+  el.style.display='block';
+}
+function copySQL(btn){
+  const pre=btn.parentNode.querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent)
+    .then(()=>{btn.textContent='copied ✓'; setTimeout(()=>btn.textContent='copy SQL',1500);})
+    .catch(()=>{pre.style.display='block'; const r=document.createRange(); r.selectNodeContents(pre);
+                const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+                btn.textContent='select + Ctrl-C';});
+}
+function hideRoute(){ document.getElementById('route').style.display='none'; }
+
+/* ---------- interaction ---------- */
+let dragging=false, moved=false, lx=0, ly=0;
+canvas.addEventListener('mousedown',e=>{dragging=true;moved=false;lx=e.clientX;ly=e.clientY;canvas.classList.add('dragging');});
+window.addEventListener('mouseup',e=>{
+  canvas.classList.remove('dragging');
+  if (dragging&&!moved) clickAt(e.clientX,e.clientY);
+  dragging=false;
+});
+window.addEventListener('mousemove',e=>{
+  if (dragging){
+    const dx=e.clientX-lx,dy=e.clientY-ly;
+    if (Math.abs(dx)+Math.abs(dy)>3) moved=true;
+    cam.x-=dx/cam.z; cam.y-=dy/cam.z; lx=e.clientX; ly=e.clientY; draw();
+  } else {
+    const h=nodeAt(e.clientX,e.clientY);
+    if (h!==hoverNode){hoverNode=h; canvas.style.cursor=h?'pointer':'grab'; draw();}
+  }
+});
+canvas.addEventListener('wheel',e=>{
+  e.preventDefault();
+  const w=s2w(e.clientX,e.clientY);
+  cam.z*=Math.exp(-e.deltaY*0.0013);
+  cam.z=Math.min(3,Math.max(0.03,cam.z));
+  const w2=s2w(e.clientX,e.clientY);
+  cam.x+=w.x-w2.x; cam.y+=w.y-w2.y;
+  draw();
+},{passive:false});
+
+function clickAt(px,py){
+  const n=nodeAt(px,py);
+  if (!n) return;
+  if (selA&&!selB&&n!==selA&&reachable.has(n.name)){
+    selB=n; routeEdges=bfs(selA.name,n.name); showRoute(routeEdges);
+  } else {
+    if (selA&&!selB&&n!==selA)
+      flash(`no measured route from ${selA.name} — starting fresh at ${n.name}`);
+    selA=n; selB=null; routeEdges=null; reachable=reachSet(n.name); hideRoute();
+  }
+  draw();
+}
+function flash(msg){
+  const el=document.getElementById('typefly');
+  el.textContent=msg; el.style.display='block';
+  clearTimeout(typeTimer); typeTimer=setTimeout(()=>{el.style.display='none';},2400);
+}
+
+/* type-to-fly */
+window.addEventListener('keydown',e=>{
+  if (e.ctrlKey||e.metaKey||e.altKey) return;
+  if (e.key==='Escape'){ selA=selB=null; reachable=routeEdges=null; typeBuf='';
+    hideRoute(); document.getElementById('typefly').style.display='none'; draw(); return; }
+  if (e.key==='Backspace'){ typeBuf=typeBuf.slice(0,-1); }
+  else if (e.key==='Enter'){
+    const hit=nodes.find(n=>n.name.toUpperCase().includes(typeBuf.toUpperCase()));
+    if (hit) flyTo(hit);
+    typeBuf=''; document.getElementById('typefly').style.display='none'; return;
+  }
+  else if (e.key.length===1&&/[\w@.-]/.test(e.key)) typeBuf+=e.key;
+  else return;
+  const el=document.getElementById('typefly');
+  if (typeBuf){
+    const hits=nodes.filter(n=>n.name.toUpperCase().includes(typeBuf.toUpperCase())).length;
+    el.innerHTML=`✈ <span class="n">${typeBuf.toUpperCase()}</span> · ${hits} match${hits===1?'':'es'} · Enter flies`;
+    el.style.display='block';
+  } else el.style.display='none';
+});
+function flyTo(n){
+  const steps=32; let i=0;
+  const sx=cam.x,sy=cam.y,sz=cam.z,tz=1.1;
+  const tick=()=>{
+    i++; const t=i/steps, s=t*t*(3-2*t);
+    cam.x=sx+(n.x-sx)*s; cam.y=sy+(n.y-sy)*s; cam.z=sz+(tz-sz)*s;
+    draw(); if(i<steps) requestAnimationFrame(tick);
+  };
+  tick();
+}
+
+window.addEventListener('resize',resize);
+(function(){
+  const xs=nodes.map(n=>n.x), ys=nodes.map(n=>n.y);
+  cam.x=(Math.min(...xs)+Math.max(...xs))/2;
+  cam.y=(Math.min(...ys)+Math.max(...ys))/2;
+  const aspect=window.innerWidth/window.innerHeight;
+  const span=Math.max(Math.max(...xs)-Math.min(...xs),(Math.max(...ys)-Math.min(...ys))*aspect);
+  cam.z=Math.min(0.6,(window.innerWidth*0.92)/(span||1));
+})();
+resize();
+</script>
+</body>
+</html>
