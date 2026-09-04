@@ -1,0 +1,20 @@
+import sys; sys.path.insert(0,'.')
+from connect import db
+c=db.connect()
+def q(s):
+    print("\n## "+s.strip().splitlines()[0][:100]); 
+    for r in db.rows(c,s): print(r)
+q("""select count(*),count(distinct A),count(distinct B),count(distinct KEY),count(distinct TIER),min(MATCHED),max(MATCHED) from LIBRARY_META."CONNECT".CONNECT_EDGES""")
+q("""select TIER,count(*),avg(CONFIDENCE),avg(MATCH_RATE) from LIBRARY_META."CONNECT".CONNECT_EDGES group by 1 order by 2 desc""")
+q("""select KEY,count(*) from LIBRARY_META."CONNECT".CONNECT_EDGES group by 1 order by 2 desc limit 25""")
+q("""select A,B,KEY,TIER,A_COL,B_COL,MATCHED,A_DISTINCT,B_DISTINCT,MATCH_RATE,CONFIDENCE from LIBRARY_META."CONNECT".CONNECT_EDGES sample (10 rows)""")
+q("""select KEY_A,KEY_B,RELATION,count(*),avg(FANOUT),max(FANOUT) from LIBRARY_META."CONNECT".ENTITY_XREF group by 1,2,3 order by 4 desc limit 40""")
+q("""select count(*),count(distinct VALUE_A),count(distinct VALUE_B),count(distinct SOURCE_TABLE),count(distinct RUN_ID) from LIBRARY_META."CONNECT".ENTITY_XREF""")
+q("""select FANOUT,count(*) from LIBRARY_META."CONNECT".ENTITY_XREF group by 1 order by 1 desc limit 20""")
+q("""select KEY_A,VALUE_A,KEY_B,VALUE_B,SOURCE_TABLE,RELATION,FANOUT from LIBRARY_META."CONNECT".ENTITY_XREF sample (15 rows)""")
+q("""select ENTITY_TYPE,count(*),count(distinct ENTITY_ID) from LIBRARY_META."CONNECT".BRIDGE_ENTITIES group by 1 order by 2 desc""")
+q("""select DOMAIN_COUNT,count(*) from LIBRARY_META."CONNECT".BRIDGE_ENTITIES group by 1 order by 1 desc""")
+q("""select * from LIBRARY_META."CONNECT".BRIDGE_ENTITIES order by DOMAIN_COUNT desc limit 15""")
+q("""select column_name,data_type from LIBRARY_META.information_schema.columns where table_schema='CONNECT' and table_name='ENTITY_LINKS' order by ordinal_position""")
+q("""select * from LIBRARY_META."CONNECT".ENTITY_LINKS sample (5 rows)""")
+c.close()

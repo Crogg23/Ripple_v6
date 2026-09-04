@@ -1,0 +1,20 @@
+
+## select count(*), count(nullif(trim(EMPLOYER_IDENTIFICATION_NUMBER_EIN),'')), count(distinct nullif(trim(EMPLOY
+(9606683, 1937362, 1, 156566, 1)
+
+## select EMPLOYER_IDENTIFICATION_NUMBER_EIN, count(*) from LIBRARY_RAW.LANDING.FED_CMS_NPPES where nullif(trim(E
+('<UNAVAIL>', 1937362)
+
+## select PARENT_ORGANIZATION_TIN, count(*) from LIBRARY_RAW.LANDING.FED_CMS_NPPES where nullif(trim(PARENT_ORGAN
+('<UNAVAIL>', 156566)
+
+## select ENTITY_TYPE_CODE, count(*), count(nullif(trim(EMPLOYER_IDENTIFICATION_NUMBER_EIN),'')), count(nullif(tr
+('1', 7323142, 0, 0)
+('2', 1937362, 1937362, 156566)
+('', 346179, 0, 0)
+
+## select count(distinct n.EIN) from (select distinct nullif(trim(EMPLOYER_IDENTIFICATION_NUMBER_EIN),'') EIN fro
+(0,)
+
+## select count(distinct n.EIN) from (select distinct nullif(trim(PARENT_ORGANIZATION_TIN),'') EIN from LIBRARY_R
+(0,)

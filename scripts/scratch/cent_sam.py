@@ -1,0 +1,15 @@
+import sys; sys.path.insert(0,'.')
+from connect import db
+c=db.connect()
+def q(s):
+    print("\n## "+s.strip().splitlines()[0][:110])
+    for r in db.rows(c,s): print(r)
+q("""select count(*), count(nullif(trim(NPI),'')), count(distinct nullif(trim(NPI),'')), count(nullif(trim(UNIQUE_ENTITY_ID),'')), count(distinct nullif(trim(UNIQUE_ENTITY_ID),'')) from LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2""")
+q("""select NPI,count(*) from LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2 where nullif(trim(NPI),'') is not null group by 1 order by 2 desc limit 8""")
+q("""select CLASSIFICATION, count(*), count(nullif(trim(NPI),'')), count(nullif(trim(UNIQUE_ENTITY_ID),'')) from LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2 group by 1 order by 2 desc limit 8""")
+q("""select NAME, CLASSIFICATION, NPI, UNIQUE_ENTITY_ID, EXCLUSION_TYPE, EXCLUDING_AGENCY from LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2 where nullif(trim(NPI),'') is not null order by random() limit 5""")
+q("""select NAME, CLASSIFICATION, NPI, UNIQUE_ENTITY_ID, EXCLUSION_TYPE, EXCLUDING_AGENCY from LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2 where nullif(trim(UNIQUE_ENTITY_ID),'') is not null order by random() limit 5""")
+q("""select count(*) from LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2 where nullif(trim(NPI),'') is not null and nullif(trim(UNIQUE_ENTITY_ID),'') is not null""")
+q("""select A,B,KEY,TIER,A_COL,B_COL,MATCHED,A_DISTINCT,B_DISTINCT,MATCH_RATE,CONFIDENCE from LIBRARY_META."CONNECT".CONNECT_EDGES where A='FED_SAM_EXCLUSIONS_FULL_R2' or B='FED_SAM_EXCLUSIONS_FULL_R2' order by KEY, MATCHED desc""")
+q("""select A,B,KEY,TIER,A_COL,B_COL,MATCHED,MATCH_RATE from LIBRARY_META."CONNECT".CONNECT_EDGES where KEY='GEO_IN' and (A in ('INTL_FR_DATA_GOUV_FULL','FED_NOAA_WEATHER_API','FED_MAPPING_INEQUALITY') or B in ('INTL_FR_DATA_GOUV_FULL','FED_NOAA_WEATHER_API','FED_MAPPING_INEQUALITY')) order by 1,2 limit 12""")
+c.close()

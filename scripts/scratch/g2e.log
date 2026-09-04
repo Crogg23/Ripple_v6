@@ -1,0 +1,77 @@
+
+NPI:1417615519 deg 2 cut 77 detached 77 = 2 facilities + 75 physicians; parent side: ['CCN:110079']
+   child CCN:113300 deg 75
+   child CCN:113301 deg 2
+
+NPI:1518028976 deg 7 cut 22 detached 22 = 10 facilities + 12 physicians; parent side: ['CCN:381559']
+   child CCN:381568 deg 3
+   child CCN:385015 deg 2
+   child CCN:385132 deg 2
+   child CCN:385152 deg 2
+   child CCN:385182 deg 2
+   child CCN:385199 deg 3
+   child CCN:385224 deg 2
+   child CCN:385228 deg 2
+   child CCN:385241 deg 2
+   child CCN:385271 deg 2
+
+NPI:1871090175 deg 2 cut 19 detached 19 = 1 facilities + 18 physicians; parent side: ['CCN:150169']
+   child CCN:150179 deg 19
+
+NPI:1225433006 deg 4 cut 16 detached 16 = 8 facilities + 8 physicians; parent side: ['CCN:758004']
+   child CCN:559095 deg 1
+   child CCN:559137 deg 2
+   child CCN:559174 deg 2
+   child CCN:559435 deg 2
+   child CCN:559642 deg 3
+   child CCN:757103 deg 2
+   child CCN:758205 deg 2
+   child CCN:921744 deg 2
+
+NPI:1912462961 deg 6 cut 14 detached 14 = 6 facilities + 8 physicians; parent side: ['CCN:050625', 'CCN:059430', 'CCN:559132', 'CCN:559148']
+   child CCN:559117 deg 3
+   child CCN:559296 deg 2
+   child CCN:559624 deg 3
+   child CCN:757169 deg 3
+   child CCN:757266 deg 2
+   child CCN:757559 deg 2
+
+NPI:1356000731 deg 5 cut 14 detached 14 = 6 facilities + 8 physicians; parent side: ['CCN:559481', 'CCN:757362', 'CCN:757573', 'CCN:757752']
+   child CCN:559379 deg 2
+   child CCN:559560 deg 2
+   child CCN:559669 deg 3
+   child CCN:757855 deg 4
+   child CCN:757923 deg 2
+   child CCN:757980 deg 2
+
+NPI:1871891507 deg 12 cut 14 detached 14 = 6 facilities + 8 physicians; parent side: ['CCN:490059', 'CCN:491504', 'CCN:491526', 'CCN:491595', 'CCN:491637', 'CCN:497607']
+   child CCN:491660 deg 2
+   child CCN:495140 deg 3
+   child CCN:495240 deg 2
+   child CCN:495299 deg 2
+   child CCN:495343 deg 2
+   child CCN:495358 deg 3
+
+NPI:1437491727 deg 5 cut 13 detached 13 = 5 facilities + 8 physicians; parent side: ['CCN:677949', 'CCN:679358', 'CCN:679542', 'CCN:679723']
+   child CCN:677889 deg 4
+   child CCN:679558 deg 3
+   child CCN:747149 deg 2
+   child CCN:747182 deg 3
+   child CCN:747415 deg 2
+
+Blank neighbors 75; with >1 affiliation: 2 -> [('NPI:1417615519', ['CCN:110079', 'CCN:113300']), ('NPI:1427380542', ['CCN:113300', 'CCN:113301'])]
+
+name uniqueness per NPI:
+   ('1356000731', 1, 1, 'JURDI, DANIEL', 'JURDI, DANIEL', 'SAN DIMAS CA 917733245', 'SAN DIMAS CA 917733245', 'FED_CMS_NPPES')
+   ('1437491727', 1, 1, 'PATEL, BHAVINIBEN', 'PATEL, BHAVINIBEN', 'MOUNT PLEASANT TX 754552436', 'MOUNT PLEASANT TX 754552436', 'FED_CMS_NPPES')
+   ('1417615519', 1, 1, 'FOSTER, BRITTANY', 'FOSTER, BRITTANY', 'HIXSON TN 373431864', 'HIXSON TN 373431864', 'FED_CMS_NPPES')
+   ('1912462961', 1, 1, 'MAKSIMOVA, ALLA', 'MAKSIMOVA, ALLA', 'SHERMAN OAKS CA 914234400', 'SHERMAN OAKS CA 914234400', 'FED_CMS_NPPES')
+   ('1225433006', 1, 1, 'MADATOVIAN, HARUT', 'MADATOVIAN, HARUT', 'WINNETKA CA 913061911', 'WINNETKA CA 913061911', 'FED_CMS_NPPES')
+   ('1871090175', 1, 1, 'MULINIX, JACOB', 'MULINIX, JACOB', 'INDIANAPOLIS IN 462502890', 'INDIANAPOLIS IN 462502890', 'FED_CMS_NPPES')
+   ('1518028976', 1, 1, 'SUK, SAMUEL', 'SUK, SAMUEL', 'BEAVERTON OR 970065236', 'BEAVERTON OR 970065236', 'FED_CMS_NPPES')
+   ('1871891507', 1, 1, 'MIRANDA, ALTORY', 'MIRANDA, ALTORY', 'MOSELEY VA 231201655', 'MOSELEY VA 231201655', 'FED_CMS_NPPES')
+
+NPPES rows for the two degree-2 bridges:
+   ('1871090175', 'MULINIX', 'JACOB', '', 'INDIANAPOLIS', 'IN', '390200000X')
+   ('1417615519', 'FOSTER', 'BRITTANY', 'CRNA', 'ATLANTA', 'GA', '367500000X')
+DONE
