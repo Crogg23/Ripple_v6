@@ -475,3 +475,126 @@ is not always a truncation.
 | The loader now catches short fetches | **yes, tested against a clamping stub** |
 | The 32 tables are usable as landed | **only with a fill check per column first** |
 
+---
+
+# Outcome 4: the audit across all 362 page-boundary tables
+
+Chris asked for the audit rather than the whale sweep. The reasoning: a sweep that
+ranks tables by concentration is worthless if the tables are secretly 4% loaded.
+
+## The census
+
+362 landing tables sit on an exact page size.
+
+| Count | Tables | Loader constant |
+|---|---|---|
+| 10,000 | 137 | `CKAN_PAGE` |
+| 2,000 | 103 ArcGIS + 91 Socrata | `ARC_PAGE` |
+| 5,000 | 36 | — |
+| other | 31 | — |
+
+**This is not three separate bugs.** The CKAN one was a page collision. The rest
+is the June harvest running with a small `--max-rows` and nobody checking. Only
+CKAN had the extra defect where the cap exactly equalled the page size.
+
+348 of the 362 resolve back to a `PORTAL_DATASET_INDEX` record. Of those, **242
+have an index row count higher than what landed**, totalling 11,316,610 rows.
+
+## The triage
+
+| Bucket | Tables | Rows short | Call |
+|---|---|---|---|
+| geo, footprints, pavements | 121 | 6,169,581 | skip |
+| party but no money | 45 | 1,342,359 | skip |
+| neither | 24 | 753,507 | skip |
+| **money and party** | **18** | **734,253** | **reload** |
+
+A first pass at this filter returned 47 tables including Building Footprints and
+Sidewalks, because the pattern matched `NAME` and `VALUE`. Tightened to real money
+and party column names, with a geometry-column veto. **47 became 18.**
+
+13 of the 18 resolve to a live CKAN dataset. Those were reloaded.
+
+## The reload
+
+13 of 13, zero failures.
+
+| Table | Landed before | Now | Index predicted |
+|---|---|---|---|
+| Boston Checkbook Explorer | 10,000 | **1,808,742** | 92,436 |
+| Houston Payroll | 10,000 | 248,823 | 23,773 |
+| Allegheny Toxics Release, twice | 10,000 | 177,741 | 27,496 |
+| Indiana Medicaid Claims | 5,000 | 141,449 | 63,569 |
+| California HPD inpatient | 10,000 | 112,535 | 112,464 |
+| Allegheny Assessment Appeals, twice | 10,000 | 96,713 | 96,713 |
+| Houston combustible permits | 10,000 | 47,334 | 47,401 |
+| Boston contract awards | 10,000 | 22,054 | 22,054 |
+| four others | 10,000 | 12,000 to 18,000 | — |
+
+**The index undercounted almost everything**, for the same reason it did in
+Oklahoma: it recorded the first resource in the folder. Boston Checkbook is 16
+files.
+
+Boston hit the 1,500,000 cap on the first attempt and **the new warning caught
+it** — `HIT max_rows=1500000 after 1500000 rows (16 resources in package)`. Rerun
+at a 3,000,000 cap landed 1,808,742 against 1,947,952 available. The 139,210 gap
+matches the `drop_duplicates()` pattern seen three times already, but **was not
+individually verified for this table**.
+
+Boston Checkbook now holds **11,604 vendors and $3,163,188,562**.
+
+## The one bridge, and the finding it killed
+
+`PORTAL_CKA_INDIANA_DATA_HUB_66A945CF17`, Indiana Medicaid Claims, is the first
+portal table to carry a real identity key.
+
+| Measure | Value |
+|---|---|
+| Rows | 141,449 |
+| Distinct `PROVIDER_NPI` | 7,212 |
+| Matched against `FED_CMS_NPPES` | **7,211**, 99.99% |
+| Years covered | **2012 to 2017**, from its own `YEAR` column |
+
+Then the obvious screen, and the trap that always follows it.
+
+| Test | Providers | Dollars |
+|---|---|---|
+| Naive join to `FED_HHS_OIG_LEIE` | **10** | $997,615 |
+| With `EXCLDATE` year at or before the claim year | **0** | — |
+
+**Every one of the ten was excluded after the year they billed.** The naive number
+is a million dollars of nothing.
+
+- **What was checked.** Exclusion year against the claim year, per NPI.
+- **What a hit means.** Someone billed Medicaid after being excluded.
+- **What a miss means.** A provider who billed legally and was excluded later.
+
+This is the same shape as the 554 that became 2. **The difference here is that
+this table carries a real `YEAR` column, so the test is exact rather than
+inferred.** Part D has no year and its date test is still an inference.
+
+## Where the boundary count stands
+
+| | Tables |
+|---|---|
+| On a page boundary this morning | 362 |
+| Fixed today | 45, being 32 Oklahoma plus 13 |
+| **Still on a boundary** | **349** |
+
+The remainder is triaged as skip. 121 of them are geometry.
+
+## What is claimed, and what is not
+
+| Claim | Supported |
+|---|---|
+| 362 tables sit on an exact page size | **yes** |
+| 242 of them are short by 11,316,610 rows | **per the index, which undercounts** |
+| The 2,000 tables are the same root cause | **partly. A low cap, not a page collision** |
+| 13 of 13 reloaded, 2,544,547 rows | **yes** |
+| Boston Checkbook holds $3.16B over 11,604 vendors | **yes** |
+| Its 139,210 shortfall is dedupe | **assumed from three prior cases. Not verified here** |
+| Indiana Medicaid NPIs resolve at 99.99% | **yes, against NPPES** |
+| Ten excluded providers billed Medicaid | **no. Zero survive the date test** |
+| The 349 remaining are not worth reloading | **yes, on the triage above** |
+| The ArcGIS and Socrata loaders are fixed | **no. Only CKAN was touched** |
+
