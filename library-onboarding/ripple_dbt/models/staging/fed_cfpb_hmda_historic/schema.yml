@@ -8,13 +8,15 @@ sources:
       - name: FED_CFPB_HMDA_HISTORIC
         description: >
           Raw landing table for CFPB HMDA Historic Data (pre-2018 LAR flat files, "_labels"
-          decoded CSV variant). 19,136,434 rows. Legacy Respondent ID (RESPONDENT_ID,
+          decoded CSV variant, "all-records" family). 44,992,667 rows since 2026-09-05; was
+          19,136,434 originated-only rows from the first-lien family before that.
+          All eight ACTION_TAKEN codes present. Legacy Respondent ID (RESPONDENT_ID,
           10-char alphanumeric) is the lender join key, NOT LEI -- this is a different
           era/shape than FED_CFPB_HMDA (2018+, LEI-keyed). Coverage: AS_OF_YEAR 2015-2017
           ONLY (verified) -- "historic" means the pre-2018 LAR file format, and only
           2015, 2016, and 2017 are landed. Remaining pre-2018 years are a follow-up
-          backfill, not yet landed. All business columns arrive as TEXT except the
-          denial-reason columns (NUMBER).
+          backfill, not yet landed. All business columns arrive as TEXT (loader writes
+          dtype=str; the denial-reason columns are TEXT too since the 2026-09-05 reload).
 
 models:
   - name: stg_fed_cfpb_hmda_historic__lar_records

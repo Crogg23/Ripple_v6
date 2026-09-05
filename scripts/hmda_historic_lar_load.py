@@ -7,12 +7,17 @@ Record layout: https://files.consumerfinance.gov/hmda-historic-data-dictionaries
   alphanumeric) is the join key for this era — NOT the LEI used by modern HMDA
   (fed_cfpb_hmda, 2022-era, already landed separately).
 
-This loads a 3-year slice (2015-2017) of the "first-lien-owner-occupied-1-4-family"
-subset (smaller than the full "all-records" file; a scope call — see report). Zips
-must already be downloaded to scripts/hmda_historic_scratch/hmda_<year>.zip.
+This loads a 3-year slice (2015-2017). Two file families exist:
+  first-lien  "first-lien-owner-occupied-1-4-family" -- ORIGINATED loans only,
+              every row is ACTION_TAKEN=1. Loaded 2026-08-05, 19.1M rows.
+              Any denial-rate query on it returns 0.0%. (trap, 2026-09-05)
+  all         "all-records" -- every application, all 8 action codes, ~45M rows.
+              Loaded 2026-09-05 to replace the first-lien slice.
+Zips must already be downloaded to scripts/hmda_historic_scratch/
+  hmda_<year>.zip       (first-lien)      hmda_<year>_all.zip   (all)
 
-    python scripts/hmda_historic_lar_load.py          # preview (unzip + header check)
-    python scripts/hmda_historic_lar_load.py --run    # actual load
+    python scripts/hmda_historic_lar_load.py --family all          # preview
+    python scripts/hmda_historic_lar_load.py --family all --run    # actual load
 """
 from __future__ import annotations
 
@@ -41,6 +46,12 @@ TABLE = "FED_CFPB_HMDA_HISTORIC"  # must match dbt source name in stg_fed_cfpb_h
 SCRATCH = Path(__file__).parent / "hmda_historic_scratch"
 YEARS = [2015, 2016, 2017]
 CHUNK = 200_000  # rows per write_pandas batch
+FAMILY = "all"   # set by --family; "all" or "first-lien"
+
+
+def _zip_path(year: int) -> Path:
+    suffix = "_all" if FAMILY == "all" else ""
+    return SCRATCH / f"hmda_{year}{suffix}.zip"
 
 
 def _find_csv_in_zip(zf: zipfile.ZipFile) -> str:
@@ -52,7 +63,7 @@ def _find_csv_in_zip(zf: zipfile.ZipFile) -> str:
 
 def preview():
     for y in YEARS:
-        zpath = SCRATCH / f"hmda_{y}.zip"
+        zpath = _zip_path(y)
         if not zpath.exists():
             print(f"  {y}: MISSING {zpath}")
             continue
@@ -68,7 +79,7 @@ def preview():
 
 
 def load_year(conn, year: int, staging: str, first: bool) -> int:
-    zpath = SCRATCH / f"hmda_{year}.zip"
+    zpath = _zip_path(year)
     with zipfile.ZipFile(zpath) as zf:
         inner = _find_csv_in_zip(zf)
         total = 0
@@ -118,6 +129,14 @@ def load(conn) -> int:
         print("  EMPTY — staging dropped, no swap.")
         return 0
 
+    if FAMILY == "first-lien":
+        # 2026-09-05: the live table is all-records (45M rows, 8 action codes).
+        # Swapping the originated-only slice back in is a downgrade; make it deliberate.
+        ans = input(f"  {TABLE} is all-records; replace it with the first-lien slice? [yes/NO] ")
+        if ans.strip().lower() != "yes":
+            cur.execute(f"DROP TABLE IF EXISTS LIBRARY_RAW.LANDING.{staging}")
+            print("  aborted, staging dropped, live table untouched.")
+            return 0
     cur.execute(f"CREATE TABLE IF NOT EXISTS LIBRARY_RAW.LANDING.{TABLE} "
                 f"LIKE LIBRARY_RAW.LANDING.{staging}")
     cur.execute(f"ALTER TABLE LIBRARY_RAW.LANDING.{staging} "
@@ -138,8 +157,8 @@ def register(conn, n_rows: int):
         VALUES ('FED_CFPB_HMDA_HISTORIC',
             'HMDA Historic LAR (pre-2018), first-lien owner-occupied 1-4 family, nationwide',
             'CFPB / FFIEC',
-            'Historic (pre-2018) HMDA Loan Application Register, 2015-2017 slice landed. '
-            'Legacy Respondent ID (not LEI) is the join key for this era -- distinct from '
+            'Historic (pre-2018) HMDA Loan Application Register, 2015-2017 slice landed. ' ||
+            'Legacy Respondent ID (not LEI) is the join key for this era -- distinct from ' ||
             'the modern LEI-keyed fed_cfpb_hmda (2022-era) table.',
             'US', 'consumer_finance', 'RESPONDENT_ID, AGENCY_CODE, AS_OF_YEAR', '1',
             'bulk flat file',
@@ -147,15 +166,47 @@ def register(conn, n_rows: int):
             'one row = one loan application (first-lien owner-occupied 1-4 family)',
             'annual', 'consumer_finance')
     """)
-    print(f"  registered {TABLE} in SOURCE_REGISTRY")
+    cur.execute(f"SELECT COUNT(DISTINCT ACTION_TAKEN), "
+                f"SUM(IFF(ACTION_TAKEN = '3', 1, 0)) FROM LIBRARY_RAW.LANDING.{TABLE}")
+    n_actions, n_denied = cur.fetchone()
+    if FAMILY == "all" and (n_actions < 2 or not n_denied):
+        raise RuntimeError(f"--family all but the table holds {n_actions} ACTION_TAKEN codes "
+                           f"and {n_denied} denials; refusing to label the registry all-records")
+    if FAMILY == "all":
+        cur.execute("""
+            UPDATE LIBRARY_META.REGISTRY.SOURCE_REGISTRY SET
+              NAME = 'HMDA Historic LAR (pre-2018), all records, nationwide',
+              DESCRIPTION = 'Historic (pre-2018) HMDA Loan Application Register, 2015-2017, ' ||
+                'all-records file family: every application, all 8 ACTION_TAKEN codes. ' ||
+                'Replaced the originated-only first-lien slice on 2026-09-05. ' ||
+                'Legacy Respondent ID (not LEI) is the join key for this era.',
+              UNIT_OF_OBSERVATION = 'one row = one loan application, any action taken'
+            WHERE SOURCE_ID = 'FED_CFPB_HMDA_HISTORIC'
+        """)
+    else:
+        cur.execute("""
+            UPDATE LIBRARY_META.REGISTRY.SOURCE_REGISTRY SET
+              NAME = 'HMDA Historic LAR (pre-2018), first-lien owner-occupied 1-4 family, nationwide',
+              DESCRIPTION = 'Historic (pre-2018) HMDA Loan Application Register, 2015-2017, ' ||
+                'first-lien-owner-occupied file family: ORIGINATED loans only, ACTION_TAKEN=1. ' ||
+                'Legacy Respondent ID (not LEI) is the join key for this era.',
+              UNIT_OF_OBSERVATION = 'one row = one originated loan (first-lien owner-occupied 1-4 family)'
+            WHERE SOURCE_ID = 'FED_CFPB_HMDA_HISTORIC'
+        """)
+    print(f"  registered {TABLE} in SOURCE_REGISTRY (family={FAMILY}, {n_actions} action codes)")
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", action="store_true")
+    ap.add_argument("--family", choices=["all", "first-lien"], default="all")
+    ap.add_argument("--register-only", action="store_true",
+                    help="skip the load; run registry update + quality gate on the live table")
     args = ap.parse_args()
+    global FAMILY
+    FAMILY = args.family
 
-    print(f"HMDA Historic LAR Loader (years {YEARS})")
+    print(f"HMDA Historic LAR Loader (years {YEARS}, family {FAMILY})")
     print(f"  Table: LIBRARY_RAW.LANDING.{TABLE}")
 
     if not args.run:
@@ -165,7 +216,7 @@ def main() -> int:
 
     conn = snow.connect()
     try:
-        n = load(conn)
+        n = load(conn) if not args.register_only else 1
         if n > 0:
             register(conn, n)
             # Quality gate + INGEST_RUNS row (audit 2026-08-05 finding #3:

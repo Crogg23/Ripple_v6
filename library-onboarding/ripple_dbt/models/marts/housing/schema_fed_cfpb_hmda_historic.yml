@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: housing__fed_cfpb_hmda_historic
-    description: "CFPB HMDA Historic: pre-2018 LAR loan-application records, 19,136,434 rows. Coverage is AS_OF_YEAR 2015-2017 ONLY (verified) -- 'historic' means the pre-2018 LAR file format, and only 2015-2017 are landed. Lender join key is respondent_id (legacy Respondent ID), NOT lei. No natural key; lar_record_id is a surrogate (md5 over all business columns + row_number tiebreaker; identical rows are legitimate distinct applications)."
+    description: "CFPB HMDA Historic: pre-2018 LAR loan-application records, 44,992,667 rows (all-records family since 2026-09-05; every ACTION_TAKEN code, not just originations). Coverage is AS_OF_YEAR 2015-2017 ONLY (verified) -- 'historic' means the pre-2018 LAR file format, and only 2015-2017 are landed. Lender join key is respondent_id (legacy Respondent ID), NOT lei. No natural key; lar_record_id is a surrogate (md5 over all business columns + row_number tiebreaker; identical rows are legitimate distinct applications)."
     columns:
       - name: lar_record_id
         data_tests: [not_null, unique]
