@@ -21,7 +21,7 @@ Then run build_chain_handbook.py to produce reports/viz/join_handbook.html.
 
 Deliberate exclusions, so a future reader does not "fix" them:
 
-  ZIP and NAME@ZIP edges are LEFT OUT. CONNECT_EDGES carries 2,513 of them.
+  ZIP and NAME@ZIP edges are LEFT OUT. CONNECT_EDGES carries 2,522 of them.
   They top the raw reach list and identify nobody -- two different people in one
   postcode match. Including them would triple the edge count and every new edge
   would be noise. See .claude/traps.md.
@@ -48,6 +48,19 @@ from connect import db  # noqa: E402
 
 # Keys that are location, not identity. An edge on one of these is not a join.
 NON_IDENTITY_KEYS = {"ZIP", "NAME@ZIP"}
+
+# CONNECT_EDGES.TIER -> the page's own tier vocabulary. The page renders "solid"
+# as "certain -- the same official ID appears in both datasets". A CORROBORATED
+# county-name match at 0.85 confidence is NOT that, and an earlier version of
+# this script hard-coded every added edge to solid, which promoted one
+# geographic corroboration to certainty.
+TIER_MAP = {
+    "STEEL": "solid",            # the same official ID, both sides
+    "STRONG": "strong",          # same code, and codes get reused
+    "BRIDGE": "translation",     # two ID systems with a known conversion
+    "CORROBORATED": "measured",  # overlap measured, not an ID match
+    "GEO": "location",           # geography only, never identity
+}
 
 
 def load_global(path: Path):
@@ -224,6 +237,19 @@ def main() -> int:
 
     # ---- 3. edges the graph has and the page does not ---------------------
     by_id = {t["id"]: t for t in tables}
+    # Strip what a previous run of THIS script added, then re-add from live.
+    # Without it the merge is one-way: a run that mis-tiered an edge leaves that
+    # edge mis-tiered forever, because the next run sees it already present and
+    # skips it. One earlier run wrote tier "solid" -- which the page renders as
+    # "certain, the same official ID appears in both" -- onto a county-name
+    # corroboration at 0.85 confidence.
+    dropped = 0
+    for t in tables:
+        before = len(t["conns"])
+        t["conns"] = [c for c in t["conns"] if c.get("src") != "connect_edges"]
+        dropped += before - len(t["conns"])
+    if dropped:
+        print(f"re-adding {dropped} edges a previous run wrote")
     have = set()
     for t in tables:
         for c in t["conns"]:
@@ -231,6 +257,12 @@ def main() -> int:
     added = 0
     q = ('select A,B,KEY,TIER,A_COL,B_COL,MATCHED,MATCH_RATE '
          'from LIBRARY_META."CONNECT".CONNECT_EDGES')
+    # When the overlaps were measured. Row counts on this page are live; the
+    # join percentages are whatever the last CONNECT run wrote, and the two can
+    # be a week apart. A header saying "snapshot today" over an 8-day-old
+    # percentage is the kind of thing that gets believed.
+    built = db.rows(conn, 'select max(BUILT_AT) from LIBRARY_META."CONNECT".CONNECT_EDGES')[0][0]
+    edges_measured_on = str(built)[:10] if built else ""
     for a, b, key, tier, acol, bcol, matched, rate in db.rows(conn, q):
         if key in NON_IDENTITY_KEYS or a not in by_id or b not in by_id:
             continue
@@ -238,7 +270,8 @@ def main() -> int:
             if (lhs, rhs, key) in have:
                 continue
             by_id[lhs]["conns"].append({
-                "id": rhs, "lbl": by_id[rhs]["label"], "tier": "solid",
+                "id": rhs, "lbl": by_id[rhs]["label"],
+                "tier": TIER_MAP.get(str(tier).upper(), "measured"),
                 "pct": float(rate) if rate is not None else None,
                 "n": int(matched) if matched is not None else None,
                 "lc": lc, "rc": rc, "jk": key, "src": "connect_edges",
@@ -258,8 +291,11 @@ def main() -> int:
                     if r[0] in NON_IDENTITY_KEYS)
     portal_n = db.rows(conn, """select count(*) from LIBRARY_RAW.INFORMATION_SCHEMA.TABLES
                                 where TABLE_SCHEMA='LANDING' and TABLE_NAME like 'PORTAL\\_%' escape '\\\\'""")[0][0]
+    notes["edges_measured_on"] = edges_measured_on
+    print(f"CONNECT_EDGES last measured: {edges_measured_on}")
     notes["excluded"] = {
         "refreshed_on": date.today().isoformat(),
+        "edges_measured_on": edges_measured_on,
         "zip_edges": zip_edges,
         "portal_tables": portal_n,
         "why": ("ZIP and NAME@ZIP edges identify a postcode, not a party. "

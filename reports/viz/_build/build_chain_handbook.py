@@ -116,7 +116,7 @@ def main() -> int:
         # schema rename -- MONEY to MONEY_FINANCE, REF to REFERENCE -- leaves
         # the table alive at a path the page no longer knows. Match on the mart
         # table name, which survives the rename, and rewrite the path too.
-        live = live_by_fqn.get(fqn)
+        live, successors = live_by_fqn.get(fqn), []
         if live is None:
             for probe in (fqn.rsplit(".", 1)[-1], fqn, tid):
                 home = live_by_name.get(probe)
@@ -131,9 +131,26 @@ def main() -> int:
             # Nothing by this name exists anywhere. Say so on the entry rather
             # than printing rows=0, which reads as an empty table.
             gone_tables.append(tid)
+            # Both of today's ghosts are renames, not deletions: FED_FAA_REGISTRY
+            # became FED_FAA_AIRCRAFT_REGISTRY, and FED_NCUA_CALL_REPORTS split
+            # into FS220 and FOICU. All three successors are already listed here.
+            # Naming them turns a dead end into a redirect.
+            # A rename is not always a suffix. FED_NCUA_CALL_REPORTS gained one
+            # (_FS220) but FED_FAA_REGISTRY became FED_FAA_AIRCRAFT_REGISTRY --
+            # a word inserted in the middle. Neither prefix nor suffix catches
+            # both. What survives a rename is the WORDS: a successor keeps every
+            # token of the old name and adds its own. FED_FAA_ADIP_PRIVATE_
+            # AIRPORTS shares the agency and is correctly not offered, because
+            # it drops REGISTRY.
+            want = set(tid.split("_"))
+            successors = sorted(
+                n for n in live_by_name
+                if n != tid and "__" not in n and not n.startswith("PORTAL_")
+                and want <= set(n.split("_")) and live_by_name[n] in live_by_fqn)[:4]
         schema[tid] = {"fqn": fqn, "schema": schema_name, "tbl": mart_name, "rows": rows, "dom": (dom or schema_name).lower(),
                        "life": "modeled", "model": mart_name.lower(), "desc": "", "notes": {}, "cols": [],
-                       "gone": live is None}
+                       "gone": live is None,
+                       "successors": successors if live is None else []}
         context.setdefault(tid, {"rows": rows, "dom": (dom or schema_name).lower(),
                                  "one": "", "life": "modeled"})["rows"] = rows
         added_tables.append(tid)
@@ -210,6 +227,10 @@ def main() -> int:
         # omission from an oversight.
         "excluded": notes.get("excluded") or {},
         "goneTables": sorted(gone_tables),
+        # Row counts come from the warehouse at build time. The join percentages
+        # come from whenever CONNECT last ran. Two different dates, and the page
+        # header only ever showed one of them.
+        "edgesMeasuredOn": notes.get("edges_measured_on", ""),
         "liveRowsFrom": (notes.get("excluded") or {}).get("refreshed_on", ""),
     }
 

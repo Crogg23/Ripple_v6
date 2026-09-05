@@ -651,7 +651,7 @@ const TIER_ORDER = ['solid', 'strong', 'translation', 'measured', 'location'];
 const TIER_WORD = { solid: 'certain', strong: 'very likely', translation: 'verified translation', measured: 'measured, not in the spine yet', location: 'same place only' };
 const RISKY = { DOCKET: 1 };
 const TIER_LEGEND = [
-  ['solid', 'certain', 'The same official ID appears in both datasets'],
+  ['solid', 'certain', 'The same official ID appears in both datasets. Row counts on this page are live as of the snapshot date; every overlap percentage was measured ' + (META.edgesMeasuredOn || META.measuredOn || '') + ' and is only as fresh as that'],
   ['strong', 'very likely', 'The same code in both — but codes can be reused'],
   ['translation', 'verified translation', 'Two different ID systems, with a known conversion between them'],
   ['measured', 'measured, not in the spine yet', 'Overlap measured live, latest ' + (META.measuredOn || '2026-08-31') + '; where the card says so, 60 matched pairs were name-checked. The live machine does not use these joins yet — only the tiers above are wired in'],
@@ -893,7 +893,7 @@ function dossierOf(id, width) {
   const complete = (s.cols || []).some(c => !c.x);
   const d = {
     fqn: s.fqn || id,
-    meta: [s.rows ? fmtRows(s.rows) : '', s.dom ? String(s.dom).replace(/_/g, ' ') : '', s.life || '', t ? t.conns.length + ' joins warehouse-wide' : '', (s.place && s.place.length) ? 'meets others on place' : '', s.clock ? 'runs on a clock' : '']
+    meta: [s.gone ? ('TABLE NO LONGER EXISTS' + ((s.successors && s.successors.length) ? ' — renamed to ' + s.successors.join(', ') : '')) : (s.rows ? fmtRows(s.rows) : ''), s.dom ? String(s.dom).replace(/_/g, ' ') : '', s.life || '', t ? t.conns.length + ' joins warehouse-wide' : '', (s.place && s.place.length) ? 'meets others on place' : '', s.clock ? 'runs on a clock' : '']
       .filter(Boolean).join(' · '),
     hasDesc: !!s.desc, desc: s.desc || '', notes,
     hasPlace: !!(s.place && s.place.length), place: placeRows(s), placeSummary: placeSummary(s),
