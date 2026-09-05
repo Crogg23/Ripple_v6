@@ -388,3 +388,90 @@ one-month "trap":
 | The duplicates are meaningless upstream | **not established. This is loader policy** |
 | Every Oklahoma package is now complete | **no. Complete against what the portal serves today** |
 
+---
+
+# Outcome 3: the rows landed, the columns are the problem
+
+Skeptic pass on Outcome 2 **agreed on all five claims** — every number reproduced
+from the warehouse and from the portal. It then found three problems in what
+the rows look like, none of which were in the report.
+
+## The one that will bite: resources do not share a header
+
+A CKAN package is a folder. The loader now reads every file in it, and pandas
+unions the keys. **A column present in only some resources is populated on only
+some rows.**
+
+Measured across all 32 reloaded tables:
+
+| Table | Columns | Rows | Partially filled |
+|---|---|---|---|
+| Vendor Payments FY2022 | 105 | 668,789 | **71** |
+| Expenditure Summary | 38 | 1,957,980 | **35** |
+| nine PO tables | 29 to 31 | ~22,000 | 15 to 19 |
+| p-card FY2021 | 19 | 335,640 | 6 |
+| eleven p-card years | 16 | ~400,000 | 0 to 1 |
+| five funding summaries | 14 to 15 | ~20,000 | 0 to 2 |
+
+**19 of 32 tables carry partially-filled columns.**
+
+The money case, on the largest by dollars:
+
+| Column | Rows populated | Sum |
+|---|---|---|
+| `PYMNT_AMT` | 589,381 of 668,789 | $7,871,848,150 |
+| `PAYMENT_AMOUNT` | 79,407 of 668,789 | $1,282,618,447 |
+
+**Sum `PYMNT_AMT` alone and 14% of the money silently disappears**, along with a
+whole month of payments. `AGENCY_NUMBER` on Expenditure Summary sits at 50%.
+
+- **What was checked.** Fill rate of every non-lineage column against `count(*)`.
+- **What a hit means.** The package's files disagree on their header.
+- **What a miss means.** Every column populated on every row, one schema.
+
+## Two more, smaller
+
+**`ROWID` is not an ID.** 442,167 rows and 163,508 distinct on p-card FY2016. It
+restarts inside each monthly file, so it collides across a package. It also props
+up `drop_duplicates()` — some rows survive dedupe only because `ROWID` differs.
+Ignore it and FY2016 still holds 8,651 genuine duplicate groups.
+
+**`MERCHANT` is a terminal string, not a merchant.** 90,600 distinct strings
+collapse to 34,742 on letters alone. `WAL-MART #0151` and `WAL-MART #3340` are
+two. Amazon appears under four spellings. **The "90,600 merchants" figure in
+Outcome 2 is a string count and should be read as one.**
+
+All three are recorded in `.claude/traps.md`.
+
+## Loader hole the skeptic named, now closed
+
+`fetch_ckan` read `result.records` and never read `result.total`, which sits in
+the same JSON. A server that clamps `limit` returns a short page, the normal
+`len(recs) < page` door closes the loop, and **nothing anywhere says the fetch was
+short.**
+
+Now it captures the portal's own total per resource and warns when it comes up
+short. Tested against a stub that clamps `limit` to 100:
+
+```
+[warn] .../r1: got 100 of 50000 rows the portal reports
+```
+
+The real package stays silent and returns all 442,167 rows.
+
+Also renamed: the cap message now reads `HIT max_rows=... -- may be short` rather
+than `TRUNCATED`, because it fires whenever data exactly fills the cap and that
+is not always a truncation.
+
+## What is claimed, and what is not
+
+| Claim | Supported |
+|---|---|
+| 19 of 32 tables have partially-filled columns | **yes, fill rate measured per column** |
+| Summing `PYMNT_AMT` alone loses 14% | **yes** |
+| `ROWID` is not unique | **yes, 163,508 distinct over 442,167 rows** |
+| The 90,600 merchants figure is a string count | **yes. 34,742 on letters only** |
+| 34,742 is the true merchant count | **no. It is a second string count, less wrong** |
+| The loader now catches short fetches | **yes, tested against a clamping stub** |
+| The 32 tables are usable as landed | **only with a fill check per column first** |
+

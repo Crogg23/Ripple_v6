@@ -295,12 +295,15 @@ def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
         if len(out) >= max_rows:
             truncated = True
             break
-        rid, offset, last_sig = r["id"], 0, None
+        rid, offset, last_sig, got, reported = r["id"], 0, None, 0, None
         while len(out) < max_rows:
             page = min(CKAN_PAGE, max_rows - len(out))
             res = _get(f"{base}/api/3/action/datastore_search",
                        params={"resource_id": rid, "limit": page, "offset": offset}).json()
-            recs = (res.get("result") or {}).get("records") or []
+            result = res.get("result") or {}
+            if reported is None:
+                reported = result.get("total")
+            recs = result.get("records") or []
             if not recs:
                 break
             # Content signature, not an offset counter. An offset we increment
@@ -319,10 +322,18 @@ def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
             out.extend({k: _flatten(v) for k, v in row.items()
                         if k not in ("_id", "_full_text", "rank")} for row in recs)
             offset += len(recs)
+            got += len(recs)
             if len(recs) < page:
                 break
         else:
             truncated = True
+        # The resource tells us its own size in the same JSON we already parsed.
+        # Reading it is the only way to catch a SHORT fetch -- a server that
+        # clamps `limit`, or one that stops early -- which otherwise ends the
+        # loop through the normal `len(recs) < page` door and says nothing.
+        if reported is not None and got < reported and len(out) < max_rows:
+            print(f"    [warn] {slug}/{r.get('name','?')}: got {got} of "
+                  f"{reported} rows the portal reports")
 
     # A fetch stopped by max_rows rather than by running out of data is
     # TRUNCATED, and nothing downstream could tell. 170 tables landed at exactly
@@ -330,8 +341,8 @@ def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
     # the first page filled the budget, the `while` guard failed, and one page
     # looked like a finished load. Say so out loud.
     if truncated:
-        print(f"    TRUNCATED at max_rows={max_rows} after {len(out)} rows "
-              f"({len(active)} resources in package)")
+        print(f"    HIT max_rows={max_rows} after {len(out)} rows "
+              f"({len(active)} resources in package) -- may be short")
     return out
 
 
