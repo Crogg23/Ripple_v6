@@ -319,3 +319,72 @@ referenced a variable bound only inside the loop.
 | The FY2016 one-month finding is a data trap | **no. It was the loader. The title was honest** |
 | The index row counts prove a complete load | **no. The check is circular** |
 | The first offset guard worked | **no. It was dead code. Fixed and now exercised** |
+
+---
+
+# Outcome 2: full reload, every resource in every package
+
+Same day, after the skeptic pass. `--max-rows 2,500,000` per package, which
+clears the largest at 1,957,980.
+
+## Result
+
+32 of 32 loaded. Zero failures.
+
+| Measure | June load | Reload 1 | Reload 2 |
+|---|---|---|---|
+| Rows in the 32 | 320,000 | 992,041 | **7,396,758** |
+| Tables at exactly 10,000 | 32 | 0 | 0 |
+| Oklahoma family, all 65 tables | — | 1,095,088 | 7,499,805 |
+| Oklahoma family on disk | — | — | 169.6 MB |
+
+Warehouse-wide tables sitting at 10,000: **138**, unchanged. Nothing outside the
+32 was touched.
+
+## The gap between fetched and landed
+
+7,540,233 rows were available. 7,396,758 landed. **143,475 short.**
+
+That is `drop_duplicates()` in `load_one`, not a short read, and it was checked
+rather than assumed. Re-fetched the largest contributor independently:
+
+| Vendor Payments FY2022 | Rows |
+|---|---|
+| Fetched from the portal | 789,381 |
+| After `drop_duplicates()` | **668,789** |
+| Landed | **668,789** |
+
+Reproduced to the row. 120,592 of the 143,475 gap is that one table.
+
+**Say it as a loader policy, not a source fact.** The loader drops rows that are
+identical across every column. Whether the portal intended them as duplicates is
+not established here.
+
+## What twelve resources bought
+
+`Purchase Card (PCard) Fiscal Year-FY 2016`, the table that produced the false
+one-month "trap":
+
+| Measure | Capped, June | One resource | All twelve |
+|---|---|---|---|
+| Rows | 10,000 | 37,338 | **442,167** |
+| Months covered | 1 | 1 | **12** |
+| Distinct merchants | 3,462 | 12,582 | **90,600** |
+| Distinct cardholder surnames | — | 2,763 | **4,087** |
+| Dollars | $3,292,953 | $18,256,692 | **$191,313,585** |
+
+**The June table was reading 1.7% of the money.** The first reload got it to 9.5%.
+
+## What is claimed, and what is not
+
+| Claim | Supported |
+|---|---|
+| 32 of 32 reloaded, zero failures | **yes** |
+| 7,396,758 rows landed | **yes, counted in the warehouse** |
+| No table in the 32 sits at 10,000 | **yes** |
+| Nothing outside the 32 changed | **yes, warehouse count still 138** |
+| The 143,475 gap is duplicates | **yes for 120,592 of it, reproduced** |
+| The remaining 22,883 of the gap | **assumed duplicates. Not individually checked** |
+| The duplicates are meaningless upstream | **not established. This is loader policy** |
+| Every Oklahoma package is now complete | **no. Complete against what the portal serves today** |
+
