@@ -225,6 +225,11 @@ def _page_sig(feats: list) -> int:
     return hash(tuple(json.dumps(f.get("properties"), sort_keys=True) for f in feats[:5]))
 
 
+def _rows_sig(rows: list) -> int:
+    """Same idea as _page_sig, for plain record dicts (CKAN datastore_search)."""
+    return hash(tuple(json.dumps(r, sort_keys=True, default=str) for r in rows[:5]))
+
+
 def fetch_arcgis(rec: dict, max_rows: int) -> list[dict]:
     item_id, _, layer = rec["DATASET_ID"].rpartition("_")
     svc = _arcgis_service_url(item_id)
@@ -264,49 +269,69 @@ def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
     """CKAN DataStore fetch. CKAN is the de-facto standard for national open-data
     portals worldwide (data.gov.ie, datos.gob.ar, open.canada.ca, dados.gov.br...).
     SOURCE_URL is the package page ({base}/dataset/{slug}); DATASET_ID is the slug.
-    Resolve the package's datastore-active resource, then page datastore_search --
-    bounded by max_rows and a non-advancing-offset stop, so it can never spin."""
+
+    Pages EVERY datastore-active resource in the package, not just the first. A
+    CKAN package is a folder: Oklahoma publishes one fiscal year of purchase-card
+    data as twelve monthly CSVs inside one package. Taking `next(...)` of the
+    active resources landed month one and threw away eleven -- 6.5M rows across
+    32 Oklahoma packages, and the missing rows looked exactly like a complete
+    load because the harvest index had recorded the same first resource.
+
+    Bounded by max_rows across the whole package, and by a page-CONTENT stop, so
+    a portal that ignores `offset` cannot silently land page one N times."""
     base = _ckan_base(rec["SOURCE_URL"])
     slug = rec["DATASET_ID"]
     pkg = _get(f"{base}/api/3/action/package_show", params={"id": slug}, timeout=30).json()
     if not pkg.get("success"):
         raise RuntimeError(f"CKAN package_show failed for {slug}")
     resources = pkg["result"].get("resources") or []
-    rid = next((r["id"] for r in resources if r.get("datastore_active")), None)
-    if not rid:
+    active = [r for r in resources if r.get("datastore_active")]
+    if not active:
         raise RuntimeError(f"no datastore-active resource for {slug} "
                            f"({len(resources)} resources, none queryable)")
-    out, offset, seen_offsets = [], 0, set()
-    while len(out) < max_rows:
-        # A portal that ignores `offset` returns page 1 forever. The docstring has
-        # promised a non-advancing-offset stop since this was written; it was only
-        # ever implemented on the ArcGIS path. Without it the loop cannot spin --
-        # max_rows bounds it -- but it silently lands the same page N times as if
-        # it were N pages of real data. That is worse than spinning.
-        if offset in seen_offsets:
+
+    out, truncated = [], False
+    for r in active:
+        if len(out) >= max_rows:
+            truncated = True
             break
-        seen_offsets.add(offset)
-        page = min(CKAN_PAGE, max_rows - len(out))
-        res = _get(f"{base}/api/3/action/datastore_search",
-                   params={"resource_id": rid, "limit": page, "offset": offset}).json()
-        recs = (res.get("result") or {}).get("records") or []
-        if not recs:
-            break
-        # drop CKAN's internal bookkeeping cols; flatten nested values to JSON text
-        out.extend({k: _flatten(v) for k, v in row.items()
-                    if k not in ("_id", "_full_text", "rank")} for row in recs)
-        offset += len(recs)
-        if len(recs) < page:
-            break
-    # A dataset stopped by max_rows rather than by running out is TRUNCATED, and
-    # nothing downstream could tell. 170 tables landed at exactly 10,000 rows in
-    # June because --max-rows was 10,000 and CKAN_PAGE is 10,000: the first page
-    # filled the budget, the `while` guard failed, and one page looked like a
-    # finished load. Say so out loud so the caller can raise the cap.
-    if len(out) >= max_rows:
-        total = (res.get("result") or {}).get("total")
-        print(f"    TRUNCATED at max_rows={max_rows}"
-              + (f" (portal reports {total} rows)" if total else ""))
+        rid, offset, last_sig = r["id"], 0, None
+        while len(out) < max_rows:
+            page = min(CKAN_PAGE, max_rows - len(out))
+            res = _get(f"{base}/api/3/action/datastore_search",
+                       params={"resource_id": rid, "limit": page, "offset": offset}).json()
+            recs = (res.get("result") or {}).get("records") or []
+            if not recs:
+                break
+            # Content signature, not an offset counter. An offset we increment
+            # ourselves is strictly increasing and can never repeat, so guarding
+            # on it is dead code -- the ArcGIS path gets this right by hashing
+            # the page itself. A resource that ignores `offset` returns page one
+            # every time; without this we would land it once per loop and the
+            # duplicates would read as real rows.
+            sig = _rows_sig(recs)
+            if sig == last_sig:
+                print(f"    [warn] {slug}/{r.get('name','?')}: non-advancing page, "
+                      f"stopping at {len(out)} rows")
+                break
+            last_sig = sig
+            # drop CKAN's internal bookkeeping cols; flatten nested values to JSON text
+            out.extend({k: _flatten(v) for k, v in row.items()
+                        if k not in ("_id", "_full_text", "rank")} for row in recs)
+            offset += len(recs)
+            if len(recs) < page:
+                break
+        else:
+            truncated = True
+
+    # A fetch stopped by max_rows rather than by running out of data is
+    # TRUNCATED, and nothing downstream could tell. 170 tables landed at exactly
+    # 10,000 rows in June because --max-rows was 10,000 and CKAN_PAGE is 10,000:
+    # the first page filled the budget, the `while` guard failed, and one page
+    # looked like a finished load. Say so out loud.
+    if truncated:
+        print(f"    TRUNCATED at max_rows={max_rows} after {len(out)} rows "
+              f"({len(active)} resources in package)")
     return out
 
 

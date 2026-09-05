@@ -197,7 +197,8 @@ Warehouse-side check, not the log:
 | Measure | Before | After |
 |---|---|---|
 | Oklahoma tables at exactly 10,000 | 32 | **0** |
-| Oklahoma rows | 320,000 | 1,095,088 |
+| Rows in the 32 reloaded tables | 320,000 | **992,041** |
+| Rows across all 65 Oklahoma tables | 423,047 | 1,095,088 |
 | Tables at 10,000 warehouse-wide | 170 | **138** |
 
 One table landed 20,957 against an index figure of 21,664. The loader calls
@@ -223,13 +224,84 @@ The capped PO table also appeared to span 2025-10-01 to 2026-05-29. The full tab
 spans **2025-06-01 to 2026-05-29**. The cap was silently deleting the first four
 months of the fiscal year, and the truncated span looked like a plausible one.
 
-## New trap found in the reloaded data
+## The second cap, found by the skeptic, and it is bigger
 
-`Purchase Card (PCard) Fiscal Year-FY 2016` holds **37,338 rows, all of them
-July 2015**. One `CALENDAR_YEAR`, one `CALENDAR_MONTH`, no exceptions.
+**The reload fixed the page cap and left a resource cap standing.**
 
-**The title says fiscal year. The data is one month.** Every p-card file in this
-set needs its own month check before anyone sums a year from it.
+```python
+rid = next((r["id"] for r in resources if r.get("datastore_active")), None)
+```
+
+A CKAN package is a folder. `next(...)` takes the first file in it and discards
+the rest. Oklahoma publishes one fiscal year of purchase-card data as **twelve
+monthly CSVs inside one package**.
+
+Audited all 32 packages live against the portal:
+
+| | Packages | Rows |
+|---|---|---|
+| Landed by the reload | 32 | 992,041 |
+| Actually available | 32 | **7,540,233** |
+| **Still missing** | | **6,548,192** |
+
+**27 of the 32 packages hold more than one resource.**
+
+| Package | Resources | Landed | Available |
+|---|---|---|---|
+| Expenditure Summary | 18 | 109,348 | **1,957,980** |
+| Vendor Payments FY2022 | 12 | 77,211 | 789,381 |
+| Purchase cards FY2016 | 12 | 37,338 | 442,167 |
+| ten more p-card years | 6 to 12 | ~30,000 | ~420,000 each |
+| Funding Summary FY2018-22 | 1 | 20,000ish | same |
+
+### The false trap this produced
+
+A first draft of this report filed a data trap: *"Purchase Card FY2016 holds
+37,338 rows, all July 2015. The title says fiscal year, the data is one month."*
+
+**That was the loader, not the data.** Fetching every resource returns 442,167
+rows across exactly twelve month buckets:
+
+| Year-month | Rows |
+|---|---|
+| 2015-07 | 37,338 |
+| 2015-08 | 39,150 |
+| 2015-09 | 39,451 |
+| 2015-10 | 40,071 |
+| 2015-11 | 33,161 |
+| 2015-12 | 32,332 |
+| 2016-01 | 34,012 |
+| 2016-02 | 38,292 |
+| 2016-03 | 37,898 |
+| 2016-04 | 36,450 |
+| 2016-05 | 36,444 |
+| 2016-06 | 37,568 |
+
+July 2015 to June 2016. **The title was honest.** Filing that as a data trap would
+have recorded a loader defect as a source defect and misled every future reader.
+
+### Why the verification missed it
+
+The check was "landed rows equals `PORTAL_DATASET_INDEX.ROW_COUNT`", and it
+matched exactly on three datasets.
+
+**That check is circular.** The index harvested its row count from the same first
+resource the fetcher picks. It cannot detect resource-level loss by construction.
+
+One package proves it: index said 21,664, first resource holds 21,664, the full
+package holds 23,414. **The index matched and the load was still short.**
+
+### The first guard was dead code
+
+The offset guard shipped in the first attempt tracked `offset`, a counter this
+same loop increments. A number you increment yourself never repeats, so the guard
+could never fire. The ArcGIS version works because it hashes the page contents.
+
+Now fixed with `_rows_sig`, and exercised against a stubbed portal that ignores
+`offset`: it stops at 10,000 rows instead of landing page one five times.
+
+Also fixed: `max_rows=0` raised `UnboundLocalError` because the TRUNCATED line
+referenced a variable bound only inside the loop.
 
 ## What is claimed, and what is not
 
@@ -243,3 +315,7 @@ set needs its own month check before anyone sums a year from it.
 | The offset guard has now been exercised | **no. No portal in this run ignored offset** |
 | The index row counts are themselves correct | **assumed. They matched on 31 of 32** |
 | The other 138 capped tables are worth reloading | **no. Triaged above as skip** |
+| The reload landed the full packages | **no. 6,548,192 rows sit in unread resources** |
+| The FY2016 one-month finding is a data trap | **no. It was the loader. The title was honest** |
+| The index row counts prove a complete load | **no. The check is circular** |
+| The first offset guard worked | **no. It was dead code. Fixed and now exercised** |
