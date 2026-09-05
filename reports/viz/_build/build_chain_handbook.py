@@ -34,7 +34,8 @@ CHAIN = BUILD / "chain"
 VIZ = BUILD.parent
 OUT = VIZ / "join_handbook.html"
 PLACE_CSV = VIZ.parent / "location_index" / "location_columns_verified.csv"
-SNAPSHOT = "2026-09-01"
+SNAPSHOT = "2026-09-05"
+LIVE_ROWS = "live_rows.json"   # written by refresh_handbook_from_warehouse.py
 
 
 def load_global(path: Path) -> object:
@@ -59,6 +60,14 @@ def main() -> int:
     ap.add_argument("--payload", type=Path, default=CHAIN / "repo_payload.json")
     args = ap.parse_args()
 
+    live_path = CHAIN / LIVE_ROWS
+    live_rows: dict = json.loads(live_path.read_text(encoding="utf-8")) if live_path.exists() else {}
+    live_by_fqn: dict = live_rows.get("by_fqn", {})
+    live_by_name: dict = live_rows.get("by_name", {})
+    if not live_by_fqn:
+        print("WARNING: no live_rows.json -- run refresh_handbook_from_warehouse.py first; "
+              "row counts for payload-added tables will be the frozen scan values")
+
     tables: list[dict] = load_global(CHAIN / "base_tables.js")
     context: dict = load_global(CHAIN / "base_context.js")
     schema: dict = load_global(CHAIN / "base_schema.js")
@@ -76,6 +85,7 @@ def main() -> int:
 
     # ---- 1. tables new to the handbook ---------------------------------------------------
     added_tables = []
+    gone_tables: list[str] = []
     for pt in payload["tables"]:
         tid = pt["name"]
         if tid in by_id:
@@ -95,8 +105,37 @@ def main() -> int:
         tables.append(t)
         by_id[tid] = t
         context[tid] = {"rows": rows, "dom": (dom or schema_name).lower(), "one": "", "life": "modeled"}
+        # The place-scan CSV is a snapshot like everything else here. Once the
+        # fqn is known, take the live count for THAT name. Without this the page
+        # printed 19,136,434 for HMDA historic while the live table held
+        # 44,992,667 -- a table reloaded that same morning. Keying by bare id
+        # would be worse than useless: FED_FDA_GUDID is 2,542 rows in LANDING
+        # and 5,083,948 in the mart this entry actually points at.
+        # Resolve the fqn against the live warehouse, then take THAT count.
+        # Two things go stale independently: the number, and the address. A
+        # schema rename -- MONEY to MONEY_FINANCE, REF to REFERENCE -- leaves
+        # the table alive at a path the page no longer knows. Match on the mart
+        # table name, which survives the rename, and rewrite the path too.
+        live = live_by_fqn.get(fqn)
+        if live is None:
+            for probe in (fqn.rsplit(".", 1)[-1], fqn, tid):
+                home = live_by_name.get(probe)
+                if home and home in live_by_fqn:
+                    fqn, live = home, live_by_fqn[home]
+                    schema_name = home.split(".")[1]
+                    mart_name = home.rsplit(".", 1)[-1]
+                    break
+        if live is not None:
+            rows = live
+        else:
+            # Nothing by this name exists anywhere. Say so on the entry rather
+            # than printing rows=0, which reads as an empty table.
+            gone_tables.append(tid)
         schema[tid] = {"fqn": fqn, "schema": schema_name, "tbl": mart_name, "rows": rows, "dom": (dom or schema_name).lower(),
-                       "life": "modeled", "model": mart_name.lower(), "desc": "", "notes": {}, "cols": []}
+                       "life": "modeled", "model": mart_name.lower(), "desc": "", "notes": {}, "cols": [],
+                       "gone": live is None}
+        context.setdefault(tid, {"rows": rows, "dom": (dom or schema_name).lower(),
+                                 "one": "", "life": "modeled"})["rows"] = rows
         added_tables.append(tid)
 
     # ---- 2. the measured-not-in-spine edges (pass 2) --------------------------------------
@@ -167,6 +206,11 @@ def main() -> int:
                  "tables": time_tables},
         "newTables": sum(1 for t in tables if not any(c["tier"] != "location" for c in t["conns"])),
         "noIdTables": sum(1 for t in tables if not any(c["tier"] != "location" for c in t["conns"])),
+        # What this page deliberately does NOT show, so a reader can tell an
+        # omission from an oversight.
+        "excluded": notes.get("excluded") or {},
+        "goneTables": sorted(gone_tables),
+        "liveRowsFrom": (notes.get("excluded") or {}).get("refreshed_on", ""),
     }
 
     # ---- 5. assemble ----------------------------------------------------------------------
