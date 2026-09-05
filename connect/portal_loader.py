@@ -276,8 +276,16 @@ def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
     if not rid:
         raise RuntimeError(f"no datastore-active resource for {slug} "
                            f"({len(resources)} resources, none queryable)")
-    out, offset = [], 0
+    out, offset, seen_offsets = [], 0, set()
     while len(out) < max_rows:
+        # A portal that ignores `offset` returns page 1 forever. The docstring has
+        # promised a non-advancing-offset stop since this was written; it was only
+        # ever implemented on the ArcGIS path. Without it the loop cannot spin --
+        # max_rows bounds it -- but it silently lands the same page N times as if
+        # it were N pages of real data. That is worse than spinning.
+        if offset in seen_offsets:
+            break
+        seen_offsets.add(offset)
         page = min(CKAN_PAGE, max_rows - len(out))
         res = _get(f"{base}/api/3/action/datastore_search",
                    params={"resource_id": rid, "limit": page, "offset": offset}).json()
@@ -290,6 +298,15 @@ def fetch_ckan(rec: dict, max_rows: int) -> list[dict]:
         offset += len(recs)
         if len(recs) < page:
             break
+    # A dataset stopped by max_rows rather than by running out is TRUNCATED, and
+    # nothing downstream could tell. 170 tables landed at exactly 10,000 rows in
+    # June because --max-rows was 10,000 and CKAN_PAGE is 10,000: the first page
+    # filled the budget, the `while` guard failed, and one page looked like a
+    # finished load. Say so out loud so the caller can raise the cap.
+    if len(out) >= max_rows:
+        total = (res.get("result") or {}).get("total")
+        print(f"    TRUNCATED at max_rows={max_rows}"
+              + (f" (portal reports {total} rows)" if total else ""))
     return out
 
 

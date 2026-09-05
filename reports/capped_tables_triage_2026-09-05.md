@@ -1,0 +1,245 @@
+# The 170 capped tables: comb-through and verdict
+
+2026-09-05. Python door. Every table in `LIBRARY_RAW.LANDING` sitting at exactly
+10,000 rows. The count is **170**, not 169 as previously recorded.
+
+---
+
+## Why exactly 10,000 is the tell
+
+A real dataset lands at an arbitrary number. 8,432 rows. 11,207 rows. 9,981 rows.
+
+**170 tables landing at exactly 10,000 is a page limit, not a coincidence.** The
+CKAN portal loaders stopped at the first page and never paged again.
+
+The proof is in the July purchase-card files. Eleven separate monthly extracts,
+different years, different agencies, different merchant counts:
+
+| Table suffix | Month | Distinct merchants | Dollars |
+|---|---|---|---|
+| 0A2227FC62 | 07 | 5,193 | $3,335,658 |
+| 13AC1849E2 | 07 | 4,040 | $3,291,425 |
+| 41334802FD | 07 | 4,123 | $3,266,869 |
+| 92C8CC9499 | 07 | 4,541 | $3,548,840 |
+| B65187987B | 07 | 3,462 | $3,292,953 |
+| C877A4F53F | 07 | 5,270 | $3,342,772 |
+| CABB75C107 | 07 | 4,086 | $3,173,687 |
+| E1AA111C19 | 7 | 5,302 | $3,799,310 |
+| F394B50B84 | 07 | 4,079 | $3,952,263 |
+| FFF97E32BA | 07 | 4,832 | $3,798,201 |
+| 4B6E3CA1AD | 01 | 3,236 | $3,015,836 |
+
+Eleven independent months. Every single one exactly 10,000 rows.
+
+- **What was checked.** Row count, month span, distinct merchant count per file.
+- **What a hit means.** The loader truncated; the real month is larger.
+- **What a miss means.** Row counts would scatter and no two would match.
+
+**Every dollar figure in that table is a floor.**
+
+---
+
+## What the 170 actually are
+
+| Group | Tables | Content |
+|---|---|---|
+| **Oklahoma state spending** | **32** | purchase orders, p-cards, payroll, budgets, tax credits |
+| Allegheny / Western PA | ~52 | tax parcels, appeals, permits, street trees, TRI sites |
+| San Jose, San Antonio, Boston | ~40 | sidewalks, storm drains, channels, city assets |
+| Virginia | 13 | address points, parcels, permits |
+| Israel national portal | 8 | pension fund deposits and withdrawals |
+| Indiana, Houston, California | ~24 | mixed municipal and environmental |
+| `FED_SAM_EXCLUSIONS` | 1 | federal debarment list |
+
+Only **50 of 170** carry both a money column and a party column. Of those 50,
+**32 are Oklahoma**.
+
+---
+
+## Verdict, table group by table group
+
+### 1. Reload — the 32 Oklahoma tables
+
+| Kind | Tables | What each row is |
+|---|---|---|
+| Purchase orders | 15 | agency, vendor, description, amount, date |
+| Purchase cards | 11 | **named employee**, merchant, item, amount |
+| Budget and expenditure | 4 | agency, fund class, statutory reference, total |
+| Tax credits and property | 2 | recipient name, credit type, amount |
+
+One purchase-order file alone holds **$2,042,130,161 across 1,303 vendors**, and it
+spans only 2025-10-01 to 2026-05-29. Eight months of a fiscal year, cut at 10,000
+rows.
+
+**This is the only genuinely investigative content in the whole pond.** Named state
+employees, the merchants they charged, and the amounts. Named vendors and what they
+were paid. It is the state-level analogue of the federal contract data already
+landed.
+
+### 2. Drop — `FED_SAM_EXCLUSIONS`
+
+| Table | Rows |
+|---|---|
+| `FED_SAM_EXCLUSIONS` | 10,000 |
+| `FED_SAM_EXCLUSIONS_FULL_R2` | **168,328** |
+
+The full version is already landed and is 16.8 times larger. **The capped table is
+a stale duplicate that can only produce wrong answers.** Anyone querying
+`FED_SAM_EXCLUSIONS` by name gets a 6% sample and no warning.
+
+Not dropped. Dropping needs an explicit yes.
+
+### 3. Dedupe — the WPRDC and Western Pennsylvania overlap
+
+Five column signatures appear twice, once under each prefix:
+
+| Content | `WPRDC_ALLEGHENY_` | `WESTERN_PENNSYLV_` |
+|---|---|---|
+| Tax parcels | 1BA8209338 | 90A0A8B740 |
+| Assessment appeals | CDA9E537DC | D7DA51769C |
+| Building permits | 5B37A5568E | EF682F7E59 |
+| Street trees | 98A0E89FA3 | 1A89F1526C |
+| TRI facilities | DE448D04D4 | 0AF7431C6C |
+
+The registry confirms it: "Allegheny County Finished Property Assessment Appeals"
+is listed twice with the same URL. **Two loader runs against the same portal under
+two names.** The duplication is not limited to the capped set.
+
+### 4. Skip — everything else
+
+Sidewalk width. Storm drain rim-to-invert depth. Street tree growth space length.
+Fire call alarm times. Community centre attendance.
+
+**These are municipal asset inventories.** They carry no party, no money, and no
+route into any other table in the warehouse. A capped sample of them costs nothing
+because a complete copy would also be worth nothing here.
+
+The Israel pension funds are real money with a named controlling corporation, but
+nothing in the warehouse joins to an Israeli fund ID. **Out of reach, not out of
+interest.**
+
+---
+
+## What is claimed, and what is not
+
+| Claim | Supported |
+|---|---|
+| 170 tables sit at exactly 10,000 rows | **yes** |
+| The 10,000 is a loader page limit | **yes, eleven independent months all match** |
+| Every count on a capped table is a floor | **yes** |
+| The true upstream row counts | **not known. Needs the portal API** |
+| The Oklahoma tables are the only investigative content | **yes, of the 50 with money and party** |
+| `FED_SAM_EXCLUSIONS` is superseded | **yes, by a table 16.8x larger** |
+| WPRDC and Western PA overlap on five datasets | **yes, matched by column signature** |
+| The duplication is confined to capped tables | **no. Not checked outside them** |
+| Reloading Oklahoma is cheap | **no real number for this** |
+
+---
+
+## The one thing worth saying out loud
+
+The pond is 5.1 GB of 91 GB and 76% of it is municipal infrastructure geometry.
+
+**One slice matters: 32 Oklahoma tables holding named state employees, named
+vendors, and dollars.** The rest is sidewalks.
+
+That is the whole verdict. The cap has been carried as a 169-table problem for
+weeks. It is a 32-table problem, and 137 of the tables were never worth loading in
+the first place.
+
+---
+
+# Outcome: pager fixed, 32 tables reloaded
+
+Same day. `connect/portal_loader.py`, `fetch_ckan`.
+
+## The bug, exactly
+
+```
+CKAN_PAGE = 10_000
+while len(out) < max_rows:
+    page = min(CKAN_PAGE, max_rows - len(out))
+```
+
+Run with `--max-rows 10000`. First iteration takes `page = min(10000, 10000)`,
+returns 10,000 records, `len(out)` becomes 10,000, and the `while` guard fails.
+**The loop exits after one request and a single page looks like a finished load.**
+
+The cap was never a hard-coded constant. It was the invocation.
+
+## Two changes
+
+**1. The non-advancing-offset guard the docstring already promised.** It said
+"bounded by max_rows and a non-advancing-offset stop, so it can never spin." That
+guard existed only on the ArcGIS path. Without it, a portal that ignores `offset`
+lands page one N times and nothing downstream can tell those from N real pages.
+
+**2. A loud `TRUNCATED at max_rows=` line** whenever a fetch stops because of the
+cap rather than because the data ran out, with the portal's own reported total
+when it gives one.
+
+## Verified before overwriting anything
+
+Dry run against three datasets, no writes:
+
+| Dataset | Index says | Fetched |
+|---|---|---|
+| Expenditure Summary | 109,348 | **109,348** |
+| Vendor Payments FY2022 | 77,211 | **77,211** |
+| Funding Summary FY2022 | 74,236 | **74,236** |
+
+## The reload
+
+32 of 32 loaded. Zero failures. **992,041 rows landed against 320,000 before.**
+
+Warehouse-side check, not the log:
+
+| Measure | Before | After |
+|---|---|---|
+| Oklahoma tables at exactly 10,000 | 32 | **0** |
+| Oklahoma rows | 320,000 | 1,095,088 |
+| Tables at 10,000 warehouse-wide | 170 | **138** |
+
+One table landed 20,957 against an index figure of 21,664. The loader calls
+`drop_duplicates()` before landing, so 707 rows were exact duplicates upstream.
+Not a short read.
+
+## What the cap was actually hiding
+
+| Table | Measure | Capped | True |
+|---|---|---|---|
+| Purchase cards FY2016 | rows | 10,000 | 37,338 |
+| | distinct merchants | 3,462 | **12,582** |
+| | named cardholders | — | 2,763 |
+| | dollars | $3,292,953 | **$18,256,692** |
+| Direct PO lines 2025-26 | rows | 10,000 | 21,180 |
+| | distinct vendors | 1,303 | **1,899** |
+| | dollars | $2,042,130,161 | **$9,959,769,883** |
+
+**The purchase-order file was reading 20% of its own money.** The p-card file was
+reading 18%.
+
+The capped PO table also appeared to span 2025-10-01 to 2026-05-29. The full table
+spans **2025-06-01 to 2026-05-29**. The cap was silently deleting the first four
+months of the fiscal year, and the truncated span looked like a plausible one.
+
+## New trap found in the reloaded data
+
+`Purchase Card (PCard) Fiscal Year-FY 2016` holds **37,338 rows, all of them
+July 2015**. One `CALENDAR_YEAR`, one `CALENDAR_MONTH`, no exceptions.
+
+**The title says fiscal year. The data is one month.** Every p-card file in this
+set needs its own month check before anyone sums a year from it.
+
+## What is claimed, and what is not
+
+| Claim | Supported |
+|---|---|
+| The cap came from `--max-rows`, not a constant | **yes, traced in code** |
+| The pager now returns full datasets | **yes, three exact index matches** |
+| 32 tables reloaded, zero failures | **yes, 992,041 rows** |
+| No Oklahoma table sits at 10,000 any more | **yes, checked in the warehouse** |
+| The offset guard was missing on CKAN | **yes. It existed only on ArcGIS** |
+| The offset guard has now been exercised | **no. No portal in this run ignored offset** |
+| The index row counts are themselves correct | **assumed. They matched on 31 of 32** |
+| The other 138 capped tables are worth reloading | **no. Triaged above as skip** |
