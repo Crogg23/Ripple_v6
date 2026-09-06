@@ -77,3 +77,4 @@ pyyaml==6.0.3                # YAML I/O for dbt scaffolding / config
 # refuses both together with "conflicting dependencies"). That's exactly why
 # dbt lives in its own isolated .dbt-venv locally, not this one. Install dbt
 # separately: pip install -r requirements-dbt.txt (into its own venv).
+pyshp

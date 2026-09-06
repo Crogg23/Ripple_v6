@@ -154,3 +154,11 @@ One row per hunch. A = appendix 1 in the matrix file, E = expansion report 32-75
 | 142 | power units | emission spikes, no violation | CAMPD daily, ICIS_AIR, AQS | daily | unpunished spikes | unprobed, cols unconfirmed |
 | 143 | trial sponsors | paying own PIs | clinicaltrials stub | n/a | trial conflicts | dead, AACT not landed |
 | 144 | immigration judges | outcomes by judge and facility | EOIR | n/a | court outcomes | dead, column unparsed |
+
+
+---
+
+**Superseded 2026-09-06.** These 150 rows are now the investigation
+catalog at `catalog/investigations.csv`, with a controlled status vocabulary and
+links to the probe that ran each one. This file stays as the record of that day.
+Do not edit it; edit the catalog.

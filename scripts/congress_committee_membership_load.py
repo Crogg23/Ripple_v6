@@ -24,7 +24,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(str(_REPO / "library-onboarding" / ".env"), override=True)
 
-from build_skeleton import land  # noqa: E402
+from land_frame import land  # noqa: E402
 
 GH = "https://raw.githubusercontent.com/unitedstates/congress-legislators/main"
 SID = "fed_congress_committee_membership"

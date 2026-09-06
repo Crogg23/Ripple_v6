@@ -28,7 +28,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(str(_REPO / "library-onboarding" / ".env"), override=True)
 
-from build_skeleton import land  # noqa: E402  (the shared first-class land helper)
+from land_frame import land  # noqa: E402  (the shared landing helper)
 from loadkit import fec_parse    # noqa: E402
 
 # pas2 layout (22 cols) -- CAND_ID is at position 17, the direct candidate key.

@@ -155,3 +155,11 @@ Same 150 ideas as the technical spreadsheet, just told like a person, not a data
 | 142 | Industrial facilities | Do some have pollution spikes that never trigger a violation? | Would show gaps in pollution enforcement | Not checked yet |
 | 143 | Companies running clinical drug trials | Are they paying the same doctors running the trial to also promote the drug? | Would be a conflict of interest in drug testing | Dead end — the detailed trial data isn't loaded |
 | 144 | Immigration court judges | Do outcomes vary a lot by judge and detention facility? | Would show inconsistent justice depending who you get | Dead end — the case data isn't usable yet |
+
+
+---
+
+**Superseded 2026-09-06.** These 150 rows are now the investigation
+catalog at `catalog/investigations.csv`, with a controlled status vocabulary and
+links to the probe that ran each one. This file stays as the record of that day.
+Do not edit it; edit the catalog.

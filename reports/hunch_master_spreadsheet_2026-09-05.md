@@ -158,3 +158,11 @@ table doesn't break.
 | E73 | Banned contractors and health care workers | Do banned contractors turn out to also be doctors? | Would be a crossover fraud pattern | Dead end, basically no overlap | LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS; LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES | 9,775,011 | snapshot | Skip — already ruled out |  |
 | E74 | Home health agencies that change owners | Is there a record of who the new owner is? | Same shell-game question as #30, for home health | Dead end — the ownership records don't exist for this type of agency | LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HOME_HEALTH; LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER | 56,821 | n/a | Skip — already ruled out | the ownership records don't exist for this type of agency |
 | E75 | Nursing home chains and COVID relief funds | Did the worst chains get big pandemic bailout money? | Would show bad actors profiting from a national emergency | Dead end — the relief fund records aren't usable this way | LIBRARY_RAW.LANDING.FED_HHS_TAGGS; LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411 | 14,758 | n/a | Skip — already ruled out | the relief fund records aren't usable this way |
+
+
+---
+
+**Superseded 2026-09-06.** These 150 rows are now the investigation
+catalog at `catalog/investigations.csv`, with a controlled status vocabulary and
+links to the probe that ran each one. This file stays as the record of that day.
+Do not edit it; edit the catalog.

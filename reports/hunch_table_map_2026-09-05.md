@@ -823,3 +823,11 @@ real file. Not re-queried against the warehouse today; row counts are from that 
 - `LIBRARY_RAW.LANDING.FED_HHS_TAGGS (45 rows)`
 - `LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411 (14,713 rows)`
 
+
+
+---
+
+**Superseded 2026-09-06.** These 150 rows are now the investigation
+catalog at `catalog/investigations.csv`, with a controlled status vocabulary and
+links to the probe that ran each one. This file stays as the record of that day.
+Do not edit it; edit the catalog.

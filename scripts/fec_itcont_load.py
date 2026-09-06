@@ -151,7 +151,7 @@ def main(argv=None) -> int:
         # nothing here actually called one -- a near-empty stream, e.g. FEC
         # changing the zip's inner file shape in a way stream_lines tolerates,
         # would have swapped 0 rows over the real ~84M-row table). Same guard
-        # shape as build_skeleton.land's never-shrink floor.
+        # shape as land_frame.land's never-shrink floor.
         prev = ingest._latest_success_rows(conn, SID)
         if prev and total < prev * 0.5:
             ended = ingest._utcnow()

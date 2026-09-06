@@ -19,6 +19,12 @@ from __future__ import annotations
 
 import csv
 import io
+import sys
+
+# One FEC memo field is larger than Python's 128 KB default and kills the whole
+# parse with "field larger than field limit". Hit live on the 2020 individual
+# contributions file after 63.6 million rows.
+csv.field_size_limit(min(sys.maxsize, 2**31 - 1))
 from dataclasses import dataclass
 
 import pandas as pd

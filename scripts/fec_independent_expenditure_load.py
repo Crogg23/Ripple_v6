@@ -27,7 +27,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(str(_REPO / "library-onboarding" / ".env"), override=True)
 
-from build_skeleton import land  # noqa: E402
+from land_frame import land  # noqa: E402
 from loadkit import fec_parse    # noqa: E402
 
 YEARS = ["2024", "2026"]

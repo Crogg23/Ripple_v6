@@ -67,7 +67,7 @@ def load_and_register(df, sid: str, table: str, url: str, register_cfg: dict, ru
             return "empty"
 
         # NEVER-SHRINK: refuse to overwrite a healthy table with a truncated pull.
-        # (Same guard as politics/loaders/build_skeleton.py::land().)
+        # (Same guard as scripts/land_frame.py::land().)
         prior = ingest._latest_success_rows(conn, sid)
         if prior and len(df) < prior * 0.98:
             ended = ingest._utcnow()
