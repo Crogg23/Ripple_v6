@@ -1,0 +1,852 @@
+{
+ "pending_shape": [
+  {
+   "KIND": "non_physician",
+   "N_ROWS": 6880,
+   "N_NPI": 6880,
+   "N_DUPE_ROWS": 0,
+   "N_BLANK": 0,
+   "N_MALFORMED": 0
+  },
+  {
+   "KIND": "physician",
+   "N_ROWS": 7240,
+   "N_NPI": 7240,
+   "N_DUPE_ROWS": 0,
+   "N_BLANK": 0,
+   "N_MALFORMED": 0
+  }
+ ],
+ "pending_total": [
+  {
+   "N_ROWS": 14120,
+   "N_NPI": 14103,
+   "N_DUPE_ROWS": 17,
+   "N_SENTINEL": 0
+  }
+ ],
+ "pending_dupes": [
+  {
+   "NPI": "1144022633",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1194291377",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1215864277",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1225139496",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1225983620",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1285123216",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1346175833",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1396907176",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1427271816",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1427345867",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1487529939",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1487809430",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1558180034",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1609465459",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1629923032",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1821750191",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  },
+  {
+   "NPI": "1841649605",
+   "N_ROWS": 2,
+   "N_FILES": 2,
+   "N_NAMES": 1,
+   "KINDS": "non_physician+physician"
+  }
+ ],
+ "leie_shape": [
+  {
+   "N_ROWS": 83747,
+   "N_SENTINEL": 0,
+   "N_BLANK": 74908,
+   "N_FLAG_REAL": 8839,
+   "N_REAL_DISTINCT": 8660,
+   "N_REINSTATED": 0,
+   "N_REINST_DATE": 0
+  }
+ ],
+ "hits": [
+  {
+   "NPI": "1861424954",
+   "P_LAST": "HAUSER",
+   "P_FIRST": "DANIEL",
+   "KIND": "physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "HAUSER",
+   "L_FIRST": "DANIEL",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "GENERAL PRACTICE",
+   "EXCLUSION_TYPE": "1128a4",
+   "EXCLUSION_DATE": "2013-04-18",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "MIAMI",
+   "EXCLUSION_SK": "dc85b830b99bc6d18adc50197a2e1ea1"
+  },
+  {
+   "NPI": "1366450280",
+   "P_LAST": "KUSHNER",
+   "P_FIRST": "GARY",
+   "KIND": "physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "KUSHNER",
+   "L_FIRST": "GARY",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "GENERAL PRACTICE",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2013-10-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "NC",
+   "CITY": "BUTNER",
+   "EXCLUSION_SK": "f4bd382cd62cf08fdb776ba326a62db7"
+  },
+  {
+   "NPI": "1225139496",
+   "P_LAST": "LOUISVILLE",
+   "P_FIRST": "TOMMY",
+   "KIND": "non_physician+physician",
+   "PENDING_ROWS": 2,
+   "L_LAST": "LOUISVILLE",
+   "L_FIRST": "TOMMY",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "GENERAL PRACTICE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2020-09-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "PEMBROKE PINES",
+   "EXCLUSION_SK": "e4d47eba6820a52f8903b9a0293c4f3b"
+  },
+  {
+   "NPI": "1336103548",
+   "P_LAST": "RODRIGUEZ",
+   "P_FIRST": "ENRIQUE",
+   "KIND": "physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "RODRIGUEZ",
+   "L_FIRST": "ENRIQUE",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "CHIROPRACTIC",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2020-10-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "PEMBROKE PINES",
+   "EXCLUSION_SK": "abbc3a0295ffb19532101a5b112c70c9"
+  },
+  {
+   "NPI": "1083786099",
+   "P_LAST": "SANCHEZ",
+   "P_FIRST": "INGRID",
+   "KIND": "non_physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "SANCHEZ",
+   "L_FIRST": "INGRID",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "BUS OWNER/EXEC",
+   "SPECIALTY": "MENTAL/BEHAVIORAL HE",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2021-11-18",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "NV",
+   "CITY": "HENDERSON",
+   "EXCLUSION_SK": "cf88c4b7de54ebecce93e1e76446be61"
+  },
+  {
+   "NPI": "1689740714",
+   "P_LAST": "SALAZAR-VUST",
+   "P_FIRST": "CLARA",
+   "KIND": "physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "SALAZAR-VUST",
+   "L_FIRST": "CLARA",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "PHYSICIAN ASSISTANT",
+   "EXCLUSION_TYPE": "1128a3",
+   "EXCLUSION_DATE": "2022-06-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "MIAMI",
+   "EXCLUSION_SK": "4f6b732d75440586009d719fff55ba0b"
+  },
+  {
+   "NPI": "1386606325",
+   "P_LAST": "ABRAHAM",
+   "P_FIRST": "GERALD",
+   "KIND": "physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "ABRAHAM",
+   "L_FIRST": "GERALD",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PAIN MANAGEMENT",
+   "EXCLUSION_TYPE": "1128a4",
+   "EXCLUSION_DATE": "2022-08-18",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "COLEMAN",
+   "EXCLUSION_SK": "6665487f576737027c7f2697fc62f062"
+  },
+  {
+   "NPI": "1639294796",
+   "P_LAST": "SCHEER",
+   "P_FIRST": "MICHAEL",
+   "KIND": "physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "SCHEER",
+   "L_FIRST": "MICHAEL",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "INTERNAL MEDICINE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2022-10-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "JACKSONVILLE",
+   "EXCLUSION_SK": "400962d03770b3b06d7d42f004beff5b"
+  },
+  {
+   "NPI": "1225139496",
+   "P_LAST": "LOUISVILLE",
+   "P_FIRST": "TOMMY",
+   "KIND": "non_physician+physician",
+   "PENDING_ROWS": 2,
+   "L_LAST": "LOUISVILLE",
+   "L_FIRST": "TOMMY",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "GENERAL PRACTICE",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2024-05-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "FL",
+   "CITY": "PEMBROKE PINES",
+   "EXCLUSION_SK": "d0efcc90c3e6043c9f56d80b7a8b78c4"
+  },
+  {
+   "NPI": "1164538013",
+   "P_LAST": "LEWIS",
+   "P_FIRST": "EUGENE",
+   "KIND": "non_physician",
+   "PENDING_ROWS": 1,
+   "L_LAST": "LEWIS",
+   "L_FIRST": "EUGENE",
+   "BUSINESS_NAME": null,
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "NURSE/NURSES AIDE",
+   "EXCLUSION_TYPE": "1128a4",
+   "EXCLUSION_DATE": "2025-11-20",
+   "REINSTATEMENT_DATE": null,
+   "WAS_REINSTATED": false,
+   "HAS_WAIVER": false,
+   "IS_ENTITY_NOT_INDIVIDUAL": false,
+   "STATE": "PA",
+   "CITY": "LEEPER",
+   "EXCLUSION_SK": "7a7c9a743df35751cfd44d541a139416"
+  }
+ ],
+ "hits_rebuild": [
+  {
+   "KIND": "physician",
+   "N_NPI": 7
+  },
+  {
+   "KIND": "non_physician",
+   "N_NPI": 3
+  },
+  {
+   "KIND": "either",
+   "N_NPI": 9
+  }
+ ],
+ "hits_rowlevel": [
+  {
+   "N_JOIN_ROWS": 12,
+   "N_NPI": 9,
+   "N_EXCLUSIONS": 10
+  }
+ ],
+ "name_check": [
+  {
+   "NPI": "1639294796",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1689740714",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1386606325",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1164538013",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1336103548",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1083786099",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1225139496",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1861424954",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1225139496",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  },
+  {
+   "NPI": "1366450280",
+   "LAST_MATCH": true,
+   "FIRST_MATCH": true,
+   "FIRST3_MATCH": true
+  }
+ ],
+ "type_legend": [
+  {
+   "EXCLUSION_TYPE": "1128b4",
+   "N": 33350,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128a1",
+   "N": 25916,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128a2",
+   "N": 8093,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128a3",
+   "N": 5860,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128a4",
+   "N": 3583,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b14",
+   "N": 2166,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b8",
+   "N": 1483,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b1",
+   "N": 942,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b5",
+   "N": 806,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b7",
+   "N": 749,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b3",
+   "N": 329,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128Aa",
+   "N": 172,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b6",
+   "N": 77,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b2",
+   "N": 66,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1156",
+   "N": 53,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b15",
+   "N": 37,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "BRCH SA",
+   "N": 28,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b11",
+   "N": 13,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "BRCH CIA",
+   "N": 13,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1160",
+   "N": 8,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b16",
+   "N": 2,
+   "N_REINST": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b12",
+   "N": 1,
+   "N_REINST": 0
+  }
+ ],
+ "leie_type_share": [
+  {
+   "EXCLUSION_TYPE": "1128a1",
+   "N": 3377
+  },
+  {
+   "EXCLUSION_TYPE": "1128b4",
+   "N": 2636
+  },
+  {
+   "EXCLUSION_TYPE": "1128a4",
+   "N": 1022
+  },
+  {
+   "EXCLUSION_TYPE": "1128a3",
+   "N": 681
+  },
+  {
+   "EXCLUSION_TYPE": "1128a2",
+   "N": 402
+  },
+  {
+   "EXCLUSION_TYPE": "1128b14",
+   "N": 196
+  },
+  {
+   "EXCLUSION_TYPE": "1128b7",
+   "N": 194
+  },
+  {
+   "EXCLUSION_TYPE": "1128b8",
+   "N": 96
+  },
+  {
+   "EXCLUSION_TYPE": "1128b5",
+   "N": 85
+  },
+  {
+   "EXCLUSION_TYPE": "1128b1",
+   "N": 48
+  },
+  {
+   "EXCLUSION_TYPE": "1128Aa",
+   "N": 31
+  },
+  {
+   "EXCLUSION_TYPE": "BRCH SA",
+   "N": 20
+  }
+ ],
+ "affil": [
+  {
+   "NPI": "1083786099",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1164538013",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1225139496",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1336103548",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1366450280",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1386606325",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1639294796",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1689740714",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  },
+  {
+   "NPI": "1861424954",
+   "FACILITY_TYPE": null,
+   "CCN": null,
+   "PROVIDER_LAST_NAME": null,
+   "PROVIDER_FIRST_NAME": null,
+   "IND_PAC_ID": null
+  }
+ ],
+ "affil_base": [
+  {
+   "N_PENDING": 14103,
+   "N_WITH_AFFIL": 152
+  }
+ ],
+ "leie_year": [
+  {
+   "YR": 1988,
+   "N": 2
+  },
+  {
+   "YR": 1993,
+   "N": 3
+  },
+  {
+   "YR": 1994,
+   "N": 2
+  },
+  {
+   "YR": 1995,
+   "N": 2
+  },
+  {
+   "YR": 1996,
+   "N": 1
+  },
+  {
+   "YR": 1997,
+   "N": 1
+  },
+  {
+   "YR": 1998,
+   "N": 4
+  },
+  {
+   "YR": 1999,
+   "N": 3
+  },
+  {
+   "YR": 2000,
+   "N": 6
+  },
+  {
+   "YR": 2001,
+   "N": 5
+  },
+  {
+   "YR": 2002,
+   "N": 2
+  },
+  {
+   "YR": 2003,
+   "N": 3
+  },
+  {
+   "YR": 2004,
+   "N": 4
+  },
+  {
+   "YR": 2005,
+   "N": 4
+  },
+  {
+   "YR": 2006,
+   "N": 8
+  },
+  {
+   "YR": 2007,
+   "N": 11
+  },
+  {
+   "YR": 2008,
+   "N": 48
+  },
+  {
+   "YR": 2009,
+   "N": 248
+  },
+  {
+   "YR": 2010,
+   "N": 281
+  },
+  {
+   "YR": 2011,
+   "N": 295
+  },
+  {
+   "YR": 2012,
+   "N": 339
+  },
+  {
+   "YR": 2013,
+   "N": 377
+  },
+  {
+   "YR": 2014,
+   "N": 488
+  },
+  {
+   "YR": 2015,
+   "N": 529
+  },
+  {
+   "YR": 2016,
+   "N": 567
+  },
+  {
+   "YR": 2017,
+   "N": 582
+  },
+  {
+   "YR": 2018,
+   "N": 430
+  },
+  {
+   "YR": 2019,
+   "N": 420
+  },
+  {
+   "YR": 2020,
+   "N": 476
+  },
+  {
+   "YR": 2021,
+   "N": 346
+  },
+  {
+   "YR": 2022,
+   "N": 608
+  },
+  {
+   "YR": 2023,
+   "N": 629
+  },
+  {
+   "YR": 2024,
+   "N": 873
+  },
+  {
+   "YR": 2025,
+   "N": 700
+  },
+  {
+   "YR": 2026,
+   "N": 542
+  }
+ ],
+ "hits_multi": [
+  {
+   "NPI": "1225139496",
+   "N_LEIE_ROWS": 2
+  }
+ ],
+ "aff_npi": [
+  {
+   "N": 2260193,
+   "N_NPI": 940350,
+   "N_SENT": 0
+  }
+ ]
+}

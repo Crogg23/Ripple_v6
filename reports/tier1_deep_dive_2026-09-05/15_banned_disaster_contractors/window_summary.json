@@ -1,0 +1,90 @@
+[
+ {
+  "HOW": "NAME",
+  "IN_WINDOW": 0,
+  "AFTER_BAN_START": 0,
+  "FEMA": "FEMA",
+  "N": 35,
+  "RECIPS": 4,
+  "AWARDS": 6,
+  "OBLIG": "2606068.69",
+  "OBLIG_POS": "3081042.45"
+ },
+ {
+  "HOW": "NAME",
+  "IN_WINDOW": 0,
+  "AFTER_BAN_START": 0,
+  "FEMA": "other",
+  "N": 7,
+  "RECIPS": 5,
+  "AWARDS": 7,
+  "OBLIG": "363980.36",
+  "OBLIG_POS": "463980.36"
+ },
+ {
+  "HOW": "NAME",
+  "IN_WINDOW": 1,
+  "AFTER_BAN_START": 1,
+  "FEMA": "FEMA",
+  "N": 4,
+  "RECIPS": 3,
+  "AWARDS": 3,
+  "OBLIG": "-95335.95",
+  "OBLIG_POS": "0.00"
+ },
+ {
+  "HOW": "NAME",
+  "IN_WINDOW": 1,
+  "AFTER_BAN_START": 1,
+  "FEMA": "other",
+  "N": 3,
+  "RECIPS": 2,
+  "AWARDS": 3,
+  "OBLIG": "-256109.87",
+  "OBLIG_POS": "3095.80"
+ },
+ {
+  "HOW": "UEI",
+  "IN_WINDOW": 0,
+  "AFTER_BAN_START": 0,
+  "FEMA": "FEMA",
+  "N": 118,
+  "RECIPS": 24,
+  "AWARDS": 46,
+  "OBLIG": "19655234.92",
+  "OBLIG_POS": "177038936.14"
+ },
+ {
+  "HOW": "UEI",
+  "IN_WINDOW": 0,
+  "AFTER_BAN_START": 0,
+  "FEMA": "other",
+  "N": 169,
+  "RECIPS": 35,
+  "AWARDS": 115,
+  "OBLIG": "16481446.84",
+  "OBLIG_POS": "17629787.39"
+ },
+ {
+  "HOW": "UEI",
+  "IN_WINDOW": 1,
+  "AFTER_BAN_START": 1,
+  "FEMA": "FEMA",
+  "N": 11,
+  "RECIPS": 3,
+  "AWARDS": 9,
+  "OBLIG": "-26668.96",
+  "OBLIG_POS": "12232.47"
+ },
+ {
+  "HOW": "UEI",
+  "IN_WINDOW": 1,
+  "AFTER_BAN_START": 1,
+  "FEMA": "other",
+  "N": 2,
+  "RECIPS": 2,
+  "AWARDS": 2,
+  "OBLIG": "-25123.55",
+  "OBLIG_POS": "0.00"
+ }
+]

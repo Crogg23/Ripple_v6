@@ -1,0 +1,29 @@
+{
+ "date_gap": [
+  {
+   "LAST_TRADE": "2020-12-02",
+   "FIRST_BILL": "2023-01-03",
+   "FIRST_COSPONSORSHIP": "2023-01-09",
+   "TRADES": 8350,
+   "BILLS": 36465
+  }
+ ],
+ "window_90": [
+  {
+   "TRADE_BILL_PAIRS_WITHIN_90D": 0,
+   "SENATORS": 0
+  }
+ ],
+ "window_90_cosp": [
+  {
+   "TRADE_COSPONSOR_PAIRS_WITHIN_90D": 0
+  }
+ ],
+ "who_overlaps": [
+  {
+   "TRADING_SENATORS_WHO_SPONSOR_IN_118_119": 43,
+   "TRADING_SENATORS": 57
+  }
+ ],
+ "subject_cols": []
+}

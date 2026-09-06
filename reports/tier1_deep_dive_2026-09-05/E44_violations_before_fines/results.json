@@ -1,0 +1,2859 @@
+{
+ "bria_chain": [
+  {
+   "CHAIN_ID": "88",
+   "CHAIN_NAME": "BRIA HEALTH SERVICES",
+   "HOMES": 15,
+   "CCNS": 15,
+   "MINLEN": 6,
+   "MAXLEN": 6,
+   "ROSTER_DATE": "2025-12-01"
+  },
+  {
+   "CHAIN_ID": "89",
+   "CHAIN_NAME": "BRIAR HILL MANAGEMENT",
+   "HOMES": 6,
+   "CCNS": 6,
+   "MINLEN": 6,
+   "MAXLEN": 6,
+   "ROSTER_DATE": "2025-12-01"
+  }
+ ],
+ "bria_homes": [
+  {
+   "CCN": "145290",
+   "PROVIDER_NAME": "Nexus Pavilion at Belleville",
+   "STATE": "IL",
+   "BEDS": 180,
+   "CHG_OWN": "N",
+   "SFF": "SFF Candidate",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145405",
+   "PROVIDER_NAME": "BRIA OF WESTMONT",
+   "STATE": "IL",
+   "BEDS": 215,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "N"
+  },
+  {
+   "CCN": "145419",
+   "PROVIDER_NAME": "BRIA OF ELMWOOD PARK",
+   "STATE": "IL",
+   "BEDS": 245,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145427",
+   "PROVIDER_NAME": "Nexus at Alton",
+   "STATE": "IL",
+   "BEDS": 181,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145613",
+   "PROVIDER_NAME": "BRIA OF CAHOKIA",
+   "STATE": "IL",
+   "BEDS": 133,
+   "CHG_OWN": "N",
+   "SFF": "SFF Candidate",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145650",
+   "PROVIDER_NAME": "Nexus at Palos",
+   "STATE": "IL",
+   "BEDS": 207,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145655",
+   "PROVIDER_NAME": "BRIA OF WOODRIVER",
+   "STATE": "IL",
+   "BEDS": 106,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145656",
+   "PROVIDER_NAME": "BRIA OF GODFREY",
+   "STATE": "IL",
+   "BEDS": 68,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "N"
+  },
+  {
+   "CCN": "145668",
+   "PROVIDER_NAME": "BRIA OF BELLEVILLE",
+   "STATE": "IL",
+   "BEDS": 140,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145717",
+   "PROVIDER_NAME": "Nexus at Columbia",
+   "STATE": "IL",
+   "BEDS": 119,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145735",
+   "PROVIDER_NAME": "BRIA OF RIVER OAKS",
+   "STATE": "IL",
+   "BEDS": 309,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145785",
+   "PROVIDER_NAME": "Nexus at Mascoutah",
+   "STATE": "IL",
+   "BEDS": 55,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "N"
+  },
+  {
+   "CCN": "145864",
+   "PROVIDER_NAME": "BRIA OF FOREST EDGE",
+   "STATE": "IL",
+   "BEDS": 328,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "145898",
+   "PROVIDER_NAME": "BRIA OF CHICAGO HEIGHTS",
+   "STATE": "IL",
+   "BEDS": 112,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "Y"
+  },
+  {
+   "CCN": "146067",
+   "PROVIDER_NAME": "BRIA OF GENEVA",
+   "STATE": "IL",
+   "BEDS": 107,
+   "CHG_OWN": "N",
+   "SFF": "",
+   "ABUSE_ICON": "N"
+  }
+ ],
+ "ccn_shape": [
+  {
+   "T": "nh411",
+   "N": 14713,
+   "D": 14713,
+   "LO": "015009",
+   "HI": "745057"
+  },
+  {
+   "T": "deficiencies",
+   "N": 418479,
+   "D": 14632,
+   "LO": "015009",
+   "HI": "745060"
+  },
+  {
+   "T": "penalties",
+   "N": 16180,
+   "D": 6831,
+   "LO": "015019",
+   "HI": "745057"
+  }
+ ],
+ "date_ranges": [
+  {
+   "T": "deficiencies",
+   "LO": "2017-03-23",
+   "HI": "2026-05-20",
+   "N": 418479,
+   "DATED": 418479
+  },
+  {
+   "T": "penalties",
+   "LO": "2023-06-17",
+   "HI": "2026-05-13",
+   "N": 16180,
+   "DATED": 16180
+  }
+ ],
+ "sev_codes": [
+  {
+   "SCOPE_SEVERITY_CODE": "B",
+   "N": 5077
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "C",
+   "N": 4463
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "D",
+   "N": 262910
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "E",
+   "N": 94108
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "F",
+   "N": 28834
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "G",
+   "N": 12946
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "H",
+   "N": 460
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "I",
+   "N": 20
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "J",
+   "N": 6844
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "K",
+   "N": 2170
+  },
+  {
+   "SCOPE_SEVERITY_CODE": "L",
+   "N": 647
+  }
+ ],
+ "pen_types": [
+  {
+   "PENALTY_TYPE": "Fine",
+   "N": 13710,
+   "WITH_AMT": 13710,
+   "USD": 459054863.0
+  },
+  {
+   "PENALTY_TYPE": "Payment Denial",
+   "N": 2470,
+   "WITH_AMT": 0,
+   "USD": null
+  }
+ ],
+ "window_start": [
+  {
+   "GRP": "bria",
+   "FIRST_YEAR": 2022,
+   "HOMES": 9
+  },
+  {
+   "GRP": "bria",
+   "FIRST_YEAR": 2023,
+   "HOMES": 6
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2017,
+   "HOMES": 40
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2018,
+   "HOMES": 471
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2019,
+   "HOMES": 1709
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2020,
+   "HOMES": 579
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2021,
+   "HOMES": 1561
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2022,
+   "HOMES": 2872
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2023,
+   "HOMES": 6265
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2024,
+   "HOMES": 950
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2025,
+   "HOMES": 148
+  },
+  {
+   "GRP": "national",
+   "FIRST_YEAR": 2026,
+   "HOMES": 22
+  }
+ ],
+ "monthly": [
+  {
+   "MO": "2023-01-01",
+   "GRP": "bria",
+   "HOMES": 10,
+   "DEFS": 7,
+   "GPLUS": 0,
+   "IJ": 0,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 1
+  },
+  {
+   "MO": "2023-02-01",
+   "GRP": "bria",
+   "HOMES": 11,
+   "DEFS": 6,
+   "GPLUS": 1,
+   "IJ": 0,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 1
+  },
+  {
+   "MO": "2023-03-01",
+   "GRP": "bria",
+   "HOMES": 13,
+   "DEFS": 20,
+   "GPLUS": 5,
+   "IJ": 1,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 2
+  },
+  {
+   "MO": "2023-04-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "DEFS": 12,
+   "GPLUS": 0,
+   "IJ": 0,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 2
+  },
+  {
+   "MO": "2023-05-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "DEFS": 4,
+   "GPLUS": 0,
+   "IJ": 0,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 1
+  },
+  {
+   "MO": "2023-06-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "DEFS": 25,
+   "GPLUS": 6,
+   "IJ": 0,
+   "COMPLAINT": 25,
+   "HOMES_CITED": 4
+  },
+  {
+   "MO": "2023-07-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "DEFS": 25,
+   "GPLUS": 12,
+   "IJ": 3,
+   "COMPLAINT": 17,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2023-08-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 35,
+   "GPLUS": 8,
+   "IJ": 1,
+   "COMPLAINT": 28,
+   "HOMES_CITED": 9
+  },
+  {
+   "MO": "2023-09-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 38,
+   "GPLUS": 7,
+   "IJ": 0,
+   "COMPLAINT": 23,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2023-10-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 23,
+   "GPLUS": 2,
+   "IJ": 0,
+   "COMPLAINT": 17,
+   "HOMES_CITED": 7
+  },
+  {
+   "MO": "2023-11-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 17,
+   "GPLUS": 7,
+   "IJ": 2,
+   "COMPLAINT": 17,
+   "HOMES_CITED": 7
+  },
+  {
+   "MO": "2023-12-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 16,
+   "GPLUS": 1,
+   "IJ": 0,
+   "COMPLAINT": 16,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2024-01-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 21,
+   "GPLUS": 8,
+   "IJ": 2,
+   "COMPLAINT": 21,
+   "HOMES_CITED": 8
+  },
+  {
+   "MO": "2024-02-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 32,
+   "GPLUS": 13,
+   "IJ": 1,
+   "COMPLAINT": 27,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2024-03-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 17,
+   "GPLUS": 1,
+   "IJ": 1,
+   "COMPLAINT": 9,
+   "HOMES_CITED": 4
+  },
+  {
+   "MO": "2024-04-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 45,
+   "GPLUS": 10,
+   "IJ": 0,
+   "COMPLAINT": 34,
+   "HOMES_CITED": 11
+  },
+  {
+   "MO": "2024-05-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 41,
+   "GPLUS": 7,
+   "IJ": 1,
+   "COMPLAINT": 24,
+   "HOMES_CITED": 10
+  },
+  {
+   "MO": "2024-06-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 27,
+   "GPLUS": 4,
+   "IJ": 0,
+   "COMPLAINT": 12,
+   "HOMES_CITED": 9
+  },
+  {
+   "MO": "2024-07-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 19,
+   "GPLUS": 3,
+   "IJ": 0,
+   "COMPLAINT": 18,
+   "HOMES_CITED": 8
+  },
+  {
+   "MO": "2024-08-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 41,
+   "GPLUS": 7,
+   "IJ": 0,
+   "COMPLAINT": 28,
+   "HOMES_CITED": 13
+  },
+  {
+   "MO": "2024-09-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 32,
+   "GPLUS": 3,
+   "IJ": 0,
+   "COMPLAINT": 16,
+   "HOMES_CITED": 9
+  },
+  {
+   "MO": "2024-10-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 41,
+   "GPLUS": 6,
+   "IJ": 0,
+   "COMPLAINT": 25,
+   "HOMES_CITED": 12
+  },
+  {
+   "MO": "2024-11-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 19,
+   "GPLUS": 5,
+   "IJ": 0,
+   "COMPLAINT": 19,
+   "HOMES_CITED": 7
+  },
+  {
+   "MO": "2024-12-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 10,
+   "GPLUS": 3,
+   "IJ": 0,
+   "COMPLAINT": 10,
+   "HOMES_CITED": 4
+  },
+  {
+   "MO": "2025-01-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 23,
+   "GPLUS": 5,
+   "IJ": 3,
+   "COMPLAINT": 23,
+   "HOMES_CITED": 9
+  },
+  {
+   "MO": "2025-02-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 22,
+   "GPLUS": 6,
+   "IJ": 1,
+   "COMPLAINT": 14,
+   "HOMES_CITED": 5
+  },
+  {
+   "MO": "2025-03-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 32,
+   "GPLUS": 14,
+   "IJ": 0,
+   "COMPLAINT": 27,
+   "HOMES_CITED": 9
+  },
+  {
+   "MO": "2025-04-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 19,
+   "GPLUS": 6,
+   "IJ": 0,
+   "COMPLAINT": 14,
+   "HOMES_CITED": 7
+  },
+  {
+   "MO": "2025-05-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 50,
+   "GPLUS": 14,
+   "IJ": 0,
+   "COMPLAINT": 22,
+   "HOMES_CITED": 10
+  },
+  {
+   "MO": "2025-06-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 15,
+   "GPLUS": 3,
+   "IJ": 1,
+   "COMPLAINT": 15,
+   "HOMES_CITED": 8
+  },
+  {
+   "MO": "2025-07-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 13,
+   "GPLUS": 5,
+   "IJ": 0,
+   "COMPLAINT": 13,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2025-08-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 10,
+   "GPLUS": 3,
+   "IJ": 2,
+   "COMPLAINT": 10,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2025-09-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 13,
+   "GPLUS": 5,
+   "IJ": 2,
+   "COMPLAINT": 13,
+   "HOMES_CITED": 6
+  },
+  {
+   "MO": "2025-10-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 7,
+   "GPLUS": 6,
+   "IJ": 4,
+   "COMPLAINT": 7,
+   "HOMES_CITED": 4
+  },
+  {
+   "MO": "2025-11-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 7,
+   "GPLUS": 4,
+   "IJ": 2,
+   "COMPLAINT": 7,
+   "HOMES_CITED": 5
+  },
+  {
+   "MO": "2025-12-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "DEFS": 16,
+   "GPLUS": 5,
+   "IJ": 2,
+   "COMPLAINT": 16,
+   "HOMES_CITED": 5
+  },
+  {
+   "MO": "2023-01-01",
+   "GRP": "national",
+   "HOMES": 7624,
+   "DEFS": 4045,
+   "GPLUS": 139,
+   "IJ": 40,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 540
+  },
+  {
+   "MO": "2023-02-01",
+   "GRP": "national",
+   "HOMES": 8062,
+   "DEFS": 4318,
+   "GPLUS": 152,
+   "IJ": 56,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 596
+  },
+  {
+   "MO": "2023-03-01",
+   "GRP": "national",
+   "HOMES": 8619,
+   "DEFS": 5779,
+   "GPLUS": 189,
+   "IJ": 73,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 756
+  },
+  {
+   "MO": "2023-04-01",
+   "GRP": "national",
+   "HOMES": 9082,
+   "DEFS": 4637,
+   "GPLUS": 114,
+   "IJ": 35,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 631
+  },
+  {
+   "MO": "2023-05-01",
+   "GRP": "national",
+   "HOMES": 9554,
+   "DEFS": 5177,
+   "GPLUS": 183,
+   "IJ": 70,
+   "COMPLAINT": 0,
+   "HOMES_CITED": 668
+  },
+  {
+   "MO": "2023-06-01",
+   "GRP": "national",
+   "HOMES": 10567,
+   "DEFS": 8461,
+   "GPLUS": 568,
+   "IJ": 230,
+   "COMPLAINT": 3626,
+   "HOMES_CITED": 2024
+  },
+  {
+   "MO": "2023-07-01",
+   "GRP": "national",
+   "HOMES": 11299,
+   "DEFS": 7369,
+   "GPLUS": 548,
+   "IJ": 246,
+   "COMPLAINT": 3285,
+   "HOMES_CITED": 1791
+  },
+  {
+   "MO": "2023-08-01",
+   "GRP": "national",
+   "HOMES": 12037,
+   "DEFS": 10256,
+   "GPLUS": 706,
+   "IJ": 340,
+   "COMPLAINT": 4501,
+   "HOMES_CITED": 2314
+  },
+  {
+   "MO": "2023-09-01",
+   "GRP": "national",
+   "HOMES": 12539,
+   "DEFS": 8997,
+   "GPLUS": 638,
+   "IJ": 292,
+   "COMPLAINT": 3951,
+   "HOMES_CITED": 2042
+  },
+  {
+   "MO": "2023-10-01",
+   "GRP": "national",
+   "HOMES": 12953,
+   "DEFS": 9205,
+   "GPLUS": 607,
+   "IJ": 265,
+   "COMPLAINT": 3876,
+   "HOMES_CITED": 2060
+  },
+  {
+   "MO": "2023-11-01",
+   "GRP": "national",
+   "HOMES": 13269,
+   "DEFS": 9305,
+   "GPLUS": 544,
+   "IJ": 212,
+   "COMPLAINT": 3786,
+   "HOMES_CITED": 2092
+  },
+  {
+   "MO": "2023-12-01",
+   "GRP": "national",
+   "HOMES": 13497,
+   "DEFS": 8641,
+   "GPLUS": 554,
+   "IJ": 262,
+   "COMPLAINT": 3575,
+   "HOMES_CITED": 1858
+  },
+  {
+   "MO": "2024-01-01",
+   "GRP": "national",
+   "HOMES": 13707,
+   "DEFS": 9641,
+   "GPLUS": 606,
+   "IJ": 245,
+   "COMPLAINT": 4080,
+   "HOMES_CITED": 2085
+  },
+  {
+   "MO": "2024-02-01",
+   "GRP": "national",
+   "HOMES": 13895,
+   "DEFS": 10828,
+   "GPLUS": 685,
+   "IJ": 319,
+   "COMPLAINT": 4439,
+   "HOMES_CITED": 2161
+  },
+  {
+   "MO": "2024-03-01",
+   "GRP": "national",
+   "HOMES": 14033,
+   "DEFS": 10702,
+   "GPLUS": 713,
+   "IJ": 296,
+   "COMPLAINT": 4095,
+   "HOMES_CITED": 2219
+  },
+  {
+   "MO": "2024-04-01",
+   "GRP": "national",
+   "HOMES": 14122,
+   "DEFS": 10071,
+   "GPLUS": 643,
+   "IJ": 291,
+   "COMPLAINT": 4019,
+   "HOMES_CITED": 2193
+  },
+  {
+   "MO": "2024-05-01",
+   "GRP": "national",
+   "HOMES": 14198,
+   "DEFS": 11277,
+   "GPLUS": 714,
+   "IJ": 303,
+   "COMPLAINT": 4328,
+   "HOMES_CITED": 2331
+  },
+  {
+   "MO": "2024-06-01",
+   "GRP": "national",
+   "HOMES": 14232,
+   "DEFS": 9156,
+   "GPLUS": 610,
+   "IJ": 281,
+   "COMPLAINT": 3476,
+   "HOMES_CITED": 2030
+  },
+  {
+   "MO": "2024-07-01",
+   "GRP": "national",
+   "HOMES": 14273,
+   "DEFS": 10055,
+   "GPLUS": 642,
+   "IJ": 299,
+   "COMPLAINT": 4037,
+   "HOMES_CITED": 2165
+  },
+  {
+   "MO": "2024-08-01",
+   "GRP": "national",
+   "HOMES": 14317,
+   "DEFS": 11424,
+   "GPLUS": 701,
+   "IJ": 329,
+   "COMPLAINT": 4404,
+   "HOMES_CITED": 2352
+  },
+  {
+   "MO": "2024-09-01",
+   "GRP": "national",
+   "HOMES": 14363,
+   "DEFS": 9207,
+   "GPLUS": 573,
+   "IJ": 248,
+   "COMPLAINT": 3850,
+   "HOMES_CITED": 2067
+  },
+  {
+   "MO": "2024-10-01",
+   "GRP": "national",
+   "HOMES": 14396,
+   "DEFS": 11532,
+   "GPLUS": 639,
+   "IJ": 253,
+   "COMPLAINT": 4368,
+   "HOMES_CITED": 2381
+  },
+  {
+   "MO": "2024-11-01",
+   "GRP": "national",
+   "HOMES": 14424,
+   "DEFS": 8936,
+   "GPLUS": 530,
+   "IJ": 271,
+   "COMPLAINT": 3421,
+   "HOMES_CITED": 1913
+  },
+  {
+   "MO": "2024-12-01",
+   "GRP": "national",
+   "HOMES": 14447,
+   "DEFS": 8751,
+   "GPLUS": 458,
+   "IJ": 186,
+   "COMPLAINT": 3438,
+   "HOMES_CITED": 1925
+  },
+  {
+   "MO": "2025-01-01",
+   "GRP": "national",
+   "HOMES": 14473,
+   "DEFS": 10490,
+   "GPLUS": 555,
+   "IJ": 215,
+   "COMPLAINT": 3979,
+   "HOMES_CITED": 2284
+  },
+  {
+   "MO": "2025-02-01",
+   "GRP": "national",
+   "HOMES": 14493,
+   "DEFS": 10701,
+   "GPLUS": 578,
+   "IJ": 270,
+   "COMPLAINT": 3873,
+   "HOMES_CITED": 2145
+  },
+  {
+   "MO": "2025-03-01",
+   "GRP": "national",
+   "HOMES": 14517,
+   "DEFS": 11674,
+   "GPLUS": 693,
+   "IJ": 296,
+   "COMPLAINT": 4288,
+   "HOMES_CITED": 2323
+  },
+  {
+   "MO": "2025-04-01",
+   "GRP": "national",
+   "HOMES": 14526,
+   "DEFS": 11097,
+   "GPLUS": 643,
+   "IJ": 286,
+   "COMPLAINT": 4115,
+   "HOMES_CITED": 2349
+  },
+  {
+   "MO": "2025-05-01",
+   "GRP": "national",
+   "HOMES": 14538,
+   "DEFS": 11098,
+   "GPLUS": 635,
+   "IJ": 290,
+   "COMPLAINT": 3960,
+   "HOMES_CITED": 2233
+  },
+  {
+   "MO": "2025-06-01",
+   "GRP": "national",
+   "HOMES": 14546,
+   "DEFS": 9311,
+   "GPLUS": 554,
+   "IJ": 241,
+   "COMPLAINT": 3728,
+   "HOMES_CITED": 2083
+  },
+  {
+   "MO": "2025-07-01",
+   "GRP": "national",
+   "HOMES": 14553,
+   "DEFS": 7957,
+   "GPLUS": 500,
+   "IJ": 229,
+   "COMPLAINT": 3291,
+   "HOMES_CITED": 1980
+  },
+  {
+   "MO": "2025-08-01",
+   "GRP": "national",
+   "HOMES": 14566,
+   "DEFS": 9928,
+   "GPLUS": 521,
+   "IJ": 240,
+   "COMPLAINT": 3436,
+   "HOMES_CITED": 2145
+  },
+  {
+   "MO": "2025-09-01",
+   "GRP": "national",
+   "HOMES": 14571,
+   "DEFS": 7248,
+   "GPLUS": 540,
+   "IJ": 265,
+   "COMPLAINT": 2789,
+   "HOMES_CITED": 1742
+  },
+  {
+   "MO": "2025-10-01",
+   "GRP": "national",
+   "HOMES": 14576,
+   "DEFS": 2425,
+   "GPLUS": 497,
+   "IJ": 214,
+   "COMPLAINT": 1799,
+   "HOMES_CITED": 819
+  },
+  {
+   "MO": "2025-11-01",
+   "GRP": "national",
+   "HOMES": 14583,
+   "DEFS": 5497,
+   "GPLUS": 404,
+   "IJ": 162,
+   "COMPLAINT": 3033,
+   "HOMES_CITED": 1713
+  },
+  {
+   "MO": "2025-12-01",
+   "GRP": "national",
+   "HOMES": 14595,
+   "DEFS": 9855,
+   "GPLUS": 443,
+   "IJ": 154,
+   "COMPLAINT": 3855,
+   "HOMES_CITED": 2415
+  }
+ ],
+ "sev_year": [
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "B",
+   "N": 1
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "C",
+   "N": 2
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "D",
+   "N": 94
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "E",
+   "N": 51
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "F",
+   "N": 31
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "G",
+   "N": 42
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "J",
+   "N": 4
+  },
+  {
+   "YR": 2023,
+   "GRP": "bria",
+   "SEV": "K",
+   "N": 3
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "B",
+   "N": 1
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "C",
+   "N": 1
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "D",
+   "N": 174
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "E",
+   "N": 70
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "F",
+   "N": 29
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "G",
+   "N": 64
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "H",
+   "N": 1
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "J",
+   "N": 4
+  },
+  {
+   "YR": 2024,
+   "GRP": "bria",
+   "SEV": "L",
+   "N": 1
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "B",
+   "N": 1
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "C",
+   "N": 3
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "D",
+   "N": 98
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "E",
+   "N": 36
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "F",
+   "N": 13
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "G",
+   "N": 59
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "J",
+   "N": 14
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "K",
+   "N": 2
+  },
+  {
+   "YR": 2025,
+   "GRP": "bria",
+   "SEV": "L",
+   "N": 1
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "B",
+   "N": 949
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "C",
+   "N": 1042
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "D",
+   "N": 52882
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "E",
+   "N": 20215
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "F",
+   "N": 6160
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "G",
+   "N": 2711
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "H",
+   "N": 104
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "I",
+   "N": 6
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "J",
+   "N": 1434
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "K",
+   "N": 555
+  },
+  {
+   "YR": 2023,
+   "GRP": "national",
+   "SEV": "L",
+   "N": 132
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "B",
+   "N": 1560
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "C",
+   "N": 1197
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "D",
+   "N": 74804
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "E",
+   "N": 27998
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "F",
+   "N": 8507
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "G",
+   "N": 4024
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "H",
+   "N": 161
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "I",
+   "N": 8
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "J",
+   "N": 2321
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "K",
+   "N": 769
+  },
+  {
+   "YR": 2024,
+   "GRP": "national",
+   "SEV": "L",
+   "N": 231
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "B",
+   "N": 1242
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "C",
+   "N": 917
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "D",
+   "N": 69047
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "E",
+   "N": 22498
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "F",
+   "N": 7014
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "G",
+   "N": 3602
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "H",
+   "N": 96
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "I",
+   "N": 3
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "J",
+   "N": 2139
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "K",
+   "N": 572
+  },
+  {
+   "YR": 2025,
+   "GRP": "national",
+   "SEV": "L",
+   "N": 151
+  }
+ ],
+ "rebuild_home": [
+  {
+   "YR": 2023,
+   "CCN": "145290",
+   "NM": "Nexus Pavilion at Belleville",
+   "DEFS": 14,
+   "GPLUS": 4,
+   "FIRST_DT": "2023-03-15",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2024,
+   "CCN": "145290",
+   "NM": "Nexus Pavilion at Belleville",
+   "DEFS": 27,
+   "GPLUS": 7,
+   "FIRST_DT": "2024-03-01",
+   "SURVEYS": 9
+  },
+  {
+   "YR": 2025,
+   "CCN": "145290",
+   "NM": "Nexus Pavilion at Belleville",
+   "DEFS": 27,
+   "GPLUS": 14,
+   "FIRST_DT": "2025-01-09",
+   "SURVEYS": 13
+  },
+  {
+   "YR": 2023,
+   "CCN": "145405",
+   "NM": "BRIA OF WESTMONT",
+   "DEFS": 23,
+   "GPLUS": 2,
+   "FIRST_DT": "2023-06-05",
+   "SURVEYS": 11
+  },
+  {
+   "YR": 2024,
+   "CCN": "145405",
+   "NM": "BRIA OF WESTMONT",
+   "DEFS": 27,
+   "GPLUS": 5,
+   "FIRST_DT": "2024-01-17",
+   "SURVEYS": 12
+  },
+  {
+   "YR": 2025,
+   "CCN": "145405",
+   "NM": "BRIA OF WESTMONT",
+   "DEFS": 10,
+   "GPLUS": 0,
+   "FIRST_DT": "2025-01-16",
+   "SURVEYS": 6
+  },
+  {
+   "YR": 2023,
+   "CCN": "145419",
+   "NM": "BRIA OF ELMWOOD PARK",
+   "DEFS": 20,
+   "GPLUS": 5,
+   "FIRST_DT": "2023-02-03",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2024,
+   "CCN": "145419",
+   "NM": "BRIA OF ELMWOOD PARK",
+   "DEFS": 39,
+   "GPLUS": 10,
+   "FIRST_DT": "2024-01-11",
+   "SURVEYS": 10
+  },
+  {
+   "YR": 2025,
+   "CCN": "145419",
+   "NM": "BRIA OF ELMWOOD PARK",
+   "DEFS": 25,
+   "GPLUS": 10,
+   "FIRST_DT": "2025-01-07",
+   "SURVEYS": 11
+  },
+  {
+   "YR": 2023,
+   "CCN": "145427",
+   "NM": "Nexus at Alton",
+   "DEFS": 24,
+   "GPLUS": 6,
+   "FIRST_DT": "2023-04-06",
+   "SURVEYS": 5
+  },
+  {
+   "YR": 2024,
+   "CCN": "145427",
+   "NM": "Nexus at Alton",
+   "DEFS": 22,
+   "GPLUS": 5,
+   "FIRST_DT": "2024-02-09",
+   "SURVEYS": 8
+  },
+  {
+   "YR": 2025,
+   "CCN": "145427",
+   "NM": "Nexus at Alton",
+   "DEFS": 31,
+   "GPLUS": 11,
+   "FIRST_DT": "2025-01-16",
+   "SURVEYS": 11
+  },
+  {
+   "YR": 2023,
+   "CCN": "145613",
+   "NM": "BRIA OF CAHOKIA",
+   "DEFS": 25,
+   "GPLUS": 6,
+   "FIRST_DT": "2023-03-28",
+   "SURVEYS": 6
+  },
+  {
+   "YR": 2024,
+   "CCN": "145613",
+   "NM": "BRIA OF CAHOKIA",
+   "DEFS": 37,
+   "GPLUS": 12,
+   "FIRST_DT": "2024-01-26",
+   "SURVEYS": 13
+  },
+  {
+   "YR": 2025,
+   "CCN": "145613",
+   "NM": "BRIA OF CAHOKIA",
+   "DEFS": 25,
+   "GPLUS": 5,
+   "FIRST_DT": "2025-01-14",
+   "SURVEYS": 10
+  },
+  {
+   "YR": 2023,
+   "CCN": "145650",
+   "NM": "Nexus at Palos",
+   "DEFS": 15,
+   "GPLUS": 3,
+   "FIRST_DT": "2023-06-09",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2024,
+   "CCN": "145650",
+   "NM": "Nexus at Palos",
+   "DEFS": 31,
+   "GPLUS": 7,
+   "FIRST_DT": "2024-02-16",
+   "SURVEYS": 8
+  },
+  {
+   "YR": 2025,
+   "CCN": "145650",
+   "NM": "Nexus at Palos",
+   "DEFS": 22,
+   "GPLUS": 6,
+   "FIRST_DT": "2025-01-17",
+   "SURVEYS": 7
+  },
+  {
+   "YR": 2023,
+   "CCN": "145655",
+   "NM": "BRIA OF WOODRIVER",
+   "DEFS": 12,
+   "GPLUS": 1,
+   "FIRST_DT": "2023-08-01",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2024,
+   "CCN": "145655",
+   "NM": "BRIA OF WOODRIVER",
+   "DEFS": 22,
+   "GPLUS": 3,
+   "FIRST_DT": "2024-01-25",
+   "SURVEYS": 11
+  },
+  {
+   "YR": 2025,
+   "CCN": "145655",
+   "NM": "BRIA OF WOODRIVER",
+   "DEFS": 16,
+   "GPLUS": 10,
+   "FIRST_DT": "2025-01-10",
+   "SURVEYS": 8
+  },
+  {
+   "YR": 2023,
+   "CCN": "145656",
+   "NM": "BRIA OF GODFREY",
+   "DEFS": 12,
+   "GPLUS": 5,
+   "FIRST_DT": "2023-07-11",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2024,
+   "CCN": "145656",
+   "NM": "BRIA OF GODFREY",
+   "DEFS": 13,
+   "GPLUS": 1,
+   "FIRST_DT": "2024-04-26",
+   "SURVEYS": 6
+  },
+  {
+   "YR": 2025,
+   "CCN": "145656",
+   "NM": "BRIA OF GODFREY",
+   "DEFS": 10,
+   "GPLUS": 4,
+   "FIRST_DT": "2025-02-28",
+   "SURVEYS": 9
+  },
+  {
+   "YR": 2023,
+   "CCN": "145668",
+   "NM": "BRIA OF BELLEVILLE",
+   "DEFS": 14,
+   "GPLUS": 3,
+   "FIRST_DT": "2023-04-21",
+   "SURVEYS": 5
+  },
+  {
+   "YR": 2024,
+   "CCN": "145668",
+   "NM": "BRIA OF BELLEVILLE",
+   "DEFS": 27,
+   "GPLUS": 5,
+   "FIRST_DT": "2024-01-11",
+   "SURVEYS": 10
+  },
+  {
+   "YR": 2025,
+   "CCN": "145668",
+   "NM": "BRIA OF BELLEVILLE",
+   "DEFS": 19,
+   "GPLUS": 4,
+   "FIRST_DT": "2025-01-29",
+   "SURVEYS": 6
+  },
+  {
+   "YR": 2023,
+   "CCN": "145717",
+   "NM": "Nexus at Columbia",
+   "DEFS": 6,
+   "GPLUS": 1,
+   "FIRST_DT": "2023-08-14",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2024,
+   "CCN": "145717",
+   "NM": "Nexus at Columbia",
+   "DEFS": 21,
+   "GPLUS": 2,
+   "FIRST_DT": "2024-01-05",
+   "SURVEYS": 11
+  },
+  {
+   "YR": 2025,
+   "CCN": "145717",
+   "NM": "Nexus at Columbia",
+   "DEFS": 10,
+   "GPLUS": 3,
+   "FIRST_DT": "2025-01-13",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2023,
+   "CCN": "145735",
+   "NM": "BRIA OF RIVER OAKS",
+   "DEFS": 10,
+   "GPLUS": 4,
+   "FIRST_DT": "2023-08-03",
+   "SURVEYS": 2
+  },
+  {
+   "YR": 2024,
+   "CCN": "145735",
+   "NM": "BRIA OF RIVER OAKS",
+   "DEFS": 13,
+   "GPLUS": 6,
+   "FIRST_DT": "2024-01-09",
+   "SURVEYS": 9
+  },
+  {
+   "YR": 2025,
+   "CCN": "145735",
+   "NM": "BRIA OF RIVER OAKS",
+   "DEFS": 7,
+   "GPLUS": 3,
+   "FIRST_DT": "2025-03-14",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2023,
+   "CCN": "145785",
+   "NM": "Nexus at Mascoutah",
+   "DEFS": 7,
+   "GPLUS": 1,
+   "FIRST_DT": "2023-07-18",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2024,
+   "CCN": "145785",
+   "NM": "Nexus at Mascoutah",
+   "DEFS": 21,
+   "GPLUS": 3,
+   "FIRST_DT": "2024-01-12",
+   "SURVEYS": 6
+  },
+  {
+   "YR": 2025,
+   "CCN": "145785",
+   "NM": "Nexus at Mascoutah",
+   "DEFS": 9,
+   "GPLUS": 2,
+   "FIRST_DT": "2025-03-28",
+   "SURVEYS": 6
+  },
+  {
+   "YR": 2023,
+   "CCN": "145864",
+   "NM": "BRIA OF FOREST EDGE",
+   "DEFS": 29,
+   "GPLUS": 6,
+   "FIRST_DT": "2023-07-20",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2024,
+   "CCN": "145864",
+   "NM": "BRIA OF FOREST EDGE",
+   "DEFS": 25,
+   "GPLUS": 2,
+   "FIRST_DT": "2024-02-05",
+   "SURVEYS": 9
+  },
+  {
+   "YR": 2025,
+   "CCN": "145864",
+   "NM": "BRIA OF FOREST EDGE",
+   "DEFS": 1,
+   "GPLUS": 0,
+   "FIRST_DT": "2025-04-07",
+   "SURVEYS": 1
+  },
+  {
+   "YR": 2023,
+   "CCN": "145898",
+   "NM": "BRIA OF CHICAGO HEIGHTS",
+   "DEFS": 10,
+   "GPLUS": 1,
+   "FIRST_DT": "2023-01-20",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2024,
+   "CCN": "145898",
+   "NM": "BRIA OF CHICAGO HEIGHTS",
+   "DEFS": 8,
+   "GPLUS": 2,
+   "FIRST_DT": "2024-04-19",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2025,
+   "CCN": "145898",
+   "NM": "BRIA OF CHICAGO HEIGHTS",
+   "DEFS": 14,
+   "GPLUS": 4,
+   "FIRST_DT": "2025-05-30",
+   "SURVEYS": 3
+  },
+  {
+   "YR": 2023,
+   "CCN": "146067",
+   "NM": "BRIA OF GENEVA",
+   "DEFS": 7,
+   "GPLUS": 1,
+   "FIRST_DT": "2023-05-26",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2024,
+   "CCN": "146067",
+   "NM": "BRIA OF GENEVA",
+   "DEFS": 12,
+   "GPLUS": 0,
+   "FIRST_DT": "2024-06-26",
+   "SURVEYS": 4
+  },
+  {
+   "YR": 2025,
+   "CCN": "146067",
+   "NM": "BRIA OF GENEVA",
+   "DEFS": 1,
+   "GPLUS": 0,
+   "FIRST_DT": "2025-05-14",
+   "SURVEYS": 1
+  }
+ ],
+ "fines_monthly": [
+  {
+   "MO": "2023-01-01",
+   "GRP": "bria",
+   "HOMES": 10,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-02-01",
+   "GRP": "bria",
+   "HOMES": 11,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-03-01",
+   "GRP": "bria",
+   "HOMES": 13,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-04-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-05-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-06-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-07-01",
+   "GRP": "bria",
+   "HOMES": 14,
+   "PENALTIES": 6,
+   "FINES": 4,
+   "USD": 566565.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2023-08-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 8,
+   "FINES": 5,
+   "USD": 326233.0,
+   "HOMES_FINED": 5
+  },
+  {
+   "MO": "2023-09-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 1,
+   "FINES": 1,
+   "USD": 49952.0,
+   "HOMES_FINED": 1
+  },
+  {
+   "MO": "2023-10-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 6,
+   "FINES": 4,
+   "USD": 393554.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2023-11-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 4,
+   "FINES": 3,
+   "USD": 65270.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2023-12-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 5,
+   "FINES": 3,
+   "USD": 366747.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2024-01-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 3,
+   "FINES": 3,
+   "USD": 126370.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2024-02-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 1,
+   "FINES": 1,
+   "USD": 79138.0,
+   "HOMES_FINED": 1
+  },
+  {
+   "MO": "2024-03-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2024-04-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 7,
+   "FINES": 6,
+   "USD": 301289.0,
+   "HOMES_FINED": 5
+  },
+  {
+   "MO": "2024-05-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 4,
+   "FINES": 3,
+   "USD": 86057.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2024-06-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 1,
+   "USD": 139003.0,
+   "HOMES_FINED": 1
+  },
+  {
+   "MO": "2024-07-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 2,
+   "USD": 42598.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2024-08-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 4,
+   "FINES": 4,
+   "USD": 110689.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2024-09-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 3,
+   "FINES": 2,
+   "USD": 119252.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2024-10-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 5,
+   "FINES": 4,
+   "USD": 141668.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2024-11-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 2,
+   "USD": 92105.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2024-12-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 4,
+   "FINES": 3,
+   "USD": 278292.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2025-01-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 5,
+   "FINES": 4,
+   "USD": 356758.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2025-02-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 2,
+   "USD": 66057.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2025-03-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 6,
+   "FINES": 4,
+   "USD": 419566.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2025-04-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 2,
+   "USD": 33680.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2025-05-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 7,
+   "FINES": 7,
+   "USD": 229526.0,
+   "HOMES_FINED": 4
+  },
+  {
+   "MO": "2025-06-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 1,
+   "FINES": 1,
+   "USD": 14505.0,
+   "HOMES_FINED": 1
+  },
+  {
+   "MO": "2025-07-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 3,
+   "FINES": 2,
+   "USD": 38591.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2025-08-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 4,
+   "FINES": 3,
+   "USD": 142848.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2025-09-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 3,
+   "FINES": 3,
+   "USD": 104290.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2025-10-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 4,
+   "FINES": 3,
+   "USD": 396170.0,
+   "HOMES_FINED": 3
+  },
+  {
+   "MO": "2025-11-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 2,
+   "USD": 70055.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2025-12-01",
+   "GRP": "bria",
+   "HOMES": 15,
+   "PENALTIES": 2,
+   "FINES": 2,
+   "USD": 152420.0,
+   "HOMES_FINED": 2
+  },
+  {
+   "MO": "2023-01-01",
+   "GRP": "national",
+   "HOMES": 7624,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-02-01",
+   "GRP": "national",
+   "HOMES": 8062,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-03-01",
+   "GRP": "national",
+   "HOMES": 8619,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-04-01",
+   "GRP": "national",
+   "HOMES": 9082,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-05-01",
+   "GRP": "national",
+   "HOMES": 9554,
+   "PENALTIES": 0,
+   "FINES": 0,
+   "USD": 0.0,
+   "HOMES_FINED": 0
+  },
+  {
+   "MO": "2023-06-01",
+   "GRP": "national",
+   "HOMES": 10567,
+   "PENALTIES": 327,
+   "FINES": 295,
+   "USD": 4971127.0,
+   "HOMES_FINED": 236
+  },
+  {
+   "MO": "2023-07-01",
+   "GRP": "national",
+   "HOMES": 11299,
+   "PENALTIES": 585,
+   "FINES": 516,
+   "USD": 13451514.0,
+   "HOMES_FINED": 492
+  },
+  {
+   "MO": "2023-08-01",
+   "GRP": "national",
+   "HOMES": 12037,
+   "PENALTIES": 911,
+   "FINES": 812,
+   "USD": 17961978.0,
+   "HOMES_FINED": 581
+  },
+  {
+   "MO": "2023-09-01",
+   "GRP": "national",
+   "HOMES": 12539,
+   "PENALTIES": 770,
+   "FINES": 676,
+   "USD": 16741739.0,
+   "HOMES_FINED": 506
+  },
+  {
+   "MO": "2023-10-01",
+   "GRP": "national",
+   "HOMES": 12953,
+   "PENALTIES": 900,
+   "FINES": 815,
+   "USD": 15930188.0,
+   "HOMES_FINED": 531
+  },
+  {
+   "MO": "2023-11-01",
+   "GRP": "national",
+   "HOMES": 13269,
+   "PENALTIES": 674,
+   "FINES": 581,
+   "USD": 14669919.0,
+   "HOMES_FINED": 445
+  },
+  {
+   "MO": "2023-12-01",
+   "GRP": "national",
+   "HOMES": 13497,
+   "PENALTIES": 592,
+   "FINES": 508,
+   "USD": 15792086.0,
+   "HOMES_FINED": 498
+  },
+  {
+   "MO": "2024-01-01",
+   "GRP": "national",
+   "HOMES": 13707,
+   "PENALTIES": 786,
+   "FINES": 697,
+   "USD": 16305839.0,
+   "HOMES_FINED": 533
+  },
+  {
+   "MO": "2024-02-01",
+   "GRP": "national",
+   "HOMES": 13895,
+   "PENALTIES": 733,
+   "FINES": 626,
+   "USD": 16404354.0,
+   "HOMES_FINED": 528
+  },
+  {
+   "MO": "2024-03-01",
+   "GRP": "national",
+   "HOMES": 14033,
+   "PENALTIES": 508,
+   "FINES": 409,
+   "USD": 16713764.0,
+   "HOMES_FINED": 396
+  },
+  {
+   "MO": "2024-04-01",
+   "GRP": "national",
+   "HOMES": 14122,
+   "PENALTIES": 498,
+   "FINES": 396,
+   "USD": 13728468.0,
+   "HOMES_FINED": 384
+  },
+  {
+   "MO": "2024-05-01",
+   "GRP": "national",
+   "HOMES": 14198,
+   "PENALTIES": 540,
+   "FINES": 426,
+   "USD": 18629041.0,
+   "HOMES_FINED": 430
+  },
+  {
+   "MO": "2024-06-01",
+   "GRP": "national",
+   "HOMES": 14232,
+   "PENALTIES": 475,
+   "FINES": 374,
+   "USD": 16011177.0,
+   "HOMES_FINED": 383
+  },
+  {
+   "MO": "2024-07-01",
+   "GRP": "national",
+   "HOMES": 14273,
+   "PENALTIES": 522,
+   "FINES": 429,
+   "USD": 15432396.0,
+   "HOMES_FINED": 412
+  },
+  {
+   "MO": "2024-08-01",
+   "GRP": "national",
+   "HOMES": 14317,
+   "PENALTIES": 510,
+   "FINES": 427,
+   "USD": 16912774.0,
+   "HOMES_FINED": 412
+  },
+  {
+   "MO": "2024-09-01",
+   "GRP": "national",
+   "HOMES": 14363,
+   "PENALTIES": 434,
+   "FINES": 358,
+   "USD": 12984908.0,
+   "HOMES_FINED": 344
+  },
+  {
+   "MO": "2024-10-01",
+   "GRP": "national",
+   "HOMES": 14396,
+   "PENALTIES": 503,
+   "FINES": 416,
+   "USD": 15981348.0,
+   "HOMES_FINED": 400
+  },
+  {
+   "MO": "2024-11-01",
+   "GRP": "national",
+   "HOMES": 14424,
+   "PENALTIES": 383,
+   "FINES": 327,
+   "USD": 11766434.0,
+   "HOMES_FINED": 319
+  },
+  {
+   "MO": "2024-12-01",
+   "GRP": "national",
+   "HOMES": 14447,
+   "PENALTIES": 365,
+   "FINES": 307,
+   "USD": 12008317.0,
+   "HOMES_FINED": 299
+  },
+  {
+   "MO": "2025-01-01",
+   "GRP": "national",
+   "HOMES": 14473,
+   "PENALTIES": 475,
+   "FINES": 399,
+   "USD": 14869390.0,
+   "HOMES_FINED": 374
+  },
+  {
+   "MO": "2025-02-01",
+   "GRP": "national",
+   "HOMES": 14493,
+   "PENALTIES": 441,
+   "FINES": 367,
+   "USD": 15160158.0,
+   "HOMES_FINED": 361
+  },
+  {
+   "MO": "2025-03-01",
+   "GRP": "national",
+   "HOMES": 14517,
+   "PENALTIES": 496,
+   "FINES": 401,
+   "USD": 16182905.0,
+   "HOMES_FINED": 399
+  },
+  {
+   "MO": "2025-04-01",
+   "GRP": "national",
+   "HOMES": 14526,
+   "PENALTIES": 441,
+   "FINES": 364,
+   "USD": 14273688.0,
+   "HOMES_FINED": 377
+  },
+  {
+   "MO": "2025-05-01",
+   "GRP": "national",
+   "HOMES": 14538,
+   "PENALTIES": 398,
+   "FINES": 325,
+   "USD": 12762073.0,
+   "HOMES_FINED": 330
+  },
+  {
+   "MO": "2025-06-01",
+   "GRP": "national",
+   "HOMES": 14546,
+   "PENALTIES": 363,
+   "FINES": 300,
+   "USD": 11849843.0,
+   "HOMES_FINED": 295
+  },
+  {
+   "MO": "2025-07-01",
+   "GRP": "national",
+   "HOMES": 14553,
+   "PENALTIES": 344,
+   "FINES": 285,
+   "USD": 11131566.0,
+   "HOMES_FINED": 289
+  },
+  {
+   "MO": "2025-08-01",
+   "GRP": "national",
+   "HOMES": 14566,
+   "PENALTIES": 370,
+   "FINES": 306,
+   "USD": 11830536.0,
+   "HOMES_FINED": 310
+  },
+  {
+   "MO": "2025-09-01",
+   "GRP": "national",
+   "HOMES": 14571,
+   "PENALTIES": 305,
+   "FINES": 254,
+   "USD": 10311838.0,
+   "HOMES_FINED": 257
+  },
+  {
+   "MO": "2025-10-01",
+   "GRP": "national",
+   "HOMES": 14576,
+   "PENALTIES": 234,
+   "FINES": 205,
+   "USD": 7528963.0,
+   "HOMES_FINED": 204
+  },
+  {
+   "MO": "2025-11-01",
+   "GRP": "national",
+   "HOMES": 14583,
+   "PENALTIES": 245,
+   "FINES": 207,
+   "USD": 8779705.0,
+   "HOMES_FINED": 212
+  },
+  {
+   "MO": "2025-12-01",
+   "GRP": "national",
+   "HOMES": 14595,
+   "PENALTIES": 274,
+   "FINES": 221,
+   "USD": 11246421.0,
+   "HOMES_FINED": 237
+  }
+ ],
+ "fines_period": [
+  {
+   "GRP": "bria",
+   "PERIOD": "2023 H2",
+   "PENALTIES": 30,
+   "USD": 1768321.0,
+   "HOMES_HIT": 13
+  },
+  {
+   "GRP": "bria",
+   "PERIOD": "2024",
+   "PENALTIES": 37,
+   "USD": 1516461.0,
+   "HOMES_HIT": 13
+  },
+  {
+   "GRP": "bria",
+   "PERIOD": "2025",
+   "PENALTIES": 41,
+   "USD": 2024466.0,
+   "HOMES_HIT": 12
+  },
+  {
+   "GRP": "national",
+   "PERIOD": "2023 H2",
+   "PENALTIES": 4759,
+   "USD": 99518551.0,
+   "HOMES_HIT": 2436
+  },
+  {
+   "GRP": "national",
+   "PERIOD": "2024",
+   "PENALTIES": 6257,
+   "USD": 182878820.0,
+   "HOMES_HIT": 3804
+  },
+  {
+   "GRP": "national",
+   "PERIOD": "2025",
+   "PENALTIES": 4386,
+   "USD": 145927086.0,
+   "HOMES_HIT": 3005
+  }
+ ],
+ "home_fines": [
+  {
+   "CCN": "145290",
+   "NM": "Nexus Pavilion at Belleville",
+   "YR": 2023,
+   "PENALTIES": 1,
+   "USD": 192562.0
+  },
+  {
+   "CCN": "145290",
+   "NM": "Nexus Pavilion at Belleville",
+   "YR": 2024,
+   "PENALTIES": 4,
+   "USD": 260046.0
+  },
+  {
+   "CCN": "145290",
+   "NM": "Nexus Pavilion at Belleville",
+   "YR": 2025,
+   "PENALTIES": 4,
+   "USD": 369033.0
+  },
+  {
+   "CCN": "145405",
+   "NM": "BRIA OF WESTMONT",
+   "YR": 2023,
+   "PENALTIES": 3,
+   "USD": 87295.0
+  },
+  {
+   "CCN": "145405",
+   "NM": "BRIA OF WESTMONT",
+   "YR": 2024,
+   "PENALTIES": 4,
+   "USD": 63782.0
+  },
+  {
+   "CCN": "145419",
+   "NM": "BRIA OF ELMWOOD PARK",
+   "YR": 2023,
+   "PENALTIES": 3,
+   "USD": 272623.0
+  },
+  {
+   "CCN": "145419",
+   "NM": "BRIA OF ELMWOOD PARK",
+   "YR": 2024,
+   "PENALTIES": 2,
+   "USD": 44512.0
+  },
+  {
+   "CCN": "145419",
+   "NM": "BRIA OF ELMWOOD PARK",
+   "YR": 2025,
+   "PENALTIES": 5,
+   "USD": 210144.0
+  },
+  {
+   "CCN": "145427",
+   "NM": "Nexus at Alton",
+   "YR": 2023,
+   "PENALTIES": 2,
+   "USD": 115643.0
+  },
+  {
+   "CCN": "145427",
+   "NM": "Nexus at Alton",
+   "YR": 2024,
+   "PENALTIES": 2,
+   "USD": 53768.0
+  },
+  {
+   "CCN": "145427",
+   "NM": "Nexus at Alton",
+   "YR": 2025,
+   "PENALTIES": 4,
+   "USD": 240695.0
+  },
+  {
+   "CCN": "145613",
+   "NM": "BRIA OF CAHOKIA",
+   "YR": 2023,
+   "PENALTIES": 4,
+   "USD": 387025.0
+  },
+  {
+   "CCN": "145613",
+   "NM": "BRIA OF CAHOKIA",
+   "YR": 2024,
+   "PENALTIES": 4,
+   "USD": 207435.0
+  },
+  {
+   "CCN": "145613",
+   "NM": "BRIA OF CAHOKIA",
+   "YR": 2025,
+   "PENALTIES": 4,
+   "USD": 204072.0
+  },
+  {
+   "CCN": "145650",
+   "NM": "Nexus at Palos",
+   "YR": 2023,
+   "PENALTIES": 2,
+   "USD": 65841.0
+  },
+  {
+   "CCN": "145650",
+   "NM": "Nexus at Palos",
+   "YR": 2024,
+   "PENALTIES": 2,
+   "USD": 100477.0
+  },
+  {
+   "CCN": "145650",
+   "NM": "Nexus at Palos",
+   "YR": 2025,
+   "PENALTIES": 5,
+   "USD": 119725.0
+  },
+  {
+   "CCN": "145655",
+   "NM": "BRIA OF WOODRIVER",
+   "YR": 2023,
+   "PENALTIES": 3,
+   "USD": 36881.0
+  },
+  {
+   "CCN": "145655",
+   "NM": "BRIA OF WOODRIVER",
+   "YR": 2025,
+   "PENALTIES": 4,
+   "USD": 362887.0
+  },
+  {
+   "CCN": "145656",
+   "NM": "BRIA OF GODFREY",
+   "YR": 2023,
+   "PENALTIES": 2,
+   "USD": 131010.0
+  },
+  {
+   "CCN": "145656",
+   "NM": "BRIA OF GODFREY",
+   "YR": 2024,
+   "PENALTIES": 1,
+   "USD": 41730.0
+  },
+  {
+   "CCN": "145656",
+   "NM": "BRIA OF GODFREY",
+   "YR": 2025,
+   "PENALTIES": 5,
+   "USD": 168231.0
+  },
+  {
+   "CCN": "145668",
+   "NM": "BRIA OF BELLEVILLE",
+   "YR": 2023,
+   "PENALTIES": 1,
+   "USD": 40183.0
+  },
+  {
+   "CCN": "145668",
+   "NM": "BRIA OF BELLEVILLE",
+   "YR": 2024,
+   "PENALTIES": 3,
+   "USD": 150010.0
+  },
+  {
+   "CCN": "145668",
+   "NM": "BRIA OF BELLEVILLE",
+   "YR": 2025,
+   "PENALTIES": 3,
+   "USD": 123169.0
+  },
+  {
+   "CCN": "145717",
+   "NM": "Nexus at Columbia",
+   "YR": 2023,
+   "PENALTIES": 3,
+   "USD": 53749.0
+  },
+  {
+   "CCN": "145717",
+   "NM": "Nexus at Columbia",
+   "YR": 2024,
+   "PENALTIES": 3,
+   "USD": 243283.0
+  },
+  {
+   "CCN": "145717",
+   "NM": "Nexus at Columbia",
+   "YR": 2025,
+   "PENALTIES": 2,
+   "USD": 45676.0
+  },
+  {
+   "CCN": "145735",
+   "NM": "BRIA OF RIVER OAKS",
+   "YR": 2023,
+   "PENALTIES": 3,
+   "USD": 63625.0
+  },
+  {
+   "CCN": "145735",
+   "NM": "BRIA OF RIVER OAKS",
+   "YR": 2024,
+   "PENALTIES": 6,
+   "USD": 183639.0
+  },
+  {
+   "CCN": "145735",
+   "NM": "BRIA OF RIVER OAKS",
+   "YR": 2025,
+   "PENALTIES": 1,
+   "USD": 22984.0
+  },
+  {
+   "CCN": "145785",
+   "NM": "Nexus at Mascoutah",
+   "YR": 2023,
+   "PENALTIES": 1,
+   "USD": 9224.0
+  },
+  {
+   "CCN": "145785",
+   "NM": "Nexus at Mascoutah",
+   "YR": 2024,
+   "PENALTIES": 2,
+   "USD": 50492.0
+  },
+  {
+   "CCN": "145785",
+   "NM": "Nexus at Mascoutah",
+   "YR": 2025,
+   "PENALTIES": 2,
+   "USD": 14170.0
+  },
+  {
+   "CCN": "145864",
+   "NM": "BRIA OF FOREST EDGE",
+   "YR": 2023,
+   "PENALTIES": 2,
+   "USD": 312660.0
+  },
+  {
+   "CCN": "145864",
+   "NM": "BRIA OF FOREST EDGE",
+   "YR": 2024,
+   "PENALTIES": 2,
+   "USD": 95203.0
+  },
+  {
+   "CCN": "145898",
+   "NM": "BRIA OF CHICAGO HEIGHTS",
+   "YR": 2024,
+   "PENALTIES": 2,
+   "USD": 22084.0
+  },
+  {
+   "CCN": "145898",
+   "NM": "BRIA OF CHICAGO HEIGHTS",
+   "YR": 2025,
+   "PENALTIES": 2,
+   "USD": 143680.0
+  }
+ ],
+ "complaint_flag": [
+  {
+   "Q": "2022-07-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 8791
+  },
+  {
+   "Q": "2022-10-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 9955
+  },
+  {
+   "Q": "2023-01-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 14175
+  },
+  {
+   "Q": "2023-04-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "N",
+   "N": 23
+  },
+  {
+   "Q": "2023-04-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 14642
+  },
+  {
+   "Q": "2023-04-01",
+   "COMPLAINT_DEFICIENCY": "Y",
+   "STANDARD_DEFICIENCY": "N",
+   "N": 2845
+  },
+  {
+   "Q": "2023-04-01",
+   "COMPLAINT_DEFICIENCY": "Y",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 806
+  },
+  {
+   "Q": "2023-07-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "N",
+   "N": 74
+  },
+  {
+   "Q": "2023-07-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 14841
+  },
+  {
+   "Q": "2023-07-01",
+   "COMPLAINT_DEFICIENCY": "Y",
+   "STANDARD_DEFICIENCY": "N",
+   "N": 9095
+  },
+  {
+   "Q": "2023-07-01",
+   "COMPLAINT_DEFICIENCY": "Y",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 2710
+  },
+  {
+   "Q": "2023-10-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "N",
+   "N": 35
+  },
+  {
+   "Q": "2023-10-01",
+   "COMPLAINT_DEFICIENCY": "N",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 15885
+  },
+  {
+   "Q": "2023-10-01",
+   "COMPLAINT_DEFICIENCY": "Y",
+   "STANDARD_DEFICIENCY": "N",
+   "N": 8486
+  },
+  {
+   "Q": "2023-10-01",
+   "COMPLAINT_DEFICIENCY": "Y",
+   "STANDARD_DEFICIENCY": "Y",
+   "N": 2801
+  }
+ ]
+}

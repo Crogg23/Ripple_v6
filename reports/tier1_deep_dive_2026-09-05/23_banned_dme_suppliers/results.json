@@ -1,0 +1,904 @@
+{
+ "shape": {
+  "N": 440670,
+  "NPIS": 55598,
+  "PAID": 10943370826.506956,
+  "ALLOWED": 14261149397.637503
+ },
+ "ing": {
+  "MI": "2026-07-26 12:05:03.403",
+  "MA": "2026-07-26 12:05:03.403"
+ },
+ "leie": {
+  "N": 83842,
+  "NPIS": 8661,
+  "SENTINEL": 75001,
+  "BLANK_NPI": 0,
+  "BLANK_UPIN": 77887,
+  "MAX_EXCL": "2026-08-20",
+  "RAW_INGEST": 1787843027544807
+ },
+ "leie_mart": {
+  "N": 83747,
+  "SENTINEL": 0,
+  "REAL_NPIS": 8660,
+  "REINSTATED": 0
+ },
+ "hits": [
+  {
+   "NPI": "1811518392",
+   "ORG": "Sunshine Senior Solutions, Llc",
+   "ST": "FL",
+   "PAID": 860348426.0,
+   "SRVCS": 69401784,
+   "HCPCS_ROWS": 8,
+   "EXCL": "2026-06-20",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "SUNSHINE SENIOR SOLUTIONS, LLC",
+   "LSTATE": "FL"
+  },
+  {
+   "NPI": "1063414571",
+   "ORG": "Jl Webb Dme Llc",
+   "ST": "KY",
+   "PAID": 116094236.0,
+   "SRVCS": 10154118,
+   "HCPCS_ROWS": 7,
+   "EXCL": "2026-06-19",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "JL WEBB DME, LLC",
+   "LSTATE": "KY"
+  },
+  {
+   "NPI": "1588302186",
+   "ORG": "Absolute Medical Supplies Services Llc",
+   "ST": "PA",
+   "PAID": 109426829.0,
+   "SRVCS": 9728797,
+   "HCPCS_ROWS": 4,
+   "EXCL": "2026-06-24",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "ABSOLUTE MEDICAL SUPPLIES SERV",
+   "LSTATE": "PA"
+  },
+  {
+   "NPI": "1689457772",
+   "ORG": "Main Street Dme, Inc.",
+   "ST": "GA",
+   "PAID": 93794931.0,
+   "SRVCS": 13296599,
+   "HCPCS_ROWS": 2,
+   "EXCL": "2026-06-28",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "MAIN STREET DME, INC",
+   "LSTATE": "GA"
+  },
+  {
+   "NPI": "1528004108",
+   "ORG": "Southeastern Medequip, Inc.",
+   "ST": "FL",
+   "PAID": 87497980.0,
+   "SRVCS": 12006000,
+   "HCPCS_ROWS": 1,
+   "EXCL": "2026-06-20",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "SOUTHEASTERN MEDEQUIP, INC",
+   "LSTATE": "FL"
+  },
+  {
+   "NPI": "1225009665",
+   "ORG": "Express Healthcare Inc",
+   "ST": "AL",
+   "PAID": 86420489.0,
+   "SRVCS": 11963500,
+   "HCPCS_ROWS": 1,
+   "EXCL": "2026-06-19",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "EXPRESS HEALTHCARE, INC",
+   "LSTATE": "AL"
+  },
+  {
+   "NPI": "1578139473",
+   "ORG": "Lifeline Medical Supply, Inc",
+   "ST": "FL",
+   "PAID": 62317950.0,
+   "SRVCS": 8468050,
+   "HCPCS_ROWS": 1,
+   "EXCL": "2026-06-20",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "LIFELINE MEDICAL SUPPLY, INC",
+   "LSTATE": "FL"
+  },
+  {
+   "NPI": "1063294221",
+   "ORG": "Temecula Medical Supplies",
+   "ST": "CA",
+   "PAID": 9117497.0,
+   "SRVCS": 39989,
+   "HCPCS_ROWS": 2,
+   "EXCL": "2026-06-19",
+   "EXCL_ROWS": 1,
+   "ETYPE": "1128Aa",
+   "BNAME": "TEMECULA MEDICAL SUPPLIES, INC",
+   "LSTATE": "CA"
+  }
+ ],
+ "split": [
+  {
+   "GRP": "excluded",
+   "N": 8,
+   "PAID": 1425018337.0,
+   "MED": 90646455.0
+  },
+  {
+   "GRP": "other",
+   "N": 55590,
+   "PAID": 9518352490.0,
+   "MED": 4008.0
+  }
+ ],
+ "name": [
+  {
+   "NPI": "1811518392",
+   "ORG": "SUNSHINE SENIOR SOLUTIONS, LLC",
+   "ST": "FL",
+   "PAID": 860348426.0,
+   "LEIE_NPI": "1811518392",
+   "LEIE_ST": "FL",
+   "EXCL": "2026-06-20",
+   "HOW": "npi"
+  },
+  {
+   "NPI": "1063414571",
+   "ORG": "JL WEBB DME LLC",
+   "ST": "KY",
+   "PAID": 116094236.0,
+   "LEIE_NPI": "1063414571",
+   "LEIE_ST": "KY",
+   "EXCL": "2026-06-19",
+   "HOW": "npi"
+  },
+  {
+   "NPI": "1689457772",
+   "ORG": "MAIN STREET DME, INC.",
+   "ST": "GA",
+   "PAID": 93794931.0,
+   "LEIE_NPI": "1689457772",
+   "LEIE_ST": "GA",
+   "EXCL": "2026-06-28",
+   "HOW": "npi"
+  },
+  {
+   "NPI": "1528004108",
+   "ORG": "SOUTHEASTERN MEDEQUIP, INC.",
+   "ST": "FL",
+   "PAID": 87497980.0,
+   "LEIE_NPI": "1528004108",
+   "LEIE_ST": "FL",
+   "EXCL": "2026-06-20",
+   "HOW": "npi"
+  },
+  {
+   "NPI": "1225009665",
+   "ORG": "EXPRESS HEALTHCARE INC",
+   "ST": "AL",
+   "PAID": 86420489.0,
+   "LEIE_NPI": "1225009665",
+   "LEIE_ST": "AL",
+   "EXCL": "2026-06-19",
+   "HOW": "npi"
+  },
+  {
+   "NPI": "1871564211",
+   "ORG": "EXPRESS HEALTHCARE INC",
+   "ST": "AL",
+   "PAID": 75175158.0,
+   "LEIE_NPI": "1225009665",
+   "LEIE_ST": "AL",
+   "EXCL": "2026-06-19",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1578139473",
+   "ORG": "LIFELINE MEDICAL SUPPLY, INC",
+   "ST": "FL",
+   "PAID": 62317950.0,
+   "LEIE_NPI": "1578139473",
+   "LEIE_ST": "FL",
+   "EXCL": "2026-06-20",
+   "HOW": "npi"
+  },
+  {
+   "NPI": "1710923255",
+   "ORG": "DURAMED, INC.",
+   "ST": "LA",
+   "PAID": 837753.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "FL",
+   "EXCL": "2000-05-19",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1710923255",
+   "ORG": "DURAMED, INC.",
+   "ST": "LA",
+   "PAID": 837753.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "PA",
+   "EXCL": "1993-03-04",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1710923255",
+   "ORG": "DURAMED, INC.",
+   "ST": "LA",
+   "PAID": 837753.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "FL",
+   "EXCL": "2001-05-20",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1952698201",
+   "ORG": "HEALTH CARE PROVIDERS INC.",
+   "ST": "MT",
+   "PAID": 443624.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "MO",
+   "EXCL": "1997-08-04",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1578543328",
+   "ORG": "QUALITY HOME HEALTH CARE INC",
+   "ST": "GA",
+   "PAID": 196048.0,
+   "LEIE_NPI": "1427275718",
+   "LEIE_ST": "IN",
+   "EXCL": "2016-02-18",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1033191325",
+   "ORG": "HEALTH HORIZONS INC",
+   "ST": "NC",
+   "PAID": 195802.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "AZ",
+   "EXCL": "2004-10-20",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1912437427",
+   "ORG": "HEALTH CENTER PHARMACY INC",
+   "ST": "KS",
+   "PAID": 29415.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "NH",
+   "EXCL": "1993-09-29",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1316015670",
+   "ORG": "PHARM-ASSIST INC",
+   "ST": "PA",
+   "PAID": 18076.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "FL",
+   "EXCL": "2004-10-20",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1366406803",
+   "ORG": "MEDICAL HOME CARE SERVICES, INC.",
+   "ST": "ME",
+   "PAID": 13813.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "CA",
+   "EXCL": "1993-11-30",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1215045539",
+   "ORG": "J&J PHARMACY INC",
+   "ST": "IA",
+   "PAID": 8962.0,
+   "LEIE_NPI": "1750661914",
+   "LEIE_ST": "PA",
+   "EXCL": "2023-07-28",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1063705408",
+   "ORG": "CORNER DRUG STORE",
+   "ST": "LA",
+   "PAID": 7137.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "TN",
+   "EXCL": "1988-06-24",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1043683550",
+   "ORG": "CENTER PHARMACY INC",
+   "ST": "NY",
+   "PAID": 5269.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "NM",
+   "EXCL": "1993-08-03",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1073606414",
+   "ORG": "RANDYS PHARMACY INC",
+   "ST": "OK",
+   "PAID": 4864.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "NE",
+   "EXCL": "2010-11-18",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1043437544",
+   "ORG": "ASSOCIATED PODIATRISTS, P.C.",
+   "ST": "AZ",
+   "PAID": 4724.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "MA",
+   "EXCL": "1991-05-02",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1780739383",
+   "ORG": "PREFERRED MEDICAL INC",
+   "ST": "NM",
+   "PAID": 3735.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "GA",
+   "EXCL": "1999-01-20",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1659942621",
+   "ORG": "METRO PHARMACY INC",
+   "ST": "CA",
+   "PAID": 3633.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "MI",
+   "EXCL": "1994-02-07",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1144457102",
+   "ORG": "ASSOCIATED PODIATRISTS, PC",
+   "ST": "MI",
+   "PAID": 2389.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "MA",
+   "EXCL": "1991-05-02",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1942254024",
+   "ORG": "FUTURE PHARMACY INC.",
+   "ST": "NY",
+   "PAID": 1698.0,
+   "LEIE_NPI": "1528216520",
+   "LEIE_ST": "PA",
+   "EXCL": "2023-07-28",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1609347970",
+   "ORG": "DURAMED INC",
+   "ST": "LA",
+   "PAID": 1516.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "PA",
+   "EXCL": "1993-03-04",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1609347970",
+   "ORG": "DURAMED INC",
+   "ST": "LA",
+   "PAID": 1516.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "FL",
+   "EXCL": "2000-05-19",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1609347970",
+   "ORG": "DURAMED INC",
+   "ST": "LA",
+   "PAID": 1516.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "FL",
+   "EXCL": "2001-05-20",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1942267497",
+   "ORG": "MODERN PHARMACY INC",
+   "ST": "VA",
+   "PAID": 873.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "MI",
+   "EXCL": "1992-05-04",
+   "HOW": "name only"
+  },
+  {
+   "NPI": "1437214855",
+   "ORG": "J & S PHARMACY INC",
+   "ST": "TN",
+   "PAID": 206.0,
+   "LEIE_NPI": null,
+   "LEIE_ST": "NJ",
+   "EXCL": "1998-12-20",
+   "HOW": "name only"
+  }
+ ],
+ "top": [
+  {
+   "NPI": "1811518392",
+   "ORG": "Sunshine Senior Solutions, Llc",
+   "ST": "FL",
+   "PAID": 860348426.0,
+   "EXCLUDED": 1,
+   "RK": 1
+  },
+  {
+   "NPI": "1487343505",
+   "ORG": "Almaz Med Supply Inc",
+   "ST": "NY",
+   "PAID": 473334253.0,
+   "EXCLUDED": 0,
+   "RK": 2
+  },
+  {
+   "NPI": "1245259282",
+   "ORG": "North Coast Medical Supply, Llc",
+   "ST": "CA",
+   "PAID": 300793013.0,
+   "EXCLUDED": 0,
+   "RK": 3
+  },
+  {
+   "NPI": "1417915653",
+   "ORG": "Accredo Health Group Inc",
+   "ST": "PA",
+   "PAID": 152081581.0,
+   "EXCLUDED": 0,
+   "RK": 4
+  },
+  {
+   "NPI": "1700889227",
+   "ORG": "United States Medical Supply, Llc",
+   "ST": "FL",
+   "PAID": 138881036.0,
+   "EXCLUDED": 0,
+   "RK": 5
+  },
+  {
+   "NPI": "1639160708",
+   "ORG": "180 Medical Inc",
+   "ST": "OK",
+   "PAID": 122374428.0,
+   "EXCLUDED": 0,
+   "RK": 6
+  },
+  {
+   "NPI": "1063414571",
+   "ORG": "Jl Webb Dme Llc",
+   "ST": "KY",
+   "PAID": 116094236.0,
+   "EXCLUDED": 1,
+   "RK": 7
+  },
+  {
+   "NPI": "1164535274",
+   "ORG": "Zoll Services Llc",
+   "ST": "PA",
+   "PAID": 113180465.0,
+   "EXCLUDED": 0,
+   "RK": 8
+  },
+  {
+   "NPI": "1588302186",
+   "ORG": "Absolute Medical Supplies Services Llc",
+   "ST": "PA",
+   "PAID": 109426829.0,
+   "EXCLUDED": 1,
+   "RK": 9
+  },
+  {
+   "NPI": "1609858729",
+   "ORG": "Rgh Enterprises, Llc",
+   "ST": "OH",
+   "PAID": 107574540.0,
+   "EXCLUDED": 0,
+   "RK": 10
+  },
+  {
+   "NPI": "1356716534",
+   "ORG": "Solara Medical Supplies, Llc",
+   "ST": "CA",
+   "PAID": 102274820.0,
+   "EXCLUDED": 0,
+   "RK": 11
+  },
+  {
+   "NPI": "1295827780",
+   "ORG": "Degc Enterprises (U.S.), Inc.",
+   "ST": "FL",
+   "PAID": 95012037.0,
+   "EXCLUDED": 0,
+   "RK": 12
+  }
+ ],
+ "codes": [
+  {
+   "HCPCS_CD": "A4239",
+   "D": "Supply allowance for non-adjunctive, non-implanted continuous glucose monitor (cgm), includes all supplies and accessories, 1 month supply = 1 unit of service",
+   "NPIS": 8486,
+   "PAID": 1428054271.0,
+   "PAID_EXCL": 112391033.0,
+   "BENES": 838850,
+   "BENES_EXCL": 102639
+  },
+  {
+   "HCPCS_CD": "A4353",
+   "D": "Intermittent urinary catheter, with insertion supplies",
+   "NPIS": 332,
+   "PAID": 1153543263.0,
+   "PAID_EXCL": 741368069.0,
+   "BENES": 245150,
+   "BENES_EXCL": 173215
+  },
+  {
+   "HCPCS_CD": "A6197",
+   "D": "Alginate or other fiber gelling dressing, wound cover, sterile, pad size more than 16 sq. in. but less than or equal to 48 sq. in., each dressing",
+   "NPIS": 174,
+   "PAID": 649233082.0,
+   "PAID_EXCL": 402309603.0,
+   "BENES": 119282,
+   "BENES_EXCL": 48379
+  },
+  {
+   "HCPCS_CD": "E1390",
+   "D": "Oxygen concentrator, single delivery port, capable of delivering 85 percent or greater oxygen concentration at the prescribed flow rate",
+   "NPIS": 4034,
+   "PAID": 473115841.0,
+   "PAID_EXCL": 0.0,
+   "BENES": 811531,
+   "BENES_EXCL": 0
+  },
+  {
+   "HCPCS_CD": "E0466",
+   "D": "Home ventilator, any type, used with non-invasive interface, (e.g., mask, chest shell)",
+   "NPIS": 2373,
+   "PAID": 449743466.0,
+   "PAID_EXCL": 0.0,
+   "BENES": 54495,
+   "BENES_EXCL": 0
+  },
+  {
+   "HCPCS_CD": "J1559",
+   "D": "Injection, immune globulin (hizentra), 100 mg",
+   "NPIS": 353,
+   "PAID": 250984864.0,
+   "PAID_EXCL": 0.0,
+   "BENES": 4637,
+   "BENES_EXCL": 0
+  },
+  {
+   "HCPCS_CD": "A4352",
+   "D": "Intermittent urinary catheter; coude (curved) tip, with or without coating (teflon, silicone, silicone elastomeric, or hydrophilic, etc.), each",
+   "NPIS": 569,
+   "PAID": 188687884.0,
+   "PAID_EXCL": 0.0,
+   "BENES": 35046,
+   "BENES_EXCL": 0
+  },
+  {
+   "HCPCS_CD": "A7030",
+   "D": "Full face mask used with positive airway pressure device, each",
+   "NPIS": 4036,
+   "PAID": 180314161.0,
+   "PAID_EXCL": 0.0,
+   "BENES": 899036,
+   "BENES_EXCL": 0
+  }
+ ],
+ "hit_codes": [
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "A6197",
+   "BENES": 48325,
+   "SRVCS": 23870176,
+   "PAID": 402206846.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "A4353",
+   "BENES": 42083,
+   "SRVCS": 45054960,
+   "PAID": 337007593.0
+  },
+  {
+   "NPI": "1588302186",
+   "HCPCS_CD": "A5057",
+   "BENES": 39215,
+   "SRVCS": 9679350,
+   "PAID": 98913588.0
+  },
+  {
+   "NPI": "1689457772",
+   "HCPCS_CD": "A4353",
+   "BENES": 66283,
+   "SRVCS": 13295720,
+   "PAID": 93596925.0
+  },
+  {
+   "NPI": "1528004108",
+   "HCPCS_CD": "A4353",
+   "BENES": 13878,
+   "SRVCS": 12006000,
+   "PAID": 87497980.0
+  },
+  {
+   "NPI": "1225009665",
+   "HCPCS_CD": "A4353",
+   "BENES": 19821,
+   "SRVCS": 11963500,
+   "PAID": 86420489.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "A4353",
+   "BENES": 9961,
+   "SRVCS": 9967200,
+   "PAID": 74527133.0
+  },
+  {
+   "NPI": "1578139473",
+   "HCPCS_CD": "A4353",
+   "BENES": 21189,
+   "SRVCS": 8468050,
+   "PAID": 62317950.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "A4239",
+   "BENES": 56967,
+   "SRVCS": 316034,
+   "PAID": 54692039.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "A4239",
+   "BENES": 30134,
+   "SRVCS": 176491,
+   "PAID": 41455430.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "L1852",
+   "BENES": 24562,
+   "SRVCS": 48914,
+   "PAID": 23552364.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "L3916",
+   "BENES": 24198,
+   "SRVCS": 34486,
+   "PAID": 15242870.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "L0651",
+   "BENES": 22590,
+   "SRVCS": 22590,
+   "PAID": 14445821.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "E2103",
+   "BENES": 53964,
+   "SRVCS": 53964,
+   "PAID": 12143049.0
+  },
+  {
+   "NPI": "1588302186",
+   "HCPCS_CD": "A4239",
+   "BENES": 4966,
+   "SRVCS": 38791,
+   "PAID": 9258269.0
+  },
+  {
+   "NPI": "1063294221",
+   "HCPCS_CD": "A4239",
+   "BENES": 10279,
+   "SRVCS": 30213,
+   "PAID": 6787288.0
+  },
+  {
+   "NPI": "1063294221",
+   "HCPCS_CD": "E2103",
+   "BENES": 9776,
+   "SRVCS": 9776,
+   "PAID": 2330209.0
+  },
+  {
+   "NPI": "1588302186",
+   "HCPCS_CD": "E2103",
+   "BENES": 4808,
+   "SRVCS": 4808,
+   "PAID": 1152214.0
+  },
+  {
+   "NPI": "1811518392",
+   "HCPCS_CD": "L0486",
+   "BENES": 660,
+   "SRVCS": 660,
+   "PAID": 1057844.0
+  },
+  {
+   "NPI": "1689457772",
+   "HCPCS_CD": "A4239",
+   "BENES": 293,
+   "SRVCS": 879,
+   "PAID": 198006.0
+  },
+  {
+   "NPI": "1588302186",
+   "HCPCS_CD": "A6197",
+   "BENES": 54,
+   "SRVCS": 5848,
+   "PAID": 102757.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "A5057",
+   "BENES": 50,
+   "SRVCS": 10000,
+   "PAID": 102435.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "A5131",
+   "BENES": 50,
+   "SRVCS": 294,
+   "PAID": 4985.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "A5512",
+   "BENES": 15,
+   "SRVCS": 90,
+   "PAID": 2445.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "A5500",
+   "BENES": 15,
+   "SRVCS": 30,
+   "PAID": 1767.0
+  },
+  {
+   "NPI": "1063414571",
+   "HCPCS_CD": "E0570",
+   "BENES": null,
+   "SRVCS": 13,
+   "PAID": 40.0
+  }
+ ],
+ "cath": [
+  {
+   "GRP": "other",
+   "SUPPLIERS": 326,
+   "MED_PER_BENE": 1065,
+   "BENES": 71935,
+   "PAID": 412175194.0
+  },
+  {
+   "GRP": "excluded",
+   "SUPPLIERS": 6,
+   "MED_PER_BENE": 734,
+   "BENES": 173215,
+   "PAID": 741368069.0
+  }
+ ],
+ "yrs": [
+  {
+   "Y": 2016,
+   "NPIS": 566
+  },
+  {
+   "Y": 2017,
+   "NPIS": 580
+  },
+  {
+   "Y": 2018,
+   "NPIS": 429
+  },
+  {
+   "Y": 2019,
+   "NPIS": 420
+  },
+  {
+   "Y": 2020,
+   "NPIS": 475
+  },
+  {
+   "Y": 2021,
+   "NPIS": 345
+  },
+  {
+   "Y": 2022,
+   "NPIS": 608
+  },
+  {
+   "Y": 2023,
+   "NPIS": 629
+  },
+  {
+   "Y": 2024,
+   "NPIS": 873
+  },
+  {
+   "Y": 2025,
+   "NPIS": 700
+  },
+  {
+   "Y": 2026,
+   "NPIS": 542
+  }
+ ],
+ "pre": {
+  "NPIS": 8129,
+  "ORGS": 520,
+  "DME_ORGS": 33
+ },
+ "aa": {
+  "N": 172,
+  "Y2026": 25,
+  "JUNE_WINDOW": 24,
+  "JUNE_DME": 24
+ },
+ "unb": [
+  {
+   "NPI": "1487343505",
+   "ORG": "Almaz Med Supply Inc",
+   "ST": "NY",
+   "BENES": 15867,
+   "SRVCS": 27576720,
+   "PAID": 206424288.0
+  },
+  {
+   "NPI": "1790533503",
+   "ORG": "Nd Medical Solutions Llc",
+   "ST": "PA",
+   "BENES": 41606,
+   "SRVCS": 12487860,
+   "PAID": 88034901.0
+  },
+  {
+   "NPI": "1871564211",
+   "ORG": "Express Healthcare Inc",
+   "ST": "AL",
+   "BENES": 9940,
+   "SRVCS": 10059300,
+   "PAID": 75175158.0
+  }
+ ]
+}

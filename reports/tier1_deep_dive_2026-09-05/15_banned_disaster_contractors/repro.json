@@ -1,0 +1,47 @@
+[
+ {
+  "V": "A uei, entities, all disaster, sum oblig",
+  "COS": 56,
+  "DOLLARS": "41062973.47"
+ },
+ {
+  "V": "B uei, entities, FEMA only, sum oblig",
+  "COS": 26,
+  "DOLLARS": "22115045.80"
+ },
+ {
+  "V": "C uei, entities, all disaster, sum ctv (per transaction)",
+  "COS": 56,
+  "DOLLARS": "456535656.99"
+ },
+ {
+  "V": "D uei, entities, all disaster, ctv once per award",
+  "COS": 56,
+  "DOLLARS": "223010573.13"
+ },
+ {
+  "V": "E uei, entities, all disaster, tdo once per award",
+  "COS": 56,
+  "DOLLARS": "222440935.22"
+ },
+ {
+  "V": "F uei, ALL excl rows incl individuals, all disaster, sum oblig",
+  "COS": 56,
+  "DOLLARS": "41062973.47"
+ },
+ {
+  "V": "G uei, entities, FEMA only, ctv once per award",
+  "COS": 26,
+  "DOLLARS": "169247002.55"
+ },
+ {
+  "V": "H name, entities, all disaster, sum oblig",
+  "COS": 36,
+  "DOLLARS": "29885519.65"
+ },
+ {
+  "V": "I uei, entities, FEMA only, tdo once per award",
+  "COS": 26,
+  "DOLLARS": "168975002.55"
+ }
+]

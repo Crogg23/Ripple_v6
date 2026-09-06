@@ -1,0 +1,109 @@
+{
+ "q13_tables": [
+  {
+   "TABLE_SCHEMA": "HEALTH",
+   "TABLE_NAME": "HEALTH__FED_HHS_OIG_LEIE",
+   "ROW_COUNT": 83747
+  },
+  {
+   "TABLE_SCHEMA": "PROCUREMENT",
+   "TABLE_NAME": "PROCUREMENT__FED_SAM_EXCLUSIONS",
+   "ROW_COUNT": 168328
+  },
+  {
+   "TABLE_SCHEMA": "TIMELINE",
+   "TABLE_NAME": "HEALTH__FED_HHS_OIG_LEIE",
+   "ROW_COUNT": null
+  },
+  {
+   "TABLE_SCHEMA": "HEALTH",
+   "TABLE_NAME": "HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER",
+   "ROW_COUNT": 1296739
+  },
+  {
+   "TABLE_SCHEMA": "HEALTH",
+   "TABLE_NAME": "HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI",
+   "ROW_COUNT": 9781673
+  },
+  {
+   "TABLE_SCHEMA": "TIMELINE",
+   "TABLE_NAME": "PROCUREMENT__FED_SAM_EXCLUSIONS",
+   "ROW_COUNT": null
+  }
+ ],
+ "q14_second_npi_tight": [
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "ST": "GA",
+   "LIVE_SAME_NAME_STATE": 1,
+   "HITS": "1417039892:1223G0001X"
+  },
+  {
+   "DEAD_NPI": "1033558069",
+   "LN": "GELLER",
+   "ST": "CA",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1083806863",
+   "LN": "REDDY",
+   "ST": "AZ",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1104812593",
+   "LN": "SPETZLER",
+   "ST": "AZ",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "RUIZ",
+   "ST": "FL",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1316965916",
+   "LN": "HILL",
+   "ST": "MS",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "ST": "NJ",
+   "LIVE_SAME_NAME_STATE": 3,
+   "HITS": "1780740860:207RG0100X 1790772432:207V00000X 1902938392:1223P0300X"
+  },
+  {
+   "DEAD_NPI": "1700830361",
+   "LN": "FENLIN",
+   "ST": "PA",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1760509848",
+   "LN": "DURAN",
+   "ST": "MT",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  },
+  {
+   "DEAD_NPI": "1962558551",
+   "LN": "MAST",
+   "ST": "NV",
+   "LIVE_SAME_NAME_STATE": 0,
+   "HITS": ""
+  }
+ ],
+ "q15_leie": [],
+ "q16_sam": [],
+ "q17_partb": []
+}

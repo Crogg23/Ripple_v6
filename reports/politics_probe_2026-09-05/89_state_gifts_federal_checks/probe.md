@@ -1,0 +1,8 @@
+# 89 State dinners, federal checks
+- Checked: POLITICS__TX_LOBBY_FOOD_BEVERAGE (14,452 rows, 861 filers, 2004-11 to 2026-06) and _GIFTS (4,084, 481 filers); 1,008 distinct "Last, First" filer strings after stripping "(Mr.)"; matched to FINANCE__FED_FEC_INDIV_CONTRIBUTIONS DONOR_NAME with STATE='TX'.
+- First number: 9 of 1,008 Texas lobby filers appear as federal donors whose FEC occupation says lobbyist: 14 gifts, $89,080 (James Frinzi $80,400 across two spellings, William J. Miller $3,300, Harrison Hiner $1,500). Eye check top 8: 8 of 8 real Austin lobbyists, 0 false positives, one person doubled (Kralj, Nick / Nicholas).
+- Wider net, exact "LAST, FIRST" equality and no occupation filter: 232 filers, 9,601 gifts, $4.04M. Eye check top 5 distinct names: Hiner and McDaniel confirmed lobbyists, Richard Weekley (real estate developer, $1.9M) plausible but occupation disagrees, Demetris Sampson "not employed" unverified; call it 2-3 of 5, roughly half.
+- A hit would be the same lobbyist feeding a Texas legislator and writing federal checks to that party's delegation. The delegation/party leg was not run; this is the person-overlap only.
+- Traps hit: Texas amounts are range codes (LT100 5,498 rows, LT150 2,411; ACTIVITYEXACTAMOUNT filled on 29%), so gift dollars are a floor. GIFTS has no ACTIVITYDATE, only PERIODENDDT. CA_LOBBY_COVER RPT_DATE runs from year 4 to year 5005 and FIRM_NAME is a firm not a person; California leg not usable as filed.
+STATUS: dim
+HEADLINE: 9 Texas lobby filers are also self-described lobbyist donors in FEC, $89,080; loosen to exact name and it's 232 filers / $4.04M with about half surviving an eye check.

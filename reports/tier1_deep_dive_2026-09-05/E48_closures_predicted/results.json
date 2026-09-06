@@ -1,0 +1,761 @@
+{
+ "A_ingest_dates": [
+  {
+   "MN": 1781673011749547,
+   "MX": 1781673011749547,
+   "FYE_MIN": "2022-11-30",
+   "FYE_MAX": "2024-09-30"
+  }
+ ],
+ "A_pos_latest_term": [
+  {
+   "LATEST_TERM": "2026-03-19",
+   "LATEST_CHOW": "2026-01-01"
+  }
+ ],
+ "A_nan_rows": [
+  {
+   "NI_NAN": 89,
+   "TC_NAN": 82,
+   "NPR_NAN": 237,
+   "FB_NAN": 309,
+   "NMR_NAN": 245
+  }
+ ],
+ "A_nmr_definition": [
+  {
+   "N": 5858,
+   "EQ_TI": 1,
+   "EQ_NPR": 152,
+   "EQ_TC": 88,
+   "EQ_TPR": 5858
+  }
+ ],
+ "A_reports_per_ccn": [
+  {
+   "CNT": 0,
+   "HOSPITALS": 228
+  },
+  {
+   "CNT": 1,
+   "HOSPITALS": 5812
+  }
+ ],
+ "B_rebuild_68": [
+  {
+   "GRP": "active",
+   "N": 5579,
+   "NEG": 1889,
+   "PCT_NEG": "33.9",
+   "MED_M_COST": 5.32,
+   "MED_M_NPR": 5.12
+  },
+  {
+   "GRP": "term_2023",
+   "N": 7,
+   "NEG": 4,
+   "PCT_NEG": "57.1",
+   "MED_M_COST": -9.13,
+   "MED_M_NPR": -12.49
+  },
+  {
+   "GRP": "term_2024_26",
+   "N": 141,
+   "NEG": 95,
+   "PCT_NEG": "67.4",
+   "MED_M_COST": -8.05,
+   "MED_M_NPR": -8.29
+  }
+ ],
+ "B_by_term_code": [
+  {
+   "TGRP": "01 voluntary merger/closure",
+   "N": 79,
+   "NEG": 54,
+   "PCT_NEG": "68.4",
+   "MED_M_COST": -8.45,
+   "HAS_SUCCESSOR_CCN": 18,
+   "NEG_EQUITY": 34,
+   "PCT_NEG_EQUITY": "43.0"
+  },
+  {
+   "TGRP": "05 involuntary",
+   "N": 4,
+   "NEG": 1,
+   "PCT_NEG": "25.0",
+   "MED_M_COST": 5.11,
+   "HAS_SUCCESSOR_CCN": 0,
+   "NEG_EQUITY": 1,
+   "PCT_NEG_EQUITY": "25.0"
+  },
+  {
+   "TGRP": "07 status change",
+   "N": 58,
+   "NEG": 40,
+   "PCT_NEG": "69.0",
+   "MED_M_COST": -8.26,
+   "HAS_SUCCESSOR_CCN": 50,
+   "NEG_EQUITY": 10,
+   "PCT_NEG_EQUITY": "17.2"
+  },
+  {
+   "TGRP": "active",
+   "N": 5579,
+   "NEG": 1889,
+   "PCT_NEG": "33.9",
+   "MED_M_COST": 5.32,
+   "HAS_SUCCESSOR_CCN": 900,
+   "NEG_EQUITY": 728,
+   "PCT_NEG_EQUITY": "13.0"
+  }
+ ],
+ "B_by_successor": [
+  {
+   "SUCC": "no successor CCN",
+   "TGRP": "01 voluntary merger/closure",
+   "N": 61,
+   "NEG": 42,
+   "PCT_NEG": "68.9",
+   "MED_M_COST": -8.45
+  },
+  {
+   "SUCC": "no successor CCN",
+   "TGRP": "05 involuntary",
+   "N": 4,
+   "NEG": 1,
+   "PCT_NEG": "25.0",
+   "MED_M_COST": 5.11
+  },
+  {
+   "SUCC": "no successor CCN",
+   "TGRP": "07 status change",
+   "N": 8,
+   "NEG": 5,
+   "PCT_NEG": "62.5",
+   "MED_M_COST": -5.19
+  },
+  {
+   "SUCC": "successor CCN listed",
+   "TGRP": "01 voluntary merger/closure",
+   "N": 18,
+   "NEG": 12,
+   "PCT_NEG": "66.7",
+   "MED_M_COST": -8.39
+  },
+  {
+   "SUCC": "successor CCN listed",
+   "TGRP": "07 status change",
+   "N": 50,
+   "NEG": 35,
+   "PCT_NEG": "70.0",
+   "MED_M_COST": -8.88
+  }
+ ],
+ "B_pos_all_term24": [
+  {
+   "PGM_TRMNTN_CD": "01",
+   "N": 112,
+   "XREF": 25
+  },
+  {
+   "PGM_TRMNTN_CD": "03",
+   "N": 1,
+   "XREF": 0
+  },
+  {
+   "PGM_TRMNTN_CD": "04",
+   "N": 1,
+   "XREF": 0
+  },
+  {
+   "PGM_TRMNTN_CD": "05",
+   "N": 6,
+   "XREF": 0
+  },
+  {
+   "PGM_TRMNTN_CD": "07",
+   "N": 72,
+   "XREF": 61
+  }
+ ],
+ "C_margin_bins": [
+  {
+   "BIN": "a <-30%",
+   "ACTIVE": 278,
+   "TERM": 23,
+   "TERM_CLOSURE": 15,
+   "TERM_STATUS": 8
+  },
+  {
+   "BIN": "b -30..-20",
+   "ACTIVE": 124,
+   "TERM": 14,
+   "TERM_CLOSURE": 9,
+   "TERM_STATUS": 5
+  },
+  {
+   "BIN": "c -20..-10",
+   "ACTIVE": 404,
+   "TERM": 22,
+   "TERM_CLOSURE": 13,
+   "TERM_STATUS": 9
+  },
+  {
+   "BIN": "d -10..-5",
+   "ACTIVE": 443,
+   "TERM": 20,
+   "TERM_CLOSURE": 7,
+   "TERM_STATUS": 13
+  },
+  {
+   "BIN": "e -5..0",
+   "ACTIVE": 640,
+   "TERM": 16,
+   "TERM_CLOSURE": 11,
+   "TERM_STATUS": 5
+  },
+  {
+   "BIN": "f 0..5",
+   "ACTIVE": 855,
+   "TERM": 14,
+   "TERM_CLOSURE": 11,
+   "TERM_STATUS": 3
+  },
+  {
+   "BIN": "g 5..10",
+   "ACTIVE": 708,
+   "TERM": 11,
+   "TERM_CLOSURE": 4,
+   "TERM_STATUS": 7
+  },
+  {
+   "BIN": "h 10..20",
+   "ACTIVE": 982,
+   "TERM": 5,
+   "TERM_CLOSURE": 1,
+   "TERM_STATUS": 4
+  },
+  {
+   "BIN": "i >20%",
+   "ACTIVE": 1145,
+   "TERM": 16,
+   "TERM_CLOSURE": 12,
+   "TERM_STATUS": 4
+  }
+ ],
+ "C_percentiles": [
+  {
+   "GRP": "active",
+   "N": 5579,
+   "P10": -14.6,
+   "P25": -3.6,
+   "P50": 5.3,
+   "P75": 17.0,
+   "P90": 31.1
+  },
+  {
+   "GRP": "term_2024_26",
+   "N": 141,
+   "P10": -33.6,
+   "P25": -20.7,
+   "P50": -8.1,
+   "P75": 3.3,
+   "P90": 21.1
+  }
+ ],
+ "C_percentiles_closure_only": [
+  {
+   "TGRP": "01 voluntary merger/closure",
+   "N": 79,
+   "P10": -33.8,
+   "P25": -24.3,
+   "P50": -8.4,
+   "P75": 2.1,
+   "P90": 33.9
+  },
+  {
+   "TGRP": "05 involuntary",
+   "N": 4,
+   "P10": -0.1,
+   "P25": 2.8,
+   "P50": 5.1,
+   "P75": 13.5,
+   "P90": 27.2
+  },
+  {
+   "TGRP": "07 status change",
+   "N": 58,
+   "P10": -33.6,
+   "P25": -18.8,
+   "P50": -8.3,
+   "P75": 4.7,
+   "P90": 13.0
+  }
+ ],
+ "D_threshold_by_bin": [
+  {
+   "BIN": "a <-30%",
+   "N": 301,
+   "TERM": 23,
+   "CLOSURE": 15,
+   "PCT_TERM": "7.64",
+   "PCT_CLOSURE": "4.98"
+  },
+  {
+   "BIN": "b -30..-20",
+   "N": 138,
+   "TERM": 14,
+   "CLOSURE": 9,
+   "PCT_TERM": "10.14",
+   "PCT_CLOSURE": "6.52"
+  },
+  {
+   "BIN": "c -20..-10",
+   "N": 426,
+   "TERM": 22,
+   "CLOSURE": 13,
+   "PCT_TERM": "5.16",
+   "PCT_CLOSURE": "3.05"
+  },
+  {
+   "BIN": "d -10..-5",
+   "N": 463,
+   "TERM": 20,
+   "CLOSURE": 7,
+   "PCT_TERM": "4.32",
+   "PCT_CLOSURE": "1.51"
+  },
+  {
+   "BIN": "e -5..0",
+   "N": 656,
+   "TERM": 16,
+   "CLOSURE": 11,
+   "PCT_TERM": "2.44",
+   "PCT_CLOSURE": "1.68"
+  },
+  {
+   "BIN": "f 0..5",
+   "N": 869,
+   "TERM": 14,
+   "CLOSURE": 11,
+   "PCT_TERM": "1.61",
+   "PCT_CLOSURE": "1.27"
+  },
+  {
+   "BIN": "g 5..10",
+   "N": 719,
+   "TERM": 11,
+   "CLOSURE": 4,
+   "PCT_TERM": "1.53",
+   "PCT_CLOSURE": "0.56"
+  },
+  {
+   "BIN": "h 10..20",
+   "N": 987,
+   "TERM": 5,
+   "CLOSURE": 1,
+   "PCT_TERM": "0.51",
+   "PCT_CLOSURE": "0.10"
+  },
+  {
+   "BIN": "i >20%",
+   "N": 1161,
+   "TERM": 16,
+   "CLOSURE": 12,
+   "PCT_TERM": "1.38",
+   "PCT_CLOSURE": "1.03"
+  }
+ ],
+ "D_threshold_cum": [
+  {
+   "THR": "0.00",
+   "N": 1984,
+   "TERM": 95,
+   "CLOSURE": 55,
+   "PCT_TERM": "4.79",
+   "PCT_CLOSURE": "2.77"
+  },
+  {
+   "THR": "-0.05",
+   "N": 1328,
+   "TERM": 79,
+   "CLOSURE": 44,
+   "PCT_TERM": "5.95",
+   "PCT_CLOSURE": "3.31"
+  },
+  {
+   "THR": "-0.10",
+   "N": 865,
+   "TERM": 59,
+   "CLOSURE": 37,
+   "PCT_TERM": "6.82",
+   "PCT_CLOSURE": "4.28"
+  },
+  {
+   "THR": "-0.20",
+   "N": 439,
+   "TERM": 37,
+   "CLOSURE": 24,
+   "PCT_TERM": "8.43",
+   "PCT_CLOSURE": "5.47"
+  },
+  {
+   "THR": "-0.30",
+   "N": 301,
+   "TERM": 23,
+   "CLOSURE": 15,
+   "PCT_TERM": "7.64",
+   "PCT_CLOSURE": "4.98"
+  }
+ ],
+ "D_stacked_signals": [
+  {
+   "SIGNALS": 0,
+   "N": 1743,
+   "TERM": 19,
+   "CLOSURE": 14,
+   "PCT_TERM": "1.09",
+   "PCT_CLOSURE": "0.80"
+  },
+  {
+   "SIGNALS": 1,
+   "N": 1386,
+   "TERM": 16,
+   "CLOSURE": 5,
+   "PCT_TERM": "1.15",
+   "PCT_CLOSURE": "0.36"
+  },
+  {
+   "SIGNALS": 2,
+   "N": 1139,
+   "TERM": 43,
+   "CLOSURE": 19,
+   "PCT_TERM": "3.78",
+   "PCT_CLOSURE": "1.67"
+  },
+  {
+   "SIGNALS": 3,
+   "N": 491,
+   "TERM": 24,
+   "CLOSURE": 16,
+   "PCT_TERM": "4.89",
+   "PCT_CLOSURE": "3.26"
+  },
+  {
+   "SIGNALS": 4,
+   "N": 341,
+   "TERM": 29,
+   "CLOSURE": 22,
+   "PCT_TERM": "8.50",
+   "PCT_CLOSURE": "6.45"
+  }
+ ],
+ "D_signal_fill": [
+  {
+   "GRP": "active",
+   "N": 5579,
+   "OPI": 5577,
+   "FB": 5366,
+   "CR": 4976,
+   "NEG_EQUITY": 728,
+   "OP_LOSS": 3163,
+   "CR_LT1": 1042
+  },
+  {
+   "GRP": "term_2024_26",
+   "N": 141,
+   "OPI": 141,
+   "FB": 138,
+   "CR": 131,
+   "NEG_EQUITY": 45,
+   "OP_LOSS": 116,
+   "CR_LT1": 49
+  }
+ ],
+ "D_lag_buckets": [
+  {
+   "LAG": "a 0-90d",
+   "N": 11,
+   "NEG": 9,
+   "PCT_NEG": "81.8"
+  },
+  {
+   "LAG": "b 91-365d",
+   "N": 58,
+   "NEG": 40,
+   "PCT_NEG": "69.0"
+  },
+  {
+   "LAG": "c 366-730d",
+   "N": 60,
+   "NEG": 37,
+   "PCT_NEG": "61.7"
+  },
+  {
+   "LAG": "d >730d",
+   "N": 12,
+   "NEG": 9,
+   "PCT_NEG": "75.0"
+  }
+ ],
+ "D_worst_closures": [
+  {
+   "CCN": "010174",
+   "NM": "THOMASVILLE REGIONAL MEDICAL CENTER",
+   "ST": "AL",
+   "FTYPE": "STH",
+   "TCD": "01",
+   "TDT": "2024-09-21",
+   "FYE": "2023-12-31",
+   "M_COST": -49.9,
+   "M_NPR": -118.3,
+   "NI": -7484351.0,
+   "NPR": 6325969.0,
+   "FUND_BAL": -16804192.0
+  },
+  {
+   "CCN": "064023",
+   "NM": "COLORADO WEST PSYCHIATRIC HOSPITAL",
+   "ST": "CO",
+   "FTYPE": "PH",
+   "TCD": "01",
+   "TDT": "2025-03-10",
+   "FYE": "2024-06-30",
+   "M_COST": -48.1,
+   "M_NPR": -73.4,
+   "NI": -11373166.0,
+   "NPR": 15496179.0,
+   "FUND_BAL": -15226416.0
+  },
+  {
+   "CCN": "360247",
+   "NM": "PARKSIDE BEHAVIORAL HEALTHCARE ACQUI",
+   "ST": "OH",
+   "FTYPE": "STH",
+   "TCD": "01",
+   "TDT": "2024-04-01",
+   "FYE": "2023-12-31",
+   "M_COST": -46.3,
+   "M_NPR": -88.3,
+   "NI": -993937.0,
+   "NPR": 1125269.0,
+   "FUND_BAL": -4158696.0
+  },
+  {
+   "CCN": "454029",
+   "NM": "ASCENSION SETON SHOAL CREEK",
+   "ST": "TX",
+   "FTYPE": "PH",
+   "TCD": "01",
+   "TDT": "2025-06-01",
+   "FYE": "2024-06-30",
+   "M_COST": -45.9,
+   "M_NPR": -88.1,
+   "NI": -9132536.0,
+   "NPR": 10365978.0,
+   "FUND_BAL": 3161116.0
+  },
+  {
+   "CCN": "251306",
+   "NM": "PERRY COUNTY GENERAL HOSPITAL",
+   "ST": "MS",
+   "FTYPE": "CAH",
+   "TCD": "07",
+   "TDT": "2024-03-31",
+   "FYE": "2023-09-30",
+   "M_COST": -40.3,
+   "M_NPR": -65.5,
+   "NI": -2720641.0,
+   "NPR": 4153303.0,
+   "FUND_BAL": -3566443.0
+  },
+  {
+   "CCN": "670010",
+   "NM": "MAYHILL HOSPITAL",
+   "ST": "TX",
+   "FTYPE": "STH",
+   "TCD": "01",
+   "TDT": "2025-09-01",
+   "FYE": "2023-12-31",
+   "M_COST": -37.6,
+   "M_NPR": -54.2,
+   "NI": -5542918.0,
+   "NPR": 10229901.0,
+   "FUND_BAL": -6726782.0
+  },
+  {
+   "CCN": "064029",
+   "NM": "JOHNSTOWN HEIGHTS BEHAVIORAL HEALTH",
+   "ST": "CO",
+   "FTYPE": "PH",
+   "TCD": "01",
+   "TDT": "2025-03-01",
+   "FYE": "2023-12-31",
+   "M_COST": -36.0,
+   "M_NPR": -60.5,
+   "NI": -6671195.0,
+   "NPR": 11032453.0,
+   "FUND_BAL": -9151419.0
+  },
+  {
+   "CCN": "170110",
+   "NM": "BOB WILSON MEMORIAL HOSPITAL",
+   "ST": "KS",
+   "FTYPE": "STH",
+   "TCD": "07",
+   "TDT": "2024-06-24",
+   "FYE": "2024-06-24",
+   "M_COST": -35.6,
+   "M_NPR": -58.6,
+   "NI": -4601415.0,
+   "NPR": 7856425.0,
+   "FUND_BAL": -3922526.0
+  },
+  {
+   "CCN": "400128",
+   "NM": "HOSPITAL METRO HATO REY  INC.",
+   "ST": "PR",
+   "FTYPE": "STH",
+   "TCD": "01",
+   "TDT": "2025-01-31",
+   "FYE": "2023-12-31",
+   "M_COST": -34.7,
+   "M_NPR": -31.0,
+   "NI": -9170376.0,
+   "NPR": 29571954.0,
+   "FUND_BAL": 2983121.0
+  },
+  {
+   "CCN": "100048",
+   "NM": "JAY HOSPITAL",
+   "ST": "FL",
+   "FTYPE": "STH",
+   "TCD": "07",
+   "TDT": "2024-02-20",
+   "FYE": "2023-09-30",
+   "M_COST": -34.7,
+   "M_NPR": -45.3,
+   "NI": -5096652.0,
+   "NPR": 11242654.0,
+   "FUND_BAL": 1902632.0
+  },
+  {
+   "CCN": "330166",
+   "NM": "WESTFIELD MEMORIAL HOSPITAL",
+   "ST": "NY",
+   "FTYPE": "STH",
+   "TCD": "07",
+   "TDT": "2025-09-17",
+   "FYE": "2023-12-31",
+   "M_COST": -34.3,
+   "M_NPR": -57.5,
+   "NI": -4486190.0,
+   "NPR": 7795403.0,
+   "FUND_BAL": 12676698.0
+  },
+  {
+   "CCN": "142006",
+   "NM": "KINDRED HOSPITAL SYCAMORE",
+   "ST": "IL",
+   "FTYPE": "LTCH",
+   "TCD": "01",
+   "TDT": "2025-03-19",
+   "FYE": "2024-08-31",
+   "M_COST": -33.6,
+   "M_NPR": -41.4,
+   "NI": -6406857.0,
+   "NPR": 15493349.0,
+   "FUND_BAL": -20244593.0
+  }
+ ],
+ "D_term_no_report": [
+  {
+   "PGM_TRMNTN_CD": "01",
+   "N": 112,
+   "NO_REPORT_AT_ALL": 7,
+   "SHORT_REPORT_ONLY": 24
+  },
+  {
+   "PGM_TRMNTN_CD": "03",
+   "N": 1,
+   "NO_REPORT_AT_ALL": 0,
+   "SHORT_REPORT_ONLY": 0
+  },
+  {
+   "PGM_TRMNTN_CD": "04",
+   "N": 1,
+   "NO_REPORT_AT_ALL": 0,
+   "SHORT_REPORT_ONLY": 1
+  },
+  {
+   "PGM_TRMNTN_CD": "05",
+   "N": 6,
+   "NO_REPORT_AT_ALL": 1,
+   "SHORT_REPORT_ONLY": 1
+  },
+  {
+   "PGM_TRMNTN_CD": "07",
+   "N": 72,
+   "NO_REPORT_AT_ALL": 8,
+   "SHORT_REPORT_ONLY": 6
+  }
+ ],
+ "D_by_ftype": [
+  {
+   "FTYPE": "STH",
+   "ACTIVE": 2992,
+   "ACTIVE_NEG": 989,
+   "TERM": 84,
+   "TERM_NEG": 54
+  },
+  {
+   "FTYPE": "CAH",
+   "ACTIVE": 1314,
+   "ACTIVE_NEG": 419,
+   "TERM": 16,
+   "TERM_NEG": 11
+  },
+  {
+   "FTYPE": "PH",
+   "ACTIVE": 556,
+   "ACTIVE_NEG": 249,
+   "TERM": 15,
+   "TERM_NEG": 9
+  },
+  {
+   "FTYPE": "RH",
+   "ACTIVE": 343,
+   "ACTIVE_NEG": 64,
+   "TERM": 3,
+   "TERM_NEG": 1
+  },
+  {
+   "FTYPE": "LTCH",
+   "ACTIVE": 295,
+   "ACTIVE_NEG": 154,
+   "TERM": 22,
+   "TERM_NEG": 19
+  },
+  {
+   "FTYPE": "CH",
+   "ACTIVE": 64,
+   "ACTIVE_NEG": 11,
+   "TERM": 0,
+   "TERM_NEG": 0
+  },
+  {
+   "FTYPE": "ORD",
+   "ACTIVE": 8,
+   "ACTIVE_NEG": 0,
+   "TERM": 0,
+   "TERM_NEG": 0
+  },
+  {
+   "FTYPE": "RNMHC",
+   "ACTIVE": 7,
+   "ACTIVE_NEG": 3,
+   "TERM": 1,
+   "TERM_NEG": 1
+  }
+ ]
+}

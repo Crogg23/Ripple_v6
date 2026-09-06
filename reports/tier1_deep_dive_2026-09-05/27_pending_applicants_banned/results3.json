@@ -1,0 +1,185 @@
+{
+ "nppes_cols2": [
+  {
+   "COLUMN_NAME": "ENTITY_TYPE_CODE"
+  },
+  {
+   "COLUMN_NAME": "PROVIDER_CREDENTIAL_TEXT"
+  },
+  {
+   "COLUMN_NAME": "PROVIDER_OTHER_CREDENTIAL_TEXT"
+  },
+  {
+   "COLUMN_NAME": "NPI_DEACTIVATION_REASON_CODE"
+  },
+  {
+   "COLUMN_NAME": "NPI_DEACTIVATION_DATE"
+  },
+  {
+   "COLUMN_NAME": "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1"
+  },
+  {
+   "COLUMN_NAME": "AUTHORIZED_OFFICIAL_CREDENTIAL_TEXT"
+  }
+ ],
+ "pending_state": [
+  {
+   "ST": "FL",
+   "N": 1634,
+   "PCT": "12.3"
+  },
+  {
+   "ST": "CA",
+   "N": 1167,
+   "PCT": "8.8"
+  },
+  {
+   "ST": "TX",
+   "N": 940,
+   "PCT": "7.1"
+  },
+  {
+   "ST": "NY",
+   "N": 709,
+   "PCT": "5.3"
+  },
+  {
+   "ST": "PA",
+   "N": 588,
+   "PCT": "4.4"
+  },
+  {
+   "ST": "GA",
+   "N": 550,
+   "PCT": "4.1"
+  },
+  {
+   "ST": "OH",
+   "N": 517,
+   "PCT": "3.9"
+  },
+  {
+   "ST": "NC",
+   "N": 441,
+   "PCT": "3.3"
+  },
+  {
+   "ST": "IL",
+   "N": 402,
+   "PCT": "3.0"
+  },
+  {
+   "ST": "TN",
+   "N": 352,
+   "PCT": "2.6"
+  },
+  {
+   "ST": "NJ",
+   "N": 342,
+   "PCT": "2.6"
+  },
+  {
+   "ST": "VA",
+   "N": 335,
+   "PCT": "2.5"
+  }
+ ],
+ "pending_nppes_cov": [
+  {
+   "N_PENDING": 14103,
+   "N_IN_NPPES": 13290
+  }
+ ],
+ "hits_nppes": [
+  {
+   "NPI": "1083786099",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "SANCHEZ",
+   "PROVIDER_FIRST_NAME": "INGRID",
+   "PROVIDER_CREDENTIAL_TEXT": "LCSW",
+   "ST": "NV",
+   "TAX": "1041C0700X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1164538013",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "LEWIS",
+   "PROVIDER_FIRST_NAME": "EUGENE",
+   "PROVIDER_CREDENTIAL_TEXT": "CRNP",
+   "ST": "PA",
+   "TAX": "363LA2100X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1225139496",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "LOUISVILLE",
+   "PROVIDER_FIRST_NAME": "TOMMY",
+   "PROVIDER_CREDENTIAL_TEXT": "M.D.",
+   "ST": "FL",
+   "TAX": "174400000X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1336103548",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "RODRIGUEZ",
+   "PROVIDER_FIRST_NAME": "ENRIQUE",
+   "PROVIDER_CREDENTIAL_TEXT": "DC",
+   "ST": "FL",
+   "TAX": "111N00000X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1366450280",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_FIRST_NAME": "",
+   "PROVIDER_CREDENTIAL_TEXT": "",
+   "ST": "",
+   "TAX": "",
+   "NPI_DEACTIVATION_DATE": "2015-08-31",
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1386606325",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "ABRAHAM",
+   "PROVIDER_FIRST_NAME": "GERALD",
+   "PROVIDER_CREDENTIAL_TEXT": "MD",
+   "ST": "FL",
+   "TAX": "208VP0000X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1639294796",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "SCHEER",
+   "PROVIDER_FIRST_NAME": "MICHAEL",
+   "PROVIDER_CREDENTIAL_TEXT": "D.O",
+   "ST": "FL",
+   "TAX": "207R00000X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1689740714",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "SALAZAR-VUST",
+   "PROVIDER_FIRST_NAME": "CLARA",
+   "PROVIDER_CREDENTIAL_TEXT": "PA-C",
+   "ST": "FL",
+   "TAX": "363AM0700X",
+   "NPI_DEACTIVATION_DATE": null,
+   "NPI_REACTIVATION_DATE": null
+  },
+  {
+   "NPI": "1861424954",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_FIRST_NAME": "",
+   "PROVIDER_CREDENTIAL_TEXT": "",
+   "ST": "",
+   "TAX": "",
+   "NPI_DEACTIVATION_DATE": "2018-06-19",
+   "NPI_REACTIVATION_DATE": null
+  }
+ ]
+}

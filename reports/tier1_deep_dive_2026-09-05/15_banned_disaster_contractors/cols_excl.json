@@ -1,0 +1,90 @@
+[
+ {
+  "COLUMN_NAME": "SAM_NUMBER",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "UEI",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "CAGE_CODE",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "NPI",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "ENTITY_NAME",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "FIRST_NAME",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "LAST_NAME",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "CLASSIFICATION",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "EXCLUSION_TYPE",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "EXCLUSION_PROGRAM",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "EXCLUDING_AGENCY",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "ACTIVATION_DATE",
+  "DATA_TYPE": "DATE"
+ },
+ {
+  "COLUMN_NAME": "TERMINATION_DATE_RAW",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "TERMINATION_DATE",
+  "DATA_TYPE": "DATE"
+ },
+ {
+  "COLUMN_NAME": "RECORD_STATUS",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "CITY",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "STATE",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "ZIP",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "COUNTRY",
+  "DATA_TYPE": "TEXT"
+ },
+ {
+  "COLUMN_NAME": "IS_CURRENTLY_EXCLUDED",
+  "DATA_TYPE": "BOOLEAN"
+ },
+ {
+  "COLUMN_NAME": "IS_ENTITY_NOT_INDIVIDUAL",
+  "DATA_TYPE": "BOOLEAN"
+ },
+ {
+  "COLUMN_NAME": "_LOADED_AT",
+  "DATA_TYPE": "NUMBER"
+ }
+]

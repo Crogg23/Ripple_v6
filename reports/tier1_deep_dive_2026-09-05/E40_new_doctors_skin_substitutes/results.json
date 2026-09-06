@@ -1,0 +1,1245 @@
+{
+ "keys": [
+  {
+   "T": "prov",
+   "N": 1296739,
+   "D": 1296739,
+   "MN": 10,
+   "MX": 10
+  },
+  {
+   "T": "nppes",
+   "N": 9606683,
+   "D": 9606683,
+   "MN": 10,
+   "MX": 10
+  },
+  {
+   "T": "svc",
+   "N": 9781673,
+   "D": 1207473,
+   "MN": 10,
+   "MX": 10
+  }
+ ],
+ "nppes_type": [
+  {
+   "ENTITY_TYPE_CODE": "",
+   "N": 346179,
+   "MN": null,
+   "MX": null,
+   "NULL_DT": 346179
+  },
+  {
+   "ENTITY_TYPE_CODE": "1",
+   "N": 7323142,
+   "MN": "2005-05-23",
+   "MX": "2026-06-06",
+   "NULL_DT": 0
+  },
+  {
+   "ENTITY_TYPE_CODE": "2",
+   "N": 1937362,
+   "MN": "2005-05-23",
+   "MX": "2026-06-06",
+   "NULL_DT": 0
+  }
+ ],
+ "carbon": [
+  {
+   "F": "prov",
+   "Y": 2022,
+   "NPIS": 38385
+  },
+  {
+   "F": "prov",
+   "Y": 2023,
+   "NPIS": 35453
+  },
+  {
+   "F": "prov",
+   "Y": 2024,
+   "NPIS": 17317
+  },
+  {
+   "F": "svc",
+   "Y": 2022,
+   "NPIS": 34821
+  },
+  {
+   "F": "svc",
+   "Y": 2023,
+   "NPIS": 32058
+  },
+  {
+   "F": "svc",
+   "Y": 2024,
+   "NPIS": 14457
+  }
+ ],
+ "top1": [
+  {
+   "GRP": "new",
+   "NPIS": 354,
+   "ALLOWED": 1352392029.4899998,
+   "CUT": 1150545.03
+  },
+  {
+   "GRP": "veteran",
+   "NPIS": 11973,
+   "ALLOWED": 36911328296.86002,
+   "CUT": 1129568.12
+  }
+ ],
+ "top1_skin": [
+  {
+   "GRP": "new",
+   "NPIS_WITH_SKIN": 94,
+   "SKIN_ALLOWED": 443922366.7109869
+  },
+  {
+   "GRP": "veteran",
+   "NPIS_WITH_SKIN": 799,
+   "SKIN_ALLOWED": 4074873896.473403
+  }
+ ],
+ "all_new_skin": [
+  {
+   "NPIS": 114,
+   "SKIN_ALLOWED": 452122167.56107146,
+   "SQ_CM_UNITS": 302162.3,
+   "CODES": 24
+  }
+ ],
+ "all_skin": [
+  {
+   "GRP": "new",
+   "NPIS": 114,
+   "SKIN_ALLOWED": 452122167.56107146
+  },
+  {
+   "GRP": "veteran",
+   "NPIS": 1037,
+   "SKIN_ALLOWED": 4131085402.1633472
+  }
+ ],
+ "q4_low": [
+  {
+   "HI_LINES": 144,
+   "LO_LINES": 64,
+   "LO_DOLLARS": 37877.3200000657
+  }
+ ],
+ "codes": [
+  {
+   "HCPCS_CD": "Q4271",
+   "DESCR": "Complete ft, per square centimeter",
+   "NPIS": 18,
+   "ALLOWED": 121118547.5602999
+  },
+  {
+   "HCPCS_CD": "Q4205",
+   "DESCR": "Membrane graft or membrane wrap, per square centimeter",
+   "NPIS": 48,
+   "ALLOWED": 78027827.3300453
+  },
+  {
+   "HCPCS_CD": "Q4262",
+   "DESCR": "Dual layer impax membrane, per square centimeter",
+   "NPIS": 8,
+   "ALLOWED": 51613511.080444194
+  },
+  {
+   "HCPCS_CD": "Q4275",
+   "DESCR": "Esano aca, per square centimeter",
+   "NPIS": 6,
+   "ALLOWED": 43897854.6501462
+  },
+  {
+   "HCPCS_CD": "Q4191",
+   "DESCR": "Restorigin, per square centimeter",
+   "NPIS": 15,
+   "ALLOWED": 34222590.6500625
+  },
+  {
+   "HCPCS_CD": "Q4238",
+   "DESCR": "Derm-maxx, per square centimeter",
+   "NPIS": 9,
+   "ALLOWED": 31204767.20982062
+  },
+  {
+   "HCPCS_CD": "Q4331",
+   "DESCR": "Axolotl graft, per square centimeter",
+   "NPIS": 1,
+   "ALLOWED": 13058825.13
+  },
+  {
+   "HCPCS_CD": "Q4295",
+   "DESCR": "Amnio tri-core amniotic, per square centimeter",
+   "NPIS": 3,
+   "ALLOWED": 12431413.4401028
+  },
+  {
+   "HCPCS_CD": "Q4221",
+   "DESCR": "Amniowrap2, per square centimeter",
+   "NPIS": 3,
+   "ALLOWED": 11740964.3099151
+  },
+  {
+   "HCPCS_CD": "Q4282",
+   "DESCR": "Cygnus dual, per square centimeter",
+   "NPIS": 6,
+   "ALLOWED": 9079968.000010058
+  },
+  {
+   "HCPCS_CD": "Q4250",
+   "DESCR": "Amnioamp-mp, per square centimeter",
+   "NPIS": 4,
+   "ALLOWED": 8814795.180010399
+  },
+  {
+   "HCPCS_CD": "Q4316",
+   "DESCR": "Amchoplast, per square centimeter",
+   "NPIS": 1,
+   "ALLOWED": 6896782.199999999
+  },
+  {
+   "HCPCS_CD": "Q4290",
+   "DESCR": "Membrane wrap-hydro, per square centimeter",
+   "NPIS": 4,
+   "ALLOWED": 6525223.5200611
+  },
+  {
+   "HCPCS_CD": "Q4204",
+   "DESCR": "Xwrap, per square centimeter",
+   "NPIS": 2,
+   "ALLOWED": 6042206.8099852
+  },
+  {
+   "HCPCS_CD": "Q4303",
+   "DESCR": "Complete aa, per square centimeter",
+   "NPIS": 1,
+   "ALLOWED": 5644870.6900786
+  }
+ ],
+ "by_year": [
+  {
+   "ENUM_YEAR": 2005,
+   "SKIN_BILLERS": 76,
+   "SKIN_ALLOWED": 217620596.78094065,
+   "TOTAL_ALLOWED": 314579753.44
+  },
+  {
+   "ENUM_YEAR": 2006,
+   "SKIN_BILLERS": 260,
+   "SKIN_ALLOWED": 908216826.2925328,
+   "TOTAL_ALLOWED": 1273883934.8100002
+  },
+  {
+   "ENUM_YEAR": 2007,
+   "SKIN_BILLERS": 84,
+   "SKIN_ALLOWED": 230868303.7293531,
+   "TOTAL_ALLOWED": 378618916.5
+  },
+  {
+   "ENUM_YEAR": 2008,
+   "SKIN_BILLERS": 52,
+   "SKIN_ALLOWED": 282871381.4267466,
+   "TOTAL_ALLOWED": 390478529.81999993
+  },
+  {
+   "ENUM_YEAR": 2009,
+   "SKIN_BILLERS": 35,
+   "SKIN_ALLOWED": 245369227.91798002,
+   "TOTAL_ALLOWED": 318817979.18
+  },
+  {
+   "ENUM_YEAR": 2010,
+   "SKIN_BILLERS": 30,
+   "SKIN_ALLOWED": 133589340.70009561,
+   "TOTAL_ALLOWED": 199638022.54999998
+  },
+  {
+   "ENUM_YEAR": 2011,
+   "SKIN_BILLERS": 34,
+   "SKIN_ALLOWED": 138160593.97967455,
+   "TOTAL_ALLOWED": 188748510.99
+  },
+  {
+   "ENUM_YEAR": 2012,
+   "SKIN_BILLERS": 39,
+   "SKIN_ALLOWED": 225933230.38034248,
+   "TOTAL_ALLOWED": 282229874.38
+  },
+  {
+   "ENUM_YEAR": 2013,
+   "SKIN_BILLERS": 35,
+   "SKIN_ALLOWED": 100603675.34999828,
+   "TOTAL_ALLOWED": 165026351.66
+  },
+  {
+   "ENUM_YEAR": 2014,
+   "SKIN_BILLERS": 43,
+   "SKIN_ALLOWED": 108727677.32029884,
+   "TOTAL_ALLOWED": 152819596.41
+  },
+  {
+   "ENUM_YEAR": 2015,
+   "SKIN_BILLERS": 43,
+   "SKIN_ALLOWED": 158781283.53987956,
+   "TOTAL_ALLOWED": 232260486.60999995
+  },
+  {
+   "ENUM_YEAR": 2016,
+   "SKIN_BILLERS": 37,
+   "SKIN_ALLOWED": 119701277.849903,
+   "TOTAL_ALLOWED": 171955760.54000002
+  },
+  {
+   "ENUM_YEAR": 2017,
+   "SKIN_BILLERS": 47,
+   "SKIN_ALLOWED": 192541831.50095254,
+   "TOTAL_ALLOWED": 255527888.68999997
+  },
+  {
+   "ENUM_YEAR": 2018,
+   "SKIN_BILLERS": 58,
+   "SKIN_ALLOWED": 316676791.4488462,
+   "TOTAL_ALLOWED": 408295250.37999994
+  },
+  {
+   "ENUM_YEAR": 2019,
+   "SKIN_BILLERS": 57,
+   "SKIN_ALLOWED": 278793334.03801286,
+   "TOTAL_ALLOWED": 354448164.71000004
+  },
+  {
+   "ENUM_YEAR": 2020,
+   "SKIN_BILLERS": 58,
+   "SKIN_ALLOWED": 296042452.0272711,
+   "TOTAL_ALLOWED": 391430205.23
+  },
+  {
+   "ENUM_YEAR": 2021,
+   "SKIN_BILLERS": 49,
+   "SKIN_ALLOWED": 176587577.8805189,
+   "TOTAL_ALLOWED": 241700690.29000002
+  },
+  {
+   "ENUM_YEAR": 2022,
+   "SKIN_BILLERS": 52,
+   "SKIN_ALLOWED": 220171626.9604906,
+   "TOTAL_ALLOWED": 326414864.88
+  },
+  {
+   "ENUM_YEAR": 2023,
+   "SKIN_BILLERS": 51,
+   "SKIN_ALLOWED": 216005878.39065474,
+   "TOTAL_ALLOWED": 324211024.27
+  },
+  {
+   "ENUM_YEAR": 2024,
+   "SKIN_BILLERS": 11,
+   "SKIN_ALLOWED": 15944662.209926158,
+   "TOTAL_ALLOWED": 27366368.549999997
+  }
+ ],
+ "by_year_denom": [
+  {
+   "ENUM_YEAR": 2005,
+   "PARTB_BILLERS": 86327
+  },
+  {
+   "ENUM_YEAR": 2006,
+   "PARTB_BILLERS": 300676
+  },
+  {
+   "ENUM_YEAR": 2007,
+   "PARTB_BILLERS": 102927
+  },
+  {
+   "ENUM_YEAR": 2008,
+   "PARTB_BILLERS": 55043
+  },
+  {
+   "ENUM_YEAR": 2009,
+   "PARTB_BILLERS": 38772
+  },
+  {
+   "ENUM_YEAR": 2010,
+   "PARTB_BILLERS": 37682
+  },
+  {
+   "ENUM_YEAR": 2011,
+   "PARTB_BILLERS": 39617
+  },
+  {
+   "ENUM_YEAR": 2012,
+   "PARTB_BILLERS": 41629
+  },
+  {
+   "ENUM_YEAR": 2013,
+   "PARTB_BILLERS": 42534
+  },
+  {
+   "ENUM_YEAR": 2014,
+   "PARTB_BILLERS": 45296
+  },
+  {
+   "ENUM_YEAR": 2015,
+   "PARTB_BILLERS": 48148
+  },
+  {
+   "ENUM_YEAR": 2016,
+   "PARTB_BILLERS": 50784
+  },
+  {
+   "ENUM_YEAR": 2017,
+   "PARTB_BILLERS": 51992
+  },
+  {
+   "ENUM_YEAR": 2018,
+   "PARTB_BILLERS": 53620
+  },
+  {
+   "ENUM_YEAR": 2019,
+   "PARTB_BILLERS": 53756
+  },
+  {
+   "ENUM_YEAR": 2020,
+   "PARTB_BILLERS": 48136
+  },
+  {
+   "ENUM_YEAR": 2021,
+   "PARTB_BILLERS": 46915
+  },
+  {
+   "ENUM_YEAR": 2022,
+   "PARTB_BILLERS": 37361
+  },
+  {
+   "ENUM_YEAR": 2023,
+   "PARTB_BILLERS": 34592
+  },
+  {
+   "ENUM_YEAR": 2024,
+   "PARTB_BILLERS": 16978
+  }
+ ],
+ "states": [
+  {
+   "ST": "FL",
+   "GRP": "veteran",
+   "NPIS": 200,
+   "SKIN_ALLOWED": 808367105.4093413
+  },
+  {
+   "ST": "AZ",
+   "GRP": "veteran",
+   "NPIS": 44,
+   "SKIN_ALLOWED": 196706611.87947997
+  },
+  {
+   "ST": "OR",
+   "GRP": "veteran",
+   "NPIS": 9,
+   "SKIN_ALLOWED": 30566679.690286268
+  },
+  {
+   "ST": "WA",
+   "GRP": "veteran",
+   "NPIS": 12,
+   "SKIN_ALLOWED": 78170285.30038613
+  },
+  {
+   "ST": "NC",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 523528.3200042
+  },
+  {
+   "ST": "MN",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 2476273.9700385
+  },
+  {
+   "ST": "LA",
+   "GRP": "veteran",
+   "NPIS": 9,
+   "SKIN_ALLOWED": 8983609.09993536
+  },
+  {
+   "ST": "NC",
+   "GRP": "veteran",
+   "NPIS": 11,
+   "SKIN_ALLOWED": 20070658.13962566
+  },
+  {
+   "ST": "OH",
+   "GRP": "veteran",
+   "NPIS": 17,
+   "SKIN_ALLOWED": 46635494.05980682
+  },
+  {
+   "ST": "CO",
+   "GRP": "veteran",
+   "NPIS": 22,
+   "SKIN_ALLOWED": 106007119.31993842
+  },
+  {
+   "ST": "GA",
+   "GRP": "veteran",
+   "NPIS": 36,
+   "SKIN_ALLOWED": 64643925.22966509
+  },
+  {
+   "ST": "IN",
+   "GRP": "veteran",
+   "NPIS": 12,
+   "SKIN_ALLOWED": 12944511.5400958
+  },
+  {
+   "ST": "IL",
+   "GRP": "new",
+   "NPIS": 4,
+   "SKIN_ALLOWED": 33605010.1699256
+  },
+  {
+   "ST": "NM",
+   "GRP": "veteran",
+   "NPIS": 6,
+   "SKIN_ALLOWED": 13943994.919906251
+  },
+  {
+   "ST": "CT",
+   "GRP": "veteran",
+   "NPIS": 3,
+   "SKIN_ALLOWED": 3118737.8799966
+  },
+  {
+   "ST": "NV",
+   "GRP": "new",
+   "NPIS": 7,
+   "SKIN_ALLOWED": 28845111.850279503
+  },
+  {
+   "ST": "NJ",
+   "GRP": "new",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 5783109.2500992
+  },
+  {
+   "ST": "MS",
+   "GRP": "veteran",
+   "NPIS": 19,
+   "SKIN_ALLOWED": 30803456.0598635
+  },
+  {
+   "ST": "MI",
+   "GRP": "veteran",
+   "NPIS": 17,
+   "SKIN_ALLOWED": 59389164.70982455
+  },
+  {
+   "ST": "NV",
+   "GRP": "veteran",
+   "NPIS": 23,
+   "SKIN_ALLOWED": 181003754.4984864
+  },
+  {
+   "ST": "MA",
+   "GRP": "veteran",
+   "NPIS": 10,
+   "SKIN_ALLOWED": 16850469.58999382
+  },
+  {
+   "ST": "MS",
+   "GRP": "new",
+   "NPIS": 6,
+   "SKIN_ALLOWED": 8974235.7898999
+  },
+  {
+   "ST": "GA",
+   "GRP": "new",
+   "NPIS": 3,
+   "SKIN_ALLOWED": 2544045.4299994
+  },
+  {
+   "ST": "LA",
+   "GRP": "new",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 3069509.5900472
+  },
+  {
+   "ST": "CA",
+   "GRP": "veteran",
+   "NPIS": 179,
+   "SKIN_ALLOWED": 1092526584.8549798
+  },
+  {
+   "ST": "TN",
+   "GRP": "veteran",
+   "NPIS": 19,
+   "SKIN_ALLOWED": 22014387.75002359
+  },
+  {
+   "ST": "IN",
+   "GRP": "new",
+   "NPIS": 3,
+   "SKIN_ALLOWED": 2013024.59000783
+  },
+  {
+   "ST": "UT",
+   "GRP": "veteran",
+   "NPIS": 6,
+   "SKIN_ALLOWED": 23893395.689894497
+  },
+  {
+   "ST": "MD",
+   "GRP": "veteran",
+   "NPIS": 4,
+   "SKIN_ALLOWED": 14624034.890029341
+  },
+  {
+   "ST": "DE",
+   "GRP": "veteran",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 22790752.819494702
+  },
+  {
+   "ST": "WV",
+   "GRP": "veteran",
+   "NPIS": 7,
+   "SKIN_ALLOWED": 12988251.010010969
+  },
+  {
+   "ST": "DC",
+   "GRP": "veteran",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 25040488.1002502
+  },
+  {
+   "ST": "UT",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 572097.6
+  },
+  {
+   "ST": "WA",
+   "GRP": "new",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 3663550.2099468
+  },
+  {
+   "ST": "AL",
+   "GRP": "veteran",
+   "NPIS": 24,
+   "SKIN_ALLOWED": 33645976.280184954
+  },
+  {
+   "ST": "CA",
+   "GRP": "new",
+   "NPIS": 24,
+   "SKIN_ALLOWED": 121640580.08002171
+  },
+  {
+   "ST": "TX",
+   "GRP": "new",
+   "NPIS": 15,
+   "SKIN_ALLOWED": 33771753.92997124
+  },
+  {
+   "ST": "KS",
+   "GRP": "veteran",
+   "NPIS": 18,
+   "SKIN_ALLOWED": 23029049.470014628
+  },
+  {
+   "ST": "MN",
+   "GRP": "veteran",
+   "NPIS": 5,
+   "SKIN_ALLOWED": 5770818.1900091395
+  },
+  {
+   "ST": "OK",
+   "GRP": "veteran",
+   "NPIS": 21,
+   "SKIN_ALLOWED": 184849294.36121312
+  },
+  {
+   "ST": "WI",
+   "GRP": "veteran",
+   "NPIS": 5,
+   "SKIN_ALLOWED": 2354558.6700054603
+  },
+  {
+   "ST": "KY",
+   "GRP": "new",
+   "NPIS": 3,
+   "SKIN_ALLOWED": 7275210.1100872
+  },
+  {
+   "ST": "AL",
+   "GRP": "new",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 2558508.4899274
+  },
+  {
+   "ST": "SD",
+   "GRP": "veteran",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 952892.409984
+  },
+  {
+   "ST": "HI",
+   "GRP": "veteran",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 49274.54000179999
+  },
+  {
+   "ST": "MD",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 2183220.4799909
+  },
+  {
+   "ST": "IL",
+   "GRP": "veteran",
+   "NPIS": 37,
+   "SKIN_ALLOWED": 151735790.90983832
+  },
+  {
+   "ST": "NJ",
+   "GRP": "veteran",
+   "NPIS": 21,
+   "SKIN_ALLOWED": 105335647.9805784
+  },
+  {
+   "ST": "PA",
+   "GRP": "veteran",
+   "NPIS": 13,
+   "SKIN_ALLOWED": 14704854.800103009
+  },
+  {
+   "ST": "AZ",
+   "GRP": "new",
+   "NPIS": 11,
+   "SKIN_ALLOWED": 109346109.70043284
+  },
+  {
+   "ST": "AR",
+   "GRP": "veteran",
+   "NPIS": 11,
+   "SKIN_ALLOWED": 19731449.58001563
+  },
+  {
+   "ST": "NH",
+   "GRP": "veteran",
+   "NPIS": 5,
+   "SKIN_ALLOWED": 652840.88000149
+  },
+  {
+   "ST": "TN",
+   "GRP": "new",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 1707757.6499628532
+  },
+  {
+   "ST": "VA",
+   "GRP": "new",
+   "NPIS": 2,
+   "SKIN_ALLOWED": 6818216.3399252
+  },
+  {
+   "ST": "OH",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 22842.75000072
+  },
+  {
+   "ST": "OR",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 861381.8300296
+  },
+  {
+   "ST": "MT",
+   "GRP": "veteran",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 9732503.249909999
+  },
+  {
+   "ST": "SC",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 1592430.65999396
+  },
+  {
+   "ST": "NY",
+   "GRP": "veteran",
+   "NPIS": 26,
+   "SKIN_ALLOWED": 93605261.4210144
+  },
+  {
+   "ST": "TX",
+   "GRP": "veteran",
+   "NPIS": 108,
+   "SKIN_ALLOWED": 477708402.9994603
+  },
+  {
+   "ST": "FL",
+   "GRP": "new",
+   "NPIS": 18,
+   "SKIN_ALLOWED": 68745897.17046918
+  },
+  {
+   "ST": "IA",
+   "GRP": "veteran",
+   "NPIS": 4,
+   "SKIN_ALLOWED": 7553620.909896741
+  },
+  {
+   "ST": "ID",
+   "GRP": "veteran",
+   "NPIS": 3,
+   "SKIN_ALLOWED": 13076917.029932959
+  },
+  {
+   "ST": "SC",
+   "GRP": "veteran",
+   "NPIS": 16,
+   "SKIN_ALLOWED": 17642170.97992672
+  },
+  {
+   "ST": "NE",
+   "GRP": "veteran",
+   "NPIS": 4,
+   "SKIN_ALLOWED": 3927233.920005499
+  },
+  {
+   "ST": "OK",
+   "GRP": "new",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 3528761.60001055
+  },
+  {
+   "ST": "KY",
+   "GRP": "veteran",
+   "NPIS": 14,
+   "SKIN_ALLOWED": 45999092.19003428
+  },
+  {
+   "ST": "VA",
+   "GRP": "veteran",
+   "NPIS": 22,
+   "SKIN_ALLOWED": 18166568.43998155
+  },
+  {
+   "ST": "MO",
+   "GRP": "veteran",
+   "NPIS": 8,
+   "SKIN_ALLOWED": 8777710.50991991
+  }
+ ],
+ "top10": [
+  {
+   "NPI": "1215678495",
+   "LAST_NAME": "Charles",
+   "FIRST_NAME": "Allison",
+   "PTYPE": "Nurse Practitioner",
+   "ST": "AZ",
+   "CITY": "Sun City",
+   "ENUM_DT": "2022-04-05",
+   "SKIN_ALLOWED": 47413849.970065445,
+   "TOTAL_ALLOWED": 54881402.34,
+   "TOTAL_PAID": 43726452.66,
+   "BENES": 78,
+   "UNITS": 28625.9,
+   "CODES": 1
+  },
+  {
+   "NPI": "1902544240",
+   "LAST_NAME": "Okoro",
+   "FIRST_NAME": "Chibuikem",
+   "PTYPE": "Physician Assistant",
+   "ST": "CA",
+   "CITY": "Temecula",
+   "ENUM_DT": "2022-05-26",
+   "SKIN_ALLOWED": 23703057.64038258,
+   "TOTAL_ALLOWED": 28007151.96,
+   "TOTAL_PAID": 22310115.31,
+   "BENES": 176,
+   "UNITS": 15680.0,
+   "CODES": 3
+  },
+  {
+   "NPI": "1275217952",
+   "LAST_NAME": "Palacios",
+   "FIRST_NAME": "Gina",
+   "PTYPE": "Nurse Practitioner",
+   "ST": "AZ",
+   "CITY": "Phoenix",
+   "ENUM_DT": "2023-06-13",
+   "SKIN_ALLOWED": 23173354.5500304,
+   "TOTAL_ALLOWED": 23207122.56,
+   "TOTAL_PAID": 18488083.47,
+   "BENES": 33,
+   "UNITS": 20112.0,
+   "CODES": 1
+  },
+  {
+   "NPI": "1992489728",
+   "LAST_NAME": "Balken",
+   "FIRST_NAME": "Elisabeth",
+   "PTYPE": "Nurse Practitioner",
+   "ST": "AZ",
+   "CITY": "Mesa",
+   "ENUM_DT": "2023-06-12",
+   "SKIN_ALLOWED": 18022949.3403234,
+   "TOTAL_ALLOWED": 18047204.18,
+   "TOTAL_PAID": 14377644.52,
+   "BENES": 25,
+   "UNITS": 15642.0,
+   "CODES": 1
+  },
+  {
+   "NPI": "1043087182",
+   "LAST_NAME": "Hyde",
+   "FIRST_NAME": "Tiffany",
+   "PTYPE": "Nurse Practitioner",
+   "ST": "IL",
+   "CITY": "Lake In The Hills",
+   "ENUM_DT": "2023-12-08",
+   "SKIN_ALLOWED": 17262621.959991,
+   "TOTAL_ALLOWED": 19175446.34,
+   "TOTAL_PAID": 15277998.3,
+   "BENES": 48,
+   "UNITS": 5404.0,
+   "CODES": 2
+  },
+  {
+   "NPI": "1932849049",
+   "LAST_NAME": "Uy",
+   "FIRST_NAME": "Nelson",
+   "PTYPE": "Nurse Practitioner",
+   "ST": "IL",
+   "CITY": "Park Ridge",
+   "ENUM_DT": "2022-03-29",
+   "SKIN_ALLOWED": 14292466.1798952,
+   "TOTAL_ALLOWED": 30022806.44,
+   "TOTAL_PAID": 23918185.23,
+   "BENES": 820,
+   "UNITS": 5196.0,
+   "CODES": 1
+  },
+  {
+   "NPI": "1316688260",
+   "LAST_NAME": "Howard",
+   "FIRST_NAME": "Tara",
+   "PTYPE": "Internal Medicine",
+   "ST": "FL",
+   "CITY": "Fort Lauderdale",
+   "ENUM_DT": "2022-04-05",
+   "SKIN_ALLOWED": 13058825.13,
+   "TOTAL_ALLOWED": 13108153.74,
+   "TOTAL_PAID": 10443896.28,
+   "BENES": 38,
+   "UNITS": 7929.0,
+   "CODES": 1
+  },
+  {
+   "NPI": "1497416184",
+   "LAST_NAME": "Thompson",
+   "FIRST_NAME": "Surany",
+   "PTYPE": "Nurse Practitioner",
+   "ST": "FL",
+   "CITY": "Boca Raton",
+   "ENUM_DT": "2022-01-04",
+   "SKIN_ALLOWED": 12100966.24006958,
+   "TOTAL_ALLOWED": 12409162.92,
+   "TOTAL_PAID": 9883845.78,
+   "BENES": 105,
+   "UNITS": 7915.0,
+   "CODES": 2
+  },
+  {
+   "NPI": "1073229746",
+   "LAST_NAME": "Patel",
+   "FIRST_NAME": "Hiren",
+   "PTYPE": "Physician Assistant",
+   "ST": "CA",
+   "CITY": "Los Angeles",
+   "ENUM_DT": "2023-01-26",
+   "SKIN_ALLOWED": 11704588.339921,
+   "TOTAL_ALLOWED": 15998885.83,
+   "TOTAL_PAID": 12746258.23,
+   "BENES": 123,
+   "UNITS": 6962.0,
+   "CODES": 1
+  },
+  {
+   "NPI": "1245934967",
+   "LAST_NAME": "Castillo",
+   "FIRST_NAME": "Nicole",
+   "PTYPE": "Physician Assistant",
+   "ST": "CA",
+   "CITY": "Pomona",
+   "ENUM_DT": "2023-03-28",
+   "SKIN_ALLOWED": 10662201.370090198,
+   "TOTAL_ALLOWED": 28387950.83,
+   "TOTAL_PAID": 22612938.04,
+   "BENES": 176,
+   "UNITS": 8074.0,
+   "CODES": 2
+  }
+ ],
+ "conc": [
+  {
+   "TOP10": 191394880.7207688,
+   "TOP50": 385241647.8712256,
+   "TOTAL": 452122167.5610715,
+   "NPIS": 114,
+   "OVER_1M": 85
+  }
+ ],
+ "per_bene": [
+  {
+   "GRP": "new",
+   "NPIS": 114,
+   "MED_ALLOWED_PER_BENE": 31843.026320103538,
+   "POOLED_ALLOWED_PER_BENE": 36809.395607796294,
+   "MED_SKIN_PER_SKIN_BENE": 100951.85500142002,
+   "POOLED_SKIN_PER_SKIN_BENE": 158750.7610818369,
+   "MED_SKIN_SHARE": 0.6958178093751145,
+   "MAJORITY_SKIN": 77,
+   "OVER_100K_PER_BENE": 21
+  },
+  {
+   "GRP": "veteran",
+   "NPIS": 1037,
+   "MED_ALLOWED_PER_BENE": 7110.312666666668,
+   "POOLED_ALLOWED_PER_BENE": 10157.914307816882,
+   "MED_SKIN_PER_SKIN_BENE": 52196.773998720004,
+   "POOLED_SKIN_PER_SKIN_BENE": 106545.41568006983,
+   "MED_SKIN_SHARE": 0.5672549166779731,
+   "MAJORITY_SKIN": 587,
+   "OVER_100K_PER_BENE": 101
+  }
+ ],
+ "per_bene_np_pa": [
+  {
+   "GRP": "new",
+   "NPIS": 112,
+   "MED_ALLOWED_PER_BENE": 30471.54460519126,
+   "POOLED_ALLOWED_PER_BENE": 36024.70414663397,
+   "SKIN_ALLOWED": 437514636.751097
+  },
+  {
+   "GRP": "veteran",
+   "NPIS": 368,
+   "MED_ALLOWED_PER_BENE": 27133.253020833334,
+   "POOLED_ALLOWED_PER_BENE": 25873.42784961806,
+   "SKIN_ALLOWED": 1692522048.9839203
+  }
+ ],
+ "ptype": [
+  {
+   "PTYPE": "Nurse Practitioner",
+   "NPIS": 96,
+   "SKIN_ALLOWED": 360415852.8408059
+  },
+  {
+   "PTYPE": "Physician Assistant",
+   "NPIS": 16,
+   "SKIN_ALLOWED": 77098783.91029122
+  },
+  {
+   "PTYPE": "Internal Medicine",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 13058825.13
+  },
+  {
+   "PTYPE": "Physical Therapist in Private Practice",
+   "NPIS": 1,
+   "SKIN_ALLOWED": 1548705.6799744
+  }
+ ],
+ "np_pa_base": [
+  {
+   "PTYPE": "Nurse Practitioner",
+   "GRP": "new",
+   "PARTB_BILLERS": 38516,
+   "ALLOWED": 2486413698.45
+  },
+  {
+   "PTYPE": "Nurse Practitioner",
+   "GRP": "veteran",
+   "PARTB_BILLERS": 164435,
+   "ALLOWED": 10603901535.270002
+  },
+  {
+   "PTYPE": "Physician Assistant",
+   "GRP": "new",
+   "PARTB_BILLERS": 16235,
+   "ALLOWED": 556786299.8500004
+  },
+  {
+   "PTYPE": "Physician Assistant",
+   "GRP": "veteran",
+   "PARTB_BILLERS": 96158,
+   "ALLOWED": 4278843949.140005
+  }
+ ],
+ "all_base": [
+  {
+   "GRP": "new",
+   "PARTB_BILLERS": 88931,
+   "ALLOWED": 4247432356.67
+  },
+  {
+   "GRP": "veteran",
+   "PARTB_BILLERS": 1143854,
+   "ALLOWED": 122559568008.3
+  }
+ ],
+ "addr": [
+  {
+   "ST1": "2011 N COLLINS BLVD STE 607",
+   "CITY": "Richardson",
+   "ST": "TX",
+   "NEW_NPIS": 4,
+   "SKIN_ALLOWED": 8676969.1199987
+  },
+  {
+   "ST1": "14502 N DALE MABRY HWY STE 200",
+   "CITY": "Tampa",
+   "ST": "FL",
+   "NEW_NPIS": 3,
+   "SKIN_ALLOWED": 5540298.539886801
+  },
+  {
+   "ST1": "5901 W CENTURY BLVD STE 750",
+   "CITY": "Los Angeles",
+   "ST": "CA",
+   "NEW_NPIS": 3,
+   "SKIN_ALLOWED": 4350943.18003346
+  },
+  {
+   "ST1": "778 LIBERTY RD",
+   "CITY": "Flowood",
+   "ST": "MS",
+   "NEW_NPIS": 3,
+   "SKIN_ALLOWED": 3598363.8900395
+  },
+  {
+   "ST1": "2480 WINDY HILL RD SE",
+   "CITY": "Marietta",
+   "ST": "GA",
+   "NEW_NPIS": 3,
+   "SKIN_ALLOWED": 2544045.4299994
+  },
+  {
+   "ST1": "1731 E 120TH ST",
+   "CITY": "Los Angeles",
+   "ST": "CA",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 14914557.359811
+  },
+  {
+   "ST1": "4640 ADMIRALTY WAY STE 500",
+   "CITY": "Marina Del Rey",
+   "ST": "CA",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 7866803.4599116
+  },
+  {
+   "ST1": "3101 PARISA DR",
+   "CITY": "Paducah",
+   "ST": "KY",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 7041465.1500848
+  },
+  {
+   "ST1": "7115 BLANCO RD STE 101",
+   "CITY": "San Antonio",
+   "ST": "TX",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 3590390.0900629996
+  },
+  {
+   "ST1": "101 POTTERS LN",
+   "CITY": "Clarksville",
+   "ST": "IN",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 1514441.6400071997
+  },
+  {
+   "ST1": "3109 MEDICAL WAY",
+   "CITY": "Sebring",
+   "ST": "FL",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 1076213.7400228
+  },
+  {
+   "ST1": "8320 W SUNRISE BLVD STE 208",
+   "CITY": "Plantation",
+   "ST": "FL",
+   "NEW_NPIS": 2,
+   "SKIN_ALLOWED": 1059331.9600018
+  }
+ ],
+ "addr_summary": [
+  {
+   "ADDRESSES": 96,
+   "NPIS_AT_SHARED_ADDR": 30,
+   "DOLLARS_AT_SHARED_ADDR": 61773823.55986006,
+   "TOTAL": 452122167.56107146
+  }
+ ],
+ "addr_vets": [
+  {
+   "VETERAN_SKIN_NPIS_SAME_ADDR": 37,
+   "THEIR_SKIN_DOLLARS": 77575582.22082621
+  }
+ ],
+ "ramp": [
+  {
+   "BUCKET": "enumerated 2022",
+   "NPIS": 52,
+   "SKIN_ALLOWED": 220171626.9604906,
+   "MED_SKIN": 1658627.4049886502
+  },
+  {
+   "BUCKET": "enumerated H1 2023",
+   "NPIS": 28,
+   "SKIN_ALLOWED": 127801299.2703838,
+   "MED_SKIN": 2443685.48002245
+  },
+  {
+   "BUCKET": "enumerated Jul 2023 or later",
+   "NPIS": 34,
+   "SKIN_ALLOWED": 104149241.33019707,
+   "MED_SKIN": 1804853.20501545
+  }
+ ],
+ "a2": [
+  {
+   "LINES": 11,
+   "NPIS": 11,
+   "ALLOWED": 7507321.24998167
+  }
+ ],
+ "per_bene_all_nppa": [
+  {
+   "GRP": "new",
+   "NPIS": 54751,
+   "MED_ALLOWED_PER_BENE": 149.17246913580246
+  },
+  {
+   "GRP": "veteran",
+   "NPIS": 260593,
+   "MED_ALLOWED_PER_BENE": 158.2176785714286
+  }
+ ]
+}

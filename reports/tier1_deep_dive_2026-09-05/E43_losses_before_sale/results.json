@@ -1,0 +1,3031 @@
+{
+ "pos_shape": [
+  {
+   "N": 44429,
+   "CCNS": 44429,
+   "CHOW_DT_N": 4757,
+   "PRIOR_N": 2967,
+   "MN": "1973-06-30",
+   "MX": "2026-01-01"
+  }
+ ],
+ "pos_cat": [
+  {
+   "PRVDR_CTGRY_CD": "21",
+   "N": 15324,
+   "CHOW_N": 192
+  },
+  {
+   "PRVDR_CTGRY_CD": "01",
+   "N": 13540,
+   "CHOW_N": 2532
+  },
+  {
+   "PRVDR_CTGRY_CD": "12",
+   "N": 12864,
+   "CHOW_N": 1933
+  },
+  {
+   "PRVDR_CTGRY_CD": "19",
+   "N": 1982,
+   "CHOW_N": 93
+  },
+  {
+   "PRVDR_CTGRY_CD": "06",
+   "N": 719,
+   "CHOW_N": 7
+  }
+ ],
+ "pos_chow_sw": [
+  {
+   "CHOW_SW": "",
+   "N": 44429
+  }
+ ],
+ "pos_chow_cnt": [
+  {
+   "CHOW_CNT": 0,
+   "N": 36191
+  },
+  {
+   "CHOW_CNT": 1,
+   "N": 4492
+  },
+  {
+   "CHOW_CNT": 2,
+   "N": 2246
+  },
+  {
+   "CHOW_CNT": 3,
+   "N": 805
+  },
+  {
+   "CHOW_CNT": 4,
+   "N": 405
+  },
+  {
+   "CHOW_CNT": 5,
+   "N": 161
+  },
+  {
+   "CHOW_CNT": 6,
+   "N": 77
+  },
+  {
+   "CHOW_CNT": 7,
+   "N": 32
+  },
+  {
+   "CHOW_CNT": 8,
+   "N": 14
+  },
+  {
+   "CHOW_CNT": 9,
+   "N": 4
+  },
+  {
+   "CHOW_CNT": 10,
+   "N": 1
+  },
+  {
+   "CHOW_CNT": 11,
+   "N": 1
+  }
+ ],
+ "hcris_shape": [
+  {
+   "N": 6103,
+   "CCNS": 6040,
+   "NI_N": 6103,
+   "NM_N": 6103,
+   "MN": "2022-11-30",
+   "MX": "2024-09-30",
+   "MNB": "2022-10-01",
+   "MXB": "2023-09-28"
+  }
+ ],
+ "hcris_years": [
+  {
+   "FY": 2022,
+   "N": 5,
+   "CCNS": 5
+  },
+  {
+   "FY": 2023,
+   "N": 3534,
+   "CCNS": 3525
+  },
+  {
+   "FY": 2024,
+   "N": 2564,
+   "CCNS": 2564
+  }
+ ],
+ "hcris_dupes": [
+  {
+   "CNT": 1,
+   "CCNS": 5978
+  },
+  {
+   "CNT": 2,
+   "CCNS": 61
+  },
+  {
+   "CNT": 3,
+   "CCNS": 1
+  }
+ ],
+ "chow_dom": [
+  {
+   "D": 1,
+   "N": 937
+  },
+  {
+   "D": 31,
+   "N": 35
+  },
+  {
+   "D": 30,
+   "N": 32
+  },
+  {
+   "D": 15,
+   "N": 22
+  },
+  {
+   "D": 2,
+   "N": 19
+  },
+  {
+   "D": 28,
+   "N": 18
+  },
+  {
+   "D": 16,
+   "N": 17
+  },
+  {
+   "D": 14,
+   "N": 16
+  },
+  {
+   "D": 3,
+   "N": 14
+  },
+  {
+   "D": 24,
+   "N": 13
+  },
+  {
+   "D": 19,
+   "N": 13
+  },
+  {
+   "D": 13,
+   "N": 12
+  },
+  {
+   "D": 12,
+   "N": 12
+  },
+  {
+   "D": 27,
+   "N": 10
+  },
+  {
+   "D": 17,
+   "N": 10
+  },
+  {
+   "D": 20,
+   "N": 8
+  },
+  {
+   "D": 29,
+   "N": 6
+  },
+  {
+   "D": 4,
+   "N": 5
+  },
+  {
+   "D": 26,
+   "N": 5
+  },
+  {
+   "D": 11,
+   "N": 5
+  },
+  {
+   "D": 25,
+   "N": 5
+  },
+  {
+   "D": 21,
+   "N": 5
+  },
+  {
+   "D": 9,
+   "N": 5
+  },
+  {
+   "D": 8,
+   "N": 4
+  },
+  {
+   "D": 5,
+   "N": 4
+  },
+  {
+   "D": 23,
+   "N": 4
+  },
+  {
+   "D": 7,
+   "N": 3
+  },
+  {
+   "D": 10,
+   "N": 3
+  },
+  {
+   "D": 6,
+   "N": 2
+  },
+  {
+   "D": 22,
+   "N": 2
+  },
+  {
+   "D": 18,
+   "N": 2
+  }
+ ],
+ "chow_dow": [
+  {
+   "DOW": "Mon",
+   "N": 200
+  },
+  {
+   "DOW": "Fri",
+   "N": 199
+  },
+  {
+   "DOW": "Thu",
+   "N": 185
+  },
+  {
+   "DOW": "Tue",
+   "N": 176
+  },
+  {
+   "DOW": "Wed",
+   "N": 170
+  },
+  {
+   "DOW": "Sun",
+   "N": 167
+  },
+  {
+   "DOW": "Sat",
+   "N": 151
+  }
+ ],
+ "chow_years_hosp": [
+  {
+   "Y": 2015,
+   "N": 84
+  },
+  {
+   "Y": 2016,
+   "N": 92
+  },
+  {
+   "Y": 2017,
+   "N": 73
+  },
+  {
+   "Y": 2018,
+   "N": 75
+  },
+  {
+   "Y": 2019,
+   "N": 60
+  },
+  {
+   "Y": 2020,
+   "N": 41
+  },
+  {
+   "Y": 2021,
+   "N": 29
+  },
+  {
+   "Y": 2022,
+   "N": 14
+  },
+  {
+   "Y": 2023,
+   "N": 44
+  },
+  {
+   "Y": 2024,
+   "N": 70
+  },
+  {
+   "Y": 2025,
+   "N": 34
+  },
+  {
+   "Y": 2026,
+   "N": 1
+  }
+ ],
+ "sold_n": [
+  {
+   "N": 128,
+   "CCNS": 128
+  }
+ ],
+ "sold_ctrl": [
+  {
+   "GNRL_CNTL_TYPE_CD": "04",
+   "N": 72
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "02",
+   "N": 27
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "03",
+   "N": 9
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "08",
+   "N": 8
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "01",
+   "N": 6
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "07",
+   "N": 3
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "09",
+   "N": 2
+  },
+  {
+   "GNRL_CNTL_TYPE_CD": "06",
+   "N": 1
+  }
+ ],
+ "repro_naive": [
+  {
+   "ROWS_": 137,
+   "HOSPITALS": 121,
+   "LOSING_ROWS": 80,
+   "PCT": 58.4
+  }
+ ],
+ "repro_timing": [
+  {
+   "TIMING": "ends after sale",
+   "ROWS_": 48,
+   "LOSING": 26,
+   "PCT": 54.2
+  },
+  {
+   "TIMING": "ends before sale",
+   "ROWS_": 89,
+   "LOSING": 54,
+   "PCT": 60.7
+  },
+  {
+   "TIMING": "no HCRIS",
+   "ROWS_": 7,
+   "LOSING": 0,
+   "PCT": null
+  }
+ ],
+ "before_cohort": [
+  {
+   "HOSPITALS": 88,
+   "LOSING": 53,
+   "PCT_LOSING": 60.2,
+   "OP_LOSING": 64,
+   "PCT_OP_LOSING": 72.7,
+   "MED_MARGIN": -0.0157,
+   "AVG_GAP_MONTHS": 4.6,
+   "MED_GAP_MONTHS": 3.0
+  }
+ ],
+ "before_by_saleyear": [
+  {
+   "SALE_YEAR": 2022,
+   "HOSPITALS": 1,
+   "LOSING": 1,
+   "PCT": 100.0
+  },
+  {
+   "SALE_YEAR": 2023,
+   "HOSPITALS": 22,
+   "LOSING": 18,
+   "PCT": 81.8
+  },
+  {
+   "SALE_YEAR": 2024,
+   "HOSPITALS": 65,
+   "LOSING": 34,
+   "PCT": 52.3
+  }
+ ],
+ "before_gap": [
+  {
+   "GAP_MONTHS": 0,
+   "N": 13
+  },
+  {
+   "GAP_MONTHS": 1,
+   "N": 29
+  },
+  {
+   "GAP_MONTHS": 2,
+   "N": 1
+  },
+  {
+   "GAP_MONTHS": 3,
+   "N": 4
+  },
+  {
+   "GAP_MONTHS": 4,
+   "N": 3
+  },
+  {
+   "GAP_MONTHS": 5,
+   "N": 3
+  },
+  {
+   "GAP_MONTHS": 6,
+   "N": 9
+  },
+  {
+   "GAP_MONTHS": 8,
+   "N": 3
+  },
+  {
+   "GAP_MONTHS": 9,
+   "N": 2
+  },
+  {
+   "GAP_MONTHS": 10,
+   "N": 10
+  },
+  {
+   "GAP_MONTHS": 11,
+   "N": 1
+  },
+  {
+   "GAP_MONTHS": 12,
+   "N": 5
+  },
+  {
+   "GAP_MONTHS": 13,
+   "N": 2
+  },
+  {
+   "GAP_MONTHS": 14,
+   "N": 3
+  }
+ ],
+ "before_by_type": [
+  {
+   "FTYPE": "STH",
+   "N": 64,
+   "LOSING": 35
+  },
+  {
+   "FTYPE": "RH",
+   "N": 9,
+   "LOSING": 8
+  },
+  {
+   "FTYPE": "LTCH",
+   "N": 6,
+   "LOSING": 4
+  },
+  {
+   "FTYPE": "PH",
+   "N": 5,
+   "LOSING": 4
+  },
+  {
+   "FTYPE": "CAH",
+   "N": 4,
+   "LOSING": 2
+  }
+ ],
+ "before_by_ctrl": [
+  {
+   "TYPE_OF_CONTROL": "4",
+   "N": 39,
+   "LOSING": 22
+  },
+  {
+   "TYPE_OF_CONTROL": "6",
+   "N": 22,
+   "LOSING": 13
+  },
+  {
+   "TYPE_OF_CONTROL": "2",
+   "N": 8,
+   "LOSING": 4
+  },
+  {
+   "TYPE_OF_CONTROL": "9",
+   "N": 6,
+   "LOSING": 4
+  },
+  {
+   "TYPE_OF_CONTROL": "1",
+   "N": 5,
+   "LOSING": 4
+  },
+  {
+   "TYPE_OF_CONTROL": "8",
+   "N": 2,
+   "LOSING": 2
+  },
+  {
+   "TYPE_OF_CONTROL": "13",
+   "N": 2,
+   "LOSING": 0
+  },
+  {
+   "TYPE_OF_CONTROL": "3",
+   "N": 1,
+   "LOSING": 1
+  },
+  {
+   "TYPE_OF_CONTROL": "11",
+   "N": 1,
+   "LOSING": 1
+  },
+  {
+   "TYPE_OF_CONTROL": "12",
+   "N": 1,
+   "LOSING": 1
+  },
+  {
+   "TYPE_OF_CONTROL": "5",
+   "N": 1,
+   "LOSING": 1
+  }
+ ],
+ "before_list": [
+  {
+   "CCN": "363045",
+   "FAC_NAME": "LIBERTY REHABILITATION HOSPITAL",
+   "CHOW_DT": "2023-03-01",
+   "FYE": "2023-02-28",
+   "NET_INCOME": -1326976.0,
+   "NET_MARGIN_RATIO": -0.7772,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 798666.0
+  },
+  {
+   "CCN": "400109",
+   "FAC_NAME": "HOSPITAL ESPANOL AUXILIO MUTUO SAN PABLO",
+   "CHOW_DT": "2023-12-15",
+   "FYE": "2023-12-14",
+   "NET_INCOME": -52849884.0,
+   "NET_MARGIN_RATIO": -0.5916,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 41700230.0
+  },
+  {
+   "CCN": "400005",
+   "FAC_NAME": "HOPE MEDICAL CENTER LLC",
+   "CHOW_DT": "2023-12-13",
+   "FYE": "2023-12-12",
+   "NET_INCOME": -11576357.0,
+   "NET_MARGIN_RATIO": -0.565,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 11350560.0
+  },
+  {
+   "CCN": "344036",
+   "FAC_NAME": "IREDELL DAVIS BEHAVIORAL HEALTH HOSPITAL",
+   "CHOW_DT": "2024-10-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -4930611.0,
+   "NET_MARGIN_RATIO": -0.5059,
+   "FTYPE": "PH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 3806500.0
+  },
+  {
+   "CCN": "294016",
+   "FAC_NAME": "THRIVE BEHAVIORAL HOSPITAL, LLC",
+   "CHOW_DT": "2024-08-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -3636059.0,
+   "NET_MARGIN_RATIO": -0.2117,
+   "FTYPE": "PH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 16600603.0
+  },
+  {
+   "CCN": "050457",
+   "FAC_NAME": "UCSF HEALTH ST. MARY'S HOSPITAL",
+   "CHOW_DT": "2024-08-01",
+   "FYE": "2024-07-31",
+   "NET_INCOME": -189338359.0,
+   "NET_MARGIN_RATIO": -0.1924,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "1",
+   "NPR": 214620572.0
+  },
+  {
+   "CCN": "043036",
+   "FAC_NAME": "MERCY  REHABILITATION HOSPITAL NORTHWEST AR",
+   "CHOW_DT": "2023-03-01",
+   "FYE": "2023-02-28",
+   "NET_INCOME": -518505.0,
+   "NET_MARGIN_RATIO": -0.1738,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 1450453.0
+  },
+  {
+   "CCN": "452060",
+   "FAC_NAME": "TEXAS SPECIALTY HOSPITAL",
+   "CHOW_DT": "2024-05-19",
+   "FYE": "2024-05-18",
+   "NET_INCOME": -2422868.0,
+   "NET_MARGIN_RATIO": -0.1357,
+   "FTYPE": "LTCH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 5641015.0
+  },
+  {
+   "CCN": "513025",
+   "FAC_NAME": "SENECA REHABILITATION HOSPITAL",
+   "CHOW_DT": "2024-04-09",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -4204946.0,
+   "NET_MARGIN_RATIO": -0.1357,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 22445949.0
+  },
+  {
+   "CCN": "193079",
+   "FAC_NAME": "OASIS POINT REHABILITATION HOSPITAL",
+   "CHOW_DT": "2024-01-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -1379994.0,
+   "NET_MARGIN_RATIO": -0.1304,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 9437515.0
+  },
+  {
+   "CCN": "673073",
+   "FAC_NAME": "LONGVIEW REHABILITATION HOSPITAL",
+   "CHOW_DT": "2023-03-01",
+   "FYE": "2023-02-28",
+   "NET_INCOME": -614260.0,
+   "NET_MARGIN_RATIO": -0.1211,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 2411560.0
+  },
+  {
+   "CCN": "100249",
+   "FAC_NAME": "TAMPA GENERAL HOSPITAL CRYSTAL RIVER",
+   "CHOW_DT": "2023-12-01",
+   "FYE": "2023-11-30",
+   "NET_INCOME": -174291577.0,
+   "NET_MARGIN_RATIO": -0.1176,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": -41458923.0
+  },
+  {
+   "CCN": "160029",
+   "FAC_NAME": "UNIVERSITY OF IOWA HEALTH CARE MEDICAL CENTER DOWN",
+   "CHOW_DT": "2024-01-31",
+   "FYE": "2024-01-30",
+   "NET_INCOME": -42221650.0,
+   "NET_MARGIN_RATIO": -0.1156,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "1",
+   "NPR": 77991779.0
+  },
+  {
+   "CCN": "673074",
+   "FAC_NAME": "TEMPLE REHABILITATION HOSPITAL",
+   "CHOW_DT": "2023-03-01",
+   "FYE": "2023-02-28",
+   "NET_INCOME": -447629.0,
+   "NET_MARGIN_RATIO": -0.1045,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 2422521.0
+  },
+  {
+   "CCN": "450604",
+   "FAC_NAME": "HILL COUNTRY MEMORIAL HOSPITAL",
+   "CHOW_DT": "2023-04-01",
+   "FYE": "2023-03-31",
+   "NET_INCOME": -5891402.0,
+   "NET_MARGIN_RATIO": -0.0863,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 18779716.0
+  },
+  {
+   "CCN": "250172",
+   "FAC_NAME": "HIGHLAND HILLS MEDICAL CENTER",
+   "CHOW_DT": "2023-05-01",
+   "FYE": "2023-04-30",
+   "NET_INCOME": -1648188.0,
+   "NET_MARGIN_RATIO": -0.0828,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "9",
+   "NPR": 4969569.0
+  },
+  {
+   "CCN": "314027",
+   "FAC_NAME": "MOUNTAINVIEW BEHAVIORAL HOSPITAL",
+   "CHOW_DT": "2024-10-15",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -1378126.0,
+   "NET_MARGIN_RATIO": -0.0816,
+   "FTYPE": "PH",
+   "TYPE_OF_CONTROL": "9",
+   "NPR": 16893601.0
+  },
+  {
+   "CCN": "451372",
+   "FAC_NAME": "MULESHOE AREA MEDICAL CENTER",
+   "CHOW_DT": "2024-03-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -784941.0,
+   "NET_MARGIN_RATIO": -0.0724,
+   "FTYPE": "CAH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 5785237.0
+  },
+  {
+   "CCN": "192004",
+   "FAC_NAME": "BATON ROUGE SPECIALTY HOSPITAL",
+   "CHOW_DT": "2024-05-19",
+   "FYE": "2024-05-18",
+   "NET_INCOME": -1631500.0,
+   "NET_MARGIN_RATIO": -0.0665,
+   "FTYPE": "LTCH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 9885616.0
+  },
+  {
+   "CCN": "373025",
+   "FAC_NAME": "SSM HEALTH REHABILITATION HOSPITAL-OKC",
+   "CHOW_DT": "2024-12-10",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -1562303.0,
+   "NET_MARGIN_RATIO": -0.063,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 15851512.0
+  },
+  {
+   "CCN": "040153",
+   "FAC_NAME": "SOUTHWEST REGIONAL MEDICAL CENTER LLC",
+   "CHOW_DT": "2024-09-19",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -4252814.0,
+   "NET_MARGIN_RATIO": -0.0617,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 10571456.0
+  },
+  {
+   "CCN": "450271",
+   "FAC_NAME": "MEDICAL CITY DECATUR",
+   "CHOW_DT": "2023-12-01",
+   "FYE": "2023-11-30",
+   "NET_INCOME": -72010641.0,
+   "NET_MARGIN_RATIO": -0.061,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "12",
+   "NPR": 265595809.0
+  },
+  {
+   "CCN": "030121",
+   "FAC_NAME": "HONORHEALTH MOUNTAIN VISTA MEDICAL CENTER",
+   "CHOW_DT": "2024-10-03",
+   "FYE": "2024-06-30",
+   "NET_INCOME": -50736624.0,
+   "NET_MARGIN_RATIO": -0.0579,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 165236507.0
+  },
+  {
+   "CCN": "261311",
+   "FAC_NAME": "MERCY HOSPITAL PERRY",
+   "CHOW_DT": "2023-10-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -4443997.0,
+   "NET_MARGIN_RATIO": -0.0567,
+   "FTYPE": "CAH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 31805077.0
+  },
+  {
+   "CCN": "370002",
+   "FAC_NAME": "INTEGRIS HEALTH WOODWARD",
+   "CHOW_DT": "2023-11-01",
+   "FYE": "2023-10-31",
+   "NET_INCOME": -5158983.0,
+   "NET_MARGIN_RATIO": -0.0557,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 16272507.0
+  },
+  {
+   "CCN": "170006",
+   "FAC_NAME": "MERCY HOSPITAL PITTSBURG, INC",
+   "CHOW_DT": "2024-09-01",
+   "FYE": "2024-03-31",
+   "NET_INCOME": -15545305.0,
+   "NET_MARGIN_RATIO": -0.0537,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "1",
+   "NPR": 85596742.0
+  },
+  {
+   "CCN": "450508",
+   "FAC_NAME": "NACOGDOCHES MEMORIAL HOSPITAL",
+   "CHOW_DT": "2024-03-11",
+   "FYE": "2024-03-10",
+   "NET_INCOME": -7059469.0,
+   "NET_MARGIN_RATIO": -0.0439,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "11",
+   "NPR": 26596814.0
+  },
+  {
+   "CCN": "152028",
+   "FAC_NAME": "NW INDIANA-AMG SPECIALTY HOSPITAL",
+   "CHOW_DT": "2024-01-01",
+   "FYE": "2023-10-31",
+   "NET_INCOME": -2984341.0,
+   "NET_MARGIN_RATIO": -0.0405,
+   "FTYPE": "LTCH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 14013086.0
+  },
+  {
+   "CCN": "140125",
+   "FAC_NAME": "GATEWAY REGIONAL MEDICAL CENTER",
+   "CHOW_DT": "2023-03-01",
+   "FYE": "2023-02-28",
+   "NET_INCOME": -4656795.0,
+   "NET_MARGIN_RATIO": -0.0391,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 14257554.0
+  },
+  {
+   "CCN": "030037",
+   "FAC_NAME": "HONORHEALTH TEMPE MEDICAL CENTER",
+   "CHOW_DT": "2024-10-03",
+   "FYE": "2024-05-31",
+   "NET_INCOME": -10514784.0,
+   "NET_MARGIN_RATIO": -0.0375,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 56645058.0
+  },
+  {
+   "CCN": "400113",
+   "FAC_NAME": "HOSPITAL MENONITA PONCE",
+   "CHOW_DT": "2022-12-01",
+   "FYE": "2022-11-30",
+   "NET_INCOME": -349718.0,
+   "NET_MARGIN_RATIO": -0.0374,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "3",
+   "NPR": 5242359.0
+  },
+  {
+   "CCN": "180066",
+   "FAC_NAME": "THE MEDICAL CENTER AT RUSSELLVILLE",
+   "CHOW_DT": "2024-07-01",
+   "FYE": "2024-02-29",
+   "NET_INCOME": -5521590.0,
+   "NET_MARGIN_RATIO": -0.035,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 29049281.0
+  },
+  {
+   "CCN": "450035",
+   "FAC_NAME": "ST JOSEPH MEDICAL CENTER",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2023-10-31",
+   "NET_INCOME": -36831706.0,
+   "NET_MARGIN_RATIO": -0.0323,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 200925783.0
+  },
+  {
+   "CCN": "260177",
+   "FAC_NAME": "LIBERTY HOSPITAL",
+   "CHOW_DT": "2024-07-01",
+   "FYE": "2024-06-30",
+   "NET_INCOME": -34338991.0,
+   "NET_MARGIN_RATIO": -0.0321,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "8",
+   "NPR": 300973148.0
+  },
+  {
+   "CCN": "453096",
+   "FAC_NAME": "AMARILLO REHABILITATION HOSPITAL",
+   "CHOW_DT": "2023-11-01",
+   "FYE": "2023-10-31",
+   "NET_INCOME": -196169.0,
+   "NET_MARGIN_RATIO": -0.031,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 3000894.0
+  },
+  {
+   "CCN": "010090",
+   "FAC_NAME": "USA HEALTH PROVIDENCE HOSPITAL",
+   "CHOW_DT": "2023-10-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -7323518.0,
+   "NET_MARGIN_RATIO": -0.0297,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "1",
+   "NPR": 60518679.0
+  },
+  {
+   "CCN": "010012",
+   "FAC_NAME": "DEKALB REGIONAL MEDICAL CENTER",
+   "CHOW_DT": "2024-04-01",
+   "FYE": "2024-03-31",
+   "NET_INCOME": -13743080.0,
+   "NET_MARGIN_RATIO": -0.0275,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 52028919.0
+  },
+  {
+   "CCN": "450518",
+   "FAC_NAME": "HSA PORT ARTHUR, LLC",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2023-11-30",
+   "NET_INCOME": -22364298.0,
+   "NET_MARGIN_RATIO": -0.0255,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 127198409.0
+  },
+  {
+   "CCN": "250042",
+   "FAC_NAME": "NORTHWEST MISSISSISSIPPI REGIONAL MEDICAL CENTER",
+   "CHOW_DT": "2024-02-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -4261271.0,
+   "NET_MARGIN_RATIO": -0.0243,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "9",
+   "NPR": 28510579.0
+  },
+  {
+   "CCN": "040051",
+   "FAC_NAME": "BAPTIST HEALTH MEDICAL CENTER-DREW COUNTY",
+   "CHOW_DT": "2023-12-03",
+   "FYE": "2023-12-02",
+   "NET_INCOME": -1732065.0,
+   "NET_MARGIN_RATIO": -0.0214,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 22136545.0
+  },
+  {
+   "CCN": "100029",
+   "FAC_NAME": "NORTH SHORE MEDICAL CENTER",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2024-04-30",
+   "NET_INCOME": -55429185.0,
+   "NET_MARGIN_RATIO": -0.0208,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 262038109.0
+  },
+  {
+   "CCN": "294011",
+   "FAC_NAME": "SPRING MOUNTAIN TREATMENT CENTER",
+   "CHOW_DT": "2024-08-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -1062576.0,
+   "NET_MARGIN_RATIO": -0.0201,
+   "FTYPE": "PH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 19738920.0
+  },
+  {
+   "CCN": "440132",
+   "FAC_NAME": "WEST TENNESSEE HEALTHCARE HENRY COUNTY HOSPITAL",
+   "CHOW_DT": "2024-10-01",
+   "FYE": "2024-06-30",
+   "NET_INCOME": -4895668.0,
+   "NET_MARGIN_RATIO": -0.0163,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "9",
+   "NPR": 89334366.0
+  },
+  {
+   "CCN": "110234",
+   "FAC_NAME": "SGMC BERRIEN CAMPUS",
+   "CHOW_DT": "2023-11-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -450706.0,
+   "NET_MARGIN_RATIO": -0.016,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "8",
+   "NPR": 7779497.0
+  },
+  {
+   "CCN": "190160",
+   "FAC_NAME": "GLENWOOD REGIONAL MEDICAL CENTER",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2024-02-29",
+   "NET_INCOME": -13216018.0,
+   "NET_MARGIN_RATIO": -0.0154,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 150921564.0
+  },
+  {
+   "CCN": "452111",
+   "FAC_NAME": "BAYLOR SCOTT WHITE THE HEART HOSPITAL CORINTH",
+   "CHOW_DT": "2024-11-01",
+   "FYE": "2023-11-30",
+   "NET_INCOME": -4025827.0,
+   "NET_MARGIN_RATIO": -0.0152,
+   "FTYPE": "LTCH",
+   "TYPE_OF_CONTROL": "5",
+   "NPR": 44362530.0
+  },
+  {
+   "CCN": "100183",
+   "FAC_NAME": "CORAL GABLES HOSPITAL",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2024-04-30",
+   "NET_INCOME": -12741689.0,
+   "NET_MARGIN_RATIO": -0.0122,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 96968984.0
+  },
+  {
+   "CCN": "050570",
+   "FAC_NAME": "UCI HEALTH-FOUNTAIN VALLEY",
+   "CHOW_DT": "2024-03-27",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -27171498.0,
+   "NET_MARGIN_RATIO": -0.008,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 312957323.0
+  },
+  {
+   "CCN": "450661",
+   "FAC_NAME": "ODESSA REGIONAL MEDICAL CENTER",
+   "CHOW_DT": "2024-10-17",
+   "FYE": "2023-09-30",
+   "NET_INCOME": -4821169.0,
+   "NET_MARGIN_RATIO": -0.0057,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 142639322.0
+  },
+  {
+   "CCN": "100053",
+   "FAC_NAME": "HIALEAH HOSPITAL",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2024-04-30",
+   "NET_INCOME": -6695750.0,
+   "NET_MARGIN_RATIO": -0.0051,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 112907916.0
+  },
+  {
+   "CCN": "090003",
+   "FAC_NAME": "HOWARD UNIVERSITY HOSPITAL CORP",
+   "CHOW_DT": "2024-01-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -1093845.0,
+   "NET_MARGIN_RATIO": -0.0029,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 138552455.0
+  },
+  {
+   "CCN": "360055",
+   "FAC_NAME": "INSIGHT HOSPITAL AND MEDICAL CENTER TRUMBULL",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2023-12-31",
+   "NET_INCOME": -2244899.0,
+   "NET_MARGIN_RATIO": -0.0027,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 127085749.0
+  },
+  {
+   "CCN": "050551",
+   "FAC_NAME": "UCI HEALTH-LOS ALAMITOS",
+   "CHOW_DT": "2024-03-27",
+   "FYE": "2024-03-26",
+   "NET_INCOME": 711527.0,
+   "NET_MARGIN_RATIO": 0.0003,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 203481654.0
+  },
+  {
+   "CCN": "100092",
+   "FAC_NAME": "ORLANDO HEALTH ROCKLEDGE HOSPITAL",
+   "CHOW_DT": "2024-10-23",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 582497.0,
+   "NET_MARGIN_RATIO": 0.0004,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 167551479.0
+  },
+  {
+   "CCN": "220073",
+   "FAC_NAME": "BROWN UNIVERSITY HEALTH MORTON HOSPITAL",
+   "CHOW_DT": "2024-10-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 586655.0,
+   "NET_MARGIN_RATIO": 0.0017,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 160018788.0
+  },
+  {
+   "CCN": "340047",
+   "FAC_NAME": "NORTH CAROLINA BAPTIST HOSPITAL",
+   "CHOW_DT": "2024-03-02",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 43175034.0,
+   "NET_MARGIN_RATIO": 0.0048,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "1",
+   "NPR": 2718737845.0
+  },
+  {
+   "CCN": "050581",
+   "FAC_NAME": "UCI HEALTH-LAKEWOOD",
+   "CHOW_DT": "2024-03-27",
+   "FYE": "2024-03-26",
+   "NET_INCOME": 10896665.0,
+   "NET_MARGIN_RATIO": 0.0051,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 197537793.0
+  },
+  {
+   "CCN": "050589",
+   "FAC_NAME": "UCI HEALTH-PLACENTIA LINDA",
+   "CHOW_DT": "2024-03-27",
+   "FYE": "2024-03-26",
+   "NET_INCOME": 9795655.0,
+   "NET_MARGIN_RATIO": 0.0075,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 92964972.0
+  },
+  {
+   "CCN": "290032",
+   "FAC_NAME": "NORTHERN NEVADA MEDICAL CENTER",
+   "CHOW_DT": "2024-09-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 12829539.0,
+   "NET_MARGIN_RATIO": 0.0078,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 162814800.0
+  },
+  {
+   "CCN": "100217",
+   "FAC_NAME": "ORLANDO HEALTH SEBASTIAN RIVER HOSPITAL",
+   "CHOW_DT": "2024-10-23",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 10304784.0,
+   "NET_MARGIN_RATIO": 0.0087,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 128168151.0
+  },
+  {
+   "CCN": "100071",
+   "FAC_NAME": "TAMPA GENERAL HOSPITAL BROOKSVILLE",
+   "CHOW_DT": "2023-12-01",
+   "FYE": "2023-11-30",
+   "NET_INCOME": 15531498.0,
+   "NET_MARGIN_RATIO": 0.0088,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 169028844.0
+  },
+  {
+   "CCN": "364055",
+   "FAC_NAME": "SOJOURN AT SENECA SENIOR BEHAVIORAL HEALTH HOSPITA",
+   "CHOW_DT": "2024-06-20",
+   "FYE": "2024-06-19",
+   "NET_INCOME": 92778.0,
+   "NET_MARGIN_RATIO": 0.0102,
+   "FTYPE": "PH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 5622268.0
+  },
+  {
+   "CCN": "050481",
+   "FAC_NAME": "UCLA WEST VALLEY MEDICAL CENTER",
+   "CHOW_DT": "2024-03-29",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 32322460.0,
+   "NET_MARGIN_RATIO": 0.0107,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 234675921.0
+  },
+  {
+   "CCN": "450653",
+   "FAC_NAME": "SCENIC MOUNTAIN MEDICAL CENTER",
+   "CHOW_DT": "2024-10-17",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 2165496.0,
+   "NET_MARGIN_RATIO": 0.0121,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 46085757.0
+  },
+  {
+   "CCN": "363026",
+   "FAC_NAME": "INSIGHT REHABILITATION HOSPITAL HILLSIDE",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 907351.0,
+   "NET_MARGIN_RATIO": 0.014,
+   "FTYPE": "RH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 20653572.0
+  },
+  {
+   "CCN": "100187",
+   "FAC_NAME": "PALMETTO GENERAL HOSPITAL",
+   "CHOW_DT": "2024-10-30",
+   "FYE": "2024-04-30",
+   "NET_INCOME": 43983942.0,
+   "NET_MARGIN_RATIO": 0.016,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 358325534.0
+  },
+  {
+   "CCN": "440185",
+   "FAC_NAME": "BRADLEY MEDICAL CENTER",
+   "CHOW_DT": "2024-08-01",
+   "FYE": "2024-07-31",
+   "NET_INCOME": 38365045.0,
+   "NET_MARGIN_RATIO": 0.0232,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 162952530.0
+  },
+  {
+   "CCN": "450634",
+   "FAC_NAME": "MEDICAL CITY DENTON",
+   "CHOW_DT": "2024-06-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 79873277.0,
+   "NET_MARGIN_RATIO": 0.0262,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 296571144.0
+  },
+  {
+   "CCN": "100291",
+   "FAC_NAME": "ORLANDO HEALTH MELBOURNE HOSPITAL",
+   "CHOW_DT": "2024-10-23",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 31946866.0,
+   "NET_MARGIN_RATIO": 0.0278,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 133422164.0
+  },
+  {
+   "CCN": "130049",
+   "FAC_NAME": "KOOTENAI HEALTH",
+   "CHOW_DT": "2024-01-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 56528094.0,
+   "NET_MARGIN_RATIO": 0.0296,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 714353889.0
+  },
+  {
+   "CCN": "370006",
+   "FAC_NAME": "INTEGRIS HEALTH PONCA CITY",
+   "CHOW_DT": "2023-11-01",
+   "FYE": "2023-10-31",
+   "NET_INCOME": 5475602.0,
+   "NET_MARGIN_RATIO": 0.0314,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 25810389.0
+  },
+  {
+   "CCN": "052043",
+   "FAC_NAME": "KENTFIELD HOSPITAL",
+   "CHOW_DT": "2023-09-06",
+   "FYE": "2023-09-05",
+   "NET_INCOME": 867250.0,
+   "NET_MARGIN_RATIO": 0.0345,
+   "FTYPE": "LTCH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 12621165.0
+  },
+  {
+   "CCN": "450571",
+   "FAC_NAME": "SHANNON MEDICAL CENTER",
+   "CHOW_DT": "2024-09-17",
+   "FYE": "2023-09-30",
+   "NET_INCOME": 96217543.0,
+   "NET_MARGIN_RATIO": 0.0358,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 642627750.0
+  },
+  {
+   "CCN": "100220",
+   "FAC_NAME": "GULF COAST MEDICAL CENTER",
+   "CHOW_DT": "2024-11-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": 144985842.0,
+   "NET_MARGIN_RATIO": 0.0379,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 721201930.0
+  },
+  {
+   "CCN": "220020",
+   "FAC_NAME": "BROWN UNIVERSITY HEALTH SAINT ANNE'S HOSPITAL",
+   "CHOW_DT": "2024-10-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 38509348.0,
+   "NET_MARGIN_RATIO": 0.0448,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 331569570.0
+  },
+  {
+   "CCN": "420080",
+   "FAC_NAME": "HILTON HEAD REGIONAL MEDICAL CENTER",
+   "CHOW_DT": "2024-02-01",
+   "FYE": "2024-01-31",
+   "NET_INCOME": 50889717.0,
+   "NET_MARGIN_RATIO": 0.0478,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 182831470.0
+  },
+  {
+   "CCN": "100012",
+   "FAC_NAME": "LEE MEMORIAL HOSPITAL",
+   "CHOW_DT": "2024-11-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": 311804727.0,
+   "NET_MARGIN_RATIO": 0.0487,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "13",
+   "NPR": 1305350417.0
+  },
+  {
+   "CCN": "420089",
+   "FAC_NAME": "EAST COOPER MEDICAL CENTER",
+   "CHOW_DT": "2024-02-01",
+   "FYE": "2024-01-31",
+   "NET_INCOME": 59481159.0,
+   "NET_MARGIN_RATIO": 0.0512,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 227523396.0
+  },
+  {
+   "CCN": "210002",
+   "FAC_NAME": "UNIVERSITY OF MARYLAND MEDICAL CENTER",
+   "CHOW_DT": "2024-02-01",
+   "FYE": "2024-01-31",
+   "NET_INCOME": 70167866.0,
+   "NET_MARGIN_RATIO": 0.0537,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "2",
+   "NPR": 1117148024.0
+  },
+  {
+   "CCN": "100244",
+   "FAC_NAME": "CAPE CORAL HOSPITAL",
+   "CHOW_DT": "2024-11-01",
+   "FYE": "2023-09-30",
+   "NET_INCOME": 114962831.0,
+   "NET_MARGIN_RATIO": 0.0568,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "13",
+   "NPR": 386537998.0
+  },
+  {
+   "CCN": "220111",
+   "FAC_NAME": "BOSTON MEDICAL CENTER-SOUTH",
+   "CHOW_DT": "2024-10-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 39340400.0,
+   "NET_MARGIN_RATIO": 0.0575,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 315682440.0
+  },
+  {
+   "CCN": "010128",
+   "FAC_NAME": "JACKSON MEDICAL CENTER",
+   "CHOW_DT": "2024-09-30",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 1865479.0,
+   "NET_MARGIN_RATIO": 0.0587,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 14123216.0
+  },
+  {
+   "CCN": "450469",
+   "FAC_NAME": "AHS SHERMAN MEDICAL CENTER",
+   "CHOW_DT": "2024-01-01",
+   "FYE": "2023-12-31",
+   "NET_INCOME": 28463393.0,
+   "NET_MARGIN_RATIO": 0.1626,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "6",
+   "NPR": 67597944.0
+  },
+  {
+   "CCN": "451389",
+   "FAC_NAME": "PECOS COUNTY MEMORIAL HOSPITAL",
+   "CHOW_DT": "2023-07-01",
+   "FYE": "2023-06-30",
+   "NET_INCOME": 4770025.0,
+   "NET_MARGIN_RATIO": 0.2063,
+   "FTYPE": "CAH",
+   "TYPE_OF_CONTROL": "9",
+   "NPR": 9412018.0
+  },
+  {
+   "CCN": "452068",
+   "FAC_NAME": "SAGE SPECIALTY HOSPITAL OF WICHITA FALLS",
+   "CHOW_DT": "2024-08-01",
+   "FYE": "2024-07-31",
+   "NET_INCOME": 4190521.0,
+   "NET_MARGIN_RATIO": 0.217,
+   "FTYPE": "LTCH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": 11287878.0
+  },
+  {
+   "CCN": "041322",
+   "FAC_NAME": "BAXTER HEALTH FULTON COUNTY HOSPITAL",
+   "CHOW_DT": "2024-12-31",
+   "FYE": "2024-06-30",
+   "NET_INCOME": 4418975.0,
+   "NET_MARGIN_RATIO": 0.2269,
+   "FTYPE": "CAH",
+   "TYPE_OF_CONTROL": "9",
+   "NPR": 9909185.0
+  },
+  {
+   "CCN": "400134",
+   "FAC_NAME": "THE SAN JORGE HOSPITAL INC",
+   "CHOW_DT": "2024-06-08",
+   "FYE": "2023-12-31",
+   "NET_INCOME": NaN,
+   "NET_MARGIN_RATIO": NaN,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": NaN
+  },
+  {
+   "CCN": "400120",
+   "FAC_NAME": "HOSPITAL PAVIA CAGUAS",
+   "CHOW_DT": "2023-12-20",
+   "FYE": "2023-12-19",
+   "NET_INCOME": -141285802.0,
+   "NET_MARGIN_RATIO": NaN,
+   "FTYPE": "STH",
+   "TYPE_OF_CONTROL": "4",
+   "NPR": NaN
+  }
+ ],
+ "after_only": [
+  {
+   "HOSPITALS": 40,
+   "WITH_AFTER_REPORT": 33,
+   "LOSING_AFTER": 19
+  }
+ ],
+ "base_all": [
+  {
+   "N": 6103,
+   "LOSING": 2167,
+   "PCT": 35.5,
+   "OP_LOSING": 3510,
+   "MED_MARGIN": 0.0152
+  }
+ ],
+ "base_fy": [
+  {
+   "FY": 2022,
+   "N": 5,
+   "LOSING": 2,
+   "PCT": 40.0,
+   "MED_MARGIN": 0.1047
+  },
+  {
+   "FY": 2023,
+   "N": 3534,
+   "LOSING": 1246,
+   "PCT": 35.3,
+   "MED_MARGIN": 0.0138
+  },
+  {
+   "FY": 2024,
+   "N": 2564,
+   "LOSING": 919,
+   "PCT": 35.8,
+   "MED_MARGIN": 0.0167
+  }
+ ],
+ "base_type": [
+  {
+   "FTYPE": "STH",
+   "N": 3236,
+   "LOSING": 1137,
+   "PCT": 35.1,
+   "MED_MARGIN": 0.0108
+  },
+  {
+   "FTYPE": "CAH",
+   "N": 1382,
+   "LOSING": 451,
+   "PCT": 32.6,
+   "MED_MARGIN": 0.0265
+  },
+  {
+   "FTYPE": "PH",
+   "N": 646,
+   "LOSING": 275,
+   "PCT": 42.6,
+   "MED_MARGIN": 0.0461
+  },
+  {
+   "FTYPE": "RH",
+   "N": 389,
+   "LOSING": 100,
+   "PCT": 25.7,
+   "MED_MARGIN": 0.0551
+  },
+  {
+   "FTYPE": "LTCH",
+   "N": 340,
+   "LOSING": 189,
+   "PCT": 55.6,
+   "MED_MARGIN": -0.00135
+  },
+  {
+   "FTYPE": "CH",
+   "N": 91,
+   "LOSING": 11,
+   "PCT": 12.1,
+   "MED_MARGIN": 0.0816
+  },
+  {
+   "FTYPE": "RNMHC",
+   "N": 10,
+   "LOSING": 4,
+   "PCT": 40.0,
+   "MED_MARGIN": 0.12705
+  },
+  {
+   "FTYPE": "ORD",
+   "N": 8,
+   "LOSING": 0,
+   "PCT": 0.0,
+   "MED_MARGIN": 0.09655
+  },
+  {
+   "FTYPE": "TC",
+   "N": 1,
+   "LOSING": 0,
+   "PCT": 0.0,
+   "MED_MARGIN": NaN
+  }
+ ],
+ "base_ctrl": [
+  {
+   "TYPE_OF_CONTROL": "2",
+   "N": 2457,
+   "LOSING": 758,
+   "PCT": 30.9
+  },
+  {
+   "TYPE_OF_CONTROL": "4",
+   "N": 1411,
+   "LOSING": 465,
+   "PCT": 33.0
+  },
+  {
+   "TYPE_OF_CONTROL": "1",
+   "N": 598,
+   "LOSING": 213,
+   "PCT": 35.6
+  },
+  {
+   "TYPE_OF_CONTROL": "9",
+   "N": 366,
+   "LOSING": 159,
+   "PCT": 43.4
+  },
+  {
+   "TYPE_OF_CONTROL": "11",
+   "N": 341,
+   "LOSING": 133,
+   "PCT": 39.0
+  },
+  {
+   "TYPE_OF_CONTROL": "5",
+   "N": 294,
+   "LOSING": 80,
+   "PCT": 27.2
+  },
+  {
+   "TYPE_OF_CONTROL": "10",
+   "N": 230,
+   "LOSING": 164,
+   "PCT": 71.3
+  },
+  {
+   "TYPE_OF_CONTROL": "6",
+   "N": 116,
+   "LOSING": 44,
+   "PCT": 37.9
+  },
+  {
+   "TYPE_OF_CONTROL": "8",
+   "N": 81,
+   "LOSING": 42,
+   "PCT": 51.9
+  },
+  {
+   "TYPE_OF_CONTROL": "13",
+   "N": 81,
+   "LOSING": 39,
+   "PCT": 48.1
+  },
+  {
+   "TYPE_OF_CONTROL": "12",
+   "N": 64,
+   "LOSING": 24,
+   "PCT": 37.5
+  },
+  {
+   "TYPE_OF_CONTROL": "7",
+   "N": 44,
+   "LOSING": 41,
+   "PCT": 93.2
+  },
+  {
+   "TYPE_OF_CONTROL": "3",
+   "N": 20,
+   "LOSING": 5,
+   "PCT": 25.0
+  }
+ ],
+ "base_notsold": [
+  {
+   "N": 5966,
+   "LOSING": 2087,
+   "PCT": 35.0,
+   "MED_MARGIN": 0.015649999999999997
+  }
+ ],
+ "margin_buckets": [
+  {
+   "GRP": "all other hospitals",
+   "BUCKET": "a. below -20%",
+   "N": 152
+  },
+  {
+   "GRP": "all other hospitals",
+   "BUCKET": "b. -20 to -10%",
+   "N": 147
+  },
+  {
+   "GRP": "all other hospitals",
+   "BUCKET": "c. -10 to 0%",
+   "N": 1650
+  },
+  {
+   "GRP": "all other hospitals",
+   "BUCKET": "d. 0 to 5%",
+   "N": 2495
+  },
+  {
+   "GRP": "all other hospitals",
+   "BUCKET": "e. 5 to 10%",
+   "N": 789
+  },
+  {
+   "GRP": "all other hospitals",
+   "BUCKET": "f. above 10%",
+   "N": 770
+  },
+  {
+   "GRP": "sold, year before",
+   "BUCKET": "a. below -20%",
+   "N": 5
+  },
+  {
+   "GRP": "sold, year before",
+   "BUCKET": "b. -20 to -10%",
+   "N": 9
+  },
+  {
+   "GRP": "sold, year before",
+   "BUCKET": "c. -10 to 0%",
+   "N": 38
+  },
+  {
+   "GRP": "sold, year before",
+   "BUCKET": "d. 0 to 5%",
+   "N": 25
+  },
+  {
+   "GRP": "sold, year before",
+   "BUCKET": "e. 5 to 10%",
+   "N": 5
+  },
+  {
+   "GRP": "sold, year before",
+   "BUCKET": "f. above 10%",
+   "N": 6
+  }
+ ],
+ "before_len": [
+  {
+   "PERIOD": "full year (300+ days)",
+   "N": 62,
+   "LOSING": 34,
+   "PCT": 54.8,
+   "MED_MARGIN": -0.0054,
+   "ENDS_DAY_BEFORE_SALE": 17
+  },
+  {
+   "PERIOD": "half year (180-299)",
+   "N": 13,
+   "LOSING": 8,
+   "PCT": 61.5,
+   "MED_MARGIN": -0.0214,
+   "ENDS_DAY_BEFORE_SALE": 13
+  },
+  {
+   "PERIOD": "stub (<180 days)",
+   "N": 13,
+   "LOSING": 11,
+   "PCT": 84.6,
+   "MED_MARGIN": -0.0557,
+   "ENDS_DAY_BEFORE_SALE": 12
+  }
+ ],
+ "before_len_hist": [
+  {
+   "FY_LEN": 58,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0391,
+   "FAC_NAME": "GATEWAY REGIONAL MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 58,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.7772,
+   "FAC_NAME": "LIBERTY REHABILITATION HOSPITAL"
+  },
+  {
+   "FY_LEN": 58,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1211,
+   "FAC_NAME": "LONGVIEW REHABILITATION HOSPITAL"
+  },
+  {
+   "FY_LEN": 58,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1738,
+   "FAC_NAME": "MERCY  REHABILITATION HOSPITAL NORTHWEST AR"
+  },
+  {
+   "FY_LEN": 58,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1045,
+   "FAC_NAME": "TEMPLE REHABILITATION HOSPITAL"
+  },
+  {
+   "FY_LEN": 60,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0374,
+   "FAC_NAME": "HOSPITAL MENONITA PONCE"
+  },
+  {
+   "FY_LEN": 66,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0345,
+   "FAC_NAME": "KENTFIELD HOSPITAL"
+  },
+  {
+   "FY_LEN": 89,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0863,
+   "FAC_NAME": "HILL COUNTRY MEMORIAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 91,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0297,
+   "FAC_NAME": "USA HEALTH PROVIDENCE HOSPITAL"
+  },
+  {
+   "FY_LEN": 91,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.031,
+   "FAC_NAME": "AMARILLO REHABILITATION HOSPITAL"
+  },
+  {
+   "FY_LEN": 148,
+   "DAYS_TO_SALE": 367,
+   "NET_MARGIN_RATIO": -0.5059,
+   "FAC_NAME": "IREDELL DAVIS BEHAVIORAL HEALTH HOSPITAL"
+  },
+  {
+   "FY_LEN": 152,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0314,
+   "FAC_NAME": "INTEGRIS HEALTH PONCA CITY"
+  },
+  {
+   "FY_LEN": 152,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0557,
+   "FAC_NAME": "INTEGRIS HEALTH WOODWARD"
+  },
+  {
+   "FY_LEN": 180,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.2063,
+   "FAC_NAME": "PECOS COUNTY MEMORIAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 182,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0567,
+   "FAC_NAME": "MERCY HOSPITAL PERRY"
+  },
+  {
+   "FY_LEN": 183,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0029,
+   "FAC_NAME": "HOWARD UNIVERSITY HOSPITAL CORP"
+  },
+  {
+   "FY_LEN": 211,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0828,
+   "FAC_NAME": "HIGHLAND HILLS MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 213,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1156,
+   "FAC_NAME": "UNIVERSITY OF IOWA HEALTH CARE MEDICAL CENTER DOWN"
+  },
+  {
+   "FY_LEN": 214,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0537,
+   "FAC_NAME": "UNIVERSITY OF MARYLAND MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 245,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0214,
+   "FAC_NAME": "BAPTIST HEALTH MEDICAL CENTER-DREW COUNTY"
+  },
+  {
+   "FY_LEN": 253,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0439,
+   "FAC_NAME": "NACOGDOCHES MEMORIAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 260,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0665,
+   "FAC_NAME": "BATON ROUGE SPECIALTY HOSPITAL"
+  },
+  {
+   "FY_LEN": 260,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1357,
+   "FAC_NAME": "TEXAS SPECIALTY HOSPITAL"
+  },
+  {
+   "FY_LEN": 299,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0003,
+   "FAC_NAME": "UCI HEALTH-LOS ALAMITOS"
+  },
+  {
+   "FY_LEN": 299,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0075,
+   "FAC_NAME": "UCI HEALTH-PLACENTIA LINDA"
+  },
+  {
+   "FY_LEN": 299,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0051,
+   "FAC_NAME": "UCI HEALTH-LAKEWOOD"
+  },
+  {
+   "FY_LEN": 333,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.061,
+   "FAC_NAME": "MEDICAL CITY DECATUR"
+  },
+  {
+   "FY_LEN": 334,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0232,
+   "FAC_NAME": "BRADLEY MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 334,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.217,
+   "FAC_NAME": "SAGE SPECIALTY HOSPITAL OF WICHITA FALLS"
+  },
+  {
+   "FY_LEN": 345,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.565,
+   "FAC_NAME": "HOPE MEDICAL CENTER LLC"
+  },
+  {
+   "FY_LEN": 347,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.5916,
+   "FAC_NAME": "HOSPITAL ESPANOL AUXILIO MUTUO SAN PABLO"
+  },
+  {
+   "FY_LEN": 352,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": NaN,
+   "FAC_NAME": "HOSPITAL PAVIA CAGUAS"
+  },
+  {
+   "FY_LEN": 354,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0102,
+   "FAC_NAME": "SOJOURN AT SENECA SENIOR BEHAVIORAL HEALTH HOSPITA"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 383,
+   "NET_MARGIN_RATIO": -0.0057,
+   "FAC_NAME": "ODESSA REGIONAL MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 289,
+   "NET_MARGIN_RATIO": -0.0816,
+   "FAC_NAME": "MOUNTAINVIEW BEHAVIORAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 32,
+   "NET_MARGIN_RATIO": -0.016,
+   "FAC_NAME": "SGMC BERRIEN CAMPUS"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 274,
+   "NET_MARGIN_RATIO": 0.0587,
+   "FAC_NAME": "JACKSON MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 304,
+   "NET_MARGIN_RATIO": 0.014,
+   "FAC_NAME": "INSIGHT REHABILITATION HOSPITAL HILLSIDE"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 297,
+   "NET_MARGIN_RATIO": 0.0087,
+   "FAC_NAME": "ORLANDO HEALTH SEBASTIAN RIVER HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 398,
+   "NET_MARGIN_RATIO": 0.0568,
+   "FAC_NAME": "CAPE CORAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 345,
+   "NET_MARGIN_RATIO": -0.063,
+   "FAC_NAME": "SSM HEALTH REHABILITATION HOSPITAL-OKC"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 275,
+   "NET_MARGIN_RATIO": 0.0017,
+   "FAC_NAME": "BROWN UNIVERSITY HEALTH MORTON HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 153,
+   "NET_MARGIN_RATIO": 0.0262,
+   "FAC_NAME": "MEDICAL CITY DENTON"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 335,
+   "NET_MARGIN_RATIO": -0.0255,
+   "FAC_NAME": "HSA PORT ARTHUR, LLC"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 297,
+   "NET_MARGIN_RATIO": 0.0004,
+   "FAC_NAME": "ORLANDO HEALTH ROCKLEDGE HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 398,
+   "NET_MARGIN_RATIO": 0.0487,
+   "FAC_NAME": "LEE MEMORIAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.1626,
+   "FAC_NAME": "AHS SHERMAN MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 355,
+   "NET_MARGIN_RATIO": -0.0617,
+   "FAC_NAME": "SOUTHWEST REGIONAL MEDICAL CENTER LLC"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 365,
+   "NET_MARGIN_RATIO": -0.0323,
+   "FAC_NAME": "ST JOSEPH MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 337,
+   "NET_MARGIN_RATIO": -0.0152,
+   "FAC_NAME": "BAYLOR SCOTT WHITE THE HEART HOSPITAL CORINTH"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 304,
+   "NET_MARGIN_RATIO": -0.0027,
+   "FAC_NAME": "INSIGHT HOSPITAL AND MEDICAL CENTER TRUMBULL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0296,
+   "FAC_NAME": "KOOTENAI HEALTH"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1304,
+   "FAC_NAME": "OASIS POINT REHABILITATION HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 87,
+   "NET_MARGIN_RATIO": -0.008,
+   "FAC_NAME": "UCI HEALTH-FOUNTAIN VALLEY"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 214,
+   "NET_MARGIN_RATIO": -0.0201,
+   "FAC_NAME": "SPRING MOUNTAIN TREATMENT CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 297,
+   "NET_MARGIN_RATIO": 0.0278,
+   "FAC_NAME": "ORLANDO HEALTH MELBOURNE HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 62,
+   "NET_MARGIN_RATIO": -0.0405,
+   "FAC_NAME": "NW INDIANA-AMG SPECIALTY HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 124,
+   "NET_MARGIN_RATIO": -0.0243,
+   "FAC_NAME": "NORTHWEST MISSISSISSIPPI REGIONAL MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 62,
+   "NET_MARGIN_RATIO": 0.0048,
+   "FAC_NAME": "NORTH CAROLINA BAPTIST HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 275,
+   "NET_MARGIN_RATIO": 0.0575,
+   "FAC_NAME": "BOSTON MEDICAL CENTER-SOUTH"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 100,
+   "NET_MARGIN_RATIO": -0.1357,
+   "FAC_NAME": "SENECA REHABILITATION HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 160,
+   "NET_MARGIN_RATIO": NaN,
+   "FAC_NAME": "THE SAN JORGE HOSPITAL INC"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 398,
+   "NET_MARGIN_RATIO": 0.0379,
+   "FAC_NAME": "GULF COAST MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 89,
+   "NET_MARGIN_RATIO": 0.0107,
+   "FAC_NAME": "UCLA WEST VALLEY MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 245,
+   "NET_MARGIN_RATIO": 0.0078,
+   "FAC_NAME": "NORTHERN NEVADA MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 153,
+   "NET_MARGIN_RATIO": -0.0724,
+   "FAC_NAME": "MULESHOE AREA MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 214,
+   "NET_MARGIN_RATIO": -0.2117,
+   "FAC_NAME": "THRIVE BEHAVIORAL HOSPITAL, LLC"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 275,
+   "NET_MARGIN_RATIO": 0.0448,
+   "FAC_NAME": "BROWN UNIVERSITY HEALTH SAINT ANNE'S HOSPITAL"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 291,
+   "NET_MARGIN_RATIO": 0.0121,
+   "FAC_NAME": "SCENIC MOUNTAIN MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 364,
+   "DAYS_TO_SALE": 353,
+   "NET_MARGIN_RATIO": 0.0358,
+   "FAC_NAME": "SHANNON MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 183,
+   "NET_MARGIN_RATIO": -0.0208,
+   "FAC_NAME": "NORTH SHORE MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 154,
+   "NET_MARGIN_RATIO": -0.0537,
+   "FAC_NAME": "MERCY HOSPITAL PITTSBURG, INC"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 183,
+   "NET_MARGIN_RATIO": -0.0051,
+   "FAC_NAME": "HIALEAH HOSPITAL"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 125,
+   "NET_MARGIN_RATIO": -0.0375,
+   "FAC_NAME": "HONORHEALTH TEMPE MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 95,
+   "NET_MARGIN_RATIO": -0.0579,
+   "FAC_NAME": "HONORHEALTH MOUNTAIN VISTA MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 183,
+   "NET_MARGIN_RATIO": 0.016,
+   "FAC_NAME": "PALMETTO GENERAL HOSPITAL"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 123,
+   "NET_MARGIN_RATIO": -0.035,
+   "FAC_NAME": "THE MEDICAL CENTER AT RUSSELLVILLE"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 184,
+   "NET_MARGIN_RATIO": 0.2269,
+   "FAC_NAME": "BAXTER HEALTH FULTON COUNTY HOSPITAL"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 244,
+   "NET_MARGIN_RATIO": -0.0154,
+   "FAC_NAME": "GLENWOOD REGIONAL MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0321,
+   "FAC_NAME": "LIBERTY HOSPITAL"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 93,
+   "NET_MARGIN_RATIO": -0.0163,
+   "FAC_NAME": "WEST TENNESSEE HEALTHCARE HENRY COUNTY HOSPITAL"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 183,
+   "NET_MARGIN_RATIO": -0.0122,
+   "FAC_NAME": "CORAL GABLES HOSPITAL"
+  },
+  {
+   "FY_LEN": 365,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.0275,
+   "FAC_NAME": "DEKALB REGIONAL MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 395,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0478,
+   "FAC_NAME": "HILTON HEAD REGIONAL MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 395,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0512,
+   "FAC_NAME": "EAST COOPER MEDICAL CENTER"
+  },
+  {
+   "FY_LEN": 396,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1924,
+   "FAC_NAME": "UCSF HEALTH ST. MARY'S HOSPITAL"
+  },
+  {
+   "FY_LEN": 425,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": -0.1176,
+   "FAC_NAME": "TAMPA GENERAL HOSPITAL CRYSTAL RIVER"
+  },
+  {
+   "FY_LEN": 425,
+   "DAYS_TO_SALE": 1,
+   "NET_MARGIN_RATIO": 0.0088,
+   "FAC_NAME": "TAMPA GENERAL HOSPITAL BROOKSVILLE"
+  }
+ ],
+ "base_len": [
+  {
+   "PERIOD": "full year (300+ days)",
+   "N": 5878,
+   "LOSING": 2029,
+   "PCT": 34.5,
+   "MED_MARGIN": 0.0159
+  },
+  {
+   "PERIOD": "half year (180-299)",
+   "N": 146,
+   "LOSING": 87,
+   "PCT": 59.6,
+   "MED_MARGIN": -0.0208
+  },
+  {
+   "PERIOD": "stub (<180 days)",
+   "N": 79,
+   "LOSING": 51,
+   "PCT": 64.6,
+   "MED_MARGIN": -0.0557
+  }
+ ],
+ "dupes_vs_sold": [
+  {
+   "DUPE_CCNS": 62,
+   "EVER_SOLD": 19,
+   "SOLD_2022_24": 15,
+   "SOLD_IN_HCRIS_WINDOW": 15
+  }
+ ],
+ "fair_full_year": [
+  {
+   "GRP": "sold, full-year report before sale",
+   "N": 62,
+   "LOSING": 34,
+   "PCT": 54.8,
+   "MED_MARGIN": -0.0054
+  },
+  {
+   "GRP": "not sold, full-year report",
+   "N": 5782,
+   "LOSING": 1975,
+   "PCT": 34.2,
+   "MED_MARGIN": 0.0162
+  }
+ ],
+ "stub_pairs": [
+  {
+   "CCN": "043036",
+   "HOSPITAL_NAME": "EVEREST REHABILITATION HOSPITAL BENT",
+   "FYB": "2023-01-01",
+   "FYE": "2023-02-28",
+   "FY_LEN": 58,
+   "NET_MARGIN_RATIO": -0.1738,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "043036",
+   "HOSPITAL_NAME": "ROGERS REHABILITATION HOSPITAL",
+   "FYB": "2023-03-01",
+   "FYE": "2023-12-31",
+   "FY_LEN": 305,
+   "NET_MARGIN_RATIO": 0.0084,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "052043",
+   "HOSPITAL_NAME": "1125 SIR FRANCIS DRAKE OPERATING CO",
+   "FYB": "2023-07-01",
+   "FYE": "2023-09-05",
+   "FY_LEN": 66,
+   "NET_MARGIN_RATIO": 0.0345,
+   "CHOW_DT": "2023-09-06"
+  },
+  {
+   "CCN": "052043",
+   "HOSPITAL_NAME": "KENTFIELD & SAN FRANCISCO SPECIALTY",
+   "FYB": "2023-09-06",
+   "FYE": "2023-12-31",
+   "FY_LEN": 116,
+   "NET_MARGIN_RATIO": -0.1156,
+   "CHOW_DT": "2023-09-06"
+  },
+  {
+   "CCN": "140125",
+   "HOSPITAL_NAME": "GATEWAY REGIONAL",
+   "FYB": "2023-01-01",
+   "FYE": "2023-02-28",
+   "FY_LEN": 58,
+   "NET_MARGIN_RATIO": -0.0391,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "140125",
+   "HOSPITAL_NAME": "GATEWAY REGIONAL",
+   "FYB": "2023-03-01",
+   "FYE": "2023-12-31",
+   "FY_LEN": 305,
+   "NET_MARGIN_RATIO": -0.113,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "241365",
+   "HOSPITAL_NAME": "CENTRACARE - BENSON",
+   "FYB": "2023-01-01",
+   "FYE": "2023-06-30",
+   "FY_LEN": 180,
+   "NET_MARGIN_RATIO": 0.0711,
+   "CHOW_DT": "2023-01-01"
+  },
+  {
+   "CCN": "241365",
+   "HOSPITAL_NAME": "CENTRACARE BENSON",
+   "FYB": "2023-07-01",
+   "FYE": "2024-06-30",
+   "FY_LEN": 365,
+   "NET_MARGIN_RATIO": 0.0933,
+   "CHOW_DT": "2023-01-01"
+  },
+  {
+   "CCN": "250172",
+   "HOSPITAL_NAME": "DELTA HEALTH-HIGHLAND HILLS",
+   "FYB": "2022-10-01",
+   "FYE": "2023-04-30",
+   "FY_LEN": 211,
+   "NET_MARGIN_RATIO": -0.0828,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "250172",
+   "HOSPITAL_NAME": "HIGHLAND HILLS MEDICAL CENTER",
+   "FYB": "2023-05-01",
+   "FYE": "2023-09-30",
+   "FY_LEN": 152,
+   "NET_MARGIN_RATIO": 0.025,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "363045",
+   "HOSPITAL_NAME": "EVEREST REHABILITATION HOSPITAL NORT",
+   "FYB": "2023-01-01",
+   "FYE": "2023-02-28",
+   "FY_LEN": 58,
+   "NET_MARGIN_RATIO": -0.7772,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "363045",
+   "HOSPITAL_NAME": "LIBERTY REHABILITATION HOSPITAL",
+   "FYB": "2023-03-01",
+   "FYE": "2023-12-31",
+   "FY_LEN": 305,
+   "NET_MARGIN_RATIO": -0.2381,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "400113",
+   "HOSPITAL_NAME": "HOSPITAL SAN CRISTOBAL",
+   "FYB": "2022-10-01",
+   "FYE": "2022-11-30",
+   "FY_LEN": 60,
+   "NET_MARGIN_RATIO": -0.0374,
+   "CHOW_DT": "2022-12-01"
+  },
+  {
+   "CCN": "400113",
+   "HOSPITAL_NAME": "HOSPITAL MENONITA PONCE",
+   "FYB": "2022-12-01",
+   "FYE": "2023-03-31",
+   "FY_LEN": 120,
+   "NET_MARGIN_RATIO": 0.0215,
+   "CHOW_DT": "2022-12-01"
+  },
+  {
+   "CCN": "400113",
+   "HOSPITAL_NAME": "HOSPITAL MENONITA PONCE",
+   "FYB": "2023-04-01",
+   "FYE": "2024-03-31",
+   "FY_LEN": 365,
+   "NET_MARGIN_RATIO": 0.0073,
+   "CHOW_DT": "2022-12-01"
+  },
+  {
+   "CCN": "450604",
+   "HOSPITAL_NAME": "HILL COUNTRY MEMORIAL HOSPITAL",
+   "FYB": "2023-01-01",
+   "FYE": "2023-03-31",
+   "FY_LEN": 89,
+   "NET_MARGIN_RATIO": -0.0863,
+   "CHOW_DT": "2023-04-01"
+  },
+  {
+   "CCN": "450604",
+   "HOSPITAL_NAME": "HILL COUNTRY MEMORIAL HOSPITAL",
+   "FYB": "2023-04-01",
+   "FYE": "2024-03-31",
+   "FY_LEN": 365,
+   "NET_MARGIN_RATIO": -0.0445,
+   "CHOW_DT": "2023-04-01"
+  },
+  {
+   "CCN": "451389",
+   "HOSPITAL_NAME": "PECOS COUNTY MEMORIAL HOSPITAL",
+   "FYB": "2023-01-01",
+   "FYE": "2023-06-30",
+   "FY_LEN": 180,
+   "NET_MARGIN_RATIO": 0.2063,
+   "CHOW_DT": "2023-07-01"
+  },
+  {
+   "CCN": "451389",
+   "HOSPITAL_NAME": "PECOS COUNTY MEMORIAL HOSPITAL",
+   "FYB": "2023-07-01",
+   "FYE": "2023-12-31",
+   "FY_LEN": 183,
+   "NET_MARGIN_RATIO": -0.1187,
+   "CHOW_DT": "2023-07-01"
+  },
+  {
+   "CCN": "452060",
+   "HOSPITAL_NAME": "KPC PROMISE HOPSITAL OF AMARILLO",
+   "FYB": "2023-01-27",
+   "FYE": "2023-08-31",
+   "FY_LEN": 216,
+   "NET_MARGIN_RATIO": -0.0297,
+   "CHOW_DT": "2024-05-19"
+  },
+  {
+   "CCN": "452060",
+   "HOSPITAL_NAME": "KPC PROMISE HOSPITAL OF AMARILLO LLC",
+   "FYB": "2023-09-01",
+   "FYE": "2024-05-18",
+   "FY_LEN": 260,
+   "NET_MARGIN_RATIO": -0.1357,
+   "CHOW_DT": "2024-05-19"
+  },
+  {
+   "CCN": "460003",
+   "HOSPITAL_NAME": "SALT LAKE REGIONAL MEDICAL CENTER",
+   "FYB": "2023-05-01",
+   "FYE": "2023-06-30",
+   "FY_LEN": 60,
+   "NET_MARGIN_RATIO": 0.0289,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "460003",
+   "HOSPITAL_NAME": "HOLY CROSS HOSPITAL - SALT LAKE",
+   "FYB": "2023-07-01",
+   "FYE": "2024-06-30",
+   "FY_LEN": 365,
+   "NET_MARGIN_RATIO": -0.438,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "460041",
+   "HOSPITAL_NAME": "HOLY CROSS HOSPITAL - DAVIS",
+   "FYB": "2023-05-01",
+   "FYE": "2023-06-30",
+   "FY_LEN": 60,
+   "NET_MARGIN_RATIO": 0.0368,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "460041",
+   "HOSPITAL_NAME": "HOLY CROSS HOSPITAL - DAVIS",
+   "FYB": "2023-07-01",
+   "FYE": "2024-06-30",
+   "FY_LEN": 365,
+   "NET_MARGIN_RATIO": 0.0389,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "460051",
+   "HOSPITAL_NAME": "HOLY CROSS HOSPITAL - JORDAN VALLEY",
+   "FYB": "2023-05-01",
+   "FYE": "2023-06-30",
+   "FY_LEN": 60,
+   "NET_MARGIN_RATIO": 0.043,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "460051",
+   "HOSPITAL_NAME": "HOLY CROSS HOSPITAL - JORDAN VALLEY",
+   "FYB": "2023-07-01",
+   "FYE": "2024-06-30",
+   "FY_LEN": 365,
+   "NET_MARGIN_RATIO": 0.0225,
+   "CHOW_DT": "2023-05-01"
+  },
+  {
+   "CCN": "673073",
+   "HOSPITAL_NAME": "EVEREST REHABILITATION HOSPITAL LONG",
+   "FYB": "2023-01-01",
+   "FYE": "2023-02-28",
+   "FY_LEN": 58,
+   "NET_MARGIN_RATIO": -0.1211,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "673073",
+   "HOSPITAL_NAME": "LONGVIEW REHABILITATION HOSPITAL",
+   "FYB": "2023-03-01",
+   "FYE": "2023-12-31",
+   "FY_LEN": 305,
+   "NET_MARGIN_RATIO": -0.0427,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "673074",
+   "HOSPITAL_NAME": "EVEREST REHABILITATION HOSPITAL TEMP",
+   "FYB": "2023-01-01",
+   "FYE": "2023-02-28",
+   "FY_LEN": 58,
+   "NET_MARGIN_RATIO": -0.1045,
+   "CHOW_DT": "2023-03-01"
+  },
+  {
+   "CCN": "673074",
+   "HOSPITAL_NAME": "TEMPLE REHABILITATION HOSPITAL",
+   "FYB": "2023-03-01",
+   "FYE": "2023-12-31",
+   "FY_LEN": 305,
+   "NET_MARGIN_RATIO": -0.0681,
+   "CHOW_DT": "2023-03-01"
+  }
+ ],
+ "name_change": [
+  {
+   "NAME_STATUS": "different name",
+   "N": 53,
+   "LOSING": 34
+  },
+  {
+   "NAME_STATUS": "same name",
+   "N": 21,
+   "LOSING": 10
+  },
+  {
+   "NAME_STATUS": "same first 8 letters",
+   "N": 14,
+   "LOSING": 9
+  }
+ ],
+ "name_change_list": [
+  {
+   "CCN": "010090",
+   "BEFORE_NAME": "PROVIDENCE HOSPITAL",
+   "TODAY_NAME": "USA HEALTH PROVIDENCE HOSPITAL",
+   "NET_MARGIN_RATIO": -0.0297
+  },
+  {
+   "CCN": "030037",
+   "BEFORE_NAME": "TEMPE ST. LUKES HOSPITAL",
+   "TODAY_NAME": "HONORHEALTH TEMPE MEDICAL CENTER",
+   "NET_MARGIN_RATIO": -0.0375
+  },
+  {
+   "CCN": "030121",
+   "BEFORE_NAME": "MOUNTAIN VISTA MEDICAL CENTER",
+   "TODAY_NAME": "HONORHEALTH MOUNTAIN VISTA MEDICAL CENTER",
+   "NET_MARGIN_RATIO": -0.0579
+  },
+  {
+   "CCN": "040051",
+   "BEFORE_NAME": "DREW MEMORIAL HOSPITAL INC",
+   "TODAY_NAME": "BAPTIST HEALTH MEDICAL CENTER-DREW COUNTY",
+   "NET_MARGIN_RATIO": -0.0214
+  },
+  {
+   "CCN": "040153",
+   "BEFORE_NAME": "WADLEY MEDICAL CENTER AT HOPE",
+   "TODAY_NAME": "SOUTHWEST REGIONAL MEDICAL CENTER LLC",
+   "NET_MARGIN_RATIO": -0.0617
+  },
+  {
+   "CCN": "041322",
+   "BEFORE_NAME": "FULTON COUNTY HOSPITAL",
+   "TODAY_NAME": "BAXTER HEALTH FULTON COUNTY HOSPITAL",
+   "NET_MARGIN_RATIO": 0.2269
+  },
+  {
+   "CCN": "043036",
+   "BEFORE_NAME": "EVEREST REHABILITATION HOSPITAL BENT",
+   "TODAY_NAME": "MERCY  REHABILITATION HOSPITAL NORTHWEST AR",
+   "NET_MARGIN_RATIO": -0.1738
+  },
+  {
+   "CCN": "050457",
+   "BEFORE_NAME": "ST. MARYS MEDICAL CENTER",
+   "TODAY_NAME": "UCSF HEALTH ST. MARY'S HOSPITAL",
+   "NET_MARGIN_RATIO": -0.1924
+  },
+  {
+   "CCN": "050481",
+   "BEFORE_NAME": "WEST HILLS HOSPITAL",
+   "TODAY_NAME": "UCLA WEST VALLEY MEDICAL CENTER",
+   "NET_MARGIN_RATIO": 0.0107
+  },
+  {
+   "CCN": "050551",
+   "BEFORE_NAME": "LOS ALAMITOS MEDICAL CTR.",
+   "TODAY_NAME": "UCI HEALTH-LOS ALAMITOS",
+   "NET_MARGIN_RATIO": 0.0003
+  },
+  {
+   "CCN": "050570",
+   "BEFORE_NAME": "FOUNTAIN VALLEY REG MEDICAL CENTER",
+   "TODAY_NAME": "UCI HEALTH-FOUNTAIN VALLEY",
+   "NET_MARGIN_RATIO": -0.008
+  },
+  {
+   "CCN": "050581",
+   "BEFORE_NAME": "LAKEWOOD REGIONAL MED. CTR.",
+   "TODAY_NAME": "UCI HEALTH-LAKEWOOD",
+   "NET_MARGIN_RATIO": 0.0051
+  },
+  {
+   "CCN": "050589",
+   "BEFORE_NAME": "PLACENTIA LINDA COMMUNITY HOSPITAL",
+   "TODAY_NAME": "UCI HEALTH-PLACENTIA LINDA",
+   "NET_MARGIN_RATIO": 0.0075
+  },
+  {
+   "CCN": "052043",
+   "BEFORE_NAME": "1125 SIR FRANCIS DRAKE OPERATING CO",
+   "TODAY_NAME": "KENTFIELD HOSPITAL",
+   "NET_MARGIN_RATIO": 0.0345
+  },
+  {
+   "CCN": "100071",
+   "BEFORE_NAME": "BROOKSVILLE REGIONAL HOSPTAL",
+   "TODAY_NAME": "TAMPA GENERAL HOSPITAL BROOKSVILLE",
+   "NET_MARGIN_RATIO": 0.0088
+  },
+  {
+   "CCN": "100092",
+   "BEFORE_NAME": "ROCKLEDGE REGIONAL MEDICAL CENTER",
+   "TODAY_NAME": "ORLANDO HEALTH ROCKLEDGE HOSPITAL",
+   "NET_MARGIN_RATIO": 0.0004
+  },
+  {
+   "CCN": "100217",
+   "BEFORE_NAME": "SEBASTIAN RIVER MEDICAL CENTER",
+   "TODAY_NAME": "ORLANDO HEALTH SEBASTIAN RIVER HOSPITAL",
+   "NET_MARGIN_RATIO": 0.0087
+  },
+  {
+   "CCN": "100249",
+   "BEFORE_NAME": "SEVEN RIVERS REGIONAL MEDICAL CENTER",
+   "TODAY_NAME": "TAMPA GENERAL HOSPITAL CRYSTAL RIVER",
+   "NET_MARGIN_RATIO": -0.1176
+  },
+  {
+   "CCN": "100291",
+   "BEFORE_NAME": "MELBOURNE REGIONAL MEDICAL CENTER",
+   "TODAY_NAME": "ORLANDO HEALTH MELBOURNE HOSPITAL",
+   "NET_MARGIN_RATIO": 0.0278
+  },
+  {
+   "CCN": "152028",
+   "BEFORE_NAME": "VIBRA HOSPITAL OF NORTHWEST INDIANA",
+   "TODAY_NAME": "NW INDIANA-AMG SPECIALTY HOSPITAL",
+   "NET_MARGIN_RATIO": -0.0405
+  },
+  {
+   "CCN": "170006",
+   "BEFORE_NAME": "VIA CHRISTI HOSPITAL PITTSBURG  INC.",
+   "TODAY_NAME": "MERCY HOSPITAL PITTSBURG, INC",
+   "NET_MARGIN_RATIO": -0.0537
+  },
+  {
+   "CCN": "180066",
+   "BEFORE_NAME": "LOGAN MEMORIAL HOSPITAL",
+   "TODAY_NAME": "THE MEDICAL CENTER AT RUSSELLVILLE",
+   "NET_MARGIN_RATIO": -0.035
+  },
+  {
+   "CCN": "192004",
+   "BEFORE_NAME": "KPC PROMISE HOSPITAL OF BATON ROUGE",
+   "TODAY_NAME": "BATON ROUGE SPECIALTY HOSPITAL",
+   "NET_MARGIN_RATIO": -0.0665
+  },
+  {
+   "CCN": "193079",
+   "BEFORE_NAME": "UNITED MEDICAL REHABILITATION HOSPIT",
+   "TODAY_NAME": "OASIS POINT REHABILITATION HOSPITAL",
+   "NET_MARGIN_RATIO": -0.1304
+  },
+  {
+   "CCN": "220020",
+   "BEFORE_NAME": "STEWARD ST. ANNES HOSPITAL",
+   "TODAY_NAME": "BROWN UNIVERSITY HEALTH SAINT ANNE'S HOSPITAL",
+   "NET_MARGIN_RATIO": 0.0448
+  },
+  {
+   "CCN": "220073",
+   "BEFORE_NAME": "MORTON HOSPITAL",
+   "TODAY_NAME": "BROWN UNIVERSITY HEALTH MORTON HOSPITAL",
+   "NET_MARGIN_RATIO": 0.0017
+  },
+  {
+   "CCN": "220111",
+   "BEFORE_NAME": "GOOD SAMARITAN MEDICAL CENTER",
+   "TODAY_NAME": "BOSTON MEDICAL CENTER-SOUTH",
+   "NET_MARGIN_RATIO": 0.0575
+  },
+  {
+   "CCN": "250042",
+   "BEFORE_NAME": "DELTA HEALTH-NORTHWEST REGIONAL",
+   "TODAY_NAME": "NORTHWEST MISSISSISSIPPI REGIONAL MEDICAL CENTER",
+   "NET_MARGIN_RATIO": -0.0243
+  },
+  {
+   "CCN": "250172",
+   "BEFORE_NAME": "DELTA HEALTH-HIGHLAND HILLS",
+   "TODAY_NAME": "HIGHLAND HILLS MEDICAL CENTER",
+   "NET_MARGIN_RATIO": -0.0828
+  },
+  {
+   "CCN": "261311",
+   "BEFORE_NAME": "PERRY COUNTY MEMORIAL HOSPITAL",
+   "TODAY_NAME": "MERCY HOSPITAL PERRY",
+   "NET_MARGIN_RATIO": -0.0567
+  },
+  {
+   "CCN": "294016",
+   "BEFORE_NAME": "DESERT WINDS HOSPITAL",
+   "TODAY_NAME": "THRIVE BEHAVIORAL HOSPITAL, LLC",
+   "NET_MARGIN_RATIO": -0.2117
+  },
+  {
+   "CCN": "314027",
+   "BEFORE_NAME": "CORNERSTONE BEHAVIORAL HEALTH HOSPIT",
+   "TODAY_NAME": "MOUNTAINVIEW BEHAVIORAL HOSPITAL",
+   "NET_MARGIN_RATIO": -0.0816
+  },
+  {
+   "CCN": "344036",
+   "BEFORE_NAME": "DAVIS REGIONAL MEDICAL CENTER",
+   "TODAY_NAME": "IREDELL DAVIS BEHAVIORAL HEALTH HOSPITAL",
+   "NET_MARGIN_RATIO": -0.5059
+  },
+  {
+   "CCN": "360055",
+   "BEFORE_NAME": "TRUMBULL MEMORIAL HOSPITAL",
+   "TODAY_NAME": "INSIGHT HOSPITAL AND MEDICAL CENTER TRUMBULL",
+   "NET_MARGIN_RATIO": -0.0027
+  },
+  {
+   "CCN": "363026",
+   "BEFORE_NAME": "HILLSIDE HOSPITAL",
+   "TODAY_NAME": "INSIGHT REHABILITATION HOSPITAL HILLSIDE",
+   "NET_MARGIN_RATIO": 0.014
+  },
+  {
+   "CCN": "363045",
+   "BEFORE_NAME": "EVEREST REHABILITATION HOSPITAL NORT",
+   "TODAY_NAME": "LIBERTY REHABILITATION HOSPITAL",
+   "NET_MARGIN_RATIO": -0.7772
+  },
+  {
+   "CCN": "370002",
+   "BEFORE_NAME": "ALLIANCEHEALTH WOODWARD",
+   "TODAY_NAME": "INTEGRIS HEALTH WOODWARD",
+   "NET_MARGIN_RATIO": -0.0557
+  },
+  {
+   "CCN": "370006",
+   "BEFORE_NAME": "PONCA CITY MEDICAL CENTER",
+   "TODAY_NAME": "INTEGRIS HEALTH PONCA CITY",
+   "NET_MARGIN_RATIO": 0.0314
+  },
+  {
+   "CCN": "373025",
+   "BEFORE_NAME": "VALIR REHAB HOSPITAL",
+   "TODAY_NAME": "SSM HEALTH REHABILITATION HOSPITAL-OKC",
+   "NET_MARGIN_RATIO": -0.063
+  },
+  {
+   "CCN": "400005",
+   "BEFORE_NAME": "HOSPITAL SAN PABLO HUMACAO",
+   "TODAY_NAME": "HOPE MEDICAL CENTER LLC",
+   "NET_MARGIN_RATIO": -0.565
+  },
+  {
+   "CCN": "400134",
+   "BEFORE_NAME": "SAN JORGE CHILDRENS & WOMEN HOSPITAL",
+   "TODAY_NAME": "THE SAN JORGE HOSPITAL INC",
+   "NET_MARGIN_RATIO": NaN
+  },
+  {
+   "CCN": "440132",
+   "BEFORE_NAME": "HENRY COUNTY MEDICAL CENTER",
+   "TODAY_NAME": "WEST TENNESSEE HEALTHCARE HENRY COUNTY HOSPITAL",
+   "NET_MARGIN_RATIO": -0.0163
+  },
+  {
+   "CCN": "440185",
+   "BEFORE_NAME": "SKYRIDGE MEDICAL CENTER",
+   "TODAY_NAME": "BRADLEY MEDICAL CENTER",
+   "NET_MARGIN_RATIO": 0.0232
+  },
+  {
+   "CCN": "450271",
+   "BEFORE_NAME": "DECATUR COMMUNITY HOSPITAL",
+   "TODAY_NAME": "MEDICAL CITY DECATUR",
+   "NET_MARGIN_RATIO": -0.061
+  },
+  {
+   "CCN": "450469",
+   "BEFORE_NAME": "WILSON N JONES REGIONAL MEDICAL CTR",
+   "TODAY_NAME": "AHS SHERMAN MEDICAL CENTER",
+   "NET_MARGIN_RATIO": 0.1626
+  },
+  {
+   "CCN": "450518",
+   "BEFORE_NAME": "THE MEDICAL CTR OF SOUTHEAST TEXAS",
+   "TODAY_NAME": "HSA PORT ARTHUR, LLC",
+   "NET_MARGIN_RATIO": -0.0255
+  },
+  {
+   "CCN": "452060",
+   "BEFORE_NAME": "KPC PROMISE HOSPITAL OF AMARILLO LLC",
+   "TODAY_NAME": "TEXAS SPECIALTY HOSPITAL",
+   "NET_MARGIN_RATIO": -0.1357
+  },
+  {
+   "CCN": "452068",
+   "BEFORE_NAME": "KPC PROMISE HOSPITAL OF WICHITA FALL",
+   "TODAY_NAME": "SAGE SPECIALTY HOSPITAL OF WICHITA FALLS",
+   "NET_MARGIN_RATIO": 0.217
+  },
+  {
+   "CCN": "452111",
+   "BEFORE_NAME": "ATRIUM MEDICAL CENTER",
+   "TODAY_NAME": "BAYLOR SCOTT WHITE THE HEART HOSPITAL CORINTH",
+   "NET_MARGIN_RATIO": -0.0152
+  },
+  {
+   "CCN": "453096",
+   "BEFORE_NAME": "VIBRA REHABILITATION HOSPITAL OF AMA",
+   "TODAY_NAME": "AMARILLO REHABILITATION HOSPITAL",
+   "NET_MARGIN_RATIO": -0.031
+  },
+  {
+   "CCN": "513025",
+   "BEFORE_NAME": "PETERSON HEALTHCARE AND REHAB",
+   "TODAY_NAME": "SENECA REHABILITATION HOSPITAL",
+   "NET_MARGIN_RATIO": -0.1357
+  },
+  {
+   "CCN": "673073",
+   "BEFORE_NAME": "EVEREST REHABILITATION HOSPITAL LONG",
+   "TODAY_NAME": "LONGVIEW REHABILITATION HOSPITAL",
+   "NET_MARGIN_RATIO": -0.1211
+  },
+  {
+   "CCN": "673074",
+   "BEFORE_NAME": "EVEREST REHABILITATION HOSPITAL TEMP",
+   "TODAY_NAME": "TEMPLE REHABILITATION HOSPITAL",
+   "NET_MARGIN_RATIO": -0.1045
+  }
+ ]
+}

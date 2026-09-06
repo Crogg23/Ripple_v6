@@ -1,0 +1,2239 @@
+{
+ "q1_rebuild": [
+  {
+   "DEAD_NPIS_PAID_2024": 3992,
+   "NPIS_PAID_AFTER": 1325,
+   "DOLLARS_AFTER": 4187435.11,
+   "PAYMENTS_AFTER": 2729,
+   "DOLLARS_ALL": 13869049.73,
+   "PAYMENTS_ALL": 30370,
+   "NPIS_PAID_90PLUS": 1224
+  }
+ ],
+ "q2_top": [
+  {
+   "NPI": "1104812593",
+   "FN": "ROBERT",
+   "LN": "SPETZLER",
+   "ST": "AZ",
+   "SPEC": "Allopathic & Osteopathic Physicians|Neurological Surgery",
+   "PID": "49375",
+   "DEACT": "2018-11-07",
+   "FIRST_PD": "2024-01-25",
+   "LAST_PD": "2024-10-25",
+   "DAYS_TO_FIRST": 1905,
+   "DAYS_TO_LAST": 2179,
+   "PAYMENTS": 4,
+   "PAYERS": 1,
+   "TOT": 1791117.6400000001,
+   "PCT": 42.77,
+   "CUM_PCT": 42.77,
+   "RK": 1
+  },
+  {
+   "NPI": "1033558069",
+   "FN": "MATTHEW",
+   "LN": "GELLER",
+   "ST": "CA",
+   "SPEC": "Eye and Vision Services Providers|Optometrist",
+   "PID": "273699",
+   "DEACT": "2023-02-10",
+   "FIRST_PD": "2024-02-19",
+   "LAST_PD": "2024-11-18",
+   "DAYS_TO_FIRST": 374,
+   "DAYS_TO_LAST": 647,
+   "PAYMENTS": 9,
+   "PAYERS": 2,
+   "TOT": 538153.17,
+   "PCT": 12.85,
+   "CUM_PCT": 55.63,
+   "RK": 2
+  },
+  {
+   "NPI": "1700830361",
+   "FN": "JOHN",
+   "LN": "FENLIN",
+   "ST": "PA",
+   "SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "PID": "866947",
+   "DEACT": "2014-06-06",
+   "FIRST_PD": "2024-01-25",
+   "LAST_PD": "2024-10-30",
+   "DAYS_TO_FIRST": 3520,
+   "DAYS_TO_LAST": 3799,
+   "PAYMENTS": 8,
+   "PAYERS": 1,
+   "TOT": 536693.29,
+   "PCT": 12.82,
+   "CUM_PCT": 68.44,
+   "RK": 3
+  },
+  {
+   "NPI": "1962558551",
+   "FN": "JEFFREY",
+   "LN": "MAST",
+   "ST": "NV",
+   "SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "PID": "789373",
+   "DEACT": "2019-05-28",
+   "FIRST_PD": "2024-02-09",
+   "LAST_PD": "2024-11-08",
+   "DAYS_TO_FIRST": 1718,
+   "DAYS_TO_LAST": 1991,
+   "PAYMENTS": 4,
+   "PAYERS": 1,
+   "TOT": 365268.66000000003,
+   "PCT": 8.72,
+   "CUM_PCT": 77.16,
+   "RK": 4
+  },
+  {
+   "NPI": "1003909649",
+   "FN": "THOMAS",
+   "LN": "MORRISON",
+   "ST": "GA",
+   "SPEC": "Allopathic & Osteopathic Physicians|Neurological Surgery",
+   "PID": "90921",
+   "DEACT": "2019-10-07",
+   "FIRST_PD": "2024-02-08",
+   "LAST_PD": "2024-11-14",
+   "DAYS_TO_FIRST": 1585,
+   "DAYS_TO_LAST": 1865,
+   "PAYMENTS": 7,
+   "PAYERS": 1,
+   "TOT": 356374.85000000003,
+   "PCT": 8.51,
+   "CUM_PCT": 85.68,
+   "RK": 5
+  },
+  {
+   "NPI": "1760509848",
+   "FN": "CARLOS",
+   "LN": "DURAN",
+   "ST": "MT",
+   "SPEC": "Allopathic & Osteopathic Physicians|Thoracic Surgery (Cardiothoracic Vascular Surgery)",
+   "PID": "1068343",
+   "DEACT": "2017-08-30",
+   "FIRST_PD": "2024-01-23",
+   "LAST_PD": "2024-10-17",
+   "DAYS_TO_FIRST": 2337,
+   "DAYS_TO_LAST": 2605,
+   "PAYMENTS": 4,
+   "PAYERS": 1,
+   "TOT": 91523.47,
+   "PCT": 2.19,
+   "CUM_PCT": 87.86,
+   "RK": 6
+  },
+  {
+   "NPI": "1316965916",
+   "FN": "CLINT",
+   "LN": "HILL",
+   "ST": "MS",
+   "SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "PID": "150467",
+   "DEACT": "2019-12-13",
+   "FIRST_PD": "2024-02-08",
+   "LAST_PD": "2024-11-20",
+   "DAYS_TO_FIRST": 1518,
+   "DAYS_TO_LAST": 1804,
+   "PAYMENTS": 11,
+   "PAYERS": 3,
+   "TOT": 82472.14000000001,
+   "PCT": 1.97,
+   "CUM_PCT": 89.83,
+   "RK": 7
+  },
+  {
+   "NPI": "1114987831",
+   "FN": "Ramon",
+   "LN": "Ruiz",
+   "ST": "FL",
+   "SPEC": "Allopathic & Osteopathic Physicians|Oral & Maxillofacial Surgery",
+   "PID": "1248944",
+   "DEACT": "2023-11-01",
+   "FIRST_PD": "2024-01-24",
+   "LAST_PD": "2024-05-02",
+   "DAYS_TO_FIRST": 84,
+   "DAYS_TO_LAST": 183,
+   "PAYMENTS": 4,
+   "PAYERS": 2,
+   "TOT": 64403.54000000001,
+   "PCT": 1.54,
+   "CUM_PCT": 91.37,
+   "RK": 8
+  },
+  {
+   "NPI": "1083806863",
+   "FN": "RAHUL",
+   "LN": "REDDY",
+   "ST": "AZ",
+   "SPEC": "Allopathic & Osteopathic Physicians|Ophthalmology",
+   "PID": "321143",
+   "DEACT": "2022-09-20",
+   "FIRST_PD": "2024-01-30",
+   "LAST_PD": "2024-10-30",
+   "DAYS_TO_FIRST": 497,
+   "DAYS_TO_LAST": 771,
+   "PAYMENTS": 5,
+   "PAYERS": 2,
+   "TOT": 62785.93,
+   "PCT": 1.5,
+   "CUM_PCT": 92.87,
+   "RK": 9
+  },
+  {
+   "NPI": "1447253562",
+   "FN": "STEVEN",
+   "LN": "GOLDSTEIN",
+   "ST": "NJ",
+   "SPEC": "Podiatric Medicine & Surgery Service Providers|Podiatrist|Foot Surgery",
+   "PID": "1200995",
+   "DEACT": "2014-07-29",
+   "FIRST_PD": "2024-02-14",
+   "LAST_PD": "2024-07-30",
+   "DAYS_TO_FIRST": 3487,
+   "DAYS_TO_LAST": 3654,
+   "PAYMENTS": 2,
+   "PAYERS": 1,
+   "TOT": 46446.97,
+   "PCT": 1.11,
+   "CUM_PCT": 93.98,
+   "RK": 10
+  },
+  {
+   "NPI": "1518949718",
+   "FN": "David",
+   "LN": "Haines",
+   "ST": "MI",
+   "SPEC": "Allopathic & Osteopathic Physicians|General Practice",
+   "PID": "250757",
+   "DEACT": "2024-04-03",
+   "FIRST_PD": "2024-11-19",
+   "LAST_PD": "2024-11-19",
+   "DAYS_TO_FIRST": 230,
+   "DAYS_TO_LAST": 230,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 28113.18,
+   "PCT": 0.67,
+   "CUM_PCT": 94.65,
+   "RK": 11
+  },
+  {
+   "NPI": "1053535443",
+   "FN": "JUSTIN",
+   "LN": "PARKER",
+   "ST": "UT",
+   "SPEC": "Dental Providers|Dentist|Orthodontics and Dentofacial Orthopedics",
+   "PID": "1247171",
+   "DEACT": "2023-01-25",
+   "FIRST_PD": "2024-06-30",
+   "LAST_PD": "2024-06-30",
+   "DAYS_TO_FIRST": 522,
+   "DAYS_TO_LAST": 522,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 18507.63,
+   "PCT": 0.44,
+   "CUM_PCT": 95.09,
+   "RK": 12
+  },
+  {
+   "NPI": "1316169402",
+   "FN": "VINAY",
+   "LN": "SUNDARAM",
+   "ST": "CA",
+   "SPEC": "Allopathic & Osteopathic Physicians|Internal Medicine|Hepatology",
+   "PID": "599223",
+   "DEACT": "2022-08-30",
+   "FIRST_PD": "2024-01-19",
+   "LAST_PD": "2024-03-06",
+   "DAYS_TO_FIRST": 507,
+   "DAYS_TO_LAST": 554,
+   "PAYMENTS": 2,
+   "PAYERS": 1,
+   "TOT": 15000.0,
+   "PCT": 0.36,
+   "CUM_PCT": 95.45,
+   "RK": 13
+  },
+  {
+   "NPI": "1730815028",
+   "FN": "HERIK",
+   "LN": "ACOSTA GONZALEZ",
+   "ST": "MI",
+   "SPEC": "Allopathic & Osteopathic Physicians|Surgery",
+   "PID": "11341068",
+   "DEACT": "2023-02-01",
+   "FIRST_PD": "2024-07-18",
+   "LAST_PD": "2024-07-18",
+   "DAYS_TO_FIRST": 533,
+   "DAYS_TO_LAST": 533,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 15000.0,
+   "PCT": 0.36,
+   "CUM_PCT": 95.81,
+   "RK": 14
+  },
+  {
+   "NPI": "1538195185",
+   "FN": "IKUO",
+   "LN": "HIRANO",
+   "ST": "IL",
+   "SPEC": "Allopathic & Osteopathic Physicians|Internal Medicine|Gastroenterology",
+   "PID": "205997",
+   "DEACT": "2024-09-11",
+   "FIRST_PD": "2024-09-23",
+   "LAST_PD": "2024-12-20",
+   "DAYS_TO_FIRST": 12,
+   "DAYS_TO_LAST": 100,
+   "PAYMENTS": 13,
+   "PAYERS": 2,
+   "TOT": 13903.0,
+   "PCT": 0.33,
+   "CUM_PCT": 96.14,
+   "RK": 15
+  },
+  {
+   "NPI": "1558476689",
+   "FN": "ROY",
+   "LN": "COLELLA",
+   "ST": "MA",
+   "SPEC": "Dental Providers|Dentist|Endodontics",
+   "PID": "806000",
+   "DEACT": "2024-02-07",
+   "FIRST_PD": "2024-03-14",
+   "LAST_PD": "2024-07-25",
+   "DAYS_TO_FIRST": 36,
+   "DAYS_TO_LAST": 169,
+   "PAYMENTS": 7,
+   "PAYERS": 1,
+   "TOT": 11422.39,
+   "PCT": 0.27,
+   "CUM_PCT": 96.41,
+   "RK": 16
+  },
+  {
+   "NPI": "1992753644",
+   "FN": "Joseph",
+   "LN": "Flynn",
+   "ST": "FL",
+   "SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Orthopaedic Surgery of the Spine",
+   "PID": "271376",
+   "DEACT": "2021-03-03",
+   "FIRST_PD": "2024-01-16",
+   "LAST_PD": "2024-01-16",
+   "DAYS_TO_FIRST": 1049,
+   "DAYS_TO_LAST": 1049,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 11380.0,
+   "PCT": 0.27,
+   "CUM_PCT": 96.68,
+   "RK": 17
+  },
+  {
+   "NPI": "1669482485",
+   "FN": "CHARLES",
+   "LN": "ROCKWOOD",
+   "ST": "TX",
+   "SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "PID": "29843",
+   "DEACT": "2022-03-21",
+   "FIRST_PD": "2024-02-09",
+   "LAST_PD": "2024-11-08",
+   "DAYS_TO_FIRST": 690,
+   "DAYS_TO_LAST": 963,
+   "PAYMENTS": 4,
+   "PAYERS": 1,
+   "TOT": 7248.530000000001,
+   "PCT": 0.17,
+   "CUM_PCT": 96.86,
+   "RK": 18
+  },
+  {
+   "NPI": "1316952005",
+   "FN": "Steven",
+   "LN": "Dresner",
+   "ST": "CA",
+   "SPEC": "Allopathic & Osteopathic Physicians|Urology",
+   "PID": "14621",
+   "DEACT": "2024-09-11",
+   "FIRST_PD": "2024-12-31",
+   "LAST_PD": "2024-12-31",
+   "DAYS_TO_FIRST": 111,
+   "DAYS_TO_LAST": 111,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 6923.11,
+   "PCT": 0.17,
+   "CUM_PCT": 97.02,
+   "RK": 19
+  },
+  {
+   "NPI": "1982775888",
+   "FN": "DAVID",
+   "LN": "BERNSTEIN",
+   "ST": "CA",
+   "SPEC": "Allopathic & Osteopathic Physicians|Pathology|Anatomic Pathology & Clinical Pathology",
+   "PID": "846697",
+   "DEACT": "2022-10-12",
+   "FIRST_PD": "2024-04-16",
+   "LAST_PD": "2024-04-16",
+   "DAYS_TO_FIRST": 552,
+   "DAYS_TO_LAST": 552,
+   "PAYMENTS": 2,
+   "PAYERS": 1,
+   "TOT": 5171.0,
+   "PCT": 0.12,
+   "CUM_PCT": 97.15,
+   "RK": 20
+  },
+  {
+   "NPI": "1649348988",
+   "FN": "FRANCES",
+   "LN": "ROGERS",
+   "ST": "PA",
+   "SPEC": "Physician Assistants & Advanced Practice Nursing Providers|Nurse Practitioner",
+   "PID": "10723370",
+   "DEACT": "2019-02-25",
+   "FIRST_PD": "2024-05-10",
+   "LAST_PD": "2024-12-17",
+   "DAYS_TO_FIRST": 1901,
+   "DAYS_TO_LAST": 2122,
+   "PAYMENTS": 12,
+   "PAYERS": 1,
+   "TOT": 5163.99,
+   "PCT": 0.12,
+   "CUM_PCT": 97.27,
+   "RK": 21
+  },
+  {
+   "NPI": "1194760736",
+   "FN": "RANDALL",
+   "LN": "CULP",
+   "ST": "PA",
+   "SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Hand Surgery",
+   "PID": "190202",
+   "DEACT": "2024-09-18",
+   "FIRST_PD": "2024-11-07",
+   "LAST_PD": "2024-11-07",
+   "DAYS_TO_FIRST": 50,
+   "DAYS_TO_LAST": 50,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 4889.2,
+   "PCT": 0.12,
+   "CUM_PCT": 97.39,
+   "RK": 22
+  },
+  {
+   "NPI": "1124173661",
+   "FN": "RAMON",
+   "LN": "MARRERO",
+   "ST": "PR",
+   "SPEC": "Dental Providers|Dentist|General Practice",
+   "PID": "765546",
+   "DEACT": "2021-01-13",
+   "FIRST_PD": "2024-09-24",
+   "LAST_PD": "2024-09-24",
+   "DAYS_TO_FIRST": 1350,
+   "DAYS_TO_LAST": 1350,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 3790.9,
+   "PCT": 0.09,
+   "CUM_PCT": 97.48,
+   "RK": 23
+  },
+  {
+   "NPI": "1104966241",
+   "FN": "SANDRA",
+   "LN": "GONG",
+   "ST": "CA",
+   "SPEC": "Dental Providers|Dentist|General Practice",
+   "PID": "1106777",
+   "DEACT": "2024-03-06",
+   "FIRST_PD": "2024-06-24",
+   "LAST_PD": "2024-06-24",
+   "DAYS_TO_FIRST": 110,
+   "DAYS_TO_LAST": 110,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 3465.57,
+   "PCT": 0.08,
+   "CUM_PCT": 97.56,
+   "RK": 24
+  },
+  {
+   "NPI": "1295717213",
+   "FN": "SCOTT",
+   "LN": "GREEN",
+   "ST": "NE",
+   "SPEC": "Dental Providers|Dentist",
+   "PID": "284970",
+   "DEACT": "2024-05-15",
+   "FIRST_PD": "2024-10-31",
+   "LAST_PD": "2024-10-31",
+   "DAYS_TO_FIRST": 169,
+   "DAYS_TO_LAST": 169,
+   "PAYMENTS": 1,
+   "PAYERS": 1,
+   "TOT": 2459.93,
+   "PCT": 0.06,
+   "CUM_PCT": 97.62,
+   "RK": 25
+  }
+ ],
+ "q3_dist": [
+  {
+   "BUCKET": "a <$25",
+   "NPIS": 584,
+   "DOLLARS": 10952.699999999999,
+   "MED": 18.405
+  },
+  {
+   "BUCKET": "b $25-100",
+   "NPIS": 494,
+   "DOLLARS": 24019.58,
+   "MED": 41.69
+  },
+  {
+   "BUCKET": "c $100-1k",
+   "NPIS": 211,
+   "DOLLARS": 46110.22,
+   "MED": 155.76999999999998
+  },
+  {
+   "BUCKET": "d $1k-10k",
+   "NPIS": 19,
+   "DOLLARS": 57786.75,
+   "MED": 2241.1800000000003
+  },
+  {
+   "BUCKET": "e $10k-100k",
+   "NPIS": 12,
+   "DOLLARS": 460958.25,
+   "MED": 23310.405
+  },
+  {
+   "BUCKET": "f $100k+",
+   "NPIS": 5,
+   "DOLLARS": 3587607.61,
+   "MED": 536693.2899999999
+  }
+ ],
+ "q4_nature": [
+  {
+   "NATURE": "Royalty or License",
+   "GRP": "top10",
+   "NPIS": 9,
+   "PAYMENTS": 45,
+   "DOLLARS": 3347030.03
+  },
+  {
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "GRP": "top10",
+   "NPIS": 1,
+   "PAYMENTS": 5,
+   "DOLLARS": 451125.0
+  },
+  {
+   "NATURE": "Consulting Fee",
+   "GRP": "top10",
+   "NPIS": 1,
+   "PAYMENTS": 3,
+   "DOLLARS": 87000.0
+  },
+  {
+   "NATURE": "Food and Beverage",
+   "GRP": "rest",
+   "NPIS": 1246,
+   "PAYMENTS": 2503,
+   "DOLLARS": 82210.81
+  },
+  {
+   "NATURE": "Acquisitions",
+   "GRP": "top10",
+   "NPIS": 1,
+   "PAYMENTS": 1,
+   "DOLLARS": 50000.0
+  },
+  {
+   "NATURE": "Debt forgiveness",
+   "GRP": "rest",
+   "NPIS": 13,
+   "PAYMENTS": 13,
+   "DOLLARS": 33838.090000000004
+  },
+  {
+   "NATURE": "Grant",
+   "GRP": "rest",
+   "NPIS": 2,
+   "PAYMENTS": 3,
+   "DOLLARS": 30000.0
+  },
+  {
+   "NATURE": "Acquisitions",
+   "GRP": "rest",
+   "NPIS": 2,
+   "PAYMENTS": 3,
+   "DOLLARS": 29305.05
+  },
+  {
+   "NATURE": "Royalty or License",
+   "GRP": "rest",
+   "NPIS": 5,
+   "PAYMENTS": 11,
+   "DOLLARS": 21371.51
+  },
+  {
+   "NATURE": "Consulting Fee",
+   "GRP": "rest",
+   "NPIS": 6,
+   "PAYMENTS": 20,
+   "DOLLARS": 18900.67
+  },
+  {
+   "NATURE": "Gift",
+   "GRP": "rest",
+   "NPIS": 26,
+   "PAYMENTS": 56,
+   "DOLLARS": 17597.149999999998
+  },
+  {
+   "NATURE": "Travel and Lodging",
+   "GRP": "rest",
+   "NPIS": 11,
+   "PAYMENTS": 35,
+   "DOLLARS": 11211.9
+  },
+  {
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "GRP": "rest",
+   "NPIS": 5,
+   "PAYMENTS": 5,
+   "DOLLARS": 6244.42
+  },
+  {
+   "NATURE": "Education",
+   "GRP": "rest",
+   "NPIS": 12,
+   "PAYMENTS": 20,
+   "DOLLARS": 857.8499999999999
+  },
+  {
+   "NATURE": "Compensation for serving as faculty or as a speaker for a medical education program",
+   "GRP": "rest",
+   "NPIS": 1,
+   "PAYMENTS": 1,
+   "DOLLARS": 600.0
+  },
+  {
+   "NATURE": "Food and Beverage",
+   "GRP": "top10",
+   "NPIS": 2,
+   "PAYMENTS": 4,
+   "DOLLARS": 84.63
+  },
+  {
+   "NATURE": "Honoraria",
+   "GRP": "rest",
+   "NPIS": 1,
+   "PAYMENTS": 1,
+   "DOLLARS": 58.0
+  }
+ ],
+ "q5_top_detail": [
+  {
+   "NPI": "1003909649",
+   "LN": "MORRISON",
+   "NATURE": "Royalty or License",
+   "PAYER": "Stryker Corporation",
+   "PAYMENTS": 7,
+   "DOLLARS": 356374.85,
+   "FIRST_PD": "2024-02-08",
+   "LAST_PD": "2024-11-14"
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "PAYER": "Johnson & Johnson Vision Care, Inc.",
+   "PAYMENTS": 5,
+   "DOLLARS": 451125.0,
+   "FIRST_PD": "2024-02-19",
+   "LAST_PD": "2024-09-16"
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "NATURE": "Consulting Fee",
+   "PAYER": "Johnson & Johnson Vision Care, Inc.",
+   "PAYMENTS": 3,
+   "DOLLARS": 87000.0,
+   "FIRST_PD": "2024-09-02",
+   "LAST_PD": "2024-11-18"
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "NATURE": "Food and Beverage",
+   "PAYER": "Tarsus Pharmaceuticals, Inc.",
+   "PAYMENTS": 1,
+   "DOLLARS": 28.17,
+   "FIRST_PD": "2024-06-21",
+   "LAST_PD": "2024-06-21"
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "NATURE": "Acquisitions",
+   "PAYER": "US Retina LLC",
+   "PAYMENTS": 1,
+   "DOLLARS": 50000.0,
+   "FIRST_PD": "2024-09-10",
+   "LAST_PD": "2024-09-10"
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "NATURE": "Royalty or License",
+   "PAYER": "Bausch & Lomb Americas Inc.",
+   "PAYMENTS": 4,
+   "DOLLARS": 12785.929999999998,
+   "FIRST_PD": "2024-01-30",
+   "LAST_PD": "2024-10-30"
+  },
+  {
+   "NPI": "1104812593",
+   "LN": "SPETZLER",
+   "NATURE": "Royalty or License",
+   "PAYER": "Stryker Corporation",
+   "PAYMENTS": 4,
+   "DOLLARS": 1791117.64,
+   "FIRST_PD": "2024-01-25",
+   "LAST_PD": "2024-10-25"
+  },
+  {
+   "NPI": "1114987831",
+   "LN": "Ruiz",
+   "NATURE": "Royalty or License",
+   "PAYER": "KLS-Martin L.P.",
+   "PAYMENTS": 1,
+   "DOLLARS": 64347.08,
+   "FIRST_PD": "2024-01-24",
+   "LAST_PD": "2024-01-24"
+  },
+  {
+   "NPI": "1114987831",
+   "LN": "Ruiz",
+   "NATURE": "Food and Beverage",
+   "PAYER": "AstraZeneca Pharmaceuticals LP",
+   "PAYMENTS": 3,
+   "DOLLARS": 56.459999999999994,
+   "FIRST_PD": "2024-02-14",
+   "LAST_PD": "2024-05-02"
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "NATURE": "Royalty or License",
+   "PAYER": "Globus Medical, Inc.",
+   "PAYMENTS": 3,
+   "DOLLARS": 47814.0,
+   "FIRST_PD": "2024-05-21",
+   "LAST_PD": "2024-05-21"
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "NATURE": "Royalty or License",
+   "PAYER": "Stryker Corporation",
+   "PAYMENTS": 4,
+   "DOLLARS": 19168.86,
+   "FIRST_PD": "2024-02-08",
+   "LAST_PD": "2024-11-14"
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "NATURE": "Royalty or License",
+   "PAYER": "Alphatec Spine, Inc",
+   "PAYMENTS": 4,
+   "DOLLARS": 15489.279999999999,
+   "FIRST_PD": "2024-02-27",
+   "LAST_PD": "2024-11-20"
+  },
+  {
+   "NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "NATURE": "Royalty or License",
+   "PAYER": "Cook Incorporated",
+   "PAYMENTS": 2,
+   "DOLLARS": 46446.97,
+   "FIRST_PD": "2024-02-14",
+   "LAST_PD": "2024-07-30"
+  },
+  {
+   "NPI": "1700830361",
+   "LN": "FENLIN",
+   "NATURE": "Royalty or License",
+   "PAYER": "Stryker Corporation",
+   "PAYMENTS": 8,
+   "DOLLARS": 536693.29,
+   "FIRST_PD": "2024-01-25",
+   "LAST_PD": "2024-10-30"
+  },
+  {
+   "NPI": "1760509848",
+   "LN": "DURAN",
+   "NATURE": "Royalty or License",
+   "PAYER": "Medtronic, Inc.",
+   "PAYMENTS": 4,
+   "DOLLARS": 91523.46999999999,
+   "FIRST_PD": "2024-01-23",
+   "LAST_PD": "2024-10-17"
+  },
+  {
+   "NPI": "1962558551",
+   "LN": "MAST",
+   "NATURE": "Royalty or License",
+   "PAYER": "DePuy Synthes Products, Inc.",
+   "PAYMENTS": 4,
+   "DOLLARS": 365268.66000000003,
+   "FIRST_PD": "2024-02-09",
+   "LAST_PD": "2024-11-08"
+  }
+ ],
+ "q6_nppes": [
+  {
+   "NPI": "1760509848",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2017-08-30",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1104812593",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2018-11-07",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1700830361",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2014-06-06",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1114987831",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2023-11-01",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1003909649",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2019-10-07",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1083806863",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2022-09-20",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1962558551",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2019-05-28",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1447253562",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2014-07-29",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1033558069",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2023-02-10",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  },
+  {
+   "NPI": "1316965916",
+   "ENTITY_TYPE_CODE": "",
+   "PROVIDER_LAST_NAME_LEGAL_NAME": "",
+   "PROVIDER_ENUMERATION_DATE": null,
+   "LAST_UPDATE_DATE": null,
+   "NPI_DEACTIVATION_REASON_CODE": "",
+   "NPI_DEACTIVATION_DATE": "2019-12-13",
+   "NPI_REACTIVATION_DATE": null,
+   "REPLACEMENT_NPI": "",
+   "CERTIFICATION_DATE": null,
+   "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1": "",
+   "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME": ""
+  }
+ ],
+ "q7_prior": [
+  {
+   "NPI": "1003909649",
+   "PY": 2022,
+   "PAYMENTS": 4,
+   "DOLLARS": 354899.28,
+   "FIRST_PD": "2022-02-15",
+   "LAST_PD": "2022-11-09"
+  },
+  {
+   "NPI": "1003909649",
+   "PY": 2023,
+   "PAYMENTS": 7,
+   "DOLLARS": 333090.94,
+   "FIRST_PD": "2023-02-13",
+   "LAST_PD": "2023-11-10"
+  },
+  {
+   "NPI": "1033558069",
+   "PY": 2022,
+   "PAYMENTS": 17,
+   "DOLLARS": 840290.0,
+   "FIRST_PD": "2022-01-03",
+   "LAST_PD": "2022-12-19"
+  },
+  {
+   "NPI": "1033558069",
+   "PY": 2023,
+   "PAYMENTS": 9,
+   "DOLLARS": 1091200.0,
+   "FIRST_PD": "2023-01-02",
+   "LAST_PD": "2023-12-18"
+  },
+  {
+   "NPI": "1083806863",
+   "PY": 2022,
+   "PAYMENTS": 16,
+   "DOLLARS": 41899.22,
+   "FIRST_PD": "2022-01-30",
+   "LAST_PD": "2022-10-30"
+  },
+  {
+   "NPI": "1104812593",
+   "PY": 2022,
+   "PAYMENTS": 8,
+   "DOLLARS": 1972468.44,
+   "FIRST_PD": "2022-01-25",
+   "LAST_PD": "2022-10-26"
+  },
+  {
+   "NPI": "1104812593",
+   "PY": 2023,
+   "PAYMENTS": 8,
+   "DOLLARS": 1795003.41,
+   "FIRST_PD": "2023-01-27",
+   "LAST_PD": "2023-11-02"
+  },
+  {
+   "NPI": "1114987831",
+   "PY": 2022,
+   "PAYMENTS": 5,
+   "DOLLARS": 153333.32,
+   "FIRST_PD": "2022-02-17",
+   "LAST_PD": "2022-12-01"
+  },
+  {
+   "NPI": "1114987831",
+   "PY": 2023,
+   "PAYMENTS": 6,
+   "DOLLARS": 223240.45,
+   "FIRST_PD": "2023-02-02",
+   "LAST_PD": "2023-10-19"
+  },
+  {
+   "NPI": "1316965916",
+   "PY": 2022,
+   "PAYMENTS": 8,
+   "DOLLARS": 31033.41,
+   "FIRST_PD": "2022-02-15",
+   "LAST_PD": "2022-11-17"
+  },
+  {
+   "NPI": "1316965916",
+   "PY": 2023,
+   "PAYMENTS": 8,
+   "DOLLARS": 30146.26,
+   "FIRST_PD": "2023-02-13",
+   "LAST_PD": "2023-11-16"
+  },
+  {
+   "NPI": "1447253562",
+   "PY": 2023,
+   "PAYMENTS": 2,
+   "DOLLARS": 42512.32,
+   "FIRST_PD": "2023-02-15",
+   "LAST_PD": "2023-08-09"
+  },
+  {
+   "NPI": "1700830361",
+   "PY": 2022,
+   "PAYMENTS": 8,
+   "DOLLARS": 1154803.16,
+   "FIRST_PD": "2022-02-16",
+   "LAST_PD": "2022-10-27"
+  },
+  {
+   "NPI": "1700830361",
+   "PY": 2023,
+   "PAYMENTS": 8,
+   "DOLLARS": 712480.56,
+   "FIRST_PD": "2023-01-30",
+   "LAST_PD": "2023-10-23"
+  },
+  {
+   "NPI": "1760509848",
+   "PY": 2022,
+   "PAYMENTS": 4,
+   "DOLLARS": 88872.1,
+   "FIRST_PD": "2022-01-26",
+   "LAST_PD": "2022-10-24"
+  },
+  {
+   "NPI": "1760509848",
+   "PY": 2023,
+   "PAYMENTS": 4,
+   "DOLLARS": 89912.11,
+   "FIRST_PD": "2023-01-24",
+   "LAST_PD": "2023-10-19"
+  },
+  {
+   "NPI": "1962558551",
+   "PY": 2022,
+   "PAYMENTS": 4,
+   "DOLLARS": 424556.78,
+   "FIRST_PD": "2022-02-18",
+   "LAST_PD": "2022-11-04"
+  },
+  {
+   "NPI": "1962558551",
+   "PY": 2023,
+   "PAYMENTS": 4,
+   "DOLLARS": 395180.79,
+   "FIRST_PD": "2023-02-16",
+   "LAST_PD": "2023-11-14"
+  }
+ ],
+ "q8_second_npi": [
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1740511922",
+   "ENUM_DT": "2010-01-27",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "PA",
+   "TAX": "101Y00000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1144470964",
+   "ENUM_DT": "2008-09-29",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "OH",
+   "TAX": "101YM0800X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1417039892",
+   "ENUM_DT": "2006-10-19",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "GA",
+   "TAX": "1223G0001X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1013745181",
+   "ENUM_DT": "2024-07-22",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "OH",
+   "TAX": "363LA2100X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1316365869",
+   "ENUM_DT": "2014-04-02",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "IL",
+   "TAX": "208M00000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1699111963",
+   "ENUM_DT": "2013-05-14",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "MO",
+   "TAX": "183500000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1730482902",
+   "ENUM_DT": "2010-12-10",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "OH",
+   "TAX": "164W00000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1346205374",
+   "ENUM_DT": "2006-04-20",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "FL",
+   "TAX": "207Q00000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1689684656",
+   "ENUM_DT": "2006-08-09",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "TN",
+   "TAX": "363LF0000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1992827331",
+   "ENUM_DT": "2007-04-05",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "106H00000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1205162609",
+   "ENUM_DT": "2009-10-20",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "ME",
+   "TAX": "1041C0700X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1659448405",
+   "ENUM_DT": "2006-11-29",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "367A00000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1104021583",
+   "ENUM_DT": "2007-06-18",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "MO",
+   "TAX": "207RC0000X"
+  },
+  {
+   "DEAD_NPI": "1003909649",
+   "LN": "MORRISON",
+   "FN": "THOMAS",
+   "ST": "GA",
+   "LIVE_NPI": "1578953741",
+   "ENUM_DT": "2015-01-27",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "TN",
+   "TAX": "2255A2300X"
+  },
+  {
+   "DEAD_NPI": "1033558069",
+   "LN": "GELLER",
+   "FN": "MATTHEW",
+   "ST": "CA",
+   "LIVE_NPI": "1346317013",
+   "ENUM_DT": "2006-11-29",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NJ",
+   "TAX": "2084P0800X"
+  },
+  {
+   "DEAD_NPI": "1033558069",
+   "LN": "GELLER",
+   "FN": "MATTHEW",
+   "ST": "CA",
+   "LIVE_NPI": "1598074809",
+   "ENUM_DT": "2010-10-04",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "207ZP0102X"
+  },
+  {
+   "DEAD_NPI": "1083806863",
+   "LN": "REDDY",
+   "FN": "RAHUL",
+   "ST": "AZ",
+   "LIVE_NPI": "1558377788",
+   "ENUM_DT": "2006-07-31",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "KY",
+   "TAX": "207R00000X"
+  },
+  {
+   "DEAD_NPI": "1083806863",
+   "LN": "REDDY",
+   "FN": "RAHUL",
+   "ST": "AZ",
+   "LIVE_NPI": "1083906879",
+   "ENUM_DT": "2011-05-11",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "IL",
+   "TAX": "207L00000X"
+  },
+  {
+   "DEAD_NPI": "1083806863",
+   "LN": "REDDY",
+   "FN": "RAHUL",
+   "ST": "AZ",
+   "LIVE_NPI": "1982309258",
+   "ENUM_DT": "2023-04-04",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "MA",
+   "TAX": "390200000X"
+  },
+  {
+   "DEAD_NPI": "1104812593",
+   "LN": "SPETZLER",
+   "FN": "ROBERT",
+   "ST": "AZ",
+   "LIVE_NPI": null,
+   "ENUM_DT": null,
+   "LIVE_DEACT": null,
+   "LIVE_ST": null,
+   "TAX": null
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1932184645",
+   "ENUM_DT": "2005-12-14",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "PR",
+   "TAX": "207R00000X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1518481027",
+   "ENUM_DT": "2017-07-27",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "101YA0400X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1720273725",
+   "ENUM_DT": "2007-09-12",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "MA",
+   "TAX": "101YM0800X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1467017830",
+   "ENUM_DT": "2019-05-01",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "UT",
+   "TAX": "171M00000X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1073253043",
+   "ENUM_DT": "2022-03-29",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "WA",
+   "TAX": "390200000X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1376007062",
+   "ENUM_DT": "2019-01-26",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "SC",
+   "TAX": "183500000X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1992265714",
+   "ENUM_DT": "2019-03-20",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "251B00000X"
+  },
+  {
+   "DEAD_NPI": "1114987831",
+   "LN": "Ruiz",
+   "FN": "Ramon",
+   "ST": "FL",
+   "LIVE_NPI": "1003703323",
+   "ENUM_DT": "2025-06-19",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "TX",
+   "TAX": "1041C0700X"
+  },
+  {
+   "DEAD_NPI": "1316965916",
+   "LN": "HILL",
+   "FN": "CLINT",
+   "ST": "MS",
+   "LIVE_NPI": null,
+   "ENUM_DT": null,
+   "LIVE_DEACT": null,
+   "LIVE_ST": null,
+   "TAX": null
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1790772432",
+   "ENUM_DT": "2005-09-27",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NJ",
+   "TAX": "207V00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1306929872",
+   "ENUM_DT": "2006-10-20",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "208000000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1538240049",
+   "ENUM_DT": "2006-10-18",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "111N00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1699835892",
+   "ENUM_DT": "2006-12-11",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "103T00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1902938392",
+   "ENUM_DT": "2007-03-12",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NJ",
+   "TAX": "1223P0300X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1417990961",
+   "ENUM_DT": "2006-06-13",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "KY",
+   "TAX": "2085N0700X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1164532487",
+   "ENUM_DT": "2006-08-30",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "208600000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1992730600",
+   "ENUM_DT": "2006-07-11",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "TX",
+   "TAX": "2084N0400X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1992794309",
+   "ENUM_DT": "2005-10-18",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "ME",
+   "TAX": "152W00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1952341364",
+   "ENUM_DT": "2006-06-07",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "207Y00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1740354760",
+   "ENUM_DT": "2006-11-20",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "FL",
+   "TAX": "207ZP0102X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1841218492",
+   "ENUM_DT": "2006-07-18",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "106H00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1356306609",
+   "ENUM_DT": "2006-04-19",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "IN",
+   "TAX": "207R00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1508526781",
+   "ENUM_DT": "2021-12-29",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "103TC0700X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1821139098",
+   "ENUM_DT": "2007-02-09",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NV",
+   "TAX": "103TA0700X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1699721019",
+   "ENUM_DT": "2006-05-26",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "DC",
+   "TAX": "207RC0000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1558362210",
+   "ENUM_DT": "2005-08-03",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "207V00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1790338713",
+   "ENUM_DT": "2019-07-18",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "MD",
+   "TAX": "106S00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1386185080",
+   "ENUM_DT": "2017-03-14",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "103T00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1629019179",
+   "ENUM_DT": "2006-06-08",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "VA",
+   "TAX": "207RC0000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1780740860",
+   "ENUM_DT": "2006-12-31",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NJ",
+   "TAX": "207RG0100X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1285779819",
+   "ENUM_DT": "2007-02-21",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "AZ",
+   "TAX": "122300000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1457387698",
+   "ENUM_DT": "2006-06-22",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "FL",
+   "TAX": "207R00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1144269457",
+   "ENUM_DT": "2006-06-05",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "PA",
+   "TAX": "207RG0100X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1174058689",
+   "ENUM_DT": "2017-04-23",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "VA",
+   "TAX": "213ES0103X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1740360643",
+   "ENUM_DT": "2006-10-16",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "NY",
+   "TAX": "111N00000X"
+  },
+  {
+   "DEAD_NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "FN": "STEVEN",
+   "ST": "NJ",
+   "LIVE_NPI": "1083722219",
+   "ENUM_DT": "2006-08-28",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "IA",
+   "TAX": "208600000X"
+  },
+  {
+   "DEAD_NPI": "1700830361",
+   "LN": "FENLIN",
+   "FN": "JOHN",
+   "ST": "PA",
+   "LIVE_NPI": null,
+   "ENUM_DT": null,
+   "LIVE_DEACT": null,
+   "LIVE_ST": null,
+   "TAX": null
+  },
+  {
+   "DEAD_NPI": "1760509848",
+   "LN": "DURAN",
+   "FN": "CARLOS",
+   "ST": "MT",
+   "LIVE_NPI": "1497745517",
+   "ENUM_DT": "2005-10-28",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "MA",
+   "TAX": "208000000X"
+  },
+  {
+   "DEAD_NPI": "1760509848",
+   "LN": "DURAN",
+   "FN": "CARLOS",
+   "ST": "MT",
+   "LIVE_NPI": "1457024341",
+   "ENUM_DT": "2021-07-27",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "CA",
+   "TAX": "106S00000X"
+  },
+  {
+   "DEAD_NPI": "1760509848",
+   "LN": "DURAN",
+   "FN": "CARLOS",
+   "ST": "MT",
+   "LIVE_NPI": "1588689178",
+   "ENUM_DT": "2006-07-13",
+   "LIVE_DEACT": null,
+   "LIVE_ST": "DE",
+   "TAX": "2080N0001X"
+  },
+  {
+   "DEAD_NPI": "1962558551",
+   "LN": "MAST",
+   "FN": "JEFFREY",
+   "ST": "NV",
+   "LIVE_NPI": null,
+   "ENUM_DT": null,
+   "LIVE_DEACT": null,
+   "LIVE_ST": null,
+   "TAX": null
+  }
+ ],
+ "q9_sup": [
+  {
+   "PROFILE_ID": "1200995",
+   "NPI": "1447253562",
+   "FIRST_NAME": "STEVEN",
+   "LAST_NAME": "GOLDSTEIN",
+   "STATE": "NJ",
+   "PRIMARY_SPECIALTY": "Podiatric Medicine & Surgery Service Providers|Podiatrist|Foot Surgery",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "NJ"
+  },
+  {
+   "PROFILE_ID": "1248944",
+   "NPI": "1114987831",
+   "FIRST_NAME": "RAMON",
+   "LAST_NAME": "RUIZ",
+   "STATE": "FL",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Oral & Maxillofacial Surgery",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "FL"
+  },
+  {
+   "PROFILE_ID": "1068343",
+   "NPI": "1760509848",
+   "FIRST_NAME": "CARLOS",
+   "LAST_NAME": "DURAN",
+   "STATE": "MT",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Thoracic Surgery (Cardiothoracic Vascular Surgery)",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "MT"
+  },
+  {
+   "PROFILE_ID": "273699",
+   "NPI": "1033558069",
+   "FIRST_NAME": "MATTHEW",
+   "LAST_NAME": "GELLER",
+   "STATE": "CA",
+   "PRIMARY_SPECIALTY": "Eye and Vision Services Providers|Optometrist",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "CA"
+  },
+  {
+   "PROFILE_ID": "321143",
+   "NPI": "1083806863",
+   "FIRST_NAME": "RAHUL",
+   "LAST_NAME": "REDDY",
+   "STATE": "AZ",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Ophthalmology|Retina Specialist",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "AZ"
+  },
+  {
+   "PROFILE_ID": "866947",
+   "NPI": "1700830361",
+   "FIRST_NAME": "JOHN",
+   "LAST_NAME": "FENLIN",
+   "STATE": "PA",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "ASSOCIATED_PROFILE_ID_1": "1395426",
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "PA"
+  },
+  {
+   "PROFILE_ID": "90921",
+   "NPI": "1003909649",
+   "FIRST_NAME": "THOMAS",
+   "LAST_NAME": "MORRISON",
+   "STATE": "GA",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Neurological Surgery",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "GA"
+  },
+  {
+   "PROFILE_ID": "150467",
+   "NPI": "1316965916",
+   "FIRST_NAME": "CLINT",
+   "LAST_NAME": "HILL",
+   "STATE": "KY",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "TN"
+  },
+  {
+   "PROFILE_ID": "49375",
+   "NPI": "1104812593",
+   "FIRST_NAME": "ROBERT",
+   "LAST_NAME": "SPETZLER",
+   "STATE": "AZ",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Neurological Surgery",
+   "ASSOCIATED_PROFILE_ID_1": "5705070",
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "AZ"
+  },
+  {
+   "PROFILE_ID": "789373",
+   "NPI": "1962558551",
+   "FIRST_NAME": "JEFFREY",
+   "LAST_NAME": "MAST",
+   "STATE": "CA",
+   "PRIMARY_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "ASSOCIATED_PROFILE_ID_1": null,
+   "ASSOCIATED_PROFILE_ID_2": null,
+   "LICENSE_STATE_CODE_1": "CA"
+  }
+ ],
+ "q10_react": [
+  {
+   "NPIS_IN_WINDOW": 35,
+   "PAYMENTS": 65,
+   "DOLLARS": 14666.3,
+   "BIGGEST": 5625.0,
+   "MED_GAP_DAYS": "25.000"
+  }
+ ],
+ "q11_gap": [
+  {
+   "YRS": 0,
+   "NPIS": 370,
+   "DOLLARS": 162858.76
+  },
+  {
+   "YRS": 1,
+   "NPIS": 191,
+   "DOLLARS": 679018.7499999999
+  },
+  {
+   "YRS": 2,
+   "NPIS": 160,
+   "DOLLARS": 25726.73
+  },
+  {
+   "YRS": 3,
+   "NPIS": 124,
+   "DOLLARS": 12912.66
+  },
+  {
+   "YRS": 4,
+   "NPIS": 81,
+   "DOLLARS": 809214.5800000001
+  },
+  {
+   "YRS": 5,
+   "NPIS": 86,
+   "DOLLARS": 1801832.5799999998
+  },
+  {
+   "YRS": 6,
+   "NPIS": 57,
+   "DOLLARS": 94636.32999999999
+  },
+  {
+   "YRS": 7,
+   "NPIS": 60,
+   "DOLLARS": 4449.849999999999
+  },
+  {
+   "YRS": 8,
+   "NPIS": 41,
+   "DOLLARS": 1880.79
+  },
+  {
+   "YRS": 9,
+   "NPIS": 39,
+   "DOLLARS": 585713.6000000001
+  },
+  {
+   "YRS": 10,
+   "NPIS": 116,
+   "DOLLARS": 9190.479999999998
+  }
+ ],
+ "q12_top_timeline": [
+  {
+   "NPI": "1003909649",
+   "LN": "MORRISON",
+   "M": "2024-02-01",
+   "DOLLARS": 86175.08,
+   "N": 2
+  },
+  {
+   "NPI": "1003909649",
+   "LN": "MORRISON",
+   "M": "2024-05-01",
+   "DOLLARS": 91742.65999999999,
+   "N": 2
+  },
+  {
+   "NPI": "1003909649",
+   "LN": "MORRISON",
+   "M": "2024-08-01",
+   "DOLLARS": 93098.93000000001,
+   "N": 2
+  },
+  {
+   "NPI": "1003909649",
+   "LN": "MORRISON",
+   "M": "2024-11-01",
+   "DOLLARS": 85358.18,
+   "N": 1
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "M": "2024-02-01",
+   "DOLLARS": 50000.0,
+   "N": 1
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "M": "2024-05-01",
+   "DOLLARS": 50500.0,
+   "N": 1
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "M": "2024-06-01",
+   "DOLLARS": 116903.17,
+   "N": 2
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "M": "2024-07-01",
+   "DOLLARS": 116875.0,
+   "N": 1
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "M": "2024-09-01",
+   "DOLLARS": 202375.0,
+   "N": 3
+  },
+  {
+   "NPI": "1033558069",
+   "LN": "GELLER",
+   "M": "2024-11-01",
+   "DOLLARS": 1500.0,
+   "N": 1
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "M": "2024-01-01",
+   "DOLLARS": 3678.64,
+   "N": 1
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "M": "2024-04-01",
+   "DOLLARS": 3373.93,
+   "N": 1
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "M": "2024-07-01",
+   "DOLLARS": 2544.24,
+   "N": 1
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "M": "2024-09-01",
+   "DOLLARS": 50000.0,
+   "N": 1
+  },
+  {
+   "NPI": "1083806863",
+   "LN": "REDDY",
+   "M": "2024-10-01",
+   "DOLLARS": 3189.12,
+   "N": 1
+  },
+  {
+   "NPI": "1104812593",
+   "LN": "SPETZLER",
+   "M": "2024-01-01",
+   "DOLLARS": 446264.67,
+   "N": 1
+  },
+  {
+   "NPI": "1104812593",
+   "LN": "SPETZLER",
+   "M": "2024-04-01",
+   "DOLLARS": 422326.08,
+   "N": 1
+  },
+  {
+   "NPI": "1104812593",
+   "LN": "SPETZLER",
+   "M": "2024-08-01",
+   "DOLLARS": 444282.15,
+   "N": 1
+  },
+  {
+   "NPI": "1104812593",
+   "LN": "SPETZLER",
+   "M": "2024-10-01",
+   "DOLLARS": 478244.74,
+   "N": 1
+  },
+  {
+   "NPI": "1114987831",
+   "LN": "Ruiz",
+   "M": "2024-01-01",
+   "DOLLARS": 64347.08,
+   "N": 1
+  },
+  {
+   "NPI": "1114987831",
+   "LN": "Ruiz",
+   "M": "2024-02-01",
+   "DOLLARS": 19.16,
+   "N": 1
+  },
+  {
+   "NPI": "1114987831",
+   "LN": "Ruiz",
+   "M": "2024-03-01",
+   "DOLLARS": 21.72,
+   "N": 1
+  },
+  {
+   "NPI": "1114987831",
+   "LN": "Ruiz",
+   "M": "2024-05-01",
+   "DOLLARS": 15.58,
+   "N": 1
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "M": "2024-02-01",
+   "DOLLARS": 8709.3,
+   "N": 2
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "M": "2024-05-01",
+   "DOLLARS": 56298.66,
+   "N": 5
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "M": "2024-08-01",
+   "DOLLARS": 8235.4,
+   "N": 2
+  },
+  {
+   "NPI": "1316965916",
+   "LN": "HILL",
+   "M": "2024-11-01",
+   "DOLLARS": 9228.779999999999,
+   "N": 2
+  },
+  {
+   "NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "M": "2024-02-01",
+   "DOLLARS": 20269.52,
+   "N": 1
+  },
+  {
+   "NPI": "1447253562",
+   "LN": "GOLDSTEIN",
+   "M": "2024-07-01",
+   "DOLLARS": 26177.45,
+   "N": 1
+  },
+  {
+   "NPI": "1700830361",
+   "LN": "FENLIN",
+   "M": "2024-01-01",
+   "DOLLARS": 147182.78,
+   "N": 2
+  },
+  {
+   "NPI": "1700830361",
+   "LN": "FENLIN",
+   "M": "2024-04-01",
+   "DOLLARS": 143639.47999999998,
+   "N": 2
+  },
+  {
+   "NPI": "1700830361",
+   "LN": "FENLIN",
+   "M": "2024-07-01",
+   "DOLLARS": 128006.83,
+   "N": 2
+  },
+  {
+   "NPI": "1700830361",
+   "LN": "FENLIN",
+   "M": "2024-10-01",
+   "DOLLARS": 117864.20000000001,
+   "N": 2
+  },
+  {
+   "NPI": "1760509848",
+   "LN": "DURAN",
+   "M": "2024-01-01",
+   "DOLLARS": 21876.64,
+   "N": 1
+  },
+  {
+   "NPI": "1760509848",
+   "LN": "DURAN",
+   "M": "2024-04-01",
+   "DOLLARS": 23614.56,
+   "N": 1
+  },
+  {
+   "NPI": "1760509848",
+   "LN": "DURAN",
+   "M": "2024-07-01",
+   "DOLLARS": 23647.35,
+   "N": 1
+  },
+  {
+   "NPI": "1760509848",
+   "LN": "DURAN",
+   "M": "2024-10-01",
+   "DOLLARS": 22384.92,
+   "N": 1
+  },
+  {
+   "NPI": "1962558551",
+   "LN": "MAST",
+   "M": "2024-02-01",
+   "DOLLARS": 95582.0,
+   "N": 1
+  },
+  {
+   "NPI": "1962558551",
+   "LN": "MAST",
+   "M": "2024-05-01",
+   "DOLLARS": 91482.6,
+   "N": 1
+  },
+  {
+   "NPI": "1962558551",
+   "LN": "MAST",
+   "M": "2024-08-01",
+   "DOLLARS": 89790.09,
+   "N": 1
+  },
+  {
+   "NPI": "1962558551",
+   "LN": "MAST",
+   "M": "2024-11-01",
+   "DOLLARS": 88413.97,
+   "N": 1
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+[
+ {
+  "EXCLUSION_TYPE": "Prohibition/Restriction",
+  "N": 135208
+ },
+ {
+  "EXCLUSION_TYPE": "Ineligible (Proceedings Completed)",
+  "N": 29142
+ },
+ {
+  "EXCLUSION_TYPE": "Ineligible (Proceedings Pending)",
+  "N": 2756
+ },
+ {
+  "EXCLUSION_TYPE": "Ineligible (Proceedings Complete)",
+  "N": 1013
+ },
+ {
+  "EXCLUSION_TYPE": "Voluntary Exclusion",
+  "N": 209
+ }
+]

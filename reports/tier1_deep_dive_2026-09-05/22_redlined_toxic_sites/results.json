@@ -1,0 +1,7076 @@
+{
+ "mart_grade_dist": [
+  {
+   "HOLC_GRADE": "",
+   "N": 281,
+   "G": 281
+  },
+  {
+   "HOLC_GRADE": " ",
+   "N": 1,
+   "G": 1
+  },
+  {
+   "HOLC_GRADE": "A",
+   "N": 205,
+   "G": 205
+  },
+  {
+   "HOLC_GRADE": "A ",
+   "N": 1,
+   "G": 1
+  },
+  {
+   "HOLC_GRADE": "B",
+   "N": 220,
+   "G": 220
+  },
+  {
+   "HOLC_GRADE": "C",
+   "N": 222,
+   "G": 222
+  },
+  {
+   "HOLC_GRADE": "C ",
+   "N": 1,
+   "G": 1
+  },
+  {
+   "HOLC_GRADE": "D",
+   "N": 215,
+   "G": 215
+  },
+  {
+   "HOLC_GRADE": "E",
+   "N": 6,
+   "G": 6
+  },
+  {
+   "HOLC_GRADE": "F",
+   "N": 3,
+   "G": 3
+  }
+ ],
+ "mart_shape": [
+  {
+   "N": 1155,
+   "CITIES": 314,
+   "KEYS": 1155,
+   "HOLC_IDS": 1,
+   "SRCS": 1
+  }
+ ],
+ "mart_one_per_city_grade": [
+  {
+   "CITY_GRADE_PAIRS": 1152,
+   "ROWS_": 1155,
+   "MAX_PER_PAIR": 2
+  }
+ ],
+ "landing_shape": [
+  {
+   "N": 10154,
+   "EXACT_BLANK": 814,
+   "BLANK_ANY": 817,
+   "HOLC_IDS": 1,
+   "CITIES": 314,
+   "GEOMS": 10154,
+   "RUNS": 1
+  }
+ ],
+ "landing_grade_dist": [
+  {
+   "G": "",
+   "N": 817
+  },
+  {
+   "G": "A",
+   "N": 1095
+  },
+  {
+   "G": "B",
+   "N": 2481
+  },
+  {
+   "G": "C",
+   "N": 3560
+  },
+  {
+   "G": "D",
+   "N": 2188
+  },
+  {
+   "G": "E",
+   "N": 9
+  },
+  {
+   "G": "F",
+   "N": 4
+  }
+ ],
+ "mart_geoms_in_landing": [
+  {
+   "N": 1155
+  }
+ ],
+ "geometry_parse": [
+  {
+   "N": 10154,
+   "PARSED": 10153,
+   "SAMPLE_TYPE": "\"type\": \"MultiPolygon"
+  }
+ ],
+ "geometry_types": [
+  {
+   "T": "Polygon",
+   "N": 568
+  },
+  {
+   "T": "MultiPolygon",
+   "N": 9586
+  }
+ ],
+ "facility_coord_formats": [
+  {
+   "N": 64990,
+   "FAC_LAT": 51689,
+   "PREF_LAT": 36755,
+   "FAC_DDMMSS": 48756,
+   "FAC_ZERO": 2918,
+   "FAC_DECIMAL_BAND": 15,
+   "PREF_MAX": 90,
+   "PREF_FRACTIONAL": 0,
+   "PREF_DISTINCT": 43
+  }
+ ],
+ "facility_coord_sample": [
+  {
+   "FAC_LATITUDE": 394230,
+   "FAC_LONGITUDE": 963900,
+   "PREF_LATITUDE": 40,
+   "PREF_LONGITUDE": 97,
+   "STATE_ABBR": "KS"
+  },
+  {
+   "FAC_LATITUDE": 412708,
+   "FAC_LONGITUDE": 852031,
+   "PREF_LATITUDE": 41,
+   "PREF_LONGITUDE": 85,
+   "STATE_ABBR": "IN"
+  },
+  {
+   "FAC_LATITUDE": 394241,
+   "FAC_LONGITUDE": 753636,
+   "PREF_LATITUDE": 40,
+   "PREF_LONGITUDE": 76,
+   "STATE_ABBR": "DE"
+  },
+  {
+   "FAC_LATITUDE": 401626,
+   "FAC_LONGITUDE": 765304,
+   "PREF_LATITUDE": 40,
+   "PREF_LONGITUDE": 77,
+   "STATE_ABBR": "PA"
+  },
+  {
+   "FAC_LATITUDE": 330301,
+   "FAC_LONGITUDE": 801608,
+   "PREF_LATITUDE": 33,
+   "PREF_LONGITUDE": 80,
+   "STATE_ABBR": "SC"
+  },
+  {
+   "FAC_LATITUDE": 403720,
+   "FAC_LONGITUDE": 803638,
+   "PREF_LATITUDE": 41,
+   "PREF_LONGITUDE": 81,
+   "STATE_ABBR": "WV"
+  }
+ ],
+ "basic_shape": [
+  {
+   "ROWS_": 78647,
+   "FACILITIES": 21870,
+   "Y0": 2023.0,
+   "Y1": 2023.0,
+   "LA0": -14.273281,
+   "LA1": 70.245664,
+   "GRAM_ROWS": 770,
+   "TOTAL_LBS": 3401917853.0
+  }
+ ],
+ "basic_to_facility": [
+  {
+   "MATCHED": 21870
+  }
+ ],
+ "mart_join_by_grade": [
+  {
+   "G": "",
+   "SITES": 486,
+   "POLYS_HIT": 104,
+   "LBS": 16641028.0
+  },
+  {
+   "G": "A",
+   "SITES": 1,
+   "POLYS_HIT": 1,
+   "LBS": 0.0
+  },
+  {
+   "G": "B",
+   "SITES": 25,
+   "POLYS_HIT": 11,
+   "LBS": 1254640.0
+  },
+  {
+   "G": "C",
+   "SITES": 36,
+   "POLYS_HIT": 19,
+   "LBS": 1563515.0
+  },
+  {
+   "G": "D",
+   "SITES": 42,
+   "POLYS_HIT": 29,
+   "LBS": 1711098.0
+  },
+  {
+   "G": "E",
+   "SITES": 1,
+   "POLYS_HIT": 1,
+   "LBS": 929.0
+  }
+ ],
+ "mart_area_by_grade": [
+  {
+   "G": "",
+   "POLYS": 282,
+   "KM2": 1565.1
+  },
+  {
+   "G": "A",
+   "POLYS": 206,
+   "KM2": 394.7
+  },
+  {
+   "G": "B",
+   "POLYS": 220,
+   "KM2": 406.0
+  },
+  {
+   "G": "C",
+   "POLYS": 223,
+   "KM2": 488.4
+  },
+  {
+   "G": "D",
+   "POLYS": 215,
+   "KM2": 348.3
+  },
+  {
+   "G": "E",
+   "POLYS": 6,
+   "KM2": 10.9
+  },
+  {
+   "G": "F",
+   "POLYS": 3,
+   "KM2": 4.0
+  }
+ ],
+ "landing_area_by_grade": [
+  {
+   "G": "",
+   "POLYS": 817,
+   "KM2": 2782.4,
+   "MED_KM2": 1.22
+  },
+  {
+   "G": "A",
+   "POLYS": 1095,
+   "KM2": 1365.8,
+   "MED_KM2": 0.65
+  },
+  {
+   "G": "B",
+   "POLYS": 2481,
+   "KM2": 2941.9,
+   "MED_KM2": 0.65
+  },
+  {
+   "G": "C",
+   "POLYS": 3560,
+   "KM2": 5461.7,
+   "MED_KM2": 0.94
+  },
+  {
+   "G": "D",
+   "POLYS": 2188,
+   "KM2": 3355.4,
+   "MED_KM2": 0.81
+  },
+  {
+   "G": "E",
+   "POLYS": 9,
+   "KM2": 27.1,
+   "MED_KM2": 0.77
+  },
+  {
+   "G": "F",
+   "POLYS": 4,
+   "KM2": 4.7,
+   "MED_KM2": 0.63
+  }
+ ],
+ "landing_join_by_grade": [
+  {
+   "G": "",
+   "SITES": 716,
+   "PAIRS": 718,
+   "POLYS_HIT": 187,
+   "LBS": 29051823.0,
+   "MED_LBS_PER_SITE": 444.0,
+   "CARC_SITES": 393,
+   "SITES_NONZERO": 581
+  },
+  {
+   "G": "A",
+   "SITES": 1,
+   "PAIRS": 1,
+   "POLYS_HIT": 1,
+   "LBS": 0.0,
+   "MED_LBS_PER_SITE": 0.0,
+   "CARC_SITES": 0,
+   "SITES_NONZERO": 0
+  },
+  {
+   "G": "B",
+   "SITES": 65,
+   "PAIRS": 65,
+   "POLYS_HIT": 44,
+   "LBS": 1488676.0,
+   "MED_LBS_PER_SITE": 255.0,
+   "CARC_SITES": 36,
+   "SITES_NONZERO": 58
+  },
+  {
+   "G": "C",
+   "SITES": 318,
+   "PAIRS": 318,
+   "POLYS_HIT": 233,
+   "LBS": 7817489.0,
+   "MED_LBS_PER_SITE": 507.0,
+   "CARC_SITES": 178,
+   "SITES_NONZERO": 265
+  },
+  {
+   "G": "D",
+   "SITES": 448,
+   "PAIRS": 448,
+   "POLYS_HIT": 297,
+   "LBS": 23006255.0,
+   "MED_LBS_PER_SITE": 305.0,
+   "CARC_SITES": 232,
+   "SITES_NONZERO": 363
+  },
+  {
+   "G": "E",
+   "SITES": 1,
+   "PAIRS": 1,
+   "POLYS_HIT": 1,
+   "LBS": 929.0,
+   "MED_LBS_PER_SITE": 929.0,
+   "CARC_SITES": 1,
+   "SITES_NONZERO": 1
+  }
+ ],
+ "landing_join_500m": [
+  {
+   "G": "",
+   "SITES": 1370
+  },
+  {
+   "G": "A",
+   "SITES": 69
+  },
+  {
+   "G": "B",
+   "SITES": 420
+  },
+  {
+   "G": "C",
+   "SITES": 1264
+  },
+  {
+   "G": "D",
+   "SITES": 1298
+  },
+  {
+   "G": "E",
+   "SITES": 3
+  },
+  {
+   "G": "F",
+   "SITES": 1
+  }
+ ],
+ "landing_polys_with_site": [
+  {
+   "G": "",
+   "POLYS": 817,
+   "POLYS_WITH_SITE": 187,
+   "PCT": "22.9"
+  },
+  {
+   "G": "A",
+   "POLYS": 1095,
+   "POLYS_WITH_SITE": 1,
+   "PCT": "0.1"
+  },
+  {
+   "G": "B",
+   "POLYS": 2481,
+   "POLYS_WITH_SITE": 44,
+   "PCT": "1.8"
+  },
+  {
+   "G": "C",
+   "POLYS": 3560,
+   "POLYS_WITH_SITE": 233,
+   "PCT": "6.5"
+  },
+  {
+   "G": "D",
+   "POLYS": 2188,
+   "POLYS_WITH_SITE": 297,
+   "PCT": "13.6"
+  },
+  {
+   "G": "E",
+   "POLYS": 9,
+   "POLYS_WITH_SITE": 1,
+   "PCT": "11.1"
+  },
+  {
+   "G": "F",
+   "POLYS": 4,
+   "POLYS_WITH_SITE": 0,
+   "PCT": "0.0"
+  }
+ ],
+ "landing_join_facility_table": [
+  {
+   "G": "",
+   "SITES": 2309,
+   "OPEN_SITES": 2016
+  },
+  {
+   "G": "A",
+   "SITES": 58,
+   "OPEN_SITES": 49
+  },
+  {
+   "G": "B",
+   "SITES": 352,
+   "OPEN_SITES": 310
+  },
+  {
+   "G": "C",
+   "SITES": 1402,
+   "OPEN_SITES": 1259
+  },
+  {
+   "G": "D",
+   "SITES": 1501,
+   "OPEN_SITES": 1330
+  },
+  {
+   "G": "E",
+   "SITES": 4,
+   "OPEN_SITES": 3
+  }
+ ],
+ "facility_pts_kept": [
+  {
+   "KEPT": 48193
+  }
+ ],
+ "landing_city_grade": [
+  {
+   "CITY": "Detroit",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 15,
+   "KM2": 33.51,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 40
+  },
+  {
+   "CITY": "Detroit",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 39,
+   "KM2": 75.24,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 40
+  },
+  {
+   "CITY": "Detroit",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 122,
+   "KM2": 272.52,
+   "SITES": 14,
+   "LBS": 302471.0,
+   "TOTAL_SITES": 40
+  },
+  {
+   "CITY": "Detroit",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 62,
+   "KM2": 151.64,
+   "SITES": 26,
+   "LBS": 2073483.0,
+   "TOTAL_SITES": 40
+  },
+  {
+   "CITY": "Chicago",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 49,
+   "KM2": 27.35,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 34
+  },
+  {
+   "CITY": "Chicago",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 160,
+   "KM2": 106.24,
+   "SITES": 2,
+   "LBS": 855.0,
+   "TOTAL_SITES": 34
+  },
+  {
+   "CITY": "Chicago",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 327,
+   "KM2": 321.86,
+   "SITES": 14,
+   "LBS": 1800723.0,
+   "TOTAL_SITES": 34
+  },
+  {
+   "CITY": "Chicago",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 147,
+   "KM2": 169.47,
+   "SITES": 18,
+   "LBS": 165274.0,
+   "TOTAL_SITES": 34
+  },
+  {
+   "CITY": "Cleveland",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 31,
+   "KM2": 34.48,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 28
+  },
+  {
+   "CITY": "Cleveland",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 55,
+   "KM2": 68.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 28
+  },
+  {
+   "CITY": "Cleveland",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 76,
+   "KM2": 142.91,
+   "SITES": 8,
+   "LBS": 166021.0,
+   "TOTAL_SITES": 28
+  },
+  {
+   "CITY": "Cleveland",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 28,
+   "KM2": 55.38,
+   "SITES": 20,
+   "LBS": 7684926.0,
+   "TOTAL_SITES": 28
+  },
+  {
+   "CITY": "Indianapolis",
+   "STATE": "IN",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 19.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 26
+  },
+  {
+   "CITY": "Indianapolis",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 17,
+   "KM2": 30.98,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 26
+  },
+  {
+   "CITY": "Indianapolis",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 24,
+   "KM2": 212.69,
+   "SITES": 11,
+   "LBS": 103057.0,
+   "TOTAL_SITES": 26
+  },
+  {
+   "CITY": "Indianapolis",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 27,
+   "KM2": 96.67,
+   "SITES": 15,
+   "LBS": 105960.0,
+   "TOTAL_SITES": 26
+  },
+  {
+   "CITY": "Los Angeles",
+   "STATE": "CA",
+   "G": "A",
+   "POLYS": 57,
+   "KM2": 104.43,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 25
+  },
+  {
+   "CITY": "Los Angeles",
+   "STATE": "CA",
+   "G": "B",
+   "POLYS": 121,
+   "KM2": 166.45,
+   "SITES": 1,
+   "LBS": 4974.0,
+   "TOTAL_SITES": 25
+  },
+  {
+   "CITY": "Los Angeles",
+   "STATE": "CA",
+   "G": "C",
+   "POLYS": 167,
+   "KM2": 391.54,
+   "SITES": 9,
+   "LBS": 113996.0,
+   "TOTAL_SITES": 25
+  },
+  {
+   "CITY": "Los Angeles",
+   "STATE": "CA",
+   "G": "D",
+   "POLYS": 71,
+   "KM2": 187.43,
+   "SITES": 15,
+   "LBS": 220917.0,
+   "TOTAL_SITES": 25
+  },
+  {
+   "CITY": "St. Louis",
+   "STATE": "MO",
+   "G": "A",
+   "POLYS": 31,
+   "KM2": 30.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 24
+  },
+  {
+   "CITY": "St. Louis",
+   "STATE": "MO",
+   "G": "B",
+   "POLYS": 40,
+   "KM2": 76.88,
+   "SITES": 7,
+   "LBS": 97929.0,
+   "TOTAL_SITES": 24
+  },
+  {
+   "CITY": "St. Louis",
+   "STATE": "MO",
+   "G": "C",
+   "POLYS": 39,
+   "KM2": 64.54,
+   "SITES": 5,
+   "LBS": 18673.0,
+   "TOTAL_SITES": 24
+  },
+  {
+   "CITY": "St. Louis",
+   "STATE": "MO",
+   "G": "D",
+   "POLYS": 16,
+   "KM2": 32.18,
+   "SITES": 12,
+   "LBS": 281760.0,
+   "TOTAL_SITES": 24
+  },
+  {
+   "CITY": "Milwaukee Co.",
+   "STATE": "WI",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 12.39,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 19
+  },
+  {
+   "CITY": "Milwaukee Co.",
+   "STATE": "WI",
+   "G": "B",
+   "POLYS": 29,
+   "KM2": 30.9,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 19
+  },
+  {
+   "CITY": "Milwaukee Co.",
+   "STATE": "WI",
+   "G": "C",
+   "POLYS": 49,
+   "KM2": 79.3,
+   "SITES": 10,
+   "LBS": 46704.0,
+   "TOTAL_SITES": 19
+  },
+  {
+   "CITY": "Milwaukee Co.",
+   "STATE": "WI",
+   "G": "D",
+   "POLYS": 24,
+   "KM2": 38.2,
+   "SITES": 9,
+   "LBS": 78382.0,
+   "TOTAL_SITES": 19
+  },
+  {
+   "CITY": "Akron",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 11,
+   "KM2": 23.91,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 18
+  },
+  {
+   "CITY": "Akron",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 19,
+   "KM2": 30.35,
+   "SITES": 2,
+   "LBS": 3954.0,
+   "TOTAL_SITES": 18
+  },
+  {
+   "CITY": "Akron",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 24,
+   "KM2": 83.41,
+   "SITES": 14,
+   "LBS": 21227.0,
+   "TOTAL_SITES": 18
+  },
+  {
+   "CITY": "Akron",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 13,
+   "KM2": 13.06,
+   "SITES": 2,
+   "LBS": 882.0,
+   "TOTAL_SITES": 18
+  },
+  {
+   "CITY": "Memphis",
+   "STATE": "TN",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 7.44,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 15
+  },
+  {
+   "CITY": "Memphis",
+   "STATE": "TN",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 24.53,
+   "SITES": 2,
+   "LBS": 30714.0,
+   "TOTAL_SITES": 15
+  },
+  {
+   "CITY": "Memphis",
+   "STATE": "TN",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 33.86,
+   "SITES": 4,
+   "LBS": 769890.0,
+   "TOTAL_SITES": 15
+  },
+  {
+   "CITY": "Memphis",
+   "STATE": "TN",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 43.79,
+   "SITES": 9,
+   "LBS": 196276.0,
+   "TOTAL_SITES": 15
+  },
+  {
+   "CITY": "Louisville",
+   "STATE": "KY",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 13.52,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Louisville",
+   "STATE": "KY",
+   "G": "B",
+   "POLYS": 16,
+   "KM2": 15.31,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Louisville",
+   "STATE": "KY",
+   "G": "C",
+   "POLYS": 17,
+   "KM2": 39.56,
+   "SITES": 5,
+   "LBS": 8180.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Louisville",
+   "STATE": "KY",
+   "G": "D",
+   "POLYS": 13,
+   "KM2": 25.84,
+   "SITES": 8,
+   "LBS": 689607.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Oklahoma City",
+   "STATE": "OK",
+   "G": "A",
+   "POLYS": 13,
+   "KM2": 12.06,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Oklahoma City",
+   "STATE": "OK",
+   "G": "B",
+   "POLYS": 12,
+   "KM2": 9.71,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Oklahoma City",
+   "STATE": "OK",
+   "G": "C",
+   "POLYS": 32,
+   "KM2": 31.1,
+   "SITES": 3,
+   "LBS": 9904.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Oklahoma City",
+   "STATE": "OK",
+   "G": "D",
+   "POLYS": 33,
+   "KM2": 29.72,
+   "SITES": 10,
+   "LBS": 13206.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Omaha",
+   "STATE": "NE",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 27.44,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Omaha",
+   "STATE": "NE",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 76.7,
+   "SITES": 9,
+   "LBS": 250254.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Omaha",
+   "STATE": "NE",
+   "G": "C",
+   "POLYS": 3,
+   "KM2": 36.57,
+   "SITES": 3,
+   "LBS": 54.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Omaha",
+   "STATE": "NE",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 8.02,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Providence",
+   "STATE": "RI",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 5.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Providence",
+   "STATE": "RI",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 18.35,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Providence",
+   "STATE": "RI",
+   "G": "C",
+   "POLYS": 11,
+   "KM2": 35.21,
+   "SITES": 12,
+   "LBS": 5251.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Providence",
+   "STATE": "RI",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 1.67,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 13
+  },
+  {
+   "CITY": "Des Moines",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 17.98,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Des Moines",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 13.76,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Des Moines",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 54.08,
+   "SITES": 5,
+   "LBS": 462300.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Des Moines",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 5,
+   "KM2": 44.51,
+   "SITES": 7,
+   "LBS": 2569.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Grand Rapids",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 6.02,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Grand Rapids",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 20,
+   "KM2": 14.81,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Grand Rapids",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 28,
+   "KM2": 77.14,
+   "SITES": 11,
+   "LBS": 23859.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Grand Rapids",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 6.44,
+   "SITES": 1,
+   "LBS": 36505.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Philadelphia",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 37.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Philadelphia",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 28,
+   "KM2": 97.44,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Philadelphia",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 18,
+   "KM2": 50.37,
+   "SITES": 6,
+   "LBS": 269231.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Philadelphia",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 26,
+   "KM2": 68.48,
+   "SITES": 6,
+   "LBS": 3594.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Pittsburgh",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 11,
+   "KM2": 11.99,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Pittsburgh",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 27,
+   "KM2": 59.73,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Pittsburgh",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 42,
+   "KM2": 67.28,
+   "SITES": 4,
+   "LBS": 15321.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Pittsburgh",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 34,
+   "KM2": 50.44,
+   "SITES": 8,
+   "LBS": 17505.0,
+   "TOTAL_SITES": 12
+  },
+  {
+   "CITY": "Bergen Co.",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 5.56,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 11
+  },
+  {
+   "CITY": "Bergen Co.",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 52,
+   "KM2": 52.77,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 11
+  },
+  {
+   "CITY": "Bergen Co.",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 75,
+   "KM2": 101.56,
+   "SITES": 5,
+   "LBS": 18903.0,
+   "TOTAL_SITES": 11
+  },
+  {
+   "CITY": "Bergen Co.",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 24,
+   "KM2": 19.93,
+   "SITES": 6,
+   "LBS": 62338.0,
+   "TOTAL_SITES": 11
+  },
+  {
+   "CITY": "Birmingham",
+   "STATE": "AL",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 8.66,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Birmingham",
+   "STATE": "AL",
+   "G": "B",
+   "POLYS": 16,
+   "KM2": 14.47,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Birmingham",
+   "STATE": "AL",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 33.59,
+   "SITES": 1,
+   "LBS": 101728.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Birmingham",
+   "STATE": "AL",
+   "G": "D",
+   "POLYS": 21,
+   "KM2": 100.79,
+   "SITES": 9,
+   "LBS": 868263.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Nashville",
+   "STATE": "TN",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 33.97,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Nashville",
+   "STATE": "TN",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 18.72,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Nashville",
+   "STATE": "TN",
+   "G": "C",
+   "POLYS": 3,
+   "KM2": 17.4,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Nashville",
+   "STATE": "TN",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 64.81,
+   "SITES": 10,
+   "LBS": 26938.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Salt Lake City",
+   "STATE": "UT",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 5.1,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Salt Lake City",
+   "STATE": "UT",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 18.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Salt Lake City",
+   "STATE": "UT",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 10.8,
+   "SITES": 1,
+   "LBS": 8.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Salt Lake City",
+   "STATE": "UT",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 31.28,
+   "SITES": 9,
+   "LBS": 41214.0,
+   "TOTAL_SITES": 10
+  },
+  {
+   "CITY": "Cedar Rapids",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 6.71,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Cedar Rapids",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 14,
+   "KM2": 40.78,
+   "SITES": 3,
+   "LBS": 18.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Cedar Rapids",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 5,
+   "KM2": 9.98,
+   "SITES": 2,
+   "LBS": 300760.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Cedar Rapids",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 12.21,
+   "SITES": 4,
+   "LBS": 260097.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Fort Worth",
+   "STATE": "TX",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 15.24,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Fort Worth",
+   "STATE": "TX",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 26.69,
+   "SITES": 1,
+   "LBS": 96.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Fort Worth",
+   "STATE": "TX",
+   "G": "C",
+   "POLYS": 16,
+   "KM2": 24.23,
+   "SITES": 1,
+   "LBS": 4067.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Fort Worth",
+   "STATE": "TX",
+   "G": "D",
+   "POLYS": 17,
+   "KM2": 41.94,
+   "SITES": 7,
+   "LBS": 10895.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "St. Paul",
+   "STATE": "MN",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 10.45,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "St. Paul",
+   "STATE": "MN",
+   "G": "B",
+   "POLYS": 12,
+   "KM2": 22.11,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "St. Paul",
+   "STATE": "MN",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 24.37,
+   "SITES": 2,
+   "LBS": 14540.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "St. Paul",
+   "STATE": "MN",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 21.61,
+   "SITES": 7,
+   "LBS": 49303.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Tulsa",
+   "STATE": "OK",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 14.05,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Tulsa",
+   "STATE": "OK",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 11.06,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Tulsa",
+   "STATE": "OK",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 13.59,
+   "SITES": 2,
+   "LBS": 16043.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Tulsa",
+   "STATE": "OK",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 20.92,
+   "SITES": 7,
+   "LBS": 331635.0,
+   "TOTAL_SITES": 9
+  },
+  {
+   "CITY": "Chattanooga",
+   "STATE": "TN",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 7.75,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Chattanooga",
+   "STATE": "TN",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 19.18,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Chattanooga",
+   "STATE": "TN",
+   "G": "C",
+   "POLYS": 11,
+   "KM2": 22.21,
+   "SITES": 3,
+   "LBS": 50238.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Chattanooga",
+   "STATE": "TN",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 13.99,
+   "SITES": 5,
+   "LBS": 22252.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "East St. Louis",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 3.08,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "East St. Louis",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 7.53,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "East St. Louis",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 16,
+   "KM2": 18.44,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "East St. Louis",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 15,
+   "KM2": 25.58,
+   "SITES": 8,
+   "LBS": 288856.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Houston",
+   "STATE": "TX",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 18.38,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Houston",
+   "STATE": "TX",
+   "G": "B",
+   "POLYS": 14,
+   "KM2": 20.76,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Houston",
+   "STATE": "TX",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 44.09,
+   "SITES": 7,
+   "LBS": 48259.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Houston",
+   "STATE": "TX",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 20.62,
+   "SITES": 1,
+   "LBS": 41.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Rockford",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 1.45,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Rockford",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 7.58,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Rockford",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 14.12,
+   "SITES": 2,
+   "LBS": 2859.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Rockford",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 24.52,
+   "SITES": 6,
+   "LBS": 186546.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Sioux City",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 4.3,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Sioux City",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 6.76,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Sioux City",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 18.99,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Sioux City",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 82.45,
+   "SITES": 7,
+   "LBS": 914968.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Union Co.",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 18,
+   "KM2": 14.95,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Union Co.",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 38,
+   "KM2": 44.9,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Union Co.",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 51,
+   "KM2": 48.63,
+   "SITES": 3,
+   "LBS": 78193.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Union Co.",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 24,
+   "KM2": 20.53,
+   "SITES": 5,
+   "LBS": 3020146.0,
+   "TOTAL_SITES": 8
+  },
+  {
+   "CITY": "Columbus",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 14.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Columbus",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 32,
+   "KM2": 28.14,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Columbus",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 36,
+   "KM2": 37.71,
+   "SITES": 2,
+   "LBS": 433.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Columbus",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 15,
+   "KM2": 17.36,
+   "SITES": 5,
+   "LBS": 148544.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Erie",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 3.19,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Erie",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 17,
+   "KM2": 21.27,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Erie",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 19,
+   "KM2": 19.7,
+   "SITES": 3,
+   "LBS": 52388.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Erie",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 5.61,
+   "SITES": 4,
+   "LBS": 27773.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Greater Kansas City",
+   "STATE": "MO",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 10.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Greater Kansas City",
+   "STATE": "MO",
+   "G": "B",
+   "POLYS": 23,
+   "KM2": 16.81,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Greater Kansas City",
+   "STATE": "MO",
+   "G": "C",
+   "POLYS": 47,
+   "KM2": 61.45,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Greater Kansas City",
+   "STATE": "MO",
+   "G": "D",
+   "POLYS": 40,
+   "KM2": 95.63,
+   "SITES": 7,
+   "LBS": 3382.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Lake Co. Gary",
+   "STATE": "IN",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 6.37,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Lake Co. Gary",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 13,
+   "KM2": 6.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Lake Co. Gary",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 23,
+   "KM2": 37.7,
+   "SITES": 2,
+   "LBS": 1109.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Lake Co. Gary",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 14,
+   "KM2": 26.07,
+   "SITES": 5,
+   "LBS": 1966121.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Minneapolis",
+   "STATE": "MN",
+   "G": "A",
+   "POLYS": 14,
+   "KM2": 14.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Minneapolis",
+   "STATE": "MN",
+   "G": "B",
+   "POLYS": 22,
+   "KM2": 38.2,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Minneapolis",
+   "STATE": "MN",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 29.34,
+   "SITES": 2,
+   "LBS": 996.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Minneapolis",
+   "STATE": "MN",
+   "G": "D",
+   "POLYS": 14,
+   "KM2": 17.01,
+   "SITES": 5,
+   "LBS": 49348.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 12,
+   "KM2": 9.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 16,
+   "KM2": 20.11,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 26,
+   "KM2": 55.57,
+   "SITES": 5,
+   "LBS": 2330.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 10.55,
+   "SITES": 2,
+   "LBS": 1985.0,
+   "TOTAL_SITES": 7
+  },
+  {
+   "CITY": "Bridgeport and Fairfield",
+   "STATE": "CT",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 3.83,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Bridgeport and Fairfield",
+   "STATE": "CT",
+   "G": "B",
+   "POLYS": 17,
+   "KM2": 23.67,
+   "SITES": 2,
+   "LBS": 1174.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Bridgeport and Fairfield",
+   "STATE": "CT",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 27.04,
+   "SITES": 3,
+   "LBS": 81837.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Bridgeport and Fairfield",
+   "STATE": "CT",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 1.89,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Buffalo",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 8.64,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Buffalo",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 13,
+   "KM2": 33.39,
+   "SITES": 1,
+   "LBS": 159.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Buffalo",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 42.41,
+   "SITES": 5,
+   "LBS": 52273.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Buffalo",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 5,
+   "KM2": 4.83,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Dayton",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 15.91,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Dayton",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 16.34,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Dayton",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 23.86,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Dayton",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 14,
+   "KM2": 19.36,
+   "SITES": 5,
+   "LBS": 154688.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Jackson",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 1.7,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Jackson",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 6.8,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Jackson",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 28.55,
+   "SITES": 4,
+   "LBS": 18116.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Jackson",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 8.66,
+   "SITES": 2,
+   "LBS": 1215.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Lowell",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 3.01,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Lowell",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 17.87,
+   "SITES": 2,
+   "LBS": 4674.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Lowell",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 4,
+   "KM2": 5.43,
+   "SITES": 4,
+   "LBS": 125939.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Lowell",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 5,
+   "KM2": 2.3,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Ogden",
+   "STATE": "UT",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 4.13,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Ogden",
+   "STATE": "UT",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 5.62,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Ogden",
+   "STATE": "UT",
+   "G": "C",
+   "POLYS": 5,
+   "KM2": 10.61,
+   "SITES": 1,
+   "LBS": 121329.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Ogden",
+   "STATE": "UT",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 11.16,
+   "SITES": 5,
+   "LBS": 1.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Phoenix",
+   "STATE": "AZ",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 2.45,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Phoenix",
+   "STATE": "AZ",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 12.8,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Phoenix",
+   "STATE": "AZ",
+   "G": "C",
+   "POLYS": 4,
+   "KM2": 8.07,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Phoenix",
+   "STATE": "AZ",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 13.24,
+   "SITES": 6,
+   "LBS": 1668.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Port Arthur",
+   "STATE": "TX",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 11.83,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Port Arthur",
+   "STATE": "TX",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 4.22,
+   "SITES": 5,
+   "LBS": 939441.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Port Arthur",
+   "STATE": "TX",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 1.19,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Port Arthur",
+   "STATE": "TX",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 0.72,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Portland",
+   "STATE": "ME",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 4.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Portland",
+   "STATE": "ME",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 13.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Portland",
+   "STATE": "ME",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 29.87,
+   "SITES": 5,
+   "LBS": 7369.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Portland",
+   "STATE": "ME",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 7.56,
+   "SITES": 1,
+   "LBS": 565.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Toledo",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 12,
+   "KM2": 13.01,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Toledo",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 22,
+   "KM2": 22.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Toledo",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 35,
+   "KM2": 58.37,
+   "SITES": 5,
+   "LBS": 278638.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Toledo",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 6.59,
+   "SITES": 1,
+   "LBS": 9351.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Wichita",
+   "STATE": "KS",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 7.67,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Wichita",
+   "STATE": "KS",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 4.03,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Wichita",
+   "STATE": "KS",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 6.28,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Wichita",
+   "STATE": "KS",
+   "G": "D",
+   "POLYS": 17,
+   "KM2": 31.71,
+   "SITES": 6,
+   "LBS": 556435.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Youngstown",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 4.58,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Youngstown",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 12.28,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Youngstown",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 18,
+   "KM2": 46.31,
+   "SITES": 2,
+   "LBS": 48.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Youngstown",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 45.01,
+   "SITES": 4,
+   "LBS": 56624.0,
+   "TOTAL_SITES": 6
+  },
+  {
+   "CITY": "Brooklyn",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.85,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Brooklyn",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 17,
+   "KM2": 29.28,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Brooklyn",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 25,
+   "KM2": 41.41,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Brooklyn",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 23,
+   "KM2": 50.62,
+   "SITES": 4,
+   "LBS": 33304.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Council Bluffs",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 0.75,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Council Bluffs",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 12.41,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Council Bluffs",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 2.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Council Bluffs",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 11.18,
+   "SITES": 4,
+   "LBS": 8428.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Dallas",
+   "STATE": "TX",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 23.89,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Dallas",
+   "STATE": "TX",
+   "G": "B",
+   "POLYS": 15,
+   "KM2": 24.16,
+   "SITES": 1,
+   "LBS": 3017.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Dallas",
+   "STATE": "TX",
+   "G": "C",
+   "POLYS": 12,
+   "KM2": 61.66,
+   "SITES": 2,
+   "LBS": 20881.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Dallas",
+   "STATE": "TX",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 19.76,
+   "SITES": 2,
+   "LBS": 151830.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Decatur",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 1.55,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Decatur",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 3.95,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Decatur",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 9.39,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Decatur",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 6.24,
+   "SITES": 5,
+   "LBS": 114511.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lansing",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 3.06,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lansing",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 10.51,
+   "SITES": 1,
+   "LBS": 13.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lansing",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 53.75,
+   "SITES": 4,
+   "LBS": 148033.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lansing",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 4.05,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lincoln",
+   "STATE": "NE",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 11.75,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lincoln",
+   "STATE": "NE",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 12.86,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lincoln",
+   "STATE": "NE",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 27.85,
+   "SITES": 4,
+   "LBS": 1161637.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lincoln",
+   "STATE": "NE",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 1.83,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lower Westchester Co.",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 18,
+   "KM2": 27.69,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lower Westchester Co.",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 30,
+   "KM2": 25.14,
+   "SITES": 1,
+   "LBS": 3.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lower Westchester Co.",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 28,
+   "KM2": 16.98,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Lower Westchester Co.",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 14,
+   "KM2": 5.92,
+   "SITES": 3,
+   "LBS": 4604.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "San Antonio",
+   "STATE": "TX",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 11.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "San Antonio",
+   "STATE": "TX",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 32.42,
+   "SITES": 1,
+   "LBS": 3298.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "San Antonio",
+   "STATE": "TX",
+   "G": "C",
+   "POLYS": 7,
+   "KM2": 53.46,
+   "SITES": 4,
+   "LBS": 10380.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "San Antonio",
+   "STATE": "TX",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 39.27,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "South Bend",
+   "STATE": "IN",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 4.67,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "South Bend",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 13,
+   "KM2": 5.22,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "South Bend",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 13,
+   "KM2": 31.49,
+   "SITES": 4,
+   "LBS": 53007.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "South Bend",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 6.87,
+   "SITES": 1,
+   "LBS": 30667.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Worcester",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 3.77,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Worcester",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 27.79,
+   "SITES": 2,
+   "LBS": 16491.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Worcester",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 34.87,
+   "SITES": 1,
+   "LBS": 5296.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Worcester",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 4.42,
+   "SITES": 2,
+   "LBS": 180.0,
+   "TOTAL_SITES": 5
+  },
+  {
+   "CITY": "Camden",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 4.07,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Camden",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 15,
+   "KM2": 23.29,
+   "SITES": 1,
+   "LBS": 24289.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Camden",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 13,
+   "KM2": 19.23,
+   "SITES": 1,
+   "LBS": 100.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Camden",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 5.01,
+   "SITES": 2,
+   "LBS": 393.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Denver",
+   "STATE": "CO",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 5.74,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Denver",
+   "STATE": "CO",
+   "G": "B",
+   "POLYS": 12,
+   "KM2": 13.36,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Denver",
+   "STATE": "CO",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 41.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Denver",
+   "STATE": "CO",
+   "G": "D",
+   "POLYS": 16,
+   "KM2": 27.16,
+   "SITES": 4,
+   "LBS": 10295.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Elmira",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.37,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Elmira",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 5.27,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Elmira",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 12.01,
+   "SITES": 2,
+   "LBS": 354.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Elmira",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 5.48,
+   "SITES": 2,
+   "LBS": 26223.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Essex Co.",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 31,
+   "KM2": 47.88,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Essex Co.",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 46,
+   "KM2": 121.57,
+   "SITES": 2,
+   "LBS": 146.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Essex Co.",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 44,
+   "KM2": 51.76,
+   "SITES": 1,
+   "LBS": 9.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Essex Co.",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 22,
+   "KM2": 20.98,
+   "SITES": 1,
+   "LBS": 239.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Evansville",
+   "STATE": "IN",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 2.69,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Evansville",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 1.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Evansville",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 12,
+   "KM2": 26.54,
+   "SITES": 1,
+   "LBS": 61.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Evansville",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 14.72,
+   "SITES": 3,
+   "LBS": 2974.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Holyoke Chicopee",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 1.46,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Holyoke Chicopee",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 6.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Holyoke Chicopee",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 26.58,
+   "SITES": 2,
+   "LBS": 10482.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Holyoke Chicopee",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 5.62,
+   "SITES": 2,
+   "LBS": 361910.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Huntington",
+   "STATE": "WV",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 4.63,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Huntington",
+   "STATE": "WV",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 4.53,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Huntington",
+   "STATE": "WV",
+   "G": "C",
+   "POLYS": 16,
+   "KM2": 18.88,
+   "SITES": 4,
+   "LBS": 21510.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Huntington",
+   "STATE": "WV",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 0.97,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Jacksonville",
+   "STATE": "FL",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 4.96,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Jacksonville",
+   "STATE": "FL",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 10.21,
+   "SITES": 1,
+   "LBS": 3571.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Jacksonville",
+   "STATE": "FL",
+   "G": "C",
+   "POLYS": 5,
+   "KM2": 17.39,
+   "SITES": 1,
+   "LBS": 2634.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Jacksonville",
+   "STATE": "FL",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 25.86,
+   "SITES": 2,
+   "LBS": 112.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Lima",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 1.14,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Lima",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 4.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Lima",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 13,
+   "KM2": 12.25,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Lima",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 5.3,
+   "SITES": 3,
+   "LBS": 214173.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Muskegon",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.84,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Muskegon",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 3.27,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Muskegon",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 5.97,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Muskegon",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 13.54,
+   "SITES": 4,
+   "LBS": 17765.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Norfolk",
+   "STATE": "VA",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 4.64,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Norfolk",
+   "STATE": "VA",
+   "G": "B",
+   "POLYS": 16,
+   "KM2": 9.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Norfolk",
+   "STATE": "VA",
+   "G": "C",
+   "POLYS": 45,
+   "KM2": 38.3,
+   "SITES": 1,
+   "LBS": 214.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Norfolk",
+   "STATE": "VA",
+   "G": "D",
+   "POLYS": 30,
+   "KM2": 31.77,
+   "SITES": 3,
+   "LBS": 14902.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Oakland",
+   "STATE": "CA",
+   "G": "A",
+   "POLYS": 12,
+   "KM2": 19.18,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Oakland",
+   "STATE": "CA",
+   "G": "B",
+   "POLYS": 46,
+   "KM2": 28.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Oakland",
+   "STATE": "CA",
+   "G": "C",
+   "POLYS": 41,
+   "KM2": 42.63,
+   "SITES": 1,
+   "LBS": 30.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Oakland",
+   "STATE": "CA",
+   "G": "D",
+   "POLYS": 20,
+   "KM2": 33.82,
+   "SITES": 3,
+   "LBS": 97.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Passaic County",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 8.25,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Passaic County",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 15,
+   "KM2": 15.06,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Passaic County",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 29,
+   "KM2": 38.28,
+   "SITES": 4,
+   "LBS": 34549.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Passaic County",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 9.92,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Pueblo",
+   "STATE": "CO",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 2.93,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Pueblo",
+   "STATE": "CO",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 9.77,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Pueblo",
+   "STATE": "CO",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 5.36,
+   "SITES": 2,
+   "LBS": 141380.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Pueblo",
+   "STATE": "CO",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 5.71,
+   "SITES": 2,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Queens",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.41,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Queens",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 17,
+   "KM2": 15.79,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Queens",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 111,
+   "KM2": 110.27,
+   "SITES": 3,
+   "LBS": 75107.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Queens",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 39,
+   "KM2": 21.89,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Springfield",
+   "STATE": "MO",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 0.82,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Springfield",
+   "STATE": "MO",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 3.51,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Springfield",
+   "STATE": "MO",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 7.16,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Springfield",
+   "STATE": "MO",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 17.46,
+   "SITES": 4,
+   "LBS": 10067.0,
+   "TOTAL_SITES": 4
+  },
+  {
+   "CITY": "Altoona",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 0.45,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Altoona",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 13,
+   "KM2": 3.6,
+   "SITES": 1,
+   "LBS": 1.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Altoona",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 12.35,
+   "SITES": 2,
+   "LBS": 1406.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Altoona",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 5,
+   "KM2": 3.19,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Baltimore",
+   "STATE": "MD",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 11.71,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Baltimore",
+   "STATE": "MD",
+   "G": "B",
+   "POLYS": 22,
+   "KM2": 66.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Baltimore",
+   "STATE": "MD",
+   "G": "C",
+   "POLYS": 22,
+   "KM2": 45.44,
+   "SITES": 3,
+   "LBS": 10304.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Baltimore",
+   "STATE": "MD",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 21.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Canton",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 1.87,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Canton",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 10.74,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Canton",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 11.04,
+   "SITES": 2,
+   "LBS": 40019.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Canton",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 4.93,
+   "SITES": 1,
+   "LBS": 1864.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fall River",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 3.64,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fall River",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 11.71,
+   "SITES": 1,
+   "LBS": 10.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fall River",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 11.52,
+   "SITES": 2,
+   "LBS": 19119.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fall River",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 5.16,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fort Wayne",
+   "STATE": "IN",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 1.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fort Wayne",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 15,
+   "KM2": 5.47,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fort Wayne",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 24.89,
+   "SITES": 3,
+   "LBS": 61376.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Fort Wayne",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 3.04,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Hudson Co.",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 3.47,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Hudson Co.",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 22,
+   "KM2": 20.95,
+   "SITES": 1,
+   "LBS": 21.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Hudson Co.",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 31,
+   "KM2": 19.77,
+   "SITES": 2,
+   "LBS": 2750.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Jamestown",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 0.42,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Jamestown",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 6.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Jamestown",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 6.3,
+   "SITES": 2,
+   "LBS": 129.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Jamestown",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 1.64,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Muncie",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 2.21,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Muncie",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 7.41,
+   "SITES": 2,
+   "LBS": 1589.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Muncie",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 3.18,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Bedford",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 8.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Bedford",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 16.38,
+   "SITES": 2,
+   "LBS": 932.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Bedford",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 1.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Bedford",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 2.89,
+   "SITES": 1,
+   "LBS": 1333.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Britain",
+   "STATE": "CT",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 1.74,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Britain",
+   "STATE": "CT",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 2.48,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Britain",
+   "STATE": "CT",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 10.45,
+   "SITES": 2,
+   "LBS": 6084.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Britain",
+   "STATE": "CT",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 1.22,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Haven",
+   "STATE": "CT",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 4.07,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Haven",
+   "STATE": "CT",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 9.87,
+   "SITES": 1,
+   "LBS": 255.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Haven",
+   "STATE": "CT",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 30.5,
+   "SITES": 1,
+   "LBS": 15.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "New Haven",
+   "STATE": "CT",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 11.38,
+   "SITES": 1,
+   "LBS": 724.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Pawtucket & Central Falls",
+   "STATE": "RI",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 3.8,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Pawtucket & Central Falls",
+   "STATE": "RI",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 11.93,
+   "SITES": 3,
+   "LBS": 9684.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Pawtucket & Central Falls",
+   "STATE": "RI",
+   "G": "C",
+   "POLYS": 5,
+   "KM2": 2.94,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Pawtucket & Central Falls",
+   "STATE": "RI",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 0.99,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Roanoke",
+   "STATE": "VA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 1.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Roanoke",
+   "STATE": "VA",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 3.44,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Roanoke",
+   "STATE": "VA",
+   "G": "C",
+   "POLYS": 14,
+   "KM2": 13.67,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Roanoke",
+   "STATE": "VA",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 15.32,
+   "SITES": 2,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Troy",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.95,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Troy",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 3.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Troy",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 8.13,
+   "SITES": 3,
+   "LBS": 58214.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Troy",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 4.72,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Utica",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 4.69,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Utica",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 4.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Utica",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 11,
+   "KM2": 18.15,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Utica",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 7.71,
+   "SITES": 3,
+   "LBS": 34062.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Waterbury",
+   "STATE": "CT",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.21,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Waterbury",
+   "STATE": "CT",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 5.04,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Waterbury",
+   "STATE": "CT",
+   "G": "C",
+   "POLYS": 7,
+   "KM2": 23.21,
+   "SITES": 2,
+   "LBS": 31642.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Waterbury",
+   "STATE": "CT",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 2.05,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Winston-Salem",
+   "STATE": "NC",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 5.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Winston-Salem",
+   "STATE": "NC",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 5.31,
+   "SITES": 1,
+   "LBS": 10.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Winston-Salem",
+   "STATE": "NC",
+   "G": "C",
+   "POLYS": 11,
+   "KM2": 22.51,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Winston-Salem",
+   "STATE": "NC",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 8.72,
+   "SITES": 2,
+   "LBS": 8093.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "York",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 2.95,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "York",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 2.52,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "York",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 6.48,
+   "SITES": 1,
+   "LBS": 68.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "York",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 2.62,
+   "SITES": 2,
+   "LBS": 0.0,
+   "TOTAL_SITES": 3
+  },
+  {
+   "CITY": "Atlanta",
+   "STATE": "GA",
+   "G": "A",
+   "POLYS": 9,
+   "KM2": 11.78,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Atlanta",
+   "STATE": "GA",
+   "G": "B",
+   "POLYS": 28,
+   "KM2": 18.55,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Atlanta",
+   "STATE": "GA",
+   "G": "C",
+   "POLYS": 42,
+   "KM2": 46.95,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Atlanta",
+   "STATE": "GA",
+   "G": "D",
+   "POLYS": 32,
+   "KM2": 31.39,
+   "SITES": 1,
+   "LBS": 9.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Augusta",
+   "STATE": "GA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.84,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Augusta",
+   "STATE": "GA",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 2.18,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Augusta",
+   "STATE": "GA",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 4.94,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Augusta",
+   "STATE": "GA",
+   "G": "D",
+   "POLYS": 12,
+   "KM2": 11.33,
+   "SITES": 2,
+   "LBS": 9768.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Aurora",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 1.13,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Aurora",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 3.08,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Aurora",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 5.85,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Aurora",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 11.65,
+   "SITES": 2,
+   "LBS": 1690.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Battle Creek",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 0.78,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Battle Creek",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 1.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Battle Creek",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 17,
+   "KM2": 17.92,
+   "SITES": 1,
+   "LBS": 1.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Battle Creek",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 7.93,
+   "SITES": 1,
+   "LBS": 1.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Bay City",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Bay City",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 0.97,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Bay City",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 5,
+   "KM2": 6.94,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Bay City",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 8.25,
+   "SITES": 2,
+   "LBS": 830.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Boston",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 2.15,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Boston",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 6.73,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Boston",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 18,
+   "KM2": 50.73,
+   "SITES": 1,
+   "LBS": 7113.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Boston",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 12,
+   "KM2": 19.74,
+   "SITES": 1,
+   "LBS": 31.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Charleston",
+   "STATE": "WV",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 2.61,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Charleston",
+   "STATE": "WV",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 4.19,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Charleston",
+   "STATE": "WV",
+   "G": "C",
+   "POLYS": 14,
+   "KM2": 8.52,
+   "SITES": 2,
+   "LBS": 30456.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Charleston",
+   "STATE": "WV",
+   "G": "D",
+   "POLYS": 13,
+   "KM2": 4.59,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Covington",
+   "STATE": "KY",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 7.47,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Covington",
+   "STATE": "KY",
+   "G": "B",
+   "POLYS": 18,
+   "KM2": 11.36,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Covington",
+   "STATE": "KY",
+   "G": "C",
+   "POLYS": 17,
+   "KM2": 12.48,
+   "SITES": 2,
+   "LBS": 28361.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Covington",
+   "STATE": "KY",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 2.9,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Davenport",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 1.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Davenport",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 16.2,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Davenport",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 11,
+   "KM2": 16.98,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Davenport",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 5.34,
+   "SITES": 2,
+   "LBS": 8456.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Dubuque",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 2.61,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Dubuque",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 11.39,
+   "SITES": 1,
+   "LBS": 6.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Dubuque",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 4,
+   "KM2": 5.67,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Dubuque",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 4.81,
+   "SITES": 1,
+   "LBS": 42.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Duluth",
+   "STATE": "MN",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 4.56,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Duluth",
+   "STATE": "MN",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 8.89,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Duluth",
+   "STATE": "MN",
+   "G": "C",
+   "POLYS": 13,
+   "KM2": 14.33,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Duluth",
+   "STATE": "MN",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 12.23,
+   "SITES": 2,
+   "LBS": 226468.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Everett",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 3.03,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Everett",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 2.1,
+   "SITES": 2,
+   "LBS": 101906.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Fresno",
+   "STATE": "CA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 0.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Fresno",
+   "STATE": "CA",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 4.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Fresno",
+   "STATE": "CA",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 19.1,
+   "SITES": 1,
+   "LBS": 10912.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Fresno",
+   "STATE": "CA",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 6.27,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Greensboro",
+   "STATE": "NC",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 4.66,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Greensboro",
+   "STATE": "NC",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 3.6,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Greensboro",
+   "STATE": "NC",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 14.34,
+   "SITES": 2,
+   "LBS": 28456.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Greensboro",
+   "STATE": "NC",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 6.05,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Harrisburg",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 1.68,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Harrisburg",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 15,
+   "KM2": 10.3,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Harrisburg",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 2.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Harrisburg",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 20,
+   "KM2": 8.04,
+   "SITES": 2,
+   "LBS": 52213.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Hartford",
+   "STATE": "CT",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 21.62,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Hartford",
+   "STATE": "CT",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 10.11,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Hartford",
+   "STATE": "CT",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 27.4,
+   "SITES": 2,
+   "LBS": 82275.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Hartford",
+   "STATE": "CT",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 4.2,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Johnstown",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 3.3,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Johnstown",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 8.07,
+   "SITES": 2,
+   "LBS": 10607.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Johnstown",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 14,
+   "KM2": 5.54,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Knoxville",
+   "STATE": "TN",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 6.17,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Knoxville",
+   "STATE": "TN",
+   "G": "B",
+   "POLYS": 12,
+   "KM2": 5.67,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Knoxville",
+   "STATE": "TN",
+   "G": "C",
+   "POLYS": 16,
+   "KM2": 20.58,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Knoxville",
+   "STATE": "TN",
+   "G": "D",
+   "POLYS": 12,
+   "KM2": 22.03,
+   "SITES": 2,
+   "LBS": 61021.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Madison",
+   "STATE": "WI",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 4.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Madison",
+   "STATE": "WI",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 3.65,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Madison",
+   "STATE": "WI",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 9.93,
+   "SITES": 2,
+   "LBS": 6063.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Madison",
+   "STATE": "WI",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 5.4,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Miami",
+   "STATE": "FL",
+   "G": "A",
+   "POLYS": 15,
+   "KM2": 16.39,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Miami",
+   "STATE": "FL",
+   "G": "B",
+   "POLYS": 25,
+   "KM2": 20.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Miami",
+   "STATE": "FL",
+   "G": "C",
+   "POLYS": 21,
+   "KM2": 24.43,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Miami",
+   "STATE": "FL",
+   "G": "D",
+   "POLYS": 13,
+   "KM2": 28.84,
+   "SITES": 2,
+   "LBS": 1.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Perth Amboy",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.89,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Perth Amboy",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 2.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Perth Amboy",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 13.38,
+   "SITES": 1,
+   "LBS": 13181.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Perth Amboy",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 4.47,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Racine",
+   "STATE": "WI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Racine",
+   "STATE": "WI",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 4.68,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Racine",
+   "STATE": "WI",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 9.37,
+   "SITES": 1,
+   "LBS": 740.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Racine",
+   "STATE": "WI",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 6.73,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Spokane",
+   "STATE": "WA",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 4.64,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Spokane",
+   "STATE": "WA",
+   "G": "B",
+   "POLYS": 13,
+   "KM2": 11.36,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Spokane",
+   "STATE": "WA",
+   "G": "C",
+   "POLYS": 21,
+   "KM2": 40.08,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Spokane",
+   "STATE": "WA",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 15.88,
+   "SITES": 2,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Tacoma",
+   "STATE": "WA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 2.66,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Tacoma",
+   "STATE": "WA",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 7.58,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Tacoma",
+   "STATE": "WA",
+   "G": "C",
+   "POLYS": 25,
+   "KM2": 30.6,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Tacoma",
+   "STATE": "WA",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 7.99,
+   "SITES": 2,
+   "LBS": 5774.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Terre Haute",
+   "STATE": "IN",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 1.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Terre Haute",
+   "STATE": "IN",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 1.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Terre Haute",
+   "STATE": "IN",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 10.23,
+   "SITES": 1,
+   "LBS": 782.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Terre Haute",
+   "STATE": "IN",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 10.64,
+   "SITES": 1,
+   "LBS": 377.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Wheeling",
+   "STATE": "WV",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 2.33,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Wheeling",
+   "STATE": "WV",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 1.96,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Wheeling",
+   "STATE": "WV",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 5.29,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Wheeling",
+   "STATE": "WV",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 5.1,
+   "SITES": 2,
+   "LBS": 1000.0,
+   "TOTAL_SITES": 2
+  },
+  {
+   "CITY": "Albany",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 11.18,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Albany",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 7.73,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Albany",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 11.64,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Albany",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 6.61,
+   "SITES": 1,
+   "LBS": 3906.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Allentown",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 12.21,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Allentown",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 16.61,
+   "SITES": 1,
+   "LBS": 4.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Allentown",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 0.22,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Allentown",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 0.15,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Amarillo",
+   "STATE": "TX",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 5.79,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Amarillo",
+   "STATE": "TX",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 7.29,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Amarillo",
+   "STATE": "TX",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 7.92,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Amarillo",
+   "STATE": "TX",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 25.82,
+   "SITES": 1,
+   "LBS": 707.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Asheville",
+   "STATE": "NC",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 8.06,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Asheville",
+   "STATE": "NC",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 5.65,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Asheville",
+   "STATE": "NC",
+   "G": "C",
+   "POLYS": 4,
+   "KM2": 20.92,
+   "SITES": 1,
+   "LBS": 1.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Asheville",
+   "STATE": "NC",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 4.6,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Belmont",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 2.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Belmont",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 3.35,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Belmont",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 4,
+   "KM2": 1.7,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Belmont",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 0.21,
+   "SITES": 1,
+   "LBS": 28897.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bethlehem",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 0.81,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bethlehem",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 7.38,
+   "SITES": 1,
+   "LBS": 54724.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bethlehem",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 2.52,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bethlehem",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 2.96,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Binghamton-Johnson City",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 1.66,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Binghamton-Johnson City",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 13.64,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Binghamton-Johnson City",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 17.77,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Binghamton-Johnson City",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 0.99,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bronx",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 2.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bronx",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 11,
+   "KM2": 8.35,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bronx",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 23,
+   "KM2": 42.53,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Bronx",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 16.31,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Charlotte",
+   "STATE": "NC",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 5.85,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Charlotte",
+   "STATE": "NC",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 5.31,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Charlotte",
+   "STATE": "NC",
+   "G": "C",
+   "POLYS": 13,
+   "KM2": 9.79,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Charlotte",
+   "STATE": "NC",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 11.44,
+   "SITES": 1,
+   "LBS": 417510.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Chester",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 6,
+   "KM2": 1.44,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Chester",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 1.54,
+   "SITES": 1,
+   "LBS": 37981.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Chester",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 1.17,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Chester",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 0.11,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fargo",
+   "STATE": "ND",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 3.59,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fargo",
+   "STATE": "ND",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 1.02,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fargo",
+   "STATE": "ND",
+   "G": "C",
+   "POLYS": 3,
+   "KM2": 1.01,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fargo",
+   "STATE": "ND",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 3.9,
+   "SITES": 1,
+   "LBS": 2825.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fitchburg",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 0.95,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fitchburg",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 4.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fitchburg",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 7.89,
+   "SITES": 1,
+   "LBS": 37895.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Fitchburg",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 0.52,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Joliet",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 2.62,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Joliet",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 6.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Joliet",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 14,
+   "KM2": 18.0,
+   "SITES": 1,
+   "LBS": 23.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Joliet",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 11.66,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Kenosha",
+   "STATE": "WI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.26,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Kenosha",
+   "STATE": "WI",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 1.7,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Kenosha",
+   "STATE": "WI",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 6.39,
+   "SITES": 1,
+   "LBS": 12492.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Kenosha",
+   "STATE": "WI",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 5.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Little Rock",
+   "STATE": "AR",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 6.88,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Little Rock",
+   "STATE": "AR",
+   "G": "B",
+   "POLYS": 12,
+   "KM2": 6.19,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Little Rock",
+   "STATE": "AR",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 9.37,
+   "SITES": 1,
+   "LBS": 829.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Little Rock",
+   "STATE": "AR",
+   "G": "D",
+   "POLYS": 8,
+   "KM2": 11.95,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynchburg",
+   "STATE": "VA",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 2.01,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynchburg",
+   "STATE": "VA",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 2.19,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynchburg",
+   "STATE": "VA",
+   "G": "C",
+   "POLYS": 15,
+   "KM2": 6.3,
+   "SITES": 1,
+   "LBS": 96.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynchburg",
+   "STATE": "VA",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 1.65,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynn",
+   "STATE": "MA",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 2.59,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynn",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 7.07,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynn",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 5.65,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Lynn",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 1.74,
+   "SITES": 1,
+   "LBS": 2180.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Macon",
+   "STATE": "GA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 0.86,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Macon",
+   "STATE": "GA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 2.44,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Macon",
+   "STATE": "GA",
+   "G": "C",
+   "POLYS": 16,
+   "KM2": 4.52,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Macon",
+   "STATE": "GA",
+   "G": "D",
+   "POLYS": 16,
+   "KM2": 14.49,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Malden",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 0.28,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Malden",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 3,
+   "KM2": 6.04,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Malden",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 5.29,
+   "SITES": 1,
+   "LBS": 316.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Manchester",
+   "STATE": "NH",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 1.51,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Manchester",
+   "STATE": "NH",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 2.32,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Manchester",
+   "STATE": "NH",
+   "G": "C",
+   "POLYS": 11,
+   "KM2": 18.48,
+   "SITES": 1,
+   "LBS": 6.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Manchester",
+   "STATE": "NH",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 6.58,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "McKeesport",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "McKeesport",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 2.53,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "McKeesport",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 2.75,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "McKeesport",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 0.98,
+   "SITES": 1,
+   "LBS": 1.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Montgomery",
+   "STATE": "AL",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 3.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Montgomery",
+   "STATE": "AL",
+   "G": "B",
+   "POLYS": 3,
+   "KM2": 3.2,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Montgomery",
+   "STATE": "AL",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 11.48,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Montgomery",
+   "STATE": "AL",
+   "G": "D",
+   "POLYS": 7,
+   "KM2": 20.22,
+   "SITES": 1,
+   "LBS": 789.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Castle",
+   "STATE": "PA",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 0.83,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Castle",
+   "STATE": "PA",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 3.74,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Castle",
+   "STATE": "PA",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 6.15,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Castle",
+   "STATE": "PA",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 2.02,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Orleans",
+   "STATE": "LA",
+   "G": "A",
+   "POLYS": 10,
+   "KM2": 3.75,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Orleans",
+   "STATE": "LA",
+   "G": "B",
+   "POLYS": 23,
+   "KM2": 6.74,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Orleans",
+   "STATE": "LA",
+   "G": "C",
+   "POLYS": 52,
+   "KM2": 28.43,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "New Orleans",
+   "STATE": "LA",
+   "G": "D",
+   "POLYS": 49,
+   "KM2": 32.01,
+   "SITES": 1,
+   "LBS": 9.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Niagara Falls",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.79,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Niagara Falls",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 6.9,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Niagara Falls",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 4,
+   "KM2": 4.72,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Niagara Falls",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 2,
+   "KM2": 2.86,
+   "SITES": 1,
+   "LBS": 1440.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Oshkosh",
+   "STATE": "WI",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 0.58,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Oshkosh",
+   "STATE": "WI",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 5.99,
+   "SITES": 1,
+   "LBS": 40345.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Oshkosh",
+   "STATE": "WI",
+   "G": "D",
+   "POLYS": 12,
+   "KM2": 7.4,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Peoria",
+   "STATE": "IL",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 1.7,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Peoria",
+   "STATE": "IL",
+   "G": "B",
+   "POLYS": 6,
+   "KM2": 3.17,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Peoria",
+   "STATE": "IL",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 16.13,
+   "SITES": 1,
+   "LBS": 23790.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Peoria",
+   "STATE": "IL",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 8.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "MN",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.87,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "MN",
+   "G": "B",
+   "POLYS": 1,
+   "KM2": 1.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "MN",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 2.63,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Rochester",
+   "STATE": "MN",
+   "G": "D",
+   "POLYS": 1,
+   "KM2": 0.52,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saginaw",
+   "STATE": "MI",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 0.98,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saginaw",
+   "STATE": "MI",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 4.59,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saginaw",
+   "STATE": "MI",
+   "G": "C",
+   "POLYS": 16,
+   "KM2": 31.75,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saginaw",
+   "STATE": "MI",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 6.83,
+   "SITES": 1,
+   "LBS": 131.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "San Diego",
+   "STATE": "CA",
+   "G": "A",
+   "POLYS": 17,
+   "KM2": 11.11,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "San Diego",
+   "STATE": "CA",
+   "G": "B",
+   "POLYS": 27,
+   "KM2": 22.0,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "San Diego",
+   "STATE": "CA",
+   "G": "C",
+   "POLYS": 22,
+   "KM2": 30.38,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "San Diego",
+   "STATE": "CA",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 45.65,
+   "SITES": 1,
+   "LBS": 928.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saugus",
+   "STATE": "MA",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 0.56,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saugus",
+   "STATE": "MA",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 3.57,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Saugus",
+   "STATE": "MA",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 3.8,
+   "SITES": 1,
+   "LBS": 7.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Seattle",
+   "STATE": "WA",
+   "G": "A",
+   "POLYS": 12,
+   "KM2": 7.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Seattle",
+   "STATE": "WA",
+   "G": "B",
+   "POLYS": 19,
+   "KM2": 48.98,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Seattle",
+   "STATE": "WA",
+   "G": "C",
+   "POLYS": 18,
+   "KM2": 36.62,
+   "SITES": 1,
+   "LBS": 3425.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Seattle",
+   "STATE": "WA",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 26.42,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Shreveport",
+   "STATE": "LA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 9.08,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Shreveport",
+   "STATE": "LA",
+   "G": "B",
+   "POLYS": 4,
+   "KM2": 4.16,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Shreveport",
+   "STATE": "LA",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 13.3,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Shreveport",
+   "STATE": "LA",
+   "G": "D",
+   "POLYS": 10,
+   "KM2": 12.84,
+   "SITES": 1,
+   "LBS": 548.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Joseph",
+   "STATE": "MO",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 0.27,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Joseph",
+   "STATE": "MO",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 1.94,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Joseph",
+   "STATE": "MO",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 2.31,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Joseph",
+   "STATE": "MO",
+   "G": "D",
+   "POLYS": 15,
+   "KM2": 15.67,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Petersburg",
+   "STATE": "FL",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 1.93,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Petersburg",
+   "STATE": "FL",
+   "G": "B",
+   "POLYS": 9,
+   "KM2": 3.8,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Petersburg",
+   "STATE": "FL",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 24.01,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "St. Petersburg",
+   "STATE": "FL",
+   "G": "D",
+   "POLYS": 14,
+   "KM2": 21.16,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stamford, Darien, and New Canaan",
+   "STATE": "CT",
+   "G": "A",
+   "POLYS": 8,
+   "KM2": 17.62,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stamford, Darien, and New Canaan",
+   "STATE": "CT",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 14.52,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stamford, Darien, and New Canaan",
+   "STATE": "CT",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 8.7,
+   "SITES": 1,
+   "LBS": 3990.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stamford, Darien, and New Canaan",
+   "STATE": "CT",
+   "G": "D",
+   "POLYS": 3,
+   "KM2": 2.94,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stockton",
+   "STATE": "CA",
+   "G": "A",
+   "POLYS": 3,
+   "KM2": 1.72,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stockton",
+   "STATE": "CA",
+   "G": "B",
+   "POLYS": 15,
+   "KM2": 5.27,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stockton",
+   "STATE": "CA",
+   "G": "C",
+   "POLYS": 14,
+   "KM2": 5.59,
+   "SITES": 1,
+   "LBS": 2.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Stockton",
+   "STATE": "CA",
+   "G": "D",
+   "POLYS": 11,
+   "KM2": 7.36,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Syracuse",
+   "STATE": "NY",
+   "G": "A",
+   "POLYS": 5,
+   "KM2": 6.06,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Syracuse",
+   "STATE": "NY",
+   "G": "B",
+   "POLYS": 19,
+   "KM2": 19.88,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Syracuse",
+   "STATE": "NY",
+   "G": "C",
+   "POLYS": 19,
+   "KM2": 24.51,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Syracuse",
+   "STATE": "NY",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 5.28,
+   "SITES": 1,
+   "LBS": 4.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Tampa",
+   "STATE": "FL",
+   "G": "A",
+   "POLYS": 4,
+   "KM2": 4.5,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Tampa",
+   "STATE": "FL",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 14.12,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Tampa",
+   "STATE": "FL",
+   "G": "C",
+   "POLYS": 9,
+   "KM2": 11.7,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Tampa",
+   "STATE": "FL",
+   "G": "D",
+   "POLYS": 6,
+   "KM2": 26.38,
+   "SITES": 1,
+   "LBS": 10018.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Topeka",
+   "STATE": "KS",
+   "G": "A",
+   "POLYS": 7,
+   "KM2": 2.8,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Topeka",
+   "STATE": "KS",
+   "G": "B",
+   "POLYS": 8,
+   "KM2": 7.18,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Topeka",
+   "STATE": "KS",
+   "G": "C",
+   "POLYS": 10,
+   "KM2": 8.16,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Topeka",
+   "STATE": "KS",
+   "G": "D",
+   "POLYS": 16,
+   "KM2": 20.35,
+   "SITES": 1,
+   "LBS": 33193.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Trenton",
+   "STATE": "NJ",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 3.79,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Trenton",
+   "STATE": "NJ",
+   "G": "B",
+   "POLYS": 10,
+   "KM2": 8.53,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Trenton",
+   "STATE": "NJ",
+   "G": "C",
+   "POLYS": 20,
+   "KM2": 20.04,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Trenton",
+   "STATE": "NJ",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 3.32,
+   "SITES": 1,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Warren",
+   "STATE": "OH",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 1.24,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Warren",
+   "STATE": "OH",
+   "G": "B",
+   "POLYS": 7,
+   "KM2": 5.23,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Warren",
+   "STATE": "OH",
+   "G": "C",
+   "POLYS": 8,
+   "KM2": 10.03,
+   "SITES": 1,
+   "LBS": 44733.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Warren",
+   "STATE": "OH",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 1.01,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Waterloo",
+   "STATE": "IA",
+   "G": "A",
+   "POLYS": 2,
+   "KM2": 3.85,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Waterloo",
+   "STATE": "IA",
+   "G": "B",
+   "POLYS": 5,
+   "KM2": 5.65,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Waterloo",
+   "STATE": "IA",
+   "G": "C",
+   "POLYS": 6,
+   "KM2": 9.71,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Waterloo",
+   "STATE": "IA",
+   "G": "D",
+   "POLYS": 9,
+   "KM2": 14.57,
+   "SITES": 1,
+   "LBS": 347554.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Woonsocket",
+   "STATE": "RI",
+   "G": "A",
+   "POLYS": 1,
+   "KM2": 0.56,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Woonsocket",
+   "STATE": "RI",
+   "G": "B",
+   "POLYS": 2,
+   "KM2": 4.7,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Woonsocket",
+   "STATE": "RI",
+   "G": "C",
+   "POLYS": 1,
+   "KM2": 3.09,
+   "SITES": 0,
+   "LBS": 0.0,
+   "TOTAL_SITES": 1
+  },
+  {
+   "CITY": "Woonsocket",
+   "STATE": "RI",
+   "G": "D",
+   "POLYS": 4,
+   "KM2": 4.42,
+   "SITES": 1,
+   "LBS": 2167.0,
+   "TOTAL_SITES": 1
+  }
+ ],
+ "landing_top_sites": [
+  {
+   "ID": "44105SGCLV3060E",
+   "CITY": "Cleveland",
+   "STATE": "OH",
+   "G": "D",
+   "LBS": 7633352.0
+  },
+  {
+   "ID": "07036XXNXX1400P",
+   "CITY": "Union Co.",
+   "STATE": "NJ",
+   "G": "D",
+   "LBS": 2844088.0
+  },
+  {
+   "ID": "46394MCLCX2815I",
+   "CITY": "Lake Co. Gary",
+   "STATE": "IN",
+   "G": "D",
+   "LBS": 1946393.0
+  },
+  {
+   "ID": "48211SLCTY1923F",
+   "CITY": "Detroit",
+   "STATE": "MI",
+   "G": "D",
+   "LBS": 1535457.0
+  },
+  {
+   "ID": "68507RCHRD78THA",
+   "CITY": "Lincoln",
+   "STATE": "NE",
+   "G": "C",
+   "LBS": 1096287.0
+  },
+  {
+   "ID": "60501CRNPR6400A",
+   "CITY": "Chicago",
+   "STATE": "IL",
+   "G": "C",
+   "LBS": 933109.0
+  },
+  {
+   "ID": "60627CMSTL13500",
+   "CITY": "Chicago",
+   "STATE": "IL",
+   "G": "C",
+   "LBS": 843311.0
+  },
+  {
+   "ID": "51102CRGLL980CL",
+   "CITY": "Sioux City",
+   "STATE": "IA",
+   "G": "D",
+   "LBS": 790106.0
+  },
+  {
+   "ID": "35207MRCNC2930N",
+   "CITY": "Birmingham",
+   "STATE": "AL",
+   "G": "D",
+   "LBS": 722178.0
+  },
+  {
+   "ID": "77640CLRKR1801S",
+   "CITY": "Port Arthur",
+   "STATE": "TX",
+   "G": "B",
+   "LBS": 597574.0
+  }
+ ],
+ "landing_lbs_excl_top1_per_grade": [
+  {
+   "G": "A",
+   "LBS": 0.0,
+   "LBS_MINUS_BIGGEST": 0.0,
+   "P75": 0.0
+  },
+  {
+   "G": "B",
+   "LBS": 1488676.0,
+   "LBS_MINUS_BIGGEST": 891102.0,
+   "P75": 5511.0
+  },
+  {
+   "G": "C",
+   "LBS": 7817489.0,
+   "LBS_MINUS_BIGGEST": 6721202.0,
+   "P75": 7101.0
+  },
+  {
+   "G": "D",
+   "LBS": 23006255.0,
+   "LBS_MINUS_BIGGEST": 15372904.0,
+   "P75": 6885.0
+  }
+ ],
+ "landing_join_500m_lbs": [
+  {
+   "G": "",
+   "SITES": 1370,
+   "LBS": 62588307.0
+  },
+  {
+   "G": "A",
+   "SITES": 69,
+   "LBS": 1553290.0
+  },
+  {
+   "G": "B",
+   "SITES": 420,
+   "LBS": 8769895.0
+  },
+  {
+   "G": "C",
+   "SITES": 1264,
+   "LBS": 57897947.0
+  },
+  {
+   "G": "D",
+   "SITES": 1298,
+   "LBS": 66001966.0
+  },
+  {
+   "G": "E",
+   "SITES": 3,
+   "LBS": 6774.0
+  },
+  {
+   "G": "F",
+   "SITES": 1,
+   "LBS": 929.0
+  }
+ ]
+}

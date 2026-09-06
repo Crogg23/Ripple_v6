@@ -1,0 +1,1278 @@
+{
+ "op_npi_hygiene": [
+  {
+   "N": 14700786,
+   "NPI_NONNULL": 14700786,
+   "LEN10": 14656553,
+   "DIST": 933620,
+   "SENTINEL": 44233
+  }
+ ],
+ "cohort_sizes": [
+  {
+   "ALL_OPTOUT": 56455,
+   "FIXED_PRE2023": 27547,
+   "FIXED_PRE2022": 25158
+  }
+ ],
+ "fp_join": [
+  {
+   "ROWS_": 153847,
+   "NPIS": 11779,
+   "USD": 92479625.97000001
+  }
+ ],
+ "fp_exists": [
+  {
+   "ROWS_": 153847,
+   "USD": 92479625.97000006
+  }
+ ],
+ "fp_naive": [
+  {
+   "ROWS_": 155987,
+   "USD": 95605103.53
+  }
+ ],
+ "fixed_py2022": [
+  {
+   "PY": 2022,
+   "ROWS_": 95356,
+   "PAID_NPIS": 8198,
+   "USD": 88307585.99,
+   "MED_PAY": 20.25,
+   "PAYERS": 698,
+   "USD_OWNERSHIP_FLAG": 1304502.3699999999
+  }
+ ],
+ "all_py2022": [
+  {
+   "PY": 2022,
+   "NPIS": 863008,
+   "USD": 2729211156.11
+  }
+ ],
+ "loose_py2022": [
+  {
+   "PY": 2022,
+   "PAID_NPIS": 11385,
+   "USD": 154605546.94
+  }
+ ],
+ "fixed_py2023": [
+  {
+   "PY": 2023,
+   "ROWS_": 98891,
+   "PAID_NPIS": 8301,
+   "USD": 68861394.83,
+   "MED_PAY": 21.65,
+   "PAYERS": 696,
+   "USD_OWNERSHIP_FLAG": 1045400.8600000001
+  }
+ ],
+ "all_py2023": [
+  {
+   "PY": 2023,
+   "NPIS": 933620,
+   "USD": 2516263761.61
+  }
+ ],
+ "loose_py2023": [
+  {
+   "PY": 2023,
+   "PAID_NPIS": 11779,
+   "USD": 92479625.97
+  }
+ ],
+ "fixed_py2024": [
+  {
+   "PY": 2024,
+   "ROWS_": 91120,
+   "PAID_NPIS": 7821,
+   "USD": 59011435.940000005,
+   "MED_PAY": 22.81,
+   "PAYERS": 672,
+   "USD_OWNERSHIP_FLAG": 1742995.5500000003
+  }
+ ],
+ "all_py2024": [
+  {
+   "PY": 2024,
+   "NPIS": 979137,
+   "USD": 2647900618.22
+  }
+ ],
+ "loose_py2024": [
+  {
+   "PY": 2024,
+   "PAID_NPIS": 11370,
+   "USD": 78590670.78
+  }
+ ],
+ "nature": [
+  {
+   "PY": 2022,
+   "NATURE": "Royalty or License",
+   "N": 455,
+   "USD": 46023146.230000004
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Acquisitions",
+   "N": 21,
+   "USD": 20687860.779999997
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 4244,
+   "USD": 9941528.690000001
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Consulting Fee",
+   "N": 1600,
+   "USD": 4926453.36
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Food and Beverage",
+   "N": 79014,
+   "USD": 2289083.580000001
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Travel and Lodging",
+   "N": 5486,
+   "USD": 1850070.3600000003
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Honoraria",
+   "N": 389,
+   "USD": 1144310.23
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Compensation for serving as faculty or as a speaker for a medical education program",
+   "N": 146,
+   "USD": 757644.04
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Education",
+   "N": 1746,
+   "USD": 279043.81999999995
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Gift",
+   "N": 1568,
+   "USD": 188395.7699999999
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Long term medical supply or device loan",
+   "N": 159,
+   "USD": 114154.47
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Entertainment",
+   "N": 478,
+   "USD": 52703.28000000001
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Grant",
+   "N": 9,
+   "USD": 21088.27
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Current or prospective ownership or investment interest",
+   "N": 1,
+   "USD": 20000.0
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Debt forgiveness",
+   "N": 31,
+   "USD": 8593.7
+  },
+  {
+   "PY": 2022,
+   "NATURE": "Charitable Contribution",
+   "N": 9,
+   "USD": 3509.41
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Royalty or License",
+   "N": 420,
+   "USD": 42577254.07
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 4468,
+   "USD": 10647671.23
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Consulting Fee",
+   "N": 1700,
+   "USD": 5126731.399999999
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Food and Beverage",
+   "N": 81440,
+   "USD": 2529009.2799999947
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Travel and Lodging",
+   "N": 6872,
+   "USD": 2270779.93
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Honoraria",
+   "N": 342,
+   "USD": 2178304.4299999997
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Acquisitions",
+   "N": 22,
+   "USD": 1893911.38
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Compensation for serving as faculty or as a speaker for a medical education program",
+   "N": 136,
+   "USD": 885563.9799999999
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Education",
+   "N": 1586,
+   "USD": 196307.24000000005
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Grant",
+   "N": 11,
+   "USD": 184896.56
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Gift",
+   "N": 1391,
+   "USD": 184213.99
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Long term medical supply or device loan",
+   "N": 36,
+   "USD": 75353.22
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Entertainment",
+   "N": 444,
+   "USD": 69141.69000000002
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Debt forgiveness",
+   "N": 21,
+   "USD": 41156.43
+  },
+  {
+   "PY": 2023,
+   "NATURE": "Charitable Contribution",
+   "N": 2,
+   "USD": 1100.0
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Royalty or License",
+   "N": 483,
+   "USD": 34779268.300000004
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 4247,
+   "USD": 10319184.550000004
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Consulting Fee",
+   "N": 1890,
+   "USD": 6149803.779999999
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Travel and Lodging",
+   "N": 6873,
+   "USD": 2576452.7600000002
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Food and Beverage",
+   "N": 74586,
+   "USD": 2424107.699999999
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Compensation for serving as faculty or as a speaker for a medical education program",
+   "N": 147,
+   "USD": 921887.66
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Honoraria",
+   "N": 253,
+   "USD": 868334.04
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Education",
+   "N": 1237,
+   "USD": 256866.90999999992
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Debt forgiveness",
+   "N": 32,
+   "USD": 213467.13999999998
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Gift",
+   "N": 991,
+   "USD": 202898.35000000006
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Long term medical supply or device loan",
+   "N": 80,
+   "USD": 112429.42
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Acquisitions",
+   "N": 3,
+   "USD": 76057.2
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Grant",
+   "N": 4,
+   "USD": 72620.0
+  },
+  {
+   "PY": 2024,
+   "NATURE": "Entertainment",
+   "N": 294,
+   "USD": 38058.12999999998
+  }
+ ],
+ "payers": [
+  {
+   "PAYER": "ABBVIE INC.",
+   "USD": 49152676.419999994,
+   "N": 39268,
+   "NPIS": 2468,
+   "USD22": 24692854.91,
+   "USD23": 13687616.379999999,
+   "USD24": 10772205.129999999
+  },
+  {
+   "PAYER": "Arthrex, Inc.",
+   "USD": 30845039.44,
+   "N": 874,
+   "NPIS": 40,
+   "USD22": 9098998.040000001,
+   "USD23": 11140028.47,
+   "USD24": 10606012.93
+  },
+  {
+   "PAYER": "Smith+Nephew, Inc.",
+   "USD": 25729316.7,
+   "N": 1104,
+   "NPIS": 96,
+   "USD22": 19440574.11,
+   "USD23": 3557100.76,
+   "USD24": 2731641.83
+  },
+  {
+   "PAYER": "DePuy Synthes Products, Inc.",
+   "USD": 15082222.98,
+   "N": 138,
+   "NPIS": 12,
+   "USD22": 5836908.71,
+   "USD23": 4438715.13,
+   "USD24": 4806599.140000001
+  },
+  {
+   "PAYER": "Stryker Corporation",
+   "USD": 8641860.290000001,
+   "N": 2016,
+   "NPIS": 297,
+   "USD22": 2675288.6799999997,
+   "USD23": 2817004.56,
+   "USD24": 3149567.0500000003
+  },
+  {
+   "PAYER": "Zimmer Biomet Holdings, Inc.",
+   "USD": 7566958.46,
+   "N": 486,
+   "NPIS": 132,
+   "USD22": 1539500.7600000002,
+   "USD23": 5649272.07,
+   "USD24": 378185.63
+  },
+  {
+   "PAYER": "Medtronic, Inc.",
+   "USD": 5316404.99,
+   "N": 1592,
+   "NPIS": 321,
+   "USD22": 1614345.1500000001,
+   "USD23": 1847421.18,
+   "USD24": 1854638.6600000001
+  },
+  {
+   "PAYER": "ZIMVIE INC.",
+   "USD": 2831991.44,
+   "N": 11719,
+   "NPIS": 1390,
+   "USD22": 1205191.29,
+   "USD23": 980082.8999999999,
+   "USD24": 646717.25
+  },
+  {
+   "PAYER": "Merit Medical Systems Inc",
+   "USD": 2593498.1700000004,
+   "N": 14,
+   "NPIS": 2,
+   "USD22": 796094.86,
+   "USD23": 835649.49,
+   "USD24": 961753.82
+  },
+  {
+   "PAYER": "Axsome Therapeutics, Inc.",
+   "USD": 2473747.32,
+   "N": 5908,
+   "NPIS": 628,
+   "USD22": 79888.09,
+   "USD23": 1003643.1199999999,
+   "USD24": 1390216.11
+  },
+  {
+   "PAYER": "Otsuka America Pharmaceutical, Inc.",
+   "USD": 2435473.33,
+   "N": 8597,
+   "NPIS": 757,
+   "USD22": 810974.61,
+   "USD23": 916870.49,
+   "USD24": 707628.23
+  },
+  {
+   "PAYER": "Straumann USA LLC",
+   "USD": 2415739.2,
+   "N": 10897,
+   "NPIS": 1996,
+   "USD22": 1043744.23,
+   "USD23": 642280.76,
+   "USD24": 729714.2100000001
+  },
+  {
+   "PAYER": "AbbVie Inc.",
+   "USD": 2410910.81,
+   "N": 7990,
+   "NPIS": 774,
+   "USD22": 986.75,
+   "USD23": 2409924.06,
+   "USD24": 0.0
+  },
+  {
+   "PAYER": "Milestone Scientific Inc.",
+   "USD": 2308224.65,
+   "N": 75,
+   "NPIS": 1,
+   "USD22": 599092.91,
+   "USD23": 652337.31,
+   "USD24": 1056794.43
+  },
+  {
+   "PAYER": "ITI, Inc.",
+   "USD": 2123663.21,
+   "N": 7038,
+   "NPIS": 640,
+   "USD22": 937973.77,
+   "USD23": 1185689.44,
+   "USD24": 0.0
+  }
+ ],
+ "specialty": [
+  {
+   "SPECIALTY": "Orthopedic Surgery",
+   "COHORT": 242,
+   "PAID_NPIS": 173,
+   "USD": 101233664.83,
+   "USD22": 41459170.92,
+   "USD23": 32506407.54,
+   "USD24": 27268086.37
+  },
+  {
+   "SPECIALTY": "Plastic And Reconstructive Surgery",
+   "COHORT": 324,
+   "PAID_NPIS": 272,
+   "USD": 44079420.57,
+   "USD22": 23567253.659999996,
+   "USD23": 12490038.92,
+   "USD24": 8022127.99
+  },
+  {
+   "SPECIALTY": "Psychiatry",
+   "COHORT": 4014,
+   "PAID_NPIS": 1350,
+   "USD": 20699751.0,
+   "USD22": 5481234.659999999,
+   "USD23": 7629393.639999999,
+   "USD24": 7589122.699999999
+  },
+  {
+   "SPECIALTY": "Oral Surgery",
+   "COHORT": 3352,
+   "PAID_NPIS": 2367,
+   "USD": 7546363.08,
+   "USD22": 2727351.8299999996,
+   "USD23": 2525434.85,
+   "USD24": 2293576.4
+  },
+  {
+   "SPECIALTY": "Dentist",
+   "COHORT": 4063,
+   "PAID_NPIS": 2756,
+   "USD": 6068310.13,
+   "USD22": 2313794.8999999994,
+   "USD23": 1625614.98,
+   "USD24": 2128900.25
+  },
+  {
+   "SPECIALTY": "Neurosurgery",
+   "COHORT": 41,
+   "PAID_NPIS": 27,
+   "USD": 3638722.5999999996,
+   "USD22": 2470935.37,
+   "USD23": 691533.82,
+   "USD24": 476253.41
+  },
+  {
+   "SPECIALTY": "Cardiovascular Disease (Cardiology)",
+   "COHORT": 45,
+   "PAID_NPIS": 27,
+   "USD": 2769407.4399999995,
+   "USD22": 877115.85,
+   "USD23": 908127.2900000002,
+   "USD24": 984164.3
+  },
+  {
+   "SPECIALTY": "Obstetrics/Gynecology",
+   "COHORT": 567,
+   "PAID_NPIS": 412,
+   "USD": 2745410.15,
+   "USD22": 1009159.23,
+   "USD23": 1132556.1400000001,
+   "USD24": 603694.78
+  },
+  {
+   "SPECIALTY": "Undefined Non-Physician Type (Specify)",
+   "COHORT": 49,
+   "PAID_NPIS": 38,
+   "USD": 2604460.21,
+   "USD22": 661289.72,
+   "USD23": 798324.81,
+   "USD24": 1144845.6800000002
+  },
+  {
+   "SPECIALTY": "Family Practice",
+   "COHORT": 1763,
+   "PAID_NPIS": 936,
+   "USD": 2499026.9799999995,
+   "USD22": 908381.49,
+   "USD23": 760357.42,
+   "USD24": 830288.0699999998
+  },
+  {
+   "SPECIALTY": "Dermatology",
+   "COHORT": 190,
+   "PAID_NPIS": 148,
+   "USD": 2454109.58,
+   "USD22": 817936.3300000001,
+   "USD23": 797583.7699999999,
+   "USD24": 838589.4800000001
+  },
+  {
+   "SPECIALTY": "Rheumatology",
+   "COHORT": 35,
+   "PAID_NPIS": 22,
+   "USD": 2235243.4899999998,
+   "USD22": 773935.0100000001,
+   "USD23": 769453.26,
+   "USD24": 691855.22
+  },
+  {
+   "SPECIALTY": "Neurology",
+   "COHORT": 121,
+   "PAID_NPIS": 68,
+   "USD": 1927389.57,
+   "USD22": 814250.6499999999,
+   "USD23": 600164.37,
+   "USD24": 512974.55
+  },
+  {
+   "SPECIALTY": "Ophthalmology",
+   "COHORT": 59,
+   "PAID_NPIS": 39,
+   "USD": 1889768.63,
+   "USD22": 353874.83,
+   "USD23": 438117.15,
+   "USD24": 1097776.6500000001
+  },
+  {
+   "SPECIALTY": "Internal Medicine",
+   "COHORT": 1109,
+   "PAID_NPIS": 606,
+   "USD": 1695163.3,
+   "USD22": 503092.38,
+   "USD23": 565815.53,
+   "USD24": 626255.3899999999
+  },
+  {
+   "SPECIALTY": "Endocrinology",
+   "COHORT": 86,
+   "PAID_NPIS": 72,
+   "USD": 1654008.87,
+   "USD22": 760343.84,
+   "USD23": 390426.12,
+   "USD24": 503238.91000000003
+  },
+  {
+   "SPECIALTY": "Nurse Practitioner",
+   "COHORT": 1084,
+   "PAID_NPIS": 641,
+   "USD": 1505700.08,
+   "USD22": 347679.94,
+   "USD23": 577134.75,
+   "USD24": 580885.39
+  },
+  {
+   "SPECIALTY": "Otolaryngology",
+   "COHORT": 60,
+   "PAID_NPIS": 39,
+   "USD": 1485526.7199999997,
+   "USD22": 47566.49999999999,
+   "USD23": 1294430.19,
+   "USD24": 143530.03000000003
+  },
+  {
+   "SPECIALTY": "Gastroenterology",
+   "COHORT": 35,
+   "PAID_NPIS": 26,
+   "USD": 996109.21,
+   "USD22": 365470.98,
+   "USD23": 258905.41000000003,
+   "USD24": 371732.82000000007
+  },
+  {
+   "SPECIALTY": "Physician Assistant",
+   "COHORT": 287,
+   "PAID_NPIS": 179,
+   "USD": 847015.8400000001,
+   "USD22": 293464.05,
+   "USD23": 292165.77,
+   "USD24": 261386.02
+  }
+ ],
+ "top_npis": [
+  {
+   "NPI": "1295737930",
+   "SPECIALTY": "Plastic And Reconstructive Surgery",
+   "ST": "TN",
+   "USD": 41072984.589999996,
+   "N": 24,
+   "PAYERS": 3,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 41058029.87
+  },
+  {
+   "NPI": "1669457354",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "CA",
+   "USD": 21735979.77,
+   "N": 100,
+   "PAYERS": 8,
+   "USD_CONSULT": 22750.0,
+   "USD_ROYALTY": 21706321.51
+  },
+  {
+   "NPI": "1356459093",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 11718965.35,
+   "N": 87,
+   "PAYERS": 6,
+   "USD_CONSULT": 24112.5,
+   "USD_ROYALTY": 404154.23
+  },
+  {
+   "NPI": "1326035601",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "CA",
+   "USD": 6969330.4799999995,
+   "N": 59,
+   "PAYERS": 7,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 6918122.299999999
+  },
+  {
+   "NPI": "1700863990",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "CO",
+   "USD": 6643955.28,
+   "N": 109,
+   "PAYERS": 2,
+   "USD_CONSULT": 96645.0,
+   "USD_ROYALTY": 6484710.02
+  },
+  {
+   "NPI": "1427071778",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 6293317.010000001,
+   "N": 103,
+   "PAYERS": 6,
+   "USD_CONSULT": 20265.48,
+   "USD_ROYALTY": 1144.7599999999998
+  },
+  {
+   "NPI": "1386639722",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NJ",
+   "USD": 6286248.5,
+   "N": 32,
+   "PAYERS": 2,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 6274105.13
+  },
+  {
+   "NPI": "1982747549",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "CA",
+   "USD": 5365456.52,
+   "N": 194,
+   "PAYERS": 8,
+   "USD_CONSULT": 262070.0,
+   "USD_ROYALTY": 4889340.3
+  },
+  {
+   "NPI": "1952318107",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 4151158.4100000006,
+   "N": 379,
+   "PAYERS": 10,
+   "USD_CONSULT": 290126.0,
+   "USD_ROYALTY": 3423970.2800000003
+  },
+  {
+   "NPI": "1023144771",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 3596216.92,
+   "N": 490,
+   "PAYERS": 1,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 3206453.92
+  },
+  {
+   "NPI": "1407882921",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 3290134.02,
+   "N": 241,
+   "PAYERS": 6,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 3203806.1100000003
+  },
+  {
+   "NPI": "1184765257",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "AZ",
+   "USD": 2784994.1799999997,
+   "N": 370,
+   "PAYERS": 11,
+   "USD_CONSULT": 189480.0,
+   "USD_ROYALTY": 2262733.4
+  },
+  {
+   "NPI": "1528202884",
+   "SPECIALTY": "Cardiovascular Disease (Cardiology)",
+   "ST": "CA",
+   "USD": 2592638.52,
+   "N": 12,
+   "PAYERS": 1,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 2592638.52
+  },
+  {
+   "NPI": "1710109426",
+   "SPECIALTY": "Undefined Non-Physician Type (Specify)",
+   "ST": "NY",
+   "USD": 2308292.5999999996,
+   "N": 77,
+   "PAYERS": 3,
+   "USD_CONSULT": 6232.05,
+   "USD_ROYALTY": 1826798.3900000001
+  },
+  {
+   "NPI": "1831363712",
+   "SPECIALTY": "Psychiatry",
+   "ST": "NC",
+   "USD": 2293605.29,
+   "N": 2041,
+   "PAYERS": 36,
+   "USD_CONSULT": 1202000.99,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "NPI": "1255379939",
+   "SPECIALTY": "Neurosurgery",
+   "ST": "CA",
+   "USD": 2013815.48,
+   "N": 7,
+   "PAYERS": 3,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "NPI": "1386651644",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 1940339.8900000001,
+   "N": 42,
+   "PAYERS": 5,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 1919242.5
+  },
+  {
+   "NPI": "1932148798",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "PA",
+   "USD": 1911050.97,
+   "N": 207,
+   "PAYERS": 29,
+   "USD_CONSULT": 18500.0,
+   "USD_ROYALTY": 1797776.88
+  },
+  {
+   "NPI": "1376710665",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "NY",
+   "USD": 1590338.72,
+   "N": 304,
+   "PAYERS": 21,
+   "USD_CONSULT": 25500.54,
+   "USD_ROYALTY": 1292588.78
+  },
+  {
+   "NPI": "1952303992",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "GA",
+   "USD": 1570821.15,
+   "N": 130,
+   "PAYERS": 4,
+   "USD_CONSULT": 155447.5,
+   "USD_ROYALTY": 1396483.0
+  },
+  {
+   "NPI": "1346239340",
+   "SPECIALTY": "Oral Surgery",
+   "ST": "FL",
+   "USD": 1409555.56,
+   "N": 156,
+   "PAYERS": 8,
+   "USD_CONSULT": 0.0,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "NPI": "1093849069",
+   "SPECIALTY": "Orthopedic Surgery",
+   "ST": "CA",
+   "USD": 1397028.6,
+   "N": 352,
+   "PAYERS": 32,
+   "USD_CONSULT": 63650.0,
+   "USD_ROYALTY": 1211483.6600000001
+  },
+  {
+   "NPI": "1558374595",
+   "SPECIALTY": "Psychiatry",
+   "ST": "VA",
+   "USD": 1358742.53,
+   "N": 1803,
+   "PAYERS": 22,
+   "USD_CONSULT": 913127.05,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "NPI": "1427048115",
+   "SPECIALTY": "Psychiatry",
+   "ST": "FL",
+   "USD": 1332742.4699999997,
+   "N": 1492,
+   "PAYERS": 32,
+   "USD_CONSULT": 897294.31,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "NPI": "1003832809",
+   "SPECIALTY": "Psychiatry",
+   "ST": "CA",
+   "USD": 1294545.9800000002,
+   "N": 1235,
+   "PAYERS": 18,
+   "USD_CONSULT": 876726.12,
+   "USD_ROYALTY": 0.0
+  }
+ ],
+ "concentration": [
+  {
+   "PAID_NPIS": 11263,
+   "TOT": 216180416.75999996,
+   "TOP10": 113833612.83,
+   "TOP100": 182108434.72,
+   "UNDER_100": 3355,
+   "MED_PER_NPI": 250.77999999999997
+  }
+ ],
+ "spec_xcheck": [
+  {
+   "ROSTER": "Orthopedic Surgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "NPIS": 80,
+   "USD": 16015210.130000003
+  },
+  {
+   "ROSTER": "Plastic And Reconstructive Surgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Plastic Surgery",
+   "NPIS": 148,
+   "USD": 12182269.43
+  },
+  {
+   "ROSTER": "Orthopedic Surgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Sports Medicine",
+   "NPIS": 17,
+   "USD": 10457706.099999998
+  },
+  {
+   "ROSTER": "Psychiatry",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Psychiatry & Neurology|Psychiatry",
+   "NPIS": 829,
+   "USD": 6804087.38
+  },
+  {
+   "ROSTER": "Orthopedic Surgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Orthopaedic Surgery of the Spine",
+   "NPIS": 29,
+   "USD": 3270739.32
+  },
+  {
+   "ROSTER": "Orthopedic Surgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Adult Reconstructive Orthopaedic Surgery",
+   "NPIS": 5,
+   "USD": 1586893.28
+  },
+  {
+   "ROSTER": "Oral Surgery",
+   "OP_SPEC": "Dental Providers|Dentist|Oral and Maxillofacial Surgery",
+   "NPIS": 808,
+   "USD": 1342276.94
+  },
+  {
+   "ROSTER": "Otolaryngology",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Pediatrics",
+   "NPIS": 1,
+   "USD": 1113510.0
+  },
+  {
+   "ROSTER": "Orthopedic Surgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Foot and Ankle Surgery",
+   "NPIS": 6,
+   "USD": 1066346.14
+  },
+  {
+   "ROSTER": "Cardiovascular Disease (Cardiology)",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Internal Medicine|Cardiovascular Disease",
+   "NPIS": 16,
+   "USD": 907544.23
+  },
+  {
+   "ROSTER": "Rheumatology",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Internal Medicine|Rheumatology",
+   "NPIS": 18,
+   "USD": 764378.9299999999
+  },
+  {
+   "ROSTER": "Neurosurgery",
+   "OP_SPEC": "Allopathic & Osteopathic Physicians|Neurological Surgery",
+   "NPIS": 24,
+   "USD": 691138.14
+  }
+ ],
+ "fp_variants": [
+  {
+   "EFF_BEFORE_2024": 72350196.15,
+   "EFF_ON_OR_BEFORE_PAYMENT": 70776831.96000001,
+   "EFF_BEFORE_MID2023": 70625201.62,
+   "ANY_ROSTER": 92479625.97
+  }
+ ],
+ "payers_norm": [
+  {
+   "PAYER": "ABBVIE INC",
+   "USD": 51563587.23,
+   "N": 47258,
+   "NPIS": 2614,
+   "SPELLINGS": 2,
+   "USD22": 24693841.66,
+   "USD23": 16097540.440000001,
+   "USD24": 10772205.13,
+   "USD_ROYALTY": 41058029.87
+  },
+  {
+   "PAYER": "ARTHREX INC",
+   "USD": 30845039.44,
+   "N": 874,
+   "NPIS": 40,
+   "SPELLINGS": 1,
+   "USD22": 9098998.040000001,
+   "USD23": 11140028.47,
+   "USD24": 10606012.93,
+   "USD_ROYALTY": 30221222.83
+  },
+  {
+   "PAYER": "SMITHNEPHEW INC",
+   "USD": 25729316.7,
+   "N": 1104,
+   "NPIS": 96,
+   "SPELLINGS": 1,
+   "USD22": 19440574.11,
+   "USD23": 3557100.76,
+   "USD24": 2731641.83,
+   "USD_ROYALTY": 5043305.27
+  },
+  {
+   "PAYER": "DEPUY SYNTHES PRODUCTS INC",
+   "USD": 15082222.98,
+   "N": 138,
+   "NPIS": 12,
+   "SPELLINGS": 1,
+   "USD22": 5836908.71,
+   "USD23": 4438715.13,
+   "USD24": 4806599.140000001,
+   "USD_ROYALTY": 12789463.78
+  },
+  {
+   "PAYER": "STRYKER CORPORATION",
+   "USD": 8641860.29,
+   "N": 2016,
+   "NPIS": 297,
+   "SPELLINGS": 1,
+   "USD22": 2675288.6799999997,
+   "USD23": 2817004.56,
+   "USD24": 3149567.05,
+   "USD_ROYALTY": 7604951.56
+  },
+  {
+   "PAYER": "ZIMMER BIOMET HOLDINGS INC",
+   "USD": 7566958.46,
+   "N": 486,
+   "NPIS": 132,
+   "SPELLINGS": 1,
+   "USD22": 1539500.7600000002,
+   "USD23": 5649272.07,
+   "USD24": 378185.63,
+   "USD_ROYALTY": 7409154.620000001
+  },
+  {
+   "PAYER": "MEDTRONIC INC",
+   "USD": 5316404.99,
+   "N": 1592,
+   "NPIS": 321,
+   "SPELLINGS": 1,
+   "USD22": 1614345.15,
+   "USD23": 1847421.18,
+   "USD24": 1854638.66,
+   "USD_ROYALTY": 4695087.7
+  },
+  {
+   "PAYER": "ZIMVIE INC",
+   "USD": 2831991.44,
+   "N": 11719,
+   "NPIS": 1390,
+   "SPELLINGS": 1,
+   "USD22": 1205191.29,
+   "USD23": 980082.9,
+   "USD24": 646717.25,
+   "USD_ROYALTY": 1235589.06
+  },
+  {
+   "PAYER": "MERIT MEDICAL SYSTEMS INC",
+   "USD": 2593498.17,
+   "N": 14,
+   "NPIS": 2,
+   "SPELLINGS": 1,
+   "USD22": 796094.86,
+   "USD23": 835649.49,
+   "USD24": 961753.82,
+   "USD_ROYALTY": 2592638.52
+  },
+  {
+   "PAYER": "AXSOME THERAPEUTICS INC",
+   "USD": 2473747.32,
+   "N": 5908,
+   "NPIS": 628,
+   "SPELLINGS": 1,
+   "USD22": 79888.09,
+   "USD23": 1003643.1199999999,
+   "USD24": 1390216.11,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "PAYER": "OTSUKA AMERICA PHARMACEUTICAL INC",
+   "USD": 2435473.33,
+   "N": 8597,
+   "NPIS": 757,
+   "SPELLINGS": 1,
+   "USD22": 810974.61,
+   "USD23": 916870.49,
+   "USD24": 707628.23,
+   "USD_ROYALTY": 0.0
+  },
+  {
+   "PAYER": "STRAUMANN USA LLC",
+   "USD": 2415739.2,
+   "N": 10897,
+   "NPIS": 1996,
+   "SPELLINGS": 1,
+   "USD22": 1043744.23,
+   "USD23": 642280.76,
+   "USD24": 729714.2100000001,
+   "USD_ROYALTY": 47699.91
+  }
+ ],
+ "top1_detail": [
+  {
+   "PY": 2022,
+   "PAYER": "ABBVIE INC.",
+   "NATURE": "Royalty or License",
+   "N": 2,
+   "USD": 22237785.0
+  },
+  {
+   "PY": 2023,
+   "PAYER": "ABBVIE INC.",
+   "NATURE": "Royalty or License",
+   "N": 5,
+   "USD": 11600124.0
+  },
+  {
+   "PY": 2024,
+   "PAYER": "ABBVIE INC.",
+   "NATURE": "Royalty or License",
+   "N": 4,
+   "USD": 7220120.87
+  },
+  {
+   "PY": 2022,
+   "PAYER": "Mentor Worldwide LLC",
+   "NATURE": "Consulting Fee",
+   "N": 1,
+   "USD": 12825.0
+  },
+  {
+   "PY": 2022,
+   "PAYER": "Mentor Worldwide LLC",
+   "NATURE": "Travel and Lodging",
+   "N": 3,
+   "USD": 1339.99
+  },
+  {
+   "PY": 2022,
+   "PAYER": "Mentor Worldwide LLC",
+   "NATURE": "Food and Beverage",
+   "N": 6,
+   "USD": 577.67
+  },
+  {
+   "PY": 2023,
+   "PAYER": "ABBVIE INC.",
+   "NATURE": "Food and Beverage",
+   "N": 2,
+   "USD": 196.24
+  },
+  {
+   "PY": 2022,
+   "PAYER": "Allergan, Inc.",
+   "NATURE": "Food and Beverage",
+   "N": 1,
+   "USD": 15.82
+  }
+ ],
+ "top1_roster": [
+  {
+   "NPI": "1295737930",
+   "SPECIALTY": "Plastic And Reconstructive Surgery",
+   "STATE_CODE": "TN",
+   "OPTOUT_EFFECTIVE_DATE": "2017-03-06",
+   "OPTOUT_END_DATE": "2027-03-06",
+   "ELIGIBLE_TO_ORDER_AND_REFER": "Y"
+  }
+ ],
+ "paid_persistence": [
+  {
+   "PAID_ANY": 11263,
+   "PAID_ALL3": 5089,
+   "PAID_ONE": 3295
+  }
+ ],
+ "cohort_mix": [
+  {
+   "GRP": "therapists",
+   "COHORT": 7830
+  },
+  {
+   "GRP": "dental",
+   "COHORT": 7798
+  },
+  {
+   "GRP": "other",
+   "COHORT": 7298
+  },
+  {
+   "GRP": "psychiatry",
+   "COHORT": 4014
+  },
+  {
+   "GRP": "ortho/plastics/neurosurg",
+   "COHORT": 607
+  }
+ ]
+}

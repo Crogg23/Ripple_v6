@@ -72,10 +72,16 @@ def col_ref(col: str) -> str | None:
     m = re.match(r"^([A-Za-z_][A-Za-z0-9_$]*):([A-Za-z0-9_$.\[\]:]+)$", col)
     if m:                                                                 # VARIANT path RECORD:field
         return f'"{m.group(1)}":{m.group(2)}::STRING'
+    # A landing column name can legitimately hold spaces — CFPB lands
+    # 'Date received'. Guessing which spaced strings are names and which are
+    # prose is how prose gets quoted, so the mapping says it explicitly: wrap
+    # the value in double quotes and it is taken as a name, verbatim.
+    if len(col) > 2 and col[0] == '"' and col[-1] == '"' and '"' not in col[1:-1]:
+        return col
     return None                                                          # prose / derived / unusable
 
 
-def recency_expr(col: str, kind: str) -> str | None:
+def recency_inner(col: str, kind: str) -> str | None:
     """Parse a TEXT column to a DATE, driven by the per-source RECENCY_KIND the measurement agents found.
     Returns None when ``col`` is not a usable column reference (caller then records recency as unmeasured).
 
@@ -97,17 +103,43 @@ def recency_expr(col: str, kind: str) -> str | None:
     yr = (f"IFF(REGEXP_LIKE({t},'^(19|20)[0-9]{{2}}') "
           f"AND TO_NUMBER(SUBSTR({t},1,4))<=YEAR(CURRENT_DATE())+1,"
           f"DATE_FROM_PARTS(TO_NUMBER(SUBSTR({t},1,4)),12,31),NULL)")                     # year -> Dec 31
+    # A column the mapping calls a year can predate 1900. SlaveVoyages starts
+    # 1550. Only the explicit year kinds widen; 'mixed' keeps the narrow guard
+    # so a stray 4-digit id can never be read as a year.
+    # Snowflake's REGEXP_LIKE matches the WHOLE string, so every pattern here
+    # ends in .* where a prefix match is what is wanted.
+    # The trailing group allows 'YYYY something', never 'YYYY more digits':
+    # with .* here, an id like 1234567 or a date like 20240108 would parse to a
+    # year and clear every downstream clamp.
+    yr_wide = (f"IFF(REGEXP_LIKE({t},'(1[0-9]{{3}}|20[0-9]{{2}})([^0-9].*)?') "
+               f"AND TO_NUMBER(SUBSTR({t},1,4))<=YEAR(CURRENT_DATE())+1,"
+               f"DATE_FROM_PARTS(TO_NUMBER(SUBSTR({t},1,4)),12,31),NULL)")
+    ym = (f"IFF(REGEXP_LIKE({t},'(19|20)[0-9]{{2}}-[0-9]{{2}}'),"
+          f"TRY_TO_DATE({t}||'-01','YYYY-MM-DD'),NULL)")                                  # 2023-09
+    monthname = (f"IFF(REGEXP_LIKE({t},'[A-Za-z]{{3,9}} [0-9]{{1,2}}, (19|20)[0-9]{{2}}'),"
+                 f"TRY_TO_DATE({t},'MMMM DD, YYYY'),NULL)")                               # September 29, 2025
+    mon_yr = (f"IFF(REGEXP_LIKE({t},'[A-Za-z]{{3}} (19|20)[0-9]{{2}}'),"
+              f"TRY_TO_DATE('01 '||{t},'DD MON YYYY'),NULL)")                             # Oct 2025
+    us_dt = (f"IFF(REGEXP_LIKE({t},'[0-9]{{1,2}}/[0-9]{{1,2}}/(19|20)[0-9]{{2}}.*'),"
+             f"TRY_TO_DATE(SPLIT_PART({t},' ',1),'MM/DD/YYYY'),NULL)")                    # 5/1/2000 12:00:00 AM
     if kind == "date":
-        inner = dt
+        inner = f"COALESCE({dt},{us_dt},{monthname},{ym},{mon_yr})"
     elif kind == "timestamp":
-        inner = ts
+        inner = f"COALESCE({ts},{dt},{us_dt})"
     elif kind == "yyyymmdd_text":
         inner = f"COALESCE({ymd14},{ymd8},{ymd6})"
     elif kind in ("year_text", "year_int"):
-        inner = yr
+        inner = yr_wide
     else:  # 'mixed' / fallback — every branch guarded, so still epoch-safe
-        inner = f"COALESCE({dt},{ts},{ymd14},{ymd8},{ymd6},{yr})"
-    return f"MAX({inner})"
+        inner = (f"COALESCE({dt},{ts},{us_dt},{monthname},{ym},{mon_yr},"
+                 f"{ymd14},{ymd8},{ymd6},{yr})")
+    return inner
+
+
+def recency_expr(col: str, kind: str) -> str | None:
+    """MAX of the parsed recency column — the ledger's own measure. See recency_inner."""
+    inner = recency_inner(col, kind)
+    return None if inner is None else f"MAX({inner})"
 
 
 def freshness_state(cadence: str, data_through: date | None, row_count: int | None) -> tuple[str, int | None]:

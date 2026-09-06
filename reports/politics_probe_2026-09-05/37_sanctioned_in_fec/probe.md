@@ -1,0 +1,7 @@
+Checked: individuals on OFAC SDN (7,385 surname+firstname keys), UK sanctions list (8,268), UN consolidated (719) against FEC individual contributions (84.2M rows, ENTITY_TP='IND'), key = surname + first given name, both required. One scan, aggregated per key.
+First number: 380 sanctioned name keys appear as FEC donors, 22,967 rows, $4.0M. 282 of the 380 have 20 or fewer rows.
+Hit means: the exact surname+first name of a designated person is on an FEC contribution. Miss means: no designated name shape appears in the donor file.
+Verified by eye, 3 rare hits: GAO QIANG (UK cyber list, a Chinese state hacker) is a Matson employee in San Ramon CA; HAMMOUD ALI (UK Syria) is a Northwell nurse in Kingston NY; OMAR AHMED (SDGT) works at SpaceX in Hawthorne CA. All three are ordinary Americans sharing a name. The top hits are worse: FALLON JOHN 6,055 rows, LEE JOHN 4,725, TAYLOR MARK 790. False-positive rate seen: 3 of 3 (100%); nothing in the 25 rows read looks like the designated person.
+Trap hit: sanctions lists carry no US address, DOB is on the list but FEC has none, so name+first is the strongest key available and it still collides on every row read. OFAC SDN_TYPE is '-0- ' (9,785 rows) for entities, not blank; 'individual' is 7,488. UK list is 7 name-type spellings ('Alias' 34k, 'ALias' 2).
+STATUS: dim
+HEADLINE: 380 sanctioned-name keys match FEC donors ($4.0M) and 0 of the 3 verified are the sanctioned person; the leg runs, the number is noise.

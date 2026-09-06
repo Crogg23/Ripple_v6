@@ -1,0 +1,1587 @@
+{
+ "01 flag values (the column has no No)": [
+  {
+   "FLAG": "Yes",
+   "HOMES": 14638
+  },
+  {
+   "FLAG": "Partial",
+   "HOMES": 34
+  },
+  {
+   "FLAG": "Data Not Available",
+   "HOMES": 28
+  }
+ ],
+ "02 flag snapshot date": [
+  {
+   "PROCESSING_DATE": null,
+   "N": 14700
+  }
+ ],
+ "03 home CCN is a key": [
+  {
+   "N": 14700,
+   "D": 14700
+  }
+ ],
+ "04 fire table joins clean": [
+  {
+   "N": 200030,
+   "HOMES": 13914,
+   "ORPHANS": 0,
+   "MN": "2016-07-28",
+   "MX": "2026-05-21",
+   "FIRE_SNAPSHOT": "2026-06-01"
+  }
+ ],
+ "05 sprinkler tag codes, exact": [
+  {
+   "TAG": "0353",
+   "DESCR": "Inspect, test, and maintain automatic sprinkler systems.",
+   "CITES": 16205,
+   "HOMES": 9647
+  },
+  {
+   "TAG": "0351",
+   "DESCR": "Install an approved automatic sprinkler system.",
+   "CITES": 3781,
+   "HOMES": 3144
+  },
+  {
+   "TAG": "0354",
+   "DESCR": "Follow proper procedures when the automatic sprinkler systems was out of service for more than 10 hours.",
+   "CITES": 1226,
+   "HOMES": 1072
+  },
+  {
+   "TAG": "0342",
+   "DESCR": "Have a complete alarm system manually initiated and initiated by fire sprinkler system connection.",
+   "CITES": 583,
+   "HOMES": 540
+  },
+  {
+   "TAG": "0352",
+   "DESCR": "Properly install and monitor supervisory attachments on automatic sprinkler systems.",
+   "CITES": 435,
+   "HOMES": 417
+  },
+  {
+   "TAG": "0400",
+   "DESCR": "Meet fire sprinkler requirement for tall buildings.",
+   "CITES": 15,
+   "HOMES": 15
+  },
+  {
+   "TAG": "0112",
+   "DESCR": "Add automatic sprinklers after major renovation.",
+   "CITES": 3,
+   "HOMES": 3
+  },
+  {
+   "TAG": "0322",
+   "DESCR": "Ensure that laboratories employing quantities of flammable, combustible, or hazardous materials have fire resistant walls and automatic sprinkler system.",
+   "CITES": 1,
+   "HOMES": 1
+  }
+ ],
+ "06 sprinkler in health (F) file": [
+  {
+   "N": 0
+  }
+ ],
+ "07 status values in fire file": [
+  {
+   "STATUS": "Deficient, Provider has date of correction",
+   "N": 193989,
+   "NO_DATE": 44
+  },
+  {
+   "STATUS": "Waiver has been granted",
+   "N": 2869,
+   "NO_DATE": 443
+  },
+  {
+   "STATUS": "Deficient, Provider has plan of correction",
+   "N": 1846,
+   "NO_DATE": 127
+  },
+  {
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "N": 763,
+   "NO_DATE": 758
+  },
+  {
+   "STATUS": "Fire Safety Evaluation Survey",
+   "N": 250,
+   "NO_DATE": 99
+  },
+  {
+   "STATUS": "No revisit needed",
+   "N": 203,
+   "NO_DATE": 125
+  },
+  {
+   "STATUS": "Past Non-Compliance",
+   "N": 110,
+   "NO_DATE": 10
+  }
+ ],
+ "08 rebuild first pass: K0351 since 2024-06-01, Yes homes": [
+  {
+   "CITES": 1605,
+   "HOMES": 1504,
+   "CITES_YES": 1599,
+   "HOMES_YES": 1500
+  }
+ ],
+ "09 rebuild first pass: open at snapshot, in window": [
+  {
+   "CITES": 65,
+   "HOMES": 64,
+   "NO_DATE": 27
+  }
+ ],
+ "10 open K0351 at Yes homes, all time, survey on/before snapshot": [
+  {
+   "CITES": 68,
+   "HOMES": 67,
+   "NO_DATE": 30
+  }
+ ],
+ "11 open K0351 at Yes homes by status": [
+  {
+   "STATUS": "Deficient, Provider has date of correction",
+   "CITES": 22,
+   "HOMES": 22,
+   "NO_DATE": 1,
+   "AVG_DAYS": 64,
+   "MAX_DAYS": 415
+  },
+  {
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CITES": 19,
+   "HOMES": 19,
+   "NO_DATE": 4,
+   "AVG_DAYS": 48,
+   "MAX_DAYS": 142
+  },
+  {
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CITES": 14,
+   "HOMES": 14,
+   "NO_DATE": 14,
+   "AVG_DAYS": 179,
+   "MAX_DAYS": 919
+  },
+  {
+   "STATUS": "Waiver has been granted",
+   "CITES": 11,
+   "HOMES": 11,
+   "NO_DATE": 11,
+   "AVG_DAYS": 857,
+   "MAX_DAYS": 2396
+  },
+  {
+   "STATUS": "No revisit needed",
+   "CITES": 2,
+   "HOMES": 2,
+   "NO_DATE": 0,
+   "AVG_DAYS": 128,
+   "MAX_DAYS": 149
+  }
+ ],
+ "12 K0351 lifetime at Yes homes by status": [
+  {
+   "STATUS": "Deficient, Provider has date of correction",
+   "CITES": 3641,
+   "HOMES": 3036,
+   "OPEN_CITES": 22
+  },
+  {
+   "STATUS": "Waiver has been granted",
+   "CITES": 70,
+   "HOMES": 70,
+   "OPEN_CITES": 11
+  },
+  {
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CITES": 32,
+   "HOMES": 32,
+   "OPEN_CITES": 19
+  },
+  {
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CITES": 17,
+   "HOMES": 17,
+   "OPEN_CITES": 14
+  },
+  {
+   "STATUS": "No revisit needed",
+   "CITES": 2,
+   "HOMES": 2,
+   "OPEN_CITES": 2
+  },
+  {
+   "STATUS": "Past Non-Compliance",
+   "CITES": 2,
+   "HOMES": 2,
+   "OPEN_CITES": 0
+  }
+ ],
+ "13 open sprinkler family at Yes homes by tag": [
+  {
+   "TAG": "0353",
+   "DESCR": "Inspect, test, and maintain automatic sprinkler systems.",
+   "CITES": 16133,
+   "HOMES": 9604,
+   "OPEN_CITES": 256,
+   "OPEN_HOMES": 254
+  },
+  {
+   "TAG": "0351",
+   "DESCR": "Install an approved automatic sprinkler system.",
+   "CITES": 3764,
+   "HOMES": 3132,
+   "OPEN_CITES": 68,
+   "OPEN_HOMES": 67
+  },
+  {
+   "TAG": "0354",
+   "DESCR": "Follow proper procedures when the automatic sprinkler systems was out of service for more than 10 hours.",
+   "CITES": 1224,
+   "HOMES": 1070,
+   "OPEN_CITES": 10,
+   "OPEN_HOMES": 10
+  },
+  {
+   "TAG": "0342",
+   "DESCR": "Have a complete alarm system manually initiated and initiated by fire sprinkler system connection.",
+   "CITES": 581,
+   "HOMES": 538,
+   "OPEN_CITES": 4,
+   "OPEN_HOMES": 4
+  },
+  {
+   "TAG": "0352",
+   "DESCR": "Properly install and monitor supervisory attachments on automatic sprinkler systems.",
+   "CITES": 433,
+   "HOMES": 415,
+   "OPEN_CITES": 6,
+   "OPEN_HOMES": 6
+  },
+  {
+   "TAG": "0400",
+   "DESCR": "Meet fire sprinkler requirement for tall buildings.",
+   "CITES": 14,
+   "HOMES": 14,
+   "OPEN_CITES": 1,
+   "OPEN_HOMES": 1
+  },
+  {
+   "TAG": "0112",
+   "DESCR": "Add automatic sprinklers after major renovation.",
+   "CITES": 3,
+   "HOMES": 3,
+   "OPEN_CITES": 0,
+   "OPEN_HOMES": 0
+  },
+  {
+   "TAG": "0322",
+   "DESCR": "Ensure that laboratories employing quantities of flammable, combustible, or hazardous materials have fire resistant walls and automatic sprinkler system.",
+   "CITES": 1,
+   "HOMES": 1,
+   "OPEN_CITES": 0,
+   "OPEN_HOMES": 0
+  }
+ ],
+ "14 open K0351 Yes homes by state": [
+  {
+   "STATE": "IN",
+   "OPEN_HOMES": 15,
+   "OPEN_CITES": 15,
+   "NO_DATE": 4,
+   "WAIVER": 0,
+   "NO_PLAN": 3,
+   "AVG_DAYS": 35,
+   "MAX_DAYS": 88,
+   "YES_HOMES": 502
+  },
+  {
+   "STATE": "MO",
+   "OPEN_HOMES": 7,
+   "OPEN_CITES": 7,
+   "NO_DATE": 7,
+   "WAIVER": 7,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 717,
+   "MAX_DAYS": 1365,
+   "YES_HOMES": 485
+  },
+  {
+   "STATE": "TX",
+   "OPEN_HOMES": 7,
+   "OPEN_CITES": 7,
+   "NO_DATE": 3,
+   "WAIVER": 0,
+   "NO_PLAN": 3,
+   "AVG_DAYS": 35,
+   "MAX_DAYS": 148,
+   "YES_HOMES": 1172
+  },
+  {
+   "STATE": "MN",
+   "OPEN_HOMES": 5,
+   "OPEN_CITES": 5,
+   "NO_DATE": 2,
+   "WAIVER": 1,
+   "NO_PLAN": 1,
+   "AVG_DAYS": 144,
+   "MAX_DAYS": 638,
+   "YES_HOMES": 338
+  },
+  {
+   "STATE": "HI",
+   "OPEN_HOMES": 4,
+   "OPEN_CITES": 4,
+   "NO_DATE": 3,
+   "WAIVER": 0,
+   "NO_PLAN": 2,
+   "AVG_DAYS": 74,
+   "MAX_DAYS": 112,
+   "YES_HOMES": 42
+  },
+  {
+   "STATE": "NJ",
+   "OPEN_HOMES": 4,
+   "OPEN_CITES": 4,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 63,
+   "MAX_DAYS": 134,
+   "YES_HOMES": 346
+  },
+  {
+   "STATE": "NY",
+   "OPEN_HOMES": 4,
+   "OPEN_CITES": 4,
+   "NO_DATE": 3,
+   "WAIVER": 1,
+   "NO_PLAN": 2,
+   "AVG_DAYS": 752,
+   "MAX_DAYS": 2396,
+   "YES_HOMES": 590
+  },
+  {
+   "STATE": "FL",
+   "OPEN_HOMES": 3,
+   "OPEN_CITES": 3,
+   "NO_DATE": 1,
+   "WAIVER": 0,
+   "NO_PLAN": 1,
+   "AVG_DAYS": 50,
+   "MAX_DAYS": 86,
+   "YES_HOMES": 693
+  },
+  {
+   "STATE": "WI",
+   "OPEN_HOMES": 3,
+   "OPEN_CITES": 4,
+   "NO_DATE": 3,
+   "WAIVER": 1,
+   "NO_PLAN": 1,
+   "AVG_DAYS": 375,
+   "MAX_DAYS": 654,
+   "YES_HOMES": 323
+  },
+  {
+   "STATE": "CA",
+   "OPEN_HOMES": 2,
+   "OPEN_CITES": 2,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 15,
+   "MAX_DAYS": 21,
+   "YES_HOMES": 1160
+  },
+  {
+   "STATE": "AL",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 18,
+   "MAX_DAYS": 18,
+   "YES_HOMES": 224
+  },
+  {
+   "STATE": "AZ",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 56,
+   "MAX_DAYS": 56,
+   "YES_HOMES": 140
+  },
+  {
+   "STATE": "CO",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 106,
+   "MAX_DAYS": 106,
+   "YES_HOMES": 210
+  },
+  {
+   "STATE": "GA",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 57,
+   "MAX_DAYS": 57,
+   "YES_HOMES": 356
+  },
+  {
+   "STATE": "IL",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 1,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 415,
+   "MAX_DAYS": 415,
+   "YES_HOMES": 667
+  },
+  {
+   "STATE": "KY",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 23,
+   "MAX_DAYS": 23,
+   "YES_HOMES": 268
+  },
+  {
+   "STATE": "LA",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 149,
+   "MAX_DAYS": 149,
+   "YES_HOMES": 263
+  },
+  {
+   "STATE": "MD",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 1,
+   "WAIVER": 1,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 763,
+   "MAX_DAYS": 763,
+   "YES_HOMES": 220
+  },
+  {
+   "STATE": "OH",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 1,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 121,
+   "MAX_DAYS": 121,
+   "YES_HOMES": 910
+  },
+  {
+   "STATE": "PA",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 30,
+   "MAX_DAYS": 30,
+   "YES_HOMES": 656
+  },
+  {
+   "STATE": "UT",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 65,
+   "MAX_DAYS": 65,
+   "YES_HOMES": 97
+  },
+  {
+   "STATE": "VT",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 1,
+   "WAIVER": 0,
+   "NO_PLAN": 1,
+   "AVG_DAYS": 919,
+   "MAX_DAYS": 919,
+   "YES_HOMES": 32
+  },
+  {
+   "STATE": "WY",
+   "OPEN_HOMES": 1,
+   "OPEN_CITES": 1,
+   "NO_DATE": 0,
+   "WAIVER": 0,
+   "NO_PLAN": 0,
+   "AVG_DAYS": 36,
+   "MAX_DAYS": 36,
+   "YES_HOMES": 36
+  }
+ ],
+ "15 open K0351 Yes homes age buckets": [
+  {
+   "BUCKET": "a. under 90 days",
+   "CITES": 45,
+   "WAIVER": 0,
+   "NO_PLAN": 10,
+   "HAS_PLAN": 15,
+   "HAS_DATE": 20,
+   "NO_REVISIT": 0
+  },
+  {
+   "BUCKET": "b. 90 days to 1 yr",
+   "CITES": 8,
+   "WAIVER": 0,
+   "NO_PLAN": 1,
+   "HAS_PLAN": 4,
+   "HAS_DATE": 1,
+   "NO_REVISIT": 2
+  },
+  {
+   "BUCKET": "c. 1 to 2 yrs",
+   "CITES": 9,
+   "WAIVER": 6,
+   "NO_PLAN": 2,
+   "HAS_PLAN": 0,
+   "HAS_DATE": 1,
+   "NO_REVISIT": 0
+  },
+  {
+   "BUCKET": "d. 2 to 5 yrs",
+   "CITES": 5,
+   "WAIVER": 4,
+   "NO_PLAN": 1,
+   "HAS_PLAN": 0,
+   "HAS_DATE": 0,
+   "NO_REVISIT": 0
+  },
+  {
+   "BUCKET": "e. over 5 yrs",
+   "CITES": 1,
+   "WAIVER": 1,
+   "NO_PLAN": 0,
+   "HAS_PLAN": 0,
+   "HAS_DATE": 0,
+   "NO_REVISIT": 0
+  }
+ ],
+ "16 open K0351 Yes homes days-open stats": [
+  {
+   "MED": "49.500",
+   "AVG": 213,
+   "MX": 2396,
+   "OVER_1YR": 15
+  }
+ ],
+ "17 open K0351 Yes homes scope": [
+  {
+   "SCOPE": "B",
+   "CITES": 1
+  },
+  {
+   "SCOPE": "C",
+   "CITES": 3
+  },
+  {
+   "SCOPE": "D",
+   "CITES": 12
+  },
+  {
+   "SCOPE": "E",
+   "CITES": 32
+  },
+  {
+   "SCOPE": "F",
+   "CITES": 20
+  }
+ ],
+ "18 open K0351 Yes homes full list": [
+  {
+   "CCN": "335697",
+   "PROVIDER_NAME": "EDDY VILLAGE GREEN",
+   "STATE": "NY",
+   "SURVEY_DATE": "2019-10-09",
+   "SS": "E",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 2396
+  },
+  {
+   "CCN": "265714",
+   "PROVIDER_NAME": "BAISCH NURSING CENTER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2022-08-05",
+   "SS": "F",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 1365
+  },
+  {
+   "CCN": "475032",
+   "PROVIDER_NAME": "Vermont Veterans' Home",
+   "STATE": "VT",
+   "SURVEY_DATE": "2023-10-25",
+   "SS": "B",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 919
+  },
+  {
+   "CCN": "265538",
+   "PROVIDER_NAME": "ASPIRE SENIOR LIVING ROARING RIVER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-03-01",
+   "SS": "F",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 791
+  },
+  {
+   "CCN": "215339",
+   "PROVIDER_NAME": "Anchorage Rehabilitation and Wellness Center",
+   "STATE": "MD",
+   "SURVEY_DATE": "2024-03-29",
+   "SS": "E",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 763
+  },
+  {
+   "CCN": "265475",
+   "PROVIDER_NAME": "MARANATHA VILLAGE, INC",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-04-19",
+   "SS": "E",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 742
+  },
+  {
+   "CCN": "525266",
+   "PROVIDER_NAME": "OAK PARK NURSING AND REHAB CENTER",
+   "STATE": "WI",
+   "SURVEY_DATE": "2024-07-16",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 654
+  },
+  {
+   "CCN": "265414",
+   "PROVIDER_NAME": "SURREY PLACE ST LUKES HOSPITAL SKILLED NURSING",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-08-01",
+   "SS": "E",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 638
+  },
+  {
+   "CCN": "245055",
+   "PROVIDER_NAME": "LAKEHOUSE HEALTHCARE & REHABILITATION CENTER",
+   "STATE": "MN",
+   "SURVEY_DATE": "2024-08-01",
+   "SS": "E",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 638
+  },
+  {
+   "CCN": "525625",
+   "PROVIDER_NAME": "LAKELAND HEALTH CARE CTR",
+   "STATE": "WI",
+   "SURVEY_DATE": "2024-08-29",
+   "SS": "F",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 610
+  },
+  {
+   "CCN": "265460",
+   "PROVIDER_NAME": "CASSVILLE HEALTH CARE CENTER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-10-01",
+   "SS": "F",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 577
+  },
+  {
+   "CCN": "335845",
+   "PROVIDER_NAME": "NORTHEAST CTR FOR REHABILITATION AND BRAIN INJURY",
+   "STATE": "NY",
+   "SURVEY_DATE": "2024-11-21",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 526
+  },
+  {
+   "CCN": "265120",
+   "PROVIDER_NAME": "ST SOPHIA HEALTH & REHABILITATION CENTER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2025-01-28",
+   "SS": "E",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 458
+  },
+  {
+   "CCN": "265864",
+   "PROVIDER_NAME": "SUNTERRA SPRINGS INDEPENDENCE",
+   "STATE": "MO",
+   "SURVEY_DATE": "2025-02-10",
+   "SS": "F",
+   "STATUS": "Waiver has been granted",
+   "CD": null,
+   "DAYS_OPEN": 445
+  },
+  {
+   "CCN": "145612",
+   "PROVIDER_NAME": "PEARL OF CRYSTAL LAKE, THE",
+   "STATE": "IL",
+   "SURVEY_DATE": "2025-03-12",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": null,
+   "DAYS_OPEN": 415
+  },
+  {
+   "CCN": "195570",
+   "PROVIDER_NAME": "ST ANTHONY COMMUNITY CARE CENTER",
+   "STATE": "LA",
+   "SURVEY_DATE": "2025-12-03",
+   "SS": "C",
+   "STATUS": "No revisit needed",
+   "CD": "2026-12-31",
+   "DAYS_OPEN": 149
+  },
+  {
+   "CCN": "675768",
+   "PROVIDER_NAME": "MOUNTAIN VILLA NURSING CENTER",
+   "STATE": "TX",
+   "SURVEY_DATE": "2025-12-04",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 148
+  },
+  {
+   "CCN": "525476",
+   "PROVIDER_NAME": "Luther Home",
+   "STATE": "WI",
+   "SURVEY_DATE": "2025-12-10",
+   "SS": "C",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-09-05",
+   "DAYS_OPEN": 142
+  },
+  {
+   "CCN": "315039",
+   "PROVIDER_NAME": "ROOSEVELT CARE CENTER",
+   "STATE": "NJ",
+   "SURVEY_DATE": "2025-12-18",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-04",
+   "DAYS_OPEN": 134
+  },
+  {
+   "CCN": "366016",
+   "PROVIDER_NAME": "MAIN STREET TERRACE CARE CENTER",
+   "STATE": "OH",
+   "SURVEY_DATE": "2025-12-31",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 121
+  },
+  {
+   "CCN": "125007",
+   "PROVIDER_NAME": "HALE MAKUA - KAHULUI",
+   "STATE": "HI",
+   "SURVEY_DATE": "2026-01-09",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 112
+  },
+  {
+   "CCN": "065278",
+   "PROVIDER_NAME": "PELICAN POINTE HEALTH AND REHABILITATION CENTER",
+   "STATE": "CO",
+   "SURVEY_DATE": "2026-01-15",
+   "SS": "F",
+   "STATUS": "No revisit needed",
+   "CD": "2026-08-10",
+   "DAYS_OPEN": 106
+  },
+  {
+   "CCN": "525625",
+   "PROVIDER_NAME": "LAKELAND HEALTH CARE CTR",
+   "STATE": "WI",
+   "SURVEY_DATE": "2026-01-26",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 95
+  },
+  {
+   "CCN": "155678",
+   "PROVIDER_NAME": "WATERFORD PLACE HEALTH CAMPUS",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-02-02",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-07",
+   "DAYS_OPEN": 88
+  },
+  {
+   "CCN": "105939",
+   "PROVIDER_NAME": "PALMETTO SUBACUTE CARE CENTER",
+   "STATE": "FL",
+   "SURVEY_DATE": "2026-02-04",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-11",
+   "DAYS_OPEN": 86
+  },
+  {
+   "CCN": "125066",
+   "PROVIDER_NAME": "KALAKAUA GARDENS",
+   "STATE": "HI",
+   "SURVEY_DATE": "2026-02-20",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-30",
+   "DAYS_OPEN": 70
+  },
+  {
+   "CCN": "155695",
+   "PROVIDER_NAME": "RIVERSIDE VILLAGE",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-02-24",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-15",
+   "DAYS_OPEN": 66
+  },
+  {
+   "CCN": "465186",
+   "PROVIDER_NAME": "Maple Springs Senior Living",
+   "STATE": "UT",
+   "SURVEY_DATE": "2026-02-25",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-03",
+   "DAYS_OPEN": 65
+  },
+  {
+   "CCN": "125024",
+   "PROVIDER_NAME": "NUUANU HALE",
+   "STATE": "HI",
+   "SURVEY_DATE": "2026-02-27",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 63
+  },
+  {
+   "CCN": "155589",
+   "PROVIDER_NAME": "MILLER'S MERRY MANOR",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-04",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 58
+  },
+  {
+   "CCN": "115654",
+   "PROVIDER_NAME": "Harmony Health and Rehabilitation",
+   "STATE": "GA",
+   "SURVEY_DATE": "2026-03-05",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-19",
+   "DAYS_OPEN": 57
+  },
+  {
+   "CCN": "155606",
+   "PROVIDER_NAME": "WESTSIDE RETIREMENT VILLAGE",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-06",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-14",
+   "DAYS_OPEN": 56
+  },
+  {
+   "CCN": "035106",
+   "PROVIDER_NAME": "TEMPE POST ACUTE",
+   "STATE": "AZ",
+   "SURVEY_DATE": "2026-03-06",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-15",
+   "DAYS_OPEN": 56
+  },
+  {
+   "CCN": "125062",
+   "PROVIDER_NAME": "HALE KUPUNA HERITAGE HOME, LLC",
+   "STATE": "HI",
+   "SURVEY_DATE": "2026-03-12",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 50
+  },
+  {
+   "CCN": "335022",
+   "PROVIDER_NAME": "SANDS POINT CENTER FOR HEALTH AND REHABILITATION",
+   "STATE": "NY",
+   "SURVEY_DATE": "2026-03-13",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 49
+  },
+  {
+   "CCN": "315313",
+   "PROVIDER_NAME": "CAREONE AT CRESSKILL",
+   "STATE": "NJ",
+   "SURVEY_DATE": "2026-03-19",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-04",
+   "DAYS_OPEN": 43
+  },
+  {
+   "CCN": "155637",
+   "PROVIDER_NAME": "CROWN POINT HEALTH CAMPUS",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-23",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-15",
+   "DAYS_OPEN": 39
+  },
+  {
+   "CCN": "315198",
+   "PROVIDER_NAME": "ADROIT CARE REHABILITATION AND NURSING CENTER",
+   "STATE": "NJ",
+   "SURVEY_DATE": "2026-03-24",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-23",
+   "DAYS_OPEN": 38
+  },
+  {
+   "CCN": "245486",
+   "PROVIDER_NAME": "Perham Living",
+   "STATE": "MN",
+   "SURVEY_DATE": "2026-03-24",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-13",
+   "DAYS_OPEN": 38
+  },
+  {
+   "CCN": "155292",
+   "PROVIDER_NAME": "AMERICAN VILLAGE",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-25",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-25",
+   "DAYS_OPEN": 37
+  },
+  {
+   "CCN": "335020",
+   "PROVIDER_NAME": "HEBREW HOME FOR THE AGED AT RIVERDALE",
+   "STATE": "NY",
+   "SURVEY_DATE": "2026-03-25",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 37
+  },
+  {
+   "CCN": "535013",
+   "PROVIDER_NAME": "Granite Rehabilitation and Wellness",
+   "STATE": "WY",
+   "SURVEY_DATE": "2026-03-26",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 36
+  },
+  {
+   "CCN": "105765",
+   "PROVIDER_NAME": "GARDENS NURSING AND REHAB CENTER",
+   "STATE": "FL",
+   "SURVEY_DATE": "2026-03-26",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 36
+  },
+  {
+   "CCN": "155042",
+   "PROVIDER_NAME": "APERION CARE VINCENNES",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-26",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 36
+  },
+  {
+   "CCN": "315014",
+   "PROVIDER_NAME": "BIG OAK REHABILITATION AND HEALTHCARE CENTER",
+   "STATE": "NJ",
+   "SURVEY_DATE": "2026-03-26",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-12",
+   "DAYS_OPEN": 36
+  },
+  {
+   "CCN": "455675",
+   "PROVIDER_NAME": "LANDMARK OF AMARILLO REHABILITATION AND NURSING CE",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-03-26",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 36
+  },
+  {
+   "CCN": "155784",
+   "PROVIDER_NAME": "CREEKSIDE VILLAGE",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-31",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-29",
+   "DAYS_OPEN": 31
+  },
+  {
+   "CCN": "155364",
+   "PROVIDER_NAME": "BYRON HEALTH CENTER",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-31",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 31
+  },
+  {
+   "CCN": "395634",
+   "PROVIDER_NAME": "SOUDERTON MENNONITE HOMES",
+   "STATE": "PA",
+   "SURVEY_DATE": "2026-04-01",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-27",
+   "DAYS_OPEN": 30
+  },
+  {
+   "CCN": "155835",
+   "PROVIDER_NAME": "IGNITE MEDICAL RESORT CROWN POINT LLC",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-02",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 29
+  },
+  {
+   "CCN": "105632",
+   "PROVIDER_NAME": "AVIATA AT HARTS HARBOR",
+   "STATE": "FL",
+   "SURVEY_DATE": "2026-04-02",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 29
+  },
+  {
+   "CCN": "245114",
+   "PROVIDER_NAME": "HARMONY RIVER LIVING CENTER",
+   "STATE": "MN",
+   "SURVEY_DATE": "2026-04-07",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-31",
+   "DAYS_OPEN": 24
+  },
+  {
+   "CCN": "185318",
+   "PROVIDER_NAME": "Lake Barkley Health & Rehabilitation",
+   "STATE": "KY",
+   "SURVEY_DATE": "2026-04-08",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-06",
+   "DAYS_OPEN": 23
+  },
+  {
+   "CCN": "155523",
+   "PROVIDER_NAME": "RICHLAND BEAN BLOSSOM HEALTH CARE CENTER",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-10",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-30",
+   "DAYS_OPEN": 21
+  },
+  {
+   "CCN": "555394",
+   "PROVIDER_NAME": "Buena Vista Care Center",
+   "STATE": "CA",
+   "SURVEY_DATE": "2026-04-10",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-11",
+   "DAYS_OPEN": 21
+  },
+  {
+   "CCN": "676279",
+   "PROVIDER_NAME": "CROWN POINT HEALTH SUITES",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-10",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-08",
+   "DAYS_OPEN": 21
+  },
+  {
+   "CCN": "015398",
+   "PROVIDER_NAME": "MONROE MANOR HEALTH & REHABILITATION CENTER",
+   "STATE": "AL",
+   "SURVEY_DATE": "2026-04-13",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-07",
+   "DAYS_OPEN": 18
+  },
+  {
+   "CCN": "675019",
+   "PROVIDER_NAME": "Apex Secure Care Brownfield",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-14",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-18",
+   "DAYS_OPEN": 17
+  },
+  {
+   "CCN": "245330",
+   "PROVIDER_NAME": "Country Manor Health & Rehab Ctr",
+   "STATE": "MN",
+   "SURVEY_DATE": "2026-04-14",
+   "SS": "C",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-05",
+   "DAYS_OPEN": 17
+  },
+  {
+   "CCN": "155786",
+   "PROVIDER_NAME": "ALLISONVILLE MEADOWS",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-15",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 16
+  },
+  {
+   "CCN": "155824",
+   "PROVIDER_NAME": "WELLBROOKE OF SOUTH BEND",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-20",
+   "SS": "F",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 11
+  },
+  {
+   "CCN": "155852",
+   "PROVIDER_NAME": "HARRISON SPRINGS HEALTH CAMPUS",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-21",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-21",
+   "DAYS_OPEN": 10
+  },
+  {
+   "CCN": "056415",
+   "PROVIDER_NAME": "LYNWOOD POST ACUTE CARE CENTER",
+   "STATE": "CA",
+   "SURVEY_DATE": "2026-04-23",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has date of correction",
+   "CD": "2026-05-15",
+   "DAYS_OPEN": 8
+  },
+  {
+   "CCN": "676192",
+   "PROVIDER_NAME": "GARNET HILL REHABILITATION AND SKILLED CARE",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-23",
+   "SS": "D",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 8
+  },
+  {
+   "CCN": "675746",
+   "PROVIDER_NAME": "Avir at Coronado",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-24",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 7
+  },
+  {
+   "CCN": "676380",
+   "PROVIDER_NAME": "BIG SPRING CENTER FOR SKILLED CARE",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-24",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-06-06",
+   "DAYS_OPEN": 7
+  },
+  {
+   "CCN": "245448",
+   "PROVIDER_NAME": "PARK RIVER HEALTHCARE AND REHABILITATION CENTER LL",
+   "STATE": "MN",
+   "SURVEY_DATE": "2026-04-27",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "CD": null,
+   "DAYS_OPEN": 4
+  },
+  {
+   "CCN": "155324",
+   "PROVIDER_NAME": "MITCHELL MANOR",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-05-01",
+   "SS": "E",
+   "STATUS": "Deficient, Provider has plan of correction",
+   "CD": "2026-05-28",
+   "DAYS_OPEN": 0
+  }
+ ],
+ "19 open K0351 at Partial / Data Not Available homes": [
+  {
+   "FLAG": "Yes",
+   "CITES": 68
+  }
+ ],
+ "20 promised dates past the fire file's own date": [
+  {
+   "N": 4
+  }
+ ],
+ "21 repeat K0351 homes (2+ surveys), Yes flag": [
+  {
+   "HOMES": 570,
+   "THREE_PLUS": 62
+  }
+ ],
+ "22 base rate check: Yes share overall vs cited": [
+  {
+   "YES_SHARE_ALL": "0.995782",
+   "YES_SHARE_CITED": "0.996183"
+  }
+ ],
+ "23 durable 25: later survey check": [
+  {
+   "CCN": "475032",
+   "PROVIDER_NAME": "Vermont Veterans' Home",
+   "STATE": "VT",
+   "SURVEY_DATE": "2023-10-25",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 919,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "525266",
+   "PROVIDER_NAME": "OAK PARK NURSING AND REHAB CENTER",
+   "STATE": "WI",
+   "SURVEY_DATE": "2024-07-16",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 654,
+   "LATER_K_SURVEY": "2025-09-09",
+   "LATER_K0351": 1
+  },
+  {
+   "CCN": "335845",
+   "PROVIDER_NAME": "NORTHEAST CTR FOR REHABILITATION AND BRAIN INJURY",
+   "STATE": "NY",
+   "SURVEY_DATE": "2024-11-21",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 526,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "675768",
+   "PROVIDER_NAME": "MOUNTAIN VILLA NURSING CENTER",
+   "STATE": "TX",
+   "SURVEY_DATE": "2025-12-04",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 148,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "125024",
+   "PROVIDER_NAME": "NUUANU HALE",
+   "STATE": "HI",
+   "SURVEY_DATE": "2026-02-27",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 63,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "125062",
+   "PROVIDER_NAME": "HALE KUPUNA HERITAGE HOME, LLC",
+   "STATE": "HI",
+   "SURVEY_DATE": "2026-03-12",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 50,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "335020",
+   "PROVIDER_NAME": "HEBREW HOME FOR THE AGED AT RIVERDALE",
+   "STATE": "NY",
+   "SURVEY_DATE": "2026-03-25",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 37,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "105765",
+   "PROVIDER_NAME": "GARDENS NURSING AND REHAB CENTER",
+   "STATE": "FL",
+   "SURVEY_DATE": "2026-03-26",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 36,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "155364",
+   "PROVIDER_NAME": "BYRON HEALTH CENTER",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-03-31",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 31,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "155786",
+   "PROVIDER_NAME": "ALLISONVILLE MEADOWS",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-15",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 16,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "155824",
+   "PROVIDER_NAME": "WELLBROOKE OF SOUTH BEND",
+   "STATE": "IN",
+   "SURVEY_DATE": "2026-04-20",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 11,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "676192",
+   "PROVIDER_NAME": "GARNET HILL REHABILITATION AND SKILLED CARE",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-23",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 8,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "675746",
+   "PROVIDER_NAME": "Avir at Coronado",
+   "STATE": "TX",
+   "SURVEY_DATE": "2026-04-24",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 7,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "245448",
+   "PROVIDER_NAME": "PARK RIVER HEALTHCARE AND REHABILITATION CENTER LL",
+   "STATE": "MN",
+   "SURVEY_DATE": "2026-04-27",
+   "STATUS": "Deficient, Provider has no plan of correction",
+   "DAYS_OPEN": 4,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "335697",
+   "PROVIDER_NAME": "EDDY VILLAGE GREEN",
+   "STATE": "NY",
+   "SURVEY_DATE": "2019-10-09",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 2396,
+   "LATER_K_SURVEY": "2025-04-03",
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "265714",
+   "PROVIDER_NAME": "BAISCH NURSING CENTER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2022-08-05",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 1365,
+   "LATER_K_SURVEY": "2025-02-28",
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "265538",
+   "PROVIDER_NAME": "ASPIRE SENIOR LIVING ROARING RIVER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-03-01",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 791,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "215339",
+   "PROVIDER_NAME": "Anchorage Rehabilitation and Wellness Center",
+   "STATE": "MD",
+   "SURVEY_DATE": "2024-03-29",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 763,
+   "LATER_K_SURVEY": "2025-12-10",
+   "LATER_K0351": 1
+  },
+  {
+   "CCN": "265475",
+   "PROVIDER_NAME": "MARANATHA VILLAGE, INC",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-04-19",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 742,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "265414",
+   "PROVIDER_NAME": "SURREY PLACE ST LUKES HOSPITAL SKILLED NURSING",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-08-01",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 638,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "245055",
+   "PROVIDER_NAME": "LAKEHOUSE HEALTHCARE & REHABILITATION CENTER",
+   "STATE": "MN",
+   "SURVEY_DATE": "2024-08-01",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 638,
+   "LATER_K_SURVEY": "2025-08-15",
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "525625",
+   "PROVIDER_NAME": "LAKELAND HEALTH CARE CTR",
+   "STATE": "WI",
+   "SURVEY_DATE": "2024-08-29",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 610,
+   "LATER_K_SURVEY": "2026-01-26",
+   "LATER_K0351": 1
+  },
+  {
+   "CCN": "265460",
+   "PROVIDER_NAME": "CASSVILLE HEALTH CARE CENTER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2024-10-01",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 577,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "265120",
+   "PROVIDER_NAME": "ST SOPHIA HEALTH & REHABILITATION CENTER",
+   "STATE": "MO",
+   "SURVEY_DATE": "2025-01-28",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 458,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  },
+  {
+   "CCN": "265864",
+   "PROVIDER_NAME": "SUNTERRA SPRINGS INDEPENDENCE",
+   "STATE": "MO",
+   "SURVEY_DATE": "2025-02-10",
+   "STATUS": "Waiver has been granted",
+   "DAYS_OPEN": 445,
+   "LATER_K_SURVEY": null,
+   "LATER_K0351": 0
+  }
+ ]
+}

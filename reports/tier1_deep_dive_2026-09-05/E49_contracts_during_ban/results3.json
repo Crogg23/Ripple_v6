@@ -1,0 +1,1232 @@
+{
+ "pos_total": [
+  {
+   "ACTIONS": 218,
+   "AWARDS": 197,
+   "UEIS": 45,
+   "OBL": 15973549,
+   "MED": "4975.000"
+  }
+ ],
+ "pos_awards": [
+  {
+   "AWARD_KEY": "CONT_AWD_HS002110C0006_9700_-NONE-_-NONE-",
+   "OBL": 5125309
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_2023H225C00022_2050_-NONE-_-NONE-",
+   "OBL": 4609253
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1605TB24C0001_1605_-NONE-_-NONE-",
+   "OBL": 1911369
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_S5105A11C0013_9700_-NONE-_-NONE-",
+   "OBL": 437351
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_FA301623F0090_9700_47QRAA19D0007_4732",
+   "OBL": 359607
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_HHSN276200800478U_7529_GS10F0231K_4730",
+   "OBL": 350691
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912LA20C0006_9700_-NONE-_-NONE-",
+   "OBL": 280250
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_FA60_9700_N0024411D0039_9700",
+   "OBL": 251866
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912JM23P0022_9700_-NONE-_-NONE-",
+   "OBL": 170590
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_89303023CMA000093_8900_-NONE-_-NONE-",
+   "OBL": 163000
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_N3904025P1058_9700_-NONE-_-NONE-",
+   "OBL": 124006
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_TIRNO16T00057_2050_GS06F0912Z_4732",
+   "OBL": 100375
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_H742_9700_N0024411D0033_9700",
+   "OBL": 98150
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0003_9700_N4008513D1334_9700",
+   "OBL": 92122
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K612P0162_9700_-NONE-_-NONE-",
+   "OBL": 84100
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0702_9700_N4008507D0414_9700",
+   "OBL": 80874
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912LR23P0085_9700_-NONE-_-NONE-",
+   "OBL": 77025
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L124F4006_9700_SPE7L020D5001_9700",
+   "OBL": 68735
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_47PK0224F0001_4740_47PK0223A0007_4740",
+   "OBL": 64657
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_36C24224P0845_3600_-NONE-_-NONE-",
+   "OBL": 55150
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912L125PA023_9700_-NONE-_-NONE-",
+   "OBL": 54200
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_12024B24M0181_12C2_12024B24T7020_12C2",
+   "OBL": 53560
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7LX23F00EJ_9700_SPE7LX20D0112_9700",
+   "OBL": 49152
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_HT941024F0125_9700_47QRAA23D003Y_4732",
+   "OBL": 42900
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_50310219F0191_5000_GS35F0367V_4730",
+   "OBL": 42850
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W81K0423P0011_9700_-NONE-_-NONE-",
+   "OBL": 41944
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0014_9700_W91ZLK07D0114_9700",
+   "OBL": 40000
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1202SB24M0689_12C2_1202SB23T7075_12C2",
+   "OBL": 37057
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_N6833516P0440_9700_-NONE-_-NONE-",
+   "OBL": 35200
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_12024B24M0158_12C2_12024B24T7050_12C2",
+   "OBL": 33725
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L124F9460_9700_SPE7LX19D0209_9700",
+   "OBL": 33684
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_H730_9700_N0024411D0039_9700",
+   "OBL": 32112
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F463E_9700_SPE4A220D0002_9700",
+   "OBL": 28973
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F2907_9700_SPE4A220D0002_9700",
+   "OBL": 28973
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_IND11PX19208_1406_-NONE-_-NONE-",
+   "OBL": 28395
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE30225F2K3E_9700_SPE30224A0006_9700",
+   "OBL": 25242
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1264PP19P0024_12H2_-NONE-_-NONE-",
+   "OBL": 24760
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W81K0018F0246_9700_W81K0018D0014_9700",
+   "OBL": 23725
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K612P0087_9700_-NONE-_-NONE-",
+   "OBL": 23650
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W56HZV19F0284_9700_W56HZV17D0066_9700",
+   "OBL": 21874
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K615P0045_9700_-NONE-_-NONE-",
+   "OBL": 21550
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W911WN20P8005_9700_-NONE-_-NONE-",
+   "OBL": 20000
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SP330025F0537_9700_SP330024A5007_9700",
+   "OBL": 19097
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M524P0522_9700_-NONE-_-NONE-",
+   "OBL": 18895
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K615P0019_9700_-NONE-_-NONE-",
+   "OBL": 18650
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K613P0043_9700_-NONE-_-NONE-",
+   "OBL": 18525
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_FA16_9700_N0024411D0039_9700",
+   "OBL": 18031
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_65310222F00008_6500_GS07F0098V_4730",
+   "OBL": 17189
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0005_9700_N4034513D0004_9700",
+   "OBL": 17129
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L124F9604_9700_SPE7LX19D0209_9700",
+   "OBL": 16842
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L026F0205_9700_SPE7L425D61BB_9700",
+   "OBL": 16800
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1202SB24M0646_12C2_1202SB23T7075_12C2",
+   "OBL": 16456
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A723F101C_9700_SPE4A620D5AL0_9700",
+   "OBL": 16324
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_19CU0422P0198_1900_-NONE-_-NONE-",
+   "OBL": 16250
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K612P0131_9700_-NONE-_-NONE-",
+   "OBL": 16200
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPP140066_12H2_-NONE-_-NONE-",
+   "OBL": 15668
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K614P0038_9700_-NONE-_-NONE-",
+   "OBL": 15600
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K613P0040_9700_-NONE-_-NONE-",
+   "OBL": 15125
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64R4P120057_12C2_-NONE-_-NONE-",
+   "OBL": 14950
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1264PP19P0025_12H2_-NONE-_-NONE-",
+   "OBL": 14782
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M126F0838_9700_SPE7M526D60CU_9700",
+   "OBL": 14248
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W25G1V09P4103_9700_-NONE-_-NONE-",
+   "OBL": 14000
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_70FA4024P00000053_7022_-NONE-_-NONE-",
+   "OBL": 12233
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_140F0620P0177_1448_-NONE-_-NONE-",
+   "OBL": 12085
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_15F06723F0002088_1549_NNG15SD36B_8000",
+   "OBL": 11741
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M126F3569_9700_SPE7M826D60CC_9700",
+   "OBL": 11000
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M126F0877_9700_SPE7M226D60CK_9700",
+   "OBL": 10669
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_2032H825C00010_2050_-NONE-_-NONE-",
+   "OBL": 10663
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64R4P120045_12C2_-NONE-_-NONE-",
+   "OBL": 10005
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_DJBPOLHVP130264_1540_-NONE-_-NONE-",
+   "OBL": 9645
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPC11AA15_12H2_-NONE-_-NONE-",
+   "OBL": 9531
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_36C26218F6992_3600_NNG15SD36B_8000",
+   "OBL": 9376
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_VA69D14J0057_3600_VA69DP1402_3600",
+   "OBL": 9130
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912K614P0045_9700_-NONE-_-NONE-",
+   "OBL": 8650
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F0638_9700_SPE4A621D5611_9700",
+   "OBL": 8500
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0005_9700_N4008513D1334_9700",
+   "OBL": 7750
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V640P9D267_3600_-NONE-_-NONE-",
+   "OBL": 7408
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F414U_9700_SPE4A623D5C93_9700",
+   "OBL": 7245
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F2779_9700_SPE4A621D5611_9700",
+   "OBL": 7063
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0004_9700_N4008513D1334_9700",
+   "OBL": 6900
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F4385_9700_SPE4A621D5611_9700",
+   "OBL": 6563
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F125P_9700_SPE4A621D5611_9700",
+   "OBL": 6563
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_15B10624P00000231_1540_-NONE-_-NONE-",
+   "OBL": 6466
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPC08AA55_12H2_-NONE-_-NONE-",
+   "OBL": 6402
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64R4P160044_12C2_-NONE-_-NONE-",
+   "OBL": 6400
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPC08AA12_12H2_-NONE-_-NONE-",
+   "OBL": 6370
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_33330522P00467195_3300_-NONE-_-NONE-",
+   "OBL": 6075
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPM4A707M6358_9700_-NONE-_-NONE-",
+   "OBL": 5970
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V589CA1195_3600_-NONE-_-NONE-",
+   "OBL": 5766
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M226V0840_9700_-NONE-_-NONE-",
+   "OBL": 5597
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_INF336409M009_1448_-NONE-_-NONE-",
+   "OBL": 5501
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPP140051_12H2_-NONE-_-NONE-",
+   "OBL": 5392
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F376S_9700_SPE4A623D5B24_9700",
+   "OBL": 5350
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPC08AA11_12H2_-NONE-_-NONE-",
+   "OBL": 5216
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0006_9700_N4008513D1334_9700",
+   "OBL": 5000
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L126F8775_9700_SPE7L425D62SP_9700",
+   "OBL": 4950
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A626F0467_9700_SPE4A623D5C95_9700",
+   "OBL": 4830
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F120M_9700_SPE4A623D5C93_9700",
+   "OBL": 4725
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F1115_9700_SPE4A623D5C93_9700",
+   "OBL": 4725
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M226V0625_9700_-NONE-_-NONE-",
+   "OBL": 4712
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPP150043_12H2_-NONE-_-NONE-",
+   "OBL": 4600
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1145PC23F0477_1145_GS07F0098V_4730",
+   "OBL": 4600
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F8971_9700_SPE4A623D5B24_9700",
+   "OBL": 4564
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG64PPC09AA09_12H2_-NONE-_-NONE-",
+   "OBL": 4464
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_AG04GGP089036_12C2_-NONE-_-NONE-",
+   "OBL": 4387
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L126F0236_9700_SPE7L425D62BS_9700",
+   "OBL": 4200
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L125F9666_9700_SPE7L425D62BS_9700",
+   "OBL": 4200
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M422P1517_9700_-NONE-_-NONE-",
+   "OBL": 4126
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L026F0250_9700_SPE7LX25D60HY_9700",
+   "OBL": 4016
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F149M_9700_SPE4A623D5C95_9700",
+   "OBL": 3972
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V589Q12112_3600_-NONE-_-NONE-",
+   "OBL": 3844
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625F091P_9700_SPE4A623D5C93_9700",
+   "OBL": 3780
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L026F0482_9700_SPE7LX25D60HY_9700",
+   "OBL": 3263
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W91YTZ23P0005_9700_-NONE-_-NONE-",
+   "OBL": 3254
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L323P1762_9700_-NONE-_-NONE-",
+   "OBL": 2722
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M422P1779_9700_-NONE-_-NONE-",
+   "OBL": 2706
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A624F272R_9700_SPE4A623D5B24_9700",
+   "OBL": 2670
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L026F3828_9700_SPE7L325D62CT_9700",
+   "OBL": 2520
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_H721_9700_N0024411D0033_9700",
+   "OBL": 2500
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M424F1284_9700_SPE7MC22D5001_9700",
+   "OBL": 2460
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W25G1V15P0481_9700_-NONE-_-NONE-",
+   "OBL": 2358
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W25G1V15P1862_9700_-NONE-_-NONE-",
+   "OBL": 2132
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M422P3005_9700_-NONE-_-NONE-",
+   "OBL": 2107
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A724P1269_9700_-NONE-_-NONE-",
+   "OBL": 2094
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M422P4329_9700_-NONE-_-NONE-",
+   "OBL": 1999
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M422P2541_9700_-NONE-_-NONE-",
+   "OBL": 1812
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W25G1V15P0591_9700_-NONE-_-NONE-",
+   "OBL": 1760
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_1333BJ25F00124001_1344_1333BJ23A01150001_1344",
+   "OBL": 1706
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W912DW21P0060_9700_-NONE-_-NONE-",
+   "OBL": 1504
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M122F682B_9700_SPE7M522D60HJ_9700",
+   "OBL": 1481
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_41311424F0063MSP_4100_41311423A0002MSP_4100",
+   "OBL": 1267
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_N0018313F0075_9700_GS06F1031Z_4732",
+   "OBL": 1243
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE8E624P0046_9700_-NONE-_-NONE-",
+   "OBL": 1183
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_0087_9700_N4034511D0016_9700",
+   "OBL": 1129
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L223F0911_9700_SPE7L322D62YU_9700",
+   "OBL": 1090
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M322P1883_9700_-NONE-_-NONE-",
+   "OBL": 1005
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE8E724P0115_9700_-NONE-_-NONE-",
+   "OBL": 990
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7L126P0874_9700_-NONE-_-NONE-",
+   "OBL": 940
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V644Q84329_3600_-NONE-_-NONE-",
+   "OBL": 698
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A725F8976_9700_SPE4A725D5311_9700",
+   "OBL": 680
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V6308M1139_3600_-NONE-_-NONE-",
+   "OBL": 588
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V5758PE333_3600_-NONE-_-NONE-",
+   "OBL": 530
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M322P1765_9700_-NONE-_-NONE-",
+   "OBL": 495
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A726F2339_9700_SPE4A725D5311_9700",
+   "OBL": 492
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V539Q81897_3600_-NONE-_-NONE-",
+   "OBL": 487
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V578R86349_3600_-NONE-_-NONE-",
+   "OBL": 467
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M522P3219_9700_-NONE-_-NONE-",
+   "OBL": 452
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q87717_3600_-NONE-_-NONE-",
+   "OBL": 426
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A725F8413_9700_SPE4A725D5311_9700",
+   "OBL": 375
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M322P1844_9700_-NONE-_-NONE-",
+   "OBL": 375
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE8E924V0204_9700_-NONE-_-NONE-",
+   "OBL": 349
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M022P1420_9700_-NONE-_-NONE-",
+   "OBL": 343
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE8E624P0044_9700_-NONE-_-NONE-",
+   "OBL": 335
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V644Q84306_3600_-NONE-_-NONE-",
+   "OBL": 310
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_89233024FNR400108_8900_GS07F0098V_4730",
+   "OBL": 306
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_W25G1V15P1607_9700_-NONE-_-NONE-",
+   "OBL": 301
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V589Q8K292_3600_-NONE-_-NONE-",
+   "OBL": 264
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V687P81962_3600_-NONE-_-NONE-",
+   "OBL": 249
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M022P1450_9700_-NONE-_-NONE-",
+   "OBL": 227
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M322P1800_9700_-NONE-_-NONE-",
+   "OBL": 224
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE4A625PE729_9700_-NONE-_-NONE-",
+   "OBL": 223
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_N6809606M7859_9700_-NONE-_-NONE-",
+   "OBL": 222
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V620R81424_3600_-NONE-_-NONE-",
+   "OBL": 198
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q87720_3600_-NONE-_-NONE-",
+   "OBL": 166
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88112_3600_-NONE-_-NONE-",
+   "OBL": 159
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V6488L0065_3600_-NONE-_-NONE-",
+   "OBL": 147
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V660Q83152_3600_-NONE-_-NONE-",
+   "OBL": 145
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V660Q89985_3600_-NONE-_-NONE-",
+   "OBL": 145
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q87710_3600_-NONE-_-NONE-",
+   "OBL": 142
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V578R86467_3600_-NONE-_-NONE-",
+   "OBL": 125
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V632R86768_3600_-NONE-_-NONE-",
+   "OBL": 121
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V632R88356_3600_-NONE-_-NONE-",
+   "OBL": 110
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V648Q85461_3600_-NONE-_-NONE-",
+   "OBL": 99
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88064_3600_-NONE-_-NONE-",
+   "OBL": 95
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V648Q84386_3600_-NONE-_-NONE-",
+   "OBL": 93
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q87713_3600_-NONE-_-NONE-",
+   "OBL": 85
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V676R81053_3600_-NONE-_-NONE-",
+   "OBL": 70
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V648Q80459_3600_-NONE-_-NONE-",
+   "OBL": 67
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V648Q83352_3600_-NONE-_-NONE-",
+   "OBL": 66
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V6488P2614_3600_-NONE-_-NONE-",
+   "OBL": 66
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V660Q88521_3600_-NONE-_-NONE-",
+   "OBL": 58
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V632R86439_3600_-NONE-_-NONE-",
+   "OBL": 51
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V595PROSFY08006961700_3600_-NONE-_-NONE-",
+   "OBL": 40
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88062_3600_-NONE-_-NONE-",
+   "OBL": 40
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_SPE7M825P2237_9700_-NONE-_-NONE-",
+   "OBL": 29
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88061_3600_-NONE-_-NONE-",
+   "OBL": 29
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V660Q86103_3600_-NONE-_-NONE-",
+   "OBL": 25
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V660Q84546_3600_-NONE-_-NONE-",
+   "OBL": 24
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88063_3600_-NONE-_-NONE-",
+   "OBL": 22
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V693P82801_3600_-NONE-_-NONE-",
+   "OBL": 20
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V648Q80691_3600_-NONE-_-NONE-",
+   "OBL": 20
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88101_3600_-NONE-_-NONE-",
+   "OBL": 20
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V648Q83731_3600_-NONE-_-NONE-",
+   "OBL": 18
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V693P8A204_3600_-NONE-_-NONE-",
+   "OBL": 18
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88068_3600_-NONE-_-NONE-",
+   "OBL": 15
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_INPV132009P006_1443_-NONE-_-NONE-",
+   "OBL": 12
+  },
+  {
+   "AWARD_KEY": "CONT_AWD_V663Q88707_3600_-NONE-_-NONE-",
+   "OBL": 9
+  }
+ ],
+ "pos_award_buckets": [
+  {
+   "KIND": "started before ban",
+   "BUCKET": "$100k-1M",
+   "AWARDS": 3,
+   "OBL": 646613
+  },
+  {
+   "KIND": "started before ban",
+   "BUCKET": "$10k-100k",
+   "AWARDS": 12,
+   "OBL": 425359
+  },
+  {
+   "KIND": "started before ban",
+   "BUCKET": "$1M+",
+   "AWARDS": 2,
+   "OBL": 6520622
+  },
+  {
+   "KIND": "started before ban",
+   "BUCKET": "$1k-10k",
+   "AWARDS": 7,
+   "OBL": 29012
+  },
+  {
+   "KIND": "started before ban",
+   "BUCKET": "under $1k",
+   "AWARDS": 1,
+   "OBL": 306
+  },
+  {
+   "KIND": "started during ban",
+   "BUCKET": "$100k-1M",
+   "AWARDS": 6,
+   "OBL": 1591123
+  },
+  {
+   "KIND": "started during ban",
+   "BUCKET": "$10k-100k",
+   "AWARDS": 45,
+   "OBL": 1348137
+  },
+  {
+   "KIND": "started during ban",
+   "BUCKET": "$1M+",
+   "AWARDS": 1,
+   "OBL": 5125309
+  },
+  {
+   "KIND": "started during ban",
+   "BUCKET": "$1k-10k",
+   "AWARDS": 60,
+   "OBL": 273477
+  },
+  {
+   "KIND": "started during ban",
+   "BUCKET": "under $1k",
+   "AWARDS": 60,
+   "OBL": 13591
+  }
+ ],
+ "lag_new": [
+  {
+   "LAG": "31-90 days",
+   "AWARDS": 16,
+   "OBL": 143330
+  },
+  {
+   "LAG": "over a year",
+   "AWARDS": 83,
+   "OBL": 1447243
+  },
+  {
+   "LAG": "0-7 days",
+   "AWARDS": 26,
+   "OBL": 269862
+  },
+  {
+   "LAG": "91-365 days",
+   "AWARDS": 32,
+   "OBL": 5828886
+  },
+  {
+   "LAG": "8-30 days",
+   "AWARDS": 15,
+   "OBL": 662316
+  }
+ ],
+ "uei_pos_new": [
+  {
+   "UEI": "NFN5E1XTXHM4",
+   "RECIPIENT": "NOVA DATACOM LLC",
+   "EXCL_BY": "SBA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2011-11-02",
+   "AWARDS": 4,
+   "OBL": 5592298
+  },
+  {
+   "UEI": "MF2EK7DVX8K3",
+   "RECIPIENT": "BONUS ENVIRONMENTAL LLC",
+   "EXCL_BY": "EPA",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2012-06-01",
+   "AWARDS": 14,
+   "OBL": 839315
+  },
+  {
+   "UEI": "WMK7NK9JBHH9",
+   "RECIPIENT": "QUANTELL, INC.",
+   "EXCL_BY": "USN",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2014-10-29",
+   "AWARDS": 5,
+   "OBL": 402659
+  },
+  {
+   "UEI": "LHKPCBXXLJQ6",
+   "RECIPIENT": "HANFORD NUCLEAR SERVICES INC",
+   "EXCL_BY": "HHS",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2010-01-20",
+   "AWARDS": 1,
+   "OBL": 350691
+  },
+  {
+   "UEI": "TJANTA2CN9T5",
+   "RECIPIENT": "MFA INCORPORATED",
+   "EXCL_BY": "EPA",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2007-10-03",
+   "AWARDS": 17,
+   "OBL": 155736
+  },
+  {
+   "UEI": "DLDBNGNA7CB6",
+   "RECIPIENT": "A & S SKILL MACHINISTS, INC.",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Voluntary Exclusion",
+   "BAN_START": "2023-10-26",
+   "AWARDS": 18,
+   "OBL": 150475
+  },
+  {
+   "UEI": "X2SYT2X38N91",
+   "RECIPIENT": "W. P. MAHON, INC.",
+   "EXCL_BY": "SBA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2013-08-27",
+   "AWARDS": 4,
+   "OBL": 111772
+  },
+  {
+   "UEI": "Q54JKCJTAP64",
+   "RECIPIENT": "CONSUMMATE COMPUTER CONSULTANTS SYSTEMS LLC",
+   "EXCL_BY": "HUD",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2018-08-31",
+   "AWARDS": 1,
+   "OBL": 100375
+  },
+  {
+   "UEI": "FWFKEFLA33J1",
+   "RECIPIENT": "KIT CONTRACTING LLC",
+   "EXCL_BY": null,
+   "EXCL_TYPE": "Ineligible (Proceedings Complete)",
+   "BAN_START": "2024-07-02",
+   "AWARDS": 2,
+   "OBL": 87285
+  },
+  {
+   "UEI": "JS4MKELAQMH6",
+   "RECIPIENT": "CFP GROUP, INC., THE",
+   "EXCL_BY": "SBA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2014-01-16",
+   "AWARDS": 1,
+   "OBL": 80874
+  },
+  {
+   "UEI": "QCJ9FY51KBQ8",
+   "RECIPIENT": "JML LOGISTICS LLC",
+   "EXCL_BY": "USA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2023-12-20",
+   "AWARDS": 1,
+   "OBL": 68735
+  },
+  {
+   "UEI": "LGMDA8NYH8J8",
+   "RECIPIENT": "MUD LAKE OIL INC",
+   "EXCL_BY": "USDA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2024-06-03",
+   "AWARDS": 2,
+   "OBL": 53513
+  },
+  {
+   "UEI": "LE1DXMTLN3R4",
+   "RECIPIENT": "SHORE SOLUTIONS, INC.",
+   "EXCL_BY": "TSA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2024-04-09",
+   "AWARDS": 2,
+   "OBL": 50526
+  },
+  {
+   "UEI": "W37AA8ZG6TN8",
+   "RECIPIENT": "TARGET CORPORATION",
+   "EXCL_BY": "EPA",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2006-09-25",
+   "AWARDS": 46,
+   "OBL": 32334
+  },
+  {
+   "UEI": "N2EDPB1SMN55",
+   "RECIPIENT": "BELLA MIA DONNA LLC",
+   "EXCL_BY": null,
+   "EXCL_TYPE": "Ineligible (Proceedings Complete)",
+   "BAN_START": "2025-11-19",
+   "AWARDS": 3,
+   "OBL": 30514
+  },
+  {
+   "UEI": "F7TPLEDAU2V8",
+   "RECIPIENT": "DEFENSE TECHNOLOGIES MANUFACTURING LLC",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2025-09-04",
+   "AWARDS": 4,
+   "OBL": 26140
+  },
+  {
+   "UEI": "JECQDHMDCNM8",
+   "RECIPIENT": "DUBAI ENTERPRISES COMPANY",
+   "EXCL_BY": "USA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2025-01-25",
+   "AWARDS": 1,
+   "OBL": 25242
+  },
+  {
+   "UEI": "R8TJQ9KKLJJ7",
+   "RECIPIENT": "JS SDVO, LLC",
+   "EXCL_BY": "DOI",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2019-02-19",
+   "AWARDS": 1,
+   "OBL": 21874
+  },
+  {
+   "UEI": "V6QDML49NW17",
+   "RECIPIENT": "PRESCIENT TECHNOLOGIES, LLC",
+   "EXCL_BY": "DOL",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2025-05-28",
+   "AWARDS": 1,
+   "OBL": 19097
+  },
+  {
+   "UEI": "N4LEDNXMF5D7",
+   "RECIPIENT": "PARAGON DEFENSE SOLUTIONS INC",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2023-08-29",
+   "AWARDS": 2,
+   "OBL": 18784
+  },
+  {
+   "UEI": "VZLQJKQB5JJ5",
+   "RECIPIENT": "JAYNOON LOGISTICS, LLC",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2026-05-19",
+   "AWARDS": 3,
+   "OBL": 18470
+  },
+  {
+   "UEI": "TTVMGAH4M441",
+   "RECIPIENT": "NAMTEK CORP.",
+   "EXCL_BY": "USN",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2021-11-17",
+   "AWARDS": 2,
+   "OBL": 17816
+  },
+  {
+   "UEI": "MA65JMMALKU5",
+   "RECIPIENT": "",
+   "EXCL_BY": "OFAC",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2020-12-21",
+   "AWARDS": 1,
+   "OBL": 16250
+  },
+  {
+   "UEI": "JJP9YQ5QLZK5",
+   "RECIPIENT": "ARAPAHO PIPE & SUPPLY LP",
+   "EXCL_BY": "DOJ",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2022-02-08",
+   "AWARDS": 12,
+   "OBL": 15871
+  },
+  {
+   "UEI": "D842MD8K3KT5",
+   "RECIPIENT": "ANDERSON COURT REPORTING, LLC",
+   "EXCL_BY": "DOL",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2024-07-19",
+   "AWARDS": 3,
+   "OBL": 15206
+  },
+  {
+   "UEI": "ENDKDHKKEQH1",
+   "RECIPIENT": "TAMMANY HOLDING CORPORATION",
+   "EXCL_BY": "EPA",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2002-07-24",
+   "AWARDS": 1,
+   "OBL": 9645
+  },
+  {
+   "UEI": "MJ8SPL11N3Q3",
+   "RECIPIENT": "NH ENVIRONMENTAL GROUP, INC",
+   "EXCL_BY": "EPA",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2014-03-14",
+   "AWARDS": 1,
+   "OBL": 9130
+  },
+  {
+   "UEI": "TXK3TRQAWQ87",
+   "RECIPIENT": "AYPIK SAVUNMA SISTEMLERI SANAYI VE TICARET LIMITED SIRKETI",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2025-09-04",
+   "AWARDS": 2,
+   "OBL": 7279
+  },
+  {
+   "UEI": "QCNSBL3VBJT4",
+   "RECIPIENT": "ROBERTS CHEMICAL CO INC",
+   "EXCL_BY": "EPA",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2014-10-06",
+   "AWARDS": 4,
+   "OBL": 6551
+  },
+  {
+   "UEI": "GUVKVVAPBJL3",
+   "RECIPIENT": "MIL-CRAFT MFG., INC.",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2007-11-15",
+   "AWARDS": 1,
+   "OBL": 5970
+  },
+  {
+   "UEI": "D5PTSL37F4U1",
+   "RECIPIENT": "JACOB BURKE",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2025-11-10",
+   "AWARDS": 1,
+   "OBL": 4712
+  },
+  {
+   "UEI": "QZ2ZBKPLD5F3",
+   "RECIPIENT": "NOVA SYSTEMS LLC",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2023-10-26",
+   "AWARDS": 3,
+   "OBL": 1867
+  },
+  {
+   "UEI": "FZHNUCVNZPK4",
+   "RECIPIENT": "CLEM DIRECT RETAIL LLC",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2025-07-14",
+   "AWARDS": 4,
+   "OBL": 1576
+  },
+  {
+   "UEI": "M5AMB1SGN3J4",
+   "RECIPIENT": "A & E ELECTRONICS LLC",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2022-04-19",
+   "AWARDS": 1,
+   "OBL": 1481
+  },
+  {
+   "UEI": "MNPEJLSU4LS7",
+   "RECIPIENT": "GLENN DEFENSE MARINE (ASIA) PTE. LTD.",
+   "EXCL_BY": "USN",
+   "EXCL_TYPE": "Ineligible (Proceedings Completed)",
+   "BAN_START": "2013-09-19",
+   "AWARDS": 1,
+   "OBL": 1129
+  },
+  {
+   "UEI": "GXF4NN8S4W66",
+   "RECIPIENT": "SMITH & JAMISON CORPORATION",
+   "EXCL_BY": "DLA",
+   "EXCL_TYPE": "Ineligible (Proceedings Pending)",
+   "BAN_START": "2025-02-10",
+   "AWARDS": 1,
+   "OBL": 223
+  },
+  {
+   "UEI": "CLTCPSP9BQK8",
+   "RECIPIENT": "BIO-MED PLUS INC",
+   "EXCL_BY": "HHS",
+   "EXCL_TYPE": "Prohibition/Restriction",
+   "BAN_START": "2007-11-20",
+   "AWARDS": 1,
+   "OBL": 222
+  }
+ ],
+ "parse": [
+  {
+   "N": 128655,
+   "BAD_OBL": 0,
+   "BAD_DATE": 0
+  }
+ ]
+}

@@ -557,28 +557,18 @@ SPECS = [
     {
         "source_id": "FED_USASPENDING_CONTRACTS_FULL",
         "name": "USASpending Federal Contract Awards (FY2007-FY2026, all agencies)",
-        "manifest": [
-            "https://files.usaspending.gov/award_data_archive/FY2007_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2008_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2009_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2010_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2011_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2012_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2013_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2014_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2015_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2016_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2017_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2018_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2019_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2020_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2021_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2022_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2023_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2024_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2025_All_Contracts_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2026_All_Contracts_Full_20260706.zip",
-        ],
+        "manifest": {
+            # USAspending deletes last month's archive, so a literal list of dated
+            # URLs 404s on their schedule. Read the bucket listing instead and take
+            # whichever snapshot is live today.
+            "type": "regex",
+            "url": "https://files.usaspending.gov/award_data_archive/",
+            "path": r"<Key>(FY\d{4}_All_Contracts_Full_\d{8}\.zip)</Key>",
+            "base": "https://files.usaspending.gov/award_data_archive/",
+            "paginate": "s3",
+            "latest_re": r"_(\d{8})\.zip$",
+            "expect_files": 20,          # FY2007-FY2026; a short resolve is a sweep
+        },
         "kind": "zip",
         "member_pattern": r"\.csv$",
         "delimiter": ",",
@@ -607,28 +597,18 @@ SPECS = [
     {
         "source_id": "FED_USASPENDING_ASSISTANCE_FULL",
         "name": "USASpending Federal Assistance Awards (FY2007-FY2026, all agencies)",
-        "manifest": [
-            "https://files.usaspending.gov/award_data_archive/FY2007_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2008_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2009_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2010_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2011_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2012_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2013_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2014_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2015_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2016_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2017_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2018_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2019_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2020_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2021_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2022_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2023_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2024_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2025_All_Assistance_Full_20260706.zip",
-            "https://files.usaspending.gov/award_data_archive/FY2026_All_Assistance_Full_20260706.zip",
-        ],
+        "manifest": {
+            # USAspending deletes last month's archive, so a literal list of dated
+            # URLs 404s on their schedule. Read the bucket listing instead and take
+            # whichever snapshot is live today.
+            "type": "regex",
+            "url": "https://files.usaspending.gov/award_data_archive/",
+            "path": r"<Key>(FY\d{4}_All_Assistance_Full_\d{8}\.zip)</Key>",
+            "base": "https://files.usaspending.gov/award_data_archive/",
+            "paginate": "s3",
+            "latest_re": r"_(\d{8})\.zip$",
+            "expect_files": 20,          # FY2007-FY2026; a short resolve is a sweep
+        },
         "kind": "zip",
         "member_pattern": r"\.csv$",
         "delimiter": ",",

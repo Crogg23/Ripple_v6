@@ -1,0 +1,1803 @@
+{
+ "hh_keys": [
+  {
+   "N": 12392,
+   "D": 12392,
+   "MN": 6,
+   "MX": 6
+  }
+ ],
+ "he_keys": [
+  {
+   "N": 11508,
+   "D": 11508,
+   "A": 10223,
+   "NPI": 11467,
+   "SUFFIXED": 95
+  }
+ ],
+ "ho_keys": [
+  {
+   "N": 9175,
+   "D": 9175,
+   "A": 5280
+  }
+ ],
+ "star_values": [
+  {
+   "S": "-",
+   "N": 4431
+  },
+  {
+   "S": "1",
+   "N": 156
+  },
+  {
+   "S": "1.5",
+   "N": 593
+  },
+  {
+   "S": "2",
+   "N": 778
+  },
+  {
+   "S": "2.5",
+   "N": 963
+  },
+  {
+   "S": "3",
+   "N": 1347
+  },
+  {
+   "S": "3.5",
+   "N": 1338
+  },
+  {
+   "S": "4",
+   "N": 1287
+  },
+  {
+   "S": "4.5",
+   "N": 1041
+  },
+  {
+   "S": "5",
+   "N": 458
+  }
+ ],
+ "star_footnotes": [
+  {
+   "GRP": "hospital-owned",
+   "F": "The number of patient episodes for this measure is too small to report.",
+   "N": 27
+  },
+  {
+   "GRP": "independent",
+   "F": "The number of patient episodes for this measure is too small to report.",
+   "N": 3485
+  },
+  {
+   "GRP": "independent",
+   "F": "This agency provides services to a special needs population. For more information click here: https://profiles.health.ny.gov/home_care/special_needs, The number of patient episodes for this measure is too small to report.",
+   "N": 3
+  },
+  {
+   "GRP": "not in PECOS",
+   "F": "The number of patient episodes for this measure is too small to report.",
+   "N": 916
+  }
+ ],
+ "survey_tables": [
+  {
+   "TABLE_SCHEMA": "LANDING",
+   "TABLE_NAME": "FED_CMS_HOME_HEALTH"
+  },
+  {
+   "TABLE_SCHEMA": "LANDING",
+   "TABLE_NAME": "FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS"
+  }
+ ],
+ "suffix_parents": [
+  {
+   "N": 95,
+   "PARENT_IN_CARE_COMPARE": 95
+  }
+ ],
+ "owned_stripped": [
+  {
+   "HHA": 530
+  }
+ ],
+ "owners": [
+  {
+   "SYSTEMS": 475,
+   "HOSPITAL_CCN": 1223,
+   "HHA": 530
+  }
+ ],
+ "big_owners": [
+  {
+   "ASSOCIATE_ID": "6800707456",
+   "HOSP": "KAISER FOUNDATION HOSPITALS",
+   "HHAS": 16
+  },
+  {
+   "ASSOCIATE_ID": "0840107835",
+   "HOSP": "APPALACHIAN REGIONAL HEALTHCARE INC",
+   "HHAS": 8
+  },
+  {
+   "ASSOCIATE_ID": "1850209420",
+   "HOSP": "IHC HEALTH SERVICES INC",
+   "HHAS": 6
+  },
+  {
+   "ASSOCIATE_ID": "2062320559",
+   "HOSP": "DIGNITY HEALTH",
+   "HHAS": 6
+  },
+  {
+   "ASSOCIATE_ID": "9234041708",
+   "HOSP": "PRESBYTERIAN HEALTHCARE SERVICES",
+   "HHAS": 5
+  },
+  {
+   "ASSOCIATE_ID": "0648177949",
+   "HOSP": "BAPTIST HEALTH",
+   "HHAS": 4
+  },
+  {
+   "ASSOCIATE_ID": "6002726718",
+   "HOSP": "MOUNTAIN STATES HEALTH ALLIANCE",
+   "HHAS": 4
+  },
+  {
+   "ASSOCIATE_ID": "4284541806",
+   "HOSP": "OSF HEALTHCARE SYSTEM",
+   "HHAS": 3
+  }
+ ],
+ "name_check": [
+  {
+   "GRP": "hospital-owned",
+   "NAMEHIT": 140,
+   "N": 519
+  },
+  {
+   "GRP": "independent",
+   "NAMEHIT": 77,
+   "N": 10694
+  },
+  {
+   "GRP": "not in PECOS",
+   "NAMEHIT": 14,
+   "N": 1179
+  }
+ ],
+ "cc_ownership": [
+  {
+   "GRP": "hospital-owned",
+   "TYPE_OF_OWNERSHIP": "NON-PROFIT",
+   "N": 295,
+   "MEAN_STAR": 3.29,
+   "MEAN_SPEND": 0.957
+  },
+  {
+   "GRP": "hospital-owned",
+   "TYPE_OF_OWNERSHIP": "PROPRIETARY",
+   "N": 120,
+   "MEAN_STAR": 3.13,
+   "MEAN_SPEND": 0.987
+  },
+  {
+   "GRP": "hospital-owned",
+   "TYPE_OF_OWNERSHIP": "GOVERNMENT OPERATED",
+   "N": 101,
+   "MEAN_STAR": 2.78,
+   "MEAN_SPEND": 1.014
+  },
+  {
+   "GRP": "hospital-owned",
+   "TYPE_OF_OWNERSHIP": "-",
+   "N": 3,
+   "MEAN_STAR": 2.75,
+   "MEAN_SPEND": 1.005
+  },
+  {
+   "GRP": "independent",
+   "TYPE_OF_OWNERSHIP": "PROPRIETARY",
+   "N": 8007,
+   "MEAN_STAR": 3.28,
+   "MEAN_SPEND": 0.97
+  },
+  {
+   "GRP": "independent",
+   "TYPE_OF_OWNERSHIP": "-",
+   "N": 1873,
+   "MEAN_STAR": 3.03,
+   "MEAN_SPEND": 0.951
+  },
+  {
+   "GRP": "independent",
+   "TYPE_OF_OWNERSHIP": "NON-PROFIT",
+   "N": 679,
+   "MEAN_STAR": 3.4,
+   "MEAN_SPEND": 0.974
+  },
+  {
+   "GRP": "independent",
+   "TYPE_OF_OWNERSHIP": "GOVERNMENT OPERATED",
+   "N": 135,
+   "MEAN_STAR": 2.92,
+   "MEAN_SPEND": 0.998
+  },
+  {
+   "GRP": "not in PECOS",
+   "TYPE_OF_OWNERSHIP": "PROPRIETARY",
+   "N": 910,
+   "MEAN_STAR": 3.15,
+   "MEAN_SPEND": 0.95
+  },
+  {
+   "GRP": "not in PECOS",
+   "TYPE_OF_OWNERSHIP": "-",
+   "N": 161,
+   "MEAN_STAR": 2.41,
+   "MEAN_SPEND": 0.899
+  },
+  {
+   "GRP": "not in PECOS",
+   "TYPE_OF_OWNERSHIP": "NON-PROFIT",
+   "N": 94,
+   "MEAN_STAR": 3.33,
+   "MEAN_SPEND": 0.967
+  },
+  {
+   "GRP": "not in PECOS",
+   "TYPE_OF_OWNERSHIP": "GOVERNMENT OPERATED",
+   "N": 14,
+   "MEAN_STAR": 3.0,
+   "MEAN_SPEND": 1.124
+  }
+ ],
+ "by_group": [
+  {
+   "GRP": "hospital-owned",
+   "N": 519,
+   "STAR_MISSING": 27,
+   "PCT_STAR_MISSING": 5.2,
+   "MEAN_STAR": 3.16,
+   "MED_STAR": 3.0,
+   "SPEND_MISSING": 12,
+   "MEAN_SPEND": 0.976,
+   "MED_SPEND": 0.98,
+   "EPS_MISSING": 147,
+   "MED_EPS": 316.0,
+   "MED_AGE_YRS": 41.0
+  },
+  {
+   "GRP": "independent",
+   "N": 10694,
+   "STAR_MISSING": 3488,
+   "PCT_STAR_MISSING": 32.6,
+   "MEAN_STAR": 3.26,
+   "MED_STAR": 3.5,
+   "SPEND_MISSING": 2941,
+   "MEAN_SPEND": 0.969,
+   "MED_SPEND": 0.97,
+   "EPS_MISSING": 4092,
+   "MED_EPS": 220.0,
+   "MED_AGE_YRS": 16.0
+  },
+  {
+   "GRP": "not in PECOS",
+   "N": 1179,
+   "STAR_MISSING": 916,
+   "PCT_STAR_MISSING": 77.7,
+   "MEAN_STAR": 3.13,
+   "MED_STAR": 3.0,
+   "SPEND_MISSING": 788,
+   "MEAN_SPEND": 0.953,
+   "MED_SPEND": 0.96,
+   "EPS_MISSING": 744,
+   "MED_EPS": 80.0,
+   "MED_AGE_YRS": 15.0
+  }
+ ],
+ "star_dist": [
+  {
+   "GRP": "hospital-owned",
+   "STAR": 1.0,
+   "N": 2
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 1.5,
+   "N": 12
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 2.0,
+   "N": 44
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 2.5,
+   "N": 72
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 3.0,
+   "N": 151
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 3.5,
+   "N": 112
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 4.0,
+   "N": 61
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 4.5,
+   "N": 29
+  },
+  {
+   "GRP": "hospital-owned",
+   "STAR": 5.0,
+   "N": 9
+  },
+  {
+   "GRP": "independent",
+   "STAR": 1.0,
+   "N": 147
+  },
+  {
+   "GRP": "independent",
+   "STAR": 1.5,
+   "N": 556
+  },
+  {
+   "GRP": "independent",
+   "STAR": 2.0,
+   "N": 703
+  },
+  {
+   "GRP": "independent",
+   "STAR": 2.5,
+   "N": 859
+  },
+  {
+   "GRP": "independent",
+   "STAR": 3.0,
+   "N": 1148
+  },
+  {
+   "GRP": "independent",
+   "STAR": 3.5,
+   "N": 1187
+  },
+  {
+   "GRP": "independent",
+   "STAR": 4.0,
+   "N": 1194
+  },
+  {
+   "GRP": "independent",
+   "STAR": 4.5,
+   "N": 978
+  },
+  {
+   "GRP": "independent",
+   "STAR": 5.0,
+   "N": 434
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 1.0,
+   "N": 7
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 1.5,
+   "N": 25
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 2.0,
+   "N": 31
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 2.5,
+   "N": 32
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 3.0,
+   "N": 48
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 3.5,
+   "N": 39
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 4.0,
+   "N": 32
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 4.5,
+   "N": 34
+  },
+  {
+   "GRP": "not in PECOS",
+   "STAR": 5.0,
+   "N": 15
+  }
+ ],
+ "star_lowhigh": [
+  {
+   "GRP": "hospital-owned",
+   "RATED": 492,
+   "PCT_LOW": 11.8,
+   "PCT_HIGH": 20.1
+  },
+  {
+   "GRP": "independent",
+   "RATED": 7206,
+   "PCT_LOW": 19.5,
+   "PCT_HIGH": 36.2
+  },
+  {
+   "GRP": "not in PECOS",
+   "RATED": 263,
+   "PCT_LOW": 24.0,
+   "PCT_HIGH": 30.8
+  }
+ ],
+ "by_band": [
+  {
+   "BAND": "0 none",
+   "GRP": "hospital-owned",
+   "N": 147,
+   "PCT_STAR_MISSING": 6.1,
+   "MEAN_STAR": 3.43,
+   "MEAN_SPEND": 0.964,
+   "PCT_SPEND_MISSING": 6.1
+  },
+  {
+   "BAND": "0 none",
+   "GRP": "independent",
+   "N": 4092,
+   "PCT_STAR_MISSING": 48.6,
+   "MEAN_STAR": 3.65,
+   "MEAN_SPEND": 1.011,
+   "PCT_SPEND_MISSING": 51.0
+  },
+  {
+   "BAND": "1 <100",
+   "GRP": "hospital-owned",
+   "N": 58,
+   "PCT_STAR_MISSING": 29.3,
+   "MEAN_STAR": 2.91,
+   "MEAN_SPEND": 0.889,
+   "PCT_SPEND_MISSING": 5.2
+  },
+  {
+   "BAND": "1 <100",
+   "GRP": "independent",
+   "N": 2150,
+   "PCT_STAR_MISSING": 56.1,
+   "MEAN_STAR": 2.79,
+   "MEAN_SPEND": 0.92,
+   "PCT_SPEND_MISSING": 39.8
+  },
+  {
+   "BAND": "2 100-249",
+   "GRP": "hospital-owned",
+   "N": 101,
+   "PCT_STAR_MISSING": 1.0,
+   "MEAN_STAR": 2.94,
+   "MEAN_SPEND": 1.003,
+   "PCT_SPEND_MISSING": 0.0
+  },
+  {
+   "BAND": "2 100-249",
+   "GRP": "independent",
+   "N": 1367,
+   "PCT_STAR_MISSING": 15.1,
+   "MEAN_STAR": 2.95,
+   "MEAN_SPEND": 0.941,
+   "PCT_SPEND_MISSING": 0.0
+  },
+  {
+   "BAND": "3 250-499",
+   "GRP": "hospital-owned",
+   "N": 111,
+   "PCT_STAR_MISSING": 0.0,
+   "MEAN_STAR": 3.0,
+   "MEAN_SPEND": 0.992,
+   "PCT_SPEND_MISSING": 0.0
+  },
+  {
+   "BAND": "3 250-499",
+   "GRP": "independent",
+   "N": 1487,
+   "PCT_STAR_MISSING": 4.6,
+   "MEAN_STAR": 3.08,
+   "MEAN_SPEND": 0.963,
+   "PCT_SPEND_MISSING": 0.0
+  },
+  {
+   "BAND": "4 500+",
+   "GRP": "hospital-owned",
+   "N": 102,
+   "PCT_STAR_MISSING": 0.0,
+   "MEAN_STAR": 3.26,
+   "MEAN_SPEND": 0.994,
+   "PCT_SPEND_MISSING": 0.0
+  },
+  {
+   "BAND": "4 500+",
+   "GRP": "independent",
+   "N": 1598,
+   "PCT_STAR_MISSING": 1.2,
+   "MEAN_STAR": 3.4,
+   "MEAN_SPEND": 0.987,
+   "PCT_SPEND_MISSING": 0.0
+  }
+ ],
+ "band_all": [
+  {
+   "BAND": "0 none",
+   "N": 4983,
+   "PCT_STAR_MISSING": 53.2
+  },
+  {
+   "BAND": "1 <100",
+   "N": 2450,
+   "PCT_STAR_MISSING": 58.4
+  },
+  {
+   "BAND": "2 100-249",
+   "N": 1545,
+   "PCT_STAR_MISSING": 15.7
+  },
+  {
+   "BAND": "3 250-499",
+   "N": 1659,
+   "PCT_STAR_MISSING": 4.9
+  },
+  {
+   "BAND": "4 500+",
+   "N": 1755,
+   "PCT_STAR_MISSING": 1.4
+  }
+ ],
+ "outcomes": [
+  {
+   "GRP": "hospital-owned",
+   "N": 519,
+   "DTC": 84.56,
+   "DTC_MISS": 15,
+   "PPH": 10.05,
+   "PPH_MISS": 29,
+   "PPR": 4.21,
+   "PPR_MISS": 30,
+   "WALK": 83.6,
+   "TIMELY": 94.87,
+   "FALLS": 1.19
+  },
+  {
+   "GRP": "independent",
+   "N": 10694,
+   "DTC": 79.89,
+   "DTC_MISS": 3584,
+   "PPH": 10.99,
+   "PPH_MISS": 4188,
+   "PPR": 4.12,
+   "PPR_MISS": 5504,
+   "WALK": 83.25,
+   "TIMELY": 93.94,
+   "FALLS": 1.05
+  },
+  {
+   "GRP": "not in PECOS",
+   "N": 1179,
+   "DTC": 79.63,
+   "DTC_MISS": 844,
+   "PPH": 10.05,
+   "PPH_MISS": 924,
+   "PPR": 4.17,
+   "PPR_MISS": 941,
+   "WALK": 80.62,
+   "TIMELY": 93.32,
+   "FALLS": 0.89
+  }
+ ],
+ "dtc_cat": [
+  {
+   "GRP": "hospital-owned",
+   "CAT": "-",
+   "N": 9
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Better Than National Rate",
+   "N": 329
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Not Available",
+   "N": 6
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Same As National Rate",
+   "N": 133
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Worse Than National Rate",
+   "N": 42
+  },
+  {
+   "GRP": "independent",
+   "CAT": "-",
+   "N": 2143
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Better Than National Rate",
+   "N": 3520
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Not Available",
+   "N": 1441
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Same As National Rate",
+   "N": 2367
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Worse Than National Rate",
+   "N": 1223
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "-",
+   "N": 672
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Better Than National Rate",
+   "N": 156
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Not Available",
+   "N": 172
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Same As National Rate",
+   "N": 126
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Worse Than National Rate",
+   "N": 53
+  }
+ ],
+ "pph_cat": [
+  {
+   "GRP": "hospital-owned",
+   "CAT": "-",
+   "N": 10
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Better Than National Rate",
+   "N": 108
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Not Available",
+   "N": 19
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Same As National Rate",
+   "N": 358
+  },
+  {
+   "GRP": "hospital-owned",
+   "CAT": "Worse Than National Rate",
+   "N": 24
+  },
+  {
+   "GRP": "independent",
+   "CAT": "-",
+   "N": 2348
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Better Than National Rate",
+   "N": 748
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Not Available",
+   "N": 1840
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Same As National Rate",
+   "N": 5060
+  },
+  {
+   "GRP": "independent",
+   "CAT": "Worse Than National Rate",
+   "N": 698
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "-",
+   "N": 775
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Better Than National Rate",
+   "N": 47
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Not Available",
+   "N": 149
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Same As National Rate",
+   "N": 192
+  },
+  {
+   "GRP": "not in PECOS",
+   "CAT": "Worse Than National Rate",
+   "N": 16
+  }
+ ],
+ "cohort": [
+  {
+   "GRP": "hospital-owned",
+   "N_STAR": 313,
+   "MEAN_STAR": 3.064,
+   "SD_STAR": 0.761,
+   "N_SPEND": 314,
+   "MEAN_SPEND": 0.9958,
+   "SD_SPEND": 0.122,
+   "DTC": 83.72,
+   "SD_DTC": 10.46,
+   "PPH": 10.58,
+   "SD_PPH": 3.14,
+   "PCT_STAR_MISSING": 0.3
+  },
+  {
+   "GRP": "independent",
+   "N_STAR": 4158,
+   "MEAN_STAR": 3.165,
+   "SD_STAR": 1.036,
+   "N_SPEND": 4452,
+   "MEAN_SPEND": 0.9646,
+   "SD_SPEND": 0.1192,
+   "DTC": 78.55,
+   "SD_DTC": 14.5,
+   "PPH": 11.03,
+   "SD_PPH": 3.12,
+   "PCT_STAR_MISSING": 6.6
+  }
+ ],
+ "cohort_prop": [
+  {
+   "GRP": "hospital-owned",
+   "N": 78,
+   "MEAN_STAR": 3.05,
+   "MEAN_SPEND": 0.996
+  },
+  {
+   "GRP": "independent",
+   "N": 3727,
+   "MEAN_STAR": 3.17,
+   "MEAN_SPEND": 0.964
+  }
+ ],
+ "spend_hist": [
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.45,
+   "N": 2
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.5,
+   "N": 1
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.55,
+   "N": 1
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.6,
+   "N": 3
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.65,
+   "N": 5
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.7,
+   "N": 12
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.75,
+   "N": 11
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.8,
+   "N": 23
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.85,
+   "N": 48
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.9,
+   "N": 86
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 0.95,
+   "N": 101
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.0,
+   "N": 80
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.05,
+   "N": 59
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.1,
+   "N": 34
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.15,
+   "N": 23
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.2,
+   "N": 7
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.25,
+   "N": 6
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.3,
+   "N": 1
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.35,
+   "N": 2
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.4,
+   "N": 1
+  },
+  {
+   "GRP": "hospital-owned",
+   "BIN": 1.55,
+   "N": 1
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.35,
+   "N": 1
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.4,
+   "N": 1
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.45,
+   "N": 6
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.5,
+   "N": 19
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.55,
+   "N": 34
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.6,
+   "N": 53
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.65,
+   "N": 101
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.7,
+   "N": 197
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.75,
+   "N": 304
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.8,
+   "N": 522
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.85,
+   "N": 745
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.9,
+   "N": 1127
+  },
+  {
+   "GRP": "independent",
+   "BIN": 0.95,
+   "N": 1342
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.0,
+   "N": 1356
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.05,
+   "N": 911
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.1,
+   "N": 495
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.15,
+   "N": 239
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.2,
+   "N": 131
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.25,
+   "N": 62
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.3,
+   "N": 39
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.35,
+   "N": 23
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.4,
+   "N": 15
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.45,
+   "N": 9
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.5,
+   "N": 5
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.55,
+   "N": 3
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.6,
+   "N": 1
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.65,
+   "N": 5
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.7,
+   "N": 2
+  },
+  {
+   "GRP": "independent",
+   "BIN": 1.75,
+   "N": 1
+  },
+  {
+   "GRP": "independent",
+   "BIN": 2.15,
+   "N": 2
+  },
+  {
+   "GRP": "independent",
+   "BIN": 2.35,
+   "N": 1
+  },
+  {
+   "GRP": "independent",
+   "BIN": 5.25,
+   "N": 1
+  }
+ ],
+ "spend_above": [
+  {
+   "GRP": "hospital-owned",
+   "N": 507,
+   "PCT_ABOVE_NATIONAL": 37.9
+  },
+  {
+   "GRP": "independent",
+   "N": 7753,
+   "PCT_ABOVE_NATIONAL": 38.8
+  }
+ ],
+ "states": [
+  {
+   "STATE": "CA",
+   "OWNED_N": 43,
+   "IND_N": 2823,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 34.6,
+   "OWNED_STAR": 3.37,
+   "IND_STAR": 3.16,
+   "OWNED_SPEND": 0.836,
+   "IND_SPEND": 0.943
+  },
+  {
+   "STATE": "MN",
+   "OWNED_N": 33,
+   "IND_N": 103,
+   "OWNED_MISS": 18.2,
+   "IND_MISS": 38.8,
+   "OWNED_STAR": 3.2,
+   "IND_STAR": 3.06,
+   "OWNED_SPEND": 0.984,
+   "IND_SPEND": 0.929
+  },
+  {
+   "STATE": "TX",
+   "OWNED_N": 29,
+   "IND_N": 1632,
+   "OWNED_MISS": 13.8,
+   "IND_MISS": 42.7,
+   "OWNED_STAR": 2.82,
+   "IND_STAR": 2.95,
+   "OWNED_SPEND": 1.037,
+   "IND_SPEND": 0.959
+  },
+  {
+   "STATE": "IA",
+   "OWNED_N": 29,
+   "IND_N": 91,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 38.5,
+   "OWNED_STAR": 3.0,
+   "IND_STAR": 3.04,
+   "OWNED_SPEND": 1.012,
+   "IND_SPEND": 1.04
+  },
+  {
+   "STATE": "IL",
+   "OWNED_N": 28,
+   "IND_N": 476,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 19.3,
+   "OWNED_STAR": 3.21,
+   "IND_STAR": 3.07,
+   "OWNED_SPEND": 1.019,
+   "IND_SPEND": 0.923
+  },
+  {
+   "STATE": "AR",
+   "OWNED_N": 25,
+   "IND_N": 66,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 6.1,
+   "OWNED_STAR": 2.76,
+   "IND_STAR": 3.62,
+   "OWNED_SPEND": 1.059,
+   "IND_SPEND": 1.053
+  },
+  {
+   "STATE": "KY",
+   "OWNED_N": 19,
+   "IND_N": 67,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 4.5,
+   "OWNED_STAR": 3.45,
+   "IND_STAR": 3.53,
+   "OWNED_SPEND": 0.989,
+   "IND_SPEND": 1.03
+  },
+  {
+   "STATE": "OH",
+   "OWNED_N": 19,
+   "IND_N": 688,
+   "OWNED_MISS": 21.1,
+   "IND_MISS": 67.4,
+   "OWNED_STAR": 3.1,
+   "IND_STAR": 3.13,
+   "OWNED_SPEND": 0.989,
+   "IND_SPEND": 0.982
+  },
+  {
+   "STATE": "KS",
+   "OWNED_N": 18,
+   "IND_N": 79,
+   "OWNED_MISS": 5.6,
+   "IND_MISS": 19.0,
+   "OWNED_STAR": 3.03,
+   "IND_STAR": 3.35,
+   "OWNED_SPEND": 1.069,
+   "IND_SPEND": 1.08
+  },
+  {
+   "STATE": "NE",
+   "OWNED_N": 17,
+   "IND_N": 43,
+   "OWNED_MISS": 17.6,
+   "IND_MISS": 27.9,
+   "OWNED_STAR": 2.86,
+   "IND_STAR": 3.56,
+   "OWNED_SPEND": 1.076,
+   "IND_SPEND": 1.021
+  },
+  {
+   "STATE": "OK",
+   "OWNED_N": 15,
+   "IND_N": 185,
+   "OWNED_MISS": 13.3,
+   "IND_MISS": 16.2,
+   "OWNED_STAR": 3.27,
+   "IND_STAR": 3.1,
+   "OWNED_SPEND": 0.979,
+   "IND_SPEND": 0.983
+  },
+  {
+   "STATE": "MI",
+   "OWNED_N": 14,
+   "IND_N": 300,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 16.7,
+   "OWNED_STAR": 3.43,
+   "IND_STAR": 3.33,
+   "OWNED_SPEND": 0.942,
+   "IND_SPEND": 0.926
+  },
+  {
+   "STATE": "AL",
+   "OWNED_N": 13,
+   "IND_N": 98,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": 2.92,
+   "IND_STAR": 4.01,
+   "OWNED_SPEND": 0.959,
+   "IND_SPEND": 0.989
+  },
+  {
+   "STATE": "MO",
+   "OWNED_N": 13,
+   "IND_N": 101,
+   "OWNED_MISS": 7.7,
+   "IND_MISS": 9.9,
+   "OWNED_STAR": 3.63,
+   "IND_STAR": 3.38,
+   "OWNED_SPEND": 0.996,
+   "IND_SPEND": 0.982
+  },
+  {
+   "STATE": "VA",
+   "OWNED_N": 13,
+   "IND_N": 189,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 19.0,
+   "OWNED_STAR": 3.5,
+   "IND_STAR": 3.29,
+   "OWNED_SPEND": 0.925,
+   "IND_SPEND": 0.969
+  },
+  {
+   "STATE": "LA",
+   "OWNED_N": 12,
+   "IND_N": 160,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 8.1,
+   "OWNED_STAR": 3.08,
+   "IND_STAR": 3.76,
+   "OWNED_SPEND": 0.983,
+   "IND_SPEND": 1.015
+  },
+  {
+   "STATE": "IN",
+   "OWNED_N": 11,
+   "IND_N": 151,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 25.8,
+   "OWNED_STAR": 3.59,
+   "IND_STAR": 3.05,
+   "OWNED_SPEND": 1.009,
+   "IND_SPEND": 1.025
+  },
+  {
+   "STATE": "NC",
+   "OWNED_N": 11,
+   "IND_N": 148,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 6.8,
+   "OWNED_STAR": 3.27,
+   "IND_STAR": 3.65,
+   "OWNED_SPEND": 0.909,
+   "IND_SPEND": 0.934
+  },
+  {
+   "STATE": "WI",
+   "OWNED_N": 10,
+   "IND_N": 70,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 24.3,
+   "OWNED_STAR": 3.1,
+   "IND_STAR": 3.47,
+   "OWNED_SPEND": 0.95,
+   "IND_SPEND": 0.937
+  },
+  {
+   "STATE": "WA",
+   "OWNED_N": 9,
+   "IND_N": 59,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 10.2,
+   "OWNED_STAR": 3.28,
+   "IND_STAR": 3.7,
+   "OWNED_SPEND": 0.917,
+   "IND_SPEND": 0.913
+  },
+  {
+   "STATE": "PA",
+   "OWNED_N": 9,
+   "IND_N": 346,
+   "OWNED_MISS": 11.1,
+   "IND_MISS": 53.8,
+   "OWNED_STAR": 3.06,
+   "IND_STAR": 3.4,
+   "OWNED_SPEND": 0.998,
+   "IND_SPEND": 0.995
+  },
+  {
+   "STATE": "GA",
+   "OWNED_N": 9,
+   "IND_N": 93,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 5.4,
+   "OWNED_STAR": 3.33,
+   "IND_STAR": 3.52,
+   "OWNED_SPEND": 0.943,
+   "IND_SPEND": 0.989
+  },
+  {
+   "STATE": "UT",
+   "OWNED_N": 8,
+   "IND_N": 65,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 15.4,
+   "OWNED_STAR": 3.75,
+   "IND_STAR": 3.71,
+   "OWNED_SPEND": 0.944,
+   "IND_SPEND": 0.954
+  },
+  {
+   "STATE": "SC",
+   "OWNED_N": 8,
+   "IND_N": 58,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 5.2,
+   "OWNED_STAR": 3.44,
+   "IND_STAR": 3.97,
+   "OWNED_SPEND": 0.928,
+   "IND_SPEND": 1.017
+  },
+  {
+   "STATE": "NY",
+   "OWNED_N": 8,
+   "IND_N": 86,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 7.0,
+   "OWNED_STAR": 3.31,
+   "IND_STAR": 3.68,
+   "OWNED_SPEND": 0.916,
+   "IND_SPEND": 0.964
+  },
+  {
+   "STATE": "MS",
+   "OWNED_N": 8,
+   "IND_N": 33,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": 2.88,
+   "IND_STAR": 3.91,
+   "OWNED_SPEND": 1.013,
+   "IND_SPEND": 1.028
+  },
+  {
+   "STATE": "TN",
+   "OWNED_N": 7,
+   "IND_N": 115,
+   "OWNED_MISS": 14.3,
+   "IND_MISS": 11.3,
+   "OWNED_STAR": 3.33,
+   "IND_STAR": 3.85,
+   "OWNED_SPEND": 1.01,
+   "IND_SPEND": 1.035
+  },
+  {
+   "STATE": "OR",
+   "OWNED_N": 6,
+   "IND_N": 43,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 9.3,
+   "OWNED_STAR": 2.5,
+   "IND_STAR": 3.31,
+   "OWNED_SPEND": 0.892,
+   "IND_SPEND": 0.872
+  },
+  {
+   "STATE": "FL",
+   "OWNED_N": 6,
+   "IND_N": 1022,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 31.6,
+   "OWNED_STAR": 3.08,
+   "IND_STAR": 3.48,
+   "OWNED_SPEND": 0.985,
+   "IND_SPEND": 1.026
+  },
+  {
+   "STATE": "WY",
+   "OWNED_N": 6,
+   "IND_N": 21,
+   "OWNED_MISS": 16.7,
+   "IND_MISS": 23.8,
+   "OWNED_STAR": 2.9,
+   "IND_STAR": 3.0,
+   "OWNED_SPEND": 0.99,
+   "IND_SPEND": 1.007
+  },
+  {
+   "STATE": "NM",
+   "OWNED_N": 6,
+   "IND_N": 64,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 12.5,
+   "OWNED_STAR": 3.42,
+   "IND_STAR": 3.21,
+   "OWNED_SPEND": 0.977,
+   "IND_SPEND": 0.933
+  },
+  {
+   "STATE": "CO",
+   "OWNED_N": 6,
+   "IND_N": 200,
+   "OWNED_MISS": 16.7,
+   "IND_MISS": 49.0,
+   "OWNED_STAR": 2.5,
+   "IND_STAR": 3.0,
+   "OWNED_SPEND": 1.015,
+   "IND_SPEND": 0.986
+  },
+  {
+   "STATE": "MT",
+   "OWNED_N": 6,
+   "IND_N": 14,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 14.3,
+   "OWNED_STAR": 2.25,
+   "IND_STAR": 3.0,
+   "OWNED_SPEND": 0.92,
+   "IND_SPEND": 0.938
+  },
+  {
+   "STATE": "AK",
+   "OWNED_N": 5,
+   "IND_N": 7,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 14.3,
+   "OWNED_STAR": 2.4,
+   "IND_STAR": 2.92,
+   "OWNED_SPEND": 1.01,
+   "IND_SPEND": 0.893
+  },
+  {
+   "STATE": "SD",
+   "OWNED_N": 5,
+   "IND_N": 18,
+   "OWNED_MISS": 20.0,
+   "IND_MISS": 11.1,
+   "OWNED_STAR": 2.63,
+   "IND_STAR": 4.06,
+   "OWNED_SPEND": 1.06,
+   "IND_SPEND": 1.024
+  },
+  {
+   "STATE": "NJ",
+   "OWNED_N": 5,
+   "IND_N": 32,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": 3.6,
+   "IND_STAR": 3.8,
+   "OWNED_SPEND": 0.996,
+   "IND_SPEND": 1.014
+  },
+  {
+   "STATE": "ND",
+   "OWNED_N": 4,
+   "IND_N": 15,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 46.7,
+   "OWNED_STAR": 3.38,
+   "IND_STAR": 3.06,
+   "OWNED_SPEND": 0.985,
+   "IND_SPEND": 0.891
+  },
+  {
+   "STATE": "AZ",
+   "OWNED_N": 4,
+   "IND_N": 145,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 19.3,
+   "OWNED_STAR": 3.25,
+   "IND_STAR": 3.38,
+   "OWNED_SPEND": 0.903,
+   "IND_SPEND": 1.004
+  },
+  {
+   "STATE": "WV",
+   "OWNED_N": 4,
+   "IND_N": 32,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": 3.0,
+   "IND_STAR": 3.69,
+   "OWNED_SPEND": 0.978,
+   "IND_SPEND": 1.009
+  },
+  {
+   "STATE": "ID",
+   "OWNED_N": 4,
+   "IND_N": 44,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 6.8,
+   "OWNED_STAR": 3.13,
+   "IND_STAR": 3.33,
+   "OWNED_SPEND": 0.925,
+   "IND_SPEND": 0.922
+  },
+  {
+   "STATE": "PR",
+   "OWNED_N": 3,
+   "IND_N": 35,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 11.4,
+   "OWNED_STAR": 3.17,
+   "IND_STAR": 3.45,
+   "OWNED_SPEND": 0.767,
+   "IND_SPEND": 0.689
+  },
+  {
+   "STATE": "MD",
+   "OWNED_N": 3,
+   "IND_N": 39,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 7.7,
+   "OWNED_STAR": 3.67,
+   "IND_STAR": 3.89,
+   "OWNED_SPEND": 0.987,
+   "IND_SPEND": 0.969
+  },
+  {
+   "STATE": "HI",
+   "OWNED_N": 2,
+   "IND_N": 14,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 21.4,
+   "OWNED_STAR": 2.25,
+   "IND_STAR": 3.05,
+   "OWNED_SPEND": 0.81,
+   "IND_SPEND": 0.808
+  },
+  {
+   "STATE": "MA",
+   "OWNED_N": 2,
+   "IND_N": 219,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 50.7,
+   "OWNED_STAR": 3.75,
+   "IND_STAR": 2.92,
+   "OWNED_SPEND": 0.94,
+   "IND_SPEND": 0.984
+  },
+  {
+   "STATE": "ME",
+   "OWNED_N": 1,
+   "IND_N": 16,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": 2.5,
+   "IND_STAR": 3.69,
+   "OWNED_SPEND": 0.94,
+   "IND_SPEND": 0.952
+  },
+  {
+   "STATE": "DE",
+   "OWNED_N": 1,
+   "IND_N": 18,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 55.6,
+   "OWNED_STAR": 3.5,
+   "IND_STAR": 3.88,
+   "OWNED_SPEND": 0.93,
+   "IND_SPEND": 0.964
+  },
+  {
+   "STATE": "NV",
+   "OWNED_N": 1,
+   "IND_N": 209,
+   "OWNED_MISS": 0.0,
+   "IND_MISS": 30.6,
+   "OWNED_STAR": 4.5,
+   "IND_STAR": 2.81,
+   "OWNED_SPEND": 0.94,
+   "IND_SPEND": 1.032
+  },
+  {
+   "STATE": "CT",
+   "OWNED_N": 1,
+   "IND_N": 66,
+   "OWNED_MISS": 100.0,
+   "IND_MISS": 13.6,
+   "OWNED_STAR": null,
+   "IND_STAR": 3.03,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 1.027
+  },
+  {
+   "STATE": "NH",
+   "OWNED_N": 0,
+   "IND_N": 25,
+   "OWNED_MISS": null,
+   "IND_MISS": 12.0,
+   "OWNED_STAR": null,
+   "IND_STAR": 3.27,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.966
+  },
+  {
+   "STATE": "DC",
+   "OWNED_N": 0,
+   "IND_N": 33,
+   "OWNED_MISS": null,
+   "IND_MISS": 66.7,
+   "OWNED_STAR": null,
+   "IND_STAR": 3.41,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.902
+  },
+  {
+   "STATE": "MP",
+   "OWNED_N": 0,
+   "IND_N": 2,
+   "OWNED_MISS": null,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": null,
+   "IND_STAR": 1.75,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.81
+  },
+  {
+   "STATE": "GU",
+   "OWNED_N": 0,
+   "IND_N": 3,
+   "OWNED_MISS": null,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": null,
+   "IND_STAR": 2.5,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.8
+  },
+  {
+   "STATE": "RI",
+   "OWNED_N": 0,
+   "IND_N": 21,
+   "OWNED_MISS": null,
+   "IND_MISS": 19.0,
+   "OWNED_STAR": null,
+   "IND_STAR": 3.18,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.988
+  },
+  {
+   "STATE": "VI",
+   "OWNED_N": 0,
+   "IND_N": 3,
+   "OWNED_MISS": null,
+   "IND_MISS": 33.3,
+   "OWNED_STAR": null,
+   "IND_STAR": 3.0,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.72
+  },
+  {
+   "STATE": "VT",
+   "OWNED_N": 0,
+   "IND_N": 9,
+   "OWNED_MISS": null,
+   "IND_MISS": 0.0,
+   "OWNED_STAR": null,
+   "IND_STAR": 3.11,
+   "OWNED_SPEND": null,
+   "IND_SPEND": 0.966
+  }
+ ],
+ "spend_weighted": [
+  {
+   "GRP": "hospital-owned",
+   "N": 314,
+   "WEIGHTED_SPEND": 0.9945,
+   "PLAIN_SPEND": 0.9958
+  },
+  {
+   "GRP": "independent",
+   "N": 4452,
+   "WEIGHTED_SPEND": 0.9755,
+   "PLAIN_SPEND": 0.9646
+  }
+ ],
+ "spend_by_band": [
+  {
+   "BAND": "2 100-249",
+   "GRP": "hospital-owned",
+   "N": 101,
+   "PLAIN_SPEND": 1.0026,
+   "WEIGHTED_SPEND": 1.0018
+  },
+  {
+   "BAND": "2 100-249",
+   "GRP": "independent",
+   "N": 1367,
+   "PLAIN_SPEND": 0.9405,
+   "WEIGHTED_SPEND": 0.9416
+  },
+  {
+   "BAND": "3 250-499",
+   "GRP": "hospital-owned",
+   "N": 111,
+   "PLAIN_SPEND": 0.9915,
+   "WEIGHTED_SPEND": 0.9919
+  },
+  {
+   "BAND": "3 250-499",
+   "GRP": "independent",
+   "N": 1487,
+   "PLAIN_SPEND": 0.9625,
+   "WEIGHTED_SPEND": 0.9641
+  },
+  {
+   "BAND": "4 500+",
+   "GRP": "hospital-owned",
+   "N": 102,
+   "PLAIN_SPEND": 0.9937,
+   "WEIGHTED_SPEND": 0.9942
+  },
+  {
+   "BAND": "4 500+",
+   "GRP": "independent",
+   "N": 1598,
+   "PLAIN_SPEND": 0.9871,
+   "WEIGHTED_SPEND": 0.9878
+  }
+ ],
+ "cohort_blanks": [
+  {
+   "GRP": "hospital-owned",
+   "HAS_STAR": "blank",
+   "N": 1,
+   "DTC": 36.0,
+   "SPEND": 0.74
+  },
+  {
+   "GRP": "hospital-owned",
+   "HAS_STAR": "rated",
+   "N": 313,
+   "DTC": 83.9,
+   "SPEND": 0.9966
+  },
+  {
+   "GRP": "independent",
+   "HAS_STAR": "blank",
+   "N": 294,
+   "DTC": 59.7,
+   "SPEND": 0.9211
+  },
+  {
+   "GRP": "independent",
+   "HAS_STAR": "rated",
+   "N": 4158,
+   "DTC": 79.6,
+   "SPEND": 0.9677
+  }
+ ],
+ "eps_ceiling": [
+  {
+   "MX": 998,
+   "AT_998": 1,
+   "BAND_500": 1755
+  }
+ ]
+}

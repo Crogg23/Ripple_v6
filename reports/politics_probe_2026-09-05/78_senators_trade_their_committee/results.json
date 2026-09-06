@@ -1,0 +1,233 @@
+{
+ "coverage": [
+  {
+   "TICKERS_WITH_SIC": 8208,
+   "TRADED_TICKERS": 995,
+   "TRADED_TICKERS_WITH_SIC": 567,
+   "TRADE_ROWS": 6178,
+   "TRADE_ROWS_WITH_SIC": 4588
+  }
+ ],
+ "headline": [
+  {
+   "SENATORS": 13,
+   "TRADES": 227,
+   "TICKERS": 80,
+   "D0": "2014-01-30",
+   "D1": "2020-08-21"
+  }
+ ],
+ "by_committee": [
+  {
+   "COMMITTEE_CODE": "SSCM",
+   "SENATORS": 4,
+   "TRADES": 76,
+   "TICKERS": 21
+  },
+  {
+   "COMMITTEE_CODE": "SSHR",
+   "SENATORS": 3,
+   "TRADES": 53,
+   "TICKERS": 19
+  },
+  {
+   "COMMITTEE_CODE": "SSEG",
+   "SENATORS": 4,
+   "TRADES": 45,
+   "TICKERS": 17
+  },
+  {
+   "COMMITTEE_CODE": "SSAF",
+   "SENATORS": 2,
+   "TRADES": 23,
+   "TICKERS": 9
+  },
+  {
+   "COMMITTEE_CODE": "SSBK",
+   "SENATORS": 2,
+   "TRADES": 21,
+   "TICKERS": 12
+  },
+  {
+   "COMMITTEE_CODE": "SSEV",
+   "SENATORS": 1,
+   "TRADES": 6,
+   "TICKERS": 1
+  },
+  {
+   "COMMITTEE_CODE": "SSAS",
+   "SENATORS": 1,
+   "TRADES": 3,
+   "TICKERS": 1
+  }
+ ],
+ "by_senator": [
+  {
+   "SENATOR": "Shelley M Capito",
+   "BIOGUIDE": "C001047",
+   "COMMITTEE_CODE": "SSCM",
+   "TRADES": 47,
+   "TICKERS": 18,
+   "D0": "2016-03-22",
+   "D1": "2020-03-03",
+   "SOME_TICKERS": "AAPL ADI ADP AVGO CMCSA CSCO CSX FDS GDDY GOOG IBM INTC JKHY MSFT NSC RYAAY T TSM"
+  },
+  {
+   "SENATOR": "Jerry Moran,",
+   "BIOGUIDE": "M000934",
+   "COMMITTEE_CODE": "SSCM",
+   "TRADES": 24,
+   "TICKERS": 6,
+   "D0": "2018-12-06",
+   "D1": "2020-08-21",
+   "SOME_TICKERS": "AAPL GOOG INTC MSFT TXN VZ"
+  },
+  {
+   "SENATOR": "Patty Murray",
+   "BIOGUIDE": "M001111",
+   "COMMITTEE_CODE": "SSHR",
+   "TRADES": 19,
+   "TICKERS": 10,
+   "D0": "2017-03-16",
+   "D1": "2017-06-15",
+   "SOME_TICKERS": "AMGN BMY GILD GSK JNJ MDT MRK PFE SNY TEVA"
+  },
+  {
+   "SENATOR": "William Cassidy",
+   "BIOGUIDE": "C001075",
+   "COMMITTEE_CODE": "SSHR",
+   "TRADES": 18,
+   "TICKERS": 6,
+   "D0": "2016-03-31",
+   "D1": "2020-03-09",
+   "SOME_TICKERS": "ABT AMGN JNJ MDT MMM NVS"
+  },
+  {
+   "SENATOR": "William Cassidy",
+   "BIOGUIDE": "C001075",
+   "COMMITTEE_CODE": "SSEG",
+   "TRADES": 17,
+   "TICKERS": 7,
+   "D0": "2015-07-08",
+   "D1": "2020-03-09",
+   "SOME_TICKERS": "COP CVX OXY PSX SLB SO XOM"
+  },
+  {
+   "SENATOR": "Susan M Collins",
+   "BIOGUIDE": "C001035",
+   "COMMITTEE_CODE": "SSHR",
+   "TRADES": 16,
+   "TICKERS": 12,
+   "D0": "2014-01-30",
+   "D1": "2018-06-04",
+   "SOME_TICKERS": "BIIB BMY GILD JNJ MMM MRK PFE PRGO REGN STE SYK TFX"
+  },
+  {
+   "SENATOR": "John Hoeven",
+   "BIOGUIDE": "H001061",
+   "COMMITTEE_CODE": "SSAF",
+   "TRADES": 15,
+   "TICKERS": 9,
+   "D0": "2014-03-31",
+   "D1": "2019-12-23",
+   "SOME_TICKERS": "BUD DEO GIS KDP KHC KO MDLZ PEP TAP"
+  },
+  {
+   "SENATOR": "John Hoeven",
+   "BIOGUIDE": "H001061",
+   "COMMITTEE_CODE": "SSEG",
+   "TRADES": 15,
+   "TICKERS": 10,
+   "D0": "2015-01-06",
+   "D1": "2019-12-31",
+   "SOME_TICKERS": "CVX EXC FCX MDU MPC NGG NOG SLB VLO XOM"
+  },
+  {
+   "SENATOR": "John F Reed",
+   "BIOGUIDE": "R000122",
+   "COMMITTEE_CODE": "SSBK",
+   "TRADES": 11,
+   "TICKERS": 2,
+   "D0": "2014-05-22",
+   "D1": "2016-12-14",
+   "SOME_TICKERS": "ACT AMG"
+  },
+  {
+   "SENATOR": "Thomas R Tillis",
+   "BIOGUIDE": "T000476",
+   "COMMITTEE_CODE": "SSBK",
+   "TRADES": 10,
+   "TICKERS": 10,
+   "D0": "2015-02-13",
+   "D1": "2015-02-13",
+   "SOME_TICKERS": "AAT EGBN EVR PEB PRA PRAA SIGI SSB TCBI WAL"
+  },
+  {
+   "SENATOR": "Angus S King, Jr.",
+   "BIOGUIDE": "K000383",
+   "COMMITTEE_CODE": "SSEG",
+   "TRADES": 8,
+   "TICKERS": 5,
+   "D0": "2014-04-28",
+   "D1": "2020-08-18",
+   "SOME_TICKERS": "COP KMI SLB SRE XOM"
+  },
+  {
+   "SENATOR": "Jerry Moran,",
+   "BIOGUIDE": "M000934",
+   "COMMITTEE_CODE": "SSAF",
+   "TRADES": 8,
+   "TICKERS": 2,
+   "D0": "2018-12-19",
+   "D1": "2020-08-21",
+   "SOME_TICKERS": "GIS KO"
+  }
+ ],
+ "eyeball": [
+  {
+   "SENATOR": "Ron L Wyden",
+   "TICKER": "VMC",
+   "SIC": 1400,
+   "SECTOR": "mining, oil and gas",
+   "COMMITTEE_NAME": "Senate Committee on Energy and Natural Resources",
+   "TRANSACTION_DATE": "2020-06-04",
+   "TRANSACTION_TYPE": "Purchase"
+  },
+  {
+   "SENATOR": "Ron L Wyden",
+   "TICKER": "VMC",
+   "SIC": 1400,
+   "SECTOR": "mining, oil and gas",
+   "COMMITTEE_NAME": "Senate Committee on Energy and Natural Resources",
+   "TRANSACTION_DATE": "2020-04-17",
+   "TRANSACTION_TYPE": "Purchase"
+  },
+  {
+   "SENATOR": "William Cassidy",
+   "TICKER": "AMGN",
+   "SIC": 2836,
+   "SECTOR": "pharma, biotech",
+   "COMMITTEE_NAME": "Senate Committee on Health, Education, Labor, and Pensions",
+   "TRANSACTION_DATE": "2020-03-09",
+   "TRANSACTION_TYPE": "Sale (Partial)"
+  },
+  {
+   "SENATOR": "Shelley M Capito",
+   "TICKER": "INTC",
+   "SIC": 3674,
+   "SECTOR": "semiconductors",
+   "COMMITTEE_NAME": "Senate Committee on Commerce, Science, and Transportation",
+   "TRANSACTION_DATE": "2018-01-26",
+   "TRANSACTION_TYPE": "Purchase"
+  },
+  {
+   "SENATOR": "William Cassidy",
+   "TICKER": "SO",
+   "SIC": 4911,
+   "SECTOR": "utilities",
+   "COMMITTEE_NAME": "Senate Committee on Energy and Natural Resources",
+   "TRANSACTION_DATE": "2016-07-15",
+   "TRANSACTION_TYPE": "Sale (Partial)"
+  }
+ ]
+}

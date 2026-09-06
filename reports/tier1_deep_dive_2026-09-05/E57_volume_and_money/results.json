@@ -1,0 +1,2794 @@
+{
+ "headline_ntile": [
+  {
+   "INDIVIDUALS": 1235757,
+   "TOP_BILLERS": 123529,
+   "BOTH_TOP": 22384,
+   "BOTH_TOP_REAL_MONEY": 22342,
+   "PEERS_TOP_MONEY": 101145,
+   "PEERS": 1112228,
+   "ZERO_DOLLAR_TOP_MONEY": 15902,
+   "ANY_MONEY": 601867
+  }
+ ],
+ "headline_prank": [
+  {
+   "TOP_BILLERS": 123621,
+   "BOTH_TOP": 22373,
+   "PEERS": 1112136,
+   "PEERS_TOP_MONEY": 85328
+  }
+ ],
+ "bucket_split": [
+  {
+   "COHORT": "all OP NPIs",
+   "PEOPLE": 979136,
+   "USD": 2638034613.3700004,
+   "ROYALTY": 485609878.65,
+   "SERVICES": 1206883801.6299999,
+   "HOSPITALITY": 676022065.9399999,
+   "OTHER": 269518867.15000004,
+   "ROYALTY_PEOPLE": 2393
+  },
+  {
+   "COHORT": "Part B individuals",
+   "PEOPLE": 1235757,
+   "USD": 1871344591.35,
+   "ROYALTY": 289706437.2300001,
+   "SERVICES": 901400863.9400002,
+   "HOSPITALITY": 533869932.51,
+   "OTHER": 146367357.67000002,
+   "ROYALTY_PEOPLE": 1842
+  },
+  {
+   "COHORT": "top-decile billers",
+   "PEOPLE": 123529,
+   "USD": 387546261.89,
+   "ROYALTY": 69289733.74000001,
+   "SERVICES": 191021246.24,
+   "HOSPITALITY": 102564380.45,
+   "OTHER": 24670901.46,
+   "ROYALTY_PEOPLE": 436
+  },
+  {
+   "COHORT": "lower-decile billers",
+   "PEOPLE": 1112228,
+   "USD": 1483798329.46,
+   "ROYALTY": 220416703.48999995,
+   "SERVICES": 710379617.7,
+   "HOSPITALITY": 431305552.06000006,
+   "OTHER": 121696456.20999998,
+   "ROYALTY_PEOPLE": 1406
+  },
+  {
+   "COHORT": "both-top",
+   "PEOPLE": 22342,
+   "USD": 356079657.9,
+   "ROYALTY": 68974567.33,
+   "SERVICES": 187348109.23000002,
+   "HOSPITALITY": 75485215.57000001,
+   "OTHER": 24271765.77,
+   "ROYALTY_PEOPLE": 369
+  },
+  {
+   "COHORT": "top money, not top biller",
+   "PEOPLE": 85285,
+   "USD": 1284900203.9499998,
+   "ROYALTY": 219094595.85999998,
+   "SERVICES": 683561332.27,
+   "HOSPITALITY": 263503275.67999998,
+   "OTHER": 118741000.14,
+   "ROYALTY_PEOPLE": 1099
+  }
+ ],
+ "by_specialty": [
+  {
+   "SPEC": "Physician Assistant",
+   "INDIVIDUALS": 112514,
+   "TOP_BILLERS": 11251,
+   "BOTH_TOP": 3169,
+   "RATE_PCT": "28.2",
+   "PEER_PCT": "8.0",
+   "BOTH_USD": 15092921.71,
+   "BOTH_ROYALTY": 13807.44,
+   "BOTH_SERVICES": 6498340.67,
+   "BOTH_HOSPITALITY": 8509576.48,
+   "BOTH_OTHER": 71197.12,
+   "BOTH_ALLOWED": 617878507.88,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Nurse Practitioner",
+   "INDIVIDUALS": 203212,
+   "TOP_BILLERS": 20321,
+   "BOTH_TOP": 3120,
+   "RATE_PCT": "15.4",
+   "PEER_PCT": "9.4",
+   "BOTH_USD": 13247726.42,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 4657105.18,
+   "BOTH_HOSPITALITY": 7248427.56,
+   "BOTH_OTHER": 1342193.68,
+   "BOTH_ALLOWED": 891252997.51,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Internal Medicine",
+   "INDIVIDUALS": 93627,
+   "TOP_BILLERS": 9362,
+   "BOTH_TOP": 2538,
+   "RATE_PCT": "27.1",
+   "PEER_PCT": "8.1",
+   "BOTH_USD": 14181591.05,
+   "BOTH_ROYALTY": 114224.11,
+   "BOTH_SERVICES": 8018896.9,
+   "BOTH_HOSPITALITY": 5921194.06,
+   "BOTH_OTHER": 127275.98,
+   "BOTH_ALLOWED": 1443419990.04,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Family Practice",
+   "INDIVIDUALS": 83639,
+   "TOP_BILLERS": 8363,
+   "BOTH_TOP": 2188,
+   "RATE_PCT": "26.2",
+   "PEER_PCT": "8.2",
+   "BOTH_USD": 10988903.71,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 3121080.79,
+   "BOTH_HOSPITALITY": 4262954.83,
+   "BOTH_OTHER": 3604868.09,
+   "BOTH_ALLOWED": 702063802.44,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Anesthesiology",
+   "INDIVIDUALS": 41082,
+   "TOP_BILLERS": 4108,
+   "BOTH_TOP": 1525,
+   "RATE_PCT": "37.1",
+   "PEER_PCT": "7.0",
+   "BOTH_USD": 5423316.42,
+   "BOTH_ROYALTY": 70812.69,
+   "BOTH_SERVICES": 2761221.42,
+   "BOTH_HOSPITALITY": 2485591.3,
+   "BOTH_OTHER": 105691.01000000001,
+   "BOTH_ALLOWED": 395722452.8,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Certified Registered Nurse Anesthetist (CRNA)",
+   "INDIVIDUALS": 53495,
+   "TOP_BILLERS": 5349,
+   "BOTH_TOP": 1032,
+   "RATE_PCT": "19.3",
+   "PEER_PCT": "9.0",
+   "BOTH_USD": 392003.56,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 34044.5,
+   "BOTH_HOSPITALITY": 357959.06,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 58742897.46,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Emergency Medicine",
+   "INDIVIDUALS": 50101,
+   "TOP_BILLERS": 5010,
+   "BOTH_TOP": 800,
+   "RATE_PCT": "16.0",
+   "PEER_PCT": "9.3",
+   "BOTH_USD": 976749.1799999999,
+   "BOTH_ROYALTY": 10897.16,
+   "BOTH_SERVICES": 530321.45,
+   "BOTH_HOSPITALITY": 343433.25,
+   "BOTH_OTHER": 92097.32,
+   "BOTH_ALLOWED": 176650295.05,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Psychiatry",
+   "INDIVIDUALS": 19778,
+   "TOP_BILLERS": 1977,
+   "BOTH_TOP": 546,
+   "RATE_PCT": "27.6",
+   "PEER_PCT": "8.0",
+   "BOTH_USD": 14042896.01,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 11083073.28,
+   "BOTH_HOSPITALITY": 2772038.42,
+   "BOTH_OTHER": 187784.31,
+   "BOTH_ALLOWED": 131509537.35,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Obstetrics & Gynecology",
+   "INDIVIDUALS": 22815,
+   "TOP_BILLERS": 2281,
+   "BOTH_TOP": 540,
+   "RATE_PCT": "23.7",
+   "PEER_PCT": "8.5",
+   "BOTH_USD": 4955514.89,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 3023370.44,
+   "BOTH_HOSPITALITY": 1904596.2,
+   "BOTH_OTHER": 27548.25,
+   "BOTH_ALLOWED": 89255302.42999999,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Optometry",
+   "INDIVIDUALS": 31979,
+   "TOP_BILLERS": 3197,
+   "BOTH_TOP": 517,
+   "RATE_PCT": "16.2",
+   "PEER_PCT": "9.3",
+   "BOTH_USD": 3587779.09,
+   "BOTH_ROYALTY": 34650.0,
+   "BOTH_SERVICES": 2434876.2,
+   "BOTH_HOSPITALITY": 1109827.95,
+   "BOTH_OTHER": 8424.94,
+   "BOTH_ALLOWED": 100696007.4,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Orthopedic Surgery",
+   "INDIVIDUALS": 21674,
+   "TOP_BILLERS": 2167,
+   "BOTH_TOP": 502,
+   "RATE_PCT": "23.2",
+   "PEER_PCT": "8.5",
+   "BOTH_USD": 84910390.1,
+   "BOTH_ROYALTY": 55091166.68,
+   "BOTH_SERVICES": 22618382.08,
+   "BOTH_HOSPITALITY": 6854597.51,
+   "BOTH_OTHER": 346243.82999999996,
+   "BOTH_ALLOWED": 289260169.91,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Neurology",
+   "INDIVIDUALS": 16581,
+   "TOP_BILLERS": 1658,
+   "BOTH_TOP": 413,
+   "RATE_PCT": "24.9",
+   "PEER_PCT": "8.3",
+   "BOTH_USD": 21832534.07,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 18019533.33,
+   "BOTH_HOSPITALITY": 3733000.7399999998,
+   "BOTH_OTHER": 80000.0,
+   "BOTH_ALLOWED": 436896522.58,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Hospitalist",
+   "INDIVIDUALS": 20529,
+   "TOP_BILLERS": 2052,
+   "BOTH_TOP": 401,
+   "RATE_PCT": "19.5",
+   "PEER_PCT": "8.9",
+   "BOTH_USD": 379443.34,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 90748.0,
+   "BOTH_HOSPITALITY": 285195.34,
+   "BOTH_OTHER": 3500.0,
+   "BOTH_ALLOWED": 103577705.63,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Ophthalmology",
+   "INDIVIDUALS": 17519,
+   "TOP_BILLERS": 1751,
+   "BOTH_TOP": 389,
+   "RATE_PCT": "22.2",
+   "PEER_PCT": "8.6",
+   "BOTH_USD": 14472838.57,
+   "BOTH_ROYALTY": 1924709.06,
+   "BOTH_SERVICES": 10613347.33,
+   "BOTH_HOSPITALITY": 1589494.76,
+   "BOTH_OTHER": 345287.42,
+   "BOTH_ALLOWED": 1652848535.57,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Diagnostic Radiology",
+   "INDIVIDUALS": 32843,
+   "TOP_BILLERS": 3284,
+   "BOTH_TOP": 356,
+   "RATE_PCT": "10.8",
+   "PEER_PCT": "9.9",
+   "BOTH_USD": 3960793.41,
+   "BOTH_ROYALTY": 100764.55,
+   "BOTH_SERVICES": 2298025.27,
+   "BOTH_HOSPITALITY": 583197.35,
+   "BOTH_OTHER": 978806.24,
+   "BOTH_ALLOWED": 338729097.02,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Cardiology",
+   "INDIVIDUALS": 19764,
+   "TOP_BILLERS": 1976,
+   "BOTH_TOP": 313,
+   "RATE_PCT": "15.8",
+   "PEER_PCT": "9.3",
+   "BOTH_USD": 12529023.46,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 7457242.17,
+   "BOTH_HOSPITALITY": 1996333.42,
+   "BOTH_OTHER": 3075447.87,
+   "BOTH_ALLOWED": 402362251.24,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "General Surgery",
+   "INDIVIDUALS": 21065,
+   "TOP_BILLERS": 2106,
+   "BOTH_TOP": 283,
+   "RATE_PCT": "13.4",
+   "PEER_PCT": "9.6",
+   "BOTH_USD": 8647938.7,
+   "BOTH_ROYALTY": 2755.28,
+   "BOTH_SERVICES": 3981388.7800000003,
+   "BOTH_HOSPITALITY": 3905498.02,
+   "BOTH_OTHER": 758296.62,
+   "BOTH_ALLOWED": 194671195.41,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Podiatry",
+   "INDIVIDUALS": 15526,
+   "TOP_BILLERS": 1552,
+   "BOTH_TOP": 253,
+   "RATE_PCT": "16.3",
+   "PEER_PCT": "9.3",
+   "BOTH_USD": 5871169.39,
+   "BOTH_ROYALTY": 836507.87,
+   "BOTH_SERVICES": 1817082.63,
+   "BOTH_HOSPITALITY": 863576.74,
+   "BOTH_OTHER": 2354002.15,
+   "BOTH_ALLOWED": 347285590.58,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Gastroenterology",
+   "INDIVIDUALS": 14791,
+   "TOP_BILLERS": 1479,
+   "BOTH_TOP": 204,
+   "RATE_PCT": "13.8",
+   "PEER_PCT": "9.6",
+   "BOTH_USD": 5847612.58,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 4492595.96,
+   "BOTH_HOSPITALITY": 1196478.28,
+   "BOTH_OTHER": 158538.34,
+   "BOTH_ALLOWED": 87900265.17,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Physical Medicine and Rehabilitation",
+   "INDIVIDUALS": 8487,
+   "TOP_BILLERS": 848,
+   "BOTH_TOP": 197,
+   "RATE_PCT": "23.2",
+   "PEER_PCT": "8.5",
+   "BOTH_USD": 1958583.1,
+   "BOTH_ROYALTY": 84364.47,
+   "BOTH_SERVICES": 1285861.86,
+   "BOTH_HOSPITALITY": 580856.77,
+   "BOTH_OTHER": 7500.0,
+   "BOTH_ALLOWED": 111531265.49,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Pathology",
+   "INDIVIDUALS": 12265,
+   "TOP_BILLERS": 1226,
+   "BOTH_TOP": 181,
+   "RATE_PCT": "14.8",
+   "PEER_PCT": "9.5",
+   "BOTH_USD": 704875.27,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 576680.44,
+   "BOTH_HOSPITALITY": 97043.64,
+   "BOTH_OTHER": 31151.19,
+   "BOTH_ALLOWED": 126026709.95,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Pulmonary Disease",
+   "INDIVIDUALS": 10766,
+   "TOP_BILLERS": 1076,
+   "BOTH_TOP": 176,
+   "RATE_PCT": "16.4",
+   "PEER_PCT": "9.3",
+   "BOTH_USD": 6398447.54,
+   "BOTH_ROYALTY": 25090.38,
+   "BOTH_SERVICES": 4715028.78,
+   "BOTH_HOSPITALITY": 1634213.64,
+   "BOTH_OTHER": 24114.74,
+   "BOTH_ALLOWED": 97321379.47,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Urology",
+   "INDIVIDUALS": 9466,
+   "TOP_BILLERS": 946,
+   "BOTH_TOP": 174,
+   "RATE_PCT": "18.4",
+   "PEER_PCT": "9.1",
+   "BOTH_USD": 5562369.02,
+   "BOTH_ROYALTY": 13455.130000000001,
+   "BOTH_SERVICES": 4179290.36,
+   "BOTH_HOSPITALITY": 1202253.45,
+   "BOTH_OTHER": 167370.08,
+   "BOTH_ALLOWED": 156140372.97,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Nephrology",
+   "INDIVIDUALS": 9501,
+   "TOP_BILLERS": 950,
+   "BOTH_TOP": 166,
+   "RATE_PCT": "17.5",
+   "PEER_PCT": "9.2",
+   "BOTH_USD": 3061943.17,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 2195209.61,
+   "BOTH_HOSPITALITY": 718266.89,
+   "BOTH_OTHER": 148466.67,
+   "BOTH_ALLOWED": 106315952.7,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Critical Care (Intensivists)",
+   "INDIVIDUALS": 5039,
+   "TOP_BILLERS": 503,
+   "BOTH_TOP": 164,
+   "RATE_PCT": "32.6",
+   "PEER_PCT": "7.5",
+   "BOTH_USD": 1630983.35,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 989315.9199999999,
+   "BOTH_HOSPITALITY": 641604.95,
+   "BOTH_OTHER": 62.48,
+   "BOTH_ALLOWED": 47664684.37,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Dermatology",
+   "INDIVIDUALS": 12616,
+   "TOP_BILLERS": 1261,
+   "BOTH_TOP": 153,
+   "RATE_PCT": "12.1",
+   "PEER_PCT": "9.8",
+   "BOTH_USD": 12686184.42,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 10389045.74,
+   "BOTH_HOSPITALITY": 1675671.7,
+   "BOTH_OTHER": 621466.98,
+   "BOTH_ALLOWED": 267775954.72,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Neurosurgery",
+   "INDIVIDUALS": 5149,
+   "TOP_BILLERS": 514,
+   "BOTH_TOP": 149,
+   "RATE_PCT": "29.0",
+   "PEER_PCT": "7.9",
+   "BOTH_USD": 16156349.86,
+   "BOTH_ROYALTY": 7942409.1899999995,
+   "BOTH_SERVICES": 5736984.92,
+   "BOTH_HOSPITALITY": 1362804.74,
+   "BOTH_OTHER": 1114151.01,
+   "BOTH_ALLOWED": 66038489.4,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Endocrinology",
+   "INDIVIDUALS": 6433,
+   "TOP_BILLERS": 643,
+   "BOTH_TOP": 141,
+   "RATE_PCT": "21.9",
+   "PEER_PCT": "8.7",
+   "BOTH_USD": 5380043.08,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 4386843.07,
+   "BOTH_HOSPITALITY": 992770.26,
+   "BOTH_OTHER": 429.75,
+   "BOTH_ALLOWED": 79890597.36,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Infectious Disease",
+   "INDIVIDUALS": 6452,
+   "TOP_BILLERS": 645,
+   "BOTH_TOP": 132,
+   "RATE_PCT": "20.5",
+   "PEER_PCT": "8.8",
+   "BOTH_USD": 1899588.95,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 1393882.23,
+   "BOTH_HOSPITALITY": 463661.33,
+   "BOTH_OTHER": 42045.39,
+   "BOTH_ALLOWED": 87009446.22,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Rheumatology",
+   "INDIVIDUALS": 5133,
+   "TOP_BILLERS": 513,
+   "BOTH_TOP": 126,
+   "RATE_PCT": "24.6",
+   "PEER_PCT": "8.4",
+   "BOTH_USD": 9712772.44,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 6684711.26,
+   "BOTH_HOSPITALITY": 1522186.18,
+   "BOTH_OTHER": 1505875.0,
+   "BOTH_ALLOWED": 483034951.09,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Otolaryngology",
+   "INDIVIDUALS": 8942,
+   "TOP_BILLERS": 894,
+   "BOTH_TOP": 126,
+   "RATE_PCT": "14.1",
+   "PEER_PCT": "9.5",
+   "BOTH_USD": 1348603.92,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 955549.38,
+   "BOTH_HOSPITALITY": 357648.26,
+   "BOTH_OTHER": 35406.28,
+   "BOTH_ALLOWED": 60797452.65,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Radiation Oncology",
+   "INDIVIDUALS": 5045,
+   "TOP_BILLERS": 504,
+   "BOTH_TOP": 100,
+   "RATE_PCT": "19.8",
+   "PEER_PCT": "8.9",
+   "BOTH_USD": 835248.63,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 606258.38,
+   "BOTH_HOSPITALITY": 222266.84,
+   "BOTH_OTHER": 6723.41,
+   "BOTH_ALLOWED": 212626386.46,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Hematology-Oncology",
+   "INDIVIDUALS": 9158,
+   "TOP_BILLERS": 915,
+   "BOTH_TOP": 93,
+   "RATE_PCT": "10.2",
+   "PEER_PCT": "10.0",
+   "BOTH_USD": 4852722.0200000005,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 4030935.98,
+   "BOTH_HOSPITALITY": 812864.27,
+   "BOTH_OTHER": 8921.77,
+   "BOTH_ALLOWED": 537262901.71,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Allergy/ Immunology",
+   "INDIVIDUALS": 3274,
+   "TOP_BILLERS": 327,
+   "BOTH_TOP": 93,
+   "RATE_PCT": "28.4",
+   "PEER_PCT": "7.9",
+   "BOTH_USD": 6407013.57,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 5516464.27,
+   "BOTH_HOSPITALITY": 869174.2999999999,
+   "BOTH_OTHER": 21375.0,
+   "BOTH_ALLOWED": 111082112.86,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "General Practice",
+   "INDIVIDUALS": 3556,
+   "TOP_BILLERS": 355,
+   "BOTH_TOP": 78,
+   "RATE_PCT": "22.0",
+   "PEER_PCT": "8.7",
+   "BOTH_USD": 444805.32,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 179280.88,
+   "BOTH_HOSPITALITY": 223320.96,
+   "BOTH_OTHER": 42203.479999999996,
+   "BOTH_ALLOWED": 89341887.47,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Chiropractic",
+   "INDIVIDUALS": 32394,
+   "TOP_BILLERS": 3239,
+   "BOTH_TOP": 67,
+   "RATE_PCT": "2.1",
+   "PEER_PCT": "2.0",
+   "BOTH_USD": 6839.05,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 6839.05,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 4411538.61,
+   "ZERO_DOLLAR_TOP_MONEY": 2601
+  },
+  {
+   "SPEC": "Vascular Surgery",
+   "INDIVIDUALS": 3903,
+   "TOP_BILLERS": 390,
+   "BOTH_TOP": 67,
+   "RATE_PCT": "17.2",
+   "PEER_PCT": "9.2",
+   "BOTH_USD": 4605656.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 825636.86,
+   "BOTH_HOSPITALITY": 292618.49,
+   "BOTH_OTHER": 3487400.65,
+   "BOTH_ALLOWED": 103717446.29,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Interventional Cardiology",
+   "INDIVIDUALS": 4650,
+   "TOP_BILLERS": 465,
+   "BOTH_TOP": 64,
+   "RATE_PCT": "13.8",
+   "PEER_PCT": "9.6",
+   "BOTH_USD": 3013295.5300000003,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 2152959.55,
+   "BOTH_HOSPITALITY": 562894.98,
+   "BOTH_OTHER": 297441.0,
+   "BOTH_ALLOWED": 80369875.67,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Interventional Radiology",
+   "INDIVIDUALS": 2560,
+   "TOP_BILLERS": 256,
+   "BOTH_TOP": 58,
+   "RATE_PCT": "22.7",
+   "PEER_PCT": "8.6",
+   "BOTH_USD": 2208805.56,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 887273.3200000001,
+   "BOTH_HOSPITALITY": 195979.98,
+   "BOTH_OTHER": 1125552.26,
+   "BOTH_ALLOWED": 88734184.99,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Thoracic Surgery",
+   "INDIVIDUALS": 2598,
+   "TOP_BILLERS": 259,
+   "BOTH_TOP": 56,
+   "RATE_PCT": "21.6",
+   "PEER_PCT": "8.7",
+   "BOTH_USD": 2955460.7,
+   "BOTH_ROYALTY": 270347.93,
+   "BOTH_SERVICES": 1725072.16,
+   "BOTH_HOSPITALITY": 679118.23,
+   "BOTH_OTHER": 280922.38,
+   "BOTH_ALLOWED": 19597975.69,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Pain Management",
+   "INDIVIDUALS": 2836,
+   "TOP_BILLERS": 283,
+   "BOTH_TOP": 54,
+   "RATE_PCT": "19.1",
+   "PEER_PCT": "9.0",
+   "BOTH_USD": 1596485.56,
+   "BOTH_ROYALTY": 11792.33,
+   "BOTH_SERVICES": 1157834.23,
+   "BOTH_HOSPITALITY": 426859.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 42693408.79,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Plastic and Reconstructive Surgery",
+   "INDIVIDUALS": 3907,
+   "TOP_BILLERS": 390,
+   "BOTH_TOP": 46,
+   "RATE_PCT": "11.8",
+   "PEER_PCT": "9.8",
+   "BOTH_USD": 2248490.6,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 1832858.01,
+   "BOTH_HOSPITALITY": 340645.92,
+   "BOTH_OTHER": 74986.67000000001,
+   "BOTH_ALLOWED": 35654738.550000004,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Anesthesiology Assistant",
+   "INDIVIDUALS": 3507,
+   "TOP_BILLERS": 350,
+   "BOTH_TOP": 45,
+   "RATE_PCT": "12.9",
+   "PEER_PCT": "9.7",
+   "BOTH_USD": 7573.11,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 7573.11,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 1230026.03,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Clinical Cardiac Electrophysiology",
+   "INDIVIDUALS": 2559,
+   "TOP_BILLERS": 255,
+   "BOTH_TOP": 44,
+   "RATE_PCT": "17.3",
+   "PEER_PCT": "9.2",
+   "BOTH_USD": 3358708.97,
+   "BOTH_ROYALTY": 6480.0,
+   "BOTH_SERVICES": 2300532.04,
+   "BOTH_HOSPITALITY": 741952.76,
+   "BOTH_OTHER": 309744.17,
+   "BOTH_ALLOWED": 36936099.58,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Medical Oncology",
+   "INDIVIDUALS": 3805,
+   "TOP_BILLERS": 380,
+   "BOTH_TOP": 31,
+   "RATE_PCT": "8.2",
+   "PEER_PCT": "10.2",
+   "BOTH_USD": 3431183.99,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 2971187.09,
+   "BOTH_HOSPITALITY": 456569.61,
+   "BOTH_OTHER": 3427.29,
+   "BOTH_ALLOWED": 143791425.9,
+   "ZERO_DOLLAR_TOP_MONEY": 0
+  },
+  {
+   "SPEC": "Physical Therapist in Private Practice",
+   "INDIVIDUALS": 77897,
+   "TOP_BILLERS": 7789,
+   "BOTH_TOP": 6,
+   "RATE_PCT": "0.1",
+   "PEER_PCT": "0.0",
+   "BOTH_USD": 278.02,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 278.02,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 1048248.1599999999,
+   "ZERO_DOLLAR_TOP_MONEY": 7756
+  },
+  {
+   "SPEC": "Licensed Professional Counselor",
+   "INDIVIDUALS": 3030,
+   "TOP_BILLERS": 303,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.1",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 301
+  },
+  {
+   "SPEC": "Psychologist, Clinical",
+   "INDIVIDUALS": 11986,
+   "TOP_BILLERS": 1198,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.1",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 1192
+  },
+  {
+   "SPEC": "Occupational Therapist in Private Practice",
+   "INDIVIDUALS": 11309,
+   "TOP_BILLERS": 1130,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.0",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 1127
+  },
+  {
+   "SPEC": "Licensed Clinical Social Worker",
+   "INDIVIDUALS": 16435,
+   "TOP_BILLERS": 1643,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.0",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 1637
+  },
+  {
+   "SPEC": "Speech Language Pathologist",
+   "INDIVIDUALS": 2738,
+   "TOP_BILLERS": 273,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.0",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 272
+  },
+  {
+   "SPEC": "Audiologist",
+   "INDIVIDUALS": 7608,
+   "TOP_BILLERS": 760,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.0",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 759
+  },
+  {
+   "SPEC": "Registered Dietitian or Nutrition Professional",
+   "INDIVIDUALS": 2169,
+   "TOP_BILLERS": 216,
+   "BOTH_TOP": 0,
+   "RATE_PCT": "0.0",
+   "PEER_PCT": "0.1",
+   "BOTH_USD": 0.0,
+   "BOTH_ROYALTY": 0.0,
+   "BOTH_SERVICES": 0.0,
+   "BOTH_HOSPITALITY": 0.0,
+   "BOTH_OTHER": 0.0,
+   "BOTH_ALLOWED": 0.0,
+   "ZERO_DOLLAR_TOP_MONEY": 215
+  }
+ ],
+ "top10_both": [
+  {
+   "NPI": "1124522909",
+   "FIRST_NAME": "Dodie",
+   "LAST_NAME": "Mcgee",
+   "SPEC": "Nurse Practitioner",
+   "ST": "MS",
+   "ALLOWED": 17179244.67,
+   "SRVCS": 10525,
+   "BENES": 32,
+   "DRUG_ALLOWED": null,
+   "USD": 772115.0,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 0.0,
+   "OTHER": 772115.0,
+   "N_PAY": 1,
+   "R_ALLOWED": 58,
+   "R_MONEY": 135,
+   "RANK_PRODUCT": 7830
+  },
+  {
+   "NPI": "1669736427",
+   "FIRST_NAME": "Ravi",
+   "LAST_NAME": "Kapadia",
+   "SPEC": "General Surgery",
+   "ST": "CA",
+   "ALLOWED": 97068640.67,
+   "SRVCS": 64895,
+   "BENES": 113,
+   "DRUG_ALLOWED": 96753001.44,
+   "USD": 29753.42,
+   "ROYALTY": 0.0,
+   "SERVICES": 22925.0,
+   "HOSPITALITY": 6828.42,
+   "OTHER": 0.0,
+   "N_PAY": 45,
+   "R_ALLOWED": 3,
+   "R_MONEY": 10420,
+   "RANK_PRODUCT": 31260
+  },
+  {
+   "NPI": "1295929511",
+   "FIRST_NAME": "Arshad",
+   "LAST_NAME": "Khanani",
+   "SPEC": "Ophthalmology",
+   "ST": "NV",
+   "ALLOWED": 9953054.98,
+   "SRVCS": 234199,
+   "BENES": 1508,
+   "DRUG_ALLOWED": 8601129.16,
+   "USD": 302440.68,
+   "ROYALTY": 0.0,
+   "SERVICES": 277955.75,
+   "HOSPITALITY": 24484.930000000004,
+   "OTHER": 0.0,
+   "N_PAY": 198,
+   "R_ALLOWED": 209,
+   "R_MONEY": 590,
+   "RANK_PRODUCT": 123310
+  },
+  {
+   "NPI": "1245307578",
+   "FIRST_NAME": "Colin",
+   "LAST_NAME": "Edgerton",
+   "SPEC": "Rheumatology",
+   "ST": "SC",
+   "ALLOWED": 3380909.14,
+   "SRVCS": 179915,
+   "BENES": 732,
+   "DRUG_ALLOWED": 3107793.74,
+   "USD": 1510483.2100000002,
+   "ROYALTY": 0.0,
+   "SERVICES": 7425.95,
+   "HOSPITALITY": 3057.2599999999998,
+   "OTHER": 1500000.0,
+   "N_PAY": 131,
+   "R_ALLOWED": 2825,
+   "R_MONEY": 56,
+   "RANK_PRODUCT": 158200
+  },
+  {
+   "NPI": "1124237300",
+   "FIRST_NAME": "Charles",
+   "LAST_NAME": "Wykoff",
+   "SPEC": "Ophthalmology",
+   "ST": "TX",
+   "ALLOWED": 7570130.69,
+   "SRVCS": 42254,
+   "BENES": 1160,
+   "DRUG_ALLOWED": 6635283.75,
+   "USD": 394855.91000000003,
+   "ROYALTY": 0.0,
+   "SERVICES": 386093.45999999996,
+   "HOSPITALITY": 8762.449999999999,
+   "OTHER": 0.0,
+   "N_PAY": 122,
+   "R_ALLOWED": 430,
+   "R_MONEY": 386,
+   "RANK_PRODUCT": 165980
+  },
+  {
+   "NPI": "1508070566",
+   "FIRST_NAME": "Dilsher",
+   "LAST_NAME": "Dhoot",
+   "SPEC": "Ophthalmology",
+   "ST": "CA",
+   "ALLOWED": 7562566.06,
+   "SRVCS": 63150,
+   "BENES": 1922,
+   "DRUG_ALLOWED": 6037078.39,
+   "USD": 387859.75,
+   "ROYALTY": 0.0,
+   "SERVICES": 352965.57,
+   "HOSPITALITY": 34894.17999999999,
+   "OTHER": 0.0,
+   "N_PAY": 330,
+   "R_ALLOWED": 431,
+   "R_MONEY": 402,
+   "RANK_PRODUCT": 173262
+  },
+  {
+   "NPI": "1649244716",
+   "FIRST_NAME": "Joy",
+   "LAST_NAME": "Schechtman",
+   "SPEC": "Rheumatology",
+   "ST": "AZ",
+   "ALLOWED": 12826609.08,
+   "SRVCS": 846967,
+   "BENES": 1184,
+   "DRUG_ALLOWED": 11630470.56,
+   "USD": 153404.96999999997,
+   "ROYALTY": 0.0,
+   "SERVICES": 132153.5,
+   "HOSPITALITY": 21251.469999999994,
+   "OTHER": 0.0,
+   "N_PAY": 396,
+   "R_ALLOWED": 114,
+   "R_MONEY": 1713,
+   "RANK_PRODUCT": 195282
+  },
+  {
+   "NPI": "1780680074",
+   "FIRST_NAME": "Mark",
+   "LAST_NAME": "Frankle",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "FL",
+   "ALLOWED": 370723.96,
+   "SRVCS": 5278,
+   "BENES": 640,
+   "DRUG_ALLOWED": 2042.09,
+   "USD": 7333020.58,
+   "ROYALTY": 6949753.54,
+   "SERVICES": 360000.0,
+   "HOSPITALITY": 23267.04,
+   "OTHER": 0.0,
+   "N_PAY": 150,
+   "R_ALLOWED": 39721,
+   "R_MONEY": 5,
+   "RANK_PRODUCT": 198605
+  },
+  {
+   "NPI": "1295735058",
+   "FIRST_NAME": "Ruemu",
+   "LAST_NAME": "Birhiray",
+   "SPEC": "Hematology-Oncology",
+   "ST": "IN",
+   "ALLOWED": 6257668.29,
+   "SRVCS": 241755,
+   "BENES": 1032,
+   "DRUG_ALLOWED": 5733261.95,
+   "USD": 483682.61,
+   "ROYALTY": 0.0,
+   "SERVICES": 391600.92,
+   "HOSPITALITY": 92081.69,
+   "OTHER": 0.0,
+   "N_PAY": 608,
+   "R_ALLOWED": 746,
+   "R_MONEY": 277,
+   "RANK_PRODUCT": 206642
+  },
+  {
+   "NPI": "1275508954",
+   "FIRST_NAME": "Gary",
+   "LAST_NAME": "Gelbfish",
+   "SPEC": "Vascular Surgery",
+   "ST": "NY",
+   "ALLOWED": 1906232.25,
+   "SRVCS": 7751,
+   "BENES": 520,
+   "DRUG_ALLOWED": 2664.39,
+   "USD": 1928677.54,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 17.0,
+   "OTHER": 1928660.54,
+   "N_PAY": 3,
+   "R_ALLOWED": 6120,
+   "R_MONEY": 34,
+   "RANK_PRODUCT": 208080
+  }
+ ],
+ "top10_money": [
+  {
+   "NPI": "1780680074",
+   "FIRST_NAME": "Mark",
+   "LAST_NAME": "Frankle",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "FL",
+   "ALLOWED": 370723.96,
+   "USD": 7333020.58,
+   "ROYALTY": 6949753.54,
+   "SERVICES": 360000.0,
+   "HOSPITALITY": 23267.04,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1164450573",
+   "FIRST_NAME": "Alexander",
+   "LAST_NAME": "Frank",
+   "SPEC": "Family Practice",
+   "ST": "OK",
+   "ALLOWED": 289402.06,
+   "USD": 3082225.0,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 0.0,
+   "OTHER": 3082225.0
+  },
+  {
+   "NPI": "1578684627",
+   "FIRST_NAME": "Patrick",
+   "LAST_NAME": "Denard",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "OR",
+   "ALLOWED": 429801.41,
+   "USD": 2500388.7600000002,
+   "ROYALTY": 2019839.13,
+   "SERVICES": 451012.5,
+   "HOSPITALITY": 29537.130000000005,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1295786770",
+   "FIRST_NAME": "Reuben",
+   "LAST_NAME": "Gobezie",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "OH",
+   "ALLOWED": 376767.29,
+   "USD": 2341674.27,
+   "ROYALTY": 2250017.5300000003,
+   "SERVICES": 88268.75,
+   "HOSPITALITY": 3387.99,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1811944143",
+   "FIRST_NAME": "William",
+   "LAST_NAME": "Hamilton",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "VA",
+   "ALLOWED": 608863.25,
+   "USD": 1973382.49,
+   "ROYALTY": 1881262.56,
+   "SERVICES": 84720.88,
+   "HOSPITALITY": 7399.049999999999,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1275508954",
+   "FIRST_NAME": "Gary",
+   "LAST_NAME": "Gelbfish",
+   "SPEC": "Vascular Surgery",
+   "ST": "NY",
+   "ALLOWED": 1906232.25,
+   "USD": 1928677.54,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 17.0,
+   "OTHER": 1928660.54
+  },
+  {
+   "NPI": "1295763225",
+   "FIRST_NAME": "Jonathan",
+   "LAST_NAME": "Yerasimides",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "KY",
+   "ALLOWED": 526225.81,
+   "USD": 1925722.1899999997,
+   "ROYALTY": 1681581.35,
+   "SERVICES": 13175.0,
+   "HOSPITALITY": 208834.7,
+   "OTHER": 22131.14
+  },
+  {
+   "NPI": "1700879186",
+   "FIRST_NAME": "Adolph",
+   "LAST_NAME": "Lombardi",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "OH",
+   "ALLOWED": 598918.73,
+   "USD": 1880953.7699999998,
+   "ROYALTY": 1131915.0899999999,
+   "SERVICES": 482691.56,
+   "HOSPITALITY": 266347.12,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1184697450",
+   "FIRST_NAME": "Richard",
+   "LAST_NAME": "Hynes",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "FL",
+   "ALLOWED": 571654.64,
+   "USD": 1603505.35,
+   "ROYALTY": 1511963.01,
+   "SERVICES": 65625.0,
+   "HOSPITALITY": 25917.34,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1396786901",
+   "FIRST_NAME": "John",
+   "LAST_NAME": "Dearborn",
+   "SPEC": "Orthopedic Surgery",
+   "ST": "CA",
+   "ALLOWED": 1650136.62,
+   "USD": 1599851.8,
+   "ROYALTY": 1599705.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 146.8,
+   "OTHER": 0.0
+  }
+ ],
+ "top10_allowed": [
+  {
+   "NPI": "1669736427",
+   "FIRST_NAME": "Ravi",
+   "LAST_NAME": "Kapadia",
+   "SPEC": "General Surgery",
+   "ST": "CA",
+   "ALLOWED": 97068640.67,
+   "DRUG_ALLOWED": 96753001.44,
+   "USD": 29753.42,
+   "ROYALTY": 0.0,
+   "SERVICES": 22925.0,
+   "HOSPITALITY": 6828.42,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1841489440",
+   "FIRST_NAME": "Jack",
+   "LAST_NAME": "Azad",
+   "SPEC": "General Practice",
+   "ST": "CA",
+   "ALLOWED": 31454502.09,
+   "DRUG_ALLOWED": 27908443.82,
+   "USD": 3558.4500000000003,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 3558.4500000000003,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1295791838",
+   "FIRST_NAME": "Thomas",
+   "LAST_NAME": "Rambacher",
+   "SPEC": "Podiatry",
+   "ST": "CA",
+   "ALLOWED": 28569637.53,
+   "DRUG_ALLOWED": 27806497.46,
+   "USD": 7185.55,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 7185.55,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1275776049",
+   "FIRST_NAME": "David",
+   "LAST_NAME": "Warrow",
+   "SPEC": "Ophthalmology",
+   "ST": "MD",
+   "ALLOWED": 25794536.39,
+   "DRUG_ALLOWED": 21999615.62,
+   "USD": 17092.88,
+   "ROYALTY": 0.0,
+   "SERVICES": 4375.0,
+   "HOSPITALITY": 12717.880000000001,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1699744367",
+   "FIRST_NAME": "John",
+   "LAST_NAME": "Storheim",
+   "SPEC": "Anesthesiology",
+   "ST": "CO",
+   "ALLOWED": 24316434.94,
+   "DRUG_ALLOWED": 23974696.09,
+   "USD": 42000.0,
+   "ROYALTY": 0.0,
+   "SERVICES": 42000.0,
+   "HOSPITALITY": 0.0,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1316966575",
+   "FIRST_NAME": "Joseph",
+   "LAST_NAME": "Sedrak",
+   "SPEC": "Micrographic Dermatologic Surgery",
+   "ST": "TX",
+   "ALLOWED": 22960187.08,
+   "DRUG_ALLOWED": 21853214.8,
+   "USD": 1713.2399999999998,
+   "ROYALTY": 0.0,
+   "SERVICES": 0.0,
+   "HOSPITALITY": 1713.2399999999998,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1134389364",
+   "FIRST_NAME": "Neil",
+   "LAST_NAME": "Sandhu",
+   "SPEC": "Dermatology",
+   "ST": "FL",
+   "ALLOWED": 21828102.14,
+   "DRUG_ALLOWED": 18912133.31,
+   "USD": 14556.44,
+   "ROYALTY": 0.0,
+   "SERVICES": 6260.08,
+   "HOSPITALITY": 3496.36,
+   "OTHER": 4800.0
+  },
+  {
+   "NPI": "1235315268",
+   "FIRST_NAME": "Allen",
+   "LAST_NAME": "Hu",
+   "SPEC": "Ophthalmology",
+   "ST": "MD",
+   "ALLOWED": 19125170.21,
+   "DRUG_ALLOWED": 16657657.11,
+   "USD": 57791.639999999985,
+   "ROYALTY": 0.0,
+   "SERVICES": 53164.0,
+   "HOSPITALITY": 4627.639999999999,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1306067814",
+   "FIRST_NAME": "Daniel",
+   "LAST_NAME": "Levy",
+   "SPEC": "Dermatology",
+   "ST": "WA",
+   "ALLOWED": 17404972.32,
+   "DRUG_ALLOWED": null,
+   "USD": 52895.71,
+   "ROYALTY": 0.0,
+   "SERVICES": 46875.55,
+   "HOSPITALITY": 6020.16,
+   "OTHER": 0.0
+  },
+  {
+   "NPI": "1053372649",
+   "FIRST_NAME": "Bassam",
+   "LAST_NAME": "Mattar",
+   "SPEC": "Hematology-Oncology",
+   "ST": "KS",
+   "ALLOWED": 17313926.63,
+   "DRUG_ALLOWED": 16030727.36,
+   "USD": 56545.19,
+   "ROYALTY": 0.0,
+   "SERVICES": 48385.0,
+   "HOSPITALITY": 8160.1900000000005,
+   "OTHER": 0.0
+  }
+ ],
+ "concentration": [
+  {
+   "TOT": 356079657.9,
+   "TOP10": 26169401.75,
+   "TOP100": 84394119.1,
+   "TOP1000": 223276144.05,
+   "N": 22342,
+   "MEDIAN_USD": 1902.4999999999998,
+   "ROYALTY_PEOPLE": 369
+  }
+ ],
+ "headline_no_royalty": [
+  {
+   "TOP_BILLERS": 123529,
+   "BOTH_TOP": 22298,
+   "PEERS": 1112228,
+   "PEERS_TOP_MONEY": 85329
+  }
+ ],
+ "by_bill_decile": [
+  {
+   "BILL_DEC": 1,
+   "PEOPLE": 123625,
+   "TOP_MONEY_PCT": "4.68",
+   "ANY_MONEY_PCT": "38.1",
+   "MEAN_USD": 904.0,
+   "MEDIAN_USD": 0.0,
+   "USD": 111745826.10999998,
+   "ROYALTY": 12796516.779999997,
+   "SERVICES": 57837277.080000006,
+   "HOSPITALITY": 28283843.53
+  },
+  {
+   "BILL_DEC": 2,
+   "PEOPLE": 123615,
+   "TOP_MONEY_PCT": "5.50",
+   "ANY_MONEY_PCT": "42.0",
+   "MEAN_USD": 1445.0,
+   "MEDIAN_USD": 0.0,
+   "USD": 178620344.06,
+   "ROYALTY": 14383785.37,
+   "SERVICES": 67392090.10000001,
+   "HOSPITALITY": 36068313.43
+  },
+  {
+   "BILL_DEC": 3,
+   "PEOPLE": 123605,
+   "TOP_MONEY_PCT": "5.88",
+   "ANY_MONEY_PCT": "43.5",
+   "MEAN_USD": 1076.0,
+   "MEDIAN_USD": 0.0,
+   "USD": 133010629.50000001,
+   "ROYALTY": 15020830.509999998,
+   "SERVICES": 70996293.84,
+   "HOSPITALITY": 38163338.61
+  },
+  {
+   "BILL_DEC": 4,
+   "PEOPLE": 123592,
+   "TOP_MONEY_PCT": "6.44",
+   "ANY_MONEY_PCT": "45.0",
+   "MEAN_USD": 1223.0,
+   "MEDIAN_USD": 0.0,
+   "USD": 151108195.99,
+   "ROYALTY": 26540130.210000005,
+   "SERVICES": 70624121.13999999,
+   "HOSPITALITY": 40947276.730000004
+  },
+  {
+   "BILL_DEC": 5,
+   "PEOPLE": 123578,
+   "TOP_MONEY_PCT": "6.90",
+   "ANY_MONEY_PCT": "46.9",
+   "MEAN_USD": 1217.0,
+   "MEDIAN_USD": 0.0,
+   "USD": 150353663.01,
+   "ROYALTY": 27330332.740000002,
+   "SERVICES": 75394699.09,
+   "HOSPITALITY": 44854243.199999996
+  },
+  {
+   "BILL_DEC": 6,
+   "PEOPLE": 123567,
+   "TOP_MONEY_PCT": "7.70",
+   "ANY_MONEY_PCT": "48.7",
+   "MEAN_USD": 1217.0,
+   "MEDIAN_USD": 0.0,
+   "USD": 150372461.83999997,
+   "ROYALTY": 18685185.12,
+   "SERVICES": 79255763.12,
+   "HOSPITALITY": 49315076.379999995
+  },
+  {
+   "BILL_DEC": 7,
+   "PEOPLE": 123557,
+   "TOP_MONEY_PCT": "8.81",
+   "ANY_MONEY_PCT": "50.8",
+   "MEAN_USD": 1376.0,
+   "MEDIAN_USD": 14.0,
+   "USD": 169984472.29999998,
+   "ROYALTY": 25338524.87,
+   "SERVICES": 83173537.69000001,
+   "HOSPITALITY": 55690302.95
+  },
+  {
+   "BILL_DEC": 8,
+   "PEOPLE": 123549,
+   "TOP_MONEY_PCT": "10.29",
+   "ANY_MONEY_PCT": "53.6",
+   "MEAN_USD": 1673.0,
+   "MEDIAN_USD": 20.0,
+   "USD": 206729089.62,
+   "ROYALTY": 37754284.74,
+   "SERVICES": 97131280.31,
+   "HOSPITALITY": 63039199.669999994
+  },
+  {
+   "BILL_DEC": 9,
+   "PEOPLE": 123540,
+   "TOP_MONEY_PCT": "12.82",
+   "ANY_MONEY_PCT": "57.2",
+   "MEAN_USD": 1877.0,
+   "MEDIAN_USD": 35.0,
+   "USD": 231873647.03,
+   "ROYALTY": 42567113.150000006,
+   "SERVICES": 108574555.33,
+   "HOSPITALITY": 74943957.56
+  },
+  {
+   "BILL_DEC": 10,
+   "PEOPLE": 123529,
+   "TOP_MONEY_PCT": "18.09",
+   "ANY_MONEY_PCT": "61.4",
+   "MEAN_USD": 3137.0,
+   "MEDIAN_USD": 75.0,
+   "USD": 387546261.89000005,
+   "ROYALTY": 69289733.74000001,
+   "SERVICES": 191021246.24,
+   "HOSPITALITY": 102564380.45
+  }
+ ],
+ "headline_med_only": [
+  {
+   "TOP_BILLERS": 123529,
+   "BOTH_TOP": 20724,
+   "PEERS": 1112228,
+   "PEERS_TOP_MONEY": 86903
+  }
+ ],
+ "drug_share": [
+  {
+   "COHORT": "both-top",
+   "PEOPLE": 22342,
+   "ALLOWED": 11959238825.37,
+   "DRUG_ALLOWED": 4759918272.76,
+   "DRUG_PCT": 39.8
+  },
+  {
+   "COHORT": "rest",
+   "PEOPLE": 1112228,
+   "ALLOWED": 64076280824.61,
+   "DRUG_ALLOWED": 6546533974.829999,
+   "DRUG_PCT": 10.2
+  },
+  {
+   "COHORT": "top biller only",
+   "PEOPLE": 101187,
+   "ALLOWED": 51069969620.43001,
+   "DRUG_ALLOWED": 20315361010.49,
+   "DRUG_PCT": 39.8
+  }
+ ],
+ "named_nature": [
+  {
+   "NPI": "1053372649",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 11,
+   "USD": 37940.0
+  },
+  {
+   "NPI": "1053372649",
+   "NATURE": "Consulting Fee",
+   "N": 4,
+   "USD": 9795.0
+  },
+  {
+   "NPI": "1053372649",
+   "NATURE": "Travel and Lodging",
+   "N": 4,
+   "USD": 4391.639999999999
+  },
+  {
+   "NPI": "1053372649",
+   "NATURE": "Food and Beverage",
+   "N": 208,
+   "USD": 3768.55
+  },
+  {
+   "NPI": "1053372649",
+   "NATURE": "Honoraria",
+   "N": 1,
+   "USD": 650.0
+  },
+  {
+   "NPI": "1124237300",
+   "NATURE": "Consulting Fee",
+   "N": 80,
+   "USD": 383957.37
+  },
+  {
+   "NPI": "1124237300",
+   "NATURE": "Travel and Lodging",
+   "N": 4,
+   "USD": 7106.23
+  },
+  {
+   "NPI": "1124237300",
+   "NATURE": "Food and Beverage",
+   "N": 34,
+   "USD": 1513.76
+  },
+  {
+   "NPI": "1124237300",
+   "NATURE": "Honoraria",
+   "N": 1,
+   "USD": 1390.0
+  },
+  {
+   "NPI": "1124237300",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 2,
+   "USD": 746.0899999999999
+  },
+  {
+   "NPI": "1124237300",
+   "NATURE": "Gift",
+   "N": 1,
+   "USD": 142.46
+  },
+  {
+   "NPI": "1124522909",
+   "NATURE": "Debt forgiveness",
+   "N": 1,
+   "USD": 772115.0
+  },
+  {
+   "NPI": "1134389364",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 2,
+   "USD": 6000.0
+  },
+  {
+   "NPI": "1134389364",
+   "NATURE": "Debt forgiveness",
+   "N": 1,
+   "USD": 4800.0
+  },
+  {
+   "NPI": "1134389364",
+   "NATURE": "Travel and Lodging",
+   "N": 3,
+   "USD": 1893.12
+  },
+  {
+   "NPI": "1134389364",
+   "NATURE": "Food and Beverage",
+   "N": 59,
+   "USD": 1408.26
+  },
+  {
+   "NPI": "1134389364",
+   "NATURE": "Honoraria",
+   "N": 2,
+   "USD": 260.08000000000004
+  },
+  {
+   "NPI": "1134389364",
+   "NATURE": "Education",
+   "N": 2,
+   "USD": 194.98
+  },
+  {
+   "NPI": "1164450573",
+   "NATURE": "Debt forgiveness",
+   "N": 1,
+   "USD": 3082225.0
+  },
+  {
+   "NPI": "1184697450",
+   "NATURE": "Royalty or License",
+   "N": 19,
+   "USD": 1511963.01
+  },
+  {
+   "NPI": "1184697450",
+   "NATURE": "Consulting Fee",
+   "N": 9,
+   "USD": 52875.0
+  },
+  {
+   "NPI": "1184697450",
+   "NATURE": "Travel and Lodging",
+   "N": 30,
+   "USD": 24693.28
+  },
+  {
+   "NPI": "1184697450",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 3,
+   "USD": 12750.0
+  },
+  {
+   "NPI": "1184697450",
+   "NATURE": "Food and Beverage",
+   "N": 13,
+   "USD": 1224.06
+  },
+  {
+   "NPI": "1235315268",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 9,
+   "USD": 30944.0
+  },
+  {
+   "NPI": "1235315268",
+   "NATURE": "Consulting Fee",
+   "N": 12,
+   "USD": 22220.0
+  },
+  {
+   "NPI": "1235315268",
+   "NATURE": "Travel and Lodging",
+   "N": 23,
+   "USD": 2571.54
+  },
+  {
+   "NPI": "1235315268",
+   "NATURE": "Food and Beverage",
+   "N": 56,
+   "USD": 2056.1
+  },
+  {
+   "NPI": "1245307578",
+   "NATURE": "Acquisitions",
+   "N": 1,
+   "USD": 1500000.0
+  },
+  {
+   "NPI": "1245307578",
+   "NATURE": "Consulting Fee",
+   "N": 2,
+   "USD": 7425.95
+  },
+  {
+   "NPI": "1245307578",
+   "NATURE": "Food and Beverage",
+   "N": 127,
+   "USD": 2741.9900000000002
+  },
+  {
+   "NPI": "1245307578",
+   "NATURE": "Travel and Lodging",
+   "N": 1,
+   "USD": 315.27
+  },
+  {
+   "NPI": "1275508954",
+   "NATURE": "Acquisitions",
+   "N": 2,
+   "USD": 1928660.54
+  },
+  {
+   "NPI": "1275508954",
+   "NATURE": "Food and Beverage",
+   "N": 1,
+   "USD": 17.0
+  },
+  {
+   "NPI": "1275776049",
+   "NATURE": "Travel and Lodging",
+   "N": 3,
+   "USD": 10336.88
+  },
+  {
+   "NPI": "1275776049",
+   "NATURE": "Consulting Fee",
+   "N": 2,
+   "USD": 2985.0
+  },
+  {
+   "NPI": "1275776049",
+   "NATURE": "Food and Beverage",
+   "N": 82,
+   "USD": 2380.9999999999995
+  },
+  {
+   "NPI": "1275776049",
+   "NATURE": "Honoraria",
+   "N": 1,
+   "USD": 1390.0
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 103,
+   "USD": 307313.25
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Travel and Lodging",
+   "N": 126,
+   "USD": 78767.76
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Consulting Fee",
+   "N": 23,
+   "USD": 53183.0
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Compensation for serving as faculty or as a speaker for a medical education program",
+   "N": 6,
+   "USD": 16470.0
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Honoraria",
+   "N": 7,
+   "USD": 14634.67
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Food and Beverage",
+   "N": 342,
+   "USD": 13214.93
+  },
+  {
+   "NPI": "1295735058",
+   "NATURE": "Education",
+   "N": 1,
+   "USD": 99.0
+  },
+  {
+   "NPI": "1295763225",
+   "NATURE": "Royalty or License",
+   "N": 2,
+   "USD": 1681581.35
+  },
+  {
+   "NPI": "1295763225",
+   "NATURE": "Education",
+   "N": 65,
+   "USD": 189275.0
+  },
+  {
+   "NPI": "1295763225",
+   "NATURE": "Long term medical supply or device loan",
+   "N": 2,
+   "USD": 22131.14
+  },
+  {
+   "NPI": "1295763225",
+   "NATURE": "Travel and Lodging",
+   "N": 72,
+   "USD": 16865.97
+  },
+  {
+   "NPI": "1295763225",
+   "NATURE": "Consulting Fee",
+   "N": 6,
+   "USD": 13175.0
+  },
+  {
+   "NPI": "1295763225",
+   "NATURE": "Food and Beverage",
+   "N": 38,
+   "USD": 2693.73
+  },
+  {
+   "NPI": "1295786770",
+   "NATURE": "Royalty or License",
+   "N": 4,
+   "USD": 2250017.5300000003
+  },
+  {
+   "NPI": "1295786770",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 5,
+   "USD": 44225.0
+  },
+  {
+   "NPI": "1295786770",
+   "NATURE": "Consulting Fee",
+   "N": 14,
+   "USD": 44043.75
+  },
+  {
+   "NPI": "1295786770",
+   "NATURE": "Travel and Lodging",
+   "N": 9,
+   "USD": 2591.3900000000003
+  },
+  {
+   "NPI": "1295786770",
+   "NATURE": "Food and Beverage",
+   "N": 42,
+   "USD": 796.5999999999999
+  },
+  {
+   "NPI": "1295791838",
+   "NATURE": "Food and Beverage",
+   "N": 95,
+   "USD": 4382.280000000001
+  },
+  {
+   "NPI": "1295791838",
+   "NATURE": "Travel and Lodging",
+   "N": 13,
+   "USD": 2803.27
+  },
+  {
+   "NPI": "1295929511",
+   "NATURE": "Consulting Fee",
+   "N": 97,
+   "USD": 275555.75
+  },
+  {
+   "NPI": "1295929511",
+   "NATURE": "Travel and Lodging",
+   "N": 15,
+   "USD": 21263.03
+  },
+  {
+   "NPI": "1295929511",
+   "NATURE": "Food and Beverage",
+   "N": 85,
+   "USD": 3221.9000000000005
+  },
+  {
+   "NPI": "1295929511",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 1,
+   "USD": 2400.0
+  },
+  {
+   "NPI": "1306067814",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 23,
+   "USD": 46875.55
+  },
+  {
+   "NPI": "1306067814",
+   "NATURE": "Travel and Lodging",
+   "N": 11,
+   "USD": 4148.68
+  },
+  {
+   "NPI": "1306067814",
+   "NATURE": "Food and Beverage",
+   "N": 60,
+   "USD": 1871.4799999999998
+  },
+  {
+   "NPI": "1316966575",
+   "NATURE": "Food and Beverage",
+   "N": 79,
+   "USD": 1704.79
+  },
+  {
+   "NPI": "1316966575",
+   "NATURE": "Education",
+   "N": 1,
+   "USD": 8.45
+  },
+  {
+   "NPI": "1396786901",
+   "NATURE": "Royalty or License",
+   "N": 1,
+   "USD": 1599705.0
+  },
+  {
+   "NPI": "1396786901",
+   "NATURE": "Food and Beverage",
+   "N": 2,
+   "USD": 146.8
+  },
+  {
+   "NPI": "1508070566",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 27,
+   "USD": 189037.57
+  },
+  {
+   "NPI": "1508070566",
+   "NATURE": "Consulting Fee",
+   "N": 73,
+   "USD": 145888.0
+  },
+  {
+   "NPI": "1508070566",
+   "NATURE": "Travel and Lodging",
+   "N": 101,
+   "USD": 26731.58
+  },
+  {
+   "NPI": "1508070566",
+   "NATURE": "Honoraria",
+   "N": 3,
+   "USD": 18040.0
+  },
+  {
+   "NPI": "1508070566",
+   "NATURE": "Food and Beverage",
+   "N": 125,
+   "USD": 8154.150000000001
+  },
+  {
+   "NPI": "1508070566",
+   "NATURE": "Education",
+   "N": 1,
+   "USD": 8.45
+  },
+  {
+   "NPI": "1578684627",
+   "NATURE": "Royalty or License",
+   "N": 4,
+   "USD": 2019839.13
+  },
+  {
+   "NPI": "1578684627",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 43,
+   "USD": 314912.5
+  },
+  {
+   "NPI": "1578684627",
+   "NATURE": "Consulting Fee",
+   "N": 86,
+   "USD": 136100.0
+  },
+  {
+   "NPI": "1578684627",
+   "NATURE": "Travel and Lodging",
+   "N": 103,
+   "USD": 24244.94
+  },
+  {
+   "NPI": "1578684627",
+   "NATURE": "Food and Beverage",
+   "N": 75,
+   "USD": 5292.1900000000005
+  },
+  {
+   "NPI": "1649244716",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 47,
+   "USD": 116243.5
+  },
+  {
+   "NPI": "1649244716",
+   "NATURE": "Consulting Fee",
+   "N": 6,
+   "USD": 15910.0
+  },
+  {
+   "NPI": "1649244716",
+   "NATURE": "Travel and Lodging",
+   "N": 68,
+   "USD": 11522.83
+  },
+  {
+   "NPI": "1649244716",
+   "NATURE": "Food and Beverage",
+   "N": 266,
+   "USD": 9594.6
+  },
+  {
+   "NPI": "1649244716",
+   "NATURE": "Education",
+   "N": 8,
+   "USD": 93.45
+  },
+  {
+   "NPI": "1649244716",
+   "NATURE": "Gift",
+   "N": 1,
+   "USD": 40.59
+  },
+  {
+   "NPI": "1669736427",
+   "NATURE": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+   "N": 5,
+   "USD": 22925.0
+  },
+  {
+   "NPI": "1669736427",
+   "NATURE": "Travel and Lodging",
+   "N": 19,
+   "USD": 5683.9400000000005
+  },
+  {
+   "NPI": "1669736427",
+   "NATURE": "Food and Beverage",
+   "N": 21,
+   "USD": 1144.48
+  },
+  {
+   "NPI": "1699744367",
+   "NATURE": "Consulting Fee",
+   "N": 12,
+   "USD": 42000.0
+  },
+  {
+   "NPI": "1700879186",
+   "NATURE": "Royalty or License",
+   "N": 17,
+   "USD": 1131915.0899999999
+  },
+  {
+   "NPI": "1700879186",
+   "NATURE": "Consulting Fee",
+   "N": 5,
+   "USD": 482691.56
+  },
+  {
+   "NPI": "1700879186",
+   "NATURE": "Education",
+   "N": 56,
+   "USD": 249103.16999999998
+  },
+  {
+   "NPI": "1700879186",
+   "NATURE": "Travel and Lodging",
+   "N": 63,
+   "USD": 13661.630000000001
+  },
+  {
+   "NPI": "1700879186",
+   "NATURE": "Food and Beverage",
+   "N": 54,
+   "USD": 3582.32
+  },
+  {
+   "NPI": "1780680074",
+   "NATURE": "Royalty or License",
+   "N": 10,
+   "USD": 6949753.54
+  },
+  {
+   "NPI": "1780680074",
+   "NATURE": "Consulting Fee",
+   "N": 102,
+   "USD": 360000.0
+  },
+  {
+   "NPI": "1780680074",
+   "NATURE": "Travel and Lodging",
+   "N": 10,
+   "USD": 21991.260000000002
+  },
+  {
+   "NPI": "1780680074",
+   "NATURE": "Food and Beverage",
+   "N": 28,
+   "USD": 1275.7800000000002
+  },
+  {
+   "NPI": "1811944143",
+   "NATURE": "Royalty or License",
+   "N": 6,
+   "USD": 1881262.5599999998
+  },
+  {
+   "NPI": "1811944143",
+   "NATURE": "Consulting Fee",
+   "N": 19,
+   "USD": 84720.88
+  },
+  {
+   "NPI": "1811944143",
+   "NATURE": "Travel and Lodging",
+   "N": 13,
+   "USD": 5336.94
+  },
+  {
+   "NPI": "1811944143",
+   "NATURE": "Food and Beverage",
+   "N": 32,
+   "USD": 2062.11
+  },
+  {
+   "NPI": "1841489440",
+   "NATURE": "Food and Beverage",
+   "N": 135,
+   "USD": 3556.68
+  },
+  {
+   "NPI": "1841489440",
+   "NATURE": "Education",
+   "N": 1,
+   "USD": 1.77
+  }
+ ],
+ "named_payer": [
+  {
+   "NPI": "1053372649",
+   "PAYER": "Takeda Pharmaceuticals U.S.A., Inc.",
+   "N": 13,
+   "USD": 25405.22,
+   "RK": 1
+  },
+  {
+   "NPI": "1053372649",
+   "PAYER": "GlaxoSmithKline, LLC.",
+   "N": 12,
+   "USD": 15203.060000000001,
+   "RK": 2
+  },
+  {
+   "NPI": "1124237300",
+   "PAYER": "EyePoint Pharmaceuticals US, Inc.",
+   "N": 9,
+   "USD": 115943.55,
+   "RK": 1
+  },
+  {
+   "NPI": "1124237300",
+   "PAYER": "Boehringer Ingelheim International GmbH",
+   "N": 11,
+   "USD": 96886.95999999999,
+   "RK": 2
+  },
+  {
+   "NPI": "1124522909",
+   "PAYER": "Skye Orthobiologics LLC",
+   "N": 1,
+   "USD": 772115.0,
+   "RK": 1
+  },
+  {
+   "NPI": "1134389364",
+   "PAYER": "Galderma Laboratories, L.P.",
+   "N": 12,
+   "USD": 8450.5,
+   "RK": 1
+  },
+  {
+   "NPI": "1134389364",
+   "PAYER": "Skye Orthobiologics LLC",
+   "N": 1,
+   "USD": 4800.0,
+   "RK": 2
+  },
+  {
+   "NPI": "1164450573",
+   "PAYER": "Skye Orthobiologics LLC",
+   "N": 1,
+   "USD": 3082225.0,
+   "RK": 1
+  },
+  {
+   "NPI": "1184697450",
+   "PAYER": "Medtronic, Inc.",
+   "N": 17,
+   "USD": 1508067.0,
+   "RK": 1
+  },
+  {
+   "NPI": "1184697450",
+   "PAYER": "Globus Medical, Inc.",
+   "N": 45,
+   "USD": 86918.99,
+   "RK": 2
+  },
+  {
+   "NPI": "1235315268",
+   "PAYER": "Astellas Pharma US Inc",
+   "N": 31,
+   "USD": 21584.620000000003,
+   "RK": 1
+  },
+  {
+   "NPI": "1235315268",
+   "PAYER": "Apellis Pharmaceuticals, Inc.",
+   "N": 17,
+   "USD": 12609.04,
+   "RK": 2
+  },
+  {
+   "NPI": "1245307578",
+   "PAYER": "American Rheumatology Network, LLC",
+   "N": 1,
+   "USD": 1500000.0,
+   "RK": 1
+  },
+  {
+   "NPI": "1245307578",
+   "PAYER": "SOBI, INC",
+   "N": 10,
+   "USD": 6177.45,
+   "RK": 2
+  },
+  {
+   "NPI": "1275508954",
+   "PAYER": "Stryker Corporation",
+   "N": 2,
+   "USD": 1928660.54,
+   "RK": 1
+  },
+  {
+   "NPI": "1275508954",
+   "PAYER": "ARGON MEDICAL DEVICES, INC.",
+   "N": 1,
+   "USD": 17.0,
+   "RK": 2
+  },
+  {
+   "NPI": "1275776049",
+   "PAYER": "Samsung Bioepis Co., Ltd.",
+   "N": 5,
+   "USD": 13421.42,
+   "RK": 1
+  },
+  {
+   "NPI": "1275776049",
+   "PAYER": "Alimera Sciences, Inc.",
+   "N": 6,
+   "USD": 1461.74,
+   "RK": 2
+  },
+  {
+   "NPI": "1295735058",
+   "PAYER": "Janssen Biotech, Inc.",
+   "N": 86,
+   "USD": 79039.34999999999,
+   "RK": 1
+  },
+  {
+   "NPI": "1295735058",
+   "PAYER": "AstraZeneca Pharmaceuticals LP",
+   "N": 56,
+   "USD": 64932.99,
+   "RK": 2
+  },
+  {
+   "NPI": "1295763225",
+   "PAYER": "Zimmer Biomet Holdings, Inc.",
+   "N": 181,
+   "USD": 1925363.72,
+   "RK": 1
+  },
+  {
+   "NPI": "1295763225",
+   "PAYER": "Stryker Corporation",
+   "N": 2,
+   "USD": 188.13,
+   "RK": 2
+  },
+  {
+   "NPI": "1295786770",
+   "PAYER": "Arthrex, Inc.",
+   "N": 73,
+   "USD": 2341648.23,
+   "RK": 1
+  },
+  {
+   "NPI": "1295786770",
+   "PAYER": "PFIZER INC.",
+   "N": 1,
+   "USD": 26.04,
+   "RK": 2
+  },
+  {
+   "NPI": "1295791838",
+   "PAYER": "Stryker Corporation",
+   "N": 38,
+   "USD": 2188.36,
+   "RK": 1
+  },
+  {
+   "NPI": "1295791838",
+   "PAYER": "Integra LifeSciences Corporation",
+   "N": 6,
+   "USD": 1124.89,
+   "RK": 2
+  },
+  {
+   "NPI": "1295929511",
+   "PAYER": "Ocular Therapeutix, Inc.",
+   "N": 48,
+   "USD": 81101.82,
+   "RK": 1
+  },
+  {
+   "NPI": "1295929511",
+   "PAYER": "F. Hoffmann-La Roche AG",
+   "N": 25,
+   "USD": 80674.94,
+   "RK": 2
+  },
+  {
+   "NPI": "1306067814",
+   "PAYER": "ABBVIE INC.",
+   "N": 84,
+   "USD": 52617.340000000004,
+   "RK": 1
+  },
+  {
+   "NPI": "1306067814",
+   "PAYER": "REVANCE THERAPEUTICS, INC.",
+   "N": 4,
+   "USD": 132.31,
+   "RK": 2
+  },
+  {
+   "NPI": "1316966575",
+   "PAYER": "Dermavant Sciences, Inc.",
+   "N": 12,
+   "USD": 279.4,
+   "RK": 1
+  },
+  {
+   "NPI": "1316966575",
+   "PAYER": "GENZYME CORPORATION",
+   "N": 11,
+   "USD": 264.76,
+   "RK": 2
+  },
+  {
+   "NPI": "1396786901",
+   "PAYER": "Zimmer Biomet Holdings, Inc.",
+   "N": 3,
+   "USD": 1599851.8,
+   "RK": 1
+  },
+  {
+   "NPI": "1508070566",
+   "PAYER": "Regeneron Healthcare Solutions, Inc.",
+   "N": 115,
+   "USD": 118423.08,
+   "RK": 1
+  },
+  {
+   "NPI": "1508070566",
+   "PAYER": "Ocular Therapeutix, Inc.",
+   "N": 57,
+   "USD": 98273.91,
+   "RK": 2
+  },
+  {
+   "NPI": "1578684627",
+   "PAYER": "Arthrex, Inc.",
+   "N": 301,
+   "USD": 2499238.32,
+   "RK": 1
+  },
+  {
+   "NPI": "1578684627",
+   "PAYER": "Team 1, Llc",
+   "N": 1,
+   "USD": 166.59,
+   "RK": 2
+  },
+  {
+   "NPI": "1649244716",
+   "PAYER": "Amgen Inc.",
+   "N": 85,
+   "USD": 38971.29,
+   "RK": 1
+  },
+  {
+   "NPI": "1649244716",
+   "PAYER": "UCB, Inc.",
+   "N": 61,
+   "USD": 27614.149999999998,
+   "RK": 2
+  },
+  {
+   "NPI": "1669736427",
+   "PAYER": "Organogenesis Inc.",
+   "N": 34,
+   "USD": 28943.18,
+   "RK": 1
+  },
+  {
+   "NPI": "1669736427",
+   "PAYER": "Medtronic, Inc.",
+   "N": 6,
+   "USD": 323.86,
+   "RK": 2
+  },
+  {
+   "NPI": "1699744367",
+   "PAYER": "Kedplasma LLC",
+   "N": 12,
+   "USD": 42000.0,
+   "RK": 1
+  },
+  {
+   "NPI": "1700879186",
+   "PAYER": "Zimmer Biomet Holdings, Inc.",
+   "N": 189,
+   "USD": 1874562.39,
+   "RK": 1
+  },
+  {
+   "NPI": "1700879186",
+   "PAYER": "Cardinal Health 200 LLC",
+   "N": 1,
+   "USD": 6000.0,
+   "RK": 2
+  },
+  {
+   "NPI": "1780680074",
+   "PAYER": "ENCORE MEDICAL, LP",
+   "N": 138,
+   "USD": 7318684.64,
+   "RK": 1
+  },
+  {
+   "NPI": "1780680074",
+   "PAYER": "Zimmer Biomet Holdings, Inc.",
+   "N": 7,
+   "USD": 11716.93,
+   "RK": 2
+  },
+  {
+   "NPI": "1811944143",
+   "PAYER": "DePuy Synthes Products, Inc.",
+   "N": 4,
+   "USD": 1877441.92,
+   "RK": 1
+  },
+  {
+   "NPI": "1811944143",
+   "PAYER": "Medical Device Business Services, Inc.",
+   "N": 50,
+   "USD": 83360.18,
+   "RK": 2
+  },
+  {
+   "NPI": "1841489440",
+   "PAYER": "Amgen Inc.",
+   "N": 18,
+   "USD": 558.8199999999999,
+   "RK": 1
+  },
+  {
+   "NPI": "1841489440",
+   "PAYER": "ABBVIE INC.",
+   "N": 17,
+   "USD": 459.71,
+   "RK": 2
+  }
+ ],
+ "named_identity": [
+  {
+   "NPI": "1235315268",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "ALLEN",
+   "LAST_NAME": "HU",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Ophthalmology",
+   "OP_STATE": "CA",
+   "ROWS_": 100
+  },
+  {
+   "NPI": "1306067814",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "DANIEL",
+   "LAST_NAME": "LEVY",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Dermatology",
+   "OP_STATE": "WA",
+   "ROWS_": 94
+  },
+  {
+   "NPI": "1053372649",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "BASSAM",
+   "LAST_NAME": "MATTAR",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Internal Medicine",
+   "OP_STATE": "AL",
+   "ROWS_": 228
+  },
+  {
+   "NPI": "1295735058",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "RUEMU",
+   "LAST_NAME": "BIRHIRAY",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Internal Medicine",
+   "OP_STATE": "FL",
+   "ROWS_": 608
+  },
+  {
+   "NPI": "1124522909",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "Dodie",
+   "LAST_NAME": "McGee",
+   "OP_SPECIALTY": "Physician Assistants & Advanced Practice Nursing Providers|Nurse Practitioner|Family",
+   "OP_STATE": "MS",
+   "ROWS_": 1
+  },
+  {
+   "NPI": "1275776049",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "DAVID",
+   "LAST_NAME": "WARROW",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Ophthalmology",
+   "OP_STATE": "MD",
+   "ROWS_": 88
+  },
+  {
+   "NPI": "1780680074",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "MARK",
+   "LAST_NAME": "FRANKLE",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "OP_STATE": "FL",
+   "ROWS_": 150
+  },
+  {
+   "NPI": "1184697450",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "RICHARD",
+   "LAST_NAME": "HYNES",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "OP_STATE": "FL",
+   "ROWS_": 74
+  },
+  {
+   "NPI": "1134389364",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "NEIL",
+   "LAST_NAME": "SANDHU",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Dermatology",
+   "OP_STATE": "FL",
+   "ROWS_": 69
+  },
+  {
+   "NPI": "1295791838",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "THOMAS",
+   "LAST_NAME": "RAMBACHER",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|General Practice",
+   "OP_STATE": "CA",
+   "ROWS_": 108
+  },
+  {
+   "NPI": "1649244716",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "JOY",
+   "LAST_NAME": "SCHECHTMAN",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Family Medicine",
+   "OP_STATE": "AZ",
+   "ROWS_": 396
+  },
+  {
+   "NPI": "1811944143",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "WILLIAM",
+   "LAST_NAME": "HAMILTON",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Adult Reconstructive Orthopaedic Surgery",
+   "OP_STATE": "VA",
+   "ROWS_": 70
+  },
+  {
+   "NPI": "1316966575",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "JOSEPH",
+   "LAST_NAME": "SEDRAK",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Dermatology",
+   "OP_STATE": "TX",
+   "ROWS_": 80
+  },
+  {
+   "NPI": "1295929511",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "ARSHAD",
+   "LAST_NAME": "KHANANI",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Ophthalmology",
+   "OP_STATE": "NV",
+   "ROWS_": 198
+  },
+  {
+   "NPI": "1700879186",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "ADOLPH",
+   "LAST_NAME": "LOMBARDI",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Adult Reconstructive Orthopaedic Surgery",
+   "OP_STATE": "OH",
+   "ROWS_": 195
+  },
+  {
+   "NPI": "1396786901",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "JOHN",
+   "LAST_NAME": "DEARBORN",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery|Adult Reconstructive Orthopaedic Surgery",
+   "OP_STATE": "CA",
+   "ROWS_": 3
+  },
+  {
+   "NPI": "1669736427",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "RAVI",
+   "LAST_NAME": "KAPADIA",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Surgery",
+   "OP_STATE": "CA",
+   "ROWS_": 45
+  },
+  {
+   "NPI": "1124237300",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "CHARLES",
+   "LAST_NAME": "WYKOFF",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Ophthalmology",
+   "OP_STATE": "TX",
+   "ROWS_": 122
+  },
+  {
+   "NPI": "1245307578",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "COLIN",
+   "LAST_NAME": "EDGERTON",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Internal Medicine|Rheumatology",
+   "OP_STATE": "SC",
+   "ROWS_": 131
+  },
+  {
+   "NPI": "1841489440",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "JACK",
+   "LAST_NAME": "AZAD",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|General Practice",
+   "OP_STATE": "CA",
+   "ROWS_": 136
+  },
+  {
+   "NPI": "1699744367",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "JOHN",
+   "LAST_NAME": "STORHEIM",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Anesthesiology",
+   "OP_STATE": "CO",
+   "ROWS_": 12
+  },
+  {
+   "NPI": "1275508954",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "GARY",
+   "LAST_NAME": "GELBFISH",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Surgery|Vascular Surgery",
+   "OP_STATE": "NY",
+   "ROWS_": 3
+  },
+  {
+   "NPI": "1508070566",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "DILSHER",
+   "LAST_NAME": "DHOOT",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Ophthalmology",
+   "OP_STATE": "CA",
+   "ROWS_": 330
+  },
+  {
+   "NPI": "1295763225",
+   "PROFILES": 1,
+   "LAST_NAMES": 2,
+   "FIRST_NAME": "JONATHAN",
+   "LAST_NAME": "YERASIMIDES",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "OP_STATE": "IN",
+   "ROWS_": 185
+  },
+  {
+   "NPI": "1295786770",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "REUBEN",
+   "LAST_NAME": "GOBEZIE",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "OP_STATE": "OH",
+   "ROWS_": 74
+  },
+  {
+   "NPI": "1578684627",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "PATRICK",
+   "LAST_NAME": "DENARD",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Orthopaedic Surgery",
+   "OP_STATE": "OR",
+   "ROWS_": 311
+  },
+  {
+   "NPI": "1164450573",
+   "PROFILES": 1,
+   "LAST_NAMES": 1,
+   "FIRST_NAME": "Alexander",
+   "LAST_NAME": "Frank",
+   "OP_SPECIALTY": "Allopathic & Osteopathic Physicians|Family Medicine",
+   "OP_STATE": "OK",
+   "ROWS_": 1
+  }
+ ],
+ "mfr_id_trap": [
+  {
+   "ROWS_": 15385047,
+   "DISTINCT_IDS": 1730,
+   "MIN_ID": "100000000053",
+   "MAX_ID": "100001451204",
+   "BOGUS_SUM": 1538507123748855990
+  }
+ ]
+}

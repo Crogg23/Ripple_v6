@@ -1,0 +1,1306 @@
+{
+ "leg_keys": [
+  {
+   "N": 12767,
+   "BIOGUIDES": 12767,
+   "REPS_SINCE_2016": 815
+  }
+ ],
+ "cm_keys": [
+  {
+   "N": 44398,
+   "CMTES": 44398,
+   "CANDS": 17255,
+   "PRINCIPAL_ROWS": 18402
+  }
+ ],
+ "office_match": [
+  {
+   "OFFICES": 1030,
+   "MATCHED_ANY": 793,
+   "MATCHED_UNIQUE": 769
+  }
+ ],
+ "member_cmte": [
+  {
+   "OFFICES_WITH_CMTE": 679,
+   "CMTES": 742
+  }
+ ],
+ "payee_shape": [
+  {
+   "PERSON_ROWS": 1583279,
+   "PERSON_KEYS": 62440,
+   "PERSON_DOLLARS": 5632498057,
+   "STAFF_DOLLARS": 5348920090,
+   "ALL_DETAIL_DOLLARS": 7161744503
+  }
+ ],
+ "headline": [
+  {
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAIRS": 569,
+   "OFFICES": 276,
+   "PAYEES": 539,
+   "PAID": 115047737,
+   "GAVE": 1012579.0,
+   "GIFTS": 1509
+  },
+  {
+   "CAT": "TRAVEL",
+   "PAIRS": 347,
+   "OFFICES": 218,
+   "PAYEES": 338,
+   "PAID": 1943352,
+   "GAVE": 608973.0,
+   "GIFTS": 960
+  },
+  {
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAIRS": 225,
+   "OFFICES": 170,
+   "PAYEES": 215,
+   "PAID": 377239,
+   "GAVE": 449218.0,
+   "GIFTS": 699
+  },
+  {
+   "CAT": "EQUIPMENT",
+   "PAIRS": 18,
+   "OFFICES": 17,
+   "PAYEES": 18,
+   "PAID": 156359,
+   "GAVE": 53224.0,
+   "GIFTS": 39
+  },
+  {
+   "CAT": "RENT  COMMUNICATION  UTILITIES",
+   "PAIRS": 91,
+   "OFFICES": 84,
+   "PAYEES": 91,
+   "PAID": 51003,
+   "GAVE": 200176.0,
+   "GIFTS": 256
+  },
+  {
+   "CAT": "PRINTING AND REPRODUCTION",
+   "PAIRS": 35,
+   "OFFICES": 34,
+   "PAYEES": 35,
+   "PAID": 33312,
+   "GAVE": 54376.0,
+   "GIFTS": 114
+  },
+  {
+   "CAT": "OTHER SERVICES",
+   "PAIRS": 37,
+   "OFFICES": 36,
+   "PAYEES": 36,
+   "PAID": 11345,
+   "GAVE": 62758.0,
+   "GIFTS": 131
+  },
+  {
+   "CAT": "TRANSPORTATION OF THINGS",
+   "PAIRS": 3,
+   "OFFICES": 3,
+   "PAYEES": 3,
+   "PAID": 870,
+   "GAVE": 1000.0,
+   "GIFTS": 3
+  }
+ ],
+ "top_nonstaff": [
+  {
+   "OFFICE": "DAVID G. VALADAO",
+   "PKEY": "ROJEWSKI, COLE",
+   "CAT": "TRAVEL",
+   "PAID": 131301,
+   "N_PAY": 147,
+   "Y0": "2016",
+   "Y1": "2018",
+   "GAVE": 3800.0,
+   "N_GIFTS": 4,
+   "G0": "2023-01-23",
+   "G1": "2025-03-10",
+   "DONOR_NAME_SAMPLE": "ROJEWSKI, COLE",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC"
+  },
+  {
+   "OFFICE": "BETTY MCCOLLUM",
+   "PKEY": "HARPER, WILLIAM",
+   "CAT": "EQUIPMENT",
+   "PAID": 119190,
+   "N_PAY": 53,
+   "Y0": "2015",
+   "Y1": "2022",
+   "GAVE": 7974.0,
+   "N_GIFTS": 6,
+   "G0": "2023-12-08",
+   "G1": "2025-02-18",
+   "DONOR_NAME_SAMPLE": "HARPER, WILLIAM J.",
+   "DONOR_CITY_SAMPLE": "SAINT PAUL, MN"
+  },
+  {
+   "OFFICE": "JAMES COMER",
+   "PKEY": "ELDER, COREY",
+   "CAT": "TRAVEL",
+   "PAID": 93303,
+   "N_PAY": 102,
+   "Y0": "2019",
+   "Y1": "2023",
+   "GAVE": 34.0,
+   "N_GIFTS": 1,
+   "G0": "2024-10-18",
+   "G1": "2024-10-18",
+   "DONOR_NAME_SAMPLE": "ELDER, COREY",
+   "DONOR_CITY_SAMPLE": "MAYFIELD, KY"
+  },
+  {
+   "OFFICE": "BETTY MCCOLLUM",
+   "PKEY": "HARPER, WILLIAM",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 91620,
+   "N_PAY": 241,
+   "Y0": "2015",
+   "Y1": "2022",
+   "GAVE": 7974.0,
+   "N_GIFTS": 6,
+   "G0": "2023-12-08",
+   "G1": "2025-02-18",
+   "DONOR_NAME_SAMPLE": "HARPER, WILLIAM J.",
+   "DONOR_CITY_SAMPLE": "SAINT PAUL, MN"
+  },
+  {
+   "OFFICE": "SHERI BIGGS",
+   "PKEY": "ADKINS, RICKY",
+   "CAT": "TRAVEL",
+   "PAID": 74732,
+   "N_PAY": 348,
+   "Y0": "2025",
+   "Y1": "2026",
+   "GAVE": 1000.0,
+   "N_GIFTS": 1,
+   "G0": "2024-06-17",
+   "G1": "2024-06-17",
+   "DONOR_NAME_SAMPLE": "ADKINS, RICKY",
+   "DONOR_CITY_SAMPLE": "ANDERSON, SC"
+  },
+  {
+   "OFFICE": "CLIFF BENTZ",
+   "PKEY": "MINEAR, JOEY",
+   "CAT": "TRAVEL",
+   "PAID": 58059,
+   "N_PAY": 318,
+   "Y0": "2021",
+   "Y1": "2025",
+   "GAVE": 250.0,
+   "N_GIFTS": 1,
+   "G0": "2026-02-26",
+   "G1": "2026-02-26",
+   "DONOR_NAME_SAMPLE": "MINEAR, JOEY",
+   "DONOR_CITY_SAMPLE": "EAGLE POINT, OR"
+  },
+  {
+   "OFFICE": "BETTY MCCOLLUM",
+   "PKEY": "HARPER, WILLIAM",
+   "CAT": "TRAVEL",
+   "PAID": 48690,
+   "N_PAY": 434,
+   "Y0": "2015",
+   "Y1": "2023",
+   "GAVE": 7974.0,
+   "N_GIFTS": 6,
+   "G0": "2023-12-08",
+   "G1": "2025-02-18",
+   "DONOR_NAME_SAMPLE": "HARPER, WILLIAM J.",
+   "DONOR_CITY_SAMPLE": "SAINT PAUL, MN"
+  },
+  {
+   "OFFICE": "TOM COLE",
+   "PKEY": "LEWIS, THOMAS",
+   "CAT": "TRAVEL",
+   "PAID": 45800,
+   "N_PAY": 140,
+   "Y0": "2015",
+   "Y1": "2021",
+   "GAVE": 1000.0,
+   "N_GIFTS": 1,
+   "G0": "2024-05-31",
+   "G1": "2024-05-31",
+   "DONOR_NAME_SAMPLE": "LEWIS, THOMAS MR.",
+   "DONOR_CITY_SAMPLE": "OKLAHOMA CITY, OK"
+  },
+  {
+   "OFFICE": "FRANK D. LUCAS",
+   "PKEY": "SMITH, KIRBY",
+   "CAT": "TRAVEL",
+   "PAID": 43829,
+   "N_PAY": 138,
+   "Y0": "2016",
+   "Y1": "2019",
+   "GAVE": 300.0,
+   "N_GIFTS": 1,
+   "G0": "2024-05-10",
+   "G1": "2024-05-10",
+   "DONOR_NAME_SAMPLE": "SMITH, KIRBY",
+   "DONOR_CITY_SAMPLE": "OKLAHOMA CITY, OK"
+  },
+  {
+   "OFFICE": "JAMES R. BAIRD",
+   "PKEY": "CUNNINGHAM, QUINCY",
+   "CAT": "TRAVEL",
+   "PAID": 38976,
+   "N_PAY": 134,
+   "Y0": "2019",
+   "Y1": "2022",
+   "GAVE": 2750.0,
+   "N_GIFTS": 2,
+   "G0": "2024-02-27",
+   "G1": "2025-11-12",
+   "DONOR_NAME_SAMPLE": "CUNNINGHAM, QUINCY A",
+   "DONOR_CITY_SAMPLE": "DELPHI, IN"
+  },
+  {
+   "OFFICE": "LAUREN BOEBERT",
+   "PKEY": "DOBBS, NAOMI",
+   "CAT": "TRAVEL",
+   "PAID": 31746,
+   "N_PAY": 259,
+   "Y0": "2021",
+   "Y1": "2024",
+   "GAVE": 2000.0,
+   "N_GIFTS": 1,
+   "G0": "2025-03-31",
+   "G1": "2025-03-31",
+   "DONOR_NAME_SAMPLE": "DOBBS, NAOMI",
+   "DONOR_CITY_SAMPLE": "HESPERUS, CO"
+  },
+  {
+   "OFFICE": "JIM JORDAN",
+   "PKEY": "TAYLOR, BARBARA",
+   "CAT": "TRAVEL",
+   "PAID": 31353,
+   "N_PAY": 179,
+   "Y0": "2015",
+   "Y1": "2026",
+   "GAVE": 1073.0,
+   "N_GIFTS": 21,
+   "G0": "2023-05-16",
+   "G1": "2024-06-19",
+   "DONOR_NAME_SAMPLE": "TAYLOR, BARBARA",
+   "DONOR_CITY_SAMPLE": "ADEL, GA"
+  },
+  {
+   "OFFICE": "BRIAN BABIN",
+   "PKEY": "COUHIG, BENJAMIN",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 29019,
+   "N_PAY": 132,
+   "Y0": "2016",
+   "Y1": "2021",
+   "GAVE": 2500.0,
+   "N_GIFTS": 3,
+   "G0": "2025-03-14",
+   "G1": "2026-03-17",
+   "DONOR_NAME_SAMPLE": "COUHIG, BENJAMIN",
+   "DONOR_CITY_SAMPLE": "SPRING, TX"
+  },
+  {
+   "OFFICE": "MICHELLE FISCHBACH",
+   "PKEY": "FITZSIMMONS, DAVID",
+   "CAT": "TRAVEL",
+   "PAID": 28952,
+   "N_PAY": 94,
+   "Y0": "2021",
+   "Y1": "2022",
+   "GAVE": 9600.0,
+   "N_GIFTS": 9,
+   "G0": "2023-03-09",
+   "G1": "2025-07-16",
+   "DONOR_NAME_SAMPLE": "FITZSIMMONS, DAVID",
+   "DONOR_CITY_SAMPLE": "ALBERTVILLE, MN"
+  },
+  {
+   "OFFICE": "VERONICA ESCOBAR",
+   "PKEY": "LERMA, EDUARDO",
+   "CAT": "TRAVEL",
+   "PAID": 28169,
+   "N_PAY": 122,
+   "Y0": "2019",
+   "Y1": "2026",
+   "GAVE": 2000.0,
+   "N_GIFTS": 3,
+   "G0": "2023-05-03",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "LERMA, EDUARDO N. SR",
+   "DONOR_CITY_SAMPLE": "EL PASO, TX"
+  },
+  {
+   "OFFICE": "THOMAS R SUOZZI",
+   "PKEY": "FLORIO, MICHAEL",
+   "CAT": "TRAVEL",
+   "PAID": 26764,
+   "N_PAY": 136,
+   "Y0": "2017",
+   "Y1": "2022",
+   "GAVE": 250.0,
+   "N_GIFTS": 1,
+   "G0": "2023-11-14",
+   "G1": "2023-11-14",
+   "DONOR_NAME_SAMPLE": "FLORIO, MICHAEL",
+   "DONOR_CITY_SAMPLE": "BETHPAGE, NY"
+  },
+  {
+   "OFFICE": "PETE STAUBER",
+   "PKEY": "SCHULTZ, ISAAC",
+   "CAT": "TRAVEL",
+   "PAID": 23443,
+   "N_PAY": 49,
+   "Y0": "2019",
+   "Y1": "2022",
+   "GAVE": 552.0,
+   "N_GIFTS": 2,
+   "G0": "2023-02-15",
+   "G1": "2023-07-25",
+   "DONOR_NAME_SAMPLE": "SCHULTZ, ISAAC",
+   "DONOR_CITY_SAMPLE": "SWANVILLE, MN"
+  },
+  {
+   "OFFICE": "MICHAEL K. SIMPSON",
+   "PKEY": "SLATER, LINDSAY",
+   "CAT": "TRAVEL",
+   "PAID": 23325,
+   "N_PAY": 73,
+   "Y0": "2016",
+   "Y1": "2022",
+   "GAVE": 3750.0,
+   "N_GIFTS": 4,
+   "G0": "2024-04-18",
+   "G1": "2025-09-28",
+   "DONOR_NAME_SAMPLE": "SLATER, LINDSAY",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC"
+  },
+  {
+   "OFFICE": "DARIN LAHOOD",
+   "PKEY": "PFRANG, STEVEN",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 22732,
+   "N_PAY": 41,
+   "Y0": "2015",
+   "Y1": "2023",
+   "GAVE": 10100.0,
+   "N_GIFTS": 11,
+   "G0": "2023-03-31",
+   "G1": "2025-12-31",
+   "DONOR_NAME_SAMPLE": "PFRANG, STEVEN",
+   "DONOR_CITY_SAMPLE": "ALEXANDRIA, VA"
+  },
+  {
+   "OFFICE": "H. MORGAN GRIFFITH",
+   "PKEY": "DECKER, JAMES",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 21986,
+   "N_PAY": 27,
+   "Y0": "2024",
+   "Y1": "2026",
+   "GAVE": 500.0,
+   "N_GIFTS": 2,
+   "G0": "2024-08-24",
+   "G1": "2024-09-22",
+   "DONOR_NAME_SAMPLE": "DECKER, JAMES",
+   "DONOR_CITY_SAMPLE": "DUMFRIES, VA"
+  },
+  {
+   "OFFICE": "THOMAS P. TIFFANY",
+   "PKEY": "HOLDORF, LANDIS",
+   "CAT": "TRAVEL",
+   "PAID": 21686,
+   "N_PAY": 83,
+   "Y0": "2021",
+   "Y1": "2026",
+   "GAVE": 250.0,
+   "N_GIFTS": 1,
+   "G0": "2023-09-28",
+   "G1": "2023-09-28",
+   "DONOR_NAME_SAMPLE": "HOLDORF, LANDIS",
+   "DONOR_CITY_SAMPLE": "MERRILL, WI"
+  },
+  {
+   "OFFICE": "JODEY C. ARRINGTON",
+   "PKEY": "DECKER, LAUREN",
+   "CAT": "TRAVEL",
+   "PAID": 20344,
+   "N_PAY": 90,
+   "Y0": "2017",
+   "Y1": "2018",
+   "GAVE": 250.0,
+   "N_GIFTS": 1,
+   "G0": "2023-04-25",
+   "G1": "2023-04-25",
+   "DONOR_NAME_SAMPLE": "DECKER, LAUREN MRS.",
+   "DONOR_CITY_SAMPLE": "STAMFORD, TX"
+  },
+  {
+   "OFFICE": "ERIN HOUCHIN",
+   "PKEY": "ARMSTRONG, PARKER",
+   "CAT": "TRAVEL",
+   "PAID": 18965,
+   "N_PAY": 134,
+   "Y0": "2024",
+   "Y1": "2026",
+   "GAVE": 500.0,
+   "N_GIFTS": 1,
+   "G0": "2024-10-31",
+   "G1": "2024-10-31",
+   "DONOR_NAME_SAMPLE": "ARMSTRONG, PARKER",
+   "DONOR_CITY_SAMPLE": "NEW ALBANY, IN"
+  },
+  {
+   "OFFICE": "JERROLD NADLER",
+   "PKEY": "RUTKIN, AMY",
+   "CAT": "TRAVEL",
+   "PAID": 18836,
+   "N_PAY": 63,
+   "Y0": "2016",
+   "Y1": "2024",
+   "GAVE": 2500.0,
+   "N_GIFTS": 1,
+   "G0": "2024-10-02",
+   "G1": "2024-10-02",
+   "DONOR_NAME_SAMPLE": "RUTKIN, AMY",
+   "DONOR_CITY_SAMPLE": "BROOKLYN, NY"
+  },
+  {
+   "OFFICE": "SAM GRAVES",
+   "PKEY": "BROWN, THOMAS",
+   "CAT": "TRAVEL",
+   "PAID": 18573,
+   "N_PAY": 57,
+   "Y0": "2015",
+   "Y1": "2020",
+   "GAVE": 2000.0,
+   "N_GIFTS": 2,
+   "G0": "2023-03-13",
+   "G1": "2023-06-14",
+   "DONOR_NAME_SAMPLE": "BROWN, THOMAS",
+   "DONOR_CITY_SAMPLE": "ESTERO, FL"
+  },
+  {
+   "OFFICE": "BRIAN BABIN",
+   "PKEY": "COUHIG, BENJAMIN",
+   "CAT": "TRAVEL",
+   "PAID": 18551,
+   "N_PAY": 115,
+   "Y0": "2016",
+   "Y1": "2021",
+   "GAVE": 2500.0,
+   "N_GIFTS": 3,
+   "G0": "2025-03-14",
+   "G1": "2026-03-17",
+   "DONOR_NAME_SAMPLE": "COUHIG, BENJAMIN",
+   "DONOR_CITY_SAMPLE": "SPRING, TX"
+  },
+  {
+   "OFFICE": "MICHAEL CLOUD",
+   "PKEY": "BAUER, WILLIAM",
+   "CAT": "TRAVEL",
+   "PAID": 18379,
+   "N_PAY": 83,
+   "Y0": "2025",
+   "Y1": "2026",
+   "GAVE": 2240.0,
+   "N_GIFTS": 26,
+   "G0": "2023-07-01",
+   "G1": "2026-03-01",
+   "DONOR_NAME_SAMPLE": "BAUER, WILLIAM",
+   "DONOR_CITY_SAMPLE": "PORT LAVACA, TX"
+  },
+  {
+   "OFFICE": "MATTHEW A. CARTWRIGHT",
+   "PKEY": "MORGAN, ROBERT",
+   "CAT": "TRAVEL",
+   "PAID": 17994,
+   "N_PAY": 97,
+   "Y0": "2015",
+   "Y1": "2018",
+   "GAVE": 1250.0,
+   "N_GIFTS": 2,
+   "G0": "2024-03-04",
+   "G1": "2024-07-29",
+   "DONOR_NAME_SAMPLE": "MORGAN, ROBERT H.",
+   "DONOR_CITY_SAMPLE": "MADISON, MS"
+  },
+  {
+   "OFFICE": "DAVID KUSTOFF",
+   "PKEY": "RICKETTS, CHARLES",
+   "CAT": "TRAVEL",
+   "PAID": 17691,
+   "N_PAY": 111,
+   "Y0": "2020",
+   "Y1": "2026",
+   "GAVE": 500.0,
+   "N_GIFTS": 1,
+   "G0": "2024-06-13",
+   "G1": "2024-06-13",
+   "DONOR_NAME_SAMPLE": "RICKETTS, CHARLES MR.",
+   "DONOR_CITY_SAMPLE": "PADUCAH, KY"
+  },
+  {
+   "OFFICE": "DELIA C. RAMIREZ",
+   "PKEY": "RAY, ELLEN",
+   "CAT": "TRAVEL",
+   "PAID": 16880,
+   "N_PAY": 406,
+   "Y0": "2023",
+   "Y1": "2026",
+   "GAVE": 1750.0,
+   "N_GIFTS": 3,
+   "G0": "2023-03-18",
+   "G1": "2023-06-09",
+   "DONOR_NAME_SAMPLE": "RAY, ELLEN",
+   "DONOR_CITY_SAMPLE": "CHICAGO, IL"
+  },
+  {
+   "OFFICE": "DARIN LAHOOD",
+   "PKEY": "PFRANG, STEVEN",
+   "CAT": "TRAVEL",
+   "PAID": 16208,
+   "N_PAY": 33,
+   "Y0": "2016",
+   "Y1": "2022",
+   "GAVE": 10100.0,
+   "N_GIFTS": 11,
+   "G0": "2023-03-31",
+   "G1": "2025-12-31",
+   "DONOR_NAME_SAMPLE": "PFRANG, STEVEN",
+   "DONOR_CITY_SAMPLE": "ALEXANDRIA, VA"
+  },
+  {
+   "OFFICE": "DAVID KUSTOFF",
+   "PKEY": "COURTNEY, WILLIAM",
+   "CAT": "TRAVEL",
+   "PAID": 15561,
+   "N_PAY": 25,
+   "Y0": "2021",
+   "Y1": "2025",
+   "GAVE": 3100.0,
+   "N_GIFTS": 2,
+   "G0": "2024-10-15",
+   "G1": "2026-03-31",
+   "DONOR_NAME_SAMPLE": "COURTNEY, WILLIAM",
+   "DONOR_CITY_SAMPLE": "MEMPHIS, TN"
+  },
+  {
+   "OFFICE": "MICHAEL K. SIMPSON",
+   "PKEY": "TENSEN, JULIE",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 15424,
+   "N_PAY": 142,
+   "Y0": "2016",
+   "Y1": "2025",
+   "GAVE": 1000.0,
+   "N_GIFTS": 1,
+   "G0": "2025-08-06",
+   "G1": "2025-08-06",
+   "DONOR_NAME_SAMPLE": "TENSEN, JULIE",
+   "DONOR_CITY_SAMPLE": "STAR, ID"
+  },
+  {
+   "OFFICE": "TOM COLE",
+   "PKEY": "PETERS, JEFF",
+   "CAT": "TRAVEL",
+   "PAID": 15091,
+   "N_PAY": 85,
+   "Y0": "2015",
+   "Y1": "2024",
+   "GAVE": 7000.0,
+   "N_GIFTS": 2,
+   "G0": "2025-08-15",
+   "G1": "2026-05-06",
+   "DONOR_NAME_SAMPLE": "PETERS, JEFF MR.",
+   "DONOR_CITY_SAMPLE": "OKLAHOMA CITY, OK"
+  },
+  {
+   "OFFICE": "ERIC A. \"RICK\" CRAWFORD",
+   "PKEY": "SHELTON, ASHLEY",
+   "CAT": "TRAVEL",
+   "PAID": 14998,
+   "N_PAY": 71,
+   "Y0": "2016",
+   "Y1": "2023",
+   "GAVE": 500.0,
+   "N_GIFTS": 1,
+   "G0": "2025-05-13",
+   "G1": "2025-05-13",
+   "DONOR_NAME_SAMPLE": "SHELTON, ASHLEY",
+   "DONOR_CITY_SAMPLE": "OAKTON, VA"
+  },
+  {
+   "OFFICE": "ELISE M. STEFANIK",
+   "PKEY": "RICHARDS, MARY",
+   "CAT": "TRAVEL",
+   "PAID": 14997,
+   "N_PAY": 149,
+   "Y0": "2016",
+   "Y1": "2026",
+   "GAVE": 1175.0,
+   "N_GIFTS": 4,
+   "G0": "2024-02-20",
+   "G1": "2025-06-25",
+   "DONOR_NAME_SAMPLE": "RICHARDS, MARY D.",
+   "DONOR_CITY_SAMPLE": "NAPLES, FL"
+  },
+  {
+   "OFFICE": "MAXINE DEXTER",
+   "PKEY": "WILLIAMSON, KARI",
+   "CAT": "TRAVEL",
+   "PAID": 14810,
+   "N_PAY": 67,
+   "Y0": "2025",
+   "Y1": "2026",
+   "GAVE": 466.0,
+   "N_GIFTS": 2,
+   "G0": "2024-03-15",
+   "G1": "2024-03-31",
+   "DONOR_NAME_SAMPLE": "WILLIAMSON, KARI",
+   "DONOR_CITY_SAMPLE": "PORTLAND, OR"
+  },
+  {
+   "OFFICE": "BRIAN BABIN",
+   "PKEY": "COUHIG, BENJAMIN",
+   "CAT": "RENT  COMMUNICATION  UTILITIES",
+   "PAID": 13771,
+   "N_PAY": 76,
+   "Y0": "2016",
+   "Y1": "2021",
+   "GAVE": 2500.0,
+   "N_GIFTS": 3,
+   "G0": "2025-03-14",
+   "G1": "2026-03-17",
+   "DONOR_NAME_SAMPLE": "COUHIG, BENJAMIN",
+   "DONOR_CITY_SAMPLE": "SPRING, TX"
+  },
+  {
+   "OFFICE": "PETE SESSIONS",
+   "PKEY": "ANDERSON, CALVERT",
+   "CAT": "TRAVEL",
+   "PAID": 13662,
+   "N_PAY": 17,
+   "Y0": "2021",
+   "Y1": "2022",
+   "GAVE": 1000.0,
+   "N_GIFTS": 1,
+   "G0": "2024-09-25",
+   "G1": "2024-09-25",
+   "DONOR_NAME_SAMPLE": "ANDERSON, CALVERT",
+   "DONOR_CITY_SAMPLE": "DALLAS, TX"
+  },
+  {
+   "OFFICE": "DARIN LAHOOD",
+   "PKEY": "STOTLER, BRADLEY",
+   "CAT": "TRAVEL",
+   "PAID": 13625,
+   "N_PAY": 99,
+   "Y0": "2016",
+   "Y1": "2022",
+   "GAVE": 1124.0,
+   "N_GIFTS": 4,
+   "G0": "2023-06-27",
+   "G1": "2025-10-23",
+   "DONOR_NAME_SAMPLE": "STOTLER, BRADLEY STEPHEN",
+   "DONOR_CITY_SAMPLE": "PEORIA, IL"
+  }
+ ],
+ "top_staff": [
+  {
+   "OFFICE": "TOM COLE",
+   "PKEY": "HILLIARY, EDWARD",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 1500,
+   "N_PAY": 2,
+   "Y0": "2022",
+   "Y1": "2022",
+   "GAVE": 20400.0,
+   "N_GIFTS": 4,
+   "G0": "2023-08-21",
+   "G1": "2025-08-29",
+   "DONOR_NAME_SAMPLE": "HILLIARY, EDWARD E MR. JR",
+   "DONOR_CITY_SAMPLE": "ELGIN, OK"
+  },
+  {
+   "OFFICE": "KEN CALVERT",
+   "PKEY": "RAMEY, DAVID",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 145840,
+   "N_PAY": 6,
+   "Y0": "2015",
+   "Y1": "2016",
+   "GAVE": 16600.0,
+   "N_GIFTS": 19,
+   "G0": "2023-04-05",
+   "G1": "2025-12-17",
+   "DONOR_NAME_SAMPLE": "RAMEY, DAVID",
+   "DONOR_CITY_SAMPLE": "ROCKVILLE, MD"
+  },
+  {
+   "OFFICE": "PRAMILA JAYAPAL",
+   "PKEY": "MEHDI, YAZMIN",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 165844,
+   "N_PAY": 23,
+   "Y0": "2017",
+   "Y1": "2021",
+   "GAVE": 14300.0,
+   "N_GIFTS": 7,
+   "G0": "2023-09-13",
+   "G1": "2026-02-09",
+   "DONOR_NAME_SAMPLE": "MEHDI, YAZMIN",
+   "DONOR_CITY_SAMPLE": "SEATTLE, WA"
+  },
+  {
+   "OFFICE": "LAUREN UNDERWOOD",
+   "PKEY": "HARRIS, ANDREA",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 641485,
+   "N_PAY": 22,
+   "Y0": "2019",
+   "Y1": "2023",
+   "GAVE": 13850.0,
+   "N_GIFTS": 5,
+   "G0": "2023-02-02",
+   "G1": "2025-05-20",
+   "DONOR_NAME_SAMPLE": "HARRIS, ANDREA",
+   "DONOR_CITY_SAMPLE": "ARLINGTON, VA"
+  },
+  {
+   "OFFICE": "SAM GRAVES",
+   "PKEY": "SASS, PAUL",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 510292,
+   "N_PAY": 33,
+   "Y0": "2015",
+   "Y1": "2022",
+   "GAVE": 13200.0,
+   "N_GIFTS": 6,
+   "G0": "2023-01-10",
+   "G1": "2025-01-30",
+   "DONOR_NAME_SAMPLE": "SASS, PAUL",
+   "DONOR_CITY_SAMPLE": "ALEXANDRIA, VA"
+  },
+  {
+   "OFFICE": "KEVIN KILEY",
+   "PKEY": "GRANT, PAMELA",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 97194,
+   "N_PAY": 11,
+   "Y0": "2023",
+   "Y1": "2024",
+   "GAVE": 13200.0,
+   "N_GIFTS": 8,
+   "G0": "2023-01-21",
+   "G1": "2024-01-28",
+   "DONOR_NAME_SAMPLE": "GRANT, PAMELA",
+   "DONOR_CITY_SAMPLE": "AUBURN, CA"
+  },
+  {
+   "OFFICE": "NICOLE MALLIOTAKIS",
+   "PKEY": "BOLTON, ALEX",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 582958,
+   "N_PAY": 19,
+   "Y0": "2021",
+   "Y1": "2024",
+   "GAVE": 13000.0,
+   "N_GIFTS": 5,
+   "G0": "2025-03-31",
+   "G1": "2025-12-30",
+   "DONOR_NAME_SAMPLE": "BOLTON, ALEX",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC"
+  },
+  {
+   "OFFICE": "STACEY PLASKETT",
+   "PKEY": "MURRAY, JEROME",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 461436,
+   "N_PAY": 17,
+   "Y0": "2015",
+   "Y1": "2018",
+   "GAVE": 13000.0,
+   "N_GIFTS": 9,
+   "G0": "2023-03-31",
+   "G1": "2026-03-02",
+   "DONOR_NAME_SAMPLE": "MURRAY, JEROME",
+   "DONOR_CITY_SAMPLE": "ALEXANDRIA, VA"
+  },
+  {
+   "OFFICE": "DEREK TRAN",
+   "PKEY": "AARONS, MARTIN",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 36267,
+   "N_PAY": 3,
+   "Y0": "2026",
+   "Y1": "2026",
+   "GAVE": 11300.0,
+   "N_GIFTS": 12,
+   "G0": "2023-10-01",
+   "G1": "2025-08-29",
+   "DONOR_NAME_SAMPLE": "AARONS, MARTIN",
+   "DONOR_CITY_SAMPLE": "CALABASAS, CA"
+  },
+  {
+   "OFFICE": "SHERI BIGGS",
+   "PKEY": "BENNETT, HEATHER",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 15667,
+   "N_PAY": 2,
+   "Y0": "2026",
+   "Y1": "2026",
+   "GAVE": 10900.0,
+   "N_GIFTS": 3,
+   "G0": "2024-02-12",
+   "G1": "2024-10-23",
+   "DONOR_NAME_SAMPLE": "BENNETT, HEATHER",
+   "DONOR_CITY_SAMPLE": "TOWNVILLE, SC"
+  },
+  {
+   "OFFICE": "ROBERT E. LATTA",
+   "PKEY": "GRIFFIN, DREW",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 730565,
+   "N_PAY": 33,
+   "Y0": "2016",
+   "Y1": "2022",
+   "GAVE": 10600.0,
+   "N_GIFTS": 9,
+   "G0": "2023-04-27",
+   "G1": "2026-03-31",
+   "DONOR_NAME_SAMPLE": "GRIFFIN, DREW",
+   "DONOR_CITY_SAMPLE": "ALEXANDRIA, VA"
+  },
+  {
+   "OFFICE": "KEN CALVERT",
+   "PKEY": "KENNETT, DAVID",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 559282,
+   "N_PAY": 23,
+   "Y0": "2016",
+   "Y1": "2020",
+   "GAVE": 10300.0,
+   "N_GIFTS": 3,
+   "G0": "2024-07-31",
+   "G1": "2025-09-22",
+   "DONOR_NAME_SAMPLE": "KENNETT, DAVID MR.",
+   "DONOR_CITY_SAMPLE": "NEWPORT BEACH, CA"
+  },
+  {
+   "OFFICE": "JOE NEGUSE",
+   "PKEY": "BIANCO, LISA",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 407703,
+   "N_PAY": 13,
+   "Y0": "2019",
+   "Y1": "2021",
+   "GAVE": 10250.0,
+   "N_GIFTS": 6,
+   "G0": "2023-03-23",
+   "G1": "2026-06-02",
+   "DONOR_NAME_SAMPLE": "BIANCO, LISA",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC"
+  },
+  {
+   "OFFICE": "DARIN LAHOOD",
+   "PKEY": "PFRANG, STEVEN",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 1090814,
+   "N_PAY": 43,
+   "Y0": "2015",
+   "Y1": "2023",
+   "GAVE": 10100.0,
+   "N_GIFTS": 11,
+   "G0": "2023-03-31",
+   "G1": "2025-12-31",
+   "DONOR_NAME_SAMPLE": "PFRANG, STEVEN",
+   "DONOR_CITY_SAMPLE": "ALEXANDRIA, VA"
+  },
+  {
+   "OFFICE": "KAY GRANGER",
+   "PKEY": "ROJEWSKI, COLE",
+   "CAT": "PERSONNEL COMPENSATION",
+   "PAID": 80933,
+   "N_PAY": 10,
+   "Y0": "2021",
+   "Y1": "2022",
+   "GAVE": 9900.0,
+   "N_GIFTS": 2,
+   "G0": "2023-04-27",
+   "G1": "2023-04-27",
+   "DONOR_NAME_SAMPLE": "ROJEWSKI, COLE",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC"
+  }
+ ],
+ "per_office_nonstaff": [
+  {
+   "OFFICE": "BETTY MCCOLLUM",
+   "PAYEES": 5,
+   "PAID": 264281,
+   "GAVE": 39870.0
+  },
+  {
+   "OFFICE": "DAVID G. VALADAO",
+   "PAYEES": 4,
+   "PAID": 141144,
+   "GAVE": 14401.0
+  },
+  {
+   "OFFICE": "JAMES COMER",
+   "PAYEES": 3,
+   "PAID": 94304,
+   "GAVE": 102.0
+  },
+  {
+   "OFFICE": "SHERI BIGGS",
+   "PAYEES": 3,
+   "PAID": 75096,
+   "GAVE": 3000.0
+  },
+  {
+   "OFFICE": "CLIFF BENTZ",
+   "PAYEES": 6,
+   "PAID": 73566,
+   "GAVE": 1500.0
+  },
+  {
+   "OFFICE": "BRIAN BABIN",
+   "PAYEES": 6,
+   "PAID": 69342,
+   "GAVE": 15000.0
+  },
+  {
+   "OFFICE": "TOM COLE",
+   "PAYEES": 4,
+   "PAID": 62398,
+   "GAVE": 16000.0
+  },
+  {
+   "OFFICE": "LAUREN BOEBERT",
+   "PAYEES": 8,
+   "PAID": 59388,
+   "GAVE": 20500.0
+  },
+  {
+   "OFFICE": "DARIN LAHOOD",
+   "PAYEES": 5,
+   "PAID": 59379,
+   "GAVE": 32548.0
+  },
+  {
+   "OFFICE": "MICHAEL K. SIMPSON",
+   "PAYEES": 9,
+   "PAID": 59327,
+   "GAVE": 13500.0
+  },
+  {
+   "OFFICE": "H. MORGAN GRIFFITH",
+   "PAYEES": 5,
+   "PAID": 49749,
+   "GAVE": 17500.0
+  },
+  {
+   "OFFICE": "FRANK D. LUCAS",
+   "PAYEES": 4,
+   "PAID": 45895,
+   "GAVE": 1650.0
+  },
+  {
+   "OFFICE": "DAVID KUSTOFF",
+   "PAYEES": 7,
+   "PAID": 45565,
+   "GAVE": 16500.0
+  },
+  {
+   "OFFICE": "THOMAS R SUOZZI",
+   "PAYEES": 11,
+   "PAID": 42666,
+   "GAVE": 9300.0
+  },
+  {
+   "OFFICE": "JAMES R. BAIRD",
+   "PAYEES": 3,
+   "PAID": 40200,
+   "GAVE": 8250.0
+  },
+  {
+   "OFFICE": "VERONICA ESCOBAR",
+   "PAYEES": 4,
+   "PAID": 38383,
+   "GAVE": 8000.0
+  },
+  {
+   "OFFICE": "JIM JORDAN",
+   "PAYEES": 4,
+   "PAID": 33380,
+   "GAVE": 4292.0
+  },
+  {
+   "OFFICE": "THOMAS P. TIFFANY",
+   "PAYEES": 8,
+   "PAID": 32423,
+   "GAVE": 3000.0
+  },
+  {
+   "OFFICE": "MICHELLE FISCHBACH",
+   "PAYEES": 2,
+   "PAID": 28957,
+   "GAVE": 19200.0
+  },
+  {
+   "OFFICE": "SARAH MCBRIDE",
+   "PAYEES": 5,
+   "PAID": 26602,
+   "GAVE": 11050.0
+  }
+ ],
+ "fec_vintage": [
+  {
+   "D0": "2000-01-01",
+   "D1": "3312-01-01",
+   "N": 84172112
+  }
+ ],
+ "true_vendors": [
+  {
+   "OFFICE": "VERONICA ESCOBAR",
+   "PKEY": "LERMA, EDUARDO",
+   "CAT": "TRAVEL",
+   "PAID": 28169,
+   "N_PAY": 122,
+   "Y0": "2019",
+   "Y1": "2026",
+   "GAVE": 2000.0,
+   "N_GIFTS": 3,
+   "G0": "2023-05-03",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "LERMA, EDUARDO N. SR",
+   "DONOR_CITY_SAMPLE": "EL PASO, TX",
+   "N_PAIRS_TOTAL": 7
+  },
+  {
+   "OFFICE": "VERONICA ESCOBAR",
+   "PKEY": "LERMA, EDUARDO",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 10136,
+   "N_PAY": 31,
+   "Y0": "2019",
+   "Y1": "2026",
+   "GAVE": 2000.0,
+   "N_GIFTS": 3,
+   "G0": "2023-05-03",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "LERMA, EDUARDO N. SR",
+   "DONOR_CITY_SAMPLE": "EL PASO, TX",
+   "N_PAIRS_TOTAL": 7
+  },
+  {
+   "OFFICE": "LOIS FRANKEL",
+   "PKEY": "MORAN, KELSEY",
+   "CAT": "SUPPLIES AND MATERIALS",
+   "PAID": 2001,
+   "N_PAY": 20,
+   "Y0": "2016",
+   "Y1": "2020",
+   "GAVE": 350.0,
+   "N_GIFTS": 2,
+   "G0": "2023-07-26",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "MORAN, KELSEY",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC",
+   "N_PAIRS_TOTAL": 7
+  },
+  {
+   "OFFICE": "LOIS FRANKEL",
+   "PKEY": "MORAN, KELSEY",
+   "CAT": "TRAVEL",
+   "PAID": 857,
+   "N_PAY": 13,
+   "Y0": "2016",
+   "Y1": "2020",
+   "GAVE": 350.0,
+   "N_GIFTS": 2,
+   "G0": "2023-07-26",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "MORAN, KELSEY",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC",
+   "N_PAIRS_TOTAL": 7
+  },
+  {
+   "OFFICE": "LOIS FRANKEL",
+   "PKEY": "MORAN, KELSEY",
+   "CAT": "EQUIPMENT",
+   "PAID": 143,
+   "N_PAY": 1,
+   "Y0": "2017",
+   "Y1": "2017",
+   "GAVE": 350.0,
+   "N_GIFTS": 2,
+   "G0": "2023-07-26",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "MORAN, KELSEY",
+   "DONOR_CITY_SAMPLE": "WASHINGTON, DC",
+   "N_PAIRS_TOTAL": 7
+  },
+  {
+   "OFFICE": "VERONICA ESCOBAR",
+   "PKEY": "LERMA, EDUARDO",
+   "CAT": "OTHER SERVICES",
+   "PAID": 48,
+   "N_PAY": 1,
+   "Y0": "2022",
+   "Y1": "2022",
+   "GAVE": 2000.0,
+   "N_GIFTS": 3,
+   "G0": "2023-05-03",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "LERMA, EDUARDO N. SR",
+   "DONOR_CITY_SAMPLE": "EL PASO, TX",
+   "N_PAIRS_TOTAL": 7
+  },
+  {
+   "OFFICE": "VERONICA ESCOBAR",
+   "PKEY": "LERMA, EDUARDO",
+   "CAT": "RENT  COMMUNICATION  UTILITIES",
+   "PAID": 30,
+   "N_PAY": 1,
+   "Y0": "2019",
+   "Y1": "2019",
+   "GAVE": 2000.0,
+   "N_GIFTS": 3,
+   "G0": "2023-05-03",
+   "G1": "2024-09-10",
+   "DONOR_NAME_SAMPLE": "LERMA, EDUARDO N. SR",
+   "DONOR_CITY_SAMPLE": "EL PASO, TX",
+   "N_PAIRS_TOTAL": 7
+  }
+ ],
+ "true_vendors_total": [
+  {
+   "PAIRS": 7,
+   "OFFICES": 2,
+   "PAYEES": 2,
+   "PAID": 41384,
+   "GAVE": 9050.0
+  }
+ ],
+ "fec_years": [
+  {
+   "Y": 2000,
+   "N": 3,
+   "AMT": 5114.0
+  },
+  {
+   "Y": 2001,
+   "N": 1,
+   "AMT": -2000.0
+  },
+  {
+   "Y": 2003,
+   "N": 7,
+   "AMT": 18500.0
+  },
+  {
+   "Y": 2006,
+   "N": 1,
+   "AMT": 10000.0
+  },
+  {
+   "Y": 2008,
+   "N": 6,
+   "AMT": 1998.0
+  },
+  {
+   "Y": 2013,
+   "N": 1,
+   "AMT": 350.0
+  },
+  {
+   "Y": 2014,
+   "N": 1,
+   "AMT": 1000.0
+  },
+  {
+   "Y": 2017,
+   "N": 1,
+   "AMT": 250.0
+  },
+  {
+   "Y": 2018,
+   "N": 3,
+   "AMT": 1100.0
+  },
+  {
+   "Y": 2019,
+   "N": 4,
+   "AMT": 700.0
+  },
+  {
+   "Y": 2020,
+   "N": 33,
+   "AMT": 6331.0
+  },
+  {
+   "Y": 2021,
+   "N": 1212,
+   "AMT": 231895.0
+  },
+  {
+   "Y": 2022,
+   "N": 7461,
+   "AMT": 2138238.0
+  },
+  {
+   "Y": 2023,
+   "N": 18104409,
+   "AMT": 3889657183.0
+  },
+  {
+   "Y": 2024,
+   "N": 40099516,
+   "AMT": 11531554693.0
+  },
+  {
+   "Y": 2025,
+   "N": 20965466,
+   "AMT": 4354028576.0
+  },
+  {
+   "Y": 2026,
+   "N": 4993398,
+   "AMT": 2055392804.0
+  },
+  {
+   "Y": 2028,
+   "N": 1,
+   "AMT": 25.0
+  },
+  {
+   "Y": 2029,
+   "N": 1,
+   "AMT": 203.0
+  },
+  {
+   "Y": 2036,
+   "N": 1,
+   "AMT": 1000.0
+  },
+  {
+   "Y": 3312,
+   "N": 3,
+   "AMT": 375.0
+  },
+  {
+   "Y": null,
+   "N": 583,
+   "AMT": 119202.0
+  }
+ ]
+}

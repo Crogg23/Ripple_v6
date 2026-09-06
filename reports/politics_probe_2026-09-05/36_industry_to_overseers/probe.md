@@ -1,0 +1,9 @@
+# 36 — Chain / DME money to the committees that oversee CMS
+
+**Checked:** overseers = current members of House Energy & Commerce (54), Ways & Means (45), Senate Finance (27), HELP (23) = 144 members, 143 with an FEC id via POLITICS__MEMBER_FEC_ID, reaching 233 committees in the DIM by CAND_ID. Donor side = hunch 33's two legs (chain staff by EMPLOYER; the 10 real chain PACs). Compared against the same split for ALL FEC money, so the number has a baseline.
+**First number, chain PACs:** $451,800 of $885,034 candidate money (51%) went to overseer members vs 7.6% of all PAC-to-candidate money — 6.7x the base rate. **Chain staff:** $449K of $2.77M candidate money (16.2%) vs 10.4% baseline — 1.6x. Top recipients: Jason Smith (Ways & Means chair, $44K, NHS Management's CEO and three staff on one day, 2024-07-29), Steve Daines (Finance, $31K, Saber's CEO $25K), John Cornyn (Finance, $29K, three Texas chain presidents same day 2024-06-01), Jon Husted (HELP, $26.8K, all Embassy Healthcare).
+**Eyeballed 3 of 3 real:** owner/CEO donors, right chain, right state, mostly type 15 (direct), a few 15E earmarks. DME leg: $308, dead, as in 32.
+**A hit means:** the industry aims its money at its regulators' committees, PACs far more than people. **A miss means:** money tracks party leadership, not jurisdiction.
+**Trap hit:** committee membership is one snapshot (current Congress) applied to 2023–26 gifts, so 2023–24 gifts to members who joined later are counted and departed members are missed. Leadership PACs and joint fundraisers of overseers sit in the "PAC" bucket — the overseer share is an undercount. NURSINGHOME411 "chains" include hospital systems (HCA, Lifepoint, Essentia, SSM) whose staff are not nursing-home money; the PAC leg is cleaner than the staff leg. 15E earmark rows not de-duped.
+STATUS: lit
+HEADLINE: 51% of nursing/health-chain PAC candidate money lands on CMS's four oversight committees vs 7.6% base rate (6.7x); chain staff 16% vs 10%.

@@ -1,0 +1,1052 @@
+{
+ "keys_enroll": [
+  {
+   "N": 14425,
+   "D_CCN": 14425,
+   "D_ENR": 14425,
+   "ENR_FMT_OK": 14425
+  }
+ ],
+ "keys_pen": [
+  {
+   "N": 16180,
+   "D_CCN": 6831,
+   "MN": "2023-06-17",
+   "MX": "2026-05-13"
+  }
+ ],
+ "clocks": [
+  {
+   "HOMES": 14425,
+   "INCORP_FILLED": 8989,
+   "INCORP_MIN": "1800-01-01",
+   "INCORP_MAX": "2024-09-17",
+   "INCORP_PRE1900": 103,
+   "INCORP_FUTURE": 0,
+   "ENROLL_PARSED": 14425,
+   "ENROLL_MIN": "2002-08-01",
+   "ENROLL_MAX": "2026-02-12",
+   "INCORP_AFTER_ENROLL": 149
+  }
+ ],
+ "incorp_by_year": [
+  {
+   "Y": 2015,
+   "N": 307
+  },
+  {
+   "Y": 2016,
+   "N": 281
+  },
+  {
+   "Y": 2017,
+   "N": 273
+  },
+  {
+   "Y": 2018,
+   "N": 362
+  },
+  {
+   "Y": 2019,
+   "N": 418
+  },
+  {
+   "Y": 2020,
+   "N": 307
+  },
+  {
+   "Y": 2021,
+   "N": 468
+  },
+  {
+   "Y": 2022,
+   "N": 593
+  },
+  {
+   "Y": 2023,
+   "N": 298
+  },
+  {
+   "Y": 2024,
+   "N": 89
+  }
+ ],
+ "enroll_by_year": [
+  {
+   "Y": 2015,
+   "N": 624
+  },
+  {
+   "Y": 2016,
+   "N": 504
+  },
+  {
+   "Y": 2017,
+   "N": 684
+  },
+  {
+   "Y": 2018,
+   "N": 611
+  },
+  {
+   "Y": 2019,
+   "N": 634
+  },
+  {
+   "Y": 2020,
+   "N": 474
+  },
+  {
+   "Y": 2021,
+   "N": 642
+  },
+  {
+   "Y": 2022,
+   "N": 771
+  },
+  {
+   "Y": 2023,
+   "N": 917
+  },
+  {
+   "Y": 2024,
+   "N": 766
+  },
+  {
+   "Y": 2025,
+   "N": 632
+  },
+  {
+   "Y": 2026,
+   "N": 10
+  }
+ ],
+ "first_pass": [
+  {
+   "PENALIZED_HOMES": 6831,
+   "MATCHED": 6660,
+   "WITH_INCORP": 3956,
+   "INCORP_AFTER_FIRST_PEN": 39,
+   "INCORP_SINCE_202306": 130
+  }
+ ],
+ "the39": [
+  {
+   "CCN": "065292",
+   "ORGANIZATION_NAME": "SWOPS INC",
+   "STATE": "CO",
+   "INCORPORATION_DATE": "2024-05-01",
+   "ENROLL_DT": "2024-10-30",
+   "FIRST_PEN": "2024-04-26",
+   "GAP_DAYS": 5,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "345149",
+   "ORGANIZATION_NAME": "BRIAN CENTER LANE OPERATING COMPANY, LLC",
+   "STATE": "NC",
+   "INCORPORATION_DATE": "2023-10-18",
+   "ENROLL_DT": "2024-12-11",
+   "FIRST_PEN": "2023-09-28",
+   "GAP_DAYS": 20,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "375535",
+   "ORGANIZATION_NAME": "LATIMER LONG TERM CARE LLC",
+   "STATE": "OK",
+   "INCORPORATION_DATE": "2023-07-11",
+   "ENROLL_DT": "2024-08-17",
+   "FIRST_PEN": "2023-06-20",
+   "GAP_DAYS": 21,
+   "N_PEN": 23,
+   "PEN_AFTER_INCORP": 21
+  },
+  {
+   "CCN": "265589",
+   "ORGANIZATION_NAME": "ST PETERS OPERATOR LLC",
+   "STATE": "MO",
+   "INCORPORATION_DATE": "2023-10-09",
+   "ENROLL_DT": "2024-03-20",
+   "FIRST_PEN": "2023-09-12",
+   "GAP_DAYS": 27,
+   "N_PEN": 6,
+   "PEN_AFTER_INCORP": 4
+  },
+  {
+   "CCN": "195324",
+   "ORGANIZATION_NAME": "2000 FRANK SNF LLC",
+   "STATE": "LA",
+   "INCORPORATION_DATE": "2023-10-30",
+   "ENROLL_DT": "2024-05-03",
+   "FIRST_PEN": "2023-10-02",
+   "GAP_DAYS": 28,
+   "N_PEN": 3,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "146117",
+   "ORGANIZATION_NAME": "CASEY REHAB AND NURSING LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-09-13",
+   "ENROLL_DT": "2025-04-04",
+   "FIRST_PEN": "2024-08-13",
+   "GAP_DAYS": 31,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "345227",
+   "ORGANIZATION_NAME": "MAPLE AVENUE OPERATING COMPANY LLC",
+   "STATE": "NC",
+   "INCORPORATION_DATE": "2023-10-18",
+   "ENROLL_DT": "2025-02-03",
+   "FIRST_PEN": "2023-09-07",
+   "GAP_DAYS": 41,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "245511",
+   "ORGANIZATION_NAME": "CURA OF MONTICELLO LLC",
+   "STATE": "MN",
+   "INCORPORATION_DATE": "2023-08-22",
+   "ENROLL_DT": "2024-04-24",
+   "FIRST_PEN": "2023-07-12",
+   "GAP_DAYS": 41,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "365309",
+   "ORGANIZATION_NAME": "ARC AT TROTWOOD LLC",
+   "STATE": "OH",
+   "INCORPORATION_DATE": "2024-06-18",
+   "ENROLL_DT": "2024-08-16",
+   "FIRST_PEN": "2024-05-07",
+   "GAP_DAYS": 42,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "215067",
+   "ORGANIZATION_NAME": "BAY HARBOR OPERATOR LLC",
+   "STATE": "MD",
+   "INCORPORATION_DATE": "2024-04-15",
+   "ENROLL_DT": "2024-08-06",
+   "FIRST_PEN": "2024-02-28",
+   "GAP_DAYS": 47,
+   "N_PEN": 3,
+   "PEN_AFTER_INCORP": 2
+  },
+  {
+   "CCN": "065248",
+   "ORGANIZATION_NAME": "FOX HOLLOW HEALTHCARE INC",
+   "STATE": "CO",
+   "INCORPORATION_DATE": "2023-12-18",
+   "ENROLL_DT": "2024-05-23",
+   "FIRST_PEN": "2023-10-09",
+   "GAP_DAYS": 70,
+   "N_PEN": 5,
+   "PEN_AFTER_INCORP": 3
+  },
+  {
+   "CCN": "505383",
+   "ORGANIZATION_NAME": "SULLIVAN SNF HEALTHCARE LLC",
+   "STATE": "WA",
+   "INCORPORATION_DATE": "2024-05-14",
+   "ENROLL_DT": "2024-08-23",
+   "FIRST_PEN": "2024-02-29",
+   "GAP_DAYS": 75,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "345092",
+   "ORGANIZATION_NAME": "WEST FIRST STREET OPERATING COMPANY LLC",
+   "STATE": "NC",
+   "INCORPORATION_DATE": "2023-10-23",
+   "ENROLL_DT": "2025-09-07",
+   "FIRST_PEN": "2023-08-07",
+   "GAP_DAYS": 77,
+   "N_PEN": 5,
+   "PEN_AFTER_INCORP": 4
+  },
+  {
+   "CCN": "505527",
+   "ORGANIZATION_NAME": "PINE RIDGE SNF HEALTHCARE LLC",
+   "STATE": "WA",
+   "INCORPORATION_DATE": "2024-05-14",
+   "ENROLL_DT": "2024-08-22",
+   "FIRST_PEN": "2024-02-08",
+   "GAP_DAYS": 96,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "385187",
+   "ORGANIZATION_NAME": "CASCADE TERRACE SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2025-04-03",
+   "FIRST_PEN": "2024-01-31",
+   "GAP_DAYS": 100,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "366141",
+   "ORGANIZATION_NAME": "OAK HILL HEALTHCARE LLC",
+   "STATE": "OH",
+   "INCORPORATION_DATE": "2024-02-23",
+   "ENROLL_DT": "2024-06-27",
+   "FIRST_PEN": "2023-11-15",
+   "GAP_DAYS": 100,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "385197",
+   "ORGANIZATION_NAME": "ASHLAND SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-26",
+   "FIRST_PEN": "2024-01-22",
+   "GAP_DAYS": 109,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "385150",
+   "ORGANIZATION_NAME": "WOODSIDE SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-26",
+   "FIRST_PEN": "2024-01-10",
+   "GAP_DAYS": 121,
+   "N_PEN": 5,
+   "PEN_AFTER_INCORP": 4
+  },
+  {
+   "CCN": "385045",
+   "ORGANIZATION_NAME": "PORTHAVEN SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-29",
+   "FIRST_PEN": "2024-01-04",
+   "GAP_DAYS": 127,
+   "N_PEN": 3,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "345182",
+   "ORGANIZATION_NAME": "PRUITTHEALTH - CRYSTAL COAST, LLC",
+   "STATE": "NC",
+   "INCORPORATION_DATE": "2024-02-26",
+   "ENROLL_DT": "2013-06-03",
+   "FIRST_PEN": "2023-10-11",
+   "GAP_DAYS": 138,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "385258",
+   "ORGANIZATION_NAME": "EVERGREEN SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-29",
+   "FIRST_PEN": "2023-12-11",
+   "GAP_DAYS": 151,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "175240",
+   "ORGANIZATION_NAME": "HHN KS2 LLC",
+   "STATE": "KS",
+   "INCORPORATION_DATE": "2024-04-08",
+   "ENROLL_DT": "2025-03-04",
+   "FIRST_PEN": "2023-11-08",
+   "GAP_DAYS": 152,
+   "N_PEN": 4,
+   "PEN_AFTER_INCORP": 2
+  },
+  {
+   "CCN": "135103",
+   "ORGANIZATION_NAME": "ORCHARD VIEW SNF HEALTHCARE LLC",
+   "STATE": "ID",
+   "INCORPORATION_DATE": "2024-05-09",
+   "ENROLL_DT": "2024-12-06",
+   "FIRST_PEN": "2023-12-08",
+   "GAP_DAYS": 153,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "385201",
+   "ORGANIZATION_NAME": "WILLOWBROOK SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-29",
+   "FIRST_PEN": "2023-12-07",
+   "GAP_DAYS": 155,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "385199",
+   "ORGANIZATION_NAME": "CHEHALEM SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-29",
+   "FIRST_PEN": "2023-12-04",
+   "GAP_DAYS": 158,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "145887",
+   "ORGANIZATION_NAME": "APERION CARE WAUCONDA LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-01-01",
+   "ENROLL_DT": "2024-03-15",
+   "FIRST_PEN": "2023-07-20",
+   "GAP_DAYS": 165,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "146112",
+   "ORGANIZATION_NAME": "ARC AT BRADLEY LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-05-01",
+   "ENROLL_DT": "2024-06-15",
+   "FIRST_PEN": "2023-11-08",
+   "GAP_DAYS": 175,
+   "N_PEN": 2,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "065219",
+   "ORGANIZATION_NAME": "DEXTER CREEK HEALTHCARE INC",
+   "STATE": "CO",
+   "INCORPORATION_DATE": "2024-05-24",
+   "ENROLL_DT": "2025-02-05",
+   "FIRST_PEN": "2023-11-29",
+   "GAP_DAYS": 177,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "505341",
+   "ORGANIZATION_NAME": "BRIDGE CREST SNF HEALTHCARE LLC",
+   "STATE": "WA",
+   "INCORPORATION_DATE": "2024-05-14",
+   "ENROLL_DT": "2025-03-19",
+   "FIRST_PEN": "2023-10-02",
+   "GAP_DAYS": 225,
+   "N_PEN": 5,
+   "PEN_AFTER_INCORP": 3
+  },
+  {
+   "CCN": "106134",
+   "ORGANIZATION_NAME": "CLERMONT SNF LLC",
+   "STATE": "FL",
+   "INCORPORATION_DATE": "2024-06-04",
+   "ENROLL_DT": "2024-12-05",
+   "FIRST_PEN": "2023-10-20",
+   "GAP_DAYS": 228,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "505263",
+   "ORGANIZATION_NAME": "MOUNTAIN VIEW SNF HEALTHCARE LLC",
+   "STATE": "WA",
+   "INCORPORATION_DATE": "2024-05-14",
+   "ENROLL_DT": "2024-09-17",
+   "FIRST_PEN": "2023-09-22",
+   "GAP_DAYS": 235,
+   "N_PEN": 5,
+   "PEN_AFTER_INCORP": 3
+  },
+  {
+   "CCN": "505226",
+   "ORGANIZATION_NAME": "SUNNYSIDE SNF HEALTHCARE LLC",
+   "STATE": "WA",
+   "INCORPORATION_DATE": "2024-05-14",
+   "ENROLL_DT": "2024-08-06",
+   "FIRST_PEN": "2023-08-24",
+   "GAP_DAYS": 264,
+   "N_PEN": 3,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "145970",
+   "ORGANIZATION_NAME": "ELEVATE CARE WINDSOR PARK LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-07-01",
+   "ENROLL_DT": "2024-08-06",
+   "FIRST_PEN": "2023-10-06",
+   "GAP_DAYS": 269,
+   "N_PEN": 4,
+   "PEN_AFTER_INCORP": 3
+  },
+  {
+   "CCN": "385136",
+   "ORGANIZATION_NAME": "GLISAN SNF HEALTHCARE LLC",
+   "STATE": "OR",
+   "INCORPORATION_DATE": "2024-05-10",
+   "ENROLL_DT": "2024-08-26",
+   "FIRST_PEN": "2023-08-11",
+   "GAP_DAYS": 273,
+   "N_PEN": 1,
+   "PEN_AFTER_INCORP": 0
+  },
+  {
+   "CCN": "175187",
+   "ORGANIZATION_NAME": "OAK PRAIRIE HEALTHCARE, INC.",
+   "STATE": "KS",
+   "INCORPORATION_DATE": "2024-03-22",
+   "ENROLL_DT": "2024-12-17",
+   "FIRST_PEN": "2023-06-20",
+   "GAP_DAYS": 276,
+   "N_PEN": 20,
+   "PEN_AFTER_INCORP": 2
+  },
+  {
+   "CCN": "015406",
+   "ORGANIZATION_NAME": "ARABELLA HEALTH & WELLNESS OF GRAND BAY OPCO LLC",
+   "STATE": "AL",
+   "INCORPORATION_DATE": "2024-05-08",
+   "ENROLL_DT": "2025-01-13",
+   "FIRST_PEN": "2023-07-17",
+   "GAP_DAYS": 296,
+   "N_PEN": 10,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "145160",
+   "ORGANIZATION_NAME": "ARCADIA CARE ON THE HILL LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-08-01",
+   "ENROLL_DT": "2025-02-11",
+   "FIRST_PEN": "2023-08-24",
+   "GAP_DAYS": 343,
+   "N_PEN": 3,
+   "PEN_AFTER_INCORP": 1
+  },
+  {
+   "CCN": "146080",
+   "ORGANIZATION_NAME": "COUNTRYSIDE CARE CENTER LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-09-17",
+   "ENROLL_DT": "2025-04-28",
+   "FIRST_PEN": "2023-08-24",
+   "GAP_DAYS": 390,
+   "N_PEN": 7,
+   "PEN_AFTER_INCORP": 3
+  },
+  {
+   "CCN": "145295",
+   "ORGANIZATION_NAME": "GOLDWATER CARE MARSEILLES LLC",
+   "STATE": "IL",
+   "INCORPORATION_DATE": "2024-08-01",
+   "ENROLL_DT": "2024-09-12",
+   "FIRST_PEN": "2023-06-23",
+   "GAP_DAYS": 405,
+   "N_PEN": 5,
+   "PEN_AFTER_INCORP": 2
+  }
+ ],
+ "the39_clusters": [
+  {
+   "INCORPORATION_DATE": "2024-05-10",
+   "STATE": "OR",
+   "N": 8,
+   "NAMES": "ASHLAND SNF HEALTHCARE LLC | WOODSIDE SNF HEALTHCARE LLC | GLISAN SNF HEALTHCARE LLC | EVERGREEN SNF HEALTHCARE LLC | PORTHAVEN SNF HEALTHCARE LLC | CHEHALEM SNF HEALTHCARE LLC | WILLOWBROOK SNF HEALTHCARE LLC | CASCADE TERRACE SNF HEALTHCARE LLC"
+  },
+  {
+   "INCORPORATION_DATE": "2024-05-14",
+   "STATE": "WA",
+   "N": 5,
+   "NAMES": "SUNNYSIDE SNF HEALTHCARE LLC | PINE RIDGE SNF HEALTHCARE LLC | SULLIVAN SNF HEALTHCARE LLC | MOUNTAIN VIEW SNF HEALTHCARE LLC | BRIDGE CREST SNF HEALTHCARE LLC"
+  },
+  {
+   "INCORPORATION_DATE": "2024-08-01",
+   "STATE": "IL",
+   "N": 2,
+   "NAMES": "GOLDWATER CARE MARSEILLES LLC | ARCADIA CARE ON THE HILL LLC"
+  },
+  {
+   "INCORPORATION_DATE": "2023-10-18",
+   "STATE": "NC",
+   "N": 2,
+   "NAMES": "BRIAN CENTER LANE OPERATING COMPANY, LLC | MAPLE AVENUE OPERATING COMPANY LLC"
+  }
+ ],
+ "rebuild": [
+  {
+   "PENALIZED_MATCHED": 6660,
+   "ENROLL_AFTER_FIRST_PEN": 650,
+   "WITHIN_365": 391,
+   "WITHIN_180": 219,
+   "BOTH_CLOCKS_AFTER": 38,
+   "PENALIZED_AGAIN_AFTER_NEW_RECORD": 294,
+   "DISTINCT_OWNERS_IN_SET": 583
+  }
+ ],
+ "gap_enroll": [
+  {
+   "BUCKET": "0-90 days",
+   "O": 1,
+   "N": 113
+  },
+  {
+   "BUCKET": "91-180",
+   "O": 91,
+   "N": 106
+  },
+  {
+   "BUCKET": "181-365",
+   "O": 181,
+   "N": 172
+  },
+  {
+   "BUCKET": "366-730",
+   "O": 369,
+   "N": 226
+  },
+  {
+   "BUCKET": "731+",
+   "O": 733,
+   "N": 33
+  }
+ ],
+ "gap_incorp": [
+  {
+   "BUCKET": "0-90 days",
+   "O": 5,
+   "N": 13
+  },
+  {
+   "BUCKET": "91-180",
+   "O": 96,
+   "N": 15
+  },
+  {
+   "BUCKET": "181-365",
+   "O": 225,
+   "N": 9
+  },
+  {
+   "BUCKET": "366-730",
+   "O": 390,
+   "N": 2
+  }
+ ],
+ "nh411_flag": [
+  {
+   "F": "N",
+   "N": 14658
+  },
+  {
+   "F": "Y",
+   "N": 55
+  }
+ ],
+ "nh411_flag_cross": [
+  {
+   "FLAGGED_Y": 55,
+   "IN_ENROLL": 54,
+   "ENROLL_RECORD_SINCE_202306": 54,
+   "ENROLL_RECORD_IN_12MO_BEFORE_SNAPSHOT": 52,
+   "INCORP_SINCE_202306": 1,
+   "PENALIZED": 41
+  }
+ ],
+ "flag_vs_pen": [
+  {
+   "FLAGGED": 55,
+   "FLAGGED_PENALIZED": 41,
+   "ALL_HOMES": 14713,
+   "ALL_PENALIZED": 6829
+  }
+ ],
+ "orwa_owners": [
+  {
+   "N_ROWS": 68,
+   "D_ASSOC": 68,
+   "STATES": 11
+  }
+ ],
+ "cohorts": [
+  {
+   "COHORT": "2023 H2",
+   "CUT": "penalty count",
+   "GRP": "no penalty",
+   "O": 1,
+   "HOMES": 11554,
+   "NEW_RECORD_NEXT_YEAR": 590,
+   "PCT": 5.11
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "penalty count",
+   "GRP": "one penalty",
+   "O": 1,
+   "HOMES": 1356,
+   "NEW_RECORD_NEXT_YEAR": 100,
+   "PCT": 7.37
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "penalty count",
+   "GRP": "two or more",
+   "O": 1,
+   "HOMES": 873,
+   "NEW_RECORD_NEXT_YEAR": 76,
+   "PCT": 8.71
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "fine band",
+   "GRP": "no penalty",
+   "O": 0,
+   "HOMES": 11554,
+   "NEW_RECORD_NEXT_YEAR": 590,
+   "PCT": 5.11
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "fine band",
+   "GRP": "under $25k",
+   "O": 1,
+   "HOMES": 1295,
+   "NEW_RECORD_NEXT_YEAR": 90,
+   "PCT": 6.95
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "fine band",
+   "GRP": "$25k-100k",
+   "O": 2,
+   "HOMES": 687,
+   "NEW_RECORD_NEXT_YEAR": 55,
+   "PCT": 8.01
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "fine band",
+   "GRP": "$100k+",
+   "O": 3,
+   "HOMES": 247,
+   "NEW_RECORD_NEXT_YEAR": 31,
+   "PCT": 12.55
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "ownership",
+   "GRP": "N / no penalty",
+   "O": 0,
+   "HOMES": 3804,
+   "NEW_RECORD_NEXT_YEAR": 101,
+   "PCT": 2.66
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "ownership",
+   "GRP": "N / penalized",
+   "O": 0,
+   "HOMES": 584,
+   "NEW_RECORD_NEXT_YEAR": 43,
+   "PCT": 7.36
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "ownership",
+   "GRP": "P / no penalty",
+   "O": 0,
+   "HOMES": 7685,
+   "NEW_RECORD_NEXT_YEAR": 483,
+   "PCT": 6.28
+  },
+  {
+   "COHORT": "2023 H2",
+   "CUT": "ownership",
+   "GRP": "P / penalized",
+   "O": 0,
+   "HOMES": 1631,
+   "NEW_RECORD_NEXT_YEAR": 132,
+   "PCT": 8.09
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "penalty count",
+   "GRP": "no penalty",
+   "O": 1,
+   "HOMES": 10697,
+   "NEW_RECORD_NEXT_YEAR": 409,
+   "PCT": 3.82
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "penalty count",
+   "GRP": "one penalty",
+   "O": 1,
+   "HOMES": 2233,
+   "NEW_RECORD_NEXT_YEAR": 128,
+   "PCT": 5.73
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "penalty count",
+   "GRP": "two or more",
+   "O": 1,
+   "HOMES": 1485,
+   "NEW_RECORD_NEXT_YEAR": 95,
+   "PCT": 6.4
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "fine band",
+   "GRP": "no penalty",
+   "O": 0,
+   "HOMES": 10697,
+   "NEW_RECORD_NEXT_YEAR": 409,
+   "PCT": 3.82
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "fine band",
+   "GRP": "under $25k",
+   "O": 1,
+   "HOMES": 1912,
+   "NEW_RECORD_NEXT_YEAR": 102,
+   "PCT": 5.33
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "fine band",
+   "GRP": "$25k-100k",
+   "O": 2,
+   "HOMES": 1283,
+   "NEW_RECORD_NEXT_YEAR": 74,
+   "PCT": 5.77
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "fine band",
+   "GRP": "$100k+",
+   "O": 3,
+   "HOMES": 523,
+   "NEW_RECORD_NEXT_YEAR": 47,
+   "PCT": 8.99
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "ownership",
+   "GRP": "N / no penalty",
+   "O": 0,
+   "HOMES": 3451,
+   "NEW_RECORD_NEXT_YEAR": 46,
+   "PCT": 1.33
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "ownership",
+   "GRP": "N / penalized",
+   "O": 0,
+   "HOMES": 1007,
+   "NEW_RECORD_NEXT_YEAR": 24,
+   "PCT": 2.38
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "ownership",
+   "GRP": "P / no penalty",
+   "O": 0,
+   "HOMES": 7136,
+   "NEW_RECORD_NEXT_YEAR": 313,
+   "PCT": 4.39
+  },
+  {
+   "COHORT": "2024",
+   "CUT": "ownership",
+   "GRP": "P / penalized",
+   "O": 0,
+   "HOMES": 2672,
+   "NEW_RECORD_NEXT_YEAR": 179,
+   "PCT": 6.7
+  }
+ ],
+ "cohort_dropped": [
+  {
+   "DROPPED_2023H2": 642,
+   "DROPPED_2024": 10
+  }
+ ],
+ "rel_month": [
+  {
+   "REL_MONTH": -12,
+   "N_PEN": 38,
+   "HOMES": 29
+  },
+  {
+   "REL_MONTH": -11,
+   "N_PEN": 31,
+   "HOMES": 22
+  },
+  {
+   "REL_MONTH": -10,
+   "N_PEN": 41,
+   "HOMES": 27
+  },
+  {
+   "REL_MONTH": -9,
+   "N_PEN": 41,
+   "HOMES": 33
+  },
+  {
+   "REL_MONTH": -8,
+   "N_PEN": 39,
+   "HOMES": 25
+  },
+  {
+   "REL_MONTH": -7,
+   "N_PEN": 35,
+   "HOMES": 27
+  },
+  {
+   "REL_MONTH": -6,
+   "N_PEN": 24,
+   "HOMES": 20
+  },
+  {
+   "REL_MONTH": -5,
+   "N_PEN": 35,
+   "HOMES": 28
+  },
+  {
+   "REL_MONTH": -4,
+   "N_PEN": 37,
+   "HOMES": 28
+  },
+  {
+   "REL_MONTH": -3,
+   "N_PEN": 25,
+   "HOMES": 23
+  },
+  {
+   "REL_MONTH": -2,
+   "N_PEN": 29,
+   "HOMES": 19
+  },
+  {
+   "REL_MONTH": -1,
+   "N_PEN": 34,
+   "HOMES": 28
+  },
+  {
+   "REL_MONTH": 0,
+   "N_PEN": 34,
+   "HOMES": 27
+  },
+  {
+   "REL_MONTH": 1,
+   "N_PEN": 21,
+   "HOMES": 18
+  },
+  {
+   "REL_MONTH": 2,
+   "N_PEN": 23,
+   "HOMES": 21
+  },
+  {
+   "REL_MONTH": 3,
+   "N_PEN": 22,
+   "HOMES": 20
+  },
+  {
+   "REL_MONTH": 4,
+   "N_PEN": 40,
+   "HOMES": 27
+  },
+  {
+   "REL_MONTH": 5,
+   "N_PEN": 31,
+   "HOMES": 25
+  },
+  {
+   "REL_MONTH": 6,
+   "N_PEN": 24,
+   "HOMES": 21
+  },
+  {
+   "REL_MONTH": 7,
+   "N_PEN": 26,
+   "HOMES": 19
+  },
+  {
+   "REL_MONTH": 8,
+   "N_PEN": 37,
+   "HOMES": 28
+  },
+  {
+   "REL_MONTH": 9,
+   "N_PEN": 22,
+   "HOMES": 19
+  },
+  {
+   "REL_MONTH": 10,
+   "N_PEN": 33,
+   "HOMES": 29
+  },
+  {
+   "REL_MONTH": 11,
+   "N_PEN": 18,
+   "HOMES": 14
+  }
+ ],
+ "rel_total": [
+  {
+   "HOMES_NEW_RECORD": 658,
+   "PEN_365_BEFORE": 409,
+   "PEN_365_AFTER": 331
+  }
+ ],
+ "pos_other": [
+  {
+   "CAT": "21",
+   "N": 15324,
+   "CHOW_DATED": 192,
+   "PENALTY_CCN_HITS": 0
+  },
+  {
+   "CAT": "01",
+   "N": 13540,
+   "CHOW_DATED": 2532,
+   "PENALTY_CCN_HITS": 0
+  },
+  {
+   "CAT": "12",
+   "N": 12864,
+   "CHOW_DATED": 1933,
+   "PENALTY_CCN_HITS": 0
+  },
+  {
+   "CAT": "19",
+   "N": 1982,
+   "CHOW_DATED": 93,
+   "PENALTY_CCN_HITS": 0
+  },
+  {
+   "CAT": "06",
+   "N": 719,
+   "CHOW_DATED": 7,
+   "PENALTY_CCN_HITS": 0
+  }
+ ]
+}

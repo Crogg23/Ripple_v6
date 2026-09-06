@@ -1,0 +1,188 @@
+{
+ "ptr_by_year": [
+  {
+   "INDEX_YEAR": "2013",
+   "PTR_FILINGS": 8,
+   "FILERS": 5
+  },
+  {
+   "INDEX_YEAR": "2014",
+   "PTR_FILINGS": 708,
+   "FILERS": 115
+  },
+  {
+   "INDEX_YEAR": "2015",
+   "PTR_FILINGS": 728,
+   "FILERS": 125
+  },
+  {
+   "INDEX_YEAR": "2016",
+   "PTR_FILINGS": 765,
+   "FILERS": 123
+  },
+  {
+   "INDEX_YEAR": "2017",
+   "PTR_FILINGS": 801,
+   "FILERS": 130
+  },
+  {
+   "INDEX_YEAR": "2018",
+   "PTR_FILINGS": 830,
+   "FILERS": 111
+  },
+  {
+   "INDEX_YEAR": "2019",
+   "PTR_FILINGS": 683,
+   "FILERS": 117
+  },
+  {
+   "INDEX_YEAR": "2020",
+   "PTR_FILINGS": 733,
+   "FILERS": 121
+  },
+  {
+   "INDEX_YEAR": "2021",
+   "PTR_FILINGS": 680,
+   "FILERS": 124
+  },
+  {
+   "INDEX_YEAR": "2022",
+   "PTR_FILINGS": 624,
+   "FILERS": 118
+  },
+  {
+   "INDEX_YEAR": "2023",
+   "PTR_FILINGS": 460,
+   "FILERS": 108
+  },
+  {
+   "INDEX_YEAR": "2024",
+   "PTR_FILINGS": 451,
+   "FILERS": 99
+  },
+  {
+   "INDEX_YEAR": "2025",
+   "PTR_FILINGS": 515,
+   "FILERS": 108
+  },
+  {
+   "INDEX_YEAR": "2026",
+   "PTR_FILINGS": 369,
+   "FILERS": 106
+  }
+ ],
+ "match_funnel": [
+  {
+   "FILERS_2023_PLUS": 204,
+   "MATCHED_TO_BIOGUIDE": 180,
+   "PTR_FILINGS": 1795,
+   "PTR_FILINGS_MATCHED": 1739,
+   "MATCHED_ON_COMMITTEE": 153,
+   "HOUSE_MEMBERS_ON_COMMITTEES": 427
+  }
+ ],
+ "fanout_check": [
+  {
+   "PAIRS_MATCHING_2PLUS_BIOGUIDES": 0
+  }
+ ],
+ "eyeball": [
+  {
+   "LAST": "Magaziner",
+   "FIRST": "Seth",
+   "STATEDST": "RI02",
+   "NAME_LAST": "Magaziner",
+   "NAME_FIRST": "Seth",
+   "BIOGUIDE": "M001223",
+   "N_PTR": 1
+  },
+  {
+   "LAST": "Steube",
+   "FIRST": "Greg",
+   "STATEDST": "FL17",
+   "NAME_LAST": "Steube",
+   "NAME_FIRST": "W.",
+   "BIOGUIDE": "S001214",
+   "N_PTR": 7
+  },
+  {
+   "LAST": "McClellan",
+   "FIRST": "Jennifer",
+   "STATEDST": "VA04",
+   "NAME_LAST": "McClellan",
+   "NAME_FIRST": "Jennifer",
+   "BIOGUIDE": "M001227",
+   "N_PTR": 2
+  },
+  {
+   "LAST": "Davidson",
+   "FIRST": "Warren",
+   "STATEDST": "OH08",
+   "NAME_LAST": "Davidson",
+   "NAME_FIRST": "Warren",
+   "BIOGUIDE": "D000626",
+   "N_PTR": 1
+  },
+  {
+   "LAST": "Mast",
+   "FIRST": "Brian",
+   "STATEDST": "FL21",
+   "NAME_LAST": "Mast",
+   "NAME_FIRST": "Brian",
+   "BIOGUIDE": "M001199",
+   "N_PTR": 1
+  }
+ ],
+ "by_committee": [
+  {
+   "COMMITTEE_CODE": "HSWM",
+   "MEMBERS_WITH_PTR": 21,
+   "PTR_FILINGS": 324
+  },
+  {
+   "COMMITTEE_CODE": "HSFA",
+   "MEMBERS_WITH_PTR": 19,
+   "PTR_FILINGS": 281
+  },
+  {
+   "COMMITTEE_CODE": "HSIF",
+   "MEMBERS_WITH_PTR": 23,
+   "PTR_FILINGS": 243
+  },
+  {
+   "COMMITTEE_CODE": "HSBA",
+   "MEMBERS_WITH_PTR": 23,
+   "PTR_FILINGS": 225
+  },
+  {
+   "COMMITTEE_CODE": "HSPW",
+   "MEMBERS_WITH_PTR": 24,
+   "PTR_FILINGS": 180
+  },
+  {
+   "COMMITTEE_CODE": "HSAP",
+   "MEMBERS_WITH_PTR": 21,
+   "PTR_FILINGS": 166
+  },
+  {
+   "COMMITTEE_CODE": "HSGO",
+   "MEMBERS_WITH_PTR": 15,
+   "PTR_FILINGS": 165
+  },
+  {
+   "COMMITTEE_CODE": "HSBU",
+   "MEMBERS_WITH_PTR": 14,
+   "PTR_FILINGS": 134
+  },
+  {
+   "COMMITTEE_CODE": "HSAS",
+   "MEMBERS_WITH_PTR": 15,
+   "PTR_FILINGS": 128
+  },
+  {
+   "COMMITTEE_CODE": "HSAG",
+   "MEMBERS_WITH_PTR": 12,
+   "PTR_FILINGS": 125
+  }
+ ]
+}

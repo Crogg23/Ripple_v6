@@ -1,0 +1,1661 @@
+{
+ "leie_profile": [
+  {
+   "N": 83747,
+   "DISTINCT_NPI": 8660,
+   "SENTINEL_ROWS": 0,
+   "BLANK_ROWS": 74908,
+   "NPI_IS_REAL_ROWS": 8839,
+   "MIN_EXCL": "1977-07-01",
+   "MAX_EXCL": "2026-08-20",
+   "RUNS": 1
+  }
+ ],
+ "leie_landing": [
+  {
+   "N": 83842,
+   "SENTINEL_ROWS": 75001,
+   "INGEST_EPOCH_MICROS": 1787843027544807,
+   "MAX_EXCL": "20260820",
+   "RUNS": 1
+  }
+ ],
+ "leie_reinstate": [
+  {
+   "REINDATE": "00000000",
+   "N": 83842
+  }
+ ],
+ "leie_waiver": [
+  {
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "N": 83838
+  },
+  {
+   "WAIVERDATE": "20150618",
+   "WVRSTATE": "TX",
+   "N": 1
+  },
+  {
+   "WAIVERDATE": "20240227",
+   "WVRSTATE": "IN",
+   "N": 1
+  },
+  {
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": "NM",
+   "N": 1
+  },
+  {
+   "WAIVERDATE": "20230324",
+   "WVRSTATE": "NC",
+   "N": 1
+  }
+ ],
+ "order_profile": [
+  {
+   "N": 2018354,
+   "DISTINCT_NPI": 2018350,
+   "BLANK": 0,
+   "LEN_MIN": 10,
+   "LEN_MAX": 10
+  }
+ ],
+ "order_landing": [
+  {
+   "INGEST_MIN": "2026-08-05T15:05:23.110000",
+   "INGEST_MAX": "2026-08-05T15:05:23.110000",
+   "RUNS": 2018354
+  }
+ ],
+ "order_categories": [
+  {
+   "PARTB": 1931132,
+   "DME": 2018350,
+   "HHA": 1689678,
+   "PMD": 1605271,
+   "HOSPICE": 1140374,
+   "N": 2018354
+  }
+ ],
+ "join_mart": [
+  {
+   "ROWS_": 38,
+   "LEIE_NPIS": 38,
+   "ORDER_NPIS": 38
+  }
+ ],
+ "join_landing": [
+  {
+   "ROWS_": 38,
+   "LEIE_NPIS": 38
+  }
+ ],
+ "buckets": [
+  {
+   "BUCKET": "a. excluded before 2025",
+   "N": 7,
+   "MIN_EXCL": "2015-06-18",
+   "MAX_EXCL": "2024-12-12"
+  },
+  {
+   "BUCKET": "b. excluded 2025-01-01 to 2026-08-04",
+   "N": 19,
+   "MIN_EXCL": "2026-02-19",
+   "MAX_EXCL": "2026-07-20"
+  },
+  {
+   "BUCKET": "c. excluded on/after load 2026-08-05",
+   "N": 12,
+   "MIN_EXCL": "2026-08-20",
+   "MAX_EXCL": "2026-08-20"
+  }
+ ],
+ "buckets_landing": [
+  {
+   "BEFORE_2025": 7,
+   "BEFORE_LOAD": 26,
+   "TOTAL": 38
+  }
+ ],
+ "matches": [
+  {
+   "NPI": "1285673012",
+   "LAST_NAME": "MIRANDA",
+   "FIRST_NAME": "EDUARDO",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "INTERNAL MEDICINE",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2015-06-18",
+   "LEIE_STATE": "TX",
+   "WAIVERDATE": "20150618",
+   "WVRSTATE": "TX",
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "MIRANDA",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "MIRANDA",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "TX",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2025-06-24"
+  },
+  {
+   "NPI": "1871658310",
+   "LAST_NAME": "PATEL",
+   "FIRST_NAME": "DEVENDRA",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "CARDIOLOGY",
+   "EXCLUSION_TYPE": "1128a4",
+   "EXCLUSION_DATE": "2020-03-19",
+   "LEIE_STATE": "OR",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "PATEL",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "PATEL",
+   "CREDENTIAL": "M.D., F.A.C.C.",
+   "NPPES_STATE": "NV",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2008-01-15"
+  },
+  {
+   "NPI": "1790792380",
+   "LAST_NAME": "FRASER",
+   "FIRST_NAME": "JEFFREY",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "FAMILY PRACTICE",
+   "EXCLUSION_TYPE": "1128a4",
+   "EXCLUSION_DATE": "2021-08-19",
+   "LEIE_STATE": "NE",
+   "WAIVERDATE": "20230324",
+   "WVRSTATE": "NC",
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "FRASER",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "FRASER",
+   "CREDENTIAL": "MD",
+   "NPPES_STATE": "NC",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2020-11-25"
+  },
+  {
+   "NPI": "1154454601",
+   "LAST_NAME": "BARKER",
+   "FIRST_NAME": "DONNA",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "NURSE PRACTITIONER (",
+   "EXCLUSION_TYPE": "1128b7",
+   "EXCLUSION_DATE": "2023-10-02",
+   "LEIE_STATE": "IL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BARKER",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "BARKER",
+   "CREDENTIAL": "MS, ANP-C, ONC, RN-C",
+   "NPPES_STATE": "IL",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2007-11-26"
+  },
+  {
+   "NPI": "1629159207",
+   "LAST_NAME": "SICURO",
+   "FIRST_NAME": "FRANCO",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2024-02-20",
+   "LEIE_STATE": "MO",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "SICURO",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "SICURO",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "MO",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2026-05-17"
+  },
+  {
+   "NPI": "1295721876",
+   "LAST_NAME": "GRAY",
+   "FIRST_NAME": "JANETTE",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "INTERNAL MEDICINE",
+   "EXCLUSION_TYPE": "1128b7",
+   "EXCLUSION_DATE": "2024-10-07",
+   "LEIE_STATE": "CA",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "GRAY",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "GRAY",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "CA",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2020-01-15"
+  },
+  {
+   "NPI": "1821180605",
+   "LAST_NAME": "SYED",
+   "FIRST_NAME": "NAIMETULLA",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128b7",
+   "EXCLUSION_DATE": "2024-12-12",
+   "LEIE_STATE": "CT",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "SYED",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "SYED",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "CT",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2007-07-08"
+  },
+  {
+   "NPI": "1265610463",
+   "LAST_NAME": "PIRANI",
+   "FIRST_NAME": "YASMIN",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "RADIOLOGY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-02-19",
+   "LEIE_STATE": "CA",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "PIRANI",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "PIRANI",
+   "CREDENTIAL": "M.D. FRCP",
+   "NPPES_STATE": "CA",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-10-16"
+  },
+  {
+   "NPI": "1194778852",
+   "LAST_NAME": "HANFLINK",
+   "FIRST_NAME": "NATHAN",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PAIN MANAGEMENT",
+   "EXCLUSION_TYPE": "1128b7",
+   "EXCLUSION_DATE": "2026-04-30",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "HANFLINK",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "HANFLINK",
+   "CREDENTIAL": "D.O.",
+   "NPPES_STATE": "FL",
+   "DEACT_DATE": "2017-11-13",
+   "REACT_DATE": "2017-11-29",
+   "NPPES_UPDATED": "2020-04-21"
+  },
+  {
+   "NPI": "1871708180",
+   "LAST_NAME": "LANKFORD",
+   "FIRST_NAME": "LADARYL",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "GENERAL PRACTICE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-05-20",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "LANKFORD",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "LANKFORD",
+   "CREDENTIAL": "M. D.",
+   "NPPES_STATE": "AR",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2013-03-11"
+  },
+  {
+   "NPI": "1659371920",
+   "LAST_NAME": "SCOTT",
+   "FIRST_NAME": "ROBERT",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "FAMILY PRACTICE",
+   "EXCLUSION_TYPE": "1128b1",
+   "EXCLUSION_DATE": "2026-05-20",
+   "LEIE_STATE": "CO",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "SCOTT",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "SCOTT",
+   "CREDENTIAL": "DO",
+   "NPPES_STATE": "OK",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-02-27"
+  },
+  {
+   "NPI": "1396067682",
+   "LAST_NAME": "SHAH",
+   "FIRST_NAME": "AMIT",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "SURGERY",
+   "EXCLUSION_TYPE": "1128a3",
+   "EXCLUSION_DATE": "2026-05-20",
+   "LEIE_STATE": "NY",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "SHAH",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "SHAH",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "NY",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-12-19"
+  },
+  {
+   "NPI": "1033534292",
+   "LAST_NAME": "BALL",
+   "FIRST_NAME": "JOHN",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "DENTIST",
+   "EXCLUSION_TYPE": "1128b1",
+   "EXCLUSION_DATE": "2026-06-18",
+   "LEIE_STATE": "OH",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BALL",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "N",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "BALL",
+   "CREDENTIAL": "D.D.S.",
+   "NPPES_STATE": "OH",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2014-02-25"
+  },
+  {
+   "NPI": "1790199982",
+   "LAST_NAME": "BELK",
+   "FIRST_NAME": "JOHN",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "FAMILY PRACTICE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-06-18",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BELK",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "BELK",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "OK",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2017-07-18"
+  },
+  {
+   "NPI": "1831714906",
+   "LAST_NAME": "DEXTER",
+   "FIRST_NAME": "SADYE",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "NURSE PRACTITIONER (",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-06-18",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "DEXTER",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "DEXTER",
+   "CREDENTIAL": "APRN",
+   "NPPES_STATE": "FL",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2020-06-16"
+  },
+  {
+   "NPI": "1407449234",
+   "LAST_NAME": "LAWRENCE",
+   "FIRST_NAME": "JAMES",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "PHYSICIAN ASSISTANT",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-06-18",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "LAWRENCE",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "LAWRENCE",
+   "CREDENTIAL": "PHYSICIAN ASSISTANT",
+   "NPPES_STATE": "MO",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2021-02-12"
+  },
+  {
+   "NPI": "1952407694",
+   "LAST_NAME": "WALI",
+   "FIRST_NAME": "SUSHMA",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-06-18",
+   "LEIE_STATE": "CA",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "WALI",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "WALI",
+   "CREDENTIAL": "MD",
+   "NPPES_STATE": "CA",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2021-01-06"
+  },
+  {
+   "NPI": "1649597055",
+   "LAST_NAME": "WILLS",
+   "FIRST_NAME": "ALEX",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-06-18",
+   "LEIE_STATE": "ID",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "WILLS",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "WILLS",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "ID",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-02-03"
+  },
+  {
+   "NPI": "1588633143",
+   "LAST_NAME": "ASSAD",
+   "FIRST_NAME": "ABDOLLAH",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "NV",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "ASSAD",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "ASSAD",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "NV",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2007-07-08"
+  },
+  {
+   "NPI": "1124418298",
+   "LAST_NAME": "BARKER",
+   "FIRST_NAME": "RONALD",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "SOCIAL WORKER",
+   "EXCLUSION_TYPE": "1128a2",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "MT",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BARKER",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "N",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "BARKER",
+   "CREDENTIAL": "LCSW, MAC, SAP",
+   "NPPES_STATE": "MT",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2020-04-06"
+  },
+  {
+   "NPI": "1912941873",
+   "LAST_NAME": "CANTU",
+   "FIRST_NAME": "DENNIS",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "INTERNAL MEDICINE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "TX",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "CANTU",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "CANTU",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "TX",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2007-11-27"
+  },
+  {
+   "NPI": "1205890886",
+   "LAST_NAME": "CATALDI",
+   "FIRST_NAME": "BETHANY",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PLASTIC SURGERY",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "TX",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "CATALDI",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "CATALDI",
+   "CREDENTIAL": "D.O.",
+   "NPPES_STATE": "IN",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2016-11-15"
+  },
+  {
+   "NPI": "1821591546",
+   "LAST_NAME": "HOOVESTOL",
+   "FIRST_NAME": "LAURA",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "NURSE/NURSES AIDE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "ND",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "HOOVESTOL",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "HOOVESTOL",
+   "CREDENTIAL": "DNP, FNP",
+   "NPPES_STATE": "ND",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-03-19"
+  },
+  {
+   "NPI": "1003918558",
+   "LAST_NAME": "ROBERSON",
+   "FIRST_NAME": "JAMES",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "RHEUMATOLOGY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "MD",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "ROBERSON",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "ROBERSON",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "MD",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2011-09-30"
+  },
+  {
+   "NPI": "1740340744",
+   "LAST_NAME": "SNODGRASS",
+   "FIRST_NAME": "JOE",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PATHOLOGY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "OK",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "SNODGRASS",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "SNODGRASS",
+   "CREDENTIAL": "MD",
+   "NPPES_STATE": "OK",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2018-05-16"
+  },
+  {
+   "NPI": "1255725602",
+   "LAST_NAME": "SORIAL",
+   "FIRST_NAME": "ANDREW",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-07-20",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "SORIAL",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "SORIAL",
+   "CREDENTIAL": "MD",
+   "NPPES_STATE": "FL",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2019-08-15"
+  },
+  {
+   "NPI": "1447411459",
+   "LAST_NAME": "ADAMS",
+   "FIRST_NAME": "CHRISTOPHER",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "CARDIOLOGY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "NC",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "ADAMS",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "",
+   "CREDENTIAL": "",
+   "NPPES_STATE": "",
+   "DEACT_DATE": "2025-07-29",
+   "REACT_DATE": null,
+   "NPPES_UPDATED": null
+  },
+  {
+   "NPI": "1265579718",
+   "LAST_NAME": "ALLMON",
+   "FIRST_NAME": "NATASHA",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "COUNSELOR",
+   "EXCLUSION_TYPE": "1128a3",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "TX",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "ALLMON",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "N",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "ALLMON",
+   "CREDENTIAL": "LADC ,MA",
+   "NPPES_STATE": "OK",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2025-06-03"
+  },
+  {
+   "NPI": "1003248733",
+   "LAST_NAME": "BILBREY",
+   "FIRST_NAME": "JENNIFER",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "NURSE PRACTITIONER (",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "TN",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BILBREY",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "BILBREY",
+   "CREDENTIAL": "FNP-BC",
+   "NPPES_STATE": "TN",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-03-15"
+  },
+  {
+   "NPI": "1952452302",
+   "LAST_NAME": "BURNS",
+   "FIRST_NAME": "MARTHA",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "COUNSELOR",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "WA",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BURNS",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "N",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "BURNS",
+   "CREDENTIAL": "",
+   "NPPES_STATE": "WA",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2007-07-08"
+  },
+  {
+   "NPI": "1710090915",
+   "LAST_NAME": "DONOFRIO",
+   "FIRST_NAME": "DANIEL",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "FAMILY PRACTICE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "DONOFRIO",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "DONOFRIO",
+   "CREDENTIAL": "MD",
+   "NPPES_STATE": "FL",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2024-09-11"
+  },
+  {
+   "NPI": "1710961065",
+   "LAST_NAME": "KANITZ",
+   "FIRST_NAME": "DAN",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "ANESTHESIOLOGY",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "WI",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "KANITZ",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "KANITZ",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "WI",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2011-10-04"
+  },
+  {
+   "NPI": "1477552206",
+   "LAST_NAME": "MALIK",
+   "FIRST_NAME": "SHAZIA",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "PSYCHIATRY",
+   "EXCLUSION_TYPE": "1128a1",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "MO",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "MALIK",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "MALIK",
+   "CREDENTIAL": "M.D.",
+   "NPPES_STATE": "MO",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-01-26"
+  },
+  {
+   "NPI": "1386063618",
+   "LAST_NAME": "MCCLEVE",
+   "FIRST_NAME": "DAVID",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "PHYSICIAN ASSISTANT",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "NV",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "MCCLEVE",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "MCCLEVE",
+   "CREDENTIAL": "PA-C",
+   "NPPES_STATE": "NV",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2025-10-21"
+  },
+  {
+   "NPI": "1649270745",
+   "LAST_NAME": "MOHLER",
+   "FIRST_NAME": "CRAIG",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "ORTHOPEDICS",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "OR",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "MOHLER",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "MOHLER",
+   "CREDENTIAL": "MD",
+   "NPPES_STATE": "OR",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-01-09"
+  },
+  {
+   "NPI": "1780044115",
+   "LAST_NAME": "QUINN",
+   "FIRST_NAME": "KIRA",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "FAMILY PRACTICE",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "NM",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "BROWNING",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "Y",
+   "NPPES_LAST_NAME": "BROWNING",
+   "CREDENTIAL": "D.O.",
+   "NPPES_STATE": "VA",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2021-01-21"
+  },
+  {
+   "NPI": "1871888917",
+   "LAST_NAME": "VAN ECK",
+   "FIRST_NAME": "CAROLA",
+   "GENERAL_CATEGORY": "PHYSICIAN (MD, DO)",
+   "SPECIALTY": "ORTHOPEDICS",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "CA",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "VAN ECK",
+   "PARTB": "N",
+   "DME": "Y",
+   "HHA": "N",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "VAN ECK",
+   "CREDENTIAL": "MD, PHD, FAAOS",
+   "NPPES_STATE": "CA",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2022-03-28"
+  },
+  {
+   "NPI": "1609306737",
+   "LAST_NAME": "WITT",
+   "FIRST_NAME": "JACOB",
+   "GENERAL_CATEGORY": "IND- LIC HC SERV PRO",
+   "SPECIALTY": "NURSE PRACTITIONER (",
+   "EXCLUSION_TYPE": "1128b4",
+   "EXCLUSION_DATE": "2026-08-20",
+   "LEIE_STATE": "FL",
+   "WAIVERDATE": "00000000",
+   "WVRSTATE": null,
+   "REINDATE": "00000000",
+   "ORDER_LAST_NAME": "WITT",
+   "PARTB": "Y",
+   "DME": "Y",
+   "HHA": "Y",
+   "PMD": "Y",
+   "HOSPICE": "N",
+   "NPPES_LAST_NAME": "WITT",
+   "CREDENTIAL": "APRN",
+   "NPPES_STATE": "FL",
+   "DEACT_DATE": null,
+   "REACT_DATE": null,
+   "NPPES_UPDATED": "2023-02-23"
+  }
+ ],
+ "by_year": [
+  {
+   "Y": 2010,
+   "EXCLUDED_NPIS": 277,
+   "IN_NPPES": 277,
+   "NPPES_ACTIVE": 214,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2011,
+   "EXCLUDED_NPIS": 293,
+   "IN_NPPES": 293,
+   "NPPES_ACTIVE": 236,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2012,
+   "EXCLUDED_NPIS": 337,
+   "IN_NPPES": 337,
+   "NPPES_ACTIVE": 261,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2013,
+   "EXCLUDED_NPIS": 375,
+   "IN_NPPES": 375,
+   "NPPES_ACTIVE": 296,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2014,
+   "EXCLUDED_NPIS": 481,
+   "IN_NPPES": 481,
+   "NPPES_ACTIVE": 403,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2015,
+   "EXCLUDED_NPIS": 519,
+   "IN_NPPES": 519,
+   "NPPES_ACTIVE": 413,
+   "IN_ORDERING": 1
+  },
+  {
+   "Y": 2016,
+   "EXCLUDED_NPIS": 550,
+   "IN_NPPES": 550,
+   "NPPES_ACTIVE": 464,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2017,
+   "EXCLUDED_NPIS": 562,
+   "IN_NPPES": 562,
+   "NPPES_ACTIVE": 474,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2018,
+   "EXCLUDED_NPIS": 418,
+   "IN_NPPES": 418,
+   "NPPES_ACTIVE": 374,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2019,
+   "EXCLUDED_NPIS": 405,
+   "IN_NPPES": 405,
+   "NPPES_ACTIVE": 368,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2020,
+   "EXCLUDED_NPIS": 468,
+   "IN_NPPES": 468,
+   "NPPES_ACTIVE": 433,
+   "IN_ORDERING": 1
+  },
+  {
+   "Y": 2021,
+   "EXCLUDED_NPIS": 335,
+   "IN_NPPES": 335,
+   "NPPES_ACTIVE": 312,
+   "IN_ORDERING": 1
+  },
+  {
+   "Y": 2022,
+   "EXCLUDED_NPIS": 598,
+   "IN_NPPES": 598,
+   "NPPES_ACTIVE": 571,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2023,
+   "EXCLUDED_NPIS": 618,
+   "IN_NPPES": 618,
+   "NPPES_ACTIVE": 598,
+   "IN_ORDERING": 1
+  },
+  {
+   "Y": 2024,
+   "EXCLUDED_NPIS": 851,
+   "IN_NPPES": 851,
+   "NPPES_ACTIVE": 825,
+   "IN_ORDERING": 3
+  },
+  {
+   "Y": 2025,
+   "EXCLUDED_NPIS": 687,
+   "IN_NPPES": 687,
+   "NPPES_ACTIVE": 671,
+   "IN_ORDERING": 0
+  },
+  {
+   "Y": 2026,
+   "EXCLUDED_NPIS": 531,
+   "IN_NPPES": 531,
+   "NPPES_ACTIVE": 517,
+   "IN_ORDERING": 31
+  }
+ ],
+ "by_month_2026": [
+  {
+   "EXCLUSION_DATE": "2025-07-20",
+   "EXCLUDED_NPIS": 54,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-08-20",
+   "EXCLUDED_NPIS": 75,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-08-26",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-09-03",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-09-18",
+   "EXCLUDED_NPIS": 34,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-09-19",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-10-20",
+   "EXCLUDED_NPIS": 51,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-11-12",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-11-20",
+   "EXCLUDED_NPIS": 53,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-12-12",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-12-18",
+   "EXCLUDED_NPIS": 47,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2025-12-19",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-01-20",
+   "EXCLUDED_NPIS": 91,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-02-05",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-02-19",
+   "EXCLUDED_NPIS": 18,
+   "IN_ORDERING": 1
+  },
+  {
+   "EXCLUSION_DATE": "2026-03-19",
+   "EXCLUDED_NPIS": 23,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-04-09",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-04-20",
+   "EXCLUDED_NPIS": 75,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-04-30",
+   "EXCLUDED_NPIS": 2,
+   "IN_ORDERING": 1
+  },
+  {
+   "EXCLUSION_DATE": "2026-05-20",
+   "EXCLUDED_NPIS": 71,
+   "IN_ORDERING": 3
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-03",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-18",
+   "EXCLUDED_NPIS": 83,
+   "IN_ORDERING": 6
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-19",
+   "EXCLUDED_NPIS": 5,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-20",
+   "EXCLUDED_NPIS": 7,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-22",
+   "EXCLUDED_NPIS": 8,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-23",
+   "EXCLUDED_NPIS": 2,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-24",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-06-28",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-07-11",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-07-20",
+   "EXCLUDED_NPIS": 65,
+   "IN_ORDERING": 8
+  },
+  {
+   "EXCLUSION_DATE": "2026-07-22",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-07-24",
+   "EXCLUDED_NPIS": 6,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-08-10",
+   "EXCLUDED_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_DATE": "2026-08-20",
+   "EXCLUDED_NPIS": 78,
+   "IN_ORDERING": 12
+  }
+ ],
+ "type_mix": [
+  {
+   "EXCLUSION_TYPE": "1128a1",
+   "ALL_REAL_NPIS": 3349,
+   "IN_ORDERING": 5
+  },
+  {
+   "EXCLUSION_TYPE": "1128b4",
+   "ALL_REAL_NPIS": 2635,
+   "IN_ORDERING": 22
+  },
+  {
+   "EXCLUSION_TYPE": "1128a4",
+   "ALL_REAL_NPIS": 1021,
+   "IN_ORDERING": 2
+  },
+  {
+   "EXCLUSION_TYPE": "1128a3",
+   "ALL_REAL_NPIS": 678,
+   "IN_ORDERING": 2
+  },
+  {
+   "EXCLUSION_TYPE": "1128a2",
+   "ALL_REAL_NPIS": 401,
+   "IN_ORDERING": 1
+  },
+  {
+   "EXCLUSION_TYPE": "1128b14",
+   "ALL_REAL_NPIS": 196,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b7",
+   "ALL_REAL_NPIS": 193,
+   "IN_ORDERING": 4
+  },
+  {
+   "EXCLUSION_TYPE": "1128b8",
+   "ALL_REAL_NPIS": 96,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b5",
+   "ALL_REAL_NPIS": 85,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b1",
+   "ALL_REAL_NPIS": 48,
+   "IN_ORDERING": 2
+  },
+  {
+   "EXCLUSION_TYPE": "1128Aa",
+   "ALL_REAL_NPIS": 31,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "BRCH SA",
+   "ALL_REAL_NPIS": 20,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b3",
+   "ALL_REAL_NPIS": 20,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b2",
+   "ALL_REAL_NPIS": 9,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b6",
+   "ALL_REAL_NPIS": 9,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "BRCH CIA",
+   "ALL_REAL_NPIS": 8,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b11",
+   "ALL_REAL_NPIS": 2,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1156",
+   "ALL_REAL_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b15",
+   "ALL_REAL_NPIS": 1,
+   "IN_ORDERING": 0
+  },
+  {
+   "EXCLUSION_TYPE": "1128b16",
+   "ALL_REAL_NPIS": 1,
+   "IN_ORDERING": 0
+  }
+ ],
+ "state_mix": [
+  {
+   "STATE": "FL",
+   "ALL_REAL_NPIS": 834,
+   "IN_ORDERING": 8
+  },
+  {
+   "STATE": "CA",
+   "ALL_REAL_NPIS": 1080,
+   "IN_ORDERING": 4
+  },
+  {
+   "STATE": "TX",
+   "ALL_REAL_NPIS": 545,
+   "IN_ORDERING": 4
+  },
+  {
+   "STATE": "NV",
+   "ALL_REAL_NPIS": 208,
+   "IN_ORDERING": 2
+  },
+  {
+   "STATE": "MO",
+   "ALL_REAL_NPIS": 122,
+   "IN_ORDERING": 2
+  },
+  {
+   "STATE": "OR",
+   "ALL_REAL_NPIS": 90,
+   "IN_ORDERING": 2
+  },
+  {
+   "STATE": "NY",
+   "ALL_REAL_NPIS": 661,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "OH",
+   "ALL_REAL_NPIS": 653,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "IL",
+   "ALL_REAL_NPIS": 235,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "MD",
+   "ALL_REAL_NPIS": 163,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "CO",
+   "ALL_REAL_NPIS": 152,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "WA",
+   "ALL_REAL_NPIS": 143,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "TN",
+   "ALL_REAL_NPIS": 143,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "NC",
+   "ALL_REAL_NPIS": 134,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "OK",
+   "ALL_REAL_NPIS": 130,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "WI",
+   "ALL_REAL_NPIS": 107,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "CT",
+   "ALL_REAL_NPIS": 96,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "NM",
+   "ALL_REAL_NPIS": 50,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "ID",
+   "ALL_REAL_NPIS": 33,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "MT",
+   "ALL_REAL_NPIS": 31,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "NE",
+   "ALL_REAL_NPIS": 28,
+   "IN_ORDERING": 1
+  },
+  {
+   "STATE": "ND",
+   "ALL_REAL_NPIS": 15,
+   "IN_ORDERING": 1
+  }
+ ],
+ "dme_refer": [
+  {
+   "NPI": "1285673012",
+   "LAST_NAME": "MIRANDA",
+   "EXCLUSION_DATE": "2015-06-18",
+   "DME_STATE": "TX",
+   "SRVCS": "1343",
+   "PAID": 46385.19
+  },
+  {
+   "NPI": "1265610463",
+   "LAST_NAME": "PIRANI",
+   "EXCLUSION_DATE": "2026-02-19",
+   "DME_STATE": "CA",
+   "SRVCS": "65",
+   "PAID": 13144.65
+  },
+  {
+   "NPI": "1871708180",
+   "LAST_NAME": "LANKFORD",
+   "EXCLUSION_DATE": "2026-05-20",
+   "DME_STATE": "AR",
+   "SRVCS": "249",
+   "PAID": 3355.07
+  },
+  {
+   "NPI": "1003918558",
+   "LAST_NAME": "ROBERSON",
+   "EXCLUSION_DATE": "2026-07-20",
+   "DME_STATE": "MD",
+   "SRVCS": "35",
+   "PAID": 3969.48
+  },
+  {
+   "NPI": "1912941873",
+   "LAST_NAME": "CANTU",
+   "EXCLUSION_DATE": "2026-07-20",
+   "DME_STATE": "TX",
+   "SRVCS": "5279",
+   "PAID": 27496.06
+  },
+  {
+   "NPI": "1205890886",
+   "LAST_NAME": "CATALDI",
+   "EXCLUSION_DATE": "2026-07-20",
+   "DME_STATE": "IN",
+   "SRVCS": "189",
+   "PAID": 3340.23
+  },
+  {
+   "NPI": "1710090915",
+   "LAST_NAME": "DONOFRIO",
+   "EXCLUSION_DATE": "2026-08-20",
+   "DME_STATE": "FL",
+   "SRVCS": "810",
+   "PAID": 25276.99
+  },
+  {
+   "NPI": "1003248733",
+   "LAST_NAME": "BILBREY",
+   "EXCLUSION_DATE": "2026-08-20",
+   "DME_STATE": "TN",
+   "SRVCS": "4038",
+   "PAID": 5669.84
+  },
+  {
+   "NPI": "1649270745",
+   "LAST_NAME": "MOHLER",
+   "EXCLUSION_DATE": "2026-08-20",
+   "DME_STATE": "OR",
+   "SRVCS": "14",
+   "PAID": 1515.97
+  }
+ ],
+ "dme_size": [
+  {
+   "N": 381228,
+   "D": 381228
+  }
+ ]
+}

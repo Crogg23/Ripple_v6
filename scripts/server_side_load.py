@@ -32,6 +32,7 @@ import argparse
 import json
 import os
 import sys
+import urllib.parse as _up
 import uuid
 from pathlib import Path
 
@@ -403,21 +404,93 @@ def _finalize_table(conn, spec_for_register: dict, sid: str, table: str, stg: st
     return {"source_id": sid, "status": "loaded", "rows": n, "density": density["populated_fraction"]}
 
 
+def _fetch_listing_pages(url: str, paginate: str | None) -> list[str]:
+    """One page, or every page of an S3 bucket listing.
+
+    A public S3 listing caps at 1000 keys and sets <IsTruncated>true; the next page
+    is the same URL with ?marker=<last key>. USAspending's archive holds 4,597 keys
+    and the 20 contract files sit between position 302 and 4,596, so a single fetch
+    finds some of them and silently misses the rest.
+    """
+    import requests
+    import re as _re
+    pages, marker, seen = [], "", 0
+    while True:
+        u = url
+        if marker:
+            u = url + ("&" if "?" in url else "?") + "marker=" + _up.quote(marker, safe="")
+        r = requests.get(u, timeout=180, allow_redirects=True,
+                         headers={"User-Agent": "Ripple manifest", "Accept": "application/json"})
+        r.raise_for_status()
+        pages.append(r.text)
+        if paginate != "s3" or "<IsTruncated>true" not in r.text:
+            break
+        keys = _re.findall(r"<Key>([^<]+)</Key>", r.text)
+        if not keys:
+            break
+        marker = keys[-1]
+        seen += len(keys)
+        if seen > 100_000:                      # a listing this long is a wrong URL
+            raise RuntimeError(f"manifest listing exceeded 100k keys: {url}")
+    return pages
+
+
+def _keep_latest(urls: list[str], latest_re: str) -> list[str]:
+    """Keep only the files carrying the newest version stamp.
+
+    A publisher that rotates monthly leaves exactly one live snapshot and deletes the
+    rest, so 'newest stamp' and 'the files that still exist' are the same set. Stamps
+    compare as strings, which is why they must be zero-padded, e.g. YYYYMMDD.
+    """
+    import re as _re
+    stamped = [(m.group(1), u) for u in urls if (m := _re.search(latest_re, u))]
+    if not stamped:
+        return urls
+    newest = max(st for st, _ in stamped)
+    kept = [u for st, u in stamped if st == newest]
+    if len(kept) != len(urls):
+        # Mid-sweep a publisher can hold two stamps at once. Loading only the new
+        # half is a table quietly missing years, with every status reading success.
+        others = sorted({st for st, _ in stamped if st != newest})
+        unstamped = len(urls) - len(stamped)
+        print(f"    manifest: kept {len(kept)} of {len(urls)} at stamp {newest}"
+              + (f"; older stamps present {others}" if others else "")
+              + (f"; {unstamped} unstamped dropped" if unstamped else ""))
+    return kept
+
+
+def _check_expected(urls: list[str], m: dict) -> list[str]:
+    """Refuse a short manifest when the spec says how many files it expects."""
+    want = m.get("expect_files")
+    if want and len(urls) != want:
+        raise RuntimeError(
+            f"manifest resolved {len(urls)} files, spec expects {want}. "
+            "A publisher mid-sweep looks exactly like this; re-run once it settles.")
+    return urls
+
+
 def _resolve_manifest(s: dict) -> list[str]:
     """UPGRADE 1: a manifest spec loads MANY files that share a schema and APPENDS them
     into ONE landing table. `manifest` is a static list of URLs, or a resolver dict:
       {'type':'json','url':...,'path':'a.b','item':'file','base':'https://host'}
       {'type':'regex','url':...,'path':'<regex w/ 1 capture group>','base':...}
-    'base' is prefixed to relative hrefs. Resolved hosts must be on RIPPLE_BULK_EGRESS."""
+    'base' is prefixed to relative hrefs. Resolved hosts must be on RIPPLE_BULK_EGRESS.
+
+    Two options on a regex resolver, both aimed at publishers who rotate their files:
+      'paginate': 's3'    walk every page of a bucket listing, not just the first 1000
+      'latest_re': regex  one capture group holding a version stamp; keep only the
+                          newest. A static list of dated URLs is a photograph of a
+                          directory and 404s the month the publisher sweeps it.
+    """
     m = s["manifest"]
     if isinstance(m, list):
         return list(m)
-    import requests
-    r = requests.get(m["url"], timeout=180, allow_redirects=True,
-                     headers={"User-Agent": "Ripple manifest", "Accept": "application/json"})
-    r.raise_for_status()
     base = m.get("base", "")
     if m.get("type", "json") == "json":
+        import requests
+        r = requests.get(m["url"], timeout=180, allow_redirects=True,
+                         headers={"User-Agent": "Ripple manifest", "Accept": "application/json"})
+        r.raise_for_status()
         val = r.json()
         for key in (str(m["path"]).split(".") if m.get("path") else []):
             val = val[int(key)] if isinstance(val, list) else val[key]
@@ -427,10 +500,20 @@ def _resolve_manifest(s: dict) -> list[str]:
             u = v.get(item) if (item and isinstance(v, dict)) else v
             if isinstance(u, str):
                 out.append(base + u if (base and not u.startswith("http")) else u)
-        return out
+        out = _keep_latest(out, m["latest_re"]) if m.get("latest_re") else out
+        return _check_expected(out, m)
     import re as _re
-    return [base + u if (base and not u.startswith("http")) else u
-            for u in _re.findall(m["path"], r.text)]
+    found: list[str] = []
+    for page in _fetch_listing_pages(m["url"], m.get("paginate")):
+        found += _re.findall(m["path"], page)
+    urls, seen = [], set()
+    for u in found:                              # belt and braces; marker is exclusive
+        full = base + u if (base and not u.startswith("http")) else u
+        if full not in seen:
+            seen.add(full)
+            urls.append(full)
+    out = _keep_latest(urls, m["latest_re"]) if m.get("latest_re") else urls
+    return _check_expected(out, m)
 
 
 def _load_manifest(s: dict, do_run: bool, force: bool, reuse_staged: bool, refresh: bool) -> dict:
@@ -454,7 +537,11 @@ def _load_manifest(s: dict, do_run: bool, force: bool, reuse_staged: bool, refre
         copy_paths = []
         for i, u in enumerate(urls):
             raw = f"bulk/{sid.lower()}/part_{i:04d}_{_basename_from_url(u)}" + ("" if is_zip else ".gz")
-            cp = f"bulk/{sid.lower()}/part_{i:04d}.gz" if is_zip else raw
+            # The basename carries the publisher's stamp. Without it in the staged
+            # path, --reuse-staged after a monthly rotation silently reuses last
+            # month's part_0007.gz under this month's URL.
+            cp = (f"bulk/{sid.lower()}/{_basename_from_url(u).rsplit('.', 1)[0]}.gz"
+                  if is_zip else raw)
             if reuse_staged and _staged_exists(conn, cp):
                 copy_paths.append(cp)
                 continue
