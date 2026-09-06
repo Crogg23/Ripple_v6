@@ -1,0 +1,2 @@
+-- superseded 2026-09-06; split into 09c_resolve_manifest.sql and
+-- 09d_refresh_source_manifest.sql so each proc deploys on its own.

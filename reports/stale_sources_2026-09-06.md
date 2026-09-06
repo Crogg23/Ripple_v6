@@ -245,3 +245,233 @@ issues forty fetches. Four reasons to wait:
    may not bite the same way, but nothing has tested forty server-side fetches in a row.
 
 Re-run around the 12th, once the September archive has settled.
+
+---
+
+# Turning the nightly refresh on, 2026-09-06
+
+## What the proc actually does, checked before flipping anything
+
+`RIPPLE_REFRESH_ENABLED` selects every row where `ENABLED` and `SCHEDULABLE` are true.
+There is no cadence filter in it. An annual source enabled today is fetched tonight and
+every night after.
+
+`RIPPLE_REFRESH_SOURCE` calls `RIPPLE_FETCH_TO_STAGE` first and compares the origin ETag
+after. So "unchanged" is decided after the bytes have already moved. The skip saves the
+COPY and the swap, not the download.
+
+That makes the nightly cost a function of total bytes, not of how often the data changes.
+
+## The 23 schedulable URLs, checked live
+
+19 answer 200. The two SEC 13F entries answer 403 to a bare header and 200 once a
+contact User-Agent is set, which the server-side fetcher supplies. The two USAspending
+entries cannot be reached from here and are dated anyway.
+
+Total download if all 21 non-USAspending entries run nightly: **5.41 GB**, of which five
+sources are 5.0 GB:
+
+| source | size | cadence |
+|---|---|---|
+| FED_DOL_OSHA_INSPECTION | 1,444 MB | monthly |
+| FED_CFPB_COMPLAINTS | 1,428 MB | daily |
+| FED_EPA_FRS_FULL | 1,261 MB | weekly |
+| INT_UK_COMPANIES_HOUSE | 497 MB | monthly |
+| FED_NHTSA_COMPLAINTS | 371 MB | daily |
+
+## What was turned on
+
+16 sources, 0.41 GB a night between them. Every one under 200 MB.
+
+Held off, 7. The five above, because a monthly source pulling 1.4 GB every night is 30
+downloads to catch one change, and there is no prior run of the whole set to price it
+from. Plus the two USAspending entries: `BULK_REFRESH` holds one URL per source and
+cannot express a 20-file manifest, so those stay on the client loader.
+
+## The number to get next
+
+One night of the 16 gives a real per-night credit figure from the query log. With that,
+enabling the five big ones becomes a priced decision instead of a guess. Check
+`RIPPLE_BULK_REFRESH_TASK` history and `WAREHOUSE_METERING_HISTORY` after 08:00 UTC.
+
+The better fix for the five is a cadence filter in the driver proc, so a monthly source
+is fetched monthly. That is a proc change, and its own piece of work.
+
+---
+
+# The cadence filter, and what the first real run found
+
+## The filter
+
+`RIPPLE_REFRESH_ENABLED` was replaced. It now reads each source's `CADENCE_BUCKET` and
+`LAST_REFRESH_AT` and calls the refresh proc only when the source is due: 1 day for daily
+and real time, 6 weekly, 27 monthly, 85 quarterly, 30 per cycle, 350 annual, 365 static,
+7 for anything unrecognised. Never refreshed counts as always due. The previous DDL is
+saved beside the new one as the rollback.
+
+Both refresh outcomes, `refreshed` and `unchanged`, already stamped `LAST_REFRESH_AT`, so
+the filter has something honest to read.
+
+A quoting bug in the first deploy turned the source id into a bare identifier and all 16
+calls failed on compile. Nothing fetched, nothing loaded. The argument is now built with
+`chr(39)`, so the escape count cannot be wrong again.
+
+## First real run: 16 due, 832 seconds
+
+| outcome | count |
+|---|---|
+| errored | 10 |
+| unchanged | 3 |
+| refreshed | 2 |
+| refused by the never-shrink guard | 1 |
+
+Refreshed: FED_IRS_EO_PR 2,515 rows, FED_NHTSA_INVESTIGATIONS 154,368 rows.
+Unchanged: CMS Part D prescribers, both SEC 13F sources.
+Refused: FED_IRS_990_EFILE_INDEX at 488,780 rows, fewer than the live table. The guard
+did its job and the live table was not touched.
+
+## Three causes behind the 10 failures
+
+**Network rule, 5 sources.** All five FEC bulk files redirect to
+`s3-us-gov-west-1.amazonaws.com`, a GovCloud host, and the fetch proc refuses it:
+"Please verify url is present in the network rule." The egress allowlist needs that host.
+
+**COPY format, 4 sources.** MSHA accidents, mines and violations, plus NHTSA recalls, all
+fail parsing with `ON_ERROR=ABORT_STATEMENT`. NHTSA recalls hits a stray character at line
+131,822 where a tab delimiter is expected. Their stored `DELIMITER` or `COLUMNS` in
+BULK_REFRESH does not match the file the publisher ships today.
+
+**Sandbox disk, 1 source.** CMS Open Payments general payments dies with
+`OSError: [Errno 28] No space left on device` inside the fetch UDF. The file is larger
+than the sandbox's local disk.
+
+## What is enabled now
+
+Six, every one proven in this run. The 10 failures were switched back off so the 08:00 UTC
+task does not spend 14 minutes a night failing unattended.
+
+| source | cadence | outcome |
+|---|---|---|
+| FED_IRS_EO_PR | monthly | refreshed |
+| FED_NHTSA_INVESTIGATIONS | daily | refreshed |
+| FED_CMS_PARTD_PRESCRIBER_DRUG | annual | unchanged |
+| FED_SEC_13F_POSITIONS | quarterly | unchanged |
+| FED_SEC_13F_SUBMISSION | quarterly | unchanged |
+| FED_IRS_990_EFILE_INDEX | static | refused, guard held |
+
+With the filter on, tonight only the daily source is due. The rest wait out their period.
+
+## Three separate pieces of work, in the order I would take them
+
+1. Add the GovCloud S3 host to the egress network rule. One change, unblocks five sources.
+2. Re-derive the stored format for the four COPY failures by running each through the
+   client loader once, which rewrites its BULK_REFRESH row.
+3. CMS Open Payments needs a streaming fetch or a smaller file; the sandbox cannot hold it.
+
+## The GovCloud host, added 2026-09-06
+
+`RIPPLE_BULK_EGRESS` went from 23 entries to 25. Added
+`cg-519a459a-0ea3-42c2-b7bc-fa1143481f74.s3-us-gov-west-1.amazonaws.com`, the bucket the
+FEC bulk URLs redirect to, and `s3-us-gov-west-1.amazonaws.com` alongside it. The previous
+value list is saved for rollback.
+
+It worked. `FED_FEC_CANDIDATES` fetched, unzipped and COPYed on the next call. The network
+error is gone.
+
+## It was necessary and not sufficient
+
+The refresh then stopped at the never-shrink guard: 7,371 rows against 27,095 live. That
+is not a bug. Every FEC entry in `BULK_REFRESH` stores a single 2018 cycle URL, while the
+live tables hold many cycles:
+
+| source | configured URL | rows in that file | live rows |
+|---|---|---|---|
+| FED_FEC_CANDIDATES | 2018/cn18.zip | 7,371 | 27,095 |
+| FED_FEC_COMMITTEES | 2018/cm18.zip | — | 60,031 |
+| FED_FEC_PAC_SUMMARY | 2018/webk18.zip | — | 48,395 |
+| FED_FEC_CAND_CMTE_LINKAGE | 2018/ccl18.zip | — | 30,536 |
+| FED_FEC_INDEPENDENT_EXPENDITURES | 2018/independent_expenditure_2018.csv | — | 87,541 |
+
+A refresh from one cycle would have replaced a multi-cycle table with one year. The guard
+held and the live tables were not touched.
+
+This is the same shape as USAspending: `BULK_REFRESH` holds one URL per source and cannot
+express a multi-file manifest. Four of the five have no cycle column either, so a
+per-cycle append would land rows that cannot be told apart afterwards.
+
+All five stay off. The reason is now structural, not network. Fixing it means teaching
+`BULK_REFRESH` about manifests, which is the same piece of work as the USAspending case.
+
+---
+
+# Manifests in the refresh config, 2026-09-06
+
+Both blocked sets — the five FEC entries and the two USAspending ones — failed for the
+same structural reason: `BULK_REFRESH` held one URL per source and the real source is
+many files. That is now fixed server-side.
+
+## What was added
+
+`BULK_REFRESH` gained two columns, `MANIFEST VARIANT` and `EXPECT_FILES NUMBER`. Both
+additive; every existing row reads NULL and behaves exactly as before.
+
+`RIPPLE_RESOLVE_MANIFEST(VARIANT)` is new. It takes a static list, a JSON index, or a
+regex over a listing page, and returns the files to load. It walks a truncated S3 listing
+via `?marker=`, keeps only the newest version stamp when told to, and refuses a short
+resolve when the spec declares how many files it expects. It carries the
+`RIPPLE_BULK_ACCESS` external access integration, so the warehouse resolves the list
+itself rather than trusting a list frozen on a laptop months ago.
+
+`RIPPLE_REFRESH_SOURCE` now reads `MANIFEST`. When it is set, the proc resolves the list
+live, fetches and unzips every file to its own stage path named by the file, and COPYs
+them all into one staging table before the existing never-shrink guard and atomic swap.
+When it is NULL, the single-URL path is untouched.
+
+## Two bugs found by running it
+
+The staged path for a zip member used to be `<source>.gz`, one path for the whole source.
+Three files went in, one came out. It now carries the filename, which carries the
+publisher's stamp.
+
+The content fingerprint was every file's ETag joined with a pipe, which overflowed
+`INGEST_RUNS.SHA256` and failed after the swap had already happened. It is now a SHA-256
+of the joined stamps: one stable value, still changing when any file changes.
+
+A third mistake was mine, not the design's. The DDL dumped by `GET_DDL` names the
+procedure without its schema, so the first deploy created a copy under the session's
+default schema and the real one never changed. The file is now fully qualified.
+
+## Proof
+
+A throwaway source `ZZ_MANIFEST_SMOKE` was pointed at three FEC candidate cycle files,
+2018, 2020 and 2022:
+
+| run | result |
+|---|---|
+| 1 | refreshed, 23,708 rows from 3 files |
+| 2 | unchanged, fingerprint matched |
+
+23,708 is the sum of the three cycles; a single-file load of the same source returns
+7,371. Its control row is now marked not schedulable so the nightly task ignores it.
+
+Regression: `FED_NHTSA_INVESTIGATIONS`, a plain single-URL source, still returns
+`unchanged` on the new proc.
+
+## Cleaned up, on Chris's greenlight
+
+Four things removed after checking nothing referenced them: the 23,708-row smoke table,
+the stray `RIPPLE_REFRESH_SOURCE` copy under `LIBRARY_RAW.PUBLIC`, the smoke control row,
+and its six staged files. Verified after: one `RIPPLE_REFRESH_SOURCE` left in the account,
+in `LIBRARY_META.REGISTRY`, and no `ZZ` rows anywhere.
+
+Its two `INGEST_RUNS` rows stay. That is history, not a leftover.
+
+The gate refused the price command as well as the drop, because it reads the command text
+and saw a destroy word in both. The price came from the nearest comparable staging work:
+p50 $0.01, max $0.23. Nothing exactly like it had run before.
+
+## Still not run
+
+The FEC and USAspending manifests are not written into `BULK_REFRESH` yet. FEC needs a
+decision first: four of the five tables carry no cycle column, so loading every cycle
+changes what a row means. USAspending waits for the September archive, around the 12th.
