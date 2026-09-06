@@ -12,7 +12,7 @@ not parse_pipe.
 
 TWO THINGS INFLATE THE RAW TOTAL, measured 2026-09-06 against the live mart:
 
-  prank filings                                             about 91.0 of 92.4 $B
+  prank filings                                                     $91.0B, 35 rows
       FEC's bulk file carries whatever gets web-filed, including a $9.98 billion
       "expenditure" from THE COURT OF DIVINE JUSTICE and one from Republican Emo
       Girl. Nineteen rows across four cycles. Every one is BOTH web-filed, so
@@ -21,7 +21,7 @@ TWO THINGS INFLATE THE RAW TOTAL, measured 2026-09-06 against the live mart:
       and Preserve America; the WFT prefix alone catches 5,339 real small filers
       worth $191M. The pair together catches the junk and nothing else.
 
-  superseded amendments                                        about 1.7 $B, 2024
+  superseded amendments                                          $1.34B on 2024
       An amended filing restates its transactions, so the original and every
       revision all sit in the file. Food & Water Action's $114M row appears nine
       times. A filing is superseded when its FILE_NUM turns up as some other
@@ -30,8 +30,21 @@ TWO THINGS INFLATE THE RAW TOTAL, measured 2026-09-06 against the live mart:
 Both are FLAGGED here, never dropped. Landing keeps what the source published;
 the mart filters on IS_SUSPECT_FILING = 'False' and IS_SUPERSEDED = 'False'.
 
-Walked out on 2024: raw $49.68B -> drop superseded $47.93B -> drop suspect
-$5.73B -> both $3.99B, against the roughly $4.4B the FEC publishes.
+Walked out on 2024, measured against the landed table: raw $49.679B -> less
+suspect $43.899B -> less superseded $1.343B -> clean $4.437B, against the roughly
+$4.4B the FEC publishes for 2024. The other four cycles are internally consistent
+and have NOT been checked against an outside source.
+
+KNOWN GAPS, none fixed here:
+  * --cycles cannot actually be used. land()'s shrink guard refuses anything
+    under 98% of the last good run, and one cycle is 5% of five. The flag needs
+    expect_rows=0 to work, which disarms the truncation guard, so that is a call
+    to make on purpose rather than a silent patch.
+  * The supersede rule is a pointer test, never a content test. It misses 2,467
+    unlinked duplicate rows worth about $31M, and 274 rows amended across a
+    cycle boundary move $16.2M out of 2024 into 2026.
+  * 424 rows carry a negative EXP_AMO. They are refunds and net correctly in a
+    SUM, but will look wrong in any top-spender view.
 """
 from __future__ import annotations
 
