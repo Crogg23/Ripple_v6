@@ -3,11 +3,18 @@ version: 2
 models:
   - name: politics__fed_congress_committee_membership
     description: >
-      GRAIN: one row per legislator per committee/subcommittee assignment
-      (a current-snapshot membership roster, not a historical log --
-      committee_code already distinguishes subcommittees from their parent
-      committee).
+      GRAIN: one row per legislator per committee/subcommittee assignment per
+      congress, 113th to 119th. One snapshot per congress, taken from the git
+      history of committee-membership-current.yaml, so snapshot_date is the day
+      the roster was read and not a term. committee_code already distinguishes
+      a subcommittee from its parent committee.
+
+      party is NOT a party. It holds 'majority' and 'minority'. Join
+      POLITICS__FED_CONGRESS_LEGISLATORS for D/R.
     columns:
+      - name: congress
+        data_tests:
+          - not_null
       - name: committee_code
         data_tests:
           - not_null
@@ -18,5 +25,6 @@ models:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
+              - congress
               - committee_code
               - bioguide
