@@ -14,6 +14,7 @@ renamed as (
         rpt_rec_num                                                        as rpt_rec_num,
         provider_ccn                                                       as provider_ccn,
         hospital_name                                                      as hospital_name,
+        source_file_year                                                   as source_file_year,
 
         -- location
         street_address                                                     as street_address,
@@ -34,33 +35,33 @@ renamed as (
         try_to_date(fiscal_year_end_date)                                  as fiscal_year_end_date,
 
         -- workforce
-        try_to_double(fte___employees_on_payroll)                          as fte_employees_on_payroll,
-        try_to_double(number_of_interns_and_residents__fte)                as number_of_interns_and_residents_fte,
+        try_to_double(fte_employees_on_payroll)                          as fte_employees_on_payroll,
+        try_to_double(number_of_interns_and_residents_fte)                as number_of_interns_and_residents_fte,
 
         -- utilization – total
         try_to_number(total_days_title_v)                                  as total_days_title_v,
         try_to_number(total_days_title_xviii)                              as total_days_title_xviii,
         try_to_number(total_days_title_xix)                                as total_days_title_xix,
-        try_to_number(total_days__v___xviii___xix___unknown)               as total_days_all,
+        try_to_number(total_days_v_xviii_xix_unknown)               as total_days_all,
         try_to_number(number_of_beds)                                      as number_of_beds,
         try_to_number(total_bed_days_available)                            as total_bed_days_available,
         try_to_number(total_discharges_title_v)                            as total_discharges_title_v,
         try_to_number(total_discharges_title_xviii)                        as total_discharges_title_xviii,
         try_to_number(total_discharges_title_xix)                          as total_discharges_title_xix,
-        try_to_number(total_discharges__v___xviii___xix___unknown)         as total_discharges_all,
-        try_to_number(number_of_beds___total_for_all_subproviders)         as number_of_beds_total_all_subproviders,
+        try_to_number(total_discharges_v_xviii_xix_unknown)         as total_discharges_all,
+        try_to_number(number_of_beds_total_for_all_subproviders)         as number_of_beds_total_all_subproviders,
 
         -- utilization – adults & peds
-        try_to_number(hospital_total_days_title_v_for_adults___peds)                             as hospital_total_days_title_v_adults_peds,
-        try_to_number(hospital_total_days_title_xviii_for_adults___peds)                         as hospital_total_days_title_xviii_adults_peds,
-        try_to_number(hospital_total_days_title_xix_for_adults___peds)                           as hospital_total_days_title_xix_adults_peds,
-        try_to_number(hospital_total_days__v___xviii___xix___unknown__for_adults___peds)         as hospital_total_days_all_adults_peds,
-        try_to_number(hospital_number_of_beds_for_adults___peds)                                 as hospital_number_of_beds_adults_peds,
-        try_to_number(hospital_total_bed_days_available_for_adults___peds)                       as hospital_total_bed_days_available_adults_peds,
-        try_to_number(hospital_total_discharges_title_v_for_adults___peds)                       as hospital_total_discharges_title_v_adults_peds,
-        try_to_number(hospital_total_discharges_title_xviii_for_adults___peds)                   as hospital_total_discharges_title_xviii_adults_peds,
-        try_to_number(hospital_total_discharges_title_xix_for_adults___peds)                     as hospital_total_discharges_title_xix_adults_peds,
-        try_to_number(hospital_total_discharges__v___xviii___xix___unknown__for_adults___peds)   as hospital_total_discharges_all_adults_peds,
+        try_to_number(hospital_total_days_title_v_for_adults_peds)                             as hospital_total_days_title_v_adults_peds,
+        try_to_number(hospital_total_days_title_xviii_for_adults_peds)                         as hospital_total_days_title_xviii_adults_peds,
+        try_to_number(hospital_total_days_title_xix_for_adults_peds)                           as hospital_total_days_title_xix_adults_peds,
+        try_to_number(hospital_total_days_v_xviii_xix_unknown_for_adults_peds)         as hospital_total_days_all_adults_peds,
+        try_to_number(hospital_number_of_beds_for_adults_peds)                                 as hospital_number_of_beds_adults_peds,
+        try_to_number(hospital_total_bed_days_available_for_adults_peds)                       as hospital_total_bed_days_available_adults_peds,
+        try_to_number(hospital_total_discharges_title_v_for_adults_peds)                       as hospital_total_discharges_title_v_adults_peds,
+        try_to_number(hospital_total_discharges_title_xviii_for_adults_peds)                   as hospital_total_discharges_title_xviii_adults_peds,
+        try_to_number(hospital_total_discharges_title_xix_for_adults_peds)                     as hospital_total_discharges_title_xix_adults_peds,
+        try_to_number(hospital_total_discharges_v_xviii_xix_unknown_for_adults_peds)   as hospital_total_discharges_all_adults_peds,
 
         -- uncompensated care
         try_to_double(cost_of_charity_care)                                as cost_of_charity_care,
@@ -77,14 +78,14 @@ renamed as (
         -- charges
         try_to_double(inpatient_total_charges)                             as inpatient_total_charges,
         try_to_double(outpatient_total_charges)                            as outpatient_total_charges,
-        try_to_double(combined_outpatient___inpatient_total_charges)       as combined_outpatient_inpatient_total_charges,
+        try_to_double(combined_outpatient_inpatient_total_charges)       as combined_outpatient_inpatient_total_charges,
 
         -- wage-related costs
-        try_to_double(wage_related_costs__core)                            as wage_related_costs_core,
-        try_to_double(wage_related_costs__rhc_fqhc)                        as wage_related_costs_rhc_fqhc,
-        try_to_double(total_salaries__adjusted)                            as total_salaries_adjusted,
-        try_to_double(contract_labor__direct_patient_care)                 as contract_labor_direct_patient_care,
-        try_to_double(wage_related_costs_for_part___a_teaching_physicians) as wage_related_costs_part_a_teaching_physicians,
+        try_to_double(wage_related_costs_core)                            as wage_related_costs_core,
+        try_to_double(wage_related_costs_rhc_fqhc)                        as wage_related_costs_rhc_fqhc,
+        try_to_double(total_salaries_adjusted)                            as total_salaries_adjusted,
+        try_to_double(contract_labor_direct_patient_care)                 as contract_labor_direct_patient_care,
+        try_to_double(wage_related_costs_for_part_a_teaching_physicians) as wage_related_costs_part_a_teaching_physicians,
         try_to_double(wage_related_costs_for_interns_and_residents)        as wage_related_costs_interns_and_residents,
 
         -- current assets
@@ -92,7 +93,7 @@ renamed as (
         try_to_double(temporary_investments)                               as temporary_investments,
         try_to_double(notes_receivable)                                    as notes_receivable,
         try_to_double(accounts_receivable)                                 as accounts_receivable,
-        try_to_double(less__allowances_for_uncollectible_notes_and_accounts_receivable) as allowances_for_uncollectible_receivables,
+        try_to_double(less_allowances_for_uncollectible_notes_and_accounts_receivable) as allowances_for_uncollectible_receivables,
         try_to_double(inventory)                                           as inventory,
         try_to_double(prepaid_expenses)                                    as prepaid_expenses,
         try_to_double(other_current_assets)                                as other_current_assets,
@@ -117,9 +118,9 @@ renamed as (
 
         -- current liabilities
         try_to_double(accounts_payable)                                    as accounts_payable,
-        try_to_double(salaries__wages__and_fees_payable)                   as salaries_wages_and_fees_payable,
+        try_to_double(salaries_wages_and_fees_payable)                   as salaries_wages_and_fees_payable,
         try_to_double(payroll_taxes_payable)                               as payroll_taxes_payable,
-        try_to_double(notes_and_loans_payable__short_term)                 as notes_and_loans_payable_short_term,
+        try_to_double(notes_and_loans_payable_short_term)                 as notes_and_loans_payable_short_term,
         try_to_double(deferred_income)                                     as deferred_income,
         try_to_double(other_current_liabilities)                           as other_current_liabilities,
         try_to_double(total_current_liabilities)                           as total_current_liabilities,
@@ -151,7 +152,7 @@ renamed as (
         try_to_double(inpatient_revenue)                                   as inpatient_revenue,
         try_to_double(outpatient_revenue)                                  as outpatient_revenue,
         try_to_double(total_patient_revenue)                               as total_patient_revenue,
-        try_to_double(less_contractual_allowance_and_discounts_on_patients__accounts) as contractual_allowance_and_discounts,
+        try_to_double(less_contractual_allowance_and_discounts_on_patients_accounts) as contractual_allowance_and_discounts,
         try_to_double(net_patient_revenue)                                 as net_patient_revenue,
         try_to_double(less_total_operating_expense)                        as total_operating_expense,
         try_to_double(net_income_from_service_to_patients)                 as net_income_from_service_to_patients,
@@ -177,12 +178,25 @@ renamed as (
 
 ),
 
+-- GRAIN, measured 2026-09-06 on all 80,077 rows across 2011-2023:
+--   rpt_rec_num is unique. Zero duplicates. It IS the key.
+--   provider_ccn + source_file_year is NOT unique -- 1,186 collisions. A
+--   hospital can file several short cost-report periods inside one file year,
+--   e.g. CCN 340090 in 2014 filed 10/01-01/31, then 02/01-06/30, then 07/01
+--   onward. Those splits usually mark an ownership change, which makes them
+--   evidence for question E43 rather than noise to collapse.
+--
+-- The old dedupe partitioned on provider_ccn + hospital_name +
+-- fiscal_year_end_date and ordered by _ingested_at. That was safe on one
+-- vintage and is not safe now: all thirteen years landed in a single run, so
+-- every row carries the same _ingested_at and the tiebreak is arbitrary.
+-- Dedupe on the real key instead, which drops nothing.
 deduped as (
 
     select *
     from renamed
     qualify row_number() over (
-        partition by provider_ccn, hospital_name, fiscal_year_end_date
+        partition by rpt_rec_num
         order by _ingested_at desc
     ) = 1
 

@@ -9,9 +9,17 @@ with base as (
 select
 
     -- key identifiers
+    -- GRAIN: one row per cost report. rpt_rec_num is the key and is unique
+    -- across all 80,077 rows, 2011-2023. provider_ccn alone is NOT: a hospital
+    -- files one report a year, and sometimes several short ones in a year
+    -- around an ownership change.
     provider_ccn,
     hospital_name,
     fiscal_year_end_date,
+    -- The CMS file's own year label. NOT the hospital's fiscal period, which
+    -- varies per hospital and can straddle two calendar years. Group by this
+    -- for "which file", by fiscal_year_end_date for "which period".
+    source_file_year,
     {{ ripple_num('rpt_rec_num') }} as rpt_rec_num,
 
     -- location

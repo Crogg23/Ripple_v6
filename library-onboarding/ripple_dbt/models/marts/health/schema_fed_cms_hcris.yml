@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: health__fed_cms_hcris
+    description: >
+      GRAIN: one row per cost report, 2011-2023. rpt_rec_num is the key and is
+      unique across all 80,077 rows.
+
+      provider_ccn is NOT unique and provider_ccn + source_file_year is not
+      either: 1,186 hospital-years carry more than one report, because a
+      hospital can file several short periods inside one file year. Those splits
+      usually mark an ownership change. Count reports, not hospitals, unless you
+      mean to.
+
+      source_file_year is the CMS file label. fiscal_year_end_date is the
+      hospital's own period end and is the one to use for a real time axis.
+    columns:
+      - name: rpt_rec_num
+        data_tests:
+          - not_null
+          - unique
+      - name: provider_ccn
+        data_tests:
+          - not_null
+      - name: source_file_year
+        data_tests:
+          - not_null
