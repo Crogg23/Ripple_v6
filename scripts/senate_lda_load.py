@@ -9,6 +9,31 @@ Auth: Token-based (LDA_API_KEY in .env)
 Rate limit: 120 req/min (authenticated), 25 results/page
 Pagination strategy: by filing_year (required for pagination beyond page 1)
 
+REWRITTEN 2026-09-06, two problems, both measured:
+
+  it held a whole year in memory
+      paginate_all() built one list of every filing in a year before returning,
+      and only then did the upload fire. A year is tens of thousands of filings
+      of deeply nested JSON. A 2026-09-06 run was killed after 90 minutes with
+      nothing landed. Pages now stream: each one is flattened and appended to a
+      buffer, and the buffer uploads whenever it passes FLUSH_ROWS. Peak memory
+      is one flush, not one year.
+
+  it threw the revolving door away
+      Each lobbyist inside lobbying_activities[].lobbyists[] carries
+      covered_position -- free text naming the government job that person left,
+      e.g. "Chief of Staff, Rep. Donald McEachin" or "Professional Staff, Senate
+      Appropriations Committee". The old flatten kept first and last name and
+      dropped the rest. Measured on 253 lobbyist rows from 2024: 53.4% carry a
+      covered position. That field is the only real revolving-door source in
+      reach, and it now lands in FED_SENATE_LDA_LOBBYIST_POSITIONS, one row per
+      filing per lobbyist.
+
+      GOVERNANCE__FED_REVOLVINGDOOR_PROJECT is NOT that source and never was.
+      Its 406 rows are government JOB SLOTS and the industry sectors each one
+      touches. There is no person in it, which is why PERSON_NAME reads 'nan'
+      on 405 of 406 rows.
+
     python scripts/senate_lda_load.py              # preview
     python scripts/senate_lda_load.py --run        # load all years
     python scripts/senate_lda_load.py --run --start-year 2020  # recent only
@@ -60,6 +85,13 @@ CURRENT_YEAR = 2026
 TBL_FILINGS = "FED_SENATE_LDA_FILINGS"
 TBL_CONTRIBUTIONS = "FED_SENATE_LDA_CONTRIBUTIONS"
 TBL_LOBBYISTS = "FED_SENATE_LDA_LOBBYISTS"
+# One row per filing per lobbyist, carrying covered_position. This is the
+# revolving door: the government job that person left before lobbying.
+TBL_POSITIONS = "FED_SENATE_LDA_LOBBYIST_POSITIONS"
+
+# Upload whenever the buffer passes this. Small enough that a year never sits
+# in memory, big enough that write_pandas is not called once per page.
+FLUSH_ROWS = 20_000
 
 
 # ---------------------------------------------------------------------------
@@ -74,6 +106,41 @@ def load_checkpoint() -> dict:
 def save_checkpoint(cp: dict):
     CHECKPOINT_FILE.parent.mkdir(parents=True, exist_ok=True)
     CHECKPOINT_FILE.write_text(json.dumps(cp, indent=2))
+
+
+def seed_checkpoint_from_warehouse(cp: dict, conn) -> dict:
+    """Trust the table, not the file.
+
+    The checkpoint lives in logs/, which is gitignored and was EMPTY on
+    2026-09-06 while landing already held 1999-2010 and 2020-2021, about
+    746,000 filings. upload_df appends, so a fresh run would have silently
+    doubled every one of those years. Any year already in the table is marked
+    done before the loop starts.
+
+    Lobbyist seats are tracked separately, because the years loaded before
+    2026-09-06 were written by the old flatten and carry no covered_position.
+    A year can therefore be done for filings and not done for seats."""
+    cur = conn.cursor()
+    for table, prefix, col in ((TBL_FILINGS, "filings", "FILING_YEAR"),
+                               (TBL_CONTRIBUTIONS, "contributions", "FILING_YEAR"),
+                               (TBL_POSITIONS, "positions", "FILING_YEAR")):
+        try:
+            rows = cur.execute(
+                f'select "{col}", count(*) from {bulk.LANDING_FQS}."{table}" '
+                f'group by 1').fetchall()
+        except Exception:
+            continue  # table does not exist yet, nothing to seed
+        for year, n in rows:
+            if year is None:
+                continue
+            try:
+                key = f"{prefix}_{int(year)}"
+            except (TypeError, ValueError):
+                continue
+            if key not in cp:
+                cp[key] = int(n)
+    cur.close()
+    return cp
 
 
 # ---------------------------------------------------------------------------
@@ -109,21 +176,35 @@ def api_get(endpoint: str, params: dict | None = None) -> dict:
     raise RuntimeError(f"Failed after 8 retries: {url}")
 
 
-def paginate_all(endpoint: str, year: int, year_param: str = "filing_year") -> list[dict]:
-    """Fetch all pages for a given year. Returns list of result dicts."""
-    results = []
+def paginate_pages(endpoint: str, year: int, year_param: str = "filing_year"):
+    """Yield one page of results at a time, never the whole year at once.
+
+    This is the fix for the 90-minute kill with nothing landed. The caller
+    flattens and flushes as pages arrive, so peak memory is one flush buffer
+    rather than a year of nested JSON."""
     # page_size 250 requires the LDA_API_KEY (anonymous cap is 25). Key verified
     # live 2026-08-22; 250 cuts the full crawl from ~12h to ~2-4h.
     params = {year_param: year, "page_size": 250 if API_KEY else 25, "page": 1}
+    seen = 0
     while True:
         data = api_get(endpoint, params)
-        results.extend(data.get("results", []))
+        batch = data.get("results", [])
+        seen += len(batch)
+        yield batch
         if not data.get("next"):
             break
         params["page"] += 1
-        if params["page"] % 50 == 0:
-            print(f"      page {params['page']}, {len(results)} records so far...")
-    return results
+        if params["page"] % 20 == 0:
+            print(f"      page {params['page']}, {seen:,} records so far...", flush=True)
+
+
+def paginate_all(endpoint: str, year: int, year_param: str = "filing_year") -> list[dict]:
+    """Whole-year fetch, kept for callers that genuinely need it. Prefer
+    paginate_pages: this one is what ran the loader out of memory."""
+    out = []
+    for batch in paginate_pages(endpoint, year, year_param):
+        out.extend(batch)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -180,6 +261,52 @@ def flatten_filing(f: dict) -> dict:
             bool(f.get("foreign_entities")) if f.get("foreign_entities") else False
         ),
     }
+
+
+def flatten_lobbyists(f: dict) -> list[dict]:
+    """One row per (filing, lobbyist). Keeps covered_position, which the old
+    flatten dropped -- see the module docstring for what that field is."""
+    reg = f.get("registrant") or {}
+    client = f.get("client") or {}
+    rows = []
+    seen = set()
+    for a in (f.get("lobbying_activities") or []):
+        issue = a.get("general_issue_code_display")
+        for l in (a.get("lobbyists") or []):
+            person = l.get("lobbyist") or l
+            first = (person.get("first_name") or "").strip()
+            last = (person.get("last_name") or "").strip()
+            covered = l.get("covered_position")
+            # A lobbyist repeats across activities in one filing. Keep one row
+            # per person per issue; the issue is what varies and is worth having.
+            key = (person.get("id"), first, last, issue)
+            if key in seen:
+                continue
+            seen.add(key)
+            rows.append({
+                "FILING_UUID": f.get("filing_uuid"),
+                "FILING_YEAR": f.get("filing_year"),
+                "FILING_TYPE": f.get("filing_type"),
+                "DT_POSTED": f.get("dt_posted"),
+                "REGISTRANT_ID": reg.get("id"),
+                "REGISTRANT_NAME": reg.get("name"),
+                "CLIENT_ID": (client.get("id") or client.get("client_id")),
+                "CLIENT_NAME": client.get("name"),
+                "LOBBYIST_ID": person.get("id"),
+                "LOBBYIST_FIRST_NAME": first or None,
+                "LOBBYIST_MIDDLE_NAME": person.get("middle_name"),
+                "LOBBYIST_LAST_NAME": last or None,
+                "LOBBYIST_SUFFIX": person.get("suffix_display") or person.get("suffix"),
+                "GENERAL_ISSUE": issue,
+                # Free text, and long. It names the member and the committee:
+                # "Chief of Staff, Rep. Donald McEachin" / "Professional Staff,
+                # Senate Appropriations Cmte". Multiple jobs arrive separated by
+                # ';' or '/'. Parse downstream, land it whole.
+                "COVERED_POSITION": (covered[:4000] if covered else None),
+                "HAS_COVERED_POSITION": str(bool(covered)),
+                "IS_NEW_LOBBYIST": str(l.get("new")) if l.get("new") is not None else None,
+            })
+    return rows
 
 
 def flatten_contribution(c: dict) -> list[dict]:
@@ -315,11 +442,18 @@ def main():
     args = ap.parse_args()
 
     if not API_KEY:
-        print("ERROR: LDA_API_KEY not set in environment. Get one at https://lda.senate.gov/api/register/")
-        sys.exit(1)
-
-    # Quick auth test
-    print(f"LDA API key: ...{API_KEY[-8:]}")
+        # The API answers without a key, just far slower: roughly 15 requests a
+        # minute against 120 with one. Verified live 2026-09-06, filing_year
+        # 2015 returned count=73,908 unauthenticated. So run anyway and say what
+        # it costs, rather than refusing to start.
+        global REQUEST_DELAY
+        REQUEST_DELAY = max(REQUEST_DELAY, 4.2)
+        print("No LDA_API_KEY. Running unauthenticated at about 15 requests a "
+              "minute, roughly eight times slower.")
+        print("A key at https://lda.senate.gov/api/register/ takes two minutes "
+              "and makes this eight times faster.")
+    else:
+        print(f"LDA API key: ...{API_KEY[-8:]}")
     print(f"Years: {args.start_year} - {args.end_year}")
 
     if not args.run:
@@ -333,7 +467,12 @@ def main():
 
     cp = load_checkpoint()
     run_id = str(uuid.uuid4())
-    get_conn()  # fail fast on credentials before the first multi-hour fetch
+    conn = get_conn()  # fail fast on credentials before the first multi-hour fetch
+    before = len(cp)
+    cp = seed_checkpoint_from_warehouse(cp, conn)
+    if len(cp) > before:
+        save_checkpoint(cp)
+        print(f"  seeded {len(cp) - before} year(s) from what landing already holds")
 
     years = list(range(args.start_year, args.end_year + 1))
 
@@ -343,24 +482,61 @@ def main():
     print(f"{'='*60}")
     for year in years:
         cp_key = f"filings_{year}"
-        if cp_key in cp:
-            print(f"  [{year}] already loaded ({cp[cp_key]} rows) -- skip")
+        pos_key = f"positions_{year}"
+        want_filings = cp_key not in cp
+        want_positions = pos_key not in cp
+        if not want_filings and not want_positions:
+            print(f"  [{year}] already loaded ({cp[cp_key]} filings) -- skip")
             continue
+        if not want_filings:
+            print(f"  [{year}] filings already landed; fetching lobbyist seats only",
+                  flush=True)
 
-        print(f"  [{year}] fetching...", end=" ", flush=True)
-        raw = paginate_all("filings/", year)
-        if not raw:
-            print("0 filings")
+        print(f"  [{year}] streaming...", flush=True)
+        # Two buffers, flushed independently. Nothing accumulates a whole year.
+        fil_buf: list[dict] = []
+        pos_buf: list[dict] = []
+        n_fil = n_pos = n_covered = 0
+
+        def flush(force: bool = False):
+            nonlocal fil_buf, pos_buf
+            if not want_filings:
+                fil_buf = []
+            if not want_positions:
+                pos_buf = []
+            if fil_buf and (force or len(fil_buf) >= FLUSH_ROWS):
+                upload_df(pd.DataFrame(fil_buf), TBL_FILINGS, run_id)
+                print(f"      flushed {len(fil_buf):,} filings", flush=True)
+                fil_buf = []
+            if pos_buf and (force or len(pos_buf) >= FLUSH_ROWS):
+                upload_df(pd.DataFrame(pos_buf), TBL_POSITIONS, run_id)
+                print(f"      flushed {len(pos_buf):,} lobbyist seats", flush=True)
+                pos_buf = []
+
+        for page in paginate_pages("filings/", year):
+            for f in page:
+                fil_buf.append(flatten_filing(f))
+                seats = flatten_lobbyists(f)
+                pos_buf.extend(seats)
+                n_fil += 1
+                n_pos += len(seats)
+                n_covered += sum(1 for r in seats if r["COVERED_POSITION"])
+            flush()
+        flush(force=True)
+
+        if not n_fil:
+            print(f"  [{year}] 0 filings")
             cp[cp_key] = 0
             save_checkpoint(cp)
             continue
 
-        rows = [flatten_filing(f) for f in raw]
-        df = pd.DataFrame(rows)
-        print(f"{len(df)} filings, uploading...", end=" ", flush=True)
-        upload_df(df, TBL_FILINGS, run_id)
-        print("done")
-        cp[cp_key] = len(df)
+        share = (n_covered / n_pos * 100) if n_pos else 0.0
+        print(f"  [{year}] {n_fil:,} filings, {n_pos:,} lobbyist seats, "
+              f"{n_covered:,} with a covered position, {share:.1f}%", flush=True)
+        if want_filings:
+            cp[cp_key] = n_fil
+        if want_positions:
+            cp[pos_key] = n_pos
         save_checkpoint(cp)
 
     # --- CONTRIBUTIONS ---
@@ -375,47 +551,49 @@ def main():
             print(f"  [{year}] already loaded ({cp[cp_key]} rows) -- skip")
             continue
 
-        print(f"  [{year}] fetching...", end=" ", flush=True)
-        raw = paginate_all("contributions/", year)
-        if not raw:
-            print("0 contributions")
+        print(f"  [{year}] streaming...", flush=True)
+        buf: list[dict] = []
+        n_items = 0
+        for page in paginate_pages("contributions/", year):
+            for c in page:
+                buf.extend(flatten_contribution(c))
+            if len(buf) >= FLUSH_ROWS:
+                upload_df(pd.DataFrame(buf), TBL_CONTRIBUTIONS, run_id)
+                n_items += len(buf)
+                print(f"      flushed {len(buf):,} contribution items", flush=True)
+                buf = []
+        if buf:
+            upload_df(pd.DataFrame(buf), TBL_CONTRIBUTIONS, run_id)
+            n_items += len(buf)
+
+        if not n_items:
+            print(f"  [{year}] 0 contributions")
             cp[cp_key] = 0
             save_checkpoint(cp)
             continue
 
-        rows = []
-        for c in raw:
-            rows.extend(flatten_contribution(c))
-        df = pd.DataFrame(rows)
-        print(f"{len(df)} contribution items, uploading...", end=" ", flush=True)
-        upload_df(df, TBL_CONTRIBUTIONS, run_id)
-        print("done")
-        cp[cp_key] = len(df)
+        print(f"  [{year}] {n_items:,} contribution items", flush=True)
+        cp[cp_key] = n_items
         save_checkpoint(cp)
 
-    # --- LOBBYISTS (single flat table, no year filter needed) ---
+    # --- LOBBYIST SEATS ---
+    # The standalone /lobbyists/ directory is deliberately NOT loaded. It is a
+    # name list with no covered_position on it, so it cannot answer the
+    # revolving-door question. The seats that CAN answer it were written
+    # alongside the filings above, one row per filing per lobbyist, because
+    # covered_position only exists inside a filing's activities.
     print(f"\n{'='*60}")
-    print("LOBBYISTS DIRECTORY")
+    print("LOBBYIST SEATS")
     print(f"{'='*60}")
-    if "lobbyists" not in cp:
-        print("  Fetching all lobbyists...", end=" ", flush=True)
-        results = []
-        params = {"page_size": 25, "page": 1, "registrant_id": 1}
-        # Lobbyists endpoint requires a filter param to paginate.
-        # We'll iterate by registrant_id ranges instead.
-        # Actually, let's just grab them via the filings we already have.
-        # Skip for now - lobbyist info is embedded in filings.
-        print("(lobbyist data embedded in filings — skip standalone load)")
-        cp["lobbyists"] = "embedded"
-        save_checkpoint(cp)
-    else:
-        print("  Already done")
+    print(f"  written alongside filings -> {TBL_POSITIONS}")
 
     # --- Summary ---
     total_filings = sum(v for k, v in cp.items() if k.startswith("filings_") and isinstance(v, int))
     total_contribs = sum(v for k, v in cp.items() if k.startswith("contributions_") and isinstance(v, int))
+    total_positions = sum(v for k, v in cp.items() if k.startswith("positions_") and isinstance(v, int))
     print(f"\n{'='*60}")
-    print(f"COMPLETE: {total_filings:,} filings + {total_contribs:,} contribution items loaded")
+    print(f"COMPLETE: {total_filings:,} filings, {total_positions:,} lobbyist seats, "
+          f"{total_contribs:,} contribution items")
     print(f"{'='*60}")
 
     # Quality gate
@@ -437,6 +615,13 @@ def main():
         if not passed:
             print(f"QUALITY GATE FAILED {TBL_CONTRIBUTIONS}: {report}")
             gate_failed.append(TBL_CONTRIBUTIONS)
+    if total_positions > 0:
+        passed, report = bulk.run_quality_gate(
+            get_conn(), "fed_senate_lda_lobbyist_positions", TBL_POSITIONS, run_id,
+            row_count=total_positions, source_url=BASE_URL)
+        if not passed:
+            print(f"QUALITY GATE FAILED {TBL_POSITIONS}: {report}")
+            gate_failed.append(TBL_POSITIONS)
 
     _reset_conn()
     if gate_failed:
