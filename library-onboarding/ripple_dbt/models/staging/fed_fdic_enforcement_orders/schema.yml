@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_FDIC_ENFORCEMENT_ORDERS
+        description: >
+          FDIC Enforcement Decisions and Orders, one row per order, all text.
+          Landed 2026-09-07 by scripts/fdic_enforcement_load.py from the
+          orders.fdic.gov Aura endpoint (Salesforce). 10,838 rows, 1975-2026.
+          Not the 14-row FED_FDIC_ENFORCEMENT stub.
+
+models:
+  - name: stg_fed_fdic_enforcement_orders__orders
+    description: >
+      One row per FDIC enforcement order. ORDER_ID unique. cert_number is the
+      first bank named on the order, numeric or null; docket_number repeats
+      across order / modification / termination rows.
+    columns:
+      - name: order_id
+        data_tests: [not_null, unique]
+      - name: order_date
+        description: Issued date. Null on 23 rows the site itself leaves blank.
+      - name: docket_number
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      # 23 undated orders carry no type, no title and no PDF link on the site
+      # itself (Salesforce records with only a docket, a bank and respondents),
+      # plus one 2012 CMP order (FDIC-12-0147k) with no document. Source gaps,
+      # not loader gaps: warn, never fail.
+      - name: order_type
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: document_url
+        data_tests:
+          - not_null:
+              config:
+                severity: warn

@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: health__fed_hrsa_provider_relief_fund
+    description: >
+      GRAIN: one row per line of the HHS Provider Relief Fund public file.
+      419,846 rows, $135.06B, file dated 2025-03-28, landed 2026-09-07.
+      Name, state, city, amount only. No EIN, NPI or CCN.
+    columns:
+      - name: prf_row_id
+        data_tests: [unique, not_null]
+      - name: payment_amount
+        data_tests: [not_null]
+      - name: state
+        data_tests: [not_null]
+
+  - name: int_nursing_home_prf_match
+    description: >
+      GRAIN: one row per nursing home that name-matched a PRF payee in the same
+      city and state; one payee per home, one home per payee. match_method says
+      how; is_multiword says whether the shorter key had two or more words.
+      Single-word matches are kept for eyeballing and excluded from the rollup.
+    columns:
+      - name: ccn
+        data_tests: [unique, not_null]
+      - name: prf_row_id
+        data_tests: [unique, not_null]
+      - name: match_method
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['exact', 'prf_starts_with_home', 'home_starts_with_prf', 'prf_contains_home']
+      - name: payee_shorter_than_home
+        description: >
+          True when the payee key is shorter than the home key: a parent or
+          operator's cheque attributed to one building. Coincides with
+          match_method = 'home_starts_with_prf'.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+
+  - name: health__nursing_home_relief_by_chain
+    description: >
+      GRAIN: one row per NH411 chain (CHAIN_ID, blank excluded). Multi-word
+      name-matched PRF dollars beside chain ratings, fines and flags.
+      matched_relief_dollars is a floor; zero means no name hit, not no money.
+    columns:
+      - name: chain_id
+        data_tests: [unique, not_null]
+      - name: matched_homes
+        data_tests: [not_null]
+      - name: matched_relief_dollars
+        data_tests: [not_null]
+      - name: payee_shorter_homes
+        data_tests: [not_null]
+      - name: payee_shorter_dollars
+        data_tests: [not_null]

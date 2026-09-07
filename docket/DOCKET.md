@@ -2,9 +2,9 @@
 
 Pick a line. Every one is a question the data could answer.
 
-**85 still open.** 74 could run today, 11 are waiting on missing data.
+**89 still open.** 75 could run today, 14 are waiting on missing data.
 
-31 already answered. 23 ran and came back empty. 10 are stuck on a missing piece.
+36 already answered. 23 ran and came back empty. 1 are stuck on a missing piece.
 
 ---
 
@@ -42,7 +42,7 @@ Few tables, not much data. Good for a short sitting.
 | 26 | Does housing sit empty after a big storm instead of getting rebuilt? | Would show disaster recovery money not reaching people |
 | 101 | Are they still using outdated flood maps? | Would show regulators failing to update risk after real damage |
 
-## Bigger — 62
+## Bigger — 63
 
 The data is there. It is just more of it.
 
@@ -72,6 +72,7 @@ The data is there. It is just more of it.
 | 111 | Did their nearest full-service hospital shut down? | Would show a already-underserved population losing more care |
 | 95 | Do gifts or debts they report ever involve parties in their own courtroom? | Would be a direct conflict of interest |
 | 29 | Do hospitals near the most toxic sites fail financially more often? | Would show pollution driving hospital closures |
+| E74 | Is there a record of who the new owner is? | Same shell-game question as #30, for home health |
 | 93 | Do places with more rejected mail ballots overlap with high-incarceration areas? | Would connect two forms of disenfranchisement |
 | 139 | Are more dealers in an area linked to more gun deaths? | Tests a long-running gun policy question |
 | 8 | When a county's jail population spikes, does drug overdose rise later? | Would link mass incarceration to community health decline |
@@ -115,7 +116,7 @@ The data is there. It is just more of it.
 
 </details>
 
-## Waiting on data — 11
+## Waiting on data — 14
 
 The question is fine. Something is missing from the warehouse.
 The last column says what.
@@ -132,9 +133,12 @@ The last column says what.
 | 91 | Do they buy a stock, then introduce a bill that helps it? | nothing on data. bills 113-119, senate trades to 2026, and house trade lines all landed. house PTR is 27,286 rows over 3,109 filings as of 2026-09-07 |
 | 92 | Does office spending go to vendors who are also campaign donors? | FEC indiv is 2023-26 only |
 | 94 | Does a judge's political leaning or donations predict how they rule? | FEC indiv now 14 cycles, 2000-2026, 283.8M rows |
+| 118 | Do the ones with the worst loan losses also have enforcement actions against them? | SBA lender name to FDIC cert bridge (SBA loans carry LENDER_NAME + LENDER_STATE, no cert) |
+| 143 | Are they paying the same doctors running the trial to also promote the drug? | flatten LOCATIONS json to investigator-site rows; name-match to Open Payments |
+| 144 | Do outcomes vary a lot by judge and detention facility? | B_TblProceeding from the FOIA zip for judge code and decision |
 | A36 | Do the industries caught defrauding Medicare fund the committees that oversee Medicare? | roster now covers congresses 113-119; nothing else blocking |
 
-## Already answered — 31
+## Already answered — 36
 
 Ran, and something real came back.
 
@@ -143,6 +147,8 @@ Ran, and something real came back.
 | # | the question | what came back |
 |---|---|---|
 | 2 | Which nursing home owners get fined the most per home, and does it repeat? | one chain gets fined 5x more per home than a comparable one |
+| 4 | Do addiction doctors get paid more by drugmakers when they prescribe more? | OTP table was the wrong leg, it lists orgs; Part D to Open Payments on NPI |
+| 7 | Are banned doctors working at clinics serving poor neighborhoods? | address bridge, 58% of sites reached; every address but one predates the exclusion |
 | 15 | Are banned companies still getting paid on disaster relief contracts? | 26 banned companies, $169 million in contracts |
 | 20 | Are the same people running both, and is that a conflict? | Small group found, no clear story yet |
 | 22 | Do those same neighborhoods have more toxic factories today? | worst-graded areas have 18x more toxic sites than the best |
@@ -151,6 +157,7 @@ Ran, and something real came back.
 | 27 | Are any of them already banned for past fraud? | 9 found, small but real |
 | 30 | Do new owners appear right after a home gets penalized, like a shell game? | 39 homes did exactly this |
 | 31 | Do hospital-owned home health agencies perform worse but cost more? | mixed result |
+| 124 | How much do they pay their top executives? | Done — 526,374 person rows, 3,918 hospital EINs, 23,810 returns |
 | E33 | Do they violate pollution rules more right after a storm? | Real but small, and it flips the wrong direction for related permits |
 | E35 | Did overdose deaths rise where jails emptied out? | One state (Washington) shows a strong pattern; nationally it's not clear |
 | E38 | Are drug and device companies still paying them anyway? | $70.8 million paid to opted-out doctors |
@@ -173,26 +180,19 @@ Ran, and something real came back.
 | E64 | Does the money keep flowing to them anyway? | Modest signal, but the data only covers a few months |
 | E68 | Do they give very little free care to the poor despite huge profits? | 37 hospitals over $50 million profit, under 1% charity care |
 | E71 | Does more payment per person mean more opioid prescribing? | Weak signal, not conclusive |
+| E73 | Do banned contractors turn out to also be doctors? | HHS, OFAC, OPM rows filtered first or the answer is "banned doctors are doctors" |
+| E75 | Did the worst chains get big pandemic bailout money? | Name+city+state floor: 2,122 of 14,713 homes hit (14%), chains 9.7% vs independents 25%. Hospital-unit money ($1.21B) and one-word hits excluded. Zero means no name hit, not no money |
 
 </details>
 
-## Stuck on a missing piece — 10
+## Stuck on a missing piece — 1
 
 The question is good. Something the warehouse holds is unusable.
 The last column says what.
 
 | # | the question | what is missing |
 |---|---|---|
-| 4 | Do addiction doctors get paid more by drugmakers when they prescribe more? | the two records don't line up |
-| 7 | Are banned doctors working at clinics serving poor neighborhoods? | can't currently tell which doctor works where |
 | 17 | Same as #3 but through a different bank record | that bank ID field is empty everywhere |
-| 118 | Do the ones with the worst loan losses also have enforcement actions against them? | the enforcement dataset only has 14 records total |
-| 124 | How much do they pay their top executives? | the pay data isn't in a usable format yet |
-| 143 | Are they paying the same doctors running the trial to also promote the drug? | the detailed trial data isn't loaded |
-| 144 | Do outcomes vary a lot by judge and detention facility? | the case data isn't usable yet |
-| E73 | Do banned contractors turn out to also be doctors? | Dead end, basically no overlap |
-| E74 | Is there a record of who the new owner is? | the ownership records don't exist for this type of agency |
-| E75 | Did the worst chains get big pandemic bailout money? | the relief fund records aren't usable this way |
 
 ## Ran it, nothing there — 23
 

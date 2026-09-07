@@ -11,15 +11,18 @@ with base as (
 -- [{"id": "2020-000001-11", "type": "EudraCT Number"}, ...]
 eudract_parsed as (
 
+    -- One row per trial. 21 trials carry two or more EudraCT ids; without the
+    -- group by they fanned the mart out (found 2026-09-07 at 601K rows).
     select
         nct_id,
-        f.value:id::text as eudract_number
+        min(f.value:id::text) as eudract_number
     from base,
     lateral flatten(
         input  => try_parse_json(secondary_ids),
         outer  => true
     ) f
     where lower(f.value:type::text) like '%eudract%'
+    group by nct_id
 
 ),
 

@@ -12,3 +12,21 @@ sources:
 models:
   - name: stg_fed_eoir_case_data__records
     description: "Minimal passthrough staging (grain undetermined). Needs manual review."
+
+  - name: stg_fed_eoir__cases
+    description: >
+      A_tblCase split into its 39 fields from the one-column landing table.
+      NUL bytes stripped, blanks to null. Names from the EOIR Case Data Code Key,
+      checked against the data 2026-09-07. No judge column exists in this file.
+    columns:
+      - name: idncase
+        data_tests:
+          - not_null
+          - unique
+      - name: custody
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['N', 'D', 'R']
+              config:
+                severity: warn

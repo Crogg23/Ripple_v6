@@ -1,0 +1,84 @@
+version: 2
+
+# Three bridge marts built 2026-09-07 off reports/dead_ends_scope_A_bridges_2026-09-07.md.
+# Docket lines 4, 7 and E73 were "missing a piece"; the scope measured the
+# joins, these models are those joins. Row counts and the scope numbers they
+# were held against live in reports/dead_ends_build_A_2026-09-07.md.
+
+models:
+  - name: health__addiction_prescribers_paid
+    description: >
+      GRAIN: one row per Part D prescriber of buprenorphine, naltrexone or
+      methadone, DY2022, joined to Open Payments PY2022 on NPI. Scope measured
+      44,846 prescribers, 26,645 of them paid. One year each side: targeting,
+      never before/after. total_payments is every nature of payment summed.
+    columns:
+      - name: npi
+        description: Part D prescriber NPI. The grain.
+        data_tests: [not_null, unique]
+      - name: addiction_claims
+        description: Sum of Tot_Clms over the three drugs. Under-11 rows are already gone from the CMS file, so a floor.
+        data_tests: [not_null]
+      - name: was_paid_2022
+        description: True when at least one Open Payments PY2022 row carries this NPI.
+        data_tests: [not_null]
+      - name: total_payments
+        description: Sum of TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS in PY2022; 0 when unpaid.
+        data_tests: [not_null]
+
+  - name: health__fqhc_site_people
+    description: >
+      GRAIN: one row per (person NPI, UDS site) pair where the NPPES practice
+      street line and 5-digit ZIP equal the site's. An address bridge, not a
+      roster; CMS publishes no person-to-FQHC roster. Flagged against LEIE
+      (real NPIs only, 10% of the list) and the opt-out file by NPI. Scope
+      measured 173,813 people at 11,110 sites, 90 LEIE people at 114 sites.
+      match_note says whether the NPPES address predates the exclusion; on
+      the scope's sample it always did. people_at_site is on every row so
+      the 142 shared-campus sites with 200+ people can be capped.
+    columns:
+      - name: npi
+        data_tests: [not_null]
+      - name: bphc_assigned_number
+        data_tests: [not_null]
+      - name: is_excluded
+        data_tests: [not_null]
+      - name: is_opted_out
+        data_tests: [not_null]
+      - name: match_note
+        data_tests: [not_null]
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [npi, bphc_assigned_number]
+
+  - name: health__sam_excluded_providers
+    description: >
+      GRAIN: one row per SAM exclusion row whose excluding agency is not HHS,
+      OFAC or OPM (16,144 rows at build). HHS rows are the LEIE mirrored;
+      OFAC is sanctions; OPM is federal-employee debarment. Matched to NPPES
+      on the SAM NPI when it is real (10 rows), else on first + last +
+      practice state for individuals, one-hit only. An ambiguous name lands
+      npi NULL with match_note 'ambiguous: N people share it'. A one-hit
+      name is a lead, not a proof; the SAM address is not used as a tiebreaker.
+    columns:
+      - name: sam_number
+        description: SAM's own row key. The grain.
+        data_tests: [not_null, unique]
+      - name: excluding_agency
+        description: Never HHS, OFAC or OPM here. Null on 2,397 upstream rows and kept.
+      - name: match_method
+        description: "'npi' or 'first+last+state'; null when nothing landed, see match_note."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['npi', 'first+last+state']
+      - name: match_note
+        data_tests: [not_null]
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "coalesce(upper(excluding_agency), '') not in ('HHS', 'OFAC', 'OPM')"
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "(npi is null) = (match_method is null)"

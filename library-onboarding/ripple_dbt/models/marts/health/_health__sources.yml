@@ -41,6 +41,19 @@ sources:
       - name: FED_CMS_NURSING_HOME_PENALTIES
       - name: FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS
       - name: FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS
+      - name: FED_HRSA_PROVIDER_RELIEF_FUND
+        description: >
+          HHS Provider Relief Fund public payment file (CDC portal kh8y-3es6, the file
+          hrsa.gov/provider-relief/payments-and-data points at). Four columns: provider
+          name, state, city, payment as a '$1,234' string. 419,846 rows, $135.06B, file
+          dated 2025-03-28, landed 2026-09-07 by scripts/hrsa_prf_load.py. No EIN, NPI
+          or CCN; name + city + state is the only bridge. Audit columns are _INGESTED_AT,
+          _SOURCE_RUN_ID, _SRC_SHA256.
+      - name: FED_CMS_HOME_HEALTH_OWNERS
+        description: >
+          CMS Home Health Agency All Owners (data.cms.gov fc009b2d-7846-44b1-b4a1-692f0c143879),
+          quarterly. One row per (enrollment, owner, role); 101,188 rows landed 2026-09-07 by
+          scripts/cms_hha_owners_load.py. Audit column is INGESTED_AT, no underscore.
       - name: FED_CMS_FEDERALLY_QUALIFIED_HEALTH_CENTER_ENROLLMENTS
       - name: FED_CMS_HOSPITAL_ENROLLMENTS
       - name: FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS

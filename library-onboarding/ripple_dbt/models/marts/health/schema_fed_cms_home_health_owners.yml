@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: health__fed_cms_home_health_owners
+    description: >
+      CMS Home Health Agency All Owners, one row per (enrollment, owner, role), with the
+      agency CCN attached from the HHA enrollment file on ENROLLMENT_ID. Landed 2026-09-07
+      for docket E74. Flags are null on individual owners; REIT is a constant 'N' in this vintage.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - enrollment_id
+              - associate_id_owner
+              - role_code_owner
+    columns:
+      - name: enrollment_id
+        data_tests:
+          - not_null
+      - name: associate_id_owner
+        data_tests:
+          - not_null
+      - name: type_owner
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['I', 'O']
+      - name: role_code_owner
+        data_tests:
+          - not_null

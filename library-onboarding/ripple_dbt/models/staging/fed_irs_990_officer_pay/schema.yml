@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_IRS_990_OFFICER_PAY
+        description: >
+          Form 990 Part VII Section A, one row per listed person per return, parsed
+          from the IRS e-file XML by scripts/irs_990_officer_pay_load.py for the
+          hospital slice (BMF NTEE E2x, full-form 990 only). All VARCHAR plus
+          INGESTED_AT (no underscore) and _SOURCE_RUN_ID. Appends; OBJECT_ID is the
+          join back to FED_IRS_990_EFILE_INDEX.
+
+models:
+  - name: stg_fed_irs_990_officer_pay__people
+    description: >
+      GRAIN: one row per (object_id, person_seq); newest load per object_id.
+      Dollar and hour columns cast with ripple_num. Indicator columns are 'X'
+      in the XML when ticked, so is_* are booleans here.
+    columns:
+      - name: object_id
+        data_tests: [not_null]
+      - name: ein
+        data_tests: [not_null]
+      - name: person_seq
+        data_tests: [not_null]
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [object_id, person_seq]

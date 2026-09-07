@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_fed_hrsa_provider_relief_fund__payments
+    description: >
+      GRAIN: one row per line of the HHS Provider Relief Fund public file, newest
+      load only. prf_row_id is file order inside that load. payment_amount is the
+      '$1,234' string parsed to a number; 0 unparsed on the 2026-09-07 load.
+    columns:
+      - name: prf_row_id
+        data_tests: [unique, not_null]
+      - name: provider_name
+        data_tests: [not_null]
+      - name: state
+        data_tests: [not_null]
+      - name: payment_amount
+        data_tests: [not_null]

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_fed_cms_home_health_owners__records
+    description: "GRAIN: one row per (enrollment, owner, role). ENROLLMENT_ID repeats; no single natural key."
+    columns:
+      - name: enrollment_id
+        data_tests:
+          - not_null
+      - name: associate_id_owner
+        data_tests:
+          - not_null

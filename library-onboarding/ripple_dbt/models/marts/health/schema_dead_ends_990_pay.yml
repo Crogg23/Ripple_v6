@@ -1,0 +1,36 @@
+version: 2
+
+# Docket line 124, built 2026-09-07 off reports/dead_ends_scope_B_parsers_2026-09-07.md.
+# Numbers it was held against live in reports/dead_ends_build_B_990_pay_2026-09-07.md.
+
+models:
+  - name: health__hospital_officer_pay
+    description: >
+      GRAIN: one row per person listed in Part VII Section A of one hospital
+      Form 990 (object_id, person_seq). Hospital = BMF NTEE E2x. Names, titles,
+      hours and the three compensation columns come from the return XML;
+      hospital name, city, state and org totals come from the BMF snapshot.
+      Reachable returns only: the IRS no longer hosts XML for object-id years
+      2016-2018. Directors sit here at $0 next to executives; filter on the
+      is_* flags or total_compensation before ranking.
+    columns:
+      - name: object_id
+        description: IRS e-file object id. Joins FED_IRS_990_EFILE_INDEX.OBJECT_ID, which is unique there. RETURN_ID is not.
+        data_tests: [not_null]
+      - name: person_seq
+        description: Position of the person in Part VII on that return. With object_id, the grain.
+        data_tests: [not_null]
+      - name: ein
+        description: Filer EIN, 9 digits zero-padded.
+        data_tests: [not_null]
+      - name: hospital_name
+        data_tests: [not_null]
+      - name: person_name
+        data_tests: [not_null]
+      - name: total_compensation
+        description: from org + from related orgs + other, nulls as 0.
+        data_tests: [not_null]
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [object_id, person_seq]

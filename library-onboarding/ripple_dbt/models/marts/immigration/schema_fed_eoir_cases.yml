@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: immigration__fed_eoir_cases
+    description: >
+      One row per EOIR immigration court case, A_tblCase, typed. Built 2026-09-07
+      from the 39-way split of LIBRARY_RAW.LANDING.FED_EOIR_CASE_DATA. Carries court
+      code, custody, case type, nationality, hearing date. Carries NO judge and NO
+      decision: those sit in B_TblProceeding, which never landed. The older
+      immigration__fed_eoir_case_data (one column) is left as-is.
+    columns:
+      - name: case_id
+        data_tests:
+          - not_null
+          - unique
+      - name: court_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: custody
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['N', 'D', 'R']
+              config:
+                severity: warn
+      - name: case_type
+        data_tests:
+          - not_null:
+              config:
+                severity: warn

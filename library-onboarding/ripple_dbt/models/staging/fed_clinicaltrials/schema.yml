@@ -6,6 +6,8 @@ sources:
     schema: LANDING
     tables:
       - name: FED_CLINICALTRIALS
+        description: First API page only, 500 rows, landed 2026-07-12. Kept for landing_clean; staging reads _FULL.
+      - name: FED_CLINICALTRIALS_FULL
         description: >
           Raw landing table for ClinicalTrials.gov data sourced via the
           ClinicalTrials.gov API and the AACT database. All columns are TEXT.

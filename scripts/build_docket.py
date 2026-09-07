@@ -119,7 +119,7 @@ def import_legacy() -> list[dict]:
         sys.exit(f"cannot import, missing {src}")
     probes = find_probes()
     out = []
-    for r in csv.DictReader(src.open()):
+    for r in csv.DictReader(src.open(encoding="utf-8")):
         raw = (r.get("where_it_stands") or "").strip()
         out.append({
             "id": r["#"],
@@ -140,13 +140,13 @@ def import_legacy() -> list[dict]:
 
 
 def load() -> list[dict]:
-    with DOCKET_CSV.open() as fh:
+    with DOCKET_CSV.open(encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
 
 
 def save(rows: list[dict]) -> None:
     DOCKET_CSV.parent.mkdir(exist_ok=True)
-    with DOCKET_CSV.open("w", newline="") as fh:
+    with DOCKET_CSV.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
         w.writeheader()
         for r in rows:
@@ -200,7 +200,7 @@ def _line(r: dict) -> str:
 
 def write_views(rows: list[dict]) -> None:
     openish = [r for r in rows if r["where_it_stands"] in OPEN_STATES]
-    with OPEN_CSV.open("w", newline="") as fh:
+    with OPEN_CSV.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
         w.writeheader()
         for r in sorted(openish, key=lambda x: (_effort(x), x["id"])):
@@ -291,7 +291,7 @@ def write_views(rows: list[dict]) -> None:
           "The full spreadsheet, with tables and row counts, is",
           "`docket/docket.csv`. This page is built from it.", ""]
 
-    PAGE.write_text("\n".join(L))
+    PAGE.write_text("\n".join(L), encoding="utf-8")
 
 
 def main() -> int:

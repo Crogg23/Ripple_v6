@@ -2,7 +2,7 @@
 
 with source as (
 
-    select * from {{ source('ripple_raw', 'FED_CLINICALTRIALS') }}
+    select * from {{ source('ripple_raw', 'FED_CLINICALTRIALS_FULL') }}
 
 ),
 

@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: justice__fed_fdic_enforcement_orders
+    description: >
+      One row per FDIC enforcement order (10,838, 1975-2026), with the FDIC
+      institution directory attached on cert number. cert_attached is true on
+      10,565 rows. order_type can be a semicolon list; use LIKE, not equality.
+    columns:
+      - name: order_id
+        data_tests: [not_null, unique]
+      # 23 undated orders carry no type, no title and no PDF link on the site
+      # itself (Salesforce records with only a docket, a bank and respondents),
+      # plus one 2012 CMP order (FDIC-12-0147k) with no document. Source gaps,
+      # not loader gaps: warn, never fail.
+      - name: order_type
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: document_url
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: cert_attached
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: source_id
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['fed_fdic_enforcement_orders']
