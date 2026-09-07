@@ -274,3 +274,44 @@ def test_hyphenated_label_before_a_report_link_is_allowed():
     """The gate's own first false positive: "Full write-up:" broke the label."""
     code, err = _check("Full write-up: [MAC_SETUP.md](docs/MAC_SETUP.md)\n")
     assert code == 0, err
+
+
+def test_banned_jargon_is_counted():
+    code, err = _check("We leverage a lakehouse paradigm here.")
+    assert code == 0, "the counter must never block"
+    assert "banned term, leverage" in err
+    assert "banned term, lakehouse" in err
+    assert "banned term, paradigm" in err
+
+
+def test_plain_words_are_not_banned():
+    code, err = _check("It is a SQL join on NPI.")
+    assert code == 0
+    assert "banned term" not in err
+
+
+def test_filler_opener_is_counted_on_first_line_only():
+    code, err = _check("Certainly, the join is on NPI.\n\nHere is the count.")
+    assert code == 0, "the counter must never block"
+    assert err.count("filler opener") == 1
+    assert "L1: filler opener" in err
+
+
+def test_mechanic_first_opener_is_clean():
+    code, err = _check("### The join is on NPI.\n\nTwo tables, one key.")
+    assert code == 0
+    assert "filler opener" not in err
+
+
+def test_inflected_jargon_is_counted():
+    code, err = _check("Microservices and actionable insights are leveraged holistically.")
+    assert code == 0
+    for word in ("microservices", "actionable insights", "leveraged", "holistically"):
+        assert f"banned term, {word}" in err
+
+
+def test_jargon_inside_a_table_is_counted():
+    code, err = _check("| metric | we leverage the lakehouse |\n|---|---|\n| a | b |")
+    assert code == 0
+    assert "L1: banned term, leverage" in err
+    assert "L1: banned term, lakehouse" in err

@@ -48,6 +48,40 @@ EMOJI_RE = re.compile(r"[\U0001F300-\U0001FAFF☀-➿️⬀-⯿]")
 OPEN_PARENS = "(（"
 CLOSE_PARENS = ")）"
 
+# Tech jargon Chris banned on 2026-09-07. Each hides a plain mechanic behind a
+# buzzword. A join is a join, a cron job is a cron job, a flat file is a flat file.
+BANNED_TERMS = (
+    "ai-driven",
+    "lakehouse",
+    "microservice",
+    "serverless",
+    "next-gen",
+    "hyper-scalable",
+    "democratize",
+    "single pane of glass",
+    "actionable insight",
+    "leverage",
+    "paradigm",
+    "holistic",
+)
+BANNED_RE = re.compile(r"\b(?:" + "|".join(re.escape(t) for t in BANNED_TERMS) + r")(?:s|d|ed|ing|ly|ally)?\b", re.I)
+
+# Openers that say nothing. Only the first prose line is checked, because that
+# is where filler lives; a quoted "here is" mid-message is not the habit.
+FILLER_OPENERS = (
+    "certainly",
+    "sure",
+    "great question",
+    "i can help",
+    "let's dive in",
+    "let me",
+    "here is",
+    "here's",
+    "absolutely",
+    "of course",
+)
+FILLER_RE = re.compile(r"^(?:" + "|".join(re.escape(t) for t in FILLER_OPENERS) + r")\b", re.I)
+
 
 def strip_markup(line: str) -> str:
     """Line with markdown scaffolding removed, ready for word counting."""
@@ -81,10 +115,31 @@ def content_lines(message: str):
         yield i, raw
 
 
+def table_lines(message: str):
+    """Yield (line_no, raw) for markdown table rows outside fenced code."""
+    in_fence = False
+    for i, raw in enumerate(message.splitlines(), start=1):
+        stripped = raw.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        if stripped.startswith("|") or " | " in stripped:
+            yield i, raw
+
+
 def check(message: str) -> list[str]:
     problems: list[str] = []
     pointers = 0
     seen_paths: set[str] = set()
+    first_prose_seen = False
+
+    # Tables are skipped by the word counter, but jargon hides there just as
+    # well, so every table row gets the banned-term pass on its own.
+    for lineno, raw in table_lines(message):
+        for hit in BANNED_RE.findall(raw):
+            problems.append(f"L{lineno}: banned term, {hit.lower()}")
 
     for lineno, raw in content_lines(message):
         stripped = raw.strip()
@@ -100,6 +155,14 @@ def check(message: str) -> list[str]:
 
         text = strip_markup(raw)
         if text:
+            if not first_prose_seen:
+                first_prose_seen = True
+                if FILLER_RE.match(text):
+                    problems.append(f"L{lineno}: filler opener, start with the mechanic")
+
+            for hit in BANNED_RE.findall(text):
+                problems.append(f"L{lineno}: banned term, {hit.lower()}")
+
             words = [w for w in text.split() if any(c.isalnum() for c in w)]
             if len(words) > MAX_WORDS:
                 problems.append(f"L{lineno}: {len(words)} words, max is {MAX_WORDS}")

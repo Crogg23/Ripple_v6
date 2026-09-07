@@ -53,6 +53,7 @@ Scale it:
 | Bold line | the one pop per section |
 | Table | genuinely comparable things |
 | `**→ ...**` | the decision or ask |
+| `[raw] ➔ [transform] ➔ [what it means]` | a data flow, one line per hop |
 
 Tables are for comparable rows. A table of unrelated labels is a paragraph wearing a costume.
 
