@@ -6,7 +6,9 @@ Endpoints:
   - /lobbyists/       (registered lobbyist directory)
 
 Auth: Token-based (LDA_API_KEY in .env)
-Rate limit: 120 req/min (authenticated), 25 results/page
+Rate limit: MEASURED 2026-09-07 at ~16 req/min and 25 results/page, keyed
+            or not. The 120/min figure below never reproduced. See the
+            note above FLUSH_ROWS and inside paginate_pages.
 Pagination strategy: by filing_year (required for pagination beyond page 1)
 
 REWRITTEN 2026-09-06, two problems, both measured:
@@ -91,7 +93,25 @@ TBL_POSITIONS = "FED_SENATE_LDA_LOBBYIST_POSITIONS"
 
 # Upload whenever the buffer passes this. Small enough that a year never sits
 # in memory, big enough that write_pandas is not called once per page.
-FLUSH_ROWS = 20_000
+#
+# Raised from 20,000 on 2026-09-07. IT DID NOT SPEED ANYTHING UP, and the
+# reason is worth keeping: the upload was never the wall. The API is.
+#
+# The wrong read: the crawl landed 3,730 rows a minute while REQUEST_DELAY 0.55s
+# at page_size 250 could in theory hand over 455 filings a second, so the write
+# looked like the constraint. Bigger batches, fewer round trips, done.
+#
+# What the log actually showed after the restart: 429 throttling every few
+# pages with 21 to 25 second waits, and pages coming back with 25 records,
+# never 250. Tested the key directly against /filings/ with and without the
+# Authorization header on 2026-09-07 -- both returned exactly 25 results and
+# HTTP 200. The key in .env is silently ignored, so every request is running
+# on the anonymous tier: a 25-row page cap and aggressive throttling.
+#
+# 200,000 is kept because it is harmless and correct on its own terms, but the
+# crawl will not get materially faster until LDA_API_KEY is a key the API
+# actually honours. Register a fresh one at lda.senate.gov/api/register/.
+FLUSH_ROWS = 200_000
 
 
 # ---------------------------------------------------------------------------
@@ -182,8 +202,25 @@ def paginate_pages(endpoint: str, year: int, year_param: str = "filing_year"):
     This is the fix for the 90-minute kill with nothing landed. The caller
     flattens and flushes as pages arrive, so peak memory is one flush buffer
     rather than a year of nested JSON."""
-    # page_size 250 requires the LDA_API_KEY (anonymous cap is 25). Key verified
-    # live 2026-08-22; 250 cuts the full crawl from ~12h to ~2-4h.
+    # STALE AS OF 2026-09-07. This used to read "page_size 250 requires the
+    # LDA_API_KEY (anonymous cap is 25), verified live 2026-08-22". Retested
+    # that day against /filings/ and it is no longer true: the API returns 25
+    # results whatever you ask for and whatever you send.
+    #
+    #   Authorization: Token / Api-Key / Bearer, X-Api-Key, ?api_key=
+    #   all five -> HTTP 200, 25 results, no rate-limit headers at all
+    #   asked for page_size 100 -> got 25
+    #
+    # The throttle is fixed too, and pacing cannot dodge it. 20 requests at
+    # each of three delays, same day:
+    #
+    #   delay 0.55s -> 16.3 pages/min, 1 throttle    delay 1.5s -> 15.1
+    #   delay 1.00s -> 15.7 pages/min, 1 throttle
+    #
+    # So ~16 requests a minute is the ceiling for this key, and 25 rows a page
+    # is the cap. 1.6M filings is 65,000 requests, roughly 68 hours. The 250
+    # stays in the call because it costs nothing and would work again if the
+    # API restores keyed page sizes -- but do not plan around it.
     params = {year_param: year, "page_size": 250 if API_KEY else 25, "page": 1}
     seen = 0
     while True:

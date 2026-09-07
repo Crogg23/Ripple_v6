@@ -46,7 +46,16 @@ models:
       # correctly. Rationale: outputs/housekeeping_HARDENED_2026-07-01.md (B5).
       civil_rights:
         civil_rights__fed_nara_wra_aad:
-          +enabled: true  # re-enabled 2026-07-24: NARA_AAD has 554 rows, WRA subset
+          # RE-DISABLED 2026-09-07. The 2026-07-24 note cites the wrong table.
+          # FED_NARA_AAD has 554 rows; this model reads FED_NARA_WRA_AAD, which
+          # has 36, of which only SERIES_ID and NOTES_FIELD carry anything --
+          # 2 of 12 columns, 17% dense. SERIES_ID is the constant '623' and
+          # NOTES_FIELD holds archive navigation crumbs, "0: Series and Files".
+          # The mart it builds is 1 row. government_records__fed_nara_aad is the
+          # entry that genuinely got the 554-row source and stays enabled.
+          #
+          # Was: +enabled: true  # re-enabled 2026-07-24: NARA_AAD has 554 rows, WRA subset
+          +enabled: false
       corporate_registry:
         corporate_registry__intl_ie_cro:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (819K rows)
@@ -136,6 +145,12 @@ models:
         uncategorized__int_gleif_rr:
           +enabled: false  # raw twin of economics__int_gleif_rr (agrees, 481,933 rows; redundant)
       economics:
+        economics__intl_gfi_trade:
+          # 2026-09-07 density sweep: 25 rows, 1 of 5 columns carries anything,
+          # 20% dense. That one column is DATA_SOURCE_NOTES and it holds the
+          # website's navigation menu -- "GFI Events", "Careers". No trade data
+          # at any row. The mart it builds is 0 rows.
+          +enabled: false
         economics__fed_fincen_boi:
           # 2026-08-06: stub -- 1 row, loaded from fincen.gov's general BOI
           # informational webpage (not a data file). Worth noting beyond the
@@ -163,6 +178,12 @@ models:
           # complete", it's just uncollapsed garbage.
           +enabled: false
       history:
+        history__fed_david_rumsey:
+          # 2026-09-07 density sweep: 10 rows, 2 of 13 columns carry anything,
+          # 15% dense. Both live columns are the same value -- MANIFEST_ID and
+          # LUNA_RECORD_ID both read "RUMSEY~8~1~222140~5505806". Every map
+          # field is blank. This is a IIIF manifest index, not map metadata.
+          +enabled: false
         history__fed_nara_wra_aad:
           # 2026-07-31: raw passthrough duplicate of civil_rights__fed_nara_wra_aad.
           # Same story as economics__intl_es_borme above: FED_NARA_WRA_AAD's source
@@ -235,6 +256,13 @@ models:
           +enabled: false
         justice__fed_doj_crt_cases:
           +enabled: false  # stub: 1 row, failed scrape
+        justice__fed_uscourts_stats:
+          # 2026-09-07 density sweep: 50 rows, 4 of 17 columns carry anything,
+          # 24% dense. The live four are TABLE_NUMBER, TITLE, DOWNLOAD_URL_PDF
+          # and DOWNLOAD_URL_XLSX -- this is the uscourts.gov DOWNLOAD PAGE,
+          # a list of links to the statistics. Every statistic column is blank.
+          # The real load is fetching those XLSX files, which nobody has done.
+          +enabled: false
         justice__fed_msha_violations:
           # 2026-07-31: raw passthrough duplicate of labor__fed_msha_violations,
           # same cross-domain duplicate bug as the finance/consumer_safety ones
@@ -260,6 +288,14 @@ models:
           # TOTAL_ENROLLMENT are 100% blank; AGENCY_NAME populated on only
           # 11 of 33 rows. Not usable school-level enrollment data.
           +enabled: false
+      open_data:
+        open_data__intl_br_dados_gov:
+          # 2026-09-07 density sweep: 10 rows, 3 of 13 columns carry anything,
+          # 23% dense. The live three are DATASET_ID, TITLE and RESOURCE_URLS --
+          # this is dados.gov.br's CATALOGUE of datasets, not any dataset in it.
+          # One title even begins "(Descontinuado)". Loading the catalogue and
+          # loading the data are different jobs; only the first one happened.
+          +enabled: false
       procurement:
         procurement__intl_adb_data:
           # 2026-08-06: stub -- 41 rows, loaded from data.adb.org's homepage (not
@@ -276,6 +312,12 @@ models:
           # header). Now that the hand-built model is grain-correct (154,209 rows,
           # exact), this raw twin adds nothing but a second row-order-only, generic
           # C1..C11 copy of the same data. Disabled rather than left to drift again.
+          +enabled: false
+        transport__fed_faa_data_portal:
+          # 2026-09-07 density sweep: 4 rows, 3 of 15 columns carry anything,
+          # 20% dense. All four rows say DATASET_NAME "FAA Data Portal" with
+          # ACCESS_URL faa.gov/data and a blank DESCRIPTION. It is the portal
+          # homepage, scraped four times, not any dataset behind it.
           +enabled: false
         transport__fed_nhtsa_complaints:
           +enabled: false  # raw twin of consumer_safety__fed_nhtsa_complaints (agrees, 2,227,941 rows; redundant)

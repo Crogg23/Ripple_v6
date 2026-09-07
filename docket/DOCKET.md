@@ -2,7 +2,7 @@
 
 Pick a line. Every one is a question the data could answer.
 
-**86 still open.** 75 could run today, 11 are waiting on missing data.
+**85 still open.** 74 could run today, 11 are waiting on missing data.
 
 31 already answered. 23 ran and came back empty. 10 are stuck on a missing piece.
 
@@ -38,11 +38,11 @@ Few tables, not much data. Good for a short sitting.
 | 130 | Are their affordability contracts expiring in fast-gentrifying areas? | Would show low-income housing about to disappear where it's needed most |
 | 82 | Do unions reporting missing money also have an active political fund? | Would be a red flag on where union dues go |
 | 120 | Do they also have high jail populations generally? | Tests whether immigration enforcement tracks with broader incarceration |
-| A36 | Do the industries caught defrauding Medicare fund the committees that oversee Medicare? | Would show the fox funding the henhouse |
 | 105 | Do the same crossings get hit by trains again and again? | Would show known danger spots never getting fixed |
 | 26 | Does housing sit empty after a big storm instead of getting rebuilt? | Would show disaster recovery money not reaching people |
+| 101 | Are they still using outdated flood maps? | Would show regulators failing to update risk after real damage |
 
-## Bigger — 63
+## Bigger — 62
 
 The data is there. It is just more of it.
 
@@ -50,7 +50,6 @@ The data is there. It is just more of it.
 
 | # | the question | why it matters |
 |---|---|---|
-| 101 | Are they still using outdated flood maps? | Would show regulators failing to update risk after real damage |
 | 129 | Do complaints pile up for years before an official recall happens? | Would show manufacturers slow-walking known safety issues |
 | 127 | Are banks pulling branches out of those neighborhoods over time? | Would show ongoing banking abandonment of Black and Latino areas |
 | 109 | Do they have more reported deaths than devices reviewed the normal way? | Would question whether faster approval means less safe |
@@ -123,17 +122,17 @@ The last column says what.
 
 | # | the question | what it needs |
 |---|---|---|
-| 11 | Do money-losing hospitals still have doctors taking big drug company payments? | HCRIS one vintage |
-| 78 | Do they trade stock in industries their own committee oversees? | senate trades stop 2020-12; committee roster is current-only |
-| 83 | Does lobbying spending spike right before a new safety rule is finalized? | LDA missing 2011-2019; Federal Register only 2023-26 |
-| 84 | Who's spending money for or against them in elections? | FEC IE mart totals 20x high; committee roster is current-only |
-| 87 | Do they also personally donate to U.S. political campaigns? | FEC indiv is 2023-26 only |
-| 88 | Are the same people also treasurers of federal campaign committees? | 527 Schedule A/B not landed |
-| 89 | Do the same people wine and dine state lawmakers and donate federally? | FEC indiv is 2023-26 only |
-| 90 | Do agency contracts shift toward an official's old industry after they arrive? | revolving-door has no names |
-| 91 | Do they buy a stock, then introduce a bill that helps it? | senate trades stop 2020-12; house trade lines are PDFs; bills only 118th-119th |
+| 11 | Do money-losing hospitals still have doctors taking big drug company payments? | HCRIS now 13 years, 2011-2023, 80,077 rows |
+| 78 | Do they trade stock in industries their own committee oversees? | senate trades now to 2026; roster covers 113-119 |
+| 83 | Does lobbying spending spike right before a new safety rule is finalized? | LDA crawl RESTARTED 2026-09-07 after stopping at 2011. positions table holds 2011 only, 376,948 rows, one year of 1999-2026. blocked until it finishes |
+| 87 | Do they also personally donate to U.S. political campaigns? | FEC indiv now 14 cycles, 2000-2026, 283.8M rows |
+| 88 | Are the same people also treasurers of federal campaign committees? | 527 Schedule A and B landed, 17.9M rows |
+| 89 | Do the same people wine and dine state lawmakers and donate federally? | FEC indiv now 14 cycles, 2000-2026, 283.8M rows |
+| 90 | Do agency contracts shift toward an official's old industry after they arrive? | LDA covered_position is the real source. crawl RESTARTED 2026-09-07; it had stopped with 2011 alone. GOVERNANCE__FED_REVOLVINGDOOR_PROJECT is job slots, not people |
+| 91 | Do they buy a stock, then introduce a bill that helps it? | nothing on data. bills 113-119, senate trades to 2026, and house trade lines all landed. house PTR is 27,286 rows over 3,109 filings as of 2026-09-07 |
 | 92 | Does office spending go to vendors who are also campaign donors? | FEC indiv is 2023-26 only |
-| 94 | Does a judge's political leaning or donations predict how they rule? | FEC indiv is 2023-26 only |
+| 94 | Does a judge's political leaning or donations predict how they rule? | FEC indiv now 14 cycles, 2000-2026, 283.8M rows |
+| A36 | Do the industries caught defrauding Medicare fund the committees that oversee Medicare? | roster now covers congresses 113-119; nothing else blocking |
 
 ## Already answered — 31
 
