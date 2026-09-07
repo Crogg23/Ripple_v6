@@ -125,6 +125,7 @@ import csv
 import io
 import re
 import sys
+import time
 import zipfile
 from pathlib import Path
 
@@ -174,6 +175,8 @@ STOP = re.compile(r"^(?:F\s|S\s+O|S\s+:|\*|I\s|L\s+:|C\s|D\s|Yes\b|No\b)", re.I)
 # the real ceiling -- CWEN.A and BAC.PL are the longest genuine ones seen.
 TICKER = re.compile(r"\((?:Ticker:?\s*)?([A-Za-z][A-Za-z0-9.\-]{0,5})\)", re.I)
 ASSET_TYPE = re.compile(r"\[([A-Z]{2,4})\]")
+# Leading symbol on a crypto line, see the [CT] branch in parse_pdf.
+CRYPTO_LEAD = re.compile(r"\s*([A-Z]{2,6})(?=\s*[\(\[])")
 # \b after Yes/No, always -- a bare "No" with no boundary matches "note",
 # "Nokia", "Nordstrom", "Northrop"... any asset name that starts that way.
 # See the module docstring, bug 5.
@@ -491,6 +494,16 @@ def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
             ticks = TICKER.findall(asset_local)
             tick = ticks[-1] if ticks else None
             atype = ASSET_TYPE.search(asset_local)
+            # Crypto lines put the symbol FIRST and the name in the brackets:
+            # "SOL (Solana) [CT]", "XRP (Ripple) [CT]", "BTC [CT]". The
+            # parenthetical rule above landed SOLANA and RIPPLE as tickers on
+            # four rows and nothing at all on "BTC [CT]". For [CT] only, a
+            # leading 2-6 letter all-caps token is the symbol. Stocks keep the
+            # parenthetical rule: "SPDR S&P 500 (SPY)" must stay SPY.
+            if atype and atype.group(1) == "CT":
+                lead = CRYPTO_LEAD.match(asset_local)
+                if lead:
+                    tick = lead.group(1)
             out.append({
                 "DOC_ID": rec["DOC_ID"],
                 "FILER_LAST": rec["FILER_LAST"],
@@ -570,8 +583,22 @@ def main() -> int:
             rows.append(blank_row(rec, "SCANNED FILING, NOT MACHINE READABLE"))
             n_scan += 1
             continue
-        r = requests.get(PDF_URL.format(year=rec["FILING_YEAR"], doc=rec["DOC_ID"]),
-                         headers=UA, timeout=300)
+        # The Clerk's server resets the connection now and then mid-run. On
+        # 2026-09-07 it killed a full rerun at filing 1,000 of 3,109 with a
+        # bare ConnectionResetError. Three tries with a growing pause; a
+        # filing that fails all three lands as a blank row that says so.
+        r = None
+        for attempt in range(3):
+            try:
+                r = requests.get(PDF_URL.format(year=rec["FILING_YEAR"], doc=rec["DOC_ID"]),
+                                 headers=UA, timeout=300)
+                break
+            except requests.exceptions.RequestException as e:
+                if attempt == 2:
+                    rows.append(blank_row(rec, f"FETCH FAILED x3 {type(e).__name__}"))
+                time.sleep(5 * (attempt + 1))
+        if r is None:
+            continue
         if r.status_code != 200:
             rows.append(blank_row(rec, f"HTTP {r.status_code}"))
             continue

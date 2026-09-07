@@ -19,7 +19,6 @@ unpivoted as (
 
     select
         stg.position_key,
-        stg.person_name,
         stg.agency,
         stg.industry_sector,
         stg.position_type,
@@ -56,7 +55,6 @@ unpivoted as (
 select
     {{ dbt_utils.generate_surrogate_key(['position_key', 'sector_slot']) }} as position_sector_key,
     position_key,
-    person_name,
     agency,
     industry_sector,
     position_type,

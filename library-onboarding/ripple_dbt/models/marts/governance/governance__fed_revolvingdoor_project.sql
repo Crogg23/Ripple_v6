@@ -2,10 +2,15 @@
 
 /*
   governance__fed_revolvingdoor_project
-  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  Analytics-ready, wide (one row per unique personnel position) table derived
-  from the Revolving Door Project personnel map.  Key identifiers are surfaced
-  as top-level columns to support cross-source joins in the governance domain.
+  One row per JOB SLOT from the Revolving Door Project personnel map: 406
+  positions across agencies, each tagged with up to 16 industry sectors that
+  have a stake in it. There are NO PEOPLE and NO DATES in this table. The
+  source's name column is 'nan' on every row, so person_name was dropped on
+  2026-09-07 rather than carried as a column that is a constant.
+
+  position_type is 'Senate-confirmed' or 'Appointive' (2 rows 'nan').
+  Use it for "which seats does pharma care about", never for "who sat there".
+  For who, use the LDA covered_position field.
 */
 
 with stg as (
@@ -22,7 +27,6 @@ final as (
         position_key,
 
         -- â”€â”€ key identifiers (required for cross-source joins) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        person_name,
         agency,
         industry_sector,
 
@@ -70,16 +74,10 @@ final as (
             case when sector16 is not null and sector16 != '' then 1 else 0 end
         )                                                    as sector_count,
 
-        -- â”€â”€ boolean convenience flags â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        case
-            when lower(position_type) in ('appointee', 'political appointee')
-            then true else false
-        end                                                  as is_political_appointee,
-
-        case
-            when lower(position_type) like '%revolv%'
-            then true else false
-        end                                                  as is_revolving_door,
+        -- one honest flag. The old is_political_appointee / is_revolving_door
+        -- flags tested for words that never occur in position_type and were
+        -- false on every row.
+        (position_type = 'Senate-confirmed')                 as is_senate_confirmed,
 
         -- â”€â”€ metadata â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         _ingested_at,

@@ -229,12 +229,17 @@ models:
           # Was: +enabled: false  # raw twin of politics__bills (agrees, 36,465 rows; redundant)
           +enabled: true
         politics__fed_govinfo_bill_cosponsors:
-          # verified 2026-07-31: politics__bill_cosponsors' small row-count gap vs
-          # this raw twin is a DOCUMENTED intentional collapse (a member who
-          # withdrew then re-cosponsored keeps one row, preferring not-withdrawn)
-          # plus a data-quality filter on malformed rows. Not a bug; this twin is
-          # still redundant, so disabled.
-          +enabled: false
+          # RE-ENABLED 2026-09-07, same call as billstatus above. The 2026-09-06
+          # GovInfo backfill took landing to 1,268,519 cosponsor rows across
+          # congresses 113-119; the canonical politics__bill_cosponsors still
+          # covers 367,735. Not a twin any more. The warehouse has carried this
+          # mart live at 1,268,519 since 09-06 through the Python door; this
+          # flip makes dbt own it again and a run makes it transient like its
+          # siblings.
+          #
+          # Was (2026-07-31): +enabled: false  # twin of politics__bill_cosponsors,
+          # small gap was a documented intentional collapse; redundant.
+          +enabled: true
         politics__fed_voteview_rollcalls:
           +enabled: false  # raw twin of politics__voteview_votes (agrees, 945,523 rows; redundant)
         politics__fed_voteview_rollcall_meta:

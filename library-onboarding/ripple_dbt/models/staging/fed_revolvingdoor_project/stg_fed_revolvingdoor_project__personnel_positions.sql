@@ -1,5 +1,16 @@
 {{ config(materialized='view') }}
 
+-- 2026-09-07: this is a table of JOB SLOTS, not people. Measured on the
+-- landed file: 409 rows, H (the "name" column) is the string 'nan' on 408 of
+-- them and '3' on the one documentation row ("Text (See Position Type tab)").
+-- There is no person and no date anywhere in the source. So:
+--   * person_name is gone. A column that is 'nan' end to end is not a key.
+--   * the documentation row is filtered out.
+--   * position_key is md5 over (position_name, position_department,
+--     position_type). Two landed rows share a key; dedupe keeps the newest.
+-- The real revolving-door source is the LDA covered_position field, loaded
+-- separately by scripts/senate_lda_load.py. This table cannot answer "who".
+
 with source as (
 
     select * from {{ source('ripple_raw', 'FED_REVOLVINGDOOR_PROJECT') }}
@@ -10,8 +21,8 @@ renamed as (
 
     select
 
-        -- header / identity
-        h                                                        as h,
+        -- header / identity. h is 'nan' on every real row; kept raw, never a name.
+        nullif(trim(h), 'nan')                                   as h,
         trim(position_type)                                      as position_type,
         trim(position_name)                                      as position_name,
         trim(position_department)                                as position_department,
@@ -53,9 +64,6 @@ renamed as (
         trim(sector16_interest)                                  as sector16_interest,
 
         -- derived / convenience columns
-        -- person_name is carried in the H column per source naming convention
-        trim(h)                                                  as person_name,
-
         -- primary agency is the position department
         trim(position_department)                                as agency,
 
@@ -64,7 +72,6 @@ renamed as (
 
         -- composite natural key for deduplication
         md5(
-            coalesce(trim(h),           '') || '||' ||
             coalesce(trim(position_name),'') || '||' ||
             coalesce(trim(position_department),'') || '||' ||
             coalesce(trim(position_type),'')
@@ -75,6 +82,8 @@ renamed as (
         _source_run_id                                           as _source_run_id
 
     from source
+    -- the one documentation row: H='3', position_type 'Text (See Position Type tab)'
+    where trim(position_type) not ilike 'Text (See%'
 
 ),
 

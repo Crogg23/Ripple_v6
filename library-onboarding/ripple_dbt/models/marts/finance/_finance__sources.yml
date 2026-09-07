@@ -5,6 +5,13 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
+      # 2026-09-07: five tables landed 09-06 and built through the Python door
+      # without a source declaration. dbt parse failed on all five until this.
+      - name: IRS527_SCHEDULE_A_CONTRIBUTIONS
+      - name: IRS527_SCHEDULE_B_EXPENDITURES
+      - name: FED_SENATE_EFD_PTR
+      - name: FED_SENATE_EFD_FILINGS
+      - name: FED_SENATE_LDA_LOBBYIST_POSITIONS
       - name: FED_SEC_EDGAR_INSIDERS
       - name: FED_SEC_13F_HOLDINGS
       - name: FED_SEC_13F_FILERS

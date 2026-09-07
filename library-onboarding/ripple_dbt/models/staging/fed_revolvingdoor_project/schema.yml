@@ -15,22 +15,18 @@ models:
 
   - name: stg_fed_revolvingdoor_project__personnel_positions
     description: >
-      Staging view for Revolving Door Project personnel positions. Renames raw
-      columns to snake_case, derives convenience columns (person_name, agency,
-      industry_sector, position_key), and deduplicates on the composite natural
-      key keeping the most-recently ingested record.
+      Staging view for Revolving Door Project POSITIONS. One row per job slot
+      (position_name, position_department, position_type). There are no people
+      in this source: the H column is 'nan' on every real row. Filters the one
+      documentation row, dedupes on position_key keeping the newest record.
     columns:
 
       - name: position_key
-        description: MD5 surrogate key over (person_name, position_name, position_department, position_type).
+        description: MD5 surrogate key over (position_name, position_department, position_type).
         data_tests:
           - unique
           - not_null
 
-      - name: person_name
-        description: Full name of the individual (sourced from the H column).
-        data_tests:
-          - not_null
 
       - name: agency
         description: Federal agency or department associated with the position (alias of position_department).
@@ -61,7 +57,7 @@ models:
         description: Free-text description of the role.
 
       - name: h
-        description: Raw header / name column from the source spreadsheet.
+        description: Raw H column. 'nan' on every real row, so null here. Not a name.
 
       - name: sector1
         description: First (primary) private-sector interest area.
@@ -186,10 +182,6 @@ models:
               arguments:
                 to: ref('stg_fed_revolvingdoor_project__personnel_positions')
                 field: position_key
-      - name: person_name
-        description: Full name of the individual.
-        data_tests:
-          - not_null
 
       - name: agency
         description: Federal agency associated with the position.
@@ -241,11 +233,11 @@ models:
 
   - name: governance__fed_revolvingdoor_project
     description: >
-      Analytics-ready mart table for the Revolving Door Project personnel
-      positions. One row per unique personnel position. Exposes key identifiers
-      (person_name, agency, industry_sector) for cross-source governance joins,
-      retains the full wide sector/interest structure, and adds convenience
-      flags and counts.
+      Mart of Revolving Door Project JOB SLOTS. One row per position
+      (position_name, position_department, position_type), 406 rows. No people
+      and no dates: the source name column is 'nan' end to end, so person_name
+      was dropped 2026-09-07. Keeps the wide sector/interest structure, a
+      sector_count, and one honest flag, is_senate_confirmed.
     columns:
 
       - name: position_key
@@ -254,10 +246,6 @@ models:
           - unique
           - not_null
 
-      - name: person_name
-        description: Full name of the individual.
-        data_tests:
-          - not_null
 
       - name: agency
         description: Federal agency or department associated with the position.
@@ -292,16 +280,8 @@ models:
         data_tests:
           - not_null
 
-      - name: is_political_appointee
-        description: Boolean flag; true when position_type indicates a political appointee.
-        data_tests:
-          - not_null
-          - accepted_values:
-              arguments:
-                values: [true, false]
-
-      - name: is_revolving_door
-        description: Boolean flag; true when position_type contains 'revolv'.
+      - name: is_senate_confirmed
+        description: True when position_type is 'Senate-confirmed', false for 'Appointive' and the 2 'nan' rows.
         data_tests:
           - not_null
           - accepted_values:
