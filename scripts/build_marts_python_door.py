@@ -29,6 +29,22 @@ this and run dbt; the SQL it produces is the same SQL.
 SAFE SWAP, not an overwrite. The new table is built beside the live one, row
 counts are printed, the live table is renamed to <NAME>__PREV_<date>, and the new
 one takes its place. Rollback is a rename back.
+
+IT NOW READS dbt_project.yml, which it did not before 2026-09-07. It imported
+no YAML parser at all, so `+enabled: false` and the marts.politics pre-hook
+guard did not exist as far as it was concerned. On 2026-09-06 that let it build
+two disabled models -- politics__fed_govinfo_billstatus and
+politics__fed_govinfo_bill_cosponsors -- plus five POLITICS marts that
+guard_politics_mirror() would have refused. Three gates now, all checked before
+the connection opens:
+
+    +enabled: false           -> hard stop, no override
+    marts/politics/           -> hard stop unless --allow-politics-rebuild,
+                                 the stand-in for dbt's
+                                 --vars '{"allow_politics_rebuild": true}'
+    TRANSIENT tables          -> matches dbt-snowflake. Permanent tables carry
+                                 seven days of fail-safe storage that cannot be
+                                 cleared afterwards, only rebuilt away.
 """
 from __future__ import annotations
 
@@ -54,8 +70,18 @@ LANDING = "LIBRARY_RAW.LANDING"
 DEFAULT_DB = "LIBRARY_STAGING"
 DEFAULT_SCHEMA = "DBT_CROGERS"
 
-MAKE = " ".join(["create", "or", "replace", "table"])
+MAKE = " ".join(["create", "or", "replace", "transient", "table"])
 MAKE_VIEW = " ".join(["create", "or", "replace", "view"])
+
+# 2026-09-07: TRANSIENT, to match dbt-snowflake. dbt makes every mart transient
+# and this script was making them permanent, so the 14 tables it built on
+# 2026-09-06 sat among 648 transient siblings carrying seven days of fail-safe
+# storage nobody asked for. Fail-safe cannot be turned off after the fact --
+# only a rebuild as transient clears it.
+PROJECT_YML = DBT / "dbt_project.yml"
+# The folder whose pre-hook exists to stop anything but the hand-reconciled
+# Python loaders from overwriting a mart. See macros/guard_politics_mirror.sql.
+GUARDED_FOLDER = "politics"
 
 
 def _find_model(name: str) -> Path:
@@ -126,6 +152,71 @@ def render(path: Path) -> tuple[str, str, str, str]:
     return (schema.group(1) if schema else DEFAULT_SCHEMA), path.stem.upper(), sql, kind
 
 
+def _project_config() -> dict:
+    """models.ripple out of dbt_project.yml, or {} if it cannot be read.
+
+    Added 2026-09-07. This script used to ignore dbt_project.yml completely --
+    it imported no YAML parser at all -- so `+enabled: false` and the politics
+    pre-hook guard did not exist as far as it was concerned. On 2026-09-06 it
+    built politics__fed_govinfo_billstatus and politics__fed_govinfo_bill_cosponsors,
+    both marked disabled, and five POLITICS marts the guard would have refused.
+    """
+    try:
+        import yaml
+    except ImportError:
+        print("  !! pyyaml missing: cannot read dbt_project.yml, refusing to build")
+        raise SystemExit(2)
+    try:
+        cfg = yaml.safe_load(PROJECT_YML.read_text()) or {}
+    except Exception as exc:
+        print(f"  !! dbt_project.yml will not parse: {exc}")
+        raise SystemExit(2)
+    node = (cfg.get("models") or {}).get("ripple")
+    # FAIL CLOSED. An empty or moved models.ripple used to return {}, which made
+    # _model_flags answer (True, False) for everything -- both gates silently
+    # off, politics guard included. A config this script cannot read is a reason
+    # to stop, never a reason to assume permission.
+    if not node:
+        print("  !! dbt_project.yml has no models.ripple section: refusing to build")
+        raise SystemExit(2)
+    return node
+
+
+def _model_flags(path: Path) -> tuple[bool, bool]:
+    """(enabled, guarded) for one model, read the way dbt reads it.
+
+    Walks models.ripple down the model's own folder path, so a +enabled set on
+    a folder is inherited and a per-model one overrides it. Anything the file
+    does not mention is enabled, which is dbt's default too.
+    """
+    # The model's OWN config block first. dbt_project.yml is not the only place
+    # a model can be switched off, and this gate used to read only the yml: 36
+    # model files carry enabled=false inside {{ config(...) }}, and 32 of them
+    # sailed straight through to build(). uncategorized__fed_eia_860_plant was
+    # the one that proved it. Checked before the yml so a file-level off wins
+    # even when the yml says nothing at all.
+    m = re.search(r"\{\{\s*config\((.*?)\)\s*\}\}", path.read_text(), re.S)
+    if m and re.search(r"enabled\s*=\s*(?:False|false)\b", m.group(1)):
+        return False, False
+
+    node = _project_config()
+    enabled, guarded = True, False
+    parts = list(path.relative_to(DBT / "models").parts[:-1]) + [path.stem]
+    for part in parts:
+        if not isinstance(node, dict):
+            break
+        if node.get("+enabled") is False:
+            enabled = False
+        if node.get("+pre-hook") and GUARDED_FOLDER in path.parts:
+            guarded = True
+        node = node.get(part)
+        if node is None:
+            break
+    if isinstance(node, dict) and node.get("+enabled") is False:
+        enabled = False
+    return enabled, guarded
+
+
 def build(cur, path: Path, schema: str, name: str, sql: str, kind: str, *, dry: bool) -> None:
     live = target_of(path)
 
@@ -169,6 +260,10 @@ def main() -> int:
     ap.add_argument("models", nargs="+",
                     help="model names, e.g. finance__fed_fec_independent_expenditures")
     ap.add_argument("--dry-run", action="store_true", help="render and count, build nothing")
+    ap.add_argument("--allow-politics-rebuild", action="store_true",
+                    help="the standing-in for dbt's --vars allow_politics_rebuild. "
+                         "Required for any model under marts/politics/, which "
+                         "mirrors a hand-reconciled Python-built table.")
     args = ap.parse_args()
 
     # Search all of models/, not just marts/. Rebuilding a mart usually means
@@ -180,6 +275,25 @@ def main() -> int:
         if len(found) != 1:
             raise SystemExit(f"{name}: expected one model file, found {len(found)}")
         paths.append(found[0])
+
+    # Every gate is checked BEFORE the first connection is opened, so a refusal
+    # costs nothing and cannot leave a half-built table behind.
+    for p in paths:
+        enabled, guarded = _model_flags(p)
+        if not enabled:
+            raise SystemExit(
+                f"BLOCKED: {p.stem} is +enabled: false in dbt_project.yml. dbt "
+                f"would not build it and neither will this. Flip it to true "
+                f"there, with a reason, if it should be live again.")
+        if guarded and not args.allow_politics_rebuild:
+            raise SystemExit(
+                f"BLOCKED: {p.stem} is under marts/{GUARDED_FOLDER}/, which "
+                f"carries the guard_politics_mirror() pre-hook. It mirrors a "
+                f"hand-reconciled, OpenFEC/GovTrack-checked table, and "
+                f"rebuilding it would overwrite audited numbers with this "
+                f"script's own SQL -- no error, no warning, just different "
+                f"numbers. Pass --allow-politics-rebuild if that is really "
+                f"what you mean.")
 
     conn = snow.connect()
     cur = conn.cursor()

@@ -203,3 +203,16 @@ def test_overlap_math_runs_on_trimmed_years():
     old = {y: 100 for y in range(1920, 1935)}
     shared, _ = cp.shared_spans(cp.dense_years(ca), cp.dense_years(old))
     assert shared == []
+
+
+def test_month_first_dates_parse():
+    # The FEC writes every contribution date as MMDDYYYY, e.g. 06301999.
+    sql = _inner()
+    assert "MMDDYYYY" in sql
+    assert "(0[1-9]|1[0-2])[0-9]{2}(19|20)[0-9]{2}" in sql
+
+
+def test_year_first_is_tried_before_month_first():
+    # 20240108 is a real YYYYMMDD. Read month-first it would be month 20.
+    sql = _inner()
+    assert sql.index("YYYYMMDD") < sql.index("MMDDYYYY")

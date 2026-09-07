@@ -20,6 +20,6 @@ select
     ACTION_TYPES as action_types,
     N_ACTIONS as n_actions,
     try_to_date(LATEST_ACTION_DATE) as latest_action_date,
-    try_to_double(LATEST_ACTION_TEXT) as latest_action_text,
+    LATEST_ACTION_TEXT as latest_action_text,
     N_COSPONSORS as n_cosponsors
 from source

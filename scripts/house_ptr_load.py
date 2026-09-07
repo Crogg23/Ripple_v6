@@ -157,11 +157,22 @@ TRADE = re.compile(
     r"(?P<owner>\b(?:SP|DC|JT)\b)?\s*(?P<tp>[PSE])\s*(?P<part>\(partial\))?\s*"
     r"(?P<d1>\d{2}/\d{2}/\d{4})\s*(?P<d2>\d{2}/\d{2}/\d{4})\s*"
     # The trailing dash is INSIDE the capture so a cut-off range is detectable.
-    r"(?P<amt>\$[\d,]+(?:\s*-\s*(?:\$[\d,]+)?)?\+?)")
+    # Cents are OPTIONAL but captured: 98 rows carry a real exact figure rather
+    # than a range -- $669.27, $474.06, $224.00 -- and \$[\d,]+ alone stopped
+    # dead at the decimal point and landed $669, silently losing the cents.
+    r"(?P<amt>\$[\d,]+(?:\.\d{2})?(?:\s*-\s*(?:\$[\d,]+(?:\.\d{2})?)?)?\+?)")
 STOP = re.compile(r"^(?:F\s|S\s+O|S\s+:|\*|I\s|L\s+:|C\s|D\s|Yes\b|No\b)", re.I)
 # Case-insensitive, and tolerant of a "Ticker: " label glued inside the
 # parenthetical ("(Ticker: CCLFX)") -- see the module docstring, bug 6.
-TICKER = re.compile(r"\((?:Ticker:?\s*)?([A-Za-z][A-Za-z0-9.\-]{0,6})\)", re.I)
+#
+# 2026-09-07: take the LAST parenthetical, not the first, and cap it at six
+# characters. An asset often carries a qualifier in its own parentheses ahead
+# of the ticker, and the first-match rule was landing that qualifier:
+#     Anheuser-busch Inbev ... AdR (belgium) (bud)[CS]  ->  BELGIUM, not BUD
+#     American Tower Corporation(REIT) (AMT) [CS]       ->  REIT,    not AMT
+# The ticker is always the parenthetical nearest the [type] bracket. Six is
+# the real ceiling -- CWEN.A and BAC.PL are the longest genuine ones seen.
+TICKER = re.compile(r"\((?:Ticker:?\s*)?([A-Za-z][A-Za-z0-9.\-]{0,5})\)", re.I)
 ASSET_TYPE = re.compile(r"\[([A-Z]{2,4})\]")
 # \b after Yes/No, always -- a bare "No" with no boundary matches "note",
 # "Nokia", "Nordstrom", "Northrop"... any asset name that starts that way.
@@ -171,8 +182,72 @@ NOISE = re.compile(r"^(?:ID|Owner|Asset|Type|Date|Amount|Cap\.|Gains|\$200\?|"
                    r"State/District|\*|I\s|C\s|Yes\b|No\b)", re.I)
 TYPE_NAME = {"P": "Purchase", "S": "Sale", "E": "Exchange"}
 
+# The form's fixed brackets. A filer picks one; there are no other ranges.
+#
+# 2026-09-07: 72 rows landed with a dangling "$15,001 -" and no upper bound.
+# Widening the next-line rescue recovered exactly ONE of them, because the
+# bound is not on a later line -- pypdf drops it from the extraction outright.
+# The tail reads "$15,001 - g fedcFil...", footer glued straight onto the dash.
+# But the lower bound names the bracket on its own, so the top can be filled
+# from the form itself rather than from the text. This is the form's own
+# ladder, not an inference about what the filer meant.
+AMOUNT_LADDER = {
+    "$1,001": "$15,000",
+    "$15,001": "$50,000",
+    "$50,001": "$100,000",
+    "$100,001": "$250,000",
+    "$250,001": "$500,000",
+    "$500,001": "$1,000,000",
+    "$1,000,001": "$5,000,000",
+    "$5,000,001": "$25,000,000",
+    "$25,000,001": "$50,000,000",
+}
+
 # The three literal owner-column codes, never anchored -- see parse_pdf.
-OWNER_TOKEN = re.compile(r"SP|DC|JT")
+#
+# 2026-09-07: the bare r"SP|DC|JT" matched INSIDE words and ate company names.
+# 107 rows landed with a chopped asset AND a wrong owner:
+#
+#   VOLVO AB UNSP/ADR (VLVLY)  -> OWNER=SP  ASSET='/ADR (VLVLY)'      47 rows
+#   Golub Capital BDC, Inc.    -> OWNER=DC  ASSET=', Inc. (GBDC)'      6 rows
+#   CRISPR Therapeutics        -> OWNER=SP  ASSET='R Therapeutics'     2 rows
+#   SPDR S&P 500 (SPY)         -> OWNER=SP  ASSET='DR S&P 500 (SPY)'  39 rows
+#   SPY... / SPX...            -> OWNER=SP  ASSET='Y ...' / 'X ...'   13 rows
+#
+# Still unanchored, because a real code genuinely does have text jammed in
+# front of it: the previous row's tail runs straight into it, as in
+# "...SuBHOLDINg OF: Neuberger Berman - Traditional IRASPAmphenol Corp".
+# That is IRA + SP + Amphenol, and nothing in the character stream says so.
+#
+# Two lookbehind rules were tried against 96 refetched filings, 1,446 rows:
+#     (?<![A-Za-z0-9])   false-rejected 179 real codes, 12.4%
+#     (?<![A-Z0-9])      false-rejected  66 real codes,  4.6%
+# Both die on the same shape -- furniture ending in a capital, "...IRA" + "SP".
+# So position is not the signal. What IS safe is the character AFTER the code:
+# no asset name on this form begins with a slash, comma, period, dash, close
+# paren or apostrophe. That guard alone recovers "UNSP/ADR" and "BDC, Inc.",
+# 53 of the 107 bad rows, and cannot reject a real code.
+OWNER_TOKEN = re.compile(r"(?:SP|DC|JT)(?![/,.\-)'])")
+
+# The other 54 rows need a named list, and here is why no rule replaces it.
+# pypdf glues a real owner code straight onto the asset with no space, and the
+# asset is very often ALL CAPS: 2,080 owner-coded rows start that way --
+# SPNVIDIA Corporation, SPAT&T Inc., SPJP Morgan Chase, SPTJX Companies. Every
+# shape test that rejects "SPDR S&P 500" also rejects those. Measured on the
+# live table 2026-09-07:
+#     (?=[A-Z][a-z])                    false-rejects 2,080 good rows
+#     (?:SP|DC|JT)(?=[A-Z]{1,3}[ (\[])  false-rejects AT&T, JP Morgan, TJX
+#
+# These are matched by CONTAINMENT, not by prefix: the code sits at index 3 of
+# CRISPR, so "does the text start with this word here" would miss it. A hit
+# anywhere inside one of these words is part of the word, never a column.
+# Extend the list when a new collision turns up; do not reach for a cleverer
+# regex, and lean on OWNER_RAW to find the next one.
+GLUED_WORDS = ("SPDR", "SPX", "SPY", "SPGI", "SPWR", "CRISPR", "UNSP", "SPAC")
+# What a company name looks like when it starts right after an owner code.
+# Capital then lowercase. Every GLUED_WORDS brand carries on in capitals
+# instead, which is what separates "SP"+"Xylem" from "SPDR".
+ASSET_WORD_START = re.compile(r"[A-Z][a-z]")
 # A ticker parenthetical or an asset-type bracket. A hit inside either of
 # these is a ticker/type character pair, never the owner column.
 ENCLOSED = re.compile(r"\([^()]*\)|\[[^\[\]]*\]")
@@ -184,6 +259,46 @@ ENCLOSED = re.compile(r"\([^()]*\)|\[[^\[\]]*\]")
 # backtracks to the rightmost match), whatever is glued in front of it is
 # never part of an asset. See the module docstring, bug 4.
 HEADER_JUNK = re.compile(r".*\$200\?", re.S)
+
+# The per-row footer the form prints under every trade, run together with the
+# next trade by pypdf. Case is mangled beyond recognition in these PDFs --
+# "FIlINg STATuS", "FILINg STATUS", "SuBHOLDINg OF", "S UbHOLDINg OF" -- so
+# every marker here is matched case-insensitively and tolerates stray spaces.
+#
+# Why this exists (2026-09-07): it used to be cleaned by accident. A bogus
+# owner-code hit inside "SPDR" or "UNSP" chopped the block, and the footer
+# happened to sit in front of the chop. Fixing the owner regex removed that
+# accident and left the footer glued to the asset name. Strip it on purpose.
+#
+# Greedy, so it cuts through the LAST marker on the block. Anything before a
+# footer marker belongs to the previous trade, never to this one.
+#
+# The status value is spelled out, never \w+. "STATUS: NewAmeresco, Inc." has
+# no space after New, so a greedy \w+ eats the first word of the company and
+# lands ", Inc." as the asset -- the exact class of bug this file is fixing.
+#
+# Do NOT anchor on the leading F of FILING. The backward line-walk stops on a
+# line beginning "F ", so the block often starts mid-word at "IlINg STATuS:
+# New..." with the F already gone -- 14 rows landed that way. "STATUS:" plus a
+# known value is unambiguous furniture on its own. Deleted is a real value too;
+# leaving it out of the alternation is what stranded two Zuora rows.
+FURNITURE = re.compile(
+    r".*(?:STATUS\s*:\s*(?:New|Amended|Deleted)|"
+    r"S\s*U\s*B\s*HOLDING\s+OF\s*:|DESCRIPTION\s*:|\bg\s+fedcb?)", re.I | re.S)
+# NOT DONE, and this is the record of why. "SUBHOLDING OF:" and "DESCRIPTION:"
+# are followed by free text with no delimiter before the asset name --
+# "...DPJ & KAJ joint accountSPDR S&P 500 (SPY)". Roughly 6 rows in 96 filings
+# keep that account name on the front of the asset.
+#
+# The obvious seam is a lowercase-to-uppercase step, bounded by the first "("
+# so it cannot reach the ticker. Tried it 2026-09-07. It cut 34 real company
+# names on the same sample, because plenty of them contain that step:
+#     PayPal Holdings        -> Pal Holdings
+#     SiteOne Landscape      -> One Landscape
+#     AdaptHealth Corp       -> Health Corp
+#     Taiwan Semiconductor Manufacturing -> Manufacturing
+# Six visibly-ugly rows beat 34 silently-wrong ones, so the account name stays
+# on. It is obvious on sight and OWNER_RAW carries the original head anyway.
 
 
 def index_year(year: int) -> list[dict]:
@@ -232,9 +347,34 @@ def _first_owner_outside_enclosures(text: str) -> re.Match | None:
     """
     spans = [(mm.start(), mm.end()) for mm in ENCLOSED.finditer(text)]
     for mm in OWNER_TOKEN.finditer(text):
-        if not any(s <= mm.start() < e for s, e in spans):
-            return mm
+        if any(s <= mm.start() < e for s, e in spans):
+            continue
+        # A code sitting INSIDE a brand name is not a code. Checked by
+        # containment, not prefix -- CRISPR carries its SP at index 3. See
+        # GLUED_WORDS for why this is a list and not a rule.
+        # A real code followed by a Capital-then-lowercase word beats the deny
+        # list. Added 2026-09-07 after the list ate two real owner codes:
+        # "Ameriprise SEP IRA" + "SP" + "Xylem Inc." glues into "...IRASPXylem",
+        # whose "SPX" is spelled BY the seam, not by either side. Every brand in
+        # GLUED_WORDS continues in caps -- SPDR, SPX Corporation, SPY, CRISPR --
+        # so "SP" then "Xy" is a code and "SP" then "DR" is not. Checked against
+        # all 59 rows the deny list touches: flips the 2 Xylem rows, leaves the
+        # other 57 brand rows alone.
+        if not ASSET_WORD_START.match(text, mm.end()) and any(
+                any(s2 <= mm.start() < s2 + len(g) for s2 in _spans_of(text, g))
+                for g in GLUED_WORDS):
+            continue
+        return mm
     return None
+
+
+def _spans_of(text: str, word: str) -> list[int]:
+    """Every start index of `word` in `text`. Cheap: the lists are tiny."""
+    out, at = [], text.find(word)
+    while at != -1:
+        out.append(at)
+        at = text.find(word, at + 1)
+    return out
 
 
 def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
@@ -254,13 +394,35 @@ def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
         prev_end = 0
         for k, m in enumerate(matches):
             amt = re.sub(r"\s+", " ", m.group("amt")).strip()
-            # "$50,001 -" is a range whose upper bound is on the NEXT line.
+            # "$50,001 -" is a range whose upper bound is on a LATER line.
             # Only checked for the last trade on the line -- an amount ahead
             # of another trade on the SAME line was never cut off.
-            if amt.endswith("-") and k == len(matches) - 1 and i + 1 < len(lines):
-                nxt = re.match(r"\$[\d,]+", lines[i + 1])
-                if nxt:
-                    amt = f"{amt} {nxt.group(0)}"
+            #
+            # 2026-09-07: this used to look at exactly one line ahead and only
+            # at its very first character, which left 72 rows carrying a
+            # dangling "$15,001 -" with no upper bound at all. The House form
+            # offers only fixed ranges, so an open top is always a lost value,
+            # never a filer's choice. Walk up to three lines and allow the
+            # bound to sit after leading furniture, but stop at the next trade
+            # so a later trade's amount can never be borrowed as this one's top.
+            if amt.endswith("-") and k == len(matches) - 1:
+                for ahead in range(1, 4):
+                    j = i + ahead
+                    if j >= len(lines):
+                        break
+                    if TRADE.search(lines[j]):
+                        break
+                    nxt = re.match(r"[^$]{0,12}?(\$[\d,]+(?:\.\d{2})?)", lines[j])
+                    if nxt:
+                        amt = f"{amt} {nxt.group(1)}"
+                        break
+            # Still open? pypdf lost the bound entirely. Fill it from the
+            # form's own ladder, keyed on the lower bound. See AMOUNT_LADDER.
+            if amt.endswith("-"):
+                low = amt[:-1].strip()
+                top = AMOUNT_LADDER.get(low)
+                if top:
+                    amt = f"{low} - {top}"
 
             # This trade's own slice of the current line: from the end of the
             # PREVIOUS trade found on this line (or the line start, for the
@@ -298,6 +460,9 @@ def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
             # first trade on a page. See HEADER_JUNK and the module
             # docstring, bug 4.
             asset_raw = HEADER_JUNK.sub("", asset_raw, count=1)
+            # Then the per-row footer glued in front of this trade's asset,
+            # and the free-text value trailing the footer's last marker.
+            asset_raw = FURNITURE.sub("", asset_raw, count=1)
 
             owner_hit = _first_owner_outside_enclosures(asset_raw)
             if owner_hit:
@@ -308,12 +473,23 @@ def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
                 asset_local = asset_raw
 
             asset = clean_asset(asset_local)
+            # The untouched head of the block, before any owner code was cut
+            # off it. Added 2026-09-07 after the OWNER_TOKEN bug ate 107 company
+            # names: with this column a bad split is a query away from being
+            # spotted and undone, instead of needing all 2,633 PDFs refetched.
+            # Keep it even when the split looks clean -- it costs 24 characters
+            # a row and it is the only evidence of what the cut removed.
+            owner_raw = re.sub(r"\s+", " ", asset_raw)[:24].strip() or None
             # Ticker/type are searched in THIS trade's own isolated text only
             # -- never the whole raw line -- so a mismatched ticker case or a
             # missing ticker never falls through to a different trade's
             # ticker further down the same blob. See the module docstring,
             # bugs 1, 2 and 3.
-            tick = TICKER.search(asset_local)
+            # LAST parenthetical, not the first. See the TICKER comment: a
+            # qualifier in its own brackets sits ahead of the real ticker often
+            # enough that first-match landed BELGIUM and REIT as symbols.
+            ticks = TICKER.findall(asset_local)
+            tick = ticks[-1] if ticks else None
             atype = ASSET_TYPE.search(asset_local)
             out.append({
                 "DOC_ID": rec["DOC_ID"],
@@ -325,12 +501,13 @@ def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
                 "IS_SCAN": "False",
                 "LINE_NO": str(len(out) + 1),
                 "OWNER": owner,
+                "OWNER_RAW": owner_raw,
                 "TRANSACTION_TYPE": TYPE_NAME.get(m.group("tp"), m.group("tp")),
                 "IS_PARTIAL": str(bool(m.group("part"))),
                 "TRANSACTION_DATE": m.group("d1"),
                 "NOTIFICATION_DATE": m.group("d2"),
                 "AMOUNT_RANGE": amt,
-                "TICKER": tick.group(1).upper() if tick else None,
+                "TICKER": tick.upper() if tick else None,
                 "ASSET_TYPE": atype.group(1) if atype else None,
                 "ASSET_DESCRIPTION": asset,
                 # Always. A parsed trade with no traceable source line is not evidence.
@@ -344,6 +521,7 @@ def blank_row(rec: dict, why: str) -> dict:
             "FILER_FIRST": rec["FILER_FIRST"], "STATE_DISTRICT": rec["STATE_DISTRICT"],
             "FILING_YEAR": rec["FILING_YEAR"], "FILING_DATE": rec["FILING_DATE"],
             "IS_SCAN": rec["IS_SCAN"], "LINE_NO": None, "OWNER": None,
+            "OWNER_RAW": None,
             "TRANSACTION_TYPE": None, "IS_PARTIAL": None, "TRANSACTION_DATE": None,
             "NOTIFICATION_DATE": None, "AMOUNT_RANGE": None, "TICKER": None,
             "ASSET_TYPE": None, "ASSET_DESCRIPTION": None, "RAW_LINE": why}

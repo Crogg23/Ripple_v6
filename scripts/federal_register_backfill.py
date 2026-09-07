@@ -190,13 +190,27 @@ def _fetch_window(sess: requests.Session, gte: str, lte: str) -> list[dict]:
 
 
 def _window_count(sess: requests.Session, gte: str, lte: str) -> int:
-    r = sess.get(API, params={
-        "per_page": 1,
-        "conditions[publication_date][gte]": gte,
-        "conditions[publication_date][lte]": lte,
-    }, timeout=60)
-    r.raise_for_status()
-    return int(r.json().get("count") or 0)
+    """Count one month. Backs off on 429.
+
+    201 windows counted back to back is enough to trip the Federal Register
+    rate limit, which answers 429 with a Retry-After header. Without this the
+    whole backfill dies partway with nothing landed.
+    """
+    for attempt in range(6):
+        r = sess.get(API, params={
+            "per_page": 1,
+            "conditions[publication_date][gte]": gte,
+            "conditions[publication_date][lte]": lte,
+        }, timeout=60)
+        if r.status_code == 429:
+            wait = int(r.headers.get("Retry-After") or 0) or 5 * (attempt + 1)
+            print(f"    rate limited on {gte}, waiting {wait}s", flush=True)
+            time.sleep(wait)
+            continue
+        r.raise_for_status()
+        time.sleep(0.35)          # stay under the limit rather than recover from it
+        return int(r.json().get("count") or 0)
+    raise RuntimeError(f"rate limited six times counting {gte}..{lte}")
 
 
 def _to_frame(records: list[dict]) -> pd.DataFrame:

@@ -195,7 +195,18 @@ models:
         # `dbt test` is completely unaffected (pre-hooks don't fire for tests).
         +pre-hook: "{{ guard_politics_mirror() }}"
         politics__fed_govinfo_billstatus:
-          +enabled: false  # raw twin of politics__bills (agrees, 36,465 rows; redundant)
+          # RE-ENABLED 2026-09-07, Chris's call. It is no longer a twin. The
+          # 2026-09-06 GovInfo backfill took this table to 107,150 bills across
+          # congresses 113-119, while the canonical Python-built politics__bills
+          # still covers 36,465. The old note below was written when they agreed
+          # at 36,465 and "redundant" was true; it is not true any more, and the
+          # warehouse has carried this mart live since 2026-09-06 regardless.
+          # Same shape as the politics__fed_voteview_rollcall_meta re-enable.
+          # When the canonical chain is extended to full history, re-evaluate
+          # which one retires.
+          #
+          # Was: +enabled: false  # raw twin of politics__bills (agrees, 36,465 rows; redundant)
+          +enabled: true
         politics__fed_govinfo_bill_cosponsors:
           # verified 2026-07-31: politics__bill_cosponsors' small row-count gap vs
           # this raw twin is a DOCUMENTED intentional collapse (a member who

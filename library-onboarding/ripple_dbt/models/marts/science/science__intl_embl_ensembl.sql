@@ -24,7 +24,7 @@ select
     TAXON_ID as taxon_id,
     CONSEQUENCE_TYPE as consequence_type,
     ALLELE_STRING as allele_string,
-    try_to_double(POPULATION_NAME) as population_name,
+    POPULATION_NAME as population_name,
     ONTOLOGY_TERM as ontology_term,
     SOURCE_NAME as source_name,
     PRIMARY_ACCESSION as primary_accession

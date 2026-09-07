@@ -98,6 +98,11 @@ def recency_inner(col: str, kind: str) -> str | None:
     dt = f"IFF({sep},TRY_TO_DATE(NULLIF({t},'')),NULL)"                                   # separated date
     ts = f"IFF({sep},TRY_TO_TIMESTAMP(NULLIF({t},''))::DATE,NULL)"                        # timestamp
     ymd8 = f"IFF(REGEXP_LIKE({t},'^[0-9]{{8}}$'),TRY_TO_DATE({t},'YYYYMMDD'),NULL)"       # yyyymmdd
+    # MMDDYYYY. The FEC writes every contribution date this way, e.g. 06301999.
+    # Read after ymd8 and guarded on a leading month plus a trailing 19xx/20xx,
+    # so a real YYYYMMDD can never fall through to it.
+    mdy8 = (f"IFF(REGEXP_LIKE({t},'(0[1-9]|1[0-2])[0-9]{{2}}(19|20)[0-9]{{2}}'),"
+            f"TRY_TO_DATE({t},'MMDDYYYY'),NULL)")
     ymd6 = f"IFF(REGEXP_LIKE({t},'^[0-9]{{6}}$'),TRY_TO_DATE({t}||'01','YYYYMMDD'),NULL)" # yyyymm -> 1st
     ymd14 = f"IFF(REGEXP_LIKE({t},'^[0-9]{{14}}$'),TRY_TO_DATE(SUBSTR({t},1,8),'YYYYMMDD'),NULL)"  # YYYYMMDDHHMMSS (wayback)
     yr = (f"IFF(REGEXP_LIKE({t},'^(19|20)[0-9]{{2}}') "
@@ -127,12 +132,12 @@ def recency_inner(col: str, kind: str) -> str | None:
     elif kind == "timestamp":
         inner = f"COALESCE({ts},{dt},{us_dt})"
     elif kind == "yyyymmdd_text":
-        inner = f"COALESCE({ymd14},{ymd8},{ymd6})"
+        inner = f"COALESCE({ymd14},{ymd8},{mdy8},{ymd6})"
     elif kind in ("year_text", "year_int"):
         inner = yr_wide
     else:  # 'mixed' / fallback — every branch guarded, so still epoch-safe
         inner = (f"COALESCE({dt},{ts},{us_dt},{monthname},{ym},{mon_yr},"
-                 f"{ymd14},{ymd8},{ymd6},{yr})")
+                 f"{ymd14},{ymd8},{mdy8},{ymd6},{yr})")
     return inner
 
 
