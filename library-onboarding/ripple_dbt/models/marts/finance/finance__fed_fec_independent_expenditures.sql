@@ -19,8 +19,11 @@
 -- Filter both to 'False' and 2024 gives $4.44B against the FEC's published
 -- ~$4.4B. The other four cycles are internally consistent and unverified.
 --
--- The $20M floor is a floor, not a test. About $44M of small prank filings sits
--- under it, which is 2.3% of the 2026 cycle. Nothing here will warn you.
+-- The $20M floor is a floor, not a test. Prank filings under it survive: Logan
+-- Keener at DODO COMMITTEE takes $20.0M of the 2026 cycle, Kurt Cobain at
+-- NIRVANA LLC takes $12.4M of 2022, Jason Kim takes $10.0M of 2020. 2026 is
+-- worst hit at 2.7% of its clean total; 2024 is cleanest at 0.1%. Nothing here
+-- will warn you when the floor stops holding.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_FEC_INDEPENDENT_EXPENDITURES') }}

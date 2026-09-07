@@ -80,6 +80,9 @@ def find(term: str = "", include_portals: bool = False, refresh: bool = False) -
         WHERE TABLE_TYPE = 'BASE TABLE'
           AND TABLE_SCHEMA <> 'INFORMATION_SCHEMA'
           AND NOT STARTSWITH(TABLE_SCHEMA, '_')
+          -- a __PREV_<date> rollback copy is not a mart; counting it double-counts
+          -- the table it was copied from. See .claude/traps.md 2026-09-06.
+          AND TABLE_NAME NOT LIKE '%%\\_\\_PREV\\_%%' ESCAPE '\\'
           AND (%s = '' OR TABLE_SCHEMA ILIKE %s OR TABLE_NAME ILIKE %s)
         ORDER BY ROW_COUNT DESC NULLS LAST
     """
@@ -156,6 +159,7 @@ def shelves() -> list[dict]:
         FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES
         WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA <> 'INFORMATION_SCHEMA'
           AND NOT STARTSWITH(TABLE_SCHEMA, '_')
+          AND TABLE_NAME NOT LIKE '%\\_\\_PREV\\_%' ESCAPE '\\'
         GROUP BY 1 ORDER BY 3 DESC NULLS LAST""")
     return [{"arm": "catalog", **d} for d in dom] + [{"arm": "marts", **m} for m in marts]
 

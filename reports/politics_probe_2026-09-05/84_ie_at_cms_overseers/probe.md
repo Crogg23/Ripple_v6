@@ -54,10 +54,20 @@ distinct for correctness, congress-matched for meaning.
   rows carrying $541.9M that cannot be attributed to any candidate.
 - The industry-of-spender leg has not improved. CONNECTED_ORG_NM is blank or
   junk on most big spenders.
-- Junk under the $20M floor survives, about $44M, which is 2.3% of the 2026
-  cycle. Kurt Cobain is in the clean total.
+- Junk under the $20M floor survives, measured per cycle rather than guessed.
+  Web-filed rows over $2M that clear both flags: Logan Keener at DODO COMMITTEE
+  takes $20.0M of 2026, Kurt Cobain at NIRVANA LLC takes $12.4M of 2022, Jason
+  Kim takes $10.0M of 2020. The 2026 cycle is worst hit at 2.7% of its $1,054.6M
+  clean total. 2024 is cleanest at 0.1%.
 
 STATUS: lit
 HEADLINE: $586.0M in independent expenditures hit members of E&C, Ways & Means
-and Senate Finance while they sat on those committees, 2018 to 2026. Three
-quarters of it was spent against them.
+and Senate Finance who held those seats as of each congress's snapshot date,
+2018 to 2026. Three quarters of it was spent against them.
+
+The wording matters. One snapshot per congress cannot say "while they sat on
+those committees" — that is the sentence the loader's own docstring forbids.
+Against Voteview, the roster misses 14 to 35 members per congress, about 4%,
+and the misses lean toward mid-term deaths, resignations and one expulsion.
+Menendez chaired Senate Foreign Relations, was indicted, resigned mid-118th,
+and is not in the 118th roster at all.
