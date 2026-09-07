@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: finance__senate_trades
+    description: >
+      GRAIN: one row per reported Senate trade line, both eras, 15,205 rows.
+      8,350 from the Senate Stock Watcher re-parse (2012-06 to 2020-12) plus
+      6,855 scraped off efdsearch (2021 on). The eras never overlap in date.
+
+      Adds bioguide and senator_name by matching the raw filer name to
+      POLITICS__MEMBER_CROSSWALK restricted to Senate seat holders since 2012.
+      Keyed per filing name, never per raw string, because the raw string is
+      the literal word 'Senator' on 98 rows. 82 senators, zero misses on the
+      2026-09-07 dry run. match_note says how each row landed.
+
+      amount_range is a bracket, never a number. is_amendment is 'True' on
+      1,030 new-era rows and nothing supersedes the original yet. 100 rows are
+      filing_kind = 'paper', scanned and unreadable, with null trade fields.
+    columns:
+      - name: bioguide
+        description: >
+          Resolved member id. Null only when match_note says why. WARN, not
+          fail: Brown (Scott P. / Sherrod) and Nelson (Bill / Ben) share a
+          last name and a first initial since 2012, so a first PTR from either
+          lands null on purpose. A miss must stay visible, never stop the build.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: match_note
+        data_tests:
+          - not_null
+          - accepted_values:
+              config:
+                severity: warn
+              arguments:
+                values: ['last name', 'last name + first initial']
+      - name: source_id
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['fed_senate_stock_watcher', 'fed_senate_efd_ptr']
