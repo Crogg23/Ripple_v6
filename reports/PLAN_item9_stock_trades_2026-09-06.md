@@ -132,8 +132,10 @@ distinct` before joining money or trades to it.
 
 ## What this does not do
 
-* **No OCR.** Roughly 521 filings across both chambers are images. They stay
-  unread and flagged. Adding tesseract is a separate decision.
+* **No OCR.** 472 House filings and 100 Senate paper filings are images, 572 in
+  all, 14.6% of everything. Verified: pypdf returns zero characters on a
+  prefix-8 or prefix-9 House PDF, no tesseract binary and no pytesseract in this
+  environment. They stay unread and flagged. Adding OCR is a separate decision.
 * **No amendments resolution.** `IS_AMENDMENT` is landed but nothing supersedes
   an original with its amendment. That is the FEC lesson from today, and the
   same fix applies later.
@@ -141,17 +143,107 @@ distinct` before joining money or trades to it.
   "$1,001 - $15,000" is the finest resolution that exists. Any total is a
   bounded estimate and must be reported as one.
 
+## STRESS TEST, run 2026-09-06 after the plan was written
+
+The plan survived, but three of its estimates were wrong and one risk was
+pointed at the wrong stage.
+
+### The Senate scrape is minutes, not a day
+
+25 filings fetched in 5 seconds. No throttling, no rate limit hit, no cookie
+expiry, and NOT ONE filing paginated. The biggest of the 25 held 24 trade rows,
+all on one page.
+
+    0.21 s per filing  ->  799 filings in about 3 minutes
+
+Stage 2 was budgeted at one day. The fetching is three minutes. What is left is
+parsing and landing, which is half a day at most.
+
+### The House text-versus-scan split is knowable without downloading anything
+
+The DocID's FIRST DIGIT predicts the format, perfectly, across all six years:
+
+| prefix | filings | what comes back |
+|---|---|---|
+| 2 | 2,633 | real text, extractable |
+| 8 | 421 | scan, pypdf returns 0 chars |
+| 9 | 51 | scan, pypdf returns 0 chars |
+
+15.2% of House PTRs are images. The earlier plan listed the 51 nine-prefix
+filings as "untested" -- they are scans, same as the eights. So the scan list
+can be built from the index alone and those PDFs never need fetching.
+
+Per year the scan share is falling: 16.9% in 2021 down to 11.5% in 2026.
+
+### The House text has no delimiters, and that IS the work
+
+pypdf extracts, but the table structure is gone. A real trade line comes back as:
+
+    P 10/09/202511/01/2025 $1,001 - $15,000
+
+Transaction date, notification date and amount are run together with no
+separator. The asset name and ticker sit on the one or two lines ABOVE it:
+
+    Brown & Brown, Inc. Common Stock
+    (BRO) [ST]
+    P 10/09/202511/01/2025 $1,001 - $15,000
+
+It is parseable -- the dates are fixed-width and the amount starts with a dollar
+sign -- but it is a line-state machine, not a table read. Keep RAW_LINE.
+
+### THE REAL RISK IS THE NAME MATCH, not the scrape
+
+Stage 5 was written as half a day of joining. Measured on the 62 distinct Senate
+filers of 2021-2026, a plain last-name join to `POLITICS__MEMBER_CROSSWALK`:
+
+| | filers |
+|---|---|
+| clean single match | 26 |
+| ambiguous last name | 29 |
+| no match at all | 7 |
+
+Only 26 of 62. The crosswalk holds every member in history, so "Marshall" hits
+18 people and "Graham" hits 14. And the filer's last name carries its suffix:
+`Perdue , Jr`, `McConnell, Jr.`, `Manchin, III`, and `Moran,` with a bare
+trailing comma.
+
+Two fixes, both tested:
+
+1. Strip a trailing suffix and comma from the filer's last name.
+2. Restrict the crosswalk to people who actually held a SENATE committee seat in
+   the relevant congresses, using the roster landed today.
+
+| | filers |
+|---|---|
+| clean match | 60 |
+| ambiguous | 0 |
+| unmatched | 2 |
+
+The two left over are Perdue and Roberts, who both left the Senate in January
+2021 and so appear in no 117th-congress roster. Adding the 116th to the
+candidate set closes them.
+
+### What did not change
+
+799 Senate PTRs and 3,105 House PTRs, both re-counted by paging every year.
+699 HTML and 100 paper on the Senate side, counted by classifying all 799 links
+rather than trusting the earlier figure.
+
 ## Cost and order
 
-| stage | effort | unblocks |
-|---|---|---|
-| 1 Senate index | half a day | nothing on its own |
-| 2 Senate lines | one day | 35, 78 |
-| 3 House index | half a day | nothing on its own |
-| 4 House lines | two days | 91 |
-| 5 join and mart | half a day | all three |
+Revised after the stress test:
 
-Four and a half days, close to the handoff's five.
+| stage | was | now | unblocks |
+|---|---|---|---|
+| 1 Senate index | half a day | 2 hours | nothing on its own |
+| 2 Senate lines | one day | half a day | 35, 78 |
+| 3 House index | half a day | 2 hours | nothing on its own |
+| 4 House lines | two days | two days | 91 |
+| 5 join and mart | half a day | ONE day | all three |
+
+About three and a half days, not five. The Senate half shrank because the
+fetching is three minutes. Stage 5 grew because the name match is the real
+problem and the plan had it as an afterthought.
 
 **If only one stage gets done, do 1 and 2.** The Senate half unblocks two of the
 three questions and its parse is a table rather than a PDF. The House half is
