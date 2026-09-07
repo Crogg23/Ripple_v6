@@ -48,7 +48,10 @@ ITCONT_COLS = [
     "TRANSACTION_DT", "TRANSACTION_AMT", "OTHER_ID", "TRAN_ID", "FILE_NUM",
     "MEMO_CD", "MEMO_TEXT", "SUB_ID",
 ]
-CYCLES = {"2024": "24", "2026": "26"}
+# Every two-year cycle the FEC publishes. Loading two of them and calling the
+# table "individual contributions" is how a question about 2015 money comes back
+# empty with no error.
+CYCLES = {str(y): f"{y % 100:02d}" for y in range(2000, 2028, 2)}
 SID = "fed_fec_indiv_contributions"
 TABLE = SID.upper()
 STG = atomic_load.staging_name(TABLE)
@@ -76,12 +79,15 @@ def stream_lines(zip_path: str):
             yield line.rstrip("\n")
 
 
-def write_chunk(conn, lines, run_id, started, first: bool) -> tuple[int, int]:
+def write_chunk(conn, lines, run_id, started, first: bool, cycle: str = "") -> tuple[int, int]:
     res = fec_parse.parse_pipe("\n".join(lines), ITCONT_COLS).require_clean(0.005)
     out = ingest._stringify(res.good)
     out[ingest.META_INGESTED_AT] = started.replace(tzinfo=None)
     out[ingest.META_SOURCE_RUN_ID] = run_id
     out[ingest.META_SRC_SHA256] = hashlib.sha256("\n".join(lines).encode("latin-1")).hexdigest()
+    # Which two-year file a row came from. Without it there is no way to tell a
+    # missing cycle from a cycle that genuinely had no money in it.
+    out["CYCLE_FILE"] = cycle
     out.columns = [ingest._sf_col(c) for c in out.columns]  # reserved-word guard
     ok, _c, _r, _ = write_pandas(
         conn, out, table_name=STG, database=settings.raw_database, schema=settings.raw_schema,
@@ -95,16 +101,23 @@ def write_chunk(conn, lines, run_id, started, first: bool) -> tuple[int, int]:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-rows", type=int, default=0, help="0 = full load")
+    ap.add_argument("--cycles", default="", help="comma list, e.g. 2000,2002. Blank = all")
     args = ap.parse_args(argv)
 
     run_id = str(uuid.uuid4())
     started = ingest._utcnow()
     conn = snow.connect()
     snow.execute(conn, f'CREATE SCHEMA IF NOT EXISTS "{settings.raw_database}"."{settings.raw_schema}"')
+    want = [c.strip() for c in args.cycles.split(",") if c.strip()] or list(CYCLES)
+    missing = [c for c in want if c not in CYCLES]
+    if missing:
+        raise SystemExit(f"unknown cycle(s): {missing}. Known: {sorted(CYCLES)}")
     total, bad, first, zips = 0, 0, True, []
-    print(f"=== FEC itcont stream-load (cycles {'+'.join(CYCLES)}; cap={args.max_rows or 'none'}) ===", flush=True)
+    print(f"=== FEC itcont stream-load ({len(want)} cycles {want[0]}..{want[-1]}; "
+          f"cap={args.max_rows or 'none'}) ===", flush=True)
     try:
-        for cyc, yy in CYCLES.items():
+        for cyc in want:
+            yy = CYCLES[cyc]
             url = f"https://www.fec.gov/files/bulk-downloads/{cyc}/indiv{yy}.zip"
             zpath = os.path.join(tempfile.gettempdir(), f"indiv{yy}.zip")
             zips.append(zpath)
@@ -116,15 +129,23 @@ def main(argv=None) -> int:
                     continue
                 buf.append(line)
                 if len(buf) >= CHUNK:
-                    n, b = write_chunk(conn, buf, run_id, started, first)
+                    n, b = write_chunk(conn, buf, run_id, started, first, cyc)
                     total += n; bad += b; first = False; buf = []
                     print(f"    landed {total:,} rows (quarantined {bad})", flush=True)
                     if args.max_rows and total >= args.max_rows:
                         break
             if buf and not (args.max_rows and total >= args.max_rows):
-                n, b = write_chunk(conn, buf, run_id, started, first)
+                n, b = write_chunk(conn, buf, run_id, started, first, cyc)
                 total += n; bad += b; first = False
                 print(f"    landed {total:,} rows (quarantined {bad})", flush=True)
+            # Drop each zip as its cycle finishes. All of them at once is about
+            # 15 GB against 43 GB free, and the extracted stream needs room too.
+            try:
+                os.remove(zpath)
+                zips.remove(zpath)
+            except OSError:
+                pass
+            print(f"  cycle {cyc} done, running total {total:,}", flush=True)
             if args.max_rows and total >= args.max_rows:
                 break
 
