@@ -9,7 +9,7 @@ id,where_it_stands,question,tables_it_needs,tables_we_have,rows_we_have,years_kn
 8,part done,"When a county's jail population spikes, does drug overdose rise later?",3,3,347425,1970-2026,,all tables here,
 9,part done,Do the biggest polluters also pay their workers the least?,3,3,3887442,2010-2023,,all tables here,
 10,part done,Are the suppliers who bill the most also getting kickback-like payments?,1,1,381228,,,all tables here,
-11,part done,Do money-losing hospitals still have doctors taking big drug company payments?,3,3,16967082,2022-2024,,all tables here,HCRIS one vintage
+11,part done,Do money-losing hospitals still have doctors taking big drug company payments?,3,3,16967082,2022-2024,,all tables here,"HCRIS now 13 years, 2011-2023, 80,077 rows"
 12,part done,Do hospitals with financial trouble also have padded ventilator equipment billing?,4,4,17689980,1966-2025,,all tables here,
 13,same as another,Do owners re-register the business right after getting fire-safety fines?,2,2,214455,1800-2026,,all tables here,
 14,nothing there,Are clinics claiming to be 'rural' actually sitting in cities?,1,1,5530,1859-2024,,all tables here,
@@ -32,23 +32,23 @@ id,where_it_stands,question,tables_it_needs,tables_we_have,rows_we_have,years_kn
 31,found a little,Do hospital-owned home health agencies perform worse but cost more?,3,3,33075,1808-2026,,all tables here,
 76,not started,Do they sell their company stock right before bad news like a fine hits?,3,3,2697968,1967-2028,,all tables here,
 77,not started,Do they own stock in companies whose cases they're deciding?,3,3,12810285,1901-2026,,all tables here,
-78,not started,Do they trade stock in industries their own committee oversees?,3,3,980843,2012-2020,,all tables here,senate trades stop 2020-12; committee roster now covers 113-119
+78,not started,Do they trade stock in industries their own committee oversees?,3,3,980843,2012-2020,,all tables here,senate trades now to 2026; roster covers 113-119
 79,not started,Did they quietly switch auditors right before collapsing?,3,3,2981945,1970-2026,,all tables here,
 80,not started,Do they still keep winning government contracts?,2,2,93565062,2006-2026,,all tables here,
 81,not started,Did executives sell their own stock right before the collapse?,4,4,6983857,1972-2028,,all tables here,
 82,not started,Do unions reporting missing money also have an active political fund?,2,2,677741,1999-2026,,all tables here,
-83,not started,Does lobbying spending spike right before a new safety rule is finalized?,2,2,914380,2001-2026,,all tables here,LDA missing 2011-2019; Federal Register only 2023-26
+83,not started,Does lobbying spending spike right before a new safety rule is finalized?,2,2,914380,2001-2026,,all tables here,LDA backfill running; 2011-2019 and 2022-2026 still missing
 84,"lit — $586.0M against, $191.4M for, congress-matched",Who's spending money for or against them in elections?,4,4,346456,1789-2027,,all tables here,"done: IE junk flagged, roster now per congress 113-119"
 85,not started,Does it flow from their corporate PAC into top leaders' campaign funds?,3,3,15453697,2024-2024,,all tables here,
 86,not started,Are big-spending political advertisers avoiding official campaign finance reporting?,3,3,374229,1976-2026,,all tables here,
-87,not started,Do they also personally donate to U.S. political campaigns?,2,2,84394012,1942-2028,stale,here but going stale,FEC indiv is 2023-26 only
-88,not started,Are the same people also treasurers of federal campaign committees?,2,2,249624,,,all tables here,527 Schedule A/B not landed
-89,not started,Do the same people wine and dine state lawmakers and donate federally?,3,3,84980743,1724-2028,,all tables here,FEC indiv is 2023-26 only
-90,not started,Do agency contracts shift toward an official's old industry after they arrive?,2,2,93153830,2006-2026,,all tables here,revolving-door has no names
-91,not started,"Do they buy a stock, then introduce a bill that helps it?",3,3,412557,2012-2026,,all tables here,senate trades stop 2020-12; house trade lines are PDFs; bills only 118th-119th
+87,not started,Do they also personally donate to U.S. political campaigns?,2,2,84394012,1942-2028,stale,here but going stale,"FEC indiv now 14 cycles, 2000-2026, 283.8M rows"
+88,not started,Are the same people also treasurers of federal campaign committees?,2,2,249624,,,all tables here,"527 Schedule A and B landed, 17.9M rows"
+89,not started,Do the same people wine and dine state lawmakers and donate federally?,3,3,84980743,1724-2028,,all tables here,"FEC indiv now 14 cycles, 2000-2026, 283.8M rows"
+90,not started,Do agency contracts shift toward an official's old industry after they arrive?,2,2,93153830,2006-2026,,all tables here,LDA covered_position is the real source; crawl running
+91,not started,"Do they buy a stock, then introduce a bill that helps it?",3,3,412557,2012-2026,,all tables here,bills 113-119 done; senate trades done; house lines loading
 92,not started,Does office spending go to vendors who are also campaign donors?,2,2,89086588,2000-2028,,all tables here,FEC indiv is 2023-26 only
 93,not started,Do places with more rejected mail ballots overlap with high-incarceration areas?,3,3,164603,1970-2026,,all tables here,
-94,not started,Does a judge's political leaning or donations predict how they rule?,3,3,95037994,1806-2028,,all tables here,FEC indiv is 2023-26 only
+94,not started,Does a judge's political leaning or donations predict how they rule?,3,3,95037994,1806-2028,,all tables here,"FEC indiv now 14 cycles, 2000-2026, 283.8M rows"
 95,not started,Do gifts or debts they report ever involve parties in their own courtroom?,3,3,54272,1970-2025,,all tables here,
 96,not started,Do they still get disaster payouts for flood damage?,2,2,26276045,1970-2027,,all tables here,
 97,not started,Are they being rebuilt each time instead of relocated?,3,3,26300071,1933-2028,,all tables here,
@@ -116,12 +116,12 @@ E39,found something,Do the paid ones prescribe way more opioids than unpaid ones
 E40,found something,Are brand-new doctors billing Medicare for millions in expensive wound-care products?,2,2,19388356,2010-2026,,all tables here,
 E41,found something,Can hospitals still legally order tests and equipment through them?,2,2,2102101,1977-2026,,all tables here,
 E42,found something,Is drug industry money still being sent to them?,2,2,24991730,2010-2026,,all tables here,
-E43,found something,Were they already losing money before the sale?,2,2,50532,1993-2024,,all tables here,HCRIS one vintage
+E43,found something,Were they already losing money before the sale?,2,2,50532,1993-2024,,all tables here,"HCRIS now 13 years; 1,322 hospitals changed ownership type"
 E44,found something,Did its safety violations get worse right before the fines hit?,2,2,434659,2023-2026,,all tables here,
 E45,nothing there,Do safety violations spike after a storm hits the area?,2,2,2199209,2026-2026,,all tables here,
 E46,nothing there,Are these 'triple owners' actually better or worse than others?,2,2,2274906,1967-2025,,all tables here,
-E47,found something,Were they already in financial trouble before converting?,2,2,50532,1993-2024,,all tables here,HCRIS one vintage
-E48,found something,Were their financial reports already bad beforehand?,2,2,50532,1993-2024,,all tables here,HCRIS one vintage
+E47,found something,Were they already in financial trouble before converting?,2,2,50532,1993-2024,,all tables here,"HCRIS now 13 years, 2011-2023"
+E48,found something,Were their financial reports already bad beforehand?,2,2,50532,1993-2024,,all tables here,HCRIS now 13 years; 65 to 108 hospitals stop filing a year
 E49,found something,Did they win government contracts specifically during their ban?,2,2,93321752,2006-2028,,all tables here,
 E50,nothing there,"Do new health care businesses pop up right after, chasing relief money?",2,2,26262428,1808-2027,,all tables here,
 E51,found a little,Does that label actually bring in more clinics?,2,2,98196,1980-2026,,all tables here,
