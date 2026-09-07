@@ -32,10 +32,13 @@ headline was wrong. Keep reading for what changed and why.
 | roster | current only, 126 members | per congress, 255 members |
 | headline | $773M, $564M against | $586.0M against, $191.4M for |
 
-The 20x inflation was never amendments. It is 35 prank filings carrying $91.0B,
-every one both web-filed and over $20M, the largest a $9.98B claim from THE
-COURT OF DIVINE JUSTICE. The IE mart now carries IS_SUSPECT_FILING and
-IS_SUPERSEDED so the junk is flagged rather than dropped.
+The 20x inflation was never amendments. It is 35 prank filings carrying
+$129.53B [CORRECTED 2026-09-07: written down here as $91.0B, off by
+$38.5B/42% low -- resummed the 35 flagged rows fresh, see
+QA_HANDOFF_AUDIT_2026-09-06.md], every one both web-filed and over $20M, the
+largest a $9.98B claim from THE COURT OF DIVINE JUSTICE. The IE mart now
+carries IS_SUSPECT_FILING and IS_SUPERSEDED so the junk is flagged rather than
+dropped.
 
 ## The trap that ate the first rewrite
 

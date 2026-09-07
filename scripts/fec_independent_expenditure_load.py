@@ -12,10 +12,19 @@ not parse_pipe.
 
 TWO THINGS INFLATE THE RAW TOTAL, measured 2026-09-06 against the live mart:
 
-  prank filings                                                     $91.0B, 35 rows
+  prank filings                                                  $129.53B, 35 rows
+      CORRECTED 2026-09-07: this line said $91.0B, off by $38.5B/42% low --
+      resummed the 35 flagged rows fresh, see QA_HANDOFF_AUDIT_2026-09-06.md.
+      The row count (35) was already right; only the dollar figure was wrong,
+      and nothing below recomputes it -- flag() sums EXP_AMO at runtime, it was
+      never hardcoded.
       FEC's bulk file carries whatever gets web-filed, including a $9.98 billion
       "expenditure" from THE COURT OF DIVINE JUSTICE and one from Republican Emo
-      Girl. Nineteen rows across four cycles. Every one is BOTH web-filed, so
+      Girl. Nineteen rows across four cycles [UNVERIFIED 2026-09-07: this sits
+      next to a header that says 35 rows total -- 19 vs 35 was never
+      reconciled here, and no per-cycle breakdown was re-run to fix it. Don't
+      trust either number for "how many of the 35 land in which cycle" until
+      someone reruns it]. Every one is BOTH web-filed, so
       TRAN_ID starts 'WFT', AND over $20M. Neither test alone is safe: the plain
       dollar cap also catches 23 real rows worth $1.371B from FF PAC, MAGA Inc
       and Preserve America; the WFT prefix alone catches 5,339 real small filers

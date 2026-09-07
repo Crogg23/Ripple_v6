@@ -78,9 +78,11 @@ Only 2024 was ever checked against an outside figure, the FEC's published ~$4.4B
 The other four are unverified. Say so if you cannot verify them either.
 
 **The suspect flag** is `TRAN_ID LIKE 'WFT%' AND EXP_AMO > 20,000,000`, 35 rows
-carrying $91.0B. Attack it: find a legitimate row it catches, or a junk row it
-misses. It is known to miss Logan Keener at $20.0M in 2026, Kurt Cobain at
-$12.4M in 2022 and Jason Kim at $10.0M in 2020.
+carrying $129.53B [CORRECTED 2026-09-07: written down everywhere as $91.0B,
+which was off by $38.5B/42% low — resummed the 35 flagged rows fresh, see
+QA_HANDOFF_AUDIT_2026-09-06.md]. Attack it: find a legitimate row it catches,
+or a junk row it misses. It is known to miss Logan Keener at $20.0M in 2026,
+Kurt Cobain at $12.4M in 2022 and Jason Kim at $10.0M in 2020.
 
 **Question 84**, congress-matched, three committees, 2018-2026: $586.0M against
 and $191.4M for, 157 candidates. An earlier version of this number was
@@ -96,10 +98,16 @@ Cross-party cosponsorship 24.2% in the 113th, 17.4% in the 117th, 21.6% in the
 bills that never became law.
 
 **527 money:** RGA $2,209.0M, DGA $1,137.8M, ActBlue Non-Federal $1,062.6M across
-4,508,587 contributions.
+5,050,398 contributions [CORRECTED 2026-09-07: written down as 4,508,587,
+which is just ActBlue's own row count — RGA (257,621 rows) and DGA (284,190
+rows) were excluded from the combined total. See QA_HANDOFF_AUDIT_2026-09-06.md].
 
-**Senate trades:** 62 distinct filers, all 62 matching the crosswalk with no
-fan-out. Senators off Banking, Finance and Commerce average 193 trades each;
+**Senate trades:** 59 distinct filers today, not 62 — no counting method tried
+reaches 62 [CORRECTED 2026-09-07: written down as "62 distinct filers, all 62
+matching the crosswalk with no fan-out." There IS an unresolved collision: last
+name "Scott" matches both Tim Scott and Rick Scott, both sitting senators on a
+relevant committee across congresses 116-119. See QA_HANDOFF_AUDIT_2026-09-06.md].
+Senators off Banking, Finance and Commerce average 193 trades each;
 those on one average 85. That second pair was reported as a FIRST NUMBER and
 explicitly not an answer to question 78.
 

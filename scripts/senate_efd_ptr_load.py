@@ -46,6 +46,7 @@ of 799 must not restart at 1.
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -114,7 +115,8 @@ def index(s: requests.Session, years: list[int]) -> pd.DataFrame:
             for d in j["data"]:
                 m = re.search(r'href="([^"]+)"[^>]*>(.*?)</a>', d[3], re.S)
                 link = m.group(1) if m else None
-                title = re.sub(r"<[^>]+>", "", m.group(2)).strip() if m else None
+                title = (html.unescape(re.sub(r"<[^>]+>", "", m.group(2))).strip()
+                          if m else None)
                 kind = "paper" if link and "/paper/" in link else "ptr"
                 rows.append({
                     "FILER_FIRST": d[0].strip(),
@@ -154,7 +156,11 @@ ROW = re.compile(r"<tr[^>]*>(.*?)</tr>", re.S)
 
 
 def _cells(tr: str) -> list[str]:
-    return [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", c)).strip() for c in CELL.findall(tr)]
+    """Strip tags, then unescape entities (&amp; -> &, &nbsp; -> a real space)
+    before collapsing whitespace -- otherwise &amp;/&nbsp; land literally in
+    ASSET_DESCRIPTION, COMMENT, and every other cell pulled off the page."""
+    return [re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", c))).strip()
+            for c in CELL.findall(tr)]
 
 
 def trades(s: requests.Session, rec: dict) -> list[dict]:

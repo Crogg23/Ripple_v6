@@ -71,6 +71,52 @@ back to its source text is not evidence.
 
 AMOUNTS ARE RANGES, never numbers. "$1,001 - $15,000" is the finest resolution
 the form has. Any total is a bounded estimate and must be reported as one.
+
+A LINE CAN CARRY MANY TRADES, GLUED, NOT ONE. A busy filer's PDF often reads
+the whole table onto one pypdf line with no separator between the end of one
+trade and the owner code of the next:
+
+    JTAlphabet Inc. - Class C CapitalStock (gOOg) [ST] P 06/24/2021 ...
+    ...JTApple Inc. (AAPL) [ST] S 06/18/2021 ...
+
+Searching once (re.search) finds only the first trade on that line and drops
+every other one silently -- a fresh 20-filing audit caught one such filing
+landing 3 of 21 real trades. The fix is finditer: every trade on the line, not
+the first, each keeping only ITS OWN slice of the line (the text since the
+previous trade found on that same line, or since the line start for the
+first) as its asset text. A ticker or type bracket is searched for only
+inside that slice, never the whole line -- searching the whole line lets a
+mismatched or missing ticker on trade 1 fall through and steal trade 2's
+ticker instead, which is exactly as wrong as it sounds and was landing in
+the data.
+
+THE OWNER CODE IS FOUND, NEVER ASSUMED TO LEAD THE BLOCK. Each trade's own
+slice usually still has somebody else's leftovers glued to the front of it --
+the previous trade's own "FILING STATUS / SUBHOLDING OF / DESCRIPTION" tail,
+or (for the first trade on a page) the whole page header ending "...Amount
+Cap. Gains >$200?". Both are stripped by finding the owner code itself (the
+literal SP/DC/JT, never anchored to string start) and keeping only what comes
+after the FIRST one found outside a (ticker) or [type] -- first, not last,
+because the true asset name can itself spell out one of those letter pairs
+later on ("FUNDCOMMON" contains "DC") without that making it an owner. A
+candidate with no real owner code before it (the header text alone, when the
+owner column is genuinely blank for a self-owned trade) is left as SELF, same
+as before. When a page break orphans just the two-letter owner code onto the
+tail of a form-furniture line by itself, the backward walk rescues that one
+token before it stops there rather than discarding the whole line.
+
+TICKER CASE IS NOT TRUSTWORTHY, AND "Ticker:" SOMETIMES PREFIXES IT. The same
+small-caps rendering that turns "GOOG" into "gOOg" turns "AGCO" into "AgCO" --
+an all-caps-only ticker regex simply fails on these and used to fall through
+to the next ticker anywhere in the blob (see above). The fix matches any
+case and normalizes with .upper(). Some assets print "(Ticker: CCLFX)"
+instead of a bare "(CCLFX)"; the regex strips that label if present.
+
+A BARE "No" MATCHES "note", "Nokia", "Nordstrom", ANYTHING STARTING THAT WAY,
+if it is not word-bounded. The NOISE filter's Yes/No alternative (there to
+catch the certification page's Yes/No checkbox line) needs \bNo\b, or an
+asset description that legitimately starts "note ..." gets swallowed as if
+it were that checkbox line and the row lands with everything blank.
 """
 from __future__ import annotations
 
@@ -112,14 +158,32 @@ TRADE = re.compile(
     r"(?P<d1>\d{2}/\d{2}/\d{4})\s*(?P<d2>\d{2}/\d{2}/\d{4})\s*"
     # The trailing dash is INSIDE the capture so a cut-off range is detectable.
     r"(?P<amt>\$[\d,]+(?:\s*-\s*(?:\$[\d,]+)?)?\+?)")
-OWNER_LEAD = re.compile(r"^(SP|DC|JT)\b\s*")
 STOP = re.compile(r"^(?:F\s|S\s+O|S\s+:|\*|I\s|L\s+:|C\s|D\s|Yes\b|No\b)", re.I)
-TICKER = re.compile(r"\(([A-Z][A-Z0-9.\-]{0,6})\)")
+# Case-insensitive, and tolerant of a "Ticker: " label glued inside the
+# parenthetical ("(Ticker: CCLFX)") -- see the module docstring, bug 6.
+TICKER = re.compile(r"\((?:Ticker:?\s*)?([A-Za-z][A-Za-z0-9.\-]{0,6})\)", re.I)
 ASSET_TYPE = re.compile(r"\[([A-Z]{2,4})\]")
+# \b after Yes/No, always -- a bare "No" with no boundary matches "note",
+# "Nokia", "Nordstrom", "Northrop"... any asset name that starts that way.
+# See the module docstring, bug 5.
 NOISE = re.compile(r"^(?:ID|Owner|Asset|Type|Date|Amount|Cap\.|Gains|\$200\?|"
                    r"Notification|F\s|S\s|P\s+T\s+R|Clerk of the House|Name:|Status:|"
-                   r"State/District|\*|I\s|C\s|Yes|No)", re.I)
+                   r"State/District|\*|I\s|C\s|Yes\b|No\b)", re.I)
 TYPE_NAME = {"P": "Purchase", "S": "Sale", "E": "Exchange"}
+
+# The three literal owner-column codes, never anchored -- see parse_pdf.
+OWNER_TOKEN = re.compile(r"SP|DC|JT")
+# A ticker parenthetical or an asset-type bracket. A hit inside either of
+# these is a ticker/type character pair, never the owner column.
+ENCLOSED = re.compile(r"\([^()]*\)|\[[^\[\]]*\]")
+# The table header ("...ID Owner Asset Transaction Type Date Notification
+# Date Amount Cap. Gains >$200?") ends in this exact literal every time, and
+# it is often glued directly onto the front of the FIRST trade on a page --
+# same line, no newline, so the backward line-walk never sees it as a
+# separate line to stop on. Strip through the LAST copy of it (greedy .*
+# backtracks to the rightmost match), whatever is glued in front of it is
+# never part of an asset. See the module docstring, bug 4.
+HEADER_JUNK = re.compile(r".*\$200\?", re.S)
 
 
 def index_year(year: int) -> list[dict]:
@@ -153,6 +217,26 @@ def clean_asset(s: str) -> str | None:
     return s or None
 
 
+def _first_owner_outside_enclosures(text: str) -> re.Match | None:
+    """The leftmost SP/DC/JT that is not sitting inside a (ticker) or [type].
+
+    Never anchored -- the real owner code is glued directly onto its own
+    trade's asset name with nothing between them, so it can land anywhere in
+    a block that also carries the previous trade's tail text or page
+    furniture in front of it (HEADER_JUNK strips the one place that tail
+    text reliably hides a false hit -- "Washington, DC" in the page header).
+    Take the FIRST real hit, not the last: the true owner code always leads
+    its own asset name, and the asset name itself can coincidentally spell
+    out one of these three letter pairs later on (an all-caps "FUNDCOMMON"
+    contains "DC") without that making it an owner column.
+    """
+    spans = [(mm.start(), mm.end()) for mm in ENCLOSED.finditer(text)]
+    for mm in OWNER_TOKEN.finditer(text):
+        if not any(s <= mm.start() < e for s, e in spans):
+            return mm
+    return None
+
+
 def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
     text = "".join((pg.extract_text() or "") for pg in PdfReader(io.BytesIO(raw)).pages)
     # NUL, not space. See the docstring: without this the form's own label lines
@@ -161,59 +245,97 @@ def parse_pdf(raw: bytes, rec: dict) -> list[dict]:
     lines = [re.sub(r"[ \t]+", " ", l).strip() for l in text.split("\n") if l.strip()]
     out = []
     for i, line in enumerate(lines):
-        m = TRADE.search(line)
-        if not m:
+        # ALL of them, never just the first. Several trades can run together
+        # on one pypdf line with no separator between the end of one and the
+        # owner code of the next. See the module docstring, bug 1.
+        matches = list(TRADE.finditer(line))
+        if not matches:
             continue
-        amt = re.sub(r"\s+", " ", m.group("amt")).strip()
-        # "$50,001 -" is a range whose upper bound is on the NEXT line. Without
-        # this the row lands as a bare "$50,001", which reads like a number.
-        if amt.endswith("-") and i + 1 < len(lines):
-            nxt = re.match(r"\$[\d,]+", lines[i + 1])
-            if nxt:
-                amt = f"{amt} {nxt.group(0)}"
-        # Walk BACK to collect the whole asset block. It is one to three lines
-        # and it carries the owner code at its front.
-        block = []
-        before = line[:m.start()].strip()
-        if before:
-            block.append(before)
-        for back in range(1, 5):
-            j = i - back
-            if j < 0:
-                break
-            cand = lines[j]
-            if TRADE.search(cand) or NOISE.match(cand) or STOP.match(cand):
-                break
-            block.append(cand)
-        block.reverse()
-        asset_raw = " ".join(block)
-        lead = OWNER_LEAD.match(asset_raw)
-        owner = m.group("owner") or (lead.group(1) if lead else "SELF")
-        asset = clean_asset(OWNER_LEAD.sub("", asset_raw))
-        blob = f"{asset or ''} {line}"
-        tick = TICKER.search(blob)
-        atype = ASSET_TYPE.search(blob)
-        out.append({
-            "DOC_ID": rec["DOC_ID"],
-            "FILER_LAST": rec["FILER_LAST"],
-            "FILER_FIRST": rec["FILER_FIRST"],
-            "STATE_DISTRICT": rec["STATE_DISTRICT"],
-            "FILING_YEAR": rec["FILING_YEAR"],
-            "FILING_DATE": rec["FILING_DATE"],
-            "IS_SCAN": "False",
-            "LINE_NO": str(len(out) + 1),
-            "OWNER": owner,
-            "TRANSACTION_TYPE": TYPE_NAME.get(m.group("tp"), m.group("tp")),
-            "IS_PARTIAL": str(bool(m.group("part"))),
-            "TRANSACTION_DATE": m.group("d1"),
-            "NOTIFICATION_DATE": m.group("d2"),
-            "AMOUNT_RANGE": amt,
-            "TICKER": tick.group(1) if tick else None,
-            "ASSET_TYPE": atype.group(1) if atype else None,
-            "ASSET_DESCRIPTION": asset,
-            # Always. A parsed trade with no traceable source line is not evidence.
-            "RAW_LINE": line[:2000],
-        })
+        prev_end = 0
+        for k, m in enumerate(matches):
+            amt = re.sub(r"\s+", " ", m.group("amt")).strip()
+            # "$50,001 -" is a range whose upper bound is on the NEXT line.
+            # Only checked for the last trade on the line -- an amount ahead
+            # of another trade on the SAME line was never cut off.
+            if amt.endswith("-") and k == len(matches) - 1 and i + 1 < len(lines):
+                nxt = re.match(r"\$[\d,]+", lines[i + 1])
+                if nxt:
+                    amt = f"{amt} {nxt.group(0)}"
+
+            # This trade's own slice of the current line: from the end of the
+            # PREVIOUS trade found on this line (or the line start, for the
+            # first), up to this trade's own P/S/E. For a second-or-later
+            # trade on a glued line this is the whole story; it never needs
+            # anything from an earlier physical line.
+            same_line = line[prev_end:m.start()]
+            prev_end = m.end()
+
+            block = []
+            if same_line.strip():
+                block.append(same_line)
+            if k == 0:
+                # Walk BACK to collect the whole asset block. It is one to
+                # three lines and it carries the owner code at its front --
+                # except when a page break has orphaned that owner code onto
+                # the tail of the header/furniture line right above; rescue
+                # just that trailing code before stopping there.
+                for back in range(1, 5):
+                    j = i - back
+                    if j < 0:
+                        break
+                    cand = lines[j]
+                    if TRADE.search(cand):
+                        break
+                    if NOISE.match(cand) or STOP.match(cand):
+                        orphan = re.search(r"(SP|DC|JT)\s*$", cand)
+                        if orphan:
+                            block.append(orphan.group(1))
+                        break
+                    block.append(cand)
+            block.reverse()
+            asset_raw = " ".join(block)
+            # Strip the table-header boilerplate glued onto the front of the
+            # first trade on a page. See HEADER_JUNK and the module
+            # docstring, bug 4.
+            asset_raw = HEADER_JUNK.sub("", asset_raw, count=1)
+
+            owner_hit = _first_owner_outside_enclosures(asset_raw)
+            if owner_hit:
+                owner = owner_hit.group(0)
+                asset_local = asset_raw[owner_hit.end():]
+            else:
+                owner = m.group("owner") or "SELF"
+                asset_local = asset_raw
+
+            asset = clean_asset(asset_local)
+            # Ticker/type are searched in THIS trade's own isolated text only
+            # -- never the whole raw line -- so a mismatched ticker case or a
+            # missing ticker never falls through to a different trade's
+            # ticker further down the same blob. See the module docstring,
+            # bugs 1, 2 and 3.
+            tick = TICKER.search(asset_local)
+            atype = ASSET_TYPE.search(asset_local)
+            out.append({
+                "DOC_ID": rec["DOC_ID"],
+                "FILER_LAST": rec["FILER_LAST"],
+                "FILER_FIRST": rec["FILER_FIRST"],
+                "STATE_DISTRICT": rec["STATE_DISTRICT"],
+                "FILING_YEAR": rec["FILING_YEAR"],
+                "FILING_DATE": rec["FILING_DATE"],
+                "IS_SCAN": "False",
+                "LINE_NO": str(len(out) + 1),
+                "OWNER": owner,
+                "TRANSACTION_TYPE": TYPE_NAME.get(m.group("tp"), m.group("tp")),
+                "IS_PARTIAL": str(bool(m.group("part"))),
+                "TRANSACTION_DATE": m.group("d1"),
+                "NOTIFICATION_DATE": m.group("d2"),
+                "AMOUNT_RANGE": amt,
+                "TICKER": tick.group(1).upper() if tick else None,
+                "ASSET_TYPE": atype.group(1) if atype else None,
+                "ASSET_DESCRIPTION": asset,
+                # Always. A parsed trade with no traceable source line is not evidence.
+                "RAW_LINE": line[:2000],
+            })
     return out
 
 

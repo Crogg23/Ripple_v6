@@ -7,11 +7,20 @@
 -- GRAIN: one row per independent expenditure transaction, cycles 2018 to 2026.
 --
 -- DO NOT SUM EXP_AMO WITHOUT THE TWO FLAGS. Raw is $104B across five cycles and
--- about $92B of that is not real:
+-- about $92B of that is not real [FLAGGED 2026-09-07: this $104B/$92B pair was
+-- built off the old wrong $91.0B suspect figure below and is now inconsistent
+-- with it -- $129.53B alone exceeds a $104B raw total, which isn't possible.
+-- Nobody has re-summed raw EXP_AMO across all five cycles fresh; don't quote
+-- $104B or $92B until someone does]:
 --
---   IS_SUSPECT_FILING  35 prank rows, $91.0B. Every one is BOTH web-filed, so
---                      TRAN_ID starts 'WFT', AND over $20M. A $9.98B row from
---                      THE COURT OF DIVINE JUSTICE is the biggest.
+--   IS_SUSPECT_FILING  35 prank rows, $129.53B (CORRECTED 2026-09-07: this
+--                      comment said $91.0B, off by $38.5B/42% low -- the
+--                      SELECT below just passes the flag through, nothing
+--                      here computes the total; see
+--                      QA_HANDOFF_AUDIT_2026-09-06.md). Every one is BOTH
+--                      web-filed, so TRAN_ID starts 'WFT', AND over $20M. A
+--                      $9.98B row from THE COURT OF DIVINE JUSTICE is the
+--                      biggest.
 --   IS_SUPERSEDED      an amended filing restates its transactions, so the
 --                      original sits here too. Food & Water Action's $114M row
 --                      appears nine times.
