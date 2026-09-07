@@ -65,6 +65,10 @@ def _find_model(name: str) -> Path:
     return hits[0]
 
 
+def _folder_default_view(path: Path) -> bool:
+    return any(part in ("staging", "landing_clean", "timeline") for part in path.parts)
+
+
 def target_of(path: Path) -> str:
     """Where a model's output lives, resolved the way dbt resolves it: an
     explicit config schema means LIBRARY_MARTS.<SCHEMA>, and no schema at all
@@ -92,7 +96,13 @@ def render(path: Path) -> tuple[str, str, str, str]:
     cfg = m.group(1)
     schema = re.search(r"schema\s*=\s*['\"](\w+)['\"]", cfg)
     materialized = re.search(r"materialized\s*=\s*['\"](\w+)['\"]", cfg)
-    kind = materialized.group(1) if materialized else "table"
+    # dbt_project.yml sets +materialized: view on the staging, landing_clean and
+    # timeline folders, so those models name no materialization of their own.
+    # Honour the folder default rather than falling through to 'table', which is
+    # how a staging view gets built as a table under the wrong database.
+    folder_view = any(part in ("staging", "landing_clean", "timeline")
+                      for part in path.parts)
+    kind = materialized.group(1) if materialized else ("view" if folder_view else "table")
     if kind not in ("table", "view"):
         raise SystemExit(f"{path.name}: materialized={kind}, only table and view handled")
     if not schema and kind != "view":

@@ -38,8 +38,12 @@ renamed as (
         "MEMO_CD" as memo_cd,
         "MEMO_TEXT" as memo_text,
         "SUB_ID" as sub_id,
+        -- Which two-year bulk file the row came from. Landed 2026-09-06 when the
+        -- loader went from 2 cycles to 14. Without it there is no way to tell a
+        -- missing cycle from a cycle that genuinely had no money in it.
+        "CYCLE_FILE" as cycle_file,
         INGESTED_AT as _loaded_at,
-        'https://www.fec.gov/files/bulk-downloads/2024/indiv24.zip' as _source_url
+        'https://www.fec.gov/files/bulk-downloads/' as _source_url
 
     from source
 

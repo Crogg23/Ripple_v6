@@ -58,7 +58,10 @@ def main() -> int:
 
     index = f"{TL}.TIMELINE__{args.domain}_INDEX"
     staged = f"{index}__NEW"
-    prev = f"{index}__PREV_{dt.date.today():%Y%m%d}"
+    # A date-only suffix collides the second time a domain is refreshed in one
+    # day, and the rename fails AFTER the new table is built, leaving __NEW
+    # orphaned and the live table untouched. Seconds make it unique.
+    prev = f"{index}__PREV_{dt.datetime.now():%Y%m%d_%H%M%S}"
     view = f"{TL}.{args.view}"
 
     conn = snow.connect()
