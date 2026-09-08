@@ -48,6 +48,7 @@ import os
 import sys
 import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import pandas as pd
@@ -68,7 +69,18 @@ import _bulk_load_utils as bulk  # noqa: E402
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-BASE_URL = "https://lda.senate.gov/api/v1"
+# lda.gov, NOT lda.senate.gov. The legacy host still answers and still
+# returns 200, but it IGNORES the Authorization header -- it silently
+# serves every request on the anonymous tier. Measured 2026-09-07 with
+# the SAME key, 60-second probes, nothing else running:
+#
+#     lda.gov         + key   39 req/min, 0 throttles
+#     lda.gov         no key  15 req/min, throttled
+#     lda.senate.gov  + key   15 req/min, throttled
+#
+# That one wrong hostname is why every earlier run crawled at the
+# anonymous rate and why the key looked dead. It was not.
+BASE_URL = "https://lda.gov/api/v1"
 API_KEY = os.environ.get("LDA_API_KEY", "").strip()
 USER_AGENT = "Ripple-Library/1.0 (data research; w.rogers9999@gmail.com)"
 
@@ -76,8 +88,17 @@ HEADERS = {"User-Agent": USER_AGENT}
 if API_KEY:
     HEADERS["Authorization"] = f"Token {API_KEY}"
 
-# Rate limiting: 120/min with key = 2/sec. Stay conservative.
-REQUEST_DELAY = 0.55  # seconds between requests
+# The documented ceiling with a registered key is 120/min. On lda.gov the
+# real limiter is round-trip latency, not the throttle: a no-delay
+# sequential loop measured 39/min with ZERO throttles. A 0.55s sleep on
+# top of that would drop it to about 28/min for no benefit, so the delay
+# is now a small courtesy pause rather than a rate control.
+REQUEST_DELAY = 0.1  # seconds between requests
+
+# Pages fetched concurrently. Four sits just under the key's 120/min
+# ceiling at the latency measured on 2026-09-07 and leaves headroom so a
+# retry never pushes the account into a throttle.
+PAGE_WORKERS = 4
 
 CHECKPOINT_FILE = _REPO / "logs" / "senate_lda_checkpoint.json"
 FIRST_YEAR = 1999
@@ -108,10 +129,17 @@ TBL_POSITIONS = "FED_SENATE_LDA_LOBBYIST_POSITIONS"
 # HTTP 200. The key in .env is silently ignored, so every request is running
 # on the anonymous tier: a 25-row page cap and aggressive throttling.
 #
-# 200,000 is kept because it is harmless and correct on its own terms, but the
-# crawl will not get materially faster until LDA_API_KEY is a key the API
-# actually honours. Register a fresh one at lda.senate.gov/api/register/.
-FLUSH_ROWS = 200_000
+# EPILOGUE 2026-09-07: the key was never the problem either. The loader was
+# calling lda.senate.gov, the legacy host, which returns 200 and silently
+# ignores the Authorization header -- every request ran on the anonymous tier.
+# Same key against lda.gov: 39 req/min and zero throttles. See BASE_URL.
+#
+# So the number came back down. 200,000 was a bad size for a different reason:
+# a run killed before its first flush loses everything buffered, and at 200k a
+# year of positions can be most of the way through before anything lands. That
+# happened once today. 50,000 writes roughly six times a year at current
+# volumes, which is often enough that a kill costs minutes, not a year.
+FLUSH_ROWS = 50_000
 
 
 # ---------------------------------------------------------------------------
@@ -197,42 +225,61 @@ def api_get(endpoint: str, params: dict | None = None) -> dict:
 
 
 def paginate_pages(endpoint: str, year: int, year_param: str = "filing_year"):
-    """Yield one page of results at a time, never the whole year at once.
+    """Yield one page of results at a time, in order, fetching several ahead.
 
     This is the fix for the 90-minute kill with nothing landed. The caller
     flattens and flushes as pages arrive, so peak memory is one flush buffer
-    rather than a year of nested JSON."""
-    # STALE AS OF 2026-09-07. This used to read "page_size 250 requires the
-    # LDA_API_KEY (anonymous cap is 25), verified live 2026-08-22". Retested
-    # that day against /filings/ and it is no longer true: the API returns 25
-    # results whatever you ask for and whatever you send.
-    #
-    #   Authorization: Token / Api-Key / Bearer, X-Api-Key, ?api_key=
-    #   all five -> HTTP 200, 25 results, no rate-limit headers at all
-    #   asked for page_size 100 -> got 25
-    #
-    # The throttle is fixed too, and pacing cannot dodge it. 20 requests at
-    # each of three delays, same day:
-    #
-    #   delay 0.55s -> 16.3 pages/min, 1 throttle    delay 1.5s -> 15.1
-    #   delay 1.00s -> 15.7 pages/min, 1 throttle
-    #
-    # So ~16 requests a minute is the ceiling for this key, and 25 rows a page
-    # is the cap. 1.6M filings is 65,000 requests, roughly 68 hours. The 250
-    # stays in the call because it costs nothing and would work again if the
-    # API restores keyed page sizes -- but do not plan around it.
-    params = {year_param: year, "page_size": 250 if API_KEY else 25, "page": 1}
-    seen = 0
-    while True:
-        data = api_get(endpoint, params)
-        batch = data.get("results", [])
-        seen += len(batch)
-        yield batch
-        if not data.get("next"):
-            break
-        params["page"] += 1
-        if params["page"] % 20 == 0:
-            print(f"      page {params['page']}, {seen:,} records so far...", flush=True)
+    rather than a year of nested JSON.
+
+    PAGE SIZE IS 25 FOR EVERYONE. The OpenAPI spec at lda.gov/api/openapi/v1/
+    says it plainly -- "you may set the page size ... up to 25". An older
+    comment here claimed 250 worked with a key; it never did.
+
+    PARALLEL SINCE 2026-09-07, and this is where the time actually went. With
+    a key on lda.gov the API stops throttling entirely, so the limit becomes
+    round-trip latency: one request at a time measured 35-39 pages/min with
+    zero 429s while the key's documented ceiling is 120/min. Three quarters of
+    the budget was going unused waiting on the wire.
+
+    Page 1 carries `count`, so the whole page range is known up front and the
+    rest can be fetched in a pool. Results are still yielded strictly in page
+    order, so the caller sees no difference and a failure mid-year still
+    checkpoints the same way.
+    """
+    params = {year_param: year, "page_size": 25, "page": 1}
+    first = api_get(endpoint, params)
+    batch = first.get("results", [])
+    if not batch:
+        return
+    yield batch
+
+    total = first.get("count") or 0
+    last_page = (total + 24) // 25
+    if last_page <= 1:
+        return
+    seen = len(batch)
+
+    def fetch(pg: int):
+        p = dict(params)
+        p["page"] = pg
+        return api_get(endpoint, p).get("results", [])
+
+    # Keep twice the worker count in flight so a slow response never leaves a
+    # worker idle, but no more -- the buffer is bounded so memory stays flat.
+    with ThreadPoolExecutor(max_workers=PAGE_WORKERS) as ex:
+        pending: dict[int, object] = {}
+        nxt, submit = 2, 2
+        while nxt <= last_page:
+            while submit <= last_page and len(pending) < PAGE_WORKERS * 2:
+                pending[submit] = ex.submit(fetch, submit)
+                submit += 1
+            rows = pending.pop(nxt).result()
+            seen += len(rows)
+            yield rows
+            if nxt % 40 == 0:
+                print(f"      page {nxt}/{last_page}, {seen:,} records so far...",
+                      flush=True)
+            nxt += 1
 
 
 def paginate_all(endpoint: str, year: int, year_param: str = "filing_year") -> list[dict]:
