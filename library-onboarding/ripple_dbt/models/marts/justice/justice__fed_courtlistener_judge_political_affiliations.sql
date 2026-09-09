@@ -14,8 +14,8 @@ select
     POLITICAL_PARTY as political_party,
     SOURCE as source,
     try_to_date(DATE_START) as date_start,
-    try_to_date(DATE_GRANULARITY_START) as date_granularity_start,
+    nullif(trim(DATE_GRANULARITY_START), '') as date_granularity_start,
     try_to_date(DATE_END) as date_end,
-    try_to_date(DATE_GRANULARITY_END) as date_granularity_end,
+    nullif(trim(DATE_GRANULARITY_END), '') as date_granularity_end,
     PERSON_ID as person_id
 from source

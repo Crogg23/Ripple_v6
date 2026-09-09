@@ -22,7 +22,7 @@ select
     WIKIDATA as wikidata,
     WIKIPEDIA as wikipedia,
     GOOGLE_ENTITY_ID as google_entity_id,
-    try_to_double(LEGISLATOR_SET) as legislator_set,
+    nullif(trim(LEGISLATOR_SET), '') as legislator_set,
     FEC_IDS as fec_ids,
     NAME_FIRST as name_first,
     NAME_LAST as name_last,

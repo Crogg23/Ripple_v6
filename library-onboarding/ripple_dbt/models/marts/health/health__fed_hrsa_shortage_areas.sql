@@ -60,7 +60,7 @@ select
     HPSA_SHORTAGE as hpsa_shortage,
     HPSA_STATUS_CODE as hpsa_status_code,
     HPSA_TYPE_CODE as hpsa_type_code,
-    try_to_date(HPSA_WITHDRAWN_DATE_STRING) as hpsa_withdrawn_date_string,
+    try_to_date(nullif(trim(HPSA_WITHDRAWN_DATE_STRING), ''), 'YYYY/MM/DD') as hpsa_withdrawn_date_string,
     PRIMARY_STATE_FIPS_CODE as primary_state_fips_code,
     PRIMARY_STATE_NAME as primary_state_name,
     PROVIDER_TYPE as provider_type,

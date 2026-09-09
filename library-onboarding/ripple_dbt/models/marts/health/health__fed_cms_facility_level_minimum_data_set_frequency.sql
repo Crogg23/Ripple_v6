@@ -15,7 +15,7 @@ select
     ZIP_CODE as zip_code,
     FIPS_COUNTY_CODE as fips_county_code,
     COUNTY_NAME as county_name,
-    try_to_date(REPORT_DATE) as report_date,
+    nullif(trim(REPORT_DATE), '') as report_date,
     MDS_ITEM_QUESTION_DESCRIPTION as mds_item_question_description,
     MDS_ITEM_RESPONSE as mds_item_response,
     try_to_double(OVERALL_PERCENT) as overall_percent,

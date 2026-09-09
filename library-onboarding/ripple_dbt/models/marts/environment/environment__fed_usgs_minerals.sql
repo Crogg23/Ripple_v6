@@ -44,7 +44,7 @@ select
     OREBODY_FM as orebody_fm,
     WORK_TYPE as work_type,
     MODEL as model,
-    try_to_double(ALTERATION) as alteration,
+    nullif(trim(ALTERATION), '') as alteration,
     CONC_PROC as conc_proc,
     NAMES as names,
     ORE_CTRL as ore_ctrl,
@@ -64,5 +64,5 @@ select
     DISC_YR as disc_yr,
     PROD_YRS as prod_yrs,
     DISCR as discr,
-    try_to_double(SCORE) as score
+    nullif(trim(SCORE), '') as score
 from source

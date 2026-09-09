@@ -39,7 +39,7 @@ select
     MPV_ID as mpv_id,
     try_to_number(FATAL_ENCOUNTERS_ID) as fatal_encounters_id,
     ENCOUNTER_TYPE as encounter_type,
-    try_to_number(INITIAL_REPORTED_REASON_FOR_ENCOUNTER) as initial_reported_reason_for_encounter,
+    nullif(trim(INITIAL_REPORTED_REASON_FOR_ENCOUNTER), '') as initial_reported_reason_for_encounter,
     NAMES_OF_OFFICERS_INVOLVED as names_of_officers_involved,
     RACE_OF_OFFICERS_INVOLVED as race_of_officers_involved,
     KNOWN_PAST_SHOOTINGS_OF_OFFICER_S as known_past_shootings_of_officer_s,

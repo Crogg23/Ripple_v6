@@ -15,5 +15,5 @@ select
     FIPS_STATE as fips_state,
     COUNTY as county,
     try_to_double(POPULATION) as population,
-    try_to_double(ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES) as estimated_age_adjusted_death_rate_11_categories_in_ranges
+    nullif(trim(ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES), '') as estimated_age_adjusted_death_rate_11_categories_in_ranges
 from source

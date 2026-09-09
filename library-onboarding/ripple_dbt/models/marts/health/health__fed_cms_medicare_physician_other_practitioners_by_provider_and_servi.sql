@@ -22,7 +22,7 @@ select
     RNDRNG_PRVDR_ZIP5 as rndrng_prvdr_zip5,
     RNDRNG_PRVDR_RUCA as rndrng_prvdr_ruca,
     RNDRNG_PRVDR_RUCA_DESC as rndrng_prvdr_ruca_desc,
-    try_to_number(RNDRNG_PRVDR_CNTRY) as rndrng_prvdr_cntry,
+    nullif(trim(RNDRNG_PRVDR_CNTRY), '') as rndrng_prvdr_cntry,
     RNDRNG_PRVDR_TYPE as rndrng_prvdr_type,
     RNDRNG_PRVDR_MDCR_PRTCPTG_IND as rndrng_prvdr_mdcr_prtcptg_ind,
     HCPCS_CD as hcpcs_cd,

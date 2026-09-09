@@ -67,7 +67,7 @@ select
     RDLGY_SRVC_CD as rdlgy_srvc_cd,
     ASC_BGN_SRVC_DT as asc_bgn_srvc_dt,
     FREESTNDNG_ASC_SW as freestndng_asc_sw,
-    try_to_number(OVRRD_BED_CNT_SW) as ovrrd_bed_cnt_sw,
+    nullif(trim(OVRRD_BED_CNT_SW), '') as ovrrd_bed_cnt_sw,
     try_to_number(CRTFD_BED_CNT) as crtfd_bed_cnt,
     try_to_number(ICFIID_BED_CNT) as icfiid_bed_cnt,
     try_to_number(MDCD_NF_BED_CNT) as mdcd_nf_bed_cnt,

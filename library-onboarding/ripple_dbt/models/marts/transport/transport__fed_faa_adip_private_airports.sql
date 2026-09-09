@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_date(PRIVATE_AIRPORT_LIST_FOR_WHICH_INFORMATION_HAS_NOT_BEEN_UPDATED_IN_THE_LAST_3_YEARS) as private_airport_list_for_which_information_has_not_been_updated_in_the_last_3_years,
+    nullif(trim(PRIVATE_AIRPORT_LIST_FOR_WHICH_INFORMATION_HAS_NOT_BEEN_UPDATED_IN_THE_LAST_3_YEARS), '') as private_airport_list_for_which_information_has_not_been_updated_in_the_last_3_years,
     UNNAMED_1 as unnamed_1,
     UNNAMED_2 as unnamed_2,
     UNNAMED_3 as unnamed_3,

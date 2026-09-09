@@ -23,5 +23,5 @@ select
     ZIP as zip,
     EIN as ein,
     try_to_number("YEAR") as year,
-    try_to_double("VALUE") as value
+    nullif(trim("VALUE"), '') as value
 from source

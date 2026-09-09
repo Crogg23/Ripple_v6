@@ -27,7 +27,7 @@ renamed as (
         -- dates
         try_to_date(trim(REPORT_RECEIVED_DATE))        as report_received_date,
         try_to_number(trim(IYEAR))                     as incident_year,
-        try_to_timestamp(trim(LOCAL_DATETIME))         as local_datetime,
+        try_to_timestamp(nullif(trim(LOCAL_DATETIME), ''), 'MM/DD/YYYY HH24:MI')         as local_datetime,
         trim(TIME_ZONE)                                as time_zone,
 
         -- operator identity (PHMSA_OPERATOR_ID is the operator join key)

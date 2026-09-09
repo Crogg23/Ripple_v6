@@ -23,7 +23,7 @@ select
     SUPLR_PRVDR_RUCA_CAT as suplr_prvdr_ruca_cat,
     SUPLR_PRVDR_RUCA as suplr_prvdr_ruca,
     SUPLR_PRVDR_RUCA_DESC as suplr_prvdr_ruca_desc,
-    try_to_number(SUPLR_PRVDR_CNTRY) as suplr_prvdr_cntry,
+    nullif(trim(SUPLR_PRVDR_CNTRY), '') as suplr_prvdr_cntry,
     SUPLR_PRVDR_SPCLTY_CD as suplr_prvdr_spclty_cd,
     SUPLR_PRVDR_SPCLTY_DESC as suplr_prvdr_spclty_desc,
     SUPLR_PRVDR_SPCLTY_SRCE as suplr_prvdr_spclty_srce,

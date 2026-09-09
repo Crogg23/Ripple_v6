@@ -45,9 +45,9 @@ renamed as (
         PHONE_NUMBER                                                          as phone_number,
 
         -- certification / dates
-        try_to_date(DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES, 'MM/DD/YYYY') as date_first_approved_to_provide_medicare_and_medicaid_services,
+        try_to_date(nullif(trim(DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES), ''), 'YYYY-MM-DD') as date_first_approved_to_provide_medicare_and_medicaid_services,
         try_to_date(DATE_OF_MOST_RECENT_HEALTH_INSPECTION, 'MM/DD/YYYY')     as date_of_most_recent_health_inspection,
-        try_to_date(PROCESSING_DATE, 'MM/DD/YYYY')                           as processing_date,
+        try_to_date(nullif(trim(PROCESSING_DATE), ''), 'YYYY-MM-DD')                           as processing_date,
 
         -- facility flags
         PROVIDER_RESIDES_IN_HOSPITAL                                         as provider_resides_in_hospital,
@@ -125,7 +125,7 @@ renamed as (
         try_to_double(ADJUSTED_WEEKEND_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY) as adjusted_weekend_total_nurse_staffing_hours_per_resident_per_day,
 
         -- health survey cycle 1
-        try_to_date(RATING_CYCLE_1_STANDARD_SURVEY_HEALTH_DATE, 'MM/DD/YYYY')     as rating_cycle_1_standard_survey_health_date,
+        try_to_date(nullif(trim(RATING_CYCLE_1_STANDARD_SURVEY_HEALTH_DATE), ''), 'YYYY-MM-DD')     as rating_cycle_1_standard_survey_health_date,
         try_to_number(RATING_CYCLE_1_TOTAL_NUMBER_OF_HEALTH_DEFICIENCIES)         as rating_cycle_1_total_number_of_health_deficiencies,
         try_to_number(RATING_CYCLE_1_NUMBER_OF_STANDARD_HEALTH_DEFICIENCIES)      as rating_cycle_1_number_of_standard_health_deficiencies,
         try_to_number(RATING_CYCLE_1_NUMBER_OF_COMPLAINT_HEALTH_DEFICIENCIES)     as rating_cycle_1_number_of_complaint_health_deficiencies,
@@ -135,7 +135,7 @@ renamed as (
         try_to_double(RATING_CYCLE_1_TOTAL_HEALTH_SCORE)                          as rating_cycle_1_total_health_score,
 
         -- health survey cycle 2-3
-        try_to_date(RATING_CYCLE_2_STANDARD_HEALTH_SURVEY_DATE, 'MM/DD/YYYY')     as rating_cycle_2_standard_health_survey_date,
+        try_to_date(nullif(trim(RATING_CYCLE_2_STANDARD_HEALTH_SURVEY_DATE), ''), 'YYYY-MM-DD')     as rating_cycle_2_standard_health_survey_date,
         try_to_number(RATING_CYCLE_2_3_TOTAL_NUMBER_OF_HEALTH_DEFICIENCIES)       as rating_cycle_2_3_total_number_of_health_deficiencies,
         try_to_number(RATING_CYCLE_2_NUMBER_OF_STANDARD_HEALTH_DEFICIENCIES)      as rating_cycle_2_number_of_standard_health_deficiencies,
         try_to_number(RATING_CYCLE_2_3_NUMBER_OF_COMPLAINT_HEALTH_DEFICIENCIES)   as rating_cycle_2_3_number_of_complaint_health_deficiencies,
@@ -156,7 +156,7 @@ renamed as (
 
         -- metadata
         current_timestamp()                                                       as _ingested_at,
-        null::varchar                                                             as _source_run_id
+        _SOURCE_RUN_ID                                                             as _source_run_id
 
     from source
 

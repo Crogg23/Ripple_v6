@@ -39,8 +39,8 @@ renamed_cast as (
 
         -- dates
         try_to_date(LISTED_ON)                              as listed_on,
-        try_to_date(LAST_DAY_UPDATED)                       as last_day_updated,
-        try_to_date(LAST_REVIEWED_ON)                       as last_reviewed_on,
+        nullif(trim(LAST_DAY_UPDATED), '')                       as last_day_updated,
+        nullif(trim(LAST_REVIEWED_ON), '')                       as last_reviewed_on,
 
         -- sort keys
         SORT_KEY                                            as sort_key,

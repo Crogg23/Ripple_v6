@@ -32,7 +32,7 @@ select
     ISREFERRALREQUIREDFORSPECIALIST as isreferralrequiredforspecialist,
     SPECIALISTREQUIRINGREFERRAL as specialistrequiringreferral,
     PLANLEVELEXCLUSIONS as planlevelexclusions,
-    try_to_double(INDIANPLANVARIATIONESTIMATEDADVANCEDPAYMENTAMOUNTPERENROLLEE) as indianplanvariationestimatedadvancedpaymentamountperenrollee,
+    nullif(trim(INDIANPLANVARIATIONESTIMATEDADVANCEDPAYMENTAMOUNTPERENROLLEE), '') as indianplanvariationestimatedadvancedpaymentamountperenrollee,
     COMPOSITERATINGOFFERED as compositeratingoffered,
     CHILDONLYOFFERING as childonlyoffering,
     CHILDONLYPLANID as childonlyplanid,

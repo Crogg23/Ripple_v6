@@ -13,7 +13,7 @@ select
     ISAMENDMENT as isamendment,
     AMENDMENTNO as amendmentno,
     AMENDMENTTYPE as amendmenttype,
-    try_to_date(CONFDENIEDEXPIRED) as confdeniedexpired,
+    nullif(trim(CONFDENIEDEXPIRED), '') as confdeniedexpired,
     try_to_date(DATEDENIEDEXPIRED) as datedeniedexpired,
     DATEREPORTED as datereported,
     REASONFORNONCONFIDENTIALITY as reasonfornonconfidentiality,

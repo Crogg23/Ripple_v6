@@ -68,7 +68,7 @@ select
     try_to_double(NUMERATOR_FOR_DISCHARGE_FUNCTION_SCORE) as numerator_for_discharge_function_score,
     try_to_double(DENOMINATOR_FOR_DISCHARGE_FUNCTION_SCORE) as denominator_for_discharge_function_score,
     try_to_double(DISCHARGE_FUNCTION_SCORE) as discharge_function_score,
-    try_to_double(FOOTNOTE_FOR_DISCHARGE_FUNCTION_SCORE) as footnote_for_discharge_function_score,
+    nullif(trim(FOOTNOTE_FOR_DISCHARGE_FUNCTION_SCORE), '') as footnote_for_discharge_function_score,
     NUMERATOR_FOR_TRANSFER_OF_HEALTH_INFORMATION_TO_THE_PROVIDER as numerator_for_transfer_of_health_information_to_the_provider,
     DENOMINATOR_FOR_TRANSFER_OF_HEALTH_INFORMATION_TO_THE_PROVIDER as denominator_for_transfer_of_health_information_to_the_provider,
     TRANSFER_OF_HEALTH_INFORMATION_TO_THE_PROVIDER as transfer_of_health_information_to_the_provider,

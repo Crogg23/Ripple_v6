@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_date(DATE_OF_ANALYSIS) as date_of_analysis,
+    nullif(trim(DATE_OF_ANALYSIS), '') as date_of_analysis,
     COUNTRY as country,
     try_to_double(TOTAL_COUNTRY_POPULATION) as total_country_population,
     VALIDITY_PERIOD as validity_period,

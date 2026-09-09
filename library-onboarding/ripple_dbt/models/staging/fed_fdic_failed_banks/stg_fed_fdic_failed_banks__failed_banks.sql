@@ -48,7 +48,7 @@ renamed_cast as (
 
         -- metadata
         current_timestamp()                                     as _ingested_at,
-        null::varchar                                           as _source_run_id
+        _SOURCE_RUN_ID                                           as _source_run_id
 
     from source
 

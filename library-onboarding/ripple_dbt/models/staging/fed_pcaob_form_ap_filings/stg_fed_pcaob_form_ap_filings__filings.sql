@@ -39,8 +39,8 @@ renamed as (
 
         -- audit report
         nullif(trim(AUDIT_REPORT_TYPE), '')                        as audit_report_type,
-        try_to_date(nullif(trim(AUDIT_REPORT_DATE), ''))           as audit_report_date,
-        try_to_date(nullif(trim(FISCAL_PERIOD_END_DATE), ''))      as fiscal_period_end_date,
+        try_to_date(nullif(trim(AUDIT_REPORT_DATE), ''), 'MM/DD/YYYY HH12:MI:SS AM')           as audit_report_date,
+        try_to_date(nullif(trim(FISCAL_PERIOD_END_DATE), ''), 'MM/DD/YYYY HH12:MI:SS AM')      as fiscal_period_end_date,
         nullif(trim(IS_MULTIPLE_AUDIT_PERIOD), '')                 as is_multiple_audit_period,
         nullif(trim(AUDIT_PERIOD_INFORMATION), '')                 as audit_period_information,
         nullif(trim(DUAL_DATED), '')                               as dual_dated,
@@ -85,14 +85,14 @@ renamed as (
         -- signature block
         nullif(trim(SIGNED_LAST_NAME), '')                         as signed_last_name,
         nullif(trim(SIGNED_FIRST_NAME), '')                        as signed_first_name,
-        try_to_date(nullif(trim(SIGNED_DATE), ''))                 as signed_date,
+        try_to_date(nullif(trim(SIGNED_DATE), ''), 'MM/DD/YYYY HH12:MI:SS AM')                 as signed_date,
         nullif(trim(SIGNED_BUSINESS_TITLE), '')                    as signed_business_title,
         nullif(trim(SIGNED_CAPACITY), '')                          as signed_capacity,
         nullif(trim(SIGNED_PHONE_NUMBER), '')                      as signed_phone_number,
         nullif(trim(SIGNED_EMAIL_ADDRESS), '')                     as signed_email_address,
 
         -- filing
-        try_to_date(nullif(trim(FILING_DATE), ''))                 as filing_date,
+        try_to_date(nullif(trim(FILING_DATE), ''), 'MM/DD/YYYY HH12:MI:SS AM')                 as filing_date,
 
         -- metadata
         to_timestamp_ntz(INGESTED_AT, 6)                           as _ingested_at,

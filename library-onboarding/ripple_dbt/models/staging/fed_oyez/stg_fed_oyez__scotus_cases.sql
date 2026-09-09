@@ -48,7 +48,7 @@ renamed as (
         -- metadata
         try_to_timestamp(SCRAPED_AT)                    as scraped_at,
         current_timestamp()                             as _ingested_at,
-        null::text                                      as _source_run_id
+        _SOURCE_RUN_ID                                      as _source_run_id
 
     from source
 

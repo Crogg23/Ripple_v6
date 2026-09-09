@@ -22,7 +22,7 @@ select
     RFRG_PRVDR_ZIP5 as rfrg_prvdr_zip5,
     RFRG_PRVDR_RUCA as rfrg_prvdr_ruca,
     RFRG_PRVDR_RUCA_DESC as rfrg_prvdr_ruca_desc,
-    try_to_number(RFRG_PRVDR_CNTRY) as rfrg_prvdr_cntry,
+    nullif(trim(RFRG_PRVDR_CNTRY), '') as rfrg_prvdr_cntry,
     RFRG_PRVDR_SPCLTY_DESC as rfrg_prvdr_spclty_desc,
     RFRG_PRVDR_SPCLTY_SRCE as rfrg_prvdr_spclty_srce,
     TOT_SUPLRS as tot_suplrs,

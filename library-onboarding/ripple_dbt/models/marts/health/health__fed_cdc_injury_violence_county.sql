@@ -19,5 +19,5 @@ select
     try_to_double(RATE_M) as rate_m,
     try_to_double(RATE_M_CI) as rate_m_ci,
     DATA_AS_OF as data_as_of,
-    try_to_date(TTM_DATE_RANGE) as ttm_date_range
+    nullif(trim(TTM_DATE_RANGE), '') as ttm_date_range
 from source

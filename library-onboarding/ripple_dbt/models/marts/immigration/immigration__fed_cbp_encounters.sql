@@ -8,7 +8,7 @@ with source as (
 )
 
 select
-    try_to_double(MONTHLY_TOTALS) as monthly_totals,
+    nullif(trim(MONTHLY_TOTALS), '') as monthly_totals,
     OCT_25 as oct_25,
     NOV_25 as nov_25,
     DEC_25 as dec_25,

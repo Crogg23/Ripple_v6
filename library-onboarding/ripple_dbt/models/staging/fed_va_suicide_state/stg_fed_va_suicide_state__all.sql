@@ -29,7 +29,7 @@ renamed as (
         try_to_number(trim(VETERAN_SUICIDES))                             as veteran_suicides,
         try_to_number(trim(POPULATION_ESTIMATE))                          as population_estimate,
         try_to_double(trim(VETERAN_SUICIDE_RATE_PER_100_000))             as veteran_suicide_rate_per_100k,
-        try_to_number(trim(GENERAL_POPULATION_SUICIDES))                  as general_population_suicides,
+        nullif(trim(GENERAL_POPULATION_SUICIDES), '')                  as general_population_suicides,
         try_to_double(trim(GENERAL_POPULATION_RATE_PER_100_000))          as general_population_rate_per_100k,
         try_to_number(trim(SUICIDES))                                     as suicides,
         try_to_double(trim(GROUP_PERCENTAGE))                             as group_percentage,

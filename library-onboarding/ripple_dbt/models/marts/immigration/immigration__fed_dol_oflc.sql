@@ -263,7 +263,7 @@ select
     PW_SURVEY_PUBLISHER_10 as pw_survey_publisher_10,
     PW_SURVEY_NAME_10 as pw_survey_name_10,
     H_1B_DEPENDENT as h_1b_dependent,
-    try_to_double(WILLFUL_VIOLATOR) as willful_violator,
+    nullif(trim(WILLFUL_VIOLATOR), '') as willful_violator,
     SUPPORT_H1B as support_h1b,
     STATUTORY_BASIS as statutory_basis,
     MASTERS_EXEMPTION as masters_exemption,

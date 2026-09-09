@@ -19,9 +19,9 @@ select
     PROGRAM_DESCS as program_descs,
     POLLUTANT_CODES as pollutant_codes,
     POLLUTANT_DESCS as pollutant_descs,
-    try_to_date(EARLIEST_FRV_DETERM_DATE) as earliest_frv_determ_date,
-    try_to_date(HPV_DAYZERO_DATE) as hpv_dayzero_date,
-    try_to_date(HPV_RESOLVED_DATE) as hpv_resolved_date,
-    try_to_date(DSCV_PATHWAY_DATE) as dscv_pathway_date,
-    try_to_date(NFTC_PATHWAY_DATE) as nftc_pathway_date
+    try_to_date(nullif(trim(EARLIEST_FRV_DETERM_DATE), ''), 'MM-DD-YYYY') as earliest_frv_determ_date,
+    try_to_date(nullif(trim(HPV_DAYZERO_DATE), ''), 'MM-DD-YYYY') as hpv_dayzero_date,
+    try_to_date(nullif(trim(HPV_RESOLVED_DATE), ''), 'MM-DD-YYYY') as hpv_resolved_date,
+    try_to_date(nullif(trim(DSCV_PATHWAY_DATE), ''), 'MM-DD-YYYY') as dscv_pathway_date,
+    try_to_date(nullif(trim(NFTC_PATHWAY_DATE), ''), 'MM-DD-YYYY') as nftc_pathway_date
 from source

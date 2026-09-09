@@ -26,7 +26,7 @@ with source as (
 select
     FORM_NUMBER as form_number,
     FORM_TITLE as form_title,
-    try_to_number(FISCAL_YEAR) as fiscal_year,
+    nullif(trim(FISCAL_YEAR), '') as fiscal_year,
     QUARTER as quarter,
     CATEGORY as category,
     COUNTRY as country,

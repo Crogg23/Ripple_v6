@@ -15,7 +15,7 @@ select
     ACTIVITY_TYPE_DESC as activity_type_desc,
     COMP_MONITOR_TYPE_CODE as comp_monitor_type_code,
     COMP_MONITOR_TYPE_DESC as comp_monitor_type_desc,
-    try_to_date(ACTUAL_END_DATE) as actual_end_date,
+    try_to_date(nullif(trim(ACTUAL_END_DATE), ''), 'MM-DD-YYYY') as actual_end_date,
     PROGRAM_CODES as program_codes,
     ACTIVITY_PURPOSE_DESC as activity_purpose_desc
 from source

@@ -25,7 +25,7 @@ select
     CLASS_ACTION as class_action,
     MONETARY_DEMAND as monetary_demand,
     COUNTY_OF_RESIDENCE as county_of_residence,
-    try_to_double(ARBITRATION_AT_FILING) as arbitration_at_filing,
+    nullif(trim(ARBITRATION_AT_FILING), '') as arbitration_at_filing,
     try_to_double(ARBITRATION_AT_TERMINATION) as arbitration_at_termination,
     MULTIDISTRICT_LITIGATION_DOCKET_NUMBER as multidistrict_litigation_docket_number,
     PLAINTIFF as plaintiff,

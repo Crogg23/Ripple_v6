@@ -13,7 +13,7 @@ renamed as (
         {{ dbt_utils.generate_surrogate_key(['DEFENDANT_COMPANY', 'DEFENDANT_PERSON', 'SETTLEMENT_DATE']) }} as fca_settlement_id,
         trim(DEFENDANT_COMPANY)                                         as company_id,
         trim(DEFENDANT_PERSON)                                          as person_name,
-        try_to_date(trim(SETTLEMENT_DATE))                              as date,
+        try_to_date(nullif(trim(SETTLEMENT_DATE), ''), 'MMMM DD, YYYY')                              as date,
 
         -- descriptive fields
         trim(CASE_TITLE)                                                as case_title,

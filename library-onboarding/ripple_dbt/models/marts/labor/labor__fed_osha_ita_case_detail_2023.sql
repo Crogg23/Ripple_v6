@@ -39,7 +39,7 @@ select
     TIME_OF_INCIDENT as time_of_incident,
     TIME_UNKNOWN as time_unknown,
     try_to_date(DATE_OF_DEATH) as date_of_death,
-    try_to_timestamp(CREATED_TIMESTAMP) as created_timestamp,
+    coalesce(try_to_timestamp(nullif(trim(CREATED_TIMESTAMP), ''), 'DDMONYYYY:HH24:MI:SS'), try_to_timestamp(nullif(trim(CREATED_TIMESTAMP), ''), 'DDMONYY:HH24:MI:SS')) as created_timestamp,
     YEAR_FILING_FOR as year_filing_for,
     NEW_NAR_WHAT_HAPPENED as new_nar_what_happened,
     NEW_NAR_BEFORE_INCIDENT as new_nar_before_incident,

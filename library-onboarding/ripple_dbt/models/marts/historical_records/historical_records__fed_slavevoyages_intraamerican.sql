@@ -64,7 +64,7 @@ select
     DATARR39,
     DATARR40,
     DATARR41,
-    {{ ripple_dt('DATE_BUY1') }} as DATE_BUY1,
+    try_to_date(nullif(trim(DATE_BUY1), ''), 'MM/DD/YYYY') as DATE_BUY1,
     {{ ripple_dt('DATE_LEFTAFR') }} as DATE_LEFTAFR,
     {{ ripple_dt('DATE_LAND1') }} as DATE_LAND1,
     {{ ripple_dt('DATE_LAND2') }} as DATE_LAND2,

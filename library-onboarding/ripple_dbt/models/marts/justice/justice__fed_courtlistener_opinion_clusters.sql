@@ -25,7 +25,7 @@ select
     -- the record, not treated as part of this fix batch: the right output
     -- type is a boolean, not a date, but there's no live defect (bad date
     -- values) forcing a fix today.
-    try_to_date(DATE_FILED_IS_APPROXIMATE) as date_filed_is_approximate,
+    nullif(trim(DATE_FILED_IS_APPROXIMATE), '') as date_filed_is_approximate,
     SLUG as slug,
     CASE_NAME_SHORT as case_name_short,
     CASE_NAME as case_name,
@@ -44,7 +44,7 @@ select
     SUMMARY as summary,
     DISPOSITION as disposition,
     HISTORY as history,
-    try_to_date(OTHER_DATES) as other_dates,
+    nullif(trim(OTHER_DATES), '') as other_dates,
     CROSS_REFERENCE as cross_reference,
     CORRECTION as correction,
     try_to_number(CITATION_COUNT) as citation_count,
