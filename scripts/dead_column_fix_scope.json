@@ -1,0 +1,234 @@
+{
+ "models/marts/economics/economics__fed_dol_form5500.sql": [
+  "ADMIN_FOREIGN_CNTRY",
+  "ADMIN_MANUAL_SIGNED_DATE",
+  "ADMIN_SIGNED_DATE",
+  "DFE_MANUAL_SIGNED_DATE",
+  "DFE_SIGNED_DATE",
+  "SPONS_DFE_LOC_FOREIGN_CNTRY",
+  "SPONS_DFE_MAIL_FOREIGN_CNTRY",
+  "SPONS_MANUAL_SIGNED_DATE",
+  "SPONS_SIGNED_DATE"
+ ],
+ "models/marts/economics/economics__intl_ipc_food_insecurity_global.sql": [
+  "DATE_OF_ANALYSIS"
+ ],
+ "models/marts/environment/environment__fed_epa_egrid_plant_2022.sql": [
+  "FLAG_INDICATING_IF_THE_PLANT_BURNED_OR_GENERATED_ANY_AMOUNT_OF_COAL",
+  "PLANT_ANNUAL_HG_COMBUSTION_OUTPUT_EMISSION_RATE_LB_MWH",
+  "PLANT_ANNUAL_HG_INPUT_EMISSION_RATE_LB_MMBTU",
+  "PLANT_ANNUAL_HG_TOTAL_OUTPUT_EMISSION_RATE_LB_MWH"
+ ],
+ "models/marts/environment/environment__fed_epa_icis_air_icis_air_fces_pces.sql": [
+  "ACTUAL_END_DATE"
+ ],
+ "models/marts/environment/environment__fed_epa_icis_air_icis_air_violation_history.sql": [
+  "DSCV_PATHWAY_DATE",
+  "EARLIEST_FRV_DETERM_DATE",
+  "HPV_DAYZERO_DATE",
+  "HPV_RESOLVED_DATE",
+  "NFTC_PATHWAY_DATE"
+ ],
+ "models/marts/environment/environment__fed_epa_sdwa_sdwa_pub_water_systems.sql": [
+  "SEASON_BEGIN_DATE",
+  "SEASON_END_DATE"
+ ],
+ "models/marts/environment/environment__fed_noaa_storm_events.sql": [
+  "BEGIN_DATE_TIME",
+  "END_DATE_TIME"
+ ],
+ "models/marts/environment/environment__fed_phmsa_flagged_incidents.sql": [
+  "LOCAL_DATETIME"
+ ],
+ "models/staging/fed_phmsa_flagged_incidents/stg_fed_phmsa_flagged_incidents__incidents.sql": [
+  "LOCAL_DATETIME"
+ ],
+ "models/marts/environment/environment__fed_usgs_minerals.sql": [
+  "ALTERATION",
+  "SCORE"
+ ],
+ "models/marts/finance/finance__fed_pcaob_form_ap_filings.sql": [
+  "AUDIT_REPORT_DATE",
+  "FILING_DATE",
+  "FISCAL_PERIOD_END_DATE",
+  "SIGNED_DATE"
+ ],
+ "models/staging/fed_pcaob_form_ap_filings/stg_fed_pcaob_form_ap_filings__filings.sql": [
+  "AUDIT_REPORT_DATE",
+  "FILING_DATE",
+  "FISCAL_PERIOD_END_DATE",
+  "SIGNED_DATE"
+ ],
+ "models/marts/finance/finance__fed_sec_13f_filers.sql": [
+  "CONFDENIEDEXPIRED"
+ ],
+ "models/marts/finance/finance__fed_sec_insider_deriv_trans.sql": [
+  "CONV_EXERCISE_PRICE_FN",
+  "DEEMED_EXECUTION_DATE_FN",
+  "EXCERCISE_DATE_FN",
+  "EXPIRATION_DATE_FN",
+  "TRANS_DATE_FN",
+  "TRANS_PRICEPERSHARE_FN",
+  "TRANS_TOTAL_VALUE_FN",
+  "UNDLYNG_SEC_VALUE_FN"
+ ],
+ "models/marts/health/health__fed_cdc_drug_poisoning_county.sql": [
+  "ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES"
+ ],
+ "models/marts/health/health__fed_cdc_injury_violence_county.sql": [
+  "TTM_DATE_RANGE"
+ ],
+ "models/marts/health/health__fed_cms_dialysis.sql": [
+  "CLAIMS_DATE",
+  "ED30_DATE",
+  "EQRS_DATE",
+  "FIVE_STAR_DATE",
+  "FYSWR_DATE",
+  "HCP_VACCINATION_DATA_COLLECTION_DATES",
+  "LATE_SHIFT",
+  "SEDR_DATE",
+  "SHR_DATE",
+  "SIR_DATE",
+  "SMR_DATE",
+  "SRR_DATE",
+  "STRR_DATE"
+ ],
+ "models/marts/health/health__fed_cms_facility_level_minimum_data_set_frequency.sql": [
+  "REPORT_DATE"
+ ],
+ "models/marts/health/health__fed_cms_home_health.sql": [
+  "FOOTNOTE_FOR_DISCHARGE_FUNCTION_SCORE"
+ ],
+ "models/marts/health/health__fed_cms_marketplace_plan_attributes_puf.sql": [
+  "INDIANPLANVARIATIONESTIMATEDADVANCEDPAYMENTAMOUNTPERENROLLEE"
+ ],
+ "models/marts/health/health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer.sql": [
+  "RFRG_PRVDR_CNTRY"
+ ],
+ "models/marts/health/health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.sql": [
+  "SUPLR_PRVDR_CNTRY"
+ ],
+ "models/marts/health/health__fed_cms_medicare_physician_other_practitioners_by_provider.sql": [
+  "RNDRNG_PRVDR_CNTRY"
+ ],
+ "models/marts/health/health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi.sql": [
+  "RNDRNG_PRVDR_CNTRY"
+ ],
+ "models/marts/health/health__fed_cms_medicare_provider.sql": [
+  "RNDRNG_PRVDR_CNTRY"
+ ],
+ "models/staging/fed_cms_nursing_home/stg_fed_cms_nursing_home__nursing_home_facilities.sql": [
+  "DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES",
+  "PROCESSING_DATE",
+  "RATING_CYCLE_1_STANDARD_SURVEY_HEALTH_DATE",
+  "RATING_CYCLE_2_STANDARD_HEALTH_SURVEY_DATE",
+  "_SOURCE_RUN_ID"
+ ],
+ "models/marts/health/health__fed_cms_nursing_home.sql": [
+  "DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES",
+  "PROCESSING_DATE",
+  "RATING_CYCLE_1_STANDARD_SURVEY_HEALTH_DATE",
+  "RATING_CYCLE_2_STANDARD_HEALTH_SURVEY_DATE",
+  "_SOURCE_RUN_ID"
+ ],
+ "models/marts/health/health__fed_cms_pos_other.sql": [
+  "OVRRD_BED_CNT_SW"
+ ],
+ "models/marts/health/health__fed_cms_quality_payment_program_experience.sql": [
+  "COST_MEASURE_ID_1",
+  "COST_MEASURE_ID_11",
+  "COST_MEASURE_ID_12",
+  "COST_MEASURE_ID_13",
+  "COST_MEASURE_ID_14",
+  "COST_MEASURE_ID_15",
+  "COST_MEASURE_ID_16",
+  "COST_MEASURE_ID_17",
+  "COST_MEASURE_ID_18",
+  "COST_MEASURE_ID_19",
+  "COST_MEASURE_ID_2",
+  "COST_MEASURE_ID_20",
+  "COST_MEASURE_ID_23",
+  "COST_MEASURE_ID_25",
+  "COST_MEASURE_ID_26",
+  "COST_MEASURE_ID_27",
+  "COST_MEASURE_ID_28",
+  "COST_MEASURE_ID_3",
+  "COST_MEASURE_ID_6",
+  "COST_MEASURE_ID_7",
+  "COST_MEASURE_ID_8",
+  "COST_MEASURE_ID_9",
+  "COST_REWEIGHTING_EUC"
+ ],
+ "models/marts/health/health__fed_hrsa_shortage_areas.sql": [
+  "HPSA_WITHDRAWN_DATE_STRING"
+ ],
+ "models/marts/historical_records/historical_records__fed_slavevoyages_intraamerican.sql": [
+  "DATE_BUY1"
+ ],
+ "models/staging/fed_wpa_slave_narratives/stg_fed_wpa_slave_narratives__slave_narratives.sql": [
+  "_SOURCE_RUN_ID"
+ ],
+ "models/marts/history/history__fed_wpa_slave_narratives.sql": [
+  "_SOURCE_RUN_ID"
+ ],
+ "models/marts/immigration/immigration__fed_cbp_encounters.sql": [
+  "MONTHLY_TOTALS"
+ ],
+ "models/marts/immigration/immigration__fed_dol_oflc.sql": [
+  "WILLFUL_VIOLATOR"
+ ],
+ "models/staging/fed_oyez/stg_fed_oyez__scotus_cases.sql": [
+  "_SOURCE_RUN_ID"
+ ],
+ "models/marts/judiciary/judiciary__fed_oyez.sql": [
+  "_SOURCE_RUN_ID"
+ ],
+ "models/marts/justice/justice__fed_courtlistener_fjc_idb_cl_linked.sql": [
+  "ARBITRATION_AT_FILING"
+ ],
+ "models/marts/justice/justice__fed_courtlistener_judges.sql": [
+  "DATE_GRANULARITY_DOB",
+  "DATE_GRANULARITY_DOD"
+ ],
+ "models/marts/justice/justice__fed_courtlistener_judge_political_affiliations.sql": [
+  "DATE_GRANULARITY_END",
+  "DATE_GRANULARITY_START"
+ ],
+ "models/marts/justice/justice__fed_courtlistener_opinion_clusters.sql": [
+  "DATE_FILED_IS_APPROXIMATE",
+  "OTHER_DATES"
+ ],
+ "models/marts/justice/justice__fed_courtlistener_positions.sql": [
+  "DATE_GRANULARITY_START",
+  "DATE_GRANULARITY_TERMINATION"
+ ],
+ "models/marts/justice/justice__xc_mapping_police_violence.sql": [
+  "INITIAL_REPORTED_REASON_FOR_ENCOUNTER"
+ ],
+ "models/staging/xc_un_consolidated_sanctions_list/stg_xc_un_consolidated_sanctions_list__designated_party.sql": [
+  "LAST_DAY_UPDATED",
+  "LAST_REVIEWED_ON"
+ ],
+ "models/marts/justice/justice__xc_un_consolidated_sanctions_list.sql": [
+  "LAST_DAY_UPDATED",
+  "LAST_REVIEWED_ON"
+ ],
+ "models/marts/labor/labor__fed_osha_ita_case_detail_2023.sql": [
+  "CREATED_TIMESTAMP"
+ ],
+ "models/marts/labor/labor__fed_osha_ita_case_detail_2024.sql": [
+  "CREATED_TIMESTAMP",
+  "DATE_OF_INCIDENT"
+ ],
+ "models/marts/labor/labor__fed_osha_ita_case_detail_2025.sql": [
+  "CREATED_TIMESTAMP",
+  "DATE_OF_DEATH"
+ ],
+ "models/marts/reference/reference__intl_gdelt.sql": [
+  "ACTIONGEO_LAT",
+  "ACTIONGEO_LONG"
+ ],
+ "models/marts/transport/transport__fed_faa_adip_private_airports.sql": [
+  "PRIVATE_AIRPORT_LIST_FOR_WHICH_INFORMATION_HAS_NOT_BEEN_UPDATED_IN_THE_LAST_3_YEARS"
+ ]
+}
