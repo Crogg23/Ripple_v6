@@ -181,6 +181,58 @@ def fetch_dol_paged(spec: dict, dest: Path) -> Path:
     return dest
 
 
+# ------------------------------------------------------------ repair
+def repair_rows(src: Path, spec: dict) -> Path:
+    """EOIR tab files carry unquoted tabs and newlines inside text fields.
+    A newline splits one row into two short fragments; a tab makes a row one
+    field too wide. Rejoin consecutive short fragments whose widths sum back to
+    the header width (the newline becomes a space). Rows still the wrong width
+    go to <sid>.rejects.tsv and are counted in the load message, never landed."""
+    delim = spec.get("delimiter", ",")
+    enc = spec.get("encoding", "utf-8-sig")
+    out = src.with_name(src.stem + ".clean.csv")
+    rej = src.with_name(src.stem + ".rejects.tsv")
+    if out.exists() and out.stat().st_size > 0:
+        log(f"    repaired file cached: {out.name}")
+        return out
+    n_in = n_out = n_join = n_rej = 0
+    with (open(src, encoding=enc, errors="replace", newline="") as f,
+          open(out, "w", encoding="utf-8", newline="") as fo,
+          open(rej, "w", encoding="utf-8", newline="") as fr):
+        rdr = csv.reader(f, delimiter=delim, quoting=csv.QUOTE_NONE)
+        w = csv.writer(fo, delimiter=delim, lineterminator="\n", quoting=csv.QUOTE_NONE, quotechar=None)
+        wr = csv.writer(fr, delimiter=delim, lineterminator="\n", quoting=csv.QUOTE_NONE, quotechar=None)
+        header = next(rdr)
+        width = len(header)
+        w.writerow(header)
+        pending = None
+        for rec in rdr:
+            if not rec:
+                continue
+            n_in += 1
+            if pending is not None:
+                joined = pending[:-1] + [pending[-1] + " " + rec[0]] + rec[1:]
+                if len(joined) == width:
+                    w.writerow(joined); n_out += 1; n_join += 1; pending = None
+                    continue
+                if len(joined) < width:
+                    pending = joined
+                    continue
+                wr.writerow(pending); n_rej += 1; pending = None
+            if len(rec) == width:
+                w.writerow(rec); n_out += 1
+            elif len(rec) < width:
+                pending = rec
+            else:
+                wr.writerow(rec); n_rej += 1
+        if pending is not None:
+            wr.writerow(pending); n_rej += 1
+    log(f"    repair: {n_in:,} rows read, {n_out:,} kept, {n_join:,} rejoined from newline splits, "
+        f"{n_rej:,} rejected to {rej.name}")
+    spec["_repair_note"] = f"{n_join} rows rejoined across embedded newlines, {n_rej} rows quarantined for stray tabs"
+    return out
+
+
 # ------------------------------------------------------------ driver
 def fetch(spec: dict) -> Path:
     sid = spec["source_id"]
@@ -230,6 +282,8 @@ def main() -> int:
         raise SystemExit(f"{args.sid} is a {spec.get('loader')} spec; use that loader")
     log(f"==> {args.sid}")
     path = fetch(spec)
+    if spec.get("repair_rows"):
+        path = repair_rows(path, spec)
     n, d, nulls, header, sample = count_rows(path, spec)
     log(f"    local csv: {n:,} rows, {len(header)} cols, key {spec['key_cols'][0]['col']}: {d:,} distinct, {nulls:,} null")
     if not args.run:

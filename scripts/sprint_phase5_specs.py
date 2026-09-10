@@ -50,6 +50,7 @@ SPECS = [
         "download_url": EOIR_ZIP,
         "member": "EOIR Case Data/B_TblProceeding.csv",
         "kind": "zip_member_ranged",
+        "repair_rows": True,
         "delimiter": "\t",
         "quote_none": True,
         "encoding": "utf-8",

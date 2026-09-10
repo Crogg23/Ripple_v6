@@ -1,0 +1,50 @@
+    with source as (
+        select * from {{ source('ripple_raw', 'FED_EOIR_PROCEEDING') }}
+    )
+
+    select
+        "IDNPROCEEDING" as IDNPROCEEDING,
+"IDNCASE",
+"OSC_DATE",
+"INPUT_DATE",
+"BASE_CITY_CODE",
+"HEARING_LOC_CODE",
+"IJ_CODE",
+"TRANS_IN_DATE",
+"PREV_HEARING_LOC",
+"PREV_HEARING_BASE",
+"PREV_IJ_CODE",
+"TRANS_NBR",
+"HEARING_DATE",
+"HEARING_TIME",
+"DEC_TYPE",
+"DEC_CODE",
+"DEPORTED_1",
+"DEPORTED_2",
+"OTHER_COMP",
+"APPEAL_RSVD",
+"APPEAL_NOT_FILED",
+"COMP_DATE",
+"ABSENTIA",
+"VENUE_CHG_GRANTED",
+"TRANSFER_TO",
+"DATE_APPEAL_DUE_STATUS",
+"TRANSFER_STATUS",
+"CUSTODY",
+"CASE_TYPE",
+"NAT",
+"LANG",
+"SCHEDULED_HEAR_LOC",
+"CORRECTIONAL_FAC",
+"CRIM_IND",
+"IHP",
+"AGGRAVATE_FELON",
+"DATE_DETAINED",
+"DATE_RELEASED",
+_INGESTED_AT,
+_SOURCE_RUN_ID
+    from source
+    qualify row_number() over (
+        partition by IDNPROCEEDING
+        order by _INGESTED_AT desc
+    ) = 1

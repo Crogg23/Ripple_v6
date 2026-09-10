@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_EOIR_PROCEEDING
+
+  models:
+    - name: stg_fed_eoir_proceeding__all
+      description: "EOIR Immigration Court Proceedings with decision and judge"
+      columns:
+- name: IDNPROCEEDING
+  tests:
+    - not_null
+    - unique
