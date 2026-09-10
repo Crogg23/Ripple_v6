@@ -234,10 +234,65 @@ def repair_rows(src: Path, spec: dict) -> Path:
     return out
 
 
-# ------------------------------------------------------------ xlsx in a zip
+# ------------------------------------------------------------ xlsx, bare or in a zip
+def _xlsx_to_csv(wb, spec: dict, dest: Path, tag: str) -> None:
+    """Write the chosen sheets of an openpyxl workbook as one comma csv.
+    skip_rows drops title rows above the header. sheets: None = active sheet,
+    "all" = every sheet, unioned on the superset of headers, with a SHEET_NAME
+    column first. Every cell as text, dates as YYYY-MM-DD."""
+    skip = int(spec.get("skip_rows", 0))
+    want = spec.get("sheets")
+    if want == "all":
+        names = list(wb.sheetnames)
+    elif want:
+        names = list(want)
+    elif spec.get("sheet"):
+        names = [spec["sheet"]]
+    else:
+        names = [wb.active.title]
+
+    def cell(v):
+        if v is None:
+            return ""
+        if hasattr(v, "strftime"):
+            return v.strftime("%Y-%m-%d")
+        return str(v)
+
+    tables = []
+    for nm in names:
+        ws = wb[nm]
+        it = ws.iter_rows(values_only=True)
+        for _ in range(skip):
+            next(it, None)
+        header = [cell(h).strip() for h in next(it)]
+        while header and header[-1] == "":
+            header.pop()
+        rows = []
+        for row in it:
+            vals = [cell(v) for v in row[:len(header)]]
+            if any(vals):
+                rows.append(vals)
+        tables.append((nm, header, rows))
+    union = []
+    for _, h, _ in tables:
+        for c in h:
+            if c and c not in union:
+                union.append(c)
+    n = 0
+    with open(dest, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f, lineterminator="\n")
+        multi = len(tables) > 1
+        w.writerow((["SHEET_NAME"] if multi else []) + union)
+        for nm, h, rows in tables:
+            pos = {c: i for i, c in enumerate(h)}
+            for r in rows:
+                out = [r[pos[c]] if c in pos and pos[c] < len(r) else "" for c in union]
+                w.writerow(([nm] if multi else []) + out)
+                n += 1
+    log(f"    xlsx {tag}: sheets {names}, {n:,} data rows, {len(union)} columns")
+
+
 def fetch_zip_xlsx(spec: dict, dest: Path) -> Path:
-    """Download a zip holding one xlsx, read the first sheet with openpyxl, write a
-    comma csv. skip_rows drops title rows above the header. Every cell as text."""
     import zipfile
     import openpyxl
     if dest.exists() and dest.stat().st_size > 0:
@@ -246,24 +301,24 @@ def fetch_zip_xlsx(spec: dict, dest: Path) -> Path:
     zpath = dest.with_suffix(".zip")
     fast.download(spec["download_url"], zpath)
     with zipfile.ZipFile(zpath) as z:
-        members = [n for n in z.namelist() if n.lower().endswith(".xlsx")]
+        pat = spec.get("member")
+        members = [n for n in z.namelist() if n.lower().endswith(".xlsx") and (not pat or re.search(pat, n))]
         if len(members) != 1:
-            raise RuntimeError(f"expected one xlsx member, found {members}")
+            raise RuntimeError(f"expected one xlsx member for {pat!r}, found {members}")
         wb = openpyxl.load_workbook(io.BytesIO(z.read(members[0])), read_only=True)
-    ws = wb[spec["sheet"]] if spec.get("sheet") else wb.active
-    skip = int(spec.get("skip_rows", 0))
-    n = 0
-    with open(dest, "w", encoding="utf-8", newline="") as f:
-        w = csv.writer(f, lineterminator="\n")
-        for i, row in enumerate(ws.iter_rows(values_only=True)):
-            if i < skip:
-                continue
-            vals = ["" if v is None else (v.strftime("%Y-%m-%d") if hasattr(v, "strftime") else str(v)) for v in row]
-            if not any(vals):
-                continue
-            w.writerow(vals)
-            n += 1
-    log(f"    xlsx sheet {ws.title}: {n - 1:,} data rows written from {members[0]}")
+    _xlsx_to_csv(wb, spec, dest, members[0])
+    return dest
+
+
+def fetch_url_xlsx(spec: dict, dest: Path) -> Path:
+    import openpyxl
+    if dest.exists() and dest.stat().st_size > 0:
+        log(f"    xlsx csv cached: {dest.name}")
+        return dest
+    xpath = dest.with_suffix(".xlsx")
+    fast.download(spec["download_url"], xpath)
+    wb = openpyxl.load_workbook(xpath, read_only=True)
+    _xlsx_to_csv(wb, spec, dest, xpath.name)
     return dest
 
 
@@ -278,6 +333,8 @@ def fetch(spec: dict) -> Path:
         return fetch_dol_paged(spec, dest)
     if kind == "zip_xlsx":
         return fetch_zip_xlsx(spec, dest)
+    if kind == "url_xlsx":
+        return fetch_url_xlsx(spec, dest)
     if kind == "url_csv":
         fast.download(spec["download_url"], dest)   # streamed, Range resume, size-checked
         return dest

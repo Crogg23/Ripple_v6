@@ -81,3 +81,66 @@ SPECS.append({
     "notes": "Landed 2026-09-10, phase 2. Zip member is an xlsx with a title row above the header; the file name carries MMDDYY and rotates monthly.",
 })
 
+# EIA-860 prior years, option C chosen by Chris 2026-09-10: plant and generator per year, every sheet,
+# SHEET_NAME column first. The live FED_EIA860_3_1_GENERATOR reads only the Operable sheet, so retired
+# units were never landed; the Retired and Canceled sheet is the gap the ledger names.
+_EIA_URL = {y: f"https://www.eia.gov/electricity/data/eia860/archive/xls/eia860{y}.zip" for y in range(2019, 2024)}
+for _y in range(2019, 2024):
+    for _mem, _tag, _grain in (("2___Plant", "PLANT", "one row = one plant"),
+                               ("3_1_Generator", "GENERATOR", "one row = one generator x one sheet: Operable, Proposed, Retired and Canceled")):
+        SPECS.append({
+            "source_id": f"FED_EIA860_{_tag}_Y{_y}",
+            "name": f"EIA-860 {_tag.title()} {_y}, all sheets",
+            "publisher": "EIA",
+            "url": "https://www.eia.gov/electricity/data/eia860/",
+            "download_url": _EIA_URL[_y],
+            "kind": "zip_xlsx",
+            "member": _mem,
+            "sheets": "all",
+            "skip_rows": 1,
+            "loader": "phase5",
+            "key_cols": [{"col": "Plant Code", "as": "PLANT_CODE"}],
+            "join_keys": "PLANT_CODE = ORIS plant id -> eGRID ORISPL, EPA CAMPD; UTILITY_ID",
+            "category": "Energy",
+            "subcategory": "Power Plants",
+            "unit_of_observation": _grain,
+            "update_cadence": "annual",
+            "temporal_coverage": f"form year {_y}",
+            "accountability_relevance": "Plant and generator roster by year, retired units included. The before and after for closures.",
+            "priority_tier": "1",
+            "notes": (f"Landed 2026-09-10, phase 3. Year {_y} archive zip, member {_mem}, every sheet unioned on the "
+                      "superset of headers with SHEET_NAME first. Row 0 is a title, header is row 1. "
+                      "Sibling unsuffixed FED_EIA860_* tables are the 2024 vintage, Operable sheet only."),
+        })
+
+# eGRID plant sheet by year. 2022 is already landed as FED_EPA_EGRID_PLANT_2022.
+_EGRID = {
+    2019: "https://www.epa.gov/sites/default/files/2021-02/egrid2019_data.xlsx",
+    2020: "https://www.epa.gov/system/files/documents/2022-09/eGRID2020_Data_v2.xlsx",
+    2021: "https://www.epa.gov/system/files/documents/2023-01/eGRID2021_data.xlsx",
+    2023: "https://www.epa.gov/system/files/documents/2025-06/egrid2023_data_rev2.xlsx",
+}
+for _y, _u in _EGRID.items():
+    SPECS.append({
+        "source_id": f"FED_EPA_EGRID_PLANT_{_y}",
+        "name": f"EPA eGRID plant file {_y}",
+        "publisher": "EPA",
+        "url": "https://www.epa.gov/egrid",
+        "download_url": _u,
+        "kind": "url_xlsx",
+        "sheet": f"PLNT{str(_y)[2:]}",
+        "skip_rows": 1,
+        "loader": "phase5",
+        "key_cols": [{"col": "ORISPL", "as": "ORISPL"}],
+        "join_keys": "ORISPL -> EIA-860 PLANT_CODE, EPA CAMPD; PSTATABB; FIPSST + FIPSCNTY",
+        "category": "Environment",
+        "subcategory": "Power Plant Emissions",
+        "unit_of_observation": "one row = one plant x one data year",
+        "update_cadence": "annual",
+        "temporal_coverage": f"data year {_y}",
+        "accountability_relevance": "Plant emissions, capacity, fuel and county by year. The other side of the closure story.",
+        "priority_tier": "1",
+        "notes": (f"Landed 2026-09-10, phase 3. Sheet PLNT{str(_y)[2:]}; row 0 is the long-name caption, row 1 the code header. "
+                  "Sibling FED_EPA_EGRID_PLANT_2022 landed earlier by another path."),
+    })
+
