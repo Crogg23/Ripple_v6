@@ -42,6 +42,7 @@ import snow  # noqa: E402
 import bridge_fuel_load as bf  # noqa: E402
 import cms_years_fast_load as fast  # noqa: E402
 import sprint_phase5_specs as SPECMOD  # noqa: E402
+import sprint_phase2_specs as SPECMOD2  # noqa: E402
 
 UA = {"User-Agent": "Ripple-Library/1.0 (data onboarding; w.rogers9999@gmail.com)"}
 SCRATCH = _REPO / ".scratch" / "phase5"
@@ -242,6 +243,9 @@ def fetch(spec: dict) -> Path:
         return fetch_zip_member(spec["download_url"], spec["member"], dest)
     if kind == "dol_api_paged":
         return fetch_dol_paged(spec, dest)
+    if kind == "url_csv":
+        fast.download(spec["download_url"], dest)   # streamed, Range resume, size-checked
+        return dest
     raise RuntimeError(f"unknown kind {kind}")
 
 
@@ -277,7 +281,7 @@ def main() -> int:
     ap.add_argument("--keep", action="store_true")
     args = ap.parse_args()
     fast.SCRATCH = SCRATCH
-    spec = {s["source_id"]: s for s in SPECMOD.SPECS}[args.sid]
+    spec = {s["source_id"]: s for s in SPECMOD.SPECS + SPECMOD2.SPECS}[args.sid]
     if spec.get("loader") != "phase5":
         raise SystemExit(f"{args.sid} is a {spec.get('loader')} spec; use that loader")
     log(f"==> {args.sid}")

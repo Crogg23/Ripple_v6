@@ -104,7 +104,7 @@ SPECS = [
         "sort_by": "case_id",
         "loader": "phase5",
         "key_cols": [{"col": "case_id", "as": "CASE_ID"}],
-        "join_keys": "LEGAL_NAME + ZIP_CD (no EIN); NAIC_CD",
+        "join_keys": "LEGAL_NAME + ZIP_CD (no EIN; 3,612 blank names, 19 blank zips); NAIC_CD",
         "category": "Labor",
         "subcategory": "Wage Enforcement",
         "unit_of_observation": "one row = one concluded WHD compliance action",
@@ -112,7 +112,7 @@ SPECS = [
         "temporal_coverage": "concluded cases since FY2005",
         "accountability_relevance": "Employer, address, back wages, workers owed, violations by statute, findings dates. The wage-theft table.",
         "priority_tier": "1",
-        "notes": ("Phase 5, 2026-09-10. Not landed until the load message says so. enforcedata.dol.gov flat files are gone; every path redirects to data.dol.gov. "
+        "notes": ("Phase 5, 2026-09-10. Landed 2026-09-10 11:11, 367,890 rows, the API's whole set. enforcedata.dol.gov flat files are gone; every path redirects to data.dol.gov. "
                   "Pulled through the v4 API, 10,000 rows a page, X-API-KEY as a query parameter, sorted by case_id. "
                   "Rate limited, 429 after a burst; the loader backs off. 110 columns."),
     },
