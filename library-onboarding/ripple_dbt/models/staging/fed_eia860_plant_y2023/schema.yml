@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EIA860_PLANT_Y2023
+
+models:
+  - name: stg_fed_eia860_plant_y2023__all
+    description: "EIA-860 Plant 2023, all sheets"
+    columns:
+      - name: PLANT_CODE
+        tests:
+          - not_null
+          - unique

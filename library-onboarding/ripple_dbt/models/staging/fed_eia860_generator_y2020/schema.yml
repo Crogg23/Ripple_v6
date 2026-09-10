@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EIA860_GENERATOR_Y2020
+
+models:
+  - name: stg_fed_eia860_generator_y2020__all
+    description: "EIA-860 Generator 2020, all sheets"
+    columns:
+      - name: PLANT_CODE
