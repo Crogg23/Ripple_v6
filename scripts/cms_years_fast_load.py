@@ -219,8 +219,17 @@ def land(conn, spec: dict, csv_path: Path) -> dict:
                     f', "{ingest.META_SRC_SHA256}" VARCHAR)')
         cur.execute(f'CREATE OR REPLACE STAGE {fq}."{stage}"')
         t0 = time.time()
-        cur.execute(f"PUT 'file://{part_dir.as_posix()}/part_*.csv.gz' @{fq}.\"{stage}\" "
-                    f"AUTO_COMPRESS=FALSE PARALLEL={PUT_PARALLEL}")
+        put_sql = (f"PUT 'file://{part_dir.as_posix()}/part_*.csv.gz' @{fq}.\"{stage}\" "
+                   f"AUTO_COMPRESS=FALSE PARALLEL={PUT_PARALLEL}")
+        for attempt in range(1, 5):
+            try:
+                cur.execute(put_sql)   # parts already in the stage are skipped, so a retry only sends what is missing
+                break
+            except Exception as exc:  # noqa: BLE001
+                if attempt == 4:
+                    raise
+                log(f"    PUT try {attempt} failed, retrying in {30 * attempt}s: {str(exc)[:90]}")
+                time.sleep(30 * attempt)
         log(f"    PUT done in {time.time() - t0:.0f}s")
         sel = ", ".join(f"${i + 1}" for i in range(len(cols)))
         t0 = time.time()
