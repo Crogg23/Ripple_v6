@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_CMS_PARTB_PROVIDER_SERVICE_DY2022
+
+  models:
+    - name: stg_fed_cms_partb_provider_service_dy2022__all
+      description: "CMS Medicare Physician and Other Practitioners by Provider and Service DY2022"
+      columns:
+- name: NPI
+  tests:
+    - not_null
+    - unique

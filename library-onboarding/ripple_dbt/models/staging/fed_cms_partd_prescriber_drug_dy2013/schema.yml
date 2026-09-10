@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_CMS_PARTD_PRESCRIBER_DRUG_DY2013
+
+  models:
+    - name: stg_fed_cms_partd_prescriber_drug_dy2013__all
+      description: "CMS Medicare Part D Prescribers by Provider and Drug DY2013"
+      columns:
+- name: NPI
+  tests:
+    - not_null
+    - unique
