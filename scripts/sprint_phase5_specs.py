@@ -5,7 +5,7 @@ that day with a Range request and the header read before the spec was written.
 
   B  FED_CMS_SNF_OWNERSHIP     SNF All Owners, 295,083 rows, bridge_fuel (under 5M)
   C  FED_EOIR_PROCEEDING       B_TblProceeding, 16.8M rows, phase5 loader (ranged zip + fast PUT/COPY)
-  C  FED_EOIR_JUDGE            tblLookupJudge, 1,786 rows, phase5 loader (same zip member trick)
+  C  FED_EOIR_JUDGE            tblLookupJudge, 1,785 rows, phase5 loader (same zip member trick)
   D  FED_DOL_WHD_ENFORCEMENT   DOL v4 API, 10k rows a page, phase5 loader (page to csv, fast PUT/COPY)
 
 A, SAM entity registration, is NOT here: LIBRARY_RAW.LANDING.FED_SAM_ENTITY_PUBLIC
@@ -29,11 +29,13 @@ SPECS = [
         "kind": "csv",
         "encoding": "cp1252",
         "loader": "bridge_fuel",
-        "key_cols": [{"col": "ENROLLMENT ID", "as": "ENROLLMENT_ID"}],
+        "key_cols": [{"col": "ENROLLMENT ID", "as": "ENROLLMENT_ID"},
+                     {"col": "ASSOCIATE ID - OWNER", "as": "ASSOCIATE_ID_OWNER"},
+                     {"col": "ROLE CODE - OWNER", "as": "ROLE_CODE_OWNER"}],
         "join_keys": "ENROLLMENT_ID -> FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ENROLLMENT_ID -> CCN; ASSOCIATE_ID_OWNER",
         "category": "Health",
         "subcategory": "Provider Ownership",
-        "unit_of_observation": "one row = one SNF enrollment x one owner x one role",
+        "unit_of_observation": "one row = one SNF enrollment x one owner x one role; key is the triple, ENROLLMENT_ID alone repeats 20x",
         "update_cadence": "quarterly",
         "temporal_coverage": "snapshot 2026-07-31; 46 quarterly vintages exist back to 2015",
         "accountability_relevance": "Who owns every nursing home: person or org, role, percent, date. Chains, PE, REITs, holding companies by flag.",
@@ -89,7 +91,7 @@ SPECS = [
         "temporal_coverage": "all judge codes ever issued, active flag",
         "accountability_relevance": "Judge code to name. The only public list of immigration judges with an active flag.",
         "priority_tier": "1",
-        "notes": "Landed 2026-09-10, phase 5. 1,786 rows. Includes the placeholder All Judges code AAA. Tab-delimited.",
+        "notes": "Landed 2026-09-10, phase 5. 1,785 rows; the zip Count.txt says 1,786. Includes the placeholder All Judges code AAA. Tab-delimited.",
     },
     {
         "source_id": "FED_DOL_WHD_ENFORCEMENT",
@@ -110,7 +112,7 @@ SPECS = [
         "temporal_coverage": "concluded cases since FY2005",
         "accountability_relevance": "Employer, address, back wages, workers owed, violations by statute, findings dates. The wage-theft table.",
         "priority_tier": "1",
-        "notes": ("Landed 2026-09-10, phase 5. enforcedata.dol.gov flat files are gone; every path redirects to data.dol.gov. "
+        "notes": ("Phase 5, 2026-09-10. Not landed until the load message says so. enforcedata.dol.gov flat files are gone; every path redirects to data.dol.gov. "
                   "Pulled through the v4 API, 10,000 rows a page, X-API-KEY as a query parameter, sorted by case_id. "
                   "Rate limited, 429 after a burst; the loader backs off. 110 columns."),
     },

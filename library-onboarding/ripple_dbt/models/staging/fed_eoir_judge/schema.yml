@@ -1,17 +1,17 @@
-  version: 2
+version: 2
 
-  sources:
-    - name: ripple_raw
-      database: LIBRARY_RAW
-      schema: LANDING
-      tables:
-        - name: FED_EOIR_JUDGE
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EOIR_JUDGE
 
-  models:
-    - name: stg_fed_eoir_judge__all
-      description: "EOIR Immigration Judge lookup"
-      columns:
-- name: JUDGE_CODE
-  tests:
-    - not_null
-    - unique
+models:
+  - name: stg_fed_eoir_judge__all
+    description: "EOIR Immigration Judge lookup"
+    columns:
+      - name: JUDGE_CODE
+        tests:
+          - not_null
+          - unique
