@@ -67,7 +67,8 @@
       "PowerShell(python -m pytest tests/test_connect_incremental.py tests/test_apply_config.py -q 2>$null)",
       "PowerShell(python -c \"import sys; sys.path.insert\\(0, r'c:\\\\Code\\\\Ripple_v6'\\); import connect.incremental; import importlib; print\\('imports ok'\\)\")",
       "PowerShell(git add connect/incremental.py tests/test_connect_incremental.py scripts/heartbeat.py CLAUDE.md)",
-      "Bash(python C:/Users/wroge/AppData/Local/Temp/claude/c--Code-Ripple-v6/ef60ca41-c2a5-45ea-9788-25696438109a/scratchpad/sk.py)"
+      "Bash(python C:/Users/wroge/AppData/Local/Temp/claude/c--Code-Ripple-v6/ef60ca41-c2a5-45ea-9788-25696438109a/scratchpad/sk.py)",
+      "Bash(python scripts/run_cms_years_batch.py)"
     ],
     "additionalDirectories": [
       "C:\\Code\\Ripple_v6\\.claude"
