@@ -234,6 +234,39 @@ def repair_rows(src: Path, spec: dict) -> Path:
     return out
 
 
+# ------------------------------------------------------------ xlsx in a zip
+def fetch_zip_xlsx(spec: dict, dest: Path) -> Path:
+    """Download a zip holding one xlsx, read the first sheet with openpyxl, write a
+    comma csv. skip_rows drops title rows above the header. Every cell as text."""
+    import zipfile
+    import openpyxl
+    if dest.exists() and dest.stat().st_size > 0:
+        log(f"    xlsx csv cached: {dest.name}")
+        return dest
+    zpath = dest.with_suffix(".zip")
+    fast.download(spec["download_url"], zpath)
+    with zipfile.ZipFile(zpath) as z:
+        members = [n for n in z.namelist() if n.lower().endswith(".xlsx")]
+        if len(members) != 1:
+            raise RuntimeError(f"expected one xlsx member, found {members}")
+        wb = openpyxl.load_workbook(io.BytesIO(z.read(members[0])), read_only=True)
+    ws = wb[spec["sheet"]] if spec.get("sheet") else wb.active
+    skip = int(spec.get("skip_rows", 0))
+    n = 0
+    with open(dest, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f, lineterminator="\n")
+        for i, row in enumerate(ws.iter_rows(values_only=True)):
+            if i < skip:
+                continue
+            vals = ["" if v is None else (v.strftime("%Y-%m-%d") if hasattr(v, "strftime") else str(v)) for v in row]
+            if not any(vals):
+                continue
+            w.writerow(vals)
+            n += 1
+    log(f"    xlsx sheet {ws.title}: {n - 1:,} data rows written from {members[0]}")
+    return dest
+
+
 # ------------------------------------------------------------ driver
 def fetch(spec: dict) -> Path:
     sid = spec["source_id"]
@@ -243,6 +276,8 @@ def fetch(spec: dict) -> Path:
         return fetch_zip_member(spec["download_url"], spec["member"], dest)
     if kind == "dol_api_paged":
         return fetch_dol_paged(spec, dest)
+    if kind == "zip_xlsx":
+        return fetch_zip_xlsx(spec, dest)
     if kind == "url_csv":
         fast.download(spec["download_url"], dest)   # streamed, Range resume, size-checked
         return dest
