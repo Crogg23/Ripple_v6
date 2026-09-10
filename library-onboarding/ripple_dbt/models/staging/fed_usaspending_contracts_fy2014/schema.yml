@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USASPENDING_CONTRACTS_FY2014
+
+models:
+  - name: stg_fed_usaspending_contracts_fy2014__all
+    description: "USAspending prime contract transactions FY2014, full archive columns"
+    columns:
+      - name: CONTRACT_TRANSACTION_UNIQUE_KEY
+        tests:
+          - not_null
+          - unique
