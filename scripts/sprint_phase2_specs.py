@@ -144,3 +144,30 @@ for _y, _u in _EGRID.items():
                   "Sibling FED_EPA_EGRID_PLANT_2022 landed earlier by another path."),
     })
 
+# USAspending prime contracts, one table per fiscal year from the monthly award archive. Chris 2026-09-10: "do it".
+# The archive carries every column, 297 in FY2024, including the county FIPS, agency codes and entity flags
+# the 36-column R2 table lacks. One zip a year, 1M-row csv members, direct download; no API generation jobs.
+_USA_ARCHIVE = "https://files.usaspending.gov/award_data_archive/FY{y}_All_Contracts_Full_20260806.zip"
+for _y in range(2007, 2027):
+    SPECS.append({
+        "source_id": f"FED_USASPENDING_CONTRACTS_FY{_y}",
+        "name": f"USAspending prime contract transactions FY{_y}, full archive columns",
+        "publisher": "Treasury / USAspending",
+        "url": "https://www.usaspending.gov/download_center/award_data_archive",
+        "download_url": _USA_ARCHIVE.format(y=_y),
+        "kind": "zip_multi_csv",
+        "loader": "phase5",
+        "key_cols": [{"col": "contract_transaction_unique_key", "as": "CONTRACT_TRANSACTION_UNIQUE_KEY"}],
+        "join_keys": ("RECIPIENT_UEI, RECIPIENT_PARENT_UEI, CAGE_CODE; PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE; "
+                      "AWARDING_AGENCY_CODE; NAICS_CODE"),
+        "category": "Economics",
+        "subcategory": "Federal Contracts",
+        "unit_of_observation": "one row = one contract transaction; CONTRACT_TRANSACTION_UNIQUE_KEY is unique",
+        "update_cadence": "monthly archive",
+        "temporal_coverage": f"fiscal year {_y}, archive stamped 2026-08-06",
+        "accountability_relevance": "Every contract action with county FIPS, agency code and entity type. Joins contracts to storms, aid, mortgages and jobs at county grain.",
+        "priority_tier": "1",
+        "notes": (f"Landed 2026-09-10, phase 2. FY{_y} archive zip, all csv members concatenated, headers checked equal. "
+                  "All columns TEXT. FED_USASPENDING_CONTRACTS_FULL_R2 is the 36-column API pull and stays as is."),
+    })
+

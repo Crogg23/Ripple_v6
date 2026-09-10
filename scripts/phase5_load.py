@@ -322,6 +322,36 @@ def fetch_url_xlsx(spec: dict, dest: Path) -> Path:
     return dest
 
 
+# ------------------------------------------------------------ zip of several same-header csvs
+def fetch_zip_multi_csv(spec: dict, dest: Path) -> list:
+    """Download a zip, extract every csv member to <sid>_members/, return the
+    sorted list of paths. USAspending archives split one year into 1M-row files
+    that share a header; the fast loader takes the list and checks the headers."""
+    import zipfile
+    mdir = dest.with_name(dest.stem + "_members")
+    if mdir.exists() and any(mdir.glob("*.csv")):
+        paths = sorted(mdir.glob("*.csv"))
+        log(f"    members cached: {len(paths)} files")
+        return paths
+    zpath = dest.with_suffix(".zip")
+    fast.download(spec["download_url"], zpath)
+    mdir.mkdir(parents=True, exist_ok=True)
+    paths = []
+    with zipfile.ZipFile(zpath) as z:
+        for n in sorted(z.namelist()):
+            if not n.lower().endswith(".csv"):
+                continue
+            out = mdir / Path(n).name
+            with z.open(n) as src, open(out, "wb") as dst:
+                for block in iter(lambda: src.read(1 << 24), b""):
+                    dst.write(block)
+            paths.append(out)
+    log(f"    extracted {len(paths)} members, {sum(x.stat().st_size for x in paths)/1e9:.2f} GB")
+    if not spec.get("keep_zip"):
+        zpath.unlink(missing_ok=True)
+    return paths
+
+
 # ------------------------------------------------------------ driver
 def fetch(spec: dict) -> Path:
     sid = spec["source_id"]
@@ -335,6 +365,8 @@ def fetch(spec: dict) -> Path:
         return fetch_zip_xlsx(spec, dest)
     if kind == "url_xlsx":
         return fetch_url_xlsx(spec, dest)
+    if kind == "zip_multi_csv":
+        return fetch_zip_multi_csv(spec, dest)
     if kind == "url_csv":
         fast.download(spec["download_url"], dest)   # streamed, Range resume, size-checked
         return dest
@@ -347,22 +379,27 @@ def count_rows(path: Path, spec: dict) -> tuple[int, int, int, list[str], list[s
     n = nulls = 0
     seen = set()
     sample = None
-    with open(path, encoding=spec.get("encoding", "utf-8-sig"), errors="replace", newline="") as f:
-        rdr = csv.reader(f, delimiter=spec.get("delimiter", ","),
-                         quoting=csv.QUOTE_NONE if spec.get("quote_none") else csv.QUOTE_MINIMAL)
-        header = next(rdr)
-        ki = [h.strip().lower() for h in header].index(kc.strip().lower())
-        for rec in rdr:
-            if not rec:
-                continue
-            n += 1
-            v = rec[ki].strip()
-            if not v:
-                nulls += 1
-            else:
-                seen.add(v)
-            if sample is None:
-                sample = rec
+    header = None
+    paths = list(path) if isinstance(path, (list, tuple)) else [path]
+    for one in paths:
+        with open(one, encoding=spec.get("encoding", "utf-8-sig"), errors="replace", newline="") as f:
+            rdr = csv.reader(f, delimiter=spec.get("delimiter", ","),
+                             quoting=csv.QUOTE_NONE if spec.get("quote_none") else csv.QUOTE_MINIMAL)
+            h = next(rdr)
+            if header is None:
+                header = h
+                ki = [x.strip().lower() for x in header].index(kc.strip().lower())
+            for rec in rdr:
+                if not rec:
+                    continue
+                n += 1
+                v = rec[ki].strip()
+                if not v:
+                    nulls += 1
+                else:
+                    seen.add(v)
+                if sample is None:
+                    sample = rec
     return n, len(seen), nulls, header, sample
 
 
@@ -395,7 +432,8 @@ def main() -> int:
         r = fast.land(conn, spec, path)
         log(f"<== {args.sid} {r['status']} rows={r['rows']:,}")
         if r["status"] == "success" and not args.keep:
-            path.unlink(missing_ok=True)
+            for one in (path if isinstance(path, (list, tuple)) else [path]):
+                Path(one).unlink(missing_ok=True)
         return 0 if r["status"] == "success" else 1
     finally:
         conn.close()

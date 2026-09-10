@@ -143,35 +143,43 @@ def split_to_parts(src: Path, part_dir: Path, delimiter: str = ",",
     part_dir.mkdir(parents=True, exist_ok=True)
     for old in part_dir.glob("*.gz"):
         old.unlink()
+    srcs = list(src) if isinstance(src, (list, tuple)) else [src]
     sha = hashlib.sha256()
-    with open(src, "rb") as fb:
-        for block in iter(lambda: fb.read(1 << 24), b""):
-            sha.update(block)
+    for one in srcs:
+        with open(one, "rb") as fb:
+            for block in iter(lambda: fb.read(1 << 24), b""):
+                sha.update(block)
     rows = 0
     part = 0
-    with open(src, encoding=encoding, errors="replace", newline="") as f:
-        rdr = csv.reader(f, delimiter=delimiter,
-                         quoting=csv.QUOTE_NONE if quote_none else csv.QUOTE_MINIMAL)
-        header = next(rdr)
-        out = None
-        w = None
-        for rec in rdr:
-            if not rec:
-                continue  # blank line
-            if out is None or rows % PART_ROWS == 0:
-                if out is not None:
-                    out.close()
-                part += 1
-                out = gzip.open(part_dir / f"part_{part:03d}.csv.gz", "wt",
-                                encoding="utf-8", newline="", compresslevel=1)
-                w = csv.writer(out, lineterminator="\n")
-            if len(rec) != len(header):
-                raise RuntimeError(f"row {rows + 1}: {len(rec)} fields, header has {len(header)}")
-            w.writerow(rec)
-            rows += 1
-        if out is not None:
-            out.close()
-    log(f"    split {rows:,} rows into {part} gzip parts")
+    header = None
+    out = None
+    w = None
+    for one in srcs:
+        with open(one, encoding=encoding, errors="replace", newline="") as f:
+            rdr = csv.reader(f, delimiter=delimiter,
+                             quoting=csv.QUOTE_NONE if quote_none else csv.QUOTE_MINIMAL)
+            h = next(rdr)
+            if header is None:
+                header = h
+            elif h != header:
+                raise RuntimeError(f"header drift in {Path(one).name}: {h[:5]} vs {header[:5]}")
+            for rec in rdr:
+                if not rec:
+                    continue  # blank line
+                if out is None or rows % PART_ROWS == 0:
+                    if out is not None:
+                        out.close()
+                    part += 1
+                    out = gzip.open(part_dir / f"part_{part:03d}.csv.gz", "wt",
+                                    encoding="utf-8", newline="", compresslevel=1)
+                    w = csv.writer(out, lineterminator="\n")
+                if len(rec) != len(header):
+                    raise RuntimeError(f"row {rows + 1}: {len(rec)} fields, header has {len(header)}")
+                w.writerow(rec)
+                rows += 1
+    if out is not None:
+        out.close()
+    log(f"    split {rows:,} rows from {len(srcs)} file(s) into {part} gzip parts")
     return header, rows, sha.hexdigest()
 
 
@@ -264,7 +272,8 @@ ON_ERROR=ABORT_STATEMENT
 
         atomic_load.execute_swap(conn, table, database=db, schema=sc)
         ended = ingest._utcnow()
-        ingest._log_run(conn, sid, run_id, "success", rows, csv_path.stat().st_size, sha, url,
+        src_bytes = sum(Path(x).stat().st_size for x in (csv_path if isinstance(csv_path, (list, tuple)) else [csv_path]))
+        ingest._log_run(conn, sid, run_id, "success", rows, src_bytes, sha, url,
                         started, ended,
                         f"{spec['name']}. Fast path: gzip parts, PUT, COPY INTO staging, atomic swap. "
                         f"{rows:,} rows, {len(cols)} source cols, {n_npi:,} distinct {key}.")
