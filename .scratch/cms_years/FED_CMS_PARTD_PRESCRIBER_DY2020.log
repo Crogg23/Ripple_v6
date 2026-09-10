@@ -1,0 +1,17 @@
+
+=== FED_CMS_PARTD_PRESCRIBER_DY2020  (CMS Medicare Part D Prescribers by Provider DY2020) ===
+    https://data.cms.gov/sites/default/files/2026-08/0df99eb3-9bfe-46ac-8dd0-c5e700781aae/mup_dpr_ry22_p04_v20_dy20_npi.csv
+    chunk 1: +500,000 (total 500,000)
+    chunk 2: +500,000 (total 1,000,000)
+    chunk 3: +255,175 (total 1,255,175)
+    LOADED 1,255,175 rows (chunked, atomic swap) -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DY2020
+    scaffolded dbt: C:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\staging\fed_cms_partd_prescriber_dy2020
+    connect-one: wired into graph
+
+1/1 loaded, 1,255,175 rows.
+
+--- stderr ---
+C:\Code\Ripple_v6\scripts\bridge_fuel_load.py:569: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=stg, database=database,
+C:\Code\Ripple_v6\scripts\bridge_fuel_load.py:569: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=stg, database=database,

@@ -1,0 +1,12 @@
+
+=== FED_CMS_PARTB_PROVIDER_DY2013  (CMS Medicare Physician and Other Practitioners by Provider DY2013) ===
+    https://data.cms.gov/sites/default/files/2025-11/4fe919a0-94d4-4681-b076-4106f3766eef/MUP_PHY_R25_P05_V20_D13_Prov.csv
+    chunk 1: +500,000 (total 500,000)
+C:\Code\Ripple_v6\scripts\bridge_fuel_load.py:569: UserWarning: Pandas Dataframe has non-standard index of type <class 'pandas.core.indexes.range.RangeIndex'> which will not be written. Consider changing the index to pd.RangeIndex(start=0,...,step=1) or call reset_index() to keep index as column(s)
+  ok, _c, _r, _ = write_pandas(conn, out, table_name=stg, database=database,
+    chunk 2: +456,251 (total 956,251)
+    LOADED 956,251 rows (chunked, atomic swap) -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2013
+    scaffolded dbt: C:\Code\Ripple_v6\library-onboarding\ripple_dbt\models\staging\fed_cms_partb_provider_dy2013
+    connect-one: wired into graph
+
+1/1 loaded, 956,251 rows.

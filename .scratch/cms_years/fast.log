@@ -1,0 +1,213 @@
+2026-09-09 20:17:39  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2013
+2026-09-09 20:35:01  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2013
+2026-09-09 20:35:01      resuming at 2.55 of 2.91 GB (try 1)
+2026-09-09 20:35:46      downloaded 2.91 GB
+2026-09-09 20:36:40      split 9,286,633 rows into 7 gzip parts
+2026-09-09 20:39:24      PUT done in 164s
+2026-09-09 20:39:49      COPY done in 25s, rows_loaded=9,286,633
+2026-09-09 20:39:56      LOADED 9,286,633 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2013  distinct NPI 909,560
+2026-09-09 20:40:54  FED_CMS_PARTB_PROVIDER_SERVICE_DY2013  already landed, skip
+2026-09-09 20:40:54  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2014
+2026-09-09 20:42:16      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 20:42:17  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2013  success  rows=9,286,633  7.3 min
+2026-09-09 20:42:17  done: 1 loaded, 0 skipped, 0 failed
+2026-09-09 21:00:17      downloaded 2.91 GB
+2026-09-09 21:01:02      split 9,316,209 rows into 7 gzip parts
+2026-09-09 21:02:54      PUT done in 111s
+2026-09-09 21:03:17      COPY done in 23s, rows_loaded=9,316,209
+2026-09-09 21:03:22      LOADED 9,316,209 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2014  distinct NPI 938,141
+2026-09-09 21:05:41      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 21:05:41  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2014  success  rows=9,316,209  24.8 min
+2026-09-09 21:05:41  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2015
+2026-09-09 21:25:32      downloaded 2.98 GB
+2026-09-09 21:26:18      split 9,496,848 rows into 7 gzip parts
+2026-09-09 21:28:12      FAILED FED_CMS_PARTB_PROVIDER_SERVICE_DY2015: 253003: While putting file(s) there was an error: 'PUT with url b'https://sfc-prod3-ds1-188-customer-stage.s3.amazonaws.com/1val1000-s/stages/5468e49a-2885-4675-85b2-3a02a7351939/part_001.csv.gz' failed for exceeding maximum retries.', this might be caused by your access to the blob storage provider, or by Snowflake.
+2026-09-09 21:28:12  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2015  failed: 253003: While putting file(s) there was an error: 'PUT with url b'https://sfc-prod3-ds1-188-customer-stage.s3.amazonaws.com/1val1000-s/stages/5468e49a-2885-4675-85b2-3a02a7351939/part_001.csv.gz' failed for exceeding maximum retries.', this might be caused by your access to the blob storage provider, or by Snowflake.  rows=0  22.5 min
+2026-09-09 21:28:13  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2016
+2026-09-09 21:28:46  FED_CMS_PARTB_PROVIDER_SERVICE_DY2013  already landed, skip
+2026-09-09 21:28:46  FED_CMS_PARTB_PROVIDER_SERVICE_DY2014  already landed, skip
+2026-09-09 21:28:47  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2015
+2026-09-09 21:28:47      download cached (2.98 GB)
+2026-09-09 21:29:34      split 9,496,848 rows into 7 gzip parts
+2026-09-09 21:31:13      PUT done in 98s
+2026-09-09 21:31:33      COPY done in 20s, rows_loaded=9,496,848
+2026-09-09 21:31:39      LOADED 9,496,848 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2015  distinct NPI 968,333
+2026-09-09 21:34:08      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 21:34:08  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2015  success  rows=9,496,848  5.4 min
+2026-09-09 21:34:08  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2016
+2026-09-09 21:34:08      resuming at 0.06 of 3.05 GB (try 1)
+2026-09-09 21:54:04      downloaded 3.05 GB
+2026-09-09 21:54:58      split 9,714,896 rows into 7 gzip parts
+2026-09-09 21:59:10      PUT done in 249s
+2026-09-09 21:59:30      COPY done in 20s, rows_loaded=9,714,896
+2026-09-09 21:59:34      LOADED 9,714,896 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2016  distinct NPI 1,000,924
+2026-09-09 22:02:04      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 22:02:04  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2016  success  rows=9,714,896  27.9 min
+2026-09-09 22:02:05  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2017
+2026-09-09 22:22:39      downloaded 3.09 GB
+2026-09-09 22:23:31      split 9,847,443 rows into 7 gzip parts
+2026-09-09 22:27:03      PUT done in 211s
+2026-09-09 22:27:23      COPY done in 20s, rows_loaded=9,847,443
+2026-09-09 22:27:27      LOADED 9,847,443 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2017  distinct NPI 1,032,911
+2026-09-09 22:29:58      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 22:29:59  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2017  success  rows=9,847,443  27.9 min
+2026-09-09 22:29:59  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2018
+2026-09-09 22:50:49      downloaded 3.13 GB
+2026-09-09 22:51:38      split 9,961,865 rows into 7 gzip parts
+2026-09-09 22:55:37      PUT done in 238s
+2026-09-09 22:55:59      COPY done in 22s, rows_loaded=9,961,865
+2026-09-09 22:56:05      LOADED 9,961,865 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2018  distinct NPI 1,061,278
+2026-09-09 22:58:37      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 22:58:37  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2018  success  rows=9,961,865  28.6 min
+2026-09-09 22:58:38  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2019
+2026-09-09 23:19:48      downloaded 3.18 GB
+2026-09-09 23:20:37      split 10,140,228 rows into 7 gzip parts
+2026-09-09 23:24:20      PUT done in 222s
+2026-09-09 23:24:39      COPY done in 19s, rows_loaded=10,140,228
+2026-09-09 23:24:46      LOADED 10,140,228 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2019  distinct NPI 1,093,367
+2026-09-09 23:27:26      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 23:27:26  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2019  success  rows=10,140,228  28.8 min
+2026-09-09 23:27:27  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2020
+2026-09-09 23:47:25      downloaded 2.99 GB
+2026-09-09 23:48:12      split 9,449,361 rows into 7 gzip parts
+2026-09-09 23:51:38      PUT done in 204s
+2026-09-09 23:52:01      COPY done in 24s, rows_loaded=9,449,361
+2026-09-09 23:52:09      LOADED 9,449,361 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2020  distinct NPI 1,085,313
+2026-09-09 23:54:49      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-09 23:54:50  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2020  success  rows=9,449,361  27.4 min
+2026-09-09 23:54:50  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2021
+2026-09-10 00:15:30      downloaded 3.10 GB
+2026-09-10 00:16:19      split 9,886,177 rows into 7 gzip parts
+2026-09-10 00:20:13      PUT done in 231s
+2026-09-10 00:20:33      COPY done in 21s, rows_loaded=9,886,177
+2026-09-10 00:20:39      LOADED 9,886,177 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2021  distinct NPI 1,123,589
+2026-09-10 00:23:21      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-10 00:23:21  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2021  success  rows=9,886,177  28.5 min
+2026-09-10 00:23:22  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2022
+2026-09-10 00:43:49      downloaded 3.07 GB
+2026-09-10 00:44:36      split 9,755,427 rows into 7 gzip parts
+2026-09-10 00:47:51      PUT done in 194s
+2026-09-10 00:48:12      COPY done in 20s, rows_loaded=9,755,427
+2026-09-10 00:48:18      LOADED 9,755,427 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2022  distinct NPI 1,148,873
+2026-09-10 00:51:01      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-10 00:51:01  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2022  success  rows=9,755,427  27.7 min
+2026-09-10 00:51:02  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2023
+2026-09-10 01:11:27      downloaded 3.06 GB
+2026-09-10 01:12:14      split 9,660,647 rows into 7 gzip parts
+2026-09-10 01:16:25      PUT done in 249s
+2026-09-10 01:16:49      COPY done in 24s, rows_loaded=9,660,647
+2026-09-10 01:16:55      LOADED 9,660,647 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2023  distinct NPI 1,175,281
+2026-09-10 01:19:54      lifecycle: scaffold=yes connect=yes errors=[]
+2026-09-10 01:19:55  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2023  success  rows=9,660,647  28.9 min
+2026-09-10 01:19:55  ==> FED_CMS_PARTB_PROVIDER_SERVICE_DY2024
+2026-09-10 01:41:35      downloaded 3.25 GB
+2026-09-10 01:42:26      split 9,781,673 rows into 7 gzip parts
+2026-09-10 01:46:11      PUT done in 224s
+2026-09-10 01:46:33      COPY done in 22s, rows_loaded=9,781,673
+2026-09-10 01:46:39      LOADED 9,781,673 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2024  distinct NPI 1,207,473
+2026-09-10 06:22:19      lifecycle: scaffold=yes connect=no errors=["connect: Command '['C:\\\\Python314\\\\python.exe', '-m', 'connect.incremental', 'connect-one', '--source', 'fed_cms_partb_provider_service_dy2024']' timed out after 300 seconds"]
+2026-09-10 06:22:19  <== FED_CMS_PARTB_PROVIDER_SERVICE_DY2024  success  rows=9,781,673  302.4 min
+2026-09-10 06:23:12  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2013
+2026-09-10 06:25:37  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2013
+2026-09-10 06:25:37      resuming at 0.34 of 3.38 GB (try 1)
+2026-09-10 06:29:55      download try 1/6 failed: HTTPSConnectionPool(host='data.cms.gov', port=443): Read timed out.
+2026-09-10 06:30:05      resuming at 1.75 of 3.38 GB (try 2)
+2026-09-10 06:31:25      downloaded 3.38 GB
+2026-09-10 06:32:27      split 23,645,873 rows into 16 gzip parts
+2026-09-10 06:33:57      PUT done in 88s
+2026-09-10 06:34:20      COPY done in 23s, rows_loaded=23,645,873
+2026-09-10 06:34:30      LOADED 23,645,873 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2013  distinct NPI 807,938
+2026-09-10 06:34:32      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 06:34:32  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2013  success  rows=23,645,873  8.9 min
+2026-09-10 06:34:36  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2014
+2026-09-10 06:38:17      downloaded 3.45 GB
+2026-09-10 06:39:20      split 24,120,618 rows into 17 gzip parts
+2026-09-10 06:40:41      PUT done in 80s
+2026-09-10 06:41:06      COPY done in 25s, rows_loaded=24,120,618
+2026-09-10 06:41:13      LOADED 24,120,618 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2014  distinct NPI 837,663
+2026-09-10 06:41:14      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 06:41:15  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2014  success  rows=24,120,618  6.7 min
+2026-09-10 06:41:18  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2015
+2026-09-10 06:46:22      downloaded 3.51 GB
+2026-09-10 06:47:27      split 24,524,894 rows into 17 gzip parts
+2026-09-10 06:48:50      PUT done in 82s
+2026-09-10 06:49:15      COPY done in 24s, rows_loaded=24,524,894
+2026-09-10 06:49:21      LOADED 24,524,894 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2015  distinct NPI 866,552
+2026-09-10 06:49:22      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 06:49:22  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2015  success  rows=24,524,894  8.1 min
+2026-09-10 06:49:25  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2016
+2026-09-10 06:52:03      download try 1/6 failed: HTTPSConnectionPool(host='data.cms.gov', port=443): Read timed out.
+2026-09-10 06:52:13      resuming at 0.60 of 3.60 GB (try 2)
+2026-09-10 06:56:18      downloaded 3.60 GB
+2026-09-10 06:57:24      split 24,964,300 rows into 17 gzip parts
+2026-09-10 07:05:49      PUT done in 504s
+2026-09-10 07:06:18      COPY done in 29s, rows_loaded=24,964,300
+2026-09-10 07:06:24      LOADED 24,964,300 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2016  distinct NPI 893,160
+2026-09-10 07:06:26      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 07:06:26  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2016  success  rows=24,964,300  17.0 min
+2026-09-10 07:06:29  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2017
+2026-09-10 07:12:26      downloaded 3.62 GB
+2026-09-10 07:13:33      split 25,209,130 rows into 17 gzip parts
+2026-09-10 07:21:23      PUT done in 468s
+2026-09-10 07:21:52      COPY done in 30s, rows_loaded=25,209,130
+2026-09-10 07:22:00      LOADED 25,209,130 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2017  distinct NPI 918,009
+2026-09-10 07:22:01      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 07:22:02  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2017  success  rows=25,209,130  15.5 min
+2026-09-10 07:22:05  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2018
+2026-09-10 07:28:59      downloaded 3.64 GB
+2026-09-10 07:30:06      split 25,311,600 rows into 17 gzip parts
+2026-09-10 07:43:03      PUT try 1 failed, retrying in 30s: 253003: While putting file(s) there was an error: 'HTTPError('400 Client Error: Bad Reques
+2026-09-10 07:44:03      PUT done in 836s
+2026-09-10 07:44:34      COPY done in 31s, rows_loaded=25,311,600
+2026-09-10 07:44:40      LOADED 25,311,600 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2018  distinct NPI 953,263
+2026-09-10 07:44:41      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 07:44:41  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2018  success  rows=25,311,600  22.6 min
+2026-09-10 07:44:45  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2019
+2026-09-10 07:51:26      downloaded 3.66 GB
+2026-09-10 07:52:35      split 25,401,870 rows into 17 gzip parts
+2026-09-10 08:00:47      PUT done in 491s
+2026-09-10 08:01:19      COPY done in 31s, rows_loaded=25,401,870
+2026-09-10 08:01:26      LOADED 25,401,870 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2019  distinct NPI 985,533
+2026-09-10 08:01:26      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 08:01:27  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2019  success  rows=25,401,870  16.7 min
+2026-09-10 08:01:32  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2020
+2026-09-10 08:07:18      downloaded 3.64 GB
+2026-09-10 08:08:50      split 25,209,729 rows into 17 gzip parts
+2026-09-10 08:10:31      PUT done in 100s
+2026-09-10 08:11:01      COPY done in 30s, rows_loaded=25,209,729
+2026-09-10 08:11:08      LOADED 25,209,729 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2020  distinct NPI 983,636
+2026-09-10 08:11:09      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 08:11:09  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2020  success  rows=25,209,729  9.6 min
+2026-09-10 08:11:13  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2021
+2026-09-10 08:14:48      downloaded 3.64 GB
+2026-09-10 08:15:57      split 25,231,862 rows into 17 gzip parts
+2026-09-10 08:17:29      PUT done in 91s
+2026-09-10 08:17:59      COPY done in 30s, rows_loaded=25,231,862
+2026-09-10 08:18:06      LOADED 25,231,862 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2021  distinct NPI 1,017,417
+2026-09-10 08:18:07      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 08:18:07  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2021  success  rows=25,231,862  6.9 min
+2026-09-10 08:18:10  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2022
+2026-09-10 08:21:57      downloaded 3.74 GB
+2026-09-10 08:23:05      split 25,869,521 rows into 18 gzip parts
+2026-09-10 08:24:51      PUT done in 105s
+2026-09-10 08:25:23      COPY done in 32s, rows_loaded=25,869,521
+2026-09-10 08:25:30      LOADED 25,869,521 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2022  distinct NPI 1,057,566
+2026-09-10 08:25:31      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 08:25:31  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2022  success  rows=25,869,521  7.3 min
+2026-09-10 08:25:35  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2023
+2026-09-10 08:29:23      downloaded 3.88 GB
+2026-09-10 08:30:33      split 26,794,878 rows into 18 gzip parts
+2026-09-10 08:32:19      PUT done in 102s
+2026-09-10 08:32:53      COPY done in 34s, rows_loaded=26,794,878
+2026-09-10 08:33:00      LOADED 26,794,878 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2023  distinct NPI 1,104,162
+2026-09-10 08:33:01      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 08:33:01  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2023  success  rows=26,794,878  7.4 min
+2026-09-10 08:33:05  ==> FED_CMS_PARTD_PRESCRIBER_DRUG_DY2024
+2026-09-10 08:37:09      downloaded 4.06 GB
+2026-09-10 08:38:22      split 28,023,892 rows into 19 gzip parts
+2026-09-10 08:40:14      PUT done in 111s
+2026-09-10 08:40:49      COPY done in 35s, rows_loaded=28,023,892
+2026-09-10 08:40:55      LOADED 28,023,892 rows -> LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2024  distinct NPI 1,139,455
+2026-09-10 08:40:56      lifecycle: scaffold=yes connect=no errors=[]
+2026-09-10 08:40:56  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2024  success  rows=28,023,892  7.9 min
+2026-09-10 08:40:56  done: 12 loaded, 0 skipped, 0 failed
