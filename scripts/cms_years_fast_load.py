@@ -136,7 +136,8 @@ def download(url: str, dest: Path, tries: int = 6) -> int:
 
 
 # ---------------------------------------------------------------- split
-def split_to_parts(src: Path, part_dir: Path) -> tuple[list[str], int, str]:
+def split_to_parts(src: Path, part_dir: Path, delimiter: str = ",",
+                   encoding: str = "utf-8-sig", quote_none: bool = False) -> tuple[list[str], int, str]:
     """Read with the csv module, write gzip parts without header.
     Returns (source header, data row count, sha256 of the source file)."""
     part_dir.mkdir(parents=True, exist_ok=True)
@@ -148,8 +149,9 @@ def split_to_parts(src: Path, part_dir: Path) -> tuple[list[str], int, str]:
             sha.update(block)
     rows = 0
     part = 0
-    with open(src, encoding="utf-8-sig", errors="replace", newline="") as f:
-        rdr = csv.reader(f)
+    with open(src, encoding=encoding, errors="replace", newline="") as f:
+        rdr = csv.reader(f, delimiter=delimiter,
+                         quoting=csv.QUOTE_NONE if quote_none else csv.QUOTE_MINIMAL)
         header = next(rdr)
         out = None
         w = None
@@ -205,7 +207,10 @@ def land(conn, spec: dict, csv_path: Path) -> dict:
     part_dir = SCRATCH / f"{sid}_parts"
     cur = conn.cursor()
     try:
-        header, rows, sha = split_to_parts(csv_path, part_dir)
+        header, rows, sha = split_to_parts(csv_path, part_dir,
+                                            delimiter=spec.get("delimiter", ","),
+                                            encoding=spec.get("encoding", "utf-8-sig"),
+                                            quote_none=bool(spec.get("quote_none")))
         if rows == 0:
             raise RuntimeError("source has 0 data rows")
         cols = landing_columns(header, spec)
@@ -244,7 +249,8 @@ ON_ERROR=ABORT_STATEMENT
         loaded = sum(int(r[3]) for r in cur.fetchall())
         log(f"    COPY done in {time.time() - t0:.0f}s, rows_loaded={loaded:,}")
         cur.execute(f'DROP STAGE {fq}."{stage}"')
-        cur.execute(f'SELECT COUNT(*), COUNT(DISTINCT "NPI") FROM {fq}."{stg}"')
+        key = spec["key_cols"][0]["as"] if spec.get("key_cols") else cols[0]
+        cur.execute(f'SELECT COUNT(*), COUNT(DISTINCT "{key}") FROM {fq}."{stg}"')
         n_stg, n_npi = cur.fetchone()
         if not (loaded == rows == n_stg):
             raise RuntimeError(f"row mismatch: counted {rows:,}, COPY {loaded:,}, staging {n_stg:,}")
@@ -261,12 +267,12 @@ ON_ERROR=ABORT_STATEMENT
         ingest._log_run(conn, sid, run_id, "success", rows, csv_path.stat().st_size, sha, url,
                         started, ended,
                         f"{spec['name']}. Fast path: gzip parts, PUT, COPY INTO staging, atomic swap. "
-                        f"{rows:,} rows, {len(cols)} source cols, {n_npi:,} distinct NPI.")
+                        f"{rows:,} rows, {len(cols)} source cols, {n_npi:,} distinct {key}.")
         try:
             bf._register(conn, spec)
         except Exception as exc:
             log(f"    register warn: {exc}")
-        log(f"    LOADED {rows:,} rows -> {db}.{sc}.{table}  distinct NPI {n_npi:,}")
+        log(f"    LOADED {rows:,} rows -> {db}.{sc}.{table}  distinct {key} {n_npi:,}")
         try:
             from loadkit.lifecycle import on_success
             # skip_connect: the graph-wiring subprocess hung 4.5 h past its 300 s timeout
