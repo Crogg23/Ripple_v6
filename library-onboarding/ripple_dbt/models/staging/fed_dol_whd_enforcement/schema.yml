@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_DOL_WHD_ENFORCEMENT
+
+models:
+  - name: stg_fed_dol_whd_enforcement__all
+    description: "DOL Wage and Hour Division compliance actions"
+    columns:
+      - name: CASE_ID
+        tests:
+          - not_null
+          - unique
