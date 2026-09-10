@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_NPPES_DEACTIVATED
+
+models:
+  - name: stg_fed_cms_nppes_deactivated__all
+    description: "NPPES Deactivated NPI Report"
+    columns:
+      - name: NPI
+        tests:
+          - not_null
+          - unique
