@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_CFPB_HMDA_LAR_2018
+
+  models:
+    - name: stg_fed_cfpb_hmda_lar_2018__all
+      description: "HMDA Loan Application Register 2018, nationwide"
+      columns:
+- name: LEI
+  tests:
+    - not_null
+    - unique
