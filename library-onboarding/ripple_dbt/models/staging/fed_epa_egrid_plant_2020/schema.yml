@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_EGRID_PLANT_2020
+
+models:
+  - name: stg_fed_epa_egrid_plant_2020__all
+    description: "EPA eGRID plant file 2020"
+    columns:
+      - name: ORISPL
+        tests:
+          - not_null
+          - unique

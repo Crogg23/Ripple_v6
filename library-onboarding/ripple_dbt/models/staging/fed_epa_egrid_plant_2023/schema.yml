@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_EPA_EGRID_PLANT_2023
+
+models:
+  - name: stg_fed_epa_egrid_plant_2023__all
+    description: "EPA eGRID plant file 2023"
+    columns:
+      - name: ORISPL
+        tests:
+          - not_null
+          - unique
