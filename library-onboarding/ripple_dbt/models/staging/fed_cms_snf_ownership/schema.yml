@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_CMS_SNF_OWNERSHIP
+
+  models:
+    - name: stg_fed_cms_snf_ownership__all
+      description: "Who owns every nursing home: person or org, role, percent, date. Chains, PE, REITs, holding companies by flag."
+      columns:
+- name: ENROLLMENT_ID
+  tests:
+    - not_null
+    - unique
