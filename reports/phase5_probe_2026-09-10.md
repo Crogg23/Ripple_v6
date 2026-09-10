@@ -121,3 +121,20 @@ xlsx per year on epa.gov, 11.6 MB 2019, 14.1 MB 2021, 21.2 MB 2023 rev1. Existin
 scripts/usaspending_contracts_full_load.py pulls 36 curated columns through 238 monthly bulk-download jobs, write_pandas chunks. 93M rows landed as FED_USASPENDING_CONTRACTS_FULL_R2.
 Columns the ledger wants, real bulk names: prime_award_transaction_place_of_performance_county_fips_code, awarding_agency_code, awarding_sub_agency_code, domestic_or_foreign_entity_code, plus the tax-exempt entity flags.
 A reload is 238 server-side jobs again, many hours, and the transport should move to the fast path. Its own session.
+
+## Contracts, done as new year tables from the archive, not an R2 reload
+
+Chris 2026-09-10: "do it". USAspending publishes a monthly award-data archive: one zip per fiscal year, every column, csv members of 1M rows.
+`https://files.usaspending.gov/award_data_archive/FY{y}_All_Contracts_Full_20260806.zip`, FY2007 to FY2026, 0.9 to 2.1 GB each, ~30 GB total.
+
+| check, FY2024 | result |
+|---|---|
+| members | 7 csv, 14.78 GB raw |
+| rows | 6,692,568 by the csv module, headers equal across members, zero bad widths |
+| columns | 297 |
+| key | contract_transaction_unique_key, 6,692,568 distinct, 0 null |
+| county FIPS | prime_award_transaction_place_of_performance_county_fips_code filled on 6,208,254 rows |
+| also present | awarding_agency_code, funding_agency_code, domestic_or_foreign_entity_code, tax-exempt entity flags |
+
+Host behaviour: about 25 rapid requests at 12:50 got the address banned on files.usaspending.gov and api.usaspending.gov for roughly an hour, TLS closed before any response. www.usaspending.gov kept answering. Loads run one year at a time with a 60 s gap.
+Tables: FED_USASPENDING_CONTRACTS_FY2007..FY2026. FED_USASPENDING_CONTRACTS_FULL_R2 untouched.
