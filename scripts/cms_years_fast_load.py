@@ -269,8 +269,11 @@ ON_ERROR=ABORT_STATEMENT
         log(f"    LOADED {rows:,} rows -> {db}.{sc}.{table}  distinct NPI {n_npi:,}")
         try:
             from loadkit.lifecycle import on_success
+            # skip_connect: the graph-wiring subprocess hung 4.5 h past its 300 s timeout
+            # on 2026-09-10 and the idle warehouse token expired. Wire the series once
+            # at the end with connect.incremental, not per file.
             lc = on_success(sid, table, key_cols=spec.get("key_cols"),
-                            description=spec.get("name", ""), conn=conn)
+                            description=spec.get("name", ""), conn=conn, skip_connect=True)
             log(f"    lifecycle: scaffold={'yes' if lc['scaffolded'] else 'no'} "
                 f"connect={'yes' if lc['connected'] else 'no'} errors={lc['errors']}")
         except Exception as exc:
@@ -322,10 +325,16 @@ def main() -> int:
         print(f"\n{len(todo)} files. Add --run to land.")
         return 0
 
-    conn = snow.connect()
     results = []
+    conn = None
     try:
         for s in todo:
+            if conn is not None:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
+            conn = snow.connect()   # fresh per file: tokens expire after long idle downloads
             if bf._has_success(conn, s["source_id"]):
                 log(f"{s['source_id']}  already landed, skip")
                 results.append((s["source_id"], "skip", 0))
@@ -348,7 +357,8 @@ def main() -> int:
             log(f"<== {s['source_id']}  {r['status']}  rows={r['rows']:,}  {(time.time() - t0) / 60:.1f} min")
             results.append((s["source_id"], r["status"], r["rows"]))
     finally:
-        conn.close()
+        if conn is not None:
+            conn.close()
     ok = sum(1 for _, st, _ in results if st == "success")
     log(f"done: {ok} loaded, {sum(1 for _, st, _ in results if st == 'skip')} skipped, "
         f"{len(results) - ok - sum(1 for _, st, _ in results if st == 'skip')} failed")
