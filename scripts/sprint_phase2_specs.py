@@ -194,3 +194,31 @@ SPECS.append({
     "notes": "Landed 2026-09-10. Pipe-delimited, 7 columns, FIPS unique. COUNTYNAME carries the legal suffix: County, Parish, Borough, Census Area, Municipio, city.",
 })
 
+# USAspending financial assistance, one table per fiscal year from the monthly award archive. Chris 2026-09-10: "C" then "go".
+# The current FED_USASPENDING_ASSISTANCE_FULL landing is the API pull capped at 1M rows a year, 34% of days.
+# FY2024 probe: 6 csv members, 5,195,175 rows, 112 columns, assistance_transaction_unique_key unique, county FIPS on 92%.
+# USAspending never publishes recipient EIN, so the ledger's "add EIN" item cannot be done from any file.
+_USA_ASST = "https://files.usaspending.gov/award_data_archive/FY{y}_All_Assistance_Full_20260806.zip"
+for _y in range(2007, 2027):
+    SPECS.append({
+        "source_id": f"FED_USASPENDING_ASSISTANCE_FY{_y}",
+        "name": f"USAspending financial assistance transactions FY{_y}, full archive columns",
+        "publisher": "Treasury / USAspending",
+        "url": "https://www.usaspending.gov/download_center/award_data_archive",
+        "download_url": _USA_ASST.format(y=_y),
+        "kind": "zip_multi_csv",
+        "loader": "phase5",
+        "key_cols": [{"col": "assistance_transaction_unique_key", "as": "ASSISTANCE_TRANSACTION_UNIQUE_KEY"}],
+        "join_keys": ("RECIPIENT_UEI, RECIPIENT_PARENT_UEI; PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE; "
+                      "CFDA_NUMBER; AWARDING_AGENCY_CODE"),
+        "category": "Economics",
+        "subcategory": "Federal Assistance",
+        "unit_of_observation": "one row = one grant, loan, or direct payment transaction; ASSISTANCE_TRANSACTION_UNIQUE_KEY is unique",
+        "update_cadence": "monthly archive",
+        "temporal_coverage": f"fiscal year {_y}, archive stamped 2026-08-06",
+        "accountability_relevance": "Every grant and loan action with county FIPS and program number. Replaces the 1M-a-year capped pull; every FY total becomes real.",
+        "priority_tier": "1",
+        "notes": (f"Landed 2026-09-10, phase 2. FY{_y} archive zip, all csv members concatenated, headers checked equal. "
+                  "All columns TEXT. FED_USASPENDING_ASSISTANCE_FULL, the capped API pull, stays as is."),
+    })
+
