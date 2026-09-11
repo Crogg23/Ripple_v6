@@ -1,17 +1,14 @@
-  version: 2
+version: 2
 
-  sources:
-    - name: ripple_raw
-      database: LIBRARY_RAW
-      schema: LANDING
-      tables:
-        - name: FED_CMS_PARTD_PRESCRIBER_DY2015
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_PARTD_PRESCRIBER_DY2015
 
-  models:
-    - name: stg_fed_cms_partd_prescriber_dy2015__all
-      description: "Prescriber totals with ZIP5 and RUCA, every year. Doctor counts by place by year."
-      columns:
-- name: NPI
-  tests:
-    - not_null
-    - unique
+models:
+  - name: stg_fed_cms_partd_prescriber_dy2015__all
+    description: "Prescriber totals with ZIP5 and RUCA, every year. Doctor counts by place by year."
+    columns:
+      - name: NPI

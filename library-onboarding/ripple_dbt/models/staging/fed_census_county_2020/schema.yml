@@ -1,17 +1,17 @@
-  version: 2
+version: 2
 
-  sources:
-    - name: ripple_raw
-      database: LIBRARY_RAW
-      schema: LANDING
-      tables:
-        - name: FED_CENSUS_COUNTY_2020
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CENSUS_COUNTY_2020
 
-  models:
-    - name: stg_fed_census_county_2020__all
-      description: "Census national county codes 2020"
-      columns:
-- name: COUNTYNS
-  tests:
-    - not_null
-    - unique
+models:
+  - name: stg_fed_census_county_2020__all
+    description: "Census national county codes 2020"
+    columns:
+      - name: COUNTYNS
+        tests:
+          - not_null
+          - unique

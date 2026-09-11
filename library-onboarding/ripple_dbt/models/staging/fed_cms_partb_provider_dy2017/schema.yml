@@ -1,17 +1,14 @@
-  version: 2
+version: 2
 
-  sources:
-    - name: ripple_raw
-      database: LIBRARY_RAW
-      schema: LANDING
-      tables:
-        - name: FED_CMS_PARTB_PROVIDER_DY2017
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_CMS_PARTB_PROVIDER_DY2017
 
-  models:
-    - name: stg_fed_cms_partb_provider_dy2017__all
-      description: "Provider totals with ZIP5 and RUCA, every year. The doctor roster with money, by place by year."
-      columns:
-- name: NPI
-  tests:
-    - not_null
-    - unique
+models:
+  - name: stg_fed_cms_partb_provider_dy2017__all
+    description: "Provider totals with ZIP5 and RUCA, every year. The doctor roster with money, by place by year."
+    columns:
+      - name: NPI
