@@ -93,12 +93,19 @@ def download(url: str, dest: Path, tries: int = 6) -> int:
             if have:
                 hdr["Range"] = f"bytes={have}-"
             with requests.get(url, headers=hdr, stream=True, timeout=(30, 120)) as r:
+                encoded = r.headers.get("Content-Encoding", "").lower() in ("gzip", "br", "deflate")
+                if have and r.status_code == 206 and encoded:
+                    # A byte range of a compressed stream appended to decoded
+                    # bytes is a corrupt file. Start over without Range.
+                    log("    server gzips; dropping the .part and restarting")
+                    tmp.unlink(missing_ok=True)
+                    raise RuntimeError("gzip host, no resume")
                 if have and r.status_code == 206:
                     total = have + int(r.headers.get("Content-Length") or 0)
                     mode = "ab"
                 elif r.status_code == 200:
                     total = int(r.headers.get("Content-Length") or 0)
-                    if r.headers.get("Content-Encoding", "").lower() in ("gzip", "br", "deflate"):
+                    if encoded:
                         # Content-Length is the wire size; requests hands back
                         # decoded bytes, so the size check has nothing to match.
                         # Seen 2026-09-11 on sec.gov: 263,548 on the wire,

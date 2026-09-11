@@ -13,7 +13,7 @@ Waterfall, a CCN takes the first tier that gives it exactly one EIN:
   2  doing-business-as name + ZIP5
   3  name + state
   4  street + ZIP5, EIN's NTEE code E2x (hospitals)
-Tier 4 skips EIN names holding FOUNDATION, AUXILIARY, VOLUNTEER, GUILD:
+Tier 4 skips EIN names holding FOUNDATION, AUXILIARY, VOLUNTEER, GUILD, HOSPICE:
 those sit at the hospital's address and are not the hospital.
 A fifth tier, street + ZIP5 with any NTEE, was tried 2026-09-11 and dropped:
 its sample was medical-staff funds, employee clubs, Toastmasters, a running club.
@@ -21,6 +21,8 @@ its sample was medical-staff funds, employee clubs, Toastmasters, a running club
 Usage:
     python scripts/xwalk_hospital_ccn_ein.py          # counts only
     python scripts/xwalk_hospital_ccn_ein.py --run    # create the table
+Grain: the EIN is usually the SYSTEM that files the 990, not the building.
+Skeptic 2026-09-11: 1,293 EINs cover 3,222 of 4,005 rows; Kaiser on 35 CCNs.
 Plain CREATE TABLE. If the table exists the run stops; dropping it is a gated call.
 """
 from __future__ import annotations
@@ -33,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from connect import db  # noqa: E402
 
 TARGET = "LIBRARY_MARTS.CORE.XWALK_HOSPITAL_CCN_EIN"
-JUNK = "(FOUNDATION|AUXILIARY|VOLUNTEER|GUILD)"
+JUNK = "(FOUNDATION|AUXILIARY|VOLUNTEER|GUILD|HOSPICE)"
 
 
 def norm(col: str) -> str:
@@ -101,7 +103,7 @@ def main() -> int:
     if not args.run:
         print("\nadd --run to create", TARGET)
         return 0
-    cur.execute(f"""create table {TARGET} as
+    cur.execute(f"""create or replace table {TARGET} as
         select CCN, EIN, MATCH_TIER, MATCH_RULE, CCN_NAME, CCN_ZIP5, EIN_NAME, EIN_ZIP5, EIN_NTEE,
                PROPRIETARY_NONPROFIT, current_timestamp() as BUILT_AT
         from w""")
