@@ -329,11 +329,20 @@ def fetch_zip_multi_csv(spec: dict, dest: Path) -> list:
     that share a header; the fast loader takes the list and checks the headers."""
     import zipfile
     mdir = dest.with_name(dest.stem + "_members")
+    zpath = dest.with_suffix(".zip")
     if mdir.exists() and any(mdir.glob("*.csv")):
         paths = sorted(mdir.glob("*.csv"))
-        log(f"    members cached: {len(paths)} files")
-        return paths
-    zpath = dest.with_suffix(".zip")
+        # cache is only trusted when the zip is still here and every csv member is present at full size
+        if zpath.exists():
+            with zipfile.ZipFile(zpath) as z:
+                want = {Path(i.filename).name: i.file_size for i in z.infolist() if i.filename.lower().endswith(".csv")}
+            have = {x.name: x.stat().st_size for x in paths}
+            if have == want:
+                log(f"    members cached: {len(paths)} files, sizes match the zip")
+                return paths
+        log(f"    member cache incomplete or zip gone, re-extracting")
+        for x in paths:
+            x.unlink()
     fast.download(spec["download_url"], zpath)
     mdir.mkdir(parents=True, exist_ok=True)
     paths = []

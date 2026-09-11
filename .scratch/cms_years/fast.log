@@ -211,3 +211,18 @@
 2026-09-10 08:40:56      lifecycle: scaffold=yes connect=no errors=[]
 2026-09-10 08:40:56  <== FED_CMS_PARTD_PRESCRIBER_DRUG_DY2024  success  rows=28,023,892  7.9 min
 2026-09-10 08:40:56  done: 12 loaded, 0 skipped, 0 failed
+2026-09-10 12:54:30      download try 1/6 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 12:54:58      download try 2/6 failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by t
+2026-09-10 12:55:36      download try 3/6 failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by t
+2026-09-10 12:56:12      download try 4/6 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 12:56:54      download try 5/6 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 12:57:44      download try 6/6 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:07:14      download try 1/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:07:25      download try 2/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:07:45      download try 3/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:08:15      download try 4/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:08:55      download try 5/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:09:46      download try 6/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:10:46      download try 7/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 13:11:46      download try 8/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-09-10 14:22:35      downloaded 2.01 GB
