@@ -1,6 +1,6 @@
 {{ config(materialized='table', schema='HEALTH') }}
 
--- GRAIN: one row per controlled substance transaction (transaction_id is unique)
+-- GRAIN: one row per ARCOS transaction line; TRANSACTION_ID is NOT unique, 11.7M ids over 178.6M rows, see traps.md 2026-09-10
 -- Answers: Who distributes what controlled substances to whom, where, and how much?
 -- Source: DEA ARCOS (Automation of Reports and Consolidated Orders System) â€” ~178M records
 -- Key joins: buyer_county â†’ geography; drug_name/ingredient_name â†’ substance classification;
@@ -23,12 +23,12 @@ county_dim as (
         STATEFP || COUNTYFP as county_fips,
         upper(regexp_replace(regexp_replace(regexp_replace(COUNTYNAME,
             '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
             '[^A-Za-z0-9]', '')) as name_key,
         row_number() over (
             partition by STATE, upper(regexp_replace(regexp_replace(regexp_replace(COUNTYNAME,
             '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
             '[^A-Za-z0-9]', ''))
             order by case when CLASSFP in ('H1', 'H4', 'H5') then 0 else 1 end, COUNTYFP
         ) as rn
@@ -87,11 +87,11 @@ left join county_dim bd
     on bd.rn = 1 and bd.state_abbr = trim("BUYER_STATE")
    and bd.name_key = upper(regexp_replace(regexp_replace(regexp_replace(trim("BUYER_COUNTY"),
             '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
             '[^A-Za-z0-9]', ''))
 left join county_dim rd
     on rd.rn = 1 and rd.state_abbr = trim("REPORTER_STATE")
    and rd.name_key = upper(regexp_replace(regexp_replace(regexp_replace(trim("REPORTER_COUNTY"),
             '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
             '[^A-Za-z0-9]', ''))
