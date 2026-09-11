@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: ripple_raw
+    database: LIBRARY_RAW
+    schema: LANDING
+    tables:
+      - name: FED_USASPENDING_ASSISTANCE_FY2012
+
+models:
+  - name: stg_fed_usaspending_assistance_fy2012__all
+    description: "USAspending financial assistance transactions FY2012, full archive columns"
+    columns:
+      - name: ASSISTANCE_TRANSACTION_UNIQUE_KEY
+        tests:
+          - not_null
+          - unique
