@@ -141,7 +141,7 @@ Tables: FED_USASPENDING_CONTRACTS_FY2007..FY2026. FED_USASPENDING_CONTRACTS_FULL
 
 ---
 
-# Landed, 2026-09-10 to 2026-09-11, all verified and committed
+# Landed, 2026-09-10 to 2026-09-11, all verified and committed except the LDA 2017 partial
 
 | table or series | rows | verify | skeptic |
 |---|---|---|---|
@@ -151,7 +151,7 @@ Tables: FED_USASPENDING_CONTRACTS_FY2007..FY2026. FED_USASPENDING_CONTRACTS_FULL
 | FED_DOL_WHD_ENFORCEMENT | 367,890 | csv = table = API total | agreed |
 | FED_FEMA_DISASTER_DECLARATIONS | 70,402 | csv = table = API count | agreed |
 | FED_CMS_NPPES_DEACTIVATED | 351,912 | xlsx = table, unique | agreed |
-| FED_CFPB_HMDA_LAR_2018..2024 | 124,630,848 | actions 1-8 = API each year | agreed |
+| FED_CFPB_HMDA_LAR_2018..2024 | 124,632,830 landed, 124,630,848 actions 1-8 | actions 1-8 = API each year | agreed |
 | FED_EIA860_PLANT_Y2019..2023, GENERATOR_Y2019..2023 | 10 tables | sheet rows minus title and header | agreed |
 | FED_EPA_EGRID_PLANT_2019, 2020, 2021, 2023 | 4 tables | sheet rows, unique ORISPL | agreed |
 | FED_USASPENDING_CONTRACTS_FY2007..2026 | 96,976,021 | csv = table, key unique, no cross-year overlap | agreed |
@@ -165,4 +165,4 @@ HEALTH__FED_DEA_ARCOS gained BUYER_COUNTY_FIPS and REPORTER_COUNTY_FIPS, 178,344
 Both via FED_CENSUS_COUNTY_2020, suffix stripped, St./Ste./Saint folded, city forms kept apart.
 
 Not done: LDA 2017, 150,171 partial seat rows under one run id need deleting before a rerun. EAVS multi-year, a phase 6 pull. Hospital CCN to EIN, a name-match job. REF__DIM_GEOGRAPHY is now known bad; nothing was rebuilt on it.
-Loader additions in scripts/phase5_load.py: ranged zip member, DOL paged API, xlsx and multi-sheet xlsx, multi-member zip with a size-checked cache, tab and NUL repair pass. All go through the fast PUT and COPY path and never call connect-one.
+The LDA backfill is the one load not on PUT and COPY: a paged JSON API at 16 requests a minute, write_pandas per flush, no file to PUT. Loader additions in scripts/phase5_load.py: ranged zip member, DOL paged API, xlsx and multi-sheet xlsx, multi-member zip with a size-checked cache, tab and NUL repair pass. All go through the fast PUT and COPY path and never call connect-one.
