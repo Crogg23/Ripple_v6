@@ -166,3 +166,30 @@ Both via FED_CENSUS_COUNTY_2020, suffix stripped, St./Ste./Saint folded, city fo
 
 Not done: LDA 2017, 150,171 partial seat rows under one run id need deleting before a rerun. EAVS multi-year, a phase 6 pull. Hospital CCN to EIN, a name-match job. REF__DIM_GEOGRAPHY is now known bad; nothing was rebuilt on it.
 The LDA backfill is the one load not on PUT and COPY: a paged JSON API at 16 requests a minute, write_pandas per flush, no file to PUT. Loader additions in scripts/phase5_load.py: ranged zip member, DOL paged API, xlsx and multi-sheet xlsx, multi-member zip with a size-checked cache, tab and NUL repair pass. All go through the fast PUT and COPY path and never call connect-one.
+
+---
+
+# Homestretch, 2026-09-11: the last four ledger rows
+
+| ledger row | item | result |
+|---|---|---|
+| 13 | SEC CUSIP list | `LIBRARY_RAW.LANDING.FED_SEC_13F_SECURITIES_LIST`, 25,333 rows, 23,277 distinct CUSIPs, 1,351 `*A*`, 6,110 with options; all equal the file |
+| 14 | LDA years | ledger was stale: filings held every year but 2017. 2017 partial seats deleted under `greenlight destroy`, 150,171 rows, run id 60470daf. 2017 rerun started 11:2x; 1999-2016 seats and 2008-2016 contributions queued behind it |
+| 16 | hospital CCN to EIN | `LIBRARY_MARTS.CORE.XWALK_HOSPITAL_CCN_EIN`, 4,005 CCNs to 2,076 EINs, MATCH_TIER 1-4; 3,893 of 6,703 nonprofit CCNs, 58% |
+| 17 | EIN on assistance | dead, USAspending publishes none |
+
+Source for 13: `https://www.sec.gov/files/investment/13flist2026q2-txt.txt`, fixed-width 80 chars, no header, latin-1. Widths in `scripts/sprint_phase5_specs.py`. New fetch kind `fixed_width` in `scripts/phase5_load.py`.
+
+CCN to EIN, builder `scripts/xwalk_hospital_ccn_ein.py`:
+
+| tier | rule | CCNs | EINs |
+|---|---|---|---|
+| 1 | name + ZIP5 | 2,332 | 1,366 |
+| 2 | DBA name + ZIP5 | 33 | 22 |
+| 3 | name + state | 1,280 | 549 |
+| 4 | street + ZIP5, NTEE E2x, no FOUNDATION/AUXILIARY/VOLUNTEER/GUILD | 360 | 252 |
+
+Tier 4 sample of 20: 15 the hospital, 2 the parent system, 1 a physicians org, 1 a realty arm, 1 a hospice. A fifth tier, street + ZIP5 with no NTEE gate, sampled as Toastmasters, employee clubs, medical-staff funds, a running club; dropped.
+The first --run reported 4,434 CCNs; that number came from a dry run before the junk filter and is wrong. The table holds 4,005.
+
+Downloader fix: `scripts/cms_years_fast_load.py` treated Content-Length as decoded size; sec.gov gzips, 263,548 on the wire, 2,051,973 decoded, six retries. Now a gzip/br/deflate response sets the expected size to unknown.
