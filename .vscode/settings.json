@@ -1,12 +1,11 @@
 {
-    "editor.acceptSuggestionOnEnter": "on",
+    "editor.acceptSuggestionOnEnter": true,
     "editor.quickSuggestions": {
         "other": false,
         "comments": false,
         "strings": false
     },
     "editor.quickSuggestionsDelay": 300,
-
     // Three folders hold about 68,000 files between them and none of it is
     // ours: an Evidence.dev dependency tree, a Python virtualenv, and compiled
     // bytecode. .gitignore already keeps them out of git, but the editor runs
@@ -34,12 +33,10 @@
         "**/__pycache__": true,
         "**/*.pyc": true
     },
-
     // The panel stops rendering a file list past this many changes and shows a
     // warning instead. The repo sits at about 30; a spike above 200 means
     // something new needs an ignore rule, so keep the warning switched on.
     "git.ignoreLimitWarning": false,
-
     // Untracked files get their own collapsible group instead of being mixed
     // into the change list, so a pile of new files cannot bury a real edit.
     "git.untrackedChanges": "separate"

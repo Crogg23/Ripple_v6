@@ -226,3 +226,6 @@
 2026-09-10 13:10:46      download try 7/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 2026-09-10 13:11:46      download try 8/8 failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 2026-09-10 14:22:35      downloaded 2.01 GB
+2026-09-10 20:56:34      download try 1/4 failed: HTTPSConnectionPool(host='files.usaspending.gov', port=443): Read timed out.
+2026-09-10 20:56:44      resuming at 1.32 of 1.37 GB (try 2)
+2026-09-10 20:56:49      downloaded 1.37 GB
