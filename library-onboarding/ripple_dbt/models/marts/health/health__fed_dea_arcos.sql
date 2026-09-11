@@ -7,8 +7,32 @@
 --   buyer_dea_no â†’ pharmacy/provider entities; reporter_name â†’ manufacturer/distributor entities
 -- WARNING: This is 178M rows. Full materialization takes significant compute.
 
+-- 2026-09-10: BUYER_COUNTY_FIPS and REPORTER_COUNTY_FIPS added from the Census 2020 county list.
+-- ARCOS spells SAINT out and drops the legal suffix; the key folds St./Saint and strips County/Parish.
+-- Measured before the change on the 3,132 distinct buyer state+county pairs: 3,089 matched,
+-- 178,338,557 of 178,598,026 rows. Misses are Virginia independent cities without 'city',
+-- Dona Ana without the tilde, Juneau, and Puerto Rico municipios.
+
 with source as (
     select * from {{ source('ripple_raw', 'FED_DEA_ARCOS_FULL') }}
+),
+
+county_dim as (
+    select
+        STATE as state_abbr,
+        STATEFP || COUNTYFP as county_fips,
+        upper(regexp_replace(regexp_replace(regexp_replace(COUNTYNAME,
+            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
+            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '[^A-Za-z0-9]', '')) as name_key,
+        row_number() over (
+            partition by STATE, upper(regexp_replace(regexp_replace(regexp_replace(COUNTYNAME,
+            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
+            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '[^A-Za-z0-9]', ''))
+            order by case when CLASSFP in ('H1', 'H4', 'H5') then 0 else 1 end, COUNTYFP
+        ) as rn
+    from {{ source('ripple_raw', 'FED_CENSUS_COUNTY_2020') }}
 )
 
 select
@@ -24,6 +48,7 @@ select
     trim("REPORTER_STATE")                           as reporter_state,
     trim("REPORTER_ZIP")                             as reporter_zip,
     trim("REPORTER_COUNTY")                          as reporter_county,
+    rd.county_fips                                   as reporter_county_fips,
 
     -- Buyer (pharmacy/hospital/practitioner)
     trim("BUYER_DEA_NO")                             as buyer_dea_no,
@@ -33,6 +58,7 @@ select
     trim("BUYER_STATE")                              as buyer_state,
     trim("BUYER_ZIP")                                as buyer_zip,
     trim("BUYER_COUNTY")                             as buyer_county,
+    bd.county_fips                                   as buyer_county_fips,
 
     -- Drug/substance
     trim("DRUG_CODE")                                as drug_code,
@@ -57,3 +83,15 @@ select
     "_INGESTED_AT" as _loaded_at,
     "_SOURCE_RUN_ID" as _source_run_id
 from source
+left join county_dim bd
+    on bd.rn = 1 and bd.state_abbr = trim("BUYER_STATE")
+   and bd.name_key = upper(regexp_replace(regexp_replace(regexp_replace(trim("BUYER_COUNTY"),
+            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
+            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '[^A-Za-z0-9]', ''))
+left join county_dim rd
+    on rd.rn = 1 and rd.state_abbr = trim("REPORTER_STATE")
+   and rd.name_key = upper(regexp_replace(regexp_replace(regexp_replace(trim("REPORTER_COUNTY"),
+            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
+            '^(St\.?|Saint)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
+            '[^A-Za-z0-9]', ''))
