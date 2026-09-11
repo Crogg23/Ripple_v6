@@ -138,3 +138,31 @@ Chris 2026-09-10: "do it". USAspending publishes a monthly award-data archive: o
 
 Host behaviour: about 25 rapid requests at 12:50 got the address banned on files.usaspending.gov and api.usaspending.gov for roughly an hour, TLS closed before any response. www.usaspending.gov kept answering. Loads run one year at a time with a 60 s gap.
 Tables: FED_USASPENDING_CONTRACTS_FY2007..FY2026. FED_USASPENDING_CONTRACTS_FULL_R2 untouched.
+
+---
+
+# Landed, 2026-09-10 to 2026-09-11, all verified and committed
+
+| table or series | rows | verify | skeptic |
+|---|---|---|---|
+| FED_CMS_SNF_OWNERSHIP | 295,083 | csv = table, triple key | agreed, key wording fixed |
+| FED_EOIR_JUDGE | 1,785 | csv = table, unique | agreed |
+| FED_EOIR_PROCEEDING | 16,817,265 | Count.txt minus 71 quarantined | agreed |
+| FED_DOL_WHD_ENFORCEMENT | 367,890 | csv = table = API total | agreed |
+| FED_FEMA_DISASTER_DECLARATIONS | 70,402 | csv = table = API count | agreed |
+| FED_CMS_NPPES_DEACTIVATED | 351,912 | xlsx = table, unique | agreed |
+| FED_CFPB_HMDA_LAR_2018..2024 | 124,630,848 | actions 1-8 = API each year | agreed |
+| FED_EIA860_PLANT_Y2019..2023, GENERATOR_Y2019..2023 | 10 tables | sheet rows minus title and header | agreed |
+| FED_EPA_EGRID_PLANT_2019, 2020, 2021, 2023 | 4 tables | sheet rows, unique ORISPL | agreed |
+| FED_USASPENDING_CONTRACTS_FY2007..2026 | 96,976,021 | csv = table, key unique, no cross-year overlap | agreed |
+| FED_USASPENDING_ASSISTANCE_FY2007..2026 | 128,155,142 | same | agreed |
+| FED_CENSUS_COUNTY_2020 | 3,235 | unique FIPS | agreed |
+| FED_SENATE_LDA_FILINGS 2012-2016 backfill | 5 years appended | loader's own counts | 2017 partial, waits on a delete |
+
+Marts changed under `greenlight rebuild`:
+ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS gained COUNTY_FIPS, 404,823 of 405,396 named county rows.
+HEALTH__FED_DEA_ARCOS gained BUYER_COUNTY_FIPS and REPORTER_COUNTY_FIPS, 178,344,793 and 178,597,539 of 178,598,026.
+Both via FED_CENSUS_COUNTY_2020, suffix stripped, St./Ste./Saint folded, city forms kept apart.
+
+Not done: LDA 2017, 150,171 partial seat rows under one run id need deleting before a rerun. EAVS multi-year, a phase 6 pull. Hospital CCN to EIN, a name-match job. REF__DIM_GEOGRAPHY is now known bad; nothing was rebuilt on it.
+Loader additions in scripts/phase5_load.py: ranged zip member, DOL paged API, xlsx and multi-sheet xlsx, multi-member zip with a size-checked cache, tab and NUL repair pass. All go through the fast PUT and COPY path and never call connect-one.
