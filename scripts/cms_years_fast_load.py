@@ -98,6 +98,12 @@ def download(url: str, dest: Path, tries: int = 6) -> int:
                     mode = "ab"
                 elif r.status_code == 200:
                     total = int(r.headers.get("Content-Length") or 0)
+                    if r.headers.get("Content-Encoding", "").lower() in ("gzip", "br", "deflate"):
+                        # Content-Length is the wire size; requests hands back
+                        # decoded bytes, so the size check has nothing to match.
+                        # Seen 2026-09-11 on sec.gov: 263,548 on the wire,
+                        # 2,051,973 decoded, and six "short download" retries.
+                        total = 0
                     have, mode = 0, "wb"
                 else:
                     r.raise_for_status()

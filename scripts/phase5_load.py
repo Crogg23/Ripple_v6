@@ -362,6 +362,26 @@ def fetch_zip_multi_csv(spec: dict, dest: Path) -> list:
 
 
 # ------------------------------------------------------------ driver
+def fetch_fixed_width(spec: dict, dest: Path) -> Path:
+    """One fixed-width text file, no header, sliced by spec["widths"] into a csv.
+
+    widths is a list of (name, start, end), 0-based half-open on the 80-char line.
+    A LINE_NO column is added first, because the SEC 13F list repeats about
+    2,000 lines verbatim and the landing keeps every line the file has."""
+    raw = dest.with_suffix(".txt")
+    fast.download(spec["download_url"], raw)
+    widths = spec["widths"]
+    with open(raw, encoding=spec.get("encoding", "latin-1")) as f,          open(dest, "w", encoding="utf-8", newline="") as out:
+        w = csv.writer(out)
+        w.writerow(["LINE_NO"] + [n for n, _, _ in widths] + list(spec.get("constants", {}).keys()))
+        for i, line in enumerate(f, 1):
+            line = line.rstrip("\r\n")
+            if not line.strip():
+                continue
+            w.writerow([i] + [line[a:b].strip() for _, a, b in widths] + list(spec.get("constants", {}).values()))
+    return dest
+
+
 def fetch(spec: dict) -> Path:
     sid = spec["source_id"]
     dest = SCRATCH / f"{sid}.csv"
@@ -376,6 +396,8 @@ def fetch(spec: dict) -> Path:
         return fetch_url_xlsx(spec, dest)
     if kind == "zip_multi_csv":
         return fetch_zip_multi_csv(spec, dest)
+    if kind == "fixed_width":
+        return fetch_fixed_width(spec, dest)
     if kind == "url_csv":
         fast.download(spec["download_url"], dest)   # streamed, Range resume, size-checked
         return dest

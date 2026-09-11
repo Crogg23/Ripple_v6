@@ -116,4 +116,29 @@ SPECS = [
                   "Pulled through the v4 API, 10,000 rows a page, X-API-KEY as a query parameter, sorted by case_id. "
                   "Rate limited, 429 after a burst; the loader backs off. 110 columns."),
     },
+    {
+        "source_id": "FED_SEC_13F_SECURITIES_LIST",
+        "name": "SEC Official List of Section 13(f) Securities, 2026 Q2",
+        "publisher": "SEC",
+        "url": "https://www.sec.gov/divisions/investment/13flists.htm",
+        "download_url": "https://www.sec.gov/files/investment/13flist2026q2-txt.txt",
+        "kind": "fixed_width",
+        "encoding": "latin-1",
+        "widths": [("CUSIP", 0, 9), ("HAS_LISTED_OPTIONS", 9, 10), ("ISSUER_NAME", 10, 40),
+                   ("ISSUER_DESCRIPTION", 40, 67), ("STATUS", 67, 70)],
+        "constants": {"LIST_QUARTER": "2026Q2"},
+        "loader": "phase5",
+        "key_cols": [{"col": "CUSIP", "as": "CUSIP"}],
+        "join_keys": "CUSIP -> FED_SEC_FTD_CUSIP_BRIDGE.CUSIP -> SYMBOL -> company_tickers CIK; no CIK in this file",
+        "category": "Economics",
+        "subcategory": "Securities Reference",
+        "unit_of_observation": "one row = one line of the quarterly list; 25,333 lines, 23,277 distinct CUSIPs, ~2,000 verbatim repeats",
+        "update_cadence": "quarterly",
+        "temporal_coverage": "2026 Q2 list; text form exists 2020q1 onward, PDF back to 1996",
+        "accountability_relevance": "Every security a 13F filer must report: CUSIP, issuer name, class. The name side of the CUSIP-to-CIK bridge.",
+        "priority_tier": "2",
+        "notes": ("Homestretch 2026-09-11, ledger row 13. Fixed-width 80-char text, no header, no CIK. "
+                  "Col 10 '*' = has listed options, 6,110 rows. STATUS *A* added 1,351, *D* deleted 844, blank 23,138. "
+                  "LINE_NO is the row key; CUSIP repeats on ~2,000 verbatim duplicate lines, dedupe on CUSIP before joining."),
+    },
 ]
