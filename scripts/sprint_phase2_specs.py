@@ -171,3 +171,26 @@ for _y in range(2007, 2027):
                   "All columns TEXT. FED_USASPENDING_CONTRACTS_FULL_R2 is the 36-column API pull and stays as is."),
     })
 
+# Census national county list, 2020 vintage: the clean county name to FIPS dimension. Landed 2026-09-10
+# because REF__DIM_GEOGRAPHY fans out and misses counties, see traps.md.
+SPECS.append({
+    "source_id": "FED_CENSUS_COUNTY_2020",
+    "name": "Census national county codes 2020",
+    "publisher": "Census Bureau",
+    "url": "https://www.census.gov/library/reference/code-lists/ansi.html",
+    "download_url": "https://www2.census.gov/geo/docs/reference/codes2020/national_county2020.txt",
+    "kind": "url_csv",
+    "delimiter": "|",
+    "loader": "phase5",
+    "key_cols": [{"col": "COUNTYNS", "as": "COUNTYNS"}],
+    "join_keys": "STATEFP||COUNTYFP = 5-digit county FIPS; STATE abbr; COUNTYNAME with County/Parish/Borough suffix",
+    "category": "Reference",
+    "subcategory": "Geography",
+    "unit_of_observation": "one row = one county or county equivalent, 3,235 rows",
+    "update_cadence": "decennial",
+    "temporal_coverage": "2020 vintage",
+    "accountability_relevance": "The county name to FIPS lookup every name-only county column needs.",
+    "priority_tier": "1",
+    "notes": "Landed 2026-09-10. Pipe-delimited, 7 columns, FIPS unique. COUNTYNAME carries the legal suffix: County, Parish, Borough, Census Area, Municipio, city.",
+})
+
