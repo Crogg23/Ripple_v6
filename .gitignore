@@ -142,3 +142,6 @@ evidence/sources/**/connection.options.yaml
 *_rsa
 *_rsa.pub
 id_ed25519*
+
+# 2026-09-11: phase5 loader scratch, multi-GB archive members; never commit
+.scratch/phase5/
