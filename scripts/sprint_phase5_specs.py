@@ -142,3 +142,85 @@ SPECS = [
                   "LINE_NO is the row key; CUSIP repeats on ~2,000 verbatim duplicate lines, dedupe on CUSIP before joining."),
     },
 ]
+
+# Census 2020 ZCTA-to-county relationship file. Landed 2026-09-11 to close the ZIP-to-county hole:
+# six or more county wonders were blocked on it. One row per ZCTA x county overlap, with land area of the
+# overlap, so a ZCTA split across counties can be assigned to its largest-area county. ZCTA is not USPS ZIP:
+# P.O.-box-only ZIPs have no ZCTA. The HUD USPS crosswalk is the better file but needs an API token we lack.
+SPECS.append({
+    "source_id": "FED_CENSUS_ZCTA_COUNTY_2020",
+    "name": "Census 2020 ZCTA to county relationship file",
+    "publisher": "Census Bureau",
+    "url": "https://www.census.gov/geographies/reference-files/time-series/geo/relationship-files.2020.html",
+    "download_url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/zcta520/tab20_zcta520_county20_natl.txt",
+    "kind": "url_csv",
+    "delimiter": "|",
+    "loader": "phase5",
+    "key_cols": [{"col": "GEOID_ZCTA5_20", "as": "GEOID_ZCTA5_20"}, {"col": "GEOID_COUNTY_20", "as": "GEOID_COUNTY_20"}],
+    "join_keys": "GEOID_ZCTA5_20 = 5-digit ZCTA, joins any ZIP5 column; GEOID_COUNTY_20 = 5-digit county FIPS -> FED_CENSUS_COUNTY_2020",
+    "category": "Reference",
+    "subcategory": "Geography",
+    "unit_of_observation": "one row = one ZCTA x county overlap; key is the pair, ZCTA alone repeats where a ZCTA crosses a county line",
+    "update_cadence": "decennial",
+    "temporal_coverage": "2020 vintage",
+    "accountability_relevance": "The ZIP to county bridge every ZIP-only table needs to land on a county map.",
+    "priority_tier": "1",
+    "notes": ("Landed 2026-09-11. Pipe-delimited. Rows with a blank GEOID_ZCTA5_20 are county land with no ZCTA; drop them. "
+              "AREALAND_PART is the overlap area: pick the max per ZCTA for a one-to-one map."),
+})
+
+# HUD Multifamily properties with assistance and Section 8 contracts, property level, with the OWNER and the
+# MANAGEMENT AGENT named. Landed 2026-09-11 to close the landlord hole: no other public national file names who
+# owns a rental building. Scope is HUD-assisted or HUD-insured multifamily only, not the private rental market.
+_HUD_HDR = {"User-Agent": "Mozilla/5.0", "Referer": "https://www.hud.gov/"}
+SPECS.append({
+    "source_id": "FED_HUD_MF_PROPERTIES_OWNERS",
+    "name": "HUD multifamily properties with assistance and Section 8 contracts, owner and management agent",
+    "publisher": "HUD Office of Multifamily Housing",
+    "url": "https://www.hud.gov/hud-partners/multifamily-assist-section8-database",
+    "download_url": "https://www.hud.gov/sites/dfiles/Housing/documents/MF-Properties-with-Assistance-Sec8-Contracts1.xlsx",
+    "kind": "url_xlsx",
+    "headers": _HUD_HDR,
+    "loader": "phase5",
+    "key_cols": [{"col": "property_id", "as": "PROPERTY_ID"}],
+    "join_keys": ("PROPERTY_ID -> FED_HUD_MF_SECTION8_CONTRACTS.PROPERTY_ID; OWNER_PARTICIPANT_ID groups buildings by owner; "
+                  "STATE_CODE||COUNTY_CODE = county FIPS; ZIP_CODE -> FED_CENSUS_ZCTA_COUNTY_2020"),
+    "category": "Housing",
+    "subcategory": "Multifamily Ownership",
+    "unit_of_observation": "one row = one HUD multifamily property, 23,612 rows, PROPERTY_ID unique",
+    "update_cadence": "monthly",
+    "temporal_coverage": "snapshot 2026-08-07",
+    "accountability_relevance": "Who owns and who manages every HUD-assisted apartment building: org name, participant id, address, type.",
+    "priority_tier": "1",
+    "notes": ("Landed 2026-09-11. Cells come space-padded to fixed width; TRIM everything. Blanks are a single space, "
+              "not NULL. COUNTY_CODE is the 3-digit county FIPS without the state. Owner is either an org or an individual: "
+              "OWNER_ORGANIZATION_NAME or the OWNER_INDIVIDUAL_* columns, never both. hud.gov needs a Referer header."),
+})
+
+# HUD LIHTC property database, placed in service 1987-2024. Landed 2026-09-11. No owner in it: this is the
+# PLACE side of subsidized housing, tract and county FIPS on every row, 2020 vintage. Owner lives only in
+# FED_HUD_MF_PROPERTIES_OWNERS, and the two do not share a key; address+ZIP is the only bridge.
+SPECS.append({
+    "source_id": "FED_HUD_LIHTC_PROPERTIES",
+    "name": "HUD Low-Income Housing Tax Credit property database, 1987-2024",
+    "publisher": "HUD PD&R",
+    "url": "https://www.huduser.gov/portal/datasets/lihtc.html",
+    "download_url": "https://www.huduser.gov/lihtc/lihtcpub.zip",
+    "kind": "zip_xlsx",
+    "member": r"^LIHTCPUB\.xlsx$",
+    "xlsx_strip_synch": True,
+    "headers": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36",
+                "Referer": "https://www.huduser.gov/portal/datasets/lihtc/property.html"},
+    "loader": "phase5",
+    "key_cols": [{"col": "hud_id", "as": "HUD_ID"}],
+    "join_keys": "FIPS2020 = 11-digit tract; ST2020||CNTY2020 = county FIPS -> FED_CENSUS_COUNTY_2020; PROJ_ZIP -> FED_CENSUS_ZCTA_COUNTY_2020",
+    "category": "Housing",
+    "subcategory": "Subsidized Housing",
+    "unit_of_observation": "one row = one LIHTC project, HUD_ID unique",
+    "update_cadence": "annual",
+    "temporal_coverage": "placed in service 1987-2024",
+    "accountability_relevance": "Where every tax-credit apartment project sits, how many units, what year, what other federal money.",
+    "priority_tier": "2",
+    "notes": ("Landed 2026-09-11. YR_PIS and YR_ALLOC use 9999 for unknown and 8888 for not yet placed; NULLIF both. "
+              "No owner, no developer, no syndicator in the public file. ST2020 and CNTY2020 come with leading zeros stripped; lpad before joining. huduser.gov 202s a non-browser User-Agent."),
+})

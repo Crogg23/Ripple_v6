@@ -1,0 +1,21 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_CENSUS_ZCTA_COUNTY_2020
+
+  models:
+    - name: stg_fed_census_zcta_county_2020__all
+      description: "Census 2020 ZCTA to county relationship file"
+      columns:
+- name: GEOID_ZCTA5_20
+  tests:
+    - not_null
+    - unique
+- name: GEOID_COUNTY_20
+  tests:
+    - not_null
+    - unique

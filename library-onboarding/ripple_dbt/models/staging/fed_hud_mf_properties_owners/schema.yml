@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_HUD_MF_PROPERTIES_OWNERS
+
+  models:
+    - name: stg_fed_hud_mf_properties_owners__all
+      description: "HUD multifamily properties with assistance and Section 8 contracts, owner and management agent"
+      columns:
+- name: PROPERTY_ID
+  tests:
+    - not_null
+    - unique

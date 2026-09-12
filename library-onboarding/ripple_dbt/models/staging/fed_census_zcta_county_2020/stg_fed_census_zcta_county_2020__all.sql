@@ -1,0 +1,30 @@
+    with source as (
+        select * from {{ source('ripple_raw', 'FED_CENSUS_ZCTA_COUNTY_2020') }}
+    )
+
+    select
+        "OID_ZCTA5_20",
+"GEOID_ZCTA5_20" as GEOID_ZCTA5_20,
+"NAMELSAD_ZCTA5_20",
+"AREALAND_ZCTA5_20",
+"AREAWATER_ZCTA5_20",
+"MTFCC_ZCTA5_20",
+"CLASSFP_ZCTA5_20",
+"FUNCSTAT_ZCTA5_20",
+"OID_COUNTY_20",
+"GEOID_COUNTY_20" as GEOID_COUNTY_20,
+"NAMELSAD_COUNTY_20",
+"AREALAND_COUNTY_20",
+"AREAWATER_COUNTY_20",
+"MTFCC_COUNTY_20",
+"CLASSFP_COUNTY_20",
+"FUNCSTAT_COUNTY_20",
+"AREALAND_PART",
+"AREAWATER_PART",
+_INGESTED_AT,
+_SOURCE_RUN_ID
+    from source
+    qualify row_number() over (
+        partition by GEOID_ZCTA5_20
+        order by _INGESTED_AT desc
+    ) = 1

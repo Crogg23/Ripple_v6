@@ -292,6 +292,20 @@ def _xlsx_to_csv(wb, spec: dict, dest: Path, tag: str) -> None:
     log(f"    xlsx {tag}: sheets {names}, {n:,} data rows, {len(union)} columns")
 
 
+def _strip_synch(blob: bytes) -> bytes:
+    """Rewrite an xlsx with the non-standard synchVertical/synchHorizontal sheet attributes removed."""
+    import zipfile
+    zi = zipfile.ZipFile(io.BytesIO(blob))
+    out = io.BytesIO()
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zo:
+        for i in zi.infolist():
+            d = zi.read(i.filename)
+            if i.filename.startswith("xl/worksheets/"):
+                d = d.replace(b'synchVertical="1"', b"").replace(b'synchHorizontal="1"', b"")
+            zo.writestr(i, d)
+    return out.getvalue()
+
+
 def fetch_zip_xlsx(spec: dict, dest: Path) -> Path:
     import zipfile
     import openpyxl
@@ -305,7 +319,10 @@ def fetch_zip_xlsx(spec: dict, dest: Path) -> Path:
         members = [n for n in z.namelist() if n.lower().endswith(".xlsx") and (not pat or re.search(pat, n))]
         if len(members) != 1:
             raise RuntimeError(f"expected one xlsx member for {pat!r}, found {members}")
-        wb = openpyxl.load_workbook(io.BytesIO(z.read(members[0])), read_only=True)
+        blob = z.read(members[0])
+    if spec.get("xlsx_strip_synch"):
+        blob = _strip_synch(blob)   # HUD LIHTC writes synchVertical, which openpyxl rejects
+    wb = openpyxl.load_workbook(io.BytesIO(blob), read_only=True)
     _xlsx_to_csv(wb, spec, dest, members[0])
     return dest
 
@@ -442,6 +459,7 @@ def main() -> int:
     args = ap.parse_args()
     fast.SCRATCH = SCRATCH
     spec = {s["source_id"]: s for s in SPECMOD.SPECS + SPECMOD2.SPECS}[args.sid]
+    fast.UA = {**fast.UA, **spec.get("headers", {})}   # hud.gov and huduser.gov 404 without a Referer
     if spec.get("loader") != "phase5":
         raise SystemExit(f"{args.sid} is a {spec.get('loader')} spec; use that loader")
     log(f"==> {args.sid}")

@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_HUD_LIHTC_PROPERTIES
+
+  models:
+    - name: stg_fed_hud_lihtc_properties__all
+      description: "HUD Low-Income Housing Tax Credit property database, 1987-2024"
+      columns:
+- name: HUD_ID
+  tests:
+    - not_null
+    - unique
