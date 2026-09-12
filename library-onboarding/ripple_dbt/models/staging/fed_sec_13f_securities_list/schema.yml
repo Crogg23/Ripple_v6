@@ -1,0 +1,17 @@
+  version: 2
+
+  sources:
+    - name: ripple_raw
+      database: LIBRARY_RAW
+      schema: LANDING
+      tables:
+        - name: FED_SEC_13F_SECURITIES_LIST
+
+  models:
+    - name: stg_fed_sec_13f_securities_list__all
+      description: "SEC Official List of Section 13(f) Securities, 2026 Q2"
+      columns:
+- name: CUSIP
+  tests:
+    - not_null
+    - unique
