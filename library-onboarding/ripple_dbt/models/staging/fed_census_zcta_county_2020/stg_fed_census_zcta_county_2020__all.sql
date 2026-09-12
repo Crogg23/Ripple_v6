@@ -24,7 +24,4 @@
 _INGESTED_AT,
 _SOURCE_RUN_ID
     from source
-    qualify row_number() over (
-        partition by GEOID_ZCTA5_20
-        order by _INGESTED_AT desc
-    ) = 1
+    -- relationship table: one row per ZCTA x county part, no dedupe. 903 rows have no ZCTA.
