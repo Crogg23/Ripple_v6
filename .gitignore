@@ -145,3 +145,6 @@ id_ed25519*
 
 # 2026-09-11: phase5 loader scratch, multi-GB archive members; never commit
 .scratch/phase5/
+
+# 2026-09-13: Idea Book working files; receipts live in reports/idea_book/
+.scratch/idea_book/
