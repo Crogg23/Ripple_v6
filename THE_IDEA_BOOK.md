@@ -16,7 +16,7 @@ read, understand, and reference, singular source."
 
 Every row has an id. Cite the id, not the wording. Ids have gaps where a twin was folded into another chapter's row; a skeptic pass on 2026-09-13 found 68 cross-chapter twins and they were merged. The last column of every row
 names the source file the row came from, in short form. The full crosswalk from
-every book row back to every source row is in `reports/idea_book/`.
+every book row back to every source row is in `reports/idea_book_workings/`. That folder is the parts bin, not the book. Read and edit this file only.
 
 ## Contents
 
