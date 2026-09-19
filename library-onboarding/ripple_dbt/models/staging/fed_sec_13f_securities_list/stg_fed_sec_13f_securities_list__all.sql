@@ -14,6 +14,6 @@ _INGESTED_AT,
 _SOURCE_RUN_ID
     from source
     qualify row_number() over (
-        partition by CUSIP
+        partition by "LIST_QUARTER", "LINE_NO"
         order by _INGESTED_AT desc
     ) = 1

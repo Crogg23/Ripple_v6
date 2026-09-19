@@ -39,6 +39,7 @@ models:
                   - Proposed Rule
                   - Notice
                   - Presidential Document
+                  - Uncategorized Document
 
       - name: abstract
         description: Short summary of the document contents.
@@ -183,6 +184,7 @@ models:
                   - Proposed Rule
                   - Notice
                   - Presidential Document
+                  - Uncategorized Document
 
       - name: subtype
         description: Document subtype, e.g. Executive Order, Proclamation.

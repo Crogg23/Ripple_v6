@@ -49,6 +49,6 @@ _INGESTED_AT,
 _SOURCE_RUN_ID
     from source
     qualify row_number() over (
-        partition by "UTILITY_ID"
+        partition by "PLANT_CODE"
         order by _INGESTED_AT desc
     ) = 1

@@ -12,21 +12,9 @@ sources:
 
 models:
   - name: stg_portal_soc_sf_opendata_data_79618299a6__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DBA_START_DATE+LOCATION_START_DATE unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per business registration record (UNIQUEID unique). SPINE_ENTITY: place."
     columns:
-      - name: business_zip
+      - name: uniqueid
         data_tests:
+          - unique
           - not_null
-      - name: dba_start_date
-        data_tests:
-          - not_null
-      - name: location_start_date
-        data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - business_zip
-              - dba_start_date
-              - location_start_date

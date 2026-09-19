@@ -18,7 +18,7 @@ renamed as (
     select
         "OBJECTID" as objectid,
         "EIN" as ein,
-        "ORGANIZATION" as organization,
+        "C_ORGANIZATION" as c_organization,
         "NTEE" as ntee,
         "MAILINGADDRESS" as mailingaddress,
         "MAILINGCITY" as mailingcity,
