@@ -21,5 +21,10 @@ select
 from {{ ref('stg_fed_sec_insider_submission__records') }}
 qualify row_number() over (
     partition by accession_number
-    order by _loaded_at desc
+    order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             filing_date nulls last, period_of_report nulls last, date_of_orig_sub nulls last,
+             document_type nulls last, issuercik nulls last, issuername nulls last,
+             issuertradingsymbol nulls last, no_securities_owned nulls last, not_subject_sec16 nulls last,
+             remarks nulls last
 ) = 1

@@ -26,5 +26,11 @@ select
 from {{ ref('stg_fed_sec_insider_nonderiv_trans__records') }}
 qualify row_number() over (
     partition by accession_number, nonderiv_trans_sk
-    order by _loaded_at desc
+    order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             security_title nulls last, trans_date nulls last, trans_code nulls last,
+             trans_shares nulls last, trans_pricepershare nulls last, trans_acquired_disp_cd nulls last,
+             shrs_ownd_folwng_trans nulls last, valu_ownd_folwng_trans nulls last,
+             direct_indirect_ownership nulls last, nature_of_ownership nulls last,
+             trans_form_type nulls last
 ) = 1

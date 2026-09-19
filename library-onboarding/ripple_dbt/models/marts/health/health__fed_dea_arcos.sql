@@ -13,6 +13,9 @@
 -- 178,338,557 of 178,598,026 rows. Misses are Virginia independent cities without 'city',
 -- Dona Ana without the tilde, Juneau, and Puerto Rico municipios.
 
+{% set name_key_open = "upper(regexp_replace(regexp_replace(regexp_replace(" -%}
+{% set name_key_close = ", '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'), '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'), '[^A-Za-z0-9]', ''))" -%}
+
 with source as (
     select * from {{ source('ripple_raw', 'FED_DEA_ARCOS_FULL') }}
 ),
@@ -21,18 +24,38 @@ county_dim as (
     select
         STATE as state_abbr,
         STATEFP || COUNTYFP as county_fips,
-        upper(regexp_replace(regexp_replace(regexp_replace(COUNTYNAME,
-            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
-            '[^A-Za-z0-9]', '')) as name_key,
-        row_number() over (
-            partition by STATE, upper(regexp_replace(regexp_replace(regexp_replace(COUNTYNAME,
-            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
-            '[^A-Za-z0-9]', ''))
-            order by case when CLASSFP in ('H1', 'H4', 'H5') then 0 else 1 end, COUNTYFP
-        ) as rn
+        CLASSFP as classfp,
+        COUNTYFP as countyfp,
+        {{ name_key_open }}COUNTYNAME{{ name_key_close }} as name_key
     from {{ source('ripple_raw', 'FED_CENSUS_COUNTY_2020') }}
+),
+
+-- one Census county per state + name key; real counties beat the odd class codes.
+county_one as (
+    select state_abbr, name_key, county_fips
+    from county_dim
+    qualify row_number() over (
+        partition by state_abbr, name_key
+        order by case when classfp in ('H1', 'H4', 'H5') then 0 else 1 end, countyfp
+    ) = 1
+),
+
+-- 2026-09-18: the regex key used to run inside both join conditions, twice per row, 178M rows.
+-- Now it runs once per distinct raw state + county spelling (3,132 buyer pairs, plus the reporter ones), and the
+-- big table joins to this lookup on its own raw columns. Plain equality, one hit at most:
+-- raw_pairs is distinct and county_one holds one row per key, so the join cannot add rows.
+raw_pairs as (
+    select "BUYER_STATE" as raw_state, "BUYER_COUNTY" as raw_county from source
+    union
+    select "REPORTER_STATE", "REPORTER_COUNTY" from source
+),
+
+county_lookup as (
+    select rp.raw_state, rp.raw_county, c.county_fips
+    from raw_pairs rp
+    join county_one c
+        on c.state_abbr = trim(rp.raw_state)
+       and c.name_key = {{ name_key_open }}trim(rp.raw_county){{ name_key_close }}
 )
 
 select
@@ -83,15 +106,7 @@ select
     "_INGESTED_AT" as _loaded_at,
     "_SOURCE_RUN_ID" as _source_run_id
 from source
-left join county_dim bd
-    on bd.rn = 1 and bd.state_abbr = trim("BUYER_STATE")
-   and bd.name_key = upper(regexp_replace(regexp_replace(regexp_replace(trim("BUYER_COUNTY"),
-            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
-            '[^A-Za-z0-9]', ''))
-left join county_dim rd
-    on rd.rn = 1 and rd.state_abbr = trim("REPORTER_STATE")
-   and rd.name_key = upper(regexp_replace(regexp_replace(regexp_replace(trim("REPORTER_COUNTY"),
-            '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'),
-            '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'),
-            '[^A-Za-z0-9]', ''))
+left join county_lookup bd
+    on bd.raw_state = "BUYER_STATE" and bd.raw_county = "BUYER_COUNTY"
+left join county_lookup rd
+    on rd.raw_state = "REPORTER_STATE" and rd.raw_county = "REPORTER_COUNTY"

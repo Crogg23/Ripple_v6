@@ -42,7 +42,12 @@ final as (
     where area_fips is not null and year is not null
     qualify row_number() over (
         partition by area_fips, industry_code, ownership_code, year, quarter
-        order by area_fips
+        -- area_fips is a partition key, so it ordered nothing. Order on the row's own values instead.
+        order by aggregation_level_code nulls last, size_code nulls last, disclosure_code nulls last,
+                 annual_avg_employment desc nulls last, annual_avg_establishments desc nulls last,
+                 total_annual_wages desc nulls last, annual_avg_weekly_wage desc nulls last,
+                 avg_annual_pay desc nulls last, yoy_employment_pct_change desc nulls last,
+                 yoy_wages_pct_change desc nulls last
     ) = 1
 
 )

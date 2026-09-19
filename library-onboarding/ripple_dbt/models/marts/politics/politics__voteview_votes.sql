@@ -21,4 +21,4 @@ select
     prob
 from {{ ref('stg_fed_voteview_rollcalls__votes') }}
 qualify row_number() over (partition by congress, chamber, rollnumber, icpsr
-                           order by prob desc nulls last) = 1
+                           order by prob desc nulls last, cast_code nulls last) = 1

@@ -35,8 +35,12 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_USGS_WATER') }}
     qualify row_number() over (
         partition by SITE_NO, PARAMETER_CD, DATETIME, DATA_TYPE
-        order by "VALUE", _SRC_SHA256
-    ) = 1
+        order by "VALUE", _SRC_SHA256,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             SITE_NAME nulls last, PARAMETER_NAME nulls last, UNIT_CD nulls last, QUALIFIER nulls last,
+             STATE_CD nulls last, COUNTY_CD nulls last, HUC_CD nulls last, LATITUDE nulls last,
+             LONGITUDE nulls last, AGENCY_CD nulls last
+) = 1
 )
 
 select

@@ -38,8 +38,11 @@ ranked as (
         TITLE as title,
         row_number() over (
             partition by CONGRESS, COMMITTEE_CODE, BIOGUIDE
-            order by {{ ripple_num('"RANK"') }} asc nulls last
-        ) as _dupe_rn
+            order by {{ ripple_num('"RANK"') }} asc nulls last,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             SNAPSHOT_DATE nulls last, SNAPSHOT_SHA nulls last, COMMITTEE_NAME nulls last,
+             IS_SUBCOMMITTEE nulls last, MEMBER_NAME nulls last, PARTY nulls last, TITLE nulls last
+) as _dupe_rn
     from source
 )
 

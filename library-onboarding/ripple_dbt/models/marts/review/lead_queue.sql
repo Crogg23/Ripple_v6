@@ -126,7 +126,7 @@ nppes AS (
         entity_type_code                                     AS etype
     FROM {{ source('ripple_raw', 'FED_CMS_NPPES') }}
     WHERE npi IN (SELECT npi FROM npi_keys)
-    QUALIFY ROW_NUMBER() OVER (PARTITION BY npi ORDER BY lname, fname) = 1
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY npi ORDER BY lname, fname, cred NULLS LAST, etype NULLS LAST) = 1
 ),
 
 -- ---------------------------------------------------------------------------

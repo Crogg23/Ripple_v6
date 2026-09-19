@@ -43,4 +43,13 @@ select
     (sig_sub = 'Y') as is_significant_and_substantial,
     _loaded_at
 from {{ ref('stg_fed_msha_violations__records') }}
-qualify row_number() over (partition by event_no, violation_no, docket_no order by _loaded_at desc) = 1
+qualify row_number() over (partition by event_no, violation_no, docket_no order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             mine_id nulls last, mine_name nulls last, mine_type nulls last, coal_metal_ind nulls last,
+             controller_id nulls last, controller_name nulls last, violator_id nulls last,
+             violator_name nulls last, violation_occur_dt nulls last, violation_issue_dt nulls last,
+             cal_yr nulls last, section_of_act nulls last, sig_sub nulls last, likelihood nulls last,
+             inj_illness nulls last, no_affected nulls last, negligence nulls last,
+             proposed_penalty nulls last, amount_due nulls last, amount_paid nulls last,
+             violator_violation_cnt nulls last, violator_inspection_day_cnt nulls last
+) = 1

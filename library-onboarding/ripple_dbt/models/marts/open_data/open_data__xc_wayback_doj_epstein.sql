@@ -48,5 +48,7 @@ select *
 from typed
 qualify row_number() over (
     partition by urlkey, capture_timestamp_raw, content_digest
-    order by content_length_bytes desc nulls last, _loaded_at desc
+    order by content_length_bytes desc nulls last, _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             original_url nulls last, captured_at nulls last, mimetype nulls last, status_code nulls last
 ) = 1

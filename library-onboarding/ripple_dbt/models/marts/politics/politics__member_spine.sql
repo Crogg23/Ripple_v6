@@ -17,7 +17,9 @@ with vv as (
         nominate_dim1,
         nominate_dim2,
         bioname,
-        row_number() over (partition by icpsr order by congress desc nulls last) as rn
+        row_number() over (partition by icpsr order by congress desc nulls last, chamber nulls last, party_code nulls last,
+                                                  bioguide_id nulls last, state_abbrev nulls last, nominate_dim1 nulls last,
+                                                  nominate_dim2 nulls last, bioname nulls last) as rn
     from {{ ref('stg_fed_voteview_members__ideology') }}
     where icpsr is not null
 

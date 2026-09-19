@@ -44,5 +44,11 @@ select
 from base
 qualify row_number() over (
     partition by sam_number
-    order by _loaded_at desc
+    order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             uei nulls last, cage nulls last, npi nulls last, entity_name nulls last,
+             first_name nulls last, last_name nulls last, classification nulls last,
+             exclusion_type nulls last, exclusion_program nulls last, excluding_agency nulls last,
+             activation_date nulls last, termination_date nulls last, record_status nulls last,
+             city nulls last, state nulls last, zip nulls last, country nulls last
 ) = 1

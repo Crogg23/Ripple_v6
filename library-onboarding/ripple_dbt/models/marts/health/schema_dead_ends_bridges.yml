@@ -47,6 +47,9 @@ models:
         data_tests: [not_null]
       - name: match_note
         data_tests: [not_null]
+      - name: is_high_density_campus
+        description: True when 200 or more distinct people share the site's street line and ZIP, across every site there. A shared campus, not a clinic roster. Rows are kept, not dropped.
+        data_tests: [not_null]
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

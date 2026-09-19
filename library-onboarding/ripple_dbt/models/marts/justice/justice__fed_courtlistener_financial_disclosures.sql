@@ -9,7 +9,14 @@
 -- (This landing's metadata columns are INGESTED_AT/SOURCE_RUN_ID, no underscore.)
 with source as (
     select * from {{ source('ripple_raw', 'FED_COURTLISTENER_FINANCIAL_DISCLOSURES') }}
-    qualify row_number() over (partition by ID order by INGESTED_AT desc) = 1
+    qualify row_number() over (partition by ID order by INGESTED_AT desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             DATE_CREATED nulls last, DATE_MODIFIED nulls last, "YEAR" nulls last,
+             DOWNLOAD_FILEPATH nulls last, FILEPATH nulls last, THUMBNAIL nulls last,
+             THUMBNAIL_STATUS nulls last, PAGE_COUNT nulls last, SHA1 nulls last, REPORT_TYPE nulls last,
+             IS_AMENDED nulls last, ADDENDUM_CONTENT_RAW nulls last, ADDENDUM_REDACTED nulls last,
+             HAS_BEEN_EXTRACTED nulls last, PERSON_ID nulls last
+) = 1
 )
 
 select

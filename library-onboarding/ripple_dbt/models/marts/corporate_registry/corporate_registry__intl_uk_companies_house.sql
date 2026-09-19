@@ -45,5 +45,13 @@ select
 from source
 qualify row_number() over (
     partition by "CompanyNumber"
-    order by "_INGESTED_AT" desc
+    order by "_INGESTED_AT" desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             "CompanyName" nulls last, "RegAddress.AddressLine1" nulls last,
+             "RegAddress.AddressLine2" nulls last, "RegAddress.PostTown" nulls last,
+             "RegAddress.County" nulls last, "RegAddress.Country" nulls last,
+             "RegAddress.PostCode" nulls last, "CompanyCategory" nulls last, "CompanyStatus" nulls last,
+             "CountryOfOrigin" nulls last, "DissolutionDate" nulls last, "IncorporationDate" nulls last,
+             "Accounts.AccountCategory" nulls last, "Mortgages.NumMortCharges" nulls last,
+             "Mortgages.NumMortOutstanding" nulls last, "_SOURCE_RUN_ID" nulls last
 ) = 1

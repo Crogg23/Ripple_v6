@@ -49,6 +49,7 @@ import argparse
 import hashlib
 import sys
 import uuid
+from contextlib import contextmanager
 
 from . import db, store
 from .discover import (
@@ -95,13 +96,36 @@ CONFIG_SENTINEL = "__CONFIG__"   # WATERMARK row that pins keys.py/DISPLAY_SPECS
 # compute_watermarks() scans all of INGEST_RUNS (LISTAGG+MD5 GROUP BY). It is called
 # many times per run (changed_tables, every reslice tail). INGEST_RUNS is read-only
 # while we reslice, so memoize the result per connection for the life of one driver.
-# Keyed on id(conn) and CLEARED at every driver entry (_reset_caches) so a reused id()
-# can never surface a previous run's watermarks.
-_WM_MEMO: dict[int, dict[str, dict]] = {}
+# Keyed on the Snowflake session id (2026-09-18; was id(conn), a memory address Python
+# hands out again once a connection is garbage-collected). Still CLEARED at every driver
+# entry (_reset_caches), so a previous run's watermarks can never surface either way.
+_WM_MEMO: dict[object, dict[str, dict]] = {}
 
 
 def _reset_caches() -> None:
     _WM_MEMO.clear()
+
+
+def _conn_key(conn):
+    # A test double has no session_id; its id() is fine for the life of one test.
+    sid = getattr(conn, "session_id", None)
+    return ("session", sid) if isinstance(sid, (int, str)) else ("pyid", id(conn))
+
+
+@contextmanager
+def _txn(conn):
+    """DELETE-then-INSERT as one unit: a failed INSERT rolls the DELETE back instead of
+    leaving the partition empty. No DDL may run inside -- Snowflake commits on DDL."""
+    db.rows(conn, "BEGIN")
+    try:
+        yield
+    except BaseException:
+        try:
+            db.rows(conn, "ROLLBACK")
+        except Exception:
+            pass   # a dead connection rolls back server-side; keep the original error
+        raise
+    db.rows(conn, "COMMIT")
 
 
 # =========================================================================== #
@@ -155,7 +179,7 @@ def compute_watermarks(conn, *, refresh: bool = False) -> dict[str, dict]:
 
     Memoized per connection within a single driver run (see _WM_MEMO) so the
     INGEST_RUNS digest is scanned once, not once per changed table."""
-    cid = id(conn)
+    cid = _conn_key(conn)
     if not refresh and cid in _WM_MEMO:
         return _WM_MEMO[cid]
     rows = db.dicts(conn, """
@@ -749,9 +773,10 @@ def reslice_spine(conn, table: str, run_id: str, dry_run: bool = False) -> dict:
                      UNION SELECT KEY_TYPE, VAL FROM _AFFECTED""")
 
     # --- SEAM #1: replace the persisted keyset partition (DELETE then INSERT) ---
-    db.rows(conn, f"DELETE FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
-    db.rows(conn, f"INSERT INTO {SKEYSET_FQN} (TABLE_NAME, KEY_TYPE, VAL) "
-                  f"SELECT '{lit}', KEY_TYPE, VAL FROM _NEW")
+    with _txn(conn):
+        db.rows(conn, f"DELETE FROM {SKEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
+        db.rows(conn, f"INSERT INTO {SKEYSET_FQN} (TABLE_NAME, KEY_TYPE, VAL) "
+                      f"SELECT '{lit}', KEY_TYPE, VAL FROM _NEW")
 
     # KEYSET_LIVE fix: a spine table ALSO carries a discover KEYSET_LIVE partition
     # (its FULL key surface — BIOGUIDE + ICPSR + NAME@geo, not just the one spine key).
@@ -1048,12 +1073,13 @@ def _refresh_discover_keyset(conn, table: str) -> list[tuple[str, str]]:
     naive spine-only refresh would wipe the other key partitions."""
     lit = table.replace("'", "''")
     inserts = _discover_keyset_inserts(conn, table)
-    db.rows(conn, f"DELETE FROM {KEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
-    for key, expr in inserts:
-        guard = " AND ".join(f"{p} IS NOT NULL" for p in expr.split(" || '|' || ")) \
-            if key.startswith("NAME@") else f"{expr} IS NOT NULL"
-        db.rows(conn, f"INSERT INTO {KEYSET_FQN} (TABLE_NAME, KEY, VAL) "
-                      f"SELECT DISTINCT '{lit}', '{key}', {expr} FROM {db.fqn(table)} WHERE {guard}")
+    with _txn(conn):
+        db.rows(conn, f"DELETE FROM {KEYSET_FQN} WHERE TABLE_NAME = '{lit}'")
+        for key, expr in inserts:
+            guard = " AND ".join(f"{p} IS NOT NULL" for p in expr.split(" || '|' || ")) \
+                if key.startswith("NAME@") else f"{expr} IS NOT NULL"
+            db.rows(conn, f"INSERT INTO {KEYSET_FQN} (TABLE_NAME, KEY, VAL) "
+                          f"SELECT DISTINCT '{lit}', '{key}', {expr} FROM {db.fqn(table)} WHERE {guard}")
     return inserts
 
 

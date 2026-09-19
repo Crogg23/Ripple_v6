@@ -19,5 +19,9 @@ select
 from {{ ref('stg_fed_sec_insider_reportingowner__records') }}
 qualify row_number() over (
     partition by accession_number, rptownercik
-    order by _loaded_at desc
+    order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             rptownername nulls last, rptowner_relationship nulls last, rptowner_title nulls last,
+             rptowner_street1 nulls last, rptowner_city nulls last, rptowner_state nulls last,
+             rptowner_zipcode nulls last
 ) = 1

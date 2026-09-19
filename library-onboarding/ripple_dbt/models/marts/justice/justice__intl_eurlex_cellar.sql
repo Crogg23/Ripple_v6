@@ -18,7 +18,14 @@ with source as (
     qualify row_number() over (
         partition by CELLAR_URI
         order by case when length(LANGUAGE) = 2 and LANGUAGE = lower(LANGUAGE) then 0 else 1 end,
-                 LANGUAGE) = 1
+                 LANGUAGE,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             CELEX_ID nulls last, ELI_URI nulls last, ECLI_ID nulls last, TITLE nulls last,
+             DOCUMENT_TYPE nulls last, AUTHOR nulls last, DATE_PUBLISHED nulls last,
+             DATE_OF_DOCUMENT nulls last, IN_FORCE nulls last, SUBJECT_MATTER nulls last,
+             COUNTRY nulls last, OJ_SERIES nulls last, OJ_NUMBER nulls last, CONTENT_URL nulls last,
+             FORMAT_AVAILABLE nulls last
+) = 1
 )
 
 select

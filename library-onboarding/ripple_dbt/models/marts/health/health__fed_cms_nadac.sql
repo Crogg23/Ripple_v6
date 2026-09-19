@@ -42,7 +42,13 @@ final as (
         end as brand_to_generic_ratio
 
     from cleaned
-    qualify row_number() over (partition by ndc, effective_date order by _loaded_at desc) = 1
+    qualify row_number() over (partition by ndc, effective_date order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             drug_description nulls last, nadac_per_unit nulls last, pricing_unit nulls last,
+             pharmacy_type nulls last, is_otc nulls last, explanation_code nulls last,
+             rate_classification nulls last, generic_nadac_per_unit nulls last,
+             generic_effective_date nulls last, as_of_date nulls last
+) = 1
 
 )
 

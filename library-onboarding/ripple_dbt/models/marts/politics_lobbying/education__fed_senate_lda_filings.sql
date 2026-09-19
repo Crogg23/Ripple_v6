@@ -20,8 +20,17 @@ deduped as (
     select *,
         row_number() over (
             partition by FILING_UUID
-            order by _INGESTED_AT desc
-        ) as _row_num
+            order by _INGESTED_AT desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             FILING_TYPE nulls last, FILING_TYPE_DISPLAY nulls last, FILING_YEAR nulls last,
+             FILING_PERIOD nulls last, FILING_PERIOD_DISPLAY nulls last, DT_POSTED nulls last,
+             INCOME nulls last, EXPENSES nulls last, REGISTRANT_ID nulls last, REGISTRANT_NAME nulls last,
+             REGISTRANT_DESCRIPTION nulls last, REGISTRANT_CITY nulls last, REGISTRANT_STATE nulls last,
+             REGISTRANT_COUNTRY nulls last, CLIENT_ID nulls last, CLIENT_NAME nulls last,
+             CLIENT_DESCRIPTION nulls last, CLIENT_STATE nulls last, CLIENT_COUNTRY nulls last,
+             LOBBYING_ISSUES nulls last, GOVERNMENT_ENTITIES nulls last, LOBBYIST_NAMES nulls last,
+             SPECIFIC_ISSUES nulls last, TERMINATION_DATE nulls last, FOREIGN_ENTITY_LISTED nulls last
+) as _row_num
     from source
     where FILING_UUID is not null
 )

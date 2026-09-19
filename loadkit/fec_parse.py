@@ -47,7 +47,7 @@ class ParseResult:
         total = self.n_good + self.n_bad
         return (self.n_bad / total) if total else 0.0
 
-    def require_clean(self, max_fraction: float = 0.001) -> "ParseResult":
+    def require_clean(self, max_fraction: float = 0.0) -> "ParseResult":
         """Fail LOUD if too many rows were quarantined -- the signal that the column
         list or delimiter is wrong, i.e. the parse is silently mis-shaping money."""
         if self.quarantine_fraction > max_fraction:

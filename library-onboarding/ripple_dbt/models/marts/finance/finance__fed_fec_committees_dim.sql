@@ -85,7 +85,10 @@ cm as (
     from cm_flagged
     qualify row_number() over (
         partition by C1
-        order by C2 desc nulls last, C3 desc nulls last, C15 desc nulls last
+        order by C2 desc nulls last, C3 desc nulls last, C15 desc nulls last,
+                 -- tie-breakers 2026-09-18: the rest of the payload, so the same row wins every run
+                 C6 nulls last, C7 nulls last, C9 nulls last, C10 nulls last, C11 nulls last,
+                 C13 nulls last, C14 nulls last
     ) = 1
 )
 

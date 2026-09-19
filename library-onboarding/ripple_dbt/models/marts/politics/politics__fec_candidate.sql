@@ -6,4 +6,11 @@ select
     cand_id, cycle, cand_name, party, office, office_state, office_district,
     incumbent_challenger, cand_status, principal_cmte_id, cand_election_yr
 from {{ ref('stg_fed_fec_bulk_candidates__candidates') }}
-qualify row_number() over (partition by cand_id, cycle order by cand_election_yr desc nulls last) = 1
+-- Ties on election year break on newest ingest, then on the row's own values, so the same row wins every run.
+qualify row_number() over (
+    partition by cand_id, cycle
+    order by cand_election_yr desc nulls last, _ingested_at desc nulls last,
+             principal_cmte_id nulls last, cand_name nulls last, cand_status nulls last,
+             party nulls last, office nulls last, office_state nulls last, office_district nulls last,
+             incumbent_challenger nulls last
+) = 1

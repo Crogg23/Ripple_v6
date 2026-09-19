@@ -76,7 +76,23 @@ select
 from source
 qualify row_number() over (
     partition by "FRS_ID"
-    order by "_INGESTED_AT" desc
+    order by "_INGESTED_AT" desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             "FAC_NAME" nulls last, "FAC_STREET" nulls last, "FAC_CITY" nulls last, "FAC_STATE" nulls last,
+             "FAC_ZIP" nulls last, "FAC_COUNTY" nulls last, "FAC_FIPS_CODE" nulls last,
+             "FAC_EPA_REGION" nulls last, "FAC_LAT" nulls last, "FAC_LONG" nulls last,
+             "FAC_PERCENT_MINORITY" nulls last, "FAC_POP_DEN" nulls last,
+             "FAC_COMPLIANCE_STATUS" nulls last, "FAC_SNC_FLG" nulls last, "FAC_QTRS_WITH_NC" nulls last,
+             "FAC_3YR_COMPLIANCE_HISTORY" nulls last, "FAC_INSPECTION_COUNT" nulls last,
+             "FAC_DATE_LAST_INSPECTION" nulls last, "FAC_DAYS_LAST_INSPECTION" nulls last,
+             "FAC_INFORMAL_COUNT" nulls last, "FAC_FORMAL_ACTION_COUNT" nulls last,
+             "FAC_DATE_LAST_FORMAL_ACTION" nulls last, "FAC_TOTAL_PENALTIES" nulls last,
+             "FAC_PENALTY_COUNT" nulls last, "FAC_LAST_PENALTY_AMT" nulls last,
+             "FAC_DATE_LAST_PENALTY" nulls last, "AIR_FLAG" nulls last, "NPDES_FLAG" nulls last,
+             "RCRA_FLAG" nulls last, "SDWIS_FLAG" nulls last, "TRI_FLAG" nulls last, "GHG_FLAG" nulls last,
+             "TRI_RELEASES_TRANSFERS" nulls last, "TRI_ON_SITE_RELEASES" nulls last,
+             "FAC_MAJOR_FLAG" nulls last, "FAC_ACTIVE_FLAG" nulls last, "FAC_FEDERAL_FLG" nulls last,
+             "FAC_INDIAN_CNTRY_FLG" nulls last, "_SOURCE_RUN_ID" nulls last
 ) = 1
 )
 

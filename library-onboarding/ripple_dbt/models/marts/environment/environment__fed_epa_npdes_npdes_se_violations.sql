@@ -13,7 +13,15 @@ with source as (
     select * from {{ source('ripple_raw', 'FED_EPA_NPDES_NPDES_SE_VIOLATIONS') }}
     qualify row_number() over (
         partition by NPDES_VIOLATION_ID
-        order by _INGESTED_AT) = 1
+        order by _INGESTED_AT,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             NPDES_ID nulls last, VIOLATION_TYPE_CODE nulls last, VIOLATION_CODE nulls last,
+             VIOLATION_DESC nulls last, SINGLE_EVENT_VIOLATION_DATE nulls last,
+             SINGLE_EVENT_END_DATE nulls last, SINGLE_EVENT_VIOLATION_COMMENT nulls last,
+             SINGLE_EVENT_AGENCY_TYPE_CODE nulls last, RNC_DETECTION_CODE nulls last,
+             RNC_DETECTION_DESC nulls last, RNC_DETECTION_DATE nulls last, RNC_RESOLUTION_CODE nulls last,
+             RNC_RESOLUTION_DESC nulls last, RNC_RESOLUTION_DATE nulls last
+) = 1
 )
 
 select

@@ -44,5 +44,14 @@ select
 from source
 qualify row_number() over (
     partition by "REGISTRY_ID"
-    order by "_INGESTED_AT" desc
+    order by "_INGESTED_AT" desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             "PRIMARY_NAME" nulls last, "LOCATION_ADDRESS" nulls last, "SUPPLEMENTAL_LOCATION" nulls last,
+             "CITY_NAME" nulls last, "COUNTY_NAME" nulls last, "FIPS_CODE" nulls last,
+             "STATE_CODE" nulls last, "STATE_NAME" nulls last, "POSTAL_CODE" nulls last,
+             "CONGRESSIONAL_DIST_NUM" nulls last, "EPA_REGION_CODE" nulls last,
+             "SITE_TYPE_NAME" nulls last, "FEDERAL_FACILITY_CODE" nulls last,
+             "FEDERAL_AGENCY_NAME" nulls last, "TRIBAL_LAND_CODE" nulls last,
+             "TRIBAL_LAND_NAME" nulls last, "LATITUDE83" nulls last, "LONGITUDE83" nulls last,
+             "PGM_SYS_ACRNMS" nulls last, "CREATE_DATE" nulls last, "UPDATE_DATE" nulls last, "_SOURCE_RUN_ID" nulls last
 ) = 1

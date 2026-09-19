@@ -78,7 +78,10 @@ pairs as (
         s.site_city,
         s.site_state,
         s.site_zip5,
-        count(*) over (partition by s.bphc_assigned_number)    as people_at_site
+        count(*) over (partition by s.bphc_assigned_number)    as people_at_site,
+        -- the campus is the street line, not the site: five sites in one building share one count.
+        count(distinct p.npi) over (partition by s.addr_key, s.site_zip5)
+                                                               as people_at_address
     from people p
     join sites s
         on s.addr_key  = p.addr_key
@@ -96,7 +99,7 @@ leie as (
         specialty                                              as leie_specialty
     from {{ ref('health__fed_hhs_oig_leie') }}
     where npi_is_real
-    qualify row_number() over (partition by npi order by exclusion_date nulls last) = 1
+    qualify row_number() over (partition by npi order by exclusion_date nulls last, exclusion_type nulls last, specialty nulls last) = 1
 
 ),
 
@@ -109,7 +112,7 @@ opt_out as (
         optout_end_date
     from {{ ref('health__fed_cms_opt_out_affidavits') }}
     where nullif(trim(npi), '') is not null
-    qualify row_number() over (partition by npi order by optout_end_date desc nulls last) = 1
+    qualify row_number() over (partition by npi order by optout_end_date desc nulls last, optout_effective_date desc nulls last) = 1
 
 )
 
@@ -148,7 +151,10 @@ select
         else 'excluded; NPPES address updated on or after the exclusion (last update '
                  || to_varchar(pr.nppes_last_update_date) || ', excluded '
                  || to_varchar(l.exclusion_date) || ')'
-    end                                                        as match_note
+    end                                                        as match_note,
+    -- 200+ distinct people on one street line + ZIP is a hospital or county building, not a clinic roster.
+    -- Rows stay; filter on this to drop the shared campuses. Last column, so nothing upstream of it moves.
+    (pr.people_at_address >= 200)                              as is_high_density_campus
 from pairs pr
 left join leie l
     on l.npi = pr.npi

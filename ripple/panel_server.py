@@ -130,25 +130,27 @@ def _pool_drain_idle():
 
 
 def qd(sql: str, params: tuple = ()):  # -> list[dict], retry-once on a dead connection
-    conn = _acquire()
     try:
-        rows = common.dicts(conn, sql, params)
-        _release(conn)
-        return rows
+        return _qd_once(sql, params)
     except Exception as e:
-        _release(conn, broken=True)   # this connection may be dead -> don't reuse it
         if not _is_conn_error(e):
             raise
         _pool_drain_idle()            # the rest of the pool is probably dead too
     # retry exactly once on a guaranteed-fresh connection (pool now empty -> _acquire connects)
+    return _qd_once(sql, params)
+
+
+def _qd_once(sql: str, params: tuple):
     conn = _acquire()
+    broken = True                     # anything but a clean return -> don't reuse this connection
     try:
         rows = common.dicts(conn, sql, params)
-        _release(conn)
+        broken = False
         return rows
-    except Exception:
-        _release(conn, broken=True)
-        raise
+    finally:
+        # finally, not `except Exception`: a KeyboardInterrupt or SystemExit mid-query
+        # used to skip the release and leak a pool permit for good.
+        _release(conn, broken=broken)
 
 
 def _pool_close_all():

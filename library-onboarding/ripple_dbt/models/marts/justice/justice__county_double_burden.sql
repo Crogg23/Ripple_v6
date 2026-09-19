@@ -70,7 +70,9 @@ jail_ranked as (
         white_jail_pop_rate                 as white_jail_rate,
         row_number() over (
             partition by county_fips
-            order by year desc
+            order by year desc, total_jail_pop_rate desc nulls last, total_jail_pop desc nulls last,
+                     county_name nulls last, state_abbr nulls last,
+                     black_jail_pop_rate desc nulls last, white_jail_pop_rate desc nulls last
         )                                   as rn
     from {{ ref('stg_xc_vera_incarceration_trends__county_year') }}
     where county_fips is not null

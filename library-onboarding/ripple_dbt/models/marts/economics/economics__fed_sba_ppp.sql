@@ -58,7 +58,19 @@ final as (
         case when loan_status = 'Paid in Full or Charged Off' then true else false end as is_resolved
 
     from cleaned
-    qualify row_number() over (partition by loan_number order by date_approved desc nulls last) = 1
+    qualify row_number() over (partition by loan_number order by date_approved desc nulls last,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             processing_method nulls last, borrower_name nulls last, borrower_city nulls last,
+             borrower_state nulls last, borrower_zip nulls last, loan_status nulls last,
+             loan_status_date nulls last, term_months nulls last, initial_approval_amount nulls last,
+             current_approval_amount nulls last, undisbursed_amount nulls last,
+             servicing_lender_name nulls last, servicing_lender_state nulls last,
+             rural_urban_indicator nulls last, hubzone_indicator nulls last, lmi_indicator nulls last,
+             business_age nulls last, project_state nulls last, project_county nulls last,
+             congressional_district nulls last, jobs_reported nulls last, naics_code nulls last,
+             race nulls last, ethnicity nulls last, payroll_proceed nulls last, rent_proceed nulls last,
+             utilities_proceed nulls last, mortgage_interest_proceed nulls last
+) = 1
 
 )
 

@@ -147,7 +147,7 @@ senators as (
     from {{ ref('politics__member_crosswalk') }}
     where last_term_type = 'sen'
       and last_term_end >= '2012-01-03'
-    qualify row_number() over (partition by bioguide order by last_term_end desc) = 1
+    qualify row_number() over (partition by bioguide order by last_term_end desc, full_name nulls last, name_last nulls last, name_first nulls last) = 1
 
 ),
 
@@ -184,7 +184,8 @@ name_map as (
     -- keep the winning candidate row, or any one row when nothing won
     qualify row_number() over (
         partition by name_key
-        order by case when n_last = 1 or (n_last > 1 and n_init = 1 and init_hit) then 0 else 1 end
+        order by case when n_last = 1 or (n_last > 1 and n_init = 1 and init_hit) then 0 else 1 end,
+                 bioguide nulls last, full_name nulls last
     ) = 1
 
 )

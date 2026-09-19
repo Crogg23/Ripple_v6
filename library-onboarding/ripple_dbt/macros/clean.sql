@@ -58,12 +58,15 @@
     'IMO0000000' -> '0000000' through as "valid" -- confirmed live on
     FED_NOAA_AIS, 13,868,433 of 58,106,517 rows (23.9%) were silently getting
     this fake-but-well-formed hull number instead of NULL, exactly the AIS
-    junk-ping pattern this macro's own docstring already said to null. -#}
+    junk-ping pattern this macro's own docstring already said to null.
+    2026-09-18: the prefix strip was case-sensitive, so 'imo9074729' kept its
+    prefix, failed the 7-digit check and went NULL. UPPER first. -#}
 {% macro normalize_imo(col) -%}
+{%- set bare -%}regexp_replace(upper(trim({{ col }})), '^IMO', ''){%- endset -%}
     case
-        when regexp_like(regexp_replace(trim({{ col }}), '^IMO', ''), '^[0-9]{7}$')
-             and regexp_replace(trim({{ col }}), '^IMO', '') != '0000000'
-        then regexp_replace(trim({{ col }}), '^IMO', '')
+        when regexp_like({{ bare }}, '^[0-9]{7}$')
+             and {{ bare }} != '0000000'
+        then {{ bare }}
     end
 {%- endmacro %}
 

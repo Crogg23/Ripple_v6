@@ -90,10 +90,14 @@
     17-19 digits        -> nanoseconds
 -#}
 {% macro landing_parse_audit_epoch(col) -%}
-{%- set n = "TRUNC(" ~ col ~ ")" -%}
+{#- 2026-09-18 guard, not a crash fix: the 483 callers are NUMBER today. Pointed at a TEXT
+    column holding '', bare TRUNC(col) throws "Numeric value '' is not recognized" (checked
+    live on a literal). Blank and non-numeric now read as NULL. Scale 9 on the parse keeps
+    the fraction so TRUNC still cuts it off -- a bare TRY_TO_NUMBER would ROUND .7 up. -#}
+{%- set n = "TRUNC(TRY_TO_NUMBER(NULLIF(TRIM(TO_VARCHAR(" ~ col ~ ")), ''), 38, 9))" -%}
 {%- set digits = "LENGTH(TO_VARCHAR(ABS(" ~ n ~ ")))" -%}
     CASE
-        WHEN {{ col }} IS NULL THEN NULL
+        WHEN {{ n }} IS NULL THEN NULL
         WHEN {{ digits }} <= 10 THEN DATEADD('second', {{ n }}, '1970-01-01'::timestamp_ntz)
         WHEN {{ digits }} <= 13 THEN DATEADD('millisecond', {{ n }}, '1970-01-01'::timestamp_ntz)
         WHEN {{ digits }} <= 16 THEN DATEADD('microsecond', {{ n }}, '1970-01-01'::timestamp_ntz)

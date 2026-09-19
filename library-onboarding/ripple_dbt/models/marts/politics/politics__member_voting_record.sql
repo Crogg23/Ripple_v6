@@ -33,7 +33,8 @@ mem as (
         nullif(trim(STATE_ABBREV), '') as state
     from {{ source('ripple_raw', 'FED_VOTEVIEW_MEMBERS') }}
     where CONGRESS in ('118', '119') and CHAMBER in ('House', 'Senate')
-    qualify row_number() over (partition by icpsr, congress, chamber order by PARTY_CODE) = 1
+    qualify row_number() over (partition by icpsr, congress, chamber order by PARTY_CODE nulls last, BIOGUIDE_ID nulls last,
+                               BIONAME nulls last, STATE_ABBREV nulls last) = 1
 
 ),
 

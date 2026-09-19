@@ -33,4 +33,13 @@ select
     (degree_injury_cd = '01') as is_fatality,
     _loaded_at
 from {{ ref('stg_fed_msha_accidents__records') }}
-qualify row_number() over (partition by document_no order by _loaded_at desc) = 1
+qualify row_number() over (partition by document_no order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             mine_id nulls last, controller_id nulls last, controller_name nulls last,
+             operator_id nulls last, operator_name nulls last, subunit nulls last, accident_dt nulls last,
+             cal_yr nulls last, degree_injury_cd nulls last, degree_injury nulls last,
+             fips_state_cd nulls last, classification nulls last, accident_type nulls last,
+             no_injuries nulls last, days_lost nulls last, days_restrict nulls last, occupation nulls last,
+             activity nulls last, injury_source nulls last, nature_injury nulls last,
+             inj_body_part nulls last, narrative nulls last, coal_metal_ind nulls last
+) = 1

@@ -30,4 +30,14 @@ select
     (current_mine_status = 'Active') as is_active,
     _loaded_at
 from {{ ref('stg_fed_msha_mines__records') }}
-qualify row_number() over (partition by mine_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by mine_id order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             current_mine_name nulls last, coal_metal_ind nulls last, current_mine_type nulls last,
+             current_mine_status nulls last, current_status_dt nulls last,
+             current_controller_id nulls last, current_controller_name nulls last,
+             current_operator_id nulls last, current_operator_name nulls last, state nulls last,
+             fips_cnty_cd nulls last, fips_cnty_nm nulls last, primary_sic_cd nulls last,
+             primary_sic nulls last, no_employees nulls last, days_per_week nulls last,
+             hours_per_shift nulls last, latitude nulls last, longitude nulls last,
+             nearest_town nulls last
+) = 1

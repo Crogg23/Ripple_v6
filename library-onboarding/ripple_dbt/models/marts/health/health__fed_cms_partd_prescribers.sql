@@ -66,7 +66,15 @@ final as (
         end as claims_per_beneficiary
 
     from cleaned
-    qualify row_number() over (partition by npi, generic_name, brand_name order by _loaded_at desc) = 1
+    qualify row_number() over (partition by npi, generic_name, brand_name order by _loaded_at desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             prescriber_last_org_name nulls last, prescriber_first_name nulls last,
+             prescriber_city nulls last, prescriber_state nulls last, prescriber_state_fips nulls last,
+             prescriber_type nulls last, total_claims nulls last, total_30day_fills nulls last,
+             total_day_supply nulls last, total_drug_cost nulls last, total_beneficiaries nulls last,
+             ge65_total_claims nulls last, ge65_total_drug_cost nulls last,
+             ge65_total_beneficiaries nulls last
+) = 1
 
 )
 

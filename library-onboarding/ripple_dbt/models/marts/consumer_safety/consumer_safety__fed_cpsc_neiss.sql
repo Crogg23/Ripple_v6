@@ -39,5 +39,12 @@ select
 from source
 qualify row_number() over (
     partition by "CPSC_CASE_NUMBER"
-    order by "_INGESTED_AT" desc
+    order by "_INGESTED_AT" desc,
+             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
+             "TREATMENT_DATE" nulls last, "_SRC_YEAR" nulls last, "AGE" nulls last, "SEX" nulls last,
+             "RACE" nulls last, "HISPANIC" nulls last, "BODY_PART" nulls last, "DIAGNOSIS" nulls last,
+             "DISPOSITION" nulls last, "LOCATION" nulls last, "FIRE_INVOLVEMENT" nulls last,
+             "PRODUCT_1" nulls last, "PRODUCT_2" nulls last, "PRODUCT_3" nulls last, "ALCOHOL" nulls last,
+             "DRUG" nulls last, "NARRATIVE" nulls last, "STRATUM" nulls last, "WEIGHT" nulls last,
+             "_SOURCE_RUN_ID" nulls last
 ) = 1
