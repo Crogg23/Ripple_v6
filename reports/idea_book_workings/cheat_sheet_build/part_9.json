@@ -1,0 +1,1709 @@
+[
+ {
+  "id": "W123",
+  "section": "Work",
+  "idea": "When paychecks in a county shrink, does the local nonprofit hospital end up giving away more free care?",
+  "why": "If yes, hospital charity follows local hardship. If no, it follows hospital policy or state rules, not how the neighbors are doing.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HCRIS",
+    "one_row": "one hospital cost report",
+    "connects": "first 5 of ZIP_CODE matches ZCTA5 on XWALK_ZCTA_COUNTY; optional: PROVIDER_CCN matches CCN on XWALK_HOSPITAL_CCN_EIN",
+    "columns": [
+     {
+      "name": "RPT_REC_NUM",
+      "plain": "the record number of one filed cost report; the only thing unique per row",
+      "use": "label",
+      "watch": "Hospital plus year is not unique: 1,186 hospital-years carry more than one report."
+     },
+     {
+      "name": "PROVIDER_CCN",
+      "plain": "the hospital's Medicare certification number, the federal id for the building",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FISCAL_YEAR_END_DATE",
+      "plain": "the day the hospital's bookkeeping year ended for this report",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "FISCAL_YEAR_LENGTH_DAYS",
+      "plain": "how many days the report covers; a short one is a stub, not a year",
+      "use": "filter",
+      "watch": "Filter to 300 or more to drop sale-day stubs."
+     },
+     {
+      "name": "COST_OF_CHARITY_CARE",
+      "plain": "dollars the hospital says it spent treating patients it did not bill",
+      "use": "measure",
+      "watch": "Fill not measured. The text 'nan' became float NaN, not NULL, so is not null passes it. For-profits leave it mostly blank, 1,120 of 1,841 reports."
+     },
+     {
+      "name": "COST_OF_UNCOMPENSATED_CARE",
+      "plain": "dollars of care the hospital was never paid for, charity plus unpaid bills",
+      "use": "measure",
+      "watch": "Fill not measured; same NaN trap as the charity column."
+     },
+     {
+      "name": "TOTAL_BAD_DEBT_EXPENSE",
+      "plain": "dollars of patient bills the hospital gave up collecting",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_COSTS",
+      "plain": "the hospital's total spending for the year, the bottom of the share",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TYPE_OF_CONTROL",
+      "plain": "who owns the hospital, as a number code; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the hospital's mailing ZIP; use the first 5 characters",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY",
+      "plain": "the county name as typed on the report, free text",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "the two-letter state the hospital sits in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county pair",
+    "connects": "COUNTY_FIPS matches AREA_FIPS on ECONOMICS__FED_BLS_QCEW",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the five-digit ZIP area used by the Census, 2020 boundaries",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "the five-digit federal county code that ZIP area falls in",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_BLS_QCEW",
+    "one_row": "one area, ownership and industry cell of jobs and wages",
+    "connects": "AREA_FIPS matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "AREA_FIPS",
+      "plain": "the federal code for the area; for counties it is the five-digit county code",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "OWNERSHIP_CODE",
+      "plain": "who the employer is, private or a level of government; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "INDUSTRY_CODE",
+      "plain": "the industry the jobs are in, or the all-industries total code",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "AGGREGATION_LEVEL_CODE",
+      "plain": "how rolled-up the row is, county total or industry detail; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ANNUAL_AVG_WEEKLY_WAGE",
+      "plain": "the average weekly paycheck in that area and industry for the year, in dollars",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AVG_ANNUAL_PAY",
+      "plain": "the average yearly pay per job in that cell, in dollars",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "YOY_WAGES_PCT_CHANGE",
+      "plain": "percent change in total wages against the year before; negative means wages fell",
+      "use": "measure",
+      "watch": "The only wage fall the table can show is this one column for 2022."
+     },
+     {
+      "name": "YEAR",
+      "plain": "the calendar year the wage numbers cover",
+      "use": "date",
+      "watch": "2022 only. Thirteen years of cost reports have one wage year to pair with."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_HOSPITAL_CCN_EIN",
+    "one_row": "one hospital certification number matched to one tax id",
+    "connects": "CCN matches PROVIDER_CCN on HEALTH__FED_CMS_HCRIS",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "the hospital's Medicare certification number, the federal id for the building",
+      "use": "join",
+      "watch": "Covers 3,891 of 6,703 nonprofit hospitals, 58%."
+     },
+     {
+      "name": "EIN",
+      "plain": "the nine-digit tax id of the organization matched to that hospital",
+      "use": "join",
+      "watch": "Not a real id join: a name-and-address match. The tax id is the system that files, not the building: 1,293 tax ids cover 3,222 rows."
+     },
+     {
+      "name": "MATCH_TIER",
+      "plain": "how strong the name-and-address match was; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Read it before trusting a row."
+     },
+     {
+      "name": "MATCH_RULE",
+      "plain": "which matching rule produced this pair; coded value, look at distinct values first",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "EIN_NTEE",
+      "plain": "the nonprofit category code the IRS gives that tax id",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROPRIETARY_NONPROFIT",
+      "plain": "whether the hospital is for-profit or nonprofit; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W124",
+  "section": "Work",
+  "idea": "Once you account for how many plants a power company runs and what they burn, which companies still pump out more smoke than they should?",
+  "why": "A company that stays above the line every year with the same fuel as cleaner peers is dirty by choice, not by fuel. If nothing is left over, dirtier just means burns more coal.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EPA_EGRID_PLANT_2019, 2020, 2021, 2023 (4 tables, same columns)",
+    "one_row": "one power plant, one year",
+    "connects": "ORISPL equals DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE on the 2022 table; ORISPL matches PLANT_CODE on ENERGY__FED_EIA860_4_OWNER",
+    "columns": [
+     {
+      "name": "ORISPL",
+      "plain": "the federal plant code, one number per power plant",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PNAME",
+      "plain": "the name of the power plant as the agency lists it",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "OPRNAME",
+      "plain": "the name of the company that runs the plant, free text",
+      "use": "label",
+      "watch": "Free text. One company can appear under several spellings across years. The 2022 table has no column named operator."
+     },
+     {
+      "name": "UTLSRVNM",
+      "plain": "the name of the utility service territory the plant sits in",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PLPRMFL",
+      "plain": "the plant's main fuel as a short code, such as gas, coal or sun",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PLFUELCT",
+      "plain": "the plant's main fuel as a plain category, such as COAL, GAS or SOLAR",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NAMEPCAP",
+      "plain": "the plant's rated maximum output, in megawatts",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLNGENAN",
+      "plain": "electricity the plant actually made that year, in megawatt-hours",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLCO2AN",
+      "plain": "tons of carbon dioxide out of the stacks that year",
+      "use": "measure",
+      "watch": "Files get revised: 2020 is the v2 file and 2023 is rev2. Note the revision with any published number."
+     },
+     {
+      "name": "PLSO2AN",
+      "plain": "tons of sulfur dioxide out of the stacks that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLNOXAN",
+      "plain": "tons of nitrogen oxides out of the stacks that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PSTATABB",
+      "plain": "the two-letter state the plant sits in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_EGRID_PLANT_2022",
+    "one_row": "one power plant, one year",
+    "connects": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE equals ORISPL on the other four years and matches PLANT_CODE on ENERGY__FED_EIA860_4_OWNER",
+    "columns": [
+     {
+      "name": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE",
+      "plain": "the federal plant code, same number the other years call ORISPL",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_NAME",
+      "plain": "the name of the power plant as the agency lists it",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "UTILITY_NAME",
+      "plain": "the name of the utility tied to the plant",
+      "use": "label",
+      "watch": "Long-caption headers, unlike the other years. Whether PLANT_TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_NAME is the same field as OPRNAME is not checked."
+     },
+     {
+      "name": "PLANT_PRIMARY_FUEL",
+      "plain": "the plant's main fuel as a short code: SUN solar, NG gas, WAT hydro, WND wind",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_NAMEPLATE_CAPACITY_MW",
+      "plain": "the plant's rated maximum output, in megawatts",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_ANNUAL_NET_GENERATION_MWH",
+      "plain": "electricity the plant actually made in 2022, in megawatt-hours",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_ANNUAL_CO2_EMISSIONS_TONS",
+      "plain": "tons of carbon dioxide out of the stacks in 2022",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_ANNUAL_SO2_EMISSIONS_TONS",
+      "plain": "tons of sulfur dioxide out of the stacks in 2022",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_ANNUAL_NOX_EMISSIONS_TONS",
+      "plain": "tons of nitrogen oxides out of the stacks in 2022",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DATA_YEAR",
+      "plain": "the year the emissions numbers cover, 2022 on this table",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENERGY.ENERGY__FED_EIA860_4_OWNER",
+    "one_row": "one owner's share of one generator",
+    "connects": "PLANT_CODE, cast text to number, matches the plant code on the emissions tables",
+    "columns": [
+     {
+      "name": "PLANT_CODE",
+      "plain": "the federal plant code, stored as text; cast to number before matching",
+      "use": "join",
+      "watch": "Only 2,369 distinct plants against 11,974 in the 2022 emissions table. Most plants have no owner row."
+     },
+     {
+      "name": "GENERATOR_ID",
+      "plain": "the id of one generating unit inside the plant",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "OWNER_NAME",
+      "plain": "the name of the company that owns a share of that generator",
+      "use": "label",
+      "watch": "One vintage, given as 2024, no year column. A plant sold since 2019 is credited to the wrong company."
+     },
+     {
+      "name": "OWNERSHIP_ID",
+      "plain": "the number the energy agency gives that owner",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PERCENT_OWNED",
+      "plain": "the owner's share of the generator; the profile shows only 0 and 1, so check it before weighting",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "UTILITY_ID",
+      "plain": "the number the energy agency gives the utility that reports the plant",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "UTILITY_NAME",
+      "plain": "the name of the utility that reports the plant",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W125",
+  "section": "Work",
+  "idea": "Which employers, counted by the tax number on the form, run work sites that hurt people far more than their industry does, three years in a row?",
+  "why": "The same owner with the same bad rate at different buildings means the problem is the company, not one unlucky site. If high rates stay with single sites, the building is the right unit.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2023 to 2025 (3 tables, same columns)",
+    "one_row": "one establishment's yearly injury summary",
+    "connects": "ESTABLISHMENT_ID matches ESTABLISHMENT_ID across the years; EIN, left-padded to 9, matches EIN on CORPORATE_REGISTRY__FED_IRS_EO_BMF and SPONS_DFE_EIN on FED_DOL_FORM5500_FULL",
+    "columns": [
+     {
+      "name": "ESTABLISHMENT_ID",
+      "plain": "OSHA's id for one work site, the same number year to year",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "EIN",
+      "plain": "the employer's tax id as typed on the form; left-pad to 9 digits",
+      "use": "join",
+      "watch": "Filled 89.62% in 2023, 89.15% in 2024, 88.7% in 2025. Blank on 43,260 of 398,620 rows in 2024; leading zeros stripped on 14,083 rows. Pad before joining."
+     },
+     {
+      "name": "ESTABLISHMENT_NAME",
+      "plain": "the name of the work site as typed on the form",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY_NAME",
+      "plain": "the company name as typed on the form, free text",
+      "use": "label",
+      "watch": "Not the company: reads 'Facility 982' on the Caltrans rows. Group on EIN, never the name."
+     },
+     {
+      "name": "NAICS_CODE",
+      "plain": "the six-digit industry code the site picked for itself",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the work site is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ANNUAL_AVERAGE_EMPLOYEES",
+      "plain": "average number of workers at the site over the year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_HOURS_WORKED",
+      "plain": "hours all workers put in that year, the bottom of any injury rate",
+      "use": "measure",
+      "watch": "Not per site for multi-site filers: Caltrans files 470 rows in 2024 with 14 distinct hour values. Keep 800 to 3,000 hours per employee, 88% of rows."
+     },
+     {
+      "name": "TOTAL_INJURIES",
+      "plain": "count of work injuries the site wrote on the form that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DAFW_CASES",
+      "plain": "count of cases where the worker missed days of work",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DJTR_CASES",
+      "plain": "count of cases where the worker was moved or put on light duty",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DEATHS",
+      "plain": "count of workers who died on the job that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "YEAR_FILING_FOR",
+      "plain": "the calendar year the form covers; one value per table",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_IRS_EO_BMF",
+    "one_row": "one tax-exempt organization",
+    "connects": "EIN matches padded EIN on the OSHA tables",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the nine-digit tax id of one tax-exempt organization",
+      "use": "join",
+      "watch": "Names nonprofits only: 6,930 shared tax ids in 2023, 6,414 in 2024, 6,455 in 2025."
+     },
+     {
+      "name": "ORG_NAME",
+      "plain": "the nonprofit's name on the IRS list",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state of the nonprofit's mailing address",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NTEE_CODE",
+      "plain": "the IRS category code for what kind of nonprofit it is",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_DOL_FORM5500_FULL",
+    "one_row": "one benefit-plan annual filing",
+    "connects": "SPONS_DFE_EIN matches padded EIN on the OSHA tables",
+    "columns": [
+     {
+      "name": "SPONS_DFE_EIN",
+      "plain": "the tax id of the employer that sponsors the benefit plan",
+      "use": "join",
+      "watch": "Matches 20,756 of 109,146 OSHA tax ids in 2024, 19.0%, because only plan sponsors file. Fill not measured."
+     },
+     {
+      "name": "SPONSOR_DFE_NAME",
+      "plain": "the name of the employer that sponsors the benefit plan",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SPONS_DFE_MAIL_US_STATE",
+      "plain": "the two-letter state of the sponsor's mailing address",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "BUSINESS_CODE",
+      "plain": "the industry code the plan sponsor put on the filing",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "P-146",
+  "section": "Work",
+  "idea": "Which mine companies had workers die on the job while the inspectors barely wrote them up beforehand?",
+  "why": "Deaths on file with no warnings before them means either nobody was inspecting or the citations miss the real danger. If deaths per citation is flat, citations track danger about as well as a count can.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_ACCIDENTS",
+    "one_row": "one reported accident or injury",
+    "connects": "CONTROLLER_ID matches CONTROLLER_ID on LABOR__FED_MSHA_VIOLATIONS; MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS and LABOR__FED_MSHA_MINES",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the id of the company that controlled the mine when the accident happened",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_NAME",
+      "plain": "the name of that controlling company",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "IS_FATALITY",
+      "plain": "true when someone died; 1,208 rows are true",
+      "use": "filter",
+      "watch": "1,208 deaths over thousands of controllers. A ratio on one death is noise; set a floor such as two or more."
+     },
+     {
+      "name": "DEGREE_INJURY",
+      "plain": "how bad it was, in words: days away from work, restricted duty, accident only, and so on",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NARRATIVE",
+      "plain": "the written account of what happened, free text",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ACCIDENT_DATE",
+      "plain": "the calendar day the accident happened at the mine",
+      "use": "date",
+      "watch": "Accidents start in 2000, citations in 1994. Use 2000 onward for both."
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order",
+    "connects": "CONTROLLER_ID and MINE_ID match the same columns on LABOR__FED_MSHA_ACCIDENTS",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for the mine that got cited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the id of the company that controlled the mine on the day of the citation",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the number printed on one citation or order",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SIG_SUB",
+      "plain": "Y when the inspector called the hazard serious, likely to hurt someone; N when not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "IS_SIGNIFICANT_AND_SUBSTANTIAL",
+      "plain": "the same serious-hazard mark as SIG_SUB, stored as true or false",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_OCCUR_DATE",
+      "plain": "the calendar day the violation itself happened at the mine",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "EVENT_NO",
+      "plain": "the id of the inspection visit that produced the citation; count distinct for visits",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine, current state",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_ACCIDENTS",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NO_EMPLOYEES",
+      "plain": "how many people work at the mine today",
+      "use": "measure",
+      "watch": "Null on 39,735 of 91,906 mines. The per-worker rate covers only part of the field."
+     },
+     {
+      "name": "CURRENT_MINE_TYPE",
+      "plain": "Surface, Underground or Facility, as of today",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CURRENT_MINE_STATUS",
+      "plain": "whether the mine is Active, Abandoned, Intermittent or Temporarily Idled today",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "P-147",
+  "section": "Work",
+  "idea": "When a mine gets a new company name on its citations, do the serious write-ups suddenly drop?",
+  "why": "A hard drop right after a handover, bigger than at mines that never sold, suggests a new name buys a clean slate. If the rate is flat, it is a new name on the same mine with the same citations.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_MINES; the handover is read inside this table, where CONTROLLER_ID changes within one MINE_ID ordered by VIOLATION_ISSUE_DATE",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for the mine that got cited",
+      "use": "join",
+      "watch": "Landing copy wraps values in literal double quotes; whether the mart is stripped is not measured."
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the id of the company that controlled the mine on the day of the citation",
+      "use": "join",
+      "watch": "Empty on 6.76% of citations. An empty value between two real ones is not a change of hands."
+     },
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the number printed on one citation or order",
+      "use": "label",
+      "watch": "Sources disagree on 500,990 rows: duplicates or the $100 minimum fine schedule. Count distinct against the row count before deleting."
+     },
+     {
+      "name": "EVENT_NO",
+      "plain": "the id of the inspection visit that produced the citation; count distinct for visits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "the day the inspector wrote the citation",
+      "use": "date",
+      "watch": "The handover date is the first citation under the new name, not the sale date. Leave out the last 24 months, still in the appeal window."
+     },
+     {
+      "name": "SIG_SUB",
+      "plain": "Y when the inspector called the hazard serious, likely to hurt someone; N when not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "IS_SIGNIFICANT_AND_SUBSTANTIAL",
+      "plain": "the same serious-hazard mark as SIG_SUB, stored as true or false",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "_LOADED_AT",
+      "plain": "when the warehouse loaded the row; bookkeeping, not a mine fact",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine, current state",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": "Profile reports 92,336 distinct on a 91,906-row table. Recount before treating it as unique."
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the mine is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NO_EMPLOYEES",
+      "plain": "how many people work at the mine today",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "CURRENT_CONTROLLER_ID",
+      "plain": "the id of the company controlling the mine today, not in the past",
+      "use": "label",
+      "watch": "Today's controller only. It cannot supply the history; the citations table has to."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "P-148",
+  "section": "Work",
+  "idea": "After a worker dies at one mine, do the same company's other mines suddenly start getting written up more?",
+  "why": "A jump at the sister mines means either inspectors follow the owner or the owner's other sites were in the same bad shape. No jump means a death stays a one-site event in the record.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_ACCIDENTS",
+    "one_row": "one reported accident or injury",
+    "connects": "where IS_FATALITY is true, CONTROLLER_ID matches CONTROLLER_ID on LABOR__FED_MSHA_VIOLATIONS, keeping MINE_ID different from the death mine",
+    "columns": [
+     {
+      "name": "IS_FATALITY",
+      "plain": "true when someone died; 1,208 rows are true",
+      "use": "filter",
+      "watch": "Only controllers with 2 or more mines count, 6,082 of them. How many of the 1,208 deaths survive that cut is not measured."
+     },
+     {
+      "name": "ACCIDENT_DATE",
+      "plain": "the calendar day the accident happened at the mine",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the id of the company that controlled the mine when the accident happened",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order",
+    "connects": "CONTROLLER_ID matches CONTROLLER_ID on LABOR__FED_MSHA_ACCIDENTS; MINE_ID matches MINE_ID on LABOR__FED_MSHA_MINES",
+    "columns": [
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the id of the company that controlled the mine on the day of the citation",
+      "use": "join",
+      "watch": "Build the sister-mine list from this column as of the death date; the mine table only knows today's controller."
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for the mine that got cited",
+      "use": "join",
+      "watch": "Landing copy carries literal double quotes; mart state not measured. Strip before joining."
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "the day the inspector wrote the citation",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "EVENT_NO",
+      "plain": "the id of the inspection visit that produced the citation; count distinct for visits",
+      "use": "join",
+      "watch": "More citations can mean more inspecting, not more danger. Divide by distinct EVENT_NO and show both numbers."
+     },
+     {
+      "name": "SIG_SUB",
+      "plain": "Y when the inspector called the hazard serious, likely to hurt someone; N when not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the number printed on one citation or order",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine, current state",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS, for state and mine type",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the mine is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NO_EMPLOYEES",
+      "plain": "how many people work at the mine today",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "P-159",
+  "section": "Work",
+  "idea": "Do employers guess their yearly injury total instead of counting it, so the numbers pile up on fives and tens?",
+  "why": "Too many totals ending in 0 or 5 means the federal injury numbers are estimates, and more so at big employers. It shows guessing, not hiding.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2023 to 2025 (3 tables, same columns)",
+    "one_row": "one establishment's yearly injury summary",
+    "connects": "",
+    "columns": [
+     {
+      "name": "TOTAL_INJURIES",
+      "plain": "count of work injuries the site wrote on the form that year",
+      "use": "measure",
+      "watch": "Totals under 10 have no meaningful last digit. Multi-site filers stamp one number on many rows; collapse identical blocks first."
+     },
+     {
+      "name": "TOTAL_DAFW_CASES",
+      "plain": "count of cases where the worker missed days of work",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DJTR_CASES",
+      "plain": "count of cases where the worker was moved or put on light duty",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_OTHER_CASES",
+      "plain": "count of recordable cases with no days missed and no light duty",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DAFW_DAYS",
+      "plain": "total days workers stayed home because of injuries",
+      "use": "measure",
+      "watch": "Day counts may bunch because of the form's own rules, which are not in the warehouse. Read them before flagging."
+     },
+     {
+      "name": "TOTAL_HOURS_WORKED",
+      "plain": "hours all workers put in that year, the bottom of any injury rate",
+      "use": "measure",
+      "watch": "Junk tail: 117 rows over 100M hours in 2024. Caltrans files 470 rows with 14 distinct hour values. Trim to 800 to 3,000 hours per employee."
+     },
+     {
+      "name": "ANNUAL_AVERAGE_EMPLOYEES",
+      "plain": "average number of workers at the site over the year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "SIZE",
+      "plain": "the employer size band as a code; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NAICS_CODE",
+      "plain": "the six-digit industry code the site picked for itself",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ESTABLISHMENT_ID",
+      "plain": "OSHA's id for one work site, the same number year to year",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR_FILING_FOR",
+      "plain": "the calendar year the form covers; one value per table",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "P-160",
+  "section": "Work",
+  "idea": "After a work site reports a death, what does it write down the next year for hours worked and injuries?",
+  "why": "Fewer injuries with steady hours looks like the site got safer. Hours collapsing or the site vanishing from the file looks like a shutdown or a reporting change instead.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2023 to 2025 (3 tables, same columns)",
+    "one_row": "one establishment's yearly injury summary",
+    "connects": "ESTABLISHMENT_ID matches ESTABLISHMENT_ID between the 2023, 2024 and 2025 tables",
+    "columns": [
+     {
+      "name": "ESTABLISHMENT_ID",
+      "plain": "OSHA's id for one work site, the same number year to year",
+      "use": "join",
+      "watch": "Not quite unique within a year: 388,245 distinct on 394,234 rows in 2023. Decide how to handle repeats before pairing years."
+     },
+     {
+      "name": "TOTAL_DEATHS",
+      "plain": "count of workers who died on the job that year",
+      "use": "measure",
+      "watch": "Small numbers: 859, 812 and 778 a year. A site that vanishes after a death is an outcome; count it, do not drop it."
+     },
+     {
+      "name": "TOTAL_INJURIES",
+      "plain": "count of work injuries the site wrote on the form that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DAFW_CASES",
+      "plain": "count of cases where the worker missed days of work",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_HOURS_WORKED",
+      "plain": "hours all workers put in that year, the bottom of any injury rate",
+      "use": "measure",
+      "watch": "Wrong for multi-site filers and has a junk tail. A change in hours there is a change in the parent's number."
+     },
+     {
+      "name": "ANNUAL_AVERAGE_EMPLOYEES",
+      "plain": "average number of workers at the site over the year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "NAICS_CODE",
+      "plain": "the six-digit industry code the site picked for itself",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the work site is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "YEAR_FILING_FOR",
+      "plain": "the calendar year the form covers; one value per table",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "EIN",
+      "plain": "the employer's tax id as typed on the form; left-pad to 9 digits",
+      "use": "join",
+      "watch": "Do not join on it: minimum length 1, blank on 43,260 rows in 2024."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-136",
+  "section": "Work",
+  "idea": "When two mines with the same owner get slammed with citations in the same month, is that the owner, or just one inspectors' office working through its patch?",
+  "why": "If same-owner pairs still spike together more than neighbors under different owners, trouble really travels with the company. If not, the earlier 34.3% finding was just the inspectors' route.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_MINES and, after stripping quotes, MINE_ID on LIBRARY_RAW.LANDING.FED_MSHA_MINES",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for the mine that got cited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the id of the company that controlled the mine on the day of the citation",
+      "use": "join",
+      "watch": "Build owner pairs from this column as of the month in question; the mine table holds today's controller only."
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "the day the inspector wrote the citation",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "EVENT_NO",
+      "plain": "the id of the inspection visit that produced the citation; count distinct for visits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_MSHA_MINES",
+    "one_row": "one mine, current state, 62 columns",
+    "connects": "MINE_ID, quotes stripped, matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine, wrapped in quote marks here",
+      "use": "join",
+      "watch": "Every landing value is wrapped in literal double quotes. Strip before joining. Unstripped, MINE_ID matches nothing."
+     },
+     {
+      "name": "DISTRICT",
+      "plain": "the agency district office that covers the mine today",
+      "use": "filter",
+      "watch": "Fill not measured; two columns found by name in this warehouse turned out empty. Count distinct values first. It is today's district, applied to all 32 years."
+     },
+     {
+      "name": "OFFICE_CD",
+      "plain": "the code of the local field office that inspects the mine",
+      "use": "filter",
+      "watch": "Fill not measured. Count distinct values first."
+     },
+     {
+      "name": "OFFICE_NAME",
+      "plain": "the name of that local field office",
+      "use": "label",
+      "watch": "Fill not measured. Count distinct values first."
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the mine is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FIPS_CNTY_CD",
+      "plain": "the county code for where the mine sits",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CURRENT_CONTROLLER_BEGIN_DT",
+      "plain": "the day today's controlling company took over the mine",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine, current state, 23 columns",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": "This copy drops DISTRICT, OFFICE_CD and OFFICE_NAME. Kept only for its measured join, 31,277 shared mine ids."
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the mine is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FIPS_CNTY_CD",
+      "plain": "the county code for where the mine sits; 298 distinct values",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "P-149",
+  "section": "Work",
+  "idea": "Do mine inspectors go quiet in the same months every year, and do miners get hurt more in those quiet stretches?",
+  "why": "If accidents pile up when inspections thin out, the inspection calendar itself is a safety hole. If both calendars just follow how busy the mines are, the season is the work, not the oversight.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_ACCIDENTS; count distinct EVENT_NO by month of VIOLATION_ISSUE_DATE",
+    "columns": [
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "the day the inspector wrote the citation",
+      "use": "date",
+      "watch": "Use 2000 onward; the final months of 2026 are partial."
+     },
+     {
+      "name": "EVENT_NO",
+      "plain": "the id of the inspection visit that produced the citation; count distinct for visits",
+      "use": "join",
+      "watch": "Appears only when an inspection wrote at least one citation. Clean inspections leave no row, so a well-run mine looks uninspected."
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for the mine that got cited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "MINE_TYPE",
+      "plain": "what kind of mine it is: Surface, Underground or Facility",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order, full 64-column file",
+    "connects": "one row per distinct EVENT_NO with its INSPECTION_BEGIN_DT and INSPECTION_END_DT; MINE_ID, quotes stripped, matches MINE_ID on LABOR__FED_MSHA_ACCIDENTS",
+    "columns": [
+     {
+      "name": "EVENT_NO",
+      "plain": "the id of the inspection visit that produced the citation",
+      "use": "join",
+      "watch": "Citing inspections only. Inspections that found nothing are not here either."
+     },
+     {
+      "name": "INSPECTION_BEGIN_DT",
+      "plain": "the day that inspection visit started",
+      "use": "date",
+      "watch": "Fill not measured; two columns found by name here were empty. Strip quotes before casting; an empty value is a pair of quotes, not NULL."
+     },
+     {
+      "name": "INSPECTION_END_DT",
+      "plain": "the day that inspection visit ended",
+      "use": "date",
+      "watch": "Fill not measured. Strip quotes before casting; an empty value is a pair of quotes, not NULL."
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for the cited mine, wrapped in quote marks here",
+      "use": "join",
+      "watch": "Every landing value is wrapped in literal double quotes. Strip before joining. This copy holds 3,087,266 rows against the mart's 3,087,265."
+     },
+     {
+      "name": "VIOLATION_ISSUE_DT",
+      "plain": "the day the inspector wrote the citation",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_ACCIDENTS",
+    "one_row": "one reported accident or injury",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS",
+    "columns": [
+     {
+      "name": "ACCIDENT_DATE",
+      "plain": "the calendar day the accident happened at the mine",
+      "use": "date",
+      "watch": "Starts in 2000. Surface mines shut for winter in many states, so a winter dip can be activity."
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id for one mine",
+      "use": "join",
+      "watch": "13,708 mines have an accident row against 32,133 with a citation row. The gap test runs on the 13,338 shared mines."
+     },
+     {
+      "name": "DEGREE_INJURY",
+      "plain": "how bad it was, in words: days away from work, restricted duty, accident only, and so on",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "IS_FATALITY",
+      "plain": "true when someone died; 1,208 rows are true",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NO_INJURIES",
+      "plain": "how many people were hurt in that one event, usually 1",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for metal or non-metal",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-144",
+  "section": "Work",
+  "idea": "Do work sites in the same industry and the same state all report injury rates that run high or low together, beyond what their size explains?",
+  "why": "If whole industry-and-state pockets sit far from the national rate, something local is moving everyone, like state rules, one dominant employer or how people report. If not, injury rates are just an industry fact.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2023 to 2025 (3 tables, same columns)",
+    "one_row": "one establishment's yearly injury summary",
+    "connects": "",
+    "columns": [
+     {
+      "name": "NAICS_CODE",
+      "plain": "the six-digit industry code the site picked for itself",
+      "use": "filter",
+      "watch": "Fill not measured. Code editions are mixed; map to one edition or use the first 4 digits."
+     },
+     {
+      "name": "NAICS_YEAR",
+      "plain": "which edition of the industry code list the site used, such as 2012, 2017 or 2022",
+      "use": "filter",
+      "watch": "Runs from 0 to 180175 in the 2025 table. Mixed and partly junk."
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the work site is in",
+      "use": "filter",
+      "watch": "Fill not measured. No flag for state-run OSHA programs, so a state effect cannot be split from a reporting-rule effect."
+     },
+     {
+      "name": "SIZE",
+      "plain": "the employer size band as a code; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ANNUAL_AVERAGE_EMPLOYEES",
+      "plain": "average number of workers at the site over the year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_HOURS_WORKED",
+      "plain": "hours all workers put in that year, the bottom of any injury rate",
+      "use": "measure",
+      "watch": "1,065B hours against 138.8M employees, about 7,672 per employee. Keep rows between 800 and 3,000 hours per employee, 88% of rows."
+     },
+     {
+      "name": "TOTAL_INJURIES",
+      "plain": "count of work injuries the site wrote on the form that year",
+      "use": "measure",
+      "watch": "Multi-site filers report zero injuries 49 to 79% of the time against 6.7% for ordinary rows. One big public filer makes a state look safe."
+     },
+     {
+      "name": "TOTAL_DAFW_CASES",
+      "plain": "count of cases where the worker missed days of work",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DJTR_CASES",
+      "plain": "count of cases where the worker was moved or put on light duty",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ESTABLISHMENT_ID",
+      "plain": "OSHA's id for one work site, the same number year to year",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR_FILING_FOR",
+      "plain": "the calendar year the form covers; one value per table",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "N1",
+  "section": "Work",
+  "idea": "Which employers got caught working kids illegally and still collect federal contract money afterward?",
+  "why": "It would be a named list of companies the government fined with one hand and paid with the other. No matches can just mean the contract sits with a parent company at another address.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_DOL_WHD_ENFORCEMENT",
+    "one_row": "one closed wage-and-hour case against one employer",
+    "connects": "LEGAL_NAME, multi-word, upper, trimmed, plus first 5 of ZIP_CD matches RECIPIENT_NAME plus first 5 of RECIPIENT_ZIP_4_CODE on the contract year tables",
+    "columns": [
+     {
+      "name": "CASE_ID",
+      "plain": "the id of one closed wage investigation",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "LEGAL_NAME",
+      "plain": "the employer's legal name on the case; upper-case and trim before matching",
+      "use": "join",
+      "watch": "3,612 rows have a blank LEGAL_NAME. Multi-word names only: single-word matches were 8% real, multi-word 92%."
+     },
+     {
+      "name": "TRADE_NM",
+      "plain": "the name the business trades under, the sign on the door",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CD",
+      "plain": "the employer's ZIP on the case; use the first 5 characters",
+      "use": "join",
+      "watch": "19 rows have a blank ZIP_CD. Name plus ZIP misses a violation at a plant when the contract is with headquarters in another ZIP."
+     },
+     {
+      "name": "ST_CD",
+      "plain": "the two-letter state of the employer",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NAIC_CD",
+      "plain": "the industry code on the case",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FLSA_CL_VIOLTN_CNT",
+      "plain": "count of child-labor violations found in the case",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FLSA_CL_MINOR_CNT",
+      "plain": "count of minors found working illegally in the case; 113 distinct values",
+      "use": "filter",
+      "watch": "Filled on all 367,890 rows, 113 distinct values. How many rows are above zero is not measured."
+     },
+     {
+      "name": "FLSA_CL_CMP_ASSD_AMT",
+      "plain": "dollars of fines assessed for the child-labor violations",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FINDINGS_START_DATE",
+      "plain": "the first day of the period the investigator looked at",
+      "use": "date",
+      "watch": "Typo years 0200 and 3021; 954 rows have no parseable start date. Bound dates to 1990 to 2030."
+     },
+     {
+      "name": "FINDINGS_END_DATE",
+      "plain": "the last day of the period the investigator looked at",
+      "use": "date",
+      "watch": "Typo years 0200 and 3021. Bound dates to 1990 to 2030."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "RECIPIENT_NAME plus first 5 of RECIPIENT_ZIP_4_CODE matches LEGAL_NAME plus first 5 of ZIP_CD on FED_DOL_WHD_ENFORCEMENT",
+    "columns": [
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "the name of the company that got the contract money",
+      "use": "join",
+      "watch": "Not a real id: a name match. Landing columns here can be case-sensitive lowercase; confirm on one year table."
+     },
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's id for the company that got the money",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_PARENT_NAME",
+      "plain": "the name of the recipient's parent company",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_ZIP_4_CODE",
+      "plain": "the recipient's ZIP plus four; use the first 5 characters",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed by this one contract action; negative means money taken back",
+      "use": "measure",
+      "watch": "Signed: de-obligations are negative rows. Filter to positive."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this contract action was signed",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "AWARDING_AGENCY_NAME",
+      "plain": "the federal agency that awarded the contract",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "AWARD_ID_PIID",
+      "plain": "the contract's id number; a new one first seen means a new award",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "N5",
+  "section": "Work",
+  "idea": "Which employers flagged as repeat wage cheats keep getting new federal contract money year after year?",
+  "why": "It would show the government keeps paying companies it has already caught shorting workers more than once. A miss means repeat violators are mostly small local shops, or the name match cannot see the real contracting company.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_DOL_WHD_ENFORCEMENT",
+    "one_row": "one closed wage-and-hour case against one employer",
+    "connects": "LEGAL_NAME, multi-word, upper, trimmed, plus first 5 of ZIP_CD matches RECIPIENT_NAME plus first 5 of RECIPIENT_ZIP_4_CODE on the contract year tables",
+    "columns": [
+     {
+      "name": "CASE_ID",
+      "plain": "the id of one closed wage investigation",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "LEGAL_NAME",
+      "plain": "the employer's legal name on the case; upper-case and trim before matching",
+      "use": "join",
+      "watch": "3,612 rows have a blank LEGAL_NAME. Multi-word names only: single-word matches were 8% real, multi-word 92%."
+     },
+     {
+      "name": "TRADE_NM",
+      "plain": "the name the business trades under, the sign on the door",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CD",
+      "plain": "the employer's ZIP on the case; use the first 5 characters",
+      "use": "join",
+      "watch": "19 rows have a blank ZIP_CD. Name plus ZIP misses parents, subsidiaries and worksites in other ZIPs."
+     },
+     {
+      "name": "ST_CD",
+      "plain": "the two-letter state of the employer",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FLSA_REPEAT_VIOLATOR",
+      "plain": "repeat or willful mark: R repeat, W willful, RW both, N/A on 346,361 rows",
+      "use": "filter",
+      "watch": "Measured 2026-09-18: R 15,146, W 4,381, RW 2,002, N/A 346,361. Marked cases are 21,529, 5.85% of the file."
+     },
+     {
+      "name": "FLSA_VIOLTN_CNT",
+      "plain": "count of minimum-wage and overtime violations found in the case",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FLSA_BW_ATP_AMT",
+      "plain": "dollars of back wages the employer agreed to pay under the wage law",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FLSA_CMP_ASSD_AMT",
+      "plain": "dollars of fines assessed under the wage law",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "SCA_VIOLTN_CNT",
+      "plain": "count of violations of the wage law for federal service contractors",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DBRA_VIOLTN_CNT",
+      "plain": "count of violations of the wage law for federal construction contractors",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FINDINGS_START_DATE",
+      "plain": "the first day of the period the investigator looked at",
+      "use": "date",
+      "watch": "Typo years 0200 and 3021; 954 rows have no parseable start date. Bound dates to 1990 to 2030."
+     },
+     {
+      "name": "FINDINGS_END_DATE",
+      "plain": "the last day of the period the investigator looked at",
+      "use": "date",
+      "watch": "Typo years 0200 and 3021. Bound dates to 1990 to 2030."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "RECIPIENT_NAME plus first 5 of RECIPIENT_ZIP_4_CODE matches LEGAL_NAME plus first 5 of ZIP_CD on FED_DOL_WHD_ENFORCEMENT",
+    "columns": [
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "the name of the company that got the contract money",
+      "use": "join",
+      "watch": "Not a real id: a name match, multi-word names only."
+     },
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's id for the company that got the money",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_ZIP_4_CODE",
+      "plain": "the recipient's ZIP plus four; use the first 5 characters",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed by this one contract action; negative means money taken back",
+      "use": "measure",
+      "watch": "Signed: de-obligations are negative rows. Filter to positive. Dollars include add-ons to old awards, so winning is not visible here."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this contract action was signed",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the federal budget year the action falls in",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "AWARDING_AGENCY_NAME",
+      "plain": "the federal agency that awarded the contract",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "AWARD_ID_PIID",
+      "plain": "the contract's id number; a new one first seen means a new award",
+      "use": "label",
+      "watch": "Use values first seen after the case to mean a new award."
+     }
+    ]
+   }
+  ]
+ }
+]

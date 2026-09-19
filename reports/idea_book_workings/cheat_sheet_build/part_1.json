@@ -1,0 +1,2225 @@
+[
+ {
+  "id": "W1",
+  "section": "Place",
+  "idea": "After a flood sends a county's households to FEMA for help, do banks there turn down more mortgages the next year?",
+  "why": "It would mean a flood costs people twice: first the house, then the loan to fix or replace it. The data only reaches county level, not ZIP.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+    "one_row": "one household's aid registration for one disaster",
+    "connects": "FIPS, left-padded to 5 digits, matches STATE_CODE + COUNTY_CODE on the mortgage tables; DISASTER_NUMBER matches DISASTERNUMBER on FED_FEMA_DISASTER_DECLARATIONS",
+    "columns": [
+     {
+      "name": "DISASTER_NUMBER",
+      "plain": "FEMA's number for the disaster this household registered under",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "DECLARATION_DATE",
+      "plain": "the day the disaster was officially declared",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "FIPS",
+      "plain": "five-digit state-plus-county number where the damaged home sits",
+      "use": "join",
+      "watch": "74.21% filled; unpadded text for states 01-09 ('1097' and '01097' both exist, 636 distinct fall to 601 after padding); unpadded, nine states drop out"
+     },
+     {
+      "name": "DAMAGED_ZIP_CODE",
+      "plain": "ZIP code of the damaged home",
+      "use": "label",
+      "watch": "no mortgage table carries a ZIP, so this cannot be the join"
+     },
+     {
+      "name": "CENSUS_GEOID",
+      "plain": "Census id of the small neighborhood area around the damaged home",
+      "use": "join",
+      "watch": "73.75% filled; tract-level join not yet tested"
+     },
+     {
+      "name": "FLOOD_DAMAGE",
+      "plain": "True if the home had flood damage, False if not",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FLOOD_DAMAGE_AMOUNT",
+      "plain": "dollars of flood damage FEMA recorded for the home",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "IHP_AMOUNT",
+      "plain": "dollar amount in FEMA's IHP aid column for this household",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "HA_AMOUNT",
+      "plain": "dollar amount in FEMA's HA aid column for this household",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FEMA_DISASTER_DECLARATIONS",
+    "one_row": "one disaster in one designated area",
+    "connects": "DISASTERNUMBER matches DISASTER_NUMBER on HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS; used to pick flood disasters by INCIDENTTYPE",
+    "columns": [
+     {
+      "name": "DISASTERNUMBER",
+      "plain": "FEMA's number for the disaster, one per declared event",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "INCIDENTTYPE",
+      "plain": "the kind of disaster in words; used to keep only floods",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "DECLARATIONDATE",
+      "plain": "the day the disaster was officially declared",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FIPSSTATECODE",
+      "plain": "number for the state of the designated area",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FIPSCOUNTYCODE",
+      "plain": "number for the county of the designated area",
+      "use": "join",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+    "one_row": "one mortgage application and what the lender did with it",
+    "connects": "STATE_CODE + COUNTY_CODE, both left-padded, match FIPS on HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+    "columns": [
+     {
+      "name": "AS_OF_YEAR",
+      "plain": "the year the application was reported, 2015 to 2017",
+      "use": "date",
+      "watch": "a year only, no date on this table"
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "two-digit number for the state where the home sits",
+      "use": "join",
+      "watch": "98.4% filled; unpadded in 2015-2017, left-pad before matching"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "three-digit number for the county where the home sits",
+      "use": "join",
+      "watch": "98.17% filled; unpadded; null-county rows hold 19,331 denials, so require COUNTY_CODE is not null"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application; coded value, look at distinct values first (1, 3, 6, 4, 5 seen)",
+      "use": "filter",
+      "watch": "two file families in this table; group by ACTION_TAKEN first"
+     },
+     {
+      "name": "LOAN_PURPOSE",
+      "plain": "why the money was wanted; coded value, look at distinct values first (1, 3, 2 seen)",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DENIAL_REASON_1",
+      "plain": "the first reason the lender gave for saying no; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "empty on most rows in the profile sample"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CFPB_HMDA_LAR_2018 to 2024 (7 tables, same columns)",
+    "one_row": "one mortgage application",
+    "connects": "COUNTY_CODE matches FIPS on HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS; format and overlap not yet measured",
+    "columns": [
+     {
+      "name": "ACTIVITY_YEAR",
+      "plain": "the year the application was reported",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "code for the state where the home sits",
+      "use": "join",
+      "watch": "fill and format not yet measured"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "code for the county where the home sits",
+      "use": "join",
+      "watch": "fill and format not yet measured"
+     },
+     {
+      "name": "CENSUS_TRACT",
+      "plain": "Census id of the small neighborhood area around the home",
+      "use": "join",
+      "watch": "fill not yet measured; tract join not yet tested"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "placeholder rows with '-1': 1,961 in 2018 and 21 in 2019; filter them before any count"
+     },
+     {
+      "name": "LOAN_PURPOSE",
+      "plain": "why the money was wanted; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "layout changed at 2018, check codes by hand against 2015-2017"
+     },
+     {
+      "name": "DENIAL_REASON_1",
+      "plain": "the first reason the lender gave for saying no; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W2",
+  "section": "Place",
+  "idea": "Do cities that got more red ink on the 1930s federal lending maps have dirtier drinking-water records today?",
+  "why": "It would mean a ninety-year-old lending map still shows up at the tap. The data can only compare whole cities, never neighborhoods.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_MAPPING_INEQUALITY",
+    "one_row": "one graded neighborhood shape on a 1930s city map",
+    "connects": "CITY + STATE match CITY_SERVED + STATE_SERVED on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS; or FIPS matches COUNTY_FIPS there, only if FIPS proves filled",
+    "columns": [
+     {
+      "name": "CITY",
+      "plain": "name of the city the old map covers",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATE",
+      "plain": "state of the city the old map covers",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FIPS",
+      "plain": "county number for the mapped city, if it was ever filled in",
+      "use": "join",
+      "watch": "unmeasured: may be filled, blank, or empty string; count before planning on it"
+     },
+     {
+      "name": "HOLC_GRADE",
+      "plain": "the map's letter grade for the neighborhood: A best through D, the red one",
+      "use": "filter",
+      "watch": "814 rows have a blank grade; 3 trailing-space spellings of the grades"
+     },
+     {
+      "name": "YEAR_MAPPED",
+      "plain": "the year the city's map was drawn",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "GEOMETRY",
+      "plain": "the neighborhood's outline, stored as GeoJSON text",
+      "use": "measure",
+      "watch": "parsed to a shape on 10,153 of 10,154 rows"
+     },
+     {
+      "name": "LAT",
+      "plain": "latitude of a point for the neighborhood shape",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "LON",
+      "plain": "longitude of a point for the neighborhood shape",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "HOLC_ID",
+      "plain": "looks like a neighborhood id but holds a single value",
+      "use": "label",
+      "watch": "not a real id: one distinct value"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_MAPPING_INEQUALITY",
+    "one_row": "one merged shape per city and grade, a summary of the full map",
+    "connects": "CITY + STATE match CITY_SERVED + STATE_SERVED on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "CITY",
+      "plain": "name of the city the old map covers",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "state of the city the old map covers",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "HOLC_GRADE",
+      "plain": "the map's letter grade: A best through D, the red one",
+      "use": "filter",
+      "watch": "blank on some rows"
+     },
+     {
+      "name": "HOLC_GRADE_RANK",
+      "plain": "the letter grade as a number, 1 for A through 4 for D",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "GEOMETRY",
+      "plain": "the merged outline of all same-grade areas in the city",
+      "use": "measure",
+      "watch": "mart is 1,155 rows against 10,154, 11% of the shapes; use the landing table for any area count"
+     },
+     {
+      "name": "FIPS",
+      "plain": "county number column that was never filled in",
+      "use": "join",
+      "watch": "blank on all 1,155 rows"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "one_row": "one area, a county, city or ZIP, served by one water system",
+    "connects": "CITY_SERVED + STATE_SERVED match CITY + STATE on FED_MAPPING_INEQUALITY; PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": "100% filled, 418,885 distinct; ids starting 04 to 10 are EPA regions and never match a place"
+     },
+     {
+      "name": "AREA_TYPE_CODE",
+      "plain": "what kind of area the row names; coded value, look at distinct values first (CN, CT, ZC, TR, IR seen)",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CITY_SERVED",
+      "plain": "name of the city the water system serves",
+      "use": "join",
+      "watch": "name join; overlap not yet measured"
+     },
+     {
+      "name": "STATE_SERVED",
+      "plain": "state of the area the water system serves",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number the water system serves",
+      "use": "join",
+      "watch": "filled on 404,823 of 405,396 named county rows"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "one_row": "one violation with its enforcement fields",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": "100% filled, 265,738 distinct; ids starting 04 to 10 are EPA regions and never match a place"
+     },
+     {
+      "name": "VIOLATION_ID",
+      "plain": "id number of one violation; count these, not rows",
+      "use": "measure",
+      "watch": "row grain not measured; one violation may repeat per enforcement action, so count distinct"
+     },
+     {
+      "name": "IS_HEALTH_BASED_IND",
+      "plain": "Y if the violation is about unsafe water, N if it is paperwork or testing",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_CODE",
+      "plain": "which rule was broken; coded value, look at distinct values first (03, 23, 22, 3A seen)",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "NON_COMPL_PER_BEGIN_DATE",
+      "plain": "the day the water system started being out of compliance",
+      "use": "date",
+      "watch": "93.5% filled; minimum 1900-01-01 is a placeholder, bound every date filter"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W3",
+  "section": "Place",
+  "idea": "Fold all the one-building companies back together and see which landlords really hold the most government-backed apartment buildings, and what the rent-subsidy contracts on them look like.",
+  "why": "It would show whether a few big players sit behind thousands of separate company names. It would also show if their buildings get richer rents or all expire at once.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_HUD_MF_PROPERTIES_OWNERS",
+    "one_row": "one HUD-assisted or insured apartment property with its owner and manager",
+    "connects": "PROPERTY_ID matches PROPERTY_ID on HOUSING__FED_HUD_MF_SECTION8_CONTRACTS; group by folded OWNER_ORGANIZATION_NAME + OWNER_ADDRESS_LINE1, or by MGMT_AGENT_PARTICIPANT_ID",
+    "columns": [
+     {
+      "name": "PROPERTY_ID",
+      "plain": "the housing department's id number for the apartment property",
+      "use": "join",
+      "watch": "space-padded text; TRIM before any compare. Fill not yet measured"
+     },
+     {
+      "name": "PROPERTY_TOTAL_UNIT_COUNT",
+      "plain": "how many apartments are in the property",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "OWNER_PARTICIPANT_ID",
+      "plain": "the housing department's id number for the owning company",
+      "use": "label",
+      "watch": "nearly one id per building: 22,352 ids on 23,612 properties, biggest id 21 buildings; finds no chains. 37 rows carry id 0 with a blank name"
+     },
+     {
+      "name": "OWNER_ORGANIZATION_NAME",
+      "plain": "name of the company that owns the property",
+      "use": "join",
+      "watch": "space-padded; blanks are a single space, not NULL. 54 names sit on more than one owner id"
+     },
+     {
+      "name": "OWNER_ADDRESS_LINE1",
+      "plain": "street line of the owner's mailing address",
+      "use": "join",
+      "watch": "space-padded; TRIM and fold by hand"
+     },
+     {
+      "name": "OWNER_ZIP_CODE",
+      "plain": "ZIP code of the owner's mailing address",
+      "use": "label",
+      "watch": "space-padded; fill not yet measured"
+     },
+     {
+      "name": "OWNER_COMPANY_TYPE",
+      "plain": "what kind of company the owner is; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "OWNERSHIP_EFFECTIVE_DATE",
+      "plain": "the day this owner took over the property",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "MGMT_AGENT_PARTICIPANT_ID",
+      "plain": "id number of the company that manages the building day to day",
+      "use": "join",
+      "watch": "5,209 manager ids; biggest block 136 buildings"
+     },
+     {
+      "name": "MGMT_AGENT_ORG_NAME",
+      "plain": "name of the company that manages the building",
+      "use": "label",
+      "watch": "space-padded"
+     },
+     {
+      "name": "PRIMARY_FINANCING_TYPE",
+      "plain": "the main kind of government financing on the property; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "IS_INSURED_IND",
+      "plain": "flag for whether the property's loan is government insured; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not measured; count distinct values before using"
+     },
+     {
+      "name": "IS_HUD_HELD_IND",
+      "plain": "flag for whether the housing department itself holds the loan; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not measured; count distinct values before using"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "code for the county where the property sits",
+      "use": "label",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_HUD_MF_SECTION8_CONTRACTS",
+    "one_row": "one rent-subsidy contract on one property",
+    "connects": "PROPERTY_ID matches PROPERTY_ID on FED_HUD_MF_PROPERTIES_OWNERS",
+    "columns": [
+     {
+      "name": "PROPERTY_ID",
+      "plain": "the housing department's id number for the apartment property",
+      "use": "join",
+      "watch": "fill not yet measured; TRIM the owner-file side before matching"
+     },
+     {
+      "name": "CONTRACT_NUMBER",
+      "plain": "the id number of the rent-subsidy contract",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TRACS_STATUS_NAME",
+      "plain": "where the contract stands: Active, Expired, Pending, Suspended or Executed",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ASSISTED_UNITS_COUNT",
+      "plain": "how many apartments the contract subsidizes",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "RENT_TO_FMR_RATIO",
+      "plain": "contract rent divided by the local fair-market rent",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "RENT_TO_FMR_DESCRIPTION",
+      "plain": "the same ratio as a band in words, such as Below 80% FMR",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PROGRAM_TYPE_NAME",
+      "plain": "which subsidy program the contract falls under, such as Sec 8 NC or LMSA",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TRACS_EFFECTIVE_DATE",
+      "plain": "the day the contract took effect",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "TRACS_OVERALL_EXPIRATION_DATE",
+      "plain": "the day the contract finally runs out",
+      "use": "date",
+      "watch": "sister column TRACS_CURRENT_EXPIRATION_DATE has a 1900-01-02 placeholder; bound the dates"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W5",
+  "section": "Place",
+  "idea": "After a county takes its first really expensive storm, do some banks quietly stop writing mortgages there?",
+  "why": "It would mean storm damage drives lenders out, leaving homeowners with fewer places to borrow. That is a slow second hit after the storm itself.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_NOAA_STORM_EVENTS",
+    "one_row": "one storm event in one county or forecast zone",
+    "connects": "STATE_FIPS + CZ_FIPS, on rows where CZ_TYPE = 'C', match STATE_CODE + COUNTY_CODE on HOUSING__FED_CFPB_HMDA_HISTORIC and COUNTY_CODE on the 2018-2024 tables",
+    "columns": [
+     {
+      "name": "YEAR",
+      "plain": "the calendar year the storm happened, 1996 to 2025",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "STATE_FIPS",
+      "plain": "number for the state the storm hit",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CZ_FIPS",
+      "plain": "number for the county or forecast zone the storm hit",
+      "use": "join",
+      "watch": "only a county number when CZ_TYPE is 'C'"
+     },
+     {
+      "name": "CZ_TYPE",
+      "plain": "says what CZ_FIPS means: C is a county, Z is a forecast zone",
+      "use": "filter",
+      "watch": "'Z' rows are forecast zones, not counties, and drop out of the join"
+     },
+     {
+      "name": "EVENT_TYPE",
+      "plain": "the kind of storm in words, such as Hail or Flash Flood",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DAMAGE_PROPERTY",
+      "plain": "property damage in dollars, written as text like 10K or 2M",
+      "use": "measure",
+      "watch": "text with K and M suffixes; must be parsed"
+     },
+     {
+      "name": "EPISODE_ID",
+      "plain": "id that ties together the separate rows of one larger storm",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+    "one_row": "one mortgage application",
+    "connects": "STATE_CODE + COUNTY_CODE match STATE_FIPS + CZ_FIPS on ENVIRONMENT__FED_NOAA_STORM_EVENTS; RESPONDENT_ID matches ARID_2017 on HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF",
+    "columns": [
+     {
+      "name": "RESPONDENT_ID",
+      "plain": "the lender's id number under the old 2015-2017 system",
+      "use": "join",
+      "watch": "100% filled, 7,391 distinct; may need its agency code attached before it matches ARID_2017; no lender name on this table"
+     },
+     {
+      "name": "AGENCY_CODE",
+      "plain": "which regulator the lender reports to; coded value, look at distinct values first (7, 9, 3, 5, 1 seen)",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application; coded value, look at distinct values first (1, 3, 6, 4, 5 seen)",
+      "use": "filter",
+      "watch": "two file families in this table; group by ACTION_TAKEN first"
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "two-digit number for the state where the home sits",
+      "use": "join",
+      "watch": "98.4% filled; unpadded in 2015-2017, left-pad before matching"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "three-digit number for the county where the home sits",
+      "use": "join",
+      "watch": "98.17% filled; unpadded; null-county rows hold 19,331 denials, so require COUNTY_CODE is not null"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CFPB_HMDA_LAR_2018 to 2024 (7 tables, same columns)",
+    "one_row": "one mortgage application",
+    "connects": "COUNTY_CODE matches the storm county key; LEI matches LEI_2018 on HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF",
+    "columns": [
+     {
+      "name": "LEI",
+      "plain": "the lender's twenty-character global company id, used from 2018 on",
+      "use": "join",
+      "watch": "bridge to the sampled LAR table measured at 84%; fill not yet measured"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "code for the county where the home sits",
+      "use": "join",
+      "watch": "format and fill not yet measured"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "placeholder rows with '-1': 1,961 in 2018 and 21 in 2019; filter them before any count"
+     },
+     {
+      "name": "ACTIVITY_YEAR",
+      "plain": "the year the application was reported",
+      "use": "date",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF",
+    "one_row": "one lender's 2017 id and its later company id",
+    "connects": "ARID_2017 matches RESPONDENT_ID on HOUSING__FED_CFPB_HMDA_HISTORIC; LEI_2018 matches LEI on FED_CFPB_HMDA_LAR_2018",
+    "columns": [
+     {
+      "name": "ARID_2017",
+      "plain": "the lender's old id as it stood in 2017",
+      "use": "join",
+      "watch": "format against RESPONDENT_ID unverified; 5,399 lenders here against 7,391 distinct RESPONDENT_IDs"
+     },
+     {
+      "name": "RESPONDENT_NAME",
+      "plain": "the name of the bank or mortgage lender",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "LEI_2018",
+      "plain": "the lender's new global company id in 2018",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "LEI_2019",
+      "plain": "the lender's new global company id in 2019",
+      "use": "join",
+      "watch": "93.91% filled"
+     },
+     {
+      "name": "LEI_2020",
+      "plain": "the lender's new global company id in 2020",
+      "use": "join",
+      "watch": "76.5% filled"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W6",
+  "section": "Place",
+  "idea": "Find the counties that lost their doctors, their bank branches and their factories all in the same ten years.",
+  "why": "It would put a name on the places being hollowed out from three sides at once. The factory part only covers one year, so that leg is weak.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "one_row": "one bank branch in one survey year",
+    "connects": "BRANCH_STATE_COUNTY_FIPS matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "SURVEY_YEAR",
+      "plain": "the year of the bank regulator's yearly branch survey",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_STATE_COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number where the branch sits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_UNINUM",
+      "plain": "the regulator's id number for one physical branch",
+      "use": "measure",
+      "watch": "a branch missing next year can be a merger or renumbering"
+     },
+     {
+      "name": "FDIC_CERT",
+      "plain": "the regulator's certificate number for the bank that owns the branch",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_DEPOSITS_THOUSANDS",
+      "plain": "deposits held at the branch, in thousands of dollars",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one clinician who billed Medicare Part B in one year",
+    "connects": "RNDRNG_PRVDR_ZIP5 matches ZCTA5 on XWALK_ZCTA_COUNTY; NPI matches NPI on FED_CMS_NPPES_DEACTIVATED",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the ten-digit national id number of the doctor or clinician",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "RNDRNG_PRVDR_ENT_CD",
+      "plain": "marks whether the biller is a person or an organization; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "blank is an empty string, not NULL"
+     },
+     {
+      "name": "RNDRNG_PRVDR_TYPE",
+      "plain": "the clinician's specialty in words, such as the kind of doctor",
+      "use": "filter",
+      "watch": "values not yet measured; must be read to keep physicians and drop nurse practitioners, labs, suppliers"
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "five-digit ZIP of the clinician's office",
+      "use": "join",
+      "watch": "blank is an empty string, not NULL; single-building hospital ZIPs have no ZIP-area and drop out"
+     },
+     {
+      "name": "RNDRNG_PRVDR_STATE_FIPS",
+      "plain": "number for the state of the clinician's office",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RNDRNG_PRVDR_RUCA",
+      "plain": "a rural-to-urban score for the office ZIP; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "how many Medicare patients the clinician saw that year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county pair",
+    "connects": "ZCTA5 matches RNDRNG_PRVDR_ZIP5 on the Part B tables; COUNTY_FIPS matches BRANCH_STATE_COUNTY_FIPS and AREA_FIPS",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "five-digit ZIP-area, the Census stand-in for a postal ZIP",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP-areas cross a county line; largest-area pick was right 47.1% of the time on those"
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number the ZIP-area falls in",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_NPPES_DEACTIVATED",
+    "one_row": "one deactivated provider id and its date",
+    "connects": "NPI matches NPI on the Part B tables; optional, tells a doctor who quit from one who moved",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the ten-digit national id number of the provider who was switched off",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NPPES_DEACTIVATION_DATE",
+      "plain": "the day the provider's id was switched off, stored as text MM/DD/YYYY",
+      "use": "date",
+      "watch": "text, not a date; parse it. Fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_BLS_QCEW",
+    "one_row": "one area, industry and ownership cell",
+    "connects": "AREA_FIPS matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "AREA_FIPS",
+      "plain": "five-digit number for the county or other area the cell covers",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "INDUSTRY_CODE",
+      "plain": "code for the industry the cell covers; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ANNUAL_AVG_ESTABLISHMENTS",
+      "plain": "average number of workplaces in that industry and area over the year",
+      "use": "measure",
+      "watch": "2022 only; one year of movement, not a decade"
+     },
+     {
+      "name": "ANNUAL_AVG_EMPLOYMENT",
+      "plain": "average number of jobs in that industry and area over the year",
+      "use": "measure",
+      "watch": "2022 only; one year of movement, not a decade"
+     },
+     {
+      "name": "YEAR",
+      "plain": "the calendar year the job and workplace numbers cover",
+      "use": "date",
+      "watch": "2022 on every row"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_BLS_QCEW",
+    "one_row": "the same cells, raw, with year-over-year change columns",
+    "connects": "AREA_FIPS matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "AREA_FIPS",
+      "plain": "five-digit number for the county or other area the cell covers",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "INDUSTRY_CODE",
+      "plain": "code for the industry the cell covers; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "OTY_ANNUAL_AVG_ESTABS_CHG",
+      "plain": "change in the number of workplaces against the year before",
+      "use": "measure",
+      "watch": "one year of change only; fill not yet measured"
+     },
+     {
+      "name": "OTY_ANNUAL_AVG_EMPLVL_CHG",
+      "plain": "change in the number of jobs against the year before",
+      "use": "measure",
+      "watch": "one year of change only; fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W7",
+  "section": "Place",
+  "idea": "Find a single post office box that gets mail for a medical provider, a political committee and a federal contractor all at once.",
+  "why": "It would mean three kinds of money that should be unrelated share one mail drop. That is the kind of overlap worth a closer look at who is behind it.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES",
+    "one_row": "one provider id, a person or an organization",
+    "connects": "cleaned PROVIDER_FIRST_LINE_BUSINESS_MAILING_ADDRESS + first 5 of PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE match cleaned CMTE_ST1 + first 5 of CMTE_ZIP on FINANCE__FED_FEC_COMMITTEES",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the ten-digit national id number of the medical provider",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_ORGANIZATION_NAME_LEGAL_BUSINESS_NAME",
+      "plain": "the legal name of the provider when it is an organization",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_FIRST_LINE_BUSINESS_MAILING_ADDRESS",
+      "plain": "first line of the address where the provider gets mail",
+      "use": "join",
+      "watch": "no cleaned-address column exists; one hospital address is reused by thousands of its doctors, so keep to box or suite lines. Fill not yet measured"
+     },
+     {
+      "name": "PROVIDER_BUSINESS_MAILING_ADDRESS_CITY_NAME",
+      "plain": "city of the provider's mailing address",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PROVIDER_BUSINESS_MAILING_ADDRESS_STATE_NAME",
+      "plain": "state of the provider's mailing address",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE",
+      "plain": "ZIP code of the provider's mailing address; use the first five digits",
+      "use": "join",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEES",
+    "one_row": "one committee in one election-cycle file",
+    "connects": "cleaned CMTE_ST1 + first 5 of CMTE_ZIP match the cleaned mailing line and ZIP on HEALTH__FED_CMS_NPPES and on the contract tables",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "the election regulator's id number for the political committee",
+      "use": "measure",
+      "watch": "ids repeat across cycles with no cycle column: 60,031 rows, 38,693 ids; count committees, never rows"
+     },
+     {
+      "name": "CMTE_NM",
+      "plain": "the name the political committee registered under",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_ST1",
+      "plain": "first line of the committee's street or box address",
+      "use": "join",
+      "watch": "must be cleaned by hand"
+     },
+     {
+      "name": "CMTE_CITY",
+      "plain": "city named in the political committee's mailing address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_ST",
+      "plain": "state named in the political committee's mailing address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_ZIP",
+      "plain": "ZIP code of the committee's address; use the first five digits",
+      "use": "join",
+      "watch": "50 blank"
+     },
+     {
+      "name": "CMTE_TP",
+      "plain": "the kind of committee; coded value, look at distinct values first (H, N, Q, O, S seen)",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_BULK_COMMITTEES",
+    "one_row": "one committee in one cycle",
+    "connects": "cleaned CMTE_ST1 + first 5 of CMTE_ZIP match the same address key as the other tables",
+    "columns": [
+     {
+      "name": "FEC_CMTE_ID",
+      "plain": "the election regulator's id number for the political committee",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_ST1",
+      "plain": "first line of the committee's street or box address",
+      "use": "join",
+      "watch": "must be cleaned by hand"
+     },
+     {
+      "name": "CMTE_ZIP",
+      "plain": "ZIP code of the committee's address; use the first five digits",
+      "use": "join",
+      "watch": "9 blank"
+     },
+     {
+      "name": "CYCLE",
+      "plain": "the two-year election cycle the row belongs to",
+      "use": "date",
+      "watch": "range not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "cleaned RECIPIENT_ADDRESS_LINE_1 + first 5 of RECIPIENT_ZIP_4_CODE match the same address key built from HEALTH__FED_CMS_NPPES and FINANCE__FED_FEC_COMMITTEES",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's id for the company that got the contract",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of the company that got the contract",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_ADDRESS_LINE_1",
+      "plain": "first line of the contractor's address",
+      "use": "join",
+      "watch": "must be cleaned by hand; fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_CITY_NAME",
+      "plain": "city named in the federal contractor's address",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_ZIP_4_CODE",
+      "plain": "the contractor's ZIP, nine-digit style; use the first five digits",
+      "use": "join",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W8",
+  "section": "Place",
+  "idea": "Find the counties that already had only about one doctor for every thousand people, and are still losing them.",
+  "why": "These would be the places where seeing a doctor is turning into a long drive. The count only covers doctors who bill Medicare, and the population number stops at 2015.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one clinician who billed Medicare Part B in one year",
+    "connects": "RNDRNG_PRVDR_ZIP5 matches ZCTA5 on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the ten-digit national id number of the doctor or clinician",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "RNDRNG_PRVDR_ENT_CD",
+      "plain": "marks whether the biller is a person or an organization; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "blank is an empty string, not NULL"
+     },
+     {
+      "name": "RNDRNG_PRVDR_TYPE",
+      "plain": "the clinician's specialty in words, such as the kind of doctor",
+      "use": "filter",
+      "watch": "values not yet measured; must be read to keep physicians and drop nurse practitioners, labs, suppliers"
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "five-digit ZIP of the clinician's office",
+      "use": "join",
+      "watch": "blank is an empty string, not NULL; single-building hospital ZIPs have no ZIP-area and drop out"
+     },
+     {
+      "name": "RNDRNG_PRVDR_RUCA",
+      "plain": "a rural-to-urban score for the office ZIP; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "how many Medicare patients the clinician saw that year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county pair",
+    "connects": "ZCTA5 matches RNDRNG_PRVDR_ZIP5 on the Part B tables; COUNTY_FIPS matches FIPS on HEALTH__FED_CDC_DRUG_POISONING_COUNTY and COMMON_STATE_COUNTY_FIPS_CODE on HEALTH__FED_HRSA_HPSA_PRIMARY_CARE",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "five-digit ZIP-area, the Census stand-in for a postal ZIP",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP-areas cross a county line; largest-area pick was right 47.1% of the time on those"
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number the ZIP-area falls in",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY",
+    "one_row": "one county in one year, with its population",
+    "connects": "FIPS matches COUNTY_FIPS on XWALK_ZCTA_COUNTY, years 2013-2015",
+    "columns": [
+     {
+      "name": "FIPS",
+      "plain": "five-digit state-plus-county number for the county the row covers",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR",
+      "plain": "the year of the population figure, 1999 to 2015",
+      "use": "date",
+      "watch": "ends at 2015; later years have no population to divide by"
+     },
+     {
+      "name": "POPULATION",
+      "plain": "how many people lived in the county that year",
+      "use": "measure",
+      "watch": "ends at 2015"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_HRSA_HPSA_PRIMARY_CARE",
+    "one_row": "one component of one primary-care shortage designation",
+    "connects": "COMMON_STATE_COUNTY_FIPS_CODE matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "COMMON_STATE_COUNTY_FIPS_CODE",
+      "plain": "five-digit state-plus-county number of the shortage area",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "DESIGNATION_DATE",
+      "plain": "the day the area was officially named short of doctors",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "WITHDRAWN_DATE",
+      "plain": "the day the shortage label was taken away, if it was",
+      "use": "date",
+      "watch": "61.28% filled; empty means never withdrawn"
+     },
+     {
+      "name": "HPSA_STATUS",
+      "plain": "where the shortage label stands: Designated, Withdrawn or Proposed For Withdrawal",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "HPSA_FTE",
+      "plain": "how many full-time doctors the area is judged to be missing",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DESIGNATION_POPULATION",
+      "plain": "how many people the shortage label covers",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FORMAL_RATIO",
+      "plain": "people per doctor in the area, as text like 3500:1",
+      "use": "measure",
+      "watch": "text like '3500:1'; was wiped once by a numeric cast, read values before trusting"
+     },
+     {
+      "name": "RURAL_STATUS",
+      "plain": "Rural, Non-Rural, Partially Rural or Unknown for the shortage area",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_NPPES_DEACTIVATED",
+    "one_row": "one deactivated provider id and its date",
+    "connects": "NPI matches NPI on the Part B tables",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the ten-digit national id number of the provider who was switched off",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NPPES_DEACTIVATION_DATE",
+      "plain": "the day the provider's id was switched off, stored as text MM/DD/YYYY",
+      "use": "date",
+      "watch": "text, not a date; parse it. Fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W9",
+  "section": "Place",
+  "idea": "When a rural county loses its very last bank branch, does its clinic shut down soon after?",
+  "why": "It would mean the basics of a small town fall like dominoes, money first and medicine next. That tells you where to look for the next closure.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER",
+    "one_row": "one Medicare-certified non-hospital facility, latest record only",
+    "connects": "FIPS_STATE_CD + FIPS_CNTY_CD, left-padded to 3, match BRANCH_STATE_COUNTY_FIPS on FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the facility",
+      "use": "label",
+      "watch": "only the latest record per CCN is kept; a close-and-reopen shows one state"
+     },
+     {
+      "name": "PRVDR_CTGRY_CD",
+      "plain": "the kind of facility; coded value, look at distinct values first (21, 01, 12, 19, 06 seen)",
+      "use": "filter",
+      "watch": "which value means rural health clinic is not yet measured"
+     },
+     {
+      "name": "PRVDR_CTGRY_SBTYP_CD",
+      "plain": "a finer kind of facility inside the main kind; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FAC_NAME",
+      "plain": "the name on the door of the facility",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CBSA_URBN_RRL_IND",
+      "plain": "U if the facility is in an urban area, R if rural",
+      "use": "filter",
+      "watch": "323 blank"
+     },
+     {
+      "name": "TRMNTN_EXPRTN_DT",
+      "plain": "the day the facility's Medicare participation ended or expired",
+      "use": "date",
+      "watch": "40.92% filled; termination or expiration, not always a closed door"
+     },
+     {
+      "name": "PGM_TRMNTN_CD",
+      "plain": "why participation ended; coded value, look at distinct values first (00, 01, 07, 04, 05 seen)",
+      "use": "filter",
+      "watch": "values not yet measured; needed to tell a closure from a merger or paperwork lapse"
+     },
+     {
+      "name": "FIPS_STATE_CD",
+      "plain": "number for the state where the facility sits",
+      "use": "join",
+      "watch": "316 blank"
+     },
+     {
+      "name": "FIPS_CNTY_CD",
+      "plain": "number for the county where the facility sits",
+      "use": "join",
+      "watch": "99.29% filled; a number, unpadded, left-pad to 3"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "one_row": "one bank branch in one survey year",
+    "connects": "BRANCH_STATE_COUNTY_FIPS matches FIPS_STATE_CD + FIPS_CNTY_CD on HEALTH__FED_CMS_POS_OTHER",
+    "columns": [
+     {
+      "name": "SURVEY_YEAR",
+      "plain": "the year of the bank regulator's yearly branch survey",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_STATE_COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number where the branch sits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_UNINUM",
+      "plain": "the regulator's id number for one physical branch",
+      "use": "measure",
+      "watch": "a branch missing next year can be a merger or renumbering"
+     },
+     {
+      "name": "FDIC_CERT",
+      "plain": "the regulator's certificate number for the bank that owns the branch",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_NAME",
+      "plain": "the name the bank gives this branch",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W10",
+  "section": "Place",
+  "idea": "Do rural counties pay more in federal income tax than they get back in federal grants, loans and contracts?",
+  "why": "It would flip the usual story about who carries whom. The data holds one tax year, 2016, so this is a snapshot and not a trend.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS_SOI",
+    "one_row": "one ZIP in one income bracket",
+    "connects": "ZIP_CODE matches ZCTA5 on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "ZIP_CODE",
+      "plain": "five-digit ZIP the tax returns were filed from",
+      "use": "join",
+      "watch": "bridge is ZIP-area, not postal ZIP; a ZIP's tax must be split or assigned"
+     },
+     {
+      "name": "AGI_STUB",
+      "plain": "which income bracket the row covers, a number; values 1 to 6 seen",
+      "use": "filter",
+      "watch": "sum across brackets to get the whole ZIP"
+     },
+     {
+      "name": "TOTAL_TAX",
+      "plain": "total federal income tax owed by returns in that ZIP and bracket",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AGI",
+      "plain": "total income reported by returns in that ZIP and bracket",
+      "use": "measure",
+      "watch": "stored as text; cast it"
+     },
+     {
+      "name": "N_RETURNS",
+      "plain": "how many tax returns were filed in that ZIP and bracket",
+      "use": "measure",
+      "watch": "stored as text; cast it"
+     },
+     {
+      "name": "TAX_YEAR",
+      "plain": "the tax year of the numbers",
+      "use": "date",
+      "watch": "2016 on every row"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county pair",
+    "connects": "ZCTA5 matches ZIP_CODE on FINANCE__FED_IRS_SOI; COUNTY_FIPS matches PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on the spending tables and BRANCH_STATE_COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "five-digit ZIP-area, the Census stand-in for a postal ZIP",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP-areas cross a county line; largest-area pick was right 47.1% of the time on those"
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number the ZIP-area falls in",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "XWALK_TYPE",
+      "plain": "a label for how the pairing was built; every row says clean",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on FED_USASPENDING_ASSISTANCE_FY2016 matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed in this transaction; negative means money pulled back",
+      "use": "measure",
+      "watch": "loans show $0.00 here on 11,788,945 rows; negative rows belong in the sum"
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the size of the loan in dollars, where the row is a loan",
+      "use": "measure",
+      "watch": "this is where loan money lives; decide loans in or out before summing"
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "the kind of aid: 07 and 08 are loans; others coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the government budget year the transaction happened in",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "five-digit state-plus-county number where the funded work takes place",
+      "use": "join",
+      "watch": "71% filled in FY2007 rising to 99% in FY2020; marks where work is done, not where the recipient lives"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on FED_USASPENDING_CONTRACTS_FY2016 matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed in this transaction; negative means money pulled back",
+      "use": "measure",
+      "watch": "negative rows belong in the sum"
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the government budget year the transaction happened in",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "five-digit state-plus-county number where the contract work takes place",
+      "use": "join",
+      "watch": "93% filled, 2,894 distinct counties, on FY2024"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "one_row": "one bank branch in one survey year",
+    "connects": "BRANCH_STATE_COUNTY_FIPS matches COUNTY_FIPS on XWALK_ZCTA_COUNTY; borrowed only for its metro flag",
+    "columns": [
+     {
+      "name": "BRANCH_STATE_COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number where the branch sits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_METRO_FLAG",
+      "plain": "1 if the branch sits in a big-city area, 0 if not",
+      "use": "filter",
+      "watch": "a borrowed stand-in for rural; fill not yet measured"
+     },
+     {
+      "name": "BRANCH_MICRO_FLAG",
+      "plain": "1 if the branch sits in a small-town area, 0 if not",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W11",
+  "section": "Place",
+  "idea": "Do small country water systems break the drinking-water rules more often per person served than big city ones?",
+  "why": "It would mean the fewer neighbors you share a pipe with, the less you can trust the tap. It might also just mean small systems skip paperwork.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+    "one_row": "one public water system",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT and on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": "ids starting 04 to 10 are EPA regions and never match a state"
+     },
+     {
+      "name": "POPULATION_SERVED_COUNT",
+      "plain": "how many people drink from this system",
+      "use": "measure",
+      "watch": "a size stand-in, not a rural measure; tiny systems make extreme rates. Fill not yet measured"
+     },
+     {
+      "name": "POP_CAT_5_CODE",
+      "plain": "the system's size band by people served, numbered 1 to 5",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PWS_TYPE_CODE",
+      "plain": "the kind of system; coded value, look at distinct values first (TNCWS, CWS, NTNCWS, NP seen)",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PWS_ACTIVITY_CODE",
+      "plain": "whether the system is still running; coded value, look at distinct values first (I, A, N seen)",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "OWNER_TYPE_CODE",
+      "plain": "who owns the system; coded value, look at distinct values first (P, L, M, S seen)",
+      "use": "filter",
+      "watch": "about 49,268 rows empty"
+     },
+     {
+      "name": "SERVICE_CONNECTIONS_COUNT",
+      "plain": "how many homes and buildings are hooked up to the system",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "one_row": "one violation with its enforcement fields",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": "100% filled, 265,738 distinct; ids starting 04 to 10 are EPA regions and never match a place"
+     },
+     {
+      "name": "VIOLATION_ID",
+      "plain": "id number of one violation; count these, not rows",
+      "use": "measure",
+      "watch": "row grain not measured; one violation may repeat per enforcement action, so count distinct"
+     },
+     {
+      "name": "IS_HEALTH_BASED_IND",
+      "plain": "Y if the violation is about unsafe water, N if it is paperwork or testing",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_CATEGORY_CODE",
+      "plain": "the broad kind of violation; coded value, look at distinct values first (MR, MCL, MON, Other seen)",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NON_COMPL_PER_BEGIN_DATE",
+      "plain": "the day the water system started being out of compliance",
+      "use": "date",
+      "watch": "93.5% filled; minimum 1900-01-01 is a placeholder, bound every date filter"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "one_row": "one area served by one water system",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS; COUNTY_FIPS used only if a county rural flag is borrowed",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AREA_TYPE_CODE",
+      "plain": "what kind of area the row names; coded value, look at distinct values first (CN, CT, ZC, TR, IR seen)",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_SERVED",
+      "plain": "name of the county the water system serves",
+      "use": "label",
+      "watch": "6,255 county-type rows have a blank name, 4,262 in New Jersey and 581 in Florida"
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number the water system serves",
+      "use": "join",
+      "watch": "filled on 404,823 of 405,396 named county rows"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W12",
+  "section": "Place",
+  "idea": "When a mine shuts down, do overdose deaths in that county climb over the next three years?",
+  "why": "It would tie a lost paycheck to a body count, county by county. That is the human cost of a closure that never shows up in the jobs numbers.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine, with its current status only",
+    "connects": "STATE matches STATE_ABBR on REF__DIM_STATE to get STATE_FIPS; STATE_FIPS + FIPS_CNTY_CD, left-padded to 3, match FIPS and GEOID on the two CDC tables",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id number for the mine",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CURRENT_MINE_STATUS",
+      "plain": "the mine's state now in words: Abandoned, Abandoned and Sealed, Active, Intermittent, Temporarily Idled",
+      "use": "filter",
+      "watch": "current status only, no history; a mine that closed twice shows the last date"
+     },
+     {
+      "name": "CURRENT_STATUS_DT",
+      "plain": "the day the mine entered its current status",
+      "use": "date",
+      "watch": "one date per mine"
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "C for a coal mine, M for a metal or other mine",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NO_EMPLOYEES",
+      "plain": "how many people worked at the mine",
+      "use": "measure",
+      "watch": "null on 39,735 of 91,906 mines"
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state where the mine sits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FIPS_CNTY_CD",
+      "plain": "three-digit number for the county where the mine sits",
+      "use": "join",
+      "watch": "county part only, 298 distinct; left-pad to 3 and add the state number"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.REFERENCE.REF__DIM_STATE",
+    "one_row": "one state or territory",
+    "connects": "STATE_ABBR matches STATE on LABOR__FED_MSHA_MINES",
+    "columns": [
+     {
+      "name": "STATE_ABBR",
+      "plain": "the state's two-letter postal abbreviation, such as UT",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE_FIPS",
+      "plain": "the two-digit number the government assigns to the state",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY",
+    "one_row": "one county in one year",
+    "connects": "FIPS matches STATE_FIPS + FIPS_CNTY_CD built from the mines table",
+    "columns": [
+     {
+      "name": "FIPS",
+      "plain": "five-digit state-plus-county number for the county the row covers",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR",
+      "plain": "the year of the death-rate estimate, 1999 to 2015",
+      "use": "date",
+      "watch": "no overdose data landed for 2016-2018"
+     },
+     {
+      "name": "POPULATION",
+      "plain": "how many people lived in the county that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES",
+      "plain": "the county's overdose death rate, given as one of eleven ranges",
+      "use": "measure",
+      "watch": "a range, not a number; a rise inside one range is invisible"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_INJURY_VIOLENCE_COUNTY",
+    "one_row": "one county, one cause of death, one period",
+    "connects": "GEOID matches the same 5-digit key, STATE_FIPS + FIPS_CNTY_CD from the mines table",
+    "columns": [
+     {
+      "name": "GEOID",
+      "plain": "five-digit state-plus-county number for the county the row covers",
+      "use": "join",
+      "watch": "100% filled, 3,153 distinct"
+     },
+     {
+      "name": "INTENT",
+      "plain": "which cause of death the row covers, such as All_Suicide or FA_Deaths",
+      "use": "filter",
+      "watch": "pick the overdose value; look at distinct values first"
+     },
+     {
+      "name": "PERIOD",
+      "plain": "the year the row covers, or TTM for a rolling twelve months",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "RATE",
+      "plain": "deaths per head of population for that cause, county and period",
+      "use": "measure",
+      "watch": "-999 is a placeholder"
+     },
+     {
+      "name": "RATE_M",
+      "plain": "a text flag that sits beside the rate; coded value, look at distinct values first (1 and 0 seen)",
+      "use": "filter",
+      "watch": "a text flag, not a rate"
+     },
+     {
+      "name": "COUNT_SUP",
+      "plain": "the death count, hidden when the number is small",
+      "use": "measure",
+      "watch": "small counts are suppressed"
+     },
+     {
+      "name": "TTM_DATE_RANGE",
+      "plain": "the start and end dates of the rolling twelve-month window",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W13",
+  "section": "Place",
+  "idea": "Do the counties that host the most power plants get the least federal grant and loan money?",
+  "why": "It would mean some places carry the smokestacks for everyone else and get passed over when the checks go out.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_EGRID_PLANT_2022",
+    "one_row": "one power plant",
+    "connects": "PLANT_FIPS_STATE_CODE + PLANT_FIPS_COUNTY_CODE match PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on FED_USASPENDING_ASSISTANCE_FY2022",
+    "columns": [
+     {
+      "name": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE",
+      "plain": "the energy department's id number for the power plant",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_FIPS_STATE_CODE",
+      "plain": "number for the state where the plant stands",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_FIPS_COUNTY_CODE",
+      "plain": "number for the county where the plant stands",
+      "use": "join",
+      "watch": "99.71% filled"
+     },
+     {
+      "name": "PLANT_PRIMARY_FUEL_CATEGORY",
+      "plain": "what the plant mainly runs on: SOLAR, GAS, HYDRO, WIND, OIL and others",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_NAMEPLATE_CAPACITY_MW",
+      "plain": "the most power the plant is built to make, in megawatts",
+      "use": "measure",
+      "watch": "stored as text; must be cast"
+     },
+     {
+      "name": "PLANT_ANNUAL_NOX_EMISSIONS_TONS",
+      "plain": "tons of nitrogen oxide smog gas the plant put out that year",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EPA_EGRID_PLANT_2019 to 2023, skipping 2022 (4 tables, same columns)",
+    "one_row": "one power plant",
+    "connects": "FIPSST + FIPSCNTY match PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on the matching fiscal-year assistance table",
+    "columns": [
+     {
+      "name": "ORISPL",
+      "plain": "the energy department's id number for the power plant",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FIPSST",
+      "plain": "number for the state where the plant stands",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FIPSCNTY",
+      "plain": "number for the county where the plant stands",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PLFUELCT",
+      "plain": "what the plant mainly runs on, short-code version of the 2022 fuel column",
+      "use": "filter",
+      "watch": "short-code names; a five-year union needs a hand-written column map"
+     },
+     {
+      "name": "NAMEPCAP",
+      "plain": "the most power the plant is built to make, in megawatts",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PLNOXAN",
+      "plain": "tons of nitrogen oxide smog gas the plant put out that year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE matches the plant tables' state + county numbers, fiscal year to plant year",
+    "columns": [
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed in this transaction; negative means money pulled back",
+      "use": "measure",
+      "watch": "loans show $0.00 here on 11,788,945 rows; negative rows belong in the sum"
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the size of the loan in dollars, where the row is a loan",
+      "use": "measure",
+      "watch": "this is where loan money lives; decide loans in or out before summing"
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "the kind of aid: 07 and 08 are loans; others coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the government budget year the transaction happened in",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "five-digit state-plus-county number where the funded work takes place",
+      "use": "join",
+      "watch": "71% filled in FY2007 rising to 99% in FY2020"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W15",
+  "section": "Place",
+  "idea": "Find every dam that would likely kill people if it broke, and list the nursing homes sitting within ten miles of it.",
+  "why": "Nursing home residents cannot leave fast. A list like this shows where a dam failure would be deadliest, and which of those dams nobody has rated.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_NID_DAMS",
+    "one_row": "one dam",
+    "connects": "LATITUDE, LONGITUDE against LATITUDE, LONGITUDE on HEALTH__FED_CMS_NURSING_HOME, straight-line distance under 10 miles; no shared id",
+    "columns": [
+     {
+      "name": "NID_ID",
+      "plain": "the national dam inventory's id for the dam",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DAM_NAME",
+      "plain": "the name the dam goes by",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "HAZARD_POTENTIAL",
+      "plain": "how bad a failure would be: High, Significant, Low or Undetermined",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CONDITION_ASSESSMENT",
+      "plain": "the inspector's rating: Satisfactory, Fair, Poor, Not Rated, or empty",
+      "use": "filter",
+      "watch": "no rating means unknown, not safe"
+     },
+     {
+      "name": "CONDITION_ASSESSMENT_DATE",
+      "plain": "the day the dam's condition was last rated",
+      "use": "date",
+      "watch": "43.84% filled"
+     },
+     {
+      "name": "LAST_INSPECTION_DATE",
+      "plain": "the day the dam was last inspected",
+      "use": "date",
+      "watch": "62.71% filled; runs to the year 5023, bound dates"
+     },
+     {
+      "name": "HAS_EMERGENCY_ACTION_PLAN",
+      "plain": "true if the dam has a written plan for a failure, false if not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NID_STORAGE_ACRE_FT",
+      "plain": "how much water the dam holds back, in acre-feet",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "LATITUDE",
+      "plain": "north-south map position of the dam",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "LONGITUDE",
+      "plain": "east-west map position of the dam",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the dam sits",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home",
+    "connects": "LATITUDE, LONGITUDE against LATITUDE, LONGITUDE on ENVIRONMENT__FED_NID_DAMS, straight-line distance under 10 miles",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's certification number for the nursing home",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_NAME",
+      "plain": "the name of the nursing home",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is approved to fill",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY",
+      "plain": "how many people live in the home on a typical day",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "LATITUDE",
+      "plain": "north-south map position of the nursing home",
+      "use": "join",
+      "watch": "fill not yet measured; COUNTY_FIPS is blank on all 14,700 rows, so distance is the only way in"
+     },
+     {
+      "name": "LONGITUDE",
+      "plain": "east-west map position of the nursing home",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "GEOCODING_FOOTNOTE",
+      "plain": "a note flag on how the map position was found; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "808 rows carry footnote 22"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W16",
+  "section": "Place",
+  "idea": "After the fracking wells show up in a county, do its public water systems start racking up more drinking-water violations?",
+  "why": "It would tie a drilling boom to trouble at the tap. It only covers public water systems, not the private wells closest to the drilling.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_FRACFOCUS_DISCLOSURE_LIST",
+    "one_row": "one fracturing job disclosure at one well",
+    "connects": "STATE_NAME matches STATE_NAME on REF__DIM_STATE; then STATE_FIPS + folded COUNTY_NAME match STATEFP + folded COUNTYNAME on FED_CENSUS_COUNTY_2020",
+    "columns": [
+     {
+      "name": "DISCLOSURE_ID",
+      "plain": "id of one fracking job report filed by the driller",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "API_NUMBER",
+      "plain": "the oil industry's id number for the well",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATE_NAME",
+      "plain": "full name of the state where the well is",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "COUNTY_NAME",
+      "plain": "name of the county where the well is",
+      "use": "join",
+      "watch": "name join: strip suffixes, make St. and Saint equal, keep independent cities apart"
+     },
+     {
+      "name": "JOB_START_DATE",
+      "plain": "the day the fracking job began",
+      "use": "date",
+      "watch": "range not yet measured; driller self-reporting, so early booms have no before"
+     },
+     {
+      "name": "TOTAL_BASE_WATER_VOLUME",
+      "plain": "how much water the fracking job used",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "LATITUDE",
+      "plain": "north-south map position of the well",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "LONGITUDE",
+      "plain": "east-west map position of the well",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "OPERATOR_NAME",
+      "plain": "name of the company that ran the fracking job",
+      "use": "label",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.REFERENCE.REF__DIM_STATE",
+    "one_row": "one state or territory",
+    "connects": "STATE_NAME matches STATE_NAME on ENVIRONMENT__FED_FRACFOCUS_DISCLOSURE_LIST; STATE_FIPS matches STATEFP on FED_CENSUS_COUNTY_2020",
+    "columns": [
+     {
+      "name": "STATE_NAME",
+      "plain": "the full spelled-out name of the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE_FIPS",
+      "plain": "the two-digit number the government assigns to the state",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CENSUS_COUNTY_2020",
+    "one_row": "one county",
+    "connects": "STATEFP + folded COUNTYNAME match STATE_FIPS + folded COUNTY_NAME; STATEFP + COUNTYFP match COUNTY_FIPS on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "STATEFP",
+      "plain": "the two-digit number the government assigns to the state",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "COUNTYFP",
+      "plain": "the county's three-digit number inside its state",
+      "use": "join",
+      "watch": "fill not yet measured; 3,235 unique FIPS verified"
+     },
+     {
+      "name": "COUNTYNAME",
+      "plain": "the name of the county, spelled out",
+      "use": "join",
+      "watch": "bare names with no ' County' suffix slip past simple filters"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "one_row": "one area served by one water system",
+    "connects": "COUNTY_FIPS matches STATEFP + COUNTYFP on FED_CENSUS_COUNTY_2020; PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit state-plus-county number the water system serves",
+      "use": "join",
+      "watch": "filled on 404,823 of 405,396 named county rows; 6,255 county-type rows have a blank county name"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "one_row": "one violation with its enforcement fields",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the water system's id number, given by the drinking-water regulator",
+      "use": "join",
+      "watch": "100% filled, 265,738 distinct; ids starting 04 to 10 are EPA regions and never match a place"
+     },
+     {
+      "name": "VIOLATION_ID",
+      "plain": "id number of one violation; count these, not rows",
+      "use": "measure",
+      "watch": "row grain not measured; one violation may repeat per enforcement action, so count distinct"
+     },
+     {
+      "name": "IS_HEALTH_BASED_IND",
+      "plain": "Y if the violation is about unsafe water, N if it is paperwork or testing",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CONTAMINANT_CODE",
+      "plain": "which substance the violation is about; coded value, look at distinct values first",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "NON_COMPL_PER_BEGIN_DATE",
+      "plain": "the day the water system started being out of compliance",
+      "use": "date",
+      "watch": "93.5% filled; minimum 1900-01-01 is a placeholder, bound every date filter"
+     }
+    ]
+   }
+  ]
+ }
+]

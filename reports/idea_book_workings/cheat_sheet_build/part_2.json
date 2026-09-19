@@ -1,0 +1,1995 @@
+[
+ {
+  "id": "W18",
+  "section": "Place",
+  "idea": "Some water systems break the drinking water rules every single year and nobody ever comes after them.",
+  "why": "It would mean the rulebook has no teeth for repeat offenders. People keep drinking from a system the regulator knows is failing.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "one_row": "one violation with its enforcement fields",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the federal id number of one public water system, 265,738 different ones here",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_ID",
+      "plain": "the id of one rule violation; repeats when a violation has several enforcement actions",
+      "use": "measure",
+      "watch": "Row grain not measured. Count distinct VIOLATION_ID per year, never rows."
+     },
+     {
+      "name": "IS_HEALTH_BASED_IND",
+      "plain": "whether the violation is a health risk kind: Y yes, N no",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_STATUS",
+      "plain": "where the violation stands: Resolved, Archived, Unaddressed, Addressed",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NON_COMPL_PER_BEGIN_DATE",
+      "plain": "the day the system started being out of compliance",
+      "use": "date",
+      "watch": "Filled 93.5%; minimum 1900-01-01 is a placeholder. Blank rows cannot be placed in a year."
+     },
+     {
+      "name": "ENFORCEMENT_ID",
+      "plain": "the id of an enforcement action taken against the violation; empty means none recorded",
+      "use": "filter",
+      "watch": "Fill not measured. May hold empty strings, not NULLs; test both before counting."
+     },
+     {
+      "name": "ENFORCEMENT_DATE",
+      "plain": "the day the regulator took the enforcement action",
+      "use": "date",
+      "watch": "Fill not measured. Date columns carry 1900-01-01 placeholders."
+     },
+     {
+      "name": "ENFORCEMENT_ACTION_TYPE_CODE",
+      "plain": "short code for the kind of enforcement action, such as SOX or SIE; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "ENF_ACTION_CATEGORY",
+      "plain": "how serious the action was: Informal, Formal, or Resolving",
+      "use": "filter",
+      "watch": "Fill not measured. Informal means a reminder letter counts as enforced unless you split it out."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+    "one_row": "one public water system",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the federal id number of one public water system",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PWS_NAME",
+      "plain": "the name of the water system",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "POPULATION_SERVED_COUNT",
+      "plain": "how many people drink from this system",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "OWNER_TYPE_CODE",
+      "plain": "one-letter code for who owns the system; P, L, M, S seen; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRIMACY_AGENCY_CODE",
+      "plain": "the state or agency in charge of policing this system, such as MI or NY",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PWS_ACTIVITY_CODE",
+      "plain": "whether the system is still running; codes A, I, N seen; look at distinct values first",
+      "use": "filter",
+      "watch": "67.07% of systems carry a deactivation date. Filter to active or the list fills with dead systems."
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "two-letter state of the water system",
+      "use": "filter",
+      "watch": "Filled 96.67%."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W23",
+  "section": "Place",
+  "idea": "When a coal power plant shuts down, the doctors nearby end up with fewer patients who have lung disease.",
+  "why": "It would put a health payoff on closing coal plants. The measure is loose, so a yes is a hint, not proof.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EIA860_GENERATOR_Y2019 to Y2023 (5 tables, same columns)",
+    "one_row": "one generator on one sheet: operable, proposed or retired",
+    "connects": "PLANT_CODE matches PLANT_CODE on FED_EIA860_PLANT_Y* for the same year",
+    "columns": [
+     {
+      "name": "SHEET_NAME",
+      "plain": "which spreadsheet tab the row came from: operable, proposed or retired",
+      "use": "filter",
+      "watch": "Footer rows land with every field NULL but SHEET_NAME on 12 of 15 sheet-years."
+     },
+     {
+      "name": "PLANT_CODE",
+      "plain": "the energy agency's id number for the power plant the generator sits in",
+      "use": "join",
+      "watch": "Repeats, not a row key. Filter PLANT_CODE is not null to drop footer rows."
+     },
+     {
+      "name": "GENERATOR_ID",
+      "plain": "the plant's own label for one generator unit",
+      "use": "label",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "ENERGY_SOURCE_1",
+      "plain": "the main fuel the generator burns; coded value, look at distinct values first to find coal",
+      "use": "filter",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "STATUS",
+      "plain": "the generator's operating state; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "NAMEPLATE_CAPACITY_MW",
+      "plain": "the most power the generator is built to make, in megawatts",
+      "use": "measure",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "RETIREMENT_YEAR",
+      "plain": "the year the generator was shut down for good",
+      "use": "date",
+      "watch": "Fill not measured. A plant retired before 2019 appears in none of these tables."
+     },
+     {
+      "name": "RETIREMENT_MONTH",
+      "plain": "the month the generator was shut down for good",
+      "use": "date",
+      "watch": "Fill not measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EIA860_PLANT_Y2019 to Y2023 (5 tables, same columns)",
+    "one_row": "one power plant",
+    "connects": "ZIP matches RNDRNG_PRVDR_ZIP5 on FED_CMS_PARTB_PROVIDER_DY2017 to DY2024; PLANT_CODE matches DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE on ENVIRONMENT__FED_EPA_EGRID_PLANT_2022",
+    "columns": [
+     {
+      "name": "PLANT_CODE",
+      "plain": "the energy agency's id number for the power plant",
+      "use": "join",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "ZIP",
+      "plain": "the postal ZIP code where the plant stands",
+      "use": "join",
+      "watch": "Fill not measured. ZIP identifies nothing on its own."
+     },
+     {
+      "name": "COUNTY",
+      "plain": "the name of the county where the plant stands",
+      "use": "label",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the plant stands",
+      "use": "filter",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "LATITUDE",
+      "plain": "how far north the plant is, as a map coordinate",
+      "use": "label",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "LONGITUDE",
+      "plain": "how far east or west the plant is, as a map coordinate",
+      "use": "label",
+      "watch": "Fill not measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_EGRID_PLANT_2022",
+    "one_row": "one power plant",
+    "connects": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE matches PLANT_CODE on FED_EIA860_PLANT_Y*; gives the county code",
+    "columns": [
+     {
+      "name": "DOE_EIA_ORIS_PLANT_OR_FACILITY_CODE",
+      "plain": "the same power plant id number the energy agency uses",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_FIPS_STATE_CODE",
+      "plain": "two-digit government number for the plant's state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_FIPS_COUNTY_CODE",
+      "plain": "three-digit government number for the plant's county inside the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PLANT_ANNUAL_COAL_NET_GENERATION_MWH",
+      "plain": "how much electricity the plant made from coal in 2022, in megawatt-hours",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2017 to DY2024 (8 tables, same columns)",
+    "one_row": "one clinician's Medicare Part B year",
+    "connects": "RNDRNG_PRVDR_ZIP5 matches ZIP on FED_EIA860_PLANT_Y*",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of one doctor or other clinician",
+      "use": "join",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "the five-digit ZIP of the clinician's office",
+      "use": "join",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, ''). It places the office, not where patients live."
+     },
+     {
+      "name": "RNDRNG_PRVDR_STATE_FIPS",
+      "plain": "two-digit government number for the clinician's state",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_RUCA",
+      "plain": "a score for how rural or urban the office area is; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "how many Medicare patients the clinician saw that year",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "BENE_AVG_AGE",
+      "plain": "average age of the clinician's Medicare patients",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "BENE_AVG_RISK_SCRE",
+      "plain": "Medicare's score for how sick the clinician's patients are on average",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "BENE_CC_PH_COPD_V2_PCT",
+      "plain": "share of the clinician's Medicare patients flagged with chronic lung disease",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, ''). A chronic label, not claims; exists only from DY2017. CMS blanks small patient counts."
+     },
+     {
+      "name": "BENE_CC_PH_ASTHMA_V2_PCT",
+      "plain": "share of the clinician's Medicare patients flagged with asthma",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, ''). Exists only from DY2017. CMS blanks small patient counts."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2013 to DY2016 (4 tables, same columns)",
+    "one_row": "one clinician's Medicare Part B year, older 59-column layout; not usable here, no lung-disease columns",
+    "connects": "",
+    "columns": []
+   }
+  ]
+ },
+ {
+  "id": "P-081",
+  "section": "Place",
+  "idea": "Polluting sites in neighborhoods with more people of color get fewer visits from government inspectors.",
+  "why": "Already measured: visits per site fall from 2.90 in the whitest tenth to 1.46 in the most-minority tenth. It means who lives next door may decide how hard a polluter gets watched.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__EPA_PENALTY_GAP",
+    "one_row": "one EPA-registered facility with its compliance, inspection and penalty counts",
+    "connects": "",
+    "columns": [
+     {
+      "name": "FRS_ID",
+      "plain": "the environmental agency's id number for one regulated site",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PCT_MINORITY",
+      "plain": "share of the people living around the site who are not white; used to group sites into tenths",
+      "use": "filter",
+      "watch": "Missing on 29,702 of 93,808 rows, 32%."
+     },
+     {
+      "name": "TOTAL_INSPECTION_COUNT",
+      "plain": "how many times an inspector visited the site, as a snapshot total",
+      "use": "measure",
+      "watch": "The period the total covers is not measured."
+     },
+     {
+      "name": "QUARTERS_WITH_NONCOMPLIANCE",
+      "plain": "how many three-month periods the site was breaking the rules",
+      "use": "measure",
+      "watch": "The period the total covers is not measured."
+     },
+     {
+      "name": "FORMAL_ACTION_COUNT",
+      "plain": "how many formal enforcement actions were taken against the site",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_PENALTIES",
+      "plain": "total fine dollars charged to the site",
+      "use": "measure",
+      "watch": "86,963 sites, 92.7%, have zero. Dollars run higher in high-minority groups, the opposite way."
+     },
+     {
+      "name": "CHRONIC_NO_PENALTY",
+      "plain": "true if the site kept breaking rules and was never fined",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NEVER_INSPECTED_NONCOMPLIANT",
+      "plain": "true if the site was out of compliance and never inspected",
+      "use": "filter",
+      "watch": "True on 53,587 rows, 57.1%."
+     },
+     {
+      "name": "IN_MAJORITY_MINORITY_COMMUNITY",
+      "plain": "true if more than half the neighbors are people of color",
+      "use": "filter",
+      "watch": "Empty on the same 29,702 rows that lack PCT_MINORITY."
+     },
+     {
+      "name": "POPULATION_DENSITY",
+      "plain": "how tightly packed the people around the site live",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the site is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DATE_LAST_INSPECTION",
+      "plain": "the day of the most recent inspector visit, 1978 to 2026",
+      "use": "date",
+      "watch": "Filled 55.96%; empty on 44% of rows. No trend can be drawn."
+     },
+     {
+      "name": "HAS_AIR_PROGRAM",
+      "plain": "true if the site is regulated for air pollution",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "HAS_WATER_PROGRAM",
+      "plain": "true if the site is regulated for water pollution",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "HAS_HAZWASTE_PROGRAM",
+      "plain": "true if the site is regulated for hazardous waste",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W26",
+  "section": "Body",
+  "idea": "The counties that got flooded with pain pills around 2010 are the same counties burying overdose victims in 2024, or maybe they are not.",
+  "why": "A yes ties today's deaths to old pill shipments place by place. A no says the death wave moved somewhere the pills never went.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+    "one_row": "one shipment of one opioid product from a reporter to a buyer",
+    "connects": "BUYER_COUNTY_FIPS matches FIPS on HEALTH__FED_CDC_DRUG_POISONING_COUNTY and GEOID on LANDING.FED_CDC_INJURY_VIOLENCE_COUNTY",
+    "columns": [
+     {
+      "name": "BUYER_COUNTY_FIPS",
+      "plain": "five-digit government number for the county of the pharmacy or buyer that got the pills",
+      "use": "join",
+      "watch": "Filled on 178,338,557 of 178,598,026 rows; a second source says 178,344,793. Virginia cities, Dona Ana, Juneau, Puerto Rico drop out."
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the shipment was made, 2006 to 2012",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "DOSAGE_UNITS",
+      "plain": "how many pills were in the shipment",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_MME",
+      "plain": "the shipment's strength converted to a common morphine-equivalent scale",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DRUG_NAME",
+      "plain": "which opioid was shipped: HYDROCODONE or OXYCODONE",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "BUYER_BUSINESS_ACTIVITY",
+      "plain": "what kind of buyer: CHAIN PHARMACY, RETAIL PHARMACY, PRACTITIONER",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "BUYER_STATE",
+      "plain": "the state where the buyer that got the pills is located",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CDC_INJURY_VIOLENCE_COUNTY",
+    "one_row": "one county, one intent such as overdose or suicide, one period",
+    "connects": "GEOID matches BUYER_COUNTY_FIPS on HEALTH__FED_DEA_ARCOS",
+    "columns": [
+     {
+      "name": "GEOID",
+      "plain": "five-digit government number for the county",
+      "use": "join",
+      "watch": "Fill not measured on this copy; the mart copy reads 100%, 3,153 distinct."
+     },
+     {
+      "name": "INTENT",
+      "plain": "which kind of death the row counts; Drug_OD is overdose, others cover suicide, homicide, firearm",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PERIOD",
+      "plain": "the year of the deaths, 2019 to 2024, or TTM for the trailing twelve months",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "RATE",
+      "plain": "deaths per head of population as published by the CDC",
+      "use": "measure",
+      "watch": "Holds -999 as a suppression marker on 822 overdose rows. Filter RATE >= 0."
+     },
+     {
+      "name": "RATE_M",
+      "plain": "a 0 or 1 flag stored as long decimal text, marking the same rows as the 1-9 counts",
+      "use": "filter",
+      "watch": "Filtering on it selects on the outcome."
+     },
+     {
+      "name": "COUNT_SUP",
+      "plain": "number of deaths, as text; real counts plus the range strings 1-9 and 10-50 for small counties",
+      "use": "measure",
+      "watch": "Text. Use this landing copy; the mart cast it to a number and nulled 61,400 of 132,000 rows."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_INJURY_VIOLENCE_COUNTY",
+    "one_row": "the same file with COUNT_SUP cast to a number; used only for its profiled key",
+    "connects": "GEOID matches FIPS on HEALTH__FED_CDC_DRUG_POISONING_COUNTY, measured 100%",
+    "columns": [
+     {
+      "name": "GEOID",
+      "plain": "five-digit government number for the county, 3,153 different ones",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY",
+    "one_row": "one county, one year, with population",
+    "connects": "FIPS matches BUYER_COUNTY_FIPS on HEALTH__FED_DEA_ARCOS, same year 2006-2012",
+    "columns": [
+     {
+      "name": "FIPS",
+      "plain": "five-digit government number for the county, 3,149 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR",
+      "plain": "the calendar year of the row, 1999 to 2015",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "POPULATION",
+      "plain": "how many people lived in the county that year; the bottom half of pills per resident",
+      "use": "measure",
+      "watch": "Fill not measured. No county population after 2015 is landed."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W28",
+  "section": "Body",
+  "idea": "Right after a chain buys a nursing home, the paperwork starts describing the same residents as sicker, which makes Medicare pay more.",
+  "why": "It would mean new owners are gaming the forms for money. With the data held, there is probably no before to compare.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_SNF_OWNERSHIP",
+    "one_row": "one enrollment, one owner, one role",
+    "connects": "ENROLLMENT_ID matches ENROLLMENT_ID on HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS; 288,550 of 295,083 owner rows join",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for one nursing home's sign-up record",
+      "use": "join",
+      "watch": "6,533 owner rows name enrollments the enrollment snapshot does not carry."
+     },
+     {
+      "name": "ASSOCIATE_ID_OWNER",
+      "plain": "Medicare's id for the person or company listed as an owner",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ORGANIZATION_NAME_OWNER",
+      "plain": "the name of the company that owns a piece of the home",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ROLE_TEXT_OWNER",
+      "plain": "what the owner's role is, such as director, officer or part owner",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ASSOCIATION_DATE_OWNER",
+      "plain": "the day the owner record was tied to the home; a record date, not a sale date",
+      "use": "date",
+      "watch": "Free text in mixed formats with three 1800 placeholder values. Current owners only, no sale history."
+     },
+     {
+      "name": "PERCENTAGE_OWNERSHIP",
+      "plain": "what percent of the home this owner holds",
+      "use": "measure",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "PRIVATE_EQUITY_COMPANY_OWNER",
+      "plain": "Y if the owner is flagged as a private equity firm",
+      "use": "filter",
+      "watch": "Y on 196 of 295,083 rows, 0.67% of enrollments; blank on 67%. Blank means unknown."
+     },
+     {
+      "name": "REIT_OWNER",
+      "plain": "Y if the owner is flagged as a real estate investment trust",
+      "use": "filter",
+      "watch": "Y on 587 enrollments; blank on 198,546 rows, 67%. Blank means unknown."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "one_row": "one Medicare enrollment of a nursing home",
+    "connects": "CCN matches CCN on HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY, measured 100%, and CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_NURSINGHOME411",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for one nursing home's sign-up record; it encodes the record-creation date",
+      "use": "join",
+      "watch": "The date inside is O plus YYYYMMDD plus 6 digits; a record-creation date, not a purchase date."
+     },
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the nursing home building",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AFFILIATION_ENTITY_ID",
+      "plain": "id of the chain or group the home belongs to",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "AFFILIATION_ENTITY_NAME",
+      "plain": "name of the chain or group the home belongs to",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROPRIETARY_NONPROFIT",
+      "plain": "one-letter code for profit status; P, N, D seen; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+    "one_row": "one home, one report date, one assessment item, one answer",
+    "connects": "CCN matches CCN on HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS, measured 100%",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the nursing home, one per building",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "REPORT_DATE",
+      "plain": "the date the batch of resident assessment answers was reported",
+      "use": "date",
+      "watch": "No date range known; one probed source says a single quarter, Q2 2026. Count distinct values first."
+     },
+     {
+      "name": "MDS_ITEM_QUESTION_DESCRIPTION",
+      "plain": "the wording of the question on the resident assessment form, one of 551 items",
+      "use": "filter",
+      "watch": "Which item is the one you want is unknown until distinct values are read."
+     },
+     {
+      "name": "MDS_ITEM_RESPONSE",
+      "plain": "the answer option picked for that question on the assessment form",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "OVERALL_PERCENT",
+      "plain": "share of all the home's residents who got this answer",
+      "use": "measure",
+      "watch": "Fill not measured. 54,245 rows read 100 on all three percent columns; small homes make identical blocks."
+     },
+     {
+      "name": "TOTAL_RESIDENTS",
+      "plain": "how many residents the home had on that report date",
+      "use": "measure",
+      "watch": "Stored as text and repeated on every item row; cast it and take one value per home per date."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411",
+    "one_row": "one nursing home, snapshot dated 2025-12-01",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CCN on HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS; overlap not measured",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's certification number for the nursing home building",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_CHANGED_OWNERSHIP_IN_LAST_12_MONTHS",
+      "plain": "Y if the home got a new owner in the year before 2025-12-01",
+      "use": "filter",
+      "watch": "Y on only 55 rows. The same flag on the other nursing-home roster is N on all 14,700 rows."
+     },
+     {
+      "name": "NURSING_CASE_MIX_INDEX",
+      "plain": "the federal score for how sick the home's residents are on paper",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_ID",
+      "plain": "id of the chain the home belongs to",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W29",
+  "section": "Body",
+  "idea": "When a big dialysis chain opens a clinic in a county, the local kidney doctors start disappearing.",
+  "why": "It would mean chains push out independent kidney care. Patients end up with a clinic and fewer doctors to choose from.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_DIALYSIS",
+    "one_row": "one dialysis clinic, current directory",
+    "connects": "ZIP_CODE matches ZCTA5 on XWALK_ZCTA_COUNTY; CCN matches CCN on HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES, measured 99%",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the dialysis clinic",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_OWNED",
+      "plain": "whether a chain owns the clinic: Yes or No",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_ORGANIZATION",
+      "plain": "the name of the chain that owns the clinic today",
+      "use": "label",
+      "watch": "It is the chain today. A clinic bought in 2019 reads as a chain arrival at its older certification date."
+     },
+     {
+      "name": "CERTIFICATION_DATE",
+      "plain": "the day Medicare approved the clinic to operate, 1968 to 2026",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "OF_DIALYSIS_STATIONS",
+      "plain": "how many dialysis chairs the clinic has",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the clinic's postal ZIP code, 5,361 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_PARISH",
+      "plain": "the name of the county the clinic is in",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the clinic is in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one clinician, one year of Medicare Part B billing totals",
+    "connects": "RNDRNG_PRVDR_ZIP5 matches ZCTA5 on XWALK_ZCTA_COUNTY; NPI matches NPI on FED_CMS_NPPES_DEACTIVATED",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of one doctor or other clinician",
+      "use": "join",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_TYPE",
+      "plain": "the clinician's specialty as text; find the kidney one by looking for Neph",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, ''). Exact kidney specialty text unknown; read distinct values first."
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "the five-digit ZIP the clinician billed from that year",
+      "use": "join",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_ENT_CD",
+      "plain": "whether the biller is a person or an organization; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "how many Medicare patients the clinician saw that year",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "TOT_SRVCS",
+      "plain": "how many services the clinician billed Medicare for that year",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_DIALYSIS_FACILITIES",
+    "one_row": "one clinic, one quality measure, one year",
+    "connects": "CCN matches CCN on HEALTH__FED_CMS_DIALYSIS, measured 99%",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the dialysis clinic, 8,235 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN",
+      "plain": "the chain name as reported that year, such as DAVITA, FRESENIUS MEDICAL CARE or INDEPENDENT",
+      "use": "label",
+      "watch": "Only 2021-2024. Ownership before 2021 is not recorded anywhere landed."
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "profit status of the clinic: For Profit, Non-profit or Unavailable",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "YEAR_COL",
+      "plain": "the year the row reports on, 2021 to 2024",
+      "use": "date",
+      "watch": "Filled 93.3%."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county overlap",
+    "connects": "ZCTA5 matches ZIP_CODE on HEALTH__FED_CMS_DIALYSIS and RNDRNG_PRVDR_ZIP5 on FED_CMS_PARTB_PROVIDER_DY*; hands back COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the five-digit census ZIP area, the map version of a ZIP code",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP areas cross a county line; hospital-campus ZIPs with no ZIP area drop out."
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit government number for the county the ZIP area falls in",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_NPPES_DEACTIVATED",
+    "one_row": "one deactivated provider id with its deactivation date",
+    "connects": "NPI matches NPI on FED_CMS_PARTB_PROVIDER_DY*; tells a retirement from a move",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of a clinician whose id was shut off",
+      "use": "join",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "NPPES_DEACTIVATION_DATE",
+      "plain": "the day the clinician's id was shut off",
+      "use": "date",
+      "watch": "Text in MM/DD/YYYY; parse before sorting. Not profiled."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W30",
+  "section": "Body",
+  "idea": "Counties that lost their hospital are also the counties where the tap water keeps failing health rules.",
+  "why": "It would mean the same places are losing both basics at once. It could also mean both just track poor or shrinking counties.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_VIOLATIONS_ENFORCEMENT",
+    "one_row": "one violation and enforcement action pair for one water system",
+    "connects": "PWSID matches PWSID on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the federal id number of one public water system, 265,738 different ones",
+      "use": "join",
+      "watch": "Ids starting 04 to 10 are EPA regions, not states."
+     },
+     {
+      "name": "VIOLATION_ID",
+      "plain": "the id of one rule violation; repeats once per enforcement action",
+      "use": "measure",
+      "watch": "Repeats across enforcement actions. Count distinct violations, not rows."
+     },
+     {
+      "name": "IS_HEALTH_BASED_IND",
+      "plain": "whether the violation is a health risk kind: Y yes, N no",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_CATEGORY_CODE",
+      "plain": "short code for the kind of violation, such as MR, MCL or MON; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NON_COMPL_PER_BEGIN_DATE",
+      "plain": "the day the system started being out of compliance",
+      "use": "date",
+      "watch": "Filled 93.5%; 1900-01-01 is a placeholder. Bound the date range before charting."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "one_row": "one water system and one area it serves",
+    "connects": "COUNTY_FIPS matches FIPS_STATE_CD joined to FIPS_CNTY_CD padded to 3 digits on HEALTH__FED_CMS_POS_OTHER",
+    "columns": [
+     {
+      "name": "PWSID",
+      "plain": "the federal id number of one public water system, 418,885 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AREA_TYPE_CODE",
+      "plain": "what kind of area the row names; codes CN, CT, ZC, TR seen; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_SERVED",
+      "plain": "the name of the county the water system serves",
+      "use": "label",
+      "watch": "6,255 county-type rows have a blank county name: New Jersey 4,262, Florida 581."
+     },
+     {
+      "name": "STATE_SERVED",
+      "plain": "the state the water system serves",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit government number for the county served",
+      "use": "join",
+      "watch": "Filled on 404,823 of 405,396 named county rows; blank-name rows got none."
+     },
+     {
+      "name": "ZIP_CODE_SERVED",
+      "plain": "a ZIP code the water system serves",
+      "use": "label",
+      "watch": "Filled 1.24%. Do not use."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER",
+    "one_row": "one Medicare-certified provider, latest status",
+    "connects": "FIPS_STATE_CD joined to FIPS_CNTY_CD padded to 3 digits matches COUNTY_FIPS on ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the provider",
+      "use": "label",
+      "watch": "Only the latest status per CCN is kept, so every closure count is a floor."
+     },
+     {
+      "name": "PRVDR_CTGRY_CD",
+      "plain": "two-digit code for what kind of provider it is; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Which value means hospital is not known. No category here is a nursing home."
+     },
+     {
+      "name": "PGM_TRMNTN_CD",
+      "plain": "two-digit code for why or whether the provider left Medicare; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TRMNTN_EXPRTN_DT",
+      "plain": "the day the provider's Medicare certification ended, 1963 to 2026",
+      "use": "date",
+      "watch": "Filled 40.92%."
+     },
+     {
+      "name": "FIPS_STATE_CD",
+      "plain": "two-digit government number for the provider's state",
+      "use": "join",
+      "watch": "316 blank strings."
+     },
+     {
+      "name": "FIPS_CNTY_CD",
+      "plain": "government number for the provider's county inside the state",
+      "use": "join",
+      "watch": "Filled 99.29%. Stored as a NUMBER, unpadded; pad to 3 digits."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W32",
+  "section": "Body",
+  "idea": "New hospice agencies pop up in the counties where nursing homes are emptying out.",
+  "why": "It would mean dying at home is replacing the nursing home bed, county by county. The data can only show empty beds today, not a fall.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HOSPICE",
+    "one_row": "one hospice agency, current directory",
+    "connects": "STATE plus COUNTY_PARISH matches STATE plus COUNTYNAME on FED_CENSUS_COUNTY_2020, a name join",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the hospice agency",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CERTIFICATION_DATE",
+      "plain": "the day Medicare approved the agency, 1983 to 2025; an opening day, not a patient count",
+      "use": "date",
+      "watch": "Current directory; whether closed agencies remain is not measured, so openings may be survivors only."
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "profit status: For-Profit, Non-Profit, Government or Other",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_PARISH",
+      "plain": "the name of the county the agency is in",
+      "use": "join",
+      "watch": "Name join: strip the suffix, fold St. and Saint; Virginia independent cities miss without city."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the agency is in",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+    "one_row": "one home, one report date, one assessment item, one answer",
+    "connects": "STATE plus FIPS_COUNTY_CODE matches STATE plus COUNTYFP on FED_CENSUS_COUNTY_2020; padding unknown",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the nursing home, one per building",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "REPORT_DATE",
+      "plain": "the date the batch of resident assessment answers was reported",
+      "use": "date",
+      "watch": "No date range known; one probed source says a single quarter, Q2 2026. Count distinct values first."
+     },
+     {
+      "name": "TOTAL_RESIDENTS",
+      "plain": "how many residents the home had on that report date",
+      "use": "measure",
+      "watch": "Stored as text and repeated on every item row; cast it and take one value per home per date."
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the nursing home sits in",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FIPS_COUNTY_CODE",
+      "plain": "county number inside the state, not the full five-digit county code",
+      "use": "join",
+      "watch": "Only 298 distinct values, so it is a within-state code; padding unknown."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, snapshot",
+    "connects": "STATE plus COUNTY_PARISH matches STATE plus COUNTYNAME on FED_CENSUS_COUNTY_2020, a name join",
+    "columns": [
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is approved to fill",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY",
+      "plain": "how many residents sleep in the home on a typical day",
+      "use": "measure",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "COUNTY_PARISH",
+      "plain": "the name of the county the home is in",
+      "use": "join",
+      "watch": "COUNTY_FIPS on this table is blank on all 14,700 rows, so the county name is the only way in."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the home is in",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CENSUS_COUNTY_2020",
+    "one_row": "one county with its name and FIPS parts",
+    "connects": "STATE plus COUNTYNAME matches STATE plus COUNTY_PARISH on the hospice and nursing home tables; STATEFP joined to COUNTYFP makes the five-digit county code",
+    "columns": [
+     {
+      "name": "STATE",
+      "plain": "two-letter state abbreviation, used with the county name to match",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATEFP",
+      "plain": "two-digit government number for the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTYFP",
+      "plain": "three-digit government number for the county inside the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTYNAME",
+      "plain": "the county's name as the census writes it",
+      "use": "join",
+      "watch": "Not profiled; 3,235 rows with unique FIPS verified."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W33",
+  "section": "Body",
+  "idea": "The nursing homes that say on paper their residents are the sickest are also the ones with the most fire safety write-ups.",
+  "why": "It would mean the frailest people live in the least safe buildings. It could also hint that the sickness score is about money, not care.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, snapshot",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's certification number for the nursing home building",
+      "use": "join",
+      "watch": "14,328 distinct ids on 14,700 rows; dedupe before joining."
+     },
+     {
+      "name": "NURSING_CASE_MIX_INDEX",
+      "plain": "the federal score for how sick the home's residents are on paper",
+      "use": "measure",
+      "watch": "Fill not measured. One snapshot; the score in past years is unknown."
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is approved to fill",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_NUMBER_OF_FIRE_SAFETY_DEFICIENCIES",
+      "plain": "the roster's own count of fire safety write-ups for the home",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AUTOMATIC_SPRINKLER_SYSTEMS_IN_ALL_REQUIRED_AREAS",
+      "plain": "whether sprinklers cover the building: Yes, Partial, or Data Not Available",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the home is in; compare homes inside the same state",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_FIRE_DEFICIENCIES",
+    "one_row": "one fire-safety citation from one survey",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's certification number for the nursing home, 13,603 different ones here",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day inspectors walked the building, 2016 to 2026",
+      "use": "date",
+      "watch": "Citation counts track how often a home is surveyed, r = 0.84. Count per distinct SURVEY_DATE."
+     },
+     {
+      "name": "DEFICIENCY_TAG_NUMBER",
+      "plain": "the rule number that was broken; K0351 is the only no-sprinkler tag",
+      "use": "filter",
+      "watch": "A text search on sprinkler inflates the count 4x; use K0351."
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade for how bad and how widespread the problem was; B through F seen; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DEFICIENCY_CORRECTED",
+      "plain": "status of the fix as text, such as has date of correction or Waiver has been granted",
+      "use": "filter",
+      "watch": "A status, not yes or no. Waiver has been granted means still open by permission."
+     },
+     {
+      "name": "INSPECTION_CYCLE",
+      "plain": "which round of inspection the citation came from: 1, 2 or 3; keep the latest cycle",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W34",
+  "section": "Body",
+  "idea": "Some counties have piles of nursing home beds and almost no doctors around to look after the people in them.",
+  "why": "It would point to places where old people are parked far from medical care. It is a map of now, not a trend.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, snapshot",
+    "connects": "ZIP_CODE matches ZCTA5 on XWALK_ZCTA_COUNTY, which hands back COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is approved to fill",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the home's postal ZIP code, 9,229 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_PARISH",
+      "plain": "the name of the county the home is in",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the home is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "meant to be the five-digit county number, but it holds nothing",
+      "use": "join",
+      "watch": "Empty string on all 14,700 rows. Do not use it."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PART_D_PRESCRIBERS",
+    "one_row": "one prescriber, one year of Medicare Part D totals",
+    "connects": "PRSCRBR_ZIP5 matches ZCTA5 on XWALK_ZCTA_COUNTY, which hands back COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of one person who wrote Medicare prescriptions",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_TYPE",
+      "plain": "the prescriber's specialty as text; use it to keep doctors and drop dentists and nurse practitioners",
+      "use": "filter",
+      "watch": "The file is anyone who wrote scripts in 2024, not just doctors."
+     },
+     {
+      "name": "PRSCRBR_ZIP5",
+      "plain": "the five-digit ZIP of the prescriber's billing or practice address",
+      "use": "join",
+      "watch": "54 blank strings."
+     },
+     {
+      "name": "PRSCRBR_STATE_FIPS",
+      "plain": "two-digit government number for the prescriber's state",
+      "use": "filter",
+      "watch": "1,234 blank strings."
+     },
+     {
+      "name": "PRSCRBR_ENT_CD",
+      "plain": "whether the prescriber is a person or an organization; I on nearly every row, O on 2",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county overlap",
+    "connects": "ZCTA5 matches ZIP_CODE on HEALTH__FED_CMS_NURSING_HOME and PRSCRBR_ZIP5 on HEALTH__FED_CMS_PART_D_PRESCRIBERS",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the five-digit census ZIP area, the map version of a ZIP code",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP areas cross a county line; single-building ZIPs like 44195 and 27710 drop out."
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit government number for the county, 3,266 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_NAME",
+      "plain": "the plain name of the county, for reading the results",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CENSUS_ZCTA_COUNTY_2020",
+    "one_row": "one ZIP-area and county overlap, with land area of the overlap",
+    "connects": "GEOID_ZCTA5_20 and GEOID_COUNTY_20 line up with ZCTA5 and COUNTY_FIPS on XWALK_ZCTA_COUNTY; largest AREALAND_PART wins a tie",
+    "columns": [
+     {
+      "name": "GEOID_ZCTA5_20",
+      "plain": "the five-digit census ZIP area, the map version of a ZIP",
+      "use": "join",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "GEOID_COUNTY_20",
+      "plain": "five-digit government number for the county",
+      "use": "join",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "AREALAND_PART",
+      "plain": "how much land the ZIP area and the county share; biggest share picks the county",
+      "use": "measure",
+      "watch": "Largest-area pick is right 99.5% on single-county ZIP areas but only 47.1% on ones that cross a line."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W35",
+  "section": "Body",
+  "idea": "When Medicare changed how it pays nursing homes in October 2019, homes suddenly started writing down a lot more dementia.",
+  "why": "It would mean diagnoses follow the money, not the patients. The table probably holds one quarter of 2026, so the test may be impossible.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY",
+    "one_row": "one home, one report date, one assessment item, one answer",
+    "connects": "",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the nursing home, 14,318 different ones",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "REPORT_DATE",
+      "plain": "the date the batch of resident assessment answers was reported",
+      "use": "date",
+      "watch": "No date range known; one probed source says a single quarter, Q2 2026. Count distinct values first."
+     },
+     {
+      "name": "MDS_ITEM_QUESTION_DESCRIPTION",
+      "plain": "the wording of the question on the resident assessment form, one of 551 items",
+      "use": "filter",
+      "watch": "Which item is the one you want is unknown until distinct values are read."
+     },
+     {
+      "name": "MDS_ITEM_RESPONSE",
+      "plain": "the answer option picked for that question on the assessment form",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "OVERALL_PERCENT",
+      "plain": "share of all the home's residents who got this answer",
+      "use": "measure",
+      "watch": "Fill not measured. 54,245 rows read 100 on all three percent columns; small homes make identical blocks."
+     },
+     {
+      "name": "LONG_STAY_PERCENT",
+      "plain": "share of the home's long-stay residents who got this answer",
+      "use": "measure",
+      "watch": "Fill not measured. 54,245 rows read 100 on all three percent columns."
+     },
+     {
+      "name": "SHORT_STAY_PERCENT",
+      "plain": "share of the home's short-stay residents who got this answer",
+      "use": "measure",
+      "watch": "Fill not measured. 54,245 rows read 100 on all three percent columns."
+     },
+     {
+      "name": "TOTAL_RESIDENTS",
+      "plain": "how many residents the home had on that report date",
+      "use": "measure",
+      "watch": "Stored as text and repeated on every item row; cast it and take one value per home per date."
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the nursing home sits in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W36",
+  "section": "Body",
+  "idea": "Some tax-free hospitals sit on big yearly surpluses and give back only pennies of it as free care for poor patients, while paying their bosses more than the whole free-care bill.",
+  "why": "Nonprofit hospitals skip taxes in exchange for helping the poor. This would name the ones taking the break and not paying it back.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HCRIS",
+    "one_row": "one hospital cost report; the grain is RPT_REC_NUM",
+    "connects": "PROVIDER_CCN matches CCN on XWALK_HOSPITAL_CCN_EIN; covers 3,891 of 6,703 nonprofit hospital ids, 58%",
+    "columns": [
+     {
+      "name": "PROVIDER_CCN",
+      "plain": "Medicare's certification number for the hospital, 7,057 different ones",
+      "use": "join",
+      "watch": "PROVIDER_CCN plus SOURCE_FILE_YEAR is not unique: 1,186 hospital-years carry more than one report."
+     },
+     {
+      "name": "RPT_REC_NUM",
+      "plain": "the record number of one cost report; the true one-row id",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TYPE_OF_CONTROL",
+      "plain": "number code for who runs the hospital, nonprofit, for-profit or government; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COST_OF_CHARITY_CARE",
+      "plain": "dollars the hospital spent on free care for poor patients that fiscal year",
+      "use": "measure",
+      "watch": "Fill not measured on the 13-year load."
+     },
+     {
+      "name": "NET_INCOME",
+      "plain": "dollars the hospital had left over at year end, its surplus or loss",
+      "use": "measure",
+      "watch": "Fill not measured. Text nan is stored as a floating NaN, not null; 89 rows counted. Rank only positive values."
+     },
+     {
+      "name": "TOTAL_COSTS",
+      "plain": "all the dollars the hospital spent that fiscal year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FISCAL_YEAR_END_DATE",
+      "plain": "the last day of the hospital's financial year, 2011-04-30 to 2024-09-30; group on this",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "FISCAL_YEAR_LENGTH_DAYS",
+      "plain": "how many days the report covers, 14 to 472",
+      "use": "filter",
+      "watch": "Filter >= 300. Short reports are seller stubs and lose money 65% of the time against 34%."
+     },
+     {
+      "name": "SOURCE_FILE_YEAR",
+      "plain": "which yearly government file the report came in, 2011 to 2023",
+      "use": "label",
+      "watch": "A label, not the fiscal period."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_HOSPITAL_CCN_EIN",
+    "one_row": "one hospital id matched to one tax id, with a match tier",
+    "connects": "CCN matches PROVIDER_CCN on HEALTH__FED_CMS_HCRIS; EIN matches EIN on HEALTH__HOSPITAL_OFFICER_PAY",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the hospital",
+      "use": "join",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "EIN",
+      "plain": "the federal tax id of the organization that files the hospital's tax return",
+      "use": "join",
+      "watch": "It is the system, not the building: 1,293 tax ids cover 3,222 rows; Kaiser's one id sits on 35 hospitals."
+     },
+     {
+      "name": "MATCH_TIER",
+      "plain": "how the match was made: 1 and 2 name plus ZIP, 3 name plus state, 4 address",
+      "use": "filter",
+      "watch": "Read it before trusting a row."
+     },
+     {
+      "name": "MATCH_RULE",
+      "plain": "the text name of the rule that made the match",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "EIN_NTEE",
+      "plain": "the tax agency's category code for what kind of charity the organization is",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROPRIETARY_NONPROFIT",
+      "plain": "one-letter code for profit status; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__HOSPITAL_OFFICER_PAY",
+    "one_row": "one person on one hospital organization's Form 990, one tax year",
+    "connects": "EIN matches EIN on XWALK_HOSPITAL_CCN_EIN, CORPORATE_REGISTRY__FED_IRS_EO_BMF with 3,914 shared values, and ECONOMICS__FED_IRS_990_EFILE_INDEX with 3,918",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the federal tax id of the hospital organization, 3,962 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "TAX_YEAR",
+      "plain": "the tax year the return covers, 2016 to 2025",
+      "use": "date",
+      "watch": "Tax years before 2017 are absent from the underlying pay file."
+     },
+     {
+      "name": "PERSON_NAME",
+      "plain": "the name of the executive, officer or board member",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TITLE",
+      "plain": "the person's job title on the return",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_COMPENSATION",
+      "plain": "total dollars the person was paid that tax year",
+      "use": "measure",
+      "watch": "One executive repeats on every affiliate's return. Take the max per person per tax year, never the sum."
+     },
+     {
+      "name": "IS_SCHEDULE_J_POINTER",
+      "plain": "true if the line just restates a payout listed elsewhere; keep false only",
+      "use": "filter",
+      "watch": "239 person-returns carry a pointer line."
+     },
+     {
+      "name": "IS_GROUP_RETURN",
+      "plain": "true if the return covers a group of organizations filed as one; drop these",
+      "use": "filter",
+      "watch": "61 rows."
+     },
+     {
+      "name": "BMF_REVENUE_AMT",
+      "plain": "the organization's yearly revenue in dollars, copied from the tax agency's master file",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "BMF_ASSET_AMT",
+      "plain": "the organization's total assets in dollars, copied from the tax agency's master file",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_IRS_EO_BMF",
+    "one_row": "one tax-exempt organization, current master file",
+    "connects": "EIN matches EIN on HEALTH__HOSPITAL_OFFICER_PAY, 3,914 shared values",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the federal tax id of the tax-exempt organization",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NTEE_CODE",
+      "plain": "the tax agency's category code for what kind of charity it is",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "REVENUE_AMT",
+      "plain": "the organization's yearly revenue in dollars",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ASSET_AMT",
+      "plain": "the organization's total assets in dollars",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "INCOME_AMT",
+      "plain": "the organization's yearly income in dollars",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_990_EFILE_INDEX",
+    "one_row": "one e-filed return: who filed, which period, when",
+    "connects": "EIN matches EIN on HEALTH__HOSPITAL_OFFICER_PAY, 3,918 shared values",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the federal tax id of the organization that filed, 893,074 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "TAX_PERIOD",
+      "plain": "the tax period the return covers",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "RETURN_TYPE",
+      "plain": "which form was filed: 990, 990EZ, 990PF and others",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "OBJECT_ID",
+      "plain": "the tax agency's id for the one filed return document",
+      "use": "label",
+      "watch": "No money columns here; it says a return exists, not what is in it."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W37",
+  "section": "Body",
+  "idea": "When a hospital shuts, you can watch where the doctors around it turn up billing from the next year, or whether they vanish.",
+  "why": "It shows whether a closure scatters a town's doctors or they stay put. The towns that gain them get named.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_POS_OTHER",
+    "one_row": "one Medicare-certified provider, latest status",
+    "connects": "ZIP_CD matches RNDRNG_PRVDR_ZIP5 on FED_CMS_PARTB_PROVIDER_DY of the closure year; CCN matches CCN on HEALTH__FED_CMS_FACILITY_AFFILIATION, only 14%",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the provider, 43,797 different ones",
+      "use": "join",
+      "watch": "Only the latest status per CCN is kept, so closure counts are a floor."
+     },
+     {
+      "name": "PRVDR_CTGRY_CD",
+      "plain": "two-digit code for what kind of provider it is; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Which value means hospital is not known."
+     },
+     {
+      "name": "PGM_TRMNTN_CD",
+      "plain": "two-digit code for why or whether the provider left Medicare; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TRMNTN_EXPRTN_DT",
+      "plain": "the day the provider's Medicare certification ended; the closure date",
+      "use": "date",
+      "watch": "Filled 40.92%. Only closures 2013-2023 have a before-and-after pair."
+     },
+     {
+      "name": "ZIP_CD",
+      "plain": "the postal ZIP code where the hospital or provider stands",
+      "use": "join",
+      "watch": "270 blank strings."
+     },
+     {
+      "name": "FAC_NAME",
+      "plain": "the name of the hospital or facility",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ST_ADR",
+      "plain": "the street address of the facility; can be matched to the doctor's street to narrow the group",
+      "use": "label",
+      "watch": "Match rate against RNDRNG_PRVDR_ST1 not measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one clinician, one year of Medicare Part B billing totals",
+    "connects": "RNDRNG_PRVDR_ZIP5 matches ZIP_CD on HEALTH__FED_CMS_POS_OTHER; NPI matches NPI on the next year's table and on FED_CMS_NPPES_DEACTIVATED",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of one doctor or other clinician",
+      "use": "join",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "the five-digit ZIP the clinician filed claims from that year",
+      "use": "join",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, ''). Often the health system's office, not the clinic."
+     },
+     {
+      "name": "RNDRNG_PRVDR_ST1",
+      "plain": "the street address the clinician filed claims from",
+      "use": "label",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_CITY",
+      "plain": "the town the clinician filed claims from",
+      "use": "label",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_STATE_ABRVTN",
+      "plain": "two-letter state the clinician filed claims from",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_TYPE",
+      "plain": "the clinician's medical specialty written out as text",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "RNDRNG_PRVDR_ENT_CD",
+      "plain": "whether the biller is a person or an organization; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "how many Medicare patients the clinician saw that year",
+      "use": "measure",
+      "watch": "Fill not measured. Blanks are empty strings, not NULL; use NULLIF(col, '')."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_NPPES_DEACTIVATED",
+    "one_row": "one deactivated provider id with its date",
+    "connects": "NPI matches NPI on FED_CMS_PARTB_PROVIDER_DY* for doctors missing the next year; separates retired from not billing",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of a clinician whose id was shut off",
+      "use": "join",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "NPPES_DEACTIVATION_DATE",
+      "plain": "the day the clinician's id was shut off",
+      "use": "date",
+      "watch": "Text in MM/DD/YYYY; parse before sorting. Not profiled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION",
+    "one_row": "one clinician tied to one facility, current snapshot; used only to show it cannot answer this",
+    "connects": "CCN matches CCN on HEALTH__FED_CMS_POS_OTHER; only 14% of provider-file ids appear here",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of the clinician",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the facility the clinician is tied to",
+      "use": "join",
+      "watch": "Current snapshot; forgets closed hospitals and under-reports open ones, 35.5% of nursing homes list one clinician."
+     },
+     {
+      "name": "FACILITY_TYPE",
+      "plain": "what kind of place it is: Hospital, Home health agency, Hospice, Nursing home, Dialysis facility",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W39",
+  "section": "Body",
+  "idea": "A lot of hospitals quietly own the home health agency they send you to after discharge, and we can count how many.",
+  "why": "If the hospital owns the agency, the referral is also a sale. This counts ownership only, not who gets referred where.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HOME_HEALTH_OWNERS",
+    "one_row": "one home health agency enrollment, one owner, one role",
+    "connects": "ASSOCIATE_ID_OWNER matches ASSOCIATE_ID on HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS; ASSOCIATE_ID also matches ASSOCIATE_ID there, 411 shared values",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for one home health agency's sign-up record, 11,510 different ones",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ASSOCIATE_ID",
+      "plain": "Medicare's id for the legal entity that runs the agency; links organizations only, never doctors",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ASSOCIATE_ID_OWNER",
+      "plain": "Medicare's id for the person or company listed as an owner of the agency",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the home health agency",
+      "use": "label",
+      "watch": "Filled 98.12%. 95 rows carry a 7-character CCN with a letter suffix; a 6-character match drops them."
+     },
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "the name of the home health agency's legal entity",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ORGANIZATION_NAME_OWNER",
+      "plain": "the name of the company that owns a piece of the agency",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "OWNER_KIND",
+      "plain": "whether the owner is an individual or an organization",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ROLE_TEXT_OWNER",
+      "plain": "the owner's role, such as CORPORATE DIRECTOR or 5% OR GREATER DIRECT OWNERSHIP INTEREST",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PERCENTAGE_OWNERSHIP",
+      "plain": "what percent of the agency this owner holds",
+      "use": "measure",
+      "watch": "Fill not measured."
+     },
+     {
+      "name": "AGENCY_STATE",
+      "plain": "the state the home health agency is in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS",
+    "one_row": "one Medicare enrollment of a hospital",
+    "connects": "ASSOCIATE_ID matches ASSOCIATE_ID_OWNER and ASSOCIATE_ID on HEALTH__FED_CMS_HOME_HEALTH_OWNERS",
+    "columns": [
+     {
+      "name": "ASSOCIATE_ID",
+      "plain": "Medicare's id for the hospital's legal entity, 5,162 different ones",
+      "use": "join",
+      "watch": "9,175 rows for 5,162 entities; count distinct entities, not rows."
+     },
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the hospital, 9,201 different ones",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "the name of the hospital's legal entity",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROPRIETARY_NONPROFIT",
+      "plain": "one-letter code for profit status; N is nonprofit, P and D also seen; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ENROLLMENT_STATE",
+      "plain": "the state the hospital is enrolled in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ }
+]

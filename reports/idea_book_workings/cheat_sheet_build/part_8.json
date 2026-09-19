@@ -1,0 +1,2016 @@
+[
+ {
+  "id": "M-015",
+  "section": "Power",
+  "idea": "Some small House and Senate races are paid for mostly by people who live in a different state.",
+  "why": "If true, outsiders are picking who represents places they do not live in. If it only shows up for famous names, it is just fame.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "one_row": "one contribution by one person",
+    "connects": "CMTE_ID matches CMTE_ID on FINANCE__FED_FEC_CAND_CMTE_LINKAGE; 9,217 shared values measured",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "id of the campaign committee that received the money",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "state in the donor's address, compared with the state the candidate runs in",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "ZIP code in the donor's address",
+      "use": "label",
+      "watch": "Reads 100% filled but 321,021 rows are blank strings."
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "day the committee says it received the money",
+      "use": "date",
+      "watch": "Fill 99.98%. Typo years run 0031 to 9206 and 51,555 rows do not parse. Bound the dates. Window on the current table not re-measured."
+     },
+     {
+      "name": "TRANSACTION_AMT",
+      "plain": "dollar amount of this one contribution",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "code for the kind of transaction; 15E is an earmark memo row, 15 and 24T also common",
+      "use": "filter",
+      "watch": "15E rows are earmark memos that repeat a dollar already counted. Exclude them."
+     },
+     {
+      "name": "CYCLE_FILE",
+      "plain": "which two-year election cycle file the row came from, such as 2024",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+    "one_row": "one link between a candidate and a committee",
+    "connects": "CAND_ID matches CAND_ID on FINANCE__FED_FEC_CANDIDATES; 14,768 shared values measured",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "id of the committee, 15,853 distinct values",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CAND_ID",
+      "plain": "id of the candidate the committee works for, 15,092 distinct values",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_TP",
+      "plain": "committee type code; values seen are H, P, S, N, Q; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_DSGN",
+      "plain": "committee designation code; values seen are P, A, J, U, D; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CAND_ELECTION_YR",
+      "plain": "election year the candidate-committee link belongs to",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CANDIDATES",
+    "one_row": "one candidate in one election cycle",
+    "connects": "CAND_ID matches CAND_ID on FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+    "columns": [
+     {
+      "name": "CAND_ID",
+      "plain": "id of the candidate, 19,063 distinct across 27,095 rows",
+      "use": "join",
+      "watch": "Not unique: one row per cycle. Join on CAND_ID plus election year or every dollar repeats."
+     },
+     {
+      "name": "CAND_NAME",
+      "plain": "the candidate's name as filed with the election agency",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CAND_OFFICE",
+      "plain": "office sought, one letter; values seen are H, P, S, this idea uses House and Senate",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CAND_OFFICE_ST",
+      "plain": "state the candidate is running in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CAND_OFFICE_DISTRICT",
+      "plain": "House district number the candidate is running in",
+      "use": "label",
+      "watch": "No district geometry is landed; small race must be defined from dollars raised or office and state."
+     },
+     {
+      "name": "CAND_ELECTION_YR",
+      "plain": "election year for this candidate row",
+      "use": "filter",
+      "watch": "Not profiled."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "M-007",
+  "section": "Power",
+  "idea": "Campaign donations pile up on the last few days before each quarterly reporting deadline.",
+  "why": "If true, the deadline rush is a known bump that has to be subtracted before reading any other daily pattern. Part of the bump may be committees typing in batches, not donors giving.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "one_row": "one contribution by one person",
+    "connects": "Optional: CMTE_ID matches CMTE_ID on FINANCE__FED_FEC_CAND_CMTE_LINKAGE; 9,217 shared values measured",
+    "columns": [
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "day the committee says it received the money; flag day 29 or later in months 3, 6, 9, 12",
+      "use": "date",
+      "watch": "Fill 99.98%. Typo years 0031 to 9206, 51,555 rows do not parse, one parses to 2106-08-27. Bound dates; run the year count first."
+     },
+     {
+      "name": "TRANSACTION_AMT",
+      "plain": "dollar amount of this one contribution",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "code for the kind of transaction; 15E is an earmark memo row",
+      "use": "filter",
+      "watch": "15E rows are earmark memos that repeat a dollar already counted. Exclude them."
+     },
+     {
+      "name": "CMTE_ID",
+      "plain": "id of the committee that received the money",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CYCLE_FILE",
+      "plain": "which two-year election cycle file the row came from",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+    "one_row": "one link between a candidate and a committee",
+    "connects": "CMTE_ID matches CMTE_ID on FINANCE__FED_FEC_INDIV_CONTRIBUTIONS; used only to split candidate committees from the rest",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "id of the committee; a match here means it is a candidate's committee",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_TP",
+      "plain": "committee type code; values seen are H, P, S, N, Q; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_DSGN",
+      "plain": "committee designation code; values seen are P, A, J, U, D; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "N2",
+  "section": "Power",
+  "idea": "Some immigration courts order far more people deported at hearings the person never showed up to than other courts do.",
+  "why": "If true, whether you get deported without being heard depends on which courtroom your case landed in. The data cannot say why someone was absent or whether the notice reached them.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EOIR_PROCEEDING",
+    "one_row": "one proceeding in one immigration case",
+    "connects": "",
+    "columns": [
+     {
+      "name": "ABSENTIA",
+      "plain": "flag for an order given with the person absent: Y yes, N no",
+      "use": "filter",
+      "watch": "Measured: N 10.76M, Y 2.46M, NULL 3.58M, null byte 7,834, single space 6,126, digit 5 on one row. Clean all three blank kinds."
+     },
+     {
+      "name": "BASE_CITY_CODE",
+      "plain": "code for the court city that handled the proceeding",
+      "use": "label",
+      "watch": "Fill not yet measured. No lookup table names the court; read EOIR's own code list."
+     },
+     {
+      "name": "COMP_DATE",
+      "plain": "day the proceeding was completed; group by its year",
+      "use": "date",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "DEC_CODE",
+      "plain": "code for the judge's decision; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Blank three ways: NULL 5.32M, null byte 1.45M, single space 729K rows. No lookup gives the code meanings."
+     },
+     {
+      "name": "DEC_TYPE",
+      "plain": "code for the type of decision; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CUSTODY",
+      "plain": "code for whether the person was detained; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CASE_TYPE",
+      "plain": "code for the kind of immigration case; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "NAT",
+      "plain": "code for the person's nationality; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "HEARING_LOC_CODE",
+      "plain": "code for the place the hearing was held; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "IDNCASE",
+      "plain": "case id; one person's case can hold several proceedings, use it to count cases",
+      "use": "join",
+      "watch": "Counting rows counts proceedings, not people."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W102",
+  "section": "Work",
+  "idea": "Employers asking the government for foreign workers are the same employers caught shorting their workers on pay.",
+  "why": "If true, the visa office is approving sponsors another office of the same department already caught. The data shows wages owed, never whether they were paid.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_DOL_WHD_ENFORCEMENT",
+    "one_row": "one closed wage-and-hour case against one employer",
+    "connects": "LEGAL_NAME plus first 5 of ZIP_CD matches EMPLOYER_NAME plus first 5 of EMPLOYER_POSTAL_CODE on IMMIGRATION__FED_DOL_OFLC; overlap not measured",
+    "columns": [
+     {
+      "name": "LEGAL_NAME",
+      "plain": "the employer's legal name on the wage case",
+      "use": "join",
+      "watch": "Blank on 3,612 rows. Name match: multi-word names 92% real, single words 8%. Use multi-word only."
+     },
+     {
+      "name": "TRADE_NM",
+      "plain": "the name the employer trades under, the sign on the door",
+      "use": "label",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "ZIP_CD",
+      "plain": "ZIP code of the employer on the wage case; use the first 5 characters",
+      "use": "join",
+      "watch": "Blank on 19 rows."
+     },
+     {
+      "name": "ST_CD",
+      "plain": "state of the employer on the wage case",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "H1B_VIOLTN_CNT",
+      "plain": "number of H-1B skilled-worker visa violations found in this case",
+      "use": "filter",
+      "watch": "Confirmed by name only; two flags found this way were empty. Count non-zero rows first."
+     },
+     {
+      "name": "H1B_BW_ATP_AMT",
+      "plain": "back wages the employer agreed to pay for H-1B visa violations, in dollars",
+      "use": "measure",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "H1B_EE_ATP_CNT",
+      "plain": "number of employees owed back wages under the H-1B visa findings",
+      "use": "measure",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "H1B_CMP_ASSD_AMT",
+      "plain": "civil money penalty assessed for H-1B visa violations, in dollars",
+      "use": "measure",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "H2A_VIOLTN_CNT",
+      "plain": "number of H-2A farm-worker visa violations found in this case",
+      "use": "filter",
+      "watch": "Confirmed by name only; count non-zero rows first."
+     },
+     {
+      "name": "H2A_BW_ATP_AMT",
+      "plain": "back wages the employer agreed to pay for H-2A visa violations, in dollars",
+      "use": "measure",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "H2B_VIOLTN_CNT",
+      "plain": "number of H-2B seasonal-worker visa violations found in this case",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "BW_ATP_AMT",
+      "plain": "total back wages the employer agreed to pay in this case, in dollars",
+      "use": "measure",
+      "watch": "Agreed to pay, not paid. No payment or collection column exists."
+     },
+     {
+      "name": "CASE_VIOLTN_CNT",
+      "plain": "total number of violations found in this case",
+      "use": "measure",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "FINDINGS_START_DATE",
+      "plain": "first day of the period the findings cover",
+      "use": "date",
+      "watch": "Date columns carry typo years 0200 and 3021."
+     },
+     {
+      "name": "FINDINGS_END_DATE",
+      "plain": "last day of the period the findings cover",
+      "use": "date",
+      "watch": "Date columns carry typo years 0200 and 3021."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_DOL_OFLC",
+    "one_row": "one application by one employer to hire foreign workers",
+    "connects": "EMPLOYER_NAME plus first 5 of EMPLOYER_POSTAL_CODE matches LEGAL_NAME plus first 5 of ZIP_CD on FED_DOL_WHD_ENFORCEMENT",
+    "columns": [
+     {
+      "name": "EMPLOYER_NAME",
+      "plain": "name of the employer filing the visa application",
+      "use": "join",
+      "watch": "Fill not measured. Name match, not an id; use multi-word names only."
+     },
+     {
+      "name": "EMPLOYER_POSTAL_CODE",
+      "plain": "ZIP code of the employer on the application; use the first 5 characters",
+      "use": "join",
+      "watch": "Fill not measured. Head-office ZIP may differ from the cited worksite ZIP."
+     },
+     {
+      "name": "EMPLOYER_STATE",
+      "plain": "state of the employer on the application",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VISA_CLASS",
+      "plain": "which visa program: mostly H-1B, also E-3 Australian, H-1B1 Singapore, H-1B1 Chile",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_WORKER_POSITIONS",
+      "plain": "number of worker positions the employer asked for",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "WILLFUL_VIOLATOR",
+      "plain": "flag for an employer previously found a willful violator; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "DECISION_DATE",
+      "plain": "day the government decided the visa application",
+      "use": "date",
+      "watch": "One fiscal year only: 2018-10-01 to 2019-09-30."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W103",
+  "section": "Work",
+  "idea": "Union locals lose members in the same counties where federal contract money is growing.",
+  "why": "If true, federal dollars are flowing to places where organized labor is fading. If not, contracts and unions just run on separate clocks.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_DOL_OLMS",
+    "one_row": "one yearly financial report by one union body",
+    "connects": "First 5 of ZIP matches ZCTA5 on XWALK_ZCTA_COUNTY; overlap not measured",
+    "columns": [
+     {
+      "name": "FILE_NUMBER",
+      "plain": "the Labor Department's file number for the union body",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "UNION_NAME",
+      "plain": "name of the union as written on the report",
+      "use": "label",
+      "watch": "78 column-shifted junk rows have a numeric UNION_NAME and null YEAR_COVERED; drop them."
+     },
+     {
+      "name": "DESIGNATION_NUMBER",
+      "plain": "the local's number within its parent union",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "MEMBERS",
+      "plain": "number of members the union reported that year",
+      "use": "measure",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "YEAR_COVERED",
+      "plain": "the year the report covers, 2000 to 2026",
+      "use": "date",
+      "watch": "99.97% filled."
+     },
+     {
+      "name": "ZIP",
+      "plain": "ZIP code of the union's office, 56,870 distinct; use the first 5",
+      "use": "join",
+      "watch": "Office address, not where members work. A national headquarters puts all members in one county."
+     },
+     {
+      "name": "STATE",
+      "plain": "state of the union's office address",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area and county pair",
+    "connects": "COUNTY_FIPS matches PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on the contract year tables; overlap not measured",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "five-digit Census ZIP area code for the place",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit county code picked for that ZIP area by largest land share, 3,266 distinct",
+      "use": "join",
+      "watch": "Picks the right county 86.2% of the time; 47.1% on the 5,933 ZIP areas that cross a county line."
+     },
+     {
+      "name": "XWALK_TYPE",
+      "plain": "label for how the pairing was made; only value seen is clean",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE matches COUNTY_FIPS on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "five-digit code of the county where the contract work is performed",
+      "use": "join",
+      "watch": "On FY2024 filled on 93% of rows, 2,894 distinct counties. Other years not measured."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed by this transaction; negative rows are money taken back",
+      "use": "measure",
+      "watch": "Signed. Sum as is for net dollars; never filter to positive for a county total."
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "federal fiscal year of the transaction",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W104",
+  "section": "Work",
+  "idea": "Mines that do not pay their safety fines hurt more workers the following year.",
+  "why": "If true, an unpaid fine is an early warning that a mine is getting dangerous. If not, skipping fines is just a money habit.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order written at one mine",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_ACCIDENTS, 13,338 shared, and on LABOR__FED_MSHA_MINES, 31,277 shared",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the government's id for the mine, 32,133 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "id of the company or person that controls the mine",
+      "use": "label",
+      "watch": "93.24% filled."
+     },
+     {
+      "name": "PROPOSED_PENALTY",
+      "plain": "the fine proposed for this citation, in dollars",
+      "use": "measure",
+      "watch": "Fill not yet measured by the profile. 500,990 rows carry the standard $100 minimum; drags averages down."
+     },
+     {
+      "name": "AMOUNT_DUE",
+      "plain": "dollars still owed on this fine today",
+      "use": "measure",
+      "watch": "Fill not yet measured by the profile."
+     },
+     {
+      "name": "AMOUNT_PAID",
+      "plain": "dollars paid on this fine as of today",
+      "use": "measure",
+      "watch": "Fill not yet measured by the profile. Today's balance: a fine paid five years late looks like one paid on time."
+     },
+     {
+      "name": "CAL_YR",
+      "plain": "calendar year the citation was written in",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "day the citation was written, 1994-09-09 to 2026-07-18",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order, full 64-column file",
+    "connects": "MINE_ID matches MINE_ID on the marts; VIOLATION_NO matches VIOLATION_NO on LABOR__FED_MSHA_VIOLATIONS, strip quotes first",
+    "columns": [
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the citation number printed on the paper",
+      "use": "join",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the government's id for the mine",
+      "use": "join",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "FINAL_ORDER_ISSUE_DT",
+      "plain": "day the fine became final and owed",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "BILL_PRINT_DT",
+      "plain": "day the bill for the fine was printed",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "LAST_ACTION_CD",
+      "plain": "code for the last thing that happened to the fine; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Code meanings are not in the warehouse. Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "LAST_ACTION_DT",
+      "plain": "day of the last thing that happened to the fine",
+      "use": "date",
+      "watch": "Not labelled a payment date. Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "CONTESTED_IND",
+      "plain": "flag for whether the mine contested the fine",
+      "use": "filter",
+      "watch": "Contested fines are not delinquent; set them aside. Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "CONTESTED_DT",
+      "plain": "day the mine contested the fine",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "DOCKET_STATUS_CD",
+      "plain": "code for where the contested case stands; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "PROPOSED_PENALTY",
+      "plain": "the fine proposed for this citation, in dollars",
+      "use": "measure",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "AMOUNT_DUE",
+      "plain": "dollars still owed on this fine today",
+      "use": "measure",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "AMOUNT_PAID",
+      "plain": "dollars paid on this fine as of today",
+      "use": "measure",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_ACCIDENTS",
+    "one_row": "one reported accident or injury",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS; 13,338 shared mine ids",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the government's id for the mine, 13,708 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CAL_YR",
+      "plain": "calendar year of the accident; compare to fines from the year before",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "NO_INJURIES",
+      "plain": "number of people injured in this accident",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DAYS_LOST",
+      "plain": "work days lost because of the injury",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DEGREE_INJURY",
+      "plain": "how bad the injury was, in words, such as DAYS AWAY FROM WORK ONLY or ACCIDENT ONLY",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "IS_FATALITY",
+      "plain": "true if someone died in the accident, false if not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ACCIDENT_DATE",
+      "plain": "day of the accident, 2000-01-01 to 2026-07-14",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine, current state",
+    "connects": "MINE_ID matches MINE_ID on LABOR__FED_MSHA_VIOLATIONS; 31,277 shared mine ids",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the government's id for the mine",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NO_EMPLOYEES",
+      "plain": "number of workers at the mine right now",
+      "use": "measure",
+      "watch": "Null on 39,735 of 91,906 mines, and a current value, not yearly."
+     },
+     {
+      "name": "COAL_METAL_IND",
+      "plain": "one letter for the kind of mine; values seen are M and C, a coal or metal split",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CURRENT_MINE_STATUS",
+      "plain": "the mine's status today, such as Active, Abandoned, Intermittent, Temporarily Idled",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W107",
+  "section": "Work",
+  "idea": "Medical devices rushed through a fast or outsourced government review get recalled more often than devices reviewed the normal way.",
+  "why": "If true, the shortcut lets worse devices reach patients. Today it cannot be answered: the recall table's two link columns are empty.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_DEVICE_510K",
+    "one_row": "one 510(k) clearance decision",
+    "connects": "Planned: K_NUMBER matches one element of K_NUMBER_LIST on HEALTH__FED_FDA_DEVICE_ENFORCEMENT; dead, right side 0.0% filled",
+    "columns": [
+     {
+      "name": "K_NUMBER",
+      "plain": "the clearance number given to the device, 172,884 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "EXPEDITED_REVIEW_FLAG",
+      "plain": "Y if the device got a fast-track review",
+      "use": "filter",
+      "watch": "Fill not measured; profile sample shows Y on 28 rows and blank on 175,658."
+     },
+     {
+      "name": "THIRD_PARTY_FLAG",
+      "plain": "Y if an outside reviewer did the review instead of the FDA, N if not",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CLEARANCE_TYPE",
+      "plain": "kind of clearance: Traditional, Special, Abbreviated, Direct, Post-NSE",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRODUCT_CODE",
+      "plain": "the FDA's short code for the type of device",
+      "use": "join",
+      "watch": "1,442 blank strings. The recall side is 0.0% filled, so this join is dead."
+     },
+     {
+      "name": "APPLICANT",
+      "plain": "name of the company that applied for clearance",
+      "use": "label",
+      "watch": "Name match to RECALLING_FIRM reaches a company, not a device."
+     },
+     {
+      "name": "DECISION_DATE",
+      "plain": "day the FDA decided, 1976-07-15 to 2026-07-26",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_DEVICE_PMA",
+    "one_row": "one premarket approval or supplement",
+    "connects": "None: the recall table has no approval-number column, so this route has no path",
+    "columns": [
+     {
+      "name": "PMA_NUMBER",
+      "plain": "the premarket approval number given to the device",
+      "use": "join",
+      "watch": "No matching column exists on the recall table."
+     },
+     {
+      "name": "EXPEDITED_REVIEW_FLAG",
+      "plain": "Y if the device got a fast-track review, N if not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRODUCT_CODE",
+      "plain": "the FDA's short code for the type of device",
+      "use": "join",
+      "watch": "768 blank strings. The recall side is 0.0% filled."
+     },
+     {
+      "name": "APPLICANT",
+      "plain": "name of the company that applied for approval",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DECISION_DATE",
+      "plain": "day the FDA decided, 1960-10-14 to 2026-07-26",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_DEVICE_ENFORCEMENT",
+    "one_row": "one device recall",
+    "connects": "K_NUMBER_LIST and PRODUCT_CODE were meant to match HEALTH__FED_FDA_DEVICE_510K; both are empty. Left over: RECALLING_FIRM to APPLICANT by name",
+    "columns": [
+     {
+      "name": "K_NUMBER_LIST",
+      "plain": "list of clearance numbers for the recalled device",
+      "use": "join",
+      "watch": "Empty column: 0.0% filled, 0 distinct."
+     },
+     {
+      "name": "PRODUCT_CODE",
+      "plain": "the FDA's short code for the type of device",
+      "use": "join",
+      "watch": "Empty column: 0.0% filled, 0 distinct."
+     },
+     {
+      "name": "CLASSIFICATION",
+      "plain": "the recall's class as filed: Class I, Class II, Class III",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECALLING_FIRM",
+      "plain": "name of the company doing the recall",
+      "use": "label",
+      "watch": "A name match mixes every device a firm makes."
+     },
+     {
+      "name": "RECALL_INITIATION_DATE",
+      "plain": "day the company started the recall",
+      "use": "date",
+      "watch": "Range starts 1930-12-11, while REPORT_DATE starts 2012-06-20."
+     },
+     {
+      "name": "OPENFDA",
+      "plain": "a bundle of extra FDA fields that may hold the clearance numbers inside",
+      "use": "join",
+      "watch": "Contents not yet measured. If no k_number inside, the fix is a reload."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W111",
+  "section": "Work",
+  "idea": "A handful of recalled car models draw most of the owner complaints, and which states complain most differs by model.",
+  "why": "If true, certain recalled cars are a bigger problem in certain states. With no sales data, a state with many complaints may simply have many of those cars.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_RECALLS",
+    "one_row": "one recall campaign applied to one make, model and model year",
+    "connects": "MAKE, MODEL, MODEL_YEAR match MAKE, MODEL, MODEL_YEAR on CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS; overlap not measured",
+    "columns": [
+     {
+      "name": "CAMPNO",
+      "plain": "the recall campaign number given by the safety agency",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "MAKE",
+      "plain": "the car brand, written as text",
+      "use": "join",
+      "watch": "Text match, not an id."
+     },
+     {
+      "name": "MODEL",
+      "plain": "the car model, written as text",
+      "use": "join",
+      "watch": "Text match; overlap never counted."
+     },
+     {
+      "name": "MODEL_YEAR",
+      "plain": "the model year of the car, 1965 to 9999",
+      "use": "join",
+      "watch": "9999 means unknown. Drop it before joining."
+     },
+     {
+      "name": "COMPONENT",
+      "plain": "the part of the car the recall is about",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "POTENTIALLY_AFFECTED_UNITS",
+      "plain": "number of vehicles the recall might cover",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "NOTIFICATION_DATE",
+      "plain": "day owners were notified of the recall",
+      "use": "date",
+      "watch": "98.36% filled. Placeholder dates at both ends: 1111-11-11 and 2027-08-16."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_SAFETY.CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS",
+    "one_row": "one owner complaint",
+    "connects": "MAKE, MODEL, MODEL_YEAR match the recalls table; STATE optionally matches STATE on FINANCE__FED_IRS_SOI",
+    "columns": [
+     {
+      "name": "CMPLID",
+      "plain": "the id number of this one complaint",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "MAKE",
+      "plain": "the car brand, written as text",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "MODEL",
+      "plain": "the car model, free-typed by the public",
+      "use": "join",
+      "watch": "Spelling variants split one model into several; overlap never counted."
+     },
+     {
+      "name": "MODEL_YEAR",
+      "plain": "the model year of the car complained about",
+      "use": "join",
+      "watch": "9999 means unknown. Drop it or every unknown matches every unknown."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state of the owner who complained",
+      "use": "label",
+      "watch": "Fill not yet measured. Counts complainers, not cars on the road."
+     },
+     {
+      "name": "COMPONENT",
+      "plain": "the part of the car the complaint is about",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DATE_RECEIVED",
+      "plain": "day the complaint was received, 1995-01-01 to 2026-07-22",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "CRASH",
+      "plain": "Y if the complaint says there was a crash, N if not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FIRE",
+      "plain": "Y if the complaint says there was a fire, N if not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "INJURED",
+      "plain": "number of people the complaint says were injured",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DEATHS",
+      "plain": "number of people the complaint says died",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS_SOI",
+    "one_row": "one ZIP and income band of tax returns",
+    "connects": "STATE matches STATE on CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS; optional income context",
+    "columns": [
+     {
+      "name": "STATE",
+      "plain": "state the tax returns were filed from",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AGI",
+      "plain": "adjusted gross income reported on the returns in this row",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "N_RETURNS",
+      "plain": "number of tax returns counted in this row",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TAX_YEAR",
+      "plain": "the tax year the returns belong to",
+      "use": "date",
+      "watch": "Single value 2016. Can rank states once, not over time."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W113",
+  "section": "Work",
+  "idea": "Some American nursing homes are owned by a company that also shows up on Britain's public list of who controls companies.",
+  "why": "If true, the money and the decisions for a US care home sit offshore where US regulators cannot easily see. The match is a name only, so it gives a list to check by hand.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC",
+    "one_row": "one controller of one UK company",
+    "connects": "NAME matches ORGANIZATION_NAME_OWNER on FED_CMS_SNF_OWNERSHIP; name only, overlap not measured",
+    "columns": [
+     {
+      "name": "COMPANY_NUMBER",
+      "plain": "the UK register's number for the company being controlled, 10,679,125 distinct",
+      "use": "label",
+      "watch": "Table completeness is disputed: trap log says about 7M of 10M+ loaded, profile shows 15,804,611 rows. Counts are floors."
+     },
+     {
+      "name": "NAME",
+      "plain": "full name of the controller, a person or a company",
+      "use": "join",
+      "watch": "Name match, not an id: multi-word 92% real, single words 8%, tested inside the US only."
+     },
+     {
+      "name": "KIND",
+      "plain": "what the controller is: individual person, corporate entity, a statement, or beneficial owner",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ADDRESS_COUNTRY",
+      "plain": "country written in the controller's address",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTRY_REGISTERED",
+      "plain": "country where a corporate controller is registered",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "REGISTRATION_NUMBER",
+      "plain": "registration number of a corporate controller in its home register",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "NATURES_OF_CONTROL",
+      "plain": "text describing the kind of control this controller holds over the company",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "NOTIFIED_ON",
+      "plain": "day the register was told about this controller",
+      "use": "date",
+      "watch": "Placeholder dates: range runs 1083-01-01 to 2026-12-31."
+     },
+     {
+      "name": "CEASED_ON",
+      "plain": "day the control ended; empty means still in control",
+      "use": "date",
+      "watch": "16.51% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_SNF_OWNERSHIP",
+    "one_row": "one owner in one role on one nursing-home enrollment",
+    "connects": "ENROLLMENT_ID matches ENROLLMENT_ID on HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS; 288,550 of 295,083 owner rows join",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for the nursing home's enrollment",
+      "use": "join",
+      "watch": "6,533 owner rows name enrollments the snapshot does not carry."
+     },
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "name of the nursing home's enrolled organization",
+      "use": "label",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "ORGANIZATION_NAME_OWNER",
+      "plain": "name of the owner when the owner is a company",
+      "use": "join",
+      "watch": "Name match only. One vintage, current owners only; a shell that sold last year is gone."
+     },
+     {
+      "name": "TYPE_OWNER",
+      "plain": "the kind of owner; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "ROLE_TEXT_OWNER",
+      "plain": "the owner's role on the home, written in words",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "PERCENTAGE_OWNERSHIP",
+      "plain": "percent of the home this owner holds",
+      "use": "measure",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "ADDRESS_LINE_1_OWNER",
+      "plain": "street address of the owner, first line",
+      "use": "label",
+      "watch": "A UK address, if any, would sit in free text here."
+     },
+     {
+      "name": "CITY_OWNER",
+      "plain": "city in the address of the owner",
+      "use": "label",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "STATE_OWNER",
+      "plain": "state in the address of the owner",
+      "use": "filter",
+      "watch": "US-style field; the file has no country column."
+     },
+     {
+      "name": "ZIP_CODE_OWNER",
+      "plain": "ZIP code of the owner's address",
+      "use": "label",
+      "watch": "US-style field; the file has no country column."
+     },
+     {
+      "name": "HOLDING_COMPANY_OWNER",
+      "plain": "flag for whether the owner is a holding company; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "one_row": "one nursing-home Medicare enrollment",
+    "connects": "CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME; 100% on the landing pair",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for the nursing home's enrollment",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CCN",
+      "plain": "Medicare's certification number for the building, 14,026 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "name of the organization enrolled with Medicare",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current state",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CCN on HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's certification number for the nursing home, 14,328 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_NAME",
+      "plain": "the nursing home's name as Medicare lists it",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "state the nursing home is in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "number of beds the home is certified for",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "OVERALL_RATING",
+      "plain": "Medicare's overall rating number for the home, values 1 to 5",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W115",
+  "section": "Work",
+  "idea": "People and companies on Britain's list of company controllers also sit behind firms that win US government contracts.",
+  "why": "If true, US taxpayer money is going to firms steered from abroad through a chain nobody has drawn. With no shared id the match is names only, so every hit is a lead and not proof.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC",
+    "one_row": "one controller of one UK company",
+    "connects": "NAME for corporate kinds matches RECIPIENT_PARENT_NAME, and NAME for person kinds matches HIGHLY_COMPENSATED_OFFICER_n_NAME, on the contract year tables; name only",
+    "columns": [
+     {
+      "name": "NAME",
+      "plain": "full name of the controller, a person or a company",
+      "use": "join",
+      "watch": "Name match only. Table completeness is disputed: trap log says about 7M of 10M+ loaded, profile shows 15,804,611 rows. Counts are floors."
+     },
+     {
+      "name": "NAME_FORENAME",
+      "plain": "first name of a controller who is a person",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "NAME_SURNAME",
+      "plain": "last name of a controller who is a person",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "KIND",
+      "plain": "what the controller is: individual person, corporate entity, a statement, or beneficial owner",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY_NUMBER",
+      "plain": "the UK register's number for the company being controlled",
+      "use": "label",
+      "watch": "No crosswalk from this number to a US contractor id exists."
+     },
+     {
+      "name": "COUNTRY_OF_RESIDENCE",
+      "plain": "country where a person controller lives",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COUNTRY_REGISTERED",
+      "plain": "country where a corporate controller is registered",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NATURES_OF_CONTROL",
+      "plain": "text describing the kind of control this controller holds over the company",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CEASED_ON",
+      "plain": "day the control ended; empty means still in control",
+      "use": "date",
+      "watch": "16.51% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "RECIPIENT_PARENT_NAME and HIGHLY_COMPENSATED_OFFICER_n_NAME match NAME on CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC; name only, overlap not measured",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's unique id for the company that got the contract",
+      "use": "label",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of the company that got the contract",
+      "use": "label",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "RECIPIENT_PARENT_NAME",
+      "plain": "name of the parent company above the contractor",
+      "use": "join",
+      "watch": "Name match only. Column names may be case-sensitive lowercase on landing; confirm on one table."
+     },
+     {
+      "name": "RECIPIENT_PARENT_UEI",
+      "plain": "the government's unique id for the parent company",
+      "use": "label",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "RECIPIENT_COUNTRY_CODE",
+      "plain": "country code of the contractor; narrow to the United Kingdom first",
+      "use": "filter",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "FOREIGN_OWNED",
+      "plain": "flag the contract file sets when the contractor is foreign owned",
+      "use": "filter",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "DOMESTIC_OR_FOREIGN_ENTITY_CODE",
+      "plain": "code for whether the contractor is a US or foreign entity; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "HIGHLY_COMPENSATED_OFFICER_1_NAME",
+      "plain": "name of the contractor's number 1 highest-paid officer",
+      "use": "join",
+      "watch": "Person-name match is the weakest kind: single-word and common surnames 8% real. Needs a second fact."
+     },
+     {
+      "name": "HIGHLY_COMPENSATED_OFFICER_2_NAME",
+      "plain": "name of the contractor's number 2 highest-paid officer",
+      "use": "join",
+      "watch": "Person-name match is the weakest kind: single-word and common surnames 8% real. Needs a second fact."
+     },
+     {
+      "name": "HIGHLY_COMPENSATED_OFFICER_3_NAME",
+      "plain": "name of the contractor's number 3 highest-paid officer",
+      "use": "join",
+      "watch": "Person-name match is the weakest kind: single-word and common surnames 8% real. Needs a second fact."
+     },
+     {
+      "name": "HIGHLY_COMPENSATED_OFFICER_4_NAME",
+      "plain": "name of the contractor's number 4 highest-paid officer",
+      "use": "join",
+      "watch": "Person-name match is the weakest kind: single-word and common surnames 8% real. Needs a second fact."
+     },
+     {
+      "name": "HIGHLY_COMPENSATED_OFFICER_5_NAME",
+      "plain": "name of the contractor's number 5 highest-paid officer",
+      "use": "join",
+      "watch": "Person-name match is the weakest kind: single-word and common surnames 8% real. Needs a second fact."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed by this transaction; negative rows are money taken back",
+      "use": "measure",
+      "watch": "Fill not yet measured; tables unprofiled."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "day the contract transaction was signed off",
+      "use": "date",
+      "watch": "Fill not yet measured; tables unprofiled."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W117",
+  "section": "Work",
+  "idea": "Some licensed American doctors are listed in Britain as the person who controls a UK company, and nobody has counted how many.",
+  "why": "If true, it is a first look at US clinicians running businesses offshore. A first and last name across two countries proves nobody, so only rare names that hit exactly one doctor count.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES",
+    "one_row": "one provider id, a person or an organization",
+    "connects": "PROVIDER_FIRST_NAME plus PROVIDER_LAST_NAME_LEGAL_NAME matches NAME_FORENAME plus NAME_SURNAME on CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC; name only",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number given to each US health provider",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ENTITY_TYPE_CODE",
+      "plain": "values seen are 1, 2 and blank; the table mixes people and organizations, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_FIRST_NAME",
+      "plain": "the first name of a provider who is a person",
+      "use": "join",
+      "watch": "346,179 deactivated rows have empty name fields; a retired doctor cannot match."
+     },
+     {
+      "name": "PROVIDER_MIDDLE_NAME",
+      "plain": "the provider's middle name, used to make a match rarer",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_LAST_NAME_LEGAL_NAME",
+      "plain": "the legal last name of a provider who is a person",
+      "use": "join",
+      "watch": "Common names hit many of 9,606,683 rows. Keep only names hitting exactly one NPI."
+     },
+     {
+      "name": "PROVIDER_CREDENTIAL_TEXT",
+      "plain": "letters after the provider's name, typed in by the provider",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME",
+      "plain": "state where the provider's practice is located",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "HEALTHCARE_PROVIDER_TAXONOMY_CODE_1",
+      "plain": "code for the provider's first listed specialty; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_ENUMERATION_DATE",
+      "plain": "day the provider id was issued, 2005-05-23 to 2026-06-06",
+      "use": "date",
+      "watch": "96.4% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC",
+    "one_row": "one controller of one UK company",
+    "connects": "COMPANY_NUMBER matches COMPANY_NUMBER on CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE; 5,582,726 shared values",
+    "columns": [
+     {
+      "name": "NAME_FORENAME",
+      "plain": "first name of a controller who is a person",
+      "use": "join",
+      "watch": "Name match, not an id. Table completeness is disputed: trap log says about 7M of 10M+ loaded, profile shows 15,804,611 rows. Counts are floors."
+     },
+     {
+      "name": "NAME_MIDDLE",
+      "plain": "middle name of the person controller, used to make a match rarer",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NAME_SURNAME",
+      "plain": "last name of a controller who is a person",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NAME_TITLE",
+      "plain": "title in front of the name; Dr is a second sign",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DOB_YEAR",
+      "plain": "year the person controller was born",
+      "use": "label",
+      "watch": "87.26% filled. No birth year on the US side, so it cannot confirm a match."
+     },
+     {
+      "name": "COUNTRY_OF_RESIDENCE",
+      "plain": "country where the controller lives; keep the United States",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NATIONALITY",
+      "plain": "nationality the controller declared to the register",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY_NUMBER",
+      "plain": "the UK register's number for the company being controlled",
+      "use": "join",
+      "watch": "Company table covers 5,582,726 of 10,679,125 distinct numbers here."
+     },
+     {
+      "name": "CEASED_ON",
+      "plain": "day the control ended; empty means still in control",
+      "use": "date",
+      "watch": "16.51% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE",
+    "one_row": "one UK company",
+    "connects": "COMPANY_NUMBER matches COMPANY_NUMBER on CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC",
+    "columns": [
+     {
+      "name": "COMPANY_NUMBER",
+      "plain": "the UK register's number for the company, 5,716,497 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY_NAME",
+      "plain": "the company's name as registered in the UK",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY_CATEGORY",
+      "plain": "the legal form, such as Private Limited Company or Limited Partnership, 28 kinds",
+      "use": "filter",
+      "watch": "A legal form, not an industry. Industry text sits only on the landing copy, fill not measured."
+     },
+     {
+      "name": "COMPANY_STATUS",
+      "plain": "whether the company is alive: Active, Liquidation, In Administration and others, 14 kinds",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W120",
+  "section": "Work",
+  "idea": "Some mine operators get fined for the same safety rule, pay up, and get fined for it again, over and over.",
+  "why": "If true, the fine is just a running cost of doing business and fixes nothing. If repeats only track how many mines an operator has, big operators repeat because they are big.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order written at one mine",
+    "connects": "VIOLATION_NO matches VIOLATION_NO on LIBRARY_RAW.LANDING.FED_MSHA_VIOLATIONS, strip quotes; overlap not measured",
+    "columns": [
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "id of the company or person that controls the mine, 19,855 distinct",
+      "use": "join",
+      "watch": "93.24% filled; empty on 6.76% of rows, which fall out of every chain."
+     },
+     {
+      "name": "CONTROLLER_NAME",
+      "plain": "name of the company or person that controls the mine",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATOR_ID",
+      "plain": "id of the party the citation was written against",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the government's id for the mine, 32,133 distinct",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SECTION_OF_ACT",
+      "plain": "the section of the Mine Act cited, such as 316(b) or 103(k)",
+      "use": "join",
+      "watch": "Fill not measured; profile sample shows None on most rows. One section can cover many hazards."
+     },
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the citation number printed on the paper",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "day the citation was written, 1994-09-09 to 2026-07-18",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "PROPOSED_PENALTY",
+      "plain": "the fine proposed for this citation, in dollars",
+      "use": "measure",
+      "watch": "Fill not measured. 500,990 rows carry the standard $100 minimum; rank by repeats, not dollars."
+     },
+     {
+      "name": "AMOUNT_DUE",
+      "plain": "dollars still owed on this fine today",
+      "use": "measure",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "AMOUNT_PAID",
+      "plain": "dollars paid on this fine as of today",
+      "use": "measure",
+      "watch": "Fill not measured. Today's balance, with no payment date on the mart."
+     },
+     {
+      "name": "SIG_SUB",
+      "plain": "a Y or N flag on the citation; meaning not given, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_MSHA_VIOLATIONS",
+    "one_row": "one citation or order, full 64-column file",
+    "connects": "VIOLATION_NO matches VIOLATION_NO on LABOR__FED_MSHA_VIOLATIONS, strip quotes; 3,087,266 rows against 3,087,265",
+    "columns": [
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the citation number printed on the paper",
+      "use": "join",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "id of the company or person that controls the mine",
+      "use": "join",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "SECTION_OF_ACT",
+      "plain": "the section of the Mine Act cited",
+      "use": "label",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "SECTION_OF_ACT_1",
+      "plain": "a further section-of-the-Act field; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "SECTION_OF_ACT_2",
+      "plain": "a further section-of-the-Act field; coded value, look at distinct values first",
+      "use": "label",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "PART_SECTION",
+      "plain": "the specific regulation cited, sharper than the section of the Act",
+      "use": "join",
+      "watch": "No violation narrative exists; one regulation can still be different physical faults. Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "CIT_ORD_SAFE",
+      "plain": "coded value for the kind of paper written; look at distinct values first",
+      "use": "filter",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "INITIAL_VIOL_NO",
+      "plain": "a citation number pointing back to an earlier citation; check a sample first",
+      "use": "label",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "LAST_ACTION_CD",
+      "plain": "code for the last thing that happened to the fine; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "A payment date only if this code says payment; code meanings are not in the warehouse. Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "LAST_ACTION_DT",
+      "plain": "day of the last thing that happened to the fine",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "FINAL_ORDER_ISSUE_DT",
+      "plain": "day the fine became final and owed",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "CONTESTED_IND",
+      "plain": "flag for whether the mine contested the citation",
+      "use": "filter",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "TERMINATION_DT",
+      "plain": "day the citation was terminated, per the column name",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     },
+     {
+      "name": "VIOLATION_ISSUE_DT",
+      "plain": "day the citation was written, landing copy",
+      "use": "date",
+      "watch": "Landing values are wrapped in literal double quotes; strip first. Empty is a pair of quotes, not NULL. Fill not measured."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W121",
+  "section": "Work",
+  "idea": "In some neighborhoods, people file the same complaint about the same bank or lender every single year.",
+  "why": "If true, a company has a standing problem in one place that never gets fixed. If it is only the biggest firms in the biggest ZIP codes, the pattern is just size.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "one_row": "one consumer complaint",
+    "connects": "",
+    "columns": [
+     {
+      "name": "COMPLAINT_ID",
+      "plain": "the id number of this one complaint",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "ZIP code of the person complaining, 36,864 distinct",
+      "use": "join",
+      "watch": "99.99% filled but part is masked as XXXXX or three digits plus XX. Masked share not measured. A place, not a person."
+     },
+     {
+      "name": "COMPANY",
+      "plain": "name of the financial company complained about, 8,088 distinct",
+      "use": "join",
+      "watch": "The three national credit bureaus dominate; run with and without them."
+     },
+     {
+      "name": "PRODUCT",
+      "plain": "the kind of financial product the complaint is about",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ISSUE",
+      "plain": "the kind of problem the complaint is about",
+      "use": "join",
+      "watch": "Templated bulk filings can fake a local repeat; one narrative appears 27,510 times."
+     },
+     {
+      "name": "SUB_ISSUE",
+      "plain": "a finer cut of what the complaint is about",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECEIVED_YEAR",
+      "plain": "the year the complaint came in; count distinct years per cell",
+      "use": "date",
+      "watch": "Stored as a date, first of January each year. 2011 holds one month, 2026 is partial."
+     },
+     {
+      "name": "STATE",
+      "plain": "state of the person who filed the complaint",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY_RESPONSE",
+      "plain": "how the company answered, such as Closed with explanation or Closed with monetary relief",
+      "use": "label",
+      "watch": "96.92% filled."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W122",
+  "section": "Work",
+  "idea": "The same counties flood, get federal money to rebuild, and then flood again a few years later.",
+  "why": "If true, taxpayers keep paying to rebuild on the same wet ground. If aid shrinks each time or repeat counties are few, the money is not feeding the cycle.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FEMA_DISASTER_DECLARATIONS",
+    "one_row": "one disaster and one designated area",
+    "connects": "FIPSSTATECODE joined to FIPSCOUNTYCODE matches FIPS on HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS, and DISASTERNUMBER matches DISASTER_NUMBER; overlap not measured",
+    "columns": [
+     {
+      "name": "DISASTERNUMBER",
+      "plain": "the federal number for the disaster",
+      "use": "join",
+      "watch": "One row per disaster and area. Count distinct values, a plain row count overstates events."
+     },
+     {
+      "name": "INCIDENTTYPE",
+      "plain": "kind of disaster in words; keep the flood ones",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "DECLARATIONDATE",
+      "plain": "day the federal disaster was declared",
+      "use": "date",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "INCIDENTBEGINDATE",
+      "plain": "day the disaster itself began on the ground",
+      "use": "date",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "FIPSSTATECODE",
+      "plain": "two-digit state code, padded with a leading zero",
+      "use": "join",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "FIPSCOUNTYCODE",
+      "plain": "three-digit county code, padded; glue to the state code for a five-digit county",
+      "use": "join",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "DESIGNATEDAREA",
+      "plain": "name of the county or area covered",
+      "use": "label",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "IHPROGRAMDECLARED",
+      "plain": "flag for one aid program being declared for this area; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     },
+     {
+      "name": "IAPROGRAMDECLARED",
+      "plain": "flag for one aid program being declared for this area; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured; table unprofiled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+    "one_row": "one household's aid registration",
+    "connects": "FIPS left-padded to 5 matches PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on the assistance year tables; overlap not measured",
+    "columns": [
+     {
+      "name": "DISASTER_NUMBER",
+      "plain": "the federal number for the disaster, 620 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FIPS",
+      "plain": "county code of the household that registered for aid",
+      "use": "join",
+      "watch": "74.21% filled. Unpadded for states 01 to 09, '1097' and '01097' both exist; left-pad to 5."
+     },
+     {
+      "name": "DECLARATION_DATE",
+      "plain": "day the disaster was declared, 2002-10-24 to 2026-08-03",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "INCIDENT_TYPE_CODE",
+      "plain": "one-letter disaster type; values seen are H, W, F, O, B; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FLOOD_DAMAGE",
+      "plain": "True if the home had flood damage, False if not",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FLOOD_DAMAGE_AMOUNT",
+      "plain": "dollar amount of flood damage recorded for the home",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FLOOD_INSURANCE",
+      "plain": "True if the household had flood insurance, False if not",
+      "use": "filter",
+      "watch": "No flood-insurance claims table is landed; insured rebuilding is invisible."
+     },
+     {
+      "name": "IHP_AMOUNT",
+      "plain": "household aid dollars on this registration, from the individual housing program",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "REPAIR_AMOUNT",
+      "plain": "aid dollars on this registration for repairing the home",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "REPLACEMENT_AMOUNT",
+      "plain": "aid dollars on this registration for replacing the home",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one assistance transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE matches the five-digit county code from the declarations and housing-aid tables; overlap not measured",
+    "columns": [
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "five-digit code of the county where the aid is used",
+      "use": "join",
+      "watch": "Fill runs 71% in FY2007 to 99% in FY2020."
+     },
+     {
+      "name": "CFDA_NUMBER",
+      "plain": "the catalog number of the federal aid program",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CFDA_TITLE",
+      "plain": "the name of the federal aid program",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed by this one assistance transaction",
+      "use": "measure",
+      "watch": "Loans carry no obligation: types 07 and 08 sum to exactly $0.00 on 11,788,945 rows."
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the size of the loan in dollars; where disaster loan money actually sits",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "code for the kind of aid; 07 and 08 are loans",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "AWARDING_AGENCY_NAME",
+      "plain": "name of the federal agency that gave the aid",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "federal fiscal year of the transaction",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ }
+]

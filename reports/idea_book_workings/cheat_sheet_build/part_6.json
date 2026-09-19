@@ -1,0 +1,1745 @@
+[
+ {
+  "id": "M-239",
+  "section": "Money",
+  "idea": "Thousands of consumer complaints carry the exact same story, word for word, so somebody is filing from a template.",
+  "why": "It would mean a chunk of the complaint system is a filing mill, not upset individuals. The top text alone shows up 27,510 times.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "one_row": "one consumer complaint",
+    "connects": "",
+    "columns": [
+     {
+      "name": "COMPLAINT_NARRATIVE",
+      "plain": "the story the consumer typed, word for word, with personal details blanked by the bureau",
+      "use": "measure",
+      "watch": "Only 3.83M of 17.17M complaints have a story. Blanking makes exact-match counts a floor. Fill not yet measured."
+     },
+     {
+      "name": "HAS_NARRATIVE",
+      "plain": "true or false: did the consumer agree to publish a written story",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY",
+      "plain": "name of the company the complaint is against, 8,088 different names",
+      "use": "label",
+      "watch": "Three credit bureaus are 77% of all rows, and each can be spelled more than one way. List spellings first."
+     },
+     {
+      "name": "DATE_RECEIVED",
+      "plain": "the day the consumer bureau received the complaint",
+      "use": "date",
+      "watch": "It is the day received, not the day the problem happened. Batch uploads and weekends shape daily counts."
+     },
+     {
+      "name": "PRODUCT",
+      "plain": "the kind of financial product complained about, such as credit report or mortgage",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ISSUE",
+      "plain": "the type of problem the consumer picked from the bureau's list",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SUBMITTED_VIA",
+      "plain": "how the complaint arrived: Web, Referral, Phone, Postal mail or Fax",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the consumer's postal ZIP code as given on the complaint",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECEIVED_MONTH",
+      "plain": "the month the complaint was received, for counting by month",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "M-245",
+  "section": "Money",
+  "idea": "When complaints against one credit bureau jump on a given day, the other two bureaus jump on the same day.",
+  "why": "Shared spike days point to one outside sender or campaign hitting all three at once. Bureau-only spikes point to a company event like an outage or a breach.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "one_row": "one consumer complaint",
+    "connects": "",
+    "columns": [
+     {
+      "name": "COMPANY",
+      "plain": "name of the company the complaint is against, 8,088 different names",
+      "use": "label",
+      "watch": "Three credit bureaus are 77% of all rows, and each can be spelled more than one way. List spellings first."
+     },
+     {
+      "name": "DATE_RECEIVED",
+      "plain": "the day the consumer bureau received the complaint",
+      "use": "date",
+      "watch": "It is the day received, not the day the problem happened. Batch uploads and weekends shape daily counts."
+     },
+     {
+      "name": "PRODUCT",
+      "plain": "the kind of financial product complained about, such as credit report or mortgage",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ISSUE",
+      "plain": "the type of problem the consumer picked from the bureau's list",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SUBMITTED_VIA",
+      "plain": "how the complaint arrived: Web, Referral, Phone, Postal mail or Fax",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COMPLAINT_NARRATIVE",
+      "plain": "the story the consumer typed, word for word, with personal details blanked by the bureau",
+      "use": "measure",
+      "watch": "Only 3.83M of 17.17M complaints have a story. Blanking makes exact-match counts a floor. Fill not yet measured."
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the consumer's postal ZIP code as given on the complaint",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "M-240",
+  "section": "Money",
+  "idea": "Some big companies close nearly every complaint with the same canned answer.",
+  "why": "It shows which companies treat complaints as paperwork to stamp and how rarely anyone gets relief. Experian uses one category on 79.2% of 4.12M complaints.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "one_row": "one consumer complaint",
+    "connects": "",
+    "columns": [
+     {
+      "name": "COMPANY",
+      "plain": "name of the company the complaint is against, 8,088 different names",
+      "use": "label",
+      "watch": "Three credit bureaus are 77% of all rows, and each can be spelled more than one way. List spellings first."
+     },
+     {
+      "name": "COMPANY_RESPONSE",
+      "plain": "how the company closed it: Closed with explanation, with non-monetary relief, with monetary relief, In progress; 8 values",
+      "use": "measure",
+      "watch": "3.08% of rows have no value. The company picks the category, so it records what the company said it did."
+     },
+     {
+      "name": "COMPANY_PUBLIC_RESPONSE",
+      "plain": "the optional public statement the company chose to attach, picked from 11 canned lines",
+      "use": "label",
+      "watch": "Only 52.78% filled."
+     },
+     {
+      "name": "IS_TIMELY",
+      "plain": "true or false: did the company answer within the deadline",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRODUCT",
+      "plain": "the kind of financial product complained about, such as credit report or mortgage",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DATE_RECEIVED",
+      "plain": "the day the consumer bureau received the complaint",
+      "use": "date",
+      "watch": "It is the day received, not the day the problem happened. Batch uploads and weekends shape daily counts."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-143",
+  "section": "Money",
+  "idea": "Complaint stories used to be written by real people in their own words, and year by year more of them are copies.",
+  "why": "A falling share of unique texts would show templates taking over the complaint system. A flat share would say templating was always there.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "one_row": "one consumer complaint",
+    "connects": "",
+    "columns": [
+     {
+      "name": "COMPLAINT_NARRATIVE",
+      "plain": "the story the consumer typed, word for word, with personal details blanked by the bureau",
+      "use": "measure",
+      "watch": "Only 3.83M of 17.17M complaints have a story. Blanking makes exact-match counts a floor. Fill not yet measured."
+     },
+     {
+      "name": "HAS_NARRATIVE",
+      "plain": "true or false: did the consumer agree to publish a written story",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECEIVED_YEAR",
+      "plain": "the year the complaint was received, stored as the first of January of that year",
+      "use": "date",
+      "watch": "Stored as a date like 2011-01-01, not a number. 2026 is a partial year ending 2026-07-23."
+     },
+     {
+      "name": "RECEIVED_MONTH",
+      "plain": "the month the complaint was received, for counting by month",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "COMPANY",
+      "plain": "name of the company the complaint is against, 8,088 different names",
+      "use": "label",
+      "watch": "Three credit bureaus are 77% of all rows, and each can be spelled more than one way. List spellings first."
+     },
+     {
+      "name": "PRODUCT",
+      "plain": "the kind of financial product complained about, such as credit report or mortgage",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-152",
+  "section": "Money",
+  "idea": "One person, by name and ZIP code, writes political checks to hundreds of different committees.",
+  "why": "It finds the donors plugged into the most fundraising networks and shows whether they spread small gifts everywhere. The top name and ZIP pair reached 268 committees on an older copy.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "one_row": "one itemized contribution from one person to one committee",
+    "connects": "",
+    "columns": [
+     {
+      "name": "DONOR_NAME",
+      "plain": "the donor's name as typed on the filing",
+      "use": "join",
+      "watch": "Name plus ZIP is not a real id. Common names in big ZIPs merge different people."
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the donor's postal ZIP code, sometimes 5 digits and sometimes 9",
+      "use": "join",
+      "watch": "321,021 blank strings. Mixes 5 and 9 digit forms, 5,757,830 distinct values. Cut to the first 5 before grouping."
+     },
+     {
+      "name": "CMTE_ID",
+      "plain": "the election commission's id for the committee that got the money, 40,294 different ones",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_AMT",
+      "plain": "dollar amount of this one gift",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "coded kind of transaction: 15E is a gift passed through a conduit platform; check other codes first",
+      "use": "filter",
+      "watch": "15E earmark rows add the conduit as one more committee and can double the dollars. Decide once how to count them."
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the gift was made",
+      "use": "date",
+      "watch": "99.98% filled. Range runs 0031-04-10 to 9206-07-02, junk end dates. Real window on the 283,771,819-row table not re-measured."
+     },
+     {
+      "name": "EMPLOYER",
+      "plain": "the donor's employer as the donor typed it",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "OCCUPATION",
+      "plain": "the donor's job as the donor typed it",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CYCLE_FILE",
+      "plain": "which two-year election cycle file the row came from, such as 2020 or 2024",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "N6",
+  "section": "Money",
+  "idea": "Some recipients of federal aid show up only in the two pandemic years and never before or after.",
+  "why": "These are the outfits with no federal footprint that got money during the surge and then disappeared. The finding is in the big ones and in clusters at one address.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2020",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "RECIPIENT_UEI in FY2020 and FY2021 checked against RECIPIENT_UEI in the other 18 year tables; keep the ones found nowhere else",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's current id number for the organization that got the money",
+      "use": "join",
+      "watch": "Fill never measured. Older rows may lack it, which makes a long-time recipient look new in 2020. Check fill by year."
+     },
+     {
+      "name": "RECIPIENT_DUNS",
+      "plain": "the older id number for the recipient, used before the current one",
+      "use": "join",
+      "watch": "Fill not yet measured. Fallback when RECIPIENT_UEI is blank."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of whoever received the money",
+      "use": "label",
+      "watch": "County-level roll-up rows carry a generic recipient name, not a real organization."
+     },
+     {
+      "name": "RECIPIENT_ADDRESS_LINE_1",
+      "plain": "street address of the recipient, useful for spotting many recipients at one address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_ZIP_CODE",
+      "plain": "postal ZIP code of the recipient",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the federal fiscal year the transaction falls in",
+      "use": "date",
+      "watch": "FY2026 is partial and some actions are dated ahead to 2026-09-30."
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "coded kind of aid; 07 and 08 are loans, for other codes look at distinct values first",
+      "use": "filter",
+      "watch": "Types 07 and 08 show exactly $0.00 obligation on 11,788,945 rows."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this transaction",
+      "use": "measure",
+      "watch": "Zero for loans. Summing this alone drops the whole pandemic-loan story."
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the dollar size of the loan, where loan money actually shows up",
+      "use": "measure",
+      "watch": "$1.243T in FY2020 alone sits here, not in the obligation column."
+     },
+     {
+      "name": "CFDA_NUMBER",
+      "plain": "the catalog number of the federal aid program",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CFDA_TITLE",
+      "plain": "the plain name of the federal aid program the money came from",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "BUSINESS_TYPES_DESCRIPTION",
+      "plain": "text describing what kind of organization the recipient is",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DISASTER_EMERGENCY_FUND_CODES_FOR_OVERALL_AWARD",
+      "plain": "codes tagging the award to an emergency fund; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECORD_TYPE_CODE",
+      "plain": "coded value the handbook says separates county-level roll-up rows; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured. Needed to drop roll-up rows that hide individuals."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2021",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "RECIPIENT_UEI in FY2020 and FY2021 checked against RECIPIENT_UEI in the other 18 year tables; keep the ones found nowhere else",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's current id number for the organization that got the money",
+      "use": "join",
+      "watch": "Fill never measured. Older rows may lack it, which makes a long-time recipient look new in 2020. Check fill by year."
+     },
+     {
+      "name": "RECIPIENT_DUNS",
+      "plain": "the older id number for the recipient, used before the current one",
+      "use": "join",
+      "watch": "Fill not yet measured. Fallback when RECIPIENT_UEI is blank."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of whoever received the money",
+      "use": "label",
+      "watch": "County-level roll-up rows carry a generic recipient name, not a real organization."
+     },
+     {
+      "name": "RECIPIENT_ADDRESS_LINE_1",
+      "plain": "street address of the recipient, useful for spotting many recipients at one address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_ZIP_CODE",
+      "plain": "postal ZIP code of the recipient",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the federal fiscal year the transaction falls in",
+      "use": "date",
+      "watch": "FY2026 is partial and some actions are dated ahead to 2026-09-30."
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "coded kind of aid; 07 and 08 are loans, for other codes look at distinct values first",
+      "use": "filter",
+      "watch": "Types 07 and 08 show exactly $0.00 obligation on 11,788,945 rows."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this transaction",
+      "use": "measure",
+      "watch": "Zero for loans. Summing this alone drops the whole pandemic-loan story."
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the dollar size of the loan, where loan money actually shows up",
+      "use": "measure",
+      "watch": "$1.243T in FY2020 alone sits here, not in the obligation column."
+     },
+     {
+      "name": "CFDA_NUMBER",
+      "plain": "the catalog number of the federal aid program",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CFDA_TITLE",
+      "plain": "the plain name of the federal aid program the money came from",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "BUSINESS_TYPES_DESCRIPTION",
+      "plain": "text describing what kind of organization the recipient is",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DISASTER_EMERGENCY_FUND_CODES_FOR_OVERALL_AWARD",
+      "plain": "codes tagging the award to an emergency fund; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECORD_TYPE_CODE",
+      "plain": "coded value the handbook says separates county-level roll-up rows; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured. Needed to drop roll-up rows that hide individuals."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2019 and FY2022 to FY2026 (18 tables, same columns)",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "RECIPIENT_UEI in FY2020 and FY2021 checked against RECIPIENT_UEI in the other 18 year tables; keep the ones found nowhere else",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's current id number for the organization that got the money",
+      "use": "join",
+      "watch": "Fill never measured. Older rows may lack it, which makes a long-time recipient look new in 2020. Check fill by year."
+     },
+     {
+      "name": "RECIPIENT_DUNS",
+      "plain": "the older id number for the recipient, used before the current one",
+      "use": "join",
+      "watch": "Fill not yet measured. Fallback when RECIPIENT_UEI is blank."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of whoever received the money",
+      "use": "label",
+      "watch": "County-level roll-up rows carry a generic recipient name, not a real organization."
+     },
+     {
+      "name": "RECIPIENT_ADDRESS_LINE_1",
+      "plain": "street address of the recipient, useful for spotting many recipients at one address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_ZIP_CODE",
+      "plain": "postal ZIP code of the recipient",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the federal fiscal year the transaction falls in",
+      "use": "date",
+      "watch": "FY2026 is partial and some actions are dated ahead to 2026-09-30."
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "coded kind of aid; 07 and 08 are loans, for other codes look at distinct values first",
+      "use": "filter",
+      "watch": "Types 07 and 08 show exactly $0.00 obligation on 11,788,945 rows."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this transaction",
+      "use": "measure",
+      "watch": "Zero for loans. Summing this alone drops the whole pandemic-loan story."
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the dollar size of the loan, where loan money actually shows up",
+      "use": "measure",
+      "watch": "$1.243T in FY2020 alone sits here, not in the obligation column."
+     },
+     {
+      "name": "CFDA_NUMBER",
+      "plain": "the catalog number of the federal aid program",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CFDA_TITLE",
+      "plain": "the plain name of the federal aid program the money came from",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "BUSINESS_TYPES_DESCRIPTION",
+      "plain": "text describing what kind of organization the recipient is",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DISASTER_EMERGENCY_FUND_CODES_FOR_OVERALL_AWARD",
+      "plain": "codes tagging the award to an emergency fund; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECORD_TYPE_CODE",
+      "plain": "coded value the handbook says separates county-level roll-up rows; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured. Needed to drop roll-up rows that hide individuals."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W76",
+  "section": "Power",
+  "idea": "The same immigration judge grants relief more or less often depending on who is president.",
+  "why": "It would mean the outcome of a deportation case depends on the calendar, not only the facts. If rates only move with the mix of nationalities, the judge is stable and the caseload changed.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EOIR_PROCEEDING",
+    "one_row": "one proceeding in one immigration case",
+    "connects": "IJ_CODE matches JUDGE_CODE on FED_EOIR_JUDGE; 33,135 rows carry a code missing from the judge table",
+    "columns": [
+     {
+      "name": "IJ_CODE",
+      "plain": "short code for the immigration judge who handled the proceeding",
+      "use": "join",
+      "watch": "33,135 rows carry a code absent from the judge table. Code AAA means All Judges, not a person."
+     },
+     {
+      "name": "DEC_CODE",
+      "plain": "coded outcome of the case; coded value, look at distinct values first",
+      "use": "measure",
+      "watch": "Blank three ways: NULL on 5.32M rows, a NUL byte on 1.45M, a single space on 729K. No code list landed, so which codes mean a grant is unknown."
+     },
+     {
+      "name": "DEC_TYPE",
+      "plain": "coded kind of decision; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "COMP_DATE",
+      "plain": "the day the proceeding was completed",
+      "use": "date",
+      "watch": "Fill and date range not yet measured."
+     },
+     {
+      "name": "NAT",
+      "plain": "coded nationality of the person in the case; hold it constant when comparing",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CASE_TYPE",
+      "plain": "coded kind of immigration case; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CUSTODY",
+      "plain": "coded custody status of the person; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "BASE_CITY_CODE",
+      "plain": "short code for the court city the case belongs to",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_EOIR_JUDGE",
+    "one_row": "one judge code in the immigration court lookup",
+    "connects": "JUDGE_CODE matches IJ_CODE on FED_EOIR_PROCEEDING",
+    "columns": [
+     {
+      "name": "JUDGE_CODE",
+      "plain": "short code that stands for one immigration judge",
+      "use": "join",
+      "watch": "Code AAA is the placeholder All Judges, not a person."
+     },
+     {
+      "name": "JUDGE_NAME",
+      "plain": "the name of the immigration judge behind the code",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W77",
+  "section": "Power",
+  "idea": "Federal judges own stock in companies that show up as parties in cases assigned to them.",
+  "why": "A judge with money riding on a party should step aside. A match of judge, company and year flags cases where that may not have happened.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_INVESTMENTS",
+    "one_row": "one line on one disclosure form",
+    "connects": "FINANCIAL_DISCLOSURE_ID matches ID on FINANCIAL_DISCLOSURES; DESCRIPTION text-matches COMPANY_NAME on COMPANY_TICKERS_EXCHANGE",
+    "columns": [
+     {
+      "name": "DESCRIPTION",
+      "plain": "free-text name of the asset the judge listed, such as a company's stock",
+      "use": "join",
+      "watch": "Scanned text with typos, AMCRICAN EXPRESS on 167 rows. Rows reading X Bank Accounts are cash, 93% of the wide match. Single-word matches were 8% real."
+     },
+     {
+      "name": "GROSS_VALUE_CODE",
+      "plain": "letter code for the holding's value, J K L M most common; look at distinct values first",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "FINANCIAL_DISCLOSURE_ID",
+      "plain": "number pointing to the disclosure form this line belongs to",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the date on the line, 1969-12-31 to 2022-12-27",
+      "use": "date",
+      "watch": "Only 36.09% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_FINANCIAL_DISCLOSURES",
+    "one_row": "one disclosure form",
+    "connects": "ID matches FINANCIAL_DISCLOSURE_ID on INVESTMENTS; PERSON_ID matches ASSIGNED_TO_ID on DOCKETS",
+    "columns": [
+     {
+      "name": "ID",
+      "plain": "the number of this one disclosure form",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PERSON_ID",
+      "plain": "number for the judge who filed the form, 3,375 different judges",
+      "use": "join",
+      "watch": "Only 43.8% filled. More than half the forms cannot be tied to a judge."
+     },
+     {
+      "name": "YEAR_COL",
+      "plain": "meant to be the year the form covers",
+      "use": "date",
+      "watch": "51.3% filled, values run 0 to 14423. Column-shifted text on 38,530 of 70,776 landing rows. Not usable as is."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_DOCKETS",
+    "one_row": "one court docket",
+    "connects": "ASSIGNED_TO_ID matches PERSON_ID on FINANCIAL_DISCLOSURES; IDB_DATA_ID matches ID on FJC_IDB_CL_LINKED",
+    "columns": [
+     {
+      "name": "ASSIGNED_TO_ID",
+      "plain": "number for the judge the case was assigned to",
+      "use": "join",
+      "watch": "Fill not yet measured. Assignment does not show whether the judge stepped aside."
+     },
+     {
+      "name": "IDB_DATA_ID",
+      "plain": "number pointing to the matching federal case record with party names",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CASE_NAME",
+      "plain": "the case caption, such as one party versus another",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "DATE_FILED",
+      "plain": "the day the case was filed",
+      "use": "date",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "COURT_ID",
+      "plain": "short code for the court where the case sits",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_FJC_IDB_CL_LINKED",
+    "one_row": "one federal case record with its named parties",
+    "connects": "ID matches IDB_DATA_ID on DOCKETS; PLAINTIFF and DEFENDANT text-match COMPANY_NAME on COMPANY_TICKERS_EXCHANGE",
+    "columns": [
+     {
+      "name": "ID",
+      "plain": "the number of this one case record",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PLAINTIFF",
+      "plain": "name of the first party that sued",
+      "use": "join",
+      "watch": "First-named party only. Fill not yet measured."
+     },
+     {
+      "name": "DEFENDANT",
+      "plain": "name of the first party being sued",
+      "use": "join",
+      "watch": "First-named party only. Fill not yet measured."
+     },
+     {
+      "name": "DATE_FILED",
+      "plain": "the day the case was filed, 1901-01-01 to 2022-03-31",
+      "use": "date",
+      "watch": "File stops at 2022-03-31."
+     },
+     {
+      "name": "NATURE_OF_SUIT",
+      "plain": "coded subject of the lawsuit; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_EDGAR_COMPANY_TICKERS_EXCHANGE",
+    "one_row": "one listed ticker",
+    "connects": "COMPANY_NAME text-matches DESCRIPTION on INVESTMENTS and PLAINTIFF, DEFENDANT or CASE_NAME on the court tables; multi-word names only",
+    "columns": [
+     {
+      "name": "COMPANY_NAME",
+      "plain": "the official name of a stock-market listed company, 7,920 different names",
+      "use": "join",
+      "watch": "Text match only. Single-word names were 8% real in a checked sample; multi-word cleared 92%."
+     },
+     {
+      "name": "CIK",
+      "plain": "the securities regulator's id number for the company",
+      "use": "label",
+      "watch": "No matching id exists on the investment side or the docket side."
+     },
+     {
+      "name": "TICKER",
+      "plain": "the stock symbol the company trades under",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W78",
+  "section": "Power",
+  "idea": "Lawsuits against a nursing-home chain pile up in federal court before Medicare gets around to fining it.",
+  "why": "It would mean the courts see trouble before the regulator does. Lawsuit counts could then work as an early warning for bad chains.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CIVIL",
+    "one_row": "one federal civil case",
+    "connects": "DEFENDANT name-matches CHAIN_NAME or LEGAL_BUSINESS_NAME on NURSING_HOME; multi-word names only, overlap not measured",
+    "columns": [
+     {
+      "name": "DEFENDANT",
+      "plain": "name of the first party being sued",
+      "use": "join",
+      "watch": "First-named party only, so a suit naming the chain second is invisible. Fill not yet measured."
+     },
+     {
+      "name": "NATURE_OF_SUIT",
+      "plain": "coded subject of the lawsuit; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FILE_DATE",
+      "plain": "the day the case was filed, 1901-01-01 to 2026-03-31",
+      "use": "date",
+      "watch": "Filings stop at 2026-03-31."
+     },
+     {
+      "name": "DISTRICT",
+      "plain": "coded federal court district where the case was filed; look at distinct values first",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on NURSING_HOME_PENALTIES, measured 100%; CHAIN_NAME or LEGAL_BUSINESS_NAME name-matches DEFENDANT on FJC_IDB_CIVIL",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's id number for one nursing home, 14,328 different values on 14,700 rows",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_ID",
+      "plain": "Medicare's number for the chain the home belongs to",
+      "use": "filter",
+      "watch": "Blank on 4,551 homes in the sibling roster table. Count the blank share here before grouping."
+     },
+     {
+      "name": "CHAIN_NAME",
+      "plain": "name of the chain the home belongs to",
+      "use": "join",
+      "watch": "Chain names include hospital systems. Use multi-word names only."
+     },
+     {
+      "name": "LEGAL_BUSINESS_NAME",
+      "plain": "the legal business name on record for the home",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+    "one_row": "one penalty on one home",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's id number for the penalized nursing home, 6,771 different homes",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_DATE",
+      "plain": "the day the penalty was imposed, 2023-06-17 to 2026-05-13",
+      "use": "date",
+      "watch": "Covers under three years, so the before window is short."
+     },
+     {
+      "name": "PENALTY_TYPE",
+      "plain": "kind of penalty: Fine or Payment Denial",
+      "use": "filter",
+      "watch": "2,470 Payment Denial rows have a blank FINE_ID."
+     },
+     {
+      "name": "FINE_AMOUNT",
+      "plain": "dollar size of the fine on this penalty",
+      "use": "measure",
+      "watch": "Only rows where PENALTY_TYPE is Fine carry an amount."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W79",
+  "section": "Power",
+  "idea": "Certain mine owners just do not pay their safety fines, and the debts sit open for years.",
+  "why": "A fine nobody collects is not a penalty. $548M of $1.82B proposed was never collected, and the worst operators paid under 10%.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one mine safety citation",
+    "connects": "MINE_ID matches MINE_ID on MSHA_MINES, measured 31,277 shared values",
+    "columns": [
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the number printed on this one safety citation",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id number for the mine, 32,133 different mines",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "id number of the company that controlled the mine when it was cited",
+      "use": "join",
+      "watch": "93.24% filled."
+     },
+     {
+      "name": "CONTROLLER_NAME",
+      "plain": "name of the company that controlled the mine when it was cited",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "the day the citation was written, 1994-09-09 to 2026-07-18",
+      "use": "date",
+      "watch": "The last 24 months are inside the appeal window and were left out of the measured numbers."
+     },
+     {
+      "name": "PROPOSED_PENALTY",
+      "plain": "dollars the agency proposed as the fine",
+      "use": "measure",
+      "watch": "500,990 rows carry the standard $100 minimum fine; that is the rulebook."
+     },
+     {
+      "name": "AMOUNT_DUE",
+      "plain": "dollars due on the penalty for this citation",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AMOUNT_PAID",
+      "plain": "dollars actually paid so far on this citation",
+      "use": "measure",
+      "watch": "Zero, not null, when unpaid. Use sums."
+     },
+     {
+      "name": "SIG_SUB",
+      "plain": "Y or N flag on the citation; meaning not given, check before use",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NEGLIGENCE",
+      "plain": "how careless the operator was rated: NoNegligence, LowNegligence, ModNegligence, HighNegligence",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_MSHA_VIOLATIONS",
+    "one_row": "one citation, all 64 source columns",
+    "connects": "used alone for timing; shares VIOLATION_NO, MINE_ID and CONTROLLER_ID with the mart copy",
+    "columns": [
+     {
+      "name": "VIOLATION_NO",
+      "plain": "the number printed on this one safety citation",
+      "use": "join",
+      "watch": "Every value carries literal double quotes. Strip them before comparing."
+     },
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id number for the mine",
+      "use": "join",
+      "watch": "Every value carries literal double quotes."
+     },
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "id number of the company that controlled the mine when cited",
+      "use": "join",
+      "watch": "Not profiled. Values carry literal double quotes."
+     },
+     {
+      "name": "VIOLATION_ISSUE_DT",
+      "plain": "the day the citation was written",
+      "use": "date",
+      "watch": "Not profiled. Strip quotes before casting to a date."
+     },
+     {
+      "name": "FINAL_ORDER_ISSUE_DT",
+      "plain": "the day the penalty became final and legally owed",
+      "use": "date",
+      "watch": "Not the day money arrived. Fill not yet measured. Strip quotes before casting."
+     },
+     {
+      "name": "BILL_PRINT_DT",
+      "plain": "the day the agency printed the bill",
+      "use": "date",
+      "watch": "Not a payment date. Fill not yet measured."
+     },
+     {
+      "name": "LAST_ACTION_CD",
+      "plain": "coded kind of the last action on the penalty; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "No code list landed, so whether any code means paid is unknown."
+     },
+     {
+      "name": "LAST_ACTION_DT",
+      "plain": "the day of the last action on the penalty",
+      "use": "date",
+      "watch": "Do not treat as a payment date."
+     },
+     {
+      "name": "CONTESTED_IND",
+      "plain": "flag for whether the penalty was contested; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CONTESTED_DT",
+      "plain": "the day the penalty was contested",
+      "use": "date",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "DOCKET_NO",
+      "plain": "the docket number tied to the contested penalty",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "DOCKET_STATUS_CD",
+      "plain": "coded status of that docket; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "VACATE_DT",
+      "plain": "by its name, the day the citation was thrown out",
+      "use": "filter",
+      "watch": "Thrown-out citations should leave the unpaid count. Fill not yet measured."
+     },
+     {
+      "name": "PROPOSED_PENALTY",
+      "plain": "dollars the agency proposed as the fine",
+      "use": "measure",
+      "watch": "Values carry literal double quotes; strip before casting to a number."
+     },
+     {
+      "name": "AMOUNT_DUE",
+      "plain": "dollars due on the penalty for this citation",
+      "use": "measure",
+      "watch": "Values carry literal double quotes."
+     },
+     {
+      "name": "AMOUNT_PAID",
+      "plain": "dollars actually paid so far on this citation",
+      "use": "measure",
+      "watch": "Zero, not null, when unpaid. Values carry literal double quotes."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_MINES",
+    "one_row": "one mine",
+    "connects": "MINE_ID matches MINE_ID on MSHA_VIOLATIONS, measured 31,277 shared values",
+    "columns": [
+     {
+      "name": "MINE_ID",
+      "plain": "the mine safety agency's id number for the mine",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CURRENT_OPERATOR_NAME",
+      "plain": "name of the company running the mine today",
+      "use": "label",
+      "watch": "Current operator only, not who ran it when cited."
+     },
+     {
+      "name": "CURRENT_CONTROLLER_ID",
+      "plain": "id number of the company that controls the mine today",
+      "use": "join",
+      "watch": "98.88% filled. Current only; use CONTROLLER_ID on the violation row for who ran it then."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the mine sits",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "FIPS_CNTY_CD",
+      "plain": "the federal county code for where the mine sits",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W80",
+  "section": "Power",
+  "idea": "Employees of the companies paid to run immigration detention give political money to candidates in the states where they hold people.",
+  "why": "It would show contractors buying goodwill exactly where their business depends on local politicians. If giving just follows headquarters or party lines, there is no such pull.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "RECIPIENT_NAME name-matches EMPLOYER on FEC_INDIV_CONTRIBUTIONS by first 8 letters; PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE equals CAND_OFFICE_ST on FEC_CANDIDATES",
+    "columns": [
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of the company that got the contract",
+      "use": "join",
+      "watch": "Name match only. A name-only join inflated counts 9x. Fill not yet measured."
+     },
+     {
+      "name": "RECIPIENT_PARENT_NAME",
+      "plain": "name of the parent company that owns the contractor",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's id number for the contractor",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "AWARDING_SUB_AGENCY_NAME",
+      "plain": "the agency office that awarded the contract, used to keep only immigration enforcement work",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day of the contract transaction",
+      "use": "date",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed on this transaction, a signed number that can be negative",
+      "use": "measure",
+      "watch": "Signed. Filter to positive amounts."
+     },
+     {
+      "name": "PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE",
+      "plain": "two-letter state where the contract work is done",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_FACILITY_CODES",
+    "one_row": "one detention site code",
+    "connects": "STATE lines up with STATE on ICE_DETENTION_STINTS; no key to a contractor",
+    "columns": [
+     {
+      "name": "DETENTION_FACILITY_NAME",
+      "plain": "name of the detention site behind the code",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the detention site sits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY",
+      "plain": "the county where the detention site sits",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TYPE_DETAILED",
+      "plain": "kind of site: IGSA, Hospital, USMS IGA, Hold, Unknown and others",
+      "use": "filter",
+      "watch": "Carries a facility type and no operator. It cannot say which company runs the site."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__FED_ICE_DETENTION_STINTS",
+    "one_row": "one person's stay at one detention site",
+    "connects": "grouped by STATE to count people held per state; no key to a contractor",
+    "columns": [
+     {
+      "name": "STINT_ID",
+      "plain": "the number of this one stay",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DETENTION_FACILITY",
+      "plain": "name of the site where the person was held",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "DETENTION_FACILITY_CODE",
+      "plain": "short code for the site where the person was held",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the person was held",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "COUNTY",
+      "plain": "the county where the person was held",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "BOOK_IN_AT",
+      "plain": "the moment the person was booked in, 2004-12-05 to 2026-03-11",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "DUPLICATE_DROP_ROW",
+      "plain": "True or False flag, by its name marking a repeated row to drop",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "one_row": "one contribution by one person",
+    "connects": "EMPLOYER name-matches RECIPIENT_NAME on the contract tables; CMTE_ID matches CMTE_ID on CAND_CMTE_LINKAGE, measured 9,217 shared values",
+    "columns": [
+     {
+      "name": "EMPLOYER",
+      "plain": "the donor's employer as the donor typed it",
+      "use": "join",
+      "watch": "Typed by the donor. First-8-letters match was 0 of 3 false in a small check; name-only join inflated counts 9x."
+     },
+     {
+      "name": "DONOR_NAME",
+      "plain": "the donor's name as typed on the filing",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CMTE_ID",
+      "plain": "the election commission's id for the committee that got the money",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the gift was made",
+      "use": "date",
+      "watch": "99.98% filled. Range reads 0031-04-10 to 9206-07-02, typo dates. Real window not re-measured."
+     },
+     {
+      "name": "TRANSACTION_AMT",
+      "plain": "dollar amount of this one gift",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "coded kind of transaction: 15E is a pass-through earmark row; check other codes first",
+      "use": "filter",
+      "watch": "Exclude 15E earmark pass-through rows."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CAND_CMTE_LINKAGE",
+    "one_row": "one candidate-committee link",
+    "connects": "CMTE_ID matches CMTE_ID on FEC_INDIV_CONTRIBUTIONS, 9,217 shared; CAND_ID matches CAND_ID on FEC_CANDIDATES, 14,768 shared",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "the election commission's id for a committee",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CAND_ID",
+      "plain": "the election commission's id for the candidate tied to that committee",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CANDIDATES",
+    "one_row": "one candidate in one cycle",
+    "connects": "CAND_ID matches CAND_ID on CAND_CMTE_LINKAGE, 14,768 shared; CAND_OFFICE_ST equals PRIMARY_PLACE_OF_PERFORMANCE_STATE_CODE on the contract tables",
+    "columns": [
+     {
+      "name": "CAND_ID",
+      "plain": "the election commission's id for the candidate",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CAND_OFFICE_ST",
+      "plain": "two-letter state the candidate is running in",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CAND_OFFICE",
+      "plain": "letter code for the office sought, values H, S and P; check meanings before use",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W82",
+  "section": "Power",
+  "idea": "Lobbyists pile onto a bill in the months right before it clears committee, and the filings say who paid them.",
+  "why": "It shows which bills money cares about and when the pressure lands. The clients named are the ones trying to shape the bill before it moves.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_SENATE_LDA_FILINGS",
+    "one_row": "one lobbying filing",
+    "connects": "bill number parsed out of SPECIFIC_ISSUES matches BILL_TYPE + BILL_NUMBER + CONGRESS on POLITICS__BILLS; FILING_YEAR pins the Congress",
+    "columns": [
+     {
+      "name": "FILING_UUID",
+      "plain": "the unique id of this lobbying filing",
+      "use": "label",
+      "watch": "Table not profiled; fill not yet measured."
+     },
+     {
+      "name": "FILING_YEAR",
+      "plain": "the year the filing covers, 1999 to 2026",
+      "use": "date",
+      "watch": "Needed to pin which Congress a bill number like H.R. 1 belongs to."
+     },
+     {
+      "name": "FILING_PERIOD",
+      "plain": "which reporting period of the year the filing covers",
+      "use": "date",
+      "watch": "Filings are quarterly. Nothing finer than a quarter can be shown."
+     },
+     {
+      "name": "CLIENT_NAME",
+      "plain": "the client the lobbying was done for",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "REGISTRANT_NAME",
+      "plain": "the lobbying firm or organization that filed the report",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "SPECIFIC_ISSUES",
+      "plain": "free text describing what was lobbied on, where bill numbers get mentioned",
+      "use": "join",
+      "watch": "Bill number must be parsed from free text. Overlap with the bills table not yet measured."
+     },
+     {
+      "name": "INCOME",
+      "plain": "lobbying income reported on the filing, in dollars, stored as text",
+      "use": "measure",
+      "watch": "Text, and only one of INCOME or EXPENSES is filled per filer type. Cast both and add."
+     },
+     {
+      "name": "EXPENSES",
+      "plain": "lobbying expenses reported on the filing, in dollars, stored as text",
+      "use": "measure",
+      "watch": "Text, and only one of INCOME or EXPENSES is filled per filer type."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__BILLS",
+    "one_row": "one bill",
+    "connects": "CONGRESS + BILL_TYPE + BILL_NUMBER match the bill reference parsed from SPECIFIC_ISSUES; SPONSOR_BIOGUIDE matches BIOGUIDE on MEMBER_SPINE",
+    "columns": [
+     {
+      "name": "CONGRESS",
+      "plain": "the number of the two-year Congress the bill belongs to",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "BILL_TYPE",
+      "plain": "kind of bill: HR, S, HRES, SRES, HJRES and others",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "BILL_NUMBER",
+      "plain": "the bill's number within its type and Congress",
+      "use": "join",
+      "watch": "The same number repeats every Congress, so CONGRESS must be part of the match."
+     },
+     {
+      "name": "TITLE",
+      "plain": "the title of the bill as written",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "INTRODUCED_DATE",
+      "plain": "the day the bill was introduced, 2023-01-03 to 2026-06-26",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "ADVANCED_PAST_COMMITTEE",
+      "plain": "true or false: did the bill make it out of committee",
+      "use": "filter",
+      "watch": "There is no markup date. This flag and LATEST_ACTION_DATE are the only signals."
+     },
+     {
+      "name": "LATEST_ACTION_DATE",
+      "plain": "the day of the most recent action on the bill",
+      "use": "date",
+      "watch": "Stands in for a markup date that does not exist."
+     },
+     {
+      "name": "SPONSOR_BIOGUIDE",
+      "plain": "Congress's id for the member who sponsored the bill, 634 different members",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_SPINE",
+    "one_row": "one member of Congress",
+    "connects": "BIOGUIDE matches SPONSOR_BIOGUIDE on POLITICS__BILLS",
+    "columns": [
+     {
+      "name": "BIOGUIDE",
+      "plain": "Congress's id for one member, 99.9% filled",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the member of Congress represents",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PARTY",
+      "plain": "the member's party, such as Democrat or Republican",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W83",
+  "section": "Power",
+  "idea": "Political groups outside the parties pour far more money per registered voter into a few small states.",
+  "why": "It shows where a voter is worth the most to outside money. It could also just show where the political vendors keep their offices.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES",
+    "one_row": "one itemized expenditure by a 527 group",
+    "connects": "RECIPIENT_STATE equals STATE_ABBR on FED_EAC_EAVS, after summing A1A per state",
+    "columns": [
+     {
+      "name": "ORG_NAME",
+      "plain": "name of the political group that spent the money",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "EIN",
+      "plain": "the tax id number of the political group, 3,247 different groups",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "EXPENDITURE_AMOUNT",
+      "plain": "dollars paid out on this one expenditure",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "EXPENDITURE_DATE",
+      "plain": "the day the money was spent, 2001-01-01 to 2026-08-27",
+      "use": "date",
+      "watch": "99.79% filled."
+     },
+     {
+      "name": "EXPENDITURE_PURPOSE",
+      "plain": "what the group said the money was for",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_STATE",
+      "plain": "the state where the payee is located",
+      "use": "join",
+      "watch": "Where the payee is, not where the ad ran. A media buyer in Virginia counts as Virginia. Fill not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__FED_EAC_EAVS",
+    "one_row": "one election jurisdiction in one survey",
+    "connects": "STATE_ABBR equals RECIPIENT_STATE on IRS527_SCHEDULE_B_EXPENDITURES",
+    "columns": [
+     {
+      "name": "STATE_ABBR",
+      "plain": "two-letter state of the election jurisdiction",
+      "use": "join",
+      "watch": "Wisconsin reports by municipality, 1,851 rows, so state sums must add them all."
+     },
+     {
+      "name": "FIPSCODE",
+      "plain": "the federal place code of the election jurisdiction",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "JURISDICTION_NAME",
+      "plain": "name of the election jurisdiction, a county or a municipality",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "A1A",
+      "plain": "assumed to be total registered voters in the jurisdiction",
+      "use": "measure",
+      "watch": "No codebook landed, meaning is assumed. Values -99 and -88 are placeholders on 231 rows. One survey vintage, no year."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W84",
+  "section": "Power",
+  "idea": "American firms sign up as agents of a foreign government right before Congress votes on something that country cares about.",
+  "why": "It would show foreign governments hiring help on a schedule set by the vote calendar. That is influence timed to the decision.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FOREIGN_INFLUENCE.FOREIGN_INFLUENCE__FED_FARA_BULK",
+    "one_row": "one record from the foreign-agent filings",
+    "connects": "FOREIGN_PRINCIPAL_COUNTRY text-matches the country named in VOTE_DESC on VOTEVIEW_ROLLCALLS; FOREIGN_PRINCIPAL_REGISTRATION_DATE falls within N days before VOTE_DATE",
+    "columns": [
+     {
+      "name": "REGISTRATION_NUMBER",
+      "plain": "the registration number of one registered foreign agent",
+      "use": "label",
+      "watch": "Not one row per agent. One registration number carries 1,281 rows."
+     },
+     {
+      "name": "REGISTRANT_NAME",
+      "plain": "name of the firm registered as the agent",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "FOREIGN_PRINCIPAL_NAME",
+      "plain": "name of the foreign government or body the firm works for",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "FOREIGN_PRINCIPAL_COUNTRY",
+      "plain": "the country of the foreign client",
+      "use": "join",
+      "watch": "Text match against vote descriptions; overlap not yet measured."
+     },
+     {
+      "name": "FOREIGN_PRINCIPAL_REGISTRATION_DATE",
+      "plain": "the day the firm registered for that foreign client, 1942-07-03 to 2026-06-11",
+      "use": "date",
+      "watch": "Only 17.21% filled. Only dates from 2023 on have votes to meet."
+     },
+     {
+      "name": "DATE_STAMPED",
+      "plain": "the date stamped on the filed document",
+      "use": "date",
+      "watch": "Short-form rows keep their date only here."
+     },
+     {
+      "name": "DOCUMENT_TYPE",
+      "plain": "kind of filing: Exhibit AB, Registration Statement, Supplemental Statement, Short-Form",
+      "use": "filter",
+      "watch": "Blank on 20,581 of 48,103 rows."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FARA_BULK",
+    "one_row": "one record from the foreign-agent filings, the fuller copy",
+    "connects": "same match as the mart copy: FOREIGN_PRINCIPAL_COUNTRY to the country in VOTE_DESC, FOREIGN_PRINCIPAL_REGISTRATION_DATE before VOTE_DATE",
+    "columns": [
+     {
+      "name": "REGISTRATION_NUMBER",
+      "plain": "the registration number of one registered foreign agent",
+      "use": "label",
+      "watch": "Not profiled. One registration number can carry many rows."
+     },
+     {
+      "name": "REGISTRATION_DATE",
+      "plain": "by its name, the day the agent itself registered",
+      "use": "date",
+      "watch": "Not profiled; fill not yet measured."
+     },
+     {
+      "name": "REGISTRANT_NAME",
+      "plain": "name of the firm registered as the agent",
+      "use": "label",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "FOREIGN_PRINCIPAL_COUNTRY",
+      "plain": "the country of the foreign client",
+      "use": "join",
+      "watch": "Not profiled; fill not yet measured."
+     },
+     {
+      "name": "FOREIGN_PRINCIPAL_REGISTRATION_DATE",
+      "plain": "the day the firm registered for that foreign client",
+      "use": "date",
+      "watch": "Fill not yet measured here; 17.21% on the mart copy."
+     },
+     {
+      "name": "DATE_STAMPED",
+      "plain": "the date stamped on the filed document",
+      "use": "date",
+      "watch": "Not profiled."
+     },
+     {
+      "name": "DOCUMENT_TYPE",
+      "plain": "kind of filing, such as Registration Statement or Short-Form; look at distinct values first",
+      "use": "filter",
+      "watch": "Not profiled. 221,900 rows against the mart's 48,103; what the mart dropped is unknown."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_ROLLCALLS",
+    "one_row": "one roll-call vote",
+    "connects": "VOTE_DESC keyword filter names the country, matched to FOREIGN_PRINCIPAL_COUNTRY on FARA_BULK; VOTE_DATE compared with FOREIGN_PRINCIPAL_REGISTRATION_DATE",
+    "columns": [
+     {
+      "name": "CONGRESS",
+      "plain": "the number of the two-year Congress the vote was held in",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CHAMBER",
+      "plain": "which chamber voted: House or Senate",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ROLLNUMBER",
+      "plain": "the number of the roll-call vote within its chamber and Congress",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "VOTE_DATE",
+      "plain": "the day the vote was held, 2023-01-03 to 2026-06-25",
+      "use": "date",
+      "watch": "Covers 2023-01-03 to 2026-06-25 only."
+     },
+     {
+      "name": "BILL_NUMBER",
+      "plain": "the bill or measure the vote was about",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "VOTE_DESC",
+      "plain": "free text describing what the vote was on",
+      "use": "join",
+      "watch": "No subject code exists. Trade or arms is a keyword list on this text, and the list decides the answer."
+     },
+     {
+      "name": "VOTE_QUESTION",
+      "plain": "the question put to the chamber on this vote, as text",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ }
+]

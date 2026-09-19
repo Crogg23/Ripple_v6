@@ -1,0 +1,2112 @@
+[
+ {
+  "id": "W61",
+  "section": "Money",
+  "idea": "An auditor warns that a grant recipient may not survive the year, and the government hands it a new grant anyway.",
+  "why": "It would mean agencies are not reading the audits they require. Public money would be flowing to organizations already flagged as likely to fold.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_FAC_SINGLE_AUDIT",
+    "one_row": "one federal single-audit report for one organization and one year",
+    "connects": "AUDITEE_UEI matches RECIPIENT_UEI on the ASSISTANCE_FY tables; keep grants with ACTION_DATE after FAC_ACCEPTED_DATE",
+    "columns": [
+     {
+      "name": "AUDITEE_UEI",
+      "plain": "the federal id number of the organization that was audited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AUDITEE_EIN",
+      "plain": "the tax id number of the organization that was audited",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "AUDIT_YEAR",
+      "plain": "the year the audit report covers",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "IS_GOING_CONCERN_INCLUDED",
+      "plain": "whether the auditor doubted the organization would survive: Yes, No, or GSA_MIGRATION",
+      "use": "filter",
+      "watch": "Handbook says fill not measured and count distinct values first. Profile shows No 407,344, Yes 3,978, GSA_MIGRATION 316."
+     },
+     {
+      "name": "FAC_ACCEPTED_DATE",
+      "plain": "the day the government accepted the audit report as filed",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_EXPENDED",
+      "plain": "total federal dollars the organization spent in the audited year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ENTITY_TYPE",
+      "plain": "what kind of body it is: non-profit, local, higher-ed, state, tribal, unknown",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "AUDITEE_NAME",
+      "plain": "the name of the organization that was audited",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "RECIPIENT_UEI matches AUDITEE_UEI on FAC_SINGLE_AUDIT",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the federal id number of whoever received the money",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "the name of whoever received the money",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this grant transaction was signed or changed",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this one transaction, can be negative",
+      "use": "measure",
+      "watch": "Loans carry no obligation: assistance types 07 and 08 sum to exactly $0.00 on 11,788,945 rows. Use FACE_VALUE_OF_LOAN for those."
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "coded kind of aid; the entry names only 07 and 08 as loans",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ACTION_TYPE_CODE",
+      "plain": "coded value that separates a brand new award from a continuation or change",
+      "use": "filter",
+      "watch": "A new row is not always a new award. Fill not yet measured."
+     },
+     {
+      "name": "AWARDING_AGENCY_NAME",
+      "plain": "the federal agency that gave out the money",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W62",
+  "section": "Money",
+  "idea": "Big investment managers quietly sell a company's stock the quarter before its first large pollution or mine-safety fine lands.",
+  "why": "It would mean the pros see trouble coming before the public does. If holdings stay flat, fines this size are not something managers trade on.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_HOLDINGS",
+    "one_row": "one stock position on one investment manager's quarterly filing",
+    "connects": "NAMEOFISSUER is name-matched to CONTROLLER_NAME on MSHA_VIOLATIONS and to PARENT_LEGAL_NAME on XC_EPA_CORPORATE_CROSSWALK; ACCESSION_NUMBER matches ACCESSION_NUMBER on 13F_SUBMISSIONS",
+    "columns": [
+     {
+      "name": "ACCESSION_NUMBER",
+      "plain": "the filing number that ties every position back to one quarterly report",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "NAMEOFISSUER",
+      "plain": "the name of the company whose stock is held, as typed",
+      "use": "join",
+      "watch": "Name match only, multi-word names only. Overlap not yet measured."
+     },
+     {
+      "name": "CUSIP",
+      "plain": "the standard nine-character code that identifies one stock or bond",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "SSHPRNAMT",
+      "plain": "how many shares, or how much bond face value, the manager holds",
+      "use": "measure",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "VALUE_USD",
+      "plain": "the dollar value of that position on the report date",
+      "use": "measure",
+      "watch": "Fill not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_SUBMISSIONS",
+    "one_row": "one quarterly holdings filing by one manager",
+    "connects": "ACCESSION_NUMBER matches ACCESSION_NUMBER on 13F_HOLDINGS and gives the quarter through PERIODOFREPORT",
+    "columns": [
+     {
+      "name": "ACCESSION_NUMBER",
+      "plain": "the filing number for this one quarterly report",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CIK",
+      "plain": "the securities regulator's id number for the manager who filed",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PERIODOFREPORT",
+      "plain": "the quarter-end date the holdings are reported as of",
+      "use": "date",
+      "watch": "The 13F load missed 7 of 53 source zips. A missing quarter looks exactly like a sell-off."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_MSHA_VIOLATIONS",
+    "one_row": "one mine-safety violation with its penalty",
+    "connects": "CONTROLLER_NAME is name-matched to NAMEOFISSUER on 13F_HOLDINGS",
+    "columns": [
+     {
+      "name": "CONTROLLER_ID",
+      "plain": "the mine-safety agency's id for the company that controls the mine",
+      "use": "label",
+      "watch": "93.24% filled."
+     },
+     {
+      "name": "CONTROLLER_NAME",
+      "plain": "the name of the company that controls the mine",
+      "use": "join",
+      "watch": "Name match, multi-word only. Most mine controllers are private and will match no 13F issuer."
+     },
+     {
+      "name": "VIOLATION_ISSUE_DATE",
+      "plain": "the day the inspector wrote up the violation",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "PROPOSED_PENALTY",
+      "plain": "the dollar fine the agency proposed for this violation",
+      "use": "measure",
+      "watch": "500,990 of 3,087,265 violations carry the standard $100 minimum. Set a dollar floor."
+     },
+     {
+      "name": "AMOUNT_DUE",
+      "plain": "dollars still owed on this fine",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AMOUNT_PAID",
+      "plain": "dollars actually paid on this fine",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FORMAL_ACTIONS",
+    "one_row": "one formal Clean Air Act enforcement action with its penalty",
+    "connects": "PGM_SYS_ID matches PGM_SYS_ID on FRS_PROGRAM_LINKS",
+    "columns": [
+     {
+      "name": "PGM_SYS_ID",
+      "plain": "the air program's own id number for the plant",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ACTIVITY_ID",
+      "plain": "the id number of this one enforcement action",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SETTLEMENT_ENTERED_DATE",
+      "plain": "the day the settlement or order was entered",
+      "use": "date",
+      "watch": "99.96% filled."
+     },
+     {
+      "name": "PENALTY_AMOUNT",
+      "plain": "the dollar penalty attached to this action",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ENF_TYPE_DESC",
+      "plain": "the kind of action in words, such as Administrative Order or Civil Judicial Action",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE_EPA_FLAG",
+      "plain": "who brought the action; entry says it splits state from federal; values are S, L, E",
+      "use": "filter",
+      "watch": "Decide once whether a state fine counts."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FRS_PROGRAM_LINKS",
+    "one_row": "one EPA program id tied to one facility registry id",
+    "connects": "PGM_SYS_ID matches PGM_SYS_ID on ICIS_AIR_FORMAL_ACTIONS; REGISTRY_ID matches EPA_REGISTRY_ID on XC_EPA_CORPORATE_CROSSWALK",
+    "columns": [
+     {
+      "name": "PGM_SYS_ACRNM",
+      "plain": "short name of the EPA program the id belongs to, such as AIR, NPDES, RCRAINFO",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PGM_SYS_ID",
+      "plain": "the program's own id number for the plant",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "REGISTRY_ID",
+      "plain": "the single EPA master id for the physical facility",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK",
+    "one_row": "one EPA facility matched to a corporate parent",
+    "connects": "EPA_REGISTRY_ID matches REGISTRY_ID on FRS_PROGRAM_LINKS; PARENT_LEGAL_NAME is name-matched to NAMEOFISSUER on 13F_HOLDINGS",
+    "columns": [
+     {
+      "name": "EPA_REGISTRY_ID",
+      "plain": "the single EPA master id for the physical facility",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PARENT_LEGAL_NAME",
+      "plain": "the legal name of the company that ultimately owns the facility",
+      "use": "join",
+      "watch": "Last hop is a name match. Many plant parents are private and match no 13F issuer."
+     },
+     {
+      "name": "PARENT_CIK",
+      "plain": "the securities regulator's id for the parent, present only for listed companies",
+      "use": "filter",
+      "watch": "2.25% filled, 705 distinct parents."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__EPA_PENALTY_GAP",
+    "one_row": "one EPA-regulated facility with its penalty totals",
+    "connects": "FRS_ID is the facility registry id; used only as a cross-check on totals, not joined in the chain",
+    "columns": [
+     {
+      "name": "FRS_ID",
+      "plain": "the single EPA master id for the physical facility",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_PENALTIES",
+      "plain": "all penalty dollars ever recorded against this facility, every program",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "LAST_PENALTY_AMT",
+      "plain": "the dollar amount of the most recent penalty only",
+      "use": "measure",
+      "watch": "One row per site with the last penalty only, so it cannot date a first fine."
+     },
+     {
+      "name": "DATE_LAST_FORMAL_ACTION",
+      "plain": "the day of the most recent formal enforcement action at the facility",
+      "use": "date",
+      "watch": "39.47% filled."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W63",
+  "section": "Money",
+  "idea": "List every company whose pension plan went broke and got taken over by the federal insurer, and count the workers left in it.",
+  "why": "It shows which employers walked away from the most retirees. Repeat sponsors and a change of owner just before the collapse are the tells.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.LABOR.LABOR__FED_PBGC_TRUSTEED_PLANS",
+    "one_row": "one pension plan taken over by the federal pension insurer",
+    "connects": "EIN matches SPONS_DFE_EIN on FED_DOL_FORM5500_FULL",
+    "columns": [
+     {
+      "name": "SPONSOR_NAME",
+      "plain": "the name of the company that ran the pension plan",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PLAN_NAME",
+      "plain": "the name of the pension plan itself",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "EIN",
+      "plain": "the tax id number of the company that sponsored the plan",
+      "use": "join",
+      "watch": "4,447 distinct values in 5,176 rows, so one sponsor can repeat."
+     },
+     {
+      "name": "DATE_OF_PLAN_TERMINATION",
+      "plain": "the day the pension plan was officially ended",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "DATE_OF_PBGC_TRUSTEESHIP",
+      "plain": "the day the federal insurer took the plan over",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION",
+      "plain": "how many workers and retirees were in the plan when it ended",
+      "use": "measure",
+      "watch": "The column name is misspelled in the table, PARICIPANTS without the T."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state listed for the plan sponsor",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_DOL_FORM5500_FULL",
+    "one_row": "one annual pension or benefit plan filing",
+    "connects": "SPONS_DFE_EIN matches EIN on PBGC_TRUSTEED_PLANS; a LAST_RPT_SPONS_EIN that differs from SPONS_DFE_EIN hints at a new owner",
+    "columns": [
+     {
+      "name": "SPONS_DFE_EIN",
+      "plain": "the tax id number of the plan sponsor on this year's filing",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "SPONSOR_DFE_NAME",
+      "plain": "the name of the plan sponsor on this year's filing",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "LAST_RPT_SPONS_EIN",
+      "plain": "the sponsor tax id used on the previous filing, if it changed",
+      "use": "filter",
+      "watch": "In the mart it is a blank string on 32,680 of 33,484 rows. Expect the same sparseness here."
+     },
+     {
+      "name": "LAST_RPT_SPONS_NAME",
+      "plain": "the sponsor name used on the previous filing, if it changed",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "TOT_PARTCP_BOY_CNT",
+      "plain": "how many people were in the plan at the start of the year",
+      "use": "measure",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FORM_PLAN_YEAR_BEGIN_DATE",
+      "plain": "the first day of the plan year the filing covers",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "BUSINESS_CODE",
+      "plain": "coded value for the sponsor's line of business, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_DOL_FORM5500",
+    "one_row": "one annual plan filing, a small slice received in the first half of 2026",
+    "connects": "SPONS_DFE_EIN matches EIN on PBGC_TRUSTEED_PLANS, but use the landing table for history",
+    "columns": [
+     {
+      "name": "SPONS_DFE_EIN",
+      "plain": "the tax id number of the plan sponsor on the filing",
+      "use": "join",
+      "watch": "Slice of 33,484 rows only. Its EIN and SPONSOR_DFE_EIN columns are blank strings on all rows."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W65",
+  "section": "Money",
+  "idea": "Some parent companies collect federal contracts through dozens of subsidiaries whose names give no hint of who owns them.",
+  "why": "It would show which corporate families are much bigger government vendors than any one name suggests. The count of names is measured, the intent is not.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "",
+    "columns": [
+     {
+      "name": "RECIPIENT_PARENT_UEI",
+      "plain": "the federal id number of the ultimate parent company, as the vendor declared it",
+      "use": "join",
+      "watch": "Fill not yet measured. Self-reported, so a parent that does not declare itself is invisible."
+     },
+     {
+      "name": "RECIPIENT_PARENT_NAME",
+      "plain": "the name of the ultimate parent company, as the vendor declared it",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the federal id number of the company that actually signed the contract",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "the name of the company that actually signed the contract",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "AWARD_ID_PIID",
+      "plain": "the government's id number for the contract itself",
+      "use": "measure",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed on this one transaction, can be negative",
+      "use": "measure",
+      "watch": "Sum only where above zero. Fill rate not yet measured."
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the government budget year the transaction falls in",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__INTL_GLEIF_RELATIONSHIPS",
+    "one_row": "one parent-child link between two global legal-entity ids",
+    "connects": "Not joined. No table links the federal vendor id to the legal-entity id used here",
+    "columns": [
+     {
+      "name": "RELATIONSHIP_STARTNODE_NODEID",
+      "plain": "the global legal-entity id of the child company in the link",
+      "use": "join",
+      "watch": "Uses a different id than the contracts. No bridge table exists, so it cannot be attached."
+     },
+     {
+      "name": "RELATIONSHIP_ENDNODE_NODEID",
+      "plain": "the global legal-entity id of the parent or manager in the link",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "RELATIONSHIP_RELATIONSHIPTYPE",
+      "plain": "kind of link, such as IS_DIRECTLY_CONSOLIDATED_BY, IS_ULTIMATELY_CONSOLIDATED_BY, IS_FUND-MANAGED_BY",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RELATIONSHIP_PERIOD_1_STARTDATE",
+      "plain": "the day the ownership link began",
+      "use": "date",
+      "watch": "99.94% filled. Ended relationships are dropped each release, so current links only."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W66",
+  "section": "Money",
+  "idea": "Some nonprofit hospitals pay their top boss a far bigger slice of every dollar coming in than others do.",
+  "why": "It would point at tax-exempt hospitals where executive pay is out of line with the size of the place. Only hospitals can be ranked, not charities at large.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__HOSPITAL_OFFICER_PAY",
+    "one_row": "one person listed on one nonprofit hospital's tax return",
+    "connects": "EIN matches EIN on FED_IRS_BMF",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the tax id number of the nonprofit hospital that filed the return",
+      "use": "join",
+      "watch": "3,962 distinct hospitals only."
+     },
+     {
+      "name": "TAX_YEAR",
+      "plain": "the tax year the return covers",
+      "use": "date",
+      "watch": "Tax years before 2017 are absent from the source."
+     },
+     {
+      "name": "PERSON_NAME",
+      "plain": "the name of the officer, director or key employee listed",
+      "use": "label",
+      "watch": "The same executive repeats on every affiliate's return with the same dollars, up to five times."
+     },
+     {
+      "name": "TITLE",
+      "plain": "the person's job title as written on the return",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_COMPENSATION",
+      "plain": "all pay reported for that person on that return, in dollars",
+      "use": "measure",
+      "watch": "Group by person and tax year and take the max, or one person counts up to five times."
+     },
+     {
+      "name": "REPORTABLE_COMP_FROM_RELATED_ORGS",
+      "plain": "pay the person got from sister organizations of the filer",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "IS_SCHEDULE_J_POINTER",
+      "plain": "true when the line only restates a payout already listed elsewhere",
+      "use": "filter",
+      "watch": "239 person-returns carry a pointer line. Rank with this false."
+     },
+     {
+      "name": "IS_GROUP_RETURN",
+      "plain": "true when one return lumps a whole hospital system's pay together",
+      "use": "filter",
+      "watch": "61 rows are group returns."
+     },
+     {
+      "name": "BMF_REVENUE_AMT",
+      "plain": "the hospital's revenue from the IRS master file, one snapshot only",
+      "use": "measure",
+      "watch": "One snapshot, not each tax year's revenue. Ratios for older years use the wrong year's revenue."
+     },
+     {
+      "name": "HOSPITAL_NAME",
+      "plain": "the name of the hospital that filed",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_BMF",
+    "one_row": "one tax-exempt organization on the IRS master file",
+    "connects": "EIN matches EIN on HOSPITAL_OFFICER_PAY",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the tax id number of the tax-exempt organization",
+      "use": "join",
+      "watch": "3,914 shared values were measured against a sister table, not this one."
+     },
+     {
+      "name": "NTEE_CODE",
+      "plain": "the IRS category code for what the charity does; E2 codes are hospitals",
+      "use": "filter",
+      "watch": "Profile shows 581,028 blank strings of 1,974,830 rows."
+     },
+     {
+      "name": "REVENUE_AMT",
+      "plain": "the organization's most recent reported revenue, one snapshot",
+      "use": "measure",
+      "watch": "One snapshot, no history."
+     },
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "the organization's name on the IRS master file",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_990",
+    "one_row": "one nonprofit tax return",
+    "connects": "EIN matches EIN on the other two tables, but the table is too small to use",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the tax id number of the nonprofit that filed",
+      "use": "join",
+      "watch": "200 rows only. It cannot rank charities."
+     },
+     {
+      "name": "OFFICER_COMPENSATION_AMT",
+      "plain": "total dollars paid to officers as one lump figure on the return",
+      "use": "measure",
+      "watch": "200 rows only."
+     },
+     {
+      "name": "TOTAL_REVENUE_AMT",
+      "plain": "total revenue the nonprofit reported on the return",
+      "use": "measure",
+      "watch": "200 rows only."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W67",
+  "section": "Money",
+  "idea": "When a county gets a federal disaster declaration, the charities based there see their revenue jump the next year.",
+  "why": "It would show how much donation and relief money floods into local nonprofits after a disaster. It cannot be tested today because the nonprofit return table is too thin.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_990",
+    "one_row": "one nonprofit tax return",
+    "connects": "STATE matches STATE on FED_FEMA_DISASTER_DECLARATIONS, the only shared place field; no ZIP or county join is possible",
+    "columns": [
+     {
+      "name": "EIN",
+      "plain": "the tax id number of the nonprofit that filed",
+      "use": "label",
+      "watch": "200 distinct in 200 rows. Each organization appears once, so no before and after."
+     },
+     {
+      "name": "TAX_YEAR",
+      "plain": "the tax year the return covers",
+      "use": "date",
+      "watch": "Tax periods 202312 to 202512 only."
+     },
+     {
+      "name": "TOTAL_REVENUE_AMT",
+      "plain": "total revenue the nonprofit reported on the return",
+      "use": "measure",
+      "watch": "200 rows only, no history."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the nonprofit is based",
+      "use": "join",
+      "watch": "State grain only."
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "meant to be the nonprofit's postal code, but nothing is in it",
+      "use": "join",
+      "watch": "Blank string on all 200 rows."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FEMA_DISASTER_DECLARATIONS",
+    "one_row": "one disaster for one designated area, usually a county",
+    "connects": "STATE matches STATE on FED_IRS_990; FIPSSTATECODE plus FIPSCOUNTYCODE would make a county code if the returns had a place",
+    "columns": [
+     {
+      "name": "DISASTERNUMBER",
+      "plain": "the federal number given to the disaster",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "DECLARATIONDATE",
+      "plain": "the day the disaster was officially declared",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "STATE",
+      "plain": "the two-letter state the declaration covers",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FIPSSTATECODE",
+      "plain": "the two-digit census code for the state, padded",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FIPSCOUNTYCODE",
+      "plain": "the three-digit census code for the county, padded",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "INCIDENTTYPE",
+      "plain": "the kind of disaster in words, such as flood or fire",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS",
+    "one_row": "one household's registration for disaster aid",
+    "connects": "DISASTER_NUMBER is the same disaster number as DISASTERNUMBER on FED_FEMA_DISASTER_DECLARATIONS; not used in the join as written",
+    "columns": [
+     {
+      "name": "DISASTER_NUMBER",
+      "plain": "the federal number given to the disaster",
+      "use": "label",
+      "watch": "620 distinct disasters."
+     },
+     {
+      "name": "DECLARATION_DATE",
+      "plain": "the day the disaster was officially declared",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "DAMAGED_ZIP_CODE",
+      "plain": "the postal code of the damaged home",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FIPS",
+      "plain": "the census county code of the damaged home",
+      "use": "join",
+      "watch": "74.21% filled."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W68",
+  "section": "Money",
+  "idea": "Some nonprofits take federal grant money and also pay lobbyists, and the grants grow after the lobbying starts.",
+  "why": "It would mean public money is helping fund the push for more public money. If few match, nonprofit lobbying is mostly big institutions that were already funded.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "RECIPIENT_NAME plus RECIPIENT_STATE_CODE is name-matched to CLIENT_NAME plus CLIENT_STATE on FED_SENATE_LDA_FILINGS",
+    "columns": [
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "the name of whoever received the money",
+      "use": "join",
+      "watch": "Name match, multi-word names only. Campus names will miss system names."
+     },
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the federal id number of whoever received the money",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "RECIPIENT_STATE_CODE",
+      "plain": "the two-letter state of whoever received the money",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "BUSINESS_TYPES_DESCRIPTION",
+      "plain": "words describing what kind of body the recipient is, used to pick nonprofits",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this grant transaction was signed or changed",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this one transaction, can be negative",
+      "use": "measure",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "coded kind of aid, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "AWARDING_AGENCY_NAME",
+      "plain": "the federal agency that gave out the money",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_SENATE_LDA_FILINGS",
+    "one_row": "one lobbying registration or quarterly report filed with the Senate",
+    "connects": "CLIENT_NAME plus CLIENT_STATE is name-matched to RECIPIENT_NAME plus RECIPIENT_STATE_CODE on the ASSISTANCE_FY tables",
+    "columns": [
+     {
+      "name": "CLIENT_ID",
+      "plain": "the Senate's id number for the organization paying for the lobbying",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "CLIENT_NAME",
+      "plain": "the name of the organization paying for the lobbying",
+      "use": "join",
+      "watch": "No tax id on either side. Name plus state is the only link."
+     },
+     {
+      "name": "CLIENT_STATE",
+      "plain": "the state of the organization paying for the lobbying",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FILING_YEAR",
+      "plain": "the year the lobbying report covers",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FILING_PERIOD",
+      "plain": "which part of the year the report covers, such as first_quarter or mid_year",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "REGISTRANT_NAME",
+      "plain": "the name of the lobbying firm or in-house team that filed",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "INCOME",
+      "plain": "dollars a lobbying firm was paid by the client for the period",
+      "use": "measure",
+      "watch": "Stored as text. A filing fills INCOME or EXPENSES, not both. Cast and combine before summing."
+     },
+     {
+      "name": "EXPENSES",
+      "plain": "dollars an organization spent lobbying with its own staff for the period",
+      "use": "measure",
+      "watch": "Stored as text. A filing fills INCOME or EXPENSES, not both. Cast and combine before summing."
+     },
+     {
+      "name": "GOVERNMENT_ENTITIES",
+      "plain": "the agencies and chambers the lobbyists say they contacted",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "LOBBYING_ISSUES",
+      "plain": "the topics the lobbyists say they worked on",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.EDUCATION.EDUCATION__FED_SENATE_LDA_FILINGS",
+    "one_row": "one lobbying filing, from an older partial build",
+    "connects": "CLIENT_NAME would match the same way, but use the landing table instead",
+    "columns": [
+     {
+      "name": "CLIENT_NAME",
+      "plain": "the name of the organization paying for the lobbying",
+      "use": "join",
+      "watch": "Stops at 2021. An earlier note measured only 1999 to 2010 and 2020 to 2021. Use the landing table."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W69",
+  "section": "Money",
+  "idea": "Hospital political committees and hospital staff send their campaign money to the members of Congress who sit on the health and tax committees.",
+  "why": "It would mean hospital money chases the people who write hospital rules. If it spreads like all other money, it follows geography or party instead.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "one_row": "one itemized contribution from one person to one political committee",
+    "connects": "CMTE_ID matches CMTE_ID on FEC_COMMITTEES_DIM; EMPLOYER is text-matched to a hospital name list built from XWALK_HOSPITAL_CCN_EIN and FED_IRS_BMF",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "the election regulator's id for the committee that got the money",
+      "use": "join",
+      "watch": "25,960 values shared with the committee table."
+     },
+     {
+      "name": "EMPLOYER",
+      "plain": "who the donor says they work for, typed free-hand",
+      "use": "join",
+      "watch": "Free text. Text match only, overlap not yet measured."
+     },
+     {
+      "name": "OCCUPATION",
+      "plain": "what the donor says their job is, typed free-hand",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "DONOR_NAME",
+      "plain": "the name of the person who gave the money",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_AMT",
+      "plain": "the dollar amount of this one contribution",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the contribution was made",
+      "use": "date",
+      "watch": "99.98% filled. The date range ends in junk values; window not re-measured."
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "coded kind of transaction such as 15, 15E, 24T; look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEES_DIM",
+    "one_row": "one political committee, de-duplicated across election cycles",
+    "connects": "CMTE_ID matches CMTE_ID on FEC_INDIV_CONTRIBUTIONS; CAND_ID matches FEC_ID on MEMBER_FEC_ID; CONNECTED_ORG_NM is text-matched to the hospital name list",
+    "columns": [
+     {
+      "name": "CMTE_ID",
+      "plain": "the election regulator's id for the committee",
+      "use": "join",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CMTE_NM",
+      "plain": "the name the political committee registered under",
+      "use": "label",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CONNECTED_ORG_NM",
+      "plain": "the company or group that sponsors the committee, such as a hospital system",
+      "use": "join",
+      "watch": "Text match only."
+     },
+     {
+      "name": "ORG_TP",
+      "plain": "one-letter code for the kind of sponsor; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill not yet measured."
+     },
+     {
+      "name": "CAND_ID",
+      "plain": "the candidate id, filled when the committee belongs to one candidate",
+      "use": "join",
+      "watch": "Overlap with member ids not yet measured."
+     },
+     {
+      "name": "CYCLE",
+      "plain": "the two-year election cycle the committee row belongs to",
+      "use": "date",
+      "watch": "Null on 55% of rows. Never filter on it."
+     },
+     {
+      "name": "IS_AMBIGUOUS",
+      "plain": "true when the committee could not be pinned to one clean record",
+      "use": "filter",
+      "watch": "True on 14.1% of real money rows, 270,519, measured on the older copy."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_FEC_ID",
+    "one_row": "one pairing of a member of Congress with a campaign candidate id",
+    "connects": "FEC_ID matches CAND_ID on FEC_COMMITTEES_DIM; BIOGUIDE matches BIOGUIDE on CONGRESS_COMMITTEE_MEMBERSHIP",
+    "columns": [
+     {
+      "name": "FEC_ID",
+      "plain": "the election regulator's candidate id for the member",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "BIOGUIDE",
+      "plain": "the official Congress id for the member",
+      "use": "join",
+      "watch": "99.94% filled."
+     },
+     {
+      "name": "FULL_NAME",
+      "plain": "the full name of the member of Congress",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__FED_CONGRESS_COMMITTEE_MEMBERSHIP",
+    "one_row": "one member's seat on one committee in one congress",
+    "connects": "BIOGUIDE matches BIOGUIDE on MEMBER_FEC_ID",
+    "columns": [
+     {
+      "name": "BIOGUIDE",
+      "plain": "the official Congress id for the member",
+      "use": "join",
+      "watch": "Roster misses about 4% of members per congress. Dedupe before joining money or dollars multiply by seat count."
+     },
+     {
+      "name": "CONGRESS",
+      "plain": "the number of the two-year congress, not a calendar year",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "COMMITTEE_CODE",
+      "plain": "the short code for the committee or subcommittee",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "COMMITTEE_NAME",
+      "plain": "the name of the congressional committee in words",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "IS_SUBCOMMITTEE",
+      "plain": "True when the seat is on a subcommittee, False for a full committee",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_HOSPITAL_CCN_EIN",
+    "one_row": "one hospital matched to a tax-exempt filer",
+    "connects": "CCN_NAME and EIN_NAME feed the hospital name list that EMPLOYER and CONNECTED_ORG_NM are text-matched against",
+    "columns": [
+     {
+      "name": "CCN_NAME",
+      "plain": "the hospital's name as the federal health insurer lists it",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "EIN_NAME",
+      "plain": "the hospital's name as the tax agency lists it",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "MATCH_TIER",
+      "plain": "coded value for how the two names were matched, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_IRS_BMF",
+    "one_row": "one tax-exempt organization on the IRS master file",
+    "connects": "ORGANIZATION_NAME where NTEE_CODE starts with E2 feeds the same hospital name list",
+    "columns": [
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "the organization's name on the IRS master file",
+      "use": "join",
+      "watch": "Text match only."
+     },
+     {
+      "name": "NTEE_CODE",
+      "plain": "the IRS category code for what the charity does; codes starting E2 are hospitals",
+      "use": "filter",
+      "watch": "Profile shows 581,028 blank strings of 1,974,830 rows."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state where the organization is based",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W70",
+  "section": "Money",
+  "idea": "Bigger counties get more federal contract money, so find the counties that get far more or far less than their head count predicts.",
+  "why": "The leftovers point at places with an outsized pipeline to federal dollars, or places being passed over. Military bases and national labs explain some and need ruling out.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE matches FIPS on CDC_DRUG_POISONING_COUNTY, with fiscal year matched to YEAR",
+    "columns": [
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "the five-digit census code of the county where the work is done",
+      "use": "join",
+      "watch": "Measured on FY2024 only: 93% filled, 2,894 counties. Self-reported by the contracting office."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed on this one transaction, can be negative",
+      "use": "measure",
+      "watch": "Signed value. Filter above zero or net it on purpose."
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the government budget year, which runs October to September",
+      "use": "date",
+      "watch": "Fiscal year against calendar-year population is a small mismatch."
+     },
+     {
+      "name": "AWARDING_AGENCY_NAME",
+      "plain": "the federal agency that signed the contract",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY",
+    "one_row": "one county in one year, with its population",
+    "connects": "FIPS matches PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on the CONTRACTS_FY tables, YEAR matched to fiscal year",
+    "columns": [
+     {
+      "name": "FIPS",
+      "plain": "the five-digit census code for the county",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR",
+      "plain": "the calendar year of the population figure",
+      "use": "date",
+      "watch": "Ends in 2015. No county population after that."
+     },
+     {
+      "name": "POPULATION",
+      "plain": "how many people lived in the county that year",
+      "use": "measure",
+      "watch": "1999 to 2015 only. Using 2015 population for later years is a stated approximation."
+     },
+     {
+      "name": "STATE",
+      "plain": "the state the county sits in",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY",
+      "plain": "the name of the county in words",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W71",
+  "section": "Money",
+  "idea": "Poorer applicants get turned down for mortgages more everywhere, so find the lenders who say no more than their applicants' incomes explain.",
+  "why": "It would flag lenders that are harsher than their peers on the same kind of borrower. With no credit score in the file, it is a lead and not proof.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CFPB_HMDA_LAR_2018 to 2024 (7 tables, same columns)",
+    "one_row": "one mortgage application",
+    "connects": "LEI matches LEI_2018 on HMDA_ARID2017_LEI_XREF to get the lender's name",
+    "columns": [
+     {
+      "name": "LEI",
+      "plain": "the global legal-entity id of the lender that took the application",
+      "use": "join",
+      "watch": "Null on the placeholder rows. Name match rate of 84% was measured on a small sample table only."
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "coded outcome of the application, codes 1 to 8; look up meanings before grouping",
+      "use": "filter",
+      "watch": "1,961 placeholder rows in 2018 and 21 in 2019 carry '-1'. Count people-facing actions only, not purchased or withdrawn."
+     },
+     {
+      "name": "INCOME",
+      "plain": "the applicant's yearly income as written on the application",
+      "use": "measure",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "DEBT_TO_INCOME_RATIO",
+      "plain": "monthly debt as a share of income, stored as text bands like 20%-<30%",
+      "use": "filter",
+      "watch": "Banded text value. Fill not measured; a sample table shows about 63% filled."
+     },
+     {
+      "name": "LOAN_AMOUNT",
+      "plain": "the dollar size of the loan asked for",
+      "use": "measure",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "LOAN_PURPOSE",
+      "plain": "coded reason for the loan such as 1, 2, 31, 32; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "LOAN_TYPE",
+      "plain": "coded kind of loan, values 1 to 4; look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "the state where the property is",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "the census county code where the property is",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "DENIAL_REASON_1",
+      "plain": "coded main reason for a denial, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_ARID2017_LEI_XREF",
+    "one_row": "one lender with its 2017 id, its name and its newer global id",
+    "connects": "LEI_2018 matches LEI on the HMDA_LAR tables; ARID_2017 matches RESPONDENT_ID on HMDA_HISTORIC",
+    "columns": [
+     {
+      "name": "ARID_2017",
+      "plain": "the lender's old-style id from the 2017 filing year",
+      "use": "join",
+      "watch": "Format match to the old table is unverified."
+     },
+     {
+      "name": "RESPONDENT_NAME",
+      "plain": "the lender's name, from a 2017 list",
+      "use": "label",
+      "watch": "Lenders that started after 2017 have no name here."
+     },
+     {
+      "name": "LEI_2018",
+      "plain": "the lender's global legal-entity id as of 2018",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "LEI_2019",
+      "plain": "the lender's global legal-entity id as of 2019",
+      "use": "join",
+      "watch": "93.91% filled."
+     },
+     {
+      "name": "LEI_2020",
+      "plain": "the lender's global legal-entity id as of 2020",
+      "use": "join",
+      "watch": "76.5% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+    "one_row": "one mortgage application in the old file layout, 2015 to 2017",
+    "connects": "RESPONDENT_ID matches ARID_2017 on HMDA_ARID2017_LEI_XREF, format match unverified",
+    "columns": [
+     {
+      "name": "RESPONDENT_ID",
+      "plain": "the lender's old-style id, only unique together with AGENCY_CODE",
+      "use": "join",
+      "watch": "Not a lender id by itself; pair it with AGENCY_CODE. Format match to ARID_2017 unverified."
+     },
+     {
+      "name": "AGENCY_CODE",
+      "plain": "coded value for which regulator the lender reports to, look at distinct values first",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "coded outcome of the application, codes 1 to 8; look up meanings before grouping",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "APPLICANT_INCOME_000S",
+      "plain": "the applicant's yearly income in thousands of dollars",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "LOAN_AMOUNT_000S",
+      "plain": "the loan size in thousands of dollars",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W72",
+  "section": "Money",
+  "idea": "A company gets barred from federal contracts, then a new company with a different name pops up at the same street address and wins work.",
+  "why": "It would mean the ban is easy to dodge with fresh paperwork. A shared office building is not shared ownership, so every hit needs a second tell.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_SAM_EXCLUSIONS_FULL_R2",
+    "one_row": "one exclusion of one person or firm, full source layout with street address",
+    "connects": "ADDRESS_1 plus left 5 of ZIP_CODE matches PHYSICAL_ADDRESS_LINE_1 plus PHYSICAL_ADDRESS_ZIP on FED_SAM_ENTITY_PUBLIC; SAM_NUMBER matches SAM_NUMBER on FED_SAM_EXCLUSIONS",
+    "columns": [
+     {
+      "name": "NAME",
+      "plain": "the name of the barred person or firm",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ADDRESS_1",
+      "plain": "the street address of the barred person or firm, typed free-hand",
+      "use": "join",
+      "watch": "Free text. Unit numbers and spelling will break exact matches."
+     },
+     {
+      "name": "CITY",
+      "plain": "the city of the barred person or firm",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "STATE_PROVINCE",
+      "plain": "the state or province of the barred person or firm",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ZIP_CODE",
+      "plain": "the postal code of the barred party; use the first five digits",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "UNIQUE_ENTITY_ID",
+      "plain": "the federal vendor id of the barred firm, when it has one",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "CAGE",
+      "plain": "the defense supplier code of the barred firm, when it has one",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "SAM_NUMBER",
+      "plain": "the registry's own number for this one exclusion record",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ACTIVE_DATE",
+      "plain": "the day the ban on federal business started",
+      "use": "date",
+      "watch": "Not profiled. The cleaned copy carries sentinel years 1908, 2084, 2099 and 11,016 nulls; expect the same junk."
+     },
+     {
+      "name": "TERMINATION_DATE",
+      "plain": "the day the ban ends or ended",
+      "use": "date",
+      "watch": "Whether ended exclusions are kept is not yet measured."
+     },
+     {
+      "name": "EXCLUSION_TYPE",
+      "plain": "kind of ban in words, such as Prohibition/Restriction or Ineligible",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "CLASSIFICATION",
+      "plain": "what was barred: Individual, Firm, Special Entity Designation or Vessel",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "CROSS_REFERENCE",
+      "plain": "other names or parties the registry ties to this exclusion",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS",
+    "one_row": "the same exclusions, cleaned, without the street address",
+    "connects": "SAM_NUMBER matches SAM_NUMBER on FED_SAM_EXCLUSIONS_FULL_R2, to borrow clean dates and the firm-or-person flag",
+    "columns": [
+     {
+      "name": "SAM_NUMBER",
+      "plain": "the registry's own number for this one exclusion record",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "UEI",
+      "plain": "the federal vendor id of the barred firm, when it has one",
+      "use": "join",
+      "watch": "28.33% filled. 1,798 ids have three or more overlapping windows; use an exists test, not a join."
+     },
+     {
+      "name": "ACTIVATION_DATE",
+      "plain": "the day the ban started, cleaned",
+      "use": "date",
+      "watch": "93.46% filled. Sentinel years 1908, 2084, 2099 and 11,016 nulls."
+     },
+     {
+      "name": "IS_ENTITY_NOT_INDIVIDUAL",
+      "plain": "true when the barred party is a business and not a person",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ENTITY_NAME",
+      "plain": "the name of the barred person or firm, cleaned",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_SAM_ENTITY_PUBLIC",
+    "one_row": "one entity registered to do business with the government",
+    "connects": "PHYSICAL_ADDRESS_LINE_1 plus PHYSICAL_ADDRESS_ZIP matches ADDRESS_1 plus left 5 of ZIP_CODE on FED_SAM_EXCLUSIONS_FULL_R2; UEI_SAM matches RECIPIENT_UEI on the CONTRACTS_FY tables",
+    "columns": [
+     {
+      "name": "UEI_SAM",
+      "plain": "the federal vendor id of the registered business",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "CAGE_CODE",
+      "plain": "the defense supplier code of the registered business",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "LEGAL_BUSINESS_NAME",
+      "plain": "the registered legal name of the business",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "DBA_NAME",
+      "plain": "the trading name the business goes by, if different",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "PHYSICAL_ADDRESS_LINE_1",
+      "plain": "the street address where the business physically sits",
+      "use": "join",
+      "watch": "Free text. Unit numbers and spelling will break exact matches."
+     },
+     {
+      "name": "PHYSICAL_ADDRESS_CITY",
+      "plain": "the city where the business physically sits",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "PHYSICAL_ADDRESS_ZIP",
+      "plain": "the postal code where the business physically sits",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "INITIAL_REGISTRATION_DATE",
+      "plain": "the day the business first signed up to sell to the government",
+      "use": "date",
+      "watch": "Current extract only. Lapsed registrations may be missing."
+     },
+     {
+      "name": "ENTITY_START_DATE",
+      "plain": "the day the business says it was founded",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ELEC_BUS_POC_FIRST_NAME",
+      "plain": "first name of the business's listed contact person",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ELEC_BUS_POC_LAST_NAME",
+      "plain": "last name of the business's listed contact person, a second tell of same people",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "EXCLUSION_STATUS_FLAG",
+      "plain": "coded marker for whether the registry shows this business as barred, look at distinct values first",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "RECIPIENT_UEI matches UEI_SAM on FED_SAM_ENTITY_PUBLIC, keeping ACTION_DATE after ACTIVE_DATE",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the federal vendor id of the company that signed the contract",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "the name of the company that signed the contract",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this contract transaction was signed or changed",
+      "use": "date",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars committed on this one transaction, can be negative",
+      "use": "measure",
+      "watch": "Signed value. Filter above zero or totals during an exclusion window read negative."
+     },
+     {
+      "name": "HIGHLY_COMPENSATED_OFFICER_1_NAME",
+      "plain": "the name of the vendor's top-paid officer, a second tell of same people",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W73",
+  "section": "Money",
+  "idea": "Businesses already on a federal do-not-pay list still got big pandemic payroll loans.",
+  "why": "It would mean lenders skipped the most basic check before handing out public money. Near zero matches would say the screening worked, or barred firms borrowed under another name.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_SBA_PPP_LOANS_150K_PLUS",
+    "one_row": "one pandemic payroll loan",
+    "connects": "BORROWERNAME plus left 5 of BORROWERZIP matches ENTITY_NAME plus left 5 of ZIP on FED_SAM_EXCLUSIONS, and BUSINESS_NAME plus ZIP on FED_HHS_OIG_LEIE",
+    "columns": [
+     {
+      "name": "BORROWERNAME",
+      "plain": "the name of the business that got the loan",
+      "use": "join",
+      "watch": "No tax id on any side. Multi-word names held up 92% of the time, single-word names 8%."
+     },
+     {
+      "name": "BORROWERADDRESS",
+      "plain": "the street address of the business that got the loan",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "BORROWERCITY",
+      "plain": "the city of the business that got the loan",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "BORROWERSTATE",
+      "plain": "the state of the business that got the loan",
+      "use": "filter",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "BORROWERZIP",
+      "plain": "the postal code of the borrower; use the first five digits",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "DATEAPPROVED",
+      "plain": "the day the loan was approved",
+      "use": "date",
+      "watch": "Approval dates not yet measured."
+     },
+     {
+      "name": "INITIALAPPROVALAMOUNT",
+      "plain": "the dollar size of the loan when first approved",
+      "use": "measure",
+      "watch": "Labeled 150K-plus but holds 4,092 loans under $150,000."
+     },
+     {
+      "name": "FORGIVENESSAMOUNT",
+      "plain": "dollars of the loan the government later wrote off",
+      "use": "measure",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "PROCESSINGMETHOD",
+      "plain": "PPP for a first loan, PPS for a second-draw loan",
+      "use": "filter",
+      "watch": "Second-draw loans are capped at exactly $2,000,000. Split by this column."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS",
+    "one_row": "one exclusion from federal contracting",
+    "connects": "ENTITY_NAME plus left 5 of ZIP matches BORROWERNAME plus left 5 of BORROWERZIP on SBA_PPP_LOANS_150K_PLUS, keeping ACTIVATION_DATE before DATEAPPROVED",
+    "columns": [
+     {
+      "name": "ENTITY_NAME",
+      "plain": "the name of the barred person or firm",
+      "use": "join",
+      "watch": "Name match, multi-word only."
+     },
+     {
+      "name": "ZIP",
+      "plain": "the postal code of the barred person or firm",
+      "use": "join",
+      "watch": "81.9% filled."
+     },
+     {
+      "name": "ACTIVATION_DATE",
+      "plain": "the day the ban on federal contracting started",
+      "use": "date",
+      "watch": "93.46% filled. Sentinel years 1908, 2084, 2099 and 11,016 nulls. Drop them before the date test."
+     },
+     {
+      "name": "TERMINATION_DATE",
+      "plain": "the day the ban ends or ended",
+      "use": "date",
+      "watch": "5.5% filled."
+     },
+     {
+      "name": "IS_ENTITY_NOT_INDIVIDUAL",
+      "plain": "true when the barred party is a business and not a person",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "EXCLUSION_TYPE",
+      "plain": "kind of ban in words, such as Prohibition/Restriction or Ineligible",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE",
+    "one_row": "one active exclusion from federal health programs",
+    "connects": "BUSINESS_NAME plus ZIP matches BORROWERNAME plus left 5 of BORROWERZIP on SBA_PPP_LOANS_150K_PLUS, keeping EXCLUSION_DATE before DATEAPPROVED",
+    "columns": [
+     {
+      "name": "BUSINESS_NAME",
+      "plain": "the name of the barred business, empty when the row is a person",
+      "use": "join",
+      "watch": "Active exclusions only. Reinstated firms are gone, so every count is a floor."
+     },
+     {
+      "name": "ZIP",
+      "plain": "the postal code of the barred party",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "EXCLUSION_DATE",
+      "plain": "the day the ban from federal health programs started",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "ADDRESS",
+      "plain": "the street address of the barred party",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "IS_ENTITY_NOT_INDIVIDUAL",
+      "plain": "true when the barred party is a business and not a person",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W74",
+  "section": "Money",
+  "idea": "The same university doctors who lead federally funded research are also taking payments from drug and device makers.",
+  "why": "It would show which campuses have the most scientists with a foot in both camps. Names are the only link, so every count is an estimate.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER",
+    "one_row": "one federal health research project in one fiscal year",
+    "connects": "PI_NAMES split to first and last plus ORG_STATE is name-matched to COVERED_RECIPIENT_FIRST_NAME, COVERED_RECIPIENT_LAST_NAME and RECIPIENT_STATE on CMS_OPEN_PAYMENTS; ORG_NAME is name-matched to TEACHING_HOSPITAL_NAME",
+    "columns": [
+     {
+      "name": "ORG_NAME",
+      "plain": "the name of the university or institution holding the grant",
+      "use": "join",
+      "watch": "Name match, overlap not yet measured."
+     },
+     {
+      "name": "ORG_UEI",
+      "plain": "the federal id number of the institution holding the grant",
+      "use": "label",
+      "watch": "93.41% filled."
+     },
+     {
+      "name": "ORG_CITY",
+      "plain": "the city of the institution, used to confirm a name match",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ORG_STATE",
+      "plain": "the state where the grant-holding institution sits",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PI_NAMES",
+      "plain": "the names of the lead scientists on the project, several in one cell",
+      "use": "join",
+      "watch": "Must be split into first and last. A common name in a large state matches the wrong person."
+     },
+     {
+      "name": "PI_PROFILE_IDS",
+      "plain": "the research agency's own id numbers for the lead scientists",
+      "use": "label",
+      "watch": "Not a doctor id. No doctor id exists on the grant side."
+     },
+     {
+      "name": "FISCAL_YEAR",
+      "plain": "the government budget year the project row belongs to",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "AWARD_AMOUNT",
+      "plain": "dollars awarded to the project for that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ORG_ZIP",
+      "plain": "meant to be the institution's postal code, but nothing is in it",
+      "use": "join",
+      "watch": "0.0% filled."
+     },
+     {
+      "name": "ORG_FIPS",
+      "plain": "meant to be the institution's county code, but nothing is in it",
+      "use": "join",
+      "watch": "0.0% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS",
+    "one_row": "one payment from a drug or device maker to a doctor or teaching hospital",
+    "connects": "COVERED_RECIPIENT_FIRST_NAME plus COVERED_RECIPIENT_LAST_NAME plus RECIPIENT_STATE is name-matched to PI_NAMES plus ORG_STATE on NIH_REPORTER; NPI matches NPI on CMS_NPPES",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of the doctor who was paid",
+      "use": "join",
+      "watch": "48,059 blank strings."
+     },
+     {
+      "name": "COVERED_RECIPIENT_FIRST_NAME",
+      "plain": "first name of the doctor who was paid",
+      "use": "join",
+      "watch": "Name match only."
+     },
+     {
+      "name": "COVERED_RECIPIENT_LAST_NAME",
+      "plain": "last name of the doctor who was paid",
+      "use": "join",
+      "watch": "Name match only. Require an uncommon multi-word surname and same city."
+     },
+     {
+      "name": "RECIPIENT_STATE",
+      "plain": "the state of the doctor or hospital that was paid",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_CITY",
+      "plain": "the city of the doctor or hospital that was paid",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "the dollar value of this one payment or gift",
+      "use": "measure",
+      "watch": "Program year 2024 only in this table."
+     },
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the payment was for in words, such as food, consulting or debt forgiveness",
+      "use": "filter",
+      "watch": "Debt forgiveness $40.8M and Acquisitions $213M put people on top with no check cut. Split by this first."
+     },
+     {
+      "name": "TEACHING_HOSPITAL_NAME",
+      "plain": "the name of the teaching hospital, when the hospital was paid",
+      "use": "join",
+      "watch": "Name match, overlap not yet measured."
+     },
+     {
+      "name": "CCN",
+      "plain": "the federal health insurer's hospital id, when the hospital was paid",
+      "use": "label",
+      "watch": "Blank string on 15,350,656 rows."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES",
+    "one_row": "one provider id record from the national registry",
+    "connects": "NPI matches NPI on CMS_OPEN_PAYMENTS; then compare practice city to ORG_CITY on NIH_REPORTER",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national id number of the doctor or provider",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_LAST_NAME_LEGAL_NAME",
+      "plain": "the legal last name of the doctor or provider",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_FIRST_NAME",
+      "plain": "the first name of the doctor or provider",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME",
+      "plain": "the city where the provider sees patients",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME",
+      "plain": "the state where the provider sees patients",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W75",
+  "section": "Money",
+  "idea": "The counties that pull in the most federal health research money are the same counties where drug makers buy doctors the most meals.",
+  "why": "It would mean industry courts doctors hardest where the research happens. The likely answer is no, meals follow doctors and grants follow a few campuses, and that is still worth showing.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER",
+    "one_row": "one federal health research project in one fiscal year",
+    "connects": "ORG_UEI matches UEI_SAM on FED_SAM_ENTITY_PUBLIC, measured at 80%",
+    "columns": [
+     {
+      "name": "ORG_UEI",
+      "plain": "the federal id number of the institution holding the grant",
+      "use": "join",
+      "watch": "93.41% filled; 6.59% of grant rows have none. Match to the registry is 80%."
+     },
+     {
+      "name": "ORG_NAME",
+      "plain": "the name of the university or institution holding the grant",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ORG_CITY",
+      "plain": "the city of the institution, a fallback for placing unmatched rows",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ORG_STATE",
+      "plain": "the state of the institution, a fallback for placing unmatched rows",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "FISCAL_YEAR",
+      "plain": "the government budget year the project row belongs to",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "AWARD_AMOUNT",
+      "plain": "dollars awarded to the project for that year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ORG_ZIP",
+      "plain": "meant to be the institution's postal code, but nothing is in it",
+      "use": "join",
+      "watch": "0.0% filled."
+     },
+     {
+      "name": "ORG_FIPS",
+      "plain": "meant to be the institution's county code, but nothing is in it",
+      "use": "join",
+      "watch": "0.0% filled."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_SAM_ENTITY_PUBLIC",
+    "one_row": "one entity registered to do business with the government",
+    "connects": "UEI_SAM matches ORG_UEI on NIH_REPORTER; left 5 of PHYSICAL_ADDRESS_ZIP matches ZCTA5 on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "UEI_SAM",
+      "plain": "the federal id number of the registered institution",
+      "use": "join",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "LEGAL_BUSINESS_NAME",
+      "plain": "the registered legal name of the institution",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "PHYSICAL_ADDRESS_CITY",
+      "plain": "the city of the institution's registered office",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "PHYSICAL_ADDRESS_STATE",
+      "plain": "the state of the institution's registered office",
+      "use": "label",
+      "watch": "Fill rate not yet measured."
+     },
+     {
+      "name": "PHYSICAL_ADDRESS_ZIP",
+      "plain": "the postal code of the registered office; use the first five digits",
+      "use": "join",
+      "watch": "It is the registered office, so a multi-campus system's home county is overstated."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS",
+    "one_row": "one payment from a drug or device maker to a doctor or teaching hospital",
+    "connects": "left 5 of RECIPIENT_ZIP_CODE matches ZCTA5 on XWALK_ZCTA_COUNTY",
+    "columns": [
+     {
+      "name": "RECIPIENT_ZIP_CODE",
+      "plain": "the postal code of the doctor who was paid; use the first five digits",
+      "use": "join",
+      "watch": "464 blank strings."
+     },
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the payment was for in words; keep the food and beverage rows",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "the dollar value of this one payment or gift",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PROGRAM_YEAR",
+      "plain": "the reporting year of the payment",
+      "use": "date",
+      "watch": "2024 only in this table. One cross-section, no trend."
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one pairing of a census ZIP area with a county",
+    "connects": "ZCTA5 matches left 5 of PHYSICAL_ADDRESS_ZIP on FED_SAM_ENTITY_PUBLIC and left 5 of RECIPIENT_ZIP_CODE on CMS_OPEN_PAYMENTS; COUNTY_FIPS is the shared county code",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the five-digit census ZIP area code",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP areas cross a county line. Single-building ZIPs like 44195, 94143, 27710 have no area and can miss."
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "the five-digit census code for the county",
+      "use": "join",
+      "watch": "For ZIP areas that cross a line, picking the largest-land county was right 47.1% of the time."
+     }
+    ]
+   }
+  ]
+ }
+]

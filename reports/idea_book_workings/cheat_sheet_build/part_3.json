@@ -1,0 +1,2063 @@
+[
+ {
+  "id": "W40",
+  "section": "Body",
+  "idea": "Hospitals in counties where factories pump more chemicals into the air see a bigger share of patients with breathing trouble.",
+  "why": "If true, factory air shows up in the local hospital's Medicare bills. It would point at which counties pay for dirty air with sick lungs.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_TRI_BASIC_2023",
+    "one_row": "one factory, one chemical, reporting year 2023",
+    "connects": "first 5 digits of C_9_ZIP match XWALK_ZCTA_COUNTY.ZCTA5, which gives COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "C_1_YEAR",
+      "plain": "the reporting year of the release, 2023 on every row",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "C_2_TRIFD",
+      "plain": "the pollution program's id number for the factory",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "C_9_ZIP",
+      "plain": "the factory's ZIP code; take the first five digits",
+      "use": "join",
+      "watch": "ZIP identifies nothing on its own; it is shared by 129 tables"
+     },
+     {
+      "name": "C_7_COUNTY",
+      "plain": "the county name the factory wrote on its report",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "C_8_ST",
+      "plain": "two-letter state where the factory sits",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "C_12_LATITUDE",
+      "plain": "north-south map position of the factory",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "C_13_LONGITUDE",
+      "plain": "east-west map position of the factory",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "C_37_CHEMICAL",
+      "plain": "name of the chemical the factory released",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "C_42_CLEAN_AIR_ACT_CHEMICAL",
+      "plain": "YES or NO: is the chemical on the Clean Air Act list",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "C_50_UNIT_OF_MEASURE",
+      "plain": "unit the amounts are in: Pounds on most rows, Grams on 770",
+      "use": "filter",
+      "watch": "releases mix units; check this before summing pounds"
+     },
+     {
+      "name": "C_51_5_1_FUGITIVE_AIR",
+      "plain": "amount that leaked into the air from leaks, vents and open tanks",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "C_52_5_2_STACK_AIR",
+      "plain": "amount sent into the air through a stack or chimney",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_INPATIENT_HOSPITALS_BY_PROVIDER_AND_SERVICE",
+    "one_row": "one hospital, one diagnosis group, one year",
+    "connects": "RNDRNG_PRVDR_ZIP5 matches XWALK_ZCTA_COUNTY.ZCTA5, which gives COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "RNDRNG_PRVDR_CCN",
+      "plain": "the federal certification number of the hospital, 2,855 different hospitals",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "five-digit ZIP code of the hospital building",
+      "use": "join",
+      "watch": "single-building hospital ZIPs have no ZIP area and miss the county bridge entirely"
+     },
+     {
+      "name": "DRG_CD",
+      "plain": "code for the diagnosis group the stay was billed under",
+      "use": "filter",
+      "watch": "which codes are respiratory is not in the sources; read DRG_DESC"
+     },
+     {
+      "name": "DRG_DESC",
+      "plain": "plain description of the diagnosis group; read it to pick the breathing ones",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOT_DSCHRGS",
+      "plain": "number of Medicare hospital stays in that diagnosis group",
+      "use": "measure",
+      "watch": "Medicare fee-for-service only; the file's data year is not recorded anywhere"
+     },
+     {
+      "name": "AVG_MDCR_PYMT_AMT",
+      "plain": "average dollars Medicare paid per stay in that group",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP area and county overlap, 2020 vintage",
+    "connects": "ZCTA5 is matched by C_9_ZIP and by RNDRNG_PRVDR_ZIP5; COUNTY_FIPS is the shared county on both sides",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the five-digit ZIP area drawn by the Census Bureau",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP areas cross a county line; single-building ZIPs have no ZIP area and miss"
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "the five-digit federal code for the county that ZIP area overlaps",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTB_PROVIDER_SERVICE_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one clinician, one billing code, one place of service, one year",
+    "connects": "optional: DY2023 RNDRNG_PRVDR_ZIP5 matches XWALK_ZCTA_COUNTY.ZCTA5, which gives COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the clinician",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RNDRNG_PRVDR_ZIP5",
+      "plain": "the clinician's five-digit office ZIP code",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RNDRNG_PRVDR_TYPE",
+      "plain": "the clinician's specialty, such as lung doctor",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "HCPCS_CD",
+      "plain": "the billing code for the service done",
+      "use": "filter",
+      "watch": "which codes count as respiratory is not in the sources; read HCPCS_DESC"
+     },
+     {
+      "name": "HCPCS_DESC",
+      "plain": "plain description of the billing code; read it to pick breathing care",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "number of different Medicare patients who got that service",
+      "use": "measure",
+      "watch": "rows under 11 patients are deleted at the source; small rural practices lose most"
+     },
+     {
+      "name": "TOT_SRVCS",
+      "plain": "number of times the service was done",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W44",
+  "section": "Body",
+  "idea": "A handful of drugs drove Medicare's drug bill up over twelve years, and a few named prescribers wrote far more than their share of each.",
+  "why": "If true, the cost growth has names on it, drug by drug. If not, the growth is just price and patient count spread over thousands of doctors.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one prescriber, one drug, one year of claims",
+    "connects": "stack the 12 tables with the year from the table name; NPI matches NPI on FED_CMS_PARTD_PRESCRIBER_DY of the same year",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "BRND_NAME",
+      "plain": "the brand name of the drug as printed on the claim",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "GNRC_NAME",
+      "plain": "the generic name of the drug, free text",
+      "use": "label",
+      "watch": "a renamed or reformulated drug splits into two lines; check top names by eye"
+     },
+     {
+      "name": "TOT_DRUG_CST",
+      "plain": "total dollars paid for this prescriber's claims for this drug that year",
+      "use": "measure",
+      "watch": "dollars of the year, not inflation adjusted; before or after rebates is not stated"
+     },
+     {
+      "name": "TOT_CLMS",
+      "plain": "number of prescriptions filled, refills included, for this prescriber and drug",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "number of different Medicare patients who got this drug from this prescriber",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOT_30DAY_FILLS",
+      "plain": "prescriptions restated as standard 30-day supplies",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_TYPE",
+      "plain": "the prescriber's specialty, such as family practice or psychiatry",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_STATE_ABRVTN",
+      "plain": "two-letter state of the prescriber's address",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_CITY",
+      "plain": "city of the prescriber's practice address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "GE65_SPRSN_FLAG",
+      "plain": "marker that the count for patients 65 and over was withheld; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "by-drug tables store a blank as NULL, not an empty string"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one prescriber, one year of totals across all drugs",
+    "connects": "NPI matches NPI on FED_CMS_PARTD_PRESCRIBER_DRUG_DY of the same year",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PRSCRBR_TYPE",
+      "plain": "the prescriber's specialty; compare costly prescribers inside one specialty",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_ZIP5",
+      "plain": "five-digit ZIP of the prescriber's address",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOT_DRUG_CST",
+      "plain": "total dollars for every drug this prescriber wrote that year",
+      "use": "measure",
+      "watch": "blanks in this family are empty strings, not NULL"
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "number of different Medicare patients this prescriber wrote for",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "BENE_AVG_RISK_SCRE",
+      "plain": "average sickness score of the prescriber's patients; higher means sicker",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PARTD_PRESCRIBERS",
+    "one_row": "one prescriber, one drug, data year 2022 only, with renamed columns",
+    "connects": "cross-check only: its row count 25,869,521 equals FED_CMS_PARTD_PRESCRIBER_DRUG_DY2022",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber, 1,038,177 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "GENERIC_NAME",
+      "plain": "the generic name of the drug, same thing as GNRC_NAME",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_DRUG_COST",
+      "plain": "total dollars for this prescriber and drug, same thing as TOT_DRUG_CST",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W45",
+  "section": "Body",
+  "idea": "Nursing homes that share an owner dose their residents with antipsychotic drugs at about the same rate, high or low.",
+  "why": "If true, how sedated grandma gets depends on who owns the building, not on her doctor. If not, prescribing follows the individual doctor.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PART_D_PRESCRIBERS",
+    "one_row": "one prescriber, one year of totals, data year 2024",
+    "connects": "NPI matches HEALTH__FED_CMS_FACILITY_AFFILIATION.NPI",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ANTPSYCT_GE65_TOT_CLMS",
+      "plain": "antipsychotic prescriptions filled for this prescriber's patients aged 65 and over",
+      "use": "measure",
+      "watch": "text column; blank means a withheld count of 1 to 10, '0' is the real zero; spelled without the I"
+     },
+     {
+      "name": "ANTPSYCT_GE65_SPRSN_FLAG",
+      "plain": "marker that the antipsychotic count was withheld: '*' on 538,626 rows, blank on 878,257",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ANTPSYCT_GE65_TOT_BENES",
+      "plain": "number of patients 65 and over who got an antipsychotic from this prescriber",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "GE65_TOT_CLMS",
+      "plain": "all prescriptions of any drug filled for this prescriber's patients 65 and over",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_TYPE",
+      "plain": "the prescriber's specialty, as Medicare lists it",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_FACILITY_AFFILIATION",
+    "one_row": "one clinician tied to one facility, current snapshot",
+    "connects": "NPI matches HEALTH__FED_CMS_PART_D_PRESCRIBERS.NPI; CCN matches HEALTH__FED_NURSINGHOME411.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the clinician",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CCN",
+      "plain": "the federal certification number of the facility the clinician is tied to",
+      "use": "join",
+      "watch": "35.5% of nursing homes list exactly one clinician; the median is two"
+     },
+     {
+      "name": "FACILITY_TYPE",
+      "plain": "kind of facility: Hospital, Home health agency, Hospice, Nursing home, Dialysis facility",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411",
+    "one_row": "one nursing home, snapshot of 2025-12-01",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_FACILITY_AFFILIATION.CCN and HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is certified to fill",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_ID",
+      "plain": "the id number of the chain the home belongs to",
+      "use": "filter",
+      "watch": "blank on 4,551 homes; named chains include hospital systems"
+     },
+     {
+      "name": "CHAIN_NAME",
+      "plain": "the name of the chain the home belongs to",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "kind of owner, such as For profit - Corporation or Non profit - Corporation",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state where the home sits",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "one_row": "one Medicare enrollment of one nursing home",
+    "connects": "CCN matches HEALTH__FED_NURSINGHOME411.CMS_CERTIFICATION_NUMBER_CCN; ENROLLMENT_ID matches FED_CMS_SNF_OWNERSHIP.ENROLLMENT_ID",
+    "columns": [
+     {
+      "name": "CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "the id of this home's Medicare enrollment record",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AFFILIATION_ENTITY_ID",
+      "plain": "id of a parent group the home says it belongs to; check distinct values before using",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_SNF_OWNERSHIP",
+    "one_row": "one enrollment, one owner, one role",
+    "connects": "ENROLLMENT_ID matches HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ENROLLMENT_ID",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "the id of the nursing home's Medicare enrollment record",
+      "use": "join",
+      "watch": "288,550 of 295,083 owner rows join; 6,533 do not reach an enrollment; this file has no CCN"
+     },
+     {
+      "name": "ASSOCIATE_ID_OWNER",
+      "plain": "the id number of the owner; group homes by this",
+      "use": "join",
+      "watch": "current owners only, one vintage"
+     },
+     {
+      "name": "ORGANIZATION_NAME_OWNER",
+      "plain": "the company name of the owner",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ROLE_TEXT_OWNER",
+      "plain": "text saying what part this owner plays at the home",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PERCENTAGE_OWNERSHIP",
+      "plain": "what percent of the home this owner holds",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W46",
+  "section": "Body",
+  "idea": "Draw the line from opioid pills shipped to overdose deaths, then find the counties that sit far off that line.",
+  "why": "A county with heavy pills and few deaths, or light pills and many, has something else going on. Those are the places worth a closer look.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_DEA_ARCOS",
+    "one_row": "one shipment of one opioid product from a reporter to a buyer, 2006-2012",
+    "connects": "BUYER_COUNTY_FIPS matches HEALTH__FED_CDC_DRUG_POISONING_COUNTY.FIPS in the same year, and LANDING.FED_CDC_INJURY_VIOLENCE_COUNTY.GEOID",
+    "columns": [
+     {
+      "name": "BUYER_COUNTY_FIPS",
+      "plain": "the five-digit federal county code of the pharmacy or buyer",
+      "use": "join",
+      "watch": "filled on 178,338,557 of 178,598,026 rows"
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the pills were shipped",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "DOSAGE_UNITS",
+      "plain": "number of pills in the shipment",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_MME",
+      "plain": "strength of the shipment restated as morphine, so different opioids add up",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CDC_INJURY_VIOLENCE_COUNTY",
+    "one_row": "one county, one kind of death, one period",
+    "connects": "GEOID matches HEALTH__FED_DEA_ARCOS.BUYER_COUNTY_FIPS and HEALTH__FED_CDC_DRUG_POISONING_COUNTY.FIPS",
+    "columns": [
+     {
+      "name": "GEOID",
+      "plain": "the five-digit federal county code, 3,153 different counties",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "INTENT",
+      "plain": "which kind of death the row counts, such as All_Homicide, FA_Suicide; pick the overdose one",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PERIOD",
+      "plain": "the year, 2019 to 2024, or TTM for the trailing twelve months",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "RATE",
+      "plain": "deaths per population in that county and period",
+      "use": "measure",
+      "watch": "-999 on 822 overdose rows; filter RATE >= 0 before fitting"
+     },
+     {
+      "name": "COUNT_SUP",
+      "plain": "number of deaths, or a range like '1-9' or '10-50' when withheld",
+      "use": "measure",
+      "watch": "text column; the mart nulled 61,400 of 132,000 values, so use landing; a range is not a count"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CDC_DRUG_POISONING_COUNTY",
+    "one_row": "one county, one year, with population, 1999-2015",
+    "connects": "FIPS matches HEALTH__FED_DEA_ARCOS.BUYER_COUNTY_FIPS in the same year and LANDING.FED_CDC_INJURY_VIOLENCE_COUNTY.GEOID",
+    "columns": [
+     {
+      "name": "FIPS",
+      "plain": "the five-digit federal code for the county",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "YEAR",
+      "plain": "the calendar year of the population figure",
+      "use": "date",
+      "watch": "ends 2015; no county population after that is landed"
+     },
+     {
+      "name": "POPULATION",
+      "plain": "number of residents in the county that year; divides pills into pills per resident",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W47",
+  "section": "Body",
+  "idea": "Once you allow for how old the patients are, some counties still write far more prescriptions per patient, year after year.",
+  "why": "If true, heavy prescribing is a local habit, not just old patients. If not, the map of heavy prescribing is only a map of age.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DY2013 to DY2024 (12 tables, same columns)",
+    "one_row": "one prescriber, one year of totals",
+    "connects": "PRSCRBR_ZIP5 matches XWALK_ZCTA_COUNTY.ZCTA5, which gives COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PRSCRBR_ZIP5",
+      "plain": "five-digit ZIP of the prescriber's address, not where the patient lives",
+      "use": "join",
+      "watch": "blanks are empty strings, not NULL; an is-null test finds nothing"
+     },
+     {
+      "name": "PRSCRBR_TYPE",
+      "plain": "the prescriber's specialty, as Medicare lists it",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TOT_CLMS",
+      "plain": "number of prescriptions filled, refills included, across all drugs",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "number of different Medicare patients the prescriber wrote for",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOT_30DAY_FILLS",
+      "plain": "prescriptions restated as standard 30-day supplies",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "BENE_AVG_AGE",
+      "plain": "average age of this prescriber's Medicare drug patients",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "BENE_AGE_LT_65_CNT",
+      "plain": "how many of the prescriber's patients are under 65",
+      "use": "measure",
+      "watch": "may be withheld below 11, not yet measured; prefer BENE_AVG_AGE"
+     },
+     {
+      "name": "BENE_AGE_65_74_CNT",
+      "plain": "how many of the prescriber's patients are 65 to 74",
+      "use": "measure",
+      "watch": "may be withheld below 11, not yet measured; prefer BENE_AVG_AGE"
+     },
+     {
+      "name": "BENE_AGE_75_84_CNT",
+      "plain": "how many of the prescriber's patients are 75 to 84",
+      "use": "measure",
+      "watch": "may be withheld below 11, not yet measured; prefer BENE_AVG_AGE"
+     },
+     {
+      "name": "BENE_AGE_GT_84_CNT",
+      "plain": "how many of the prescriber's patients are over 84",
+      "use": "measure",
+      "watch": "may be withheld below 11, not yet measured; prefer BENE_AVG_AGE"
+     },
+     {
+      "name": "BENE_AVG_RISK_SCRE",
+      "plain": "average sickness score of the prescriber's patients; higher means sicker",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PART_D_PRESCRIBERS",
+    "one_row": "one prescriber, data year 2024 only, the profiled copy",
+    "connects": "PRSCRBR_ZIP5 matches XWALK_ZCTA_COUNTY.ZCTA5",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_ZIP5",
+      "plain": "five-digit ZIP of the prescriber's address, 21,041 different ZIPs",
+      "use": "join",
+      "watch": "54 blank strings"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP area and county overlap, 2020 vintage",
+    "connects": "ZCTA5 is matched by PRSCRBR_ZIP5; ZCTA5 and COUNTY_FIPS line up with GEOID_ZCTA5_20 and GEOID_COUNTY_20 on FED_CENSUS_ZCTA_COUNTY_2020",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the five-digit ZIP area drawn by the Census Bureau",
+      "use": "join",
+      "watch": "10,186 of 33,791 ZIP areas cross a county line; single-building ZIPs get no ZIP area, 4.7% of doctor rows lost"
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "the five-digit federal county code, 3,266 different counties",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_NAME",
+      "plain": "the plain name of the county",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE_USPS",
+      "plain": "two-letter postal abbreviation of the state",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CENSUS_ZCTA_COUNTY_2020",
+    "one_row": "one ZIP area and county overlap, with land area",
+    "connects": "GEOID_ZCTA5_20 and GEOID_COUNTY_20 match XWALK_ZCTA_COUNTY.ZCTA5 and COUNTY_FIPS; used as a tie-break",
+    "columns": [
+     {
+      "name": "GEOID_ZCTA5_20",
+      "plain": "the five-digit ZIP area, 2020 edition",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "GEOID_COUNTY_20",
+      "plain": "the five-digit federal county code, 2020 edition",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "AREALAND_PART",
+      "plain": "land area of the piece of the ZIP area inside that county; largest wins",
+      "use": "measure",
+      "watch": "the largest-land-area pick is right 47.1% of the time on ZIP areas that cross a county line"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W48",
+  "section": "Body",
+  "idea": "A drug company buys a doctor lunch or pays a speaking fee, and the next year that doctor writes more of the company's brand.",
+  "why": "If true, the money comes before the prescribing, doctor by doctor. If not, the money just follows doctors who already wrote the drug.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2022",
+    "one_row": "one payment or gift from a drug or device maker to one recipient, year 2022",
+    "connects": "NPI matches NPI on FED_CMS_PARTD_PRESCRIBER_DRUG_DY2021 and DY2022 for before, DY2023 for after; stack the three payment tables, never join them, zero RECORD_ID overlap",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the doctor who got the payment",
+      "use": "join",
+      "watch": "blank is an empty string, not null, on 51,584 rows; a null filter misses them"
+     },
+     {
+      "name": "PROGRAM_YEAR",
+      "plain": "the calendar year the payment was reported for",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "dollars in this one payment or gift",
+      "use": "measure",
+      "watch": "sum only this column; any sum over columns matching PAYMENT reads $1.5 quadrillion"
+     },
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the money was for, such as Food and Beverage, Travel and Lodging, speaker fees, royalties",
+      "use": "filter",
+      "watch": "Debt forgiveness ($40.8M) and Acquisitions ($213M) are not cheques to a doctor"
+     },
+     {
+      "name": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+      "plain": "name of the drug or device company that paid",
+      "use": "label",
+      "watch": "payer names split on case: 'ABBVIE INC.' and 'AbbVie Inc.'"
+     },
+     {
+      "name": "DATE_OF_PAYMENT",
+      "plain": "the day the payment was made",
+      "use": "date",
+      "watch": "year-0002 dates seen on 73 rows of the 2024 table; count here not yet measured; use PROGRAM_YEAR"
+     },
+     {
+      "name": "COVERED_RECIPIENT_SPECIALTY_1",
+      "plain": "the first specialty listed for the doctor paid",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_STATE",
+      "plain": "two-letter state of the doctor's address",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2023",
+    "one_row": "one payment or gift from a drug or device maker to one recipient, year 2023",
+    "connects": "NPI matches NPI on FED_CMS_PARTD_PRESCRIBER_DRUG_DY2022 and DY2023 for before, DY2024 for after; stack the three payment tables, never join them, zero RECORD_ID overlap",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the doctor who got the payment",
+      "use": "join",
+      "watch": "blank is an empty string, not null, on 44,233 rows; a null filter misses them"
+     },
+     {
+      "name": "PROGRAM_YEAR",
+      "plain": "the calendar year the payment was reported for",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "dollars in this one payment or gift",
+      "use": "measure",
+      "watch": "sum only this column; any sum over columns matching PAYMENT reads $1.5 quadrillion"
+     },
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the money was for, such as Food and Beverage, Travel and Lodging, speaker fees, royalties",
+      "use": "filter",
+      "watch": "Debt forgiveness ($40.8M) and Acquisitions ($213M) are not cheques to a doctor"
+     },
+     {
+      "name": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+      "plain": "name of the drug or device company that paid",
+      "use": "label",
+      "watch": "payer names split on case: 'ABBVIE INC.' and 'AbbVie Inc.'"
+     },
+     {
+      "name": "DATE_OF_PAYMENT",
+      "plain": "the day the payment was made",
+      "use": "date",
+      "watch": "year-0002 dates seen on 73 rows of the 2024 table; count here not yet measured; use PROGRAM_YEAR"
+     },
+     {
+      "name": "COVERED_RECIPIENT_SPECIALTY_1",
+      "plain": "the first specialty listed for the doctor paid",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_STATE",
+      "plain": "two-letter state of the doctor's address",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS",
+    "one_row": "one payment or gift from a drug or device maker to one recipient, year 2024",
+    "connects": "NPI matches FED_CMS_PARTD_PRESCRIBER_DRUG_DY2024.NPI, same year only; no DY2025 is landed; stack the three payment tables, never join them, zero RECORD_ID overlap",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the doctor who got the payment",
+      "use": "join",
+      "watch": "blank is an empty string, not null, on 48,059 rows; a null filter misses them"
+     },
+     {
+      "name": "PROGRAM_YEAR",
+      "plain": "the calendar year the payment was reported for",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "dollars in this one payment or gift",
+      "use": "measure",
+      "watch": "sum only this column; any sum over columns matching PAYMENT reads $1.5 quadrillion"
+     },
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the money was for, such as Food and Beverage, Travel and Lodging, speaker fees, royalties",
+      "use": "filter",
+      "watch": "Debt forgiveness ($40.8M) and Acquisitions ($213M) are not cheques to a doctor"
+     },
+     {
+      "name": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+      "plain": "name of the drug or device company that paid",
+      "use": "label",
+      "watch": "payer names split on case: 'ABBVIE INC.' and 'AbbVie Inc.'"
+     },
+     {
+      "name": "DATE_OF_PAYMENT",
+      "plain": "the day the payment was made",
+      "use": "date",
+      "watch": "73 rows in the 2024 table carry year-0002 dates; use PROGRAM_YEAR for the year"
+     },
+     {
+      "name": "COVERED_RECIPIENT_SPECIALTY_1",
+      "plain": "the first specialty listed for the doctor paid",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_STATE",
+      "plain": "two-letter state of the doctor's address",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_PARTD_PRESCRIBER_DRUG_DY2021 to DY2024 (4 tables, same columns)",
+    "one_row": "one prescriber, one drug, one year of claims",
+    "connects": "NPI matches NPI on the three payment tables; unpaid peers share PRSCRBR_TYPE and PRSCRBR_STATE_ABRVTN",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the prescriber",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "BRND_NAME",
+      "plain": "the brand name of the drug as printed on the claim",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "GNRC_NAME",
+      "plain": "the generic name of the drug, free text",
+      "use": "label",
+      "watch": "a renamed or reformulated drug splits into two lines; check top names by eye"
+     },
+     {
+      "name": "TOT_DRUG_CST",
+      "plain": "total dollars paid for this prescriber's claims for this drug that year",
+      "use": "measure",
+      "watch": "dollars of the year, not inflation adjusted; before or after rebates is not stated"
+     },
+     {
+      "name": "TOT_CLMS",
+      "plain": "number of prescriptions filled, refills included, for this prescriber and drug",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOT_BENES",
+      "plain": "number of different Medicare patients who got this drug from this prescriber",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_TYPE",
+      "plain": "the prescriber's specialty, such as family practice or psychiatry",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRSCRBR_STATE_ABRVTN",
+      "plain": "two-letter state of the prescriber's address",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "GE65_SPRSN_FLAG",
+      "plain": "marker that the count for patients 65 and over was withheld; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "by-drug tables store a blank as NULL, not an empty string"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W49",
+  "section": "Body",
+  "idea": "Some doctors banned from billing federal health programs are still getting paid by drug and device companies.",
+  "why": "If true, it is a named list of barred doctors, the companies paying them and the amounts. It shows an overlap, not a crime.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE",
+    "one_row": "one active ban of a person or business from federal health programs",
+    "connects": "NPI, where NPI_IS_REAL is true, matches HEALTH__FED_CMS_OPEN_PAYMENTS.NPI",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the banned person or business",
+      "use": "join",
+      "watch": "only 10.55% filled, 8,935 distinct; the '0000000000' placeholder is blanked to an empty string on 74,908 rows"
+     },
+     {
+      "name": "NPI_IS_REAL",
+      "plain": "true when the row carries a real id number: true 8,839 rows, false 74,908",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "EXCLUSION_DATE",
+      "plain": "the day the ban started, 1977-07-01 to 2026-08-20",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "EXCLUSION_TYPE",
+      "plain": "the section of law the ban was made under, such as 1128b4 or 1128a1",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "LAST_NAME",
+      "plain": "last name of the banned person",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "FIRST_NAME",
+      "plain": "first name of the banned person",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "SPECIALTY",
+      "plain": "the banned person's line of work",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state of the banned person",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "IS_ENTITY_NOT_INDIVIDUAL",
+      "plain": "true when the row is a business, not a person: true on 3,424 rows",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS",
+    "one_row": "one payment or gift from a drug or device maker to one recipient, year 2024 only",
+    "connects": "NPI matches HEALTH__FED_HHS_OIG_LEIE.NPI; keep rows where DATE_OF_PAYMENT is after EXCLUSION_DATE",
+    "columns": [
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the doctor who got the payment",
+      "use": "join",
+      "watch": "blank is an empty string, not null, on 48,059 rows; a null filter misses them"
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "dollars in this one payment or gift",
+      "use": "measure",
+      "watch": "sum only this column; any sum over columns matching PAYMENT reads $1.5 quadrillion"
+     },
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the money was for, such as Food and Beverage, Travel and Lodging, speaker fees, royalties",
+      "use": "filter",
+      "watch": "Debt forgiveness ($40.8M) and Acquisitions ($213M) are not cheques to a doctor"
+     },
+     {
+      "name": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+      "plain": "name of the drug or device company that paid",
+      "use": "label",
+      "watch": "payer names split on case: 'ABBVIE INC.' and 'AbbVie Inc.'"
+     },
+     {
+      "name": "DATE_OF_PAYMENT",
+      "plain": "the day the payment was made",
+      "use": "date",
+      "watch": "73 payment rows carry year-0002 dates"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W50",
+  "section": "Body",
+  "idea": "Implants that pay royalties to surgeons get recalled more often than the same maker's other products.",
+  "why": "If true, the devices surgeons have a money stake in are the ones that fail more. Patients would want to know that before surgery.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_OPEN_PAYMENTS",
+    "one_row": "one payment, with up to five product slots",
+    "connects": "ASSOCIATED_DEVICE_OR_MEDICAL_SUPPLY_PDI_1 matches HEALTH__FED_FDA_GUDID.PRIMARY_DI, or FED_FDA_GUDID_FULL_IDENTIFIERS.DEVICEID for the wider net",
+    "columns": [
+     {
+      "name": "NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE",
+      "plain": "what the money was for; keep the royalty rows",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NAME_OF_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_1",
+      "plain": "name of the first product the payment was tied to",
+      "use": "label",
+      "watch": "product columns live only in this landing copy; the mart drops them"
+     },
+     {
+      "name": "ASSOCIATED_DEVICE_OR_MEDICAL_SUPPLY_PDI_1",
+      "plain": "the device id number printed on the first product the payment was tied to",
+      "use": "join",
+      "watch": "fill rate not yet measured; may turn out empty"
+     },
+     {
+      "name": "INDICATE_DRUG_OR_BIOLOGICAL_OR_DEVICE_OR_MEDICAL_SUPPLY_1",
+      "plain": "says whether that first product is a drug, biological, device or medical supply",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME",
+      "plain": "name of the company that paid",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS",
+      "plain": "dollars paid in this one payment",
+      "use": "measure",
+      "watch": "sum only this column; any sum over columns matching PAYMENT reads $1.5 quadrillion"
+     },
+     {
+      "name": "DATE_OF_PAYMENT",
+      "plain": "the day the payment was made",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "NPI",
+      "plain": "the national ten-digit id number of the surgeon paid",
+      "use": "label",
+      "watch": "blank on rows holding 43% of all royalty dollars"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_GUDID",
+    "one_row": "one device record in the federal device id database",
+    "connects": "PRIMARY_DI is matched by ASSOCIATED_DEVICE_OR_MEDICAL_SUPPLY_PDI_1; COMPANY_NAME plus BRAND_NAME text-match DEVICE_ENFORCEMENT.RECALLING_FIRM plus PRODUCT_DESCRIPTION",
+    "columns": [
+     {
+      "name": "PRIMARY_DI",
+      "plain": "the main id number printed on the device",
+      "use": "join",
+      "watch": "fill rate not yet measured"
+     },
+     {
+      "name": "BRAND_NAME",
+      "plain": "the brand name the device is sold under",
+      "use": "join",
+      "watch": "text match only; single-word name matches were 8% real, multi-word 92%"
+     },
+     {
+      "name": "COMPANY_NAME",
+      "plain": "the company that makes the device, 11,851 different companies",
+      "use": "join",
+      "watch": "text match only; use multi-word names"
+     },
+     {
+      "name": "PRIMARY_PRODUCT_CODE",
+      "plain": "the federal code for the kind of device, 99.38% filled",
+      "use": "label",
+      "watch": "dead hop: the recall table's PRODUCT_CODE is 0.0% filled"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FDA_GUDID_FULL_IDENTIFIERS",
+    "one_row": "one id number, main or package level, for one device",
+    "connects": "DEVICEID is matched by ASSOCIATED_DEVICE_OR_MEDICAL_SUPPLY_PDI_1; PRIMARYDI matches FED_FDA_GUDID_FULL_DEVICE.PRIMARYDI",
+    "columns": [
+     {
+      "name": "DEVICEID",
+      "plain": "an id number printed on the device or on its box",
+      "use": "join",
+      "watch": "fill rate not yet measured"
+     },
+     {
+      "name": "DEVICEIDTYPE",
+      "plain": "whether the id is the main one or a package one; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PRIMARYDI",
+      "plain": "the main id number of the device this id belongs to",
+      "use": "join",
+      "watch": "fill rate not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FDA_GUDID_FULL_DEVICE",
+    "one_row": "one device record, the full 37-column file",
+    "connects": "PRIMARYDI matches FED_FDA_GUDID_FULL_IDENTIFIERS.PRIMARYDI",
+    "columns": [
+     {
+      "name": "PRIMARYDI",
+      "plain": "the main id number printed on the device",
+      "use": "join",
+      "watch": "fill rate not yet measured"
+     },
+     {
+      "name": "BRANDNAME",
+      "plain": "the brand name the device is sold under",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "COMPANYNAME",
+      "plain": "the company that makes the device",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "VERSIONMODELNUMBER",
+      "plain": "the maker's version or model number",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CATALOGNUMBER",
+      "plain": "the maker's catalog number for the device",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_DEVICE_ENFORCEMENT",
+    "one_row": "one device recall",
+    "connects": "RECALLING_FIRM plus PRODUCT_DESCRIPTION text-match HEALTH__FED_FDA_GUDID.COMPANY_NAME plus BRAND_NAME; the PRODUCT_CODE hop is dead",
+    "columns": [
+     {
+      "name": "RECALL_NUMBER",
+      "plain": "the federal number given to the recall",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECALLING_FIRM",
+      "plain": "name of the company pulling the device back",
+      "use": "join",
+      "watch": "text match, not an id"
+     },
+     {
+      "name": "PRODUCT_DESCRIPTION",
+      "plain": "free-text description of the recalled device",
+      "use": "join",
+      "watch": "text match, not an id"
+     },
+     {
+      "name": "CLASSIFICATION",
+      "plain": "how serious the recall is: Class I, Class II or Class III",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "RECALL_INITIATION_DATE",
+      "plain": "the day the company started the recall",
+      "use": "date",
+      "watch": "runs back to 1930-12-11; payments are 2024 only, so only 2024 to 2026-07-07 recalls can follow"
+     },
+     {
+      "name": "PRODUCT_CODE",
+      "plain": "meant to hold the federal code for the kind of device",
+      "use": "join",
+      "watch": "0.0% filled, 0 distinct; empty column"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-106",
+  "section": "Body",
+  "idea": "The same nursing-home problem gets written up as serious harm in one state and as a minor slip in another.",
+  "why": "The federal rulebook is the same everywhere, so a 9.5x gap means the inspectors differ, not the homes. A home's record then depends on its state line.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one inspection",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home that was cited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "the state whose inspectors wrote the citation",
+      "use": "filter",
+      "watch": "citation volumes differ 25x across states; use rates and a 2,000+ citation floor"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade A to L for how bad and how widespread; G through L means harm",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DEFICIENCY_TAG_NUMBER",
+      "plain": "the number of the federal rule the home broke",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day the inspectors were in the building",
+      "use": "date",
+      "watch": "real coverage is 2023-2026 only: 273 rows in 2017 against 121,925 in 2024"
+     },
+     {
+      "name": "SURVEY_TYPE",
+      "plain": "kind of inspection; every row in the profile says Health",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": "14,700 rows but 14,328 distinct numbers; dedupe before joining or rows double"
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is certified to fill; use for size bands",
+      "use": "filter",
+      "watch": "today's snapshot value, laid over older events"
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "kind of owner, such as For profit - Limited Liability company or Non profit - Corporation",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_NAME",
+      "plain": "the name of the chain the home belongs to",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "nurse hours of all kinds per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-094",
+  "section": "Body",
+  "idea": "Nursing homes where nurses keep quitting, or where there are too few of them, get written up more at the next inspection.",
+  "why": "If true, staff churn is an early warning you can read before the inspector shows up. If not, the inspection record ignores staffing.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411",
+    "one_row": "one nursing home, earlier snapshot, staffing as of 2025-12-01",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches the same column on HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES and HEALTH__FED_CMS_NURSING_HOME",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": "14,713 rows but 14,345 distinct numbers; dedupe before joining or rows double"
+     },
+     {
+      "name": "PROCESSING_DATE",
+      "plain": "the day this snapshot was cut, 2025-12-01 on every row",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_NURSING_STAFF_TURNOVER",
+      "plain": "share of all nursing staff who left within the year; test this first",
+      "use": "measure",
+      "watch": "fill not yet measured; homes with blank staffing drop out"
+     },
+     {
+      "name": "REGISTERED_NURSE_TURNOVER",
+      "plain": "share of registered nurses who left within the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "NUMBER_OF_ADMINISTRATORS_WHO_HAVE_LEFT_THE_NURSING_HOME",
+      "plain": "how many administrators quit the home in the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REPORTED_RN_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "registered-nurse hours per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "nurse hours of all kinds per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "DEVIATION_FROM_EXPECTED_TOTAL_NURSE_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "gap between the nurse hours reported and the nurse hours expected for the home",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOTAL_NUMBER_OF_NURSE_STAFF_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND",
+      "plain": "nurse hours per resident per day on weekends",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is certified to fill; use for size bands",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "kind of owner, such as For profit - Limited Liability company or Non profit - Corporation",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state of the home; compare inside one state",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one inspection",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_NURSINGHOME411.CMS_CERTIFICATION_NUMBER_CCN; keep SURVEY_DATE after 2025-12-01",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home that was cited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day the inspectors were in the building",
+      "use": "date",
+      "watch": "forward window is only 2025-12-01 to 2026-05-20; count citations per survey date, not per home"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade A to L for how bad and how widespread; G through L means harm",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DEFICIENCY_TAG_NUMBER",
+      "plain": "the number of the federal rule the home broke",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, later snapshot",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_NURSINGHOME411.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_NURSING_STAFF_TURNOVER",
+      "plain": "share of nursing staff who left within the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "nurse hours of all kinds per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-107",
+  "section": "Body",
+  "idea": "Add up nursing-home fines by who owns the homes, and a few owners turn out to collect the same fine over and over.",
+  "why": "A fine per building looks small. A fine per owner across forty buildings shows who treats penalties as a cost of doing business.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+    "one_row": "one fine or payment denial against one home",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.CCN, and HEALTH__FED_CMS_NURSING_HOME.CMS_CERTIFICATION_NUMBER_CCN on the side path",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home that was penalised",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_DATE",
+      "plain": "the day the fine or payment denial was issued, 2023-06-17 to 2026-05-13",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_TYPE",
+      "plain": "what the penalty was: Fine, or Payment Denial",
+      "use": "filter",
+      "watch": "only Fine rows carry a dollar amount; 2,470 of 16,180 rows are payment denials"
+     },
+     {
+      "name": "FINE_AMOUNT",
+      "plain": "dollars the home was fined on this row",
+      "use": "measure",
+      "watch": "blank on the 2,470 payment-denial rows, 15% of the table"
+     },
+     {
+      "name": "FINE_ID",
+      "plain": "the id number given to one fine",
+      "use": "label",
+      "watch": "blank on 2,470 payment-denial rows; count distinct drops them silently; not a full row id"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot",
+    "connects": "side path: CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME_PENALTIES.CMS_CERTIFICATION_NUMBER_CCN, then group by CHAIN_ID",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_NAME",
+      "plain": "the name of the chain the home belongs to",
+      "use": "label",
+      "watch": "blank on 4,221 of 14,700 homes, 28.7%"
+     },
+     {
+      "name": "CHAIN_ID",
+      "plain": "the id number of the chain the home belongs to",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is certified to fill; divides fines into dollars per bed",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state where the home sits",
+      "use": "filter",
+      "watch": "Illinois fines $825 per bed against $261 for the rest of the US"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "one_row": "one Medicare enrollment of one nursing home",
+    "connects": "CCN matches HEALTH__FED_CMS_NURSING_HOME_PENALTIES.CMS_CERTIFICATION_NUMBER_CCN; ENROLLMENT_ID matches FED_CMS_SNF_OWNERSHIP.ENROLLMENT_ID",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "the id of this home's Medicare enrollment record",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CCN",
+      "plain": "the federal certification number of the nursing home, 14,026 different ones",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ORGANIZATION_NAME",
+      "plain": "the legal name the home enrolled under",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_SNF_OWNERSHIP",
+    "one_row": "one enrollment, one owner, one role",
+    "connects": "ENROLLMENT_ID matches HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS.ENROLLMENT_ID; then group by ASSOCIATE_ID_OWNER",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "the id of the nursing home's Medicare enrollment record",
+      "use": "join",
+      "watch": "288,550 of 295,083 owner rows join; 6,533 name enrollments the snapshot does not carry"
+     },
+     {
+      "name": "ASSOCIATE_ID_OWNER",
+      "plain": "the id number of the owner, 89,543 different ones; group fines by this",
+      "use": "join",
+      "watch": "current owners only; a home bought in 2025 hands its 2023 fines to the new owner"
+     },
+     {
+      "name": "ORGANIZATION_NAME_OWNER",
+      "plain": "the company name of the owner",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ROLE_TEXT_OWNER",
+      "plain": "what the owner's role is; top value is ADP OF THE SNF at 93,015 rows",
+      "use": "filter",
+      "watch": "pick roles first, or one fine is counted once per officer"
+     },
+     {
+      "name": "PERCENTAGE_OWNERSHIP",
+      "plain": "what percent of the home this owner holds; use as a floor",
+      "use": "filter",
+      "watch": "filled on 96,823 of 295,083 rows"
+     },
+     {
+      "name": "TYPE_OWNER",
+      "plain": "kind of owner; coded value, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-105",
+  "section": "Body",
+  "idea": "When a nursing home gets fined and loses a star on the public rating site, which one happened first?",
+  "why": "If the fine comes first, stars are a late signal for families. If the star drops first, the rating is an early warning of fines to come.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+    "one_row": "one fine or payment denial against one home",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches the same column on HEALTH__FED_NURSINGHOME411 and HEALTH__FED_CMS_NURSING_HOME",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home that was penalised",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_DATE",
+      "plain": "the day the fine or payment denial was issued, 2023-06-17 to 2026-05-13",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_TYPE",
+      "plain": "what the penalty was: Fine, or Payment Denial",
+      "use": "filter",
+      "watch": "only Fine rows carry a dollar amount; 2,470 of 16,180 rows are payment denials"
+     },
+     {
+      "name": "FINE_AMOUNT",
+      "plain": "dollars the home was fined on this row",
+      "use": "measure",
+      "watch": "blank on the 2,470 payment-denial rows, 15% of the table"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411",
+    "one_row": "one nursing home, earlier snapshot of 2025-12-01, with stars and two rating cycles",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME.CMS_CERTIFICATION_NUMBER_CCN; star change is later OVERALL_RATING minus earlier",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": "14,713 rows but 14,345 distinct numbers; dedupe before joining or rows double"
+     },
+     {
+      "name": "OVERALL_RATING",
+      "plain": "the home's overall star rating, one to five, as of 2025-12-01",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "HEALTH_INSPECTION_RATING",
+      "plain": "the star rating for inspections alone, one to five",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RATING_CYCLE_1_STANDARD_SURVEY_HEALTH_DATE",
+      "plain": "the day of the most recent regular inspection that feeds the stars",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "RATING_CYCLE_2_STANDARD_HEALTH_SURVEY_DATE",
+      "plain": "the day of the regular inspection before that one",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "RATING_CYCLE_1_TOTAL_NUMBER_OF_HEALTH_DEFICIENCIES",
+      "plain": "citations written at the most recent regular inspection",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "RATING_CYCLE_2_3_TOTAL_NUMBER_OF_HEALTH_DEFICIENCIES",
+      "plain": "citations written at the earlier regular inspections",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, later snapshot of 2026-05-01, with stars",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_NURSINGHOME411.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": "14,700 rows but 14,328 distinct numbers; dedupe before joining or rows double"
+     },
+     {
+      "name": "OVERALL_RATING",
+      "plain": "the home's overall star rating, one to five, as of 2026-05-01",
+      "use": "measure",
+      "watch": "only two star readings five months apart; penalties end 2026-05-13"
+     },
+     {
+      "name": "HEALTH_INSPECTION_RATING",
+      "plain": "the star rating for inspections alone, one to five",
+      "use": "measure",
+      "watch": "a fine and a lost inspection star often come from the same inspection"
+     },
+     {
+      "name": "RATING_CYCLE_1_TOTAL_HEALTH_SCORE",
+      "plain": "the inspection points score from the most recent regular inspection",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RATING_CYCLE_2_3_TOTAL_HEALTH_SCORE",
+      "plain": "the inspection points score from the earlier regular inspections",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-110",
+  "section": "Body",
+  "idea": "Some big, thinly staffed, for-profit nursing homes in tough states have almost no citations, and that looks too good to be true.",
+  "why": "A record far cleaner than similar homes means either a very good home or a weak inspection. Either way it is a short list worth a visit.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN left-joins to HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES.CMS_CERTIFICATION_NUMBER_CCN so homes with no citations stay in",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": "14,700 rows but 14,328 distinct numbers; dedupe before joining or rows double"
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state of the home; peers must be in the same state",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is certified to fill; use for size bands",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY",
+      "plain": "how many residents live in the home on a typical day",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "kind of owner, such as For profit - Limited Liability company or Non profit - Corporation",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "nurse hours of all kinds per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOTAL_NURSING_STAFF_TURNOVER",
+      "plain": "share of nursing staff who left within the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "DATE_OF_MOST_RECENT_HEALTH_INSPECTION",
+      "plain": "the day inspectors last walked the home",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "MOST_RECENT_HEALTH_INSPECTION_MORE_THAN_2_YEARS_AGO",
+      "plain": "Y when the last inspection is over two years old: Y 1,057 homes, N 13,643",
+      "use": "filter",
+      "watch": "check this first; a skipped inspection looks the same as a clean record"
+     },
+     {
+      "name": "TOTAL_NUMBER_OF_HEALTH_DEFICIENCIES",
+      "plain": "the home's citation count as the snapshot states it",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "DATE_FIRST_APPROVED_TO_PROVIDE_MEDICARE_AND_MEDICAID_SERVICES",
+      "plain": "the day the home was first approved to take Medicare and Medicaid patients",
+      "use": "date",
+      "watch": "a home that opened in 2025 looks clean because it is new"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one inspection",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the cited home, 14,275 different homes",
+      "use": "join",
+      "watch": "a home with zero citations has no rows here at all"
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day the inspectors were in the building",
+      "use": "date",
+      "watch": "real coverage is 2023-2026 only: 273 rows in 2017 against 121,925 in 2024"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade A to L for how bad and how widespread; G through L means harm",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_TYPE",
+      "plain": "kind of inspection; every row in the profile says Health",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-104",
+  "section": "Body",
+  "idea": "After a nursing home gets fined, does it actually clean up, compared with a similar home that was never fined?",
+  "why": "If citations drop after a fine, fines work. If not, the fine is just a bill the home pays and carries on.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+    "one_row": "one fine or payment denial against one home",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES.CMS_CERTIFICATION_NUMBER_CCN; split citations at the first PENALTY_DATE",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home that was penalised",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_DATE",
+      "plain": "the day the fine or payment denial was issued, 2023-06-17 to 2026-05-13",
+      "use": "date",
+      "watch": "3,722 homes have 2+ penalties; the first fine in this window may not be the first ever"
+     },
+     {
+      "name": "PENALTY_TYPE",
+      "plain": "what the penalty was: Fine, or Payment Denial",
+      "use": "filter",
+      "watch": "2,470 of 16,180 rows are payment denials; decide up front whether they count"
+     },
+     {
+      "name": "FINE_AMOUNT",
+      "plain": "dollars the home was fined on this row",
+      "use": "measure",
+      "watch": "blank on the 2,470 payment-denial rows"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one inspection",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches HEALTH__FED_CMS_NURSING_HOME_PENALTIES.CMS_CERTIFICATION_NUMBER_CCN",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home that was cited",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day the inspectors were in the building",
+      "use": "date",
+      "watch": "fined homes get inspected more; count citations per survey date, real coverage 2023-2026"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade A to L for how bad and how widespread; G through L means harm",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "DEFICIENCY_TAG_NUMBER",
+      "plain": "the number of the federal rule the home broke",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot; the pool of unfined look-alike homes",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches the same column on penalties and deficiencies; twin homes share STATE, bed band and OWNERSHIP_TYPE",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "the federal certification number of the nursing home",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state of the home; twins must share it",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds the home is certified to fill; use for size bands",
+      "use": "filter",
+      "watch": "today's snapshot, not the value at the time of the fine"
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "kind of owner, such as For profit - Limited Liability company or Non profit - Corporation",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "LATITUDE",
+      "plain": "north-south map position of the home",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "LONGITUDE",
+      "plain": "east-west map position of the home",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ }
+]

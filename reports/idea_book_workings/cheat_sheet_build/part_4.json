@@ -1,0 +1,2015 @@
+[
+ {
+  "id": "WN-147",
+  "section": "Body",
+  "idea": "Guess how many citations each nursing home should get from its size, staffing, owner type and state, then list the homes where the guess was way off.",
+  "why": "A home far off the guess has something going on that size and staffing do not explain. If the misses share one state agency or one owner, that is the lead.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot; the model inputs",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES, measured 100%, left join",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the home sits in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds Medicare has approved at this home",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY",
+      "plain": "how many people actually live in the home on a typical day",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "who owns it in words, such as For profit - Limited Liability company or Non profit - Corporation",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "URBAN",
+      "plain": "Y if the home is in a city area, N if rural",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PROVIDER_RESIDES_IN_HOSPITAL",
+      "plain": "Y if the home sits inside a hospital, N if it stands alone",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "REPORTED_RN_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "registered nurse hours worked per resident per day, as the home reported",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "all nursing staff hours worked per resident per day, as the home reported",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "NURSING_CASE_MIX_INDEX",
+      "plain": "score for how sick the residents are, so staffing can be compared fairly",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_NURSING_STAFF_TURNOVER",
+      "plain": "share of all nursing staff who left during the year",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "REGISTERED_NURSE_TURNOVER",
+      "plain": "share of registered nurses who left during the year",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation; the outcome",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day inspectors visited and wrote this citation",
+      "use": "date",
+      "watch": "runs 2017-03-23 to 2026-05-20 but real coverage is 2023-2026; 273 rows in 2017 against 121,925 in 2024"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade for how bad and how widespread the problem was; D is most common, then E, F, G, J",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-149",
+  "section": "Body",
+  "idea": "Medicare puts the worst nursing homes on a named watch list, so check whether the homes that got picked improve faster than equally bad homes that did not.",
+  "why": "If listed homes and the runner-up homes track each other, the watch list changes nothing the citation record can show. That matters because the list is Medicare's main tool for the worst homes.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, later snapshot dated 2026-05-01",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_NURSINGHOME411 and on HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES, both measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SPECIAL_FOCUS_STATUS",
+      "plain": "watch list status: SFF means on the list, SFF Candidate means just as bad but not picked, blank means neither",
+      "use": "filter",
+      "watch": "88 listed and 440 candidates; there is no date saying when a home was listed"
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the home sits in",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds Medicare has approved at this home",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_NURSINGHOME411",
+    "one_row": "one nursing home, earlier snapshot dated 2025-12-01",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%; compare SPECIAL_FOCUS_STATUS across the two",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SPECIAL_FOCUS_STATUS",
+      "plain": "watch list status in December 2025: SFF on the list, SFF Candidate not picked, blank neither",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PROBLEM_FACILITIES_SFFS_CANDIDATES_ONE_STAR",
+      "plain": "Yes if the home is on the watch list, a candidate, or rated one star; otherwise No",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PROCESSING_DATE",
+      "plain": "the date Medicare cut this snapshot; every row says 2025-12-01",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one survey",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day inspectors visited and wrote this citation",
+      "use": "date",
+      "watch": "runs 2017-03-23 to 2026-05-20 but real coverage is 2023-2026; 273 rows in 2017 against 121,925 in 2024"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade for how bad and how widespread the problem was; D is most common, then E, F, G, J",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "H-111",
+  "section": "Body",
+  "idea": "Check whether nursing home inspectors mostly show up in the last weeks before the deadline, no matter how bad the home is.",
+  "why": "If visit gaps pile up at one fixed length for good and bad homes alike, the calendar sets the visit, not the risk. Bad homes would then wait as long as clean ones.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one survey",
+    "connects": "",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day inspectors visited and wrote this citation",
+      "use": "date",
+      "watch": "a clean survey leaves no row, so its date is missing and the gap across it reads double; real coverage 2023-2026"
+     },
+     {
+      "name": "INSPECTION_CYCLE",
+      "plain": "which of the home's last three standard inspections this was: 1, 2 or 3",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "SURVEY_TYPE",
+      "plain": "kind of survey; every row in this table says Health",
+      "use": "filter",
+      "watch": "fill not yet measured; check values first"
+     },
+     {
+      "name": "STANDARD_DEFICIENCY",
+      "plain": "Y if the citation came from a scheduled standard inspection, N if not",
+      "use": "filter",
+      "watch": "check its values first"
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the home sits in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-150",
+  "section": "Body",
+  "idea": "Find the nursing homes that get the exact same two or three citations at the same letter grade on every single visit.",
+  "why": "A record that never varies says more about the inspector's checklist than about the home. Clusters of these in one state or district point at the inspection office.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one survey",
+    "connects": "",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day inspectors visited and wrote this citation",
+      "use": "date",
+      "watch": "runs 2017-03-23 to 2026-05-20 but real coverage is 2023-2026; 273 rows in 2017 against 121,925 in 2024"
+     },
+     {
+      "name": "DEFICIENCY_TAG_NUMBER",
+      "plain": "the number of the specific rule the home broke",
+      "use": "measure",
+      "watch": "fill not yet measured; a few tags are cited almost everywhere, so weight by how rare the tag is in that state"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade for how bad and how widespread the problem was; D is most common, then E, F, G, J",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "DEFICIENCY_CATEGORY",
+      "plain": "broad family of the broken rule in words, such as Resident Rights Deficiencies",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the home sits in",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "WN-154",
+  "section": "Body",
+  "idea": "Some nursing homes with no chain name on file look exactly like one chain's homes on staffing, turnover and citations, so find them.",
+  "why": "A lookalike is a lead on shared management that the official chain label does not show. It is a lead only, not proof of common ownership.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot",
+    "connects": "",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAIN_NAME",
+      "plain": "name of the chain the home says it belongs to",
+      "use": "label",
+      "watch": "blank on 4,221 of 14,700 homes (28.7%); includes hospital systems; name matching gave 5 of 15 false positives"
+     },
+     {
+      "name": "CHAIN_ID",
+      "plain": "Medicare's number for the chain; use this, not the name, to group a chain",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_FACILITIES_IN_CHAIN",
+      "plain": "how many homes that chain runs in total",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the home sits in; hold it fixed or clusters are just maps",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds Medicare has approved at this home",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "REPORTED_NURSE_AIDE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "nurse aide hours worked per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REPORTED_LPN_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "licensed practical nurse hours worked per resident per day, as reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REPORTED_RN_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "registered nurse hours worked per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REGISTERED_NURSE_HOURS_PER_RESIDENT_PER_DAY_ON_THE_WEEKEND",
+      "plain": "registered nurse hours per resident per day on Saturdays and Sundays",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "NURSING_CASE_MIX_INDEX",
+      "plain": "score for how sick the residents are, so staffing can be compared fairly",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOTAL_NURSING_STAFF_TURNOVER",
+      "plain": "share of all nursing staff who left during the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REGISTERED_NURSE_TURNOVER",
+      "plain": "share of registered nurses who left during the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOTAL_WEIGHTED_HEALTH_SURVEY_SCORE",
+      "plain": "Medicare's points total for the home's recent inspections; higher means a worse record",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOTAL_AMOUNT_OF_FINES_IN_DOLLARS",
+      "plain": "dollars of federal fines against the home in the recent window",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "N3",
+  "section": "Body",
+  "idea": "Take the roughly 684 nursing homes that told Medicare a private-equity firm or a real-estate trust owns them, and compare them with similar homes that did not say so.",
+  "why": "If flagged homes show fewer nurse hours, more turnover and more fines than matched neighbors, investor ownership shows up in care. A tie says little, because unflagged homes may be investor-owned too.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CMS_SNF_OWNERSHIP",
+    "one_row": "one enrollment x one owner x one role",
+    "connects": "ENROLLMENT_ID matches ENROLLMENT_ID on HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS; 288,550 of 295,083 rows join",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for one home's sign-up to bill Medicare; the only link out of this file",
+      "use": "join",
+      "watch": "this file has no CCN of its own"
+     },
+     {
+      "name": "PRIVATE_EQUITY_COMPANY_OWNER",
+      "plain": "Y if the home reported this owner is a private-equity company",
+      "use": "filter",
+      "watch": "Y on 196 rows, 97 enrollments (0.67%); blank on 198,546 rows (67%); blank is unknown, never no"
+     },
+     {
+      "name": "REIT_OWNER",
+      "plain": "Y if the home reported this owner is a real-estate investment trust",
+      "use": "filter",
+      "watch": "Y on 587 enrollments; blank on 198,546 rows (67%); blank is unknown, never no"
+     },
+     {
+      "name": "ORGANIZATION_NAME_OWNER",
+      "plain": "the owner's company name as written on the form",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ASSOCIATE_ID_OWNER",
+      "plain": "Medicare's id number for the owner itself",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "ROLE_TEXT_OWNER",
+      "plain": "what the owner does at the home in words, such as owner or managing party",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "PERCENTAGE_OWNERSHIP",
+      "plain": "what percent of the home this owner holds",
+      "use": "measure",
+      "watch": "filled on 96,823 of 295,083 rows"
+     },
+     {
+      "name": "ASSOCIATION_DATE_OWNER",
+      "plain": "when this owner's tie to the home began",
+      "use": "date",
+      "watch": "free text in mixed formats with 1800 placeholder dates; current owners only, no purchase date"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_SKILLED_NURSING_FACILITY_ENROLLMENTS",
+    "one_row": "one Medicare enrollment of one skilled nursing facility",
+    "connects": "ENROLLMENT_ID matches ENROLLMENT_ID on FED_CMS_SNF_OWNERSHIP; CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "ENROLLMENT_ID",
+      "plain": "Medicare's id for one home's sign-up to bill Medicare",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CCN",
+      "plain": "Medicare's six-character id for the nursing home building",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PROPRIETARY_NONPROFIT",
+      "plain": "one-letter owner kind: P for profit, N nonprofit; D also appears, meaning not given here",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME",
+    "one_row": "one nursing home, current snapshot",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CCN on the enrollments table, and the same column on the deficiencies and penalties tables, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state the home sits in; used to pick matched peers",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NUMBER_OF_CERTIFIED_BEDS",
+      "plain": "how many beds Medicare has approved; used to pick peers of the same size",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "OWNERSHIP_TYPE",
+      "plain": "who owns it in words, such as For profit - Corporation; used to pick peers",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "OVERALL_RATING",
+      "plain": "Medicare's overall star rating for the home, one to five stars",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STAFFING_RATING",
+      "plain": "Medicare's star rating for staffing alone, one to five stars",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY",
+      "plain": "all nursing staff hours worked per resident per day, as the home reported",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TOTAL_NURSING_STAFF_TURNOVER",
+      "plain": "share of all nursing staff who left during the year",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+    "one_row": "one health citation at one home on one survey",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_DATE",
+      "plain": "the day inspectors visited and wrote this citation",
+      "use": "date",
+      "watch": "runs 2017-03-23 to 2026-05-20 but real coverage is 2023-2026; 273 rows in 2017 against 121,925 in 2024"
+     },
+     {
+      "name": "SCOPE_SEVERITY_CODE",
+      "plain": "letter grade for how bad and how widespread the problem was; D is most common, then E, F, G, J",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME_PENALTIES",
+    "one_row": "one fine or payment denial against one home",
+    "connects": "CMS_CERTIFICATION_NUMBER_CCN matches CMS_CERTIFICATION_NUMBER_CCN on HEALTH__FED_CMS_NURSING_HOME, measured 100%",
+    "columns": [
+     {
+      "name": "CMS_CERTIFICATION_NUMBER_CCN",
+      "plain": "Medicare's six-character id for the nursing home building, same on every home table",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PENALTY_DATE",
+      "plain": "the day the fine or payment denial was imposed",
+      "use": "date",
+      "watch": "starts 2023-06-17; the record may belong to a prior owner"
+     },
+     {
+      "name": "PENALTY_TYPE",
+      "plain": "Fine, or Payment Denial meaning Medicare stopped paying for new residents",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FINE_AMOUNT",
+      "plain": "dollars of the fine charged to the home",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W51",
+  "section": "Money",
+  "idea": "Check whether big investment managers loaded up on a company's stock in the quarter right before that company won a federal contract.",
+  "why": "If share counts rise before awards more than in ordinary quarters, someone saw the contract coming. If not, contract wins are not visible in advance in quarterly holdings.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_HOLDINGS",
+    "one_row": "one stock position on one manager's quarterly filing",
+    "connects": "ACCESSION_NUMBER matches ACCESSION_NUMBER on FINANCE__FED_SEC_13F_SUBMISSIONS; CUSIP matches CUSIP on FED_SEC_13F_SECURITIES_LIST; NAMEOFISSUER matches RECIPIENT_PARENT_NAME on the contract tables by name, two or more words only",
+    "columns": [
+     {
+      "name": "ACCESSION_NUMBER",
+      "plain": "the SEC's receipt number for one filing; ties each holding to its filing",
+      "use": "join",
+      "watch": "fill not yet measured, unprofiled view"
+     },
+     {
+      "name": "NAMEOFISSUER",
+      "plain": "name of the company whose stock is held, as the manager typed it",
+      "use": "join",
+      "watch": "name match only; multi-word matches held up 92% of the time, single-word 8%"
+     },
+     {
+      "name": "CUSIP",
+      "plain": "nine-character code for the stock itself, not for the company",
+      "use": "join",
+      "watch": "there is no table linking it to a company id"
+     },
+     {
+      "name": "VALUE_USD",
+      "plain": "dollar value of the position on the report date",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "SSHPRNAMT",
+      "plain": "how many shares, or how much bond face value, the manager holds",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "PUTCALL",
+      "plain": "Put or Call if the position is an option; blank for plain shares",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_SUBMISSIONS",
+    "one_row": "one 13F filing by one manager",
+    "connects": "ACCESSION_NUMBER matches ACCESSION_NUMBER on FINANCE__FED_SEC_13F_HOLDINGS; gives the quarter",
+    "columns": [
+     {
+      "name": "ACCESSION_NUMBER",
+      "plain": "the SEC's receipt number for one filing",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CIK",
+      "plain": "the SEC's id number for the investment manager who filed; 16,205 managers",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "PERIODOFREPORT",
+      "plain": "the quarter-end date the holdings list describes",
+      "use": "date",
+      "watch": "the load missed 7 of 53 source zips; count filings per quarter before reading a change as real"
+     },
+     {
+      "name": "FILING_DATE",
+      "plain": "the day the manager sent the filing to the SEC",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_SEC_13F_SECURITIES_LIST",
+    "one_row": "one line of the SEC's official 13F securities list",
+    "connects": "CUSIP matches CUSIP on FINANCE__FED_SEC_13F_HOLDINGS; dedupe the list on CUSIP first",
+    "columns": [
+     {
+      "name": "CUSIP",
+      "plain": "nine-character code for the stock on the official list",
+      "use": "join",
+      "watch": "25,333 lines but 23,277 distinct, about 2,000 exact repeats"
+     },
+     {
+      "name": "ISSUER_NAME",
+      "plain": "the SEC's official spelling of the company name for that stock",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATUS",
+      "plain": "coded value, look at distinct values first",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK",
+    "one_row": "one EPA facility matched to a corporate parent",
+    "connects": "PARENT_LEGAL_NAME matches NAMEOFISSUER on FINANCE__FED_SEC_13F_HOLDINGS by name; PARENT_UEI matches RECIPIENT_PARENT_UEI on the contract tables",
+    "columns": [
+     {
+      "name": "PARENT_LEGAL_NAME",
+      "plain": "legal name of the parent company that owns the facility",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "PARENT_CIK",
+      "plain": "the SEC's id number for the parent company",
+      "use": "label",
+      "watch": "2.25% filled, 705 distinct"
+     },
+     {
+      "name": "PARENT_UEI",
+      "plain": "the government's contractor id for the parent company",
+      "use": "join",
+      "watch": "8.07% filled, 389,581 blank strings"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "RECIPIENT_PARENT_NAME matches NAMEOFISSUER on FINANCE__FED_SEC_13F_HOLDINGS by name; RECIPIENT_PARENT_UEI matches PARENT_UEI on ENVIRONMENT__XC_EPA_CORPORATE_CROSSWALK",
+    "columns": [
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of the company that got the contract money",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_PARENT_NAME",
+      "plain": "name of the parent company that owns the recipient",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's contractor id for the recipient",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "RECIPIENT_PARENT_UEI",
+      "plain": "the government's contractor id for the recipient's parent company",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this contract action was signed",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this action",
+      "use": "measure",
+      "watch": "signed number; filter to values above zero or totals read wrong"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W52",
+  "section": "Money",
+  "idea": "See whether members of Congress buy and sell stock in the days right around their own recorded floor votes.",
+  "why": "If trades bunch near votes more than chance would give, members may be trading on what they know is coming. Votes happen most weeks, so a miss is a real possibility.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_HOUSE_PTR",
+    "one_row": "one trade line parsed from a House periodic transaction report PDF",
+    "connects": "FILER_LAST + FILER_FIRST + STATE_DISTRICT match NAME_LAST + NAME_FIRST + LAST_STATE + LAST_DISTRICT on POLITICS__MEMBER_CROSSWALK by name",
+    "columns": [
+     {
+      "name": "FILER_LAST",
+      "plain": "last name of the House member who filed the report",
+      "use": "join",
+      "watch": "no member id on this table; name match only"
+     },
+     {
+      "name": "FILER_FIRST",
+      "plain": "first name of the House member who filed the report",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE_DISTRICT",
+      "plain": "the member's state and district number in one value",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the stock was bought or sold",
+      "use": "date",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "coded value, look at distinct values first; says buy or sell",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TICKER",
+      "plain": "stock symbol of what was traded",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "AMOUNT_RANGE",
+      "plain": "dollar bracket for the trade; no exact figure is ever reported",
+      "use": "measure",
+      "watch": "a range only, so any total is a bounded estimate"
+     },
+     {
+      "name": "IS_SCAN",
+      "plain": "marks a report filed as a scanned image instead of typed text",
+      "use": "filter",
+      "watch": "scanned reports could not be read and carry no trade lines"
+     },
+     {
+      "name": "FILING_YEAR",
+      "plain": "the year the report was filed, 2021 to 2026",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_SENATE_EFD_PTR",
+    "one_row": "one trade line on a Senate periodic transaction report",
+    "connects": "FILER_LAST_CLEAN matches NAME_LAST on POLITICS__MEMBER_CROSSWALK; of 62 filers, 26 land clean, 29 ambiguous, 7 missed",
+    "columns": [
+     {
+      "name": "FILER_LAST_CLEAN",
+      "plain": "tidied last name of the senator who filed",
+      "use": "join",
+      "watch": "last name alone is ambiguous for 29 of 62 filers; Scott matches two sitting senators; do not use SENATOR, it holds the word Senator on 98 rows"
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the stock was bought or sold",
+      "use": "date",
+      "watch": "98.54% filled"
+     },
+     {
+      "name": "TICKER",
+      "plain": "stock symbol of what was traded",
+      "use": "label",
+      "watch": "100 blank strings"
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "what happened in words: Purchase, Sale (Full), Sale (Partial) or Exchange",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "AMOUNT_RANGE",
+      "plain": "dollar bracket for the trade, such as $1,001 - $15,000",
+      "use": "measure",
+      "watch": "a range only, so any total is a bounded estimate"
+     },
+     {
+      "name": "FILING_ID",
+      "plain": "the Senate's id for the report this trade line came from",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_CROSSWALK",
+    "one_row": "one member of Congress, all of history, with every id",
+    "connects": "NAME_LAST + NAME_FIRST + LAST_STATE + LAST_DISTRICT match the House filer columns; NAME_LAST matches FILER_LAST_CLEAN; ICPSR matches ICPSR on POLITICS__VOTEVIEW_VOTES",
+    "columns": [
+     {
+      "name": "NAME_LAST",
+      "plain": "last name of the member of Congress",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NAME_FIRST",
+      "plain": "first name of the member of Congress",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "LAST_STATE",
+      "plain": "state the member most recently represented",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "LAST_DISTRICT",
+      "plain": "House district number the member most recently held",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "LAST_TERM_TYPE",
+      "plain": "most recent office: rep for House, sen for Senate",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ICPSR",
+      "plain": "the id number political scientists give each member; it is how the vote tables name people",
+      "use": "join",
+      "watch": "96.12% filled"
+     },
+     {
+      "name": "BIOGUIDE",
+      "plain": "Congress's own official id for the member",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES",
+    "one_row": "one member's vote on one roll call",
+    "connects": "ICPSR matches ICPSR on POLITICS__MEMBER_CROSSWALK; CONGRESS + CHAMBER + ROLLNUMBER match the same three columns on POLITICS__VOTEVIEW_ROLLCALLS",
+    "columns": [
+     {
+      "name": "ICPSR",
+      "plain": "the id number for the member who cast the vote; 639 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CONGRESS",
+      "plain": "which two-year Congress the vote happened in, as a number",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAMBER",
+      "plain": "which chamber held the vote: House or Senate",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ROLLNUMBER",
+      "plain": "the vote's running number inside that Congress and chamber",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CAST_CODE",
+      "plain": "how the member voted as a number: 1 yea, 6 nay, 9 not voting, 7 present",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "VOTE_POSITION",
+      "plain": "how the member voted in words: yea, nay, not_voting or present",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_ROLLCALLS",
+    "one_row": "one roll-call vote",
+    "connects": "CONGRESS + CHAMBER + ROLLNUMBER match the same three columns on POLITICS__VOTEVIEW_VOTES; gives VOTE_DATE",
+    "columns": [
+     {
+      "name": "CONGRESS",
+      "plain": "which two-year Congress the vote happened in, as a number",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CHAMBER",
+      "plain": "which chamber held the vote: House or Senate",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ROLLNUMBER",
+      "plain": "the vote's running number inside that Congress and chamber",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "VOTE_DATE",
+      "plain": "the day the floor vote was held, 2023-01-03 to 2026-06-25",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "BILL_NUMBER",
+      "plain": "the bill the vote was about, such as a House or Senate bill number",
+      "use": "label",
+      "watch": "no subject code; tying a vote to an industry needs hand-coding"
+     },
+     {
+      "name": "VOTE_QUESTION",
+      "plain": "what was being decided in words, such as passage or an amendment",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "VOTE_DESC",
+      "plain": "short written description of the vote",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W53",
+  "section": "Money",
+  "idea": "Find the ZIP codes whose residents write the most campaign checks per household while the fewest federal contract and grant dollars come back to that ZIP.",
+  "why": "It shows which places fund politics without seeing federal money land locally. If giving and getting rise together, campaign money and contractor offices share an address, which is its own finding.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "one_row": "one itemized contribution from one person to one committee",
+    "connects": "left 5 of ZIP_CODE matches left 5 of RECIPIENT_ZIP_4_CODE on contracts, RECIPIENT_ZIP_CODE on assistance, and ZIP_CODE on FINANCE__FED_IRS_SOI",
+    "columns": [
+     {
+      "name": "ZIP_CODE",
+      "plain": "ZIP code of the donor's mailing address",
+      "use": "join",
+      "watch": "mixes 5 and 9 digit forms, take the left 5; 321,021 blank strings; a ZIP is a place, not a payer"
+     },
+     {
+      "name": "TRANSACTION_AMT",
+      "plain": "dollars the person gave in this one contribution",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "TRANSACTION_DATE",
+      "plain": "the day the contribution was made",
+      "use": "date",
+      "watch": "99.98% filled; junk end dates run 0031-04-10 to 9206-07-02"
+     },
+     {
+      "name": "TRANSACTION_TYPE",
+      "plain": "code for the kind of money movement; 15 is a plain contribution, 15E is an earmarked pass-through",
+      "use": "filter",
+      "watch": "leave 15E in and the same dollar can count twice"
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state of the donor's mailing address",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "left 5 of RECIPIENT_ZIP_4_CODE matches left 5 of ZIP_CODE on FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "columns": [
+     {
+      "name": "RECIPIENT_ZIP_4_CODE",
+      "plain": "ZIP plus four of the contractor's office address",
+      "use": "join",
+      "watch": "fill not yet measured; it is where the office sits, not where the work lands"
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this action",
+      "use": "measure",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the federal budget year the action fell in",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_ASSISTANCE_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one grant, loan or direct-payment transaction",
+    "connects": "RECIPIENT_ZIP_CODE matches left 5 of ZIP_CODE on FINANCE__FED_FEC_INDIV_CONTRIBUTIONS",
+    "columns": [
+     {
+      "name": "RECIPIENT_ZIP_CODE",
+      "plain": "ZIP code of the recipient's office address",
+      "use": "join",
+      "watch": "fill not yet measured; it is where the office sits, not where the benefit lands"
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this action",
+      "use": "measure",
+      "watch": "exactly $0.00 on 11,788,945 loan rows; a total on this column alone drops 47% of rows"
+     },
+     {
+      "name": "FACE_VALUE_OF_LOAN",
+      "plain": "the size of the loan in dollars; where loan money actually shows up",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ASSISTANCE_TYPE_CODE",
+      "plain": "code for the kind of aid; 07 and 08 are loans",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "ACTION_DATE_FISCAL_YEAR",
+      "plain": "the federal budget year the action fell in",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS_SOI",
+    "one_row": "one ZIP by income bracket, tax return totals",
+    "connects": "ZIP_CODE matches left 5 of ZIP_CODE on FINANCE__FED_FEC_INDIV_CONTRIBUTIONS; the per-return denominator",
+    "columns": [
+     {
+      "name": "ZIP_CODE",
+      "plain": "five-digit ZIP code the tax returns came from; 29,922 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "N_RETURNS",
+      "plain": "how many tax returns were filed from this ZIP in this income bracket",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AGI",
+      "plain": "total income reported on those returns, after adjustments",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "AGI_STUB",
+      "plain": "income bracket number, 1 to 6; sum across brackets to get the whole ZIP",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TAX_YEAR",
+      "plain": "the tax year of the numbers",
+      "use": "date",
+      "watch": "2016 only; a fixed denominator, not a matching year"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CORE.XWALK_ZCTA_COUNTY",
+    "one_row": "one ZIP-area to county pairing",
+    "connects": "ZCTA5 matches the five-digit ZIP from the other tables; rolls up to COUNTY_FIPS",
+    "columns": [
+     {
+      "name": "ZCTA5",
+      "plain": "the Census version of a five-digit ZIP code area",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTY_FIPS",
+      "plain": "five-digit federal county code; 3,266 distinct",
+      "use": "join",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W55",
+  "section": "Money",
+  "idea": "Check whether the same few companies collect the federal contract work in the same county after every declared disaster.",
+  "why": "One firm winning after most storms in a county, far above its quiet-year share, points to a standing lock on disaster money. Changing winners would say the work is open.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_FEMA_DISASTER_DECLARATIONS",
+    "one_row": "one disaster by one designated area (county)",
+    "connects": "FIPSSTATECODE || FIPSCOUNTYCODE matches PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE on the contract tables",
+    "columns": [
+     {
+      "name": "DISASTERNUMBER",
+      "plain": "FEMA's number for one declared disaster",
+      "use": "measure",
+      "watch": "70,402 rows cover 5,264 disasters; count disasters with a distinct on this column"
+     },
+     {
+      "name": "DECLARATIONDATE",
+      "plain": "the day the disaster was officially declared",
+      "use": "date",
+      "watch": "ISO text with a Z suffix, not a date type"
+     },
+     {
+      "name": "INCIDENTTYPE",
+      "plain": "kind of disaster in words, such as hurricane, flood or fire",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "INCIDENTBEGINDATE",
+      "plain": "the day the storm or event itself started",
+      "use": "date",
+      "watch": "ISO text with a Z suffix, not a date type"
+     },
+     {
+      "name": "FIPSSTATECODE",
+      "plain": "two-digit federal code for the state",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "FIPSCOUNTYCODE",
+      "plain": "three-digit federal code for the county inside the state",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "DESIGNATEDAREA",
+      "plain": "name of the county or area covered, in words",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_USASPENDING_CONTRACTS_FY2007 to FY2026 (20 tables, same columns)",
+    "one_row": "one contract transaction",
+    "connects": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE matches FIPSSTATECODE || FIPSCOUNTYCODE on FED_FEMA_DISASTER_DECLARATIONS, with ACTION_DATE after DECLARATIONDATE",
+    "columns": [
+     {
+      "name": "RECIPIENT_UEI",
+      "plain": "the government's contractor id for the company paid",
+      "use": "label",
+      "watch": "one firm can appear under several of these"
+     },
+     {
+      "name": "RECIPIENT_NAME",
+      "plain": "name of the company that was paid on the contract",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RECIPIENT_PARENT_UEI",
+      "plain": "the government's contractor id for the company's parent",
+      "use": "label",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "ACTION_DATE",
+      "plain": "the day this contract action was signed",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "FEDERAL_ACTION_OBLIGATION",
+      "plain": "dollars the government committed on this action",
+      "use": "measure",
+      "watch": "signed number; filter above zero"
+     },
+     {
+      "name": "AWARDING_SUB_AGENCY_NAME",
+      "plain": "the office that awarded the contract, such as FEMA; narrows to disaster work",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "NATIONAL_INTEREST_ACTION",
+      "plain": "tag naming the specific disaster or emergency the contract was for",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "PRIME_AWARD_TRANSACTION_PLACE_OF_PERFORMANCE_COUNTY_FIPS_CODE",
+      "plain": "five-digit federal code of the county where the work was done",
+      "use": "join",
+      "watch": "measured on FY2024 only: filled on 93% of rows"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_NOAA_STORM_EVENTS",
+    "one_row": "one storm event in one county or forecast zone",
+    "connects": "STATE_FIPS || CZ_FIPS where CZ_TYPE = 'C' matches the same five-digit county code",
+    "columns": [
+     {
+      "name": "YEAR",
+      "plain": "the year the storm happened, 1996 to 2025",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "EVENT_TYPE",
+      "plain": "kind of storm in words, such as tornado, hail or flash flood",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "CZ_TYPE",
+      "plain": "what the area code means: C county, Z forecast zone, M marine",
+      "use": "filter",
+      "watch": "only C rows map to a county"
+     },
+     {
+      "name": "STATE_FIPS",
+      "plain": "two-digit federal code for the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "CZ_FIPS",
+      "plain": "county code, or forecast-zone code when CZ_TYPE is not C",
+      "use": "join",
+      "watch": "not a county code unless CZ_TYPE is C"
+     },
+     {
+      "name": "DAMAGE_PROPERTY",
+      "plain": "estimated property damage from the storm; the optional severity measure",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W56",
+  "section": "Money",
+  "idea": "When the bank regulator slaps a formal order on a bank, check whether that bank keeps writing mortgages in the very same counties as before.",
+  "why": "If the county footprint and loan volume do not move after an order, the order did not bite. If lending shrinks or moves, enforcement has real effect.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FDIC_ENFORCEMENT_ORDERS",
+    "one_row": "one FDIC enforcement order",
+    "connects": "CERT_NUMBER matches CERT on FINANCE__FED_FDIC_BANK_DATA and FDIC_CERT on FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "columns": [
+     {
+      "name": "CERT_NUMBER",
+      "plain": "the FDIC's certificate number for the bank; count banks by this, never by name",
+      "use": "join",
+      "watch": "97.86% filled"
+     },
+     {
+      "name": "ORDER_DATE",
+      "plain": "the day the order was issued",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "ORDER_TYPE",
+      "plain": "kind of order in words, such as Cease and Desist / Consent Orders or Assessment of Civil Money Penalty",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TERMINATION_DATE",
+      "plain": "the day the order was lifted",
+      "use": "date",
+      "watch": "20.94% filled"
+     },
+     {
+      "name": "BANK_RSSD_ID",
+      "plain": "the Federal Reserve's id number for the same bank",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "INSTITUTION_NAME",
+      "plain": "the bank's name as written on the order",
+      "use": "label",
+      "watch": "National Association names are one charter; count by CERT_NUMBER"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_BANK_DATA",
+    "one_row": "one FDIC-insured institution",
+    "connects": "CERT matches CERT_NUMBER on the orders table; LEI matches LEI on the HMDA_LAR year tables; CERT matches RESPONDENT_ID on HOUSING__FED_CFPB_HMDA_HISTORIC, split by AGENCY_CODE, measured 70%",
+    "columns": [
+     {
+      "name": "CERT",
+      "plain": "the FDIC's certificate number for the bank",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "LEI",
+      "plain": "the 20-character global company id that the newer mortgage files use for the lender",
+      "use": "join",
+      "watch": "8.09% filled, 2,236 distinct"
+     },
+     {
+      "name": "NAME",
+      "plain": "the bank's name as the FDIC records it",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "RSSDID",
+      "plain": "the Federal Reserve's id number for the bank",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "one_row": "one branch in one survey year",
+    "connects": "FDIC_CERT matches CERT_NUMBER on JUSTICE__FED_FDIC_ENFORCEMENT_ORDERS; gives the branch-county footprint",
+    "columns": [
+     {
+      "name": "FDIC_CERT",
+      "plain": "the FDIC's certificate number for the bank that owns the branch",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_YEAR",
+      "plain": "the year of the annual branch deposit count, 1994 to 2025",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_STATE_COUNTY_FIPS",
+      "plain": "five-digit federal code of the county where the branch stands",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_DEPOSITS_THOUSANDS",
+      "plain": "deposits held at that branch, in thousands of dollars",
+      "use": "measure",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CFPB_HMDA_LAR_2018 to 2024 (7 tables, same columns)",
+    "one_row": "one mortgage application",
+    "connects": "LEI matches LEI on FINANCE__FED_FDIC_BANK_DATA",
+    "columns": [
+     {
+      "name": "LEI",
+      "plain": "the 20-character global company id of the lender that took the application",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "state where the house being mortgaged sits",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "federal county code of the property; the finest place available along with tract, there is no ZIP",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application as a number: 1 loan made, 3 denied",
+      "use": "filter",
+      "watch": "2018 has 1,961 placeholder rows with '-1' and 2019 has 21; filter them first"
+     },
+     {
+      "name": "LOAN_AMOUNT",
+      "plain": "dollars the applicant asked to borrow",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ACTIVITY_YEAR",
+      "plain": "the calendar year of the application",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+    "one_row": "one mortgage application, old layout",
+    "connects": "RESPONDENT_ID, split by AGENCY_CODE, matches CERT on FINANCE__FED_FDIC_BANK_DATA, measured 70%",
+    "columns": [
+     {
+      "name": "RESPONDENT_ID",
+      "plain": "the lender's id as its regulator assigned it; only unique together with AGENCY_CODE",
+      "use": "join",
+      "watch": "not a real id on its own; pair with AGENCY_CODE"
+     },
+     {
+      "name": "AGENCY_CODE",
+      "plain": "number for which regulator the lender reports to; look at distinct values first",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "federal state code of the property",
+      "use": "filter",
+      "watch": "98.4% filled; unpadded text"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "three-digit county part of the property's federal code",
+      "use": "filter",
+      "watch": "98.17% filled; unpadded text; 19,331 denial rows have a null county"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application as a number: 1 loan made, 3 denied",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "AS_OF_YEAR",
+      "plain": "the calendar year of the application; the only date on the table",
+      "use": "date",
+      "watch": "fact helper shows 2015-2017; a probe file says 2007-2017"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W58",
+  "section": "Money",
+  "idea": "When a county's local bank fails or gets swallowed by another bank, check whether government-backed small-business loans in that county dry up afterward.",
+  "why": "If loan approvals fall and stay down where the vanished bank was big, losing a local bank costs small businesses their credit. Steady approvals would say other lenders filled the gap.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_SBA_LOANS",
+    "one_row": "one SBA-guaranteed loan approval",
+    "connects": "PROJECT_COUNTY + PROJECT_STATE match COUNTYNAME + STATE on FED_CENSUS_COUNTY_2020 by name",
+    "columns": [
+     {
+      "name": "PROJECT_COUNTY",
+      "plain": "name of the county where the business is, in words, not a code",
+      "use": "join",
+      "watch": "county names repeat across states and spellings vary; unmatched share not yet measured"
+     },
+     {
+      "name": "PROJECT_STATE",
+      "plain": "two-letter state where the business is",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "APPROVAL_DATE",
+      "plain": "the day the loan was approved, 1990-10-01 to 2026-03-31",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "APPROVAL_FISCAL_YEAR",
+      "plain": "the federal budget year the loan was approved in",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "GROSS_APPROVAL_AMOUNT",
+      "plain": "total dollars of the loan that was approved",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "LENDER_NAME",
+      "plain": "name of the bank that made the loan",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "LENDER_STATE",
+      "plain": "two-letter state of the bank that made the loan",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_BANK_DATA",
+    "one_row": "one FDIC-insured institution, open or closed",
+    "connects": "CERT matches FDIC_CERT on ECONOMICS__FED_FDIC_FAILED_BANKS and FDIC_CERT on FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "columns": [
+     {
+      "name": "CERT",
+      "plain": "the FDIC's certificate number for the bank",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FIPS",
+      "plain": "five-digit federal code of the bank's home county; 2,980 distinct",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "ENDEFYMD",
+      "plain": "the day the bank stopped existing under its own charter",
+      "use": "date",
+      "watch": "84.62% filled"
+     },
+     {
+      "name": "SUCCESSOR_CERT",
+      "plain": "certificate number of the bank that took this one over",
+      "use": "filter",
+      "watch": "what it holds for a bank still open has not been checked; confirm before calling every filled row a merger"
+     },
+     {
+      "name": "ACTIVE",
+      "plain": "1 if the bank is still open, 0 if it is gone",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "NAME",
+      "plain": "the bank's name as the FDIC records it",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_FDIC_FAILED_BANKS",
+    "one_row": "one bank failure",
+    "connects": "FDIC_CERT matches CERT on FINANCE__FED_FDIC_BANK_DATA; that is how a failure gets a county",
+    "columns": [
+     {
+      "name": "FDIC_CERT",
+      "plain": "the FDIC's certificate number for the failed bank",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FAIL_DATE",
+      "plain": "the day regulators closed the bank",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "ACQUIRING_INSTITUTION",
+      "plain": "name of the bank that took over the failed one",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "CITY",
+      "plain": "city where the failed bank was based",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STATE_ABBR",
+      "plain": "two-letter state where the failed bank was based",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "FIPS",
+      "plain": "meant to be the county code, but it holds nothing",
+      "use": "join",
+      "watch": "blank string on all 3,584 rows; do not use"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "one_row": "one branch in one survey year",
+    "connects": "FDIC_CERT matches CERT on FINANCE__FED_FDIC_BANK_DATA; gives branch counties the year before the end date",
+    "columns": [
+     {
+      "name": "FDIC_CERT",
+      "plain": "the FDIC's certificate number for the bank that owns the branch",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SURVEY_YEAR",
+      "plain": "the year of the annual branch deposit count, 1994 to 2025",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "BRANCH_STATE_COUNTY_FIPS",
+      "plain": "five-digit federal code of the county where the branch stands",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "SIMS_ACQUIRED_DATE",
+      "plain": "the day the branch came to its current bank through a takeover",
+      "use": "date",
+      "watch": "50.41% filled"
+     },
+     {
+      "name": "HOLDING_COMPANY_NAME",
+      "plain": "name of the parent company that owns the bank",
+      "use": "label",
+      "watch": "87.37% filled"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CENSUS_COUNTY_2020",
+    "one_row": "one county, name and FIPS",
+    "connects": "COUNTYNAME + STATE match PROJECT_COUNTY + PROJECT_STATE on ECONOMICS__FED_SBA_LOANS; STATEFP || COUNTYFP gives the county code",
+    "columns": [
+     {
+      "name": "STATE",
+      "plain": "two-letter postal abbreviation of the county's state",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATEFP",
+      "plain": "two-digit federal code for the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTYFP",
+      "plain": "three-digit federal code for the county inside the state",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "COUNTYNAME",
+      "plain": "the county's name spelled out in words",
+      "use": "join",
+      "watch": "fill not yet measured"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W59",
+  "section": "Money",
+  "idea": "Find the pairs of next-door counties where mortgage applicants on one side of the line get turned down far more often than on the other.",
+  "why": "A gap that survives matching on income and loan purpose points at place, not at who is applying. Without credit scores in the file it can still be credit mix.",
+  "tables": [
+   {
+    "table": "LIBRARY_RAW.LANDING.FED_CFPB_HMDA_LAR_2018 to 2024 (7 tables, same columns)",
+    "one_row": "one mortgage application",
+    "connects": "COUNTY_CODE matches GEOID on REFERENCE__CENSUS_CB_COUNTY",
+    "columns": [
+     {
+      "name": "COUNTY_CODE",
+      "plain": "five-digit federal county code of the property",
+      "use": "join",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "STATE_CODE",
+      "plain": "state where the house being mortgaged sits",
+      "use": "filter",
+      "watch": "fill not yet measured"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application as a number: 1 loan made, 3 denied",
+      "use": "filter",
+      "watch": "2018 has 1,961 placeholder rows with '-1' and 2019 has 21; filter them"
+     },
+     {
+      "name": "INCOME",
+      "plain": "the applicant's yearly income as reported on the application",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "LOAN_PURPOSE",
+      "plain": "coded value for why they want the loan, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "LOAN_AMOUNT",
+      "plain": "dollars the applicant asked to borrow",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ACTIVITY_YEAR",
+      "plain": "the calendar year of the application",
+      "use": "date",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.HOUSING.HOUSING__FED_CFPB_HMDA_HISTORIC",
+    "one_row": "one mortgage application, old layout",
+    "connects": "lpad(STATE_CODE,2) || lpad(COUNTY_CODE,3) matches GEOID on REFERENCE__CENSUS_CB_COUNTY",
+    "columns": [
+     {
+      "name": "STATE_CODE",
+      "plain": "federal state code of the property",
+      "use": "join",
+      "watch": "98.4% filled; unpadded text, pad to 2 before joining"
+     },
+     {
+      "name": "COUNTY_CODE",
+      "plain": "three-digit county part of the property's federal code",
+      "use": "join",
+      "watch": "98.17% filled; unpadded text, pad to 3; 19,331 denial rows have a null county and fall out"
+     },
+     {
+      "name": "ACTION_TAKEN",
+      "plain": "what the lender did with the application as a number: 1 loan made, 3 denied",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "APPLICANT_INCOME_000S",
+      "plain": "the applicant's yearly income in thousands of dollars",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "LOAN_PURPOSE",
+      "plain": "coded value 1, 2 or 3 for why they want the loan, look at distinct values first",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "AS_OF_YEAR",
+      "plain": "the calendar year of the application",
+      "use": "date",
+      "watch": "verified span is 2015-2017 for this table"
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.REFERENCE.REFERENCE__CENSUS_CB_COUNTY",
+    "one_row": "one county with its boundary shape",
+    "connects": "GEOMETRY touching GEOMETRY on the same table gives neighbor pairs; GEOID matches COUNTY_CODE on the mortgage tables",
+    "columns": [
+     {
+      "name": "GEOID",
+      "plain": "five-digit federal code that names one county",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "NAME",
+      "plain": "the county's name spelled out in words",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "STUSPS",
+      "plain": "two-letter postal abbreviation of the county's state",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "GEOMETRY",
+      "plain": "the county's outline on the map; two counties that touch are neighbors",
+      "use": "join",
+      "watch": "no ready-made neighbor table exists; the pairs must be computed"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "W60",
+  "section": "Money",
+  "idea": "For banks that failed after 2012, check whether customer complaints to the federal consumer watchdog climbed in the year before the bank went under.",
+  "why": "If complaints rise first, the complaint file is an early warning for bank trouble. If failed banks are not in the file at all, it does not reach small failing banks and the question ends.",
+  "tables": [
+   {
+    "table": "LIBRARY_MARTS.ECONOMICS.ECONOMICS__FED_FDIC_FAILED_BANKS",
+    "one_row": "one bank failure",
+    "connects": "BANK_NAME matches COMPANY on CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS by name, multi-word names only; FDIC_CERT matches FDIC_CERT on FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "columns": [
+     {
+      "name": "BANK_NAME",
+      "plain": "name of the bank that failed, as written",
+      "use": "join",
+      "watch": "name match only; single-word matches were 8% real, use two or more words and check the state"
+     },
+     {
+      "name": "FDIC_CERT",
+      "plain": "the FDIC's certificate number for the failed bank",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "FAIL_DATE",
+      "plain": "the day regulators closed the bank",
+      "use": "date",
+      "watch": "most failures cluster 2008-2012, before complaints start; count after 2012 not yet measured"
+     },
+     {
+      "name": "STATE_ABBR",
+      "plain": "two-letter state where the failed bank was based",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "TOTAL_ASSETS_THOUSANDS",
+      "plain": "the bank's size at failure, in thousands of dollars",
+      "use": "measure",
+      "watch": ""
+     },
+     {
+      "name": "ACQUIRING_INSTITUTION",
+      "plain": "name of the bank that took over the failed one",
+      "use": "label",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.CONSUMER_PROTECTION.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS",
+    "one_row": "one consumer complaint",
+    "connects": "COMPANY matches BANK_NAME on ECONOMICS__FED_FDIC_FAILED_BANKS, or HOLDING_COMPANY_NAME on FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS, by name",
+    "columns": [
+     {
+      "name": "COMPANY",
+      "plain": "name of the company the customer complained about; 8,088 distinct",
+      "use": "join",
+      "watch": "77% of the 17.17M complaints are three credit bureaus; banks are a minority"
+     },
+     {
+      "name": "DATE_RECEIVED",
+      "plain": "the day the watchdog received the complaint",
+      "use": "date",
+      "watch": "starts 2011-12-01"
+     },
+     {
+      "name": "RECEIVED_MONTH",
+      "plain": "the month the complaint was received; the bucket for counting",
+      "use": "date",
+      "watch": ""
+     },
+     {
+      "name": "PRODUCT",
+      "plain": "what the complaint was about in words, such as credit reporting or debt collection",
+      "use": "filter",
+      "watch": ""
+     },
+     {
+      "name": "STATE",
+      "plain": "two-letter state of the customer who complained",
+      "use": "filter",
+      "watch": ""
+     }
+    ]
+   },
+   {
+    "table": "LIBRARY_MARTS.FINANCE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS",
+    "one_row": "one branch in one survey year",
+    "connects": "FDIC_CERT matches FDIC_CERT on ECONOMICS__FED_FDIC_FAILED_BANKS; HOLDING_COMPANY_NAME then matches COMPANY on the complaints table",
+    "columns": [
+     {
+      "name": "FDIC_CERT",
+      "plain": "the FDIC's certificate number for the bank that owns the branch",
+      "use": "join",
+      "watch": ""
+     },
+     {
+      "name": "INSTITUTION_NAME",
+      "plain": "the bank's name as written in the branch survey",
+      "use": "label",
+      "watch": ""
+     },
+     {
+      "name": "HOLDING_COMPANY_NAME",
+      "plain": "name of the parent company that owns the bank; a second name to try",
+      "use": "join",
+      "watch": "87.37% filled"
+     }
+    ]
+   }
+  ]
+ }
+]
