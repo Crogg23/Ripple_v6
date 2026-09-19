@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (CCN) is NOT unique within a load as landed at generation time -- it would collapse 3 of 1,915 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -81,4 +82,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by ccn order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, crimeid, ccn, reportdate, routeid, measure, offset, streetsegid, roadwaysegid, fromdate, todate, address, latitude, longitude, xcoord, ycoord, ward, mar_address, mar_score, majorinjuries_bicyclist, minorinjuries_bicyclist, unknowninjuries_bicyclist, fatal_bicyclist, majorinjuries_driver, minorinjuries_driver, unknowninjuries_driver, fatal_driver, majorinjuries_pedestrian, minorinjuries_pedestrian, unknowninjuries_pedestrian, fatal_pedestrian, total_vehicles, total_bicycles, total_pedestrians, pedestriansimpaired, bicyclistsimpaired, driversimpaired, total_taxis, total_government, speeding_involved, nearestintrouteid, nearestintstreetname, offintersection, intapproachdirection, locationerror, lastupdatedate, mpdlatitude, mpdlongitude, mpdgeox, mpdgeoy, fatalpassenger, majorinjuriespassenger, minorinjuriespassenger, unknowninjuriespassenger, mar_id, geometry order by _loaded_at desc) = 1

@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'organization' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (REPORTER_DEA_NO, TRANSACTION_DATE, TRANSACTION_CODE, DRUG_CODE, TRANSACTION_ID) is NOT unique within a load as landed at generation time -- it would collapse 52,953 of 178,598,026 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -66,4 +67,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by reporter_dea_no, transaction_date, transaction_code, drug_code, transaction_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by reporter_dea_no, reporter_bus_act, reporter_name, reporter_addl_co_info, reporter_address1, reporter_address2, reporter_city, reporter_state, reporter_zip, reporter_county, buyer_dea_no, buyer_bus_act, buyer_name, buyer_addl_co_info, buyer_address1, buyer_address2, buyer_city, buyer_state, buyer_zip, buyer_county, transaction_code, drug_code, ndc_no, drug_name, quantity, unit, action_indicator, order_form_no, correction_no, strength, transaction_date, calc_base_wt_in_gm, dosage_unit, transaction_id, product_name, ingredient_name, measure, mme_conversion_factor, combined_labeler_name, revised_company_name, reporter_family, dos_str order by _loaded_at desc) = 1

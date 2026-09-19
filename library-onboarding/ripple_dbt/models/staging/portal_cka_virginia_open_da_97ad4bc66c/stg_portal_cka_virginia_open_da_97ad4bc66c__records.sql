@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (CORE_PARENT_SYS_ID) is NOT unique within a load as landed at generation time -- it would collapse 23 of 4,457 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -57,4 +58,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by core_parent_sys_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, core_parent_sys_id, upc, district_name, schedule, system, year_of_completion, county_name, route_name, route_common_name, lane_direction, county_mp_from, county_mp_to, from_description, to_description, state_mp_from, state_mp_to, street_names, lane_miles, pms_treatment_type, aadt, state_project_number, misc, project_manager, nt_login, telephone, email, project_status, creationdate, creator, editdate, editor order by _loaded_at desc) = 1

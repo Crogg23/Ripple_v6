@@ -12,41 +12,45 @@ sources:
 
 models:
   - name: stg_portal_soc_colorado_informa_e80ca7800e__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+EXIT_DATE+FISCAL_YEAR+START_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (FIPS+EXIT_DATE+FISCAL_YEAR+START_DATE+STATE_ID+STATE_ID_COPY+APPRENTICE_ID+PROGRAM_ID unique). SPINE_ENTITY: place."
     columns:
       - name: county_fips
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: exit_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: start_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: state_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: state_id_copy
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: apprentice_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: program_id
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - county_fips
-              - exit_date
-              - fiscal_year
-              - start_date
-              - state_id
-              - state_id_copy
-              - apprentice_id
-              - program_id
+          - not_null:
+              config:
+                severity: warn

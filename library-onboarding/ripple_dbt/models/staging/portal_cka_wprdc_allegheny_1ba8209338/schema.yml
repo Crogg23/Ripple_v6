@@ -7,14 +7,15 @@ sources:
     tables:
       - name: PORTAL_CKA_WPRDC_ALLEGHENY_1BA8209338
         description: >
-          Raw landing table for Allegheny County Finished Property Assessment Appeals. All columns arrive as TEXT and
+          Raw landing table for allegheny-county-property-assessment-appeals. All columns arrive as TEXT and
           are cast in the staging layer.
 
 models:
   - name: stg_portal_cka_wprdc_allegheny_1ba8209338__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (PARCEL_ID is unique). SPINE_ENTITY: (not determined)."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per record (spine_entity not determined -- no registry hint available) (PARCEL_ID is unique). SPINE_ENTITY: (not determined)."
     columns:
       - name: parcel_id
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

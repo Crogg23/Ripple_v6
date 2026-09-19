@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (START_STATION_ID, END_STATION_ID, START_DATE) is NOT unique within a load as landed at generation time -- it would collapse 17 of 9,999 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -34,4 +35,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by start_station_id, end_station_id, start_date order by _loaded_at desc) = 1
+qualify row_number() over (partition by closed_status, duration, start_station_id, start_date, start_station_name, end_date, end_station_id, end_station_name, rider_type order by _loaded_at desc) = 1

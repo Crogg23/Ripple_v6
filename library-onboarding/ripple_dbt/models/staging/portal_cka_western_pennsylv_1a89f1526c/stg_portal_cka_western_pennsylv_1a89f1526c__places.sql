@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (LONGITUDE) is NOT unique within a load as landed at generation time -- it would collapse 409 of 45,767 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -75,6 +76,7 @@ renamed as (
         "FIRE_ZONE" as fire_zone,
         "LATITUDE" as latitude,
         "LONGITUDE" as longitude,
+        "TYPE" as type,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/city-trees' as _source_url
 
@@ -83,4 +85,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by longitude order by _loaded_at desc) = 1
+qualify row_number() over (partition by id, address_number, street, common_name, scientific_name, height, width, growth_space_length, growth_space_width, growth_space_type, diameter_base_height, stems, overhead_utilities, land_use, condition, stormwater_benefits_dollar_value, stormwater_benefits_runoff_elim, property_value_benefits_dollarvalue, property_value_benefits_leaf_surface_area, energy_benefits_electricity_dollar_value, energy_benefits_gas_dollar_value, air_quality_benfits_o3dep_dollar_value, air_quality_benfits_o3dep_lbs, air_quality_benfits_vocavd_dollar_value, air_quality_benfits_vocavd_lbs, air_quality_benfits_no2dep_dollar_value, air_quality_benfits_no2dep_lbs, air_quality_benfits_no2avd_dollar_value, air_quality_benfits_no2avd_lbs, air_quality_benfits_so2dep_dollar_value, air_quality_benfits_so2dep_lbs, air_quality_benfits_so2avd_dollar_value, air_quality_benfits_so2avd_lbs, air_quality_benfits_pm10depdollar_value, air_quality_benfits_pm10dep_lbs, air_quality_benfits_pm10avd_dollar_value, air_quality_benfits_pm10avd_lbs, air_quality_benfits_total_dollar_value, air_quality_benfits_total_lbs, co2_benefits_dollar_value, co2_benefits_sequestered_lbs, co2_benefits_sequestered_value, co2_benefits_avoided_lbs, co2_benefits_avoided_value, co2_benefits_decomp_lbs, co2_benefits_maint_lbs, co2_benefits_totalco2_lbs, overall_benefits_dollar_value, neighborhood, council_district, ward, tract, public_works_division, pli_division, police_zone, fire_zone, latitude, longitude, type order by _loaded_at desc) = 1

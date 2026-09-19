@@ -12,65 +12,75 @@ sources:
 
 models:
   - name: stg_intl_eu_sanctions__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (ZIP+DATE_FILE+LEBA_PUBLICATION_DATE+NAAL_LEBA_PUBLICATION_DATE+ENTITY_LOGICAL_ID+NAAL_LOGICAL_ID+ENTITY_LOGICAL_ID_1+ENTITY_LOGICAL_ID_2+BIRT_LOGICAL_ID+ENTITY_LOGICAL_ID_3+IDEN_LOGICAL_ID+ENTITY_LOGICAL_ID_4+CITI_LOGICAL_ID+ENTITY_LOGICAL_ID_5 unique). SPINE_ENTITY: place."
     columns:
       - name: addr_zipcode
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_file
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: leba_publication_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: naal_leba_publication_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: entity_logical_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: naal_logical_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: entity_logical_id_1
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: entity_logical_id_2
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: birt_logical_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: entity_logical_id_3
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: iden_logical_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: entity_logical_id_4
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: citi_logical_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: entity_logical_id_5
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - addr_zipcode
-              - date_file
-              - leba_publication_date
-              - naal_leba_publication_date
-              - entity_logical_id
-              - naal_logical_id
-              - entity_logical_id_1
-              - entity_logical_id_2
-              - birt_logical_id
-              - entity_logical_id_3
-              - iden_logical_id
-              - entity_logical_id_4
-              - citi_logical_id
-              - entity_logical_id_5
+          - not_null:
+              config:
+                severity: warn

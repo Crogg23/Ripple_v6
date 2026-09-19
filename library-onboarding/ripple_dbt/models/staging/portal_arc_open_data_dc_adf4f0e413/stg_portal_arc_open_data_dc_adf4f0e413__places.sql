@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (SAFEGRAPH_PLACE_ID) is NOT unique within a load as landed at generation time -- it would collapse 7,563 of 20,292 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -55,4 +56,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by safegraph_place_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, safegraph_place_id, location_name, brands, top_category, sub_category, naics_code, street_address, city, region, postal_code, iso_country_code, phone_number, category_tags, visits4_5_2020, visits4_6_2020, visits4_7_2020, visits4_8_2020, visits4_9_2020, visits4_10_2020, visits4_11_2020, visits4_12_2020, visits4_13_2020, visits4_14_2020, visits4_15_2020, visits4_16_2020, visits4_17_2020, visits4_18_2020, business_category_grouping, objectid2 order by _loaded_at desc) = 1

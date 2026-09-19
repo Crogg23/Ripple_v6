@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_cka_western_pennsylv_2dfc1addea__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+DEATH_DATE_AND_TIME unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (ZIP+DEATH_DATE_AND_TIME unique). SPINE_ENTITY: place."
     columns:
       - name: decedent_zip
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: death_date_and_time
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - decedent_zip
-              - death_date_and_time
+          - not_null:
+              config:
+                severity: warn

@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (EIN) is NOT unique within a load as landed at generation time -- it would collapse 1 of 5,423 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -57,4 +58,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by ein order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, ein, c_organization, ntee, mailingaddress, mailingcity, mailingstate, mailingzipcode, mailingcounty, mailingcountry, businessaddress, businessunit, businesscity, businessstate, businesszipcode, businesszip, businesscounty, businesscountry, website, taxexempttype, formationdate, registration, totalannualrevenue, totalannualassets, programserviceexpenses, totalexpenses, percentprogram, numberboardmembers, numberboardmeetings, fiscalyearendmonth, outsideauditconducted, geometry order by _loaded_at desc) = 1

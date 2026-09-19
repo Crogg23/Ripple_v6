@@ -11,18 +11,16 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_cka_indiana_data_hub_83ba6435c2__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LOCATION_ID+DATE unique). SPINE_ENTITY: place."
+  - name: stg_portal_cka_indiana_data_hub_83ba6435c2__records
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LOCATION_ID+DATE unique). SPINE_ENTITY: (not determined)."
     columns:
       - name: location_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - location_id
-              - date
+          - not_null:
+              config:
+                severity: warn

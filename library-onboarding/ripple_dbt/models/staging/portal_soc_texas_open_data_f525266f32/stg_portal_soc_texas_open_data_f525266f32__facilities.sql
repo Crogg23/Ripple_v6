@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (CCN_NO) is NOT unique within a load as landed at generation time -- it would collapse 2 of 474 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -38,4 +39,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by ccn_no order by _loaded_at desc) = 1
+qualify row_number() over (partition by ccn_no, utility_name, rp_organization, rp_individual, offical_address_1, city, state, zip_code, business_phone, email, primary_county, all_counties, dba_name order by _loaded_at desc) = 1

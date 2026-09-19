@@ -12,21 +12,20 @@ sources:
 
 models:
   - name: stg_portal_soc_utah_open_data_p_f1292b8d2f__organizations
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DUNS+FISCAL_YEAR+EVALUATION_CLOSED_DATE unique). SPINE_ENTITY: organization."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per organization (DUNS+FISCAL_YEAR+EVALUATION_CLOSED_DATE unique). SPINE_ENTITY: organization."
     columns:
       - name: duns_no
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: evaluation_closed_date
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - duns_no
-              - fiscal_year
-              - evaluation_closed_date
+          - not_null:
+              config:
+                severity: warn

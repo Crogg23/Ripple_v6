@@ -1,0 +1,52 @@
+source	landing_rows	view_rows	current_key	exact_dup_rows	unique_single_columns	best_near_columns	class
+FED_CONGRESS_COMMITTEE_MEMBERSHIP	26971	12401	bioguide, committee_code order by _loaded_at desc) = 1	0		MEMBER_NAME=1050, BIOGUIDE=1022, COMMITTEE_NAME=479	B no single key, rows all differ
+FED_DOJ_FCA_SETTLEMENTS	19	12	fca_settlement_id	0	CASE_TITLE, PRESS_RELEASE_URL	CASE_TITLE=19, PRESS_RELEASE_URL=19, SETTLEMENT_DATE=12	A single unique column exists
+FED_EIA861_DELIVERY_COMPANIES	9	7	UNNAMED_0, UNNAMED_1, UNNAMED_6, UNNAMED_3, UNNAMED_4	0		UNNAMED_1=8, UNNAMED_2=8, REVENUES=8	B no single key, rows all differ
+FED_FDIC_ENFORCEMENT	14	1	docket_number, fdic_cert_number, coalesce(person_name, respo	0	RAW_TEXT	RAW_TEXT=14, ORDER_URL=7	A single unique column exists
+FED_FARA_BULK	221900	48103	registration_number,	444		DOC_URL=124837, SHORT_FORM_NAME=30309, SHORT_FORM_LAST_NAME=20928	C exact copies in file, plus key too loose
+FED_NARA_WRA_AAD	36	1	record_id	23		NOTES_FIELD=13, PERSON_NAME=1, DATE=1	C exact copies in file, plus key too loose
+FED_HHS_TAGGS	45	1	award_number	9		PROJECT_DESCRIPTION=36, AWARD_NUMBER=1, OPDIV=1	C exact copies in file, plus key too loose
+FED_MAPPING_INEQUALITY	10154	1155	holc_neighborhood_key	0	GEOMETRY, LAT	GEOMETRY=10154, LAT=10154, LON=10153	A single unique column exists
+FED_NARA_AAD	554	9	dataset_id, record_id	0		RAW_FIELDS_JSON=484, DATASET_ID=9, DESCRIPTION_TEXT=5	B no single key, rows all differ
+FED_FDIC_FAILED_BANKS	4115	3584	fdic_cert	0	ID	ID=4115, QBFDEP=3978, QBFASSET=3883	A single unique column exists
+INTL_CH_ZEFIX	18	1	company_id	0		NAME=6, ADDRESS_CANTON=3, UID=1	B no single key, rows all differ
+INTL_ES_BORME	25	3	company_id, country, date, act_type, cve	10		ACT_DESCRIPTION=13, PROVINCE=13, PDF_URL=13	C exact copies in file, plus key too loose
+INTL_GR_GEMI	40	1	gemi_number	33		COMPANY_NAME=7, GEMI_NUMBER=1, AFM=1	C exact copies in file, plus key too loose
+PORTAL_ARC_OPEN_DATA_DC_ADF4F0E413	20292	12729	safegraph_place_id order by _loaded_at desc) = 1	0	OBJECTID, OBJECTID2	OBJECTID=20292, OBJECTID2=20292, SAFEGRAPH_PLACE_ID=12729	A single unique column exists
+PORTAL_CKA_CALIFORNIA_OPEN_0AD648012F	1999247	44664	station_id order by _loaded_at desc) = 1	0		SAMPLE_CODE=105742, SAMPLE_DATE_MAX=50102, SAMPLE_DATE_MIN=49340	B no single key, rows all differ
+PORTAL_CKA_ANALYZE_BOSTON_E4C004D662	2000000	50863	case_id order by _loaded_at desc) = 1	0		CASE_ENQUIRY_ID=1949139, OPEN_DT=1774300, CLOSED_DT=1700060	B no single key, rows all differ
+PORTAL_CKA_CALIFORNIA_OPEN_27DC9C9E51	41291	23326	shape__length order by _loaded_at desc) = 1	0		OBJECTID=23334, GLOBALID=23334, SHAPE__LENGTH=23326	B no single key, rows all differ
+PORTAL_CKA_CALIFORNIA_OPEN_35E42B9770	87244	63112	org_id, water_system_id, report_period_start_date order by _	0		R_GPCD=62830, POTABLE_DEMAND_RES_GAL=61551, R_GPCD_ZSCORE=55504	B no single key, rows all differ
+PORTAL_CKA_CALIFORNIA_OPEN_AC6C9E2B47	1976268	47643	stn_id order by _loaded_at desc) = 1	0		MSMT_DATE=483439, GWE=362178, GSE_GWE=85068	B no single key, rows all differ
+PORTAL_CKA_CALIFORNIA_OPEN_F406AAD424	34527	18058	shape__length order by _loaded_at desc) = 1	0		OBJECTID=18064, SHAPE__LENGTH=18058, SHAPE__AREA=18055	B no single key, rows all differ
+PORTAL_CKA_INDIANA_DATA_HUB_FE00D42ACC	216533	82404	fips, date order by _loaded_at desc) = 1	0		ALL_DOSES_ADMINISTERED=3393, FULLY_VACCINATED=2009, BOOSTER_DOSE_ADMINISTERED=1554	B no single key, rows all differ
+PORTAL_CKA_INDIANA_DATA_HUB_D4DAE8D984	16502	12806	zipcode, year, age_group order by _loaded_at desc) = 1	0		TOTAL_DOLLAR_AMOUNT_OF_CLAIMS=15100, TOTAL_NUMBER_OF_CLAIMS=2704, TOTAL_NUMBER_OF_RECIPIENTS=792	B no single key, rows all differ
+PORTAL_CKA_OPEN_DATA_SA_58B0401C9A	197984	98224	shape__length order by _loaded_at desc) = 1	0		OBJECTID=98992, CARTID=98992, SHAPE__LENGTH=98224	B no single key, rows all differ
+PORTAL_CKA_VIRGINIA_OPEN_DA_039AACD655	33780	16136	id order by _loaded_at desc) = 1	0	X2, Y2	X2=33780, Y2=33780, ADDRESS=16890	A single unique column exists
+PORTAL_CKA_INDIANA_DATA_HUB_83BA6435C2	980219	126295	location_id, date order by _loaded_at desc) = 1	0		POSITIVITY_RATE_ALL_TESTS=7545, POSITIVE_TEST_RATE_MOVING_AVG=4927, POSITIVE_TEST_RATE=4112	B no single key, rows all differ
+PORTAL_CKA_VIRGINIA_OPEN_DA_F40C1F2ECE	78400	39008	shape__length order by _loaded_at desc) = 1	0		OBJECTID=39201, EVENT_LOCATION_ID=39192, SHAPE__LENGTH=39008	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_010A1B6275	29348	14675	geometry order by _loaded_at desc) = 1	0		AREA=14675, ACRES=14675, FID=14675	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_440A699A5B	53636	26721	dataspatial_wkb order by _loaded_at desc) = 1	0		FID=26819, GLOBALID=26819, FID_2=26819	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_4E5C66124A	38625	19621	geometry order by _loaded_at desc) = 1	0		OBJECTID=35506, CARTEID=19681, GLOBALID=19626	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_0AF7431C6C	177741	13904	state_county_fips_code, reporting_year, zip_code, primary_si	0		DOC_CTRL_NUM=13749, TRANSFER_AMT=8497, TOTAL_RELEASE=5228	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_6A4C3E0E78	7921	1001	inspection_id order by _loaded_at desc) = 1	0		VIOLATION_UID=6922, INSPECT_ID=1909, INSPECTION_ID=1001	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_68A8A0027A	54088	27045	geometry order by _loaded_at desc) = 1	0		ACRES=27045, AREA=27045, FID=27045	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_7880B791DF	49574	24788	geoid20 order by _loaded_at desc) = 1	0		FID=24788, GEOID20=24788, GEOIDFQ20=24788	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_90A0A8B740	96713	79235	parcel_id order by _loaded_at desc) = 1	0		PARCEL_ID=79235, PRE_APPEAL_TOTAL=10217, CURRENT_BLDG_VALUE=10027	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_DDB61776D0	195963	19244	inspection_id order by _loaded_at desc) = 1	0		INSPECT_ID=175138, PLAN_ID=86168, ADDRESS=85863	B no single key, rows all differ
+PORTAL_CKA_WESTERN_PENNSYLV_EAC54ADE9A	43040	21521	dataspatial_wkb order by _loaded_at desc) = 1	0		SHAPE_LEN=21521, FID=21521, SHAPE_AREA=21521	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_1BA8209338	96713	79235	parcel_id order by _loaded_at desc) = 1	0		PARCEL_ID=79235, PRE_APPEAL_TOTAL=10217, CURRENT_BLDG_VALUE=10027	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_49ED6437BF	195963	19244	inspection_id order by _loaded_at desc) = 1	0		INSPECT_ID=175138, PLAN_ID=86168, ADDRESS=85863	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_99DBBB9235	43040	21521	dataspatial_wkb order by _loaded_at desc) = 1	0		SHAPE_LEN=21521, FID=21521, SHAPE_AREA=21521	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_54998E6EDA	54088	27045	geometry order by _loaded_at desc) = 1	0		ACRES=27045, AREA=27045, FID=27045	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_B1E95C9745	53636	26721	dataspatial_wkb order by _loaded_at desc) = 1	0		FID=26819, GLOBALID=26819, FID_2=26819	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_C4D59225CB	38625	19621	geometry order by _loaded_at desc) = 1	0		OBJECTID=35506, CARTEID=19681, GLOBALID=19626	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_CC3BD4AFC2	49574	24788	geoid20 order by _loaded_at desc) = 1	0		FID=24788, GEOID20=24788, GEOIDFQ20=24788	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_DA448E7083	7921	1001	inspection_id order by _loaded_at desc) = 1	0		VIOLATION_UID=6922, INSPECT_ID=1909, INSPECTION_ID=1001	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_FA5C68D20D	29348	14675	geometry order by _loaded_at desc) = 1	0		AREA=14675, ACRES=14675, FID=14675	B no single key, rows all differ
+PORTAL_CKA_WPRDC_ALLEGHENY_DE448D04D4	177741	13904	state_county_fips_code, reporting_year, zip_code, primary_si	0		DOC_CTRL_NUM=13749, TRANSFER_AMT=8497, TOTAL_RELEASE=5228	B no single key, rows all differ
+PORTAL_SOC_OPEN_DATA_BR_6083BC2934	199821	178879	lot_id order by _loaded_at desc) = 1	0		LOT_ID=178879, ADDRESS_POINT_ID=174091, ADDRESS_ID=174091	B no single key, rows all differ
+PORTAL_SOC_TEXAS_OPEN_DATA_354E3ABF4F	42272	36066	site_zip_cd, nor_registration_date order by _loaded_at desc)	0	SWR_NUM_TXT	SWR_NUM_TXT=42272, RN_NUM_TXT=38961, SITE_DELIV_TXT=36200	A single unique column exists
+PORTAL_SOC_TEXAS_OPEN_DATA_5410A1009F	884342	737577	outlet_zip_code, outlet_permit_issue_date order by _loaded_a	0		OUTLET_NAME=786462, OUTLET_ADDRESS=747923, TAXPAYER_NUMBER=700036	B no single key, rows all differ
+PORTAL_SOC_TEXAS_OPEN_DATA_A415622C5D	1426095	1076829	loc_zip, permit_date order by _loaded_at desc) = 1	0		LOC_NAME=1215755, TP_NUMBER=1110168, TP_NAME=1093518	B no single key, rows all differ
+XC_UK_SANCTIONS_LIST	57883	33828	_SRC_SHA256,	652		NAME_6=11651, UNIQUE_ID=6315, OFSI_GROUP_ID=5128	C exact copies in file, plus key too loose

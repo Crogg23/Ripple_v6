@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (LOT_ID) is NOT unique within a load as landed at generation time -- it would collapse 20,942 of 199,821 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -65,9 +66,11 @@ renamed as (
         "BUSINESS_NAICS_CODE" as business_naics_code,
         "REDEVELOPMENT_DISTRICT" as redevelopment_district,
         "ST_PREFIX_TYPE" as st_prefix_type,
-        "ST_SUFFIX_DIR" as st_suffix_dir,
         "HISTORIC_DISTRICT" as historic_district,
+        "ST_SUFFIX_DIR" as st_suffix_dir,
         "HISTORIC_LANDMARK" as historic_landmark,
+        "UDD_NAME" as udd_name,
+        "ST_EXT" as st_ext,
         INGESTED_AT as _loaded_at,
         'https://data.brla.gov/d/re5c-hrw9' as _source_url
 
@@ -76,4 +79,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by lot_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by address_point_id, lot_id, address_id, address_no_complete, st_name, st_suffix_type, full_address, city, zip, subd_id, subdivision, pla_dist, sub_area, lb_map, lot_num, lot_location, ward_number, tax_section, plss, census_tract, block_group, dotd_map, police_district, fire_district, school_district, voting_district, council_dist_no, enterprise_zone, economic_dev_zone, industrial_area, existing_land_use, area_meas_acres, geo_location, computed_region_idcr_7zcb, computed_region_8tu6_j4iw, computed_region_hfgy_t898, future_land_use, zoning_type, udod_name, design_level, property_info, block_num, st_prefix_dir, business_id, business_name, business_naics_code, redevelopment_district, st_prefix_type, historic_district, st_suffix_dir, historic_landmark, udd_name, st_ext order by _loaded_at desc) = 1

@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'person' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (SEAT_ID) is NOT unique within a load as landed at generation time -- it would collapse 11 of 4,766 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -54,4 +55,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by seat_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by nid, sequence, judge_name, court_type, court_name, appointment_title, appointing_president, party_of_appointing_president, reappointing_president, party_of_reappointing_president, aba_rating, seat_id, statute_authorizing_new_seat, recess_appointment_date, nomination_date, committee_referral_date, hearing_date, judiciary_committee_action, committee_action_date, senate_vote_type, ayes_nays, confirmation_date, commission_date, service_as_chief_judge_begin, service_as_chief_judge_end, c_2nd_service_as_chief_judge_begin, c_2nd_service_as_chief_judge_end, senior_status_date, termination, termination_date order by _loaded_at desc) = 1

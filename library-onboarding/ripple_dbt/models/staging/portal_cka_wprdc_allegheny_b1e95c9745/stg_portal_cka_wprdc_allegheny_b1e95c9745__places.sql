@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (DATASPATIAL_WKB) is NOT unique within a load as landed at generation time -- it would collapse 26,915 of 53,636 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -23,6 +24,11 @@ renamed as (
         "UPDATE_YEA" as update_yea,
         "GLOBALID" as globalid,
         "DATASPATIAL_WKB" as dataspatial_wkb,
+        "FID_2" as fid_2,
+        "GLOBALID_2" as globalid_2,
+        "FEATURECOD_2" as featurecod_2,
+        "UPDATE_YEAR" as update_year,
+        "SHAPE_LEN_2" as shape_len_2,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/allegheny-county-hydrology-lines' as _source_url
 
@@ -31,4 +37,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by dataspatial_wkb order by _loaded_at desc) = 1
+qualify row_number() over (partition by shape_len, featurecod, fid, update_yea, globalid, dataspatial_wkb, fid_2, globalid_2, featurecod_2, update_year, shape_len_2 order by _loaded_at desc) = 1

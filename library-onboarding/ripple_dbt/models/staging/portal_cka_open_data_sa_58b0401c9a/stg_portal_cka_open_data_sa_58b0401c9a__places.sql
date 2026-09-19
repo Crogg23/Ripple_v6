@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (SHAPE__LENGTH) is NOT unique within a load as landed at generation time -- it would collapse 99,760 of 197,984 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -46,4 +47,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by shape__length order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, cartid, msag_name, fromstreet, tostreet, jurisdiction, district, lengthfeet, installdate, pci, row_type, surface_type, pavementwidth, speedlimit, oneway, owner, roadfunction, maintenanceresponsibility, status, stage, shape__length order by _loaded_at desc) = 1

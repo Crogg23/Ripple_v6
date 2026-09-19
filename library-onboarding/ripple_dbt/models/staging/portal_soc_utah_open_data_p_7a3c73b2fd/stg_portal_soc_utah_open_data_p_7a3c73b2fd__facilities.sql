@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'facility' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (TRI_FACILITY_ID, CAS_COMPOUND_ID, YEAR) is NOT unique within a load as landed at generation time -- it would collapse 1 of 2,000 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -118,4 +119,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by tri_facility_id, cas_compound_id, year order by _loaded_at desc) = 1
+qualify row_number() over (partition by year, tri_facility_id, facility_name, street_address, county, st, federal_facility, primary_naics, doc_ctrl_num, chemical, cas_compound_id, clear_air_act_chemical, classification, metal, metal_category, carcinogen, form_type, unit_of_measure, c_5_1_fugitive_air, c_5_2_stack_air, c_5_3_water, c_5_4_1_underground_class_i, c_5_4_2_underground_class_ii_v, c_5_5_1a_rcra_c_landfills, c_5_5_1b_other_landfills, c_5_5_2_land_treatment, c_5_5_3_surface_impoundment, c_5_5_3a_rcra_c_surface_imp, c_5_5_3b_other_surface_imp, c_5_5_4_other_disposal, on_site_release_total, c_6_1_potw_transfers_for_release, c_6_1_potw_transfers_for_treatm, c_6_1_potw_total_transfers, c_6_2_m10, c_6_2_m41, c_6_2_m62, c_6_2_m71, c_6_2_m81, c_6_2_m82, c_6_2_m72, c_6_2_m63, c_6_2_m66, c_6_2_m67, c_6_2_m64, c_6_2_m65, c_6_2_m73, c_6_2_m79, c_6_2_m90, c_6_2_m94, c_6_2_m99, off_site_release_total, c_6_2_m20, c_6_2_m24, c_6_2_m26, c_6_2_m28, c_6_2_m93, off_site_recycled_total, c_6_2_m56, c_6_2_m92, off_site_recovery_total, c_6_2_m40, c_6_2_m50, c_6_2_m54, c_6_2_m61, c_6_2_m69, c_6_2_m95, off_site_treated_total, total_releases, c_8_1_releases, c_8_1a_on_site_contained_rel, c_8_1b_on_site_other_releases, c_8_1c_off_site_contained_rel, c_8_1d_off_site_other_releases, c_8_2_energy_recovery_on_site, c_8_3_energy_recovery_off_site, c_8_4_recycling_on_site, c_8_5_recycling_off_site, c_8_6_treatment_on_site, c_8_7_treatment_off_site, prod_waste_8_1_thru_8_7, parent_company_name, parent_company_db_number, location_1, primary_sic, c_8_9_production_ratio, sic_2, c_8_8_one_time_release, naics_2, naics_3, sic_3, sic_4, sic_5 order by _loaded_at desc) = 1

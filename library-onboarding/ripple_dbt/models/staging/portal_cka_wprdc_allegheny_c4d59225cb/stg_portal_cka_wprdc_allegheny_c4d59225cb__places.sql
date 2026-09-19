@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (GEOMETRY) is NOT unique within a load as landed at generation time -- it would collapse 19,004 of 38,625 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -62,6 +63,9 @@ renamed as (
         "ZONE_LEFT" as zone_left,
         "ZONE_RIGHT" as zone_right,
         "GEOMETRY" as geometry,
+        "OBJECTID_1_2" as objectid_1_2,
+        "GLOBALID_2" as globalid_2,
+        "SHAPE_LENGTH" as shape_length,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/pittsburgh-street-centerlines' as _source_url
 
@@ -70,4 +74,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by geometry order by _loaded_at desc) = 1
+qualify row_number() over (partition by globalid, objectid_1, shape__length, carteid, class, council_lt, council_rt, created_date, created_user, dir, domi_class, dpw_zon_lt, dpw_zon_rt, fire_zn_lt, fire_zn_rt, fromstreet, hood_left, hood_right, last_edited_date, last_edited_user, measurlgth, name, num_lanes, objectid, oneway, owner, paveclass, prefix, replaced, retired, roadwidth, speedlimit, streetname, suffix, tostreet, type, vote_dt_lt, vote_dt_rt, ward_lt, ward_rg, zipl, zipr, zone_left, zone_right, geometry, objectid_1_2, globalid_2, shape_length order by _loaded_at desc) = 1

@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (PROJECT_ID, BUILDING_ID) is NOT unique within a load as landed at generation time -- it would collapse 33 of 7,534 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -72,4 +73,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by project_id, building_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by project_id, building_id, designation_id, project_halted, project_general_last_update, building_count, designation_count, gush, helka, x, y, municipality_id, municipality_name, building_info_last_update, building_street, building_address_number, building_address_entrance, building_migrash, floors_above_ground, building_area, standard_name_id, standard_name, standard_designation_id, standard_designation_name, standard_designation_main_use, main_use_name, route, designation_area, residential_units, designation_info_last_update, certification_status, certificate_date_pre, certificate_insert_date_pre, certificate_score_pre, certificate_stars_pre, certificate_energy_pre, certificate_date_a, certificate_insert_date_a, certificate_score_a, certificate_stars_a, certificate_energy_a, certificate_date_b, certificate_insert_date_b, certificate_score_b, certificate_stars_b, certificate_energy_b, designation_info_status order by _loaded_at desc) = 1

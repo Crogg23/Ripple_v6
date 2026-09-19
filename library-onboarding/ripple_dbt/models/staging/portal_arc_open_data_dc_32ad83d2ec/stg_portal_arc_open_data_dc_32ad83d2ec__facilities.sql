@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (CCN) is NOT unique within a load as landed at generation time -- it would collapse 17 of 26,559 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -95,4 +96,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by ccn order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, objectid_1, crimeid, ccn, reportdate, routeid, measure, offset, streetsegid, roadwayseg, fromdate, todate, marid, address, latitude, longitude, xcoord, ycoord, ward, eventid, mar_address, mar_score, majorinjuries_bicyclist, minorinjuries_bicyclist, unknowninjuries_bicyclist, fatal_bicyclist, majorinjuries_driver, minorinjuries_driver, unknowninjuries_driver, fatal_driver, majorinjuries_pedestrian, minorinjuries_pedestrian, unknowninjuries_pedestrian, fatal_pedestrian, total_vehicles, total_bicycles, total_pedestrians, pedestrians_impaired, bicyclists_impaired, drivers_impaired, total_taxi, total_government, speeding_involved, nearestintrouteid, neareststreetname, offintersection, intapproachdirection, locationerror, lastupdate, mpdlatitude, mpdlongitude, mpdgeox, mpdgeoy, objectid_12, join_count, target_fid, district, psa, name, web_url, poldist_id, sector, se_anno_cad_data, gis_id, creator, created, editor, edited, policedistrict, geometry order by _loaded_at desc) = 1

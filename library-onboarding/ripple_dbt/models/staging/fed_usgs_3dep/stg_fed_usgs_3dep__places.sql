@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (SHAPE) is NOT unique within a load as landed at generation time -- it would collapse 14 of 5,000 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -55,4 +56,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by shape order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid, name, minps, maxps, lowps, highps, category, tag, groupname, productname, centerx, centery, zorder, shape_length, shape_area, dataset_id, best, dem_type, source, verticaldatum, acquisitiondate, url, metadata, pubdate, title, resolution_x, resolution_y, cdate, startdate, enddate, shape order by _loaded_at desc) = 1

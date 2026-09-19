@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (PARCEL_ID) is NOT unique within a load as landed at generation time -- it would collapse 17,478 of 96,713 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -54,4 +55,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by parcel_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by parcel_id, tax_year, class, class_group, tax_status, muni_code, muni_name, school_code, school_district, hearing_type, complainant, hearing_status, status, pre_appeal_land, pre_appeal_bldg, pre_appeal_total, post_appeal_land, post_appeal_bldg, post_appeal_total, hearing_change_amount, last_update_reason, current_land_value, current_bldg_value, current_total_value, current_value_vs_pre_appeal, hearing_date, dispo_date, elapsed_days, as_of_date order by _loaded_at desc) = 1

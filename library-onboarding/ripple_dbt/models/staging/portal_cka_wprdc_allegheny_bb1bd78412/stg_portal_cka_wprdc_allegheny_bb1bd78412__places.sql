@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (LATITUDE) is NOT unique within a load as landed at generation time -- it would collapse 464 of 27,919 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -35,6 +36,7 @@ renamed as (
         "FIRE_ZONE" as fire_zone,
         "LONGITUDE" as longitude,
         "LATITUDE" as latitude,
+        "NOTE_DO_NOT_MODIFY_THIS_WORKSHEET" as note_do_not_modify_this_worksheet,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/city-of-pittsburgh-property-tax-delinquency' as _source_url
 
@@ -43,4 +45,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by latitude order by _loaded_at desc) = 1
+qualify row_number() over (partition by pin, address, billing_city, current_delq_tax, current_delq_pi, prior_years, prior_delq_tax, prior_delq_pi, state_description, neighborhood, council_district, ward, public_works_division, pli_division, police_zone, fire_zone, longitude, latitude, note_do_not_modify_this_worksheet order by _loaded_at desc) = 1

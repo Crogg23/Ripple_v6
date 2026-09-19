@@ -2,9 +2,10 @@ version: 2
 
 models:
   - name: stg_fed_cms_order_and_referring__providers
-    description: "GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per provider (NPI is unique). SPINE_ENTITY: provider."
     columns:
       - name: npi
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

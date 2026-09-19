@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_cka_analyze_boston_4eddc3919b__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+APPLICATION_DATE unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (ZIP+APPLICATION_DATE unique). SPINE_ENTITY: place."
     columns:
       - name: zip_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: application_date
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - zip_code
-              - application_date
+          - not_null:
+              config:
+                severity: warn

@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (DATASPATIAL_WKB) is NOT unique within a load as landed at generation time -- it would collapse 21,519 of 43,040 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -26,6 +27,14 @@ renamed as (
         "OBJECTID" as objectid,
         "USERID" as userid,
         "DATASPATIAL_WKB" as dataspatial_wkb,
+        "FID_2" as fid_2,
+        "OBJECTID_2" as objectid_2,
+        "SYSTEM_ID" as system_id,
+        "USER_ID" as user_id,
+        "FEATURE_CODE" as feature_code,
+        "UPDATE_YEAR" as update_year,
+        "SHAPE_LEN_2" as shape_len_2,
+        "SHAPE_AREA_2" as shape_area_2,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/allegheny-county-land-use-areas' as _source_url
 
@@ -34,4 +43,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by dataspatial_wkb order by _loaded_at desc) = 1
+qualify row_number() over (partition by shape_len, featurecod, fid, systemid, update_yea, shape_area, objectid, userid, dataspatial_wkb, fid_2, objectid_2, system_id, user_id, feature_code, update_year, shape_len_2, shape_area_2 order by _loaded_at desc) = 1

@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (PGM_SYS_ID) is NOT unique within a load as landed at generation time -- it would collapse 9,644 of 4,406,498 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -37,4 +38,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by pgm_sys_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by pgm_sys_acrnm, pgm_sys_id, registry_id, primary_name, location_address, supplemental_location, city_name, county_name, fips_code, state_code, state_name, country_name, postal_code order by _loaded_at desc) = 1

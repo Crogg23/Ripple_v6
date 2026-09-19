@@ -12,11 +12,12 @@ sources:
 
 models:
   - name: stg_fed_cms_facility_affiliation__providers
-    description: "GRAIN: one row per facility-provider relationship (CCN+NPI is unique). SPINE_ENTITY: provider."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per facility-provider relationship (CCN+NPI is unique). SPINE_ENTITY: provider."
     columns:
       - name: ccn
         data_tests:
           - not_null
+          # hand-written, restored 2026-09-19 after a --force regen dropped it
           - key_is_real:
               arguments:
                 min_distinct: 20000
@@ -24,13 +25,8 @@ models:
       - name: npi
         data_tests:
           - not_null
+          # hand-written, restored 2026-09-19 after a --force regen dropped it
           - key_is_real:
               arguments:
                 min_distinct: 500000
                 max_blank_fraction: 0.1
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - ccn
-              - npi

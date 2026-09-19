@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (INSPECTION_ID) is NOT unique within a load as landed at generation time -- it would collapse 6,920 of 7,921 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -53,6 +54,19 @@ renamed as (
         "PH_BALANCE" as ph_balance,
         "NO_IMMINENT_HEALTH_HAZARDS" as no_imminent_health_hazards,
         "ABATED_DATE" as abated_date,
+        "VIOLATION_UID" as violation_uid,
+        "INSPECT_ID" as inspect_id,
+        "INSPECTION_NUMBER_2" as inspection_number_2,
+        "VIOL_DATE" as viol_date,
+        "VIOL_CLASS" as viol_class,
+        "ALLOW_PROM_YN" as allow_prom_yn,
+        "EMERGENCY_YN" as emergency_yn,
+        "SECT_NUM" as sect_num,
+        "SUB_SECT" as sub_sect,
+        "STRUCT_OR_DWELL" as struct_or_dwell,
+        "OWNER_OR_TENANT" as owner_or_tenant,
+        "VIOLATION" as violation,
+        "REMEDY" as remedy,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/allegheny-county-public-swimming-pool-hot-tub-and-spa-inspections' as _source_url
 
@@ -61,4 +75,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by inspection_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by inspection_id, facility_id, facility_name, facility_address, facility_address_2, facility_municipality_name, facility_city, facility_county, facility_state, facility_postal_code, facility_latitude, facility_longitude, venue_type, inspection_date, inspection_end, inspection_purpose, inspection_passed, inspection_number, inspector_name, free_chlorine_shallow, free_chlorine_deep, combined_chlorine_shallow, combined_chlorine_deep, free_bromine_shallow, free_bromine_deep, ph_value_shallow, ph_value_deep, cyanuric_acid, turnover, enclosure, main_drain_visible, safety_equipment, disinfectant_level, ph_balance, no_imminent_health_hazards, abated_date, violation_uid, inspect_id, inspection_number_2, viol_date, viol_class, allow_prom_yn, emergency_yn, sect_num, sub_sect, struct_or_dwell, owner_or_tenant, violation, remedy order by _loaded_at desc) = 1

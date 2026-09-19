@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'provider' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (CCN, NPI) is NOT unique within a load as landed at generation time -- it would collapse 47 of 2,260,193 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -33,4 +34,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by ccn, npi order by _loaded_at desc) = 1
+qualify row_number() over (partition by npi, ind_pac_id, provider_last_name, provider_first_name, provider_middle_name, suff, facility_type, ccn, facility_type_certification_number order by _loaded_at desc) = 1

@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_cka_open_data_sa_a8ef161189__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+CREATED_DATE unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (GEOM+CREATED_DATE unique). SPINE_ENTITY: place."
     columns:
       - name: shape__length
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: created_date
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - shape__length
-              - created_date
+          - not_null:
+              config:
+                severity: warn

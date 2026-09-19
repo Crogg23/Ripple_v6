@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (GEOMETRY) is NOT unique within a load as landed at generation time -- it would collapse 1 of 100 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -145,4 +146,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by geometry order by _loaded_at desc) = 1
+qualify row_number() over (partition by fid, objectid, status, score, match_type, match_addr, longlabel, shortlabel, addr_type, type, placename, place_addr, phone, url, rank, addbldg, addnum, addnumfrom, addnumto, addrange, side, stpredir, stpretype, stname, sttype, stdir, bldgtype, bldgname, leveltype, levelname, unittype, unitname, subaddr, staddr, block, sector, nbrhd, district, city, metroarea, subregion, region, regionabbr, territory, zone, postal, postalext, country, langcode, distance, x, y, displayx, displayy, xmin, xmax, ymin, ymax, exinfo, in_address, in_addre_1, in_addre_2, in_neighbo, in_city, in_subregi, in_region, in_postal, in_postale, in_country, user_count, user_cou_1, user_esc_r, user_esc_1, user_esc_2, user_distr, user_dis_1, user_dis_2, user_nces, user_dis_3, user_dis_4, user_dis_5, user_dis_6, user_dis_7, user_dis_8, user_dis_9, user_dis10, user_dis11, user_dis12, user_dis13, user_dis14, user_dis15, user_dis16, user_schoo, user_sch_1, user_instr, user_chart, user_aea, user_magne, user_resid, user_nce_1, user_sch_2, user_sch_3, user_sch_4, user_sch_5, user_sch_6, user_sch_7, user_sch_8, user_sch_9, user_sch10, user_sch11, user_sch12, user_sch13, user_sch14, user_grade, user_sch15, user_sch16, user_sch17, user_updat, precinct, geometry order by _loaded_at desc) = 1

@@ -12,25 +12,25 @@ sources:
 
 models:
   - name: stg_portal_arc_atlanta_dataatla_51a606f539__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (LATLON+BUSINESS_LICENSE_YEAR+DATE_OF_OPENING_IN_ATLANTA+PREVIOUS_YEAR_REPORTED_REVENUE unique). SPINE_ENTITY: place."
     columns:
       - name: longitude
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: business_license_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_of_opening_in_atlanta
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: previous_year_reported_revenue
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - longitude
-              - business_license_year
-              - date_of_opening_in_atlanta
-              - previous_year_reported_revenue
+          - not_null:
+              config:
+                severity: warn

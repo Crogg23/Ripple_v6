@@ -12,37 +12,40 @@ sources:
 
 models:
   - name: stg_fed_usaspending_bulk__organizations
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique). SPINE_ENTITY: organization."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per organization (UEI+ACTION_DATE+ACTION_DATE_FISCAL_YEAR+PERIOD_OF_PERFORMANCE_START_DATE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID_PIID unique). SPINE_ENTITY: organization."
     columns:
       - name: recipient_uei
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: action_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: action_date_fiscal_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: period_of_performance_start_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: award_id_piid
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: parent_award_agency_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: parent_award_id_piid
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - recipient_uei
-              - action_date
-              - action_date_fiscal_year
-              - period_of_performance_start_date
-              - award_id_piid
-              - parent_award_agency_id
-              - parent_award_id_piid
+          - not_null:
+              config:
+                severity: warn

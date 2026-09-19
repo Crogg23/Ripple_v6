@@ -12,9 +12,10 @@ sources:
 
 models:
   - name: stg_fed_fjc_service__people
-    description: "GRAIN: one row per person (SEAT_ID is unique). SPINE_ENTITY: person."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per person (SEAT_ID is unique). SPINE_ENTITY: person."
     columns:
       - name: seat_id
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

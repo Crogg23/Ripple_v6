@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'case' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (CASE_ID) is NOT unique within a load as landed at generation time -- it would collapse 1,949,137 of 2,000,000 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -45,6 +46,23 @@ renamed as (
         "CLOSED_PHOTO" as closed_photo,
         "LONGITUDE" as longitude,
         "LATITUDE" as latitude,
+        "CASE_ENQUIRY_ID" as case_enquiry_id,
+        "OPEN_DT" as open_dt,
+        "SLA_TARGET_DT" as sla_target_dt,
+        "CLOSED_DT" as closed_dt,
+        "CASE_TITLE" as case_title,
+        "SUBJECT" as subject,
+        "REASON" as reason,
+        "TYPE" as type,
+        "QUEUE" as queue,
+        "DEPARTMENT" as department,
+        "LOCATION" as location,
+        "PWD_DISTRICT" as pwd_district,
+        "NEIGHBORHOOD_SERVICES_DISTRICT" as neighborhood_services_district,
+        "LOCATION_STREET_NAME" as location_street_name,
+        "LOCATION_ZIPCODE" as location_zipcode,
+        "GEOM_4326" as geom_4326,
+        "SOURCE" as source,
         INGESTED_AT as _loaded_at,
         'https://data.boston.gov/dataset/311-service-requests' as _source_url
 
@@ -53,4 +71,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by case_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by case_id, open_date, case_topic, service_name, assigned_department, assigned_team, case_status, closure_reason, closure_comments, close_date, target_close_date, on_time, report_source, full_address, street_number, street_name, zip_code, neighborhood, public_works_district, city_council_district, fire_district, police_district, ward, precinct, submitted_photo, closed_photo, longitude, latitude, case_enquiry_id, open_dt, sla_target_dt, closed_dt, case_title, subject, reason, type, queue, department, location, pwd_district, neighborhood_services_district, location_street_name, location_zipcode, geom_4326, source order by _loaded_at desc) = 1

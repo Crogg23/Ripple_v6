@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'organization' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (RECIPIENT_UEI, ACTION_DATE, PERIOD_OF_PERFORMANCE_START_DATE, PERIOD_OF_PERFORMANCE_CURRENT_END_DATE, AWARD_ID_PIID) is NOT unique within a load as landed at generation time -- it would collapse 26,500 of 6,325,622 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -60,4 +61,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by recipient_uei, action_date, period_of_performance_start_date, period_of_performance_current_end_date, award_id_piid order by _loaded_at desc) = 1
+qualify row_number() over (partition by contract_award_unique_key, award_id_piid, action_date, period_of_performance_start_date, period_of_performance_current_end_date, federal_action_obligation, total_dollars_obligated, current_total_value_of_award, awarding_agency_name, awarding_sub_agency_name, funding_agency_name, recipient_uei, recipient_duns, cage_code, recipient_name, recipient_doing_business_as_name, recipient_parent_uei, recipient_parent_name, recipient_city_name, recipient_state_code, recipient_zip_4_code, recipient_country_name, primary_place_of_performance_state_code, primary_place_of_performance_city_name, award_type, naics_code, naics_description, product_or_service_code_description, transaction_description, highly_compensated_officer_1_name, highly_compensated_officer_1_amount, highly_compensated_officer_2_name, highly_compensated_officer_2_amount, foreign_owned, usaspending_permalink, last_modified_date order by _loaded_at desc) = 1

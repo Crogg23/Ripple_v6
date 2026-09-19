@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'facility' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (PWSID, VISIT_DATE, FIRST_REPORTED_DATE, LAST_REPORTED_DATE) is NOT unique within a load as landed at generation time -- it would collapse 47,541 of 2,495,249 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -44,4 +45,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by pwsid, visit_date, first_reported_date, last_reported_date order by _loaded_at desc) = 1
+qualify row_number() over (partition by submissionyearquarter, pwsid, visit_id, visit_date, agency_type_code, visit_reason_code, management_ops_eval_code, source_water_eval_code, security_eval_code, pumps_eval_code, other_eval_code, compliance_eval_code, data_verification_eval_code, treatment_eval_code, finished_water_stor_eval_code, distribution_eval_code, financial_eval_code, visit_comments, first_reported_date, last_reported_date order by _loaded_at desc) = 1

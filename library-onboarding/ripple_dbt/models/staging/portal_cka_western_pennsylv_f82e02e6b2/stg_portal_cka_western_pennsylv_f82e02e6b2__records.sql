@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (EV_ID) is NOT unique within a load as landed at generation time -- it would collapse 990 of 22,674 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -46,6 +47,7 @@ renamed as (
         "GAZ_DIST" as gaz_dist,
         "SUB_DATE" as sub_date,
         "EDIT_DATE" as edit_date,
+        "DATASPATIAL_WKB" as dataspatial_wkb,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/landslides' as _source_url
 
@@ -54,4 +56,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by ev_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by src_name, src_link, ev_id, ev_date, ev_time, ev_title, ev_desc, loc_desc, loc_accu, ls_cat, ls_trig, ls_size, ls_setting, fatalities, injuries, storm_name, photo_link, comments, ev_imp_src, ev_imp_id, latitude, longitude, ctry_name, ctry_code, div_name, gaz_point, gaz_dist, sub_date, edit_date, dataspatial_wkb order by _loaded_at desc) = 1

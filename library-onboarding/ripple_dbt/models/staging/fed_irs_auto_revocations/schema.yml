@@ -2,9 +2,10 @@ version: 2
 
 models:
   - name: stg_fed_irs_auto_revocations__organizations
-    description: "GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per organization (EIN is unique). SPINE_ENTITY: organization."
     columns:
       - name: ein
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

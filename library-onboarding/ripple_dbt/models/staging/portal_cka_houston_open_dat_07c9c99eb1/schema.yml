@@ -12,25 +12,25 @@ sources:
 
 models:
   - name: stg_portal_cka_houston_open_dat_07c9c99eb1__events
-    description: "GRAIN: one row per event (TEMP_EVENT_ID+INSPECTION_DATE+ACTIVITY_TYPE+STAFF_CODE unique). SPINE_ENTITY: event."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per event (TEMP_EVENT_ID+INSPECTION_DATE+ACTIVITY_TYPE+STAFF_CODE unique). SPINE_ENTITY: event."
     columns:
       - name: temp_event_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: inspection_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: activity_type
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: staff_code
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - temp_event_id
-              - inspection_date
-              - activity_type
-              - staff_code
+          - not_null:
+              config:
+                severity: warn

@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (SWC_ID) is NOT unique within a load as landed at generation time -- it would collapse 4 of 34,207 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -133,4 +134,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by swc_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by x, y, objectid, permit_number, inserted_by, inserted_date, changed_by, changed_date, verifiedby, verifydate, reference_point, swc_id, swc_legacy_id, swc_loc_fac_id, swc_swv_id, swc_permit_no, swc_dcr_permit_no, swc_classification, swc_activity, swc_region, swc_des_staff_id, swc_ope_name, swc_ope_con_fname, swc_ope_con_lname, swc_ope_address1, swc_ope_address2, swc_ope_city, swc_ope_state, swc_ope_zip, swc_ope_zip_ext, swc_ope_phone, swc_ope_email, swc_ope_e_transmit_yn, swc_loc_name, swc_loc_address1, swc_loc_address2, swc_loc_city, swc_loc_state, swc_loc_zip, swc_loc_zip_ext, swc_loc_lat, swc_loc_lng, swc_sws_code, swc_nature, swc_ms4_operator_id, swc_est_proj_start_date, swc_est_proj_end_date, swc_devel_acres, swc_disturb_acres, swc_part_of_plan_yn, swc_swppp_yn, swc_app_recd_dt, swc_app_cmplt_dt, swc_app_signed_dt, swc_app_eff_dt, swc_app_exp_dt, swc_app_incmpl_lttr_dt, swc_comments, swc_event_comments, swc_swt_code, swc_annual_stand_yn, swc_linear_proj_yn, swc_vdot_operator_yn, swc_czm_yn, swc_authority_id, swc_alt_auth_id, swc_tmdl_yn, swc_impaired_yn, swc_exceptional_yn, swc_fee_amount, swc_legacy_old_pmt_no, swc_legacy_huc, swc_legacy_rec_str, swc_inserted_by, swc_inserted_date, swc_changed_by, swc_changed_date, swc_swe_id, swc_term_rcvd_date, swc_term_cmpl_date, swc_term_date, swc_term_a_yn, swc_term_b_yn, swc_term_c_yn, swc_term_d_yn, swc_term_fac_type, swc_term_fac_addr1, swc_term_fac_addr2, swc_term_fac_city, swc_term_fac_state, swc_term_fac_zip, swc_term_fac_zip_ext, swc_term_fac_lat, swc_term_fac_lng, swc_term_fac_acres, swc_term_fac_imp_acres, swc_term_nc_name, swc_term_nc_acquired, swc_coverage_letter_sent_date, swc_app_status_cd, swc_term_submit_to_deq_dt, swc_term_fac_fic_county, swc_term_fac_fic_state, swc_premod_id, swc_hist_date, swc_pretransfer_id, swc_ope_email_cc, vsmp_authority order by _loaded_at desc) = 1

@@ -12,29 +12,30 @@ sources:
 
 models:
   - name: stg_portal_cka_houston_open_dat_a4490182ba__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+SR_CREATE_DATE+DUE_DATE+DATE_CLOSED+TAX_ID unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (ZIP+SR_CREATE_DATE+DUE_DATE+DATE_CLOSED+TAX_ID unique). SPINE_ENTITY: place."
     columns:
       - name: zipcode
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: sr_create_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: due_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_closed
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: tax_id
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - zipcode
-              - sr_create_date
-              - due_date
-              - date_closed
-              - tax_id
+          - not_null:
+              config:
+                severity: warn

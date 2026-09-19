@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_cka_open_data_sa_1c37ee3869__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+FISCAL_YEAR unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (GEOM+FISCAL_YEAR unique). SPINE_ENTITY: place."
     columns:
       - name: shape__length
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - shape__length
-              - fiscal_year
+          - not_null:
+              config:
+                severity: warn

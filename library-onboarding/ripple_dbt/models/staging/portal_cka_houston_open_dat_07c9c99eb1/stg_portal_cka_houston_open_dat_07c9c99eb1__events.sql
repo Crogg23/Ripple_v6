@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'event' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (TEMP_EVENT_ID, INSPECTION_DATE, ACTIVITY_TYPE, STAFF_CODE) is NOT unique within a load as landed at generation time -- it would collapse 16 of 2,216 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -35,4 +36,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by temp_event_id, inspection_date, activity_type, staff_code order by _loaded_at desc) = 1
+qualify row_number() over (partition by temp_event_id, c_account, name, site, activity_type, citation_number, staff_code, facility_type, score, inspection_date order by _loaded_at desc) = 1

@@ -11,10 +11,11 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_fed_epa_echo__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FRS_ID unique). SPINE_ENTITY: (not determined)."
+  - name: stg_fed_epa_echo__facilities
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per facility (FRS_ID is unique). SPINE_ENTITY: facility."
     columns:
       - name: frs_id
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

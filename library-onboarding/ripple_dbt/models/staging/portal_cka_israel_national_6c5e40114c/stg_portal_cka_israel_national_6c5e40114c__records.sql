@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (FUND_ID, REPORT_PERIOD) is NOT unique within a load as landed at generation time -- it would collapse 38 of 43,134 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -41,6 +42,13 @@ renamed as (
         "FOREIGN_CURRENCY_EXPOSURE" as foreign_currency_exposure,
         "PARENT_COMPANY_LEGAL_ID" as parent_company_legal_id,
         "REPORTING_YEAR" as reporting_year,
+        "C_CURRENT_DATE" as c_current_date,
+        "MDS_NAME" as mds_name,
+        "MDS_INFO_NAME" as mds_info_name,
+        "MDS_DES" as mds_des,
+        "MDS_TYPE" as mds_type,
+        "COL" as col,
+        "COL_2" as col_2,
         INGESTED_AT as _loaded_at,
         'https://data.gov.il/dataset/insurance' as _source_url
 
@@ -49,4 +57,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by fund_id, report_period order by _loaded_at desc) = 1
+qualify row_number() over (partition by fund_id, fund_name, parent_company_id, parent_company_name, fund_classification, report_period, total_assets, avg_annual_management_fee, avg_deposit_fee, monthly_yield, year_to_date_yield, yield_trailing_3_yrs, yield_trailing_5_yrs, avg_annual_yield_trailing_3yrs, avg_annual_yield_trailing_5yrs, standard_deviation, alpha, sharpe_ratio, liquid_assets_percent, stock_market_exposure, foreign_exposure, foreign_currency_exposure, parent_company_legal_id, reporting_year, c_current_date, mds_name, mds_info_name, mds_des, mds_type, col, col_2 order by _loaded_at desc) = 1

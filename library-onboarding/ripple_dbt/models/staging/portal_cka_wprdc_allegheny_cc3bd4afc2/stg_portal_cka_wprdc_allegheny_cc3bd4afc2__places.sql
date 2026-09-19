@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (GEOID20) is NOT unique within a load as landed at generation time -- it would collapse 24,786 of 49,574 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -38,6 +39,15 @@ renamed as (
         "UACE20" as uace20,
         "UR20" as ur20,
         "GEOMETRY" as geometry,
+        "OBJECTID" as objectid,
+        "GEOID" as geoid,
+        "NAME" as name,
+        "ALAND" as aland,
+        "AWATER" as awater,
+        "INTPTLAT" as intptlat,
+        "INTPTLON" as intptlon,
+        "SHAPE_AREA" as shape_area,
+        "SHAPE_LENGTH" as shape_length,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/allegheny-county-census-blocks-2021' as _source_url
 
@@ -46,4 +56,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by geoid20 order by _loaded_at desc) = 1
+qualify row_number() over (partition by aland20, awater20, blockce20, countyfp20, fid, funcstat20, geoid20, geoidfq20, housing20, intptlat20, intptlon20, mtfcc20, name20, pop20, statefp20, shape__area, shape__length, tractce20, uace20, ur20, geometry, objectid, geoid, name, aland, awater, intptlat, intptlon, shape_area, shape_length order by _loaded_at desc) = 1

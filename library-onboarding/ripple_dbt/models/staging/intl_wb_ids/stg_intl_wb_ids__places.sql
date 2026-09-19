@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (COUNTRY_CODE, COUNTERPART_AREA_CODE, SERIES_CODE) is NOT unique within a load as landed at generation time -- it would collapse 4 of 62,983 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -94,4 +95,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by country_code, counterpart_area_code, series_code order by _loaded_at desc) = 1
+qualify row_number() over (partition by country_name, country_code, counterpart_area_name, counterpart_area_code, series_name, series_code, c_1970, c_1971, c_1972, c_1973, c_1974, c_1975, c_1976, c_1977, c_1978, c_1979, c_1980, c_1981, c_1982, c_1983, c_1984, c_1985, c_1986, c_1987, c_1988, c_1989, c_1990, c_1991, c_1992, c_1993, c_1994, c_1995, c_1996, c_1997, c_1998, c_1999, c_2000, c_2001, c_2002, c_2003, c_2004, c_2005, c_2006, c_2007, c_2008, c_2009, c_2010, c_2011, c_2012, c_2013, c_2014, c_2015, c_2016, c_2017, c_2018, c_2019, c_2020, c_2021, c_2022, c_2023, c_2024, c_2025, c_2026, c_2027, c_2028, c_2029, c_2030, c_2031, c_2032 order by _loaded_at desc) = 1

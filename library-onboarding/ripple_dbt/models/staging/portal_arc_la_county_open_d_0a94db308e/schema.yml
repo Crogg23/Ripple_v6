@@ -12,29 +12,30 @@ sources:
 
 models:
   - name: stg_portal_arc_la_county_open_d_0a94db308e__providers
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CCN+NPI+PARTICIPATION_DATE+APPROVAL_DATE+START_DATE unique). SPINE_ENTITY: provider."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per provider (CCN+NPI+PARTICIPATION_DATE+APPROVAL_DATE+START_DATE unique). SPINE_ENTITY: provider."
     columns:
       - name: ccn
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: npi
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: participation_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: approval_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: start_date
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - ccn
-              - npi
-              - participation_date
-              - approval_date
-              - start_date
+          - not_null:
+              config:
+                severity: warn

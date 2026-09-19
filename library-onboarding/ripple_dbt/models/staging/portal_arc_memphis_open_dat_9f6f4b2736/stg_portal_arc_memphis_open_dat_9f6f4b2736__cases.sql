@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'case' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (DOCKET) is NOT unique within a load as landed at generation time -- it would collapse 60 of 11,108 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -45,4 +46,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by docket order by _loaded_at desc) = 1
+qualify row_number() over (partition by fid, casetype, year, casenum, docket, atlas_grid, case_rulin, rulingdate, comments, address, created_us, created_da, last_edite, last_edi_1, globalid, shape_star, shape_stle, shape__area, shape__length, geometry order by _loaded_at desc) = 1

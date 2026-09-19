@@ -6,6 +6,7 @@
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
+-- DEDUPE: registry natural_key (DATASET_ID) is NOT unique within a load as landed at generation time -- it would collapse 12 of 5,000 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -40,4 +41,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by dataset_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by dataset_id, title, description, organisation_id, organisation_name, thematic_category, license_id, date_created, metadata_modified, num_resources, resource_formats, resource_urls, tags, is_hvd, access_url, language order by _loaded_at desc) = 1

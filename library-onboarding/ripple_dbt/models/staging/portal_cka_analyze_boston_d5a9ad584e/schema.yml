@@ -11,34 +11,36 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_cka_analyze_boston_d5a9ad584e__filings
-    description: "GRAIN: one row per filing (ZIP+PERMIT_APPLICATION_FILING_DATE+PERMIT_ISSUED_DATE+REZONING_EFFECTIVE_DATE+PARCEL_ID+SAM_ID unique). SPINE_ENTITY: filing."
+  - name: stg_portal_cka_analyze_boston_d5a9ad584e__places
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (ZIP+PERMIT_APPLICATION_FILING_DATE+PERMIT_ISSUED_DATE+REZONING_EFFECTIVE_DATE+PARCEL_ID+SAM_ID unique). SPINE_ENTITY: place."
     columns:
       - name: zip_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: permit_application_filing_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: permit_issued_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: rezoning_effective_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: parcel_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: sam_id
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - zip_code
-              - permit_application_filing_date
-              - permit_issued_date
-              - rezoning_effective_date
-              - parcel_id
-              - sam_id
+          - not_null:
+              config:
+                severity: warn

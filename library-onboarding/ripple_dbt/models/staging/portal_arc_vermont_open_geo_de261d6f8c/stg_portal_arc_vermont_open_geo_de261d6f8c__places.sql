@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'place' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (GEOMETRY) is NOT unique within a load as landed at generation time -- it would collapse 2 of 286 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -76,4 +77,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by geometry order by _loaded_at desc) = 1
+qualify row_number() over (partition by school, schoolidentifier, address, grades, gradeslist, enrollment, type, enrollyear, enrollcategory, accesstype, town, townmc, district, yearbuilt, fcicategory, f2014enroll, f2015enroll, f2016enroll, f2017enroll, f2018enroll, f2019enroll, f2020enroll, f2021enroll, f2022enroll, f2023enroll, county, parent_organization, operating_organization, nces_id, leadershipfte, leadershipaveragesalary, paraprofessionalfte, paraprofessionalaveragesalary, studentservicesfte, studentservicesaveragesalary, supportservicesfte, supportservicesaveragesalary, teacherfte, teacheraveragesalary, g1classsize, g2classsize, g3classsize, g4classsize, g5classsize, ms_coreclassaverage, hs_coreclassaverage, gradecombined_classsize, objectid, f2024enroll, pk_adult_2024enroll, geometry order by _loaded_at desc) = 1

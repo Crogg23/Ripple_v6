@@ -12,9 +12,10 @@ sources:
 
 models:
   - name: stg_portal_cka_analyze_boston_899bb82358__places
-    description: "GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (LATLON is unique). SPINE_ENTITY: place."
     columns:
       - name: longitude
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

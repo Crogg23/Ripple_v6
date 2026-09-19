@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (ID) is NOT unique within a load as landed at generation time -- it would collapse 15 of 6,160 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -47,4 +48,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by id order by _loaded_at desc) = 1
+qualify row_number() over (partition by id, create_date, shortage_type, primary_usages, household_support, water_issues, approximate_issue_start_date, county, city, latitude, longitude, well_depth, approximate_repair_cost, additional_info, well_to_water_depth, measure_date, pump_rate_reduction, report_date, current_status, status_date, actions_taken, status_notes order by _loaded_at desc) = 1

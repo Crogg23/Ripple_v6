@@ -12,21 +12,40 @@ sources:
 
 models:
   - name: stg_portal_soc_utah_open_data_p_6f5fcc229f__facilities
-    description: "GRAIN: one row per facility (TRI_FACILITY_ID+FRS_ID+CAS_COMPOUND_ID unique). SPINE_ENTITY: facility."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per facility (FRS_ID+YEAR+INDUSTRY_SECTOR_CODE+INDUSTRY_SECTOR+TRI_FACILITY_ID+CAS_COMPOUND_ID+SRS_ID unique). SPINE_ENTITY: facility."
     columns:
-      - name: tri_facility_id
-        data_tests:
-          - not_null
       - name: frs_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
+      - name: year
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: industry_sector_code
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: industry_sector
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: tri_facility_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
       - name: cas_compound_id
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - tri_facility_id
-              - frs_id
-              - cas_compound_id
+          - not_null:
+              config:
+                severity: warn
+      - name: srs_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn

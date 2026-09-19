@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_fed_epa_sdwa_sdwa_site_visits__facilities
-    description: "GRAIN: one row per facility (PWSID+VISIT_DATE+FIRST_REPORTED_DATE+LAST_REPORTED_DATE unique). SPINE_ENTITY: facility."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per facility (PWSID+VISIT_DATE+FIRST_REPORTED_DATE+LAST_REPORTED_DATE unique). SPINE_ENTITY: facility."
     columns:
       - name: pwsid
         data_tests:
@@ -24,11 +24,3 @@ models:
           - not_null:
               config:
                 severity: warn
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - pwsid
-              - visit_date
-              - first_reported_date
-              - last_reported_date

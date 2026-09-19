@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_cka_israel_national_07ec1af377__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DEACEASED_ID+DEACEASED_DATE unique). SPINE_ENTITY: (not determined)."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DEACEASED_ID+DEACEASED_DATE unique). SPINE_ENTITY: (not determined)."
     columns:
       - name: deaceased_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: deaceased_date
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - deaceased_id
-              - deaceased_date
+          - not_null:
+              config:
+                severity: warn

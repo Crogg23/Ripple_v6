@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (STATION_ID) is NOT unique within a load as landed at generation time -- it would collapse 1,954,583 of 1,999,247 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -28,6 +29,16 @@ renamed as (
         "SAMPLE_COUNT" as sample_count,
         "SAMPLE_DATE_MIN" as sample_date_min,
         "SAMPLE_DATE_MAX" as sample_date_max,
+        "PARAMETER" as parameter,
+        "STATUS" as status,
+        "SAMPLE_CODE" as sample_code,
+        "SAMPLE_DATE" as sample_date,
+        "SAMPLE_DEPTH" as sample_depth,
+        "SAMPLE_DEPTH_UNITS" as sample_depth_units,
+        "RESULT" as result,
+        "REPORTING_LIMIT" as reporting_limit,
+        "UNITS" as units,
+        "METHOD_NAME" as method_name,
         INGESTED_AT as _loaded_at,
         'https://data.ca.gov/dataset/water-quality-data' as _source_url
 
@@ -36,4 +47,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by station_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by station_id, station_name, full_station_name, station_number, station_type, latitude, longitude, county_name, sample_count, sample_date_min, sample_date_max, parameter, status, sample_code, sample_date, sample_depth, sample_depth_units, result, reporting_limit, units, method_name order by _loaded_at desc) = 1

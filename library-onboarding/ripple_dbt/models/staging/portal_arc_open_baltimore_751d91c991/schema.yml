@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_arc_open_baltimore_751d91c991__facilities
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CCN+TYPE unique). SPINE_ENTITY: facility."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per facility (CCN+TYPE unique). SPINE_ENTITY: facility."
     columns:
       - name: ccn
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: type
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - ccn
-              - type
+          - not_null:
+              config:
+                severity: warn

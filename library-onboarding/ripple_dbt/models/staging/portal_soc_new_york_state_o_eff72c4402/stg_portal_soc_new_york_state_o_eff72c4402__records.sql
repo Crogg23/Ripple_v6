@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (PROJECT_ID_NUMBER) is NOT unique within a load as landed at generation time -- it would collapse 152 of 65,231 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -47,22 +48,34 @@ renamed as (
         "PENALTIES_APPLIED" as penalties_applied,
         "RATIONALE_FOR_TERMINATION" as rationale_for_termination,
         "IS_THIS_A_JOB_CREATION_RETENTION_PROJECT" as is_this_a_job_creation_retention_project,
-        "TOTAL_EMPLOYEES_AT_THE_SITE_FTES" as total_employees_at_the_site_ftes,
-        "TOTAL_EMPLOYEES_AT_THE_SITE_PTS" as total_employees_at_the_site_pts,
         "NYS_MWBE_UTILIZATION_GOAL_APPLIED" as nys_mwbe_utilization_goal_applied,
         "CURRENT_MWBE_UTILIZATION_RATE" as current_mwbe_utilization_rate,
         "IS_THIS_A_LEGACY_PROJECT" as is_this_a_legacy_project,
         "ORIGINAL_ASSISTANCE_AMOUNT" as original_assistance_amount,
-        "ORIGINAL_JOBS_CREATED_FTE" as original_jobs_created_fte,
-        "ORIGINAL_JOBS_RETAINED_FTE" as original_jobs_retained_fte,
         "ORIGINAL_TOTAL_PUBLIC_PRIVATE_INVESTMENT" as original_total_public_private_investment,
         "ORIGINAL_RECIPIENT" as original_recipient,
         "CONTACT" as contact,
-        "EIN_OF_THE_RECIPIENT" as ein_of_the_recipient,
+        "TOTAL_EMPLOYEES_AT_THE_SITE_FTES" as total_employees_at_the_site_ftes,
+        "TOTAL_EMPLOYEES_AT_THE_SITE_PTS" as total_employees_at_the_site_pts,
+        "ORIGINAL_JOBS_CREATED_FTE" as original_jobs_created_fte,
+        "ORIGINAL_JOBS_RETAINED_FTE" as original_jobs_retained_fte,
         "STREET_ADDRESS" as street_address,
         "POSTAL_CODE" as postal_code,
         "JOB_CREATION_COMMITMENTS_FTES" as job_creation_commitments_ftes,
+        "JOB_CREATION_COMMITMENTS_PTS" as job_creation_commitments_pts,
+        "JOB_RETENTION_COMMITMENTS_FTES" as job_retention_commitments_ftes,
+        "JOB_RETENTION_COMMITMENTS_PTS" as job_retention_commitments_pts,
         "JOBS_CREATED_TO_DATE_FTES" as jobs_created_to_date_ftes,
+        "JOBS_CREATED_TO_DATE_PTS" as jobs_created_to_date_pts,
+        "JOBS_RETAINED_TO_DATE_FTES" as jobs_retained_to_date_ftes,
+        "JOBS_RETAINED_TO_DATE_PTS" as jobs_retained_to_date_pts,
+        "PROJECT_HIRES_FTES" as project_hires_ftes,
+        "PROJECT_HIRES_PTS" as project_hires_pts,
+        "EIN_OF_THE_RECIPIENT" as ein_of_the_recipient,
+        "IF_YES_WHAT_IS_THE_ADDITIONAL_AWARDING_AGENCY_NAME" as if_yes_what_is_the_additional_awarding_agency_name,
+        "OTHER_STATE_AGENCY_FUNDING_PROGRAM" as other_state_agency_funding_program,
+        "IF_APPLICABLE_FROM_WHICH_IDA_IS_THE_PROJECT_ALSO_RECEIVING_BENEFITS" as if_applicable_from_which_ida_is_the_project_also_receiving_benefits,
+        "IF_THE_PROJECT_IS_A_MEMBER_ITEM_THE_ORIGINATING_DISTRICT" as if_the_project_is_a_member_item_the_originating_district,
         INGESTED_AT as _loaded_at,
         'https://data.ny.gov/d/26ei-n4eb' as _source_url
 
@@ -71,4 +84,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by project_id_number order by _loaded_at desc) = 1
+qualify row_number() over (partition by lead_agency_name, lead_agency_code, quarter_number_of_the_submission, project_id_number, program_through_which_the_funding_was_awarded, recipient_name, name_of_project, is_the_award_to_a_public_or_private_sector_entity, project_description, industry, county, economic_development_region, start_date, end_date, assistance_type, assistance_amount, total_lead_agency_benefits_awarded, disbursements_to_date, does_this_project_include_additional_nys_benefits, other_state_agency_funding_awarded, is_the_project_also_receiving_benefits_from_a_local_industrial_development_agency_ida, if_applicable_what_is_the_net_value_of_the_tax_benefits_awarded_by_the_ida, total_nys_investment, total_public_private_investment, project_status, compliant_with_terms_and_conditions, reason_for_non_compliant_status, penalties_applied, rationale_for_termination, is_this_a_job_creation_retention_project, nys_mwbe_utilization_goal_applied, current_mwbe_utilization_rate, is_this_a_legacy_project, original_assistance_amount, original_total_public_private_investment, original_recipient, contact, total_employees_at_the_site_ftes, total_employees_at_the_site_pts, original_jobs_created_fte, original_jobs_retained_fte, street_address, postal_code, job_creation_commitments_ftes, job_creation_commitments_pts, job_retention_commitments_ftes, job_retention_commitments_pts, jobs_created_to_date_ftes, jobs_created_to_date_pts, jobs_retained_to_date_ftes, jobs_retained_to_date_pts, project_hires_ftes, project_hires_pts, ein_of_the_recipient, if_yes_what_is_the_additional_awarding_agency_name, other_state_agency_funding_program, if_applicable_from_which_ida_is_the_project_also_receiving_benefits, if_the_project_is_a_member_item_the_originating_district order by _loaded_at desc) = 1

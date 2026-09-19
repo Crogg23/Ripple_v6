@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity 'asset' has no connect/ resolver yet (see connect/spine_entity.py) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (ASSET_ID) is NOT unique within a load as landed at generation time -- it would collapse 175 of 32,177 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -62,6 +63,12 @@ renamed as (
         "ORGANIZATION_EMAIL" as organization_email,
         "ETL_NOTES" as etl_notes,
         "GEOCODING_PROPERTIES" as geocoding_properties,
+        "DATA_SOURCE_NAME" as data_source_name,
+        "DATA_SOURCE_URL" as data_source_url,
+        "PRIMARY_KEY_FROM_ROCKET" as primary_key_from_rocket,
+        "COUNT" as count,
+        "CONCAT_DATA_SOURCE_NAME" as concat_data_source_name,
+        "CONCAT_DATA_SOURCE_URL" as concat_data_source_url,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/allegheny-county-assets' as _source_url
 
@@ -70,4 +77,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by asset_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by name, asset_type, asset_id, tags, location_id, street_address, unit, unit_type, municipality, city, state, zip_code, latitude, longitude, parcel_id, residence, iffy_geocoding, available_transportation, parent_location_id, parent_location, url, email, phone, hours_of_operation, holiday_hours_of_operation, periodicity, capacity, wifi_network, internet_access, computers_available, accessibility, open_to_public, child_friendly, sensitive, do_not_display, localizability, services, hard_to_count_population, data_source_names, data_source_urls, organization_name, organization_phone, organization_email, etl_notes, geocoding_properties, data_source_name, data_source_url, primary_key_from_rocket, count, concat_data_source_name, concat_data_source_url order by _loaded_at desc) = 1

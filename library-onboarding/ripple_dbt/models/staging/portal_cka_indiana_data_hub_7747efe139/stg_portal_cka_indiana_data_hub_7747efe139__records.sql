@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (ID) is NOT unique within a load as landed at generation time -- it would collapse 76 of 40,577 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -28,6 +29,9 @@ renamed as (
         "AGINGSTRUCTURE" as agingstructure,
         "LATITUDE" as latitude,
         "LONGITUDE" as longitude,
+        "FILE" as file,
+        "COLUMN_NAME" as column_name,
+        "DESCRIPTION" as description,
         INGESTED_AT as _loaded_at,
         'https://hub.mph.in.gov/dataset/fish-records' as _source_url
 
@@ -36,4 +40,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by id order by _loaded_at desc) = 1
+qualify row_number() over (partition by id, fishsurveyid, gearid, speciesname, scientificname, lengthin, weightlb, ageyrs, agingstructure, latitude, longitude, file, column_name, description order by _loaded_at desc) = 1

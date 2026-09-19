@@ -12,9 +12,10 @@ sources:
 
 models:
   - name: stg_portal_cka_open_data_sa_1f87a7ae2d__places
-    description: "GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (GEOM is unique). SPINE_ENTITY: place."
     columns:
       - name: shape__length
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

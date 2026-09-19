@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (TMDL_EQ_ID) is NOT unique within a load as landed at generation time -- it would collapse 4 of 1,045 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -48,4 +49,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by tmdl_eq_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by objectid_1, tmdl_eq_id, project, wshd_id, inserted_by, inserted_date, changed_by, changed_date, objectid, pj_id, pj_name, tmdl_eq_id_1, wshd_name, pj_rpt_epa_apprvd_dt, pj_rpt_final_apprvd_link, pj_rpt_swcb_apprvd_dt, project_status, pol_name, imp_name, region, shape_length, shape_area, data_disclaimer order by _loaded_at desc) = 1

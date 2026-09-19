@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (STN_ID) is NOT unique within a load as landed at generation time -- it would collapse 1,928,625 of 1,976,268 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -36,6 +37,19 @@ renamed as (
         "WELL_TYPE" as well_type,
         "WCR_NO" as wcr_no,
         "MONITORING_PROGRAM" as monitoring_program,
+        "MSMT_DATE" as msmt_date,
+        "WLM_RPE" as wlm_rpe,
+        "WLM_GSE" as wlm_gse,
+        "GWE" as gwe,
+        "GSE_GWE" as gse_gwe,
+        "WLM_QA_DESC" as wlm_qa_desc,
+        "WLM_QA_DETAIL" as wlm_qa_detail,
+        "WLM_MTHD_DESC" as wlm_mthd_desc,
+        "WLM_ACC_DESC" as wlm_acc_desc,
+        "WLM_ORG_NAME" as wlm_org_name,
+        "COOP_ORG_NAME" as coop_org_name,
+        "SOURCE" as source,
+        "MSMT_CMT" as msmt_cmt,
         INGESTED_AT as _loaded_at,
         'https://data.ca.gov/dataset/periodic-groundwater-level-measurements' as _source_url
 
@@ -44,4 +58,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by stn_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by site_code, stn_id, swn, well_name, continuous_data_station_number, latitude, longitude, gse, rpe, gse_method, gse_acc, basin_code, basin_name, county_name, well_depth, well_use, well_type, wcr_no, monitoring_program, msmt_date, wlm_rpe, wlm_gse, gwe, gse_gwe, wlm_qa_desc, wlm_qa_detail, wlm_mthd_desc, wlm_acc_desc, wlm_org_name, coop_org_name, source, msmt_cmt order by _loaded_at desc) = 1

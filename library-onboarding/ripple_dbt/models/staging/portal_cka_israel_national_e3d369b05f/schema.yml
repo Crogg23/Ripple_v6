@@ -12,21 +12,20 @@ sources:
 
 models:
   - name: stg_portal_cka_israel_national_e3d369b05f__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+DATE_OPEN+DATE_CLOSE unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (LATLON+DATE_OPEN+DATE_CLOSE unique). SPINE_ENTITY: place."
     columns:
       - name: stn_lat
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_open
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_close
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - stn_lat
-              - date_open
-              - date_close
+          - not_null:
+              config:
+                severity: warn

@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (INSPECTION_ID) is NOT unique within a load as landed at generation time -- it would collapse 176,719 of 195,963 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -37,6 +38,17 @@ renamed as (
         "BUILDING_SEWER" as building_sewer,
         "WATER_DISTRIBUTION" as water_distribution,
         "INDIRECT_WASTE" as indirect_waste,
+        "PLAN_ID" as plan_id,
+        "PLAN_NUMB" as plan_numb,
+        "INSPECT_ID" as inspect_id,
+        "DT_INSP" as dt_insp,
+        "INSPECTOR_ID" as inspector_id,
+        "INSP_ST_TM" as insp_st_tm,
+        "INSP_END_TM" as insp_end_tm,
+        "VIOLATIONS_FLAG" as violations_flag,
+        "SECTION_ID" as section_id,
+        "VIOLATION" as violation,
+        "DESCRIPTION" as description,
         INGESTED_AT as _loaded_at,
         'https://data.wprdc.org/dataset/allegheny-county-plumbing-inspections' as _source_url
 
@@ -45,4 +57,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by inspection_id order by _loaded_at desc) = 1
+qualify row_number() over (partition by inspection_id, permit_id, inspection_date, address, city, state, zip_code, municipal, building_type, plumber_name, final_insp_yn, storm_drain, building_drain, water_service, storm_sewer, rough_above_ground, water_heater, building_sewer, water_distribution, indirect_waste, plan_id, plan_numb, inspect_id, dt_insp, inspector_id, insp_st_tm, insp_end_tm, violations_flag, section_id, violation, description order by _loaded_at desc) = 1

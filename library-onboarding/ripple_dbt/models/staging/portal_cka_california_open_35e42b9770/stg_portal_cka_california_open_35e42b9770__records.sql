@@ -7,6 +7,7 @@
 -- column's real type is confirmed; this generator has no semantic type knowledge.
 -- spine_entity not determined (grain/natural_key proven, but no registry hint says what this row is ABOUT) -- no SPINE_ENTITY_ID emitted.
 -- landing table's ingestion timestamp is named INGESTED_AT (no leading underscore) rather than the usual _INGESTED_AT -- confirmed via INFORMATION_SCHEMA, not assumed.
+-- DEDUPE: registry natural_key (ORG_ID, WATER_SYSTEM_ID, REPORT_PERIOD_START_DATE) is NOT unique within a load as landed at generation time -- it would collapse 24,132 of 87,244 rows. Deduping on the WHOLE ROW instead (exact copies only). A record that changes between loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate.
 
 with source as (
 
@@ -51,6 +52,64 @@ renamed as (
         "POTABLE_DEMAND_RES_ZSCORE" as potable_demand_res_zscore,
         "R_GPCD_ZSCORE" as r_gpcd_zscore,
         "POTABLE_SUPPLY_MINUS_SOLD_MINUS_AG_ZSCORE" as potable_supply_minus_sold_minus_ag_zscore,
+        "POTABLE_SUPPLY_UOM" as potable_supply_uom,
+        "POTABLE_SUPPLY_OU" as potable_supply_ou,
+        "POTABLE_DEMAND_UOM" as potable_demand_uom,
+        "POTABLE_VOL_SOLD_OU" as potable_vol_sold_ou,
+        "POTABLE_DEMAND_RES_SF_OU" as potable_demand_res_sf_ou,
+        "POTABLE_DEMAND_RES_MF_OU" as potable_demand_res_mf_ou,
+        "POTABLE_DEMAND_RES_OU" as potable_demand_res_ou,
+        "POTABLE_DEMAND_AG_OU" as potable_demand_ag_ou,
+        "POTABLE_DEMAND_CI_OU" as potable_demand_ci_ou,
+        "POTABLE_DEMAND_I_OU" as potable_demand_i_ou,
+        "POTABLE_DEMAND_CII_OU" as potable_demand_cii_ou,
+        "POTABLE_DEMAND_IRR_OU" as potable_demand_irr_ou,
+        "POTABLE_DEMAND_O_OU" as potable_demand_o_ou,
+        "NONPOTABLE_DEMAND_UOM" as nonpotable_demand_uom,
+        "RES_RECYCLED_DEMAND_OU" as res_recycled_demand_ou,
+        "RES_RECYCLED_DEMAND_GAL" as res_recycled_demand_gal,
+        "RES_NONPOTABLE_DEMAND_OU" as res_nonpotable_demand_ou,
+        "RES_NONPOTABLE_DEMAND_GAL" as res_nonpotable_demand_gal,
+        "RES_NONPOTABLE_DEMAND_IRR_OU" as res_nonpotable_demand_irr_ou,
+        "RES_NONPOTABLE_DEMAND_IRR_GAL" as res_nonpotable_demand_irr_gal,
+        "NON_RES_RECYCLED_DEMAND_OU" as non_res_recycled_demand_ou,
+        "NON_RES_RECYCLED_DEMAND_GAL" as non_res_recycled_demand_gal,
+        "NON_RES_NONPOTABLE_DEMAND_OU" as non_res_nonpotable_demand_ou,
+        "NON_RES_NONPOTABLE_DEMAND_GAL" as non_res_nonpotable_demand_gal,
+        "NON_RES_NONPOTABLE_DEMAND_IRR_OU" as non_res_nonpotable_demand_irr_ou,
+        "NON_RES_NONPOTABLE_DEMAND_IRR_GAL" as non_res_nonpotable_demand_irr_gal,
+        "POTABLE_SUPPLY_COMMENTS" as potable_supply_comments,
+        "POTABLE_DEMAND_COMMENTS" as potable_demand_comments,
+        "NON_POTABLE_DEMAND_COMMENTS" as non_potable_demand_comments,
+        "SUPPLIER_NAME_2" as supplier_name_2,
+        "PUBLIC_WATER_SYSTEM_ID" as public_water_system_id,
+        "REPORTING_MONTH" as reporting_month,
+        "TOTAL_POPULATION_SERVED" as total_population_served,
+        "COUNTY_2" as county_2,
+        "HYDROLOGIC_REGION" as hydrologic_region,
+        "CLIMATE_ZONE_2" as climate_zone_2,
+        "WSCP_LINK" as wscp_link,
+        "WATER_SHORTAGE_CONTINGENCY_STAGE_INVOKED" as water_shortage_contingency_stage_invoked,
+        "DWR_STAGE" as dwr_stage,
+        "ENACTED_ANY_MEASURES" as enacted_any_measures,
+        "REASON_FOR_NO_ACTIONS" as reason_for_no_actions,
+        "DEMAND_ACTIONS" as demand_actions,
+        "DEMAND_COMMENTS" as demand_comments,
+        "SUPPLY_ACTIONS" as supply_actions,
+        "SUPPLY_COMMENTS" as supply_comments,
+        "WATER_RESTRICTIONS" as water_restrictions,
+        "WATER_RESTRICTION_COMMENTS" as water_restriction_comments,
+        "COMMUNICATION_ACTIONS" as communication_actions,
+        "COMMUNICATION_COMMENTS" as communication_comments,
+        "OTHER_ACTIONS" as other_actions,
+        "OTHER_ACTIONS_COMMENTS" as other_actions_comments,
+        "WASTE_ACTIONS" as waste_actions,
+        "WATER_WASTE_COMMENTS" as water_waste_comments,
+        "TYPE_OF_WATER_WASTE" as type_of_water_waste,
+        "NUMBER_OF_WATER_WASTE_INCIDENTS_IDENTIFIED_OR_REPORTED" as number_of_water_waste_incidents_identified_or_reported,
+        "NUMBER_OF_WATER_WASTE_COMPLAINTS_INVESTIGATED" as number_of_water_waste_complaints_investigated,
+        "NUMBER_OF_WATER_WASTERS_NOTIFIED" as number_of_water_wasters_notified,
+        "NUMBER_OF_WATER_WASTE_INCIDENTS_RESULTING_IN_PENALTIES" as number_of_water_waste_incidents_resulting_in_penalties,
         INGESTED_AT as _loaded_at,
         'https://data.ca.gov/dataset/urws-conservation-supply-demand' as _source_url
 
@@ -59,4 +118,4 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by org_id, water_system_id, report_period_start_date order by _loaded_at desc) = 1
+qualify row_number() over (partition by org_id, supplier_name, water_system_id, county, hydro_region, climate_zone, report_period_start_date, report_period_end_date, pop_report_period, dwr_standard_level, dwr_standard_level_flag, potable_supply_gal, potable_supply_prelim_est, potable_vol_sold_gal, potable_supply_minus_sold_gal, potable_supply_minus_sold_flag, potable_demand_res_gal, r_gpcd, res_flag, potable_demand_res_prelim_est, potable_demand_ag_gal, potable_demand_cii_irr_gal, potable_demand_cii_gal, potable_demand_irr_gal, potable_demand_o_gal, potable_demand_prelim_est, recycled_demand_gal, non_potable_demand_prelim_est, potable_supply_minus_sold_minus_ag_gal, potable_supply_minus_sold_minus_ag_gal_flag, potable_supply_minus_sold_zscore, potable_demand_res_zscore, r_gpcd_zscore, potable_supply_minus_sold_minus_ag_zscore, potable_supply_uom, potable_supply_ou, potable_demand_uom, potable_vol_sold_ou, potable_demand_res_sf_ou, potable_demand_res_mf_ou, potable_demand_res_ou, potable_demand_ag_ou, potable_demand_ci_ou, potable_demand_i_ou, potable_demand_cii_ou, potable_demand_irr_ou, potable_demand_o_ou, nonpotable_demand_uom, res_recycled_demand_ou, res_recycled_demand_gal, res_nonpotable_demand_ou, res_nonpotable_demand_gal, res_nonpotable_demand_irr_ou, res_nonpotable_demand_irr_gal, non_res_recycled_demand_ou, non_res_recycled_demand_gal, non_res_nonpotable_demand_ou, non_res_nonpotable_demand_gal, non_res_nonpotable_demand_irr_ou, non_res_nonpotable_demand_irr_gal, potable_supply_comments, potable_demand_comments, non_potable_demand_comments, supplier_name_2, public_water_system_id, reporting_month, total_population_served, county_2, hydrologic_region, climate_zone_2, wscp_link, water_shortage_contingency_stage_invoked, dwr_stage, enacted_any_measures, reason_for_no_actions, demand_actions, demand_comments, supply_actions, supply_comments, water_restrictions, water_restriction_comments, communication_actions, communication_comments, other_actions, other_actions_comments, waste_actions, water_waste_comments, type_of_water_waste, number_of_water_waste_incidents_identified_or_reported, number_of_water_waste_complaints_investigated, number_of_water_wasters_notified, number_of_water_waste_incidents_resulting_in_penalties order by _loaded_at desc) = 1

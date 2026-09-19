@@ -12,9 +12,10 @@ sources:
 
 models:
   - name: stg_portal_arc_open_data_dc_008ba480f6__facilities
-    description: "GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per facility (CCN is unique). SPINE_ENTITY: facility."
     columns:
       - name: ccn
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn

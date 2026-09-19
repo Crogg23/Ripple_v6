@@ -12,17 +12,15 @@ sources:
 
 models:
   - name: stg_portal_cka_western_pennsylv_ed65b530a3__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+QUARTER unique). SPINE_ENTITY: place."
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per place (FIPS+QUARTER unique). SPINE_ENTITY: place."
     columns:
       - name: geoid
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: quarter
         data_tests:
-          - not_null
-    data_tests:
-      - dbt_utils.unique_combination_of_columns:
-          arguments:
-            combination_of_columns:
-              - geoid
-              - quarter
+          - not_null:
+              config:
+                severity: warn

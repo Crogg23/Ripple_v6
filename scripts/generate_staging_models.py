@@ -57,6 +57,8 @@ import argparse
 import sys
 from pathlib import Path
 
+import yaml
+
 _REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_REPO / "library-onboarding"))
 sys.path.insert(0, str(_REPO / "connect"))
@@ -163,6 +165,13 @@ def already_declared_source_tables() -> dict[str, set[str]]:
 # _loaded_at in preference to a fabricated CURRENT_TIMESTAMP() fallback.
 _AUDIT_COLUMN_NAMES = {"INGESTED_AT", "SOURCE_RUN_ID", "SRC_SHA256"}
 
+# Below this many rows per distinct run id, the run id is not a load id.
+MIN_ROWS_PER_LOAD = 100
+# A model file containing this marker is a person's work, --force or not.
+HAND_EDITED_MARKER = "HAND-EDITED"
+# Every test name render_schema_yml can emit. Anything else in a yml is hand-written.
+_GENERATOR_TEST_NAMES = {"unique", "not_null", "dbt_utils.unique_combination_of_columns"}
+
 
 def fetch_columns(cur, table_name: str) -> tuple[list[tuple[str, str]], str | None]:
     """(real columns, ingested_at_column). ingested_at_column is '_INGESTED_AT',
@@ -180,11 +189,74 @@ def fetch_columns(cur, table_name: str) -> tuple[list[tuple[str, str]], str | No
     return real, ingested_at_column
 
 
+def key_is_unique_within_each_load(cur, table_name: str, nk_cols: list[str]) -> tuple[bool, int, int]:
+    """(proven, rows, rows_the_key_would_collapse). 2026-09-19: the registry's
+    NATURAL_KEY was proven once, by profile_spine_backfill.py, against whatever
+    was landed THAT day. Landing reloads since then left 289 staging views
+    hiding 9.2M rows behind a key that no longer identifies a row (one row per
+    water STATION on a table of 2M water SAMPLES), while every unique test
+    stayed green -- the test checks the same columns the QUALIFY just deduped
+    on. So the key is re-proven here, at generation time, against what is
+    landed NOW. Counted per load: the same key in two different loads is a
+    reload (exactly what the dedupe is for), the same key twice inside ONE load
+    is two different records. hash() not count(distinct a, b): the latter
+    silently skips any row with a NULL in the key."""
+    cur.execute(
+        "SELECT column_name FROM LIBRARY_RAW.INFORMATION_SCHEMA.COLUMNS "
+        "WHERE table_schema='LANDING' AND table_name=%s "
+        "AND column_name IN ('_SOURCE_RUN_ID', 'SOURCE_RUN_ID')",
+        (table_name,),
+    )
+    run_col = next((r[0] for r in cur.fetchall()), None)
+    if run_col:
+        # DATA TRAP (2026-09-19): on some tables _SOURCE_RUN_ID is a per-ROW uuid,
+        # not a load id (FED_CMS_OPT_OUT_AFFIDAVITS: 57,209 rows, 57,209 run ids).
+        # Grouping by it makes every group one row, so ANY key "proves" unique --
+        # five bad keys slipped through that way. A run id only counts as a load
+        # id when the average load holds at least 100 rows; otherwise the table
+        # is treated as one load.
+        cur.execute(f"SELECT COUNT(*), COUNT(DISTINCT {quote_ident(run_col)}) "
+                    f"FROM LIBRARY_RAW.LANDING.{quote_ident(table_name)}")
+        total, n_runs = cur.fetchone()
+        if n_runs and total / n_runs < MIN_ROWS_PER_LOAD:
+            run_col = None
+    key = ", ".join(quote_ident(c) for c in nk_cols)
+    group = f"GROUP BY {quote_ident(run_col)}" if run_col else ""
+    cur.execute(
+        f"SELECT COALESCE(SUM(n), 0), COALESCE(SUM(n - d), 0) FROM ("
+        f"SELECT COUNT(*) n, COUNT(DISTINCT HASH({key})) d "
+        f"FROM LIBRARY_RAW.LANDING.{quote_ident(table_name)} {group})"
+    )
+    n_rows, collapsed = cur.fetchone()
+    return int(collapsed) == 0, int(n_rows), int(collapsed)
+
+
+def yml_test_names(yml_path: Path) -> set[str]:
+    """Every test named in a schema.yml's models: block (model-level and
+    column-level, `data_tests:` or the old `tests:`). Parsed, not regexed: a
+    column listed under combination_of_columns is a list item too. An unreadable
+    yml returns a sentinel so the caller leaves the file alone."""
+    if not yml_path.exists():
+        return set()
+    try:
+        doc = yaml.safe_load(yml_path.read_text(encoding="utf-8", errors="ignore")) or {}
+    except yaml.YAMLError:
+        return {"<unparseable schema.yml>"}
+    names: set[str] = set()
+    for model in doc.get("models") or []:
+        holders = [model] + list(model.get("columns") or [])
+        for h in holders:
+            for t in (h.get("data_tests") or []) + (h.get("tests") or []):
+                names.add(t if isinstance(t, str) else next(iter(t), ""))
+    return names
+
+
 def snake(name: str) -> str:
     return name.strip().lower()
 
 
-def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: str | None) -> str:
+def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: str | None,
+                 key_proof: tuple[bool, int, int] = (True, 0, 0)) -> str:
     sid = src["source_id"]
     landing_table = sid.upper()
     nk_cols = src["natural_key"]
@@ -193,7 +265,22 @@ def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: 
 
     col_lines = ",\n".join(f"        {quote_ident(c)} as {snake(c)}" for c, _ in columns)
     nk_snake = [snake(c) for c in nk_cols]
-    partition_by = ", ".join(nk_snake)
+    key_proven, n_rows, n_collapsed = key_proof
+    if key_proven:
+        partition_by = ", ".join(nk_snake)
+        dedupe_comment = ""
+    else:
+        # Whole-row dedupe: every data column, no audit columns. A reload of the
+        # same file still collapses (exact copies), two different records that
+        # share the registry key both survive. Columns, not hash(): a hash
+        # collision here would be one more silently hidden row.
+        partition_by = ", ".join(snake(c) for c, _ in columns)
+        dedupe_comment = (
+            f"\n-- DEDUPE: registry natural_key ({', '.join(nk_cols)}) is NOT unique within a load "
+            f"as landed at generation time -- it would collapse {n_collapsed:,} of {n_rows:,} rows. "
+            "Deduping on the WHOLE ROW instead (exact copies only). A record that changes between "
+            "loads shows once per version. Find the real key, fix SOURCE_REGISTRY, regenerate."
+        )
 
     spine_join_col = ""
     spine_join_comment = ""
@@ -258,7 +345,7 @@ def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: 
 -- SPINE_ENTITY: {entity or '(not determined)'}  (natural_key: {', '.join(nk_cols)})
 -- Generated by scripts/generate_staging_models.py from SOURCE_REGISTRY -- deterministic,
 -- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
--- column's real type is confirmed; this generator has no semantic type knowledge.{spine_join_comment}{audit_comment}
+-- column's real type is confirmed; this generator has no semantic type knowledge.{spine_join_comment}{audit_comment}{dedupe_comment}
 
 with source as (
 
@@ -283,7 +370,7 @@ qualify row_number() over (partition by {partition_by} order by {order_by_expr})
 
 
 def render_schema_yml(model_name: str, src: dict, nk_snake: list[str], landing_table: str,
-                       include_source: bool = True) -> str:
+                       include_source: bool = True, key_proven: bool = True) -> str:
     """version-2 schema.yml matching this project's live convention: a per-model-
     folder `sources:` block declaring the ripple_raw table (dbt errors at parse
     time without one -- 'depends on a source ... which was not found') PLUS
@@ -310,7 +397,23 @@ def render_schema_yml(model_name: str, src: dict, nk_snake: list[str], landing_t
     error -- a null there means the row has no identity at all.
     """
     desc = f"GRAIN: {src['grain']}. SPINE_ENTITY: {src['spine_entity'] or '(not determined)'}.".replace('"', "'")
-    if len(nk_snake) == 1:
+    if not key_proven:
+        # 2026-09-19: the registry key is known NOT to identify a row here, so a
+        # unique test on it would be false -- and on a view that dedupes on that
+        # same key it could never fail anyway. Key columns keep a warn-level
+        # not_null; the real check is scripts/sweep_staging_rows.py (view rows
+        # against landing rows).
+        desc = ("GRAIN NOT PROVEN: registry natural_key is not unique within a load; "
+                "whole-row dedupe (exact copies only). " + desc)
+        col_blocks = "\n".join(
+            f"      - name: {c}\n        data_tests:\n"
+            "          - not_null:\n"
+            "              config:\n"
+            "                severity: warn"
+            for c in nk_snake
+        )
+        model_tests = ""
+    elif len(nk_snake) == 1:
         col_blocks = (f"      - name: {nk_snake[0]}\n        data_tests:\n"
                       "          - unique\n          - not_null")
         model_tests = ""
@@ -374,7 +477,7 @@ def main() -> int:
         print(f"{len(sources)} source(s) with GRAIN/NATURAL_KEY/SPINE_ENTITY populated.")
         declared = already_declared_source_tables()
 
-        written, skipped = [], []
+        written, skipped, unproven, kept_yml = [], [], [], []
         for src in sources:
             sid = src["source_id"]
             own_dir = str(MODELS_DIR / sid)
@@ -408,10 +511,18 @@ def main() -> int:
             # slug than this generator would choose (e.g. stg_fed_oyez__scotus_cases
             # vs. this generator's stg_fed_oyez__cases) -- checking only out_path
             # would silently add a second, competing draft model alongside it.
+            # 2026-09-19: a generated file that a person then edited still carries
+            # the "Generated by" header, so --force used to overwrite it (it ate
+            # fed_osha_ita_300a_summary_2025's deliberate `where id is not null`).
+            # A line containing HAND-EDITED makes the file count as hand-built.
+            def _is_hand_built(p: Path) -> bool:
+                body = p.read_text(encoding="utf-8", errors="ignore")
+                return ("Generated by scripts/generate_staging_models.py" not in body
+                        or HAND_EDITED_MARKER in body)
+
             existing_models = [] if args.dry_run else [
                 p for p in out_dir.glob("*.sql")
-                if args.force is False or "Generated by scripts/generate_staging_models.py"
-                not in p.read_text(encoding="utf-8", errors="ignore")
+                if args.force is False or _is_hand_built(p)
             ]
             if existing_models:
                 # non-empty here means a hand-built file (the --force filter above
@@ -422,9 +533,13 @@ def main() -> int:
                                       "a second one."))
                 continue
 
-            sql = render_model(src, columns, ingested_at_column)
+            key_proof = key_is_unique_within_each_load(cur, sid.upper(), src["natural_key"])
+            if not key_proof[0]:
+                unproven.append((sid, key_proof[1], key_proof[2]))
+            sql = render_model(src, columns, ingested_at_column, key_proof)
             nk_snake = [snake(c) for c in src["natural_key"]]
-            yml = render_schema_yml(model_name, src, nk_snake, sid.upper(), include_source=include_source)
+            yml = render_schema_yml(model_name, src, nk_snake, sid.upper(), include_source=include_source,
+                                    key_proven=key_proof[0])
 
             if args.dry_run:
                 print(f"\n{'=' * 78}\n-- {out_path}\n{'=' * 78}\n{sql}")
@@ -443,12 +558,26 @@ def main() -> int:
                             in p.read_text(encoding="utf-8", errors="ignore"):
                         p.unlink()
                 out_path.write_text(sql, encoding="utf-8")
-                if not yml_path.exists() or args.force:
+                # 2026-09-19: --force used to overwrite schema.yml blind and ate
+                # four hand-written key_is_real tests. A yml naming any test this
+                # generator never writes is a person's work: leave it, say so.
+                hand_tests = sorted(yml_test_names(yml_path) - _GENERATOR_TEST_NAMES)
+                if hand_tests:
+                    kept_yml.append((sid, hand_tests))
+                elif not yml_path.exists() or args.force:
                     yml_path.write_text(yml, encoding="utf-8")
             written.append(str(out_path))
 
         cur.close()
         print(f"\n{'DRY RUN, nothing written' if args.dry_run else 'wrote'}: {len(written)} model(s)")
+        if unproven:
+            print(f"key NOT unique within a load, whole-row dedupe used: {len(unproven)}")
+            for sid, n_rows, n_collapsed in sorted(unproven, key=lambda u: -u[2])[:25]:
+                print(f"  {sid}: key would collapse {n_collapsed:,} of {n_rows:,} rows")
+        if kept_yml:
+            print(f"schema.yml left alone (hand-written tests inside) -- check it still fits the model: {len(kept_yml)}")
+            for sid, names in kept_yml:
+                print(f"  {sid}: {', '.join(names)}")
         if skipped:
             print(f"skipped {len(skipped)}:")
             for sid, why in skipped:
