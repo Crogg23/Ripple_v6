@@ -10,7 +10,7 @@ sources:
 models:
   - name: stg_fed_sec_13f_securities_list__all
     description: "SEC Official List of Section 13(f) Securities, 2026 Q2. GRAIN: one row per list line. CUSIP repeats on option lines (CALL/PUT), so it is not unique."
-    tests:
+    data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
@@ -18,8 +18,8 @@ models:
               - LINE_NO
     columns:
       - name: LINE_NO
-        tests:
+        data_tests:
           - not_null
       - name: CUSIP
-        tests:
+        data_tests:
           - not_null
