@@ -21,9 +21,13 @@
 
 {% set guarded = ['housing__fed_fhfa_nmdb', 'economics__fed_foreignassistance',
                    'immigration__fed_uscis_data', 'reference__intl_eg_capmas',
-                   'transport__fed_faa_data_portal', 'justice__fed_ftc_datasets',
+                   'justice__fed_ftc_datasets',
                    'science__fed_nsf_awards', 'housing__fed_hud_data',
                    'immigration__fed_ice_statistics'] %}
+{#- 2026-09-19: 'transport__fed_faa_data_portal' taken off the list. The model is
+    disabled in dbt_project.yml (2026-09-07 density sweep: 4 rows, the portal homepage),
+    and a ref() to a disabled model warns on every run. Put it back, after
+    'reference__intl_eg_capmas', if the model is ever re-enabled. -#}
 
 {% for m in guarded %}
 SELECT model, n_rows, n_distinct
