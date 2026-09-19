@@ -142,8 +142,6 @@ models:
           +enabled: false  # raw twin of environment__fed_epa_frs_facilities (agrees, 5,300,149 rows; redundant)
         uncategorized__int_uk_companies_house:
           +enabled: false  # raw twin of corporate_registry__intl_uk_companies_house (agrees, 5,734,780 rows; redundant)
-        uncategorized__int_gleif_rr:
-          +enabled: false  # raw twin of economics__int_gleif_rr (agrees, 481,933 rows; redundant)
       economics:
         economics__intl_gfi_trade:
           # 2026-09-07 density sweep: 25 rows, 1 of 5 columns carries anything,
@@ -202,9 +200,6 @@ models:
       # Representation polygons landed, staging model rekeyed on LARID.
       land_and_territory:
         land_and_territory__fed_bia_tribal_geo:
-          +enabled: true
-      reference:
-        reference__fed_bia_tribal_geo:
           +enabled: true
       politics:
         # 2026-07-30: STANDING POLICY no_selectorless_dbt_build enforced for real,
@@ -268,19 +263,8 @@ models:
           # a list of links to the statistics. Every statistic column is blank.
           # The real load is fetching those XLSX files, which nobody has done.
           +enabled: false
-        justice__fed_msha_violations:
-          # 2026-07-31: raw passthrough duplicate of labor__fed_msha_violations,
-          # same cross-domain duplicate bug as the finance/consumer_safety ones
-          # above. This is what exposed the hand-built mart's grain was ALMOST but
-          # not quite unique (see that model's header, 51 contested-docket rows).
-          # Now grain-exact; the raw twin adds nothing.
-          +enabled: false
         justice__intl_fatf_ratings:
           +enabled: false  # 2026-07-31: source parse failed -- COUNTRY populated, all 6 rating columns blank
-        justice__fed_msha_accidents:
-          +enabled: false  # raw twin of labor__fed_msha_accidents (agrees, 273,623 rows; redundant)
-        justice__fed_msha_mines:
-          +enabled: false  # raw twin of labor__fed_msha_mines (agrees, 91,906 rows; redundant)
         justice__fed_fdic_enforcement:
           # 2026-07-31: raw twin of regulation__fed_fdic_enforcement, which is
           # ALREADY disabled below as a dead-source stub (14 rows, failed scrape).
@@ -308,26 +292,12 @@ models:
           # every real field -- are 100% blank across all rows.
           +enabled: false
       transport:
-        transport__fed_nhtsa_investigations:
-          # 2026-07-31: a raw passthrough auto-generated under a DIFFERENT domain
-          # folder than the hand-built consumer_safety__fed_nhtsa_investigations --
-          # gen_mart_models.py's duplicate guard only checked its own folder, so it
-          # never saw the existing mart and published a second copy. That copy is
-          # what first exposed the grain bug in the hand-built one (see that model's
-          # header). Now that the hand-built model is grain-correct (154,209 rows,
-          # exact), this raw twin adds nothing but a second row-order-only, generic
-          # C1..C11 copy of the same data. Disabled rather than left to drift again.
-          +enabled: false
         transport__fed_faa_data_portal:
           # 2026-09-07 density sweep: 4 rows, 3 of 15 columns carry anything,
           # 20% dense. All four rows say DATASET_NAME "FAA Data Portal" with
           # ACCESS_URL faa.gov/data and a blank DESCRIPTION. It is the portal
           # homepage, scraped four times, not any dataset behind it.
           +enabled: false
-        transport__fed_nhtsa_complaints:
-          +enabled: false  # raw twin of consumer_safety__fed_nhtsa_complaints (agrees, 2,227,941 rows; redundant)
-        transport__fed_nhtsa_recalls:
-          +enabled: false  # raw twin of consumer_safety__fed_nhtsa_recalls (agrees, 242,993 rows; redundant)
       legal_enforcement:
         legal_enforcement__fed_naag_multistate_settlements:
           +enabled: true  # re-enabled 2026-07-24: source re-ingested (882 rows)
