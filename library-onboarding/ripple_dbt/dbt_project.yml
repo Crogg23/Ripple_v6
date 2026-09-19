@@ -190,7 +190,20 @@ models:
           +enabled: false
       government_records:
         government_records__fed_nara_aad:
-          +enabled: true  # re-enabled 2026-07-24: source re-ingested (554 rows)
+          # DISABLED 2026-09-19, Chris's call. The 554 rows are real but they are
+          # not archival RECORDS: FED_NARA_AAD is the AAD site's FILE LISTING --
+          # "Death Files, 1936 - 2007 (Last Names E through G) (info)" -- 554 file
+          # titles under 8 dataset ids. RECORD_ID, PERSON_NAME, DATE, GEO_LOCATION,
+          # RECORD_GROUP and SERIES_TITLE are blank on all 554; only DATASET_ID and
+          # RAW_FIELDS_JSON carry anything. The mart models people-records that were
+          # never loaded. Until today the staging dedupe (dataset_id + a blank
+          # record_id) collapsed it to 9 rows, which hid this; the 2026-09-07 note
+          # under civil_rights above trusted the 554 count without reading a row.
+          # As a catalog of which NARA files exist it may be worth a different
+          # model; as "archival records" it is not data.
+          #
+          # Was: +enabled: true  # re-enabled 2026-07-24: source re-ingested (554 rows)
+          +enabled: false
       # 2026-08-26: RE-ENABLED. FED_BIA_TRIBAL_GEO's registered URL was an ArcGIS
       # Hub HOME PAGE (https://opendata-1-bia-geospatial.hub.arcgis.com/), not a
       # dataset endpoint -- the loader scraped the portal's item directory

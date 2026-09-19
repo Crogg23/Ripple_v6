@@ -1,8 +1,13 @@
 {{ config(materialized='view') }}
 
+-- HAND-EDITED 2026-09-19: dedupe is a whole-raw-row hash (_row_hash), see the
+-- comment in deduped. The staging generator skips files carrying this marker.
+
 with source as (
 
-    select * from {{ source('ripple_raw', 'FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM') }}
+    -- _row_hash: hash of every landing column except the load stamps
+    select *, hash(* exclude (_INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256)) as _row_hash
+    from {{ source('ripple_raw', 'FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM') }}
 
 ),
 
@@ -27,7 +32,10 @@ renamed as (
 
         -- metadata
         _ingested_at,
-        _source_run_id
+        _source_run_id,
+
+        -- whole-raw-row hash, carried for the dedupe only
+        _row_hash
 
     from source
 
@@ -35,9 +43,13 @@ renamed as (
 
 deduped as (
 
+    -- 2026-09-19: the old partition was (last_name, company). It hid 19 of 241
+    -- landing rows on a single load -- that pair does not identify a row. The
+    -- dedupe is now the whole-raw-row hash, so only exact copies are dropped
+    -- (0 exact copies in landing).
     select *,
         row_number() over (
-            partition by last_name, company
+            partition by _row_hash
             order by _ingested_at desc
         ) as _row_num
     from renamed

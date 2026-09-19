@@ -1,8 +1,15 @@
 {{ config(materialized='view') }}
 
+-- HAND-EDITED 2026-09-19: dedupe is a whole-raw-row hash (_row_hash), see the
+-- comment in deduped. The staging generator skips files carrying this marker.
+
 with source as (
 
-    select *
+    -- _row_hash: hash of every landing column except the load stamps. This
+    -- model never reads the landing stamps (it fabricates _ingested_at below),
+    -- but the table carries them: landing_clean__fed_fdic_enforcement reads
+    -- "_INGESTED_AT".
+    select *, hash(* exclude (_INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256)) as _row_hash
     from {{ source('ripple_raw', 'FED_FDIC_ENFORCEMENT') }}
 
 ),
@@ -67,7 +74,10 @@ renamed as (
 
         -- ingestion metadata
         current_timestamp()                               as _ingested_at,
-        null::varchar                                     as _source_run_id
+        null::varchar                                     as _source_run_id,
+
+        -- whole-raw-row hash, carried for the dedupe only
+        _row_hash
 
     from source
 
@@ -75,10 +85,15 @@ renamed as (
 
 deduped as (
 
-    select *
+    -- 2026-09-19: the old partition was (docket_number, fdic_cert_number,
+    -- coalesce(person_name, respondent_name)). It hid 13 of 14 landing rows on
+    -- a single load -- those columns do not identify a row. The dedupe is now
+    -- the whole-raw-row hash, so only exact copies are dropped (0 exact copies
+    -- in landing).
+    select * exclude (_row_hash)
     from renamed
     qualify row_number() over (
-        partition by docket_number, fdic_cert_number, coalesce(person_name, respondent_name)
+        partition by _row_hash
         order by _ingested_at desc
     ) = 1
 

@@ -1,8 +1,13 @@
 {{ config(materialized='view') }}
 
+-- HAND-EDITED 2026-09-19: dedupe is a whole-raw-row hash (_row_hash), see the
+-- comment in deduped. The staging generator skips files carrying this marker.
+
 with source as (
 
-    select * from {{ source('ripple_raw', 'INTL_CH_ZEFIX') }}
+    -- _row_hash: hash of every landing column except the load stamps
+    select *, hash(* exclude (_INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256)) as _row_hash
+    from {{ source('ripple_raw', 'INTL_CH_ZEFIX') }}
 
 ),
 
@@ -10,7 +15,9 @@ renamed as (
 
     select
         -- primary / surrogate key
-        {{ dbt_utils.generate_surrogate_key(['UID', 'EHRAID', 'CHID']) }} as company_id,
+        -- 2026-09-19: _row_hash added -- (UID, EHRAID, CHID) alone repeats
+        -- across real rows, so without it the key is not one-per-row.
+        {{ dbt_utils.generate_surrogate_key(['UID', 'EHRAID', 'CHID', '_row_hash']) }} as company_id,
 
         -- identifiers
         UID                                          as uid,
@@ -41,7 +48,10 @@ renamed as (
 
         -- metadata
         _ingested_at,
-        _source_run_id
+        _source_run_id,
+
+        -- whole-raw-row hash, carried for the dedupe only
+        _row_hash
 
     from source
 
@@ -49,15 +59,19 @@ renamed as (
 
 deduped as (
 
+    -- 2026-09-19: the old partition was company_id (hash of UID, EHRAID, CHID).
+    -- It hid 17 of 18 landing rows on a single load -- that key does not
+    -- identify a row. The dedupe is now the whole-raw-row hash, so only exact
+    -- copies are dropped (0 exact copies in landing).
     select *,
         row_number() over (
-            partition by company_id
+            partition by _row_hash
             order by _ingested_at desc
         ) as _row_num
     from renamed
 
 )
 
-select * exclude (_row_num)
+select * exclude (_row_num, _row_hash)
 from deduped
 where _row_num = 1

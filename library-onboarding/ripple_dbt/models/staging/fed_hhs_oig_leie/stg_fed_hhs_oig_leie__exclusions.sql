@@ -26,11 +26,21 @@
     leaves 95 true duplicate rows across 83,464 (verified), which we collapse to
     the most-recently-ingested copy. A surrogate hash of that key (exclusion_sk) is
     unique post-dedup and is the model's primary key.
+
+    HAND-EDITED 2026-09-19 (the staging generator skips files with this marker).
+    The paragraph above is superseded: the "95 true duplicate rows" were not all
+    duplicates. On a single load the business-key dedupe hid 95 of 83,842 landing
+    rows, but only 26 of those are exact copies of another row. The dedupe is now
+    a whole-raw-row hash (_row_hash), so only exact copies are dropped, and
+    _row_hash is folded into exclusion_sk so the key stays one-per-row.
 #}
 
 with source as (
 
-    select * from {{ source('ripple_raw', 'FED_HHS_OIG_LEIE') }}
+    -- _row_hash: hash of every landing column except the load stamps
+    -- (unprefixed on this table, see the audit-column note below)
+    select *, hash(* exclude (INGESTED_AT, SOURCE_RUN_ID, SRC_SHA256)) as _row_hash
+    from {{ source('ripple_raw', 'FED_HHS_OIG_LEIE') }}
 
 ),
 
@@ -72,7 +82,10 @@ renamed_cast as (
         -- pipeline audit columns
         -- this loader wrote unprefixed audit columns (INGESTED_AT, not _INGESTED_AT)
         to_timestamp_ntz(INGESTED_AT)                       as _ingested_at,
-        nullif(trim(SOURCE_RUN_ID), '')                     as _source_run_id
+        nullif(trim(SOURCE_RUN_ID), '')                     as _source_run_id,
+
+        -- whole-raw-row hash, carried for the dedupe + surrogate key only
+        _row_hash
 
     from source
 
@@ -93,13 +106,16 @@ flagged as (
 
         -- surrogate primary key over the full business key. LEIE has no native
         -- unique id, so we hash the natural key. Unique after dedup below.
+        -- 2026-09-19: _row_hash added -- the five business columns alone repeat
+        -- across real rows, so without it the key is not one-per-row.
         {{ dbt_utils.generate_surrogate_key([
             'npi',
             'last_name',
             'first_name',
             'business_name',
-            'exclusion_date_raw'
-        ]) }}                                               as exclusion_sk
+            'exclusion_date_raw',
+            '_row_hash'
+        ]) }}                                              as exclusion_sk
 
     from renamed_cast
 
@@ -107,16 +123,20 @@ flagged as (
 
 deduped as (
 
+    -- 2026-09-19: the old partition was exclusion_sk (npi, last_name,
+    -- first_name, business_name, exclusion_date_raw). It hid 95 of 83,842
+    -- landing rows on a single load. The dedupe is now the whole-raw-row hash,
+    -- so only exact copies are dropped (26 exact copies in landing).
     select
         *,
         row_number() over (
-            partition by exclusion_sk
+            partition by _row_hash
             order by _ingested_at desc nulls last
         ) as _row_num
     from flagged
 
 )
 
-select * exclude (_row_num)
+select * exclude (_row_num, _row_hash)
 from deduped
 where _row_num = 1

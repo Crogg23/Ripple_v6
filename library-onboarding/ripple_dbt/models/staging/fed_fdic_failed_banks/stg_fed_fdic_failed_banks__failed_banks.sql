@@ -11,7 +11,10 @@ renamed_cast as (
     select
 
         -- primary / foreign keys
-        trim(cert)                                              as fdic_cert,
+        -- 2026-09-19: landing holds the cert as float text ('13925.0') and the literal
+        -- string 'nan' on 488 failures that have no cert. 'nan' passed not_null and
+        -- '13925.0' can never join to '13925'. Strip the '.0', turn 'nan' into NULL.
+        nullif(regexp_replace(trim(cert), '[.]0$', ''), 'nan')      as fdic_cert,
         trim(cert_fips)                                         as fips,
 
         -- identifiers & descriptors
@@ -58,7 +61,10 @@ deduped as (
 
     select *,
         row_number() over (
-            partition by fdic_cert
+            -- 2026-09-19: was `partition by fdic_cert`, which hid 531 of 4,115
+            -- failures (one load, zero exact copies) -- FDIC's own ID column is
+            -- unique on every row; cert is not (blank/shared on older failures).
+            partition by fdic_failure_record_id
             order by fail_date desc nulls last
         ) as _row_num
     from renamed_cast

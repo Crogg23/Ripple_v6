@@ -10,29 +10,24 @@
   Dates are DD/MM/YYYY.
 */
 
-with source as (
-    select * from {{ source('ripple_raw', 'XC_UK_SANCTIONS_LIST') }}
+with hashed as (
+    -- hash(*) is only legal in a SELECT list, so the whole-row hash is a column.
+    select *, hash(* exclude (_INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256)) as _row_hash
+    from {{ source('ripple_raw', 'XC_UK_SANCTIONS_LIST') }}
+),
+
+source as (
     -- DEDUP (2026-08-11 verification): single load run; 57,883 landing rows vs
     -- 57,231 distinct full-row hashes = 652 BYTE-identical duplicate rows
-    -- (publisher-side dups in the OFSI download). Only those are dropped:
-    -- _SRC_SHA256 is in the partition, so ~23k further rows that match on
-    -- parsed columns but differ in raw bytes (formatting-only differences in
-    -- the published file) are deliberately KEPT -- publisher-side, documented,
-    -- not ours to collapse. Byte-identical rows carry zero information.
-    qualify row_number() over (
-        partition by _SRC_SHA256,
-            UNIQUE_ID, OFSI_GROUP_ID, UN_REFERENCE_NUMBER, NAME_6,
-            NAME_1, NAME_2, NAME_3, NAME_4, NAME_5, NAME_TYPE, ALIAS_STRENGTH,
-            TITLE, NAME_NON_LATIN_SCRIPT, REGIME_NAME, DESIGNATION_TYPE,
-            DESIGNATION_SOURCE, SANCTIONS_IMPOSED, OTHER_INFORMATION,
-            UK_STATEMENT_OF_REASONS, ADDRESS_LINE_1, ADDRESS_LINE_2,
-            ADDRESS_COUNTRY, ADDRESS_POSTAL_CODE, DATE_DESIGNATED, LAST_UPDATED,
-            D_O_B, NATIONALITY_IES, PASSPORT_NUMBER, NATIONAL_IDENTIFIER_NUMBER,
-            POSITION, GENDER, TOWN_OF_BIRTH, COUNTRY_OF_BIRTH, TYPE_OF_ENTITY,
-            SUBSIDIARIES, PARENT_COMPANY, BUSINESS_REGISTRATION_NUMBER_S,
-            IMO_NUMBER, CURRENT_OWNER_OPERATOR_S, CURRENT_BELIEVED_FLAG_OF_SHIP,
-            TYPE_OF_SHIP
-        order by _INGESTED_AT) = 1
+    -- (publisher-side dups in the OFSI download). Only those are dropped.
+    -- 2026-09-19 FIX: the intent above never held. The old partition listed
+    -- _SRC_SHA256 plus 41 hand-picked columns -- but _SRC_SHA256 is the FILE's
+    -- hash, one value for the whole load, not a row hash, and the 41 were not
+    -- every column. So ~23k rows that differ only in an unlisted column were
+    -- collapsed: the view held 33,828 rows, not 57,231. Now a true whole-row
+    -- hash over every data column; only exact copies go.
+    select * exclude (_row_hash) from hashed
+    qualify row_number() over (partition by _row_hash order by _INGESTED_AT) = 1
 ),
 
 renamed as (
@@ -78,6 +73,26 @@ renamed as (
         nullif(trim(CURRENT_OWNER_OPERATOR_S), '')               as current_owner_operator,
         nullif(trim(CURRENT_BELIEVED_FLAG_OF_SHIP), '')          as current_flag_of_ship,
         nullif(trim(TYPE_OF_SHIP), '')                           as type_of_ship,
+        -- 2026-09-19: the 17 landing columns this model never selected. They are
+        -- what tell ~23k otherwise-identical rows apart (one address per row,
+        -- spread over lines 3-6), so without them the kept rows look like copies.
+        nullif(trim(NON_LATIN_SCRIPT_TYPE), '')                  as non_latin_script_type,
+        nullif(trim(NON_LATIN_SCRIPT_LANGUAGE), '')              as non_latin_script_language,
+        nullif(trim(ADDRESS_LINE_3), '')                         as address_line_3,
+        nullif(trim(ADDRESS_LINE_4), '')                         as address_line_4,
+        nullif(trim(ADDRESS_LINE_5), '')                         as address_line_5,
+        nullif(trim(ADDRESS_LINE_6), '')                         as address_line_6,
+        nullif(trim(PHONE_NUMBER), '')                           as phone_number,
+        nullif(trim(WEBSITE), '')                                as website,
+        nullif(trim(EMAIL_ADDRESS), '')                          as email_address,
+        nullif(trim(NATIONAL_IDENTIFIER_ADDITIONAL_INFORMATION), '') as national_identifier_additional_information,
+        nullif(trim(PASSPORT_ADDITIONAL_INFORMATION), '')        as passport_additional_information,
+        nullif(trim(PREVIOUS_OWNER_OPERATOR_S), '')              as previous_owner_operator,
+        nullif(trim(PREVIOUS_FLAGS), '')                         as previous_flags,
+        nullif(trim(TONNAGE_OF_SHIP), '')                        as tonnage_of_ship,
+        nullif(trim(LENGTH_OF_SHIP), '')                         as length_of_ship,
+        nullif(trim(YEAR_BUILT), '')                             as year_built,
+        nullif(trim(HULL_IDENTIFICATION_NUMBER_HIN), '')         as hull_identification_number,
         to_timestamp_ntz(_INGESTED_AT, 6)                        as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                         as _source_run_id
     from source

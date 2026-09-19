@@ -27,12 +27,19 @@ models:
       Staging model for CA CAL-ACCESS lobbying disclosure cover-page filings. Renames
       columns to snake_case and parses dates. One row per filing (FILING_ID unique;
       22,433 distinct FILER_IDs across 568,988 filings).
+    # 2026-09-19: the key is FILING_ID + AMEND_ID (unique on all 568,988 landing rows).
+    # FILING_ID alone hid 44,160 amended filings.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - filing_id
+              - amend_id
     columns:
       - name: filing_id
-        description: Unique filing identifier (natural key).
+        description: Filing identifier. NOT unique on its own -- an amendment keeps the FILING_ID and bumps AMEND_ID.
         data_tests:
           - not_null
-          - unique
 
       - name: filer_id
         description: CAL-ACCESS filer identifier (L/E/F/C-prefixed).

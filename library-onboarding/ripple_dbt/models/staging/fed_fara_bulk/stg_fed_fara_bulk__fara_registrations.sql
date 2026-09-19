@@ -1,8 +1,14 @@
 {{ config(materialized='view') }}
 
+-- HAND-EDITED 2026-09-19: dedupe is a whole-raw-row hash (_row_hash), see the
+-- comment in deduped. The staging generator skips files carrying this marker.
+
 with source as (
 
-    select * from {{ source('ripple_raw', 'FED_FARA_BULK') }}
+    -- _row_hash: hash of every landing column except the load stamps, so two
+    -- rows share it only when they are exact copies of each other.
+    select *, hash(* exclude (_INGESTED_AT, _SOURCE_RUN_ID, _SRC_SHA256)) as _row_hash
+    from {{ source('ripple_raw', 'FED_FARA_BULK') }}
     -- 2026-08-25: one row in FARA_All_ForeignPrincipals.csv is column-shifted in
     -- DOJ's own bulk export -- a date ("03/20/2024") sits in registration_number
     -- while name/business_name/city/state/document_type are all blank and an
@@ -68,7 +74,10 @@ renamed as (
             try_to_date(date_stamped, 'MM/DD/YYYY'),
             current_timestamp()
         )                                                          as _ingested_at,
-        source_file                                                as _source_run_id
+        source_file                                                as _source_run_id,
+
+        -- whole-raw-row hash, carried for the dedupe + surrogate key only
+        _row_hash                                                  as _row_hash
 
     from source
 
@@ -83,15 +92,15 @@ deduped as (
     -- 21,326 -> 48,104 distinct registrations (real rows, not just theoretical --
     -- still short of the 221,900 raw rows, so some further true duplication likely
     -- remains; this is a confirmed improvement, not necessarily the final grain).
+    -- 2026-09-19: the 2026-07-28 note above is superseded. That six-column
+    -- partition (registration_number, person_name, state, registration_date,
+    -- foreign_principal_name, document_type) still hid 173,797 of 221,900
+    -- landing rows on a single load -- the key does not identify a row. The
+    -- dedupe is now the whole-raw-row hash, so only exact copies are dropped
+    -- (444 exact copies in landing).
     select *,
         row_number() over (
-            partition by
-                registration_number,
-                coalesce(person_name, ''),
-                coalesce(state, ''),
-                coalesce(registration_date::text, ''),
-                coalesce(foreign_principal_name, ''),
-                coalesce(document_type, '')
+            partition by _row_hash
             order by _ingested_at desc nulls last
         ) as _row_num
     from renamed
@@ -103,14 +112,17 @@ select
     -- above (see comment there); must match or the widened dedup produces
     -- multiple rows sharing one "unique" key, silently breaking the mart's own
     -- unique/not_null tests on fara_registration_key.
+    -- 2026-09-19: _row_hash added to the key so it stays one-per-row now that
+    -- the dedupe is whole-row (the six business columns alone repeat).
     {{ dbt_utils.generate_surrogate_key([
         'registration_number',
         'person_name',
         'registration_date',
         'state',
         'foreign_principal_name',
-        'document_type'
-    ]) }}                                                          as fara_registration_key,
+        'document_type',
+        '_row_hash'
+    ]) }}                                                         as fara_registration_key,
 
     registration_number,
     person_name,

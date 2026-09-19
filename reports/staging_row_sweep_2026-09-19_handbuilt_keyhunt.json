@@ -1,0 +1,1172 @@
+[
+ {
+  "view": "STG_FED_DOJ_FCA_SETTLEMENTS__FCA_SETTLEMENTS",
+  "source": "FED_DOJ_FCA_SETTLEMENTS",
+  "landing": 19,
+  "view_rows": 12,
+  "key": "fca_settlement_id",
+  "readers": "justice__fed_doj_fca_settlements.sql",
+  "where": false,
+  "n": 19,
+  "exact_copies": 0,
+  "single_unique": [
+   "CASE_TITLE",
+   "PRESS_RELEASE_URL"
+  ],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_EIA860_3_1_GENERATOR__ALL",
+  "source": "FED_EIA860_3_1_GENERATOR",
+  "landing": 26856,
+  "view_rows": 26855,
+  "key": "",
+  "readers": "energy__fed_eia860_3_1_generator.sql",
+  "where": true,
+  "n": 26856,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: []"
+ },
+ {
+  "view": "STG_FED_EIA860_4_OWNER__ALL",
+  "source": "FED_EIA860_4_OWNER",
+  "landing": 5496,
+  "view_rows": 5495,
+  "key": "",
+  "readers": "energy__fed_eia860_4_owner.sql",
+  "where": true,
+  "n": 5496,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: []"
+ },
+ {
+  "view": "STG_FED_EIA860_6_1_ENVIROASSOC__ALL",
+  "source": "FED_EIA860_6_1_ENVIROASSOC",
+  "landing": 7021,
+  "view_rows": 7020,
+  "key": "",
+  "readers": "energy__fed_eia860_6_1_enviroassoc.sql",
+  "where": true,
+  "n": 7021,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: []"
+ },
+ {
+  "view": "STG_FED_CFPB_COMPLAINTS__COMPLAINTS",
+  "source": "FED_CFPB_COMPLAINTS",
+  "landing": 17589039,
+  "view_rows": 17589036,
+  "key": "complaint_id",
+  "readers": "consumer_protection__fed_cfpb_complaints.sql",
+  "where": true,
+  "n": 17589039,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_EIA860_6_2_ENVIROEQUIP__ALL",
+  "source": "FED_EIA860_6_2_ENVIROEQUIP",
+  "landing": 4429,
+  "view_rows": 4428,
+  "key": "",
+  "readers": "energy__fed_eia860_6_2_enviroequip.sql",
+  "where": true,
+  "n": 4429,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: []"
+ },
+ {
+  "view": "STG_FED_EIA861_DELIVERY_COMPANIES__SALES",
+  "source": "FED_EIA861_DELIVERY_COMPANIES",
+  "landing": 9,
+  "view_rows": 7,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_6, UNNAMED_3, UNNAMED_4",
+  "readers": "energy__fed_eia861_delivery_companies.sql",
+  "where": true,
+  "n": 9,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 9,
+  "key_plus_one": [
+   [
+    "UNNAMED_2",
+    9
+   ],
+   [
+    "UNNAMED_5",
+    9
+   ],
+   [
+    "UNNAMED_7",
+    9
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_2",
+   "UNNAMED_5",
+   "UNNAMED_7",
+   "UNNAMED_8",
+   "REVENUES"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_DEMAND_RESPONSE__PROGRAMS",
+  "source": "FED_EIA861_DEMAND_RESPONSE",
+  "landing": 340,
+  "view_rows": 339,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_3",
+  "readers": "energy__fed_eia861_demand_response.sql",
+  "where": true,
+  "n": 340,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 339,
+  "key_plus_one": [
+   [
+    "UNNAMED_4",
+    340
+   ],
+   [
+    "NUMBER_OF_CUSTOMERS_ENROLLED",
+    340
+   ],
+   [
+    "UNNAMED_6",
+    340
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_4",
+   "NUMBER_OF_CUSTOMERS_ENROLLED",
+   "UNNAMED_6",
+   "UNNAMED_7",
+   "UNNAMED_9"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_DYNAMIC_PRICING__ENROLLMENT",
+  "source": "FED_EIA861_DYNAMIC_PRICING",
+  "landing": 858,
+  "view_rows": 857,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_4",
+  "readers": "energy__fed_eia861_dynamic_pricing.sql",
+  "where": true,
+  "n": 858,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 854,
+  "key_plus_one": [
+   [
+    "UNNAMED_10",
+    858
+   ],
+   [
+    "UNNAMED_8",
+    857
+   ],
+   [
+    "UNNAMED_5",
+    856
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_10"
+  ]
+ },
+ {
+  "view": "STG_CA_LOBBY_COVER__FILINGS",
+  "source": "CA_LOBBY_COVER",
+  "landing": 568988,
+  "view_rows": 524828,
+  "key": "filing_id",
+  "readers": "politics__ca_lobby_cover.sql",
+  "where": false,
+  "n": 568988,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 524828,
+  "key_plus_one": [
+   [
+    "AMEND_ID",
+    568988
+   ],
+   [
+    "REPORT_NUM",
+    568985
+   ],
+   [
+    "SIG_DATE",
+    561806
+   ]
+  ],
+  "plus_one_reaches": [
+   "AMEND_ID"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_ENERGY_EFFICIENCY__PROGRAMS",
+  "source": "FED_EIA861_ENERGY_EFFICIENCY",
+  "landing": 460,
+  "view_rows": 458,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_3",
+  "readers": "energy__fed_eia861_energy_efficiency.sql",
+  "where": true,
+  "n": 460,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 459,
+  "key_plus_one": [
+   [
+    "UNNAMED_4",
+    460
+   ],
+   [
+    "ENERGY_SAVINGS_MWH",
+    460
+   ],
+   [
+    "UNNAMED_6",
+    460
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_4",
+   "ENERGY_SAVINGS_MWH",
+   "UNNAMED_6",
+   "UNNAMED_7",
+   "UNNAMED_9"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_OPERATIONAL_DATA__OPERATIONS",
+  "source": "FED_EIA861_OPERATIONAL_DATA",
+  "landing": 1712,
+  "view_rows": 1711,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_3",
+  "readers": "energy__fed_eia861_operational_data.sql",
+  "where": true,
+  "n": 1712,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 1710,
+  "key_plus_one": [
+   [
+    "UNNAMED_9",
+    1712
+   ],
+   [
+    "UNNAMED_17",
+    1712
+   ],
+   [
+    "MEGAWATTHOURS",
+    1712
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_9",
+   "UNNAMED_17",
+   "MEGAWATTHOURS",
+   "UNNAMED_23",
+   "THOUSANDS_DOLLARS"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_RELIABILITY__RELIABILITY_METRICS",
+  "source": "FED_EIA861_RELIABILITY",
+  "landing": 973,
+  "view_rows": 971,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_3",
+  "readers": "energy__fed_eia861_reliability.sql",
+  "where": true,
+  "n": 973,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 973,
+  "key_plus_one": [
+   [
+    "UNNAMED_2",
+    973
+   ],
+   [
+    "UNNAMED_4",
+    973
+   ],
+   [
+    "ALL_EVENTS_WITH_MAJOR_EVENT_DAYS",
+    973
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_2",
+   "UNNAMED_4",
+   "ALL_EVENTS_WITH_MAJOR_EVENT_DAYS",
+   "UNNAMED_6",
+   "UNNAMED_7"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_SALES_ULT_CUST_CS__FACILITY_SALES",
+  "source": "FED_EIA861_SALES_ULT_CUST_CS",
+  "landing": 676,
+  "view_rows": 674,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_3, UNNAMED_5",
+  "readers": "energy__fed_eia861_sales_ult_cust_cs.sql",
+  "where": true,
+  "n": 676,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 676,
+  "key_plus_one": [
+   [
+    "UNNAMED_2",
+    676
+   ],
+   [
+    "UNNAMED_4",
+    676
+   ],
+   [
+    "UNNAMED_6",
+    676
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_2",
+   "UNNAMED_4",
+   "UNNAMED_6",
+   "REVENUES",
+   "SALES"
+  ]
+ },
+ {
+  "view": "STG_FED_FARA_BULK__FARA_REGISTRATIONS",
+  "source": "FED_FARA_BULK",
+  "landing": 221900,
+  "view_rows": 48103,
+  "key": "registration_number, coalesce(person_name, ''), coalesce(state, ''), coalesce(registration_date::text, ''), coalesce(foreign_principal_name, ''), coalesce(document_type, '')",
+  "readers": "foreign_influence__fed_fara_bulk.sql",
+  "where": true,
+  "n": 221900,
+  "exact_copies": 444,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: ['REGISTRATION_NUMBER', None, None, None, None, None, None, None, None, None, None]"
+ },
+ {
+  "view": "STG_FED_FDIC_ENFORCEMENT__ENFORCEMENT_ORDERS",
+  "source": "FED_FDIC_ENFORCEMENT",
+  "landing": 14,
+  "view_rows": 1,
+  "key": "docket_number, fdic_cert_number, coalesce(person_name, respondent_name)",
+  "readers": "regulation__fed_fdic_enforcement.sql",
+  "where": false,
+  "n": 14,
+  "exact_copies": 0,
+  "single_unique": [
+   "RAW_TEXT"
+  ],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None, None, None, None]"
+ },
+ {
+  "view": "STG_FED_FDIC_FAILED_BANKS__FAILED_BANKS",
+  "source": "FED_FDIC_FAILED_BANKS",
+  "landing": 4115,
+  "view_rows": 3584,
+  "key": "fdic_cert",
+  "readers": "economics__fed_fdic_failed_banks.sql",
+  "where": true,
+  "n": 4115,
+  "exact_copies": 0,
+  "single_unique": [
+   "ID"
+  ],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_EIA861_SALES_ULT_CUST__SALES",
+  "source": "FED_EIA861_SALES_ULT_CUST",
+  "landing": 2817,
+  "view_rows": 2815,
+  "key": "UNNAMED_0, UNNAMED_1, UNNAMED_6, UNNAMED_3, UNNAMED_4",
+  "readers": "energy__fed_eia861_sales_ult_cust.sql",
+  "where": true,
+  "n": 2817,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 2599,
+  "key_plus_one": [
+   [
+    "UNNAMED_8",
+    2813
+   ],
+   [
+    "CUSTOMERS_4",
+    2810
+   ],
+   [
+    "REVENUES_4",
+    2805
+   ]
+  ],
+  "plus_one_reaches": []
+ },
+ {
+  "view": "STG_FED_FEC_PAC_SUMMARY__RECORDS",
+  "source": "FED_FEC_PAC_SUMMARY",
+  "landing": 48395,
+  "view_rows": 45709,
+  "key": "cmte_id, cvg_end_dt",
+  "readers": "politics__fed_fec_pac_summary.sql",
+  "where": false,
+  "n": 48395,
+  "exact_copies": 1447,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None, None]"
+ },
+ {
+  "view": "STG_FED_FDA_PURPLE_BOOK__LICENSES",
+  "source": "FED_FDA_PURPLE_BOOK",
+  "landing": 2233,
+  "view_rows": 2228,
+  "key": "UNNAMED_2, UNNAMED_20, UNNAMED_16",
+  "readers": "health__fed_fda_purple_book.sql",
+  "where": true,
+  "n": 2233,
+  "exact_copies": 25,
+  "single_unique": [],
+  "key_distinct": 2207,
+  "key_plus_one": [
+   [
+    "PURPLE_BOOK_MONTHLY_HISTORICAL_DATA_CHANGES_REPORT_JUNE_2026",
+    2208
+   ],
+   [
+    "UNNAMED_1",
+    2207
+   ],
+   [
+    "UNNAMED_3",
+    2207
+   ]
+  ],
+  "plus_one_reaches": [
+   "PURPLE_BOOK_MONTHLY_HISTORICAL_DATA_CHANGES_REPORT_JUNE_2026"
+  ]
+ },
+ {
+  "view": "STG_FED_HHS_OIG_LEIE__EXCLUSIONS",
+  "source": "FED_HHS_OIG_LEIE",
+  "landing": 83842,
+  "view_rows": 83747,
+  "key": "exclusion_sk",
+  "readers": "health__fed_hhs_oig_leie.sql",
+  "where": true,
+  "n": 83842,
+  "exact_copies": 26,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM__SUSPENDED_COUNTERPARTY",
+  "source": "FED_FHFA_SUSPENDED_COUNTERPARTY_PROGRAM",
+  "landing": 241,
+  "view_rows": 222,
+  "key": "last_name, company",
+  "readers": "justice__fed_fhfa_suspended_counterparties.sql",
+  "where": true,
+  "n": 241,
+  "exact_copies": 0,
+  "single_unique": [
+   "SUSPENSION_ORDER"
+  ],
+  "key_distinct": 222,
+  "key_plus_one": [
+   [
+    "FIRST_NAME",
+    241
+   ],
+   [
+    "SUSPENSION_ORDER",
+    241
+   ],
+   [
+    "CITY",
+    236
+   ]
+  ],
+  "plus_one_reaches": [
+   "FIRST_NAME",
+   "SUSPENSION_ORDER"
+  ]
+ },
+ {
+  "view": "STG_FED_HHS_TAGGS__GRANT_AWARDS",
+  "source": "FED_HHS_TAGGS",
+  "landing": 45,
+  "view_rows": 1,
+  "key": "award_number",
+  "readers": "economics__fed_hhs_taggs.sql",
+  "where": true,
+  "n": 45,
+  "exact_copies": 9,
+  "single_unique": [],
+  "key_distinct": 1,
+  "key_plus_one": [
+   [
+    "PROJECT_DESCRIPTION",
+    36
+   ],
+   [
+    "OPDIV",
+    1
+   ],
+   [
+    "RECIPIENT_NAME",
+    1
+   ]
+  ],
+  "plus_one_reaches": [
+   "PROJECT_DESCRIPTION"
+  ]
+ },
+ {
+  "view": "STG_FED_HUD_MF_FIRM_COMMITMENTS__COMMITMENTS",
+  "source": "FED_HUD_MF_FIRM_COMMITMENTS",
+  "landing": 25565,
+  "view_rows": 25557,
+  "key": "fha_number_raw, firm_activity_date_raw",
+  "readers": "housing__fed_hud_mf_firm_commitments.sql",
+  "where": true,
+  "n": 25565,
+  "exact_copies": 1,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None, None]"
+ },
+ {
+  "view": "STG_FED_FEDERAL_REGISTER_DOCUMENTS__FEDERAL_REGISTER_DOCUMENTS",
+  "source": "FED_FEDERAL_REGISTER_DOCUMENTS",
+  "landing": 485594,
+  "view_rows": 485585,
+  "key": "document_number",
+  "readers": "regulatory__fed_federal_register_documents.sql",
+  "where": true,
+  "n": 485594,
+  "exact_copies": 0,
+  "single_unique": [
+   "HTML_URL",
+   "PDF_URL",
+   "BODY_HTML_URL",
+   "JSON_URL"
+  ],
+  "key_distinct": 485585,
+  "key_plus_one": [
+   [
+    "PUBLICATION_DATE",
+    485594
+   ],
+   [
+    "CITATION",
+    485594
+   ],
+   [
+    "START_PAGE",
+    485594
+   ]
+  ],
+  "plus_one_reaches": [
+   "PUBLICATION_DATE",
+   "CITATION",
+   "START_PAGE",
+   "END_PAGE",
+   "HTML_URL"
+  ]
+ },
+ {
+  "view": "STG_FED_ICE_DETENTION_FACILITY_LIST__FACILITY",
+  "source": "FED_ICE_DETENTION_FACILITY_LIST",
+  "landing": 165,
+  "view_rows": 163,
+  "key": "facility_name",
+  "readers": "immigration__fed_ice_detention_facility_list.sql",
+  "where": true,
+  "n": 165,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 163,
+  "key_plus_one": [
+   [
+    "AOR",
+    165
+   ],
+   [
+    "FACILITY_TYPE_DETAILED",
+    165
+   ],
+   [
+    "CITY",
+    164
+   ]
+  ],
+  "plus_one_reaches": [
+   "AOR",
+   "FACILITY_TYPE_DETAILED"
+  ]
+ },
+ {
+  "view": "STG_FED_MAPPING_INEQUALITY__HOLC_NEIGHBORHOOD_GRADES",
+  "source": "FED_MAPPING_INEQUALITY",
+  "landing": 10154,
+  "view_rows": 1155,
+  "key": "holc_neighborhood_key",
+  "readers": "housing__fed_mapping_inequality.sql",
+  "where": true,
+  "n": 10154,
+  "exact_copies": 0,
+  "single_unique": [
+   "GEOMETRY",
+   "LAT"
+  ],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_NARA_AAD__ARCHIVAL_RECORDS",
+  "source": "FED_NARA_AAD",
+  "landing": 554,
+  "view_rows": 9,
+  "key": "dataset_id, record_id",
+  "readers": "government_records__fed_nara_aad.sql",
+  "where": false,
+  "n": 554,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 9,
+  "key_plus_one": [
+   [
+    "RAW_FIELDS_JSON",
+    554
+   ],
+   [
+    "DESCRIPTION_TEXT",
+    12
+   ],
+   [
+    "DATASET_NAME",
+    9
+   ]
+  ],
+  "plus_one_reaches": [
+   "RAW_FIELDS_JSON"
+  ]
+ },
+ {
+  "view": "STG_FED_NARA_WRA_AAD__JAPANESE_AMERICAN_RELOCATION_RECORDS",
+  "source": "FED_NARA_WRA_AAD",
+  "landing": 36,
+  "view_rows": 1,
+  "key": "record_id",
+  "readers": "civil_rights__fed_nara_wra_aad.sql",
+  "where": true,
+  "n": 36,
+  "exact_copies": 23,
+  "single_unique": [],
+  "key_distinct": 1,
+  "key_plus_one": [
+   [
+    "NOTES_FIELD",
+    13
+   ],
+   [
+    "PERSON_NAME",
+    1
+   ],
+   [
+    "DATE",
+    1
+   ]
+  ],
+  "plus_one_reaches": [
+   "NOTES_FIELD"
+  ]
+ },
+ {
+  "view": "STG_FED_HRSA_UDS_TABLE3A_PATIENTS__BY_CENTER",
+  "source": "FED_HRSA_UDS_TABLE3A_PATIENTS",
+  "landing": 1357,
+  "view_rows": 1356,
+  "key": "",
+  "readers": "health__fed_hrsa_uds_table3a_patients.sql",
+  "where": true,
+  "n": 1357,
+  "exact_copies": 0,
+  "single_unique": [
+   "BHCMISID",
+   "GRANTNUMBER"
+  ],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: []"
+ },
+ {
+  "view": "STG_FED_IHS_FACILITIES__FACILITIES",
+  "source": "FED_IHS_FACILITIES",
+  "landing": 1010,
+  "view_rows": 1006,
+  "key": "IHS_TRIBAL_URBAN_INDIAN_HEALTH_FACILITIES_LIST_RELEASED_JUNE_2023, UNNAMED_1",
+  "readers": "health__fed_ihs_facilities.sql",
+  "where": true,
+  "n": 1010,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 1010,
+  "key_plus_one": [
+   [
+    "UNNAMED_2",
+    1010
+   ],
+   [
+    "UNNAMED_3",
+    1010
+   ],
+   [
+    "UNNAMED_4",
+    1010
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_2",
+   "UNNAMED_3",
+   "UNNAMED_4",
+   "UNNAMED_5",
+   "UNNAMED_6"
+  ]
+ },
+ {
+  "view": "STG_FED_OFAC_SDN__SDN_ENTITIES",
+  "source": "FED_OFAC_SDN",
+  "landing": 19115,
+  "view_rows": 19114,
+  "key": "ent_num",
+  "readers": "justice__fed_ofac_sdn.sql",
+  "where": true,
+  "n": 19115,
+  "exact_copies": 0,
+  "single_unique": [
+   "ENT_NUM"
+  ],
+  "key_distinct": 19115,
+  "key_plus_one": [
+   [
+    "SDN_NAME",
+    19115
+   ],
+   [
+    "SDN_TYPE",
+    19115
+   ],
+   [
+    "PROGRAM",
+    19115
+   ]
+  ],
+  "plus_one_reaches": [
+   "SDN_NAME",
+   "SDN_TYPE",
+   "PROGRAM",
+   "TITLE",
+   "CALL_SIGN"
+  ]
+ },
+ {
+  "view": "STG_FED_EIA861_NET_METERING__CAPACITY",
+  "source": "FED_EIA861_NET_METERING",
+  "landing": 1006,
+  "view_rows": 1004,
+  "key": "UNNAMED_0, UNNAMED_2, UNNAMED_1, CAPACITY_MW",
+  "readers": "energy__fed_eia861_net_metering.sql",
+  "where": true,
+  "n": 1006,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 964,
+  "key_plus_one": [
+   [
+    "UNNAMED_4",
+    1006
+   ],
+   [
+    "UNNAMED_6",
+    1006
+   ],
+   [
+    "UNNAMED_7",
+    1006
+   ]
+  ],
+  "plus_one_reaches": [
+   "UNNAMED_4",
+   "UNNAMED_6",
+   "UNNAMED_7",
+   "UNNAMED_10",
+   "CAPACITY_MW_3"
+  ]
+ },
+ {
+  "view": "STG_FED_OSHA_ITA_300A_SUMMARY_2025__RECORDS",
+  "source": "FED_OSHA_ITA_300A_SUMMARY_2025",
+  "landing": 383283,
+  "view_rows": 383280,
+  "key": "id",
+  "readers": "",
+  "where": true,
+  "n": 383283,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 383281,
+  "key_plus_one": [
+   [
+    "COMPANY_NAME",
+    383283
+   ],
+   [
+    "CITY",
+    383283
+   ],
+   [
+    "NAICS_CODE",
+    383283
+   ]
+  ],
+  "plus_one_reaches": [
+   "COMPANY_NAME",
+   "CITY",
+   "NAICS_CODE",
+   "NAICS_YEAR",
+   "CREATED_TIMESTAMP"
+  ]
+ },
+ {
+  "view": "STG_INTL_CH_ZEFIX__COMPANIES",
+  "source": "INTL_CH_ZEFIX",
+  "landing": 18,
+  "view_rows": 1,
+  "key": "company_id",
+  "readers": "economics__intl_ch_zefix.sql",
+  "where": true,
+  "n": 18,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_REVOLVINGDOOR_PROJECT__PERSONNEL_POSITIONS",
+  "source": "FED_REVOLVINGDOOR_PROJECT",
+  "landing": 409,
+  "view_rows": 405,
+  "key": "position_key",
+  "readers": "int_fed_revolvingdoor_project__positions_sectors.sql;governance__fed_revolvingdoor_project.sql",
+  "where": true,
+  "n": 409,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None]"
+ },
+ {
+  "view": "STG_FED_US_SEC_EDGAR__EDGAR_FILINGS",
+  "source": "FED_US_SEC_EDGAR",
+  "landing": 48990,
+  "view_rows": 48984,
+  "key": "accession_number",
+  "readers": "economics__fed_us_sec_edgar.sql",
+  "where": true,
+  "n": 48990,
+  "exact_copies": 0,
+  "single_unique": [
+   "FILING_URL"
+  ],
+  "key_distinct": 48984,
+  "key_plus_one": [
+   [
+    "CIK",
+    48990
+   ],
+   [
+    "ENTITY_NAME",
+    48990
+   ],
+   [
+    "TICKER",
+    48990
+   ]
+  ],
+  "plus_one_reaches": [
+   "CIK",
+   "ENTITY_NAME",
+   "TICKER",
+   "FILING_URL",
+   "DOCUMENT_URL"
+  ]
+ },
+ {
+  "view": "STG_INTL_GR_GEMI__GREEK_COMPANIES",
+  "source": "INTL_GR_GEMI",
+  "landing": 40,
+  "view_rows": 1,
+  "key": "gemi_number",
+  "readers": "economics__intl_gr_gemi.sql",
+  "where": true,
+  "n": 40,
+  "exact_copies": 33,
+  "single_unique": [],
+  "key_distinct": 1,
+  "key_plus_one": [
+   [
+    "COMPANY_NAME",
+    7
+   ],
+   [
+    "AFM",
+    1
+   ],
+   [
+    "DISTINCTIVE_TITLE",
+    1
+   ]
+  ],
+  "plus_one_reaches": [
+   "COMPANY_NAME"
+  ]
+ },
+ {
+  "view": "STG_INTL_ES_BORME__BORME_CORPORATE_ACTS",
+  "source": "INTL_ES_BORME",
+  "landing": 25,
+  "view_rows": 3,
+  "key": "company_id, country, date, act_type, cve",
+  "readers": "corporate_registry__intl_es_borme.sql",
+  "where": false,
+  "n": 25,
+  "exact_copies": 10,
+  "single_unique": [],
+  "key_distinct": 3,
+  "key_plus_one": [
+   [
+    "ACT_DESCRIPTION",
+    15
+   ],
+   [
+    "PROVINCE",
+    15
+   ],
+   [
+    "PDF_URL",
+    15
+   ]
+  ],
+  "plus_one_reaches": [
+   "ACT_DESCRIPTION",
+   "PROVINCE",
+   "PDF_URL"
+  ]
+ },
+ {
+  "view": "STG_INTL_IE_CRO__CRO_COMPANIES",
+  "source": "INTL_IE_CRO",
+  "landing": 821697,
+  "view_rows": 821693,
+  "key": "company_id, country",
+  "readers": "corporate_registry__intl_ie_cro.sql",
+  "where": true,
+  "n": 821697,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": null,
+  "key_plus_one": [],
+  "plus_one_reaches": [],
+  "note": "key columns not mapped: [None, None]"
+ },
+ {
+  "view": "STG_FED_USGS_GNIS_ALL_NAMES__NAME_CITATIONS",
+  "source": "FED_USGS_GNIS_ALL_NAMES",
+  "landing": 1249630,
+  "view_rows": 1249624,
+  "key": "feature_id, feature_name, citation",
+  "readers": "reference__fed_usgs_gnis_all_names.sql",
+  "where": true,
+  "n": 1249630,
+  "exact_copies": 6,
+  "single_unique": [],
+  "key_distinct": 1249624,
+  "key_plus_one": [
+   [
+    "FEATURE_NAME_OFFICIAL",
+    1249624
+   ],
+   [
+    "SOURCECITATIONABBREVIATION",
+    1249624
+   ],
+   [
+    "SOURCEORIGINATOR",
+    1249624
+   ]
+  ],
+  "plus_one_reaches": [
+   "FEATURE_NAME_OFFICIAL",
+   "SOURCECITATIONABBREVIATION",
+   "SOURCEORIGINATOR",
+   "SOURCEREFTYPE",
+   "TITLE"
+  ]
+ },
+ {
+  "view": "STG_ST_OEHHA_PROPOSITION_65_LIST__CHEMICAL",
+  "source": "ST_OEHHA_PROPOSITION_65_LIST",
+  "landing": 1021,
+  "view_rows": 952,
+  "key": "chemical, cas_no",
+  "readers": "health__st_oehha_proposition_65_list.sql",
+  "where": true,
+  "n": 1021,
+  "exact_copies": 0,
+  "single_unique": [],
+  "key_distinct": 954,
+  "key_plus_one": [
+   [
+    "TYPE_OF_TOXICITY",
+    1018
+   ],
+   [
+    "DATE_LISTED",
+    1018
+   ],
+   [
+    "LISTING_MECHANISM",
+    995
+   ]
+  ],
+  "plus_one_reaches": []
+ },
+ {
+  "view": "STG_XC_RETRACTION_WATCH_DATABASE__RETRACTIONS",
+  "source": "XC_RETRACTION_WATCH_DATABASE",
+  "landing": 71608,
+  "view_rows": 71388,
+  "key": "RECORD_ID",
+  "readers": "science_research__xc_retraction_watch_database.sql",
+  "where": true,
+  "n": 71608,
+  "exact_copies": 219,
+  "single_unique": [],
+  "key_distinct": 71389,
+  "key_plus_one": [
+   [
+    "TITLE",
+    71389
+   ],
+   [
+    "SUBJECT",
+    71389
+   ],
+   [
+    "INSTITUTION",
+    71389
+   ]
+  ],
+  "plus_one_reaches": [
+   "TITLE",
+   "SUBJECT",
+   "INSTITUTION",
+   "JOURNAL",
+   "PUBLISHER"
+  ]
+ },
+ {
+  "view": "STG_XC_UK_SANCTIONS_LIST__DESIGNATIONS",
+  "source": "XC_UK_SANCTIONS_LIST",
+  "landing": 57883,
+  "view_rows": 33828,
+  "key": "_SRC_SHA256, UNIQUE_ID, OFSI_GROUP_ID, UN_REFERENCE_NUMBER, NAME_6, NAME_1, NAME_2, NAME_3, NAME_4, NAME_5, NAME_TYPE, ALIAS_STRENGTH, TITLE, NAME_NON_LATIN_SCRIPT, REGIME_NAME, DESIGNATION_TYPE, DESIGNATION_SOURCE, SANCTIONS_IMPOSED, OTHER_INFORMATION, UK_STATEMENT_OF_REASONS, ADDRESS_LINE_1, ADDRESS_LINE_2, ADDRESS_COUNTRY, ADDRESS_POSTAL_CODE, DATE_DESIGNATED, LAST_UPDATED, D_O_B, NATIONALITY_IES, PASSPORT_NUMBER, NATIONAL_IDENTIFIER_NUMBER, POSITION, GENDER, TOWN_OF_BIRTH, COUNTRY_OF_BIRTH, TYPE_OF_ENTITY, SUBSIDIARIES, PARENT_COMPANY, BUSINESS_REGISTRATION_NUMBER_S, IMO_NUMBER, CURRENT_OWNER_OPERATOR_S, CURRENT_BELIEVED_FLAG_OF_SHIP, TYPE_OF_SHIP",
+  "readers": "justice__xc_uk_sanctions_list.sql",
+  "where": false,
+  "n": 57883,
+  "exact_copies": 652,
+  "single_unique": [],
+  "key_distinct": 33828,
+  "key_plus_one": [
+   [
+    "PHONE_NUMBER",
+    41503
+   ],
+   [
+    "EMAIL_ADDRESS",
+    35423
+   ],
+   [
+    "ADDRESS_LINE_6",
+    35223
+   ]
+  ],
+  "plus_one_reaches": []
+ },
+ {
+  "view": "STG_INT_UK_COMPANIES_HOUSE__ALL",
+  "source": "INT_UK_COMPANIES_HOUSE",
+  "landing": 5734780,
+  "view_rows": 5734779,
+  "key": "UK_COMPANY_NUMBER",
+  "readers": "",
+  "where": true,
+  "note": "query failed: 000603 (XX000): SQL execution internal error: Processing aborted due to error 300005:4035471279; incident 7146160."
+ }
+]

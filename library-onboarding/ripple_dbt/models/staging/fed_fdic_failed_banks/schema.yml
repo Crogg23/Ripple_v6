@@ -20,9 +20,13 @@ models:
 
       - name: fdic_cert
         description: FDIC Certificate Number — unique identifier for the institution.
+        # 2026-09-19: cert is NOT unique -- 488 failures have no cert at all (landing says
+        # 'nan') and 43 more share one with another failure. not_null is warn ON PURPOSE:
+        # those 488 are real failures with no certificate, not a load error.
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
       - name: fips
         description: FIPS county code for the bank headquarters location.
@@ -30,7 +34,10 @@ models:
           - not_null
 
       - name: fdic_failure_record_id
-        description: Internal FDIC failure record ID.
+        description: Internal FDIC failure record ID. The real key -- unique on every landing row.
+        data_tests:
+          - unique
+          - not_null
 
       - name: financial_institution_number
         description: Financial Institution Number, if applicable.
@@ -121,9 +128,13 @@ models:
 
       - name: fdic_cert
         description: FDIC Certificate Number — primary key and cross-source join key.
+        # 2026-09-19: cert is NOT unique -- 488 failures have no cert at all (landing says
+        # 'nan') and 43 more share one with another failure. not_null is warn ON PURPOSE:
+        # those 488 are real failures with no certificate, not a load error.
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
       - name: fips
         description: FIPS county code — identifier for geographic cross-source joins.
@@ -131,7 +142,10 @@ models:
           - not_null
 
       - name: fdic_failure_record_id
-        description: Internal FDIC failure record ID.
+        description: Internal FDIC failure record ID. The real key -- unique on every landing row.
+        data_tests:
+          - unique
+          - not_null
 
       - name: financial_institution_number
         description: Financial Institution Number, if applicable.
