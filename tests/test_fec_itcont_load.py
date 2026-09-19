@@ -42,7 +42,8 @@ def _stub(monkeypatch, tmp_path, logged, swaps, lines_per_cycle=3, write_fail=Fa
     monkeypatch.setattr(fec.ingest, "_latest_success_rows",
                         lambda conn, sid: prev_success_rows)
 
-    def _write_chunk(conn, lines, run_id, started, first):
+    # same signature as the real write_chunk: the loader passes the cycle as a 6th argument
+    def _write_chunk(conn, lines, run_id, started, first, cycle=""):
         if write_fail:
             raise RuntimeError("boom mid-chunk")
         return len(lines), 0
