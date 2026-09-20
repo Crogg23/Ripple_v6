@@ -82,7 +82,7 @@ test('partial themes lay over the default without mutating it', () => {
 function jsFiles(dir) {
   return readdirSync(dir).flatMap(f => {
     const p = join(dir, f);
-    return statSync(p).isDirectory() ? jsFiles(p) : p.endsWith('.js') ? [p] : [];
+    return statSync(p).isDirectory() ? jsFiles(p) : p.endsWith('.js') ? [p.replace(/\\/g, '/')] : [];
   });
 }
 const ours = jsFiles(join(root, 'src')).filter(p => !p.includes('/vendor/'));

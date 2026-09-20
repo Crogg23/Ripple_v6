@@ -1,0 +1,103 @@
+{
+  "schema": "orbital.index/1",
+  "note": "Every version of the map is one row: a view plus a theme. Nothing else changes.",
+  "themes": [
+    "ledger",
+    "restraint",
+    "alarm",
+    "paper",
+    "washed",
+    "lean",
+    "relief",
+    "nightfall",
+    "pressroom",
+    "survey",
+    "topograph",
+    "transmission",
+    "undertow"
+  ],
+  "rows": [
+    {
+      "row": "1",
+      "view": "01_money",
+      "theme": "restraint"
+    },
+    {
+      "row": "2",
+      "view": "02_fatalities",
+      "theme": "alarm"
+    },
+    {
+      "row": "3",
+      "view": "03_fines_per_bed",
+      "theme": "ledger"
+    },
+    {
+      "row": "4",
+      "view": "04_disputes",
+      "theme": "paper"
+    },
+    {
+      "row": "5",
+      "view": "05_overdose",
+      "theme": "washed"
+    },
+    {
+      "row": "6",
+      "view": "06_lean",
+      "theme": "lean"
+    },
+    {
+      "row": "7",
+      "view": "07_presence",
+      "theme": "ledger"
+    },
+    {
+      "row": "7b",
+      "view": "07b_absence",
+      "theme": "ledger"
+    },
+    {
+      "row": "8",
+      "view": "08_land_area",
+      "theme": "relief"
+    },
+    {
+      "row": "9",
+      "view": "empty",
+      "theme": "ledger"
+    }
+  ],
+  "plates": [
+    {
+      "plate": "nightfall",
+      "view": "plate_nightfall",
+      "theme": "nightfall"
+    },
+    {
+      "plate": "pressroom",
+      "view": "plate_pressroom",
+      "theme": "pressroom"
+    },
+    {
+      "plate": "survey",
+      "view": "plate_survey",
+      "theme": "survey"
+    },
+    {
+      "plate": "topograph",
+      "view": "plate_topograph",
+      "theme": "topograph"
+    },
+    {
+      "plate": "transmission",
+      "view": "plate_transmission",
+      "theme": "transmission"
+    },
+    {
+      "plate": "undertow",
+      "view": "plate_undertow",
+      "theme": "undertow"
+    }
+  ]
+}

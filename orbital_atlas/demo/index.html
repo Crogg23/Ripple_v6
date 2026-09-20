@@ -15,18 +15,28 @@
   .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   button, select { font: inherit; color: #c9d4dc; background: transparent; border: 1px solid #24313d; border-radius: 999px; padding: 4px 10px; cursor: pointer; }
   button:hover { border-color: #5b6f80; color: #fff; }
+  select option { background: #0b0f14; }
+  label { color: #9fb0bc; display: flex; gap: 5px; align-items: center; cursor: pointer; }
   #report { display: flex; flex-direction: column; gap: 8px; }
   #report div { padding-left: 10px; border-left: 2px solid #24313d; color: #9fb0bc; }
   #report .ok { border-color: #3f7f86; color: #e6edf3; }
   #report .warn { border-color: #e5a54a; color: #ffe6b0; }
   #stats { color: #5f6f7b; white-space: pre; margin-top: auto; }
+  #rowinfo { color: #9fb0bc; } #rowinfo b { color: #e6edf3; font-weight: 400; font-family: Georgia, serif; font-size: 15px; display: block; }
+  #rowinfo .src { color: #e5a54a; display: block; margin-top: 4px; }
+  button.on { border-color: #e5a54a; color: #fff; }
+  select:disabled { opacity: 0.4; cursor: not-allowed; }
 </style>
 </head>
 <body>
 <main>
   <orbital-atlas id="atlas" registry="../topologies/registry.json"></orbital-atlas>
   <aside>
-    <div><div class="k">Slice 1 · data in</div><h1>Orbital Atlas</h1></div>
+    <div><div class="k">Slice 3 · configs</div><h1>Orbital Atlas</h1></div>
+    <div class="k">Rows · one view plus one theme each</div>
+    <div class="row" id="rows"></div>
+    <div class="row"><span class="k">theme</span><select id="theme" title="swap the look, keep the meaning"></select></div>
+    <div id="rowinfo"></div>
     <div class="k">Paste a table</div>
     <textarea id="paste" spellcheck="false" placeholder="geo_id,value&#10;48201,4731145&#10;06037,10014009"></textarea>
     <div class="row">
@@ -35,7 +45,18 @@
       <select id="dup" title="when two rows share a place and period"><option value="reject">duplicates: reject</option><option value="sum">duplicates: sum</option><option value="last">duplicates: last</option></select>
     </div>
     <div class="row"><span class="k">samples</span>
-      <button data-s="minimal">minimal</button><button data-s="full">full</button><button data-s="ct">2018 trap</button><button data-s="messy">messy</button>
+      <button data-s="minimal">minimal</button><button data-s="full">full</button><button data-s="ct">2018 trap</button><button data-s="messy">messy</button><button data-s="ties">ties</button><button data-s="all">every place</button>
+    </div>
+    <div class="k">View</div>
+    <div class="row">
+      <select id="measure" title="which number drives the colour"><option>value</option><option>ratio</option><option>denominator</option><option>n</option><option>presence</option></select>
+      <select id="scale" title="how numbers become colour"><option>quantile</option><option>linear</option><option>log</option><option>quantize</option><option>threshold</option><option>diverging</option><option>binary</option><option>categorical</option></select>
+      <select id="bins" title="smooth, or stepped"><option value="0">smooth</option><option value="3">3 classes</option><option value="4">4 classes</option><option value="5">5 classes</option><option value="7">7 classes</option></select>
+    </div>
+    <div class="row">
+      <label><input type="checkbox" id="zero"> zero gets its own class</label>
+      <label><input type="checkbox" id="invert"> invert</label>
+      <label><input type="checkbox" id="spread"> spread ties, the v1 bug</label>
     </div>
     <div class="k">Load report</div>
     <div id="report"><div>Nothing loaded yet.</div></div>
@@ -44,38 +65,143 @@
 </main>
 <script type="module">
   import { sources } from '../src/element/orbital-atlas.js';
+  import { makeLayer } from './layers.js';
   const $ = id => document.getElementById(id);
   const atlas = $('atlas');
   const SAMPLES = {
     minimal: 'geo_id,geo_type,period,value\n48201,county,latest,4731145\n06037,county,latest,10014009',
     full: 'geo_id,geo_type,period,value,denominator,n,tier\n48201,county,2023,1250000,8400,61,exact\n48201,county,2022,980000,8350,60,exact\n01001,county,2023,0,210,2,fuzzy',
     ct: 'geo_id,value\n09110,5\n09120,6\n09130,4\n02063,7\n02066,8\n09001,9\n48201,3',
-    messy: 'fips,Fines\n48201,10\n48201,20\n6037,"1,200"\n01001,abc\n01003,4,731\n99999,1\n17031,'
+    messy: 'fips,Fines\n48201,10\n48201,20\n6037,"1,200"\n01001,abc\n01003,4,731\n99999,1\n17031,',
+    ties: 'geo_id,value,denominator\n48201,10,100\n06037,10,50\n17031,10,0\n01001,1,10\n01003,50,10\n04013,900,'
   };
-  const [theme, view] = await Promise.all([
-    fetch('../configs/themes/ledger.json').then(r => r.json()),
-    fetch('../configs/views/empty.json').then(r => r.json())
-  ]);
-  atlas.theme = theme; atlas.view = view;
+  // Host-side scaffolding: a made-up table covering every place, skewed, with many zeros, some empty bases. Same numbers every time.
+  function everyPlace() {
+    let seed = 7;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const lines = ['geo_id,value,denominator,n'];
+    for (const pl of atlas.topology.places) {
+      const base = rnd() < 0.02 ? 0 : Math.round(200 * Math.exp(rnd() * 7));
+      const value = rnd() < 0.3 ? 0 : Math.round(base * rnd() * rnd() * 40 + rnd() * 50);
+      if (rnd() < 0.04) continue;
+      lines.push(`${pl.id},${value},${base},${1 + Math.floor(rnd() * 60)}`);
+    }
+    return lines.join('\n');
+  }
+  const HEADERS = {
+    all: { label: 'Fines', value: { label: 'Fines', format: '$,.3s' }, denominator: { label: 'Beds', format: ',.0f' }, ratio: { label: 'Fines per bed', format: '$,.2f' } },
+    ties: { label: 'Cases', denominator: { label: 'People' }, ratio: { label: 'Cases per 100 people', per: 100, format: ',.1f' } }
+  };
+  let headerFor = null;
+  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
+  const index = await get('../configs/index.json');
+  const themes = Object.fromEntries((await Promise.all(index.themes.map(id => get(`../configs/themes/${id}.json`)))).map(t => [t.id, t]));
+  atlas.registerThemes(Object.values(themes));
+  atlas.theme = themes.ledger; atlas.view = await get('../configs/views/empty.json');
+  $('theme').replaceChildren(...index.themes.map(id => Object.assign(document.createElement('option'), { value: id, textContent: themes[id].label || id })));
+  $('theme').onchange = () => { atlas.theme = themes[$('theme').value]; stamp(); };
+  let currentRow = null;
   atlas.addEventListener('atlas-error', e => { $('stats').textContent = 'error: ' + e.detail.message; });
+
+  function syncControls() {
+    const v = atlas.view;
+    $('measure').value = v.measure; $('measure').disabled = !!v.measure_locked;
+    $('measure').title = v.measure_locked ? 'this view locks the measure' : 'which number drives the colour';
+    $('scale').value = v.scale.type; $('bins').value = String(v.scale.bins);
+    if ($('bins').value !== String(v.scale.bins)) $('bins').value = '0';
+    $('zero').checked = !!v.scale.zero_class; $('invert').checked = !!v.scale.invert; $('spread').checked = v.scale.ties === 'spread';
+  }
+  function rowInfo(v, header) {
+    const kids = [Object.assign(document.createElement('b'), { textContent: v.title || '' })];
+    if (v.note) kids.push(document.createTextNode(v.note));
+    if (header && header.source) kids.push(Object.assign(document.createElement('span'), { className: 'src', textContent: header.source }));
+    $('rowinfo').replaceChildren(...kids);
+  }
+  // One row = one view file plus one theme file. Nothing else changes between versions of the map.
+  async function showRow(row) {
+    currentRow = row;
+    document.querySelectorAll('#rows button').forEach(b => b.classList.toggle('on', b.dataset.row === row.row));
+    const v = await get(`../configs/views/${row.view}.json`);
+    atlas.clear();
+    $('theme').value = row.theme; atlas.theme = themes[row.theme];
+    atlas.view = { ...v, layer: null };
+    $('paste').value = ''; lastReport = null; headerFor = null;
+    let header = null;
+    if (v.layer) {
+      const made = makeLayer(v.layer, atlas.topology);
+      header = made.header;
+      const { words, report } = await atlas.load(sources.rows(made.rows, made.header));
+      show(words); lastReport = report;
+    } else show([{ level: 'note', text: 'Nothing loaded yet.' }]);
+    rowInfo(v, header); syncControls(); stamp();
+  }
+  $('rows').replaceChildren(...index.rows.map(r => Object.assign(document.createElement('button'), { textContent: r.row, onclick: () => showRow(r) })));
+  document.querySelectorAll('#rows button').forEach((b, k) => { b.dataset.row = index.rows[k].row; b.title = `${index.rows[k].view} + ${index.rows[k].theme}`; });
+
+  function applyView() {
+    const type = $('scale').value, was = atlas.view.scale;
+    atlas.view = { ...atlas.view, measure: $('measure').value, scale: {
+      ...was, type, bins: Number($('bins').value), ties: $('spread').checked ? 'spread' : 'share',
+      zero_class: $('zero').checked, invert: $('invert').checked,
+      midpoint: type === 'diverging' ? (was.midpoint ?? 0) : null, thresholds: type === 'threshold' ? (was.thresholds || [10, 100, 1000]) : null
+    } };
+    stamp();
+  }
+  let lastReport = null;
+  function stamp() {
+    const r = lastReport, L = atlas.legend;
+    const roles = L ? L.roles.map(x => `${x.role}=${x.style}:${x.text}:${x.count}`).join(', ') : '';
+    const tag = (currentRow ? ` | row ${currentRow.row} theme=${$('theme').value}` : '') + (roles ? ` | ${roles}` : '');
+    if (!r) { document.title = `EMPTY${tag}`; return; }
+    document.title = `LOADED kept=${r.rows_kept} unmatched=${r.unmatched.count} dupkeys=${r.duplicates.keys} rejected=${r.rejected.count}`
+      + (L ? ` | legend: ${L.caption}; ${L.kind === 'ramp' ? 'ticks ' + L.ticks.map(t => t.text).join(' / ') : L.classes.length + ' classes'}` : ' | refused: ' + lastError) + tag;
+  }
+  for (const id of ['measure', 'scale', 'bins', 'zero', 'invert', 'spread']) $(id).onchange = applyView;
+  let lastError = '';
+  atlas.addEventListener('atlas-error', e => { lastError = e.detail.message; stamp(); });
 
   function show(words) {
     $('report').replaceChildren(...words.map(w => Object.assign(document.createElement('div'), { className: w.level, textContent: w.text })));
   }
   async function run() {
-    const { words, report } = await atlas.load(sources.paste($('paste').value), { onDuplicate: $('dup').value });
+    const { words, report } = await atlas.load(sources.paste($('paste').value), { onDuplicate: $('dup').value, header: headerFor ? HEADERS[headerFor] : undefined });
     show(words);
-    document.title = `LOADED kept=${report.rows_kept} unmatched=${report.unmatched.count} dupkeys=${report.duplicates.keys} rejected=${report.rejected.count}`;
+    lastReport = report;
+    stamp();
   }
-  $('go').onclick = run;
+  function sample(name) {
+    leaveRow();
+    headerFor = HEADERS[name] ? name : null;
+    $('paste').value = name === 'all' ? everyPlace() : SAMPLES[name];
+    return run();
+  }
+  const leaveRow = () => { currentRow = null; document.querySelectorAll('#rows button').forEach(b => b.classList.remove('on')); $('rowinfo').replaceChildren(); $('measure').disabled = false;
+    atlas.view = { ...atlas.view, layer: null, highlight: { rule: 'none', value: null }, confidence: { field: 'n', low_below: null }, measure_locked: false }; };
+  $('go').onclick = () => { headerFor = null; leaveRow(); run(); };
   $('dup').onchange = () => { if ($('paste').value.trim()) run(); };
-  $('clear').onclick = () => { atlas.clear(); $('paste').value = ''; show([{ level: 'note', text: 'Nothing loaded yet.' }]); };
-  document.querySelectorAll('[data-s]').forEach(b => b.onclick = () => { $('paste').value = SAMPLES[b.dataset.s]; run(); });
+  $('clear').onclick = () => { leaveRow(); atlas.clear(); $('paste').value = ''; lastReport = null; show([{ level: 'note', text: 'Nothing loaded yet.' }]); };
+  document.querySelectorAll('[data-s]').forEach(b => b.onclick = () => sample(b.dataset.s));
 
   const s = await atlas.ready;
   $('stats').textContent = `${s.topology}\n${s.places} places · ${s.parents} parents`;
-  const auto = new URLSearchParams(location.search).get('sample');
-  if (auto && SAMPLES[auto]) { $('paste').value = SAMPLES[auto]; await run(); }
+  // ?sample=all&measure=ratio&scale=quantile&bins=4&zero=1&hover=48201   drives the page with no clicking
+  const q = new URLSearchParams(location.search);
+  for (const id of ['measure', 'scale', 'bins']) if (q.get(id)) $(id).value = q.get(id);
+  for (const id of ['zero', 'invert', 'spread']) $(id).checked = q.get(id) === '1';
+  const wantRow = index.rows.find(r => r.row === q.get('row'));
+  if (wantRow) {
+    await showRow(wantRow);
+    if (q.get('theme') && themes[q.get('theme')]) { $('theme').value = q.get('theme'); $('theme').onchange(); }
+    const R = q.get('hover') && atlas.readout(q.get('hover'));
+    if (R) document.title += ` | ${R.name}: ${R.rows.map(r => `${r.key}=${r.text}`).join(' ')} rank=${R.rank ? R.rank.text : 'none'}`;
+  }
+  const auto = wantRow ? null : q.get('sample');
+  if (auto && (SAMPLES[auto] || auto === 'all')) {
+    await sample(auto);
+    applyView();
+    const R = q.get('hover') && atlas.readout(q.get('hover'));
+    if (R) document.title += ` | ${R.name}: ${R.rows.map(r => `${r.key}=${r.text}`).join(' ')} rank=${R.rank ? R.rank.text : 'none'}`;
+  }
 </script>
 </body>
 </html>

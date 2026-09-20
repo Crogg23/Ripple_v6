@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "08_land_area",
+  "topology": "us_counties_2018",
+  "title": "Land area, with relief",
+  "note": "The shading repeats the colour. It carries no second number.",
+  "layer": "land_area",
+  "measure": "value",
+  "scale": {
+    "type": "quantile"
+  }
+}

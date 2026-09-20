@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "topology": "us_counties_2018",
+  "layer": "pulse",
+  "measure": "ratio",
+  "scale": {
+    "type": "quantile"
+  },
+  "id": "plate_undertow",
+  "title": "Which way it pulls",
+  "note": "Strokes run along the contours, circling highs and lows. Colour is the rate.",
+  "labels": {
+    "top": 5
+  }
+}

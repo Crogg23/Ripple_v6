@@ -1,0 +1,73 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "transmission",
+  "label": "Transmission",
+  "base": "ledger",
+  "ground": {
+    "background": "#000000",
+    "land_empty": "#000000",
+    "texture": "grain",
+    "shadow": null
+  },
+  "palettes": {
+    "sequential": [
+      "#5c5c5c",
+      "#bdbdbd",
+      "#ffffff"
+    ]
+  },
+  "encoding": "ridge",
+  "ink": {
+    "under": "empty",
+    "cell": 2.5,
+    "smooth": 4,
+    "rows": 78,
+    "amp": 105,
+    "width": 1.05,
+    "fill": "#000000"
+  },
+  "roles": {
+    "no_data": {
+      "style": "fill",
+      "color": "#000000"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#ff4d2e",
+      "width": 1.2
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#ffffff",
+      "opacity": 0,
+      "width": 0.4
+    },
+    "parents": {
+      "color": "#ffffff",
+      "opacity": 0,
+      "width": 0.6
+    },
+    "outline": {
+      "color": "#ffffff",
+      "opacity": 0,
+      "width": 1
+    }
+  },
+  "layout": {
+    "inset": {
+      "top": 40,
+      "right": 170,
+      "bottom": 40,
+      "left": 0
+    },
+    "callout_gutter": 210
+  },
+  "type": {
+    "display": "'Archivo', 'Helvetica Neue', Arial, sans-serif",
+    "data": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular",
+    "display_weight": 300
+  }
+}

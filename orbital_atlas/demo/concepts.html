@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital Atlas · concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="system.css">
+<style>
+  /* Four different answers to one question: what is the hero of the page? Same engine, same narrator, same tokens.
+     Only composition lives here. Sizes are tokens, or a stated multiple of one for poster-scale type. */
+  :root { --top: 52px; --poster: calc(var(--t7) * 1.75); --stat: calc(var(--t7) * 1.3); }
+  html, body { min-height: 100%; }
+  .topbar { position: fixed; z-index: 9; left: 0; right: 0; top: 0; height: var(--top); box-sizing: border-box; padding: 0 var(--s5); display: flex; align-items: center; gap: var(--s4); background: color-mix(in srgb, var(--ground) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+  .topbar .push { margin-left: auto; }
+  #stage { padding-top: var(--top); }
+  orbital-atlas { display: block; width: 100%; height: 100%; }
+  orbital-atlas::part(legend), orbital-atlas::part(readout) { display: none; }
+  .mapslot { position: relative; min-height: 320px; }
+  .lit { border-left: 2px solid var(--signal) !important; background: var(--wash); }
+
+  /* ---------- A · FRONT PAGE: the hero is the ARTICLE. You read it top to bottom, like a newspaper. ---------- */
+  .fp { max-width: 1240px; margin: 0 auto; padding: var(--s6) var(--s6) var(--s7); }
+  .fp .mast { display: flex; justify-content: space-between; align-items: center; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); padding: var(--s2) 0; }
+  .fp h1 { font: var(--w-display) var(--poster)/1.02 var(--f-display); letter-spacing: -0.02em; margin: var(--s5) 0 0; text-wrap: balance; max-width: 22ch; }
+  .fp .standfirst { font: 400 var(--t5)/1.35 var(--f-display); color: var(--ink-2); max-width: 46ch; margin-top: var(--s4); }
+  .fp .lead { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s6); margin-top: var(--s6); border-top: 1px solid var(--rule); padding-top: var(--s5); }
+  .fp .mapslot { height: 560px; }
+  .fp figcaption { border-top: 1px solid var(--rule); margin-top: var(--s2); padding-top: var(--s2); min-height: 48px; }
+  .fp figure { margin: 0; }
+  .fp .rail { display: flex; flex-direction: column; }
+  .fp .fig { border-bottom: 1px solid var(--rule); padding: var(--s3) var(--s2); margin: 0 calc(-1 * var(--s2)); border-left: 2px solid transparent; }
+  .fp .fig .big { font: var(--w-display) var(--stat)/1 var(--f-display); letter-spacing: -0.02em; }
+  .fp .article { column-count: 3; column-gap: var(--s6); column-rule: 1px solid var(--rule); margin-top: var(--s6); border-top: 3px solid var(--ink); padding-top: var(--s5); }
+  .fp .article p { margin: 0 0 var(--s4); break-inside: avoid; padding: var(--s1) var(--s2); border-left: 2px solid transparent; }
+  .fp .article p b.run { font: 600 var(--t3)/1.5 var(--f-text); text-transform: uppercase; letter-spacing: 0.06em; margin-right: var(--s2); }
+  .fp .article p:first-child::first-letter { font: var(--w-display) calc(var(--t7) * 1.5)/0.85 var(--f-display); float: left; padding: 6px var(--s2) 0 0; }
+  .fp .foot { margin-top: var(--s5); border-top: 1px solid var(--rule); padding-top: var(--s3); display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--s3) var(--s6); }
+
+  /* ---------- B · CONVERSATION: the hero is the QUESTION. You ask, it answers, the map follows along. ---------- */
+  .talk { display: grid; grid-template-columns: minmax(420px, 44%) 1fr; height: calc(100vh - var(--top)); }
+  .talk .thread { display: flex; flex-direction: column; border-right: 1px solid var(--rule); min-height: 0; }
+  .talk .msgs { flex: 1; overflow-y: auto; padding: var(--s5) var(--s5) var(--s4); display: flex; flex-direction: column; gap: var(--s3); scrollbar-width: thin; }
+  .talk .msg { max-width: 88%; padding: var(--s3) var(--s4); border-radius: var(--s4); border: 1px solid var(--rule); border-left-width: 2px; }
+  .talk .msg.you { align-self: flex-end; background: var(--ink); color: var(--ground); border-color: var(--ink); border-bottom-right-radius: var(--s1); }
+  .talk .msg.you .num { color: inherit; }
+  .talk .msg.it { align-self: flex-start; background: var(--surface); border-bottom-left-radius: var(--s1); }
+  .talk .msg.it.first { font: var(--w-display) var(--t5)/1.25 var(--f-display); max-width: 96%; }
+  .talk .who { display: block; margin-bottom: var(--s1); }
+  .talk .asks { padding: var(--s3) var(--s5) var(--s4); border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: var(--s3); }
+  .talk .chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+  .talk .mapslot { height: 100%; }
+
+  /* ---------- C · SCORECARD: the hero is the NUMBER. Five figures you could read from across a room. ---------- */
+  .sc { padding: var(--s5) var(--s6) 0; display: grid; grid-template-rows: auto auto 1fr auto; height: calc(100vh - var(--top)); box-sizing: border-box; gap: var(--s4); }
+  .sc .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--s3); }
+  .sc .card { background: var(--surface); border: 1px solid var(--rule); border-left-width: 2px; border-radius: var(--r2); padding: var(--s4); display: flex; flex-direction: column; gap: var(--s1); }
+  .sc .card .big { font: var(--w-display) var(--stat)/1 var(--f-display); letter-spacing: -0.02em; margin-top: var(--s2); }
+  .sc .body { display: grid; grid-template-columns: 1fr 380px; gap: var(--s6); min-height: 0; }
+  .sc .side { overflow-y: auto; display: flex; flex-direction: column; gap: var(--s4); scrollbar-width: thin; }
+  .sc .mapslot { height: 100%; }
+  .sc .placebar { border-top: 1px solid var(--rule); padding: var(--s3) 0 var(--s4); min-height: 40px; }
+
+  /* ---------- D · SCROLL STORY: the hero is the MAP. One sentence at a time, and the map answers each one. ---------- */
+  .scrolly .mapslot { position: fixed; inset: var(--top) 0 0 0; }
+  .scrolly .steps { position: relative; width: 440px; margin-left: var(--s7); padding: 30vh 0 60vh; display: flex; flex-direction: column; gap: 62vh; pointer-events: none; }
+  .scrolly .step { pointer-events: auto; background: color-mix(in srgb, var(--ground) 86%, transparent); backdrop-filter: blur(10px); border: 1px solid var(--rule); border-left: 2px solid var(--rule); border-radius: var(--r2); padding: var(--s5); opacity: 0.45; }
+  .scrolly .step.now { opacity: 1; border-left-color: var(--signal); }
+  .scrolly .step.first .t-display { font-size: var(--poster); line-height: 1.02; letter-spacing: -0.02em; }
+  .scrolly .step.first { background: none; backdrop-filter: none; border-color: transparent; width: 640px; padding-left: 0; }
+  .scrolly .progress { position: fixed; left: var(--s4); top: 50%; display: flex; flex-direction: column; gap: var(--s2); }
+  .scrolly .progress i { width: 6px; height: 6px; border-radius: 50%; background: var(--rule); display: block; }
+  .scrolly .progress i.now { background: var(--ink); }
+
+  @media (max-width: 1000px) { .fp .lead, .sc .body, .talk { grid-template-columns: 1fr; } .fp .article { column-count: 1; } .talk { height: auto; } .talk .mapslot { height: 50vh; } .sc { height: auto; } .sc .mapslot { height: 52vh; } .topbar .t-label { display: none; } .scrolly .steps { margin-left: var(--s4); width: auto; max-width: 440px; } .scrolly .step.first { width: auto; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <span class="t-label">What could this be?</span>
+  <div class="seg" id="concepts"></div>
+  <a class="btn" href="story.html" title="The fifth: a reading column beside the map">The column ↗</a>
+  <div class="group push"><select class="field" id="data" aria-label="Which table"></select><div class="seg" id="measure"><button data-m="value">How many?</button><button data-m="ratio">How common?</button></div><select class="field" id="look" aria-label="Which look"></select></div>
+</header>
+<div id="stage"></div>
+
+<script type="module">
+  // Four page concepts over ONE engine. Nothing here computes a finding: every word comes from atlas.story, every figure from
+  // story.figures, every place sentence from the readout. A concept is only a different decision about what leads.
+  import { sources, OrbitalAtlas } from '../src/element/orbital-atlas.js';
+  import { makeLayer, LAYER_HEADERS } from './layers.js';
+  import { applyTokens, sentence } from './system.js';
+  const $ = id => document.getElementById(id);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const say = (tag, cls, text) => { const n = el(tag, cls); n.append(sentence(text)); return n; };
+  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
+
+  const CONCEPTS = {
+    frontpage: { name: 'Front page', hero: 'the article', look: 'paper', inset: { top: 8, right: 0, bottom: 8, left: 0 }, gutter: 176, labels: 5 },
+    talk:      { name: 'Conversation', hero: 'the question', look: 'ledger', inset: { top: 16, right: 0, bottom: 16, left: 0 }, gutter: 0, labels: 0 },
+    scorecard: { name: 'Scorecard', hero: 'the number', look: 'survey', inset: { top: 0, right: 0, bottom: 0, left: 0 }, gutter: 176, labels: 5 },
+    scrolly:   { name: 'Scroll story', hero: 'the map', look: 'nightfall', inset: { top: 24, right: 0, bottom: 24, left: 520 }, gutter: 190, labels: 5 }
+  };
+  const state = { c: 'frontpage', data: 'pulse', measure: 'ratio', look: null, header: null };
+  const q = new URLSearchParams(location.search);
+  for (const k of ['c', 'data', 'measure', 'look']) if (q.get(k)) state[k] = q.get(k);
+  if (!CONCEPTS[state.c]) state.c = 'frontpage';
+
+  const index = await get('../configs/index.json');
+  const themes = Object.fromEntries((await Promise.all(index.themes.map(id => get(`../configs/themes/${id}.json`)))).map(t => [t.id, t]));
+  const atlas = document.createElement('orbital-atlas');
+  atlas.setAttribute('registry', '../topologies/registry.json');
+  atlas.registerThemes(Object.values(themes));
+
+  $('concepts').replaceChildren(...Object.entries(CONCEPTS).map(([id, c]) => Object.assign(el('button', '', c.name), { title: `The hero is ${c.hero}`, onclick: () => go(id) })));
+  $('data').replaceChildren(...Object.values(LAYER_HEADERS).map(h => Object.assign(el('option', '', h.label), { value: h.id })));
+  $('look').replaceChildren(...['survey', 'paper', 'pressroom', 'ledger', 'nightfall', 'topograph', 'undertow', 'transmission'].filter(id => themes[id]).map(id => Object.assign(el('option', '', themes[id].label), { value: id })));
+
+  const noun = () => (atlas.topology.entry.noun || ['place', 'places']);
+  const light = (places, node) => { document.querySelectorAll('.lit').forEach(n => n.classList.remove('lit')); if (node && places && places.length) node.classList.add('lit'); atlas.spotlight(places && places.length ? places : null); };
+  function touch(node, places) {
+    if (!places || !places.length) return node;
+    node.classList.add('touch'); node.tabIndex = 0;
+    node.onmouseenter = node.onfocus = () => light(places, node);
+    node.onmouseleave = node.onblur = () => light(null);
+    return node;
+  }
+  function applyLook() {
+    const c = CONCEPTS[state.c], id = state.look || c.look, raw = themes[id];
+    atlas.theme = { ...raw, layout: { ...(raw.layout || {}), inset: c.inset, callout_gutter: c.gutter } };
+    applyTokens(atlas.theme);
+    $('look').value = id;
+  }
+  const applyView = () => { atlas.view = { ...atlas.view, measure: state.measure, scale: { type: 'quantile', bins: atlas.theme.encoding === 'fill' ? 7 : 0 }, highlight: { rule: 'percentile_above', value: 0.9 }, labels: { top: CONCEPTS[state.c].labels } }; };
+  function chart(L) {
+    const S = L.spread, box = el('div', 'chart');
+    if (!S) return box;
+    const plot = el('div', 'plot');
+    S.bins.forEach(b => { const i = el('i', b.beyond ? 'beyond' : ''); i.style.height = `${b.count ? Math.max(4, Math.sqrt(b.count / S.peak) * 100) : 0}%`; i.style.background = b.color || 'transparent'; i.title = `${b.text}: ${b.count.toLocaleString()} places`; i.onmouseenter = () => b.count && atlas.spotlight(b.places); i.onmouseleave = () => atlas.spotlight(null); plot.append(i); });
+    const share = S.bins.filter(b => !b.beyond).length / S.bins.length, at = Math.max(0, Math.min(1, (S.median - S.lo) / ((S.hi - S.lo) || 1))) * share * 100;
+    const marker = el('div', 'marker' + (at > 60 ? ' flip' : '')); marker.style.left = `${at}%`; marker.append(el('span', 't-data', `typical ${S.median_text}`)); plot.append(marker);
+    const axis = el('div', 'axis'); axis.append(el('span', 't-data', S.lo_text), el('span', 't-data', S.bins.some(b => b.beyond) ? `${S.hi_text}, last bar to ${S.max_text}` : S.max_text));
+    box.append(plot, axis, el('div', 't-data', `${L.title} · taller bar, more places`));
+    return box;
+  }
+  const slot = () => { const s = el('div', 'mapslot'); s.append(atlas); return s; };
+  const tags = () => { const h = state.header, g = el('div', 'group'); g.append(el('span', 'tag', h ? h.label : ''), ...(h && h.source ? [el('span', 'tag' + (/made-up/i.test(h.source) ? ' loud' : ''), h.source.split('.')[0])] : [])); return g; };
+  const placeLine = R => { const d = el('div', 't-body'); if (!R) { d.append(el('span', 't-small', `Point at a ${noun()[0]} and it will tell you about itself.`)); return d; } const [name, ...rest] = R.sentence.split('. '); const who = el('span', 't-title', name + '  '); d.append(who, sentence(rest.join('. '))); return d; };
+
+  // ---------------- the four renders ----------------
+  const RENDER = {
+    frontpage(S, L) {
+      const root = el('div', 'fp'), mast = el('div', 'mast');
+      mast.append(tags(), el('span', 't-label', `${atlas.topology.entry.label} · ${L.caption}`));
+      const [first, ...more] = S.headline.split(/(?<=\.) (?=That is|It is also|The typical)/);
+      const h1 = say('h1', '', first); touch(h1, S.evidence);
+      const lead = el('div', 'lead'), fig = el('figure'), cap = el('figcaption'), rail = el('div', 'rail');
+      cap.id = 'caption'; cap.append(placeLine(null)); fig.append(slot(), cap);
+      rail.append(el('div', 't-label', 'By the numbers'), ...(S.figures || []).map(f => { const d = el('div', 'fig'); d.append(el('div', 't-label', f.label), el('div', 'big', f.big), el('div', 't-small', f.small)); return touch(d, f.places); }), chart(L));
+      lead.append(fig, rail);
+      const art = el('div', 'article');
+      art.append(...S.lines.map(l => { const p = el('p', 't-body'); p.append(el('b', 'run', l.label + '.'), sentence(l.text)); return touch(p, l.places); }));
+      const foot = el('div', 'foot'); foot.append(...S.caveats.map((c, k) => say('div', 't-small', `${k + 1}. ${c}`)));
+      root.append(mast, h1, ...(more.length ? [say('div', 'standfirst', more.join(' '))] : []), lead, art, foot);
+      return { root, onPlace: R => $('caption').replaceChildren(placeLine(R)) };
+    },
+
+    talk(S, L) {
+      const root = el('div', 'talk'), thread = el('div', 'thread'), msgs = el('div', 'msgs'), asks = el('div', 'asks'), chips = el('div', 'chips');
+      const post = (who, text, places, cls = '') => { const m = el('div', `msg ${who} ${cls}`); if (who === 'it') m.append(el('span', 't-label who', 'The data')); m.append(sentence(text)); touch(m, places); msgs.append(m); msgs.scrollTop = msgs.scrollHeight; return m; };
+      const by = kind => S.lines.filter(l => kind.includes(l.kind));
+      const QA = [
+        ['What is typical?', () => by(['typical', 'standout'])],
+        ['Where is it highest?', () => by(['where', 'region'])],
+        ['Is it piled up or spread out?', () => by(['concentration', 'overall'])],
+        ['Who is at the top?', () => [{ text: atlas.callouts.length ? atlas.callouts.map(c => `${c.rank}. ${c.name}, ${c.parent}: ${c.text}`).join('   ') : 'Nothing stands out enough to name.', places: atlas.callouts.map(c => c.idx) }]],
+        ['What should I be careful about?', () => S.caveats.map(text => ({ text, places: [] }))]
+      ];
+      post('it', S.headline, S.evidence, 'first');
+      post('it', `Ask me anything below, or point at a ${noun()[0]} on the map.`, []);
+      for (const [ask, answer] of QA) chips.append(Object.assign(el('button', 'btn', ask), { onclick: () => { post('you', ask, []); const out = answer(); if (!out.length) post('it', 'This table cannot answer that. It may be too small, or every number may be the same.', []); for (const a of out) post('it', a.text, a.places); } }));
+      const find = Object.assign(el('input', 'field'), { type: 'search', placeholder: `Or ask about a ${noun()[0]} by name…` });
+      find.setAttribute('list', 'names'); find.onchange = () => { const id = names.get(find.value.trim().toLowerCase()); if (!id) return; post('you', `Tell me about ${find.value}.`, []); const R = atlas.pin(id); post('it', R.sentence, [R.idx]); find.value = ''; };
+      asks.append(chips, find); thread.append(msgs, asks);
+      const side = el('div'); side.append(slot()); root.append(thread, side);
+      return { root, onClick: R => { if (!R) return; post('you', `What about ${R.name}?`, []); atlas.pin(R.id); post('it', R.sentence, [R.idx]); } };
+    },
+
+    scorecard(S, L) {
+      const root = el('div', 'sc'), head = el('div', 'group'), cards = el('div', 'cards'), body = el('div', 'body'), side = el('div', 'side'), bar = el('div', 'placebar');
+      head.append(tags(), say('span', 't-title', S.headline));
+      cards.append(...(S.figures || []).map(f => { const c = el('div', 'card'); c.append(el('div', 't-label', f.label), el('div', 'big', f.big), el('div', 't-small', f.small)); return touch(c, f.places); }));
+      const list = el('ul', 'findings');
+      list.append(...S.lines.map(l => { const li = el('li', 'finding'), lab = el('div', 't-label', l.label); li.append(lab, say('div', 't-small', l.text)); return touch(li, l.places); }));
+      side.append(chart(L), list, ...S.caveats.map(c => say('div', 't-small', c)));
+      body.append(slot(), side); bar.id = 'placebar'; bar.append(placeLine(null));
+      root.append(head, cards, body, bar);
+      return { root, onPlace: R => $('placebar').replaceChildren(placeLine(R)) };
+    },
+
+    scrolly(S, L) {
+      const root = el('div', 'scrolly'), steps = el('div', 'steps'), dots = el('div', 'progress');
+      const make = (cls, places, ...kids) => { const s = el('section', `step ${cls}`); s.append(...kids); s._places = places; return s; };
+      const all = [make('first now', [], tags(), say('h1', 't-display', S.headline), el('div', 't-small', 'Scroll. One sentence at a time, and the map answers each one.')),
+        ...S.lines.map(l => make('', l.places, el('div', 't-label', l.label), say('div', 't-title', l.text))),
+        make('', [], el('div', 't-label', 'Worth knowing'), ...S.caveats.map(c => say('div', 't-small', c)), chart(L))];
+      steps.append(...all); dots.append(...all.map(() => el('i')));
+      root.append(slot(), steps, dots);
+      // The step nearest the middle of the screen is "now". Scrolling is the user's action; nothing moves by itself.
+      const seen = new IntersectionObserver(entries => { for (const e of entries) if (e.isIntersecting) { all.forEach((s, k) => { const on = s === e.target; s.classList.toggle('now', on); dots.children[k].classList.toggle('now', on); }); atlas.spotlight(e.target._places && e.target._places.length ? e.target._places : null); } }, { rootMargin: '-45% 0px -45% 0px' });
+      all.forEach(s => seen.observe(s));
+      return { root, cleanup: () => seen.disconnect() };
+    }
+  };
+
+  // ---------------- wiring ----------------
+  let live = null;
+  const names = new Map();
+  function render() {
+    const S = atlas.story, L = atlas.legend;
+    if (!S || !L) return;
+    if (live && live.cleanup) live.cleanup();
+    scrollTo(0, 0);
+    live = RENDER[state.c](S, L);
+    $('stage').replaceChildren(live.root);
+    document.body.dataset.c = state.c;
+    document.title = `CONCEPT ${state.c} | hero: ${CONCEPTS[state.c].hero} | ${S.headline} | figures: ${(S.figures || []).map(f => `${f.label}=${f.big}`).join(', ')}`;
+  }
+  function sync() {
+    document.querySelectorAll('#concepts button').forEach((b, k) => b.setAttribute('aria-pressed', Object.keys(CONCEPTS)[k] === state.c));
+    const canRate = atlas.layer && atlas.layer.report.has_denominator;
+    if (!canRate && state.measure === 'ratio') state.measure = 'value';
+    document.querySelectorAll('#measure button').forEach(b => { b.setAttribute('aria-pressed', b.dataset.m === state.measure); if (b.dataset.m === 'ratio') b.disabled = !canRate; });
+    $('data').value = state.data;
+    const u = new URLSearchParams({ c: state.c, data: state.data, measure: state.measure }); if (state.look) u.set('look', state.look);
+    history.replaceState(null, '', `?${u}`);
+  }
+  async function loadData() {
+    atlas.clear(); applyLook();
+    atlas.view = { ...atlas.view, layer: null, measure: 'value', highlight: { rule: 'none', value: null } };
+    const made = makeLayer(state.data, atlas.topology);
+    const out = await atlas.load(sources.rows(made.rows, made.header), { header: made.header });
+    state.header = out.header; sync(); applyView();
+  }
+  function go(id) { state.c = id; state.look = null; sync(); applyLook(); applyView(); render(); }
+
+  let queued = false;                                        // many rebuilds can land in one tick; draw the page once for all of them
+  atlas.addEventListener('view-change', () => { if (queued) return; queued = true; queueMicrotask(() => { queued = false; render(); }); });
+  atlas.addEventListener('place-hover', e => live && live.onPlace && live.onPlace(e.detail));
+  atlas.addEventListener('place-click', e => live && live.onClick && live.onClick(e.detail));
+  $('data').onchange = () => { state.data = $('data').value; loadData(); };
+  $('look').onchange = () => { state.look = $('look').value; sync(); applyLook(); applyView(); };
+  document.querySelectorAll('#measure button').forEach(b => b.onclick = () => { state.measure = b.dataset.m; sync(); applyView(); });
+
+  // The map has to be on the page before it can load. Park it in the stage, then let the first render place it.
+  $('stage').append(atlas);
+  await atlas.ready;
+  const topo = atlas.topology, list = el('datalist'); list.id = 'names';
+  for (const p of topo.places) { const par = p.parentId != null && topo.parentIndexById.has(p.parentId) ? topo.parents[topo.parentIndexById.get(p.parentId)].name : null, label = par ? `${p.name}, ${par}` : p.name; names.set(label.toLowerCase(), p.id); list.append(Object.assign(el('option'), { value: label })); }
+  document.body.append(list);
+  if (!LAYER_HEADERS[state.data]) state.data = 'pulse';
+  if (state.look && !themes[state.look]) state.look = null;
+  await loadData();
+</script>
+</body>
+</html>

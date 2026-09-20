@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="system.css">
+<style>
+  /* Page-only layout. Every size, colour and gap comes from system.css. */
+  html, body { height: 100%; overflow: hidden; }
+  orbital-atlas { position: fixed; inset: 0; }
+  orbital-atlas::part(legend), orbital-atlas::part(readout) { display: none; }
+  .tags { display: flex; gap: var(--s2); flex-wrap: wrap; align-items: center; }
+  .head { display: flex; flex-direction: column; gap: var(--s3); }
+  .head .t-display { padding: var(--s1) var(--s2); margin: 0 calc(-1 * var(--s2)); border-left: 2px solid transparent; border-radius: var(--r1); }
+  .colophon { margin-top: auto; }
+  @media (max-width: 900px) { html, body { height: auto; } orbital-atlas { position: relative; inset: auto; height: 58vh; } }
+</style>
+</head>
+<body>
+<orbital-atlas id="atlas" registry="../topologies/registry.json"></orbital-atlas>
+
+<nav class="frame-bar" aria-label="Ask the map">
+  <div class="group"><span class="t-label">Data</span><select class="field" id="data" aria-label="Which table"></select></div>
+  <div class="group"><span class="t-label">Ask</span><div class="seg" id="measure"><button data-m="value">How many?</button><button data-m="ratio">How common?</button></div></div>
+  <div class="group"><span class="t-label">Point out</span><div class="seg" id="call"><button data-c="none">nothing</button><button data-c="top">the top tenth</button><button data-c="out">the outliers</button></div></div>
+  <div class="group push"><span class="t-label">Look</span><select class="field" id="look" aria-label="Which look"></select><button class="btn" id="ownBtn" aria-expanded="false">Your numbers</button></div>
+</nav>
+<div class="panel pop" id="own" hidden>
+  <div class="t-title">Read your own table</div>
+  <div class="t-small">Paste rows with a place id and a number. Add a base column and it can work out rates.</div>
+  <textarea class="field" id="paste" spellcheck="false" aria-label="Paste a table" placeholder="geo_id,value,denominator&#10;48201,1250000,8400&#10;06037,980000,8350"></textarea>
+  <div class="group"><button class="btn solid" id="go">Read it</button><button class="btn" id="ownClose">Close</button></div>
+  <div class="notes" id="report"></div>
+</div>
+
+<main class="frame-read">
+  <div class="head">
+    <div class="tags" id="tags"></div>
+    <h1 class="t-display" id="headline" aria-live="polite">Reading the numbers…</h1>
+    <div class="t-small" id="aside" hidden></div>
+  </div>
+  <div class="chart" id="spread"></div>
+  <div><div class="t-label" id="count"></div><ul class="findings" id="lines" style="margin-top: var(--s2)"></ul></div>
+  <div class="notes" id="know"></div>
+  <div class="t-data colophon" id="foot"></div>
+</main>
+
+<aside class="frame-cap" aria-label="About one place">
+  <div class="t-body" id="place" aria-live="polite"></div>
+  <input class="field" type="search" id="find" list="names" placeholder="Find a place by name" autocomplete="off" aria-label="Find a place by name"><datalist id="names"></datalist>
+</aside>
+
+<script type="module">
+  // The page writes no sentences of its own. Headline, findings, fine print and the place line all come from the engine's
+  // narrator, worked out from whatever table is loaded. Every finding knows which places it is about; touch it and they light up.
+  // The page sets no styles of its own either: tokens come from the look, through system.js.
+  import { sources } from '../src/element/orbital-atlas.js';
+  import { makeLayer, LAYER_HEADERS } from './layers.js';
+  import { applyTokens, sentence } from './system.js';
+  const $ = id => document.getElementById(id);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const atlas = $('atlas');
+  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
+  const index = await get('../configs/index.json');
+  const themes = Object.fromEntries((await Promise.all(index.themes.map(id => get(`../configs/themes/${id}.json`)))).map(t => [t.id, t]));
+  atlas.registerThemes(Object.values(themes));
+  const LOOKS = ['survey', 'pressroom', 'nightfall', 'topograph', 'undertow', 'transmission', 'ledger', 'paper'];
+  const CALL = { none: { rule: 'none', value: null }, top: { rule: 'percentile_above', value: 0.9 }, out: { rule: 'outlier_iqr', value: 1.5 } };
+  const state = { data: 'pulse', measure: 'ratio', call: 'top', look: 'survey', place: null, pasted: false, header: null };
+  const narrow = matchMedia('(max-width: 900px)');
+  const names = new Map();
+  let held = null, heldKind = null, contrastReport = [];
+
+  $('data').replaceChildren(...Object.values(LAYER_HEADERS).map(h => Object.assign(el('option', '', `Data: ${h.label}`), { value: h.id })));
+  $('look').replaceChildren(...LOOKS.filter(id => themes[id]).map(id => Object.assign(el('option', '', `Look: ${themes[id].label || id}`), { value: id })));
+
+  function applyLook() {
+    const raw = themes[state.look], css = getComputedStyle(document.documentElement), px = v => parseInt(css.getPropertyValue(v), 10);
+    const inset = narrow.matches ? { top: 8, right: 0, bottom: 8, left: 0 } : { top: px('--bar'), right: 0, bottom: px('--cap'), left: px('--read') };
+    atlas.theme = { ...raw, layout: { ...(raw.layout || {}), inset, callout_gutter: narrow.matches ? 0 : 196 } };
+    contrastReport = applyTokens(atlas.theme);
+  }
+  function applyView() {
+    atlas.view = { ...atlas.view, measure: state.measure, scale: { type: 'quantile', bins: atlas.theme.encoding === 'fill' ? 7 : 0 }, highlight: CALL[state.call], labels: { top: narrow.matches ? 0 : 5 } };
+  }
+  function remember() {
+    const q = new URLSearchParams();
+    if (!state.pasted) q.set('data', state.data);
+    for (const k of ['measure', 'call', 'look']) q.set(k, state[k]);
+    if (state.place) q.set('place', state.place);
+    history.replaceState(null, '', `?${q}`);
+  }
+
+  function light(places, node) {
+    document.querySelectorAll('.touch.on').forEach(n => n.classList.remove('on'));
+    if (node && places && places.length) node.classList.add('on');
+    atlas.spotlight(places && places.length ? places : null);
+  }
+  function touchable(node, places) {
+    node.classList.remove('touch'); node.onmouseenter = node.onmouseleave = node.onfocus = node.onblur = node.onclick = node.onkeydown = null; node.removeAttribute('tabindex'); node.removeAttribute('title');
+    if (!places.length) return node;
+    node.classList.add('touch'); node.tabIndex = 0;
+    node.title = `Touch to see ${places.length === 1 ? 'it' : 'these ' + places.length.toLocaleString()} on the map. Click to keep ${places.length === 1 ? 'it' : 'them'} lit.`;
+    node.onmouseenter = node.onfocus = () => { if (!held) light(places, node); };
+    node.onmouseleave = node.onblur = () => { if (!held) light(null); };
+    node.onclick = node.onkeydown = e => { if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return; e.preventDefault(); if (held === node) { held = heldKind = null; light(null); } else { held = node; heldKind = node.dataset.kind; light(places, node); } };
+    return node;
+  }
+
+  function drawSpread(L) {
+    const S = L.spread, box = $('spread');
+    if (!S) { box.replaceChildren(); return; }
+    const plot = el('div', 'plot');
+    plot.setAttribute('role', 'img');
+    plot.setAttribute('aria-label', `How the places spread out, from ${S.lo_text} to ${S.max_text}. The typical one sits at ${S.median_text}.`);
+    S.bins.forEach((b, k) => {
+      const i = el('i', b.beyond ? 'beyond' : '');
+      i.style.height = `${b.count ? Math.max(4, Math.sqrt(b.count / S.peak) * 100) : 0}%`;       // square root, so a thin tail is still seen
+      i.style.background = b.color || 'transparent';
+      i.title = `${b.text}: ${b.count.toLocaleString()} places`;
+      i.dataset.k = k;
+      i.onmouseenter = () => { if (!held && b.count) atlas.spotlight(b.places); };
+      i.onmouseleave = () => { if (!held) atlas.spotlight(null); };
+      plot.append(i);
+    });
+    const share = S.bins.filter(b => !b.beyond).length / S.bins.length;
+    const at = Math.max(0, Math.min(1, (S.median - S.lo) / ((S.hi - S.lo) || 1))) * share * 100;
+    const marker = el('div', 'marker' + (at > 60 ? ' flip' : '')); marker.style.left = `${at}%`;
+    marker.append(el('span', 't-data', `typical ${S.median_text}`)); plot.append(marker);
+    const axis = el('div', 'axis');
+    axis.append(el('span', 't-data', S.lo_text), el('span', 't-data', S.bins.some(b => b.beyond) ? `${S.hi_text}, and the last bar runs to ${S.max_text}` : S.max_text));
+    const key = el('div', 'key');
+    const chip = (paint, text) => { const s = el('span', 't-data'), i = el('i', 'swatch'); paint(i); s.append(i, document.createTextNode(text)); return s; };
+    key.append(el('span', 't-data', `${L.title} · taller bar, more places`));
+    for (const r of L.roles) key.append(chip(i => { if (r.style === 'outline') i.style.boxShadow = `inset 0 0 0 2px ${r.color}`; else if (r.style === 'hatch') i.style.background = `repeating-linear-gradient(45deg, ${r.color} 0 1.5px, transparent 1.5px 4px)`; else i.style.background = r.color; }, `${r.text}: ${r.count_text}`));
+    if (L.no_data) key.append(chip(i => { i.style.background = L.no_data.color; i.style.boxShadow = 'inset 0 0 0 1px var(--rule)'; }, `no data: ${L.no_data.count_text}`));
+    box.replaceChildren(plot, axis, key);
+  }
+  function markBar(idx) {
+    document.querySelectorAll('.plot i.here').forEach(n => n.classList.remove('here'));
+    const S = atlas.legend && atlas.legend.spread;
+    if (!S || idx == null) return;
+    const k = S.bins.findIndex(b => b.places.includes(idx));
+    const bar = k >= 0 && document.querySelector(`.plot i[data-k="${k}"]`);
+    if (bar) bar.classList.add('here');
+  }
+
+  function tellPlace(R, pinned) {
+    if (!R) { const noun = (atlas.topology.entry.noun || ['place'])[0]; $('place').replaceChildren(el('span', 'hint', `Point at a ${noun} and it will tell you about itself. Click one to keep it.`)); markBar(null); return; }
+    const [name, ...rest] = R.sentence.split('. ');
+    const kids = [el('span', 'who', name), sentence(rest.join('. '))];
+    if (pinned) { const x = el('button', 'linkish', 'let go'); x.onclick = () => setPlace(null); kids.push(x); }
+    $('place').replaceChildren(...kids);
+    markBar(R.idx);
+  }
+  function setPlace(id) {
+    state.place = id;
+    tellPlace(atlas.pin(id), !!id);
+    if (!id) $('find').value = '';
+    remember();
+  }
+
+  function render() {
+    const S = atlas.story, L = atlas.legend, h = state.header;
+    const source = state.pasted ? 'pasted just now' : h && h.source ? h.source.split('.')[0] : '';
+    $('tags').replaceChildren(el('span', 'tag', h ? h.label : 'Your table'), ...(source ? [el('span', 'tag' + (/made-up/i.test(source) ? ' loud' : ''), source)] : []));
+    if (!S) return;
+    const keep = heldKind; held = null;
+    const [first, ...more] = S.headline.split(/(?<=\.) (?=It is also)/);
+    const head = $('headline'); head.dataset.kind = 'headline';
+    head.replaceChildren(sentence(first));
+    $('aside').hidden = !more.length; $('aside').replaceChildren(sentence(more.join(' ')));
+    touchable(head, S.evidence || []);
+    $('lines').replaceChildren(...S.lines.map(l => {
+      const li = el('li', 'finding'), body = el('div', 't-body');
+      li.dataset.kind = l.kind;
+      body.append(sentence(l.text));
+      const label = el('div', 't-label', l.label || l.kind);
+      if (l.places.length > 1) label.append(el('span', 'count', `${l.places.length.toLocaleString()} places`));
+      li.append(label, body);
+      return touchable(li, l.places);
+    }));
+    $('count').textContent = S.lines.length ? `${S.lines.length} findings · touch one to see it on the map` : '';
+    $('know').replaceChildren(...(S.caveats.length ? [el('div', 't-label', 'Worth knowing'), ...S.caveats.map(c => { const d = el('div', 't-small'); d.append(sentence(c)); return d; })] : []));
+    drawSpread(L);
+    // A redraw (a resize, a new look) must not strand the map lit with no finding marked. Re-hold the same kind, or let go.
+    const again = keep && [head, ...$('lines').children].find(n => n.dataset.kind === keep && n.classList.contains('touch'));
+    if (again) again.click(); else { heldKind = null; light(null); }
+    tellPlace(state.place ? atlas.pin(state.place) : null, !!state.place);
+    const fixed = contrastReport.filter(r => r.corrected).map(r => r.role);
+    $('foot').textContent = `${atlas.topology.entry.label} · ${atlas.theme.label} look · every sentence is generated from the table · rebuilt in ${atlas.rebuild_ms} ms${fixed.length ? ' · ' + fixed.join(', ') + ' corrected for contrast' : ''}`;
+    document.title = `STORY | ${S.headline}`;
+  }
+
+  function sync() {
+    const canRate = atlas.layer && atlas.layer.report.has_denominator;
+    if (!canRate && state.measure === 'ratio') state.measure = 'value';
+    document.querySelectorAll('#measure button').forEach(b => { b.setAttribute('aria-pressed', b.dataset.m === state.measure); if (b.dataset.m === 'ratio') { b.disabled = !canRate; b.title = canRate ? 'Divide by the base, so big and small places compare fairly.' : 'This table has no base column to divide by, so there is no rate.'; } });
+    document.querySelectorAll('#call button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === state.call));
+    $('data').value = state.pasted ? '' : state.data; $('look').value = state.look;
+    remember();
+  }
+
+  async function loadData(source, header) {
+    atlas.clear(); applyLook();
+    atlas.view = { ...atlas.view, layer: null, measure: 'value', highlight: CALL.none };
+    const out = await atlas.load(source, header ? { header } : {});
+    state.header = out.header;
+    sync(); applyView();
+    return out;
+  }
+  const loadDemo = () => { state.pasted = false; const made = makeLayer(state.data, atlas.topology); return loadData(sources.rows(made.rows, made.header), made.header); };
+  const showOwn = open => { $('own').hidden = !open; $('ownBtn').setAttribute('aria-expanded', open); if (open) $('paste').focus(); };
+
+  atlas.addEventListener('view-change', () => render());
+  atlas.addEventListener('place-hover', e => { if (e.detail) tellPlace(e.detail, false); else tellPlace(state.place ? atlas.readout(state.place) : null, !!state.place); });
+  atlas.addEventListener('place-click', e => setPlace(e.detail && e.detail.id !== state.place ? e.detail.id : null));
+  atlas.addEventListener('atlas-error', e => { $('headline').textContent = e.detail.message; $('lines').replaceChildren(); $('spread').replaceChildren(); });
+  $('data').onchange = () => { state.data = $('data').value; state.place = null; loadDemo(); };
+  $('look').onchange = () => { state.look = $('look').value; applyLook(); sync(); applyView(); };
+  document.querySelectorAll('#measure button').forEach(b => b.onclick = () => { state.measure = b.dataset.m; sync(); applyView(); });
+  document.querySelectorAll('#call button').forEach(b => b.onclick = () => { state.call = b.dataset.c; sync(); applyView(); });
+  $('find').onchange = $('find').oninput = () => { const id = names.get($('find').value.trim().toLowerCase()); if (id) setPlace(id); };
+  $('ownBtn').onclick = () => showOwn($('own').hidden);
+  $('ownClose').onclick = () => showOwn(false);
+  addEventListener('keydown', e => { if (e.key === 'Escape') showOwn(false); });
+  narrow.addEventListener('change', () => { applyLook(); applyView(); });
+  $('go').onclick = async () => {
+    state.pasted = true; state.place = null;
+    const { words } = await loadData(sources.paste($('paste').value));
+    $('report').replaceChildren(...words.map(w => { const d = el('div', 't-small'); d.append(sentence(w.text)); if (w.level === 'warn') d.style.color = 'var(--ink)'; return d; }));
+  };
+
+  await atlas.ready;
+  const topo = atlas.topology, parentOf = p => (p.parentId != null && topo.parentIndexById.has(p.parentId) ? topo.parents[topo.parentIndexById.get(p.parentId)].name : null);
+  const opts = [];
+  for (const p of topo.places) { const label = parentOf(p) ? `${p.name}, ${parentOf(p)}` : p.name; names.set(label.toLowerCase(), p.id); opts.push(Object.assign(el('option'), { value: label })); }
+  $('names').replaceChildren(...opts);
+
+  const q = new URLSearchParams(location.search);
+  for (const k of ['data', 'measure', 'call', 'look', 'place']) if (q.get(k)) state[k] = q.get(k);
+  if (!LAYER_HEADERS[state.data]) state.data = 'pulse';
+  if (!themes[state.look]) state.look = 'survey';
+  if (q.get('paste')) { showOwn(true); $('paste').value = q.get('paste'); await $('go').onclick(); } else await loadDemo();
+  if (q.get('light')) { const li = document.querySelectorAll('.finding')[Number(q.get('light'))]; if (li) li.click(); }
+  if (state.place && atlas.readout(state.place)) document.title += ` || ${atlas.readout(state.place).sentence}`;
+  document.title += ` || rebuild ${atlas.rebuild_ms}ms || held ${document.querySelectorAll('.finding.on').length} || contrast ${contrastReport.map(r => `${r.role} ${r.ratio}${r.corrected ? '*' : ''}`).join(', ')}`;
+</script>
+</body>
+</html>

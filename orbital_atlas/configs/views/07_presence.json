@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "07_presence",
+  "topology": "us_counties_2018",
+  "title": "Where data exists",
+  "note": "Exists means the value is not empty.",
+  "layer": "fatalities",
+  "measure": "presence",
+  "scale": {
+    "type": "binary"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "survey",
+  "label": "Survey",
+  "base": "ledger",
+  "ground": {
+    "background": "#e9e2d0",
+    "land_empty": "#f3eddd",
+    "texture": "paper",
+    "shadow": {
+      "color": "#9c8a66",
+      "blur": 26,
+      "dx": 7,
+      "dy": 10
+    }
+  },
+  "palettes": {
+    "sequential": [
+      "#f4efdf",
+      "#dfe3c2",
+      "#a9c7a4",
+      "#5f9d94",
+      "#2f6475",
+      "#1d3148"
+    ],
+    "binary": {
+      "zero": "#efe8d6",
+      "nonzero": [
+        "#dfe3c2",
+        "#1d3148"
+      ]
+    },
+    "diverging": {
+      "low": [
+        "#2f6475",
+        "#a9c7a4"
+      ],
+      "mid": "#f4efdf",
+      "high": [
+        "#e3b48a",
+        "#a3452c"
+      ]
+    }
+  },
+  "roles": {
+    "highlight": {
+      "style": "outline",
+      "color": "#a3452c",
+      "width": 0.9
+    },
+    "low_confidence": {
+      "style": "hatch",
+      "color": "#f3eddd",
+      "width": 0.9
+    },
+    "no_data": {
+      "style": "fill",
+      "color": "#efe8d6"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#a3452c",
+      "width": 1.5
+    },
+    "focus_dim": {
+      "style": "veil",
+      "color": "#e9e2d0",
+      "amount": 0.78
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#2a2418",
+      "opacity": 0.07,
+      "width": 0.4
+    },
+    "parents": {
+      "color": "#2a2418",
+      "opacity": 0.5,
+      "width": 0.7
+    },
+    "outline": {
+      "color": "#2a2418",
+      "opacity": 0.9,
+      "width": 1
+    }
+  },
+  "light": {
+    "type": "hillshade",
+    "strength": 1,
+    "source": "value"
+  },
+  "layout": {
+    "inset": {
+      "top": 40,
+      "right": 0,
+      "bottom": 40,
+      "left": 0
+    },
+    "callout_gutter": 210
+  },
+  "type": {
+    "display": "'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+    "data": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular",
+    "display_weight": 400
+  }
+}

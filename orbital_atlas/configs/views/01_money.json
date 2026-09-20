@@ -1,0 +1,18 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "01_money",
+  "topology": "us_counties_2018",
+  "title": "Money, with restraint",
+  "note": "A muted ramp for nine places in ten. One accent for the top tenth.",
+  "layer": "payments",
+  "measure": "value",
+  "scale": {
+    "type": "quantile",
+    "bins": 0
+  },
+  "highlight": {
+    "rule": "percentile_above",
+    "value": 0.9
+  }
+}

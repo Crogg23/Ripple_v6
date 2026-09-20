@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "07b_absence",
+  "topology": "us_counties_2018",
+  "title": "Where data is missing",
+  "note": "The same view, inverted.",
+  "layer": "fatalities",
+  "measure": "presence",
+  "scale": {
+    "type": "binary",
+    "invert": true
+  }
+}

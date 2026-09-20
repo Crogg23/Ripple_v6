@@ -1,0 +1,12 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "relief",
+  "label": "Relief",
+  "base": "ledger",
+  "light": {
+    "type": "hillshade",
+    "strength": 0.6,
+    "source": "value"
+  }
+}

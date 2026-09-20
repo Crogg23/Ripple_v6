@@ -1,0 +1,112 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "pressroom",
+  "label": "Pressroom",
+  "base": "ledger",
+  "ground": {
+    "background": "#efe9dc",
+    "land_empty": "#f6f1e6",
+    "texture": "paper",
+    "shadow": null
+  },
+  "palettes": {
+    "sequential": [
+      "#1f3fbf",
+      "#1f3fbf"
+    ],
+    "binary": {
+      "zero": "#e7e0d0",
+      "nonzero": [
+        "#1f3fbf",
+        "#1f3fbf"
+      ]
+    },
+    "diverging": {
+      "low": [
+        "#1f3fbf",
+        "#93a4e6"
+      ],
+      "mid": "#f6f1e6",
+      "high": [
+        "#f3a08f",
+        "#e8432b"
+      ]
+    }
+  },
+  "encoding": "hatch",
+  "ink": {
+    "under": "empty",
+    "color": "#1f3fbf",
+    "spacing": [
+      11,
+      1.9
+    ],
+    "width": 1.05,
+    "angle": 45,
+    "classes": 7
+  },
+  "roles": {
+    "highlight": {
+      "style": "hatch",
+      "color": "#e8432b",
+      "width": 1.5,
+      "spacing": 3.2,
+      "angle": -45,
+      "offset": [
+        1.6,
+        1.1
+      ]
+    },
+    "low_confidence": {
+      "style": "dot",
+      "color": "#1a1a1a"
+    },
+    "no_data": {
+      "style": "fill",
+      "color": "#e7e0d0"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#1a1a1a",
+      "width": 1.6
+    },
+    "focus_dim": {
+      "style": "veil",
+      "color": "#efe9dc",
+      "amount": 0.78
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#1a1a1a",
+      "opacity": 0,
+      "width": 0.5
+    },
+    "parents": {
+      "color": "#1a1a1a",
+      "opacity": 0.85,
+      "width": 0.9
+    },
+    "outline": {
+      "color": "#1a1a1a",
+      "opacity": 1,
+      "width": 1.4
+    }
+  },
+  "layout": {
+    "inset": {
+      "top": 40,
+      "right": 0,
+      "bottom": 40,
+      "left": 0
+    },
+    "callout_gutter": 210
+  },
+  "type": {
+    "display": "'Archivo', 'Helvetica Neue', Arial, sans-serif",
+    "data": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular",
+    "display_weight": 800
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "topology": "us_counties_2018",
+  "layer": "pulse",
+  "id": "plate_survey",
+  "title": "A relief of the rate",
+  "note": "Seven tonal steps by rank. The shading repeats the colour.",
+  "measure": "ratio",
+  "scale": {
+    "type": "quantile",
+    "bins": 7
+  },
+  "labels": {
+    "top": 6
+  }
+}

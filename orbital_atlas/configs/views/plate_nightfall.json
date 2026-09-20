@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "topology": "us_counties_2018",
+  "layer": "pulse",
+  "id": "plate_nightfall",
+  "title": "Where it gathers",
+  "note": "Dot density is the count. More light, more events.",
+  "measure": "value",
+  "scale": {
+    "type": "quantile"
+  },
+  "labels": {
+    "top": 6
+  }
+}

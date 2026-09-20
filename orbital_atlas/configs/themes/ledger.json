@@ -3,8 +3,13 @@
   "id": "ledger",
   "label": "Ledger",
   "ground": { "background": "#0b0f14", "land_empty": "#18212b", "texture": "none" },
+  "palettes": {
+    "sequential":  ["#10202c", "#1d4253", "#3f7f86", "#a9c9b8", "#eef3e6"],
+    "diverging":   { "low": ["#4aa3ff", "#1c3f66"], "mid": "#0d1117", "high": ["#66231f", "#ff6b5e"] },
+    "binary":      { "zero": "#3b4856", "nonzero": ["#5a3a1e", "#e5a54a"] },
+    "categorical": ["#4aa3ff", "#e5a54a", "#7bd389", "#ff6b5e", "#b49cff", "#9aa7b2"]
+  },
   "roles": {
-    "present": { "style": "fill", "color": "#3f7f86" },
     "no_data": { "style": "fill", "color": "#18212b" }
   },
   "lines": {

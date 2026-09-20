@@ -1,0 +1,21 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "02_fatalities",
+  "topology": "us_counties_2018",
+  "title": "Fatalities: zero first, then how many",
+  "note": "Zero is its own class. The rest are ranked among themselves.",
+  "layer": "fatalities",
+  "measure": "value",
+  "scale": {
+    "type": "quantile",
+    "bins": 4,
+    "zero_class": true
+  },
+  "readout": {
+    "always": [
+      "value",
+      "n"
+    ]
+  }
+}

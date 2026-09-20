@@ -1,0 +1,327 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "orbital.view.1.json",
+  "title": "Orbital Atlas view",
+  "description": "What the map means. Change a field here and the reader learns a different fact.",
+  "type": "object",
+  "required": [
+    "schema"
+  ],
+  "properties": {
+    "schema": {
+      "const": "orbital.view/1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "One line of context for the margin."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "topology": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "A registered topology id."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "layer": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "Which table. null is the empty state."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "layer_b": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "Second table, for two-layer views. Not built yet."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "period": {
+      "type": "string",
+      "default": "latest",
+      "description": "A period string, or \"latest\"."
+    },
+    "measure": {
+      "enum": [
+        "value",
+        "ratio",
+        "denominator",
+        "n",
+        "presence",
+        "difference",
+        "ratio_ab"
+      ],
+      "description": "What number drives the colour.",
+      "default": "value"
+    },
+    "measure_locked": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, slicers cannot switch the measure. The readout still shows everything."
+    },
+    "scale": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "linear",
+            "log",
+            "quantile",
+            "quantize",
+            "threshold",
+            "diverging",
+            "binary",
+            "categorical"
+          ],
+          "description": "How numbers become positions on the palette.",
+          "default": "quantile"
+        },
+        "bins": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "0 for smooth, or a class count of 2 or more."
+        },
+        "ties": {
+          "enum": [
+            "share",
+            "spread"
+          ],
+          "description": "share: equal values get equal colour. spread is what v1 did by accident.",
+          "default": "share"
+        },
+        "domain": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "midpoint": {
+          "anyOf": [
+            {
+              "type": "number",
+              "description": "Centre of a diverging scale."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "thresholds": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "zero_class": {
+          "type": "boolean",
+          "default": false,
+          "description": "Zero gets its own class first, then the rest are scaled."
+        },
+        "invert": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "highlight": {
+      "type": "object",
+      "properties": {
+        "rule": {
+          "enum": [
+            "none",
+            "percentile_above",
+            "percentile_below",
+            "top_n",
+            "bottom_n",
+            "value_above",
+            "value_below",
+            "outlier_iqr",
+            "outlier_z"
+          ],
+          "description": "Which places are called out. The view picks who. The theme picks how.",
+          "default": "none"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "enum": [
+            "n",
+            "denominator"
+          ],
+          "description": "What makes a place shaky: a small sample, or a small base.",
+          "default": "n"
+        },
+        "low_below": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "filter": {
+      "type": "object",
+      "properties": {
+        "tier_in": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "national",
+            "parent",
+            "places",
+            "neighbors",
+            "path"
+          ],
+          "description": "What the camera fits to.",
+          "default": "national"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "on_click": {
+      "enum": [
+        "focus_parent",
+        "select",
+        "none"
+      ],
+      "description": "Default click behaviour. The event always fires as well.",
+      "default": "focus_parent"
+    },
+    "readout": {
+      "type": "object",
+      "properties": {
+        "always": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "value",
+              "denominator",
+              "ratio",
+              "n",
+              "tier",
+              "rank"
+            ]
+          }
+        },
+        "on_demand": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "value",
+              "denominator",
+              "ratio",
+              "n",
+              "tier",
+              "rank"
+            ]
+          }
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "properties": {
+        "top": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "empty_message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "05_overdose",
+  "topology": "us_counties_2018",
+  "title": "A rate, with small places washed out",
+  "note": "Under 5,000 people, one death swings the rate. Those places are marked.",
+  "layer": "overdose_deaths",
+  "measure": "ratio",
+  "confidence": {
+    "field": "denominator",
+    "low_below": 5000
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "06_lean",
+  "topology": "us_counties_2018",
+  "title": "Political lean, dark in the middle",
+  "note": "Close races go dark. Landslides go bright.",
+  "layer": "pres_2024",
+  "measure": "ratio",
+  "scale": {
+    "type": "diverging",
+    "midpoint": 0
+  }
+}

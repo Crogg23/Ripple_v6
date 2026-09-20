@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "04_disputes",
+  "topology": "us_counties_2018",
+  "title": "Disputes, outliers outlined",
+  "note": "The same kind of call-out as row 1. A different theme draws it as an outline.",
+  "layer": "disputes",
+  "measure": "ratio",
+  "highlight": {
+    "rule": "outlier_iqr",
+    "value": 1.5
+  }
+}

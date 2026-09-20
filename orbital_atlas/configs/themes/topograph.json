@@ -1,0 +1,86 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "topograph",
+  "label": "Topograph",
+  "base": "ledger",
+  "ground": {
+    "background": "#f2ede1",
+    "land_empty": "#f7f3ea",
+    "texture": "paper",
+    "shadow": null
+  },
+  "palettes": {
+    "sequential": [
+      "#d9b48f",
+      "#c0703a",
+      "#8f3a1d",
+      "#4a1a10"
+    ]
+  },
+  "encoding": "contour",
+  "ink": {
+    "under": "empty",
+    "cell": 2.5,
+    "smooth": 4,
+    "levels": 22,
+    "index_every": 5,
+    "width": 0.7,
+    "opacity": 0.95,
+    "blend": "multiply",
+    "bloom": 0
+  },
+  "roles": {
+    "no_data": {
+      "style": "fill",
+      "color": "#f7f3ea"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#4a1a10",
+      "width": 1.4
+    },
+    "highlight": {
+      "style": "outline",
+      "color": "#1d3148",
+      "width": 1.4
+    },
+    "focus_dim": {
+      "style": "veil",
+      "color": "#f2ede1",
+      "amount": 0.78
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#4a1a10",
+      "opacity": 0,
+      "width": 0.4
+    },
+    "parents": {
+      "color": "#4a1a10",
+      "opacity": 0.22,
+      "width": 0.6
+    },
+    "outline": {
+      "color": "#33130b",
+      "opacity": 0.95,
+      "width": 1.1
+    }
+  },
+  "layout": {
+    "inset": {
+      "top": 40,
+      "right": 0,
+      "bottom": 40,
+      "left": 0
+    },
+    "callout_gutter": 210
+  },
+  "type": {
+    "display": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "data": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular",
+    "display_weight": 500
+  }
+}

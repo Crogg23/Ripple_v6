@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "nightfall",
+  "label": "Nightfall",
+  "base": "ledger",
+  "ground": {
+    "background": "#05070b",
+    "land_empty": "#0b1017",
+    "texture": "grain",
+    "shadow": {
+      "color": "#1b3a5c",
+      "blur": 60,
+      "dx": 0,
+      "dy": 0
+    }
+  },
+  "palettes": {
+    "sequential": [
+      "#7a3b12",
+      "#d9772b",
+      "#ffc46b",
+      "#ffdf9e",
+      "#fff1cf"
+    ]
+  },
+  "encoding": "stipple",
+  "ink": {
+    "under": "empty",
+    "budget": 52000,
+    "gamma": 4,
+    "radius": 0.7,
+    "bloom": 3.5,
+    "bloom_strength": 0.22,
+    "blend": "screen"
+  },
+  "roles": {
+    "no_data": {
+      "style": "fill",
+      "color": "#0b1017"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#ffe2a8",
+      "width": 1
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#ffffff",
+      "opacity": 0,
+      "width": 0.5
+    },
+    "parents": {
+      "color": "#8fb4d9",
+      "opacity": 0.16,
+      "width": 0.7
+    },
+    "outline": {
+      "color": "#cfe3f7",
+      "opacity": 0.35,
+      "width": 0.8
+    }
+  },
+  "light": {
+    "type": "radial",
+    "strength": 0.55
+  },
+  "layout": {
+    "inset": {
+      "top": 40,
+      "right": 0,
+      "bottom": 40,
+      "left": 0
+    },
+    "callout_gutter": 210
+  },
+  "type": {
+    "display": "'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+    "data": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular",
+    "display_weight": 300
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "restraint",
+  "label": "Restraint",
+  "base": "ledger",
+  "palettes": {
+    "sequential": [
+      "#11161c",
+      "#2a3440",
+      "#566473",
+      "#8e9aa6"
+    ]
+  },
+  "roles": {
+    "highlight": {
+      "style": "accent_fill",
+      "color": "#e5a54a"
+    }
+  },
+  "light": {
+    "type": "flat"
+  },
+  "glow": {
+    "on": "none"
+  },
+  "type": {
+    "numerals": "tabular"
+  }
+}

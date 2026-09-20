@@ -1,0 +1,83 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "undertow",
+  "label": "Undertow",
+  "base": "ledger",
+  "ground": {
+    "background": "#0a0820",
+    "land_empty": "#100d2e",
+    "texture": "grain",
+    "shadow": {
+      "color": "#3a1d7a",
+      "blur": 70,
+      "dx": 0,
+      "dy": 0
+    }
+  },
+  "palettes": {
+    "sequential": [
+      "#1f4fd8",
+      "#19c2c2",
+      "#f04fa0",
+      "#ffc857",
+      "#fff3d1"
+    ]
+  },
+  "encoding": "current",
+  "ink": {
+    "under": "empty",
+    "cell": 2.5,
+    "smooth": 5,
+    "count": 5200,
+    "steps": 70,
+    "width": 0.85,
+    "opacity": 0.8,
+    "blend": "screen",
+    "bloom": 3,
+    "bloom_strength": 0.35
+  },
+  "roles": {
+    "no_data": {
+      "style": "fill",
+      "color": "#100d2e"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#fff3d1",
+      "width": 1.1
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#ffffff",
+      "opacity": 0,
+      "width": 0.4
+    },
+    "parents": {
+      "color": "#b9a8ff",
+      "opacity": 0.12,
+      "width": 0.6
+    },
+    "outline": {
+      "color": "#d8ceff",
+      "opacity": 0.4,
+      "width": 0.8
+    }
+  },
+  "layout": {
+    "inset": {
+      "top": 40,
+      "right": 0,
+      "bottom": 40,
+      "left": 0
+    },
+    "callout_gutter": 210
+  },
+  "type": {
+    "display": "'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif",
+    "data": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular",
+    "display_weight": 400
+  }
+}

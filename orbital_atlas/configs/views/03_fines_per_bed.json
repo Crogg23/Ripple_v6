@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "id": "03_fines_per_bed",
+  "topology": "us_counties_2018",
+  "title": "Fines that only make sense per bed",
+  "note": "The map is locked to the rate. Both raw numbers stay in the readout.",
+  "layer": "cms_fines",
+  "measure": "ratio",
+  "measure_locked": true,
+  "readout": {
+    "always": [
+      "value",
+      "denominator",
+      "ratio",
+      "rank"
+    ]
+  }
+}

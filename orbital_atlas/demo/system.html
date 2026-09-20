@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital Atlas · design system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="system.css">
+<style>
+  body { padding: var(--s7) var(--s6); }
+  .sheet { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--s7); }
+  section { display: flex; flex-direction: column; gap: var(--s4); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--s4); }
+  .chipbox { height: 64px; border-radius: var(--r2); border: 1px solid var(--rule); }
+  .row { display: flex; align-items: baseline; gap: var(--s5); border-top: 1px solid var(--rule); padding-top: var(--s3); }
+  .row > .t-data:first-child { width: 150px; flex: none; }
+  .gap { background: var(--ink); height: 12px; border-radius: 1px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s6); }
+  .rules { margin: 0; padding-left: var(--s5); display: flex; flex-direction: column; gap: var(--s2); max-width: 74ch; }
+  @media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <section>
+    <div class="group"><span class="t-label">Design system</span><span class="tag" id="lookTag"></span></div>
+    <h1 class="t-display" style="font-size: var(--t7)">One look in, one whole page out.</h1>
+    <div class="t-body" style="max-width: 70ch">A look is a theme file for the map. This page shows what the system solves from it: six colour roles, three voices, and every component, all checked for contrast. Switch the look and everything follows.</div>
+    <div class="group"><span class="t-label">Look</span><div class="seg" id="looks"></div></div>
+  </section>
+
+  <section>
+    <div class="t-label">The rules</div>
+    <ol class="rules t-body">
+      <li>Seven type sizes and seven gaps. Nothing else, and nothing under <b class="num">11</b> pixels.</li>
+      <li>Three voices: display for the finding, text for sentences, data for numbers and labels. All come from the look.</li>
+      <li>Six colour roles, solved from the look and proven readable. Quiet text is allowed. Faint text is not.</li>
+      <li>Chrome is neutral ink. Colour on the page always means data.</li>
+      <li>Figures inside sentences are set heavier, so the eye can hop from number to number.</li>
+      <li>Nothing moves.</li>
+    </ol>
+  </section>
+
+  <section><div class="t-label">Colour roles, with measured contrast on the ground</div><div class="grid" id="colors"></div></section>
+  <section><div class="t-label">Type scale</div><div id="type"></div></section>
+  <section><div class="t-label">Gaps</div><div id="gaps"></div></section>
+
+  <section>
+    <div class="t-label">Components</div>
+    <div class="two">
+      <div style="display:flex; flex-direction:column; gap: var(--s5)">
+        <div class="group"><span class="tag">Signal</span><span class="tag loud">Made-up demo numbers</span></div>
+        <h2 class="t-display" id="sampleHead"></h2>
+        <ul class="findings" id="sampleFindings"></ul>
+        <div class="notes"><div class="t-label">Worth knowing</div><div class="t-small" id="sampleNote"></div></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap: var(--s5)">
+        <div class="group"><div class="seg"><button aria-pressed="false">How many?</button><button aria-pressed="true">How common?</button></div><button class="btn">Your numbers</button><button class="btn solid">Read it</button></div>
+        <div class="group"><select class="field"><option>Signal</option></select><input class="field" type="search" placeholder="Find a place by name"></div>
+        <div class="panel"><div class="t-title">Panel</div><div class="t-small">Raised surfaces hold things you opened on purpose.</div></div>
+        <div class="t-body"><span style="font: 500 var(--t4)/1.2 var(--f-display); margin-right: var(--s2)">Monroe, Kentucky</span><span id="samplePlace"></span></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script type="module">
+  import { solveTokens, applyTokens, sentence, TARGETS } from './system.js';
+  import { resolveTheme } from '../src/engine/config.js';
+  const $ = id => document.getElementById(id);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const get = url => fetch(url).then(r => r.json());
+  const index = await get('../configs/index.json');
+  const raw = Object.fromEntries((await Promise.all(index.themes.map(id => get(`../configs/themes/${id}.json`)))).map(t => [t.id, t]));
+  const LOOKS = ['survey', 'pressroom', 'nightfall', 'topograph', 'undertow', 'transmission', 'ledger', 'paper'].filter(id => raw[id]);
+
+  $('sampleHead').append(sentence('Fentress, Tennessee stands at 194 events per 100,000 people. That is about 7 times the typical county.'));
+  for (const [label, text, n] of [['Typical', 'The typical county sits at 28. Half are above that, half below.', '315 places'], ['Where', '61% of the highest tenth sits in just 3 areas: Kentucky, Tennessee and North Carolina.', '191 places'], ['Zeros', '451 counties show exactly zero.', '451 places']]) {
+    const li = el('li', 'finding touch' + (label === 'Where' ? ' on' : '')), lab = el('div', 't-label', label), body = el('div', 't-body');
+    lab.append(el('span', 'count', n)); body.append(sentence(text)); li.append(lab, body); $('sampleFindings').append(li);
+  }
+  $('sampleNote').append(sentence('These are rates, not counts: events for every 100,000 people. So a big county and a small one compare fairly.'));
+  $('samplePlace').append(sentence('26 events among 21,300 people, which works out to 122 per 100,000 people. That puts it in the top tenth.'));
+
+  function show(id) {
+    const theme = resolveTheme(raw[id], raw), { vars } = solveTokens(theme), report = applyTokens(theme);
+    $('lookTag').textContent = `${theme.label} look`;
+    document.querySelectorAll('#looks button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
+    const measured = Object.fromEntries(report.map(r => [r.role, r]));
+    $('colors').replaceChildren(...['--ground', '--surface', '--ink', '--ink-2', '--rule', '--wash', '--signal'].map(k => {
+      const box = el('div'), chip = el('div', 'chipbox'), r = measured[k.slice(2)];
+      chip.style.background = `var(${k})`;
+      box.append(chip, el('div', 't-body', k), el('div', 't-data', vars[k] + (r ? ` · ${r.ratio} to 1, needs ${r.target}${r.corrected ? ' · corrected' : ''}` : '')));
+      return box;
+    }));
+    $('type').replaceChildren(...[['t7 · 34 display', 't-display', 'The finding', 'font-size: var(--t7)'], ['t6 · 28 display', 't-display', 'The finding, as set on the page'], ['t4 · 18 title', 't-title', 'Monroe, Kentucky'], ['t3 · 15 body', 't-body', 'The typical county sits at 28. Half are above that, half below.'], ['t2 · 13 small', 't-small', 'These are rates, not counts, so big and small places compare fairly.'], ['t1 · 11 label', 't-label', 'Worth knowing'], ['t1 · 11 data', 't-data', '3,142 places · rebuilt in 11 ms']].map(([name, cls, text, style]) => {
+      const row = el('div', 'row'), s = el('div', cls); s.append(sentence(text)); if (style) s.style.cssText = style; row.append(el('div', 't-data', name), s); return row;
+    }));
+    $('gaps').replaceChildren(...[4, 8, 12, 16, 24, 32, 48].map((px, k) => { const row = el('div', 'row'), bar = el('div', 'gap'); bar.style.width = `${px}px`; row.append(el('div', 't-data', `s${k + 1} · ${px}`), bar); return row; }));
+    document.title = `SYSTEM ${id} | ${report.map(r => `${r.role} ${r.ratio}/${r.target}${r.corrected ? '*' : ''}`).join(' ')}`;
+  }
+  $('looks').replaceChildren(...LOOKS.map(id => Object.assign(el('button', '', raw[id].label || id), { onclick: () => show(id) })));
+  document.querySelectorAll('#looks button').forEach((b, k) => { b.dataset.id = LOOKS[k]; });
+  show(new URLSearchParams(location.search).get('look') || 'survey');
+</script>
+</body>
+</html>

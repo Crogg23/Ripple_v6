@@ -5,6 +5,7 @@
     "us_counties_2018": {
       "label": "US counties, 2018",
       "geo_type": "county",
+      "noun": ["county", "counties"],
       "vintage": 2018,
       "url": "us_counties_2018.topo.json",
       "object": "counties",

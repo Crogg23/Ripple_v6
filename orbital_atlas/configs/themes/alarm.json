@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "alarm",
+  "label": "Alarm",
+  "base": "ledger",
+  "palettes": {
+    "binary": {
+      "zero": "#2a3340",
+      "nonzero": [
+        "#5b2a2a",
+        "#ff6b5e"
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "topology": "us_counties_2018",
+  "layer": "pulse",
+  "measure": "ratio",
+  "scale": {
+    "type": "quantile"
+  },
+  "id": "plate_topograph",
+  "title": "Elevation of a rate",
+  "note": "No places, only height. Each line is a rank the rate climbs past; every fifth is drawn heavy.",
+  "labels": {
+    "top": 4
+  }
+}

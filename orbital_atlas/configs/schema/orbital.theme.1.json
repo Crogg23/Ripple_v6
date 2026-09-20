@@ -1,0 +1,740 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "orbital.theme.1.json",
+  "title": "Orbital Atlas theme",
+  "description": "How the map looks. Change a field here and the reader learns nothing new.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id"
+  ],
+  "properties": {
+    "schema": {
+      "const": "orbital.theme/1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "base": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The id of a theme to build on. Only the fields that differ need writing."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ground": {
+      "type": "object",
+      "properties": {
+        "background": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "land_empty": {
+          "type": "string",
+          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "texture": {
+          "enum": [
+            "none",
+            "grain",
+            "paper",
+            "blueprint"
+          ],
+          "description": "Static surface. Never animated.",
+          "default": "none"
+        },
+        "shadow": {
+          "anyOf": [
+            {
+              "type": "object",
+              "description": "A soft shadow under the whole land shape.",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+                },
+                "blur": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "dx": {
+                  "type": "number"
+                },
+                "dy": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "color"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "palettes": {
+      "type": "object",
+      "description": "One per scale family. A complete theme supplies all four.",
+      "properties": {
+        "sequential": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+          },
+          "minItems": 1
+        },
+        "diverging": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "minItems": 1
+            },
+            "mid": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "high": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "low",
+            "mid",
+            "high"
+          ]
+        },
+        "binary": {
+          "type": "object",
+          "properties": {
+            "zero": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "nonzero": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "zero",
+            "nonzero"
+          ]
+        },
+        "categorical": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "encoding": {
+      "enum": [
+        "fill",
+        "dots",
+        "hatch",
+        "stipple",
+        "bars",
+        "contour",
+        "ridge",
+        "current"
+      ],
+      "description": "How a value becomes ink. Built: fill, stipple, hatch, contour, ridge, current. The engine refuses size encodings on rates.",
+      "default": "fill"
+    },
+    "ink": {
+      "type": "object",
+      "description": "How the stipple and hatch encodings lay ink down. Sizes are screen pixels.",
+      "properties": {
+        "under": {
+          "enum": [
+            "empty",
+            "ramp"
+          ],
+          "description": "What sits beneath the ink: empty land, or the ramp colour.",
+          "default": "empty"
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 250000,
+          "default": 70000,
+          "description": "Stipple: total dots across the map."
+        },
+        "gamma": {
+          "type": "number",
+          "minimum": 0.1,
+          "default": 2,
+          "description": "Stipple: how hard dot density leans toward the top of the scale."
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 0.1,
+          "default": 0.9
+        },
+        "bloom": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0,
+          "description": "Stipple: a soft static halo under the dots, in pixels. 0 is off."
+        },
+        "bloom_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.8
+        },
+        "blend": {
+          "enum": [
+            "source-over",
+            "lighter",
+            "multiply",
+            "screen"
+          ],
+          "description": "How the ink mixes with what is under it.",
+          "default": "source-over"
+        },
+        "spacing": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0.5
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Hatch: line gap at the bottom and at the top of the scale."
+        },
+        "width": {
+          "type": "number",
+          "minimum": 0.1,
+          "default": 0.9
+        },
+        "angle": {
+          "enum": [
+            45,
+            -45
+          ],
+          "default": 45
+        },
+        "classes": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 12,
+          "default": 6,
+          "description": "Hatch: how many bands of line spacing."
+        },
+        "cell": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 3,
+          "description": "Field encodings: grid size in map units. Smaller is finer and slower."
+        },
+        "smooth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "default": 3,
+          "description": "Field encodings: how far neighbours are blended, in cells."
+        },
+        "levels": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 40,
+          "default": 12,
+          "description": "Contour: how many lines between the bottom and top of the scale."
+        },
+        "index_every": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 4,
+          "description": "Contour: every nth line is drawn heavier."
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 200,
+          "default": 70,
+          "description": "Ridge: how many slices from top to bottom."
+        },
+        "amp": {
+          "type": "number",
+          "minimum": 0,
+          "default": 46,
+          "description": "Ridge: how far the top of the scale lifts a line, in pixels."
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20000,
+          "default": 3200,
+          "description": "Current: how many flow strokes."
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 400,
+          "default": 46,
+          "description": "Current: how long each stroke runs."
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.9
+        },
+        "fill": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "description": "Screen space the map keeps clear for type.",
+      "properties": {
+        "inset": {
+          "type": "object",
+          "properties": {
+            "top": {
+              "type": "number"
+            },
+            "right": {
+              "type": "number"
+            },
+            "bottom": {
+              "type": "number"
+            },
+            "left": {
+              "type": "number"
+            }
+          }
+        },
+        "callout_gutter": {
+          "type": "number",
+          "minimum": 0,
+          "default": 190
+        }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "properties": {
+        "highlight": {
+          "type": "object",
+          "properties": {
+            "style": {
+              "enum": [
+                "accent_fill",
+                "fill",
+                "outline",
+                "hatch",
+                "dot"
+              ],
+              "description": "How the highlight role is painted.",
+              "default": "accent_fill"
+            },
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0.5
+            },
+            "angle": {
+              "enum": [
+                45,
+                -45
+              ]
+            },
+            "offset": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "low_confidence": {
+          "type": "object",
+          "properties": {
+            "style": {
+              "enum": [
+                "desaturate",
+                "hatch",
+                "dot",
+                "outline"
+              ],
+              "description": "How the low_confidence role is painted.",
+              "default": "desaturate"
+            },
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0.5
+            },
+            "angle": {
+              "enum": [
+                45,
+                -45
+              ]
+            },
+            "offset": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "no_data": {
+          "type": "object",
+          "properties": {
+            "style": {
+              "enum": [
+                "fill"
+              ],
+              "description": "How the no_data role is painted.",
+              "default": "fill"
+            },
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0.5
+            },
+            "angle": {
+              "enum": [
+                45,
+                -45
+              ]
+            },
+            "offset": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "hover": {
+          "type": "object",
+          "properties": {
+            "style": {
+              "enum": [
+                "outline"
+              ],
+              "description": "How the hover role is painted.",
+              "default": "outline"
+            },
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0.5
+            },
+            "angle": {
+              "enum": [
+                45,
+                -45
+              ]
+            },
+            "offset": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "focus_dim": {
+          "type": "object",
+          "properties": {
+            "style": {
+              "enum": [
+                "veil"
+              ],
+              "description": "How the focus_dim role is painted.",
+              "default": "veil"
+            },
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0.5
+            },
+            "angle": {
+              "enum": [
+                45,
+                -45
+              ]
+            },
+            "offset": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        }
+      }
+    },
+    "light": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "flat",
+            "radial",
+            "hillshade"
+          ],
+          "description": "hillshade may only use the value as its height.",
+          "default": "flat"
+        },
+        "strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source": {
+          "anyOf": [
+            {
+              "const": "value"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "glow": {
+      "type": "object",
+      "properties": {
+        "on": {
+          "enum": [
+            "none",
+            "highlight"
+          ],
+          "description": "Glow can only ever attach to highlighted places.",
+          "default": "none"
+        },
+        "blur": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "lines": {
+      "type": "object",
+      "properties": {
+        "places": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "parents": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "outline": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "width": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "display": {
+          "type": "string",
+          "description": "Headlines and place names, on the page and on the map."
+        },
+        "text": {
+          "type": "string",
+          "description": "Sentences."
+        },
+        "display_weight": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 900,
+          "default": 400
+        },
+        "data": {
+          "type": "string",
+          "description": "Numbers, labels, captions."
+        },
+        "numerals": {
+          "enum": [
+            "tabular",
+            "proportional"
+          ]
+        }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "zoom_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 400,
+          "default": 250,
+          "description": "The only motion setting. 0 is a hard cut."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

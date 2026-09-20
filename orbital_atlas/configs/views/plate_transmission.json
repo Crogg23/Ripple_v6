@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "topology": "us_counties_2018",
+  "layer": "pulse",
+  "measure": "ratio",
+  "scale": {
+    "type": "quantile"
+  },
+  "id": "plate_transmission",
+  "title": "Seventy-eight slices",
+  "note": "The country, cut west to east. A line lifts where the rate is high. There is no border; the data draws the coast."
+}

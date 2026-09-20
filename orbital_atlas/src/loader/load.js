@@ -8,8 +8,10 @@ import { looksNumeric } from './parse.js';
 const SAMPLE = 20;
 
 /** Minimal header for a layer that arrived with none. */
+export const UNNAMED = 'Your layer';
+
 export function makeHeader(partial = {}) {
-  const label = partial.label || 'Your layer';
+  const label = partial.label || UNNAMED;
   return {
     schema: 'orbital.layer/1',
     id: partial.id || label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'layer',

@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema/orbital.view.1.json",
   "schema": "orbital.view/1",
   "id": "empty",
   "title": "Orbital Atlas",

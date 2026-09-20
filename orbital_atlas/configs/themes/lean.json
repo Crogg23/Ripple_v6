@@ -1,0 +1,20 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "lean",
+  "label": "Lean",
+  "base": "ledger",
+  "palettes": {
+    "diverging": {
+      "low": [
+        "#4aa3ff",
+        "#17314f"
+      ],
+      "mid": "#0b0e13",
+      "high": [
+        "#4f1b18",
+        "#ff5a4d"
+      ]
+    }
+  }
+}

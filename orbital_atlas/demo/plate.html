@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital Atlas · plates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #fff; --ground: #000; --accent: #e5a54a; --col: 340px; }
+  html, body { margin: 0; height: 100%; background: var(--ground); color: var(--ink); overflow: hidden; }
+  orbital-atlas { position: fixed; inset: 0; }
+  orbital-atlas::part(legend) { display: none; }
+  orbital-atlas::part(readout) { left: 48px; top: auto; bottom: 96px; background: none !important; box-shadow: none !important; padding: 0; max-width: 280px; border-top: 1px solid currentColor; padding-top: 10px; }
+
+  .col { position: fixed; left: 48px; top: 44px; bottom: 40px; width: var(--col); display: flex; flex-direction: column; pointer-events: none; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; line-height: 1.55; }
+  .kicker { letter-spacing: 0.32em; text-transform: uppercase; font-size: 10px; opacity: 0.7; display: flex; gap: 14px; align-items: center; }
+  .kicker::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.4; }
+  h1 { margin: 22px 0 0; font-weight: 300; }
+  .deck { margin-top: 18px; font-size: 12.5px; max-width: 30ch; opacity: 0.86; }
+
+  .legend { margin-top: 34px; width: 270px; }
+  .legend .what { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7; }
+  .legend .title { margin-top: 3px; font-size: 15px; }
+  .bar { height: 8px; margin-top: 12px; }
+  .bands { display: flex; gap: 3px; margin-top: 12px; }
+  .bands i { flex: 1; height: 26px; display: block; box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent); }
+  .ticks { position: relative; height: 34px; }
+  .ticks span { position: absolute; top: 0; padding-top: 8px; transform: translateX(-50%); white-space: nowrap; font-size: 10px; }
+  .ticks span::before { content: ''; position: absolute; left: 50%; top: 0; width: 1px; height: 5px; background: currentColor; opacity: 0.6; }
+  .ticks span.low { padding-top: 20px; } .ticks span.low::before { height: 17px; }
+  .ticks span.first { transform: none; } .ticks span.first::before { left: 0; }
+  .ticks span.last { transform: translateX(-100%); } .ticks span.last::before { left: auto; right: 0; }
+  .role { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+  .role i { width: 26px; height: 14px; display: block; flex: none; }
+  .role b { font-weight: 400; opacity: 0.6; margin-left: auto; }
+  .how { margin-top: 10px; opacity: 0.7; max-width: 34ch; }
+
+  .foot { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+  .warn { color: var(--accent); max-width: 36ch; }
+  .plates { display: flex; gap: 6px; pointer-events: auto; }
+  .plates button { all: unset; cursor: pointer; font: inherit; letter-spacing: 0.2em; padding: 6px 12px 5px; border: 1px solid color-mix(in srgb, currentColor 40%, transparent); }
+  .plates button.on { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+
+  /* Each plate has its own voice. */
+  body[data-plate="nightfall"] h1 { font: italic 300 64px/0.98 'Fraunces', Georgia, serif; letter-spacing: -0.02em; }
+  body[data-plate="nightfall"] .legend .title { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; }
+  body[data-plate="pressroom"] h1 { font: 900 66px/0.86 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-stretch: 68%; text-transform: uppercase; letter-spacing: -0.01em; }
+  body[data-plate="pressroom"] .kicker, body[data-plate="pressroom"] .legend .what { font-weight: 500; }
+  body[data-plate="pressroom"] .legend .title { font: 800 15px 'Archivo', Arial, sans-serif; font-stretch: 80%; text-transform: uppercase; letter-spacing: 0.04em; }
+  body[data-plate="pressroom"] h1 em { font-style: normal; color: var(--accent); }
+  body[data-plate="survey"] h1 { font: 400 50px/1.04 'Fraunces', Georgia, serif; font-variant-caps: small-caps; letter-spacing: 0.01em; }
+  body[data-plate="survey"] .legend .title { font-family: 'Fraunces', Georgia, serif; font-size: 17px; }
+  body[data-plate="topograph"] h1 { font: 400 30px/1.25 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: 0.2em; }
+  body[data-plate="topograph"] h1::after { content: ''; display: block; width: 64px; height: 3px; background: var(--accent); margin-top: 22px; }
+  body[data-plate="transmission"] h1 { font: 300 46px/1.0 'Archivo', Arial, sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.06em; }
+  body[data-plate="transmission"] .deck { opacity: 0.6; }
+  body[data-plate="transmission"] .bar { height: 2px; }
+  body[data-plate="undertow"] h1 { font: italic 400 58px/1.0 'Fraunces', Georgia, serif; letter-spacing: -0.015em; background: linear-gradient(100deg, #19c2c2, #f04fa0 55%, #ffc857); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 6px; }
+  body[data-plate="undertow"] .legend .title { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; }
+</style>
+</head>
+<body>
+<orbital-atlas id="atlas" registry="../topologies/registry.json"></orbital-atlas>
+<div class="col">
+  <div class="kicker" id="kicker"></div>
+  <h1 id="title"></h1>
+  <div class="deck" id="deck"></div>
+  <div class="legend" id="legend"></div>
+  <div class="foot">
+    <div class="warn" id="warn"></div>
+    <div id="colophon"></div>
+    <div class="plates" id="plates"></div>
+  </div>
+</div>
+<script type="module">
+  // A plate is still just one view file plus one theme file. This page only composes type around the map.
+  import { sources } from '../src/element/orbital-atlas.js';
+  import { makeLayer } from './layers.js';
+  const $ = id => document.getElementById(id);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const atlas = $('atlas');
+  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
+  const index = await get('../configs/index.json');
+  const themes = Object.fromEntries((await Promise.all(index.themes.map(id => get(`../configs/themes/${id}.json`)))).map(t => [t.id, t]));
+  atlas.registerThemes(Object.values(themes));
+  const NUMERAL = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+  const ACCENT = { nightfall: '#ffc46b', pressroom: '#e8432b', survey: '#a3452c', topograph: '#c0703a', transmission: '#ff4d2e', undertow: '#f04fa0' };
+  const HOW = { stipple: 'Each dot is ink, not a place. Denser light means a higher value.', hatch: 'Lines tighten as the value climbs.', fill: null,
+    contour: 'Lines crowd where the value changes fast. Rings close around highs and lows.', ridge: 'A taller line is a higher value.', current: 'A stroke follows one level of the value, the way wind follows pressure.' };
+
+  function drawLegend(theme) {
+    const L = atlas.legend, box = $('legend');
+    if (!L) { box.replaceChildren(); return; }
+    const kids = [el('div', 'what', [L.caption, L.unit].filter(Boolean).join(' · ')), el('div', 'title', L.title)];
+    const resolved = atlas.theme;
+    if (resolved.encoding === 'hatch') {
+      const bands = el('div', 'bands'), K = resolved.ink.classes, [wide, tight] = resolved.ink.spacing;
+      for (let k = 0; k < K; k++) { const i = el('i'); const gap = wide + (tight - wide) * k / (K - 1); i.style.background = `repeating-linear-gradient(135deg, ${resolved.ink.color} 0 1px, transparent 1px ${gap}px)`; bands.append(i); }
+      kids.push(bands);
+    } else if (L.kind === 'ramp') {
+      const bar = el('div', 'bar'); bar.style.background = `linear-gradient(to right, ${L.stops.map(s => `${s.color} ${s.t * 100}%`).join(', ')})`; kids.push(bar);
+    } else {
+      const bands = el('div', 'bands'); for (const c of L.classes) { const i = el('i'); i.style.background = c.color; i.title = `${c.text} · ${c.count_text} places`; bands.append(i); } kids.push(bands);
+    }
+    const ticks = el('div', 'ticks');
+    const marks = L.kind === 'ramp' ? L.ticks : [{ t: 0, text: L.classes[0].text.split(' – ')[0] }, { t: 1, text: L.classes[L.classes.length - 1].text.split(' – ').pop() }];
+    marks.forEach((tk, k) => { const s = el('span', (k % 2 ? 'low ' : '') + (tk.t < 0.12 ? 'first' : tk.t > 0.88 ? 'last' : ''), tk.text); s.style.left = `${tk.t * 100}%`; ticks.append(s); });
+    kids.push(ticks);
+    for (const r of L.roles) {
+      const row = el('div', 'role'), i = el('i');
+      if (r.style === 'hatch') i.style.background = `repeating-linear-gradient(45deg, ${r.color} 0 1.5px, transparent 1.5px 4px)`;
+      else if (r.style === 'outline') i.style.boxShadow = `inset 0 0 0 2px ${r.color}`;
+      else i.style.background = r.color;
+      row.append(i, el('span', '', r.text), el('b', '', r.count_text)); kids.push(row);
+    }
+    if (L.no_data) kids.push(el('div', 'how', `${L.no_data.count_text} places have no data.`));
+    if (HOW[resolved.encoding]) kids.push(el('div', 'how', HOW[resolved.encoding]));
+    for (const n of L.notes) kids.push(el('div', 'how', n));
+    box.replaceChildren(...kids);
+  }
+
+  async function show(p, k) {
+    const view = await get(`../configs/views/${p.view}.json`);
+    const raw = themes[p.theme];
+    // The poster keeps a column clear on the left for type. That is composition, so it rides on the theme.
+    const theme = { ...raw, layout: { ...(raw.layout || {}), inset: { ...((raw.layout || {}).inset || {}), left: 400 } } };
+    atlas.clear(); atlas.theme = theme; atlas.view = { ...view, layer: null };
+    const made = makeLayer(view.layer, atlas.topology);
+    const { report } = await atlas.load(sources.rows(made.rows, made.header));
+    const t = atlas.theme;
+    document.body.dataset.plate = p.plate;
+    document.documentElement.style.setProperty('--ink', t.lines.outline.color);
+    document.documentElement.style.setProperty('--ground', t.ground.background);
+    document.documentElement.style.setProperty('--accent', ACCENT[p.plate] || t.roles.highlight.color);
+    $('kicker').textContent = `Plate ${NUMERAL[k]} · ${t.label}`;
+    $('title').textContent = view.title;
+    $('deck').textContent = view.note || '';
+    $('warn').textContent = made.header.source || '';
+    $('colophon').textContent = `${report.places_covered.toLocaleString()} of ${report.places_total.toLocaleString()} places · ${t.encoding} · ${atlas.topology.entry.label}`;
+    drawLegend(theme);
+    document.querySelectorAll('#plates button').forEach((b, j) => b.classList.toggle('on', j === k));
+    document.title = `PLATE ${p.plate} | ${atlas.legend ? atlas.legend.caption : 'refused'} | ops=${atlas._drawList.ops.map(o => o.op).join(',')}`;
+  }
+  atlas.addEventListener('atlas-error', e => { $('deck').textContent = e.detail.message; });
+  $('plates').replaceChildren(...index.plates.map((p, k) => Object.assign(el('button', '', NUMERAL[k]), { onclick: () => show(p, k), title: p.plate })));
+  addEventListener('keydown', e => { const k = Number(e.key) - 1; if (index.plates[k]) show(index.plates[k], k); });
+  await atlas.ready;
+  const want = new URLSearchParams(location.search).get('plate');
+  const k0 = Math.max(0, index.plates.findIndex(p => p.plate === want));
+  await show(index.plates[k0], k0);
+</script>
+</body>
+</html>

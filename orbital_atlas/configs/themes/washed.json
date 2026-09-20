@@ -1,0 +1,13 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "washed",
+  "label": "Washed",
+  "base": "ledger",
+  "roles": {
+    "low_confidence": {
+      "style": "desaturate",
+      "amount": 0.8
+    }
+  }
+}

@@ -1,0 +1,108 @@
+/* ORBITAL ATLAS · DESIGN SYSTEM
+   One stylesheet for every page that sits around the map. Nothing on a page sets its own size, colour or gap.
+
+   THE RULES
+   1. Seven type sizes, no others: 11 · 13 · 15 · 18 · 22 · 28 · 34. Nothing under 11.
+   2. Seven gaps, no others: 4 · 8 · 12 · 16 · 24 · 32 · 48. Padding, margin and gap take nothing else.
+      1 and 2 pixels are line weights, not gaps. Shadows are the one untinted value: a shadow is black.
+   3. Three voices. Display speaks the finding. Text speaks the sentences. Data speaks numbers, labels and captions.
+      All three come from the look, so the page and the map always match.
+   4. Six colour roles, all solved from the look by system.js, all proven readable:
+        --ground   the page            --ink     what you read             contrast 7 or more where the look allows
+        --surface  raised panels       --ink-2   quiet text, never faint   contrast 4.5 or more on ground, surface AND wash
+        --rule     hairlines           --signal  the data's call-out colour, and ONLY that
+   5. Chrome is neutral. Buttons, bullets, focus rings and warnings are ink. Colour on the page means data.
+      The lit row wears a signal edge because that row IS the data you selected. Nothing else may.
+   6. Numbers inside sentences are set heavier, at full ink, in tabular figures, so the eye can hop from figure to figure.
+   7. Nothing moves. No transitions, no animation. State changes are instant. */
+
+:root {
+  --ground: #e9e2d0; --surface: #efe9db; --ink: #2a2418; --ink-2: #5d5546; --rule: #2a241830; --wash: #2a241812; --signal: #a3452c;
+  --f-display: 'Fraunces', Georgia, serif; --f-text: 'Inter', system-ui, sans-serif; --f-data: 'IBM Plex Mono', ui-monospace, monospace; --w-display: 400;
+  --t1: 11px; --t2: 13px; --t3: 15px; --t4: 18px; --t5: 22px; --t6: 28px; --t7: 34px;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px;
+  --r1: 3px; --r2: 8px; --read: 464px; --bar: 56px; --cap: 88px;
+}
+html, body { margin: 0; background: var(--ground); color: var(--ink); font: var(--t3)/1.5 var(--f-text); font-variant-numeric: tabular-nums lining-nums; -webkit-font-smoothing: antialiased; }
+
+/* ---- type roles ---- */
+.t-display { font: var(--w-display) var(--t6)/1.16 var(--f-display); letter-spacing: -0.012em; text-wrap: balance; margin: 0; }
+.t-title   { font: 500 var(--t4)/1.25 var(--f-display); margin: 0; }
+.t-body    { font: 400 var(--t3)/1.5 var(--f-text); }
+.t-small   { font: 400 var(--t2)/1.5 var(--f-text); color: var(--ink-2); }
+.t-label   { font: 500 var(--t1)/1.3 var(--f-data); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
+.t-data    { font: 400 var(--t1)/1.3 var(--f-data); color: var(--ink-2); }
+.num       { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.t-display .num { font-weight: calc(var(--w-display) + 200); white-space: normal; }
+.t-small .num { font-weight: 500; }
+
+/* ---- tag: a fact about the data that must not be missed ---- */
+.tag { display: inline-block; font: 500 var(--t1)/1 var(--f-data); letter-spacing: 0.12em; text-transform: uppercase; padding: var(--s1) var(--s2); border-radius: var(--r1); border: 1px solid var(--rule); color: var(--ink-2); }
+.tag.loud { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+
+/* ---- finding: one labelled sentence. The label is for scanning, the sentence is for reading. ---- */
+.findings { list-style: none; margin: 0; padding: 0; }
+.finding { display: grid; grid-template-columns: 76px 1fr; column-gap: var(--s3); padding: var(--s3) var(--s2); margin: 0 calc(-1 * var(--s2)); border-top: 1px solid var(--rule); border-left: 2px solid transparent; }
+.finding:last-child { border-bottom: 1px solid var(--rule); }
+.finding .t-label { padding-top: var(--s1); }
+.finding .count { display: block; font: 400 var(--t1)/1.3 var(--f-data); letter-spacing: 0; text-transform: none; color: var(--ink-2); margin-top: var(--s1); }
+.touch { cursor: pointer; }
+.touch:hover { background: var(--wash); }
+.touch.on { background: var(--wash); border-left-color: var(--signal); }
+.touch:focus-visible, .seg button:focus-visible, .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---- note: the fine print, still readable ---- */
+.notes { display: flex; flex-direction: column; gap: var(--s2); }
+.notes .t-small { max-width: 58ch; }
+
+/* ---- chart: the spread. Legend and distribution in one. ---- */
+.chart .plot { display: flex; align-items: flex-end; gap: 1px; height: 64px; position: relative; border-bottom: 1px solid var(--ink-2); margin-top: var(--s5); }
+.chart .plot i { flex: 1; display: block; min-height: 1px; border-radius: 1px 1px 0 0; }
+.chart .plot i.beyond { margin-left: var(--s1); }
+.chart .plot i.here { outline: 2px solid var(--ink); outline-offset: 1px; }
+.chart .marker { position: absolute; top: calc(-1 * var(--s4)); bottom: 0; border-left: 1px dashed var(--ink); pointer-events: none; }
+.chart .marker span { position: absolute; top: -3px; left: var(--s1); white-space: nowrap; color: var(--ink); }
+.chart .marker.flip span { left: auto; right: var(--s1); }
+.chart .axis { display: flex; justify-content: space-between; margin-top: var(--s1); }
+.chart .key { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); margin-top: var(--s2); }
+.chart .key span { display: inline-flex; align-items: center; gap: var(--s2); }
+.swatch { width: 16px; height: 10px; display: block; border-radius: 1px; flex: none; }
+
+/* ---- controls: neutral, compact, phrased as questions ---- */
+.group { display: flex; align-items: center; gap: var(--s2); }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; background: var(--surface); }
+.seg button { all: unset; cursor: pointer; white-space: nowrap; font: 500 var(--t2)/1 var(--f-text); padding: var(--s2) var(--s3); border-radius: 999px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
+.seg button:disabled { opacity: 0.4; cursor: not-allowed; }
+.field { font: 500 var(--t2)/1 var(--f-text); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r2); padding: var(--s2) var(--s3); outline: none; min-width: 0; }
+.field:focus-visible { border-color: var(--ink); outline: 2px solid var(--ink); outline-offset: 1px; }
+.field::placeholder { color: var(--ink-2); opacity: 1; }
+select.field option { color: var(--ink); background: var(--surface); }
+textarea.field { font: 400 var(--t2)/1.45 var(--f-data); width: 100%; box-sizing: border-box; height: 120px; resize: vertical; }
+.btn { all: unset; cursor: pointer; white-space: nowrap; font: 500 var(--t2)/1 var(--f-text); padding: var(--s2) var(--s4); border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); }
+.btn.solid { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r2); padding: var(--s4); box-shadow: 0 12px 32px rgb(0 0 0 / 0.16); }
+
+/* ---- page frame: read on the left, ask along the top, the map in the middle, the place along the bottom ---- */
+.frame-read { position: fixed; left: 0; top: 0; bottom: 0; width: var(--read); box-sizing: border-box; padding: var(--s6) var(--s6) var(--s5) var(--s7); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; display: flex; flex-direction: column; gap: var(--s5); }
+.frame-bar { position: fixed; left: var(--read); right: 0; top: 0; height: var(--bar); box-sizing: border-box; padding: 0 var(--s6) 0 var(--s4); display: flex; align-items: center; gap: var(--s4); flex-wrap: nowrap; }
+.frame-bar .push { margin-left: auto; }
+.frame-cap { position: fixed; left: var(--read); right: 0; bottom: 0; min-height: var(--cap); box-sizing: border-box; padding: var(--s4) var(--s6) var(--s4) var(--s4); display: grid; grid-template-columns: 1fr 240px; gap: var(--s5); align-items: center; border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter: blur(6px); }
+.frame-cap .who { font: 500 var(--t4)/1.2 var(--f-display); margin-right: var(--s2); }
+.frame-cap .t-body { max-width: 86ch; }
+.frame-cap .hint { color: var(--ink-2); }
+.linkish { all: unset; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; font: 500 var(--t1)/1 var(--f-data); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); margin-left: var(--s2); }
+.pop { position: fixed; top: calc(var(--bar) + var(--s1)); right: var(--s6); width: 380px; z-index: 5; display: flex; flex-direction: column; gap: var(--s3); }
+.pop[hidden] { display: none; }
+
+@media (max-width: 1560px) { .frame-bar { gap: var(--s3); padding-right: var(--s4); } .frame-bar .t-label { display: none; } .frame-bar select.field { max-width: 164px; } }
+@media (max-width: 1440px) { :root { --read: 420px; } .frame-bar { gap: var(--s2); padding: 0 var(--s4) 0 var(--s3); } .frame-bar select.field { max-width: 148px; } .seg button { padding: var(--s2); } .frame-cap { grid-template-columns: 1fr 200px; } }
+@media (max-width: 900px) {
+  html, body { overflow: auto; }
+  .frame-read, .frame-bar, .frame-cap { position: static; width: auto; height: auto; }
+  .frame-bar { flex-wrap: wrap; padding: var(--s3) var(--s4); }
+  .frame-cap { grid-template-columns: 1fr; }
+  .frame-read { padding: var(--s5) var(--s4); overflow: visible; }
+  .t-display { font-size: var(--t5); }
+  .pop { position: static; width: auto; margin: 0 var(--s4); }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "../schema/orbital.theme.1.json",
+  "schema": "orbital.theme/1",
+  "id": "paper",
+  "label": "Paper",
+  "base": "ledger",
+  "ground": {
+    "background": "#f4f1ea",
+    "land_empty": "#e6e1d6",
+    "texture": "paper"
+  },
+  "palettes": {
+    "sequential": [
+      "#e9e4d8",
+      "#c9c0ab",
+      "#8f866f",
+      "#4f4a3c"
+    ],
+    "diverging": {
+      "low": [
+        "#2f5f8f",
+        "#a9bfd1"
+      ],
+      "mid": "#ece7db",
+      "high": [
+        "#d9b3a7",
+        "#9a3324"
+      ]
+    },
+    "binary": {
+      "zero": "#d5cfc0",
+      "nonzero": [
+        "#c9b48a",
+        "#6b4f1d"
+      ]
+    }
+  },
+  "roles": {
+    "highlight": {
+      "style": "outline",
+      "color": "#111111",
+      "width": 1.6
+    },
+    "low_confidence": {
+      "style": "hatch",
+      "color": "#f4f1ea",
+      "width": 0.9
+    },
+    "no_data": {
+      "style": "fill",
+      "color": "#e6e1d6"
+    },
+    "hover": {
+      "style": "outline",
+      "color": "#b3261e",
+      "width": 1.4
+    },
+    "focus_dim": {
+      "style": "veil",
+      "color": "#f4f1ea",
+      "amount": 0.78
+    }
+  },
+  "lines": {
+    "places": {
+      "color": "#3a3528",
+      "opacity": 0.15,
+      "width": 0.55
+    },
+    "parents": {
+      "color": "#3a3528",
+      "opacity": 0.45,
+      "width": 0.9
+    },
+    "outline": {
+      "color": "#2a261c",
+      "opacity": 0.7,
+      "width": 0.7
+    }
+  }
+}

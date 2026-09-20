@@ -1,0 +1,20 @@
+{
+  "$schema": "../schema/orbital.view.1.json",
+  "schema": "orbital.view/1",
+  "topology": "us_counties_2018",
+  "layer": "pulse",
+  "id": "plate_pressroom",
+  "title": "The hot tenth",
+  "note": "Blue lines tighten as the rate climbs. Red overprint marks the top tenth.",
+  "measure": "ratio",
+  "scale": {
+    "type": "quantile"
+  },
+  "highlight": {
+    "rule": "percentile_above",
+    "value": 0.9
+  },
+  "labels": {
+    "top": 5
+  }
+}
