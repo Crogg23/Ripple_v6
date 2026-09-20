@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="b7df65e5-c6c8-4a44-8f4f-d514d8b9d166"></script>
+
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("1e8b6edf-e5d1-4311-96ef-19f12d655f47") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("2c649632-03ec-43ea-8b84-278752df51d1") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("aad1ed8e-0d22-41c5-b3d6-422c6d051857") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("3a933270-498c-46b5-8396-80caa6150faa") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fac55dab-bdf5-497e-9828-fdfbf8261bea") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ad355f12-0a6f-45c6-a397-24121f261195") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5d3f28ff-4d22-499d-a468-e361f80b72a0") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("11cbc083-9bbb-44ff-b32c-e85aed25087f") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("3b79c185-5bf4-4e3a-8997-8d9b29167bc7") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("84acaa08-f9a8-4bca-a0c8-fb7793c3edf3") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("32ffb809-ecee-4a4f-9ed8-ede0256f5af6") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("81d475a4-d154-47e0-bed2-0bbdd252995a") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("908287b1-e65f-46cf-81e8-00dac312afe9") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("b5494b59-7d40-4f3d-8885-16bba64fa1ff") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<script src="a3e1886f-a03f-4790-b85d-7c3a95ce21e5"></script>
+<script src="63915828-3c5f-4e98-8c65-1281b08f10b3"></script>
+<style>
+  html,body{margin:0;height:100%;background:#030609;}
+  a{color:#e5a54a;} a:hover{color:#fff1c9;}
+  textarea{outline:none;}
+  button{font:inherit;}
+  @keyframes rise{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" data-screen-label="Orbital Atlas" style="position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;background:#030609;color:#e6edf3;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;cursor:crosshair;">
+  <canvas ref="{{ canvasRef }}" sc-camel-on-mouse-move="{{ onMove }}" sc-camel-on-mouse-leave="{{ onLeave }}" sc-camel-on-click="{{ onClick }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+
+  <div style="position:absolute;left:32px;top:28px;display:flex;flex-direction:column;gap:6px;pointer-events:none;max-width:520px;">
+    <div style="font-size:10.5px;letter-spacing:0.26em;text-transform:uppercase;color:#e5a54a;white-space:nowrap;">United States · 3,142 counties</div>
+    <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1;letter-spacing:-0.01em;color:#f2f6f9;">Orbital Atlas</h1>
+    <p style="margin:4px 0 0;color:#8a9aa6;font-size:12px;line-height:1.5;max-width:380px;text-wrap:pretty;">Every county as a lit surface. Change the layer and watch the country reorganise itself.</p>
+  </div>
+
+  <div style="position:absolute;right:24px;top:24px;bottom:24px;width:min(316px,calc(100vw - 48px));display:flex;flex-direction:column;gap:18px;padding:20px 20px 18px;background:rgba(7,12,18,0.62);border:1px solid rgba(160,190,210,0.14);border-radius:14px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,0.45);overflow:auto;cursor:default;">
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#7b8b96;">Layer</div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <sc-for list="{{ metricList }}" as="m" hint-placeholder-count="4">
+          <button sc-camel-on-click="{{ m.select }}" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:0;border-radius:8px;background:transparent;text-align:left;cursor:pointer;color:{{ m.color }};" style-hover="background:rgba(255,255,255,0.05);">
+            <span style="width:6px;height:6px;border-radius:50%;background:#e5a54a;opacity:{{ m.on }};flex:none;"></span>
+            <span style="font-size:12.5px;">{{ m.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <p style="margin:0;color:#8a9aa6;font-size:11px;line-height:1.55;text-wrap:pretty;">{{ metricDesc }}</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="height:8px;border-radius:4px;background:linear-gradient(90deg,{{ legendStops }});box-shadow:0 0 18px rgba(229,165,74,0.25);"></div>
+      <div style="display:flex;justify-content:space-between;color:#7b8b96;font-size:10.5px;letter-spacing:0.04em;">
+        <span style="white-space:nowrap;">{{ legendLo }}</span><span style="white-space:nowrap;">{{ legendHi }}</span>
+      </div>
+    </div>
+
+    <div style="height:1px;background:rgba(160,190,210,0.12);"></div>
+
+    <div style="display:flex;flex-direction:column;gap:4px;min-height:96px;">
+      <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#7b8b96;">{{ hoverKicker }}</div>
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1.05;color:#f2f6f9;text-wrap:balance;">{{ hoverName }}</div>
+      <div style="color:#8a9aa6;font-size:11.5px;">{{ hoverState }}</div>
+      <sc-if value="{{ hasHover }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(160,190,210,0.16);">
+          <span style="font-size:15px;color:#ffe6b0;">{{ hoverValue }}</span>
+          <span style="color:#7b8b96;font-size:10.5px;white-space:nowrap;flex:none;">{{ hoverRank }}</span>
+        </div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ hasFocus }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:10px;background:rgba(229,165,74,0.06);border:1px solid rgba(229,165,74,0.18);animation:rise .4s ease both;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#e5a54a;">State in focus</div>
+          <button sc-camel-on-click="{{ release }}" style="border:0;background:transparent;color:#8a9aa6;cursor:pointer;font-size:10.5px;letter-spacing:0.08em;padding:2px 4px;" style-hover="color:#fff;">release ✕</button>
+        </div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:26px;line-height:1;color:#f2f6f9;">{{ focusName }}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;font-size:11px;color:#8a9aa6;">
+          <div>counties<br><span style="color:#e6edf3;font-size:13px;">{{ focusCount }}</span></div>
+          <div>median rank<br><span style="color:#e6edf3;font-size:13px;">{{ focusMedian }}</span></div>
+          <div style="grid-column:1/-1;">highest<br><span style="color:#ffe6b0;font-size:13px;">{{ focusTop }}</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:2px;height:44px;">
+          <sc-for list="{{ focusBins }}" as="b" hint-placeholder-count="14">
+            <div style="flex:1;border-radius:2px 2px 0 0;background:linear-gradient(180deg,#ffe6b0,#c98a3a);opacity:0.9;height:{{ b.h }}%;min-height:1px;"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;color:#7b8b96;font-size:10px;letter-spacing:0.04em;"><span>national low</span><span>national high</span></div>
+      </div>
+    </sc-if>
+
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px;">
+      <button sc-camel-on-click="{{ toggleCsv }}" style="align-self:flex-start;border:1px solid rgba(160,190,210,0.18);background:transparent;color:#8a9aa6;border-radius:999px;padding:6px 12px;font-size:10.5px;letter-spacing:0.08em;cursor:pointer;" style-hover="color:#fff;border-color:rgba(255,255,255,0.4);">{{ csvLabel }}</button>
+      <sc-if value="{{ csvOpen }}" hint-placeholder-val="{{ false }}">
+        <textarea sc-camel-on-change="{{ onCsv }}" placeholder="fips,value
+48201,4731145
+06037,10014009" spellcheck="false" style="width:100%;height:84px;resize:vertical;border-radius:8px;border:1px solid rgba(160,190,210,0.18);background:rgba(0,0,0,0.35);color:#e6edf3;font:11px/1.5 'IBM Plex Mono',monospace;padding:8px 10px;"></textarea>
+        <div style="color:#8a9aa6;font-size:10.5px;line-height:1.5;">{{ csvMsg }}</div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:32px;bottom:24px;display:flex;flex-direction:column;gap:3px;color:#5f6f7b;font-size:10.5px;letter-spacing:0.04em;pointer-events:none;line-height:1.5;">
+    <div>source <span style="color:#8a9aa6;">US Census TIGER 2018</span></div>
+    <div>projection <span style="color:#8a9aa6;">Albers USA</span>, Alaska + Hawaii inset</div>
+    <div style="margin-top:4px;">hover a county · click to focus its state · esc to release</div>
+  </div>
+
+  <div ref="{{ tipRef }}" style="position:absolute;left:0;top:0;pointer-events:none;transform:translate(14px,-50%);opacity:{{ tipOpacity }};transition:opacity .15s;display:flex;flex-direction:column;gap:2px;padding:8px 10px;background:rgba(7,12,18,0.78);border:1px solid rgba(160,190,210,0.18);border-radius:8px;backdrop-filter:blur(10px);white-space:nowrap;">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:#f2f6f9;">{{ hoverName }}</div>
+    <div style="font-size:11px;color:#ffe6b0;">{{ hoverValue }}</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;nightlights&quot;,&quot;options&quot;:[&quot;nightlights&quot;,&quot;aurora&quot;,&quot;ember&quot;],&quot;tsType&quot;:&quot;'nightlights'|'aurora'|'ember'&quot;,&quot;section&quot;:&quot;Surface&quot;},&quot;atmosphere&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.85,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Surface&quot;},&quot;showCountyLines&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Surface&quot;}}">
+const PALETTES = {
+  nightlights: ['#071320','#0f2b3d','#245b6b','#8a6a3a','#e5a54a','#fff1c9'],
+  aurora: ['#06111c','#0c2f3d','#12695f','#3fbf8f','#c2f0c0'],
+  ember: ['#0a0c14','#2a1a3a','#7a2d4a','#d85f3a','#ffd08a']
+};
+const fmtInt = v => d3.format(',.0f')(v);
+const fmtNum = v => v >= 100 ? fmtInt(v) : d3.format(',.1f')(v);
+const whenLibs = () => new Promise(res => { const c = () => (window.d3 && window.topojson) ? res() : setTimeout(c, 30); c(); });
+
+class Component extends DCLogic {
+  state = { ready:false, metric:'area', hoverIdx:-1, focus:null, csvOpen:false, csvMsg:'', hasCustom:false };
+  rootRef = React.createRef(); canvasRef = React.createRef(); tipRef = React.createRef();
+  W = 1; H = 1; dpr = 1; t = {k:1,x:0,y:0}; anim = null; sceneDirty = true;
+
+  componentDidMount(){
+    this.ro = new ResizeObserver(() => this.resize());
+    this.ro.observe(this.rootRef.current);
+    this.onKey = e => { if (e.key === 'Escape') this.focusState(null); };
+    window.addEventListener('keydown', this.onKey);
+    whenLibs().then(() => fetch((window.__resources && window.__resources.countyTopo) || './data/us-counties.topo.json')).then(r => r.json()).then(topo => { this.build(topo); this.setState({ready:true}); this.resize(true); });
+  }
+  componentWillUnmount(){ this.ro.disconnect(); window.removeEventListener('keydown', this.onKey); if (this.anim) cancelAnimationFrame(this.anim); }
+  componentDidUpdate(prev){
+    if (prev.palette !== this.props.palette && this.counties){ this.recolor(); this.requestScene(); }
+    else if (prev.showCountyLines !== this.props.showCountyLines || prev.atmosphere !== this.props.atmosphere){ this.requestScene(); }
+  }
+
+  palette(){ return PALETTES[this.props.palette] || PALETTES.nightlights; }
+
+  build(topo){
+    const path = d3.geoPath();
+    const geoms = topo.objects.counties.geometries;
+    const counties = topojson.feature(topo, topo.objects.counties).features;
+    const states = topojson.feature(topo, topo.objects.states).features;
+    this.stateName = {}; states.forEach(s => { s.fips = String(s.id).padStart(2,'0'); this.stateName[s.fips] = s.properties.name; s.p2d = new Path2D(path(s)); s.bounds = path.bounds(s); });
+    this.states = states;
+    this.nation = topojson.merge(topo, geoms);
+    this.nationP = new Path2D(path(this.nation));
+    this.stateMeshP = new Path2D(path(topojson.mesh(topo, topo.objects.states, (a,b) => a !== b)));
+    this.countyMeshP = new Path2D(path(topojson.mesh(topo, topo.objects.counties, (a,b) => a !== b)));
+    const exterior = topojson.mesh(topo, topo.objects.counties, (a,b) => a === b);
+    const ext = []; exterior.coordinates.forEach(line => { for (let i = 0; i < line.length; i += 3) ext.push(line[i]); });
+    const nb = topojson.neighbors(geoms);
+    let texPx = 0;
+    counties.forEach((c,i) => {
+      c.idx = i; c.fips = String(c.id).padStart(5,'0'); c.st = c.fips.slice(0,2);
+      c.name = c.properties && c.properties.name || c.fips;
+      c.px = path.area(c); c.per = path.measure(c); c.cen = path.centroid(c); c.p2d = new Path2D(path(c));
+      c.nb = nb[i].length; c.v = {}; c.r = {}; c.rank = {};
+      if (c.st === '48') texPx += c.px;
+    });
+    const f = 695662 / texPx, fl = Math.sqrt(f);
+    counties.forEach(c => {
+      const ak = c.st === '02' ? 1/0.35 : 1;
+      c.v.area = c.px * f * ak * ak;
+      c.v.compact = c.per > 0 ? 4 * Math.PI * c.px / (c.per * c.per) : 0;
+      c.v.neighbors = c.nb;
+      let m = Infinity; const [cx, cy] = c.cen;
+      for (let j = 0; j < ext.length; j++){ const dx = ext[j][0]-cx, dy = ext[j][1]-cy; const d = dx*dx+dy*dy; if (d < m) m = d; }
+      c.v.edge = Math.sqrt(m) * fl * ak;
+    });
+    this.counties = counties;
+    this.metrics = {
+      area: { label:'Land area', fmt:v => fmtNum(v) + ' km²', short:v => d3.format('.2~s')(v) + ' km²', desc:'Equal-area footprint of each county. The West burns bright; the old Eastern grid stays dark and fine-grained.' },
+      compact: { label:'Compactness', fmt:v => v.toFixed(2) + ' · circle = 1', short:v => v.toFixed(2), desc:'Polsby–Popper ratio of area to perimeter. Surveyed squares glow; ragged coastlines and river counties fall dark.' },
+      neighbors: { label:'Neighbours', fmt:v => v + ' bordering counties', short:v => String(v), desc:'How many counties touch this one. Interior hubs light up; peninsulas and islands go quiet.' },
+      edge: { label:'Distance to edge', fmt:v => fmtNum(v) + ' km inland', short:v => fmtInt(v) + ' km', desc:'From county centroid to the nearest coastline or national border — the continental interior, seen as depth.' }
+    };
+    Object.keys(this.metrics).forEach(k => this.rankMetric(k));
+    this.recolor();
+    this.makeAtmosphere();
+  }
+
+  rankMetric(k){
+    const cs = this.counties.filter(c => isFinite(c.v[k]));
+    cs.sort((a,b) => a.v[k] - b.v[k]);
+    const n = cs.length;
+    this.counties.forEach(c => { c.r[k] = NaN; c.rank[k] = NaN; });
+    cs.forEach((c,i) => { c.r[k] = n > 1 ? i/(n-1) : 0.5; c.rank[k] = n - i; });
+    this.metrics[k].n = n;
+    this.metrics[k].lo = cs[0] ? cs[0].v[k] : 0; this.metrics[k].hi = cs[n-1] ? cs[n-1].v[k] : 0;
+  }
+
+  recolor(){
+    const interp = d3.interpolateRgbBasis(this.palette());
+    this.colorOf = p => isFinite(p) ? interp(p) : this.palette()[0];
+    this.makeGlow();
+  }
+
+  makeAtmosphere(){
+    const R = 3, c = document.createElement('canvas'); c.width = 975*R + 400; c.height = 610*R + 400;
+    const g = c.getContext('2d'); g.translate(200,200); g.scale(R,R);
+    g.fillStyle = '#3d8fe0'; g.filter = 'blur(60px)'; g.globalAlpha = 0.9; g.fill(this.nationP);
+    g.fillStyle = '#7cc4ff'; g.filter = 'blur(22px)'; g.globalAlpha = 0.7; g.fill(this.nationP);
+    g.filter = 'blur(5px)'; g.globalAlpha = 1; g.strokeStyle = '#d6f0ff'; g.lineWidth = 2.2; g.stroke(this.nationP);
+    this.atmo = c; this.atmoR = R;
+  }
+
+  makeGlow(){
+    const R = 3, c = document.createElement('canvas'); c.width = 975*R + 120; c.height = 610*R + 120;
+    const g = c.getContext('2d'); g.translate(60,60); g.scale(R,R);
+    const k = this.state.metric, top = this.palette()[this.palette().length-1];
+    g.filter = 'blur(9px)'; g.fillStyle = top;
+    this.counties.forEach(cn => { const p = cn.r[k]; if (p > 0.72){ g.globalAlpha = Math.pow((p-0.72)/0.28, 1.4); g.fill(cn.p2d); } });
+    this.glow = c; this.glowR = R;
+  }
+
+  makeStars(){
+    const c = document.createElement('canvas'); c.width = this.W*this.dpr; c.height = this.H*this.dpr;
+    const g = c.getContext('2d'); g.scale(this.dpr,this.dpr);
+    const bg = g.createRadialGradient(this.W*0.45, this.H*0.4, 0, this.W*0.45, this.H*0.4, Math.max(this.W,this.H)*0.8);
+    bg.addColorStop(0,'#08111a'); bg.addColorStop(0.6,'#040810'); bg.addColorStop(1,'#020407');
+    g.fillStyle = bg; g.fillRect(0,0,this.W,this.H);
+    const rnd = d3.randomLcg(7); 
+    for (let i = 0; i < 520; i++){
+      const x = rnd()*this.W, y = rnd()*this.H, r = 0.3 + Math.pow(rnd(),3)*1.5, a = 0.15 + rnd()*0.7;
+      g.fillStyle = `rgba(${200+Math.floor(rnd()*55)},${215+Math.floor(rnd()*40)},255,${a})`;
+      g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
+    }
+    this.stars = c;
+  }
+
+  fit(bounds, pad, topPad){
+    const [[x0,y0],[x1,y1]] = bounds;
+    const W = this.W > 900 ? this.W - 350 : this.W, H = this.H - (topPad||0);
+    const k = Math.min((W-2*pad)/(x1-x0), (H-2*pad)/(y1-y0));
+    return { k, x:(W - k*(x0+x1))/2, y:(topPad||0) + (H - k*(y0+y1))/2 };
+  }
+  baseT(){ return this.fit([[0,0],[975,610]], 30, this.H > 700 ? 70 : 20); }
+
+  resize(force){
+    const el = this.rootRef.current, cv = this.canvasRef.current; if (!el || !cv) return;
+    const W = el.clientWidth, H = el.clientHeight; if (!W || !H) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (!force && W === this.W && H === this.H && dpr === this.dpr) return;
+    this.W = W; this.H = H; this.dpr = dpr;
+    cv.width = W*dpr; cv.height = H*dpr;
+    this.scene = document.createElement('canvas'); this.scene.width = W*dpr; this.scene.height = H*dpr;
+    this.pick = document.createElement('canvas'); this.pick.width = W; this.pick.height = H;
+    this.makeStars();
+    if (!this.counties) return;
+    const f = this.state.focus ? this.states.find(s => s.fips === this.state.focus) : null;
+    this.t = f ? this.fit(f.bounds, 60, 70) : this.baseT();
+    this.requestScene();
+  }
+
+  toView(t){ return [(this.W/2 - t.x)/t.k, (this.H/2 - t.y)/t.k, this.W/t.k]; }
+  fromView(v){ const k = this.W/v[2]; return { k, x:this.W/2 - v[0]*k, y:this.H/2 - v[1]*k }; }
+  animateTo(target){
+    if (this.anim) cancelAnimationFrame(this.anim);
+    const i = d3.interpolateZoom(this.toView(this.t), this.toView(target));
+    const dur = Math.min(1500, Math.max(700, i.duration * 0.9)), t0 = performance.now();
+    const step = now => {
+      const u = Math.min(1, (now - t0)/dur);
+      this.t = this.fromView(i(d3.easeCubicInOut(u)));
+      if (u < 1){ this.drawScene(this.canvasRef.current.getContext('2d'), true); this.drawOverlay(); this.anim = requestAnimationFrame(step); }
+      else { this.anim = null; this.requestScene(); }
+    };
+    this.anim = requestAnimationFrame(step);
+  }
+
+  requestScene(){ this.sceneDirty = true; if (!this.sceneReq) this.sceneReq = requestAnimationFrame(() => { this.sceneReq = null; this.render(); }); }
+  render(){
+    if (!this.counties || !this.scene) return;
+    if (this.sceneDirty){ this.drawScene(this.scene.getContext('2d'), false); this.drawPick(); this.sceneDirty = false; }
+    const ctx = this.canvasRef.current.getContext('2d');
+    ctx.setTransform(1,0,0,1,0,0); ctx.drawImage(this.scene, 0, 0);
+    this.drawOverlay();
+  }
+
+  applyT(ctx){ const {k,x,y} = this.t; ctx.setTransform(this.dpr*k, 0, 0, this.dpr*k, this.dpr*x, this.dpr*y); }
+
+  drawScene(ctx, fast){
+    const {k} = this.t, m = this.state.metric, atmoA = this.props.atmosphere ?? 0.85;
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,this.W*this.dpr,this.H*this.dpr);
+    ctx.drawImage(this.stars, 0, 0);
+    this.applyT(ctx);
+    ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = atmoA;
+    const R = this.atmoR; ctx.drawImage(this.atmo, -200/R, -200/R, this.atmo.width/R, this.atmo.height/R);
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    ctx.fillStyle = this.palette()[0]; ctx.fill(this.nationP);
+    this.counties.forEach(c => { ctx.fillStyle = this.colorOf(c.r[m]); ctx.fill(c.p2d); });
+    // sunlight from upper-left, clipped to land
+    ctx.save(); ctx.clip(this.nationP); ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
+    const sun = ctx.createRadialGradient(this.W*0.25, this.H*0.1, 0, this.W*0.25, this.H*0.1, Math.max(this.W,this.H)*1.1);
+    sun.addColorStop(0,'rgba(255,240,215,0.55)'); sun.addColorStop(0.45,'rgba(120,140,170,0.12)'); sun.addColorStop(1,'rgba(0,10,30,0.7)');
+    ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = sun; ctx.fillRect(0,0,this.W,this.H);
+    ctx.restore(); this.applyT(ctx);
+    ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = 0.6;
+    const G = this.glowR; ctx.drawImage(this.glow, -60/G, -60/G, this.glow.width/G, this.glow.height/G);
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    if ((this.props.showCountyLines ?? true) && !fast){
+      ctx.lineWidth = 0.55/k; ctx.strokeStyle = 'rgba(190,220,240,0.12)'; ctx.lineJoin = 'round'; ctx.stroke(this.countyMeshP);
+    }
+    ctx.lineWidth = 0.9/k; ctx.strokeStyle = 'rgba(215,236,250,0.55)'; ctx.stroke(this.stateMeshP);
+    ctx.lineWidth = 0.7/k; ctx.strokeStyle = 'rgba(235,246,255,0.75)'; ctx.stroke(this.nationP);
+    // vignette
+    ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
+    const vg = ctx.createRadialGradient(this.W*0.5, this.H*0.5, Math.min(this.W,this.H)*0.35, this.W*0.5, this.H*0.5, Math.max(this.W,this.H)*0.75);
+    vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,0.55)');
+    ctx.fillStyle = vg; ctx.fillRect(0,0,this.W,this.H);
+  }
+
+  drawOverlay(){
+    const ctx = this.canvasRef.current.getContext('2d'), {k} = this.t, f = this.state.focus, h = this.state.hoverIdx;
+    this.applyT(ctx);
+    if (f){
+      ctx.fillStyle = 'rgba(2,5,9,0.62)';
+      this.states.forEach(s => { if (s.fips !== f) ctx.fill(s.p2d); });
+      const s = this.states.find(x => x.fips === f);
+      ctx.lineWidth = 1.4/k; ctx.strokeStyle = 'rgba(255,230,176,0.9)'; ctx.shadowColor = 'rgba(229,165,74,0.8)'; ctx.shadowBlur = 14; ctx.stroke(s.p2d); ctx.shadowBlur = 0;
+    }
+    if (h >= 0){
+      const c = this.counties[h];
+      ctx.fillStyle = 'rgba(255,255,255,0.16)'; ctx.fill(c.p2d);
+      ctx.lineWidth = 1.2/k; ctx.strokeStyle = '#ffffff'; ctx.stroke(c.p2d);
+    }
+    ctx.setTransform(1,0,0,1,0,0);
+  }
+
+  drawPick(){
+    const g = this.pick.getContext('2d'); g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,this.W,this.H);
+    const {k,x,y} = this.t; g.setTransform(k,0,0,k,x,y);
+    this.counties.forEach((c,i) => { const n = i+1; g.fillStyle = `rgb(${(n>>16)&255},${(n>>8)&255},${n&255})`; g.fill(c.p2d); });
+  }
+  pickAt(x, y){
+    if (!this.pick || this.anim) return -1;
+    const d = this.pick.getContext('2d').getImageData(x, y, 1, 1).data;
+    if (!d[3]) return -1;
+    return ((d[0]<<16)|(d[1]<<8)|d[2]) - 1;
+  }
+
+  onMove = e => {
+    const r = this.canvasRef.current.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    if (this.tipRef.current){ const flip = x > this.W - 260; this.tipRef.current.style.left = x + 'px'; this.tipRef.current.style.top = y + 'px'; this.tipRef.current.style.transform = flip ? 'translate(calc(-100% - 14px),-50%)' : 'translate(14px,-50%)'; }
+    const i = this.pickAt(x, y);
+    if (i !== this.state.hoverIdx){ this.setState({hoverIdx:i}, () => this.render()); }
+  };
+  onLeave = () => { if (this.state.hoverIdx !== -1) this.setState({hoverIdx:-1}, () => this.render()); };
+  onClick = e => {
+    const r = this.canvasRef.current.getBoundingClientRect();
+    const i = this.pickAt(e.clientX - r.left, e.clientY - r.top);
+    if (i < 0) return this.focusState(null);
+    const st = this.counties[i].st;
+    this.focusState(st === this.state.focus ? null : st);
+  };
+  focusState(fips){
+    if (fips === this.state.focus) return;
+    this.setState({focus:fips}, () => {
+      const s = fips ? this.states.find(x => x.fips === fips) : null;
+      this.animateTo(s ? this.fit(s.bounds, 60, 70) : this.baseT());
+    });
+  }
+  setMetric(k){ if (k === this.state.metric) return; this.setState({metric:k}, () => { this.makeGlow(); this.requestScene(); }); }
+
+  onCsv = e => {
+    const text = e.target.value || '', map = new Map(); let label = 'Your layer';
+    text.split(/\r?\n/).forEach((l,li) => {
+      const m = l.split(/[,\t;]/); if (m.length < 2) return;
+      const id = m[0].trim().replace(/"/g,''), v = parseFloat(m[1]);
+      if (li === 0 && !isFinite(v) && m[1].trim()) label = m[1].trim().replace(/"/g,'').slice(0,28);
+      if (/^\d{1,5}$/.test(id) && isFinite(v)) map.set(id.padStart(5,'0'), v);
+    });
+    if (!map.size){ this.setState({csvMsg:'Paste rows as fips,value — 5-digit county FIPS, then a number. A header row names the layer.'}); return; }
+    let hit = 0; this.counties.forEach(c => { const v = map.get(c.fips); c.v.custom = v === undefined ? NaN : v; if (v !== undefined) hit++; });
+    this.metrics.custom = { label, fmt:v => fmtNum(v), desc:'Your data, projected onto the county grid. Unmatched counties stay dark.' };
+    this.rankMetric('custom');
+    this.setState({hasCustom:true, csvMsg:`${fmtInt(hit)} of ${fmtInt(this.counties.length)} counties matched.`, metric:'custom'}, () => { this.makeGlow(); this.requestScene(); });
+  };
+
+  renderVals(){
+    const s = this.state, ready = s.ready && this.counties;
+    const m = s.metric, met = ready ? this.metrics[m] : null;
+    const keys = ready ? Object.keys(this.metrics) : [];
+    const metricList = keys.map(k => ({ label:this.metrics[k].label, on:k === m ? 1 : 0, color:k === m ? '#f2f6f9' : '#8a9aa6', select:() => this.setMetric(k) }));
+    const pal = this.palette();
+    const c = ready && s.hoverIdx >= 0 ? this.counties[s.hoverIdx] : null;
+    const f = ready && s.focus ? this.states.find(x => x.fips === s.focus) : null;
+    let focusVals = {};
+    if (f){
+      const cs = this.counties.filter(x => x.st === f.fips && isFinite(x.r[m]));
+      const bins = new Array(14).fill(0); cs.forEach(x => bins[Math.min(13, Math.floor(x.r[m]*14))]++);
+      const mx = Math.max(1, ...bins);
+      const med = d3.median(cs, x => x.r[m]);
+      const top = cs.reduce((a,b) => (!a || b.v[m] > a.v[m]) ? b : a, null);
+      focusVals = { focusName:f.properties.name, focusCount:fmtInt(cs.length), focusMedian: med === undefined ? '—' : d3.format('.0%')(med) + ' pctl', focusTop: top ? `${top.name} · ${met.fmt(top.v[m])}` : '—', focusBins: bins.map(b => ({h: Math.round(b/mx*100)})) };
+    }
+    return {
+      rootRef:this.rootRef, canvasRef:this.canvasRef, tipRef:this.tipRef,
+      onMove:this.onMove, onLeave:this.onLeave, onClick:this.onClick,
+      metricList, metricDesc: met ? met.desc : 'Loading 3,142 county outlines…',
+      legendStops: pal.join(','), legendLo: met ? (met.short || met.fmt)(met.lo) : '', legendHi: met ? (met.short || met.fmt)(met.hi) : '',
+      hasHover: !!c, hoverKicker: c ? 'County' : (f ? 'State in focus' : 'Readout'),
+      hoverName: c ? c.name : (f ? f.properties.name : (ready ? 'Hover a county' : '—')),
+      hoverState: c ? (this.stateName[c.st] || '') + ' · FIPS ' + c.fips : (f ? 'click again or press esc to release' : 'Move across the surface to read it.'),
+      hoverValue: c && isFinite(c.v[m]) ? met.fmt(c.v[m]) : (c ? 'no data' : ''),
+      hoverRank: c && isFinite(c.rank[m]) ? `#${fmtInt(c.rank[m])} of ${fmtInt(met.n)}` : '',
+      tipOpacity: c ? 1 : 0,
+      hasFocus: !!f, release:() => this.focusState(null), ...focusVals,
+      csvOpen: s.csvOpen, toggleCsv:() => this.setState({csvOpen:!s.csvOpen}), onCsv:this.onCsv,
+      csvLabel: s.csvOpen ? 'close' : (s.hasCustom ? 'replace your layer' : 'load your own layer'), csvMsg: s.csvMsg
+    };
+  }
+}
+</script>
+
+
+</body></html>

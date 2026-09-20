@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbital Atlas v2</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0f14; color: #e6edf3; font: 12px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; }
+  main { display: grid; grid-template-columns: 1fr 340px; height: 100vh; }
+  orbital-atlas { min-width: 0; }
+  aside { padding: 20px; border-left: 1px solid #1c2630; overflow: auto; display: flex; flex-direction: column; gap: 14px; }
+  h1 { margin: 0; font: 400 26px/1.1 Georgia, serif; }
+  .k { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7b8b96; }
+  textarea { width: 100%; height: 120px; box-sizing: border-box; resize: vertical; background: #070b10; color: #e6edf3; border: 1px solid #24313d; border-radius: 6px; padding: 8px; font: inherit; outline: none; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  button, select { font: inherit; color: #c9d4dc; background: transparent; border: 1px solid #24313d; border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+  button:hover { border-color: #5b6f80; color: #fff; }
+  #report { display: flex; flex-direction: column; gap: 8px; }
+  #report div { padding-left: 10px; border-left: 2px solid #24313d; color: #9fb0bc; }
+  #report .ok { border-color: #3f7f86; color: #e6edf3; }
+  #report .warn { border-color: #e5a54a; color: #ffe6b0; }
+  #stats { color: #5f6f7b; white-space: pre; margin-top: auto; }
+</style>
+</head>
+<body>
+<main>
+  <orbital-atlas id="atlas" registry="../topologies/registry.json"></orbital-atlas>
+  <aside>
+    <div><div class="k">Slice 1 · data in</div><h1>Orbital Atlas</h1></div>
+    <div class="k">Paste a table</div>
+    <textarea id="paste" spellcheck="false" placeholder="geo_id,value&#10;48201,4731145&#10;06037,10014009"></textarea>
+    <div class="row">
+      <button id="go">load</button>
+      <button id="clear">clear</button>
+      <select id="dup" title="when two rows share a place and period"><option value="reject">duplicates: reject</option><option value="sum">duplicates: sum</option><option value="last">duplicates: last</option></select>
+    </div>
+    <div class="row"><span class="k">samples</span>
+      <button data-s="minimal">minimal</button><button data-s="full">full</button><button data-s="ct">2018 trap</button><button data-s="messy">messy</button>
+    </div>
+    <div class="k">Load report</div>
+    <div id="report"><div>Nothing loaded yet.</div></div>
+    <div id="stats">loading…</div>
+  </aside>
+</main>
+<script type="module">
+  import { sources } from '../src/element/orbital-atlas.js';
+  const $ = id => document.getElementById(id);
+  const atlas = $('atlas');
+  const SAMPLES = {
+    minimal: 'geo_id,geo_type,period,value\n48201,county,latest,4731145\n06037,county,latest,10014009',
+    full: 'geo_id,geo_type,period,value,denominator,n,tier\n48201,county,2023,1250000,8400,61,exact\n48201,county,2022,980000,8350,60,exact\n01001,county,2023,0,210,2,fuzzy',
+    ct: 'geo_id,value\n09110,5\n09120,6\n09130,4\n02063,7\n02066,8\n09001,9\n48201,3',
+    messy: 'fips,Fines\n48201,10\n48201,20\n6037,"1,200"\n01001,abc\n01003,4,731\n99999,1\n17031,'
+  };
+  const [theme, view] = await Promise.all([
+    fetch('../configs/themes/ledger.json').then(r => r.json()),
+    fetch('../configs/views/empty.json').then(r => r.json())
+  ]);
+  atlas.theme = theme; atlas.view = view;
+  atlas.addEventListener('atlas-error', e => { $('stats').textContent = 'error: ' + e.detail.message; });
+
+  function show(words) {
+    $('report').replaceChildren(...words.map(w => Object.assign(document.createElement('div'), { className: w.level, textContent: w.text })));
+  }
+  async function run() {
+    const { words, report } = await atlas.load(sources.paste($('paste').value), { onDuplicate: $('dup').value });
+    show(words);
+    document.title = `LOADED kept=${report.rows_kept} unmatched=${report.unmatched.count} dupkeys=${report.duplicates.keys} rejected=${report.rejected.count}`;
+  }
+  $('go').onclick = run;
+  $('dup').onchange = () => { if ($('paste').value.trim()) run(); };
+  $('clear').onclick = () => { atlas.clear(); $('paste').value = ''; show([{ level: 'note', text: 'Nothing loaded yet.' }]); };
+  document.querySelectorAll('[data-s]').forEach(b => b.onclick = () => { $('paste').value = SAMPLES[b.dataset.s]; run(); });
+
+  const s = await atlas.ready;
+  $('stats').textContent = `${s.topology}\n${s.places} places · ${s.parents} parents`;
+  const auto = new URLSearchParams(location.search).get('sample');
+  if (auto && SAMPLES[auto]) { $('paste').value = SAMPLES[auto]; await run(); }
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "schema": "orbital.theme/1",
+  "id": "ledger",
+  "label": "Ledger",
+  "ground": { "background": "#0b0f14", "land_empty": "#18212b", "texture": "none" },
+  "roles": {
+    "present": { "style": "fill", "color": "#3f7f86" },
+    "no_data": { "style": "fill", "color": "#18212b" }
+  },
+  "lines": {
+    "places":  { "color": "#bedcf0", "opacity": 0.12, "width": 0.55 },
+    "parents": { "color": "#d7ecfa", "opacity": 0.5,  "width": 0.9 },
+    "outline": { "color": "#ebf6ff", "opacity": 0.7,  "width": 0.7 }
+  },
+  "type": {
+    "display": "Georgia, 'Times New Roman', serif",
+    "data": "ui-monospace, 'SF Mono', Menlo, monospace",
+    "numerals": "tabular"
+  },
+  "motion": { "zoom_ms": 250 }
+}

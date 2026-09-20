@@ -1,0 +1,8 @@
+{
+  "schema": "orbital.view/1",
+  "id": "empty",
+  "title": "Orbital Atlas",
+  "topology": "us_counties_2018",
+  "layer": null,
+  "empty_message": "No layer loaded. Paste a table: geo_id, value"
+}

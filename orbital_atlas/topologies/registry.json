@@ -1,0 +1,22 @@
+{
+  "schema": "orbital.registry/1",
+  "default": "us_counties_2018",
+  "topologies": {
+    "us_counties_2018": {
+      "label": "US counties, 2018",
+      "geo_type": "county",
+      "vintage": 2018,
+      "url": "us_counties_2018.topo.json",
+      "object": "counties",
+      "parent_object": "states",
+      "outline_object": "nation",
+      "projected": true,
+      "id_rule": { "pad_left": 5, "char": "0" },
+      "name_field": "name",
+      "parent": { "geo_type": "state", "by": "prefix", "length": 2 },
+      "children": null,
+      "aliases": null,
+      "source": "US Census TIGER 2018, Albers USA, Alaska and Hawaii inset"
+    }
+  }
+}
