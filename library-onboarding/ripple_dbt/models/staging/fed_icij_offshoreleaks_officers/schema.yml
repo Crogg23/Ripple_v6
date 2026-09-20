@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_fed_icij_offshoreleaks_officers__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (NODE_ID unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: node_id
+        data_tests:
+          - unique
+          - not_null

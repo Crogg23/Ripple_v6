@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_irs527_8872_reports__records
+    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FORM_ID_NUMBER unique). SPINE_ENTITY: (not determined)."
+    columns:
+      - name: form_id_number
+        data_tests:
+          - unique
+          - not_null
