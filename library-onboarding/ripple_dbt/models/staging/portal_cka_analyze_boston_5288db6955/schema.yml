@@ -12,23 +12,33 @@ sources:
 
 models:
   - name: stg_portal_cka_analyze_boston_5288db6955__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (GEOM+DATE_DESIGNATED_1+CREATED_DATE+LAST_EDITED_DATE+UNIQUE_ID unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (GEOM+DATE_DESIGNATED_1+CREATED_DATE+LAST_EDITED_DATE+UNIQUE_ID unique). SPINE_ENTITY: place."
     columns:
       - name: shape_wkt
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_designated_1
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: created_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: last_edited_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: unique_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

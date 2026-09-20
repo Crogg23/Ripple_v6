@@ -7,7 +7,7 @@ sources:
     tables:
       - name: PORTAL_CKA_ANALYZE_BOSTON_9A0FE05B1B
         description: >
-          Raw landing table for City of Boston Contract Award. All columns arrive as TEXT and
+          Raw landing table for city-of-boston-contract-award. All columns arrive as TEXT and
           are cast in the staging layer.
 
 models:

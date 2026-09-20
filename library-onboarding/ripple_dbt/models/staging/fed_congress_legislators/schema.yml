@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_fed_congress_legislators__people
+    description: "GRAIN NOT PROVEN: registry natural_key is not unique within a load; whole-row dedupe (exact copies only). GRAIN: one row per person (BIOGUIDE is unique). SPINE_ENTITY: person."
+    columns:
+      - name: bioguide
+        data_tests:
+          - not_null:
+              config:
+                severity: warn

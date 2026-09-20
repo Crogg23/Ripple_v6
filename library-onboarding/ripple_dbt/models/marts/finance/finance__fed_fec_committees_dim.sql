@@ -35,7 +35,7 @@ with bulk_raw as (
         fec_cand_id              as cand_id,
         cycle,
         'bulk_cm26'              as src
-    from {{ ref('stg_fed_fec_bulk_committees__records') }}
+    from {{ ref('stg_fed_fec_bulk_committees__people') }}
 ),
 
 cm_source as (

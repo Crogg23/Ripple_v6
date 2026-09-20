@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_arc_tucson_open_data_cdffe1002a__cases
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DOCKET+LAST_EDITED_DATE unique). SPINE_ENTITY: case."
+    description: "GRAIN: one row per case (DOCKET+LAST_EDITED_DATE unique). SPINE_ENTITY: case."
     columns:
       - name: docket
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: last_edited_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

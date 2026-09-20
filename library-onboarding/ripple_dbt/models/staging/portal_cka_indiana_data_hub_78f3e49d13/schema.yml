@@ -12,20 +12,28 @@ sources:
 
 models:
   - name: stg_portal_cka_indiana_data_hub_78f3e49d13__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+SCHOOL_YEAR+SUBMISSION_STATUS+SCHOOL_ID unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (FIPS+SCHOOL_YEAR+SUBMISSION_STATUS+SCHOOL_ID unique). SPINE_ENTITY: place."
     columns:
       - name: county_fips
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: school_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: submission_status
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: school_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

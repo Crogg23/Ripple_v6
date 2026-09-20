@@ -11,7 +11,7 @@ select
     try_to_date(taxperiodbegindt, 'YYYYMMDD')      as tax_period_begin_date,
     try_to_date(taxperiodenddt, 'YYYYMMDD')        as tax_period_end_date,
     trim(formtype)                                 as form_type,
-    try_to_number(taxyr)                           as tax_year,
+    try_to_number(taxyr::varchar)                           as tax_year,
     try_to_number(grossreceiptsamt)                as gross_receipts_amt,
     try_to_number(totalassetseoyamt)               as total_assets_eoy_amt,
     try_to_number(totalliabilitieseoyamt)          as total_liabilities_eoy_amt,

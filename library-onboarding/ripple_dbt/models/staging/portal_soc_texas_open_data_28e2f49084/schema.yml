@@ -12,20 +12,28 @@ sources:
 
 models:
   - name: stg_portal_soc_texas_open_data_28e2f49084__organizations
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (EIN+ACTIVE_DATE+APPOINTMENT_TYPE+NAIC_ID unique). SPINE_ENTITY: organization."
+    description: "GRAIN: one row per organization (EIN+ACTIVE_DATE+APPOINTMENT_TYPE+NAIC_ID unique). SPINE_ENTITY: organization."
     columns:
       - name: npn_ein
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: active_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: appointment_type
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: naic_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

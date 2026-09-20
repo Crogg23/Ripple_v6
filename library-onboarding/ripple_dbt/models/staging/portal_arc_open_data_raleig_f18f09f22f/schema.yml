@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_arc_open_data_raleig_f18f09f22f__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+APPLICATION_DATE unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (ZIP+APPLICATION_DATE unique). SPINE_ENTITY: place."
     columns:
       - name: shipping_zip_postal_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: application_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

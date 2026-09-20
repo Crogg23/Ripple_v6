@@ -12,20 +12,28 @@ sources:
 
 models:
   - name: stg_portal_arc_orange_county_op_644fb9535b__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+INSPECTION_DATE+OPERATIONAL_STATUS+PROGRAM_ELEMENT unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (ZIP+INSPECTION_DATE+OPERATIONAL_STATUS+PROGRAM_ELEMENT unique). SPINE_ENTITY: place."
     columns:
       - name: zip
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: inspection_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: operational_status
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: program_element
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

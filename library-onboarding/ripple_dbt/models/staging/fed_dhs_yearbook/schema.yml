@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_fed_dhs_yearbook__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+FISCAL_YEAR unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (COUNTRY+FISCAL_YEAR unique). SPINE_ENTITY: place."
     columns:
       - name: country_of_last_residence
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

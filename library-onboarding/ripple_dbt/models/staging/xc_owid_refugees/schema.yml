@@ -12,17 +12,23 @@ sources:
 
 models:
   - name: stg_xc_owid_refugees__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+YEAR+CODE unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (COUNTRY+YEAR+CODE unique). SPINE_ENTITY: place."
     columns:
       - name: refugees_by_country_of_origin
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

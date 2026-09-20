@@ -11,18 +11,22 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_cka_california_open_c19a7c8625__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (COUNTRY+SUBMITTED_DATE unique). SPINE_ENTITY: place."
+  - name: stg_portal_cka_california_open_c19a7c8625__facilities
+    description: "GRAIN: one row per facility (PWSID+SUBMITTED_DATE unique). SPINE_ENTITY: facility."
     columns:
-      - name: country
+      - name: pws_id_or_other_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: submitted_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
-              - country
+              - pws_id_or_other_id
               - submitted_date

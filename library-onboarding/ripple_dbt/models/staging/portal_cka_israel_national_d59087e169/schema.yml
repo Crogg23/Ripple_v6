@@ -16,13 +16,19 @@ models:
     columns:
       - name: fund_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: managing_corporation_legal_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: report_period
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

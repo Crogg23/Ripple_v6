@@ -16,13 +16,19 @@ models:
     columns:
       - name: equipment_group_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: manufacter_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: model_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

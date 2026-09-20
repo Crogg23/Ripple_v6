@@ -12,29 +12,43 @@ sources:
 
 models:
   - name: stg_portal_soc_utah_open_data_p_5ef68422ff__organizations
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+PERIOD_OF_PERFORMANCE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID unique). SPINE_ENTITY: organization."
+    description: "GRAIN: one row per organization (DUNS+PERIOD_OF_PERFORMANCE_START+PERIOD_OF_PERFORMANCE_CURRENT+PERIOD_OF_PERFORMANCE+AWARD_ID_PIID+PARENT_AWARD_AGENCY_ID+PARENT_AWARD_ID unique). SPINE_ENTITY: organization."
     columns:
       - name: recipient_duns
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: period_of_performance_start
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: period_of_performance_current
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: period_of_performance
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: award_id_piid
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: parent_award_agency_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: parent_award_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

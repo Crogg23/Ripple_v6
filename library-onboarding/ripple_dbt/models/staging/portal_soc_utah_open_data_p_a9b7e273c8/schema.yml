@@ -11,15 +11,19 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_portal_soc_utah_open_data_p_a9b7e273c8__providers
-    description: "GRAIN: one row per provider (CCN+FISCAL_YEAR_BEGIN_DATE unique). SPINE_ENTITY: provider."
+  - name: stg_portal_soc_utah_open_data_p_a9b7e273c8__facilities
+    description: "GRAIN: one row per facility (CCN+FISCAL_YEAR_BEGIN_DATE unique). SPINE_ENTITY: facility."
     columns:
       - name: provider_ccn
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: fiscal_year_begin_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

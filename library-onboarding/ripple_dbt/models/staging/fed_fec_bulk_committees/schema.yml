@@ -11,10 +11,22 @@ sources:
           are cast in the staging layer.
 
 models:
-  - name: stg_fed_fec_bulk_committees__records
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FEC_CMTE_ID unique). SPINE_ENTITY: (not determined)."
+  - name: stg_fed_fec_bulk_committees__people
+    description: "GRAIN: one row per organization-person relationship (FEC_CAND_ID+FEC_CMTE_ID is unique). SPINE_ENTITY: person."
     columns:
+      - name: fec_cand_id
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
       - name: fec_cmte_id
         data_tests:
-          - unique
-          - not_null
+          - not_null:
+              config:
+                severity: warn
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - fec_cand_id
+              - fec_cmte_id

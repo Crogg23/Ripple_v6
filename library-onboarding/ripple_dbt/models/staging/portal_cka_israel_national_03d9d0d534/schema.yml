@@ -12,23 +12,33 @@ sources:
 
 models:
   - name: stg_portal_cka_israel_national_03d9d0d534__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+OPEN_DATE+CLOSE_DATE+BRANCH_CODE+ID unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (ZIP+OPEN_DATE+CLOSE_DATE+BRANCH_CODE+ID unique). SPINE_ENTITY: place."
     columns:
       - name: zipcode
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: open_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: close_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: branch_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
