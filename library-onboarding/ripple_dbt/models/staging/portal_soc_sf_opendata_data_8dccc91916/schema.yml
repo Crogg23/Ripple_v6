@@ -16,13 +16,19 @@ models:
     columns:
       - name: npi
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: provider_type
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: site_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

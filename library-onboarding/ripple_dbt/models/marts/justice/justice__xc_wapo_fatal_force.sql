@@ -12,10 +12,10 @@ with base as (
 select
     id,
     trim(name)                                   as victim_name,
-    try_to_number(age)                           as age,
+    try_to_number(age::varchar)                           as age,
     trim(gender)                                 as gender,
     trim(race)                                   as race,
-    try_to_date(date, 'YYYY-MM-DD')              as incident_date,
+    try_to_date(date::varchar, 'YYYY-MM-DD')              as incident_date,
     trim(city)                                   as city,
     trim(county)                                 as county,
     trim(state)                                  as state,

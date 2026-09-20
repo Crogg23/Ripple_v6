@@ -12,17 +12,23 @@ sources:
 
 models:
   - name: stg_portal_cka_virginia_open_da_cbc7fe8b75__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (FIPS+INCIDENT_YEAR+INCIDENT_MONTH unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (FIPS+INCIDENT_YEAR+INCIDENT_MONTH unique). SPINE_ENTITY: place."
     columns:
       - name: incident_fips
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: incident_year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: incident_month
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

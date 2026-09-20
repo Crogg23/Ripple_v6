@@ -20,10 +20,14 @@ new house style going forward, not a retrofit of the old 55):
   - audit cols: _loaded_at (renamed from landing's _INGESTED_AT), _source_url
                 (a literal constant from SOURCE_REGISTRY.URL -- Chris's spec,
                 intentionally NOT the landing _SOURCE_RUN_ID/_SRC_SHA256 names)
-  - casting:    snake_case rename only. NO type casts -- inferring a column's
-                real type needs semantic knowledge this generator doesn't have.
-                Every generated file says so in its header; finishing the casts
-                by hand (or via a follow-up pass) is expected, not a bug.
+  - casting:    (2026-09-19) driven by reports/landing_column_profile_*.tsv, the
+                10,000-row-per-table sample scripts/profile_landing_columns.py
+                writes. A TEXT column is cast (macros/staging_casts.sql, all
+                try_ casts) only when EVERY filled sampled value parsed as that
+                type; see decide_cast for what never gets cast. Every other TEXT
+                column gets null_junk: '' and 'nan' read NULL. Counting, not
+                semantics -- still no model calls. Each file's header lists
+                its casts.
   - spine join: when spine_entity is one connect/'s spine already resolves
                 (provider/facility/vessel/person/organization), emit a computed
                 SPINE_ENTITY_ID column using the EXACT formula
@@ -231,6 +235,90 @@ def key_is_unique_within_each_load(cur, table_name: str, nk_cols: list[str]) -> 
     return int(collapsed) == 0, int(n_rows), int(collapsed)
 
 
+# Under this many filled values in the sample, there is not enough to call a type.
+MIN_FILLED_TO_CAST = 20
+# A whole-number column more distinct than this is an ID and stays TEXT.
+ID_DISTINCT_SHARE = 0.9
+# cast kind -> (macro call suffix, words for the model header)
+_CAST_MACRO = {
+    "int": ("stg_int({c})", "integer"),
+    "id_text": ("stg_id_text({c})", "ID: whole numbers, over 90% distinct -- stays TEXT, '.0' tail removed"),
+    "float": ("stg_float({c})", "float"),
+    "date": ("stg_date({c})", "date"),
+    "date_ymd8": ("stg_date({c}, 'YYYYMMDD')", "date, YYYYMMDD"),
+    "date_mdy8": ("stg_date({c}, 'MMDDYYYY')", "date, MMDDYYYY"),
+    "ts": ("stg_ts({c})", "timestamp"),
+    "bool": ("stg_bool({c})", "boolean"),
+}
+
+
+def load_profile() -> tuple[dict[tuple[str, str], dict], str]:
+    """{(landing table, column): profile row} from the newest
+    reports/landing_column_profile_*.tsv, plus that file's name. No file -> no
+    casts, and the model header says so."""
+    import csv
+
+    files = sorted((_REPO / "reports").glob("landing_column_profile_*.tsv"))
+    if not files:
+        return {}, ""
+    with files[-1].open(encoding="utf-8") as fh:
+        rows = csv.DictReader(fh, delimiter="\t", quoting=csv.QUOTE_NONE)
+        profile = {(r["table"], r["column"]): r for r in rows}
+    # scripts/check_staging_casts.py runs each cast over the WHOLE table and
+    # lists the ones that threw away real values the sample never saw. Those
+    # columns stay TEXT: dropping the profile row is what makes decide_cast say None.
+    overrides = _REPO / "reports" / "staging_cast_overrides.tsv"
+    if overrides.exists():
+        for ln in overrides.read_text(encoding="utf-8").splitlines()[1:]:
+            parts = ln.split("\t")
+            if len(parts) >= 2:
+                profile.pop((parts[0], parts[1]), None)
+    return profile, files[-1].name
+
+
+def decide_cast(prof: dict | None, data_type: str, col: str, nk_cols: list[str]) -> str | None:
+    """The cast kind for one landing column, or None to leave it TEXT.
+    2026-09-19. A cast is emitted only when EVERY filled value in the sample
+    parsed -- not 99%. The casts are try_ casts, so the 1% would go NULL without
+    a sound, and a silent NULL is the same sin as a silently hidden row.
+    Never cast: the natural key, anything connect/keys.py tags as a join key
+    (NPI, EIN, ZIP... are codes that happen to be digits), and any column where
+    a value starts with 0 ('02134' as a number is 2134)."""
+    if prof is None or data_type != "TEXT":
+        return None
+    if col in nk_cols or detect_key(col)[0]:
+        return None
+
+    def n(k: str) -> int:
+        try:
+            return int(prof.get(k) or 0)
+        except ValueError:
+            return 0
+
+    filled = n("filled")
+    if filled < MIN_FILLED_TO_CAST:
+        return None
+    # The two 8-digit date shapes go first: MMDDYYYY legitimately starts with 0.
+    if n("date8_mdy") == filled:
+        return "date_mdy8"
+    if n("date8") == filled:
+        return "date_ymd8"
+    if n("leading_zero"):
+        return None
+    # number != filled: the 2026-09-19 profile counted '-7' as a date (the minus
+    # sign passed its "has a - or /" guard). A real date never parses as a number.
+    if n("date") == filled and n("number") != filled:
+        return "ts" if n("ts") else "date"
+    if n("number") == filled:
+        if n("int") + n("int_dot_zero") != filled:
+            return "float"
+        # Chris's ruling 2026-09-19: mostly-unique whole numbers are an ID.
+        return "id_text" if n("distinct_approx") > ID_DISTINCT_SHARE * filled else "int"
+    if n("bool_tf") == filled:
+        return "bool"
+    return None
+
+
 def yml_test_names(yml_path: Path) -> set[str]:
     """Every test named in a schema.yml's models: block (model-level and
     column-level, `data_tests:` or the old `tests:`). Parsed, not regexed: a
@@ -256,25 +344,50 @@ def snake(name: str) -> str:
 
 
 def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: str | None,
-                 key_proof: tuple[bool, int, int] = (True, 0, 0)) -> str:
+                 key_proof: tuple[bool, int, int] = (True, 0, 0),
+                 casts: dict[str, str] | None = None, profile_name: str = "") -> str:
     sid = src["source_id"]
     landing_table = sid.upper()
     nk_cols = src["natural_key"]
     entity = src["spine_entity"]
     key_label = _key_label_for_column(nk_cols[0]) if len(nk_cols) == 1 else None
+    casts = casts or {}
 
-    col_lines = ",\n".join(f"        {quote_ident(c)} as {snake(c)}" for c, _ in columns)
+    def col_expr(c: str, t: str) -> str:
+        q = quote_ident(c).replace("\\", "\\\\").replace("'", "\\'")
+        if c in casts:
+            return "{{ " + _CAST_MACRO[casts[c]][0].format(c=f"'{q}'") + " }}"
+        # '' and 'nan' -> NULL on every TEXT column (Chris's ruling 2026-09-19).
+        return "{{ null_junk('" + q + "') }}" if t == "TEXT" else q
+
+    col_lines = ",\n".join(f"        {col_expr(c, t)} as {snake(c)}" for c, t in columns)
+    if not profile_name:
+        cast_comment = ("-- CASTS: none. No reports/landing_column_profile_*.tsv was found at generation\n"
+                        "-- time, so nothing has looked at the values. Run scripts/profile_landing_columns.py.")
+    elif casts:
+        listed = "\n".join(f"--   {snake(c)}: {_CAST_MACRO[k][1]}" for c, k in casts.items())
+        cast_comment = (f"-- CASTS: {len(casts)} of {len(columns)} columns, from {profile_name}. A column is cast only\n"
+                        "-- when every filled value in the sample parsed. try_ casts: a value that does not\n"
+                        f"-- parse reads NULL. The natural key and join-key columns stay TEXT.\n{listed}")
+    else:
+        cast_comment = (f"-- CASTS: none of {len(columns)} columns. {profile_name} found no TEXT column where\n"
+                        "-- every filled value parsed as a number, date or boolean.")
     nk_snake = [snake(c) for c in nk_cols]
     key_proven, n_rows, n_collapsed = key_proof
+    # 2026-09-19: the dedupe runs on the RAW landing columns, inside the source
+    # CTE, before any cast. It used to run last, on the renamed columns -- fine
+    # while they were the raw text, but once '1.0' and '1' both read 1, a
+    # whole-row dedupe would merge two landed rows that differ. A cast must never
+    # be able to hide a row.
     if key_proven:
-        partition_by = ", ".join(nk_snake)
+        partition_by = ", ".join(quote_ident(c) for c in nk_cols)
         dedupe_comment = ""
     else:
         # Whole-row dedupe: every data column, no audit columns. A reload of the
         # same file still collapses (exact copies), two different records that
         # share the registry key both survive. Columns, not hash(): a hash
         # collision here would be one more silently hidden row.
-        partition_by = ", ".join(snake(c) for c, _ in columns)
+        partition_by = ", ".join(quote_ident(c) for c, _ in columns)
         dedupe_comment = (
             f"\n-- DEDUPE: registry natural_key ({', '.join(nk_cols)}) is NOT unique within a load "
             f"as landed at generation time -- it would collapse {n_collapsed:,} of {n_rows:,} rows. "
@@ -304,7 +417,7 @@ def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: 
 
     if ingested_at_column == "_INGESTED_AT":
         loaded_at_expr = "_INGESTED_AT as _loaded_at"
-        order_by_expr = "_loaded_at desc"
+        order_by_expr = "_INGESTED_AT desc"
         audit_comment = ""
     elif ingested_at_column == "INGESTED_AT":
         # ~1,607 landing tables (almost all portal_* harvests) carry a real
@@ -313,7 +426,7 @@ def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: 
         # underscore-prefixed convention, giving a genuine recency signal
         # instead of a fabricated one.
         loaded_at_expr = "INGESTED_AT as _loaded_at"
-        order_by_expr = "_loaded_at desc"
+        order_by_expr = "INGESTED_AT desc"
         audit_comment = (
             "\n-- landing table's ingestion timestamp is named INGESTED_AT (no leading "
             "underscore) rather than the usual _INGESTED_AT -- confirmed via "
@@ -344,12 +457,13 @@ def render_model(src: dict, columns: list[tuple[str, str]], ingested_at_column: 
 -- GRAIN: {src['grain']}
 -- SPINE_ENTITY: {entity or '(not determined)'}  (natural_key: {', '.join(nk_cols)})
 -- Generated by scripts/generate_staging_models.py from SOURCE_REGISTRY -- deterministic,
--- no LLM. Casts kept as landed (TEXT) -- add explicit type casts by hand once each
--- column's real type is confirmed; this generator has no semantic type knowledge.{spine_join_comment}{audit_comment}{dedupe_comment}
+-- no LLM.
+{cast_comment}{spine_join_comment}{audit_comment}{dedupe_comment}
 
 with source as (
 
     select * from {{{{ source('ripple_raw', '{landing_table}') }}}}
+    qualify row_number() over (partition by {partition_by} order by {order_by_expr}) = 1
 
 ),
 
@@ -365,7 +479,6 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over (partition by {partition_by} order by {order_by_expr}) = 1
 """
 
 
@@ -461,6 +574,9 @@ def main() -> int:
                          "handful changed, e.g. after a spine_entity backfill)")
     ap.add_argument("--dry-run", action="store_true", help="print, write nothing")
     ap.add_argument("--force", action="store_true", help="overwrite an existing model file (default: skip)")
+    ap.add_argument("--keep-key-proof", action="store_true",
+                    help="reuse the key verdict already written in each existing model file instead of "
+                         "re-counting the landing table (only when the template changed, not the data)")
     args = ap.parse_args()
 
     conn = snow.connect()
@@ -476,6 +592,9 @@ def main() -> int:
                       f"and were skipped: {', '.join(sorted(missing))}")
         print(f"{len(sources)} source(s) with GRAIN/NATURAL_KEY/SPINE_ENTITY populated.")
         declared = already_declared_source_tables()
+        profile, profile_name = load_profile()
+        print(f"column profile: {profile_name or 'NONE FOUND -- no casts will be emitted'}")
+        n_cast_cols = 0
 
         written, skipped, unproven, kept_yml = [], [], [], []
         for src in sources:
@@ -533,10 +652,24 @@ def main() -> int:
                                       "a second one."))
                 continue
 
-            key_proof = key_is_unique_within_each_load(cur, sid.upper(), src["natural_key"])
+            key_proof = None
+            if args.keep_key_proof and out_path.exists():
+                # Re-proving 900 keys is ~40 minutes of full table counts. When only
+                # the template changed, the verdict written into the existing file
+                # (same day, same landing rows) is read back instead.
+                import re
+                old = out_path.read_text(encoding="utf-8", errors="ignore")
+                m = re.search(r"would collapse ([\d,]+) of ([\d,]+) rows", old)
+                key_proof = ((False, int(m.group(2).replace(",", "")), int(m.group(1).replace(",", "")))
+                             if m else (True, 0, 0))
+            if key_proof is None:
+                key_proof = key_is_unique_within_each_load(cur, sid.upper(), src["natural_key"])
             if not key_proof[0]:
                 unproven.append((sid, key_proof[1], key_proof[2]))
-            sql = render_model(src, columns, ingested_at_column, key_proof)
+            casts = {c: k for c, t in columns
+                     if (k := decide_cast(profile.get((sid.upper(), c)), t, c, src["natural_key"]))}
+            n_cast_cols += len(casts)
+            sql = render_model(src, columns, ingested_at_column, key_proof, casts, profile_name)
             nk_snake = [snake(c) for c in src["natural_key"]]
             yml = render_schema_yml(model_name, src, nk_snake, sid.upper(), include_source=include_source,
                                     key_proven=key_proof[0])
@@ -570,6 +703,7 @@ def main() -> int:
 
         cur.close()
         print(f"\n{'DRY RUN, nothing written' if args.dry_run else 'wrote'}: {len(written)} model(s)")
+        print(f"columns cast to a real type: {n_cast_cols:,}")
         if unproven:
             print(f"key NOT unique within a load, whole-row dedupe used: {len(unproven)}")
             for sid, n_rows, n_collapsed in sorted(unproven, key=lambda u: -u[2])[:25]:

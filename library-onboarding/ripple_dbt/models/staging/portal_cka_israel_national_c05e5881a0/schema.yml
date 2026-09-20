@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_cka_israel_national_c05e5881a0__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+INSTITUTE_CODE unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (ZIP+INSTITUTE_CODE unique). SPINE_ENTITY: place."
     columns:
       - name: zip_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: institute_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

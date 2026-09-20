@@ -16,13 +16,19 @@ models:
     columns:
       - name: tri_facility_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: cas_compound_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: year
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

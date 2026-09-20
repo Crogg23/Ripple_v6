@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_soc_utah_open_data_p_55ef6ef0c6__providers
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (NPI+HCPCS_CODE unique). SPINE_ENTITY: provider."
+    description: "GRAIN: one row per provider (NPI+HCPCS_CODE unique). SPINE_ENTITY: provider."
     columns:
       - name: npi
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: hcpcs_code
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

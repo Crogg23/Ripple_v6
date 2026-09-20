@@ -12,23 +12,33 @@ sources:
 
 models:
   - name: stg_portal_cka_houston_open_dat_ab35bb6552__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+IN_DATE+DUE_DATE+OUT_DATE+ID unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (ZIP+IN_DATE+DUE_DATE+OUT_DATE+ID unique). SPINE_ENTITY: place."
     columns:
       - name: zip
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: in_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: due_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: out_date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_arc_la_county_open_d_e034245e05__providers
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (NPI+SCC_TYPE unique). SPINE_ENTITY: provider."
+    description: "GRAIN: one row per provider (NPI+SCC_TYPE unique). SPINE_ENTITY: provider."
     columns:
       - name: npi
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: scc_type
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

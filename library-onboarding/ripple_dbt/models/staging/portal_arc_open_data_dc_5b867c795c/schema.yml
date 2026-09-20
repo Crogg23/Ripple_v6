@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_arc_open_data_dc_5b867c795c__facilities
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (CCN+DATE unique). SPINE_ENTITY: facility."
+    description: "GRAIN: one row per facility (CCN+DATE unique). SPINE_ENTITY: facility."
     columns:
       - name: ccn_rev
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

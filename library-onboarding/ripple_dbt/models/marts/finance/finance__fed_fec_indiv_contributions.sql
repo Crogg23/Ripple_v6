@@ -18,7 +18,7 @@ select
     trim(employer)                                 as employer,
     trim(occupation)                               as occupation,
     try_to_date(transaction_dt, 'MMDDYYYY')        as transaction_date,
-    try_to_double(transaction_amt)                  as transaction_amt,
+    try_to_double(transaction_amt::varchar)                  as transaction_amt,
     trim(transaction_tp)                           as transaction_type,
     trim(entity_tp)                                as entity_type,
     trim(other_id)                                 as other_id,

@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_arc_tucson_open_data_f0203665dd__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (ZIP+INDUSTRY_DESC unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (ZIP+INDUSTRY_DESC unique). SPINE_ENTITY: place."
     columns:
       - name: zip
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: industry_desc
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

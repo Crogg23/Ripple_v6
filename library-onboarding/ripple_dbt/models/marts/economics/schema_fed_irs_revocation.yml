@@ -2,6 +2,17 @@ version: 2
 
 models:
   - name: economics__fed_irs_revocation
+    # 2026-09-19: grain is one row per REVOCATION, not per organization. The IRS
+    # list holds 1,206,628 rows for 1,187,367 EINs in one load -- an org can lose
+    # its exemption more than once (EIN 311226481: 3 rows, 3 dates). `unique` on
+    # spine_entity_id only passed while staging was collapsing those rows.
+    # (spine_entity_id, revocation_date) has zero collisions, counted live.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - spine_entity_id
+              - revocation_date
     columns:
       - name: zip_code
         data_tests:
@@ -9,4 +20,3 @@ models:
       - name: spine_entity_id
         data_tests:
           - not_null
-          - unique

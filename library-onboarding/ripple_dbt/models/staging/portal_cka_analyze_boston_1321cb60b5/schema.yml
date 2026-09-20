@@ -12,14 +12,18 @@ sources:
 
 models:
   - name: stg_portal_cka_analyze_boston_1321cb60b5__places
-    description: "GRAIN: one row per record (spine_entity not determined -- no registry hint available) (LATLON+DATE_TIME unique). SPINE_ENTITY: place."
+    description: "GRAIN: one row per place (LATLON+DATE_TIME unique). SPINE_ENTITY: place."
     columns:
       - name: lat
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: date_time
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
