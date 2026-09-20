@@ -2,6 +2,7 @@ version: 2
 
 models:
   - name: economics__fed_usaspending_contracts_full
+    description: "CAPPED AT 1,000,000 ROWS PER FISCAL YEAR, FY2007-2026 -- NOT the true row count. USASpending Federal Contract Awards: the API page limit lands exactly 1,000,000 rows for every one of the 20 fiscal years (20M rows total, all of it a ceiling), live-confirmed on the landing table 2026-09-20. Use economics__fed_usaspending_contracts_full_r2 instead for any total, coverage claim, or trend -- it holds the corrected reload (93,153,424 rows, real uneven per-FY counts, e.g. FY2019 6.29M vs FY2013 2.31M). This model stays only for consumers still wired to it; TIMELINE was repointed to r2 2026-09-20."
     columns:
       - name: contract_transaction_unique_key
         data_tests:

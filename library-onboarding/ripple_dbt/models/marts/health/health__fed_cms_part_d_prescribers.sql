@@ -1,6 +1,13 @@
 {{ config(materialized='table', schema='HEALTH') }}
 
 -- GRAIN: one row per prescriber (NPI)
+--
+-- VINTAGE: DY2024, one year, no year column in the landing table (checked live
+-- 2026-09-20, FED_CMS_PART_D_PRESCRIBERS carries none). NPPES, Part B and QPP
+-- unsuffixed, and Open Payments unsuffixed are also 2024 -- but health__fed_cms_partd_prescribers
+-- and health__fed_cms_partd_prescriber_drug (the by-drug marts) are DY2022. A
+-- join across these files needs the year gap accounted for by hand; nothing
+-- here flags it automatically.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_CMS_PART_D_PRESCRIBERS') }}

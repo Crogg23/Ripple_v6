@@ -6,25 +6,28 @@
 -- DEDUP (2026-08-11 verification): landing carries exact duplicate data rows.
 -- Confirm query showed a SINGLE load run (1 distinct run id), so this is
 -- single-load duplication, not appends; exact dups carry no information.
-with source as (
-    select * from {{ source('ripple_raw', 'FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS') }}
-    qualify row_number() over (
-        partition by NPDES_ID, REGISTRY_ID, AGENCY, ACTIVITY_ID,
-                     ACTIVITY_TYPE_CODE, ACTIVITY_TYPE_DESC, ENF_TYPE_CODE,
-                     ENF_TYPE_DESC, ACHIEVED_DATE, ENF_IDENTIFIER, OFFICIAL_FLG
-        order by _INGESTED_AT) = 1
-)
+-- Fixed 2026-09-20: this dedup CTE partitioned on the same 11 columns it then
+-- selected, so the one bare try_to_date() call sat inside the partition key --
+-- moved to models/staging/fed_epa_npdes_npdes_informal_enforcement_actions,
+-- which dedupes on that identical whole-row key (any tie-break pick is one of
+-- the exact-copy rows, so the output is unchanged) AND regex-guards the date
+-- cast (stg_date, macros/staging_casts.sql) instead of calling try_to_date
+-- bare. Not live-checked column-by-column for this table specifically -- fixed
+-- as a landmine regardless (see environment__fed_epa_sdwa_sdwa_violations_
+-- enforcement.sql / environment__fed_epa_sdwa_sdwa_pub_water_systems.sql for
+-- the live before/after proof run on this same bug pattern elsewhere in this
+-- batch).
 
 select
-    NPDES_ID as npdes_id,
-    REGISTRY_ID as registry_id,
-    AGENCY as agency,
-    ACTIVITY_ID as activity_id,
-    ACTIVITY_TYPE_CODE as activity_type_code,
-    ACTIVITY_TYPE_DESC as activity_type_desc,
-    ENF_TYPE_CODE as enf_type_code,
-    ENF_TYPE_DESC as enf_type_desc,
-    try_to_date(ACHIEVED_DATE) as achieved_date,
-    ENF_IDENTIFIER as enf_identifier,
-    OFFICIAL_FLG as official_flg
-from source
+    npdes_id,
+    registry_id,
+    agency,
+    activity_id,
+    activity_type_code,
+    activity_type_desc,
+    enf_type_code,
+    enf_type_desc,
+    achieved_date,
+    enf_identifier,
+    official_flg
+from {{ ref('stg_fed_epa_npdes_npdes_informal_enforcement_actions__records') }}

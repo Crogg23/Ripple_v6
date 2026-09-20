@@ -6,6 +6,14 @@
 -- DEDUP (2026-08-11 verification): landing carries exact duplicate data rows.
 -- Confirm query showed a SINGLE load run (1 distinct run id), so this is
 -- single-load duplication, not appends; exact dups carry no information.
+-- Fixed 2026-09-20: ACHIEVED_DATE was a bare try_to_date() -- no format, no
+-- guard, so a pure-digit string would misread as epoch seconds (checked
+-- live: try_to_date('2015') = 1970-01-01). Live-checked this column: all
+-- 337,977 filled rows already parse clean via Snowflake's auto date
+-- detection (slash format, e.g. '12/21/2018') and zero rows are pure-digit
+-- -- a landmine today, not an active bug. No staging model exists for this
+-- source yet, so wrapped the cast in place with stg_date instead of
+-- swapping to ref(); left the existing whole-row dedup untouched.
 with source as (
     select * from {{ source('ripple_raw', 'FED_EPA_ICIS_AIR_ICIS_AIR_INFORMAL_ACTIONS') }}
     qualify row_number() over (
@@ -24,6 +32,6 @@ select
     STATE_EPA_FLAG as state_epa_flag,
     ENF_TYPE_CODE as enf_type_code,
     ENF_TYPE_DESC as enf_type_desc,
-    try_to_date(ACHIEVED_DATE) as achieved_date,
+    {{ stg_date('ACHIEVED_DATE') }} as achieved_date,
     OFFICIAL_FLG as official_flg
 from source

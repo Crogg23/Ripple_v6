@@ -2,6 +2,15 @@ version: 2
 
 models:
   - name: finance__fed_fec_committee_to_candidate
+    description: >
+      One row per committee-to-candidate transaction (sub_id grain, pas2/itpas2
+      bulk file). memo_cd='X' marks a memo/re-statement row -- FEC's way of
+      showing an earmarked or pass-through contribution a second time on the
+      record that received it. That money is already counted on the real
+      (non-memo) row elsewhere in the file; summing memo rows in with the rest
+      double-counts it. Live-verified 2026-09-20: 18,643 memo rows / $86.06M vs
+      848,087 real rows / $5.73B. Use is_memo_transaction to filter (WHERE NOT
+      is_memo_transaction for a clean total) or to look at memo rows on their own.
     columns:
       - name: cmte_id
         data_tests:
@@ -22,3 +31,12 @@ models:
         data_tests:
           - not_null
           - unique
+      - name: memo_cd
+        description: >
+          Raw FEC memo code. 'X' = memo/re-statement row (earmark or pass-through,
+          already counted elsewhere); blank = a real, countable row.
+      - name: is_memo_transaction
+        description: >
+          True when memo_cd = 'X' (an earmark/memo re-statement, already counted
+          on another row in this file). Filter WHERE NOT is_memo_transaction
+          before summing money so you don't double-count.

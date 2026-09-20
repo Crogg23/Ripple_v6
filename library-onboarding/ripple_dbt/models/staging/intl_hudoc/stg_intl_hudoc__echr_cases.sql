@@ -1,9 +1,15 @@
 {{ config(materialized='view') }}
 
+-- Repointed 2026-09-20: INTL_HUDOC was a page-capped landing pull (2,000
+-- rows, live-confirmed). INTL_HUDOC_FULL is the corrected full reload
+-- (211,778 rows, live-confirmed 2026-09-20) and carries the identical
+-- 21-column set (DESCRIBE TABLE compared column-for-column, same names) --
+-- no select-list changes needed, source() swap only.
+
 with source as (
 
     select *
-    from {{ source('ripple_raw', 'INTL_HUDOC') }}
+    from {{ source('ripple_raw', 'INTL_HUDOC_FULL') }}
 
 ),
 

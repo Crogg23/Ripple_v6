@@ -20,11 +20,22 @@ models:
       city and state; one payee per home, one home per payee. match_method says
       how; is_multiword says whether the shorter key had two or more words.
       Single-word matches are kept for eyeballing and excluded from the rollup.
+
+      ccn/prf_row_id (2026-09-20): dropped `unique` here -- the model's own two
+      QUALIFY steps (one row per ccn, then one row per prf_row_id) mechanically
+      guarantee both come out unique regardless of the input, so the test was
+      tautological (same shape as the 289-view staging bug f41ebff9 fixed). Not
+      a data-loss risk though: dedup-guaranteed AND independently verified --
+      ccn's real identity test lives on health__fed_nursinghome411 (that model
+      does no dedup, so ITS `unique` test can actually fail; live 2026-09-20:
+      14,713 rows, 14,713 distinct, zero collisions), and prf_row_id is a
+      ROW_NUMBER() surrogate that cannot collide by construction. See the model
+      SQL header for the full chain.
     columns:
       - name: ccn
-        data_tests: [unique, not_null]
+        data_tests: [not_null]
       - name: prf_row_id
-        data_tests: [unique, not_null]
+        data_tests: [not_null]
       - name: match_method
         data_tests:
           - not_null

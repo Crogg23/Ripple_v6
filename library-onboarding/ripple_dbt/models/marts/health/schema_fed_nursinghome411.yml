@@ -3,9 +3,12 @@ version: 2
 models:
   - name: health__fed_nursinghome411
     columns:
+      # blank for homes that belong to no chain (4,551 rows, live 2026-09-20); now reads as NULL
       - name: chain_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: cms_region_number
         data_tests:
           - not_null

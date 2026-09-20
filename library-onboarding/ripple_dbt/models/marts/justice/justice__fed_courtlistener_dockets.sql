@@ -6,6 +6,23 @@
 -- Materialized as a VIEW: this is a straight passthrough of a 71,677,647-row
 -- landing table, so a physical copy would pay twice for the same bytes without
 -- precomputing any join, filter, or aggregation.
+--
+-- Fixed 2026-09-20: was reading source() with 13 bare try_to_date() calls and
+-- 2 bare try_to_number() calls (IA_UPLOAD_FAILURE_COUNT, VIEW_COUNT) --
+-- silent-rounding/epoch-misparse risk on a 71,677,647-row table. Live-checked:
+-- VIEW_COUNT (71,677,647 filled) and IA_UPLOAD_FAILURE_COUNT (27,155 filled)
+-- are 100% whole numbers today, 0 fractional; DATE_CREATED, DATE_FILED,
+-- DATE_CERT_GRANTED and DATE_ARGUED are all well-formed dates/timestamps, 0
+-- pure-digit values -- clean today, landmine not active bug. Wrapped every
+-- bare call with stg_int/stg_date (macros/staging_casts.sql). Kept on
+-- source(), NOT switched to ref('stg_fed_courtlistener_dockets__records'):
+-- that staging model exists and matches this mart's 54 columns name-for-name
+-- and in order, but it leaves DATE_CERT_GRANTED, DATE_CERT_DENIED,
+-- DATE_ARGUED, DATE_REARGUED, DATE_REARGUMENT_DENIED and
+-- IA_UPLOAD_FAILURE_COUNT completely un-cast (raw TEXT) instead of guarded --
+-- DATE_CERT_GRANTED alone holds 156 real, well-formed dates live, so a ref()
+-- swap would have silently turned six working typed columns into text
+-- instead of guarding them. Wrap-in-place keeps this mart's existing types.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_COURTLISTENER_DOCKETS') }}
@@ -13,22 +30,22 @@ with source as (
 
 select
     ID as id,
-    try_to_date(DATE_CREATED) as date_created,
-    try_to_date(DATE_MODIFIED) as date_modified,
+    {{ stg_date('"DATE_CREATED"') }} as date_created,
+    {{ stg_date('"DATE_MODIFIED"') }} as date_modified,
     SOURCE as source,
     APPEAL_FROM_STR as appeal_from_str,
     ASSIGNED_TO_STR as assigned_to_str,
     REFERRED_TO_STR as referred_to_str,
     PANEL_STR as panel_str,
-    try_to_date(DATE_LAST_INDEX) as date_last_index,
-    try_to_date(DATE_CERT_GRANTED) as date_cert_granted,
-    try_to_date(DATE_CERT_DENIED) as date_cert_denied,
-    try_to_date(DATE_ARGUED) as date_argued,
-    try_to_date(DATE_REARGUED) as date_reargued,
-    try_to_date(DATE_REARGUMENT_DENIED) as date_reargument_denied,
-    try_to_date(DATE_FILED) as date_filed,
-    try_to_date(DATE_TERMINATED) as date_terminated,
-    try_to_date(DATE_LAST_FILING) as date_last_filing,
+    {{ stg_date('"DATE_LAST_INDEX"') }} as date_last_index,
+    {{ stg_date('"DATE_CERT_GRANTED"') }} as date_cert_granted,
+    {{ stg_date('"DATE_CERT_DENIED"') }} as date_cert_denied,
+    {{ stg_date('"DATE_ARGUED"') }} as date_argued,
+    {{ stg_date('"DATE_REARGUED"') }} as date_reargued,
+    {{ stg_date('"DATE_REARGUMENT_DENIED"') }} as date_reargument_denied,
+    {{ stg_date('"DATE_FILED"') }} as date_filed,
+    {{ stg_date('"DATE_TERMINATED"') }} as date_terminated,
+    {{ stg_date('"DATE_LAST_FILING"') }} as date_last_filing,
     CASE_NAME_SHORT as case_name_short,
     CASE_NAME as case_name,
     CASE_NAME_FULL as case_name_full,
@@ -46,11 +63,11 @@ select
     FILEPATH_LOCAL as filepath_local,
     FILEPATH_IA as filepath_ia,
     FILEPATH_IA_JSON as filepath_ia_json,
-    try_to_number(IA_UPLOAD_FAILURE_COUNT) as ia_upload_failure_count,
+    {{ stg_int('"IA_UPLOAD_FAILURE_COUNT"') }} as ia_upload_failure_count,
     IA_NEEDS_UPLOAD as ia_needs_upload,
-    try_to_date(IA_DATE_FIRST_CHANGE) as ia_date_first_change,
-    try_to_number(VIEW_COUNT) as view_count,
-    try_to_date(DATE_BLOCKED) as date_blocked,
+    {{ stg_date('"IA_DATE_FIRST_CHANGE"') }} as ia_date_first_change,
+    {{ stg_int('"VIEW_COUNT"') }} as view_count,
+    {{ stg_date('"DATE_BLOCKED"') }} as date_blocked,
     BLOCKED as blocked,
     APPEAL_FROM_ID as appeal_from_id,
     ASSIGNED_TO_ID as assigned_to_id,

@@ -2,7 +2,23 @@ version: 2
 
 models:
   - name: health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl
+    description: >
+      Medicare DME by supplier, one row per supplier NPI x HCPCS code x rental
+      indicator. Not the same shape as the by_refer mart: this file carries no
+      DME_/POS_/DRUG_ family or suppression-flag columns at all (confirmed
+      live 2026-09-20 against the landing table). Its own suppression sits on
+      tot_suplr_benes: null on 179,729 of 440,670 rows (40.8%, live-confirmed)
+      whenever under 11 beneficiaries used that HCPCS code from that supplier,
+      while tot_suplr_clms and tot_suplr_srvcs stay populated on every one of
+      those same rows -- a null there means "under 11 patients," never zero or
+      missing. The non-null floor is exactly 11 with no exceptions. Claims and
+      services totals are safe to use as published.
     columns:
+      - name: tot_suplr_benes
+        description: >
+          Null on 40.8% of rows -- CMS blanks the beneficiary count (not the
+          whole row) below 11 patients. Claims and services stay reported on
+          those same rows; do not read the null as zero.
       - name: suplr_npi
         data_tests:
           - not_null

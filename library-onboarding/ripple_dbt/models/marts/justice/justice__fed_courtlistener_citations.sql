@@ -6,6 +6,15 @@
 -- Materialized as a VIEW: this is a straight passthrough of a 18,123,788-row
 -- landing table, so a physical copy would pay twice for the same bytes without
 -- precomputing any join, filter, or aggregation.
+-- Fixed 2026-09-20: bare try_to_date() on DATE_CREATED/DATE_MODIFIED replaced
+-- in place with the guarded stg_date macro (macros/staging_casts.sql) -- a bare
+-- try_to_date() misreads a pure-digit string as epoch seconds (checked
+-- elsewhere in this same CourtListener family, e.g. justice__fed_courtlistener_
+-- investments's TRANSACTION_DATE). Live-checked this table's own two columns
+-- today: all 18,123,788 rows on both columns are well-formed timestamps
+-- ('2025-10-25 00:12:53.830158+00'-shaped) -- 0 rows differ bare vs guarded.
+-- Landmine, not an active bug here; guarded anyway so a future bad load can't
+-- silently roll onto 1970.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_COURTLISTENER_CITATIONS') }}
@@ -18,6 +27,6 @@ select
     PAGE as page,
     TYPE as type,
     CLUSTER_ID as cluster_id,
-    try_to_date(DATE_CREATED) as date_created,
-    try_to_date(DATE_MODIFIED) as date_modified
+    {{ stg_date('DATE_CREATED') }} as date_created,
+    {{ stg_date('DATE_MODIFIED') }} as date_modified
 from source

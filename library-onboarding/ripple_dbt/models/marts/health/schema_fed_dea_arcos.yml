@@ -2,8 +2,22 @@ version: 2
 
 models:
   - name: health__fed_dea_arcos
+    description: >
+      DEA ARCOS, one row per transaction line as reported. transaction_id is
+      NOT a usable per-row key -- 11.7M distinct values across 178.6M rows,
+      about 15 rows sharing every id (traps.md 2026-09-10). Stacking on more
+      columns doesn't fix it either: transaction_date, reporter_dea_no,
+      buyer_dea_no, drug_code, quantity and dosage_units together still land
+      at only 99.998% unique, not 100%. No clean surrogate key exists for
+      this table today. Join and dedup logic must go through business
+      columns (buyer/reporter DEA numbers, drug code, date, quantity) with
+      that limitation in mind -- never count or dedupe on transaction_id
+      alone, and don't assume any compound key here is airtight.
     columns:
       - name: transaction_id
+        description: >
+          Not unique and not usable as a row key on its own or in a compound
+          key -- see the model description.
         data_tests:
           - not_null
       - name: transaction_code

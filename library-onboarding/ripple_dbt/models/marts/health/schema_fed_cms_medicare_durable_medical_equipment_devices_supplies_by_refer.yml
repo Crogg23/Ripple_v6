@@ -2,7 +2,32 @@ version: 2
 
 models:
   - name: health__fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer
+    description: >
+      Medicare DME by referring provider, one row per NPI. dme_sprsn_ind /
+      pos_sprsn_ind / drug_sprsn_ind null does NOT mean the row is a clean,
+      complete count (traps.md 2026-09-05): thousands of all-flags-null rows
+      still carry a null tot_suplr_benes or a zero-filled family. The dme_ /
+      pos_ / drug_ family columns do not sum to the tot_ columns -- families
+      undercount the real total by roughly 21-40% depending on population
+      (beneficiaries, suppliers, or services). Query tot_ columns only, never
+      a manual sum across the three families. bene_dual_cnt and every
+      bene_cc_*_pct column are interval-censored at 11 (published as 0 or
+      >=11, never 1-10); a percentile or median off them has a hole in the
+      middle, not a true typical value -- bene_avg_risk_scre is the
+      uncensored alternative when one is needed.
     columns:
+      - name: dme_sprsn_ind
+        description: >
+          Null does not mean clean. See the model description -- families
+          still don't sum to the totals even where all three flags are null.
+      - name: pos_sprsn_ind
+        description: >
+          Null does not mean clean. See the model description -- families
+          still don't sum to the totals even where all three flags are null.
+      - name: drug_sprsn_ind
+        description: >
+          Null does not mean clean. See the model description -- families
+          still don't sum to the totals even where all three flags are null.
       - name: rfrg_npi
         data_tests:
           - not_null

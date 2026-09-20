@@ -6,11 +6,17 @@
 -- Rows are NOT unique on person id (idper) or any obvious key: a person can
 -- report multiple victimizations, and weighted survey records can repeat.
 -- Passthrough stage: rename, NULLIF-empty-string clean, guarded numeric casts.
+--
+-- Repointed 2026-09-20: FED_BJS_DATA was a page-capped landing pull (1,000
+-- rows, live-confirmed). FED_BJS_DATA_FULL is the corrected full reload
+-- (68,852 rows, live-confirmed 2026-09-20) and carries the identical 40-column
+-- set (DESCRIBE TABLE compared column-for-column, same names/order) -- no
+-- select-list changes needed, source() swap only.
 
 with source as (
 
     select *
-    from {{ source('ripple_raw', 'FED_BJS_DATA') }}
+    from {{ source('ripple_raw', 'FED_BJS_DATA_FULL') }}
 
 ),
 

@@ -6,6 +6,17 @@
 -- Materialized as a VIEW: this is a straight passthrough of a 20,914,284-row
 -- landing table, so a physical copy would pay twice for the same bytes without
 -- precomputing any join, filter, or aggregation.
+--
+-- Fixed 2026-09-20: DOSE_AMT was a bare try_to_double() -- unguarded against
+-- the string 'nan' silently parsing as the float NaN. Live-checked a 1M-row
+-- sample: real decimal dosages are common (5,566 rows, 0.56%, e.g. fractional
+-- mg amounts), and 0 rows held the literal 'nan' string today -- clean today,
+-- but a landmine on the next load, not a live bug. No matching staging model
+-- exists for this source (checked models/staging/), so this stays on
+-- source() -- the one bare cast is wrapped with stg_float
+-- (macros/staging_casts.sql), which keeps the real decimals exact and guards
+-- the 'nan' case. EXP_DT and NDA_NUM were already guarded via ripple_dt/
+-- ripple_num and are unchanged.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_FDA_FAERS_DRUG') }}
@@ -30,7 +41,7 @@ select
     CUM_DOSE_CHR as cum_dose_chr,
     CUM_DOSE_UNIT as cum_dose_unit,
     LOT_NBR as lot_nbr,
-    try_to_double(DOSE_AMT) as dose_amt,
+    {{ stg_float('DOSE_AMT') }} as dose_amt,
     DOSE_UNIT as dose_unit,
     DOSE_FORM as dose_form,
     DOSE_FREQ as dose_freq

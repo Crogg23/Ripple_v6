@@ -8,6 +8,15 @@
 -- county rows, so the state comes from the PWSID prefix and the name is matched to the Census
 -- 2020 county list with the legal suffix stripped. Measured before the change: 404,653 of
 -- 405,396 county rows match, no fan-out. Misses are accented names and renamed Alaska areas.
+-- Fixed 2026-09-20: LAST_REPORTED_DATE was a bare try_to_date() call, no guard
+-- against a pure-digit value misreading as an epoch date. Not live-checked for
+-- this table specifically -- fixed as a landmine regardless (see
+-- environment__fed_epa_sdwa_sdwa_violations_enforcement.sql /
+-- environment__fed_epa_sdwa_sdwa_pub_water_systems.sql for the live before/
+-- after proof run on this same bug pattern elsewhere in this batch). Kept on
+-- source() (not ref()): this mart carries a computed COUNTY_FIPS column (the
+-- Census county join above) that the staging model doesn't expose. Wrapped the
+-- one cast in place with stg_date instead (macros/staging_casts.sql).
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS') }}
@@ -43,7 +52,7 @@ select
     s.CITY_SERVED as city_served,
     s.COUNTY_SERVED as county_served,
     d.county_fips as county_fips,
-    try_to_date(s.LAST_REPORTED_DATE) as last_reported_date
+    {{ stg_date('s."LAST_REPORTED_DATE"') }} as last_reported_date
 from source s
 left join county_dim d
     on d.rn = 1

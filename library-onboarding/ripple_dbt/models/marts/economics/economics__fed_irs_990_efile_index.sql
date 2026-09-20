@@ -21,6 +21,13 @@ select
     -- a garbage date and made the table look stale at 2020-01-28. Explicit
     -- strict-format parse across all 3 observed shapes leaves only 1 of
     -- 5,544,626 rows unparsed (verified live) and zero epoch rows.
+    -- Checked 2026-09-20 (bare-cast sweep): these three try_to_date() calls
+    -- LOOK bare but aren't -- each one already carries an explicit format
+    -- string (fixed 2026-08-18, see above), so none of them fall through to
+    -- Snowflake's auto/epoch-seconds parse. No matching staging model exists
+    -- for this source (models/staging/fed_irs_990_efile_index is a
+    -- passthrough with zero casts), so there's nothing to swap onto either.
+    -- No change needed here.
     coalesce(
         try_to_date(SUB_DATE, 'MM/DD/YYYY HH12:MI:SS AM'),
         try_to_date(SUB_DATE, 'MM/DD/YYYY'),

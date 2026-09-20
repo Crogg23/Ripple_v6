@@ -7,13 +7,20 @@
 -- 33,828 in JUSTICE__XC_UK_SANCTIONS_LIST (which carries more columns, 90 vs 58).
 -- The two UK sanctions marts need a reconciliation pass — neither dominates.
 -- The orphaned UNCATEGORIZED__INTL_UK_SANCTIONS_LIST table is on the drop list.
+-- Fixed 2026-09-20: LAST_UPDATED/DATE_DESIGNATED were bare try_to_date() casts,
+-- replaced in place with the project's guarded stg_date macro
+-- (macros/staging_casts.sql) -- a value that doesn't parse cleanly now reads
+-- NULL instead of a silent epoch-seconds misread. D_O_B stays untouched text
+-- passthrough (never cast). No staging model matches this landing table (the
+-- sibling XC_UK_SANCTIONS_LIST staging model reads a different source table),
+-- so kept on source().
 
 with source as (
     select * from {{ source('ripple_raw', 'INTL_UK_SANCTIONS_LIST') }}
 )
 
 select
-    try_to_date(LAST_UPDATED) as last_updated,
+    {{ stg_date('LAST_UPDATED') }} as last_updated,
     UNIQUE_ID as unique_id,
     OFSI_GROUP_ID as ofsi_group_id,
     UN_REFERENCE_NUMBER as un_reference_number,
@@ -46,7 +53,7 @@ select
     PHONE_NUMBER as phone_number,
     WEBSITE as website,
     EMAIL_ADDRESS as email_address,
-    try_to_date(DATE_DESIGNATED) as date_designated,
+    {{ stg_date('DATE_DESIGNATED') }} as date_designated,
     D_O_B as d_o_b,
     NATIONALITY_IES as nationality_ies,
     NATIONAL_IDENTIFIER_NUMBER as national_identifier_number,

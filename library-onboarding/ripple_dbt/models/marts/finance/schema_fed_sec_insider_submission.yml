@@ -2,6 +2,16 @@ version: 2
 
 models:
   - name: finance__fed_sec_insider_submission
+    description: >
+      KEY RE-PROOF (2026-09-20): accession_number's uniqueness is re-checked live
+      inside the model SQL every build (key_proof CTE, mirrors
+      scripts/generate_staging_models.py's key_is_unique_within_each_load()), not
+      just proven once and trusted forever -- the exact gap f41ebff9 closed in
+      staging. Proven as of 2026-09-20 (1,772,088 rows, 1,772,088 distinct, 1
+      load). `unique` below stays valid only as long as that live check keeps
+      passing; if it ever shows would_collapse > 0, the model's own QUALIFY has
+      already fallen back to a whole-row dedupe and this test should be dropped
+      that day.
     columns:
       - name: accession_number
         data_tests:

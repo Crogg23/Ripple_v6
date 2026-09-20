@@ -2,7 +2,16 @@ version: 2
 
 models:
   - name: economics__fed_sba_ppp
-    description: SBA Paycheck Protection Program loans. One row per loan.
+    description: >
+      SBA Paycheck Protection Program loans. One row per loan.
+      KEY RE-PROOF (2026-09-20): loan_number's uniqueness is re-checked live inside
+      the model SQL every build (key_proof CTE, mirrors
+      scripts/generate_staging_models.py's key_is_unique_within_each_load()), not
+      just proven once and trusted forever -- the exact gap f41ebff9 closed in
+      staging. Proven as of 2026-09-20 (968,524 rows, 968,524 distinct, 1 load).
+      `unique` below stays valid only as long as that live check keeps passing; if
+      it ever shows would_collapse > 0, the model's own QUALIFY has already
+      fallen back to a whole-row dedupe and this test should be dropped that day.
     columns:
       - name: loan_number
         description: SBA PPP loan number. Grain of this mart.

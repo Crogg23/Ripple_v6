@@ -6,6 +6,16 @@
 -- Materialized as a VIEW: this is a straight passthrough of a 101,261,252-row
 -- landing table, so a physical copy would pay twice for the same bytes without
 -- precomputing any join, filter, or aggregation.
+-- Fixed 2026-09-20: VALUE and SSHPRNAMT were bare try_to_double() calls --
+-- live-checked clean across all 101,261,252 rows (0 rows hold the literal
+-- string 'nan', which Snowflake would otherwise parse to the float NaN and
+-- poison every sum/average it touches; 0 rows in VALUE hold a decimal point
+-- either). No staging model exists yet for this landing table (checked
+-- models/staging/ -- fed_sec_13f_positions reads a different source table,
+-- FED_SEC_13F_POSITIONS, not FED_SEC_13F_HOLDINGS), so this stays on source()
+-- with just the two casts wrapped in stg_float. The pre-existing per-era unit
+-- normalization (thousands vs whole dollars, see value_unit/value_usd below)
+-- is untouched.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_SEC_13F_HOLDINGS') }}
@@ -29,10 +39,10 @@ select
     -- (coverage hole, tracked separately).
     iff(_SRC_FILE rlike '20[0-9][0-9]q[1-4]_form13f\\.zip', 'thousands', 'dollars')
         as value_unit,
-    try_to_double("VALUE")
+    {{ stg_float('"VALUE"') }}
       * iff(_SRC_FILE rlike '20[0-9][0-9]q[1-4]_form13f\\.zip', 1000, 1)
         as value_usd,
-    try_to_double(SSHPRNAMT) as sshprnamt,
+    {{ stg_float('SSHPRNAMT') }} as sshprnamt,
     SSHPRNAMTTYPE as sshprnamttype,
     PUTCALL as putcall,
     INVESTMENTDISCRETION as investmentdiscretion,

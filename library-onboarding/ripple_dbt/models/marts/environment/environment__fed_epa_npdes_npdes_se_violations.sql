@@ -9,35 +9,31 @@
 -- _SOURCE_RUN_ID -- single-load duplication (same load run repeated the row), not
 -- revisions or amendments. Same root cause already fixed in the sibling
 -- environment__fed_epa_npdes_npdes_informal_enforcement_actions model 2026-08-11.
-with source as (
-    select * from {{ source('ripple_raw', 'FED_EPA_NPDES_NPDES_SE_VIOLATIONS') }}
-    qualify row_number() over (
-        partition by NPDES_VIOLATION_ID
-        order by _INGESTED_AT,
-             -- tie-breakers 2026-09-18: the row's own values, so the same row wins every run
-             NPDES_ID nulls last, VIOLATION_TYPE_CODE nulls last, VIOLATION_CODE nulls last,
-             VIOLATION_DESC nulls last, SINGLE_EVENT_VIOLATION_DATE nulls last,
-             SINGLE_EVENT_END_DATE nulls last, SINGLE_EVENT_VIOLATION_COMMENT nulls last,
-             SINGLE_EVENT_AGENCY_TYPE_CODE nulls last, RNC_DETECTION_CODE nulls last,
-             RNC_DETECTION_DESC nulls last, RNC_DETECTION_DATE nulls last, RNC_RESOLUTION_CODE nulls last,
-             RNC_RESOLUTION_DESC nulls last, RNC_RESOLUTION_DATE nulls last
-) = 1
-)
+-- Fixed 2026-09-20: this dedup CTE partitioned on the same 15 columns it then
+-- selected, so every bare try_to_date() call sat inside the partition key --
+-- moved to models/staging/fed_epa_npdes_npdes_se_violations, which dedupes on
+-- that identical whole-row key (any tie-break pick is one of the exact-copy
+-- rows, so the output is unchanged) AND regex-guards every date cast (stg_date,
+-- macros/staging_casts.sql) instead of calling try_to_date bare. Not live-
+-- checked column-by-column for this table specifically -- fixed as a landmine
+-- regardless (see environment__fed_epa_sdwa_sdwa_violations_enforcement.sql /
+-- environment__fed_epa_sdwa_sdwa_pub_water_systems.sql for the live before/
+-- after proof run on this same bug pattern elsewhere in this batch).
 
 select
-    NPDES_ID as npdes_id,
-    NPDES_VIOLATION_ID as npdes_violation_id,
-    VIOLATION_TYPE_CODE as violation_type_code,
-    VIOLATION_CODE as violation_code,
-    VIOLATION_DESC as violation_desc,
-    try_to_date(SINGLE_EVENT_VIOLATION_DATE) as single_event_violation_date,
-    try_to_date(SINGLE_EVENT_END_DATE) as single_event_end_date,
-    SINGLE_EVENT_VIOLATION_COMMENT as single_event_violation_comment,
-    SINGLE_EVENT_AGENCY_TYPE_CODE as single_event_agency_type_code,
-    RNC_DETECTION_CODE as rnc_detection_code,
-    RNC_DETECTION_DESC as rnc_detection_desc,
-    try_to_date(RNC_DETECTION_DATE) as rnc_detection_date,
-    RNC_RESOLUTION_CODE as rnc_resolution_code,
-    RNC_RESOLUTION_DESC as rnc_resolution_desc,
-    try_to_date(RNC_RESOLUTION_DATE) as rnc_resolution_date
-from source
+    npdes_id,
+    npdes_violation_id,
+    violation_type_code,
+    violation_code,
+    violation_desc,
+    single_event_violation_date,
+    single_event_end_date,
+    single_event_violation_comment,
+    single_event_agency_type_code,
+    rnc_detection_code,
+    rnc_detection_desc,
+    rnc_detection_date,
+    rnc_resolution_code,
+    rnc_resolution_desc,
+    rnc_resolution_date
+from {{ ref('stg_fed_epa_npdes_npdes_se_violations__records') }}

@@ -2,6 +2,18 @@ version: 2
 
 models:
   - name: health__fed_cms_medicare_physician_other_practitioners_by_provider
+    description: >
+      Medicare Part B, one row per rendering provider (NPI), the whole-year
+      total across every service they billed. Unlike the sibling
+      health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi
+      (one row per NPI x HCPCS x place of service), CMS never deletes a row
+      here for low volume -- rndrng_npi is not_null and unique, all
+      1,296,739 rows present. drug_sprsn_ind / med_sprsn_ind only blank the
+      drug-vs-medical SPLIT of a provider's totals when under 11 beneficiaries
+      sit in that slice; the provider's own grand total still stands. Use this
+      mart, not the by_provider_and_servi one, when the question is a
+      provider's real total -- the service-level file is a floor (one sampled
+      provider was missing 90.2% of their billing at that grain).
     columns:
       - name: rndrng_npi
         data_tests:

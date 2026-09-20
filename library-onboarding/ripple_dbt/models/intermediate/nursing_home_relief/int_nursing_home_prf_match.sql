@@ -46,6 +46,29 @@
 -- exactly the home_starts_with_prf rows (exact keys are equal in length, the
 -- other two methods have the payee longer). Rows stay; the chain rollup
 -- counts them and their dollars separately so a reader can subtract.
+--
+-- UNIQUE TESTS ON ccn/prf_row_id, checked 2026-09-20 (same audit that closed
+-- f41ebff9 in staging): the two QUALIFY steps below (one row per ccn, then one
+-- row per prf_row_id) mechanically GUARANTEE both columns come out unique no
+-- matter what the input looks like -- a `unique` test on either is tautological,
+-- same shape as the 289-view staging bug. It is safe here anyway, for a
+-- DIFFERENT reason than a re-proven key: this isn't a narrow-key landing dedup,
+-- it's a deliberate fan-out CUT (best match per home, then best match per
+-- payee -- see "Fan-out is cut twice" above), and the two identities it cuts on
+-- are independently real:
+--   ccn:        health__fed_nursinghome411.cms_certification_number_ccn carries
+--               its OWN live, non-tautological `unique` test (that model does
+--               no dedup at all) -- live-verified 2026-09-20: 14,713 landing
+--               rows, 14,713 distinct CCN, zero collisions.
+--   prf_row_id: a ROW_NUMBER() surrogate assigned in
+--               stg_fed_hrsa_provider_relief_fund__payments (newest load only)
+--               -- mathematically unique by construction, can never collide.
+-- So the QUALIFY steps here only ever discard AMBIGUOUS CANDIDATE MATCHES
+-- (a home with several name-matched payees, a payee claimed by several homes),
+-- never two real distinct homes or two real distinct payments sharing an
+-- identity. Restructuring this into a re-prove/whole-row-hash-fallback (the
+-- staging pattern) doesn't apply: there is no "whole row" to fall back to for a
+-- match-resolution CTE, and the real identity keys are already covered above.
 
 with homes as (
 

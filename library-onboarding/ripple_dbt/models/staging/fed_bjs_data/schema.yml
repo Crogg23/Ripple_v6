@@ -5,12 +5,26 @@ sources:
     database: LIBRARY_RAW
     schema: LANDING
     tables:
-      - name: FED_BJS_DATA
+      - name: FED_BJS_DATA_FULL
         description: >
           Raw landing table holding NCVS (National Crime Victimization Survey)
           person-level victimization microdata from the Bureau of Justice
           Statistics (source_id: fed_bjs_data). One row per reported
-          victimization record; all columns land as TEXT.
+          victimization record; all columns land as TEXT. Corrected full
+          reload of the page-capped FED_BJS_DATA table -- 68,852 rows
+          (live-confirmed 2026-09-20), vs. 1,000 rows in the old capped pull.
+          Same 40-column set as FED_BJS_DATA (DESCRIBE-compared, no renames).
+      - name: FED_BJS_DATA
+        description: >
+          Page-capped landing pull (1,000 rows, live-confirmed 2026-09-20).
+          Superseded by FED_BJS_DATA_FULL above for the staging model as of
+          2026-09-20; declaration kept here only because
+          models/landing_clean/landing_clean__fed_bjs_data.sql (a generated
+          "do not hand-edit" date-cast view, out of this task's scope) still
+          reads this exact table via source() -- removing the declaration
+          breaks that model's dbt parse. Regenerating that generated layer
+          against FED_BJS_DATA_FULL is a separate job
+          (scripts/gen_landing_date_views.py), not done here.
 
 models:
   - name: stg_fed_bjs_data__bjs_data_collections
@@ -20,6 +34,8 @@ models:
       snake_case, nulls empty strings, and safely casts year and survey
       weights to numeric. NOT unique on person_id — a respondent can report
       multiple victimizations, and weighted records can repeat.
+      Repointed 2026-09-20 from the page-capped FED_BJS_DATA (1,000 rows) to
+      the full reload FED_BJS_DATA_FULL (68,852 rows, live-confirmed).
     columns:
       - name: person_id
         description: NCVS person identifier (IDPER). Not unique — one row per victimization record.

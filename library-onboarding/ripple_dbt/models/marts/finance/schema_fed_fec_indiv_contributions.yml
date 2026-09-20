@@ -2,6 +2,16 @@ version: 2
 
 models:
   - name: finance__fed_fec_indiv_contributions
+    description: >
+      One row per individual campaign contribution (sub_id grain). memo_cd='X' marks
+      a memo/re-statement row -- FEC's way of showing an earmarked or pass-through
+      contribution a second time on the record that received it. That money is
+      already counted on the real (non-memo) row elsewhere in the file; summing
+      memo rows in with the rest double-counts it. Live-verified 2026-09-20 against
+      LIBRARY_RAW.LANDING.FED_FEC_INDIV_CONTRIBUTIONS: 1,578,453 memo rows / $1.90B
+      vs 282,193,366 real rows / $77.56B (of 283,771,819 total). Use
+      is_memo_transaction to filter (WHERE NOT is_memo_transaction for a clean
+      total) or to look at memo rows on their own.
     columns:
       - name: sub_id
         data_tests:
@@ -16,3 +26,13 @@ models:
       - name: other_id
         data_tests:
           - not_null
+      - name: memo_cd
+        description: >
+          Raw FEC memo code. 'X' = memo/re-statement row (earmark or pass-through,
+          already counted elsewhere); blank = a real, countable row. A handful of
+          stray 'Y' and '*' codes seen live also read as real (non-'X') rows.
+      - name: is_memo_transaction
+        description: >
+          True when memo_cd = 'X' (an earmark/memo re-statement, already counted
+          on another row in this file). Filter WHERE NOT is_memo_transaction
+          before summing money so you don't double-count.

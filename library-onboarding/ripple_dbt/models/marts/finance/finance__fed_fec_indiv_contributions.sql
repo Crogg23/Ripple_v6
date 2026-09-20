@@ -17,12 +17,23 @@ select
     trim(zip_code)                                 as zip_code,
     trim(employer)                                 as employer,
     trim(occupation)                               as occupation,
-    try_to_date(transaction_dt, 'MMDDYYYY')        as transaction_date,
-    try_to_double(transaction_amt::varchar)                  as transaction_amt,
+    -- Fixed 2026-09-20: both were bare casts on the raw string (this model reads
+    -- ref(), not source(), which is why the mart-wide cast sweep never touched
+    -- it). stg_date/stg_float regex-guard first; a value that doesn't parse
+    -- comes back NULL instead of a silently wrong date or a 'nan'-poisoned float.
+    {{ stg_date('transaction_dt', 'MMDDYYYY') }}   as transaction_date,
+    {{ stg_float('transaction_amt::varchar') }}    as transaction_amt,
     trim(transaction_tp)                           as transaction_type,
     trim(entity_tp)                                as entity_type,
     trim(other_id)                                 as other_id,
     trim(memo_text)                                as memo_text,
+    trim(memo_cd)                                  as memo_cd,
+    -- memo_cd = 'X' is FEC's memo/re-statement flag: an earmarked or pass-through
+    -- contribution shown a second time on the record that received it. That money
+    -- is already counted on the real (non-memo) row elsewhere in the file --
+    -- summing memo rows in with the rest double-counts it. coalesce so a blank/
+    -- null memo_cd reads as a clean false, never an ambiguous null.
+    coalesce(trim(memo_cd) = 'X', false)           as is_memo_transaction,
     cycle_file,
     _loaded_at
 from {{ ref('stg_fed_fec_indiv_contributions__records') }}

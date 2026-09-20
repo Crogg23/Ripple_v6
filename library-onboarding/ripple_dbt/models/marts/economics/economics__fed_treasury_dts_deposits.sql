@@ -9,20 +9,25 @@
 -- This is the federal government's daily cash ledger: money in and money out,
 -- by category, every business day. The daily grain is the point -- an annual
 -- budget table cannot show a payment stream stopping mid-month.
+-- Fixed 2026-09-20: RECORD_DATE was a bare try_to_date() (pure-digit values
+-- misread as epoch seconds) and the three TRANSACTION_*_AMT columns were bare
+-- try_to_double() calls (unguarded against a stray 'nan' string parsing to the
+-- float NaN). No staging model exists for this source at all, so wrapped the
+-- four bare casts in place instead.
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_TREASURY_DTS_DEPOSITS') }}
 )
 
 select
-    try_to_date(RECORD_DATE) as record_date,
+    {{ stg_date('RECORD_DATE') }} as record_date,
     ACCOUNT_TYPE as account_type,
     TRANSACTION_TYPE as transaction_type,
     TRANSACTION_CATG as transaction_catg,
     TRANSACTION_CATG_DESC as transaction_catg_desc,
-    try_to_double(TRANSACTION_TODAY_AMT) as transaction_today_amt,
-    try_to_double(TRANSACTION_MTD_AMT) as transaction_mtd_amt,
-    try_to_double(TRANSACTION_FYTD_AMT) as transaction_fytd_amt,
+    {{ stg_float('TRANSACTION_TODAY_AMT') }} as transaction_today_amt,
+    {{ stg_float('TRANSACTION_MTD_AMT') }} as transaction_mtd_amt,
+    {{ stg_float('TRANSACTION_FYTD_AMT') }} as transaction_fytd_amt,
     TABLE_NBR as table_nbr,
     TABLE_NM as table_nm,
     SRC_LINE_NBR as src_line_nbr,

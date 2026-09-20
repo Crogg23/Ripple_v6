@@ -2,7 +2,23 @@ version: 2
 
 models:
   - name: health__fed_cms_medicare_physician_other_practitioners_by_provider_and_servi
+    description: >
+      Medicare Part B, one row per rendering provider x HCPCS code x place of
+      service. CMS deletes (not nulls) any row where a service was furnished to
+      under 11 beneficiaries before the file is published. Live-confirmed
+      2026-09-20: min(tot_benes) = 11, zero rows below it, zero nulls, across
+      all 9,781,673 rows. Every total, sum or ranking built off this table is a
+      floor, never a complete count -- one sampled real provider showed 90.2%
+      of their own billing missing at this grain versus their row in
+      health__fed_cms_medicare_physician_other_practitioners_by_provider.
+      Use that provider-level mart for a true total; use this one for
+      service-mix detail only.
     columns:
+      - name: tot_benes
+        description: >
+          Never below 11: CMS deletes the row instead of publishing a smaller
+          count. A null or a value under 11 here would mean something broke
+          upstream, not that the service was rare.
       - name: rndrng_npi
         data_tests:
           - not_null

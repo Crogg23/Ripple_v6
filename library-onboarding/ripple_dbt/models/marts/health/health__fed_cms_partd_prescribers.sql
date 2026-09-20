@@ -15,6 +15,11 @@
 -- Source: CMS Part D Prescriber Drug dataset (25,869,521 rows — exact, verified 2026-07-31)
 -- Key joins: NPI -> LIBRARY_META."CONNECT".ENTITY_GOLDEN (spine_entity='provider')
 --
+-- VINTAGE: DY2022, one year, no year column in the landing table (checked live
+-- 2026-09-20, FED_CMS_PARTD_PRESCRIBER_DRUG carries none). NPPES, Part B, and
+-- the unsuffixed QPP and Open Payments marts are 2024 vintage -- any join from
+-- this mart to those needs the ~2-year gap accounted for by hand.
+--
 -- BUG FIXED 2026-07-29: every column in this landing table was created as a quoted
 -- mixed-case identifier ("Prscrbr_NPI", "Tot_Clms", ...). The model referenced them
 -- bare, so Snowflake upper-cased them to PRSCRBR_NPI etc. and the build died with

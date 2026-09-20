@@ -7,9 +7,15 @@ models:
         data_tests:
           - not_null
           - unique
+      # blank string in source (mrds_id: exactly 150,804 rows, live 2026-09-20); now reads as NULL.
+      # Real ids are alphanumeric ('M013595') and pass through untouched -- never cast these to a number.
       - name: mrds_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
       - name: mas_id
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn

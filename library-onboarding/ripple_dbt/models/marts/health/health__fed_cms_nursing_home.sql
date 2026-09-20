@@ -59,6 +59,10 @@ select
     special_focus_status,
     abuse_icon,
     most_recent_health_inspection_more_than_2_years_ago,
+    -- constant 'N' on all 14,700 rows in this vintage (live-confirmed
+    -- 2026-09-20); not a usable signal. FED_NURSINGHOME411 carries a column
+    -- with the same name and real 'Y' values on 55 of its 14,713 rows --
+    -- same name, different behavior, don't assume the two marts agree.
     provider_changed_ownership_in_last_12_months,
     with_a_resident_and_family_council,
     automatic_sprinkler_systems_in_all_required_areas,

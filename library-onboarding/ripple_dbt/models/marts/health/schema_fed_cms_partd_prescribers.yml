@@ -2,6 +2,14 @@ version: 2
 
 models:
   - name: health__fed_cms_partd_prescribers
+    description: >
+      CMS Part D Prescriber Drug, one row per NPI x generic name x brand name.
+      Vintage is DY2022; the landing table carries no year/DY column (checked
+      live 2026-09-20), so this is documented, not derived from the data.
+      NPPES, Part B, and the unsuffixed QPP and Open Payments marts are 2024
+      vintage -- health__fed_cms_part_d_prescribers (by-provider) is also 2024.
+      Any join from this mart to those needs the ~2-year gap accounted for
+      by hand.
     columns:
       - name: npi
         data_tests:

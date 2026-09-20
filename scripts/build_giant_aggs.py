@@ -78,12 +78,45 @@ def esc(s: str) -> str:
     return (s or "").replace("'", "''")
 
 
+def not_memo(col: str = "MEMO_CD") -> str:
+    """FEC memo/earmark filter. MEMO_CD='X' marks a memo/re-statement row -- an
+    earmarked or pass-through contribution shown a second time on the record that
+    received it. That money is already counted on the real (non-memo) row
+    elsewhere in the file; summing memo rows in with the rest double-counts it.
+    Live-verified 2026-09-20 on LIBRARY_RAW.LANDING.FED_FEC_INDIV_CONTRIBUTIONS:
+    1,578,453 memo rows / $1.90B vs 282,193,366 real rows / $77.56B (283,771,819
+    total). No NULLs in the column live, so `<> 'X'` alone drops exactly the memo
+    rows and keeps blank/'Y'/'*' codes, which all read as real."""
+    return f"{col} <> 'X'"
+
+
 # explicit date-year expressions (never a bare 8-digit cast)
 FEC_YEAR = "YEAR(TRY_TO_DATE(TRANSACTION_DT,'MMDDYYYY'))"          # source is MMDDYYYY text
 USASP_YEAR = "YEAR(TRY_TO_DATE(ACTION_DATE,'YYYY-MM-DD'))"         # ISO
 FCC_YEAR = "YEAR(TRY_TO_DATE(GRANT_DATE,'MM/DD/YYYY'))"            # US slashes
 REVOC_YEAR = "YEAR(TRY_TO_DATE(REVOCATION_DATE,'DD-MON-YYYY'))"    # 15-NOV-2017
 
+# FEC memo/earmark trap (see not_memo() above) -- both FEC_INDIV_CONTRIBUTIONS aggs
+# below filter it out so TOTAL_AMOUNT can't double-count earmarked money.
+#
+# STALE-BUILD WARNING (live-verified 2026-09-20): the two aggs below were last
+# --applied against the OLD 2-cycle landing table -- today's live agg tables show
+# N_RECORDS summing to 84,171,523. Landing is now 283,771,819 rows / 14 cycles
+# (reloaded 2026-09-06), so these two agg tables are stale by ~200M rows on top of
+# missing the memo filter. Re-running --apply picks up the memo fix AND the current
+# row count in one shot (no separate cycle/date-range fix needed -- the existing
+# `FEC_YEAR BETWEEN 1979 AND 2026` filter is not the cause of the staleness; it
+# already passes 283,720,211 of 283,771,819 rows live, i.e. it was never limiting
+# cycles, the tables were just never rebuilt after the reload).
+#   BUT: live-verified 2026-09-20, the CMTE_ID x CYCLE_YEAR grain (the by-committee
+# agg below) is now 163,388 distinct combos even AFTER the memo fix -- OVER this
+# script's 100k cap (it was 29,858 under the old 2-cycle load). The by-STATE agg
+# is fine (2,236 combos, no cap risk). This script's own preview/apply guard will
+# correctly refuse to build the by-committee agg as-is (COUNT >= CAP aborts
+# --apply). Fixing that needs a real design call -- coarser grain (drop CMTE_ID
+# for something less granular), a higher cap, or a different rollup shape -- not a
+# code guess made under this task. Left unresolved on purpose; flagged for Chris.
+#
 # The OpenPay giant is three landing tables (2024 + 2023 + 2022) -- same 94 cols, same order.
 # INT_OPEN_PAYMENTS_ALL_YEARS is exactly this UNION but lives in a personal dbt dev schema;
 # we inline it so the marts carry no fragile cross-schema dependency.
@@ -105,14 +138,17 @@ SPEC = [
         "view": "FEC_CONTRIBUTIONS_BY_STATE_AND_CYCLE",
         "src": f"{L}FED_FEC_INDIV_CONTRIBUTIONS",
         "grain": [("CONTRIBUTOR_STATE", "STATE"), ("CYCLE_YEAR", FEC_YEAR)],
-        "where": f"{FEC_YEAR} BETWEEN 1979 AND 2026",
+        "where": f"{FEC_YEAR} BETWEEN 1979 AND 2026 AND {not_memo()}",
         "measures": [("N_RECORDS", "COUNT(*)"),
                      ("TOTAL_AMOUNT", f"SUM({money('TRANSACTION_AMT')})")],
         "target": 419,
         "comment": "FEC individual contributions rolled to contributor STATE x CYCLE_YEAR (calendar "
                    "year of the transaction). N_RECORDS = number of contributions; TOTAL_AMOUNT = total "
-                   "dollars. Junk transaction years (<1979 or >2026 in the raw) dropped. Pre-aggregated "
-                   "from 84.2M raw rows so it extracts under the 100k cap.",
+                   "dollars. Junk transaction years (<1979 or >2026 in the raw) dropped. MEMO_CD='X' "
+                   "(earmark/re-statement) rows dropped too -- that money is already counted on the real "
+                   "row elsewhere, so summing it in would double-count it. Pre-aggregated from what was "
+                   "84.2M raw rows at last build (landing is 283.8M now, 14 cycles -- see STALE-BUILD "
+                   "WARNING above) so it extracts under the 100k cap.",
     },
     {   # 84.2M -> 29,878
         "raw": "FED_FEC_INDIV_CONTRIBUTIONS (84.2M)",
@@ -121,13 +157,17 @@ SPEC = [
         "view": "FEC_CONTRIBUTIONS_BY_COMMITTEE_AND_CYCLE",
         "src": f"{L}FED_FEC_INDIV_CONTRIBUTIONS",
         "grain": [("CMTE_ID", "CMTE_ID"), ("CYCLE_YEAR", FEC_YEAR)],
-        "where": f"{FEC_YEAR} BETWEEN 1979 AND 2026",
+        "where": f"{FEC_YEAR} BETWEEN 1979 AND 2026 AND {not_memo()}",
         "measures": [("N_RECORDS", "COUNT(*)"),
                      ("TOTAL_AMOUNT", f"SUM({money('TRANSACTION_AMT')})")],
         "target": 29878,
         "comment": "FEC individual contributions rolled to recipient COMMITTEE (CMTE_ID) x CYCLE_YEAR. "
                    "N_RECORDS = number of contributions; TOTAL_AMOUNT = total dollars raised. Join CMTE_ID "
-                   "to the FEC committee master for names. Junk years dropped. From 84.2M raw rows.",
+                   "to the FEC committee master for names. Junk years dropped. MEMO_CD='X' (earmark/"
+                   "re-statement) rows dropped too -- already counted on the real row elsewhere, so "
+                   "summing it in would double-count it. From what was 84.2M raw rows at last build "
+                   "(landing is 283.8M now -- see STALE-BUILD WARNING above: this grain is OVER the "
+                   "100k cap live, 163,388 combos, even with the memo fix).",
     },
     {   # ~43.3M (2024+2023+2022 union) -> 19,377
         "raw": "FED_CMS_OPEN_PAYMENTS x3yr (~43.3M)",

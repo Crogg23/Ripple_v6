@@ -2,6 +2,7 @@ version: 2
 
 models:
   - name: economics__fed_usaspending_assistance_full
+    description: "CAPPED AT 1,000,000 ROWS PER FISCAL YEAR, FY2007-2026 -- NOT the true row count. USASpending Federal Assistance Awards: the same API page limit as the contracts_full twin, live-confirmed on the landing table 2026-09-20 (19,902,879 rows total; 19 of 20 fiscal years land exactly 1,000,000, FY2014 short at 902,879). Unlike contracts_full, there is no corrected _r2 reload for assistance -- treat every FY total or coverage claim from this model as a floor, not a fact, until one exists."
     columns:
       - name: modification_number
         data_tests:
