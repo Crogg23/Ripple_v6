@@ -382,3 +382,137 @@ written for the old columns. Each needs a new projection written against the cur
    Real cost, from the query log: effectively $0 (X-Small warehouse, sub-second
    runs historically). Still a shared-state write under this project's rules — needs
    Chris's go, not an agent's.
+
+## Afternoon round, 2026-09-20 — public shelf repair and two timestamp fixes
+
+**What was checked:** every THE_LIBRARY view and every LIBRARY_MARTS.TIMELINE view opened with a
+real one-row fetch through the Python door. A hit means the view either fails to compile or
+holds a value the Python client cannot read. A miss means it compiles and the first row converts;
+it cannot prove a later row converts.
+
+- `scripts/repair_library_views.py --apply` repaired 7 public views. Rollback DDL:
+  `outputs/library_view_rollback_2026-09-20.sql`. **The rollback file uses unqualified view names.
+  Qualify each with THE_LIBRARY.<schema> before running it.**
+- The true before-count was 13, not 12. The morning probe was compile-only and could not see
+  `HEALTH.BANNED_HEALTHCARE_PROVIDERS`, whose `_INGESTED_AT` read year 56,656,460 on all 83,816 rows.
+  Cause: landing `FED_HHS_OIG_LEIE.INGESTED_AT` is NUMBER epoch micros and staging ran a bare
+  `to_timestamp_ntz`. Fixed in `stg_fed_hhs_oig_leie__exclusions.sql` with `landing_parse_audit_epoch`.
+  Verified after rebuild: 83,816 rows, one value, 2026-08-27 15:03:47, fetches clean.
+- 30 staging files share that bare cast. Landing types checked live: 28 are ISO text, 1 is a real
+  timestamp, only LEIE is a raw number. No other file needed the change.
+- Skeptic catch: Snowflake stores a `select *` view with its column list expanded, so the repaired
+  views can drift again. The script docstring claim "can't drift again" is false.
+- Skeptic catch: grants after repair are RIPPLE_READER and CLAUDE_MCP_READONLY. No before-snapshot
+  was taken, so a third role, if one existed, cannot be proven kept.
+- TIMELINE shelf, 405 views: 5 errored. 4 were frozen column lists under marts that gained columns
+  today (ARCOS, FEC individual, FEC committee-to-candidate, SDWA geographic areas); rebuilt with
+  dbt, 6 of 6 models succeeded including `timeline__health_index`. The 5th,
+  `ECONOMICS__FED_USASPENDING_CONTRACTS_FULL`, has `_LOADED_AT` at year 56,645,473 on all
+  93,119,582 rows: the landing column `_INGESTED_AT` is itself a TIMESTAMP that took epoch micros
+  as seconds. Fixed in `stg_fed_usaspending_contracts_full_r2__organizations.sql` by re-reading
+  the epoch. The landing loader still writes it wrong on future loads.
+- Still open on the public shelf, 5 views needing new projections: FBI_CRIME_INCIDENTS,
+  TRIBAL_LANDS_GEO, CDC_MORTALITY_QUERIES, VETERAN_MORTALITY_APPENDIX, CREDIT_UNION_CALL_REPORTS.
+
+## Evening round, 2026-09-20 — both timestamp fixes live, last 5 public views repaired
+
+- dbt rebuilds ran: 4 frozen timeline views plus `timeline__health_index` and `timeline__warehouse`
+  (6 of 6, 65s); USAspending R2 staging, mart, timeline (3 of 3 views, 15s). After: TIMELINE shelf
+  405 of 405 open; USAspending `_LOADED_AT` 0 of 93,119,582 rows past year 9999, 0 null, range
+  2026-08-23 14:45:28 to 2026-08-25 15:21:17. Skeptic confirmed the micros reading against the
+  tables' own CREATED stamps: LEIE 10 seconds apart, USAspending 4 seconds apart.
+  `timeline__health_index` 139,557 rows, up from 132,735 in the 2026-09-06 snapshot table.
+- `scripts/repair_library_views_reshaped.py --apply` repaired the last 5 public views by pointing
+  them at cleaned marts. Two were 1-row stubs when the friendly layer was built 2026-07-12 and hold
+  real data now, so they were renamed with `alter view rename`, never a drop:
+  FBI_CRIME_INCIDENTS -> FBI_CRIME_STATE_MONTHLY, CDC_MORTALITY_QUERIES -> CDC_MORTALITY_BY_CAUSE_AND_SEX.
+  The same names and comments were written to `LIBRARY_META.REGISTRY.FRIENDLY_LAYER` (5 rows,
+  still 251 total) and `outputs/thelibrary_content.json`. Rollback plus friendly-layer before-rows:
+  `outputs/library_view_rollback_reshaped_2026-09-20.sql`.
+- FBI check before trusting the mart: landing 477,360 rows, one run id, grain fully distinct;
+  mart 238,680 because it sets OFFENSES and CLEARANCES side by side. 238,680 x 2 = 477,360.
+- CREDIT_UNION_CALL_REPORTS now reads the FS220 wide form, 4,336 rows, 249 columns. Claude's pick.
+- After: THE_LIBRARY 254 of 254 views open with a real one-row fetch. Started the day at 13 broken.
+
+### Skeptic pass on the 5-view repair — DISAGREE on two claims, both verdicts recorded
+
+Holds: 254 of 254 open; FBI, CDC, VA, BIA comments true phrase by phrase; no rows hidden (FBI pivot
+sums match to the unit: OFFENSES 846,949,378, CLEARANCES 168,442,694; other four marts 1:1 with
+landing); grants kept on all 5; no live object still uses the two old names.
+
+Broken, claim "the rename survives a refresh": `thelibrary_build.py` looks a name up by the
+inventory key, which is the MART fqn; the names file was keyed by LANDING fqn. Fixed locally by adding
+5 mart-keyed entries to `outputs/thelibrary_content.json`. NOT proven against a real refresh.
+Bigger and older than this repair: the names file covers 35 of 428 inventory keys (inventory file
+dated 2026-07-29, 421 mart keys; names file 171 landing keys). A `thelibrary_refresh.py --apply` today
+would fall back to physical mart names for most of the shelf, prune the friendly names as orphans,
+and `CREATE OR REPLACE` the FRIENDLY_LAYER table. Do not run it until the keys are reconciled.
+
+Broken, claim "rollback is saved": the file is a record, not a runnable undo. The 5 before-views
+already errored on open, one source table no longer exists, and the DDL has no COPY GRANTS. A
+READ FIRST header now says so and gives the two rename-back statements, the only meaningful undo.
+
+Wrong phrase, fixed live: the credit union comment said join to the credit union list on CU_NUMBER.
+That list is keyed by CHARTER_NUMBER. The FOICU table joins 4,336 of 4,336 on CU_NUMBER. Comment and
+FRIENDLY_LAYER row corrected; also now says the table holds one cycle date, 2026-03-31.
+
+### Shelf refresh key reconcile — local files only, no warehouse write
+
+What was checked: `thelibrary_inventory.py` re-run (read-only, 764 datasets: 689 marts, 75 landing), then
+the builder's naming and prune logic replayed in Python against the 254 live THE_LIBRARY views. A hit
+means a live view keeps its schema and name through a refresh. A miss means the refresh drops it.
+
+- Cause of the key mismatch: the builder looks a name up by inventory key, which is the MART fqn; the
+  names file was mostly keyed by LANDING fqn. Before: 51 of 764 inventory keys had a names entry.
+- Fix: for each of the 251 live FRIENDLY_LAYER rows, wrote a names entry under its inventory key, using
+  the live table as the truth. Matched 60 by same key, 177 via landing name, 4 via table name,
+  2 by hand (NCUA to FS220, FAA to the renamed aircraft registry). After: 243 of 764 keyed.
+  Backups of both files from before this step sit in the session scratchpad.
+- 8 live views have no home in the inventory, so a refresh would drop them: BANK_CALL_REPORTS 302 rows,
+  FDIC_ENFORCEMENT_ACTIONS 14, DOJ_CIVIL_RIGHTS_CASES 1, JAPANESE_INTERNMENT_RECORDS 36, SWISS_COMPANIES 18,
+  GREEK_COMPANIES 40, MONEY_LAUNDERING_COUNTRY_RATINGS 200, HHS_GRANT_AWARDS 0. All tiny landing samples.
+- Replay result AFTER the fix. A refresh would build 771 views against 254 live. 159 live views keep
+  schema and name. 75 live views get dropped as orphans, and 83 names reappear under a DIFFERENT topic
+  schema, because the inventory re-derives the topic from the mart schema (CAMPAIGN_FINANCE to
+  INVESTIGATIONS, COMPANIES to ECONOMY, ELECTIONS to GOVERNMENT, ENERGY_ENVIRONMENT to INVESTIGATIONS).
+  612 views would be brand new; 521 of those fall back to the raw table name because no friendly
+  content was ever generated for them.
+- So the names are reconciled, the shelving is not. Still: do not run `thelibrary_refresh.py --apply`.
+
+### Shelf builder patched to keep a live view on its shelf — file edits only
+
+`scripts/thelibrary_build.py`: new `load_live_shelves()` reads the live FRIENDLY_LAYER and a dataset that
+already sits on the shelf keeps its schema and domain. Match order: object_fqn, landing_fqn, then
+unique friendly name, which catches a renamed landing table (NCUA, FAA). Orphans are now listed in
+PREVIEW too, and removing one needs `--apply` AND a new `--prune` flag; before, `--apply` alone removed them.
+
+Builder preview after the patch, nothing written: 771 datasets, 244 of 254 live views keep shelf and
+name, 527 brand-new, 9 would be orphaned, START_HERE is rebuilt on its own. The 9: GREEK_COMPANIES,
+SWISS_COMPANIES, JAPANESE_INTERNMENT_RECORDS, DOJ_CIVIL_RIGHTS_CASES, FDIC_ENFORCEMENT_ACTIONS,
+BANK_CALL_REPORTS, MONEY_LAUNDERING_COUNTRY_RATINGS, all tiny landing samples the inventory skips, plus
+two hand-built views that were never in FRIENDLY_LAYER: FEDERAL_CONTRACTS_BY_AWARD and
+PHARMA_PAYMENTS_TO_DOCTORS_ALL_YEARS. Before the patch the same replay moved 83 and orphaned 75.
+Still open: 521 datasets have no friendly content, so a refresh would shelve them under raw table names.
+Skeptic pass on the patch was launched; verdict to follow.
+
+### Skeptic pass on the builder patch — DISAGREE, both verdicts recorded
+
+Holds: a no-flag run writes nothing (FRIENDLY_LAYER still 251 rows dated 2026-07-12 after a preview);
+244 kept + 9 orphans + START_HERE = 254; the two views renamed today survive with shelf, name, table and
+comment intact; the apply path compiles and its control flow is right.
+
+Broken, claim "no live view is silently repointed": keeping the SHELF does not keep the BODY.
+- 33 of the 244 kept views would read a different table. 27 go landing to their own mart, same dataset,
+  but column names and types differ. 4 go to a mart in the dev schema DBT_CROGERS: INTRA_AMERICAN_SLAVE_VOYAGES,
+  FEDERAL_REGISTER_DOCUMENTS, AG_MULTISTATE_SETTLEMENTS, FRAUD_SETTLEMENTS. 2 swap a curated mart for raw
+  landing: CONGRESS_ROLLCALL_VOTES (POLITICS__VOTEVIEW_ROLLCALLS to FED_VOTEVIEW_ROLLCALLS) and
+  FOREIGN_AGENT_REGISTRATIONS (FOREIGN_INFLUENCE__FED_FARA_BULK to FED_FARA).
+- 113 of the 244 are typed projections today, not plain select-star. A refresh without `--typed`
+  rewrites all 113 as select-star and loses every cast.
+Half broken, claim "the name fallback cannot mis-shelve": it fires 6 times today, each time onto a
+different physical object than the registry row (NCUA to FS220, FAA to the renamed registry, four
+DBT_CROGERS to real-schema pairs). No name collision results. Skeptic's view: a friendly name is a label,
+not an ID, so require source_id to match too. Claude's view: those 6 are exactly the renamed sources the
+fallback was written for, and the name was assigned on purpose in the names file; requiring source_id
+would send NCUA and FAA back to the wrong shelf. Chris decides.
+Also noted: the shelf-keeper reads the 2026-07-12 registry snapshot, not the live views; drift is 2 views today.

@@ -62,7 +62,8 @@ renamed as (
         {{ null_junk('"FOREIGN_OWNED"') }} as foreign_owned,
         {{ null_junk('"USASPENDING_PERMALINK"') }} as usaspending_permalink,
         {{ stg_ts('"LAST_MODIFIED_DATE"') }} as last_modified_date,
-        _INGESTED_AT as _loaded_at,
+        -- landing _INGESTED_AT is a TIMESTAMP that swallowed epoch micros as seconds (year 56,645,473); re-read the epoch
+        {{ landing_parse_audit_epoch('date_part(epoch_second, "_INGESTED_AT")') }} as _loaded_at,
         'https://www.usaspending.gov/download_center/award_data_archive' as _source_url
 
     from source

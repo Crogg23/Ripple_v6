@@ -81,7 +81,8 @@ renamed_cast as (
 
         -- pipeline audit columns
         -- this loader wrote unprefixed audit columns (INGESTED_AT, not _INGESTED_AT)
-        to_timestamp_ntz(INGESTED_AT)                       as _ingested_at,
+        -- INGESTED_AT is NUMBER epoch micros; a bare to_timestamp_ntz reads it as seconds (year 56,656,460)
+        {{ landing_parse_audit_epoch('INGESTED_AT') }}        as _ingested_at,
         nullif(trim(SOURCE_RUN_ID), '')                     as _source_run_id,
 
         -- whole-raw-row hash, carried for the dedupe + surrogate key only

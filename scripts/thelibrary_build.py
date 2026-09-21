@@ -26,6 +26,7 @@ sys.path.insert(0, str(_ROOT / "library-onboarding"))
 from snow import connect  # noqa: E402
 
 APPLY = "--apply" in sys.argv
+PRUNE = "--prune" in sys.argv   # removing a view is never the default; a reconcile only lists orphans
 PORTALS = "--portals" in sys.argv
 TYPED = "--typed" in sys.argv          # build landing views with typed projections (reuses thelibrary_typed_views.build_view)
 INV = _ROOT / "outputs" / "thelibrary_inventory.json"
@@ -94,6 +95,32 @@ def load_extras(conn):
         cur.close()
 
 
+def load_live_shelves(conn):
+    """Where each dataset sits on the shelf TODAY: {object_fqn or landing_fqn: (schema, domain)}.
+    A reconcile keeps a live view on its current shelf instead of re-deriving the topic from the
+    mart schema -- re-deriving moved 83 views and pruned 75 in a 2026-09-20 replay. Empty dict if
+    FRIENDLY_LAYER doesn't exist yet (first build)."""
+    cur = conn.cursor()
+    try:
+        cur.execute("""SELECT OBJECT_FQN, LANDING_FQN, FRIENDLY_SCHEMA, FRIENDLY_DOMAIN
+                       FROM LIBRARY_META.REGISTRY.FRIENDLY_LAYER""")
+        out = {}
+        for obj, land, sch, dom in cur.fetchall():
+            for k in (land, obj):          # object_fqn written last so it wins over landing_fqn
+                if k:
+                    out[k] = (sch, dom)
+        # a renamed landing table breaks both keys above; the friendly name still identifies the view
+        cur.execute("""SELECT FRIENDLY_NAME, MIN(FRIENDLY_SCHEMA), MIN(FRIENDLY_DOMAIN)
+                       FROM LIBRARY_META.REGISTRY.FRIENDLY_LAYER GROUP BY 1 HAVING COUNT(*) = 1""")
+        for name, sch, dom in cur.fetchall():
+            out[f"name:{name}"] = (sch, dom)
+        return out
+    except Exception:
+        return {}
+    finally:
+        cur.close()
+
+
 def main():
     if not CONTENT.exists():
         print(f"MISSING {CONTENT} -- run the content workflow first."); return
@@ -106,10 +133,15 @@ def main():
             print("   ", m)
 
     # ---- merge + resolve schema + collision-safe names -------------------
+    live = load_live_shelves(conn)
     rows = []
     for fqn, d in inv.items():
         c = content.get(fqn, {})
         schema = DOMAIN_SCHEMA.get(d["friendly_domain"], "MISC")
+        held = (live.get(fqn) or live.get(d.get("landing_fqn"))
+                or live.get(f"name:{c.get('friendly_name')}"))
+        if held:                           # already shelved: stay put
+            schema, d["friendly_domain"] = held[0], held[1] or d["friendly_domain"]
         base = ident(c.get("friendly_name") or d["physical_name"], d["physical_name"])
         rows.append({
             "object_fqn": fqn, "landing_fqn": d.get("landing_fqn"), "source_id": d.get("source_id"),
@@ -214,13 +246,26 @@ def main():
                 f'view {r["friendly_name"]}')
     if TYPED:
         print(f"   [--typed] {typed_n} landing views typed; the rest are SELECT * (mart layer / no-gain)")
-    if APPLY:
-        for sch in schemas:
+    # orphans are listed in PREVIEW too (SHOW VIEWS is read-only), so a preview tells the truth
+    kept_n = new_n = 0
+    for sch in schemas:
+        try:
             have = {v["name"] for v in q(cur, f"SHOW VIEWS IN SCHEMA {DB}.{sch}")}
-            orphans = have - target.get(sch, set())
-            for o in orphans:
-                print(f"   prune orphan view {DB}.{sch}.{o}")
-                run(cur, f"DROP VIEW IF EXISTS {DB}.{sch}.{o}", f"prune {o}")
+        except Exception:
+            have = set()                       # schema not created yet
+        kept_n += len(have & target.get(sch, set()))
+        new_n += len(target.get(sch, set()) - have)
+        orphans = have - target.get(sch, set())
+        for o in sorted(orphans):
+            if not APPLY:
+                print(f"   would orphan: {DB}.{sch}.{o}")
+            else:
+                if PRUNE:
+                    print(f"   prune orphan view {DB}.{sch}.{o}")
+                    run(cur, f"DROP VIEW IF EXISTS {DB}.{sch}.{o}", f"prune {o}")
+                else:
+                    print(f"   orphan view KEPT (pass --prune to drop it): {DB}.{sch}.{o}")
+    print(f"   live views kept under the same shelf and name: {kept_n}  |  brand-new views: {new_n}")
 
     # ---- C3 START_HERE ---------------------------------------------------
     print(f"[{'APPLY' if APPLY else 'PREVIEW'}] C3 START_HERE index")
