@@ -5,11 +5,9 @@ models:
     description: "CAPPED AT 1,000,000 ROWS PER FISCAL YEAR, FY2007-2026 -- NOT the true row count. USASpending Federal Assistance Awards: the same API page limit as the contracts_full twin, live-confirmed on the landing table 2026-09-20 (19,902,879 rows total; 19 of 20 fiscal years land exactly 1,000,000, FY2014 short at 902,879). Unlike contracts_full, there is no corrected _r2 reload for assistance -- treat every FY total or coverage claim from this model as a floor, not a fact, until one exists."
     columns:
       - name: modification_number
-        data_tests:
-          - not_null
+        description: "Optional in the source: 57,231,031 of 128,155,142 rows blank, 44.7 percent, measured 2026-09-21. No not_null test on purpose."
       - name: sai_number
-        data_tests:
-          - not_null
+        description: "Optional in the source: 31,113,709 of 128,155,142 rows blank, 24.3 percent, measured 2026-09-21. No not_null test on purpose."
       - name: awarding_agency_code
         data_tests:
           - not_null
@@ -17,77 +15,73 @@ models:
         data_tests:
           - not_null
       - name: awarding_office_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 37,715,554 of 128,155,142 rows blank, 29.4 percent, measured 2026-09-21. No not_null test on purpose."
       - name: funding_agency_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 34,220,267 of 128,155,142 rows blank, 26.7 percent, measured 2026-09-21. No not_null test on purpose."
       - name: funding_sub_agency_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 34,741,338 of 128,155,142 rows blank, 27.1 percent, measured 2026-09-21. No not_null test on purpose."
       - name: funding_office_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 37,875,691 of 128,155,142 rows blank, 29.6 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_country_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 8,812,378 of 128,155,142 rows blank, 6.9 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_city_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 23,968,743 of 128,155,142 rows blank, 18.7 percent, measured 2026-09-21. No not_null test on purpose."
       - name: prime_award_transaction_recipient_county_fips_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 612,695 of 128,155,142 rows blank, 0.5 percent, measured 2026-09-21. No not_null test on purpose."
       - name: prime_award_transaction_recipient_state_fips_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 469,680 of 128,155,142 rows blank, 0.4 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_state_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 421,070 of 128,155,142 rows blank, 0.3 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_zip_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 21,303,680 of 128,155,142 rows blank, 16.6 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_zip_last_4_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 80,153,309 of 128,155,142 rows blank, 62.5 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_foreign_postal_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 128,131,302 of 128,155,142 rows blank, 100.0 percent, measured 2026-09-21. No not_null test on purpose."
       - name: primary_place_of_performance_country_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 6,678,813 of 128,155,142 rows blank, 5.2 percent, measured 2026-09-21. No not_null test on purpose."
       - name: primary_place_of_performance_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 1,241,277 of 128,155,142 rows blank, 1.0 percent, measured 2026-09-21. No not_null test on purpose."
       - name: prime_award_transaction_place_of_performance_county_fips_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 5,468,774 of 128,155,142 rows blank, 4.3 percent, measured 2026-09-21. No not_null test on purpose."
       - name: prime_award_transaction_place_of_performance_state_fips_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 2,130,908 of 128,155,142 rows blank, 1.7 percent, measured 2026-09-21. No not_null test on purpose."
       - name: cfda_number
+        description: "1,223 of 128,155,142 rows have no value in the source, measured 2026-09-21."
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                error_if: ">12230"
+                warn_if: ">3669"
       - name: funding_opportunity_number
-        data_tests:
-          - not_null
+        description: "Optional in the source: 124,834,126 of 128,155,142 rows blank, 97.4 percent, measured 2026-09-21. No not_null test on purpose."
       - name: assistance_type_code
+        description: "2 of 128,155,142 rows have no value in the source, measured 2026-09-21."
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                error_if: ">100"
+                warn_if: ">6"
       - name: business_funds_indicator_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 834,410 of 128,155,142 rows blank, 0.7 percent, measured 2026-09-21. No not_null test on purpose."
       - name: business_types_code
+        description: "642 of 128,155,142 rows have no value in the source, measured 2026-09-21."
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                error_if: ">6420"
+                warn_if: ">1926"
       - name: correction_delete_indicator_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 114,842,879 of 128,155,142 rows blank, 89.6 percent, measured 2026-09-21. No not_null test on purpose."
       - name: action_type_code
-        data_tests:
-          - not_null
+        description: "Optional in the source: 11,325,302 of 128,155,142 rows blank, 8.8 percent, measured 2026-09-21. No not_null test on purpose."
       - name: record_type_code
+        description: "31 of 128,155,142 rows have no value in the source, measured 2026-09-21."
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                error_if: ">310"
+                warn_if: ">93"
       - name: assistance_transaction_unique_key
         data_tests:
           - unique

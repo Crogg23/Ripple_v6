@@ -1,0 +1,67 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.06s] resolving packages from packages.yml (1 items)
+ Succeeded [  4.48s] model ECONOMICS.economics__fed_usaspending_assistance_full (view)
+    Passed [  4.48s] test  not_null_economics__fed_usaspending_assistance_full_awarding_sub_agency_code
+    Failed [  9.36s] test  not_null_economics__fed_usaspending_assistance_full_funding_sub_agency_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:27:13)
+    Failed [  9.98s] test  not_null_economics__fed_usaspending_assistance_full_recipient_zip_last_4_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:51:13)
+    Failed [  6.11s] test  not_null_economics__fed_usaspending_assistance_full_funding_opportunity_number (models/marts/economics/schema_fed_usaspending_assistance_full.yml:72:13)
+    Failed [ 10.84s] test  not_null_economics__fed_usaspending_assistance_full_correction_delete_indicator_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:84:13)
+    Failed [  1.99s] test  not_null_economics__fed_usaspending_assistance_full_action_type_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:87:13)
+    Failed [  2.61s] test  not_null_economics__fed_usaspending_assistance_full_funding_office_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:30:13)
+    Failed [  3.06s] test  not_null_economics__fed_usaspending_assistance_full_modification_number (models/marts/economics/schema_fed_usaspending_assistance_full.yml:9:13)
+    Failed [  3.73s] test  not_null_economics__fed_usaspending_assistance_full_recipient_city_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:36:13)
+    Failed [  1.36s] test  not_null_economics__fed_usaspending_assistance_full_recipient_country_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:33:13)
+    Failed [  3.97s] test  not_null_economics__fed_usaspending_assistance_full_business_types_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:81:13)
+    Failed [  4.14s] test  not_null_economics__fed_usaspending_assistance_full_cfda_number (models/marts/economics/schema_fed_usaspending_assistance_full.yml:69:13)
+    Passed [  1.55s] test  not_null_economics__fed_usaspending_assistance_full_awarding_agency_code
+    Failed [  4.20s] test  not_null_economics__fed_usaspending_assistance_full_assistance_type_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:75:13)
+    Failed [  3.05s] test  not_null_economics__fed_usaspending_assistance_full_recipient_foreign_postal_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:54:13)
+    Failed [  1.24s] test  not_null_economics__fed_usaspending_assistance_full_primary_place_of_performance_country_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:57:13)
+    Failed [  2.92s] test  not_null_economics__fed_usaspending_assistance_full_sai_number (models/marts/economics/schema_fed_usaspending_assistance_full.yml:12:13)
+    Failed [  2.15s] test  not_null_economics__fed_usaspending_assistance_full_primary_place_of_performance_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:60:13)
+    Failed [  6.26s] test  not_null_economics__fed_usaspending_assistance_full_awarding_office_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:21:13)
+    Failed [  4.27s] test  not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_recipient_county_fips_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:39:13)
+    Failed [  2.81s] test  not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_place_of_performance_state_fips_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:66:13)
+    Failed [  2.73s] test  not_null_economics__fed_usaspending_assistance_full_business_funds_indicator_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:78:13)
+    Failed [  1.14s] test  not_null_economics__fed_usaspending_assistance_full_record_type_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:90:13)
+    Failed [  2.08s] test  not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_place_of_performance_county_fips_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:63:13)
+    Failed [  2.62s] test  not_null_economics__fed_usaspending_assistance_full_recipient_state_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:45:13)
+    Failed [  3.47s] test  not_null_economics__fed_usaspending_assistance_full_recipient_zip_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:48:13)
+    Failed [  6.06s] test  not_null_economics__fed_usaspending_assistance_full_funding_agency_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:24:13)
+    Failed [  2.95s] test  not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_recipient_state_fips_code (models/marts/economics/schema_fed_usaspending_assistance_full.yml:42:13)
+    Passed [ 11.61s] test  unique_economics__fed_usaspending_assistance_full_assistance_transaction_unique_key
+
+====================== Test Failures =======================
+Test failed (34741338 failed row(s)): not_null_economics__fed_usaspending_assistance_full_funding_sub_agency_code
+Test failed (80153309 failed row(s)): not_null_economics__fed_usaspending_assistance_full_recipient_zip_last_4_code
+Test failed (124834126 failed row(s)): not_null_economics__fed_usaspending_assistance_full_funding_opportunity_number
+Test failed (114842879 failed row(s)): not_null_economics__fed_usaspending_assistance_full_correction_delete_indicator_code
+Test failed (11325302 failed row(s)): not_null_economics__fed_usaspending_assistance_full_action_type_code
+Test failed (37875691 failed row(s)): not_null_economics__fed_usaspending_assistance_full_funding_office_code
+Test failed (57231031 failed row(s)): not_null_economics__fed_usaspending_assistance_full_modification_number
+Test failed (23968743 failed row(s)): not_null_economics__fed_usaspending_assistance_full_recipient_city_code
+Test failed (8812378 failed row(s)): not_null_economics__fed_usaspending_assistance_full_recipient_country_code
+Test failed (642 failed row(s)): not_null_economics__fed_usaspending_assistance_full_business_types_code
+Test failed (1223 failed row(s)): not_null_economics__fed_usaspending_assistance_full_cfda_number
+Test failed (2 failed row(s)): not_null_economics__fed_usaspending_assistance_full_assistance_type_code
+Test failed (128131302 failed row(s)): not_null_economics__fed_usaspending_assistance_full_recipient_foreign_postal_code
+Test failed (6678813 failed row(s)): not_null_economics__fed_usaspending_assistance_full_primary_place_of_performance_country_code
+Test failed (31113709 failed row(s)): not_null_economics__fed_usaspending_assistance_full_sai_number
+Test failed (1241277 failed row(s)): not_null_economics__fed_usaspending_assistance_full_primary_place_of_performance_code
+Test failed (37715554 failed row(s)): not_null_economics__fed_usaspending_assistance_full_awarding_office_code
+Test failed (612695 failed row(s)): not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_recipient_county_fips_code
+Test failed (2130908 failed row(s)): not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_place_of_performance_state_fips_code
+Test failed (834410 failed row(s)): not_null_economics__fed_usaspending_assistance_full_business_funds_indicator_code
+Test failed (31 failed row(s)): not_null_economics__fed_usaspending_assistance_full_record_type_code
+Test failed (5468774 failed row(s)): not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_place_of_performance_county_fips_code
+Test failed (421070 failed row(s)): not_null_economics__fed_usaspending_assistance_full_recipient_state_code
+Test failed (21303680 failed row(s)): not_null_economics__fed_usaspending_assistance_full_recipient_zip_code
+Test failed (34220267 failed row(s)): not_null_economics__fed_usaspending_assistance_full_funding_agency_code
+Test failed (469680 failed row(s)): not_null_economics__fed_usaspending_assistance_full_prime_award_transaction_recipient_state_fips_code
+
+==================== Execution Summary =====================
+Finished 'build' with 26 errors for target 'dev' [54.4s]
+Processed: 1 model | 29 tests
+Summary: 30 total | 4 success | 26 error

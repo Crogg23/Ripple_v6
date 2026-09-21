@@ -3,7 +3,7 @@
 -- GRAIN: one row per federal assistance award transaction
 --
 -- MATERIALIZED AS A VIEW, not a table (switched 2026-08-22): straight passthrough of a
--- 19.9M-row landing table with guarded casts only -- same call as its contracts twin,
+-- landing data with guarded casts only (19.9M rows when written; 128.2M since the 2026-09-21 repoint) -- same call as its contracts twin,
 -- which documents the rationale. If a real transform lands here later, switch it back.
 --
 -- TYPED 2026-08-22: this model had all 112 columns as TEXT -- every obligation amount,
@@ -14,8 +14,51 @@
 -- nothing real. ZIP, FIPS, and code columns stay TEXT on purpose -- casting strips
 -- leading zeros (the 2026-08-10 repair).
 
+-- REPOINTED 2026-09-21: this used to read FED_USASPENDING_ASSISTANCE_FULL, which the download cut at exactly
+-- 1,000,000 rows per fiscal year (19 of 20 years sat on the cap). The uncapped data landed 2026-09-10 and 09-11 as
+-- one table per fiscal year, FY2007 to FY2026: 128,155,142 rows, every day of every year present, and
+-- ASSISTANCE_TRANSACTION_UNIQUE_KEY 100 percent unique (checked live on five of the twenty). Those tables spell
+-- their columns in capitals with underscores; the capped table used quoted lower case, two names with a hyphen.
+-- The loop below hands the select the old spellings, so nothing under it had to change.
+{% set business_columns = [
+    'assistance_transaction_unique_key', 'assistance_award_unique_key', 'award_id_fain', 'modification_number',
+    'award_id_uri', 'sai_number', 'federal_action_obligation', 'total_obligated_amount',
+    'total_outlayed_amount_for_overall_award', 'indirect_cost_federal_share_amount', 'non_federal_funding_amount', 'total_non_federal_funding_amount',
+    'face_value_of_loan', 'original_loan_subsidy_cost', 'total_face_value_of_loan', 'total_loan_subsidy_cost',
+    'generated_pragmatic_obligations', 'disaster_emergency_fund_codes_for_overall_award', 'outlayed_amount_from_COVID-19_supplementals_for_overall_award', 'obligated_amount_from_COVID-19_supplementals_for_overall_award',
+    'outlayed_amount_from_IIJA_supplemental_for_overall_award', 'obligated_amount_from_IIJA_supplemental_for_overall_award', 'action_date', 'action_date_fiscal_year',
+    'period_of_performance_start_date', 'period_of_performance_current_end_date', 'awarding_agency_code', 'awarding_agency_name',
+    'awarding_sub_agency_code', 'awarding_sub_agency_name', 'awarding_office_code', 'awarding_office_name',
+    'funding_agency_code', 'funding_agency_name', 'funding_sub_agency_code', 'funding_sub_agency_name',
+    'funding_office_code', 'funding_office_name', 'treasury_accounts_funding_this_award', 'federal_accounts_funding_this_award',
+    'object_classes_funding_this_award', 'program_activities_funding_this_award', 'recipient_uei', 'recipient_duns',
+    'recipient_name', 'recipient_name_raw', 'recipient_parent_uei', 'recipient_parent_duns',
+    'recipient_parent_name', 'recipient_parent_name_raw', 'recipient_country_code', 'recipient_country_name',
+    'recipient_address_line_1', 'recipient_address_line_2', 'recipient_city_code', 'recipient_city_name',
+    'prime_award_transaction_recipient_county_fips_code', 'recipient_county_name', 'prime_award_transaction_recipient_state_fips_code', 'recipient_state_code',
+    'recipient_state_name', 'recipient_zip_code', 'recipient_zip_last_4_code', 'prime_award_transaction_recipient_cd_original',
+    'prime_award_transaction_recipient_cd_current', 'recipient_foreign_city_name', 'recipient_foreign_province_name', 'recipient_foreign_postal_code',
+    'primary_place_of_performance_scope', 'primary_place_of_performance_country_code', 'primary_place_of_performance_country_name', 'primary_place_of_performance_code',
+    'primary_place_of_performance_city_name', 'prime_award_transaction_place_of_performance_county_fips_code', 'primary_place_of_performance_county_name', 'prime_award_transaction_place_of_performance_state_fips_code',
+    'primary_place_of_performance_state_name', 'primary_place_of_performance_zip_4', 'prime_award_transaction_place_of_performance_cd_original', 'prime_award_transaction_place_of_performance_cd_current',
+    'primary_place_of_performance_foreign_location', 'cfda_number', 'cfda_title', 'funding_opportunity_number',
+    'funding_opportunity_goals_text', 'assistance_type_code', 'assistance_type_description', 'transaction_description',
+    'prime_award_base_transaction_description', 'business_funds_indicator_code', 'business_funds_indicator_description', 'business_types_code',
+    'business_types_description', 'correction_delete_indicator_code', 'correction_delete_indicator_description', 'action_type_code',
+    'action_type_description', 'record_type_code', 'record_type_description', 'highly_compensated_officer_1_name',
+    'highly_compensated_officer_1_amount', 'highly_compensated_officer_2_name', 'highly_compensated_officer_2_amount', 'highly_compensated_officer_3_name',
+    'highly_compensated_officer_3_amount', 'highly_compensated_officer_4_name', 'highly_compensated_officer_4_amount', 'highly_compensated_officer_5_name',
+    'highly_compensated_officer_5_amount', 'usaspending_permalink', 'initial_report_date', 'last_modified_date'
+] %}
+
 with source as (
-    select * from {{ source('ripple_raw', 'FED_USASPENDING_ASSISTANCE_FULL') }}
+    {% for fy in range(2007, 2027) %}
+    select
+        {% for c in business_columns %}{{ c | upper | replace('-', '_') }} as "{{ c }}"{{ ',' if not loop.last }}
+        {% endfor %}
+    from {{ source('ripple_raw', 'FED_USASPENDING_ASSISTANCE_FY' ~ fy) }}
+    {{ 'union all' if not loop.last }}
+    {% endfor %}
 )
 
 select
