@@ -112,6 +112,8 @@ def plan_file(path: Path):
             kind = "date"
         elif fn == "date" and fmt in EIGHT_DIGIT:
             kind = "date_fmt"
+        elif fn in ("timestamp_tz", "timestamp_ltz") and len(args) == 1:
+            kind = "ts_tz"   # keeps its offset and its TIMESTAMP_TZ type
         elif fn.startswith("timestamp") and len(args) == 1:
             kind = "ts"
         else:
@@ -152,10 +154,22 @@ def has_fraction(conn, table: str, exprs: list[str]) -> dict[str, bool | None]:
         return {e: None for e in exprs}
 
 
+def leading_zeros(conn, table: str, exprs: list[str]) -> dict[str, int]:
+    """Rows where the value is digits with a leading zero: an ID, and a number cast is already eating the zero."""
+    from connect import db
+
+    cols = ", ".join(f"count_if(regexp_like(trim(({e})::string), '0[0-9]+'))" for e in exprs)
+    try:
+        return dict(zip(exprs, db.rows(conn, f"select {cols} from {table}")[0]))
+    except Exception:  # noqa: BLE001
+        return {e: 0 for e in exprs}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--refs", action="store_true", help="work on marts that read ref() instead of source()")
+    ap.add_argument("--staging", action="store_true", help="work on models/staging instead of models/marts")
     opts = ap.parse_args()
 
     from connect import db
@@ -163,20 +177,26 @@ def main() -> int:
     conn = db.connect()
     changed_files = changed_calls = 0
     leftovers: list[str] = []
-    for path in sorted(MARTS.rglob("*.sql")):
+    root = MARTS.parent / "staging" if opts.staging else MARTS
+    for path in sorted(root.rglob("*.sql")):
         raw = path.read_text(encoding="utf-8")
         if re.search(r"enabled\s*=\s*false", raw, re.I) or (opts.refs == ("source(" in raw)):
             continue
         text, calls = plan_file(path)
         if not calls:
             continue
-        rel = path.relative_to(MARTS).as_posix()
+        rel = path.relative_to(root).as_posix()
 
         number_exprs = sorted({a[0] for _, _, k, a in calls if k == "number"})
         fractions: dict[str, bool | None] = {}
         if number_exprs:
             relation = relation_for(conn, text)
             fractions = has_fraction(conn, relation, number_exprs) if relation else {e: None for e in number_exprs}
+            zeros = leading_zeros(conn, relation, number_exprs) if relation else {}
+            for e, n in zeros.items():
+                if n:
+                    fractions[e] = None
+                    leftovers.append(f"{rel}: {e[:50]} has {n:,} values with a leading zero -- an ID, not a number")
 
         # innermost-last so nested spans never overlap a rewritten outer span
         spans, done = [], 0
@@ -196,6 +216,8 @@ def main() -> int:
                 new = f"{{{{ stg_date({arg}, {args[1]}) }}}}"
             elif kind == "ts":
                 new = f"{{{{ stg_ts({arg}) }}}}"
+            elif kind == "ts_tz":
+                new = f"{{{{ stg_ts_tz({arg}) }}}}"
             else:
                 frac = fractions.get(args[0])
                 if frac is None:

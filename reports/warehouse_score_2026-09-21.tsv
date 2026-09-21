@@ -6,17 +6,17 @@ S4	USASpending 1M-per-year cap	3.5	PASS	3.5	contracts timeline rows with a broke
 S5	BJS and HUDOC capped samples	3.5	PASS	3.5	FED_BJS_DATA_FULL 68,852 -> mart 68,852; INTL_HUDOC_FULL 211,778 -> mart 211,778
 S6	Part B floor of 11	3.5	0.75	2.62	coverage column live, 8 null, 0 over 100; a plain sum off the table reaches 81.0 percent of the provider totals
 S7	DME family undercount	3.5	PASS	3.5	families plus the unassigned remainder miss the total on 0 rows
-S8	Public views open	3.5	PASS	3.5	254 of 254 public views return a real row
+S8	Public views open	3.5	PASS	3.5	252 of 252 public views return a real row
 S9	ARCOS row key	3.5	PASS	3.5	ARCOS_ROW_KEY 178,598,026 distinct over 178,598,026 rows, 0 null
-M1	Orphan staging views	1.2	OPEN	0.0	203 live staging views have no model file behind them, e.g. STG_FED_CFPB_HMDA__RECORDS, STG_FED_CONGRESS_COMMITTEE_MEMBERSHIP__RECORDS, STG_FED_CONSOLIDATED_SCREENING_LIST__SCREENED_PARTY
+M1	Orphan staging views	1.2	PASS	1.2	0 live staging views have no model file behind them, e.g. 
 M2	Staging files with bare casts	1.2	OPEN	0.0	1912 bare casts in 186 staging files
 M3	Part D vintage	1.2	PASS	1.2	DATA_YEAR live on both Part D marts: 2022 and 2024; typed by hand from CMS docs, the landing tables carry no year
 M4	CHOW flag constant	1.2	PASS	1.2	constant column removed from the nursing home mart
 M5	Unique tests that cannot fail	1.2	PASS	1.2	6 of 6 models carry the per-load key re-proof
-M6	Junk public views	1.2	OPEN	0.0	FRAUD_SETTLEMENTS: 12 rows; BENEFICIAL_OWNERSHIP_REGISTRY: 1 rows
+M6	Junk public views	1.2	PASS	1.2	FRAUD_SETTLEMENTS: gone; BENEFICIAL_OWNERSHIP_REGISTRY: gone
 M7	SDWA violation id grain	1.2	PASS	1.2	grain documented: True; compound key tested: True
 N1	Staging views hiding rows	0.3	OPEN	0.0	MANUAL 2026-09-21: Audit found 42 staging views hiding a row or two on one load. Not re-swept since. Close by running scripts/sweep_staging_rows.py and recording 0 hidden.
-N2	Frozen schema copy	0.3	OPEN	0.0	DBT_CROGERS_RIPPLE still live
+N2	Frozen schema copy	0.3	PASS	0.3	DBT_CROGERS_RIPPLE gone
 N3	Macro and script sync test	0.3	OPEN	0.0	sync test does not exist
 N4	Facility affiliation label	0.3	OPEN	0.0	label missing
 N5	Marts with no test	0.3	OPEN	0.0	57 of 617 enabled marts have no test at all
@@ -27,4 +27,4 @@ D2	Loader writes the ingest stamp wrong	0.5	OPEN	-0.5	MANUAL 2026-09-21: Loader 
 D3	Shelf refresh unsafe to run	0.5	OPEN	-0.5	MANUAL 2026-09-21: thelibrary_refresh.py --apply would repoint 33 live views and flatten 113 typed views. Close with a dry run that changes 0 of 254.
 D4	Rollback files are not runnable undo	0.5	OPEN	-0.5	MANUAL 2026-09-21: outputs/library_view_rollback_*.sql use unqualified view names and one has no COPY GRANTS. Close by qualifying names and test-compiling each statement.
 D5	Stale catalog types on public views	0.5	PASS	-0.0	0 public views with stale catalog types
-	SCORE			89.7	full run
+	SCORE			92.4	full run
