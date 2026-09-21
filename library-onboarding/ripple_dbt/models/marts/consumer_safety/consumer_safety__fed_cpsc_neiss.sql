@@ -12,8 +12,8 @@ with source as (
 select
     trim("CPSC_CASE_NUMBER")                        as case_number,
     try_to_date(trim("TREATMENT_DATE"), 'MM/DD/YYYY') as treatment_date,
-    try_to_number("_SRC_YEAR")                      as data_year,
-    try_to_number("AGE")                            as age,
+    {{ stg_int('"_SRC_YEAR"') }}                      as data_year,
+    {{ stg_int('"AGE"') }}                            as age,
     trim("SEX")                                     as sex_code,
     trim("RACE")                                    as race_code,
     trim("HISPANIC")                                as hispanic_code,
@@ -29,7 +29,7 @@ select
     trim("DRUG")                                    as drug_involved,
     "NARRATIVE"                                     as narrative,
     trim("STRATUM")                                 as stratum,
-    try_to_double("WEIGHT")                         as statistical_weight,
+    {{ stg_float('"WEIGHT"') }}                         as statistical_weight,
     -- RECOVERED 2026-08-20 (time-index scan): the LOADER wrote this stamp
     -- already broken -- all 9,794,971 rows land in the year 56,569,708 because
     -- microseconds were cast as seconds before the row ever reached dbt. The

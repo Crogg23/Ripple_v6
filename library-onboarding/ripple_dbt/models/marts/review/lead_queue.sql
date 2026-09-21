@@ -298,8 +298,8 @@ ais_agg AS (
     SELECT
         REGEXP_REPLACE(UPPER(imo), '[^0-9]', '')             AS imo,
         COUNT(*)                                             AS recs,
-        MIN(TRY_TO_TIMESTAMP_NTZ(basedatetime))              AS min_seen,
-        MAX(TRY_TO_TIMESTAMP_NTZ(basedatetime))              AS max_seen,
+        MIN({{ stg_ts('basedatetime') }})              AS min_seen,
+        MAX({{ stg_ts('basedatetime') }})              AS max_seen,
         ARRAY_SLICE(
             ARRAY_AGG(DISTINCT vesselname)
                 WITHIN GROUP (ORDER BY vesselname),

@@ -21,7 +21,7 @@ select
     RECORD:href::string          as href,
     RECORD:url::string           as resolved_url,
     RECORD:link_text::string     as link_text,
-    try_to_timestamp_ntz(RECORD:fetched_at_utc::string) as fetched_at_utc,
+    {{ stg_ts('RECORD:fetched_at_utc::string') }} as fetched_at_utc,
     _INGESTED_AT                 as _loaded_at
 
 from source

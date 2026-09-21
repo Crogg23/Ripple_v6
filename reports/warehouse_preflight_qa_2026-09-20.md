@@ -516,3 +516,56 @@ not an ID, so require source_id to match too. Claude's view: those 6 are exactly
 fallback was written for, and the name was assigned on purpose in the names file; requiring source_id
 would send NCUA and FAA back to the wrong shelf. Chris decides.
 Also noted: the shelf-keeper reads the 2026-07-12 registry snapshot, not the live views; drift is 2 views today.
+
+## Re-score, 2026-09-21 morning — 83 of 100, up from 58
+
+The 58 was a judgement call with no formula. This re-score fits one to it so the two numbers compare:
+severe 3.5 points, moderate 1.2, minor 0.3. 9 x 3.5 + 7 x 1.2 + 7 x 0.3 = 42 lost, which is the 58.
+Closed live earns the points back. Caveat-only or half-fixed earns half. Open earns none.
+Every state below was read live through the Python door, read-only, 2026-09-21.
+
+| Finding | State | Live proof | Points back |
+|---|---|---|---|
+| Bare casts in marts | closed | marts last altered 2026-09-20; compile 9,727 of 9,727 | 3.5 |
+| try_to_number rounding | closed | POS_OTHER PHYSN_CNT holds a fraction on 7,964 of 44,429 rows | 3.5 |
+| Public shelf views erroring | closed | 254 of 254 open with a real one-row fetch, re-run today | 3.5 |
+| ARCOS has no row key | closed as documented | mart header and schema both say never count on TRANSACTION_ID | 3.5 |
+| FEC memo double-count | half | c2c mart carries the flag, 848,087 false and 18,643 true; public aggregate last altered 2026-07-12, 400 rows, untouched | 1.75 |
+| USASpending 1M cap | half | timeline clock 0 bad of 93,119,582; assistance has no R2 reload | 1.75 |
+| BJS and HUDOC capped samples | half | staging views read 68,852 and 211,778; the MART TABLES still hold 1,000 and 2,000, last altered 2026-09-19 | 1.75 |
+| Part B floor of 11 | half | caveat written, no filter | 1.75 |
+| DME family undercount | half | caveat written, no filter | 1.75 |
+| 6 untestable unique tests | closed | fixed in wave 1, ran in the rebuild | 1.2 |
+| Part D vintage, CHOW constant | half each | caveats written | 1.2 |
+| 7 renamed-away staging views | open | STG_FED_EPA_ECHO__RECORDS still live beside __FACILITIES | 0 |
+| 2 junk public views | open | FRAUD_SETTLEMENTS 12 rows, BENEFICIAL_OWNERSHIP_REGISTRY 1 row, both still live | 0 |
+| Hand-written staging outside the cast sweep, SDWA grain, all 7 minors | open or not re-checked | DBT_CROGERS_RIPPLE schema still live | 0 |
+
+58 + 22.75 severe + 2.4 moderate = 83.15.
+
+Correction to yesterday's record: the BJS and HUDOC repoint reached staging only. `scripts/run_fix_rebuild.ps1`
+line 86 names the two staging models, not the two marts, and both marts are `materialized='table'`.
+The 211,778-row HUDOC test result came from staging. The served marts are still the capped samples.
+
+Not scored, found yesterday, still standing: `thelibrary_refresh.py --apply` is unsafe to run.
+
+### Skeptic pass on the re-score — DISAGREE, both verdicts recorded
+
+Claude: 83. Skeptic: about 77, range 75 to 79. Chris decides.
+
+Holds, re-run by the skeptic: 254 of 254 public views open; POS_OTHER keeps fractions on all 20 flagged
+columns, not only PHYSN_CNT; FEC c2c flag 848,087 false and 18,643 true; public FEC aggregate 400 rows,
+last altered 2026-07-12; BJS and HUDOC marts still 1,000 and 2,000 rows; the arithmetic adds up.
+
+Skeptic's cuts:
+- Bare casts scored closed, should be half, minus 1.75. `dbt compile` proves syntax, not a guard. The
+  skeptic re-ran the audit's detector over enabled marts: 41 live marts still read `source()` with bare
+  `try_to_` casts, 14 number and 30 date. Claude re-checked the two named files: the live ARCOS mart
+  `health__fed_dea_arcos.sql` has 7 bare casts and 0 guard macros; yesterday's ARCOS cast fix landed on
+  `uncategorized__fed_dea_arcos_full.sql`, which is `enabled=false`. `economics__fed_usaspending_contracts_full.sql`
+  has 46 bare casts and is the file that documents the 1970 incident. Claude agrees with this cut.
+- ARCOS row key scored full while Part B and DME got half for the same remedy, minus 1.75. Claude agrees.
+- BJS and HUDOC half is generous since the served tables are unchanged, quarter instead, minus 0.875.
+- New debt from yesterday never booked, minus 2.0: 29 not_null tests moved to warn, shelf refresh unsafe,
+  rollback files are records not undo, USAspending loader still writes the timestamp wrong.
+- Credit owed back, plus 0.6: the 7 minors were zeroed without being checked. Not checked is not open.

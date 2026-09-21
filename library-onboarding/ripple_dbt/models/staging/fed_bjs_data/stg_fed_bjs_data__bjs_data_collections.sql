@@ -75,7 +75,8 @@ renamed as (
         {{ ripple_num('NEWWGT') }}         as adjusted_weight,
 
         -- pipeline metadata
-        _INGESTED_AT                       as _ingested_at,
+        -- landing _INGESTED_AT is a TIMESTAMP that swallowed epoch micros as seconds (year 56 million); re-read the epoch
+        {{ landing_parse_audit_epoch('date_part(epoch_second, _INGESTED_AT)') }} as _ingested_at,
         _SOURCE_RUN_ID                     as _source_run_id
 
     from source

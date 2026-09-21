@@ -1,4 +1,5 @@
 {{ config(materialized='table', schema='FOREIGN_INFLUENCE') }}
+-- Fixed 2026-09-21: ID columns were cast to FLOAT by ripple_num, which drops leading zeros and rounds past 15 digits. Now TEXT via stg_id_text (ruling 2026-09-19: an ID stays text).
 
 with base as (
 
@@ -13,7 +14,7 @@ final as (
         fara_registration_key,
 
         -- cross-source join identifiers
-        {{ ripple_num('registration_number') }} as registration_number,
+        {{ stg_id_text('registration_number') }} as registration_number,
         person_name,
         company_name                                               as company_id,
         state,

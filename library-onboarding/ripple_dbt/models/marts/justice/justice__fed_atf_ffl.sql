@@ -33,6 +33,6 @@ select
     USER_MAIL_STATE as mail_state,
     USER_MAIL_ZIP_CODE as mail_zip_code,
     USER_VOICE_PHONE as voice_phone,
-    try_to_double(X) as longitude,
-    try_to_double(Y) as latitude
+    {{ stg_float('X') }} as longitude,
+    {{ stg_float('Y') }} as latitude
 from source

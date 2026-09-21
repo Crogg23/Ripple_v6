@@ -64,8 +64,8 @@ select
     trim("FEDERAL_AGENCY_NAME")                     as federal_agency,
     trim("TRIBAL_LAND_CODE")                        as tribal_land_code,
     trim("TRIBAL_LAND_NAME")                        as tribal_land_name,
-    try_to_double("LATITUDE83")                     as latitude,
-    try_to_double("LONGITUDE83")                    as longitude,
+    {{ stg_float('"LATITUDE83"') }}                     as latitude,
+    {{ stg_float('"LONGITUDE83"') }}                    as longitude,
     trim("PGM_SYS_ACRNMS")                         as program_system_acronyms,
     -- FIXED 2026-08-20 (time-index scan): EPA ships these as DD-MON-YY with a
     -- TWO-DIGIT year ('01-MAR-00', '02-JUN-16', '25-SEP-25'). A bare try_to_date

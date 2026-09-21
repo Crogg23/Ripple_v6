@@ -25,25 +25,25 @@ select
     "modification_number" as MODIFICATION_NUMBER,
     "award_id_uri" as AWARD_ID_URI,
     "sai_number" as SAI_NUMBER,
-    try_to_double("federal_action_obligation") as FEDERAL_ACTION_OBLIGATION,
-    try_to_double("total_obligated_amount") as TOTAL_OBLIGATED_AMOUNT,
-    try_to_double("total_outlayed_amount_for_overall_award") as TOTAL_OUTLAYED_AMOUNT_FOR_OVERALL_AWARD,
-    try_to_double("indirect_cost_federal_share_amount") as INDIRECT_COST_FEDERAL_SHARE_AMOUNT,
-    try_to_double("non_federal_funding_amount") as NON_FEDERAL_FUNDING_AMOUNT,
-    try_to_double("total_non_federal_funding_amount") as TOTAL_NON_FEDERAL_FUNDING_AMOUNT,
-    try_to_double("face_value_of_loan") as FACE_VALUE_OF_LOAN,
-    try_to_double("original_loan_subsidy_cost") as ORIGINAL_LOAN_SUBSIDY_COST,
-    try_to_double("total_face_value_of_loan") as TOTAL_FACE_VALUE_OF_LOAN,
-    try_to_double("total_loan_subsidy_cost") as TOTAL_LOAN_SUBSIDY_COST,
-    try_to_double("generated_pragmatic_obligations") as GENERATED_PRAGMATIC_OBLIGATIONS,
+    {{ stg_float('"federal_action_obligation"') }} as FEDERAL_ACTION_OBLIGATION,
+    {{ stg_float('"total_obligated_amount"') }} as TOTAL_OBLIGATED_AMOUNT,
+    {{ stg_float('"total_outlayed_amount_for_overall_award"') }} as TOTAL_OUTLAYED_AMOUNT_FOR_OVERALL_AWARD,
+    {{ stg_float('"indirect_cost_federal_share_amount"') }} as INDIRECT_COST_FEDERAL_SHARE_AMOUNT,
+    {{ stg_float('"non_federal_funding_amount"') }} as NON_FEDERAL_FUNDING_AMOUNT,
+    {{ stg_float('"total_non_federal_funding_amount"') }} as TOTAL_NON_FEDERAL_FUNDING_AMOUNT,
+    {{ stg_float('"face_value_of_loan"') }} as FACE_VALUE_OF_LOAN,
+    {{ stg_float('"original_loan_subsidy_cost"') }} as ORIGINAL_LOAN_SUBSIDY_COST,
+    {{ stg_float('"total_face_value_of_loan"') }} as TOTAL_FACE_VALUE_OF_LOAN,
+    {{ stg_float('"total_loan_subsidy_cost"') }} as TOTAL_LOAN_SUBSIDY_COST,
+    {{ stg_float('"generated_pragmatic_obligations"') }} as GENERATED_PRAGMATIC_OBLIGATIONS,
     "disaster_emergency_fund_codes_for_overall_award" as DISASTER_EMERGENCY_FUND_CODES_FOR_OVERALL_AWARD,
-    try_to_double("outlayed_amount_from_COVID-19_supplementals_for_overall_award") as OUTLAYED_AMOUNT_FROM_COVID_19_SUPPLEMENTALS_FOR_OVERALL_AWARD,
-    try_to_double("obligated_amount_from_COVID-19_supplementals_for_overall_award") as OBLIGATED_AMOUNT_FROM_COVID_19_SUPPLEMENTALS_FOR_OVERALL_AWARD,
-    try_to_double("outlayed_amount_from_IIJA_supplemental_for_overall_award") as OUTLAYED_AMOUNT_FROM_IIJA_SUPPLEMENTAL_FOR_OVERALL_AWARD,
-    try_to_double("obligated_amount_from_IIJA_supplemental_for_overall_award") as OBLIGATED_AMOUNT_FROM_IIJA_SUPPLEMENTAL_FOR_OVERALL_AWARD,
-    try_to_date("action_date") as ACTION_DATE,
+    {{ stg_float('"outlayed_amount_from_COVID-19_supplementals_for_overall_award"') }} as OUTLAYED_AMOUNT_FROM_COVID_19_SUPPLEMENTALS_FOR_OVERALL_AWARD,
+    {{ stg_float('"obligated_amount_from_COVID-19_supplementals_for_overall_award"') }} as OBLIGATED_AMOUNT_FROM_COVID_19_SUPPLEMENTALS_FOR_OVERALL_AWARD,
+    {{ stg_float('"outlayed_amount_from_IIJA_supplemental_for_overall_award"') }} as OUTLAYED_AMOUNT_FROM_IIJA_SUPPLEMENTAL_FOR_OVERALL_AWARD,
+    {{ stg_float('"obligated_amount_from_IIJA_supplemental_for_overall_award"') }} as OBLIGATED_AMOUNT_FROM_IIJA_SUPPLEMENTAL_FOR_OVERALL_AWARD,
+    {{ stg_date('"action_date"') }} as ACTION_DATE,
     -- fiscal-YEAR number, not a date (same trap fixed on the contracts twin 2026-08-18)
-    try_to_number("action_date_fiscal_year") as ACTION_DATE_FISCAL_YEAR,
+    {{ stg_int('"action_date_fiscal_year"') }} as ACTION_DATE_FISCAL_YEAR,
     -- SENTINEL NULLED 2026-08-20 (time-index scan): USAspending writes 0001-01-01
     -- to mean "no date on file" -- 56,205 rows on the start date and 56,211 on the
     -- current-end date. Left alone it drags any earliest-date reading to the year 1.
@@ -52,13 +52,13 @@ select
     -- survive (years 5, 11, 207, 1008, 3008) plus 9999-09-30 meaning "no end date" --
     -- 14 rows on start, 35 on end, out of 19.9M. Nulled outside 1950-2100 so a single
     -- typo can't drag min/max readings a millennium off.
-    case when try_to_date(nullif("period_of_performance_start_date", '0001-01-01'))
+    case when {{ stg_date("nullif(\"period_of_performance_start_date\", '0001-01-01')") }}
               between '1950-01-01' and '2100-01-01'
-         then try_to_date(nullif("period_of_performance_start_date", '0001-01-01')) end
+         then {{ stg_date("nullif(\"period_of_performance_start_date\", '0001-01-01')") }} end
         as PERIOD_OF_PERFORMANCE_START_DATE,
-    case when try_to_date(nullif("period_of_performance_current_end_date", '0001-01-01'))
+    case when {{ stg_date("nullif(\"period_of_performance_current_end_date\", '0001-01-01')") }}
               between '1950-01-01' and '2100-01-01'
-         then try_to_date(nullif("period_of_performance_current_end_date", '0001-01-01')) end
+         then {{ stg_date("nullif(\"period_of_performance_current_end_date\", '0001-01-01')") }} end
         as PERIOD_OF_PERFORMANCE_CURRENT_END_DATE,
     "awarding_agency_code" as AWARDING_AGENCY_CODE,
     "awarding_agency_name" as AWARDING_AGENCY_NAME,
@@ -134,16 +134,16 @@ select
     "record_type_code" as RECORD_TYPE_CODE,
     "record_type_description" as RECORD_TYPE_DESCRIPTION,
     "highly_compensated_officer_1_name" as HIGHLY_COMPENSATED_OFFICER_1_NAME,
-    try_to_double("highly_compensated_officer_1_amount") as HIGHLY_COMPENSATED_OFFICER_1_AMOUNT,
+    {{ stg_float('"highly_compensated_officer_1_amount"') }} as HIGHLY_COMPENSATED_OFFICER_1_AMOUNT,
     "highly_compensated_officer_2_name" as HIGHLY_COMPENSATED_OFFICER_2_NAME,
-    try_to_double("highly_compensated_officer_2_amount") as HIGHLY_COMPENSATED_OFFICER_2_AMOUNT,
+    {{ stg_float('"highly_compensated_officer_2_amount"') }} as HIGHLY_COMPENSATED_OFFICER_2_AMOUNT,
     "highly_compensated_officer_3_name" as HIGHLY_COMPENSATED_OFFICER_3_NAME,
-    try_to_double("highly_compensated_officer_3_amount") as HIGHLY_COMPENSATED_OFFICER_3_AMOUNT,
+    {{ stg_float('"highly_compensated_officer_3_amount"') }} as HIGHLY_COMPENSATED_OFFICER_3_AMOUNT,
     "highly_compensated_officer_4_name" as HIGHLY_COMPENSATED_OFFICER_4_NAME,
-    try_to_double("highly_compensated_officer_4_amount") as HIGHLY_COMPENSATED_OFFICER_4_AMOUNT,
+    {{ stg_float('"highly_compensated_officer_4_amount"') }} as HIGHLY_COMPENSATED_OFFICER_4_AMOUNT,
     "highly_compensated_officer_5_name" as HIGHLY_COMPENSATED_OFFICER_5_NAME,
-    try_to_double("highly_compensated_officer_5_amount") as HIGHLY_COMPENSATED_OFFICER_5_AMOUNT,
+    {{ stg_float('"highly_compensated_officer_5_amount"') }} as HIGHLY_COMPENSATED_OFFICER_5_AMOUNT,
     "usaspending_permalink" as USASPENDING_PERMALINK,
-    try_to_date("initial_report_date") as INITIAL_REPORT_DATE,
-    try_to_date("last_modified_date") as LAST_MODIFIED_DATE
+    {{ stg_date('"initial_report_date"') }} as INITIAL_REPORT_DATE,
+    {{ stg_date('"last_modified_date"') }} as LAST_MODIFIED_DATE
 from source

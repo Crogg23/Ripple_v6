@@ -19,12 +19,12 @@ with frs_geo as (
         trim("STATE_NAME")                             as state_name,
         trim("EPA_REGION_CODE")                        as epa_region,
         trim("CONGRESSIONAL_DIST_NUM")                 as congressional_district,
-        try_to_double("LATITUDE83")                    as latitude,
-        try_to_double("LONGITUDE83")                   as longitude
+        {{ stg_float('"LATITUDE83"') }}                    as latitude,
+        {{ stg_float('"LONGITUDE83"') }}                   as longitude
     from {{ source('ripple_raw', 'FED_EPA_FRS_FULL') }}
     where trim("FIPS_CODE") is not null
       and trim("FIPS_CODE") != ''
-      and try_to_double("LATITUDE83") is not null
+      and {{ stg_float('"LATITUDE83"') }} is not null
 ),
 
 aggregated as (

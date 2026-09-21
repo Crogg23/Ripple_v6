@@ -60,7 +60,7 @@ county_lookup as (
 
 select
     trim("TRANSACTION_ID")                           as transaction_id,
-    try_to_date(trim("TRANSACTION_DATE"), 'MMDDYYYY') as transaction_date,
+    {{ stg_date('trim("TRANSACTION_DATE")', 'MMDDYYYY') }} as transaction_date,
     trim("TRANSACTION_CODE")                         as transaction_code,
 
     -- Reporter (manufacturer/distributor)
@@ -88,15 +88,15 @@ select
     trim("DRUG_NAME")                                as drug_name,
     trim("INGREDIENT_NAME")                          as ingredient_name,
     trim("PRODUCT_NAME")                             as product_name,
-    try_to_double("QUANTITY")                        as quantity,
-    try_to_double("DOSAGE_UNIT")                     as dosage_units,
-    try_to_double("CALC_BASE_WT_IN_GM")              as base_weight_grams,
-    try_to_double("MME_CONVERSION_FACTOR")           as mme_conversion_factor,
-    try_to_double("DOS_STR")                         as dosage_strength,
+    {{ stg_float('"QUANTITY"') }}                        as quantity,
+    {{ stg_float('"DOSAGE_UNIT"') }}                     as dosage_units,
+    {{ stg_float('"CALC_BASE_WT_IN_GM"') }}              as base_weight_grams,
+    {{ stg_float('"MME_CONVERSION_FACTOR"') }}           as mme_conversion_factor,
+    {{ stg_float('"DOS_STR"') }}                         as dosage_strength,
     trim("MEASURE")                                  as measure,
 
     -- Derived: total MME (morphine milligram equivalents)
-    try_to_double("DOSAGE_UNIT") * try_to_double("DOS_STR") * try_to_double("MME_CONVERSION_FACTOR") as total_mme,
+    {{ stg_float('"DOSAGE_UNIT"') }} * {{ stg_float('"DOS_STR"') }} * {{ stg_float('"MME_CONVERSION_FACTOR"') }} as total_mme,
 
     -- Corporate
     trim("COMBINED_LABELER_NAME")                    as labeler_name,

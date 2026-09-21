@@ -57,8 +57,8 @@ unpivoted as (
         country_name,
         country_code,
         series_code,
-        try_to_number(substr(year_col, 3, 4)) as data_year,
-        try_to_double(year_value)             as value_usd
+        {{ stg_int('substr(year_col, 3, 4)') }} as data_year,
+        {{ stg_float('year_value') }}             as value_usd
     from raw_ids
     unpivot (
         year_value for year_col in (

@@ -1,4 +1,5 @@
 {{ config(materialized='table', schema='FINANCE') }}
+-- Fixed 2026-09-21: ID columns were cast to FLOAT by ripple_num, which drops leading zeros and rounds past 15 digits. Now TEXT via stg_id_text (ruling 2026-09-19: an ID stays text).
 
 -- Source: FEC Bulk Data -- Committee-to-Candidate (pas2/itpas2) (866730 rows)
 -- MULTI-CYCLE LOAD, intentional (verified 2026-08-11): the 2024 AND 2026 cycles are both loaded (landing CYCLE column). The 2024-only pas224 file is ~703,597 records, so the higher count vs one cycle's file is expected, not a double-load.
@@ -22,7 +23,7 @@ select
     AMNDT_IND as amndt_ind,
     RPT_TP as rpt_tp,
     TRANSACTION_PGI as transaction_pgi,
-    {{ ripple_num('IMAGE_NUM') }} as image_num,
+    {{ stg_id_text('IMAGE_NUM') }} as image_num,
     TRANSACTION_TP as transaction_tp,
     ENTITY_TP as entity_tp,
     NAME as name,
@@ -36,7 +37,7 @@ select
     OTHER_ID as other_id,
     CAND_ID as cand_id,
     TRAN_ID as tran_id,
-    {{ ripple_num('FILE_NUM') }} as file_num,
+    {{ stg_id_text('FILE_NUM') }} as file_num,
     MEMO_CD as memo_cd,
     -- memo_cd = 'X' is FEC's memo/re-statement flag: an earmarked or pass-through
     -- contribution shown a second time on the record that received it. That money

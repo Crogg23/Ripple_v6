@@ -1,4 +1,5 @@
 {{ config(materialized='table', schema='FINANCE') }}
+-- Fixed 2026-09-21: ID columns were cast to FLOAT by ripple_num, which drops leading zeros and rounds past 15 digits. Now TEXT via stg_id_text (ruling 2026-09-19: an ID stays text).
 
 -- Column names below are bare uppercase. The generated model quoted them
 -- lowercase and stopped resolving against landing, which is why this mart
@@ -54,13 +55,13 @@ select
     SUP_OPP as SUP_OPP,
     PUR as PUR,
     PAY as PAY,
-    {{ ripple_num('FILE_NUM') }} as FILE_NUM,
+    {{ stg_id_text('FILE_NUM') }} as FILE_NUM,
     AMNDT_IND as AMNDT_IND,
     TRAN_ID as TRAN_ID,
-    {{ ripple_num('IMAGE_NUM') }} as IMAGE_NUM,
+    {{ stg_id_text('IMAGE_NUM') }} as IMAGE_NUM,
     RECEIPT_DAT as RECEIPT_DAT,
     FEC_ELECTION_YR as FEC_ELECTION_YR,
-    {{ ripple_num('PREV_FILE_NUM') }} as PREV_FILE_NUM,
+    {{ stg_id_text('PREV_FILE_NUM') }} as PREV_FILE_NUM,
     DISSEM_DT as DISSEM_DT,
     "CYCLE_FILE" as CYCLE_FILE,
     "IS_SUSPECT_FILING" as IS_SUSPECT_FILING,

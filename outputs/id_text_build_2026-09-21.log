@@ -1,0 +1,50 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.06s] resolving packages from packages.yml (1 items)
+ Succeeded [  2.75s] model JUSTICE.justice__fed_ofac_sdn (table)
+ Succeeded [  4.14s] model HEALTH.health__fed_cms_hcris (table)
+ Succeeded [  5.10s] model FINANCE.finance__fed_fec_independent_expenditures (table)
+ Succeeded [  0.81s] model HEALTH.health__fed_fda_faers_drug (view)
+ Succeeded [  6.11s] model FOREIGN_INFLUENCE.foreign_influence__fed_fara_bulk (table)
+    Passed [  0.31s] test  not_null_justice__fed_ofac_sdn_ent_num
+    Passed [  0.38s] test  not_null_health__fed_cms_hcris_provider_ccn
+    Passed [  0.49s] test  unique_justice__fed_ofac_sdn_ent_num
+    Passed [  0.34s] test  not_null_health__fed_cms_hcris_rpt_rec_num
+    Passed [  0.30s] test  not_null_health__fed_cms_hcris_source_file_year
+    Passed [  0.26s] test  not_null_finance__fed_fec_independent_expenditures_cand_id
+    Passed [  0.27s] test  not_null_finance__fed_fec_independent_expenditures_spe_id
+ Succeeded [  4.82s] model FINANCE.finance__fed_fec_committee_to_candidate (table)
+    Passed [  0.73s] test  unique_health__fed_cms_hcris_rpt_rec_num
+    Passed [  0.22s] test  not_null_finance__fed_fec_independent_expenditures_tran_id
+    Passed [  0.29s] test  not_null_foreign_influence__fed_fara_bulk_is_active_registration
+    Passed [  0.41s] test  dbt_utils_unique_combination_of_columns_finance__fed_fec_independent_expenditures_file_num__tran_id
+    Passed [  0.40s] test  dbt_utils_expression_is_true_health__fed_fda_faers_drug_isr_is_not_null_or_primaryid_is_not_null
+    Passed [  0.23s] test  not_null_foreign_influence__fed_fara_bulk__ingested_at
+    Passed [  0.19s] test  accepted_values_foreign_influence__fed_fara_bulk_is_active_registration__True__False
+    Passed [  0.12s] test  not_null_foreign_influence__fed_fara_bulk_company_id
+    Passed [  0.37s] test  accepted_values_foreign_influence__fed_fara_bulk_is_active_foreign_principal__True__False
+    Passed [  0.13s] test  not_null_foreign_influence__fed_fara_bulk_fara_registration_key
+    Passed [  0.38s] test  not_null_foreign_influence__fed_fara_bulk_registration_number
+    Passed [  0.11s] test  not_null_foreign_influence__fed_fara_bulk_person_name
+    Passed [  0.10s] test  not_null_foreign_influence__fed_fara_bulk_state
+    Passed [  0.39s] test  unique_foreign_influence__fed_fara_bulk_fara_registration_key
+    Passed [  0.28s] test  not_null_foreign_influence__fed_fara_bulk_is_active_foreign_principal
+    Warned [  0.35s] test  not_null_foreign_influence__fed_fara_bulk_date (models/staging/fed_fara_bulk/schema.yml:185:13)
+    Warned [  0.29s] test  accepted_values_foreign_influence__fed_fara_bulk_document_type__Registration_Statement__Supplemental_Statement__Short_Form__Exhibit_AB__Exhibit_C__Amendment__Termination__Other (models/staging/fed_fara_bulk/schema.yml:200:13)
+    Passed [  0.20s] test  not_null_finance__fed_fec_committee_to_candidate_cmte_id
+ Succeeded [  4.89s] model ENVIRONMENT.environment__fed_epa_tri_basic_2023 (table)
+    Passed [  0.25s] test  not_null_finance__fed_fec_committee_to_candidate_other_id
+    Passed [  0.20s] test  not_null_finance__fed_fec_committee_to_candidate_zip_code
+    Passed [  0.24s] test  not_null_finance__fed_fec_committee_to_candidate_cand_id
+    Passed [  0.32s] test  not_null_finance__fed_fec_committee_to_candidate_sub_id
+    Passed [  0.20s] test  not_null_environment__fed_epa_tri_basic_2023_c_22_industry_sector_code
+    Passed [  0.26s] test  not_null_finance__fed_fec_committee_to_candidate_tran_id
+    Passed [  0.21s] test  not_null_environment__fed_epa_tri_basic_2023_c_39_tri_chemical_compound_id
+    Passed [  0.34s] test  unique_finance__fed_fec_committee_to_candidate_sub_id
+    Passed [  0.26s] test  dbt_utils_unique_combination_of_columns_environment__fed_epa_tri_basic_2023_c_1_year__c_2_trifd__c_39_tri_chemical_compound_id__c_36_doc_ctrl_num
+
+==================== Execution Summary =====================
+Finished 'build' with 2 warnings for target 'dev' [19.7s]
+Processed: 7 models | 34 tests
+Summary: 41 total | 39 success | 2 warn

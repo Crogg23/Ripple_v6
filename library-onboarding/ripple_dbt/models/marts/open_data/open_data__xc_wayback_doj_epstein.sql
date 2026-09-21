@@ -36,7 +36,7 @@ typed as (
         RECORD:mimetype::string    as mimetype,
         RECORD:statuscode::string  as status_code,
         RECORD:digest::string      as content_digest,
-        try_to_number(RECORD:length::string) as content_length_bytes,
+        {{ stg_int('RECORD:length::string') }} as content_length_bytes,
         _INGESTED_AT               as _loaded_at
 
     from source

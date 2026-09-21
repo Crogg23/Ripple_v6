@@ -37,8 +37,8 @@ select
     try_to_date(trim("DissolutionDate"), 'DD/MM/YYYY') as dissolution_date,
     try_to_date(trim("IncorporationDate"), 'DD/MM/YYYY') as incorporation_date,
     trim("Accounts.AccountCategory")                   as account_category,
-    try_to_number("Mortgages.NumMortCharges")          as num_mortgage_charges,
-    try_to_number("Mortgages.NumMortOutstanding")      as num_mortgages_outstanding,
+    {{ stg_int('"Mortgages.NumMortCharges"') }}          as num_mortgage_charges,
+    {{ stg_int('"Mortgages.NumMortOutstanding"') }}      as num_mortgages_outstanding,
     (trim("CompanyStatus") = 'Active') as is_active,
     "_INGESTED_AT" as _loaded_at,
     "_SOURCE_RUN_ID" as _source_run_id

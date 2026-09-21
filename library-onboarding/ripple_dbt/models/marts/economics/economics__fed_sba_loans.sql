@@ -27,21 +27,21 @@ cleaned as (
         CDC_STATE as cdc_state,
         THIRDPARTYLENDER_NAME as lender_name,
         THIRDPARTYLENDER_STATE as lender_state,
-        try_to_double(THIRDPARTYDOLLARS) as third_party_dollars,
-        try_to_double(GROSSAPPROVAL) as gross_approval_amount,
-        try_to_date(APPROVALDATE) as approval_date,
-        try_to_number(APPROVALFY) as approval_fiscal_year,
-        try_to_date(FIRSTDISBURSEMENTDATE) as first_disbursement_date,
-        try_to_number(TERMINMONTHS) as term_months,
+        {{ stg_float('THIRDPARTYDOLLARS') }} as third_party_dollars,
+        {{ stg_float('GROSSAPPROVAL') }} as gross_approval_amount,
+        {{ stg_date('APPROVALDATE') }} as approval_date,
+        {{ stg_int('APPROVALFY') }} as approval_fiscal_year,
+        {{ stg_date('FIRSTDISBURSEMENTDATE') }} as first_disbursement_date,
+        {{ stg_int('TERMINMONTHS') }} as term_months,
         NAICSCODE as naics_code,
         NAICSDESCRIPTION as naics_description,
         BUSINESSTYPE as business_type,
         BUSINESSAGE as business_age,
         LOANSTATUS as loan_status,
-        try_to_date(PAIDINFULLDATE) as paid_in_full_date,
-        try_to_date(CHARGEOFFDATE) as chargeoff_date,
-        try_to_double(GROSSCHARGEOFFAMOUNT) as gross_chargeoff_amount,
-        try_to_number(JOBSSUPPORTED) as jobs_supported
+        {{ stg_date('PAIDINFULLDATE') }} as paid_in_full_date,
+        {{ stg_date('CHARGEOFFDATE') }} as chargeoff_date,
+        {{ stg_float('GROSSCHARGEOFFAMOUNT') }} as gross_chargeoff_amount,
+        {{ stg_int('JOBSSUPPORTED') }} as jobs_supported
 
     from source
 

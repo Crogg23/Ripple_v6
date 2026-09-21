@@ -1,4 +1,5 @@
 {{ config(materialized='table', schema='HEALTH') }}
+-- Fixed 2026-09-21: ID columns were cast to FLOAT by ripple_num, which drops leading zeros and rounds past 15 digits. Now TEXT via stg_id_text (ruling 2026-09-19: an ID stays text).
 
 with base as (
 
@@ -20,7 +21,7 @@ select
     -- varies per hospital and can straddle two calendar years. Group by this
     -- for "which file", by fiscal_year_end_date for "which period".
     source_file_year,
-    {{ ripple_num('rpt_rec_num') }} as rpt_rec_num,
+    {{ stg_id_text('rpt_rec_num') }} as rpt_rec_num,
 
     -- location
     street_address,

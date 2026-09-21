@@ -85,6 +85,16 @@
 {%- endmacro %}
 
 
+{#- Same epoch guard as stg_ts, but the value keeps its own offset and its
+    TIMESTAMP_TZ type. For a source that writes LOCAL midnight with an offset
+    (GLEIF: '2012-07-25T00:00:00+02:00'), moving to UTC pushes the calendar
+    date back a day -- 1,070,259 of 3,382,301 GLEIF creation dates, measured
+    live 2026-09-21. Use this where the local date is the fact. -#}
+{% macro stg_ts_tz(col) -%}
+    iff(regexp_like(trim({{ col }}), '.*[0-9A-Za-z][-/][0-9A-Za-z].*'), try_to_timestamp_tz({{ _stg_ymd_dashes(col) }}), null)
+{%- endmacro %}
+
+
 {#- Only the words true / false get here (the profile keeps y/n apart on
     purpose; INCLUDE is a 'Y'/'N' string and stays one). -#}
 {% macro stg_bool(col) -%}

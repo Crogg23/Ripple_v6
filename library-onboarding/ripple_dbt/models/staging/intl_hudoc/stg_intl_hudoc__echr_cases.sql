@@ -18,9 +18,9 @@ renamed as (
     select
         -- key identifiers
         CASE_ID                                         as case_id,
-        APPNO                                           as appno,
-        ECLI                                            as ecli,
-        COUNTRY                                         as country,
+        {{ null_junk('APPNO') }}                         as appno,
+        {{ null_junk('ECLI') }}                          as ecli,
+        {{ null_junk('COUNTRY') }}                       as country,
         PERSON_NAME                                     as person_name,
         try_to_date(DATE, 'YYYY-MM-DD')                 as date,
 
@@ -39,7 +39,8 @@ renamed as (
         URL                                             as url,
 
         -- metadata
-        _ingested_at                                    as _ingested_at,
+        -- landing _INGESTED_AT is a TIMESTAMP that swallowed epoch micros as seconds (year 56 million); re-read the epoch
+        {{ landing_parse_audit_epoch('date_part(epoch_second, _ingested_at)') }} as _ingested_at,
         _source_run_id                                  as _source_run_id,
 
         -- deduplication helper

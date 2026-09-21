@@ -22,32 +22,32 @@ select
     trim("FAC_COUNTY")                                as county,
     trim("FAC_FIPS_CODE")                             as fips_code,
     trim("FAC_EPA_REGION")                            as epa_region,
-    try_to_double("FAC_LAT")                          as latitude,
-    try_to_double("FAC_LONG")                         as longitude,
-    try_to_double("FAC_PERCENT_MINORITY")             as pct_minority,
-    try_to_double("FAC_POP_DEN")                      as population_density,
+    {{ stg_float('"FAC_LAT"') }}                          as latitude,
+    {{ stg_float('"FAC_LONG"') }}                         as longitude,
+    {{ stg_float('"FAC_PERCENT_MINORITY"') }}             as pct_minority,
+    {{ stg_float('"FAC_POP_DEN"') }}                      as population_density,
 
     -- Compliance summary
     trim("FAC_COMPLIANCE_STATUS")                     as compliance_status,
     trim("FAC_SNC_FLG")                               as significant_noncompliance_flag,
-    try_to_number("FAC_QTRS_WITH_NC")                 as quarters_with_noncompliance,
+    {{ stg_int('"FAC_QTRS_WITH_NC"') }}                 as quarters_with_noncompliance,
     trim("FAC_3YR_COMPLIANCE_HISTORY")                as three_yr_compliance_history,
 
     -- Inspections
-    try_to_number("FAC_INSPECTION_COUNT")             as total_inspection_count,
-    try_to_date(trim("FAC_DATE_LAST_INSPECTION"))     as date_last_inspection,
-    try_to_number("FAC_DAYS_LAST_INSPECTION")         as days_since_last_inspection,
+    {{ stg_int('"FAC_INSPECTION_COUNT"') }}             as total_inspection_count,
+    {{ stg_date('trim("FAC_DATE_LAST_INSPECTION")') }}     as date_last_inspection,
+    {{ stg_int('"FAC_DAYS_LAST_INSPECTION"') }}         as days_since_last_inspection,
 
     -- Enforcement actions
-    try_to_number("FAC_INFORMAL_COUNT")               as informal_action_count,
-    try_to_number("FAC_FORMAL_ACTION_COUNT")          as formal_action_count,
-    try_to_date(trim("FAC_DATE_LAST_FORMAL_ACTION"))  as date_last_formal_action,
+    {{ stg_int('"FAC_INFORMAL_COUNT"') }}               as informal_action_count,
+    {{ stg_int('"FAC_FORMAL_ACTION_COUNT"') }}          as formal_action_count,
+    {{ stg_date('trim("FAC_DATE_LAST_FORMAL_ACTION")') }}  as date_last_formal_action,
 
     -- Penalties
-    try_to_double("FAC_TOTAL_PENALTIES")              as total_penalties,
-    try_to_number("FAC_PENALTY_COUNT")                as penalty_count,
-    try_to_double("FAC_LAST_PENALTY_AMT")             as last_penalty_amt,
-    try_to_date(trim("FAC_DATE_LAST_PENALTY"))        as date_last_penalty,
+    {{ stg_float('"FAC_TOTAL_PENALTIES"') }}              as total_penalties,
+    {{ stg_int('"FAC_PENALTY_COUNT"') }}                as penalty_count,
+    {{ stg_float('"FAC_LAST_PENALTY_AMT"') }}             as last_penalty_amt,
+    {{ stg_date('trim("FAC_DATE_LAST_PENALTY")') }}        as date_last_penalty,
 
     -- Program flags
     (trim("AIR_FLAG") = 'Y') as has_air_program,
@@ -58,8 +58,8 @@ select
     (trim("GHG_FLAG") = 'Y') as has_greenhouse_gas_program,
 
     -- TRI releases
-    try_to_double("TRI_RELEASES_TRANSFERS")           as tri_total_releases_transfers,
-    try_to_double("TRI_ON_SITE_RELEASES")             as tri_on_site_releases,
+    {{ stg_float('"TRI_RELEASES_TRANSFERS"') }}           as tri_total_releases_transfers,
+    {{ stg_float('"TRI_ON_SITE_RELEASES"') }}             as tri_on_site_releases,
 
     -- Facility flags
     (trim("FAC_MAJOR_FLAG") = 'Y') as is_major_facility,
@@ -68,8 +68,8 @@ select
     (trim("FAC_INDIAN_CNTRY_FLG") = 'Y') as is_on_tribal_land,
 
     -- Derived: high-risk signal
-    (try_to_number("FAC_QTRS_WITH_NC") >= 4
-     and try_to_double("FAC_TOTAL_PENALTIES") < 1000) as penalty_gap_flag,
+    ({{ stg_int('"FAC_QTRS_WITH_NC"') }} >= 4
+     and {{ stg_float('"FAC_TOTAL_PENALTIES"') }} < 1000) as penalty_gap_flag,
 
     "_INGESTED_AT" as _loaded_at,
     "_SOURCE_RUN_ID" as _source_run_id

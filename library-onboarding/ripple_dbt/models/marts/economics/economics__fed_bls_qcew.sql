@@ -20,16 +20,16 @@ cleaned as (
         INDUSTRY_CODE as industry_code,
         AGGLVL_CODE as aggregation_level_code,
         SIZE_CODE as size_code,
-        try_to_number(YEAR) as year,
-        try_to_number(QTR) as quarter,
+        {{ stg_int('YEAR') }} as year,
+        {{ stg_int('QTR') }} as quarter,
         DISCLOSURE_CODE as disclosure_code,
-        try_to_number(ANNUAL_AVG_ESTABS) as annual_avg_establishments,
-        try_to_number(ANNUAL_AVG_EMPLVL) as annual_avg_employment,
-        try_to_number(TOTAL_ANNUAL_WAGES) as total_annual_wages,
-        try_to_number(ANNUAL_AVG_WKLY_WAGE) as annual_avg_weekly_wage,
-        try_to_number(AVG_ANNUAL_PAY) as avg_annual_pay,
-        try_to_double(OTY_ANNUAL_AVG_EMPLVL_PCT_CHG) as yoy_employment_pct_change,
-        try_to_double(OTY_TOTAL_ANNUAL_WAGES_PCT_CHG) as yoy_wages_pct_change
+        {{ stg_int('ANNUAL_AVG_ESTABS') }} as annual_avg_establishments,
+        {{ stg_int('ANNUAL_AVG_EMPLVL') }} as annual_avg_employment,
+        {{ stg_int('TOTAL_ANNUAL_WAGES') }} as total_annual_wages,
+        {{ stg_int('ANNUAL_AVG_WKLY_WAGE') }} as annual_avg_weekly_wage,
+        {{ stg_int('AVG_ANNUAL_PAY') }} as avg_annual_pay,
+        {{ stg_float('OTY_ANNUAL_AVG_EMPLVL_PCT_CHG') }} as yoy_employment_pct_change,
+        {{ stg_float('OTY_TOTAL_ANNUAL_WAGES_PCT_CHG') }} as yoy_wages_pct_change
 
     from source
 

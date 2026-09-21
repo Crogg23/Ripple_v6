@@ -24,10 +24,10 @@ with v as (
 mem as (
 
     select
-        try_to_number(ICPSR)      as icpsr,
-        try_to_number(CONGRESS)   as congress,
+        {{ stg_int('ICPSR') }}      as icpsr,
+        {{ stg_int('CONGRESS') }}   as congress,
         CHAMBER                   as chamber,
-        try_to_number(PARTY_CODE) as party_code,
+        {{ stg_int('PARTY_CODE') }} as party_code,
         nullif(trim(BIOGUIDE_ID), '') as bioguide,
         nullif(trim(BIONAME), '')     as bioname,
         nullif(trim(STATE_ABBREV), '') as state

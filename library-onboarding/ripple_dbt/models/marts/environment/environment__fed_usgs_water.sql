@@ -49,7 +49,7 @@ select
     SITE_NAME as site_name,
     PARAMETER_CD as parameter_cd,
     PARAMETER_NAME as parameter_name,
-    convert_timezone('UTC', try_to_timestamp_tz(DATETIME))::timestamp_ntz as datetime,
+    convert_timezone('UTC', {{ stg_ts_tz('DATETIME') }})::timestamp_ntz as datetime,
     {{ stg_float('"VALUE"') }} as value,
     UNIT_CD as unit_cd,
     QUALIFIER as qualifier,

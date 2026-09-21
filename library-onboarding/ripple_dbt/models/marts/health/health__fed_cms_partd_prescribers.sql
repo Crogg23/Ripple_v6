@@ -43,14 +43,14 @@ cleaned as (
         "Prscrbr_Type"                         as prescriber_type,
         "Brnd_Name"                            as brand_name,
         "Gnrc_Name"                            as generic_name,
-        try_to_number("Tot_Clms")              as total_claims,
-        try_to_number("Tot_30day_Fills")       as total_30day_fills,
-        try_to_number("Tot_Day_Suply")         as total_day_supply,
-        try_to_double("Tot_Drug_Cst")          as total_drug_cost,
-        try_to_number("Tot_Benes")             as total_beneficiaries,
-        try_to_number("GE65_Tot_Clms")         as ge65_total_claims,
-        try_to_double("GE65_Tot_Drug_Cst")     as ge65_total_drug_cost,
-        try_to_number("GE65_Tot_Benes")        as ge65_total_beneficiaries,
+        {{ stg_int('"Tot_Clms"') }}              as total_claims,
+        {{ stg_float('"Tot_30day_Fills"') }}       as total_30day_fills,
+        {{ stg_int('"Tot_Day_Suply"') }}         as total_day_supply,
+        {{ stg_float('"Tot_Drug_Cst"') }}          as total_drug_cost,
+        {{ stg_int('"Tot_Benes"') }}             as total_beneficiaries,
+        {{ stg_int('"GE65_Tot_Clms"') }}         as ge65_total_claims,
+        {{ stg_float('"GE65_Tot_Drug_Cst"') }}     as ge65_total_drug_cost,
+        {{ stg_int('"GE65_Tot_Benes"') }}        as ge65_total_beneficiaries,
         "_INGESTED_AT"                         as _loaded_at
 
     from source

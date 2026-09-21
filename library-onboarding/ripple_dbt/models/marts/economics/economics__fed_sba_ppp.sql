@@ -54,18 +54,18 @@ cleaned as (
 
     select
         LOANNUMBER as loan_number,
-        try_to_date(DATEAPPROVED) as date_approved,
+        {{ stg_date('DATEAPPROVED') }} as date_approved,
         PROCESSINGMETHOD as processing_method,
         BORROWERNAME as borrower_name,
         BORROWERCITY as borrower_city,
         BORROWERSTATE as borrower_state,
         BORROWERZIP as borrower_zip,
         LOANSTATUS as loan_status,
-        try_to_date(LOANSTATUSDATE) as loan_status_date,
-        try_to_number(TERM) as term_months,
-        try_to_double(INITIALAPPROVALAMOUNT) as initial_approval_amount,
-        try_to_double(CURRENTAPPROVALAMOUNT) as current_approval_amount,
-        try_to_double(UNDISBURSEDAMOUNT) as undisbursed_amount,
+        {{ stg_date('LOANSTATUSDATE') }} as loan_status_date,
+        {{ stg_int('TERM') }} as term_months,
+        {{ stg_float('INITIALAPPROVALAMOUNT') }} as initial_approval_amount,
+        {{ stg_float('CURRENTAPPROVALAMOUNT') }} as current_approval_amount,
+        {{ stg_float('UNDISBURSEDAMOUNT') }} as undisbursed_amount,
         SERVICINGLENDERNAME as servicing_lender_name,
         SERVICINGLENDERSTATE as servicing_lender_state,
         RURALURBANINDICATOR as rural_urban_indicator,
@@ -75,14 +75,14 @@ cleaned as (
         PROJECTSTATE as project_state,
         PROJECTCOUNTYNAME as project_county,
         CD as congressional_district,
-        try_to_number(JOBSREPORTED) as jobs_reported,
+        {{ stg_int('JOBSREPORTED') }} as jobs_reported,
         NAICSCODE as naics_code,
         RACE as race,
         ETHNICITY as ethnicity,
-        try_to_double(PAYROLL_PROCEED) as payroll_proceed,
-        try_to_double(RENT_PROCEED) as rent_proceed,
-        try_to_double(UTILITIES_PROCEED) as utilities_proceed,
-        try_to_double(MORTGAGE_INTEREST_PROCEED) as mortgage_interest_proceed
+        {{ stg_float('PAYROLL_PROCEED') }} as payroll_proceed,
+        {{ stg_float('RENT_PROCEED') }} as rent_proceed,
+        {{ stg_float('UTILITIES_PROCEED') }} as utilities_proceed,
+        {{ stg_float('MORTGAGE_INTEREST_PROCEED') }} as mortgage_interest_proceed
 
     from source
 

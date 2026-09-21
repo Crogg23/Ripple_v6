@@ -1,4 +1,5 @@
 {{ config(materialized='table', schema='JUSTICE') }}
+-- Fixed 2026-09-21: ID columns were cast to FLOAT by ripple_num, which drops leading zeros and rounds past 15 digits. Now TEXT via stg_id_text (ruling 2026-09-19: an ID stays text).
 
 -- GRAIN: one row per sanctioned entity (ent_num is unique)
 -- Answers: Who is on the US sanctions list, and for what programs?
@@ -6,7 +7,7 @@
 -- Key joins: imo_number â†’ int_sanctioned_vessels; entity â†’ spine
 
 select
-    {{ ripple_num('ent_num') }} as ent_num,
+    {{ stg_id_text('ent_num') }} as ent_num,
     sdn_name,
     sdn_type,
     entity_kind,

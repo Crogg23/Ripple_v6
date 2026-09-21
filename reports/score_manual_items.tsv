@@ -1,0 +1,5 @@
+item	share	date	proof
+views_hiding_rows	0	2026-09-21	Audit found 42 staging views hiding a row or two on one load. Not re-swept since. Close by running scripts/sweep_staging_rows.py and recording 0 hidden.
+loader_epoch_timestamp	0	2026-09-21	Loader writes epoch microseconds into a seconds TIMESTAMP on _FULL reloads (USAspending R2, BJS, HUDOC). Staging re-reads it; the loader itself is unfixed.
+shelf_refresh_safe	0	2026-09-21	thelibrary_refresh.py --apply would repoint 33 live views and flatten 113 typed views. Close with a dry run that changes 0 of 254.
+rollback_files_runnable	0	2026-09-21	outputs/library_view_rollback_*.sql use unqualified view names and one has no COPY GRANTS. Close by qualifying names and test-compiling each statement.
