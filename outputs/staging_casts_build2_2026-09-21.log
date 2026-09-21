@@ -1,0 +1,50 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.11s] resolving packages from packages.yml (1 items)
+ Succeeded [  2.03s] model DBT_CROGERS.stg_fed_ofac_sdn__sdn_entities (view)
+ Succeeded [  2.03s] model DBT_CROGERS.stg_intl_ember_elec__yearly_electricity (view)
+    Passed [  0.52s] test  not_null_stg_fed_ofac_sdn__sdn_entities_entity_kind
+    Passed [  0.53s] test  not_null_stg_fed_ofac_sdn__sdn_entities_sdn_name
+ Succeeded [  2.70s] model DBT_CROGERS.stg_fed_cdc_injury_violence_county__rates (view)
+    Passed [  0.21s] test  accepted_values_stg_fed_ofac_sdn__sdn_entities_sdn_type__True__individual__vessel__aircraft
+    Passed [  0.89s] test  not_null_stg_fed_ofac_sdn__sdn_entities_ent_num
+    Passed [  0.39s] test  accepted_values_stg_fed_ofac_sdn__sdn_entities_entity_kind__True__individual__vessel__aircraft__organization
+    Passed [  0.38s] test  unique_stg_fed_ofac_sdn__sdn_entities_ent_num
+    Passed [  0.56s] test  not_null_stg_intl_ember_elec__yearly_electricity_category
+    Passed [  0.61s] test  not_null_stg_intl_ember_elec__yearly_electricity_country
+    Passed [  0.58s] test  not_null_stg_intl_ember_elec__yearly_electricity_unit
+    Passed [  0.18s] test  not_null_stg_intl_ember_elec__yearly_electricity_subcategory
+    Passed [  0.32s] test  not_null_stg_intl_ember_elec__yearly_electricity_variable
+    Passed [  0.40s] test  not_null_stg_intl_ember_elec__yearly_electricity_date
+    Passed [  1.03s] test  accepted_values_stg_intl_ember_elec__yearly_electricity_area_type__True__Country_or_economy__Region
+    Passed [  0.45s] test  not_null_stg_fed_cdc_injury_violence_county__rates_intent
+    Passed [  0.36s] test  not_null_stg_fed_cdc_injury_violence_county__rates_period
+    Passed [  0.43s] test  not_null_stg_fed_cdc_injury_violence_county__rates_fips_state
+    Passed [  0.21s] test  not_null_stg_fed_cdc_injury_violence_county__rates_fips_county
+    Passed [  0.35s] test  accepted_values_stg_fed_cdc_injury_violence_county__rates_intent__True__Drug_OD__All_Homicide__FA_Homicide__All_Suicide__FA_Suicide__FA_Deaths
+    Passed [  0.42s] test  dbt_utils_unique_combination_of_columns_stg_fed_cdc_injury_violence_county__rates_fips_county__intent__period
+    Passed [  0.17s] test  accepted_values_stg_fed_cdc_injury_violence_county__rates_period__True__2019__2020__2021__2022__2023__2024__TTM
+    Passed [  0.34s] test  accepted_values_stg_fed_cdc_injury_violence_county__rates_rate_modeled_flag__0__1
+    Passed [  1.29s] test  unique_stg_intl_ember_elec__yearly_electricity_country_date_varchar_category_subcategory_variable_unit
+ Succeeded [  1.54s] model JUSTICE.justice__fed_ofac_sdn (table)
+    Passed [  0.27s] test  not_null_justice__fed_ofac_sdn_ent_num
+    Passed [  0.29s] test  unique_justice__fed_ofac_sdn_ent_num
+ Succeeded [  3.24s] model ENERGY.energy__intl_ember_elec (table)
+    Passed [  0.21s] test  not_null_energy__intl_ember_elec_variable
+    Passed [  0.22s] test  not_null_energy__intl_ember_elec_date
+    Warned [  0.25s] test  accepted_values_energy__intl_ember_elec_area_type__True__Country__Region (models/staging/intl_ember_elec/schema.yml:148:13)
+    Passed [  0.31s] test  not_null_energy__intl_ember_elec_country
+    Passed [  0.23s] test  unique_energy__intl_ember_elec_country_date_varchar_category_subcategory_variable_unit
+ Succeeded [  0.96s] model TIMELINE.ENERGY__INTL_EMBER_ELEC (view)
+ Succeeded [  5.07s] model TIMELINE.timeline__energy_index (table)
+ Succeeded [  1.37s] model TIMELINE.timeline__warehouse (view)
+    Failed [  5.86s] test  assert_ripple_timeline_registry (tests/assert_ripple_timeline_registry.sql)
+
+====================== Test Failures =======================
+Test failed (1 failed row(s)): assert_ripple_timeline_registry
+
+==================== Execution Summary =====================
+Finished 'build' with 1 warning and 1 error for target 'dev' [33.0s]
+Processed: 8 models | 30 tests
+Summary: 38 total | 36 success | 1 warn | 1 error

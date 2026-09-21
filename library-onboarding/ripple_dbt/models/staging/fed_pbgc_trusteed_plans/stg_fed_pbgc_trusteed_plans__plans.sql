@@ -19,8 +19,8 @@ renamed as (
         nullif(trim(PLAN_NUMBER), '')                              as plan_number,
         nullif(trim(CITY), '')                                     as city,
         nullif(trim(STATE), '')                                    as state,
-        try_to_date(left(nullif(trim(DATE_OF_PLAN_TERMINATION), ''), 10)) as date_of_plan_termination,
-        try_to_date(left(nullif(trim(DATE_OF_PBGC_TRUSTEESHIP), ''), 10)) as date_of_pbgc_trusteeship,
+        {{ stg_date("left(nullif(trim(DATE_OF_PLAN_TERMINATION), ''), 10)") }} as date_of_plan_termination,
+        {{ stg_date("left(nullif(trim(DATE_OF_PBGC_TRUSTEESHIP), ''), 10)") }} as date_of_pbgc_trusteeship,
         try_to_number(nullif(trim(NUMBER_OF_PARICIPANTS_AT_DATE_OF_PLAN_TERMINATION), ''), 18, 4) as number_of_paricipants_at_date_of_plan_termination,
         to_timestamp_ntz(INGESTED_AT, 6)                           as _ingested_at,
         nullif(trim(SOURCE_RUN_ID), '')                            as _source_run_id

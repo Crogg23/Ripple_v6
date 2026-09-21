@@ -15,7 +15,7 @@ renamed as (
 
     select
 
-        try_to_number(trim(TSN))                                as tsn,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
         trim(COMPLETENAME)                                      as complete_name,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)

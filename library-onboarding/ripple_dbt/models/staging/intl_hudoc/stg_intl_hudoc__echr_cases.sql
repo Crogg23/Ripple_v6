@@ -27,7 +27,7 @@ renamed as (
         -- descriptive attributes
         CASE_TITLE                                      as case_title,
         DOC_TYPE                                        as doc_type,
-        try_to_number(IMPORTANCE)                       as importance,
+        {{ stg_int('IMPORTANCE') }}                       as importance,
         ARTICLES                                        as articles,
         VIOLATION                                       as violation,
         NONVIOLATION                                    as nonviolation,

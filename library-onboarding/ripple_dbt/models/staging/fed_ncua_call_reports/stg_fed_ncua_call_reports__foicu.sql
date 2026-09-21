@@ -37,7 +37,7 @@ renamed as (
         nullif(trim(REGION), '')                                       as region,
         nullif(trim(SE), '')                                           as se,
         nullif(trim(DISTRICT), '')                                     as district,
-        try_to_number(nullif(trim(YEAR_OPENED), ''))                   as year_opened,
+        {{ stg_int("nullif(trim(YEAR_OPENED), '')") }}                   as year_opened,
         nullif(trim(TOM_CODE), '')                                     as tom_code,
         nullif(trim(LIMITED_INC), '')                                  as limited_inc,
         coalesce(

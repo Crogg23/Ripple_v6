@@ -42,9 +42,9 @@ renamed as (
         trim(HPSA_NAME)                                        as hpsa_name,
         trim(DESIGNATION_TYPE)                                 as designation_type,
         trim(HPSA_DISCIPLINE_CLASS)                            as hpsa_discipline_class,
-        try_to_number(trim(DISCIPLINE_CLASS_NUMBER))           as discipline_class_number,
-        try_to_number(trim(HPSA_SCORE))                        as hpsa_score,
-        try_to_number(trim(PC_MCTA_SCORE))                     as pc_mcta_score,
+        {{ stg_int('trim(DISCIPLINE_CLASS_NUMBER)') }}           as discipline_class_number,
+        {{ stg_int('trim(HPSA_SCORE)') }}                        as hpsa_score,
+        {{ stg_int('trim(PC_MCTA_SCORE)') }}                     as pc_mcta_score,
         trim(HPSA_STATUS)                                      as hpsa_status,
         trim(HPSA_STATUS_CODE)                                 as hpsa_status_code,
         trim(HPSA_TYPE_CODE)                                   as hpsa_type_code,
@@ -63,8 +63,8 @@ renamed as (
                                                                as pct_population_below_poverty,
         trim(HPSA_FORMAL_RATIO)                                as formal_ratio,
         trim(HPSA_PROVIDER_RATIO_GOAL)                         as provider_ratio_goal,
-        try_to_number(trim(HPSA_ESTIMATED_SERVED_POPULATION))  as estimated_served_population,
-        try_to_number(trim(HPSA_ESTIMATED_UNDERSERVED_POPULATION))
+        {{ stg_int('trim(HPSA_ESTIMATED_SERVED_POPULATION)') }}  as estimated_served_population,
+        {{ stg_int('trim(HPSA_ESTIMATED_UNDERSERVED_POPULATION)') }}
                                                                as estimated_underserved_population,
         try_to_number(trim(HPSA_RESIDENT_CIVILIAN_POPULATION), 14, 2)
                                                                as resident_civilian_population,

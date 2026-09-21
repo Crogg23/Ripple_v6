@@ -15,7 +15,7 @@ renamed as (
 
     select
 
-        try_to_number(trim(TAXON_AUTHOR_ID))                    as taxon_author_id,
+        {{ stg_int('trim(TAXON_AUTHOR_ID)') }}                    as taxon_author_id,
         trim(SHORTAUTHOR)                                       as short_author,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)

@@ -59,7 +59,7 @@ renamed as (
         try_to_number(nullif(trim(TOTAL_SCHED_A), ''), 18, 2)          as total_sched_a,
         nullif(trim(SCHED_B_IND), '')                                  as sched_b_ind,
         try_to_number(nullif(trim(TOTAL_SCHED_B), ''), 18, 2)          as total_sched_b,
-        try_to_timestamp_ntz(nullif(trim(INSERT_DATETIME), ''))        as insert_datetime,
+        {{ stg_ts("nullif(trim(INSERT_DATETIME), '')") }}        as insert_datetime,
         to_timestamp_ntz(INGESTED_AT, 6)                               as _ingested_at,
         nullif(trim(SOURCE_RUN_ID), '')                                as _source_run_id
     from source

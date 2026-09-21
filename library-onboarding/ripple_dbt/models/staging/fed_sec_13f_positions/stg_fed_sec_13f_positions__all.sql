@@ -23,17 +23,17 @@ cleaned as (
         -- Unit normalization: old-format filenames (YYYYqN) = thousands; new = whole dollars
         case
             when _SRC_FILE like '20__q%'
-            then try_to_number(VALUE) * 1000
-            else try_to_number(VALUE)
+            then {{ stg_int('VALUE') }} * 1000
+            else {{ stg_int('VALUE') }}
         end                                             as value_dollars,
-        try_to_number(SSHPRNAMT)                        as shares_or_principal_amount,
+        {{ stg_int('SSHPRNAMT') }}                        as shares_or_principal_amount,
         nullif(trim(SSHPRNAMTTYPE), '')                 as shares_or_principal_type,
         nullif(trim(PUTCALL), '')                       as put_call,
         nullif(trim(INVESTMENTDISCRETION), '')          as investment_discretion,
         nullif(trim(OTHERMANAGER), '')                  as other_manager,
-        try_to_number(VOTING_AUTH_SOLE)                 as voting_auth_sole,
-        try_to_number(VOTING_AUTH_SHARED)               as voting_auth_shared,
-        try_to_number(VOTING_AUTH_NONE)                 as voting_auth_none,
+        {{ stg_int('VOTING_AUTH_SOLE') }}                 as voting_auth_sole,
+        {{ stg_int('VOTING_AUTH_SHARED') }}               as voting_auth_shared,
+        {{ stg_int('VOTING_AUTH_NONE') }}                 as voting_auth_none,
         _SRC_FILE                                       as _src_file,
         _INGESTED_AT                                    as _loaded_at,
         _SOURCE_RUN_ID                                  as _source_run_id

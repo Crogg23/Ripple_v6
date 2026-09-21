@@ -24,8 +24,8 @@ renamed as (
         trim(LISTING_MECHANISM)                             as listing_mechanism,
         -- 2026-08-09 fix: landed values are ISO (e.g. '1990-01-01'); the old
         -- 'MM/DD/YYYY' format string nulled out 100% of dates.
-        try_to_date(trim(DATE_LISTED))                      as date_listed,
-        try_to_double(trim(NSRL_OR_MADL_G_DAY_A))          as nsrl_or_madl_g_day,
+        {{ stg_date('trim(DATE_LISTED)') }}                      as date_listed,
+        {{ stg_float('trim(NSRL_OR_MADL_G_DAY_A)') }}          as nsrl_or_madl_g_day,
 
         -- overflow / extra columns retained as-is
         trim(COL_6)                                         as col_6,

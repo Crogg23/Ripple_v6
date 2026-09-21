@@ -25,8 +25,8 @@ renamed as (
         trim(SOURCE)                                   as source,
 
         -- dates
-        try_to_timestamp(trim(DATE_TIME_RECEIVED))     as date_time_received,
-        try_to_timestamp(trim(DATE_TIME_COMPLETE))     as date_time_complete,
+        {{ stg_ts('trim(DATE_TIME_RECEIVED)') }}     as date_time_received,
+        {{ stg_ts('trim(DATE_TIME_COMPLETE)') }}     as date_time_complete,
 
         -- unlabeled publisher payload (arrived without column headers)
         COLUMN1                                        as extra_col_1,

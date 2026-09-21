@@ -1,0 +1,2085 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.07s] resolving packages from packages.yml (1 items)
+ Succeeded [  2.43s] model DBT_CROGERS.stg_fed_doj_crt_cases__crt_cases (view)
+ Succeeded [  2.50s] model DBT_CROGERS.stg_intl_gr_gemi__greek_companies (view)
+ Succeeded [  2.79s] model DBT_CROGERS.stg_fed_nara_aad__archival_records (view)
+ Succeeded [  0.72s] model DBT_CROGERS.stg_fed_fdic_enforcement__enforcement_orders (view)
+ Succeeded [  0.80s] model DBT_CROGERS.stg_fed_faa_aircraft_registry__aircraft (view)
+ Succeeded [  0.62s] model DBT_CROGERS.stg_fed_hhs_taggs__grant_awards (view)
+ Succeeded [  3.32s] model DBT_CROGERS.stg_fed_nara_wra_aad__japanese_american_relocation_records (view)
+ Succeeded [  0.47s] model DBT_CROGERS.stg_fed_sec_13f_positions__all (view)
+ Succeeded [  0.66s] model DBT_CROGERS.stg_fed_ntsb_aviation_events__events (view)
+ Succeeded [  0.72s] model DBT_CROGERS.stg_fed_ntsb_aviation_aircraft__aircraft (view)
+ Succeeded [  0.59s] model DBT_CROGERS.stg_intl_owid_milspend__military_spending (view)
+ Succeeded [  0.47s] model DBT_CROGERS.stg_fed_itis_vern_ref_links__vernacular_ref_links (view)
+ Succeeded [  0.54s] model DBT_CROGERS.stg_fed_itis_vernaculars__vernacular_names (view)
+ Succeeded [  0.70s] model DBT_CROGERS.stg_intl_ch_zefix__companies (view)
+ Succeeded [  0.52s] model DBT_CROGERS.stg_fed_naag_multistate_settlements__multistate_settlements (view)
+ Succeeded [  0.54s] model DBT_CROGERS.stg_fed_federal_register_documents__federal_register_documents (view)
+    Failed [  1.23s] model DBT_CROGERS.stg_fed_cdc_injury_violence_county__rates (view)
+   Skipped [-------] test  not_null_stg_fed_cdc_injury_violence_county__rates_intent (models/staging/fed_cdc_injury_violence_county/schema.yml:64:13)
+   Skipped [-------] test  not_null_stg_fed_cdc_injury_violence_county__rates_fips_state (models/staging/fed_cdc_injury_violence_county/schema.yml:51:13)
+   Skipped [-------] test  accepted_values_stg_fed_cdc_injury_violence_county__rates_rate_modeled_flag__0__1 (models/staging/fed_cdc_injury_violence_county/schema.yml:108:13)
+   Skipped [-------] test  accepted_values_stg_fed_cdc_injury_violence_county__rates_intent__True__Drug_OD__All_Homicide__FA_Homicide__All_Suicide__FA_Suicide__FA_Deaths (models/staging/fed_cdc_injury_violence_county/schema.yml:65:13)
+   Skipped [-------] test  not_null_stg_fed_cdc_injury_violence_county__rates_period (models/staging/fed_cdc_injury_violence_county/schema.yml:80:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_stg_fed_cdc_injury_violence_county__rates_fips_county__intent__period (models/staging/fed_cdc_injury_violence_county/schema.yml:33:9)
+   Skipped [-------] test  not_null_stg_fed_cdc_injury_violence_county__rates_fips_county (models/staging/fed_cdc_injury_violence_county/schema.yml:46:13)
+   Skipped [-------] test  accepted_values_stg_fed_cdc_injury_violence_county__rates_period__True__2019__2020__2021__2022__2023__2024__TTM (models/staging/fed_cdc_injury_violence_county/schema.yml:81:13)
+ Succeeded [  0.66s] model DBT_CROGERS.stg_fed_fra_casualties__all (view)
+ Succeeded [  0.61s] model DBT_CROGERS.stg_xc_ror_research_organizations__organizations (view)
+ Succeeded [  0.48s] model DBT_CROGERS.stg_fed_ntsb_aviation_injury__injuries (view)
+ Succeeded [  0.48s] model DBT_CROGERS.stg_fed_itis_taxon_unit_types__rank_types (view)
+ Succeeded [  0.48s] model DBT_CROGERS.stg_fed_itis_tu_comments_links__comment_links (view)
+ Succeeded [  0.48s] model DBT_CROGERS.stg_fed_itis_strippedauthor__stripped_authors (view)
+ Succeeded [  0.64s] model DBT_CROGERS.stg_xc_biorxiv_medrxiv__preprint_manuscript (view)
+ Succeeded [  0.44s] model DBT_CROGERS.stg_fed_itis_synonym_links__synonyms (view)
+ Succeeded [  0.45s] model DBT_CROGERS.stg_fed_itis_taxon_authors_lkp__authors (view)
+ Succeeded [  0.54s] model DBT_CROGERS.stg_fed_slavevoyages_intraamerican__intra_american_voyages (view)
+ Succeeded [  0.56s] model DBT_CROGERS.stg_fed_itis_taxonomic_units__taxa (view)
+ Succeeded [  0.45s] model DBT_CROGERS.stg_fed_itis_longnames__complete_names (view)
+ Succeeded [  0.60s] model DBT_CROGERS.stg_xc_osf_registrations__registrations (view)
+ Succeeded [  0.50s] model DBT_CROGERS.stg_fed_itis_jurisdiction__jurisdictions (view)
+ Succeeded [  0.61s] model DBT_CROGERS.stg_fed_itis_publications__publications (view)
+ Succeeded [  0.45s] model DBT_CROGERS.stg_fed_itis_reference_links__reference_links (view)
+ Succeeded [  0.46s] model DBT_CROGERS.stg_fed_itis_kingdoms__kingdoms (view)
+ Succeeded [  0.59s] model DBT_CROGERS.stg_fed_nih_reporter__projects (view)
+ Succeeded [  0.50s] model DBT_CROGERS.stg_fed_itis_geographic_div__geographic_divisions (view)
+ Succeeded [  0.52s] model DBT_CROGERS.stg_fed_itis_hierarchy__hierarchy (view)
+ Succeeded [  0.85s] model DBT_CROGERS.stg_fed_fra_crossing_incidents__all (view)
+ Succeeded [  0.44s] model DBT_CROGERS.stg_fed_itis_experts__experts (view)
+ Succeeded [  0.52s] model DBT_CROGERS.stg_xc_un_consolidated_sanctions_list__designated_party (view)
+ Succeeded [  0.48s] model DBT_CROGERS.stg_fed_itis_comments__comments (view)
+ Succeeded [  0.48s] model DBT_CROGERS.stg_fed_itis_other_sources__other_sources (view)
+ Succeeded [  0.52s] model DBT_CROGERS.stg_fed_itis_nodc_ids__nodc_ids (view)
+ Succeeded [  0.51s] model DBT_CROGERS.stg_fed_pbgc_trusteed_plans__plans (view)
+ Succeeded [  0.88s] model DBT_CROGERS.stg_fed_usgs_gnis_all_names__name_citations (view)
+ Succeeded [  0.52s] model DBT_CROGERS.stg_fed_bia_tribal_geo__bia_geospatial_features (view)
+ Succeeded [  0.44s] model DBT_CROGERS.stg_fed_usaspending_subawards__subawards (view)
+ Succeeded [  0.56s] model DBT_CROGERS.stg_fed_fec_pac_summary__records (view)
+ Succeeded [  0.64s] model DBT_CROGERS.stg_fed_consolidated_screening_list__entries (view)
+ Succeeded [  0.65s] model DBT_CROGERS.stg_intl_elections_canada_contributions__contributions (view)
+ Succeeded [  1.30s] model DBT_CROGERS.stg_state_mo_sex_offender_registry__offenses (view)
+ Succeeded [  1.54s] model DBT_CROGERS.stg_fed_fra_equipment_accidents__all (view)
+ Succeeded [  1.08s] model DBT_CROGERS.stg_intl_ec_sercop__contracting_process (view)
+ Succeeded [  0.64s] model DBT_CROGERS.stg_fed_sbir_sttr_awards__awards (view)
+ Succeeded [  1.29s] model DBT_CROGERS.stg_fed_fhfa_suspended_counterparty_program__suspended_counterparty (view)
+ Succeeded [  0.56s] model DBT_CROGERS.stg_intl_opensanctions_default__targets (view)
+ Succeeded [  0.55s] model DBT_CROGERS.stg_fed_fbi_cde__state_month (view)
+ Succeeded [  0.55s] model DBT_CROGERS.stg_intl_healthcanada_dpd_drug__drugs (view)
+ Succeeded [  0.58s] model DBT_CROGERS.stg_fed_fdic_enforcement_orders__orders (view)
+ Succeeded [  0.62s] model DBT_CROGERS.stg_fed_ice_detainers__all (view)
+ Succeeded [  0.62s] model DBT_CROGERS.stg_fed_fema_nfip_community_status_book__communities (view)
+ Succeeded [  0.62s] model DBT_CROGERS.stg_fed_hud_mf_firm_commitments__commitments (view)
+ Succeeded [  0.78s] model DBT_CROGERS.stg_fed_ice_detention_stints__all (view)
+ Succeeded [  1.23s] model DBT_CROGERS.stg_fed_irs_990_officer_pay__people (view)
+ Succeeded [  0.62s] model DBT_CROGERS.stg_intl_hudoc__echr_cases (view)
+ Succeeded [  0.59s] model DBT_CROGERS.stg_fed_ihs_scb_facility__facilities (view)
+ Succeeded [  0.96s] model DBT_CROGERS.stg_fed_cfpb_hmda_historic__lar_records (view)
+ Succeeded [  0.59s] model DBT_CROGERS.stg_fed_jpml_pending_mdls__mdl_docket (view)
+ Succeeded [  0.73s] model DBT_CROGERS.stg_fed_clinicaltrials__clinical_trials (view)
+ Succeeded [  0.84s] model DBT_CROGERS.stg_fed_cfpb_hmda_lar__lar_records (view)
+ Succeeded [  0.59s] model DBT_CROGERS.stg_fed_ncua_charter_merger_events__merger_events (view)
+ Succeeded [  0.60s] model DBT_CROGERS.stg_st_oehha_proposition_65_list__chemical (view)
+ Succeeded [  1.16s] model DBT_CROGERS.stg_fed_dhs_hifld__facilities (view)
+ Succeeded [  0.59s] model DBT_CROGERS.stg_fed_nlm_dailymed_spl_setid_map__setid_map (view)
+ Succeeded [  0.73s] model DBT_CROGERS.stg_fed_hud_mf_section8_contracts__contracts (view)
+ Succeeded [  0.72s] model DBT_CROGERS.stg_fed_ihs_facilities__facilities (view)
+ Succeeded [  0.77s] model DBT_CROGERS.stg_xc_vera_incarceration_trends__county_year (view)
+ Succeeded [  0.72s] model DBT_CROGERS.stg_fed_hud_fha_sf_portfolio_snapshot__loans (view)
+ Succeeded [  0.66s] model DBT_CROGERS.stg_fed_cdc_wonder__records (view)
+    Failed [  1.33s] model DBT_CROGERS.stg_fed_ofac_sdn__sdn_entities (view)
+   Skipped [-------] test  accepted_values_stg_fed_ofac_sdn__sdn_entities_entity_kind__True__individual__vessel__aircraft__organization (models/staging/fed_ofac_sdn/schema.yml:56:13)
+   Skipped [-------] test  not_null_stg_fed_ofac_sdn__sdn_entities_sdn_name (models/staging/fed_ofac_sdn/schema.yml:36:13)
+   Skipped [-------] test  unique_stg_fed_ofac_sdn__sdn_entities_ent_num (models/staging/fed_ofac_sdn/schema.yml:30:13)
+   Skipped [-------] test  not_null_stg_fed_ofac_sdn__sdn_entities_entity_kind (models/staging/fed_ofac_sdn/schema.yml:55:13)
+   Skipped [-------] test  accepted_values_stg_fed_ofac_sdn__sdn_entities_sdn_type__True__individual__vessel__aircraft (models/staging/fed_ofac_sdn/schema.yml:43:13)
+   Skipped [-------] test  not_null_stg_fed_ofac_sdn__sdn_entities_ent_num (models/staging/fed_ofac_sdn/schema.yml:31:13)
+   Skipped [-------] model JUSTICE.justice__fed_ofac_sdn (table)
+   Skipped [-------] test  not_null_justice__fed_ofac_sdn_ent_num (models/marts/justice/schema_fed_ofac_sdn.yml:20:13)
+   Skipped [-------] test  unique_justice__fed_ofac_sdn_ent_num (models/marts/justice/schema_fed_ofac_sdn.yml:21:13)
+ Succeeded [  0.88s] model DBT_CROGERS.stg_fed_hrsa_hpsa_primary_care__designations (view)
+ Succeeded [  0.68s] model DBT_CROGERS.stg_fed_hrsa_provider_relief_fund__payments (view)
+ Succeeded [  0.74s] model DBT_CROGERS.stg_fed_va_suicide_national__all (view)
+ Succeeded [  0.86s] model DBT_CROGERS.stg_st_nyc_cfb_campaign_2021_contributions__contributions (view)
+ Succeeded [  0.83s] model DBT_CROGERS.stg_fed_epa_superfund_site_boundaries__boundaries (view)
+ Succeeded [  0.66s] model DBT_CROGERS.stg_fed_uscg_nrc_incident_reports__incident_reports (view)
+ Succeeded [  0.80s] model DBT_CROGERS.stg_fed_scdb__supreme_court_cases (view)
+ Succeeded [  1.29s] model DBT_CROGERS.stg_fed_fema_ia_housing_registrations__registrations (view)
+ Succeeded [  0.71s] model DBT_CROGERS.stg_fed_eia_861_balancing_authority__all (view)
+ Succeeded [  1.03s] model DBT_CROGERS.stg_st_nyc_cfb_campaign_2009_contribution__contributions (view)
+ Succeeded [  1.02s] model DBT_CROGERS.stg_fed_cdc_leading_causes_state__all (view)
+ Succeeded [  1.17s] model DBT_CROGERS.stg_fed_va_suicide_state__all (view)
+ Succeeded [  0.80s] model DBT_CROGERS.stg_fed_fjc_idb_bankruptcy__case_snapshots (view)
+ Succeeded [  0.68s] model DBT_CROGERS.stg_fed_occ_national_banks__banks (view)
+ Succeeded [  0.82s] model DBT_CROGERS.stg_fed_nid_dams__structures (view)
+ Succeeded [  0.99s] model DBT_CROGERS.stg_fed_cms_nursing_home__nursing_home_facilities (view)
+ Succeeded [  0.77s] model DBT_CROGERS.stg_fed_usda_rd_mfh_active_projects__projects (view)
+ Succeeded [  0.72s] model DBT_CROGERS.stg_fed_va_allcause_mortality__all (view)
+ Succeeded [  0.75s] model DBT_CROGERS.stg_fed_epa_tri_facility__facilities (view)
+ Succeeded [  0.99s] model DBT_CROGERS.stg_fed_epa_rcra_violations__violations (view)
+    Passed [  0.89s] test  not_null_stg_fed_cms_nursing_home__nursing_home_facilities_county_fips
+ Succeeded [  0.92s] model DBT_CROGERS.stg_fed_occ_thrifts__thrifts (view)
+    Passed [  1.04s] test  unique_stg_fed_cms_nursing_home__nursing_home_facilities_cms_certification_number_ccn
+ Succeeded [  0.79s] model DBT_CROGERS.stg_st_nyc_cfb_campaign_2013_contribution__contributions (view)
+ Succeeded [  0.81s] model DBT_CROGERS.stg_fed_eia861_utility_data__utility_profile (view)
+ Succeeded [  0.92s] model DBT_CROGERS.stg_fed_fjc_idb_appellate__appeal_records (view)
+ Succeeded [  0.87s] model DBT_CROGERS.stg_fed_phmsa_flagged_incidents__incidents (view)
+ Succeeded [  0.93s] model DBT_CROGERS.stg_fed_eia861_service_territory__counties (view)
+ Succeeded [  0.87s] model DBT_CROGERS.stg_fed_fjc_idb_civil__case_records (view)
+ Succeeded [  0.77s] model DBT_CROGERS.stg_fed_ice_detention_facility_codes__facility_codes (view)
+ Succeeded [  1.03s] model DBT_CROGERS.stg_fed_ncua_federally_insured_cu_list__credit_unions (view)
+ Succeeded [  0.77s] model DBT_CROGERS.stg_fed_eia861_short_form__responses (view)
+ Succeeded [  1.11s] model DBT_CROGERS.stg_fed_cms_hcris__hospital_cost_report (view)
+ Succeeded [  0.80s] model DBT_CROGERS.stg_fed_wqp_monitoring_stations__stations (view)
+ Succeeded [  0.91s] model DBT_CROGERS.stg_fed_dol_olms__filings (view)
+ Succeeded [  0.75s] model DBT_CROGERS.stg_fed_fracfocus_disclosure_list__disclosures (view)
+ Succeeded [  0.84s] model DBT_CROGERS.stg_fed_fracfocus_registry__ingredients (view)
+ Succeeded [  0.82s] model DBT_CROGERS.stg_fed_epa_aqs_sites__sites (view)
+ Succeeded [  0.76s] model DBT_CROGERS.stg_fed_eia860_6_1_enviroassoc__all (view)
+ Succeeded [  0.86s] model DBT_CROGERS.stg_fed_epa_ghgrp_facility__facilities (view)
+    Failed [  1.51s] model DBT_CROGERS.stg_intl_ember_elec__yearly_electricity (view)
+   Skipped [-------] test  not_null_stg_intl_ember_elec__yearly_electricity_unit (models/staging/intl_ember_elec/schema.yml:91:13)
+   Skipped [-------] test  unique_stg_intl_ember_elec__yearly_electricity_country_date_varchar_category_subcategory_variable_unit (models/staging/intl_ember_elec/schema.yml:114:9)
+   Skipped [-------] test  accepted_values_stg_intl_ember_elec__yearly_electricity_area_type__True__Country_or_economy__Region (models/staging/intl_ember_elec/schema.yml:46:13)
+   Skipped [-------] test  not_null_stg_intl_ember_elec__yearly_electricity_date (models/staging/intl_ember_elec/schema.yml:41:13)
+   Skipped [-------] test  not_null_stg_intl_ember_elec__yearly_electricity_variable (models/staging/intl_ember_elec/schema.yml:86:13)
+   Skipped [-------] test  not_null_stg_intl_ember_elec__yearly_electricity_subcategory (models/staging/intl_ember_elec/schema.yml:81:13)
+   Skipped [-------] test  not_null_stg_intl_ember_elec__yearly_electricity_country (models/staging/intl_ember_elec/schema.yml:33:13)
+   Skipped [-------] test  not_null_stg_intl_ember_elec__yearly_electricity_category (models/staging/intl_ember_elec/schema.yml:76:13)
+   Skipped [-------] model ENERGY.energy__intl_ember_elec (table)
+   Skipped [-------] test  unique_energy__intl_ember_elec_country_date_varchar_category_subcategory_variable_unit (models/staging/intl_ember_elec/schema.yml:204:9)
+   Skipped [-------] test  not_null_energy__intl_ember_elec_date (models/staging/intl_ember_elec/schema.yml:132:13)
+   Skipped [-------] test  accepted_values_energy__intl_ember_elec_area_type__True__Country__Region (models/staging/intl_ember_elec/schema.yml:148:13)
+   Skipped [-------] test  not_null_energy__intl_ember_elec_variable (models/staging/intl_ember_elec/schema.yml:137:13)
+   Skipped [-------] test  not_null_energy__intl_ember_elec_country (models/staging/intl_ember_elec/schema.yml:127:13)
+   Skipped [-------] model TIMELINE.ENERGY__INTL_EMBER_ELEC (view)
+ Succeeded [  0.84s] model DBT_CROGERS.stg_fed_fdic_bank_data__institutions (view)
+ Succeeded [  0.75s] model DBT_CROGERS.stg_fed_epa_rcra_evaluations__evaluations (view)
+ Succeeded [  0.84s] model DBT_CROGERS.stg_fed_eia861_sales_ult_cust__sales (view)
+ Succeeded [  0.88s] model DBT_CROGERS.stg_fed_eia860_6_2_enviroequip__all (view)
+ Succeeded [  1.01s] model DBT_CROGERS.stg_fed_fdic_sod_branch_deposits__branches (view)
+ Succeeded [  1.38s] model DBT_CROGERS.stg_fed_noaa_ais__ais_vessel_positions (view)
+ Succeeded [  0.83s] model DBT_CROGERS.stg_fed_eia860_4_owner__all (view)
+ Succeeded [  0.84s] model DBT_CROGERS.stg_fed_oyez__scotus_cases (view)
+ Succeeded [  0.90s] model DBT_CROGERS.stg_fed_eia860_3_2_wind__all (view)
+ Succeeded [  0.98s] model DBT_CROGERS.stg_fed_epa_ghgrp_emission__emissions (view)
+ Succeeded [  0.85s] model DBT_CROGERS.stg_fed_eia861_sales_ult_cust_cs__facility_sales (view)
+ Succeeded [  1.06s] model DBT_CROGERS.stg_fed_eia861_reliability__reliability_metrics (view)
+ Succeeded [  0.85s] model DBT_CROGERS.stg_fed_eia861_operational_data__operations (view)
+ Succeeded [  0.90s] model DBT_CROGERS.stg_fed_eia860_3_5_multifuel__all (view)
+ Succeeded [  0.76s] model DBT_CROGERS.stg_fed_sec_edgar_company_tickers__company_tickers (view)
+ Succeeded [  0.81s] model DBT_CROGERS.stg_fed_eia861_frame__respondents (view)
+ Succeeded [  1.52s] model DBT_CROGERS.stg_fed_hud_public_housing_authorities__authorities (view)
+ Succeeded [  0.90s] model DBT_CROGERS.stg_fed_eia860_3_3_solar__all (view)
+ Succeeded [  0.92s] model DBT_CROGERS.stg_fed_us_usaspending_api__federal_awards (view)
+ Succeeded [  0.93s] model DBT_CROGERS.stg_st_nyc_cfb_campaign_2025_contributions__contributions (view)
+ Succeeded [  0.95s] model DBT_CROGERS.stg_fed_eia860_3_4_energy_storage__all (view)
+ Succeeded [  0.96s] model DBT_CROGERS.stg_fed_eia861_mergers__mergers (view)
+ Succeeded [  0.87s] model DBT_CROGERS.stg_fed_fdic_failed_banks__failed_banks (view)
+ Succeeded [  0.85s] model DBT_CROGERS.stg_fed_treasury_avg_interest_rates__avg_interest_rates (view)
+ Succeeded [  1.52s] model DBT_CROGERS.stg_uk_companies_house_psc__psc_records (view)
+ Succeeded [  0.91s] model DBT_CROGERS.stg_fed_cfpb_complaints__complaints (view)
+ Succeeded [  0.77s] model DBT_CROGERS.stg_fed_sec_edgar_company_tickers_exchange__tickers (view)
+ Succeeded [  0.84s] model DBT_CROGERS.stg_fed_eia860_1_utility__all (view)
+ Succeeded [  0.88s] model DBT_CROGERS.stg_fed_treasury_debt_to_penny__debt_to_penny (view)
+ Succeeded [  0.91s] model DBT_CROGERS.stg_fed_eia861_distribution_systems__circuits (view)
+ Succeeded [  0.90s] model DBT_CROGERS.stg_fed_us_sec_edgar__edgar_filings (view)
+ Succeeded [  1.31s] model DBT_CROGERS.stg_irs527__8872_reports (view)
+ Succeeded [  0.87s] model DBT_CROGERS.stg_fed_irs_eo_bmf__orgs (view)
+ Succeeded [  0.83s] model DBT_CROGERS.stg_fed_cdc_drug_poisoning_county__rates (view)
+ Succeeded [  1.92s] model DBT_CROGERS.stg_fed_nhtsa_complaints__records (view)
+ Succeeded [  0.87s] model DBT_CROGERS.stg_fed_usgs_orphaned_oil_gas_wells__wells (view)
+ Succeeded [  1.22s] model DBT_CROGERS.stg_fed_eia860_3_1_generator__all (view)
+ Succeeded [  0.96s] model DBT_CROGERS.stg_fed_epa_rcra_enforcements__enforcements (view)
+ Succeeded [  1.02s] model POLITICS.stg_fed_fec_bulk_candidates__candidates (view)
+ Succeeded [  0.93s] model DBT_CROGERS.stg_fed_eia861_dynamic_pricing__enrollment (view)
+ Succeeded [  0.91s] model POLITICS.stg_fed_fec_bulk_linkages__linkages (view)
+ Succeeded [  0.93s] model DBT_CROGERS.stg_fed_uscg_nrc_incidents__incidents (view)
+ Succeeded [  1.05s] model DBT_CROGERS.stg_fed_epa_rcra_facilities__facilities (view)
+ Succeeded [  1.27s] model DBT_CROGERS.stg_fed_fjc_idb_criminal__defendant_records (view)
+ Succeeded [  0.94s] model POLITICS.stg_fed_voteview_rollcalls__votes (view)
+ Succeeded [  1.55s] model DBT_CROGERS.stg_fed_ed_college_scorecard_institution__institutions (view)
+ Succeeded [  0.98s] model DBT_CROGERS.stg_fed_nhtsa_recalls__records (view)
+ Succeeded [  1.12s] model DBT_CROGERS.stg_fed_eia860_2_plant__all (view)
+ Succeeded [  0.94s] model DBT_CROGERS.stg_fed_mapping_inequality__holc_neighborhood_grades (view)
+ Succeeded [  1.21s] model DBT_CROGERS.stg_fed_dol_ebsa_form5500_schedule_sb__filings (view)
+ Succeeded [  1.00s] model DBT_CROGERS.stg_fed_pcaob_form_ap_filings__filings (view)
+ Succeeded [  1.25s] model DBT_CROGERS.stg_st_nyc_cfb_campaign_2001_contribution__contributions (view)
+ Succeeded [  0.85s] model POLITICS.stg_fed_voteview_rollcall_meta__rollcalls (view)
+ Succeeded [  0.88s] model POLITICS.stg_fed_govinfo_billstatus__bills (view)
+ Succeeded [  0.96s] model POLITICS.stg_fed_congress_legislators__members (view)
+ Succeeded [  1.02s] model POLITICS.stg_fed_govinfo_bill_cosponsors__cosponsors (view)
+ Succeeded [  0.91s] model DBT_CROGERS.stg_fed_doj_fca_settlements__fca_settlements (view)
+ Succeeded [  0.87s] model POLITICS.stg_fed_voteview_members__ideology (view)
+ Succeeded [  0.88s] model DBT_CROGERS.stg_fed_ncua_call_reports__foicu (view)
+ Succeeded [  0.92s] model DBT_CROGERS.stg_intl_it_istat__istat_sdmx_observations (view)
+ Succeeded [  1.02s] model DBT_CROGERS.stg_fed_eia861_delivery_companies__sales (view)
+ Succeeded [  1.07s] model DBT_CROGERS.stg_fed_eia861_demand_response__programs (view)
+ Succeeded [  1.15s] model DBT_CROGERS.stg_fed_eia861_advanced_meters__meter_counts (view)
+ Succeeded [  1.12s] model DBT_CROGERS.stg_fed_eia861_energy_efficiency__programs (view)
+ Succeeded [  1.21s] model DBT_CROGERS.stg_fed_eia861_non_net_metering_distributed__capacity (view)
+    Passed [  0.46s] test  not_null_stg_fed_doj_crt_cases__crt_cases_state
+    Passed [  0.53s] test  not_null_stg_fed_doj_crt_cases__crt_cases_company_id
+ Succeeded [  1.43s] model DBT_CROGERS.stg_fed_eia861_net_metering__capacity (view)
+    Warned [  0.27s] test  accepted_values_stg_fed_doj_crt_cases__crt_cases_status__True__Open__Settled__Closed__Pending__Dismissed__Ongoing (models/staging/fed_doj_crt_cases/schema.yml:62:13)
+ Succeeded [  1.98s] model DBT_CROGERS.stg_fed_ncua_call_reports__fs220 (view)
+    Passed [  0.43s] test  not_null_stg_fed_doj_crt_cases__crt_cases_person_name
+    Warned [  0.47s] test  not_null_stg_fed_doj_crt_cases__crt_cases_date (models/staging/fed_doj_crt_cases/schema.yml:46:13)
+    Passed [  0.27s] test  not_null_stg_intl_gr_gemi__greek_companies__source_run_id
+    Warned [  0.26s] test  accepted_values_stg_intl_gr_gemi__greek_companies_status__Active__Inactive__Suspended__Dissolved__In_Liquidation__active__inactive__suspended__dissolved__in_liquidation (models/staging/intl_gr_gemi/schema.yml:54:13)
+    Warned [  0.44s] test  unique_stg_intl_gr_gemi__greek_companies_gemi_number (models/staging/intl_gr_gemi/schema.yml:30:13)
+    Passed [  0.17s] test  not_null_stg_intl_gr_gemi__greek_companies_gemi_number
+    Passed [  0.30s] test  not_null_stg_intl_gr_gemi__greek_companies_company_name
+    Passed [  0.47s] test  not_null_stg_intl_gr_gemi__greek_companies__ingested_at
+    Warned [  0.32s] test  not_null_stg_fed_nara_aad__archival_records_date (models/staging/fed_nara_aad/schema.yml:44:13)
+    Passed [  0.23s] test  not_null_stg_fed_nara_aad__archival_records_dataset_id
+    Warned [  0.27s] test  not_null_stg_fed_nara_aad__archival_records_geo_location (models/staging/fed_nara_aad/schema.yml:56:13)
+    Passed [  1.14s] test  not_null_stg_intl_gr_gemi__greek_companies_afm
+    Warned [  0.59s] test  not_null_stg_fed_nara_aad__archival_records_person_name (models/staging/fed_nara_aad/schema.yml:50:13)
+    Warned [  0.32s] test  not_null_stg_fed_nara_aad__archival_records_record_group_number (models/staging/fed_nara_aad/schema.yml:62:13)
+    Passed [  0.34s] test  not_null_stg_fed_nara_aad__archival_records_record_id
+    Warned [  0.25s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_date (models/staging/fed_fdic_enforcement/schema.yml:58:13)
+    Warned [  0.29s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_nmls_id (models/staging/fed_fdic_enforcement/schema.yml:64:13)
+    Warned [  0.24s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_fdic_cert_number (models/staging/fed_fdic_enforcement/schema.yml:34:13)
+    Warned [  0.16s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_respondent_name (models/staging/fed_fdic_enforcement/schema.yml:46:13)
+    Warned [  0.14s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_person_name (models/staging/fed_fdic_enforcement/schema.yml:52:13)
+    Warned [  0.18s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_docket_number (models/staging/fed_fdic_enforcement/schema.yml:28:13)
+    Warned [  0.26s] test  not_null_stg_fed_fdic_enforcement__enforcement_orders_company_id (models/staging/fed_fdic_enforcement/schema.yml:40:13)
+    Passed [  0.34s] test  not_null_stg_fed_faa_aircraft_registry__aircraft_n_number
+    Passed [  0.38s] test  not_null_stg_fed_faa_aircraft_registry__aircraft_unique_id
+    Passed [  0.38s] test  unique_stg_fed_faa_aircraft_registry__aircraft_unique_id
+    Passed [  0.41s] test  unique_stg_fed_faa_aircraft_registry__aircraft_n_number
+    Passed [  0.32s] test  not_null_stg_fed_hhs_taggs__grant_awards_award_number
+    Passed [  0.40s] test  not_null_stg_fed_hhs_taggs__grant_awards_opdiv
+    Passed [  0.44s] test  not_null_stg_fed_hhs_taggs__grant_awards_assistance_listing_number
+    Warned [  0.28s] test  not_null_stg_fed_hhs_taggs__grant_awards_fiscal_year (models/staging/fed_hhs_taggs/schema.yml:60:13)
+    Passed [  0.32s] test  not_null_stg_fed_hhs_taggs__grant_awards_recipient_fips
+    Passed [  0.64s] test  not_null_stg_fed_hhs_taggs__grant_awards_recipient_zip
+    Passed [  0.27s] test  not_null_stg_fed_hhs_taggs__grant_awards_recipient_ein
+    Warned [  0.17s] test  unique_stg_fed_hhs_taggs__grant_awards_award_number (models/staging/fed_hhs_taggs/schema.yml:30:13)
+    Warned [  0.27s] test  not_null_stg_fed_hhs_taggs__grant_awards_award_date (models/staging/fed_hhs_taggs/schema.yml:54:13)
+    Passed [  0.25s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_geo
+    Warned [  0.41s] test  accepted_values_stg_fed_hhs_taggs__grant_awards_metro_nonmetro__True__Metro__Non_Metro__Unknown__metro__non_metro__unknown (models/staging/fed_hhs_taggs/schema.yml:105:13)
+    Passed [  0.28s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_record_id
+    Passed [  0.17s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_fips
+    Warned [  0.32s] test  accepted_values_stg_fed_nara_wra_aad__japanese_american_relocation_records_citizenship_status__True__US_CITIZEN__ALIEN__UNKNOWN__NISEI__ISSEI__KIBEI__SANSEI (models/staging/fed_nara_wra_aad/schema.yml:82:13)
+    Passed [  0.19s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_camp_location
+    Warned [  0.33s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_record_date (models/staging/fed_nara_wra_aad/schema.yml:46:13)
+    Warned [  0.15s] test  unique_stg_fed_nara_wra_aad__japanese_american_relocation_records_record_id (models/staging/fed_nara_wra_aad/schema.yml:28:13)
+    Passed [  0.21s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_person_name
+    Passed [  0.25s] test  not_null_stg_fed_nara_wra_aad__japanese_american_relocation_records_series_id
+    Warned [  0.24s] test  accepted_values_stg_fed_nara_wra_aad__japanese_american_relocation_records_sex__True__M__F__MALE__FEMALE__U__UNKNOWN (models/staging/fed_nara_wra_aad/schema.yml:73:13)
+    Passed [  0.26s] test  not_null_stg_fed_sec_13f_positions__all_sec_accession_number
+    Passed [  0.46s] test  not_null_stg_fed_ntsb_aviation_events__events_ev_id
+    Passed [  0.48s] test  unique_stg_fed_ntsb_aviation_events__events_ev_id
+    Passed [  0.41s] test  not_null_stg_fed_ntsb_aviation_aircraft__aircraft_aircraft_key
+    Passed [  0.30s] test  not_null_stg_intl_owid_milspend__military_spending_is_aggregate
+    Passed [  0.16s] test  not_null_stg_intl_owid_milspend__military_spending_country
+    Warned [  0.30s] test  not_null_stg_intl_owid_milspend__military_spending_iso_code (models/staging/intl_owid_milspend/schema.yml:66:13)
+    Passed [  0.30s] test  not_null_stg_intl_owid_milspend__military_spending_year
+    Passed [  0.37s] test  accepted_values_stg_intl_owid_milspend__military_spending_is_aggregate__False__True__False
+    Passed [  1.17s] test  not_null_stg_fed_ntsb_aviation_aircraft__aircraft_ev_id
+    Passed [  0.14s] test  not_null_stg_fed_itis_vern_ref_links__vernacular_ref_links__loaded_at
+    Passed [  0.66s] test  not_null_stg_fed_itis_vern_ref_links__vernacular_ref_links_itis_vern_ref_links_key
+    Passed [  0.77s] test  unique_stg_fed_itis_vern_ref_links__vernacular_ref_links_itis_vern_ref_links_key
+    Passed [  0.32s] test  not_null_stg_fed_itis_vern_ref_links__vernacular_ref_links_vern_id
+    Passed [  0.18s] test  not_null_stg_fed_itis_vern_ref_links__vernacular_ref_links_doc_id_prefix
+    Passed [  0.39s] test  not_null_stg_fed_itis_vern_ref_links__vernacular_ref_links_tsn
+    Passed [  0.30s] test  not_null_stg_fed_itis_vern_ref_links__vernacular_ref_links_documentation_id
+    Passed [  0.45s] test  not_null_stg_fed_itis_vernaculars__vernacular_names_vern_id
+    Passed [  0.43s] test  not_null_stg_fed_itis_vernaculars__vernacular_names_tsn
+    Passed [  0.14s] test  not_null_stg_fed_itis_vernaculars__vernacular_names__loaded_at
+    Passed [  0.24s] test  not_null_stg_fed_itis_vernaculars__vernacular_names_itis_vernaculars_key
+    Passed [  0.29s] test  not_null_stg_intl_ch_zefix__companies_name
+    Passed [  1.09s] test  unique_stg_fed_itis_vernaculars__vernacular_names_itis_vernaculars_key
+    Warned [  0.35s] test  accepted_values_stg_intl_ch_zefix__companies_status__ACTIVE__DELETED__BEING_CANCELLED__CANCELLED (models/staging/intl_ch_zefix/schema.yml:60:13)
+    Passed [  0.27s] test  not_null_stg_intl_ch_zefix__companies_country
+    Passed [  0.19s] test  not_null_stg_intl_ch_zefix__companies_ehraid
+    Passed [  0.80s] test  unique_stg_intl_ch_zefix__companies_company_id
+    Passed [  0.26s] test  not_null_stg_intl_ch_zefix__companies_chid
+    Passed [  0.20s] test  accepted_values_stg_intl_ch_zefix__companies_country__CH
+    Passed [  0.15s] test  not_null_stg_intl_ch_zefix__companies__ingested_at
+    Passed [  0.14s] test  not_null_stg_intl_ch_zefix__companies_uid
+    Passed [  0.25s] test  not_null_stg_intl_ch_zefix__companies_company_id
+    Passed [  0.31s] test  not_null_stg_fed_naag_multistate_settlements__multistate_settlements_id
+    Passed [  0.31s] test  unique_stg_fed_naag_multistate_settlements__multistate_settlements_id
+    Passed [  0.33s] test  not_null_stg_fed_federal_register_documents__federal_register_documents_document_number
+    Passed [  0.27s] test  not_null_stg_fed_federal_register_documents__federal_register_documents_agency_names
+    Passed [  0.62s] test  unique_stg_fed_federal_register_documents__federal_register_documents_document_number
+    Passed [  0.35s] test  not_null_stg_fed_federal_register_documents__federal_register_documents_regulation_id_numbers
+    Passed [  0.86s] test  accepted_values_stg_fed_federal_register_documents__federal_register_documents_type__Rule__Proposed_Rule__Notice__Presidential_Document__Uncategorized_Document
+    Passed [  0.29s] test  not_null_stg_fed_federal_register_documents__federal_register_documents_citation
+    Passed [  0.42s] test  not_null_stg_fed_federal_register_documents__federal_register_documents_docket_ids
+    Passed [  0.74s] test  not_null_stg_fed_fra_casualties__all_incident_year
+    Passed [  0.71s] test  unique_stg_fed_fra_casualties__all_report_key
+    Passed [  0.74s] test  not_null_stg_fed_fra_casualties__all_report_key
+    Passed [  0.38s] test  not_null_stg_fed_fra_casualties__all_railroad_code
+    Passed [  0.36s] test  not_null_stg_xc_ror_research_organizations__organizations__loaded_at
+    Passed [  0.42s] test  unique_stg_xc_ror_research_organizations__organizations_ror_id
+    Passed [  0.61s] test  not_null_stg_xc_ror_research_organizations__organizations_display_name
+    Passed [  0.36s] test  not_null_stg_xc_ror_research_organizations__organizations_ror_id
+    Passed [  0.43s] test  not_null_stg_fed_ntsb_aviation_injury__injuries_ev_id
+    Passed [  0.60s] test  not_null_stg_fed_ntsb_aviation_injury__injuries_injury_record_id
+    Passed [  0.70s] test  unique_stg_fed_ntsb_aviation_injury__injuries_injury_record_id
+    Passed [  0.15s] test  not_null_stg_fed_itis_taxon_unit_types__rank_types__loaded_at
+    Passed [  0.32s] test  unique_stg_fed_itis_taxon_unit_types__rank_types_itis_taxon_unit_types_key
+    Passed [  0.44s] test  not_null_stg_fed_itis_tu_comments_links__comment_links_tsn
+    Passed [  0.18s] test  not_null_stg_fed_itis_taxon_unit_types__rank_types_rank_id
+    Passed [  0.30s] test  not_null_stg_fed_itis_taxon_unit_types__rank_types_kingdom_id
+    Passed [  0.55s] test  not_null_stg_fed_itis_tu_comments_links__comment_links_itis_tu_comments_links_key
+    Passed [  0.41s] test  not_null_stg_fed_itis_taxon_unit_types__rank_types_itis_taxon_unit_types_key
+    Passed [  0.39s] test  not_null_stg_fed_itis_tu_comments_links__comment_links_comment_id
+    Passed [  0.26s] test  not_null_stg_fed_itis_tu_comments_links__comment_links__loaded_at
+    Passed [  0.26s] test  not_null_stg_fed_itis_strippedauthor__stripped_authors__loaded_at
+    Passed [  0.35s] test  not_null_stg_fed_itis_strippedauthor__stripped_authors_taxon_author_id
+    Passed [  0.73s] test  unique_stg_fed_itis_tu_comments_links__comment_links_itis_tu_comments_links_key
+    Passed [  0.64s] test  unique_stg_fed_itis_strippedauthor__stripped_authors_taxon_author_id
+    Passed [  9.27s] test  not_null_stg_fed_sec_13f_positions__all_cusip
+    Warned [  0.51s] test  accepted_values_stg_xc_biorxiv_medrxiv__preprint_manuscript_license__True__cc_by__cc_by_nc__cc_by_nd__cc_by_nc_nd__cc_no_reuse__cc0__none (models/staging/xc_biorxiv_medrxiv/schema.yml:90:13)
+    Warned [  0.39s] test  accepted_values_stg_xc_biorxiv_medrxiv__preprint_manuscript_submission_type__True__new_results__confirmatory_results__contradictory_results__null_results__new_result__confirmatory_result__contradictory_result__null_result__other (models/staging/xc_biorxiv_medrxiv/schema.yml:72:13)
+    Warned [  0.24s] test  accepted_values_stg_xc_biorxiv_medrxiv__preprint_manuscript_server__True__biorxiv__medrxiv (models/staging/xc_biorxiv_medrxiv/schema.yml:112:13)
+    Passed [  0.14s] test  not_null_stg_xc_biorxiv_medrxiv__preprint_manuscript__source_run_id
+    Passed [  0.17s] test  not_null_stg_xc_biorxiv_medrxiv__preprint_manuscript_biorxiv_doi
+    Passed [  0.26s] test  not_null_stg_xc_biorxiv_medrxiv__preprint_manuscript__ingested_at
+    Passed [  0.35s] test  not_null_stg_xc_biorxiv_medrxiv__preprint_manuscript_doi
+    Passed [  0.31s] test  not_null_stg_fed_itis_synonym_links__synonyms__loaded_at
+    Passed [  0.48s] test  not_null_stg_fed_itis_synonym_links__synonyms_itis_synonym_links_key
+    Passed [  0.90s] test  not_null_stg_fed_itis_synonym_links__synonyms_tsn
+    Passed [  0.90s] test  not_null_stg_fed_itis_synonym_links__synonyms_tsn_accepted
+    Passed [  0.23s] test  not_null_stg_fed_itis_taxon_authors_lkp__authors__loaded_at
+    Passed [  0.54s] test  unique_stg_fed_itis_taxon_authors_lkp__authors_taxon_author_id
+    Passed [  0.39s] test  not_null_stg_fed_itis_taxon_authors_lkp__authors_taxon_author_id
+    Warned [  0.43s] test  not_null_stg_fed_slavevoyages_intraamerican__intra_american_voyages_port_of_departure_code (models/staging/fed_slavevoyages_intraamerican/schema.yml:52:13)
+    Passed [  0.50s] test  unique_stg_fed_slavevoyages_intraamerican__intra_american_voyages_voyage_id
+    Passed [  1.48s] test  unique_stg_fed_itis_synonym_links__synonyms_itis_synonym_links_key
+    Warned [  0.18s] test  not_null_stg_fed_slavevoyages_intraamerican__intra_american_voyages_date_of_departure (models/staging/fed_slavevoyages_intraamerican/schema.yml:35:13)
+    Passed [  0.29s] test  not_null_stg_fed_slavevoyages_intraamerican__intra_american_voyages_voyage_id
+    Warned [  0.47s] test  not_null_stg_fed_slavevoyages_intraamerican__intra_american_voyages_port_of_arrival_code (models/staging/fed_slavevoyages_intraamerican/schema.yml:62:13)
+    Passed [  0.79s] test  not_null_stg_fed_slavevoyages_intraamerican__intra_american_voyages_year_of_arrival
+    Warned [  0.41s] test  not_null_stg_fed_slavevoyages_intraamerican__intra_american_voyages_captain_name (models/staging/fed_slavevoyages_intraamerican/schema.yml:71:13)
+    Passed [  0.27s] test  not_null_stg_fed_itis_taxonomic_units__taxa__loaded_at
+    Passed [  0.26s] test  not_null_stg_fed_itis_longnames__complete_names__loaded_at
+    Passed [  0.64s] test  not_null_stg_fed_itis_taxonomic_units__taxa_tsn
+    Passed [  0.59s] test  not_null_stg_fed_itis_longnames__complete_names_tsn
+    Passed [  0.23s] test  not_null_stg_xc_osf_registrations__registrations__loaded_at
+    Passed [  0.48s] test  unique_stg_xc_osf_registrations__registrations_osf_id
+    Passed [  1.16s] test  unique_stg_fed_itis_taxonomic_units__taxa_tsn
+    Passed [  0.22s] test  not_null_stg_fed_itis_jurisdiction__jurisdictions__loaded_at
+    Passed [  0.42s] test  not_null_stg_xc_osf_registrations__registrations_osf_id
+    Passed [  0.97s] test  unique_stg_fed_itis_longnames__complete_names_tsn
+    Passed [  0.52s] test  not_null_stg_fed_itis_jurisdiction__jurisdictions_jurisdiction_value
+    Passed [  0.50s] test  not_null_stg_fed_itis_jurisdiction__jurisdictions_itis_jurisdiction_key
+    Passed [  0.15s] test  not_null_stg_fed_itis_publications__publications__loaded_at
+    Passed [  0.70s] test  not_null_stg_fed_itis_jurisdiction__jurisdictions_tsn
+    Passed [  0.58s] test  not_null_stg_fed_itis_publications__publications_pub_id_prefix
+    Passed [  0.99s] test  unique_stg_fed_itis_jurisdiction__jurisdictions_itis_jurisdiction_key
+    Passed [  0.31s] test  not_null_stg_fed_itis_publications__publications_publication_id
+    Passed [  0.49s] test  unique_stg_fed_itis_publications__publications_itis_publications_key
+    Passed [  0.61s] test  not_null_stg_fed_itis_publications__publications_itis_publications_key
+    Passed [  0.20s] test  not_null_stg_fed_itis_reference_links__reference_links__loaded_at
+    Passed [  0.57s] test  not_null_stg_fed_itis_reference_links__reference_links_tsn
+    Passed [  0.17s] test  not_null_stg_fed_itis_reference_links__reference_links_doc_id_prefix
+    Passed [  0.50s] test  not_null_stg_fed_itis_reference_links__reference_links_documentation_id
+    Passed [  0.24s] test  not_null_stg_fed_itis_kingdoms__kingdoms__loaded_at
+    Passed [  1.04s] test  not_null_stg_fed_itis_reference_links__reference_links_itis_reference_links_key
+    Passed [  0.29s] test  not_null_stg_fed_itis_kingdoms__kingdoms_kingdom_id
+    Passed [  0.29s] test  unique_stg_fed_itis_kingdoms__kingdoms_kingdom_id
+    Passed [  0.56s] test  not_null_stg_fed_nih_reporter__projects_fiscal_year
+    Passed [  0.85s] test  unique_stg_fed_nih_reporter__projects_appl_id
+    Passed [  1.06s] test  not_null_stg_fed_itis_geographic_div__geographic_divisions_geographic_value
+    Passed [  0.34s] test  not_null_stg_fed_nih_reporter__projects_appl_id
+    Passed [  0.33s] test  not_null_stg_fed_itis_geographic_div__geographic_divisions_itis_geographic_div_key
+    Passed [  0.27s] test  not_null_stg_fed_itis_geographic_div__geographic_divisions__loaded_at
+    Passed [  0.37s] test  not_null_stg_fed_itis_geographic_div__geographic_divisions_tsn
+    Passed [  0.22s] test  not_null_stg_fed_itis_hierarchy__hierarchy__loaded_at
+    Passed [  0.59s] test  not_null_stg_fed_itis_hierarchy__hierarchy_tsn
+    Passed [  0.92s] test  unique_stg_fed_itis_geographic_div__geographic_divisions_itis_geographic_div_key
+    Passed [  3.62s] test  unique_stg_fed_itis_reference_links__reference_links_itis_reference_links_key
+    Passed [  0.78s] test  unique_stg_fed_itis_hierarchy__hierarchy_tsn
+    Passed [  0.55s] test  not_null_stg_fed_fra_crossing_incidents__all_railroad_code
+    Passed [  0.50s] test  not_null_stg_fed_fra_crossing_incidents__all_report_key
+    Passed [  0.29s] test  not_null_stg_fed_itis_experts__experts_itis_experts_key
+    Passed [  0.17s] test  unique_stg_fed_itis_experts__experts_itis_experts_key
+    Passed [  0.22s] test  not_null_stg_fed_itis_experts__experts_expert_id_prefix
+    Passed [  0.41s] test  not_null_stg_fed_itis_experts__experts_expert_id
+    Passed [  0.33s] test  not_null_stg_fed_itis_experts__experts__loaded_at
+    Passed [  0.21s] test  not_null_stg_xc_un_consolidated_sanctions_list__designated_party_dataid
+    Passed [  0.19s] test  not_null_stg_xc_un_consolidated_sanctions_list__designated_party__source_run_id
+    Passed [  0.26s] test  not_null_stg_xc_un_consolidated_sanctions_list__designated_party__ingested_at
+    Passed [  0.16s] test  not_null_stg_xc_un_consolidated_sanctions_list__designated_party_reference_number
+    Passed [  0.29s] test  accepted_values_stg_xc_un_consolidated_sanctions_list__designated_party_record_type__True__Individual__Entity__INDIVIDUAL__ENTITY
+    Passed [  0.26s] test  accepted_values_stg_xc_un_consolidated_sanctions_list__designated_party_gender__True__Male__Female__Unknown__MALE__FEMALE__UNKNOWN__
+    Passed [  0.26s] test  not_null_stg_fed_itis_comments__comments__loaded_at
+    Passed [  0.83s] test  not_null_stg_fed_itis_comments__comments_comment_id
+    Passed [  0.75s] test  not_null_stg_fed_itis_other_sources__other_sources_source_id_prefix
+    Passed [  0.77s] test  unique_stg_fed_itis_other_sources__other_sources_itis_other_sources_key
+    Passed [  0.94s] test  unique_stg_fed_itis_comments__comments_comment_id
+    Passed [  0.17s] test  not_null_stg_fed_itis_other_sources__other_sources_source_id
+    Passed [  0.25s] test  not_null_stg_fed_itis_other_sources__other_sources_itis_other_sources_key
+    Passed [  0.25s] test  not_null_stg_fed_itis_other_sources__other_sources__loaded_at
+    Passed [  0.36s] test  not_null_stg_fed_itis_nodc_ids__nodc_ids_itis_nodc_ids_key
+    Passed [  0.48s] test  not_null_stg_fed_itis_nodc_ids__nodc_ids_nodc_id
+    Passed [  0.38s] test  not_null_stg_fed_itis_nodc_ids__nodc_ids_tsn
+    Passed [  0.15s] test  not_null_stg_fed_itis_nodc_ids__nodc_ids__loaded_at
+    Passed [  0.65s] test  unique_stg_fed_itis_nodc_ids__nodc_ids_itis_nodc_ids_key
+    Passed [  0.25s] test  not_null_stg_fed_pbgc_trusteed_plans__plans_case_number
+    Passed [  0.18s] test  unique_stg_fed_pbgc_trusteed_plans__plans_case_number
+    Passed [  0.36s] test  not_null_stg_fed_pbgc_trusteed_plans__plans_sponsor_name
+    Passed [  0.35s] test  unique_stg_fed_bia_tribal_geo__bia_geospatial_features_lar_id
+    Passed [  0.28s] test  not_null_stg_fed_bia_tribal_geo__bia_geospatial_features_object_id
+    Passed [  0.32s] test  not_null_stg_fed_usgs_gnis_all_names__name_citations_ingested_at
+    Passed [  0.39s] test  not_null_stg_fed_usgs_gnis_all_names__name_citations_feature_id
+    Passed [  0.24s] test  not_null_stg_fed_bia_tribal_geo__bia_geospatial_features_lar_id
+    Passed [  1.09s] test  not_null_stg_fed_usgs_gnis_all_names__name_citations_name_citation_id
+    Passed [  0.40s] test  unique_stg_fed_usaspending_subawards__subawards_subaward_id
+    Passed [  0.58s] test  not_null_stg_fed_usaspending_subawards__subawards_subaward_id
+    Passed [  0.60s] test  dbt_utils_unique_combination_of_columns_stg_fed_fec_pac_summary__records_cmte_id__cvg_end_dt
+    Passed [  1.53s] test  unique_stg_fed_usgs_gnis_all_names__name_citations_name_citation_id
+    Passed [  0.45s] test  not_null_stg_fed_consolidated_screening_list__entries_name
+    Passed [  0.24s] test  not_null_stg_fed_consolidated_screening_list__entries_source_list
+    Passed [  0.49s] test  not_null_stg_fed_consolidated_screening_list__entries_entry_id
+    Passed [  0.32s] test  not_null_stg_state_mo_sex_offender_registry__offenses_offense
+    Passed [  0.32s] test  not_null_stg_state_mo_sex_offender_registry__offenses_registrant_name
+    Passed [  0.64s] test  not_null_stg_fed_fra_equipment_accidents__all_reporting_railroad_code
+    Passed [  0.62s] test  not_null_stg_fed_fra_equipment_accidents__all_report_key
+    Passed [  0.27s] test  not_null_stg_intl_ec_sercop__contracting_process_id
+    Warned [  0.78s] test  accepted_values_stg_intl_ec_sercop__contracting_process_tender_procurement_method__open__selective__limited__direct (models/staging/intl_ec_sercop/schema.yml:113:13)
+    Passed [  1.08s] test  not_null_stg_intl_ec_sercop__contracting_process_date
+    Passed [  0.25s] test  not_null_stg_intl_ec_sercop__contracting_process__ingested_at
+    Passed [  0.18s] test  not_null_stg_intl_ec_sercop__contracting_process_ocid
+    Passed [  0.26s] test  not_null_stg_intl_ec_sercop__contracting_process_buyer_id
+    Warned [  0.67s] test  accepted_values_stg_intl_ec_sercop__contracting_process_tender_status__planning__planned__active__cancelled__unsuccessful__complete__withdrawn (models/staging/intl_ec_sercop/schema.yml:98:13)
+    Passed [  0.20s] test  not_null_stg_intl_ec_sercop__contracting_process_tag
+    Passed [  0.27s] test  not_null_stg_intl_ec_sercop__contracting_process__source_run_id
+    Passed [  0.17s] test  accepted_values_stg_intl_ec_sercop__contracting_process_initiation_type__tender
+    Passed [  0.21s] test  accepted_values_stg_intl_ec_sercop__contracting_process_tag__planning__planningUpdate__tender__tenderAmendment__tenderUpdate__tenderCancellation__award__awardUpdate__awardCancellation__contract__contractUpdate__contractAmendment__implementation__implementationUpdate__contractTermination__compiled
+    Warned [  0.61s] test  accepted_values_stg_intl_ec_sercop__contracting_process_award_status__pending__active__cancelled__unsuccessful (models/staging/intl_ec_sercop/schema.yml:134:13)
+    Passed [  1.21s] test  not_null_stg_fed_sbir_sttr_awards__awards_award_record_id
+    Passed [  0.29s] test  not_null_stg_fed_sbir_sttr_awards__awards_agency
+    Passed [  1.25s] test  unique_stg_fed_sbir_sttr_awards__awards_award_record_id
+    Passed [  0.21s] test  not_null_stg_fed_fhfa_suspended_counterparty_program__suspended_counterparty_company
+    Passed [  0.24s] test  not_null_stg_fed_fhfa_suspended_counterparty_program__suspended_counterparty_last_name
+    Passed [  0.42s] test  not_null_stg_intl_opensanctions_default__targets_entity_type
+    Passed [  0.53s] test  not_null_stg_intl_opensanctions_default__targets_id
+    Passed [  0.24s] test  not_null_stg_intl_opensanctions_default__targets_name
+    Passed [  0.36s] test  not_null_stg_fed_fbi_cde__state_month_state
+    Passed [  0.52s] test  unique_stg_intl_opensanctions_default__targets_id
+    Passed [  0.25s] test  not_null_stg_fed_fbi_cde__state_month_series
+    Passed [  0.43s] test  not_null_stg_fed_fbi_cde__state_month_offense
+    Passed [  0.19s] test  accepted_values_stg_fed_fbi_cde__state_month_series__OFFENSES__CLEARANCES
+    Passed [  0.66s] test  not_null_stg_fed_fbi_cde__state_month_month_date
+    Passed [  0.81s] test  dbt_utils_unique_combination_of_columns_stg_fed_fbi_cde__state_month_state__offense__month__series
+    Passed [  0.49s] test  not_null_stg_intl_healthcanada_dpd_drug__drugs_drug_code
+    Passed [  0.24s] test  not_null_stg_intl_healthcanada_dpd_drug__drugs__ingested_at
+    Passed [  0.42s] test  unique_stg_intl_healthcanada_dpd_drug__drugs_drug_code
+    Warned [  0.45s] test  not_null_stg_fed_fdic_enforcement_orders__orders_order_type (models/staging/fed_fdic_enforcement_orders/schema.yml:37:13)
+    Warned [  0.73s] test  not_null_stg_fed_fdic_enforcement_orders__orders_document_url (models/staging/fed_fdic_enforcement_orders/schema.yml:42:13)
+    Warned [  0.51s] test  not_null_stg_fed_fdic_enforcement_orders__orders_docket_number (models/staging/fed_fdic_enforcement_orders/schema.yml:28:13)
+    Passed [  0.25s] test  unique_stg_fed_fdic_enforcement_orders__orders_order_id
+    Passed [  1.10s] test  not_null_stg_fed_fdic_enforcement_orders__orders_order_id
+    Passed [  0.52s] test  not_null_stg_fed_fema_nfip_community_status_book__communities_community_id_number
+    Passed [  0.88s] test  not_null_stg_fed_ice_detainers__all_detainer_prepare_date
+    Passed [  0.76s] test  not_null_stg_fed_fema_nfip_community_status_book__communities__ingested_at
+    Passed [  1.31s] test  unique_stg_fed_fema_nfip_community_status_book__communities_community_id_number
+    Passed [  0.75s] test  not_null_stg_fed_hud_mf_firm_commitments__commitments_commitment_record_id
+    Passed [  0.32s] test  not_null_stg_fed_hud_mf_firm_commitments__commitments_fha_number
+    Passed [  0.51s] test  unique_stg_fed_hud_mf_firm_commitments__commitments_commitment_record_id
+    Passed [  0.31s] test  not_null_stg_fed_hud_mf_firm_commitments__commitments__ingested_at
+    Passed [  0.67s] test  not_null_stg_fed_ice_detention_stints__all_detention_facility
+    Passed [  0.97s] test  not_null_stg_fed_ice_detention_stints__all_book_in_at
+    Passed [  0.65s] test  not_null_stg_fed_irs_990_officer_pay__people_ein
+    Passed [  0.13s] test  not_null_stg_fed_irs_990_officer_pay__people_object_id
+    Passed [  0.41s] test  not_null_stg_fed_irs_990_officer_pay__people_person_seq
+    Passed [  0.44s] test  dbt_utils_unique_combination_of_columns_stg_fed_irs_990_officer_pay__people_object_id__person_seq
+    Passed [  0.38s] test  not_null_stg_intl_hudoc__echr_cases_case_id
+    Passed [  0.25s] test  not_null_stg_intl_hudoc__echr_cases_person_name
+    Warned [  0.59s] test  not_null_stg_intl_hudoc__echr_cases_country (models/staging/intl_hudoc/schema.yml:64:13)
+    Passed [  0.55s] test  not_null_stg_intl_hudoc__echr_cases__ingested_at
+    Warned [  0.34s] test  not_null_stg_intl_hudoc__echr_cases_ecli (models/staging/intl_hudoc/schema.yml:57:13)
+    Warned [  0.21s] test  not_null_stg_intl_hudoc__echr_cases_appno (models/staging/intl_hudoc/schema.yml:50:13)
+    Warned [  0.52s] test  not_null_stg_intl_hudoc__echr_cases_date (models/staging/intl_hudoc/schema.yml:76:13)
+    Warned [  0.36s] test  accepted_values_stg_intl_hudoc__echr_cases_doc_type__True__JUDGMENT__DECISION__ADVISORY_OPINION__COMMUNICATED_CASE__STRIKE_OUT__REVISION__INTERPRETATION__OTHER (models/staging/intl_hudoc/schema.yml:85:13)
+    Passed [  0.16s] test  not_null_stg_intl_hudoc__echr_cases__source_run_id
+    Passed [  0.81s] test  accepted_values_stg_intl_hudoc__echr_cases_importance__False__1__2__3__4
+    Warned [  0.32s] test  accepted_values_stg_intl_hudoc__echr_cases_language__True__EN__FR (models/staging/intl_hudoc/schema.yml:134:13)
+    Passed [  0.39s] test  not_null_stg_fed_ihs_scb_facility__facilities_scb_facility_id
+    Passed [  0.31s] test  not_null_stg_fed_ihs_scb_facility__facilities__ingested_at
+    Passed [  0.24s] test  not_null_stg_fed_ihs_scb_facility__facilities_asufac_code
+    Passed [  0.47s] test  unique_stg_fed_ihs_scb_facility__facilities_scb_facility_id
+    Passed [  1m12s] test  not_null_stg_intl_elections_canada_contributions__contributions_contribution_record_id
+    Passed [  0.33s] test  not_null_stg_fed_jpml_pending_mdls__mdl_docket_litigation
+    Passed [  0.36s] test  unique_stg_fed_jpml_pending_mdls__mdl_docket_mdl_no
+    Passed [  0.29s] test  not_null_stg_fed_jpml_pending_mdls__mdl_docket_mdl_no
+    Passed [  0.61s] test  not_null_stg_fed_jpml_pending_mdls__mdl_docket__ingested_at
+    Passed [  0.32s] test  not_null_stg_fed_jpml_pending_mdls__mdl_docket_district
+    Warned [  0.88s] test  accepted_values_stg_fed_clinicaltrials__clinical_trials_study_type__Interventional__Observational__Expanded_Access (models/staging/fed_clinicaltrials/schema.yml:93:13)
+    Passed [  0.29s] test  not_null_stg_fed_clinicaltrials__clinical_trials_nct_id
+    Passed [  0.37s] test  not_null_stg_fed_clinicaltrials__clinical_trials__ingested_at
+    Warned [  0.47s] test  not_null_stg_fed_clinicaltrials__clinical_trials_org_study_id (models/staging/fed_clinicaltrials/schema.yml:34:13)
+    Passed [  0.26s] test  not_null_stg_fed_clinicaltrials__clinical_trials__source_run_id
+    Warned [  0.42s] test  accepted_values_stg_fed_clinicaltrials__clinical_trials_lead_sponsor_class__INDUSTRY__NIH__U_S_FED__OTHER__Industry__NIH__U_S_Fed__Other (models/staging/fed_clinicaltrials/schema.yml:131:13)
+    Warned [  0.57s] test  accepted_values_stg_fed_clinicaltrials__clinical_trials_phase__Phase_1__Phase_1_Phase_2__Phase_2__Phase_2_Phase_3__Phase_3__Phase_3_Phase_4__Phase_4__Early_Phase_1__N_A__Not_Applicable (models/staging/fed_clinicaltrials/schema.yml:74:13)
+    Warned [  0.57s] test  accepted_values_stg_fed_clinicaltrials__clinical_trials_overall_status__Recruiting__Not_yet_recruiting__Enrolling_by_invitation__Active_not_recruiting__Completed__Terminated__Withdrawn__Suspended__Unknown_status__Available__No_longer_available__Temporarily_not_available__Approved_for_marketing (models/staging/fed_clinicaltrials/schema.yml:52:13)
+    Passed [  0.44s] test  unique_stg_fed_clinicaltrials__clinical_trials_nct_id
+    Warned [  0.38s] test  accepted_values_stg_fed_clinicaltrials__clinical_trials_gender__All__Female__Male (models/staging/fed_clinicaltrials/schema.yml:163:13)
+    Passed [  0.77s] test  not_null_stg_fed_cfpb_hmda_lar__lar_records_lar_record_id
+    Passed [  0.29s] test  not_null_stg_fed_cfpb_hmda_lar__lar_records_activity_year
+    Passed [  0.58s] test  unique_stg_fed_cfpb_hmda_lar__lar_records_lar_record_id
+    Passed [  0.24s] test  not_null_stg_fed_cfpb_hmda_lar__lar_records_lei
+    Passed [  0.29s] test  not_null_stg_fed_cfpb_hmda_lar__lar_records__ingested_at
+    Passed [  0.26s] test  not_null_stg_fed_ncua_charter_merger_events__merger_events__loaded_at
+    Passed [  0.91s] test  unique_stg_fed_ncua_charter_merger_events__merger_events_merging_credit_union_charter
+    Passed [  0.27s] test  not_null_stg_fed_ncua_charter_merger_events__merger_events_merging_credit_union_charter
+    Passed [  0.34s] test  not_null_stg_st_oehha_proposition_65_list__chemical_cas_no
+    Warned [  0.30s] test  accepted_values_stg_st_oehha_proposition_65_list__chemical_type_of_toxicity__True__cancer__reproductive_toxicity__cancer_reproductive_toxicity__developmental_toxicity__cancer_developmental_toxicity (models/staging/st_oehha_proposition_65_list/schema.yml:59:13)
+    Passed [  0.34s] test  not_null_stg_st_oehha_proposition_65_list__chemical__ingested_at
+    Passed [  0.33s] test  not_null_stg_st_oehha_proposition_65_list__chemical_listing_mechanism
+    Passed [  0.35s] test  not_null_stg_st_oehha_proposition_65_list__chemical_chemical_key
+    Passed [  0.31s] test  not_null_stg_st_oehha_proposition_65_list__chemical_chemical
+    Passed [  0.29s] test  not_null_stg_st_oehha_proposition_65_list__chemical_type_of_toxicity
+    Passed [  0.39s] test  not_null_stg_st_oehha_proposition_65_list__chemical__source_run_id
+    Passed [  0.33s] test  unique_stg_st_oehha_proposition_65_list__chemical_chemical_key
+    Passed [  0.30s] test  not_null_stg_fed_dhs_hifld__facilities_objectid
+    Passed [  0.89s] test  not_null_stg_fed_nlm_dailymed_spl_setid_map__setid_map_setid
+    Passed [  0.50s] test  unique_stg_fed_nlm_dailymed_spl_setid_map__setid_map_setid
+    Passed [  0.61s] test  unique_stg_fed_hud_mf_section8_contracts__contracts_contract_record_id
+    Passed [  0.34s] test  not_null_stg_fed_hud_mf_section8_contracts__contracts__ingested_at
+    Passed [  0.39s] test  not_null_stg_fed_hud_mf_section8_contracts__contracts_contract_record_id
+    Passed [  0.37s] test  not_null_stg_fed_hud_mf_section8_contracts__contracts_contract_number
+    Passed [  0.60s] test  not_null_stg_fed_ihs_facilities__facilities_ihs_facility_id
+    Passed [  0.21s] test  not_null_stg_fed_ihs_facilities__facilities__ingested_at
+    Passed [  0.31s] test  not_null_stg_fed_ihs_facilities__facilities_asufac
+    Passed [  0.43s] test  unique_stg_fed_ihs_facilities__facilities_ihs_facility_id
+    Passed [  0.45s] test  not_null_stg_xc_vera_incarceration_trends__county_year_year
+    Passed [  0.33s] test  not_null_stg_xc_vera_incarceration_trends__county_year_is_stub_year
+    Passed [  0.67s] test  unique_stg_xc_vera_incarceration_trends__county_year_year_county_fips
+    Passed [  0.23s] test  not_null_stg_xc_vera_incarceration_trends__county_year_county_fips
+    Passed [  0.66s] test  not_null_stg_xc_vera_incarceration_trends__county_year_year_county_fips
+    Passed [  0.25s] test  accepted_values_stg_xc_vera_incarceration_trends__county_year_is_stub_year__True__False
+    Passed [  0.79s] test  unique_stg_fed_hud_fha_sf_portfolio_snapshot__loans_loan_record_id
+    Passed [  0.72s] test  not_null_stg_fed_hud_fha_sf_portfolio_snapshot__loans_loan_record_id
+    Passed [  0.26s] test  not_null_stg_fed_hud_fha_sf_portfolio_snapshot__loans__ingested_at
+    Passed [  0.27s] test  not_null_stg_fed_cdc_wonder__records_sex
+    Passed [  0.26s] test  not_null_stg_fed_cdc_wonder__records_icd_chapter
+    Passed [  0.39s] test  not_null_stg_fed_cdc_wonder__records_year
+    Passed [  0.31s] test  dbt_utils_unique_combination_of_columns_stg_fed_cdc_wonder__records_year__icd_chapter__sex
+    Passed [  1m36s] test  unique_stg_intl_elections_canada_contributions__contributions_contribution_record_id
+    Passed [  0.41s] test  not_null_stg_fed_hrsa_hpsa_primary_care__designations__ingested_at
+    Passed [  1.56s] test  not_null_stg_fed_hrsa_hpsa_primary_care__designations_hpsa_component_id
+    Passed [  0.56s] test  not_null_stg_fed_hrsa_hpsa_primary_care__designations_hpsa_id
+    Passed [  0.70s] test  unique_stg_fed_hrsa_hpsa_primary_care__designations_hpsa_component_id
+    Passed [  0.31s] test  not_null_stg_fed_hrsa_provider_relief_fund__payments_provider_name
+    Passed [  1.20s] test  not_null_stg_fed_hrsa_provider_relief_fund__payments_prf_row_id
+    Passed [  1.09s] test  unique_stg_fed_hrsa_provider_relief_fund__payments_prf_row_id
+    Passed [  0.49s] test  not_null_stg_fed_hrsa_provider_relief_fund__payments_payment_amount
+    Passed [  0.56s] test  not_null_stg_fed_hrsa_provider_relief_fund__payments_state
+    Passed [  0.33s] test  not_null_stg_fed_va_suicide_national__all_suicide_deaths
+    Passed [  0.34s] test  accepted_values_stg_fed_va_suicide_national__all_cohort__Veteran__Recent_Veteran_VHA_User__Other_Veteran__Non_Veteran__U_S_Adult_Population
+    Passed [  0.40s] test  dbt_utils_unique_combination_of_columns_stg_fed_va_suicide_national__all_year_of_death__cohort__age_group
+    Passed [  0.27s] test  not_null_stg_fed_va_suicide_national__all_year_of_death
+    Passed [  0.25s] test  not_null_stg_fed_va_suicide_national__all_cohort
+    Passed [  1.03s] test  not_null_stg_st_nyc_cfb_campaign_2021_contributions__contributions_contribution_record_id
+    Passed [  0.54s] test  not_null_stg_fed_epa_superfund_site_boundaries__boundaries_epa_id
+    Passed [  0.34s] test  not_null_stg_fed_epa_superfund_site_boundaries__boundaries_boundary_feature_id
+    Passed [  2.05s] test  unique_stg_st_nyc_cfb_campaign_2021_contributions__contributions_contribution_record_id
+    Passed [  0.56s] test  unique_stg_fed_epa_superfund_site_boundaries__boundaries_boundary_feature_id
+    Passed [  0.32s] test  not_null_stg_fed_uscg_nrc_incident_reports__incident_reports__ingested_at
+    Passed [  0.56s] test  not_null_stg_fed_uscg_nrc_incident_reports__incident_reports_seqnos
+    Passed [  0.35s] test  not_null_stg_fed_scdb__supreme_court_cases_vote_id
+    Passed [  0.52s] test  unique_stg_fed_uscg_nrc_incident_reports__incident_reports_seqnos
+    Passed [  0.64s] test  unique_stg_fed_scdb__supreme_court_cases_vote_id
+    Passed [  0.53s] test  accepted_values_stg_fed_scdb__supreme_court_cases_decision_direction_code__False__1__2__3
+    Passed [  0.18s] test  not_null_stg_fed_scdb__supreme_court_cases_case_id
+    Passed [  0.19s] test  not_null_stg_fed_scdb__supreme_court_cases_justice_name
+    Passed [  0.29s] test  not_null_stg_fed_scdb__supreme_court_cases_docket_id
+    Passed [  0.41s] test  not_null_stg_fed_scdb__supreme_court_cases_date_decision
+    Passed [  0.42s] test  not_null_stg_fed_scdb__supreme_court_cases_case_issues_id
+    Passed [  0.27s] test  not_null_stg_fed_scdb__supreme_court_cases_docket
+    Passed [  1.07s] test  not_null_stg_fed_scdb__supreme_court_cases_natural_court
+    Passed [  0.70s] test  accepted_values_stg_fed_scdb__supreme_court_cases_decision_type_code__False__1__2__3__4__5__6__7
+    Passed [  0.18s] test  not_null_stg_fed_scdb__supreme_court_cases_us_citation
+    Passed [  0.41s] test  accepted_values_stg_fed_scdb__supreme_court_cases_majority_code__False__1__2__3__4__5__6
+    Warned [  0.48s] test  accepted_values_stg_fed_scdb__supreme_court_cases_party_winning__False__0__1 (models/staging/fed_scdb/schema.yml:97:13)
+    Passed [  0.34s] test  accepted_values_stg_fed_scdb__supreme_court_cases_issue_area_code__False__1__2__3__4__5__6__7__8__9__10__11__12__13__14
+    Passed [  0.89s] test  accepted_values_stg_fed_scdb__supreme_court_cases_vote_code__False__1__2__3__4__5__6__7__8
+    Passed [  0.81s] test  not_null_stg_fed_fema_ia_housing_registrations__registrations_registration_id
+    Passed [  0.45s] test  not_null_stg_fed_eia_861_balancing_authority__all_state
+    Passed [  0.42s] test  not_null_stg_fed_eia_861_balancing_authority__all_ba_id
+    Passed [  0.32s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia_861_balancing_authority__all_ba_id__state
+    Passed [  1.88s] test  unique_stg_fed_fema_ia_housing_registrations__registrations_registration_id
+    Passed [  0.58s] test  not_null_stg_st_nyc_cfb_campaign_2009_contribution__contributions_contribution_record_id
+    Passed [  1.12s] test  unique_stg_st_nyc_cfb_campaign_2009_contribution__contributions_contribution_record_id
+    Passed [  0.31s] test  not_null_stg_fed_cdc_leading_causes_state__all_state
+    Passed [  0.35s] test  not_null_stg_fed_cdc_leading_causes_state__all_deaths
+    Passed [  0.23s] test  not_null_stg_fed_cdc_leading_causes_state__all_cause_name
+    Passed [  0.32s] test  not_null_stg_fed_cdc_leading_causes_state__all_year
+    Passed [  0.50s] test  dbt_utils_unique_combination_of_columns_stg_fed_cdc_leading_causes_state__all_year__state__cause_name
+    Passed [  0.45s] test  not_null_stg_fed_va_suicide_state__all_year_of_death
+    Passed [  0.29s] test  accepted_values_stg_fed_va_suicide_state__all_sheet__Veteran_Suicides_by_State__Veteran_Suicides_by_Sex__Suicides_by_Age__Suicides_by_Method
+    Passed [  0.27s] test  not_null_stg_fed_va_suicide_state__all_sheet
+    Passed [  0.41s] test  dbt_utils_unique_combination_of_columns_stg_fed_va_suicide_state__all_sheet__state__year_of_death__sex__age_group__group_method__method__geographic_region
+    Passed [  1.38s] test  not_null_stg_fed_fjc_idb_bankruptcy__case_snapshots_case_snapshot_id
+    Passed [  0.45s] test  not_null_stg_fed_occ_national_banks__banks__loaded_at
+    Passed [  0.39s] test  not_null_stg_fed_occ_national_banks__banks_charter_no
+    Passed [  2.90s] test  unique_stg_fed_fjc_idb_bankruptcy__case_snapshots_case_snapshot_id
+    Passed [  0.48s] test  unique_stg_fed_occ_national_banks__banks_charter_no
+    Passed [  0.48s] test  accepted_values_stg_fed_cms_nursing_home__nursing_home_facilities_provider_type__True__Medicare_and_Medicaid__Medicare__Medicaid
+    Passed [  0.54s] test  accepted_values_stg_fed_cms_nursing_home__nursing_home_facilities_health_inspection_rating__1__2__3__4__5
+    Warned [  0.37s] test  accepted_values_stg_fed_cms_nursing_home__nursing_home_facilities_ownership_type__True__For_profit_Corporation__For_profit_Individual__For_profit_Limited_Liability_company__For_profit_Partnership__Government_Federal__Government_Hospital_District__Government_Local__Government_State__Non_profit_Church_related__Non_profit_Corporation__Non_profit_Other (models/staging/fed_cms_nursing_home/schema.yml:77:13)
+    Passed [  0.33s] test  not_null_stg_fed_cms_nursing_home__nursing_home_facilities_zip_code
+    Passed [  0.50s] test  accepted_values_stg_fed_cms_nursing_home__nursing_home_facilities_overall_rating__1__2__3__4__5
+    Passed [  0.46s] test  not_null_stg_fed_cms_nursing_home__nursing_home_facilities_state
+    Passed [  0.30s] test  not_null_stg_fed_cms_nursing_home__nursing_home_facilities__ingested_at
+    Passed [  0.23s] test  not_null_stg_fed_cms_nursing_home__nursing_home_facilities_cms_certification_number_ccn
+    Passed [  0.20s] test  not_null_stg_fed_cms_nursing_home__nursing_home_facilities_provider_number
+    Passed [  0.31s] test  accepted_values_stg_fed_cms_nursing_home__nursing_home_facilities_quality_measure_rating__1__2__3__4__5
+    Passed [  0.40s] test  accepted_values_stg_fed_cms_nursing_home__nursing_home_facilities_staffing_rating__1__2__3__4__5
+    Passed [  0.44s] test  not_null_stg_fed_usda_rd_mfh_active_projects__projects_project_id
+    Passed [  0.27s] test  not_null_stg_fed_usda_rd_mfh_active_projects__projects__ingested_at
+    Passed [  0.55s] test  not_null_stg_fed_va_allcause_mortality__all_year
+    Passed [  0.35s] test  dbt_utils_unique_combination_of_columns_stg_fed_usda_rd_mfh_active_projects__projects_borrower_id__project_id
+ Succeeded [  6.02s] model ENVIRONMENT.environment__fed_nid_dams (table)
+    Passed [  0.42s] test  not_null_stg_fed_va_allcause_mortality__all_cohort
+    Passed [  0.26s] test  dbt_utils_unique_combination_of_columns_stg_fed_va_allcause_mortality__all_year__cohort__sex__cause_of_death
+    Passed [  0.35s] test  not_null_stg_fed_va_allcause_mortality__all_cause_of_death
+    Passed [  0.16s] test  not_null_stg_fed_va_allcause_mortality__all_sex
+    Passed [  0.42s] test  not_null_stg_fed_usda_rd_mfh_active_projects__projects_borrower_id
+    Passed [  0.30s] test  not_null_stg_fed_epa_tri_facility__facilities__loaded_at
+    Passed [  0.61s] test  not_null_stg_fed_epa_tri_facility__facilities_tri_facility_id
+    Passed [  0.66s] test  unique_stg_fed_epa_tri_facility__facilities_tri_facility_id
+    Passed [  1.34s] test  not_null_stg_fed_epa_rcra_violations__violations_violation_record_id
+    Passed [  0.36s] test  not_null_stg_fed_occ_thrifts__thrifts__loaded_at
+    Passed [  0.32s] test  not_null_stg_fed_occ_thrifts__thrifts_charter_no
+    Passed [  0.29s] test  unique_stg_fed_occ_thrifts__thrifts_charter_no
+    Passed [  1.92s] test  unique_stg_fed_epa_rcra_violations__violations_violation_record_id
+    Passed [  0.61s] test  not_null_stg_st_nyc_cfb_campaign_2013_contribution__contributions_contribution_record_id
+    Passed [  0.63s] test  unique_stg_st_nyc_cfb_campaign_2013_contribution__contributions_contribution_record_id
+    Passed [  0.78s] test  not_null_stg_fed_eia861_utility_data__utility_profile_record_id
+    Passed [  0.52s] test  unique_stg_fed_eia861_utility_data__utility_profile_record_id
+    Passed [  0.83s] test  not_null_stg_fed_fjc_idb_appellate__appeal_records_appeal_record_id
+    Passed [  1.09s] test  unique_stg_fed_fjc_idb_appellate__appeal_records_appeal_record_id
+    Passed [  0.45s] test  not_null_stg_fed_eia861_service_territory__counties_record_id
+    Passed [  0.65s] test  not_null_stg_fed_phmsa_flagged_incidents__incidents_report_number
+    Passed [  0.50s] test  unique_stg_fed_phmsa_flagged_incidents__incidents_report_number
+    Passed [  0.43s] test  unique_stg_fed_eia861_service_territory__counties_record_id
+    Passed [  9.00s] test  not_null_stg_fed_fjc_idb_civil__case_records_case_record_id
+    Passed [  0.43s] test  not_null_stg_fed_ice_detention_facility_codes__facility_codes_detention_facility_code
+    Passed [  0.36s] test  not_null_stg_fed_ice_detention_facility_codes__facility_codes__loaded_at
+    Passed [  0.25s] test  unique_stg_fed_ice_detention_facility_codes__facility_codes_detention_facility_code
+    Passed [  0.40s] test  not_null_stg_fed_ncua_federally_insured_cu_list__credit_unions_charter_number
+    Passed [  0.22s] test  not_null_stg_fed_ncua_federally_insured_cu_list__credit_unions__loaded_at
+    Passed [  0.43s] test  unique_stg_fed_ncua_federally_insured_cu_list__credit_unions_charter_number
+    Passed [ 11.72s] test  unique_stg_fed_fjc_idb_civil__case_records_case_record_id
+    Passed [  0.45s] test  not_null_stg_fed_eia861_short_form__responses_record_id
+    Passed [  0.23s] test  unique_stg_fed_eia861_short_form__responses_record_id
+    Passed [  0.33s] test  not_null_stg_fed_cms_hcris__hospital_cost_report_rpt_rec_num
+    Passed [  0.39s] test  not_null_stg_fed_cms_hcris__hospital_cost_report_provider_ccn
+    Passed [  0.54s] test  unique_stg_fed_cms_hcris__hospital_cost_report_rpt_rec_num
+    Warned [  0.63s] test  accepted_values_stg_fed_cms_hcris__hospital_cost_report_rural_versus_urban__True__R__U__Rural__Urban (models/staging/fed_cms_hcris/schema.yml:51:13)
+    Passed [  0.40s] test  not_null_stg_fed_cms_hcris__hospital_cost_report_hospital_name
+    Passed [  0.38s] test  not_null_stg_fed_cms_hcris__hospital_cost_report_fiscal_year_end_date
+    Passed [  0.27s] test  not_null_stg_fed_wqp_monitoring_stations__stations__loaded_at
+    Passed [  0.46s] test  not_null_stg_fed_wqp_monitoring_stations__stations_monitoring_location_identifier
+    Passed [  1.09s] test  unique_stg_fed_wqp_monitoring_stations__stations_monitoring_location_identifier
+    Passed [  1.75s] test  unique_stg_fed_dol_olms__filings_filing_record_id
+    Passed [  1.04s] test  not_null_stg_fed_dol_olms__filings_filing_record_id
+    Passed [  0.35s] test  not_null_stg_fed_fracfocus_disclosure_list__disclosures__ingested_at
+    Passed [  0.44s] test  not_null_stg_fed_fracfocus_disclosure_list__disclosures_disclosure_id
+    Passed [  0.68s] test  unique_stg_fed_fracfocus_disclosure_list__disclosures_disclosure_id
+    Passed [  0.65s] test  not_null_stg_fed_fracfocus_registry__ingredients_disclosure_id
+    Passed [  0.36s] test  not_null_stg_fed_fracfocus_registry__ingredients__ingested_at
+    Passed [ 11.10s] test  not_null_stg_fed_fracfocus_registry__ingredients_ingredient_record_id
+    Passed [  0.63s] test  not_null_stg_fed_epa_aqs_sites__sites_aqs_site_id
+    Passed [  0.22s] test  not_null_stg_fed_epa_aqs_sites__sites__loaded_at
+    Passed [  0.38s] test  unique_stg_fed_epa_aqs_sites__sites_aqs_site_id
+    Passed [  0.47s] test  not_null_stg_fed_eia860_6_1_enviroassoc__all_plant_code
+    Passed [  0.30s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_6_1_enviroassoc__all_plant_code__boiler_id__generator_id__steam_plant_type
+    Passed [  0.80s] test  unique_stg_fed_epa_ghgrp_facility__facilities_facility_year_id
+    Passed [ 13.49s] test  unique_stg_fed_fracfocus_registry__ingredients_ingredient_record_id
+    Passed [  0.24s] test  not_null_stg_fed_epa_ghgrp_facility__facilities_reporting_year
+    Passed [  0.38s] test  not_null_stg_fed_epa_ghgrp_facility__facilities_facility_year_id
+    Passed [  0.51s] test  not_null_stg_fed_epa_ghgrp_facility__facilities_facility_id
+    Passed [  0.60s] test  unique_stg_fed_fdic_bank_data__institutions_cert
+    Passed [  0.65s] test  not_null_stg_fed_fdic_bank_data__institutions_name
+    Passed [  0.37s] test  not_null_stg_fed_fdic_bank_data__institutions_cert
+    Passed [  2.88s] test  not_null_stg_fed_epa_rcra_evaluations__evaluations_evaluation_record_id
+    Passed [  0.52s] test  unique_stg_fed_eia861_sales_ult_cust__sales_record_id
+    Passed [  3.91s] test  unique_stg_fed_epa_rcra_evaluations__evaluations_evaluation_record_id
+    Passed [  0.38s] test  not_null_stg_fed_eia860_6_2_enviroequip__all_boiler_id
+    Passed [  0.34s] test  not_null_stg_fed_eia860_6_2_enviroequip__all_plant_code
+    Passed [  0.20s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_6_2_enviroequip__all_plant_code__boiler_id
+    Passed [  0.39s] test  not_null_stg_fed_eia861_sales_ult_cust__sales_record_id
+    Passed [  0.72s] test  not_null_stg_fed_fdic_sod_branch_deposits__branches_fdic_cert
+    Passed [  1.10s] test  not_null_stg_fed_fdic_sod_branch_deposits__branches_branch_year_key
+    Passed [  0.44s] test  not_null_stg_fed_fdic_sod_branch_deposits__branches_branch_number
+    Passed [  0.59s] test  not_null_stg_fed_fdic_sod_branch_deposits__branches_survey_year
+    Passed [  1.41s] test  unique_stg_fed_fdic_sod_branch_deposits__branches_branch_year_key
+    Passed [ 16.72s] test  not_null_stg_fed_noaa_ais__ais_vessel_positions_base_datetime
+    Passed [ 11.44s] test  not_null_stg_fed_noaa_ais__ais_vessel_positions_date
+    Passed [  1.13s] test  not_null_stg_fed_noaa_ais__ais_vessel_positions_mmsi
+    Passed [  1m15s] test  accepted_values_stg_fed_noaa_ais__ais_vessel_positions_transceiver_class__True__A__B__
+    Passed [  2m 2s] test  key_is_real_stg_fed_noaa_ais__ais_vessel_positions_mmsi__0_1__5000
+    Warned [  2m20s] test  key_is_real_stg_fed_noaa_ais__ais_vessel_positions_imo_number__0_4__1000__IMO0000000 (models/staging/fed_noaa_ais/schema.yml:66:13)
+    Passed [  0.70s] test  not_null_stg_fed_eia860_4_owner__all_plant_code
+    Passed [  0.32s] test  not_null_stg_fed_eia860_4_owner__all_generator_id
+    Passed [  0.48s] test  not_null_stg_fed_eia860_4_owner__all_owner_name
+    Passed [  0.36s] test  not_null_stg_fed_eia860_4_owner__all_ownership_id
+    Passed [  0.54s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_4_owner__all_plant_code__generator_id__ownership_id
+    Passed [  0.76s] test  not_null_stg_fed_oyez__scotus_cases_decision_date
+    Passed [  0.34s] test  not_null_stg_fed_oyez__scotus_cases_person_name
+    Passed [  0.46s] test  unique_stg_fed_oyez__scotus_cases_case_id
+    Passed [  0.24s] test  not_null_stg_fed_oyez__scotus_cases_case_id
+    Warned [  0.33s] test  accepted_values_stg_fed_oyez__scotus_cases_disposition__Affirmed__Reversed__Vacated__Remanded__Reversed_and_Remanded__Vacated_and_Remanded__Affirmed_in_Part_and_Reversed_in_Part__Dismissed__Per_Curiam__Other (models/staging/fed_oyez/schema.yml:61:13)
+    Passed [  0.14s] test  not_null_stg_fed_oyez__scotus_cases_docket
+    Passed [  0.86s] test  not_null_stg_fed_eia860_3_2_wind__all_plant_code
+    Passed [  0.16s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_3_2_wind__all_plant_code__generator_id
+    Passed [  0.31s] test  not_null_stg_fed_eia860_3_2_wind__all_generator_id
+    Passed [  1.39s] test  not_null_stg_fed_epa_ghgrp_emission__emissions_emission_record_id
+    Passed [  0.55s] test  not_null_stg_fed_epa_ghgrp_emission__emissions_facility_id
+    Passed [  2.29s] test  unique_stg_fed_epa_ghgrp_emission__emissions_emission_record_id
+    Passed [  0.78s] test  not_null_stg_fed_eia861_sales_ult_cust_cs__facility_sales_record_id
+    Passed [  0.47s] test  unique_stg_fed_eia861_sales_ult_cust_cs__facility_sales_record_id
+    Passed [  0.51s] test  not_null_stg_fed_eia861_reliability__reliability_metrics_record_id
+    Passed [  0.37s] test  unique_stg_fed_eia861_reliability__reliability_metrics_record_id
+    Passed [  0.36s] test  not_null_stg_fed_eia861_operational_data__operations_record_id
+    Passed [  0.45s] test  unique_stg_fed_eia861_operational_data__operations_record_id
+    Passed [  0.48s] test  not_null_stg_fed_eia860_3_5_multifuel__all_generator_id
+    Passed [  0.26s] test  not_null_stg_fed_eia860_3_5_multifuel__all_plant_code
+    Passed [  0.39s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_3_5_multifuel__all_plant_code__generator_id
+    Passed [  0.40s] test  not_null_stg_fed_sec_edgar_company_tickers__company_tickers_cik
+    Passed [  0.98s] test  not_null_stg_fed_sec_edgar_company_tickers__company_tickers_company_title
+    Passed [  0.19s] test  not_null_stg_fed_sec_edgar_company_tickers__company_tickers_ticker
+    Passed [  0.41s] test  key_is_real_stg_fed_sec_edgar_company_tickers__company_tickers_cik__0_1__3000
+    Passed [  0.33s] test  not_null_stg_fed_eia861_frame__respondents_record_id
+    Passed [  0.37s] test  unique_stg_fed_eia861_frame__respondents_record_id
+    Passed [  0.53s] test  not_null_stg_fed_hud_public_housing_authorities__authorities_participant_code
+    Passed [  0.47s] test  not_null_stg_fed_hud_public_housing_authorities__authorities__ingested_at
+    Passed [  0.61s] test  unique_stg_fed_hud_public_housing_authorities__authorities_participant_code
+    Passed [  0.36s] test  not_null_stg_fed_eia860_3_3_solar__all_plant_code
+    Passed [  0.21s] test  not_null_stg_fed_eia860_3_3_solar__all_generator_id
+    Passed [  0.34s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_3_3_solar__all_plant_code__generator_id
+    Passed [  0.25s] test  not_null_stg_fed_us_usaspending_api__federal_awards_naics_code
+    Warned [  0.45s] test  accepted_values_stg_fed_us_usaspending_api__federal_awards_award_type__True__A__B__C__D__02__03__04__05__06__07__08__09__10__11__IDV_A__IDV_B__IDV_B_A__IDV_B_B__IDV_B_C__IDV_C__IDV_D__IDV_E (models/staging/fed_us_usaspending_api/schema.yml:93:13)
+    Passed [  0.24s] test  unique_stg_fed_us_usaspending_api__federal_awards_award_id
+    Passed [  0.41s] test  not_null_stg_fed_us_usaspending_api__federal_awards_recipient_duns
+    Passed [  0.14s] test  not_null_stg_fed_us_usaspending_api__federal_awards_recipient_uei
+    Passed [  0.19s] test  not_null_stg_fed_us_usaspending_api__federal_awards_generated_unique_award_id
+    Passed [  0.23s] test  not_null_stg_fed_us_usaspending_api__federal_awards_treasury_account_symbol
+    Passed [  0.15s] test  not_null_stg_fed_us_usaspending_api__federal_awards_cfda_number
+    Passed [  0.26s] test  not_null_stg_fed_us_usaspending_api__federal_awards_award_id
+    Passed [  0.48s] test  not_null_stg_fed_us_usaspending_api__federal_awards_awarding_agency_code
+    Passed [  0.25s] test  not_null_stg_fed_us_usaspending_api__federal_awards_recipient_location_fips
+    Passed [  0.20s] test  not_null_stg_fed_us_usaspending_api__federal_awards_recipient_ein
+    Passed [  0.18s] test  not_null_stg_fed_us_usaspending_api__federal_awards_place_of_performance_fips
+    Passed [  1.15s] test  not_null_stg_st_nyc_cfb_campaign_2025_contributions__contributions_contribution_record_id
+    Passed [  1.50s] test  unique_stg_st_nyc_cfb_campaign_2025_contributions__contributions_contribution_record_id
+    Passed [  0.38s] test  not_null_stg_fed_eia860_3_4_energy_storage__all_plant_code
+    Passed [  0.27s] test  not_null_stg_fed_eia860_3_4_energy_storage__all_generator_id
+    Passed [  0.33s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_3_4_energy_storage__all_plant_code__generator_id
+    Passed [  0.27s] test  not_null_stg_fed_eia861_mergers__mergers_record_id
+    Passed [  0.47s] test  unique_stg_fed_eia861_mergers__mergers_record_id
+    Passed [  0.41s] test  not_null_stg_fed_fdic_failed_banks__failed_banks_fdic_failure_record_id
+    Warned [  0.44s] test  accepted_values_stg_fed_fdic_failed_banks__failed_banks_supervisory_agency_code__OCC__FRB__FDIC__OTS__State (models/staging/fed_fdic_failed_banks/schema.yml:76:13)
+    Passed [  0.43s] test  not_null_stg_fed_fdic_failed_banks__failed_banks_bank_name
+    Passed [  0.45s] test  unique_stg_fed_fdic_failed_banks__failed_banks_fdic_failure_record_id
+    Passed [  0.50s] test  not_null_stg_fed_fdic_failed_banks__failed_banks_fail_date
+    Warned [  0.48s] test  accepted_values_stg_fed_fdic_failed_banks__failed_banks_resolution_type__Deposit_Payoff__Purchase_Assumption__Transfer__Assistance_Transaction__Open_Bank_Assistance (models/staging/fed_fdic_failed_banks/schema.yml:84:13)
+    Warned [  0.59s] test  not_null_stg_fed_fdic_failed_banks__failed_banks_fdic_cert (models/staging/fed_fdic_failed_banks/schema.yml:27:13)
+    Passed [  0.22s] test  not_null_stg_fed_fdic_failed_banks__failed_banks_fips
+    Warned [  0.31s] test  accepted_values_stg_fed_fdic_failed_banks__failed_banks_charter_type__NM__OI__SM__SB__SL__SA__NC__NA__OC (models/staging/fed_fdic_failed_banks/schema.yml:65:13)
+    Passed [  0.45s] test  accepted_values_stg_fed_treasury_avg_interest_rates__avg_interest_rates_record_fiscal_quarter__False__1__2__3__4
+    Passed [  0.34s] test  accepted_values_stg_fed_treasury_avg_interest_rates__avg_interest_rates_security_type_desc__Marketable__Non_marketable__Interest_bearing_Debt
+    Passed [  0.29s] test  accepted_values_stg_fed_treasury_avg_interest_rates__avg_interest_rates_record_calendar_month__False__1__2__3__4__5__6__7__8__9__10__11__12
+    Passed [  0.29s] test  not_null_stg_fed_treasury_avg_interest_rates__avg_interest_rates_record_date
+    Passed [  0.31s] test  not_null_stg_fed_treasury_avg_interest_rates__avg_interest_rates_security_type_desc
+    Passed [  0.30s] test  not_null_stg_fed_treasury_avg_interest_rates__avg_interest_rates_security_desc
+    Passed [  0.32s] test  accepted_values_stg_fed_treasury_avg_interest_rates__avg_interest_rates_record_calendar_quarter__False__1__2__3__4
+    Passed [ 18.24s] test  not_null_stg_uk_companies_house_psc__psc_records_company_number
+    Passed [  1.60s] test  not_null_stg_uk_companies_house_psc__psc_records_psc_link_self
+    Passed [  0.49s] test  not_null_stg_uk_companies_house_psc__psc_records__ingested_at
+    Passed [  2m 7s] test  key_is_real_stg_fed_noaa_ais__ais_vessel_positions_imo_normalized__0_7__1000
+    Warned [  5.54s] test  accepted_values_stg_fed_cfpb_complaints__complaints_company_response__Closed_with_explanation__Closed_with_monetary_relief__Closed_with_non_monetary_relief__Closed_without_relief__Closed__In_progress__Untimely_response (models/staging/fed_cfpb_complaints/schema.yml:72:13)
+    Passed [  0.47s] test  not_null_stg_fed_cfpb_complaints__complaints__ingested_at
+    Passed [  5.21s] test  accepted_values_stg_fed_cfpb_complaints__complaints_submitted_via__Web__Phone__Postal_mail__Fax__Email__Referral__Web_Referral
+    Passed [ 24.26s] test  unique_stg_uk_companies_house_psc__psc_records_psc_link_self
+    Passed [  6.12s] test  unique_stg_fed_cfpb_complaints__complaints_complaint_id
+    Passed [  7.81s] test  not_null_stg_fed_cfpb_complaints__complaints_date_received
+    Passed [  0.54s] test  not_null_stg_fed_cfpb_complaints__complaints_complaint_id
+    Passed [  0.49s] test  not_null_stg_fed_sec_edgar_company_tickers_exchange__tickers_cik
+    Passed [  0.42s] test  unique_stg_fed_sec_edgar_company_tickers_exchange__tickers_cik_ticker
+    Passed [  0.23s] test  not_null_stg_fed_sec_edgar_company_tickers_exchange__tickers_ticker
+    Passed [  0.31s] test  not_null_stg_fed_sec_edgar_company_tickers_exchange__tickers__loaded_at
+    Passed [  0.17s] test  not_null_stg_fed_sec_edgar_company_tickers_exchange__tickers_cik_ticker
+    Passed [  0.45s] test  unique_stg_fed_eia860_1_utility__all_utility_id
+    Passed [  0.44s] test  not_null_stg_fed_eia860_1_utility__all_utility_name
+    Passed [  0.29s] test  not_null_stg_fed_eia860_1_utility__all_utility_id
+    Passed [  0.45s] test  unique_stg_fed_treasury_debt_to_penny__debt_to_penny_record_date
+    Warned [  0.31s] test  accepted_values_stg_fed_treasury_debt_to_penny__debt_to_penny_record_fiscal_qtr__True__1__2__3__4 (models/staging/fed_treasury_debt_to_penny/schema.yml:54:13)
+    Passed [  0.17s] test  not_null_stg_fed_treasury_debt_to_penny__debt_to_penny__source_run_id
+    Warned [  0.43s] test  accepted_values_stg_fed_treasury_debt_to_penny__debt_to_penny_record_calendar_qtr__True__1__2__3__4 (models/staging/fed_treasury_debt_to_penny/schema.yml:66:13)
+    Passed [  0.23s] test  not_null_stg_fed_treasury_debt_to_penny__debt_to_penny__ingested_at
+    Warned [  0.39s] test  not_null_stg_fed_treasury_debt_to_penny__debt_to_penny_intragov_hold_amt (models/staging/fed_treasury_debt_to_penny/schema.yml:37:13)
+    Passed [  0.34s] test  not_null_stg_fed_treasury_debt_to_penny__debt_to_penny_tot_pub_debt_out_amt
+    Warned [  0.25s] test  not_null_stg_fed_treasury_debt_to_penny__debt_to_penny_debt_held_public_amt (models/staging/fed_treasury_debt_to_penny/schema.yml:30:13)
+    Passed [  0.37s] test  not_null_stg_fed_treasury_debt_to_penny__debt_to_penny_record_date
+    Passed [  0.39s] test  not_null_stg_fed_eia861_distribution_systems__circuits_record_id
+    Passed [  0.38s] test  unique_stg_fed_eia861_distribution_systems__circuits_record_id
+    Passed [  0.25s] test  not_null_stg_fed_us_sec_edgar__edgar_filings_ticker
+    Passed [  0.31s] test  not_null_stg_fed_us_sec_edgar__edgar_filings_ein
+    Passed [  0.27s] test  not_null_stg_fed_us_sec_edgar__edgar_filings_accession_number
+    Passed [  0.55s] test  unique_stg_fed_us_sec_edgar__edgar_filings_accession_number
+    Passed [  0.15s] test  not_null_stg_fed_us_sec_edgar__edgar_filings_isin
+    Passed [  0.50s] test  key_is_real_stg_fed_us_sec_edgar__edgar_filings_ein__0_1__20
+    Passed [  0.57s] test  not_null_stg_fed_us_sec_edgar__edgar_filings_cik
+    Passed [  0.30s] test  key_is_real_stg_fed_us_sec_edgar__edgar_filings_cik__0_1__20
+    Passed [  0.56s] test  not_null_stg_irs527__8872_reports_form_id_number
+    Passed [  0.43s] test  unique_stg_irs527__8872_reports_form_id_number
+    Passed [  0.58s] test  not_null_stg_fed_irs_eo_bmf__orgs_ein
+    Passed [  0.55s] test  not_null_stg_fed_irs_eo_bmf__orgs_org_name
+    Passed [  1.18s] test  unique_stg_fed_irs_eo_bmf__orgs_ein
+    Passed [  1.11s] test  dbt_utils_unique_combination_of_columns_stg_fed_cdc_drug_poisoning_county__rates_fips__year
+    Passed [  0.41s] test  not_null_stg_fed_cdc_drug_poisoning_county__rates_fips
+    Passed [  0.39s] test  not_null_stg_fed_cdc_drug_poisoning_county__rates_rate_band
+    Passed [  0.40s] test  not_null_stg_fed_cdc_drug_poisoning_county__rates_state_name
+    Passed [  0.57s] test  accepted_values_stg_fed_cdc_drug_poisoning_county__rates_rate_band__True__0_2__2_1_4__4_1_6__6_1_8__8_1_10__10_1_12__12_1_14__14_1_16__16_1_18__18_1_20__20_1_22__22_1_24__24_1_26__26_1_28__28_1_30___30
+    Passed [  0.38s] test  not_null_stg_fed_cdc_drug_poisoning_county__rates_state_abbr
+    Warned [  0.43s] test  not_null_stg_fed_cdc_drug_poisoning_county__rates_population (models/staging/fed_cdc_drug_poisoning_county/schema.yml:61:13)
+    Passed [  0.18s] test  not_null_stg_fed_cdc_drug_poisoning_county__rates_year
+    Passed [  0.45s] test  accepted_values_stg_fed_cdc_drug_poisoning_county__rates_rate_band_ordinal__False__1__2__3__4__5__6__7__8__9__10__11__12__13__14__15__16
+    Passed [  0.22s] test  not_null_stg_fed_usgs_orphaned_oil_gas_wells__wells__loaded_at
+    Passed [  0.74s] test  not_null_stg_fed_usgs_orphaned_oil_gas_wells__wells_well_record_id
+    Passed [  0.60s] test  unique_stg_fed_usgs_orphaned_oil_gas_wells__wells_well_record_id
+    Passed [  0.55s] test  not_null_stg_fed_eia860_3_1_generator__all_generator_id
+    Passed [  0.29s] test  not_null_stg_fed_eia860_3_1_generator__all_plant_code
+    Passed [  0.25s] test  dbt_utils_unique_combination_of_columns_stg_fed_eia860_3_1_generator__all_plant_code__generator_id
+    Passed [  1.84s] test  not_null_stg_fed_epa_rcra_enforcements__enforcements_enforcement_record_id
+    Passed [  2.96s] test  unique_stg_fed_epa_rcra_enforcements__enforcements_enforcement_record_id
+    Passed [  0.44s] test  not_null_stg_fed_fec_bulk_candidates__candidates_cand_id
+    Passed [  0.45s] test  unique_stg_fed_eia861_dynamic_pricing__enrollment_record_id
+    Passed [  0.30s] test  not_null_stg_fed_eia861_dynamic_pricing__enrollment_record_id
+    Passed [  0.45s] test  not_null_stg_fed_fec_bulk_linkages__linkages_cmte_id
+    Passed [  0.30s] test  not_null_stg_fed_fec_bulk_linkages__linkages_cand_id
+    Passed [  0.63s] test  not_null_stg_fed_uscg_nrc_incidents__incidents_seqnos
+    Passed [  0.39s] test  not_null_stg_fed_uscg_nrc_incidents__incidents__ingested_at
+    Passed [  1.23s] test  unique_stg_fed_uscg_nrc_incidents__incidents_seqnos
+    Passed [  1.31s] test  unique_stg_fed_epa_rcra_facilities__facilities_handler_id
+    Passed [  0.59s] test  not_null_stg_fed_epa_rcra_facilities__facilities_handler_id
+ Succeeded [ 22.00s] model CONSUMER_SAFETY.consumer_safety__fed_nhtsa_complaints (table)
+    Passed [  8.65s] test  not_null_stg_fed_fjc_idb_criminal__defendant_records_defendant_record_id
+    Passed [  1.15s] test  not_null_stg_fed_voteview_rollcalls__votes_icpsr
+    Passed [  1.31s] test  not_null_stg_fed_ed_college_scorecard_institution__institutions_unitid
+    Passed [  1.35s] test  not_null_stg_fed_ed_college_scorecard_institution__institutions_institution_name
+    Passed [  0.72s] test  unique_stg_fed_ed_college_scorecard_institution__institutions_unitid
+    Passed [  1.07s] test  not_null_stg_fed_ed_college_scorecard_institution__institutions__loaded_at
+    Passed [  9.61s] test  unique_stg_fed_fjc_idb_criminal__defendant_records_defendant_record_id
+    Passed [  0.74s] test  not_null_stg_fed_eia860_2_plant__all_plant_name
+    Passed [  0.33s] test  not_null_stg_fed_eia860_2_plant__all_utility_id
+    Passed [  0.32s] test  not_null_stg_fed_eia860_2_plant__all_plant_code
+    Passed [  0.34s] test  unique_stg_fed_eia860_2_plant__all_plant_code
+    Passed [  0.46s] test  not_null_stg_fed_mapping_inequality__holc_neighborhood_grades_holc_id
+ Succeeded [  3.18s] model CONSUMER_SAFETY.consumer_safety__fed_nhtsa_recalls (table)
+    Passed [  0.16s] test  not_null_stg_fed_mapping_inequality__holc_neighborhood_grades_holc_grade
+    Warned [  0.66s] test  accepted_values_stg_fed_mapping_inequality__holc_neighborhood_grades_holc_color__green__blue__yellow__red (models/staging/fed_mapping_inequality/schema.yml:65:13)
+    Passed [  0.36s] test  not_null_stg_fed_mapping_inequality__holc_neighborhood_grades_fips
+    Passed [  0.24s] test  not_null_stg_fed_mapping_inequality__holc_neighborhood_grades_city
+    Passed [  0.48s] test  not_null_stg_fed_mapping_inequality__holc_neighborhood_grades_state
+    Passed [  0.35s] test  accepted_values_stg_fed_mapping_inequality__holc_neighborhood_grades_state__AL__AK__AZ__AR__CA__CO__CT__DE__FL__GA__HI__ID__IL__IN__IA__KS__KY__LA__ME__MD__MA__MI__MN__MS__MO__MT__NE__NV__NH__NJ__NM__NY__NC__ND__OH__OK__OR__PA__RI__SC__SD__TN__TX__UT__VT__VA__WA__WV__WI__WY__DC
+    Warned [  0.40s] test  accepted_values_stg_fed_mapping_inequality__holc_neighborhood_grades_holc_grade__A__B__C__D (models/staging/fed_mapping_inequality/schema.yml:56:13)
+    Passed [  1.04s] test  unique_stg_fed_mapping_inequality__holc_neighborhood_grades_holc_neighborhood_key
+    Passed [  1.41s] test  not_null_stg_fed_mapping_inequality__holc_neighborhood_grades_holc_neighborhood_key
+    Passed [  0.39s] test  not_null_stg_fed_dol_ebsa_form5500_schedule_sb__filings_ack_id
+    Passed [  0.69s] test  unique_stg_fed_dol_ebsa_form5500_schedule_sb__filings_ack_id
+    Passed [  0.43s] test  not_null_stg_fed_pcaob_form_ap_filings__filings_form_filing_id
+    Passed [  0.92s] test  not_null_stg_fed_dol_ebsa_form5500_schedule_sb__filings__loaded_at
+    Passed [  0.63s] test  unique_stg_fed_pcaob_form_ap_filings__filings_form_filing_id
+    Passed [  0.77s] test  unique_stg_st_nyc_cfb_campaign_2001_contribution__contributions_contribution_record_id
+    Passed [  1.00s] test  not_null_stg_st_nyc_cfb_campaign_2001_contribution__contributions_contribution_record_id
+    Passed [  0.44s] test  not_null_stg_fed_voteview_rollcall_meta__rollcalls_rollnumber
+    Passed [  0.56s] test  not_null_stg_fed_govinfo_billstatus__bills_bill_type
+    Passed [  0.29s] test  not_null_stg_fed_govinfo_billstatus__bills_bill_number
+    Warned [  0.53s] test  unique_stg_fed_congress_legislators__members_bioguide (models/staging/politics/_politics__sources.yml:40:13)
+    Warned [  0.34s] test  not_null_stg_fed_doj_fca_settlements__fca_settlements_date (models/staging/fed_doj_fca_settlements/schema.yml:39:13)
+    Passed [  0.24s] test  unique_stg_fed_doj_fca_settlements__fca_settlements_fca_settlement_id
+    Passed [  0.17s] test  not_null_stg_fed_doj_fca_settlements__fca_settlements_fca_settlement_id
+    Passed [  0.31s] test  accepted_values_stg_fed_doj_fca_settlements__fca_settlements_is_qui_tam__True__False
+    Passed [  1.42s] test  not_null_stg_fed_govinfo_bill_cosponsors__cosponsors_cosponsor_bioguide
+    Passed [  0.18s] test  not_null_stg_fed_doj_fca_settlements__fca_settlements_company_id
+    Passed [  0.66s] test  not_null_stg_fed_doj_fca_settlements__fca_settlements_person_name
+    Passed [  0.50s] test  not_null_stg_fed_voteview_members__ideology_icpsr
+    Passed [  0.20s] test  not_null_stg_fed_ncua_call_reports__foicu__loaded_at
+    Passed [  0.47s] test  unique_stg_fed_ncua_call_reports__foicu_cu_number
+    Passed [  0.31s] test  not_null_stg_fed_ncua_call_reports__foicu_cu_number
+    Passed [  0.36s] test  not_null_stg_intl_it_istat__istat_sdmx_observations_dimension_keys
+    Passed [  0.86s] test  not_null_stg_intl_it_istat__istat_sdmx_observations_istat_obs_id
+    Passed [  0.93s] test  accepted_values_stg_intl_it_istat__istat_sdmx_observations_country__IT
+    Passed [  0.25s] test  not_null_stg_intl_it_istat__istat_sdmx_observations_country
+    Passed [  0.20s] test  not_null_stg_intl_it_istat__istat_sdmx_observations_dataflow_id
+    Passed [  0.35s] test  not_null_stg_intl_it_istat__istat_sdmx_observations_date
+    Passed [  1.67s] test  unique_stg_intl_it_istat__istat_sdmx_observations_istat_obs_id
+    Passed [  0.59s] test  accepted_values_stg_intl_it_istat__istat_sdmx_observations_freq__A__Q__M__W__D__B__N__H__S__T
+    Warned [  0.60s] test  accepted_values_stg_intl_it_istat__istat_sdmx_observations_obs_status__A__M__E__P__D__S__U__B__F__I__T__N__L__W__K__O (models/staging/intl_it_istat/schema.yml:83:13)
+    Passed [  0.69s] test  not_null_stg_intl_it_istat__istat_sdmx_observations__source_run_id
+    Passed [  0.34s] test  not_null_stg_fed_eia861_delivery_companies__sales_record_id
+    Passed [  0.38s] test  unique_stg_fed_eia861_delivery_companies__sales_record_id
+    Passed [  0.38s] test  not_null_stg_fed_eia861_demand_response__programs_record_id
+    Passed [  0.38s] test  unique_stg_fed_eia861_demand_response__programs_record_id
+    Passed [  0.51s] test  unique_stg_fed_eia861_advanced_meters__meter_counts_record_id
+    Passed [  0.57s] test  not_null_stg_fed_eia861_advanced_meters__meter_counts_record_id
+    Passed [  0.41s] test  not_null_stg_fed_eia861_energy_efficiency__programs_record_id
+    Passed [  0.43s] test  unique_stg_fed_eia861_energy_efficiency__programs_record_id
+    Passed [  0.45s] test  unique_stg_fed_eia861_non_net_metering_distributed__capacity_record_id
+    Passed [  0.67s] test  not_null_stg_fed_eia861_non_net_metering_distributed__capacity_record_id
+    Passed [  0.54s] test  not_null_stg_fed_eia861_net_metering__capacity_record_id
+    Passed [  0.67s] test  unique_stg_fed_eia861_net_metering__capacity_record_id
+    Passed [  0.66s] test  not_null_stg_fed_ncua_call_reports__fs220_cu_number
+    Passed [  0.52s] test  not_null_stg_fed_ncua_call_reports__fs220__loaded_at
+    Passed [  0.67s] test  unique_stg_fed_ncua_call_reports__fs220_cu_number
+ Succeeded [  2.83s] model TRANSPORT.transport__fed_ntsb_aviation_events (table)
+ Succeeded [  3.29s] model TRANSPORT.transport__fed_ntsb_aviation_aircraft (table)
+ Succeeded [  6.82s] model TRANSPORT.transport__fed_faa_aircraft_registry (table)
+ Succeeded [  2.83s] model REFERENCE.reference__fed_itis_vern_ref_links (table)
+ Succeeded [  3.11s] model REFERENCE.reference__fed_itis_vernaculars (table)
+ Succeeded [ 12.01s] model REGULATORY.regulatory__fed_federal_register_documents (table)
+ Succeeded [ 11.98s] model TRANSPORT.transport__fed_fra_casualties (table)
+ Succeeded [  1.41s] model TRANSPORT.transport__fed_fra_rail_deaths_by_railroad (table)
+ Succeeded [  3.15s] model REFERENCE.reference__xc_ror_research_organizations (table)
+ Succeeded [  2.89s] model TRANSPORT.transport__fed_ntsb_aviation_injury (table)
+ Succeeded [  0.96s] model REFERENCE.reference__fed_itis_taxon_unit_types (table)
+ Succeeded [  2.60s] model REFERENCE.reference__fed_itis_tu_comments_links (table)
+ Succeeded [  2.40s] model REFERENCE.reference__fed_itis_strippedauthor (table)
+ Succeeded [  1.75s] model SCIENCE_RESEARCH.science_research__xc_biorxiv_medrxiv (table)
+ Succeeded [  4.59s] model REFERENCE.reference__fed_itis_taxon_authors_lkp (table)
+ Succeeded [  4.39s] model REFERENCE.reference__fed_itis_synonym_links (table)
+ Succeeded [  2.43s] model SCIENCE_RESEARCH.science_research__xc_osf_registrations (table)
+ Succeeded [  7.35s] model REFERENCE.reference__fed_itis_longnames (table)
+ Succeeded [ 11.88s] model REFERENCE.reference__fed_itis_taxonomic_units (table)
+ Succeeded [  2.27s] model REFERENCE.reference__fed_itis_jurisdiction (table)
+ Succeeded [  2.52s] model REFERENCE.reference__fed_itis_publications (table)
+ Succeeded [  1.04s] model REFERENCE.reference__fed_itis_kingdoms (table)
+ Succeeded [  7.07s] model REFERENCE.reference__fed_itis_geographic_div (table)
+    Passed [  9m30s] test  not_null_stg_fed_cfpb_hmda_historic__lar_records_lar_record_id
+ Succeeded [ 18.87s] model REFERENCE.reference__fed_itis_reference_links (table)
+ Succeeded [  6.78s] model REFERENCE.reference__fed_itis_hierarchy (table)
+ Succeeded [  0.96s] model REFERENCE.reference__fed_itis_experts (table)
+ Succeeded [  2.02s] model JUSTICE.justice__xc_un_consolidated_sanctions_list (table)
+ Succeeded [  7.06s] model TRANSPORT.transport__fed_fra_crossing_incidents (table)
+ Succeeded [  3.14s] model REFERENCE.reference__fed_itis_comments (table)
+ Succeeded [  1.46s] model REFERENCE.reference__fed_itis_other_sources (table)
+ Succeeded [  1.44s] model LABOR.labor__fed_pbgc_trusteed_plans (table)
+ Succeeded [  3.13s] model REFERENCE.reference__fed_itis_nodc_ids (table)
+ Succeeded [  1.27s] model PROCUREMENT.procurement__fed_usaspending_subawards (table)
+ Succeeded [  2.01s] model LAND_AND_TERRITORY.land_and_territory__fed_bia_tribal_geo (table)
+    Failed [  0.25s] model POLITICS.politics__fed_fec_pac_summary (table)
+   Skipped [-------] test  not_null_politics__fed_fec_pac_summary_cmte_id (models/marts/politics/schema_fed_fec_pac_summary.yml:13:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__fed_fec_pac_summary_cmte_id__coverage_end_date (models/marts/politics/schema_fed_fec_pac_summary.yml:15:9)
+   Skipped [-------] model TIMELINE.POLITICS__FED_FEC_PAC_SUMMARY (view)
+ Succeeded [  1.84s] model JUSTICE.justice__fed_consolidated_screening_list (table)
+ Succeeded [  1.50s] model JUSTICE.justice__state_mo_sex_offender_registry (table)
+ Succeeded [  8.15s] model REFERENCE.reference__fed_usgs_gnis_all_names (table)
+ Succeeded [ 46.34s] model SCIENCE_RESEARCH.science_research__fed_nih_reporter (table)
+ Succeeded [  2.83s] model SCIENCE_RESEARCH.science_research__fed_sbir_sttr_awards (table)
+ Succeeded [  7.94s] model TRANSPORT.transport__fed_fra_equipment_accidents (table)
+ Succeeded [  1.34s] model JUSTICE.justice__fed_fhfa_suspended_counterparties (table)
+ Succeeded [  5.52s] model PROCUREMENT.procurement__intl_ec_sercop (table)
+ Succeeded [  1.82s] model HEALTH.health__intl_healthcanada_dpd_drug (table)
+ Succeeded [  4.00s] model JUSTICE.justice__fed_fbi_cde (table)
+ Succeeded [  6.62s] model JUSTICE.justice__intl_opensanctions_default (table)
+ Succeeded [  1.64s] model HOUSING.housing__fed_fema_nfip_community_status_book (table)
+ Succeeded [  1.87s] model HOUSING.housing__fed_hud_mf_firm_commitments (table)
+ Succeeded [  9.37s] model IMMIGRATION.immigration__fed_ice_detainers (table)
+ Succeeded [  6.45s] model HEALTH.health__hospital_officer_pay (table)
+ Succeeded [  1.22s] model HEALTH.health__fed_ihs_scb_facility (table)
+ Succeeded [  2.80s] model JUSTICE.justice__intl_hudoc (table)
+ Succeeded [  1.08s] model JUSTICE.justice__fed_jpml_pending_mdls (table)
+ Succeeded [  2.89s] model HOUSING.housing__fed_cfpb_hmda_lar (table)
+ Succeeded [  1.42s] model FINANCE.finance__fed_ncua_charter_merger_events (table)
+ Succeeded [  1.11s] model HEALTH.health__st_oehha_proposition_65_list (table)
+ Succeeded [  1.62s] model REFERENCE.reference__fed_dhs_hifld (table)
+ Succeeded [ 18.92s] model IMMIGRATION.immigration__fed_ice_detention_stints (table)
+ Succeeded [  3.11s] model HEALTH.health__fed_nlm_dailymed_spl_setid_map (table)
+ Succeeded [  2.11s] model HOUSING.housing__fed_hud_mf_section8_contracts (table)
+ Succeeded [  1.18s] model HEALTH.health__fed_ihs_facilities (table)
+ Succeeded [  2.79s] model HOUSING.housing__fed_hud_fha_sf_portfolio_snapshot (table)
+ Succeeded [  3.85s] model JUSTICE.justice__racial_jail_disparity (table)
+ Succeeded [  1.02s] model HEALTH.health__fed_cdc_wonder (table)
+ Succeeded [  3.92s] model HEALTH.health__fed_hrsa_hpsa_primary_care (table)
+ Succeeded [ 28.86s] model HEALTH.health__fed_clinicaltrials (table)
+ Succeeded [  0.46s] model DBT_CROGERS.int_nursing_home_prf_match (view)
+ Succeeded [  9.70s] model HEALTH.health__fed_hrsa_provider_relief_fund (table)
+ Succeeded [  0.98s] model HEALTH.health__fed_va_suicide_national (table)
+ Succeeded [  1.32s] model ENVIRONMENT.environment__fed_epa_superfund_site_boundaries (table)
+ Succeeded [  2.71s] model ENVIRONMENT.environment__fed_uscg_nrc_incident_reports (table)
+ Succeeded [  8.79s] model POLITICS.politics__st_nyc_cfb_campaign_2021_contributions (table)
+ Succeeded [  1.30s] model ENERGY.energy__fed_eia_861_balancing_authority (table)
+ Succeeded [  5.60s] model JUSTICE.justice__fed_scdb (table)
+ Succeeded [  5.72s] model POLITICS.politics__st_nyc_cfb_campaign_2009_contribution (table)
+ Succeeded [  1.07s] model HEALTH.health__fed_cdc_leading_causes_state (table)
+ Succeeded [  1.99s] model HEALTH.health__fed_va_suicide_state (table)
+ Succeeded [  1m11s] model JUSTICE.justice__fed_fjc_idb_bankruptcy (table)
+ Succeeded [  1m45s] model POLITICS.politics__intl_elections_canada_contributions (table)
+ Succeeded [  1.96s] model FINANCE.finance__fed_occ_national_banks (table)
+ Succeeded [  1.10s] model TIMELINE.ENVIRONMENT__FED_NID_DAMS (view)
+ Succeeded [  2.98s] model HEALTH.health__fed_cms_nursing_home (table)
+ Succeeded [  1.10s] model HEALTH.health__fed_va_allcause_mortality (table)
+ Succeeded [  1.59s] model HOUSING.housing__fed_usda_rd_mfh_active_projects (table)
+ Succeeded [  0.92s] model FINANCE.finance__fed_occ_thrifts (table)
+ Succeeded [  3.28s] model ENVIRONMENT.environment__fed_epa_tri_facility (table)
+ Succeeded [  3.13s] model ENVIRONMENT.environment__fed_epa_rcra_violations (table)
+ Succeeded [  1.79s] model ENERGY.energy__fed_eia861_utility_data (table)
+ Succeeded [  5.67s] model POLITICS.politics__st_nyc_cfb_campaign_2013_contribution (table)
+ Succeeded [  1.63s] model ENVIRONMENT.environment__fed_phmsa_flagged_incidents (table)
+ Succeeded [  1.17s] model ENERGY.energy__fed_eia861_service_territory (table)
+ Succeeded [  1.36s] model IMMIGRATION.immigration__fed_ice_detention_facility_codes (table)
+    Passed [ 12m33s] test  unique_stg_fed_cfpb_hmda_historic__lar_records_lar_record_id
+ Succeeded [  8.03s] model JUSTICE.justice__fed_fjc_idb_appellate (table)
+ Succeeded [  2.37s] model FINANCE.finance__fed_ncua_federally_insured_cu_list (table)
+ Succeeded [  1.12s] model ENERGY.energy__fed_eia861_short_form (table)
+ Succeeded [  1.38s] model ENVIRONMENT.environment__fed_wqp_monitoring_stations (table)
+ Succeeded [  5.63s] model HEALTH.health__fed_cms_hcris (table)
+ Succeeded [  9.01s] model LABOR.labor__fed_dol_olms (table)
+ Succeeded [  6.81s] model ENVIRONMENT.environment__fed_fracfocus_disclosure_list (table)
+ Succeeded [  1.81s] model ENVIRONMENT.environment__fed_epa_aqs_sites (table)
+ Succeeded [  1.19s] model ENERGY.energy__fed_eia860_6_1_enviroassoc (table)
+ Succeeded [  6.20s] model ENVIRONMENT.environment__fed_epa_ghgrp_facility (table)
+ Succeeded [  3.56s] model JUSTICE.justice__fed_fdic_enforcement_orders (table)
+ Succeeded [  2.17s] model FINANCE.finance__fed_fdic_bank_data (table)
+ Succeeded [  9.06s] model ENVIRONMENT.environment__fed_epa_rcra_evaluations (table)
+ Succeeded [  1.45s] model ENERGY.energy__fed_eia860_6_2_enviroequip (table)
+ Succeeded [  1.24s] model ENERGY.energy__fed_eia861_sales_ult_cust (table)
+ Succeeded [  1m 2s] model JUSTICE.justice__fed_fjc_idb_civil (table)
+ Succeeded [  1.33s] model ENERGY.energy__fed_eia860_4_owner (table)
+ Succeeded [  1.43s] model JUDICIARY.judiciary__fed_oyez (table)
+ Succeeded [ 25.67s] model FINANCE.finance__fed_fdic_sod_branch_deposits (table)
+ Succeeded [  2.94s] model ENVIRONMENT.environment__fed_epa_ghgrp_emission (table)
+ Succeeded [  3.14s] model ENERGY.energy__fed_eia860_3_2_wind (table)
+ Succeeded [ 53.90s] model ENVIRONMENT.environment__fed_fracfocus_registry (table)
+ Succeeded [  1.13s] model ENERGY.energy__fed_eia861_sales_ult_cust_cs (table)
+ Succeeded [  1.13s] model ENERGY.energy__fed_eia861_reliability (table)
+ Succeeded [  1.40s] model ENERGY.energy__fed_eia861_operational_data (table)
+ Succeeded [  1.25s] model ENERGY.energy__fed_eia860_3_5_multifuel (table)
+ Succeeded [  1.32s] model ECONOMICS.economics__fed_sec_edgar_company_tickers (table)
+ Succeeded [  1.04s] model ENERGY.energy__fed_eia861_frame (table)
+ Succeeded [  1.06s] model ENERGY.energy__fed_eia860_3_3_solar (table)
+ Succeeded [  2m49s] model HOUSING.housing__fed_fema_ia_housing_registrations (table)
+ Succeeded [  0.95s] model ECONOMICS.economics__fed_us_usaspending_api (table)
+ Succeeded [  2.40s] model HOUSING.housing__fed_hud_public_housing_authorities (table)
+ Succeeded [  1.17s] model ENERGY.energy__fed_eia860_3_4_energy_storage (table)
+ Succeeded [  1.57s] model ENERGY.energy__fed_eia861_mergers (table)
+ Succeeded [  1.40s] model ECONOMICS.economics__fed_fdic_failed_banks (table)
+ Succeeded [  1.32s] model ECONOMICS.economics__fed_treasury_avg_interest_rates (table)
+ Succeeded [  5.65s] model POLITICS.politics__st_nyc_cfb_campaign_2025_contributions (table)
+ Succeeded [  1.18s] model FINANCE.finance__fed_sec_edgar_company_tickers_exchange (table)
+ Succeeded [  1.54s] model ENERGY.energy__fed_eia860_1_utility (table)
+ Succeeded [  1.13s] model ECONOMICS.economics__fed_treasury_debt_to_penny (table)
+ Succeeded [  0.89s] model ENERGY.energy__fed_eia861_distribution_systems (table)
+ Succeeded [  1.77s] model ECONOMICS.economics__fed_us_sec_edgar (table)
+ Succeeded [  2.24s] model POLITICS.politics__irs527_8872_reports (table)
+ Succeeded [ 12.99s] model CORPORATE_REGISTRY.corporate_registry__fed_irs_eo_bmf (table)
+ Succeeded [  5.12s] model JUSTICE.justice__county_double_burden (table)
+ Succeeded [  3.81s] model ENVIRONMENT.environment__fed_usgs_orphaned_oil_gas_wells (table)
+ Succeeded [  2.48s] model ENERGY.energy__fed_eia860_3_1_generator (table)
+ Succeeded [  3.81s] model ENVIRONMENT.environment__fed_epa_rcra_enforcements (table)
+    Failed [  0.00s] model POLITICS.politics__fec_candidate (table)
+   Skipped [-------] test  not_null_politics__fec_candidate_cycle (models/marts/politics/_politics__models.yml:115:22)
+   Skipped [-------] test  not_null_politics__fec_candidate_cand_id (models/marts/politics/_politics__models.yml:112:22)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__fec_candidate_cand_id__cycle (models/marts/politics/_politics__models.yml:106:9)
+   Skipped [-------] model TIMELINE.POLITICS__FEC_CANDIDATE (view)
+ Succeeded [  1.17s] model ENERGY.energy__fed_eia861_dynamic_pricing (table)
+    Failed [  0.00s] model POLITICS.politics__fec_cand_cmte_link (table)
+   Skipped [-------] test  not_null_politics__fec_cand_cmte_link_cmte_id (models/marts/politics/_politics__models.yml:129:22)
+   Skipped [-------] test  not_null_politics__fec_cand_cmte_link_cand_id (models/marts/politics/_politics__models.yml:126:22)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__fec_cand_cmte_link_cand_id__cmte_id__cycle (models/marts/politics/_politics__models.yml:120:9)
+   Skipped [-------] model TIMELINE.POLITICS__FEC_CAND_CMTE_LINK (view)
+ Succeeded [ 11.68s] model ENVIRONMENT.environment__fed_uscg_nrc_incidents (table)
+ Succeeded [ 10.00s] model ENVIRONMENT.environment__fed_epa_rcra_facilities (table)
+    Passed [  0.38s] test  not_null_consumer_safety__fed_nhtsa_complaints_cmplid
+    Passed [  0.78s] test  unique_consumer_safety__fed_nhtsa_complaints_cmplid
+    Failed [  0.00s] model POLITICS.politics__voteview_votes (table)
+   Skipped [-------] test  accepted_values_politics__voteview_votes_vote_position__yea__nay__present__not_voting__not_member__other (models/marts/politics/_politics__models.yml:177:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__voteview_votes_congress__chamber__rollnumber__icpsr (models/marts/politics/_politics__models.yml:167:9)
+   Skipped [-------] test  not_null_politics__voteview_votes_icpsr (models/marts/politics/_politics__models.yml:173:22)
+   Skipped [-------] model POLITICS.politics__member_voting_record (table)
+   Skipped [-------] test  not_null_politics__member_voting_record_congress (models/marts/politics/_politics__models.yml:207:22)
+   Skipped [-------] test  accepted_values_politics__member_voting_record_congress_partial__True__False (models/marts/politics/_politics__models.yml:216:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__member_voting_record_bioguide__congress (models/marts/politics/_politics__models.yml:198:9)
+   Skipped [-------] test  not_null_politics__member_voting_record_congress_partial (models/marts/politics/_politics__models.yml:215:13)
+   Skipped [-------] test  not_null_politics__member_voting_record_bioguide (models/marts/politics/_politics__models.yml:204:22)
+ Succeeded [  3.81s] model EDUCATION.education__fed_ed_college_scorecard_institution (table)
+ Succeeded [  2m 9s] model CORPORATE_REGISTRY.corporate_registry__uk_companies_house_psc (table)
+ Succeeded [  1.99s] model ENERGY.energy__fed_eia860_2_plant (table)
+    Passed [  0.28s] test  not_null_consumer_safety__fed_nhtsa_recalls_record_id
+    Passed [  0.42s] test  unique_consumer_safety__fed_nhtsa_recalls_record_id
+ Succeeded [  1.32s] model HOUSING.housing__fed_mapping_inequality (table)
+ Succeeded [  6.04s] model LABOR.labor__fed_dol_ebsa_form5500_schedule_sb (table)
+ Succeeded [  5.70s] model FINANCE.finance__fed_pcaob_form_ap_filings (table)
+ Succeeded [  4.32s] model POLITICS.politics__st_nyc_cfb_campaign_2001_contribution (table)
+    Failed [  0.00s] model POLITICS.politics__voteview_rollcalls (table)
+   Skipped [-------] test  not_null_politics__voteview_rollcalls_rollnumber (models/marts/politics/_politics__models.yml:190:22)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__voteview_rollcalls_congress__chamber__rollnumber (models/marts/politics/_politics__models.yml:184:9)
+   Skipped [-------] model TIMELINE.POLITICS__VOTEVIEW_ROLLCALLS (view)
+    Failed [  0.00s] model POLITICS.politics__member_crosswalk (table)
+   Skipped [-------] test  not_null_politics__member_crosswalk_member_key (models/marts/politics/_politics__models.yml:22:13)
+   Skipped [-------] test  unique_politics__member_crosswalk_member_key (models/marts/politics/_politics__models.yml:21:13)
+   Skipped [-------] test  unique_politics__member_crosswalk_bioguide (models/marts/politics/_politics__models.yml:28:13)
+   Skipped [-------] model TIMELINE.POLITICS__MEMBER_CROSSWALK (view)
+   Skipped [-------] model FINANCE.finance__senate_trades (table)
+   Skipped [-------] test  not_null_finance__senate_trades_match_note (models/marts/finance/schema_senate_trades.yml:32:13)
+   Skipped [-------] test  not_null_finance__senate_trades_bioguide (models/marts/finance/schema_senate_trades.yml:27:13)
+   Skipped [-------] test  accepted_values_finance__senate_trades_match_note__last_name__last_name_first_initial (models/marts/finance/schema_senate_trades.yml:33:13)
+   Skipped [-------] test  not_null_finance__senate_trades_source_id (models/marts/finance/schema_senate_trades.yml:40:13)
+   Skipped [-------] test  accepted_values_finance__senate_trades_source_id__fed_senate_stock_watcher__fed_senate_efd_ptr (models/marts/finance/schema_senate_trades.yml:41:13)
+   Skipped [-------] model TIMELINE.FINANCE__SENATE_TRADES (view)
+   Skipped [-------] model POLITICS.politics__member_fec_id (table)
+   Skipped [-------] test  not_null_politics__member_fec_id_member_key (models/marts/politics/_politics__models.yml:48:13)
+   Skipped [-------] test  not_null_politics__member_fec_id_fec_id (models/marts/politics/_politics__models.yml:56:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__member_fec_id_member_key__fec_id (models/marts/politics/_politics__models.yml:39:9)
+   Skipped [-------] test  relationships_politics__member_fec_id_member_key__member_key__ref_politics__member_crosswalk_ (models/marts/politics/_politics__models.yml:49:13)
+   Skipped [-------] model POLITICS.politics__member_spine (table)
+   Skipped [-------] test  relationships_politics__member_spine_member_key__member_key__ref_politics__member_crosswalk_ (models/marts/politics/_politics__models.yml:68:13)
+   Skipped [-------] test  unique_politics__member_spine_member_key (models/marts/politics/_politics__models.yml:66:13)
+   Skipped [-------] test  not_null_politics__member_spine_member_key (models/marts/politics/_politics__models.yml:67:13)
+   Skipped [-------] test  not_null_politics__member_spine_has_ideology (models/marts/politics/_politics__models.yml:97:13)
+   Skipped [-------] test  accepted_values_politics__member_spine_ideology_label__left_liberal__right_conservative__centrist__unknown (models/marts/politics/_politics__models.yml:81:13)
+   Skipped [-------] test  accepted_values_politics__member_spine_has_ideology__True__False (models/marts/politics/_politics__models.yml:98:13)
+   Skipped [-------] test  not_null_politics__member_spine_has_voteview_match (models/marts/politics/_politics__models.yml:87:13)
+   Skipped [-------] test  unique_politics__member_spine_bioguide (models/marts/politics/_politics__models.yml:75:13)
+   Skipped [-------] test  accepted_values_politics__member_spine_has_voteview_match__True__False (models/marts/politics/_politics__models.yml:88:13)
+   Skipped [-------] model POLITICS.politics__member_money_raised (table)
+   Skipped [-------] test  not_null_politics__member_money_raised_bioguide (models/marts/politics/_politics__models.yml:156:22)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__member_money_raised_bioguide__cycle (models/marts/politics/_politics__models.yml:150:9)
+   Skipped [-------] test  not_null_politics__member_money_raised_cycle (models/marts/politics/_politics__models.yml:159:22)
+   Skipped [-------] model TIMELINE.POLITICS__MEMBER_MONEY_RAISED (view)
+   Skipped [-------] model TIMELINE.POLITICS__MEMBER_SPINE (view)
+    Failed [  0.01s] model POLITICS.politics__bills (table)
+   Skipped [-------] test  not_null_politics__bills_bill_number (models/marts/politics/_politics__models.yml:233:22)
+   Skipped [-------] test  not_null_politics__bills_became_law (models/marts/politics/_politics__models.yml:257:13)
+   Skipped [-------] test  not_null_politics__bills_bill_type (models/marts/politics/_politics__models.yml:237:13)
+   Skipped [-------] test  not_null_politics__bills_is_law_eligible (models/marts/politics/_politics__models.yml:244:13)
+   Skipped [-------] test  accepted_values_politics__bills_became_law__True__False (models/marts/politics/_politics__models.yml:258:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__bills_congress__bill_type__bill_number (models/marts/politics/_politics__models.yml:227:9)
+   Skipped [-------] test  accepted_values_politics__bills_latest_stage__became_law__passed_both_to_president__reached_floor__committee_action__introduced__unknown (models/marts/politics/_politics__models.yml:264:13)
+   Skipped [-------] test  accepted_values_politics__bills_is_law_eligible__True__False (models/marts/politics/_politics__models.yml:245:13)
+   Skipped [-------] test  accepted_values_politics__bills_bill_type__HR__S__HJRES__SJRES__HCONRES__SCONRES__HRES__SRES (models/marts/politics/_politics__models.yml:238:13)
+   Skipped [-------] test  accepted_values_politics__bills_bill_class__bill__joint_resolution__concurrent_resolution__simple_resolution__other (models/marts/politics/_politics__models.yml:251:13)
+   Skipped [-------] model TIMELINE.POLITICS__BILLS (view)
+    Failed [  0.00s] model POLITICS.politics__bill_cosponsors (table)
+   Skipped [-------] test  not_null_politics__bill_cosponsors_is_withdrawn (models/marts/politics/_politics__models.yml:283:13)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__bill_cosponsors_congress__bill_type__bill_number__cosponsor_bioguide (models/marts/politics/_politics__models.yml:273:9)
+   Skipped [-------] test  not_null_politics__bill_cosponsors_cosponsor_bioguide (models/marts/politics/_politics__models.yml:279:22)
+   Skipped [-------] test  accepted_values_politics__bill_cosponsors_is_withdrawn__True__False (models/marts/politics/_politics__models.yml:284:13)
+   Skipped [-------] model POLITICS.politics__member_bill_record (table)
+   Skipped [-------] test  not_null_politics__member_bill_record_congress (models/marts/politics/_politics__models.yml:303:22)
+   Skipped [-------] test  not_null_politics__member_bill_record_congress_partial (models/marts/politics/_politics__models.yml:313:13)
+   Skipped [-------] test  not_null_politics__member_bill_record_bioguide (models/marts/politics/_politics__models.yml:300:22)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__member_bill_record_bioguide__congress (models/marts/politics/_politics__models.yml:294:9)
+   Skipped [-------] test  accepted_values_politics__member_bill_record_congress_partial__True__False (models/marts/politics/_politics__models.yml:314:13)
+   Skipped [-------] model TIMELINE.POLITICS__BILL_COSPONSORS (view)
+ Succeeded [  1.20s] model JUSTICE.justice__fed_doj_fca_settlements (table)
+ Succeeded [  1.33s] model FINANCE.finance__fed_ncua_call_reports_foicu (table)
+ Succeeded [  5.70s] model ECONOMICS.economics__intl_it_istat (table)
+ Succeeded [  2m38s] model CONSUMER_PROTECTION.consumer_protection__fed_cfpb_complaints (table)
+ Succeeded [  1.95s] model ENERGY.energy__fed_eia861_delivery_companies (table)
+ Succeeded [  1.48s] model ENERGY.energy__fed_eia861_demand_response (table)
+ Succeeded [  1.55s] model ENERGY.energy__fed_eia861_advanced_meters (table)
+ Succeeded [  1.35s] model ENERGY.energy__fed_eia861_energy_efficiency (table)
+ Succeeded [  1.67s] model ENERGY.energy__fed_eia861_non_net_metering_distributed (table)
+ Succeeded [  1.86s] model ENERGY.energy__fed_eia861_net_metering (table)
+    Passed [  0.24s] test  not_null_transport__fed_ntsb_aviation_events_ev_id
+    Passed [  0.27s] test  unique_transport__fed_ntsb_aviation_events_ev_id
+    Passed [  0.28s] test  not_null_transport__fed_ntsb_aviation_aircraft_ev_id
+    Passed [  0.30s] test  not_null_transport__fed_ntsb_aviation_aircraft_aircraft_key
+ Succeeded [  2.65s] model FINANCE.finance__fed_ncua_call_reports_fs220 (table)
+    Passed [  0.59s] test  not_null_transport__fed_faa_aircraft_registry_n_number
+    Passed [  0.44s] test  unique_transport__fed_faa_aircraft_registry_n_number
+    Passed [  0.44s] test  not_null_reference__fed_itis_vern_ref_links_itis_vern_ref_links_key
+    Passed [  0.37s] test  unique_reference__fed_itis_vern_ref_links_itis_vern_ref_links_key
+    Passed [  0.30s] test  not_null_reference__fed_itis_vernaculars_itis_vernaculars_key
+    Passed [  0.38s] test  unique_reference__fed_itis_vernaculars_itis_vernaculars_key
+    Passed [  0.25s] test  not_null_regulatory__fed_federal_register_documents_docket_ids
+    Passed [  0.13s] test  not_null_regulatory__fed_federal_register_documents_citation
+    Passed [  0.24s] test  not_null_regulatory__fed_federal_register_documents_document_number
+    Passed [  0.25s] test  not_null_regulatory__fed_federal_register_documents_regulation_id_numbers
+    Passed [  0.42s] test  unique_regulatory__fed_federal_register_documents_document_number
+    Passed [  0.52s] test  accepted_values_regulatory__fed_federal_register_documents_type__Rule__Proposed_Rule__Notice__Presidential_Document__Uncategorized_Document
+    Passed [  0.56s] test  not_null_regulatory__fed_federal_register_documents_agency
+    Passed [  0.25s] test  not_null_transport__fed_fra_casualties_report_key
+    Passed [  0.28s] test  not_null_transport__fed_fra_casualties_railroad_code
+    Passed [  0.21s] test  not_null_transport__fed_fra_rail_deaths_by_railroad_deaths
+    Passed [  0.18s] test  not_null_transport__fed_fra_rail_deaths_by_railroad_railroad_code
+    Passed [  0.46s] test  unique_transport__fed_fra_casualties_report_key
+    Passed [  0.22s] test  not_null_transport__fed_fra_rail_deaths_by_railroad_incident_year
+    Passed [  0.29s] test  dbt_utils_unique_combination_of_columns_transport__fed_fra_rail_deaths_by_railroad_railroad_code__incident_year__type_of_person
+    Passed [  0.22s] test  not_null_reference__xc_ror_research_organizations_ror_id
+    Passed [  0.30s] test  unique_reference__xc_ror_research_organizations_ror_id
+    Passed [  0.25s] test  not_null_transport__fed_ntsb_aviation_injury_ev_id
+    Passed [  0.27s] test  not_null_transport__fed_ntsb_aviation_injury_injury_record_id
+    Passed [  0.40s] test  unique_transport__fed_ntsb_aviation_injury_injury_record_id
+    Passed [  0.23s] test  not_null_reference__fed_itis_taxon_unit_types_itis_taxon_unit_types_key
+    Passed [  0.22s] test  unique_reference__fed_itis_taxon_unit_types_itis_taxon_unit_types_key
+    Passed [  0.22s] test  not_null_reference__fed_itis_tu_comments_links_itis_tu_comments_links_key
+    Passed [  0.26s] test  not_null_reference__fed_itis_strippedauthor_taxon_author_id
+    Passed [  0.34s] test  unique_reference__fed_itis_tu_comments_links_itis_tu_comments_links_key
+    Passed [  0.25s] test  not_null_science_research__xc_biorxiv_medrxiv_biorxiv_doi
+    Passed [  0.28s] test  unique_reference__fed_itis_strippedauthor_taxon_author_id
+ Succeeded [  1m42s] model JUSTICE.justice__fed_fjc_idb_criminal (table)
+    Passed [  0.22s] test  dbt_utils_unique_combination_of_columns_science_research__xc_biorxiv_medrxiv_doi__biorxiv_doi__published_doi__person_name__funder_ror_id__stat_month
+    Passed [  0.25s] test  not_null_science_research__xc_biorxiv_medrxiv__source_run_id
+    Warned [  0.17s] test  accepted_values_science_research__xc_biorxiv_medrxiv_server__True__biorxiv__medrxiv (models/staging/xc_biorxiv_medrxiv/schema.yml:283:13)
+    Passed [  0.25s] test  not_null_science_research__xc_biorxiv_medrxiv__ingested_at
+    Passed [  0.31s] test  not_null_science_research__xc_biorxiv_medrxiv_doi
+    Passed [  0.21s] test  not_null_reference__fed_itis_taxon_authors_lkp_taxon_author_id
+    Passed [  0.22s] test  not_null_reference__fed_itis_synonym_links_itis_synonym_links_key
+    Passed [  0.35s] test  unique_reference__fed_itis_taxon_authors_lkp_taxon_author_id
+    Passed [  0.28s] test  not_null_science_research__xc_osf_registrations_osf_id
+    Passed [  0.39s] test  unique_reference__fed_itis_synonym_links_itis_synonym_links_key
+    Passed [  0.32s] test  unique_science_research__xc_osf_registrations_osf_id
+    Passed [  0.17s] test  not_null_reference__fed_itis_taxonomic_units_tsn
+    Passed [  0.51s] test  unique_reference__fed_itis_longnames_tsn
+    Passed [  0.37s] test  unique_reference__fed_itis_taxonomic_units_tsn
+    Passed [  0.26s] test  not_null_reference__fed_itis_jurisdiction_itis_jurisdiction_key
+    Passed [  0.85s] test  not_null_reference__fed_itis_longnames_tsn
+    Passed [  0.22s] test  not_null_reference__fed_itis_publications_itis_publications_key
+    Passed [  0.17s] test  unique_reference__fed_itis_publications_itis_publications_key
+    Passed [  0.51s] test  unique_reference__fed_itis_jurisdiction_itis_jurisdiction_key
+    Passed [  0.20s] test  not_null_reference__fed_itis_kingdoms_kingdom_id
+    Passed [  0.22s] test  unique_reference__fed_itis_kingdoms_kingdom_id
+    Passed [  0.21s] test  not_null_reference__fed_itis_geographic_div_itis_geographic_div_key
+    Passed [  0.40s] test  unique_reference__fed_itis_geographic_div_itis_geographic_div_key
+    Passed [  0.39s] test  not_null_reference__fed_itis_reference_links_itis_reference_links_key
+    Passed [  0.23s] test  not_null_reference__fed_itis_hierarchy_tsn
+    Passed [  0.41s] test  unique_reference__fed_itis_hierarchy_tsn
+    Passed [  0.23s] test  not_null_reference__fed_itis_experts_itis_experts_key
+    Passed [  0.82s] test  unique_reference__fed_itis_reference_links_itis_reference_links_key
+    Passed [  0.20s] test  not_null_justice__xc_un_consolidated_sanctions_list_dataid
+    Passed [  0.12s] test  unique_justice__xc_un_consolidated_sanctions_list_dataid
+    Passed [  0.27s] test  unique_reference__fed_itis_experts_itis_experts_key
+    Passed [  0.24s] test  not_null_transport__fed_fra_crossing_incidents_report_key
+    Passed [  0.20s] test  not_null_reference__fed_itis_comments_comment_id
+    Passed [  0.28s] test  not_null_transport__fed_fra_crossing_incidents_railroad_code
+    Passed [  0.18s] test  not_null_reference__fed_itis_other_sources_itis_other_sources_key
+    Passed [  0.26s] test  unique_reference__fed_itis_comments_comment_id
+    Passed [  0.26s] test  unique_reference__fed_itis_other_sources_itis_other_sources_key
+    Passed [  0.18s] test  not_null_labor__fed_pbgc_trusteed_plans_case_number
+    Passed [  0.24s] test  not_null_labor__fed_pbgc_trusteed_plans_sponsor_name
+    Passed [  0.22s] test  not_null_reference__fed_itis_nodc_ids_itis_nodc_ids_key
+    Passed [  0.28s] test  unique_labor__fed_pbgc_trusteed_plans_case_number
+    Passed [  0.21s] test  not_null_procurement__fed_usaspending_subawards_subaward_id
+    Passed [  0.33s] test  unique_reference__fed_itis_nodc_ids_itis_nodc_ids_key
+    Passed [  0.27s] test  unique_procurement__fed_usaspending_subawards_subaward_id
+    Passed [  0.26s] test  not_null_land_and_territory__fed_bia_tribal_geo_lar_id
+    Passed [  0.32s] test  not_null_land_and_territory__fed_bia_tribal_geo_object_id
+    Passed [  0.30s] test  unique_land_and_territory__fed_bia_tribal_geo_lar_id
+    Passed [  0.19s] test  not_null_justice__fed_consolidated_screening_list_name
+    Passed [  0.20s] test  not_null_reference__fed_usgs_gnis_all_names_name_citation_id
+    Passed [  0.26s] test  not_null_justice__state_mo_sex_offender_registry_registrant_name
+    Passed [  0.19s] test  not_null_reference__fed_usgs_gnis_all_names_feature_id
+    Passed [  0.21s] test  not_null_science_research__fed_nih_reporter_appl_id
+    Passed [  0.29s] test  not_null_science_research__fed_sbir_sttr_awards_award_record_id
+    Passed [  0.61s] test  unique_science_research__fed_nih_reporter_appl_id
+    Passed [  0.27s] test  unique_science_research__fed_sbir_sttr_awards_award_record_id
+    Passed [  0.81s] test  unique_reference__fed_usgs_gnis_all_names_name_citation_id
+    Passed [  0.23s] test  not_null_transport__fed_fra_equipment_accidents_reporting_railroad_code
+    Passed [  0.21s] test  not_null_transport__fed_fra_equipment_accidents_report_key
+    Passed [  0.21s] test  not_null_justice__fed_fhfa_suspended_counterparties_suspension_order
+    Passed [  0.24s] test  not_null_procurement__intl_ec_sercop_company_id
+    Passed [  0.22s] test  not_null_procurement__intl_ec_sercop_ocid
+    Passed [  0.22s] test  not_null_procurement__intl_ec_sercop_tag
+    Passed [  0.24s] test  not_null_procurement__intl_ec_sercop_ocds_prefix
+    Passed [  0.21s] test  not_null_procurement__intl_ec_sercop__ingested_at
+    Passed [  0.24s] test  accepted_values_procurement__intl_ec_sercop_initiation_type__tender
+    Warned [  0.17s] test  accepted_values_procurement__intl_ec_sercop_tender_status__planning__planned__active__cancelled__unsuccessful__complete__withdrawn (models/staging/intl_ec_sercop/schema.yml:277:13)
+    Passed [  0.10s] test  not_null_procurement__intl_ec_sercop__source_run_id
+    Passed [  0.14s] test  not_null_procurement__intl_ec_sercop_source_id
+    Passed [  0.14s] test  not_null_procurement__intl_ec_sercop_record_date
+    Warned [  0.33s] test  accepted_values_procurement__intl_ec_sercop_award_status__pending__active__cancelled__unsuccessful (models/staging/intl_ec_sercop/schema.yml:319:13)
+    Passed [  0.12s] test  not_null_procurement__intl_ec_sercop_buyer_id
+    Warned [  0.17s] test  accepted_values_procurement__intl_ec_sercop_tender_procurement_method__open__selective__limited__direct (models/staging/intl_ec_sercop/schema.yml:292:13)
+    Passed [  0.25s] test  not_null_procurement__intl_ec_sercop_record_id
+    Passed [  0.20s] test  accepted_values_procurement__intl_ec_sercop_tag__planning__planningUpdate__tender__tenderAmendment__tenderUpdate__tenderCancellation__award__awardUpdate__awardCancellation__contract__contractUpdate__contractAmendment__implementation__implementationUpdate__contractTermination__compiled
+    Passed [  0.20s] test  unique_procurement__intl_ec_sercop_ocid
+    Passed [  0.21s] test  unique_health__intl_healthcanada_dpd_drug_drug_code
+    Passed [  0.24s] test  not_null_health__intl_healthcanada_dpd_drug_drug_code
+    Passed [  0.23s] test  not_null_justice__fed_fbi_cde_offense
+    Passed [  0.17s] test  not_null_justice__fed_fbi_cde_month_date
+    Passed [  0.18s] test  not_null_justice__fed_fbi_cde_state
+    Passed [  0.26s] test  dbt_utils_unique_combination_of_columns_justice__fed_fbi_cde_state__offense__month_date
+    Passed [  0.21s] test  not_null_justice__intl_opensanctions_default_entity_type
+    Passed [  0.25s] test  not_null_justice__intl_opensanctions_default_id
+    Passed [  0.12s] test  not_null_justice__intl_opensanctions_default_name
+    Passed [  0.19s] test  not_null_housing__fed_fema_nfip_community_status_book_community_id_number
+    Passed [  0.25s] test  unique_housing__fed_fema_nfip_community_status_book_community_id_number
+    Passed [  0.37s] test  unique_justice__intl_opensanctions_default_id
+    Passed [  0.20s] test  not_null_housing__fed_hud_mf_firm_commitments_commitment_record_id
+    Passed [  0.28s] test  not_null_housing__fed_hud_mf_firm_commitments_fha_number
+    Passed [  0.36s] test  unique_housing__fed_hud_mf_firm_commitments_commitment_record_id
+    Passed [  0.24s] test  not_null_immigration__fed_ice_detainers_detainer_prepare_date
+    Passed [  0.24s] test  not_null_health__hospital_officer_pay_total_compensation
+    Passed [  0.20s] test  not_null_health__hospital_officer_pay_person_name
+    Passed [  0.26s] test  not_null_health__hospital_officer_pay_person_seq
+    Passed [  0.13s] test  not_null_health__hospital_officer_pay_object_id
+    Passed [  0.32s] test  not_null_health__hospital_officer_pay_hospital_name
+    Passed [  0.12s] test  not_null_health__hospital_officer_pay_ein
+    Passed [  0.22s] test  not_null_health__fed_ihs_scb_facility_asufac_code
+    Passed [  0.32s] test  dbt_utils_unique_combination_of_columns_health__hospital_officer_pay_object_id__person_seq
+    Passed [  0.20s] test  not_null_health__fed_ihs_scb_facility_scb_facility_id
+    Passed [  0.18s] test  not_null_justice__intl_hudoc__source_run_id
+    Passed [  0.27s] test  unique_health__fed_ihs_scb_facility_scb_facility_id
+    Warned [  0.15s] test  not_null_justice__intl_hudoc_judgment_date (models/staging/intl_hudoc/schema.yml:208:13)
+    Passed [  0.29s] test  unique_justice__intl_hudoc_echr_case_sk
+    Warned [  0.15s] test  not_null_justice__intl_hudoc_country (models/staging/intl_hudoc/schema.yml:196:13)
+    Warned [  0.26s] test  not_null_justice__intl_hudoc_ecli (models/staging/intl_hudoc/schema.yml:188:13)
+    Passed [  0.19s] test  not_null_justice__intl_hudoc_case_id
+    Passed [  0.28s] test  not_null_justice__intl_hudoc_echr_case_sk
+    Warned [  0.26s] test  accepted_values_justice__intl_hudoc_language__True__EN__FR (models/staging/intl_hudoc/schema.yml:249:13)
+    Passed [  0.11s] test  not_null_justice__intl_hudoc_person_name
+    Warned [  0.26s] test  not_null_justice__intl_hudoc_appno (models/staging/intl_hudoc/schema.yml:180:13)
+    Passed [  0.45s] test  not_null_justice__intl_hudoc__ingested_at
+    Warned [  0.80s] test  accepted_values_justice__intl_hudoc_doc_type__True__JUDGMENT__DECISION__ADVISORY_OPINION__COMMUNICATED_CASE__STRIKE_OUT__REVISION__INTERPRETATION__OTHER (models/staging/intl_hudoc/schema.yml:217:13)
+    Passed [  0.30s] test  accepted_values_justice__intl_hudoc_importance__False__1__2__3__4
+    Passed [  0.22s] test  not_null_justice__fed_jpml_pending_mdls_mdl_no
+    Passed [  0.28s] test  unique_justice__fed_jpml_pending_mdls_mdl_no
+    Passed [  0.26s] test  not_null_housing__fed_cfpb_hmda_lar_lar_record_id
+    Passed [  0.30s] test  not_null_housing__fed_cfpb_hmda_lar_activity_year
+    Passed [  0.20s] test  not_null_housing__fed_cfpb_hmda_lar_lei
+    Passed [  0.30s] test  unique_housing__fed_cfpb_hmda_lar_lar_record_id
+    Passed [  0.18s] test  not_null_finance__fed_ncua_charter_merger_events_merging_credit_union_charter
+    Passed [  0.25s] test  unique_finance__fed_ncua_charter_merger_events_merging_credit_union_charter
+    Passed [  0.20s] test  not_null_health__st_oehha_proposition_65_list_chemical
+    Passed [  0.21s] test  not_null_reference__fed_dhs_hifld_objectid
+    Passed [  0.21s] test  not_null_immigration__fed_ice_detention_stints_detention_facility
+    Passed [  0.18s] test  not_null_health__fed_nlm_dailymed_spl_setid_map_setid
+    Passed [  0.27s] test  not_null_immigration__fed_ice_detention_stints_book_in_at
+    Passed [  0.30s] test  unique_health__fed_nlm_dailymed_spl_setid_map_setid
+    Passed [  0.21s] test  not_null_housing__fed_hud_mf_section8_contracts_contract_number
+    Passed [  0.25s] test  not_null_housing__fed_hud_mf_section8_contracts_contract_record_id
+    Passed [  0.18s] test  not_null_health__fed_ihs_facilities_asufac
+    Passed [  0.10s] test  not_null_health__fed_ihs_facilities_ihs_facility_id
+    Passed [  0.27s] test  unique_housing__fed_hud_mf_section8_contracts_contract_record_id
+    Passed [  0.15s] test  not_null_housing__fed_hud_fha_sf_portfolio_snapshot_loan_record_id
+    Passed [  0.23s] test  unique_health__fed_ihs_facilities_ihs_facility_id
+    Passed [  0.22s] test  not_null_housing__fed_hud_fha_sf_portfolio_snapshot_property_state
+    Passed [  0.20s] test  not_null_health__fed_cdc_wonder_icd_chapter
+    Passed [  0.29s] test  unique_justice__racial_jail_disparity_county_year_key
+    Passed [  0.18s] test  not_null_health__fed_cdc_wonder_year
+    Passed [  0.19s] test  not_null_health__fed_cdc_wonder_sex
+    Passed [  0.62s] test  unique_housing__fed_hud_fha_sf_portfolio_snapshot_loan_record_id
+    Passed [  0.18s] test  not_null_health__fed_hrsa_hpsa_primary_care_hpsa_component_id
+    Passed [  0.24s] test  dbt_utils_unique_combination_of_columns_health__fed_cdc_wonder_year__icd_chapter__sex
+    Passed [  0.23s] test  not_null_health__fed_hrsa_hpsa_primary_care_hpsa_id
+    Warned [  0.24s] test  not_null_health__fed_clinicaltrials_org_study_id (models/staging/fed_clinicaltrials/schema.yml:236:13)
+    Passed [  0.30s] test  unique_health__fed_hrsa_hpsa_primary_care_hpsa_component_id
+    Passed [  0.21s] test  accepted_values_health__fed_clinicaltrials_source_id__fed_clinicaltrials
+    Passed [  0.20s] test  accepted_values_health__fed_clinicaltrials_status_category__Active__Completed__Stopped__Active_not_recruiting__Other_Unknown
+    Passed [  0.35s] test  unique_health__fed_clinicaltrials_nct_id
+    Passed [  0.22s] test  not_null_health__fed_clinicaltrials_source_id
+    Passed [  0.21s] test  not_null_health__fed_clinicaltrials__source_run_id
+    Passed [  0.28s] test  not_null_health__fed_clinicaltrials_status_category
+    Passed [  0.12s] test  not_null_health__fed_clinicaltrials_nct_id
+    Passed [  0.25s] test  not_null_health__fed_clinicaltrials_overall_status
+    Passed [  0.25s] test  not_null_health__fed_clinicaltrials__ingested_at
+    Warned [  0.24s] test  not_null_health__fed_clinicaltrials_eudract_number (models/staging/fed_clinicaltrials/schema.yml:245:13)
+    Passed [  0.12s] test  accepted_values_health__fed_clinicaltrials_phase_category__Early_Phase__Mid_Phase__Late_Phase__Post_Market__N_A__Unknown
+    Passed [  4.40s] test  assert_payee_shorter_flag_matches_method
+    Passed [ 12.92s] test  accepted_values_int_nursing_home_prf_match_match_method__exact__prf_starts_with_home__home_starts_with_prf__prf_contains_home
+    Passed [ 13.52s] test  not_null_int_nursing_home_prf_match_payee_shorter_than_home
+    Passed [  0.50s] test  not_null_int_nursing_home_prf_match_ccn
+    Passed [ 11.14s] test  not_null_int_nursing_home_prf_match_match_method
+    Passed [  0.27s] test  not_null_health__fed_hrsa_provider_relief_fund_prf_row_id
+    Passed [  0.24s] test  not_null_health__fed_hrsa_provider_relief_fund_state
+    Passed [  0.57s] test  not_null_health__fed_hrsa_provider_relief_fund_payment_amount
+    Passed [  0.59s] test  unique_health__fed_hrsa_provider_relief_fund_prf_row_id
+    Passed [  0.20s] test  not_null_health__fed_va_suicide_national_year_of_death
+    Passed [  0.28s] test  not_null_health__fed_va_suicide_national_cohort
+    Passed [  0.39s] test  dbt_utils_unique_combination_of_columns_health__fed_va_suicide_national_year_of_death__cohort__age_group
+    Passed [  0.23s] test  not_null_environment__fed_epa_superfund_site_boundaries_boundary_feature_id
+    Passed [  0.62s] test  unique_environment__fed_epa_superfund_site_boundaries_boundary_feature_id
+    Passed [  0.21s] test  not_null_environment__fed_epa_superfund_site_boundaries_epa_id
+    Passed [  0.21s] test  not_null_environment__fed_uscg_nrc_incident_reports_seqnos
+    Passed [  0.52s] test  unique_environment__fed_uscg_nrc_incident_reports_seqnos
+    Passed [  0.27s] test  not_null_politics__st_nyc_cfb_campaign_2021_contributions_contribution_record_id
+    Passed [  0.53s] test  unique_politics__st_nyc_cfb_campaign_2021_contributions_contribution_record_id
+    Passed [  0.27s] test  not_null_energy__fed_eia_861_balancing_authority_state
+    Passed [  0.30s] test  not_null_energy__fed_eia_861_balancing_authority_ba_id
+    Passed [  0.24s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia_861_balancing_authority_ba_id__state
+    Passed [  0.28s] test  accepted_values_justice__fed_scdb_majority_code__False__1__2__3__4__5__6
+    Passed [  0.17s] test  not_null_justice__fed_scdb_case_issues_id
+    Passed [  0.23s] test  not_null_justice__fed_scdb_justice_code
+    Warned [  0.25s] test  accepted_values_justice__fed_scdb_party_winning__False__0__1 (models/staging/fed_scdb/schema.yml:219:13)
+    Passed [  0.28s] test  not_null_justice__fed_scdb_justice_name
+    Passed [  0.21s] test  not_null_justice__fed_scdb_us_citation
+    Passed [  0.25s] test  accepted_values_justice__fed_scdb_decision_type_code__False__1__2__3__4__5__6__7
+    Passed [  0.27s] test  accepted_values_justice__fed_scdb_decision_direction_code__False__1__2__3
+    Passed [  0.14s] test  not_null_justice__fed_scdb_case_id
+    Passed [ 10.54s] test  not_null_int_nursing_home_prf_match_prf_row_id
+    Passed [  0.11s] test  not_null_justice__fed_scdb_docket_id
+    Passed [  0.13s] test  accepted_values_justice__fed_scdb_vote_code__False__1__2__3__4__5__6__7__8
+    Passed [  0.24s] test  not_null_justice__fed_scdb_docket
+    Passed [  0.11s] test  not_null_justice__fed_scdb_vote_id
+    Passed [  0.20s] test  not_null_justice__fed_scdb_date_decision
+    Passed [  0.16s] test  accepted_values_justice__fed_scdb_issue_area_code__False__1__2__3__4__5__6__7__8__9__10__11__12__13__14
+    Passed [  0.33s] test  unique_justice__fed_scdb_vote_id
+    Passed [ 10.14s] test  accepted_values_int_nursing_home_prf_match_payee_shorter_than_home__True__False
+    Passed [  0.20s] test  not_null_politics__st_nyc_cfb_campaign_2009_contribution_contribution_record_id
+    Passed [  0.22s] test  not_null_health__fed_cdc_leading_causes_state_year
+    Passed [  0.18s] test  not_null_health__fed_cdc_leading_causes_state_deaths
+    Passed [  1.07s] test  not_null_justice__fed_scdb_court
+    Passed [  0.21s] test  not_null_health__fed_cdc_leading_causes_state_state
+    Passed [  0.94s] test  unique_politics__st_nyc_cfb_campaign_2009_contribution_contribution_record_id
+    Passed [  0.20s] test  not_null_health__fed_cdc_leading_causes_state_cause_name
+    Passed [  0.23s] test  dbt_utils_unique_combination_of_columns_health__fed_cdc_leading_causes_state_year__state__cause_name
+    Passed [  0.21s] test  not_null_health__fed_va_suicide_state_year_of_death
+    Passed [  0.23s] test  not_null_health__fed_va_suicide_state_state
+    Passed [  0.18s] test  dbt_utils_unique_combination_of_columns_health__fed_va_suicide_state_year_of_death__state
+    Passed [  0.26s] test  not_null_politics__intl_elections_canada_contributions_contribution_record_id
+    Passed [  0.30s] test  not_null_justice__fed_fjc_idb_bankruptcy_case_snapshot_id
+    Passed [  0.23s] test  not_null_finance__fed_occ_national_banks_charter_no
+    Passed [  0.30s] test  unique_finance__fed_occ_national_banks_charter_no
+    Passed [  1.02s] test  unique_justice__fed_fjc_idb_bankruptcy_case_snapshot_id
+    Passed [  0.31s] test  unique_health__fed_cms_nursing_home_cms_certification_number_ccn
+    Passed [  0.23s] test  not_null_health__fed_cms_nursing_home_cms_certification_number_ccn
+    Passed [  0.26s] test  accepted_values_health__fed_cms_nursing_home_has_financial_penalty__True__False
+    Passed [  0.23s] test  accepted_values_health__fed_cms_nursing_home_overall_rating_band__True__High_4_5_stars___Average_3_stars___Low_1_2_stars___Not_Rated
+    Passed [  0.10s] test  not_null_health__fed_cms_nursing_home_county_fips
+    Passed [  0.11s] test  not_null_health__fed_cms_nursing_home__ingested_at
+    Passed [  1.36s] test  unique_politics__intl_elections_canada_contributions_contribution_record_id
+    Passed [  0.10s] test  not_null_health__fed_cms_nursing_home_zip_code
+    Passed [  0.23s] test  not_null_health__fed_cms_nursing_home_provider_number
+    Passed [  0.10s] test  not_null_health__fed_cms_nursing_home_state
+    Passed [  0.20s] test  not_null_health__fed_cms_nursing_home_has_financial_penalty
+    Passed [  0.22s] test  not_null_health__fed_va_allcause_mortality_cause_of_death
+    Passed [  0.20s] test  not_null_health__fed_va_allcause_mortality_year
+    Passed [  0.20s] test  not_null_housing__fed_usda_rd_mfh_active_projects_project_id
+    Passed [  0.20s] test  not_null_housing__fed_usda_rd_mfh_active_projects_borrower_id
+    Passed [  0.25s] test  dbt_utils_unique_combination_of_columns_health__fed_va_allcause_mortality_year__cohort__sex__cause_of_death
+    Passed [  0.25s] test  not_null_finance__fed_occ_thrifts_charter_no
+    Passed [  0.29s] test  dbt_utils_unique_combination_of_columns_housing__fed_usda_rd_mfh_active_projects_borrower_id__project_id
+    Passed [  0.34s] test  unique_finance__fed_occ_thrifts_charter_no
+    Passed [  0.23s] test  not_null_environment__fed_epa_tri_facility_tri_facility_id
+    Passed [  0.22s] test  not_null_environment__fed_epa_rcra_violations_violation_record_id
+    Passed [  0.28s] test  unique_environment__fed_epa_tri_facility_tri_facility_id
+    Passed [  0.25s] test  not_null_energy__fed_eia861_utility_data_record_id
+    Passed [  0.25s] test  unique_energy__fed_eia861_utility_data_record_id
+    Passed [  0.42s] test  unique_environment__fed_epa_rcra_violations_violation_record_id
+    Passed [  0.24s] test  not_null_politics__st_nyc_cfb_campaign_2013_contribution_contribution_record_id
+    Passed [  0.37s] test  unique_politics__st_nyc_cfb_campaign_2013_contribution_contribution_record_id
+    Passed [  0.52s] test  not_null_environment__fed_phmsa_flagged_incidents_phmsa_operator_id
+    Passed [  0.29s] test  unique_environment__fed_phmsa_flagged_incidents_report_number
+    Passed [  0.24s] test  not_null_energy__fed_eia861_service_territory_record_id
+    Passed [  0.26s] test  unique_energy__fed_eia861_service_territory_record_id
+    Passed [  0.20s] test  not_null_immigration__fed_ice_detention_facility_codes_detention_facility_code
+    Passed [  0.89s] test  not_null_environment__fed_phmsa_flagged_incidents_report_number
+    Passed [  0.19s] test  not_null_justice__fed_fjc_idb_appellate_appeal_record_id
+    Passed [  0.44s] test  unique_immigration__fed_ice_detention_facility_codes_detention_facility_code
+    Passed [  0.22s] test  not_null_finance__fed_ncua_federally_insured_cu_list_charter_number
+    Passed [  0.41s] test  unique_justice__fed_fjc_idb_appellate_appeal_record_id
+    Passed [  0.23s] test  unique_finance__fed_ncua_federally_insured_cu_list_charter_number
+    Passed [  0.22s] test  not_null_energy__fed_eia861_short_form_record_id
+    Passed [  0.22s] test  unique_energy__fed_eia861_short_form_record_id
+    Passed [  0.30s] test  unique_environment__fed_wqp_monitoring_stations_monitoring_location_identifier
+    Passed [  0.63s] test  not_null_environment__fed_wqp_monitoring_stations_monitoring_location_identifier
+    Passed [  0.45s] test  not_null_health__fed_cms_hcris_provider_ccn
+    Passed [  0.22s] test  not_null_health__fed_cms_hcris_rpt_rec_num
+    Passed [  0.11s] test  not_null_health__fed_cms_hcris_source_file_year
+    Passed [  0.29s] test  unique_health__fed_cms_hcris_rpt_rec_num
+    Passed [  0.26s] test  not_null_labor__fed_dol_olms_filing_record_id
+    Passed [  0.37s] test  unique_labor__fed_dol_olms_filing_record_id
+    Passed [  0.18s] test  not_null_environment__fed_fracfocus_disclosure_list_disclosure_id
+    Passed [  0.32s] test  unique_environment__fed_fracfocus_disclosure_list_disclosure_id
+    Passed [  0.24s] test  not_null_environment__fed_epa_aqs_sites_aqs_site_id
+    Passed [  0.26s] test  unique_environment__fed_epa_aqs_sites_aqs_site_id
+    Passed [  0.19s] test  not_null_energy__fed_eia860_6_1_enviroassoc_plant_code
+    Passed [  0.24s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_6_1_enviroassoc_plant_code__boiler_id__generator_id__steam_plant_type
+    Passed [  0.20s] test  not_null_environment__fed_epa_ghgrp_facility_facility_year_id
+    Passed [  0.37s] test  unique_environment__fed_epa_ghgrp_facility_facility_year_id
+    Passed [  0.22s] test  accepted_values_justice__fed_fdic_enforcement_orders_source_id__fed_fdic_enforcement_orders
+    Passed [  0.21s] test  not_null_justice__fed_fdic_enforcement_orders_order_id
+    Warned [  0.25s] test  not_null_justice__fed_fdic_enforcement_orders_document_url (models/marts/justice/schema_fed_fdic_enforcement_orders.yml:23:13)
+    Passed [  3.13s] test  assert_no_epoch_or_pivot_dates
+    Passed [  0.26s] test  unique_justice__fed_fdic_enforcement_orders_order_id
+    Passed [  0.14s] test  accepted_values_justice__fed_fdic_enforcement_orders_cert_attached__True__False
+    Warned [  0.23s] test  not_null_justice__fed_fdic_enforcement_orders_order_type (models/marts/justice/schema_fed_fdic_enforcement_orders.yml:18:13)
+    Passed [  0.25s] test  not_null_finance__fed_fdic_bank_data_name
+    Passed [  0.30s] test  not_null_finance__fed_fdic_bank_data_cert
+    Passed [  0.15s] test  not_null_environment__fed_epa_rcra_evaluations_evaluation_record_id
+    Passed [  0.55s] test  unique_environment__fed_epa_rcra_evaluations_evaluation_record_id
+    Passed [  0.98s] test  unique_finance__fed_fdic_bank_data_cert
+    Passed [  0.24s] test  not_null_energy__fed_eia860_6_2_enviroequip_plant_code
+    Passed [  0.22s] test  not_null_energy__fed_eia860_6_2_enviroequip_boiler_id
+    Passed [  0.24s] test  unique_energy__fed_eia861_sales_ult_cust_record_id
+    Passed [  0.21s] test  not_null_energy__fed_eia861_sales_ult_cust_record_id
+    Passed [  0.52s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_6_2_enviroequip_plant_code__boiler_id
+    Passed [  0.27s] test  not_null_justice__fed_fjc_idb_civil_case_record_id
+    Passed [  0.20s] test  not_null_energy__fed_eia860_4_owner_generator_id
+    Passed [  0.13s] test  not_null_energy__fed_eia860_4_owner_plant_code
+    Passed [  0.23s] test  not_null_energy__fed_eia860_4_owner_ownership_id
+    Passed [  0.28s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_4_owner_plant_code__generator_id__ownership_id
+    Passed [  0.24s] test  not_null_judiciary__fed_oyez_date
+    Passed [  1.27s] test  unique_justice__fed_fjc_idb_civil_case_record_id
+    Passed [  0.22s] test  not_null_judiciary__fed_oyez_person_name
+    Warned [  0.45s] test  accepted_values_judiciary__fed_oyez_disposition__Affirmed__Reversed__Vacated__Remanded__Reversed_and_Remanded__Vacated_and_Remanded__Affirmed_in_Part_and_Reversed_in_Part__Dismissed__Per_Curiam__Other (models/staging/fed_oyez/schema.yml:171:13)
+    Passed [  0.27s] test  not_null_judiciary__fed_oyez_case_id
+    Passed [  0.21s] test  accepted_values_judiciary__fed_oyez_has_audio__True__False
+    Passed [  0.28s] test  unique_judiciary__fed_oyez_case_id
+    Passed [  0.10s] test  not_null_judiciary__fed_oyez_docket
+    Passed [  0.23s] test  accepted_values_judiciary__fed_oyez_has_transcript__True__False
+    Passed [  0.26s] test  not_null_finance__fed_fdic_sod_branch_deposits_branch_number
+    Passed [  0.14s] test  not_null_finance__fed_fdic_sod_branch_deposits_fdic_cert
+    Passed [  0.23s] test  not_null_finance__fed_fdic_sod_branch_deposits_branch_year_key
+    Passed [  0.86s] test  not_null_finance__fed_fdic_sod_branch_deposits_survey_year
+    Passed [  0.24s] test  not_null_environment__fed_epa_ghgrp_emission_emission_record_id
+    Passed [  0.50s] test  unique_environment__fed_epa_ghgrp_emission_emission_record_id
+    Passed [  1.27s] test  unique_finance__fed_fdic_sod_branch_deposits_branch_year_key
+    Passed [  0.28s] test  not_null_energy__fed_eia860_3_2_wind_generator_id
+    Passed [  0.20s] test  not_null_energy__fed_eia860_3_2_wind_plant_code
+    Passed [  0.22s] test  not_null_environment__fed_fracfocus_registry_ingredient_record_id
+    Passed [  0.25s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_3_2_wind_plant_code__generator_id
+    Passed [  0.24s] test  not_null_energy__fed_eia861_sales_ult_cust_cs_record_id
+    Passed [  0.30s] test  unique_energy__fed_eia861_sales_ult_cust_cs_record_id
+    Passed [  0.21s] test  not_null_energy__fed_eia861_reliability_record_id
+    Passed [  0.15s] test  unique_energy__fed_eia861_reliability_record_id
+    Passed [  0.21s] test  not_null_energy__fed_eia861_operational_data_record_id
+    Passed [  1.14s] test  unique_environment__fed_fracfocus_registry_ingredient_record_id
+    Passed [  0.20s] test  not_null_energy__fed_eia860_3_5_multifuel_plant_code
+    Passed [  0.26s] test  unique_energy__fed_eia861_operational_data_record_id
+    Passed [  0.20s] test  not_null_energy__fed_eia860_3_5_multifuel_generator_id
+    Passed [  0.73s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_3_5_multifuel_plant_code__generator_id
+    Passed [  0.62s] test  not_null_economics__fed_sec_edgar_company_tickers_cik
+    Passed [  0.22s] test  not_null_economics__fed_sec_edgar_company_tickers_company_title
+    Passed [  0.20s] test  not_null_economics__fed_sec_edgar_company_tickers_ticker
+    Passed [  0.15s] test  dbt_utils_unique_combination_of_columns_economics__fed_sec_edgar_company_tickers_cik__ticker
+    Passed [  0.20s] test  not_null_energy__fed_eia861_frame_record_id
+    Passed [  0.27s] test  unique_energy__fed_eia861_frame_record_id
+    Passed [  0.21s] test  not_null_energy__fed_eia860_3_3_solar_generator_id
+    Passed [  0.19s] test  not_null_energy__fed_eia860_3_3_solar_plant_code
+    Passed [  0.31s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_3_3_solar_plant_code__generator_id
+    Passed [  0.17s] test  not_null_housing__fed_fema_ia_housing_registrations_registration_id
+    Passed [  0.29s] test  unique_economics__fed_us_usaspending_api_award_id
+    Passed [  0.21s] test  accepted_values_economics__fed_us_usaspending_api_award_size_band__True__Large_10M___Medium_1M_10M___Small_100K_1M___Micro_100K___Unknown
+    Passed [  0.24s] test  not_null_economics__fed_us_usaspending_api_treasury_account_symbol
+    Passed [  0.24s] test  not_null_economics__fed_us_usaspending_api_recipient_uei
+    Passed [  0.23s] test  not_null_economics__fed_us_usaspending_api_recipient_ein
+    Passed [  0.26s] test  not_null_economics__fed_us_usaspending_api_cfda_number
+    Passed [  0.17s] test  not_null_economics__fed_us_usaspending_api_award_id
+    Passed [  0.12s] test  not_null_economics__fed_us_usaspending_api_recipient_duns
+    Passed [  1.77s] test  unique_housing__fed_fema_ia_housing_registrations_registration_id
+    Passed [  0.18s] test  not_null_economics__fed_us_usaspending_api_naics_code
+    Passed [  0.24s] test  not_null_economics__fed_us_usaspending_api_toptier_agency_code
+    Passed [  0.25s] test  not_null_economics__fed_us_usaspending_api_generated_unique_award_id
+    Passed [  0.15s] test  not_null_economics__fed_us_usaspending_api_recipient_location_fips
+    Passed [  0.11s] test  not_null_economics__fed_us_usaspending_api_place_of_performance_fips
+    Passed [  0.23s] test  not_null_housing__fed_hud_public_housing_authorities_participant_code
+    Passed [  0.86s] test  unique_housing__fed_hud_public_housing_authorities_participant_code
+    Passed [  0.83s] test  not_null_energy__fed_eia860_3_4_energy_storage_generator_id
+    Passed [  0.21s] test  not_null_energy__fed_eia860_3_4_energy_storage_plant_code
+    Passed [  0.23s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_3_4_energy_storage_plant_code__generator_id
+    Passed [  0.23s] test  not_null_energy__fed_eia861_mergers_record_id
+    Passed [  0.24s] test  unique_energy__fed_eia861_mergers_record_id
+    Passed [  0.26s] test  unique_economics__fed_fdic_failed_banks_fdic_failure_record_id
+    Passed [  0.10s] test  not_null_economics__fed_fdic_failed_banks_fail_date
+    Warned [  0.24s] test  not_null_economics__fed_fdic_failed_banks_fdic_cert (models/staging/fed_fdic_failed_banks/schema.yml:135:13)
+    Passed [  0.20s] test  not_null_economics__fed_fdic_failed_banks_bank_name
+    Passed [  0.20s] test  not_null_economics__fed_fdic_failed_banks_fdic_failure_record_id
+    Passed [  0.20s] test  not_null_economics__fed_fdic_failed_banks_fips
+    Passed [  0.21s] test  not_null_economics__fed_treasury_avg_interest_rates_avg_interest_rate_key
+    Passed [  0.18s] test  accepted_values_economics__fed_treasury_avg_interest_rates_record_calendar_quarter__False__1__2__3__4
+    Passed [  0.24s] test  accepted_values_economics__fed_treasury_avg_interest_rates_record_fiscal_quarter__False__1__2__3__4
+    Passed [  0.19s] test  not_null_economics__fed_treasury_avg_interest_rates_security_type_desc
+    Passed [  0.21s] test  accepted_values_economics__fed_treasury_avg_interest_rates_record_calendar_month__False__1__2__3__4__5__6__7__8__9__10__11__12
+    Passed [  0.60s] test  not_null_economics__fed_treasury_avg_interest_rates_security_desc
+    Passed [  0.66s] test  unique_economics__fed_treasury_avg_interest_rates_avg_interest_rate_key
+    Passed [  0.20s] test  not_null_economics__fed_treasury_avg_interest_rates_record_date
+    Passed [  0.25s] test  accepted_values_economics__fed_treasury_avg_interest_rates_security_type_desc__Marketable__Non_marketable__Interest_bearing_Debt
+    Passed [  0.19s] test  not_null_politics__st_nyc_cfb_campaign_2025_contributions_contribution_record_id
+    Passed [  0.22s] test  not_null_finance__fed_sec_edgar_company_tickers_exchange_cik
+    Passed [  0.40s] test  unique_politics__st_nyc_cfb_campaign_2025_contributions_contribution_record_id
+    Passed [  0.19s] test  not_null_finance__fed_sec_edgar_company_tickers_exchange_cik_ticker
+    Passed [  0.21s] test  unique_finance__fed_sec_edgar_company_tickers_exchange_cik_ticker
+    Passed [  0.21s] test  not_null_energy__fed_eia860_1_utility_utility_id
+    Passed [  0.19s] test  unique_energy__fed_eia860_1_utility_utility_id
+    Warned [  0.22s] test  not_null_economics__fed_treasury_debt_to_penny_debt_held_public_amt (models/staging/fed_treasury_debt_to_penny/schema.yml:137:13)
+    Passed [  0.20s] test  not_null_economics__fed_treasury_debt_to_penny_tot_pub_debt_out_amt
+    Warned [  0.19s] test  accepted_values_economics__fed_treasury_debt_to_penny_record_fiscal_qtr__True__1__2__3__4 (models/staging/fed_treasury_debt_to_penny/schema.yml:106:13)
+    Passed [  0.19s] test  not_null_economics__fed_treasury_debt_to_penny__ingested_at
+    Passed [  0.19s] test  not_null_economics__fed_treasury_debt_to_penny_record_date
+    Passed [  0.21s] test  not_null_economics__fed_treasury_debt_to_penny__source_run_id
+    Passed [  0.17s] test  unique_economics__fed_treasury_debt_to_penny_record_date
+    Warned [  0.13s] test  accepted_values_economics__fed_treasury_debt_to_penny_record_calendar_qtr__True__1__2__3__4 (models/staging/fed_treasury_debt_to_penny/schema.yml:118:13)
+    Warned [  0.22s] test  not_null_economics__fed_treasury_debt_to_penny_intragov_hold_amt (models/staging/fed_treasury_debt_to_penny/schema.yml:144:13)
+    Passed [  0.18s] test  not_null_energy__fed_eia861_distribution_systems_record_id
+    Passed [  0.29s] test  unique_energy__fed_eia861_distribution_systems_record_id
+    Passed [  0.22s] test  accepted_values_economics__fed_us_sec_edgar_source_id__fed_us_sec_edgar
+    Passed [  0.46s] test  unique_economics__fed_us_sec_edgar_accession_number
+    Passed [  0.21s] test  not_null_economics__fed_us_sec_edgar_accession_number
+    Passed [  0.19s] test  not_null_economics__fed_us_sec_edgar_ticker
+    Warned [  0.16s] test  accepted_values_economics__fed_us_sec_edgar_form_type__True__10_K__10_K_A__10_Q__10_Q_A__8_K__8_K_A__20_F__20_F_A__40_F__40_F_A__S_1__S_1_A__S_3__S_3_A__S_4__S_4_A__F_1__F_1_A__F_3__F_3_A__424B1__424B2__424B3__424B4__424B5__424B7__424B8__DEF_14A__DEFA14A__SC_13G__SC_13G_A__SC_13D__SC_13D_A__4__4_A__3__5__6_K (models/staging/fed_us_sec_edgar/schema.yml:139:13)
+    Passed [  0.11s] test  not_null_economics__fed_us_sec_edgar_ein
+    Passed [  0.21s] test  not_null_economics__fed_us_sec_edgar_cik
+    Passed [  0.20s] test  not_null_economics__fed_us_sec_edgar_isin
+    Passed [  0.21s] test  not_null_politics__irs527_8872_reports_form_id_number
+    Passed [  0.27s] test  unique_politics__irs527_8872_reports_form_id_number
+    Passed [  0.26s] test  not_null_corporate_registry__fed_irs_eo_bmf_ein
+    Passed [  0.24s] test  unique_justice__county_double_burden_fips
+    Passed [  0.35s] test  unique_environment__fed_usgs_orphaned_oil_gas_wells_well_record_id
+    Passed [  0.68s] test  unique_corporate_registry__fed_irs_eo_bmf_ein
+    Passed [  0.16s] test  not_null_environment__fed_usgs_orphaned_oil_gas_wells_well_record_id
+    Passed [  0.20s] test  not_null_energy__fed_eia860_3_1_generator_plant_code
+    Passed [  0.27s] test  not_null_energy__fed_eia860_3_1_generator_generator_id
+    Passed [  0.25s] test  dbt_utils_unique_combination_of_columns_energy__fed_eia860_3_1_generator_plant_code__generator_id
+    Passed [  0.20s] test  not_null_environment__fed_epa_rcra_enforcements_enforcement_record_id
+    Passed [  0.20s] test  not_null_energy__fed_eia861_dynamic_pricing_record_id
+    Passed [  0.46s] test  unique_environment__fed_epa_rcra_enforcements_enforcement_record_id
+    Passed [  0.25s] test  unique_energy__fed_eia861_dynamic_pricing_record_id
+    Passed [  0.27s] test  not_null_environment__fed_uscg_nrc_incidents_seqnos
+    Passed [  0.21s] test  not_null_environment__fed_epa_rcra_facilities_handler_id
+    Passed [  0.75s] test  unique_environment__fed_uscg_nrc_incidents_seqnos
+    Passed [  0.58s] test  unique_environment__fed_epa_rcra_facilities_handler_id
+    Passed [  0.23s] test  not_null_education__fed_ed_college_scorecard_institution_institution_name
+ Succeeded [  0.50s] model TIMELINE.CONSUMER_SAFETY__FED_NHTSA_COMPLAINTS (view)
+    Passed [  0.22s] test  not_null_education__fed_ed_college_scorecard_institution_unitid
+    Passed [  0.26s] test  unique_education__fed_ed_college_scorecard_institution_unitid
+    Passed [  0.42s] test  not_null_corporate_registry__uk_companies_house_psc_company_number
+    Passed [  0.37s] test  not_null_corporate_registry__uk_companies_house_psc_psc_link_self
+    Passed [  0.21s] test  not_null_energy__fed_eia860_2_plant_utility_id
+    Passed [  0.20s] test  not_null_energy__fed_eia860_2_plant_plant_code
+    Passed [  0.25s] test  unique_energy__fed_eia860_2_plant_plant_code
+ Succeeded [  0.41s] model TIMELINE.CONSUMER_SAFETY__FED_NHTSA_RECALLS (view)
+    Passed [  0.88s] test  not_null_housing__fed_mapping_inequality_holc_neighborhood_key
+    Passed [  0.22s] test  not_null_housing__fed_mapping_inequality_fips
+    Passed [  2.27s] test  unique_corporate_registry__uk_companies_house_psc_psc_link_self
+    Passed [  0.21s] test  not_null_housing__fed_mapping_inequality_holc_id
+    Passed [  0.10s] test  not_null_housing__fed_mapping_inequality_city
+    Passed [  0.44s] test  accepted_values_housing__fed_mapping_inequality_state__AL__AK__AZ__AR__CA__CO__CT__DE__FL__GA__HI__ID__IL__IN__IA__KS__KY__LA__ME__MD__MA__MI__MN__MS__MO__MT__NE__NV__NH__NJ__NM__NY__NC__ND__OH__OK__OR__PA__RI__SC__SD__TN__TX__UT__VT__VA__WA__WV__WI__WY__DC
+    Passed [  0.25s] test  not_null_housing__fed_mapping_inequality_holc_grade
+    Passed [  0.16s] test  not_null_housing__fed_mapping_inequality_source_id
+    Passed [  0.22s] test  not_null_housing__fed_mapping_inequality_state
+    Passed [  0.50s] test  accepted_values_housing__fed_mapping_inequality_holc_grade_rank__1__2__3__4
+    Passed [  0.36s] test  unique_housing__fed_mapping_inequality_holc_neighborhood_key
+    Passed [  0.11s] test  not_null_housing__fed_mapping_inequality__ingested_at
+    Passed [  0.36s] test  not_null_housing__fed_mapping_inequality__source_run_id
+    Passed [  0.15s] test  accepted_values_housing__fed_mapping_inequality_source_id__fed_mapping_inequality
+    Warned [  0.27s] test  accepted_values_housing__fed_mapping_inequality_holc_grade__A__B__C__D (models/staging/fed_mapping_inequality/schema.yml:140:13)
+    Passed [  0.37s] test  accepted_values_housing__fed_mapping_inequality_holc_grade_label__Best__Still_Desirable__Definitely_Declining__Hazardous__Unknown
+    Passed [  0.34s] test  not_null_labor__fed_dol_ebsa_form5500_schedule_sb_ack_id
+    Passed [  0.39s] test  unique_labor__fed_dol_ebsa_form5500_schedule_sb_ack_id
+    Passed [  0.42s] test  not_null_finance__fed_pcaob_form_ap_filings_form_filing_id
+    Passed [  0.29s] test  unique_finance__fed_pcaob_form_ap_filings_form_filing_id
+    Passed [  0.34s] test  not_null_politics__st_nyc_cfb_campaign_2001_contribution_contribution_record_id
+    Passed [  0.34s] test  unique_politics__st_nyc_cfb_campaign_2001_contribution_contribution_record_id
+    Passed [  0.29s] test  not_null_justice__fed_doj_fca_settlements_fca_settlement_id
+    Passed [  0.25s] test  unique_justice__fed_doj_fca_settlements_fca_settlement_id
+    Warned [  0.22s] test  not_null_justice__fed_doj_fca_settlements_settlement_date (models/staging/fed_doj_fca_settlements/schema.yml:113:13)
+    Passed [  0.26s] test  accepted_values_justice__fed_doj_fca_settlements_is_qui_tam__True__False
+    Passed [  0.34s] test  not_null_justice__fed_doj_fca_settlements_person_name
+    Passed [  0.30s] test  not_null_justice__fed_doj_fca_settlements_company_id
+    Passed [  0.19s] test  not_null_finance__fed_ncua_call_reports_foicu_cu_number
+    Passed [  0.22s] test  not_null_economics__intl_it_istat_istat_obs_id
+    Passed [  0.39s] test  unique_finance__fed_ncua_call_reports_foicu_cu_number
+    Passed [  0.22s] test  not_null_economics__intl_it_istat_dataflow_id
+    Passed [  0.33s] test  not_null_economics__intl_it_istat_date
+    Passed [  0.27s] test  accepted_values_economics__intl_it_istat_country__IT
+    Passed [  0.16s] test  accepted_values_economics__intl_it_istat_freq__A__Q__M__W__D__B__N__H__S__T
+    Passed [  0.38s] test  not_null_economics__intl_it_istat_is_normal_value
+    Passed [  0.20s] test  not_null_economics__intl_it_istat_dimension_keys
+    Passed [  0.16s] test  not_null_economics__intl_it_istat_is_missing_value
+    Passed [  0.22s] test  not_null_economics__intl_it_istat_country
+    Passed [  0.49s] test  not_null_economics__intl_it_istat__source_run_id
+    Passed [  1.00s] test  unique_economics__intl_it_istat_istat_obs_id
+    Warned [  0.26s] test  accepted_values_economics__intl_it_istat_obs_status__A__M__E__P__D__S__U__B__F__I__T__N__L__W__K__O (models/staging/intl_it_istat/schema.yml:165:13)
+    Passed [  0.44s] test  not_null_consumer_protection__fed_cfpb_complaints_source_id
+    Passed [  0.41s] test  accepted_values_consumer_protection__fed_cfpb_complaints_source_id__fed_cfpb_complaints
+    Passed [  0.23s] test  not_null_consumer_protection__fed_cfpb_complaints_complaint_id
+    Passed [  0.18s] test  not_null_consumer_protection__fed_cfpb_complaints_date_received
+    Passed [  0.29s] test  not_null_consumer_protection__fed_cfpb_complaints__ingested_at
+    Passed [  0.34s] test  not_null_energy__fed_eia861_delivery_companies_record_id
+    Passed [  1.52s] test  unique_consumer_protection__fed_cfpb_complaints_complaint_id
+    Passed [  0.75s] test  unique_energy__fed_eia861_delivery_companies_record_id
+    Passed [  0.36s] test  not_null_energy__fed_eia861_demand_response_record_id
+    Passed [  0.25s] test  unique_energy__fed_eia861_demand_response_record_id
+    Passed [  0.27s] test  not_null_energy__fed_eia861_advanced_meters_record_id
+    Passed [  0.34s] test  unique_energy__fed_eia861_advanced_meters_record_id
+    Passed [  0.20s] test  not_null_energy__fed_eia861_energy_efficiency_record_id
+    Passed [  0.24s] test  unique_energy__fed_eia861_energy_efficiency_record_id
+    Passed [  0.25s] test  not_null_energy__fed_eia861_non_net_metering_distributed_record_id
+    Passed [  0.28s] test  not_null_energy__fed_eia861_net_metering_record_id
+    Passed [  0.31s] test  unique_energy__fed_eia861_non_net_metering_distributed_record_id
+    Passed [  0.25s] test  unique_energy__fed_eia861_net_metering_record_id
+ Succeeded [  1.06s] model TIMELINE.TRANSPORT__FED_NTSB_AVIATION_EVENTS (view)
+ Succeeded [  0.94s] model TIMELINE.TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT (view)
+    Passed [  0.24s] test  not_null_finance__fed_ncua_call_reports_fs220_cu_number
+    Passed [  0.29s] test  unique_finance__fed_ncua_call_reports_fs220_cu_number
+ Succeeded [  0.43s] model TIMELINE.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY (view)
+ Succeeded [  0.40s] model TIMELINE.REFERENCE__FED_ITIS_VERN_REF_LINKS (view)
+ Succeeded [  0.39s] model TIMELINE.REFERENCE__FED_ITIS_VERNACULARS (view)
+ Succeeded [  0.50s] model TIMELINE.TRANSPORT__FED_FRA_CASUALTIES (view)
+ Succeeded [  0.82s] model TIMELINE.REGULATORY__FED_FEDERAL_REGISTER_DOCUMENTS (view)
+ Succeeded [  0.40s] model TIMELINE.TRANSPORT__FED_FRA_RAIL_DEATHS_BY_RAILROAD (view)
+ Succeeded [  0.52s] model TIMELINE.REFERENCE__XC_ROR_RESEARCH_ORGANIZATIONS (view)
+ Succeeded [  0.37s] model TIMELINE.REFERENCE__FED_ITIS_TAXON_UNIT_TYPES (view)
+    Passed [  0.24s] test  not_null_justice__fed_fjc_idb_criminal_defendant_record_id
+ Succeeded [  0.60s] model TIMELINE.REFERENCE__FED_ITIS_TU_COMMENTS_LINKS (view)
+    Passed [  1.19s] test  unique_justice__fed_fjc_idb_criminal_defendant_record_id
+    Passed [  1.22s] test  assert_ripple_time_standard
+ Succeeded [  0.44s] model TIMELINE.SCIENCE_RESEARCH__XC_BIORXIV_MEDRXIV (view)
+ Succeeded [  0.33s] model TIMELINE.REFERENCE__FED_ITIS_TAXON_AUTHORS_LKP (view)
+ Succeeded [  0.34s] model TIMELINE.REFERENCE__FED_ITIS_SYNONYM_LINKS (view)
+ Succeeded [  0.45s] model TIMELINE.SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS (view)
+ Succeeded [  0.37s] model TIMELINE.REFERENCE__FED_ITIS_TAXONOMIC_UNITS (view)
+ Succeeded [  0.48s] model TIMELINE.REFERENCE__FED_ITIS_PUBLICATIONS (view)
+ Succeeded [  0.35s] model TIMELINE.REFERENCE__FED_ITIS_JURISDICTION (view)
+ Succeeded [  0.34s] model TIMELINE.REFERENCE__FED_ITIS_GEOGRAPHIC_DIV (view)
+ Succeeded [  0.61s] model TIMELINE.REFERENCE__FED_ITIS_KINGDOMS (view)
+ Succeeded [  0.36s] model TIMELINE.REFERENCE__FED_ITIS_REFERENCE_LINKS (view)
+ Succeeded [  0.65s] model TIMELINE.REFERENCE__FED_ITIS_EXPERTS (view)
+ Succeeded [  0.38s] model TIMELINE.REFERENCE__FED_ITIS_COMMENTS (view)
+ Succeeded [  1.28s] model TIMELINE.TRANSPORT__FED_FRA_CROSSING_INCIDENTS (view)
+ Succeeded [  0.39s] model TIMELINE.LABOR__FED_PBGC_TRUSTEED_PLANS (view)
+ Succeeded [  0.76s] model TIMELINE.REFERENCE__FED_ITIS_OTHER_SOURCES (view)
+ Succeeded [  0.36s] model TIMELINE.REFERENCE__FED_ITIS_NODC_IDS (view)
+ Succeeded [  0.40s] model TIMELINE.JUSTICE__FED_CONSOLIDATED_SCREENING_LIST (view)
+ Succeeded [  0.34s] model TIMELINE.JUSTICE__STATE_MO_SEX_OFFENDER_REGISTRY (view)
+ Succeeded [  1.15s] model TIMELINE.PROCUREMENT__FED_USASPENDING_SUBAWARDS (view)
+ Succeeded [  0.49s] model TIMELINE.SCIENCE_RESEARCH__FED_NIH_REPORTER (view)
+ Succeeded [  0.53s] model TIMELINE.SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS (view)
+ Succeeded [  0.34s] model TIMELINE.REFERENCE__FED_USGS_GNIS_ALL_NAMES (view)
+ Succeeded [  0.33s] model TIMELINE.JUSTICE__FED_FHFA_SUSPENDED_COUNTERPARTIES (view)
+ Succeeded [  0.85s] model TIMELINE.TRANSPORT__FED_FRA_EQUIPMENT_ACCIDENTS (view)
+ Succeeded [  0.35s] model TIMELINE.PROCUREMENT__INTL_EC_SERCOP (view)
+ Succeeded [  0.33s] model TIMELINE.HEALTH__INTL_HEALTHCANADA_DPD_DRUG (view)
+ Succeeded [  0.35s] model TIMELINE.JUSTICE__FED_FBI_CDE (view)
+ Succeeded [  0.62s] model TIMELINE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT (view)
+ Succeeded [  0.36s] model TIMELINE.HOUSING__FED_HUD_MF_FIRM_COMMITMENTS (view)
+ Succeeded [  0.50s] model TIMELINE.IMMIGRATION__FED_ICE_DETAINERS (view)
+ Succeeded [  0.58s] model TIMELINE.HOUSING__FED_CFPB_HMDA_LAR (view)
+ Succeeded [  0.41s] model TIMELINE.HEALTH__ST_OEHHA_PROPOSITION_65_LIST (view)
+ Succeeded [  0.44s] model TIMELINE.REFERENCE__FED_DHS_HIFLD (view)
+ Succeeded [  0.45s] model TIMELINE.IMMIGRATION__FED_ICE_DETENTION_STINTS (view)
+ Succeeded [  0.34s] model TIMELINE.HEALTH__FED_NLM_DAILYMED_SPL_SETID_MAP (view)
+ Succeeded [  0.41s] model TIMELINE.JUSTICE__RACIAL_JAIL_DISPARITY (view)
+ Succeeded [  0.42s] model TIMELINE.HOUSING__FED_HUD_MF_SECTION8_CONTRACTS (view)
+ Succeeded [  0.36s] model TIMELINE.HEALTH__FED_CDC_WONDER (view)
+ Succeeded [  0.46s] model TIMELINE.HOUSING__FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT (view)
+ Succeeded [  0.40s] model TIMELINE.HEALTH__FED_CLINICALTRIALS (view)
+ Succeeded [  0.65s] model TIMELINE.HEALTH__FED_HRSA_HPSA_PRIMARY_CARE (view)
+ Succeeded [  0.42s] model TIMELINE.HEALTH__FED_VA_SUICIDE_NATIONAL (view)
+ Succeeded [  0.42s] model TIMELINE.ENVIRONMENT__FED_EPA_SUPERFUND_SITE_BOUNDARIES (view)
+ Succeeded [  0.39s] model TIMELINE.ENVIRONMENT__FED_USCG_NRC_INCIDENT_REPORTS (view)
+ Succeeded [  0.48s] model TIMELINE.POLITICS__ST_NYC_CFB_CAMPAIGN_2021_CONTRIBUTIONS (view)
+ Succeeded [  0.78s] model TIMELINE.JUSTICE__FED_SCDB (view)
+ Succeeded [  0.55s] model TIMELINE.POLITICS__ST_NYC_CFB_CAMPAIGN_2009_CONTRIBUTION (view)
+ Succeeded [  0.38s] model TIMELINE.HEALTH__FED_CDC_LEADING_CAUSES_STATE (view)
+ Succeeded [  0.35s] model TIMELINE.HEALTH__FED_VA_SUICIDE_STATE (view)
+ Succeeded [  0.52s] model TIMELINE.JUSTICE__FED_FJC_IDB_BANKRUPTCY (view)
+ Succeeded [  0.41s] model TIMELINE.POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS (view)
+ Succeeded [  0.53s] model TIMELINE.HEALTH__FED_VA_ALLCAUSE_MORTALITY (view)
+ Succeeded [  0.48s] model TIMELINE.ENERGY__FED_EIA861_UTILITY_DATA (view)
+ Succeeded [  0.37s] model TIMELINE.ENVIRONMENT__FED_EPA_RCRA_VIOLATIONS (view)
+ Succeeded [  0.47s] model TIMELINE.POLITICS__ST_NYC_CFB_CAMPAIGN_2013_CONTRIBUTION (view)
+ Succeeded [  0.39s] model TIMELINE.ENERGY__FED_EIA861_SERVICE_TERRITORY (view)
+ Succeeded [  0.49s] model TIMELINE.ENVIRONMENT__FED_PHMSA_FLAGGED_INCIDENTS (view)
+ Succeeded [  0.45s] model TIMELINE.JUSTICE__FED_FJC_IDB_APPELLATE (view)
+ Succeeded [  0.34s] model TIMELINE.ENERGY__FED_EIA861_SHORT_FORM (view)
+ Succeeded [  0.59s] model TIMELINE.ENVIRONMENT__FED_WQP_MONITORING_STATIONS (view)
+ Succeeded [  0.69s] model TIMELINE.HEALTH__FED_CMS_HCRIS (view)
+ Succeeded [  0.47s] model TIMELINE.LABOR__FED_DOL_OLMS (view)
+ Succeeded [  0.39s] model TIMELINE.ENVIRONMENT__FED_EPA_AQS_SITES (view)
+ Succeeded [  0.50s] model TIMELINE.ENVIRONMENT__FED_EPA_GHGRP_FACILITY (view)
+ Succeeded [  0.38s] model TIMELINE.ENVIRONMENT__FED_EPA_RCRA_EVALUATIONS (view)
+ Succeeded [  0.50s] model TIMELINE.FINANCE__FED_FDIC_BANK_DATA (view)
+ Succeeded [  0.38s] model TIMELINE.ENERGY__FED_EIA861_SALES_ULT_CUST (view)
+ Succeeded [  0.42s] model TIMELINE.ENERGY__FED_EIA860_6_2_ENVIROEQUIP (view)
+ Succeeded [  0.42s] model TIMELINE.JUSTICE__FED_FJC_IDB_CIVIL (view)
+ Succeeded [  0.47s] model TIMELINE.JUDICIARY__FED_OYEZ (view)
+ Succeeded [  0.58s] model TIMELINE.ENVIRONMENT__FED_EPA_GHGRP_EMISSION (view)
+ Succeeded [ 13.03s] model HEALTH.health__nursing_home_relief_by_chain (table)
+ Succeeded [  0.73s] model TIMELINE.FINANCE__FED_FDIC_SOD_BRANCH_DEPOSITS (view)
+ Succeeded [  0.45s] model TIMELINE.ENERGY__FED_EIA860_3_2_WIND (view)
+ Succeeded [  0.46s] model TIMELINE.ENERGY__FED_EIA861_RELIABILITY (view)
+ Succeeded [  0.75s] model TIMELINE.ENERGY__FED_EIA861_SALES_ULT_CUST_CS (view)
+ Succeeded [  0.46s] model TIMELINE.ENERGY__FED_EIA861_OPERATIONAL_DATA (view)
+ Succeeded [  0.62s] model TIMELINE.ENERGY__FED_EIA860_3_5_MULTIFUEL (view)
+ Succeeded [  0.43s] model TIMELINE.ENERGY__FED_EIA861_FRAME (view)
+ Succeeded [  0.46s] model TIMELINE.ENERGY__FED_EIA860_3_3_SOLAR (view)
+ Succeeded [  0.39s] model TIMELINE.ECONOMICS__FED_US_USASPENDING_API (view)
+ Succeeded [  0.96s] model TIMELINE.HOUSING__FED_FEMA_IA_HOUSING_REGISTRATIONS (view)
+ Succeeded [  0.49s] model TIMELINE.ENERGY__FED_EIA860_3_4_ENERGY_STORAGE (view)
+ Succeeded [  0.33s] model TIMELINE.ENERGY__FED_EIA861_MERGERS (view)
+ Succeeded [  0.39s] model TIMELINE.ECONOMICS__FED_FDIC_FAILED_BANKS (view)
+ Succeeded [  0.44s] model TIMELINE.ECONOMICS__FED_TREASURY_AVG_INTEREST_RATES (view)
+ Succeeded [  0.56s] model TIMELINE.POLITICS__ST_NYC_CFB_CAMPAIGN_2025_CONTRIBUTIONS (view)
+ Succeeded [  0.57s] model TIMELINE.ECONOMICS__FED_TREASURY_DEBT_TO_PENNY (view)
+ Succeeded [  0.38s] model TIMELINE.ENERGY__FED_EIA861_DISTRIBUTION_SYSTEMS (view)
+ Succeeded [  0.37s] model TIMELINE.ECONOMICS__FED_US_SEC_EDGAR (view)
+ Succeeded [  0.50s] model TIMELINE.POLITICS__IRS527_8872_REPORTS (view)
+ Succeeded [  0.35s] model TIMELINE.JUSTICE__COUNTY_DOUBLE_BURDEN (view)
+ Succeeded [  0.37s] model TIMELINE.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS (view)
+ Succeeded [  1.02s] model TIMELINE.CORPORATE_REGISTRY__FED_IRS_EO_BMF (view)
+ Succeeded [  0.55s] model TIMELINE.ENERGY__FED_EIA860_3_1_GENERATOR (view)
+ Succeeded [  0.34s] model TIMELINE.ENVIRONMENT__FED_EPA_RCRA_ENFORCEMENTS (view)
+ Succeeded [  0.59s] model TIMELINE.ENERGY__FED_EIA861_DYNAMIC_PRICING (view)
+ Succeeded [  0.39s] model TIMELINE.ENVIRONMENT__FED_USCG_NRC_INCIDENTS (view)
+ Succeeded [  0.46s] model TIMELINE.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC (view)
+ Succeeded [  0.84s] model TIMELINE.LABOR__FED_DOL_EBSA_FORM5500_SCHEDULE_SB (view)
+ Succeeded [  0.54s] model TIMELINE.FINANCE__FED_PCAOB_FORM_AP_FILINGS (view)
+ Succeeded [  0.46s] model TIMELINE.POLITICS__ST_NYC_CFB_CAMPAIGN_2001_CONTRIBUTION (view)
+   Skipped [-------] model TIMELINE.timeline__politics_index (table)
+ Succeeded [  0.38s] model TIMELINE.JUSTICE__FED_DOJ_FCA_SETTLEMENTS (view)
+ Succeeded [  0.45s] model TIMELINE.FINANCE__FED_NCUA_CALL_REPORTS_FOICU (view)
+ Succeeded [  0.33s] model TIMELINE.ECONOMICS__INTL_IT_ISTAT (view)
+ Succeeded [  0.39s] model TIMELINE.CONSUMER_PROTECTION__FED_CFPB_COMPLAINTS (view)
+ Succeeded [  4.04s] model TIMELINE.timeline__consumer_safety_index (table)
+ Succeeded [  0.47s] model TIMELINE.ENERGY__FED_EIA861_DELIVERY_COMPANIES (view)
+ Succeeded [  0.66s] model TIMELINE.ENERGY__FED_EIA861_DEMAND_RESPONSE (view)
+ Succeeded [  0.46s] model TIMELINE.ENERGY__FED_EIA861_ADVANCED_METERS (view)
+ Succeeded [  0.46s] model TIMELINE.ENERGY__FED_EIA861_ENERGY_EFFICIENCY (view)
+ Succeeded [  0.57s] model TIMELINE.ENERGY__FED_EIA861_NON_NET_METERING_DISTRIBUTED (view)
+ Succeeded [  0.65s] model TIMELINE.ENERGY__FED_EIA861_NET_METERING (view)
+   Skipped [-------] model TIMELINE.timeline__energy_index (table)
+ Succeeded [  1.47s] model TIMELINE.FINANCE__FED_NCUA_CALL_REPORTS_FS220 (view)
+   Skipped [-------] model TIMELINE.timeline__finance_index (table)
+ Succeeded [  1.20s] model TIMELINE.timeline__regulatory_index (table)
+ Succeeded [  0.76s] model TIMELINE.JUSTICE__FED_FJC_IDB_CRIMINAL (view)
+ Succeeded [  2.96s] model TIMELINE.timeline__transport_index (table)
+ Succeeded [  3.82s] model TIMELINE.timeline__science_research_index (table)
+ Succeeded [  2.48s] model TIMELINE.timeline__procurement_index (table)
+ Succeeded [  4.55s] model TIMELINE.timeline__immigration_index (table)
+ Succeeded [  9.22s] model TIMELINE.timeline__reference_index (table)
+ Succeeded [  1.03s] model TIMELINE.timeline__judiciary_index (table)
+    Passed [  0.25s] test  assert_payee_shorter_inside_matched
+    Passed [  0.10s] test  not_null_health__nursing_home_relief_by_chain_payee_shorter_dollars
+    Passed [  0.24s] test  not_null_health__nursing_home_relief_by_chain_matched_relief_dollars
+    Passed [  0.27s] test  not_null_health__nursing_home_relief_by_chain_payee_shorter_homes
+    Passed [  0.26s] test  not_null_health__nursing_home_relief_by_chain_chain_id
+    Passed [  0.22s] test  not_null_health__nursing_home_relief_by_chain_matched_homes
+    Passed [  0.27s] test  unique_health__nursing_home_relief_by_chain_chain_id
+ Succeeded [ 40.08s] model TIMELINE.timeline__environment_index (table)
+ Succeeded [  5m57s] model MARITIME.maritime__fed_noaa_ais (table)
+ Succeeded [ 15.94s] model TIMELINE.timeline__corporate_registry_index (table)
+ Succeeded [  6.79s] model TIMELINE.timeline__labor_index (table)
+ Succeeded [  1.96s] model TIMELINE.timeline__consumer_protection_index (table)
+ Succeeded [ 20.49s] model TIMELINE.timeline__justice_index (table)
+    Passed [  0.29s] test  accepted_values_maritime__fed_noaa_ais_source_id__True__fed_noaa_ais
+    Passed [  0.30s] test  not_null_maritime__fed_noaa_ais_ais_position_sk
+    Passed [  0.24s] test  not_null_maritime__fed_noaa_ais_imo_number
+ Succeeded [  2m 4s] model TIMELINE.timeline__health_index (table)
+    Passed [  0.60s] test  accepted_values_maritime__fed_noaa_ais_speed_category__True__moored__slow__underway__fast
+    Passed [  0.35s] test  not_null_maritime__fed_noaa_ais_mmsi
+    Passed [  0.13s] test  not_null_maritime__fed_noaa_ais_date
+    Warned [  0.85s] test  accepted_values_maritime__fed_noaa_ais_transceiver_class__True__A__B (models/staging/fed_noaa_ais/schema.yml:251:13)
+    Passed [  0.26s] test  not_null_maritime__fed_noaa_ais_source_id
+    Passed [  0.13s] test  not_null_maritime__fed_noaa_ais_base_datetime
+    Passed [ 42.48s] test  unique_maritime__fed_noaa_ais_ais_position_sk
+ Succeeded [  0.39s] model TIMELINE.MARITIME__FED_NOAA_AIS (view)
+ Succeeded [  3.03s] model TIMELINE.timeline__maritime_index (table)
+ Succeeded [  7m21s] model HOUSING.housing__fed_cfpb_hmda_historic (table)
+    Passed [  0.84s] test  not_null_housing__fed_cfpb_hmda_historic_lar_record_id
+    Passed [  2.20s] test  unique_housing__fed_cfpb_hmda_historic_lar_record_id
+ Succeeded [  0.54s] model TIMELINE.HOUSING__FED_CFPB_HMDA_HISTORIC (view)
+ Succeeded [  7.56s] model TIMELINE.timeline__housing_index (table)
+ Succeeded [  5m24s] model TIMELINE.timeline__economics_index (table)
+   Skipped [-------] model TIMELINE.timeline__warehouse (view)
+   Skipped [-------] test  assert_ripple_timeline_registry (tests/assert_ripple_timeline_registry.sql)
+
+=================== Errors and Warnings ====================
+[warning] [SyntaxInvalid (dbt0101)]: no viable alternative at input 'renamed_cast as (
+
+    select
+
+        -- geography / join keys (GEOID is the 5-digit county FIPS, already
+        -- zero-padded; ST_GEOID is the 2-digit state FIPS)
+        nullif(trim(GEOID), '')                                 as fips_county,
+        nullif(trim(ST_GEOID), '')                              as fips_state,
+        nullif(trim(NAME), '')                                  as county_name,
+        nullif(trim(ST_NAME), '')                               as state_name,
+
+        -- dimensions
+        nullif(trim(INTENT), '')                                as intent,
+        nullif(trim(PERIOD), '')                                as period,
+
+        -- count suppression flag: KEEP AS TEXT. '1-9' / '10-50' are range
+        -- markers, not numbers -- never cast the whole column to a number.
+        nullif(trim(COUNT_SUP), '')                             as count_suppression_flag,
+
+        -- only the rows whose flag is a plain integer get a numeric count;
+        -- the '1-9'/'10-50' suppression ranges stay NULL here by design.
+        iff(regexp_like(trim(trim(COUNT_SUP)), '[+-]?[0-9]+([.]0+)?'), try_to_number(trim(trim(COUNT_SUP)), 38, 0), null)                          as numeric_count,
+
+        -- RATE: null the -999 suppression sentinel (exact landed string
+        -- '-999.0000000000000') BEFORE casting, so the double is clean.
+        try_to_double(iff(lower(trim({{'
+  --> models/staging/fed_cdc_injury_violence_county/stg_fed_cdc_injury_violence_county__rates.sql:55:9 (target\compiled\ripple\models\staging\fed_cdc_injury_violence_county\stg_fed_cdc_injury_violence_county__rates.sql:36:39)
+[warning] [SyntaxInvalid (dbt0101)]: no viable alternative at input 'renamed_cast as (
+
+    select
+
+        -- identifiers (ENT_NUM is the SDN entity number; verified unique).
+        -- nullif drops the one blank trailer row (ENT_NUM='' ) at the final filter.
+        -- 2026-08-25: found a SECOND trailer row the plain trim() didn't catch --
+        -- ENT_NUM = CHR(26) (the DOS/Windows Ctrl-Z / SUB "end of file" byte),
+        -- every other column blank, verified live as the only non-digit ENT_NUM
+        -- in the raw table. trim() doesn't strip control characters, only
+        -- whitespace, so replace() strips this specific EOF-marker byte first.
+        nullif(trim(replace(ENT_NUM, chr(26), '')), '')     as ent_num,
+        trim(SDN_NAME)                                      as sdn_name,
+
+        -- entity type: '-0- ' null token cleaned; null => organization
+        nullif(nullif(trim(SDN_TYPE), ''), '-0-')                  as sdn_type,
+        coalesce(nullif(nullif(trim(SDN_TYPE), ''), '-0-'), 'organization') as entity_kind,
+
+        -- program (sanctions program code, may be pipe-delimited list)
+        nullif(nullif(trim(PROGRAM), ''), '-0-')                   as program,
+
+        -- individual attributes
+        nullif(nullif(trim(TITLE), ''), '-0-')                     as title,
+
+        -- vessel / aircraft attributes (all '-0- '-laden)
+        nullif(nullif(trim(CALL_SIGN), ''), '-0-')                 as call_sign,
+        nullif(nullif(trim(VESS_TYPE), ''), '-0-')                 as vessel_type,
+        try_to_double(iff(lower(trim({{'
+  --> models/staging/fed_ofac_sdn/stg_fed_ofac_sdn__sdn_entities.sql:51:9 (target\compiled\ripple\models\staging\fed_ofac_sdn\stg_fed_ofac_sdn__sdn_entities.sql:38:39)
+[warning] [SyntaxInvalid (dbt0101)]: no viable alternative at input 'renamed as (
+
+    select
+
+        -- identifiers
+        trim(COUNTRY_OR_REGION)                          as country,
+        trim(ISO_3_CODE)                                 as iso_3_code,
+        try_to_date(trim(DATE), 'YYYY')                  as date,
+
+        -- geography / groupings
+        trim(AREA_TYPE)                                  as area_type,
+        trim(CONTINENT)                                  as continent,
+        trim(EMBER_REGION)                               as ember_region,
+        case
+            when upper(trim(EU))    = 'TRUE'  then true
+            when upper(trim(EU))    = 'FALSE' then false
+            else null
+        end                                              as is_eu,
+        case
+            when upper(trim(OECD))  = 'TRUE'  then true
+            when upper(trim(OECD))  = 'FALSE' then false
+            else null
+        end                                              as is_oecd,
+        case
+            when upper(trim(G20))   = 'TRUE'  then true
+            when upper(trim(G20))   = 'FALSE' then false
+            else null
+        end                                              as is_g20,
+        case
+            when upper(trim(G7))    = 'TRUE'  then true
+            when upper(trim(G7))    = 'FALSE' then false
+            else null
+        end                                              as is_g7,
+        case
+            when upper(trim(ASEAN)) = 'TRUE'  then true
+            when upper(trim(ASEAN)) = 'FALSE' then false
+            else null
+        end                                              as is_asean,
+
+        -- metric descriptors
+        trim(CATEGORY)                                   as category,
+        trim(SUBCATEGORY)                                as subcategory,
+        trim(VARIABLE)                                   as variable,
+        trim(UNIT)                                       as unit,
+
+        -- measures
+        -- TRAP (#41): VALUE carries 8,418 literal 'nan' strings. try_to_double('nan')
+        -- returns IEEE NaN (NOT null), which then poisons every downstream aggregate.
+        -- null_sentinel maps the trimmed 'nan' token -> NULL *before* the cast.
+        try_to_double(iff(lower(trim({{'
+  --> models/staging/intl_ember_elec/stg_intl_ember_elec__yearly_electricity.sql:58:9 (target\compiled\ripple\models\staging\intl_ember_elec\stg_intl_ember_elec__yearly_electricity.sql:58:39)
+[error] [DbSyntaxInvalid (dbt1302)]: Database Error in model stg_fed_cdc_injury_violence_county__rates (target\run\ripple\models\staging\fed_cdc_injury_violence_county\stg_fed_cdc_injury_violence_county__rates.sql)
+  [Snowflake] 001003 (42000): SQL compilation error:
+  syntax error line 42 at position 38 unexpected '{'.
+  syntax error line 42 at position 54 unexpected ''RATE''.
+  syntax error line 42 at position 84 unexpected '}'.
+  syntax error line 42 at position 110 unexpected '{'.
+  syntax error line 42 at position 125 unexpected '('.
+  syntax error line 42 at position 126 unexpected ''RATE''.
+  syntax error line 42 at position 156 unexpected '}'.
+  syntax error line 78 at position 8 unexpected ')'.
+  (in run\ripple\models/staging/fed_cdc_injury_violence_county\stg_fed_cdc_injury_violence_county__rates.sql)
+[error] [DbSyntaxInvalid (dbt1302)]: Database Error in model stg_fed_ofac_sdn__sdn_entities (target\run\ripple\models\staging\fed_ofac_sdn\stg_fed_ofac_sdn__sdn_entities.sql)
+  [Snowflake] 001003 (42000): SQL compilation error:
+  syntax error line 44 at position 38 unexpected '{'.
+  syntax error line 44 at position 57 unexpected ''TONNAGE''.
+  syntax error line 44 at position 68 unexpected '}'.
+  syntax error line 44 at position 94 unexpected '{'.
+  syntax error line 44 at position 112 unexpected '('.
+  syntax error line 44 at position 113 unexpected ''TONNAGE''.
+  syntax error line 44 at position 124 unexpected '}'.
+  syntax error line 72 at position 8 unexpected ')'.
+  (in run\ripple\models/staging/fed_ofac_sdn\stg_fed_ofac_sdn__sdn_entities.sql)
+[error] [DbSyntaxInvalid (dbt1302)]: Database Error in model stg_intl_ember_elec__yearly_electricity (target\run\ripple\models\staging\intl_ember_elec\stg_intl_ember_elec__yearly_electricity.sql)
+  [Snowflake] 001003 (42000): SQL compilation error:
+  syntax error line 64 at position 38 unexpected '{'.
+  syntax error line 64 at position 54 unexpected ''VALUE''.
+  syntax error line 64 at position 70 unexpected '}'.
+  syntax error line 64 at position 96 unexpected '{'.
+  syntax error line 64 at position 111 unexpected '('.
+  syntax error line 64 at position 112 unexpected ''VALUE''.
+  syntax error line 64 at position 128 unexpected '}'.
+  syntax error line 88 at position 4 unexpected ')'.
+  (in run\ripple\models/staging/intl_ember_elec\stg_intl_ember_elec__yearly_electricity.sql)
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__fed_fec_pac_summary: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__fed_fec_pac_summary from models/marts/politics/politics__fed_fec_pac_summary.sql: BLOCKED: politics__fed_fec_pac_summary is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__fed_fec_pac_summary.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__fed_fec_pac_summary.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__fec_candidate: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__fec_candidate from models/marts/politics/politics__fec_candidate.sql: BLOCKED: politics__fec_candidate is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__fec_candidate.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__fec_candidate.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__fec_cand_cmte_link: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__fec_cand_cmte_link from models/marts/politics/politics__fec_cand_cmte_link.sql: BLOCKED: politics__fec_cand_cmte_link is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__fec_cand_cmte_link.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__fec_cand_cmte_link.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__voteview_votes: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__voteview_votes from models/marts/politics/politics__voteview_votes.sql: BLOCKED: politics__voteview_votes is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__voteview_votes.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__voteview_votes.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__voteview_rollcalls: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__voteview_rollcalls from models/marts/politics/politics__voteview_rollcalls.sql: BLOCKED: politics__voteview_rollcalls is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__voteview_rollcalls.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__voteview_rollcalls.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__member_crosswalk: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__member_crosswalk from models/marts/politics/politics__member_crosswalk.sql: BLOCKED: politics__member_crosswalk is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__member_crosswalk.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__member_crosswalk.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__bills: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__bills from models/marts/politics/politics__bills.sql: BLOCKED: politics__bills is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__bills.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__bills.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__bill_cosponsors: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__bill_cosponsors from models/marts/politics/politics__bill_cosponsors.sql: BLOCKED: politics__bill_cosponsors is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__bill_cosponsors.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__bill_cosponsors.sql
+
+==================== Execution Summary =====================
+Finished 'build' with 101 warnings and 11 errors for target 'dev' [26m 40s]
+Processed: 529 models | 1349 tests
+Summary: 1878 total | 1655 success | 98 warn | 11 error | 114 skipped

@@ -15,10 +15,10 @@ renamed as (
 
     select
 
-        try_to_number(trim(COMMENT_ID))                         as comment_id,
+        {{ stg_int('trim(COMMENT_ID)') }}                         as comment_id,
         trim(COMMENTATOR)                                       as commentator,
         trim(COMMENT_DETAIL)                                    as comment_detail,
-        try_to_timestamp_ntz(trim(COMMENT_TIME_STAMP))          as comment_time_stamp,
+        {{ stg_ts('trim(COMMENT_TIME_STAMP)') }}          as comment_time_stamp,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)

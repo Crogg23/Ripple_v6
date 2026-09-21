@@ -45,17 +45,17 @@ renamed as (
 
         -- identifiers
         record_id,
-        try_to_number(nullif(trim(UNNAMED_0), '.'))                  as data_year,
-        try_to_number(nullif(trim(UNNAMED_1), '.'))                  as utility_number,
+        {{ stg_int("nullif(trim(UNNAMED_0), '.')") }}                  as data_year,
+        {{ stg_int("nullif(trim(UNNAMED_1), '.')") }}                  as utility_number,
         trim(UNNAMED_2)                                              as utility_name,
         trim(UNNAMED_3)                                              as short_form,
         trim(UNNAMED_4)                                              as state,
         trim(UNNAMED_5)                                              as ba_code,
-        try_to_number(nullif(trim(CUSTOMERS_ENROLLED), '.'))         as residential_customers_enrolled,
-        try_to_number(nullif(trim(UNNAMED_7), '.'))                  as commercial_customers_enrolled,
-        try_to_number(nullif(trim(UNNAMED_8), '.'))                  as industrial_customers_enrolled,
-        try_to_number(nullif(trim(UNNAMED_9), '.'))                  as transportation_customers_enrolled,
-        try_to_number(nullif(trim(UNNAMED_10), '.'))                 as total_customers_enrolled,
+        {{ stg_int("nullif(trim(CUSTOMERS_ENROLLED), '.')") }}         as residential_customers_enrolled,
+        {{ stg_int("nullif(trim(UNNAMED_7), '.')") }}                  as commercial_customers_enrolled,
+        {{ stg_int("nullif(trim(UNNAMED_8), '.')") }}                  as industrial_customers_enrolled,
+        {{ stg_int("nullif(trim(UNNAMED_9), '.')") }}                  as transportation_customers_enrolled,
+        {{ stg_int("nullif(trim(UNNAMED_10), '.')") }}                 as total_customers_enrolled,
         trim(TIME_OF_USE_PRICING)                                    as residential_time_of_use_pricing,
         trim(UNNAMED_12)                                             as commercial_time_of_use_pricing,
         trim(UNNAMED_13)                                             as industrial_time_of_use_pricing,
@@ -78,7 +78,7 @@ renamed as (
         trim(UNNAMED_30)                                             as transportation_critical_peak_rebate,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

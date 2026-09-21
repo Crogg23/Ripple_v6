@@ -28,10 +28,10 @@ renamed as (
 
         -- dates & fiscal period
         try_to_date(trim(AWARD_DATE), 'YYYY-MM-DD')                 as award_date,
-        try_to_number(trim(FISCAL_YEAR))                            as fiscal_year,
+        {{ stg_int('trim(FISCAL_YEAR)') }}                            as fiscal_year,
 
         -- financials
-        try_to_double(replace(replace(trim(AWARD_AMOUNT), ',', ''), '$', '')) as award_amount,
+        {{ stg_float("replace(replace(trim(AWARD_AMOUNT), ',', ''), '$', '')") }} as award_amount,
 
         -- award metadata
         trim(ACTIVITY_TYPE)                                         as activity_type,

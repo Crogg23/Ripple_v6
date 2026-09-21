@@ -24,11 +24,11 @@ renamed as (
         trim(TITLE)                                    as title,
         trim(EDITION)                                  as edition,
         trim(SOURCEURL)                                as source_url,
-        try_to_date(trim(PUBLICATIONDATE))             as publication_date,
+        {{ stg_date('trim(PUBLICATIONDATE)') }}             as publication_date,
         trim(SERIESNAME)                               as series_name,
         trim(SERIESISSUE)                              as series_issue,
-        try_to_date(trim(ENDING_DATE))                 as ending_date,
-        try_to_date(trim(DATE_CREATED))                as date_created,
+        {{ stg_date('trim(ENDING_DATE)') }}                 as ending_date,
+        {{ stg_date('trim(DATE_CREATED)') }}                as date_created,
         trim(CITATION)                                 as citation,
 
         -- metadata

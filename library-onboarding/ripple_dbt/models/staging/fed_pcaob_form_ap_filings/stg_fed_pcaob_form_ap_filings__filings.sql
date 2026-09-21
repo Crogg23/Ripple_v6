@@ -77,7 +77,7 @@ renamed as (
         nullif(trim(IS_AUDIT_DIVIDED), '')                         as is_audit_divided,
         nullif(trim(USE_RANGE), '')                                as use_range,
         nullif(trim(AUDIT_NOT_DIVIDED_PERCENT_INFORMATION), '')    as audit_not_divided_percent_information,
-        try_to_number(trim(NUMBER_OF_PARTICIPANTS))                as number_of_participants,
+        {{ stg_int('trim(NUMBER_OF_PARTICIPANTS)') }}                as number_of_participants,
         nullif(trim(PARTICIPANT_PERCENTAGE), '')                   as participant_percentage,
         nullif(trim(PARTICIPANT_RANGE), '')                        as participant_range,
         nullif(trim(AUDIT_DIVIDED_INFORMATION), '')                as audit_divided_information,

@@ -17,15 +17,15 @@ renamed as (
 
         -- descriptive fields
         trim(CASE_TITLE)                                                as case_title,
-        try_to_number(trim(FISCAL_YEAR))                                as fiscal_year,
-        try_to_double(replace(replace(trim(SETTLEMENT_AMOUNT), '$', ''), ',', '')) as settlement_amount,
+        {{ stg_int('trim(FISCAL_YEAR)') }}                                as fiscal_year,
+        {{ stg_float("replace(replace(trim(SETTLEMENT_AMOUNT), '$', ''), ',', '')") }} as settlement_amount,
         case
             when upper(trim(QUI_TAM)) in ('YES', 'Y', 'TRUE', '1') then true
             when upper(trim(QUI_TAM)) in ('NO', 'N', 'FALSE', '0') then false
             else null
         end                                                             as is_qui_tam,
         trim(RELATOR_NAME)                                              as relator_name,
-        try_to_double(replace(replace(trim(RELATOR_SHARE), '$', ''), ',', '')) as relator_share,
+        {{ stg_float("replace(replace(trim(RELATOR_SHARE), '$', ''), ',', '')") }} as relator_share,
         trim(FRAUD_TYPE)                                                as fraud_type,
         trim(AGENCY_DEFRAUDED)                                          as agency_defrauded,
         trim(CASE_NUMBER)                                               as case_number,

@@ -26,8 +26,8 @@ renamed as (
         trim(SRC_YEAR)                                 as src_year,
 
         -- dates
-        try_to_timestamp(trim(DATE_TIME_RECEIVED))     as date_time_received,
-        try_to_timestamp(trim(DATE_TIME_COMPLETE))     as date_time_complete,
+        {{ stg_ts('trim(DATE_TIME_RECEIVED)') }}     as date_time_received,
+        {{ stg_ts('trim(DATE_TIME_COMPLETE)') }}     as date_time_complete,
 
         -- metadata
         _INGESTED_AT                                   as _ingested_at,

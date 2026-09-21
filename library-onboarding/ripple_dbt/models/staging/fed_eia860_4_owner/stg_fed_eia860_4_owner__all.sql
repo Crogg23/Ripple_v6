@@ -16,10 +16,10 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))            as plant_code,
+        {{ stg_int('trim(PLANT_CODE)') }}            as plant_code,
         trim(GENERATOR_ID)                         as generator_id,
-        try_to_number(trim(OWNERSHIP_ID))          as ownership_id,
-        try_to_number(trim(UTILITY_ID))            as utility_id,
+        {{ stg_int('trim(OWNERSHIP_ID)') }}          as ownership_id,
+        {{ stg_int('trim(UTILITY_ID)') }}            as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                         as utility_name,
@@ -33,10 +33,10 @@ renamed as (
         trim(OWNER_ZIP)                            as owner_zip,
 
         -- measures
-        try_to_number(trim(PERCENT_OWNED))         as percent_owned,
+        {{ stg_float('trim(PERCENT_OWNED)') }}         as percent_owned,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)             as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}             as _loaded_at,
         _SOURCE_RUN_ID                             as _source_run_id,
         _SRC_FILE                                  as _src_file
 

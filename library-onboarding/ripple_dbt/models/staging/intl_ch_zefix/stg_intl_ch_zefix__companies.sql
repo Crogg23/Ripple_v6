@@ -39,9 +39,9 @@ renamed as (
         -- registration
         REGISTRY_OF_COMMERCE                         as registry_of_commerce,
         OLD_NAMES                                    as old_names,
-        try_to_date(SOGC_PUBLICATION_DATE)           as sogc_publication_date,
+        {{ stg_date('SOGC_PUBLICATION_DATE') }}           as sogc_publication_date,
         MUTATION_TYPE                                as mutation_type,
-        try_to_number(COMMUNITY_BFS_ID)              as community_bfs_id,
+        {{ stg_int('COMMUNITY_BFS_ID') }}              as community_bfs_id,
 
         -- geography
         COUNTRY                                      as country,

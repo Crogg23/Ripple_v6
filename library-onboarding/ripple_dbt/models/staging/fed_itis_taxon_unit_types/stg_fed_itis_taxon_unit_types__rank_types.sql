@@ -15,11 +15,11 @@ renamed as (
 
     select
 
-        try_to_number(trim(KINGDOM_ID))                         as kingdom_id,
-        try_to_number(trim(RANK_ID))                            as rank_id,
+        {{ stg_int('trim(KINGDOM_ID)') }}                         as kingdom_id,
+        {{ stg_int('trim(RANK_ID)') }}                            as rank_id,
         trim(RANK_NAME)                                         as rank_name,
-        try_to_number(trim(DIR_PARENT_RANK_ID))                 as dir_parent_rank_id,
-        try_to_number(trim(REQ_PARENT_RANK_ID))                 as req_parent_rank_id,
+        {{ stg_int('trim(DIR_PARENT_RANK_ID)') }}                 as dir_parent_rank_id,
+        {{ stg_int('trim(REQ_PARENT_RANK_ID)') }}                 as req_parent_rank_id,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)

@@ -20,11 +20,11 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(BA_ID))                 as ba_id,
+        {{ stg_int('trim(BA_ID)') }}                 as ba_id,
         trim(STATE)                                as state,
 
         -- dimensions
-        try_to_number(trim(DATA_YEAR))             as data_year,
+        {{ stg_int('trim(DATA_YEAR)') }}             as data_year,
         trim(BA_CODE)                              as ba_code,
         trim(BALANCING_AUTHORITY_NAME)             as balancing_authority_name,
 

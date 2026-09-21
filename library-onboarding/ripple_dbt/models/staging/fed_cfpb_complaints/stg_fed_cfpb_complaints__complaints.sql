@@ -33,8 +33,8 @@ renamed_cast as (
         trim("Complaint ID")                                   as complaint_id,
 
         -- dates (source values are ISO-8601 strings; keep the calendar date)
-        try_to_date(left(trim("Date received"), 10))          as date_received,
-        try_to_date(left(trim("Date sent to company"), 10))   as date_sent_to_company,
+        {{ stg_date('left(trim("Date received"), 10)') }}          as date_received,
+        {{ stg_date('left(trim("Date sent to company"), 10)') }}   as date_sent_to_company,
 
         -- complaint taxonomy
         nullif(trim("Product"), '')                           as product,

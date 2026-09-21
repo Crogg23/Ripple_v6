@@ -17,8 +17,8 @@ renamed as (
         trim(ADDRESS_LOC)                              as address_loc,
         trim(CITY)                                     as city,
         trim(STATE)                                    as state,
-        try_to_number(trim(CERT))                      as cert,
-        try_to_number(trim(RSSD))                      as rssd,
+        {{ stg_int('trim(CERT)') }}                      as cert,
+        {{ stg_int('trim(RSSD)') }}                      as rssd,
         _INGESTED_AT                                   as _loaded_at,
         _SOURCE_RUN_ID                                 as _source_run_id,
         _SRC_SHA256                                    as _src_sha256

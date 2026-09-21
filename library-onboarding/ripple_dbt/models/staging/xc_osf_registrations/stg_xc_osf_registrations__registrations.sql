@@ -34,11 +34,11 @@ renamed as (
         trim(ATTRIBUTES_REGISTRATION_RESPONSES_UPLOADER)      as registration_responses_uploader,
 
         -- dates
-        try_to_timestamp_ntz(trim(ATTRIBUTES_DATE_CREATED))   as date_created,
-        try_to_timestamp_ntz(trim(ATTRIBUTES_DATE_MODIFIED))  as date_modified,
-        try_to_timestamp_ntz(trim(ATTRIBUTES_DATE_REGISTERED)) as date_registered,
+        {{ stg_ts('trim(ATTRIBUTES_DATE_CREATED)') }}   as date_created,
+        {{ stg_ts('trim(ATTRIBUTES_DATE_MODIFIED)') }}  as date_modified,
+        {{ stg_ts('trim(ATTRIBUTES_DATE_REGISTERED)') }} as date_registered,
         ATTRIBUTES_DATE_WITHDRAWN                             as date_withdrawn_raw,
-        try_to_timestamp_ntz(trim(ATTRIBUTES_EMBARGO_END_DATE)) as embargo_end_date,
+        {{ stg_ts('trim(ATTRIBUTES_EMBARGO_END_DATE)') }} as embargo_end_date,
 
         -- registration state
         ATTRIBUTES_REGISTRATION                               as is_registration,

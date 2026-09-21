@@ -29,8 +29,8 @@ renamed as (
         try_to_date(DATEREARG,    'MM/DD/YYYY')             as date_reargument,
 
         -- term / court composition
-        try_to_number(TERM)                                 as term,
-        try_to_number(NATURALCOURT)                         as natural_court,
+        {{ stg_int('TERM') }}                                 as term,
+        {{ stg_int('NATURALCOURT') }}                         as natural_court,
         CHIEF                                               as chief_justice,
         DOCKET                                              as docket,
 
@@ -42,69 +42,69 @@ renamed as (
         LEXISCITE                                           as lexis_citation,
 
         -- parties
-        try_to_number(PETITIONER)                           as petitioner_code,
-        try_to_number(PETITIONERSTATE)                      as petitioner_state_code,
-        try_to_number(RESPONDENT)                           as respondent_code,
-        try_to_number(RESPONDENTSTATE)                      as respondent_state_code,
+        {{ stg_int('PETITIONER') }}                           as petitioner_code,
+        {{ stg_int('PETITIONERSTATE') }}                      as petitioner_state_code,
+        {{ stg_int('RESPONDENT') }}                           as respondent_code,
+        {{ stg_int('RESPONDENTSTATE') }}                      as respondent_state_code,
 
         -- jurisdiction & origin
-        try_to_number(JURISDICTION)                         as jurisdiction_code,
-        try_to_number(ADMINACTION)                          as admin_action_code,
-        try_to_number(ADMINACTIONSTATE)                     as admin_action_state_code,
-        try_to_number(THREEJUDGEFDC)                        as three_judge_fdc,
-        try_to_number(CASEORIGIN)                           as case_origin_code,
-        try_to_number(CASEORIGINSTATE)                      as case_origin_state_code,
-        try_to_number(CASESOURCE)                           as case_source_code,
-        try_to_number(CASESOURCESTATE)                      as case_source_state_code,
+        {{ stg_int('JURISDICTION') }}                         as jurisdiction_code,
+        {{ stg_int('ADMINACTION') }}                          as admin_action_code,
+        {{ stg_int('ADMINACTIONSTATE') }}                     as admin_action_state_code,
+        {{ stg_int('THREEJUDGEFDC') }}                        as three_judge_fdc,
+        {{ stg_int('CASEORIGIN') }}                           as case_origin_code,
+        {{ stg_int('CASEORIGINSTATE') }}                      as case_origin_state_code,
+        {{ stg_int('CASESOURCE') }}                           as case_source_code,
+        {{ stg_int('CASESOURCESTATE') }}                      as case_source_state_code,
 
         -- cert & lower court disposition
-        try_to_number(LCDISAGREEMENT)                       as lc_disagreement,
-        try_to_number(CERTREASON)                           as cert_reason_code,
-        try_to_number(LCDISPOSITION)                        as lc_disposition_code,
-        try_to_number(LCDISPOSITIONDIRECTION)               as lc_disposition_direction_code,
+        {{ stg_int('LCDISAGREEMENT') }}                       as lc_disagreement,
+        {{ stg_int('CERTREASON') }}                           as cert_reason_code,
+        {{ stg_int('LCDISPOSITION') }}                        as lc_disposition_code,
+        {{ stg_int('LCDISPOSITIONDIRECTION') }}               as lc_disposition_direction_code,
 
         -- case disposition
-        try_to_number(DECLARATIONUNCON)                     as declaration_unconstitutional,
-        try_to_number(CASEDISPOSITION)                      as case_disposition_code,
-        try_to_number(CASEDISPOSITIONUNUSUAL)               as case_disposition_unusual,
-        try_to_number(PARTYWINNING)                         as party_winning,
-        try_to_number(PRECEDENTALTERATION)                  as precedent_alteration,
-        try_to_number(VOTEUNCLEAR)                          as vote_unclear,
+        {{ stg_int('DECLARATIONUNCON') }}                     as declaration_unconstitutional,
+        {{ stg_int('CASEDISPOSITION') }}                      as case_disposition_code,
+        {{ stg_int('CASEDISPOSITIONUNUSUAL') }}               as case_disposition_unusual,
+        {{ stg_int('PARTYWINNING') }}                         as party_winning,
+        {{ stg_int('PRECEDENTALTERATION') }}                  as precedent_alteration,
+        {{ stg_int('VOTEUNCLEAR') }}                          as vote_unclear,
 
         -- issue
-        try_to_number(ISSUE)                                as issue_code,
-        try_to_number(ISSUEAREA)                            as issue_area_code,
+        {{ stg_int('ISSUE') }}                                as issue_code,
+        {{ stg_int('ISSUEAREA') }}                            as issue_area_code,
 
         -- decision direction
-        try_to_number(DECISIONTYPE)                         as decision_type_code,
-        try_to_number(DECISIONDIRECTION)                    as decision_direction_code,
-        try_to_number(DECISIONDIRECTIONDISSENT)             as decision_direction_dissent,
+        {{ stg_int('DECISIONTYPE') }}                         as decision_type_code,
+        {{ stg_int('DECISIONDIRECTION') }}                    as decision_direction_code,
+        {{ stg_int('DECISIONDIRECTIONDISSENT') }}             as decision_direction_dissent,
 
         -- authority
-        try_to_number(AUTHORITYDECISION1)                   as authority_decision_1,
-        try_to_number(AUTHORITYDECISION2)                   as authority_decision_2,
-        try_to_number(LAWTYPE)                              as law_type_code,
-        try_to_number(LAWSUPP)                              as law_supp_code,
+        {{ stg_int('AUTHORITYDECISION1') }}                   as authority_decision_1,
+        {{ stg_int('AUTHORITYDECISION2') }}                   as authority_decision_2,
+        {{ stg_int('LAWTYPE') }}                              as law_type_code,
+        {{ stg_int('LAWSUPP') }}                              as law_supp_code,
         LAWMINOR                                            as law_minor,
 
         -- opinion authorship
-        try_to_number(MAJOPINWRITER)                        as maj_opin_writer_code,
-        try_to_number(MAJOPINASSIGNER)                      as maj_opin_assigner_code,
+        {{ stg_int('MAJOPINWRITER') }}                        as maj_opin_writer_code,
+        {{ stg_int('MAJOPINASSIGNER') }}                      as maj_opin_assigner_code,
 
         -- vote counts
-        try_to_number(SPLITVOTE)                            as split_vote,
-        try_to_number(MAJVOTES)                             as maj_votes,
-        try_to_number(MINVOTES)                             as min_votes,
+        {{ stg_int('SPLITVOTE') }}                            as split_vote,
+        {{ stg_int('MAJVOTES') }}                             as maj_votes,
+        {{ stg_int('MINVOTES') }}                             as min_votes,
 
         -- justice-level vote record
-        try_to_number(JUSTICE)                              as justice_code,
+        {{ stg_int('JUSTICE') }}                              as justice_code,
         JUSTICENAME                                         as justice_name,
-        try_to_number(VOTE)                                 as vote_code,
-        try_to_number(OPINION)                              as opinion_code,
-        try_to_number(DIRECTION)                            as direction_code,
-        try_to_number(MAJORITY)                             as majority_code,
-        try_to_number(FIRSTAGREEMENT)                       as first_agreement_code,
-        try_to_number(SECONDAGREEMENT)                      as second_agreement_code,
+        {{ stg_int('VOTE') }}                                 as vote_code,
+        {{ stg_int('OPINION') }}                              as opinion_code,
+        {{ stg_int('DIRECTION') }}                            as direction_code,
+        {{ stg_int('MAJORITY') }}                             as majority_code,
+        {{ stg_int('FIRSTAGREEMENT') }}                       as first_agreement_code,
+        {{ stg_int('SECONDAGREEMENT') }}                      as second_agreement_code,
 
         -- metadata
         _ingested_at,

@@ -15,8 +15,8 @@ select
     CYCLE                                            as cycle,
     nullif(trim(CMTE_TP), '')                        as cmte_tp,
     nullif(trim(CMTE_DSGN), '')                      as cmte_dsgn,
-    try_to_number(nullif(trim(CAND_ELECTION_YR), '')) as cand_election_yr,
-    try_to_number(nullif(trim(FEC_ELECTION_YR), ''))  as fec_election_yr,
+    {{ stg_int("nullif(trim(CAND_ELECTION_YR), '')") }} as cand_election_yr,
+    {{ stg_int("nullif(trim(FEC_ELECTION_YR), '')") }}  as fec_election_yr,
     nullif(trim(LINKAGE_ID), '')                     as linkage_id,
     _ingested_at
 from source

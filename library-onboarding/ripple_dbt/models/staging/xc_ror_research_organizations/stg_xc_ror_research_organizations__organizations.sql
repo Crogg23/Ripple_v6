@@ -34,7 +34,7 @@ renamed as (
         -- organization attributes
         trim(STATUS)                                          as status,
         trim(TYPES)                                           as org_types,
-        try_to_number(trim(ESTABLISHED))                      as established_year,
+        {{ stg_int('trim(ESTABLISHED)') }}                      as established_year,
         trim(DOMAINS)                                         as web_domains,
         trim(LINKS_TYPE_WEBSITE)                              as website_url,
         trim(LINKS_TYPE_WIKIPEDIA)                            as wikipedia_url,
@@ -48,12 +48,12 @@ renamed as (
         trim(LOCATIONS_GEONAMES_DETAILS_COUNTRY_SUBDIVISION_NAME) as subdivision_name,
         trim(LOCATIONS_GEONAMES_DETAILS_CONTINENT_CODE)       as continent_code,
         trim(LOCATIONS_GEONAMES_DETAILS_CONTINENT_NAME)       as continent_name,
-        try_to_double(trim(LOCATIONS_GEONAMES_DETAILS_LAT))   as latitude,
-        try_to_double(trim(LOCATIONS_GEONAMES_DETAILS_LNG))   as longitude,
+        {{ stg_float('trim(LOCATIONS_GEONAMES_DETAILS_LAT)') }}   as latitude,
+        {{ stg_float('trim(LOCATIONS_GEONAMES_DETAILS_LNG)') }}   as longitude,
 
         -- registry admin
-        try_to_date(trim(ADMIN_CREATED_DATE))                 as record_created_date,
-        try_to_date(trim(ADMIN_LAST_MODIFIED_DATE))           as record_last_modified_date,
+        {{ stg_date('trim(ADMIN_CREATED_DATE)') }}                 as record_created_date,
+        {{ stg_date('trim(ADMIN_LAST_MODIFIED_DATE)') }}           as record_last_modified_date,
         trim(ADMIN_CREATED_SCHEMA_VERSION)                    as created_schema_version,
         trim(ADMIN_LAST_MODIFIED_SCHEMA_VERSION)              as last_modified_schema_version,
 

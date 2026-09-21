@@ -15,7 +15,7 @@ renamed as (
 
     select
 
-        try_to_number(trim(TSN))                                as tsn,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
         trim(JURISDICTION_VALUE)                                as jurisdiction_value,
         trim(ORIGIN)                                            as origin,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,

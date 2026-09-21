@@ -16,8 +16,8 @@ renamed as (
     select
         -- identifiers
         {{ dbt_utils.generate_surrogate_key(['FACILITY_ID', 'YEAR']) }}    as facility_year_id,
-        try_to_number(trim(FACILITY_ID))                           as facility_id,
-        try_to_number(trim(YEAR))                                  as reporting_year,
+        {{ stg_int('trim(FACILITY_ID)') }}                           as facility_id,
+        {{ stg_int('trim(YEAR)') }}                                  as reporting_year,
         nullif(trim(FRS_ID), '')                                   as frs_id,
         nullif(trim(EGGRT_FACILITY_ID), '')                        as eggrt_facility_id,
         nullif(trim(PROGRAM_SYS_ID), '')                           as program_sys_id,

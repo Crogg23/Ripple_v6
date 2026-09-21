@@ -48,8 +48,8 @@ renamed_cast as (
         -- vessel / aircraft attributes (all '-0- '-laden)
         {{ clean_ofac_token('CALL_SIGN') }}                 as call_sign,
         {{ clean_ofac_token('VESS_TYPE') }}                 as vessel_type,
-        try_to_double({{ clean_ofac_token('TONNAGE') }})    as tonnage,
-        try_to_double({{ clean_ofac_token('GRT') }})        as gross_registered_tonnage,
+        {{ stg_float(clean_ofac_token('TONNAGE')) }}    as tonnage,
+        {{ stg_float(clean_ofac_token('GRT')) }}        as gross_registered_tonnage,
         {{ clean_ofac_token('VESS_FLAG') }}                 as vessel_flag,
         {{ clean_ofac_token('VESS_OWNER') }}                as vessel_owner,
         {{ normalize_imo('IMO') }}                          as imo_number,

@@ -32,11 +32,11 @@ renamed as (
     select
         -- identifiers
         emission_record_id,
-        try_to_number(trim(FACILITY_ID))                           as facility_id,
-        try_to_number(trim(YEAR))                                  as reporting_year,
-        try_to_number(trim(SECTOR_ID))                             as sector_id,
-        try_to_number(trim(SUBSECTOR_ID))                          as subsector_id,
-        try_to_number(trim(GAS_ID))                                as gas_id,
+        {{ stg_int('trim(FACILITY_ID)') }}                           as facility_id,
+        {{ stg_int('trim(YEAR)') }}                                  as reporting_year,
+        {{ stg_int('trim(SECTOR_ID)') }}                             as sector_id,
+        {{ stg_int('trim(SUBSECTOR_ID)') }}                          as subsector_id,
+        {{ stg_int('trim(GAS_ID)') }}                                as gas_id,
 
         -- measures
         try_to_number(trim(CO2E_EMISSION), 38, 10)                 as co2e_emission,

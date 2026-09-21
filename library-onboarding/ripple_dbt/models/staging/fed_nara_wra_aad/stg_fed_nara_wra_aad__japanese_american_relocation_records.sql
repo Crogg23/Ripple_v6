@@ -28,7 +28,7 @@ renamed_cast as (
         GEO                                               as geo,
 
         -- person attributes
-        try_to_number(AGE)                                as age,
+        {{ stg_int('AGE') }}                                as age,
         upper(trim(SEX))                                  as sex,
         upper(trim(CITIZENSHIP_STATUS))                   as citizenship_status,
         FAMILY_NUMBER                                     as family_number,

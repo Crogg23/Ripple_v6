@@ -12,7 +12,7 @@ with source as (
 
 select
     nullif(trim(BIOGUIDE), '')                       as bioguide,
-    try_to_number(nullif(trim(ICPSR), ''))           as icpsr,
+    {{ stg_int("nullif(trim(ICPSR), '')") }}           as icpsr,
     nullif(trim(GOVTRACK), '')                       as govtrack,
     nullif(trim(OPENSECRETS), '')                    as opensecrets,
     nullif(trim(VOTESMART), '')                      as votesmart,
@@ -39,7 +39,7 @@ select
     nullif(trim(SENATE_CLASS), '')                   as senate_class,
     nullif(trim(TERM_START), '')                     as first_term_start,
     nullif(trim(TERM_END), '')                       as last_term_end,
-    try_to_number(nullif(trim(N_TERMS), ''))         as n_terms,
+    {{ stg_int("nullif(trim(N_TERMS), '')") }}         as n_terms,
     LEGISLATOR_SET                                   as legislator_set,
     _ingested_at,
     _source_run_id

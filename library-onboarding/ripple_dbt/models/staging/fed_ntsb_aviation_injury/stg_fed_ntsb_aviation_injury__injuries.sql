@@ -27,7 +27,7 @@ renamed as (
         try_to_number(nullif(trim(INJ_PERSON_COUNT), ''), 18, 4)   as inj_person_count,
 
         -- record maintenance
-        try_to_date(left(nullif(trim(LCHG_DATE), ''), 10))         as lchg_date,
+        {{ stg_date("left(nullif(trim(LCHG_DATE), ''), 10)") }}         as lchg_date,
         nullif(trim(LCHG_USERID), '')                              as lchg_userid,
 
         -- metadata

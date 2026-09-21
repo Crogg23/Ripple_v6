@@ -31,7 +31,7 @@ with source as (
 renamed as (
     select
         nullif(trim(ORDER_ID), '')                                 as order_id,
-        try_to_date(nullif(trim(ORDER_ISSUED_DATE), ''))           as order_date,
+        {{ stg_date("nullif(trim(ORDER_ISSUED_DATE), '')") }}           as order_date,
         nullif(trim(ORDER_TITLE), '')                              as order_title,
         nullif(trim(DOCKET_NUMBER), '')                            as docket_number,
         nullif(trim(ORDER_CATEGORY), '')                           as order_category,
@@ -40,21 +40,21 @@ renamed as (
         nullif(nullif(trim(BANK_CITY), ''), 'N/A')                 as city,
         nullif(nullif(trim(BANK_STATE), ''), 'N/A')                as state,
         nullif(nullif(trim(CERT_NUMBER), ''), 'N/A')               as cert_number_raw,
-        try_to_number(nullif(trim(CERT_NUMBER), ''))               as cert_number,
-        try_to_number(nullif(trim(BANK_COUNT), ''))                as bank_count,
+        {{ stg_int("nullif(trim(CERT_NUMBER), '')") }}               as cert_number,
+        {{ stg_int("nullif(trim(BANK_COUNT), '')") }}                as bank_count,
         nullif(trim(BANKS_ALL), '')                                as banks_all,
         nullif(trim(RESPONDENTS), '')                              as respondents,
-        try_to_number(nullif(trim(RESPONDENT_COUNT), ''))          as respondent_count,
+        {{ stg_int("nullif(trim(RESPONDENT_COUNT), '')") }}          as respondent_count,
         try_to_number(nullif(trim(CMP_AMOUNT_TOTAL), ''), 18, 2)   as cmp_amount_total,
         try_to_number(nullif(trim(RESTITUTION_AMOUNT_TOTAL), ''), 18, 2) as restitution_amount_total,
         nullif(nullif(trim(NMLS_IDS), ''), 'N/A')                  as nmls_ids,
-        try_to_date(nullif(trim(TERMINATION_DATE), ''))            as termination_date,
+        {{ stg_date("nullif(trim(TERMINATION_DATE), '')") }}            as termination_date,
         nullif(trim(TERMINATION_COMMENTS), '')                     as termination_comments,
         nullif(trim(PUBLIC_ORDER_ACTION), '')                      as public_order_action,
         nullif(trim(STATUS), '')                                   as status,
         nullif(trim(DOCUMENT_URL), '')                             as document_url,
         RAW_JSON                                                   as raw_json,
-        try_to_timestamp_tz(INGESTED_AT)                           as _ingested_at,
+        {{ stg_ts_tz('INGESTED_AT') }}                           as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                           as _source_run_id
     from source
 )

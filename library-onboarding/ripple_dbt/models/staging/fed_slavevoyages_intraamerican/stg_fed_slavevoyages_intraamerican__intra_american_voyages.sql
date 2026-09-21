@@ -48,10 +48,10 @@ renamed as (
         -- converts both to a real NULL so try_to_date/not_null tests aren't
         -- fooled by a blank-but-"populated" string (the same masked-value
         -- trap CLAUDE.md documents for other sources).
-        try_to_number(nullif(trim(YEARAM), ''))                          as year_of_arrival,
-        try_to_date(nullif(trim(DATEDEPC), '') || '-' ||
+        {{ stg_int("nullif(trim(YEARAM), '')") }}                          as year_of_arrival,
+        {{ stg_date("nullif(trim(DATEDEPC), '') || '-' ||
                     lpad(nullif(trim(DATEDEPB), ''), 2, '0') || '-' ||
-                    lpad(nullif(trim(DATEDEPA), ''), 2, '0'))             as date_of_departure,
+                    lpad(nullif(trim(DATEDEPA), ''), 2, '0')") }}             as date_of_departure,
 
         -- geography: numeric SlaveVoyages place codes, NOT resolved names
         -- (see note above -- no code->name table is landed)
@@ -61,8 +61,8 @@ renamed as (
         -- measures (codebook, unambiguous):
         --   TSLAVESD = "Total slaves on board at departure from last slaving port"
         --   SLAARRIV = "Total slaves arrived at first port of disembarkation"
-        try_to_number(nullif(trim(TSLAVESD), ''))                        as num_enslaved_embarked,
-        try_to_number(nullif(trim(SLAARRIV), ''))                        as num_enslaved_disembarked,
+        {{ stg_int("nullif(trim(TSLAVESD), '')") }}                        as num_enslaved_embarked,
+        {{ stg_int("nullif(trim(SLAARRIV), '')") }}                        as num_enslaved_disembarked,
 
         -- descriptive
         nullif(trim(SHIPNAME), '')                                       as vessel_name,

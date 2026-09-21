@@ -40,19 +40,19 @@ renamed as (
         DEF_CODE                                                        as def_code,
 
         -- Numeric financials
-        try_to_double(TOTAL_OBLIGATION)                                 as total_obligation,
-        try_to_double(TOTAL_OUTLAY)                                     as total_outlay,
-        try_to_double(AWARD_AMOUNT)                                     as award_amount,
+        {{ stg_float('TOTAL_OBLIGATION') }}                                 as total_obligation,
+        {{ stg_float('TOTAL_OUTLAY') }}                                     as total_outlay,
+        {{ stg_float('AWARD_AMOUNT') }}                                     as award_amount,
 
         -- Integer counts
-        try_to_number(TRANSACTION_COUNT)                                as transaction_count,
-        try_to_number(SUBAWARD_COUNT)                                   as subaward_count,
-        try_to_number(FISCAL_YEAR)                                      as fiscal_year,
+        {{ stg_int('TRANSACTION_COUNT') }}                                as transaction_count,
+        {{ stg_int('SUBAWARD_COUNT') }}                                   as subaward_count,
+        {{ stg_int('FISCAL_YEAR') }}                                      as fiscal_year,
 
         -- Dates
-        try_to_date(START_DATE)                                         as start_date,
-        try_to_date(END_DATE)                                           as end_date,
-        try_to_date(LAST_MODIFIED_DATE)                                 as last_modified_date,
+        {{ stg_date('START_DATE') }}                                         as start_date,
+        {{ stg_date('END_DATE') }}                                           as end_date,
+        {{ stg_date('LAST_MODIFIED_DATE') }}                                 as last_modified_date,
 
         -- Metadata
         _ingested_at,
@@ -61,7 +61,7 @@ renamed as (
     from source
     qualify row_number() over (
         partition by AWARD_ID
-        order by try_to_date(LAST_MODIFIED_DATE) desc nulls last, _ingested_at desc nulls last
+        order by {{ stg_date('LAST_MODIFIED_DATE') }} desc nulls last, _ingested_at desc nulls last
     ) = 1
 
 )

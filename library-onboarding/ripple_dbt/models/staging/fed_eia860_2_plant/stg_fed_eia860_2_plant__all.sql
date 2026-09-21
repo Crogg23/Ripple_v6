@@ -15,8 +15,8 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))                              as plant_code,
-        try_to_number(trim(UTILITY_ID))                              as utility_id,
+        {{ stg_int('trim(PLANT_CODE)') }}                              as plant_code,
+        {{ stg_int('trim(UTILITY_ID)') }}                              as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                                           as utility_name,
@@ -26,8 +26,8 @@ renamed as (
         trim(STATE)                                                  as state,
         trim(ZIP)                                                    as zip,
         trim(COUNTY)                                                 as county,
-        try_to_number(trim(LATITUDE))                                as latitude,
-        try_to_number(trim(LONGITUDE))                               as longitude,
+        {{ stg_float('trim(LATITUDE)') }}                                as latitude,
+        {{ stg_float('trim(LONGITUDE)') }}                               as longitude,
         trim(NERC_REGION)                                            as nerc_region,
         trim(BALANCING_AUTHORITY_CODE)                               as balancing_authority_code,
         trim(BALANCING_AUTHORITY_NAME)                               as balancing_authority_name,
@@ -46,12 +46,12 @@ renamed as (
         trim(ASH_IMPOUNDMENT_LINED)                                  as ash_impoundment_lined,
         trim(ASH_IMPOUNDMENT_STATUS)                                 as ash_impoundment_status,
         trim(TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER)              as transmission_or_distribution_system_owner,
-        try_to_number(trim(TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID))
+        {{ stg_int('trim(TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID)') }}
                                                                      as transmission_or_distribution_system_owner_id,
         trim(TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_STATE)        as transmission_or_distribution_system_owner_state,
-        try_to_number(trim(GRID_VOLTAGE_KV))                         as grid_voltage_kv,
-        try_to_number(trim(GRID_VOLTAGE_2_KV))                       as grid_voltage_2_kv,
-        try_to_number(trim(GRID_VOLTAGE_3_KV))                       as grid_voltage_3_kv,
+        {{ stg_float('trim(GRID_VOLTAGE_KV)') }}                         as grid_voltage_kv,
+        {{ stg_float('trim(GRID_VOLTAGE_2_KV)') }}                       as grid_voltage_2_kv,
+        {{ stg_float('trim(GRID_VOLTAGE_3_KV)') }}                       as grid_voltage_3_kv,
         trim(ENERGY_STORAGE)                                         as energy_storage,
         trim(NATURAL_GAS_LDC_NAME)                                   as natural_gas_ldc_name,
         trim(NATURAL_GAS_PIPELINE_NAME_1)                            as natural_gas_pipeline_name_1,
@@ -62,7 +62,7 @@ renamed as (
         trim(LIQUEFIED_NATURAL_GAS_STORAGE)                          as liquefied_natural_gas_storage,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

@@ -29,9 +29,9 @@ renamed as (
         nullif(trim(EMAILS), '')                                  as emails,
         nullif(trim(PROGRAM_IDS), '')                             as program_ids,
         nullif(trim(DATASET), '')                                 as datasets,
-        try_to_timestamp_ntz(trim(FIRST_SEEN))                    as first_seen,
-        try_to_timestamp_ntz(trim(LAST_SEEN))                     as last_seen,
-        try_to_timestamp_ntz(trim(LAST_CHANGE))                   as last_change,
+        {{ stg_ts('trim(FIRST_SEEN)') }}                    as first_seen,
+        {{ stg_ts('trim(LAST_SEEN)') }}                     as last_seen,
+        {{ stg_ts('trim(LAST_CHANGE)') }}                   as last_change,
         -- FIXED 2026-08-20 (time-index scan): microseconds read as seconds,
         -- 1,281,846 rows in the year 56 million. The `, 6` scale is the fix.
         to_timestamp_ntz(_INGESTED_AT, 6)                         as _ingested_at,

@@ -21,7 +21,7 @@ renamed as (
                                                                    as branch_year_key,
 
         -- identifiers
-        try_to_number(nullif(trim(YEAR), ''))                      as survey_year,
+        {{ stg_int("nullif(trim(YEAR), '')") }}                      as survey_year,
         nullif(trim(CERT), '')                                     as fdic_cert,
         nullif(trim(BRNUM), '')                                    as branch_number,
         nullif(trim(UNINUMBR), '')                                 as branch_uninum,
@@ -57,7 +57,7 @@ renamed as (
         nullif(trim(BRSERTYP), '')                                 as branch_service_type,
         nullif(trim(BRCENM), '')                                   as branch_deposit_reporting_method,
         nullif(trim(BKMO), '')                                     as main_office_flag,
-        try_to_number(nullif(trim(DEPSUMBR), ''))                  as branch_deposits_thousands,
+        {{ stg_int("nullif(trim(DEPSUMBR), '')") }}                  as branch_deposits_thousands,
 
         -- branch geocoding (FDIC SIMS)
         -- NOT A BUG (epoch-1970 investigation, 2026-08-18): sims_established_date
@@ -65,8 +65,8 @@ renamed as (
         -- bare-try_to_date epoch trap. Its 26,581-of-2.82M (0.9%) 1970 rows
         -- (confirmed live) spread across many distinct 1970 days -- real bank
         -- branches established that year, not sentinel garbage. Left as-is.
-        try_to_double(nullif(trim(SIMS_LATITUDE), ''))             as sims_latitude,
-        try_to_double(nullif(trim(SIMS_LONGITUDE), ''))            as sims_longitude,
+        {{ stg_float("nullif(trim(SIMS_LATITUDE), '')") }}             as sims_latitude,
+        {{ stg_float("nullif(trim(SIMS_LONGITUDE), '')") }}            as sims_longitude,
         nullif(trim(SIMS_PROJECTION), '')                          as sims_projection,
         nullif(trim(SIMS_DESCRIPTION), '')                         as sims_description,
         try_to_date(split_part(nullif(trim(SIMS_ACQUIRED_DATE), ''), ' ', 1), 'MM/DD/YYYY')
@@ -83,12 +83,12 @@ renamed as (
         nullif(trim(ZIP), '')                                      as institution_zip,
         nullif(trim(STCNTY), '')                                   as institution_state_county_fips,
         nullif(trim(CNTRYNA), '')                                  as institution_country,
-        try_to_number(nullif(trim(ASSET), ''))                     as institution_assets_thousands,
-        try_to_number(nullif(trim(DEPSUM), ''))                    as institution_deposits_thousands,
-        try_to_number(nullif(trim(DEPDOM), ''))                    as institution_domestic_deposits_thousands,
-        try_to_number(nullif(trim(INSBRDD), ''))                   as insured_branch_demand_deposits_thousands,
-        try_to_number(nullif(trim(INSBRTS), ''))                   as insured_branch_time_savings_deposits_thousands,
-        try_to_number(nullif(trim(ESCROW), ''))                    as escrow_deposits_thousands,
+        {{ stg_int("nullif(trim(ASSET), '')") }}                     as institution_assets_thousands,
+        {{ stg_int("nullif(trim(DEPSUM), '')") }}                    as institution_deposits_thousands,
+        {{ stg_int("nullif(trim(DEPDOM), '')") }}                    as institution_domestic_deposits_thousands,
+        {{ stg_int("nullif(trim(INSBRDD), '')") }}                   as insured_branch_demand_deposits_thousands,
+        {{ stg_int("nullif(trim(INSBRTS), '')") }}                   as insured_branch_time_savings_deposits_thousands,
+        {{ stg_int("nullif(trim(ESCROW), '')") }}                    as escrow_deposits_thousands,
         nullif(trim(BKCLASS), '')                                  as bank_class,
         nullif(trim(CLCODE), '')                                   as class_code,
         nullif(trim(CHARTER), '')                                  as charter_type,
@@ -117,7 +117,7 @@ renamed as (
         nullif(trim(USA), '')                                      as domestic_flag,
 
         -- metadata
-        try_to_timestamp(nullif(trim(_INGESTED_AT), ''))           as _ingested_at,
+        {{ stg_ts("nullif(trim(_INGESTED_AT), '')") }}           as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                           as _source_run_id,
         nullif(trim(_SRC_SHA256), '')                              as _src_sha256
     from source

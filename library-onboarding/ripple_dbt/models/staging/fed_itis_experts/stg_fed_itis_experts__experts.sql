@@ -16,7 +16,7 @@ renamed as (
     select
 
         trim(EXPERT_ID_PREFIX)                                  as expert_id_prefix,
-        try_to_number(trim(EXPERT_ID))                          as expert_id,
+        {{ stg_int('trim(EXPERT_ID)') }}                          as expert_id,
         trim(EXPERT)                                            as expert,
         trim(EXP_COMMENT)                                       as exp_comment,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,

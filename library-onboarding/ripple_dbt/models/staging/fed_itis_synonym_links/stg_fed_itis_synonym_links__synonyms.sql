@@ -15,8 +15,8 @@ renamed as (
 
     select
 
-        try_to_number(trim(TSN))                                as tsn,
-        try_to_number(trim(TSN_ACCEPTED))                       as tsn_accepted,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
+        {{ stg_int('trim(TSN_ACCEPTED)') }}                       as tsn_accepted,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)

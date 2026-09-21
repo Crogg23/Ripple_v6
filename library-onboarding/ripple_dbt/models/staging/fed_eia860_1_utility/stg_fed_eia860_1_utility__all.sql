@@ -15,7 +15,7 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(UTILITY_ID))                          as utility_id,
+        {{ stg_int('trim(UTILITY_ID)') }}                          as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                                       as utility_name,
@@ -30,7 +30,7 @@ renamed as (
         trim(ENTITY_TYPE)                                        as entity_type,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                           as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                           as _loaded_at,
         _SOURCE_RUN_ID                                           as _source_run_id,
         _SRC_FILE                                                as _src_file
 

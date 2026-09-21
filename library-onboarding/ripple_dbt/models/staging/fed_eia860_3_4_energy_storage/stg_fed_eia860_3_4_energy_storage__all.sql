@@ -17,9 +17,9 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))                        as plant_code,
+        {{ stg_int('trim(PLANT_CODE)') }}                        as plant_code,
         trim(GENERATOR_ID)                                     as generator_id,
-        try_to_number(trim(UTILITY_ID))                        as utility_id,
+        {{ stg_int('trim(UTILITY_ID)') }}                        as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                                     as utility_name,
@@ -52,27 +52,27 @@ renamed as (
         trim(DC_TIGHTLY_COUPLED)                               as dc_tightly_coupled,
         trim(INDEPENDENT)                                      as independent,
         trim(DIRECT_SUPPORT_OF_ANOTHER_UNIT)                   as direct_support_of_another_unit,
-        try_to_number(trim(DIRECT_SUPPORT_PLANT_ID_1))         as direct_support_plant_id_1,
+        {{ stg_int('trim(DIRECT_SUPPORT_PLANT_ID_1)') }}         as direct_support_plant_id_1,
         trim(DIRECT_SUPPORT_GEN_ID_1)                          as direct_support_gen_id_1,
-        try_to_number(trim(DIRECT_SUPPORT_PLANT_ID_2))         as direct_support_plant_id_2,
+        {{ stg_int('trim(DIRECT_SUPPORT_PLANT_ID_2)') }}         as direct_support_plant_id_2,
         trim(DIRECT_SUPPORT_GEN_ID_2)                          as direct_support_gen_id_2,
-        try_to_number(trim(DIRECT_SUPPORT_PLANT_ID_3))         as direct_support_plant_id_3,
+        {{ stg_int('trim(DIRECT_SUPPORT_PLANT_ID_3)') }}         as direct_support_plant_id_3,
         trim(DIRECT_SUPPORT_GEN_ID_3)                          as direct_support_gen_id_3,
         trim(SUPPORT_T_D_ASSET)                                as support_t_d_asset,
 
         -- measures
-        try_to_number(trim(NAMEPLATE_CAPACITY_MW))             as nameplate_capacity_mw,
-        try_to_number(trim(SUMMER_CAPACITY_MW))                as summer_capacity_mw,
-        try_to_number(trim(WINTER_CAPACITY_MW))                as winter_capacity_mw,
-        try_to_number(trim(OPERATING_MONTH))                   as operating_month,
-        try_to_number(trim(OPERATING_YEAR))                    as operating_year,
-        try_to_number(trim(NAMEPLATE_ENERGY_CAPACITY_MWH))     as nameplate_energy_capacity_mwh,
-        try_to_number(trim(MAXIMUM_CHARGE_RATE_MW))            as maximum_charge_rate_mw,
-        try_to_number(trim(MAXIMUM_DISCHARGE_RATE_MW))         as maximum_discharge_rate_mw,
-        try_to_number(trim(NAMEPLATE_REACTIVE_POWER_RATING))   as nameplate_reactive_power_rating,
+        {{ stg_float('trim(NAMEPLATE_CAPACITY_MW)') }}             as nameplate_capacity_mw,
+        {{ stg_float('trim(SUMMER_CAPACITY_MW)') }}                as summer_capacity_mw,
+        {{ stg_float('trim(WINTER_CAPACITY_MW)') }}                as winter_capacity_mw,
+        {{ stg_int('trim(OPERATING_MONTH)') }}                   as operating_month,
+        {{ stg_int('trim(OPERATING_YEAR)') }}                    as operating_year,
+        {{ stg_float('trim(NAMEPLATE_ENERGY_CAPACITY_MWH)') }}     as nameplate_energy_capacity_mwh,
+        {{ stg_float('trim(MAXIMUM_CHARGE_RATE_MW)') }}            as maximum_charge_rate_mw,
+        {{ stg_float('trim(MAXIMUM_DISCHARGE_RATE_MW)') }}         as maximum_discharge_rate_mw,
+        {{ stg_float('trim(NAMEPLATE_REACTIVE_POWER_RATING)') }}   as nameplate_reactive_power_rating,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                         as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                         as _loaded_at,
         _SOURCE_RUN_ID                                         as _source_run_id,
         _SRC_FILE                                              as _src_file
 

@@ -18,10 +18,10 @@ renamed as (
         LANGUAGE                                                    as language,
 
         -- dates
-        try_to_date(DATE)                                           as date,
-        try_to_date(TENDER_DATEPUBLISHED)                           as tender_date_published,
-        try_to_date(AWARD_DATE)                                     as award_date,
-        try_to_date(CONTRACT_DATESIGNED)                            as contract_date_signed,
+        {{ stg_date('DATE') }}                                           as date,
+        {{ stg_date('TENDER_DATEPUBLISHED') }}                           as tender_date_published,
+        {{ stg_date('AWARD_DATE') }}                                     as award_date,
+        {{ stg_date('CONTRACT_DATESIGNED') }}                            as contract_date_signed,
 
         -- buyer
         BUYER_ID                                                    as buyer_id,
@@ -32,13 +32,13 @@ renamed as (
         TENDER_TITLE                                                as tender_title,
         TENDER_STATUS                                               as tender_status,
         TENDER_PROCUREMENTMETHOD                                    as tender_procurement_method,
-        try_to_double(TENDER_VALUE_AMOUNT)                          as tender_value_amount,
+        {{ stg_float('TENDER_VALUE_AMOUNT') }}                          as tender_value_amount,
         TENDER_VALUE_CURRENCY                                       as tender_value_currency,
 
         -- award
         AWARD_ID                                                    as award_id,
         AWARD_STATUS                                                as award_status,
-        try_to_double(AWARD_VALUE_AMOUNT)                           as award_value_amount,
+        {{ stg_float('AWARD_VALUE_AMOUNT') }}                           as award_value_amount,
         AWARD_VALUE_CURRENCY                                        as award_value_currency,
 
         -- supplier
@@ -47,7 +47,7 @@ renamed as (
 
         -- contract
         CONTRACT_ID                                                 as contract_id,
-        try_to_double(CONTRACT_VALUE_AMOUNT)                        as contract_value_amount,
+        {{ stg_float('CONTRACT_VALUE_AMOUNT') }}                        as contract_value_amount,
         CONTRACT_VALUE_CURRENCY                                     as contract_value_currency,
 
         -- parties
@@ -56,7 +56,7 @@ renamed as (
         PARTIES_ROLES                                               as parties_roles,
 
         -- planning
-        try_to_double(PLANNING_BUDGET_AMOUNT)                       as planning_budget_amount,
+        {{ stg_float('PLANNING_BUDGET_AMOUNT') }}                       as planning_budget_amount,
 
         -- meta
         _ingested_at,

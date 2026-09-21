@@ -37,7 +37,7 @@ renamed as (
         trim(LOAN_PURPOSE)                              as loan_purpose,
         trim(OWNER_OCCUPANCY_NAME)                      as owner_occupancy_name,
         trim(OWNER_OCCUPANCY)                           as owner_occupancy,
-        try_to_number(trim(LOAN_AMOUNT_000S))           as loan_amount_000s,
+        {{ stg_int('trim(LOAN_AMOUNT_000S)') }}           as loan_amount_000s,
         trim(PREAPPROVAL_NAME)                          as preapproval_name,
         trim(PREAPPROVAL)                               as preapproval,
         trim(ACTION_TAKEN_NAME)                         as action_taken_name,
@@ -82,7 +82,7 @@ renamed as (
         trim(APPLICANT_SEX)                             as applicant_sex,
         trim(CO_APPLICANT_SEX_NAME)                     as co_applicant_sex_name,
         trim(CO_APPLICANT_SEX)                          as co_applicant_sex,
-        try_to_number(trim(APPLICANT_INCOME_000S))      as applicant_income_000s,
+        {{ stg_int('trim(APPLICANT_INCOME_000S)') }}      as applicant_income_000s,
 
         -- outcome / pricing
         trim(PURCHASER_TYPE_NAME)                       as purchaser_type_name,
@@ -93,7 +93,7 @@ renamed as (
         cast(DENIAL_REASON_2 as varchar)                as denial_reason_2,
         cast(DENIAL_REASON_NAME_3 as varchar)           as denial_reason_name_3,
         cast(DENIAL_REASON_3 as varchar)                as denial_reason_3,
-        try_to_number(trim(RATE_SPREAD))                as rate_spread,
+        {{ stg_float('trim(RATE_SPREAD)') }}                as rate_spread,
         trim(HOEPA_STATUS_NAME)                         as hoepa_status_name,
         trim(HOEPA_STATUS)                              as hoepa_status,
         trim(LIEN_STATUS_NAME)                          as lien_status_name,
@@ -102,12 +102,12 @@ renamed as (
         trim(EDIT_STATUS)                               as edit_status,
 
         -- census-tract context
-        try_to_number(trim(POPULATION))                 as population,
-        try_to_number(trim(MINORITY_POPULATION))        as minority_population,
-        try_to_number(trim(HUD_MEDIAN_FAMILY_INCOME))   as hud_median_family_income,
-        try_to_number(trim(TRACT_TO_MSAMD_INCOME))      as tract_to_msamd_income,
-        try_to_number(trim(NUMBER_OF_OWNER_OCCUPIED_UNITS)) as number_of_owner_occupied_units,
-        try_to_number(trim(NUMBER_OF_1_TO_4_FAMILY_UNITS))  as number_of_1_to_4_family_units,
+        {{ stg_int('trim(POPULATION)') }}                 as population,
+        {{ stg_float('trim(MINORITY_POPULATION)') }}        as minority_population,
+        {{ stg_int('trim(HUD_MEDIAN_FAMILY_INCOME)') }}   as hud_median_family_income,
+        {{ stg_float('trim(TRACT_TO_MSAMD_INCOME)') }}      as tract_to_msamd_income,
+        {{ stg_int('trim(NUMBER_OF_OWNER_OCCUPIED_UNITS)') }} as number_of_owner_occupied_units,
+        {{ stg_int('trim(NUMBER_OF_1_TO_4_FAMILY_UNITS)') }}  as number_of_1_to_4_family_units,
         trim(APPLICATION_DATE_INDICATOR)                as application_date_indicator,
 
         -- metadata

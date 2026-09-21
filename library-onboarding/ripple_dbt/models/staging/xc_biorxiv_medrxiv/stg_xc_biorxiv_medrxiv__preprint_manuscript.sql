@@ -25,7 +25,7 @@ renamed_cast as (
         title                                                      as title,
         authors                                                    as authors,
         author_corresponding_institution                           as author_corresponding_institution,
-        try_to_date(date)                                          as preprint_posted_date,
+        {{ stg_date('date') }}                                          as preprint_posted_date,
         version                                                    as version,
         type                                                       as submission_type,
         license                                                    as license,
@@ -50,8 +50,8 @@ renamed_cast as (
         preprint_title                                             as preprint_title,
         preprint_authors                                           as preprint_authors,
         preprint_category                                          as preprint_category,
-        try_to_date(preprint_date)                                 as preprint_date,
-        try_to_date(published_date)                                as published_date,
+        {{ stg_date('preprint_date') }}                                 as preprint_date,
+        {{ stg_date('published_date') }}                                as published_date,
         preprint_abstract                                          as preprint_abstract,
         preprint_author_corresponding                              as preprint_author_corresponding,
         preprint_author_corresponding_institution                  as preprint_author_corresponding_institution,
@@ -60,20 +60,20 @@ renamed_cast as (
         -- Summary-statistics fields
         -- ---------------------------------------------------------------
         month                                                      as stat_month,
-        try_to_number(new_papers)                                  as new_papers,
-        try_to_number(new_papers_cumulative)                       as new_papers_cumulative,
-        try_to_number(revised_papers)                              as revised_papers,
-        try_to_number(revised_papers_cumulative)                   as revised_papers_cumulative,
+        {{ stg_int('new_papers') }}                                  as new_papers,
+        {{ stg_int('new_papers_cumulative') }}                       as new_papers_cumulative,
+        {{ stg_int('revised_papers') }}                              as revised_papers,
+        {{ stg_int('revised_papers_cumulative') }}                   as revised_papers_cumulative,
 
         -- ---------------------------------------------------------------
         -- Usage-statistics fields
         -- ---------------------------------------------------------------
-        try_to_number(abstract_views)                              as abstract_views,
-        try_to_number(full_text_views)                             as full_text_views,
-        try_to_number(pdf_downloads)                               as pdf_downloads,
-        try_to_number(abstract_cumulative)                         as abstract_cumulative,
-        try_to_number(full_text_cumulative)                        as full_text_cumulative,
-        try_to_number(pdf_cumulative)                              as pdf_cumulative,
+        {{ stg_int('abstract_views') }}                              as abstract_views,
+        {{ stg_int('full_text_views') }}                             as full_text_views,
+        {{ stg_int('pdf_downloads') }}                               as pdf_downloads,
+        {{ stg_int('abstract_cumulative') }}                         as abstract_cumulative,
+        {{ stg_int('full_text_cumulative') }}                        as full_text_cumulative,
+        {{ stg_int('pdf_cumulative') }}                              as pdf_cumulative,
 
         -- ---------------------------------------------------------------
         -- Metadata

@@ -29,7 +29,7 @@ renamed as (
         trim(UNNAMED_5)                                as descriptor,
         trim(N)                                        as pediatric_flag,
         trim(C_00135)                                  as accession_number,
-        try_to_number(trim(C_1))                       as number_of_ais,
+        {{ stg_int('trim(C_1)') }}                       as number_of_ais,
         try_to_date(trim(C_24_DEC_2025), 'DD-MON-YYYY') as last_update_date,
         trim(C_0104552001)                             as ai_group_no,
         trim(HUMAIN)                                   as class_f,

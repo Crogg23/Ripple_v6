@@ -18,8 +18,8 @@ renamed as (
 
         -- label file map
         nullif(trim(ZIP_FILE_NAME), '')                            as zip_file_name,
-        try_to_date(nullif(trim(UPLOAD_DATE), ''))                 as upload_date,
-        try_to_number(trim(SPL_VERSION))                           as spl_version,
+        {{ stg_date("nullif(trim(UPLOAD_DATE), '')") }}                 as upload_date,
+        {{ stg_int('trim(SPL_VERSION)') }}                           as spl_version,
         nullif(trim(TITLE), '')                                    as title,
 
         -- metadata

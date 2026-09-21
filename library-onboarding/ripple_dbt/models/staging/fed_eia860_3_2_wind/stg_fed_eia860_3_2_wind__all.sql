@@ -16,9 +16,9 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))                   as plant_code,
+        {{ stg_int('trim(PLANT_CODE)') }}                   as plant_code,
         trim(GENERATOR_ID)                                as generator_id,
-        try_to_number(trim(UTILITY_ID))                   as utility_id,
+        {{ stg_int('trim(UTILITY_ID)') }}                   as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                                as utility_name,
@@ -35,17 +35,17 @@ renamed as (
         trim(WIND_QUALITY_CLASS)                          as wind_quality_class,
 
         -- measures
-        try_to_number(trim(NAMEPLATE_CAPACITY_MW))        as nameplate_capacity_mw,
-        try_to_number(trim(SUMMER_CAPACITY_MW))           as summer_capacity_mw,
-        try_to_number(trim(WINTER_CAPACITY_MW))           as winter_capacity_mw,
-        try_to_number(trim(OPERATING_MONTH))              as operating_month,
-        try_to_number(trim(OPERATING_YEAR))               as operating_year,
-        try_to_number(trim(NUMBER_OF_TURBINES))           as number_of_turbines,
-        try_to_number(trim(DESIGN_WIND_SPEED_MPH))        as design_wind_speed_mph,
-        try_to_number(trim(TURBINE_HUB_HEIGHT_FEET))      as turbine_hub_height_feet,
+        {{ stg_float('trim(NAMEPLATE_CAPACITY_MW)') }}        as nameplate_capacity_mw,
+        {{ stg_float('trim(SUMMER_CAPACITY_MW)') }}           as summer_capacity_mw,
+        {{ stg_float('trim(WINTER_CAPACITY_MW)') }}           as winter_capacity_mw,
+        {{ stg_int('trim(OPERATING_MONTH)') }}              as operating_month,
+        {{ stg_int('trim(OPERATING_YEAR)') }}               as operating_year,
+        {{ stg_int('trim(NUMBER_OF_TURBINES)') }}           as number_of_turbines,
+        {{ stg_float('trim(DESIGN_WIND_SPEED_MPH)') }}        as design_wind_speed_mph,
+        {{ stg_float('trim(TURBINE_HUB_HEIGHT_FEET)') }}      as turbine_hub_height_feet,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                    as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                    as _loaded_at,
         _SOURCE_RUN_ID                                    as _source_run_id,
         _SRC_FILE                                         as _src_file
 

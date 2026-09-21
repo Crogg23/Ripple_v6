@@ -16,9 +16,9 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))                       as plant_code,
+        {{ stg_int('trim(PLANT_CODE)') }}                       as plant_code,
         trim(BOILER_ID)                                       as boiler_id,
-        try_to_number(trim(UTILITY_ID))                       as utility_id,
+        {{ stg_int('trim(UTILITY_ID)') }}                       as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                                    as utility_name,
@@ -56,22 +56,22 @@ renamed as (
         trim(MERCURY_CONTROL_PROPOSED_STRATEGY_1)             as mercury_control_proposed_strategy_1,
         trim(MERCURY_CONTROL_PROPOSED_STRATEGY_2)             as mercury_control_proposed_strategy_2,
         trim(MERCURY_CONTROL_PROPOSED_STRATEGY_3)             as mercury_control_proposed_strategy_3,
-        try_to_number(trim(STEAM_PLANT_TYPE))                 as steam_plant_type,
+        {{ stg_int('trim(STEAM_PLANT_TYPE)') }}                 as steam_plant_type,
 
         -- measures
-        try_to_number(trim(NEW_SOURCE_REVIEW_MONTH))          as new_source_review_month,
-        try_to_number(trim(NEW_SOURCE_REVIEW_YEAR))           as new_source_review_year,
-        try_to_number(trim(STANDARD_SULFUR_RATE))             as standard_sulfur_rate,
-        try_to_number(trim(STANDARD_SULFUR_PERCENT_SCRUBBED)) as standard_sulfur_percent_scrubbed,
-        try_to_number(trim(COMPLIANCE_YEAR_SULFUR))           as compliance_year_sulfur,
-        try_to_number(trim(STANDARD_NITROGEN_RATE))           as standard_nitrogen_rate,
-        try_to_number(trim(COMPLIANCE_YEAR_NITROGEN))         as compliance_year_nitrogen,
-        try_to_number(trim(STANDARD_PARTICULATE_RATE))        as standard_particulate_rate,
-        try_to_number(trim(COMPLIANCE_YEAR_PARTICULATE))      as compliance_year_particulate,
-        try_to_number(trim(COMPLIANCE_YEAR_MERCURY))          as compliance_year_mercury,
+        {{ stg_int('trim(NEW_SOURCE_REVIEW_MONTH)') }}          as new_source_review_month,
+        {{ stg_int('trim(NEW_SOURCE_REVIEW_YEAR)') }}           as new_source_review_year,
+        {{ stg_float('trim(STANDARD_SULFUR_RATE)') }}             as standard_sulfur_rate,
+        {{ stg_float('trim(STANDARD_SULFUR_PERCENT_SCRUBBED)') }} as standard_sulfur_percent_scrubbed,
+        {{ stg_int('trim(COMPLIANCE_YEAR_SULFUR)') }}           as compliance_year_sulfur,
+        {{ stg_float('trim(STANDARD_NITROGEN_RATE)') }}           as standard_nitrogen_rate,
+        {{ stg_int('trim(COMPLIANCE_YEAR_NITROGEN)') }}         as compliance_year_nitrogen,
+        {{ stg_float('trim(STANDARD_PARTICULATE_RATE)') }}        as standard_particulate_rate,
+        {{ stg_int('trim(COMPLIANCE_YEAR_PARTICULATE)') }}      as compliance_year_particulate,
+        {{ stg_int('trim(COMPLIANCE_YEAR_MERCURY)') }}          as compliance_year_mercury,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                        as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                        as _loaded_at,
         _SOURCE_RUN_ID                                        as _source_run_id,
         _SRC_FILE                                             as _src_file
 

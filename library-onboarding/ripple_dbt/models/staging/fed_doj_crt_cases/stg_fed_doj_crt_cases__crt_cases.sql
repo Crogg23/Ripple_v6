@@ -18,7 +18,7 @@ renamed_cast as (
         CASE_TYPE                                         as case_type,
         COMPANY_ID                                        as company_id,
         PERSON_NAME                                       as person_name,
-        try_to_date(DATE)                                 as date,
+        {{ stg_date('DATE') }}                                 as date,
         STATE                                             as state,
 
         -- descriptive

@@ -53,9 +53,9 @@ renamed as (
         trim(LOAN_PURPOSE)                             as loan_purpose,
         trim(PROPERTY_TYPE)                            as property_type,
         try_to_number(trim(INTEREST_RATE), 10, 4)      as interest_rate,
-        try_to_number(trim(ORIGINAL_MORTGAGE_AMOUNT))  as original_mortgage_amount,
-        try_to_number(trim(ENDORSEMENT_YEAR))          as endorsement_year,
-        try_to_number(trim(ENDORSEMENT_MONTH))         as endorsement_month,
+        {{ stg_int('trim(ORIGINAL_MORTGAGE_AMOUNT)') }}  as original_mortgage_amount,
+        {{ stg_int('trim(ENDORSEMENT_YEAR)') }}          as endorsement_year,
+        {{ stg_int('trim(ENDORSEMENT_MONTH)') }}         as endorsement_month,
 
         -- metadata
         to_timestamp_ntz(INGESTED_AT, 6)               as _ingested_at,

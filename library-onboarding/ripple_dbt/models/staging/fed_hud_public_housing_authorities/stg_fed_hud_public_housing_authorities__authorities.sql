@@ -14,7 +14,7 @@ renamed as (
 
         -- identifiers
         trim(PARTICIPANT_CODE)                          as participant_code,
-        try_to_number(trim(OBJECTID))                   as objectid,
+        {{ stg_int('trim(OBJECTID)') }}                   as objectid,
         trim(FORMAL_PARTICIPANT_NAME)                   as formal_participant_name,
 
         -- contact
@@ -34,37 +34,37 @@ renamed as (
         trim(HA_PROGRAM_TYPE)                           as ha_program_type,
 
         -- units / occupancy
-        try_to_number(trim(SECTION8_UNITS_CNT))         as section8_units_count,
-        try_to_number(trim(TOTAL_UNITS))                as total_units,
-        try_to_number(trim(TOTAL_DWELLING_UNITS))       as total_dwelling_units,
-        try_to_number(trim(ACC_UNITS))                  as acc_units,
-        try_to_number(trim(PH_OCCUPIED))                as public_housing_occupied,
-        try_to_number(trim(SECTION8_OCCUPIED))          as section8_occupied,
-        try_to_number(trim(TOTAL_OCCUPIED))             as total_occupied,
+        {{ stg_int('trim(SECTION8_UNITS_CNT)') }}         as section8_units_count,
+        {{ stg_int('trim(TOTAL_UNITS)') }}                as total_units,
+        {{ stg_int('trim(TOTAL_DWELLING_UNITS)') }}       as total_dwelling_units,
+        {{ stg_int('trim(ACC_UNITS)') }}                  as acc_units,
+        {{ stg_int('trim(PH_OCCUPIED)') }}                as public_housing_occupied,
+        {{ stg_int('trim(SECTION8_OCCUPIED)') }}          as section8_occupied,
+        {{ stg_int('trim(TOTAL_OCCUPIED)') }}             as total_occupied,
         try_to_number(trim(PCT_OCCUPIED), 12, 4)        as pct_occupied,
-        try_to_number(trim(REGULAR_VACANT))             as regular_vacant,
-        try_to_number(trim(PHA_TOTAL_UNITS))            as pha_total_units,
-        try_to_number(trim(NUMBER_REPORTED))            as number_reported,
+        {{ stg_int('trim(REGULAR_VACANT)') }}             as regular_vacant,
+        {{ stg_int('trim(PHA_TOTAL_UNITS)') }}            as pha_total_units,
+        {{ stg_int('trim(NUMBER_REPORTED)') }}            as number_reported,
         try_to_number(trim(PCT_REPORTED), 12, 4)        as pct_reported,
 
         -- funding / spending
-        try_to_number(trim(OPFUND_AMNT))                as operating_fund_amount,
-        try_to_number(trim(OPFUND_AMNT_PREV_YR))        as operating_fund_amount_prev_yr,
-        try_to_number(trim(CAPFUND_AMNT))               as capital_fund_amount,
-        try_to_number(trim(CAPFUND_AMNT_PREV_YR))       as capital_fund_amount_prev_yr,
-        try_to_number(trim(ROSS_AMNT))                  as ross_amount,
-        try_to_number(trim(FSS_AMNT))                   as fss_amount,
-        try_to_number(trim(SPENDING_PER_MONTH))         as spending_per_month,
-        try_to_number(trim(SPENDING_PER_MONTH_PREV_YR)) as spending_per_month_prev_yr,
-        try_to_number(trim(ANNL_EXPNS_AMNT))            as annual_expense_amount,
-        try_to_number(trim(ANNL_EXPNS_AMNT_PREV_YR))    as annual_expense_amount_prev_yr,
+        {{ stg_int('trim(OPFUND_AMNT)') }}                as operating_fund_amount,
+        {{ stg_int('trim(OPFUND_AMNT_PREV_YR)') }}        as operating_fund_amount_prev_yr,
+        {{ stg_int('trim(CAPFUND_AMNT)') }}               as capital_fund_amount,
+        {{ stg_int('trim(CAPFUND_AMNT_PREV_YR)') }}       as capital_fund_amount_prev_yr,
+        {{ stg_int('trim(ROSS_AMNT)') }}                  as ross_amount,
+        {{ stg_int('trim(FSS_AMNT)') }}                   as fss_amount,
+        {{ stg_int('trim(SPENDING_PER_MONTH)') }}         as spending_per_month,
+        {{ stg_int('trim(SPENDING_PER_MONTH_PREV_YR)') }} as spending_per_month_prev_yr,
+        {{ stg_int('trim(ANNL_EXPNS_AMNT)') }}            as annual_expense_amount,
+        {{ stg_int('trim(ANNL_EXPNS_AMNT_PREV_YR)') }}    as annual_expense_amount_prev_yr,
 
         -- resident demographics
-        try_to_number(trim(CHLDRN_MBR_CNT))             as children_member_count,
+        {{ stg_int('trim(CHLDRN_MBR_CNT)') }}             as children_member_count,
         try_to_number(trim(ELDLY_PRCNT), 12, 4)         as elderly_percent,
         try_to_number(trim(PCT_DISABLED_LT62_ALL), 12, 4) as pct_disabled_lt62_all,
         try_to_number(trim(PCT_LT80_MEDIAN), 12, 4)     as pct_below_80pct_median_income,
-        try_to_number(trim(MEDIAN_INC_AMNT))            as median_income_amount,
+        {{ stg_int('trim(MEDIAN_INC_AMNT)') }}            as median_income_amount,
 
         -- census geography (2010/2020 geocode block)
         trim(STATE2KX)                                  as state_fips,

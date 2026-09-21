@@ -38,7 +38,7 @@ renamed as (
         upper(trim(STATE))                                                 as state,
         upper(trim(CITY))                                                  as city,
         PAYMENT                                                            as payment_raw,
-        try_to_number(replace(replace(PAYMENT, '$', ''), ',', ''))         as payment_amount,
+        {{ stg_int("replace(replace(PAYMENT, '$', ''), ',', '')") }}         as payment_amount,
         {{ prf_name_norm('PROVIDER_NAME') }}                               as name_norm,
         {{ prf_name_key('PROVIDER_NAME') }}                                as name_key,
         regexp_count({{ prf_name_key('PROVIDER_NAME') }}, ' ') + 1         as name_words,

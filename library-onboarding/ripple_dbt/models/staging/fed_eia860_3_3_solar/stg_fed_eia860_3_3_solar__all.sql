@@ -16,9 +16,9 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))                        as plant_code,
+        {{ stg_int('trim(PLANT_CODE)') }}                        as plant_code,
         trim(GENERATOR_ID)                                     as generator_id,
-        try_to_number(trim(UTILITY_ID))                        as utility_id,
+        {{ stg_int('trim(UTILITY_ID)') }}                        as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                                     as utility_name,
@@ -51,20 +51,20 @@ renamed as (
         trim(VIRTUAL_NET_METERING_AGREEMENT)                   as virtual_net_metering_agreement,
 
         -- measures
-        try_to_number(trim(NAMEPLATE_CAPACITY_MW))             as nameplate_capacity_mw,
-        try_to_number(trim(SUMMER_CAPACITY_MW))                as summer_capacity_mw,
-        try_to_number(trim(WINTER_CAPACITY_MW))                as winter_capacity_mw,
-        try_to_number(trim(OPERATING_MONTH))                   as operating_month,
-        try_to_number(trim(OPERATING_YEAR))                    as operating_year,
-        try_to_number(trim(AZIMUTH_ANGLE))                     as azimuth_angle,
-        try_to_number(trim(TILT_ANGLE))                        as tilt_angle,
-        try_to_number(trim(DC_NET_CAPACITY_MW))                as dc_net_capacity_mw,
-        try_to_number(trim(NET_METERING_DC_CAPACITY_MW))       as net_metering_dc_capacity_mw,
-        try_to_number(trim(VIRTUAL_NET_METERING_DC_CAPACITY_MW))
+        {{ stg_float('trim(NAMEPLATE_CAPACITY_MW)') }}             as nameplate_capacity_mw,
+        {{ stg_float('trim(SUMMER_CAPACITY_MW)') }}                as summer_capacity_mw,
+        {{ stg_float('trim(WINTER_CAPACITY_MW)') }}                as winter_capacity_mw,
+        {{ stg_int('trim(OPERATING_MONTH)') }}                   as operating_month,
+        {{ stg_int('trim(OPERATING_YEAR)') }}                    as operating_year,
+        {{ stg_float('trim(AZIMUTH_ANGLE)') }}                     as azimuth_angle,
+        {{ stg_float('trim(TILT_ANGLE)') }}                        as tilt_angle,
+        {{ stg_float('trim(DC_NET_CAPACITY_MW)') }}                as dc_net_capacity_mw,
+        {{ stg_float('trim(NET_METERING_DC_CAPACITY_MW)') }}       as net_metering_dc_capacity_mw,
+        {{ stg_float('trim(VIRTUAL_NET_METERING_DC_CAPACITY_MW)') }}
                                                                as virtual_net_metering_dc_capacity_mw,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                         as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                         as _loaded_at,
         _SOURCE_RUN_ID                                         as _source_run_id,
         _SRC_FILE                                              as _src_file
 

@@ -15,11 +15,11 @@ renamed as (
 
     select
 
-        try_to_number(trim(TSN))                                as tsn,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
         trim(DOC_ID_PREFIX)                                     as doc_id_prefix,
-        try_to_number(trim(DOCUMENTATION_ID))                   as documentation_id,
+        {{ stg_int('trim(DOCUMENTATION_ID)') }}                   as documentation_id,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
-        try_to_number(trim(VERN_ID))                            as vern_id,
+        {{ stg_int('trim(VERN_ID)') }}                            as vern_id,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)
         to_timestamp_ntz(INGESTED_AT, 6)                        as _loaded_at,

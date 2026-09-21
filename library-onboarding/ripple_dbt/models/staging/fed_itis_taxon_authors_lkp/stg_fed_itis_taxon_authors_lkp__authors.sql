@@ -15,10 +15,10 @@ renamed as (
 
     select
 
-        try_to_number(trim(TAXON_AUTHOR_ID))                    as taxon_author_id,
+        {{ stg_int('trim(TAXON_AUTHOR_ID)') }}                    as taxon_author_id,
         trim(TAXON_AUTHOR)                                      as taxon_author,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
-        try_to_number(trim(KINGDOM_ID))                         as kingdom_id,
+        {{ stg_int('trim(KINGDOM_ID)') }}                         as kingdom_id,
         trim(SHORT_AUTHOR)                                      as short_author,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)

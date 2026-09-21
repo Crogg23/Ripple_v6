@@ -18,9 +18,9 @@ renamed as (
         CASE_NAME                                       as case_name,
 
         -- dates
-        try_to_date(ARGUMENT_DATE)                      as argument_date,
-        try_to_date(DECISION_DATE)                      as decision_date,
-        try_to_number(TERM)                             as term,
+        {{ stg_date('ARGUMENT_DATE') }}                      as argument_date,
+        {{ stg_date('DECISION_DATE') }}                      as decision_date,
+        {{ stg_int('TERM') }}                             as term,
 
         -- decision details
         DECISION                                        as decision,
@@ -46,7 +46,7 @@ renamed as (
         MAJORITY_AUTHOR                                 as person_name,
 
         -- metadata
-        try_to_timestamp(SCRAPED_AT)                    as scraped_at,
+        {{ stg_ts('SCRAPED_AT') }}                    as scraped_at,
         current_timestamp()                             as _ingested_at,
         _SOURCE_RUN_ID                                      as _source_run_id
 

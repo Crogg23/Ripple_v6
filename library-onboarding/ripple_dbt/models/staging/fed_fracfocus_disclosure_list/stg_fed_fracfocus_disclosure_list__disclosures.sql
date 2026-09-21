@@ -27,8 +27,8 @@ renamed as (
         trim(INDIANWELL)                                    as indian_well,
 
         -- dates
-        cast(try_to_timestamp(trim(JOBSTARTDATE)) as date)  as job_start_date,
-        cast(try_to_timestamp(trim(JOBENDDATE)) as date)    as job_end_date,
+        cast({{ stg_ts('trim(JOBSTARTDATE)') }} as date)  as job_start_date,
+        cast({{ stg_ts('trim(JOBENDDATE)') }} as date)    as job_end_date,
 
         -- measures
         try_to_number(trim(LATITUDE), 38, 8)                as latitude,

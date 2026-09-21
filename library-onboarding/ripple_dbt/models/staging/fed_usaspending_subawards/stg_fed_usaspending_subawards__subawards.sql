@@ -16,7 +16,7 @@ parsed as (
         parse_json(RECORD):subaward_number::string       as subaward_number,
         parse_json(RECORD):recipient_name::string        as recipient_name,
         try_to_number(parse_json(RECORD):amount::string, 18, 2) as amount,
-        try_to_date(parse_json(RECORD):action_date::string)     as action_date,
+        {{ stg_date('parse_json(RECORD):action_date::string') }}     as action_date,
         parse_json(RECORD):description::string           as description,
         parse_json(RECORD)                               as record_json,
         to_timestamp_ntz(_INGESTED_AT)                   as _ingested_at,

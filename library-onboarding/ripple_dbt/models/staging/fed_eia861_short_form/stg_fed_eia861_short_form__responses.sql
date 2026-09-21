@@ -36,22 +36,22 @@ renamed as (
 
         -- identifiers
         record_id,
-        try_to_number(nullif(trim(C_2024), '.'))                     as data_year,
-        try_to_number(nullif(trim(C_192), '.'))                      as utility_number,
+        {{ stg_int("nullif(trim(C_2024), '.')") }}                     as data_year,
+        {{ stg_int("nullif(trim(C_192), '.')") }}                      as utility_number,
         trim(AKIACHAK_NATIVE_COMMUNITY_ELECTRIC)                     as utility_name,
         trim(COOPERATIVE)                                            as ownership,
         trim(AK)                                                     as state,
         trim(NA)                                                     as ba_code,
-        try_to_number(nullif(trim(C_1269_4), '.'))                   as revenues_thousand_dollars,
-        try_to_number(nullif(trim(C_1976), '.'))                     as sales_mwh,
-        try_to_number(nullif(trim(C_254), '.'))                      as customers,
+        {{ stg_float("nullif(trim(C_1269_4), '.')") }}                   as revenues_thousand_dollars,
+        {{ stg_int("nullif(trim(C_1976), '.')") }}                     as sales_mwh,
+        {{ stg_int("nullif(trim(C_254), '.')") }}                      as customers,
         trim(COL)                                                    as unrecovered_metric_10,
         trim(N)                                                      as unrecovered_flag_11,
         trim(N_1)                                                    as unrecovered_flag_12,
         trim(N_2)                                                    as unrecovered_flag_13,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

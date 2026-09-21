@@ -56,12 +56,12 @@ renamed_cast as (
         -- the raw OWID code, kept for lineage (carries blanks + OWID_ pseudo).
         nullif(trim(CODE), '')                              as owid_code,
 
-        try_to_number(trim(YEAR))                           as year,
+        {{ stg_int('trim(YEAR)') }}                           as year,
 
         -- measure
         -- absolute current US$. try_to_double so any bad text -> NULL not error.
         -- (verified: 0 uncastable rows; 180 genuine '0' values are kept.)
-        try_to_double(trim(MILITARY_EXPENDITURE))           as military_expenditure_usd,
+        {{ stg_float('trim(MILITARY_EXPENDITURE)') }}           as military_expenditure_usd,
 
         -- attributes
         nullif(trim(WORLD_REGION_ACCORDING_TO_OWID), '')    as world_region,

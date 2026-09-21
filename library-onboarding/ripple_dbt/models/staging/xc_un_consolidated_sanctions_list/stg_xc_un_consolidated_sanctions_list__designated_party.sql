@@ -15,7 +15,7 @@ renamed_cast as (
 
         -- descriptive fields
         RECORD_TYPE                                         as record_type,
-        try_to_number(VERSIONNUM)                           as version_num,
+        {{ stg_int('VERSIONNUM') }}                           as version_num,
         FIRST_NAME                                          as first_name,
         SECOND_NAME                                         as second_name,
         THIRD_NAME                                          as third_name,
@@ -38,7 +38,7 @@ renamed_cast as (
         INTERPOL_LINK                                       as interpol_link,
 
         -- dates
-        try_to_date(LISTED_ON)                              as listed_on,
+        {{ stg_date('LISTED_ON') }}                              as listed_on,
         nullif(trim(LAST_DAY_UPDATED), '')                       as last_day_updated,
         nullif(trim(LAST_REVIEWED_ON), '')                       as last_reviewed_on,
 

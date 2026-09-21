@@ -55,9 +55,9 @@ renamed as (
         -- TRAP (#41): VALUE carries 8,418 literal 'nan' strings. try_to_double('nan')
         -- returns IEEE NaN (NOT null), which then poisons every downstream aggregate.
         -- null_sentinel maps the trimmed 'nan' token -> NULL *before* the cast.
-        try_to_double({{ null_sentinel('VALUE', 'nan') }})              as value,
-        try_to_double({{ null_sentinel('YOY_ABSOLUTE_CHANGE', 'nan') }}) as yoy_absolute_change,
-        try_to_double({{ null_sentinel('YOY___CHANGE', 'nan') }})        as yoy_pct_change,
+        {{ stg_float(null_sentinel('VALUE', 'nan')) }}              as value,
+        {{ stg_float(null_sentinel('YOY_ABSOLUTE_CHANGE', 'nan')) }} as yoy_absolute_change,
+        {{ stg_float(null_sentinel('YOY___CHANGE', 'nan')) }}        as yoy_pct_change,
 
         -- metadata
         _ingested_at,

@@ -25,7 +25,7 @@ renamed as (
         description_text                                  as description_text,
 
         -- key identifier columns (cast to proper types)
-        try_to_date(date)                                 as date,
+        {{ stg_date('date') }}                                 as date,
         nullif(trim(person_name), '')                     as person_name,
         nullif(trim(geo_location), '')                    as geo_location,
         nullif(trim(record_group), '')                    as record_group_number,

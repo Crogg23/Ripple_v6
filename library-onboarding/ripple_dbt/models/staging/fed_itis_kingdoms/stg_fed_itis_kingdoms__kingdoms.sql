@@ -15,7 +15,7 @@ renamed as (
 
     select
 
-        try_to_number(trim(KINGDOM_ID))                         as kingdom_id,
+        {{ stg_int('trim(KINGDOM_ID)') }}                         as kingdom_id,
         trim(KINGDOM_NAME)                                      as kingdom_name,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
 

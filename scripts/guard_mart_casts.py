@@ -80,6 +80,8 @@ def jinja_str(expr: str) -> str | None:
         return f"'{expr}'"
     if '"' not in expr:
         return f'"{expr}"'
+    if "\\" not in expr:          # both quote kinds: Jinja reads \" inside a double-quoted string
+        return '"' + expr.replace('"', '\\"') + '"'
     return None
 
 
@@ -170,6 +172,7 @@ def main() -> int:
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--refs", action="store_true", help="work on marts that read ref() instead of source()")
     ap.add_argument("--staging", action="store_true", help="work on models/staging instead of models/marts")
+    ap.add_argument("--zeros-ok", action="store_true", help="the leading-zero hits were reviewed and are measures, not IDs")
     opts = ap.parse_args()
 
     from connect import db
@@ -192,7 +195,7 @@ def main() -> int:
         if number_exprs:
             relation = relation_for(conn, text)
             fractions = has_fraction(conn, relation, number_exprs) if relation else {e: None for e in number_exprs}
-            zeros = leading_zeros(conn, relation, number_exprs) if relation else {}
+            zeros = leading_zeros(conn, relation, number_exprs) if relation and not opts.zeros_ok else {}
             for e, n in zeros.items():
                 if n:
                     fractions[e] = None

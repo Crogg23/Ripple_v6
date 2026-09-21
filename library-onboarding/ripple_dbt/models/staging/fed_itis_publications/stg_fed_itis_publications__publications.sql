@@ -16,7 +16,7 @@ renamed as (
     select
 
         trim(PUB_ID_PREFIX)                                     as pub_id_prefix,
-        try_to_number(trim(PUBLICATION_ID))                     as publication_id,
+        {{ stg_int('trim(PUBLICATION_ID)') }}                     as publication_id,
         trim(REFERENCE_AUTHOR)                                  as reference_author,
         trim(TITLE)                                             as title,
         trim(PUBLICATION_NAME)                                  as publication_name,

@@ -15,12 +15,12 @@ renamed as (
 
     select
 
-        try_to_number(trim(TSN))                                as tsn,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
         trim(VERNACULAR_NAME)                                   as vernacular_name,
         trim(LANGUAGE)                                          as language,
         trim(APPROVED_IND)                                      as approved_ind,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
-        try_to_number(trim(VERN_ID))                            as vern_id,
+        {{ stg_int('trim(VERN_ID)') }}                            as vern_id,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)
         to_timestamp_ntz(INGESTED_AT, 6)                        as _loaded_at,

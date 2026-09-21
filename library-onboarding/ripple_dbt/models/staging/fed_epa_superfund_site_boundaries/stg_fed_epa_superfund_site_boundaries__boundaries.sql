@@ -13,7 +13,7 @@ with source as (
 renamed as (
 
     select
-        try_to_number(OBJECTID)                          as boundary_feature_id,
+        {{ stg_int('OBJECTID') }}                          as boundary_feature_id,
         trim(EPA_ID)                                     as epa_id,
         trim(SITE_NAME)                                  as site_name,
         trim(EPA_PROGRAM)                                as epa_program,
@@ -25,8 +25,8 @@ renamed as (
         trim(NPL_STATUS_CODE)                            as npl_status_code,
         trim(FEDERAL_FACILITY_DETER_CODE)                as federal_facility_code,
         -- epoch-milliseconds strings
-        to_timestamp_ntz(try_to_number(LAST_CHANGE_DATE) / 1000)      as last_change_at,
-        to_timestamp_ntz(try_to_number(ORIGINAL_CREATION_DATE) / 1000) as originally_created_at,
+        to_timestamp_ntz({{ stg_int('LAST_CHANGE_DATE') }} / 1000)      as last_change_at,
+        to_timestamp_ntz({{ stg_int('ORIGINAL_CREATION_DATE') }} / 1000) as originally_created_at,
         trim(SITE_FEATURE_SOURCE)                        as site_feature_source,
         trim(STREET_ADDR_TXT)                            as street_address,
         trim(ADDR_COMMENT)                               as address_comment,
@@ -39,7 +39,7 @@ renamed as (
         trim(SITE_CONTACT_EMAIL)                         as site_contact_email,
         trim(URL_ALIAS_TXT)                              as site_url,
         trim(FEATURE_INFO_URL)                           as feature_info_url,
-        try_to_double(GIS_AREA)                          as gis_area,
+        {{ stg_float('GIS_AREA') }}                          as gis_area,
         trim(GIS_AREA_UNITS)                             as gis_area_units,
         trim(PROJECTION)                                 as projection,
 

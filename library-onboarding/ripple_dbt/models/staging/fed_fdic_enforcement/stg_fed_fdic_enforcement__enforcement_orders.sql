@@ -22,14 +22,14 @@ renamed as (
         ORDER_URL                                         as order_url,
 
         -- parsed / typed fields extracted from raw_text
+        -- 2026-09-21: the four casts below carry the stg_int / stg_date guards inline; the regex argument has both
+        -- quote kinds and a backslash, which a Jinja string cannot hold.
         -- FDIC certificate number (numeric identifier for the institution)
-        try_to_number(
-            nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        iff(regexp_like(nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), ''), '[+-]?[0-9]+([.]0+)?'), try_to_number(nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), ''), 38, 0), null
         )                                                 as fdic_cert_number,
 
         -- company_id mirrors fdic_cert_number for cross-source keying
-        try_to_number(
-            nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        iff(regexp_like(nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), ''), '[+-]?[0-9]+([.]0+)?'), try_to_number(nullif(trim(regexp_substr(RAW_TEXT, '"fdic_cert_number"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), ''), 38, 0), null
         )                                                 as company_id,
 
         -- docket number
@@ -48,8 +48,7 @@ renamed as (
                                                           as nmls_id,
 
         -- effective / order date
-        try_to_date(
-            nullif(trim(regexp_substr(RAW_TEXT, '"date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        iff(regexp_like(nullif(trim(regexp_substr(RAW_TEXT, '"date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), ''), '.*[0-9A-Za-z][-/][0-9A-Za-z].*'), try_to_date(nullif(trim(regexp_substr(RAW_TEXT, '"date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')), null
         )                                                 as date,
 
         -- additional descriptive fields
@@ -68,8 +67,7 @@ renamed as (
         nullif(trim(regexp_substr(RAW_TEXT, '"termination_date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
                                                           as termination_date_raw,
 
-        try_to_date(
-            nullif(trim(regexp_substr(RAW_TEXT, '"termination_date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')
+        iff(regexp_like(nullif(trim(regexp_substr(RAW_TEXT, '"termination_date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), ''), '.*[0-9A-Za-z][-/][0-9A-Za-z].*'), try_to_date(nullif(trim(regexp_substr(RAW_TEXT, '"termination_date"\s*:\s*"([^"]+)"', 1, 1, 'e', 1)), '')), null
         )                                                 as termination_date,
 
         -- ingestion metadata

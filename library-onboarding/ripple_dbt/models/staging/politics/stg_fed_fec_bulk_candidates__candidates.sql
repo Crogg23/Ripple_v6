@@ -20,7 +20,7 @@ select
     nullif(trim(CAND_ICI), '')                       as incumbent_challenger,
     nullif(trim(CAND_STATUS), '')                    as cand_status,
     nullif(trim(CAND_PCC), '')                       as principal_cmte_id,
-    try_to_number(nullif(trim(CAND_ELECTION_YR), '')) as cand_election_yr,
+    {{ stg_int("nullif(trim(CAND_ELECTION_YR), '')") }} as cand_election_yr,
     _ingested_at
 from source
 where nullif(trim(CAND_ID), '') is not null

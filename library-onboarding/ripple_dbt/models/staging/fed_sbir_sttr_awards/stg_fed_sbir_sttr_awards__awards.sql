@@ -43,15 +43,15 @@ renamed as (
 
         -- award
         nullif(trim(AWARD_TITLE), '')                              as award_title,
-        try_to_number(trim(AWARD_YEAR))                            as award_year,
+        {{ stg_int('trim(AWARD_YEAR)') }}                            as award_year,
         try_to_number(trim(AWARD_AMOUNT), 18, 2)                   as award_amount,
-        try_to_date(nullif(trim(PROPOSAL_AWARD_DATE), ''))         as proposal_award_date,
-        try_to_date(nullif(trim(CONTRACT_END_DATE), ''))           as contract_end_date,
+        {{ stg_date("nullif(trim(PROPOSAL_AWARD_DATE), '')") }}         as proposal_award_date,
+        {{ stg_date("nullif(trim(CONTRACT_END_DATE), '')") }}           as contract_end_date,
         nullif(trim(SOLICITATION_NUMBER), '')                      as solicitation_number,
-        try_to_number(trim(SOLICITATION_YEAR))                     as solicitation_year,
-        try_to_date(nullif(trim(SOLICITATION_CLOSE_DATE), ''))     as solicitation_close_date,
-        try_to_date(nullif(trim(PROPOSAL_RECEIPT_DATE), ''))       as proposal_receipt_date,
-        try_to_date(nullif(trim(DATE_OF_NOTIFICATION), ''))        as date_of_notification,
+        {{ stg_int('trim(SOLICITATION_YEAR)') }}                     as solicitation_year,
+        {{ stg_date("nullif(trim(SOLICITATION_CLOSE_DATE), '')") }}     as solicitation_close_date,
+        {{ stg_date("nullif(trim(PROPOSAL_RECEIPT_DATE), '')") }}       as proposal_receipt_date,
+        {{ stg_date("nullif(trim(DATE_OF_NOTIFICATION), '')") }}        as date_of_notification,
         nullif(trim(TOPIC_CODE), '')                               as topic_code,
 
         -- company
@@ -59,7 +59,7 @@ renamed as (
         nullif(trim(HUBZONE_OWNED), '')                            as hubzone_owned,
         nullif(trim(SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED), '')  as socially_and_economically_disadvantaged,
         nullif(trim(WOMAN_OWNED), '')                              as woman_owned,
-        try_to_number(trim(NUMBER_EMPLOYEES))                      as number_employees,
+        {{ stg_int('trim(NUMBER_EMPLOYEES)') }}                      as number_employees,
         nullif(trim(COMPANY_WEBSITE), '')                          as company_website,
         nullif(trim(ADDRESS1), '')                                 as address1,
         nullif(trim(ADDRESS2), '')                                 as address2,

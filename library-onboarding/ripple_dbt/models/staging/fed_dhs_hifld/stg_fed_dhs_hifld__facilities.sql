@@ -26,7 +26,11 @@ renamed as (
         nullif(trim(LAYER_NAME), '')                               as layer_name,
         nullif(trim(STATUS), '')                                   as status,
         nullif(trim(OWNER), '')                                    as owner,
-        try_to_date(left(nullif(trim(SOURCE_DATE), ''), 10))       as source_date,
+        -- SOURCE_DATE is epoch MILLISECONDS here ('1402531200000' = 2014-06-12), 13 digits on all 500 rows. The old
+        -- code cut it to 10 characters and let a bare try_to_date read that as seconds, right by accident. The date
+        -- guard alone would null it. So: a written date first, then the epoch, read at its real width.
+        coalesce({{ stg_date("left(nullif(trim(SOURCE_DATE), ''), 10)") }},
+                 to_date({{ landing_parse_audit_epoch('SOURCE_DATE') }})) as source_date,
         to_timestamp_ntz(_INGESTED_AT, 6)                          as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                           as _source_run_id
     from source

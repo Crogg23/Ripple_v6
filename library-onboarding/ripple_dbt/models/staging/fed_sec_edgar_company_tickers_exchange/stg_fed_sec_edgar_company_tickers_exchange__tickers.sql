@@ -16,9 +16,9 @@ renamed as (
         -- (CIK, TICKER) is the verified-unique grain (10,398 rows). CIK is the
         -- SEC Central Index Key — THE join key to all other SEC data (EDGAR
         -- filings, DERA submissions, 13F, insider filings).
-        try_to_number(cast(CIK as varchar))            as cik,
+        {{ stg_int('cast(CIK as varchar)') }}            as cik,
         trim(TICKER)                                   as ticker,
-        try_to_number(cast(CIK as varchar)) || '-' || trim(TICKER)
+        {{ stg_int('cast(CIK as varchar)') }} || '-' || trim(TICKER)
                                                        as cik_ticker,
 
         -- dimensions

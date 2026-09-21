@@ -34,8 +34,8 @@ renamed as (
         trim(PARTICIPATINGINNFIP)                        as participating_in_nfip_flag,
         try_to_date(left(trim(CLASSRATINGEFFECTIVEDATE), 10), 'YYYY-MM-DD')       as class_rating_effective_date,
         trim(CLASSRATING)                                as crs_class_rating,
-        try_to_number(trim(SFHADISCOUNT))                as sfha_discount_pct,
-        try_to_number(trim(NONSFHADISCOUNT))             as non_sfha_discount_pct,
+        {{ stg_int('trim(SFHADISCOUNT)') }}                as sfha_discount_pct,
+        {{ stg_int('trim(NONSFHADISCOUNT)') }}             as non_sfha_discount_pct,
         try_to_timestamp_ntz(left(trim(LASTREFRESH), 23), 'YYYY-MM-DD"T"HH24:MI:SS.FF3') as last_refresh_at,
 
         -- metadata (the full-pull table lands _INGESTED_AT as TIMESTAMP_NTZ

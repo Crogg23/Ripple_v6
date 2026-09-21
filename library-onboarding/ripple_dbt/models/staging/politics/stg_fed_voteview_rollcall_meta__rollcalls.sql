@@ -11,17 +11,17 @@ with source as (
 )
 
 select
-    try_to_number(CONGRESS)            as congress,
+    {{ stg_int('CONGRESS') }}            as congress,
     CHAMBER                            as chamber,
-    try_to_number(ROLLNUMBER)          as rollnumber,
+    {{ stg_int('ROLLNUMBER') }}          as rollnumber,
     -- DATE lands as 'YYYY-MM-DD' (sampled 2026-08-11) — explicit format
     try_to_date(nullif(trim(DATE), ''), 'YYYY-MM-DD') as vote_date,
-    try_to_number(SESSION)             as session,
-    try_to_number(YEA_COUNT)           as yea_count,
-    try_to_number(NAY_COUNT)           as nay_count,
+    {{ stg_int('SESSION') }}             as session,
+    {{ stg_int('YEA_COUNT') }}           as yea_count,
+    {{ stg_int('NAY_COUNT') }}           as nay_count,
     nullif(trim(VOTE_RESULT), '')      as vote_result,
     nullif(trim(VOTE_QUESTION), '')    as vote_question,
     nullif(trim(BILL_NUMBER), '')      as bill_number,
     nullif(trim(VOTE_DESC), '')        as vote_desc
 from source
-where try_to_number(ROLLNUMBER) is not null
+where {{ stg_int('ROLLNUMBER') }} is not null

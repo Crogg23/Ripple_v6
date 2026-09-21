@@ -25,10 +25,10 @@ renamed as (
         holc_color                                                     as holc_color,
         area_description_data                                          as area_description_data,
         residential_description                                        as residential_description,
-        try_to_number(year_mapped)                                     as year_mapped,
+        {{ stg_int('year_mapped') }}                                     as year_mapped,
         geometry                                                       as geometry,
-        try_to_double(lat)                                             as lat,
-        try_to_double(lon)                                             as lon,
+        {{ stg_float('lat') }}                                             as lat,
+        {{ stg_float('lon') }}                                             as lon,
 
         -- derived composite key for deduplication / joins
         -- 2026-09-19: the five parts alone repeat across real rows, so the

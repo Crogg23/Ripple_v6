@@ -49,7 +49,7 @@ positional as (
         SRC_SHA256
     from source
     -- keep only real data rows: FHA Number is numeric
-    where try_to_number(trim(DATABASE_OF_FHA_MULTIFAMILY_FIRM_COMMITMENT_ACTIVITY)) is not null
+    where {{ stg_float('DATABASE_OF_FHA_MULTIFAMILY_FIRM_COMMITMENT_ACTIVITY') }} is not null
 
 ),
 
@@ -94,12 +94,12 @@ select
 
     -- measures
     try_to_number(mortgage_amount_raw, 18, 2)          as mortgage_amount,
-    try_to_number(total_units_raw)                     as total_units,
+    {{ stg_int('total_units_raw') }}                     as total_units,
     coalesce(
         try_to_date(left(firm_activity_date_raw, 10), 'YYYY-MM-DD'),
         try_to_date(firm_activity_date_raw, 'MM/DD/YYYY')
     )                                                  as firm_activity_date,
-    try_to_number(fiscal_year_raw)                     as fiscal_year_at_firm_activity,
+    {{ stg_int('fiscal_year_raw') }}                     as fiscal_year_at_firm_activity,
 
     -- flags
     map_or_tap,

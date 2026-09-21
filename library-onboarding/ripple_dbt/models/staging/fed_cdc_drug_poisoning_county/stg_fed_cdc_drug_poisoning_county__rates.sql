@@ -34,14 +34,14 @@ renamed_cast as (
 
         -- geography (join keys)
         nullif(trim(FIPS), '')                                  as fips,
-        try_to_number(trim(YEAR))                               as year,
+        {{ stg_int('trim(YEAR)') }}                               as year,
         nullif(trim(STATE), '')                                 as state_name,
         nullif(trim(ST), '')                                    as state_abbr,
         nullif(trim(FIPS_STATE), '')                            as fips_state,
         nullif(trim(COUNTY), '')                                as county_name,
 
         -- population (genuinely numeric)
-        try_to_number(trim(POPULATION))                         as population,
+        {{ stg_int('trim(POPULATION)') }}                         as population,
 
         -- TRAP: binned text range -- ordinal category, NOT a numeric rate.
         nullif(trim(ESTIMATED_AGE_ADJUSTED_DEATH_RATE_11_CATEGORIES_IN_RANGES), '')

@@ -48,22 +48,22 @@ renamed_cast as (
 
         -- only the rows whose flag is a plain integer get a numeric count;
         -- the '1-9'/'10-50' suppression ranges stay NULL here by design.
-        try_to_number(trim(COUNT_SUP))                          as numeric_count,
+        {{ stg_int('trim(COUNT_SUP)') }}                          as numeric_count,
 
         -- RATE: null the -999 suppression sentinel (exact landed string
         -- '-999.0000000000000') BEFORE casting, so the double is clean.
-        try_to_double({{ null_sentinel('RATE', '-999.0000000000000') }})
+        {{ stg_float(null_sentinel('RATE', '-999.0000000000000')) }}
                                                                 as rate,
 
         -- modeled-rate flag (1 = age-adjusted modeled rate, 0 = crude/zero)
-        try_to_double(trim(RATE_M))                             as rate_modeled_flag,
+        {{ stg_float('trim(RATE_M)') }}                             as rate_modeled_flag,
 
         -- modeled-rate confidence interval text; '-999' is the same suppression
         -- sentinel, so null it (kept as text -- it's a 'lo-hi' range string).
         {{ null_sentinel('RATE_M_CI', '-999') }}                as rate_modeled_ci,
 
         -- as-of / coverage metadata
-        try_to_timestamp(trim(DATA_AS_OF))                      as data_as_of,
+        {{ stg_ts('trim(DATA_AS_OF)') }}                      as data_as_of,
         nullif(trim(TTM_DATE_RANGE), '')                        as ttm_date_range,
 
         -- pipeline audit columns (this table landed them without leading

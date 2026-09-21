@@ -11,12 +11,12 @@ with source as (
 )
 
 select
-    try_to_number(CONGRESS)   as congress,
+    {{ stg_int('CONGRESS') }}   as congress,
     CHAMBER                   as chamber,
-    try_to_number(ROLLNUMBER) as rollnumber,
-    try_to_number(ICPSR)      as icpsr,
-    try_to_number(CAST_CODE)  as cast_code,
-    try_to_double(PROB)       as prob
+    {{ stg_int('ROLLNUMBER') }} as rollnumber,
+    {{ stg_int('ICPSR') }}      as icpsr,
+    {{ stg_int('CAST_CODE') }}  as cast_code,
+    {{ stg_float('PROB') }}       as prob
 from source
-where try_to_number(ICPSR) is not null
-  and try_to_number(ROLLNUMBER) is not null
+where {{ stg_int('ICPSR') }} is not null
+  and {{ stg_int('ROLLNUMBER') }} is not null

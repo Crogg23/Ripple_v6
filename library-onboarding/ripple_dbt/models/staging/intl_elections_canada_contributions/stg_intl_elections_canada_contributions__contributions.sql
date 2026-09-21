@@ -30,7 +30,7 @@ renamed as (
         trim(POLITICAL_PARTY_OF_RECIPIENT)              as political_party_of_recipient,
         trim(ELECTORAL_DISTRICT)                        as electoral_district,
         trim(ELECTORAL_EVENT)                           as electoral_event,
-        try_to_date(trim(FISCAL_ELECTION_DATE))         as fiscal_election_date,
+        {{ stg_date('trim(FISCAL_ELECTION_DATE)') }}         as fiscal_election_date,
 
         -- return / form context
         trim(FORM_ID)                                   as form_id,
@@ -49,9 +49,9 @@ renamed as (
         trim(CONTRIBUTOR_POSTAL_CODE)                   as contributor_postal_code,
 
         -- contribution
-        try_to_date(trim(CONTRIBUTION_RECEIVED_DATE))   as contribution_received_date,
-        try_to_number(trim(MONETARY_AMOUNT))            as monetary_amount,
-        try_to_number(trim(NON_MONETARY_AMOUNT))        as non_monetary_amount,
+        {{ stg_date('trim(CONTRIBUTION_RECEIVED_DATE)') }}   as contribution_received_date,
+        {{ stg_float('trim(MONETARY_AMOUNT)') }}            as monetary_amount,
+        {{ stg_float('trim(NON_MONETARY_AMOUNT)') }}        as non_monetary_amount,
         trim(CONTRIBUTION_GIVEN_THROUGH)                as contribution_given_through,
         trim(LEADERSHIP_CONTESTANT)                     as leadership_contestant,
 

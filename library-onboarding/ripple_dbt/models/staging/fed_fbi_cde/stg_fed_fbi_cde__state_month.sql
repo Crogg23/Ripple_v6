@@ -20,8 +20,8 @@ renamed as (
         nullif(trim(SERIES), '')                                          as series,
         nullif(trim(MONTH), '')                                           as month,
         try_to_date(trim(MONTH), 'MM-YYYY')                               as month_date,
-        try_to_number(replace(trim(COUNT), ',', ''))                      as count,
-        try_to_double(replace(trim(RATE_PER_100K), ',', ''))              as rate_per_100k,
+        {{ stg_int("replace(trim(COUNT), ',', '')") }}                      as count,
+        {{ stg_float("replace(trim(RATE_PER_100K), ',', '')") }}              as rate_per_100k,
         to_timestamp_ntz(_INGESTED_AT, 6)                                 as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                                  as _source_run_id
     from source

@@ -34,8 +34,8 @@ renamed as (
 
         -- identifiers
         record_id,
-        try_to_number(nullif(trim(DATA_YEAR), '.'))                  as data_year,
-        try_to_number(nullif(trim(UTILITY_NUMBER), '.'))             as utility_number,
+        {{ stg_int("nullif(trim(DATA_YEAR), '.')") }}                  as data_year,
+        {{ stg_int("nullif(trim(UTILITY_NUMBER), '.')") }}             as utility_number,
         trim(UTILITY_NAME)                                           as utility_name,
         trim(STATE)                                                  as state,
         trim(OWNERSHIP_TYPE)                                         as ownership_type,
@@ -68,7 +68,7 @@ renamed as (
         trim(ALT_FUEL_VEHICLE_2)                                     as alt_fuel_vehicle_2,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

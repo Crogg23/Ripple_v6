@@ -27,9 +27,9 @@ renamed as (
         trim(VIOLATION_TYPE)                                    as violation_type,
         trim(VIOLATION_TYPE_DESC)                               as violation_type_desc,
         trim(VIOL_DETERMINED_BY_AGENCY)                         as viol_determined_by_agency,
-        try_to_date(trim(DATE_VIOLATION_DETERMINED))            as date_violation_determined,
-        try_to_date(trim(ACTUAL_RTC_DATE))                      as actual_rtc_date,
-        try_to_date(trim(SCHEDULED_COMPLIANCE_DATE))            as scheduled_compliance_date,
+        {{ stg_date('trim(DATE_VIOLATION_DETERMINED)') }}            as date_violation_determined,
+        {{ stg_date('trim(ACTUAL_RTC_DATE)') }}                      as actual_rtc_date,
+        {{ stg_date('trim(SCHEDULED_COMPLIANCE_DATE)') }}            as scheduled_compliance_date,
 
         -- metadata
         ingested_at as _ingested_at,

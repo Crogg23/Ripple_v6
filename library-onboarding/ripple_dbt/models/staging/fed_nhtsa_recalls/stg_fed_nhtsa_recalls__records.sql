@@ -22,7 +22,7 @@ renamed as (
         try_to_date(trim(C9), 'YYYYMMDD')      as bgman,
         try_to_date(trim(C10), 'YYYYMMDD')     as endman,
         trim(C11)                              as rcl_type_cd,
-        try_to_number(C12)                     as potaff,
+        {{ stg_int('C12') }}                     as potaff,
         try_to_date(trim(C13), 'YYYYMMDD')     as odate,
         trim(C14)                              as influenced_by,
         trim(C15)                              as mfgtxt,

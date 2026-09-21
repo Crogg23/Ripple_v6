@@ -15,12 +15,12 @@ with source as (
 
 renamed as (
     select
-        try_to_number(trim(YEAR))                                         as year,
+        {{ stg_int('trim(YEAR)') }}                                         as year,
         nullif(trim(ICD_CHAPTER), '')                                     as icd_chapter,
         nullif(trim(SEX), '')                                             as sex,
-        try_to_number(replace(trim(DEATHS), ',', ''))                     as deaths,
-        try_to_number(replace(trim(POPULATION), ',', ''))                 as population,
-        try_to_double(replace(trim(CRUDE_RATE), ',', ''))                 as crude_rate,
+        {{ stg_int("replace(trim(DEATHS), ',', '')") }}                     as deaths,
+        {{ stg_int("replace(trim(POPULATION), ',', '')") }}                 as population,
+        {{ stg_float("replace(trim(CRUDE_RATE), ',', '')") }}                 as crude_rate,
         to_timestamp_ntz(_INGESTED_AT, 6)                                 as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                                  as _source_run_id
     from source

@@ -22,10 +22,10 @@ renamed as (
         nullif(trim(ZIP), '')                           as zip,
         nullif(trim(COUNTY), '')                        as county,
         nullif(trim(OFFENSE), '')                       as offense,
-        try_to_number("COUNT")                          as offense_count,
+        {{ stg_int('"COUNT"') }}                          as offense_count,
         (upper(trim(COMPLIANT)) = 'Y')                  as is_compliant,
         nullif(trim(TIER), '')                          as tier,
-        try_to_date(nullif(trim(DATE_OF_BIRTH), ''))    as date_of_birth,
+        {{ stg_date("nullif(trim(DATE_OF_BIRTH), '')") }}    as date_of_birth,
         to_timestamp_ntz(INGESTED_AT, 6)                as _ingested_at,
         nullif(trim(SOURCE_RUN_ID), '')                 as _source_run_id
     from source

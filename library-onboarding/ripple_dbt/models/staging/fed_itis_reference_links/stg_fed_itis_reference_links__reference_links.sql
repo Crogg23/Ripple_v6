@@ -15,12 +15,12 @@ renamed as (
 
     select
 
-        try_to_number(trim(TSN))                                as tsn,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
         trim(DOC_ID_PREFIX)                                     as doc_id_prefix,
-        try_to_number(trim(DOCUMENTATION_ID))                   as documentation_id,
+        {{ stg_int('trim(DOCUMENTATION_ID)') }}                   as documentation_id,
         trim(ORIGINAL_DESC_IND)                                 as original_desc_ind,
         trim(INIT_ITIS_DESC_IND)                                as init_itis_desc_ind,
-        try_to_number(trim(CHANGE_TRACK_ID))                    as change_track_id,
+        {{ stg_int('trim(CHANGE_TRACK_ID)') }}                    as change_track_id,
         trim(VERNACULAR_NAME)                                   as vernacular_name,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
 

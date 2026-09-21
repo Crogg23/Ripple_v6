@@ -10,10 +10,10 @@ casted as (
 
     select
         try_to_date(record_date, 'YYYY-MM-DD')          as record_date,
-        try_to_double(debt_held_public_amt)              as debt_held_public_amt,
-        try_to_double(intragov_hold_amt)                 as intragov_hold_amt,
-        try_to_double(tot_pub_debt_out_amt)              as tot_pub_debt_out_amt,
-        try_to_number(src_line_nbr)                      as src_line_nbr,
+        {{ stg_float('debt_held_public_amt') }}              as debt_held_public_amt,
+        {{ stg_float('intragov_hold_amt') }}                 as intragov_hold_amt,
+        {{ stg_float('tot_pub_debt_out_amt') }}              as tot_pub_debt_out_amt,
+        {{ stg_int('src_line_nbr') }}                      as src_line_nbr,
         record_fiscal_yr                                 as record_fiscal_yr,
         record_fiscal_qtr                                as record_fiscal_qtr,
         record_calendar_yr                               as record_calendar_yr,

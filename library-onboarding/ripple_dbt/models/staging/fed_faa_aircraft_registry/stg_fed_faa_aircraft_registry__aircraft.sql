@@ -21,7 +21,7 @@ renamed as (
         nullif(trim(SERIAL_NUMBER), '')                        as serial_number,
         nullif(trim(MFR_MDL_CODE), '')                         as mfr_mdl_code,
         nullif(trim(ENG_MFR_MDL), '')                          as eng_mfr_mdl,
-        try_to_number(nullif(trim(YEAR_MFR), ''))              as year_mfr,
+        {{ stg_int("nullif(trim(YEAR_MFR), '')") }}              as year_mfr,
         nullif(trim(TYPE_REGISTRANT), '')                      as type_registrant,
         nullif(trim(NAME), '')                                 as registrant_name,
         nullif(trim(STREET), '')                               as street,

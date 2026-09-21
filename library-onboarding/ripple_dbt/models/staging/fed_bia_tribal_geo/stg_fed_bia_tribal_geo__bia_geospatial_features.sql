@@ -14,11 +14,11 @@ renamed_cast as (
         LARID                                                       as lar_id,
 
         -- descriptive attributes
-        TRY_TO_NUMBER(OBJECTID)                                     as object_id,
+        {{ stg_int('OBJECTID') }}                                     as object_id,
         LARNAME                                                     as lar_name,
-        TRY_TO_DOUBLE(GISACRES)                                     as gis_acres,
-        TRY_TO_DOUBLE(SHAPE__AREA)                                  as shape_area,
-        TRY_TO_DOUBLE(SHAPE__LENGTH)                                as shape_length,
+        {{ stg_float('GISACRES') }}                                     as gis_acres,
+        {{ stg_float('SHAPE__AREA') }}                                  as shape_area,
+        {{ stg_float('SHAPE__LENGTH') }}                                as shape_length,
         GEOMETRY_JSON                                               as geometry_json,
 
         -- metadata (raw columns carry no leading underscore in this table)

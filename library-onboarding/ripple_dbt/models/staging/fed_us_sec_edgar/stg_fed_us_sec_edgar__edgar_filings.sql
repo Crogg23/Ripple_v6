@@ -28,8 +28,8 @@ renamed as (
         business_address                                        as business_address,
 
         -- dates
-        try_to_date(filed_at)                                   as filed_at,
-        try_to_date(period_of_report)                           as period_of_report,
+        {{ stg_date('filed_at') }}                                   as filed_at,
+        {{ stg_date('period_of_report') }}                           as period_of_report,
 
         -- urls
         filing_url                                              as filing_url,

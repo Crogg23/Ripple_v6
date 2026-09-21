@@ -56,14 +56,14 @@ renamed as (
         nullif(trim(STCNTY), '')                                   as fips,
         nullif(trim(BKCLASS), '')                                  as bkclass,
         nullif(trim(ACTIVE), '')                                   as active,
-        try_to_date(left(nullif(trim(DATEUPDT), ''), 10))          as dateupdt,
-        try_to_date(left(nullif(trim(ESTYMD), ''), 10))            as estymd,
-        try_to_date(nullif(left(nullif(trim(ENDEFYMD), ''), 10), '12/31/9999'))          as endefymd,
+        {{ stg_date("left(nullif(trim(DATEUPDT), ''), 10)") }}          as dateupdt,
+        {{ stg_date("left(nullif(trim(ESTYMD), ''), 10)") }}            as estymd,
+        {{ stg_date("nullif(left(nullif(trim(ENDEFYMD), ''), 10), '12/31/9999')") }}          as endefymd,
         try_to_number(nullif(trim(ASSET), ''), 18, 4)              as asset,
         try_to_number(nullif(trim(DEP), ''), 18, 4)                as dep,
         try_to_number(nullif(trim(DEPDOM), ''), 18, 4)             as depdom,
         try_to_number(nullif(trim(NETINC), ''), 18, 4)             as netinc,
-        try_to_date(left(nullif(trim(REPDTE), ''), 10))            as repdte,
+        {{ stg_date("left(nullif(trim(REPDTE), ''), 10)") }}            as repdte,
         -- likewise RSSDID -> FED_RSSD: the Federal Reserve's RSSD identifier under
         -- the name the full API uses.
         nullif(trim(FED_RSSD), '')                                 as rssdid,
@@ -95,8 +95,8 @@ renamed as (
         nullif(trim(FDICSUPV), '')                                 as fdic_supervisor,
         nullif(trim(OCCDISTDESC), '')                              as occ_district,
         nullif(trim(CONSERVE), '')                                 as in_conservatorship,
-        try_to_date(nullif(left(nullif(trim(INSDATE), ''), 10), '12/31/9999'))           as insured_date,
-        try_to_date(left(nullif(trim(INSDROPDATE), ''), 10))       as insurance_dropped_date,
+        {{ stg_date("nullif(left(nullif(trim(INSDATE), ''), 10), '12/31/9999')") }}           as insured_date,
+        {{ stg_date("left(nullif(trim(INSDROPDATE), ''), 10)") }}       as insurance_dropped_date,
         -- minority depository institution status
         nullif(trim(MDI_STATUS_CODE), '')                          as mdi_status_code,
         nullif(trim(MDI_STATUS_DESC), '')                          as mdi_status_desc,
@@ -111,7 +111,7 @@ renamed as (
         -- writes the ingest stamp as an ISO text value, so passing 6 is a compile
         -- error ("format argument needs to be a string"). try_ also means a single
         -- malformed stamp yields NULL instead of failing the whole build.
-        try_to_timestamp_ntz(_INGESTED_AT)                         as _ingested_at,
+        {{ stg_ts('_INGESTED_AT') }}                         as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                           as _source_run_id
     from source
 )

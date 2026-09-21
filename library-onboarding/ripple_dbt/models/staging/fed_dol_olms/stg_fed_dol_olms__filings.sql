@@ -38,7 +38,7 @@ renamed as (
         trim(F_NUM)                                    as file_number,
         trim(FORM_TYPE)                                as form_type,
         trim(REPORT_YEAR)                              as report_year_raw,
-        try_to_number(trim(YR_COVERED))                as year_covered,
+        {{ stg_int('trim(YR_COVERED)') }}                as year_covered,
 
         -- union identity
         trim(UNION_NAME)                               as union_name,
@@ -52,18 +52,18 @@ renamed as (
 
         -- filing period / lifecycle dates
         trim(FYE)                                      as fiscal_year_end,
-        try_to_date(trim(PD_COVERED_FROM))             as period_covered_from,
-        try_to_date(trim(PD_COVERED_TO))               as period_covered_to,
+        {{ stg_date('trim(PD_COVERED_FROM)') }}             as period_covered_from,
+        {{ stg_date('trim(PD_COVERED_TO)') }}               as period_covered_to,
         -- NOT A BUG (epoch-1970 investigation, 2026-08-18): EST_DATE is 100%
         -- populated across 395,053 of 617,710 rows (64%) with the literal
         -- string '1970-12-01', repeated identically -- confirmed live. That's
         -- a textbook sentinel signature, almost certainly DOL OLMS's own
         -- system default for "establishment date not on file," not a cast
         -- bug. Left as-is on purpose; do not force a fix here.
-        try_to_date(trim(EST_DATE))                    as established_date,
-        try_to_date(trim(TERM_DATE))                   as termination_date,
-        try_to_date(trim(REGISTER_DATE))               as register_date,
-        try_to_date(trim(RECEIVE_DATE))                as receive_date,
+        {{ stg_date('trim(EST_DATE)') }}                    as established_date,
+        {{ stg_date('trim(TERM_DATE)') }}                   as termination_date,
+        {{ stg_date('trim(REGISTER_DATE)') }}               as register_date,
+        {{ stg_date('trim(RECEIVE_DATE)') }}                as receive_date,
         -- BUG FIXED 2026-08-18 (epoch-1970 investigation): NEXT_ELECTION is a
         -- messy free-text field (union self-reported), confirmed live to hold
         -- at least 6 shapes: 'MMYYYY' (022004, the dominant shape, 195,289
@@ -87,14 +87,14 @@ renamed as (
         )                                               as next_election_date,
 
         -- financial totals
-        try_to_number(trim(TTL_ASSETS))                as total_assets,
-        try_to_number(trim(TTL_LIABILITIES))           as total_liabilities,
-        try_to_number(trim(TTL_RECEIPTS))              as total_receipts,
-        try_to_number(trim(TTL_DISBURSEMENTS))         as total_disbursements,
-        try_to_number(trim(MEMBERS))                   as members,
-        try_to_number(trim(SHORTAGE))                  as shortage_amount,
-        try_to_number(trim(MAXIMUM_BOND))              as maximum_bond,
-        try_to_number(trim(NUM_ATTACHMENTS))           as num_attachments,
+        {{ stg_int('trim(TTL_ASSETS)') }}                as total_assets,
+        {{ stg_int('trim(TTL_LIABILITIES)') }}           as total_liabilities,
+        {{ stg_int('trim(TTL_RECEIPTS)') }}              as total_receipts,
+        {{ stg_int('trim(TTL_DISBURSEMENTS)') }}         as total_disbursements,
+        {{ stg_int('trim(MEMBERS)') }}                   as members,
+        {{ stg_int('trim(SHORTAGE)') }}                  as shortage_amount,
+        {{ stg_int('trim(MAXIMUM_BOND)') }}              as maximum_bond,
+        {{ stg_int('trim(NUM_ATTACHMENTS)') }}           as num_attachments,
 
         -- filing flags / attributes
         trim(CONSTITUTION_BYLAW)                       as constitution_bylaw,
@@ -127,7 +127,7 @@ renamed as (
         trim(VOICE)                                    as phone,
 
         -- source-system modification tracking
-        try_to_date(trim(MOD_DATE))                    as modified_date,
+        {{ stg_date('trim(MOD_DATE)') }}                    as modified_date,
         trim(MOD_ID)                                   as modified_by_id,
 
         -- metadata

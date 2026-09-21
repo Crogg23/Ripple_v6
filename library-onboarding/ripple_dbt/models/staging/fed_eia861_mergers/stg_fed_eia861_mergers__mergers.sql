@@ -36,8 +36,8 @@ renamed as (
 
         -- identifiers
         record_id,
-        try_to_number(nullif(trim(C_2024), '.'))                     as data_year,
-        try_to_number(nullif(trim(C_6389), '.'))                     as utility_number,
+        {{ stg_int("nullif(trim(C_2024), '.')") }}                     as data_year,
+        {{ stg_int("nullif(trim(C_6389), '.')") }}                     as utility_number,
         trim(ENERGY_HARBOR_GENERATION_LLC)                           as utility_name,
         try_to_date(trim(C_03_01_2024), 'MM/DD/YYYY')                as effective_date,
         trim(VISTRA_CORP)                                            as new_parent,
@@ -48,7 +48,7 @@ renamed as (
         trim(C_75039)                                                as zip_code,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

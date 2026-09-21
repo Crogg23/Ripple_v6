@@ -24,8 +24,8 @@ renamed as (
         STATE                                              as state,
 
         -- dates
-        try_to_date(EFFECTIVE_DATESORT_ASCENDING)          as effective_date,
-        try_to_date(SUSPENSION_END_DATE)                   as suspension_end_date,
+        {{ stg_date('EFFECTIVE_DATESORT_ASCENDING') }}          as effective_date,
+        {{ stg_date('SUSPENSION_END_DATE') }}                   as suspension_end_date,
 
         -- other fields
         SUSPENSION_ORDER                                   as suspension_order,

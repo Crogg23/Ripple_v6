@@ -26,8 +26,8 @@ renamed as (
         trim(NAME_SURNAME)                             as name_surname,
         trim(NATIONALITY)                              as nationality,
         trim(COUNTRY_OF_RESIDENCE)                     as country_of_residence,
-        try_to_number(trim(DOB_MONTH))                 as dob_month,
-        try_to_number(trim(DOB_YEAR))                  as dob_year,
+        {{ stg_int('trim(DOB_MONTH)') }}                 as dob_month,
+        {{ stg_int('trim(DOB_YEAR)') }}                  as dob_year,
         trim(ADDRESS_PREMISES)                         as address_premises,
         trim(ADDRESS_LINE_1)                           as address_line_1,
         trim(ADDRESS_LOCALITY)                         as address_locality,
@@ -37,8 +37,8 @@ renamed as (
         trim(LEGAL_FORM)                               as legal_form,
         trim(COUNTRY_REGISTERED)                       as country_registered,
         trim(NATURES_OF_CONTROL)                       as natures_of_control,
-        try_to_date(trim(NOTIFIED_ON))                 as notified_on,
-        try_to_date(trim(CEASED_ON))                   as ceased_on,
+        {{ stg_date('trim(NOTIFIED_ON)') }}                 as notified_on,
+        {{ stg_date('trim(CEASED_ON)') }}                   as ceased_on,
 
         -- metadata
         _ingested_at,

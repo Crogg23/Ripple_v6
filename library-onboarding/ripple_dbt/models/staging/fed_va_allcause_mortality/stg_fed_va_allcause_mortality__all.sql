@@ -16,18 +16,18 @@ with source as (
 
 renamed as (
     select
-        try_to_number(trim(YEAR))                                         as year,
+        {{ stg_int('trim(YEAR)') }}                                         as year,
         nullif(trim(COHORT), '')                                          as cohort,
         nullif(trim(SEX), '')                                             as sex,
         nullif(trim(CAUSE_OF_DEATH), '')                                  as cause_of_death,
-        try_to_number(trim(RANK))                                         as rank,
-        try_to_number(replace(trim(NUMBER), ',', ''))                     as deaths,
-        try_to_double(replace(trim(PERCENT), ',', ''))                    as percent_of_deaths,
-        try_to_double(replace(trim(UNADJUSTED_RATE), ',', ''))            as unadjusted_rate,
-        try_to_double(replace(trim(AGE_ADJUSTED_RATE), ',', ''))          as age_adjusted_rate,
-        try_to_double(replace(trim(CRUDE_RATE), ',', ''))                 as crude_rate,
-        try_to_double(replace(trim(YPLL), ',', ''))                       as ypll,
-        try_to_double(replace(trim(YPLL_2), ',', ''))                     as ypll_pct,
+        {{ stg_int('trim(RANK)') }}                                         as rank,
+        {{ stg_int("replace(trim(NUMBER), ',', '')") }}                     as deaths,
+        {{ stg_float("replace(trim(PERCENT), ',', '')") }}                    as percent_of_deaths,
+        {{ stg_float("replace(trim(UNADJUSTED_RATE), ',', '')") }}            as unadjusted_rate,
+        {{ stg_float("replace(trim(AGE_ADJUSTED_RATE), ',', '')") }}          as age_adjusted_rate,
+        {{ stg_float("replace(trim(CRUDE_RATE), ',', '')") }}                 as crude_rate,
+        {{ stg_float("replace(trim(YPLL), ',', '')") }}                       as ypll,
+        {{ stg_float("replace(trim(YPLL_2), ',', '')") }}                     as ypll_pct,
         to_timestamp_ntz(_INGESTED_AT, 6)                                 as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                                  as _source_run_id
     from source

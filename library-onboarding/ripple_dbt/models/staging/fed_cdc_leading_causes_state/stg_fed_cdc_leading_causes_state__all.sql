@@ -14,12 +14,12 @@ with source as (
 
 renamed as (
     select
-        try_to_number(trim(YEAR))                                         as year,
+        {{ stg_int('trim(YEAR)') }}                                         as year,
         nullif(trim(STATE), '')                                           as state,
         nullif(trim(CAUSE_NAME), '')                                      as cause_name,
         nullif(trim(C_113_CAUSE_NAME), '')                                as icd_113_cause_name,
-        try_to_number(replace(trim(DEATHS), ',', ''))                     as deaths,
-        try_to_double(replace(trim(AGE_ADJUSTED_DEATH_RATE), ',', ''))    as age_adjusted_death_rate,
+        {{ stg_int("replace(trim(DEATHS), ',', '')") }}                     as deaths,
+        {{ stg_float("replace(trim(AGE_ADJUSTED_DEATH_RATE), ',', '')") }}    as age_adjusted_death_rate,
         to_timestamp_ntz(_INGESTED_AT, 6)                                 as _ingested_at,
         nullif(trim(_SOURCE_RUN_ID), '')                                  as _source_run_id
     from source

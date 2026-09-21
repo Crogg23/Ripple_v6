@@ -28,9 +28,9 @@ renamed as (
         agency_names                                            as agency_names,
 
         -- dates
-        try_to_date(publication_date)                           as publication_date,
-        try_to_date(effective_on)                               as effective_on,
-        try_to_date(comments_close_on)                          as comments_close_on,
+        {{ stg_date('publication_date') }}                           as publication_date,
+        {{ stg_date('effective_on') }}                               as effective_on,
+        {{ stg_date('comments_close_on') }}                          as comments_close_on,
 
         -- citation / identifiers
         citation                                                as citation,
@@ -39,9 +39,9 @@ renamed as (
         cfr_references                                          as cfr_references,
 
         -- page references
-        try_to_number(start_page)                               as start_page,
-        try_to_number(end_page)                                 as end_page,
-        try_to_number(page_length)                              as page_length,
+        {{ stg_int('start_page') }}                               as start_page,
+        {{ stg_int('end_page') }}                                 as end_page,
+        {{ stg_int('page_length') }}                              as page_length,
 
         -- flags
         case

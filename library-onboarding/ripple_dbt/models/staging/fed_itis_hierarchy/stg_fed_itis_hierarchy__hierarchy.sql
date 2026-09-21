@@ -16,10 +16,10 @@ renamed as (
     select
 
         trim(HIERARCHY_STRING)                                  as hierarchy_string,
-        try_to_number(trim(TSN))                                as tsn,
-        try_to_number(trim(PARENT_TSN))                         as parent_tsn,
-        try_to_number(trim(LEVEL))                              as hierarchy_level,
-        try_to_number(trim(CHILDRENCOUNT))                      as children_count,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
+        {{ stg_int('trim(PARENT_TSN)') }}                         as parent_tsn,
+        {{ stg_int('trim(LEVEL)') }}                              as hierarchy_level,
+        {{ stg_int('trim(CHILDRENCOUNT)') }}                      as children_count,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)
         to_timestamp_ntz(INGESTED_AT, 6)                        as _loaded_at,

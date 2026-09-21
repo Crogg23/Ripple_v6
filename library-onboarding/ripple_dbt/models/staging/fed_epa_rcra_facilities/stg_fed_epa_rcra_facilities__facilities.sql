@@ -26,8 +26,8 @@ renamed as (
         trim(CITY_NAME)                                         as city_name,
         trim(STATE_CODE)                                        as state_code,
         trim(ZIP_CODE)                                          as zip_code,
-        try_to_number(trim(LATITUDE83))                         as latitude83,
-        try_to_number(trim(LONGITUDE83))                        as longitude83,
+        {{ stg_float('trim(LATITUDE83)') }}                         as latitude83,
+        {{ stg_float('trim(LONGITUDE83)') }}                        as longitude83,
         trim(FED_WASTE_GENERATOR)                               as fed_waste_generator,
 
         -- metadata

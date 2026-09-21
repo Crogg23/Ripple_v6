@@ -28,7 +28,7 @@ renamed as (
         trim(EVALUATION_TYPE)                                   as evaluation_type,
         trim(EVALUATION_DESC)                                   as evaluation_desc,
         trim(EVALUATION_AGENCY)                                 as evaluation_agency,
-        try_to_date(trim(EVALUATION_START_DATE))                as evaluation_start_date,
+        {{ stg_date('trim(EVALUATION_START_DATE)') }}                as evaluation_start_date,
         trim(FOUND_VIOLATION)                                   as found_violation,
 
         -- metadata

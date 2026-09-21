@@ -36,15 +36,15 @@ renamed as (
 
         -- identifiers
         record_id,
-        try_to_number(nullif(trim(C_2024), '.'))                     as data_year,
-        try_to_number(nullif(trim(C_55), '.'))                       as utility_number,
+        {{ stg_int("nullif(trim(C_2024), '.')") }}                     as data_year,
+        {{ stg_int("nullif(trim(C_55), '.')") }}                       as utility_number,
         trim(CITY_OF_ABERDEEN_MS)                                    as utility_name,
         trim(MS)                                                     as state,
-        try_to_number(nullif(trim(C_8), '.'))                        as distribution_circuits,
-        try_to_number(nullif(trim(C_8_1), '.'))                      as circuits_with_voltage_optimization,
+        {{ stg_int("nullif(trim(C_8), '.')") }}                        as distribution_circuits,
+        {{ stg_int("nullif(trim(C_8_1), '.')") }}                      as circuits_with_voltage_optimization,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

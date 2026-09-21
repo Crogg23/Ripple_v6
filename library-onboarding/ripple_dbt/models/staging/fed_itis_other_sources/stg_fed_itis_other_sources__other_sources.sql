@@ -16,7 +16,7 @@ renamed as (
     select
 
         trim(SOURCE_ID_PREFIX)                                  as source_id_prefix,
-        try_to_number(trim(SOURCE_ID))                          as source_id,
+        {{ stg_int('trim(SOURCE_ID)') }}                          as source_id,
         trim(SOURCE_TYPE)                                       as source_type,
         trim(SOURCE)                                            as source_name,
         trim(VERSION)                                           as version,

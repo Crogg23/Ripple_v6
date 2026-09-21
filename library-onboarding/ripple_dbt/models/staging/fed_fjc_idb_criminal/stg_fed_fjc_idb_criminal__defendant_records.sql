@@ -54,8 +54,8 @@ renamed as (
         trim(MAGDEF)                                   as magistrate_defendant_number,
         trim(STATUSCD)                                 as status_code,
         trim(FUGSTAT)                                  as fugitive_status,
-        try_to_date(nullif(trim(FGSTRTDATE), '01/01/1900'))                  as fugitive_start_date,
-        try_to_date(nullif(trim(FGENDDATE), '01/01/1900'))                   as fugitive_end_date,
+        {{ stg_date("nullif(trim(FGSTRTDATE), '01/01/1900')") }}                  as fugitive_start_date,
+        {{ stg_date("nullif(trim(FGENDDATE), '01/01/1900')") }}                   as fugitive_end_date,
         -- NOT A BUG (epoch-1970 investigation, 2026-08-18): file_date/proceeding_date
         -- drive 6,731-of-6,299,908 (0.1%) 1970 rows (confirmed live), spread across
         -- many distinct 1970 dates -- expected, since 1970 is literally the
@@ -66,10 +66,10 @@ renamed as (
         -- parse succeeds), but a future source-format change could silently
         -- reintroduce the epoch trap here. Left as-is per the no-guess rule --
         -- there is no live defect to fix.
-        try_to_date(nullif(trim(FILEDATE), '01/01/1900'))                    as file_date,
-        try_to_date(nullif(trim(PROCDATE), '01/01/1900'))                    as proceeding_date,
+        {{ stg_date("nullif(trim(FILEDATE), '01/01/1900')") }}                    as file_date,
+        {{ stg_date("nullif(trim(PROCDATE), '01/01/1900')") }}                    as proceeding_date,
         trim(PROCCD)                                   as proceeding_code,
-        try_to_date(nullif(trim(APPDATE), '01/01/1900'))                     as app_date,
+        {{ stg_date("nullif(trim(APPDATE), '01/01/1900')") }}                     as app_date,
         trim(APPCD)                                    as app_code,
         trim(FJUDGE)                                   as filing_judge,
         trim(FCOUNSEL)                                 as filing_counsel,
@@ -110,9 +110,9 @@ renamed as (
         nullif(trim(C_UPDATE), '01/01/1900')                                 as c_update,
 
         -- termination
-        try_to_date(nullif(trim(DISPDATE), '01/01/1900'))                    as disposition_date,
-        try_to_date(nullif(trim(SENTDATE), '01/01/1900'))                    as sentence_date,
-        try_to_date(nullif(trim(TERMDATE), '01/01/1900'))                    as term_date,
+        {{ stg_date("nullif(trim(DISPDATE), '01/01/1900')") }}                    as disposition_date,
+        {{ stg_date("nullif(trim(SENTDATE), '01/01/1900')") }}                    as sentence_date,
+        {{ stg_date("nullif(trim(TERMDATE), '01/01/1900')") }}                    as term_date,
         trim(INT1)                                     as int_1,
         trim(INT2)                                     as int_2,
         trim(INT3)                                     as int_3,
@@ -132,7 +132,7 @@ renamed as (
         trim(PROBMON1)                                 as probation_months_1,
         trim(PROBCD1)                                  as probation_code_1,
         trim(SUPVREL1)                                 as supervised_release_1,
-        try_to_number(trim(FINEAMT1))                  as fine_amount_1,
+        {{ stg_int('trim(FINEAMT1)') }}                  as fine_amount_1,
         trim(TTITLE2)                                  as term_title_2,
         trim(TOFFLVL2)                                 as term_offense_level_2,
         trim(TOFFCD2)                                  as term_offense_code_2,
@@ -144,7 +144,7 @@ renamed as (
         trim(PROBMON2)                                 as probation_months_2,
         trim(PROBCD2)                                  as probation_code_2,
         trim(SUPVREL2)                                 as supervised_release_2,
-        try_to_number(trim(FINEAMT2))                  as fine_amount_2,
+        {{ stg_int('trim(FINEAMT2)') }}                  as fine_amount_2,
         trim(TTITLE3)                                  as term_title_3,
         trim(TOFFLVL3)                                 as term_offense_level_3,
         trim(TOFFCD3)                                  as term_offense_code_3,
@@ -156,7 +156,7 @@ renamed as (
         trim(PROBMON3)                                 as probation_months_3,
         trim(PROBCD3)                                  as probation_code_3,
         trim(SUPVREL3)                                 as supervised_release_3,
-        try_to_number(trim(FINEAMT3))                  as fine_amount_3,
+        {{ stg_int('trim(FINEAMT3)') }}                  as fine_amount_3,
         trim(TTITLE4)                                  as term_title_4,
         trim(TOFFLVL4)                                 as term_offense_level_4,
         trim(TOFFCD4)                                  as term_offense_code_4,
@@ -168,7 +168,7 @@ renamed as (
         trim(PROBMON4)                                 as probation_months_4,
         trim(PROBCD4)                                  as probation_code_4,
         trim(SUPVREL4)                                 as supervised_release_4,
-        try_to_number(trim(FINEAMT4))                  as fine_amount_4,
+        {{ stg_int('trim(FINEAMT4)') }}                  as fine_amount_4,
         trim(TTITLE5)                                  as term_title_5,
         trim(TOFFLVL5)                                 as term_offense_level_5,
         trim(TOFFCD5)                                  as term_offense_code_5,
@@ -180,12 +180,12 @@ renamed as (
         trim(PROBMON5)                                 as probation_months_5,
         trim(PROBCD5)                                  as probation_code_5,
         trim(SUPVREL5)                                 as supervised_release_5,
-        try_to_number(trim(FINEAMT5))                  as fine_amount_5,
+        {{ stg_int('trim(FINEAMT5)') }}                  as fine_amount_5,
 
         -- sentence totals
-        try_to_number(trim(PRISTOT))                   as prison_total,
-        try_to_number(trim(PROBTOT))                   as probation_total,
-        try_to_number(trim(FINETOT))                   as fine_total,
+        {{ stg_int('trim(PRISTOT)') }}                   as prison_total,
+        {{ stg_int('trim(PROBTOT)') }}                   as probation_total,
+        {{ stg_int('trim(FINETOT)') }}                   as fine_total,
 
         -- count columns
         trim(CTFILTRN)                                 as ct_fil_trn,
@@ -202,7 +202,7 @@ renamed as (
         -- file provenance
         trim(SOURCE)                                   as source_code,
         trim(VER)                                      as file_version,
-        try_to_date(nullif(trim(LOADDATE), '01/01/1900'))                    as load_date,
+        {{ stg_date("nullif(trim(LOADDATE), '01/01/1900')") }}                    as load_date,
 
         -- metadata
         _ingested_at,

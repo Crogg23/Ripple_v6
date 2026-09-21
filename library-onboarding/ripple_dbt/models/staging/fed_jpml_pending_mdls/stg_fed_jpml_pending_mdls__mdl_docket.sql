@@ -21,8 +21,8 @@ renamed as (
         trim(LITIGATION)                               as litigation,
 
         -- measures
-        try_to_number(trim(PENDING))                   as pending_cases,
-        try_to_number(trim(TOTAL))                     as total_cases,
+        {{ stg_int('trim(PENDING)') }}                   as pending_cases,
+        {{ stg_int('trim(TOTAL)') }}                     as total_cases,
 
         -- metadata
         _ingested_at,

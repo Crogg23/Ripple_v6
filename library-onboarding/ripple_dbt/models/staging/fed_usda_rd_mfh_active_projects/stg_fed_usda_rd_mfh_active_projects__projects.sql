@@ -30,7 +30,7 @@ renamed as (
         trim(ZIP_CODE)                                  as zip_code,
 
         -- project characteristics
-        try_to_number(trim(PROJECT_SIZE))               as project_size_units,
+        {{ stg_int('trim(PROJECT_SIZE)') }}               as project_size_units,
         trim(RENTAL_CODE)                               as rental_code,
         trim(LABOR_HOUSING_TYPE)                        as labor_housing_type,
         trim(REVITILIZATION_INDICATOR)                  as revitalization_indicator,
@@ -42,15 +42,15 @@ renamed as (
         try_to_date(trim(DATE_RESTRICTIVE_CLAUSE_EXPIRES), 'MM/DD/YYYY')  as date_restrictive_clause_expires,
 
         -- units
-        try_to_number(trim(TOTAL_1_BEDROOM_UNITS))      as total_1_bedroom_units,
-        try_to_number(trim(TOTAL_2_BEDROOM_UNITS))      as total_2_bedroom_units,
-        try_to_number(trim(TOTAL_3_BEDROOM_UNITS))      as total_3_bedroom_units,
-        try_to_number(trim(TOTAL_4_BEDROOM_UNITS))      as total_4_bedroom_units,
-        try_to_number(trim(TOTAL_5_BEDROOM_UNITS))      as total_5_bedroom_units,
-        try_to_number(trim(TOTAL_6_BEDROOM_UNITS))      as total_6_bedroom_units,
-        try_to_number(trim(TOTAL_HANDICAPPED_UNITS))    as total_handicapped_units,
-        try_to_number(trim(VACANT_UNITS))               as vacant_units,
-        try_to_number(trim(RENTAL_ASSISTANCE_UNITS))    as rental_assistance_units,
+        {{ stg_int('trim(TOTAL_1_BEDROOM_UNITS)') }}      as total_1_bedroom_units,
+        {{ stg_int('trim(TOTAL_2_BEDROOM_UNITS)') }}      as total_2_bedroom_units,
+        {{ stg_int('trim(TOTAL_3_BEDROOM_UNITS)') }}      as total_3_bedroom_units,
+        {{ stg_int('trim(TOTAL_4_BEDROOM_UNITS)') }}      as total_4_bedroom_units,
+        {{ stg_int('trim(TOTAL_5_BEDROOM_UNITS)') }}      as total_5_bedroom_units,
+        {{ stg_int('trim(TOTAL_6_BEDROOM_UNITS)') }}      as total_6_bedroom_units,
+        {{ stg_int('trim(TOTAL_HANDICAPPED_UNITS)') }}    as total_handicapped_units,
+        {{ stg_int('trim(VACANT_UNITS)') }}               as vacant_units,
+        {{ stg_int('trim(RENTAL_ASSISTANCE_UNITS)') }}    as rental_assistance_units,
 
         -- metadata
         to_timestamp_ntz(INGESTED_AT, 6)                as _ingested_at,

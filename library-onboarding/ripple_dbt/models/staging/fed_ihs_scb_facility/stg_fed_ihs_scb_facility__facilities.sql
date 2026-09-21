@@ -40,7 +40,7 @@ renamed as (
         trim(FACILITY)                                 as facility_name,
         nullif(trim(FACILITY_TYPE), '?')               as facility_type,
         nullif(trim(LOCATION_TYPE), '?')               as location_type,
-        try_to_number(trim(BED_COUNT))                 as bed_count,
+        {{ stg_int('trim(BED_COUNT)') }}                 as bed_count,
         trim(STATUS)                                   as status,
         nullif(trim(APC_FLAG), '?')                    as apc_flag,
         trim(ITU_CODE)                                 as itu_code,

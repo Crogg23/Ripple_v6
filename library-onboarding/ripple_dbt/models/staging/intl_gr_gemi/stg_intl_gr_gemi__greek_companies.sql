@@ -29,9 +29,9 @@ renamed as (
         LOCAL_GEMI_OFFICE                              as local_gemi_office,
 
         -- dates
-        try_to_date(FORMATION_DATE)                    as formation_date,
-        try_to_date(CLOSURE_DATE)                      as closure_date,
-        try_to_date(KAK_CHANGE_DATE)                   as kak_change_date,
+        {{ stg_date('FORMATION_DATE') }}                    as formation_date,
+        {{ stg_date('CLOSURE_DATE') }}                      as closure_date,
+        {{ stg_date('KAK_CHANGE_DATE') }}                   as kak_change_date,
 
         -- location
         CITY                                           as city,

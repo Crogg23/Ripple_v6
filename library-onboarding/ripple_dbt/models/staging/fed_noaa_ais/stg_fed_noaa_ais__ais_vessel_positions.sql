@@ -35,18 +35,18 @@ renamed_cast as (
         -- normalized IMO is the cross-source join key (bare valid 7-digit,
         -- else NULL). Joins to OFAC/OpenSanctions/GLEIF.
         {{ normalize_imo('IMO') }}                          as imo_normalized,
-        try_to_date(trim(DATE))                             as date,
+        {{ stg_date('trim(DATE)') }}                             as date,
 
         -- timestamps
-        try_to_timestamp(trim(BASEDATETIME))                as base_datetime,
+        {{ stg_ts('trim(BASEDATETIME)') }}                as base_datetime,
 
         -- position
-        try_to_double(trim(LAT))                            as latitude,
-        try_to_double(trim(LON))                            as longitude,
+        {{ stg_float('trim(LAT)') }}                            as latitude,
+        {{ stg_float('trim(LON)') }}                            as longitude,
 
         -- navigation
-        try_to_double(trim(SOG))                            as speed_over_ground,
-        try_to_double(trim(COG))                            as course_over_ground,
+        {{ stg_float('trim(SOG)') }}                            as speed_over_ground,
+        {{ stg_float('trim(COG)') }}                            as course_over_ground,
         -- HEADING: 511 (and anything >= 360) is the AIS 'not available' sentinel
         -- on 52% of rows -- null it so aggregates don't get dragged to ~357.
         {{ clean_heading('HEADING') }}                      as heading,
@@ -54,12 +54,12 @@ renamed_cast as (
         -- vessel attributes
         trim(VESSELNAME)                                    as vessel_name,
         trim(CALLSIGN)                                      as call_sign,
-        try_to_number(trim(VESSELTYPE))                     as vessel_type_code,
+        {{ stg_int('trim(VESSELTYPE)') }}                     as vessel_type_code,
         trim(STATUS)                                        as nav_status,
-        try_to_double(trim(LENGTH))                         as length_meters,
-        try_to_double(trim(WIDTH))                          as width_meters,
-        try_to_double(trim(DRAFT))                          as draft_meters,
-        try_to_number(trim(CARGO))                          as cargo_type_code,
+        {{ stg_float('trim(LENGTH)') }}                         as length_meters,
+        {{ stg_float('trim(WIDTH)') }}                          as width_meters,
+        {{ stg_float('trim(DRAFT)') }}                          as draft_meters,
+        {{ stg_int('trim(CARGO)') }}                          as cargo_type_code,
 
         -- metadata
         trim(TRANSCEIVER_CLASS)                             as transceiver_class,

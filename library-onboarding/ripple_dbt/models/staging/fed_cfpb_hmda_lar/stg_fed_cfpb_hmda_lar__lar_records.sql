@@ -33,7 +33,7 @@ renamed as (
 
         -- identifiers
         lar_record_id,
-        try_to_number(trim(ACTIVITY_YEAR))               as activity_year,
+        {{ stg_int('trim(ACTIVITY_YEAR)') }}               as activity_year,
         trim(LEI)                                        as lei,
 
         -- geography
@@ -72,9 +72,9 @@ renamed as (
         try_to_number(trim(ORIGINATION_CHARGES), 18, 2)  as origination_charges,
         try_to_number(trim(DISCOUNT_POINTS), 18, 2)      as discount_points,
         try_to_number(trim(LENDER_CREDITS), 18, 2)       as lender_credits,
-        try_to_number(trim(LOAN_TERM))                   as loan_term_months,
-        try_to_number(trim(PREPAYMENT_PENALTY_TERM))     as prepayment_penalty_term,
-        try_to_number(trim(INTRO_RATE_PERIOD))           as intro_rate_period,
+        {{ stg_int('trim(LOAN_TERM)') }}                   as loan_term_months,
+        {{ stg_int('trim(PREPAYMENT_PENALTY_TERM)') }}     as prepayment_penalty_term,
+        {{ stg_int('trim(INTRO_RATE_PERIOD)') }}           as intro_rate_period,
 
         -- loan features
         trim(NEGATIVE_AMORTIZATION)                      as negative_amortization,
@@ -83,16 +83,16 @@ renamed as (
         trim(OTHER_NONAMORTIZING_FEATURES)               as other_nonamortizing_features,
 
         -- property
-        try_to_number(trim(PROPERTY_VALUE))              as property_value,
+        {{ stg_int('trim(PROPERTY_VALUE)') }}              as property_value,
         trim(CONSTRUCTION_METHOD)                        as construction_method,
         trim(OCCUPANCY_TYPE)                             as occupancy_type,
         trim(MANUFACTURED_HOME_SECURED_PROPERTY_TYPE)    as manufactured_home_secured_property_type,
         trim(MANUFACTURED_HOME_LAND_PROPERTY_INTEREST)   as manufactured_home_land_property_interest,
         trim(TOTAL_UNITS)                                as total_units,
-        try_to_number(trim(MULTIFAMILY_AFFORDABLE_UNITS)) as multifamily_affordable_units,
+        {{ stg_int('trim(MULTIFAMILY_AFFORDABLE_UNITS)') }} as multifamily_affordable_units,
 
         -- applicant financials
-        try_to_number(trim(INCOME))                      as income_thousands,
+        {{ stg_int('trim(INCOME)') }}                      as income_thousands,
         trim(DEBT_TO_INCOME_RATIO)                       as debt_to_income_ratio,
         trim(APPLICANT_CREDIT_SCORE_TYPE)                as applicant_credit_score_type,
         trim(CO_APPLICANT_CREDIT_SCORE_TYPE)             as co_applicant_credit_score_type,
@@ -145,13 +145,13 @@ renamed as (
         trim(DENIAL_REASON_4)                            as denial_reason_4,
 
         -- tract context
-        try_to_number(trim(TRACT_POPULATION))            as tract_population,
+        {{ stg_int('trim(TRACT_POPULATION)') }}            as tract_population,
         try_to_number(trim(TRACT_MINORITY_POPULATION_PERCENT), 10, 4) as tract_minority_population_percent,
-        try_to_number(trim(FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME))        as ffiec_msa_md_median_family_income,
+        {{ stg_int('trim(FFIEC_MSA_MD_MEDIAN_FAMILY_INCOME)') }}        as ffiec_msa_md_median_family_income,
         try_to_number(trim(TRACT_TO_MSA_INCOME_PERCENTAGE), 10, 4)    as tract_to_msa_income_percentage,
-        try_to_number(trim(TRACT_OWNER_OCCUPIED_UNITS))  as tract_owner_occupied_units,
-        try_to_number(trim(TRACT_ONE_TO_FOUR_FAMILY_HOMES)) as tract_one_to_four_family_homes,
-        try_to_number(trim(TRACT_MEDIAN_AGE_OF_HOUSING_UNITS)) as tract_median_age_of_housing_units,
+        {{ stg_int('trim(TRACT_OWNER_OCCUPIED_UNITS)') }}  as tract_owner_occupied_units,
+        {{ stg_int('trim(TRACT_ONE_TO_FOUR_FAMILY_HOMES)') }} as tract_one_to_four_family_homes,
+        {{ stg_int('trim(TRACT_MEDIAN_AGE_OF_HOUSING_UNITS)') }} as tract_median_age_of_housing_units,
 
         -- metadata
         to_timestamp_ntz(INGESTED_AT, 6)                 as _ingested_at,

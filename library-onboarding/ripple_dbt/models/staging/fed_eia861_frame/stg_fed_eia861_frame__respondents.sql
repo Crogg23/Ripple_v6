@@ -36,8 +36,8 @@ renamed as (
 
         -- identifiers
         record_id,
-        try_to_number(nullif(trim(C_2024), '.'))                     as data_year,
-        try_to_number(nullif(trim(C_34), '.'))                       as utility_number,
+        {{ stg_int("nullif(trim(C_2024), '.')") }}                     as data_year,
+        {{ stg_int("nullif(trim(C_34), '.')") }}                       as utility_number,
         trim(CITY_OF_ABBEVILLE_SC)                                   as utility_name,
         trim(Y)                                                      as short_form,
         trim(M)                                                      as ownership_code,
@@ -59,7 +59,7 @@ renamed as (
         trim(UNNAMED_20)                                             as schedule_flag_15,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)                               as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}                               as _loaded_at,
         _SOURCE_RUN_ID                                               as _source_run_id,
         _SRC_FILE                                                    as _src_file
 

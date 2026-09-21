@@ -28,11 +28,11 @@ renamed as (
         trim(ENFORCEMENT_TYPE)                                  as enforcement_type,
         trim(ENFORCEMENT_DESC)                                  as enforcement_desc,
         trim(ENFORCEMENT_AGENCY)                                as enforcement_agency,
-        try_to_date(trim(ENFORCEMENT_ACTION_DATE))              as enforcement_action_date,
-        try_to_number(trim(PMP_AMOUNT))                         as pmp_amount,
-        try_to_number(trim(FMP_AMOUNT))                         as fmp_amount,
-        try_to_number(trim(FSC_AMOUNT))                         as fsc_amount,
-        try_to_number(trim(SCR_AMOUNT))                         as scr_amount,
+        {{ stg_date('trim(ENFORCEMENT_ACTION_DATE)') }}              as enforcement_action_date,
+        {{ stg_float('trim(PMP_AMOUNT)') }}                         as pmp_amount,
+        {{ stg_float('trim(FMP_AMOUNT)') }}                         as fmp_amount,
+        {{ stg_float('trim(FSC_AMOUNT)') }}                         as fsc_amount,
+        {{ stg_float('trim(SCR_AMOUNT)') }}                         as scr_amount,
 
         -- metadata
         ingested_at as _ingested_at,

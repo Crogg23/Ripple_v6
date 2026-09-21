@@ -44,7 +44,7 @@ renamed_cast as (
         -- composite natural key (year, county_fips) is unique across all
         -- 128,507 rows; surrogate built for a single-column unique test.
         trim(YEAR) || '|' || trim(COUNTY_FIPS)              as year_county_fips,
-        try_to_number(trim(YEAR))                           as year,
+        {{ stg_int('trim(YEAR)') }}                           as year,
         nullif(trim(COUNTY_FIPS), '')                       as county_fips,
         nullif(trim(COUNTY_NAME), '')                       as county_name,
         nullif(trim(STATE_ABBR), '')                        as state_abbr,
@@ -55,44 +55,44 @@ renamed_cast as (
 
         -- coverage flag: 2025-2026 are population-only placeholder stubs
         -- (no usable jail/prison data, blank population, 5-11 states only)
-        case when try_to_number(trim(YEAR)) > 2024 then true else false end
+        case when {{ stg_int('trim(YEAR)') }} > 2024 then true else false end
                                                             as is_stub_year,
 
         -- ---- population denominators (15-64 working-age) ---------------
-        try_to_double(trim(TOTAL_POP_15TO64))               as total_pop_15to64,
-        try_to_double(trim(BLACK_POP_15TO64))               as black_pop_15to64,
-        try_to_double(trim(WHITE_POP_15TO64))               as white_pop_15to64,
-        try_to_double(trim(LATINX_POP_15TO64))              as latinx_pop_15to64,
+        {{ stg_float('trim(TOTAL_POP_15TO64)') }}               as total_pop_15to64,
+        {{ stg_float('trim(BLACK_POP_15TO64)') }}               as black_pop_15to64,
+        {{ stg_float('trim(WHITE_POP_15TO64)') }}               as white_pop_15to64,
+        {{ stg_float('trim(LATINX_POP_15TO64)') }}              as latinx_pop_15to64,
 
         -- ---- JAIL series (usable through 2024) -------------------------
-        try_to_double(trim(TOTAL_JAIL_POP))                 as total_jail_pop,
-        try_to_double(trim(BLACK_JAIL_POP))                 as black_jail_pop,
-        try_to_double(trim(WHITE_JAIL_POP))                 as white_jail_pop,
-        try_to_double(trim(TOTAL_JAIL_POP_RATE))            as total_jail_pop_rate,
-        try_to_double(trim(BLACK_JAIL_POP_RATE))            as black_jail_pop_rate,
-        try_to_double(trim(WHITE_JAIL_POP_RATE))            as white_jail_pop_rate,
-        try_to_double(trim(LATINX_JAIL_POP_RATE))           as latinx_jail_pop_rate,
+        {{ stg_float('trim(TOTAL_JAIL_POP)') }}                 as total_jail_pop,
+        {{ stg_float('trim(BLACK_JAIL_POP)') }}                 as black_jail_pop,
+        {{ stg_float('trim(WHITE_JAIL_POP)') }}                 as white_jail_pop,
+        {{ stg_float('trim(TOTAL_JAIL_POP_RATE)') }}            as total_jail_pop_rate,
+        {{ stg_float('trim(BLACK_JAIL_POP_RATE)') }}            as black_jail_pop_rate,
+        {{ stg_float('trim(WHITE_JAIL_POP_RATE)') }}            as white_jail_pop_rate,
+        {{ stg_float('trim(LATINX_JAIL_POP_RATE)') }}           as latinx_jail_pop_rate,
 
         -- ---- PRISON + TOTAL-INCARCERATION series ------------------------
         -- TRAP: dead-ends at 2019. For year > 2019 the source stores BLANK
         -- (= missing, NOT zero). Hard-NULL the whole block so it can never be
         -- coalesced to 0 downstream. <=2019 keeps real values (blanks -> NULL).
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(TOTAL_PRISON_POP)) end as total_prison_pop,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(BLACK_PRISON_POP)) end as black_prison_pop,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(WHITE_PRISON_POP)) end as white_prison_pop,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(TOTAL_PRISON_POP_RATE)) end as total_prison_pop_rate,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(BLACK_PRISON_POP_RATE)) end as black_prison_pop_rate,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(WHITE_PRISON_POP_RATE)) end as white_prison_pop_rate,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(TOTAL_INCARCERATION)) end as total_incarceration,
-        case when try_to_number(trim(YEAR)) <= 2019
-             then try_to_double(trim(TOTAL_INCARCERATION_RATE)) end as total_incarceration_rate,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(TOTAL_PRISON_POP)') }} end as total_prison_pop,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(BLACK_PRISON_POP)') }} end as black_prison_pop,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(WHITE_PRISON_POP)') }} end as white_prison_pop,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(TOTAL_PRISON_POP_RATE)') }} end as total_prison_pop_rate,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(BLACK_PRISON_POP_RATE)') }} end as black_prison_pop_rate,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(WHITE_PRISON_POP_RATE)') }} end as white_prison_pop_rate,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(TOTAL_INCARCERATION)') }} end as total_incarceration,
+        case when {{ stg_int('trim(YEAR)') }} <= 2019
+             then {{ stg_float('trim(TOTAL_INCARCERATION_RATE)') }} end as total_incarceration_rate,
 
         -- ---- pipeline audit columns ------------------------------------
         to_timestamp_ntz(INGESTED_AT, 6)                    as _ingested_at,

@@ -33,7 +33,7 @@ renamed as (
         try_to_date(first_posted_date, 'YYYY-MM-DD')           as first_posted_date,
 
         -- numeric
-        try_to_number(enrollment)                              as enrollment,
+        {{ stg_int('enrollment') }}                              as enrollment,
 
         -- sponsor / oversight
         lead_sponsor_name,

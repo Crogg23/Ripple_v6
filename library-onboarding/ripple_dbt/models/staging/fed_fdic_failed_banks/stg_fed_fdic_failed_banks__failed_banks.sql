@@ -45,9 +45,9 @@ renamed_cast as (
         )                                                       as insured_date,
 
         -- financial figures (in thousands)
-        try_to_number(regexp_replace(trim(qbfasset), '[^0-9.\-]', ''))  as total_assets_thousands,
-        try_to_number(regexp_replace(trim(qbfdep),   '[^0-9.\-]', ''))  as total_deposits_thousands,
-        try_to_number(regexp_replace(trim(cost),     '[^0-9.\-]', ''))  as estimated_loss_thousands,
+        {{ stg_int("regexp_replace(trim(qbfasset), '[^0-9.\-]', '')") }}  as total_assets_thousands,
+        {{ stg_int("regexp_replace(trim(qbfdep),   '[^0-9.\-]', '')") }}  as total_deposits_thousands,
+        {{ stg_int("regexp_replace(trim(cost),     '[^0-9.\-]', '')") }}  as estimated_loss_thousands,
 
         -- metadata
         current_timestamp()                                     as _ingested_at,

@@ -13,8 +13,8 @@ renamed as (
 
     select
         -- keys
-        try_to_number(index_key)          as index_key,
-        try_to_number(cik_str)            as cik,
+        {{ stg_int('index_key') }}          as index_key,
+        {{ stg_int('cik_str') }}            as cik,
         trim(ticker)                      as ticker,
 
         -- attributes

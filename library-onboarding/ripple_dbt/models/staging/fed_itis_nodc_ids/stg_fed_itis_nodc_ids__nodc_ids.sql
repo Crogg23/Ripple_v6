@@ -17,7 +17,7 @@ renamed as (
 
         trim(NODC_ID)                                           as nodc_id,
         try_to_date(trim(UPDATE_DATE), 'YYYY-MM-DD')            as update_date,
-        try_to_number(trim(TSN))                                as tsn,
+        {{ stg_int('trim(TSN)') }}                                as tsn,
 
         -- metadata (no-underscore variant on ITIS tables; INGESTED_AT is an epoch-microseconds NUMBER)
         to_timestamp_ntz(INGESTED_AT, 6)                        as _loaded_at,

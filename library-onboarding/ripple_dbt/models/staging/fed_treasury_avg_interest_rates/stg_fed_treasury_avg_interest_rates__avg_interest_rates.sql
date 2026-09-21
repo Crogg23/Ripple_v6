@@ -13,15 +13,15 @@ renamed_cast as (
     select
 
         -- primary key components
-        try_to_date(record_date)                         as record_date,
+        {{ stg_date('record_date') }}                         as record_date,
         security_type_desc                               as security_type_desc,
         security_desc                                    as security_desc,
 
         -- measures
-        try_to_double(avg_interest_rate_amt)             as avg_interest_rate_amt,
+        {{ stg_float('avg_interest_rate_amt') }}             as avg_interest_rate_amt,
 
         -- ordering / report metadata
-        try_to_number(src_line_nbr)                      as src_line_nbr,
+        {{ stg_int('src_line_nbr') }}                      as src_line_nbr,
 
         -- fiscal / calendar period attributes
         record_fiscal_year                               as record_fiscal_year,

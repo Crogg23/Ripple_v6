@@ -16,18 +16,18 @@ renamed as (
     select
 
         -- identifiers
-        try_to_number(trim(PLANT_CODE))        as plant_code,
+        {{ stg_int('trim(PLANT_CODE)') }}        as plant_code,
         trim(BOILER_ID)                        as boiler_id,
         trim(GENERATOR_ID)                     as generator_id,
-        try_to_number(trim(STEAM_PLANT_TYPE))  as steam_plant_type,
-        try_to_number(trim(UTILITY_ID))        as utility_id,
+        {{ stg_int('trim(STEAM_PLANT_TYPE)') }}  as steam_plant_type,
+        {{ stg_int('trim(UTILITY_ID)') }}        as utility_id,
 
         -- dimensions
         trim(UTILITY_NAME)                     as utility_name,
         trim(PLANT_NAME)                       as plant_name,
 
         -- metadata
-        try_to_timestamp(_INGESTED_AT)         as _loaded_at,
+        {{ stg_ts('_INGESTED_AT') }}         as _loaded_at,
         _SOURCE_RUN_ID                         as _source_run_id,
         _SRC_FILE                              as _src_file
 
