@@ -16,8 +16,18 @@
 {% set name_key_open = "upper(regexp_replace(regexp_replace(regexp_replace(" -%}
 {% set name_key_close = ", '[[:space:]]+(County|Parish|Borough|Census Area|Municipio|Municipality)$', '', 1, 0, 'i'), '^(St\.?|Saint|Ste\.?|Sainte)[[:space:]]+', 'SAINT ', 1, 0, 'i'), '[^A-Za-z0-9]', ''))" -%}
 
-with source as (
-    select * from {{ source('ripple_raw', 'FED_DEA_ARCOS_FULL') }}
+-- ROW KEY (2026-09-21). DEA ships no per-row id: TRANSACTION_ID repeats about 15 times over and the best
+-- 7-column compound still collides 3,841 times. So the key is the row itself: a hash of every business
+-- column, plus a counter inside each group of fully identical rows. Identical rows are interchangeable,
+-- so which one gets 1 and which gets 2 changes nothing. The two load-audit columns stay out of the hash.
+with hashed as (
+    select *, hash(* exclude ("_INGESTED_AT", "_SOURCE_RUN_ID")) as _row_hash
+    from {{ source('ripple_raw', 'FED_DEA_ARCOS_FULL') }}
+),
+
+source as (
+    select *, to_varchar(_row_hash) || '-' || row_number() over (partition by _row_hash order by "_INGESTED_AT") as _arcos_row_key
+    from hashed
 ),
 
 county_dim as (
@@ -45,9 +55,9 @@ county_one as (
 -- big table joins to this lookup on its own raw columns. Plain equality, one hit at most:
 -- raw_pairs is distinct and county_one holds one row per key, so the join cannot add rows.
 raw_pairs as (
-    select "BUYER_STATE" as raw_state, "BUYER_COUNTY" as raw_county from source
+    select "BUYER_STATE" as raw_state, "BUYER_COUNTY" as raw_county from hashed
     union
-    select "REPORTER_STATE", "REPORTER_COUNTY" from source
+    select "REPORTER_STATE", "REPORTER_COUNTY" from hashed
 ),
 
 county_lookup as (
@@ -104,7 +114,8 @@ select
     trim("REPORTER_FAMILY")                          as reporter_family,
 
     "_INGESTED_AT" as _loaded_at,
-    "_SOURCE_RUN_ID" as _source_run_id
+    "_SOURCE_RUN_ID" as _source_run_id,
+    _arcos_row_key as arcos_row_key
 from source
 left join county_lookup bd
     on bd.raw_state = "BUYER_STATE" and bd.raw_county = "BUYER_COUNTY"

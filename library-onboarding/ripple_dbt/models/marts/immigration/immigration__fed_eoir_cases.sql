@@ -9,7 +9,7 @@ with s as (
 )
 
 select
-    try_to_number(idncase)                              as case_id,
+    {{ stg_int('idncase') }}                              as case_id,
     update_site                                         as court_code,
     custody                                             as custody,
     case custody
@@ -21,14 +21,14 @@ select
     nat                                                 as nationality,
     lang                                                as language,
     gender                                              as gender,
-    try_to_timestamp_ntz(latest_hearing)                as latest_hearing_at,
+    {{ stg_ts('latest_hearing') }}                as latest_hearing_at,
     latest_time                                         as latest_hearing_time,
     latest_cal_type                                     as latest_hearing_calendar_type,
-    try_to_timestamp_ntz(date_of_entry)                 as date_of_entry,
-    try_to_timestamp_ntz(date_detained)                 as date_detained,
-    try_to_timestamp_ntz(date_released)                 as date_released,
-    try_to_timestamp_ntz(c_release_date)                as earliest_possible_release_date,
-    try_to_timestamp_ntz(detention_date)                as detention_facility_entered_at,
+    {{ stg_ts('date_of_entry') }}                 as date_of_entry,
+    {{ stg_ts('date_detained') }}                 as date_detained,
+    {{ stg_ts('date_released') }}                 as date_released,
+    {{ stg_ts('c_release_date') }}                as earliest_possible_release_date,
+    {{ stg_ts('detention_date') }}                as detention_facility_entered_at,
     c_asy_type                                          as asylum_clock_type,
     c_birthdate                                         as birth_month_year,
     case lpr when '1' then true when '0' then false end as is_lpr,
@@ -44,7 +44,7 @@ select
     updated_city,
     updated_state,
     updated_zipcode,
-    try_to_timestamp_ntz(address_changedon)             as address_changed_at,
+    {{ stg_ts('address_changedon') }}             as address_changed_at,
     site_type                                           as hearing_notice_type,
     atty_nbr                                            as attorney_count_legacy,
     field_count,

@@ -121,5 +121,17 @@ select
     bene_cc_ph_parkinson_v2_pct,
     bene_cc_ph_arthritis_v2_pct,
     bene_cc_ph_stroke_tia_v2_pct,
-    bene_avg_risk_scre
+    bene_avg_risk_scre,
+    -- THE LOCK (2026-09-21). The DME_ / POS_ / DRUG_ family columns do not add up to the TOT_ columns,
+    -- and a null suppression flag does not mean a clean row. These two columns say so on every row.
+    --   is_suppressed          true when any family is flagged (* or #) or the patient count is blanked
+    --   family_pymt_cover_pct  share of this row's total Medicare payment the three families add up to
+    (dme_sprsn_ind is not null or pos_sprsn_ind is not null or drug_sprsn_ind is not null
+        or tot_suplr_benes is null) as is_suppressed,
+    round(100 * (coalesce(dme_suplr_mdcr_pymt_amt, 0) + coalesce(pos_suplr_mdcr_pymt_amt, 0) + coalesce(drug_suplr_mdcr_pymt_amt, 0))
+          / nullif(suplr_mdcr_pymt_amt, 0), 1) as family_pymt_cover_pct,
+    --   unassigned_suplr_mdcr_pymt_amt  the money no family column carries. DME + POS + DRUG + this = the total,
+    --                                   on every row, so a family breakdown can always be made to add up.
+    coalesce(suplr_mdcr_pymt_amt, 0) - (coalesce(dme_suplr_mdcr_pymt_amt, 0) + coalesce(pos_suplr_mdcr_pymt_amt, 0)
+        + coalesce(drug_suplr_mdcr_pymt_amt, 0)) as unassigned_suplr_mdcr_pymt_amt
 from {{ ref('stg_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer__providers') }}

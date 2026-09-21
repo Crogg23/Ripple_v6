@@ -23,7 +23,15 @@ models:
           - not_null
       - name: ntee_code
         data_tests:
-          - not_null
+          # 581,028 organisations carry no NTEE code in the IRS file; blank in source, NULL since staging typing.
+          # A threshold, not a warn: it still fails if the blank share jumps.
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: "is not null"
+              config:
+                where: "1=1"
+                error_if: ">650000"
+                warn_if: ">600000"
       - name: group_exemption_number
         data_tests:
           - not_null

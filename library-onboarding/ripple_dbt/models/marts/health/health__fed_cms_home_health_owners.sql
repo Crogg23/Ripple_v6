@@ -50,7 +50,7 @@ flagged as (
         o.city_owner,
         o.state_owner,
         o.zip_code_owner,
-        try_to_double(o.percentage_ownership) as percentage_ownership,
+        {{ stg_float('o.percentage_ownership') }} as percentage_ownership,
         o.created_for_acquisition_owner = 'Y' as is_created_for_acquisition,
         o.corporation_owner = 'Y' as is_corporation,
         o.llc_owner = 'Y' as is_llc,

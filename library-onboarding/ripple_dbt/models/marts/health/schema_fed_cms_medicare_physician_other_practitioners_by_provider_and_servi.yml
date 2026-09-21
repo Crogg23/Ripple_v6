@@ -31,6 +31,25 @@ models:
           - not_null:
               config:
                 severity: warn
+      - name: est_mdcr_pymt_amt
+        description: This row's Medicare payment, average payment times services. Added 2026-09-21.
+      - name: provider_tot_mdcr_pymt_amt
+        description: >-
+          The provider's true Medicare payment total, from the one-row-per-NPI mart. It includes the
+          services CMS deleted from this table for having under 11 patients.
+        data_tests:
+          - not_null
+      - name: service_rows_cover_pct
+        description: >-
+          THE LOCK. Share of the provider's true total that this table's surviving rows add up to, 0 to 100.
+          Measured 2026-09-21: the table holds $97.3B of $120.1B, 81 percent; 159,439 providers sit under
+          50 percent. Filter or report this column before summing anything here. Null on 8 rows where the
+          provider total is zero.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100.5
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:

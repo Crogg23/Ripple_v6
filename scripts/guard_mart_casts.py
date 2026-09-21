@@ -30,6 +30,7 @@ sys.path.insert(0, str(REPO))
 
 CALL = re.compile(r"\btry_to_(number|double|date|timestamp_ntz|timestamp_tz|timestamp_ltz|timestamp)\s*\(", re.I)
 SOURCE = re.compile(r"source\(\s*'([^']+)'\s*,\s*'([^']+)'\s*\)")
+REF = re.compile(r"ref\(\s*'([^']+)'\s*\)")
 EIGHT_DIGIT = {"MMDDYYYY"}
 
 
@@ -119,6 +120,24 @@ def plan_file(path: Path):
     return text, out
 
 
+def relation_for(conn, text: str) -> str | None:
+    """The one relation a file reads: its landing table, or the live object behind its single ref()."""
+    from connect import db
+
+    tables = {t for _, t in SOURCE.findall(text)}
+    refs = set(REF.findall(text))
+    if len(tables) == 1 and not refs:
+        return f"{db.RAW_DB}.{db.RAW_SCHEMA}.{tables.pop()}"
+    if len(refs) == 1 and not tables:
+        name = refs.pop().upper()
+        for dbname in ("LIBRARY_STAGING", "LIBRARY_MARTS"):
+            hit = db.rows(conn, f"""select table_schema from {dbname}.information_schema.tables
+                where table_name = '{name}' and table_schema not in ('TIMELINE', 'DBT_CROGERS_RIPPLE')""")
+            if len(hit) == 1:
+                return f"{dbname}.{hit[0][0]}.{name}"
+    return None
+
+
 def has_fraction(conn, table: str, exprs: list[str]) -> dict[str, bool | None]:
     from connect import db
 
@@ -126,7 +145,7 @@ def has_fraction(conn, table: str, exprs: list[str]) -> dict[str, bool | None]:
         f"count_if(try_to_double(({e})::string) <> floor(try_to_double(({e})::string)))" for e in exprs
     )
     try:
-        row = db.rows(conn, f"select {cols} from {db.RAW_DB}.{db.RAW_SCHEMA}.{table}")[0]
+        row = db.rows(conn, f"select {cols} from {table}")[0]
         return {e: n > 0 for e, n in zip(exprs, row)}
     except Exception as exc:  # noqa: BLE001
         print(f"    could not read {table}: {str(exc)[:110]}")
@@ -136,6 +155,7 @@ def has_fraction(conn, table: str, exprs: list[str]) -> dict[str, bool | None]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--refs", action="store_true", help="work on marts that read ref() instead of source()")
     opts = ap.parse_args()
 
     from connect import db
@@ -145,7 +165,7 @@ def main() -> int:
     leftovers: list[str] = []
     for path in sorted(MARTS.rglob("*.sql")):
         raw = path.read_text(encoding="utf-8")
-        if re.search(r"enabled\s*=\s*false", raw, re.I) or "source(" not in raw:
+        if re.search(r"enabled\s*=\s*false", raw, re.I) or (opts.refs == ("source(" in raw)):
             continue
         text, calls = plan_file(path)
         if not calls:
@@ -155,11 +175,8 @@ def main() -> int:
         number_exprs = sorted({a[0] for _, _, k, a in calls if k == "number"})
         fractions: dict[str, bool | None] = {}
         if number_exprs:
-            tables = {t for _, t in SOURCE.findall(text)}
-            if len(tables) == 1:
-                fractions = has_fraction(conn, tables.pop(), number_exprs)
-            else:
-                fractions = {e: None for e in number_exprs}
+            relation = relation_for(conn, text)
+            fractions = has_fraction(conn, relation, number_exprs) if relation else {e: None for e in number_exprs}
 
         # innermost-last so nested spans never overlap a rewritten outer span
         spans, done = [], 0

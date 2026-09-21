@@ -83,4 +83,5 @@ final as (
 
 )
 
-select * from final
+-- THE LOCK (2026-09-21): the vintage rides on every row, so a join across Part D files can test it.
+select *, 2022 as data_year from final

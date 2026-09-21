@@ -11,6 +11,14 @@ models:
       Any join from this mart to those needs the ~2-year gap accounted for
       by hand.
     columns:
+      - name: data_year
+        description: The Medicare data year this whole file covers, DY2022. One value by design. Check it before joining Part D files to each other or to 2024-vintage tables.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [2022]
+                quote: false
       - name: npi
         data_tests:
           - not_null

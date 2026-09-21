@@ -23,10 +23,14 @@
 
 with source as (
     select * from {{ source('ripple_raw', 'FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI') }}
+),
+provider as (
+    select rndrng_npi, tot_mdcr_pymt_amt
+    from {{ ref('health__fed_cms_medicare_physician_other_practitioners_by_provider') }}
 )
 
 select
-    RNDRNG_NPI as rndrng_npi,
+    source.RNDRNG_NPI as rndrng_npi,
     RNDRNG_PRVDR_LAST_ORG_NAME as rndrng_prvdr_last_org_name,
     RNDRNG_PRVDR_FIRST_NAME as rndrng_prvdr_first_name,
     RNDRNG_PRVDR_MI as rndrng_prvdr_mi,
@@ -53,5 +57,16 @@ select
     AVG_SBMTD_CHRG as avg_sbmtd_chrg,
     {{ stg_float('AVG_MDCR_ALOWD_AMT') }} as avg_mdcr_alowd_amt,
     {{ stg_float('AVG_MDCR_PYMT_AMT') }} as avg_mdcr_pymt_amt,
-    {{ stg_float('AVG_MDCR_STDZD_AMT') }} as avg_mdcr_stdzd_amt
+    {{ stg_float('AVG_MDCR_STDZD_AMT') }} as avg_mdcr_stdzd_amt,
+    -- THE LOCK (2026-09-21). CMS deletes every service row under 11 patients, so the rows here
+    -- never add up to the provider. These three columns put the gap on every row, so a sum
+    -- off this table carries its own warning instead of relying on someone reading the header.
+    --   est_mdcr_pymt_amt           this row's Medicare payment: average payment x services
+    --   provider_tot_mdcr_pymt_amt  the provider's true total, from the one-row-per-NPI mart
+    --   service_rows_cover_pct       share of that true total the surviving rows account for
+    {{ stg_float('AVG_MDCR_PYMT_AMT') }} * {{ stg_float('TOT_SRVCS') }} as est_mdcr_pymt_amt,
+    provider.tot_mdcr_pymt_amt as provider_tot_mdcr_pymt_amt,
+    round(100 * sum({{ stg_float('AVG_MDCR_PYMT_AMT') }} * {{ stg_float('TOT_SRVCS') }}) over (partition by source.RNDRNG_NPI)
+          / nullif(provider.tot_mdcr_pymt_amt, 0), 1) as service_rows_cover_pct
 from source
+left join provider on provider.rndrng_npi = source.RNDRNG_NPI

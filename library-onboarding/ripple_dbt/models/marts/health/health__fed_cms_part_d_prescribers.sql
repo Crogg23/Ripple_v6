@@ -97,5 +97,7 @@ select
     BENE_RACE_OTHR_CNT,
     BENE_DUAL_CNT,
     BENE_NDUAL_CNT,
-    {{ ripple_num('BENE_AVG_RISK_SCRE') }} as BENE_AVG_RISK_SCRE
+    {{ ripple_num('BENE_AVG_RISK_SCRE') }} as BENE_AVG_RISK_SCRE,
+    -- THE LOCK (2026-09-21): the vintage rides on every row, so a join across Part D files can test it.
+    2024 as data_year
 from source

@@ -40,23 +40,23 @@ with matches as (
 chains as (
 
     select
-        nullif(chain_id, '')                                          as chain_id,
+        chain_id                                                      as chain_id,
         max(chain_name)                                               as chain_name,
         count(*)                                                      as homes_in_roster,
         max(number_of_facilities_in_chain)                            as number_of_facilities_in_chain,
-        max(try_to_double(chain_average_overall_5_star_rating))       as chain_avg_overall_rating,
-        max(try_to_double(chain_average_health_inspection_rating))    as chain_avg_health_inspection_rating,
-        max(try_to_double(chain_average_staffing_rating))             as chain_avg_staffing_rating,
-        max(try_to_double(chain_average_qm_rating))                   as chain_avg_qm_rating,
+        max({{ stg_float('chain_average_overall_5_star_rating') }})       as chain_avg_overall_rating,
+        max({{ stg_float('chain_average_health_inspection_rating') }})    as chain_avg_health_inspection_rating,
+        max({{ stg_float('chain_average_staffing_rating') }})             as chain_avg_staffing_rating,
+        max({{ stg_float('chain_average_qm_rating') }})                   as chain_avg_qm_rating,
         sum(number_of_fines)                                          as total_fines_count,
         sum(total_amount_of_fines_in_dollars)                         as total_fines_dollars,
         sum(number_of_certified_beds)                                 as total_certified_beds,
         sum(iff(special_focus_status is not null and special_focus_status <> '', 1, 0))
                                                                       as special_focus_homes,
         sum(iff(abuse_icon = 'Y', 1, 0))                              as abuse_icon_homes,
-        sum(iff(try_to_number(overall_rating) = 1, 1, 0))             as one_star_homes
+        sum(iff({{ stg_int('overall_rating') }} = 1, 1, 0))             as one_star_homes
     from {{ ref('health__fed_nursinghome411') }}
-    where nullif(chain_id, '') is not null
+    where chain_id is not null  -- chain_id is a NUMBER upstream since the 2026-09-19 staging typing; comparing it to '' threw
     group by 1
 
 ),

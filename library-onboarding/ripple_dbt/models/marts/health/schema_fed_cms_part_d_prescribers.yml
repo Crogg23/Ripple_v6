@@ -11,6 +11,14 @@ models:
       (by-drug) are DY2022. Any join across these files must account for that
       one-to-two-year gap by hand.
     columns:
+      - name: data_year
+        description: The Medicare data year this whole file covers, DY2024. One value by design. Check it before joining Part D files to each other or to 2024-vintage tables.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [2024]
+                quote: false
       - name: npi
         data_tests:
           - not_null

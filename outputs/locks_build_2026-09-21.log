@@ -1,0 +1,32 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.10s] resolving packages from packages.yml (1 items)
+ Succeeded [  3.74s] model HEALTH.health__fed_cms_nursing_home (table)
+    Passed [  0.46s] test  not_null_health__fed_cms_nursing_home_county_fips
+    Passed [  0.35s] test  unique_health__fed_cms_nursing_home_cms_certification_number_ccn
+    Passed [  0.93s] test  not_null_health__fed_cms_nursing_home_cms_certification_number_ccn
+    Passed [  0.24s] test  accepted_values_health__fed_cms_nursing_home_has_financial_penalty__True__False
+    Passed [  0.56s] test  accepted_values_health__fed_cms_nursing_home_overall_rating_band__True__High_4_5_stars___Average_3_stars___Low_1_2_stars___Not_Rated
+    Passed [  0.27s] test  not_null_health__fed_cms_nursing_home_provider_number
+    Passed [  0.29s] test  not_null_health__fed_cms_nursing_home_zip_code
+    Passed [  0.30s] test  not_null_health__fed_cms_nursing_home_state
+    Passed [  0.35s] test  not_null_health__fed_cms_nursing_home__ingested_at
+    Passed [  0.27s] test  not_null_health__fed_cms_nursing_home_has_financial_penalty
+ Succeeded [ 13.34s] model HEALTH.health__fed_cms_part_d_prescribers (table)
+    Passed [  0.22s] test  not_null_health__fed_cms_part_d_prescribers_data_year
+    Passed [  0.42s] test  not_null_health__fed_cms_part_d_prescribers_prscrbr_state_fips
+    Passed [  0.42s] test  not_null_health__fed_cms_part_d_prescribers_npi
+    Passed [  0.39s] test  unique_health__fed_cms_part_d_prescribers_npi
+    Passed [  0.28s] test  accepted_values_health__fed_cms_part_d_prescribers_data_year__False__2024
+ Succeeded [ 29.74s] model HEALTH.health__fed_cms_partd_prescribers (table)
+    Passed [  0.22s] test  not_null_health__fed_cms_partd_prescribers_data_year
+    Passed [  0.23s] test  not_null_health__fed_cms_partd_prescribers_prescriber_state_fips
+    Passed [  0.27s] test  accepted_values_health__fed_cms_partd_prescribers_data_year__False__2022
+    Passed [  0.22s] test  not_null_health__fed_cms_partd_prescribers_npi
+    Passed [  1.25s] test  dbt_utils_unique_combination_of_columns_health__fed_cms_partd_prescribers_npi__generic_name__brand_name
+
+==================== Execution Summary =====================
+Finished 'build' successfully for target 'dev' [44.4s]
+Processed: 3 models | 20 tests
+Summary: 23 total | 23 success

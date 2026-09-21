@@ -1,0 +1,110 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.10s] resolving packages from packages.yml (1 items)
+ Succeeded [  2.00s] model ECONOMICS.economics__fed_irs_990 (table)
+ Succeeded [  2.36s] model HEALTH.health__fed_cdc_data_portal (table)
+ Succeeded [  4.04s] model OPEN_DATA.open_data__intl_fr_data_gouv (table)
+ Succeeded [  2.60s] model JUSTICE.justice__xc_wapo_fatal_force (table)
+ Succeeded [  5.57s] model LABOR.labor__fed_msha_accidents (table)
+ Succeeded [  4.05s] model JUSTICE.justice__fed_fdic_enforcement_orders (table)
+    Failed [  0.29s] model POLITICS.politics__fed_medsl_president_returns (table)
+   Skipped [-------] test  dbt_utils_unique_combination_of_columns_politics__fed_medsl_president_returns_election_year__state_fips__candidate_name__party__is_writein (models/marts/politics/schema_fed_medsl_president_returns.yml:10:9)
+   Skipped [-------] test  not_null_politics__fed_medsl_president_returns_state_fips (models/marts/politics/schema_fed_medsl_president_returns.yml:8:13)
+    Failed [  0.04s] model POLITICS.politics__fed_medsl_senate_returns (table)
+   Skipped [-------] test  not_null_politics__fed_medsl_senate_returns_state_fips (models/marts/politics/schema_fed_medsl_senate_returns.yml:8:13)
+    Failed [  0.04s] model POLITICS.politics__fed_medsl_house_returns (table)
+   Skipped [-------] test  not_null_politics__fed_medsl_house_returns_state_fips (models/marts/politics/schema_fed_medsl_house_returns.yml:8:13)
+ Succeeded [ 11.06s] model ECONOMICS.economics__fed_irs_bmf (table)
+ Succeeded [  4.05s] model HEALTH.health__fed_cms_home_health_owners (table)
+ Succeeded [  9.13s] model FINANCE.finance__fed_sec_insider_nonderiv_trans (table)
+ Succeeded [ 19.50s] model LABOR.labor__fed_msha_violations (table)
+    Passed [  1.15s] test  not_null_economics__fed_irs_990_ein
+    Passed [  0.22s] test  unique_economics__fed_irs_990_ein
+    Passed [  0.89s] test  not_null_health__fed_cdc_data_portal_dataset_id
+    Passed [  0.13s] test  unique_health__fed_cdc_data_portal_dataset_id
+    Passed [  0.29s] test  not_null_open_data__intl_fr_data_gouv_slug
+    Passed [  0.21s] test  not_null_open_data__intl_fr_data_gouv_dataset_id
+    Passed [  0.49s] test  unique_open_data__intl_fr_data_gouv_dataset_id
+    Passed [  0.21s] test  not_null_justice__xc_wapo_fatal_force_id
+    Passed [  0.38s] test  unique_justice__xc_wapo_fatal_force_id
+    Passed [  0.27s] test  not_null_labor__fed_msha_accidents_mine_id
+    Passed [  0.38s] test  unique_labor__fed_msha_accidents_document_no
+    Passed [  0.28s] test  not_null_labor__fed_msha_accidents_document_no
+    Failed [ 15.32s] model HEALTH.health__nursing_home_relief_by_chain (table)
+   Skipped [-------] test  unique_health__nursing_home_relief_by_chain_chain_id (models/marts/health/schema_nursing_home_relief.yml:63:22)
+   Skipped [-------] test  not_null_health__nursing_home_relief_by_chain_payee_shorter_homes (models/marts/health/schema_nursing_home_relief.yml:69:22)
+   Skipped [-------] test  not_null_health__nursing_home_relief_by_chain_payee_shorter_dollars (models/marts/health/schema_nursing_home_relief.yml:71:22)
+   Skipped [-------] test  not_null_health__nursing_home_relief_by_chain_matched_homes (models/marts/health/schema_nursing_home_relief.yml:65:22)
+   Skipped [-------] test  not_null_health__nursing_home_relief_by_chain_matched_relief_dollars (models/marts/health/schema_nursing_home_relief.yml:67:22)
+   Skipped [-------] test  assert_payee_shorter_inside_matched (tests/nursing_home_relief/assert_payee_shorter_inside_matched.sql)
+   Skipped [-------] test  not_null_health__nursing_home_relief_by_chain_chain_id (models/marts/health/schema_nursing_home_relief.yml:63:30)
+    Passed [  0.26s] test  not_null_justice__fed_fdic_enforcement_orders_order_id
+    Warned [  0.29s] test  not_null_justice__fed_fdic_enforcement_orders_document_url (models/marts/justice/schema_fed_fdic_enforcement_orders.yml:23:13)
+    Warned [  0.26s] test  not_null_justice__fed_fdic_enforcement_orders_order_type (models/marts/justice/schema_fed_fdic_enforcement_orders.yml:18:13)
+    Passed [  0.26s] test  unique_justice__fed_fdic_enforcement_orders_order_id
+    Passed [  0.31s] test  accepted_values_justice__fed_fdic_enforcement_orders_source_id__fed_fdic_enforcement_orders
+    Passed [  0.25s] test  accepted_values_justice__fed_fdic_enforcement_orders_cert_attached__True__False
+    Passed [  0.20s] test  not_null_economics__fed_irs_bmf_subsection_code
+    Passed [  0.13s] test  not_null_economics__fed_irs_bmf_foundation_code
+    Passed [  0.25s] test  not_null_economics__fed_irs_bmf_deductibility_code
+    Passed [  0.66s] test  unique_economics__fed_irs_bmf_spine_entity_id
+    Passed [  0.31s] test  not_null_economics__fed_irs_bmf_activity_code
+    Passed [  0.29s] test  not_null_economics__fed_irs_bmf_group_exemption_number
+    Passed [  0.20s] test  not_null_economics__fed_irs_bmf_spine_entity_id
+    Failed [  0.21s] test  not_null_economics__fed_irs_bmf_ntee_code (models/marts/economics/schema_fed_irs_bmf.yml:26:13)
+    Passed [  0.12s] test  not_null_economics__fed_irs_bmf_affiliation_code
+    Passed [  0.27s] test  not_null_economics__fed_irs_bmf_classification_code
+    Passed [  0.27s] test  not_null_health__fed_cms_home_health_owners_type_owner
+    Passed [  0.20s] test  not_null_health__fed_cms_home_health_owners_role_code_owner
+    Passed [  0.26s] test  not_null_health__fed_cms_home_health_owners_enrollment_id
+    Passed [  0.27s] test  not_null_health__fed_cms_home_health_owners_associate_id_owner
+    Passed [  0.35s] test  accepted_values_health__fed_cms_home_health_owners_type_owner__I__O
+    Passed [  0.39s] test  dbt_utils_unique_combination_of_columns_health__fed_cms_home_health_owners_enrollment_id__associate_id_owner__role_code_owner
+    Passed [  0.19s] test  not_null_finance__fed_sec_insider_nonderiv_trans_accession_number
+    Passed [  0.22s] test  not_null_finance__fed_sec_insider_nonderiv_trans_transaction_code
+    Passed [  0.22s] test  not_null_labor__fed_msha_violations_mine_id
+    Passed [  0.57s] test  dbt_utils_unique_combination_of_columns_finance__fed_sec_insider_nonderiv_trans_accession_number__transaction_sk
+    Passed [  0.81s] test  dbt_utils_unique_combination_of_columns_labor__fed_msha_violations_event_no__violation_no__docket_no
+ Succeeded [ 18.39s] model HEALTH.health__pharma_meal_cap_fingerprint (table)
+    Passed [  0.23s] test  dbt_utils_unique_combination_of_columns_health__pharma_meal_cap_fingerprint_payment_maker_name__program_year
+ Succeeded [ 54.93s] model IMMIGRATION.immigration__fed_eoir_cases (table)
+    Passed [  0.25s] test  not_null_immigration__fed_eoir_cases_case_id
+    Warned [  0.28s] test  not_null_immigration__fed_eoir_cases_case_type (models/marts/immigration/schema_fed_eoir_cases.yml:30:13)
+    Warned [  0.36s] test  not_null_immigration__fed_eoir_cases_court_code (models/marts/immigration/schema_fed_eoir_cases.yml:18:13)
+    Warned [  0.41s] test  accepted_values_immigration__fed_eoir_cases_custody__N__D__R (models/marts/immigration/schema_fed_eoir_cases.yml:23:13)
+    Passed [  0.39s] test  unique_immigration__fed_eoir_cases_case_id
+
+====================== Test Failures =======================
+Test failed (581028 failed row(s)): not_null_economics__fed_irs_bmf_ntee_code
+
+=================== Errors and Warnings ====================
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__fed_medsl_president_returns: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__fed_medsl_president_returns from models/marts/politics/politics__fed_medsl_president_returns.sql: BLOCKED: politics__fed_medsl_president_returns is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__fed_medsl_president_returns.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__fed_medsl_president_returns.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__fed_medsl_senate_returns: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__fed_medsl_senate_returns from models/marts/politics/politics__fed_medsl_senate_returns.sql: BLOCKED: politics__fed_medsl_senate_returns is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__fed_medsl_senate_returns.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__fed_medsl_senate_returns.sql
+[error] [JinjaError (dbt1501)]: Error executing materialization macro 'dbt_snowflake.materialization_table_snowflake' for model model.ripple.politics__fed_medsl_house_returns: Failed to eval the compiled Jinja expression invalid operation: Compilation Error for model.ripple.politics__fed_medsl_house_returns from models/marts/politics/politics__fed_medsl_house_returns.sql: BLOCKED: politics__fed_medsl_house_returns is a dbt MIRROR of a Python-built canonical POLITICS table (STANDING POLICY no_selectorless_dbt_build, build-state.md). Running dbt build/run against it would silently overwrite audited, OpenFEC/GovTrack-reconciled numbers with dbt's own untested SQL -- no error, no warning, just different numbers. `dbt test` is unaffected by this guard and still runs normally. To deliberately rebuild this one model on purpose, pass --vars '{"allow_politics_rebuild": true}' and be sure that's really what you mean to do.
+(in run\ripple\models/marts/politics\politics__fed_medsl_house_returns.sql)
+(in dbt_internal_packages\dbt-snowflake\macros\materializations\table.sql:21:3)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:9:23)
+(in dbt_internal_packages\dbt-adapters\macros\materializations\hooks.sql:2:1)
+(in macros\guard_politics_mirror.sql:46:1)
+  --> run\ripple\models/marts/politics\politics__fed_medsl_house_returns.sql
+[error] [DbDriverFailed (dbt1308)]: Database Error in model health__nursing_home_relief_by_chain (target\run\ripple\models\marts\health\health__nursing_home_relief_by_chain.sql)
+  [Snowflake] 100038 (22018): Numeric value '' is not recognized
+  (in run\ripple\models/marts/health\health__nursing_home_relief_by_chain.sql)
+
+==================== Execution Summary =====================
+Finished 'build' with 5 warnings and 5 errors for target 'dev' [1m 50s]
+Processed: 16 models | 56 tests
+Summary: 72 total | 51 success | 5 warn | 5 error | 11 skipped

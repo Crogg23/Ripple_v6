@@ -8,6 +8,7 @@ warehouse 58 of 100 with no formula. This pins the score to that audit's own 23 
 
 Each finding is one check. A check returns a share of its points:
     1.0  closed and proven   (a live query or a file fact says so)
+    0.75 mostly closed       (the mechanism is fixed, a named remainder is not)
     0.5  labelled only       (a caveat is written, nothing stops a bad query)
     0.0  open, or not checked -- not checked is never counted as closed
 Problems found AFTER the audit are debt: they take points off until closed, so the score
@@ -155,17 +156,37 @@ def _label_or_lock(table_pattern: str, lock_column: str, yml_glob: str, label_rx
 
 
 def s6_partb():
-    return _label_or_lock("%PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI%", "SERVICE_ROWS_COVER_PCT",
+    # Skeptic 2026-09-21: a per-row coverage column is a strong label, not a lock -- a careless sum is still short.
+    # Full credit only when a plain sum off the service table matches the provider totals.
+    t = mart_table("%PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI%")
+    base = _label_or_lock("%PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI%", "SERVICE_ROWS_COVER_PCT",
                           "models/marts/health/schema_fed_cms_medicare_physician_other_practitioners_by_provider_and_servi.yml",
                           r"suppress|fewer than 11|under 11|floor")
+    if base[0] < 1.0:
+        return base
+    nul, over, seen = rows(f"select count_if(service_rows_cover_pct is null), count_if(service_rows_cover_pct > 100.5), sum(est_mdcr_pymt_amt) from {t}")[0]
+    true_total = one("select sum(tot_mdcr_pymt_amt) from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER")
+    pct = 100 * float(seen) / float(true_total)
+    if over or nul > 50:
+        return 0.5, f"coverage column misbehaves: {nul:,} null, {over:,} over 100"
+    share = 1.0 if pct >= 99.5 else 0.75
+    return share, f"coverage column live, {nul} null, 0 over 100; a plain sum off the table reaches {pct:.1f} percent of the provider totals"
 
 
 def s7_dme():
-    a = _label_or_lock("%DURABLE_MEDICAL_EQUIPMENT%BY_REFER%", "IS_SUPPRESSED",
-                       "models/marts/health/schema_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer.yml", r"suppress|undercount")
-    b = _label_or_lock("%DURABLE_MEDICAL_EQUIPMENT%BY_SUPPL%", "IS_SUPPRESSED",
-                       "models/marts/health/schema_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_suppl.yml", r"suppress|undercount")
-    return min(a[0], b[0]), f"by referrer: {a[1]}; by supplier: {b[1]}"
+    # the family-undercount trap lives in the by-referrer mart; the by-supplier mart has no family or flag columns.
+    # Skeptic 2026-09-21: is_suppressed can never be null, so its presence proves nothing. Full credit only when the
+    # three families plus a remainder column add back to the total on every row.
+    t = mart_table("%DURABLE_MEDICAL_EQUIPMENT%BY_REFER%")
+    base = _label_or_lock("%DURABLE_MEDICAL_EQUIPMENT%BY_REFER%", "IS_SUPPRESSED",
+                          "models/marts/health/schema_fed_cms_medicare_durable_medical_equipment_devices_supplies_by_refer.yml", r"suppress|undercount")
+    if base[0] < 1.0:
+        return base
+    if not has_column(t, "UNASSIGNED_SUPLR_MDCR_PYMT_AMT"):
+        return 0.5, "flag and coverage columns live, but a family sum is still short and nothing reconciles it"
+    off = one(f"""select count_if(abs(coalesce(dme_suplr_mdcr_pymt_amt,0) + coalesce(pos_suplr_mdcr_pymt_amt,0) + coalesce(drug_suplr_mdcr_pymt_amt,0)
+        + coalesce(unassigned_suplr_mdcr_pymt_amt,0) - coalesce(suplr_mdcr_pymt_amt,0)) > 0.01) from {t}""")
+    return (1.0 if off == 0 else 0.5), f"families plus the unassigned remainder miss the total on {off:,} rows"
 
 
 def s8_public_shelf():
@@ -207,12 +228,14 @@ def m2_staging_outside_sweep():
 
 
 def m3_partd_vintage():
-    got = [t for t in ("HEALTH__FED_CMS_PARTD_PRESCRIBERS", "HEALTH__FED_CMS_PARTD_PRESCRIBER_DRUG", "HEALTH__FED_CMS_PART_D_PRESCRIBERS")
-           if has_column(f"LIBRARY_MARTS.HEALTH.{t}", "DATA_YEAR")]
-    if len(got) == 3:
-        return 1.0, "DATA_YEAR live on all 3 Part D marts"
+    # two live Part D marts; the by-drug raw twin is enabled=false in dbt_project.yml and has no table
+    live = ("HEALTH__FED_CMS_PARTD_PRESCRIBERS", "HEALTH__FED_CMS_PART_D_PRESCRIBERS")
+    got = [t for t in live if has_column(f"LIBRARY_MARTS.HEALTH.{t}", "DATA_YEAR")]
+    if len(got) == len(live):
+        yrs = [one(f"select listagg(distinct data_year, ',') from LIBRARY_MARTS.HEALTH.{t}") for t in live]
+        return 1.0, f"DATA_YEAR live on both Part D marts: {yrs[0]} and {yrs[1]}; typed by hand from CMS docs, the landing tables carry no year"
     lab = file_says("models/marts/health/schema_fed_cms_part*d*.yml", r"DY20\d\d|data year|vintage")
-    return (0.5 if lab else 0.0), f"DATA_YEAR on {len(got)} of 3 Part D marts; label " + ("written" if lab else "missing")
+    return (0.5 if lab else 0.0), f"DATA_YEAR on {len(got)} of {len(live)} live Part D marts; label " + ("written" if lab else "missing")
 
 
 def m4_chow_constant():

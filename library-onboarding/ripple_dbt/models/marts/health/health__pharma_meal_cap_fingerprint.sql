@@ -35,8 +35,8 @@ fb as (
             as payment_maker_name,
         applicable_manufacturer_or_applicable_gpo_making_payment_id
             as payment_maker_id,
-        try_to_number(program_year)                            as program_year,
-        try_to_double(total_amount_of_payment_usdollars)       as amount_usd
+        {{ stg_int('program_year') }}                            as program_year,
+        {{ stg_float('total_amount_of_payment_usdollars') }}       as amount_usd
     from {{ ref('int_open_payments_all_years') }}
     where nature_of_payment_or_transfer_of_value = 'Food and Beverage'
 

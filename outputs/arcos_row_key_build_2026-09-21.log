@@ -1,0 +1,15 @@
+dbt-fusion 2.0.0-preview.218
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  0.09s] resolving packages from packages.yml (1 items)
+ Succeeded [  9m16s] model HEALTH.health__fed_dea_arcos (table)
+    Passed [  0.34s] test  not_null_health__fed_dea_arcos_drug_code
+    Passed [  0.93s] test  not_null_health__fed_dea_arcos_arcos_row_key
+    Passed [  0.96s] test  not_null_health__fed_dea_arcos_transaction_code
+    Passed [  1.01s] test  not_null_health__fed_dea_arcos_transaction_id
+    Passed [  3.90s] test  unique_health__fed_dea_arcos_arcos_row_key
+
+==================== Execution Summary =====================
+Finished 'build' successfully for target 'dev' [9m 34s]
+Processed: 1 model | 5 tests
+Summary: 6 total | 6 success

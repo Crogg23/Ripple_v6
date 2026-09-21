@@ -19,7 +19,7 @@ with orders as (
 
 banks as (
     select
-        try_to_number(cert) as cert,
+        {{ stg_int('cert') }} as cert,
         name                as bank_name,
         city                as bank_city,
         stalp               as bank_state,

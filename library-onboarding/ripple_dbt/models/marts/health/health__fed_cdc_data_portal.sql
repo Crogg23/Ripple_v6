@@ -31,8 +31,8 @@ select
                                                    as metadata_updated_at,
     try_to_date(left(publication_date, 10), 'YYYY-MM-DD')
                                                    as publication_date,
-    try_to_number(page_views)                      as page_views,
-    try_to_number(download_count)                  as download_count,
+    {{ stg_int('page_views') }}                      as page_views,
+    {{ stg_int('download_count') }}                  as download_count,
     categories,
     domain_category,
     domain_tags,

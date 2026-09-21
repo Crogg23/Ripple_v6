@@ -10,16 +10,16 @@ with base as (
 )
 
 select
-    try_to_number(year)                  as election_year,
+    {{ stg_int('year') }}                  as election_year,
     trim(state)                          as state_name,
     trim(state_po)                       as state_abbr,
     trim(state_fips)                     as state_fips,
     trim(candidate)                      as candidate_name,
     trim(party)                          as party,
     (trim(writein) = 'TRUE')             as is_writein,
-    try_to_number(candidatevotes)        as candidate_votes,
-    try_to_number(totalvotes)            as total_votes,
-    round(try_to_double(candidatevotes) / nullif(try_to_double(totalvotes), 0), 4) as vote_share,
+    {{ stg_int('candidatevotes') }}        as candidate_votes,
+    {{ stg_int('totalvotes') }}            as total_votes,
+    round({{ stg_float('candidatevotes') }} / nullif({{ stg_float('totalvotes') }}, 0), 4) as vote_share,
     _loaded_at
 from base
 where trim(candidate) is not null

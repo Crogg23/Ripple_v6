@@ -35,3 +35,21 @@ models:
       - name: rfrg_prvdr_state_fips
         data_tests:
           - not_null
+      - name: is_suppressed
+        description: >-
+          THE LOCK. True when any family carries a suppression flag or the patient count is blanked.
+          Filter to false before trusting a family column. Added 2026-09-21.
+        data_tests:
+          - not_null
+      - name: family_pymt_cover_pct
+        description: >-
+          Share of this row's total Medicare payment that the DME, POS and DRUG families add up to.
+          Measured 2026-09-21 across the table: families hold $8.93B of $11.22B, 79.6 percent.
+          Anything under 100 is money the family columns cannot see. Sum the TOT_ columns instead.
+      - name: unassigned_suplr_mdcr_pymt_amt
+        description: >-
+          Medicare payment that none of the three family columns carries, because CMS suppressed it.
+          DME + POS + DRUG + this column equals suplr_mdcr_pymt_amt on every row. Include it in any family
+          breakdown and the breakdown adds up. Added 2026-09-21.
+        data_tests:
+          - not_null

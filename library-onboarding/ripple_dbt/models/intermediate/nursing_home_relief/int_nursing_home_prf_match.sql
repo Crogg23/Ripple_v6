@@ -79,7 +79,7 @@ with homes as (
         upper(trim(city_town))                                  as city,
         {{ prf_name_key('provider_name') }}                     as home_key,
         regexp_count({{ prf_name_key('provider_name') }}, ' ') + 1 as home_words,
-        nullif(chain_id, '')                                    as chain_id,
+        chain_id                                                as chain_id,  -- a NUMBER upstream since 2026-09-19; nullif against '' threw
         chain_name,
         provider_resides_in_hospital = 'Y'                      as home_in_hospital
     from {{ ref('health__fed_nursinghome411') }}

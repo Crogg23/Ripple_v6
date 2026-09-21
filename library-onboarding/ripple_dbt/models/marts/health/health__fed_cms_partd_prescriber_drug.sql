@@ -34,5 +34,7 @@ select
     "GE65_Tot_Drug_Cst" as ge65_tot_drug_cst,
     "GE65_Tot_Day_Suply" as ge65_tot_day_suply,
     "GE65_Bene_Sprsn_Flag" as ge65_bene_sprsn_flag,
-    "GE65_Tot_Benes" as ge65_tot_benes
+    "GE65_Tot_Benes" as ge65_tot_benes,
+    -- THE LOCK (2026-09-21): the vintage rides on every row, so a join across Part D files can test it.
+    2022 as data_year
 from source

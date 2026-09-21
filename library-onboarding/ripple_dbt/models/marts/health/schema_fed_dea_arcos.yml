@@ -14,6 +14,13 @@ models:
       that limitation in mind -- never count or dedupe on transaction_id
       alone, and don't assume any compound key here is airtight.
     columns:
+      - name: arcos_row_key
+        description: >-
+          The row key DEA never shipped. A hash of every business column plus a counter inside each group of
+          fully identical rows. Unique and never null. Count and dedupe on this, never on transaction_id.
+        data_tests:
+          - not_null
+          - unique
       - name: transaction_id
         description: >
           Not unique and not usable as a row key on its own or in a compound
