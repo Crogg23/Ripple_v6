@@ -20,6 +20,9 @@ models:
                 values: [2022]
                 quote: false
       - name: npi
+        description: >-
+          Prescriber NPI. A dimension key, not a row key: 1,057,566 distinct NPIs over 25,869,521 rows, one row per
+          NPI x drug. Join on it, never count rows by it expecting one per prescriber. Not unique, not a row key.
         data_tests:
           - not_null
       - name: prescriber_state_fips

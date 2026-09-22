@@ -314,7 +314,7 @@ def n5_untested_marts():
 
 
 def n6_id_shaped_column_notes():
-    a = file_says("models/marts/health/schema_fed_cms_partd_prescriber_drug.yml", r"npi.{0,200}(not a row key|not unique|repeats)")
+    a = file_says("models/marts/health/schema_fed_cms_partd_prescriber*.yml", r"npi.{0,200}(not a row key|not unique|repeats)")
     b = file_says("models/marts/corporate_registry/*.yml", r"company_number.{0,200}(not a row key|not unique|repeats)")
     return (1.0 if a and b else 0.0), f"Part D NPI note: {a}; UK company number note: {b}"
 

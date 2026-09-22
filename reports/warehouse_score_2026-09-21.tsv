@@ -6,8 +6,8 @@ S4	USASpending 1M-per-year cap	3.5	PASS	3.5	contracts timeline rows with a broke
 S5	BJS and HUDOC capped samples	3.5	PASS	3.5	FED_BJS_DATA_FULL 68,852 -> mart 68,852; INTL_HUDOC_FULL 211,778 -> mart 211,778
 S6	Part B floor of 11	3.5	PASS	3.5	coverage column live, 8 null, 0 over 100; a plain sum off the table reaches 100.0 percent of the provider totals
 S7	DME family undercount	3.5	PASS	3.5	families plus the unassigned remainder miss the total on 0 rows
-S8	Public views open	3.5	PASS	3.5	670 of 670 public, timeline and findings views return a real row
-S9	ARCOS row key	3.5	PASS	3.5	ARCOS_ROW_KEY 178,598,026 distinct over 178,598,026 rows, 0 null
+S8	Public views open	3.5	OPEN	0.0	skipped by --fast, counted open
+S9	ARCOS row key	3.5	HALF	1.75	ARCOS_ROW_KEY exists; uniqueness scan skipped by --fast
 M1	Orphan staging views	1.2	PASS	1.2	0 live staging views have no model file behind them, e.g. 
 M2	Staging files with bare casts	1.2	PASS	1.2	0 bare casts in 0 staging files
 M3	Part D vintage	1.2	PASS	1.2	DATA_YEAR live on both Part D marts: 2022 and 2024; typed by hand from CMS docs, the landing tables carry no year
@@ -18,13 +18,13 @@ M7	SDWA violation id grain	1.2	PASS	1.2	grain documented: True; compound key tes
 N1	Staging views hiding rows	0.3	OPEN	0.0	MANUAL 2026-09-21: Audit found 42 staging views hiding a row or two on one load. Not re-swept since. Close by running scripts/sweep_staging_rows.py and recording 0 hidden.
 N2	Frozen schema copy	0.3	PASS	0.3	DBT_CROGERS_RIPPLE gone
 N3	Macro and script sync test	0.3	OPEN	0.0	sync test does not exist
-N4	Facility affiliation label	0.3	OPEN	0.0	label missing
+N4	Facility affiliation label	0.3	PASS	0.3	label written
 N5	Marts with no test	0.3	OPEN	0.0	57 of 617 enabled marts have no test at all
-N6	ID-shaped column notes	0.3	OPEN	0.0	Part D NPI note: False; UK company number note: False
+N6	ID-shaped column notes	0.3	PASS	0.3	Part D NPI note: True; UK company number note: True
 N7	Dead capped SAM copy	0.3	OPEN	0.0	capped FED_SAM_EXCLUSIONS still in landing, 10,000 rows
-D1	Tests downgraded to warn-only	0.5	OPEN	-0.5	34 warn-only not_null tests in the 10 downgraded schema files; 969 project-wide, most older than the audit
-D2	Loader writes the ingest stamp wrong	0.5	OPEN	-0.5	MANUAL 2026-09-21: Loader writes epoch microseconds into a seconds TIMESTAMP on _FULL reloads (USAspending R2, BJS, HUDOC). Staging re-reads it; the loader itself is unfixed.
+D1	Tests downgraded to warn-only	0.5	PASS	-0.0	0 warn-only not_null tests in the 10 downgraded schema files; 935 project-wide, most older than the audit
+D2	Loader writes the ingest stamp wrong	0.5	PASS	-0.0	MANUAL 2026-09-21: Cause proven live with a probe table: write_pandas without use_logical_type lands a datetime as a bare epoch number, or as micros-read-as-seconds when the table pre-exists as TIMESTAMP. Flag added to all 85 write_pandas calls in scripts/ and library-onboarding/; 0 left. Tables loaded before today keep the bad stamp; staging re-reads it where it matters.
 D3	Shelf refresh unsafe to run	0.5	OPEN	-0.5	MANUAL 2026-09-21: thelibrary_refresh.py --apply would repoint 33 live views and flatten 113 typed views. Close with a dry run that changes 0 of 254.
-D4	Rollback files are not runnable undo	0.5	OPEN	-0.5	MANUAL 2026-09-21: outputs/library_view_rollback_*.sql use unqualified view names and one has no COPY GRANTS. Close by qualifying names and test-compiling each statement.
+D4	Rollback files are not runnable undo	0.5	PASS	-0.0	MANUAL 2026-09-21: scripts/qualify_rollback_files.py qualified all 25 view statements with THE_LIBRARY.<schema> and COPY GRANTS, and EXPLAIN-checked each SELECT body: 24 compile. The 25th, AIRCRAFT_REGISTRY, reads a landing table renamed before the snapshot and is marked WILL NOT RUN in the file. The reshaped file was already qualified.
 D5	Stale catalog types on public views	0.5	PASS	-0.0	0 public views with stale catalog types
-	SCORE			96.2	full run
+	SCORE			93.1	fast run

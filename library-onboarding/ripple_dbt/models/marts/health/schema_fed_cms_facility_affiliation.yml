@@ -2,6 +2,10 @@ version: 2
 
 models:
   - name: health__fed_cms_facility_affiliation
+    description: >-
+      CMS facility affiliations, one row per clinician x facility. UNDER-REPORTS badly: a facility's row count is
+      who chose to list it, not its staff. Measured live 2026-09-21: 244 of 1,370 nursing-facility certification
+      numbers here carry exactly one clinician. Never read a count off this table as headcount.
     columns:
       - name: npi
         data_tests:

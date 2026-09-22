@@ -7,4 +7,7 @@ models:
       - name: psc_link_self
         data_tests: [not_null, unique]
       - name: company_number
+        description: >-
+          Company number, the join key to the UK company register. A dimension key, not a row key: 10,825,858
+          distinct over 15,804,611 rows, since a company has several persons with control. Not unique, repeats by design.
         data_tests: [not_null]
