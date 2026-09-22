@@ -31,6 +31,12 @@ models:
           - not_null:
               config:
                 severity: warn
+      - name: hcpcs_cd
+        description: >-
+          Service code. '_SUPPRESSED' marks the one HIDDEN SERVICES row per provider, added 2026-09-21 on Chris's
+          call: it holds the money CMS deleted for services under 11 patients, so a plain sum of est_mdcr_pymt_amt
+          off this table equals the provider mart to the cent. 1,258,114 such rows; 89,266 of them are providers
+          with no visible service at all. Filter hcpcs_cd <> '_SUPPRESSED' for real service lines only.
       - name: est_mdcr_pymt_amt
         description: This row's Medicare payment, average payment times services. Added 2026-09-21.
       - name: provider_tot_mdcr_pymt_amt

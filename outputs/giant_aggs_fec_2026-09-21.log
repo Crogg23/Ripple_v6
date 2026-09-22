@@ -1,0 +1,28 @@
+[APPLY] giant pre-agg marts -> LIBRARY_MARTS.PUBLIC.*  +  THE_LIBRARY.<shelf>.* (COPY GRANTS)
+
+  [OK  ] LIBRARY_MARTS.PUBLIC.MONEY_IN_POLITICS__FEC_INDIV_BY_STATE_CYCLE_AGG
+         rows=2,231  (cap 250,000; spec target 419)  grain=CONTRIBUTOR_STATE x CYCLE_YEAR
+         -> THE_LIBRARY.CAMPAIGN_FINANCE.FEC_CONTRIBUTIONS_BY_STATE_AND_CYCLE
+
+  [OK  ] LIBRARY_MARTS.PUBLIC.MONEY_IN_POLITICS__FEC_INDIV_BY_CMTE_CYCLE_AGG
+         rows=163,388  (cap 250,000; spec target 29,878)  grain=CMTE_ID x CYCLE_YEAR
+         -> THE_LIBRARY.CAMPAIGN_FINANCE.FEC_CONTRIBUTIONS_BY_COMMITTEE_AND_CYCLE
+
+  EXCLUDED (not aggregated):
+    - FED_FOREIGNASSISTANCE (3.97M): BROKEN LOAD -- OBLIGATION_AMOUNT, DISBURSEMENT_AMOUNT, USG_SECTOR, DAC_CATEGORY are 100% empty (0 non-blank of 3.97M, verified live); COUNTRY/agency hold bare numeric codes. No measure to sum. Flag for reload, then agg country x agency x sector x FY.
+    - FED_FHFA_NMDB (19M): BROKEN LOAD -- STATISTIC_VALUE 100% empty. Flag for reload.
+    - FED_EOIR_CASE_DATA: 1-column TSV wreck -- no parseable grain.
+    - FED_IRS_EO_BMF: Exact 2x duplicate of FED_IRS_BMF -- would double-count. Use the IRS_BMF agg.
+    - FED_FJC_IDB: All-blank load.
+    - FED_NOAA_AIS: Stale 8-day Jan-2024 snapshot, not aggregation-shaped (and a reverse-causality trap).
+    - XC_WAYBACK_DOJ_EPSTEIN / INTL_VOETEN_UNGA_VOTES / FED_USGS_WATER: Text/niche -- not rollup-shaped.
+
+  SUMMARY: 14 marts | max rows=163,388 | all <100k=True | total rollup rows=165,619
+
+  rollback DDL snapshotted -> C:\Code\Ripple_v6\outputs\_rollback_giant_aggs_20260921_163828.sql
+   built MONEY_IN_POLITICS__FEC_INDIV_BY_STATE_CYCLE_AGG      rows=  2,231  grants[RIPPLE_READER+CLAUDE_MCP]=True
+   built MONEY_IN_POLITICS__FEC_INDIV_BY_CMTE_CYCLE_AGG       rows=163,388  grants[RIPPLE_READER+CLAUDE_MCP]=True
+
+  registered 2 agg views in LIBRARY_META.REGISTRY.FRIENDLY_LAYER_EXTRAS (so thelibrary_build keeps them on reconcile, never prunes them).
+
+  DONE.

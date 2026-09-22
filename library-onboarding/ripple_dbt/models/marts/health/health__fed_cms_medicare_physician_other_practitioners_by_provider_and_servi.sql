@@ -27,8 +27,10 @@ with source as (
 provider as (
     select rndrng_npi, tot_mdcr_pymt_amt
     from {{ ref('health__fed_cms_medicare_physician_other_practitioners_by_provider') }}
-)
+),
 
+-- visible rows are the service rows CMS published; the remainder row below adds what CMS deleted
+with_lock as (
 select
     source.RNDRNG_NPI as rndrng_npi,
     RNDRNG_PRVDR_LAST_ORG_NAME as rndrng_prvdr_last_org_name,
@@ -70,3 +72,51 @@ select
           / nullif(provider.tot_mdcr_pymt_amt, 0), 1) as service_rows_cover_pct
 from source
 left join provider on provider.rndrng_npi = source.RNDRNG_NPI
+),
+
+-- THE LOCK, part two (2026-09-21, Chris said yes): one HIDDEN SERVICES row per provider, HCPCS_CD
+-- '_SUPPRESSED', holding the money CMS deleted for services under 11 patients. With it, a plain
+-- sum(est_mdcr_pymt_amt) off this table equals the provider mart. Filter hcpcs_cd <> '_SUPPRESSED'
+-- to see only real service lines. Counts on the remainder row are null: CMS never says how many.
+remainder as (
+    select
+        rndrng_npi, max(rndrng_prvdr_last_org_name) as rndrng_prvdr_last_org_name, max(rndrng_prvdr_first_name) as rndrng_prvdr_first_name, max(rndrng_prvdr_mi) as rndrng_prvdr_mi, max(rndrng_prvdr_crdntls) as rndrng_prvdr_crdntls,
+        max(rndrng_prvdr_ent_cd) as rndrng_prvdr_ent_cd, max(rndrng_prvdr_st1) as rndrng_prvdr_st1, max(rndrng_prvdr_st2) as rndrng_prvdr_st2, max(rndrng_prvdr_city) as rndrng_prvdr_city, max(rndrng_prvdr_state_abrvtn) as rndrng_prvdr_state_abrvtn,
+        max(rndrng_prvdr_state_fips) as rndrng_prvdr_state_fips, max(rndrng_prvdr_zip5) as rndrng_prvdr_zip5, max(rndrng_prvdr_ruca) as rndrng_prvdr_ruca, max(rndrng_prvdr_ruca_desc) as rndrng_prvdr_ruca_desc, max(rndrng_prvdr_cntry) as rndrng_prvdr_cntry,
+        max(rndrng_prvdr_type) as rndrng_prvdr_type, max(rndrng_prvdr_mdcr_prtcptg_ind) as rndrng_prvdr_mdcr_prtcptg_ind,
+        '_SUPPRESSED' as hcpcs_cd,
+        'Services CMS deleted before publishing: under 11 patients each. Payment is the provider total minus the visible rows.' as hcpcs_desc,
+        null as hcpcs_drug_ind, '_' as place_of_srvc,
+        null as tot_benes, null as tot_srvcs, null as tot_bene_day_srvcs,
+        null as avg_sbmtd_chrg, null as avg_mdcr_alowd_amt, null as avg_mdcr_pymt_amt, null as avg_mdcr_stdzd_amt,
+        max(provider_tot_mdcr_pymt_amt) - sum(est_mdcr_pymt_amt) as est_mdcr_pymt_amt,
+        max(provider_tot_mdcr_pymt_amt) as provider_tot_mdcr_pymt_amt,
+        max(service_rows_cover_pct) as service_rows_cover_pct
+    from with_lock
+    group by rndrng_npi
+    having max(provider_tot_mdcr_pymt_amt) - sum(est_mdcr_pymt_amt) > 0.005
+),
+
+-- Providers with NO surviving service row at all: 89,266 in the 2026-09-20 audit. They exist only in the
+-- provider mart. One row each, so the table's total equals the provider mart's total, not only per NPI.
+absent as (
+    select
+        p.rndrng_npi, p.rndrng_prvdr_last_org_name, p.rndrng_prvdr_first_name, p.rndrng_prvdr_mi, p.rndrng_prvdr_crdntls, p.rndrng_prvdr_ent_cd, p.rndrng_prvdr_st1, p.rndrng_prvdr_st2, p.rndrng_prvdr_city, p.rndrng_prvdr_state_abrvtn, p.rndrng_prvdr_state_fips, p.rndrng_prvdr_zip5, p.rndrng_prvdr_ruca, p.rndrng_prvdr_ruca_desc, p.rndrng_prvdr_cntry, p.rndrng_prvdr_type, p.rndrng_prvdr_mdcr_prtcptg_ind,
+        '_SUPPRESSED' as hcpcs_cd,
+        'Every service this provider billed had under 11 patients; CMS published none of them.' as hcpcs_desc,
+        null as hcpcs_drug_ind, '_' as place_of_srvc,
+        null as tot_benes, null as tot_srvcs, null as tot_bene_day_srvcs,
+        null as avg_sbmtd_chrg, null as avg_mdcr_alowd_amt, null as avg_mdcr_pymt_amt, null as avg_mdcr_stdzd_amt,
+        p.tot_mdcr_pymt_amt as est_mdcr_pymt_amt,
+        p.tot_mdcr_pymt_amt as provider_tot_mdcr_pymt_amt,
+        0.0 as service_rows_cover_pct
+    from {{ ref('health__fed_cms_medicare_physician_other_practitioners_by_provider') }} p
+    where not exists (select 1 from source s where s.RNDRNG_NPI = p.rndrng_npi)
+      and p.tot_mdcr_pymt_amt > 0.005
+)
+
+select * from with_lock
+union all
+select * from remainder
+union all
+select * from absent

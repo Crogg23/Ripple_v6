@@ -121,8 +121,9 @@ def s3_fec_memo():
     flag = has_column("LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE", "IS_MEMO_TRANSACTION")
     agg = "LIBRARY_MARTS.PUBLIC.MONEY_IN_POLITICS__FEC_INDIV_BY_STATE_CYCLE_AGG"
     cycles, recs = rows(f"select count(distinct cycle_year), sum(n_records) from {agg}")[0]
+    # same rule the aggregate applies: memo rows out, and transaction years outside 1979-2026 out (junk dates)
     want = one("""select count(*) from LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS
-        where not coalesce(is_memo_transaction, false)""")
+        where not coalesce(is_memo_transaction, false) and year(transaction_date) between 1979 and 2026""")
     agg_ok = int(recs or 0) == int(want)
     share = 1.0 if flag and agg_ok else 0.5 if flag else 0.0
     return share, f"mart memo flag {'present' if flag else 'MISSING'}; public aggregate {cycles} cycles, {int(recs or 0):,} records vs {int(want):,} non-memo in the mart"

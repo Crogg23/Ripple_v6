@@ -1,10 +1,10 @@
 id	finding	weight	state	points	evidence
 S1	Bare casts in marts	3.5	PASS	3.5	marts reading source(): 0 bare casts in 0 files; marts reading staging: 0 in 0 files
 S2	Silent rounding and NaN live	3.5	PASS	3.5	rows keeping a fraction: POS_OTHER 7,964, Part D fills 5,996,738; NaN left in contracts_full 0
-S3	FEC memo double-count	3.5	HALF	1.75	mart memo flag present; public aggregate 17 cycles, 84,171,523 records vs 282,193,366 non-memo in the mart
+S3	FEC memo double-count	3.5	PASS	3.5	mart memo flag present; public aggregate 40 cycles, 282,141,890 records vs 282,141,890 non-memo in the mart
 S4	USASpending 1M-per-year cap	3.5	PASS	3.5	contracts timeline rows with a broken clock 0; assistance mart fiscal years sitting at exactly 1,000,000 rows: 0 of 20
 S5	BJS and HUDOC capped samples	3.5	PASS	3.5	FED_BJS_DATA_FULL 68,852 -> mart 68,852; INTL_HUDOC_FULL 211,778 -> mart 211,778
-S6	Part B floor of 11	3.5	0.75	2.62	coverage column live, 8 null, 0 over 100; a plain sum off the table reaches 81.0 percent of the provider totals
+S6	Part B floor of 11	3.5	PASS	3.5	coverage column live, 8 null, 0 over 100; a plain sum off the table reaches 100.0 percent of the provider totals
 S7	DME family undercount	3.5	PASS	3.5	families plus the unassigned remainder miss the total on 0 rows
 S8	Public views open	3.5	PASS	3.5	252 of 252 public views return a real row
 S9	ARCOS row key	3.5	PASS	3.5	ARCOS_ROW_KEY 178,598,026 distinct over 178,598,026 rows, 0 null
@@ -27,4 +27,4 @@ D2	Loader writes the ingest stamp wrong	0.5	OPEN	-0.5	MANUAL 2026-09-21: Loader 
 D3	Shelf refresh unsafe to run	0.5	OPEN	-0.5	MANUAL 2026-09-21: thelibrary_refresh.py --apply would repoint 33 live views and flatten 113 typed views. Close with a dry run that changes 0 of 254.
 D4	Rollback files are not runnable undo	0.5	OPEN	-0.5	MANUAL 2026-09-21: outputs/library_view_rollback_*.sql use unqualified view names and one has no COPY GRANTS. Close by qualifying names and test-compiling each statement.
 D5	Stale catalog types on public views	0.5	PASS	-0.0	0 public views with stale catalog types
-	SCORE			93.6	full run
+	SCORE			96.2	full run

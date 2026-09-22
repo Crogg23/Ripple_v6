@@ -48,7 +48,7 @@ MART_DB = "LIBRARY_MARTS"
 MART_SCHEMA = "PUBLIC"          # dbt-free (0 base tables) -> a selector-less dbt build can't clobber it
 LIB_DB = "THE_LIBRARY"
 READ_ROLES = ("RIPPLE_READER", "CLAUDE_MCP_READONLY")
-CAP = 100_000
+CAP = 250_000   # 2026-09-21, Chris: raised from 100k. The FEC by-committee rollup is 163,388 combos after the 14-cycle reload.
 
 
 # ---- reusable, trap-aware SQL fragments -------------------------------------
@@ -475,6 +475,7 @@ def register_extras(cur, results) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Build the giant pre-agg rollup marts (<100k rows).")
     ap.add_argument("--apply", action="store_true", help="create marts + views (default: preview)")
+    ap.add_argument("--only", nargs="*", default=None, help="mart names to build; the rest are left alone (2026-09-21)")
     args = ap.parse_args()
 
     from connect import db
@@ -487,7 +488,8 @@ def main() -> int:
     # PREVIEW: prove every rowcount live, print the DDL it would run.
     results = []
     all_ok = True
-    for e in SPEC:
+    spec = [e for e in SPEC if not args.only or e["mart"] in args.only]
+    for e in spec:
         sel = agg_select(e)
         try:
             n = db.scalar(conn, f"SELECT COUNT(*) FROM (\n{sel}\n)")
@@ -538,7 +540,7 @@ def main() -> int:
 
     # schemas exist already, but keep idempotent + safe.
     cur.execute(f"CREATE SCHEMA IF NOT EXISTS {MART_DB}.{MART_SCHEMA}")
-    for sch in sorted({e["lib_schema"] for e in SPEC}):
+    for sch in sorted({e["lib_schema"] for e in spec}):
         cur.execute(f"CREATE SCHEMA IF NOT EXISTS {LIB_DB}.{sch}")
 
     for e, n in results:
