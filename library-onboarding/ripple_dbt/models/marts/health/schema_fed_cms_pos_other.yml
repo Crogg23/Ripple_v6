@@ -5,25 +5,33 @@ models:
     columns:
       - name: cross_ref_provider_number
         data_tests:
+          # 38,661 of 44,429 null in source, measured 2026-09-21. Threshold, not a warn: fails above 58,001.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">46398"
+                error_if: ">58001"
       # blank string in source (all 44,429 rows on two of these); guarded cast reads it as NULL (2026-09-20)
       - name: ltc_cross_ref_provider_number
         data_tests:
+          # 44,429 of 44,429 null in source, measured 2026-09-21. Threshold, not a warn: fails above 66,653.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">53319"
+                error_if: ">66653"
       - name: medicare_medicaid_prvdr_number
         data_tests:
+          # 44,429 of 44,429 null in source, measured 2026-09-21. Threshold, not a warn: fails above 66,653.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">53319"
+                error_if: ">66653"
       - name: parent_provider_number
         data_tests:
+          # 38,465 of 44,429 null in source, measured 2026-09-21. Threshold, not a warn: fails above 57,707.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">46163"
+                error_if: ">57707"
       - name: ccn
         data_tests:
           - unique

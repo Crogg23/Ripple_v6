@@ -11,11 +11,15 @@ models:
       # Real ids are alphanumeric ('M013595') and pass through untouched -- never cast these to a number.
       - name: mrds_id
         data_tests:
+          # 150,804 of 304,632 null in source, measured 2026-09-21. Threshold, not a warn: fails above 226,216.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">180969"
+                error_if: ">226216"
       - name: mas_id
         data_tests:
+          # 112,407 of 304,632 null in source, measured 2026-09-21. Threshold, not a warn: fails above 168,620.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">134893"
+                error_if: ">168620"

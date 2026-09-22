@@ -12,6 +12,8 @@ models:
       # 75 rows blank in source; now reads as NULL (2026-09-20)
       - name: telephone_number
         data_tests:
+          # 75 of 6,852 null in source, measured 2026-09-21. Threshold, not a warn: fails above 122.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">95"
+                error_if: ">122"

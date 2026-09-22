@@ -10,6 +10,8 @@ models:
       # 1 row blank in source; the guarded read now shows it as NULL (2026-09-20)
       - name: rndrng_prvdr_state_fips
         data_tests:
+          # 1 of 1,296,739 null in source, measured 2026-09-21. Threshold, not a warn: fails above 11.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">6"
+                error_if: ">11"

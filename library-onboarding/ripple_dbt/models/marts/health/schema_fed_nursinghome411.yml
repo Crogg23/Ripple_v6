@@ -6,9 +6,11 @@ models:
       # blank for homes that belong to no chain (4,551 rows, live 2026-09-20); now reads as NULL
       - name: chain_id
         data_tests:
+          # 4,551 of 14,713 null in source, measured 2026-09-21. Threshold, not a warn: fails above 6,836.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">5466"
+                error_if: ">6836"
       - name: cms_region_number
         data_tests:
           - not_null

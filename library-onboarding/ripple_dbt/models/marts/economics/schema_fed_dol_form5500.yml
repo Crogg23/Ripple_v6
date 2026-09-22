@@ -11,21 +11,29 @@ models:
       # the guarded read now shows it as NULL. Real codes like '2E2G2R3D' are untouched.
       - name: business_code
         data_tests:
+          # 448 of 33,484 null in source, measured 2026-09-21. Threshold, not a warn: fails above 682.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">542"
+                error_if: ">682"
       - name: type_pension_bnft_code
         data_tests:
+          # 16,428 of 33,484 null in source, measured 2026-09-21. Threshold, not a warn: fails above 24,652.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">19718"
+                error_if: ">24652"
       - name: type_welfare_bnft_code
         data_tests:
+          # 17,408 of 33,484 null in source, measured 2026-09-21. Threshold, not a warn: fails above 26,122.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">20894"
+                error_if: ">26122"
       - name: m1_receipt_confirmation_code
         data_tests:
+          # 33,348 of 33,484 null in source, measured 2026-09-21. Threshold, not a warn: fails above 50,032.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">40022"
+                error_if: ">50032"

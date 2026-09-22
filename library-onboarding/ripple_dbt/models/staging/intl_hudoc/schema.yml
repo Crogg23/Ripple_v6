@@ -47,23 +47,29 @@ models:
       - name: appno
         description: Application number submitted to the European Court of Human Rights.
         data_tests:
+          # 184 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 286.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">225"
+                error_if: ">286"
 
       - name: ecli
         description: European Case Law Identifier — cross-jurisdiction unique reference.
         data_tests:
+          # 54,529 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 81,803.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">65439"
+                error_if: ">81803"
 
       - name: country
         description: Respondent country involved in the case.
         data_tests:
+          # 11 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 26.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">18"
+                error_if: ">26"
 
       - name: person_name
         description: Name of the applicant or key person associated with the case.
@@ -73,9 +79,11 @@ models:
       - name: date
         description: Date of the judgment or decision (cast from TEXT via try_to_date).
         data_tests:
+          # 211,778 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 317,677.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">254138"
+                error_if: ">317677"
       - name: case_title
         description: Full title of the ECHR case.
 
@@ -177,25 +185,31 @@ models:
         description: Application number submitted to the Court.
         data_tests:
           # 184 of 211,778 rows have no application number in the HUDOC source, blank or null; calibrated on the old 2,000-row sample
+          # 184 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 286.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">225"
+                error_if: ">286"
 
       - name: ecli
         description: European Case Law Identifier.
         data_tests:
           # 54,529 of 211,778 rows have no ECLI in the HUDOC source, blank or null, 25.7%; calibrated on the old 2,000-row sample
+          # 54,529 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 81,803.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">65439"
+                error_if: ">81803"
 
       - name: country
         description: Respondent country.
         data_tests:
           # 11 of 211,778 rows have no respondent country in the HUDOC source, blank or null; calibrated on the old 2,000-row sample
+          # 11 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 26.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">18"
+                error_if: ">26"
 
       - name: person_name
         description: Key applicant or person name.
@@ -205,9 +219,11 @@ models:
       - name: judgment_date
         description: Date of the judgment or decision.
         data_tests:
+          # 211,778 of 211,778 null in source, measured 2026-09-21. Threshold, not a warn: fails above 317,677.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">254138"
+                error_if: ">317677"
       - name: case_title
         description: Full title of the case.
 

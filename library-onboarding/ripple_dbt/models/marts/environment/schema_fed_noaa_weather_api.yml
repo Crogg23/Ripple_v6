@@ -10,16 +10,22 @@ models:
       # blank string in source on all 287 rows; the guarded cast now reads it as NULL (2026-09-20)
       - name: station_id
         data_tests:
+          # 287 of 287 null in source, measured 2026-09-21. Threshold, not a warn: fails above 440.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">349"
+                error_if: ">440"
       - name: fips_code
         data_tests:
+          # 287 of 287 null in source, measured 2026-09-21. Threshold, not a warn: fails above 440.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">349"
+                error_if: ">440"
       - name: zip_code
         data_tests:
+          # 287 of 287 null in source, measured 2026-09-21. Threshold, not a warn: fails above 440.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">349"
+                error_if: ">440"

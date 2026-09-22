@@ -6,24 +6,30 @@ models:
       # 3 rows blank in source; now reads as NULL (2026-09-20)
       - name: episode_id
         data_tests:
+          # 3 of 1,780,730 null in source, measured 2026-09-21. Threshold, not a warn: fails above 14.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">8"
+                error_if: ">14"
       - name: event_id
         data_tests:
           - not_null
           - unique
       - name: state_fips
         data_tests:
+          # 1 of 1,780,730 null in source, measured 2026-09-21. Threshold, not a warn: fails above 11.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">6"
+                error_if: ">11"
       - name: cz_fips
         data_tests:
           - not_null
       # only filled for tornadoes that cross a county line, blank on the other 1.78M rows by design
       - name: tor_other_cz_fips
         data_tests:
+          # 1,776,993 of 1,780,730 null in source, measured 2026-09-21. Threshold, not a warn: fails above 2,665,499.
           - not_null:
               config:
-                severity: warn
+                warn_if: ">2132396"
+                error_if: ">2665499"
