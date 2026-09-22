@@ -207,7 +207,9 @@ def _append(conn, tbl: str, df: pd.DataFrame, run_id: str, sha: str, started, ex
         df[k] = v
     ok, _c, _n, _ = write_pandas(conn, df, table_name=tbl, database=bulk.LANDING_DB,
                                  schema=bulk.LANDING_SCHEMA, auto_create_table=False,
-                                 overwrite=False, quote_identifiers=False)
+                                 overwrite=False, quote_identifiers=False,
+                                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                 )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
     return len(df)

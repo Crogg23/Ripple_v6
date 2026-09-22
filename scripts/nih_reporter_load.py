@@ -627,6 +627,7 @@ def main():
                 conn, df, table_name=STAGING_TABLE,
                 database=DATABASE, schema=SCHEMA,
                 auto_create_table=False, overwrite=False, quote_identifiers=False,
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
             )
             if not ok:
                 raise RuntimeError(f"write_pandas reported failure landing FY{fy} into {STAGING_TABLE}")

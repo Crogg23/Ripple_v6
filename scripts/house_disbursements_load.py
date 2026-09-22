@@ -160,7 +160,8 @@ def main(argv=None) -> int:
                 conn, out, table_name=STG, database=settings.raw_database,
                 schema=settings.raw_schema, auto_create_table=True,
                 overwrite=first, quote_identifiers=False,
-            )
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             if not ok:
                 raise RuntimeError(f"write_pandas failed on {u}")
             total += len(df)

@@ -148,7 +148,9 @@ def _chunk_load(conn, zbytes: bytes, run_id: str, started, overwrite_first: bool
                 ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE, database=database,
                                              schema=schema, auto_create_table=True,
                                              overwrite=(overwrite_first and n == 0),
-                                             quote_identifiers=False)
+                                             quote_identifiers=False,
+                                             use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                             )
                 if not ok:
                     raise RuntimeError("write_pandas failed")
                 appended += len(chunk)

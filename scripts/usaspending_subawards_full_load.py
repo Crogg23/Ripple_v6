@@ -189,7 +189,9 @@ def _land_month(conn, zbytes: bytes, columns: list[str], run_id: str, started) -
                                              database=settings.raw_database,
                                              schema=settings.raw_schema,
                                              auto_create_table=False, overwrite=False,
-                                             quote_identifiers=False)
+                                             quote_identifiers=False,
+                                             use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                             )
                 if not ok:
                     raise RuntimeError("write_pandas failed")
                 appended += len(chunk)

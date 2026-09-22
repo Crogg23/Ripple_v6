@@ -108,7 +108,9 @@ def write_chunk(conn, rows, rt, run_id, started, first: bool) -> int:
     ok, _c, _r, _ = write_pandas(
         conn, out, table_name=table, database=settings.raw_database,
         schema=settings.raw_schema, auto_create_table=True,
-        overwrite=first, quote_identifiers=False)
+        overwrite=first, quote_identifiers=False,
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     if not ok:
         raise RuntimeError(f"write_pandas failed on a {rt} chunk")
     return len(out)

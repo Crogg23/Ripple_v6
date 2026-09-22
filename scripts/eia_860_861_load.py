@@ -87,7 +87,8 @@ def load_workbook(conn, data: bytes, zip_name: str, fname: str, prefix: str, sou
         conn, df, table_name=tbl,
         database="LIBRARY_RAW", schema="LANDING",
         auto_create_table=True, overwrite=True, quote_identifiers=False,
-    )
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     ended = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
     source_id = f"{source_id_base}_{tbl.split('_', 2)[-1].lower()}"
     ingest._log_run(conn, source_id=source_id, run_id=run_id,

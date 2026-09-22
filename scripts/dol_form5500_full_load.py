@@ -185,7 +185,9 @@ def land_year(year: int, df: pd.DataFrame, sha: str, run_id: str) -> int:
         ok, _c, nrows, _ = write_pandas(
             conn, out, table_name=TABLE,
             database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
-            auto_create_table=True, overwrite=False, quote_identifiers=False)
+            auto_create_table=True, overwrite=False, quote_identifiers=False,
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
     else:
         new_cols = [c for c in out.columns if c not in existing]
         if new_cols:
@@ -200,7 +202,9 @@ def land_year(year: int, df: pd.DataFrame, sha: str, run_id: str) -> int:
         ok, _c, nrows, _ = write_pandas(
             conn, out, table_name=TABLE,
             database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
-            auto_create_table=False, overwrite=False, quote_identifiers=False)
+            auto_create_table=False, overwrite=False, quote_identifiers=False,
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {year}")
     return len(out)

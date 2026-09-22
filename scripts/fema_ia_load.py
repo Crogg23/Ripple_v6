@@ -156,7 +156,8 @@ def main():
             conn, df, table_name=TABLE,
             database="LIBRARY_RAW", schema="LANDING",
             auto_create_table=False, overwrite=False, quote_identifiers=False,
-        )
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
         total_loaded += n
         skip += TOP
         first_batch = False

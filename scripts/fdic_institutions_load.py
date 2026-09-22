@@ -196,7 +196,9 @@ def main():
         ok, _c, n, _ = write_pandas(conn, df, table_name=TABLE,
                                     database="LIBRARY_RAW", schema="LANDING",
                                     auto_create_table=False, overwrite=False,
-                                    quote_identifiers=False)
+                                    quote_identifiers=False,
+                                    use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                    )
         if not ok:
             raise RuntimeError(f"write failed at offset={offset}")
         total_loaded += n

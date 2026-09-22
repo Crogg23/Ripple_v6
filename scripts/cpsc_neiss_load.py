@@ -114,7 +114,9 @@ def upload_year(conn, year: int, content: bytes, sha: str,
         ok, _c, _n, _ = write_pandas(
             conn, df, table_name=TBL,
             database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
-            auto_create_table=False, overwrite=False, quote_identifiers=False)
+            auto_create_table=False, overwrite=False, quote_identifiers=False,
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
         if not ok:
             raise RuntimeError(f"write_pandas failed {year}")
         total += len(df)
@@ -140,7 +142,9 @@ def load_codes(conn):
     ok, _c, _n, _ = write_pandas(conn, df, table_name="FED_CPSC_NEISS_CODES",
                                  database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
                                  auto_create_table=True, overwrite=True,
-                                 quote_identifiers=False)
+                                 quote_identifiers=False,
+                                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                 )
     print(f"[codes] {len(df):,} rows cols={list(df.columns)[:6]}")
 
 

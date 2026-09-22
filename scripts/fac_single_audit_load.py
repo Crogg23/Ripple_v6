@@ -108,7 +108,9 @@ def load(conn, df: pd.DataFrame) -> int:
     # Write data to staging (auto-creates the table from DataFrame dtypes)
     cur.execute(f"DROP TABLE IF EXISTS LIBRARY_RAW.LANDING.{staging}")
     write_pandas(conn, df, staging, database="LIBRARY_RAW", schema="LANDING",
-                 auto_create_table=True, overwrite=True)
+                 auto_create_table=True, overwrite=True,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
 
     # Add provenance columns
     cur.execute(f"ALTER TABLE LIBRARY_RAW.LANDING.{staging} ADD COLUMN IF NOT EXISTS "

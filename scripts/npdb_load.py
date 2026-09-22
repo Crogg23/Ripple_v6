@@ -106,7 +106,8 @@ def run():
         conn, df, table_name=TABLE,
         database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
         auto_create_table=True, overwrite=True, quote_identifiers=False,
-    )
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     print("loaded", ok, nrows)
     passed, _report = bulk.run_quality_gate(
         conn, TABLE, TABLE, run_id, sha256=sha,

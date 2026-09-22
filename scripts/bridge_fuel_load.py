@@ -568,7 +568,9 @@ def _load_chunked(conn, s, src, opts, table, run_id, started, sid, do_run,
             out[ingest.META_SRC_SHA256] = csha
             ok, _c, _r, _ = write_pandas(conn, out, table_name=stg, database=database,
                                          schema=schema, auto_create_table=True,
-                                         overwrite=(n == 0), quote_identifiers=False)
+                                         overwrite=(n == 0), quote_identifiers=False,
+                                         use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                         )
             if not ok:
                 raise RuntimeError(f"write_pandas failed on chunk {n + 1}")
             if n == 0:

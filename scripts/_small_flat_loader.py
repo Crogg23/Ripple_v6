@@ -90,7 +90,9 @@ def load_and_register(df, sid: str, table: str, url: str, register_cfg: dict, ru
         out.columns = [ingest._sf_col(c) for c in out.columns]
         ok, _c, nrows, _ = write_pandas(conn, out, table_name=table,
                                         database=settings.raw_database, schema=settings.raw_schema,
-                                        auto_create_table=True, overwrite=True, quote_identifiers=False)
+                                        auto_create_table=True, overwrite=True, quote_identifiers=False,
+                                        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                        )
         if not ok:
             raise RuntimeError("write_pandas failed")
         ended = ingest._utcnow()

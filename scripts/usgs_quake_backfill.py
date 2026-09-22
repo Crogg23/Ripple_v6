@@ -204,7 +204,9 @@ def main() -> int:
                 conn, out, table_name=TABLE,
                 database=settings.raw_database, schema=settings.raw_schema,
                 auto_create_table=False, overwrite=False,
-                quote_identifiers=False)
+                quote_identifiers=False,
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             if not ok:
                 conn.close()
                 raise SystemExit(f"write_pandas failed at {a:%Y-%m} after {total_rows:,} rows")

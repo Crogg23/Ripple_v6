@@ -188,7 +188,9 @@ def main(argv=None) -> int:
                 conn, f"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='{settings.raw_schema.upper()}' AND TABLE_NAME='{TABLE}'")
             ok, _c, nrows, _ = write_pandas(conn, out, table_name=TABLE,
                                             database=settings.raw_database, schema=settings.raw_schema,
-                                            auto_create_table=True, overwrite=bool(overwrite), quote_identifiers=False)
+                                            auto_create_table=True, overwrite=bool(overwrite), quote_identifiers=False,
+                                            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                            )
             if not ok:
                 raise RuntimeError("write_pandas failed")
             ended = ingest._utcnow()

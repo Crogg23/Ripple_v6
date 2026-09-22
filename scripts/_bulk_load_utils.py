@@ -157,7 +157,8 @@ def _load_bytes(conn, content: bytes, tbl: str, *, max_rows: int = DEFAULT_MAX_R
         conn, df, table_name=tbl,
         database=LANDING_DB, schema=LANDING_SCHEMA,
         auto_create_table=True, overwrite=True, quote_identifiers=False,
-    )
+        use_logical_type=True,  # 2026-09-21: without this a datetime column lands as a bare epoch number, or as a TIMESTAMP that swallowed micros as seconds
+        )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
 

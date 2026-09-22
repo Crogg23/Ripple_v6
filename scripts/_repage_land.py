@@ -67,7 +67,9 @@ def _append(conn, table: str, df: pd.DataFrame, run_id: str, sha: str) -> int:
     df[bulk.META_SRC_SHA256] = sha
     ok, _c, nrows, _ = write_pandas(conn, df, table, database=bulk.LANDING_DB,
                                     schema=bulk.LANDING_SCHEMA,
-                                    quote_identifiers=False, auto_create_table=False)
+                                    quote_identifiers=False, auto_create_table=False,
+                                    use_logical_type=True,  # 2026-09-21: without this a datetime column lands as a bare epoch number, or as a TIMESTAMP that swallowed micros as seconds
+                                    )
     if not ok:
         raise RuntimeError("write_pandas reported failure")
     return nrows

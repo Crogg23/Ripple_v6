@@ -157,7 +157,9 @@ def _load_quarter(conn, q: str, run_id: str) -> tuple[bool, str]:
                 ok, _c, n, _ = write_pandas(
                     conn, out, table_name=TABLE,
                     database=settings.raw_database, schema=settings.raw_schema,
-                    auto_create_table=False, overwrite=False, quote_identifiers=False)
+                    auto_create_table=False, overwrite=False, quote_identifiers=False,
+                    use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                    )
                 if not ok:
                     return False, f"write_pandas failed after {appended:,}"
                 appended += len(out)

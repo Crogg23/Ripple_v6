@@ -150,7 +150,9 @@ def append(conn, rows: list[dict], table: str, run_id: str, started) -> int:
     ok, _c, _r, _ = write_pandas(
         conn, out, table_name=table, database=settings.raw_database,
         schema=settings.raw_schema, auto_create_table=False,
-        overwrite=False, quote_identifiers=False)
+        overwrite=False, quote_identifiers=False,
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     if not ok:
         raise RuntimeError(f"write_pandas failed appending to {table}")
     return len(out)

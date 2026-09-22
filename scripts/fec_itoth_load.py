@@ -99,7 +99,8 @@ def write_chunk(conn, lines, run_id, started, first: bool) -> tuple[int, int]:
     ok, _c, _r, _ = write_pandas(
         conn, out, table_name=STG, database=settings.raw_database, schema=settings.raw_schema,
         auto_create_table=True, overwrite=first, quote_identifiers=False,
-    )
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     if not ok:
         raise RuntimeError("write_pandas failed on a chunk")
     return len(res.good), res.n_bad

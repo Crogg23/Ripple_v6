@@ -123,7 +123,9 @@ def _land(conn, rows: list[dict], overwrite: bool, run_id: str, started) -> None
     out[ingest.META_SRC_SHA256] = hashlib.sha256(df.to_csv(index=False).encode("utf-8")).hexdigest()
     ok, _c, _r, _ = write_pandas(conn, out, table_name=TABLE, database=settings.raw_database,
                                  schema=settings.raw_schema, auto_create_table=True,
-                                 overwrite=overwrite, quote_identifiers=False)
+                                 overwrite=overwrite, quote_identifiers=False,
+                                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                 )
     if not ok:
         raise RuntimeError("write_pandas failed")
 

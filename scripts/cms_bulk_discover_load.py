@@ -141,7 +141,9 @@ def load_dataset(conn, url: str, table_name: str, max_rows: int = 5_000_000) -> 
     cur = conn.cursor()
     cur.execute(f"DROP TABLE IF EXISTS {LANDING_SCHEMA}.{staging}")
     write_pandas(conn, df, staging, database="LIBRARY_RAW", schema="LANDING",
-                 auto_create_table=True, overwrite=True)
+                 auto_create_table=True, overwrite=True,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
     # Provenance
     cur.execute(f"ALTER TABLE {LANDING_SCHEMA}.{staging} ADD COLUMN IF NOT EXISTS _INGESTED_AT TIMESTAMP_NTZ")
     cur.execute(f"ALTER TABLE {LANDING_SCHEMA}.{staging} ADD COLUMN IF NOT EXISTS _SOURCE_RUN_ID STRING")

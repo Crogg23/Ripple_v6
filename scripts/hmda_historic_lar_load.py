@@ -95,7 +95,8 @@ def load_year(conn, year: int, staging: str, first: bool) -> int:
                 write_pandas(
                     conn, chunk, staging, database="LIBRARY_RAW", schema="LANDING",
                     auto_create_table=first and i == 0, overwrite=False,
-                )
+                    use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                    )
                 total += len(chunk)
                 print(f"    {year}: wrote {total:,} rows so far...", end="\r")
     print(f"    {year}: {total:,} rows total.                    ")

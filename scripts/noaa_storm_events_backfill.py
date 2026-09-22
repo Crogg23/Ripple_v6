@@ -176,7 +176,9 @@ def _load_year(conn, year: int, fn: str, table_cols: list[str], run_id: str) -> 
             ok, _n_chunks, n, _ = write_pandas(
                 conn, out, table_name=TABLE,
                 database=settings.raw_database, schema=settings.raw_schema,
-                auto_create_table=False, overwrite=False, quote_identifiers=False)
+                auto_create_table=False, overwrite=False, quote_identifiers=False,
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             if not ok:
                 return False, f"write_pandas failed after {appended:,} rows"
             appended += len(out)

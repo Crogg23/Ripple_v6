@@ -512,7 +512,9 @@ def _upload_df_inner(conn, df: pd.DataFrame, table: str, run_id: str):
 
     write_pandas(conn, df, table, database=bulk.LANDING_DB,
                  schema=bulk.LANDING_SCHEMA, quote_identifiers=False,
-                 auto_create_table=False)
+                 auto_create_table=False,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
 
 
 # ---------------------------------------------------------------------------

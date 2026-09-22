@@ -275,7 +275,9 @@ def main() -> int:
             ok, _c, n, _ = write_pandas(
                 conn, df, table_name=TABLE,
                 database=settings.raw_database, schema=settings.raw_schema,
-                auto_create_table=False, overwrite=first_write, quote_identifiers=False)
+                auto_create_table=False, overwrite=first_write, quote_identifiers=False,
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             if not ok:
                 raise RuntimeError(f"write_pandas failed in window {a}..{b} after {appended:,} rows")
             appended += len(df)

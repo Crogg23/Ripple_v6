@@ -700,7 +700,8 @@ def _load_landing_chunked(conn, chunk_iter, table: str, run_id: str, started,
         ok, _chunks, _nrows, _ = write_pandas(
             conn, out, table_name=write_target, database=database, schema=schema,
             auto_create_table=True, overwrite=overwrite, quote_identifiers=False,
-        )
+            use_logical_type=True,  # 2026-09-21: without this a datetime column lands as a bare epoch number, or as a TIMESTAMP that swallowed micros as seconds
+            )
         if not ok:
             raise RuntimeError(f"write_pandas reported failure on chunk {n + 1} of {table}.")
 
@@ -1042,7 +1043,8 @@ def _load_landing(conn, df, table: str, overwrite: bool = True) -> None:
         ok, _chunks, nrows, _ = write_pandas(
             conn, df, table_name=table, database=database, schema=schema,
             auto_create_table=True, overwrite=True, quote_identifiers=False,
-        )
+            use_logical_type=True,  # 2026-09-21: without this a datetime column lands as a bare epoch number, or as a TIMESTAMP that swallowed micros as seconds
+            )
         if not ok:
             raise RuntimeError(f"write_pandas reported failure loading {table}.")
         return
@@ -1054,7 +1056,8 @@ def _load_landing(conn, df, table: str, overwrite: bool = True) -> None:
         ok, _chunks, nrows, _ = write_pandas(
             conn, df, table_name=stage, database=database, schema=schema,
             auto_create_table=True, overwrite=True, quote_identifiers=False,
-        )
+            use_logical_type=True,  # 2026-09-21: without this a datetime column lands as a bare epoch number, or as a TIMESTAMP that swallowed micros as seconds
+            )
         if not ok:
             raise RuntimeError(f"write_pandas reported failure staging {stage}.")
         # Pin INFORMATION_SCHEMA to the target database (same reason as

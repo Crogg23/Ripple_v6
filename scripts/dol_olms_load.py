@@ -142,7 +142,9 @@ def main():
         df["_SRC_SHA256"] = sha
         ok, _c, n, _ = write_pandas(conn, df, table_name=TABLE,
                                     database="LIBRARY_RAW", schema="LANDING",
-                                    quote_identifiers=False)
+                                    quote_identifiers=False,
+                                    use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                    )
         if not ok:
             raise RuntimeError(f"write failed year={y}")
         total += len(df)

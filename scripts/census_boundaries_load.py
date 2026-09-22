@@ -121,7 +121,9 @@ def main() -> int:
             ok, _c, n, _ = write_pandas(
                 conn, df, table_name=entry["table"],
                 database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
-                auto_create_table=False, overwrite=False, quote_identifiers=False)
+                auto_create_table=False, overwrite=False, quote_identifiers=False,
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             if not ok:
                 raise RuntimeError(f"{entry['table']}: write failed")
             print(f"  -> landed {n:,} rows", flush=True)

@@ -84,7 +84,8 @@ def load_file(conn, url: str, tbl: str) -> int:
                         database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
                         auto_create_table=False, overwrite=False,
                         quote_identifiers=False,
-                    )
+                        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                        )
                     if not ok:
                         raise RuntimeError(f"write_pandas failed for {tbl}")
                     first = False

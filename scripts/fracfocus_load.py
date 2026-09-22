@@ -53,7 +53,8 @@ def load_csv_group(conn, zf, names: list[str], table: str, source_id: str, url: 
                 conn, chunk, table_name=table,
                 database="LIBRARY_RAW", schema="LANDING",
                 auto_create_table=first, overwrite=first, quote_identifiers=False,
-            )
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             first = False
             total += n
         print(f"  {name}: cumulative {total:,}")

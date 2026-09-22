@@ -191,7 +191,9 @@ def _load_one(conn, sid, url, fmt, opts=None) -> tuple[bool, str]:
         out.columns = [ingest._sf_col(c) for c in out.columns]
         ok, _c, _n, _ = write_pandas(conn, out, table_name=sid.upper(),
                                      database=settings.raw_database, schema=settings.raw_schema,
-                                     auto_create_table=True, overwrite=True, quote_identifiers=False)
+                                     auto_create_table=True, overwrite=True, quote_identifiers=False,
+                                     use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                     )
         if not ok:
             return False, "write_pandas failed"
         ended = ingest._utcnow()

@@ -327,7 +327,8 @@ def _write(conn, df: pd.DataFrame, tbl: str, *,
         conn, df, table_name=tbl,
         database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
         auto_create_table=True, overwrite=True, quote_identifiers=False,
-    )
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {tbl}")
     # Quality gate + INGEST_RUNS row (audit 2026-08-05 finding #3: this loader

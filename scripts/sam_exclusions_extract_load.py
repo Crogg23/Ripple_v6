@@ -130,7 +130,9 @@ def main(argv=None) -> int:
         ok, _c, _r, _ = write_pandas(
             conn, df, table_name=TABLE, database=settings.raw_database,
             schema=settings.raw_schema, auto_create_table=True,
-            overwrite=True, quote_identifiers=False)
+            overwrite=True, quote_identifiers=False,
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
         if not ok:
             raise RuntimeError("write_pandas failed")
         passed, report = bulk.run_quality_gate(

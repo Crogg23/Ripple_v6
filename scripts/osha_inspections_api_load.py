@@ -180,7 +180,8 @@ def main() -> int:
                 database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
                 auto_create_table=False,
                 overwrite=False, quote_identifiers=False,
-            )
+                use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                )
             if not ok:
                 raise RuntimeError(f"write_pandas failed at after="
                                    f"{state['last_activity_nr']}")

@@ -278,7 +278,9 @@ def _upload_inner(conn, rows: list[dict], run_id: str) -> None:
     ensure_table(conn)
     ok, _c, _n, _ = write_pandas(conn, df, TABLE, database=bulk.LANDING_DB,
                                  schema=bulk.LANDING_SCHEMA, quote_identifiers=False,
-                                 auto_create_table=False)
+                                 auto_create_table=False,
+                                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                 )
     if not ok:
         raise RuntimeError(f"write_pandas failed for {TABLE}")
 

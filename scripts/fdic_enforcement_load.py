@@ -367,7 +367,9 @@ def upload_df(df: pd.DataFrame, run_id: str):
     cur.close()
     df = df.astype(object).where(df.notna(), None)
     write_pandas(conn, df, TABLE, database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
-                 quote_identifiers=False, auto_create_table=False)
+                 quote_identifiers=False, auto_create_table=False,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
 
 
 # ---------------------------------------------------------------------------

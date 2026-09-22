@@ -121,7 +121,9 @@ def main(argv=None) -> int:
             out[ingest.META_SRC_SHA256] = sha
             ok, _c, nrows, _ = write_pandas(conn, out, table_name=table,
                                             database=settings.raw_database, schema=settings.raw_schema,
-                                            auto_create_table=True, overwrite=True, quote_identifiers=False)
+                                            auto_create_table=True, overwrite=True, quote_identifiers=False,
+                                            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                            )
             if not ok:
                 raise RuntimeError(f"write_pandas failed for {table}")
             ended = ingest._utcnow()

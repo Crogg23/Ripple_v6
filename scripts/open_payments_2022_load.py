@@ -225,7 +225,8 @@ def _stream_load(conn, run_id: str, csv_path: Path, progress: dict) -> tuple[int
             conn, out, table_name=TABLE,
             database=settings.raw_database, schema=settings.raw_schema,
             auto_create_table=False, overwrite=overwrite, quote_identifiers=False,
-        )
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
         if not ok:
             raise RuntimeError(f"write_pandas failed on chunk {n + 1} "
                                f"(after {appended:,} rows)")

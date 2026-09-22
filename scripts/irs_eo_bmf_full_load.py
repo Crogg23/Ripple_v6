@@ -73,7 +73,8 @@ def main():
         conn, df, table_name=STAGING,
         database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
         auto_create_table=True, overwrite=True, quote_identifiers=False,
-    )
+        use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+        )
     if not ok:
         raise RuntimeError("write_pandas failed for staging table")
     fq = lambda t: f'"{bulk.LANDING_DB}"."{bulk.LANDING_SCHEMA}"."{t}"'

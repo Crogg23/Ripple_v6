@@ -109,7 +109,9 @@ def land(conn, df: pd.DataFrame, sha: str, run_id: str) -> int:
     ok, _c, nrows, _ = write_pandas(conn, df, TABLE, database=bulk.LANDING_DB,
                                     schema=bulk.LANDING_SCHEMA,
                                     quote_identifiers=False,
-                                    auto_create_table=False)
+                                    auto_create_table=False,
+                                    use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                                    )
     if not ok:
         raise RuntimeError("write_pandas reported failure")
     return nrows

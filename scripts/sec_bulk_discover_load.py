@@ -143,7 +143,8 @@ def _load_dera_quarter(conn, quarter: str, max_rows: int) -> int:
             conn, df, table_name=tbl,
             database=bulk.LANDING_DB, schema=bulk.LANDING_SCHEMA,
             auto_create_table=True, overwrite=True, quote_identifiers=False,
-        )
+            use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+            )
         if not ok:
             raise RuntimeError("write_pandas failed")
         # Quality gate (audit 2026-08-05/06 finding: none here at all -- this DERA
