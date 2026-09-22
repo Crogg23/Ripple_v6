@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: politics__fed_senate_lda_lobbyist_positions
+  columns:
+  - name: filing_uuid
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): no unique column or pair; a filled column, 140,463
+      rows.'
+    tests:
+    - not_null

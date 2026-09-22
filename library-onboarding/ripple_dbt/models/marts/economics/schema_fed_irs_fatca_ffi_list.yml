@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: economics__fed_irs_fatca_ffi_list
+  columns:
+  - name: giin
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 516,298 rows.'
+    tests:
+    - unique
+    - not_null

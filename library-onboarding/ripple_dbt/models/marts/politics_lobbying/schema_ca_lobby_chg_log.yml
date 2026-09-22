@@ -6,3 +6,8 @@ models:
     columns:
       - name: filer_id
         description: Blank on 13 rows as published.
+        tests:
+        - not_null:
+            config:
+              warn_if: ">13"
+              error_if: ">19"

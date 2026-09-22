@@ -3,3 +3,9 @@ version: 2
 models:
   - name: open_data__intl_es_datosgob
     description: "SAMPLE ONLY -- NOT the full dataset. datos.gob.es dataset catalog: 1,000-row slice AND defective as landed -- URI/title/description columns are blank (loader parse bug, needs a re-point); publisher/sector/format/URL populated."
+    columns:
+      - name: distribution_url
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key on the 1,000-row sample; 1,000 is the portal cap, so this locks a truncated copy."
+        tests:
+          - unique
+          - not_null

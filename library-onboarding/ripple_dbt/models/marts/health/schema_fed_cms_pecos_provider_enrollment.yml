@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: health__fed_cms_pecos_provider_enrollment
+  columns:
+  - name: enrlmt_id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 2,978,925 rows.'
+    tests:
+    - unique
+    - not_null

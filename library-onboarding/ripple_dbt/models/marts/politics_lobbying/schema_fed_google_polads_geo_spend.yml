@@ -2,3 +2,9 @@ version: 2
 
 models:
   - name: education__fed_google_polads_geo_spend
+    columns:
+      - name: country_subdivision_secondary
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): one row per district label such as CA-27; a label, not an ID, but the grain of the table."
+        tests:
+          - unique
+          - not_null

@@ -1,0 +1,11 @@
+version: 2
+models:
+- name: finance__fed_cftc_cot_financial_hist
+  tests:
+  - dbt_utils.unique_combination_of_columns:
+      arguments:
+        combination_of_columns:
+          - cftc_contract_market_code
+          - report_date_as_mm_dd_yyyy
+  description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key is (cftc_contract_market_code, report_date_as_mm_dd_yyyy),
+    4,615 rows.'

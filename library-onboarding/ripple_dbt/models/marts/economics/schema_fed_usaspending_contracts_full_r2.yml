@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: economics__fed_usaspending_contracts_full_r2
+  columns:
+  - name: contract_award_unique_key
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): no unique column or pair; a filled column, 93,119,582
+      rows.'
+    tests:
+    - not_null

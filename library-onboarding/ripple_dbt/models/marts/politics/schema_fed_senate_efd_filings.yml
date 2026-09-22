@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: politics__fed_senate_efd_filings
+  columns:
+  - name: filing_id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 799 rows.'
+    tests:
+    - unique
+    - not_null

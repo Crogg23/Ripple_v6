@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: justice__fed_courtlistener_disclosure_non_investment_income
+  columns:
+  - name: id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 15,302 rows.'
+    tests:
+    - unique
+    - not_null

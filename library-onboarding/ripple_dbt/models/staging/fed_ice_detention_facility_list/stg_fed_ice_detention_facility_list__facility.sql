@@ -1,3 +1,5 @@
+-- KEY WIDENED 2026-09-22 (row sweep): facility_name alone hid 2 real facilities.
+-- BUTLER COUNTY JAIL is one in OH and one in another state; EDEN DETENTION CENTER sits in two AORs.
 {{ config(materialized='view') }}
 
 with source as (
@@ -31,7 +33,7 @@ deduped as (
 
     select *,
         row_number() over (
-            partition by facility_name
+            partition by facility_name, city, state, aor
             order by _ingested_at desc
         ) as _row_num
     from renamed

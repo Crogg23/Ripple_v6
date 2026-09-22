@@ -1,0 +1,12 @@
+version: 2
+models:
+- name: transport__fed_faa_adip_private_airports
+  columns:
+  - name: unnamed_1
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): 1 null in source, measured 2026-09-22; threshold,
+      fails above 2, 3,589 rows.'
+    tests:
+    - not_null:
+        config:
+          warn_if: '>1'
+          error_if: '>2'

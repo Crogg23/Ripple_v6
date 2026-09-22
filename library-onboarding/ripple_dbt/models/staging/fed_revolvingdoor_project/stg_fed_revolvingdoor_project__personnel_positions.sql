@@ -1,3 +1,5 @@
+-- KEY WIDENED 2026-09-22 (row sweep): position_key alone hid 4 rows.
+-- The same position is listed once per industry sector it touches; the sectors are the fact.
 {{ config(materialized='view') }}
 
 -- 2026-09-07: this is a table of JOB SLOTS, not people. Measured on the
@@ -91,7 +93,7 @@ deduped as (
 
     select *,
         row_number() over (
-            partition by position_key
+            partition by position_key, industry_sector
             order by _ingested_at desc nulls last
         ) as _row_num
     from renamed

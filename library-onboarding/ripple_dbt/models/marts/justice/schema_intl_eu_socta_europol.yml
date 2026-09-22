@@ -8,3 +8,8 @@ models:
       # The unique test was correctly screaming; re-extracting this tiny
       # report-derived source is a backlog item, not a test problem.
       - name: serial_number
+      - name: report_title
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): one row per report, 26 rows; serial_number above is garbage, this is the real key."
+        tests:
+          - unique
+          - not_null

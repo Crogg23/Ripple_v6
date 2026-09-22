@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: justice__fed_courtlistener_originating_court_info
+  columns:
+  - name: id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 973,419 rows.'
+    tests:
+    - unique
+    - not_null

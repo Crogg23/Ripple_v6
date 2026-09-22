@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: economics__fed_irs_527_orgs
+  columns:
+  - name: submission_id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 77,591 rows.'
+    tests:
+    - unique
+    - not_null

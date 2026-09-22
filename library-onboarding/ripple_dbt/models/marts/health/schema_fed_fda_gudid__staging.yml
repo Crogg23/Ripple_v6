@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: health__fed_fda_gudid__staging
+  columns:
+  - name: raw
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): one raw line per row, 1,329 rows; unique text, not an ID. A duplicate line is still the thing to catch.'
+    tests:
+    - unique
+    - not_null

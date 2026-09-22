@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: reference__census_cb_state
+  columns:
+  - name: statefp
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 56 rows.'
+    tests:
+    - unique
+    - not_null

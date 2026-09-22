@@ -6,3 +6,8 @@ models:
     columns:
       - name: nid_id
         description: Not unique (associated structures share it); null on 2 rows as published.
+      - name: federal_id
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key where nid_id is not, 92,400 rows."
+        tests:
+          - unique
+          - not_null

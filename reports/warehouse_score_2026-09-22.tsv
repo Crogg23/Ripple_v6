@@ -1,0 +1,30 @@
+id	finding	weight	state	points	evidence
+S1	Bare casts in marts	3.5	PASS	3.5	marts reading source(): 0 bare casts in 0 files; marts reading staging: 0 in 0 files
+S2	Silent rounding and NaN live	3.5	PASS	3.5	rows keeping a fraction: POS_OTHER 7,964, Part D fills 5,996,738; NaN left in contracts_full 0
+S3	FEC memo double-count	3.5	PASS	3.5	mart memo flag present; public aggregate 40 cycles, 282,141,890 records vs 282,141,890 non-memo in the mart
+S4	USASpending 1M-per-year cap	3.5	PASS	3.5	contracts timeline rows with a broken clock 0; assistance mart fiscal years sitting at exactly 1,000,000 rows: 0 of 20
+S5	BJS and HUDOC capped samples	3.5	PASS	3.5	FED_BJS_DATA_FULL 68,852 -> mart 68,852; INTL_HUDOC_FULL 211,778 -> mart 211,778
+S6	Part B floor of 11	3.5	PASS	3.5	coverage column live, 8 null, 0 over 100; a plain sum off the table reaches 100.0 percent of the provider totals
+S7	DME family undercount	3.5	PASS	3.5	families plus the unassigned remainder miss the total on 0 rows
+S8	Public views open	3.5	PASS	3.5	670 of 670 public, timeline and findings views return a real row
+S9	ARCOS row key	3.5	PASS	3.5	ARCOS_ROW_KEY 178,598,026 distinct over 178,598,026 rows, 0 null
+M1	Orphan staging views	1.2	PASS	1.2	0 live staging views have no model file behind them, e.g. 
+M2	Staging files with bare casts	1.2	PASS	1.2	0 bare casts in 0 staging files
+M3	Part D vintage	1.2	PASS	1.2	DATA_YEAR live on both Part D marts: 2022 and 2024; typed by hand from CMS docs, the landing tables carry no year
+M4	CHOW flag constant	1.2	PASS	1.2	constant column removed from the nursing home mart
+M5	Unique tests that cannot fail	1.2	PASS	1.2	6 of 6 models carry the per-load key re-proof
+M6	Junk public views	1.2	PASS	1.2	FRAUD_SETTLEMENTS: gone; BENEFICIAL_OWNERSHIP_REGISTRY: gone
+M7	SDWA violation id grain	1.2	PASS	1.2	grain documented: True; compound key tested: True
+N1	Staging views hiding rows	0.3	PASS	0.3	MANUAL 2026-09-22: Re-swept 2026-09-22: 42 views drop 4,651 rows; 4,630 proven exact duplicates, header/trailer rows or blank-date FEC stubs (reports/staging_row_sweep_verdicts_2026-09-22.md). 21 real rows in 4 views were hidden by narrow keys; keys widened and views rebuilt, counted live: ICE 165=165, EDGAR 48,990=48,990, Federal Register 485,594=485,594, Revolving Door 408 of 409 with the one documented junk row out.
+N2	Frozen schema copy	0.3	PASS	0.3	DBT_CROGERS_RIPPLE gone
+N3	Macro and script sync test	0.3	PASS	0.3	sync test test_staging_cast_sync.py
+N4	Facility affiliation label	0.3	PASS	0.3	label written
+N5	Marts with no test	0.3	PASS	0.3	0 of 617 enabled marts have no test at all
+N6	ID-shaped column notes	0.3	PASS	0.3	Part D NPI note: True; UK company number note: True
+N7	Dead capped SAM copy	0.3	PASS	0.3	capped FED_SAM_EXCLUSIONS gone
+D1	Tests downgraded to warn-only	0.5	PASS	-0.0	0 warn-only not_null tests in the 10 downgraded schema files; 935 project-wide, most older than the audit
+D2	Loader writes the ingest stamp wrong	0.5	PASS	-0.0	MANUAL 2026-09-21: Cause proven live with a probe table: write_pandas without use_logical_type lands a datetime as a bare epoch number, or as micros-read-as-seconds when the table pre-exists as TIMESTAMP. Flag added to all 85 write_pandas calls in scripts/ and library-onboarding/; 0 left. Tables loaded before today keep the bad stamp; staging re-reads it where it matters.
+D3	Shelf refresh unsafe to run	0.5	PASS	-0.0	MANUAL 2026-09-21: thelibrary_build.py now reads the live view list from THE_LIBRARY.information_schema and never rewrites an existing view's body: comment refresh only, unless --rebuild-live. Preview: 242 of 252 live views keep their body, 9 orphans listed and kept without --prune, START_HERE rebuilt by design. 0 live bodies change.
+D4	Rollback files are not runnable undo	0.5	PASS	-0.0	MANUAL 2026-09-21: scripts/qualify_rollback_files.py qualified all 25 view statements with THE_LIBRARY.<schema> and COPY GRANTS, and EXPLAIN-checked each SELECT body: 24 compile. The 25th, AIRCRAFT_REGISTRY, reads a landing table renamed before the snapshot and is marked WILL NOT RUN in the file. The reshaped file was already qualified.
+D5	Stale catalog types on public views	0.5	PASS	-0.0	0 public views with stale catalog types
+	SCORE			100.0	full run

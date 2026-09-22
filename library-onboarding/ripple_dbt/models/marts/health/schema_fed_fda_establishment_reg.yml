@@ -3,3 +3,8 @@ version: 2
 models:
   - name: health__fed_fda_establishment_reg
     description: "FDA device establishment registrations: 330k registration-product rows flattened from raw openFDA JSON."
+    columns:
+      - name: fei_number
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): no unique column or pair, 263,374 rows; FEI repeats per product line, never blank."
+        tests:
+          - not_null

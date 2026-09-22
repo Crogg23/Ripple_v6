@@ -17,3 +17,8 @@ models:
     description: >
       FDA Adverse Event Reporting System, case-demographics level. 5,811,086 rows.
       See the note above on why no ID column here gets a not_null test.
+    columns:
+      - name: src_quarter
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): the loader quarter stamp, filled on all 5,811,086 rows; the only column the note above allows."
+        tests:
+          - not_null

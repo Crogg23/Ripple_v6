@@ -1,3 +1,5 @@
+-- KEY WIDENED 2026-09-22 (row sweep): accession_number alone hid 6 rows.
+-- A SC 13G/A accession carries two CIKs, filer and subject; both rows are real.
 {{ config(materialized='view') }}
 
 with source as (
@@ -50,7 +52,7 @@ deduped as (
         select
             *,
             row_number() over (
-                partition by accession_number
+                partition by accession_number, cik
                 order by _ingested_at desc
             ) as _row_num
         from renamed

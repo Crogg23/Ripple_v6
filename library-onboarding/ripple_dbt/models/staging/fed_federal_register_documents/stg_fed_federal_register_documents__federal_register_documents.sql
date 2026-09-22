@@ -1,3 +1,5 @@
+-- KEY WIDENED 2026-09-22 (row sweep): document_number alone hid 9 rows.
+-- A corrected notice is re-published under the same number on a later date with its own citation.
 {{ config(materialized='view') }}
 
 with source as (
@@ -74,7 +76,7 @@ deduped as (
         select
             *,
             row_number() over (
-                partition by document_number
+                partition by document_number, publication_date
                 order by _ingested_at desc
             ) as _row_num
         from renamed

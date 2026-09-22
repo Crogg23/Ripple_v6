@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: economics__fed_sba_ppp_loans_150k_plus
+  columns:
+  - name: loannumber
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 968,524 rows.'
+    tests:
+    - unique
+    - not_null

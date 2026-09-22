@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: justice__intl_uk_sanctions_list
+  columns:
+  - name: unique_id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): no unique column or pair; a filled column, 58,336
+      rows.'
+    tests:
+    - not_null

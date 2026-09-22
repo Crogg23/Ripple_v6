@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: health__fed_cms_marketplace_plan_attributes_puf
+  columns:
+  - name: planid
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 22,059 rows.'
+    tests:
+    - unique
+    - not_null

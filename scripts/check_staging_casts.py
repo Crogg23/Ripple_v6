@@ -51,7 +51,7 @@ NULL_WORDS = ("n/a", "na", "null", "none", "nil", "-", "--", "#n/a", "not availa
 _DATE_GUARD = "'.*[0-9A-Za-z][-/][0-9A-Za-z].*'"
 
 CAST_LINE = re.compile(
-    r"\{\{\s*(stg_int|stg_float|stg_date|stg_ts|stg_bool)\('(\"(?:[^\"]|\"\")+\")'(?:,\s*'([A-Z]+)')?\)\s*\}\}\s+as\s+(\w+)")
+    r"\{\{\s*(stg_int|stg_float|stg_date|stg_ts|stg_ts_tz|stg_id_text|stg_bool)\('(\"(?:[^\"]|\"\")+\")'(?:,\s*'([A-Z]+)')?\)\s*\}\}\s+as\s+(\w+)")
 
 
 def cast_sql(macro: str, q: str, fmt: str | None) -> str:
@@ -70,7 +70,14 @@ def cast_sql(macro: str, q: str, fmt: str | None) -> str:
         return (f"iff(regexp_like({v}, {_DATE_GUARD}), iff(regexp_like({v}, {offset}), "
                 f"convert_timezone('UTC', try_to_timestamp_tz({ymd}))::timestamp_ntz, "
                 f"try_to_timestamp_ntz({ymd})), null)")
-    return f"try_to_boolean({v})"
+    if macro == "stg_ts_tz":
+        return f"iff(regexp_like({v}, {_DATE_GUARD}), try_to_timestamp_tz({ymd}), null)"
+    if macro == "stg_id_text":
+        nj = f"iff(trim({q}) = '' or lower(trim({q})) = 'nan', null, {q})"
+        return f"regexp_replace(trim({nj}), '^([+-]?[0-9]+)[.]0+$', '" + chr(92) * 2 + "1')"
+    if macro == "stg_bool":
+        return f"try_to_boolean({v})"
+    raise ValueError(f"unknown cast macro {macro}")
 
 
 def generated_casts() -> dict[str, list[tuple[str, str, str | None]]]:

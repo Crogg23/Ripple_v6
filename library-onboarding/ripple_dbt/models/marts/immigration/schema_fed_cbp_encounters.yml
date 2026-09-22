@@ -1,0 +1,8 @@
+version: 2
+models:
+- name: immigration__fed_cbp_encounters
+  columns:
+  - name: oct_25
+    description: 'PROBED LIVE 2026-09-22: 9 rows, a month column; unique only by luck, so not_null only.'
+    tests:
+    - not_null

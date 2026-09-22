@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: finance__fed_irs527_schedule_b_expenditures
+  columns:
+  - name: schedule_id
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): row key, 8,191,177 rows.'
+    tests:
+    - unique
+    - not_null

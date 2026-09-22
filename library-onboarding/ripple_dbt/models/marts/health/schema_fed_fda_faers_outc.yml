@@ -1,0 +1,9 @@
+version: 2
+models:
+- name: health__fed_fda_faers_outc
+  columns:
+  - name: src_quarter
+    description: 'PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): no unique column or pair; a filled column, 5,147,466
+      rows.'
+    tests:
+    - not_null

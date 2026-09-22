@@ -3,3 +3,12 @@ version: 2
 models:
   - name: politics__ca_lobby_cover
     description: "CAL-ACCESS lobbying disclosure cover pages (Forms 615/625/635/645...): one row per filing version (filing_id + amend_id unique)."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [filing_id, amend_id]
+    columns:
+      - name: filing_id
+        description: "PROBED LIVE 2026-09-22 (scripts/probe_untested_marts.py): proven with amend_id as the row key, 568,988 rows."
+        tests:
+          - not_null
