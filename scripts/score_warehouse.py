@@ -193,14 +193,17 @@ def s7_dme():
 def s8_public_shelf():
     if FAST:
         return 0.0, "skipped by --fast, counted open"
-    views = rows("select table_schema, table_name from THE_LIBRARY.information_schema.views where table_schema <> 'INFORMATION_SCHEMA'")
-    bad = []
-    for s, t in views:
-        try:
-            rows(f'select * from THE_LIBRARY."{s}"."{t}" limit 1')
-        except Exception:  # noqa: BLE001
-            bad.append(f"{s}.{t}")
-    return (1.0 if not bad else 0.0), f"{len(views) - len(bad)} of {len(views)} public views return a real row{'; broken: ' + ', '.join(bad[:5]) if bad else ''}"
+    shelves = [("THE_LIBRARY", "select table_schema, table_name from THE_LIBRARY.information_schema.views where table_schema <> 'INFORMATION_SCHEMA'"),
+               ("LIBRARY_MARTS", "select table_schema, table_name from LIBRARY_MARTS.information_schema.views where table_schema in ('TIMELINE', 'FINDINGS')")]
+    total, bad = 0, []
+    for dbname, sql in shelves:
+        for s, t in rows(sql):
+            total += 1
+            try:
+                rows(f'select * from {dbname}."{s}"."{t}" limit 1')
+            except Exception:  # noqa: BLE001
+                bad.append(f"{dbname}.{s}.{t}")
+    return (1.0 if not bad else 0.0), f"{total - len(bad)} of {total} public, timeline and findings views return a real row{'; broken: ' + ', '.join(bad[:5]) if bad else ''}"
 
 
 def s9_arcos_key():

@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: economics__fed_usaspending_assistance_full
-    description: "CAPPED AT 1,000,000 ROWS PER FISCAL YEAR, FY2007-2026 -- NOT the true row count. USASpending Federal Assistance Awards: the same API page limit as the contracts_full twin, live-confirmed on the landing table 2026-09-20 (19,902,879 rows total; 19 of 20 fiscal years land exactly 1,000,000, FY2014 short at 902,879). Unlike contracts_full, there is no corrected _r2 reload for assistance -- treat every FY total or coverage claim from this model as a floor, not a fact, until one exists."
+    description: "USASpending Federal Assistance Awards, one row per award transaction, FY2007 to FY2026, 128,155,142 rows. UNCAPPED since 2026-09-21: this model unions the twenty per-fiscal-year landing tables, every fiscal year runs Oct 1 to Sep 30 and ASSISTANCE_TRANSACTION_UNIQUE_KEY is unique across all rows. Before that it read FED_USASPENDING_ASSISTANCE_FULL, which the download cut at exactly 1,000,000 rows per fiscal year; totals from before that date were floors. Missing values arrive as real NULLs. FY2026 holds action dates through 2026-09-30 as published by the source."
     columns:
       - name: modification_number
         description: "Optional in the source: 57,231,031 of 128,155,142 rows blank, 44.7 percent, measured 2026-09-21. No not_null test on purpose."
@@ -27,11 +27,26 @@ models:
       - name: recipient_city_code
         description: "Optional in the source: 23,968,743 of 128,155,142 rows blank, 18.7 percent, measured 2026-09-21. No not_null test on purpose."
       - name: prime_award_transaction_recipient_county_fips_code
-        description: "Optional in the source: 612,695 of 128,155,142 rows blank, 0.5 percent, measured 2026-09-21. No not_null test on purpose."
+        description: "612,695 of 128,155,142 rows blank in the source, 0.5 percent, measured 2026-09-21. Threshold test, not a warn."
+        data_tests:
+          - not_null:
+              config:
+                error_if: ">919042"
+                warn_if: ">673964"
       - name: prime_award_transaction_recipient_state_fips_code
-        description: "Optional in the source: 469,680 of 128,155,142 rows blank, 0.4 percent, measured 2026-09-21. No not_null test on purpose."
+        description: "469,680 of 128,155,142 rows blank in the source, 0.4 percent, measured 2026-09-21. Threshold test, not a warn."
+        data_tests:
+          - not_null:
+              config:
+                error_if: ">704520"
+                warn_if: ">516648"
       - name: recipient_state_code
-        description: "Optional in the source: 421,070 of 128,155,142 rows blank, 0.3 percent, measured 2026-09-21. No not_null test on purpose."
+        description: "421,070 of 128,155,142 rows blank in the source, 0.3 percent, measured 2026-09-21. Threshold test, not a warn."
+        data_tests:
+          - not_null:
+              config:
+                error_if: ">631605"
+                warn_if: ">463177"
       - name: recipient_zip_code
         description: "Optional in the source: 21,303,680 of 128,155,142 rows blank, 16.6 percent, measured 2026-09-21. No not_null test on purpose."
       - name: recipient_zip_last_4_code
@@ -41,11 +56,21 @@ models:
       - name: primary_place_of_performance_country_code
         description: "Optional in the source: 6,678,813 of 128,155,142 rows blank, 5.2 percent, measured 2026-09-21. No not_null test on purpose."
       - name: primary_place_of_performance_code
-        description: "Optional in the source: 1,241,277 of 128,155,142 rows blank, 1.0 percent, measured 2026-09-21. No not_null test on purpose."
+        description: "1,241,277 of 128,155,142 rows blank in the source, 1.0 percent, measured 2026-09-21. Threshold test, not a warn."
+        data_tests:
+          - not_null:
+              config:
+                error_if: ">1861915"
+                warn_if: ">1365404"
       - name: prime_award_transaction_place_of_performance_county_fips_code
         description: "Optional in the source: 5,468,774 of 128,155,142 rows blank, 4.3 percent, measured 2026-09-21. No not_null test on purpose."
       - name: prime_award_transaction_place_of_performance_state_fips_code
-        description: "Optional in the source: 2,130,908 of 128,155,142 rows blank, 1.7 percent, measured 2026-09-21. No not_null test on purpose."
+        description: "2,130,908 of 128,155,142 rows blank in the source, 1.7 percent, measured 2026-09-21. Threshold test, not a warn."
+        data_tests:
+          - not_null:
+              config:
+                error_if: ">3196362"
+                warn_if: ">2343998"
       - name: cfda_number
         description: "1,223 of 128,155,142 rows have no value in the source, measured 2026-09-21."
         data_tests:
@@ -63,7 +88,12 @@ models:
                 error_if: ">100"
                 warn_if: ">6"
       - name: business_funds_indicator_code
-        description: "Optional in the source: 834,410 of 128,155,142 rows blank, 0.7 percent, measured 2026-09-21. No not_null test on purpose."
+        description: "834,410 of 128,155,142 rows blank in the source, 0.7 percent, measured 2026-09-21. Threshold test, not a warn."
+        data_tests:
+          - not_null:
+              config:
+                error_if: ">1251615"
+                warn_if: ">917851"
       - name: business_types_code
         description: "642 of 128,155,142 rows have no value in the source, measured 2026-09-21."
         data_tests:

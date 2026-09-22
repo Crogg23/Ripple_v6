@@ -144,7 +144,7 @@ SPEC = [
         "target": 419,
         "comment": "FEC individual contributions rolled to contributor STATE x CYCLE_YEAR (calendar "
                    "year of the transaction). N_RECORDS = number of contributions; TOTAL_AMOUNT = total "
-                   "dollars. Junk transaction years (<1979 or >2026 in the raw) dropped. MEMO_CD='X' "
+                   "dollars. Junk transaction years (<1979 or >2026 in the raw) dropped: 51,476 non-memo rows, $25.9M, measured 2026-09-21, so this sums $25.9M under the mart. CYCLE_YEAR is the transaction YEAR, odd years included, not a two-year election cycle. MEMO_CD='X' "
                    "(earmark/re-statement) rows dropped too -- that money is already counted on the real "
                    "row elsewhere, so summing it in would double-count it. Pre-aggregated from what was "
                    "84.2M raw rows at last build (landing is 283.8M now, 14 cycles -- see STALE-BUILD "

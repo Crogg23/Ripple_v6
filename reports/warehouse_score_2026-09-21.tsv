@@ -6,7 +6,7 @@ S4	USASpending 1M-per-year cap	3.5	PASS	3.5	contracts timeline rows with a broke
 S5	BJS and HUDOC capped samples	3.5	PASS	3.5	FED_BJS_DATA_FULL 68,852 -> mart 68,852; INTL_HUDOC_FULL 211,778 -> mart 211,778
 S6	Part B floor of 11	3.5	PASS	3.5	coverage column live, 8 null, 0 over 100; a plain sum off the table reaches 100.0 percent of the provider totals
 S7	DME family undercount	3.5	PASS	3.5	families plus the unassigned remainder miss the total on 0 rows
-S8	Public views open	3.5	PASS	3.5	252 of 252 public views return a real row
+S8	Public views open	3.5	PASS	3.5	670 of 670 public, timeline and findings views return a real row
 S9	ARCOS row key	3.5	PASS	3.5	ARCOS_ROW_KEY 178,598,026 distinct over 178,598,026 rows, 0 null
 M1	Orphan staging views	1.2	PASS	1.2	0 live staging views have no model file behind them, e.g. 
 M2	Staging files with bare casts	1.2	PASS	1.2	0 bare casts in 0 staging files
