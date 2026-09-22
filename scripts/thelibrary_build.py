@@ -28,7 +28,8 @@ from snow import connect  # noqa: E402
 APPLY = "--apply" in sys.argv
 PRUNE = "--prune" in sys.argv   # removing a view is never the default; a reconcile only lists orphans
 PORTALS = "--portals" in sys.argv
-TYPED = "--typed" in sys.argv          # build landing views with typed projections (reuses thelibrary_typed_views.build_view)
+TYPED = "--typed" in sys.argv
+REBUILD_LIVE = "--rebuild-live" in sys.argv   # 2026-09-21: a view that already exists keeps its BODY; only its comment is refreshed. This flag restores the old clobber.          # build landing views with typed projections (reuses thelibrary_typed_views.build_view)
 INV = _ROOT / "outputs" / "thelibrary_inventory.json"
 CONTENT = _ROOT / "outputs" / "thelibrary_content.json"
 
@@ -221,6 +222,12 @@ def main():
         build_typed = _tv.build_view
         print("   [--typed] landing views will be built with typed projections (profiling ~sec/view)")
     print(f"[{'APPLY' if APPLY else 'PREVIEW'}] C2 {len(rows)} friendly views + prune")
+    # 2026-09-21: never rewrite a live view's body on a reconcile. A 2026-09-20 replay showed 33 kept views
+    # would read a different table and 113 typed projections would flatten to SELECT *. Live views get a
+    # comment refresh only; new views are created. --rebuild-live restores the old behaviour.
+    cur.execute("SELECT TABLE_SCHEMA || '.' || TABLE_NAME FROM THE_LIBRARY.INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA <> 'INFORMATION_SCHEMA'")
+    live_views = {row[0] for row in cur.fetchall()}
+    kept_body = 0
     target, typed_n = {}, 0
     for r in rows:
         target.setdefault(r["friendly_schema"], set()).add(r["friendly_name"])
@@ -237,13 +244,17 @@ def main():
                     typed_n += 1
             except Exception as ex:
                 print(f"   typed profiling failed for {r['friendly_name']}: {str(ex)[:90]} -- SELECT * fallback")
-        if typed_ddl:
+        if f'{r["friendly_schema"]}.{r["friendly_name"]}' in live_views and not REBUILD_LIVE:
+            kept_body += 1
+            run(cur, f"ALTER VIEW {vfqn} SET COMMENT='{esc(r['comment'] + badge)}'", f'comment only, body kept: {r["friendly_name"]}')
+        elif typed_ddl:
             run(cur, typed_ddl, f'typed view {r["friendly_name"]}')
         else:
             vcomment = esc(r["comment"] + badge)
             run(cur, f'CREATE OR REPLACE VIEW {vfqn} '
                      f"COMMENT='{vcomment}' AS SELECT * FROM {r['object_fqn']}",
                 f'view {r["friendly_name"]}')
+    print(f"   {kept_body} live views kept their body (comment refreshed only); pass --rebuild-live to rewrite them")
     if TYPED:
         print(f"   [--typed] {typed_n} landing views typed; the rest are SELECT * (mart layer / no-gain)")
     # orphans are listed in PREVIEW too (SHOW VIEWS is read-only), so a preview tells the truth
