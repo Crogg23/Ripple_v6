@@ -1,5 +1,5 @@
 -- THE_LIBRARY."CAMPAIGN_FINANCE"."INDIVIDUAL_DONATIONS"
-create or replace view INDIVIDUAL_DONATIONS(
+create or replace view THE_LIBRARY.CAMPAIGN_FINANCE.INDIVIDUAL_DONATIONS copy grants(
 	SUB_ID,
 	CMTE_ID,
 	DONOR_NAME,
@@ -19,7 +19,7 @@ create or replace view INDIVIDUAL_DONATIONS(
  as SELECT * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS;
 
 -- THE_LIBRARY."CAMPAIGN_FINANCE"."OUTSIDE_SPENDING"
-create or replace view OUTSIDE_SPENDING(
+create or replace view THE_LIBRARY.CAMPAIGN_FINANCE.OUTSIDE_SPENDING copy grants(
 	CAND_ID,
 	CAND_NAME,
 	SPE_ID,
@@ -47,7 +47,7 @@ create or replace view OUTSIDE_SPENDING(
  as select * from LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES;
 
 -- THE_LIBRARY."ENERGY_ENVIRONMENT"."POLLUTION_ENFORCEMENT"
-create or replace view POLLUTION_ENFORCEMENT(
+create or replace view THE_LIBRARY.ENERGY_ENVIRONMENT.POLLUTION_ENFORCEMENT copy grants(
 	FRS_ID,
 	FACILITY_NAME,
 	STREET,
@@ -94,7 +94,7 @@ create or replace view POLLUTION_ENFORCEMENT(
  as SELECT * FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO;
 
 -- THE_LIBRARY."GOVERNMENT"."REVOLVING_DOOR_APPOINTEES"
-create or replace view REVOLVING_DOOR_APPOINTEES(
+create or replace view THE_LIBRARY.GOVERNMENT.REVOLVING_DOOR_APPOINTEES copy grants(
 	POSITION_KEY,
 	PERSON_NAME,
 	AGENCY,
@@ -145,7 +145,7 @@ create or replace view REVOLVING_DOOR_APPOINTEES(
  as select * from LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT;
 
 -- THE_LIBRARY."HEALTH"."HOSPITAL_COST_REPORTS"
-create or replace view HOSPITAL_COST_REPORTS(
+create or replace view THE_LIBRARY.HEALTH.HOSPITAL_COST_REPORTS copy grants(
 	PROVIDER_CCN,
 	HOSPITAL_NAME,
 	FISCAL_YEAR_END_DATE,
@@ -275,7 +275,7 @@ create or replace view HOSPITAL_COST_REPORTS(
  as select * from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_HCRIS;
 
 -- THE_LIBRARY."HEALTH"."NURSING_HOMES"
-create or replace view NURSING_HOMES(
+create or replace view THE_LIBRARY.HEALTH.NURSING_HOMES copy grants(
 	CMS_CERTIFICATION_NUMBER_CCN,
 	PROVIDER_NUMBER,
 	NPI,
@@ -377,8 +377,8 @@ create or replace view NURSING_HOMES(
 ) COMMENT='One row per certified nursing home from CMS Care Compare -- overall and category star ratings, staffing hours per resident, ownership and chain, inspection deficiencies, fines, payment denials, and an abuse-icon flag. This is the go-to for spotting understaffed or repeatedly-cited facilities and tracing them up to their parent chains. Cleaned and analytics-ready; keyed by CCN plus NPI, county FIPS, lat/lon, name, address, ZIP; ~14,700 rows.'
  as select * from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME;
 
--- THE_LIBRARY."TRANSPORT"."AIRCRAFT_REGISTRY"
-create or replace view AIRCRAFT_REGISTRY(
+-- THE_LIBRARY."TRANSPORT"."AIRCRAFT_REGISTRY"  -- WILL NOT RUN: reads FED_FAA_REGISTRY, renamed to FED_FAA_AIRCRAFT_REGISTRY before this snapshot. The view was broken before the repair; there is nothing to roll back to.
+create or replace view THE_LIBRARY.TRANSPORT.AIRCRAFT_REGISTRY copy grants(
 	N_NUMBER,
 	SERIAL_NUMBER,
 	MFR_MDL_CODE,
