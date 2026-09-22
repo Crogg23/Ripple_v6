@@ -80,7 +80,9 @@ def _ensure_nickname_map(conn) -> int:
     df.columns = ["VARIANT", "CANONICAL"]
     write_pandas(conn, df, table_name="NICKNAME_MAP", database=store.CONNECT_DB,
                  schema=store.CONNECT_SCHEMA, auto_create_table=True, overwrite=True,
-                 quote_identifiers=False)
+                 quote_identifiers=False,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
     return len(df)
 
 
@@ -238,7 +240,9 @@ def _write_links(conn, rows, spec) -> None:
     df = pd.DataFrame(recs)
     write_pandas(conn, df, table_name="ENTITY_LINKS_STAGE", database=store.CONNECT_DB,
                  schema=store.CONNECT_SCHEMA, auto_create_table=True, overwrite=True,
-                 quote_identifiers=False)
+                 quote_identifiers=False,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
     stage = store.cfqn("ENTITY_LINKS_STAGE")
     db.rows(conn, f"""
         INSERT INTO {LINKS_FQN} (LEFT_REF, RIGHT_REF, LEFT_SRC, RIGHT_SRC, METHOD, SCORE,

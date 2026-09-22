@@ -396,7 +396,9 @@ def _merge_leads(conn, df: pd.DataFrame) -> None:
     """Stage the run's leads, then MERGE — preserving FIRST_SEEN, bumping LAST_SEEN."""
     write_pandas(conn, df, table_name="LEADS_STAGE", database=store.CONNECT_DB,
                  schema=store.CONNECT_SCHEMA, auto_create_table=True, overwrite=True,
-                 quote_identifiers=False)
+                 quote_identifiers=False,
+                 use_logical_type=True,  # 2026-09-21: datetime columns land as bare epoch numbers without this
+                 )
     db.rows(conn, f"""
         MERGE INTO {LEADS_FQN} t USING {STAGE_FQN} s ON t.LEAD_ID = s.LEAD_ID
         WHEN MATCHED THEN UPDATE SET
