@@ -525,12 +525,59 @@ def cmd_links():
     conn.close()
 
 
+# --------------------------------------------------------------------------- #
+# profile: full-table value profile for every glossary column, all rows, not a
+# first-block sample. One query per table: per column, non-empty count and the
+# 8 most common values (APPROX_TOP_K). Feeds the glossary re-check.
+#   python scripts/audit_catalog.py profile
+# --------------------------------------------------------------------------- #
+def cmd_profile():
+    import csv as _csv
+    gl = REPO / "library-onboarding" / "ripple_dbt" / "seeds" / "plain_english_glossary.csv"
+    names = {r["column_name"] for r in _csv.DictReader(open(gl, encoding="utf-8")) if r["varies"] != "yes"}
+    inv = load_inventory()
+    by_t = collections.defaultdict(list)
+    for c in inv["cols"]:
+        if c["C"] in names and not re.search(r"__PREV|_PREV_", c["T"]) and c["D"] not in ("GEOGRAPHY", "GEOMETRY", "BINARY"):
+            by_t[(c["S"], c["T"])].append(c["C"])
+    out = CACHE / "profiles"
+    out.mkdir(exist_ok=True)
+    conn = _conn()
+    cur = conn.cursor()
+    cur.execute("alter session set statement_timeout_in_seconds = 1800")
+    todo = sorted(by_t.items())
+    for i, ((s, t), cols) in enumerate(todo):
+        p = out / f"{s}.{t}.json"
+        if p.exists():
+            continue
+        parts = ["count(*) as \"__N\""]
+        for j, c in enumerate(cols):
+            v = f'nullif(trim(to_varchar("{c}")), \'\')'
+            parts.append(f'count({v}) as "F{j}"')
+            parts.append(f'approx_top_k({v}, 8) as "K{j}"')
+        try:
+            cur.execute(f'select {", ".join(parts)} from LIBRARY_MARTS."{s}"."{t}"')
+            row = cur.fetchone()
+            res = {"rows": row[0], "cols": {}}
+            for j, c in enumerate(cols):
+                top = row[2 + 2 * j]
+                top = json.loads(top) if isinstance(top, str) else top
+                res["cols"][c] = {"filled": row[1 + 2 * j], "top": [[str(a)[:80], b] for a, b in (top or [])]}
+            json.dump(res, open(p, "w", encoding="utf-8"))
+            print(f"  {i + 1}/{len(todo)} {s}.{t} {len(cols)} cols {row[0]:,} rows", flush=True)
+        except Exception as e:
+            print(f"  {i + 1}/{len(todo)} {s}.{t} ERROR {str(e)[:150]}", flush=True)
+    conn.close()
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "analyze"
     if cmd == "fetch":
         cmd_fetch()
     elif cmd == "links":
         cmd_links()
+    elif cmd == "profile":
+        cmd_profile()
     elif cmd == "catalog":
         from audit_catalog_report import cmd_catalog  # noqa: E402
         cmd_catalog()
