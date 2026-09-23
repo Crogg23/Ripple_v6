@@ -1,0 +1,846 @@
+<title>Warehouse Patch Panel</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --paper:#f0f2f4; --page:#ffffff; --sink:#f7f8fa;
+  --ink:#10161d; --ink2:#41505f; --dim:#6e7d8d;
+  --line:#dbe1e7; --hair:#eaeef2;
+  --rail:#f4f6f8;
+  --strong:#04645a; --strong-bg:#cdeae4;
+  --medium:#875010; --medium-bg:#f7e4c6;
+  --weak:#5c6674; --weak-bg:#e3e8ed;
+  --hot:#b8391f; --hotsoft:#fae5df;
+  --bar:#a8bacd;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0a0e13; --page:#131a22; --sink:#0f151c;
+    --ink:#e9eff6; --ink2:#b6c4d3; --dim:#8392a3;
+    --line:#242f3a; --hair:#1b242d;
+    --rail:#0d1319;
+    --strong:#5fd9c2; --strong-bg:#0c3831;
+    --medium:#efbb67; --medium-bg:#382a11;
+    --weak:#97a6b6; --weak-bg:#1f2833;
+    --hot:#ff7d5e; --hotsoft:#3a1a12;
+    --bar:#3a4c60;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0a0e13; --page:#131a22; --sink:#0f151c;
+  --ink:#e9eff6; --ink2:#b6c4d3; --dim:#8392a3;
+  --line:#242f3a; --hair:#1b242d;
+  --rail:#0d1319;
+  --strong:#5fd9c2; --strong-bg:#0c3831;
+  --medium:#efbb67; --medium-bg:#382a11;
+  --weak:#97a6b6; --weak-bg:#1f2833;
+  --hot:#ff7d5e; --hotsoft:#3a1a12;
+  --bar:#3a4c60;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,sans-serif;
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;text-wrap:balance}
+button,input,select{font:inherit;color:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--hot);outline-offset:2px;border-radius:3px}
+
+/* ---------------- top bar ---------------- */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--page);
+  border-bottom:1px solid var(--line);padding:12px 22px;
+  display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+header .brand{font-size:16px;font-weight:800;letter-spacing:-.015em}
+header .tally{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}
+header .grow{flex:1 1 20px}
+#q{flex:1 1 240px;max-width:420px;padding:9px 13px;border:1px solid var(--line);
+  border-radius:8px;background:var(--sink);color:var(--ink);font-size:14px}
+#q:focus{border-color:var(--hot);outline:none;background:var(--page)}
+.btn{border:1px solid var(--line);background:var(--page);color:var(--ink2);
+  border-radius:8px;padding:8px 13px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--hot);color:var(--hot)}
+.btn[aria-pressed="true"]{background:var(--strong-bg);color:var(--strong);border-color:transparent}
+
+/* ---------------- frame ---------------- */
+.wrap{display:grid;grid-template-columns:330px minmax(0,1fr);background:var(--line);gap:1px}
+.side{background:var(--rail);overflow-y:auto;overscroll-behavior:contain;
+  max-height:calc(100vh - 62px)}
+.page{background:var(--page);overflow-y:auto;overscroll-behavior:contain;
+  max-height:calc(100vh - 62px)}
+
+.sidehead{position:sticky;top:0;z-index:5;background:var(--rail);
+  border-bottom:1px solid var(--line);padding:12px 16px 10px;display:grid;gap:8px}
+#subject{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;
+  background:var(--page);color:var(--ink);font-size:14px;font-weight:600}
+.sidehead .row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.sidehead .cnt{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}
+.sidehead .btn{padding:5px 9px;font-size:12px}
+
+.trow{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--hair);
+  background:none;cursor:pointer;padding:11px 16px}
+.trow:hover{background:var(--page)}
+.trow[aria-pressed="true"]{background:var(--page);box-shadow:inset 4px 0 0 var(--hot)}
+.trow .nm{font-size:14.5px;font-weight:600;line-height:1.3;letter-spacing:-.01em}
+.trow .sub{font-size:12px;color:var(--dim);margin-top:1px}
+.trow .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:7px}
+.size{display:flex;align-items:center;gap:7px}
+.size .track{width:48px;height:5px;border-radius:3px;background:var(--hair);overflow:hidden}
+.size .fill{display:block;height:100%;background:var(--bar);border-radius:3px}
+.size .val{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink2)}
+.hit{background:var(--medium-bg);color:var(--medium);border-radius:3px;padding:1px 5px;
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px}
+
+.chip{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10.5px;
+  font-family:"IBM Plex Mono",monospace;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip.strong{background:var(--strong-bg);color:var(--strong)}
+.chip.medium{background:var(--medium-bg);color:var(--medium)}
+.chip.weak{background:var(--weak-bg);color:var(--weak);font-weight:500}
+.chip.more{background:none;color:var(--dim);font-weight:500;padding-inline:2px}
+
+/* ---------------- reading page ---------------- */
+.doc{max-width:760px;padding:30px 40px 70px}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--hot)}
+.doc h2{font-family:"Source Serif 4",Georgia,serif;font-size:34px;font-weight:700;
+  letter-spacing:-.02em;line-height:1.1;margin:6px 0 10px}
+.lede{font-family:"Source Serif 4",Georgia,serif;font-size:18.5px;line-height:1.5;
+  color:var(--ink2);margin-bottom:8px}
+.fullname{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  word-break:break-all}
+.trail{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:14px;
+  font-size:11.5px;color:var(--dim)}
+.trail button{border:1px solid var(--line);background:var(--sink);color:var(--ink2);
+  cursor:pointer;font-size:11.5px;padding:2px 9px;border-radius:99px}
+.trail button:hover{color:var(--hot);border-color:var(--hot)}
+
+.facts{display:flex;gap:30px;flex-wrap:wrap;margin:22px 0 4px;padding:16px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts .k{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dim)}
+.facts .v{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;
+  letter-spacing:-.02em;line-height:1.25}
+.facts .note{font-size:11.5px;color:var(--dim)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto;align-self:center}
+
+h3.head{font-family:"Source Serif 4",Georgia,serif;font-size:22px;font-weight:700;
+  letter-spacing:-.01em;margin:34px 0 4px}
+.said{color:var(--dim);font-size:13.5px;margin-bottom:14px}
+
+.key{border:1px solid var(--line);background:var(--sink);border-radius:10px;
+  margin-bottom:10px;overflow:hidden}
+.key > summary{list-style:none;cursor:pointer;padding:13px 16px;display:grid;
+  grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.key > summary::-webkit-details-marker{display:none}
+.key .what{font-size:14px;font-weight:600}
+.key .what em{display:block;font-style:normal;font-weight:400;font-size:12.5px;color:var(--dim);
+  font-family:"IBM Plex Mono",monospace;margin-top:1px}
+.key .count{font-size:12.5px;color:var(--ink2);font-weight:600;text-align:right}
+.key .count em{display:block;font-style:normal;font-weight:400;color:var(--dim);font-size:11px}
+.key[open] > summary{background:var(--page);border-bottom:1px solid var(--line)}
+.key ul{margin:0;padding:10px 14px 14px;list-style:none;background:var(--page);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px}
+.key li button{border:0;background:none;cursor:pointer;color:var(--ink2);text-align:left;
+  width:100%;font-size:13px;padding:4px 8px;border-radius:5px}
+.key li button:hover{color:var(--hot);background:var(--hotsoft)}
+.key li span{display:block;font-size:11px;color:var(--dim)}
+
+.colbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+#cq{flex:1 1 180px;max-width:300px;padding:7px 11px;border:1px solid var(--line);
+  border-radius:8px;background:var(--sink);color:var(--ink);font-size:13.5px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--dim);padding:10px 14px;border-bottom:1px solid var(--line);background:var(--sink)}
+td{padding:7px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.c{font-family:"IBM Plex Mono",monospace;font-weight:500}
+td.t{color:var(--dim);font-size:12.5px}
+.more-btn{margin-top:10px}
+
+.empty{color:var(--dim);padding:48px 40px;font-size:15px;max-width:620px}
+.empty h2{font-family:"Source Serif 4",Georgia,serif;font-size:26px;color:var(--ink);
+  margin-bottom:8px}
+
+/* glossary drawer */
+#gloss{position:fixed;inset:0;z-index:60;background:rgba(8,12,17,.45);
+  display:flex;justify-content:flex-end}
+#gloss[hidden]{display:none}
+#gloss .sheet{background:var(--page);width:min(520px,100%);height:100%;overflow-y:auto;
+  padding:26px 28px 60px;border-left:1px solid var(--line)}
+#gloss h2{font-family:"Source Serif 4",Georgia,serif;font-size:26px;margin-bottom:4px}
+#gloss h3{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin:26px 0 10px}
+#gloss dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:baseline}
+#gloss dt{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--ink)}
+#gloss dd{margin:0;font-size:13.5px;color:var(--ink2)}
+#gloss .close{position:sticky;top:0;float:right;border:1px solid var(--line);
+  background:var(--sink);border-radius:8px;padding:5px 11px;font-size:13px;cursor:pointer}
+
+/* ---------- ER diagram ---------- */
+.erwrap{border:1px solid var(--line);border-radius:12px;background:var(--sink);
+  overflow:auto;max-height:70vh;margin-top:4px}
+.erwrap svg{display:block}
+.er-box{cursor:pointer}
+.er-box rect{fill:var(--page);stroke:var(--line);stroke-width:1.5}
+.er-box:hover rect{stroke:var(--hot)}
+.er-box.center rect{fill:var(--page);stroke:var(--ink);stroke-width:2.5}
+.er-title{fill:var(--ink);font:600 13px "Public Sans",system-ui,sans-serif}
+.er-sub{fill:var(--dim);font:400 10.5px "IBM Plex Mono",monospace}
+.er-field{fill:var(--ink2);font:500 11px "IBM Plex Mono",monospace}
+.er-head{fill:var(--sink);stroke:var(--line);stroke-width:1.5}
+.er-edge{fill:none;stroke:var(--bar);stroke-width:1.5}
+.er-edge.strong{stroke:var(--strong)}
+.er-edge.medium{stroke:var(--medium)}
+.er-edge.weak{stroke:var(--weak);stroke-dasharray:4 3}
+.er-lab{font:600 10px "IBM Plex Mono",monospace}
+.er-lab.strong{fill:var(--strong)} .er-lab.medium{fill:var(--medium)} .er-lab.weak{fill:var(--weak)}
+.er-more{fill:var(--dim);font:500 11.5px "Public Sans",system-ui,sans-serif;cursor:pointer}
+.er-more:hover{fill:var(--hot)}
+.viewbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:26px 0 10px}
+.viewbar .btn{padding:6px 12px;font-size:12.5px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:70;
+  background:var(--ink);color:var(--paper);padding:9px 17px;border-radius:99px;
+  font-size:13.5px;font-weight:600;opacity:0;transition:opacity .18s;pointer-events:none}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr}
+  .side{max-height:none}
+  .page{max-height:none}
+  .doc{padding:22px 18px 60px}
+  .doc h2{font-size:26px}
+}
+</style>
+
+<header>
+  <span class="brand">Warehouse Patch Panel</span>
+  <span class="tally" id="tally">loading</span>
+  <span class="grow"></span>
+  <input id="q" type="search" placeholder="search tables and columns" autocomplete="off">
+  <button class="btn" id="glossBtn" type="button">What the words mean</button>
+</header>
+
+<div class="wrap">
+  <aside class="side" id="side">
+    <div class="sidehead">
+      <select id="subject" aria-label="Subject area"></select>
+      <div class="row">
+        <span class="cnt" id="listcount"></span>
+        <span style="display:flex;gap:6px">
+          <button class="btn" id="hardBtn" type="button" aria-pressed="false"
+            title="Only tables with a real ID number">Real IDs</button>
+          <button class="btn" id="sortBtn" type="button">Biggest</button>
+        </span>
+      </div>
+    </div>
+  </aside>
+  <main class="page" id="page">
+    <div class="empty">
+      <h2>Pick a table.</h2>
+      <p>Every table in the warehouse is on the left, grouped by subject.
+      Open one and this side tells you what it holds, what it can be linked to,
+      and what every column means.</p>
+      <p>Stuck on a word? Hit <b>What the words mean</b> up top.</p>
+    </div>
+  </main>
+</div>
+
+<div id="gloss" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="Glossary">
+    <button class="close" type="button" id="glossClose">Close</button>
+    <h2>What the words mean</h2>
+    <p style="color:var(--dim);font-size:14px">Plain English for everything on this page.</p>
+    <div id="glossBody"></div>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- plain English, everywhere ---------- */
+var KEY = {
+  NPI:      {grade:'strong', short:'a doctor or provider licence number',
+             long:'Ten digits the government gives one doctor, nurse or clinic. It never changes and it means one person or one practice. If two tables both carry it, you can line them up with no guessing.'},
+  CCN:      {grade:'strong', short:'a hospital or nursing home Medicare number',
+             long:'Medicare gives every hospital, nursing home and hospice its own number. One number, one building.'},
+  EIN:      {grade:'strong', short:'a company tax number',
+             long:'The number the IRS gives a business or charity. One number, one tax filer. Watch the width: some files drop the leading zero.'},
+  CIK:      {grade:'strong', short:'a company stock-market filing number',
+             long:'The number the SEC gives a company that files with it. Only public filers have one.'},
+  LEI:      {grade:'strong', short:'a global company number',
+             long:'A twenty-character code used worldwide to name one legal entity. Banks and funds use it.'},
+  'UEI/DUNS':{grade:'strong', short:'a federal contractor number',
+             long:'The number a company needs to take federal money. UEI is the new one, DUNS the old one.'},
+  ACCESSION:{grade:'strong', short:'one filing at the SEC',
+             long:'A receipt number for a single document filed with the SEC. It points at one form, not one company.'},
+  FDIC_CERT:{grade:'strong', short:'a bank deposit-insurance number',
+             long:'The number the FDIC gives one insured bank.'},
+  FEC_ID:   {grade:'strong', short:'a campaign committee or candidate number',
+             long:'The Federal Election Commission numbers every committee, candidate and filing. Money flows hang off these.'},
+  BIOGUIDE: {grade:'strong', short:'a member of Congress ID',
+             long:'The Congressional Biographical Directory code. One code, one senator or representative, for life.'},
+  IMO:      {grade:'strong', short:'a ship hull number',
+             long:'A number welded to one ship. It survives renaming and reflagging, so it is the only reliable way to track a vessel.'},
+  'FRS/EPA':{grade:'strong', short:'a polluting facility number',
+             long:'The EPA numbers each regulated site. Covers air permits, water discharge and waste handling.'},
+  MINE_ID:  {grade:'strong', short:'a mine number',
+             long:'The Mine Safety and Health Administration numbers each mine.'},
+  COUNTY_FIPS:{grade:'medium', short:'a county code',
+             long:'Five digits naming one US county. Good for maps and rates. It groups thousands of people, so it narrows a search, it does not identify anyone.'},
+  ZIP:      {grade:'weak', short:'a postal area',
+             long:'A zip code covers thousands of households. Joining on it alone glues together strangers who share a post office.'},
+  STATE:    {grade:'weak', short:'a state',
+             long:'Two letters covering millions of rows. Useful as a filter, useless as an identity.'},
+  ORG_NAME: {grade:'weak', short:'a name, typed by a human',
+             long:'Free text. ST LUKES HOSPITAL is dozens of hospitals. Single-word name matches turn out real about eight percent of the time.'}
+};
+var ORDER = ['NPI','CCN','EIN','CIK','LEI','UEI/DUNS','ACCESSION','FDIC_CERT','FEC_ID',
+  'BIOGUIDE','IMO','FRS/EPA','MINE_ID','COUNTY_FIPS','ZIP','STATE','ORG_NAME'];
+
+var TYPE = {
+  TEXT:'words or a code', VARCHAR:'words or a code',
+  NUMBER:'a number', FLOAT:'a number with decimals', DECIMAL:'a number with decimals',
+  DATE:'a date', 'TIMESTAMP_NTZ':'a date and a time', 'TIMESTAMP_LTZ':'a date and a time',
+  'TIMESTAMP_TZ':'a date and a time', BOOLEAN:'yes or no',
+  VARIANT:'nested data', ARRAY:'a list', OBJECT:'nested data', BINARY:'raw bytes'
+};
+
+/* agency and program codes that show up inside table names */
+var SRC = {
+  FED:'Federal', INTL:'International', ST:'State', LOC:'Local', XC:'Cross-source',
+  CMS:'Medicare and Medicaid', SEC:'Securities and Exchange Commission',
+  EPA:'Environmental Protection Agency', FEC:'Federal Election Commission',
+  IRS:'Internal Revenue Service', IRS527:'IRS political groups',
+  HUD:'Housing and Urban Development', DOL:'Department of Labor',
+  OSHA:'Workplace safety regulator', FDA:'Food and Drug Administration',
+  NIH:'National Institutes of Health', HHS:'Health and Human Services',
+  OIG:'Inspector General', PBGC:'Federal pension insurer',
+  FDIC:'Bank deposit insurer', NHTSA:'Vehicle safety regulator',
+  MSHA:'Mine safety regulator', ATF:'Alcohol, tobacco, firearms',
+  DEA:'Drug Enforcement Administration', USDA:'Department of Agriculture',
+  DOT:'Department of Transportation', FAA:'Aviation regulator',
+  FRA:'Railroad regulator', CFPB:'Consumer finance watchdog',
+  SBA:'Small Business Administration', CDC:'Disease control agency',
+  DOJ:'Department of Justice', FJC:'Federal courts research arm',
+  HRSA:'Health resources agency', FHFA:'Mortgage regulator',
+  ICE:'Immigration enforcement', USGS:'Geological Survey',
+  EIA:'Energy Information Administration', EIA860:'Power plant survey',
+  EIA861:'Electric utility survey', NPDES:'Water discharge permits',
+  SDWA:'Safe drinking water', RCRA:'Hazardous waste', ICIS:'EPA enforcement system',
+  FRS:'EPA facility registry', HMDA:'Home mortgage disclosure',
+  DERA:'SEC financial statement data', EDGAR:'SEC filing system',
+  FAERS:'FDA adverse event reports', ITIS:'Species taxonomy',
+  ICIJ:'Offshore leaks journalists', OWID:'Our World in Data',
+  ITA:'International Trade Administration', IDB:'Inter-American Development Bank',
+  POLADS:'Political ads', LOBBY:'Lobbying filings', PAC:'Political action committee',
+  CFB:'Campaign finance board', NYC:'New York City', UN:'United Nations',
+  UK:'United Kingdom', EU:'European Union', US:'United States',
+  OFAC:'US sanctions list', OFSI:'UK sanctions list'
+};
+var WORD = {
+  NONDERIV:'ordinary shares', DERIV:'options and derivatives', TRANS:'transactions',
+  XWALK:'crosswalk', DIM:'lookup table', FCT:'event log', SUB:'submissions',
+  ENROLLMENTS:'signed-up list', AFFILIATION:'who works where',
+  LEIE:'banned from Medicare', SDN:'sanctions list', PRSCRBR:'prescriber',
+  RX:'prescriptions', BENE:'patients', ORG:'organisation', INDIV:'individuals',
+  CONTRIB:'donations', CONTRIBUTIONS:'donations', OPER:'operating',
+  QPP:'quality payment program', POS:'provider of services',
+  NPPES:'provider registry', NPDB:'malpractice reports', ARCOS:'opioid shipments',
+  PARTD:'Medicare drug plan', PARTB:'Medicare doctor visits'
+};
+
+/* ---------- state ---------- */
+var DATA = null, byId = new Map(), schema = null, picked = null, maxRows = 1;
+var filter = '', colFilter = '', keyColsOnly = false, colLimit = 40;
+var sortBy = 'rows', hardOnly = false, trail = [];
+var erMode = false, erOpen = {};
+var SORTS = [{k:'rows',label:'Biggest'},{k:'keys',label:'Most linkable'},{k:'name',label:'A to Z'}];
+
+function el(i){ return document.getElementById(i); }
+function fmt(n){ return (n||0).toLocaleString('en-US'); }
+function tid(t){ return t.s + '.' + t.t; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function save(k,v){ try{ localStorage.setItem('wpp2.'+k, v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem('wpp2.'+k); }catch(e){ return null; } }
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function brief(n){
+  n = n || 0;
+  if (n >= 1e9) return (n/1e9).toFixed(n >= 1e10 ? 0 : 1) + 'B';
+  if (n >= 1e6) return (n/1e6).toFixed(n >= 1e7 ? 0 : 1) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(n >= 1e4 ? 0 : 1) + 'K';
+  return String(n);
+}
+function niceType(d){
+  var base = String(d).toUpperCase().split('(')[0].trim();
+  return TYPE[base] || base.toLowerCase();
+}
+function toast(msg){
+  var t = el('toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast.h); toast.h = setTimeout(function(){ t.classList.remove('on'); }, 1500);
+}
+
+/* HEALTH__FED_CMS_HOSPICE_ENROLLMENTS -> label + who published it */
+function human(name){
+  var tail = name.indexOf('__') >= 0 ? name.slice(name.indexOf('__') + 2) : name;
+  var parts = tail.split('_').filter(Boolean);
+  var who = [];
+  while (parts.length > 1 && SRC[parts[0]] && who.length < 2){
+    who.push(SRC[parts[0]]); parts.shift();
+  }
+  var words = parts.map(function(p){
+    return WORD[p] || p.toLowerCase();
+  }).join(' ');
+  return { label: cap(words || tail.toLowerCase()),
+           who: who.filter(function(w,i){ return !(i === 0 && w === 'Federal' && who.length > 1); }).join(' · ') };
+}
+
+fetch('catalog.json').then(function(r){ return r.json(); }).then(function(d){
+  DATA = d;
+  var cols = 0, rows = 0;
+  d.tables.forEach(function(t){
+    byId.set(tid(t), t); cols += t.n; rows += (t.r || 0);
+    if ((t.r || 0) > maxRows) maxRows = t.r;
+  });
+  el('tally').textContent = fmt(d.tables.length) + ' tables · ' + fmt(cols) +
+    ' columns · ' + brief(rows) + ' rows';
+  fillSubjects();
+  buildGloss();
+  var s = load('schema');
+  schema = (s && d.tables.some(function(t){ return t.s === s; })) ? s : subjects()[0][0];
+  el('subject').value = schema;
+  erMode = load('er') === '1';
+  sortBy = load('sort') || 'rows';
+  el('sortBtn').textContent = (SORTS.filter(function(x){return x.k===sortBy;})[0]||SORTS[0]).label;
+  drawList();
+  /* open something straight away. An empty right pane looks broken. */
+  var last = load('table');
+  if (last && byId.has(last)) show(last, true);
+  else { var first = rowsNow()[0]; if (first) show(tid(first), true); }
+}).catch(function(){
+  el('page').innerHTML = '<div class="empty"><h2>The catalog file did not load.</h2></div>';
+});
+
+function subjects(){
+  var m = new Map();
+  DATA.tables.forEach(function(t){ m.set(t.s, (m.get(t.s) || 0) + 1); });
+  return Array.from(m.entries()).sort(function(a,b){ return b[1] - a[1]; });
+}
+function fillSubjects(){
+  var sel = el('subject');
+  subjects().forEach(function(p){
+    var o = document.createElement('option');
+    o.value = p[0];
+    o.textContent = cap(p[0].replace(/_/g,' ').toLowerCase()) + '  —  ' + p[1] + ' tables';
+    sel.appendChild(o);
+  });
+  sel.onchange = function(){
+    schema = sel.value; save('schema', schema);
+    filter = ''; el('q').value = ''; drawList(); el('side').scrollTop = 0;
+  };
+}
+
+function matches(t){
+  if (hardOnly && !t.keys.some(function(k){ return KEY[k] && KEY[k].grade === 'strong'; })) return false;
+  if (!filter) return t.s === schema;
+  var f = filter.toUpperCase();
+  if ((t.s + '.' + t.t).indexOf(f) >= 0) return true;
+  if (human(t.t).label.toUpperCase().indexOf(f) >= 0) return true;
+  return t.cols.some(function(c){ return c.c.indexOf(f) >= 0; });
+}
+function rowsNow(){
+  var r = DATA.tables.filter(matches);
+  if (sortBy === 'rows') r.sort(function(a,b){ return (b.r||0) - (a.r||0); });
+  else if (sortBy === 'name') r.sort(function(a,b){ return human(a.t).label < human(b.t).label ? -1 : 1; });
+  else r.sort(function(a,b){
+    var h = function(x){ return x.keys.filter(function(k){ return KEY[k].grade === 'strong'; }).length; };
+    return h(b) - h(a) || b.keys.length - a.keys.length || (b.r||0) - (a.r||0);
+  });
+  return r;
+}
+function chipRow(keys, capN){
+  var held = ORDER.filter(function(k){ return keys.indexOf(k) >= 0; });
+  var shown = held.slice(0, capN), rest = held.length - shown.length;
+  return shown.map(function(k){
+    return '<span class="chip ' + KEY[k].grade + '" title="' + KEY[k].short + '">' + k + '</span>';
+  }).join(' ') + (rest > 0 ? ' <span class="chip more">+' + rest + '</span>' : '');
+}
+
+function drawList(){
+  var side = el('side'), rows = rowsNow(), f = filter.toUpperCase();
+  el('listcount').textContent = filter
+    ? rows.length + ' match “' + filter + '”'
+    : rows.length + ' tables' + (hardOnly ? ' with real IDs' : '');
+  Array.prototype.slice.call(side.querySelectorAll('.trow, .noneleft')).forEach(function(n){ n.remove(); });
+  if (!rows.length){
+    var e = document.createElement('div');
+    e.className = 'noneleft'; e.style.padding = '24px 16px'; e.style.color = 'var(--dim)';
+    e.textContent = 'Nothing matches.'; side.appendChild(e); return;
+  }
+  rows.forEach(function(t){
+    var h = human(t.t);
+    var pct = Math.max(3, Math.round(Math.log10((t.r||1)+1) / Math.log10(maxRows+1) * 100));
+    var hitCols = f ? t.cols.filter(function(c){ return c.c.indexOf(f) >= 0; }) : [];
+    var note = (f && hitCols.length && t.t.indexOf(f) < 0)
+      ? '<span class="hit">' + esc(hitCols[0].c) + (hitCols.length>1 ? ' +'+(hitCols.length-1) : '') + '</span>' : '';
+    var b = document.createElement('button');
+    b.className = 'trow'; b.type = 'button'; b.dataset.id = tid(t);
+    b.innerHTML = '<div class="nm">' + esc(h.label) + '</div>' +
+      (h.who ? '<div class="sub">' + esc(h.who) + '</div>' : '') +
+      '<div class="meta"><span class="size"><span class="track"><span class="fill" style="width:' +
+      pct + '%"></span></span><span class="val">' + brief(t.r) + ' rows</span></span>' +
+      note + chipRow(t.keys, 3) + '</div>';
+    b.onclick = function(){ show(tid(t)); };
+    side.appendChild(b);
+  });
+  mark();
+}
+function mark(){
+  Array.prototype.slice.call(el('side').querySelectorAll('.trow')).forEach(function(b){
+    b.setAttribute('aria-pressed', String(b.dataset.id === picked));
+  });
+}
+
+function show(key, quiet){
+  var t = byId.get(key);
+  if (!t) return;
+  if (picked && picked !== key){
+    trail = trail.filter(function(x){ return x !== picked; });
+    trail.push(picked); if (trail.length > 5) trail.shift();
+  }
+  picked = key; save('table', key); mark();
+  colFilter = ''; keyColsOnly = false; colLimit = 40; erOpen = {};
+
+  var h = human(t.t);
+  var held = ORDER.filter(function(k){ return t.keys.indexOf(k) >= 0; });
+  var strongHeld = held.filter(function(k){ return KEY[k].grade === 'strong'; });
+
+  var keys = '', reach = 0;
+  held.forEach(function(k){
+    var others = (DATA.keys[k] || []).filter(function(o){ return o !== key; });
+    if (!others.length) return;
+    reach += others.length;
+    var cols = t.cols.filter(function(c){ return c.k === k; }).map(function(c){ return c.c; });
+    var open = KEY[k].grade === 'strong' && others.length <= 60;
+    keys += '<details class="key"' + (open ? ' open' : '') + '><summary>' +
+      '<span class="chip ' + KEY[k].grade + '">' + k + '</span>' +
+      '<span class="what">' + KEY[k].short + '<em>' + esc(cols.join(', ')) + '</em></span>' +
+      '<span class="count">' + others.length + '<em>tables</em></span></summary><ul>' +
+      others.map(function(o){
+        var ot = byId.get(o), oh = ot ? human(ot.t) : {label:o, who:''};
+        return '<li><button type="button" data-go="' + esc(o) + '">' + esc(oh.label) +
+          '<span>' + esc(o.split('.')[0].replace(/_/g,' ').toLowerCase()) + '</span></button></li>';
+      }).join('') + '</ul></details>';
+  });
+  var linkSaid = strongHeld.length
+    ? 'These are the columns this table shares with others. A green one is a real ID number, so the match is solid.'
+    : (held.length ? 'This table only shares soft columns. A match here narrows a search, it does not prove two rows are the same thing.'
+                   : 'Nothing in this table lines up with another table.');
+  if (!keys) keys = '<p style="color:var(--dim)">No shared column. This table stands alone.</p>';
+
+  var crumbs = trail.length
+    ? '<div class="trail"><span>just looked at</span>' + trail.slice().reverse().map(function(x){
+        var ot = byId.get(x);
+        return '<button type="button" data-go="' + esc(x) + '">' +
+          esc(ot ? human(ot.t).label : x) + '</button>';
+      }).join('') + '</div>' : '';
+
+  el('page').innerHTML =
+    '<div class="doc">' + crumbs +
+    '<div class="kicker">' + esc(cap(t.s.replace(/_/g,' ').toLowerCase())) +
+      (h.who ? ' · ' + esc(h.who) : '') + '</div>' +
+    '<h2>' + esc(h.label) + '</h2>' +
+    '<p class="lede">' + esc(sentence(t, h, reach)) + '</p>' +
+    '<div class="fullname">LIBRARY_MARTS.' + esc(t.s) + '.' + esc(t.t) + '</div>' +
+
+    '<div class="facts">' +
+    '<div><span class="k">Rows</span><span class="v">' + brief(t.r) + '</span>' +
+      '<span class="note">' + fmt(t.r) + ' records</span></div>' +
+    '<div><span class="k">Columns</span><span class="v">' + t.n + '</span>' +
+      '<span class="note">fields per record</span></div>' +
+    '<div><span class="k">Reaches</span><span class="v">' + fmt(reach) + '</span>' +
+      '<span class="note">tables it can link to</span></div>' +
+    '<div class="acts"><button class="btn" type="button" id="cpName">Copy name</button>' +
+    '<button class="btn" type="button" id="cpSel">Copy a starter query</button></div>' +
+    '</div>' +
+
+    '<h3 class="head">What it links up to</h3>' +
+    '<p class="said">' + linkSaid + '</p>' +
+    '<div class="viewbar">' +
+      '<button class="btn" type="button" id="viewList" aria-pressed="' + (erMode ? 'false' : 'true') + '">As a list</button>' +
+      '<button class="btn" type="button" id="viewEr" aria-pressed="' + (erMode ? 'true' : 'false') + '">As a diagram</button>' +
+      '<span style="color:var(--dim);font-size:12px" id="erNote"></span>' +
+    '</div>' +
+    '<div id="linkView"></div>' +
+
+    '<h3 class="head">Every column</h3>' +
+    '<p class="said">The name as it is spelled in the warehouse, and what kind of value it holds.</p>' +
+    '<div class="colbar"><input id="cq" type="search" placeholder="filter columns" autocomplete="off">' +
+    '<button class="btn" id="keyColsBtn" type="button" aria-pressed="false">Linking columns only</button>' +
+    '<span class="cnt mono" id="colcount" style="color:var(--dim);font-size:12px"></span></div>' +
+    '<div class="scroll"><table><thead><tr><th>Column</th><th>Holds</th><th>Links by</th></tr></thead>' +
+    '<tbody id="colbody"></tbody></table></div>' +
+    '<div id="moreWrap"></div>' +
+    '</div>';
+
+  window.__keysHtml = keys;
+  drawLinks();
+  drawCols();
+  if (!quiet) el('page').scrollTop = 0;
+  el('viewList').onclick = function(){ erMode = false; save('er','0'); drawLinks(); };
+  el('viewEr').onclick = function(){ erMode = true; save('er','1'); drawLinks(); };
+
+  Array.prototype.slice.call(el('page').querySelectorAll('[data-go]')).forEach(function(b){
+    b.onclick = function(){
+      var go = b.dataset.go;
+      if (!filter){ schema = go.split('.')[0]; save('schema', schema); el('subject').value = schema; drawList(); }
+      show(go);
+      var row = el('side').querySelector('[data-id="' + go + '"]');
+      if (row) row.scrollIntoView({block:'nearest'});
+    };
+  });
+  el('cpName').onclick = function(){ copy('LIBRARY_MARTS.' + t.s + '.' + t.t, 'Table name copied'); };
+  el('cpSel').onclick = function(){
+    copy('select ' + t.cols.slice(0,12).map(function(c){ return c.c; }).join(', ') +
+      '\nfrom LIBRARY_MARTS.' + t.s + '.' + t.t + '\nlimit 100;', 'Starter query copied');
+  };
+  el('cq').addEventListener('input', function(e){
+    colFilter = e.target.value.trim().toUpperCase(); colLimit = 40; drawCols();
+  });
+  el('keyColsBtn').onclick = function(){
+    keyColsOnly = this.getAttribute('aria-pressed') !== 'true';
+    this.setAttribute('aria-pressed', String(keyColsOnly)); colLimit = 40; drawCols();
+  };
+}
+
+/* one honest sentence, built only from things we measured */
+function sentence(t, h, reach){
+  var s = [];
+  s.push(fmt(t.r) + (t.r === 1 ? ' record' : ' records') + ', ' + t.n + ' fields each');
+  var strong = t.keys.filter(function(k){ return KEY[k].grade === 'strong'; });
+  if (strong.length) s.push('carries ' + strong.join(' and ') + ', so it links cleanly to ' + fmt(reach) + ' other tables');
+  else if (reach) s.push('shares only soft columns, which narrow a search rather than prove a match');
+  else s.push('shares no column with any other table');
+  return cap(s.join('. ')) + '.';
+}
+
+/* ---------------- ER diagram ---------------- */
+function drawLinks(){
+  var host = el('linkView'); if (!host) return;
+  el('viewList').setAttribute('aria-pressed', String(!erMode));
+  el('viewEr').setAttribute('aria-pressed', String(erMode));
+  el('erNote').textContent = erMode
+    ? 'click any box to move the diagram there'
+    : '';
+  if (!erMode){ host.innerHTML = window.__keysHtml; wireGo(host); return; }
+  host.innerHTML = erSvg(byId.get(picked));
+  wireGo(host);
+  Array.prototype.slice.call(host.querySelectorAll('[data-erkey]')).forEach(function(n){
+    n.onclick = function(){
+      var k = n.dataset.erkey;
+      erOpen[k] = (erOpen[k] || 6) + 14;
+      drawLinks();
+    };
+  });
+}
+function wireGo(host){
+  Array.prototype.slice.call(host.querySelectorAll('[data-go]')).forEach(function(b){
+    b.onclick = function(){
+      var go = b.dataset.go;
+      if (!filter){ schema = go.split('.')[0]; save('schema', schema); el('subject').value = schema; drawList(); }
+      show(go);
+      var row = el('side').querySelector('[data-id="' + go + '"]');
+      if (row) row.scrollIntoView({block:'nearest'});
+    };
+  });
+}
+
+function clip(str, n){ return str.length > n ? str.slice(0, n - 1) + '…' : str; }
+
+function erSvg(t){
+  var held = ORDER.filter(function(k){ return t.keys.indexOf(k) >= 0; });
+  var LX = 30, LW = 268, RX = 470, RW = 300, BH = 46, GAP = 12, GROUPGAP = 26;
+
+  /* lay the right-hand boxes out first so we know how tall the picture is */
+  var groups = [], y = 30;
+  held.forEach(function(k){
+    var others = (DATA.keys[k] || []).filter(function(o){ return o !== key0(t); });
+    if (!others.length) return;
+    var lim = erOpen[k] || 6;
+    var shown = others.slice(0, lim);
+    var g = {k:k, total:others.length, rows:[], top:y, hidden:others.length - shown.length};
+    shown.forEach(function(o){
+      g.rows.push({id:o, y:y}); y += BH + GAP;
+    });
+    if (g.hidden > 0) y += 26;
+    g.bottom = y - GAP;
+    y += GROUPGAP;
+    groups.push(g);
+  });
+  if (!groups.length){
+    return '<p style="color:var(--dim)">No shared column. Nothing to draw.</p>';
+  }
+
+  var H = Math.max(y, 240), W = RX + RW + 30;
+  var cx = LX + LW, cyc = H / 2;
+  var CH = 46 + held.length * 18 + 14;
+  var cy = Math.max(30, cyc - CH / 2);
+
+  var out = ['<div class="erwrap"><svg viewBox="0 0 ' + W + ' ' + H +
+    '" width="' + W + '" height="' + H + '" role="img" aria-label="Entity diagram">'];
+
+  /* edges first so boxes sit on top */
+  groups.forEach(function(g){
+    var grade = KEY[g.k].grade;
+    var anchorY = cy + 56 + held.indexOf(g.k) * 18;
+    g.rows.forEach(function(r){
+      var y2 = r.y + BH / 2;
+      var mid = (cx + RX) / 2;
+      out.push('<path class="er-edge ' + grade + '" d="M' + cx + ' ' + anchorY +
+        ' C' + mid + ' ' + anchorY + ', ' + mid + ' ' + y2 + ', ' + RX + ' ' + y2 + '"/>');
+    });
+    out.push('<text class="er-lab ' + grade + '" x="' + ((cx + RX) / 2) +
+      '" y="' + (g.top + 12) + '" text-anchor="middle">' + esc(g.k) + '</text>');
+  });
+
+  /* the centre entity, with its linking columns listed like an ER box */
+  var h = human(t.t);
+  out.push('<g class="er-box center">');
+  out.push('<rect x="' + LX + '" y="' + cy + '" width="' + LW + '" height="' + CH + '" rx="8"/>');
+  out.push('<path class="er-head" d="M' + LX + ' ' + (cy + 40) + ' h' + LW + '" />');
+  out.push('<text class="er-title" x="' + (LX + 14) + '" y="' + (cy + 21) + '">' +
+    esc(clip(h.label, 30)) + '</text>');
+  out.push('<text class="er-sub" x="' + (LX + 14) + '" y="' + (cy + 34) + '">' +
+    esc(brief(t.r)) + ' rows · ' + t.n + ' columns</text>');
+  held.forEach(function(k, i){
+    var cols = t.cols.filter(function(c){ return c.k === k; }).map(function(c){ return c.c; });
+    out.push('<circle cx="' + (LX + 18) + '" cy="' + (cy + 52 + i * 18) + '" r="3.5" fill="var(--' +
+      KEY[k].grade + ')"/>');
+    out.push('<text class="er-field" x="' + (LX + 30) + '" y="' + (cy + 56 + i * 18) + '">' +
+      esc(clip(cols[0] || k, 30)) + '</text>');
+  });
+  out.push('</g>');
+
+  /* the linked entities */
+  groups.forEach(function(g){
+    g.rows.forEach(function(r){
+      var ot = byId.get(r.id), oh = ot ? human(ot.t) : {label:r.id, who:''};
+      var col = ot ? (ot.cols.filter(function(c){ return c.k === g.k; })[0] || {}).c : g.k;
+      out.push('<g class="er-box" data-go="' + esc(r.id) + '" role="button" tabindex="0">');
+      out.push('<rect x="' + RX + '" y="' + r.y + '" width="' + RW + '" height="' + BH + '" rx="7"/>');
+      out.push('<text class="er-title" x="' + (RX + 12) + '" y="' + (r.y + 19) + '">' +
+        esc(clip(oh.label, 34)) + '</text>');
+      out.push('<circle cx="' + (RX + 16) + '" cy="' + (r.y + 33) + '" r="3" fill="var(--' +
+        KEY[g.k].grade + ')"/>');
+      out.push('<text class="er-field" x="' + (RX + 26) + '" y="' + (r.y + 37) + '">' +
+        esc(clip(col || g.k, 26)) + '</text>');
+      out.push('<text class="er-sub" x="' + (RX + RW - 12) + '" y="' + (r.y + 37) +
+        '" text-anchor="end">' + esc(brief(ot ? ot.r : 0)) + ' rows</text>');
+      out.push('</g>');
+    });
+    if (g.hidden > 0){
+      out.push('<text class="er-more" data-erkey="' + esc(g.k) + '" x="' + (RX + 12) +
+        '" y="' + (g.bottom + 20) + '">+ ' + g.hidden + ' more on ' + esc(g.k) + '</text>');
+    }
+  });
+
+  out.push('</svg></div>');
+  out.push('<p class="said" style="margin-top:10px">A line means both tables carry the same kind of ' +
+    'column. Solid green is a real ID. Dashed grey is a soft column. How many rows match on each ' +
+    'side is not measured here.</p>');
+  return out.join('');
+}
+function key0(t){ return t.s + '.' + t.t; }
+
+function drawCols(){
+  var body = el('colbody'); if (!body) return;
+  var t = byId.get(picked);
+  var all = t.cols.filter(function(c){
+    if (keyColsOnly && !c.k) return false;
+    return !colFilter || c.c.indexOf(colFilter) >= 0;
+  });
+  var rows = all.slice(0, colLimit);
+  el('colcount').textContent = all.length + ' of ' + t.n + ' shown';
+  body.innerHTML = rows.length
+    ? rows.map(function(c){
+        return '<tr><td class="c">' + esc(c.c) + '</td><td class="t">' + esc(niceType(c.d)) +
+          '</td><td>' + (c.k ? '<span class="chip ' + KEY[c.k].grade + '" title="' + KEY[c.k].short +
+          '">' + c.k + '</span>' : '') + '</td></tr>';
+      }).join('')
+    : '<tr><td colspan="3" class="t">No column matches.</td></tr>';
+  var more = el('moreWrap');
+  more.innerHTML = all.length > colLimit
+    ? '<button class="btn more-btn" type="button" id="moreBtn">Show the other ' +
+      (all.length - colLimit) + '</button>' : '';
+  if (all.length > colLimit) el('moreBtn').onclick = function(){ colLimit += 200; drawCols(); };
+}
+
+function copy(text, msg){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast(msg); },
+      function(){ toast('Copy blocked here'); });
+  } else { toast('Copy blocked here'); }
+}
+
+/* ---------- glossary ---------- */
+function buildGloss(){
+  var g = '<h3>Words this page uses</h3><dl>' +
+    '<dt>table</dt><dd>One spreadsheet. Rows going down, columns going across.</dd>' +
+    '<dt>row</dt><dd>One record. One doctor, one donation, one inspection.</dd>' +
+    '<dt>column</dt><dd>One field on every record. A name, a date, an amount.</dd>' +
+    '<dt>subject</dt><dd>The folder a table lives in. Health, Politics, Environment.</dd>' +
+    '<dt>link up</dt><dd>Matching rows in two tables by a column they both carry.</dd>' +
+    '<dt>reaches</dt><dd>How many other tables share at least one column with this one.</dd>' +
+    '<dt>real ID</dt><dd>A number an agency issues that means exactly one thing. Safe to match on.</dd>' +
+    '<dt>soft column</dt><dd>A zip, a state, a typed name. Narrows a search, never proves a match.</dd>' +
+    '</dl>';
+  g += '<h3>Kinds of value a column holds</h3><dl>';
+  ['TEXT','NUMBER','FLOAT','DATE','TIMESTAMP_NTZ','BOOLEAN','VARIANT'].forEach(function(k){
+    g += '<dt>' + k.toLowerCase() + '</dt><dd>' + TYPE[k] + '</dd>';
+  });
+  g += '</dl><h3>Every linking column</h3><dl>';
+  ORDER.forEach(function(k){
+    g += '<dt><span class="chip ' + KEY[k].grade + '">' + k + '</span></dt><dd>' + KEY[k].long + '</dd>';
+  });
+  g += '</dl><h3>Agency and program codes in table names</h3><dl>';
+  Object.keys(SRC).sort().forEach(function(k){
+    g += '<dt>' + k + '</dt><dd>' + SRC[k] + '</dd>';
+  });
+  g += '</dl>';
+  el('glossBody').innerHTML = g;
+}
+el('glossBtn').onclick = function(){ el('gloss').hidden = false; };
+el('glossClose').onclick = function(){ el('gloss').hidden = true; };
+el('gloss').onclick = function(e){ if (e.target === this) this.hidden = true; };
+
+/* ---------- controls ---------- */
+el('q').addEventListener('input', function(e){
+  filter = e.target.value.trim(); drawList(); el('side').scrollTop = 0;
+});
+el('hardBtn').onclick = function(){
+  hardOnly = this.getAttribute('aria-pressed') !== 'true';
+  this.setAttribute('aria-pressed', String(hardOnly)); drawList();
+};
+el('sortBtn').onclick = function(){
+  var i = SORTS.findIndex(function(x){ return x.k === sortBy; });
+  sortBy = SORTS[(i+1) % SORTS.length].k;
+  this.textContent = SORTS[(i+1) % SORTS.length].label;
+  save('sort', sortBy); drawList();
+};
+document.addEventListener('keydown', function(e){
+  var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
+  if (e.key === '/' && !typing){ e.preventDefault(); el('q').focus(); el('q').select(); return; }
+  if (e.key === 'Escape'){
+    if (!el('gloss').hidden){ el('gloss').hidden = true; return; }
+    if (typing){ e.target.value = ''; e.target.dispatchEvent(new Event('input')); e.target.blur(); }
+    return;
+  }
+  if (typing || !DATA || (e.key !== 'j' && e.key !== 'k')) return;
+  var rows = rowsNow(); if (!rows.length) return;
+  var i = rows.findIndex(function(t){ return tid(t) === picked; });
+  i = e.key === 'j' ? Math.min(rows.length-1, i+1) : Math.max(0, i < 0 ? 0 : i-1);
+  show(tid(rows[i]), true);
+  var row = el('side').querySelector('[data-id="' + tid(rows[i]) + '"]');
+  if (row) row.scrollIntoView({block:'nearest'});
+});
+</script>

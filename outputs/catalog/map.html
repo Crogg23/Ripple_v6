@@ -1,0 +1,880 @@
+<title>Warehouse Map</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --sea:#070c12; --sea2:#0b1219;
+  --panel:rgba(12,19,26,.86); --edge:rgba(255,255,255,.09);
+  --ink:#f0f5fa; --ink2:#aebccb; --dim:#738698;
+  --gold:#e8b765; --hot:#ff8759;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--sea);color:var(--ink);overflow:hidden;
+  font-family:"Public Sans",system-ui,sans-serif;font-size:15px;
+  -webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:1.5px solid var(--hot);outline-offset:3px;border-radius:6px}
+
+canvas{display:block;width:100vw;height:100vh;cursor:grab;touch-action:none}
+canvas.drag{cursor:grabbing}
+
+/* ---- chrome ---- */
+.top{position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+  padding:16px 22px calc(16px + 22px);
+  padding-top:calc(16px + env(safe-area-inset-top,0px));
+  background:linear-gradient(180deg,rgba(7,12,18,.92) 0%,rgba(7,12,18,.6) 55%,transparent 100%);
+  pointer-events:none}
+.top > *{pointer-events:auto}
+.wordmark{display:flex;flex-direction:column;line-height:1.05}
+.wordmark b{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:19px;
+  letter-spacing:-.01em}
+.wordmark span{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--dim);
+  letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.grow{flex:1 1 20px}
+
+.field{position:relative;flex:0 1 270px}
+#q{width:100%;padding:9px 13px 9px 34px;border:1px solid var(--edge);border-radius:10px;
+  background:rgba(255,255,255,.04);color:var(--ink);font-size:14px}
+#q::placeholder{color:#64798f}
+#q:focus{border-color:rgba(255,135,89,.6);outline:none;background:rgba(255,255,255,.07)}
+.field .mag{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  width:13px;height:13px;border:1.6px solid #64798f;border-radius:99px;pointer-events:none}
+.field .mag::after{content:"";position:absolute;right:-5px;bottom:-4px;width:6px;height:1.6px;
+  background:#64798f;transform:rotate(45deg)}
+
+.seg{display:flex;border:1px solid var(--edge);border-radius:10px;overflow:hidden;
+  background:rgba(255,255,255,.04)}
+.seg button{border:0;background:none;color:var(--ink2);padding:9px 13px;font-size:13px;
+  font-weight:600;cursor:pointer;border-right:1px solid var(--edge)}
+.seg button:last-child{border-right:0}
+.seg button:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.seg button[aria-pressed="true"]{background:rgba(232,183,101,.16);color:var(--gold)}
+
+/* ---- legend ---- */
+.plate{position:fixed;z-index:10;background:var(--panel);
+  border:1px solid var(--edge);border-radius:16px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.legend{left:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  width:236px;padding:14px 8px 10px 14px}
+.legend h2{margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim)}
+.legend .scroller{max-height:40vh;overflow:auto;padding-right:6px}
+.legend button{display:flex;align-items:center;gap:9px;width:100%;border:0;background:none;
+  padding:4px 6px;border-radius:8px;cursor:pointer;font-size:12.5px;color:var(--ink2);
+  text-align:left}
+.legend button:hover{background:rgba(255,255,255,.06);color:var(--ink)}
+.legend button[aria-pressed="true"]{background:rgba(255,255,255,.1);color:#fff;font-weight:600}
+.legend .sw{width:10px;height:10px;border-radius:3px;flex:none}
+.legend .n{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+
+.key{right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  padding:14px 16px;width:266px;font-size:12.5px;color:var(--ink2)}
+.key h2{margin:0 0 10px;font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim)}
+.key .r{display:flex;gap:10px;align-items:center;margin-bottom:7px}
+.key .r:last-child{margin-bottom:0}
+.key svg{flex:none}
+.key b{color:var(--ink);font-weight:600}
+
+/* ---- the reading card ---- */
+#card{position:fixed;top:86px;right:22px;z-index:12;width:min(380px,calc(100% - 44px));
+  background:var(--panel);border:1px solid var(--edge);border-radius:18px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  padding:20px 22px 22px;max-height:calc(100vh - 200px);overflow:auto}
+#card[hidden]{display:none}
+#card .x{position:absolute;top:14px;right:16px;border:1px solid var(--edge);
+  background:rgba(255,255,255,.05);border-radius:8px;width:26px;height:26px;
+  cursor:pointer;color:var(--dim);line-height:1;font-size:15px}
+#card .x:hover{color:var(--ink)}
+#card .kick{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold)}
+#card h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:25px;
+  letter-spacing:-.015em;line-height:1.15;margin:7px 40px 6px 0}
+#card .raw{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:#61748a;
+  word-break:break-all;margin-bottom:16px}
+#card .nums{display:flex;gap:22px;padding:13px 0;margin-bottom:6px;
+  border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+#card .nums span{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:2px}
+#card .nums b{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;
+  letter-spacing:-.02em}
+#card h4{margin:18px 0 8px;font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim)}
+.krow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+.krow:last-child{border-bottom:0}
+.krow .kn{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;
+  padding:2px 7px;border-radius:5px;white-space:nowrap}
+.krow .kd{font-size:12.5px;color:var(--ink2);line-height:1.35}
+.krow .kc{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim)}
+.nb{display:flex;gap:8px;align-items:baseline;width:100%;text-align:left;border:0;
+  background:none;color:var(--ink2);font-size:12.5px;padding:5px 7px;border-radius:8px;
+  cursor:pointer}
+.nb:hover{background:rgba(255,255,255,.07);color:#fff}
+.nb i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  color:var(--dim);margin-left:auto;white-space:nowrap}
+
+.route{left:22px;top:86px;width:322px;padding:16px 18px 18px;
+  max-height:calc(100vh - 210px);overflow:auto}
+.route[hidden]{display:none}
+.route h2{margin:0 0 6px;font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:18px;letter-spacing:-.01em}
+.route .hint{margin:0 0 12px;font-size:12.5px;color:var(--dim);line-height:1.4}
+.route .x{position:absolute;top:13px;right:14px;border:1px solid var(--edge);
+  background:rgba(255,255,255,.05);border-radius:8px;width:24px;height:24px;
+  cursor:pointer;color:var(--dim);line-height:1;font-size:14px}
+.route .x:hover{color:var(--ink)}
+.leg{display:flex;gap:9px;align-items:center;padding:8px 10px;margin-bottom:7px;
+  border:1px dashed var(--edge);border-radius:10px;font-size:12.5px;color:var(--dim)}
+.leg.set{border-style:solid;border-color:rgba(255,255,255,.16);color:var(--ink)}
+.leg .pin{width:18px;height:18px;border-radius:99px;flex:none;
+  display:grid;place-items:center;font-size:9.5px;font-weight:700;
+  font-family:"IBM Plex Mono",monospace;color:#08111a}
+.leg .nm{flex:1;line-height:1.25}
+.leg .nm em{display:block;font-style:normal;font-size:10.5px;color:var(--dim)}
+.hop{display:grid;grid-template-columns:24px 1fr;gap:10px}
+.hop .rail{position:relative}
+.hop .rail::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:2px;
+  background:rgba(255,255,255,.1)}
+.hop:last-child .rail::before{bottom:50%}
+.hop .node{position:relative;z-index:1;width:10px;height:10px;border-radius:99px;
+  margin:9px 0 0 7px;box-shadow:0 0 0 3px rgba(255,255,255,.07)}
+.hop .body{padding:2px 0 12px}
+.hop .t{font-size:13px;font-weight:600;line-height:1.3}
+.hop .via{font-family:"IBM Plex Mono",monospace;font-size:10.5px;margin-bottom:2px}
+.route .none{font-size:12.5px;color:var(--dim);line-height:1.45}
+
+#tip{position:fixed;z-index:20;pointer-events:none;
+  background:rgba(6,10,15,.94);border:1px solid var(--edge);border-radius:10px;
+  padding:9px 12px;max-width:290px;opacity:0;transform:translateY(4px);
+  transition:opacity .12s, transform .12s}
+#tip.on{opacity:1;transform:translateY(0)}
+#tip b{display:block;font-size:13.5px;font-weight:600;margin-bottom:2px}
+#tip span{color:var(--dim);font-family:"IBM Plex Mono",monospace;font-size:10.5px}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+@media (max-width:820px){
+  .key{display:none}
+  .legend{width:190px;padding:12px 6px 8px 12px}
+  .legend .scroller{max-height:26vh}
+  #card{top:auto;bottom:0;right:0;left:0;width:100%;border-radius:18px 18px 0 0;max-height:56vh}
+  .wordmark span{display:none}
+}
+</style>
+
+<canvas id="cv"></canvas>
+
+<div class="top">
+  <span class="wordmark"><b>Warehouse Map</b><span id="tally">reading the ground</span></span>
+  <span class="grow"></span>
+  <span class="field"><span class="mag"></span>
+    <input id="q" type="search" placeholder="find a table" autocomplete="off"></span>
+  <span class="seg">
+    <button id="routeBtn" type="button" aria-pressed="false">Plot a route</button>
+    <button id="hardBtn" type="button" aria-pressed="false">Real IDs only</button>
+    <button id="lineBtn" type="button" aria-pressed="true">Threads</button>
+    <button id="fitBtn" type="button">Fit</button>
+  </span>
+</div>
+
+<div class="plate route" id="routeBox" hidden>
+  <button class="x" type="button" id="routeX" aria-label="Close">×</button>
+  <h2>Route between two tables</h2>
+  <p class="hint" id="routeHint">Click a table on the map for the start.</p>
+  <div class="leg" id="routeFrom"></div>
+  <div class="leg" id="routeTo"></div>
+  <div id="routeOut"></div>
+</div>
+
+<div class="plate legend">
+  <h2>Territories</h2>
+  <div class="scroller" id="legendBody"></div>
+</div>
+
+<div class="plate key">
+  <h2>Reading the map</h2>
+  <div class="r"><svg width="26" height="14"><circle cx="6" cy="7" r="2.4" fill="#8fb4d8"/><circle cx="18" cy="7" r="5" fill="#8fb4d8"/></svg>
+    <span>One dot is one table. <b>Bigger means more rows.</b></span></div>
+  <div class="r"><svg width="26" height="14"><circle cx="13" cy="7" r="5.6" fill="none" stroke="#e8b765" stroke-width="1.6"/></svg>
+    <span>A gold ring is an <b>ID number</b> tables share.</span></div>
+  <div class="r"><svg width="26" height="14"><path d="M1 11 Q13 1 25 11" fill="none" stroke="#5fd9c2" stroke-width="1.4"/></svg>
+    <span>A thread runs from a table to each ID it carries.</span></div>
+  <div class="r"><svg width="26" height="14"><path d="M2 10 Q8 2 14 7 T24 6" fill="none" stroke="#738698" stroke-width="1.2" stroke-dasharray="3 2"/></svg>
+    <span>Dashed means a soft link, like a zip code.</span></div>
+  <div class="r"><svg width="26" height="14"><path d="M2 7 H24" stroke="#ff8759" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="3" cy="7" r="3" fill="#ffd27a"/><circle cx="23" cy="7" r="3" fill="#ff8759"/></svg>
+    <span><b>Plot a route</b> shows the join chain between any two tables.</span></div>
+</div>
+
+<div id="card" hidden></div>
+<div id="tip"></div>
+
+<script>
+/* ---------------- plain English ---------------- */
+var KEY = {
+  NPI:['a doctor or provider licence number','hard'],
+  CCN:['a hospital or nursing home Medicare number','hard'],
+  EIN:['a company tax number','hard'],
+  CIK:['a company stock-market filing number','hard'],
+  LEI:['a global company number','hard'],
+  'UEI/DUNS':['a federal contractor number','hard'],
+  ACCESSION:['one filing at the SEC','hard'],
+  FDIC_CERT:['a bank deposit-insurance number','hard'],
+  FEC_ID:['a campaign committee or candidate number','hard'],
+  BIOGUIDE:['a member of Congress ID','hard'],
+  IMO:['a ship hull number','hard'],
+  'FRS/EPA':['a polluting facility number','hard'],
+  MINE_ID:['a mine number','hard'],
+  COUNTY_FIPS:['a county code','place'],
+  ZIP:['a postal area','soft'],
+  STATE:['a state','soft'],
+  ORG_NAME:['a name somebody typed','soft']
+};
+var GC = {hard:'#5fd9c2', place:'#e8b765', soft:'#738698'};
+var SRC = {FED:'Federal',INTL:'International',CMS:'Medicare',SEC:'SEC',EPA:'EPA',
+  FEC:'Elections',IRS:'IRS',HUD:'Housing',DOL:'Labor',OSHA:'Workplace safety',FDA:'FDA',
+  NIH:'NIH',HHS:'Health dept',OIG:'Inspector General',PBGC:'Pension insurer',FDIC:'FDIC',
+  NHTSA:'Vehicle safety',MSHA:'Mine safety',ATF:'ATF',DEA:'DEA',USDA:'Agriculture',
+  DOT:'Transport',FAA:'Aviation',FRA:'Rail',CFPB:'Consumer finance',CDC:'CDC',
+  DOJ:'Justice',HRSA:'Health resources',ICE:'Immigration',USGS:'Geology',XC:'Cross-source'};
+
+/* a muted cartographic palette: land tones, not highlighter pens */
+var LAND = ['#4d7fa8','#a86b4d','#4f9e83','#9b7f3f','#7a6aa8','#a85f7d','#4a8fa0',
+  '#84934a','#a0628f','#5b6fa8','#96714f','#5a9a5f','#8a5fa8','#4f8c99','#a07a56',
+  '#6f9950','#a05a5a','#5a82a8','#7c8794','#5f9a8c','#96855a','#6b7fa0'];
+
+var M=null, nodes=[], hubs=[], links=[], terr=[], loneFrom=1e9;
+var cam={x:0,y:0,z:1}, goal=null;
+var hover=null, picked=null, halo=null;
+var showLines=true, hardOnly=false, subjFilter=null, query='';
+var subjects=[], SC={}, born=0, MC=[0,0];
+
+var cv=document.getElementById('cv'), ctx=cv.getContext('2d'), DPR=1, W=0, H=0;
+function el(i){ return document.getElementById(i); }
+function brief(n){ n=n||0;
+  if(n>=1e9) return (n/1e9).toFixed(n>=1e10?0:1)+'B';
+  if(n>=1e6) return (n/1e6).toFixed(n>=1e7?0:1)+'M';
+  if(n>=1e3) return (n/1e3).toFixed(n>=1e4?0:1)+'K';
+  return String(n); }
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function pretty(s){ return cap(s.replace(/_/g,' ').toLowerCase()); }
+function human(name){
+  var tail=name.indexOf('__')>=0?name.slice(name.indexOf('__')+2):name;
+  var parts=tail.split('_').filter(Boolean), who=[];
+  while(parts.length>1 && SRC[parts[0]] && who.length<2){ who.push(SRC[parts[0]]); parts.shift(); }
+  return {label:cap(parts.join(' ').toLowerCase()), who:who.join(' · ')};
+}
+
+fetch('map.json').then(function(r){ return r.json(); }).then(function(d){
+  M=d; nodes=d.nodes; hubs=d.hubs; links=d.links; terr=d.terr||[]; MC=d.center||[0,0];
+  var rows=0, count={};
+  nodes.forEach(function(n,i){
+    rows += n.r||0;
+    n.rad = 2.2 + Math.pow(Math.log10((n.r||1)+1), 1.25) * 1.15;
+    n.i = i;
+    count[n.s] = (count[n.s]||0)+1;
+  });
+  subjects = Object.keys(count).sort(function(a,b){ return count[b]-count[a]; });
+  subjects.forEach(function(s,i){ SC[s] = LAND[i % LAND.length]; });
+  el('tally').textContent = nodes.length+' tables · '+hubs.length+' shared IDs · '+brief(rows)+' rows';
+  legend(count);
+  resize(); fit(true); born = performance.now(); loop();
+  var want = decodeURIComponent((location.hash||'').replace('#',''));
+  if(want){
+    var n0 = nodes.filter(function(n){ return n.t===want; })[0];
+    if(n0){ glide(n0.x, n0.y, 2.0); openCard(n0); }
+  }
+}).catch(function(){ el('tally').textContent='the map file did not load'; });
+
+function legend(count){
+  el('legendBody').innerHTML = subjects.map(function(s){
+    return '<button type="button" data-s="'+esc(s)+'"><span class="sw" style="background:'+
+      SC[s]+'"></span>'+esc(pretty(s))+'<span class="n">'+count[s]+'</span></button>';
+  }).join('');
+  Array.prototype.slice.call(el('legendBody').querySelectorAll('button')).forEach(function(b){
+    b.onclick=function(){
+      subjFilter = subjFilter===b.dataset.s ? null : b.dataset.s;
+      Array.prototype.slice.call(el('legendBody').querySelectorAll('button')).forEach(function(x){
+        x.setAttribute('aria-pressed', String(x.dataset.s===subjFilter)); });
+      var t = terr.filter(function(x){ return x.s===subjFilter; })[0];
+      if (t) glide(t.cx, t.cy, Math.min(2.2, (Math.min(W,H)*0.42)/t.r));
+    };
+  });
+}
+
+/* ---------------- camera ---------------- */
+function resize(){
+  DPR = Math.min(2, window.devicePixelRatio||1);
+  W = cv.clientWidth; H = cv.clientHeight;
+  cv.width = Math.floor(W*DPR); cv.height = Math.floor(H*DPR);
+}
+function bounds(){
+  var a=1e9,b=-1e9,c=1e9,d=-1e9;
+  nodes.forEach(function(n){ if(n.x<a)a=n.x; if(n.x>b)b=n.x; if(n.y<c)c=n.y; if(n.y>d)d=n.y; });
+  hubs.forEach(function(h){ if(h.x<a)a=h.x; if(h.x>b)b=h.x; if(h.y<c)c=h.y; if(h.y>d)d=h.y; });
+  return [a,b,c,d];
+}
+function fit(now){
+  var t=bounds(), w=t[1]-t[0]+420, h=t[3]-t[2]+360;
+  var z=Math.min(W/w, H/h);
+  var x=W/2-((t[0]+t[1])/2)*z, y=H/2-((t[2]+t[3])/2)*z;
+  if(now){ cam={x:x,y:y,z:z}; goal=null; } else glideTo(x,y,z);
+}
+function glide(wx,wy,z){ glideTo(W/2-wx*z, H/2-wy*z, z); }
+function glideTo(x,y,z){ goal={x:x,y:y,z:z,t0:performance.now()}; }
+function sx(x){ return x*cam.z+cam.x; }
+function sy(y){ return y*cam.z+cam.y; }
+
+/* ---------------- filters ---------------- */
+function dim(n){
+  if(routeSet && !routeSet.has(n)) return true;
+  if(hardOnly && !n.k.some(function(k){ return KEY[k] && KEY[k][1]==='hard'; })) return true;
+  if(subjFilter && n.s!==subjFilter) return true;
+  if(query && (human(n.t).label+' '+n.t).toUpperCase().indexOf(query)<0) return true;
+  return false;
+}
+function neighbours(n){
+  var out=[];
+  for(var i=0;i<nodes.length;i++){
+    var o=nodes[i]; if(o===n) continue;
+    var sh=o.k.filter(function(k){ return n.k.indexOf(k)>=0; });
+    if(sh.length) out.push({n:o, keys:sh});
+  }
+  return out;
+}
+
+/* ---------------- paint ---------------- */
+function loop(){
+  if(goal){
+    var p=Math.min(1,(performance.now()-goal.t0)/520);
+    var e=1-Math.pow(1-p,3);
+    cam.x += (goal.x-cam.x)*e*0.35; cam.y += (goal.y-cam.y)*e*0.35;
+    cam.z += (goal.z-cam.z)*e*0.35;
+    if(p>=1 && Math.abs(goal.z-cam.z)<0.001){ cam={x:goal.x,y:goal.y,z:goal.z}; goal=null; }
+  }
+  draw();
+  requestAnimationFrame(loop);
+}
+
+function ground(){
+  var g=ctx.createRadialGradient(W*0.5,H*0.46,40, W*0.5,H*0.5, Math.max(W,H)*0.78);
+  g.addColorStop(0,'#0c141d'); g.addColorStop(1,'#060a0f');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  /* a faint graticule so panning feels like moving over ground */
+  var step=200*cam.z;
+  if(step>26){
+    ctx.strokeStyle='rgba(255,255,255,.028)'; ctx.lineWidth=1;
+    var ox=cam.x%step, oy=cam.y%step;
+    ctx.beginPath();
+    for(var x=ox;x<W;x+=step){ ctx.moveTo(x,0); ctx.lineTo(x,H); }
+    for(var y=oy;y<H;y+=step){ ctx.moveTo(0,y); ctx.lineTo(W,y); }
+    ctx.stroke();
+  }
+}
+
+function hex(c,a){
+  var r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);
+  return 'rgba('+r+','+g+','+b+','+a+')';
+}
+
+var taken=[];
+function free(x,y,w,h){
+  for(var i=0;i<taken.length;i++){
+    var t=taken[i];
+    if(x<t[0]+t[2] && x+w>t[0] && y<t[1]+t[3] && y+h>t[1]) return false;
+  }
+  return true;
+}
+function claim(x,y,w,h){ taken.push([x,y,w,h]); }
+function plural(n,word){ return n+' '+word+(n===1?'':'s'); }
+
+function draw(){
+  taken=[];
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ground();
+  var age = Math.min(1, (performance.now()-born)/900);
+  var ease = 1-Math.pow(1-age,3);
+
+  /* --- territories, one disc each, no overlap by construction --- */
+  terr.forEach(function(t){
+    var faded = subjFilter && t.s!==subjFilter;
+    var X=sx(t.cx), Y=sy(t.cy), R=t.r*cam.z*ease;
+    if(X+R<-40||X-R>W+40||Y+R<-40||Y-R>H+40) return;
+    var c = SC[t.s]||'#5b6fa8';
+    var g = ctx.createRadialGradient(X,Y,R*0.15,X,Y,R);
+    g.addColorStop(0, hex(c, faded?0.035:0.115*ease));
+    g.addColorStop(1, hex(c, faded?0.012:0.035*ease));
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(X,Y,R,0,6.2832); ctx.fill();
+    ctx.lineWidth=1.2; ctx.strokeStyle=hex(c, faded?0.09:0.34*ease);
+    ctx.stroke();
+  });
+
+  /* --- threads --- */
+  if(showLines){
+    ctx.lineWidth = Math.max(.4, .55*cam.z);
+    links.forEach(function(l){
+      var n=nodes[l[0]], h=hubs[l[1]];
+      if(!n || dim(n)) return;
+      var g = KEY[h.k] ? KEY[h.k][1] : 'soft';
+      ctx.strokeStyle = hex(GC[g], (g==='soft'?0.055:0.14)*ease);
+      var x1=sx(n.x), y1=sy(n.y), x2=sx(h.x), y2=sy(h.y);
+      var mx=(x1+x2)/2, my=(y1+y2)/2;
+      var cxp=mx - (y2-y1)*0.12, cyp=my + (x2-x1)*0.12;
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.quadraticCurveTo(cxp,cyp,x2,y2); ctx.stroke();
+    });
+  }
+
+  /* --- the lit-up neighbourhood of whatever is picked --- */
+  var lit = {};
+  var focus = picked || hover;
+  if(focus && !routePath){
+    var ns = neighbours(focus);
+    ctx.lineWidth = Math.max(1, 1.2*cam.z);
+    ns.forEach(function(o){
+      lit[o.n.i] = true;
+      var g = KEY[o.keys[0]] ? KEY[o.keys[0]][1] : 'soft';
+      ctx.strokeStyle = hex(GC[g], picked ? 0.55 : 0.3);
+      var x1=sx(focus.x), y1=sy(focus.y), x2=sx(o.n.x), y2=sy(o.n.y);
+      var mx=(x1+x2)/2, my=(y1+y2)/2;
+      ctx.beginPath(); ctx.moveTo(x1,y1);
+      ctx.quadraticCurveTo(mx-(y2-y1)*0.10, my+(x2-x1)*0.10, x2, y2);
+      ctx.stroke();
+    });
+  }
+
+  /* --- the plotted route, drawn over the threads --- */
+  if(routePath && routeA){
+    var chain=[routeA].concat(routePath.map(function(h){ return h.to; }));
+    for(var ri=0; ri<routePath.length; ri++){
+      var p1=chain[ri], p2=chain[ri+1], via=routePath[ri].via;
+      var x1=sx(p1.x), y1=sy(p1.y), x2=sx(p2.x), y2=sy(p2.y);
+      var mx=(x1+x2)/2, my=(y1+y2)/2;
+      var qx=mx-(y2-y1)*0.16, qy=my+(x2-x1)*0.16;
+      ctx.lineCap='round';
+      ctx.lineWidth=Math.max(5, 7*cam.z);
+      ctx.strokeStyle='rgba(255,135,89,.13)';
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.quadraticCurveTo(qx,qy,x2,y2); ctx.stroke();
+      ctx.lineWidth=Math.max(1.6, 2.2*cam.z);
+      ctx.strokeStyle=GC[KEY[via][1]];
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.quadraticCurveTo(qx,qy,x2,y2); ctx.stroke();
+      ctx.lineCap='butt';
+      var lx=0.25*x1+0.5*qx+0.25*x2, ly=0.25*y1+0.5*qy+0.25*y2;
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.font='700 '+Math.max(10, Math.min(15, 11*Math.pow(cam.z,0.4)))+'px "IBM Plex Mono", monospace';
+      var lw=ctx.measureText(via).width;
+      ctx.fillStyle='rgba(7,12,18,.92)';
+      ctx.beginPath(); ctx.roundRect(lx-lw/2-7, ly-10, lw+14, 20, 10); ctx.fill();
+      ctx.strokeStyle=hex(GC[KEY[via][1]],.5); ctx.lineWidth=1; ctx.stroke();
+      ctx.fillStyle=GC[KEY[via][1]]; ctx.fillText(via, lx, ly);
+      claim(lx-lw/2-7, ly-10, lw+14, 20);
+    }
+    chain.forEach(function(p,i){
+      var X=sx(p.x), Y=sy(p.y), R=Math.max(7, p.rad*cam.z+5);
+      ctx.beginPath(); ctx.arc(X,Y,R,0,6.2832);
+      ctx.fillStyle = i===0 ? '#ffd27a' : (i===chain.length-1 ? '#ff8759' : '#ffffff');
+      ctx.fill();
+      ctx.lineWidth=2; ctx.strokeStyle='rgba(7,12,18,.85)'; ctx.stroke();
+      if(i===0 || i===chain.length-1){
+        ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.font='700 11px "IBM Plex Mono", monospace';
+        ctx.fillStyle='#08111a'; ctx.fillText(i===0?'A':'B', X, Y+0.5);
+      }
+    });
+  }
+
+  /* --- ID rings --- */
+  hubs.forEach(function(h){
+    var g = KEY[h.k] ? KEY[h.k][1] : 'soft';
+    var r = (15 + Math.sqrt(h.n)*4.0) * cam.z * ease;
+    var X=sx(h.x), Y=sy(h.y);
+    var glow = ctx.createRadialGradient(X,Y,0,X,Y,r*2.1);
+    glow.addColorStop(0, hex(GC[g],0.16)); glow.addColorStop(1, hex(GC[g],0));
+    ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(X,Y,r*2.1,0,6.2832); ctx.fill();
+    ctx.beginPath(); ctx.arc(X,Y,r,0,6.2832);
+    ctx.fillStyle='rgba(7,12,18,.88)'; ctx.fill();
+    ctx.lineWidth=Math.max(1.1,1.7*cam.z); ctx.strokeStyle=hex(GC[g],0.85); ctx.stroke();
+    ctx.beginPath(); ctx.arc(X,Y,r*0.82,0,6.2832);
+    ctx.lineWidth=Math.max(.6,.8*cam.z); ctx.strokeStyle=hex(GC[g],0.25); ctx.stroke();
+  });
+
+  /* --- tables --- */
+  nodes.forEach(function(n){
+    var faded=dim(n), X=sx(n.x), Y=sy(n.y);
+    if(X<-60||X>W+60||Y<-60||Y>H+60) return;
+    var r=Math.max(1.4, n.rad*cam.z)*ease;
+    if(!faded && n.rad>6){
+      var gl=ctx.createRadialGradient(X,Y,0,X,Y,r*3);
+      gl.addColorStop(0,hex(SC[n.s]||'#8fa8c0',0.22)); gl.addColorStop(1,hex(SC[n.s]||'#8fa8c0',0));
+      ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(X,Y,r*3,0,6.2832); ctx.fill();
+    }
+    ctx.beginPath(); ctx.arc(X,Y,r,0,6.2832);
+    ctx.fillStyle = faded ? 'rgba(120,140,160,.16)'
+      : (lit[n.i] ? '#ffffff' : hex(SC[n.s]||'#8fa8c0', 0.95));
+    ctx.fill();
+    if(!faded && r>3){
+      ctx.lineWidth=.8; ctx.strokeStyle='rgba(7,12,18,.55)'; ctx.stroke();
+    }
+  });
+
+  /* --- selection ring --- */
+  if(picked){
+    var X=sx(picked.x), Y=sy(picked.y), r=Math.max(9, picked.rad*cam.z+7);
+    ctx.beginPath(); ctx.arc(X,Y,r,0,6.2832);
+    ctx.lineWidth=2; ctx.strokeStyle='#ff8759'; ctx.stroke();
+    ctx.beginPath(); ctx.arc(X,Y,r+5,0,6.2832);
+    ctx.lineWidth=1; ctx.strokeStyle='rgba(255,135,89,.3)'; ctx.stroke();
+  }
+
+  /* --- territory names, biggest first, collisions skipped --- */
+  terr.slice().sort(function(a,b){ return b.n-a.n; }).forEach(function(t){
+    if(subjFilter && t.s!==subjFilter) return;
+    var X=sx(t.cx), Y=sy(t.cy), R=t.r*cam.z;
+    if(X<-240||X>W+240||Y<-140||Y>H+140) return;
+    var size=Math.max(10.5, Math.min(27, (9+Math.sqrt(t.n)*1.3)*Math.pow(cam.z,0.42)));
+    var label=pretty(t.s).toUpperCase();
+    ctx.font='600 '+size+'px Fraunces, Georgia, serif';
+    var tw=ctx.measureText(label).width;
+    var bw=tw+20, bh=size*2.1;
+    var bx=X-bw/2, by=Y-R-bh+size*0.35;
+    if(!free(bx,by,bw,bh)) return;
+    claim(bx,by,bw,bh);
+    ctx.fillStyle='rgba(7,12,18,.78)';
+    ctx.beginPath(); ctx.roundRect(bx,by,bw,bh,bh/2); ctx.fill();
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillStyle=hex(SC[t.s]||'#8fa8c0', 0.98*ease);
+    ctx.fillText(label, X, by+bh*0.36);
+    ctx.font='500 '+Math.max(9, size*0.52)+'px "IBM Plex Mono", monospace';
+    ctx.fillStyle='rgba(145,163,181,.85)';
+    ctx.fillText(plural(t.n,'table'), X, by+bh*0.74);
+  });
+
+  /* --- ID labels, always legible --- */
+  hubs.forEach(function(h){
+    var g=KEY[h.k]?KEY[h.k][1]:'soft';
+    var r=(15+Math.sqrt(h.n)*4.0)*cam.z;
+    var X=sx(h.x), Y=sy(h.y);
+    if(X<-160||X>W+160||Y<-80||Y>H+80) return;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    var fs=Math.max(11, Math.min(19, 12.5*Math.pow(cam.z,0.5)));
+    ctx.font='700 '+fs+'px "IBM Plex Mono", monospace';
+    var kw=ctx.measureText(h.k).width;
+    claim(X-kw/2-6, Y-fs*1.1, kw+12, fs*2.3);
+    ctx.fillStyle=GC[g]; ctx.fillText(h.k, X, Y-fs*0.34);
+    ctx.font='500 '+Math.max(9,fs*0.70)+'px "Public Sans", sans-serif';
+    ctx.fillStyle='rgba(174,188,203,.8)';
+    ctx.fillText(plural(h.n,'table'), X, Y+fs*0.70);
+    /* the plain words sit outside the ring, pointing away from the middle */
+    if(cam.z>0.5){
+      var mx=sx(MC[0]), my=sy(MC[1]);
+      var dx=X-mx, dy=Y-my, dl=Math.max(1,Math.hypot(dx,dy));
+      var lx=X+dx/dl*(r+16), ly=Y+dy/dl*(r+16);
+      ctx.textAlign = dx>30 ? 'left' : (dx<-30 ? 'right' : 'center');
+      ctx.textBaseline = dy>0 ? 'top' : 'bottom';
+      ctx.font='400 '+Math.max(10, fs*0.78)+'px "Public Sans", sans-serif';
+      var words=KEY[h.k]?KEY[h.k][0]:'';
+      var ww=ctx.measureText(words).width, wh=fs*1.5;
+      var wx = ctx.textAlign==='left' ? lx : (ctx.textAlign==='right' ? lx-ww : lx-ww/2);
+      var wy = ctx.textBaseline==='top' ? ly : ly-wh;
+      if(free(wx,wy,ww,wh)){
+        claim(wx,wy,ww,wh);
+        ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,10,15,.9)';
+        ctx.strokeText(words, lx, ly);
+        ctx.fillStyle='rgba(150,169,188,.95)';
+        ctx.fillText(words, lx, ly);
+      }
+    }
+  });
+
+  /* --- table names once you are close, no overlaps --- */
+  if(cam.z>1.15){
+    ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.font='500 11.5px "Public Sans", sans-serif';
+    var sorted=nodes.slice().sort(function(a,b){ return (b.r||0)-(a.r||0); });
+    for(var i=0;i<sorted.length;i++){
+      var n=sorted[i]; if(dim(n)) continue;
+      var X=sx(n.x), Y=sy(n.y);
+      if(X<-40||X>W+40||Y<-20||Y>H+20) continue;
+      var lab=human(n.t).label, wd=ctx.measureText(lab).width;
+      var bx=X+n.rad*cam.z+6, by=Y-7, bw=wd, bh=15;
+      if(!free(bx,by,bw,bh)) continue;
+      claim(bx,by,bw,bh);
+      ctx.lineWidth=3; ctx.strokeStyle='rgba(6,10,15,.85)';
+      ctx.strokeText(lab, bx, Y);
+      ctx.fillStyle = lit[n.i] ? '#ffffff' : 'rgba(208,220,232,.92)';
+      ctx.fillText(lab, bx, Y);
+    }
+  }
+}
+
+/* ---------------- pointer ---------------- */
+var dragging=false, last=null, moved=0;
+cv.addEventListener('pointerdown', function(e){
+  dragging=true; moved=0; last={x:e.clientX,y:e.clientY};
+  cv.classList.add('drag'); cv.setPointerCapture(e.pointerId); goal=null;
+});
+cv.addEventListener('pointermove', function(e){
+  if(dragging){
+    cam.x += e.clientX-last.x; cam.y += e.clientY-last.y;
+    moved += Math.abs(e.clientX-last.x)+Math.abs(e.clientY-last.y);
+    last={x:e.clientX,y:e.clientY}; hideTip(); return;
+  }
+  var n=hit(e.clientX,e.clientY);
+  if(n!==hover){ hover=n; cv.style.cursor = n ? 'pointer' : 'grab';
+    n?showTip(n,e.clientX,e.clientY):hideTip(); }
+  else if(n) moveTip(e.clientX,e.clientY);
+});
+cv.addEventListener('pointerup', function(e){
+  dragging=false; cv.classList.remove('drag');
+  if(moved<5){
+    var n=hit(e.clientX,e.clientY);
+    if(routeMode){
+      if(n){
+        if(!routeA || (routeA && routeB)){ routeA=n; routeB=null; }
+        else routeB=n;
+        drawRoutePanel();
+      }
+      return;
+    }
+    if(n) openCard(n); else { picked=null; el('card').hidden=true; }
+  }
+});
+cv.addEventListener('wheel', function(e){
+  e.preventDefault(); goal=null;
+  var f=Math.exp(-e.deltaY*0.0015);
+  var nz=Math.max(0.10, Math.min(11, cam.z*f));
+  var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  cam.x = mx-(mx-cam.x)*(nz/cam.z);
+  cam.y = my-(my-cam.y)*(nz/cam.z);
+  cam.z = nz;
+}, {passive:false});
+
+function hit(px,py){
+  var r=cv.getBoundingClientRect(), X=px-r.left, Y=py-r.top, best=null, bd=1e9;
+  for(var i=0;i<nodes.length;i++){
+    var n=nodes[i], dx=sx(n.x)-X, dy=sy(n.y)-Y, d=dx*dx+dy*dy;
+    var rad=Math.max(7, n.rad*cam.z+3);
+    if(d<rad*rad && d<bd){ bd=d; best=n; }
+  }
+  return best;
+}
+function showTip(n,x,y){
+  var h=human(n.t);
+  el('tip').innerHTML='<b>'+esc(h.label)+'</b><span>'+esc(pretty(n.s))+' · '+
+    brief(n.r)+' rows · '+(n.k.length?esc(n.k.join(' ')):'no shared ID')+'</span>';
+  el('tip').classList.add('on'); moveTip(x,y);
+}
+function moveTip(x,y){
+  var t=el('tip');
+  t.style.left=Math.min(x+16, window.innerWidth-310)+'px';
+  t.style.top=Math.min(y+18, window.innerHeight-90)+'px';
+}
+function hideTip(){ el('tip').classList.remove('on'); }
+
+/* ---------------- routing: the shortest chain of joins ---------------- */
+var routeMode=false, routeA=null, routeB=null, routePath=null, routeSet=null;
+
+function buildIndex(){
+  if(buildIndex.done) return;
+  buildIndex.byKey={};
+  nodes.forEach(function(n){
+    n.k.forEach(function(k){ (buildIndex.byKey[k]=buildIndex.byKey[k]||[]).push(n); });
+  });
+  buildIndex.done=true;
+}
+
+/* Cheapest chain, not the shortest one.
+   A name match is one hop but it is worth almost nothing, so it costs 40.
+   Three hops on real ID numbers beat one hop on a typed name. */
+var HOPCOST = {hard:1, place:7, soft:40};
+
+function findRoute(a, b){
+  buildIndex();
+  if(a===b) return [];
+  var best=new Map(); best.set(a,0);
+  var prev=new Map();
+  var queue=[[0,a]];
+  var done=new Set();
+  while(queue.length){
+    queue.sort(function(x,y){ return x[0]-y[0]; });
+    var head=queue.shift(), cost=head[0], cur=head[1];
+    if(done.has(cur)) continue;
+    done.add(cur);
+    if(cur===b) break;
+    for(var j=0;j<cur.k.length;j++){
+      var k=cur.k[j], w=HOPCOST[KEY[k][1]], list=buildIndex.byKey[k]||[];
+      for(var m=0;m<list.length;m++){
+        var o=list[m];
+        if(done.has(o)) continue;
+        var nc=cost+w;
+        if(best.has(o) && best.get(o)<=nc) continue;
+        best.set(o,nc); prev.set(o,[cur,k]);
+        queue.push([nc,o]);
+      }
+    }
+  }
+  if(!prev.has(b)) return null;
+  var path=[], node=b;
+  while(node!==a){ var st=prev.get(node); path.unshift({to:node, via:st[1]}); node=st[0]; }
+  return path;
+}
+
+function pin(colour, letter){
+  return '<span class="pin" style="background:'+colour+'">'+letter+'</span>';
+}
+function legHtml(id, n, letter, colour){
+  if(!n) return '<div class="leg" id="'+id+'">'+pin('#33414f', letter)+
+    '<span class="nm">click a table on the map</span></div>';
+  var h=human(n.t);
+  return '<div class="leg set" id="'+id+'">'+pin(colour, letter)+'<span class="nm">'+
+    esc(h.label)+'<em>'+esc(pretty(n.s))+' \u00b7 '+brief(n.r)+' rows</em></span></div>';
+}
+
+function drawRoutePanel(fly){
+  el('routeFrom').outerHTML = legHtml('routeFrom', routeA, 'A', '#ffd27a');
+  el('routeTo').outerHTML   = legHtml('routeTo',   routeB, 'B', '#ff8759');
+  var out=el('routeOut');
+  routeSet=null;
+  if(!routeA || !routeB){
+    el('routeHint').textContent = routeA ? 'Now click the table you want to reach.'
+                                         : 'Click a table on the map for the start.';
+    out.innerHTML=''; routePath=null; return;
+  }
+  el('routeHint').textContent='';
+  routePath=findRoute(routeA, routeB);
+  if(!routePath){
+    out.innerHTML='<p class="none">No chain of shared columns joins these two. '+
+      'They sit in different parts of the warehouse.</p>';
+    return;
+  }
+  if(!routePath.length){ out.innerHTML='<p class="none">Same table.</p>'; return; }
+  routeSet=new Set([routeA].concat(routePath.map(function(h){ return h.to; })));
+  var hard=routePath.filter(function(h){ return KEY[h.via][1]==='hard'; }).length;
+  var weakest=routePath.reduce(function(acc,h){
+    var r={hard:0,place:1,soft:2}[KEY[h.via][1]]; return r>acc?r:acc; }, 0);
+  var verdict=['Every hop is a real ID. This join holds.',
+               'One hop leans on a place code. Treat the result as a shortlist.',
+               'One hop is a typed name. Eight percent of those are real.'][weakest];
+  out.innerHTML='<p class="none" style="margin:2px 0 6px">'+
+      plural(routePath.length,'hop')+', '+hard+' of them on a real ID.</p>'+
+    '<p class="none" style="margin:0 0 14px;color:'+
+      ['#5fd9c2','#e8b765','#ff8759'][weakest]+'">'+verdict+'</p>'+
+    '<div class="hop"><div class="rail"><div class="node" style="background:#ffd27a"></div></div>'+
+    '<div class="body"><div class="t">'+esc(human(routeA.t).label)+'</div></div></div>'+
+    routePath.map(function(h,i){
+      var g=KEY[h.via][1], last=(i===routePath.length-1);
+      return '<div class="hop"><div class="rail"><div class="node" style="background:'+
+        (last?'#ff8759':GC[g])+'"></div></div><div class="body">'+
+        '<div class="via" style="color:'+GC[g]+'">join on '+esc(h.via)+' \u2014 '+
+        KEY[h.via][0]+'</div><div class="t">'+esc(human(h.to.t).label)+'</div></div></div>';
+    }).join('');
+  if(fly!==false) frameRoute();
+}
+
+function frameRoute(){
+  if(!routePath || !routeA) return;
+  var pts=[routeA].concat(routePath.map(function(h){ return h.to; }));
+  var a=1e9,b=-1e9,c=1e9,d2=-1e9;
+  pts.forEach(function(p){ a=Math.min(a,p.x); b=Math.max(b,p.x); c=Math.min(c,p.y); d2=Math.max(d2,p.y); });
+  var w=(b-a)+560, h=(d2-c)+460;
+  var z=Math.min(W/w, H/h, 3);
+  glideTo(W/2-((a+b)/2)*z, H/2-((c+d2)/2)*z, z);
+}
+
+function setRouteMode(on){
+  routeMode=on;
+  el('routeBtn').setAttribute('aria-pressed', String(on));
+  el('routeBox').hidden=!on;
+  if(!on){ routeA=routeB=routePath=routeSet=null; }
+  else { el('card').hidden=true; picked=null; drawRoutePanel(false); }
+}
+
+/* ---------------- card ---------------- */
+function openCard(n){
+  picked=n;
+  try{ history.replaceState(null,'','#'+encodeURIComponent(n.t)); }catch(e){}
+  var h=human(n.t), ns=neighbours(n), per={};
+  ns.forEach(function(o){ o.keys.forEach(function(k){ (per[k]=per[k]||[]).push(o.n); }); });
+  var order=['NPI','CCN','EIN','CIK','LEI','UEI/DUNS','ACCESSION','FDIC_CERT','FEC_ID',
+    'BIOGUIDE','IMO','FRS/EPA','MINE_ID','COUNTY_FIPS','ZIP','STATE','ORG_NAME'];
+  var held=order.filter(function(k){ return n.k.indexOf(k)>=0; });
+  var keyHtml = held.length ? held.map(function(k){
+    var g=KEY[k][1];
+    return '<div class="krow"><span class="kn" style="background:'+hex(GC[g],.14)+
+      ';color:'+GC[g]+'">'+esc(k)+'</span><span class="kd">'+KEY[k][0]+
+      '</span><span class="kc">'+(per[k]?per[k].length:0)+'</span></div>';
+  }).join('') : '<div class="krow"><span class="kn" style="background:rgba(115,134,152,.14);color:#738698">none</span><span class="kd">Nothing shared. This one stands alone.</span><span class="kc">0</span></div>';
+
+  var top=ns.slice().sort(function(a,b){ return (b.n.r||0)-(a.n.r||0); }).slice(0,10);
+  var nbHtml=top.map(function(o){
+    return '<button class="nb" type="button" data-go="'+esc(o.n.t)+'">'+
+      esc(human(o.n.t).label)+'<i>'+esc(o.keys.join(' '))+'</i></button>';
+  }).join('');
+
+  el('card').innerHTML =
+    '<button class="x" type="button" id="cardX" aria-label="Close">×</button>'+
+    '<div class="kick">'+esc(pretty(n.s))+(h.who?' · '+esc(h.who):'')+'</div>'+
+    '<h3>'+esc(h.label)+'</h3>'+
+    '<div class="raw">'+esc(n.t)+'</div>'+
+    '<div class="nums"><div><span>Rows</span><b>'+brief(n.r)+'</b></div>'+
+    '<div><span>Columns</span><b>'+n.c+'</b></div>'+
+    '<div><span>Linked</span><b>'+ns.length+'</b></div></div>'+
+    '<h4>IDs it carries</h4>'+keyHtml+
+    (nbHtml?'<h4>Biggest tables it reaches</h4>'+nbHtml:'');
+  el('card').hidden=false;
+  el('cardX').onclick=function(){ el('card').hidden=true; picked=null; };
+  Array.prototype.slice.call(el('card').querySelectorAll('[data-go]')).forEach(function(b){
+    b.onclick=function(){
+      var o=nodes.filter(function(x){ return x.t===b.dataset.go; })[0];
+      if(o){ glide(o.x,o.y,Math.max(cam.z,1.5)); openCard(o); }
+    };
+  });
+}
+
+/* ---------------- controls ---------------- */
+el('q').addEventListener('input', function(e){ query=e.target.value.trim().toUpperCase(); });
+el('q').addEventListener('keydown', function(e){
+  if(e.key!=='Enter'||!query) return;
+  var m=nodes.filter(function(n){ return !dim(n); })
+    .sort(function(a,b){ return (b.r||0)-(a.r||0); })[0];
+  if(m){ glide(m.x,m.y,Math.max(cam.z,1.8)); openCard(m); }
+});
+el('hardBtn').onclick=function(){
+  hardOnly=this.getAttribute('aria-pressed')!=='true';
+  this.setAttribute('aria-pressed',String(hardOnly));
+};
+el('lineBtn').onclick=function(){
+  showLines=this.getAttribute('aria-pressed')!=='true';
+  this.setAttribute('aria-pressed',String(showLines));
+};
+el('fitBtn').onclick=function(){ fit(false); };
+el('routeBtn').onclick=function(){ setRouteMode(!routeMode); };
+el('routeX').onclick=function(){ setRouteMode(false); };
+window.addEventListener('resize', function(){ resize(); });
+document.addEventListener('keydown', function(e){
+  var typing = /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
+  if(e.key==='Escape'){
+    if(routeMode){ setRouteMode(false); return; }
+    el('card').hidden=true; picked=null; return;
+  }
+  if(e.key==='/' && !typing){ e.preventDefault(); el('q').focus(); return; }
+  if(typing) return;
+  var step=90;
+  if(e.key==='ArrowLeft'){ cam.x+=step; goal=null; }
+  else if(e.key==='ArrowRight'){ cam.x-=step; goal=null; }
+  else if(e.key==='ArrowUp'){ cam.y+=step; goal=null; }
+  else if(e.key==='ArrowDown'){ cam.y-=step; goal=null; }
+  else if(e.key==='+'||e.key==='='){ zoomAt(W/2,H/2,1.25); }
+  else if(e.key==='-'||e.key==='_'){ zoomAt(W/2,H/2,0.8); }
+  else if(e.key==='f'){ fit(false); }
+  else if(e.key==='r'){ setRouteMode(!routeMode); }
+});
+function zoomAt(mx,my,f){
+  goal=null;
+  var nz=Math.max(0.10, Math.min(11, cam.z*f));
+  cam.x = mx-(mx-cam.x)*(nz/cam.z);
+  cam.y = my-(my-cam.y)*(nz/cam.z);
+  cam.z = nz;
+}
+</script>
