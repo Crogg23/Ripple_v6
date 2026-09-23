@@ -19,12 +19,21 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-SEED = REPO / "library-onboarding" / "ripple_dbt" / "seeds" / "plain_english.csv"
+SEEDS = REPO / "library-onboarding" / "ripple_dbt" / "seeds"
+SEED = SEEDS / "plain_english.csv"                     # per table: summary, row, column
+GLOSSARY = SEEDS / "plain_english_glossary.csv"        # per column NAME, shared across tables
 OUT = REPO / "outputs" / "catalog"
 
 
 def plain() -> dict:
+    """Per-table text wins; a glossary line fills every other table carrying that column name."""
     out: dict = collections.defaultdict(lambda: {"cols": {}})
+    if GLOSSARY.exists():
+        gl = {r["column_name"]: r["plain"] for r in csv.DictReader(open(GLOSSARY, encoding="utf-8")) if r["plain"]}
+        for s_, t_, _n, cols, *_ in json.load(open(OUT / "er.json", encoding="utf-8"))["t"]:
+            for c in cols:
+                if c[0] in gl:
+                    out[t_]["cols"][c[0]] = gl[c[0]]
     for r in csv.DictReader(open(SEED, encoding="utf-8")):
         t = out[r["table_name"]]
         if r["kind"] == "summary":

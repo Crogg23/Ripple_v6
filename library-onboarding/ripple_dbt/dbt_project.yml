@@ -349,6 +349,12 @@ seeds:
       +database: LIBRARY_META
       +schema: REGISTRY
       +column_types: {plain: varchar}
+    # One sentence per column NAME that means the same thing in every table it
+    # appears in. A per-table line in plain_english wins over this one.
+    plain_english_glossary:
+      +database: LIBRARY_META
+      +schema: REGISTRY
+      +column_types: {plain: varchar}
     ripple_time_registry:
       +database: LIBRARY_MARTS
       +schema: TIMELINE
