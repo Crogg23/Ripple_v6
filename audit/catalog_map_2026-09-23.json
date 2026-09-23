@@ -1,6 +1,6 @@
 {
  "date": "2026-09-23",
- "map": 66.9,
+ "map": 96.7,
  "parts": {
   "Tags true": {
    "passed": 556,
@@ -12,15 +12,15 @@
    "of": 250,
    "pct": 93.6
   },
-  "Tables with a summary": {
-   "passed": 320,
+  "Tables with a summary, present": {
+   "passed": 651,
    "of": 651,
-   "pct": 49.2
+   "pct": 100.0
   },
-  "Columns described": {
-   "passed": 362,
+  "Columns described, present": {
+   "passed": 20585,
    "of": 20585,
-   "pct": 1.8
+   "pct": 100.0
   },
   "Inventory clean": {
    "passed": 651,

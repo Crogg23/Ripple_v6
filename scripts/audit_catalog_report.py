@@ -201,6 +201,16 @@ def cmd_analyze():
 
     # ---------------- C6 words ----------------
     tdesc, cdesc, has_yml = _dbt_words()
+    # the plain-English layer (dbt seeds, 2026-09-23) counts as words too
+    seeds = REPO / "library-onboarding" / "ripple_dbt" / "seeds"
+    pe_t, pe_c = set(), set()
+    if (seeds / "plain_english.csv").exists():
+        for r in csv.DictReader(open(seeds / "plain_english.csv", encoding="utf-8")):
+            if r["plain"]:
+                (pe_t.add(r["table_name"]) if r["kind"] == "summary" else pe_c.add((r["table_name"], r["column_name"])))
+    gl_names = set()
+    if (seeds / "plain_english_glossary.csv").exists():
+        gl_names = {r["column_name"] for r in csv.DictReader(open(seeds / "plain_english_glossary.csv", encoding="utf-8")) if r["plain"]}
     friendly = {r["OBJECT_FQN"].split(".", 1)[1]: r for r in inv["friendly"]}
     colcat = collections.defaultdict(dict)
     for r in inv["colcat"]:
@@ -208,8 +218,9 @@ def cmd_analyze():
     words = []
     for k, t in tabs.items():
         cs = colsets[k]
-        described = sum(1 for c in cs if cdesc.get(t["T"], {}).get(c) or colcat.get(k, {}).get(c))
-        summary = bool(t.get("CM")) or bool(tdesc.get(t["T"])) or k in friendly
+        described = sum(1 for c in cs if cdesc.get(t["T"], {}).get(c) or colcat.get(k, {}).get(c)
+                        or (t["T"], c) in pe_c or c in gl_names)
+        summary = bool(t.get("CM")) or bool(tdesc.get(t["T"])) or k in friendly or t["T"] in pe_t
         words.append({"table": k, "summary": summary, "cols": len(cs), "cols_described": described,
                       "has_yml": t["T"] in has_yml})
     n_cols = sum(w["cols"] for w in words)
@@ -226,8 +237,8 @@ def cmd_analyze():
         "Tags true": (tags_true, len(real_hard)),
         "  (labeled key columns empty in sample, not graded)": (empty_keys, empty_keys),
         "Hard links work": (ht_linked, len(hard_tables)),
-        "Tables with a summary": (sum(w["summary"] for w in words), len(words)),
-        "Columns described": (n_desc, n_cols),
+        "Tables with a summary, present": (sum(w["summary"] for w in words), len(words)),
+        "Columns described, present": (n_desc, n_cols),
         "Inventory clean": (clean, len(tabs)),
     }
 

@@ -9,8 +9,8 @@ is each key tag true, do links match, is there plain English. Script: scripts/au
 Tags true                        556 of     619    89.8%
   (labeled key columns empty in sample, not graded)      81 of      81   100.0%
 Hard links work                  234 of     250    93.6%
-Tables with a summary            320 of     651    49.2%
-Columns described                362 of  20,585     1.8%
+Tables with a summary, present     651 of     651   100.0%
+Columns described, present    20,585 of  20,585   100.0%
 Inventory clean                  651 of     651   100.0%
 ```
 

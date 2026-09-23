@@ -531,16 +531,21 @@ def cmd_links():
 # 8 most common values (APPROX_TOP_K). Feeds the glossary re-check.
 #   python scripts/audit_catalog.py profile
 # --------------------------------------------------------------------------- #
-def cmd_profile():
+def cmd_profile(rest: bool = False):
+    """rest=False: glossary columns. rest=True: every other column (one-table
+    names and names that mean different things per table), for per-table text."""
     import csv as _csv
     gl = REPO / "library-onboarding" / "ripple_dbt" / "seeds" / "plain_english_glossary.csv"
-    names = {r["column_name"] for r in _csv.DictReader(open(gl, encoding="utf-8")) if r["varies"] != "yes"}
+    shared = {r["column_name"] for r in _csv.DictReader(open(gl, encoding="utf-8")) if r["varies"] != "yes"}
+    inv0 = load_inventory()
+    allnames = {c["C"] for c in inv0["cols"]}
+    names = (allnames - shared) if rest else shared
     inv = load_inventory()
     by_t = collections.defaultdict(list)
     for c in inv["cols"]:
         if c["C"] in names and not re.search(r"__PREV|_PREV_", c["T"]) and c["D"] not in ("GEOGRAPHY", "GEOMETRY", "BINARY"):
             by_t[(c["S"], c["T"])].append(c["C"])
-    out = CACHE / "profiles"
+    out = CACHE / ("profiles_rest" if rest else "profiles")
     out.mkdir(exist_ok=True)
     conn = _conn()
     cur = conn.cursor()
@@ -555,14 +560,16 @@ def cmd_profile():
             v = f'nullif(trim(to_varchar("{c}")), \'\')'
             parts.append(f'count({v}) as "F{j}"')
             parts.append(f'approx_top_k({v}, 8) as "K{j}"')
+            parts.append(f'approx_count_distinct({v}) as "D{j}"')
         try:
             cur.execute(f'select {", ".join(parts)} from LIBRARY_MARTS."{s}"."{t}"')
             row = cur.fetchone()
             res = {"rows": row[0], "cols": {}}
             for j, c in enumerate(cols):
-                top = row[2 + 2 * j]
+                top = row[2 + 3 * j]
                 top = json.loads(top) if isinstance(top, str) else top
-                res["cols"][c] = {"filled": row[1 + 2 * j], "top": [[str(a)[:80], b] for a, b in (top or [])]}
+                res["cols"][c] = {"filled": row[1 + 3 * j], "distinct_approx": row[3 + 3 * j],
+                                  "top": [[str(a)[:80], b] for a, b in (top or [])]}
             json.dump(res, open(p, "w", encoding="utf-8"))
             print(f"  {i + 1}/{len(todo)} {s}.{t} {len(cols)} cols {row[0]:,} rows", flush=True)
         except Exception as e:
@@ -577,7 +584,7 @@ if __name__ == "__main__":
     elif cmd == "links":
         cmd_links()
     elif cmd == "profile":
-        cmd_profile()
+        cmd_profile(rest="--rest" in sys.argv)
     elif cmd == "catalog":
         from audit_catalog_report import cmd_catalog  # noqa: E402
         cmd_catalog()
