@@ -1,0 +1,385 @@
+<meta charset="utf-8">
+<title>Warehouse Compass</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#eef2f3;--card:#fff;--ink:#15212b;--dim:#66747f;--plain:#2c5d4a;--rule:#d6dde2;--hd:#1f3a52;--hdink:#fff;
+  --works:#2f8a5b;--loose:#b07a12;--possible:#2f6fb0;--none:#9aa5ae;--sel:#15212b;--selbg:#e6edf1;--chip:#eef2f4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0e151b;--card:#141d25;--ink:#e7eef3;--dim:#8a9aa7;--plain:#8fd4b4;--rule:#29363f;--hd:#223a50;
+  --works:#5fc193;--loose:#e0ac45;--possible:#7fb5e6;--none:#5f6c77;--sel:#e7eef3;--selbg:#1d2a35;--chip:#1b252e}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0e151b;--card:#141d25;--ink:#e7eef3;--dim:#8a9aa7;--plain:#8fd4b4;--rule:#29363f;--hd:#223a50;
+  --works:#5fc193;--loose:#e0ac45;--possible:#7fb5e6;--none:#5f6c77;--sel:#e7eef3;--selbg:#1d2a35;--chip:#1b252e}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 "IBM Plex Sans",system-ui,sans-serif;padding-inline:16px;padding-block:0 60px;margin:0}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--possible);outline-offset:2px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);margin-inline:-16px;padding:14px 16px 12px;border-bottom:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.brand b{display:block;font:700 18px "IBM Plex Sans",sans-serif}
+.brand span{font-size:12.5px;color:var(--dim)}
+.grow{flex:1}
+.pickwrap{position:relative;width:min(380px,100%)}
+#pick{width:100%;padding:9px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--card)}
+#hits{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:var(--card);border:1px solid var(--rule);border-radius:8px;overflow:auto;max-height:60vh;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+#hits button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;width:100%;text-align:left;border:0;background:none;padding:7px 10px;cursor:pointer}
+#hits button:hover,#hits button.on{background:var(--selbg)}
+#hits .t{font:600 12px "IBM Plex Mono",monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#hits .m{grid-column:1/-1;font-size:11.5px;color:var(--dim)}
+.btn{border:1px solid var(--rule);background:var(--card);border-radius:8px;padding:8px 12px;cursor:pointer;font-size:13px;font-weight:600}
+.btn:hover{border-color:var(--dim)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--dim);width:100%}
+.legend span{display:flex;align-items:center;gap:6px}
+
+/* trail */
+.trail{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:14px 0 4px;font-size:12.5px;color:var(--dim)}
+.trail button{border:1px solid var(--rule);background:var(--card);border-radius:99px;padding:3px 10px;cursor:pointer;font:600 11.5px "IBM Plex Mono",monospace;color:var(--ink)}
+.trail button[aria-current="true"]{background:var(--hd);color:var(--hdink);border-color:var(--hd)}
+.trail i{font-style:normal;font:11px "IBM Plex Mono",monospace;color:var(--dim)}
+
+/* tree */
+.scroller{overflow-x:auto;padding-block:10px 16px}
+#tree{position:relative;display:flex;gap:60px;align-items:flex-start;width:max-content;min-width:100%}
+#wires{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+#wires path{animation:fade .35s ease-out both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.col{display:flex;flex-direction:column;gap:10px;width:268px;position:relative;z-index:1}
+.col.root{width:320px}
+.col.tables{width:320px}
+.col h2{margin:0 0 2px;font:600 10.5px "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.node{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:11px 12px;cursor:pointer;animation:fade .25s ease-out both}
+.node:hover{border-color:var(--dim)}
+.node[aria-pressed="true"]{border-color:var(--sel);background:var(--selbg);box-shadow:0 0 0 1px var(--sel)}
+.node.off{opacity:.62}
+.node .w{font:700 22px "IBM Plex Sans",sans-serif;letter-spacing:.02em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.node .q{font-weight:600;font-size:14.5px}
+.node .p{color:var(--plain);font-size:12.5px;margin-top:3px;line-height:1.4}
+.node .cols{font:11px "IBM Plex Mono",monospace;color:var(--dim);margin-top:6px;word-break:break-all}
+.node .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}
+.node .n{font:600 13px "IBM Plex Mono",monospace}
+.pill{font:600 11px "IBM Plex Sans",sans-serif;padding:2px 8px;border-radius:99px;border:1.5px solid currentColor;white-space:nowrap}
+.pill.works{color:var(--works)} .pill.loose{color:var(--loose)} .pill.possible{color:var(--possible);border-style:dashed} .pill.none{color:var(--none);border-style:dotted}
+.dot{width:10px;height:10px;border-radius:99px;display:inline-block;flex:none}
+.dot.works{background:var(--works)} .dot.loose{background:var(--loose)} .dot.possible{background:none;border:2px dashed var(--possible)} .dot.none{background:none;border:2px dotted var(--none)}
+.fp{display:inline-flex;gap:3px;align-items:center}
+.fp .dot{width:8px;height:8px}
+.node.sm{padding:9px 11px;cursor:default}
+.node.sm.area{cursor:pointer}
+.node.sm .t{font:600 12.5px "IBM Plex Mono",monospace;word-break:break-all}
+.node.sm .m{font-size:11.5px;color:var(--dim);margin-top:2px}
+.node.sm code{display:block;margin-top:6px;padding:5px 7px;border-radius:6px;background:var(--chip);font:11px/1.4 "IBM Plex Mono",monospace;word-break:break-all;color:var(--ink)}
+.node.sm .go{margin-top:7px;border:1px solid var(--rule);background:none;border-radius:6px;padding:4px 9px;cursor:pointer;font-size:12px;font-weight:600;color:var(--possible)}
+.node.sm .go:hover{border-color:var(--possible)}
+
+/* root card */
+.rootcard{background:var(--card);border:1px solid var(--rule);border-radius:12px;overflow:hidden;animation:fade .25s ease-out both}
+.rootcard .hd{background:var(--hd);color:var(--hdink);padding:13px 14px}
+.rootcard small{font:600 10.5px "IBM Plex Mono",monospace;letter-spacing:.12em;opacity:.78}
+.rootcard .nm{display:block;font:600 15px "IBM Plex Mono",monospace;margin-top:3px;word-break:break-all}
+.rootcard .bd{padding:12px 14px;display:grid;gap:10px}
+.rootcard .p{color:var(--plain);font-size:13.5px}
+.rootcard .todo{color:var(--dim);font-size:12.5px;font-style:italic}
+.nums{display:flex;gap:20px;font:600 14px "IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.nums span{display:block;font:500 10.5px "IBM Plex Sans",sans-serif;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.finger{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.finger div{border:1px solid var(--rule);border-radius:8px;padding:6px 7px;display:grid;gap:3px}
+.finger b{font:700 11px "IBM Plex Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;display:flex;gap:6px;align-items:center}
+.finger span{font-size:10.5px;color:var(--dim);line-height:1.2}
+.verdict{font-size:13px;line-height:1.45}
+.verdict b{font-weight:600}
+details{border-top:1px solid var(--rule);padding-top:8px}
+summary{cursor:pointer;font-weight:600;font-size:13px}
+.colist{max-height:360px;overflow:auto;margin-top:8px;display:grid}
+.colist div{padding:5px 0;border-bottom:1px solid var(--rule)}
+.colist .c{font:600 12.5px "IBM Plex Mono",monospace;word-break:break-all}
+.colist .c em{font-style:normal;font-weight:400;color:var(--dim);margin-left:6px}
+.colist .k{font:600 10.5px "IBM Plex Mono",monospace;padding:0 5px;border-radius:4px;background:var(--chip);color:var(--dim);margin-left:6px}
+.colist .pl{font-size:12px;color:var(--plain)}
+.empty{font-size:13px;color:var(--dim);padding:10px 12px;border:1.5px dotted var(--none);border-radius:10px;background:var(--card)}
+@media (max-width:760px){
+  #tree{flex-direction:column;gap:22px;width:100%}
+  .col,.col.root,.col.tables{width:100%}
+  #wires{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<div class="bar">
+  <div class="brand"><b>Warehouse Compass</b><span id="sub">Loading your catalog…</span></div>
+  <div class="grow"></div>
+  <div class="pickwrap"><input id="pick" type="search" placeholder="Start from any table…  ( / )" autocomplete="off" aria-label="Find a table"><div id="hits" hidden></div></div>
+  <button class="btn" type="button" id="rand">Surprise me</button>
+  <div class="legend">
+    <span><i class="dot works"></i>Works now</span>
+    <span><i class="dot loose"></i>Works, but loose</span>
+    <span><i class="dot possible"></i>Possible, not set up yet</span>
+    <span><i class="dot none"></i>Nothing to link to yet</span>
+  </div>
+</div>
+<div class="trail" id="trail"></div>
+<div class="scroller"><div id="tree"><svg id="wires"></svg></div></div>
+
+<script>
+/* ===================== RULES — the part that mass-produces =====================
+   2026-09-23: keys come from er.json, where scripts/audit_catalog.py confirmed each
+   label by sampling real values. No column-name guessing happens on this page. */
+var W4=['Where','Who','What','When'];
+var WQ={Where:'Where did it happen?',Who:'Who was involved?',What:'What was it about?',When:'When did it happen?'};
+var WP={Where:'Places. Line this table up with anything else measured in the same place.',
+  Who:'People and organizations. Follow the same doctor, company, hospital or official into other tables.',
+  What:'Things. The same drug, industry, medical procedure or government program in other tables.',
+  When:'Time. Line events up on a timeline. Most useful stacked on top of a Where or Who link.'};
+var PLACE=[['TRACT_FIPS','Same census tract','A few thousand people inside one county. Tighter than a county.','works'],
+  ['COUNTY_FIPS','Same county','Counties are small enough to mean something. The best place link there is.','works'],
+  ['ZIP','Same zip code','Zips are loose: they cross county lines and change over time.','loose'],
+  ['STATE','Same state','Only state level. Very broad.','loose'],
+  ['STATE_FIPS','Same state, by number','State as a 2-digit number, like 48 for Texas. Very broad, and it does not match a two-letter state column.','loose']];
+var HARD={NPI:'doctor or provider license number',CCN:'hospital or nursing home Medicare number',EIN:'company tax number',
+  CIK:'SEC filer number',LEI:'global company ID',UEI:'federal contractor number',DUNS:'old federal contractor number',
+  FDIC_CERT:'bank insurance number',FEC_CMTE_ID:'campaign committee number',FEC_CAND_ID:'candidate number',
+  BIOGUIDE:'member of Congress ID',ICPSR:'member of Congress voting ID',IMO:'ship hull number',MMSI:'ship radio number',
+  FRS_ID:'polluting facility number',NPDES_ID:'water discharge permit',PWSID:'public water system number',
+  MINE_ID:'mine number',MSHA_CONTROLLER_ID:'mine owner number',MSHA_OPERATOR_ID:'mine operator number',
+  DEA_NO:'DEA license number',ACCESSION:'SEC filing number',CUSIP:'stock or bond ID',COMPANY_NO:'UK company number',
+  NCUA_CHARTER:'credit union charter number',CL_PERSON_ID:'judge ID',CL_COURT_ID:'court ID',ICE_FACILITY:'detention center code',
+  FDA_510K_NO:'FDA device clearance number',FDA_PMA_NO:'FDA device approval number',PECOS_PAC_ID:'Medicare enrollment owner ID',
+  PECOS_ENRLMT_ID:'Medicare enrollment ID',EIA_UTILITY_ID:'power utility number',EIA_PLANT_ID:'power plant number',
+  DOCKET:'court docket number',NCES:'school ID',PATENT:'patent number',RSSD:'bank holding company ID',CAGE:'defense contractor code'};
+var UNTAGGED=[];
+var THINGS=[['DRUG','Same drug','drug names or drug codes',['NDC','DRUG']],
+  ['INDUSTRY','Same industry','industry codes (NAICS or SIC)',['NAICS','SIC']],
+  ['PROCEDURE','Same medical procedure','medical billing codes (HCPCS or CPT)',['HCPCS']],
+  ['DIAGNOSIS','Same diagnosis or cause','diagnosis codes (ICD)',['ICD']],
+  ['PROGRAM','Same government program','federal program numbers (CFDA)',['CFDA']],
+  ['CHEMICAL','Same chemical','chemical IDs (CAS numbers)',['CAS']]];
+var YEAR=/(^|_)(YEAR|YR|FY|FISCAL_YEAR)$/, DATES={DATE:1,TIMESTAMP_NTZ:1,TIMESTAMP_TZ:1,TIMESTAMP_LTZ:1};
+var SRC={FED:'Federal',INTL:'International',XC:'Cross-source',ST:'State',CA:'California',TX:'Texas',CMS:'Medicare & Medicaid (CMS)',DEA:'Drug Enforcement Administration',
+  FDA:'Food and Drug Administration',CDC:'CDC',HRSA:'Health Resources & Services Admin.',EPA:'EPA',SEC:'SEC',FEC:'Federal Election Commission',IRS:'IRS',
+  DOL:'Labor Dept.',OSHA:'OSHA',HUD:'Housing Dept.',FDIC:'FDIC',USDA:'Agriculture Dept.',DOJ:'Justice Dept.',NIH:'NIH',NOAA:'NOAA',CFPB:'Consumer Financial Protection Bureau',
+  FEMA:'FEMA',SBA:'Small Business Admin.',NHTSA:'Vehicle safety agency',FAA:'FAA',MSHA:'Mine Safety agency',ATF:'ATF',USGS:'USGS',CENSUS:'Census Bureau'};
+var ST={works:'Works now',loose:'Works, but loose',possible:'Possible, not set up',none:'Nothing to link to yet'};
+var SHORT={works:'Works',loose:'Loose',possible:'Possible',none:'Nothing yet'};
+var RANK={works:3,loose:2,possible:1,none:0};
+
+/* ===================== data ===================== */
+var TABS=[], BY={}, KEYIDX={}, THINGIDX={}, UNTIDX={}, DAY=[], YR=[], PLAIN={}, GEN='';
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function brief(n){ if(n>=1e9)return (n/1e9).toFixed(1)+'B'; if(n>=1e6)return (n/1e6).toFixed(n>=1e7?0:1)+'M'; if(n>=1e3)return (n/1e3).toFixed(n>=1e4?0:1)+'K'; return String(n); }
+function plural(n,w){ return n.toLocaleString()+' '+w+(n===1?'':'s'); }
+function shortT(t){ return t.indexOf('__')>=0?t.slice(t.indexOf('__')+2):t; }
+function source(t){ var p=shortT(t).split('_'), out=[]; if(SRC[p[0]]) out.push(SRC[p[0]]); if(p[1]&&SRC[p[1]]&&!/^(FED|INTL|XC|ST)$/.test(p[1])) out.push(SRC[p[1]]); return out.join(' · ')||'Source not labeled'; }
+function el(i){return document.getElementById(i)}
+
+Promise.all([fetch('er.json').then(function(r){return r.json()}),fetch('plain.json').then(function(r){return r.json()}).catch(function(){return {}})]).then(function(res){
+  var d=res[0]; PLAIN=res[1]; GEN=d.g;
+  d.t.forEach(function(r){
+    var t={s:r[0],t:r[1],r:r[2],cols:r[3].map(function(c){return {c:c[0],d:c[1],k:c[2]}}),grain:r[4]||'',keys:{},things:{},unt:{},day:false,yr:false};
+    t.cols.forEach(function(c){
+      if(c.k) (t.keys[c.k]=t.keys[c.k]||[]).push(c.c);
+      THINGS.forEach(function(x){ if(c.k && x[3].indexOf(c.k)>=0) (t.things[x[0]]=t.things[x[0]]||[]).push(c.c); });
+      if(c.c.charAt(0)!=='_'){ if(DATES[c.d]){ t.day=t.day||[]; t.day.push(c.c); } else if(YEAR.test(c.c)){ t.yr=t.yr||[]; t.yr.push(c.c); } }
+    });
+    /* the TIMELINE view's grain wins over column guessing: it is the checked clock */
+    if(t.grain==='year'){ t.yr=t.yr||['its timeline year']; t.day=false; }
+    else if(t.grain){ t.day=t.day||['its timeline date']; }
+    TABS.push(t); BY[t.t]=t;
+    Object.keys(t.keys).forEach(function(k){ (KEYIDX[k]=KEYIDX[k]||[]).push(t); });
+    Object.keys(t.things).forEach(function(k){ (THINGIDX[k]=THINGIDX[k]||[]).push(t); });
+    if(t.day) DAY.push(t); else if(t.yr) YR.push(t);
+  });
+  TABS.forEach(function(t){ t.fp=fingerprint(t); });
+  var cols=TABS.reduce(function(a,t){return a+t.cols.length},0);
+  el('sub').textContent=TABS.length+' tables · '+cols.toLocaleString()+' columns · catalog '+GEN;
+  var h=decodeURIComponent((location.hash||'').slice(1));
+  go(BY[h]?h:'HEALTH__FED_DEA_ARCOS',null,true);
+});
+
+/* ---- build the four branches for any table ---- */
+function others(list,root){ return (list||[]).filter(function(t){return t!==root}); }
+function branches(root){
+  var out=[];
+  /* WHERE */
+  var subs=[], taken={};
+  PLACE.forEach(function(p){
+    if(!root.keys[p[0]]) return;
+    var L=others(KEYIDX[p[0]],root).filter(function(t){return !taken[t.t]});
+    L.forEach(function(t){taken[t.t]=1});
+    subs.push({l:p[1],p:p[2]+(subs.length?' Tables already under a tighter link are left out.':''),st:L.length?p[3]:'none',rc:root.keys[p[0]],eq:'=',
+      items:L.map(function(t){return {t:t,tc:t.keys[p[0]]}})});
+  });
+  out.push(branch('Where',subs,'This table has no tract, county, zip or state columns.'));
+  /* WHO */
+  subs=[];
+  Object.keys(HARD).forEach(function(k){
+    if(!root.keys[k]) return;
+    var L=others(KEYIDX[k],root);
+    subs.push({l:'Same '+HARD[k],p:L.length?'An exact ID number, so a match is a real match.':'An exact ID, but no other table in the warehouse has it yet.',st:L.length?'works':'none',rc:root.keys[k],eq:'=',items:L.map(function(t){return {t:t,tc:t.keys[k]}})});
+  });
+  if(root.keys.NAME){ var L2=others(KEYIDX.NAME,root);
+    subs.push({l:'Same typed-in name',p:'Matches on names someone typed. "CVS", "CVS Pharmacy" and "CVS #1234" won\'t match without cleanup. Every column here was checked to hold company or people names.',st:L2.length?'loose':'none',rc:root.keys.NAME,eq:'≈',items:L2.map(function(t){return {t:t,tc:t.keys.NAME}})}); }
+  out.push(branch('Who',subs,'This table has no names or ID numbers for people or organizations.'));
+  /* WHAT */
+  subs=[];
+  THINGS.forEach(function(x){
+    if(!root.things[x[0]]) return;
+    var L=others(THINGIDX[x[0]],root);
+    subs.push({l:x[1],p:'Columns holding '+x[2]+'. One code covers thousands of rows, so it links things, not people.',st:L.length?'possible':'none',rc:root.things[x[0]],eq:'≈',items:L.map(function(t){return {t:t,tc:t.things[x[0]]}})});
+  });
+  out.push(branch('What',subs,'No drug, industry, procedure, diagnosis, program or chemical columns found.'));
+  /* WHEN */
+  subs=[];
+  if(root.day){
+    var D1=others(DAY,root), Y1=others(YR,root);
+    subs.push({l:'Same day or month',p:'Both tables have exact dates. Not set up as a join; match on a date range.',st:D1.length?'possible':'none',rc:root.day,eq:'↔',items:D1.map(function(t){return {t:t,tc:t.day}})});
+    subs.push({l:'Same year',p:'The other table only records years, so roll this table up to years first.',st:Y1.length?'possible':'none',rc:root.day,eq:'↔',items:Y1.map(function(t){return {t:t,tc:t.yr}})});
+  } else if(root.yr){
+    var A=others(DAY.concat(YR),root);
+    subs.push({l:'Same year',p:'This table only records years. Anything with a date or year can line up with it.',st:A.length?'possible':'none',rc:root.yr,eq:'↔',items:A.map(function(t){return {t:t,tc:t.day||t.yr}})});
+  }
+  out.push(branch('When',subs,'This table has no date or year columns.'));
+  return out;
+}
+function branch(w,subs,emptyMsg){
+  var seen={}; subs.forEach(function(s){ s.items.forEach(function(i){ seen[i.t.t]=1; }); s.n=s.items.length; });
+  var st=subs.reduce(function(a,s){ return RANK[s.st]>RANK[a]?s.st:a; },'none');
+  return {w:w,q:WQ[w],p:WP[w],subs:subs,st:st,n:Object.keys(seen).length,empty:emptyMsg};
+}
+function fingerprint(t){ var b=branches(t); return b.map(function(x){return x.st}); }
+function verdict(b){
+  var words={works:'strong',loose:'loose',possible:'possible',none:'empty'};
+  var best=b.filter(function(x){return x.st==='works'}).map(function(x){return x.w});
+  var rest=b.filter(function(x){return x.st!=='works'}).map(function(x){return '<b>'+x.w+'</b> is '+words[x.st]});
+  return (best.length?'Best way in: <b>'+best.join(' and ')+'</b>.':'No strong links yet.')+(rest.length?' '+rest.join(', ')+'.':'');
+}
+
+/* ===================== view ===================== */
+var trail=[], pick={b:null,s:null,g:null}, B=null;
+function go(name,via,replace){
+  var t=BY[name]; if(!t) return;
+  if(replace) trail=[{t:t,via:null}]; else {
+    var i=trail.findIndex(function(x){return x.t===t}); if(i>=0) trail=trail.slice(0,i+1); else trail.push({t:t,via:via});
+  }
+  B=branches(t); pick={b:null,s:null,g:null};
+  try{history.replaceState(null,'','#'+encodeURIComponent(name))}catch(e){}
+  render(); window.scrollTo({top:0});
+  var sc=document.querySelector('.scroller'); sc.scrollLeft=0;
+}
+function fpHtml(fp){ return '<span class="fp" title="Where · Who · What · When">'+fp.map(function(s){return '<i class="dot '+s+'"></i>'}).join('')+'</span>'; }
+function root(){ return trail[trail.length-1].t; }
+
+function renderTrail(){
+  el('trail').innerHTML = trail.length<2 ? '' : 'Your path: '+trail.map(function(x,i){
+    return (x.via?'<i>'+esc(x.via)+' →</i>':'')+'<button type="button" data-tr="'+i+'" aria-current="'+(i===trail.length-1)+'">'+esc(shortT(x.t.t))+'</button>';
+  }).join('');
+  el('trail').querySelectorAll('[data-tr]').forEach(function(b){ b.onclick=function(){ trail=trail.slice(0,+b.dataset.tr+1); B=branches(root()); pick={b:null,s:null,g:null}; try{history.replaceState(null,'','#'+encodeURIComponent(root().t))}catch(e){} render(); }; });
+}
+
+function render(){
+  renderTrail();
+  var R=root(), P=PLAIN[R.t]||{}, tree=el('tree');
+  tree.querySelectorAll('.col').forEach(function(c){c.remove()});
+  var html=[];
+  var colRows=R.cols.map(function(c){
+    return '<div><div class="c">'+esc(c.c)+'<em>'+esc(c.d.toLowerCase())+'</em>'+(c.k?'<span class="k">'+esc(c.k)+'</span>':'')+'</div>'+
+      (P.cols&&P.cols[c.c]?'<div class="pl">'+esc(P.cols[c.c])+'</div>':'')+'</div>';
+  }).join('');
+  html.push('<div class="col root" data-level="0"><h2>Start here</h2><div class="rootcard" id="n-root"><div class="hd"><small>'+esc(R.s)+' · '+esc(source(R.t))+'</small><span class="nm">'+esc(R.t)+'</span></div><div class="bd">'+
+    (P.summary?'<div class="p">'+esc(P.summary)+'</div>':'<div class="todo">No plain-English summary written for this table yet.</div>')+
+    '<div class="nums"><div><span>Rows</span>'+R.r.toLocaleString()+'</div><div><span>Columns</span>'+R.cols.length+'</div></div>'+
+    (P.row?'<div class="p" style="font-size:12.5px"><b style="color:var(--ink);font-weight:600">One row = </b>'+esc(P.row)+'</div>':'')+
+    '<div class="finger">'+B.map(function(b){ return '<div><b><i class="dot '+b.st+'"></i>'+b.w+'</b><span>'+SHORT[b.st]+'</span></div>'; }).join('')+'</div>'+
+    '<div class="verdict">'+verdict(B)+'</div>'+
+    '<details><summary>All '+R.cols.length+' columns'+(P.cols?' in plain English':'')+'</summary><div class="colist">'+colRows+'</div></details>'+
+    '</div></div></div>');
+  html.push('<div class="col" data-level="1"><h2>Ask a question</h2>'+B.map(function(b,i){
+    return '<button type="button" class="node'+(b.n?'':' off')+'" data-b="'+i+'" data-st="'+b.st+'" aria-pressed="'+(pick.b===i)+'">'+
+      '<div class="w"><i class="dot '+b.st+'"></i>'+b.w+'</div><div class="q">'+esc(b.q)+'</div><div class="p">'+esc(b.p)+'</div>'+
+      '<div class="foot"><span class="n">'+plural(b.n,'table')+'</span>'+(b.subs.length?'<span class="pill '+b.st+'">'+ST[b.st]+'</span>':'<span class="pill none">No columns for this</span>')+'</div></button>';
+  }).join('')+'</div>');
+  if(pick.b!==null){
+    var BR=B[pick.b];
+    html.push('<div class="col" data-level="2"><h2>Linked by</h2>'+(BR.subs.length?BR.subs.map(function(s,i){
+      return '<button type="button" class="node'+(s.n?'':' off')+'" data-s="'+i+'" data-st="'+s.st+'" aria-pressed="'+(pick.s===i)+'">'+
+        '<div class="q">'+esc(s.l)+'</div><div class="p">'+esc(s.p)+'</div><div class="cols">This table: '+esc(s.rc.slice(0,4).join(', '))+(s.rc.length>4?' +'+(s.rc.length-4):'')+'</div>'+
+        '<div class="foot"><span class="n">'+plural(s.n,'table')+'</span><span class="pill '+s.st+'">'+ST[s.st]+'</span></div></button>';
+    }).join(''):'<div class="empty" data-st="none" id="n-empty">'+esc(BR.empty)+'</div>')+'</div>');
+    if(pick.s!==null){
+      var S=BR.subs[pick.s], groups={};
+      S.items.forEach(function(i){ (groups[i.t.s]=groups[i.t.s]||[]).push(i); });
+      var gs=Object.keys(groups).sort(function(a,b){return groups[b].length-groups[a].length||a.localeCompare(b)});
+      html.push('<div class="col" data-level="3"><h2>In these areas</h2>'+(gs.length?gs.map(function(g){
+        return '<button type="button" class="node sm area" data-g="'+esc(g)+'" data-st="'+S.st+'" aria-pressed="'+(pick.g===g)+'"><div class="foot" style="margin-top:0"><span class="t">'+esc(g)+'</span><span class="n">'+groups[g].length+'</span></div></button>';
+      }).join(''):'<div class="empty" data-st="none" id="n-empty">No other table in the warehouse has this yet. Adding one would light this branch up.</div>')+'</div>');
+      if(pick.g!==null && groups[pick.g]){
+        var L=groups[pick.g].slice().sort(function(a,b){return b.t.r-a.t.r});
+        html.push('<div class="col tables" data-level="4"><h2>Tables</h2>'+L.map(function(i){
+          var on=shortT(R.t)+'.'+S.rc[0]+' '+S.eq+' '+shortT(i.t.t)+'.'+(i.tc?i.tc[0]:'?');
+          return '<div class="node sm" data-st="'+S.st+'"><div class="foot" style="margin-top:0;align-items:flex-start"><span class="t">'+esc(shortT(i.t.t))+'</span>'+fpHtml(i.t.fp)+'</div>'+
+            '<div class="m">'+brief(i.t.r)+' rows · '+i.t.cols.length+' columns'+(PLAIN[i.t.t]&&PLAIN[i.t.t].summary?' · '+esc(PLAIN[i.t.t].summary):'')+'</div>'+
+            '<code>'+esc(on)+'</code><button type="button" class="go" data-go="'+esc(i.t.t)+'" data-via="'+esc(BR.w+': '+S.l.toLowerCase())+'">Make this the center →</button></div>';
+        }).join('')+'</div>');
+      }
+    }
+  }
+  tree.insertAdjacentHTML('beforeend',html.join(''));
+  tree.querySelectorAll('[data-b]').forEach(function(n){ n.onclick=function(){ var i=+n.dataset.b; pick={b:pick.b===i?null:i,s:null,g:null}; if(pick.b!==null&&B[i].subs.length===1) pick.s=0; render(); }; });
+  tree.querySelectorAll('[data-s]').forEach(function(n){ n.onclick=function(){ var i=+n.dataset.s; pick.s=pick.s===i?null:i; pick.g=null; render(); }; });
+  tree.querySelectorAll('[data-g]').forEach(function(n){ n.onclick=function(){ pick.g=pick.g===n.dataset.g?null:n.dataset.g; render(); }; });
+  tree.querySelectorAll('[data-go]').forEach(function(n){ n.onclick=function(){ go(n.dataset.go,n.dataset.via); }; });
+  tree.querySelectorAll('details').forEach(function(d){ d.addEventListener('toggle',wires); });
+  wires();
+  var sc=document.querySelector('.scroller'), last=tree.querySelector('.col:last-of-type');
+  if(last){ var r=last.getBoundingClientRect(); if(r.right>innerWidth) sc.scrollBy({left:r.right-innerWidth+24,behavior:'smooth'}); }
+}
+
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function wires(){
+  var tree=el('tree'), svg=el('wires'), box=tree.getBoundingClientRect();
+  svg.setAttribute('width',tree.scrollWidth); svg.setAttribute('height',tree.scrollHeight); svg.innerHTML='';
+  if(getComputedStyle(svg).display==='none') return;
+  var styles={works:['--works',3,''],loose:['--loose',1.6,''],possible:['--possible',1.8,'5 4'],none:['--none',1.8,'1.5 4']};
+  function link(a,b){
+    if(!a||!b) return;
+    var A=a.getBoundingClientRect(), Bx=b.getBoundingClientRect(), s=styles[b.dataset.st||'none'];
+    var x1=A.right-box.left, y1=A.top+Math.min(A.height/2,90)-box.top, x2=Bx.left-box.left, y2=Bx.top+Math.min(Bx.height/2,24)-box.top, mx=(x1+x2)/2;
+    var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d','M'+x1+' '+y1+'C'+mx+' '+y1+' '+mx+' '+y2+' '+x2+' '+y2);
+    p.setAttribute('fill','none'); p.setAttribute('stroke',css(s[0])); p.setAttribute('stroke-width',s[1]);
+    if(s[2]){ p.setAttribute('stroke-dasharray',s[2]); p.setAttribute('stroke-linecap','round'); }
+    svg.appendChild(p);
+  }
+  function selIn(l){ return tree.querySelector('[data-level="'+l+'"] [aria-pressed="true"]'); }
+  function all(l){ return tree.querySelectorAll('[data-level="'+l+'"] .node, [data-level="'+l+'"] .empty'); }
+  var r=el('n-root'); all(1).forEach(function(n){ link(r,n); });
+  [1,2,3].forEach(function(l){ var s=selIn(l); if(s) all(l+1).forEach(function(n){ link(s,n); }); });
+}
+
+/* ===================== picker ===================== */
+var hits=[], hi=0;
+el('pick').addEventListener('input',function(){
+  var q=this.value.trim().toUpperCase(); if(!q){ el('hits').hidden=true; return; }
+  hits=TABS.filter(function(t){return t.t.indexOf(q)>=0}).sort(function(a,b){return b.r-a.r}).slice(0,14); hi=0; drawHits();
+});
+function drawHits(){
+  el('hits').innerHTML=hits.length?hits.map(function(t,i){
+    return '<button type="button" data-i="'+i+'" class="'+(i===hi?'on':'')+'"><span class="t">'+esc(t.t)+'</span>'+fpHtml(t.fp)+'<span class="m">'+brief(t.r)+' rows · '+t.cols.length+' columns</span></button>';
+  }).join(''):'<button type="button" disabled><span class="m">No table matches.</span></button>';
+  el('hits').hidden=false;
+  el('hits').querySelectorAll('[data-i]').forEach(function(b){ b.onmousedown=function(e){ e.preventDefault(); choose(hits[+b.dataset.i]); }; });
+}
+function choose(t){ if(!t) return; el('hits').hidden=true; el('pick').value=''; el('pick').blur(); go(t.t,null,true); }
+el('pick').addEventListener('keydown',function(e){
+  if(e.key==='ArrowDown'){ hi=Math.min(hi+1,hits.length-1); drawHits(); e.preventDefault(); }
+  else if(e.key==='ArrowUp'){ hi=Math.max(hi-1,0); drawHits(); e.preventDefault(); }
+  else if(e.key==='Enter') choose(hits[hi]);
+  else if(e.key==='Escape'){ el('hits').hidden=true; this.blur(); }
+});
+el('pick').addEventListener('blur',function(){ setTimeout(function(){el('hits').hidden=true},120); });
+el('rand').onclick=function(){ var L=TABS.filter(function(t){return t.fp.indexOf('works')>=0}); go(L[Math.floor(Math.random()*L.length)].t,null,true); };
+document.addEventListener('keydown',function(e){ if(e.key==='/'&&!/INPUT/.test(e.target.tagName)){ e.preventDefault(); el('pick').focus(); } });
+window.addEventListener('resize',wires);
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(wires);
+try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',wires); }catch(e){}
+new MutationObserver(wires).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>

@@ -1,0 +1,39 @@
+table_name,column_name,kind,plain,confidence,author,written_on
+HEALTH__FED_DEA_ARCOS,,summary,"Every shipment of hydrocodone and oxycodone pills from drug companies to pharmacies and doctors, 2006 to 2012, as reported to the DEA.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,,row,"One shipment line: one pill product, from one seller to one buyer, on one day.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,TRANSACTION_ID,column,"The seller's own line number on its report. It repeats across sellers and years, so it is not a row ID: use ARCOS_ROW_KEY.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,TRANSACTION_DATE,column,The day the shipment happened. Runs from January 2006 to December 2012.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,TRANSACTION_CODE,column,"What kind of transaction it was. Always ""S"", a sale, except 5 broken rows where the columns slid over.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_DEA_NO,column,The seller's DEA license number. Every business allowed to handle these drugs has one.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_BUSINESS_ACTIVITY,column,What kind of business the seller is. Almost all are distributors; about 0.3% are drug makers.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_NAME,column,"The seller's business name, as typed on its DEA registration.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_CITY,column,The seller's city.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_STATE,column,"The seller's state, as two letters.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_ZIP,column,The seller's zip code.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_COUNTY,column,The seller's county name.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_COUNTY_FIPS,column,"The seller's county, as a standard 5-digit government code.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_DEA_NO,column,The buyer's DEA license number. The buyer is the pharmacy or doctor who received the pills.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_BUSINESS_ACTIVITY,column,"What kind of place the buyer is: a chain pharmacy, an independent pharmacy, or a doctor. ""DW/30"" marks a doctor licensed to treat 30 addiction patients.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_NAME,column,"The buyer's business name, like a specific pharmacy.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_CITY,column,The buyer's city.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_STATE,column,"The buyer's state, as two letters.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_ZIP,column,The buyer's zip code.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_COUNTY,column,The buyer's county name.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BUYER_COUNTY_FIPS,column,"The buyer's county, as a standard 5-digit government code.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,DRUG_CODE,column,The DEA's number for the drug.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,DRUG_NAME,column,The drug: hydrocodone or oxycodone. Nothing else is in this table.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,INGREDIENT_NAME,column,"The exact chemical form of the drug, like ""oxycodone hydrochloride"".",from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,PRODUCT_NAME,column,"The product as it's sold, with the strength, like ""oxycodone hydrochloride tablets 5mg"".",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,QUANTITY,column,How many bottles or boxes were shipped. Not pills: 8 bottles of 100 is 8 here.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,DOSAGE_UNITS,column,How many pills were shipped. Use this column to count pills.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,BASE_WEIGHT_GRAMS,column,"Grams of the pure drug in the shipment, not counting filler or the salt it's bound to.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,MME_CONVERSION_FACTOR,column,"How strong this drug is next to morphine: 1.5 for oxycodone, 1 for hydrocodone.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,DOSAGE_STRENGTH,column,"Milligrams of drug in each pill, like 5 or 10.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,MEASURE,column,"The form the drug comes in. TAB, a tablet, on every row except the 5 broken ones.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,TOTAL_MME,column,The shipment's total strength counted as morphine: pills times milligrams times the conversion factor. The fairest way to compare shipments.,verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,LABELER_NAME,column,The company whose label is on the bottle.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,COMPANY_NAME,column,The company that makes or sells the product.,from_name,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,REPORTER_FAMILY,column,"The seller's parent company, which rolls branches up to one name, like McKesson or Cardinal Health.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,_LOADED_AT,column,"When this row was loaded into the warehouse. Added by your pipeline, not the source.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,_SOURCE_RUN_ID,column,"Which load run brought this row in. Added by your pipeline, not the source.",verified,claude-code,2026-09-23
+HEALTH__FED_DEA_ARCOS,ARCOS_ROW_KEY,column,"A unique ID for each row, one per row across all 178,598,026. Added by your pipeline, not the source.",verified,claude-code,2026-09-23

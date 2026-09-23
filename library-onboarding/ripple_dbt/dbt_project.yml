@@ -340,6 +340,15 @@ models:
 # runtime. Regenerate with scripts/census/gen_time_views.py.
 seeds:
   ripple:
+    # The plain-English layer: one sentence per table, per row meaning, per column,
+    # for readers, not engineers. Source of truth for the Warehouse Compass
+    # (scripts/export_compass.py writes plain.json from this file, no AI at run time).
+    # Technical notes stay in model YAML descriptions. confidence: verified = real
+    # values were read; from_name = inferred from the column name only.
+    plain_english:
+      +database: LIBRARY_META
+      +schema: REGISTRY
+      +column_types: {plain: varchar}
     ripple_time_registry:
       +database: LIBRARY_MARTS
       +schema: TIMELINE

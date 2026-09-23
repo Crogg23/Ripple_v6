@@ -394,6 +394,8 @@ def cmd_catalog():
     cat = {"generated": _dt.date.today().isoformat(), "source": "scripts/audit_catalog.py catalog",
            "keys": collections.defaultdict(list), "tables": []}
     er = {"g": cat["generated"], "t": []}
+    treg = _time_registry()
+    tl_views = {x["T"] for x in inv["timeline"] if x["TY"] == "VIEW"}
     dropped = collections.Counter()
     for (s, t), rs in sorted(by_t.items()):
         if BACKUP.search(t):
@@ -417,7 +419,8 @@ def cmd_catalog():
             cat["keys"][f].append(f"{s}.{t}")
         cat["tables"].append({"s": s, "t": t, "type": meta["TY"].lower(), "r": n, "n": len(cols),
                               "keys": sorted(fams), "cols": cols})
-        er["t"].append([s, t, n, ercols])
+        grain = treg.get(t, {}).get("grain", "") if t in tl_views else ""
+        er["t"].append([s, t, n, ercols, grain])   # [4]: the TIMELINE view's grain, '' if none
     cat["keys"] = {k: sorted(v) for k, v in cat["keys"].items()}
     out = REPO / "outputs" / "catalog"
     json.dump(cat, open(out / "catalog.json", "w", encoding="utf-8"), separators=(",", ":"))
