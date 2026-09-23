@@ -8,3 +8,5 @@ models:
         data_tests: [not_null, unique]
       - name: name
         data_tests: [not_null]
+      - name: lei
+        description: "The bank's global entity ID, as FDIC publishes it: cut to 16 characters where a real LEI has 20. An equal-join to GLEIF matches nothing; join on LEFT(gleif.lei, 16), which matches 2,224 of the 2,252 banks carrying one."

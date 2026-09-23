@@ -293,10 +293,18 @@ var KEY = {
   STATE:    {grade:'weak', short:'a state',
              long:'Two letters covering millions of rows. Useful as a filter, useless as an identity.'},
   ORG_NAME: {grade:'weak', short:'a name, typed by a human',
-             long:'Free text. ST LUKES HOSPITAL is dozens of hospitals. Single-word name matches turn out real about eight percent of the time.'}
+             long:'Free text naming a company or a person. Checked by sampling: columns holding places, drugs, codes or numbers were taken off this list. ST LUKES HOSPITAL is dozens of hospitals. Single-word name matches turn out real about eight percent of the time.'},
+  DEA_NO:   {grade:'strong', short:'a DEA registration number',
+             long:'Two letters and seven digits the DEA gives anyone allowed to handle controlled drugs. The last digit is a check digit, so a typo shows up. Only ARCOS carries it today, so it links nothing yet.'},
+  TRACT:    {grade:'medium', short:'a census tract',
+             long:'Eleven digits naming a few thousand people inside one county. Tighter than a county, still not a person.'},
+  OTHER_ID: {grade:'strong', short:'another exact ID',
+             long:'An exact number from one agency: a court, a credit union charter, a power plant, a security, a device clearance. Each column says which one.'},
+  WHAT:     {grade:'medium', short:'a shared code for a thing',
+             long:'A drug code, billing code, grant program, chemical or industry. It names a thing, not a person, so one code links thousands of rows. Good for "same drug", useless for "same company".'}
 };
 var ORDER = ['NPI','CCN','EIN','CIK','LEI','UEI/DUNS','ACCESSION','FDIC_CERT','FEC_ID',
-  'BIOGUIDE','IMO','FRS/EPA','MINE_ID','COUNTY_FIPS','ZIP','STATE','ORG_NAME'];
+  'BIOGUIDE','IMO','FRS/EPA','MINE_ID','DEA_NO','OTHER_ID','COUNTY_FIPS','TRACT','ZIP','STATE','ORG_NAME','WHAT'];
 
 var TYPE = {
   TEXT:'words or a code', VARCHAR:'words or a code',

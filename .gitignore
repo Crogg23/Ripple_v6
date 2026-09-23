@@ -152,3 +152,6 @@ id_ed25519*
 # Repomix bundles
 repomix-*.xml
 repomix-output.xml
+
+# catalog audit samples (scripts/audit_catalog.py) — machine-local, never commit
+outputs/_catalog_audit_cache/

@@ -160,6 +160,29 @@ def tier_for(key: str) -> str:
     return "PROBABILISTIC"
 
 
+# --- 2026-09-23 catalog audit: a key word next to a describing word is not the key.
+# The catalog audit (audit/catalog_audit_2026-09-23_verdict.md) sampled 2,000 values
+# per labelled mart column: MULTIPLE_NPI_FLAG holds Y/N, NPI_DEACTIVATION_DATE holds
+# dates, CCN_FACILITY_TYPE holds 'STH', ISSUER_CIK_NONE holds true/false, EIN_NTEE
+# holds 'E220', PRIOR_DEA_REPORTS holds counts. Each fired its hard key on one token.
+# A column carrying any DESCRIPTOR token describes the entity; it is not the ID.
+DESCRIPTOR_TOKENS = {
+    "flag", "flg", "date", "dt", "type", "ind", "indicator", "is", "none", "ext",
+    "reports", "ticker", "count", "cnt", "status", "desc", "description", "ntee",
+    "title", "pct", "percent", "amt", "amount", "year", "yr",
+}
+# 'last' is NOT a descriptor: LAST_RPT_SPONS_EIN is a real EIN (69,856 distinct,
+# DOL Form 5500). Only a zip's LAST_4 / PLUS4 extension is not the zip itself.
+_ZIP_EXTENSION = ({"last", "4"}, {"plus4"}, {"zip4"})
+# ...and a hard key next to a WHERE/WHO describing token yields that token's key:
+# EIN_ZIP5 is the zip of the EIN's filer, CCN_NAME the name of the facility.
+DESCRIBES_TOKENS = {"name", "nm", "zip", "zip5", "zipcode", "address", "addr", "city", "state"}
+_HARD_TIERS = ("STEEL", "STRONG")
+# the literal name words; 'recipient'/'employer' are NAME tokens but also prefix IDs
+_NAME_WORDS = {"name", "fullname", "firstname", "lastname", "surname", "lname", "fname", "mname",
+               "businessname", "orgname", "companyname"}
+
+
 def detect_key(column_name: str) -> tuple[str | None, str | None]:
     """Return (key_label, tier) for a single column, or (None, None).
 
@@ -176,12 +199,20 @@ def detect_key(column_name: str) -> tuple[str | None, str | None]:
     exact = EXACT_TOKEN_KEYS.get(frozenset(tk))
     if exact:
         return exact
+    if "zip" in tk and any(e <= tk for e in _ZIP_EXTENSION):
+        return None, None
+    if tk & DESCRIPTOR_TOKENS and not (tk & _NAME_WORDS):
+        # a descriptor column carries no key at all, unless it is itself a name
+        # (APPLICANT_TYPE stays off; ORG_NAME_TYPE is not a real case in the marts)
+        return None, None
     best_key, best_tier = None, None
     for key, (tier, toks) in KEY_TOKENS.items():
         # A false-friend token vetoes the match (e.g. STATE_ICPSR -> {icpsr,state}
         # must NOT tag as ICPSR — the 'state' token is in KEY_EXCLUDE['ICPSR']).
         if tk & KEY_EXCLUDE.get(key, set()):
             continue
+        if tier in _HARD_TIERS and tk & (DESCRIBES_TOKENS - toks):
+            continue  # EIN_ZIP5: a zip describing the EIN's filer, not the EIN
         if (tk & toks) and (best_tier is None or TIER_RANK[tier] < TIER_RANK[best_tier]):
             best_key, best_tier = key, tier
     if best_key is not None:
@@ -191,6 +222,8 @@ def detect_key(column_name: str) -> tuple[str | None, str | None]:
     for key, (a, b) in PAIR_RULES:
         if a in tk and b in tk:
             tier = KEY_TOKENS[key][0]
+            if tier in _HARD_TIERS and tk & DESCRIBES_TOKENS - {a, b}:
+                continue
             if best_tier is None or TIER_RANK[tier] < TIER_RANK[best_tier]:
                 best_key, best_tier = key, tier
     return best_key, best_tier
@@ -208,6 +241,85 @@ SPATIAL_KEYS = {"LATLON", "GEOM"}
 # GEO/NAME, where a type match can overlap nothing). Single source of truth =
 # the tagger's tiers, so a new STEEL/STRONG key is picked up everywhere at once.
 ENTITY_KEYS = [k for k, (tier, _toks) in KEY_TOKENS.items() if tier in ("STEEL", "STRONG")]
+
+
+# --------------------------------------------------------------------------- #
+# CATALOG-ONLY keys (2026-09-23). What the Warehouse Compass shows as a link,
+# beyond what the connect engine joins on. Kept OUT of TABLE_COLUMN_KEYS and
+# NORM_RULES on purpose: those are pinned per unit by incremental.py, so adding
+# here would force `connect apply-config` to reslice the touched tables (13F
+# holdings alone is 101M rows). Promote an entry into TABLE_COLUMN_KEYS + a
+# NORM_RULES row when the engine should join on it -- that is a priced step.
+#
+# Keyed by the MART table name after its schema prefix, e.g. FED_SEC_EDGAR for
+# ECONOMICS__FED_SEC_EDGAR. Every entry was proven by value in the catalog audit:
+# 90%+ of distinct sampled values fit the key's shape.
+# --------------------------------------------------------------------------- #
+_SEC_ACCESSION_TABLES = (
+    "FED_SEC_EDGAR", "FED_US_SEC_EDGAR", "FED_SEC_13F_FILERS", "FED_SEC_13F_HOLDINGS",
+    "FED_SEC_13F_SUBMISSION", "FED_SEC_13F_SUBMISSIONS", "FED_SEC_EDGAR_INSIDERS",
+    "FED_SEC_INSIDER_DERIV_TRANS", "FED_SEC_INSIDER_NONDERIV_TRANS",
+    "FED_SEC_INSIDER_REPORTINGOWNER", "FED_SEC_INSIDER_SUBMISSION",
+)
+CATALOG_KEYS: dict[tuple[str, str], tuple[str, str]] = {
+    **{(t, "ACCESSION_NUMBER"): ("ACCESSION", "STEEL") for t in _SEC_ACCESSION_TABLES},
+    ("FED_SEC_EDGAR", "ACCESSIONNUMBER"): ("ACCESSION", "STEEL"),
+    **{(f"FED_SEC_DERA_SUB_{y}Q{q}", "ADSH"): ("ACCESSION", "STEEL")
+       for y in (2024, 2025, 2026) for q in (1, 2, 3, 4)},
+    ("FED_SEC_EDGAR_FINANCIALS", "ADSH"): ("ACCESSION", "STEEL"),
+    # FEC committee IDs under names the token rules cannot see
+    ("FED_FEC_CANDIDATES", "CAND_PCC"): ("FEC_CMTE_ID", "STEEL"),        # 100% C-numbers
+    ("FED_FEC_INDIV_CONTRIBUTIONS", "OTHER_ID"): ("FEC_CMTE_ID", "STEEL"),  # 99%
+    ("FED_FEC_API", "COMMITTEE_ID"): ("FEC_CMTE_ID", "STEEL"),           # 100%
+    # GLEIF relationship ends are LEIs
+    ("INTL_GLEIF_RELATIONSHIPS", "RELATIONSHIP_STARTNODE_NODEID"): ("LEI", "STEEL"),
+    ("INTL_GLEIF_RELATIONSHIPS", "RELATIONSHIP_ENDNODE_NODEID"): ("LEI", "STEEL"),
+    ("INTL_GLEIF_RELATIONSHIPS", "REGISTRATION_MANAGINGLOU"): ("LEI", "STEEL"),
+    # the member tables' MEMBER_KEY is the Bioguide ID
+    ("MEMBER_CROSSWALK", "MEMBER_KEY"): ("BIOGUIDE", "STEEL"),
+    ("MEMBER_FEC_ID", "MEMBER_KEY"): ("BIOGUIDE", "STEEL"),
+    ("MEMBER_SPINE", "MEMBER_KEY"): ("BIOGUIDE", "STEEL"),
+    # FDA device clearance numbers: 510(k) 'K781955', PMA 'P170002'
+    ("FED_FDA_DEVICE_510K", "K_NUMBER"): ("FDA_510K_NO", "STEEL"),
+    ("FED_FDA_ESTABLISHMENT_REG", "K_NUMBER"): ("FDA_510K_NO", "STEEL"),
+    ("FED_FDA_DEVICE_PMA", "PMA_NUMBER"): ("FDA_PMA_NO", "STEEL"),
+    ("FED_FDA_ESTABLISHMENT_REG", "PMA_NUMBER"): ("FDA_PMA_NO", "STEEL"),
+}
+
+# "What" codes: shared things, not entities. A join on one fans out -- every
+# provider billing HCPCS J0897 -- so these are never engine keys, only the
+# Compass's What branch. Token sets on the column name; DESCRIPTOR_TOKENS veto
+# as for real keys (TOT_HCPCS_CDS is a count, HCPCS_DESC is text).
+THING_TOKENS: dict[str, set[str]] = {
+    "NDC": {"ndc"}, "HCPCS": {"hcpcs", "cpt"}, "CFDA": {"cfda"}, "CAS": {"cas", "casrn"},
+    "ICD": {"icd", "icd10", "icd9"}, "NAICS": {"naics", "naicscode"}, "SIC": {"sic"},
+}
+_THING_VETO = DESCRIPTOR_TOKENS | {"tot", "cds", "title", "desc", "chapter", "list", "numbers"}
+
+
+def catalog_key(table: str, column: str) -> tuple[str | None, str | None]:
+    """The key the catalog shows: engine table keys, then catalog-only keys,
+    then name detection, then What codes. `table` is the mart name; the part
+    after the schema prefix is what the dicts are keyed on."""
+    short = table.split("__", 1)[1] if "__" in table else table
+    for d in (TABLE_COLUMN_KEYS, CATALOG_KEYS):
+        if (short, column) in d:
+            return d[(short, column)]
+    key, tier = detect_key(column)
+    tk = tokens(column)
+    if key in ("NAICS", "SIC"):
+        return (None, None) if tk & _THING_VETO else (key, "THING")
+    if key:
+        return key, tier
+    if tk & _THING_VETO:
+        return None, None
+    if tk & {"state", "stpr", "stusps", "stabbr"} and not tk & {"name", "nm", "fips"}:
+        # a proposal only: the catalog build keeps it when 90% of values are US state codes
+        return "STATE", "GEO"
+    for thing, toks in THING_TOKENS.items():
+        if tk & toks:
+            return thing, "THING"
+    return None, None
 
 
 def key_tier(key: str) -> str | None:

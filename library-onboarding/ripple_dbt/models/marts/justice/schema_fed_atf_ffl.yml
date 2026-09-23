@@ -2,6 +2,7 @@ version: 2
 
 models:
   - name: justice__fed_atf_ffl
+    description: "Every federally licensed gun dealer, maker and importer: 77,514 licences, from ATF's ArcGIS layer. One row = one licence. Zips arrive with leading zeros stripped at source and are zero-filled here, so '602' reads '00602'."
     columns:
       - name: ffl_number
         data_tests:

@@ -21,6 +21,10 @@ reports/score_manual_items.tsv and print as MANUAL so nobody mistakes them for m
 
     python scripts/score_warehouse.py            # full run, about 4 minutes
     python scripts/score_warehouse.py --fast     # skips the 254-view fetch and the ARCOS key scan
+
+After the DATA score it prints the MAP score, read from the newest catalog audit
+(audit/catalog_map_<date>.json, written by scripts/audit_catalog.py analyze). The two
+are never added together.
 """
 from __future__ import annotations
 
@@ -432,7 +436,26 @@ def main() -> int:
         w.writerows(out)
         w.writerow(["", "SCORE", "", "", round(score, 1), "fast run" if FAST else "full run"])
     print("written:", path.relative_to(REPO))
+    map_section()
     return 0
+
+
+def map_section() -> None:
+    """The MAP grade: is the catalog telling the truth about the tables. Scored by
+    scripts/audit_catalog.py (fetch, links, analyze), which samples every mart and
+    takes about 40 minutes, so this reads its newest result instead of re-running it.
+    Never blended into the DATA score above: a strong data score must not hide a
+    blank catalog, or the other way round."""
+    files = sorted((REPO / "audit").glob("catalog_map_*.json"))
+    if not files:
+        print("\nMAP   not graded -- run scripts/audit_catalog.py fetch, links, analyze")
+        return
+    m = json.loads(files[-1].read_text(encoding="utf-8"))
+    age = (dt.date.today() - dt.date.fromisoformat(m["date"])).days
+    print(f"\nMAP   {m['map']:.1f} of 100   (catalog audit {m['date']}, {age} days old"
+          + (", STALE: re-run the audit" if age > 7 else "") + ")")
+    for name, p in m["parts"].items():
+        print(f"      {name:<24} {p['passed']:>7,} of {p['of']:>7,}  {p['pct']:5.1f}")
 
 
 if __name__ == "__main__":

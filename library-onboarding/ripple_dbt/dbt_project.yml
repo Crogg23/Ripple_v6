@@ -39,6 +39,13 @@ models:
     marts:
       +materialized: table
       +database: LIBRARY_MARTS
+      # 2026-09-23 catalog audit: YAML descriptions never reached Snowflake, and a
+      # CREATE OR REPLACE on rebuild wipes any comment written by hand. With this on,
+      # every build writes the table and column descriptions as Snowflake comments.
+      # scripts/push_mart_comments.py wrote the same text once, without a rebuild.
+      +persist_docs:
+        relation: true
+        columns: true
       # Disabled 2026-07-01 (housekeeping): broken 1-row / degenerate stubs from
       # failed source ingestion. The tables were dropped and snapshotted to
       # LIBRARY_MARTS._RESTORE_20260701 by scripts/housekeeping_cleanup.py.
@@ -108,6 +115,14 @@ models:
         finance__fed_fec_bulk_summary:
           +enabled: false  # raw twin of politics__fec_candidate_summary (agrees, 7,933 rows; redundant)
       health:
+        immigration__fed_cms_medicare_fee_for_service_public_provider_enrollment:
+          # 2026-09-23 catalog audit: exact duplicate of health__fed_cms_pecos_provider_enrollment
+          # -- same landing table, same 2,978,925 rows, same columns -- filed under IMMIGRATION
+          # by a routing slip (tests/test_mart_domain_routing.py already says this source is
+          # health). Its only readers were its own dbt tests; the connect engine reads the
+          # landing table. Chris: "fix all". The table itself is removed by
+          # scripts/drop_catalog_dead_2026_09_23.py after `greenlight destroy`.
+          +enabled: false
         health__fed_cms_partd_prescriber_drug:
           # 2026-07-31: raw passthrough duplicate of health__fed_cms_partd_prescribers
           # -- this is the pair the WIDENED (resolve-by-actual-source, not filename)

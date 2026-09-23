@@ -8,6 +8,11 @@
 -- ATF prints as REGN-DIST-CNTY-TYPE-XPRDTE-SEQN. Verified unique across all
 -- 77,514 rows (COUNT(*) = COUNT(DISTINCT composite) = 77,514).
 
+-- Zips: the ArcGIS layer serves them as numbers, so leading zeros are gone at
+-- source -- 3,333 of 77,514 rows (2026-09-23 catalog audit): New England and NJ
+-- as 4 digits ('1001'), Puerto Rico and USVI as 3 ('602'), their ZIP+4s as 8 and
+-- 7. Zero-fill back to 5, or to 9 for a ZIP+4. A 5- or 9-digit value is untouched.
+
 with source as (
     select * from {{ source('ripple_raw', 'FED_ATF_FFL') }}
 )
@@ -27,11 +32,15 @@ select
     USER_PREMISE_STREET as premise_street,
     USER_PREMISE_CITY as premise_city,
     USER_PREMISE_STATE as premise_state,
-    USER_PREMISE_ZIP_CODE as premise_zip_code,
+    iff(length(USER_PREMISE_ZIP_CODE) in (3, 4, 7, 8),
+        lpad(USER_PREMISE_ZIP_CODE, iff(length(USER_PREMISE_ZIP_CODE) > 5, 9, 5), '0'),
+        USER_PREMISE_ZIP_CODE) as premise_zip_code,
     USER_MAIL_STREET as mail_street,
     USER_MAIL_CITY as mail_city,
     USER_MAIL_STATE as mail_state,
-    USER_MAIL_ZIP_CODE as mail_zip_code,
+    iff(length(USER_MAIL_ZIP_CODE) in (3, 4, 7, 8),
+        lpad(USER_MAIL_ZIP_CODE, iff(length(USER_MAIL_ZIP_CODE) > 5, 9, 5), '0'),
+        USER_MAIL_ZIP_CODE) as mail_zip_code,
     USER_VOICE_PHONE as voice_phone,
     {{ stg_float('X') }} as longitude,
     {{ stg_float('Y') }} as latitude
