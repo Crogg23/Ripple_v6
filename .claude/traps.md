@@ -220,3 +220,10 @@
 - 2026-09-18 — FED_HUD_MF_PROPERTIES_OWNERS.IS_NURSING_HOME_IND is a constant: 'N' on all 23,612 rows. The column exists by name and selects nothing. Same shape as the nursing-home CHOW flag.
 - 2026-09-18 — FED_CMS_SNF_OWNERSHIP owner-type flags are mostly blank, not 'N'. PRIVATE_EQUITY_COMPANY_OWNER is 'Y' on 196 of 295,083 rows (97 of 14,410 enrollments, 0.67%), REIT_OWNER 'Y' on 587 enrollments, and both are blank on 198,546 rows (67%). Blank is unknown, never "not PE". ASSOCIATION_DATE_OWNER is free text in mixed formats with 1800 sentinels, and the file is one vintage: current owners only, not a sale history.
 - 2026-09-18 — A column confirmed by name is not confirmed. Count its distinct values before building an idea on it.
+- 2026-09-23 — APPROX_TOP_K invents repeats on near-unique columns: FEC SUB_ID read 256,029 per value, exact count 1. Never state "repeats N times" or "not unique" from approx top-k; re-count exactly.
+- 2026-09-23 — ATF FFL zips arrive as numbers: 3,333 of 77,514 lost leading zeros (New England 4 digits, PR/VI 3, zip+4 at 7-8). Mart now pads; a first-2,000-rows sample showed 0% because early rows were elsewhere.
+- 2026-09-23 — Medicare BENE_CC_*_PCT: fractions like 0.25 in DME/hospital marts, whole percents like 25 in physician marts. Mixing is 100x off.
+- 2026-09-23 — FDIC bank data LEI is 16 characters on all 2,252 filled rows, published cut short; join on LEFT(gleif.lei,16).
+- 2026-09-23 — Key labels from column names fire on one word: MULTIPLE_NPI_FLAG, NPI_DEACTIVATION_DATE, CCN_FACILITY_TYPE, EIN_ZIP5 carried hard-ID tags; DRUG_NAME was an org name. connect/keys.py now vetoes describing words.
+- 2026-09-23 — The catalog's 22 "zero-row tables" were views with NULL information_schema row_count, holding 473,954,380 rows.
+- 2026-09-23 — NSF awards PROGRAM_OFFICER holds the lead researcher, same as PI_NAME. JUSTICE__FED_BOP_STATISTICS is a broken scrape: 2 of 50 rows hold a number. Many EAVS voting-machine columns hold only -77/-88/-99 placeholders.
