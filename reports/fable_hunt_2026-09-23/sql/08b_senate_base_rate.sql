@@ -1,0 +1,6 @@
+with cm as (
+  select distinct BIOGUIDE, CONGRESS, case COMMITTEE_CODE when 'SSAS' then 'defense' when 'SSBK' then 'banking' when 'SSEG' then 'energy' when 'SSHR' then 'health' when 'SSFI' then 'health' when 'SSEV' then 'energy' end cm_sector
+  from LIBRARY_MARTS.POLITICS.POLITICS__FED_CONGRESS_COMMITTEE_MEMBERSHIP where IS_SUBCOMMITTEE in ('False','false','0') and COMMITTEE_CODE in ('SSAS','SSBK','SSEG','SSHR','SSFI','SSEV')),
+traders as (select distinct BIOGUIDE, case when TRANSACTION_DATE < '2015-01-03' then '113' when TRANSACTION_DATE < '2017-01-03' then '114' when TRANSACTION_DATE < '2019-01-03' then '115' else '116' end congress from LIBRARY_MARTS.POLITICS.POLITICS__SENATE_TRADES)
+select sec.sec_sector, count(distinct t.BIOGUIDE||t.congress) trader_congress_pairs, count(distinct iff(cm.BIOGUIDE is not null, t.BIOGUIDE||t.congress, null)) on_cmte, round(100*count(distinct iff(cm.BIOGUIDE is not null, t.BIOGUIDE||t.congress, null))/count(distinct t.BIOGUIDE||t.congress),1) pct_traders_on_cmte
+from traders t cross join (select distinct cm_sector sec_sector from cm) sec left join cm on cm.BIOGUIDE = t.BIOGUIDE and cm.CONGRESS = t.congress and cm.cm_sector = sec.sec_sector group by 1 order by 1
