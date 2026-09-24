@@ -1,0 +1,5 @@
+id	status	path	look_for	charts	grown_from	found	finding_ids	by	date
+C-001	finding	INVESTMENTS -> FINANCIAL_DISCLOSURES -> JUDGES -> DOCKETS party names	stock held vs parties in own cases; next: recusal records, other districts :: flow diagram	flow_diagram	F-001			claude	2026-09-24
+C-002	finding	OFFICER_PAY -> XWALK_HOSPITAL_CCN_EIN -> HCRIS	pay vs charity care; next: add Open Payments CCN and closure risk :: flow diagram	flow_diagram	F-003			claude	2026-09-24
+C-003	finding	MSHA_VIOLATIONS -> SEC_INSIDER -> FEC_INDIV_CONTRIBUTIONS -> FEC_COMMITTEES	violator owners' executives as donors; next: swap MSHA for ECHO or OSHA :: flow diagram	flow_diagram	F-006			claude	2026-09-24
+C-004	finding	SENATE_TRADES -> EDGAR_TICKERS -> EDGAR_FINANCIALS SIC -> COMMITTEE_MEMBERSHIP	trades on own committee turf; next: bills sponsored in the same sector :: flow diagram	flow_diagram	F-009			claude	2026-09-24

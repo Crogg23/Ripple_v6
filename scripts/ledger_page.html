@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warehouse Ledger</title>
+<style>
+:root{
+  --bg:#f7f6f3; --panel:#ffffff; --ink:#1d1d1b; --mute:#6b6a66; --line:#e3e1dc; --soft:#efede8;
+  --untouched:#c9c6bf; --probed:#4a7fd4; --dead:#b85c5c; --live:#d99a1e; --finding:#2f9e6a; --skip:#9a978f; --claimed:#8a63c9;
+  --accent:#1d1d1b; --chip:#efede8;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#151514; --panel:#1e1e1c; --ink:#ecebe7; --mute:#9d9b95; --line:#33322f; --soft:#262624;
+  --untouched:#4a4945; --probed:#6c9be6; --dead:#d27b7b; --live:#e8b245; --finding:#4cc38a; --skip:#6f6d68; --claimed:#a98be0;
+  --accent:#ecebe7; --chip:#2a2a27;
+}}
+:root[data-theme="dark"]{
+  --bg:#151514; --panel:#1e1e1c; --ink:#ecebe7; --mute:#9d9b95; --line:#33322f; --soft:#262624;
+  --untouched:#4a4945; --probed:#6c9be6; --dead:#d27b7b; --live:#e8b245; --finding:#4cc38a; --skip:#6f6d68; --claimed:#a98be0;
+  --accent:#ecebe7; --chip:#2a2a27;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:22px;margin:0 0 2px}
+.sub{color:var(--mute);font-size:13px}
+.headline{font-size:17px;margin:14px 0 18px;font-weight:600}
+.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:12.5px}
+nav{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:16px;position:sticky;top:0;background:var(--bg);z-index:5;padding-top:6px}
+nav button{border:0;background:none;color:var(--mute);padding:9px 12px;font:inherit;cursor:pointer;border-bottom:2px solid transparent}
+nav button.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+nav .n{font-size:11px;color:var(--mute);margin-left:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:12px}
+.card{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card h3{margin:0 0 2px;font-size:15px;display:flex;justify-content:space-between;align-items:baseline}
+.card h3 .pct{font-size:22px;font-variant-numeric:tabular-nums}
+.card .what{color:var(--mute);font-size:12.5px;margin-bottom:10px}
+.bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--untouched)}
+.bar span{display:block;height:100%}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--mute);margin-top:7px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.card .nextlist{margin:10px 0 0;padding:0;list-style:none;font-size:12.5px}
+.card .nextlist li{padding:4px 0;border-top:1px solid var(--soft);cursor:pointer}
+.card .nextlist li:hover{color:var(--probed)}
+.card .go{margin-top:8px;font-size:12.5px;color:var(--probed);cursor:pointer;background:none;border:0;padding:0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.controls input[type=search]{flex:1 1 260px;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);font:inherit}
+.controls select{padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);font:inherit}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--mute);border-radius:14px;padding:3px 10px;font-size:12px;cursor:pointer;user-select:none}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.count{color:var(--mute);font-size:12.5px;margin:4px 0 8px}
+.rows{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.row{border-top:1px solid var(--soft);padding:9px 14px;cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:var(--soft)}
+.row .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pill{font-size:11px;border-radius:4px;padding:1px 7px;color:#fff;font-weight:600;min-width:70px;text-align:center}
+.score{font-variant-numeric:tabular-nums;color:var(--mute);font-size:12px;width:32px;text-align:right}
+.name{font-weight:600;word-break:break-word}
+.schema{color:var(--mute);font-size:12px}
+.tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-size:10.5px;background:var(--chip);color:var(--mute);border-radius:3px;padding:1px 5px;letter-spacing:.02em}
+.tag.MONEY{color:var(--finding)} .tag.HARM{color:var(--dead)} .tag.OFFICIALS{color:var(--live)} .tag.CROSS{color:var(--probed)}
+.row .first{color:var(--mute);font-size:12.5px;margin-top:3px;padding-left:112px}
+.detail{display:none;margin:10px 0 4px 112px;font-size:13px}
+.row.open .detail{display:block}
+.detail dl{display:grid;grid-template-columns:120px 1fr;gap:4px 12px;margin:0}
+.detail dt{color:var(--mute)}
+.detail dd{margin:0;word-break:break-word}
+.detail ul{margin:0;padding-left:18px}
+.detail .found{background:var(--soft);border-left:3px solid var(--finding);padding:6px 10px;border-radius:4px}
+.cmd{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.cmd button{font:12px ui-monospace,Consolas,monospace;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:5px;padding:4px 8px;cursor:pointer}
+.cmd button:hover{border-color:var(--ink)}
+.more{display:block;margin:12px auto;padding:8px 16px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;cursor:pointer;font:inherit}
+.findings .f{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--mute);border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.findings .f.A{border-left-color:var(--finding)} .findings .f.B{border-left-color:var(--live)} .findings .f.C{border-left-color:var(--dead)}
+.findings .f .h{font-weight:600}
+.findings .f,.detail dd,.name{overflow-wrap:anywhere}
+.findings .f .m{color:var(--mute);font-size:12.5px;margin-top:3px}
+.howto{margin-top:18px}
+.howto table{border-collapse:collapse;width:100%;font-size:13px;table-layout:fixed}
+.howto td:first-child{width:42%}
+.howto td{border-top:1px solid var(--soft);padding:6px 8px;vertical-align:top}
+.howto td:first-child{overflow-wrap:anywhere;font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:7px 14px;border-radius:7px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (max-width:640px){
+  .row .first,.detail{padding-left:0;margin-left:0}
+  .detail dl{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+}
+.legend .auto{color:var(--mute);font-style:italic}
+.cuts{margin:4px 0 8px;padding-left:18px}
+.cpill{display:inline-block;font-size:10.5px;border:1px solid var(--line);border-radius:10px;padding:0 7px;color:var(--probed);white-space:nowrap;vertical-align:1px}
+.looks li{margin-bottom:3px}
+.heat{margin-top:12px}
+.heat .scroll{overflow-x:auto}
+.heat table{border-collapse:collapse;font-size:12px;min-width:560px;width:100%}
+.heat th{text-align:left;font-weight:500;color:var(--mute);padding:4px 8px;white-space:nowrap}
+.heat td{padding:4px 8px;text-align:right;font-variant-numeric:tabular-nums;border-top:1px solid var(--soft)}
+.heat td small{display:block;font-size:10px;color:var(--mute)}
+.heat td.hm{cursor:pointer;background:color-mix(in srgb, var(--finding) calc(var(--p) * 100%), transparent)}
+.heat td.hm:hover,.heat td.shape:hover{outline:1px solid var(--ink)}
+.heat td.shape{cursor:pointer;color:var(--probed)}
+.heat td.nil{color:var(--line);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Warehouse Ledger</h1>
+  <div class="sub" id="built"></div>
+  <div class="headline" id="headline"></div>
+  <nav id="nav"></nav>
+  <main id="main"></main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const RAW = /*DATA*/null;
+const LAYERS = ["singles","pairs","hops","rollups","place","names","time","chains"];
+const STAT = ["untouched","claimed","probed","live","finding","dead","skip"];
+const LABEL = {singles:"1 Singles",pairs:"2 Pairs",hops:"3 Hops",rollups:"4 Roll-ups",place:"5 Place",names:"6 Names",time:"7 Time",chains:"8 Chains",findings:"Findings",overview:"Overview"};
+const PREFIX = {S:"singles",P:"pairs",H:"hops",R:"rollups",G:"place",N:"names",T:"time",C:"chains"};
+const PAGE = 100;
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = n => { n = +n || 0; return n >= 1e9 ? (n/1e9).toFixed(1)+"B" : n >= 1e6 ? (n/1e6).toFixed(1)+"M" : n >= 1e3 ? (n/1e3).toFixed(1)+"K" : String(n); };
+const short = t => String(t||"").includes("__") ? String(t).split("__").slice(1).join("__") : String(t||"");
+const store = { get(k,d){ try{ const v = localStorage.getItem("ledger:"+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+                set(k,v){ try{ localStorage.setItem("ledger:"+k, JSON.stringify(v)); }catch(e){} } };
+
+// The builder ships each layer as one column list plus row arrays. Expand once.
+const D = {_what: RAW._what, _excluded: RAW._excluded, _built: RAW._built, _cuts: RAW._cuts || {}};
+[...LAYERS, "findings"].forEach(l => {
+  const t = RAW[l] || {cols:[], rows:[]};
+  D[l] = t.rows.map(a => { const o = {}; t.cols.forEach((c,i)=>o[c]=a[i]); o._text = a.join(" ").toLowerCase(); return o; });
+});
+const idLayer = id => id.startsWith("G2:") ? "place" : PREFIX[id[0]];
+const looks = r => (r.look_for||"").split(" | ").filter(Boolean).map(x => { const [qq, ch] = x.split(" :: "); return {q: qq, chart: ch || ""}; });
+const charts = r => (r.charts||"").split(" ").filter(Boolean).map(c=>c.replace(/_/g," "));
+
+let tab = store.get("tab","overview");
+if(!LAYERS.includes(tab) && tab!=="overview" && tab!=="findings") tab = "overview";
+let state = store.get("state",{});
+let shown = PAGE;
+
+function isAuto(r){ return r.status==="skip" && r.by==="build"; }
+function cov(rows){
+  const c = {total:0}; STAT.forEach(s=>c[s]=0);
+  rows.forEach(r=>{ const s=r.status||"untouched"; c.total++; c[s]=(c[s]||0)+1; });
+  // Build's own auto-skips are decided, not worked. They never count as progress.
+  c.auto = rows.filter(isAuto).length; c.open = c.total - c.auto;
+  c.done = c.open - c.untouched; c.pct = c.open ? 100*c.done/c.open : 0;
+  return c;
+}
+const hand = (c,s) => s==="skip" ? c.skip - c.auto : c[s];
+function bar(c){
+  if(!c.open) return `<div class="bar"></div>`;
+  return `<div class="bar">${STAT.filter(s=>s!=="untouched").map(s=>`<span style="width:${100*hand(c,s)/c.open}%;background:var(--${s})" title="${s} ${hand(c,s)}"></span>`).join("")}</div>`;
+}
+function legend(c){ return `<div class="legend">${STAT.map(s=>`<span><i style="background:var(--${s})"></i>${s} ${hand(c,s).toLocaleString()}</span>`).join("")}${c.auto?`<span class="auto">+ ${c.auto.toLocaleString()} auto-skipped</span>`:""}</div>`; }
+
+function header(){
+  document.getElementById("built").textContent =
+    `Built ${D._built} from the mart catalog. Every table, ID pair, crosswalk hop and county pair has a row. Every cut is listed at the bottom of Overview.`;
+  let tot=0, done=0, auto=0, live=0;
+  LAYERS.filter(l=>l!=="chains").forEach(l=>{ const c=cov(D[l]); tot+=c.total; done+=c.done; live+=c.live; D[l].forEach(r=>{ if(isAuto(r)) auto++; }); });
+  const f = D.findings, A=f.filter(x=>x.tier==="A").length, B=f.filter(x=>x.tier==="B").length, C=f.filter(x=>x.tier==="C").length;
+  document.getElementById("headline").textContent =
+    `${done.toLocaleString()} of ${(tot-auto).toLocaleString()} open rows worked, ${(100*done/Math.max(tot-auto,1)).toFixed(1)}%. ${auto.toLocaleString()} more auto-skipped by the build: mislabeled or empty keys, reference tables, prior-hunt outputs, same-source panels. ${live} live leads. ${A} A, ${B} B, ${C} clean misses on file.`;
+  const nav = document.getElementById("nav");
+  nav.innerHTML = ["overview",...LAYERS,"findings"].map(t=>{
+    const n = t==="overview" ? "" : `<span class="n">${D[t].length.toLocaleString()}</span>`;
+    return `<button data-t="${t}" class="${t===tab?"on":""}">${LABEL[t]}${n}</button>`;
+  }).join("");
+  nav.onclick = e => { const b=e.target.closest("button"); if(!b) return; go(b.dataset.t); };
+}
+const BLANK = () => ({q:"", status:[], tags:[], schema:"", key:"", chart:""});
+function go(t, preset){ tab=t; shown=PAGE; if(preset){ state[t]=Object.assign(BLANK(), preset); } store.set("tab",t); store.set("state",state); header(); draw(); window.scrollTo(0,0); }
+
+function schemasOf(r){ return [r.schema, r.a_schema, r.b_schema, r.c_schema].filter(Boolean).flatMap(s=>s.split(" ↔ ")); }
+
+function overview(){
+  const cards = LAYERS.map(l=>{
+    const c = cov(D[l]);
+    const nxt = D[l].filter(r=>(r.status||"untouched")==="untouched").slice(0,5);
+    return `<div class="card">
+      <h3><span>${LABEL[l]}</span><span class="pct">${l==="chains" ? c.total+" grown" : c.pct.toFixed(1)+"%"}</span></h3>
+      <div class="what">${esc(D._what[l])}</div>
+      ${bar(c)}${legend(c)}
+      <div class="what" style="margin:10px 0 0">${c.done.toLocaleString()} of ${c.open.toLocaleString()} open rows worked${c.auto?`, ${c.auto.toLocaleString()} auto-skipped`:""}. ${nxt.length? "Best untouched next:" : ""}</div>
+      <ul class="nextlist">${nxt.map(r=>`<li data-l="${l}" data-id="${esc(r.id)}">${esc(title(l,r))}</li>`).join("")}</ul>
+      <button class="go" data-l="${l}">Open ${LABEL[l]} →</button>
+    </div>`;
+  }).join("");
+
+  // Where the gallon is still full: every domain against every layer.
+  const doms = {};
+  LAYERS.filter(l=>l!=="chains").forEach(l=>D[l].forEach(r=>{
+    [...new Set(schemasOf(r))].forEach(s=>{ const d = doms[s] || (doms[s] = {}); const c = d[l] || (d[l] = {t:0, w:0}); if(isAuto(r)) return; c.t++; if(r.status && r.status!=="untouched") c.w++; });
+  }));
+  const dl = Object.keys(doms).sort((a,b)=>{ const n = x => LAYERS.reduce((s,l)=>s+(doms[x][l]?.t||0),0); return n(b)-n(a); });
+  const cell = (s,l) => { const c = doms[s][l]; if(!c || !c.t) return `<td class="nil">·</td>`;
+    const p = c.w/c.t; return `<td class="hm" data-l="${l}" data-s="${esc(s)}" style="--p:${Math.max(p, c.w?0.12:0)}" title="${c.w} of ${c.t} worked">${c.w?Math.round(100*p)+"%":"0"}<small>${c.t.toLocaleString()}</small></td>`; };
+  const grid = `<div class="card heat"><h3>Where the gallon is still full</h3>
+    <div class="what">Each cell: share of that domain's rows worked in that layer, and how many rows it holds. Click a cell to open them.</div>
+    <div class="scroll"><table><tr><th></th>${LAYERS.filter(l=>l!=="chains").map(l=>`<th>${LABEL[l]}</th>`).join("")}</tr>
+    ${dl.map(s=>`<tr><th>${esc(s)}</th>${LAYERS.filter(l=>l!=="chains").map(l=>cell(s,l)).join("")}</tr>`).join("")}</table></div></div>`;
+
+  // Story shapes: every open question, counted by the chart that would tell it.
+  const shapes = {};
+  LAYERS.forEach(l=>D[l].forEach(r=>{ if((r.status||"untouched")!=="untouched") return; looks(r).forEach(x=>{ if(!x.chart) return; const s = shapes[x.chart] || (shapes[x.chart] = {}); s[l] = (s[l]||0)+1; }); }));
+  const sk = Object.keys(shapes).sort((a,b)=>Object.values(shapes[b]).reduce((x,y)=>x+y,0)-Object.values(shapes[a]).reduce((x,y)=>x+y,0));
+  const shapeCard = `<div class="card heat"><h3>Story shapes still open</h3>
+    <div class="what">Every untouched question, grouped by the chart that would tell it. Click a count to see those rows.</div>
+    <div class="scroll"><table><tr><th>chart</th>${LAYERS.map(l=>`<th>${LABEL[l]}</th>`).join("")}</tr>
+    ${sk.map(c=>`<tr><th>${esc(c)}</th>${LAYERS.map(l=>shapes[c][l]?`<td class="shape" data-l="${l}" data-c="${esc(c)}">${shapes[c][l].toLocaleString()}</td>`:`<td class="nil">·</td>`).join("")}</tr>`).join("")}
+    </table></div></div>`;
+
+  const how = `<div class="card howto"><h3>How to shave a row</h3>
+    <div class="what">Click any row, then copy its command. Run it from the repo root. The page rebuilds itself.</div>
+    <table>
+      <tr><td>untouched</td><td>nobody has run a query on it yet</td></tr>
+      <tr><td>claimed</td><td>an agent has reserved it; the name is on the row</td></tr>
+      <tr><td>probed</td><td>a query ran, nothing decided yet</td></tr>
+      <tr><td>live</td><td>something is there; worth a deeper pass</td></tr>
+      <tr><td>finding</td><td>written up in Findings with a tier and a chart</td></tr>
+      <tr><td>dead</td><td>checked, nothing there; the note says why so nobody redoes it</td></tr>
+      <tr><td>skip</td><td>not worth checking; the note says who decided and why</td></tr>
+      <tr><td>ledger.py next all 20</td><td>the best 20 untouched rows across every layer</td></tr>
+      <tr><td>ledger.py next all 20 --tag MAP --claim agent1</td><td>reserve 20 map-shaped rows for one agent</td></tr>
+      <tr><td>ledger.py release agent1</td><td>hand an agent's claimed rows back; --stale 2 frees claims older than two days</td></tr>
+      <tr><td>ledger.py status</td><td>coverage per layer in the terminal</td></tr>
+      <tr><td>ledger.py build</td><td>rerun after the catalog changes; keeps every status and note</td></tr>
+    </table>
+    <div class="what" style="margin-top:8px">Score is sort order only: money, harm, officials, people and group gaps float up. Nothing is hidden by it.</div>
+    <div class="what" style="margin-top:8px"><b>The cuts, on purpose, all Claude's calls:</b></div>
+    <ul class="what cuts">
+      <li>Category codes are not pair keys. They group rows; they don't identify a thing. ${(D._excluded||[]).map(e=>`${esc(e.key)} ${e.tables} tables, ${e.pairs.toLocaleString()} pairs`).join(" · ")}.</li>
+      <li>State-level tables are not paired one by one. 200+ tables would make about 20,000 rows. County pairs and point-near-point pairs are listed.</li>
+      <li>${(D._cuts.hops_covered_by_pairs||0).toLocaleString()} hops left out because the two tables already join directly. The pair row covers them.</li>
+      <li>Reference tables like DIM_COUNTY stay in the panel but are auto-skipped. They're what you divide by.</li>
+      <li>Two copies of one source in a panel, like two years of one file, are auto-skipped there. Their year-over-year question lives on the pair and single rows.</li>
+      <li>Rows built on prior-hunt outputs in the FINDINGS schema are auto-skipped. Shave the source tables instead.</li>
+      <li>Roll-ups count one table per source, so a list loaded twice counts once.</li>
+    </ul>
+    <div class="what">Addresses live in the names layer. Countries and map points live in the place layer.</div></div>`;
+  return `<div class="grid">${cards}</div>${grid}${shapeCard}${how}`;
+}
+
+function title(l, r){
+  if(l==="pairs") return `${short(r.a)} ↔ ${short(r.b)} on ${r.key}`;
+  if(l==="hops") return `${short(r.a)} → ${r.a_key}·${r.c_key} → ${short(r.c)}`;
+  if(l==="rollups") return r.kind;
+  if(l==="chains") return r.path;
+  return short(r.table);
+}
+
+function controls(l, rows){
+  const st = state[l] || (state[l] = BLANK());
+  const tags = [...new Set(rows.flatMap(r=>(r.tags||"").split(" ").filter(Boolean)))].sort();
+  const schemas = [...new Set(rows.flatMap(schemasOf))].sort();
+  const keys = l==="pairs" ? [...new Set(rows.map(r=>r.key))].sort()
+             : l==="hops" ? [...new Set(rows.flatMap(r=>[r.a_key, r.c_key]))].sort() : [];
+  const chs = [...new Set(rows.flatMap(charts))].sort();
+  const sc = s => rows.filter(r=>(r.status||"untouched")===s).length;
+  return `<div class="controls">
+    <input type="search" id="q" placeholder="Search tables, columns, notes…" value="${esc(st.q)}">
+    ${schemas.length>1? `<select id="schema"><option value="">all domains</option>${schemas.map(s=>`<option ${s===st.schema?"selected":""}>${esc(s)}</option>`).join("")}</select>`:""}
+    ${keys.length? `<select id="key"><option value="">all IDs</option>${keys.map(s=>`<option ${s===st.key?"selected":""}>${esc(s)}</option>`).join("")}</select>`:""}
+    ${chs.length? `<select id="chart"><option value="">any chart</option>${chs.map(s=>`<option ${s===st.chart?"selected":""}>${esc(s)}</option>`).join("")}</select>`:""}
+  </div>
+  <div class="controls">${STAT.map(s=>`<span class="chip ${st.status.includes(s)?"on":""}" data-s="${s}"><span class="dot" style="background:var(--${s})"></span>${s} ${sc(s).toLocaleString()}</span>`).join("")}</div>
+  <div class="controls">${tags.map(t=>`<span class="chip ${st.tags.includes(t)?"on":""}" data-tag="${t}">${t}</span>`).join("")}</div>`;
+}
+
+function filterRows(l, rows){
+  const st = state[l]||BLANK(); const q=(st.q||"").toLowerCase().trim();
+  const words = q ? q.split(/\s+/) : [];
+  return rows.filter(r=>{
+    if(st.status?.length && !st.status.includes(r.status||"untouched")) return false;
+    if(st.tags?.length){ const t=(r.tags||"").split(" "); if(!st.tags.every(x=>t.includes(x))) return false; }
+    if(st.schema && !schemasOf(r).includes(st.schema)) return false;
+    if(st.key && r.key!==st.key && r.a_key!==st.key && r.c_key!==st.key) return false;
+    if(st.chart && !charts(r).includes(st.chart)) return false;
+    if(words.length && !words.every(w=>r._text.includes(w))) return false;
+    return true;
+  });
+}
+
+function detail(l, r){
+  const dd = [];
+  const add = (k,v) => { if(v) dd.push(`<dt>${k}</dt><dd>${v}</dd>`); };
+  if(l==="pairs"){
+    add("joins", `${esc(r.key)}: ${esc(r.key_is)}`);
+    add("side A", `<span class="mono">${esc(r.a)}.${esc(r.a_col)}</span> · ${fmt(r.a_rows)} rows`);
+    add("side B", `<span class="mono">${esc(r.b)}.${esc(r.b_col)}</span> · ${fmt(r.b_rows)} rows`);
+  } else if(l==="hops"){
+    add("side A", `<span class="mono">${esc(r.a)}</span> by ${esc(r.a_key)} · ${fmt(r.a_rows)} rows`);
+    add("routes", `${esc(r.via)}${+r.via_count>1?` · ${r.via_count} ways through`:""}`);
+    add("side C", `<span class="mono">${esc(r.c)}</span> by ${esc(r.c_key)} · ${fmt(r.c_rows)} rows`);
+  } else if(l==="rollups"){
+    add("ID", `${esc(r.key)}: ${esc(r.key_is)}`);
+    add("harm tables", `${esc(r.n_harm)}: ${esc(r.harm_tables)}`);
+    add("money tables", r.money_tables ? `${esc(r.n_money)}: ${esc(r.money_tables)}` : "");
+  } else if(l==="chains"){
+    add("path", esc(r.path)); add("grown from", esc(r.grown_from));
+  } else if(r.a && r.b){
+    add("side A", `<span class="mono">${esc(r.a)}</span>`); add("side B", `<span class="mono">${esc(r.b)}</span>`);
+  } else {
+    add("table", `<span class="mono">LIBRARY_MARTS.${esc(r.schema)}.${esc(r.table)}</span> · ${fmt(r.rows)} rows`);
+    add("what it is", esc(r.summary));
+  }
+  add("look for", `<ul class="looks">${looks(r).map(x=>`<li>${esc(x.q)}${x.chart?` <span class="cpill">${esc(x.chart)}</span>`:""}</li>`).join("")}</ul>`);
+  add("where", esc(r.where)); add("level", esc(r.level) + (r.geo_col?` · <span class="mono">${esc(r.geo_col)}</span>`:""));
+  add("metrics", esc(r.metrics)); add("names", esc(r.name_cols) + (r.kind?` · ${esc(r.kind)}, ID ${esc(r.has_id)}, state ${esc(r.has_state)}`:""));
+  add("bridge to", esc(r.bridge_to));
+  add("event date", r.event_date ? `<span class="mono">${esc(r.event_date)}</span> · entity ${esc(r.entity)}` : "");
+  add("partners", r.partner_tables ? `${esc(r.partners)} tables share its ID: ${esc(r.partner_tables)}` : "");
+  add("IDs", esc(r.keys));
+  add("known traps", [r.traps, r.hunt_trap].filter(Boolean).map(esc).join(" · "));
+  add("found", r.found ? `<div class="found">${esc(r.found)}</div>` : "");
+  add("findings", esc(r.finding_ids));
+  add("last touched", r.date ? `${esc(r.date)} by ${esc(r.by)}` : "");
+  const cmd = s => `python scripts/ledger.py mark "${r.id}" ${s} "what you saw"`;
+  return `<div class="detail"><dl>${dd.join("")}</dl>
+    <div class="cmd">${["probed","live","dead","skip"].map(s=>`<button data-copy="${esc(cmd(s))}">copy: mark ${s}</button>`).join("")}
+    <button data-copy="${esc(`python scripts/ledger.py found ${l} B "headline as a fact" --rows "${r.id}" --chart "${looks(r)[0]?.chart||""}" --sql path`)}">copy: log a finding</button>
+    <button data-copy="${esc(r.id)}">copy id</button></div></div>`;
+}
+
+function layerView(l){
+  const all = D[l];
+  const rows = filterRows(l, all);
+  const c = cov(all);
+  const st = state[l]||BLANK();
+  const list = rows.slice(0, shown).map(r=>{
+    const s = r.status||"untouched";
+    const lk = looks(r);
+    const pick = (st.chart && lk.find(x=>x.chart===st.chart)) || ((l==="pairs"||l==="hops") && lk[1]) || lk[0] || {q:"",chart:""};
+    const sch = l==="pairs" ? `${r.a_schema} ↔ ${r.b_schema}` : l==="hops" ? `${r.a_schema} → ${r.c_schema}` : (r.schema||"");
+    const n = r.rows || (r.a_rows && Math.min(+r.a_rows, +(r.b_rows||r.c_rows||r.a_rows)));
+    return `<div class="row" data-id="${esc(r.id)}">
+      <div class="top"><span class="pill" style="background:var(--${s})">${s}</span>
+      <span class="score">${esc(r.score||"")}</span>
+      <span class="name">${esc(title(l,r))}</span><span class="schema">${esc(sch)}${n?` · ${fmt(n)}`:""}</span>
+      <span class="tags">${(r.tags||"").split(" ").filter(Boolean).map(t=>`<span class="tag ${t}">${t}</span>`).join("")}</span></div>
+      <div class="first">${esc(pick.q)}${pick.chart?` <span class="cpill">${esc(pick.chart)}</span>`:""}${r.found?` · <b>${esc(r.found.slice(0,90))}</b>`:""}</div>
+      ${detail(l,r)}</div>`;
+  }).join("");
+  return `<div class="card" style="margin-bottom:12px"><div class="what" style="margin:0 0 8px">${esc(D._what[l])}</div>${bar(c)}${legend(c)}</div>
+    ${controls(l, all)}
+    <div class="count">${rows.length.toLocaleString()} of ${all.length.toLocaleString()} rows match. Click a row to open it.</div>
+    <div class="rows">${list || `<div class="row">Nothing matches. Clear a filter.</div>`}</div>
+    ${rows.length>shown?`<button class="more" id="more">Show ${Math.min(PAGE, rows.length-shown)} more of ${(rows.length-shown).toLocaleString()}</button>`:""}`;
+}
+
+function findingsView(){
+  const f = [...D.findings].sort((a,b)=>(a.tier||"Z").localeCompare(b.tier||"Z") || a.id.localeCompare(b.id));
+  if(!f.length) return `<div class="card">No findings yet.</div>`;
+  return `<div class="findings">${f.map(x=>`<div class="f ${esc(x.tier)}">
+    <div class="h">${esc(x.id)} · ${esc(x.tier)} · ${esc(x.headline)}</div>
+    <div class="m">${esc(x.layer)} · ${esc(x.date)} · skeptic: ${esc(x.skeptic)}${x.tables?` · ${esc(x.tables)}`:""}</div>
+    ${x.chart?`<div class="m">tell it with: <span class="cpill">${esc(x.chart)}</span></div>`:""}
+    ${x.notes?`<div class="m">${esc(x.notes)}</div>`:""}
+    ${x.sql?`<div class="m mono">${esc(x.sql)}</div>`:""}
+    ${x.ledger_rows?`<div class="m">rows: ${x.ledger_rows.split(",").map(s=>s.trim()).filter(Boolean).map(id=>
+        `<a href="#" class="jump" data-l="${idLayer(id)}" data-id="${esc(id)}">${esc(id)}</a>`).join(" · ")}</div>`:""}
+  </div>`).join("")}</div>`;
+}
+
+function draw(){
+  const m = document.getElementById("main");
+  m.innerHTML = tab==="overview" ? overview() : tab==="findings" ? findingsView() : layerView(tab);
+  if(LAYERS.includes(tab)) wire(tab);
+}
+function wire(l){
+  const st = state[l]; const save = () => { store.set("state",state); shown=PAGE; draw(); };
+  const q = document.getElementById("q");
+  if(q){ q.oninput = () => { st.q=q.value; clearTimeout(q._t); q._t=setTimeout(()=>{ const pos=q.selectionStart; save(); const n=document.getElementById("q"); n.focus(); n.setSelectionRange(pos,pos); },250); }; }
+  [["schema","schema"],["key","key"],["chart","chart"]].forEach(([id,k])=>{ const el=document.getElementById(id); if(el) el.onchange=()=>{ st[k]=el.value; save(); }; });
+  document.querySelectorAll(".chip[data-s]").forEach(c=>c.onclick=()=>{ const v=c.dataset.s; st.status = st.status.includes(v)? st.status.filter(x=>x!==v) : [...st.status,v]; save(); });
+  document.querySelectorAll(".chip[data-tag]").forEach(c=>c.onclick=()=>{ const v=c.dataset.tag; st.tags = st.tags.includes(v)? st.tags.filter(x=>x!==v) : [...st.tags,v]; save(); });
+  const more = document.getElementById("more"); if(more) more.onclick = () => { shown += PAGE; draw(); };
+}
+document.addEventListener("click", e=>{
+  const cp = e.target.closest("[data-copy]");
+  if(cp){ e.stopPropagation(); const t=cp.dataset.copy;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(()=>toast("Copied. Paste it in the terminal."),()=>{ prompt("Copy this:", t); });
+    return; }
+  const j = e.target.closest("a.jump");
+  if(j){ e.preventDefault(); if(j.dataset.l) go(j.dataset.l, {q: j.dataset.id}); return; }
+  const li = e.target.closest(".nextlist li");
+  if(li){ go(li.dataset.l, {q: li.dataset.id}); return; }
+  const hm = e.target.closest("td.hm");
+  if(hm){ go(hm.dataset.l, {schema: hm.dataset.s}); return; }
+  const sh = e.target.closest("td.shape");
+  if(sh){ go(sh.dataset.l, {chart: sh.dataset.c, status:["untouched"]}); return; }
+  const g = e.target.closest(".go"); if(g){ go(g.dataset.l); return; }
+  const row = e.target.closest(".row");
+  if(row && !e.target.closest(".detail")) row.classList.toggle("open");
+});
+function toast(t){ const el=document.getElementById("toast"); el.textContent=t; el.classList.add("on"); setTimeout(()=>el.classList.remove("on"),1600); }
+header(); draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+n,grade,reason
+0,CLEAN,mostly Land O'Lakes; one Florida place leak
+1,CLEAN,company or subsidiary name in party column
+2,CLEAN,company or subsidiary name in party column
+3,CLEAN,company or subsidiary name in party column
+4,WRONG,"Keystone, Mavis, JC: other tire shops share the phrase"
+5,CLEAN,company or subsidiary name in party column
+6,CLEAN,company or subsidiary name in party column
+7,CLEAN,company or subsidiary name in party column
+8,CLEAN,company or subsidiary name in party column
+9,WRONG,"Compass Limited offshore shell, not Compass Group"
+10,CLEAN,company or subsidiary name in party column
+11,CLEAN,company or subsidiary name in party column
+12,CLEAN,company or subsidiary name in party column
+13,CLEAN,UTC and its PAC; one Penn United namesake
+14,CLEAN,company or subsidiary name in party column
+15,CLEAN,company or subsidiary name in party column
+16,CLEAN,company or subsidiary name in party column
+17,CLEAN,company or subsidiary name in party column
+18,CLEAN,company or subsidiary name in party column
+19,CLEAN,company or subsidiary name in party column
+20,CLEAN,company or subsidiary name in party column
+21,CLEAN,company or subsidiary name in party column
+22,CLEAN,company or subsidiary name in party column
+23,CLEAN,company or subsidiary name in party column
+24,CLEAN,company or subsidiary name in party column
+25,CLEAN,company or subsidiary name in party column
+26,CLEAN,company or subsidiary name in party column
+27,CLEAN,"public university, entity matches"
+28,CLEAN,company or subsidiary name in party column
+29,WRONG,"community health net clinic, not Health Net Inc"
+30,CLEAN,company or subsidiary name in party column
+31,CLEAN,company or subsidiary name in party column
+32,CLEAN,company or subsidiary name in party column
+33,CLEAN,city itself; CTA and school board ride along
+34,CLEAN,company or subsidiary name in party column
+35,CLEAN,company or subsidiary name in party column
+36,WRONG,road name column; Cargill private crossing
+37,CLEAN,company or subsidiary name in party column
+38,CLEAN,company or subsidiary name in party column
+39,RELATED,GE employee credit unions
+40,CLEAN,company or subsidiary name in party column
+41,CLEAN,company or subsidiary name in party column
+42,UNCLEAR,Mr Cooper facility; mortgage firm or namesake unknown
+43,CLEAN,company or subsidiary name in party column
+44,WRONG,"local nursing homes named Providence, not Providence system"
+45,CLEAN,company or subsidiary name in party column
+46,CLEAN,company or subsidiary name in party column
+47,CLEAN,company or subsidiary name in party column
+48,CLEAN,company or subsidiary name in party column
+49,CLEAN,Mayo units; one Marriott at Mayo leak
+50,CLEAN,company or subsidiary name in party column
+51,CLEAN,company or subsidiary name in party column
+52,WRONG,"Casella and county solid waste districts, generic phrase"
+53,CLEAN,company or subsidiary name in party column
+54,CLEAN,company or subsidiary name in party column
+55,WRONG,"Sierra Nevada Brewing, not Sierra Nevada Corp"
+56,CLEAN,company or subsidiary name in party column
+57,CLEAN,company or subsidiary name in party column
+58,CLEAN,company or subsidiary name in party column
+59,CLEAN,company or subsidiary name in party column
+60,CLEAN,company or subsidiary name in party column
+61,CLEAN,company or subsidiary name in party column
+62,CLEAN,company or subsidiary name in party column
+63,CLEAN,company or subsidiary name in party column
+64,RELATED,UST Global Foundation
+65,CLEAN,company or subsidiary name in party column
+66,CLEAN,company or subsidiary name in party column
+67,CLEAN,company or subsidiary name in party column
+68,CLEAN,company or subsidiary name in party column
+69,CLEAN,company or subsidiary name in party column
+70,CLEAN,company or subsidiary name in party column
+71,CLEAN,company or subsidiary name in party column
+72,CLEAN,company or subsidiary name in party column
+73,CLEAN,company or subsidiary name in party column
+74,CLEAN,company or subsidiary name in party column
+75,CLEAN,company or subsidiary name in party column
+76,CLEAN,company or subsidiary name in party column
+77,CLEAN,company or subsidiary name in party column
+78,CLEAN,company or subsidiary name in party column
+79,CLEAN,company or subsidiary name in party column
+80,CLEAN,company or subsidiary name in party column
+81,CLEAN,company or subsidiary name in party column
+82,CLEAN,company or subsidiary name in party column
+83,CLEAN,company or subsidiary name in party column
+84,CLEAN,company or subsidiary name in party column
+85,CLEAN,company or subsidiary name in party column
+86,CLEAN,company or subsidiary name in party column
+87,CLEAN,company or subsidiary name in party column
+88,CLEAN,company or subsidiary name in party column
+89,CLEAN,company or subsidiary name in party column
+90,CLEAN,company or subsidiary name in party column
+91,CLEAN,company or subsidiary name in party column
+92,CLEAN,company or subsidiary name in party column
+93,CLEAN,company or subsidiary name in party column
+94,CLEAN,company or subsidiary name in party column
+95,CLEAN,company or subsidiary name in party column
+96,CLEAN,company or subsidiary name in party column
+97,CLEAN,company or subsidiary name in party column
+98,CLEAN,company or subsidiary name in party column
+99,WRONG,"Aerospace Holdings Ltd UK, not The Aerospace Corp"
+100,CLEAN,company or subsidiary name in party column
+101,CLEAN,company or subsidiary name in party column
+102,CLEAN,company or subsidiary name in party column
+103,CLEAN,company or subsidiary name in party column
+104,CLEAN,company or subsidiary name in party column
+105,CLEAN,company or subsidiary name in party column
+106,CLEAN,Humana Inc; Humana Co Ltd maybe namesake
+107,WRONG,"local nursing homes named Providence, not Providence system"
+108,CLEAN,company or subsidiary name in party column
+109,CLEAN,company or subsidiary name in party column
+110,CLEAN,company or subsidiary name in party column
+111,CLEAN,company or subsidiary name in party column
+112,WRONG,person surname seed; individual contract recipients
+113,CLEAN,company or subsidiary name in party column
+114,CLEAN,company or subsidiary name in party column
+115,CLEAN,company or subsidiary name in party column
+116,CLEAN,company or subsidiary name in party column
+117,CLEAN,company or subsidiary name in party column
+118,CLEAN,company or subsidiary name in party column
+119,CLEAN,company or subsidiary name in party column
+120,WRONG,"generic phrase; local chambers, not US Chamber"
+121,CLEAN,company or subsidiary name in party column
+122,CLEAN,company or subsidiary name in party column
+123,CLEAN,company or subsidiary name in party column
+124,CLEAN,company or subsidiary name in party column
+125,CLEAN,company or subsidiary name in party column
+126,CLEAN,company or subsidiary name in party column
+127,CLEAN,company or subsidiary name in party column
+128,CLEAN,company or subsidiary name in party column
+129,CLEAN,company or subsidiary name in party column
+130,CLEAN,company or subsidiary name in party column
+131,CLEAN,company or subsidiary name in party column
+132,CLEAN,company or subsidiary name in party column
+133,CLEAN,company or subsidiary name in party column
+134,CLEAN,company or subsidiary name in party column
+135,CLEAN,company or subsidiary name in party column
+136,CLEAN,company or subsidiary name in party column
+137,RELATED,Mazda Toyota joint venture plant
+138,CLEAN,company or subsidiary name in party column
+139,CLEAN,company or subsidiary name in party column
+140,CLEAN,company or subsidiary name in party column
+141,UNCLEAR,bare ABM facility; cannot tell if ABM Industries
+142,CLEAN,company or subsidiary name in party column
+143,CLEAN,company or subsidiary name in party column
+144,CLEAN,company or subsidiary name in party column
+145,CLEAN,company or subsidiary name in party column
+146,CLEAN,company or subsidiary name in party column
+147,CLEAN,company or subsidiary name in party column
+148,CLEAN,company or subsidiary name in party column
+149,CLEAN,company or subsidiary name in party column
+150,CLEAN,company or subsidiary name in party column
+151,CLEAN,company or subsidiary name in party column
+152,CLEAN,company or subsidiary name in party column
+153,WRONG,dozens of unrelated Methodist hospitals
+154,CLEAN,company or subsidiary name in party column
+155,CLEAN,company or subsidiary name in party column
+156,WRONG,"AARP Limited UK company, namesake"
+157,CLEAN,company or subsidiary name in party column
+158,CLEAN,GE; Portland General Electric leaks in
+159,CLEAN,company or subsidiary name in party column
+160,CLEAN,company or subsidiary name in party column
+161,CLEAN,company or subsidiary name in party column
+162,UNCLEAR,Ergon Holding LLC; likely but unconfirmed
+163,CLEAN,company or subsidiary name in party column
+164,CLEAN,company or subsidiary name in party column
+165,CLEAN,company or subsidiary name in party column
+166,CLEAN,company or subsidiary name in party column
+167,CLEAN,company or subsidiary name in party column
+168,CLEAN,company or subsidiary name in party column
+169,CLEAN,company or subsidiary name in party column
+170,CLEAN,company or subsidiary name in party column
+171,CLEAN,company or subsidiary name in party column
+172,CLEAN,company or subsidiary name in party column
+173,CLEAN,company or subsidiary name in party column
+174,CLEAN,company or subsidiary name in party column
+175,CLEAN,company or subsidiary name in party column
+176,CLEAN,company or subsidiary name in party column
+177,UNCLEAR,revoked exempt org at Southern Co plant
+178,CLEAN,company or subsidiary name in party column
+179,CLEAN,company or subsidiary name in party column
+180,CLEAN,company or subsidiary name in party column
+181,CLEAN,company or subsidiary name in party column
+182,CLEAN,company or subsidiary name in party column
+183,RELATED,state chapters of ABC in case names
+184,CLEAN,company or subsidiary name in party column
+185,RELATED,state chapters of AAP
+186,WRONG,"US Virgin Islands government, not US government"
+187,CLEAN,company or subsidiary name in party column
+188,CLEAN,company or subsidiary name in party column
+189,CLEAN,company or subsidiary name in party column
+190,CLEAN,company or subsidiary name in party column
+191,CLEAN,company or subsidiary name in party column
+192,CLEAN,company or subsidiary name in party column
+193,CLEAN,company or subsidiary name in party column
+194,WRONG,generic phrase; unrelated small firms
+195,WRONG,"Safeway Company Limited Ireland, namesake"
+196,CLEAN,company or subsidiary name in party column
+197,CLEAN,company or subsidiary name in party column
+198,CLEAN,company or subsidiary name in party column
+199,CLEAN,company or subsidiary name in party column

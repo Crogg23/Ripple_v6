@@ -1,0 +1,201 @@
+n,grade,reason
+0,RELATED,employee clubs in exempt-org sort name
+1,CLEAN,company or owned subsidiary
+2,CLEAN,company or owned subsidiary
+3,WRONG,Ecuador consultancy with CVS in name
+4,CLEAN,Chevron entities; one 'Airport Chevron and Towing' namesake
+5,CLEAN,company or owned subsidiary
+6,CLEAN,company or owned subsidiary
+7,WRONG,"address column, not a party"
+8,CLEAN,company or owned subsidiary
+9,CLEAN,company or owned subsidiary
+10,CLEAN,company or owned subsidiary
+11,CLEAN,company or owned subsidiary
+12,CLEAN,company or owned subsidiary
+13,CLEAN,company or owned subsidiary
+14,WRONG,"community health center, not UnitedHealth"
+15,CLEAN,company or owned subsidiary
+16,CLEAN,company or owned subsidiary
+17,CLEAN,company or owned subsidiary
+18,CLEAN,company or owned subsidiary
+19,CLEAN,company or owned subsidiary
+20,CLEAN,company or owned subsidiary
+21,RELATED,host-site plant names; owner is a solar developer
+22,CLEAN,company or owned subsidiary
+23,CLEAN,company or owned subsidiary
+24,CLEAN,company or owned subsidiary
+25,CLEAN,company or owned subsidiary
+26,UNCLEAR,CVS Medical Group/Home Care; ownership not shown
+27,CLEAN,company or owned subsidiary
+28,CLEAN,company or owned subsidiary
+29,CLEAN,J&J units; mixed with J&J Locksmith namesake
+30,CLEAN,company or owned subsidiary
+31,CLEAN,company or owned subsidiary
+32,CLEAN,company or owned subsidiary
+33,CLEAN,company or owned subsidiary
+34,CLEAN,company or owned subsidiary
+35,CLEAN,company or owned subsidiary
+36,CLEAN,company or owned subsidiary
+37,RELATED,Boeing Field airport; column is airport name
+38,RELATED,company PAC
+39,CLEAN,company or owned subsidiary
+40,RELATED,"branded Exxon gas stations, independent owners"
+41,CLEAN,company or owned subsidiary
+42,WRONG,street address Jack Northrop Ave
+43,RELATED,"employee clubs, revoked exempt status"
+44,CLEAN,company or owned subsidiary
+45,CLEAN,company or owned subsidiary
+46,CLEAN,company or owned subsidiary
+47,CLEAN,company or owned subsidiary
+48,CLEAN,company or owned subsidiary
+49,CLEAN,company or owned subsidiary
+50,CLEAN,company or owned subsidiary
+51,CLEAN,company or owned subsidiary
+52,CLEAN,company or owned subsidiary
+53,CLEAN,company or owned subsidiary
+54,CLEAN,company or owned subsidiary
+55,CLEAN,company or owned subsidiary
+56,CLEAN,company or owned subsidiary
+57,CLEAN,company or owned subsidiary
+58,WRONG,"Lockheed Window Corp, unrelated firm"
+59,CLEAN,company or owned subsidiary
+60,CLEAN,company or owned subsidiary
+61,CLEAN,company or owned subsidiary
+62,CLEAN,company or owned subsidiary
+63,CLEAN,company or owned subsidiary
+64,CLEAN,Chevron terminals; CPChem JV mixed in
+65,CLEAN,BofA branch sites; permittee may be builder
+66,UNCLEAR,match lies beyond truncated sample
+67,CLEAN,company or owned subsidiary
+68,CLEAN,company or owned subsidiary
+69,CLEAN,Boeing units; credit union and JV mixed in
+70,CLEAN,company or owned subsidiary
+71,CLEAN,company or owned subsidiary
+72,RELATED,employee clubs and benefit trust
+73,CLEAN,company or owned subsidiary
+74,CLEAN,company or owned subsidiary
+75,CLEAN,company or owned subsidiary
+76,CLEAN,company or owned subsidiary
+77,RELATED,employee PACs plus junk committee name
+78,WRONG,"device-name column, not a party"
+79,CLEAN,company or owned subsidiary
+80,CLEAN,company or owned subsidiary
+81,CLEAN,company or owned subsidiary
+82,CLEAN,company or owned subsidiary
+83,WRONG,Aramark at Wells Fargo Center arena
+84,CLEAN,company or owned subsidiary
+85,CLEAN,company or owned subsidiary
+86,CLEAN,company or owned subsidiary
+87,CLEAN,company or owned subsidiary
+88,RELATED,"exempt-org sort name, likely employee group"
+89,CLEAN,company or owned subsidiary
+90,CLEAN,company or owned subsidiary
+91,CLEAN,company or owned subsidiary
+92,CLEAN,company or owned subsidiary
+93,CLEAN,company or owned subsidiary
+94,RELATED,CPChem PAC and sponsored 527
+95,CLEAN,company or owned subsidiary
+96,CLEAN,Chevron entities; 'Chevron Lake Austin' likely station
+97,RELATED,mostly branded Exxon service stations
+98,WRONG,"J P Morgan namesakes: lawyer, limo, appraiser"
+99,WRONG,"Alliance Resource Solutions, unrelated contractor"
+100,CLEAN,company or owned subsidiary
+101,CLEAN,company or owned subsidiary
+102,CLEAN,company name; pas2 role unclear
+103,CLEAN,company or owned subsidiary
+104,CLEAN,company or owned subsidiary
+105,CLEAN,company or owned subsidiary
+106,CLEAN,company or owned subsidiary
+107,CLEAN,company or owned subsidiary
+108,CLEAN,company or owned subsidiary
+109,CLEAN,company or owned subsidiary
+110,CLEAN,company or owned subsidiary
+111,CLEAN,company or owned subsidiary
+112,UNCLEAR,"one 1900s namesake case, one real Alliance Coal"
+113,CLEAN,company or owned subsidiary
+114,WRONG,unrelated JV with 'United Healthcare' words
+115,CLEAN,company or owned subsidiary
+116,WRONG,"Onalaska family firm, surnames Johnson"
+117,CLEAN,company or owned subsidiary
+118,RELATED,trust with Wells Fargo as trustee
+119,CLEAN,company or owned subsidiary
+120,CLEAN,company or owned subsidiary
+121,CLEAN,company or owned subsidiary
+122,CLEAN,company or owned subsidiary
+123,WRONG,SEIU healthcare workers union
+124,CLEAN,company or owned subsidiary
+125,CLEAN,company or owned subsidiary
+126,WRONG,doctor surnamed Northrop in LAST_ORG column
+127,CLEAN,company or owned subsidiary
+128,CLEAN,company or owned subsidiary
+129,CLEAN,company or owned subsidiary
+130,CLEAN,company or owned subsidiary
+131,CLEAN,company or owned subsidiary
+132,CLEAN,company or owned subsidiary
+133,CLEAN,company or owned subsidiary
+134,WRONG,"'Community HCA' home care agency, not HCA"
+135,CLEAN,company or owned subsidiary
+136,CLEAN,company or owned subsidiary
+137,RELATED,exempt org care-of General Dynamics
+138,CLEAN,company or owned subsidiary
+139,CLEAN,company or owned subsidiary
+140,CLEAN,company or owned subsidiary
+141,CLEAN,company or owned subsidiary
+142,CLEAN,3M; one DBA namesake mixed in
+143,CLEAN,company or owned subsidiary
+144,WRONG,mostly people surnamed Northrop
+145,CLEAN,company or owned subsidiary
+146,CLEAN,UHC cases; SEIU union case mixed in
+147,CLEAN,company or owned subsidiary
+148,WRONG,"address column, not a party"
+149,CLEAN,company or owned subsidiary
+150,CLEAN,company or owned subsidiary
+151,CLEAN,company or owned subsidiary
+152,CLEAN,company or owned subsidiary
+153,RELATED,employee benefit VEBA trust
+154,CLEAN,company or owned subsidiary
+155,CLEAN,company or owned subsidiary
+156,CLEAN,company or owned subsidiary
+157,WRONG,street address Wells Fargo Drive
+158,CLEAN,company or owned subsidiary
+159,CLEAN,company or owned subsidiary
+160,RELATED,stormwater dams at Walmart sites
+161,CLEAN,company or owned subsidiary
+162,CLEAN,company or owned subsidiary
+163,CLEAN,company or owned subsidiary
+164,CLEAN,Lockheed units; Javelin JV mixed in
+165,UNCLEAR,offshore shells named Lockheed; tie unproven
+166,CLEAN,company or owned subsidiary
+167,CLEAN,company or owned subsidiary
+168,CLEAN,company or owned subsidiary
+169,UNCLEAR,"half Northrop Grumman, half people surnamed Northrop"
+170,CLEAN,company or owned subsidiary
+171,CLEAN,company or owned subsidiary
+172,CLEAN,company or owned subsidiary
+173,CLEAN,company or owned subsidiary
+174,WRONG,ICE holdroom on Boeing Drive
+175,CLEAN,company or owned subsidiary
+176,CLEAN,company or owned subsidiary
+177,CLEAN,company or owned subsidiary
+178,CLEAN,company or owned subsidiary
+179,CLEAN,company or owned subsidiary
+180,RELATED,rail contractor serving Chevron plant
+181,CLEAN,company or owned subsidiary
+182,CLEAN,company or owned subsidiary
+183,CLEAN,company or owned subsidiary
+184,CLEAN,company or owned subsidiary
+185,CLEAN,company or owned subsidiary
+186,WRONG,Ecuador consultancy with CVS in name
+187,CLEAN,company or owned subsidiary
+188,CLEAN,company or owned subsidiary
+189,CLEAN,company or owned subsidiary
+190,CLEAN,company or owned subsidiary
+191,CLEAN,BofA affiliates; one 'Savings Bank of America' namesake
+192,CLEAN,company or owned subsidiary
+193,CLEAN,company or owned subsidiary
+194,CLEAN,company or owned subsidiary
+195,CLEAN,company or owned subsidiary
+196,CLEAN,company or owned subsidiary
+197,CLEAN,company or owned subsidiary
+198,CLEAN,company or owned subsidiary
+199,RELATED,Merck employee credit union
