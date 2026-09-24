@@ -1,0 +1,1377 @@
+[
+ [
+  {
+   "table": "CONSUMER_SAFETY__FED_NHTSA_INVESTIGATIONS",
+   "score": 5.5,
+   "angles": [
+    "Which makers had the most defect probes that closed without a recall, and how long did they stay open?",
+    "Which defect investigations dragged on longest before a recall, or closed with no recall despite many complaints?"
+   ],
+   "checks": [
+    "Distinct investigation numbers by MFR_NAME with share ending in recall and median open-to-close days, 2010 on",
+    "Dedupe to one row per investigation, compute open-to-close days and recall yes/no by manufacturer."
+   ],
+   "boring": [
+    "Takata air-bag probes explode row counts across every make and model; one probe covers thousands of model-years",
+    "Row counts are inflated by make-model-year expansion (Takata air bags = 75K rows); long investigations are often multi-phase standard process."
+   ]
+  },
+  {
+   "table": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_OFFICERS",
+   "score": 5.5,
+   "angles": [
+    "Which US officials, contractors or Medicare providers appear as officers of offshore entities? Join to US names in Ripple.",
+    "US officials, federal contractors or SEC insiders who appear as officers of offshore entities."
+   ],
+   "checks": [
+    "Exact multi-word name match of officers with US country code against SEC insiders / FEC donors / contractor execs; review top hits.",
+    "Exact multi-word name match of officers (COUNTRY_CODES USA) against SEC insiders and SAM/contract recipients, then hand-check."
+   ],
+   "boring": [
+    "Name collisions are rampant (single-word trap); 'THE BEARER' rows are anonymous shares; ICIJ already published the famous names.",
+    "Name collisions (single-word trap: 8% real); 'THE BEARER' is bearer shares, not a person. Being in the leaks is not wrongdoing; ICIJ already ran US names."
+   ]
+  },
+  {
+   "table": "CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS",
+   "score": 5.0,
+   "angles": [
+    "Which US federal contractors, insiders or donors show up as officers of offshore companies?",
+    "Which intermediaries set up the most offshore companies, and which of their officers also appear as US SEC insiders or federal contractors?"
+   ],
+   "checks": [
+    "Join the officer_of entity names to SEC insider owner names and to contract recipient names. Keep only matches of 2+ words.",
+    "Count distinct end nodes per start node where REL_TYPE='intermediary_of', joined to ICIJ nodes for names. Then name-match top officers to SEC insiders."
+   ],
+   "boring": [
+    "This is ICIJ's own data, already reported to death. Name matches are noisy: single-word matches are only 8% real.",
+    "The same link repeats across leaks. Top intermediaries (Mossack Fonseca, Portcullis) are exactly what ICIJ already published. Dates like 0003 and 5015 are garbage."
+   ]
+  },
+  {
+   "table": "ECONOMICS__FED_IRS_AUTO_REVOCATIONS",
+   "score": 5.5,
+   "angles": [
+    "Did nonprofits that lost tax-exempt status still take federal grants or PPP loans afterward?",
+    "Nonprofits that lost their tax exemption yet kept taking federal grants or PPP loans."
+   ],
+   "checks": [
+    "Join EIN to USAspending assistance recipients with action date after REVOCATION_DATE.",
+    "Join EIN to USAspending assistance recipients where action date > REVOCATION_DATE, summing the dollars."
+   ],
+   "boring": [
+    "1.2M revocations are mostly dead small groups (alumni chapters); many were reinstated later.",
+    "Most revocations are tiny dormant clubs (Kappa Delta alumni chapters). An EIN join to USAspending hits the EIN/UEI bridge gap."
+   ]
+  },
+  {
+   "table": "ECONOMICS__FED_PBGC_TRUSTEED_PENSION_PLANS",
+   "score": 5.5,
+   "angles": [
+    "Which companies dumped the biggest pension plans on the federal insurer, and did those same firms keep winning federal contracts or pay executives well afterward?",
+    "Which companies dumped the biggest pension plans on the federal insurer, and are those companies or their executives still around? Top EIN has 391K participants."
+   ],
+   "checks": [
+    "Rank plans by PARTICIPANT_COUNT, take the top 50 EINs, and join by EIN to SEC or USAspending recipients to see what the sponsor did after the plan date.",
+    "Rank by PARTICIPANT_COUNT with the sponsor name, then join EIN to Form 5500 and SEC filers to see which sponsors are still operating."
+   ],
+   "boring": [
+    "The biggest trusteed plans are famous bankruptcies: airlines like United and US Airways, steelmakers like Bethlehem and LTV, and Delphi. These are well covered. The median plan has 11 people.",
+    "The big ones are well-known bankruptcies: airlines, steel, Delphi. The 1903 plan dates are placeholders."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "ECONOMICS__INTL_GLEIF_REPEX",
+   "score": 5.0,
+   "angles": [
+    "Which US-linked entities in the global company-ID register refuse to name a parent, and do they cluster at shell-registration addresses or near sanctioned names?",
+    "Which countries and registration agents let the most companies say 'no parent' or refuse to name the person behind them?"
+   ],
+   "checks": [
+    "Join REPEX to GLEIF on LEI. Filter to US legal addresses with reason NATURAL_PERSONS or NO_KNOWN_PERSON, then group by registered address.",
+    "Join REPEX to GLEIF on LEI; count NATURAL_PERSONS and NON_PUBLIC exception reasons by legal-address country and managing LOU."
+   ],
+   "boring": [
+    "NATURAL_PERSONS just means a person owns it, which is true for most small firms. Each LEI appears twice by design, once for the direct parent and once for the ultimate parent.",
+    "NATURAL_PERSONS (owned by people, not a company) is the honest normal answer for most small firms; exceptions are the default, not evasion."
+   ]
+  },
+  {
+   "table": "EDUCATION__FED_ED_COLLEGE_SCORECARD_INSTITUTION",
+   "score": 6.0,
+   "angles": [
+    "Which colleges leave students with the most debt relative to what graduates earn?",
+    "Colleges where graduates earn less than a high-school grad but carry heavy debt, mostly for-profit chains, named."
+   ],
+   "checks": [
+    "Median debt / median earnings 10 years out, by institution, enrollment over 500.",
+    "Filter on median earnings 10 years out below $30K and median debt above $20K, grouped by ownership type and chain."
+   ],
+   "boring": [
+    "Debt-to-earnings rankings are widely reported; for-profit and cosmetology schools lead as expected.",
+    "The Scorecard is heavily reported already. Earnings are suppressed for small schools. The net-price max values belong to tiny vocational programs."
+   ]
+  },
+  {
+   "table": "EDUCATION__FED_GOOGLE_POLADS_CREATIVE_STATS",
+   "score": 5.5,
+   "angles": [
+    "Which US political advertisers micro-target by age and gender, and which dark-money groups outspend candidates on Google?",
+    "Who bought the most US political ads on Google in 2024, and how narrowly were they targeted (age, gender, ZIP)? Includes dark-money groups with generic names."
+   ],
+   "checks": [
+    "Filter to US ads, group by advertiser, sum the spend-range midpoints, and flag non-candidate advertisers in the top 50.",
+    "Filter to US regions and 2024. Sum the spend-range midpoints by ADVERTISER_NAME, and flag advertisers whose name matches no FEC committee."
+   ],
+   "boring": [
+    "Spend is given in ranges. BJP and presidential campaigns dominate on volume, and this is a public transparency report.",
+    "Spend and views are ranges, not numbers. India's BJP tops the row count. Google's own report already ranks advertisers."
+   ]
+  },
+  {
+   "table": "ENERGY__FED_EIA861_RELIABILITY",
+   "score": 5.5,
+   "angles": [
+    "Which utilities left customers in the dark longest in 2024? Altamaha EMC averaged 17,300 minutes, about 12 days, per customer.",
+    "Which utilities left customers dark longest in 2024? Altamaha EMC averaged 17.3K minutes (about 12 days) and it is a Georgia co-op."
+   ],
+   "checks": [
+    "Rank utilities by SAIDI with and without major event days, and check whether the top ones are all in the Hurricane Helene path in GA, NC and SC.",
+    "Rank IEEE_SAIDI_WITH_MED against WITHOUT_MED per utility. A huge gap means storm-driven outages. A high WITHOUT_MED number means chronic neglect."
+   ],
+   "boring": [
+    "The top outage numbers are almost certainly Hurricane Helene co-ops in Georgia and North Carolina. The storm is the story, not the utility.",
+    "Hurricane Helene hit Georgia and the Carolinas in 2024, and every top name is a co-op in its path. WITH_MED includes major events by design."
+   ]
+  },
+  {
+   "table": "ENERGY__FED_EIA861_SALES_ULT_CUST",
+   "score": 5.5,
+   "angles": [
+    "Which utilities charge households the highest price per kWh, and how far above the state average?",
+    "Which utilities charge households the most per kWh, and how far above their state's average?"
+   ],
+   "checks": [
+    "RESIDENTIAL_REVENUES / RESIDENTIAL_SALES_MWH by utility, ranked within state, customers over 10K.",
+    "RESIDENTIAL_REVENUES_THOUSAND_DOLLARS*1000/(RESIDENTIAL_SALES_MWH*1000) by utility, compared to the state median, keeping utilities with at least 10K customers."
+   ],
+   "boring": [
+    "Big utilities lead on revenue because they're big; price gaps are known (Hawaii, California) and regulated.",
+    "Big-utility revenue shares just track population. Hawaii, Alaska and California are known to be high, and rates by utility are already published by EIA and in the press."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS",
+   "score": 5.0,
+   "angles": [
+    "Which facilities report the most toxic air pollutants (e.g., ethylene oxide, benzene) next to homes, and whose emissions rose?",
+    "Facilities whose self-reported toxic releases (TRI) disagree with what the state inventory (EIS) says for the same pollutant and year."
+   ],
+   "checks": [
+    "Filter TRIS rows to a named hazardous pollutant, sum pounds by REGISTRY_ID and year, join facility name and county.",
+    "Pivot by REGISTRY_ID, pollutant, year across PGM_SYS_ACRNM; rows where TRIS and EIS differ by 10x."
+   ],
+   "boring": [
+    "Big emitters are big plants; EPA's own TRI and EJScreen already publish these rankings.",
+    "Different programs measure different things (thresholds, estimation methods, units); 531K zeros and repeated tiny values are defaults."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_ECHO",
+   "score": 6.0,
+   "angles": [
+    "Which facilities keep failing inspections for years (quarters in noncompliance) and never get fined?",
+    "Which facilities and parent companies carry the biggest real EPA penalties, and which ones break the rules for years with zero formal action?"
+   ],
+   "checks": [
+    "Facilities with the most QUARTERS_WITH_NONCOMPLIANCE and zero formal actions or penalties, grouped by parent/state.",
+    "Rank facilities by LAST_PENALTY_AMT_ALLOCATED (not TOTAL_PENALTIES) and by QUARTERS_WITH_NONCOMPLIANCE where FORMAL_ACTION_COUNT = 0; look at the top 20 names."
+   ],
+   "boring": [
+    "TOTAL_PENALTIES repeats shared-case penalties per facility (F-013) and the SNC flag is a constant; the $1.7B top is one global settlement copied onto sites.",
+    "TOTAL_PENALTIES repeats one shared-case penalty on every facility in the case (F-013, UPS reads $503M); the 1.7B top FRS_ID is probably one consent decree copied around. SNC flag is a constant 'N'. Dates start in year 1016."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_EGRID_PLANT_2022",
+   "score": 5.0,
+   "angles": [
+    "Which named power plants put out the most CO2 or NOx per megawatt-hour, and do they sit in poor or majority-Black counties?",
+    "Which named power plants and owners put out the most CO2 or SO2 per megawatt-hour, and do they sit in poor or redlined areas."
+   ],
+   "checks": [
+    "Rank plants by CO2 emission rate in lb/MWh where net generation is over 100,000 MWh, then join county FIPS to census income",
+    "Rank plants by annual CO2 emissions and emission rate per MWh, with owner/utility name and state, top 25."
+   ],
+   "boring": [
+    "Old coal plants are dirtiest per MWh; that is widely known and already mapped by EPA itself",
+    "Big coal plants emit the most; widely charted already. The CHP power-to-heat ratio 'lopsidedness' is two junk values (320K, 260K) on a 6%-filled column."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_FCES_PCES",
+   "score": 5.0,
+   "angles": [
+    "Which states stopped inspecting major air polluters, and which big emitters went 5+ years with no full evaluation?",
+    "Major air polluters that states have not inspected in years, versus how often they are cited."
+   ],
+   "checks": [
+    "Last full evaluation date per facility, joined to the major-source flag and GHGRP emissions, ranking big emitters by years since inspection.",
+    "Take the max ACTUAL_END_DATE per facility, join to the ICIS-Air facility table for major-source status, and count majors with no full evaluation in 5+ years."
+   ],
+   "boring": [
+    "Inspection frequency is negotiated state by state. Year 0025 dates are typos.",
+    "Year 0025 dates are typos. The schedule is set by EPA policy (every 2-3 years for majors), so gaps may be pull gaps."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_STACK_TESTS",
+   "score": 6.0,
+   "angles": [
+    "Which plants fail smokestack tests again and again and keep operating without a penalty?",
+    "Which plants fail smokestack tests again and again, and did EPA ever act on it?"
+   ],
+   "checks": [
+    "Per facility, count failed tests 2015-2025, join to ECHO/ICIS-Air formal actions and penalties.",
+    "Count failed tests per facility since 2015; top 25 with their ECHO formal actions and penalties."
+   ],
+   "boring": [
+    "Failures are often retests the same week; bad dates (year 0201) show dirty entry.",
+    "Failures may be retests and paperwork; a year of 0201 shows typo dates. The summary shows no pass/fail counts yet."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "ENVIRONMENT__FED_EPA_NPDES_NPDES_CS_VIOLATIONS",
+   "score": 5.5,
+   "angles": [
+    "Which sewer and industrial dischargers have missed court-ordered cleanup deadlines for decades? Tennessee permits lead the list.",
+    "Which sewer plants and factories have missed court-ordered cleanup deadlines the most, and for how many years?"
+   ],
+   "checks": [
+    "Per NPDES_ID: count of missed schedule events, first and last schedule date, and whether the latest is still unmet. Join to facility names and ECHO penalties.",
+    "Count rows and distinct years per NPDES_ID, top 25, with the span from first to last SCHEDULE_DATE; join ECHO for names."
+   ],
+   "boring": [
+    "COMP_SCHEDULE_NMBR is a sequence number, not a count of violations, so the Tennessee sums mean nothing. Many misses are paperwork deadlines.",
+    "COMP_SCHEDULE_NMBR is a schedule ID number, not an amount; its sum (TN0025011 35.9K) means nothing. Many rows can be one late report logged per event. Municipal sewer plants on consent decrees dominate."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_NPDES_NPDES_PS_VIOLATIONS",
+   "score": 5.0,
+   "angles": [
+    "Which sewer plants and factories missed Clean Water Act construction deadlines for decades without penalty?",
+    "Which sewage plants and permittees miss their Clean Water Act fix-it deadlines over and over?"
+   ],
+   "checks": [
+    "Count unachieved schedule events (C40) by NPDES_ID, join to permittee name and penalty totals, top 20",
+    "Count C40 'unachieved' events by NPDES_ID in the last 10 years; top 20 with permittee names."
+   ],
+   "boring": [
+    "Missed report deadlines are paperwork; municipal sewer consent decrees routinely slip",
+    "Most violations are late paperwork; municipal sewer systems under long consent decrees rack up schedule events by design."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_NPDES_NPDES_QNCR_HISTORY",
+   "score": 5.5,
+   "angles": [
+    "Which water-discharge permit holders have been in significant noncompliance quarter after quarter for years?",
+    "Which water-permit holders sat in significant noncompliance quarter after quarter for years with no formal action?"
+   ],
+   "checks": [
+    "Per NPDES_ID, count quarters with HLRNC in the significant codes (S, E and similar), then join to ECHO and FRS for names.",
+    "Count quarters with HLRNC in (S, E) per NPDES_ID over 2016-2025, then join to ECHO formal actions and FRS names. Rank by count."
+   ],
+   "boring": [
+    "Violation codes are letters that need the EPA code key. Small municipal plants dominate chronic noncompliance. Known trap: the ECHO SNC flag is a constant.",
+    "Chronic noncompliance by small municipal plants is well documented and often just late paperwork. Known trap: ECHO's serious-violator (SNC) flag is a constant."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_NPDES_NPDES_SE_VIOLATIONS",
+   "score": 6.0,
+   "angles": [
+    "Which sewage plants and factories have the most spills and one-off violations; Georgia permits GA0024147 (1.4K) and GA0039012 (1.2K) lead?",
+    "Which sewer systems and plants rack up the most spills (single-event violations), for example two Georgia permits with 1.4K and 1.2K events, and did they ever face formal enforcement?"
+   ],
+   "checks": [
+    "Name the top 20 NPDES_IDs from the facilities table and count violations by year and type, especially sewer overflows.",
+    "Count rows by NPDES_ID since 2015 for spill/overflow codes, and join to the NPDES facilities table and formal enforcement actions."
+   ],
+   "boring": [
+    "Big city sewer systems log every overflow as a separate event, and many are under consent decrees already.",
+    "Big city sewer systems report every overflow, so size drives counts. Top code D0017 is a generic permit violation, and consent-decree reporting inflates some permits."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_RCRA_EVALUATIONS",
+   "score": 5.0,
+   "angles": [
+    "Which states almost never find violations in their hazardous-waste inspections, compared with EPA inspecting the same kind of sites?",
+    "Which states almost never find violations when they inspect hazardous-waste handlers, and which handlers go years without an inspection?"
+   ],
+   "checks": [
+    "Compute the share of evaluations with a violation found, by EVALUATION_AGENCY (S vs E) and state, for 2015-2025.",
+    "Share of evaluations with a violation found, by ACTIVITY_LOCATION and agency (S vs E), for 2015-2025."
+   ],
+   "boring": [
+    "EPA targets its inspections at known bad actors, so its hit rate is higher by design. State inspections include routine record reviews.",
+    "92% are state inspections, and inspection intensity follows state program funding. The year-0005 dates are typos."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "ENVIRONMENT__FED_EPA_RCRA_VIOSNC_HISTORY",
+   "score": 6.0,
+   "angles": [
+    "Which hazardous-waste sites have sat in violation month after month for decades?",
+    "Hazardous-waste sites flagged in violation month after month for decades with no fix, named."
+   ],
+   "checks": [
+    "Longest consecutive VIO_FLAG='Y' streak by site, join to facility name.",
+    "Count months with VIO_FLAG='Y' per handler ID, then the longest unbroken run, top 25 with names from the RCRA handler table."
+   ],
+   "boring": [
+    "96% of rows are Y because the table only lists sites with a violation; long streaks can be paperwork never closed out.",
+    "The table mostly logs violating sites (2.6M Y rows), and flags carry forward until someone closes them in the system, so long runs may be paperwork, not pollution."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_SDWA_SDWA_EVENTS_MILESTONES",
+   "score": 6.0,
+   "angles": [
+    "Which water systems serving the most people have no lead pipe inventory (LSLI) or PFAS test on file, past the federal deadlines?",
+    "Which water systems, and how many people, missed the October 2024 lead service line inventory deadline or the PFAS testing milestones?"
+   ],
+   "checks": [
+    "Join to PUB_WATER_SYSTEMS on PWSID. Find active community systems with no LSLI event, and rank them by POPULATION_SERVED_COUNT.",
+    "From EVENT_MILESTONE_CODE='LSLI', count PWSIDs with no completion event, then join SDWA_PUB_WATER_SYSTEMS for POPULATION_SERVED_COUNT and state."
+   ],
+   "boring": [
+    "States report milestones late or not at all to EPA, so a missing event means the state never sent it, not that the system missed the deadline.",
+    "Codes may record the requirement, not a failure. Small systems are on different schedules. EPA publishes its own LSLI compliance summaries."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_SDWA_SDWA_PUB_WATER_SYSTEMS",
+   "score": 5.0,
+   "angles": [
+    "Where are big populations served by systems owned by private or for-profit operators, and do those systems have more violations?",
+    "Denominator for water stories: people served per system, owner type and source. Alone, it could show private for-profit systems serving large populations."
+   ],
+   "checks": [
+    "Count active community systems by OWNER_TYPE_CODE and total their population served. The violations part needs the SDWA violations table joined on PWSID.",
+    "Filter active systems, group by OWNER_TYPE_CODE for SUM(POPULATION_SERVED_COUNT), and join to violations for health-based violations per million served."
+   ],
+   "boring": [
+    "A roster is a denominator. Most rows are inactive or tiny wells, and the 9M max rows are wholesalers that double count downstream systems.",
+    "Most rows are inactive. The top PWSIDs at 9.0M each look like wholesalers double-counting their retail customers' populations. It is a roster."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_EPA_SDWA_SDWA_SITE_VISITS",
+   "score": 5.5,
+   "angles": [
+    "Which drinking-water systems went years without the sanitary survey the rules require every 3-5 years, and how many people drink from them?",
+    "Drinking water systems serving many people that have gone years without a sanitary survey, or that keep getting 'significant deficiency' grades."
+   ],
+   "checks": [
+    "Max VISIT_DATE per PWSID where VISIT_REASON_CODE='SNSV', joined to the SDWA systems table for population, listing systems with no survey since 2018.",
+    "Per PWSID, take the max VISIT_DATE of reason SNSV and join to the SDWA systems table for population served. Count large systems with no survey in 5+ years."
+   ],
+   "boring": [
+    "State reporting to EPA is patchy, so a missing survey can be a missing upload. The 1900 dates are placeholders.",
+    "The 1900-01-01 dates are sentinels. States log visits unevenly, so a gap may mean a record gap, not a skipped survey."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_FRACFOCUS_DISCLOSURE_LIST",
+   "score": 5.0,
+   "angles": [
+    "Which operators and counties use the most water per frack job, and in drought basins?",
+    "Which operators and counties used the most fresh water per frack job, and how fast has water per well grown?"
+   ],
+   "checks": [
+    "Sum TOTAL_BASE_WATER_VOLUME by operator and county, 2019-2024; rank the top 20 operators and the top counties in the Permian.",
+    "By year and operator, take the median and SUM of TOTAL_BASE_WATER_VOLUME, dropping values over about 100M gallons, and look at the top 20 rows by hand for unit typos."
+   ],
+   "boring": [
+    "The TVD leaders (J Cleo Thompson at 2.1B feet) are typos, not deep wells. Water per well grows with lateral length, a known industry trend.",
+    "The TVD lopsidedness is a typo: a max of 1.2B feet of vertical depth is impossible, so J Cleo Thompson 'leading' is a data-entry error. Bigger water use per well is a well-known trend in the industry."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "ENVIRONMENT__FED_NOAA_STORM_EVENTS",
+   "score": 5.0,
+   "angles": [
+    "Which counties keep getting hit by deadly storms, and do federal disaster dollars follow the deaths? Heat and flood deaths may outrun tornadoes.",
+    "Which counties keep getting hit by deadly storms, and has the damage bill grown per event since 1996? 19.3K direct deaths, 86.9K injuries."
+   ],
+   "checks": [
+    "Sum DEATHS_DIRECT+DEATHS_INDIRECT by EVENT_TYPE and decade, then by state/county for 2010-2025.",
+    "Sum DEATHS_DIRECT and parsed DAMAGE_PROPERTY by year and EVENT_TYPE, 1996+ only (the record got fuller over time)."
+   ],
+   "boring": [
+    "Deaths pile up in a few famous disasters (Joplin 2011, Katrina); 88% of injuries under a 'None' county name is a load artifact, not a place.",
+    "Big single events (Joplin 2011 tornado, heat waves) drive the tails. The 'top county' of 76.8K is None: TOR_OTHER_CZ_NAME is only filled on tornado crossings. Well-covered public data; heavily reported already."
+   ]
+  },
+  {
+   "table": "ENVIRONMENT__FED_PHMSA_FLAGGED_INCIDENTS",
+   "score": 5.5,
+   "angles": [
+    "Which gas pipeline operators leak the most gas and have repeat serious incidents? Look past PG&E's famous San Bruno blast.",
+    "Which gas pipeline operators have the most uncontrolled gas releases per mile since 2010, beyond the fatal few?"
+   ],
+   "checks": [
+    "Group by OPERATOR_NAME: incident count, total unintentional release volume, deaths and injuries since 2010. Rank by release volume.",
+    "Sum UNINTENTIONAL_RELEASE_VOLUME and count incidents by OPERATOR_NAME, divided by pipeline miles from PHMSA annual reports (not loaded here)."
+   ],
+   "boring": [
+    "This is transmission and gathering lines only, 2.0K rows. PG&E's 10 deaths are almost all San Bruno 2010, already widely covered. Big operators have more pipe.",
+    "34 deaths total, 8 in one row: PG&E San Bruno 2010, heavily reported. Only gas transmission/gathering is loaded, so no distribution or hazardous-liquid lines."
+   ]
+  },
+  {
+   "table": "FCT_LIBRARY_SNAPSHOT",
+   "score": 6.0,
+   "angles": [
+    "Which of the 619 Epstein files vanished or changed after first being seen, and when?",
+    "Which of the 619 tracked Epstein document files vanished or changed after first appearing, and when."
+   ],
+   "checks": [
+    "List files whose last-seen date is well before the latest crawl, with first and last observed dates.",
+    "List files whose LAST_OBSERVED_AT is well before the latest crawl date, i.e. files no longer seen, with first and last dates."
+   ],
+   "boring": [
+    "A file 'vanishing' may be a URL rename or a crawler gap. SOURCES_OBSERVING tops out at 2.",
+    "The URLs may have been renamed or moved, not removed. Two sources observing means a crawler gap can look like a disappearance."
+   ]
+  },
+  {
+   "table": "FINANCE__FED_EPA_ICIS_FEC_ICIS_FEC_EPA_INSPECTIONS",
+   "score": 5.0,
+   "angles": [
+    "Which facilities get inspected over and over with no enforcement after, and which regions barely inspect at all?",
+    "Inspection deserts: which EPA regions and states inspect the fewest facilities per violation, and which serious violators went years without an inspection."
+   ],
+   "checks": [
+    "Inspections per REGISTRY_ID joined to ICIS enforcement cases; ratio by EPA region and state.",
+    "Inspections per year by EPA_REGION_CODE and state. Then join REGISTRY_ID to ECHO violators and find the longest gap since the last inspection."
+   ],
+   "boring": [
+    "The top registry IDs (2,200 inspections) are probably multi-permit sites or stormwater programs. The 0201 date is a typo.",
+    "Inspection counts follow the program mix and state delegation. Dates start at year 0201, a junk-date trap."
+   ]
+  },
+  {
+   "table": "FINANCE__FED_FEC_BULK_COMMITTEES",
+   "score": 5.5,
+   "angles": [
+    "Scam PACs: one treasurer (Datwyler, 343 committees) and one Woodbend Dr address (204 committees) run hundreds of committees. Is that a PAC mill that raises money and spends it on itself?",
+    "Scam-PAC hunt: one treasurer, THOMAS DATWYLER, runs 343 committees, and 204 committees share 1742 WOODBEND DR. Who are they, and where did the donors' money go?"
+   ],
+   "checks": [
+    "Group committees by TRES_NM and street address, then for the top 10 clusters sum receipts vs spending to candidates from FEC committee-to-candidate and operating expenditures.",
+    "Group by TRES_NM and street address with a count over 20, list the committee names, then join to FEC itemized receipts and disbursements for money in vs money spent on anything but fundraising."
+   ],
+   "boring": [
+    "Thomas Datwyler is a known compliance-service treasurer, and 1742 Woodbend Dr is likely a filing-service address. Those are legitimate vendors serving many small committees. Scam PACs have been covered but still recur.",
+    "Professional compliance treasurers legitimately serve hundreds of committees, and a shared address is often just the law firm. The committee names repeating 148 times hint at a load fanout."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES",
+   "score": 6.0,
+   "angles": [
+    "Which outside groups poured the most into House races they lost, or into primaries against their own party?",
+    "Which super PACs spent the most opposing named House and Senate candidates, and which races saw outside money exceed the candidates' own spending?"
+   ],
+   "checks": [
+    "Sum expenditure by SPE_NAM, candidate and support/oppose for primary (ELE_TYPE P) races. Join to results to find the biggest losing bets.",
+    "SUM(amount) by SPE_NAM, CAND_ID and support/oppose flag for the 2024 cycle, joined to the candidate master and candidate totals for the outside-to-inside ratio per race."
+   ],
+   "boring": [
+    "Super PAC spending is watched closely by OpenSecrets and the press. Totals are driven by a few presidential and Senate races.",
+    "33.9K rows have a blank CAND_ID. Memo and amended 24/48-hour reports double-count unless you dedupe to final filings. Top spenders (CLF, AFP) are well covered by OpenSecrets."
+   ]
+  },
+  {
+   "table": "FINANCE__FED_PCAOB_FORM_AP_FILINGS",
+   "score": 5.0,
+   "angles": [
+    "Audit partners signing hundreds of public-company audits a year, or partners behind many later-restated or fraud companies.",
+    "Audit partners who signed for companies that later restated or were charged with fraud, and what else they sign."
+   ],
+   "checks": [
+    "Count distinct issuers per engagement partner per year; top 20, then join to SEC enforcement.",
+    "Count issuers per lead partner; join ISSUER_CIK to SEC enforcement or restatement filings."
+   ],
+   "boring": [
+    "Big fund-complex audits give one partner hundreds of funds legitimately.",
+    "Big partners sign many audits by design; needs an outside list of bad audits to go anywhere."
+   ]
+  },
+  {
+   "table": "FINANCE__FED_SEC_13F_HOLDINGS",
+   "score": 5.0,
+   "angles": [
+    "Which fund managers hold the stocks of companies members of Congress oversee, or which filers report impossible values?",
+    "Which managers crowd into the same stocks, and who held what before big moves?"
+   ],
+   "checks": [
+    "Top 20 filers by VALUE_USD per quarter, and count rows over $1T to test for units errors (thousands vs dollars)",
+    "Check VALUE_USD units by filing period (thousands before 2023, dollars after) and count rows with value over 1T."
+   ],
+   "boring": [
+    "$16.9 quadrillion total means value units changed in 2023 (thousands to dollars) and typos; the story is data error, not wealth",
+    "Sum of 16,907 trillion is impossible: value units switched from thousands to dollars and some filers typed shares into value; max 232T is a typo, the top-1% share is an artifact."
+   ]
+  },
+  {
+   "table": "FINANCE__FED_SENATE_EFD_PTR",
+   "score": 5.0,
+   "angles": [
+    "Senators trading stocks in industries their committees oversee, 2020-2026; Tuberville and newcomer Armstrong lead volume.",
+    "Tuberville and new senators' trades vs committee assignments and bill timing, 2020-26."
+   ],
+   "checks": [
+    "Join trades to committee assignments and ticker sector; share of trades in overseen sectors vs baseline.",
+    "Trades by senator and sector vs committee jurisdiction, like F-009 but for 2020-26."
+   ],
+   "boring": [
+    "Senate trading is a famous story and F-009 already did the committee angle.",
+    "F-009 already did committee vs bank-stock trades for 2012-20; Tuberville's trading is heavily reported. Amounts are ranges."
+   ]
+  },
+  {
+   "table": "FINANCE__SENATE_TRADES",
+   "score": 5.5,
+   "angles": [
+    "Which senators traded stocks in companies before hearings or bills their committees handled, 2021-26 (beyond the 2012-20 bank finding)?",
+    "Did senators trade stocks in companies that lobbied their committees in the same quarter?"
+   ],
+   "checks": [
+    "Join trades to the 2021-26 committee roster and count sector trades per committee member against non-members.",
+    "Join trades to LDA lobbying on issuer name and quarter, filtered to the senator's committee."
+   ],
+   "boring": [
+    "Sponsors were matched by last name only (14.8K of 15.2K rows), so senators who share a surname can be mixed up. Perdue and Tuberville are already notorious. F-009 already used this table.",
+    "The Banking-committee finding already used this table. Perdue and Tuberville are famous stories. Trap: 97% of senators are matched by last name only."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "FOREIGN_INFLUENCE__FED_FARA_BULK",
+   "score": 5.0,
+   "angles": [
+    "Which US firms and ex-officials work for which foreign governments, and which principals spend the most on DC influence?",
+    "Which foreign governments hired the most US registrants, and which DC firms carry the most foreign principals?"
+   ],
+   "checks": [
+    "Separate the four stacked files, then count registrants per FOREIGN_PRINCIPAL country among non-blank rows.",
+    "Filter rows with a filled FOREIGN_PRINCIPAL and count distinct registrants per foreign country, by decade."
+   ],
+   "boring": [
+    "97% of PERSON_NAME and 92% of FOREIGN_PRINCIPAL are blank because the four files do not share columns. OpenSecrets already covers FARA.",
+    "Four files are stacked. 97% of rows have a blank PERSON_NAME and 92% a blank FOREIGN_PRINCIPAL, so most rows are document stubs. There are no dollar amounts in this pull."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_CMS_HOSPICE",
+   "score": 5.5,
+   "angles": [
+    "How many new hospices were certified in LA County and Arizona after 2019, and how many share one address or one owner?",
+    "Hospice-mill clusters: how many hospices were certified since 2019 at shared addresses or phones, especially in LA County, and are they still certified?"
+   ],
+   "checks": [
+    "Count CERTIFICATION_DATE by year and county. Group by address to find several CCNs at one street address.",
+    "Count CCNs by normalized address and phone, then by county and certification year, focusing on CERTIFICATION_DATE >= 2019."
+   ],
+   "boring": [
+    "The LA hospice fraud surge is already a big ProPublica/LA Times story, and CMS has named it.",
+    "LA hospice fraud is already widely reported (LA Times, ProPublica, CMS's own moratorium). It is a roster only, with no money until joined to Part A claims or ownership."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_CMS_HOSPITAL_COMPARE",
+   "score": 5.0,
+   "angles": [
+    "Do 1-star hospitals still pull top Medicare dollars or pay executives well? The star rating works as the outcome to join nonprofit and Medicare money against.",
+    "Do one-star hospitals cluster in particular chains or in the nonprofits from F-003 that pay executives more than their charity care?"
+   ],
+   "checks": [
+    "Join HOSPITAL_OVERALL_RATING by CCN to the F-003 nonprofit hospital set, and compare officer pay and charity care for 1-star vs 5-star hospitals.",
+    "Join FACILITY_ID (the CCN) to the F-003 hospital set and compare star distributions."
+   ],
+   "boring": [
+    "Low ratings track poor, safety-net patient mix. Star ratings are widely covered. 41% of hospitals have no rating.",
+    "41% have no star rating. Names like MEMORIAL HOSPITAL repeat across different hospitals, so join on the CCN, never the name."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_CMS_NURSING_HOME_DEFICIENCIES",
+   "score": 5.5,
+   "angles": [
+    "Which chains get cited for severe harm (scope/severity G+) repeatedly and never pay?",
+    "Which chains get cited most for serious harm-level deficiencies, per home and per bed?"
+   ],
+   "checks": [
+    "Severity G-L deficiencies per bed by chain owner, with fines joined.",
+    "Count citations at scope/severity G or higher by chain (via ownership), per bed."
+   ],
+   "boring": [
+    "F-021 and F-029 already mined nursing-home chains and abuse flags; state survey intensity drives counts.",
+    "Nursing-home chains are already covered by F-021 and F-029; this mostly adds more of the same."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_CMS_RURAL_HEALTH_CLINIC_ENROLLMENTS",
+   "score": 6.0,
+   "angles": [
+    "Who is rolling up rural health clinics: one NPI (1316602774) sits behind 75 clinics. Is it private equity chasing the uncapped RHC payment rate?",
+    "Who owns rural health clinics: one NPI sits behind 75 clinics. Are chains or private equity rolling up RHCs to capture the grandfathered uncapped per-visit rate?"
+   ],
+   "checks": [
+    "Name the organization behind the top 10 NPIs by clinic count, then join to CMS RHC ownership for PE or chain owners and certification dates.",
+    "Group by the organization NPI and legal name, then count clinics, states and incorporation dates. Join to PECOS ownership for the top 20 owners."
+   ],
+   "boring": [
+    "Hospital systems legitimately run many clinics under one NPI. KY and TX lead because they are rural.",
+    "Hospital systems legally own many RHCs as provider-based clinics, and KY/TX/TN rank high because they are rural."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "HEALTH__FED_DEA_ARCOS",
+   "score": 6.0,
+   "angles": [
+    "Which distributors and pharmacies shipped per-capita pill volumes far beyond their towns, beyond the famous Kermit WV pharmacies?",
+    "Which distributors and pharmacies moved pills far out of proportion to local population? Top reporter RW0294493 alone has 15.9M in QUANTITY."
+   ],
+   "checks": [
+    "Sum DOSAGE_UNITS by buyer DEA number and year, divide by county population from DIM_TRACT, and list the top 25 buyers outside WV, KY and OH.",
+    "Sum DOSAGE_UNITS by BUYER_DEA_NO and BUYER_COUNTY, divide by county population from DIM_TRACT, and rank pills per person by pharmacy."
+   ],
+   "boring": [
+    "The Washington Post published this exact data in 2019, and F-002 already uses it for counties. Top buyers are often hospital or long-term-care pharmacies serving many patients.",
+    "The Washington Post published this exact dataset in 2019, and F-002 already uses it. Big reporters are the three national distributors, and QUANTITY counts packages, not pills."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_FDA_CAERS",
+   "score": 5.5,
+   "angles": [
+    "Which named supplements and cosmetics drew the most serious reports (deaths, hospital stays), and did the MoCRA law in 2022-23 change reporting?",
+    "Which named supplements, foods and cosmetics are tied to the most deaths and hospitalizations reported to the FDA, and has any stayed on sale."
+   ],
+   "checks": [
+    "Count reports by product and brand, where the outcome includes death or hospitalization, by year.",
+    "Count reports with death or hospitalization outcomes by product brand name, then compare to the prior 5 years."
+   ],
+   "boring": [
+    "Reports are voluntary and spike with news coverage and lawsuits (hair relaxers, kratom). Counts are not rates.",
+    "Voluntary reports: counts track publicity and lawsuits, not true risk. Famous cases (kratom, WEN hair care, energy drinks) are already reported."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_FDA_DEVICE_510K",
+   "score": 5.0,
+   "angles": [
+    "Which cleared devices were later recalled Class I, and which 'predicate' devices spawn the most recalled descendants?",
+    "Devices cleared by 510(k) that later hit Class I recalls: which predicate devices and applicants seed the most recalled clearances."
+   ],
+   "checks": [
+    "Join 510K numbers to FDA_DEVICE_ENFORCEMENT recalls, count Class I recalls per applicant and product code",
+    "Join 510k K-number to FDA device recall table; count Class I recalls per applicant and per product code since 2010."
+   ],
+   "boring": [
+    "The 510k predicate loophole is well reported (ICIJ Implant Files); big makers have the most clearances and so the most recalls",
+    "Big makers file the most clearances; 510(k)-to-recall links are a known theme (ICIJ Implant Files)."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_FDA_DEVICE_PMA",
+   "score": 5.5,
+   "angles": [
+    "High-risk devices changed by 30-day notice (no FDA review) that were later recalled: which makers lean hardest on the no-review path?",
+    "Which high-risk devices were changed most often through 30-day notices with no fresh review, and did those devices later rack up recalls or injury reports?"
+   ],
+   "checks": [
+    "Count 30-Day Notice supplements by applicant and product code, then join PMA number to the FDA recall table and compare recall rates against Normal-track devices.",
+    "Count supplements per original PMA by SUPPLEMENT_TYPE, then join the top 20 to FDA recalls or MAUDE by PMA number."
+   ],
+   "boring": [
+    "30-day notices are meant for routine manufacturing changes. Medtronic tops the list because it holds the most PMAs.",
+    "Heavy supplement counts mostly track long-lived product lines at large makers (Medtronic). 30-day notices for manufacturing changes are routine."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_FDA_DRUG_ENFORCEMENT",
+   "score": 5.5,
+   "angles": [
+    "Which drugmakers rack up repeat Class I recalls, and do the same firms keep selling to Medicare and the VA?",
+    "Which drugmakers have the most Class I (can kill) recalls, and do repeat offenders cluster at the same plants?"
+   ],
+   "checks": [
+    "Parse the recalling firm out of the text (MANUFACTURER_NAME_LIST is 82% null) and count Class I recalls per firm since 2016.",
+    "Group Class I recalls by RECALLING_FIRM (MANUFACTURER_NAME_LIST is 82% null) and by year, and pull the top 20 with their REASON_FOR_RECALL text."
+   ],
+   "boring": [
+    "Big generic and injectables makers (Hospira, Sun) recall more because they make more products. Many recalls are lot-level sterility issues. The manufacturer field is mostly empty.",
+    "Hospira and Sun are huge generic makers, so more products means more recalls. One event can split into many product rows, so count distinct EVENT_ID."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "HEALTH__FED_HHS_OIG_LEIE",
+   "score": 5.5,
+   "angles": [
+    "Banned providers still getting paid: excluded people in Medicare billing, Relief Fund, or other federal money.",
+    "Banned providers still getting federal health money: relief fund payments, Medicare billing, Open Payments."
+   ],
+   "checks": [
+    "LEIE name+state (NPI only 10% filled) joined to Provider Relief Fund and Part B/D billing after EXCLUSION_DATE.",
+    "Name-and-state join of LEIE business names to Provider Relief Fund payees dated after EXCLUSION_DATE."
+   ],
+   "boring": [
+    "F-020 already did the Open Payments cut; 90% missing NPI makes matches noisy; many are reinstated or nurses aides.",
+    "Only 8,661 of 83.8K rows have an NPI; most are nurse aides. The Open Payments angle is already F-020. EXCLUSION_SK repeats 617 times, so it is not a key."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_HRSA_SHORTAGE_AREAS",
+   "score": 5.0,
+   "angles": [
+    "Which counties have been marked short of doctors for decades without the gap closing, and how much federal clinic money went there?",
+    "Where have doctor shortages lasted longest, designated for decades and never lifted, and do they match opioid or overdose hot spots?"
+   ],
+   "checks": [
+    "Take the earliest designation date per county with the current score, and list places designated before 2000 that are still rated severe (score 18+).",
+    "Filter current designations, compute the years since the designation date, and join county FIPS to the CDC overdose table."
+   ],
+   "boring": [
+    "Rural shortage is a chronic, well-known condition. Designations persist because they unlock funding. 36K rows have a score of 0.",
+    "Designations are partly applications made to win funding, so a long-lived one can be a paperwork choice. HPSA_SCORE 0 marks withdrawn or proposed rows."
+   ]
+  },
+  {
+   "table": "HEALTH__FED_VA_SUICIDE_STATE",
+   "score": 5.0,
+   "angles": [
+    "Which states have the highest veteran suicide rates, and where are rates rising fastest?",
+    "States where the veteran suicide rate runs furthest above the national figure, and which are rising fastest."
+   ],
+   "checks": [
+    "VETERAN_SUICIDE_RATE_PER_100K by state, latest year vs 2010.",
+    "VETERAN_SUICIDE_RATE_PER_100K by state, comparing 2013 with the latest year, keeping states with at least 50 deaths."
+   ],
+   "boring": [
+    "Mountain West leads, tracking gun ownership and rurality; VA publishes this chart yearly; general-population comparison columns are empty.",
+    "The VA publishes these rankings every year. The general-population comparison column is empty. The 27% top-1% share is just the national total rows."
+   ]
+  },
+  {
+   "table": "HEALTH__FQHC_SITE_PEOPLE",
+   "score": 5.5,
+   "angles": [
+    "Are federally excluded clinicians listing practice addresses at community health centers that run on federal grants?",
+    "Are federally excluded clinicians listed at community health center addresses, and which centers have the most?"
+   ],
+   "checks": [
+    "Count rows flagged on the exclusion list, then check each exclusion date against the NPPES update date.",
+    "Count rows flagged on the exclusion list, grouped by health center site, then hand-check the top 10 NPIs' exclusion dates against their NPPES update dates."
+   ],
+   "boring": [
+    "This is an address match, not a staff roster, so a hospital-campus address sweeps in thousands of people. PEOPLE_AT_SITE repeats on every row (7.5K max). Known trap: 'FQHC staff is an address match.'",
+    "Known trap: it's an address match, not a roster. Shared hospital-campus addresses pull in thousands of people per site (the max is 4.7K), and exclusions may predate the listing."
+   ]
+  },
+  {
+   "table": "HOUSING__FED_FHFA_SUSPENDED_COUNTERPARTY",
+   "score": 5.0,
+   "angles": [
+    "People FHFA barred from mortgage business who still show up as loan officers, NMLS licensees or federal contractors."
+   ],
+   "checks": [
+    "Name + state match the 241 suspended against SAM exclusions and PPP/contract recipients; count hits after suspension date."
+   ],
+   "boring": [
+    "Most are individuals already convicted of mortgage fraud; F-015 showed name matches against exclusions are thin."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "HOUSING__FED_HUD_FHA_SF_PORTFOLIO_SNAPSHOT",
+   "score": 5.5,
+   "angles": [
+    "Homebuilders' own mortgage arms (DHI, Lennar) lead FHA lending. Do their borrowers pay higher rates or buy at higher prices than borrowers at other lenders?",
+    "Homebuilders' own mortgage arms (DHI, Lennar) are among the biggest FHA lenders. Do builder-lender loans carry higher rates or bigger balances than independent lenders' loans in the same county, meaning taxpayer-insured risk on new-build subdivisions?"
+   ],
+   "checks": [
+    "Take median INTEREST_RATE and ORIGINAL_MORTGAGE_AMOUNT by ORIGINATING_MORTGAGEE_NAME in the same ZIP/county. Compare builder-affiliated lenders to everyone else.",
+    "Group by ORIGINATING_MORTGAGEE_NAME, flagging builder affiliates, for AVG(INTEREST_RATE), median ORIGINAL_MORTGAGE_AMOUNT and loan count, within the same county."
+   ],
+   "boring": [
+    "Builders buy down rates on new homes, so their numbers look different for known reasons. This is one month of loans.",
+    "It is one month, June 2026. DHI and Lennar top the list because they build the most entry-level homes and use rate buydowns, which would lower rates, not raise them. Builder-captive lending is already reported."
+   ]
+  },
+  {
+   "table": "HOUSING__FED_HUD_MF_FIRM_COMMITMENTS",
+   "score": 6.0,
+   "angles": [
+    "Which lenders and which cities drew the most federal mortgage insurance on apartments, and how much went to NYCHA PACT privatization deals?",
+    "Which lenders dominate FHA apartment insurance, and did any insured projects go to owners or managers who are barred or sanctioned?"
+   ],
+   "checks": [
+    "Sum MORTGAGE_AMOUNT and TOTAL_UNITS by lender and by 5-year period, then pull every PROJECT_NAME LIKE 'PACT%'.",
+    "Group MORTGAGE_AMOUNT by lender for FY2020-26 to get the top 10 share, then join project and lender names to SAM exclusions."
+   ],
+   "boring": [
+    "Big NYC buildings (Co-op City, PACT) top the list because they are the biggest projects. The share per row is flat: top 1% hold only 8%.",
+    "FHA multifamily is known to be concentrated among a few Delegated Underwriting lenders (Greystone, Walker & Dunlop). The top-ranked deals are NYC public housing (PACT) conversions."
+   ]
+  },
+  {
+   "table": "HOUSING__FED_HUD_MF_SECTION8_CONTRACTS",
+   "score": 5.0,
+   "angles": [
+    "Which private owners get HUD contract rents far above local fair market rent? The ratio reaches 472% of FMR.",
+    "Which private Section 8 landlords get contract rents far above local fair market rent (up to 4.7x), and who owns them?"
+   ],
+   "checks": [
+    "Rank contracts by RENT_TO_FMR_RATIO above 150 with ASSISTED_UNITS_COUNT, then join to owner/management names in the HUD property file.",
+    "List properties with RENT_TO_FMR_RATIO over 150 alongside ASSISTED_UNITS_COUNT and owner, and check whether they are elderly or service-enriched properties."
+   ],
+   "boring": [
+    "High ratios are usually elderly or special-needs buildings, or mark-up-to-market renewals set by rules. F-024 already used Section 8.",
+    "High ratios are often legal mark-up-to-market renewals or elderly and disabled buildings with services priced in. The table carries no dollar totals, so it is context for F-024."
+   ]
+  },
+  {
+   "table": "HOUSING__FED_MAPPING_INEQUALITY",
+   "score": 5.0,
+   "angles": [
+    "Do D-graded redlined neighborhoods today host more polluting plants, denied mortgages or nursing-home closures?",
+    "Do 1930s D-graded (redlined) neighborhoods today hold more polluting plants, more denials, fewer dollars: a join layer for F-007 and eGRID."
+   ],
+   "checks": [
+    "Spatial join HOLC polygons to EPA facility points, count per grade",
+    "Check if geometry exists (FIPS column is blank), then point-in-polygon EPA facilities or HMDA tracts by HOLC grade."
+   ],
+   "boring": [
+    "FIPS is blank on every row so it needs a geometry join; redlining-to-today stories have run many times",
+    "Redlining-today effects are widely reported; FIPS is empty so the join needs polygons, not a key."
+   ]
+  },
+  {
+   "table": "HOUSING__FED_USDA_RD_MFH_ACTIVE_PROJECTS",
+   "score": 6.0,
+   "angles": [
+    "How many rural subsidized apartments lose their affordability protection as USDA mortgages mature, and where?",
+    "How many rural subsidized apartments lose their affordability rules or rental help by 2030, and in which counties?"
+   ],
+   "checks": [
+    "Count PROJECT_SIZE_UNITS by state and by the year the loan matures or restrictions expire, 2026-2035, and pull vacancy rates.",
+    "Count units where the tax-credit or loan-maturity expiration dates fall in 2026-2030, grouped by state and manager, with vacancy rates shown."
+   ],
+   "boring": [
+    "The expiring-mortgage problem is known in housing-policy circles. Some dates are sentinels (1933 and 2098).",
+    "USDA and housing advocates track expiring Section 515 loans, and the maturing-mortgage problem is reported yearly. Dates like 1933 and 2098 are placeholders."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "INVESTIGATIONS__XC_WAYBACK_REPLAY_DOJ_LISTING",
+   "score": 5.0,
+   "angles": [
+    "Did DOJ quietly pull or change Epstein disclosure links between archive captures?",
+    "Did DOJ quietly add or remove links on its Epstein disclosure pages between captures (Dec 2025 to Jun 2026), and which documents vanished?"
+   ],
+   "checks": [
+    "Diff the set of HREFs under /epstein per CAPTURE_TIMESTAMP, and list the links that vanished.",
+    "For HREFs under /epstein, compute first and last CAPTURED_AT per HREF and list those absent from the newest capture of the same page."
+   ],
+   "boring": [
+    "Page links churn with site redesigns. The Epstein file releases are heavily covered.",
+    "Link churn is often just site redesigns, pagination and URL rewrites (dl?inline). A missing link can mean a moved file, not a removed one."
+   ]
+  },
+  {
+   "table": "JUSTICE__COUNTY_DOUBLE_BURDEN",
+   "score": 5.0,
+   "angles": [
+    "Which counties sit in the worst tenth for both overdose deaths and jailing, and are they getting opioid settlement or treatment money?",
+    "Which counties sit in the worst tenth on both overdose deaths and jail incarceration: the rural places jailing people while they die of overdoses?"
+   ],
+   "checks": [
+    "List the flagged counties with their state. Join to opioid settlement or SAMHSA grant data by FIPS.",
+    "Select the flagged counties with JAIL_RATE and OVERDOSE_METRIC, and check that jail rates over 5,000 per 100K are not tiny counties housing federal or ICE detainees."
+   ],
+   "boring": [
+    "This table is our own build and overlaps F-002 (pills vs overdoses). Rural Appalachia tops both lists for known reasons.",
+    "JAIL_RATE max of 34.5K per 100K means a small county renting beds to ICE or the state. F-002 already covers overdose geography. It is a derived table."
+   ]
+  },
+  {
+   "table": "JUSTICE__FED_CONSOLIDATED_SCREENING_LIST",
+   "score": 5.5,
+   "angles": [
+    "Blacklisted firms (Entity List, SDN) that still got US federal contracts, grants, PPP, or FDA device registration.",
+    "US-listed entities still getting federal contracts or grants, or appearing as SEC filers."
+   ],
+   "checks": [
+    "Name-match CSL entities to USAspending recipients and FDA establishments after START_DATE.",
+    "Name match of Entity List and SDN entities to USAspending contract recipients after START_DATE."
+   ],
+   "boring": [
+    "Name collisions; Chinese subsidiaries use different names; many listings are foreign with no US ties.",
+    "Mostly foreign names that should never appear in US spending; name matches will be few and noisy."
+   ]
+  },
+  {
+   "table": "JUSTICE__FED_COURTLISTENER_DISCLOSURE_GIFTS",
+   "score": 5.5,
+   "angles": [
+    "Which judges took the most gifts and from whom (bar groups, law firms, billionaires), and did they hear those donors' cases?",
+    "Which federal judges took gifts from groups with business before their court?"
+   ],
+   "checks": [
+    "Sum parsed VALUE_COL by judge and SOURCE, top 20, then check source names as parties in their dockets.",
+    "List gifts by SOURCE and judge; flag sources that are parties or law firms in the same judge's dockets."
+   ],
+   "boring": [
+    "Most gifts are small bar-dinner items; ProPublica covered Supreme Court gifts heavily; 2021-23 only.",
+    "2,000 rows, mostly bar-association dinners and book awards under $1,000. The judge-conflict thread is already F-001."
+   ]
+  },
+  {
+   "table": "JUSTICE__FED_COURTLISTENER_DISCLOSURE_POSITIONS",
+   "score": 6.0,
+   "angles": [
+    "Federal judges sitting on boards or trusts of organizations that appear as parties in their own cases.",
+    "Federal judges who sit on boards or trusts of organizations that later appear as parties in their cases. This is the F-001 recusal story, extended from stock to positions."
+   ],
+   "checks": [
+    "Match ORGANIZATION_NAME to party names in the judge's docket (reuse the F-001 case join) and count overlaps.",
+    "Match ORGANIZATION_NAME (multi-word only) to party names in the CourtListener dockets assigned to the same judge."
+   ],
+   "boring": [
+    "Most positions are family trusts, bar groups and the Federal Judges Association. F-001 already did the stock version.",
+    "Most positions are family trusts and bar or judges associations. Coverage is disclosures created 2021-23 only, and 'Trust #1' is redaction."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "JUSTICE__FED_COURTLISTENER_DISCLOSURE_SPOUSAL_INCOME",
+   "score": 5.5,
+   "angles": [
+    "Judges whose spouses draw income from law firms or companies that appear before them.",
+    "Judges whose spouses earn from law firms or companies that appear before them."
+   ],
+   "checks": [
+    "Match SOURCE_TYPE and source names to law firms and parties in each judge's assigned cases.",
+    "Extract firm names from SOURCE_TYPE and match to counsel and party names on the judge's dockets."
+   ],
+   "boring": [
+    "Most spouse lines are 'self-employed attorney' with no firm named. The disclosure data covers 2021-23 only.",
+    "Most sources are generic ('self-employed attorney'), and 3% are redacted. It is free text with no dollar amounts."
+   ]
+  },
+  {
+   "table": "JUSTICE__FED_FBI_CDE",
+   "score": 5.0,
+   "angles": [
+    "Which states solve the smallest share of murders and violent crimes, and how far has that fallen since 1985?",
+    "Which states' police solve the smallest share of murders and other violent crimes, and did that share collapse after the 2021 switch to NIBRS?"
+   ],
+   "checks": [
+    "CLEARANCES divided by OFFENSES for homicide by state and decade; rank 2020-23.",
+    "By state and year, compute SUM(CLEARANCES)/SUM(OFFENSES) for homicide, and flag years where OFFENSES drops more than 30% (a reporting gap)."
+   ],
+   "boring": [
+    "Falling clearance rates are well reported nationally, and the NIBRS switch in 2021 broke state reporting coverage.",
+    "The 2021 NIBRS transition caused big non-reporting holes (large states missing), so drops are reporting artifacts. Falling clearance rates are widely reported."
+   ]
+  },
+  {
+   "table": "JUSTICE__FED_FHFA_SUSPENDED_COUNTERPARTIES",
+   "score": 5.5,
+   "angles": [
+    "Mortgage fraudsters banned by FHFA: are any still licensed or lending, or got PPP/SBA loans after the ban?",
+    "People FHFA banned from Fannie/Freddie who still show up as HMDA lenders, PPP borrowers, or federal contractors."
+   ],
+   "checks": [
+    "Match names/companies to NMLS-like or PPP/SBA loan tables with dates after EFFECTIVE_DATE.",
+    "Join names+state to SAM, PPP, and NMLS/HMDA lender names; hand-check."
+   ],
+   "boring": [
+    "241 rows, mostly individuals already convicted; name matching is weak.",
+    "241 rows, mostly individuals convicted of mortgage fraud; hits will be few and name collisions likely (F-015 style null result)."
+   ]
+  },
+  {
+   "table": "JUSTICE__FED_FJC_IDB_CIVIL",
+   "score": 5.0,
+   "angles": [
+    "Who files the most federal civil suits (serial plaintiffs, the US government) and how often each case type ends with money?",
+    "Who files the most federal civil suits, how do they end, and how long do they sit? Repeat plaintiffs such as debt collectors and serial ADA filers."
+   ],
+   "checks": [
+    "Count cases and judgment outcome by PLAINTIFF and NATURE_OF_SUIT, excluding the 2099 pending year.",
+    "Group by PLAINTIFF and NATURE_OF_SUIT for filings since 2015, excluding FILE_DATE year 2099: case count, share dismissed, median days to close."
+   ],
+   "boring": [
+    "Amounts are in thousands and capped at 9,999 (known trap), so the money columns are ceilings; top plaintiffs are common surnames and USA.",
+    "AMOUNT_DEMANDED is in thousands and capped at 9999 (a known trap), so the max of 10K is a ceiling. The dollar columns are mostly zero. Plaintiff names are surnames only, like JOHNSON or USA."
+   ]
+  },
+  {
+   "table": "JUSTICE__INTL_OPENSANCTIONS",
+   "score": 5.5,
+   "angles": [
+    "Do sanctioned companies or people show up in US contracts, PPP loans, UK company filings or SEC filers?",
+    "Do any sanctioned people or companies show up as US contract recipients, PPP borrowers, or UK company officers?"
+   ],
+   "checks": [
+    "Match multi-word names on the Organization rows against the federal award recipient names, then hand-check the hits.",
+    "Match Organization-schema names (multi-word only) against USAspending recipient names and UK PSC names, then hand-check the hits."
+   ],
+   "boring": [
+    "71K rows is a slice, not the full set. Single-word names collide (known trap: 8% real). About 1K crypto-wallet rows are noise.",
+    "71K rows is likely a subset. Name matching on transliterated names fires false hits, and 958 rows are just crypto wallets."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "JUSTICE__INTL_UK_SANCTIONS_LIST",
+   "score": 5.0,
+   "angles": [
+    "Which UK-sanctioned people, firms or ships are not on the US list, or still hold US companies, contracts or ship calls?",
+    "UK-sanctioned ships and people still doing business in US data: vessels in US AIS pings, names in US contracts or SEC filings."
+   ],
+   "checks": [
+    "Name match UK list to CSL/SDN; list UK-only entries by regime.",
+    "Join non-blank IMO_NUMBER to NOAA AIS vessel IMO; count pings in US waters."
+   ],
+   "boring": [
+    "UK and US lists overlap heavily; gaps usually reflect different timing, not loopholes.",
+    "A list. 98% of rows have no IMO. Alias rows repeat one person many times; the story needs a second table."
+   ]
+  },
+  {
+   "table": "JUSTICE__RACIAL_JAIL_DISPARITY",
+   "score": 5.5,
+   "angles": [
+    "Which named counties jail Black residents at 10x+ the white rate, and did that gap widen after 2015?",
+    "Which counties jail Black residents at the highest multiple of the white rate, and did it get worse after 2015?"
+   ],
+   "checks": [
+    "Divide BLACK_JAIL_RATE by WHITE_JAIL_RATE per county-year; filter to counties with 5,000+ Black residents; rank the 2018 ratio and the change from 2010.",
+    "Compute BLACK_JAIL_RATE/WHITE_JAIL_RATE per county-year only where the county's Black population is over 1,000, then rank."
+   ],
+   "boring": [
+    "Vera's data, already widely covered. The 2.1M max rate is a tiny-denominator artifact, and only 57% of rows are filled.",
+    "Rates like 2.1M per 100K come from tiny Black populations in rural counties that hold federal or ICE detainees. This is Vera's own dataset, and Vera already publishes these disparities."
+   ]
+  },
+  {
+   "table": "JUSTICE__XC_RANSOMWARELIVE_VICTIMS",
+   "score": 5.0,
+   "angles": [
+    "Which hospitals, school districts and local governments were posted by ransomware gangs, and did they disclose or report to HHS?",
+    "Which US hospitals, schools and local governments got hit by ransomware, and did they then get federal cyber grants or keep Medicare billing unchanged?"
+   ],
+   "checks": [
+    "Filter US victims in healthcare sector; match to HHS breach portal by name and date.",
+    "Filter victims by sector=healthcare/US, match to CMS hospital names."
+   ],
+   "boring": [
+    "Leak-site victim lists are published by ransomware.live itself; top entries are big-name companies scraped from old lists.",
+    "Dates like 2017-05-12 (WannaCry) repeated 250 times and maersk/fedex 182 each are backfilled bulk rows; leak-site claims are not confirmed breaches; widely covered."
+   ]
+  },
+  {
+   "table": "JUSTICE__XC_UK_SANCTIONS_LIST",
+   "score": 5.5,
+   "angles": [
+    "Shadow-fleet tankers under UK sanctions: which ones still call at ports or hold US-linked owners?",
+    "Which ships and companies does the UK sanction that the US does not (shadow-fleet tankers in particular), and which vessels carry the most aliases or reflaggings?"
+   ],
+   "checks": [
+    "Pull the 883 ship rows with IMO_NUMBER. Join to any vessel or ownership table in the warehouse by IMO or owner name.",
+    "Count distinct IMO_NUMBER where DESIGNATION_TYPE='Ship', anti-join to the OFAC SDN vessel list on IMO, and rank by alias rows per IMO."
+   ],
+   "boring": [
+    "Sanctions lists are well covered. On its own this is a reference list with no money or harm counts.",
+    "The alias rows repeat each designation, so row counts are not target counts. UN-sourced rows mirror the US list by design. The shadow-fleet UK-vs-US gap has been covered by Lloyd's List and others."
+   ]
+  },
+  {
+   "table": "JUSTICE__XC_VERA_INCARCERATION_TRENDS",
+   "score": 5.0,
+   "angles": [
+    "Which rural counties grew jail populations fastest per capita while crime fell, and by race?",
+    "Which counties have jail populations growing while crime and population fall, and how lopsided by race?"
+   ],
+   "checks": [
+    "Jail pop per 100K by county 2000 vs latest year, top 20 growth counties with Black/White ratio",
+    "Compute jail pop per 100K by county 2010 vs latest year, and Black-to-White jail rate ratio; top 20 growers."
+   ],
+   "boring": [
+    "Well-worn Vera finding already published by Vera and NYT; counties holding state or ICE detainees inflate rates",
+    "Vera publishes these exact rankings; 24% of TOTAL_JAIL_POP missing; rural small-county rates are noisy."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "LABOR__FED_PBGC_TRUSTEED_PLANS",
+   "score": 5.0,
+   "angles": [
+    "Companies that dumped pensions on PBGC and then won federal contracts or paid executives big, or repeat dumpers by EIN.",
+    "Companies that dumped pensions on PBGC and still got federal contracts, or whose owners kept paying themselves."
+   ],
+   "checks": [
+    "EINs with 2+ trusteed plans, joined to USAspending recipients after termination date.",
+    "Join EIN to Form 5500 and USAspending recipients; list sponsors with contracts after the plan termination date."
+   ],
+   "boring": [
+    "Terminations follow bankruptcies; repeat EINs are one company with several plans.",
+    "Most failed plans are old manufacturing bankruptcies; well known. No dollar column."
+   ]
+  },
+  {
+   "table": "POLITICS__FEC_COMMITTEE",
+   "score": 5.5,
+   "angles": [
+    "Which treasurers run hundreds of PACs, and do those PACs raise money but spend little on candidates (scam-PAC pattern)?",
+    "One treasurer on 729 committees (Thomas Datwyler, linked to the Santos-era PAC scandal). Serial treasurers behind scam PACs."
+   ],
+   "checks": [
+    "Committees per TRES_NM, then join to committee financial summaries for share spent on candidates vs overhead.",
+    "Count distinct CMTE_ID by TRES_NM, then join the top treasurers' committees to receipts and the share of spending paid to fundraising vendors."
+   ],
+   "boring": [
+    "Pro treasurers (Datwyler, Kilgore) are compliance firms serving many clients; scam PACs have been reported since 2019.",
+    "Professional compliance treasurers serve hundreds of candidate committees legitimately. Each row appears twice, once per cycle (2024 and 2026)."
+   ]
+  },
+  {
+   "table": "POLITICS__FED_EAC_EAVS",
+   "score": 5.0,
+   "angles": [
+    "Which local election offices reject the most mail or provisional ballots?",
+    "Which counties rejected mail ballots or provisional ballots at many times the state rate, and for what reasons?"
+   ],
+   "checks": [
+    "Rejected over returned mail ballots per jurisdiction; rank jurisdictions with 5,000+ mail ballots.",
+    "Rejected mail ballots / returned mail ballots per jurisdiction for the latest cycle, ranked within state, restricted to jurisdictions with at least 1,000 ballots returned."
+   ],
+   "boring": [
+    "Only 6.5K rows with Wisconsin heavy (1.9K), so it looks like a partial or single-cycle load. Rejection rates follow state law.",
+    "The table has only 6.5K rows and is skewed to Wisconsin and New England towns, so it may be one cycle. Small towns give noisy rates. The EAC publishes the headline rates itself."
+   ]
+  },
+  {
+   "table": "POLITICS__INTL_ELECTIONS_CANADA_CONTRIBUTIONS",
+   "score": 5.0,
+   "angles": [
+    "Which Canadian donors give over the legal cap, or give to multiple parties, and where does the $8.5M single line come from?",
+    "Who are the biggest individual donors across Canadian parties, and who gives to both sides?"
+   ],
+   "checks": [
+    "Sum MONETARY_AMOUNT by contributor name and year for individuals, flag over the annual limit",
+    "Sum MONETARY_AMOUNT by contributor name and postal code, top 50, and count contributors giving to 2+ parties."
+   ],
+   "boring": [
+    "Big lines are party-to-riding transfers, not donors; name spellings split the same person",
+    "Canadian caps make individual giving small (median 51); top-recipient totals just reflect party size; 8.5M max is likely a party transfer, not a person; not a US story."
+   ]
+  },
+  {
+   "table": "POLITICS__IRS527_8872_REPORTS",
+   "score": 5.0,
+   "angles": [
+    "Which 527s take in a lot and spend it at once, or sit on money? Compare Schedule A in vs Schedule B out, per group per cycle.",
+    "Which 527 groups raise and spend the most, and which ones take money in but show little spending, or the reverse?"
+   ],
+   "checks": [
+    "Per EIN, SUM(TOTAL_SCHED_A) vs SUM(TOTAL_SCHED_B) after deduping amended reports (latest per EIN+period); sort by the gap.",
+    "Sum TOTAL_SCHED_A and TOTAL_SCHED_B by EIN and cycle. Flag groups where raised minus spent swings by more than $1M, then check the line items in Schedule B."
+   ],
+   "boring": [
+    "These are the Schedule A/B tables rolled up again; the $13.3B matches the Schedule B table exactly. Amendments double-count periods.",
+    "It repeats the Schedule B totals (13.3B both ways) at summary level. The top EINs are the same famous party-aligned 527s."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "POLITICS__IRS527_DIRECTORS_OFFICERS",
+   "score": 6.0,
+   "angles": [
+    "The same few people and law-firm addresses run hundreds of 527s: who sits as officer on the most political groups?",
+    "Shell-style 527 networks: the same officers and the same office addresses (527 East Park Avenue and 1103 Hays Street, 2K rows each) behind dozens of political groups, and where their money went."
+   ],
+   "checks": [
+    "Count distinct EIN per normalized officer name, and per ENTITY_ADDR1, then top 50.",
+    "Count distinct EIN per officer name and per address. Take the top 20 clusters and sum their Schedule B spending."
+   ],
+   "boring": [
+    "Addresses like 455 Capitol Mall are compliance law firms and treasurer services; being officer of many groups is a routine service job.",
+    "Addresses like 1103 Hays Street (Tallahassee) and 455 Capitol Mall are compliance law firms that file for many committees. That is legal and routine."
+   ]
+  },
+  {
+   "table": "POLITICS__TX_LOBBY_COVER",
+   "score": 5.0,
+   "angles": [
+    "Which Texas lobbyists and clients spent the most by category over 30 years, and who spiked during key sessions?",
+    "Which Texas lobbyists and clients report the most spending, and did spending spike around specific sessions?"
+   ],
+   "checks": [
+    "Sum category totals by FILER_NAME and year. Find the biggest jumps in legislative-session years.",
+    "SUM of the category totals by FILER_NAME and year, deduped to the latest amendment per REPORT_INFO_IDENT."
+   ],
+   "boring": [
+    "Cover sheets are totals only. Spending follows the two-year session cycle, and Texas Municipal League types dominate.",
+    "REPORT_INFO_IDENT repeats (1.0K) because of amendments and duplicate rows. Texas lobby money is reported as ranges and is covered yearly by Texans for Public Justice."
+   ]
+  },
+  {
+   "table": "POLITICS__TX_LOBBY_ENTERTAINMENT",
+   "score": 5.5,
+   "angles": [
+    "Which Texas officials got the most entertainment from lobbyists, and from which industries?",
+    "Which Texas officials received the most lobbyist-paid entertainment, and from whom?"
+   ],
+   "checks": [
+    "Check whether the table names the official who was entertained. Then sum range-high amounts by that official and by lobbyist client.",
+    "Group by recipient official name and lobbyist for SUM of COALESCE(ACTIVITYEXACTAMOUNT, ACTIVITYAMOUNTRANGEHIGH), by year."
+   ],
+   "boring": [
+    "Only 2.8K rows and $85K exact. Texas reports amounts as ranges, and most outings are $150 dinners.",
+    "Only 2.8K rows and 13% have exact amounts; the rest are ranges. It totals about $0.5M over 20 years. Small money, and recipients may not be named."
+   ]
+  },
+  {
+   "table": "POLITICS__TX_LOBBY_FOOD_BEVERAGE",
+   "score": 5.5,
+   "angles": [
+    "Which Texas officials ate the most on lobbyists' tab, and who paid? There is a $78.7K single row.",
+    "Which Texas lawmakers ate the most on lobbyists' tabs, and which lobbyists and clients paid, including the $78.7K single entry?"
+   ],
+   "checks": [
+    "Sum the exact amount, or the range low when exact is blank, by official and by lobbyist, 2015-2026; look at the $78.7K row.",
+    "Group by official (recipient) and by lobbyist, summing ACTIVITYEXACTAMOUNT plus the range midpoint where the exact amount is blank; pull the top 10 rows by amount."
+   ],
+   "boring": [
+    "71% of rows only give ranges; a median of $28 means mostly routine lunches. Small money.",
+    "Most entries are range buckets (only 29% have an exact amount), so totals are estimates. Big single entries may be event dinners split across many officials and reported once."
+   ]
+  },
+  {
+   "table": "POLITICS__TX_LOBBY_TRANSPORTATION",
+   "score": 5.0,
+   "angles": [
+    "Which Texas officials took the most lobbyist-paid trips, from whom, and did the payers get bills or contracts?",
+    "Which Texas officials got the most lobbyist-paid trips, and who paid?"
+   ],
+   "checks": [
+    "Group by official name and lobbyist/client, sum amounts, 2015-2026.",
+    "Sum travel by official name and lobbyist 2015-26, top 20."
+   ],
+   "boring": [
+    "Small volume; trips to conferences are routine and the TEC data is used by Texas Tribune.",
+    "Small (3.7K rows); amounts may be ranges in TX filings; trips to conferences are routine."
+   ]
+  }
+ ],
+ [
+  {
+   "table": "SCIENCE_RESEARCH__FED_SBIR_STTR_AWARDS",
+   "score": 6.0,
+   "angles": [
+    "Which 'SBIR mill' firms win hundreds of small-business research awards without ever selling a product?",
+    "SBIR mills: firms that win hundreds of small-business awards year after year and never commercialize. How concentrated is $82B across 17K firms?"
+   ],
+   "checks": [
+    "Top 20 firms by award count and total $ 2015-25, grouped by company name since 15.2B has no UEI.",
+    "Sum AWARD_AMOUNT and count awards by company for 2015-2025, top 25, plus each firm's share of its agency's total."
+   ],
+   "boring": [
+    "Repeat winning is allowed and well reported (SBIR mills); F-022 already worked the Newington address; the 1905 date is bad data.",
+    "$15.2B sits on a null UEI because older awards predate UEI, so ranking by UEI hides the big firms. Dates of 1905 and 2026-12 are typos. F-022 already mined one SBIR address cluster."
+   ]
+  },
+  {
+   "table": "SCIENCE_RESEARCH__XC_RETRACTION_WATCH_DATABASE",
+   "score": 5.5,
+   "angles": [
+    "Which institutions and journals have the most paper-mill retractions, and did their authors keep getting federal grants?",
+    "US institutions and authors with the most misconduct retractions (not honest error), and whether federal grants kept flowing."
+   ],
+   "checks": [
+    "Count retractions per institution for 2020-26 where the reason mentions paper mill or peer-review manipulation, then join author names to NIH RePORTER.",
+    "Filter reasons to fabrication, falsification, plagiarism and paper mill. Group by institution and author and join author names to NIH RePORTER after the retraction date."
+   ],
+   "boring": [
+    "Mass journal retractions (Hindawi and others) inflate the counts. Retraction Watch already reports it, and F-008 covers retractions against NIH money.",
+    "Mass retractions by publishers (Hindawi 2023) swamp the counts. The top DOIs are 'Unavailable', and F-008 already did ORI retractions to NIH."
+   ]
+  },
+  {
+   "table": "TRANSPORT__FED_NTSB_AVIATION_AIRCRAFT",
+   "score": 5.0,
+   "angles": [
+    "Which commercial or charter operators (FAR Part 135 and 121) have repeat accidents, and are those planes still registered and flying?",
+    "Which commercial operators or specific tail numbers show up in NTSB accidents again and again?"
+   ],
+   "checks": [
+    "Filter FAR_PART in (121, 135). Count accidents per OPER_NAME and per registration number, then join the tails to the FAA registry for current status.",
+    "Count accidents by REGIS_NO and OPER_NAME for FAR_PART 135/121, then join FAA registry for the current owner."
+   ],
+   "boring": [
+    "Half the rows have no operator name. Most accidents are private Part 91 flights by one-off pilots. Southwest's 77 is a small number for its fleet size.",
+    "Half of OPER_NAME is None; FAR part 91 private flying dominates. Southwest tops because it flies the most."
+   ]
+  },
+  {
+   "table": "TRANSPORT__FED_NTSB_AVIATION_EVENTS",
+   "score": 5.0,
+   "angles": [
+    "Which operators or airports have repeat fatal accidents (tour helicopters, skydiving planes, medical flights), and are they still flying?",
+    "Which operators, aircraft makes or airports have fatal accident rates out of line, for example Part 135 air tours and medical helicopters?"
+   ],
+   "checks": [
+    "Join to the NTSB aircraft/operator table, count fatal events per operator 2008-26, and list operators with 3 or more.",
+    "Count fatal events (INJ_TOT_F > 0) by operator type and aircraft make for 2008-2026, then the top airports by fatal events."
+   ],
+   "boring": [
+    "The ground-injury columns are 10% filled and dominated by a few big crashes, such as the 2008 Manas crash. Most events are single private planes.",
+    "The ground-injury columns are 10% filled. The top number is one crash (Manas, Kyrgyzstan, 35 dead) and rows with no airport name. There is no exposure denominator, so no rates."
+   ]
+  }
+ ]
+]

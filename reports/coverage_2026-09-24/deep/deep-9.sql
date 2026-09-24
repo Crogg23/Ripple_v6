@@ -1,0 +1,481 @@
+-- deep-9.sql: coverage deep pass, 2026-09-24, agent deep-9
+-- Tables: LABOR__FED_OSHA_ITA_300A_SUMMARY_2025, OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN, POLITICS__MEMBER_PAC_MONEY,
+--         SCIENCE_RESEARCH__FED_NIH_REPORTER, TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY
+-- Door: Python (connect/db.py). Every connection opened with:
+--   ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = 300;
+--   ALTER SESSION SET QUERY_TAG = 'coverage-b-2026-09-24';
+-- 35 read-only statements below (SELECT/WITH only), numbered in run order.
+-- [13] failed to compile (ambiguous column H) and was rerun fixed as [26].
+-- [20] returned no rows: IS_SUPERSEDED holds 'True'/'False' with capitals, so the filter dropped everything. Rerun as [28].
+
+-- [1] OSHA 2025: count and shape, with 2024 alongside
+WITH t AS (
+  SELECT '2025' yr, ESTABLISHMENT_ID eid, EIN, TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d,
+         TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) h, TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e, CREATED_TIMESTAMP ts,
+         YEAR_FILING_FOR yf
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+  UNION ALL
+  SELECT '2024', ESTABLISHMENT_ID, EIN, TRY_TO_NUMBER(TOTAL_DEATHS::varchar), TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar),
+         TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar), CREATED_TIMESTAMP, YEAR_FILING_FOR
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024
+)
+SELECT yr, COUNT(*) n, COUNT(DISTINCT eid) sites, COUNT(DISTINCT EIN) eins, SUM(d) deaths, COUNT_IF(d > 0) sites_w_death,
+       MAX(d) max_d, COUNT_IF(e > 0 AND h / e BETWEEN 500 AND 4500) n_clean_hours,
+       SUM(IFF(e > 0 AND h / e BETWEEN 500 AND 4500, d, 0)) deaths_clean, MIN(ts) ts_min, MAX(ts) ts_max,
+       LISTAGG(DISTINCT yf, ',') years_filing
+FROM t GROUP BY 1 ORDER BY 1;
+
+-- [2] OSHA 2025: sample
+SELECT * FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025 LIMIT 5;
+
+-- [3] Epstein wayback: count and shape
+SELECT COUNT(*) n, COUNT(DISTINCT ORIGINAL_URL) urls, COUNT(DISTINCT URLKEY) urlkeys, COUNT(DISTINCT CONTENT_DIGEST) digests,
+       MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1,
+       COUNT_IF(STATUS_CODE = '200') s200, COUNT_IF(STATUS_CODE = '404') s404, COUNT_IF(STATUS_CODE LIKE '3%') s3xx,
+       COUNT_IF(STATUS_CODE IN ('401', '403')) s40x, COUNT_IF(STATUS_CODE = '-') sdash,
+       COUNT_IF(ORIGINAL_URL ILIKE '%.pdf%') pdf_rows, COUNT(DISTINCT IFF(ORIGINAL_URL ILIKE '%.pdf%', ORIGINAL_URL, NULL)) pdf_urls,
+       COUNT_IF(MIMETYPE = 'text/html') html_rows, COUNT_IF(MIMETYPE = 'application/pdf') pdf_mime_rows,
+       MIN(CONTENT_LENGTH_BYTES) len_min, MEDIAN(CONTENT_LENGTH_BYTES) len_med, MAX(CONTENT_LENGTH_BYTES) len_max
+FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN;
+
+-- [4] Epstein wayback: sample
+SELECT * FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN LIMIT 5;
+
+-- [5] PAC money: count and shape
+SELECT CYCLE, COUNT(*) n, COUNT(DISTINCT BIOGUIDE) members, COUNT_IF(BIOGUIDE IS NULL) null_bio,
+       SUM(PAC_DONATIONS) pac, SUM(OUTSIDE_FOR) o_for, SUM(OUTSIDE_AGAINST) o_against,
+       MAX(PAC_DONATIONS) max_pac, MAX(OUTSIDE_FOR) max_for, MAX(OUTSIDE_AGAINST) max_against
+FROM LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_PAC_MONEY GROUP BY 1 ORDER BY 1;
+
+-- [6] PAC money: sample, plus the duplicated S000148 rows
+SELECT * FROM (SELECT * FROM LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_PAC_MONEY WHERE BIOGUIDE = 'S000148' OR BIOGUIDE IS NULL
+               UNION ALL (SELECT * FROM LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_PAC_MONEY LIMIT 5))
+ORDER BY BIOGUIDE, CYCLE;
+
+-- [7] NIH: count and shape
+SELECT COUNT(*) n, COUNT(DISTINCT APPL_ID) appl, MIN(FISCAL_YEAR) fy0, MAX(FISCAL_YEAR) fy1,
+       COUNT_IF(SUBPROJECT_ID IS NOT NULL AND SUBPROJECT_ID <> '') subproj_rows,
+       COUNT_IF(INDIRECT_COST_AMT IS NOT NULL) ind_filled, COUNT_IF(DIRECT_COST_AMT IS NOT NULL) dir_filled,
+       COUNT_IF(AGENCY_CODE = 'NIH') nih_rows, COUNT(DISTINCT ORG_NAME) orgs,
+       COUNT_IF(ORG_NAME IS NULL) org_null, COUNT_IF(ORG_DUNS IS NULL) duns_null,
+       SUM(IFF(FISCAL_YEAR::varchar LIKE '2024%', AWARD_AMOUNT, 0)) award_fy24,
+       COUNT_IF(FISCAL_YEAR::varchar LIKE '2024%') n_fy24
+FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER;
+
+-- [8] NIH: sample
+SELECT APPL_ID, SUBPROJECT_ID, PROJECT_NUM, FISCAL_YEAR, ORG_NAME, ORG_DUNS, AGENCY_CODE, ACTIVITY_CODE, FUNDING_MECHANISM,
+       AWARD_AMOUNT, DIRECT_COST_AMT, INDIRECT_COST_AMT, DATE_ADDED
+FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER LIMIT 5;
+
+-- [9] FAA: count and shape
+SELECT COUNT(*) n, COUNT(DISTINCT N_NUMBER) tails, COUNT(DISTINCT REGISTRANT_NAME) names,
+       COUNT_IF(TYPE_REGISTRANT::varchar = '1') t1_indiv, COUNT_IF(TYPE_REGISTRANT::varchar = '2') t2_partner,
+       COUNT_IF(TYPE_REGISTRANT::varchar = '3') t3_corp, COUNT_IF(TYPE_REGISTRANT::varchar = '4') t4_coown,
+       COUNT_IF(TYPE_REGISTRANT::varchar = '5') t5_gov, COUNT_IF(TYPE_REGISTRANT::varchar = '7') t7_llc,
+       COUNT_IF(TYPE_REGISTRANT::varchar = '8') t8_noncit_corp, COUNT_IF(TYPE_REGISTRANT::varchar = '9') t9_noncit_coown,
+       COUNT_IF(TYPE_REGISTRANT IS NULL OR TYPE_REGISTRANT::varchar NOT IN ('1','2','3','4','5','7','8','9')) t_other,
+       COUNT_IF(REGISTRANT_NAME ILIKE '%TRUSTEE%') trustee_name, COUNT_IF(REGISTRANT_NAME ILIKE '%TRUST%') trust_word,
+       COUNT_IF(REGISTRANT_NAME IS NULL) name_null, COUNT_IF(REGISTRANT_NAME = 'REGISTRATION PENDING') pending,
+       LISTAGG(DISTINCT STATUS_CODE, ',') statuses
+FROM LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY;
+
+-- [10] FAA: sample
+SELECT * FROM LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY LIMIT 5;
+
+-- [11] OSHA 2025: companies with the most deaths, deaths per 100M hours, 2024 alongside by company name
+WITH r AS (
+  SELECT '2025' yr, UPPER(TRIM(COMPANY_NAME)) co, EIN, TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d,
+         TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) h, TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+  UNION ALL
+  SELECT '2024', UPPER(TRIM(COMPANY_NAME)), EIN, TRY_TO_NUMBER(TOTAL_DEATHS::varchar),
+         TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar), TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar)
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024
+), c AS (
+  SELECT co, SUM(IFF(yr='2025', d, 0)) d25, SUM(IFF(yr='2024', d, 0)) d24,
+         COUNT_IF(yr='2025') sites25, COUNT(DISTINCT IFF(yr='2025', EIN, NULL)) eins25,
+         SUM(IFF(yr='2025' AND e > 0 AND h/e BETWEEN 500 AND 4500, h, 0)) h25_clean,
+         SUM(IFF(yr='2025' AND e > 0 AND h/e BETWEEN 500 AND 4500, d, 0)) d25_clean,
+         SUM(IFF(yr='2025' AND e > 0 AND h/e BETWEEN 500 AND 4500, e, 0)) emp25_clean
+  FROM r GROUP BY 1
+), nat AS (SELECT SUM(d25_clean) * 1e8 / SUM(h25_clean) nat_rate FROM c)
+SELECT co, d25, d24, sites25, eins25, emp25_clean, ROUND(h25_clean/1e6,1) mhrs25, d25_clean,
+       ROUND(d25_clean * 1e8 / NULLIF(h25_clean,0), 1) deaths_per_100m_hrs, ROUND(nat.nat_rate, 2) nat_rate
+FROM c, nat WHERE d25 > 0 ORDER BY d25 DESC, d24 DESC LIMIT 25;
+
+-- [12] OSHA 2025: sites with the most deaths, same ESTABLISHMENT_ID in 2024 (ZIP must agree)
+WITH a AS (
+  SELECT ESTABLISHMENT_ID eid, ESTABLISHMENT_NAME en, COMPANY_NAME cn, CITY, STATE, LEFT(ZIP_CODE::varchar,5) z, NAICS_CODE::varchar n6,
+         TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d, TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e, TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) h,
+         COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0) cases
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025 WHERE TRY_TO_NUMBER(TOTAL_DEATHS::varchar) > 0
+), b AS (
+  SELECT ESTABLISHMENT_ID eid, LEFT(ZIP_CODE::varchar,5) z, TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024
+), agg AS (
+  SELECT COUNT(*) sites_w_death25, COUNT_IF(b.eid IS NOT NULL) in24, COUNT_IF(b.eid IS NOT NULL AND b.z = a.z) in24_zip_ok,
+         COUNT_IF(b.d > 0 AND b.z = a.z) death_both_years
+  FROM a LEFT JOIN b ON a.eid = b.eid
+)
+SELECT a.en, a.cn, a.CITY, a.STATE, a.n6, a.e, ROUND(a.h / NULLIF(a.e,0)) hrs_per_worker, a.cases, a.d d25, b.d d24,
+       IFF(b.z = a.z, 'zip ok', IFF(b.eid IS NULL, 'no 2024 row', 'zip differs')) chk,
+       agg.sites_w_death25, agg.in24, agg.in24_zip_ok, agg.death_both_years
+FROM a LEFT JOIN b ON a.eid = b.eid, agg
+ORDER BY a.d DESC, b.d DESC NULLS LAST LIMIT 30;
+
+-- [13] OSHA 2025: sites with 500+ workers, case rate vs other sites in the same 6-digit NAICS (4-digit if peers under 5M hours)
+WITH r AS (
+  SELECT ESTABLISHMENT_ID eid, ESTABLISHMENT_NAME en, COMPANY_NAME cn, CITY, STATE, NAICS_CODE::varchar n6,
+         TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e, TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) h,
+         COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0) cases,
+         TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+  WHERE TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) > 0
+    AND TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) / TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) BETWEEN 500 AND 4500
+), i6 AS (SELECT n6, SUM(cases) c, SUM(h) h, COUNT(*) n FROM r GROUP BY 1),
+   i4 AS (SELECT LEFT(n6,4) n4, SUM(cases) c, SUM(h) h, COUNT(*) n FROM r GROUP BY 1),
+s AS (
+  SELECT r.*, cases * 200000 / h rate,
+         IFF(i6.h - r.h >= 5e6, (i6.c - r.cases) / (i6.h - r.h), (i4.c - r.cases) / NULLIF(i4.h - r.h, 0)) * 200000 peer_rate,
+         IFF(i6.h - r.h >= 5e6, '6-digit', '4-digit') pool, IFF(i6.h - r.h >= 5e6, i6.n - 1, i4.n - 1) peer_sites
+  FROM r JOIN i6 ON i6.n6 = r.n6 JOIN i4 ON i4.n4 = LEFT(r.n6,4)
+  WHERE r.e >= 500 AND r.cases >= 30
+)
+SELECT en, cn, CITY, STATE, n6, e, cases, d, ROUND(rate,1) rate, ROUND(peer_rate,1) peer_rate, ROUND(rate/NULLIF(peer_rate,0),1) x_peer, pool, peer_sites,
+       (SELECT COUNT(*) FROM s) n_big_sites, (SELECT COUNT_IF(rate >= 3*peer_rate) FROM s) n_3x
+FROM s ORDER BY rate/NULLIF(peer_rate,0) DESC LIMIT 25;
+
+-- [14] OSHA: SpaceX, Ford, Bath, Electric Boat, Ingalls, 2024 vs 2025, vs same-industry peers
+WITH raw AS (
+  SELECT '2025' yr, UPPER(COALESCE(COMPANY_NAME,'')||' | '||COALESCE(ESTABLISHMENT_NAME,'')) nm, UPPER(COALESCE(COMPANY_NAME,'')) cn, NAICS_CODE::varchar n6,
+         COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0) cases,
+         TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) h, TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e, TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+  UNION ALL
+  SELECT '2024', UPPER(COALESCE(COMPANY_NAME,'')||' | '||COALESCE(ESTABLISHMENT_NAME,'')), UPPER(COALESCE(COMPANY_NAME,'')), NAICS_CODE::varchar,
+         COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0),
+         TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar), TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar), TRY_TO_NUMBER(TOTAL_DEATHS::varchar)
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2024
+), r AS (SELECT * FROM raw WHERE e > 0 AND h / e BETWEEN 500 AND 4500),
+t AS (
+  SELECT r.*, CASE
+    WHEN nm LIKE '%SPACE EXPLORATION TECH%' OR nm LIKE '%SPACEX%' THEN 'SPACEX'
+    WHEN cn LIKE 'FORD MOTOR%' THEN 'FORD'
+    WHEN nm LIKE '%BATH IRON WORKS%' THEN 'BATH IRON WORKS'
+    WHEN nm LIKE '%ELECTRIC BOAT%' THEN 'ELECTRIC BOAT'
+    WHEN nm LIKE '%INGALLS SHIPBUILDING%' OR nm LIKE '%HUNTINGTON INGALLS%' THEN 'INGALLS/HII'
+  END co FROM r
+),
+i6 AS (SELECT yr, n6, SUM(cases) c, SUM(h) h FROM r GROUP BY 1,2),
+i4 AS (SELECT yr, LEFT(n6,4) n4, SUM(cases) c, SUM(h) h FROM r GROUP BY 1,2),
+m AS (SELECT yr, co, n6, COUNT(*) sites, SUM(cases) c, SUM(h) h, SUM(d) d FROM t WHERE co IS NOT NULL GROUP BY 1,2,3),
+m4 AS (SELECT yr, co, LEFT(n6,4) n4, SUM(c) c, SUM(h) h FROM m GROUP BY 1,2,3),
+b AS (
+  SELECT m.*, IFF(i6.h - m.h >= 5e6, (i6.c - m.c)/(i6.h - m.h), (i4.c - m4.c)/NULLIF(i4.h - m4.h,0)) pr,
+         IFF(i6.h - m.h >= 5e6, i6.h - m.h, i4.h - m4.h) ph, IFF(i6.h - m.h >= 5e6, 6, 4) lvl
+  FROM m JOIN i6 ON i6.yr = m.yr AND i6.n6 = m.n6 JOIN i4 ON i4.yr = m.yr AND i4.n4 = LEFT(m.n6,4)
+  JOIN m4 ON m4.yr = m.yr AND m4.co = m.co AND m4.n4 = LEFT(m.n6,4)
+)
+SELECT co, yr, SUM(sites) sites, SUM(c) cases, SUM(d) deaths, ROUND(SUM(h)/1e6,2) mhrs, ROUND(SUM(c)*200000/SUM(h),2) rate,
+       ROUND(SUM(h*pr)*200000/SUM(h),2) peer_rate, ROUND(SUM(c)/NULLIF(SUM(h*pr),0),2) x_peer,
+       LISTAGG(DISTINCT n6||'@'||lvl, ',') naics_pools, ROUND(MIN(ph)/1e6,1) min_peer_mhrs
+FROM b GROUP BY 1,2 ORDER BY 1,2;
+
+-- [15] Epstein: URL families (path without the ?page= part)
+SELECT REGEXP_REPLACE(ORIGINAL_URL, '\\?.*$', '') path, COUNT(DISTINCT ORIGINAL_URL) urls, COUNT(*) caps,
+       COUNT(DISTINCT CONTENT_DIGEST) digests, MIN(CAPTURED_AT)::date first_cap, MAX(CAPTURED_AT)::date last_cap,
+       COUNT_IF(STATUS_CODE <> '200') non200, MAX(TRY_TO_NUMBER(REGEXP_SUBSTR(ORIGINAL_URL, 'page=([0-9]+)', 1, 1, 'e', 1))) max_page,
+       ROUND(AVG(CONTENT_LENGTH_BYTES)) avg_len
+FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN
+GROUP BY 1 ORDER BY caps DESC LIMIT 40;
+
+-- [16] Epstein: per URL, digest changes by week, how big the size change was, and A-B-A flip-backs
+WITH s AS (
+  SELECT URLKEY, CAPTURED_AT, CONTENT_DIGEST dg, CONTENT_LENGTH_BYTES len, STATUS_CODE st,
+         LAG(CONTENT_DIGEST) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) p1,
+         LAG(CONTENT_DIGEST, 2) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) p2,
+         LAG(CONTENT_LENGTH_BYTES) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) plen
+  FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN WHERE STATUS_CODE = '200'
+)
+SELECT DATE_TRUNC('week', CAPTURED_AT)::date wk, COUNT(*) caps, COUNT_IF(p1 IS NOT NULL) repeat_caps,
+       COUNT_IF(dg <> p1) changes, ROUND(COUNT_IF(dg <> p1) / NULLIF(COUNT_IF(p1 IS NOT NULL),0), 3) change_share,
+       COUNT(DISTINCT IFF(dg <> p1, URLKEY, NULL)) urls_changed,
+       COUNT_IF(dg <> p1 AND ABS(len - plen) <= 50) chg_len_le50, COUNT_IF(dg <> p1 AND ABS(len - plen) > 500) chg_len_gt500,
+       COUNT_IF(dg <> p1 AND dg = p2) flip_backs
+FROM s GROUP BY 1 ORDER BY 1;
+
+-- [17] Epstein: every URL that ever answered other than 200, with its first and last bad answer and whether a 200 came after
+WITH u AS (
+  SELECT ORIGINAL_URL, STATUS_CODE, CAPTURED_AT,
+         MAX(IFF(STATUS_CODE = '200', CAPTURED_AT, NULL)) OVER (PARTITION BY ORIGINAL_URL) last_ok,
+         MIN(IFF(STATUS_CODE = '200', CAPTURED_AT, NULL)) OVER (PARTITION BY ORIGINAL_URL) first_ok
+  FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN
+)
+SELECT REGEXP_REPLACE(ORIGINAL_URL, '\\?.*$', '') path, STATUS_CODE, COUNT(DISTINCT ORIGINAL_URL) urls, COUNT(*) caps,
+       MIN(CAPTURED_AT)::date first_bad, MAX(CAPTURED_AT)::date last_bad,
+       COUNT(DISTINCT IFF(last_ok > CAPTURED_AT, ORIGINAL_URL, NULL)) urls_ok_after, COUNT(DISTINCT IFF(first_ok < CAPTURED_AT, ORIGINAL_URL, NULL)) urls_ok_before
+FROM u WHERE STATUS_CODE <> '200' GROUP BY 1,2 ORDER BY caps DESC LIMIT 40;
+
+-- [18] Epstein: the non-listing pages (no ?page=), how often each changed and when
+WITH s AS (
+  SELECT URLKEY, ORIGINAL_URL, CAPTURED_AT, CONTENT_DIGEST dg, CONTENT_LENGTH_BYTES len,
+         LAG(CONTENT_DIGEST) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) p1,
+         LAG(CONTENT_LENGTH_BYTES) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) plen
+  FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN WHERE STATUS_CODE = '200' AND ORIGINAL_URL NOT ILIKE '%page=%'
+)
+SELECT URLKEY, COUNT(*) caps, COUNT(DISTINCT dg) digests, COUNT_IF(dg <> p1) changes,
+       COUNT_IF(dg <> p1 AND ABS(len - plen) > 300) big_changes,
+       LISTAGG(DISTINCT IFF(dg <> p1 AND ABS(len - plen) > 300, CAPTURED_AT::date::varchar, NULL), ',') WITHIN GROUP (ORDER BY IFF(dg <> p1 AND ABS(len - plen) > 300, CAPTURED_AT::date::varchar, NULL)) big_change_days,
+       MIN(len) min_len, MAX(len) max_len
+FROM s GROUP BY 1 ORDER BY caps DESC LIMIT 30;
+
+-- [19] PAC: top member-cycles by outside money or PAC money, with names and chamber medians
+WITH p AS (
+  SELECT p.*, m.FULL_NAME, m.STATE, m.CHAMBER, m.PARTY, m.MONEY_RAISED_NET
+  FROM LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_PAC_MONEY p
+  LEFT JOIN LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_MONEY_RAISED m ON m.BIOGUIDE = p.BIOGUIDE AND m.CYCLE = p.CYCLE
+), r AS (
+  SELECT p.*, OUTSIDE_FOR + OUTSIDE_AGAINST outside_total,
+         RANK() OVER (PARTITION BY CYCLE ORDER BY OUTSIDE_FOR + OUTSIDE_AGAINST DESC) r_out,
+         RANK() OVER (PARTITION BY CYCLE ORDER BY PAC_DONATIONS DESC) r_pac,
+         MEDIAN(PAC_DONATIONS) OVER (PARTITION BY CYCLE, CHAMBER) med_pac_chamber,
+         MEDIAN(OUTSIDE_FOR + OUTSIDE_AGAINST) OVER (PARTITION BY CYCLE, CHAMBER) med_out_chamber,
+         COUNT(*) OVER (PARTITION BY CYCLE) n_cycle, COUNT_IF(FULL_NAME IS NULL) OVER (PARTITION BY CYCLE) n_noname
+  FROM p
+)
+SELECT CYCLE, BIOGUIDE, FULL_NAME, STATE, CHAMBER, PARTY, PAC_DONATIONS, N_PAC_DONORS, OUTSIDE_FOR, OUTSIDE_AGAINST, MONEY_RAISED_NET,
+       r_out, r_pac, med_pac_chamber, med_out_chamber, n_cycle, n_noname
+FROM r WHERE (r_out <= 12 OR r_pac <= 10) ORDER BY CYCLE, r_out;
+
+-- [20] PAC: FEC independent expenditures, top 2024 candidates for and against, with member link
+WITH ie AS (
+  SELECT CAND_ID, MAX(CAND_NAME) nm, MAX(CAN_OFFICE) office, CYCLE_FILE,
+         SUM(IFF(SUP_OPP = 'S', TRY_TO_NUMBER(EXP_AMO::varchar, 18, 2), 0)) sup,
+         SUM(IFF(SUP_OPP = 'O', TRY_TO_NUMBER(EXP_AMO::varchar, 18, 2), 0)) opp, COUNT(*) n
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES
+  WHERE COALESCE(IS_SUPERSEDED::varchar, 'false') IN ('false', 'FALSE', '0', 'N')
+  GROUP BY CAND_ID, CYCLE_FILE
+), f AS (SELECT DISTINCT FEC_ID, BIOGUIDE FROM LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_FEC_ID)
+SELECT ie.CYCLE_FILE, ie.CAND_ID, ie.nm, ie.office, ROUND(ie.sup) sup, ROUND(ie.opp) opp, ie.n, f.BIOGUIDE
+FROM ie LEFT JOIN f ON f.FEC_ID = ie.CAND_ID
+QUALIFY RANK() OVER (PARTITION BY ie.CYCLE_FILE ORDER BY ie.sup + ie.opp DESC) <= 12
+ORDER BY ie.CYCLE_FILE, ie.sup + ie.opp DESC;
+
+-- [21] NIH FY2024: parent rows vs subproject rows vs agency, to see what double counts
+SELECT AGENCY_CODE, IFF(SUBPROJECT_ID IS NULL OR SUBPROJECT_ID = '', 'parent/single', 'subproject') kind, COUNT(*) n,
+       ROUND(SUM(AWARD_AMOUNT)/1e9, 2) award_b, ROUND(SUM(DIRECT_COST_AMT)/1e9, 2) direct_b, ROUND(SUM(INDIRECT_COST_AMT)/1e9, 2) indirect_b,
+       COUNT_IF(INDIRECT_COST_AMT IS NULL) ind_null, ROUND(SUM(IFF(INDIRECT_COST_AMT IS NULL, AWARD_AMOUNT, 0))/1e9, 2) award_b_ind_null,
+       COUNT_IF(AWARD_AMOUNT IS NULL) award_null
+FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER
+WHERE FISCAL_YEAR::varchar LIKE '2024%'
+GROUP BY 1, 2 ORDER BY 1, 2;
+
+-- [22] NIH FY2024: overhead rate by organization, NIH parent rows only; top 25 by overhead dollars, top 15 by rate among orgs with $100M+ direct
+WITH o AS (
+  SELECT ORG_NAME, COUNT(*) n, COUNT_IF(INDIRECT_COST_AMT IS NULL) n_ind_null,
+         SUM(IFF(INDIRECT_COST_AMT IS NULL, AWARD_AMOUNT, 0)) award_ind_null,
+         SUM(IFF(INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL, DIRECT_COST_AMT, 0)) dir,
+         SUM(IFF(INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL, INDIRECT_COST_AMT, 0)) ind
+  FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER
+  WHERE FISCAL_YEAR::varchar LIKE '2024%' AND AGENCY_CODE = 'NIH' AND (SUBPROJECT_ID IS NULL OR SUBPROJECT_ID = '')
+  GROUP BY 1
+), r AS (
+  SELECT o.*, ind / NULLIF(dir,0) rate, GREATEST(ind - 0.15*dir, 0) loss_at_15pct,
+         RANK() OVER (ORDER BY ind DESC) r_ind,
+         IFF(dir >= 1e8, RANK() OVER (PARTITION BY dir >= 1e8 ORDER BY ind / NULLIF(dir,0) DESC), NULL) r_rate_big,
+         MEDIAN(IFF(dir >= 1e8, ind / NULLIF(dir,0), NULL)) OVER () med_rate_big,
+         COUNT_IF(dir >= 1e8) OVER () n_big, SUM(ind) OVER () ind_all, SUM(dir) OVER () dir_all
+  FROM o
+)
+SELECT ORG_NAME, n, n_ind_null, ROUND(award_ind_null/1e6,1) award_m_ind_null, ROUND(dir/1e6,1) dir_m, ROUND(ind/1e6,1) ind_m,
+       ROUND(rate,3) rate, ROUND(loss_at_15pct/1e6,1) loss_m_at_15pct, r_ind, r_rate_big, ROUND(med_rate_big,3) med_rate_big, n_big,
+       ROUND(ind_all/1e9,2) ind_all_b, ROUND(dir_all/1e9,2) dir_all_b
+FROM r WHERE r_ind <= 25 OR r_rate_big <= 15 ORDER BY r_ind;
+
+-- [23] FAA: biggest owner-trustee names and biggest addresses, with jets
+WITH f AS (
+  SELECT N_NUMBER, UPPER(TRIM(REGISTRANT_NAME)) nm, TYPE_REGISTRANT::varchar tr, TYPE_ENGINE::varchar te, TYPE_AIRCRAFT::varchar ta,
+         UPPER(TRIM(STREET))||', '||UPPER(TRIM(CITY))||' '||STATE addr, STATE
+  FROM LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY
+), tot AS (SELECT COUNT_IF(te IN ('4','5')) jets_all, COUNT_IF(nm LIKE '%TRUSTEE%') trustee_all,
+                  COUNT_IF(nm LIKE '%TRUSTEE%' AND te IN ('4','5')) trustee_jets FROM f)
+SELECT * FROM (
+  SELECT 'trustee name' kind, nm key, COUNT(*) tails, COUNT_IF(te IN ('4','5')) jets, LISTAGG(DISTINCT tr, ',') reg_types, MAX(addr) an_addr
+  FROM f WHERE nm LIKE '%TRUSTEE%' GROUP BY nm ORDER BY tails DESC LIMIT 15)
+UNION ALL SELECT * FROM (
+  SELECT 'address', addr, COUNT(*), COUNT_IF(te IN ('4','5')), LISTAGG(DISTINCT tr, ','), MAX(nm)
+  FROM f WHERE addr IS NOT NULL GROUP BY addr ORDER BY COUNT(*) DESC LIMIT 15)
+UNION ALL SELECT * FROM (
+  SELECT 'non-citizen corp (8)', nm, COUNT(*), COUNT_IF(te IN ('4','5')), LISTAGG(DISTINCT tr, ','), MAX(addr)
+  FROM f WHERE tr = '8' GROUP BY nm ORDER BY COUNT(*) DESC LIMIT 10)
+UNION ALL SELECT 'totals', 'jets_all / trustee_all / trustee_jets', jets_all, trustee_jets, trustee_all::varchar, NULL FROM tot;
+
+-- [24] FAA: tail numbers named on OFAC SDN or OpenSanctions airplane records that are on the US registry today
+WITH sdn AS (
+  SELECT 'OFAC SDN' src, SDN_NAME nm, PROGRAM prog, REMARKS rem,
+         REGEXP_SUBSTR(REMARKS, 'Tail Number (N[1-9][0-9A-Z]{0,4})\\b', 1, 1, 'e', 1) tail
+  FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_OFAC_SDN WHERE REMARKS ILIKE '%Tail Number N%'
+), os AS (
+  SELECT 'OpenSanctions' src, NAME nm, DATASETS::varchar prog, IDENTIFIERS::varchar rem,
+         REGEXP_SUBSTR(NAME || ' ' || COALESCE(IDENTIFIERS::varchar,'') || ' ' || COALESCE(ALIASES::varchar,''), '\\b(N[1-9][0-9A-Z]{0,4})\\b', 1, 1, 'e', 1) tail
+  FROM LIBRARY_MARTS.JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT WHERE ENTITY_TYPE = 'Airplane'
+), a AS (SELECT * FROM sdn UNION ALL SELECT * FROM os)
+SELECT a.src, a.tail, a.nm, LEFT(a.prog, 80) prog, LEFT(a.rem, 160) rem, f.REGISTRANT_NAME, f.SERIAL_NUMBER, f.STATE, f.TYPE_REGISTRANT, f.CERT_ISSUE_DATE,
+       (SELECT COUNT(*) FROM sdn) n_sdn_ntail, (SELECT COUNT(*) FROM os) n_os_planes, (SELECT COUNT_IF(tail IS NOT NULL) FROM os) n_os_ntail
+FROM a JOIN LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY f ON 'N' || f.N_NUMBER = a.tail
+ORDER BY a.src, a.tail LIMIT 60;
+
+-- [25] FAA: exact-name match of company registrants to OFAC SDN, SAM exclusions (current, entities) and OpenSanctions sanctioned companies
+WITH f AS (
+  SELECT UPPER(TRIM(REGISTRANT_NAME)) nm, COUNT(*) tails, MAX(STATE) st, MAX(CITY) city, MAX(COUNTRY_CODE) cc
+  FROM LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY
+  WHERE TYPE_REGISTRANT::varchar IN ('2','3','7','8') AND REGISTRANT_NAME LIKE '% %' AND LENGTH(REGISTRANT_NAME) >= 10
+  GROUP BY 1
+), l AS (
+  SELECT DISTINCT 'OFAC SDN' src, UPPER(TRIM(SDN_NAME)) nm, PROGRAM info FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_OFAC_SDN WHERE SDN_TYPE IS NULL OR SDN_TYPE::varchar NOT ILIKE '%individual%'
+  UNION ALL
+  SELECT DISTINCT 'SAM excl', UPPER(TRIM(ENTITY_NAME)), EXCLUDING_AGENCY||' | '||COALESCE(CITY,'')||' '||COALESCE(STATE,'')
+  FROM LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS WHERE IS_CURRENTLY_EXCLUDED::varchar IN ('true','TRUE','1','Y') AND ENTITY_NAME IS NOT NULL
+  UNION ALL
+  SELECT DISTINCT 'OpenSanctions', UPPER(TRIM(NAME)), LEFT(COALESCE(COUNTRIES::varchar,'')||' | '||COALESCE(SANCTIONS::varchar,''), 120)
+  FROM LIBRARY_MARTS.JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT
+  WHERE ENTITY_TYPE IN ('Company','Organization','LegalEntity') AND SANCTIONS IS NOT NULL AND SANCTIONS::varchar NOT IN ('', '[]')
+)
+SELECT l.src, f.nm, f.tails, f.city, f.st, LEFT(l.info, 140) info FROM f JOIN l ON l.nm = f.nm ORDER BY l.src, f.tails DESC LIMIT 60;
+
+-- [26] OSHA 2025 (rerun, fixed alias): sites with 500+ workers, case rate vs same-NAICS peers; plus column-shifted rows and their deaths
+WITH r AS (
+  SELECT ESTABLISHMENT_ID eid, ESTABLISHMENT_NAME en, COMPANY_NAME cn, CITY, STATE, NAICS_CODE::varchar n6,
+         TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e, TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) hrs,
+         COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0) cases,
+         TRY_TO_NUMBER(TOTAL_DEATHS::varchar) d
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+  WHERE TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) > 0
+    AND TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) / TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) BETWEEN 500 AND 4500
+), i6 AS (SELECT n6, SUM(cases) c6, SUM(hrs) h6, COUNT(*) k6 FROM r GROUP BY 1),
+   i4 AS (SELECT LEFT(n6,4) n4, SUM(cases) c4, SUM(hrs) h4, COUNT(*) k4 FROM r GROUP BY 1),
+s AS (
+  SELECT r.*, r.cases * 200000 / r.hrs rate,
+         IFF(h6 - r.hrs >= 5e6, (c6 - r.cases) / (h6 - r.hrs), (c4 - r.cases) / NULLIF(h4 - r.hrs, 0)) * 200000 peer_rate,
+         IFF(h6 - r.hrs >= 5e6, '6-digit', '4-digit') pool, IFF(h6 - r.hrs >= 5e6, k6 - 1, k4 - 1) peer_sites
+  FROM r JOIN i6 ON i6.n6 = r.n6 JOIN i4 ON i4.n4 = LEFT(r.n6,4)
+  WHERE r.e >= 500 AND r.cases >= 30
+), shifted AS (
+  SELECT COUNT(*) n_shift, SUM(TRY_TO_NUMBER(TOTAL_DEATHS::varchar)) d_shift
+  FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+  WHERE NOT REGEXP_LIKE(COALESCE(STATE,''), '[A-Z]{2}') OR REGEXP_LIKE(COALESCE(COMPANY_NAME,''), '[0-9]+')
+)
+SELECT en, cn, CITY, STATE, n6, e, cases, d, ROUND(rate,1) rate, ROUND(peer_rate,1) peer_rate, ROUND(rate/NULLIF(peer_rate,0),1) x_peer, pool, peer_sites,
+       (SELECT COUNT(*) FROM s) n_big_sites, (SELECT COUNT_IF(rate >= 3*peer_rate) FROM s) n_3x, shifted.n_shift, shifted.d_shift
+FROM s, shifted ORDER BY rate/NULLIF(peer_rate,0) DESC LIMIT 25;
+
+-- [27] Epstein: every 404 and 3xx capture, by URL, with whether a 200 came after
+WITH u AS (
+  SELECT ORIGINAL_URL, STATUS_CODE, CAPTURED_AT, CONTENT_DIGEST,
+         MAX(IFF(STATUS_CODE = '200', CAPTURED_AT, NULL)) OVER (PARTITION BY URLKEY) last_ok,
+         MIN(IFF(STATUS_CODE = '200', CAPTURED_AT, NULL)) OVER (PARTITION BY URLKEY) first_ok
+  FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN
+)
+SELECT LEFT(ORIGINAL_URL, 110) url, STATUS_CODE, COUNT(*) caps, MIN(CAPTURED_AT)::date first_bad, MAX(CAPTURED_AT)::date last_bad,
+       MAX(first_ok)::date first_ok, MAX(last_ok)::date last_ok, IFF(MAX(last_ok) > MAX(CAPTURED_AT), 'back to 200', 'never 200 again') after
+FROM u WHERE STATUS_CODE = '404' OR STATUS_CODE LIKE '3%'
+GROUP BY 1, 2 ORDER BY 2, caps DESC LIMIT 45;
+
+-- [28] PAC: FEC independent expenditures by candidate (no superseded filter, flag values shown), top for 2024 cycle file
+WITH ie AS (
+  SELECT CAND_ID, MAX(CAND_NAME) nm, MAX(CAN_OFFICE) office, MAX(CAN_OFFICE_STATE) st, CYCLE_FILE,
+         SUM(IFF(SUP_OPP = 'S', TRY_TO_NUMBER(EXP_AMO::varchar, 18, 2), 0)) sup,
+         SUM(IFF(SUP_OPP = 'O', TRY_TO_NUMBER(EXP_AMO::varchar, 18, 2), 0)) opp,
+         SUM(IFF(SUP_OPP = 'S' AND UPPER(COALESCE(IS_SUPERSEDED::varchar,'')) NOT IN ('TRUE','Y','1','T'), TRY_TO_NUMBER(EXP_AMO::varchar, 18, 2), 0)) sup_live,
+         SUM(IFF(SUP_OPP = 'O' AND UPPER(COALESCE(IS_SUPERSEDED::varchar,'')) NOT IN ('TRUE','Y','1','T'), TRY_TO_NUMBER(EXP_AMO::varchar, 18, 2), 0)) opp_live,
+         COUNT(*) n, LISTAGG(DISTINCT IS_SUPERSEDED::varchar, ',') sup_flags
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES
+  GROUP BY CAND_ID, CYCLE_FILE
+), f AS (SELECT DISTINCT FEC_ID, BIOGUIDE FROM LIBRARY_MARTS.POLITICS.POLITICS__MEMBER_FEC_ID)
+SELECT ie.CYCLE_FILE, ie.CAND_ID, ie.nm, ie.office, ie.st, ROUND(ie.sup) sup, ROUND(ie.opp) opp, ROUND(ie.sup_live) sup_live, ROUND(ie.opp_live) opp_live,
+       ie.n, ie.sup_flags, f.BIOGUIDE
+FROM ie LEFT JOIN f ON f.FEC_ID = ie.CAND_ID
+QUALIFY RANK() OVER (PARTITION BY ie.CYCLE_FILE ORDER BY ie.sup_live + ie.opp_live DESC) <= 10
+ORDER BY ie.CYCLE_FILE, ie.sup_live + ie.opp_live DESC;
+
+-- [29] NIH: overhead share by fiscal year, NIH parent rows, 2019-2026
+SELECT FISCAL_YEAR, COUNT(*) n, ROUND(SUM(AWARD_AMOUNT)/1e9,2) award_b,
+       ROUND(SUM(IFF(INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL, DIRECT_COST_AMT, 0))/1e9,2) dir_b,
+       ROUND(SUM(IFF(INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL, INDIRECT_COST_AMT, 0))/1e9,2) ind_b,
+       ROUND(SUM(IFF(INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL, INDIRECT_COST_AMT, 0))
+             / NULLIF(SUM(IFF(INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL, DIRECT_COST_AMT, 0)),0), 4) rate,
+       COUNT_IF(INDIRECT_COST_AMT = 0 AND DIRECT_COST_AMT > 0) n_zero_ind, MAX(AWARD_NOTICE_DATE) last_notice
+FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER
+WHERE AGENCY_CODE = 'NIH' AND (SUBPROJECT_ID IS NULL OR SUBPROJECT_ID = '') AND FISCAL_YEAR::varchar >= '2019'
+GROUP BY 1 ORDER BY 1;
+
+-- [30] FAA: the big trustee names, registration status mix and dates; plus whether the sanctions tail join had any input
+WITH f AS (
+  SELECT UPPER(TRIM(REGISTRANT_NAME)) nm, STATUS_CODE st, TYPE_AIRCRAFT::varchar ta, CERT_ISSUE_DATE, LAST_ACTION_DATE, EXPIRATION_DATE, COUNTRY_CODE cc
+  FROM LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY
+  WHERE UPPER(REGISTRANT_NAME) IN ('AIRCRAFT GUARANTY CORP TRUSTEE','SOUTHERN AIRCRAFT CONSULTANCY INC TRUSTEE','INTERNATIONAL AIR SERVICES INC TRUSTEE',
+        'BANK OF UTAH TRUSTEE','WILMINGTON TRUST CO TRUSTEE','PLANE FUN INC TR TRUSTEE','SKY WEST AVIATION INC TRUSTEE','QUALITAIR LLC TRUSTEE','VALIAIR LC TRUSTEE')
+     OR UPPER(REGISTRANT_NAME) LIKE 'AIRCRAFT GUARANTY%'
+)
+SELECT nm, COUNT(*) tails, COUNT_IF(st = 'V') valid, LISTAGG(DISTINCT st, ',') statuses, COUNT_IF(ta = '4') fixed_wing_single_or_multi,
+       MIN(CERT_ISSUE_DATE) cert_min, MAX(CERT_ISSUE_DATE) cert_max, COUNT_IF(CERT_ISSUE_DATE >= '2023-05-01') certs_since_may2023,
+       MAX(LAST_ACTION_DATE) last_action, COUNT_IF(EXPIRATION_DATE >= '2026-09-24') unexpired,
+       (SELECT COUNT(*) FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_OFAC_SDN WHERE REMARKS ILIKE '%Tail Number N%') sdn_rows_with_n_tail,
+       (SELECT COUNT(*) FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_OFAC_SDN WHERE REMARKS ILIKE '%Tail Number%') sdn_rows_any_tail,
+       (SELECT COUNT(*) FROM LIBRARY_MARTS.JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT WHERE ENTITY_TYPE = 'Airplane') os_planes
+FROM f GROUP BY 1 ORDER BY tails DESC;
+
+-- [31] Epstein: every court-records page slug, first and last capture, answers seen, whether it was ever a 200
+SELECT REGEXP_REPLACE(URLKEY, '\\?.*$', '') slug, COUNT(*) caps, COUNT(DISTINCT URLKEY) variants, MIN(CAPTURED_AT)::date first_cap, MAX(CAPTURED_AT)::date last_cap,
+       LISTAGG(DISTINCT STATUS_CODE, ',') statuses, COUNT_IF(STATUS_CODE = '200') n200,
+       MIN(IFF(STATUS_CODE = '200', CAPTURED_AT, NULL))::date first_200, MAX(IFF(STATUS_CODE = '404', CAPTURED_AT, NULL))::date last_404
+FROM LIBRARY_MARTS.OPEN_DATA.OPEN_DATA__XC_WAYBACK_DOJ_EPSTEIN
+WHERE URLKEY LIKE '%court-records%'
+GROUP BY 1 ORDER BY slug;
+
+-- [32] NIH: overhead share by funding mechanism, FY2024 vs FY2025 vs FY2026, NIH parent rows with both costs
+SELECT FUNDING_MECHANISM,
+       ROUND(SUM(IFF(FISCAL_YEAR::varchar LIKE '2024%', DIRECT_COST_AMT, 0))/1e9, 2) dir24,
+       ROUND(SUM(IFF(FISCAL_YEAR::varchar LIKE '2024%', INDIRECT_COST_AMT, 0)) / NULLIF(SUM(IFF(FISCAL_YEAR::varchar LIKE '2024%', DIRECT_COST_AMT, 0)),0), 3) rate24,
+       ROUND(SUM(IFF(FISCAL_YEAR::varchar LIKE '2025%', DIRECT_COST_AMT, 0))/1e9, 2) dir25,
+       ROUND(SUM(IFF(FISCAL_YEAR::varchar LIKE '2025%', INDIRECT_COST_AMT, 0)) / NULLIF(SUM(IFF(FISCAL_YEAR::varchar LIKE '2025%', DIRECT_COST_AMT, 0)),0), 3) rate25,
+       ROUND(SUM(IFF(FISCAL_YEAR::varchar LIKE '2026%', DIRECT_COST_AMT, 0))/1e9, 2) dir26,
+       ROUND(SUM(IFF(FISCAL_YEAR::varchar LIKE '2026%', INDIRECT_COST_AMT, 0)) / NULLIF(SUM(IFF(FISCAL_YEAR::varchar LIKE '2026%', DIRECT_COST_AMT, 0)),0), 3) rate26,
+       COUNT_IF(FISCAL_YEAR::varchar LIKE '2024%') n24, COUNT_IF(FISCAL_YEAR::varchar LIKE '2025%') n25, COUNT_IF(FISCAL_YEAR::varchar LIKE '2026%') n26
+FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__FED_NIH_REPORTER
+WHERE AGENCY_CODE = 'NIH' AND (SUBPROJECT_ID IS NULL OR SUBPROJECT_ID = '') AND INDIRECT_COST_AMT IS NOT NULL AND DIRECT_COST_AMT IS NOT NULL
+  AND (FISCAL_YEAR::varchar LIKE '2024%' OR FISCAL_YEAR::varchar LIKE '2025%' OR FISCAL_YEAR::varchar LIKE '2026%')
+GROUP BY 1 ORDER BY dir24 DESC NULLS LAST;
+
+-- [33] FAA: Aircraft Guaranty and Southern Aircraft Consultancy tails, certificates by year, addresses, aircraft kinds
+SELECT IFF(UPPER(REGISTRANT_NAME) LIKE 'AIRCRAFT GUARANTY%', 'AIRCRAFT GUARANTY', 'SOUTHERN AIRCRAFT CONSULTANCY') trustee,
+       YEAR(TRY_TO_DATE(CERT_ISSUE_DATE::varchar)) cert_year, COUNT(*) tails,
+       LISTAGG(DISTINCT UPPER(TRIM(STREET))||', '||UPPER(TRIM(CITY))||' '||STATE, ' / ') addrs,
+       LISTAGG(DISTINCT TYPE_AIRCRAFT::varchar, ',') kinds, COUNT_IF(TYPE_ENGINE::varchar IN ('4','5')) jets,
+       COUNT_IF(OTHER_NAME_1 IS NOT NULL AND OTHER_NAME_1 <> '') co_names, MIN(YEAR_MFR) oldest, MAX(YEAR_MFR) newest
+FROM LIBRARY_MARTS.TRANSPORT.TRANSPORT__FED_FAA_AIRCRAFT_REGISTRY
+WHERE UPPER(REGISTRANT_NAME) LIKE 'AIRCRAFT GUARANTY%' OR UPPER(REGISTRANT_NAME) = 'SOUTHERN AIRCRAFT CONSULTANCY INC TRUSTEE'
+GROUP BY 1, 2 ORDER BY 1, 2;
+
+-- [34] OSHA 2025: the SpaceX and Bath sites behind the year-on numbers (name check)
+SELECT CASE WHEN UPPER(COALESCE(COMPANY_NAME,'')||' | '||COALESCE(ESTABLISHMENT_NAME,'')) LIKE '%BATH IRON WORKS%' THEN 'BATH' ELSE 'SPACEX' END tag,
+       ESTABLISHMENT_NAME, COMPANY_NAME, EIN, CITY, STATE, NAICS_CODE, TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar) e,
+       ROUND(TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar) / NULLIF(TRY_TO_NUMBER(ANNUAL_AVERAGE_EMPLOYEES::varchar),0)) hpw,
+       COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0) cases,
+       ROUND((COALESCE(TOTAL_DAFW_CASES,0)+COALESCE(TOTAL_DJTR_CASES,0)+COALESCE(TOTAL_OTHER_CASES,0)) * 200000 / NULLIF(TRY_TO_NUMBER(TOTAL_HOURS_WORKED::varchar),0), 2) rate
+FROM LIBRARY_MARTS.LABOR.LABOR__FED_OSHA_ITA_300A_SUMMARY_2025
+WHERE UPPER(COALESCE(COMPANY_NAME,'')||' | '||COALESCE(ESTABLISHMENT_NAME,'')) LIKE ANY ('%SPACE EXPLORATION TECH%', '%SPACEX%', '%BATH IRON WORKS%')
+ORDER BY tag, e DESC;
+
+-- [35] Warehouse lists: does Aircraft Guaranty, its title company or its owner show up on OpenSanctions, SAM exclusions or OFAC
+SELECT 'OpenSanctions' src, NAME nm, ENTITY_TYPE kind, LEFT(DATASETS::varchar, 100) info, LEFT(SANCTIONS::varchar, 140) detail
+FROM LIBRARY_MARTS.JUSTICE.JUSTICE__INTL_OPENSANCTIONS_DEFAULT
+WHERE NAME ILIKE '%AIRCRAFT GUARANTY%' OR NAME ILIKE '%MERCER%ERWIN%' OR NAME ILIKE '%WRIGHT BROTHERS AIRCRAFT%' OR NAME ILIKE '%SOUTHERN AIRCRAFT CONSULTANCY%'
+UNION ALL
+SELECT 'SAM excl', COALESCE(ENTITY_NAME, FIRST_NAME||' '||LAST_NAME), EXCLUSION_TYPE, EXCLUDING_AGENCY||' | '||COALESCE(CITY,'')||' '||COALESCE(STATE,''), ACTIVATION_DATE::varchar
+FROM LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS
+WHERE ENTITY_NAME ILIKE '%AIRCRAFT GUARANTY%' OR ENTITY_NAME ILIKE '%WRIGHT BROTHERS AIRCRAFT%' OR (LAST_NAME ILIKE 'MERCER%ERWIN%')
+UNION ALL
+SELECT 'OFAC SDN', SDN_NAME, SDN_TYPE::varchar, PROGRAM, LEFT(REMARKS, 140)
+FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_OFAC_SDN
+WHERE SDN_NAME ILIKE '%AIRCRAFT GUARANTY%' OR SDN_NAME ILIKE '%MERCER%ERWIN%' OR SDN_NAME ILIKE '%WRIGHT BROTHERS AIRCRAFT%';

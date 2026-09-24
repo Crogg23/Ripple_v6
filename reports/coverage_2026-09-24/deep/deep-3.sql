@@ -1,0 +1,341 @@
+-- deep-3: coverage deep pass, 2026-09-24. Read-only. Every statement run, in order.
+-- Each connection opened with: ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = 300; ALTER SESSION SET QUERY_TAG = 'coverage-b-2026-09-24';
+
+-- [1] 13:44:58
+-- NRC count + profile
+SELECT COUNT(*) n, COUNT(DISTINCT SEQNOS) seq, MIN(DATE_TIME_RECEIVED) mn, MAX(DATE_TIME_RECEIVED) mx,
+ SUM(IFF(RESPONSIBLE_COMPANY IS NULL OR RESPONSIBLE_COMPANY IN ('None',''),1,0)) no_co,
+ SUM(IFF(TRY_TO_NUMBER(SEQNOS) >= 999000,1,0)) seq_hi, COUNT(DISTINCT SRC_YEAR) yrs
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENTS;
+
+-- [2] 13:44:59
+-- NRC sample
+SELECT * FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENTS LIMIT 5;
+
+-- [3] 13:44:59
+-- wells count + profile
+SELECT COUNT(*) n, COUNT(DISTINCT WELL_IDENTIFIER) ids, COUNT(DISTINCT WELL_RECORD_ID) recs, COUNT(DISTINCT STATE) st,
+ COUNT(DISTINCT SOURCE) src, COUNT(DISTINCT DATA_FILE_DATE) fdates, COUNT(DISTINCT _SOURCE_RUN_ID) runs,
+ COUNT(DISTINCT WELL_IDENTIFIER||'|'||COALESCE(WELL_NAME,'')||'|'||COALESCE(LATITUDE::string,'')) id_name_lat
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS;
+
+-- [4] 13:45:00
+-- wells sample
+SELECT * FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS LIMIT 5;
+
+-- [5] 13:45:00
+-- epstein count
+SELECT COUNT(*) n, COUNT(DISTINCT PAGE_URL) pages, COUNT(DISTINCT DATASET_NO) ds, COUNT(DISTINCT PAGE_DIGEST) digests, MIN(CAPTURED_AT), MAX(CAPTURED_AT)
+FROM LIBRARY_MARTS.EPSTEIN.FCT_DATASET_SIZE_HISTORY;
+
+-- [6] 13:45:00
+-- epstein sample
+SELECT * FROM LIBRARY_MARTS.EPSTEIN.FCT_DATASET_SIZE_HISTORY LIMIT 5;
+
+-- [7] 13:45:01
+-- fec count + profile
+SELECT COUNT(*) n, COUNT(DISTINCT SUB_ID) subs, SUM(IFF(MEMO_CD='X',1,0)) memo_x, SUM(IFF(IS_MEMO_TRANSACTION,1,0)) memo_flag,
+ LISTAGG(DISTINCT CYCLE, ',') cycles, SUM(TRANSACTION_AMT) amt
+FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE;
+
+-- [8] 13:45:02
+-- fec sample
+SELECT * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE LIMIT 5;
+
+-- [9] 13:45:02
+-- 527 count + profile
+SELECT COUNT(*) n, COUNT(DISTINCT SCHEDULE_ID) sched, COUNT(DISTINCT FORM_ID_NUMBER) forms, COUNT(DISTINCT EIN) eins, SUM(EXPENDITURE_AMOUNT) amt,
+ MIN(EXPENDITURE_DATE), MAX(EXPENDITURE_DATE)
+FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES;
+
+-- [10] 13:45:02
+-- 527 sample
+SELECT * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES LIMIT 5;
+
+-- [11] 13:46:36
+-- NRC: top 50 company names since 2015, calls, distinct responsible cities, years active
+WITH b AS (SELECT UPPER(TRIM(REGEXP_REPLACE(RESPONSIBLE_COMPANY,'[^A-Za-z0-9 &]',''))) co, RESPONSIBLE_CITY city, RESPONSIBLE_STATE st, YEAR(DATE_TIME_RECEIVED) y
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENTS
+  WHERE DATE_TIME_RECEIVED >= '2015-01-01')
+SELECT co, COUNT(*) calls, COUNT(DISTINCT city||st) cities, COUNT(DISTINCT st) states, MIN(y) y0, MAX(y) y1,
+  ROUND(100*COUNT(*)/SUM(COUNT(*)) OVER (),2) pct_all
+FROM b GROUP BY co ORDER BY calls DESC LIMIT 50;
+
+-- [12] 13:46:37
+-- NRC: per-year volume, blank-company share, the 999999 sentinel claim, report source
+SELECT SRC_YEAR, COUNT(*) calls, ROUND(100*AVG(IFF(RESPONSIBLE_COMPANY IS NULL OR RESPONSIBLE_COMPANY IN ('None',''),1,0)),1) pct_no_co,
+  SUM(IFF(SEQNOS IN ('999999','999998','999997'),1,0)) seq_999999_rows, MIN(TRY_TO_NUMBER(SEQNOS)) seq_min, MAX(TRY_TO_NUMBER(SEQNOS)) seq_max,
+  ROUND(100*AVG(IFF(SOURCE='UNAVAILABLE',1,0)),1) pct_src_unavail
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENTS GROUP BY SRC_YEAR ORDER BY SRC_YEAR;
+
+-- [13] 13:46:37
+-- wells: distinct wells by state and county, share of state, joined to 2020 population
+WITH w AS (SELECT STATE, UPPER(TRIM(REGEXP_REPLACE(COUNTY,' (County|COUNTY|Parish|PARISH)$',''))) cty, COUNT(DISTINCT WELL_IDENTIFIER) wells
+   FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS GROUP BY 1,2),
+ d AS (SELECT STATE_NAME, UPPER(TRIM(REGEXP_REPLACE(COUNTY_NAME,' (County|Parish|Borough|Census Area|city|City and Borough|Municipality)$',''))) cty, SUM(POPULATION_2020) pop
+   FROM LIBRARY_MARTS.CORE.DIM_COUNTY GROUP BY 1,2),
+ j AS (SELECT w.*, d.pop, SUM(wells) OVER (PARTITION BY w.STATE) st_wells, COUNT(*) OVER (PARTITION BY w.STATE) st_cty,
+   SUM(IFF(d.pop IS NOT NULL, wells, 0)) OVER () matched_wells, SUM(wells) OVER () all_wells
+   FROM w LEFT JOIN d ON d.STATE_NAME = w.STATE AND d.cty = w.cty)
+SELECT STATE, cty, wells, st_wells, st_cty, ROUND(100*wells/st_wells,1) pct_of_state, pop, ROUND(10000*wells/NULLIF(pop,0),1) per_10k_people, matched_wells, all_wells
+FROM j ORDER BY wells DESC LIMIT 40;
+
+-- [14] 13:46:38
+-- wells: per state snapshot date, status spellings, and any operator named in notes; plus the only repeated IDs
+SELECT 'state' k, STATE v, COUNT(DISTINCT WELL_IDENTIFIER) n, MIN(DATA_FILE_DATE)::string a, LISTAGG(DISTINCT STATUS, '/') WITHIN GROUP (ORDER BY STATUS) b
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS GROUP BY STATE
+UNION ALL
+SELECT 'notes_operator', LEFT(COALESCE(OTHER_NOTES,'')||' || '||COALESCE(WELL_INFO_NOTES,''),120), COUNT(*), NULL, NULL
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS
+  WHERE OTHER_NOTES ILIKE '%operat%' OR WELL_INFO_NOTES ILIKE '%operat%' GROUP BY 2 QUALIFY ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) <= 25
+UNION ALL
+SELECT 'dup_id', WELL_IDENTIFIER, COUNT(*), LISTAGG(DISTINCT STATE,'/'), LISTAGG(DISTINCT WELL_NAME,'/')
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS GROUP BY WELL_IDENTIFIER HAVING COUNT(*) > 1
+ORDER BY k, n DESC;
+
+-- [15] 13:46:39
+-- epstein: every snapshot, in order
+SELECT DATASET_NO, PAGE_URL, CAPTURED_AT, PAGE_DIGEST, PAGER_PAGES, APPROX_FILES_FROM_PAGER, FILES_ON_PAGE_ONE
+FROM LIBRARY_MARTS.EPSTEIN.FCT_DATASET_SIZE_HISTORY ORDER BY DATASET_NO, CAPTURED_AT;
+
+-- [16] 13:48:43
+-- NRC: peer groups since 2015 (railroads, Gulf offshore operators, refiners), calls by company family, 2015-2025 full years
+WITH b AS (SELECT UPPER(TRIM(REGEXP_REPLACE(RESPONSIBLE_COMPANY,'[^A-Za-z0-9 &]',''))) co, YEAR(DATE_TIME_RECEIVED) y, RESPONSIBLE_STATE st
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USCG_NRC_INCIDENTS WHERE DATE_TIME_RECEIVED >= '2015-01-01' AND DATE_TIME_RECEIVED < '2026-01-01'),
+f AS (SELECT CASE
+  WHEN co LIKE 'CSX%' THEN 'rail|CSX'
+  WHEN co LIKE 'NORFOLK SOUTHERN%' THEN 'rail|NORFOLK SOUTHERN'
+  WHEN co LIKE 'UNION PACIFIC%' OR co = 'UP' OR co LIKE 'UPRR%' THEN 'rail|UNION PACIFIC'
+  WHEN co LIKE 'BNSF%' OR co LIKE 'BURLINGTON NORTHERN%' THEN 'rail|BNSF'
+  WHEN co LIKE 'CANADIAN NATIONAL%' OR co LIKE 'CN RAIL%' THEN 'rail|CANADIAN NATIONAL'
+  WHEN co LIKE 'CANADIAN PACIFIC%' OR co LIKE 'CPKC%' OR co LIKE 'KANSAS CITY SOUTHERN%' OR co LIKE 'CP RAIL%' THEN 'rail|CP/KCS'
+  WHEN co LIKE 'AMTRAK%' OR co LIKE 'NATIONAL RAILROAD PASSENGER%' THEN 'rail|AMTRAK'
+  WHEN co LIKE 'TAYLOR ENERGY%' THEN 'gulf|TAYLOR ENERGY'
+  WHEN co LIKE 'COX OPERATING%' OR co LIKE 'COX OIL%' THEN 'gulf|COX'
+  WHEN co LIKE 'FIELDWOOD%' THEN 'gulf|FIELDWOOD'
+  WHEN co LIKE 'TALOS%' THEN 'gulf|TALOS'
+  WHEN co LIKE 'CANTIUM%' THEN 'gulf|CANTIUM'
+  WHEN co LIKE 'TEXAS PETROLEUM INVESTMENT%' THEN 'gulf|TEXAS PETROLEUM INV'
+  WHEN co LIKE 'ARENA OFFSHORE%' OR co LIKE 'ARENA ENERGY%' THEN 'gulf|ARENA'
+  WHEN co LIKE 'W&T%' OR co LIKE 'W & T%' OR co LIKE 'WT OFFSHORE%' THEN 'gulf|W&T'
+  WHEN co LIKE 'HILCORP%' THEN 'gulf|HILCORP'
+  WHEN co LIKE 'CHEVRON%' THEN 'major|CHEVRON'
+  WHEN co LIKE 'EXXON%' OR co LIKE 'EXXONMOBIL%' OR co LIKE 'MOBIL %' THEN 'major|EXXON'
+  WHEN co = 'BP' OR co LIKE 'BP %' OR co LIKE 'BRITISH PETROLEUM%' THEN 'major|BP'
+  WHEN co LIKE 'SHELL%' THEN 'major|SHELL'
+  WHEN co LIKE 'PHILLIPS 66%' THEN 'major|PHILLIPS 66'
+  WHEN co LIKE 'MARATHON%' THEN 'major|MARATHON'
+  WHEN co LIKE 'VALERO%' THEN 'major|VALERO'
+  WHEN co LIKE 'CONOCO%' THEN 'major|CONOCOPHILLIPS'
+  WHEN co LIKE 'KINDER MORGAN%' THEN 'pipe|KINDER MORGAN'
+  WHEN co LIKE 'TARGA%' THEN 'pipe|TARGA'
+  WHEN co LIKE 'ENERGY TRANSFER%' OR co LIKE 'SUNOCO%' THEN 'pipe|ENERGY TRANSFER/SUNOCO'
+  WHEN co LIKE 'ENTERPRISE PRODUCTS%' THEN 'pipe|ENTERPRISE'
+  WHEN co LIKE 'PLAINS %' THEN 'pipe|PLAINS'
+  WHEN co LIKE 'ENBRIDGE%' THEN 'pipe|ENBRIDGE'
+  WHEN co LIKE 'COLONIAL PIPELINE%' THEN 'pipe|COLONIAL'
+  WHEN co LIKE 'WILLIAMS%' THEN 'pipe|WILLIAMS' END fam, co, y, st FROM b)
+SELECT fam, COUNT(*) calls, COUNT(DISTINCT co) spellings, COUNT(DISTINCT st) states,
+  SUM(IFF(y BETWEEN 2015 AND 2017,1,0)) y15_17, SUM(IFF(y BETWEEN 2018 AND 2020,1,0)) y18_20, SUM(IFF(y BETWEEN 2021 AND 2023,1,0)) y21_23, SUM(IFF(y BETWEEN 2024 AND 2025,1,0)) y24_25
+FROM f WHERE fam IS NOT NULL GROUP BY fam ORDER BY fam, calls DESC;
+
+-- [17] 13:48:44
+-- FEC: transaction type by memo flag and cycle
+SELECT CYCLE, TRANSACTION_TP, MEMO_CD, COUNT(*) n, ROUND(SUM(TRANSACTION_AMT)) amt, COUNT(DISTINCT CMTE_ID) cmtes, COUNT(DISTINCT CAND_ID) cands,
+  SUM(IFF(TRANSACTION_AMT <= 0,1,0)) nonpos
+FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE GROUP BY 1,2,3 ORDER BY amt DESC NULLS LAST;
+
+-- [18] 13:48:45
+-- WHO_WON: shape of 2024 rows
+SELECT YEAR, OFFICE, STATE, DISTRICT, WINNER, WINNER_PARTY, RUNNER_UP, MARGIN_PCT, IS_SPECIAL FROM LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON WHERE YEAR::string LIKE '2024%' LIMIT 6;
+
+-- [19] 13:48:45
+-- FEC: top committees by non-memo independent expenditures (24E for, 24A against), with committee name
+WITH ie AS (SELECT CMTE_ID, CYCLE, SUM(IFF(TRANSACTION_TP='24E',TRANSACTION_AMT,0)) for_amt, SUM(IFF(TRANSACTION_TP='24A',TRANSACTION_AMT,0)) against_amt,
+   SUM(TRANSACTION_AMT) all_amt, COUNT(DISTINCT CAND_ID) cands
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE WHERE COALESCE(MEMO_CD,'') <> 'X' GROUP BY 1,2),
+ nm AS (SELECT CMTE_ID, ANY_VALUE(CMTE_NM) CMTE_NM, ANY_VALUE(CMTE_TP) CMTE_TP, ANY_VALUE(CMTE_PTY_AFFILIATION) PTY FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEES_DIM GROUP BY 1)
+SELECT ie.CMTE_ID, nm.CMTE_NM, nm.CMTE_TP, nm.PTY, ie.CYCLE, ROUND(for_amt/1e6,1) for_m, ROUND(against_amt/1e6,1) against_m, ROUND(all_amt/1e6,1) all_m, cands,
+  ROUND(100*all_amt/SUM(all_amt) OVER (PARTITION BY ie.CYCLE),1) pct_cycle
+FROM ie LEFT JOIN nm USING (CMTE_ID) ORDER BY all_amt DESC LIMIT 20;
+
+-- [20] 13:48:48
+-- 527: top payer EINs, how much looks like pass-through contributions
+SELECT EIN, ANY_VALUE(ORG_NAME) org, COUNT(*) n, ROUND(SUM(EXPENDITURE_AMOUNT)/1e6,1) amt_m,
+  ROUND(100*SUM(IFF(EXPENDITURE_PURPOSE ILIKE '%contribution%',EXPENDITURE_AMOUNT,0))/NULLIF(SUM(EXPENDITURE_AMOUNT),0),1) pct_contrib_purpose,
+  MEDIAN(EXPENDITURE_AMOUNT) med, MAX(EXPENDITURE_AMOUNT) mx, COUNT(DISTINCT FORM_ID_NUMBER) forms, MIN(YEAR(EXPENDITURE_DATE)) y0, MAX(YEAR(EXPENDITURE_DATE)) y1,
+  ROUND(100*SUM(EXPENDITURE_AMOUNT)/SUM(SUM(EXPENDITURE_AMOUNT)) OVER (),1) pct_all
+FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY EIN ORDER BY SUM(EXPENDITURE_AMOUNT) DESC LIMIT 20;
+
+-- [21] 13:48:49
+-- 527: same payment on more than one form (amendment copies) and lump-looking recipient names
+WITH k AS (SELECT EIN, UPPER(TRIM(RECIPIENT_NAME)) r, EXPENDITURE_DATE d, EXPENDITURE_AMOUNT a, COUNT(*) n, COUNT(DISTINCT FORM_ID_NUMBER) forms
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1,2,3,4)
+SELECT COUNT(*) keys, SUM(n) rows_all, ROUND(SUM(n*a)/1e9,3) amt_all_b,
+  SUM(IFF(forms>1,n,0)) rows_multi_form, ROUND(SUM(IFF(forms>1,(n-1)*a,0))/1e9,3) extra_copy_amt_b_upper,
+  ROUND(SUM(IFF(forms>1,(forms-1)*a,0))/1e9,3) extra_form_copies_amt_b,
+  ROUND(SUM(IFF(n>1 AND forms=1,(n-1)*a,0))/1e9,3) same_form_repeat_amt_b,
+  ROUND(SUM(IFF(r RLIKE '.*(AGGREGATE|UNITEMIZED|TOTAL|BELOW THRESHOLD|VARIOUS|MISC).*', n*a,0))/1e9,3) lump_name_amt_b,
+  SUM(IFF(r RLIKE '.*(AGGREGATE|UNITEMIZED|TOTAL|BELOW THRESHOLD|VARIOUS|MISC).*', n,0)) lump_name_rows
+FROM k;
+
+-- [22] 13:50:24
+-- FEC 2024: non-memo IE by candidate, primary vs general, joined to candidate file and WHO_WON 2024 (state + office + district + surname), party check
+WITH ie AS (SELECT CAND_ID, LEFT(TRANSACTION_PGI,1) pg,
+    SUM(IFF(TRANSACTION_TP='24E',TRANSACTION_AMT,0)) for_amt, SUM(IFF(TRANSACTION_TP='24A',TRANSACTION_AMT,0)) against_amt
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE
+  WHERE CYCLE=2024 AND COALESCE(MEMO_CD,'')<>'X' AND TRANSACTION_TP IN ('24E','24A') GROUP BY 1,2),
+ c AS (SELECT CAND_ID, ANY_VALUE(CAND_NAME) nm, ANY_VALUE(CAND_OFFICE) off, ANY_VALUE(CAND_OFFICE_ST) st, ANY_VALUE(CAND_OFFICE_DISTRICT) dist, ANY_VALUE(CAND_PTY_AFFILIATION) pty
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CANDIDATES WHERE CAND_ELECTION_YR = 2024 GROUP BY 1),
+ w AS (SELECT OFFICE, STATE, DISTRICT, ' '||UPPER(REGEXP_REPLACE(WINNER,'[^A-Za-z]+',' '))||' ' wn, ' '||UPPER(REGEXP_REPLACE(COALESCE(RUNNER_UP,''),'[^A-Za-z]+',' '))||' ' ru,
+    UPPER(WINNER_PARTY) wp, UPPER(RUNNER_UP_PARTY) rp FROM LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON WHERE YEAR::string LIKE '2024%' AND OFFICE IN ('HOUSE','SENATE')),
+ m AS (SELECT ie.*, c.nm, c.off, c.st, c.dist, c.pty,
+    MAX(IFF(w.wn LIKE '% '||REGEXP_REPLACE(UPPER(TRIM(SPLIT_PART(c.nm,',',1))),'[^A-Z]+',' ')||' %',1,0)) won,
+    MAX(IFF(w.ru LIKE '% '||REGEXP_REPLACE(UPPER(TRIM(SPLIT_PART(c.nm,',',1))),'[^A-Z]+',' ')||' %',1,0)) lost_gen,
+    MAX(IFF(w.wn LIKE '% '||REGEXP_REPLACE(UPPER(TRIM(SPLIT_PART(c.nm,',',1))),'[^A-Z]+',' ')||' %' AND LEFT(w.wp,3)=LEFT(c.pty,3),1,0)) won_party_ok,
+    MAX(IFF(w.ru LIKE '% '||REGEXP_REPLACE(UPPER(TRIM(SPLIT_PART(c.nm,',',1))),'[^A-Z]+',' ')||' %' AND LEFT(w.rp,3)=LEFT(c.pty,3),1,0)) lost_party_ok
+  FROM ie LEFT JOIN c USING (CAND_ID)
+  LEFT JOIN w ON w.STATE = c.st AND ((c.off='H' AND w.OFFICE='HOUSE' AND TRY_TO_NUMBER(w.DISTRICT)=TRY_TO_NUMBER(c.dist) OR (c.off='H' AND w.DISTRICT ILIKE 'at%' AND TRY_TO_NUMBER(c.dist) IN (0,1)))
+     OR (c.off='S' AND w.OFFICE='SENATE'))
+  GROUP BY ie.CAND_ID, ie.pg, ie.for_amt, ie.against_amt, c.nm, c.off, c.st, c.dist, c.pty),
+ o AS (SELECT m.*, CASE WHEN off='P' THEN 'president' WHEN won=1 THEN 'won general' WHEN lost_gen=1 THEN 'lost general (runner-up)' WHEN off IS NULL THEN 'no 2024 candidate row' ELSE 'not in top two (primary loser, minor, or no match)' END outcome FROM m)
+SELECT 'summary' k, pg, outcome, NULL nm, NULL st, COUNT(DISTINCT CAND_ID) cands, ROUND(SUM(for_amt)/1e6,1) for_m, ROUND(SUM(against_amt)/1e6,1) against_m,
+  SUM(won_party_ok) party_ok_w, SUM(won) n_won, SUM(lost_party_ok) party_ok_l, SUM(lost_gen) n_lost
+FROM o GROUP BY pg, outcome
+UNION ALL
+SELECT * FROM (SELECT 'against_won_anyway', pg, outcome, nm, st||'-'||off||COALESCE(dist,''), 1, ROUND(for_amt/1e6,1), ROUND(against_amt/1e6,1), won_party_ok, won, NULL, NULL
+  FROM o WHERE outcome='won general' ORDER BY against_amt DESC LIMIT 12)
+UNION ALL
+SELECT * FROM (SELECT 'against_primary_nontop2', pg, outcome, nm, st||'-'||off||COALESCE(dist,''), 1, ROUND(for_amt/1e6,1), ROUND(against_amt/1e6,1), NULL, NULL, NULL, NULL
+  FROM o WHERE pg='P' ORDER BY against_amt DESC LIMIT 10)
+UNION ALL
+SELECT * FROM (SELECT 'for_lost', pg, outcome, nm, st||'-'||off||COALESCE(dist,''), 1, ROUND(for_amt/1e6,1), ROUND(against_amt/1e6,1), NULL, NULL, lost_party_ok, lost_gen
+  FROM o WHERE outcome='lost general (runner-up)' ORDER BY for_amt DESC LIMIT 10)
+ORDER BY k DESC, pg, against_m DESC;
+
+-- [23] 13:50:26
+-- 527: payees after dropping cross-form copies (keep the biggest single-form count per EIN+payee+date+amount)
+WITH f AS (SELECT EIN, UPPER(TRIM(REGEXP_REPLACE(RECIPIENT_NAME,'[^A-Za-z0-9& ]',''))) r, EXPENDITURE_DATE d, EXPENDITURE_AMOUNT a, FORM_ID_NUMBER, COUNT(*) n,
+    MAX(IFF(EXPENDITURE_PURPOSE ILIKE '%contribution%',1,0)) contrib
+   FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1,2,3,4,5),
+ k AS (SELECT EIN, r, d, a, MAX(n) n, MAX(contrib) contrib FROM f GROUP BY 1,2,3,4),
+ p AS (SELECT r, EIN, SUM(n*a) amt, SUM(IFF(contrib=1,n*a,0)) camt FROM k GROUP BY 1,2),
+ o AS (SELECT EIN, ANY_VALUE(ORG_NAME) org FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1),
+ t AS (SELECT p.r, SUM(amt) amt, SUM(camt) camt, COUNT(DISTINCT p.EIN) payers,
+    SUM(IFF(o.org ILIKE '%republican%' OR o.org ILIKE '%GOP%', amt, 0)) rep_named, SUM(IFF(o.org ILIKE '%democrat%', amt, 0)) dem_named,
+    MAX_BY(o.org, amt) top_payer, MAX(amt)/SUM(amt) top_share
+   FROM p JOIN o USING (EIN) GROUP BY p.r)
+SELECT r, ROUND(amt/1e6,1) amt_m, ROUND(100*camt/amt,0) pct_contrib, payers, ROUND(rep_named/1e6,1) rep_named_m, ROUND(dem_named/1e6,1) dem_named_m, top_payer, ROUND(100*top_share,0) top_pct,
+  (SELECT ROUND(SUM(n*a)/1e9,3) FROM k) dedup_total_b
+FROM t ORDER BY amt DESC LIMIT 45;
+
+-- [24] 13:50:29
+-- 527: payee name equals an officer or director name listed by the same group (multi-word names only)
+WITH p AS (SELECT EIN, UPPER(TRIM(REGEXP_REPLACE(RECIPIENT_NAME,'[^A-Za-z ]',' '))) r, COUNT(*) n, SUM(EXPENDITURE_AMOUNT) amt, COUNT(DISTINCT FORM_ID_NUMBER) forms,
+    LISTAGG(DISTINCT LEFT(EXPENDITURE_PURPOSE,40), '; ') WITHIN GROUP (ORDER BY LEFT(EXPENDITURE_PURPOSE,40)) purp
+   FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1,2),
+ d AS (SELECT DISTINCT EIN, REGEXP_REPLACE(UPPER(TRIM(REGEXP_REPLACE(ENTITY_NAME,'[^A-Za-z ]',' '))),' +',' ') nm, ENTITY_TITLE
+   FROM LIBRARY_MARTS.POLITICS.POLITICS__IRS527_DIRECTORS_OFFICERS WHERE ENTITY_NAME LIKE '% %'),
+ j AS (SELECT p.EIN, p.r, p.n, p.amt, p.forms, p.purp, LISTAGG(DISTINCT d.ENTITY_TITLE, '/') titles
+   FROM p JOIN d ON d.EIN = p.EIN AND d.nm = REGEXP_REPLACE(p.r,' +',' ') GROUP BY 1,2,3,4,5,6)
+SELECT 'total' k, NULL ein, NULL r, COUNT(*) pairs, ROUND(SUM(amt)/1e6,2) amt_m, NULL forms, NULL titles, NULL purp FROM j
+UNION ALL
+SELECT * FROM (SELECT 'top', EIN, r, n, ROUND(amt/1e6,3), forms, LEFT(titles,60), LEFT(purp,160) FROM j ORDER BY amt DESC LIMIT 25);
+
+-- [25] 13:50:34
+-- wells: status spelling by state where the status does not say orphan or abandoned
+SELECT STATE, STATUS, COUNT(DISTINCT WELL_IDENTIFIER) wells
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_ORPHANED_OIL_GAS_WELLS
+WHERE STATE IN ('California','New York','Missouri','Colorado','Ohio','Texas','Nebraska','Utah','Alaska','New Mexico','Tennessee')
+GROUP BY 1,2 ORDER BY 1, 3 DESC;
+
+-- [26] 13:51:41
+-- WHO_WON vs FEC candidate file: how House districts are written for 2024
+SELECT 'who_won' src, OFFICE, DISTRICT, COUNT(*) n, MIN(STATE) st, MIN(YEAR)::string yr FROM LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON WHERE YEAR::string LIKE '2024%' OR YEAR::string LIKE '2022%' GROUP BY 1,2,3
+QUALIFY ROW_NUMBER() OVER (PARTITION BY OFFICE ORDER BY COUNT(*) DESC) <= 6
+UNION ALL
+SELECT 'who_won_years', OFFICE, MAX(YEAR)::string, COUNT(*), NULL, NULL FROM LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON GROUP BY 1,2
+UNION ALL
+SELECT 'fec_cand', CAND_OFFICE, CAND_OFFICE_DISTRICT, COUNT(*), MIN(CAND_OFFICE_ST), MIN(CAND_ELECTION_YR)::string FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CANDIDATES WHERE CAND_ELECTION_YR=2024 AND CAND_OFFICE='H' GROUP BY 1,2,3
+QUALIFY ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) <= 4;
+
+-- [27] 13:51:41
+-- 527: groups with at least $1M (copies dropped) whose spending goes mostly to fundraising / telemarketing / direct mail vendors
+WITH f AS (SELECT EIN, UPPER(TRIM(REGEXP_REPLACE(RECIPIENT_NAME,'[^A-Za-z0-9& ]',''))) r, EXPENDITURE_DATE d, EXPENDITURE_AMOUNT a, FORM_ID_NUMBER, COUNT(*) n,
+    MAX(IFF(EXPENDITURE_PURPOSE RLIKE '(?i).*(fundrais|telemarket|telefund|direct mail|solicit|caging|donor acqu|mail house|list rental|phone).*',1,0)) fr,
+    MAX(IFF(EXPENDITURE_PURPOSE ILIKE '%contribution%' OR EXPENDITURE_PURPOSE ILIKE '%donation%',1,0)) ct
+   FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1,2,3,4,5),
+ k AS (SELECT EIN, r, d, a, MAX(n) n, MAX(fr) fr, MAX(ct) ct FROM f GROUP BY 1,2,3,4),
+ pr AS (SELECT EIN, r, SUM(n*a) amt FROM k GROUP BY 1,2),
+ e AS (SELECT EIN, SUM(n*a) tot, SUM(IFF(fr=1,n*a,0)) fr_amt, SUM(IFF(ct=1,n*a,0)) ct_amt, MIN(YEAR(d)) y0, MAX(YEAR(d)) y1 FROM k GROUP BY 1),
+ tp AS (SELECT EIN, MAX_BY(r, amt) top_payee, MAX(amt) top_amt FROM pr GROUP BY 1),
+ o AS (SELECT EIN, ANY_VALUE(ORG_NAME) org FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1),
+ rp AS (SELECT EIN, SUM(amt) rp_amt FROM pr WHERE r IN ('RESIDENTIAL PROGRAMS INC','RESIDENTIAL PROGRAMS','INFOCISION','INFOCISION MANAGEMENT CORP','INFOCISION MANAGEMENT CORPORATION') GROUP BY 1)
+SELECT e.EIN, o.org, y0, y1, ROUND(tot/1e6,2) tot_m, ROUND(100*fr_amt/tot,0) pct_fundraising_purpose, ROUND(100*ct_amt/tot,0) pct_contribution_purpose,
+  tp.top_payee, ROUND(100*top_amt/tot,0) top_payee_pct, ROUND(COALESCE(rp.rp_amt,0)/1e6,2) resid_or_infocision_m
+FROM e JOIN o USING (EIN) JOIN tp USING (EIN) LEFT JOIN rp USING (EIN)
+WHERE tot >= 1e6 AND (fr_amt/tot >= 0.5 OR rp.rp_amt IS NOT NULL)
+ORDER BY tot DESC LIMIT 45;
+
+-- [28] 13:52:20
+-- 527 (rerun, regex fixed): groups with at least $1M (copies dropped) whose spending is mostly fundraising-type purposes, plus any payer of Residential Programs / InfoCision
+WITH f AS (SELECT EIN, UPPER(TRIM(REGEXP_REPLACE(RECIPIENT_NAME,'[^A-Za-z0-9& ]',''))) r, EXPENDITURE_DATE d, EXPENDITURE_AMOUNT a, FORM_ID_NUMBER, COUNT(*) n,
+    MAX(IFF(REGEXP_LIKE(EXPENDITURE_PURPOSE, '.*(fundrais|telemarket|telefund|direct mail|solicit|caging|donor acqu|mail house|list rental|phone).*', 'i'),1,0)) fr,
+    MAX(IFF(EXPENDITURE_PURPOSE ILIKE '%contribution%' OR EXPENDITURE_PURPOSE ILIKE '%donation%',1,0)) ct
+   FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1,2,3,4,5),
+ k AS (SELECT EIN, r, d, a, MAX(n) n, MAX(fr) fr, MAX(ct) ct FROM f GROUP BY 1,2,3,4),
+ pr AS (SELECT EIN, r, SUM(n*a) amt FROM k GROUP BY 1,2),
+ e AS (SELECT EIN, SUM(n*a) tot, SUM(IFF(fr=1,n*a,0)) fr_amt, SUM(IFF(ct=1,n*a,0)) ct_amt, MIN(YEAR(d)) y0, MAX(YEAR(d)) y1 FROM k GROUP BY 1),
+ tp AS (SELECT EIN, MAX_BY(r, amt) top_payee, MAX(amt) top_amt FROM pr GROUP BY 1),
+ o AS (SELECT EIN, ANY_VALUE(ORG_NAME) org FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES GROUP BY 1),
+ rp AS (SELECT EIN, SUM(amt) rp_amt FROM pr WHERE r LIKE 'RESIDENTIAL PROGRAMS%' OR r LIKE 'INFOCISION%' GROUP BY 1)
+SELECT e.EIN, o.org, y0, y1, ROUND(tot/1e6,2) tot_m, ROUND(100*fr_amt/tot,0) pct_fundraising_purpose, ROUND(100*ct_amt/tot,0) pct_contribution_purpose,
+  tp.top_payee, ROUND(100*top_amt/tot,0) top_payee_pct, ROUND(COALESCE(rp.rp_amt,0)/1e6,2) resid_or_infocision_m
+FROM e JOIN o USING (EIN) JOIN tp USING (EIN) LEFT JOIN rp USING (EIN)
+WHERE tot >= 1e6 AND (fr_amt/tot >= 0.5 OR rp.rp_amt IS NOT NULL)
+ORDER BY tot DESC LIMIT 45;
+
+-- [29] 13:52:25
+-- FEC 2024 Senate general: per committee, IE dollars on the side that won vs lost (WHO_WON Senate 2024, surname + state, party checked)
+WITH ie AS (SELECT CMTE_ID, CAND_ID, SUM(IFF(TRANSACTION_TP='24E',TRANSACTION_AMT,0)) f, SUM(IFF(TRANSACTION_TP='24A',TRANSACTION_AMT,0)) ag
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEE_TO_CANDIDATE
+  WHERE CYCLE=2024 AND COALESCE(MEMO_CD,'')<>'X' AND TRANSACTION_TP IN ('24E','24A') AND LEFT(TRANSACTION_PGI,1)='G' AND CAND_ID LIKE 'S%' GROUP BY 1,2),
+ c AS (SELECT CAND_ID, ANY_VALUE(CAND_NAME) nm, ANY_VALUE(CAND_OFFICE_ST) st, ANY_VALUE(CAND_PTY_AFFILIATION) pty FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_CANDIDATES WHERE CAND_ELECTION_YR=2024 GROUP BY 1),
+ w AS (SELECT STATE, ' '||UPPER(REGEXP_REPLACE(WINNER,'[^A-Za-z]+',' '))||' ' wn, ' '||UPPER(REGEXP_REPLACE(COALESCE(RUNNER_UP,''),'[^A-Za-z]+',' '))||' ' ru, UPPER(WINNER_PARTY) wp, UPPER(RUNNER_UP_PARTY) rp
+   FROM LIBRARY_MARTS.POLITICS.POLITICS__WHO_WON WHERE YEAR::string LIKE '2024%' AND OFFICE='SENATE'),
+ oc AS (SELECT c.CAND_ID, MAX(IFF(w.wn LIKE '% '||REGEXP_REPLACE(UPPER(TRIM(SPLIT_PART(c.nm,',',1))),'[^A-Z]+',' ')||' %' AND LEFT(w.wp,3)=LEFT(c.pty,3),1,0)) won,
+    MAX(IFF(w.ru LIKE '% '||REGEXP_REPLACE(UPPER(TRIM(SPLIT_PART(c.nm,',',1))),'[^A-Z]+',' ')||' %' AND LEFT(w.rp,3)=LEFT(c.pty,3),1,0)) lost
+   FROM c JOIN w ON w.STATE=c.st GROUP BY 1),
+ j AS (SELECT ie.*, COALESCE(oc.won,0) won, COALESCE(oc.lost,0) lost FROM ie LEFT JOIN oc USING (CAND_ID)),
+ nm AS (SELECT CMTE_ID, ANY_VALUE(CMTE_NM) CMTE_NM FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_COMMITTEES_DIM GROUP BY 1),
+ g AS (SELECT CMTE_ID, SUM(f+ag) tot, SUM(IFF(won=1,f,0)+IFF(lost=1,ag,0)) winning_side, SUM(IFF(lost=1,f,0)+IFF(won=1,ag,0)) losing_side, SUM(IFF(won=0 AND lost=0,f+ag,0)) unscored
+   FROM j GROUP BY 1)
+SELECT COALESCE(nm.CMTE_NM, g.CMTE_ID) cmte, ROUND(tot/1e6,1) tot_m, ROUND(winning_side/1e6,1) winning_side_m, ROUND(losing_side/1e6,1) losing_side_m, ROUND(unscored/1e6,1) unscored_m,
+  ROUND(100*losing_side/NULLIF(winning_side+losing_side,0),0) pct_on_losing_side,
+  ROUND(SUM(winning_side) OVER ()/1e6,1) all_win_m, ROUND(SUM(losing_side) OVER ()/1e6,1) all_lose_m, ROUND(SUM(unscored) OVER ()/1e6,1) all_unscored_m
+FROM g LEFT JOIN nm USING (CMTE_ID) ORDER BY tot DESC LIMIT 20;
+
+-- [30] 13:53:07
+-- 527 cluster: do the fundraising-heavy police / fire / veteran / cancer groups share a records custodian, contact or mailing address on their 8872 reports?
+SELECT EIN, ANY_VALUE(ORGANIZATION_NAME) org, COUNT(*) reports,
+  LISTAGG(DISTINCT UPPER(TRIM(CUSTODIAN_NAME)), ' / ') cust, LISTAGG(DISTINCT UPPER(TRIM(CONTACT_NAME)), ' / ') contact,
+  LISTAGG(DISTINCT UPPER(TRIM(MAILING_ADDR1))||', '||UPPER(TRIM(MAILING_CITY))||' '||MAILING_STATE, ' / ') addr
+FROM LIBRARY_MARTS.POLITICS.POLITICS__IRS527_8872_REPORTS
+WHERE EIN IN ('821194581','822366231','815214552','843153271','822315009','834686848','843763411','853307234','472041040','273594732','843763242',
+  '921706849','922354897','861386683','843763606','922452599','923489519','854325630','923489713')
+GROUP BY EIN ORDER BY EIN;
+
+-- [31] 13:53:35
+-- 527 cluster second field: top raw purposes and payees by dollars (cross-form copies dropped) for the four biggest groups plus the Pulciani and Greenlee groups
+WITH f AS (SELECT EIN, ORG_NAME, UPPER(TRIM(REGEXP_REPLACE(RECIPIENT_NAME,'[^A-Za-z0-9& ]',''))) r, LEFT(UPPER(TRIM(EXPENDITURE_PURPOSE)),45) p, EXPENDITURE_DATE d, EXPENDITURE_AMOUNT a, FORM_ID_NUMBER, COUNT(*) n
+   FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES
+   WHERE EIN IN ('821194581','822366231','815214552','843153271','921706849','922354897','854325630','843763411','923489519')
+   GROUP BY 1,2,3,4,5,6,7),
+ k AS (SELECT EIN, ANY_VALUE(ORG_NAME) org, r, p, d, a, MAX(n) n FROM f GROUP BY EIN, r, p, d, a),
+ g AS (SELECT EIN, ANY_VALUE(org) org, p, r, SUM(n*a) amt FROM k GROUP BY EIN, p, r)
+SELECT LEFT(org,32) org, p, r, ROUND(amt/1e6,2) amt_m, ROUND(100*amt/SUM(amt) OVER (PARTITION BY EIN),0) pct_of_group
+FROM g QUALIFY ROW_NUMBER() OVER (PARTITION BY EIN ORDER BY amt DESC) <= 5
+ORDER BY org, amt DESC;
+
+-- NOTE: [27] failed on a regex syntax error ('(?i)' is not allowed in Snowflake RLIKE) and returned nothing. [28] is the same query, fixed with REGEXP_LIKE(..., 'i').
+-- Total: 31 read-only statements (30 returned results), plus two ALTER SESSION lines per connection.
