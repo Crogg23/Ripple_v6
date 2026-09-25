@@ -1,0 +1,240 @@
+lead_id	story_id	section	grade	verdict	novelty_guess	headline
+1	S001	dossier	A	confirmed		"Las Vegas Sands reported $20.58M in Texas lobby ""media"" spending, 2021-26: 2.5 times all other lobbyists combined"
+2	S002	dossier	B	narrowed		Reliant Care's 30 Missouri nursing homes log 35% fewer nurse hours and 3.8x the harm citations per bed
+3	S003	dossier	B	narrowed		Grain Processing's Iowa corn mill failed smokestack tests 49 days in 2015-25, no state order; Indiana twin: 7 orders
+4	S004	dossier	B	narrowed		In 2024, 20 clinicians billed Medicare $1.13B for skin-substitute wound patches; the makers reported paying them only $76,937
+5	S005	dossier	B	narrowed		19 police, fire, veteran and cancer-named political groups spent about $194M, mostly on fundraisers; $0.36M went to contributions
+6	S006	dossier	B	narrowed		Two mail-order suppliers took $593.6M of the $649.2M Medicare paid for one kind of wound dressing (alginate) in 2024
+7	S007	dossier	B	narrowed		"11% of San Antonio hospice ID numbers sit in ""farms"": one signer, 4+ hospice names, one address. Elsewhere: 0.5%"
+8	S008	dossier	B	narrowed		Counties flooded with opioid pills in 2006-12 had 2x the overdose death rate in 2019-24, and were already dying faster
+9	S006	menu		narrowed	4	Two suppliers, Sunshine Senior Solutions and Almaz Med Supply, took 91% of Medicare's $649M for alginate wound dressings in 2024
+10	S004	menu		narrowed	3	Medicare approved $96.8M of skin-substitute wound grafts from one Bakersfield surgeon, Ravi Kapadia, for 28-35 patients in 2024
+11	S009	menu		narrowed	4	Phoenix's weather office logged 63% of the heat deaths in the federal storm file, then stopped filing heat after June 2024
+12	S010	menu		narrowed	3	SpaceX sites ran 3.2x their industry's injury rate in 2025, a third straight year; Ford about 1.9x big automakers
+13	S005	menu		narrowed	3	19 police, fire, veteran and cancer political groups (527s) spent about $195M since 2014, three-quarters on telemarketers and fundraisers
+14	S011	menu		confirmed	4	One urgent-care chain, Fast Pace, holds 189 of 731 new for-profit rural health clinics opened after the 2021 pay law
+15	S012	menu		narrowed	3	Share of ICE jail-hold requests (detainers) on people with a criminal conviction fell from 43% to 16%, FY23 to FY26
+16	S008	menu		confirmed	2	Counties that got the most opioid pills in 2006-12 had 2-2.7x the overdose death rate in 2019-24
+17	S013	menu		narrowed	3	Federal car-safety regulators' Nissan Rogue phantom-braking probe has sat open 7 years, no recall; the typical probe takes 234 days
+18	S001	menu		confirmed	3	Las Vegas Sands reported $20.58M of Texas lobby 'media' spending in 2021-26, 69% of all 108 filers
+19	S014	menu		narrowed	3	New Mexico police cleared 22-23% of homicides in 2022-23, lowest in the nation, against 56% nationally
+20	S015	menu		narrowed	3	People arrested 2+ years after arriving had ICE bond posted 7% of the time in Louisiana, 29% in Pennsylvania
+21	S016	menu		narrowed	4	Nebraska air regulators filed zero formal enforcement actions 2017-2025; none of 17 serious violations from 2017-21 is resolved
+22	S017	menu		narrowed	4	Three people on the federal health-fraud ban list are listed owners of six LA home health agencies
+23	S007	menu		narrowed	4	12 San Antonio hospices are numbered CFHC NO4 to NO22; 8 incorporated the same day, 6 sit in one building
+24	S007	menu		narrowed	4	Five hospices share Suite 610 at one Houston address, Rooms A-E, all certified within 8 weeks in 2023
+25	S018	menu		narrowed	3	Judge Gilstrap was assigned 183 cases naming Apple, Microsoft, AT&T or Walmart while holding their stock
+26	S019	menu		narrowed	3	553 water permits broke pollution limits in 36+ of 40 quarters; 84 never had a formal enforcement action
+27	S020	menu		confirmed	2	US rail trespasser deaths rose 26% to 838 from 2017 to 2025 while other rail casualties fell
+28	S021	menu		narrowed	4	$79,647 of lobbyist-paid private air and hotel: a New York trip with Sen. Angela Paxton and three Texas House members
+29	S008	menu		narrowed	2	One Knoxville Food City pharmacy bought 13.8M strong oxycodone pills in 2006-12, most of any US pharmacy
+30	S022	menu		narrowed	4	40 big California water systems serving 4.2M people have no full sanitary inspection on EPA's file in 5 years
+31	S023	menu		unchecked	3	Dow's Plaquemine, Louisiana plant reported 34,369 lb of ethylene oxide air release in 2023, 21% of the US total
+32	S003	menu		narrowed	3	30 of 44 Iowa plants that failed 3+ smokestack tests since 2015 got no formal enforcement: 68% vs 16% typical
+33	S024	menu		narrowed	3	Of auditor Ben Borgers' 218 public-company clients, 27 moved to four Nigerian firms and 75 show no later audit
+34	S025	menu		narrowed	3	Where EPA found hazardous-waste violations, Illinois state inspectors of the same site wrote one up 15.5% of the time
+35	S026	menu		narrowed	3	Sen. Markwayne Mullin filed 48 stock trades from 2023-24 in summer 2025; 46 were over a year late
+36	S010	menu		confirmed	2	Ford's truck plants logged 10.6 injuries per 100 workers in 2023-24, against about 5.5 at other vehicle makers
+37	S027	menu		narrowed	2	Doctors paid $10K+ by drug companies wrote prescriptions costing 1.2-5.6x more per claim, more brand-name in all 7 specialties
+38	S028	menu		unchecked	2	The UK sanctions 358 Russia shadow-fleet ships the US doesn't; 309 were listed in 2024-25
+39	S029	menu		narrowed	2	634 poor-condition dams whose failure could kill people have no emergency plan, about 300 more than expected
+40	S002	menu		narrowed	2	Reliant Care Management's Missouri nursing homes draw 3.4x the harm citations per bed of other Missouri homes
+41	S030	menu		unchecked	4	Bankruptcy lawyers' groups paid for 41% of bankruptcy judges' trips in 2011-19, against 0.7% for other federal judges
+42	S031	menu		narrowed	3	Illinois flags 30% of its nursing homes for abuse, three times the 9% rate everywhere else
+43	S032	menu		narrowed	4	San Antonio nurse practitioner Kim Hinojosa prescribed $24.9M of specialty drugs to Medicare patients in 2022, most of any NP
+44	S033	menu		narrowed	3	Only 1 of 67,777 federal-grant auditees had survival doubts and rule-breaking flagged 10 years straight: Lower Brule Sioux Tribe
+45	S034	menu		narrowed	4	25 senior and disabled housing nonprofits on HUD money kept filing federal audits years after the IRS revoked their exemption
+46	S035	menu		unchecked	4	54 high-overdose, high-jail counties got $45 per person of federal addiction-agency money in 2019-25, half their peers' $92
+47	S036	menu		narrowed	4	Nursing-home dialysis brands run 18 of 26 rated clinics flagged worse on survival, but only 9% worse than peers
+48	S037	menu		narrowed	3	California family therapists opted out of Medicare at 37%, 3.5 times the rate of California social workers
+49	S038	menu		confirmed	2	27% of 919 nonprofit hospitals paid one officer more than their whole 2022 charity-care cost
+50	S039	menu		narrowed	3	193 providers on the federal health-fraud ban list took about $166K from drug companies in 2024
+51	S040	menu		narrowed	3	loanDepot denied 74% of refinance applications in 2015-17 but only 8% of home-purchase ones
+52	S041	menu		unchecked	3	All 11 Justice Department Epstein data-set pages lost their 'Download all files' link between Jan 30 and Feb 9, 2026
+53	S041	menu		unchecked	3	11 Justice Department Epstein court-record pages that named plaintiffs were renamed to name-free copies Feb 22-25, 2026
+54	S042	menu		unchecked	3	Eight coal-mine owners logged 900-1,960 serious safety violations per 1,000 miners in 2018-24
+55	S043	menu		narrowed	3	Roosevelt Cayman Asset Company filed a third of Puerto Rico's federal foreclosures in 2015-25; 52% ended in default judgment
+56	S044	menu		unchecked	2	Changes to high-risk medical devices filed as 30-day notices, skipping full FDA review, rose from 19% to 64%
+57	S045	menu		unchecked	2	Rural jails now lock up 2.5 times the urban rate: 563 vs 227 per 100,000 working-age residents in 2023
+58	S002	menu		unchecked	3	Charity care fell from $58.1M to $31.4M a year at 11 hospitals Prime Healthcare took over
+59	S046	menu		unchecked	3	One pension plan (EIN 822871833) is 25.8% funded with $95.4M unpaid; Transit Management of Southeast Louisiana shows $79.5M unpaid
+60	S047	menu		unchecked	3	92 political committees each raised $1M+ from individuals in 2024 ($580M total) but passed under 10% to candidates or ads
+61	S048	menu		narrowed	3	About 89 active Texas major air polluters have had no full compliance inspection in 5+ years; New Mexico is worse
+62	S049	menu		unchecked	3	Aircraft Guaranty Corp's trustee arm holds 364 live US plane registrations and added 38 in 2024-26, after 1 in 2021-23
+63	S050	menu		narrowed	3	Serious water-system defects found before 2022 are still unfixed in 19% of West Virginia cases, against 3% elsewhere
+64	S051	menu		unchecked	1	For-profit nursing homes: 3.70 staff hours per resident a day vs 4.40 at nonprofits; fines $320 vs $205 a bed
+65	S052	menu		confirmed	2	Five firms at one Newington, Connecticut, address won $13.35M in 41 small-business research awards; the Air Force barred all five
+66	S053	menu		narrowed	4	Barred landlord Amerihost Services drew $1.54M in federal Section 8 rent subsidy in 27 payments during its 2021-26 ban
+67	S054	menu		unchecked	4	US companies registered through Bloomberg refuse to name their ultimate owner 5.7% of the time; other registrars, 2.3%
+68	S055	menu		unchecked	1	Black home buyers were denied about twice as often as white buyers at every big 2017 mortgage lender
+69	S056	menu		confirmed	1	NYC's 2025 mayor race: one committee, Fix the City, took $35.6M from 381 gifts; Mamdani raised $4.03M from 54,103
+70	S010	menu		confirmed	1	SpaceX logged 2.8x the injury rate of other spacecraft makers in 2023-24 while holding $5.8B in federal contracts
+71	S057	menu		unchecked	1	706 finished US drug and device trials, 8.6% of those the law covers, never posted results: 152,850 patients
+72	S058	menu		narrowed	2	Among diabetes shots, doctors paid only by Novo (Ozempic's maker) chose Ozempic 54% of the time; unpaid doctors 41%
+73	S059	menu		narrowed	2	Elgin, Illinois, tests at 53 parts per billion of lead; about 17 big water systems are over the limit now
+74	S060	menu		unchecked	2	Nevro's spinal-cord stimulator has 168 death reports out of 737 (22.8%); similar devices run 0.18%
+75	S061	menu		unchecked	2	56,159 rural apartments in federal farm-agency housing opened by 1980 have no live low-rent clause; 35,324 get rent help
+76	S062	menu		unchecked	2	ACNR's underground coal mines logged 11.1 injuries per 100 workers a year, 2018-24; other big owners ran 2.2 to 8.8
+77	S063	menu		unchecked	2	5,362 company officers and directors match $555M of federal campaign gifts by name, state and employer
+78	S064	menu		narrowed	4	Sea Robin pipeline's 2025 gas-loss reports reuse one number, 1,587,069, whole, halved and split three ways
+79	S010	menu		narrowed	2	Bath Iron Works shipyard logged 10-13 injuries per 100 workers, while other big warship yards ran 1.1-1.4x their peers
+80	S065	menu		unchecked	2	Acetaminophen-codeine liquid's generic price jumped 30-fold in 2024; saxagliptin tablets rose 4.2x, then 4.9x
+81	S066	menu		unchecked	2	Diamondback hides 30.3% of its Texas fracking chemicals as trade secrets, nearly double the 16.2% state rate
+82	S067	menu		unchecked	2	DeKalb County's Snapfinger Creek sewer plant logged 1,394 overflows since 2016 against $52,344 in penalties: about $38 each
+83	S068	menu		unchecked	2	94 ex-members of Congress later filed foreign-agent forms; five filed in 2025, including Blagojevich for Bosnia and Fattah for Liberia
+84	S069	menu		unchecked	2	143 doctor-shortage areas first flagged in 1978-89 are still flagged; 31 still rank severe, mostly Mississippi Delta and South Texas
+85	S070	menu		unchecked	3	Beaver Valley Hospital, 25 beds in Utah, took $22.3M in COVID relief: 2.45 times its 2019 patient revenue
+86	S071	menu		unchecked	3	Political ad buyers who gave Google only a tax ID, no federal election ID, spent $861.4M on Google ads
+87	S072	menu		unchecked	3	CareCore Health's 12 Ohio nursing homes draw 1.95x their state's fire-safety citations; 11 repeat a citation across three inspections
+88	S073	menu		narrowed	3	One Egyptian national born in 2001 controls 630 UK companies the register calls live; none file accounts
+89	S074	menu		unchecked	3	68 federal district judges with unusual loans from a bank were assigned 424 cases naming that bank
+90	S075	menu		narrowed	3	The federal housing agency pays $2,574 a unit a month for White Birch Apartments in Milwaukee: 223% of fair rent
+91	S076	menu		unchecked	3	29 Medicare-enrolled businesses are signed for by someone sharing a banned person's name, city and state; two drew $4.91M
+92	S077	menu		unchecked	3	33 US healthcare posts on ransomware leak sites match a Medicare hospital by name; Watsonville's was posted by two gangs
+93	S078	menu		unchecked	3	Altair Recycling in Texas got a $57.0M state water-pollution penalty in June 2025, the biggest on file after BP's
+94	S079	menu		narrowed	3	On a strict name and birth-date match, 22 sanctioned people control 46 live UK companies; about 3 are likely chance
+95	S080	menu		unchecked	4	Two cases went to judges whose spouses drew director fees from the defendant: McMahon–JetBlue, Leinenweber–Procter & Gamble
+96	S081	menu		unchecked	3	Drug companies logged 47,607 doctor meals at exactly $125.00 in 2024, against 675 at $126.00
+97	S082	menu		unchecked	1	E-bike and moped emergency-room visits quadrupled, 21,800 to 87,600 a year from 2019 to 2023, while all injuries stayed flat
+98	S083	menu		unchecked	1	Outside money beat the candidate's own spending in 104 of 637 congressional campaigns in 2024; Moreno tops at 5.8x
+99	S084	menu		unchecked	1	Forest County, Pennsylvania, has 1,685 orphaned oil and gas wells for every 10,000 residents
+100	S085	menu		unchecked	1	Delaware's court got 46 of the 80 billion-dollar business bankruptcies filed since 2015, counting affiliated cases as one
+101	S086	menu		narrowed	3	76 co-authors of papers retracted in federal misconduct cases got $187M in federal health-research grants afterward
+102	S087	menu		narrowed	3	23 firms under a government-wide ban got $800K in new federal orders after the ban, mostly from Defense
+103	S088	menu		unchecked	3	Hedge funds and banks paid for 14.6% of itemized Texas lobby meals; the top recipient got $10-14K over 15 years
+104	S089	menu		unchecked	3	NAI Logistics got 13 Defense fuel payments worth a net $20,647 within 3 days of its sanctions listing
+105	S090	menu		narrowed	2	Oklahoma lost 161 veterans to suicide in 2023, against 98 to 134 every year from 2011 to 2022
+106	S091	menu		unchecked	2	Tesla has 43 California accident inspections by job-safety regulators; 18 are still open, with a median 486 days to close
+107	S059	menu		narrowed	1	39 Illinois water systems serving 887,000 people went over the lead limit in 2025; no prior year topped 31
+108	S092	menu		unchecked	1	Redlined 1930s neighborhoods hold 13.35 toxic-release plants per 100 square kilometers, six times the 2.21 in 'B' areas
+109	S093	menu		unchecked	1	Black residents' jail rate ran 4.57x the white rate in 2010, 3.41x in 2019 and 3.86x in 2023, median county
+110	S086	menu		unchecked	2	31 US scientists with 3+ misconduct retractions got $67.1M in federal health-research grants after their last one
+111	S094	menu		unchecked	2	987 of 22,770 months where an insider sold $5M+ of stock came 4-9 months before a 50%+ price drop
+112	S095	menu		unchecked	3	Oklahoma refineries pay $3,300 in air penalties per logged violation; Texas refineries pay $142,000
+113	S096	menu		unchecked	3	CSX and Norfolk Southern made 8.2 times the spill-hotline calls of Union Pacific and BNSF in 2015-17
+114	S097	menu		unchecked	3	In two environmental-agency regions, 78% of hazardous-waste sites inspected twice have no action on file, versus 33% in two others
+115	S089	menu		unchecked	2	NAI Logistics got 13 fuel payments worth $20.6K on or after its federal ban, paid under a different company ID
+116	S047	menu		unchecked	2	Political committees run by treasurer Thomas Datwyler pass a median 16.2% of spending to candidates or ads; peers, 44.4%
+117	S098	menu		unchecked	3	Kings County, California, rejected 13.7% of returned mail ballots in 2022, against 1.52% nationally
+118	S099	menu		narrowed	3	37 planes that crash investigators rated destroyed got their federal registration renewed or extended after the crash
+119	S100	menu		narrowed	2	Senators on the Banking Committee were 19% of trading senators but made 34% of bank-stock trades, 2012-20
+120	S101	deep3	B	narrowed	3	83 new Arizona hospices (2020-23) listed Los Angeles phone numbers; only 12 ever got Medicare certification, 4 still enrolled
+121	S002	deep3	B	narrowed	3	Reliant Care's 31 Missouri nursing homes hold 7% of residents but at least 22% of those with schizophrenia
+122	S102	deep3	B	narrowed	3	Arizona overdose deaths rose 11.5% in a year as the median state fell 14%, hitting 2,980, its most since 2015
+123	S102	deep3	B	narrowed	3	Maricopa County overdose deaths rose 313 to 1,791 in a year, the biggest rise of any big US county
+124	S103	deep3	B	narrowed	2	Generic makers Teva, Actavis and Mutual filed about 15,500 lawyer-sourced metoclopramide (Reglan) side-effect reports: 91% of the generic's reports
+125	S104	deep3	B	narrowed	3	Oroville Hospital, California, had 1.78 stays per traditional-Medicare patient, tied for highest of 2,109 big hospitals; median 1.34
+126	S105	deep3	B	narrowed	4	Medicare's ordering list still clears 83% of recently deactivated clinicians to order equipment; for older deactivations it's 0.2%
+127	S106	deep3	B	narrowed	2	944 for-profit nursing homes with operating companies formed 2022 to Sept 2024 rate 0.28 stars below same-state for-profit peers
+128	S107	deep3	B	narrowed	3	Five Los Angeles-area postal zones (ZIP 912-916) hold 35% of home health agencies enrolled since 2019; before 2013, 3%
+129	S004	deep3	B	narrowed	3	A Las Vegas nurse practitioner, Mary Huntly, got $8.52M from Medicare in 2024, at least 69% on one skin-substitute code
+130	S108	deep3	B	narrowed	3	Only 7 of 26 Indian Health Service and tribal hospitals have a Medicare star rating; similar hospitals predict about 13
+131	S103	deep3	B	narrowed	2	In late 2012 Roche and Astellas filed 13,752 cancer-drug death reports, 25x normal, a median 677 days after getting them
+132	S103	deep3	B	narrowed	3	GSK sent 24,345 one-line Avandia reports in April 2014, a paperwork spike of 20,863 heart-attack and stroke cases
+133	S103	deep3	B	narrowed	1	Actiq and Fentora, fentanyl approved only for cancer pain: 790 side-effect cases name non-cancer reasons, 191 name cancer
+134	S109	deep3	B	narrowed	3	Ingredient makers filed 83 semaglutide (Ozempic) files with the drug regulator since 2023, the biggest four-year rush since 1980
+135	S110	deep3	B	narrowed	4	The CDC's weekly disease table shows 17,197 cyclospora parasite infections by late July 2026, at least 5x any 2022-25 year
+136	S111	deep3	B	confirmed	2	24 of 72 Mississippi hospitals are worse than the national death rate on some measure; only 1 is better
+137	S112	deep3	B	narrowed	3	Florida went from 17 freestanding rehab hospitals in mid-2019 to 40 now, +135%, with zero closures; rest of US +31%
+138	S113	deep3	B	narrowed	1	Rep. Thomas Kean (R-NJ) missed 140 recorded House votes in a row, 33 voting days, the longest run this Congress
+139	S114	deep3	B	narrowed	1	16 House members running for Senate doubled their missed votes in campaign season, but did the same two years earlier
+140	S115	deep3	B	narrowed	2	California employers naming artificial intelligence on lobbying reports: 1 in 2022, 58 in 2024, 59 in 2025
+141	S116	deep3	B	narrowed	3	Sean Duffy's old House fund raised $0 from donors but gave $1.5M to Northwoods Future PAC, about half its money
+142	S117	deep3	B	narrowed	3	Texas lobby reports with $1,000+ in gifts named a recipient 1 time in 4 in 2005-11; since 2019, 3.7%
+143	S118	deep3	B	narrowed	4	1 in 4 new IRS political-group notices, Dec 2022-Dec 2025, came from businesses, including 141 look-alike companies
+144	S119	deep3	B	narrowed	2	34 of Trump's 45 second-term judges (76%) got no Democratic votes; Biden's 2023-24 judges: 25% got no Republican votes
+145	S120	deep3	B	narrowed	2	The Senate held 659 recorded votes in 2025, second only to 1976; 356 were on nominations, a record since 1989
+146	S121	deep3	B	narrowed	1	Fetterman was the only Democrat voting with Republicans on all 12 Senate Iran war-powers votes; two failed by one vote
+147	S122	deep3	B	narrowed	3	Argentina sided with the US on 78% of UN votes in 2024-25, up 19 points, biggest rise of 178 countries
+148	S123	deep3	B	narrowed	3	Just 12% of House bills passed by roll call this Congress got an amendment roll call; the 1995-2024 median: 61%
+149	S124	deep3	B	narrowed	2	16 of 38 Supreme Court cases from the 5th Circuit in 2021-24 were federal-government appeals; in 2015-20, 1 of 26
+150	S125	deep3	B	confirmed	4	Jackson Area credit union (Mississippi) holds $148.2M in deposits on $71.4M in assets: a $77M hole
+151	S126	deep3	B	narrowed	3	Since 2020 the bank regulator (FDIC) put 11 of 107 minority-owned banks under cleanup orders: about 2.7x similar banks
+152	S127	deep3	B	narrowed	2	Boxlight insiders filed 30 of 76 stock-sale reports late; 38 of 2,740 companies ran 10%+ late; median zero
+153	S128	deep3	B	narrowed	3	Since 2024, 31 per 1,000 money-manager stock reports ran a year-plus late, vs 9.5 before; Malaysia's pension fund back-filed 68
+154	S129	deep3	B	narrowed	4	At least 36 US-sanctioned banks still hold numbers on the tax agency's (IRS) foreign-bank list, including Russia's central depository
+155	S130	deep3	B	narrowed	3	355 fund holdings reports still count in thousands, not dollars: about $2.6 trillion missing, a third from T. Rowe Price
+156	S128	deep3	B	narrowed	3	Money managers filing 4+-year-overdue stock reports in one-day batches: about 4 a quarter in 2019-22, 11 since 2024
+157	S131	deep3	B	narrowed	2	18 small public companies filed annual reports past the legal extension three years running; 4 still list on major exchanges
+158	S132	deep3	B	narrowed	3	Louisiana re-inspected only 90 of 182 hazardous-waste manufacturing plants in five years, last of 28 states; median 91.8%
+159	S133	deep3	B	narrowed	3	40 of 102 working major cement plants drew a serious Clean Air Act violation in 2020-25, top of 63 industries
+160	S134	deep3	B	narrowed	3	Yuma, Arizona's water plant broke the acute chlorine-dioxide limit 21 months straight; none reached federal records until May 2022
+161	S135	deep3	B	narrowed	4	17 landfills stopped filing federal climate reports with no legal way out; at least five hold operating air permits
+162	S136	deep3	B	narrowed	3	Oregon logged zero state water-permit inspections in the federal file for 22 months; its warning letters kept arriving
+163	S137	deep3	B	narrowed	3	433 wastewater permits broke discharge limits in most quarters for six years with no formal enforcement; Missouri 97, Ohio 68
+164	S138	deep3	B	narrowed	2	Cheniere's Sabine Pass gas-export terminal went from 0.18 to 6.26 million tonnes of greenhouse gas, 2015-23: the registry's biggest rise
+165	S139	deep3	B	narrowed	2	Tesla's Fremont plant drew 356 Bay Area air violation notices since 2019, second of 86 plants; no district enforcement order
+166	S140	deep3	B	narrowed	3	"438 place names still say ""Negro""; in 2020-23, 641 ""Squaw"" names changed vs at least 41 ""Negro"" or n-word ones"
+167	S141	deep3	B	narrowed	3	The 4th Circuit appeals court published 375 decisions in fiscal 2025, up 25% from 2019; the median circuit fell 17%
+168	S142	deep3	B	narrowed	2	Detained immigrants' release petitions (habeas): 33 in Oct 2024, about 8,820 in Mar 2026, 24% of new federal civil cases
+169	S002	deep3	B	narrowed	4	Five Reliant Care nursing homes list 90 registered sex offenders, 31% of Missouri's nursing-home total, with 2.2% of residents
+170	S143	deep3	B	narrowed	3	Since 2020 only 19 of 295 argued Supreme Court cases came from state courts, the lowest share since 1946
+171	S144	deep3	B	narrowed	4	One building at 410 Great Rd, Littleton, Massachusetts holds 49 separate federal gun-maker licensees, 16% of the state's
+172	S145	deep3	B	narrowed	3	Vermont logged 77 private-sale gun background checks in 2022: 0.17 per 100 dealer checks, last of 10 states requiring them
+173	S146	deep3	B	narrowed	4	"10 foreign groups hold 40% of US ""social welfare"" nonprofit assets, $133.4B; Mastercard Foundation and Novo Holdings lead"
+174	S147	deep3	B	narrowed	2	Customs refunds beat collections in May and June 2026; $113.5B left via the customs agency by Aug 7
+175	S148	deep3	B	narrowed	4	EU registrars renewed 11 of 13 sanctioned firms' global company IDs after listing; 9 still current, including four Iran-linked banks
+176	S147	deep3	B	narrowed	2	Treasury's net customs take went negative in May and June 2026: minus $25.56B in June as refunds hit $49.18B
+177	S149	deep3	B	narrowed	2	Homeland Security committed $50.97B in contracts Oct 2025-Jun 2026, 4.1x its usual; Fisher Sand & Gravel got $13.35B
+178	S150	deep3	B	confirmed	4	Federal injury filings (OSHA) cover 18-24% of Vermont's private hospital jobs, vs 88-94% typically; University of Vermont Medical Center absent
+179	S151	deep3	B	narrowed	4	The tax agency revoked 108 nonprofits for not filing, yet its own e-file index holds a return from those years
+180	S152	deep3	B	narrowed	3	296.5 million Indians face severe hunger, by the UN food agency's own math, though it leaves India's line blank
+181	S153	deep3	B	narrowed	3	Holly Springs, Mississippi's city utility never billed 42.6% of the power it bought in 2024, worst of 425 city utilities
+182	S154	deep3	B	narrowed	2	Ohio utilities spent $3.22 per customer on saving electricity in 2024; Michigan, next door, spent $81.98
+183	S155	deep3	B	narrowed	3	FirstEnergy's seven utilities still send people to read 2.26 million meters, about 27% of all hand-read US meters
+184	S156	deep3	B	narrowed	2	Ten coal plants made 30% of all monitored power-plant sulfur dioxide in 2025; Labadie, Missouri, alone made 5.3%
+185	S157	deep3	B	narrowed	2	Phoenix-area Salt River Project has 56.7 rooftop-solar homes per 1,000; Arizona Public Service has 145.4, Tucson Electric 124.3
+186	S158	deep3	B	narrowed	2	89.7% of Evergy's Kansas City homes in Missouri are on time-of-day rates; across the state line, 1.6%
+187	S159	deep3	B	narrowed	3	Alabama Power reports 1.6 watts of rooftop solar per home, last of 173 big utilities; sister Georgia Power: 30.1
+188	S160	deep3	B	narrowed	4	"One Google ad account named only ""US House of Representatives"" carries 58% of members' official-office Google ad money in 2026"
+189	S161	deep3	B	narrowed	2	Homeland Security spent $5.29 million on Google ads that Google filed as political, the only federal agency in 2018-2026
+190	S160	deep3	B	narrowed	3	House members' office Google ad accounts spent $1.38 million Jan-Jul 2026, 3.2 times the same months of 2024
+191	S162	deep3	B	narrowed	2	13,265 people who arrived by 2021 were detained in Jan-May 2026, 3.8 times 2024, the low year
+192	S163	deep3	B	narrowed	2	At 45 big companies, contractors' H-1B work-visa filings listed wages a median 20.6% below the company's own, same job
+193	S162	deep3	B	narrowed	2	16,972 people detained Jan-May 2026 had immigration court cases 2+ years old, versus 2,691 in 2019; 87% still open
+194	S164	deep3	B	narrowed	3	16,919 immigration detention stays began with over a day in an ICE hold room, Oct 2025-Feb 2026, up from 212
+195	S165	deep3	B	confirmed	4	Company formations in England and Wales fell 73% on 18 Nov 2025, the day identity checks became compulsory
+196	S166	deep3	B	narrowed	2	28% of new Irish companies in 1992 sat at addresses holding 1,000+ companies; by 2001, just 1.2%
+197	S167	deep3	B	narrowed	2	Offshore formations doubled in Apr-Jun 2005, just before Europe's savings tax; Panama firm Mossack Fonseca: 2,331 to 4,701
+198	S168	deep3	B	narrowed	3	339 of Atlantic City's 1,473 public housing units sit empty without an approved reason: 23%, 5.9 times similar authorities
+199	S169	deep3	B	narrowed	2	Around Red River Parish, Louisiana: zero magnitude-2.5+ quakes 2010-2023, then 29 since January 2024, topped by a magnitude 4.9
+200	S170	deep3	B	narrowed	3	Union Pacific trains killed 156 trespassers a year in 2023-25, nearly double 2015-17's 79; other railroads, same counties: up 30%
+201	S171	deep3	B	narrowed	4	In Ecuador's Los Ríos province, 29 of 66 town-hall public-works tenders drew one bidder; about 7-8 was expected
+202	S172	deep3	B	narrowed	3	"The Justice Department's Epstein site said ""access denied"" for data sets 13-23 and ""not found"" for 24-40, March 11, 2026"
+203	S173	deep3	B	narrowed	3	FEMA, the disaster agency, took a median 110 days to publish Jan-Jun 2025 disaster declarations, versus 41-48 days before
+204	S174	deep3cd	C	narrowed		74-90 California doctor-shortage areas holding 2.7-3.5M people are up for removal with no replacement, about 3x the national rate
+205	S175	deep3cd	C	narrowed		Male veterans' suicide rate rose about 10% in 2018-23 whether or not they used VA care; under-55s carry it
+206	S176	deep3cd	D	broken		Claimed: DeRoyal's Tennessee sterilizer tied #1 for ethylene-oxide air releases; broken, a Virginia sterilizer reported 5.3 times more
+207	S177	deep3cd	C	narrowed		"Penn State's Hershey hospital got Medicare's extra ""outlier"" payment on 185 of 192 top-level joint procedures; nationally, 3.5%"
+208	S178	deep3cd	C	narrowed		Medicare's new back-pain program roster names 3 doctors barred from federal health programs and 13 who opted out
+209	S179	deep3cd	C	narrowed		Only 37 suppliers billed Medicare's diabetes-prevention classes for 11+ patients in 2024: 1,267 patients, $347,437 in all
+210	S180	deep3cd	C	narrowed		Guttmacher puts Texas, a total-ban state, at 3,530 abortions a month in early 2026: up 26%, one December 2024 jump
+211	S181	deep3cd	C	narrowed		Enbrel's two FDA-approved copies never went on sale; Medicare drug plans ran up $2.27B gross on brand Enbrel in 2022
+212	S182	deep3cd	C	narrowed		Kindred's 42 long-term hospitals book $178M a year more expense than Medicare's cost line; the peer gap is accounting
+213	S183	deep3cd	C	narrowed		In 2023, six California fiberglass shops put out about 40% of the state's reported cancer-list air pounds, mostly styrene
+214	S184	deep3cd	C	narrowed		This Congress passed 63 regular laws in its first 539 days, second-fewest since 2013; only the last Congress passed fewer
+215	S185	deep3cd	C	narrowed		20 of 69 Georgia U.S. House races in 2010-18 had nobody running against the winner; nationally it was 4.8%
+216	S186	deep3cd	C	narrowed		Federal Election Commission totals for House Republicans' campaign arm skip its Sept 2024 report: $40.72M of spending
+217	S187	deep3cd	C	narrowed		Only 16 of 83 retirement-eligible Republican-appointed judges stepped back in Trump's second term; 50 had already stayed through his first
+218	S188	deep3cd	C	narrowed		Sen. Richard Blumenthal filed all 69 of his stock-trade reports on paper, 2021-2026; the warehouse holds none of his trades
+219	S189	deep3cd	C	narrowed		139 campaign funds for races run by 2016 still hold $7.98M; Robin Tallon's 1992 committee paid out $1.39M in 2023-24
+220	S190	deep3cd	C	narrowed		RA Capital filed as director at 21 companies in 2024, OrbiMed 16, Baker Bros 13; eight firms drive biotech's lead
+221	S191	deep3cd	D	broken		EPA sent Osage County, Oklahoma oil-field wells zero violation notices after April 2023, while still inspecting about 225 a year
+222	S192	deep3cd	C	narrowed		A third of small, non-exempt US-listed foreign companies missed a new March 2026 insider-stock deadline by 13+ days
+223	S193	deep3cd	C	narrowed		Senegal's government foreign-debt payments due in 2026 equal 54% of its 2024 export earnings, top of 108 poorer countries
+224	S194	deep3cd	C	narrowed		Companies late on stock-option award reports in 2017-20 stayed late in 2021-24: roughly 13% vs 1.5% for peers
+225	S195	deep3cd	C	narrowed		189 old campaign funds paid out $8.57M in the 2024 cycle; 19% went to candidates, parties and PACs, not 2.1%
+226	S196	deep3cd	C	narrowed		41 super PACs named for police, veterans and sick kids raised $181.5M; roughly 4% reached real political spending
+227	S197	deep3cd	C	narrowed		3 of 748 big credit unions lost 20%+ of net worth in a year: Civic, Greater Nevada, U.S. Eagle
+228	S198	deep3cd	C	narrowed		19 water systems serving 4,347 people buy only from sellers that broke a chemical limit; their own records look clean
+229	S199	deep3cd	C	narrowed		EPA's database shows Nebraska with 24 of 66 plants nationwide holding an old, serious air violation never acted on
+230	S200	deep3cd	C	narrowed		Diamondback's Permian Basin frack jobs drew 1.6-2.3 times the fresh-groundwater share of other reporting drillers in 2025
+231	S201	deep3cd	C	narrowed		The Pentagon's tech agency renewed Ivanti's often-hacked phone-management software each spring: $21.8M+ since 2023, on a fixed calendar
+232	S202	deep3cd	C	narrowed		US coal power rose 85 terawatt-hours (13%) in 2025, about 1.8 times every other country's coal rise combined
+233	S203	deep3cd	C	narrowed		Texas gas plants able to switch to oil rose from 4.9% to 6.0% of capacity after the 2021 freeze
+234	S204	deep3cd	C	narrowed		Four unnamed traders held 69.7% of sell positions in one mid-Atlantic power futures contract in early 2026, a record
+235	S205	deep3cd	C	narrowed		FEMA couldn't confirm occupancy on 28.6% of downtown Lahaina's fire-aid registrations; adjusted, the gap to neighbors is 7.5-9 points
+236	S206	deep3cd	C	narrowed		Four people barred from Medicare show up in the offshore leaks at matching US addresses, out of 1,611 name hits
+237	S207	deep3cd	C	narrowed		Justice Department's Epstein file list for Data Set 10 shrank from 10,071 to 5,569 pages, March to late May 2026
+238	S208	deep3cd	C	narrowed		Coal operators who hand off a mine leave 16.6% of safety fines unpaid, vs 13.0% for those who close it
+239	S209	deep3cd	C	narrowed		13 tankers seen in U.S. waters one January 2024 week now sit on government sanctions lists, most renamed

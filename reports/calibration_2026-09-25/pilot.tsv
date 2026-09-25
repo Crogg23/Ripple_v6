@@ -1,0 +1,21 @@
+story_id	role	novelty_guess	grade	verdict	pre_known	headline
+S001	control	3	A	confirmed	press_checked_2026-09-24	"Las Vegas Sands reported $20.58M in Texas lobby ""media"" spending, 2021-26: 2.5 times all other lobbyists combined"
+S007	control	4	B	narrowed	press_checked_2026-09-24	"11% of San Antonio hospice ID numbers sit in ""farms"": one signer, 4+ hospice names, one address. Elsewhere: 0.5%"
+S092	random	1		unchecked		Redlined 1930s neighborhoods hold 13.35 toxic-release plants per 100 square kilometers, six times the 2.21 in 'B' areas
+S055	random	1		unchecked		Black home buyers were denied about twice as often as white buyers at every big 2017 mortgage lender
+S103	random	1	B	narrowed	lead_cites_press	Generic makers Teva, Actavis and Mutual filed about 15,500 lawyer-sourced metoclopramide (Reglan) side-effect reports: 91% of the generic's reports
+S124	random	2	B	narrowed		16 of 38 Supreme Court cases from the 5th Circuit in 2021-24 were federal-government appeals; in 2015-20, 1 of 26
+S044	random	2		unchecked		Changes to high-risk medical devices filed as 30-day notices, skipping full FDA review, rose from 19% to 64%
+S106	random	2	B	narrowed		944 for-profit nursing homes with operating companies formed 2022 to Sept 2024 rate 0.28 stars below same-state for-profit peers
+S139	random	2	B	narrowed		Tesla's Fremont plant drew 356 Bay Area air violation notices since 2019, second of 86 plants; no district enforcement order
+S075	random	3		narrowed		The federal housing agency pays $2,574 a unit a month for White Birch Apartments in Milwaukee: 223% of fair rent
+S168	random	3	B	narrowed		339 of Atlantic City's 1,473 public housing units sit empty without an approved reason: 23%, 5.9 times similar authorities
+S140	random	3	B	narrowed		"438 place names still say ""Negro""; in 2020-23, 641 ""Squaw"" names changed vs at least 41 ""Negro"" or n-word ones"
+S116	random	3	B	narrowed		Sean Duffy's old House fund raised $0 from donors but gave $1.5M to Northwoods Future PAC, about half its money
+S024	random	3		narrowed	lead_cites_press	Of auditor Ben Borgers' 218 public-company clients, 27 moved to four Nigerian firms and 75 show no later audit
+S105	random	4	B	narrowed		Medicare's ordering list still clears 83% of recently deactivated clinicians to order equipment; for older deactivations it's 0.2%
+S032	random	4		narrowed		San Antonio nurse practitioner Kim Hinojosa prescribed $24.9M of specialty drugs to Medicare patients in 2022, most of any NP
+S171	random	4	B	narrowed		In Ecuador's Los Ríos province, 29 of 66 town-hall public-works tenders drew one bidder; about 7-8 was expected
+S174	random		C	narrowed		74-90 California doctor-shortage areas holding 2.7-3.5M people are up for removal with no replacement, about 3x the national rate
+S192	random		C	narrowed		A third of small, non-exempt US-listed foreign companies missed a new March 2026 insider-stock deadline by 13+ days
+S195	random		C	narrowed		189 old campaign funds paid out $8.57M in the 2024 cycle; 19% went to candidates, parties and PACs, not 2.1%
