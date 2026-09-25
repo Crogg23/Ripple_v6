@@ -1,0 +1,95 @@
+== DTS traps
+rows 478149 withdrawal rows 279726
+total/subtotal rows 2890 share of sum 0.284
+public debt rows 10474 share of sum 0.498
+                                                  min        max    size
+ACCOUNT_TYPE                                                            
+Federal Reserve Account                    2005-10-03 2021-09-30  252868
+Other Withdrawals                          2020-08-14 2020-08-14       9
+Short-Term Cash Investments                2012-10-01 2022-04-15    4795
+Tax and Loan Note Accounts                 2005-10-03 2012-09-28    5277
+Treasury General Account (TGA)             2021-10-01 2026-08-07  213040
+Treasury General Account Total Deposits    2022-04-18 2026-08-07    1080
+Treasury General Account Total Withdrawals 2022-04-18 2026-08-07    1080
+== CBP withdrawals, Oct 1 - Aug 7, $M by FY {2022: 6485.0, 2023: 7321.0, 2024: 8808.0, 2025: 8980.0, 2026: 128647.0}
+== Customs deposits, Oct 1 - Aug 7, $M by FY {2022: 97650.0, 2023: 82406.0, 2024: 78660.0, 2025: 154039.0, 2026: 282473.0}
+FY23-25 CBP daily: mean 40.1 median 26.0 max 379.0 on 2025-09-25
+since 2026-05-11: $M 113513.0 days 63 excess over FY23-25 mean pace 110986
+      RECORD_DATE  TRANSACTION_TODAY_AMT
+32499  2026-06-25                 6906.0
+33759  2026-07-06                 8204.0
+32859  2026-06-29                35493.0
+old-format CBP line max 1134.0 on 2006-11-14
+             customs_in  cbp_out      net
+RECORD_DATE                              
+2025-01          8964.0    888.0   8076.0
+2025-02          8934.0    640.0   8294.0
+2025-03          9620.0    890.0   8730.0
+2025-04         17431.0    978.0  16453.0
+2025-05         23969.0    816.0  23153.0
+2025-06         28021.0    875.0  27146.0
+2025-07         29633.0    911.0  28722.0
+2025-08         31367.0    795.0  30572.0
+2025-09         31676.0   1164.0  30512.0
+2025-10         34245.0   1914.0  32331.0
+2025-11         32866.0   1068.0  31798.0
+2025-12         30377.0   1808.0  28569.0
+2026-01         30467.0   2111.0  28356.0
+2026-02         28614.0   1368.0  27246.0
+2026-03         25098.0   2958.0  22140.0
+2026-04         24776.0   3047.0  21729.0
+2026-05         23546.0  23328.0    218.0
+2026-06         24831.0  51014.0 -26183.0
+2026-07         26133.0  35541.0  -9408.0
+2026-08          1520.0   4490.0  -2970.0
+== peer: categories 75 median FY26/FY25 (Dec-Jul) 1.01
+fy                                          2023     2024     2025      2026    r26
+TRANSACTION_CATG                                                                   
+DHS - Customs & Border Protection (CBP)   5983.0   6916.0   7069.0  121175.0  17.14
+Taxes - Business Tax Refunds (EFT)       14723.0  14049.0  11563.0   27808.0   2.40
+TREAS - United States Mint                3756.0   2485.0   2642.0    5994.0   2.27
+Dept of State (DOS)                      14452.0  14019.0  11228.0   24315.0   2.17
+fy                                         2023     2024     2025     2026   r26
+TRANSACTION_CATG                                                                
+TREAS - Federal Financing Bank           4238.0  45667.0  35848.0   5698.0  0.16
+DHS - Fed Emergency Mgmt Agency (FEMA)  25623.0  22029.0  38144.0  20524.0  0.54
+Dept of Treasury (TREAS) - misc          4674.0   2518.0   9359.0   5258.0  0.56
+IAP - Multilateral Assistance            2398.0   2495.0   2160.0   1259.0  0.58
+== MTS customs: months 136 2015-03-31 to 2026-06-30
+before May 2026: median monthly refund $B 0.43 max 1.86 on 2026-03-31 sum 60.73 max refund/gross 0.363
+    RECORD_DATE      g      r   n  net_calc
+134  2026-05-31  21.93  21.97 NaN     -0.04
+135  2026-06-30  23.63  49.18 NaN    -25.56
+May+June 2026 refunds $B 71.16
+Oct-Apr refunds FY26 vs FY25 $B 10.15 4.1
+== PBGC rows 134534 rows sharing edition+table+label with other values 132712 null METRIC_NAME 20997 editions 14
+2023 edition S-1, label 1980: [-94.6, 430.0, 524.1]
+S-1 label 2008 appears in 14 editions, 42 rows
+== aid rows 95658 dups on 5-col key 0 blank FY 287
+filled {'COUNTRY': 95658, 'MANAGING_AGENCY': 95658, 'FUNDING_AGENCY': 95658, 'USG_SECTOR': 0, 'DAC_CATEGORY': 0, 'OBLIGATION_AMOUNT': 0, 'DISBURSEMENT_AMOUNT': 0, 'FISCAL_YEAR': 95371, 'EIN': 0, 'TRANSACTION_TYPE': 95658}
+{2020.0: 3129, 2021.0: 2766, 2022.0: 2837, 2023.0: 2821, 2024.0: 2918, 2025.0: 2512, 2026.0: 929}
+MANAGING_AGENCY   1    2   7   16
+FISCAL_YEAR                      
+2021.0           168  206  83  67
+2022.0           162  201  76  65
+2023.0           164  194  84  64
+2024.0           166  196  88  65
+2025.0           161  192  65  64
+2026.0           130  116  40   0
+== API rows 300 CFDA filled 100 min amount 151333151.76 sum $T 3.33
+END_DATE blank  False  True 
+in R2                       
+False               0    100
+True              100      0
+== 527 rows 77591 EINs 58916 AMENDED_FLAG {'1': 62741, '0': 14732} STATUS_FLAG {'1': 60426, '0': 17047}
+                                    eins                                          cust
+a0                                                                                    
+555 CAPITOL MALL | SACRAMENTO        503  Olson Hagel & Fishburn LLP; Olson Remcho LLP
+455 CAPITOL MALL | SACRAMENTO        373           Thomas W. Hiltachk; Ashlee N. Titus
+1103 HAYS STREET | TALLAHASSEE       290                Noreen A Fenner; Noreen Fenner
+527 EAST PARK AVENUE | TALLAHASSEE   274                Noreen A Fenner; Noreen Fenner
+1127 11TH STREET | SACRAMENTO        245         J. Richard Eichman; Laura Ann Stephen
+1787 TRIBUTE ROAD | SACRAMENTO       219                       Shawnda Deane; Kim Lutz
+610 S BOULEVARD | TAMPA              216             Nancy H. Watkins; Nancy H Watkins
+2350 KERNER BLVD | SAN RAFAEL        163                  STEVEN S. LUCAS; ELLI ABDOLI
+---

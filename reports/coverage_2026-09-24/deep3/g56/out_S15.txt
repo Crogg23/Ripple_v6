@@ -1,0 +1,43 @@
+-- S15 Pub 78: what the odd countries hold (AFGHANISTAN 55, GEORGIA 20) next to CANADA
+COUNTRY | DEDUCTIBILITY_STATUS | STATE | CITY | LEGAL_NAME | EIN
+AFGHANISTAN | FORGN |  | Albuquerque Nm | New Mexico Association of Emergency Management Professionals | 843794050
+AFGHANISTAN | FORGN |  | Aurora Illinois | Descendants of Colonial Regulators | 850620731
+AFGHANISTAN | FORGN |  | Bartow Fl | Floral Avenue Elementary Pto | 843887939
+AFGHANISTAN | FORGN |  | Belleville Il | Rotary Club of Swansea Illinois Foundation | 473645950
+AFGHANISTAN | FORGN |  | Bowling Green Ky | Good Fairy Dust Fund Inc. | 814723431
+AFGHANISTAN | FORGN |  | Brush Prairie | Prairie High School Air Force Junior Rotc Booster Club | 911960575
+AFGHANISTAN | FORGN |  | Burbank Wa | Foundation for Communication of Christian Faith and Culture | 264450732
+AFGHANISTAN | EO,FORGN,LODGE |  | Burton Michigan | Msgr Patrick R Dunigan Assembly No 510 Knights of Columbus | 237546901
+AFGHANISTAN | FORGN |  | Cary | Scott L Hull Memorial Fund | 800461717
+AFGHANISTAN | FORGN |  | Cincinnati Oh | Patty Walsh Loretos Christmas Kitchen | 921729563
+AFGHANISTAN | FORGN |  | Cleveland | Opportunity Transforming Lives | 474050443
+AFGHANISTAN | FORGN |  | Cleveland Ohio | Dollar Country Foundation | 993085739
+AFGHANISTAN | FORGN |  | Coeur D Alene Idaho | North Idaho Veterans Stand Down Inc. | 851217100
+AFGHANISTAN | FORGN |  | Colorado Springs Co | Ballet Folklorico De Barajas | 832288620
+AFGHANISTAN | FORGN |  | Coral Gables Fl | Empowered Through Fitness Inc. | 824929044
+AFGHANISTAN | FORGN |  | Covington Wa | Kentwood Cheer Booster Club | 365040888
+AFGHANISTAN | FORGN |  | Cresskill | Lee & Park Foundation Inc. | 872066837
+AFGHANISTAN | FORGN |  | Cupertino Ca | Skylark Youth Academy | 880925955
+AFGHANISTAN | FORGN |  | Dacula Georgia | Community Uplift Inc. | 922042669
+AFGHANISTAN | FORGN |  | Dansville | Dansville Area Historical Society | 161319746
+AFGHANISTAN | FORGN |  | East Meadow Ny | Dolphin Football Alumni Association Inc. | 821531991
+AFGHANISTAN | FORGN |  | Fort Washington Md | Spilling the Tea Inc. | 991219306
+AFGHANISTAN | FORGN |  | Fort Worth Texas | Fishers for Him Inc. | 843920047
+AFGHANISTAN | FORGN |  | Fresno Ca | Woven Coalition | 921679853
+AFGHANISTAN | EO,FORGN |  | Griggsville Il | Bethel M E Cemetery Association | 370798701
+AFGHANISTAN | FORGN |  | Hampton Ga | Saving America Now Inc. | 831294660
+AFGHANISTAN | FORGN |  | Honolulu | Savinghawaiiorg | 872231381
+AFGHANISTAN | FORGN |  | Lantana Tx | Mission Moms | 461507839
+AFGHANISTAN | FORGN |  | Littleton Co | Sbibos Np Inc. | 991118737
+AFGHANISTAN | FORGN |  | Loughman Polk | Road Dawg Animal Rescue Transport Inc. | 852773301
+AFGHANISTAN | FORGN |  | Louisville Stark | Louisville Elementary Schools Pto | 455539074
+AFGHANISTAN | FORGN |  | Merrick Ny | Zerimar Family Foundation Inc. | 352644743
+AFGHANISTAN | FORGN |  | Montgomery | Special K9 Inc. | 332352519
+AFGHANISTAN | FORGN |  | Mt. Sterling Ky | Mc adapt Inc. | 464791547
+AFGHANISTAN | FORGN |  | Nashville | Live X-Perience | 933526830
+AFGHANISTAN | FORGN |  | North Providence Ri | Stephen Olney Pto | 933908586
+AFGHANISTAN | FORGN |  | Oelwein | Junior Husky Basketball Club Inc. | 823269347
+AFGHANISTAN | FORGN |  | Ovilla Tx | Waves of Glory Ministries | 821884357
+AFGHANISTAN | FORGN |  | Palm Bay | Angel Wings Parrot Rescue Inc. | 461892482
+AFGHANISTAN | FORGN |  | Palo Alto Ca | Mordecai Projet International | 861992712
+(87 rows; csv has all)

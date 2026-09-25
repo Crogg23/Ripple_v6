@@ -1,0 +1,15 @@
+-- S04 ICIS-Air pollutants: shape by FACIL-vs-real row and class; duplicate pairs; CAS and SRS fill
+IS_FACIL_ROW | CLS | CLS_DESC | N | FACILITIES | FAC_POLLUTANT_PAIRS | POLLUTANT_CODES | CAS_FILLED | SRS_FILLED
+False | MIN | Minor Emissions | 560605 | 200232 | 560605 | 591 | 257810 | 549220
+False | SMI | Synthetic Minor Emissions | 116944 | 39831 | 116944 | 376 | 52603 | 112317
+False | MAJ | Major Emissions | 83607 | 17313 | 83607 | 445 | 43883 | 80248
+False | UNK | Emissions classification unknown | 38542 | 20027 | 38542 | 278 | 16985 | 35367
+False | NAP | Not applicable | 13874 | 4304 | 13874 | 257 | 7855 | 13235
+False | OTH | Other | 1091 | 136 | 1091 | 117 | 653 | 1046
+True | MIN | Minor Emissions | 51385 | 51385 | 51385 | 1 | 0 | 0
+True | UNK | Emissions classification unknown | 34473 | 34473 | 34473 | 1 | 0 | 0
+True | SMI | Synthetic Minor Emissions | 18199 | 18199 | 18199 | 1 | 0 | 0
+True | NAP | Not applicable | 15976 | 15976 | 15976 | 1 | 0 | 0
+True | MAJ | Major Emissions | 11902 | 11902 | 11902 | 1 | 0 | 0
+True | OTH | Other | 1744 | 1744 | 1744 | 1 | 0 | 0
+(12 rows; csv has all)

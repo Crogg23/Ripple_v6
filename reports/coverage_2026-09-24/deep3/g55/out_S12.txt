@@ -1,0 +1,2 @@
+-- S12 USAspending API sample: which of its 200 big contracts miss CONTRACTS_FULL_R2, and what R2 holds for the ones that land (action-date span, rows)
+ERROR: 000630 (57014): Statement reached its statement or warehouse timeout of 300 second(s) and was canceled.

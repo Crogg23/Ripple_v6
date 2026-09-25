@@ -1,0 +1,30 @@
+import pandas as pd, numpy as np
+pd.set_option('display.width', 250); pd.set_option('display.max_rows', 300); pd.set_option('display.max_colwidth', 45)
+F = pd.read_pickle('fpi_listed.pkl')
+d = pd.read_pickle('out_S02.pkl'); d['cikn'] = pd.to_numeric(d.CIK, errors='coerce')
+d['FD'] = pd.to_datetime(d.FILING_DATE); d['POR'] = pd.to_datetime(d.PERIOD_OF_REPORT, format='%d-%b-%Y'); d['dt'] = d.DOCUMENT_TYPE.astype(str).str.strip()
+EEA = set('AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO'.split())
+EXEMPT = EEA | {'CA','CL','KR','CH','GB'}
+print('COUNTRYINC null share among listed FPIs:', F.COUNTRYINC.isna().mean().round(3), 'n null', F.COUNTRYINC.isna().sum())
+print(F.COUNTRYINC.fillna('<null>').value_counts().head(25).to_dict())
+F['inc'] = F.COUNTRYINC.fillna(F.COUNTRYBA)
+F['inc_src'] = np.where(F.COUNTRYINC.notna(), 'inc', 'ba-fallback')
+F['exempt'] = F.inc.isin(EXEMPT)
+# form 3 by issuer in March
+f3 = d[d.dt.isin(['3','3/A'])]
+f3i = f3.groupby('cikn').agg(n3=('dt','size'), first3=('FD','min'), on_time=('FD', lambda s: (s <= '2026-03-18').sum()))
+F = F.drop(columns=[c for c in ['n3','first3','n','n4','first','n3_m18','hit','hit3_after_mar'] if c in F.columns]).join(f3i, on='cikn')
+F['has3'] = F.n3.fillna(0) > 0
+print('\nForm 3 on file by 2026-03-31, listed FPIs, by exemption status (inc country; BA fallback when inc null):')
+print(F.groupby('exempt').has3.agg(['size','sum','mean']).to_string())
+print(F.groupby(['exempt','inc_src']).has3.agg(['size','sum','mean']).to_string())
+N = F[~F.exempt].copy()
+N['ba'] = N.COUNTRYBA.fillna('?')
+g = N.groupby('ba').agg(listed=('has3','size'), with_form3=('has3','sum')).assign(rate=lambda x: (x.with_form3/x.listed).round(3))
+print('\nNON-EXEMPT listed FPIs by business-address country (n>=5):'); print(g[g.listed >= 5].sort_values('listed', ascending=False).to_string())
+print('non-exempt overall', N.has3.mean().round(3), len(N), N.has3.sum(), '| median country rate (n>=5)', g[g.listed>=5].rate.median())
+ex_cn = N[N.ba != 'CN']; print('non-exempt excluding CN business address:', ex_cn.has3.mean().round(3), len(ex_cn))
+cnhk = N[N.ba.isin(['CN','HK'])]; print('CN+HK:', cnhk.has3.mean().round(3), len(cnhk), cnhk.has3.sum())
+N.to_pickle('fpi_nonexempt.pkl')
+print('\nCN business-address misses: inc countries', N[(N.ba=='CN') & ~N.has3].inc.value_counts().to_dict())
+print(N[(N.ba=='CN') & ~N.has3][['CIKN','NAME','inc','FORMS','LAST_FILED','TICKERS','EXCHANGES']].sort_values('LAST_FILED').to_string())

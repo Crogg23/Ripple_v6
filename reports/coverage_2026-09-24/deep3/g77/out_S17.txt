@@ -1,0 +1,37 @@
+-- S17 Earthquakes: near-duplicate check - next event within 20 seconds and about 20 km of the previous one, by the two networks involved
+NETS | PAIRS | WITHIN_5S | AVG_MAG_GAP | EG_ID
+ci+ci | 706 | 125 | 0.34 | ci10144402
+hv+hv | 586 | 219 | 0.25 | hv60419616
+us+us | 356 | 26 | 0.37 | usp000h7zj
+ak+ak | 115 | 21 | 0.2 | ak0109bqqn9j
+ak+us | 81 | 60 | 0.21 | usp000hfpw
+nc+nc | 69 | 9 | 0.23 | nc71039339
+nn+nn | 35 | 2 | 0.29 | nn00333414
+pr+pr | 25 | 22 | 0.15 | pr14014039
+uu+uu | 20 | 1 | 0.33 | uu60036922
+tx+tx | 17 | 2 | 0.37 | tx2022hccx
+pr+us | 17 | 6 | 0.31 | usc000tcff
+hv+us | 10 | 8 | 0.26 | hv61684461
+av+us | 9 | 7 | 0.2 | av70865354
+nn+us | 8 | 4 | 0.27 | usp000j03j
+tx+us | 8 | 7 | 0.17 | us6000hlrd
+ci+us | 8 | 7 | 0.08 | ci37222396
+ok+ok | 7 | 5 | 0.19 | ok2019lprf
+us+uu | 5 | 4 | 0.1 | uu50415230
+nn+uw | 3 | 2 | 0.12 | nn00465678
+nc+us | 2 | 2 | 0.18 | nc71039994
+aacse+us | 2 | 2 | 0.1 | aacse018cjj7s2b
+nc+nn | 2 | 2 | 0.24 | nn00412944
+ci+nc | 1 | 0 | 0.24 | ci10203830
+ismpkansas+ismpkansas | 1 | 1 | 0.0 | ismpkansas70077213
+se+se | 1 | 0 | 0.01 | se60074023
+uw+uw | 1 | 0 | 0.08 | uw60109408
+mb+mb | 1 | 1 | 0.4 | mb31481
+ci+nn | 1 | 1 | 0.53 | ci37316256
+ci+ew | 1 | 1 | 0.53 | ew1623472898
+ismpkansas+us | 1 | 0 | 0.94 | us10001mps
+mb+us | 1 | 0 | 0.0 | mb15515785
+aacse+ak | 1 | 1 | 0.1 | ak019520c76i
+nm+nm | 1 | 0 | 0.05 | nm60291521
+iscgem+us | 1 | 0 | 0.07 | iscgem608534172
+(34 rows; csv has all)

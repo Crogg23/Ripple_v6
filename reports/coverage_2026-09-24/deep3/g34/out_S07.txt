@@ -1,0 +1,53 @@
+-- S07 NPDES informal: shape by agency, type, official flag; date sentinels; registry fill
+AGENCY | ENF_TYPE_CODE | ENF_TYPE_DESC | OFFICIAL_FLG | N | ACTS | PERMITS | NO_REGISTRY | D0 | D1 | PRE1990 | FUTURE | NULLDATE
+State | LOVWL | Letter of Violation/ Warning Letter | Y | 181956 | 181473 | 56758 | 0 | 0213-10-18 | 8202-06-10 | 4440 | 2 | 3824
+State | NOV | Notice of Violation | Y | 110729 | 110495 | 39121 | 0 | 0001-01-01 | 5202-09-24 | 28 | 2 | 597
+State | AER | Agency Enforcement Review | N | 41221 | 41150 | 14669 | 0 | 0216-02-16 | 2019-10-03 | 547 | 0 | 1495
+State | NONC | Notice of Noncompliance Issued | Y | 30734 | 30717 | 12875 | 0 | 0200-08-12 | 2026-07-30 | 4 | 0 | 25
+EPA | LOVWL | Letter of Violation/ Warning Letter | Y | 23068 | 23051 | 4517 | 0 | 1009-06-26 | 2026-07-16 | 7503 | 0 | 11
+State | PHEMAIL | Phone Call/ EMAIL | N | 21962 | 21920 | 5481 | 0 | 1982-05-15 | 2019-09-25 | 642 | 0 | 178
+State | UNDREV | Under Review | N | 18722 | 18721 | 8145 | 0 | 1982-03-24 | 2019-09-26 | 458 | 0 | 2
+State | PHEMLS | Phone Call/ EMAIL | N | 18531 | 18513 | 7869 | 0 | 1980-01-01 | 2026-07-29 | 3 | 0 | 1
+EPA | AER | Agency Enforcement Review | N | 8489 | 8489 | 1871 | 0 | 1977-08-31 | 2018-05-17 | 3241 | 0 | 2
+State | UNDREVS | Under Review | N | 3939 | 3937 | 898 | 0 | 2016-03-03 | 2026-07-30 | 0 | 0 | 0
+State | AERS | Agency Enforcement Review | N | 3759 | 3744 | 1589 | 0 | 2009-01-17 | 2026-07-30 | 0 | 0 | 19
+State | ENFMTG | Enforcement Meeting | N | 2404 | 2275 | 1302 | 0 | 1981-02-01 | 2019-08-28 | 172 | 0 | 11
+EPA | PHEMAIL | Phone Call/ EMAIL | N | 2042 | 2041 | 906 | 0 | 1980-04-24 | 2019-09-13 | 410 | 0 | 1
+State | NFAS | No Further Action | N | 2001 | 1973 | 1105 | 0 | 2000-10-13 | 2026-07-30 | 0 | 0 | 0
+State | LRE | Letter to Regulated Entity | N | 1559 | 1551 | 827 | 0 | 1994-11-01 | 2019-06-18 | 0 | 0 | 53
+EPA | UNDREV | Under Review | N | 1333 | 1332 | 585 | 0 | 1983-08-22 | 2019-06-30 | 97 | 0 | 5
+EPA | NOV | Notice of Violation | Y | 1263 | 1226 | 986 | 0 | 2003-05-21 | 2026-07-27 | 0 | 0 | 32
+State | IRLS | Information Request Letter | N | 879 | 877 | 642 | 0 | 2017-07-17 | 2026-06-26 | 0 | 0 | 0
+State | ENFMTGS | Enforcement Meeting | N | 672 | 672 | 195 | 0 | 2010-12-29 | 2026-12-01 | 0 | 2 | 5
+State | LRES | Letter to Regulated Entity | N | 433 | 432 | 396 | 0 | 2002-01-10 | 2026-07-14 | 0 | 0 | 0
+State | NFA | No Further Action | N | 311 | 220 | 244 | 0 | 2012-10-15 | 2019-09-30 | 0 | 0 | 0
+State | CCA | Compliance Agreement | N | 302 | 302 | 255 | 0 | 1990-03-06 | 2025-07-22 | 0 | 0 | 1
+EPA | NFAO | Other Response - No Further Action | N | 278 | 276 | 274 | 0 | 2021-02-25 | 2026-07-07 | 0 | 0 | 0
+EPA | ENFMTG | Enforcement Meeting | N | 273 | 247 | 170 | 0 | 1982-08-17 | 2019-09-05 | 121 | 0 | 0
+EPA | NONC | Notice of Noncompliance Issued | Y | 262 | 258 | 247 | 0 | 2002-01-03 | 2026-07-07 | 0 | 0 | 5
+State | IRL | Information Request Letter | N | 260 | 255 | 151 | 0 | 2012-04-16 | 2019-09-24 | 0 | 0 | 1
+EPA | NST | Other Response - Notice to State/Tribe | N | 254 | 254 | 227 | 0 | 1978-02-14 | 2009-07-09 | 96 | 0 | 0
+State | ONV | Oral Notification of Violation | N | 248 | 248 | 156 | 0 | 2002-02-22 | 2019-05-02 | 0 | 0 | 14
+EPA | IRL | Information Request Letter | N | 232 | 218 | 216 | 0 | 2011-05-26 | 2018-12-14 | 0 | 0 | 3
+EPA | LRE | Letter to Regulated Entity | N | 104 | 101 | 89 | 0 | 2004-05-21 | 2017-06-22 | 0 | 0 | 36
+State | ONVS | Oral Notification of Violation | N | 92 | 92 | 47 | 0 | 2017-08-15 | 2025-05-20 | 0 | 0 | 0
+EPA | PHEMLO | Other Response - Phone Call/ EMAIL | N | 87 | 85 | 50 | 0 | 2017-08-16 | 2024-12-19 | 0 | 0 | 2
+EPA | LREO | Other Response - Letter to Regulated Entity | N | 82 | 82 | 77 | 0 | 2020-04-01 | 2026-06-12 | 0 | 0 | 0
+EPA | CSNOT | Citizen Suit Notice | N | 82 | 82 | 80 | 0 | 1986-09-15 | 2002-11-20 | 73 | 0 | 0
+EPA | UNDREVO | Other Response - Under Review | N | 77 | 75 | 32 | 0 | 2019-09-30 | 2024-09-30 | 0 | 0 | 0
+EPA | ENFMTGO | Other Response - Enforcement Meeting | N | 72 | 14 | 53 | 0 | 2019-03-11 | 2024-11-07 | 0 | 0 | 0
+EPA | NFA | No Further Action | N | 40 | 40 | 37 | 0 | 2013-09-02 | 2018-08-28 | 0 | 0 | 2
+EPA | SCL | Show Cause Letter | Y | 19 | 19 | 19 | 0 | 2010-06-30 | 2014-11-04 | 0 | 0 | 0
+State | CSNOT | Citizen Suit Notice | N | 17 | 17 | 14 | 0 | 1995-04-24 | 2009-09-21 | 0 | 0 | 0
+State | SCL | Show Cause Letter | Y | 16 | 16 | 16 | 0 | 2006-09-06 | 2016-10-13 | 0 | 0 | 0
+State | CSFO | Citizen Suit Final Order | N | 15 | 15 | 12 | 0 | 1992-06-29 | 2005-03-23 | 0 | 0 | 0
+EPA | NOD | Notice of Determination | N | 8 | 8 | 8 | 0 | 2001-12-10 | 2016-01-06 | 0 | 0 | 0
+EPA | CSFO | Citizen Suit Final Order | N | 7 | 7 | 1 | 0 | 2008-02-08 | 2010-06-11 | 0 | 0 | 0
+State | SCLS | Show Cause Letter | N | 5 | 5 | 5 | 0 | 2020-08-06 | 2025-05-19 | 0 | 0 | 0
+EPA | OAMC | Other Actions that meet Informal Enforcement Action Criteria | N | 4 | 2 | 2 | 0 | 2020-02-19 | 2020-02-20 | 0 | 0 | 0
+EPA | IRLO | Other Response - Information Request Letter | N | 4 | 4 | 4 | 0 | 2022-10-27 | 2025-04-23 | 0 | 0 | 0
+EPA | LTS | Other Response - Letter to State/Tribe | N | 3 | 3 | 3 | 0 | 2012-12-20 | 2020-03-09 | 0 | 0 | 0
+State | CSNOTS | Citizen Suit Notice | N | 2 | 2 | 2 | 0 | 2022-04-20 | 2022-11-04 | 0 | 0 | 0
+EPA | ONV | Oral Notification of Violation | N | 2 | 2 | 2 | 0 | 2011-06-29 | 2011-06-29 | 0 | 0 | 1
+State | CSFOS | Citizen Suit Final Order | N | 1 | 1 | 1 | 0 | 2023-01-10 | 2023-01-10 | 0 | 0 | 0
+(50 rows; csv has all)

@@ -1,0 +1,5 @@
+-- S02 IRS revocation: date text shapes, reinstatement flag vs date, ranges
+REV_SHAPE | REIN_SHAPE | WAS_REINSTATED | N | EINS | R0 | R1 | I0 | I1 | EIN_NOT9 | EIN0 | L0 | L1 | SRC
+9999-99-99 | <null> | False | 1027182 | 1027182 | 2010-05-15 | 2026-03-15 |  |  | 0 | 0 | 1782521646301251 | 1782521646301251 | https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads
+9999-99-99 | 9999-99-99 | True | 179445 | 175385 | 2010-05-15 | 2026-02-15 | 2010-05-15 | 2026-04-15 | 0 | 0 | 1782521646301251 | 1782521646301251 | https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads
+(2 rows; csv has all)

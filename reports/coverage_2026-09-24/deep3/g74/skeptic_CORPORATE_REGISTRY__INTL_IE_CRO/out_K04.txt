@@ -1,0 +1,3 @@
+-- K04 shelf-company signature: 1989-98 vs 1999-2003 formations at the builder's 23 addresses, other 1000+ addresses, and everywhere else. Renamed after formation, ever filed an annual return or accounts, dissolved, dissolved within 3 years, median life, top object code
+ERROR: 002065 (42601): SQL compilation error:
+Window function [MODE(J.POC) OVER (PARTITION BY J.CLS, J.PER)] may not appear inside an aggregate function.

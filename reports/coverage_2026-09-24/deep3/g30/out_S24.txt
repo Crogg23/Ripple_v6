@@ -1,0 +1,36 @@
+-- S24 Redo the peer test with connected PACs (union and company PACs, whose sponsor pays overhead) taken out, using ORG_TP from the committee dim: cross-section by funding and same-PAC panel, by group
+KIND | GRP | PERIOD | FUNDING | PACS | MED_A | MED_B | MED_CHANGE | WSHARE | FELL_25
+cross | connected | 2018 | indiv75 | 624 | 0.915 |  |  | 0.666 | 
+cross | connected | 2018 | other | 29 | 0.966 |  |  | 0.775 | 
+cross | connected | 2020 | indiv75 | 605 | 0.927 |  |  | 0.716 | 
+cross | connected | 2020 | other | 26 | 0.987 |  |  | 0.813 | 
+cross | connected | 2022 | indiv75 | 554 | 0.915 |  |  | 0.68 | 
+cross | connected | 2022 | other | 30 | 0.979 |  |  | 0.793 | 
+cross | connected | 2024 | indiv75 | 632 | 0.92 |  |  | 0.706 | 
+cross | connected | 2024 | other | 24 | 0.974 |  |  | 0.882 | 
+cross | leadership | 2018 | indiv75 | 13 | 0.263 |  |  | 0.456 | 
+cross | leadership | 2018 | other | 170 | 0.529 |  |  | 0.512 | 
+cross | leadership | 2020 | indiv75 | 23 | 0.385 |  |  | 0.336 | 
+cross | leadership | 2020 | other | 157 | 0.528 |  |  | 0.505 | 
+cross | leadership | 2022 | indiv75 | 23 | 0.215 |  |  | 0.276 | 
+cross | leadership | 2022 | other | 164 | 0.538 |  |  | 0.476 | 
+cross | leadership | 2024 | indiv75 | 27 | 0.217 |  |  | 0.235 | 
+cross | leadership | 2024 | other | 194 | 0.52 |  |  | 0.482 | 
+cross | nonconnected | 2018 | indiv75 | 80 | 0.232 |  |  | 0.338 | 
+cross | nonconnected | 2018 | other | 24 | 0.253 |  |  | 0.235 | 
+cross | nonconnected | 2020 | indiv75 | 85 | 0.155 |  |  | 0.2 | 
+cross | nonconnected | 2020 | other | 38 | 0.479 |  |  | 0.278 | 
+cross | nonconnected | 2022 | indiv75 | 90 | 0.109 |  |  | 0.237 | 
+cross | nonconnected | 2022 | other | 48 | 0.325 |  |  | 0.157 | 
+cross | nonconnected | 2024 | indiv75 | 90 | 0.2 |  |  | 0.318 | 
+cross | nonconnected | 2024 | other | 67 | 0.38 |  |  | 0.202 | 
+panel | connected | 2018-2020 | all | 566 | 0.908 | 0.918 | 0.0 | 0.043 | 7
+panel | connected | 2020-2022 | all | 537 | 0.924 | 0.927 | -0.001 | -0.035 | 8
+panel | connected | 2022-2024 | all | 538 | 0.924 | 0.924 | 0.0 | 0.029 | 6
+panel | leadership | 2018-2020 | all | 134 | 0.515 | 0.522 | 0.014 | -0.002 | 8
+panel | leadership | 2020-2022 | all | 138 | 0.525 | 0.469 | -0.059 | -0.057 | 10
+panel | leadership | 2022-2024 | all | 148 | 0.507 | 0.428 | -0.037 | -0.032 | 10
+panel | nonconnected | 2018-2020 | all | 62 | 0.244 | 0.351 | 0.0 | 0.029 | 2
+panel | nonconnected | 2020-2022 | all | 68 | 0.351 | 0.236 | -0.011 | 0.008 | 4
+panel | nonconnected | 2022-2024 | all | 83 | 0.256 | 0.302 | 0.0 | 0.042 | 3
+(33 rows; csv has all)

@@ -1,0 +1,176 @@
+===== q18 (stmt 19) 88 rows
+CC | SC | Y23 | Y24 | Y25 | Y26 | Y27 | Y28 | Y29 | Y30
+BEN | DT.TDS.BLAT.CD | 0.117 | 0.069 | 0.158 | 0.167 | 0.17 | 0.169 | 0.178 | 0.179
+BEN | DT.TDS.DECT.CD | 0.879 | 1.144 | 1.826 | 1.743 | 1.556 | 1.464 | 1.352 | 1.504
+BEN | DT.TDS.DIMF.CD | 0.038 | 0.108 | 0.091 | 0.072 | 0.111 | 0.14 | 0.152 | 0.135
+BEN | DT.TDS.DPNG.CD | 0.004 | 0.004 | 0.741 | 0.66 | 0.39 | 0.311 | 0.233 | 0.193
+BEN | DT.TDS.DPPG.CD | 0.76 | 0.953 | 0.993 | 1.011 | 1.056 | 1.013 | 0.966 | 1.175
+BEN | DT.TDS.MLAT.CD | 0.283 | 0.2 | 0.349 | 0.368 | 0.4 | 0.39 | 0.409 | 0.431
+BEN | DT.TDS.PBND.CD | 0.097 | 0.391 | 0.145 | 0.144 | 0.124 | 0.124 | 0.124 | 0.336
+BTN | DT.TDS.BLAT.CD | 0.088 | 0.106 | 0.343 | 0.442 | 0.34 | 0.327 | 0.353 | 0.302
+BTN | DT.TDS.DECT.CD | 0.141 | 0.161 | 0.403 | 0.5 | 0.394 | 0.382 | 0.409 | 0.377
+BTN | DT.TDS.DIMF.CD | 0.001 | 0.001 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+BTN | DT.TDS.DPNG.CD | 0.002 | 0.002 | 0.013 | 0.011 | 0.007 | 0.005 | 0.004 | 0.003
+BTN | DT.TDS.DPPG.CD | 0.138 | 0.158 | 0.39 | 0.489 | 0.387 | 0.376 | 0.406 | 0.373
+BTN | DT.TDS.MLAT.CD | 0.045 | 0.047 | 0.047 | 0.047 | 0.047 | 0.05 | 0.053 | 0.072
+GMB | DT.TDS.BLAT.CD | 0.009 | 0.011 | 0.04 | 0.032 | 0.033 | 0.045 | 0.033 | 0.026
+GMB | DT.TDS.DECT.CD | 0.055 | 0.077 | 0.138 | 0.144 | 0.157 | 0.176 | 0.465 | 0.129
+GMB | DT.TDS.DIMF.CD | 0.01 | 0.01 | 0.005 | 0.014 | 0.021 | 0.025 | 0.027 | 0.03
+GMB | DT.TDS.DPNG.CD |  | 0.016 | 0.032 | 0.032 | 0.032 | 0.032 | 0.332 | 
+GMB | DT.TDS.DPPG.CD | 0.04 | 0.048 | 0.102 | 0.099 | 0.105 | 0.12 | 0.106 | 0.099
+GMB | DT.TDS.MLAT.CD | 0.028 | 0.034 | 0.06 | 0.065 | 0.07 | 0.073 | 0.071 | 0.062
+GNB | DT.TDS.BLAT.CD | 0.004 | 0.004 | 0.005 | 0.005 | 0.005 | 0.006 | 0.007 | 0.006
+GNB | DT.TDS.DECT.CD | 0.055 | 0.039 | 0.077 | 0.081 | 0.083 | 0.084 | 0.088 | 0.168
+GNB | DT.TDS.DIMF.CD | 0.007 | 0.008 | 0.004 | 0.006 | 0.007 | 0.005 | 0.009 | 0.012
+GNB | DT.TDS.DPNG.CD |  |  |  |  |  |  |  | 
+GNB | DT.TDS.DPPG.CD | 0.048 | 0.032 | 0.073 | 0.075 | 0.076 | 0.078 | 0.079 | 0.156
+GNB | DT.TDS.MLAT.CD | 0.03 | 0.015 | 0.038 | 0.04 | 0.042 | 0.042 | 0.042 | 0.04
+GNB | DT.TDS.PBND.CD | 0.013 | 0.013 | 0.03 | 0.03 | 0.03 | 0.03 | 0.03 | 0.11
+LAO | DT.TDS.BLAT.CD | 0.24 | 0.386 | 1.723 | 1.462 | 1.028 | 0.968 | 0.921 | 0.804
+LAO | DT.TDS.DECT.CD | 1.257 | 2.139 | 4.188 | 3.397 | 2.582 | 2.334 | 1.684 | 1.482
+LAO | DT.TDS.DIMF.CD | 0.008 | 0.008 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+LAO | DT.TDS.DPNG.CD | 0.492 | 1.248 | 1.847 | 1.552 | 1.205 | 1.083 | 0.526 | 0.427
+LAO | DT.TDS.DPPG.CD | 0.749 | 0.821 | 2.342 | 1.845 | 1.377 | 1.251 | 1.158 | 1.055
+LAO | DT.TDS.MLAT.CD | 0.123 | 0.139 | 0.157 | 0.158 | 0.163 | 0.167 | 0.171 | 0.171
+LAO | DT.TDS.PBND.CD | 0.172 | 0.162 | 0.431 | 0.195 | 0.148 | 0.091 | 0.06 | 0.077
+MDG | DT.TDS.BLAT.CD | 0.034 | 0.037 | 0.063 | 0.058 | 0.069 | 0.067 | 0.068 | 0.07
+MDG | DT.TDS.DECT.CD | 0.266 | 0.292 | 0.426 | 0.465 | 0.872 | 0.445 | 0.516 | 0.502
+MDG | DT.TDS.DIMF.CD | 0.068 | 0.076 | 0.063 | 0.14 | 0.145 | 0.14 | 0.138 | 0.115
+MDG | DT.TDS.DPNG.CD | 0.014 | 0.013 | 0.044 | 0.043 | 0.447 | 0.011 | 0.011 | 0.01
+MDG | DT.TDS.DPPG.CD | 0.177 | 0.198 | 0.32 | 0.282 | 0.28 | 0.294 | 0.366 | 0.377
+MDG | DT.TDS.MLAT.CD | 0.104 | 0.148 | 0.201 | 0.211 | 0.199 | 0.215 | 0.286 | 0.294
+MNE | DT.TDS.BLAT.CD | 0.129 | 0.122 | 0.17 | 0.173 | 0.168 | 0.164 | 0.156 | 0.09
+MNE | DT.TDS.DECT.CD | 0.808 | 1.236 | 2.162 | 1.288 | 1.934 | 0.825 | 1.224 | 0.553
+MNE | DT.TDS.DIMF.CD | 0.028 | 0.047 | 0.02 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+MNE | DT.TDS.DPNG.CD | 0.389 | 0.719 | 1.213 | 0.859 | 0.743 | 0.449 | 0.353 | 0.262
+MNE | DT.TDS.DPPG.CD | 0.38 | 0.456 | 0.929 | 0.429 | 1.191 | 0.376 | 0.87 | 0.291
+MNE | DT.TDS.MLAT.CD | 0.074 | 0.083 | 0.103 | 0.119 | 0.127 | 0.118 | 0.103 | 0.115
+MNE | DT.TDS.PBND.CD | 0.055 | 0.077 | 0.605 | 0.068 | 0.869 | 0.068 | 0.587 | 0.054
+MNG | DT.TDS.BLAT.CD | 0.405 | 0.912 | 0.368 | 1.195 | 0.344 | 0.337 | 0.343 | 0.347
+MNG | DT.TDS.DECT.CD | 5.046 | 5.419 | 9.104 | 7.982 | 7.549 | 4.581 | 3.504 | 2.518
+MNG | DT.TDS.DIMF.CD | 0.08 | 0.099 | 0.053 | 0.041 | 0.036 | 0.012 | 0.0 | 0.0
+MNG | DT.TDS.DPNG.CD | 2.933 | 3.827 | 8.129 | 6.007 | 5.586 | 2.974 | 2.341 | 1.738
+MNG | DT.TDS.DPPG.CD | 1.911 | 1.359 | 0.922 | 1.934 | 1.928 | 1.595 | 1.163 | 0.78
+MNG | DT.TDS.MLAT.CD | 0.253 | 0.317 | 0.369 | 0.411 | 0.434 | 0.452 | 0.433 | 0.411
+MNG | DT.TDS.PBND.CD | 1.207 | 0.124 | 0.179 | 0.322 | 1.143 | 0.728 | 0.386 | 0.022
+MOZ | DT.TDS.BLAT.CD | 0.361 | 0.457 | 0.499 | 0.497 | 0.49 | 0.402 | 0.388 | 0.286
+MOZ | DT.TDS.DECT.CD | 4.494 | 4.539 | 19.171 | 13.866 | 12.076 | 7.593 | 6.153 | 4.656
+MOZ | DT.TDS.DIMF.CD | 0.042 | 0.028 | 0.042 | 0.085 | 0.094 | 0.116 | 0.123 | 0.099
+MOZ | DT.TDS.DPNG.CD | 3.716 | 3.524 | 18.314 | 12.966 | 11.179 | 6.759 | 5.316 | 3.944
+MOZ | DT.TDS.DPPG.CD | 0.714 | 0.949 | 0.814 | 0.815 | 0.803 | 0.718 | 0.714 | 0.613
+MOZ | DT.TDS.MLAT.CD | 0.161 | 0.171 | 0.221 | 0.229 | 0.224 | 0.23 | 0.241 | 0.243
+MOZ | DT.TDS.PBND.CD | 0.022 | 0.081 | 0.081 | 0.081 | 0.081 | 0.081 | 0.081 | 0.081
+PAK | DT.TDS.BLAT.CD | 6.618 | 6.107 | 11.143 | 9.296 | 3.948 | 2.637 | 2.453 | 2.156
+PAK | DT.TDS.DECT.CD | 16.09 | 16.307 | 23.064 | 20.883 | 16.332 | 11.613 | 10.772 | 8.151
+PAK | DT.TDS.DIMF.CD | 1.86 | 2.327 | 0.872 | 1.018 | 2.365 | 2.28 | 1.356 | 0.784
+PAK | DT.TDS.DPNG.CD | 2.157 | 2.606 | 6.017 | 4.263 | 3.69 | 2.228 | 1.754 | 1.302
+PAK | DT.TDS.DPPG.CD | 11.921 | 11.216 | 16.175 | 15.603 | 10.277 | 7.105 | 7.661 | 6.065
+PAK | DT.TDS.MLAT.CD | 2.927 | 3.268 | 3.861 | 4.225 | 4.365 | 4.154 | 3.933 | 3.674
+PAK | DT.TDS.PBND.CD | 0.62 | 1.653 | 1.037 | 1.757 | 1.918 | 0.315 | 1.275 | 0.235
+PRY | DT.TDS.BLAT.CD | 0.033 | 0.078 | 0.028 | 0.028 | 0.027 | 0.026 | 0.025 | 0.024
+PRY | DT.TDS.DECT.CD | 1.813 | 1.969 | 4.123 | 3.645 | 4.211 | 3.024 | 4.544 | 2.583
+PRY | DT.TDS.DIMF.CD | 0.015 | 0.015 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+PRY | DT.TDS.DPNG.CD | 0.367 | 0.309 | 2.573 | 1.684 | 2.029 | 1.278 | 0.798 | 0.649
+PRY | DT.TDS.DPPG.CD | 1.255 | 1.443 | 1.55 | 1.961 | 2.182 | 1.746 | 3.746 | 1.935
+PRY | DT.TDS.MLAT.CD | 0.62 | 0.836 | 1.044 | 1.136 | 1.215 | 1.297 | 2.97 | 1.181
+PRY | DT.TDS.PBND.CD | 0.602 | 0.473 | 0.402 | 0.725 | 0.871 | 0.358 | 0.689 | 0.671
+SEN | DT.TDS.BLAT.CD | 0.395 | 0.458 | 0.56 | 0.579 | 0.585 | 0.616 | 0.601 | 0.58
+SEN | DT.TDS.DECT.CD | 2.329 | 3.438 | 7.872 | 8.717 | 5.459 | 4.734 | 4.089 | 3.91
+SEN | DT.TDS.DIMF.CD | 0.134 | 0.248 | 0.177 | 0.327 | 0.249 | 0.177 | 0.17 | 0.134
+SEN | DT.TDS.DPNG.CD | 0.601 | 1.025 | 4.537 | 3.951 | 2.374 | 1.874 | 1.394 | 1.135
+SEN | DT.TDS.DPPG.CD | 1.286 | 1.905 | 3.158 | 4.439 | 2.837 | 2.683 | 2.525 | 2.642
+SEN | DT.TDS.MLAT.CD | 0.405 | 0.526 | 0.821 | 0.888 | 0.945 | 1.029 | 1.021 | 1.009
+SEN | DT.TDS.PBND.CD | 0.221 | 0.396 | 0.294 | 1.308 | 0.245 | 0.245 | 0.245 | 0.485
+TGO | DT.TDS.BLAT.CD | 0.076 | 0.084 | 0.092 | 0.097 | 0.102 | 0.102 | 0.105 | 0.103
+TGO | DT.TDS.DECT.CD | 0.265 | 0.343 | 0.593 | 0.79 | 0.493 | 0.478 | 0.879 | 0.379
+TGO | DT.TDS.DIMF.CD | 0.028 | 0.038 | 0.071 | 0.095 | 0.09 | 0.071 | 0.056 | 0.018
+TGO | DT.TDS.DPNG.CD | 0.052 | 0.072 | 0.092 | 0.382 | 0.071 | 0.071 | 0.471 | 0.031
+TGO | DT.TDS.DPPG.CD | 0.182 | 0.23 | 0.429 | 0.313 | 0.332 | 0.337 | 0.352 | 0.33
+TGO | DT.TDS.MLAT.CD | 0.061 | 0.078 | 0.114 | 0.135 | 0.145 | 0.153 | 0.168 | 0.179
+TGO | DT.TDS.PBND.CD |  |  |  |  |  |  |  | 
+===== q19 (stmt 20) 28 rows
+AG | CAT | Y21 | Y22 | Y23 | Y24 | Y25 | Y26
+Centers for Disease Control and Prevention | info collection | 105 | 112 | 95 | 86 | 59 | 95
+Centers for Disease Control and Prevention | meeting | 49 | 54 | 43 | 56 | 6 | 11
+Centers for Disease Control and Prevention | other | 74 | 106 | 99 | 58 | 9 | 41
+Education Department | info collection | 134 | 134 | 171 | 127 | 55 | 155
+Education Department | meeting | 3 | 2 | 4 | 4 | 2 | 4
+Education Department | other | 130 | 114 | 136 | 122 | 79 | 103
+Environmental Protection Agency | info collection | 91 | 128 | 85 | 66 | 78 | 57
+Environmental Protection Agency | meeting | 21 | 32 | 47 | 31 | 9 | 8
+Environmental Protection Agency | other | 747 | 700 | 652 | 601 | 411 | 517
+Federal Emergency Management Agency | fema NEW emergency | 7 | 3 | 5 | 1 | 0 | 13
+Federal Emergency Management Agency | fema NEW major disaster | 30 | 32 | 39 | 37 | 0 | 8
+Federal Emergency Management Agency | fema amendment | 225 | 114 | 78 | 91 | 0 | 46
+Federal Emergency Management Agency | fema flood map | 108 | 104 | 91 | 93 | 87 | 55
+Federal Emergency Management Agency | info collection | 21 | 21 | 32 | 23 | 15 | 20
+Federal Emergency Management Agency | meeting | 12 | 9 | 1 | 2 | 0 | 0
+Federal Emergency Management Agency | other | 18 | 12 | 12 | 9 | 3 | 5
+Fish and Wildlife Service | info collection | 14 | 19 | 40 | 17 | 5 | 23
+Fish and Wildlife Service | meeting | 5 | 6 | 4 | 7 | 3 | 0
+Fish and Wildlife Service | other | 167 | 168 | 174 | 146 | 63 | 113
+National Institutes of Health | info collection | 16 | 11 | 9 | 9 | 4 | 15
+National Institutes of Health | meeting | 674 | 638 | 686 | 695 | 578 | 291
+National Institutes of Health | other | 71 | 54 | 55 | 59 | 29 | 77
+National Science Foundation | info collection | 25 | 35 | 30 | 20 | 18 | 23
+National Science Foundation | meeting | 65 | 71 | 62 | 67 | 42 | 14
+National Science Foundation | other | 37 | 27 | 19 | 26 | 6 | 23
+Veterans Affairs Department | info collection | 159 | 86 | 88 | 152 | 62 | 119
+Veterans Affairs Department | meeting | 43 | 42 | 44 | 40 | 37 | 17
+Veterans Affairs Department | other | 65 | 75 | 93 | 66 | 38 | 38
+===== q20 (stmt 21) 8 rows
+Y | DISASTERS_ALL | DISASTERS_FEB_AUG | REGISTRATIONS | FIRST_DECL | LAST_DECL | LAST_APPLIED
+2019 | 13 | 10 | 84194 | 2019-01-31 | 2019-11-18 | 2020-01-31
+2020 | 76 | 66 | 1308182 | 2020-01-16 | 2020-12-31 | 2025-09-30
+2021 | 26 | 15 | 1877205 | 2021-01-12 | 2021-12-31 | 2022-03-14
+2022 | 16 | 6 | 2551568 | 2022-01-05 | 2022-12-13 | 2023-02-13
+2023 | 21 | 15 | 420809 | 2023-01-14 | 2023-12-13 | 2024-02-12
+2024 | 56 | 30 | 4873213 | 2024-01-07 | 2024-12-09 | 2025-04-07
+2025 | 21 | 16 | 459774 | 2025-01-08 | 2025-10-22 | 2026-04-03
+2026 | 15 | 15 | 177942 | 2026-02-06 | 2026-08-03 | 2026-08-25
+===== q21 (stmt 22) 44 rows
+K | A | B | C | D | E | F | G | H | I
+peer | M | 11507 | 1.000 | 185 | 28 | 2.23 | 6.19 |  | 
+ctrl | Martin Marietta Materials Inc | M00174 | 302 | 17 | 1.31 | 0.02 | 0.02 | UT,WA,MN,TN,IA,TX,AZ,OK,WV,CO,AL,IN,CA,NE,OH,KY,NV,GA,NC,SC,PA,MO,MD,FL,WY,LA,KS,VA,AR | 5010
+ctrl | The Heritage Group | M01806 | 23 | 8 | 1.96 | 0 | 0 | IN | 204
+ctrl | ACNR Holdings, Inc | 0157801 | 21 | 7 | 2.14 | 1.54 | 1.54 | WV,AL,OH,IL,KY,PA | 2280
+ctrl | Sev.en Global Investments a.s. | 0158381 | 47 | 6 | 1.53 | 7.39 | 7.39 | IN,KY,WV | 1764
+ctrl | Javelin Global Commodities (UK) Ltd | 0178863 | 10 | 6 | 2.50 | 0.68 | 0.68 | VA,KY | 387
+ctrl | Daniel W  Bunn | 0101029 | 14 | 6 | 2.14 | 0.08 | 0.08 | KY,NM,WV,IN | 98
+ctrl | C6 Ventures LLC; Mark  Nelson | 0157861 | 6 | 5 | 3.33 | 1.13 | 1.13 | VA | 0
+ctrl | Keri Alyssa Findley | 0196660 | 8 | 4 | 2.63 | 1.88 | 1.88 | KY,VA | 23
+ctrl | AFTA, LLC; Steve  Shaw | 0186241 | 5 | 4 | 3.00 | 0.01 | 0.01 | FL,AL | 49
+ctrl | Jim  Otteman | 0197602 | 5 | 4 | 3.20 | 0 | 0 | AR,OH | 19
+ctrl | Amrize South Central | 0199260 | 12 | 4 | 2.25 | 0 | 0 | NM,TX | 54
+ctrl | David Michael  Jamison; Petri E Koivula | 0170221 | 12 | 3 | 2.08 | 0.26 | 0.26 | WV,KY,AL,IN | 297
+ctrl | Danny D Mead; Virginia Jenny  Mead Hicks | 0179860 | 5 | 3 | 3.00 | 0.08 | 0.12 | KY | 2
+ctrl | Thorberg Collectorate Inc | 0194980 | 6 | 3 | 2.50 | 0.06 | 0.06 | KY | 105
+ctrl | JOD Holdings LLC | 0151681 | 16 | 3 | 1.56 | 0.06 | 0.06 | KY,VA | 39
+ctrl_unpaid | Sev.en Global Investments a.s. | 0158381 | 47 | 6 | 1.53 | 7.39 | 7.39 | WV,KY,IN | 1764
+ctrl_unpaid | Keri Alyssa Findley | 0196660 | 8 | 4 | 2.63 | 1.88 | 1.88 | VA,KY | 23
+ctrl_unpaid | ACNR Holdings, Inc | 0157801 | 21 | 7 | 2.14 | 1.54 | 1.54 | OH,WV,PA,IL,AL,KY | 2280
+ctrl_unpaid | C6 Ventures LLC; Mark  Nelson | 0157861 | 6 | 5 | 3.33 | 1.13 | 1.13 | VA | 0
+ctrl_unpaid | Javelin Global Commodities (UK) Ltd | 0178863 | 10 | 6 | 2.50 | 0.68 | 0.68 | KY,VA | 387
+ctrl_unpaid | Ascentia Inc | 0160865 | 1 | 1 | 3.00 | 0.62 | 0.62 | VA | 0
+ctrl_unpaid | Alabama Kanu Holdings LLC | 0186824 | 2 | 2 | 3.00 | 0.61 | 0.64 | AL | 544
+ctrl_unpaid | Hecla Mining Company | M00089 | 5 | 1 | 1.60 | 0.61 | 0.61 | AK,CO,MT,ID,NV | 859
+ctrl_unpaid | Gary D Mitchell | 0182640 | 1 | 1 | 11.00 | 0.55 | 0.55 | KY | 0
+ctrl_unpaid | Mark  LaVerghetta | 0161421 | 4 | 2 | 2.50 | 0.44 | 0.65 | KY | 1
+ctrl_unpaid | Brandon  Bishop | 0141541 | 3 | 1 | 2.67 | 0.41 | 0.45 | WV | 1
+ctrl_unpaid | David Michael  Jamison; Petri E Koivula | 0170221 | 12 | 3 | 2.08 | 0.26 | 0.26 | KY,IN,AL,WV | 297
+mine | 1518001 Mine #1 | Temporarily Idled C KY | Gary D Mitchell | 11 | 552.7 | 1492 | 0 | J 1 Mining LLC 2010-2010 > BEC Coal Inc 2010-2011 > Somer Grace Coal Company LLC 2011-2011 > Mercy Mining LLC 2011-2012 > Deep Woods Mining LLC 2013-2013 > Natural Fuel Energy 2014-2014 > Prime Energy Development LLC 2014-2014 > Lost Ridge Mining LLC 2015-2016 > Covenant Coal Corporation, Inc 2016-2 | 
+mine | 1518973 Mine #3 | Temporarily Idled C KY | Jerry  Tackett | 7 | 158.6 | 543 | 0 | Blackberry Energy LLC 2010-2010 > Connor Coal Inc. 2017-2017 > Little Tackett Mining, L.L.C. 2017-2018 > Lester And Sons Inc 2018-2020 > Dude Branch III, LLC 2021-2022 > Reliant Contracting, LLC 2023-2023 > J & E Mining Inc 2024-2024 | 
+mine | 4609257 JOHNNYCAKE MINE NO. 1 | NonProducing C WV | James Floyd Phillips | 7 | 17.1 | 177 | 4 | Selwyn Coal Corp. 2012-2013 > Miracle Mining, LLC 2015-2016 > Trump Energy Corporation 2019-2019 > MJ MINING 2021-2021 > JT Mining Inc. 2023-2023 > Stirling Resources, LLC 2023-2023 > Phillips Management Firm LLC 2024-2024 | 
+mine | 1513258 Ivel Plant | NonProducing C KY | Eric  Clark | 6 | 10.5 | 165 | 14 | Dorchester Coal Co. L. P. 2012-2012 > Red Bud Dock LLC 2013-2013 > Appalachian Mining & Reclamation, LLC 2013-2017 > SNR RAILOPS LLC 2018-2022 > Tahiti Energy, Inc. 2023-2023 > Ralco Operations, LLC. 2025-2025 | 
+mine | 1517901 P-9 Straight Creek | NonProducing C KY | Alex A Housley | 6 | 3.6 | 161 | 1 | Xinergy Corp. 2010-2012 > Straight Creek Coal Mining, Inc. 2013-2015 > Revelation Energy, LLC 2016-2020 > Kamco, LLC. 2021-2023 > Tahiti Energy, Inc. 2023-2024 > Triple H. Fuels 2024-2024 | 
+mine | 1512047 P-9A Red Bird | NonProducing C KY | David Michael  Jamison; Petri E Koivula | 6 | 1.9 | 40 | 0 | Jadco Enterprises Inc 2010-2010 > M3 Energy Resources, LLC 2010-2011 > Xinergy Corp. 2012-2012 > Straight Creek Coal Mining, Inc. 2013-2015 > Revelation Energy, LLC 2016-2020 > Cardinal Reclamation Company, LLC 2022-2025 | 
+mine | 4407150 OSAKA | NonProducing C VA | Keri Alyssa Findley | 5 | 1473.4 | 2292 | 5 | Osaka Mining Corporation 2010-2013 > Blackjewel L.L.C. 2015-2019 > INMET Mining, LLC. 2019-2023 > Coking Coal, LLC 2023-2025 > Cumberland Coal Corporation 2026-2026 | 
+mine | 4406748 JV 16 Mine | Temporarily Idled C VA | C6 Ventures LLC; Mark  Nelson | 5 | 242.1 | 679 | 0 | Abby Contractors, Inc. 2015-2015 > Mavrick Coal Inc 2015-2016 > Blackjewel L.L.C. 2016-2019 > Jewell Valley Mining LLC 2019-2020 > Mountaineer Metallurgical Holdings LLC 2020-2025 | 
+mine | 1519847 Mine #4 | NonProducing C KY | Jerry Todd  Tackett | 5 | 177.9 | 744 | 4 | BEECH TREE MINING LLC 2019-2020 > PODIUM MINING LLC 2020-2022 > TENNCO INC. 2022-2024 > Tackett Mining, Inc. 2024-2025 > Lighthouse Mining, Inc. 2025-2026 | 
+mine | 4403088 PIGEON CREEK | NonProducing C VA | Keri Alyssa Findley | 5 | 113.8 | 398 | 4 | Pigeon Creek Processing Corporation 2010-2015 > Blackjewel L.L.C. 2015-2019 > INMET Mining, LLC. 2019-2023 > Coking Coal, LLC 2023-2024 > Cumberland Coal Corporation 2026-2026 | 
+mine | 1519837 No. 6 | Temporarily Idled C KY | Danny D Mead; Virginia Jenny  Mead Hicks | 5 | 73.8 | 318 | 0 | Black Diamond Coal, LLC 2018-2021 > TENNCO INC. 2021-2022 > MRM Mining, Inc. 2022-2026 > Reliant Contracting, LLC 2022-2023 > Bee B & B, LLC 2023-2024 | 
+mine | 1519116 #9A | Temporarily Idled C KY | John T  Quintrell | 5 | 31.9 | 1108 | 0 | Enterprise Mining Company, LLC 2010-2016 > Kingdom Coal, LLC. 2017-2022 > TCB Development LLC 2018-2019 > Lazarus Coal, LLC 2023-2024 > Kratos Resources, LLC 2024-2026 | 
+mine | 1519325 HUNTS FORK GLAMORGAN | Temporarily Idled C KY | JOD Holdings LLC | 5 | 23 | 925 | 2 | Cane Branch Coal LLC 2010-2010 > Superior Mining LLC 2010-2011 > Black Pearl Mining, Inc. 2012-2012 > Clintwood JOD, LLC 2020-2022 > Quality Coal, LLC 2022-2026 | 
+mine | 2801018 Spartan Aggregates, LLC | Active M NJ | Nicholas  Vene; Joseph  Kollock III | 5 | 20.4 | 80 | 6 | Kozdeda Brothers 2010-2012 > Kozdeba & Son LLC 2012-2016 > Golden Dome Materials LLC 2017-2022 > Nature's Choice Corp 2022-2023 > Spartan Aggregates LLC 2025-2026 | 
+mine | 1518952 Mine # 1 | Temporarily Idled C KY | Eddie  Lawson | 5 | 13.7 | 107 | 0 | Black Forest Coal LLC 2010-2012 > Barnett Energy, LLC. 2012-2013 > Black Forest Coal, LLC 2013-2014 > JMEG Mine, LLC 2014-2015 > Phoenix Fuels Corporation 2017-2019 | 
+peer | C | 1132 | 1.000 | 120 | 45 | 17.55 | 25.08 |  | 

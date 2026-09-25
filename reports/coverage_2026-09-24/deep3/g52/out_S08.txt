@@ -1,0 +1,7 @@
+-- S08 County and state population 2020 for per-capita ATF rates [pull]
+COUNTY_FIPS | STATE_FIPS | ST | COUNTY_NAME | POP
+01001 | 01 | AL | Autauga | 58805
+01003 | 01 | AL | Baldwin | 231767
+01005 | 01 | AL | Barbour | 25223
+01007 | 01 | AL | Bibb | 22293
+(3222 rows; csv has all)

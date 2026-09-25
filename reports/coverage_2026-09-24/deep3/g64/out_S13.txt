@@ -1,0 +1,56 @@
+-- S13 distribution systems: the zero-VVO big utilities, the round-100% reporters, and customers per circuit (join to sales)
+STATE | UTILITY_NAME | DISTRIBUTION_CIRCUITS | CIRCUITS_WITH_VOLTAGE_OPTIMIZATION | VO_SHARE | CUST | CUST_PER_CIRCUIT
+CA | Pacific Gas & Electric Co. | 3422 | 0 | 0.000 | 5725404 | 1673
+NJ | Public Service Elec & Gas Co | 2909 | 0 | 0.000 | 2389765 | 822
+MO | Union Electric Co - (MO) | 2310 | 0 | 0.000 | 1264469 | 547
+NC | Duke Energy Carolinas, LLC | 2186 | 0 | 0.000 | 2233043 | 1022
+PA | PECO Energy Co | 2172 | 0 | 0.000 | 1706299 | 786
+VA | Virginia Electric & Power Co | 2172 | 0 | 0.000 | 2655130 | 1222
+WI | Wisconsin Electric Power Co | 1591 | 0 | 0.000 | 1170318 | 736
+IA | Interstate Power and Light Co | 1497 | 0 | 0.000 | 504146 | 337
+CT | Connecticut Light & Power Co | 1465 | 0 | 0.000 | 1290878 | 881
+AZ | Salt River Project | 1450 | 0 | 0.000 | 1166094 | 804
+NY | New York State Elec & Gas Corp | 1264 | 0 | 0.000 | 921369 | 729
+NY | Long Island Power Authority | 1088 | 0 | 0.000 | 1161788 | 1068
+CA | San Diego Gas & Electric Co | 1058 | 0 | 0.000 | 1525968 | 1442
+SC | Duke Energy Carolinas, LLC | 748 | 0 | 0.000 | 674022 | 901
+MI | DTE Electric Company | 3518 | 6 | 0.002 | 2283306 | 649
+NY | Niagara Mohawk Power Corp. | 1997 | 41 | 0.021 | 1718921 | 861
+NV | Nevada Power Co | 1045 | 34 | 0.033 | 1035139 | 991
+MN | Northern States Power Co - Minnesota | 1086 | 60 | 0.055 | 1375256 | 1266
+MA | Massachusetts Electric Co | 1211 | 103 | 0.085 | 1373756 | 1134
+OH | Ohio Power Co | 1700 | 164 | 0.096 | 1533265 | 902
+WA | Puget Sound Energy Inc | 1134 | 138 | 0.122 | 1238151 | 1092
+IA | MidAmerican Energy Co | 1074 | 260 | 0.242 | 738335 | 687
+WI | Wisconsin Power & Light Co | 1290 | 344 | 0.267 | 501644 | 389
+MA | NSTAR Electric Company | 1643 | 448 | 0.273 | 1526558 | 929
+OK | Oklahoma Gas & Electric Co | 1306 | 389 | 0.298 | 832721 | 638
+IL | Ameren Illinois Company | 2740 | 913 | 0.333 | 1224108 | 447
+IN | Duke Energy Indiana, LLC | 1319 | 467 | 0.354 | 909011 | 689
+IL | Commonwealth Edison Co | 5639 | 2332 | 0.414 | 4130749 | 733
+MI | Consumers Energy Co - (MI) | 2387 | 1052 | 0.441 | 1894492 | 794
+CA | Los Angeles Department of Water & Power | 2640 | 1667 | 0.631 | 1510995 | 572
+OH | Duke Energy Ohio Inc | 803 | 519 | 0.646 | 759800 | 946
+MD | Baltimore Gas & Electric Co | 1525 | 1089 | 0.714 | 1342757 | 880
+CA | Southern California Edison Co | 4323 | 3245 | 0.751 | 5297361 | 1225
+GA | Georgia Power Co | 2796 | 2224 | 0.795 | 2804103 | 1003
+FL | Florida Power & Light Co | 3909 | 3158 | 0.808 | 5905174 | 1511
+PA | FirstEnergy Pennsylvania Electric Co | 3060 | 2598 | 0.849 | 2086565 | 682
+FL | Duke Energy Florida, LLC | 1366 | 1192 | 0.873 | 2009464 | 1471
+TX | Oncor Electric Delivery Company LLC | 3757 | 3432 | 0.913 |  | 
+OH | Cleveland Electric Illum Co | 1088 | 998 | 0.917 | 758455 | 697
+OH | Ohio Edison Co | 1156 | 1138 | 0.984 | 1074066 | 929
+AL | Alabama Power Co | 2178 | 2178 | 1.000 | 1546483 | 710
+NJ | Jersey Central Power & Lt Co | 1368 | 1368 | 1.000 | 1171837 | 857
+PA | PPL Electric Utilities Corp | 1285 | 1285 | 1.000 | 1487347 | 1157
+NC | Duke Energy Progress - (NC) | 1182 | 1182 | 1.000 | 1576769 | 1334
+SC | Duke Energy Progress - (NC) | 178 | 178 | 1.000 | 176806 | 993
+NY | Consolidated Edison Co-NY Inc | 2218 |  |  | 3646787 | 1644
+TX | CenterPoint Energy | 1862 |  |  |  | 
+AZ | Arizona Public Service Co | 1457 |  |  | 1400037 | 961
+LA | Entergy Louisiana LLC | 1215 |  |  | 1109156 | 913
+KY | Kentucky Utilities Co | 1122 |  |  | 546599 | 487
+TX | AEP Texas Central Company | 1032 |  |  |  | 
+KY | Duke Energy Kentucky | 155 |  |  | 154073 | 994
+IN | Northern Indiana Pub Serv Co | 134 |  |  | 492700 | 3677
+(53 rows; csv has all)

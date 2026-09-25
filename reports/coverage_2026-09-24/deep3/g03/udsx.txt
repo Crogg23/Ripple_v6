@@ -1,0 +1,61 @@
+           LN         FN            CITY  ST        EXDT      GENERAL_CATEGORY        LEIE_SPECIALTY                                   rs  PAYS_AFTER  AMT_AFTER
+0       BROWN      DAVID         HOUSTON  TX  2015-06-18  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                        Ophthalmology          88   52325.86
+1    MARTINEZ     DANIEL           MIAMI  FL  2006-05-18           DME COMPANY        OWNER/OPERATOR                              Urology          89   27127.03
+2       RENDA    MICHAEL           MIAMI  FL  2013-03-20  INDIVIDUAL (UNAFFILI  NO KNOWN AFFILIATION                              Surgery          48   23394.90
+3   HERNANDEZ      MARIA           MIAMI  FL  2013-12-19  INDIVIDUAL (UNAFFILI  NO KNOWN AFFILIATION                     Gastroenterology          33   14301.53
+4   HERNANDEZ       LUIS           MIAMI  FL  2014-10-20  INDIVIDUAL (UNAFFILI  NO KNOWN AFFILIATION               Colon & Rectal Surgery          11    8620.42
+5    WILLIAMS       LISA      SACRAMENTO  CA  2010-10-20    PRIVATE CIT/ENTITY      HEALTH CARE AIDE   Physical Medicine & Rehabilitation           8    8343.38
+6       PARDO      JORGE           MIAMI  FL  2022-10-20  IND- LIC HC SERV PRO             THERAPIST                            Neurology         262    6241.26
+7    WILLIAMS   DANIELLE        COLUMBUS  OH  2024-05-20  EMPLOYEE - PRIVATE S    HOME HEALTH AGENCY                          Hospitalist           3    3560.79
+8       GARZA      DAVID         HOUSTON  TX  1996-04-23    NURSING PROFESSION     NURSE/NURSES AIDE                          Optometrist          51    3324.79
+9     MORALES       JOSE     LOS ANGELES  CA  2004-05-20            LABORATORY        OWNER/OPERATOR  Vascular & Interventional Radiology          32    3033.10
+10       CRUZ       JOSE     MIAMI BEACH  FL  2005-04-20  MEDICAL PRACTICE, MD            PSYCHIATRY                           Psychiatry         114    2979.62
+11   GONZALEZ       JOSE           MIAMI  FL  2018-01-18        BUS OWNER/EXEC                CLINIC                            Neurology         117    2929.63
+12   GONZALEZ       JOSE           MIAMI  FL  2005-01-19           DME COMPANY        OWNER/OPERATOR                            Neurology         117    2929.63
+13        CHO        NAM     LOS ANGELES  CA  2003-09-19         ACUPUNCTURIST                   NaN         Oral & Maxillofacial Surgery          15    2062.37
+14  HERNANDEZ  FRANCISCO         HIALEAH  FL  2000-11-20    PRIVATE CIT/ENTITY                   NaN                               Family          99    1852.89
+15       PARK       JOHN        FLUSHING  NY  2002-08-20  MEDICAL PRACTICE, MD         OPHTHALMOLOGY                 Neurological Surgery           9    1777.46
+16      BROWN      DAVID         HOUSTON  TX  2015-06-18  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                      Sports Medicine          13    1678.81
+17    SERRANO      MARIA           BRONX  NY  2016-03-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                   Nurse Practitioner          18    1591.72
+18     NGUYEN       HANH         HOUSTON  TX  2023-03-20        BUS OWNER/EXEC                CLINIC            Psychiatric/Mental Health          41    1496.44
+19  RODRIGUEZ       LUIS           MIAMI  FL  2003-01-20              PHARMACY        OWNER/OPERATOR                               Family          58    1454.38
+20       CHEN     EUGENE       LAS VEGAS  NV  2011-06-24  MEDICAL PRACTICE, MD        ANESTHESIOLOGY                                  NaN           9    1443.53
+21      PEREZ     RAMIRO           MIAMI  FL  1999-07-20  REHAB FACILITY - GEN        OWNER/OPERATOR                      Plastic Surgery          13    1370.35
+22   ANDERSON       LISA          DALLAS  TX  2005-06-20   SKILLED NURSING FAC     NURSE/NURSES AIDE                    Surgical Oncology          13    1080.09
+23      SMITH       ERIC      CINCINNATI  OH  2001-04-19  MEDICAL PRACTICE, MD            PEDIATRICS                                  NaN          11    1071.72
+24  GUTIERREZ  CHRISTINA     SAN ANTONIO  TX  2022-06-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                   Emergency Medicine           7    1071.60
+25     TRUONG       LOAN      LONG BEACH  CA  1985-07-09                CLINIC              EMPLOYEE                      Family Medicine          39    1013.30
+26       DIAZ       JOSE           MIAMI  FL  2011-11-20        BUS OWNER/EXEC         DME - GENERAL                        Ophthalmology          29     994.50
+27      DAVIS      JAMES         PHOENIX  AZ  2014-07-20  INDIVIDUAL (UNAFFILI  NO KNOWN AFFILIATION                    Pulmonary Disease          21     956.12
+28   TRAMMELL     ASHLEY   OKLAHOMA CITY  OK  2014-07-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                   Nurse Practitioner           9     951.87
+29  HERNANDEZ      JORGE           MIAMI  FL  2009-02-19              PHARMACY        OWNER/OPERATOR                  Physician Assistant          21     927.17
+30      DAVIS    REBECCA           OGDEN  UT  2021-01-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                  Physician Assistant          41     923.94
+31      SMITH      JAMES     SAINT LOUIS  MO  2018-04-19  INDIVIDUAL (UNAFFILI  PERSONAL CARE PROVID               Cardiovascular Disease          62     912.70
+32        KIM      YOUNG         CHICAGO  IL  1999-07-20  MEDICAL PRACTICE, MD   GENERAL PRACTICE/FP                 Medical Microbiology          34     866.09
+33   GONZALEZ    ROBERTO           MIAMI  FL  2012-09-20        BUS OWNER/EXEC    HOME HEALTH AGENCY                     Gastroenterology          19     859.05
+34    MULLINS      TAMMY      LOUISVILLE  KY  2018-02-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                               Family           8     816.79
+35     VARGAS     CARLOS           MIAMI  FL  2009-04-20                CLINIC      BUSINESS MANAGER                                  NaN          42     797.86
+36       RUIZ       JOSE           MIAMI  FL  2018-11-20  INDIVIDUAL (UNAFFILI  NO KNOWN AFFILIATION                     Gastroenterology          32     742.07
+37     VALDES     DANIEL           MIAMI  FL  2011-08-18  IND- LIC HC SERV PRO   PHARMACY TECHNICIAN                          Optometrist          20     673.33
+38   THOMPSON    MICHAEL     NEW ORLEANS  LA  2002-03-20    NURSING PROFESSION     NURSE/NURSES AIDE                           Psychiatry          24     646.28
+39   GONZALEZ     RAFAEL           MIAMI  FL  2013-02-20        BUS OWNER/EXEC         DME - GENERAL                               Family          27     642.06
+40     GARCIA       ROSA           MIAMI  FL  2014-06-19        BUS OWNER/EXEC    HOME HEALTH AGENCY                       Sleep Medicine           4     632.96
+41     CARTER      JULIE       LAS VEGAS  NV  1998-12-20              HOSPITAL     NURSE/NURSES AIDE                   Nurse Practitioner          18     547.19
+42  HERNANDEZ        ANA         HIALEAH  FL  1990-06-13  MEDICAL PRACTICE, MD   GENERAL PRACTICE/FP                          Optometrist          10     539.56
+43     ALONSO    ROBERTO           MIAMI  FL  2017-01-19  INDIVIDUAL (UNAFFILI  NO KNOWN AFFILIATION                              Medical          19     522.20
+44   GONZALEZ      JORGE     MIAMI BEACH  FL  2009-02-19    PRIVATE CIT/ENTITY    RECIPT/BENEFICIARY                      Family Medicine          19     507.87
+45      WHITE   BRITTANY       CHARLOTTE  NC  2022-09-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                  Physician Assistant           5     491.77
+46      SMITH    MICHAEL      GREENVILLE  NC  2005-07-20    NURSING PROFESSION     NURSE/NURSES AIDE               Cardiovascular Disease          28     488.65
+47        KIM      PETER     LOS ANGELES  CA  2007-04-19           DME COMPANY              EMPLOYEE                  Orthopaedic Surgery           8     443.44
+48   GONZALEZ      MARIA           MIAMI  FL  2000-08-20    HOME HEALTH AGENCY              EMPLOYEE                          Optometrist           6     440.49
+49   GONZALEZ      MARIA           MIAMI  FL  2009-02-19              PHARMACY            TECHNICIAN                          Optometrist           6     440.49
+50    ALVAREZ       JOSE           MIAMI  FL  2015-08-20        BUS OWNER/EXEC  REHAB FACILITY - GEN        Child & Adolescent Psychiatry           8     408.54
+51    ALVAREZ       JOSE           MIAMI  FL  2005-06-20           DME COMPANY              EMPLOYEE        Child & Adolescent Psychiatry           8     408.54
+52    FREEMAN       JOHN         MEMPHIS  TN  2003-01-20     MENTAL HEALTH FAC            TECHNICIAN                        Ophthalmology          19     407.06
+53   WILLIAMS     ARTHUR         HOUSTON  TX  2010-04-20              PHARMACY            TECHNICIAN                    Internal Medicine           3     404.78
+54  RODRIGUEZ      MARIA           MIAMI  FL  2008-12-18  DRUG COMPANY/SUPLIER        OWNER/OPERATOR                              Dentist           6     374.52
+55    JOHNSON    WILLIAM  HENDERSONVILLE  TN  2016-10-20  IND- LIC HC SERV PRO     NURSE/NURSES AIDE                           Pediatrics          16     359.05
+56     SUAREZ      MARIA           MIAMI  FL  2012-12-20  IND- LIC HC SERV PRO             THERAPIST                           Acute Care          10     358.95
+57   ABDALLAH      MAZEN         HOUSTON  TX  2009-11-19     AMBULANCE COMPANY        OWNER/OPERATOR           Reproductive Endocrinology           5     338.41
+58   WILLIAMS    BARBARA          MOBILE  AL  2002-09-19    NURSING PROFESSION     NURSE/NURSES AIDE                   Nurse Practitioner          12     330.99
+59    ALVAREZ       JOSE           MIAMI  FL  2005-06-20           DME COMPANY              EMPLOYEE                     General Practice           6     313.02

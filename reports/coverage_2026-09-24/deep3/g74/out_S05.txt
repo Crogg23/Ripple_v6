@@ -1,0 +1,63 @@
+-- S05 ICIJ entities: status and service provider by leak, top jurisdictions by leak
+D | V | N | INC | STRUCK | INACT
+juris | Bahamas Leaks | BAH Bahamas | 175888 | 175871 | 114368 | 0
+juris | Panama Papers | BVI British Virgin Islands | 113648 | 113648 | 83407 | 76776
+juris | Paradise Papers - Malta corporate registry | MLT Malta | 83896 | 83519 | 0 | 0
+juris | Paradise Papers - Nevis corporate registry | KNA Saint Kitts and Nevis | 70501 | 70475 | 50983 | 0
+juris | Offshore Leaks | XXX Undetermined | 53097 | 44104 | 0 | 0
+juris | Paradise Papers - Aruba corporate registry | AW Aruba | 49047 | 49047 | 8580 | 0
+juris | Panama Papers | PMA Panama | 48360 | 48325 | 36040 | 33355
+juris | Paradise Papers - Barbados corporate registry | BRB Barbados | 40838 | 40635 | 13 | 0
+juris | Offshore Leaks | BVI British Virgin Islands | 37940 | 37938 | 0 | 0
+juris | Paradise Papers - Bahamas corporate registry | BAH Bahamas | 17800 | 16962 | 12003 | 0
+juris | Panama Papers | BAH Bahamas | 15915 | 15915 | 13910 | 13128
+juris | Panama Papers | SEY Seychelles | 15182 | 15182 | 9248 | 8003
+juris | Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | BVI British Virgin Islands | 11965 | 11965 | 0 | 2
+juris | Panama Papers | NIUE Niue | 9611 | 9611 | 9597 | 8602
+juris | Paradise Papers - Appleby | BM Bermuda | 9450 | 9362 | 0 | 0
+juris | Paradise Papers - Appleby | KY Cayman Islands | 8754 | 8310 | 0 | 0
+juris | Offshore Leaks | SAM Samoa | 8111 | 8111 | 0 | 0
+juris | Panama Papers | SAM Samoa | 5307 | 5307 | 2834 | 2422
+juris | Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | null  | 3852 | 0 | 0 | 0
+juris | Panama Papers | ANG British Anguilla | 3253 | 3253 | 1385 | 1155
+juris | Offshore Leaks | COOK Cook Islands | 2638 | 2453 | 0 | 0
+juris | Pandora Papers - Commence Overseas | BVI British Virgin Islands | 2414 | 2402 | 24 | 0
+juris | Paradise Papers - Appleby | VG British Virgin Islands | 2284 | 2188 | 0 | 0
+juris | Pandora Papers - Alpha Consulting | null  | 2105 | 0 | 0 | 0
+juris | Pandora Papers - Fidelity Corporate Services | BVI British Virgin Islands | 1874 | 1873 | 0 | 11
+juris | Pandora Papers - Trident Trust | VGB British Virgin Islands | 1608 | 152 | 0 | 0
+juris | Paradise Papers - Samoa corporate registry | SAM Samoa | 1595 | 0 | 0 | 0
+juris | Paradise Papers - Appleby | IM Isle of Man | 1494 | 1470 | 0 | 0
+juris | Paradise Papers - Cook Islands corporate registry | COOK Cook Islands | 1469 | 1469 | 0 | 0
+juris | Pandora Papers - CILTrust International | null  | 1335 | 0 | 0 | 0
+juris | Panama Papers | NEV Nevada | 1260 | 1260 | 905 | 855
+juris | Offshore Leaks | HK Hong Kong | 1152 | 989 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | SYC Seychelles | 913 | 2 | 0 | 0
+juris | Paradise Papers - Appleby | JE Jersey | 855 | 854 | 0 | 0
+juris | Offshore Leaks | SGP Singapore | 739 | 711 | 0 | 0
+juris | Offshore Leaks | CAYMN Cayman | 668 | 665 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | BLZ Belize | 496 | 0 | 0 | 0
+juris | Paradise Papers - Appleby | MU Mauritius | 494 | 397 | 0 | 0
+juris | Paradise Papers - Appleby | XX Undetermined | 474 | 13 | 0 | 0
+juris | Panama Papers | HK Hong Kong | 452 | 452 | 299 | 298
+juris | Offshore Leaks | LABUA Labuan | 423 | 422 | 0 | 0
+juris | Offshore Leaks | SEY Seychelles | 398 | 398 | 0 | 0
+juris | Paradise Papers - Appleby | SC Seychelles | 384 | 371 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | VGB British Virgin Islands | 371 | 1 | 0 | 0
+juris | Pandora Papers - Il Shin Corporate Consulting Limited | HKG Hong Kong | 292 | 0 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | null  | 252 | 0 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | HKG Hong Kong | 232 | 2 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | USA United States | 222 | 0 | 0 | 0
+juris | Panama Papers | UK United Kingdom | 148 | 148 | 45 | 45
+juris | Panama Papers | BLZ Belize | 130 | 130 | 32 | 16
+juris | Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | VGB British Virgin Islands | 129 | 125 | 0 | 0
+juris | Pandora Papers - Overseas Management Company (OMC) | VGB British Virgin Islands | 124 | 122 | 0 | 0
+juris | Paradise Papers - Appleby | USDE State of Delaware | 123 | 116 | 0 | 0
+juris | Paradise Papers - Appleby | GG Guernsey | 120 | 77 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | ARE United Arab Emirates | 115 | 0 | 0 | 0
+juris | Pandora Papers - SFM Corporate Services | PAN Panama | 110 | 0 | 0 | 0
+juris | Offshore Leaks | XXX Recorded in leaked files as "fund" | 103 | 103 | 0 | 0
+juris | Paradise Papers - Appleby | KN Saint Kitts and Nevis | 101 | 94 | 0 | 0
+juris | Pandora Papers - Overseas Management Company (OMC) | PAN Panama | 92 | 90 | 0 | 0
+juris | Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | PAN Panama | 83 | 75 | 0 | 0
+(143 rows; csv has all)

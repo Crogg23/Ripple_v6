@@ -1,0 +1,45 @@
+-- S03 ICIJ others: by leak, fill of every field, date range, id uniqueness
+SOURCE_LEAK | N | NODES | INC | INC0 | INC1 | STRUCK | CLOSED | JUR | TYP | CC | USA | NOTE | VALID_UNTIL
+ | 2989 | 2989 | 888 | 1933-08-05 | 2016-09-22 | 45 | 117 | 958 | 888 | 386 | 28 | 117 | [
+  "Provider data is current through 2012",
+  "Aruba corporate registry data is current through 2016",
+  "Provider data is current through 2015",
+  "Provider data is current through 2016",
+  "Provider data is current through 2019",
+  "Provider data is current through 2018",
+  "Provider data is current through 2013",
+  "Appleby data is current through 2014",
+  "Provider data is current through 2017",
+  "Provider data is current through 2008"
+]
+Paradise Papers - Appleby | 2031 | 2031 | 0 |  |  | 0 | 0 | 0 | 0 | 386 | 28 | 0 | [
+  "Appleby data is current through 2014"
+]
+Paradise Papers - Aruba corporate registry | 888 | 888 | 888 | 1933-08-05 | 2016-09-22 | 45 | 117 | 888 | 888 | 0 | 0 | 117 | [
+  "Aruba corporate registry data is current through 2016"
+]
+Pandora Papers - Trident Trust | 49 | 49 | 0 |  |  | 0 | 0 | 49 | 0 | 0 | 0 | 0 | [
+  "Provider data is current through 2017",
+  "Provider data is current through 2019",
+  "Provider data is current through 2018",
+  "Provider data is current through 2016",
+  "Provider data is current through 2013",
+  "Provider data is current through 2015"
+]
+Pandora Papers - Overseas Management Company (OMC) | 11 | 11 | 0 |  |  | 0 | 0 | 11 | 0 | 0 | 0 | 0 | [
+  "Provider data is current through 2018",
+  "Provider data is current through 2019",
+  "Provider data is current through 2017"
+]
+Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | 5 | 5 | 0 |  |  | 0 | 0 | 5 | 0 | 0 | 0 | 0 | [
+  "Provider data is current through 2018",
+  "Provider data is current through 2008"
+]
+Pandora Papers - CILTrust International | 3 | 3 | 0 |  |  | 0 | 0 | 3 | 0 | 0 | 0 | 0 | [
+  "Provider data is current through 2018",
+  "Provider data is current through 2012"
+]
+Pandora Papers - Fidelity Corporate Services | 2 | 2 | 0 |  |  | 0 | 0 | 2 | 0 | 0 | 0 | 0 | [
+  "Provider data is current through 2019"
+]
+(8 rows; csv has all)

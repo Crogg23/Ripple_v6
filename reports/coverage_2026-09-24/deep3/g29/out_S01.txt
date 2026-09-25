@@ -1,0 +1,2 @@
+-- S01 Closed-end funds: pull whole table (973 rows)
+ERROR: 252005: Failed to convert current row, cause: ordinal must be >= 1

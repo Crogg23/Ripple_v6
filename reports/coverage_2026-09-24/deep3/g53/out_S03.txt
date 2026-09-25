@@ -1,0 +1,16 @@
+-- S03 EUR-Lex Cellar: every row (glance says 13)
+CELEX_ID | ELI_URI | ECLI_ID | TITLE | DOCUMENT_TYPE | AUTHOR | DATE_PUBLISHED | DATE_OF_DOCUMENT | IN_FORCE | SUBJECT_MATTER | COUNTRY | LANGUAGE | OJ_SERIES | OJ_NUMBER | CONTENT_URL | FORMAT_AVAILABLE | CELLAR_URI
+52012PC0792 |  |  |  | Proposal for an implementing decision | European Commission | 2013-01-10 | 2012-12-19 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/77b8b25a-cd50-4025-8b96-a4cbba0712ec
+52010PC0129 |  |  |  | Proposal for an implementing decision | European Commission | 2010-04-07 | 2010-04-06 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/dad16fbe-4b47-402e-b2c4-5ebd387a5486
+52010PC0175 |  |  |  | Proposal for an implementing decision | European Commission | 2010-04-27 | 2010-04-26 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/f5156793-0b79-45b0-b421-f9b3fed80d0c
+52014PC0629 |  |  |  | Proposal for an implementing decision | European Commission | 2014-10-14 | 2014-10-14 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/5b193fc1-5383-11e4-a0cb-01aa75ed71a1
+52017PC0169 |  |  |  | Proposal for an implementing decision | European Commission | 2017-04-10 | 2017-04-07 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/bf0012d5-1dd2-11e7-aeb3-01aa75ed71a1
+52010PC0396 |  |  |  | Proposal for an implementing decision | European Commission | 2010-07-30 | 2010-07-23 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/0e00aa8c-eefe-4643-b140-99dcfbab5810
+52015PC0560 |  |  |  | Proposal for an implementing decision | European Commission | 2015-11-10 | 2015-11-10 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/62f7e7eb-879c-11e5-b8b7-01aa75ed71a1
+52016PC0711 |  |  |  | Proposal for an implementing decision | European Commission | 2016-10-26 | 2016-10-25 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/f2b61d29-9b7c-11e6-868c-01aa75ed71a1
+52026PC0148 |  |  |  | Proposal for an implementing decision | European Commission | 2026-03-26 | 2026-03-26 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/adec3253-2931-11f1-8803-01aa75ed71a1
+52014PC0541 |  |  |  | Proposal for an implementing decision | European Commission | 2014-08-26 | 2014-08-26 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/f3ac2ea7-2d18-11e4-8c3c-01aa75ed71a1
+52022PC0485 |  |  |  | Proposal for an implementing decision | Directorate-General for Budget | 2022-09-18 | 2022-09-18 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/9473778e-372b-11ed-9c68-01aa75ed71a1
+31986Q0610R(01) |  |  |  | Financial regulation | European Commission | 1987-01-28 | 1987-01-28 |  |  |  | da |  |  |  |  | http://publications.europa.eu/resource/cellar/0935f0b8-135c-4071-a021-882b17f67239
+52010PC0111 |  |  |  | Proposal for an implementing decision | European Commission | 2010-04-07 | 2010-04-06 |  |  |  | bg |  |  |  |  | http://publications.europa.eu/resource/cellar/c70f3147-7437-489e-8c95-16adbc943090
+(13 rows; csv has all)

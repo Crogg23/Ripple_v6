@@ -1,0 +1,9 @@
+leadership small-dollar>=50% 18 median share 0.145 wshare 0.224 disb M 49.0
+leadership small-dollar<50% 9 median share 0.277 wshare 0.317 disb M 6.6
+leadership all 27 median unitemized 0.641
+nonconnected small-dollar>=50% 58 median share 0.111 wshare 0.254 disb M 220.3
+nonconnected small-dollar<50% 32 median share 0.595 wshare 0.581 disb M 53.7
+nonconnected all 90 median unitemized 0.646
+connected small-dollar>=50% 51 median share 0.579 wshare 0.521 disb M 107.6
+connected small-dollar<50% 93 median share 0.88 wshare 0.584 disb M 63.0
+connected all 154 median unitemized 0.229

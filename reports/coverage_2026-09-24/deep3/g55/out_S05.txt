@@ -1,0 +1,15 @@
+-- S05 Treasury DTS: whole table pull of the working columns (478K rows), worked locally
+RECORD_DATE | ACCOUNT_TYPE | TRANSACTION_TYPE | TRANSACTION_CATG | TRANSACTION_CATG_DESC | TRANSACTION_TODAY_AMT | TRANSACTION_MTD_AMT | TRANSACTION_FYTD_AMT | SRC_LINE_NBR | TABLE_NBR | RECORD_FISCAL_YEAR
+2025-10-03 | Treasury General Account (TGA) | Deposits | HHS - Medicare Premiums |  | 105.0 | 356.0 | 356.0 | 12 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | Dept of Homeland Security (DHS) - misc |  | 31.0 | 125.0 | 125.0 | 13 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DHS - Customs and Certain Excise Taxes |  | 416.0 | 1076.0 | 1076.0 | 14 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DHS - Fed Emergency Mgmt Agency (FEMA) |  | 11.0 | 45.0 | 45.0 | 15 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DHS - Seized Assets |  | 13.0 | 35.0 | 35.0 | 16 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DHS - Transportation Security Admn (TSA) |  | 1.0 | 23.0 | 23.0 | 17 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | Dept of Housing & Urban Dev (HUD) - misc |  | 7.0 | 23.0 | 23.0 | 18 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | HUD - Federal Housing Admin (FHA) |  | 117.0 | 337.0 | 337.0 | 19 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | Dept of Interior (DOI) - misc |  | 2.0 | 23.0 | 23.0 | 20 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DOI - Fish and Wildlife and Parks |  | 3.0 | 6.0 | 6.0 | 21 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DOI - Gas and Oil Lease Sales Proceeds |  | 1.0 | 32.0 | 32.0 | 22 | II | 2026.0
+2025-10-03 | Treasury General Account (TGA) | Deposits | DOI - Land and Minerals Management |  | 1.0 | 23.0 | 23.0 | 23 | II | 2026.0
+(478149 rows; csv has all)

@@ -1,0 +1,15 @@
+-- S09 STORAGE vs 3_1 GENERATOR: storage prime movers in the master list by status, and whether each lands in the storage sheet; plus the reverse
+DIR | PM | ST | N | N_LAND | MW | MW_LAND
+master_to_storage | BA | OA | 6 | 6 | 21.0 | 21.0
+master_to_storage | BA | OP | 759 | 759 | 27191.0 | 27191.0
+master_to_storage | BA | OS | 12 | 12 | 47.0 | 47.0
+master_to_storage | CE | OP | 1 | 1 | 110.0 | 110.0
+master_to_storage | FW | OP | 3 | 3 | 42.0 | 42.0
+master_to_storage | FW | SB | 2 | 2 | 5.0 | 5.0
+master_to_storage | PS | OA | 6 | 0 | 1237.0 | 0.0
+master_to_storage | PS | OP | 144 | 0 | 20987.0 | 0.0
+storage_to_master |  | OA | 6 | 6 | 21.0 | 21.0
+storage_to_master |  | OP | 766 | 763 | 27748.0 | 27343.0
+storage_to_master |  | OS | 12 | 12 | 47.0 | 47.0
+storage_to_master |  | SB | 2 | 2 | 5.0 | 5.0
+(12 rows; csv has all)

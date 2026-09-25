@@ -1,0 +1,7 @@
+-- S18 Slave voyages trap check: how much of the people count is the editors' estimate, not a recorded number
+RE | RL | V | EST_EMBARK | EST_LANDED | MODE_RATIO | MED_RATIO | SAME | ZERO_EMBARK | MED_EMBARK | MAX_EMBARK | MORT_N | MED_MORT
+no_rec_embark | rec_land | 6412 | 278169 | 268827 | 0.500 | 0.92307692000 | 0 | 0 | 13.000 | 988 | 1 | 0.0076000
+rec_embark | no_rec_land | 3605 | 110023 | 105164 | 1.000 | 1.00000000000 | 2199 | 0 | 10.000 | 1086 | 3 | 0.0179000
+no_rec_embark | no_rec_land | 806 | 24376 | 23299 | 0.500 | 0.90000000000 | 14 | 0 | 10.000 | 596 | 0 | 
+rec_embark | rec_land | 698 | 43564 | 42005 | 1.000 | 1.00000000000 | 462 | 0 | 32.000 | 557 | 645 | 0E-7
+(4 rows; csv has all)

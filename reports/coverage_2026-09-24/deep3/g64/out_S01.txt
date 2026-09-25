@@ -1,0 +1,3 @@
+-- S01 EIA-861 tables in the mart: row counts and every column, to find the denominator tables
+TABLE_NAME | ROW_COUNT | N_COLS | COLS
+(0 rows; csv has all)

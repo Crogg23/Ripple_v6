@@ -1,0 +1,7 @@
+-- S11 OpenSanctions vessels on the US SDN list: first-seen date and IMO, to date every SDN hull against the Jan 2024 AIS week [pull]
+ID | NAME | FIRST_SEEN | IMO | DATASETS
+NK-NPFfgSAvVWvBtuNsSXUkKb | FU YUAN YU 8641 | 2023-04-20 10:27:20.000 | 9934539 | US OFAC Specially Designated Nationals (SDN) List;US SAM Procurement Exclusions;US Trade Consolidated Screening List (CSL)
+NK-NpNoKisUKx9kWNH9YFuu9U | VOLANS | 2025-03-20 14:20:23.000 | 9422988 | Australian Sanctions Consolidated List;Canadian Consolidated Autonomous Sanctions List;UK FCDO Sanctions List;US OFAC Press Releases;US OFAC Specially Designated Nationals (SDN) List;US SAM Procuremen
+NK-P9Gf5U6XQj5DhymkLMCUm5 | IRAN HORMUZ 22 | 2023-04-20 10:27:20.000 | 8314275 | Graph-based entity tagging;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL)
+NK-PGgyUSGMPRtCHvLYgM5Z75 | CHEM | 2024-04-25 16:10:01.000 | 9240914 | Graph-based entity tagging;US OFAC Press Releases;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL)
+(1521 rows; csv has all)

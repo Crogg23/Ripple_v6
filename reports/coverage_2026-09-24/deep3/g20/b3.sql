@@ -1,0 +1,39 @@
+-- @mccauley_8871_all
+select lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') ein, FORM_ID_NUMBER, ORGANIZATION_NAME, INITIAL_REPORT_IND, AMENDED_REPORT_IND, FINAL_REPORT_IND,
+  ESTABLISHED_DATE, MAILING_ADDR1, MAILING_CITY, MAILING_STATE, CUSTODIAN_NAME, CONTACT_NAME, EXEMPT_8872_IND, EXEMPT_990_IND, INSERT_DATETIME
+from LIBRARY_MARTS.POLITICS.POLITICS__IRS527_8871_ORGS
+where upper(CUSTODIAN_NAME) like '%MCCAULEY%' or upper(CONTACT_NAME) like '%MCCAULEY%'
+   or regexp_replace(upper(MAILING_ADDR1),'[^A-Z0-9]','') like '122CST%'
+   or upper(ORGANIZATION_NAME) like '%RINO HUNTER%' or upper(ORGANIZATION_NAME) like '%LIBERTY GROUP%'
+order by ESTABLISHED_DATE, FORM_ID_NUMBER
+-- @exempt_base_rate_2022
+select year(try_to_date(ESTABLISHED_DATE)) yr, MAILING_STATE = 'DC' is_dc, count(distinct EIN) eins,
+  count(distinct iff(EXEMPT_8872_IND = '1', EIN, null)) exempt_eins
+from LIBRARY_MARTS.POLITICS.POLITICS__IRS527_8871_ORGS
+where year(try_to_date(ESTABLISHED_DATE)) between 2020 and 2024 and INITIAL_REPORT_IND = '1'
+group by 1,2 order by 1,2
+-- @lg_money_named
+select 'A_contributor' side, lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') ein, ORG_NAME, CONTRIBUTOR_NAME nm, CONTRIBUTOR_CITY city, CONTRIBUTOR_STATE st,
+  count(*) n, sum(CONTRIBUTION_AMOUNT) amt, min(CONTRIBUTION_DATE) d0, max(CONTRIBUTION_DATE) d1
+from LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_A_CONTRIBUTIONS
+where upper(CONTRIBUTOR_NAME) like '%LIBERTY GROUP%' or upper(CONTRIBUTOR_NAME) like '%RINO HUNTER%' or upper(CONTRIBUTOR_NAME) like '%MCCAULEY%'
+group by 1,2,3,4,5,6
+union all
+select 'B_recipient', lpad(regexp_replace(EIN,'[^0-9]',''),9,'0'), ORG_NAME, RECIPIENT_NAME, RECIPIENT_CITY, RECIPIENT_STATE,
+  count(*), sum(EXPENDITURE_AMOUNT), min(EXPENDITURE_DATE), max(EXPENDITURE_DATE)
+from LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES
+where upper(RECIPIENT_NAME) like '%LIBERTY GROUP%' or upper(RECIPIENT_NAME) like '%RINO HUNTER%' or upper(RECIPIENT_NAME) like '%MCCAULEY%'
+group by 1,2,3,4,5,6
+order by amt desc nulls last
+-- @fec_liberty_mccauley
+select CYCLE, FEC_CMTE_ID, CMTE_NM, TRES_NM, CMTE_ST1, CMTE_CITY, CMTE_ST, CMTE_TP, CMTE_DSGN, CONNECTED_ORG_NM
+from LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_BULK_COMMITTEES
+where upper(CMTE_NM) like '%RINO HUNTER%' or upper(CMTE_NM) like '%LIBERTY GROUP%' or upper(CONNECTED_ORG_NM) like '%LIBERTY GROUP%'
+   or upper(TRES_NM) like '%MCCAULEY%' or regexp_replace(upper(CMTE_ST1),'[^A-Z0-9]','') like '11403RDST%'
+order by CMTE_NM, CYCLE
+-- @officers_12
+select lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') ein, ORG_NAME, ENTITY_NAME, ENTITY_TITLE, ENTITY_ADDR1, ENTITY_CITY, ENTITY_STATE
+from LIBRARY_MARTS.POLITICS.POLITICS__IRS527_DIRECTORS_OFFICERS
+where lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') in ('881699022','881721891','881744115','882179007','882818797','884133773','884139189','884145793','920471242','920494414','920514698','920525922')
+   or upper(ENTITY_NAME) like '%MCCAULEY%'
+order by 1

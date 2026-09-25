@@ -1,0 +1,60 @@
+with c as (
+ select FILER_IDENT, FILER_NAME, REPORT_INFO_IDENT, REPORT_TYPE_CD, FORM_TYPE_CD, PERIOD_START_DT::date ps, PERIOD_END_DT::date pe, FILED_DT, try_to_number(TOTAL_EXPEND_MEDIA,18,2) media,
+  row_number() over (partition by FILER_IDENT, PERIOD_START_DT, PERIOD_END_DT order by FILED_DT desc, REPORT_INFO_IDENT desc) rn
+ from LIBRARY_MARTS.POLITICS.POLITICS__TX_LOBBY_COVER)
+select iff(ltrim(FILER_IDENT,'0')='85404','SANDS','OTHER') who,
+ case when ps between '2021-05-01' and '2026-06-30' then 'in_window_ps' when ps < '2021-05-01' and pe >= '2021-05-01' then 'straddles_start' when ps > '2026-06-30' then 'after' else 'before' end w,
+ left(REPORT_TYPE_CD,12) rtype, datediff('day', ps, pe) > 40 multi_month,
+ count(*) n, count_if(rn=1) n_dedup, sum(media) media_raw, sum(iff(rn=1,media,0)) media_dedup, count(distinct FILER_IDENT) filers, min(ps) ps0, max(ps) ps1
+from c where pe >= '2020-01-01'
+group by 1,2,3,4 having sum(media) > 0 or who='SANDS' order by 1,2,3,4
+
+[03] 47 rows
+WHO | W | RTYPE | MULTI_MONTH | N | N_DEDUP | MEDIA_RAW | MEDIA_DEDUP | FILERS | PS0 | PS1
+OTHER | before | LOBBYACTANNU | True | 720 | 720 | 2393.90 | 2393.90 | 719 | 2020-01-01 | 2021-01-01
+OTHER | before | LOBBYACTAPR | False | 1604 | 1604 | 354923.02 | 354923.02 | 917 | 2020-03-01 | 2021-03-01
+OTHER | before | LOBBYACTAUG | False | 794 | 794 | 671.59 | 671.59 | 794 | 2020-07-01 | 2020-07-01
+OTHER | before | LOBBYACTDEC | False | 797 | 797 | 4273.99 | 4273.99 | 797 | 2020-11-01 | 2020-11-01
+OTHER | before | LOBBYACTFEB | False | 1534 | 1534 | 5139.58 | 5139.58 | 885 | 2020-01-01 | 2021-01-01
+OTHER | before | LOBBYACTJAN | False | 800 | 800 | 920.59 | 920.59 | 800 | 2020-12-01 | 2020-12-07
+OTHER | before | LOBBYACTJUL | False | 792 | 792 | 600.59 | 600.59 | 792 | 2020-06-01 | 2020-06-10
+OTHER | before | LOBBYACTJUN | False | 793 | 792 | 635.59 | 635.59 | 792 | 2020-05-01 | 2020-05-01
+OTHER | before | LOBBYACTMAR | False | 1548 | 1548 | 91196.15 | 91196.15 | 890 | 2020-02-01 | 2021-02-01
+OTHER | before | LOBBYACTMAR | True | 57 | 57 | 50.00 | 50.00 | 55 | 2020-01-01 | 2021-01-01
+OTHER | before | LOBBYACTMAY | False | 1639 | 1639 | 324497.14 | 324497.14 | 938 | 2020-04-01 | 2021-04-01
+OTHER | before | LOBBYACTNOV | False | 795 | 795 | 37361.54 | 37361.54 | 795 | 2020-10-01 | 2020-10-01
+OTHER | before | LOBBYACTOCT | False | 795 | 795 | 9295.10 | 9295.10 | 795 | 2020-09-01 | 2020-09-01
+OTHER | before | LOBBYACTSEP | False | 793 | 793 | 1307.49 | 1307.49 | 793 | 2020-08-01 | 2020-08-01
+OTHER | in_window_ps | LOBBYACT1000 | False | 4 | 4 | 31243.02 | 31243.02 | 4 | 2023-01-01 | 2025-05-01
+OTHER | in_window_ps | LOBBYACT1000 | True | 73 | 73 | 49973.13 | 49973.13 | 56 | 2022-01-01 | 2026-01-01
+OTHER | in_window_ps | LOBBYACTANNU | True | 3026 | 3026 | 240712.94 | 240712.94 | 1277 | 2021-07-01 | 2026-01-01
+OTHER | in_window_ps | LOBBYACTAPR | False | 4421 | 4420 | 666476.00 | 666476.00 | 1373 | 2022-03-01 | 2026-03-01
+OTHER | in_window_ps | LOBBYACTAUG | False | 4577 | 4577 | 48150.23 | 48150.23 | 1467 | 2021-07-01 | 2025-07-01
+OTHER | in_window_ps | LOBBYACTDEC | False | 4597 | 4597 | 199024.28 | 199024.28 | 1445 | 2021-11-01 | 2025-11-01
+OTHER | in_window_ps | LOBBYACTFEB | False | 4136 | 4136 | 149176.84 | 149176.84 | 1326 | 2022-01-01 | 2026-01-01
+OTHER | in_window_ps | LOBBYACTJAN | False | 4582 | 4577 | 130190.50 | 130190.50 | 1439 | 2021-12-01 | 2025-12-01
+OTHER | in_window_ps | LOBBYACTJUL | False | 5468 | 5468 | 487109.67 | 487109.67 | 1537 | 2021-06-01 | 2026-06-17
+OTHER | in_window_ps | LOBBYACTJUN | False | 5445 | 5445 | 1999945.10 | 1999945.10 | 1527 | 2021-05-01 | 2026-05-01
+OTHER | in_window_ps | LOBBYACTMAR | False | 4146 | 4146 | 194990.11 | 194990.11 | 1330 | 2022-02-01 | 2026-02-28
+OTHER | in_window_ps | LOBBYACTMAR | True | 256 | 256 | 5190.25 | 5190.25 | 211 | 2022-01-01 | 2026-01-01
+OTHER | in_window_ps | LOBBYACTMAY | False | 4525 | 4525 | 3101252.10 | 3101252.10 | 1403 | 2022-04-01 | 2026-04-07
+OTHER | in_window_ps | LOBBYACTMAY | True | 55 | 55 | 294.00 | 294.00 | 50 | 2022-01-01 | 2026-01-01
+OTHER | in_window_ps | LOBBYACTNOV | False | 4592 | 4592 | 391788.59 | 391788.59 | 1458 | 2021-10-01 | 2025-10-01
+OTHER | in_window_ps | LOBBYACTOCT | False | 4582 | 4582 | 45761.64 | 45761.64 | 1459 | 2021-09-01 | 2025-09-01
+OTHER | in_window_ps | LOBBYACTSEP | False | 4581 | 4581 | 518402.54 | 518402.54 | 1465 | 2021-08-01 | 2025-08-01
+OTHER | straddles_start | LOBBYACT1000 | True | 11 | 11 | 78698.62 | 78698.62 | 11 | 2021-01-01 | 2021-01-01
+OTHER | straddles_start | LOBBYACTANNU | True | 855 | 855 | 119054.09 | 119054.09 | 855 | 2021-01-01 | 2021-03-01
+OTHER | straddles_start | LOBBYACTAUG | True | 3 | 3 | 1021.00 | 1021.00 | 3 | 2021-01-01 | 2021-01-01
+OTHER | straddles_start | LOBBYACTOCT | True | 6 | 6 | 138145.00 | 138145.00 | 6 | 2021-01-01 | 2021-01-01
+SANDS | in_window_ps | LOBBYACTAPR | False | 5 | 5 | 2929845.53 | 2929845.53 | 1 | 2022-03-01 | 2026-03-01
+SANDS | in_window_ps | LOBBYACTAUG | False | 5 | 5 | 641542.82 | 641542.82 | 1 | 2021-07-01 | 2025-07-01
+SANDS | in_window_ps | LOBBYACTDEC | False | 5 | 5 | 654976.00 | 654976.00 | 1 | 2021-11-01 | 2025-11-01
+SANDS | in_window_ps | LOBBYACTFEB | False | 5 | 5 | 2971863.37 | 2971863.37 | 1 | 2022-01-01 | 2026-01-01
+SANDS | in_window_ps | LOBBYACTJAN | False | 5 | 5 | 689652.00 | 689652.00 | 1 | 2021-12-01 | 2025-12-01
+SANDS | in_window_ps | LOBBYACTJUL | False | 6 | 6 | 431048.91 | 431048.91 | 1 | 2021-06-01 | 2026-06-01
+SANDS | in_window_ps | LOBBYACTJUN | False | 6 | 6 | 2711221.42 | 2711221.42 | 1 | 2021-05-01 | 2026-05-01
+SANDS | in_window_ps | LOBBYACTMAR | False | 5 | 5 | 2937642.21 | 2937642.21 | 1 | 2022-02-01 | 2026-02-01
+SANDS | in_window_ps | LOBBYACTMAY | False | 5 | 5 | 4260178.62 | 4260178.62 | 1 | 2022-04-01 | 2026-04-01
+SANDS | in_window_ps | LOBBYACTNOV | False | 5 | 5 | 811769.54 | 811769.54 | 1 | 2021-10-01 | 2025-10-01
+SANDS | in_window_ps | LOBBYACTOCT | False | 5 | 5 | 782165.24 | 782165.24 | 1 | 2021-09-01 | 2025-09-01
+SANDS | in_window_ps | LOBBYACTSEP | False | 5 | 5 | 753905.00 | 753905.00 | 1 | 2021-08-01 | 2025-08-01

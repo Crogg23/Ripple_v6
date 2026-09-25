@@ -1,0 +1,63 @@
+-- S02 distribution systems: whole table (1,353 rows)
+RECORD_ID | DATA_YEAR | UTILITY_NUMBER | UTILITY_NAME | STATE | DISTRIBUTION_CIRCUITS | CIRCUITS_WITH_VOLTAGE_OPTIMIZATION | _LOADED_AT | _SOURCE_RUN_ID | _SRC_FILE
+54abcde8b5e96b00c859c0e0e0bf4af1-1 | 2024 | 1579 | PUD No 1 of Benton County | WA | 141 | 3 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+5779946c68f902b4434070f63a3a18ad-1 | 2024 | 6395 | Flathead Electric Coop Inc | MT | 89 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+2fe8427053625a3e82fcf7a8d9c82f4d-1 | 2024 | 20510 | Wheatland Electric Coop, Inc | KS | 115 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+eef104031196af4de3d14726ce9c86a9-1 | 2024 | 12796 | Monongahela Power Co | WV | 502 | 502 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+4eba410736fd6e624cf9127566a0280b-1 | 2024 | 14653 | PUD No 1 of Pend Oreille County | WA | 23 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+967da9797b57c8710cdd698abc252f40-1 | 2024 | 4247 | Consolidated Water Power Co | WI | 28 | 28 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+f2709b255b0b2774c80c33f3e4d4e4f1-1 | 2024 | 7450 | Grady Electric Membership Corp | GA | 44 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+6f61ddde353bbacb93644eb570816373-1 | 2024 | 18917 | Tillamook Peoples Utility Dist | OR | 31 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+746eea00777bd83f06dd02d295e777e0-1 | 2024 | 15270 | Potomac Electric Power Co | MD | 724 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+49494931713e4799070f9599e0e22fe8-1 | 2024 | 14288 | Ozark Electric Coop Inc - (MO) | MO | 93 | 15 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+d94c5b8a6e39878d959fe68eb932e085-1 | 2024 | 19225 | City of Troy - (AL) | AL | 22 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+35a34adec00a93ea5e620299506c7313-1 | 2024 | 15978 | City of Richland Center - (WI) | WI | 12 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+530015b554d2907dbd124c2bfb6012b9-1 | 2024 | 4720 | Dakota Energy Coop Inc | SD | 12 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+57e3ab68fff07a91afd5423b28b3b062-1 | 2024 | 20639 | Wild Rice Electric Coop, Inc | MN | 60 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+b9fb7f65a1f3f8fe86c1c252e68ac9bf-1 | 2024 | 230 | Albany Utility Board | GA | 51 | 51 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+288dfede67bcdb7e5c35f575e8efb408-1 | 2024 | 16057 | Rio Grande Electric Coop, Inc | NM | 5 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+da47551bf2e446ecb7dbdd5176c53740-1 | 2024 | 40236 | Forked Deer Electric Coop, Inc | TN | 23 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+1286705457c7caa944ccbfa508a04764-1 | 2024 | 20130 | Warren Rural Elec Coop Corp | KY | 143 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+c56164792ebf2a2822368451b817b7f6-1 | 2024 | 19574 | Upper Cumberland E M C | TN | 61 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+811c9954214128e30e7f9eb25201f8fd-1 | 2024 | 9778 | Johnson County Rural E M C | IN | 46 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+a6a330cf9fbdfbaf3b98c0ae430790f2-1 | 2024 | 10325 | Kings River Conservation Dist | CA | 1 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+baaf217d81f3aab5247debb5d0efbedc-1 | 2024 | 14537 | Pascoag Utility District | RI | 5 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+d4f04d248a04d91279068135bb85fe06-1 | 2024 | 4153 | Concordia Electric Coop, Inc | LA | 28 | 28 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+fe0f12f7d0e393c4494f04dd08bffb3b-1 | 2024 | 20228 | Weakley County Mun Elec Sys | TN | 35 | 10 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+01d86d159579a09f0a4ad69c4c3d5675-1 | 2024 | 15016 | Pickwick Electric Coop | TN | 39 | 39 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+723f241d60b5c1826fa77a6a1ba25f4e-1 | 2024 | 9699 | Jemez Mountains Elec Coop, Inc | NM | 56 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+081934889af51fd05656b9a645a0beca-1 | 2024 | 13143 | Board of Water Electric & Communications | IA | 36 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+8f25b4ef2cb16266f8fb09d90538ef8b-1 | 2024 | 8055 | City of Hannibal - (MO) | MO | 17 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+37e4335fb79bdb034cdd87d2bc93e501-1 | 2024 | 7977 | City of Hamilton - (OH) | OH | 54 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+27869249f5d1acab217f2d9187fac380-1 | 2024 | 5969 | City of Escondido - (CA) | CA | 1 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+4df22c634c4f59397540b40959e201e9-1 | 2024 | 20038 | Town of Wallingford - (CT) | CT | 26 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+7945381fb972e3239039981e7700716c-1 | 2024 | 13467 | New London Electric&Water Util | WI | 38 | 38 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+bf6a6fb09754cf736871e178201c03db-1 | 2024 | 9191 | Idaho Power Co | ID | 655 | 453 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+c3c6bfc668c1840ca12361c844481112-1 | 2024 | 1591 | Big Country Electric Coop, Inc | TX | 56 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+521583fd4e3125394f772ec2a55d8cac-1 | 2024 | 21075 | Y-W Electric Assn Inc | NE | 1 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+5e29f10df5c91e5a64b85ea412f8b7ab-1 | 2024 | 6457 | Florida Public Utilities Co | FL | 29 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+1aed1b5b7c04b099a999efb7b30eec28-1 | 2024 | 7140 | Georgia Power Co | GA | 2796 | 2224 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+e3b22aa64af0ae32b98da64ad6a87ab9-1 | 2024 | 11053 | Linn County REC | IA | 41 | 1 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+b76148b2bf96aae26eba044bda1d7af0-1 | 2024 | 8774 | City of Holyoke - (MA) | MA | 47 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+0e190adb970961fc4c314a27a4cad9e6-1 | 2024 | 4960 | Decatur County Rural E M C | IN | 27 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+2b4b6a5b653698589c83d371c9bfc9a7-1 | 2024 | 15472 | Public Service Co of NH | NH | 815 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+d32621f3781ebdfac9cb900929b1cfa0-1 | 2024 | 604 | City of Andalusia | AL | 14 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+2acb2854424ee284241ce580c4448f5b-1 | 2024 | 7027 | City of Gastonia - (NC) | NC | 58 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+3e50337fa0eaf263971ec7ee318798a5-1 | 2024 | 13830 | Nueces Electric Cooperative | TX | 50 | 32 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+e6d601da3eab5725da8511789a5f2b17-1 | 2024 | 19125 | City of Traverse City - (MI) | MI | 32 | 23 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+979cc01bf12b01b428425ac7e6423779-1 | 2024 | 3542 | Duke Energy Ohio Inc | OH | 803 | 519 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+d3c863b303fc34192fbdc4fa52dd66c1-1 | 2024 | 11318 | City of Lumberton - (NC) | NC | 12 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+6550487b0f4374a03be10144583ba935-1 | 2024 | 298 | City of Alexandria - (LA) | LA | 61 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+96218937dd1053a08e2813b5ec43dd45-1 | 2024 | 13669 | North Alabama Electric Coop | AL | 20 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+d5407671e05af0f94167a8d0bce38e4d-1 | 2024 | 20583 | Whitehall Electric Utility | WI | 7 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+ab9315ceb95a61cdc263e26376568366-1 | 2024 | 12698 | Evergy Missouri West | MO | 557 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+6ed0dd68a0991f7b1b02e4beec74f38a-1 | 2024 | 18951 | Tishomingo County E P A | MS | 29 | 25 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+6ee630061b32866c26d71b631dba159f-1 | 2024 | 5417 | Dunn County Electric Coop | WI | 40 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+e50dfca91c69ac871cbf6543cf0deeb9-1 | 2024 | 13520 | New-Mac Electric Coop, Inc | MO | 54 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+1b5705f26fd1a5b9d6ac8e02b17a7456-1 | 2024 | 219 | Alaska Power and Telephone Co | AK | 39 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+7eb4e1bb7e21c49632bcbf47b744fa3a-1 | 2024 | 6610 | City of Fort Morgan | CO | 21 | 21 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+27353907f39d7df34978c4b995193961-1 | 2024 | 12866 | Moon Lake Electric Assn Inc | CO | 35 | 35 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+ec25434b9ec40ac1631237b00846ad9e-1 | 2024 | 3470 | Cherokee County Elec Coop Assn - (TX) | TX | 35 |  | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+6ea462547df6028a6496982e58baef98-1 | 2024 | 25866 | Ak-Chin Electric Utility Authority | AZ | 4 | 0 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+624b81c1c95c25a5a0f9394e4d103976-1 | 2024 | 14245 | Overton Power District No 5 | NV | 50 | 50 | 2026-08-05 21:39:01.966059 | e5dc2971-01a2-4b53-b4ad-1b2c9b138689 | Distribution_Systems_2024.xlsx
+(1353 rows; csv has all)

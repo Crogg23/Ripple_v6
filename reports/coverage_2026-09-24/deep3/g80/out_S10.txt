@@ -1,0 +1,43 @@
+-- S10 Wayback listing replay: for every captured listing page, the pager's Last page, the highest page linked, and the PDF range shown
+PAGE_URL | CAPTURE_TIMESTAMP_RAW | CAPTURED_AT | LAST_PG | MAX_PG_LINK | PDFS | LINKS | EFTA_MIN | EFTA_MAX
+https://www.justice.gov/epstein/doj-disclosures | 20251219211448 | 2025-12-19 21:14:48 |  |  | 16 | 62 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251219211800 | 2025-12-19 21:18:00 |  |  | 16 | 62 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251219222403 | 2025-12-19 22:24:03 |  |  | 16 | 62 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251220020751 | 2025-12-20 02:07:51 |  |  | 16 | 64 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251220060359 | 2025-12-20 06:03:59 |  |  | 16 | 68 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251220103557 | 2025-12-20 10:35:57 |  |  | 16 | 68 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251222172745 | 2025-12-22 17:27:45 |  |  | 16 | 68 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251222215605 | 2025-12-22 21:56:05 |  |  | 16 | 68 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251223051546 | 2025-12-23 05:15:46 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251223111325 | 2025-12-23 11:13:25 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20251226104129 | 2025-12-26 10:41:29 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260102224144 | 2026-01-02 22:41:44 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260103034242 | 2026-01-03 03:42:42 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260106224130 | 2026-01-06 22:41:30 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260109124315 | 2026-01-09 12:43:15 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260117001424 | 2026-01-17 00:14:24 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260118212520 | 2026-01-18 21:25:20 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260121163231 | 2026-01-21 16:32:31 |  |  | 16 | 70 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260127164648 | 2026-01-27 16:46:48 |  |  | 16 | 71 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260129164149 | 2026-01-29 16:41:49 |  |  | 16 | 71 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260130014211 | 2026-01-30 01:42:11 |  |  | 16 | 71 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260130162725 | 2026-01-30 16:27:25 |  |  | 16 | 75 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260130173614 | 2026-01-30 17:36:14 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260130184222 | 2026-01-30 18:42:22 |  |  | 16 | 75 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260130184228 | 2026-01-30 18:42:28 |  |  | 16 | 75 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260130231506 | 2026-01-30 23:15:06 |  |  | 16 | 74 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260131051852 | 2026-01-31 05:18:52 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260131054235 | 2026-01-31 05:42:35 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260131201133 | 2026-01-31 20:11:33 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260201004334 | 2026-02-01 00:43:34 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260201034127 | 2026-02-01 03:41:27 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260201074140 | 2026-02-01 07:41:40 |  |  | 16 | 76 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260202024127 | 2026-02-02 02:41:27 |  |  | 14 | 74 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260202164219 | 2026-02-02 16:42:19 |  |  | 0 | 28 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260203004314 | 2026-02-03 00:43:14 |  |  | 0 | 27 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260203164233 | 2026-02-03 16:42:33 |  |  | 0 | 27 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260203194213 | 2026-02-03 19:42:13 |  |  | 0 | 27 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260203221125 | 2026-02-03 22:11:25 |  |  | 0 | 19 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260204004252 | 2026-02-04 00:42:52 |  |  | 0 | 19 |  | 
+https://www.justice.gov/epstein/doj-disclosures | 20260205003903 | 2026-02-05 00:39:03 |  |  | 0 | 19 |  | 
+(416 rows; csv has all)

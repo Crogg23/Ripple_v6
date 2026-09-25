@@ -1,0 +1,23 @@
+-- S01 SEC_EDGAR: per company rows, forms, filing-date range, EIN shape, duplicate accessions
+CIK | ENTITYNAME | N | N_ACC | FILED_MIN | FILED_MAX | FORMS | EIN | EIN_LEN | INC | SIC | DUP_ACC_TOTAL
+0000002488 | ADVANCED MICRO DEVICES INC | 10 | 10 | 2026-05-29 | 2026-07-01 | 144,4,8-K | 941692300 | 9 | DE | Semiconductors & Related Devices | 0
+0000006951 | APPLIED MATERIALS INC /DE | 10 | 10 | 2026-06-15 | 2026-07-01 | 144,4 | 941655526 | 9 | DC | Semiconductors & Related Devices | 0
+0000019617 | JPMORGAN CHASE & CO | 10 | 10 | 2026-07-02 | 2026-07-02 | 424B2,424B3,FWP | 132624428 | 9 | DE | National Commercial Banks | 0
+0000034088 | EXXON MOBIL CORP | 10 | 10 | 2026-05-22 | 2026-07-02 | 11-K,25-NSE,4,8-K,DEFA14A,POSASR | 135409005 | 9 | NJ | Petroleum Refining | 0
+0000050863 | INTEL CORP | 10 | 10 | 2026-05-15 | 2026-06-12 | 11-K,144,3,4,SD | 941672743 | 9 | DE | Semiconductors & Related Devices | 0
+0000059478 | ELI LILLY & Co | 10 | 10 | 2026-05-28 | 2026-06-26 | 11-K,144,25-NSE,4 | 350470950 | 9 | IN | Pharmaceutical Preparations | 0
+0000104169 | Walmart Inc. | 10 | 10 | 2026-06-15 | 2026-07-01 | 144,4 | 710415188 | 9 | DE | Retail-Variety Stores | 0
+0000200406 | JOHNSON & JOHNSON | 10 | 10 | 2026-05-04 | 2026-06-25 | 11-K,13F-HR,144,4,SD | 221024240 | 9 | NJ | Pharmaceutical Preparations | 0
+0000320193 | Apple Inc. | 10 | 10 | 2026-05-01 | 2026-06-17 | 10-Q,144,4,SD | 942404110 | 9 | CA | Electronic Computers | 0
+0000723125 | MICRON TECHNOLOGY INC | 10 | 10 | 2026-06-09 | 2026-07-01 | 10-Q,144,3,4,8-K | 751618004 | 9 | DE | Semiconductors & Related Devices | 0
+0000789019 | MICROSOFT CORP | 10 | 10 | 2026-06-12 | 2026-07-02 | 11-K,4,PX14A6G | 911144442 | 9 | WA | Services-Prepackaged Software | 0
+0000937966 | ASML HOLDING NV | 10 | 10 | 2025-10-15 | 2026-06-05 | 20-F,6-K,S-8,S-8 POS,SD | 000000000 | 9 |  | Special Industry Machinery, NEC | 0
+0001018724 | AMAZON COM INC | 10 | 10 | 2026-05-26 | 2026-06-12 | 4,424B5,8-K,FWP,SD | 911646860 | 9 | DE | Retail-Catalog & Mail-Order Houses | 0
+0001045810 | NVIDIA CORP | 10 | 10 | 2026-06-29 | 2026-07-02 | 4,8-K | 943177549 | 9 | DE | Semiconductors & Related Devices | 0
+0001067983 | BERKSHIRE HATHAWAY INC | 10 | 10 | 2026-06-12 | 2026-06-25 | 11-K,S-8 POS | 470813844 | 9 | DE | Fire, Marine & Casualty Insurance | 0
+0001318605 | Tesla, Inc. | 10 | 10 | 2026-04-30 | 2026-07-02 | 10-K/A,144,4,8-K,SCHEDULE 13G/A,SD | 912197729 | 9 | TX | Motor Vehicles & Passenger Car Bodies | 0
+0001326801 | Meta Platforms, Inc. | 10 | 10 | 2026-06-17 | 2026-07-01 | 144,4 | 201665019 | 9 | DE | Services-Computer Programming, Data Processing, Etc. | 0
+0001403161 | VISA INC. | 10 | 10 | 2026-05-11 | 2026-07-01 | 144,25-NSE,4,8-A12G,8-K,SC TO-I/A | 260267673 | 9 | DE | Services-Business Services, NEC | 0
+0001652044 | Alphabet Inc. | 10 | 10 | 2026-06-29 | 2026-07-01 | 144,4 | 611767919 | 9 | DE | Services-Computer Programming, Data Processing, Etc. | 0
+0001730168 | Broadcom Inc. | 10 | 10 | 2026-06-24 | 2026-07-01 | 144,144/A,4 | 352617337 | 9 |  | Semiconductors & Related Devices | 0
+(20 rows; csv has all)

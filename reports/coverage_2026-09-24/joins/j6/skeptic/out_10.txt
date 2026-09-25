@@ -1,0 +1,22 @@
+with a as (
+ select lpad(trim(EIN::string),9,'0') ein, ORG_NAME, upper(CONTRIBUTOR_NAME) cn, CONTRIBUTOR_STATE st, CONTRIBUTOR_CITY city, CONTRIBUTION_DATE d, CONTRIBUTION_AMOUNT amt, AGG_CONTRIBUTION_YTD ytd, FORM_ID_NUMBER fid, SOURCE_ID
+ from LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_A_CONTRIBUTIONS
+ where ((upper(CONTRIBUTOR_NAME) like '%ADELSON%' and (CONTRIBUTOR_STATE = 'NV' or upper(CONTRIBUTOR_CITY) like '%LAS VEGAS%'))
+    or upper(CONTRIBUTOR_NAME) like '%LAS VEGAS SANDS%' or upper(CONTRIBUTOR_NAME) like '%VENETIAN%CASINO%' or upper(CONTRIBUTOR_NAME) like 'SANDS %')
+   and year(CONTRIBUTION_DATE) between 2021 and 2026 and upper(ORG_NAME) like '%GOVERNORS%')
+select ein, left(ORG_NAME,40) org, cn, d, amt, ytd, count(*) raw_rows, count(distinct fid) forms, listagg(distinct fid::string, ',') fids,
+ count(*) over (partition by d, amt) same_date_amt_rows_across_names
+from a group by 1,2,3,4,5,6 order by d, amt desc
+
+[10] 10 rows
+EIN | ORG | CN | D | AMT | YTD | RAW_ROWS | FORMS | FIDS | SAME_DATE_AMT_ROWS_ACROSS_NAMES
+521304889 | Democratic Governors Association | SANDS GRESHAM | 2021-09-27 | 100.0 | 200.0 | 1 | 1 | 9710605 | 1
+521304889 | Democratic Governors Association | SANDS GRESHAM | 2021-10-27 | 100.0 | 200.0 | 1 | 1 | 9710605 | 1
+113655877 | Republican Governors Association | LAS VEGAS SANDS CORPORATION - IN-KIND | 2022-08-13 | 17775.0 | 17775.0 | 2 | 2 | 9722210,9720718 | 1
+113655877 | Republican Governors Association | ADELSON, MIRIAM | 2022-09-08 | 2500000.0 | 2500000.0 | 2 | 2 | 9720718,9722210 | 1
+113655877 | Republican Governors Association | LAS VEGAS SANDS CORPORATION | 2022-10-12 | 2500000.0 | 3793070.0 | 2 | 2 | 9724545,9722562 | 1
+113655877 | Republican Governors Association | LAS VEGAS SANDS CORPORATION | 2022-11-01 | 1250000.0 | 3793070.0 | 2 | 2 | 9724545,9722562 | 1
+113655877 | Republican Governors Association | LAS VEGAS SANDS CORPORATION - IN-KIND | 2022-11-14 | 8295.0 | 3793070.0 | 2 | 2 | 9724545,9722562 | 1
+113655877 | Republican Governors Association | LAS VEGAS SANDS CORPORATION | 2022-11-17 | 17000.0 | 3793070.0 | 2 | 2 | 9722562,9724545 | 1
+113655877 | Republican Governors Association | ADELSON, MIRIAM | 2024-05-03 | 3000000.0 | 3000000.0 | 2 | 2 | 9742690,9747015 | 1
+113655877 | Republican Governors Association | ADELSON, MIRIAM | 2026-03-11 | 11000000.0 | 11000000.0 | 1 | 1 | 9770201 | 1

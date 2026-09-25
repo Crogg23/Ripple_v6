@@ -1,0 +1,47 @@
+-- S20 Revoked, never reinstated, yet in today's IRS master file or Publication 78: split by ruling date vs revocation date and later filing
+REIN | IN_BMF | DED | RUL_VS | IN_P78 | TP_AFTER | N | REV_SUM | REV_MED | REV_1M
+False | False |  | no_ruling | False | no | 981235 |  |  | 0
+True | True | 1 | ruling_after | True | filed_after | 97515 | 23445719538 | 0.000 | 2483
+True | False |  | no_ruling | False | no | 45073 |  |  | 0
+True | True | 2 | ruling_after | False | filed_after | 16271 | 4983034765 | 0.000 | 267
+False | True | 1 | ruling_after | True | filed_after | 13672 | 3782239864 | 0.000 | 379
+True | True | 1 | ruling_after | True | no | 8731 | 312134165 | 0.000 | 63
+False | True | 2 | ruling_after | False | filed_after | 4411 | 3208074989 | 0.000 | 112
+True | True | 1 | ruling_before | False | filed_after | 3816 | 115098961 | 0.000 | 8
+False | True | 1 | ruling_after | True | no | 2828 | 191841197 | 0.000 | 30
+False | True | 1 | ruling_before | False | filed_after | 2736 | 172169653 | 0.000 | 6
+False | True | 2 | ruling_before | False | filed_after | 2723 | 1195903428 | 0.000 | 52
+True | True | 2 | ruling_before | False | filed_after | 2722 | 862871422 | 0.000 | 16
+False | True | 1 | ruling_before | True | filed_after | 2205 | 3019236300 | 3477.000 | 123
+False | True | 1 | ruling_before | False | no | 585 | 1107199 | 4.000 | 0
+False | True | 2 | ruling_after | False | no | 517 | 30676099 | 54346.000 | 6
+True | True | 2 | ruling_after | False | no | 478 | 16712625 | 46302.000 | 3
+True | True | 1 | ruling_before | True | filed_after | 361 | 120108151 | 2700.000 | 30
+False | True | 2 | ruling_before | False | no | 348 | 9087986 | 66000.000 | 1
+False | True | 1 | ruling_before | True | no | 316 | 30888113 | 0.000 | 8
+True | True | 0 | ruling_after | False | filed_after | 152 | 57752531 | 0.000 | 5
+False | True | 0 | ruling_after | False | filed_after | 151 | 16526945 | 0.000 | 2
+True | True | 1 | ruling_after | False | filed_after | 104 | 7354994 | 0.000 | 3
+True | True | 1 | ruling_before | False | no | 72 | 1172376 | 38164.500 | 0
+False | True | 0 | ruling_before | False | filed_after | 71 | 7327747 | 0.000 | 3
+False | True | 1 | ruling_after | False | filed_after | 66 | 2220122 | 0.000 | 0
+False | True | 0 | ruling_before | False | no | 50 | 0 | 0.000 | 0
+True | True | 1 | ruling_before | True | no | 30 | 466733 | 96924.000 | 0
+False | True | 1 | ruling_after | False | no | 27 |  |  | 0
+True | True | 2 | ruling_before | False | no | 24 | 11760 | 0.000 | 0
+False | False |  | no_ruling | True | no | 10 |  |  | 0
+True | True | 1 | ruling_after | False | no | 10 |  |  | 0
+False | True | 4 | ruling_after | True | filed_after | 9 | 2183146877 | 2187863.500 | 5
+True | True | 4 | ruling_after | True | filed_after | 9 | 148966643 | 0.000 | 4
+True | True | 0 | ruling_after | False | no | 7 | 104209 | 104209.000 | 0
+False | True | 0 | no_ruling | False | filed_after | 7 | 42332 | 21166.000 | 0
+False | True | 0 | ruling_after | False | no | 7 | 1968522 | 10017.500 | 1
+False | True | 0 | no_ruling | False | no | 4 |  |  | 0
+True | True | 0 | no_ruling | False | filed_after | 3 | 77803 | 77803.000 | 0
+True | True | 0 | ruling_before | False | filed_after | 3 | 10451 | 0.000 | 0
+False | True | 4 | ruling_before | True | filed_after | 2 | 0 | 0.000 | 0
+True | False |  | no_ruling | True | no | 2 |  |  | 0
+False | True | 4 | ruling_after | True | no | 1 |  |  | 0
+True | True | 0 | ruling_before | False | no | 1 |  |  | 0
+True | True | 4 | ruling_after | True | no | 1 |  |  | 0
+(44 rows; csv has all)

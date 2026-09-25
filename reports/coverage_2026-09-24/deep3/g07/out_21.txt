@@ -1,0 +1,11 @@
+PERIOD	WHO	CASES_WITH_REASON	CANCER	NAMED_NONCANCER	GENERIC_PAIN	PCT_NONCANCER
+1 2004-2011 pre-REMS	blank	43	0	30	12	70
+1 2004-2011 pre-REMS	consumer	474	57	342	109	72
+1 2004-2011 pre-REMS	health pro	398	84	213	122	54
+1 2004-2011 pre-REMS	lawyer	16	0	14	2	88
+2 2012q1-q3 REMS legacy	consumer	97	9	65	33	67
+2 2012q1-q3 REMS legacy	health pro	56	9	24	24	43
+3 2012q4-2014q2 new format	blank	2	0	1	0	50
+3 2012q4-2014q2 new format	consumer	184	16	76	74	41
+3 2012q4-2014q2 new format	health pro	134	16	25	53	19
+3 2012q4-2014q2 new format	lawyer	2	0	0	2	0

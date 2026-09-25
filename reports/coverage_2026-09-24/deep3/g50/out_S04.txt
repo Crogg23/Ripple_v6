@@ -1,0 +1,4 @@
+-- S04 CourtListener courthouses: confirm it is a one-row-per-court dimension; fill rates
+N | IDS | COURT_IDS | ADDR1 | CITY | STATE | ZIP | COUNTY | SEAT_T | COURTS_ROWS | COURT_IDS_IN_COURTS
+3361 | 3361 | 3286 | 4 | 9 | 3360 | 4 | 1 | 6 | 3361 | 3286
+(1 rows; csv has all)

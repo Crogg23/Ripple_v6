@@ -1,0 +1,34 @@
+-- S04 OWID homicide: same profile, plus the battery's repeated values 0 and 6.7583313
+KIND | N | ENTS | Y0 | Y1 | YRS | DUP_KEYS | NONNUM | ZEROS | ZERO_ENTS | V67583 | V67583_WHERE | AGG_NAMES
+blank | 513 | 21 | 1990 | 2024 | 35 | 0 | 0 | 0 | 0 | 0 | [] | [
+  "Eastern Europe (UN)",
+  "Northern Europe (UN)",
+  "Scotland",
+  "Western Asia (UN)",
+  "Western Europe (UN)",
+  "Micronesia (UN)",
+  "Northern Africa (UN)",
+  "Southern Europe (UN)",
+  "Australia and New Zealand (UN)",
+  "Polynesia (UN)",
+  "South-Eastern Asia (UN)",
+  "Eastern Asia (UN)",
+  "Iraq (Central Iraq)",
+  "England and Wales",
+  "Northern Ireland",
+  "Americas (UN)",
+  "Central Asia (UN)",
+  "Iraq (Kurdistan Region)",
+  "Melanesia (UN)",
+  "Southern Asia (UN)",
+  "Sub-Saharan Africa (UN)"
+]
+iso3 | 4356 | 205 | 1990 | 2024 | 35 | 0 | 0 | 143 | 24 | 1 | [
+  "Zimbabwe:2022"
+] | []
+owid | 43 | 3 | 2000 | 2024 | 25 | 0 | 0 | 1 | 1 | 0 | [] | [
+  "Kosovo",
+  "Channel Islands",
+  "World"
+]
+(3 rows; csv has all)

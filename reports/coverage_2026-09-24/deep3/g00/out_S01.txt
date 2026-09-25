@@ -1,0 +1,21 @@
+-- S01 CDC suicide: profile by unit and split, year range, flags, duplicate keys
+UNIT_NUM | UNIT | STUB_NAME | N | Y0 | Y1 | YEARS | KEYS | FLAGGED | BLANK_EST
+1 | Deaths per 100,000 resident population, age-adjusted | Sex | 84 | 1950 | 2018 | 42 | 84 | 0 | 0
+1 | Deaths per 100,000 resident population, age-adjusted | Sex and race | 336 | 1950 | 2018 | 42 | 336 | 12 | 12
+1 | Deaths per 100,000 resident population, age-adjusted | Sex and race (Single race) | 6 | 2018 | 2018 | 1 | 6 | 0 | 0
+1 | Deaths per 100,000 resident population, age-adjusted | Sex and race and Hispanic origin | 332 | 1950 | 2018 | 42 | 332 | 76 | 76
+1 | Deaths per 100,000 resident population, age-adjusted | Sex and race and Hispanic origin (Single race) | 12 | 2018 | 2018 | 1 | 12 | 1 | 1
+1 | Deaths per 100,000 resident population, age-adjusted | Total | 42 | 1950 | 2018 | 42 | 42 | 0 | 0
+2 | Deaths per 100,000 resident population, crude | Age | 588 | 1950 | 2018 | 42 | 588 | 0 | 0
+2 | Deaths per 100,000 resident population, crude | Sex | 84 | 1950 | 2018 | 42 | 84 | 0 | 0
+2 | Deaths per 100,000 resident population, crude | Sex and age | 1176 | 1950 | 2018 | 42 | 1176 | 2 | 2
+2 | Deaths per 100,000 resident population, crude | Sex and race | 336 | 1950 | 2018 | 42 | 336 | 36 | 36
+2 | Deaths per 100,000 resident population, crude | Sex and race (Single race) | 6 | 2018 | 2018 | 1 | 5 | 0 | 0
+2 | Deaths per 100,000 resident population, crude | Sex and race and Hispanic origin | 332 | 1950 | 2018 | 42 | 332 | 76 | 76
+2 | Deaths per 100,000 resident population, crude | Sex and race and Hispanic origin (Single race) | 12 | 2018 | 2018 | 1 | 12 | 1 | 1
+2 | Deaths per 100,000 resident population, crude | Sex, age and race | 1596 | 1950 | 2018 | 42 | 1592 | 314 | 314
+2 | Deaths per 100,000 resident population, crude | Sex, age and race (Single race) | 30 | 2018 | 2018 | 1 | 26 | 3 | 3
+2 | Deaths per 100,000 resident population, crude | Sex, age and race and Hispanic origin | 1328 | 1950 | 2018 | 42 | 1328 | 376 | 376
+2 | Deaths per 100,000 resident population, crude | Sex, age and race and Hispanic origin (Single race) | 48 | 2018 | 2018 | 1 | 48 | 9 | 9
+2 | Deaths per 100,000 resident population, crude | Total | 42 | 1950 | 2018 | 42 | 42 | 0 | 0
+(18 rows)

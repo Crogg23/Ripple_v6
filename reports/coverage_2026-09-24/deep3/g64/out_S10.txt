@@ -1,0 +1,13 @@
+-- S10 net metering: Arizona residential solar installations per 1,000 residential customers (join to sales on utility number + state; sales rows Bundled + Delivery only; adjustment rows 99999 dropped)
+STATE | NAME | AC_DC | RES_INST | RES_MW | RES_CUST | INST_PER_1K
+AZ | City of Mesa - (AZ) | DC | 171 | 0.9 | 15331 | 11.2
+AZ | Navopache Electric Coop, Inc | AC | 542 | 4.3 | 40076 | 13.5
+AZ | Sulphur Springs Valley E C Inc | AC | 1137 | 8.5 | 46008 | 24.7
+AZ | Mohave Electric Cooperative, Inc. | AC | 2183 | 22.0 | 41009 | 53.2
+AZ | Salt River Project | AC | 59735 | 393.2 | 1053407 | 56.7
+AZ | Trico Electric Cooperative Inc | DC | 5536 | 44.0 | 52450 | 105.5
+AZ | UNS Electric, Inc | AC | 10228 | 81.8 | 95191 | 107.4
+AZ | Electrical Dist No3 Pinal County | AC | 3514 | 25.6 | 32009 | 109.8
+AZ | Tucson Electric Power Co | AC | 51299 | 347.8 | 412747 | 124.3
+AZ | Arizona Public Service Co | DC | 182632 | 1643.4 | 1256120 | 145.4
+(10 rows; csv has all)

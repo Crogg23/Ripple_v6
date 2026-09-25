@@ -1,0 +1,7 @@
+-- S12 Leadership PACs (designation D) in the FEC PAC summary, by cycle: how much of their spending goes to other candidates and committees
+CYC | N | CMTES | DISB_M | TO_OTHERS_M | N_250K | MED_SHARE_250K | N_250K_UNDER10 | DISB_M_UNDER10 | MED_PCT_COL | CORR_MINE_VS_COL | RUNS
+2018 | 655 | 655 | 179.0 | 93.2 | 183 | 0.5166525529543232 | 3 | 3.4 | 0.5041 | 0.8395767032869054 | 1
+2020 | 698 | 698 | 213.4 | 100.4 | 181 | 0.5219374018105263 | 9 | 22.8 | 0.5143 | 0.9817655687508804 | 1
+2022 | 743 | 743 | 354.2 | 165.5 | 188 | 0.5067218074992771 | 11 | 31.8 | 0.496 | 0.9946989263141021 | 1
+2024 | 819 | 819 | 830.6 | 125.0 | 223 | 0.458153209417678 | 18 | 491.4 | 0.4364 | 0.9518220759448242 | 1
+(4 rows; csv has all)

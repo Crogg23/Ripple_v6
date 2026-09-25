@@ -1,0 +1,10 @@
+import pandas as pd, numpy as np, re
+pd.set_option('display.width',260); pd.set_option('display.max_colwidth',60)
+s=pd.read_csv('out_S10.csv',keep_default_na=False,na_values=[''])
+s=s[s.REGIONS.fillna('').str.contains('US')].copy()
+s['idtype']=np.select([s.PUBLIC_IDS_LIST.fillna('').str.contains('FEC ID'),s.PUBLIC_IDS_LIST.fillna('').str.contains('EIN ID'),s.PUBLIC_IDS_LIST.fillna('').str.contains('Registered in')],['FEC','EIN','STATE_REG'],'BLANK/OTHER')
+s['nk']=s.ADVERTISER_NAME.str.upper().str.replace(r'[^A-Z0-9]','',regex=True)
+n=s.groupby('nk').agg(name=('ADVERTISER_NAME','first'),ids=('ADVERTISER_ID','size'),usd=('USD_TOTAL','sum'),ads=('TOTAL_CREATIVES',lambda v:pd.to_numeric(v,errors='coerce').sum()),idt=('idtype',lambda v:','.join(sorted(set(v)))),pub=('PUBLIC_IDS_LIST',lambda v:' | '.join(sorted(set(v.dropna().astype(str)))[:3])))
+print('names with >=4 ids'); print(n[n.ids>=4].sort_values('ids',ascending=False).head(30).to_string())
+print(s.idtype.value_counts().to_string())
+s.to_pickle('stats_us.pkl')

@@ -1,0 +1,4 @@
+-- S27 Revolving door trap: are the sector slots in alphabetical order (so SECTOR1 / INDUSTRY_SECTOR is list order, not the main tie)?
+MULTI | S1_LT_S2 | MULTI3 | S2_LT_S3 | IND_EQ_S1 | AG_FIRST_MULTI | MULTI_S1_I3 | S2_STRONGER
+255 | 112 | 177 | 103 | 405 | 43 | 137 | 69
+(1 rows; csv has all)

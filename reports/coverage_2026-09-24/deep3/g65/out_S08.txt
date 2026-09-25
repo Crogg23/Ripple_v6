@@ -1,0 +1,5 @@
+-- S08 Google geo spend: rows per advertiser-state key, and whether the repeats carry different spend
+ROWS_PER_KEY | KEYS | KEYS_WITH_DIFF_SPEND | USD | ADVS
+1 | 614076 | 0 | 2534616100 | 16102
+2 | 1 | 1 | 1500 | 1
+(2 rows; csv has all)

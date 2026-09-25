@@ -1,0 +1,63 @@
+-- S06 ICIJ intermediaries: profile (leak, status, countries, id uniqueness, repeated names)
+D | V | N | K | A | B
+countries | Hong Kong | 4895 | 4895 | Offshore Leaks | Paradise Papers - Appleby
+countries | null | 3616 | 3616 | Bahamas Leaks | Paradise Papers - Nevis corporate registry
+countries | United Kingdom | 1545 | 1545 | Offshore Leaks | Paradise Papers - Appleby
+countries | United States | 1510 | 1510 | Offshore Leaks | Paradise Papers - Appleby
+countries | Taiwan | 1323 | 1323 | Offshore Leaks | Panama Papers
+countries | Switzerland | 1321 | 1321 | Offshore Leaks | Panama Papers
+countries | Singapore | 1307 | 1307 | Offshore Leaks | Paradise Papers - Appleby
+countries | Bahamas | 897 | 897 | Bahamas Leaks | Paradise Papers - Bahamas corporate registry
+countries | China | 646 | 646 | Offshore Leaks | Paradise Papers - Appleby
+countries | Panama | 559 | 559 | Offshore Leaks | Paradise Papers - Appleby
+countries | Indonesia | 522 | 522 | Offshore Leaks | Panama Papers
+countries | Guatemala | 441 | 441 | Panama Papers | Panama Papers
+countries | Luxembourg | 403 | 403 | Offshore Leaks | Panama Papers
+countries | Brazil | 402 | 402 | Offshore Leaks | Panama Papers
+countries | Not identified | 394 | 394 | Offshore Leaks | Offshore Leaks
+countries | Thailand | 358 | 358 | Offshore Leaks | Panama Papers
+countries | Malaysia | 350 | 350 | Offshore Leaks | Panama Papers
+countries | Ecuador | 323 | 323 | Panama Papers | Panama Papers
+countries | Jersey;United Kingdom | 310 | 310 | Panama Papers | Panama Papers
+countries | Uruguay | 296 | 296 | Panama Papers | Panama Papers
+countries | Canada | 236 | 236 | Offshore Leaks | Paradise Papers - Appleby
+countries | Guernsey;United Kingdom | 236 | 236 | Panama Papers | Panama Papers
+countries | Isle of Man | 230 | 230 | Offshore Leaks | Paradise Papers - Appleby
+countries | Colombia | 227 | 227 | Panama Papers | Panama Papers
+countries | Spain | 203 | 203 | Offshore Leaks | Panama Papers
+countries | Australia | 201 | 201 | Offshore Leaks | Paradise Papers - Appleby
+countries | Venezuela | 182 | 182 | Offshore Leaks | Panama Papers
+countries | United Arab Emirates | 179 | 179 | Offshore Leaks | Panama Papers
+countries | Cyprus | 176 | 176 | Offshore Leaks | Panama Papers
+countries | Monaco | 170 | 170 | Offshore Leaks | Panama Papers
+countries | Israel | 146 | 146 | Offshore Leaks | Panama Papers
+countries | Russia | 137 | 137 | Offshore Leaks | Panama Papers
+countries | France | 124 | 124 | Offshore Leaks | Panama Papers
+countries | Liechtenstein | 123 | 123 | Offshore Leaks | Panama Papers
+countries | Costa Rica | 121 | 121 | Offshore Leaks | Panama Papers
+countries | Saint Kitts and Nevis | 102 | 102 | Offshore Leaks | Paradise Papers - Nevis corporate registry
+countries | Germany | 93 | 93 | Offshore Leaks | Panama Papers
+countries | British Virgin Islands | 90 | 90 | Offshore Leaks | Paradise Papers - Appleby
+countries | Argentina | 89 | 89 | Panama Papers | Panama Papers
+countries | New Zealand | 85 | 85 | Offshore Leaks | Paradise Papers - Appleby
+dupname | HUTCHINSON GAYLE A. | 62 | 62 | Paradise Papers - Barbados corporate registry | 
+dupname | SMITH JENNIFER G. | 55 | 55 | Paradise Papers - Barbados corporate registry | 
+dupname | CARMICHAEL TREVOR A. | 43 | 43 | Paradise Papers - Barbados corporate registry | 
+dupname | HARRIDYAL-SODHA LIZA A. | 41 | 41 | Paradise Papers - Barbados corporate registry | 
+dupname | BOURQUE MARY ELLEN M. | 40 | 40 | Paradise Papers - Barbados corporate registry | 
+dupname | SMITH JENNIFER G | 29 | 29 | Paradise Papers - Barbados corporate registry | 
+dupname | CARMICHAEL, Q.C. DR. TREVOR A. | 26 | 26 | Paradise Papers - Barbados corporate registry | 
+dupname | SISNETT NATALIA B. | 19 | 19 | Paradise Papers - Barbados corporate registry | 
+dupname | KINGSTON PHILIP H. | 18 | 18 | Paradise Papers - Barbados corporate registry | 
+dupname | JACKSON ROSALIND E. | 16 | 16 | Paradise Papers - Barbados corporate registry | 
+dupname | CLARKE GILLIAN M.H. | 15 | 15 | Paradise Papers - Barbados corporate registry | 
+dupname | ARTHUR-SELMAN JAMAR P.R. | 12 | 12 | Paradise Papers - Barbados corporate registry | 
+dupname | CARMICHAEL TREVOR A | 11 | 11 | Paradise Papers - Barbados corporate registry | 
+dupname | JACKSON CHIKAKO | 10 | 10 | Paradise Papers - Barbados corporate registry | 
+dupname | HUTCHINSON IAN STC. | 10 | 10 | Paradise Papers - Barbados corporate registry | 
+dupname | ALLSOPP JUNIOR O. | 10 | 10 | Paradise Papers - Barbados corporate registry | 
+dupname | BRATHWAITE ADRIEL D. | 8 | 8 | Paradise Papers - Barbados corporate registry | 
+dupname | MCCONNIE GREGORY N. | 7 | 7 | Paradise Papers - Barbados corporate registry | 
+dupname | DATHORNE RONAELE T | 7 | 7 | Paradise Papers - Barbados corporate registry | 
+dupname | FERREIRA ANDREW C. | 7 | 7 | Paradise Papers - Barbados corporate registry | 
+(119 rows; csv has all)

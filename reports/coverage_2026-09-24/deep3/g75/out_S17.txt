@@ -1,0 +1,3 @@
+-- S17 the two excluded doctors in the ICIJ match: were they paid after exclusion (findings table), by NPI
+SRC | NPI | LAST_NAME | FIRST_NAME | EXCLUSION_TYPE | EXCL_YEAR | PAID | FIRST_PAID | LAST_PAID
+(0 rows; csv has all)

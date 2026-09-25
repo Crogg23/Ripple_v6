@@ -1,0 +1,123 @@
+-- S10 net metering: Arizona residential solar installations per 1,000 residential customers (join to sales on utility number + state; sales rows Bundled + Delivery only; adjustment rows 99999 dropped)
+STATE | NAME | AC_DC | RES_INST | RES_MW | RES_CUST | INST_PER_1K
+AZ | City of Mesa - (AZ) | DC | 171 | 0.9 | 15331 | 11.2
+AZ | Navopache Electric Coop, Inc | AC | 542 | 4.3 | 40076 | 13.5
+AZ | Sulphur Springs Valley E C Inc | AC | 1137 | 8.5 | 46008 | 24.7
+AZ | Mohave Electric Cooperative, Inc. | AC | 2183 | 22.0 | 41009 | 53.2
+AZ | Salt River Project | AC | 59735 | 393.2 | 1053407 | 56.7
+AZ | Trico Electric Cooperative Inc | DC | 5536 | 44.0 | 52450 | 105.5
+AZ | UNS Electric, Inc | AC | 10228 | 81.8 | 95191 | 107.4
+AZ | Electrical Dist No3 Pinal County | AC | 3514 | 25.6 | 32009 | 109.8
+AZ | Tucson Electric Power Co | AC | 51299 | 347.8 | 412747 | 124.3
+AZ | Arizona Public Service Co | DC | 182632 | 1643.4 | 1256120 | 145.4
+(10 rows; csv has all)
+
+-- S11 dynamic pricing: residential enrolled vs residential customers and smart meters, default-TOU utilities, the Evergy Kansas twin, and the suspect reporters
+STATE | NAME | TOU | CPR | ENROLLED | RES_CUST | SHARE_ENROLLED | RES_AMI | RES_METERS
+MI | Consumers Energy Co - (MI) | Y | Y | 1642369 | 1657843 | 0.991 | 1660920 | 1669581
+IA | Consumers Energy Coop - (IA) | Y |  | 179 | 6922 | 0.026 | 6922 | 6922
+MI | DTE Electric Company | Y |  | 23062 | 2067779 | 0.011 | 2378580 | 2386145
+KS | Evergy Kansas Central, Inc | Y |  | 1062 | 341806 | 0.003 | 346515 | 346573
+KS | Evergy Kansas South, Inc | Y |  | 828 | 302508 | 0.003 | 308480 | 308512
+KS | Evergy Metro | Y |  | 3904 | 244555 | 0.016 | 256449 | 256454
+MO | Evergy Metro | Y |  | 245547 | 273860 | 0.897 | 286071 | 286093
+MO | Evergy Missouri West | Y |  | 233540 | 305583 | 0.764 | 309426 | 309461
+CA | Pacific Gas & Electric Co. | Y |  | 171636 | 5047461 | 0.034 | 5038840 | 5077867
+CO | Public Service Co of Colorado | Y |  | 1092786 | 1365053 | 0.801 | 1280047 | 1415831
+OK | Public Service Co of Oklahoma | Y |  | 501093 | 501093 | 1.000 | 505650 | 505936
+CA | San Diego Gas & Electric Co | Y |  | 8125 | 1364361 | 0.006 | 1370032 | 1372341
+CA | Southern California Edison Co | Y |  | 2654452 | 4594415 | 0.578 | 4801923 | 4820290
+AR | Southwestern Electric Power Co | Y |  | 108102 | 108102 | 1.000 | 1068 | 109029
+LA | Southwestern Electric Power Co | Y |  | 206897 | 207011 | 0.999 | 128187 | 207658
+TX | Southwestern Electric Power Co | Y |  | 156271 | 156271 | 1.000 | 157133 | 157242
+MO | Union Electric Co - (MO) | Y |  | 891431 | 1095619 | 0.814 | 1099976 | 1101514
+(17 rows; csv has all)
+
+-- S12 non-net + net metering: residential solar MW per residential customer, Southern Co. and TVA-area utilities (AL, GA, MS, TN) with 100K+ homes
+STATE | NAME | RES_CUST | NM_RES_INST | NM_RES_MW | NN_RES_PV_MW | NN_GENERATORS | RES_SOLAR_WATTS_PER_HOME
+TN | City of Memphis - (TN) | 380286 |  |  |  |  | 0.0
+GA | Snapping Shoals El Member Corp | 105253 |  |  |  |  | 0.0
+AL | Alabama Power Co | 1332911 |  |  | 2.138 | 443 | 1.6
+AL | City of Huntsville - (AL) | 197537 |  |  | 0.503 | 63 | 2.5
+MS | Entergy Mississippi LLC | 384611 | 625 | 1.159 |  | 15 | 3.0
+TN | Nashville Electric Service | 417640 |  |  | 1.627 | 335 | 3.9
+TN | Knoxville Utilities Board | 193707 |  |  | 0.847 | 151 | 4.4
+TN | Middle Tennessee E M C | 307370 |  |  | 1.38 | 210 | 4.5
+TN | Cumberland Elec Member Corp | 100585 |  |  | 0.641 | 78 | 6.4
+TN | City of Chattanooga - (TN) | 164417 |  |  | 1.88 | 292 | 11.4
+TN | Volunteer Electric Coop | 104387 |  |  | 1.997 | 181 | 19.1
+GA | Cobb Electric Membership Corp | 200601 | 598 | 3.883 |  |  | 19.4
+GA | Sawnee Electric Membership Corporation | 181600 | 615 | 3.799 |  | 6 | 20.9
+GA | GreyStone Power Corporation | 139028 | 564 | 3.59 |  | 136 | 25.8
+GA | Georgia Power Co | 2452488 | 11208 | 73.363 | 0.495 | 726 | 30.1
+MS | Mississippi Power Co | 157437 | 496 | 4.848 | 0.109 | 32 | 31.5
+GA | Jackson Electric Member Corp - (GA) | 239558 | 1062 | 8.573 | 0.281 | 57 | 37.0
+GA | Walton Electric Member Corp | 131915 | 675 | 5.677 |  | 6 | 43.0
+(18 rows; csv has all)
+
+-- S13 distribution systems: the zero-VVO big utilities, the round-100% reporters, and customers per circuit (join to sales)
+STATE | UTILITY_NAME | DISTRIBUTION_CIRCUITS | CIRCUITS_WITH_VOLTAGE_OPTIMIZATION | VO_SHARE | CUST | CUST_PER_CIRCUIT
+CA | Pacific Gas & Electric Co. | 3422 | 0 | 0.000 | 5725404 | 1673
+NJ | Public Service Elec & Gas Co | 2909 | 0 | 0.000 | 2389765 | 822
+MO | Union Electric Co - (MO) | 2310 | 0 | 0.000 | 1264469 | 547
+NC | Duke Energy Carolinas, LLC | 2186 | 0 | 0.000 | 2233043 | 1022
+PA | PECO Energy Co | 2172 | 0 | 0.000 | 1706299 | 786
+VA | Virginia Electric & Power Co | 2172 | 0 | 0.000 | 2655130 | 1222
+WI | Wisconsin Electric Power Co | 1591 | 0 | 0.000 | 1170318 | 736
+IA | Interstate Power and Light Co | 1497 | 0 | 0.000 | 504146 | 337
+CT | Connecticut Light & Power Co | 1465 | 0 | 0.000 | 1290878 | 881
+AZ | Salt River Project | 1450 | 0 | 0.000 | 1166094 | 804
+NY | New York State Elec & Gas Corp | 1264 | 0 | 0.000 | 921369 | 729
+NY | Long Island Power Authority | 1088 | 0 | 0.000 | 1161788 | 1068
+CA | San Diego Gas & Electric Co | 1058 | 0 | 0.000 | 1525968 | 1442
+SC | Duke Energy Carolinas, LLC | 748 | 0 | 0.000 | 674022 | 901
+MI | DTE Electric Company | 3518 | 6 | 0.002 | 2283306 | 649
+NY | Niagara Mohawk Power Corp. | 1997 | 41 | 0.021 | 1718921 | 861
+NV | Nevada Power Co | 1045 | 34 | 0.033 | 1035139 | 991
+MN | Northern States Power Co - Minnesota | 1086 | 60 | 0.055 | 1375256 | 1266
+MA | Massachusetts Electric Co | 1211 | 103 | 0.085 | 1373756 | 1134
+OH | Ohio Power Co | 1700 | 164 | 0.096 | 1533265 | 902
+WA | Puget Sound Energy Inc | 1134 | 138 | 0.122 | 1238151 | 1092
+IA | MidAmerican Energy Co | 1074 | 260 | 0.242 | 738335 | 687
+WI | Wisconsin Power & Light Co | 1290 | 344 | 0.267 | 501644 | 389
+MA | NSTAR Electric Company | 1643 | 448 | 0.273 | 1526558 | 929
+OK | Oklahoma Gas & Electric Co | 1306 | 389 | 0.298 | 832721 | 638
+IL | Ameren Illinois Company | 2740 | 913 | 0.333 | 1224108 | 447
+IN | Duke Energy Indiana, LLC | 1319 | 467 | 0.354 | 909011 | 689
+IL | Commonwealth Edison Co | 5639 | 2332 | 0.414 | 4130749 | 733
+MI | Consumers Energy Co - (MI) | 2387 | 1052 | 0.441 | 1894492 | 794
+CA | Los Angeles Department of Water & Power | 2640 | 1667 | 0.631 | 1510995 | 572
+OH | Duke Energy Ohio Inc | 803 | 519 | 0.646 | 759800 | 946
+MD | Baltimore Gas & Electric Co | 1525 | 1089 | 0.714 | 1342757 | 880
+CA | Southern California Edison Co | 4323 | 3245 | 0.751 | 5297361 | 1225
+GA | Georgia Power Co | 2796 | 2224 | 0.795 | 2804103 | 1003
+FL | Florida Power & Light Co | 3909 | 3158 | 0.808 | 5905174 | 1511
+PA | FirstEnergy Pennsylvania Electric Co | 3060 | 2598 | 0.849 | 2086565 | 682
+FL | Duke Energy Florida, LLC | 1366 | 1192 | 0.873 | 2009464 | 1471
+TX | Oncor Electric Delivery Company LLC | 3757 | 3432 | 0.913 |  | 
+OH | Cleveland Electric Illum Co | 1088 | 998 | 0.917 | 758455 | 697
+OH | Ohio Edison Co | 1156 | 1138 | 0.984 | 1074066 | 929
+AL | Alabama Power Co | 2178 | 2178 | 1.000 | 1546483 | 710
+NJ | Jersey Central Power & Lt Co | 1368 | 1368 | 1.000 | 1171837 | 857
+PA | PPL Electric Utilities Corp | 1285 | 1285 | 1.000 | 1487347 | 1157
+NC | Duke Energy Progress - (NC) | 1182 | 1182 | 1.000 | 1576769 | 1334
+SC | Duke Energy Progress - (NC) | 178 | 178 | 1.000 | 176806 | 993
+NY | Consolidated Edison Co-NY Inc | 2218 |  |  | 3646787 | 1644
+TX | CenterPoint Energy | 1862 |  |  |  | 
+AZ | Arizona Public Service Co | 1457 |  |  | 1400037 | 961
+LA | Entergy Louisiana LLC | 1215 |  |  | 1109156 | 913
+KY | Kentucky Utilities Co | 1122 |  |  | 546599 | 487
+TX | AEP Texas Central Company | 1032 |  |  |  | 
+KY | Duke Energy Kentucky | 155 |  |  | 154073 | 994
+IN | Northern Indiana Pub Serv Co | 134 |  |  | 492700 | 3677
+(53 rows; csv has all)
+
+-- S14 trap sweep: filler rows per table (adjustment 99999, withheld 88888, all-null note rows) and the negative sums they carry
+T | ADJ_ROWS | WITHHELD | NULL_ROWS | ADJ_MW | NEG_REAL
+NET_METERING | 83 | 0 | 0 | -1827.4 | 0
+NON_NET | 43 | 0 | 1 | -15.0 | 0
+DYNAMIC_PRICING | 0 | 3 | 0 |  | 
+DISTRIBUTION_SYSTEMS | 0 | 0 | 0 |  | 
+UTILITY_DATA | 0 | 3 | 0 |  | 
+(5 rows; csv has all)
+

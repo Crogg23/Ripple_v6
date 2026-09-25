@@ -1,0 +1,63 @@
+-- S10 ICIJ: every node tied to a US address (via registered_address), plus US-coded officers/intermediaries with no US address
+NODE_ID | KIND | NAME | COUNTRY_CODES | SOURCE_LEAK | ADDR_NODE | ADDR_TEXT
+112684 | officer | Marlie Daffer Nelson | USA | Offshore Leaks | 252112 | 4024 Roanoke St. SE Prior Lake MN USA
+112697 | officer | Frederick Todd | USA | Offshore Leaks | 107527 | 11564 Pioneer Avenue Oakdale California 95361 USA
+112705 | officer | Lisa Teresa Piraneo | USA | Offshore Leaks | 120046 | 14 Clermont Park Farmington, CT 06032-1570 USA
+112710 | officer | Charles Ardai | USA | Offshore Leaks | 242495 | 120 West Forty-Fifth Street New York NY 10036 U.S.A.
+112717 | officer | HARISH RAMACHANDRAN | USA | Offshore Leaks | 177602 | 125 Connemara WY 74 Sunnyvale CA 94087-3226 USA
+112722 | officer | Lee Fixel | USA | Offshore Leaks | 233578 | 101 Park Avenue, 48th Floor, New York, New york 1078 United States of America
+112753 | officer | Jay Kenneth Bartlett | USA | Offshore Leaks | 109842 | 672 Chestnut Street Lynnfield, MA 01940 U.S.A.
+112761 | officer | FU RONGHUI | USA | Offshore Leaks | 255893 | 6600 Ne Columbia Blvd Portland OR 97218, U.S.A.
+112768 | officer | Chen, Yi-Ju | USA | Offshore Leaks | 244094 | 150 Executive Park Blvd., Suite 4200, San Franciso CA 94134-3309, USA.
+112780 | officer | Thomas Gill Mandell | USA | Offshore Leaks | 258000 | 814 Spring Valley Court Sugar Land, TX 77479 USA
+112842 | officer | Sunnet International Corp | USA | Offshore Leaks | 67456 | P O Box 611090 San Jose California 95161 USA
+112991 | officer | CHIANG, FU-YI | USA | Offshore Leaks | 258195 | 8855 E. VALLEY BOULEVARD, #203 ROSEMEAD, CALIFORNIA 91770, U.S.A.
+112992 | officer | Bonita L. Fletcher | USA | Offshore Leaks | 239011 | PO Box 5196 San Clemente, CA 92674 USA
+113000 | officer | Tony Roisum | USA | Offshore Leaks | 236011 | 7955 South Blackhawk Drive Idaho Falls Idaho 83406 U.S.A.
+113034 | officer | Robert T. Harvey | USA | Offshore Leaks | 107894 | 970 Broadmoor Lane Prosper Texas 75078 U.S.A.
+113046 | officer | Karl Oberlin | USA | Offshore Leaks | 243270 | 13522 Malena Drive Tustin, California 92780 USA
+113047 | officer | Gerard Ferrer Joyce, Jr. | USA | Offshore Leaks | 235363 | 452 Fifth Avenue, New York, NY 10018, USA
+113083 | officer | Owen David Rosebeck | USA | Offshore Leaks | 240371 | (Son of settlors) 105 N. Royal Ascot Drive Las Vegas, NV 89144 USA  Ph: REDACTED
+113088 | officer | Bruce Pickett Johnson | USA | Offshore Leaks | 258003 | 818 Church Street San Francisco, CA 94114 U.S.A.
+113122 | officer | Tzedakah LLC | USA | Offshore Leaks | 234761 | 2711 Conterville Road, Suite 400 Wilmington New Castle, Delaware U.S.A.
+113124 | officer | www.agapevillages.org | USA | Offshore Leaks | 175720 | 3160 Crow Canyon Pl. Ste. 120 San Ramon, CA 94583 USA
+91311 | officer | NI Yang | USA | Offshore Leaks | 68894 | 917 Mann Court, Folsom, Ca 95630, USA
+91369 | officer | John Rasnick | USA | Offshore Leaks | 250880 | 388 S. Main Street Suite 402, Akron Ohio, OH 44311 USA
+91378 | officer | John D. Ford | USA | Offshore Leaks | 255945 | 6753 Brockton Avenue Riverside, CA 92506 California USA
+91430 | officer | Virginia E. Thompson | USA | Offshore Leaks | 248332 | 27693 Manor Hill Laguna Niguel California 92677 U.S.A.
+91455 | officer | Howard Schwartz | USA | Offshore Leaks | 280448 | Prudential Securities 9255 Towne Centre Dr. Suite 800, San Diego California 92121-3041, U.S.A.
+91472 | officer | Robert Sall | USA | Offshore Leaks | 233839 | 12118 Old Country Road West Palm Beach
+91481 | officer | Trustee or Successor - Franc Denis & Elizabeth A. Denis Family Trust | USA | Offshore Leaks | 233781 | 12 Dapplegray Lane Rolling Hills, CA 90274 USA
+91498 | officer | Kevin G. Coleman | USA | Offshore Leaks | 181385 | 4017 Washington Road MS 348 McMurray, PA  15317
+91537 | officer | James Anthony Bartlett | USA | Offshore Leaks | 107390 | 144 Lakeside Blvd North Reading, MA 01864 USA
+91599 | officer | William D. Stauffer, Jr. | USA | Offshore Leaks | 246658 | 20430 Via Don Juan Yorba Linda, CA 92686
+91666 | officer | Frank Langley | USA | Offshore Leaks | 238988 | Pel-Freez Clinical Systems LLC 9099 North Deerbrook Trail Brown Deer, Wisconsin 53223 U.S.A
+91672 | officer | Austin Cheng | USA | Offshore Leaks | 177402 | 13100 Mozart Way Cerritos, CA 90703 USA
+91674 | officer | Scott Worley | USA | Offshore Leaks | 250690 | 364 S. Country Club Drive Atlantis Florida 33462 U.S.A
+91714 | officer | Ariandini Subowo | USA | Offshore Leaks | 262441 | C/- Graham & James LLP., 650 Town Center Drive Sixth Floor Costa Mesa
+91715 | officer | Michael Jareou | USA | Offshore Leaks | 177687 | 1307 Champion Road Naperville IL 60564
+91720 | officer | Marcia Johnson | USA | Offshore Leaks | 234667 | 245 Brookville Raod., Brookville New York 11545 USA
+91763 | officer | Saskia Grody | USA | Offshore Leaks | 107365 | 149 Peninsula Drive Rome Maine 04963 U.S.A.
+111933 | officer | Leo Yen | USA | Offshore Leaks | 289017 | Yen & Associates 745 North Monwe Street San Jose, CA 95128 USA
+111949 | officer | Dekiam Ong | USA | Offshore Leaks | 255318 | 6 Cosworth Circle, Nashua, New Hampshire, U.S.A.
+111951 | officer | Paul Wolansky | USA | Offshore Leaks | 250541 | 35 Edgewood Dr., Greenwidh, CT 06831 U.S.A.
+111997 | officer | Cynthia W. Bartlett | USA | Offshore Leaks | 255938 | 672 Chestnut Street Lynnfield, MA 01940-1636 USA
+111998 | officer | Skysoft Inc. (Delaware Company) | USA | Offshore Leaks | 234761 | 2711 Conterville Road, Suite 400 Wilmington New Castle, Delaware U.S.A.
+112017 | officer | Leonid Gliberman as the custodian for Mariya Leonidovna Samoylova | USA | Offshore Leaks | 233643 | 11 Booth Ave, Englewood Cliffs, NJ 07632
+112062 | officer | Roscoe Ealey Living Trust | USA | Offshore Leaks | 259053 | 9356 E Old Pellegrino Tucson, Arizona 85749 USA
+112100 | officer | Gerda Veronica | USA | Offshore Leaks | 250230 | 36 Asilomar Laguna Miguel CA 92677
+112195 | officer | Tom A. Dowse | USA | Offshore Leaks | 171171 | P.. Box 5090 Napa, California 94581-0090
+112214 | officer | Collin Travis Wenzel | USA | Offshore Leaks | 120041 | 1322 Brockman Ln Sonoma, CA 95476 USA
+112241 | officer | SHAHRAM SOUFERIAN | USA | Offshore Leaks | 262762 | c/o 9255 Sunset Blvd., Suite 630 Los Angeles California 90069-3309
+112243 | officer | Jean Wu PRINCE | USA | Offshore Leaks | 246576 | 200 W. 34th Avenue #844, Anchorage AK 99503, U.S.A.
+112259 | officer | LIDONG ZHAO | USA | Offshore Leaks | 107650 | 1087 NUNZIO CT., SAN JOSE CA 95120, USA
+112282 | officer | Jamie R. Mochel | USA | Offshore Leaks | 255800 | 6357 Surrey Ridge Lisle IL 60532 USA
+112290 | officer | Tracy Dale Rawls | USA | Offshore Leaks | 252547 | 452 Fifth Avenue New York, NY 10018 USA
+112408 | officer | DOUGLAS JOHN TOTH | USA | Offshore Leaks | 233720 | 1120 AVENUE OF THE AMERICAS, FOURTH FLOOR SUIT 4047 NEW YORK, NY 10036, USA
+112432 | officer | 1000 Oaks Co, [Filing # REDACTED] | USA | Offshore Leaks | 244520 | 1611 Wood Creek Lane Allen Texas 75002 USA
+112449 | officer | Raffie Eskandarian | USA | Offshore Leaks | 105762 | 9420 Glory Ave Tujunga CA 91042 USA
+112456 | officer | LAU Mok Lun, Philip | USA | Offshore Leaks | 255755 | 625A Wool Creek Drive San Jose CA95112 UNITED STATES OF AMERICA
+112461 | officer | George F. Polera | USA | Offshore Leaks | 234628 | 2375 E. Tropicana Suite # 244 Las Vegas, Nevada 89119 USA
+106531 | officer | ClU-FEN HUANG | USA | Offshore Leaks | 252344 | 4405 CUSHING PARKWAY FEEMONT, CALIFONIA 94538 U.S.A
+107393 | officer | WU WEIJUN | USA | Offshore Leaks | 247192 | 220 VIENNA STREET, SAN FRANCISCO, CA, 94112, U.S.A
+(47362 rows; csv has all)

@@ -1,0 +1,43 @@
+-- S04 Pub 78: status x state x country profile, EIN shape, blanks, duplicates
+DEDUCTIBILITY_STATUS | STATE | COUNTRY | N | EINS | EIN_NOT9 | EIN_ZERO | NO_NAME | NO_CITY
+PC | CA | United States | 143659 | 143659 | 0 | 0 | 0 | 2
+PC | TX | United States | 101576 | 101576 | 0 | 0 | 0 | 2
+PC | NY | United States | 83419 | 83419 | 0 | 0 | 0 | 0
+PC | FL | United States | 79109 | 79109 | 0 | 0 | 0 | 2
+PC | PA | United States | 48087 | 48087 | 0 | 0 | 0 | 1
+PC | GA | United States | 45174 | 45174 | 0 | 0 | 0 | 0
+PC | OH | United States | 44272 | 44272 | 0 | 0 | 0 | 0
+PC | IL | United States | 43084 | 43084 | 0 | 0 | 0 | 0
+PC | NC | United States | 42351 | 42351 | 0 | 0 | 0 | 0
+PC | NJ | United States | 36069 | 36069 | 0 | 0 | 0 | 0
+PC | MI | United States | 35129 | 35129 | 0 | 0 | 0 | 0
+PC | VA | United States | 34889 | 34889 | 0 | 0 | 0 | 0
+PC | MD | United States | 29978 | 29978 | 0 | 0 | 0 | 0
+PC | MA | United States | 29284 | 29284 | 0 | 0 | 0 | 0
+PC | WA | United States | 28104 | 28104 | 0 | 0 | 0 | 0
+PC | IN | United States | 25596 | 25596 | 0 | 0 | 0 | 1
+PC | CO | United States | 24777 | 24777 | 0 | 0 | 0 | 0
+PC | TN | United States | 24529 | 24529 | 0 | 0 | 0 | 2
+PC | MN | United States | 23683 | 23683 | 0 | 0 | 0 | 0
+PC | MO | United States | 23452 | 23452 | 0 | 0 | 0 | 0
+PC | AZ | United States | 22518 | 22518 | 0 | 0 | 0 | 1
+PC | WI | United States | 21922 | 21922 | 0 | 0 | 0 | 0
+PC | OR | United States | 18315 | 18315 | 0 | 0 | 0 | 2
+PC | SC | United States | 18021 | 18021 | 0 | 0 | 0 | 2
+PC | AL | United States | 16950 | 16950 | 0 | 0 | 0 | 0
+PC | LA | United States | 15775 | 15775 | 0 | 0 | 0 | 2
+PC | CT | United States | 14787 | 14787 | 0 | 0 | 0 | 2
+PC | KY | United States | 14154 | 14154 | 0 | 0 | 0 | 1
+PC | OK | United States | 13722 | 13722 | 0 | 0 | 0 | 0
+PC | IA | United States | 13404 | 13404 | 0 | 0 | 0 | 1
+PF | CA | United States | 12274 | 12274 | 0 | 0 | 0 | 0
+PF | NY | United States | 11385 | 11385 | 0 | 0 | 0 | 0
+PC | AR | United States | 10523 | 10523 | 0 | 0 | 0 | 0
+PC | KS | United States | 10431 | 10431 | 0 | 0 | 0 | 0
+PF | TX | United States | 10203 | 10203 | 0 | 0 | 0 | 0
+PC | NV | United States | 9790 | 9790 | 0 | 0 | 0 | 1
+PF | FL | United States | 9686 | 9686 | 0 | 0 | 0 | 0
+PC | MS | United States | 8966 | 8966 | 0 | 0 | 0 | 1
+PC | DC | United States | 8783 | 8783 | 0 | 0 | 0 | 0
+PC | UT | United States | 8388 | 8388 | 0 | 0 | 0 | 0
+(808 rows; csv has all)

@@ -1,0 +1,63 @@
+-- S10 Crosswalk coverage against its own source (Medicare hospital enrollments): match rate by for-profit flag and CCN type, then non-profit short-term hospitals by state
+CUT | PN | TYP | ST | CCNS | MATCHED | PCT
+by_type | D | CAH |  | 1 | 1 | 100.0
+by_type | N | short-term |  | 2405 | 1491 | 62.0
+by_type | N | other |  | 2573 | 1531 | 59.5
+by_type | N | CAH |  | 1283 | 719 | 56.0
+by_type | N | rehab |  | 35 | 19 | 54.3
+by_type | N | childrens |  | 87 | 41 | 47.1
+by_type | N | LTCH |  | 66 | 27 | 40.9
+by_type | N | psych |  | 254 | 63 | 24.8
+by_type | P | childrens |  | 7 | 1 | 14.3
+by_type | P | CAH |  | 102 | 14 | 13.7
+by_type | P | other |  | 571 | 54 | 9.5
+by_type | D | other |  | 18 | 1 | 5.6
+by_type | P | short-term |  | 717 | 28 | 3.9
+by_type | P | LTCH |  | 250 | 9 | 3.6
+by_type | P | psych |  | 401 | 3 | 0.7
+by_type | P | rehab |  | 349 | 1 | 0.3
+by_type | D | psych |  | 2 | 0 | 0.0
+by_type | D | rehab |  | 32 | 0 | 0.0
+by_type | D | short-term |  | 22 | 0 | 0.0
+np_short_term_by_state | N | short-term | DC | 4 | 4 | 100.0
+np_short_term_by_state | N | short-term | DE | 6 | 6 | 100.0
+np_short_term_by_state | N | short-term | CT | 28 | 25 | 89.3
+np_short_term_by_state | N | short-term | NH | 9 | 8 | 88.9
+np_short_term_by_state | N | short-term | UT | 21 | 18 | 85.7
+np_short_term_by_state | N | short-term | SC | 43 | 36 | 83.7
+np_short_term_by_state | N | short-term | VT | 6 | 5 | 83.3
+np_short_term_by_state | N | short-term | IA | 28 | 23 | 82.1
+np_short_term_by_state | N | short-term | MO | 55 | 45 | 81.8
+np_short_term_by_state | N | short-term | NY | 136 | 111 | 81.6
+np_short_term_by_state | N | short-term | KY | 48 | 38 | 79.2
+np_short_term_by_state | N | short-term | WV | 20 | 15 | 75.0
+np_short_term_by_state | N | short-term | RI | 8 | 6 | 75.0
+np_short_term_by_state | N | short-term | ID | 8 | 6 | 75.0
+np_short_term_by_state | N | short-term | IN | 60 | 45 | 75.0
+np_short_term_by_state | N | short-term | MN | 45 | 32 | 71.1
+np_short_term_by_state | N | short-term | FL | 104 | 72 | 69.2
+np_short_term_by_state | N | short-term | MD | 41 | 28 | 68.3
+np_short_term_by_state | N | short-term | AR | 31 | 21 | 67.7
+np_short_term_by_state | N | short-term | IL | 105 | 71 | 67.6
+np_short_term_by_state | N | short-term | CA | 212 | 135 | 63.7
+np_short_term_by_state | N | short-term | KS | 30 | 19 | 63.3
+np_short_term_by_state | N | short-term | MT | 8 | 5 | 62.5
+np_short_term_by_state | N | short-term | MI | 79 | 49 | 62.0
+np_short_term_by_state | N | short-term | ME | 13 | 8 | 61.5
+np_short_term_by_state | N | short-term | SD | 13 | 8 | 61.5
+np_short_term_by_state | N | short-term | GA | 83 | 51 | 61.4
+np_short_term_by_state | N | short-term | WA | 46 | 28 | 60.9
+np_short_term_by_state | N | short-term | MA | 51 | 31 | 60.8
+np_short_term_by_state | N | short-term | TN | 50 | 30 | 60.0
+np_short_term_by_state | N | short-term | CO | 43 | 25 | 58.1
+np_short_term_by_state | N | short-term | PR | 26 | 15 | 57.7
+np_short_term_by_state | N | short-term | WY | 7 | 4 | 57.1
+np_short_term_by_state | N | short-term | TX | 142 | 81 | 57.0
+np_short_term_by_state | N | short-term | MS | 44 | 25 | 56.8
+np_short_term_by_state | N | short-term | OR | 30 | 17 | 56.7
+np_short_term_by_state | N | short-term | NE | 23 | 13 | 56.5
+np_short_term_by_state | N | short-term | VA | 57 | 32 | 56.1
+np_short_term_by_state | N | short-term | AZ | 40 | 22 | 55.0
+np_short_term_by_state | N | short-term | HI | 11 | 6 | 54.5
+np_short_term_by_state | N | short-term | NM | 13 | 7 | 53.8
+(75 rows; csv has all)

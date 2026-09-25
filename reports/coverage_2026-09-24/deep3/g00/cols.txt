@@ -1,0 +1,468 @@
+===== HEALTH__FED_CMS_NPPES ['cols', 'summary', 'row']
+summary Every US health care provider with a National Provider Identifier, all 9.6 million doctors, nurses, clinics, pharmacies and suppliers, with names, addresses, specialties and licenses.
+row One provider: one person or organization that holds one NPI.
+   NPI :: The doctor's or clinic's 10-digit National Provider Identifier, stored as text. Some tables leave it mostly blank or empty, and the SAM exclusions table uses 0000000000 as a filler.
+   PROVIDER_FIRST_NAME :: The provider's first name.
+   PROVIDER_MIDDLE_NAME :: The provider's middle name or initial. Often blank.
+   LAST_UPDATE_DATE :: The date the record was last updated at the source.
+   NPI_DEACTIVATION_DATE :: The date the provider's 10-digit national ID was shut off. Almost always blank.
+   CERTIFICATION_DATE :: The date the facility was certified to take Medicare. In the NPI registry it is when the provider last confirmed their record.
+   _INGESTED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store a long number counting microseconds since 1970, and a few hold broken dates with impossible years like 56645
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run IDs. Added by your pipeline, not the sour
+   _SRC_SHA256 :: A fingerprint of the source file this row came from, used to spot a changed file. Some tables hold the placeholder "streamed-see-source-zip" or leave it empty. Added by your pipeline, not the source.
+   ENTITY_TYPE_CODE :: 1 or 2: 1 marks a person and 2 an organization; the counts line up with the person and organization name columns. Blank on a few hundred thousand rows.
+   REPLACEMENT_NPI :: The newer NPI that replaced this one. Almost always blank; filled on only about 80 rows.
+   EMPLOYER_IDENTIFICATION_NUMBER_EIN :: Meant to hold the organization's federal tax ID, but it is empty in this table.
+   PROVIDER_ORGANIZATION_NAME_LEGAL_BUSINESS_NAME :: The organization's legal business name, like WALGREEN CO. Filled only for organizations, so blank on most rows.
+   PROVIDER_LAST_NAME_LEGAL_NAME :: The person's legal last name. Filled only for individual providers.
+   PROVIDER_NAME_PREFIX_TEXT :: Name prefix like DR., MRS. or MS. Mostly blank.
+   PROVIDER_NAME_SUFFIX_TEXT :: Name suffix like JR., II or III. Mostly blank.
+   PROVIDER_CREDENTIAL_TEXT :: The person's credentials as typed, like MD, M.D., RN or LCSW. Free text, so the same degree is spelled many ways.
+   PROVIDER_OTHER_ORGANIZATION_NAME :: Meant to hold another name the organization uses, but every filled row just says <UNAVAIL>. Mostly blank.
+   PROVIDER_OTHER_ORGANIZATION_NAME_TYPE_CODE :: Type code for the other organization name; always 6 when filled, and the code needs a lookup. Mostly blank.
+   PROVIDER_OTHER_LAST_NAME :: Another last name the person has used, such as a maiden name. Mostly blank.
+   PROVIDER_OTHER_FIRST_NAME :: First name that goes with the person's other name. Mostly blank.
+   PROVIDER_OTHER_MIDDLE_NAME :: Middle name or initial that goes with the person's other name. Mostly blank.
+   PROVIDER_OTHER_NAME_PREFIX_TEXT :: Prefix like DR. or MS. on the person's other name. Mostly blank.
+   PROVIDER_OTHER_NAME_SUFFIX_TEXT :: Suffix like JR. on the person's other name. Almost always blank.
+   PROVIDER_OTHER_CREDENTIAL_TEXT :: Credentials typed with the person's other name, like MD or RN. Mostly blank.
+   PROVIDER_OTHER_LAST_NAME_TYPE_CODE :: A code for what kind of other name this is: 1, 5, 2 or 3; the codes need a lookup. Mostly blank.
+   PROVIDER_FIRST_LINE_BUSINESS_MAILING_ADDRESS :: First line of the provider's mailing address. Many providers share one address, including P.O. boxes like PO BOX 7004.
+   PROVIDER_SECOND_LINE_BUSINESS_MAILING_ADDRESS :: Second line of the mailing address, usually a suite number. Mostly blank.
+   PROVIDER_BUSINESS_MAILING_ADDRESS_CITY_NAME :: City of the provider's mailing address.
+   PROVIDER_BUSINESS_MAILING_ADDRESS_STATE_NAME :: State of the mailing address, mostly as two letters. Over a thousand distinct values, so foreign and misspelled entries are mixed in.
+   PROVIDER_BUSINESS_MAILING_ADDRESS_POSTAL_CODE :: ZIP code of the mailing address, often 9 digits run together, stored as text.
+   PROVIDER_BUSINESS_MAILING_ADDRESS_COUNTRY_CODE_IF_OUTSIDE_U_S :: Country of the mailing address as two letters; US on nearly every row.
+   PROVIDER_BUSINESS_MAILING_ADDRESS_TELEPHONE_NUMBER :: Phone number for the mailing address, 10 digits as text. Many providers share one number.
+   PROVIDER_BUSINESS_MAILING_ADDRESS_FAX_NUMBER :: Fax number for the mailing address, 10 digits as text. Mostly blank.
+   PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS :: First line of the street address where the provider actually practices.
+   PROVIDER_SECOND_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS :: Second line of the practice address, usually a suite number. Mostly blank.
+   PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME :: City where the provider practices.
+   PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME :: State where the provider practices, mostly as two letters. Over a thousand distinct values, so foreign and misspelled entries are mixed in.
+   PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE :: ZIP code of the practice address, often 9 digits run together, stored as text.
+   PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_COUNTRY_CODE_IF_OUTSIDE_U_S :: Country of the practice address as two letters; US on nearly every row.
+   PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_TELEPHONE_NUMBER :: Phone number at the practice location, 10 digits as text. Many providers share one number.
+   PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_FAX_NUMBER :: Fax number at the practice location, 10 digits as text. Mostly blank.
+   PROVIDER_ENUMERATION_DATE :: The date the provider was first given this NPI. The earliest dates are in 2006 and 2007, when the system started.
+   NPI_DEACTIVATION_REASON_CODE :: Meant to hold why an NPI was shut off, but it is empty in this table.
+   NPI_REACTIVATION_DATE :: The date a shut-off NPI was turned back on. Almost always blank.
+   PROVIDER_SEX_CODE :: The person's sex as F, M, X or U. Filled only for individual providers.
+   AUTHORIZED_OFFICIAL_LAST_NAME :: Last name of the person who signs for the organization, like its owner or president. Filled only for organizations.
+   AUTHORIZED_OFFICIAL_FIRST_NAME :: First name of the person who signs for the organization. Filled only for organizations.
+   AUTHORIZED_OFFICIAL_MIDDLE_NAME :: Middle name or initial of the person who signs for the organization. Mostly blank.
+   AUTHORIZED_OFFICIAL_TITLE_OR_POSITION :: Job title of the person who signs for the organization, like OWNER, PRESIDENT or CEO. Free text.
+   AUTHORIZED_OFFICIAL_TELEPHONE_NUMBER :: Phone number of the person who signs for the organization, 10 digits as text.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_1 :: The provider's first listed specialty code, like 390200000X; the codes need a lookup.
+   PROVIDER_LICENSE_NUMBER_1 :: State license number that goes with specialty 1, as typed.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_1 :: State that issued license number 1, as two letters.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_1 :: Y or N: whether specialty code 1 is the provider's main specialty.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_2 :: The provider's specialty code number 2, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_2 :: State license number that goes with specialty 2, as typed. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_2 :: State that issued license number 2, as two letters. Mostly blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_2 :: Y or N: whether specialty code 2 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_3 :: The provider's specialty code number 3, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_3 :: State license number that goes with specialty 3, as typed. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_3 :: State that issued license number 3, as two letters. Mostly blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_3 :: Y or N: whether specialty code 3 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_4 :: The provider's specialty code number 4, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_4 :: State license number that goes with specialty 4, as typed. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_4 :: State that issued license number 4, as two letters. Mostly blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_4 :: Y or N: whether specialty code 4 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_5 :: The provider's specialty code number 5, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_5 :: State license number that goes with specialty 5, as typed. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_5 :: State that issued license number 5, as two letters. Mostly blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_5 :: Y or N: whether specialty code 5 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_6 :: The provider's specialty code number 6, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_6 :: State license number that goes with specialty 6, as typed. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_6 :: State that issued license number 6, as two letters. Mostly blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_6 :: Y or N: whether specialty code 6 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_7 :: The provider's specialty code number 7, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_7 :: State license number that goes with specialty 7, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_7 :: State that issued license number 7, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_7 :: Y or N: whether specialty code 7 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_8 :: The provider's specialty code number 8, like 207R00000X; the codes need a lookup. Mostly blank.
+   PROVIDER_LICENSE_NUMBER_8 :: State license number that goes with specialty 8, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_8 :: State that issued license number 8, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_8 :: Y or N: whether specialty code 8 is the provider's main specialty. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_9 :: The provider's specialty code number 9, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_9 :: State license number that goes with specialty 9, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_9 :: State that issued license number 9, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_9 :: Y or N: whether specialty code 9 is the provider's main specialty. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_10 :: The provider's specialty code number 10, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_10 :: State license number that goes with specialty 10, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_10 :: State that issued license number 10, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_10 :: Y or N: whether specialty code 10 is the provider's main specialty. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_11 :: The provider's specialty code number 11, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_11 :: State license number that goes with specialty 11, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_11 :: State that issued license number 11, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_11 :: Y or N: whether specialty code 11 is the provider's main specialty. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_12 :: The provider's specialty code number 12, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_12 :: State license number that goes with specialty 12, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_12 :: State that issued license number 12, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_12 :: Y or N: whether specialty code 12 is the provider's main specialty. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_13 :: The provider's specialty code number 13, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_13 :: State license number that goes with specialty 13, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_13 :: State that issued license number 13, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_13 :: Y or N: whether specialty code 13 is the provider's main specialty. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_14 :: The provider's specialty code number 14, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_14 :: State license number that goes with specialty 14, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_14 :: State that issued license number 14, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_14 :: Y or N: whether specialty code 14 is the provider's main specialty. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_CODE_15 :: The provider's specialty code number 15, like 207R00000X; the codes need a lookup. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_15 :: State license number that goes with specialty 15, as typed. Almost always blank.
+   PROVIDER_LICENSE_NUMBER_STATE_CODE_15 :: State that issued license number 15, as two letters. Almost always blank.
+   HEALTHCARE_PROVIDER_PRIMARY_TAXONOMY_SWITCH_15 :: Y or N: whether specialty code 15 is the provider's main specialty. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_1 :: Other ID number 1 the provider uses with insurers or states, as typed. Includes filler like PENDING. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_1 :: Type of other ID number 1: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_1 :: State tied to other ID number 1, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_1 :: Who issued other ID number 1, typed freely, like BCBS, RAILROAD MEDICARE or STATE LICENSE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_2 :: Other ID number 2 the provider uses with insurers or states, as typed. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_2 :: Type of other ID number 2: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_2 :: State tied to other ID number 2, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_2 :: Who issued other ID number 2, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_3 :: Other ID number 3 the provider uses with insurers or states, as typed. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_3 :: Type of other ID number 3: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_3 :: State tied to other ID number 3, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_3 :: Who issued other ID number 3, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_4 :: Other ID number 4 the provider uses with insurers or states, as typed. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_4 :: Type of other ID number 4: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_4 :: State tied to other ID number 4, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_4 :: Who issued other ID number 4, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_5 :: Other ID number 5 the provider uses with insurers or states, as typed. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_5 :: Type of other ID number 5: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_5 :: State tied to other ID number 5, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_5 :: Who issued other ID number 5, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_6 :: Other ID number 6 the provider uses with insurers or states, as typed. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_6 :: Type of other ID number 6: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_6 :: State tied to other ID number 6, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_6 :: Who issued other ID number 6, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_7 :: Other ID number 7 the provider uses with insurers or states, as typed. Includes filler like PAR. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_7 :: Type of other ID number 7: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_7 :: State tied to other ID number 7, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_7 :: Who issued other ID number 7, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_8 :: Other ID number 8 the provider uses with insurers or states, as typed. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_8 :: Type of other ID number 8: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_8 :: State tied to other ID number 8, as two letters. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_8 :: Who issued other ID number 8, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_9 :: Other ID number 9 the provider uses with insurers or states, as typed. Includes filler like PAR. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_9 :: Type of other ID number 9: 01 or 05; the codes need a lookup. Mostly blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_9 :: State tied to other ID number 9, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_9 :: Who issued other ID number 9, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_10 :: Other ID number 10 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_10 :: Type of other ID number 10: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_10 :: State tied to other ID number 10, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_10 :: Who issued other ID number 10, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_11 :: Other ID number 11 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_11 :: Type of other ID number 11: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_11 :: State tied to other ID number 11, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_11 :: Who issued other ID number 11, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_12 :: Other ID number 12 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_12 :: Type of other ID number 12: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_12 :: State tied to other ID number 12, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_12 :: Who issued other ID number 12, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_13 :: Other ID number 13 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_13 :: Type of other ID number 13: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_13 :: State tied to other ID number 13, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_13 :: Who issued other ID number 13, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_14 :: Other ID number 14 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_14 :: Type of other ID number 14: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_14 :: State tied to other ID number 14, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_14 :: Who issued other ID number 14, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_15 :: Other ID number 15 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_15 :: Type of other ID number 15: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_15 :: State tied to other ID number 15, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_15 :: Who issued other ID number 15, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_16 :: Other ID number 16 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_16 :: Type of other ID number 16: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_16 :: State tied to other ID number 16, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_16 :: Who issued other ID number 16, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_17 :: Other ID number 17 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_17 :: Type of other ID number 17: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_17 :: State tied to other ID number 17, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_17 :: Who issued other ID number 17, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_18 :: Other ID number 18 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_18 :: Type of other ID number 18: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_18 :: State tied to other ID number 18, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_18 :: Who issued other ID number 18, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_19 :: Other ID number 19 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_19 :: Type of other ID number 19: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_19 :: State tied to other ID number 19, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_19 :: Who issued other ID number 19, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_20 :: Other ID number 20 the provider uses with insurers or states, as typed. Includes filler like PAR. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_20 :: Type of other ID number 20: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_20 :: State tied to other ID number 20, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_20 :: Who issued other ID number 20, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_21 :: Other ID number 21 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_21 :: Type of other ID number 21: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_21 :: State tied to other ID number 21, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_21 :: Who issued other ID number 21, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_22 :: Other ID number 22 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_22 :: Type of other ID number 22: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_22 :: State tied to other ID number 22, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_22 :: Who issued other ID number 22, typed freely, like BCBS, AETNA or MAMSI. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_23 :: Other ID number 23 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_23 :: Type of other ID number 23: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_23 :: State tied to other ID number 23, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_23 :: Who issued other ID number 23, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_24 :: Other ID number 24 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_24 :: Type of other ID number 24: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_24 :: State tied to other ID number 24, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_24 :: Who issued other ID number 24, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_25 :: Other ID number 25 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_25 :: Type of other ID number 25: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_25 :: State tied to other ID number 25, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_25 :: Who issued other ID number 25, typed freely, like BCBS, RAILROAD MEDICARE or INTERGROUP. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_26 :: Other ID number 26 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_26 :: Type of other ID number 26: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_26 :: State tied to other ID number 26, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_26 :: Who issued other ID number 26, typed freely, like BCBS, RAILROAD MEDICARE or BLUE CROSS BLUE SHIELD. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_27 :: Other ID number 27 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_27 :: Type of other ID number 27: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_27 :: State tied to other ID number 27, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_27 :: Who issued other ID number 27, typed freely, like BCBS, AETNA or RAILROAD MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_28 :: Other ID number 28 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_28 :: Type of other ID number 28: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_28 :: State tied to other ID number 28, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_28 :: Who issued other ID number 28, typed freely, like BCBS, AETNA or UNITED HEALTHCARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_29 :: Other ID number 29 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_29 :: Type of other ID number 29: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_29 :: State tied to other ID number 29, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_29 :: Who issued other ID number 29, typed freely, like BCBS, AETNA or FIRST MCO. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_30 :: Other ID number 30 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_30 :: Type of other ID number 30: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_30 :: State tied to other ID number 30, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_30 :: Who issued other ID number 30, typed freely, like BCBS, AETNA or CIGNA. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_31 :: Other ID number 31 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_31 :: Type of other ID number 31: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_31 :: State tied to other ID number 31, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_31 :: Who issued other ID number 31, typed freely, like BCBS, CIGNA or UNITED HEALTHCARE/OXFORD. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_32 :: Other ID number 32 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_32 :: Type of other ID number 32: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_32 :: State tied to other ID number 32, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_32 :: Who issued other ID number 32, typed freely, like BCBS, AETNA or CIGNA. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_33 :: Other ID number 33 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_33 :: Type of other ID number 33: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_33 :: State tied to other ID number 33, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_33 :: Who issued other ID number 33, typed freely, like BCBS, MEDICARE or KEYSTONE MERCY. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_34 :: Other ID number 34 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_34 :: Type of other ID number 34: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_34 :: State tied to other ID number 34, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_34 :: Who issued other ID number 34, typed freely, like BCBS, AETNA or BLUE CROSS. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_35 :: Other ID number 35 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_35 :: Type of other ID number 35: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_35 :: State tied to other ID number 35, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_35 :: Who issued other ID number 35, typed freely, like RAILROAD MEDICARE, DEVON or CHIROPRACTIC LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_36 :: Other ID number 36 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_36 :: Type of other ID number 36: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_36 :: State tied to other ID number 36, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_36 :: Who issued other ID number 36, typed freely, like RAILROAD MEDICARE, OXFORD or CHIROPRACTIC LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_37 :: Other ID number 37 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_37 :: Type of other ID number 37: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_37 :: State tied to other ID number 37, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_37 :: Who issued other ID number 37, typed freely, like BCBS, RAILROAD MEDICARE or PERSONAL CHOICE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_38 :: Other ID number 38 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_38 :: Type of other ID number 38: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_38 :: State tied to other ID number 38, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_38 :: Who issued other ID number 38, typed freely, like MEDCOST, CHIROPRACTIC LICENSE or CAPITAL BLUE CROSS. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_39 :: Other ID number 39 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_39 :: Type of other ID number 39: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_39 :: State tied to other ID number 39, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_39 :: Who issued other ID number 39, typed freely, like CHIROPRACTIC LICENSE, MEDICARE or PHARMACY LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_40 :: Other ID number 40 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_40 :: Type of other ID number 40: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_40 :: State tied to other ID number 40, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_40 :: Who issued other ID number 40, typed freely, like BCBS, CHIROPRACTIC LICENSE or PHARMACY LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_41 :: Other ID number 41 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_41 :: Type of other ID number 41: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_41 :: State tied to other ID number 41, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_41 :: Who issued other ID number 41, typed freely, like BCBS, CHIROPRACTIC LICENSE or MEDICARE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_42 :: Other ID number 42 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_42 :: Type of other ID number 42: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_42 :: State tied to other ID number 42, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_42 :: Who issued other ID number 42, typed freely, like BCBS, TRICARE WEST or CHIROPRACTIC LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_43 :: Other ID number 43 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_43 :: Type of other ID number 43: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_43 :: State tied to other ID number 43, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_43 :: Who issued other ID number 43, typed freely, like CHIROPRACTIC LICENSE, GUARDIAN or PK. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_44 :: Other ID number 44 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_44 :: Type of other ID number 44: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_44 :: State tied to other ID number 44, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_44 :: Who issued other ID number 44, typed freely, like BCBS, CHIROPRACTIC LICENSE or STATE LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_45 :: Other ID number 45 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_45 :: Type of other ID number 45: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_45 :: State tied to other ID number 45, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_45 :: Who issued other ID number 45, typed freely, like BCBS, CHIROPRACTIC LICENSE or STATE LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_46 :: Other ID number 46 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_46 :: Type of other ID number 46: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_46 :: State tied to other ID number 46, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_46 :: Who issued other ID number 46, typed freely, like CHIROPRACTIC LICENSE, STATE LICENSE or GREAT WEST. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_47 :: Other ID number 47 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_47 :: Type of other ID number 47: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_47 :: State tied to other ID number 47, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_47 :: Who issued other ID number 47, typed freely, like BCBS, CHIROPRACTIC LICENSE or STATE LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_48 :: Other ID number 48 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_48 :: Type of other ID number 48: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_48 :: State tied to other ID number 48, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_48 :: Who issued other ID number 48, typed freely, like BCBS, CHIROPRACTIC LICENSE or STATE LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_49 :: Other ID number 49 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_49 :: Type of other ID number 49: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_49 :: State tied to other ID number 49, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_49 :: Who issued other ID number 49, typed freely, like BCBS, CHIROPRACTIC LICENSE or STATE LICENSE. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_50 :: Other ID number 50 the provider uses with insurers or states, as typed. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_TYPE_CODE_50 :: Type of other ID number 50: 01 or 05; the codes need a lookup. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_STATE_50 :: State tied to other ID number 50, as two letters. Almost always blank.
+   OTHER_PROVIDER_IDENTIFIER_ISSUER_50 :: Who issued other ID number 50, typed freely, like BCBS, CHIROPRACTIC LICENSE or FLORIDA. Almost always blank.
+   IS_SOLE_PROPRIETOR :: Y or N: whether the person works as a sole proprietor; some rows say X. Filled only for individual providers.
+   IS_ORGANIZATION_SUBPART :: Y or N: whether the organization is a branch or unit of a bigger one. Filled only for organizations.
+   PARENT_ORGANIZATION_LBN :: Legal name of the parent organization, like WALGREENS BOOTS ALLIANCE INC. Filled only for branches, so almost always blank.
+   PARENT_ORGANIZATION_TIN :: Meant to hold the parent organization's tax ID, but every filled row just says <UNAVAIL>. Mostly blank.
+   AUTHORIZED_OFFICIAL_NAME_PREFIX_TEXT :: Prefix like DR. or MR. for the person who signs for the organization. Mostly blank.
+   AUTHORIZED_OFFICIAL_NAME_SUFFIX_TEXT :: Suffix like JR. for the person who signs for the organization. Almost always blank.
+   AUTHORIZED_OFFICIAL_CREDENTIAL_TEXT :: Credentials of the person who signs for the organization, like MD or DDS. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_1 :: Group type for specialty 1, like 193200000X MULTI-SPECIALTY GROUP. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_2 :: Group type for specialty 2, like 193200000X MULTI-SPECIALTY GROUP. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_3 :: Group type for specialty 3, like 193200000X MULTI-SPECIALTY GROUP. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_4 :: Group type for specialty 4, like 193200000X MULTI-SPECIALTY GROUP. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_5 :: Group type for specialty 5, like 193200000X MULTI-SPECIALTY GROUP. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_6 :: Group type for specialty 6, like 193200000X MULTI-SPECIALTY GROUP. Mostly blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_7 :: Group type for specialty 7, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_8 :: Group type for specialty 8, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_9 :: Group type for specialty 9, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_10 :: Group type for specialty 10, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_11 :: Group type for specialty 11, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_12 :: Group type for specialty 12, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_13 :: Group type for specialty 13, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_14 :: Group type for specialty 14, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+   HEALTHCARE_PROVIDER_TAXONOMY_GROUP_15 :: Group type for specialty 15, like 193200000X MULTI-SPECIALTY GROUP. Almost always blank.
+===== HEALTH__FED_HRSA_HPSA_PRIMARY_CARE ['cols', 'summary', 'row']
+summary Places the federal government has named short of primary-care doctors, with each area's scores, population and poverty figures, split into the census tracts, towns and counties that make it up.
+row One piece of one shortage area: one census tract, town or county inside it, or a single clinic.
+   HPSA_ID :: The ID of a federally named doctor-shortage area, ten characters, sometimes ending in a letter. Stored as text.
+   BHCMIS_ORGANIZATION_ID :: The federal ID for a community health center organization, as text with leading zeros. Mostly blank in the shortage-area table.
+   HPSA_NAME :: The name of the doctor-shortage area, like a county, a neighborhood, a low-income group, or a clinic.
+   HPSA_DISCIPLINE_CLASS :: Which kind of care is short: Primary Care, Dental Health, or Mental Health. Always Primary Care in the primary-care table.
+   DISCIPLINE_CLASS_NUMBER :: A number for which kind of care is short: 1 lines up with Primary Care, 6 with Dental Health, 7 with Mental Health. Always 1 in the primary-care table.
+   HPSA_SCORE :: How severe the doctor shortage is, 0 to 25. Higher means worse. Stored as text in one table.
+   PC_MCTA_SCORE :: A score for how short the area is on maternity care. Mostly blank, and stored as text with stray leading spaces in one table.
+   HPSA_STATUS :: Where the shortage designation stands: Designated, Proposed For Withdrawal, or Withdrawn.
+   HPSA_STATUS_CODE :: The same status as one letter: D Designated, P Proposed For Withdrawal, W Withdrawn.
+   HPSA_TYPE_CODE :: What kind of shortage area it is, like Hpsa Geo for a place, Hpsa Pop for a group of people, or a facility type like FQHC or ITU. Needs a lookup.
+   WITHDRAWN_DATE :: The date the shortage designation was withdrawn. Blank if still active. A real date in one table, month/day/year text in the other.
+   BREAK_IN_DESIGNATION :: Y if the shortage designation had a gap in time, N if not. Every row in both tables is N.
+   HPSA_FTE :: How many full-time doctors the area has, counted in full-time equivalents, so 0.5 is one half-time doctor. Stored as text in one table.
+   HPSA_SHORTAGE :: How many more full-time doctors the area needs to end the shortage. Stored as text in one table, often blank.
+   METROPOLITAN_INDICATOR :: Whether the area is Metropolitan, Non-Metropolitan, Frontier, or Unknown.
+   RURAL_STATUS :: Whether the area or practice is rural. One table uses True or False; the others use Rural, Non-Rural, Partially Rural, Unknown or Not Applicable.
+   RURAL_STATUS_CODE :: A one-letter rural code: R rural, N not rural, P partly rural, U unknown, plus a rare A that needs a lookup. Sometimes blank.
+   US_MEXICO_BORDER_100KM_INDICATOR :: Y if the place is within 100 kilometers of the Mexico border, N if not, U if unknown.
+   US_MEXICO_BORDER_COUNTY_INDICATOR :: Y if the place is in a county on the Mexico border, N if not, U if unknown.
+   HPSA_ADDRESS :: The street address of the shortage area, only when it is a single facility. Blank for about 90% of rows.
+   HPSA_CITY :: The city of the shortage area, only when it is a single facility. Blank for about 90% of rows.
+   HPSA_POSTAL_CODE :: The zip code of the shortage area, only when it is a single facility. Blank for about 90% of rows, sometimes with the four-digit add-on.
+   LATITUDE :: How far north the place is, usually in decimal degrees. Some rows hold 0 or the word None instead of a real spot, the aviation table writes it like 481243N, and several tables leave it empty.
+   LONGITUDE :: How far east or west the place is, usually in decimal degrees; U.S. places are negative. Some rows hold 0 or the word None instead of a real spot, the aviation table writes it like 0955859W, and sever
+   PRIMARY_STATE_ABBREVIATION :: The area's state or territory, as two letters. Includes places like GU for Guam and MH for the Marshall Islands.
+   PRIMARY_STATE_NAME :: The area's state or territory, spelled out.
+   PRIMARY_STATE_FIPS_CODE :: The area's state as a two-digit federal code, kept as text with leading zeros.
+   STATE_ABBREVIATION :: The state as two letters. Territories like GU for Guam and AS for American Samoa appear too.
+   STATE_NAME :: The state's full name, like Texas, in capitals in some tables. Territories like Guam show up, one table lists New York City as its own entry, and one table leaves it empty.
+   STATE_FIPS_CODE :: The state as a 2-digit Census code, like 06 for California. Territories use codes 60 and up.
+   COMMON_STATE_ABBREVIATION :: The area's state or territory, as two letters. Nearly the same as the primary state column, but a few rows differ.
+   COMMON_STATE_NAME :: The area's state or territory, spelled out.
+   COMMON_STATE_FIPS_CODE :: The area's state as a two-digit federal code, kept as text with leading zeros.
+   COMMON_COUNTY_NAME :: The county with its state tacked on, like Polk County, FL.
+   COMMON_STATE_COUNTY_FIPS_CODE :: The county as a five-digit federal code, state plus county, kept as text with leading zeros.
+   COMMON_POSTAL_CODE :: The five-digit zip code of the shortage area. Blank for about 90% of rows.
+   COMMON_REGION_NAME :: The federal health department region, like Region 4.
+   COUNTY_EQUIVALENT_NAME :: The county name, or the local equivalent in territories, like Rongelap in the Marshall Islands.
+   STATE_COUNTY_FIPS_CODE :: The county's five-digit government code, where the first two digits are the state. Kept as text so leading zeros survive.
+   RECORD_CREATE_DATE :: The date the source built the file. It is 2026-08-07 on every row, so it says nothing about the individual record.
+   _INGESTED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store a long number counting microseconds since 1970, and a few hold broken dates with impossible years like 56645
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run IDs. Added by your pipeline, not the sour
+   _SRC_SHA256 :: A fingerprint of the source file this row came from, used to spot a changed file. Some tables hold the placeholder "streamed-see-source-zip" or leave it empty. Added by your pipeline, not the source.
+   HPSA_COMPONENT_ID :: A made-up ID for each area-and-piece pair. Added by your pipeline, not the source.
+   HPSA_GEOGRAPHY_ID :: The code for the piece of land, like a census tract or county code. Stand-alone clinics say POINT instead.
+   HPSA_COMPONENT_SOURCE_ID :: An ID for a stand-alone clinic piece, filled only on those rows. Mostly blank.
+   DESIGNATION_TYPE :: The kind of shortage label, like HPSA Population, Geographic HPSA, or a clinic type such as Rural Health Clinic.
+   DESIGNATION_DATE :: When the area was first named a shortage area. Some dates go back to 1978.
+   DESIGNATION_LAST_UPDATE_DATE :: When the shortage label was last changed.
+   WITHDRAWN_DATE_STRING :: The date the label was withdrawn, stored as text like 2024/01/02. Blank on the rest of the rows.
+   DEGREE_OF_SHORTAGE :: How severe the shortage is. Almost every filled row says Not applicable; the few real values are numbers stored as text.
+   DESIGNATION_POPULATION :: How many people live in the shortage area. It is a figure for the whole area, carried on each of its pieces, so do not add it up across rows; some say 0.
+   PCT_POPULATION_BELOW_POVERTY :: Share of the area's people below the poverty line, as a percent. Some say 0.
+   FORMAL_RATIO :: People per primary-care doctor in the area, written as text like 3853:1. Some say 0:1.
+   PROVIDER_RATIO_GOAL :: The people-per-doctor mark the area is measured against, written as text like 3000:1 or 3500:1.
+   ESTIMATED_SERVED_POPULATION :: How many people the area's current doctors can serve.
+   ESTIMATED_UNDERSERVED_POPULATION :: How many people are left without enough care. Some values are negative, like -3500.
+   RESIDENT_CIVILIAN_POPULATION :: The area's civilian population. Mostly blank, and some say 0.
+   POPULATION_TYPE :: Which group the shortage covers, like the whole local population or low-income residents.
+   POPULATION_TYPE_CODE :: A short code for that group, like LI or TRC; POPULATION_TYPE spells it out.
+   DESIGNATION_POPULATION_TYPE_DESCRIPTION :: The group the shortage covers, or the clinic type for clinic labels.
+   PROVIDER_TYPE :: Says Not Applicable on every filled row, so it tells you nothing.
+   METROPOLITAN_INDICATOR_CODE :: Whether the area is urban or rural, as a code: 0, M, N or F. The codes need a lookup.
+   COMPONENT_NAME :: The name of the piece, like a census tract or a town. Some are bare numbers.
+   COMPONENT_TYPE_CODE :: A short code for the kind of piece: CT, CSD, SCTY or UNK.
+   COMPONENT_TYPE_DESCRIPTION :: The kind of piece: Census Tract, County Subdivision, Single County, or Unknown.
+   COMPONENT_STATE_ABBREVIATION :: The piece's state, as two letters.
+   COUNTY_FIPS_CODE :: The 3-digit county code within the state; it needs the state to point at one county.
+   RECORD_CREATE_DATE_TEXT :: The date the file was made, stored as text; 2026/08/07 on every row.
+===== HEALTH__SAM_EXCLUDED_PROVIDERS ['cols', 'summary', 'row']
+summary People and companies barred from federal contracts or programs in the SAM exclusion list by agencies other than HHS, OFAC and OPM, with a best-guess match to a health provider ID. A name match is a lead, not proof.
+row One exclusion in the federal SAM list: one person or company barred by one agency.
+   SAM_NUMBER :: The federal contracting system's own ID for an exclusion, a long random-looking code, one per row.
+   UEI :: The 12-character Unique Entity ID the federal government gives each business, which replaced DUNS. Often blank.
+   EXCLUDING_AGENCY :: The federal agency that barred the person or company, as a short abbreviation like HHS, DOJ, or EPA.
+   EXCLUSION_TYPE :: Why the person or company is barred. HHS tables use the law section as a code like 1128a1; the SAM tables use words like Voluntary Exclusion. It is almost always blank in the health-center people tabl
+   EXCLUSION_PROGRAM :: What the ban covers: Procurement, NonProcurement, or Reciprocal.
+   IS_ENTITY_NOT_INDIVIDUAL :: True if the barred party is a business or group, False if it is a person.
+   ENTITY_NAME :: The name of the company, person or group the record is about. The two exclusion tables leave it mostly blank.
+   FIRST_NAME :: The person's first name. Some tables write it in capitals.
+   LAST_NAME :: The person's last name. Some tables write it in capitals.
+   CITY :: The city or town name, in capitals or mixed case, with spellings not cleaned. Some rows hold fillers like UNKNOWN or TBD, and one table leaves it empty.
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and some leave it empty.
+   ACTIVATION_DATE :: The date the ban took effect.
+   TERMINATION_DATE_RAW :: The date the ban ends, or the word Indefinite. Stored as text, so it will not sort as a date.
+   IS_CURRENTLY_EXCLUDED :: True if the ban is still in force, False if it has ended.
+   NPI :: The doctor's or clinic's 10-digit National Provider Identifier, stored as text. Some tables leave it mostly blank or empty, and the SAM exclusions table uses 0000000000 as a filler.
+   TAXONOMY_CODE_1 :: The person's main medical specialty as a ten-character code, like 207R00000X. Needs a lookup. Mostly blank in the exclusions table.
+   CREDENTIAL :: The letters after the person's name, like MD, RN, or D.D.S., typed however the source typed them. Mostly blank in the exclusions table.
+   MATCH_METHOD :: How this row was matched to another list, like exact, fuzzy, brand, or surname plus state; some rows say unmatched. Mostly blank in the EPA crosswalk and excluded-providers tables.
+   MATCH_NOTE :: A note on how the row was matched to other data, like last name or ambiguous: 2 people share it. Added by your pipeline, not the source.
+   CLASSIFICATION :: What was barred: Individual, Firm or Special Entity Designation.
+   SAM_NPI :: The health provider ID written in the SAM record itself. Filled on only 10 rows.
+   NPPES_NAME :: The provider's name from the national provider list, when a match was found. Almost always blank.
+===== HEALTH__FED_CDC_SUICIDE_RATES ['cols', 'summary', 'row']
+summary CDC suicide death rates for the US by year, broken out by sex, age, race and Hispanic origin; for 9 rows in 2018 CDC itself publishes two different rates for the same group.
+row One rate: the suicide death rate for one group of people, like Black women aged 45 to 64, in one year.
+   INDICATOR :: What is being measured in this row, in words, like Symptoms of Anxiety Disorder or Heroin overdose deaths. Empty in the Eurostat table.
+   UNIT :: The unit the number is measured in, like %, GW, TWh or deaths per 100,000. One table writes percent as PC, and two tables leave it empty.
+   YEAR :: The year the row covers, like 2021. A few tables use a range like 2020-2022, and three tables leave it empty.
+   AGE :: The person's age in years, or an age group like 15-24 years in the CDC table. Stored as text in some tables.
+   UNIT_NUM :: A number code for the kind of rate, 1 or 2; the unit column spells it out.
+   STUB_NAME :: How the population is split for this row, like by sex and age, or by sex and race.
+   STUB_NAME_NUM :: A number code for how the population is split; the stub name column spells it out.
+   STUB_LABEL :: The exact group the rate is for, like Female: Black or African American.
+   STUB_LABEL_NUM :: A number code for the exact group, like 4.22; the stub label column spells it out.
+   YEAR_NUM :: A running number for the year, from 1 up to 42; the year column gives the real year.
+   AGE_NUM :: A number code for the age group, like 0 for all ages; the age column spells it out.
+   ESTIMATE :: The suicide death rate for the group. A number stored as text; blank where CDC flags the value.
+   FLAG :: A mark explaining a missing or shaky rate, either ... or *. The marks need a lookup. Mostly blank.
+===== HEALTH__FED_CMS_FACILITY_LEVEL_MINIMUM_DATA_SET_FREQUENCY ['cols', 'summary', 'row']
+summary How often each answer shows up on the standard resident assessments at every Medicare and Medicaid nursing home, question by question, from CMS.
+row One answer at one nursing home: how many residents got one response to one assessment question, in one report.
+   CCN :: The facility's 6-character Medicare certification number, stored as text; some hold letters, like 38T061. It is almost always blank in the three Open Payments tables.
+   CITY :: The city or town name, in capitals or mixed case, with spellings not cleaned. Some rows hold fillers like UNKNOWN or TBD, and one table leaves it empty.
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and some leave it empty.
+   ZIP_CODE :: The ZIP code, stored as text, as 5 digits or 9 with or without a dash. Some rows hold junk like XXXXX or 00000 or a 4-digit code that lost its leading zero, and two tables leave it empty.
+   COUNTY_NAME :: The county name. Casing varies and some tables add County, Parish or the state, like Garza County, TX, so clean it before matching. One table uses Undetermined as a filler, and the rail casualty table
+   REPORT_DATE :: The date the report was issued. One CMS table stores it as text like Q2, 2026.
+   PROVIDER_NAME :: The nursing home's name.
+   FIPS_COUNTY_CODE :: The nursing home's three-digit county code. It needs the state code to point to one county.
+   MDS_ITEM_QUESTION_DESCRIPTION :: The assessment question, with its item code, like A2105: Discharge - Discharge Status.
+   MDS_ITEM_RESPONSE :: The answer being counted, like Yes, No or Independent.
+   OVERALL_PERCENT :: The percent of all residents who got this answer. Almost always blank.
+   TOTAL_RESIDENTS :: How many residents got this answer, stored as text. Mostly the placeholder _, meaning no number given.
+   SHORT_STAY_PERCENT :: The percent of short-stay residents who got this answer. Almost always blank.
+   SHORT_STAY_RESIDENTS :: How many short-stay residents got this answer, stored as text. Mostly the placeholder _.
+   LONG_STAY_PERCENT :: The percent of long-stay residents who got this answer. Almost always blank.
+   LONG_STAY_RESIDENTS :: How many long-stay residents got this answer, stored as text. Mostly the placeholder _.

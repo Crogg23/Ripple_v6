@@ -1,0 +1,117 @@
+===== q23 (stmt 24) 35 rows
+M | AG | N | FEMA_DOCKET | PUB_DAYS | SAMPLE_TITLE
+2024-07 | ["Homeland Security Department","Federal Emergency Management Agency"] | 23 | 23 | 1 | Arkansas; Amendment No. 1 to Notice of a Major Disaster Declaration
+2024-07 | ["Small Business Administration"] | 52 | 0 | 14 | Administrative Declaration of a Disaster for the Commonwealth of Pennsylvania
+2024-08 | ["Homeland Security Department","Federal Emergency Management Agency"] | 17 | 17 | 1 | Florida; Amendment No. 1 to Notice of a Major Disaster Declaration
+2024-08 | ["Small Business Administration"] | 25 | 0 | 9 | Administrative Declaration of a Disaster for the State of Indiana
+2024-09 | ["Homeland Security Department","Federal Emergency Management Agency"] | 74 | 74 | 2 | Alaska; Amendment No. 1 to Notice of a Major Disaster Declaration
+2024-09 | ["Homeland Security Department"] | 1 | 1 | 1 | Iowa; Amendment No. 1 to Notice of a Major Disaster Declaration
+2024-09 | ["Small Business Administration"] | 29 | 0 | 12 | Administrative Declaration of a Disaster for the State of New York
+2024-10 | ["Homeland Security Department","Federal Emergency Management Agency"] | 70 | 70 | 3 | Alabama; Amendment No. 1 to Notice of an Emergency Declaration
+2024-10 | ["Small Business Administration"] | 82 | 0 | 20 | Administrative Declaration of a Disaster for the State of California
+2024-11 | ["Small Business Administration"] | 44 | 0 | 13 | Administrative Declaration of an Economic Injury Disaster for the State of Oregon
+2024-12 | ["Homeland Security Department","Federal Emergency Management Agency"] | 90 | 90 | 1 | Alabama; Amendment No. 2 to Notice of an Emergency Declaration
+2024-12 | ["Small Business Administration"] | 19 | 0 | 9 | Administrative Declaration of a Disaster for the State of California
+2025-01 | ["Small Business Administration"] | 21 | 0 | 11 | Administrative Declaration of a Disaster for the State of Mississippi
+2025-02 | ["Small Business Administration"] | 7 | 0 | 5 | Administrative Declaration of an Economic Injury Disaster for the State of California
+2025-03 | ["Small Business Administration"] | 20 | 0 | 11 | Administrative Declaration of a Disaster for the State of Illinois
+2025-04 | ["Small Business Administration"] | 17 | 0 | 9 | Administrative Declaration of a Disaster for the State of Illinois
+2025-05 | ["Small Business Administration"] | 13 | 0 | 10 | Administrative Declaration of a Disaster for the Commonwealth of Pennsylvania
+2025-06 | ["Small Business Administration"] | 33 | 0 | 9 | Administrative Declaration of a Disaster for the State of Illinois
+2025-07 | ["Small Business Administration"] | 31 | 0 | 10 | Administrative Declaration of a Disaster for the State of Florida
+2025-08 | ["Homeland Security Department","Federal Emergency Management Agency"] | 2 | 2 | 1 | Notices of Emergency and Major Disaster Declarations and Related Amendments
+2025-08 | ["Small Business Administration"] | 21 | 0 | 8 | Administrative Declaration of a Disaster for the State of Georgia
+2025-09 | ["Homeland Security Department","Federal Emergency Management Agency"] | 67 | 67 | 1 | Arkansas; Amendment No. 1 to Notice of a Major Disaster Declaration
+2025-09 | ["Small Business Administration"] | 18 | 0 | 11 | Administrative Declaration of a Disaster for the Commonwealth of Pennsylvania
+2025-10 | ["Small Business Administration"] | 10 | 0 | 6 | Administrative Declaration of a Disaster for the State of Arizona
+2025-11 | ["Small Business Administration"] | 9 | 0 | 6 | Administrative Declaration of a Disaster for the State of Arizona
+2025-12 | ["Small Business Administration"] | 5 | 0 | 5 | Administrative Declaration of a Disaster for the State of California
+2026-02 | ["Small Business Administration"] | 13 | 0 | 9 | Administrative Declaration of a Disaster for the State of California
+2026-03 | ["Small Business Administration"] | 6 | 0 | 6 | Administrative Declaration of a Disaster for the Commonwealth of Pennsylvania
+2026-04 | ["Small Business Administration"] | 20 | 0 | 8 | Administrative Declaration of a Disaster for the State of Illinois
+2026-05 | ["Homeland Security Department","Federal Emergency Management Agency"] | 64 | 64 | 1 | Alaska; Amendment No. 1 to Notice of a Major Disaster Declaration
+2026-05 | ["Small Business Administration"] | 6 | 0 | 5 | Administrative Declaration of a Disaster for the State of Michigan
+2026-06 | ["Small Business Administration"] | 17 | 0 | 7 | Administrative Declaration of a Disaster for the State of Georgia
+2026-07 | ["Small Business Administration"] | 22 | 0 | 8 | Administrative Declaration of a Disaster for the Commonwealth of Pennsylvania
+2026-08 | ["Small Business Administration"] | 27 | 0 | 10 | Administrative Declaration of a Disaster for the Commonwealth of Pennsylvania
+2026-09 | ["Small Business Administration"] | 2 | 0 | 2 | Administrative Declaration of a Disaster for the State of Kansas
+===== q24 (stmt 25) 29 rows
+K | A | B | C | D | E | F | G | H | I
+chain | 1518001 | J 1 Mining LLC | 2010-2010 | 30 | 9 | 5765 | 5765 | 5765 | 0108585
+chain | 1518001 | BEC Coal Inc | 2010-2011 | 130 | 58 | 43379 | 43379 | 0 | 0107705
+chain | 1518001 | Somer Grace Coal Company LLC | 2011-2011 | 104 | 58 | 213810 | 173020 | 11010 | 0116665
+bucket | C | 3+ | 120 | 29.11 | 20.76 | 28.7 | 13.4 | 34 | 22.3
+chain | 1518001 | Mercy Mining LLC | 2011-2012 | 105 | 41 | 23609 | 23609 | 308 | 0112645
+chain | 1518001 | Deep Woods Mining LLC | 2013-2013 | 40 | 15 | 4240 | 4240 | 312 | 0125696
+chain | 1518001 | Natural Fuel Energy | 2014-2014 | 32 | 11 | 12912 | 12912 | 0 | 0130813
+chain | 1518001 | Prime Energy Development LLC | 2014-2014 | 4 | 0 | 400 | 400 | 400 | 0135814
+chain | 1518001 | Lost Ridge Mining LLC | 2015-2016 | 160 | 45 | 54689 | 54689 | 0 | 0136953
+chain | 1518001 | Covenant Coal Corporation, Inc | 2016-2018 | 469 | 96 | 190921 | 180215 | 8900 | 0146815
+bucket | M | 1 | 10057 | 200.05 | 197.34 | 1.4 | 0 | 71 | 20.2
+chain | 1518001 | Prosper Energy, LLC | 2018-2022 | 416 | 56 | 84424 | 82742 | 1599 | 0161013
+chain | 1518001 | Maverick Coal Co., LLC | 2026-2026 | 2 | 0 | 168 | 0 | 0 | 0193853
+chain | 1518973 | Blackberry Energy LLC | 2010-2010 | 1 | 0 |  |  |  | 0087844
+chain | 1518973 | Connor Coal Inc. | 2017-2017 | 4 | 0 | 464 | 464 | 0 | 0136573
+chain | 1518973 | Little Tackett Mining, L.L.C. | 2017-2018 | 138 | 32 | 38964 | 38964 | 0 | 0151813
+chain | 1518973 | Lester And Sons Inc | 2018-2020 | 272 | 60 | 46220 | 46220 | 0 | 0155973
+chain | 1518973 | Dude Branch III, LLC | 2021-2022 | 100 | 17 | 70658 | 70658 | 0 | 0179373
+chain | 1518973 | Reliant Contracting, LLC | 2023-2023 | 15 | 4 | 2302 | 2302 | 0 | 0152753
+chain | 1518973 | J & E Mining Inc | 2024-2024 | 13 | 0 | 1521 | 0 | 0 | 0192893
+bucket | M | 2 | 1265 | 32.32 | 29.89 | 7.5 | 0 | 42 | 21.7
+bucket | C | 1 | 777 | 123.5 | 118.98 | 3.7 | 0 | 49 | 19.7
+bucket | M | 3+ | 185 | 7.34 | 6.29 | 14.3 | 0 | 10 | 23.2
+chain | 4407150 | Osaka Mining Corporation | 2010-2013 | 598 | 207 | 878780 | 653263 | 653263 | 0063184
+chain | 4407150 | Blackjewel L.L.C. | 2015-2019 | 1235 | 372 | 1844997 | 1481383 | 8033 | 0100767
+chain | 4407150 | INMET Mining, LLC. | 2019-2023 | 285 | 37 | 58245 | 58245 | 58245 | 0166593
+bucket | C | 2 | 235 | 52.83 | 40.64 | 23.1 | 0.4 | 40 | 20.5
+chain | 4407150 | Coking Coal, LLC | 2023-2025 | 164 | 31 | 39598 | 8412 | 8412 | 0166873
+chain | 4407150 | Cumberland Coal Corporation | 2026-2026 | 10 | 0 | 604 | 0 | 0 | 0205833
+===== q25 (stmt 26) 26 rows
+K | CC | NM | A | B | C | D | E | F | G
+median |  |  | 113 | 9.7 | 6.5 | 1.2 | 7 | 34 | 4
+top | SEN | Senegal | 4.44 | 54 | 23.2 | 2.33 | 1.9 | 8.2 | 1.31
+top | BTN | Bhutan | 0.49 | 50.2 | 16.2 | 3.1 | 0.16 | 1 | 
+top | PAK | Pakistan | 15.6 | 37.8 | 27.2 | 1.13 | 11.22 | 41.2 | 1.92
+top | LBN | Lebanon | 4.18 | 35.4 | 1.5 | 0.83 | 0.18 | 11.8 | 3.78
+top | COM | Comoros | 0.05 | 33.5 | 11.4 | 2.94 | 0.02 | 0.1 | 
+top | EGY | Egypt, Arab Rep. | 21.98 | 32.9 | 36.3 | 0.91 | 24.27 | 66.8 | 5.45
+top | ETH | Ethiopia | 3.53 | 30 | 9.2 | 1.64 | 1.09 | 11.8 | 0
+top | MNE | Montenegro | 1.19 | 28.7 | 11 | 1.9 | 0.46 | 4.1 | 0.87
+top | AGO | Angola | 10.25 | 27.3 | 26.2 | 0.96 | 9.86 | 37.6 | 2.32
+top | GNB | Guinea-Bissau | 0.08 | 26.5 | 10.7 | 1.29 | 0.03 | 0.3 | 0.03
+top | BEN | Benin | 1.06 | 24.7 | 22.3 | 1.11 | 0.95 | 4.3 | 0.14
+top | BOL | Bolivia | 2.32 | 22.4 | 14.9 | 1.28 | 1.54 | 10.3 | 1.09
+top | NER | Niger | 0.43 | 21.6 | 16.7 | 1.29 | 0.34 | 2 | 0
+top | CMR | Cameroon | 1.85 | 21.6 | 16.3 | 1.12 | 1.4 | 8.6 | 0.04
+top | LKA | Sri Lanka | 4.36 | 21.5 | 13.4 | 0.88 | 2.72 | 20.3 | 0.85
+jump | BDI | Burundi | 0.09 | 20.9 | 5.2 | 3.1 | 0.02 | 0.4 | 
+jump | BTN | Bhutan | 0.49 | 50.2 | 16.2 | 3.1 | 0.16 | 1 | 
+jump | COM | Comoros | 0.05 | 33.5 | 11.4 | 2.94 | 0.02 | 0.1 | 
+jump | SEN | Senegal | 4.44 | 54 | 23.2 | 2.33 | 1.9 | 8.2 | 1.31
+jump | LAO | Lao PDR | 1.85 | 16.4 | 7.3 | 2.25 | 0.82 | 11.2 | 0.19
+jump | MNE | Montenegro | 1.19 | 28.7 | 11 | 1.9 | 0.46 | 4.1 | 0.87
+jump | NPL | Nepal | 0.69 | 16 | 8.9 | 1.81 | 0.38 | 4.3 | 
+jump | ETH | Ethiopia | 3.53 | 30 | 9.2 | 1.64 | 1.09 | 11.8 | 0
+jump | VCT | St. Vincent and the Grenadines | 0.07 | 15.4 | 9.4 | 1.54 | 0.04 | 0.4 | 0
+jump | MDV | Maldives | 1.12 | 20.6 | 7.8 | 1.52 | 0.43 | 5.5 | 0.63
+===== q26 (stmt 27) 19 rows
+K | AG | Y17 | Y18 | Y19 | Y20 | Y21 | Y22 | Y23 | Y24 | Y25 | Y26
+all |  | 2139 | 2172 | 2625 | 2402 | 2047 | 2151 | 2339 | 2338 | 1563 | 1112
+ag | Land Management Bureau | 30 | 21 | 20 | 10 | 25 | 32 | 36 | 40 | 3 | 2
+ag | Health and Human Services Department | 32 | 38 | 29 | 22 | 28 | 18 | 27 | 25 | 0 | 5
+ag | Centers for Disease Control and Prevention | 14 | 37 | 55 | 51 | 49 | 54 | 43 | 56 | 6 | 11
+ag | Office of the Secretary | 64 | 39 | 52 | 39 | 3 | 31 | 53 | 68 | 4 | 16
+ag | Environmental Protection Agency | 29 | 19 | 29 | 35 | 19 | 31 | 47 | 31 | 9 | 8
+ag | National Science Foundation | 52 | 79 | 74 | 57 | 65 | 71 | 62 | 67 | 42 | 14
+ag | Federal Election Commission | 39 | 30 | 34 | 10 | 33 | 35 | 28 | 29 | 27 | 0
+ag | Internal Revenue Service | 56 | 59 | 61 | 62 | 57 | 57 | 59 | 56 | 46 | 11
+ag | State Department | 43 | 42 | 33 | 33 | 25 | 30 | 27 | 36 | 15 | 15
+ag | Federal Communications Commission | 20 | 19 | 21 | 20 | 20 | 25 | 21 | 20 | 15 | 12
+ag | Veterans Affairs Department | 42 | 47 | 45 | 50 | 43 | 42 | 44 | 40 | 37 | 17
+ag | National Institutes of Health | 650 | 606 | 905 | 779 | 674 | 638 | 686 | 695 | 578 | 291
+ag | Civil Rights Commission | 133 | 154 | 184 | 230 | 164 | 180 | 175 | 121 | 140 | 91
+ag | Food and Drug Administration | 45 | 55 | 47 | 45 | 33 | 32 | 42 | 32 | 26 | 26
+ag | Securities and Exchange Commission | 39 | 53 | 51 | 77 | 57 | 47 | 46 | 42 | 44 | 32
+ag | National Oceanic and Atmospheric Administration | 223 | 224 | 267 | 249 | 227 | 253 | 256 | 249 | 201 | 216
+ag | Federal Energy Regulatory Commission | 8 | 27 | 24 | 12 | 9 | 24 | 32 | 31 | 24 | 20
+ag | Nuclear Regulatory Commission | 71 | 82 | 65 | 46 | 44 | 42 | 37 | 45 | 41 | 51

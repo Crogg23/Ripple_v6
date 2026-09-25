@@ -1,0 +1,3 @@
+-- S06 HUD projects: vintage, programs, sentinels, id shape, duplicate codes
+ERROR: 001065 (22023): SQL compilation error:
+Function TRY_CAST cannot be used with arguments of types NUMBER(18,4) and NUMBER(38,0)

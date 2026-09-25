@@ -1,0 +1,85 @@
+2024-09-06 ads ending that day 0
+2022-09-09 ads ending that day 0
+2020-09-04 ads ending that day 0
+top end dates {Timestamp('2024-01-01 00:00:00'): 39, Timestamp('2026-08-05 00:00:00'): 30, Timestamp('2026-01-03 00:00:00'): 26, Timestamp('2024-09-06 00:00:00'): 24, Timestamp('2023-12-31 00:00:00'): 21, Timestamp('2024-09-05 00:00:00'): 20, Timestamp('2022-09-09 00:00:00'): 20, Timestamp('2026-08-04 00:00:00'): 20}
+huge lines {2022: 5, 2024: 1, 2026: 2}
+current voting members 431 distinct districts 431
+member-named accounts with 2025+ spend
+                                                        name home     usd25  n                                                                   match
+5      US House of Representatives Congressman Rob Bresnahan   PA   13100.0  1                                Robert P. Bresnahan, Jr. PA-8 2027-01-03
+12          REP. JOHN CARTER - U.S. HOUSE OF REPRESENTATIVES   TX     700.0  2      John R. Carter TX-31 2027-01-03; Erica Lee Carter TX-18 2025-01-03
+13                               US House of Representatives   CO   48300.0  0                                                                        
+21          REP. JOSH HARDER - U.S. HOUSE OF REPRESENTATIVES   CA   13800.0  1                                             Josh Harder CA-9 2027-01-03
+22     Rep. Troy A Carter, Sr. - US House of Representatives   LA     800.0  1                                          Troy A. Carter LA-2 2027-01-03
+24                                         US House of Reps.   NY   51000.0  0                                                                        
+26           REP. JASON CROW - U.S. HOUSE OF REPRESENTATIVES   CO   23700.0  1                                              Jason Crow CO-6 2027-01-03
+33                Rep. Kennedy - US House of Representatives   NY    4400.0  1                                     Timothy M. Kennedy NY-26 2027-01-03
+43         Rep. Miller-Meeks - U.S. House of Representatives   IA   33500.0  1                                Mariannette Miller-Meeks IA-1 2027-01-03
+44                   Rep Evans - US HOUSE OF REPRESENTATIVES   CO    4400.0  1                                              Gabe Evans CO-8 2027-01-03
+45                                       Rep. Daniel Goldman   NY  103200.0  1                                      Daniel S. Goldman NY-10 2027-01-03
+48                  REP. STEEL - US HOUSE OF REPRESENTATIVES   NV   17700.0  0                                                                        
+50          REP. LUCY MCBATH - U.S. HOUSE OF REPRESENTATIVES   GA   10700.0  1                                             Lucy McBath GA-6 2027-01-03
+51        US House of Representatives - Rep. Robert Menendez   NJ   17600.0  1                                         Robert Menendez NJ-8 2027-01-03
+53                   Rep. Case - US House of Representatives   HI   57600.0  1                                                 Ed Case HI-1 2027-01-03
+54                Rep Larson - U.S. House of Representatives   CT   31300.0  1                                          John B. Larson CT-1 2027-01-03
+56                Rep. Delaney - US House of Representatives   MD   98600.0  2  April McClain Delaney MD-6 2027-01-03; John K. Delaney MD-6 2019-01-03
+60                   Rep. Gray - US House of Representatives   CA   13200.0  1                                              Adam Gray CA-13 2027-01-03
+61        REP. HENRY CUELLAR - U.S. HOUSE OF REPRESENTATIVES   TX   29300.0  1                                          Henry Cuellar TX-28 2027-01-03
+63                               Office of Rep. Erin Houchin   IN    4900.0  1                                            Erin Houchin IN-9 2027-01-03
+65                   Rep. Bell - US House of Representatives   MO   85000.0  1                                             Wesley Bell MO-1 2027-01-03
+66          Rep. Sylvia Garcia - US House of Representatives   TX    6000.0  1                                       Sylvia R. Garcia TX-29 2027-01-03
+67                     Rep. Min - US House of Represntatives   CA    4000.0  1                                               Dave Min CA-47 2027-01-03
+68    Rep. Gluesenkamp Perez - U.S. House of Representatives   WA    3800.0  1                                 Marie Gluesenkamp Perez WA-3 2027-01-03
+70                                      Rep. Nikki Budzinski   IL   27500.0  1                                        Nikki Budzinski IL-13 2027-01-03
+71   Representative Hank Johnson - US House of Representativ   GA   10700.0  1                            Henry C. "Hank" Johnson, Jr. GA-4 2027-01-03
+72             Rep. Gottheimer - US House of Representatives   NJ  191900.0  1                                         Josh Gottheimer NJ-5 2027-01-03
+73             US HOUSE OF REPRESENTATIVES OFFICE OF FINANCE   CA   61100.0  0                                                                        
+75                Rep. Wittman - US House of Representatives   VA   39700.0  1                                       Robert J. Wittman VA-1 2027-01-03
+83             US House of Representatives - LaMonica McIver   NJ   28000.0  1                                        LaMonica McIver NJ-10 2027-01-03
+85               Rep. Scholten - US House of Representatives   MI    8100.0  1                                     Hillary J. Scholten MI-3 2027-01-03
+93                                 Congressman Rob Bresnahan   PA    9500.0  1                                Robert P. Bresnahan, Jr. PA-8 2027-01-03
+94                               Office of Rep. Troy Downing   MT    1900.0  1                                            Troy Downing MT-2 2027-01-03
+100   Office of Rep. Aaron Bean- US House of Representatives   FL   35800.0  1                                              Aaron Bean FL-4 2027-01-03
+102                 Rep. Boyle - US House of Representatives   PA    1000.0  1                                        Brendan F. Boyle PA-2 2027-01-03
+103                                      Rep. Ritchie Torres   NY   54400.0  1                                         Ritchie Torres NY-15 2027-01-03
+111            REP. AMI BERA - U.S. HOUSE OF REPRESENTATIVES   CA   48100.0  1                                                Ami Bera CA-6 2027-01-03
+113      REP. SHARICE DAVIDS - U.S. HOUSE OF REPRESENTATIVES   KS   22200.0  1                                          Sharice Davids KS-3 2027-01-03
+generic district-ad $ 2025+ (mid of range): 983800  of which lands on a current district: 978300
+unlanded generic keys: ['FL-20']
+named $ 2025+ mapped: 1038400.0  unmapped named $: 178100.0
+       districts  with_ads        usd  median_usd_if_any  share_with_ads
+top87                                                                   
+False        344        53  1236800.0            12500.0            15.4
+True          87        23   779900.0            14500.0            26.4
+share of official $ in top-fifth IE districts 38.7
+       districts  with_ads        usd   pct
+top26                                      
+False        344        63  1516700.0  18.3
+True          87        13   500000.0  14.9
+              ie24  rank24        ie26   generic     named  official
+dkey                                                                
+NJ-5     244461.36   126.0        0.00       0.0  191900.0  191900.0
+MI-7   16594655.30    17.0  8885091.56  124250.0       0.0  124250.0
+NY-10    150853.00   139.0   607088.08       0.0  103200.0  103200.0
+WI-8    2099659.09    76.0        0.00  102800.0       0.0  102800.0
+MD-6    1001522.92    92.0   558755.38       0.0   98600.0   98600.0
+MO-1   15618371.06    18.0  4738489.14       0.0   85000.0   85000.0
+PA-2       2896.49   244.0        0.00   77150.0    1000.0   78150.0
+NV-3    2178634.17    72.0    72788.78   72150.0       0.0   72150.0
+VA-10   6638459.83    39.0        0.00   64500.0       0.0   64500.0
+HI-1       1050.52   281.0   100000.00       0.0   57600.0   57600.0
+NJ-8    1837025.30    79.0   912505.40   37000.0   17600.0   54600.0
+NY-15    400365.90   116.0  3789387.94       0.0   54400.0   54400.0
+MI-10  11154672.95    30.0   894779.70   51000.0       0.0   51000.0
+CA-6          0.00   322.0  3030419.96       0.0   48100.0   48100.0
+PA-8   12855106.83    24.0   767528.69   21950.0   22600.0   44550.0
+NY-1    4394413.63    49.0        0.00   43900.0       0.0   43900.0
+GA-4          0.00   346.0        0.00   30450.0   10700.0   41150.0
+VA-1        742.66   285.0  2342144.18       0.0   39700.0   39700.0
+FL-4          0.00   341.0     7201.80       0.0   35800.0   35800.0
+IA-1    9852118.28    33.0  1789506.98       0.0   33500.0   33500.0
+CT-1          0.00   327.0  2571646.74       0.0   31300.0   31300.0
+TX-28     18334.91   198.0    10387.00       0.0   29300.0   29300.0
+UT-1          0.00   426.0  2856938.18   28750.0       0.0   28750.0
+IL-2       2506.78   250.0  7094814.00   28250.0       0.0   28250.0
+NJ-10      1670.36   263.0        0.00       0.0   28000.0   28000.0

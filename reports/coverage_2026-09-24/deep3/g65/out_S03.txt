@@ -1,0 +1,4 @@
+-- S03 Balancing authority: confirm it is a lookup (one row per authority-state, one year)
+N | BA_IDS | BA_CODES | BA_STATE_PAIRS | STATES | Y0 | Y1 | RUNS | BLANK_CODE
+189 | 67 | 67 | 189 | 51 | 2024 | 2024 | 1 | 0
+(1 rows; csv has all)

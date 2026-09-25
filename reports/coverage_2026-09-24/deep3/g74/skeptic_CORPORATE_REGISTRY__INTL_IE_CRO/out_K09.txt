@@ -1,0 +1,9 @@
+-- K09 (rerun of K04 without the window function) shelf-company signature by class and period: renamed after formation, ever filed an annual return or accounts, dissolved, dissolved within 3 years, median life, top object code
+CLS | PER | N | RAW_MATCHED | REGDATE_DIFFERS | RENAMED | EVER_AR | EVER_ACC | DISSOLVED | DISS_99_00 | DISS_3Y | MED_LIFE_Y | TOP_POC | INTLISH_NAME | LIVE
+a_mass23 | p1_1989_98 | 33829 | 33829 | 0 | 2209 | 8644 | 7238 | 33749 | 23161 | 5580 | 5.0 | 74.84 | 11026 | 64
+a_mass23 | p2_1999_03 | 1331 | 1331 | 0 | 164 | 663 | 609 | 1290 | 66 | 521 | 3.9 | 74.84 | 203 | 37
+b_other1000 | p1_1989_98 | 466 | 466 | 0 | 139 | 443 | 442 | 363 | 5 | 1 | 18.9 | 74.84 | 55 | 62
+b_other1000 | p2_1999_03 | 483 | 483 | 0 | 148 | 455 | 447 | 385 | 0 | 5 | 12.2 | 74.84 | 64 | 60
+c_rest | p1_1989_98 | 127658 | 127658 | 0 | 18394 | 65113 | 62329 | 106409 | 40765 | 9995 | 6.5 | 74.84 | 15919 | 18652
+c_rest | p2_1999_03 | 77822 | 77822 | 0 | 15502 | 62016 | 59608 | 57535 | 165 | 9050 | 5.9 | 74.84 | 4934 | 18532
+(6 rows)

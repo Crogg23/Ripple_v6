@@ -1,0 +1,6 @@
+-- S18 MDS harm check: abuse and neglect citations (F600 F602 F607 F609 F610) per home, Reliant vs other Missouri 40%+ schizophrenia homes vs the rest
+GRP | HOMES | ALL_CITATIONS | ABUSE_NEGLECT_CITES | ABUSE_HARM_OR_JEOPARDY | IMMEDIATE_JEOPARDY_ALL_TAGS | HOMES_WITH_ABUSE_CITE | S0 | S1
+MO other 40%+ | 21 | 984 | 93 | 23 | 30 | 18 | 2019-05-02 | 2026-04-24
+MO rest | 435 | 14589 | 920 | 99 | 209 | 311 | 2019-01-15 | 2026-04-30
+Reliant | 31 | 1865 | 216 | 68 | 71 | 28 | 2019-07-26 | 2026-04-28
+(3 rows; csv has all)

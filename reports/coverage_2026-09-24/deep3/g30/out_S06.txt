@@ -1,0 +1,3 @@
+-- S06 Ticker table: how many copies each CIK-ticker pair has, and whether copies differ
+ERROR: 001003 (42000): SQL compilation error:
+syntax error line 5 at position 91 unexpected 'sample'.

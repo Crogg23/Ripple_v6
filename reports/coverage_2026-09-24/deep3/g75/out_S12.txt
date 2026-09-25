@@ -1,0 +1,63 @@
+-- S12 SAM exclusions: names and places for the ICIJ match
+SAM_NUMBER | ENTITY_NAME | FIRST_NAME | LAST_NAME | CLASSIFICATION | EXCLUSION_TYPE | EXCLUSION_PROGRAM | EXCLUDING_AGENCY | ACTIVATION_DATE | TERMINATION_DATE_RAW | CITY | STATE | ZIP | COUNTRY | IS_CURRENTLY_EXCLUDED | IS_ENTITY_NOT_INDIVIDUAL
+000020f5-00d2-4829-b6f7-760fd61ff53f |  | MICHAEL | CHATFIELD | Individual | Prohibition/Restriction | Reciprocal | HHS | 2020-12-20 | Indefinite | APISON | TN | 37302 | USA | True | False
+00004418-b994-412d-b666-612aceba65d0 |  | SARAH | INNESS | Individual | Prohibition/Restriction | Reciprocal | HHS | 2017-11-20 | Indefinite | DUNCAN | NE | 68634 | USA | True | False
+0000802f-1490-4f7b-ba1a-7f9606e0a385 |  | Marcia | Burns | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2000-12-06 | Indefinite | Aurora | CO | 80010 | USA | True | False
+0000ddc4-c02c-4343-baa2-ca9051e65e0c |  | Reginard | Jeter | Individual | Ineligible (Proceedings Completed) | Reciprocal | DOJ | 2025-12-24 | 2030-12-23 | Lone Star | TX | 75688 | USA | True | False
+0000f446-90dc-4689-984e-63596f3eabcc |  | STEPHANIE | MEMEL | Individual | Prohibition/Restriction | Reciprocal | OPM | 2004-12-14 | Indefinite | FAIRFIELD CENTER | ME | 04937 | USA | True | False
+000149bf-95f9-4d7b-b3a6-3b59081df6c4 |  | Dr. Ibrahim Awwad Ibrahim | AL-SAMARRA'I | Individual | Prohibition/Restriction | Reciprocal | OFAC |  | Indefinite |  |  |  | XUN | True | False
+0001fc17-d9a9-488c-9538-388c631d0b6e |  | NESTOR | MERCED | Individual | Prohibition/Restriction | Reciprocal | HHS | 2015-05-20 | Indefinite | MINERSVILLE | PA | 17954 | USA | True | False
+00020b32-4068-4e17-a6bc-3b76a5f9864f |  | Thomas | Shinder | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 1999-05-21 | Indefinite | Seagoville | TX | 75159 | USA | True | False
+00026c28-7e6d-429a-8dc8-38ea23b2afb3 |  | TAMARA | SCHULTE | Individual | Prohibition/Restriction | Reciprocal | OPM | 2012-05-29 | Indefinite | NAVARRE | FL | 32566 | USA | True | False
+00029cf3-eb03-44fd-af5a-b467e39348eb |  | JAMES | D'ALISE | Individual | Prohibition/Restriction | Reciprocal | HHS | 2019-03-20 | Indefinite | WILLOWBROOK | IL | 60527 | USA | True | False
+0002eb16-4398-4803-a8bf-283aab44db29 | ALL WIN SHIPPING MANAGEMENT LIMITED |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OFAC | 2026-02-06 | Indefinite | HONG KONG |  | 999077 | CHN | True | True
+00031163-80f1-4299-9e6b-ffe6dedd1899 | LIMITED LIABILITY COMPANY GROUP OF COMPANIES AKVARIUS |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OFAC | 2022-09-15 | Indefinite | MOSCOW |  | 119027 | RUS | True | True
+00036447-c1fc-49e6-acfb-84c375d376ec | OSKOL ELECTROMETALLURGICAL PLANT AO |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OFAC | 2023-04-12 | Indefinite | STARY OSKOL | BELGOROD OBLAST | 309515 | RUS | True | True
+00039a86-4513-4707-aa27-da4a580a5e80 |  | Carole | Allen | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2000-07-26 | Indefinite | Newport News | VA | 23607 | USA | True | False
+0003bd36-5591-470e-89b3-2328a5b48099 | ROOZBEH BADII, M.D. |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OPM | 2023-09-04 | Indefinite | LA JOLLA | CA | 92037-3729 | USA | True | True
+0003bec2-f64c-49e4-adca-d43a7e4dd65a |  | LYNDA | HORN | Individual | Prohibition/Restriction | Reciprocal | HHS | 2020-10-20 | Indefinite | HANFORD | CA | 93230 | USA | True | False
+00053a70-e68c-473c-a52d-efae300d9fb8 |  | Leisa | Davis | Individual | Prohibition/Restriction | NonProcurement | HHS | 1989-11-27 | Indefinite | Norman | OK | 73069 | USA | True | False
+00058933-e8aa-40a7-a378-0ccfd0b6921e | INTER TOBACCO |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OFAC | 2021-08-09 | Indefinite | MINSK DISTRICT | MINSK OBLAST | 223016 | BLR | True | True
+000635ee-aad8-4bfe-b9c5-c823207219dc |  | Chris | Dowling | Individual | Prohibition/Restriction | Reciprocal | HHS | 1997-03-17 | Indefinite | Weare | NH | 03281 | USA | True | False
+0006841c-8d0a-441b-ba0f-61e8448cea72 | LFS General Builders |  |  | Special Entity Designation | Ineligible (Proceedings Completed) | Reciprocal | USA | 2019-05-09 | 2030-05-01 | Stroudsburg | PA | 18360 | USA | True | True
+00073e8d-c122-40cf-8443-d7cdd900d9e0 |  | JAMES | VONDERHEIDE | Individual | Prohibition/Restriction | Reciprocal | HHS | 2021-10-20 | Indefinite | PANAMA CITY | FL | 32404 | USA | True | False
+00083574-a41a-47c4-8cf3-f444c6fb9a7b | Body Energetics, Inc. |  |  | Firm | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2001-11-15 | Indefinite | Ellicott City | MD | 21042-3927 | USA | True | True
+000878d9-f27e-498b-adff-e9f30ae15c5d |  | Tyshaun | Artis | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2002-09-16 | Indefinite | Hot Springs | AR | 71913-1628 | USA | True | False
+00088ae7-6d29-40d7-8cd6-39491415454a |  | VICTOR | PORTER | Individual | Prohibition/Restriction | Reciprocal | HHS | 2008-07-20 | Indefinite | PASO ROBLES | CA | 93446 | USA | True | False
+00089ce6-e237-4133-81e4-514f4cae1f14 |  | Roland | Dufresne | Individual | Prohibition/Restriction | Reciprocal | HHS | 1998-11-19 | Indefinite | Coventry | RI | 02816 | USA | True | False
+0008fbeb-1048-4928-ac35-9210e678d5ac |  | Maimaitiming | MAIMAITI | Individual | Prohibition/Restriction | Reciprocal | OFAC |  | Indefinite |  | XX |  | USA | True | False
+000a46fb-6f6c-4da4-8757-8f433fe94826 | NOVATEK-UST-LUGA, OOO |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OFAC | 2016-12-20 | Indefinite | KINGISEPPSKI RAION | LENINGRADSKAYA OBL. | 188477 | RUS | True | True
+000a66d4-4106-46d9-b889-6186d081e211 |  | David | Freeman | Individual | Prohibition/Restriction | Reciprocal | HHS | 1998-11-19 | Indefinite | Millington | TN | 38053 | USA | True | False
+000aaf01-b571-44cb-8e1a-028eed2f0249 |  | Su-kil | KIM | Individual | Prohibition/Restriction | Reciprocal | OFAC | 2022-12-01 | Indefinite |  |  |  | PRK | True | False
+000b61f3-e568-4db8-8316-fc95e0520d8f |  | CLIFTON | ARRINGTON | Individual | Prohibition/Restriction | Reciprocal | HHS | 2019-08-20 | Indefinite | OCEAN VIEW | HI | 96737 | USA | True | False
+000cb6e8-018e-4782-be26-8246ac51f412 |  | MARK | ENRIQUEZ | Individual | Prohibition/Restriction | Reciprocal | HHS | 2019-07-18 | Indefinite | PEARLAND | TX | 77584 | USA | True | False
+000d2834-ff1e-457a-9493-12e5280c5b08 |  | SUSAN | MOLINA | Individual | Prohibition/Restriction | Reciprocal | HHS | 2007-07-19 | Indefinite | LEWISTON | ID | 83501 | USA | True | False
+000e91bc-c913-42ce-b639-bf924da853e9 |  | MICHAEL | MAGOLES | Individual | Prohibition/Restriction | Reciprocal | HHS | 1999-10-20 | Indefinite | SAN JOSE | CA | 95136 | USA | True | False
+000ed46d-2f28-4e13-9bf1-7df9ac7ea5d3 |  | John | Purvis | Individual | Prohibition/Restriction | Reciprocal | HHS | 2000-11-20 | Indefinite | Warren | MI | 48089 | USA | True | False
+00102bcb-9abb-4af5-8a15-330a77b011c5 |  | Patsy | Hass | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 1998-04-03 | Indefinite | North Tazewell | VA | 24630 | USA | True | False
+0010408f-21cb-48b4-b0f3-1be9cacd044a |  | NORMAN | WILLIAMS | Individual | Prohibition/Restriction | Reciprocal | HHS | 2015-10-20 | Indefinite | SUMNER | IL | 62466 | USA | True | False
+00111ab2-9aec-4976-b622-5fc95122d1b5 |  | Bernard | Rivas | Individual | Prohibition/Restriction | Reciprocal | OPM | 2017-07-28 | Indefinite | Lansdale | PA | 19446 | USA | True | False
+00119dac-f69b-4632-a087-c1394fba32e7 |  | Donna | Washington | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 1998-04-02 | Indefinite | Ft. Worth | TX | 76119 | USA | True | False
+00121d08-ab78-468b-a2d7-6475ca6985bd | GENAVA 11 |  |  | Vessel | Prohibition/Restriction | Reciprocal | OFAC | 2019-12-11 | Indefinite |  |  |  | XUN | True | True
+00126e84-bc54-49c1-a674-b59af3901336 |  | Guillermo | Barreto | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2002-09-16 | Indefinite | San Diego | CA | 92110 | USA | True | False
+0012e0af-e48c-4fb5-9e62-6f514ed22430 | SOFTWATER NAVIGATION HOLDING LTD. |  |  | Special Entity Designation | Prohibition/Restriction | Reciprocal | OFAC | 2024-11-14 | Indefinite | MAJURO | AJELTAKE ISLAND | MH 96960 | MHL | True | True
+00138220-c24f-4174-b263-051ea0d96e1e |  | Sergey Gennadyevich | NOVIKOV | Individual | Prohibition/Restriction | Reciprocal | OFAC | 2025-01-10 | Indefinite | MOSCOW |  | 142771 | RUS | True | False
+0013c91b-4253-4ce3-b0d5-1e96f1f93af4 |  | MICHAEL | HAWTHORNE | Individual | Prohibition/Restriction | Reciprocal | HHS | 2017-12-20 | Indefinite | EAST STROUDSBURG | PA | 18301 | USA | True | False
+0013dcda-bfd6-4313-bf33-ee95c6bc79b6 |  | George | Lewis | Individual | Prohibition/Restriction | Reciprocal | HHS | 2000-02-09 | Indefinite | Suisun | CA | 94585 | USA | True | False
+0014599e-3f52-4f4d-9786-a4f13f2e34ef |  | JAMES | D'ALISE | Individual | Prohibition/Restriction | Reciprocal | OPM | 2019-04-30 | Indefinite | WILLOWBROOK | IL | 60527 | USA | True | False
+0014e84e-deb5-4763-b930-93d84ca55558 |  | Geoffrey | Cudworth | Individual | Prohibition/Restriction | Reciprocal | HHS | 1999-10-20 | Indefinite | West Hartford | CT | 06119 | USA | True | False
+001516ad-94cd-49b4-97c4-2c07b425900f |  | Dapheney | Gipson | Individual | Prohibition/Restriction | Reciprocal | HHS | 2003-09-24 | Indefinite | Denver | CO | 80220 | USA | True | False
+0015b2a4-d854-44e9-957b-103b4a155e95 |  | Norman | Bollinger | Individual | Ineligible (Proceedings Completed) | NonProcurement | OPM | 1994-10-17 | Indefinite | Osseo | MN | 55369-1105 | USA | True | False
+0015d851-4226-42b0-ada8-448d41b8e44c |  | Christopher | Nerius | Individual | Ineligible (Proceedings Completed) | Reciprocal | DOJ | 2022-02-14 | Indefinite | Pompano | FL | 33069 | USA | True | False
+00161dbe-9510-44c1-b378-779660fc007e |  | MICHAEL | TROYAN | Individual | Prohibition/Restriction | Reciprocal | HHS | 2017-12-20 | Indefinite | LEWISBURG | PA | 17837 | USA | True | False
+00164dff-c491-42ee-a76a-76e5fa6f01fc |  | Salama Aziz Muhammad | MARI | Individual | Prohibition/Restriction | Reciprocal | OFAC | 2024-11-19 | Indefinite |  |  |  | TUR | True | False
+00166d2e-af07-4b09-9d7f-5ff60b4cdb3a |  | Bruce | Paquette | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2002-09-16 | Indefinite | Lake Worth | FL | 33467 | USA | True | False
+00168336-1257-46fa-ad56-d5b3ec07f636 |  | Fateh Najm Eddine | FARRAJ | Individual | Prohibition/Restriction | Reciprocal | OFAC |  | Indefinite |  |  |  | XUN | True | False
+0016c283-c2f4-430d-b3bd-88bd4b78d407 |  | Patrick | Rodgers | Individual | Prohibition/Restriction | Reciprocal | HHS | 2001-11-20 | Indefinite | Long Beach | CA | 90803 | USA | True | False
+00173871-b5e9-40ee-b7a5-2b91e3fbc1c2 |  | Faris Mohamed Hassan | MANA'A | Individual | Prohibition/Restriction | Reciprocal | OFAC |  | Indefinite |  |  |  | XUN | True | False
+001748f5-fafe-40db-8aec-6a86538eaf0b |  | Shefit | XHAFERI | Individual | Prohibition/Restriction | Reciprocal | OFAC |  | Indefinite |  | XX |  | USA | True | False
+0017606a-000b-482b-b069-3fb7846ee96e | CBT and Associates |  |  | Firm | Prohibition/Restriction | NonProcurement | HHS | 1989-11-20 | Indefinite | New Orleans | LA | 70125 | USA | True | True
+0018487a-9968-41fc-abb4-da583e265c66 |  | Kathryn | Koch | Individual | Ineligible (Proceedings Completed) | Reciprocal | OPM | 2000-10-23 | Indefinite | Mebane | NC | 27302 | USA | True | False
+00194ffb-307b-432e-a0f0-47db7a11b811 |  | Deborah | Pulliam | Individual | Prohibition/Restriction | Reciprocal | HHS | 2003-11-20 | Indefinite | Phoenix | AZ | 85050 | USA | True | False
+001a76c7-966b-4586-89bd-5e44f6c56b4c |  | Kathleen | Ennis | Individual | Prohibition/Restriction | Reciprocal | HHS | 2004-06-17 | Indefinite | Erie | PA | 16504 | USA | True | False
+(168328 rows; csv has all)

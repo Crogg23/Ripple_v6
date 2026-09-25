@@ -1,0 +1,2 @@
+-- q01 EG CAPMAS: dump all 52 rows to confirm the failed pull
+SELECT * FROM LIBRARY_MARTS.REFERENCE.REFERENCE__INTL_EG_CAPMAS

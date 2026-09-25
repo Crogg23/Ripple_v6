@@ -1,0 +1,136 @@
+{
+"cols": [
+"SRC",
+"HOW",
+"FIRST_NAME",
+"LAST_NAME",
+"BUSINESS_NAME",
+"SPECIALTY",
+"EXCLUSION_TYPE",
+"EXCLUSION_DATE",
+"CITY",
+"STATE"
+],
+"rows": [
+[
+"LEIE",
+"official name",
+"MARK",
+"MITCHELL",
+null,
+"NURSE/NURSES AIDE",
+"1128a3",
+"2015-02-19",
+"GRESHAM",
+"OR"
+],
+[
+"LEIE",
+"official name",
+"MARIA",
+"RAMOS",
+null,
+"NURSE/NURSES AIDE",
+"1128a2",
+"1998-06-18",
+"AMARILLO",
+"TX"
+],
+[
+"LEIE",
+"official name",
+"MARIA",
+"RAMOS",
+null,
+"REHAB FACILITY - GEN",
+"1128a1",
+"2011-10-20",
+"MIAMI",
+"FL"
+],
+[
+"LEIE",
+"official name",
+"JASMINE",
+"PEREZ",
+null,
+"NURSE/NURSES AIDE",
+"1128b4",
+"2015-03-19",
+"MESQUITE",
+"TX"
+],
+[
+"SAM",
+"official name",
+"MARIA",
+"RAMOS",
+null,
+"Reciprocal",
+"Prohibition/Restriction",
+"2011-10-20",
+"MIAMI",
+"FL"
+],
+[
+"SAM",
+"official name",
+"MARK",
+"MITCHELL",
+null,
+"Reciprocal",
+"Prohibition/Restriction",
+"2015-02-19",
+"GRESHAM",
+"OR"
+],
+[
+"SAM",
+"official name",
+"JASMINE",
+"PEREZ",
+null,
+"Reciprocal",
+"Prohibition/Restriction",
+"2015-03-19",
+"MESQUITE",
+"TX"
+],
+[
+"SAM",
+"official name",
+"Maria",
+"Ramos",
+null,
+"Reciprocal",
+"Prohibition/Restriction",
+"1998-06-18",
+"Amarillo",
+"TX"
+],
+[
+"SAM",
+"official name",
+"Maria",
+"Ramos",
+null,
+"Reciprocal",
+"Ineligible (Proceedings Completed)",
+"1998-09-03",
+"Amarillo",
+"TX"
+],
+[
+"SAM",
+"official name",
+"MARIA",
+"RAMOS",
+null,
+"Reciprocal",
+"Prohibition/Restriction",
+"2011-11-30",
+"MIAMI",
+"FL"
+]
+]
+}

@@ -1,0 +1,7 @@
+-- S09 CDC firearm deaths by county: every period, three firearm intents, count and rate as landed in the mart [pull]
+GEOID | ST_NAME | NAME | PERIOD | INTENT | COUNT_SUP | RATE | RATE_M
+23017 | Maine | Oxford County | TTM | FA_Suicide | 10 | 16.7 | 0.0
+48037 | Texas | Bowie County | TTM | FA_Suicide | 11 | 12.0 | 0.0
+56039 | Wyoming | Teton County | TTM | FA_Suicide |  | 16.7 | 1.0
+37177 | North Carolina | Tyrrell County | TTM | FA_Homicide | 0 | 0.0 | 0.0
+(66000 rows; csv has all)

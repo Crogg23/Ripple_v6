@@ -1,0 +1,83 @@
+-- S14 Earthquakes: lower-48 M3+ by half-degree cell and year, full year and the Jan 1 - Jun 13 window the 2026 data covers - peer set for the New Mexico cluster
+LAT0 | LON0 | YR | M3 | M3_WIN | M4 | MAX_MAG | DAYS | PLACE_EG
+24.0 | -113.0 | 2011 | 1 | 0 | 1 | 4.2 | 1 | 60 km SW of Puerto San Carlos, Mexico
+24.0 | -112.0 | 2014 | 1 | 1 | 1 | 4.0 | 1 | 66 km SSE of Puerto San Carlos, Mexico
+24.0 | -110.5 | 2010 | 1 | 1 | 1 | 4.0 | 1 | 2 km SW of El Centenario, Mexico
+24.0 | -110.5 | 2012 | 2 | 0 | 2 | 4.4 | 2 | 42 km NNE of La Paz, Mexico
+24.0 | -110.5 | 2020 | 1 | 0 | 0 | 3.4 | 1 | 20 km E of La Paz, Mexico
+24.0 | -110.0 | 2012 | 1 | 1 | 1 | 4.1 | 1 | 51 km NE of La Paz, Mexico
+24.0 | -109.5 | 2010 | 10 | 0 | 10 | 5.9 | 5 | 69 km NE of La Rivera, Mexico
+24.0 | -109.5 | 2011 | 1 | 0 | 1 | 4.1 | 1 | 93 km NNE of Los Barriles, Mexico
+24.0 | -109.5 | 2012 | 2 | 0 | 2 | 4.7 | 2 | 89 km NNE of Los Barriles, Mexico
+24.0 | -109.5 | 2013 | 1 | 0 | 1 | 4.2 | 1 | 59 km NE of Los Barriles, Mexico
+24.0 | -109.5 | 2014 | 1 | 0 | 1 | 5.1 | 1 | 102 km NE of Los Barriles, Mexico
+24.0 | -109.5 | 2015 | 1 | 0 | 1 | 4.1 | 1 | 66 km NE of Los Barriles, Mexico
+24.0 | -109.5 | 2017 | 2 | 1 | 2 | 4.4 | 2 | 100 km NE of Los Barriles, Mexico
+24.0 | -109.5 | 2018 | 1 | 0 | 1 | 4.3 | 1 | 80 km NE of La Rivera, Mexico
+24.0 | -109.5 | 2020 | 2 | 0 | 2 | 4.6 | 2 | 73 km NE of La Rivera, Mexico
+24.0 | -109.0 | 2013 | 1 | 1 | 1 | 4.6 | 1 | 102 km WSW of Altata, Mexico
+24.0 | -109.0 | 2014 | 1 | 0 | 1 | 4.3 | 1 | 87 km NE of La Rivera, Mexico
+24.0 | -109.0 | 2015 | 3 | 0 | 3 | 5.3 | 1 | 83 km SW of Altata, Mexico
+24.0 | -109.0 | 2016 | 1 | 0 | 1 | 4.3 | 1 | 104 km NE of La Rivera, Mexico
+24.0 | -109.0 | 2017 | 1 | 1 | 1 | 4.3 | 1 | 100 km WSW of Dautillos, Mexico
+24.0 | -109.0 | 2021 | 1 | 1 | 1 | 5.4 | 1 | 97 km SW of Altata, Mexico
+24.0 | -109.0 | 2022 | 2 | 0 | 1 | 4.5 | 2 | 84 km SW of Altata, Mexico
+24.0 | -109.0 | 2023 | 1 | 1 | 1 | 5.3 | 1 | 81 km NE of La Rivera, Mexico
+24.0 | -108.5 | 2021 | 1 | 1 | 1 | 4.0 | 1 | 83 km SW of Altata, Mexico
+24.0 | -104.0 | 2024 | 1 | 0 | 1 | 4.2 | 1 | 10 km E of Emilio Carranza, Mexico
+24.5 | -115.5 | 2022 | 1 | 1 | 1 | 4.2 | 1 | 269 km SSW of Bahía Asunción, Mexico
+24.5 | -111.0 | 2012 | 1 | 0 | 1 | 4.2 | 1 | 85 km NNW of La Paz, Mexico
+24.5 | -110.5 | 2011 | 1 | 1 | 1 | 4.4 | 1 | 85 km NNE of La Paz, Mexico
+24.5 | -110.5 | 2012 | 12 | 0 | 12 | 6.3 | 5 | 53 km N of La Paz, Mexico
+24.5 | -110.0 | 2010 | 2 | 0 | 2 | 4.1 | 2 | 97 km SSW of Topolobampo, Mexico
+24.5 | -110.0 | 2011 | 4 | 1 | 4 | 5.1 | 3 | 92 km SSW of Campo Pesquero el Colorado, Mexico
+24.5 | -110.0 | 2015 | 4 | 0 | 4 | 6.7 | 1 | Gulf of California
+24.5 | -110.0 | 2017 | 1 | 0 | 1 | 4.3 | 1 | 88 km SW of Topolobampo, Mexico
+24.5 | -109.5 | 2010 | 13 | 1 | 13 | 6.7 | 7 | 109 km SSW of El Huitusi, Mexico
+24.5 | -109.5 | 2011 | 1 | 1 | 1 | 4.3 | 1 | 105 km SSW of El Huitusi, Mexico
+24.5 | -109.5 | 2012 | 1 | 0 | 1 | 4.8 | 1 | 74 km SSW of Topolobampo, Mexico
+24.5 | -109.5 | 2015 | 3 | 0 | 3 | 4.9 | 2 | 107 km SSW of Topolobampo, Mexico
+24.5 | -109.5 | 2016 | 3 | 0 | 3 | 4.9 | 1 | 104 km SSW of El Huitusi, Mexico
+24.5 | -109.5 | 2017 | 2 | 0 | 1 | 4.0 | 1 | 78 km SSW of Topolobampo, Mexico
+24.5 | -109.5 | 2021 | 5 | 0 | 5 | 5.1 | 5 | 73 km SSW of Topolobampo, Mexico
+24.5 | -109.5 | 2022 | 4 | 3 | 4 | 4.7 | 3 | 109 km SSW of El Huitusi, Mexico
+24.5 | -109.5 | 2026 | 1 | 1 | 1 | 4.4 | 1 | 96 km SSW of Topolobampo, Mexico
+24.5 | -109.0 | 2010 | 1 | 0 | 1 | 4.9 | 1 | 84 km SSW of El Progreso, Mexico
+24.5 | -109.0 | 2020 | 1 | 0 | 1 | 4.4 | 1 | 68 km SSW of El Progreso, Mexico
+24.5 | -109.0 | 2024 | 1 | 1 | 1 | 4.2 | 1 | 86 km SW of Costa Azul, Mexico
+24.5 | -107.5 | 2025 | 1 | 0 | 1 | 4.2 | 1 | 8 km ENE of Culiacán, Mexico
+24.5 | -107.0 | 2011 | 1 | 0 | 1 | 4.1 | 1 | 17 km E of Tamazula de Victoria, Mexico
+24.5 | -101.0 | 2020 | 1 | 0 | 1 | 4.2 | 1 | 28 km SSW of Huachichil, Mexico
+24.5 | -99.5 | 2012 | 1 | 1 | 1 | 4.3 | 1 | 31 km NW of San Carlos, Mexico
+25.0 | -113.5 | 2012 | 1 | 0 | 1 | 4.5 | 1 | 94 km W of Puerto Adolfo Lopez Mateos, Mexico
+25.0 | -113.0 | 2010 | 1 | 0 | 1 | 4.0 | 1 | 69 km WSW of Puerto Adolfo Lopez Mateos, Mexico
+25.0 | -111.0 | 2013 | 1 | 0 | 1 | 4.2 | 1 | Gulf of California
+25.0 | -110.5 | 2011 | 3 | 2 | 3 | 4.8 | 3 | 102 km NNE of La Paz, Mexico
+25.0 | -110.5 | 2024 | 1 | 1 | 1 | 4.1 | 1 | 91 km WSW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2010 | 3 | 1 | 3 | 5.0 | 3 | 59 km WSW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2011 | 24 | 23 | 24 | 6.0 | 7 | 87 km SW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2012 | 5 | 3 | 5 | 5.9 | 5 | 88 km SSW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2013 | 1 | 0 | 0 | 3.9 | 1 | 48 km SW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2015 | 1 | 0 | 1 | 4.6 | 1 | 51 km SW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2016 | 2 | 0 | 2 | 5.3 | 2 | 52 km SW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2017 | 4 | 1 | 3 | 4.3 | 2 | 81 km SW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2020 | 2 | 2 | 2 | 4.6 | 2 | 85 km SSW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2022 | 3 | 3 | 3 | 4.7 | 1 | 78 km SSW of Campo Pesquero el Colorado, Mexico
+25.0 | -110.0 | 2023 | 4 | 4 | 4 | 4.9 | 1 | Gulf of California
+25.0 | -110.0 | 2025 | 1 | 0 | 1 | 4.1 | 1 | 63 km SW of Topolobampo, Mexico
+25.0 | -109.5 | 2011 | 2 | 2 | 2 | 5.0 | 1 | 49 km SSW of Campo Pesquero el Colorado, Mexico
+25.0 | -109.5 | 2016 | 1 | 0 | 1 | 4.5 | 1 | 69 km SW of Topolobampo, Mexico
+25.0 | -109.5 | 2021 | 3 | 0 | 3 | 4.4 | 3 | 36 km SSW of Topolobampo, Mexico
+25.0 | -107.0 | 2011 | 1 | 0 | 1 | 4.5 | 1 | 20 km SW of Canelas, Mexico
+25.0 | -100.5 | 2022 | 1 | 1 | 0 | 3.4 | 1 | 5 km SW of Santiago, Mexico
+25.0 | -100.0 | 2013 | 1 | 0 | 1 | 4.0 | 1 | 19 km NE of Ciudad General Terán, Mexico
+25.0 | -100.0 | 2014 | 1 | 1 | 1 | 4.1 | 1 | 18 km E of Pueblo Nuevo, Mexico
+25.0 | -100.0 | 2025 | 1 | 1 | 1 | 4.2 | 1 | 13 km E of Ciudad General Terán, Mexico
+25.0 | -99.5 | 2013 | 1 | 0 | 0 | 3.6 | 1 | 22 km S of China, Mexico
+25.0 | -99.5 | 2014 | 1 | 1 | 1 | 4.0 | 1 | 31 km SSE of China, Mexico
+25.5 | -121.0 | 2015 | 1 | 0 | 1 | 4.9 | 1 | North Pacific Ocean
+25.5 | -111.5 | 2021 | 1 | 1 | 1 | 4.0 | 1 | 32 km ESE of Loreto, Mexico
+25.5 | -111.5 | 2024 | 1 | 1 | 1 | 4.1 | 1 | 41 km SSE of Loreto, Mexico
+25.5 | -111.0 | 2011 | 1 | 1 | 1 | 5.0 | 1 | 79 km E of Loreto, Mexico
+25.5 | -111.0 | 2013 | 1 | 1 | 1 | 4.0 | 1 | 81 km ESE of Loreto, Mexico
+(3434 rows; csv has all)

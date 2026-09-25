@@ -1,0 +1,50 @@
+-- S31 Wayback: the control case, full capture timeline of the data-set-9..12 base pages up to 2026-02-05 (status, bytes)
+PATH | CAPTURED_AT | CHANGE_KIND | PREV_HTTP_STATUS | HTTP_STATUS | CONTENT_BYTES | HOURS_SINCE_PREV_CAPTURE
+/data-set-10-files | 2026-01-30 16:30:40 | first_capture |  | 200 | 13310 | 
+/data-set-10-files | 2026-01-30 17:00:15 | content_changed | 200 | 200 | 11087 | 1
+/data-set-10-files | 2026-01-30 18:27:35 | content_changed | 200 | 200 | 13347 | 1
+/data-set-10-files | 2026-01-30 18:42:34 | content_changed | 200 | 200 | 12461 | 0
+/data-set-10-files | 2026-01-30 19:55:30 | content_changed | 200 | 200 | 13321 | 1
+/data-set-10-files | 2026-01-31 07:39:33 | content_changed | 200 | 200 | 13324 | 10
+/data-set-10-files | 2026-01-31 17:00:49 | content_changed | 200 | 200 | 13172 | 8
+/data-set-10-files | 2026-02-01 00:30:59 | content_changed | 200 | 200 | 13445 | 5
+/data-set-10-files | 2026-02-01 03:55:35 | content_changed | 200 | 200 | 13441 | 3
+/data-set-10-files | 2026-02-01 21:05:02 | content_changed | 200 | 200 | 13303 | 18
+/data-set-10-files | 2026-02-03 03:52:16 | content_changed | 200 | 200 | 13330 | 30
+/data-set-10-files | 2026-02-03 16:43:25 | content_changed | 200 | 200 | 13323 | 10
+/data-set-10-files | 2026-02-04 09:16:33 | content_changed | 200 | 200 | 13380 | 17
+/data-set-10-files | 2026-02-04 20:16:14 | content_changed | 200 | 200 | 13390 | 11
+/data-set-10-files | 2026-02-04 20:16:22 | content_and_status_changed | 200 | 401 | 3488 | 0
+/data-set-11-files | 2026-01-30 16:31:43 | first_capture |  | 200 | 13271 | 
+/data-set-11-files | 2026-01-30 18:42:38 | content_changed | 200 | 200 | 12424 | 2
+/data-set-11-files | 2026-01-30 19:52:50 | content_changed | 200 | 200 | 13274 | 1
+/data-set-11-files | 2026-01-30 22:23:17 | content_changed | 200 | 200 | 10994 | 3
+/data-set-11-files | 2026-01-30 23:03:08 | content_changed | 200 | 200 | 13250 | 1
+/data-set-11-files | 2026-01-31 09:05:39 | content_changed | 200 | 200 | 13275 | 10
+/data-set-11-files | 2026-01-31 17:00:52 | content_changed | 200 | 200 | 13149 | 8
+/data-set-11-files | 2026-02-01 21:05:03 | content_changed | 200 | 200 | 13160 | 28
+/data-set-11-files | 2026-02-03 04:26:14 | content_changed | 200 | 200 | 13321 | 31
+/data-set-11-files | 2026-02-03 20:29:17 | content_changed | 200 | 200 | 13200 | 16
+/data-set-11-files | 2026-02-04 15:57:38 | content_changed | 200 | 200 | 13203 | 19
+/data-set-12-files | 2026-01-31 04:49:13 | first_capture |  | 200 | 13334 | 
+/data-set-12-files | 2026-01-31 06:06:36 | content_changed | 200 | 200 | 11028 | 2
+/data-set-12-files | 2026-01-31 09:08:10 | content_changed | 200 | 200 | 13178 | 3
+/data-set-12-files | 2026-01-31 18:44:53 | content_and_status_changed | 200 | 401 | 3486 | 9
+/data-set-12-files | 2026-02-02 06:34:09 | content_and_status_changed | 401 | 200 | 13320 | 36
+/data-set-12-files | 2026-02-03 01:59:32 | content_and_status_changed | 200 | 301 | 284 | 19
+/data-set-12-files | 2026-02-03 03:53:27 | content_and_status_changed | 301 | 200 | 13320 | 2
+/data-set-12-files | 2026-02-04 14:20:49 | content_changed | 200 | 200 | 13183 | 35
+/data-set-9-files | 2025-12-23 22:22:14 | first_capture |  | 403 | 10574 | 
+/data-set-9-files | 2026-01-30 16:30:23 | content_and_status_changed | 403 | 200 | 13300 | 906
+/data-set-9-files | 2026-01-30 18:42:37 | content_changed | 200 | 200 | 12450 | 2
+/data-set-9-files | 2026-01-30 19:41:29 | content_changed | 200 | 200 | 11000 | 1
+/data-set-9-files | 2026-01-30 19:52:40 | content_changed | 200 | 200 | 13336 | 0
+/data-set-9-files | 2026-01-31 02:40:16 | content_changed | 200 | 200 | 13313 | 7
+/data-set-9-files | 2026-01-31 03:09:17 | content_changed | 200 | 200 | 13162 | 1
+/data-set-9-files | 2026-01-31 17:00:43 | content_changed | 200 | 200 | 13160 | 1
+/data-set-9-files | 2026-02-01 21:05:00 | content_changed | 200 | 200 | 13143 | 28
+/data-set-9-files | 2026-02-03 06:36:56 | content_and_status_changed | 200 | 401 | 3487 | 33
+/data-set-9-files | 2026-02-03 14:57:30 | content_and_status_changed | 401 | 301 | 282 | 8
+/data-set-9-files | 2026-02-04 01:52:28 | content_and_status_changed | 301 | 200 | 13046 | 11
+/data-set-9-files | 2026-02-04 02:31:52 | content_and_status_changed | 200 | 401 | 3485 | 1
+(47 rows; csv has all)

@@ -1,0 +1,17 @@
+-- S03 OWID AI incidents: all 14 rows
+ENTITY | CODE | YEAR | ANNUAL_REPORTED_ARTIFICIAL_INTELLIGENCE_INCIDENTS_AND_CONTROVERSIES
+World | OWID_WRL | 2012 | 8
+World | OWID_WRL | 2013 | 6
+World | OWID_WRL | 2014 | 13
+World | OWID_WRL | 2015 | 24
+World | OWID_WRL | 2016 | 41
+World | OWID_WRL | 2017 | 50
+World | OWID_WRL | 2018 | 45
+World | OWID_WRL | 2019 | 43
+World | OWID_WRL | 2020 | 90
+World | OWID_WRL | 2021 | 77
+World | OWID_WRL | 2022 | 104
+World | OWID_WRL | 2023 | 168
+World | OWID_WRL | 2024 | 281
+World | OWID_WRL | 2025 | 362
+(14 rows; csv has all)

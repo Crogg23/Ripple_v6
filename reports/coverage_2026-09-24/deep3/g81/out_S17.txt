@@ -1,0 +1,15 @@
+-- S17 Slave voyages: concentration, owners and captains on the 21300 -> 31300 route, 1800-1810 (data match, not verified)
+OWNER | VOYAGES | LANDED | SHIPS | Y0 | Y1 | TOP_CAPTAIN | ALL_V | ALL_LANDED
+(no owner) | 94 | 3295 | 64 | 1800 | 1808 | Corry | 127 | 4973
+Drake | 14 | 731 | 11 | 1806 | 1807 | Pratt, John | 127 | 4973
+Gimbal | 2 | 199 | 2 | 1806 | 1807 | Pallet, Peter | 127 | 4973
+Durán | 1 | 195 | 1 | 1807 | 1807 | Dunson, John | 127 | 4973
+Mendive | 6 | 181 | 6 | 1807 | 1807 | Russell, John | 127 | 4973
+Manzanal | 1 | 158 | 1 | 1807 | 1807 | Eslorton, Carlos | 127 | 4973
+Cuesta | 2 | 95 | 2 | 1807 | 1807 | Laffon, Bernardo | 127 | 4973
+Martinez | 1 | 48 | 1 | 1807 | 1807 | Rich | 127 | 4973
+Baldase | 2 | 22 | 2 | 1807 | 1807 | Bolchos, Alex | 127 | 4973
+Gomez | 1 | 21 | 1 | 1807 | 1807 | Cochs [Cages?], Juan | 127 | 4973
+Comas | 2 | 16 | 2 | 1807 | 1807 | Gunther, Jack | 127 | 4973
+Duran | 1 | 12 | 1 | 1807 | 1807 | Phillips [Felipe, Santiago?] | 127 | 4973
+(12 rows; csv has all)

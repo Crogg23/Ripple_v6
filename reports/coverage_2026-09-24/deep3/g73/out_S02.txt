@@ -1,0 +1,33 @@
+-- S02 DIM_DATE: one row per day? every derived column checked against the date itself; exact vs APPROX_TOP_K month counts
+N | DAYS | D0 | D1 | EXPECTED_DAYS | YEAR_MONTHS | EXACT_MAX_DAYS_PER_MONTH | EXACT_MIN_DAYS_PER_MONTH | APPROX_TOP5_YEAR_MONTH | BAD_YEAR_MONTH | BAD_DOW | BAD_ISOWEEK | NULL_WEEKEND | BAD_WEEKEND | WEEKEND_DAYS | BAD_FY | BAD_PARTS | BAD_MONTH_NAME | DAY_NAMES
+31411 | 31411 | 1950-01-01 | 2035-12-31 | 31411 | 1032 | 31 | 28 | [
+  [
+    "2035-12",
+    245
+  ],
+  [
+    "2035-10",
+    245
+  ],
+  [
+    "2035-08",
+    245
+  ],
+  [
+    "2035-07",
+    245
+  ],
+  [
+    "2035-05",
+    245
+  ]
+] | 0 | 0 | 0 | 0 | 0 | 8975 | 0 | 0 | 0 | [
+  "Thursday",
+  "Monday",
+  "Friday",
+  "Tuesday",
+  "Sunday",
+  "Saturday",
+  "Wednesday"
+]
+(1 rows; csv has all)

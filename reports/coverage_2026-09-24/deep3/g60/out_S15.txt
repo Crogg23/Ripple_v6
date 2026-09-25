@@ -1,0 +1,33 @@
+-- S15 EMBER raw rows behind the lead: US and World coal, gas, total generation and power CO2, 2023-2025, straight from the table
+COUNTRY | YEAR | CATEGORY | SUBCATEGORY | VARIABLE | UNIT | VALUE | YOY_ABSOLUTE_CHANGE | YOY_PCT_CHANGE
+United States of America | 2023 | Electricity generation | Fuel | Coal | TWh | 675.11 | -156.4 | -18.81
+United States of America | 2024 | Electricity generation | Fuel | Coal | TWh | 652.16 | -22.95 | -3.4
+United States of America | 2025 | Electricity generation | Fuel | Coal | TWh | 737.15 | 84.99 | 13.03
+United States of America | 2023 | Electricity generation | Fuel | Gas | TWh | 1806.06 | 119.0 | 7.05
+United States of America | 2024 | Electricity generation | Fuel | Gas | TWh | 1869.9 | 63.84 | 3.53
+United States of America | 2025 | Electricity generation | Fuel | Gas | TWh | 1807.34 | -62.56 | -3.35
+United States of America | 2023 | Electricity generation | Total | Total Generation | TWh | 4253.91 | -32.98 | -0.77
+United States of America | 2024 | Electricity generation | Total | Total Generation | TWh | 4391.02 | 137.11 | 3.22
+United States of America | 2025 | Electricity generation | Total | Total Generation | TWh | 4519.79 | 128.77 | 2.93
+United States of America | 2023 | Power sector emissions | Total | Total emissions | mtCO2 | 1671.37 | -87.92 | -5.0
+United States of America | 2024 | Power sector emissions | Total | Total emissions | mtCO2 | 1685.33 | 13.96 | 0.84
+United States of America | 2025 | Power sector emissions | Total | Total emissions | mtCO2 | 1737.41 | 52.08 | 3.09
+United States of America | 2023 | Electricity generation | Aggregate fuel | Wind and Solar | TWh | 660.08 | 20.71 | 3.24
+United States of America | 2024 | Electricity generation | Aggregate fuel | Wind and Solar | TWh | 755.65 | 95.57 | 14.48
+United States of America | 2025 | Electricity generation | Aggregate fuel | Wind and Solar | TWh | 853.21 | 97.56 | 12.91
+World | 2023 | Electricity generation | Fuel | Coal | TWh | 10389.48 | 153.2 | 1.5
+World | 2024 | Electricity generation | Fuel | Coal | TWh | 10539.75 | 150.27 | 1.45
+World | 2025 | Electricity generation | Fuel | Coal | TWh | 10490.47 | -49.28 | -0.47
+World | 2023 | Electricity generation | Fuel | Gas | TWh | 6696.49 | 69.94 | 1.06
+World | 2024 | Electricity generation | Fuel | Gas | TWh | 6879.53 | 183.04 | 2.73
+World | 2025 | Electricity generation | Fuel | Gas | TWh | 6898.18 | 18.65 | 0.27
+World | 2023 | Electricity generation | Total | Total Generation | TWh | 29641.59 | 747.87 | 2.59
+World | 2024 | Electricity generation | Total | Total Generation | TWh | 30912.51 | 1270.92 | 4.29
+World | 2025 | Electricity generation | Total | Total Generation | TWh | 31737.75 | 825.24 | 2.67
+World | 2023 | Power sector emissions | Total | Total emissions | mtCO2 | 14322.63 | 177.34 | 1.25
+World | 2024 | Power sector emissions | Total | Total emissions | mtCO2 | 14574.19 | 251.56 | 1.76
+World | 2025 | Power sector emissions | Total | Total emissions | mtCO2 | 14552.38 | -21.81 | -0.15
+World | 2023 | Electricity generation | Aggregate fuel | Wind and Solar | TWh | 3981.3 | 542.52 | 15.78
+World | 2024 | Electricity generation | Aggregate fuel | Wind and Solar | TWh | 4651.05 | 669.75 | 16.82
+World | 2025 | Electricity generation | Aggregate fuel | Wind and Solar | TWh | 5490.26 | 839.21 | 18.04
+(30 rows; csv has all)

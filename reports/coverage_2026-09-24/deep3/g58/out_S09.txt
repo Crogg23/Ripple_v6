@@ -1,0 +1,4 @@
+-- S09 990 index: duplicate checks over the whole table (object id, DLN, EIN+period+form repeats)
+N_ROWS | OBJS | DLNS | KEYS | KEYS_MULTI | ROWS_IN_MULTI | MULTI_ACROSS_YEARS | KEYS_5PLUS | MAX_C
+5544626 | 5544626 | 5544575 | 5491207 | 51481 | 104900 | 24894 | 32 | 7
+(1 rows; csv has all)

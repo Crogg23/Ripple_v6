@@ -1,0 +1,31 @@
+-- S08 Wayback: change kind x status x previous status, pages, dates, mimetypes
+CHANGE_KIND | HTTP_STATUS | PREV_HTTP_STATUS | N | PAGES | T0 | T1 | MIMES | MIME_A | MIME_B | MED_BYTES | MED_GAP_H
+ |  |  | 203305 | 28186 | 2025-12-19 21:13:27 | 2026-06-04 07:27:53 | 3 | text/html | warc/revisit | 12560.000 | 25.000
+content_changed | 200 | 200 | 172837 | 28035 | 2025-12-19 21:38:46 | 2026-06-04 07:27:53 | 1 | text/html | text/html | 12556.000 | 25.000
+first_capture | 200 |  | 27755 | 27755 | 2025-12-19 21:13:27 | 2026-05-22 07:24:16 | 1 | text/html | text/html | 12582.000 | 
+content_and_status_changed | 200 | 403 | 988 | 623 | 2025-12-19 23:06:10 | 2026-05-27 00:10:15 | 1 | text/html | text/html | 12587.000 | 96.000
+content_and_status_changed | 403 | 200 | 694 | 460 | 2025-12-19 21:52:16 | 2026-05-26 11:06:38 | 1 | text/html | text/html | 939.000 | 18.500
+first_capture | 403 |  | 280 | 280 | 2025-12-19 21:52:16 | 2026-03-11 19:27:04 | 1 | text/html | text/html | 928.000 | 
+content_and_status_changed | 200 | 401 | 172 | 123 | 2025-12-19 21:18:00 | 2026-05-22 07:21:51 | 1 | text/html | text/html | 13025.500 | 24.000
+content_and_status_changed | 401 | 200 | 124 | 77 | 2025-12-19 21:17:44 | 2026-04-24 15:40:35 | 1 | text/html | text/html | 3488.000 | 5.000
+content_changed | 403 | 403 | 124 | 82 | 2025-12-23 15:28:15 | 2026-03-04 05:59:11 | 1 | text/html | text/html | 882.000 | 437.500
+first_capture | 401 |  | 95 | 95 | 2025-12-20 04:38:43 | 2026-03-07 19:17:59 | 1 | text/html | text/html | 3494.000 | 
+content_and_status_changed | 403 | 401 | 60 | 60 | 2025-12-24 03:06:50 | 2026-03-04 04:23:20 | 1 | text/html | text/html | 938.000 | 569.000
+first_capture | 404 |  | 56 | 56 | 2025-12-20 10:23:41 | 2026-03-11 19:27:19 | 1 | text/html | text/html | 10446.000 | 
+content_changed | 401 | 401 | 20 | 14 | 2025-12-21 07:18:46 | 2026-02-24 20:25:30 | 1 | text/html | text/html | 3487.000 | 26.000
+content_changed |  | 200 | 18 | 12 | 2026-01-21 22:18:32 | 2026-05-13 14:47:52 | 1 | warc/revisit | warc/revisit | 1344.500 | 16.000
+content_and_status_changed | 301 | 200 | 17 | 5 | 2025-12-21 07:34:55 | 2026-05-25 07:01:22 | 2 | text/html | unk | 555.000 | 4.000
+content_and_status_changed | 200 | 301 | 16 | 6 | 2025-12-21 09:21:32 | 2026-05-25 11:41:00 | 1 | text/html | text/html | 13288.000 | 4.000
+content_and_status_changed | 401 | 403 | 15 | 15 | 2025-12-19 23:47:45 | 2026-02-10 17:23:18 | 1 | text/html | text/html | 3491.000 | 48.000
+content_and_status_changed | 403 | 404 | 5 | 5 | 2026-02-15 19:50:40 | 2026-04-05 01:10:16 | 1 | text/html | text/html | 890.000 | 765.000
+content_and_status_changed | 503 | 200 | 4 | 4 | 2026-03-20 01:07:48 | 2026-06-03 04:44:12 | 1 | text/html | text/html | 12301.000 | 25.000
+content_and_status_changed | 200 | 503 | 4 | 4 | 2026-03-20 01:07:53 | 2026-06-03 04:44:19 | 1 | text/html | text/html | 12569.500 | 0.000
+content_and_status_changed | 404 | 403 | 4 | 4 | 2026-03-05 03:07:05 | 2026-05-25 07:01:21 | 1 | text/html | text/html | 10447.500 | 240.000
+content_changed | 404 | 404 | 4 | 4 | 2026-02-07 13:17:53 | 2026-03-05 03:07:06 | 1 | text/html | text/html | 10559.500 | 843.000
+content_and_status_changed | 401 | 301 | 3 | 2 | 2025-12-22 06:12:27 | 2026-03-04 06:40:29 | 1 | text/html | text/html | 3479.000 | 2.000
+content_and_status_changed | 404 | 200 | 3 | 3 | 2026-03-05 03:07:08 | 2026-03-20 01:07:09 | 1 | text/html | text/html | 10450.000 | 253.000
+content_changed |  | 401 | 3 | 1 | 2026-02-15 19:35:00 | 2026-04-08 17:41:52 | 1 | warc/revisit | warc/revisit | 1333.000 | 4.000
+content_and_status_changed | 301 | 401 | 2 | 2 | 2025-12-22 00:05:54 | 2026-02-03 14:57:30 | 2 | text/html | unk | 642.000 | 8.500
+content_and_status_changed | 200 | 404 | 1 | 1 | 2026-03-21 00:55:24 | 2026-03-21 00:55:24 | 1 | text/html | text/html | 12597.000 | 23.000
+content_changed | 301 | 301 | 1 | 1 | 2025-12-24 09:40:51 | 2025-12-24 09:40:51 | 1 | unk | unk | 560.000 | 2.000
+(28 rows; csv has all)

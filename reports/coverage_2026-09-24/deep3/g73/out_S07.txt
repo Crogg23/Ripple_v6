@@ -1,0 +1,12 @@
+-- S07 XWALK_HOSPITAL_CCN_EIN: profile by tier and for-profit flag; ZIP agreement, NTEE health share, widths, facility type from CCN digits
+MATCH_TIER | MATCH_RULE | PN | N | CCNS | EINS | ZIP_SAME | ZIP3_DIFF | NTEE_E | NTEE_BLANK | EIN_NOT9 | CCN_NOT6 | SHORT_TERM | CAH | LTCH | REHAB | CHILDRENS | PSYCH | CCN_LETTER | BUILT_ATS
+1 | name+zip5 | D | 2 | 2 | 1 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 1
+1 | name+zip5 | N | 2278 | 2278 | 1351 | 2278 | 0 | 2070 | 146 | 0 | 5 | 745 | 521 | 14 | 11 | 14 | 35 | 933 | 1
+1 | name+zip5 | P | 52 | 52 | 43 | 52 | 0 | 43 | 9 | 0 | 0 | 13 | 8 | 0 | 0 | 1 | 0 | 30 | 1
+2 | dba+zip5 | N | 29 | 29 | 19 | 29 | 0 | 26 | 3 | 0 | 1 | 11 | 6 | 0 | 1 | 1 | 0 | 10 | 1
+2 | dba+zip5 | P | 4 | 4 | 3 | 4 | 0 | 3 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 1
+3 | name+state | N | 1256 | 1256 | 544 | 0 | 744 | 1141 | 58 | 0 | 29 | 596 | 134 | 9 | 7 | 11 | 26 | 470 | 1
+3 | name+state | P | 24 | 24 | 20 | 0 | 11 | 22 | 1 | 0 | 0 | 6 | 2 | 0 | 0 | 0 | 0 | 15 | 1
+4 | street+zip5 ntee E2 | N | 328 | 328 | 231 | 328 | 0 | 328 | 0 | 0 | 3 | 139 | 58 | 4 | 0 | 15 | 2 | 110 | 1
+4 | street+zip5 ntee E2 | P | 30 | 30 | 27 | 30 | 0 | 30 | 0 | 0 | 1 | 7 | 4 | 9 | 1 | 0 | 3 | 6 | 1
+(9 rows; csv has all)

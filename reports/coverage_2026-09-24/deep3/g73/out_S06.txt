@@ -1,0 +1,7 @@
+-- S06 DIM_ZIP_POINT: how many ZIPs share one dot, whose dot it is, and whether COUNTY_SPAN agrees with the crosswalk
+N | ZCTAS | DISTINCT_POINTS | MAX_ZIPS_ON_ONE_POINT | MEDIAN_ZIPS_PER_POINT | XWALK_ZCTAS | XWALK_ZIPS_NOT_IN_POINT | POINT_ZIPS_NOT_IN_XWALK | SPAN_DISAGREE | POINT_IS_PRIMARY_POP_CENTER | PRIMARY_COUNTY_NOT_IN_DIM | MED_KM_POINT_TO_POP_CENTER | MULTI_COUNTY_ZIPS | METHODS
+33486 | 33486 | 3066 | 304 | 7.000 | 33791 | 305 | 0 | 0 | 33486 | 0 | 0.0 | 10174 | {
+  "county centroid": 23312,
+  "largest-population county centroid": 10174
+}
+(1 rows; csv has all)

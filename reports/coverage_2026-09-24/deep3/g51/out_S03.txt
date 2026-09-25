@@ -1,0 +1,42 @@
+-- S03 OWID terrorism: row types (country code, OWID_ aggregate, blank-code region), year span, duplicate keys, 1993 hole, text values
+KIND | N | ENTS | Y0 | Y1 | YRS | DUP_KEYS | ROWS_1993 | DEATHS_1993 | DEATHS_1992 | DEATHS_1994 | NONNUM | FRACTIONAL | AGG_NAMES | REGIONS
+blank | 912 | 19 | 1970 | 2021 | 51 | 0 | 0 | 0 | 8314 | 7334 | 0 | 0 | [
+  "East Asia",
+  "International",
+  "South Yemen",
+  "Macedonia",
+  "Southeast Asia",
+  "Eastern Europe",
+  "Middle East & North Africa",
+  "Zaire",
+  "New Hebrides",
+  "Republic of the Congo",
+  "West Bank and Gaza Strip",
+  "Central Asia",
+  "Western Europe",
+  "Australasia & Oceania",
+  "Central America & Caribbean",
+  "People's Republic of the Congo",
+  "Rhodesia",
+  "South Asia",
+  "Sub-Saharan Africa"
+] | 1
+iso3 | 8999 | 187 | 1970 | 2021 | 51 | 0 | 0 | 0 | 9629 | 7542 | 0 | 0 | [] | 6
+owid | 570 | 15 | 1970 | 2021 | 51 | 0 | 0 | 0 | 19155 | 14900 | 0 | 0 | [
+  "Africa",
+  "Asia",
+  "Europe",
+  "Czechoslovakia",
+  "North America",
+  "South America",
+  "USSR",
+  "World",
+  "Oceania",
+  "Serbia and Montenegro",
+  "West Germany",
+  "Yugoslavia",
+  "East Germany",
+  "Kosovo",
+  "Yemen Arab Republic"
+] | 3
+(3 rows; csv has all)

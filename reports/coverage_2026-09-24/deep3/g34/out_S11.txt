@@ -1,0 +1,63 @@
+-- S11 ICIS-Air: every operating facility with class, HPV status, carcinogen flags from the pollutants table, violations and formal actions since 2020 (extract; peer math local)
+PGM_SYS_ID | REGISTRY_ID | STATE | CLS | CURRENT_HPV | FACILITY_NAME | CITY | NAICS_CODES | TOX | TOX_MAJOR_CAS | N_POLL | HPV20 | FRV20 | HPV20_OPEN | FORMAL20 | PEN20 | FORMAL_EVER
+CT0000000901105057 | 110007079357 | CT | MIN | No Violation Identified | CARGILL ANIMAL NUTRITION DBA K& L FEED | FRANKLIN | 311119 |  |  | 0 |  |  |  |  |  | 
+IALIN0001911301062 | 110002350036 | IA | SMI | No Violation Identified | ELECTRO-HYDRAULIC AUTOMATION | CEDAR RAPIDS | 333996 |  |  | 1 |  |  |  |  |  | 
+MO0000002900100036 | 110042533274 | MO | MIN | No Violation Identified | A.T. STILL UNIVERSITY | KIRKSVILLE | 611310 |  |  | 1 |  |  |  |  |  | 
+MD0000002451002740 | 110001799965 | MD | MIN | No Violation Identified | CAPT JERRYS CUSTOM T SHIRTS | BALTIMORE | 323113 |  |  | 1 |  |  |  |  |  | 
+TX0000004877701819 | 110064844637 | TX | MIN | No Violation Identified | TRENCH BURNER BARTB-1 | TERRELL | 237990 325110 |  |  | 0 | 0 | 0 | 0 | 0 | 0.0 | 1
+NY0000007312400034 | 110000616245 | NY | MIN | No Violation Identified | NIAGARA MOHAWK - SEVENTH NORTH SERVICE CENTER | LIVERPOOL | 221119 |  |  | 0 |  |  |  |  |  | 
+VT0005000700063 | 110070379996 | VT | SMI | No Violation Identified | UNIVERSITY OF VERMONT (ENVIRONMENTAL SAFETY FACILITY) | BURLINGTON | 562112 |  |  | 1 |  |  |  |  |  | 
+MD0000002400501621 | 110019853522 | MD | MIN | No Violation Identified | EXXON | PHOENIX | 447190 |  |  | 1 |  |  |  |  |  | 
+MA0000002511901878 | 110012615937 | MA | SMI | No Violation Identified | VERIZON MASSACHUSETTS | CAMBRIDGE, TOWN OF | 517110 |  |  | 1 |  |  |  |  |  | 
+GA000000130590112R | 110016674302 | GA | MIN | No Violation Identified | FIRESTONE NATURAL RUBBER LATEX CO | GEORGIA | 999999 |  |  | 1 |  |  |  |  |  | 
+NM0000003501502927 | 110071667274 | NM | SMI | No Violation Identified | PHRIPPLE 17 FED COM EAST CTB | MALAGA | 211120 |  |  | 0 |  |  |  |  |  | 
+MD0000002451002470 | 110022393471 | MD | MIN | No Violation Identified | EASTERN PETROLEUM CORPORATION | BALTIMORE | 447190 |  |  | 1 |  |  |  |  |  | 
+DE0000001000500185 | 110044302705 | DE | MIN | No Violation Identified | SMITHFIELD BEEF GROUP-SOUDERTON, INC | SEAFORD | 311119 |  |  | 1 | 0 | 0 | 0 |  |  | 
+NM0000003504378012 | 110009458620 | NM | MIN | No Violation Identified | MARTINS'S CLEANERS | RIO RANCHO | 812320 |  |  | 1 |  |  |  |  |  | 
+020000003600599995 | 110019641486 | NY | MIN | No Violation Identified | O.P.Z COLLISION INC. | BRONX | 447190 |  |  | 1 |  |  |  |  |  | 
+LA0000002211900329 | 110071723971 | LA | MIN | No Violation Identified | LONGINO-GOODE 7 #1 FACILITY | SHONGALOO | 211111 |  |  | 1 |  |  |  | 1 | 0.0 | 1
+IN0000001808300062 | 110070525083 | IN | SMI | No Violation Identified | KARRAN SINK PLANT KARRAN USA | VINCENNES | 326191 |  |  | 0 | 0 | 2 | 0 | 1 | 12187.5 | 1
+CO0000000810300341 | 110037585342 | CO | MIN | No Violation Identified | SCOUT ENERGY  - LUF FEDERAL 1-23 | RANGELY 2.4 MI. NW OF | 211112 211130 |  |  | 1 |  |  |  |  |  | 
+06000000481136E121 | 110001873991 | TX | MIN | No Violation Identified | BAKER DRY CLEANING | DALLAS | 999999 |  |  | 1 |  |  |  |  |  | 
+MD0000002402700370 | 110013400827 | MD | MIN | No Violation Identified | EXXON | ELKRIDGE | 447190 |  |  | 1 |  |  |  |  |  | 
+GA0000001302100123 | 110001764797 | GA | MIN | No Violation Identified | SOUTH GRANITE & MARBLE INC | MACON | 999999 |  |  | 1 |  |  |  |  |  | 
+MN0000002704500029 | 110071722380 | MN | OTH | No Violation Identified | PRESTON PUBLIC UTILITIES | PRESTON | 221122 |  |  | 0 |  |  |  |  |  | 
+MD0000002451002601 | 110001255285 | MD | MIN | No Violation Identified | NOCK, DAVENUE& SONS GARAGE | BALTIMORE | 811111 |  |  | 1 |  |  |  |  |  | 
+VA0000005159021803 | 110072172775 | VA | MIN | No Violation Identified | SOUTHEAST PLANT SERVICE LLC - TOPP #4 | DANVILLE | 212319 |  |  | 1 |  |  |  |  |  | 
+CO0000000804502303 | 110055584684 | CO | MIN | No Violation Identified | TEP ROCKY MTN - SG 32-23 | PARACHUTE AREA | 211112 211130 |  |  | 1 |  |  |  |  |  | 
+IL00000017089U0016 | 110018412314 | IL | MIN | No Violation Identified | JC CUSTOMS | BIG ROCK | 811121 |  |  | 1 |  |  |  |  |  | 
+KY0000002101500043 | 110000903684 | KY | SMI | No Violation Identified | TICONA POLYMERS INC. | FLORENCE | 325211 | formaldehyde | 50000 | 27 |  |  |  | 0 | 0.0 | 1
+020000003402715668 | 110004150436 | NJ | MIN | No Violation Identified | CLYDE'S CLEANERS | DENVILLE | 812320 |  |  | 1 |  |  |  |  |  | 
+CO0000000807100506 | 110064525615 | CO | MIN | No Violation Identified | OGRIS OPERATING - AC 19-04VX | COKEDALE 18.5 MI. W OF | 211111 211130 |  |  | 1 |  |  |  |  |  | 
+TX0000004835500003 | 110000505640 | TX | MAJ | No Violation Identified | CITGO CORPUS CHRISTI REFINERY EAST PLANT | CORPUS CHRISTI | 324110 424710 | butadiene,benzene | 71432 | 29 | 0 | 3 | 0 | 5 | 74164.0 | 45
+06000000482016E121 | 110007206969 | TX | MIN | No Violation Identified | WAL-MART #1137 | HOUSTON | 999999 |  |  | 1 |  |  |  |  |  | 
+SC00099000645 | 110062704373 | SC | MIN | No Violation Identified | EARTH RENEWED LLC | CHAPIN | 212319 |  |  | 1 |  |  |  |  |  | 
+CT0000000900908553 | 110000865001 | CT | MIN | No Violation Identified | PEASE METAL FABRICATING CO | MILFORD | 999999 |  |  | 1 |  |  |  |  |  | 
+MD0000002451001374 | 110001796370 | MD | MIN | No Violation Identified | MD. INST. COLLEGE OF ART - BREVARD | BALTIMORE | 611310 |  |  | 1 |  |  |  |  |  | 
+NY0000002600500236 | 110001607360 | NY | MIN | No Violation Identified | JA AUTO BODY REPAIR | BRONX | 811121 |  |  | 1 |  |  |  |  |  | 
+MA00000025023EE022 | 110021035529 | MA | MIN | No Violation Identified | WAL MART STORE 5380 | HANOVER | 452112 |  |  | 0 |  |  |  |  |  | 
+CT0000000900109190 | 110007354040 | CT | MIN | No Violation Identified | HEYMAN PROPERTIES | STAMFORD | 999999 |  |  | 1 |  |  |  |  |  | 
+CO0000000812309971 | 110061071450 | CO | MIN | No Violation Identified | HIGHPOINT ENERGY - 392 VENTURES BATTERY | WINDSOR                        | 211112 211130 |  |  | 1 |  |  |  |  |  | 
+PAACH0004200300701 | 110007029777 | PA | MIN | No Violation Identified | MILES, INC. | PITTSBURGH | 325211 |  |  | 1 |  |  |  |  |  | 
+CO0000000801401375 | 110070924576 | CO | MIN | No Violation Identified | EXTRACTION - INTERCHANGE PROD FACILITY | BROOMFIELD                     | 211130 |  |  | 1 |  |  |  |  |  | 
+MD0000002403300880 | 110001282200 | MD | MIN | No Violation Identified | CHERRY HILL ROAD, 11208 A | BELTSVILLE | 531110 |  |  | 1 |  |  |  |  |  | 
+020000003402100146 | 110001540565 | NJ | SMI | No Violation Identified | NJ TRANSIT AUTH BUS OPER MERCER GARAGE | TRENTON | 485999 |  |  | 1 |  |  |  |  |  | 
+OH0000000278080594 | 110000389954 | OH | MIN | No Violation Identified | OAKES FOUNDRY INC | WARREN | 332111 |  |  | 0 |  |  |  |  |  | 
+MO0000002904700165 | 110001469161 | MO | MIN | No Violation Identified | GENE'S CLEANERS | LIBERTY | 812320 |  |  | 1 | 0 | 0 | 0 | 0 | 0.0 | 1
+MO0000002909500315 | 110033159409 | MO | MIN | No Violation Identified | CENTERPOINT MEDICAL CENTER | INDEPENDENCE | 622110 |  |  | 1 |  |  |  |  |  | 
+NY0000002610400258 | 110001588639 | NY | MIN | No Violation Identified | FIELDBRIDGE ASSOCIATES | BROOKLYN | 531110 |  |  | 1 |  |  |  |  |  | 
+MD0000002403101854 | 110001787727 | MD | MIN | No Violation Identified | ECOPRINT | SILVER SPRING | 323110 |  |  | 1 |  |  |  |  |  | 
+CO0000000812302572 | 110021282887 | CO | MIN | No Violation Identified | PETROLEUM DEV KRISTEN 1 | MILLIKEN AREA | 211112 211130 |  |  | 1 |  |  |  |  |  | 
+NM0000003504508061 | 110041344088 | NM | MIN | No Violation Identified | S&S CHEMICAL - BLOOMFIELD | BLOOMFIELD | 999999 |  |  | 1 |  |  |  |  |  | 
+KS0000002077700408 | 110010313892 | KS | SMI | No Violation Identified | KANSAS PAVING (ASPHALT PLANT) (PORTABLE)(AIR) | PORTABLE | 324121 |  |  | 1 | 0 | 0 | 0 |  |  | 
+TX0000004877702367 | 110071241259 | TX | MIN | No Violation Identified | CITY OF KINGSVILLE GOLF COURSE PROPERTY SN 1P5576 | KINGSVILLE | 999999 |  |  | 0 |  |  |  |  |  | 
+020000003403900382 | 110000319771 | NJ | MIN | No Violation Identified | H&H SWISS SCREW MACHINE PRODUCTS | HILLSIDE | 332721 |  |  | 1 |  |  |  |  |  | 
+KS0000002017300316 | 110022446281 | KS | MIN | No Violation Identified | PCI NEWCO                                                  | WICHITA | 336413 |  |  | 1 |  |  |  |  |  | 
+080000003802500044 | 110056293791 | ND | MIN | No Violation Identified | WPX-MAGGIE OLD DOG 19-18H | NORTH DAKOTA | 213111 |  |  | 1 |  |  |  |  |  | 
+NJ0000003404185515 | 110023905256 | NJ | MIN | No Violation Identified | PHILLIPSBURG COMMERCE PARK | PHILLIPSBURG | 333911 |  |  | 1 |  |  |  |  |  | 
+IAPLK0001915304755 | 110015841008 | IA | MIN | No Violation Identified | SENECA ENVIRONMENTAL SERVICES | DES MOINES | 221210 |  |  | 1 |  |  |  |  |  | 
+LA0000002207300015 | 110000450477 | LA | MAJ | No Violation Identified | ADVANCION CORPORATION - STERLINGTON PLANT | STERLINGTON | 325199 | benzene,formaldehyde,hexchrome | 50000,71432,18540299 | 64 | 0 | 0 | 0 | 2 | 3000.0 | 18
+KS0000002017700218 | 110013744680 | KS | MIN | No Violation Identified | KANSAS STATE HISTORICAL SOCIETY                            | TOPEKA | 712110 |  |  | 1 |  |  |  |  |  | 
+NY0000009142000105 | 110022483114 | NY | MIN | No Violation Identified | JOANIE'S CHAT & CHEW | ALDEN | 999999 |  |  | 1 |  |  |  |  |  | 
+MD0000002400100035 | 110001774624 | MD | MIN | No Violation Identified | ALLEGANY HIGH SCHOOL | CUMBERLAND | 611110 |  |  | 1 |  |  |  |  |  | 
+(184066 rows; csv has all)

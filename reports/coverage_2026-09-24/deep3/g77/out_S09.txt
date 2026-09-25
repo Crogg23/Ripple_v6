@@ -1,0 +1,5 @@
+-- S09 NTSB injury: does TOTL equal the sum of the other levels, and do the per-person deaths match the events table's death count
+K | N | A | B | C | D
+groups | 48981 | 48981 | 13212 | 13182 | 22587.0000
+events | 29516 | 29516 | 0 | 0 | 0.0000
+(2 rows; csv has all)

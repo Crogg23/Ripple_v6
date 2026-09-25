@@ -1,0 +1,35 @@
+GRP	DOSAGE_STRENGTH	DU	B	KCITY
+cluster	2.5	200.0	1	
+cluster	4.8355	1700.0	4	
+cluster	5.0	135700.0	6	
+cluster	7.5	63600.0	6	
+cluster	10.0	1584800.0	6	
+cluster	15.0	3456500.0	6	
+cluster	20.0	697600.0	6	
+cluster	30.0	13990800.0	6	
+cluster	40.0	2226660.0	6	
+cluster	60.0	490800.0	6	
+cluster	80.0	3075100.0	6	
+cluster		4700.0	2	
+kvat_named	5.0	64100.0	2	WHITE PINE
+kvat_named	7.5	43900.0	2	POWELL
+kvat_named	10.0	238800.0	2	POWELL
+kvat_named	15.0	142400.0	2	POWELL
+kvat_named	20.0	19400.0	2	POWELL
+kvat_named	30.0	314200.0	2	WHITE PINE
+kvat_named	40.0	55300.0	2	POWELL
+kvat_named	60.0	11800.0	2	POWELL
+kvat_named	80.0	57500.0	2	WHITE PINE
+other_tn_fc	2.5	3600.0	14	
+other_tn_fc	4.8355	6700.0	13	
+other_tn_fc	5.0	1699400.0	50	
+other_tn_fc	5.35	1100.0	3	
+other_tn_fc	7.5	986000.0	50	
+other_tn_fc	10.0	4849280.0	50	
+other_tn_fc	15.0	1879360.0	50	
+other_tn_fc	20.0	443020.0	50	
+other_tn_fc	30.0	4016400.0	50	
+other_tn_fc	40.0	616320.0	47	
+other_tn_fc	60.0	118580.0	38	
+other_tn_fc	80.0	574740.0	47	
+other_tn_fc		2200.0	8	

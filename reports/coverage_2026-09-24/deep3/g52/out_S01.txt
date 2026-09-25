@@ -1,0 +1,7 @@
+-- S01 CourtListener appeals-to: the whole lookup [pull]
+ID | FROM_COURT_ID | TO_COURT_ID
+1 | uscfc | cafc
+2 | cavc | cafc
+3 | cit | cafc
+4 | ccpa | cafc
+(8 rows; csv has all)

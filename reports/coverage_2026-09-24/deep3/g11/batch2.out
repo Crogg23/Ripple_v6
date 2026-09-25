@@ -1,0 +1,97 @@
+====================================================================================================
+-- S08 GUDID staging: what the raw blocks hold (rerun of S04, which failed on the reserved word SAMPLE)
+{'N': '1329', 'RAW_TYPE': 'VARIANT[LOB]', 'LEN_MIN': '4569861', 'LEN_MAX': '4780190', 'DISTINCT_RAW': '1329', 'KEYSETS': '[\n  "results"\n]', 'RAW_SAMPLE': '{"results":[{"brand_name":"ReLine","commercial_distribution_status":"In Commercial Distribution","company_name":"Nuvasive, Inc.","customer_contacts":[{"email":"nuvainfo@globusmedical.com","phone":"+1800-475-9131"}],"device_count_in_base_package":"1","device_description":"RELINE MAS CoCr Rod, 5.0x260'}
+====================================================================================================
+-- S09 UDS Table 3A: per age line, '--' vs zero vs counts, smallest shown count (rerun of S06 with a working line regex)
+{'LINE': '1', 'M_DASH': '310', 'F_DASH': '315', 'ZERO_CELLS': '158', 'OTHER_TEXT': '19', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '232497', 'FEMALE_SUM': '220060'}
+{'LINE': '2', 'M_DASH': '247', 'F_DASH': '247', 'ZERO_CELLS': '95', 'OTHER_TEXT': '16', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '240920', 'FEMALE_SUM': '230884'}
+{'LINE': '3', 'M_DASH': '231', 'F_DASH': '242', 'ZERO_CELLS': '72', 'OTHER_TEXT': '11', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '229131', 'FEMALE_SUM': '218854'}
+{'LINE': '4', 'M_DASH': '203', 'F_DASH': '218', 'ZERO_CELLS': '58', 'OTHER_TEXT': '12', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '232723', 'FEMALE_SUM': '223447'}
+{'LINE': '5', 'M_DASH': '174', 'F_DASH': '186', 'ZERO_CELLS': '52', 'OTHER_TEXT': '9', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '243031', 'FEMALE_SUM': '235373'}
+{'LINE': '6', 'M_DASH': '154', 'F_DASH': '168', 'ZERO_CELLS': '47', 'OTHER_TEXT': '10', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '262708', 'FEMALE_SUM': '254507'}
+{'LINE': '7', 'M_DASH': '160', 'F_DASH': '169', 'ZERO_CELLS': '47', 'OTHER_TEXT': '11', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '267063', 'FEMALE_SUM': '256271'}
+{'LINE': '8', 'M_DASH': '149', 'F_DASH': '164', 'ZERO_CELLS': '38', 'OTHER_TEXT': '10', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '264722', 'FEMALE_SUM': '254123'}
+{'LINE': '9', 'M_DASH': '145', 'F_DASH': '150', 'ZERO_CELLS': '41', 'OTHER_TEXT': '9', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '265535', 'FEMALE_SUM': '255313'}
+{'LINE': '10', 'M_DASH': '142', 'F_DASH': '143', 'ZERO_CELLS': '44', 'OTHER_TEXT': '10', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '265890', 'FEMALE_SUM': '255789'}
+{'LINE': '11', 'M_DASH': '137', 'F_DASH': '140', 'ZERO_CELLS': '34', 'OTHER_TEXT': '10', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '266898', 'FEMALE_SUM': '254684'}
+{'LINE': '12', 'M_DASH': '135', 'F_DASH': '130', 'ZERO_CELLS': '40', 'OTHER_TEXT': '10', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '274477', 'FEMALE_SUM': '264133'}
+{'LINE': '13', 'M_DASH': '119', 'F_DASH': '130', 'ZERO_CELLS': '39', 'OTHER_TEXT': '7', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '280966', 'FEMALE_SUM': '273199'}
+{'LINE': '14', 'M_DASH': '124', 'F_DASH': '127', 'ZERO_CELLS': '30', 'OTHER_TEXT': '8', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '276933', 'FEMALE_SUM': '272865'}
+{'LINE': '15', 'M_DASH': '111', 'F_DASH': '116', 'ZERO_CELLS': '37', 'OTHER_TEXT': '6', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '273401', 'FEMALE_SUM': '275389'}
+{'LINE': '16', 'M_DASH': '120', 'F_DASH': '115', 'ZERO_CELLS': '37', 'OTHER_TEXT': '6', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '269879', 'FEMALE_SUM': '281654'}
+{'LINE': '17', 'M_DASH': '111', 'F_DASH': '99', 'ZERO_CELLS': '34', 'OTHER_TEXT': '6', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '272551', 'FEMALE_SUM': '295182'}
+{'LINE': '18', 'M_DASH': '104', 'F_DASH': '91', 'ZERO_CELLS': '31', 'OTHER_TEXT': '6', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '271701', 'FEMALE_SUM': '308269'}
+{'LINE': '19', 'M_DASH': '127', 'F_DASH': '97', 'ZERO_CELLS': '9', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '235397', 'FEMALE_SUM': '295672'}
+{'LINE': '20', 'M_DASH': '141', 'F_DASH': '97', 'ZERO_CELLS': '10', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '174981', 'FEMALE_SUM': '263280'}
+{'LINE': '21', 'M_DASH': '168', 'F_DASH': '94', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '144535', 'FEMALE_SUM': '247805'}
+{'LINE': '22', 'M_DASH': '169', 'F_DASH': '100', 'ZERO_CELLS': '6', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '134680', 'FEMALE_SUM': '249137'}
+{'LINE': '23', 'M_DASH': '161', 'F_DASH': '95', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '128838', 'FEMALE_SUM': '249741'}
+{'LINE': '24', 'M_DASH': '175', 'F_DASH': '94', 'ZERO_CELLS': '3', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '127678', 'FEMALE_SUM': '254304'}
+{'LINE': '25', 'M_DASH': '172', 'F_DASH': '88', 'ZERO_CELLS': '4', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '129399', 'FEMALE_SUM': '263220'}
+{'LINE': '26', 'M_DASH': '9', 'F_DASH': '6', 'ZERO_CELLS': '1', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '681517', 'FEMALE_SUM': '1352457'}
+{'LINE': '27', 'M_DASH': '6', 'F_DASH': '4', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '780971', 'FEMALE_SUM': '1422720'}
+{'LINE': '28', 'M_DASH': '4', 'F_DASH': '3', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '19', 'MALE_SUM': '826395', 'FEMALE_SUM': '1381254'}
+{'LINE': '29', 'M_DASH': '2', 'F_DASH': '4', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '19', 'MALE_SUM': '826987', 'FEMALE_SUM': '1284162'}
+{'LINE': '30', 'M_DASH': '2', 'F_DASH': '3', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '17', 'MALE_SUM': '816712', 'FEMALE_SUM': '1192064'}
+{'LINE': '31', 'M_DASH': '4', 'F_DASH': '4', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '17', 'MALE_SUM': '791385', 'FEMALE_SUM': '1100404'}
+{'LINE': '32', 'M_DASH': '3', 'F_DASH': '3', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '823711', 'FEMALE_SUM': '1063241'}
+{'LINE': '33', 'M_DASH': '2', 'F_DASH': '6', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '862289', 'FEMALE_SUM': '1072401'}
+{'LINE': '34', 'M_DASH': '5', 'F_DASH': '9', 'ZERO_CELLS': '3', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '712586', 'FEMALE_SUM': '894246'}
+{'LINE': '35', 'M_DASH': '23', 'F_DASH': '27', 'ZERO_CELLS': '2', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '489166', 'FEMALE_SUM': '638605'}
+{'LINE': '36', 'M_DASH': '64', 'F_DASH': '51', 'ZERO_CELLS': '7', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '294371', 'FEMALE_SUM': '429482'}
+{'LINE': '37', 'M_DASH': '191', 'F_DASH': '121', 'ZERO_CELLS': '17', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '16', 'MALE_SUM': '157311', 'FEMALE_SUM': '245916'}
+{'LINE': '38', 'M_DASH': '301', 'F_DASH': '165', 'ZERO_CELLS': '41', 'OTHER_TEXT': '1', 'OTHER_VALS': '[\n  "-"\n]', 'MIN_POS': '16', 'MALE_SUM': '110432', 'FEMALE_SUM': '206995'}
+{'LINE': '39', 'M_DASH': '0', 'F_DASH': '0', 'ZERO_CELLS': '0', 'OTHER_TEXT': '0', 'OTHER_VALS': '[]', 'MIN_POS': '65', 'MALE_SUM': '13977402', 'FEMALE_SUM': '18768990'}
+====================================================================================================
+-- S10 UDS Table 3A: does lines 1-38 add up to the line 39 total, and how big is the gap each '--' hides
+{'CENTERS': '1356', 'TOT39_MISSING': '0', 'EXACT': '766', 'SUM_UNDER': '590', 'SUM_OVER': '0', 'TOTAL_PATIENTS': '32746392', 'TOTAL_GAP': '68923', 'DASH_CELLS': '8626', 'MIN_GAP_PER_DASH': '2.500000', 'MED_GAP_PER_DASH': '9.666667000', 'MAX_GAP_PER_DASH': '15.000000', 'NODASH_MISMATCH': '0', 'MEDIAN_CENTER': '14879.000', 'MAX_CENTER': '312739', 'MIN_CENTER': '135'}
+====================================================================================================
+-- S11 Prop 65: listings per year, mechanism, safe-harbor fill; names of the null-date rows
+{'Y': '1987', 'N': '85', 'CHEMS': '84', 'CANCER': '71', 'REPRO': '14', 'SQE': '48', 'AB': '0', 'FR': '10', 'LC': '27', 'NSRL': '46', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1988', 'N': '166', 'CHEMS': '166', 'CANCER': '165', 'REPRO': '1', 'SQE': '165', 'AB': '1', 'FR': '0', 'LC': '0', 'NSRL': '98', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1989', 'N': '77', 'CHEMS': '77', 'CANCER': '56', 'REPRO': '21', 'SQE': '42', 'AB': '0', 'FR': '6', 'LC': '31', 'NSRL': '26', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1990', 'N': '147', 'CHEMS': '146', 'CANCER': '81', 'REPRO': '66', 'SQE': '1', 'AB': '83', 'FR': '62', 'LC': '1', 'NSRL': '40', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1991', 'N': '23', 'CHEMS': '23', 'CANCER': '3', 'REPRO': '20', 'SQE': '4', 'AB': '4', 'FR': '15', 'LC': '0', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1992', 'N': '44', 'CHEMS': '44', 'CANCER': '19', 'REPRO': '25', 'SQE': '0', 'AB': '16', 'FR': '28', 'LC': '0', 'NSRL': '3', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1993', 'N': '6', 'CHEMS': '6', 'CANCER': '2', 'REPRO': '4', 'SQE': '1', 'AB': '4', 'FR': '1', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1994', 'N': '13', 'CHEMS': '13', 'CANCER': '10', 'REPRO': '3', 'SQE': '0', 'AB': '13', 'FR': '0', 'LC': '0', 'NSRL': '3', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1995', 'N': '2', 'CHEMS': '2', 'CANCER': '2', 'REPRO': '0', 'SQE': '2', 'AB': '0', 'FR': '0', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1996', 'N': '23', 'CHEMS': '23', 'CANCER': '16', 'REPRO': '7', 'SQE': '1', 'AB': '15', 'FR': '7', 'LC': '0', 'NSRL': '4', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1997', 'N': '32', 'CHEMS': '32', 'CANCER': '16', 'REPRO': '18', 'SQE': '6', 'AB': '9', 'FR': '17', 'LC': '0', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1998', 'N': '35', 'CHEMS': '34', 'CANCER': '13', 'REPRO': '22', 'SQE': '0', 'AB': '27', 'FR': '8', 'LC': '0', 'NSRL': '4', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '1999', 'N': '66', 'CHEMS': '66', 'CANCER': '11', 'REPRO': '56', 'SQE': '7', 'AB': '35', 'FR': '24', 'LC': '0', 'NSRL': '4', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2000', 'N': '11', 'CHEMS': '11', 'CANCER': '9', 'REPRO': '3', 'SQE': '1', 'AB': '7', 'FR': '3', 'LC': '0', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2001', 'N': '16', 'CHEMS': '16', 'CANCER': '6', 'REPRO': '10', 'SQE': '0', 'AB': '7', 'FR': '9', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2002', 'N': '6', 'CHEMS': '6', 'CANCER': '5', 'REPRO': '1', 'SQE': '1', 'AB': '5', 'FR': '0', 'LC': '0', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2003', 'N': '6', 'CHEMS': '6', 'CANCER': '4', 'REPRO': '2', 'SQE': '1', 'AB': '5', 'FR': '0', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2004', 'N': '11', 'CHEMS': '11', 'CANCER': '9', 'REPRO': '2', 'SQE': '0', 'AB': '6', 'FR': '0', 'LC': '4', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2005', 'N': '11', 'CHEMS': '11', 'CANCER': '7', 'REPRO': '4', 'SQE': '1', 'AB': '6', 'FR': '0', 'LC': '4', 'NSRL': '1', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2006', 'N': '4', 'CHEMS': '4', 'CANCER': '3', 'REPRO': '1', 'SQE': '1', 'AB': '1', 'FR': '0', 'LC': '2', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2007', 'N': '3', 'CHEMS': '3', 'CANCER': '2', 'REPRO': '1', 'SQE': '0', 'AB': '3', 'FR': '0', 'LC': '0', 'NSRL': '1', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2008', 'N': '12', 'CHEMS': '12', 'CANCER': '8', 'REPRO': '4', 'SQE': '4', 'AB': '7', 'FR': '0', 'LC': '2', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2009', 'N': '25', 'CHEMS': '25', 'CANCER': '6', 'REPRO': '19', 'SQE': '6', 'AB': '4', 'FR': '1', 'LC': '15', 'NSRL': '1', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2010', 'N': '13', 'CHEMS': '13', 'CANCER': '8', 'REPRO': '5', 'SQE': '4', 'AB': '9', 'FR': '0', 'LC': '0', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2011', 'N': '25', 'CHEMS': '25', 'CANCER': '22', 'REPRO': '3', 'SQE': '2', 'AB': '12', 'FR': '0', 'LC': '11', 'NSRL': '5', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2012', 'N': '11', 'CHEMS': '11', 'CANCER': '9', 'REPRO': '2', 'SQE': '0', 'AB': '4', 'FR': '0', 'LC': '7', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2013', 'N': '11', 'CHEMS': '11', 'CANCER': '10', 'REPRO': '1', 'SQE': '3', 'AB': '2', 'FR': '2', 'LC': '4', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2014', 'N': '23', 'CHEMS': '23', 'CANCER': '21', 'REPRO': '2', 'SQE': '14', 'AB': '4', 'FR': '1', 'LC': '4', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2015', 'N': '11', 'CHEMS': '11', 'CANCER': '6', 'REPRO': '5', 'SQE': '3', 'AB': '3', 'FR': '3', 'LC': '2', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2016', 'N': '16', 'CHEMS': '16', 'CANCER': '9', 'REPRO': '7', 'SQE': '0', 'AB': '12', 'FR': '1', 'LC': '3', 'NSRL': '3', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2017', 'N': '12', 'CHEMS': '12', 'CANCER': '6', 'REPRO': '6', 'SQE': '2', 'AB': '3', 'FR': '2', 'LC': '5', 'NSRL': '2', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2018', 'N': '4', 'CHEMS': '4', 'CANCER': '3', 'REPRO': '1', 'SQE': '3', 'AB': '1', 'FR': '0', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2019', 'N': '8', 'CHEMS': '8', 'CANCER': '7', 'REPRO': '1', 'SQE': '0', 'AB': '1', 'FR': '1', 'LC': '6', 'NSRL': '1', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2020', 'N': '3', 'CHEMS': '3', 'CANCER': '0', 'REPRO': '3', 'SQE': '2', 'AB': '1', 'FR': '0', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2021', 'N': '8', 'CHEMS': '8', 'CANCER': '7', 'REPRO': '1', 'SQE': '2', 'AB': '0', 'FR': '0', 'LC': '6', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2022', 'N': '1', 'CHEMS': '1', 'CANCER': '1', 'REPRO': '0', 'SQE': '0', 'AB': '1', 'FR': '0', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2023', 'N': '12', 'CHEMS': '12', 'CANCER': '11', 'REPRO': '1', 'SQE': '1', 'AB': '0', 'FR': '0', 'LC': '11', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2025', 'N': '4', 'CHEMS': '3', 'CANCER': '2', 'REPRO': '2', 'SQE': '4', 'AB': '0', 'FR': '0', 'LC': '0', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': '2026', 'N': '4', 'CHEMS': '4', 'CANCER': '4', 'REPRO': '0', 'SQE': '0', 'AB': '0', 'FR': '0', 'LC': '4', 'NSRL': '0', 'NULL_DATE_NAMES': '[]', 'COL6_VALS': '[\n  ""\n]'}
+{'Y': None, 'N': '31', 'CHEMS': '28', 'CANCER': '0', 'REPRO': '0', 'SQE': '0', 'AB': '0', 'FR': '0', 'LC': '0', 'NSRL': '13', 'NULL_DATE_NAMES': '[\n  "Hydrogen cyanidef",\n  "Methylhydrazine",\n  "Neonatal infant boys, age 0 to 28 daysb",\n  "a Where a source or product results in exposures by multiple routes, the total exposure must be considered.  For example, the MADL for benzene is exceeded when the absorbed dose exceeds 24 µg/day.  If only ', 'COL6_VALS': '[\n  ""\n]'}
+====================================================================================================
+-- S12 Prop 65 x TRI 2023 on CAS: land rate and pounds, split by TRI's own carcinogen flag
+ERROR: 001065 (22023): SQL compilation error:
+Function TRY_CAST cannot be used with arguments of types FLOAT and NUMBER(38,0)
+====================================================================================================
+-- S13 Prop 65 x TRI 2023: which Prop 65 chemicals carry the pounds; TRI flag vs Prop 65 listing
+ERROR: 001065 (22023): SQL compilation error:
+Function TRY_CAST cannot be used with arguments of types FLOAT and NUMBER(38,0)

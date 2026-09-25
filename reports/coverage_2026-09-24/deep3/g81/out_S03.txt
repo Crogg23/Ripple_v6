@@ -1,0 +1,28 @@
+-- S03 Oyez: 25 rows, which fields are filled, and whether each docket lands in the full Supreme Court Database (SCDB)
+DOCKET | TERM | CASE_NAME | DATE | DECISION_DATE | ARGUMENT_DATE | DECISION | CITATION | AUTHOR | SUMMARY30 | VOTES_LEN | HAS_AUDIO | SCDB_CASE | US_CITE | SCDB_VOTES
+1043 | 1966 | Gills v. California | 1967-06-05 | 1967-06-05 |  |  |  |  | None | 7858 | True |  |  | 
+510 | 1966 | American Trucking Assns., Inc. v. United States | 1966-01-17 | 1966-01-17 |  |  |  |  | None | 7858 | True |  |  | 
+1269 | 1967 | Central Bank & Trust Co. v. United States | 1968-05-27 | 1968-05-27 |  |  |  |  | None | 7901 | True |  |  | 
+373 | 1967 | California v. Phillips Petroleum Co. | 1968-05-20 | 1968-05-20 |  |  |  |  | None | 7897 | True |  |  | 
+1047 | 1968 | Chicago v. United States | 1969-04-21 | 1969-04-21 |  |  |  |  | None | 7889 | True |  |  | 
+343 | 1969 | Boston & Maine R. Co. v. United States | 1969-11-10 | 1969-11-10 |  |  |  |  | None | 7043 | True |  |  | 
+45-orig | 1971 | Washington v. General Motors Corporation | 1972-04-24 | 1972-04-24 | 1972-02-28 |  |  |  | None | 8347 | True |  |  | 
+68-5009 | 1971 | Schneble v. Florida | 1972-03-21 | 1972-03-21 | 1972-01-17 |  |  |  | None | 9794 | True | SCHNEBLE v. FLORIDA | 405 U.S. 427 | 9
+69-4 | 1971 | Zicarelli v. New Jersey State Commission of Investigation | 1972-05-22 | 1972-05-22 | 1972-01-11 |  |  |  | None | 8349 | True | ZICARELLI v. NEW JERSEY STATE COMMISSION OF INVESTIGATION | 406 U.S. 472 | 9
+70-161 | 1971 | Richardson v. Wright | 1972-02-24 | 1972-02-24 | 1972-01-13 |  |  |  | None | 9837 | True | RICHARDSON, SECRETARY OF HEALTH, EDUCATION, AND WELFARE v. WRIGHT et al. | 405 U.S. 208 | 9
+70-18 | 1971 | Roe v. Wade | 1973-01-22 | 1973-01-22 | 1971-12-13 |  |  |  | <p>In 1970, Jane Roe (a fictio | 9076 | True |  |  | 
+70-250 | 1971 | Carleson v. Remillard | 1972-06-07 | 1972-06-07 | 1972-04-10 |  |  |  | None | 8358 | True | CARLESON, DIRECTOR, DEPARTMENT OF SOCIAL WELFARE, et al. v. REMILLARD et al. | 406 U.S. 598 | 9
+70-33 | 1971 | Engelman v. Amos | 1971-11-09 | 1971-11-09 |  |  |  |  | None | 6241 | True | ENGELMAN, DIRECTOR, DIVISION OF PUBLIC WELFARE, DEPT. OF INSTITUTIONS AND AGENCIES, et al. v. AMOS et al. | 404 U.S. 23 | 7
+70-5004 | 1971 | Humphrey v. Cady | 1972-03-22 | 1972-03-22 | 1971-12-07 |  |  |  | None | 8343 | True | HUMPHREY v. CADY, WARDEN | 405 U.S. 504 | 9
+70-5014 | 1971 | Stanley v. Illinois | 1972-04-03 | 1972-04-03 | 1971-10-19 |  |  |  | <p>Joan Stanley had three chil | 9026 | True | STANLEY v. ILLINOIS | 405 U.S. 645 | 9
+70-5039 | 1971 | Fuentes v. Shevin | 1972-06-12 | 1972-06-12 | 1971-11-09 |  |  |  | None | 9742 | True | FUENTES v. SHEVIN, ATTORNEY GENERAL OF FLORIDA, et al. | 407 U.S. 67 | 9
+70-5055 | 1971 | Smith v. Florida | 1972-02-24 | 1972-02-24 | 1971-12-08 |  |  |  | None | 8334 | True | SMITH et al. v. FLORIDA | 405 U.S. 172 | 9
+70-5058 | 1971 | Lynch v. Household Finance Corporation | 1972-03-23 | 1972-03-23 | 1971-12-07 |  |  |  | None | 9743 | True | LYNCH et al. v. HOUSEHOLD FINANCE CORP. et al. | 405 U.S. 538 | 9
+70-5082 | 1971 | Carter v. Stanton | 1972-04-03 | 1972-04-03 | 1971-11-08 |  |  |  | None | 8354 | True | CARTER et al. v. STANTON, DIRECTOR, MARION COUNTY DEPARTMENT OF PUBLIC WELFARE, et al. | 405 U.S. 669 | 9
+70-5308 | 1971 | Wilwording v. Swenson | 1971-12-14 | 1971-12-14 |  |  |  |  | None | 6244 | True | WILWORDING et al. v. SWENSON, WARDEN | 404 U.S. 249 | 7
+70-79 | 1971 | Reliance Electric Company v. Emerson Electric Company | 1972-01-11 | 1972-01-11 | 1971-11-10 |  |  |  | None | 9660 | True | RELIANCE ELECTRIC CO. v. EMERSON ELECTRIC CO. | 404 U.S. 418 | 9
+71-11 | 1971 | James v. Strange | 1972-06-12 | 1972-06-12 | 1972-03-22 |  |  |  | None | 8351 | True | JAMES, JUDICIAL ADMINISTRATOR, et al. v. STRANGE | 407 U.S. 128 | 9
+71-452 | 1971 | Healy v. James | 1972-06-26 | 1972-06-26 | 1972-03-28 |  |  |  | None | 8380 | True | HEALY et al. v. JAMES et al. | 408 U.S. 169 | 9
+71-5144 | 1971 | McNeil v. Director, Patuxent Institution | 1972-06-19 | 1972-06-19 | 1972-04-20 |  |  |  | None | 8358 | True | MCNEIL v. DIRECTOR, PATUXENT INSTITUTION | 407 U.S. 245 | 9
+71-6425 | 1971 | Ivan V. v. City of New York | 1972-06-12 | 1972-06-12 |  |  |  |  | None | 8343 | True | IVAN V v. CITY OF NEW YORK | 407 U.S. 203 | 9
+(25 rows; csv has all)

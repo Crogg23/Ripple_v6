@@ -1,0 +1,3 @@
+-- S06 USGS minerals: by development status, fill of the columns said to be empty, ID uniqueness, coordinates, newest years
+ERROR: 000904 (42000): SQL compilation error: error line 7 at position 77
+invalid identifier '_SOURCE_RUN_ID'

@@ -1,0 +1,4 @@
+-- S09 SDWA PN assoc: shape, duplicate links, ID uniqueness, date ranges, code spread
+N | SYSTEMS | PN_VIOLS | RELATED_VIOLS | DISTINCT_LINKS | PN_IDS_NO_PWSID | RELEASES | CB0 | CB1 | NB0 | NB1 | FR0 | FR1 | OPEN_END | VCODES | CCODES | SINCE2015
+387627 | 42034 | 210081 | 385263 | 387627 | 130474 | 1 | 1992-06-30 | 2026-05-10 | 1992-06-30 | 2026-05-10 | 2002-02-16 | 2026-07-01 | 35484 | 65 | 209 | 165441
+(1 rows; csv has all)

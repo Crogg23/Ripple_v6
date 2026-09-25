@@ -1,0 +1,4 @@
+-- S03 Grants.gov: fill count of every column, distinct IDs, date range (confirm it is a 100-row API sample)
+N | IDS | OPP_NUMS | AGENCY_CODES | F_TITLE | F_AGENCY_NAME | F_STATUS | F_CAT | F_INSTR | F_ACTIVITY | F_CFDA | F_ELIG | F_CEILING | F_FLOOR | F_TOTAL | F_NAWARDS | F_UPD | F_ARCH | F_SYN | F_EMAIL | F_CNAME | F_VER | F_CLOSE | P0 | P1 | C0 | C1
+100 | 100 | 100 | 31 | 100 | 0 | 0 | 0 | 0 | 0 | 100 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 90 | 2026-06-25 | 2026-07-01 | 2026-07-02 | 2027-06-07
+(1 rows; csv has all)

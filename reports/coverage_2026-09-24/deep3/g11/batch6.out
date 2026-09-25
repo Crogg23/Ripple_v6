@@ -1,0 +1,6 @@
+====================================================================================================
+-- S25 TRI 2023 trap check: same site + same CAS on more than one row (rerun of S22, which failed on the reserved word SAMPLE)
+{'ALL_ROWS': '78647', 'DUP_PAIRS': '664', 'DUP_ROWS': '1647', 'DUP_DOCS': '1647', 'CA_DUP_PAIRS': '55', 'STYRENE_DUP_PAIRS': '5', 'EXAMPLES': '[\n  "TESORO LOS ANGELES REFINERY-CARSON OPERATIONS [CA] 108-88-3 :: Toluene R 183 air 183 / Toluene R 32 air 27 / Toluene R 305 air 102 / Toluene R 2 air 2 / Toluene R 153 air 130 / Toluene R 8563 air 7200 / Toluene R 7239 air 5100",\n  "TESORO LOS ANGELES REFINERY-CARSON OPERATIONS [CA] 110-82-7 :: '}
+====================================================================================================
+-- S26 California air pounds the CAS join cannot see: unmatched TRI rows that are metal/PAC/isocyanate groups or carry TRI's own carcinogen flag (upper bound on what the styrene share misses)
+{'FORMS': '915', 'SITES': '645', 'AIR': '25888.0', 'TOP_ROWS': '[\n  "Acrolein 13152",\n  "Lead  And Lead Compounds 1786",\n  "Lead 1446",\n  "Lead  And Lead Compounds 960",\n  "Lead  And Lead Compounds 423",\n  "Lead  And Lead Compounds 420",\n  "Chromium  and Chromium Compounds(except for chromite ore mined in the Transvaal Region) 420",\n  "Lead compounds 373",\n  "Po'}

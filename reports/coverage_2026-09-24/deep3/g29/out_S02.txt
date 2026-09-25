@@ -1,0 +1,43 @@
+-- S02 OCC national banks: pull whole table (724 rows)
+CHARTER_NO | NAME | ADDRESS_LOC | CITY | STATE | CERT | RSSD | _LOADED_AT | _SOURCE_RUN_ID | _SRC_SHA256
+1 | Wells Fargo Bank, National Association | 3201 N. 4th Avenue | Sioux Falls | SD | 3511 | 451965 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10004 | First National Bank | 200 West Court Street | Paragould | AR | 3887 | 42448 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10034 | The Citizens First National Bank of Storm Lake | 529 Lake Avenue | Storm Lake | IA | 4511 | 424240 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10045 | First Mid Bank & Trust, National Association | 1515 Charleston Avenue | Mattoon | IL | 3705 | 762447 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10051 | The Peoples National Bank of Checotah | 300 West Gentry | Checotah | OK | 4059 | 942454 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10079 | The Litchfield National Bank | 316 North State Street | Litchfield | IL | 3808 | 372444 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10118 | First Hope Bank, A National Banking Association | Union and High Streets | Hope | NJ | 6354 | 434203 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10161 | The First National Bank of Spearville | 303 N Main | Spearville | KS | 4774 | 197254 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10180 | The First National Bank of Waterloo | 228 South Main Street | Waterloo | IL | 3842 | 145545 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10216 | The Citizens National Bank of Hammond | 19 Main Street | Hammond | NY | 14820 | 855303 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10254 | Cumberland Valley National Bank & Trust Company | 100 South Main Street | London | KY | 2691 | 647218 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+1027 | The Lyons National Bank | 35 William Street | Lyons | NY | 7151 | 323204 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10354 | Midstates Bank, National Association | 1851 Madison Avenue, Suite 732 | Council Bluffs | IA | 4465 | 728948 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10397 | The First National Bank of Brownstown | 108 E. Main Street | Brownstown | IL | 3770 | 207041 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10408 | First National Bank, Ames, Iowa | 405 Fifth Street | Ames | IA | 1545 | 820048 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10420 | Texas Gulf Bank, National Association | 1626 South Voss Road | Houston | TX | 3206 | 514655 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10465 | First National Bank | 302 South Main Street | Cloverdale | IN | 4324 | 60648 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10476 | Texana Bank, National Association | 124 East Rush | Linden | TX | 3302 | 809650 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10536 | The Conway National Bank | 1400 Third Avenue | Conway | SC | 2102 | 631422 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10566 | The First National Bank of Hooker | 119 North Broadway Street | Hooker | OK | 4123 | 816256 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10598 | The First National Bank of Lipan | 101 E. Lipan Drive | Lipan | TX | 3303 | 811457 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10637 | First National Bank in Philip | 103 East Oak Street | Philip | SD | 3999 | 538754 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10680 | First National Bank of South Carolina | 801 Gilway Street | Holly Hill | SC | 2107 | 347022 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10697 | First National Bank and Trust | 111 South Main Street | Atmore | AL | 2779 | 670430 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10789 | The Citizens National Bank | 417 Commercial | Greenleaf | KS | 4678 | 991555 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10806 | The City National Bank of San Saba | 209 E. Brown | San Saba | TX | 5518 | 714165 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10823 | The First National Bank of Absecon | 106 New Jersey Avenue | Absecon | NJ | 6442 | 188917 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+1083 | The First National Bank of Groton | 161 Main Street | Groton | NY | 7085 | 917500 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10834 | Skyline National Bank | 113 West Main Street | Independence | VA | 6861 | 90328 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10844 | Bank of Bridger, National Association | 101 S. Main Street | Bridger | MT | 2224 | 17950 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10865 | WNB Financial, National Association | 204 Main Street | Winona | MN | 5280 | 220059 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10911 | The First National Bank of Ava | Main Street | Ava | IL | 3761 | 858443 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+10971 | Western National Bank | 523 Thayer Avenue | Chester | NE | 4778 | 199351 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11001 | Patrons Bank, National Association | 610 East 8th | Okmulgee | OK | 4170 | 634955 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11019 | The First National Bank of Tom Bean | 109 Britton Street | Tom Bean | TX | 5557 | 193162 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11125 | The First National Bank of Proctor | 211 Second Street | Proctor | MN | 5232 | 731957 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11305 | The First National Bank of Wakefield | 400 Sunday Lake Street | Wakefield | MI | 5076 | 292850 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11312 | First National Bank of Commerce | 206 West Main Street | Walnut Ridge | AR | 3896 | 799948 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11343 | The First National Bank of Pandora | 102 E. Main Street | Pandora | OH | 6671 | 571920 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+11348 | The First National Bank of Russell Springs | Highways 127 and 80 | Russell Springs | KY | 2767 | 173641 | 1785965657612245 | manual-1785965656 | dd6d1f169193ccae4c7d2ba0bb7c29b432cb697103f3e83833f390d3f039f719
+(724 rows; 0.5s; qid 01c74b9f-040b-a028-0026-eed30133d7a2)

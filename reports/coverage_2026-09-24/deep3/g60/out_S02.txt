@@ -1,0 +1,72 @@
+-- S02 FAO_FAOSTAT: the whole 69-row catalog, oldest update first
+DATASETCODE | DATASETNAME | DATEUPDATE | FILEROWS | FILESIZE | TOPIC40
+PA | Discontinued archives and data series: Producer Prices (old series) | 1991-12-31T00:00:00 | 139713 | 1086KB | 
+HS | Discontinued archives and data series: Indicators from Household Surveys (gender, area, socioeconomics) | 2014-07-31T00:00:00 | 148620 | 1292KB | 
+FA | Discontinued archives and data series: Food Aid Shipments (WFP) | 2016-12-22T00:00:00 | 31114 | 249KB | 
+RA | Discontinued archives and data series: Fertilizers archive | 2020-09-08T00:00:00 | 178192 | 1325KB | 
+CBH | Food Balances: Commodity Balances (non-food) (-2013, old methodology) | 2021-12-03T00:00:00 | 1184986 | 7700KB | 
+RM | Discontinued archives and data series: Machinery | 2021-12-03T00:00:00 | 146834 | 1182KB | 
+RY | Discontinued archives and data series: Machinery Archive | 2021-12-03T00:00:00 | 328932 | 1804KB | 
+FT | Discontinued archives and data series: Forestry Trade Flows | 2022-05-27T00:00:00 | 2829802 | 22643KB | 
+FBSH | Food Balances: Food Balances (-2013, old methodology and population) | 2023-03-10T00:00:00 | 11479903 | 70769KB | 
+GFDI | Food Value Chain: Value shares by industry and primary factors | 2024-11-19T00:00:00 | 161088 | 1748KB | 
+FDI | Investment: Foreign Direct Investment (FDI) | 2025-02-05T00:00:00 | 40442 | 415KB | FAO provides data related to Foreign Dir
+LC | Land, Inputs and Sustainability: Land Cover | 2025-06-20T00:00:00 | 213582 | 1522KB | Data are disseminated for the 1992–2023 
+CS | Macro-Economic Indicators: Capital Stock | 2025-07-10T00:00:00 | 144944 | 1381KB | Capital stock in the agricultural sector
+RFB | Land, Inputs and Sustainability: Fertilizers by Product | 2025-07-11T00:00:00 | 312259 | 2651KB | 190 countries and territories
+RFM | Land, Inputs and Sustainability: Detailed trade matrix (fertilizers) | 2025-07-11T00:00:00 | 5565289 | 44432KB | The dataset reports trade flows both in 
+RFN | Land, Inputs and Sustainability: Fertilizers by Nutrient | 2025-07-11T00:00:00 | 258233 | 1942KB | 198 countries and territories
+RP | Land, Inputs and Sustainability: Pesticides Use | 2025-07-15T00:00:00 | 104860 | 753KB | The database covers 221 countries and te
+RT | Land, Inputs and Sustainability: Pesticides Trade | 2025-07-15T00:00:00 | 198208 | 1843KB | The database covers 233 countries and te
+EA | Investment: Development Flows to Agriculture | 2025-07-24T00:00:00 | 13020275 | 121781KB | The dataset covers 208 recipients, inclu
+FOP | Forestry: Pulp and paper capacities, survey | 2025-09-24T00:00:00 | 67538 | 352KB | Information is available on the major pu
+GF | Climate Change: Agrifood systems emissions: Emissions from Forests | 2025-10-21T00:00:00 | 65639 | 463KB | Data is disseminated for 241 countries a
+EK | Land, Inputs and Sustainability: Livestock Patterns | 2025-10-28T00:00:00 | 470577 | 3129KB | Data is disseminated for 200 countries a
+EM | Climate Change: Agrifood systems emissions: Emissions indicators | 2025-10-28T00:00:00 | 678370 | 4547KB | Data is disseminated for 201 countries a
+EMN | Land, Inputs and Sustainability: Livestock Manure | 2025-10-28T00:00:00 | 2555034 | 24329KB | Data is disseminated for 200 countries a
+FBS | Food Balances: Food Balances (2010-) | 2025-10-28T00:00:00 | 4820497 | 53556KB | Most crop and livestock products, includ
+FDIQ | Food and Diet: Intake (based on individual quantitative dietary surveys) | 2025-10-28T00:00:00 | 2191084 | 17701KB | The dataset provides indicators for eigh
+GCE | Climate Change: Agrifood systems emissions: Emissions from Crops | 2025-10-28T00:00:00 | 766730 | 6690KB | Data is disseminated for 202 countries a
+GI | Climate Change: Agrifood systems emissions: Emissions from Fires | 2025-10-28T00:00:00 | 428963 | 3024KB | Data is disseminated for 231 countries a
+GLE | Climate Change: Agrifood systems emissions: Emissions from Livestock | 2025-10-28T00:00:00 | 6650421 | 54572KB | Data is disseminated for 206 countries a
+GN | Climate Change: Agrifood systems emissions: Emissions from Energy use in agriculture | 2025-10-28T00:00:00 | 120740 | 921KB | Data is disseminated for 149 countries a
+GT | Climate Change: Agrifood systems emissions: Emissions totals | 2025-10-28T00:00:00 | 2500090 | 20022KB | Data is disseminated for 217 countries a
+GV | Climate Change: Agrifood systems emissions: Emissions from Drained organic soils | 2025-10-28T00:00:00 | 87484 | 572KB | Data is disseminated for 230 countries a
+HCES | Food and Diet: Apparent intake (based on household consumption and expenditure surveys) | 2025-10-28T00:00:00 | 1166330 | 9102KB | The population groups covered are those 
+MDDW | Food and Diet: Diversity (MDD-W, Minimum Dietary Diversity for Women) | 2025-10-28T00:00:00 | 1223 | 12KB | Women of reproductive age (15-49 years) 
+SUA | Food and Diet: Availability (based on supply utilization accounts) | 2025-10-28T00:00:00 | 743139 | 4727KB | Macro and micro-nutrients at country lev
+CAHD | Cost and Affordability of a Healthy Diet: Cost and Affordability of a Healthy Diet (CoAHD) | 2025-11-01T00:00:00 | 11672 | 94KB | The dataset contains indicators relative
+SCL | Food Balances: Supply Utilization Accounts (2010-) | 2025-11-01T00:00:00 | 11615212 | 87389KB | Most crop and livestock products, includ
+RL | Land, Inputs and Sustainability: Land Use | 2025-11-14T00:00:00 | 422031 | 2891KB | Data are disseminated for the 1961–2023 
+PD | Prices: Deflators | 2025-11-27T00:00:00 | 94240 | 1094KB | The deflator of Gross Domestic Product (
+ESB | Land, Inputs and Sustainability: Cropland Nutrient Balance | 2025-12-05T00:00:00 | 827796 | 7801KB | Data are available for 200 countries and
+TCL | Trade: Crops and livestock products | 2025-12-23T00:00:00 | 17270631 | 271305KB | FAO strives to provide data for all coun
+TCLI | Trade: Crops and livestock products indicators | 2025-12-23T00:00:00 | 116294 | 834KB | FAO strives to provide data for all coun
+TI | Trade: Trade Indices | 2025-12-23T00:00:00 | 10406391 | 66519KB | FAO strives to provide data for all coun
+TM | Trade: Detailed trade matrix | 2025-12-23T00:00:00 | 52410630 | 410792KB | FAO strives to provide data for all coun
+QCL | Production: Crops and livestock products | 2025-12-31T00:00:00 | 4209110 | 33127KB | FAO strives to provide data for all coun
+FO | Forestry: Forestry Production and Trade | 2026-01-09T00:00:00 | 2457869 | 17698KB | 
+PP | Prices: Producer Prices | 2026-01-09T00:00:00 | 1319563 | 11411KB | Most crop and livestock products under a
+EI | Climate Change: Agrifood systems emissions: Emissions intensities | 2026-02-20T00:00:00 | 409511 | 3556KB | Data is disseminated for 194 countries a
+OA | Population and Employment: Annual population | 2026-03-09T00:00:00 | 168405 | 1545KB | 
+IG | Investment: Government Expenditure | 2026-03-23T00:00:00 | 156256 | 1382KB | FAO questionnaires are dispacthed to 193
+MK | Macro-Economic Indicators: Macro Indicators | 2026-03-27T00:00:00 | 706577 | 7097KB | The Gross Domestic Product (GDP) and the
+ET | Land, Inputs and Sustainability: Temperature change on land | 2026-04-01T00:00:00 | 590512 | 3459KB | Data are disseminated for the 1961–2025 
+IC | Investment: Credit to Agriculture | 2026-04-17T00:00:00 | 62899 | 657KB | Total credit which is the account of cre
+RLIS | Rural Livelihoods: Rural Livelihoods Indicators | 2026-04-27T00:00:00 | 38918 | 474KB | Cross-country, survey-based coverage. Ha
+WCAD | World Census of Agriculture: Structural data from agricultural censuses | 2026-04-27T00:00:00 | 28565 | 378KB | This domain provides access to structura
+FS | Food Security and Nutrition: Suite of Food Security Indicators | 2026-04-29T00:00:00 | 279470 | 2127KB | Varies depending on indicator. In many c
+AE | Agricultural Science and Technology: ASTI - Expenditures | 2026-04-30T00:00:00 | 7789 | 77KB | Data are available for 124 countries and
+AF | Agricultural Science and Technology: ASTI - Researchers | 2026-04-30T00:00:00 | 3800 | 33KB | Data are available for 130 countries and
+QI | Production: Production Indices | 2026-05-11T00:00:00 | 1995192 | 15789KB | The FAO indices of agricultural producti
+QV | Production: Value of Agricultural Production | 2026-05-11T00:00:00 | 3392180 | 29616KB | FAO strives to provide data for all coun
+GPP | Climate Change: Agrifood systems emissions: Emissions from pre and post agricultural production | 2026-05-22T00:00:00 | 522216 | 5075KB | Data is disseminated for 229 countries a
+PE | Prices: Exchange rates | 2026-05-29T00:00:00 | 145821 | 1171KB | Annual exchange rates of Standard Local 
+BE | Land, Inputs and Sustainability: Bioenergy | 2026-06-11T00:00:00 | 128457 | 954KB | Data on bionergy use and production are 
+CP | Prices: Consumer Price Indices | 2026-06-11T00:00:00 | 248394 | 2332KB | Consumer Price Index (CPI) of Food and N
+CB | Food Balances: Commodity Balances (non-food) (2010-) | 2026-06-15T00:00:00 | 127558 | 999KB | Most crop and livestock products, includ
+SDGB | SDG Indicators: SDG Indicators | 2026-06-15T00:00:00 | 464787 | 4489KB | SDG data are available for countries and
+OEA | Population and Employment: Employment Indicators: Agriculture and agrifood systems | 2026-06-17T00:00:00 | 256389 | 2315KB | Employment in agrifood systems and share
+OER | Population and Employment: Employment Indicators: Rural | 2026-06-17T00:00:00 | 113187 | 1015KB | Employment in rural areas by sex and age
+SXS | Gender: Suite of Gender Indicators | 2026-06-17T00:00:00 | 315014 | 3264KB | See description and metadata (https://fi
+(69 rows; csv has all)

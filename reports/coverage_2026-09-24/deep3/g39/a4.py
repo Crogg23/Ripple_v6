@@ -1,0 +1,27 @@
+import pandas as pd, numpy as np
+pd.set_option('display.width',250); pd.set_option('display.max_columns',40); pd.set_option('display.max_rows',200)
+t=pd.read_pickle('t3.pkl')
+p=pd.read_csv('q08.csv',dtype=str)
+fac=pd.read_csv('q06.csv',dtype=str).set_index('PGM_SYS_ID')
+fce=pd.read_csv('q12.csv',dtype={'PGM_SYS_ID':str}).set_index('PGM_SYS_ID')
+tv=p[(p.PROGRAM_CODE=='CAATVP')&(p.AIR_OPERATING_STATUS_CODE=='OPR')].copy()
+tv['bd']=pd.to_datetime(tv.BEGIN_DATE,format='%m/%d/%Y',errors='coerce')
+print('begin date null', tv.bd.isna().sum(), 'top begin dates', tv.BEGIN_DATE.value_counts().head(5).to_dict())
+tv=tv[tv.bd<'2021-01-01']
+print('operating TV, in program before 2021:', len(tv))
+tv=tv.set_index('PGM_SYS_ID')
+tv['state']=fac.STATE.reindex(tv.index)
+tv['cls']=fac.AIR_POLLUTANT_CLASS_CODE.reindex(tv.index)
+rec=t[(t.yr>=2022)&(t.yr<=2025)]
+tv['cert_22_25']=tv.index.isin(rec.PGM_SYS_ID)
+tv['cert_ever']=tv.index.isin(t.PGM_SYS_ID)
+lf=pd.to_datetime(fce.last_fce if 'last_fce' in fce else fce.LAST_FCE, errors='coerce')
+tv['fce_22_25']=(lf.reindex(tv.index)>= '2022-01-01')
+s=tv.groupby('state').agg(fac=('cert_22_25','size'),no_cert=('cert_22_25',lambda x:(~x).sum()),never=('cert_ever',lambda x:(~x).sum()),fce=('fce_22_25','sum'))
+nc=tv[~tv.cert_22_25]
+s['no_cert_but_fce']=nc.groupby('state').fce_22_25.sum()
+s['pct_no_cert']=(100*s.no_cert/s.fac).round(1)
+print('NATIONAL', len(tv), (~tv.cert_22_25).sum(), round(100*(~tv.cert_22_25).mean(),1), 'of those with FCE 22-25:', nc.fce_22_25.sum())
+print(s.sort_values('pct_no_cert',ascending=False).to_string())
+print('median state pct', s[s.fac>=50].pct_no_cert.median())
+tv.to_pickle('tv.pkl')

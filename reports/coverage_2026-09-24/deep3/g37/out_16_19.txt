@@ -1,0 +1,199 @@
+===== q16 (stmt 16) 74 rows
+K | A | B | C | D | E | G | H | I
+ne_hpv | NE0000003110500009 | CLEAN HARBORS ENV SERVICES INC | KIMBALL / 562211 | State | 2015-01-05 | 2020-08-31 | MACT Standards (40 CFR Part 63) | TOTAL HAZARDOUS AIR POLLUTANTS (HAPS) | CAAMACT:CLS,CAANESH:CLS,CAANSPS:CLS,CAASIP:CLS,CAATVP:CLS | hpv=Violation w/in 1 Year
+ne_hpv | NE0000003108100030 | KAAPA PARTNERS AURORA LLC | AURORA / 325193 | State | 2015-05-01 | 2016-12-09 | State Implementation Plan for National Primary and Secondary | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003115500070 | OMAHA STEEL CASTINGS CO | WAHOO / 331513 | State | 2017-12-15 | open | State Implementation Plan for National Primary and Secondary | Primary PM10 (filterables and condensibl | CAASIP:PLN | hpv=Unaddressed-State
+ne_hpv | NE0000003101900017 | EATON CORPORATION | KEARNEY / 332111 332813 336311 | State | 2019-10-15 | open | MACT Standards (40 CFR Part 63) State Implementation Plan fo | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAAMACT:OPR,CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003106700029 | FARMERS COOPERATIVE | PICKRELL / 424510 | State | 2019-10-18 | open | State Implementation Plan for National Primary and Secondary | PM10 (Filterable portion only) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003103502010 | US MEAT ANIMAL RESEARCH CENTER | CLAY CENTER / 541711 541720 | State | 2019-11-01 | open | State Implementation Plan for National Primary and Secondary | PM10 (Filterable portion only) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003103500001 | US MEAT ANIMAL RESEARCH CENTER | CLAY CENTER / 541720 | State | 2019-11-01 | open | State Implementation Plan for National Primary and Secondary | PM10 (Filterable portion only) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003100100001 | FLOWSERVE | HASTINGS / 331511 333911 333912 | State | 2020-09-09 | open | MACT Standards (40 CFR Part 63) State Implementation Plan fo | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003114100032 | ADM CORN PROCESSING | COLUMBUS / 311221 325193 | State | 2020-10-29 | open | MACT Standards (40 CFR Part 63) New Source Performance Stand | Sulfur dioxide | CAAMACT:OPR,CAANSPS:OPR,CAANSR:OPR,CAAPSD:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003105300146 | LINCOLN PREMIUM POULTRY LLC | FREMONT / 112340 311119 311615 | State | 2020-10-29 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003114700005 | FALLS CITY POWER PLANT | FALLS CITY / 221118 926130 | State | 2021-01-22 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003114100032 | ADM CORN PROCESSING | COLUMBUS / 311221 325193 | State | 2021-01-28 | open | MACT Standards (40 CFR Part 63) New Source Performance Stand | Sulfur dioxide | CAAMACT:OPR,CAANSPS:OPR,CAANSR:OPR,CAAPSD:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003115500034 | WAHOO POWER PLANT | WAHOO / 221112 221118 | State | 2021-04-06 | open | State Implementation Plan for National Primary and Secondary | Carbon monoxide | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003102100017 | BREHMER MANUFACTURING INC | LYONS / 332117 811310 | State | 2021-04-13 | open | State Implementation Plan for National Primary and Secondary | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003104100019 | SARGENT MUNICIPAL UTILITIES | SARGENT / 221112 926130 | State | 2021-04-22 | open | State Implementation Plan for National Primary and Secondary | Formaldehyde | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003110500008 | KIMBALL MUNICIPAL POWER PLANT | KIMBALL / 926130 | State | 2021-11-18 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003117500014 | ORD LIGHT & WATER DEPT | ORD / 221112 221118 | State | 2021-12-02 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003106700084 | E ENERGY ADAMS LLC | ADAMS / 325193 | State | 2021-12-08 | open | State Implementation Plan for National Primary and Secondary | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003100100001 | FLOWSERVE | HASTINGS / 331511 333911 333912 | State | 2021-12-21 | open | MACT Standards (40 CFR Part 63) State Implementation Plan fo | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003111900016 | MADISON LIGHT & POWER PLANT | MADISON / 221112 926130 | State | 2022-03-04 | 2022-08-24 | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=No Violation Identified
+ne_hpv | NE0000003100300043 | NELIGH ELECTRIC GENERATION | NELIGH / 221112 221118 | State | 2022-03-04 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:PLN | hpv=Unaddressed-State
+ne_hpv | NE0000003108100015 | FIBERGLASS PRODUCTS INC | AURORA / 326199 | State | 2022-03-31 | open | MACT Standards (40 CFR Part 63) State Implementation Plan fo | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAAMACT:OPR,CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003107900144 | GREEN PLAINS WOOD RIVER LLC | WOOD RIVER / 325193 | State | 2022-03-31 | open | State Implementation Plan for National Primary and Secondary | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003105500179 | VALMONT INDUSTRIES INC | VALLEY / 335129 335139 | State | 2022-04-01 | open | State Implementation Plan for National Primary and Secondary | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003108100027 | A-1 FIBERGLASS AURORA INC | AURORA / 326199 | State | 2022-04-07 | open | State Implementation Plan for National Primary and Secondary | Styrene | CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003104300029 | SIOUXLAND ETHANOL LLC | JACKSON / 325193 | State | 2022-06-02 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003111100081 | UNION PACIFIC RAILROAD | NORTH PLATTE / 482111 | State | 2022-08-11 | open | State Implementation Plan for National Primary and Secondary | Primary PM10 (filterables and condensibl | CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003108900023 | STUART MUNICIPAL POWER PLANT | STUART / 221118 926130 | State | 2022-10-06 | open | State Implementation Plan for National Primary and Secondary | Carbon monoxide | CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003105900030 | POET BIOREFINING-FAIRMONT LLC | FAIRMONT / 325199 | State | 2022-11-15 | open | State Implementation Plan for National Primary and Secondary | PM10 (Filterable portion only) | CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003100100042 | WHELAN ENERGY CENTER | HASTINGS / 221112 | State | 2022-12-08 | open | Acid Rain Deposition Control (CAA Title IV) New Source Perfo | NITROGEN OXIDES N2O ETC | CAAAR:CLS,CAANSPS:OPR,CAAPSD:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003115100020 | WILBER MUNICIPAL POWER PLANT | WILBER / 221118 | State | 2023-01-12 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003106300010 | CURTIS POWER PLANT | CURTIS / 221118 926130 | State | 2023-01-27 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003114100032 | ADM CORN PROCESSING | COLUMBUS / 311221 325193 | State | 2023-02-02 | open | MACT Standards (40 CFR Part 63) New Source Performance Stand | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAAMACT:OPR,CAANSPS:OPR,CAANSR:OPR,CAAPSD:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003100100062 | AGP SOY PROCESSING | HASTINGS / 311224 311225 | State | 2023-04-25 | open | MACT Standards (40 CFR Part 63) New Source Performance Stand | PM10 (Filterable portion only) | CAAMACT:OPR,CAANSPS:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003101900095 | KAAPA ETHANOL RAVENNA LLC | RAVENNA / 325193 | State | 2023-04-25 | open | New Source Performance Standards State Implementation Plan f | VOLATILE ORGANIC COMPOUNDS (VOCS) | CAANSPS:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003115300175 | FIREBALL GROUP LLC DATA CENTER | PAPILLION / 518210 | State | 2023-06-08 | 2023-06-12 | State Implementation Plan for National Primary and Secondary | PM (Condensible portion) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003107900016 | SWIFT BEEF COMPANY | GRAND ISLAND / 311611 | State | 2023-06-21 | open | New Source Performance Standards State Implementation Plan f | Hydrogen sulfide | CAANSPS:OPR,CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003115300175 | FIREBALL GROUP LLC DATA CENTER | PAPILLION / 518210 | State | 2023-06-22 | open | State Implementation Plan for National Primary and Secondary | PM (Condensible portion) | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003107900016 | SWIFT BEEF COMPANY | GRAND ISLAND / 311611 | State | 2023-06-28 | open | New Source Performance Standards State Implementation Plan f | Sulfur dioxide | CAANSPS:OPR,CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003112100030 | GREEN PLAINS CENTRAL CITY LLC | CENTRAL CITY / 325193 | State | 2023-07-07 | open | New Source Performance Standards State Implementation Plan f | PM10 (Filterable portion only) | CAANSPS:OPR,CAASIP:CNS,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003100100062 | AGP SOY PROCESSING | HASTINGS / 311224 311225 | State | 2023-08-22 | open | MACT Standards (40 CFR Part 63) New Source Performance Stand | PM10 (Filterable portion only) | CAAMACT:OPR,CAANSPS:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003115100020 | WILBER MUNICIPAL POWER PLANT | WILBER / 221118 | State | 2023-09-05 | open | State Implementation Plan for National Primary and Secondary | p-Nitrophenol | CAASIP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003108100030 | KAAPA PARTNERS AURORA LLC | AURORA / 325193 | State | 2023-09-20 | open | State Implementation Plan for National Primary and Secondary | NITROGEN OXIDES N2O ETC | CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+ne_hpv | NE0000003105300008 | WHOLESTONE FARMS COOPERATIVE | FREMONT / 311611 | State | 2023-10-06 | open | State Implementation Plan for National Primary and Secondary | PM10 (Filterable portion only) | CAASIP:OPR,CAATVP:CLS | hpv=Unaddressed-State
+ne_hpv | NE0000003114100032 | ADM CORN PROCESSING | COLUMBUS / 311221 325193 | State | 2023-10-10 | open | MACT Standards (40 CFR Part 63) New Source Performance Stand | PM10 (Filterable portion only) | CAAMACT:OPR,CAANSPS:OPR,CAANSR:OPR,CAAPSD:OPR,CAASIP:OPR,CAATVP:OPR | hpv=Unaddressed-State
+fa_by_year | WI | 2025 | 3 | 3 | 42602000 | E |  | 
+fa_by_year | WI | 2017 | 8 | 7 | 278478 | S,E |  | 
+fa_by_year | WI | 2026 | 12 | 6 | 466712.42 | S,E |  | 
+fa_by_year | NE | 2019 | 1 | 1 | 70000 | E |  | 
+bulkdate | 03/19/2026 | TX | 4918 | 2580 | CAAMACT,CAANESH,CAANSPS,CAASIP,CAATVP |  |  | 
+bulkdate | 03/19/2026 | CO | 31 | 22 | CAAFIP,CAAMACT,CAANSPS,CAAPSD,CAASIP |  |  | 
+bulkdate | 03/19/2026 | VA | 23 | 13 | CAAFESOP,CAAGACTM,CAAMACT,CAANSPS,CAASIP |  |  | 
+fa_by_year | NE | 2016 | 3 | 3 | 0 | L |  | 
+fa_by_year | NE | 2026 | 3 | 3 | 1677546 | L,E |  | 
+fa_by_year | WI | 2019 | 9 | 8 | 279692 | S,E |  | 
+fa_by_year | NE | 2018 | 2 | 2 | 27500 | E |  | 
+fa_by_year | WI | 2015 | 16 | 13 | 454988 | E,S |  | 
+fa_by_year | WI | 2018 | 5 | 5 | 262215 | S,E |  | 
+fa_by_year | WI | 2016 | 11 | 11 | 285338 | E,S |  | 
+bulkdate | 10/27/2015 | CO | 9477 | 8385 | CAAAR,CAACFC,CAAFIP,CAAMACT,CAANAM,CAANESH,CAANFRP,CAANSPS,CAANSR,CAAPSD,CAASIP,CAATVP |  |  | 
+bulkdate | 10/27/2015 | OK | 13 | 7 | CAAMACT,CAANESH,CAANSPS,CAASIP |  |  | 
+bulkdate | 10/27/2015 | AL | 4 | 2 | CAAMACT,CAANSPS,CAASIP |  |  | 
+fa_by_year | WI | 2022 | 4 | 3 | 385000 | S,E |  | 
+fa_by_year | WI | 2024 | 8 | 7 | 61863 | E |  | 
+fa_by_year | WI | 2020 | 7 | 6 | 286234 | E |  | 
+fa_by_year | WI | 2023 | 13 | 10 | 4789635 | S,E |  | 
+fa_by_year | NE | 2023 | 1 | 1 | 12078 | E |  | 
+fa_by_year | NE | 2015 | 2 | 2 | 199000 | E,S |  | 
+fa_by_year | NE | 2024 | 2 | 2 | 34023 | E |  | 
+fa_by_year | NE | 2021 | 1 | 1 | 50594 | E |  | 
+fa_by_year | WI | 2021 | 9 | 7 | 811700 | E,S |  | 
+bulkdate | 09/29/2025 | IL | 8565 | 8511 | CAAMACT,CAANESH,CAANSPS,CAAPSD,CAASIP |  |  | 
+bulkdate | 09/29/2025 | LA | 13 | 4 | CAAGACTM,CAAMACT,CAANSPS,CAAPSD,CAASIP,CAATVP |  |  | 
+bulkdate | 09/29/2025 | ID | 4 | 2 | CAAGACTM,CAANSPS,CAASIP |  |  | 
+===== q17 (stmt 17) 46 rows
+K | A | B | C | D | E | G | H | I | M
+sum |  | 2164 | 433 | 429 | 104 | 215 | 148 | 227 | 73.000
+sum | IA | 58 | 21 | 21 | 0 | 16 | 0 | 14 | 80.000
+row | MO0098752 | MADISON MINE / FREDERICKTOWN | POF / - | 12+12 q; 295+341 viol | fa_uin=0 | ia=12 last 2002-04-26 | cs=0 ps=4 | MO | 
+row | MO0104256 | LEADWOOD WWTP / LEADWOOD | MWD / - | 12+12 q; 266+72 viol | fa_uin=0 | ia=2 last 2006-02-23 | cs=0 ps=15 | MO | 
+row | MO0107719 | CENTER WWTF / CENTER | MWD / - | 11+12 q; 183+76 viol | fa_uin=0 | ia=2 last 2017-05-25 | cs=0 ps=49 | MO | 
+row | MO0035742 | LAKE FOREST CLEAN WATER DISTRICT WWTF / STE. GENEVIEVE | MWD / - | 12+11 q; 147+47 viol | fa_uin=0 | ia=0 last - | cs=0 ps=6 | MO | 
+row | MO0055182 | BENTON WWTF / BENTON | MWD / - | 12+12 q; 67+117 viol | fa_uin=0 | ia=4 last 2020-11-10 | cs=0 ps=10 | MO | 
+row | MO0126195 | MORLEY WWTF / MORLEY | MWD / - | 12+9 q; 136+34 viol | fa_uin=0 | ia=1 last 2020-12-21 | cs=0 ps=44 | MO | 
+row | MO0036218 | MAWC, WOOD HEIGHTS WWTP / WOODS HEIGHTS | POF / - | 9+11 q; 42+127 viol | fa_uin=0 | ia=1 last 2024-05-02 | cs=0 ps=29 | MO | 
+row | MO0135429 | AOK CAMPGROUND WWTP / ST JOSEPH | POF / - | 10+12 q; 71+94 viol | fa_uin=0 | ia=2 last 2025-04-01 | cs=0 ps=0 | MO | 
+row | MO0114910 | LABADIE WWTF / LABADIE | MWD / - | 12+12 q; 84+77 viol | fa_uin=0 | ia=2 last - | cs=0 ps=21 | MO | 
+row | MO0109177 | BEAUTY VIEW ACRES WWTF / GRAY SUMMIT | MWD / - | 12+12 q; 83+69 viol | fa_uin=0 | ia=2 last - | cs=0 ps=38 | MO | 
+row | MO0115118 | KELSO WWTF / KELSO | MWD / - | 12+11 q; 78+70 viol | fa_uin=0 | ia=1 last - | cs=0 ps=8 | MO | 
+row | MO0025275 | PORTAGEVILLE WWTP / PORTAGEVILLE | MWD / - | 12+9 q; 100+41 viol | fa_uin=0 | ia=1 last 2024-05-17 | cs=0 ps=14 | MO | 
+row | MO0126292 | BUTTERFIELD WWTF / BUTTERFIELD | MWD / - | 11+11 q; 54+84 viol | fa_uin=0 | ia=2 last - | cs=0 ps=80 | MO | 
+row | MO0031674 | CONWAY WWTF / CONWAY | MWD / - | 12+12 q; 74+64 viol | fa_uin=0 | ia=1 last 2021-12-15 | cs=0 ps=30 | MO | 
+row | MO0093432 | GREENVILLE WWTF / GREENVILLE | MWD / - | 12+12 q; 69+50 viol | fa_uin=0 | ia=3 last 2024-08-05 | cs=0 ps=24 | MO | 
+row | MO0130427 | LCPWSD #3 HICKORY HILLS WWTP / LEBANON | MWD / - | 10+10 q; 50+68 viol | fa_uin=0 | ia=3 last 2023-01-24 | cs=0 ps=18 | MO | 
+row | MO0021105 | APPLETON CITY WWTF / APPLETON CITY | MWD / - | 10+12 q; 45+72 viol | fa_uin=0 | ia=3 last 2022-02-09 | cs=0 ps=38 | MO | 
+row | MO0048054 | BERNIE WWTP / BERNIE | MWD / 303(D) Listed | 11+11 q; 55+60 viol | fa_uin=0 | ia=2 last 2022-07-26 | cs=0 ps=35 | MO | 
+row | MO0092525 | VERONA WWTP / VERONA | MWD / 303(D) Listed | 10+11 q; 62+52 viol | fa_uin=0 | ia=5 last 2021-09-13 | cs=0 ps=41 | MO | 
+row | MO0055026 | PARKWOOD LAKE ESTATES MHP WEST WWTF / CAPE GIRARDEAU | POF / - | 12+12 q; 57+53 viol | fa_uin=0 | ia=1 last - | cs=0 ps=0 | MO | 
+row | MO0121568 | SILVER BELL MOBILE HOME AND RV PARK WWTP / ROGERSVILLE | POF / - | 10+12 q; 24+80 viol | fa_uin=0 | ia=4 last 2020-10-26 | cs=0 ps=8 | MO | 
+row | MO0085855 | CC LIBERTY VILLAGE PROPERTY WWTP / LIBERTY | POF / - | 9+12 q; 17+82 viol | fa_uin=0 | ia=2 last 2017-01-03 | cs=0 ps=16 | MO | 
+row | MO0025844 | KINGSVILLE WWTF / KINGSVILLE | MWD / - | 10+12 q; 48+50 viol | fa_uin=0 | ia=2 last 2025-01-14 | cs=0 ps=61 | MO | 
+row | MO0095176 | URBANA WWTF / URBANA | MWD / - | 11+11 q; 70+27 viol | fa_uin=0 | ia=2 last 2019-11-06 | cs=0 ps=69 | MO | 
+row | MO0120219 | BRILEYS SEWER ASSOCIATION WWTF / MOSCOW MILLS | POF / - | 12+8 q; 71+26 viol | fa_uin=0 | ia=1 last - | cs=0 ps=4 | MO | 
+row | MO0126349 | ADVANCE WWTF / ADVANCE | MWD / - | 10+12 q; 48+49 viol | fa_uin=0 | ia=1 last 2022-04-14 | cs=0 ps=22 | MO | 
+row | MO0139327 | HIDDEN VALLEY / WARSAW | POF / - | 10+10 q; 43+51 viol | fa_uin=0 | ia=2 last 2024-11-04 | cs=0 ps=0 | MO | 
+row | MO0080594 | BELL CITY WWTF / BELL CITY | MWD / - | 12+10 q; 63+31 viol | fa_uin=0 | ia=0 last - | cs=0 ps=17 | MO | 
+row | MO0139467 | HARBORTOWN RV PARK / MONROE CITY | POF / - | 8+8 q; 56+38 viol | fa_uin=0 | ia=3 last 2021-10-05 | cs=0 ps=1 | MO | 
+row | MO0121240 | WILLOW ACRES HOMES ASSOCIATION WWTF / WARRENSBURG | POF / - | 8+12 q; 36+55 viol | fa_uin=0 | ia=2 last 2024-02-06 | cs=0 ps=12 | MO | 
+sum | OK | 56 | 0 | 0 | 0 | 0 | 0 | 0 | 
+sum | TX | 182 | 19 | 19 | 1 | 6 | 3 | 13 | 85.000
+sum | LA | 175 | 5 | 5 | 0 | 0 | 1 | 1 | 91.000
+sum | PR | 42 | 1 | 1 | 1 | 1 | 1 | 1 | 84.000
+sum | WV | 136 | 29 | 28 | 28 | 3 | 10 | 10 | 89.000
+sum | KY | 108 | 2 | 2 | 0 | 0 | 0 | 0 | 97.000
+sum | NY | 120 | 24 | 24 | 9 | 16 | 8 | 12 | 58.000
+sum | IN | 60 | 13 | 13 | 0 | 7 | 6 | 6 | 64.000
+sum | IL | 75 | 4 | 4 | 0 | 4 | 2 | 2 | 85.000
+sum | AR | 91 | 8 | 7 | 5 | 8 | 5 | 5 | 64.000
+sum | OH | 131 | 69 | 69 | 5 | 31 | 20 | 20 | 85.000
+sum | TN | 77 | 9 | 9 | 0 | 2 | 8 | 8 | 60.000
+sum | MO | 194 | 97 | 97 | 17 | 87 | 49 | 52 | 68.000
+sum | PA | 145 | 42 | 42 | 6 | 1 | 0 | 27 | 53.500
+===== q18 (stmt 18) 41 rows
+K | A | B | C | D | E | F | G | H | I
+par | (no parent) | 53 | 52 | 18 | 4.81 | 39 | 43 |  | 
+par | GLACIAL LAKES ENERGY LLC | 4 | 4 | 1 | 3.00 | 1 | 3 |  | 
+par | GREEN PLAINS RENEWABLE ENERGY INC | 11 | 11 | 5 | 5.27 | 7 | 9 |  | 
+par |  | 169 | 167 | 54 | 4.11 | 105 | 127 |  | 
+poet | POET BIOREFINING-CLOVERDALE LLC | CLOVERDALE, IN | 12 | SSVSSSSSSSSS | 3 | air=true water=true | Significant Violation | 53400 2026-02-20 | 110033219167
+poet | POET BIOREFINING - FAIRMONT LLC | FAIRMONT, NE | 12 | SSSSSSSSSSSS | 0 | air=true water=true | Significant Violation | 32000 2012-10-02 | 110030917603
+poet | POET BIOREFINING - SHELL ROCK LLC | SHELL ROCK, IA | 10 | __SSSSSSSSSS | 1 | air=true water=true | Significant Violation | 10000 2024-07-05 | 110030490494
+poet | POET BIOREFINING-PORTLAND LLC | PORTLAND, IN | 10 | __SSSSSSSSSS | 4 | air=true water=true | Significant Violation | 9400 2026-03-05 | 110031262185
+poet | POET BIOREFINING - CHANCELLOR | CHANCELLOR, SD | 8 | S_SSSS_VV__V | 2 | air=true water=true | Violation Identified | 0 2024-09-10 | 110014338582
+poet | POET BIOREFINING - SHELBYVILLE | SHELBYVILLE, IN | 8 | ____SSSSSSSV | 2 | air=true water=true | Violation Identified | 7000 2026-02-26 | 110070226399
+poet | POET BIOREFINING LAKE CRYSTAL | LAKE CRYSTAL, MN | 7 | VVVV____SS_V | 1 | air=true water=true | Violation Identified | 12090 2023-06-05 | 110018853409
+poet | POET BIOREFINING - MENLO LLC | MENLO, IA | 7 | V___VVVVV__V | 1 | air=true water=true | Violation Identified | 89860 2023-11-09 | 110038365685
+poet | AGRA RESOURCES LLC (DBA POET GLENVILLE) | ALBERT LEA, MN | 7 | VSV_VS____VV | 2 | air=true water=true | Violation Identified | 52805 2024-01-22 | 110032967957
+poet | POET BIOREFINING-NORTH MANCHESTER LLC | NORTH MANCHESTER, IN | 7 | SS__VVV___VV | 3 | air=true water=true | Violation Identified | 10000 2026-02-12 | 110032592317
+poet | POET BIOREFINING - ASHTON | ASHTON, IA | 7 | VV___V_VVSS_ | 0 | air=true water=true | Significant Violation | 0 - | 110015723029
+poet | POET BIOREFINING - ARTHUR LLC | ARTHUR, IA | 6 | _____VVVVVV_ | 0 | air=true water=true | Violation Identified | 0 - | 110070941904
+poet | POET BIOREFINING - LADDONIA LLC | LADDONIA, MO | 6 | _V____VSVVV_ | 0 | air=true water=true | Violation Identified | 0 - | 110070672528
+poet | POET BIOREFINING-GOWRIE LLC | GOWRIE, IA | 6 | _V__V_VV_V_V | 0 | air=true water=true | Violation Identified | 7500 2008-08-08 | 110031018565
+poet | POET BIOREFINING LLC - LEIPSIC | LEIPSIC, OH | 6 | ___VVVV_VV__ | 1 | air=true water=true | Violation Identified | 42000 2024-07-15 | 110033213902
+poet | POET BIOREFINING COON RAPIDS LLC | COON RAPIDS, IA | 5 | _V__SV_V__VU | 0 | air=true water=true | Violation Identified | 0 - | 110008988051
+poet | POET BIOREFINING - EMMETSBURG LLC | EMMETSBURG, IA | 5 | ____VVVV_V__ | 0 | air=true water=true | Violation Identified | 0 - | 110020579907
+poet | POET BIOREFINING-CORNING | CORNING, IA | 5 | __VVV__V__V_ | 0 | air=true water=true | Violation Identified | 0 - | 110030439835
+poet | POET BIOREFINING - IOWA FALLS LLC | IOWA FALLS, IA | 5 | SS_____VV_V_ | 1 | air=true water=true | Violation Identified | 5000 2023-05-08 | 110017648982
+poet | POET RESEARCH CENTER INC. | SCOTLAND, SD | 4 | _______SSS_V | 1 | air=true water=true | Violation Identified | 0 2025-10-07 | 110010367334
+poet | POET BIOREFINING - HANLONTOWN LLC | HANLONTOWN, IA | 4 | V___VV__V___ | 0 | air=true water=true | Violation Identified | 0 - | 110015723010
+poet | POET BIOREFINING-MARION LLC | MARION, OH | 4 | V_V__VV_____ | 0 | air=true water=true | No Violation Identified | 120000 2015-07-24 | 110032825986
+poet | POET BIOREFINING-CARO LLC | CARO, MI | 4 | V__VV__V____ | 0 | air=true water=true | No Violation Identified | 130000 2015-08-28 | 110013399072
+poet | POET BIOREFINING - BINGHAM LAKE LLC | BINGHAM LAKE, MN | 3 | _V__V___V___ | 1 | air=true water=true | No Violation Identified | 6880 2026-02-18 | 110006060145
+poet | POET BIOREFINING-FOSTORIA | FOSTORIA, OH | 3 | _____V__V_V_ | 1 | air=true water=true | Violation Identified | 120000 2024-03-20 | 110056959929
+poet | POET BIOREFINING | JEWELL, IA | 3 | _____VVV____ | 0 | air=true water=true | No Violation Identified | 0 - | 110031001305
+poet | POET BIOREFINING ALEXANDRIA LLC | ALEXANDRIA, IN | 3 | V_V_V_______ | 4 | air=true water=true | No Violation Identified | 35000 2025-10-31 | 110037389224
+poet | POET BIOREFINING - FAIRBANK LLC | FAIRBANK, IA | 2 | _____V_V____ | 0 | air=true water=true | No Violation Identified | 0 - | 110024836668
+poet | POET BIOREFNING - PRESTON LLC | PRESTON, MN | 2 | _______VV___ | 1 | air=true water=true | No Violation Identified | 8063 2023-08-17 | 110000426548
+poet | NORTHEAST MISSOURI GRAIN LLC | MACON, MO | 1 | _V__________ | 0 | air=true water=true | No Violation Identified | 2000 2005-07-15 | 110033218845
+poet | PRAIRIE ETHANOL LLC (DBA POET BIOREFINING) MITCHELL | MITCHELL, SD | 1 | _______V____ | 0 | air=true water=true | No Violation Identified | 0 2008-05-05 | 110033218854
+poet | POET BIOREFINING - HUDSON | HUDSON, SD | 0 | ____________ | 0 | air=true water=true | No Violation Identified | 9243.75 2015-04-15 | 110017775433
+poet | POET BIOREFINING-BIG STONE LLC | BIG STONE CITY, SD | 0 | ____________ | 0 | air=false water=false | No Violation Identified | 25000 2010-12-21 | 110020518992
+par | POET HOLDING CO LLC | 33 | 33 | 15 | 5.24 | 29 | 31 |  | 
+par | BIG RIVER RESOURCES LLC | 4 | 4 | 0 | 1.75 | 0 | 3 |  | 
+par | VALERO ENERGY CORP | 12 | 12 | 4 | 3.42 | 6 | 9 |  | 
+par | THE ANDERSONS INC | 5 | 5 | 2 | 6.20 | 7 | 5 |  | 
+===== q19 (stmt 19) 30 rows
+FAM | CO | Y17 | Y18 | Y19 | Y20 | Y21 | Y22 | Y23 | Y24 | Y25 | TOT
+COX |  | 16 | 28 | 190 | 114 | 140 | 139 | 130 | 22 | 2 | 781
+COX | COX OPERATING | 3 | 17 | 136 | 81 | 80 | 97 | 105 | 18 | 1 | 538
+COX | COX OPERATING LLC | 12 | 7 | 38 | 15 | 34 | 25 | 21 | 0 | 0 | 152
+COX | COX OIL | 0 | 1 | 6 | 16 | 23 | 0 | 0 | 0 | 0 | 46
+COX | COX OIL & GAS | 0 | 0 | 0 | 0 | 1 | 12 | 0 | 0 | 0 | 13
+NS |  | 197 | 280 | 402 | 60 | 87 | 121 | 86 | 64 | 52 | 1349
+NS | NORFOLK SOUTHERN | 152 | 64 | 350 | 2 | 58 | 121 | 84 | 64 | 52 | 947
+NS | NORFOLK SOUTHERN RAILWAY | 34 | 203 | 13 | 0 | 1 | 0 | 0 | 0 | 0 | 251
+NS | NORFOLK SOUTHERN RAILROAD | 11 | 13 | 38 | 58 | 26 | 0 | 1 | 0 | 0 | 147
+TARGA |  | 60 | 163 | 245 | 179 | 106 | 201 | 212 | 163 | 120 | 1449
+TARGA | TARGA RESOURCES | 16 | 67 | 143 | 34 | 42 | 130 | 120 | 130 | 92 | 774
+TARGA | TARGA PIPELINE | 4 | 1 | 2 | 45 | 15 | 31 | 76 | 19 | 3 | 196
+TARGA | TARGA PIPELINE MID-CONTINENT WESTTEX LLC | 34 | 52 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 86
+TARGA | TARGA PIPELINE MIDCONTINENT WEST TEX LLC | 0 | 28 | 50 | 0 | 0 | 0 | 0 | 0 | 0 | 78
+TARGA | TARGA GAS PROCESSING | 0 | 0 | 9 | 9 | 4 | 11 | 10 | 8 | 7 | 58
+TARGA | TARGA PIPELINE MIDCONTINENT WESTTEX | 0 | 0 | 0 | 35 | 15 | 5 | 0 | 0 | 0 | 55
+TARGA | TARGA PIPELINE MID CON WEST TEX LLC | 0 | 0 | 22 | 0 | 0 | 0 | 0 | 0 | 0 | 22
+TARGA | TARGA MIDSTREAM LLC | 2 | 9 | 1 | 2 | 3 | 0 | 1 | 0 | 0 | 18
+TARGA | TARGA GAS PROCESSING LLC | 0 | 0 | 0 | 14 | 4 | 0 | 0 | 0 | 0 | 18
+TARGA | TARGA RESOURCES LLC. | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 13 | 17
+TARGA | TARGA PIPELINE MID CONTINENT WESTTEX | 0 | 0 | 1 | 15 | 0 | 0 | 0 | 0 | 0 | 16
+TARGA | TARGA MIDSTREAM | 0 | 0 | 0 | 0 | 6 | 6 | 1 | 0 | 0 | 13
+TARGA | TARGA PIPELINE MIDCONTINENT WEST TEX | 0 | 0 | 4 | 7 | 0 | 0 | 0 | 0 | 0 | 11
+TARGA | TARGA MIDSTREAM SERVICES LLC | 0 | 3 | 0 | 2 | 1 | 3 | 0 | 0 | 0 | 9
+TARGA | TARGA PIPELINE MIDCONTINENT LLC | 0 | 0 | 0 | 8 | 0 | 0 | 0 | 0 | 0 | 8
+TARGA | TARGA RESOURCES OPERATING LLC | 0 | 0 | 0 | 0 | 0 | 2 | 4 | 2 | 0 | 8
+TARGA | TARGA PIPELINE MIDCONTINENT | 0 | 0 | 0 | 0 | 0 | 7 | 0 | 0 | 0 | 7
+TARGA | TARGA PIPELINE MID CONTINENT | 0 | 0 | 0 | 0 | 7 | 0 | 0 | 0 | 0 | 7
+TARGA | TARGA | 2 | 0 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 6
+ |  | 273 | 471 | 837 | 353 | 333 | 461 | 428 | 249 | 174 | 3579

@@ -1,0 +1,10 @@
+-- S04 Revolving door: row shape, real sector count vs SECTOR_COUNT, position type, duplicate jobs
+POSITION_TYPE | IS_SENATE_CONFIRMED | N | KEYS | NAME_DEPT | DEPTS | AGENCIES | SC_MIN | SC_MAX | RS_MIN | RS_MED | RS_MAX | NO_SECTOR | INDUSTRIES | NO_DESC
+Appointive | False | 213 | 213 | 213 | 38 | 38 | 16 | 16 | 1 | 2.000 | 16 | 0 | 17 | 0
+Appointive |  | 213 | 213 | 213 | 38 | 38 | 16 | 16 | 1 | 2.000 | 16 | 0 | 17 | 0
+Senate-confirmed | True | 190 | 190 | 190 | 47 | 47 | 16 | 16 | 1 | 3.000 | 16 | 0 | 16 | 0
+Senate-confirmed |  | 190 | 190 | 190 | 47 | 47 | 16 | 16 | 1 | 3.000 | 16 | 0 | 16 | 0
+nan | False | 2 | 2 | 2 | 2 | 2 | 16 | 16 | 1 | 2.000 | 3 | 0 | 2 | 0
+nan |  | 2 | 2 | 2 | 2 | 2 | 16 | 16 | 1 | 2.000 | 3 | 0 | 2 | 0
+ |  | 405 | 405 | 405 | 56 | 56 | 16 | 16 | 1 | 2.000 | 16 | 0 | 17 | 0
+(7 rows; csv has all)

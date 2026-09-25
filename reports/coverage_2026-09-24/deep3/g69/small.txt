@@ -1,0 +1,213 @@
+===== q03 (stmt 3) 27 rows
+FISCAL_YEAR | COUNTRY_OF_BIRTH | COUNTRY_OF_LAST_RESIDENCE | CATEGORY | STATE | COUNT | TABLE_NAME | YEARBOOK_EDITION | ENFORCEMENT_ACTION_TYPE | VISA_CLASS | SOURCE_PDF_URL
+1996 |  |  |  |  |  |  | 1996 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/ins_yearbook_immigration_statistics_1996.pdf
+1997 |  |  |  |  |  |  | 1997 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_1997.pdf
+1998 |  |  |  |  |  |  | 1998 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_1998.pdf
+1999 |  |  |  |  |  |  | 1999 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_1999.pdf
+2000 |  |  |  |  |  |  | 2000 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2000.pdf
+2001 |  |  |  |  |  |  | 2001 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2001.pdf
+2002 |  |  |  |  |  |  | 2002 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2002.pdf
+2003 |  |  |  |  |  |  | 2003 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2003.pdf
+2004 |  |  |  |  |  |  | 2004 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook2004.pdf
+2005 |  |  |  |  |  |  | 2005 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/OIS_2005_Yearbook.pdf
+2006 |  |  |  |  |  |  | 2006 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/OIS_2006_Yearbook.pdf
+2007 |  |  |  |  |  |  | 2007 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/ois_2007_yearbook.pdf
+2008 |  |  |  |  |  |  | 2008 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2008.pdf
+2009 |  |  |  |  |  |  | 2009 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/ois_yb_2009.pdf
+2010 |  |  |  |  |  |  | 2010 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/ois_yb_2010.pdf
+2011 |  |  |  |  |  |  | 2011 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/ois_yb_2011.pdf
+2012 |  |  |  |  |  |  | 2012 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2012.pdf
+2013 |  |  |  |  |  |  | 2013 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2013_0.pdf
+2014 |  |  |  |  |  |  | 2014 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/DHS%25202014%2520Yearbook.pdf
+2015 |  |  |  |  |  |  | 2015 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/Yearbook_Immigration_Statistics_2015.pdf
+2016 |  |  |  |  |  |  | 2016 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/2016%2520Yearbook%2520of%2520Immigration%2520Statistics.pdf
+2017 |  |  |  |  |  |  | 2017 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/yearbook_immigration_statistics_2017_0.pdf
+2018 |  |  |  |  |  |  | 2018 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/yearbook_immigration_statistics_2018.pdf
+2019 |  |  |  |  |  |  | 2019 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/yearbook_immigration_statistics_2019_0.pdf
+2020 |  |  |  |  |  |  | 2020 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/2022_0308_plcy_yearbook_immigration_statistics_fy2020_v2_2.pdf
+2021 |  |  |  |  |  |  | 2021 |  |  | https://ohss.dhs.gov/sites/default/files/2023-12/2022_1114_plcy_yearbook_immigration_statistics_fy2021_v2_1_1.pdf
+2022 |  |  |  |  |  |  | 2022 |  |  | https://ohss.dhs.gov/sites/default/files/2024-03/2023_0818_plcy_yearbook_immigration_statistics_fy2022.pdf
+===== q04 (stmt 4) 204 rows
+FISCAL_YEAR | FISCAL_QUARTER | METRIC_TYPE | COUNTRY_OF_CITIZENSHIP | CRIMINAL_HISTORY_CATEGORY | AOR | COUNT | REMOVAL_AUTHORITY | ATD_MONITORING_TYPE | SNAPSHOT_DATE
+8 |  | removals | Azerbaijan |  |  |  |  |  | 2026-07-02
+18 |  | removals | Serbia |  |  |  |  |  | 2026-07-02
+1 |  | removals | San Marino |  |  |  |  |  | 2026-07-02
+12 |  | removals | Kuwait |  |  |  |  |  | 2026-07-02
+34 |  | removals | Moldova |  |  |  |  |  | 2026-07-02
+75 |  | removals | Germany |  |  |  |  |  | 2026-07-02
+1 |  | removals | Bahrain |  |  |  |  |  | 2026-07-02
+16 |  | removals | St. Kitts-Nevis |  |  |  |  |  | 2026-07-02
+19 |  | removals | Sweden |  |  |  |  |  | 2026-07-02
+18838 |  | removals | El Salvador |  |  |  |  |  | 2026-07-02
+12 |  | removals | Zimbabwe |  |  |  |  |  | 2026-07-02
+30 |  | removals | Czech Republic |  |  |  |  |  | 2026-07-02
+82 |  | removals | Belize |  |  |  |  |  | 2026-07-02
+14 |  | removals | Kazakhstan |  |  |  |  |  | 2026-07-02
+61 |  | removals | Iraq |  |  |  |  |  | 2026-07-02
+13 |  | removals | Samoa |  |  |  |  |  | 2026-07-02
+47 |  | removals | Bosnia-Herzegovina |  |  |  |  |  | 2026-07-02
+5 |  | removals | Switzerland |  |  |  |  |  | 2026-07-02
+11 |  | removals | Uganda |  |  |  |  |  | 2026-07-02
+8 |  | removals | Mauritania |  |  |  |  |  | 2026-07-02
+19 |  | removals | Sudan |  |  |  |  |  | 2026-07-02
+12 |  | removals | Estonia |  |  |  |  |  | 2026-07-02
+7 |  | removals | Chad |  |  |  |  |  | 2026-07-02
+56 |  | removals | Gambia |  |  |  |  |  | 2026-07-02
+44 |  | removals | Korea |  |  |  |  |  | 2026-07-02
+1986 |  | removals | Dominican Republic |  |  |  |  |  | 2026-07-02
+182 |  | removals | Philippines |  |  |  |  |  | 2026-07-02
+13 |  | removals | Ivory Coast |  |  |  |  |  | 2026-07-02
+20 |  | removals | Greece |  |  |  |  |  | 2026-07-02
+0 |  | removals | Guadeloupe |  |  |  |  |  | 2026-07-02
+9 |  | removals | Tajikistan |  |  |  |  |  | 2026-07-02
+45 |  | removals | Nepal |  |  |  |  |  | 2026-07-02
+0 |  | removals | Macau |  |  |  |  |  | 2026-07-02
+9 |  | removals | Libya |  |  |  |  |  | 2026-07-02
+46 |  | removals | Ethiopia |  |  |  |  |  | 2026-07-02
+1 |  | removals | Iceland |  |  |  |  |  | 2026-07-02
+832 |  | removals | Nicaragua |  |  |  |  |  | 2026-07-02
+521 |  | removals | Somalia |  |  |  |  |  | 2026-07-02
+35 |  | removals | Lebanon |  |  |  |  |  | 2026-07-02
+6 |  | removals | Czechoslovakia |  |  |  |  |  | 2026-07-02
+71 |  | removals | Vietnam |  |  |  |  |  | 2026-07-02
+86 |  | removals | Ukraine |  |  |  |  |  | 2026-07-02
+129 |  | removals | Chile |  |  |  |  |  | 2026-07-02
+20 |  | removals | Niger |  |  |  |  |  | 2026-07-02
+160 |  | removals | Cuba |  |  |  |  |  | 2026-07-02
+2 |  | removals | Netherlands Antilles |  |  |  |  |  | 2026-07-02
+5 |  | removals | Croatia |  |  |  |  |  | 2026-07-02
+3 |  | removals | Botswana |  |  |  |  |  | 2026-07-02
+137 |  | removals | Guyana |  |  |  |  |  | 2026-07-02
+22 |  | removals | Australia |  |  |  |  |  | 2026-07-02
+38 |  | removals | Uruguay |  |  |  |  |  | 2026-07-02
+ |  | removals |  | Criminal Convictions |  |  |  |  | 2026-07-02
+4 |  | removals | Turks and Caicos Islands |  |  |  |  |  | 2026-07-02
+29 |  | removals | Cape Verde |  |  |  |  |  | 2026-07-02
+33 |  | removals | Thailand |  |  |  |  |  | 2026-07-02
+1 |  | removals | Papua New Guinea |  |  |  |  |  | 2026-07-02
+28 |  | removals | Uzbekistan |  |  |  |  |  | 2026-07-02
+9 |  | removals | Montenegro |  |  |  |  |  | 2026-07-02
+353 |  | removals | Canada |  |  |  |  |  | 2026-07-02
+1 |  | removals | Slovenia |  |  |  |  |  | 2026-07-02
+10 |  | removals | Zambia |  |  |  |  |  | 2026-07-02
+128765 |  | removals | Mexico |  |  |  |  |  | 2026-07-02
+22 |  | removals | Marshall Islands |  |  |  |  |  | 2026-07-02
+9 |  | removals | Turkmenistan |  |  |  |  |  | 2026-07-02
+4 |  | removals | Norway |  |  |  |  |  | 2026-07-02
+7 |  | removals | Suriname |  |  |  |  |  | 2026-07-02
+76 |  | removals | Bolivia |  |  |  |  |  | 2026-07-02
+0 |  | removals | Lesotho |  |  |  |  |  | 2026-07-02
+5 |  | removals | Paraguay |  |  |  |  |  | 2026-07-02
+4 |  | removals | Singapore |  |  |  |  |  | 2026-07-02
+13 |  | removals | Fiji |  |  |  |  |  | 2026-07-02
+5578 |  | removals | Haiti |  |  |  |  |  | 2026-07-02
+117 |  | removals | Italy |  |  |  |  |  | 2026-07-02
+1 |  | removals | Swaziland |  |  |  |  |  | 2026-07-02
+22 |  | removals | Georgia |  |  |  |  |  | 2026-07-02
+2 |  | removals | Syria |  |  |  |  |  | 2026-07-02
+525 |  | removals | China, People's Republic Of |  |  |  |  |  | 2026-07-02
+16 |  | removals | New Zealand |  |  |  |  |  | 2026-07-02
+2 |  | removals | Cayman Islands |  |  |  |  |  | 2026-07-02
+312 |  | removals | Nigeria |  |  |  |  |  | 2026-07-02
+4 |  | removals | Qatar |  |  |  |  |  | 2026-07-02
+ |  | removals |  |  |  |  |  |  | 2026-07-02
+458 |  | removals | Peru |  |  |  |  |  | 2026-07-02
+19 |  | removals | Togo |  |  |  |  |  | 2026-07-02
+782 |  | removals | Jamaica |  |  |  |  |  | 2026-07-02
+1413 |  | removals | Brazil |  |  |  |  |  | 2026-07-02
+4 |  | removals | Guinea-Bissau |  |  |  |  |  | 2026-07-02
+5 |  | removals | Denmark |  |  |  |  |  | 2026-07-02
+22381 |  | removals | Honduras |  |  |  |  |  | 2026-07-02
+48 |  | removals | Afghanistan |  |  |  |  |  | 2026-07-02
+===== q05 (stmt 5) 177 rows
+FORM_NUMBER | FORM_TITLE | FISCAL_YEAR | QUARTER | CATEGORY | COUNTRY | USCIS_OFFICE | RECEIPTS | APPROVALS | DENIALS | PENDING | AVG_PROCESSING_TIME_DAYS | RFE_COUNT | REPORT_TITLE | PUBLICATION_DATE | SOURCE_FILE_URL
+4) For a complete list of USCIS forms and descriptions, visit https://www.uscis.gov/forms |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+Notes: |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+5  The number of petitions awaiting a decision as of the end of the reporting period. Some actions taken on cases are not reflected in this report such as administrative closures and transfers between offices, |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | 3) Petitions received in one reporting period may be approved or denied in subsequent reporting periods. |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+ |  |  |  |  |  |  |  |  |  |  |  |  | FY22 Appropriations Reporting Requirement - Application Processing Data for April, 2026(CSV, 3.52 KB) |  | https://www.uscis.gov/sites/default/files/document/data/appropriation_requirement_april_2026_v1.csv
+ |  | FY2026 | Q1 |  |  |  |  | By Preference Category and Country of Birth |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | 6) The priority date is based on December 2025 Visa Bulletin Final Action Dates chart https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+TOTAL |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | 2) Counts may differ from previous periods due to system updates and post-adjudicative outcomes. |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+Source: |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | China |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | Country |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ thus the total pending counts cannot be calculated using data from previous reporting periods. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+6  Data unavailable in the reporting system for previous fiscal years. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+Fiscal Years 2009-2026 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2  The number of new petitions received and entered into a case-tracking system during the reporting period. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2013 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+Period |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+1 The number of new petitions received and entered into a case-tracking system during the reporting period. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+2016 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+2024 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2015 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+2009 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+Source: |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+Notes: |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+3) Petitions with multiple RFEs are only counted once. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+Period |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+References: |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+By Fiscal Year, Quarter, and Case Status |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | Mexico |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+1) Some petitions granted or ineligible may have been received in previous reporting periods. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | India |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+3  The number of petitions approved during the reporting period. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-140 by Fiscal Year, Quarter and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 64.29 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i140_fy2026_q1_v1.xlsx
+2022 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+Department of Homeland Security, U.S. Citizenship and Immigration Services, Office of Performance and Quality |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | I-130, Petition for Alien Relative, by Category, Case Status, and USCIS Field Office or Service Center Location (Fiscal Year 2026, Quarter 1)    (XLSX, 386.66 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i130_performance_data_fy2026_q1_v1.xlsx
+Fiscal Year |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+Q2 January - March |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2017 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | All USCIS Application and Petition Form Types (Fiscal Year 2026, Quarter 1)    (XLSX, 765.55 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/quarterly_all_forms_fy2026_q1_v1.xlsx
+1) Some applications approved, denied, or pending a decision may have been received in previous reporting periods. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+2010 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+NPD, CLAIMS3, ELIS, and PRT, queried 1/2026, PAER0020065. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | CLAIMS3, ELIS, CIS2 queried 01/2026, PAER0020058 |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+1) Some petitions approved, denied, or pending a decision may have been received in previous reporting periods. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2022 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+Q1 October - December |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2015 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2021 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Deferred Action for Childhood Arrivals (DACA) Quarterly Report (Fiscal Year 2026, Quarter 1)    (XLSX, 47.35 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/daca_performance_data_fy2026_q1_v1.xlsx
+2025 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+   Q3 April - June |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+9 The number of petitions with an RFE that were approved. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+2023 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+7) For a complete list of USCIS forms and descriptions, visit https://www.uscis.gov/forms |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | 4) The counts of approved petitions represent only primary beneficiaries. Dependents are not included. |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | Table Key: |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+4) Approvals reflect the initial decision on a case. The case may have been reopened and revoked at a later date. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+D Disclosure standards not met |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | 9) For a complete list of USCIS forms and descriptions, visit uscis.gov/forms. |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+4 The number of petitions denied during the reporting period. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | I‐360 Petitions for Special Immigrant with a Classification of Special Immigrant Juvenile (SIJ) by Fiscal Year, Quarter and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 30.98 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i360_sij_performance_data_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  | 5) For details on Green Card Eligibility Categories see https://www.uscis.gov/greencard/eligibility-categories. |  |  |  |  | Form I-140, I-360, I-526 Approved EB Petitions Awaiting Visa Final Priority Dates (Fiscal Year 2026, Quarter 1)    (XLSX, 22.76 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/eb_i140_i360_i526_performancedata_fy2026_q1_v1.xlsx
+3) Counts may differ from previous periods due to system updates and post-adjudicative outcomes. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+1 Refers to victims of severe forms of trafficking (T-1) and family members of victims (T-2, 3, 4, 5, 6). |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-907, Request for Premium Processing Service By Underlying Form Number and Request Type (Fiscal Year 2026, Quarter 1)    (XLSX, 27.14 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i907_premium_processing_fy2026_q1_v1.xlsx
+2012 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+    Due to certain errors in USCIS adjudicative systems, a small number of cases each year may be inaccurately excluded from the total cap count resulting in slight overages. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2017 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+2025 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+7 The number of completions that had a Request for Evidence (RFE).  |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Net Backlog and Frontlog (Fiscal Year 2026, Quarter 1)    (XLSX, 324.99 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/net_backlog_frontlog_fy2026_q1_v1.xlsx
+6) Congress set a cap of 10,000 visas per year. Principal petitioners only are counted against the cap; derivatives are not counted toward the annual cap of 10,000 visas.  |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Active DACA Recipients – (Fiscal Year 2026, Quarter 1)    (XLSX, 55.29 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/active_daca_recipients_fy2026_q1_v1.xlsx
+   thus the total pending counts cannot be calculated using data from previous reporting periods. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2020 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+Fiscal Year 2026-Total |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-821, Application for Temporary Protected Status Receipts, Approvals, Denials, and Pending by Country of Designation (Fiscal Year 2026, Q1)    (XLSX, 29.32 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i821_radp_fy2026_q1_v1.xlsx
+2019 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+Q4 July - September |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2018 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+ |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-140, Receipts and Current Status by Preference and Country (Fiscal Year 2026, Quarter 1)    (XLSX, 63.29 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i140_rec_by_class_country_fy2026_q1_v1.xlsx
+CLAIMS3, ELIS queried 1/2026, PAER0020065. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+3) Counts may differ from previous periods due to system updates and post-adjudicative outcomes. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+5) Family Member counts use Performance Reporting Tool data for fiscal years 2009-2012. System data is incomplete prior to 2013. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I-918, Petition for U Nonimmigrant Status, by Fiscal Year, Quarter, and Case Status and Form I-918, Petition for U Nonimmigrant Status, Bona Fide Determination Review (Fiscal Year 2026, Quarter 1)    (XLSX, 126.2 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i918u_visastatistics_fy2026_q1_v1.xlsx
+2019 |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Form I‐914, Application for T Nonimmigrant Status by Fiscal Year, Quarter, and Case Status (Fiscal Year 2026, Quarter 1)    (XLSX, 99.25 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i914t_visastatistics_fy2026_q1_v1.xlsx
+CLAIMS3 and ELIS, queried 01/2026, PAER0020070. |  | FY2026 | Q1 |  |  |  |  |  |  |  |  |  | Nonimmigrant Worker Petitions by Case Status and Request for Evidence (RFE) (Fiscal Year 2026, Quarter 1)    (XLSX, 67.64 KB) |  | https://www.uscis.gov/sites/default/files/document/reports/i129_quarterly_request_for_evidence_fy2026_q1_v1.xlsx

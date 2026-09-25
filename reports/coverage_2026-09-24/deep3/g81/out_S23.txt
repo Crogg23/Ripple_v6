@@ -1,0 +1,27 @@
+-- S23 Slave voyages peer: second-voyage arrivals in Cuba (31300), 1800-1810, by main buying region
+BUY_REGION | VOYAGES | LANDED | LANDED_1804_07 | LANDED_1800_03 | LANDED_1808_10 | RECORDED_LANDED_ROWS | SRC
+ | 311 | 23747 | 8122 | 14756 | 869 | 310 | Klein,Havana dataset
+37000 | 139 | 6788 | 3076 | 3712 | 0 | 139 | Klein,Havana dataset
+21300 | 127 | 4973 | 4559 | 42 | 372 | 127 | Klein,Havana dataset
+35100 | 45 | 953 | 252 | 697 | 4 | 38 | ANC,IH, 1052-23
+38100 | 10 | 578 | 146 | 37 | 395 | 10 | Klein,Havana dataset
+80400 | 10 | 528 | 224 | 230 | 74 | 10 | ANC,IH, 1052-23
+35200 | 18 | 487 | 331 | 156 | 0 | 18 | Klein,Havana dataset
+50200 | 2 | 230 | 0 | 0 | 230 | 1 | Klein,Havana dataset
+50300 | 1 | 194 | 0 | 0 | 194 | 1 | Klein,Havana dataset
+36100 | 4 | 170 | 63 | 107 | 0 | 4 | ANC,IH, 1052-23
+33200 | 2 | 158 | 57 | 101 | 0 | 2 | Klein,Havana dataset
+32200 | 3 | 97 | 0 | 97 | 0 | 3 | Klein,Havana dataset
+21500 | 1 | 70 | 0 | 0 | 70 | 1 | Klein,Havana dataset
+33400 | 2 | 41 | 41 | 0 | 0 | 2 | Klein,Havana dataset
+31200 | 3 | 24 | 0 | 0 | 24 | 3 | Aviso, 11.12.1810
+31100 | 1 | 16 | 0 | 0 | 16 | 1 | ANC,IH, 1052-23
+35500 | 1 | 11 | 0 | 11 | 0 | 1 | ANC,IH, 1052-23
+21400 | 1 | 11 | 11 | 0 | 0 | 1 | Klein,Havana dataset
+21900 | 1 | 10 | 10 | 0 | 0 | 1 | Klein,Havana dataset
+34400 | 1 | 10 | 0 | 10 | 0 | 1 | Klein,Havana dataset
+36200 | 1 | 9 | 9 | 0 | 0 | 1 | Klein,Havana dataset
+21600 | 1 | 7 | 7 | 0 | 0 | 1 | ANC,IH, 1052-23
+21000 | 1 | 6 | 6 | 0 | 0 | 1 | Klein,Havana dataset
+41200 | 1 | 1 | 0 | 1 | 0 | 1 | ANC,IH, 1052-23
+(24 rows; csv has all)

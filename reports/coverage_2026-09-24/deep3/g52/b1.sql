@@ -1,0 +1,14 @@
+-- S01 CourtListener appeals-to: the whole lookup [pull]
+SELECT * FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_COURT_APPEALS_TO ORDER BY 1;
+
+-- S02 ATF FFL: full extract for local peer, chain and address math [pull]
+SELECT * FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_ATF_FFL;
+
+-- S03 NAGIX DPRK missile tests: full extract [pull]
+SELECT * FROM LIBRARY_MARTS.JUSTICE.JUSTICE__XC_NAGIX_DPRK_MISSILE_TESTS;
+
+-- S04 NTI/CNS DPRK missile tests: full extract [pull]
+SELECT * FROM LIBRARY_MARTS.JUSTICE.JUSTICE__INTL_NTI_CNS_DPRK_MISSILE_TESTS;
+
+-- S05 OFAC SDN: full extract for local profile, IMO and MMSI parsing [pull]
+SELECT * FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_OFAC_SDN;

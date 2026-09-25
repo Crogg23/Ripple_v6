@@ -1,0 +1,15 @@
+-- S14 MDS time check: CMS penalties by year for Reliant vs other Missouri 40%+ schizophrenia homes vs the rest of Missouri
+GRP | HOMES_IN_GROUP | Y | PENALTIES | FINES_N | FINE_DOLLARS | HOMES_PENALIZED
+MO other 40%+ | 21 | 2023 | 30 | 28 | 282950.0 | 8
+MO other 40%+ | 21 | 2024 | 14 | 8 | 683326.0 | 7
+MO other 40%+ | 21 | 2025 | 16 | 10 | 600223.0 | 9
+MO other 40%+ | 21 | 2026 | 1 | 1 | 41615.0 | 1
+MO rest | 435 | 2023 | 168 | 149 | 2667613.0 | 67
+MO rest | 435 | 2024 | 152 | 105 | 4568070.0 | 99
+MO rest | 435 | 2025 | 130 | 89 | 3418910.0 | 80
+MO rest | 435 | 2026 | 9 | 6 | 378060.0 | 8
+Reliant | 31 | 2023 | 14 | 8 | 570609.0 | 7
+Reliant | 31 | 2024 | 38 | 25 | 1901883.0 | 14
+Reliant | 31 | 2025 | 35 | 28 | 1057312.0 | 18
+Reliant | 31 | 2026 | 4 | 4 | 134805.0 | 4
+(12 rows; csv has all)

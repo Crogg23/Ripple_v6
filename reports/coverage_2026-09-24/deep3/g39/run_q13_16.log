@@ -1,0 +1,35 @@
+===== q13 (stmt 13) 4 rows
+K | N | A | B | RK
+lng_all | 7 | 0.38 | 16.48 | 
+sabine | 6021 | 0.18 | 6.26 | 1
+next_1007479 | 6021 | 0.16 | 3.06 | 2
+next_1007542 | 6021 | 9.91 | 12.69 | 3
+===== q14 (stmt 14) 4 rows
+STATUS | GAS | N | CO2E_NULL | SUPPLIER_BT | ALL_BT
+(reported) | gas null | 4281 | 4281 |  | 
+(reported) | gas set | 320733 | 2856 | 54.95 | 98.56
+STOPPED_REPORTING_UNKNOWN_REASON | gas null | 797 | 797 | 0.0 | 
+STOPPED_REPORTING_VALID_REASON | gas null | 20872 | 20872 | 0.0 | 
+===== q15 (stmt 15) 8 rows
+STATE | MAJORS | VIOL | VIOL_PER_MAJOR | CERTS | FLAGGED | Y | Y_RATE
+CA | 1015.0 | 6444.0 | 6.35 | 8970.0 | 3457.0 | 1605.0 | 0.464
+CO | 306.0 | 1623.0 | 5.3 | 2669.0 | 1275.0 | 8.0 | 0.006
+LA | 476.0 | 40.0 | 0.08 | 3066.0 | 3066.0 | 1273.0 | 0.415
+NC | 323.0 | 1461.0 | 4.52 | 1818.0 | 1799.0 | 123.0 | 0.068
+TX | 2481.0 | 1326.0 | 0.53 | 4678.0 | 4677.0 | 3130.0 | 0.669
+PA | 438.0 | 5658.0 | 12.92 | 3145.0 | 3120.0 | 353.0 | 0.113
+MEDIAN(majors>=50) | 233.0 | 437.0 | 2.735 | 1497.0 | 1314.5 | 269.5 | 0.31
+DUP_ACTIVITY_IDS | 9897.0 | 9898.0 |  | 489215.0 |  |  | 
+===== q16 (stmt 16) 11 rows
+SRC | Z1 | N
+envirofacts | 0 | 5000
+tri_full | 0 | 6029
+tri_full | 1 | 5402
+tri_full | 2 | 6262
+tri_full | 3 | 8213
+tri_full | 4 | 9864
+tri_full | 5 | 5179
+tri_full | 6 | 6088
+tri_full | 7 | 7573
+tri_full | 8 | 3246
+tri_full | 9 | 7134

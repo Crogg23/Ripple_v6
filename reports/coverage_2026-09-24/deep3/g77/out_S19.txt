@@ -1,0 +1,5 @@
+-- S19 NASA open data: is the API key in REQUEST_URL NASA's public DEMO_KEY (count only, key not printed); hazardous asteroid count
+API_NAME | N | DEMO_KEY | ANY_KEY | HAZARDOUS | URLS
+NeoWs Near Earth Objects | 34 | 34 | 34 | 5 | 1
+NASA Image and Video Library | 20 | 0 | 0 | 0 | 1
+(2 rows; csv has all)

@@ -1,0 +1,20 @@
+-- S11 dynamic pricing: residential enrolled vs residential customers and smart meters, default-TOU utilities, the Evergy Kansas twin, and the suspect reporters
+STATE | NAME | TOU | CPR | ENROLLED | RES_CUST | SHARE_ENROLLED | RES_AMI | RES_METERS
+MI | Consumers Energy Co - (MI) | Y | Y | 1642369 | 1657843 | 0.991 | 1660920 | 1669581
+IA | Consumers Energy Coop - (IA) | Y |  | 179 | 6922 | 0.026 | 6922 | 6922
+MI | DTE Electric Company | Y |  | 23062 | 2067779 | 0.011 | 2378580 | 2386145
+KS | Evergy Kansas Central, Inc | Y |  | 1062 | 341806 | 0.003 | 346515 | 346573
+KS | Evergy Kansas South, Inc | Y |  | 828 | 302508 | 0.003 | 308480 | 308512
+KS | Evergy Metro | Y |  | 3904 | 244555 | 0.016 | 256449 | 256454
+MO | Evergy Metro | Y |  | 245547 | 273860 | 0.897 | 286071 | 286093
+MO | Evergy Missouri West | Y |  | 233540 | 305583 | 0.764 | 309426 | 309461
+CA | Pacific Gas & Electric Co. | Y |  | 171636 | 5047461 | 0.034 | 5038840 | 5077867
+CO | Public Service Co of Colorado | Y |  | 1092786 | 1365053 | 0.801 | 1280047 | 1415831
+OK | Public Service Co of Oklahoma | Y |  | 501093 | 501093 | 1.000 | 505650 | 505936
+CA | San Diego Gas & Electric Co | Y |  | 8125 | 1364361 | 0.006 | 1370032 | 1372341
+CA | Southern California Edison Co | Y |  | 2654452 | 4594415 | 0.578 | 4801923 | 4820290
+AR | Southwestern Electric Power Co | Y |  | 108102 | 108102 | 1.000 | 1068 | 109029
+LA | Southwestern Electric Power Co | Y |  | 206897 | 207011 | 0.999 | 128187 | 207658
+TX | Southwestern Electric Power Co | Y |  | 156271 | 156271 | 1.000 | 157133 | 157242
+MO | Union Electric Co - (MO) | Y |  | 891431 | 1095619 | 0.814 | 1099976 | 1101514
+(17 rows; csv has all)

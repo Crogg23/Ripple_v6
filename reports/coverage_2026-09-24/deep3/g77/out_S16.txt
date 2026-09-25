@@ -1,0 +1,83 @@
+-- S16 FracFocus: frack disclosures inside the two new quake boxes (Red River Parish LA; west of Carlsbad NM), by form version and operator - context only, the mart has no job dates
+BOX | FF_VERSION | OPERATOR_NAME | JOBS | WELLS | WATER_MGAL | DATED | COUNTIES
+LA Red River box | 1 | Encana Oil & Gas (USA) Inc. | 69 | 69 | 20.2 | 0 | Red River,Sabine,De Soto
+LA Red River box | 1 | Shell Oil Company affiliate | 65 | 65 | 101.4 | 0 | Red River,De Soto,Sabine
+LA Red River box | 1 | Chesapeake Operating, Inc. | 60 | 60 | 14.6 | 0 | Bienville,Red River,De Soto,Sabine,Caddo,Bossier
+LA Red River box | 1 | BHP Billiton Petroleum | 53 | 50 | 5.9 | 0 | Caddo,Red River,Bienville,Bossier,De Soto
+LA Red River box | 1 | QEP Energy Company | 28 | 28 | 13.0 | 0 | Bienville,Bossier,Red River
+LA Red River box | 1 | Samson | 8 | 8 |  | 0 | Natchitoches,Red River,De Soto
+LA Red River box | 1 | J-W Operating Company | 5 | 5 |  | 0 | De Soto,Red River,Bienville
+LA Red River box | 1 | XTO Energy/ExxonMobil | 4 | 4 |  | 0 | Natchitoches
+LA Red River box | 1 | Forest Oil Corporation | 4 | 3 |  | 0 | Red River
+LA Red River box | 2 | Chesapeake Operating, Inc. | 40 | 40 | 318.3 | 0 | De Soto,Bossier,Red River,Caddo
+LA Red River box | 2 | BHP Billiton Petroleum | 40 | 39 | 307.2 | 0 | Bienville,Bossier,Caddo,Red River
+LA Red River box | 2 | Vine Oil & Gas LP | 36 | 33 | 302.5 | 0 | De Soto,Red River
+LA Red River box | 2 | Encana Oil & Gas (USA) Inc. | 21 | 21 | 324.0 | 0 | Red River
+LA Red River box | 2 | Anadarko Petroleum Corporation | 11 | 11 | 128.7 | 0 | Bossier
+LA Red River box | 2 | Shell Oil Company affiliate | 10 | 10 | 82.3 | 0 | Red River,De Soto
+LA Red River box | 2 | J-W Operating Company | 5 | 5 | 9.6 | 0 | Bossier
+LA Red River box | 2 | XTO Energy/ExxonMobil | 3 | 3 | 23.7 | 0 | Natchitoches,Bienville
+LA Red River box | 2 | QEP Energy Company | 1 | 1 | 18.9 | 0 | Bienville
+LA Red River box | 2 | TDX Energy, LLC | 1 | 1 | 0.0 | 0 | Red River
+LA Red River box | 3 | Aethon Energy Operating LLC | 160 | 154 | 4364.7 | 0 | Bienville,De Soto,Bossier,Red River
+LA Red River box | 3 | Vine Oil & Gas LP | 90 | 90 | 1850.6 | 0 | Red River,De Soto
+LA Red River box | 3 | GEP HAYNESVILLE, LLC | 74 | 70 | 1525.6 | 0 | Red River,Sabine,De Soto
+LA Red River box | 3 | Chesapeake Operating, Inc. | 60 | 60 | 1247.5 | 0 | Red River,Bossier,De Soto,Caddo
+LA Red River box | 3 | Indigo Minerals | 56 | 56 | 970.6 | 0 | Natchitoches,De Soto,Sabine,Red River
+LA Red River box | 3 | Southwestern Energy | 54 | 54 | 1571.3 | 0 | Natchitoches,Red River,De Soto,Sabine
+LA Red River box | 3 | Comstock Oil & Gas | 49 | 49 | 1171.5 | 0 | Webster,Bossier,Bienville,Red River
+LA Red River box | 3 | QEP Energy Company | 45 | 45 | 539.9 | 0 | Red River,Bienville
+LA Red River box | 3 | BPX Operating Company | 29 | 29 | 942.6 | 0 | Bienville,Bossier,De Soto,Red River
+LA Red River box | 3 | Covey Park Gas | 17 | 15 | 306.8 | 0 | De Soto,Red River,Bossier
+LA Red River box | 3 | BHP Billiton Petroleum | 17 | 17 | 259.9 | 0 | Red River,Bossier
+LA Red River box | 3 | Tellurian Operating LLC | 16 | 16 | 320.1 | 0 | Bossier,Red River,De Soto
+LA Red River box | 3 | BRIX OPERATING LLC | 10 | 10 | 229.4 | 0 | Webster,De Soto,Bienville,Red River
+LA Red River box | 3 | Goodrich Petroleum Company, LLC | 6 | 6 | 139.4 | 0 | Red River
+LA Red River box | 3 | Vine Energy Operating LP | 3 | 3 | 92.3 | 0 | Red River
+LA Red River box | 3 | Sabine Oil & Gas Corporation | 2 | 2 | 0.1 | 0 | Red River
+LA Red River box | 3 | EXCO Resources, Inc. | 1 | 1 | 26.1 | 0 | De Soto
+LA Red River box | 4 | Aethon Energy Operating LLC | 67 | 67 | 2013.9 | 0 | Red River,Webster,Bossier,Natchitoches,Bienville,De Soto
+LA Red River box | 4 | Expand Operating LLC | 65 | 64 | 2185.1 | 0 | Red River,Sabine,De Soto,Natchitoches
+LA Red River box | 4 | BPX Operating Company | 30 | 30 | 1070.3 | 0 | De Soto,Red River,Bossier
+LA Red River box | 4 | Southwestern Energy | 30 | 30 | 923.2 | 0 | De Soto,Red River,Natchitoches
+LA Red River box | 4 | Comstock Oil & Gas | 29 | 29 | 1001.9 | 0 | Webster,Red River,Bienville,Bossier
+LA Red River box | 4 | Chesapeake Operating, Inc. | 19 | 19 | 583.2 | 0 | Red River,De Soto
+LA Red River box | 4 | Apex Natural Gas, LLC | 19 | 19 | 716.7 | 0 | Red River,Sabine,De Soto,Bienville
+LA Red River box | 4 | Azul Operating | 10 | 10 | 372.8 | 0 | De Soto,Natchitoches
+LA Red River box | 4 | Adamas Energy LLC | 7 | 7 | 244.6 | 0 | Bienville,Bossier
+LA Red River box | 4 | GEP HAYNESVILLE II, LLC | 1 | 1 | 45.5 | 0 | Red River
+NM west of Carlsbad box | 1 | Cimarex Energy Co. of Colorado | 19 | 19 | 3.5 | 0 | Eddy
+NM west of Carlsbad box | 1 | Apache Corporation | 7 | 7 |  | 0 | Eddy
+NM west of Carlsbad box | 1 | Occidental Oil and Gas | 5 | 4 | 0.5 | 0 | Eddy
+NM west of Carlsbad box | 1 | Devon Energy Production Company L. P. | 3 | 3 | 2.9 | 0 | Eddy
+NM west of Carlsbad box | 1 | Cimarex Energy Co. | 3 | 3 |  | 0 | Eddy
+NM west of Carlsbad box | 2 | Apache Corporation | 32 | 32 | 7.8 | 0 | Eddy
+NM west of Carlsbad box | 2 | Occidental Oil and Gas | 19 | 19 | 29.9 | 0 | Eddy
+NM west of Carlsbad box | 2 | Cimarex Energy Co. of Colorado | 16 | 16 | 60.3 | 0 | Eddy
+NM west of Carlsbad box | 2 | Cimarex Energy Co. | 14 | 14 | 40.3 | 0 | Eddy
+NM west of Carlsbad box | 2 | Lime Rock Resources, LP | 13 | 11 | 12.2 | 0 | Eddy
+NM west of Carlsbad box | 2 | Devon Energy Production Company L. P. | 8 | 8 | 22.8 | 0 | Eddy
+NM west of Carlsbad box | 2 | Chevron USA Inc. | 4 | 4 | 10.1 | 0 | Eddy
+NM west of Carlsbad box | 2 | XTO Energy/ExxonMobil | 4 | 4 | 0.6 | 0 | Eddy
+NM west of Carlsbad box | 2 | COG Operating LLC | 3 | 3 | 12.1 | 0 | Eddy
+NM west of Carlsbad box | 2 | Legacy Reserves Operating LP | 2 | 1 | 1.6 | 0 | Eddy
+NM west of Carlsbad box | 2 | Memorial Resource Development LLC | 2 | 2 | 0.9 | 0 | Eddy
+NM west of Carlsbad box | 2 | Sundown Energy L.P. | 1 | 1 | 0.0 | 0 | Eddy
+NM west of Carlsbad box | 2 | Memorial Production Oper. :LLC | 1 | 1 | 0.7 | 0 | Eddy
+NM west of Carlsbad box | 2 | MEWBOURNE OIL COMPANY | 1 | 1 | 2.4 | 0 | Eddy
+NM west of Carlsbad box | 3 | Lime Rock Resources, LP | 55 | 52 | 91.9 | 0 | De Baca,Eddy
+NM west of Carlsbad box | 3 | Spur Energy Partners | 31 | 31 | 372.4 | 0 | Eddy
+NM west of Carlsbad box | 3 | MEWBOURNE OIL COMPANY | 29 | 29 | 611.2 | 0 | Eddy
+NM west of Carlsbad box | 3 | Marathon Oil | 27 | 19 | 270.8 | 0 | Eddy
+NM west of Carlsbad box | 3 | Cimarex Energy Co. | 24 | 24 | 359.8 | 0 | Eddy
+NM west of Carlsbad box | 3 | Cimarex Energy Co. of Colorado | 18 | 17 | 97.8 | 0 | Eddy
+NM west of Carlsbad box | 3 | Tap Rock Resources | 17 | 17 | 394.1 | 0 | Eddy
+NM west of Carlsbad box | 3 | Percussion Petroleum LLC | 16 | 16 | 257.3 | 0 | Eddy
+NM west of Carlsbad box | 3 | Silverback Operating, LLC | 15 | 15 | 102.0 | 0 | Eddy
+NM west of Carlsbad box | 3 | Redwood Operating LLC | 14 | 14 | 78.3 | 0 | Eddy
+NM west of Carlsbad box | 3 | Tascosa Energy Partners LLC. | 9 | 9 | 107.9 | 0 | Eddy
+NM west of Carlsbad box | 3 | Apache Corporation | 8 | 8 | 143.6 | 0 | Eddy
+NM west of Carlsbad box | 3 | Longfellow Energy, LP | 5 | 5 | 80.5 | 0 | Eddy
+NM west of Carlsbad box | 3 | COG Operating LLC | 5 | 4 | 55.7 | 0 | Eddy
+NM west of Carlsbad box | 3 | EOG Resources, Inc. | 5 | 5 | 33.1 | 0 | Eddy
+(114 rows; csv has all)

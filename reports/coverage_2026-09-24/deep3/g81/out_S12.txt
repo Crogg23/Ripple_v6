@@ -1,0 +1,8 @@
+-- S12 Wayback: size of each content change (bytes vs the previous change row of the same page), bucketed
+CHANGE_KIND | BUCKET | N | PAGES | DAYS | SHRINKS | GROWS
+content_changed | a <=50B | 159894 | 28022 | 74 | 82855 | 73318
+content_changed | b 51-500B | 12302 | 9943 | 60 | 10132 | 2170
+content_changed | c 501-2000B | 545 | 328 | 78 | 397 | 148
+content_changed | d >2000B | 96 | 66 | 24 | 31 | 65
+first_capture | no prev | 27755 | 27755 | 42 | 0 | 0
+(5 rows; csv has all)

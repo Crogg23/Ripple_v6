@@ -1,0 +1,39 @@
+-- S29 Wayback: the 2026-03-11 19:2x probe of data-set-13..40: status, bytes, digest, next to every other capture in that 20-minute window and the 403/404 byte norms
+GRP | CAPTURED_AT | PATH | HTTP_STATUS | CONTENT_BYTES | CONTENT_DIGEST | MIMETYPE | CHANGE_KIND
+window | 2026-03-11 19:26:54 | /data-set-13-files | 403 | 10461.000 | IQSTQLYZSKJX62TOJKTIJWCF3PO2HGPL | text/html | first_capture
+window | 2026-03-11 19:26:55 | /data-set-14-files | 403 | 10462.000 | 4QHEKS67MVITFDUSWVLFADOCP5TYKOI7 | text/html | first_capture
+window | 2026-03-11 19:26:56 | /data-set-15-files | 403 | 10461.000 | UFWX2UYXZOUY24UHKYVXVJQW45C6RR3P | text/html | first_capture
+window | 2026-03-11 19:26:57 | /data-set-16-files | 403 | 10462.000 | RGYM4YADRYWHBT6HCWFAMEBTHDH5R4JX | text/html | first_capture
+window | 2026-03-11 19:26:58 | /data-set-17-files | 403 | 10461.000 | WPF6GXTW7HRTTRV6JXGPTTMX7B3WEZOA | text/html | first_capture
+window | 2026-03-11 19:26:59 | /data-set-18-files | 403 | 10459.000 | 5PKZPZUEQUBDHARBZDTTOECW4DQ4YJ4X | text/html | first_capture
+window | 2026-03-11 19:27:00 | /data-set-19-files | 403 | 10456.000 | 2EHQSQY7LX5O4LE35KDKSB52PSODSY4P | text/html | first_capture
+window | 2026-03-11 19:27:01 | /data-set-20-files | 403 | 10462.000 | VUWFQP4ABSCJRE2FMX4TNGPXD32MKA2B | text/html | first_capture
+window | 2026-03-11 19:27:02 | /data-set-21-files | 403 | 10462.000 | F3BWXV4SIUB7OTQHGG4IFTNVC7G3W2MQ | text/html | first_capture
+window | 2026-03-11 19:27:02 | /data-set-22-files | 403 | 10459.000 | E47EGUTTGY2CWB2QLSKATB2QIBAXSGV2 | text/html | first_capture
+window | 2026-03-11 19:27:04 | /data-set-23-files | 403 | 10461.000 | 2YWPO2ZQF5WJVDUG5FVCWAD5L2IHIQXV | text/html | first_capture
+window | 2026-03-11 19:27:04 | /data-set-24-files | 404 | 10445.000 | POAPKYNFMVJ4BPTIO2G4F644JAEO3ZOG | text/html | first_capture
+window | 2026-03-11 19:27:04 | /data-set-25-files | 404 | 10445.000 | YVO77Q2LMXXDUOAAI6SWCSTAZHXXCQFX | text/html | first_capture
+window | 2026-03-11 19:27:06 | /data-set-27-files | 404 | 10447.000 | QN6YNBURRVS5BJWZRHW73F3YVQCZF6LB | text/html | first_capture
+window | 2026-03-11 19:27:06 | /data-set-26-files | 404 | 10438.000 | 35K3JNEZBKGPUKCITHPRDLLVNLDOS5I7 | text/html | first_capture
+window | 2026-03-11 19:27:07 | /data-set-28-files | 404 | 10446.000 | SIWMJO7K2ZIZ55NCNY5IV2YCGM4KDXPY | text/html | first_capture
+window | 2026-03-11 19:27:07 | /data-set-29-files | 404 | 10444.000 | IDGP27LHV56DMHKP2KXKAH3CSJRDEMJZ | text/html | first_capture
+window | 2026-03-11 19:27:08 | /data-set-30-files | 404 | 10434.000 | VAR4B2GQ75SD25SH2F3XLZQDDO3N2F6W | text/html | first_capture
+window | 2026-03-11 19:27:09 | /data-set-31-files | 404 | 10435.000 | AWMR35AM76ECHS5M7LRSRKWBRUI2XBYQ | text/html | first_capture
+window | 2026-03-11 19:27:10 | /data-set-32-files | 404 | 10435.000 | VEICB4ZOGJ5MHOABQD3RDVSS7SAPH6VW | text/html | first_capture
+window | 2026-03-11 19:27:11 | /data-set-33-files | 404 | 10437.000 | CWCFGLIXZTJ3MBQ6HMF6PHR5P7KG5RQU | text/html | first_capture
+window | 2026-03-11 19:27:12 | /data-set-34-files | 404 | 10436.000 | ON455QIU6JJROKN3I2LO2B7EDWJEDKJC | text/html | first_capture
+window | 2026-03-11 19:27:13 | /data-set-35-files | 404 | 10435.000 | MY4ZJVIICICCUTTTRRS4QXSRIQHMBEEE | text/html | first_capture
+window | 2026-03-11 19:27:14 | /data-set-36-files | 404 | 10437.000 | DH2UHIT4JHYNEFQNFSSYQJCHRDM47IAU | text/html | first_capture
+window | 2026-03-11 19:27:15 | /data-set-37-files | 404 | 10434.000 | 3CB6CFMODRYER46T4FX5FER2ZRSRDK43 | text/html | first_capture
+window | 2026-03-11 19:27:16 | /data-set-38-files | 404 | 10437.000 | FUWRDTSFC2OOYXUWLPRCIEICJGNKDWCB | text/html | first_capture
+window | 2026-03-11 19:27:19 | /data-set-40-files | 404 | 10431.000 | 2NBC4IG723YUEPOOGOCEMK6UL5YJ7QD5 | text/html | first_capture
+window | 2026-03-11 19:27:19 | /data-set-39-files | 404 | 10437.000 | P5QHLXRE6DJXMSHKY2T7E272TMHLKO2J | text/html | first_capture
+window | 2026-03-11 19:27:21 |  | 200 | 17121.000 | Q3EAJJHZGMI6HX2RGQQJZ4QGDRJQGXSS | text/html | content_and_status_changed
+window | 2026-03-11 19:27:24 | /data-set-8-files | 200 | 12616.000 | 6HYVT2QTWP43MZ3ANBJAGVNXHRGW4MW5 | text/html | content_and_status_changed
+window | 2026-03-11 19:27:27 | /court-records-doe-no-3-v-epstein-no-908-cv-80232-sd-fla-2008 | 200 | 12644.000 | GKGZOZHWZLHWVIYAOS7DRBZAEXPMRJOH | text/html | content_and_status_changed
+window | 2026-03-11 19:27:33 | /court-records-doe-v-indyke-no-120-cv-02365-sdny-2020 | 200 | 12264.000 | 5NQAMYTQ4WVAPWS2IOE47EUJYTKIYTQF | text/html | content_and_status_changed
+window | 2026-03-11 19:27:35 | /court-records-government-united-states-virgin-islands-v-jpmorgan-chase-bank-na-no-122-cv-10904-sdny-2022 | 200 | 13020.000 | U6ASAHGGX26KRBKZO542YIQGILYTDPW3 | text/html | content_and_status_changed
+norm 404 |  | all rows: n=67 pages=62 digests=67 | 404 | 10447.000 | min 746 max 12368 |  | 
+norm 403 |  | all rows: n=1163 pages=659 digests=1163 | 403 | 937.000 | min 803 max 10574 |  | 
+norm 401 |  | all rows: n=257 pages=182 digests=184 | 401 | 3491.000 | min 3460 max 4643 |  | 
+(36 rows; csv has all)

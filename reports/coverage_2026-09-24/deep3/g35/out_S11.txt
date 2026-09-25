@@ -1,0 +1,63 @@
+-- S11 GHGRP facility: slim extract of every facility-year (136K rows) for local cohort math
+FACILITY_ID | YR | STATUS | FRS | FACILITY_NAME | PARENT_COMPANY | CITY | STATE | ZIP | COUNTY_FIPS | NAICS_CODE | FACILITY_TYPES | REPORTED_SUBPARTS | REPORTED_INDUSTRY_TYPES
+1000001 | 2010 |  | 110000490166 | PSE Ferndale Generating Station | Empeco IV, LLC and USPF II Ferndale Holdings, LLC (74.33298%); Diamond Generating Corporation (14.00002%); Tenaska Energy, Inc. and Tenaska Energy Holdings, LLC (11.667%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | C | C
+1000001 | 2011 |  | 110000490166 | PSE Ferndale Generating Station | Empeco IV, LLC and USPF II Ferndale Holdings, LLC (74.33298%); Diamond Generating Corporation (14.00002%); Tenaska Energy, Inc. and Tenaska Energy Holdings, LLC (11.667%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | C | C
+1000001 | 2012 |  | 110000490166 | PSE Ferndale Generating Station | Puget Sound Energy (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2013 |  | 110000490166 | PSE Ferndale Generating Station | Puget Sound Energy (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2014 |  | 110000490166 | PSE Ferndale Generating Station | Puget Sound Energy (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2015 |  | 110000490166 | PSE Ferndale Generating Station | PUGET SOUND ENERGY (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2016 |  | 110000490166 | PSE Ferndale Generating Station | PUGET SOUND ENERGY (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2017 |  | 110000490166 | PSE Ferndale Generating Station | PUGET SOUND ENERGY (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2018 |  | 110000490166 | PSE Ferndale Generating Station | PUGET SOUND ENERGY (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2019 |  | 110000490166 | PSE Ferndale Generating Station | PUGET SOUND ENERGY (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2020 |  | 110000490166 | PSE Ferndale Generating Station | PUGET HOLDINGS LLC (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2021 |  | 110000490166 | PSE Ferndale Generating Station | PUGET HOLDINGS LLC (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2022 |  | 110000490166 | PSE Ferndale Generating Station | PUGET HOLDINGS LLC (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000001 | 2023 |  | 110000490166 | PSE Ferndale Generating Station | PUGET HOLDINGS LLC (100%) | FERNDALE | WA | 98248 | 53073 | 221112 | Direct Emitter | D | D
+1000002 | 2010 |  | 110041175000 | Ardagh Glass Inc. | Saint-Gobain Containers Inc. (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2011 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | SAINT-GOBAIN CONTAINERS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2012 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | SAINT-GOBAIN CONTAINERS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2013 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | SAINT-GOBAIN CONTAINERS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2014 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH HOLDINGS USA INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2015 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GROUP (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2016 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GROUP (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2017 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GROUP (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2018 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GROUP (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2019 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GLASS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2020 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GLASS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2021 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GLASS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2022 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GLASS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000002 | 2023 |  | 110041175000 | Ardagh Glass Inc. (Dunkirk) | ARDAGH GLASS INC (100%) | DUNKIRK | IN | 47336 | 18075 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2014 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH HOLDINGS USA INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2015 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GROUP (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2017 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GROUP (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2010 |  | 110001482887 | Ardagh Glass Inc. | Saint-Gobain Containers Inc. (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2011 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | SAINT-GOBAIN CONTAINERS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2012 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | SAINT-GOBAIN CONTAINERS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2013 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | SAINT-GOBAIN CONTAINERS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2016 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GROUP (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2018 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GROUP (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2019 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GLASS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2020 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GLASS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2021 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GLASS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2022 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GLASS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000003 | 2023 |  | 110001482887 | Ardagh Glass Inc. (Henderson) | ARDAGH GLASS INC (100%) | Henderson | NC | 27537 | 37181 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2010 |  | 110000833518 | Ardagh Glass Inc. | Saint-Gobain Containers Inc. (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2011 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | SAINT-GOBAIN CONTAINERS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2012 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | SAINT-GOBAIN CONTAINERS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2013 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | SAINT-GOBAIN CONTAINERS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2014 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH HOLDINGS USA INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2015 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GROUP (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2016 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GROUP (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2017 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GROUP (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2018 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GROUP (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2019 |  | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GLASS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 | Direct Emitter | C,N | C,N
+1000004 | 2020 | STOPPED_REPORTING_VALID_REASON | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GLASS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 |  |  | 
+1000004 | 2021 | STOPPED_REPORTING_VALID_REASON | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GLASS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 |  |  | 
+1000004 | 2022 | STOPPED_REPORTING_VALID_REASON | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GLASS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 |  |  | 
+1000004 | 2023 | STOPPED_REPORTING_VALID_REASON | 110000833518 | Ardagh Glass Inc. (Lincoln) | ARDAGH GLASS INC (100%) | LINCOLN | IL | 62656 | 17107 | 327213 |  |  | 
+1000005 | 2010 |  | 110000482022 | Ardagh Glass Inc. | Saint-Gobain Containers Inc. (100%) | MADERA | CA | 93637 | 06039 | 327213 | Direct Emitter | C,N | C,N
+1000005 | 2011 |  | 110000482022 | Ardagh Glass Inc. (Madera) | SAINT-GOBAIN CONTAINERS INC (100%) | MADERA | CA | 93637 | 06039 | 327213 | Direct Emitter | C,N | C,N
+1000005 | 2012 |  | 110000482022 | Ardagh Glass Inc. (Madera) | SAINT-GOBAIN CONTAINERS INC (100%) | MADERA | CA | 93637 | 06039 | 327213 | Direct Emitter | C,N | C,N
+1000005 | 2013 |  | 110000482022 | Ardagh Glass Inc. (Madera) | SAINT-GOBAIN CONTAINERS INC (100%) | MADERA | CA | 93637 | 06039 | 327213 | Direct Emitter | C,N | C,N
+(136005 rows; csv has all)

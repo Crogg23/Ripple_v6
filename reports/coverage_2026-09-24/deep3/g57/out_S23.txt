@@ -1,0 +1,65 @@
+-- S23 OSHA 300A filing year 2025: hospital rows in VT, NM, HI, and any row naming the big absent systems
+ST | CITY | ESTABLISHMENT_NAME | COMPANY_NAME | NAICS_CODE | ESTABLISHMENT_TYPE | EMP | YEAR_FILING_FOR
+CA | Glendora | Foothill Presbyterian Hospital |  | 621999 | 1 | 87.0 | 2025
+CA | Van Nuys | SODEXO AT VALLEY PRESBYTERIAN HOSPITAL | Sodexo Inc. | 722310 | 1 | 4.0 | 2025
+HI | HONOLULU | 12112007 MOANALUA MEDICAL OFFICES | Kaiser Foundation Health Plan | 622110 | 1 | 2505.0 | 2025
+HI | WAILUKU | 36136050 MAUI MEMORIAL   COTTAGE BUILDINGS | Kaiser Foundation Health Plan | 622110 | 1 | 1375.0 | 2025
+HI | KAILUA | AHCS-640 ULUKAHIKI ST DEPTS | Adventist Health System West | 622110 | 1 | 1066.0 | 2025
+HI | HONOLULU | KUAKINI MEDICAL CENTER |  | 622110 | 1 | 741.0 | 2025
+HI | HONOLULU | 12612007 MOANALUA MEDICAL CENTER | Kaiser Foundation Health Plan | 622110 | 1 | 346.0 | 2025
+HI | Honolulu | REHAB Hospital | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 343.0 | 2025
+HI | KULA | 36136052 KULA HOSPITAL | Kaiser Foundation Health Plan | 622110 | 1 | 183.0 | 2025
+HI | WAILUKU | 36636050 MAUI MEMORIAL   COTTAGE BUILDINGS | Kaiser Foundation Health Plan | 622110 | 1 | 48.0 | 2025
+HI | LANAI CITY | 36136051 LANAI COMMUNITY HOSPITAL | Kaiser Foundation Health Plan | 622110 | 1 | 34.0 | 2025
+HI | Honolulu | Hawaii Pacific Health Straub Honolulu | CPS, LLC | 446110 | 1 | 34.0 | 2025
+HI | Honolulu | REHAB at Nuuanu | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 21.0 | 2025
+HI | Honolulu | SODEXO AT QUEEN S MEDICAL CENTER | Sodexo Inc. | 722310 | 1 | 16.0 | 2025
+HI | Hilo | REHAB at Hilo | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 9.0 | 2025
+HI | Aiea | REHAB at Aiea | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 6.0 | 2025
+HI | Honolulu | REHAB Physician's Clinic | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 4.0 | 2025
+HI | Honolulu | SODEXO AT QUEEN S MEDICAL CTR | Sodexo Inc. | 722310 | 1 | 3.0 | 2025
+NM | Las Cruces | Mountain View Regional Medical Center | Mountain View Regional Medical Center | 622110 | 1 | 1513.0 | 2025
+NM | LAS CRUCES | PHC-LAS CRUCES INC | PHC-LAS CRUCES INC - D530030 | 622110 | 1 | 1332.0 | 2025
+NM | Taos | Taos Health Systems, Inc. dba Holy Cross Medical Center |  | 622110 | 1 | 522.0 | 2025
+NM | Las Cruces | Three Crosses Regional Hospital | Hospital | 622110 | 1 | 501.0 | 2025
+NM | Albuquerque | Encompass Health Rehabilitation Hospital of Albuquerque |  | 622310 | 1 | 256.0 | 2025
+NM | Santa Teresa | Peak Behavioral Health | Peak Behavioral Health | 622210 | 1 | 255.0 | 2025
+NM | LAS CRUCES | MESILLA VALLEY HOSPITAL - 0561 | UNIVERSAL HEALTH SERVICES | 622210 | 1 | 252.0 | 2025
+NM | Las Cruces | Rehabilitation Hospital of Southern New Mexico, Inc. | Ernest Health, Inc. | 622310 | 1 | 210.0 | 2025
+NM | HOBBS | NM1008 COVENANT HOBBS HOSPITAL-4900 N LOVINGTON | Providence Health and Services | 622110 | 1 | 203.0 | 2025
+NM | Los Alamos | Los Alamos Medical Center | LifePoint Health | 622110 | 1 | 173.0 | 2025
+NM | ALBUQUERQUE | H4664 KH ALBUQUERQUE | Kindred Healthcare KH ALBUQUERQUE | 622310 | 1 | 162.0 | 2025
+NM | ALBUQUERQUE | Central Desert Behavioral Health Hospital | Central Desert Behavioral Health Hospita | 622210 | 1 | 150.0 | 2025
+NM | Rio Rancho | ClearSky Rehabilitation Hospital of Rio Rancho | ClearSky Health Acquisition LLC | 622310 | 1 | 145.0 | 2025
+NM | Albuquerque | Albuquerque-Specialty Hospital LLC | Albuquerque-Specialty Hospital LLC | 622310 | 1 | 136.0 | 2025
+NM | Las Cruces | Advanced Care Hospital of Southern New Mexico, LLC | Advanced Care Hospital of Southern New Mexico, LLC | 622310 | 1 | 62.0 | 2025
+NM | HOBBS | NM981 COVENANT HOBBS-5419 LOVINGTON HWY HR | Providence Health and Services | 622110 | 1 | 57.0 | 2025
+NM | Taos | Taos | CHLOETA FIRE LLC | 622110 | 1 | 3.0 | 2025
+NM | Santa Fe | Santa Fe | CHLOETA FIRE LLC | 622110 | 1 | 1.0 | 2025
+NY | NEW YORK | PH - Columbia _ MSCHONY | The New York and Presbyterian Hospital NYP COLUMBIA UNIV IRVING MEDICAL CENTER | 622110 | 1 | 10385.0 | 2025
+NY | NEW YORK | NYH - Weill Cornell | The New York and Presbyterian Hospital NYP WEILL CORNELL MEDICAL CENTER | 622110 | 1 | 10225.0 | 2025
+NY | BROOKLYN | BM - Brooklyn Methodist | The New York and Presbyterian Hospital NYP BROOKLYN METHODIST HOSPITAL | 622110 | 1 | 4549.0 | 2025
+NY | FLUSHING | Queens | The New York and Presbyterian Hospital NYP QUEENS | 622110 | 1 | 3718.0 | 2025
+NY | NEW YORK | 466 Lexington Ave | The New York and Presbyterian Hospital 466 Lexington Ave | 622110 | 1 | 2015.0 | 2025
+NY | BRONXVILLE | W-Westchester | The New York and Presbyterian Hospital NYP WESTCHESTER | 622110 | 1 | 1851.0 | 2025
+NY | NEW YORK | ALLEN - Allen Hospital | The New York and Presbyterian Hospital NYP ALLEN HOSPITAL | 622110 | 1 | 1287.0 | 2025
+NY | NEW YORK | LMH - Lower Manhattan Hospital | The New York and Presbyterian Hospital NYP LOWER MANHATTAN HOSPITAL | 622110 | 1 | 1240.0 | 2025
+NY | CORTLAND MANOR | Hudson Valley Hospital | The New York and Presbyterian Hospital NYP HUDSON VALLEY | 622110 | 1 | 1231.0 | 2025
+NY | WHITE PLAINS | WBH - Westchester Behavioral Health | The New York and Presbyterian Hospital NYP WESTCHESTER BEHAVIORAL HEALTH CENTER | 622110 | 1 | 980.0 | 2025
+NY | NEW YORK | Gracie Square | The New York and Presbyterian Hospital NYP GRACIE SQUARE HOSPITAL | 622110 | 1 | 404.0 | 2025
+NY | NEW YORK | Kings County Medical Group | The New York and Presbyterian Hospital NYP KINGS COUNTY MEDICAL GROUP | 622110 | 1 | 343.0 | 2025
+NY | NEW YORK | Medical Group Queens | The New York and Presbyterian Hospital NYP QUEENS MEDICAL GROUP | 622110 | 1 | 317.0 | 2025
+NY | CORTLAND MANOR | HVMG- Hudson Valley Medical Group | The New York and Presbyterian Hospital NYP HUDSON VALLEY MEDICAL GROUP | 622110 | 1 | 179.0 | 2025
+NY | NEW YORK | Westchester CHS | The New York and Presbyterian Hospital NYP LAWRENCE CHS | 622110 | 1 | 110.0 | 2025
+NY | WHITE PLAINS | NYP TheOne | The New York and Presbyterian Hospital NYP The One | 622110 | 1 | 99.0 | 2025
+NY | NEW YORK | Westchester Medical Group | The New York and Presbyterian Hospital NYP WESTCHESTER MEDICAL GROUP | 622110 | 1 | 71.0 | 2025
+TX | Plano | Texas Health Presbyterian Hospital Plano | Compass Group | 722310 | 1 | 62.0 | 2025
+TX | Dripping Springs | Texas Health Presbyterian Hospital - Denton | Hospital Housekeeping Systems | 561720 | 1 | 0.0 | 2025
+TX | Dripping Springs | Texas Health Presbyterian Hospital - WNJ | Hospital Housekeeping Systems | 561720 | 1 | 0.0 | 2025
+VT | Bennington | Southwestern Vermont Medical Center | Southwestern Vermont Medical Center | 622110 | 1 | 1050.0 | 2025
+VT | Newport | North Country Hospital and Health Center | North Country Hospital | 622110 | 1 | 618.0 | 2025
+VT | Brattleboro | Brattleboro Memorial Hospital | Brattleboro Memorial Hospital | 622110 | 1 | 606.0 | 2025
+VT | Randolph | Gifford Health Care |  | 622110 | 1 | 541.0 | 2025
+VT | Springfield | Springfield Hospital, Inc. | Springfield Hospital, Inc. | 622110 | 1 | 243.0 | 2025
+VT | BRATTLEBORO | BlueWater Health - Brattleboro | Blue Water Health | 622110 | 1 | 2.0 | 2025
+(62 rows; csv has all)

@@ -1,0 +1,21 @@
+K	V	N
+co_mention	TARCEVA also lists AVASTIN	152
+co_mention	AVASTIN also lists TARCEVA	104
+co_mention	AVASTIN also lists XELODA	98
+co_mention	TARCEVA also lists XELODA	45
+co_mention	AVASTIN also lists HERCEPTIN	27
+co_mention	XELODA also lists AVASTIN	17
+co_mention	HERCEPTIN also lists XELODA	16
+co_mention	XELODA also lists TARCEVA	7
+co_mention	TARCEVA also lists HERCEPTIN	7
+co_mention	HERCEPTIN also lists AVASTIN	4
+co_mention	XELODA also lists HERCEPTIN	3
+co_mention	RITUXAN also lists AVASTIN	2
+co_mention	HERCEPTIN also lists TARCEVA	2
+co_mention	HERCEPTIN also lists RITUXAN	1
+co_mention	AVASTIN also lists RITUXAN	1
+dup_tuple	tuples age+sex+wt+event_dt with 2+ cases / cross-sender / cross-drug	
+dup_tuple_base	cases_with_full_tuple	138
+dup_tuple_cases	cases_in_those	2
+dup_tuple_n	tuples_with_2plus	1
+dup_tuple_x	cross_sender_or_drug	0

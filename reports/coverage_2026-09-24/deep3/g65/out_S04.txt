@@ -1,0 +1,4 @@
+-- S04 Enviro association: confirm it is a boiler-to-generator link list; STEAM_PLANT_TYPE is a 1-4 code, not an amount; land rate in the plant table
+N | PLANTS | LINKS | BOILERS | GENS | T1 | T2 | T3 | T4 | UTILS | RUNS | PLANTS_IN_PLANT_TABLE
+7020 | 1554 | 7020 | 4423 | 3394 | 2587 | 2750 | 385 | 1298 | 918 | 1 | 1554
+(1 rows; csv has all)

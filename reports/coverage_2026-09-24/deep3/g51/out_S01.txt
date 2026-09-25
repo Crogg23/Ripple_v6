@@ -1,0 +1,53 @@
+-- S01 BOP statistics: all 50 rows, to see what the scrape actually holds
+REPORT_DATE | CATEGORY | METRIC_NAME | METRIC_VALUE | METRIC_UNIT | FACILITY_TYPE | STATE_FIPS | SOURCE_URL
+2026-07-01 | Federal Bureau of Prisons | Receive Code is always | 7932.0 | count |  |  | https://www.bop.gov/inmates/communications.jsp
+2026-07-01 | Federal Bureau of Prisons | Age | 21.0 | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmates/visiting.jsp
+2026-07-01 | Federal Bureau of Prisons | 0 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 1 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 2 |  | count |  |  | https://www.bop.gov/about/statistics/population_statistics.jsp
+2026-07-01 | Federal Bureau of Prisons | 2 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 2 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 2 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 2 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | 2 |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | Location |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | Name |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | Race |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | Register # |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | Release Date |  | count |  |  | https://www.bop.gov/inmateloc/
+2026-07-01 | Federal Bureau of Prisons | Sex |  | count |  |  | https://www.bop.gov/inmateloc/
+(50 rows; csv has all)

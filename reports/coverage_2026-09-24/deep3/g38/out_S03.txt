@@ -1,0 +1,9 @@
+-- S03 crosswalk profile: match method x confidence x review flag, fill of every ID column, first-word sanity
+MATCH_METHOD | MATCH_CONFIDENCE | REVIEW_FLAG | N | IDS | LEI_FILLED | D_LEI | NAME_FILLED | ULT_FILLED | D_ULT | CIK_FILLED | D_CIK | UEI_FILLED | D_UEI | SAME_PARENT_NAME | FIRST_WORD_IN_FAC | BLANK_FAC
+ |  |  | 3822203 | 3822203 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 26579 | 22266 | 0 | 0 | 7162
+ |  | False | 1198325 | 1198325 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 7780 | 6749 | 0 | 0 | 0
+brand | 0.85 | False | 205673 | 205673 | 205673 | 56 | 205673 | 27343 | 14 | 110940 | 19 | 85 | 73 | 178330 | 120807 | 0
+exact | 1.00 | False | 59121 | 59121 | 59121 | 17821 | 59121 | 8514 | 1073 | 7663 | 686 | 2715 | 2327 | 50619 | 54516 | 0
+fuzzy | 0.80 | False | 10810 | 10810 | 10810 | 4865 | 10810 | 1572 | 226 | 714 | 86 | 333 | 295 | 9239 | 10351 | 0
+fuzzy | 0.85 | False | 4017 | 4017 | 4017 | 3022 | 4017 | 211 | 113 | 65 | 34 | 442 | 402 | 3807 | 3848 | 0
+(6 rows; csv has all)

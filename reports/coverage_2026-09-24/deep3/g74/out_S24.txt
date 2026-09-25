@@ -1,0 +1,2 @@
+-- S24 UK company-number holes, 6 Oct 2025-1 Feb 2026: per incorporation day, numbers on the live register, numbers found only in the PSC file (dissolved), and holes that match no company in either file; with hole-run sizes (scattered singles vs blocks)
+ERROR: 100038 (22018): Numeric value 'NC000001' is not recognized

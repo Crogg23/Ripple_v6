@@ -1,0 +1,88 @@
+[
+ {
+  "table": "ECONOMICS__FED_PBGC_DATA",
+  "schema": "ECONOMICS",
+  "rows": "134534",
+  "score": "6.6",
+  "tags": "MONEY TEXT",
+  "summary": "Statistics from the Pension Benefit Guaranty Corporation, the federal pension insurer, stored one number per row.",
+  "look_for": "who gets the most: top 20 by METRIC_VALUE :: ranked bar | concentration: what share of all METRIC_VALUE goes to the top 1% :: share curve | bunching: METRIC_VALUE piling up just under round lines like $10K or $150K :: histogram | outliers: rows over 10x the median METRIC_VALUE of their peers :: dot strip | trend: spikes and step changes by year in PUBLICATION_DATE :: line over time | rhythm: month of year and day of week in PUBLICATION_DATE :: calendar heatmap | flag rates by group: NOTES_FLAG; count its values first :: grouped bars | read the words: search NOTES_FLAG for named products, firms or phrases :: word bars",
+  "where": "money: METRIC_VALUE; metrics: METRIC_VALUE; dates: PUBLICATION_DATE; flags: NOTES_FLAG; text: NOTES_FLAG",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 134.5K rows | METRIC_VALUE: sum 29.7T, median 354, max 91.2B | top 1% of rows hold 83% of METRIC_VALUE; 42,843 rows over 10x median // triage 4.0/10: Which failed pension plans left the biggest unfunded hole for the federal insurer to cover?",
+  "battery_facts": "134.5K rows | METRIC_VALUE: sum 29.7T, median 354, max 91.2B | top 1% of rows hold 83% of METRIC_VALUE; 42,843 rows over 10x median",
+  "battery_traps": []
+ },
+ {
+  "table": "ECONOMICS__FED_FOREIGNASSISTANCE",
+  "schema": "ECONOMICS",
+  "rows": "95658",
+  "score": "6.5",
+  "tags": "MONEY MAP",
+  "summary": "US foreign aid records from ForeignAssistance.gov by country and year. The dollar columns came in empty, so the table cannot answer how much.",
+  "look_for": "who gets the most: top 20 by OBLIGATION_AMOUNT :: ranked bar | concentration: what share of all OBLIGATION_AMOUNT goes to the top 1% :: share curve | bunching: OBLIGATION_AMOUNT piling up just under round lines like $10K or $150K :: histogram | the gap on one row: OBLIGATION_AMOUNT against DISBURSEMENT_AMOUNT; who pays or gets least of what's due :: scatter with a diagonal | where: rank by country :: choropleth map",
+  "where": "money: OBLIGATION_AMOUNT, DISBURSEMENT_AMOUNT",
+  "keys": "EIN",
+  "traps": "ein-and-cik-width-mismatch",
+  "hunt_trap": "",
+  "found": "battery A: 95.7K rows | 1 distinct EIN; top holds 100% of rows:  95.7K // triage 1.0/10: None. The dollar columns loaded empty. TRAP: OBLIGATION_AMOUNT is null on all 95,658 rows; DISBURSEMENT_AMOUNT is null on all 95,658 rows",
+  "battery_facts": "95.7K rows | 1 distinct EIN; top holds 100% of rows:  95.7K",
+  "battery_traps": [
+   "OBLIGATION_AMOUNT is null on all 95,658 rows",
+   "DISBURSEMENT_AMOUNT is null on all 95,658 rows"
+  ]
+ },
+ {
+  "table": "ECONOMICS__FED_US_USASPENDING_API",
+  "schema": "ECONOMICS",
+  "rows": "300",
+  "score": "6.2",
+  "tags": "MONEY MAP TEXT",
+  "summary": "A small pull of 300 large federal awards, 10 million dollars or more, from the USAspending website. Many detail columns came back empty.",
+  "look_for": "who gets the most: top 20 by TOTAL_OBLIGATION :: ranked bar | concentration: what share of all TOTAL_OBLIGATION goes to the top 1% :: share curve | bunching: TOTAL_OBLIGATION piling up just under round lines like $10K or $150K :: histogram | the gap on one row: TOTAL_OBLIGATION against AWARD_AMOUNT; who pays or gets least of what's due :: scatter with a diagonal | outliers: rows over 10x the median TOTAL_OBLIGATION of their peers :: dot strip | trend: spikes and step changes by year in START_DATE :: line over time | rhythm: month of year and day of week in START_DATE; the September end-of-fiscal-year rush :: calendar heatmap | newcomers and vanishers: UEI values that appear from nowhere big, or drop out :: slope chart | read the words: search NAICS_DESCRIPTION for named products, firms or phrases :: word bars | where: rank by state :: choropleth map",
+  "where": "money: TOTAL_OBLIGATION, AWARD_AMOUNT; metrics: TOTAL_OBLIGATION, TOTAL_OUTLAY, AWARD_AMOUNT, TRANSACTION_COUNT +2; dates: START_DATE, END_DATE, LAST_MODIFIED_DATE; text: NAICS_DESCRIPTION",
+  "keys": "DUNS, EIN, UEI",
+  "traps": "ein-and-cik-width-mismatch",
+  "hunt_trap": "",
+  "found": "battery A: 300 rows | START_DATE 1978-09-15 to 2024-09-27 | AWARD_AMOUNT: sum 3.3T, median 7.0B, max 92.0B | 1 distinct RECIPIENT_UEI; top holds 100% of rows:  300 // triage 1.0/10: No story; 300-row sample with blank recipient IDs TRAP: TOTAL_OBLIGATION is null on all 300 rows; TOTAL_OUTLAY is null on all 300 rows",
+  "battery_facts": "300 rows | START_DATE 1978-09-15 to 2024-09-27 | AWARD_AMOUNT: sum 3.3T, median 7.0B, max 92.0B | 1 distinct RECIPIENT_UEI; top holds 100% of rows:  300",
+  "battery_traps": [
+   "TOTAL_OBLIGATION is null on all 300 rows",
+   "TOTAL_OUTLAY is null on all 300 rows"
+  ]
+ },
+ {
+  "table": "ECONOMICS__FED_TREASURY_DTS_DEPOSITS",
+  "schema": "ECONOMICS",
+  "rows": "478149",
+  "score": "5.8",
+  "tags": "MONEY",
+  "summary": "Daily cash going into and out of the US Treasury's operating accounts, by category, from the Daily Treasury Statement, 478,149 lines.",
+  "look_for": "who gets the most: top 20 by TRANSACTION_TODAY_AMT :: ranked bar | concentration: what share of all TRANSACTION_TODAY_AMT goes to the top 1% :: share curve | bunching: TRANSACTION_TODAY_AMT piling up just under round lines like $10K or $150K :: histogram | the gap on one row: TRANSACTION_TODAY_AMT against TRANSACTION_MTD_AMT; who pays or gets least of what's due :: scatter with a diagonal | outliers: rows over 10x the median TRANSACTION_TODAY_AMT of their peers :: dot strip | trend: spikes and step changes by year in RECORD_DATE :: line over time | rhythm: month of year and day of week in RECORD_DATE :: calendar heatmap",
+  "where": "money: TRANSACTION_TODAY_AMT, TRANSACTION_MTD_AMT, TRANSACTION_FYTD_AMT; metrics: TRANSACTION_TODAY_AMT, TRANSACTION_MTD_AMT, TRANSACTION_FYTD_AMT; dates: RECORD_DATE",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 478.1K rows | RECORD_DATE 2005-10-03 to 2026-08-07 | TRANSACTION_TODAY_AMT: sum 1.1B, median 43, max 582.6K | TRANSACTION_MTD_AMT: sum 11.3B, median 510, max 3.7M | TRANSACTION_FYTD_AMT: sum 130.8B, median 7.0K, max 36.9M | top 1% of rows hold 73% of TRANSACTION_TODAY_AMT; 75,384 rows over 10x media // triage 2.5/10: Which Treasury cash categories spiked or collapsed (tariff receipts, DOGE-era cuts) day by day?",
+  "battery_facts": "478.1K rows | RECORD_DATE 2005-10-03 to 2026-08-07 | TRANSACTION_TODAY_AMT: sum 1.1B, median 43, max 582.6K | TRANSACTION_MTD_AMT: sum 11.3B, median 510, max 3.7M | TRANSACTION_FYTD_AMT: sum 130.8B, median 7.0K, max 36.9M | top 1% of rows hold 73% of TRANSACTION_TODAY_AMT; 75,384 rows over 10x median",
+  "battery_traps": []
+ },
+ {
+  "table": "ECONOMICS__FED_IRS_527_ORGS",
+  "schema": "ECONOMICS",
+  "rows": "77591",
+  "score": "5.4",
+  "tags": "MAP OUTCOME TEXT",
+  "summary": "Political groups registered with the IRS as section 527 organizations, with addresses, contacts, purpose and filing dates.",
+  "look_for": "outcomes: share of each STATUS_FLAG value by entity, place or year; who loses most :: stacked bars | trend: spikes and step changes by year in FILED_DATE :: line over time | rhythm: month of year and day of week in FILED_DATE :: calendar heatmap | newcomers and vanishers: EIN values that appear from nowhere big, or drop out :: slope chart | concentration: does a handful of EIN values hold most rows; name them :: share curve | flag rates by group: AMENDED_FLAG; count its values first :: grouped bars | read the words: search PURPOSE for named products, firms or phrases :: word bars | where: rank by ZIP code :: choropleth map",
+  "where": "dates: FILED_DATE; flags: AMENDED_FLAG, STATUS_FLAG; outcomes: STATUS_FLAG; text: PURPOSE",
+  "keys": "EIN",
+  "traps": "ein-and-cik-width-mismatch reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 77.6K rows | FILED_DATE 2001-05-13 to 2026-07-24 | 58,916 distinct EIN; top holds 0% of rows: 232116856 69; 311127396 51; 311327116 50 | MAIL_ADDRESS1 top: 555 Capitol Mall 755, 455 Capitol Mall, Suite 600 714, 555 Capitol Mall, Suite 1425 637 | MAIL_ADDRESS2 top:  64.3K, Suite 1425 490, Suite 400 4 // triage 3.0/10: Addresses hosting hundreds of 527s (555 Capitol Mall) and shell groups that register and vanish.",
+  "battery_facts": "77.6K rows | FILED_DATE 2001-05-13 to 2026-07-24 | 58,916 distinct EIN; top holds 0% of rows: 232116856 69; 311127396 51; 311327116 50 | MAIL_ADDRESS1 top: 555 Capitol Mall 755, 455 Capitol Mall, Suite 600 714, 555 Capitol Mall, Suite 1425 637 | MAIL_ADDRESS2 top:  64.3K, Suite 1425 490, Suite 400 408 | MAIL_STATE top: CA 13.8K, FL 8.6K, TX 4.2K",
+  "battery_traps": []
+ }
+]

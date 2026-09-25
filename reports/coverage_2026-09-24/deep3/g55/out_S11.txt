@@ -1,0 +1,19 @@
+-- S11 MTS trap test: across every receipt line, is the monthly net blank exactly when refunds exceed gross?
+REFUND_GT_GROSS | NET_BLANK | N | LINES | D0 | D1 | EXAMPLES
+False | False | 2212 | 23 | 2015-03-31 | 2026-06-30 | [
+  "Estate and Gift Taxes",
+  "Total -- Miscellaneous Receipts",
+  "Rail Pension and Supplemental Annuity",
+  "Total -- Unemployment Insurance",
+  "Miscellaneous Excise Taxes",
+  "Highway Trust Fund",
+  "Total -- Federal Hospital Insurance Trust Fund",
+  "Corporation Income Taxes"
+]
+True | True | 25 | 4 | 2015-08-31 | 2026-06-30 | [
+  "Corporation Income Taxes",
+  "Federal Unemployment Taxes",
+  "Miscellaneous Excise Taxes",
+  "Customs Duties"
+]
+(2 rows; csv has all)

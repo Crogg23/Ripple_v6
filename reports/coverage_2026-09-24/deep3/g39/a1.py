@@ -1,0 +1,15 @@
+import pandas as pd, numpy as np
+pd.set_option('display.width',250); pd.set_option('display.max_columns',40); pd.set_option('display.max_rows',200)
+t=pd.read_csv('q07.csv',dtype=str)
+print(t.shape, t.ACTIVITY_ID.nunique(), t.PGM_SYS_ID.nunique())
+print('exact dup rows', t.duplicated().sum(), 'dup activity ids', t.ACTIVITY_ID.duplicated().sum())
+t['d']=pd.to_datetime(t.ACTUAL_END_DATE, errors='coerce')
+t['yr']=t.ACTUAL_END_DATE.str[:4].astype(float)
+print('date null', t.ACTUAL_END_DATE.isna().sum(), 'yr<1990', (t.yr<1990).sum(), 'yr>2026', (t.yr>2026).sum())
+print(t[t.yr<1995].ACTUAL_END_DATE.value_counts().head(15))
+print(t.FACILITY_RPT_DEVIATION_FLAG.value_counts(dropna=False))
+print(t.STATE_EPA_FLAG.value_counts(dropna=False))
+t['st']=t.PGM_SYS_ID.str[:2]
+f=t.FACILITY_RPT_DEVIATION_FLAG.fillna('_')
+print(pd.crosstab(t.yr.clip(1990,2026), f))
+t.to_pickle('t.pkl')

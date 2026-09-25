@@ -1,0 +1,19 @@
+WITH l AS (
+  SELECT SRC_FILE w, ACCESSION_NUMBER a, CUSIP, VALUE_USD v, SSHPRNAMT sh
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_HOLDINGS
+  WHERE VALUE_UNIT = 'dollars' AND SSHPRNAMTTYPE = 'SH' AND NULLIF(TRIM(PUTCALL), '') IS NULL AND SSHPRNAMT > 0 AND VALUE_USD > 0
+), m AS (
+  SELECT w, CUSIP, MEDIAN(v / sh) mp FROM l GROUP BY 1, 2 HAVING COUNT(*) >= 20
+), x AS (
+  SELECT l.w, l.a, COUNT(*) lines, COUNT_IF(l.v / l.sh < m.mp / 300) low, SUM(l.v) v,
+         MEDIAN(IFF(l.v / l.sh < m.mp / 300, (l.v / l.sh) / m.mp, NULL)) med_r_low
+  FROM l JOIN m ON m.w = l.w AND m.CUSIP = l.CUSIP GROUP BY 1, 2
+), s AS (
+  SELECT ACCESSION_NUMBER a, COUNT(*) s_n, ANY_VALUE(SUBMISSIONTYPE) st, ANY_VALUE(PERIODOFREPORT) per, ANY_VALUE(TRY_TO_NUMBER(CIK)) cik
+  FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_13F_SUBMISSIONS GROUP BY 1
+), xs AS (
+  SELECT x.*, s.s_n, s.st, s.per, s.cik, COUNT(*) OVER (PARTITION BY x.a) n_windows,
+         COUNT(*) OVER (PARTITION BY x.w) w_checked, COUNT_IF(s.st = '13F-HR') OVER (PARTITION BY x.w) w_hr_checked
+  FROM x LEFT JOIN s ON s.a = x.a
+)
+SELECT * FROM xs WHERE low >= 0.5 * lines OR cik = 80255

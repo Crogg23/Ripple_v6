@@ -1,0 +1,36 @@
+with r as (
+ select SUB_ID, CYCLE_FILE, CMTE_ID, upper(DONOR_NAME) d, upper(CITY) city, STATE, ZIP_CODE, upper(EMPLOYER) emp, upper(OCCUPATION) occ, ENTITY_TYPE, TRANSACTION_TYPE, TRANSACTION_DATE, TRANSACTION_AMT, MEMO_CD, IS_MEMO_TRANSACTION, OTHER_ID
+ from LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDIV_CONTRIBUTIONS where CMTE_ID = 'C00796045')
+select 'ADELSON_ANY' k, CYCLE_FILE::string c, d, city||' '||STATE||' '||ZIP_CODE loc, emp||' / '||occ eo, ENTITY_TYPE||' '||TRANSACTION_TYPE||' '||coalesce(MEMO_CD,'-') t, TRANSACTION_DATE::string dt, TRANSACTION_AMT amt, SUB_ID::string sid
+from r where d like '%ADELSON%'
+union all
+select 'BY_ETYPE_2024', CYCLE_FILE::string, ENTITY_TYPE, TRANSACTION_TYPE, coalesce(MEMO_CD,'-'), count(*)::string||' rows / '||count(distinct SUB_ID)::string||' subids', min(TRANSACTION_DATE)::string||'..'||max(TRANSACTION_DATE)::string, sum(TRANSACTION_AMT), null
+from r group by CYCLE_FILE, ENTITY_TYPE, TRANSACTION_TYPE, MEMO_CD
+union all
+select * from (select 'TOP_2024', CYCLE_FILE::string, d, city||' '||STATE, max(ENTITY_TYPE), null, null, sum(TRANSACTION_AMT) a, null from r where coalesce(MEMO_CD,'')<>'X' and CYCLE_FILE=2024 group by CYCLE_FILE, d, city, STATE qualify row_number() over (order by a desc) <= 8)
+order by 1,2,8 desc
+
+[05] 22 rows
+K | C | D | LOC | EO | T | DT | AMT | SID
+ADELSON_ANY | 2024 | ADELSON, MIRIAM M.D. | LAS VEGAS NV 891098941 | SELF-EMPLOYED / PHYSICIAN | IND 10  | 2024-09-20 | 1000000.0 | 4120420241074441965
+ADELSON_ANY | 2024 | ADELSON, MIRIAM M.D. | LAS VEGAS NV 891098941 | SELF-EMPLOYED / PHYSICIAN | IND 10  | 2024-05-03 | 1000000.0 | 4062620241962823183
+BY_ETYPE_2024 | 2022 | IND | 10 |  | 126 rows / 126 subids | 2021-12-17..2022-12-23 | 5124365.0 | 
+BY_ETYPE_2024 | 2022 | ORG | 10 |  | 8 rows / 8 subids | 2021-12-10..2022-10-25 | 406045.0 | 
+BY_ETYPE_2024 | 2022 | IND | 10 | X | 4 rows / 4 subids | 2022-04-26..2022-10-25 | 60000.0 | 
+BY_ETYPE_2024 | 2024 | IND | 10 |  | 300 rows / 300 subids | 2023-01-04..2024-12-23 | 17405721.0 | 
+BY_ETYPE_2024 | 2024 | ORG | 10 |  | 58 rows / 58 subids | 2023-03-01..2024-12-23 | 10606001.0 | 
+BY_ETYPE_2024 | 2024 | PAC | 10 |  | 22 rows / 22 subids | 2023-05-30..2024-11-21 | 8941800.0 | 
+BY_ETYPE_2024 | 2024 | IND | 10 | X | 10 rows / 10 subids | 2024-06-11..2024-10-18 | 1205000.0 | 
+BY_ETYPE_2024 | 2024 | PAC | 10 | X | 2 rows / 2 subids | 2023-07-10..2023-09-25 | 21800.0 | 
+BY_ETYPE_2024 | 2026 | IND | 10 |  | 89 rows / 89 subids | 2025-01-07..2026-06-29 | 3238165.0 | 
+BY_ETYPE_2024 | 2026 | ORG | 10 |  | 23 rows / 23 subids | 2025-01-21..2026-03-25 | 674649.0 | 
+BY_ETYPE_2024 | 2026 | IND | 10 | X | 5 rows / 5 subids | 2025-11-21..2026-02-27 | 180952.0 | 
+BY_ETYPE_2024 | 2026 | PAC | 10 |  | 1 rows / 1 subids | 2025-10-28..2025-10-28 | 60000.0 | 
+TOP_2024 | 2024 | WIN IT BACK PAC | WASHINGTON DC | PAC |  |  | 6600000.0 | 
+TOP_2024 | 2024 | CONCORD FUND | VIENNA VA | ORG |  |  | 2500000.0 | 
+TOP_2024 | 2024 | AMERICA 2076 | AUSTIN TX | ORG |  |  | 2100000.0 | 
+TOP_2024 | 2024 | ADELSON, MIRIAM M.D. | LAS VEGAS NV | IND |  |  | 2000000.0 | 
+TOP_2024 | 2024 | SAVING TEXAS | AUSTIN TX | ORG |  |  | 1795000.0 | 
+TOP_2024 | 2024 | PETERFFY, THOMAS P. | PALM BEACH FL | IND |  |  | 1300000.0 | 
+TOP_2024 | 2024 | MARLING, ROBERT E. JR. | MONTGOMERY TX | IND |  |  | 1250000.0 | 
+TOP_2024 | 2024 | NHA ACTION | MOUNTAIN BRK AL | PAC |  |  | 1250000.0 | 

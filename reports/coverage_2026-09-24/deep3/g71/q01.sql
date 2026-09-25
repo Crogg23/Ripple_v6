@@ -1,0 +1,6 @@
+-- Column names and types for all five tables, plus catalog row counts
+select c.TABLE_NAME, t.ROW_COUNT, listagg(c.COLUMN_NAME || ':' || c.DATA_TYPE, ', ') within group (order by c.ORDINAL_POSITION) cols
+from LIBRARY_MARTS.INFORMATION_SCHEMA.COLUMNS c
+join LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES t on t.TABLE_SCHEMA=c.TABLE_SCHEMA and t.TABLE_NAME=c.TABLE_NAME
+where c.TABLE_SCHEMA='OPEN_DATA' and c.TABLE_NAME in ('OPEN_DATA__INTL_GR_DATAGOV','OPEN_DATA__INTL_FR_DATA_GOUV','OPEN_DATA__INTL_AR_DATOSGOB','OPEN_DATA__INTL_DE_GOVDATA','OPEN_DATA__INTL_CL_DATOSGOB')
+group by 1,2 order by 1

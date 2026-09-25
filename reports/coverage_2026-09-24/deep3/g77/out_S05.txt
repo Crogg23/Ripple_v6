@@ -1,0 +1,83 @@
+-- S05 Earthquakes: value profile - type, status, network, magtype, the most common depths, lat/lon that do not parse
+DIM | VAL | N
+depth | 10 | 96443
+depth | 35 | 21402
+depth | 5 | 6636
+depth | 0 | 4165
+depth | 12 | 1664
+depth | 11 | 1499
+depth | 7 | 1446
+depth | 9 | 1348
+depth | 13 | 1337
+depth | 6 | 1280
+depth | 8 | 1280
+depth | 20 | 1189
+dup_id | rows minus distinct ID | 0
+latlon_bad | lat or lon not a number | 0
+mag_lt_2_5 | MAG under 2.5 | 5
+magtype | mb | 220523
+magtype | ml | 142795
+magtype | md | 37998
+magtype | mww | 13770
+magtype | Md | 9014
+magtype | mwr | 7893
+magtype | mwc | 3613
+magtype | mw | 2496
+magtype | mb_lg | 2096
+magtype | mwb | 1039
+magtype | m | 716
+magtype | mblg | 491
+magtype | mlr | 263
+magtype | ml(texnet) | 148
+magtype | mh | 145
+magtype | mlg | 106
+magtype | mc | 64
+magtype | Ml | 47
+magtype | Mb | 19
+magtype | mlv | 11
+magtype | mwp | 9
+magtype | ms | 9
+magtype | ms_20 | 5
+magtype | ms_vx | 2
+magtype | Unknown | 1
+magtype |  | 1
+net | us | 322375
+net | pr | 32365
+net | ak | 31614
+net | hv | 18443
+net | ci | 14637
+net | nc | 9778
+net | nn | 4461
+net | tx | 3540
+net | uu | 1292
+net | aacse | 1003
+net | uw | 939
+net | rusms | 649
+net | ok | 639
+net | nm | 604
+net | se | 333
+net | iscgem | 202
+net | mb | 190
+net | ismpkansas | 75
+net | ld | 57
+net | av | 49
+net | gcmt | 24
+net | official | 3
+net | ew | 2
+status | reviewed | 440708
+status | automatic | 2555
+status | manual | 11
+type | earthquake | 439324
+type | mining explosion | 2753
+type | explosion | 747
+type | ice quake | 143
+type | other event | 112
+type | volcanic eruption | 74
+type | rock burst | 47
+type | quarry blast | 34
+type | mine collapse | 14
+type | experimental explosion | 8
+type | landslide | 5
+type | nuclear explosion | 4
+type | sonic boom | 2
+(86 rows; csv has all)

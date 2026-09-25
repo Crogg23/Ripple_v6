@@ -1,0 +1,153 @@
+-- S09 BDC report (retry of S03): FILING_DATE as text, year prefix, CIK width, file-number prefix
+Y | N | D0 | D1 | CIKS | CIK10 | FILE_PREFIX | FORMS | NAMES | EG
+0000 | 4 | 0000-05-01 | 0000-10-25 | 4 | 4 | [
+  "814-"
+] | [
+  "10-K",
+  "N-54A",
+  "N-2/A"
+] | 4 | VCVILLAGE COM OPPORTUNITY FUND LLC
+0001 | 2 | 0001-05-23 | 0001-09-28 | 2 | 2 | [
+  "814-"
+] | [
+  "424B",
+  "POS 8C"
+] | 2 | BERTHEL GROWTH TRUST II
+0003 | 1 | 0003-03-28 | 0003-03-28 | 1 | 1 | [
+  "814-"
+] | [
+  "40-17F2"
+] | 1 | ALLIED CAPITAL FINANCIAL CORP
+0004 | 5 | 0004-01-28 | 0004-11-04 | 5 | 5 | [
+  "814-"
+] | [
+  "NO ACT",
+  "RW"
+] | 5 | EVERCORE INVESTMENT CORP
+0006 | 2 | 0006-02-16 | 0006-09-28 | 2 | 2 | [
+  "814-"
+] | [
+  "N-54A",
+  "RW"
+] | 2 | Superior Community Capital CORP
+0007 | 2 | 0007-07-26 | 0007-10-29 | 2 | 2 | [
+  "814-"
+] | [
+  "40-17G",
+  "N-54A"
+] | 2 | Principal Structure Fund, Inc.
+0009 | 2 | 0009-05-05 | 0009-07-22 | 2 | 2 | [
+  "814-"
+] | [
+  "N-2/A",
+  "NO ACT"
+] | 2 | Trian Capital Corp
+0013 | 1 | 0013-08-20 | 0013-08-20 | 1 | 1 | [
+  "814-"
+] | [
+  "EFFECT"
+] | 1 | AMERITRANS CAPITAL CORP
+0014 | 2 | 0014-04-22 | 0014-12-30 | 2 | 2 | [
+  "814-"
+] | [
+  "40-APP",
+  "N-2/A"
+] | 2 | Hercules Energy Technology & Resource Management, Inc.
+0015 | 6 | 0015-01-23 | 0015-11-30 | 6 | 6 | [
+  "814-"
+] | [
+  "N-2",
+  "10-12B",
+  "N-6F",
+  "N-2/A"
+] | 6 | Poliwogg Regenerative Medicine Fund, Inc.
+0016 | 3 | 0016-03-04 | 0016-04-28 | 3 | 3 | [
+  "814-"
+] | [
+  "40-APP/A",
+  "RW"
+] | 3 | CAPITALSOUTH PARTNERS FUND II LP
+0017 | 3 | 0017-02-13 | 0017-11-20 | 3 | 3 | [
+  "814-"
+] | [
+  "RW",
+  "2-E"
+] | 3 | THL Credit Lakeshore, Inc.
+0018 | 2 | 0018-03-06 | 0018-05-21 | 2 | 2 | [
+  "814-"
+] | [
+  "40-17G",
+  "N-6F"
+] | 2 | TRIANGLE MEZZANINE FUND LLLP
+0019 | 1 | 0019-12-11 | 0019-12-11 | 1 | 1 | [
+  "814-"
+] | [
+  "EFFECT"
+] | 1 | Crescent Reincorporation Sub, Inc.
+0020 | 1 | 0020-03-16 | 0020-03-16 | 1 | 1 | [
+  "814-"
+] | [
+  "15-12G"
+] | 1 | Pharos Capital BDC, Inc.
+0022 | 2 | 0022-04-15 | 0022-07-06 | 2 | 2 | [
+  "814-"
+] | [
+  "APP ORDR",
+  "APP WDG"
+] | 2 | Jefferies Private Credit BDC Inc.
+0023 | 3 | 0023-03-14 | 0023-10-31 | 3 | 3 | [
+  "814-"
+] | [
+  "RW",
+  "N-54A",
+  "40-APP"
+] | 3 | Butterfly Ventures LLC
+0024 | 2 | 0024-05-23 | 0024-12-13 | 2 | 2 | [
+  "814-"
+] | [
+  "15-12G",
+  "N-54A"
+] | 2 | Nuveen Churchill Private Credit Fund
+0025 | 4 | 0025-06-30 | 0025-12-17 | 4 | 4 | [
+  "814-"
+] | [
+  "N-54A",
+  "40-17G",
+  "APP WD",
+  "D"
+] | 4 | CAPQ BDC Inc.
+0026 | 163 | 0026-02-27 | 0026-05-29 | 163 | 163 | [
+  "814-"
+] | [
+  "POS EX",
+  "N-2/A",
+  "8-K",
+  "N-23C-2",
+  "SCHEDULE 13G/A",
+  "10-Q",
+  "424B2",
+  "DEFA14A",
+  "APP ORDR",
+  "FWP",
+  "N-14 8C",
+  "SC TO-I",
+  "SCHEDULE 13D/A",
+  "424B3",
+  "144",
+  "DEF 14A",
+  "N-6F",
+  "10-Q/A",
+  "D/A",
+  "N-6F/A",
+  "SC TO-I/A",
+  "SC 14D9/A",
+  "SCHEDULE 13D",
+  "40-33",
+  "40-17G"
+] | 163 | 26North BDC, Inc.
+0095 | 1 | 0095-06-02 | 0095-06-02 | 1 | 1 | [
+  "814-"
+] | [
+  "POS AMI"
+] | 1 | EDVEST ENTREPRENEURIAL GROWTH FUND INC
+(21 rows; csv has all)

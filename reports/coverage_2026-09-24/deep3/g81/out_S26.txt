@@ -1,0 +1,5 @@
+-- S26 Oyez: the 7 dockets that missed SCDB on docket+term, looked up by case name
+TERM | DOCKET | CASE_NAME | US_CITATION | DATE_DECISION | VOTES
+1966 | 57 | AMERICAN TRUCKING ASSOCIATIONS, INC., et al. v. ATCHISON, TOPEKA & SANTA FE RAILWAY CO. et al. | 387 U.S. 397 | 1967-05-29 | 9
+1972 | 70-18 | ROE et al. v. WADE, DISTRICT ATTORNEY OF DALLAS COUNTY | 410 U.S. 113 | 1973-01-22 | 9
+(2 rows; csv has all)

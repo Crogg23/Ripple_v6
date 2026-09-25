@@ -1,0 +1,7 @@
+-- S13 MDS verify in SQL: Missouri homes by Reliant vs other, schizophrenia band 40%+, stars, abuse icon, fines
+GRP | BAND | HOMES | ONE_STAR | RATED | ABUSE_ICON | SFF_OR_CAND | FINES | MED_FINES | SZ_RESIDENTS_UNSUPPRESSED | AVG_RESIDENTS | CHAIN_AVG_STAR
+Reliant | 40%+ | 21 | 17 | 21 | 10 | 21 | 3488857.0 | 99988.0 | 1236 | 2054.6000000000004 | 1.2
+Reliant | under 40 or suppressed | 10 | 10 | 10 | 3 | 10 | 364056.0 | 17711.5 | 86 | 511.30000000000007 | 1.2
+other | 40%+ | 21 | 9 | 19 | 8 | 21 | 1624435.0 | 63001.0 | 805 | 1613.4 | 1.5
+other | under 40 or suppressed | 435 | 133 | 431 | 43 | 435 | 11627383.0 | 0.0 | 765 | 30878.300000000003 | 1.2
+(4 rows; csv has all)

@@ -1,0 +1,4 @@
+-- S08 NTSB injury: keys, duplicate loads, load runs, change dates, and how many events land in the events and aircraft tables
+N | REC_IDS | NAT_KEYS | RUNS | INGEST_STAMPS | INJ_EVENTS | EV_EVENTS | INJ_EV_IN_EVENTS | EVENTS_WITHOUT_INJ | INJ_AIRCRAFT | INJ_AC_IN_AIRCRAFT | EVID_Y0 | EVID_Y1 | LCHG0 | LCHG1 | LCHG_MODE | LCHG_MODE_N | USERID_NONE
+179179 | 179179 | 179179 | 1 | 1 | 29516 | 30968 | 29516 | 1452 | 29926 | 29926 | 2008 | 2026 | 2020-09-25 | 2026-07-31 | 2020-09-25 | 96424 | 108376
+(1 rows; csv has all)

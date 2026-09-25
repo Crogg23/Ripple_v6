@@ -1,0 +1,15 @@
+-- S13 Redo of S12 without the full-table MIN/MAX (ACTION_DATE is text; S12 timed out at 300s). Which of the 200 contracts miss R2
+AWARD_ID | RECIPIENT_NAME | AWARDING_AGENCY_NAME | START_DATE | END_DATE | LAST_MODIFIED_DATE | AWARD_AMOUNT | R2_ROWS | R2_FIRST_ACTION | R2_LAST_ACTION
+NNJ16GX08B | SPACE EXPLORATION TECHNOLOGIES CORP. | National Aeronautics and Space Administration | 2016-01-14 |  | 2026-05-28 | 3695753157.87 |  |  | 
+NNJ16GU21B | NORTHROP GRUMMAN SYSTEMS CORPORATION | National Aeronautics and Space Administration | 2016-01-14 |  | 2026-06-15 | 3653922222.36 |  |  | 
+80JSC019C0012 | LOCKHEED MARTIN CORP | National Aeronautics and Space Administration | 2019-06-05 |  | 2026-06-24 | 3499116013.79 |  |  | 
+DJJODT9C0001 | CORECIVIC, INC. | Department of Justice | 2008-10-01 |  | 2026-05-12 | 2784289195.74 |  |  | 
+89303320DEM000031 | HANFORD MISSION INTEGRATION SOLUTIONS, LLC | Department of Energy | 2019-12-05 |  | 2026-06-25 | 2650257814.63 |  |  | 
+75D30124D18656 | MERCK SHARP & DOHME LLC | Department of Health and Human Services | 2024-04-01 |  | 2025-06-23 | 2611180788.61 |  |  | 
+NNK10LB00B | UNITED LAUNCH SERVICES, LLC | National Aeronautics and Space Administration | 2010-09-23 |  | 2026-06-24 | 2484736058.0 |  |  | 
+75D30123D16108 | MERCK SHARP & DOHME LLC | Department of Health and Human Services | 2023-04-01 |  | 2025-03-07 | 2437840441.99 |  |  | 
+DTFAWA05C00031R | LEIDOS, INC. | Department of Transportation | 2005-02-01 |  | 2025-02-06 | 2371459638.46 |  |  | 
+NNK14MA75C | THE BOEING COMPANY | National Aeronautics and Space Administration | 2014-09-16 |  | 2026-06-25 | 2242428712.0 |  |  | 
+75D30122D13472 | MERCK SHARP & DOHME LLC | Department of Health and Human Services | 2022-04-01 |  | 2026-03-19 | 2167201003.69 |  |  | 
+75D30121D10575 | MERCK SHARP & DOHME LLC | Department of Health and Human Services | 2021-04-01 |  | 2024-11-27 | 1887935042.9 |  |  | 
+(200 rows; csv has all)

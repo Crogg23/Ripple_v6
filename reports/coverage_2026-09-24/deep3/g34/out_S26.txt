@@ -1,0 +1,13 @@
+-- S26 NPDES Missouri: every state letter/notice counted by year, using the achieved date when present and, when blank, the year implied by its activity ID (the latest national quarter whose median ID is at or below it)
+Y | DATED | BLANK_DATE | BLANK_UNPLACED | TOTAL
+2017 | 239 | 0 | 0 | 239
+2018 | 346 | 0 | 0 | 346
+2019 | 473 | 274 | 0 | 747
+2020 | 505 | 95 | 0 | 600
+2021 | 470 | 152 | 0 | 622
+2022 | 482 | 176 | 0 | 658
+2023 | 300 | 194 | 0 | 494
+2024 | 150 | 216 | 0 | 366
+2025 | 98 | 270 | 0 | 368
+2026 | 20 | 131 | 0 | 151
+(10 rows; csv has all)

@@ -1,0 +1,12 @@
+-- K06 formed there, or moved in later? Share of companies whose next or previous company number sits at the same address key (batch formation signature), by class and period
+CLS | PER | N | NEIGHBOUR_SAME | CHANCE_APPROX
+a_mass23 | p1_1989_98 | 33829 | 15248 | 0.0471
+a_mass23 | p2_1999_2014 | 2089 | 169 | 0.0060
+a_mass23 | p3_2015_26 | 468 | 37 | 0.0015
+b_other1000 | p1_1989_98 | 466 | 10 | 0.0021
+b_other1000 | p2_1999_2014 | 2746 | 385 | 0.0061
+b_other1000 | p3_2015_26 | 8689 | 1093 | 0.0122
+c_rest | p1_1989_98 | 127658 | 7841 | 0.0010
+c_rest | p2_1999_2014 | 251040 | 11023 | 0.0004
+c_rest | p3_2015_26 | 259571 | 12235 | 0.0006
+(9 rows)

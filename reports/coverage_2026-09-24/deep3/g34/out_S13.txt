@@ -1,0 +1,63 @@
+-- S13 NPDES: Missouri/NY/AR letter types by year, and Missouri state inspection outcomes by year (does MO still find violations it no longer writes letters about?)
+PART | ST | Y | K | N | PERMITS
+informal | AR | 2019 | AER | Agency Enforcement Review | 1 | 1
+informal | NY | 2020 | NOV | Notice of Violation | 1027 | 637
+informal | NY | 2019 | NOV | Notice of Violation | 1479 | 975
+informal | AR | 2021 | LOVWL | Letter of Violation/ Warning Letter | 80 | 69
+informal | MO | 2020 | LOVWL | Letter of Violation/ Warning Letter | 451 | 428
+informal | NY | 2023 | NOV | Notice of Violation | 785 | 476
+informal | AR | 2019 | PHEMAIL | Phone Call/ EMAIL | 16 | 12
+informal | AR | 2025 | NONC | Notice of Noncompliance Issued | 8 | 9
+informal | AR | 2024 | LOVWL | Letter of Violation/ Warning Letter | 9 | 6
+informal | AR | 2022 | PHEMLS | Phone Call/ EMAIL | 34 | 32
+informal | AR | 2024 | NONC | Notice of Noncompliance Issued | 10 | 10
+inspection | MO | 2025 |  |  | CEI | 1393 | 1261
+inspection | MO | 2025 |  |  | AU2 | 29 | 28
+inspection | MO | 2020 |  |  | AU2 | 35 | 29
+informal | MO | 2024 | LOVWL | Letter of Violation/ Warning Letter | 124 | 120
+informal | MO | 2023 | NOV | Notice of Violation | 47 | 45
+informal | MO | 2026 | LOVWL | Letter of Violation/ Warning Letter | 14 | 13
+informal | MO | 2020 | NOV | Notice of Violation | 54 | 53
+informal | AR | 2019 | ENFMTG | Enforcement Meeting | 2 | 2
+inspection | MO | 2026 |  |  | CEI | 691 | 629
+inspection | MO | 2018 |  |  | CEI | 1476 | 1347
+inspection | MO | 2023 |  |  | CEI | 1513 | 1383
+inspection | MO | 2019 |  |  | CEI | 1530 | 1378
+inspection | MO | 2021 |  |  | CEI | 1426 | 1281
+inspection | MO | 2024 |  |  | AU2 | 26 | 25
+inspection | MO | 2018 |  |  | AU2 | 7 | 6
+informal | MO | 2023 | LOVWL | Letter of Violation/ Warning Letter | 253 | 237
+informal | AR | 2021 | PHEMLS | Phone Call/ EMAIL | 67 | 55
+informal | AR | 2020 | LOVWL | Letter of Violation/ Warning Letter | 72 | 51
+informal | AR | 2024 | PHEMLS | Phone Call/ EMAIL | 5 | 4
+informal | MO | 2026 | NOV | Notice of Violation | 6 | 5
+inspection | MO | 2022 |  |  | CEI | 1376 | 1244
+inspection | MO | 2026 |  |  | AU2 | 3 | 3
+informal | MO | 2021 | CCA | Compliance Agreement | 1 | 1
+informal | AR | 2018 | NOV | Notice of Violation | 1 | 1
+informal | AR | 2018 | ENFMTGS | Enforcement Meeting | 1 | 1
+informal | MO | 2022 | LOVWL | Letter of Violation/ Warning Letter | 414 | 396
+informal | MO | 2018 | LOVWL | Letter of Violation/ Warning Letter | 340 | 327
+informal | AR | 2020 | PHEMLS | Phone Call/ EMAIL | 31 | 28
+informal | AR | 2022 | LOVWL | Letter of Violation/ Warning Letter | 16 | 14
+informal | AR | 2026 | NONC | Notice of Noncompliance Issued | 10 | 9
+informal | AR | 2023 | PHEMLS | Phone Call/ EMAIL | 4 | 3
+inspection | MO | 2022 |  |  | AU2 | 31 | 30
+inspection | MO | 2021 |  |  | AU2 | 24 | 24
+informal | AR | 2021 | NOV | Notice of Violation | 1 | 1
+informal | AR | 2019 | LOVWL | Letter of Violation/ Warning Letter | 122 | 81
+informal | NY | 2026 | NOV | Notice of Violation | 43 | 40
+informal | MO | 2022 | NOV | Notice of Violation | 68 | 65
+inspection | MO | 2024 |  |  | CEI | 1500 | 1359
+inspection | MO | 2019 |  |  | AU2 | 23 | 21
+informal | AR | 2019 | NOV | Notice of Violation | 1 | 1
+informal | AR | 2018 | LOVWL | Letter of Violation/ Warning Letter | 88 | 47
+informal | NY | 2018 | NOV | Notice of Violation | 374 | 180
+informal | AR | 2018 | AER | Agency Enforcement Review | 18 | 14
+informal | AR | 2025 | PHEMLS | Phone Call/ EMAIL | 7 | 7
+inspection | MO | 2020 |  |  | CEI | 1433 | 1304
+informal | AR | 2020 | ENFMTGS | Enforcement Meeting | 1 | 1
+informal | AR | 2025 | LOVWL | Letter of Violation/ Warning Letter | 1 | 1
+informal | MO | 2021 | LOVWL | Letter of Violation/ Warning Letter | 408 | 391
+informal | MO | 2025 | LOVWL | Letter of Violation/ Warning Letter | 77 | 75
+(75 rows; csv has all)

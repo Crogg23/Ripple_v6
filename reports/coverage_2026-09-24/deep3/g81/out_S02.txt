@@ -1,0 +1,13 @@
+-- S02 OSF: all 10 rows, key fields, to confirm it is a sample
+OSF_ID | DATE_CREATED | DATE_REGISTERED | TITLE | REGISTRATION_SUPPLEMENT | IS_WITHDRAWN | IS_REGISTRATION | WITHDRAWAL_JUSTIFICATION_RAW | _SOURCE_RUN_ID | _LOADED_AT
+p7qvx | 2025-12-12 14:24:31.823617 | 2025-12-12 14:24:31.802432 | Point-of-Care Ultrasound in Nutritional Management of Critically Ill C | OSF Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+enc68 | 2026-08-05 02:22:12.792870 | 2026-08-05 02:22:12.758028 | Efeitos das dietas cetogênicas no perfil lipídico e risco cardiovascul | Open-Ended Registration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+x9tmp | 2026-08-07 09:30:58.244874 | 2026-08-07 09:30:58.221423 | Early albumin versus early high-volume crystalloid-only resuscitation  | OSF Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+hbxyq | 2026-08-08 01:02:07.050590 | 2026-08-08 01:02:07.001208 | Early Childhood and Elementary Educators’ Perspectives on Children’s E | OSF Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+92xbj | 2026-08-08 01:17:56.913431 | 2026-08-08 01:17:56.895760 | Prospective analysis plan for the Track B counterfactual analytic-elig | Secondary Data Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+g4d8m | 2026-08-08 01:21:34.798552 | 2026-08-08 01:21:34.770855 | Early Diagnosis of Coronary Artery Disease with Artificial Intelligenc | OSF Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+3q9yc | 2026-08-08 01:21:51.413247 | 2026-08-08 01:21:51.395961 | Association Between Toe Flexor Strength and Functional Mobility and Ba | OSF Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+e27z9 | 2026-08-08 01:31:31.095802 | 2026-08-08 01:31:31.056496 | Incremental prognostic value of early diabetic retinopathy severity ch | Secondary Data Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+df5ck | 2026-08-08 01:41:43.440555 | 2026-08-08 01:41:43.421736 | paper1_q2_wp9x_repair_development_v5_execution_lock_amendment_osf_guid | OSF Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+h3xnr | 2026-08-08 01:49:36.351875 | 2026-08-08 01:49:36.333442 | Agreeableness and Union Dissolution in pairfam: A Preregistered Test o | Secondary Data Preregistration | False | True |  | e5c51f43-f79a-4ccc-a487-bcc5add31cfa | 2026-08-08 02:00:27.333975
+(10 rows; csv has all)

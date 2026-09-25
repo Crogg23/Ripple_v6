@@ -1,0 +1,9 @@
+-- S06 EPA conclusion-facility bridge: shape of IDs, case-number formats, duplicate rows, blanks
+N | CASES | CONCLUSIONS | ACTIVITIES | UINS | ICIS_IDS | UIN_BLANK | UIN_OK | CASE_RR_YYYY | CASE_HQ | DUP_ROWS | CASE_CONCL_PAIRS | FORMATS
+150866 | 121661 | 124359 | 121661 | 105113 | 117136 | 1184 | 149682 | 138838 | 10966 | 1184 | 124359 | [
+  "99-9999-9999",
+  "EF-9999-9999",
+  "HQ-9999-9999",
+  "WF-9999-9999"
+]
+(1 rows; csv has all)

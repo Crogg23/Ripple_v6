@@ -1,0 +1,196 @@
+-- S15 Slave voyages: people landed by main landing region and period, intra-American (second voyage) vs transatlantic (first landing)
+REG | PER | INTRA_V | INTRA_LANDED | TA_V | TA_LANDED | INTRA_SHARE | INTRA_SRC | TA_SRC
+10100 | a <1700 |  |  | 8 | 2068 |  |  | SP29/47,f47
+10100 | b 1700-59 |  |  | 7 | 1205 |  |  | F.Moore,Travel, 209
+10200 | a <1700 |  |  | 4 | 475 |  |  | La Fleur,
+10200 | b 1700-59 |  |  | 23 | 3412 |  |  | ADM7/77
+10400 | c 1760-1807 |  |  | 1 | 15 |  |  | Donnan,III,341
+10700 | a <1700 |  |  | 3 | 308 |  |  | Ly,153,161,162.164
+10700 | b 1700-59 |  |  | 1 | 3 |  |  | mettas,I
+10800 | a <1700 |  |  | 1 | 130 |  |  | Enthoven2003,40,n.73
+20100 | a <1700 |  |  | 2 | 47 |  |  | Bartlett, 53-55
+20100 | b 1700-59 | 7 | 71 | 16 | 1545 | 0.044 | CO 5/509, 150 | Coughtry, 241-85
+20100 | c 1760-1807 |  |  | 13 | 986 |  |  | Coughtry, 241-85
+20200 | b 1700-59 | 1 | 1 |  |  | 1.000 | Williamson, 213 | 
+20300 | b 1700-59 | 5 | 109 | 1 | 15 | 0.879 | CO 5/968, 43 | T70/1528
+20300 | c 1760-1807 | 1 | 6 |  |  | 1.000 | CO 5/967, 85 | 
+20400 | a <1700 | 1 | 7 | 1 | 45 | 0.135 | Donnan,III,4 | Donnan,III,14-15
+20400 | b 1700-59 | 22 | 144 | 17 | 1924 | 0.070 | Donnan,III,23 | Donnan,III,66
+20400 | c 1760-1807 | 3 | 13 | 6 | 498 | 0.025 | CO 5/851, 70 | Donnan,III,67
+20500 | b 1700-59 | 3 | 17 | 2 | 200 | 0.078 | CO 33/16 | Donnan,III,134
+20500 | c 1760-1807 | 4 | 13 | 1 | 74 | 0.149 | CO 142/17, 94 | New London Summary,1761.07.24.
+20500 | d 1808+ | 1 | 43 |  |  | 1.000 | JonesH, 3-5, 7, 14, 15, 23-26, | 
+20600 | a <1700 | 11 | 608 | 9 | 1499 | 0.289 | Goodfriend, 128 | NYHS,VanCortland,letterbk,p.4,
+20600 | b 1700-59 | 647 | 3355 | 40 | 3674 | 0.477 | CO 5/1223, 97 | foydatabase
+20600 | c 1760-1807 | 6 | 29 | 21 | 2036 | 0.014 | CO 5/1228, 65 | Donnan,III,452
+20800 | a <1700 |  |  | 1 | 114 |  |  | CSPCS, 58: nos, 7, 8, 9, 31, 3
+20800 | b 1700-59 | 26 | 382 | 3 | 312 | 0.550 | CO 5/1035, 29 | T70/1527
+20800 | c 1760-1807 | 1 | 3 | 5 | 390 | 0.008 | Donnan,III,454-5 | Donnan,III,455
+20900 | b 1700-59 | 87 | 993 | 1 | 50 | 0.952 | American Weekly Mercury, 7/6-1 | Wax,1965,282
+20900 | c 1760-1807 | 16 | 354 | 9 | 862 | 0.291 | CO 142/17, 20 | T70/1263
+21000 | a <1700 | 63 | 305 | 15 | 2798 | 0.098 | Walsh Maryland Database | CO5/749
+21000 | b 1700-59 | 85 | 1016 | 75 | 14849 | 0.064 | Walsh Maryland Database | Donnan,IV,17
+21000 | c 1760-1807 | 63 | 626 | 26 | 3588 | 0.149 | Walsh Maryland Database | LST,1744-1786
+21000 | d 1808+ | 1 | 7 |  |  | 1.000 | CO 142/25, 76a | 
+21100 | a <1700 | 29 | 325 | 27 | 4488 | 0.068 | Walsh Virginia Database | T70/12,149
+21100 | b 1700-59 | 677 | 6557 | 345 | 65554 | 0.091 | Walsh Virginia Database | Richardson,I
+21100 | c 1760-1807 | 134 | 1609 | 72 | 12539 | 0.114 | Walsh Virginia Database | LST,1744-1786
+21200 | b 1700-59 | 72 | 542 | 2 | 455 | 0.544 | Minchinton, 27 | LST,1744-1786
+21200 | c 1760-1807 | 161 | 1438 | 8 | 1298 | 0.526 | Minchinton, 41 | ADM7/90
+21300 | a <1700 | 4 | 25 |  |  | 1.000 | Wood, 21 | 
+21300 | b 1700-59 | 365 | 6236 | 251 | 50187 | 0.111 | CO 5/509 | Richardson,II
+21300 | c 1760-1807 | 605 | 12245 | 573 | 100432 | 0.109 | McMillin | Coughtry, 241-85
+21300 | d 1808+ |  |  | 4 | 512 |  |  | Donnan,IV,531,551-70
+21400 | b 1700-59 | 15 | 180 |  |  | 1.000 | CO 5/709, 29 | 
+21400 | c 1760-1807 | 234 | 3464 | 114 | 16159 | 0.177 | McMillin | Coughtry, 241-85
+21400 | d 1808+ |  |  | 7 | 1166 |  |  | Jordan, 272-90
+21500 | b 1700-59 | 1 | 7 | 1 | 287 | 0.024 | CO 5/510, 27 | LST,1744-1786
+21500 | c 1760-1807 | 32 | 1015 | 22 | 2540 | 0.286 | McMillin | ADM7/98
+21500 | d 1808+ | 3 | 330 | 11 | 2795 | 0.106 | CO 27/15, 21 | McMillin
+21600 | b 1700-59 | 3 | 43 | 23 | 6235 | 0.007 | CO 5/510, 9 | mettas,II
+21600 | c 1760-1807 | 142 | 8525 | 22 | 4090 | 0.676 | McMillin | Leglaunec
+21600 | d 1808+ | 34 | 1649 | 5 | 717 | 0.697 | William Jones NO dataset | McMillin
+21700 | b 1700-59 | 1 | 2 |  |  | 1.000 | CO 5/1226, 178 | 
+21700 | c 1760-1807 | 4 | 74 |  |  | 1.000 | CO 142/19, 64 | 
+21900 | a <1700 |  |  | 1 | 90 |  |  | Donnan,II,48
+21900 | b 1700-59 | 5 | 61 | 4 | 715 | 0.079 | CO 142/14, 7 | ADM7/84
+21900 | c 1760-1807 |  |  | 2 | 218 |  |  | LList, 15 Dec 1797
+21900 | d 1808+ |  |  | 2 | 794 |  |  | Franco,JL,108
+31100 | a <1700 |  |  | 100 | 26700 |  |  | Vila Vilar,Cuadro6
+31100 | b 1700-59 | 13 | 555 | 4 | 1133 | 0.329 | Sorsby, 365 | Postma,304-401
+31100 | c 1760-1807 | 73 | 1574 | 5 | 1235 | 0.560 | CO 142/20, 152 | LR1786
+31200 | a <1700 | 2 | 61 | 32 | 7538 | 0.008 | AGI, Indiferente 2781 | Tanodi, 289
+(241 rows; csv has all)
+
+-- S16 Slave voyages: time, 1783-1815, voyages leaving the Carolinas region (21300) for Cuba (31300) and elsewhere, vs transatlantic landings in 21300
+Y | TA_V | TA_LANDED | TA_TOP_PORT | TA_SRC | OUT_V | OUT_LANDED | CUBA_V | CUBA_LANDED | TOP_LAND_PORT | SRC
+1783 | 4 | 573 | 21302 | Donnan,IV,474 |  |  |  |  |  | 
+1784 | 17 | 3910 | 21302 | LR1784 | 1 | 40 | 0 | 0 | 21207 | Minchinton, 43
+1785 | 19 | 3236 | 21302 | LR1786 |  |  |  |  |  | 
+1786 | 5 | 320 | 21302 | Coughtry, 241-85 |  |  |  |  |  | 
+1787 | 2 | 177 | 21302 | LList, 16 Oct 1787 |  |  |  |  |  | 
+1789 | 1 | 106 | 21302 | McMillin |  |  |  |  |  | 
+1790 |  |  |  |  | 1 | 37 | 1 | 37 | 31312 | Klein,Havana dataset
+1791 |  |  |  |  | 2 | 76 | 2 | 76 | 31312 | Klein,Havana dataset
+1792 |  |  |  |  | 1 | 150 | 1 | 150 | 31312 | Klein,Havana dataset
+1793 | 1 | 106 | 21302 | Donnan,III,88 | 1 | 19 | 1 | 19 | 31312 | ANC,ML, 2536
+1794 |  |  |  |  | 3 | 147 | 3 | 147 | 31312 | Klein,Havana dataset
+1796 | 1 | 126 | 21302 | LList, 10 Mar 1797 |  |  |  |  |  | 
+1797 | 3 | 232 | 21302 | Coughtry, 241-85 | 16 | 374 | 16 | 374 | 31312 | Klein,Havana dataset
+1799 | 1 | 3 | 21302 | Donnan,IV,494 | 1 | 13 | 1 | 13 | 31312 | Klein,Havana dataset
+1800 | 1 | 77 | 21302 | Donnan,IV,500 | 2 | 31 | 2 | 31 | 31312 | Klein,Havana dataset
+1801 | 1 | 66 | 21302 | Howe,122-123 |  |  |  |  |  | 
+1802 | 3 | 570 | 21302 | LR1802 |  |  |  |  |  | 
+1803 | 1 | 128 | 21302 | Masscases, Greenwood v Curtis | 2 | 11 | 2 | 11 | 31312 | Klein,Havana dataset
+1804 | 33 | 6208 | 21302 | Donnan,IV,504 | 10 | 89 | 10 | 89 | 31312 | Klein,Havana dataset
+1805 | 45 | 7561 | 21302 | Donnan,IV,508 | 32 | 490 | 32 | 490 | 31312 | Klein,Havana dataset
+1806 | 75 | 13318 | 21302 | Coughtry, 241-85 | 32 | 1248 | 28 | 1124 | 31312 | Klein,Havana dataset
+1807 | 125 | 18879 | 21302 | Coughtry, 241-85 | 51 | 2898 | 50 | 2856 | 31312 | Klein,Havana dataset
+1808 | 4 | 512 | 21302 | Coughtry, 241-85 | 3 | 372 | 3 | 372 | 31312 | Klein,Havana dataset
+(23 rows; csv has all)
+
+-- S17 Slave voyages: concentration, owners and captains on the 21300 -> 31300 route, 1800-1810 (data match, not verified)
+OWNER | VOYAGES | LANDED | SHIPS | Y0 | Y1 | TOP_CAPTAIN | ALL_V | ALL_LANDED
+(no owner) | 94 | 3295 | 64 | 1800 | 1808 | Corry | 127 | 4973
+Drake | 14 | 731 | 11 | 1806 | 1807 | Pratt, John | 127 | 4973
+Gimbal | 2 | 199 | 2 | 1806 | 1807 | Pallet, Peter | 127 | 4973
+Durán | 1 | 195 | 1 | 1807 | 1807 | Dunson, John | 127 | 4973
+Mendive | 6 | 181 | 6 | 1807 | 1807 | Russell, John | 127 | 4973
+Manzanal | 1 | 158 | 1 | 1807 | 1807 | Eslorton, Carlos | 127 | 4973
+Cuesta | 2 | 95 | 2 | 1807 | 1807 | Laffon, Bernardo | 127 | 4973
+Martinez | 1 | 48 | 1 | 1807 | 1807 | Rich | 127 | 4973
+Baldase | 2 | 22 | 2 | 1807 | 1807 | Bolchos, Alex | 127 | 4973
+Gomez | 1 | 21 | 1 | 1807 | 1807 | Cochs [Cages?], Juan | 127 | 4973
+Comas | 2 | 16 | 2 | 1807 | 1807 | Gunther, Jack | 127 | 4973
+Duran | 1 | 12 | 1 | 1807 | 1807 | Phillips [Felipe, Santiago?] | 127 | 4973
+(12 rows; csv has all)
+
+-- S18 Slave voyages trap check: how much of the people count is the editors' estimate, not a recorded number
+RE | RL | V | EST_EMBARK | EST_LANDED | MODE_RATIO | MED_RATIO | SAME | ZERO_EMBARK | MED_EMBARK | MAX_EMBARK | MORT_N | MED_MORT
+no_rec_embark | rec_land | 6412 | 278169 | 268827 | 0.500 | 0.92307692000 | 0 | 0 | 13.000 | 988 | 1 | 0.0076000
+rec_embark | no_rec_land | 3605 | 110023 | 105164 | 1.000 | 1.00000000000 | 2199 | 0 | 10.000 | 1086 | 3 | 0.0179000
+no_rec_embark | no_rec_land | 806 | 24376 | 23299 | 0.500 | 0.90000000000 | 14 | 0 | 10.000 | 596 | 0 | 
+rec_embark | rec_land | 698 | 43564 | 42005 | 1.000 | 1.00000000000 | 462 | 0 | 32.000 | 557 | 645 | 0E-7
+(4 rows; csv has all)
+
+-- S19 Wayback: every content change over 2,000 bytes on a 200 page (the only big edits), page and date
+D | PATH | BYTES_BEFORE | BYTES_AFTER | DELTA
+2025-12-20 | /data-set-1-files | 12942 | 10626 | -2316
+2025-12-20 | /data-set-1-files | 10626 | 12850 | 2224
+2025-12-20 | /data-set-1-files?page=9 | 13075 | 10826 | -2249
+2025-12-20 | /data-set-1-files?page=9 | 10826 | 13041 | 2215
+2025-12-20 | /data-set-2-files | 13010 | 10802 | -2208
+2025-12-20 | /data-set-2-files | 10802 | 12891 | 2089
+2025-12-20 | /data-set-5-files | 10668 | 12875 | 2207
+2025-12-20 | /data-set-7-files | 12420 | 10228 | -2192
+2025-12-20 | /data-set-7-files | 10228 | 12383 | 2155
+2025-12-20 | ?utm_source=chatgpt.com | 11869 | 13883 | 2014
+2025-12-21 | /data-set-1-files?page=0 | 10761 | 12963 | 2202
+2025-12-21 | /data-set-1-files?page=10 | 10832 | 13100 | 2268
+2025-12-21 | /data-set-1-files?page=11 | 13059 | 10858 | -2201
+2025-12-21 | /data-set-1-files?page=12 | 10852 | 13104 | 2252
+2025-12-21 | /data-set-1-files?page=13 | 13076 | 10853 | -2223
+2025-12-21 | /data-set-1-files?page=13 | 10853 | 13085 | 2232
+2025-12-21 | /data-set-1-files?page=62 | 12939 | 10710 | -2229
+2025-12-21 | /data-set-2-files?page=6 | 13150 | 10904 | -2246
+2025-12-21 | /data-set-3-files?page=1 | 10532 | 12737 | 2205
+2025-12-22 | /data-set-1-files?page=62 | 10710 | 12855 | 2145
+2025-12-22 | /data-set-2-files?page=10 | 13110 | 10869 | -2241
+2025-12-22 | /data-set-2-files?page=2 | 10884 | 13164 | 2280
+2025-12-22 | /data-set-4-files?page=0 | 10324 | 13013 | 2689
+2025-12-22 | /data-set-5-files?page=1 | 10780 | 13015 | 2235
+2025-12-23 |  | 14073 | 11527 | -2546
+2025-12-23 | /data-set-8-files | 12922 | 10646 | -2276
+2025-12-23 | /data-set-8-files | 10646 | 12741 | 2095
+2025-12-23 | /data-set-8-files?page=0 | 12902 | 10656 | -2246
+2025-12-23 | /data-set-8-files?page=1 | 12985 | 10749 | -2236
+2025-12-23 | /data-set-8-files?page=1 | 10749 | 12984 | 2235
+2025-12-23 | /data-set-8-files?page=188 | 13137 | 10870 | -2267
+2025-12-23 | /data-set-8-files?page=2 | 13033 | 10756 | -2277
+2025-12-23 | /data-set-8-files?page=6 | 13026 | 10882 | -2144
+2025-12-23 | /data-set-8-files?page=8 | 13099 | 10865 | -2234
+2025-12-24 | /data-set-8-files?page=0 | 10656 | 13041 | 2385
+2025-12-24 | /data-set-8-files?page=184 | 10879 | 13141 | 2262
+2025-12-24 | /data-set-8-files?page=185 | 10880 | 13159 | 2279
+2025-12-24 | /data-set-8-files?page=186 | 10864 | 13081 | 2217
+2025-12-24 | /data-set-8-files?page=187 | 10872 | 13127 | 2255
+2025-12-24 | /data-set-8-files?page=189 | 10880 | 13137 | 2257
+2025-12-24 | /data-set-8-files?page=190 | 10890 | 13154 | 2264
+2025-12-24 | /data-set-8-files?page=191 | 10887 | 13167 | 2280
+2025-12-24 | /data-set-8-files?page=192 | 10901 | 13124 | 2223
+2025-12-24 | /data-set-8-files?page=2 | 10756 | 13150 | 2394
+2025-12-24 | /data-set-8-files?page=3 | 10778 | 13031 | 2253
+2025-12-24 | /data-set-8-files?page=4 | 10853 | 13100 | 2247
+2025-12-24 | /data-set-8-files?page=5 | 10869 | 13158 | 2289
+2025-12-24 | /data-set-8-files?page=6 | 10882 | 13102 | 2220
+2025-12-24 | /data-set-8-files?page=7 | 10808 | 13061 | 2253
+2025-12-24 | /data-set-8-files?page=8 | 10865 | 13142 | 2277
+2025-12-26 | /data-set-1-files?page=17 | 13071 | 10850 | -2221
+2025-12-26 | /data-set-1-files?page=5 | 10947 | 13055 | 2108
+2025-12-26 | /data-set-8-files?page=0 | 13041 | 10828 | -2213
+2025-12-29 | /data-set-8-files?page=123 | 13154 | 10433 | -2721
+2026-01-02 | /data-set-2-files?page=10 | 10869 | 13108 | 2239
+2026-01-02 | /data-set-2-files?page=4 | 10890 | 13048 | 2158
+2026-01-07 | /data-set-8-files?page=60 | 13118 | 10855 | -2263
+2026-01-15 | /data-set-8-files?ref=thesubmarine.it | 10784 | 12918 | 2134
+2026-01-27 |  | 1000 | 14181 | 13181
+2026-01-30 | /data-set-10-files | 13310 | 11087 | -2223
+(96 rows; csv has all)
+
+-- S20 Wayback: listing pages by data set: page variants, junk variants, highest page number, first/last capture
+ERROR: 100048 (2201B): Invalid regular expression: '.*(utm_|fbclid|%0a|%e|\u00|&data=).*', invalid escape sequence: \u
+
+-- S21 Revolving door: what a row is, read the words. The 6 jobs with most industries and 4 with one
+GRP | POSITION_NAME | POSITION_DEPARTMENT | POSITION_TYPE | DESCR | INDUSTRY_SECTOR | SECTOR1_INTEREST | SECTOR2 | SECTOR16 | _SOURCE_ID
+most | Deputy Chief of Staff | White House Office | Appointive | The Deputy Chief of Staff is a close assistant to the President of the United States.The CoS oversees the Executive Office of the President and manages access t | Agriculture/Big Food | 3 | Finance-Private Equity | Law | fed_revolvingdoor_project
+most | Assistant Attorney General Criminal Division | Department of Justice | Senate-confirmed | The Assistant Attorney General ensures the enforcement of criminal statutes in a vigorous, fair, and effective manner; and to exercise general supervision over  | Agriculture/Big Food | 2 | Asset Management | Law | fed_revolvingdoor_project
+most | Associate Attorney General | Department of Justice | Senate-confirmed | The Associate Attorney General advises and assists the Attorney General and the Deputy Attorney General in formulating and implementing Departmental policies an | Agriculture/Big Food | 3 | Asset Management | Law | fed_revolvingdoor_project
+most | Principal Deputy Assistant Attorney General, Civil Division | Department of Justice | Appointive | The Principal Deputy Assistant Attorney General helps to lead the U.S. Department of Justice's (DOJ), Civil Division which represents the United States, its dep | Agriculture/Big Food | 2 | Asset Management | Law | fed_revolvingdoor_project
+most | Attorney General | Department of Justice | Senate-confirmed | The Attorney General represents the United States in legal matters generally and gives advice and opinions to the President and to the heads of the executive de | Agriculture/Big Food | 2 | Asset Management | Law | fed_revolvingdoor_project
+most | Principal Deputy Assistant Attorney General, Criminal Division | Department of Justice | Appointive | The Principal Deputy Assistant Attorney General helps the Assistant Attorney General in their mission to ensure the enforcement of criminal statutes in a vigoro | Agriculture/Big Food | 2 | Asset Management | Law | fed_revolvingdoor_project
+one | Director, Office of Foreign Assets Control | Department of the Treasury | Appointive | The Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury administers and enforces economic and trade sanctions based on US foreign pol | Finance-Banking | 3 | nan | nan | fed_revolvingdoor_project
+one | Controller, Office of Federal Financial Management | Office of Management and Budget | Senate-confirmed | The Controller's responsibilities include implementing the financial management improvement priorities of the President, establishing government-wide financial  | Consulting | 3 | nan | nan | fed_revolvingdoor_project
+one | Assistant Secretary for Administration | Department of Health and Human Services | Appointive | The Assistant Secretary for Administration provides leadership for HHS departmental administration, including human resource policy, information technology, and | Healthcare | 3 | nan | nan | fed_revolvingdoor_project
+one | Office of Legislative and Intergovernmental Affairs - Associate Director for Oversight | Department of Commerce | Appointive | The Associate Director serves as the liaison between the Department and Congress during congressional oversight inquiries. | Finance-Banking | 1 | nan | nan | fed_revolvingdoor_project
+(10 rows; csv has all)
+

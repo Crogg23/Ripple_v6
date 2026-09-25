@@ -1,0 +1,422 @@
+-- deep3/g74: deep pass 3, 2026-09-24. Python door (connect/db.py), read-only SELECT/WITH only, QUERY_TAG 'deep3-2026-09-24'.
+-- Every connection first ran: ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = 300; ALTER SESSION SET QUERY_TAG = 'deep3-2026-09-24'. Those two are not counted.
+-- Tables: CORE.DIM_STATE, CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE, CORPORATE_REGISTRY__INTL_IE_CRO,
+--         CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES, CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES.
+-- Join partners used: CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC (S14, S17, S18, S20, S21, S23, S24b), CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS (S19).
+-- 25 statements, all below in run order: S01-S23, S24 (failed: a text company number hit TO_NUMBER), S24b (the rerun).
+-- Outputs: g74/out_Sxx.txt and g74/out_Sxx.csv. Local math on the extracts ran in pandas.
+
+-- ===== batch b1.sql =====
+-- S01 DIM_STATE: confirm it is a lookup (types, territory flag, key uniqueness)
+SELECT STATE_TYPE, IS_TERRITORY, COUNT(*) n, COUNT(DISTINCT STATE_FIPS) fips, COUNT(DISTINCT STATE_USPS) usps,
+       LISTAGG(STATE_USPS, ',') WITHIN GROUP (ORDER BY STATE_USPS) codes
+FROM LIBRARY_MARTS.CORE.DIM_STATE
+GROUP BY 1,2 ORDER BY 1,2;
+
+-- S02 UK Companies House: profile by dimension (status x active flag, category, accounts, country, origin, number prefix, load runs, empty columns)
+WITH t AS (SELECT * FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE)
+SELECT * FROM (
+  SELECT 'status' d, COMPANY_STATUS || ' | active=' || COALESCE(IS_ACTIVE::string,'null') v, COUNT(*) n, COUNT(DISTINCT COMPANY_NUMBER) k, MIN(INCORPORATION_DATE)::string a, MAX(INCORPORATION_DATE)::string b FROM t GROUP BY 1,2
+  UNION ALL SELECT 'category', COMPANY_CATEGORY, COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'accounts', ACCOUNT_CATEGORY, COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'country', COUNTRY, COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'origin', COUNTRY_OF_ORIGIN, COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'prefix', IFF(COMPANY_NUMBER RLIKE '[0-9]{8}', 'numeric', LEFT(COMPANY_NUMBER,2)), COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'load', TO_CHAR(DATE(_LOADED_AT)) || ' run=' || COALESCE(_SOURCE_RUN_ID,'null'), COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(_LOADED_AT)::string, MAX(_LOADED_AT)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'filled', 'dissolution_date / inc_date / post_code / mortgages_out>0', COUNT(DISSOLUTION_DATE), COUNT(INCORPORATION_DATE), COUNT(NULLIF(TRIM(POST_CODE),''))::string, COUNT_IF(NUM_MORTGAGES_OUTSTANDING > 0)::string FROM t
+  UNION ALL SELECT 'default_addr', UPPER(REPLACE(POST_CODE,' ','')) || ' | ' || UPPER(ADDRESS_LINE_1), COUNT(*), COUNT(DISTINCT COMPANY_NUMBER), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t WHERE UPPER(REPLACE(POST_CODE,' ','')) = 'CF148LH' OR UPPER(ADDRESS_LINE_1) LIKE '%DEFAULT ADDRESS%' GROUP BY 1,2
+) QUALIFY ROW_NUMBER() OVER (PARTITION BY d ORDER BY n DESC) <= 40
+ORDER BY d, n DESC;
+
+-- S03 Ireland CRO: profile by dimension (status, type, id uniqueness, top incorporation dates for sentinels, top addresses, year-end fill, load runs)
+WITH t AS (SELECT * FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_IE_CRO)
+SELECT * FROM (
+  SELECT 'status' d, COMPANY_STATUS v, COUNT(*) n, COUNT(DISTINCT COMPANY_ID) k, MIN(INCORPORATION_DATE)::string a, MAX(INCORPORATION_DATE)::string b FROM t GROUP BY 1,2
+  UNION ALL SELECT 'type', COMPANY_TYPE, COUNT(*), COUNT(DISTINCT COMPANY_ID), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'ids', 'rows | distinct COMPANY_ID | distinct KEY | distinct id+name', COUNT(*), COUNT(DISTINCT COMPANY_ID), COUNT(DISTINCT CORPORATE_REGISTRY_KEY)::string, COUNT(DISTINCT COMPANY_ID || '|' || COMPANY_NAME)::string FROM t
+  UNION ALL SELECT 'incdate_top', INCORPORATION_DATE::string, COUNT(*), COUNT_IF(COMPANY_STATUS = 'Normal'), MIN(COMPANY_ID), MAX(COMPANY_ID) FROM t GROUP BY 1,2
+  UNION ALL SELECT 'addr_top', UPPER(TRIM(REGISTERED_ADDRESS)), COUNT(*), COUNT_IF(COMPANY_STATUS = 'Normal'), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'fye', IFF(FINANCIAL_YEAR_END IS NULL, 'null', 'set') || ' | ' || COMPANY_STATUS, COUNT(*), COUNT(DISTINCT COMPANY_ID), MIN(FINANCIAL_YEAR_END)::string, MAX(FINANCIAL_YEAR_END)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'run', COALESCE(_SOURCE_RUN_ID,'null') || ' | ' || COALESCE(DATASET_NAME,'null') || ' | ' || COALESCE(SOURCE_ID,'null') || ' | ' || TO_CHAR(DATE(_INGESTED_AT)), COUNT(*), COUNT(DISTINCT COMPANY_ID), MIN(INCORPORATION_DATE)::string, MAX(INCORPORATION_DATE)::string FROM t GROUP BY 1,2
+  UNION ALL SELECT 'agecheck', 'age = 2026 - inc_year', COUNT(*), COUNT_IF(COMPANY_AGE_YEARS = 2026 - INCORPORATION_YEAR), COUNT_IF(INCORPORATION_YEAR = YEAR(INCORPORATION_DATE))::string, COUNT_IF(COMPANY_AGE_YEARS = 2025 - INCORPORATION_YEAR)::string FROM t
+) QUALIFY ROW_NUMBER() OVER (PARTITION BY d ORDER BY n DESC) <= 40
+ORDER BY d, n DESC;
+
+-- S04 ICIJ entities: profile by leak (fill rates, date ranges, impossible dates, US ties)
+SELECT SOURCE_LEAK, COUNT(*) n, COUNT(DISTINCT NODE_ID) nodes, COUNT(NULLIF(STATUS,'')) status_set, COUNT(NULLIF(SERVICE_PROVIDER,'')) sp_set,
+       COUNT(INCORPORATION_DATE) inc_set, MIN(INCORPORATION_DATE) inc0, MAX(INCORPORATION_DATE) inc1,
+       COUNT_IF(INCORPORATION_DATE > '2026-09-24' OR INCORPORATION_DATE < '1900-01-01') inc_bad,
+       COUNT(STRUCK_OFF_DATE) struck_set, COUNT(INACTIVATION_DATE) inact_set, COUNT(DORM_DATE) dorm_set,
+       COUNT_IF(COUNTRY_CODES ILIKE '%USA%') usa, COUNT(DISTINCT JURISDICTION) juris, MODE(JURISDICTION) top_juris,
+       MODE(NULLIF(SERVICE_PROVIDER,'')) top_sp, MODE(NULLIF(STATUS,'')) top_status, MIN(VALID_UNTIL) vu0, MAX(VALID_UNTIL) vu1,
+       COUNT(DISTINCT _SOURCE_RUN_ID) runs, COUNT(DISTINCT NAME) names
+FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES
+GROUP BY 1 ORDER BY 2 DESC;
+
+-- S05 ICIJ entities: status and service provider by leak, top jurisdictions by leak
+WITH t AS (SELECT * FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES)
+SELECT * FROM (
+  SELECT 'status' d, SOURCE_LEAK || ' | ' || COALESCE(NULLIF(STATUS,''),'blank') v, COUNT(*) n, COUNT(INCORPORATION_DATE) inc, COUNT(STRUCK_OFF_DATE) struck, COUNT(INACTIVATION_DATE) inact FROM t GROUP BY 1,2
+  UNION ALL SELECT 'sp', SOURCE_LEAK || ' | ' || COALESCE(NULLIF(SERVICE_PROVIDER,''),'blank'), COUNT(*), COUNT(INCORPORATION_DATE), COUNT(STRUCK_OFF_DATE), COUNT(INACTIVATION_DATE) FROM t GROUP BY 1,2
+  UNION ALL SELECT 'juris', SOURCE_LEAK || ' | ' || COALESCE(JURISDICTION,'null') || ' ' || COALESCE(JURISDICTION_DESCRIPTION,''), COUNT(*), COUNT(INCORPORATION_DATE), COUNT(STRUCK_OFF_DATE), COUNT(INACTIVATION_DATE) FROM t GROUP BY 1,2
+) QUALIFY ROW_NUMBER() OVER (PARTITION BY d ORDER BY n DESC) <= 60
+ORDER BY d, n DESC;
+
+-- S06 ICIJ intermediaries: profile (leak, status, countries, id uniqueness, repeated names)
+WITH t AS (SELECT * FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES)
+SELECT * FROM (
+  SELECT 'leak' d, SOURCE_LEAK v, COUNT(*) n, COUNT(DISTINCT NODE_ID) k, COUNT(NULLIF(STATUS,''))::string a, COUNT(NULLIF(ADDRESS,''))::string b FROM t GROUP BY 1,2
+  UNION ALL SELECT 'status', SOURCE_LEAK || ' | ' || COALESCE(NULLIF(STATUS,''),'blank'), COUNT(*), COUNT(DISTINCT NODE_ID), MIN(NAME), MAX(NAME) FROM t GROUP BY 1,2
+  UNION ALL SELECT 'countries', COALESCE(COUNTRIES,'null'), COUNT(*), COUNT(DISTINCT NODE_ID), MIN(SOURCE_LEAK), MAX(SOURCE_LEAK) FROM t GROUP BY 1,2
+  UNION ALL SELECT 'ids', 'rows | nodes | internal ids | names', COUNT(*), COUNT(DISTINCT NODE_ID), COUNT(DISTINCT INTERNAL_ID)::string, COUNT(DISTINCT NAME)::string FROM t
+  UNION ALL SELECT 'dupname', NAME, COUNT(*), COUNT(DISTINCT NODE_ID), LISTAGG(DISTINCT SOURCE_LEAK, '/'), MIN(COUNTRIES) FROM t GROUP BY 1,2 HAVING COUNT(*) > 1
+  UNION ALL SELECT 'run', COALESCE(_SOURCE_RUN_ID,'null') || ' | ' || COALESCE(VALID_UNTIL,''), COUNT(*), COUNT(DISTINCT NODE_ID), MIN(_INGESTED_AT)::string, MAX(_INGESTED_AT)::string FROM t GROUP BY 1,2
+) QUALIFY ROW_NUMBER() OVER (PARTITION BY d ORDER BY n DESC) <= 40
+ORDER BY d, n DESC;
+
+-- ===== batch b2.sql =====
+-- S07 UK Companies House: live companies by incorporation month since 2017 (status, accounts, default address, legal form, busiest postcode), plus weeks around 18 Nov 2025 and the same weeks a year earlier
+WITH t AS (
+  SELECT COMPANY_NUMBER, INCORPORATION_DATE d, COMPANY_STATUS s, ACCOUNT_CATEGORY a, COMPANY_CATEGORY c, UPPER(REPLACE(POST_CODE,' ','')) pc
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE INCORPORATION_DATE >= '2017-01-01'),
+pm AS (SELECT DATE_TRUNC('month', d) m, pc, COUNT(*) k FROM t WHERE NULLIF(pc,'') IS NOT NULL GROUP BY 1,2),
+top AS (SELECT m, MAX(k) top_pc_n, MAX_BY(pc, k) top_pc FROM pm GROUP BY 1),
+agg AS (
+  SELECT 'month' g, DATE_TRUNC('month', d) p, COUNT(*) n,
+         COUNT_IF(s = 'Active - Proposal to Strike off') strike, COUNT_IF(s = 'Liquidation') liq,
+         COUNT_IF(a = 'NO ACCOUNTS FILED') noacc, COUNT_IF(a = 'DORMANT') dormant, COUNT_IF(a = 'MICRO ENTITY') micro,
+         COUNT_IF(pc = 'CF148LH') dflt, COUNT_IF(c = 'Limited Partnership') lp, COUNT_IF(c = 'Limited Liability Partnership') llp,
+         COUNT_IF(c = 'Overseas Entity') oe, COUNT_IF(LEFT(COMPANY_NUMBER,2) = 'SC') sc, COUNT_IF(LEFT(COMPANY_NUMBER,2) = 'NI') ni
+  FROM t GROUP BY 1,2
+  UNION ALL
+  SELECT 'week', DATE_TRUNC('week', d), COUNT(*),
+         COUNT_IF(s = 'Active - Proposal to Strike off'), COUNT_IF(s = 'Liquidation'),
+         COUNT_IF(a = 'NO ACCOUNTS FILED'), COUNT_IF(a = 'DORMANT'), COUNT_IF(a = 'MICRO ENTITY'),
+         COUNT_IF(pc = 'CF148LH'), COUNT_IF(c = 'Limited Partnership'), COUNT_IF(c = 'Limited Liability Partnership'),
+         COUNT_IF(c = 'Overseas Entity'), COUNT_IF(LEFT(COMPANY_NUMBER,2) = 'SC'), COUNT_IF(LEFT(COMPANY_NUMBER,2) = 'NI')
+  FROM t WHERE d BETWEEN '2024-09-01' AND '2025-03-31' OR d BETWEEN '2025-09-01' AND '2026-03-31' GROUP BY 1,2)
+SELECT agg.g, agg.p::date p, agg.n, agg.strike, agg.liq, agg.noacc, agg.dormant, agg.micro, agg.dflt, agg.lp, agg.llp, agg.oe, agg.sc, agg.ni,
+       IFF(agg.g = 'month', top.top_pc, NULL) top_pc, IFF(agg.g = 'month', top.top_pc_n, NULL) top_pc_n
+FROM agg LEFT JOIN top ON agg.g = 'month' AND top.m = agg.p
+ORDER BY 1, 2;
+
+-- S08 UK Companies House: every postcode hosting 1,000+ live companies, with strike-off, overdue-accounts, dormant, newcomer and same-day-burst counts (peer table)
+WITH t AS (
+  SELECT UPPER(REPLACE(POST_CODE,' ','')) pc, UPPER(TRIM(ADDRESS_LINE_1)) a1, POST_TOWN town, COMPANY_STATUS s, ACCOUNT_CATEGORY a,
+         INCORPORATION_DATE d, COMPANY_CATEGORY c
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE NULLIF(TRIM(POST_CODE),'') IS NOT NULL),
+big AS (SELECT pc FROM t GROUP BY 1 HAVING COUNT(*) >= 1000),
+day AS (SELECT t.pc, d, COUNT(*) k FROM t JOIN big USING (pc) GROUP BY 1,2),
+dm AS (SELECT pc, MAX(k) maxday, MAX_BY(d, k) peakday FROM day GROUP BY 1),
+agg AS (
+  SELECT t.pc, COUNT(*) n, COUNT(DISTINCT a1) a1s, MODE(a1) top_a1, MODE(town) town,
+         COUNT_IF(s = 'Active - Proposal to Strike off') strike, COUNT_IF(s = 'Liquidation') liq,
+         COUNT_IF(d < '2024-07-01') old_n, COUNT_IF(d < '2024-07-01' AND a = 'NO ACCOUNTS FILED') old_noacc,
+         COUNT_IF(a = 'DORMANT') dormant, COUNT_IF(a = 'MICRO ENTITY') micro,
+         COUNT_IF(d >= '2025-01-01') new25, COUNT_IF(d >= '2025-11-18') post_idv, COUNT_IF(d BETWEEN '2024-11-18' AND '2025-06-30') prior_idv,
+         COUNT_IF(c = 'Limited Partnership') lp, COUNT_IF(c = 'Overseas Entity') oe,
+         MIN(d) d0, MAX(d) d1
+  FROM t JOIN big USING (pc) GROUP BY 1)
+SELECT agg.*, dm.maxday, dm.peakday FROM agg JOIN dm USING (pc) ORDER BY n DESC;
+
+-- S09 Ireland CRO: companies by incorporation year, status, and share formed at addresses that host 300+ / 1,000+ companies (address = first two parts, letters and digits only)
+WITH t AS (
+  SELECT COMPANY_ID, YEAR(INCORPORATION_DATE) y, COMPANY_STATUS s,
+         REGEXP_REPLACE(UPPER(SPLIT_PART(REGISTERED_ADDRESS, ',', 1) || SPLIT_PART(REGISTERED_ADDRESS, ',', 2)), '[^A-Z0-9]', '') a2
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_IE_CRO
+  WHERE INCORPORATION_DATE IS NOT NULL AND INCORPORATION_DATE <> '1901-01-01' AND REGISTERED_ADDRESS NOT ILIKE '%NO ADDRESS%'),
+ac AS (SELECT a2, COUNT(*) an FROM t GROUP BY 1)
+SELECT y, COUNT(*) n, COUNT_IF(s = 'Normal') normal, COUNT_IF(s ILIKE 'Dissolved%') diss, COUNT_IF(s = 'Strike Off Listed') sol,
+       COUNT_IF(s ILIKE 'Liquidation%') liq, COUNT_IF(an >= 300) at300, COUNT_IF(an >= 1000) at1000, COUNT(DISTINCT a2) addrs
+FROM t JOIN ac USING (a2) WHERE y >= 1960 GROUP BY 1 ORDER BY 1;
+
+-- S10 Ireland CRO: every normalised address hosting 250+ companies, with status, decade spread, 2025+ newcomers and biggest single day
+WITH t AS (
+  SELECT COMPANY_ID, INCORPORATION_DATE d, COMPANY_STATUS s, COMPANY_TYPE ty, REGISTERED_ADDRESS ra,
+         REGEXP_REPLACE(UPPER(SPLIT_PART(REGISTERED_ADDRESS, ',', 1) || SPLIT_PART(REGISTERED_ADDRESS, ',', 2)), '[^A-Z0-9]', '') a2
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_IE_CRO
+  WHERE REGISTERED_ADDRESS NOT ILIKE '%NO ADDRESS%'),
+big AS (SELECT a2 FROM t GROUP BY 1 HAVING COUNT(*) >= 250),
+day AS (SELECT t.a2, d, COUNT(*) k FROM t JOIN big USING (a2) WHERE d IS NOT NULL GROUP BY 1,2),
+dm AS (SELECT a2, MAX(k) maxday, MAX_BY(d, k) peakday FROM day GROUP BY 1)
+SELECT t.a2, MODE(UPPER(ra)) addr, COUNT(*) n, COUNT_IF(s = 'Normal') normal, COUNT_IF(s ILIKE 'Dissolved%') diss, COUNT_IF(s = 'Strike Off Listed') sol,
+       COUNT_IF(YEAR(d) < 1990) pre1990, COUNT_IF(YEAR(d) BETWEEN 1990 AND 1999) y1990s, COUNT_IF(YEAR(d) BETWEEN 2000 AND 2014) y2000_14,
+       COUNT_IF(YEAR(d) BETWEEN 2015 AND 2024) y2015_24, COUNT_IF(d >= '2025-01-01') y2025p, MIN(d) d0, MAX(d) d1, ANY_VALUE(dm.maxday) maxday, ANY_VALUE(dm.peakday) peakday
+FROM t JOIN big USING (a2) JOIN dm USING (a2)
+GROUP BY 1 ORDER BY n DESC;
+
+-- S11 ICIJ entities: incorporations, inactivations and strike-offs by year, leak and jurisdiction; plus Panama Papers and Offshore Leaks formations by month 2003-2007
+WITH t AS (
+  SELECT SOURCE_LEAK l, JURISDICTION j, INCORPORATION_DATE i, INACTIVATION_DATE x, STRUCK_OFF_DATE so
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES)
+SELECT 'inc' k, l, j, YEAR(i) p, COUNT(*) n FROM t WHERE YEAR(i) BETWEEN 1970 AND 2020 GROUP BY 1,2,3,4
+UNION ALL SELECT 'inact', l, j, YEAR(x), COUNT(*) FROM t WHERE x IS NOT NULL GROUP BY 1,2,3,4
+UNION ALL SELECT 'struck', l, j, YEAR(so), COUNT(*) FROM t WHERE so IS NOT NULL GROUP BY 1,2,3,4
+UNION ALL SELECT 'incm', l, 'ALL', YEAR(i) * 100 + MONTH(i), COUNT(*) FROM t WHERE l IN ('Panama Papers', 'Offshore Leaks') AND i BETWEEN '2003-01-01' AND '2007-12-31' GROUP BY 1,2,3,4
+ORDER BY 1, 2, 3, 4;
+
+-- S12 ICIJ intermediaries tied to the United Kingdom: do they appear on the live UK company register (name match), and does the postcode agree?
+WITH i AS (
+  SELECT NODE_ID, NAME, ADDRESS, SOURCE_LEAK, STATUS, COUNTRIES,
+         TRIM(REGEXP_REPLACE(REGEXP_REPLACE(UPPER(NAME), '[^A-Z0-9 ]', ''), ' (LIMITED|LTD|PLC|LLP)$', '')) nn,
+         REPLACE(REGEXP_SUBSTR(UPPER(ADDRESS), '[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}'), ' ', '') pc
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES
+  WHERE COUNTRIES ILIKE '%United Kingdom%'),
+c AS (
+  SELECT COMPANY_NUMBER, COMPANY_NAME, UPPER(REPLACE(POST_CODE,' ','')) cpc, COMPANY_STATUS, INCORPORATION_DATE, ACCOUNT_CATEGORY, NUM_MORTGAGES_OUTSTANDING,
+         TRIM(REGEXP_REPLACE(REGEXP_REPLACE(UPPER(COMPANY_NAME), '[^A-Z0-9 ]', ''), ' (LIMITED|LTD|PLC|LLP)$', '')) nn
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE)
+SELECT i.NODE_ID, i.NAME, i.SOURCE_LEAK, i.STATUS, i.COUNTRIES, i.pc, LEFT(i.ADDRESS, 120) addr,
+       c.COMPANY_NUMBER, c.COMPANY_NAME, c.cpc, c.COMPANY_STATUS, c.INCORPORATION_DATE, c.ACCOUNT_CATEGORY,
+       IFF(c.COMPANY_NUMBER IS NULL, NULL, IFF(i.pc = c.cpc, 1, 0)) pc_agree
+FROM i LEFT JOIN c ON i.nn = c.nn AND LENGTH(i.nn) >= 4
+ORDER BY pc_agree DESC NULLS LAST, i.NAME;
+
+-- ===== batch b3.sql =====
+-- S13 UK Companies House: monthly live companies by incorporation month at the peer outliers and the big formation addresses, 2024-01 to 2026-06, with everything else as OTHER
+WITH t AS (
+  SELECT COMPANY_NUMBER, INCORPORATION_DATE d, ACCOUNT_CATEGORY a, COMPANY_STATUS s, UPPER(REPLACE(POST_CODE,' ','')) pc, UPPER(TRIM(ADDRESS_LINE_1)) a1
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE INCORPORATION_DATE >= '2024-01-01'),
+g AS (
+  SELECT *, CASE WHEN pc IN ('EC2A4NA','W1W7LT','E62JA','M408WN','WC2H9JQ','EC1V2NX','N17GU','EC2A4NE','W1W5PF','IP287DE','BR34AB','CF148LH','HR53DJ','HG11ND','E173NU') THEN pc ELSE 'OTHER' END grp
+  FROM t)
+SELECT grp, DATE_TRUNC('month', d)::date m, COUNT(*) n, COUNT_IF(a = 'DORMANT') dormant, COUNT_IF(s <> 'Active') not_active,
+       COUNT(DISTINCT a1) a1s, MODE(a1) top_a1
+FROM g GROUP BY 1,2 ORDER BY 1,2;
+
+-- S14 UK Companies House joined to the UK PSC register (current PSCs only): who controls companies formed 18 Nov 2024-30 Jun 2025 vs 18 Nov 2025-30 Jun 2026, by address group and main nationality
+WITH c AS (
+  SELECT COMPANY_NUMBER, IFF(INCORPORATION_DATE >= '2025-11-18', 'post', 'prior') w,
+         CASE WHEN UPPER(REPLACE(POST_CODE,' ','')) IN ('EC2A4NA','W1W7LT','E62JA','M408WN','WC2H9JQ','EC1V2NX','BR34AB','CF148LH') THEN UPPER(REPLACE(POST_CODE,' ','')) ELSE 'OTHER' END grp
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE INCORPORATION_DATE BETWEEN '2024-11-18' AND '2025-06-30' OR INCORPORATION_DATE BETWEEN '2025-11-18' AND '2026-06-30'),
+p AS (
+  SELECT COMPANY_NUMBER, KIND, UPPER(TRIM(NATIONALITY)) nat, UPPER(TRIM(COUNTRY_OF_RESIDENCE)) res, NOTIFIED_ON
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE CEASED_ON IS NULL AND COMPANY_NUMBER IN (SELECT COMPANY_NUMBER FROM c)),
+pp AS (
+  SELECT COMPANY_NUMBER, COUNT(*) npsc, MAX(IFF(KIND ILIKE 'individual%', 1, 0)) ind, MODE(nat) nat,
+         MAX(IFF(res IN ('UNITED KINGDOM','ENGLAND','SCOTLAND','WALES','NORTHERN IRELAND','UK','GREAT BRITAIN','U.K.','BRITAIN'), 1, 0)) res_uk,
+         MAX(NOTIFIED_ON) last_notified
+  FROM p GROUP BY 1)
+SELECT grp, w, COALESCE(nat, IFF(pp.COMPANY_NUMBER IS NULL, '(no current psc)', '(no nationality)')) nat_g, COUNT(*) n, COUNT(pp.COMPANY_NUMBER) with_psc,
+       SUM(ind) with_ind, SUM(res_uk) any_uk_res, MAX(last_notified) max_notified
+FROM c LEFT JOIN pp USING (COMPANY_NUMBER)
+GROUP BY GROUPING SETS ((grp, w, nat_g), (grp, w))
+QUALIFY ROW_NUMBER() OVER (PARTITION BY grp, w ORDER BY n DESC) <= 13
+ORDER BY grp, w, n DESC;
+
+-- S15 UK Companies House: live companies by incorporation day 3 Nov-7 Dec 2025 and the same days of 2024; plus the top postcodes in the weeks of 19 and 26 Jan 2026
+WITH t AS (
+  SELECT INCORPORATION_DATE d, UPPER(REPLACE(POST_CODE,' ','')) pc
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE INCORPORATION_DATE BETWEEN '2024-11-01' AND '2024-12-08' OR INCORPORATION_DATE BETWEEN '2025-11-01' AND '2025-12-08' OR INCORPORATION_DATE BETWEEN '2026-01-19' AND '2026-02-01')
+SELECT * FROM (
+  SELECT 'day' k, d::string p, 'ALL' pc, COUNT(*) n, DAYNAME(d) dow FROM t WHERE d < '2026-01-01' GROUP BY 1,2,3,5
+  UNION ALL
+  SELECT 'week', DATE_TRUNC('week', d)::string, pc, COUNT(*), NULL FROM t WHERE d >= '2026-01-19' GROUP BY 1,2,3
+) QUALIFY k = 'day' OR ROW_NUMBER() OVER (PARTITION BY k, p ORDER BY n DESC) <= 15
+ORDER BY k, p, n DESC;
+
+-- S16 ICIJ entities, Panama Papers (Mossack Fonseca): formations by month and jurisdiction 1999-2007, plus company type in Apr-Jun 2004 vs Apr-Jun 2005
+WITH t AS (
+  SELECT JURISDICTION j, COMPANY_TYPE ty, INCORPORATION_DATE i
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES
+  WHERE SOURCE_LEAK = 'Panama Papers' AND INCORPORATION_DATE BETWEEN '1999-01-01' AND '2007-12-31')
+SELECT 'month' k, YEAR(i) * 100 + MONTH(i) p, CASE WHEN j IN ('BVI','PMA','BAH','NIUE','SEY','SAM') THEN j ELSE 'OTHER' END g, COUNT(*) n FROM t GROUP BY 1,2,3
+UNION ALL
+SELECT 'type_q2', YEAR(i), COALESCE(NULLIF(ty,''), 'blank') || ' | ' || j, COUNT(*) FROM t WHERE MONTH(i) BETWEEN 4 AND 6 AND YEAR(i) IN (2004, 2005) GROUP BY 1,2,3
+ORDER BY 1, 2, 3;
+
+-- ===== batch b4.sql =====
+-- S17 UK Companies House x PSC: every postcode with 400+ live companies formed in the two windows (18 Nov 2024-30 Jun 2025 vs 18 Nov 2025-30 Jun 2026), with growth and the share controlled by someone living in the UK (peer table)
+WITH c AS (
+  SELECT COMPANY_NUMBER, UPPER(REPLACE(POST_CODE,' ','')) pc, IFF(INCORPORATION_DATE >= '2025-11-18', 'post', 'prior') w
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE (INCORPORATION_DATE BETWEEN '2024-11-18' AND '2025-06-30' OR INCORPORATION_DATE BETWEEN '2025-11-18' AND '2026-06-30')
+    AND NULLIF(TRIM(POST_CODE),'') IS NOT NULL),
+big AS (SELECT pc FROM c GROUP BY 1 HAVING COUNT(*) >= 400),
+cb AS (SELECT c.* FROM c JOIN big USING (pc)),
+p AS (
+  SELECT COMPANY_NUMBER,
+         MAX(IFF(UPPER(COUNTRY_OF_RESIDENCE) IN ('UNITED KINGDOM','ENGLAND','SCOTLAND','WALES','NORTHERN IRELAND','UK','GREAT BRITAIN','U.K.','BRITAIN')
+                 OR UPPER(COUNTRY_OF_RESIDENCE) LIKE '%ENGLAND%' OR UPPER(COUNTRY_OF_RESIDENCE) LIKE '%UNITED KINGDOM%', 1, 0)) res_uk,
+         MODE(UPPER(TRIM(NATIONALITY))) nat
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE CEASED_ON IS NULL AND COMPANY_NUMBER IN (SELECT COMPANY_NUMBER FROM cb)
+  GROUP BY 1),
+j AS (SELECT cb.pc, cb.w, cb.COMPANY_NUMBER, p.res_uk, p.nat FROM cb LEFT JOIN p USING (COMPANY_NUMBER)),
+nt AS (SELECT pc, nat, COUNT(*) k FROM j WHERE w = 'post' AND nat IS NOT NULL GROUP BY 1,2),
+ntop AS (SELECT pc, MAX_BY(nat, k) top_nat, MAX(k) top_nat_n FROM nt GROUP BY 1)
+SELECT j.pc, COUNT_IF(w = 'prior') prior_n, COUNT_IF(w = 'post') post_n,
+       COUNT_IF(w = 'prior' AND res_uk = 1) prior_ukres, COUNT_IF(w = 'post' AND res_uk = 1) post_ukres,
+       COUNT_IF(w = 'post' AND res_uk IS NOT NULL) post_with_psc, ANY_VALUE(ntop.top_nat) post_top_nat, ANY_VALUE(ntop.top_nat_n) post_top_nat_n
+FROM j LEFT JOIN ntop USING (pc)
+GROUP BY 1 ORDER BY post_n DESC;
+
+-- S18 UK PSC concentration: the controlling persons behind 2025-26 companies at M40 8WN, E6 2JA and BR3 4AB (current PSCs, name + birth year + nationality + residence)
+WITH c AS (
+  SELECT COMPANY_NUMBER, INCORPORATION_DATE d, UPPER(REPLACE(POST_CODE,' ','')) pc, ACCOUNT_CATEGORY a, COMPANY_STATUS s
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE UPPER(REPLACE(POST_CODE,' ','')) IN ('M408WN','E62JA','BR34AB') AND INCORPORATION_DATE >= '2025-01-01'),
+p AS (
+  SELECT q.COMPANY_NUMBER, UPPER(TRIM(q.NAME)) nm, q.DOB_YEAR, UPPER(TRIM(q.NATIONALITY)) nat, UPPER(TRIM(q.COUNTRY_OF_RESIDENCE)) res
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC q
+  WHERE q.CEASED_ON IS NULL AND q.COMPANY_NUMBER IN (SELECT COMPANY_NUMBER FROM c)),
+tot AS (SELECT pc, COUNT(*) cos, COUNT_IF(d >= '2025-11-18') post_cos FROM c GROUP BY 1),
+g AS (
+  SELECT c.pc, p.nm, p.DOB_YEAR, p.nat, p.res, COUNT(DISTINCT c.COMPANY_NUMBER) cos, COUNT(DISTINCT IFF(c.d >= '2025-11-18', c.COMPANY_NUMBER, NULL)) post_cos,
+         MIN(c.d) d0, MAX(c.d) d1, COUNT_IF(c.s <> 'Active') not_active
+  FROM c JOIN p USING (COMPANY_NUMBER) GROUP BY 1,2,3,4,5)
+SELECT g.*, tot.cos pc_cos, tot.post_cos pc_post_cos FROM g JOIN tot USING (pc)
+QUALIFY ROW_NUMBER() OVER (PARTITION BY g.pc ORDER BY g.cos DESC) <= 15
+ORDER BY g.pc, g.cos DESC;
+
+-- S19 ICIJ Panama Papers: who drove the Apr-Jun 2005 formation spike? Entities formed Apr-Jun 2004 vs Apr-Jun 2005, by intermediary country and intermediary (via the relationships table), and by the entity's own linked countries
+WITH e AS (
+  SELECT NODE_ID, YEAR(INCORPORATION_DATE) y, COUNTRY_CODES
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_ENTITIES
+  WHERE SOURCE_LEAK = 'Panama Papers' AND MONTH(INCORPORATION_DATE) BETWEEN 4 AND 6 AND YEAR(INCORPORATION_DATE) IN (2004, 2005)),
+r AS (
+  SELECT NODE_ID_START s, NODE_ID_END t
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_RELATIONSHIPS
+  WHERE REL_TYPE ILIKE 'intermediary%' AND NODE_ID_END IN (SELECT NODE_ID FROM e)),
+x AS (
+  SELECT e.y, e.NODE_ID, i.NAME, i.COUNTRIES
+  FROM e LEFT JOIN r ON r.t = e.NODE_ID
+  LEFT JOIN LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__FED_ICIJ_OFFSHORELEAKS_INTERMEDIARIES i ON i.NODE_ID = r.s)
+SELECT * FROM (
+  SELECT 'total' k, 'entities | with an intermediary link' v, COUNT(DISTINCT IFF(y = 2004, NODE_ID, NULL)) q2_2004, COUNT(DISTINCT IFF(y = 2005, NODE_ID, NULL)) q2_2005,
+         COUNT(DISTINCT IFF(y = 2004 AND NAME IS NOT NULL, NODE_ID, NULL)) linked_2004, COUNT(DISTINCT IFF(y = 2005 AND NAME IS NOT NULL, NODE_ID, NULL)) linked_2005 FROM x
+  UNION ALL
+  SELECT 'int_country', COALESCE(COUNTRIES, '(no intermediary)'), COUNT(DISTINCT IFF(y = 2004, NODE_ID, NULL)), COUNT(DISTINCT IFF(y = 2005, NODE_ID, NULL)), NULL, NULL FROM x GROUP BY 1,2
+  UNION ALL
+  SELECT 'intermediary', COALESCE(NAME, '(none)') || ' | ' || COALESCE(COUNTRIES, ''), COUNT(DISTINCT IFF(y = 2004, NODE_ID, NULL)), COUNT(DISTINCT IFF(y = 2005, NODE_ID, NULL)), NULL, NULL FROM x GROUP BY 1,2
+  UNION ALL
+  SELECT 'entity_cc', COALESCE(COUNTRY_CODES, '(none)'), COUNT_IF(y = 2004), COUNT_IF(y = 2005), NULL, NULL FROM e GROUP BY 1,2
+) QUALIFY ROW_NUMBER() OVER (PARTITION BY k ORDER BY q2_2005 DESC) <= 40
+ORDER BY k, q2_2005 DESC;
+
+-- ===== batch b5.sql =====
+-- S20 UK PSC x Companies House: every company where a PSC named ELTANTAWY/ELTANTAVY appears (current or ceased), by incorporation month and postcode; ceased and other-PSC counts test the shelf-company-seller explanation
+WITH p AS (
+  SELECT COMPANY_NUMBER, UPPER(TRIM(NAME)) nm, DOB_YEAR, NOTIFIED_ON, CEASED_ON
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE UPPER(NAME) LIKE '%ELTANTAW%' OR UPPER(NAME) LIKE '%ELTANTAV%'),
+pc AS (SELECT COMPANY_NUMBER, MIN(NOTIFIED_ON) first_notified, MAX(IFF(CEASED_ON IS NULL, 1, 0)) still_psc, MAX(IFF(CEASED_ON IS NOT NULL, 1, 0)) any_ceased FROM p GROUP BY 1),
+o AS (
+  SELECT COMPANY_NUMBER, COUNT(*) other_now
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE CEASED_ON IS NULL AND COMPANY_NUMBER IN (SELECT COMPANY_NUMBER FROM pc)
+    AND NOT (UPPER(NAME) LIKE '%ELTANTAW%' OR UPPER(NAME) LIKE '%ELTANTAV%')
+  GROUP BY 1),
+c AS (
+  SELECT COMPANY_NUMBER, COMPANY_NAME, INCORPORATION_DATE, UPPER(REPLACE(POST_CODE,' ','')) cpc, COMPANY_STATUS, ACCOUNT_CATEGORY, COMPANY_CATEGORY
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE COMPANY_NUMBER IN (SELECT COMPANY_NUMBER FROM pc))
+SELECT DATE_TRUNC('month', COALESCE(c.INCORPORATION_DATE, pc.first_notified))::date m, COALESCE(c.cpc, '(not on live register)') postcode,
+       COUNT(*) cos, SUM(pc.still_psc) still_psc, SUM(pc.any_ceased) any_ceased, COUNT(o.COMPANY_NUMBER) with_other_psc_now,
+       COUNT_IF(c.COMPANY_STATUS <> 'Active') not_active, COUNT_IF(c.ACCOUNT_CATEGORY = 'NO ACCOUNTS FILED') no_accounts,
+       COUNT_IF(c.ACCOUNT_CATEGORY = 'DORMANT') dormant, MIN(c.COMPANY_NAME) name_a, MAX(c.COMPANY_NAME) name_z, MODE(c.COMPANY_CATEGORY) category
+FROM pc LEFT JOIN c USING (COMPANY_NUMBER) LEFT JOIN o USING (COMPANY_NUMBER)
+GROUP BY 1,2 ORDER BY 1,2;
+
+-- S21 UK PSC peer ranking: the persons (name + birth year) behind the most companies formed 18 Nov 2025-30 Jun 2026, with their top postcode and residence
+WITH c AS (
+  SELECT COMPANY_NUMBER, UPPER(REPLACE(POST_CODE,' ','')) pc
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE INCORPORATION_DATE BETWEEN '2025-11-18' AND '2026-06-30'),
+p AS (
+  SELECT COMPANY_NUMBER, REGEXP_REPLACE(UPPER(TRIM(NAME)), '^(MR|MRS|MS|MISS|DR) ', '') nm, DOB_YEAR, UPPER(TRIM(NATIONALITY)) nat, UPPER(TRIM(COUNTRY_OF_RESIDENCE)) res
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE CEASED_ON IS NULL AND KIND ILIKE 'individual%' AND COMPANY_NUMBER IN (SELECT COMPANY_NUMBER FROM c))
+SELECT p.nm, p.DOB_YEAR, COUNT(DISTINCT p.COMPANY_NUMBER) cos, MODE(c.pc) top_pc, COUNT(DISTINCT c.pc) postcodes, MODE(p.nat) nat, MODE(p.res) res
+FROM p JOIN c USING (COMPANY_NUMBER)
+GROUP BY 1,2 ORDER BY cos DESC LIMIT 30;
+
+-- ===== batch b6.sql =====
+-- S22 UK Companies House survivorship check: England & Wales company numbers are issued in sequence, so the number range per incorporation day counts companies issued that day, dissolved ones included. Oct-Mar in 2024-25 and 2025-26
+WITH t AS (
+  SELECT INCORPORATION_DATE d, TO_NUMBER(COMPANY_NUMBER) n
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}'
+    AND (INCORPORATION_DATE BETWEEN '2024-10-01' AND '2025-03-31' OR INCORPORATION_DATE BETWEEN '2025-10-01' AND '2026-03-31'))
+SELECT d, DAYNAME(d) dow, COUNT(*) live, MIN(n) n_min, MAX(n) n_max, APPROX_PERCENTILE(n, 0.02) n_p02, APPROX_PERCENTILE(n, 0.98) n_p98
+FROM t GROUP BY 1,2 ORDER BY 1;
+
+-- ===== batch b7.sql =====
+-- S23 UK PSC x Companies House: companies numbered in three windows (6 Oct-16 Nov 2025, 17 Nov-21 Dec 2025, 5 Jan-1 Feb 2026). Which ones are gone from the live register, and who controlled them (nationality, UK residence, person, PSC postcode)?
+WITH p AS (
+  SELECT COMPANY_NUMBER, TO_NUMBER(COMPANY_NUMBER) n, KIND, UPPER(TRIM(NATIONALITY)) nat, UPPER(TRIM(COUNTRY_OF_RESIDENCE)) res, CEASED_ON,
+         UPPER(REPLACE(ADDRESS_POSTAL_CODE,' ','')) ppc, REGEXP_REPLACE(UPPER(TRIM(NAME)), '^(MR|MRS|MS|MISS|DR) ', '') || ' | ' || COALESCE(DOB_YEAR::string, '') person
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}' AND TRY_TO_NUMBER(COMPANY_NUMBER) BETWEEN 16764035 AND 17005537),
+w AS (
+  SELECT p.*, CASE WHEN n <= 16858916 THEN 'a_oct' WHEN n BETWEEN 16858919 AND 16924562 THEN 'b_idv5wk' WHEN n BETWEEN 16941281 AND 17005537 THEN 'c_jan' ELSE 'x' END win
+  FROM p),
+c AS (
+  SELECT COMPANY_NUMBER FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}' AND TO_NUMBER(COMPANY_NUMBER) BETWEEN 16764035 AND 17005537),
+co AS (
+  SELECT w.COMPANY_NUMBER, w.win, IFF(c.COMPANY_NUMBER IS NULL, 'gone', 'live') st, MODE(nat) nat,
+         MAX(IFF(res IN ('UNITED KINGDOM','ENGLAND','SCOTLAND','WALES','NORTHERN IRELAND','UK','GREAT BRITAIN','U.K.','BRITAIN') OR res LIKE '%ENGLAND%' OR res LIKE '%UNITED KINGDOM%', 1, 0)) ukres,
+         MAX(IFF(KIND ILIKE 'individual%', 1, 0)) ind, MAX(IFF(CEASED_ON IS NOT NULL, 1, 0)) any_ceased, MODE(ppc) ppc, MODE(person) person
+  FROM w LEFT JOIN c USING (COMPANY_NUMBER) WHERE win <> 'x' GROUP BY 1,2,3)
+SELECT * FROM (
+  SELECT 'sum' k, win, st, 'all' v, COUNT(*) cos, SUM(ukres) ukres, SUM(ind) ind, SUM(any_ceased) ceased FROM co GROUP BY 1,2,3,4
+  UNION ALL SELECT 'nat', win, st, COALESCE(nat, '(none)'), COUNT(*), SUM(ukres), SUM(ind), SUM(any_ceased) FROM co GROUP BY 1,2,3,4
+  UNION ALL SELECT 'person', win, st, COALESCE(person, '(none)'), COUNT(*), SUM(ukres), SUM(ind), SUM(any_ceased) FROM co GROUP BY 1,2,3,4
+  UNION ALL SELECT 'ppc', win, st, COALESCE(ppc, '(none)'), COUNT(*), SUM(ukres), SUM(ind), SUM(any_ceased) FROM co GROUP BY 1,2,3,4
+) QUALIFY k = 'sum' OR ROW_NUMBER() OVER (PARTITION BY k, win, st ORDER BY cos DESC) <= 15
+ORDER BY k, win, st, cos DESC;
+
+-- ===== batch b8.sql (first try, FAILED: Numeric value 'NC000001' is not recognized; counted) =====
+-- S24 UK company-number holes, 6 Oct 2025-1 Feb 2026: per incorporation day, numbers on the live register, numbers found only in the PSC file (dissolved), and holes that match no company in either file; with hole-run sizes (scattered singles vs blocks)
+WITH live AS (
+  SELECT TO_NUMBER(COMPANY_NUMBER) n, INCORPORATION_DATE d
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}' AND TO_NUMBER(COMPANY_NUMBER) BETWEEN 16764035 AND 17005537),
+pscn AS (
+  SELECT DISTINCT TO_NUMBER(COMPANY_NUMBER) n
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}' AND TRY_TO_NUMBER(COMPANY_NUMBER) BETWEEN 16764035 AND 17005537),
+allp AS (
+  SELECT n, 1 is_live FROM live
+  UNION ALL
+  SELECT n, 0 FROM pscn WHERE n NOT IN (SELECT n FROM live)),
+s AS (SELECT n, is_live, n - LAG(n) OVER (ORDER BY n) - 1 gap_before FROM allp),
+dr AS (SELECT d, MIN(n) lo, MAX(n) hi FROM live GROUP BY d),
+j AS (SELECT dr.d, dr.lo, dr.hi, s.* FROM s JOIN dr ON s.n BETWEEN dr.lo AND dr.hi)
+SELECT d, DAYNAME(d) dow, MAX(hi) - MIN(lo) + 1 numbers, SUM(is_live) live, COUNT_IF(is_live = 0) psc_only,
+       MAX(hi) - MIN(lo) + 1 - COUNT(*) holes,
+       COUNT_IF(gap_before > 0 AND n > lo) hole_runs,
+       COUNT_IF(gap_before = 1 AND n > lo) single_holes,
+       MAX(IFF(n > lo, gap_before, 0)) max_run
+FROM j GROUP BY 1,2 ORDER BY 1;
+
+-- ===== batch b8.sql (rerun) =====
+-- S24b (rerun of S24, which failed on a text company number) UK company-number holes, 6 Oct 2025-1 Feb 2026: per incorporation day, numbers on the live register, numbers found only in the PSC file (dissolved), and holes that match no company in either file; with hole-run sizes (scattered singles vs blocks)
+WITH live AS (
+  SELECT TRY_TO_NUMBER(COMPANY_NUMBER) n, INCORPORATION_DATE d
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__INTL_UK_COMPANIES_HOUSE
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}' AND TRY_TO_NUMBER(COMPANY_NUMBER) BETWEEN 16764035 AND 17005537),
+pscn AS (
+  SELECT DISTINCT TRY_TO_NUMBER(COMPANY_NUMBER) n
+  FROM LIBRARY_MARTS.CORPORATE_REGISTRY.CORPORATE_REGISTRY__UK_COMPANIES_HOUSE_PSC
+  WHERE COMPANY_NUMBER RLIKE '[0-9]{8}' AND TRY_TO_NUMBER(COMPANY_NUMBER) BETWEEN 16764035 AND 17005537),
+allp AS (
+  SELECT n, 1 is_live FROM live
+  UNION ALL
+  SELECT n, 0 FROM pscn WHERE n NOT IN (SELECT n FROM live)),
+s AS (SELECT n, is_live, n - LAG(n) OVER (ORDER BY n) - 1 gap_before FROM allp),
+dr AS (SELECT d, MIN(n) lo, MAX(n) hi FROM live GROUP BY d),
+j AS (SELECT dr.d, dr.lo, dr.hi, s.* FROM s JOIN dr ON s.n BETWEEN dr.lo AND dr.hi)
+SELECT d, DAYNAME(d) dow, MAX(hi) - MIN(lo) + 1 numbers, SUM(is_live) live, COUNT_IF(is_live = 0) psc_only,
+       MAX(hi) - MIN(lo) + 1 - COUNT(*) holes,
+       COUNT_IF(gap_before > 0 AND n > lo) hole_runs,
+       COUNT_IF(gap_before = 1 AND n > lo) single_holes,
+       MAX(IFF(n > lo, gap_before, 0)) max_run
+FROM j GROUP BY 1,2 ORDER BY 1;

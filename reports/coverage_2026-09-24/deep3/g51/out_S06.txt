@@ -1,0 +1,63 @@
+-- S06 OWID terrorism: full extract (10,481 rows) for local time and peer math
+ENTITY | CODE | YEAR | FATALITIES | WORLD_REGION_ACCORDING_TO_OWID
+Afghanistan | AFG | 1970 | 0 | Asia
+Afghanistan | AFG | 1971 | 0 | Asia
+Afghanistan | AFG | 1972 | 0 | Asia
+Afghanistan | AFG | 1973 | 0 | Asia
+Afghanistan | AFG | 1974 | 0 | Asia
+Afghanistan | AFG | 1975 | 0 | Asia
+Afghanistan | AFG | 1976 | 0 | Asia
+Afghanistan | AFG | 1977 | 0 | Asia
+Afghanistan | AFG | 1978 | 0 | Asia
+Afghanistan | AFG | 1979 | 53 | Asia
+Afghanistan | AFG | 1980 | 0 | Asia
+Afghanistan | AFG | 1981 | 0 | Asia
+Afghanistan | AFG | 1982 | 0 | Asia
+Afghanistan | AFG | 1983 | 0 | Asia
+Afghanistan | AFG | 1984 | 0 | Asia
+Afghanistan | AFG | 1985 | 0 | Asia
+Afghanistan | AFG | 1986 | 0 | Asia
+Afghanistan | AFG | 1987 | 0 | Asia
+Afghanistan | AFG | 1988 | 128 | Asia
+Afghanistan | AFG | 1989 | 10 | Asia
+Afghanistan | AFG | 1990 | 12 | Asia
+Afghanistan | AFG | 1991 | 68 | Asia
+Afghanistan | AFG | 1992 | 49 | Asia
+Afghanistan | AFG | 1994 | 22 | Asia
+Afghanistan | AFG | 1995 | 5 | Asia
+Afghanistan | AFG | 1996 | 31 | Asia
+Afghanistan | AFG | 1997 | 4 | Asia
+Afghanistan | AFG | 1998 | 8 | Asia
+Afghanistan | AFG | 1999 | 39 | Asia
+Afghanistan | AFG | 2000 | 38 | Asia
+Afghanistan | AFG | 2001 | 174 | Asia
+Afghanistan | AFG | 2002 | 74 | Asia
+Afghanistan | AFG | 2003 | 163 | Asia
+Afghanistan | AFG | 2004 | 275 | Asia
+Afghanistan | AFG | 2005 | 367 | Asia
+Afghanistan | AFG | 2006 | 736 | Asia
+Afghanistan | AFG | 2007 | 1201 | Asia
+Afghanistan | AFG | 2008 | 1099 | Asia
+Afghanistan | AFG | 2009 | 1065 | Asia
+Afghanistan | AFG | 2010 | 1157 | Asia
+Afghanistan | AFG | 2011 | 1525 | Asia
+Afghanistan | AFG | 2012 | 3521 | Asia
+Afghanistan | AFG | 2013 | 3709 | Asia
+Afghanistan | AFG | 2014 | 5414 | Asia
+Afghanistan | AFG | 2015 | 6216 | Asia
+Afghanistan | AFG | 2016 | 6141 | Asia
+Afghanistan | AFG | 2017 | 6095 | Asia
+Afghanistan | AFG | 2018 | 9812 | Asia
+Afghanistan | AFG | 2019 | 8257 | Asia
+Afghanistan | AFG | 2020 | 10081 | Asia
+Afghanistan | AFG | 2021 | 4337 | Asia
+Africa | OWID_AFR | 1970 | 1 | 
+Africa | OWID_AFR | 1971 | 2 | 
+Africa | OWID_AFR | 1972 | 0 | 
+Africa | OWID_AFR | 1973 | 5 | 
+Africa | OWID_AFR | 1974 | 4 | 
+Africa | OWID_AFR | 1975 | 29 | 
+Africa | OWID_AFR | 1976 | 8 | 
+Africa | OWID_AFR | 1977 | 17 | 
+Africa | OWID_AFR | 1978 | 51 | 
+(10481 rows; csv has all)

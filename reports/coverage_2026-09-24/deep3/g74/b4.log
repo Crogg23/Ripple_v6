@@ -1,0 +1,169 @@
+-- S17 UK Companies House x PSC: every postcode with 400+ live companies formed in the two windows (18 Nov 2024-30 Jun 2025 vs 18 Nov 2025-30 Jun 2026), with growth and the share controlled by someone living in the UK (peer table)
+PC | PRIOR_N | POST_N | PRIOR_UKRES | POST_UKRES | POST_WITH_PSC | POST_TOP_NAT | POST_TOP_NAT_N
+WC2H9JQ | 12692 | 19694 | 7340 | 13985 | 19677 | BRITISH | 9936
+EC1V2NX | 11107 | 13148 | 7474 | 9120 | 13138 | BRITISH | 6654
+W1W5PF | 2838 | 5695 | 2064 | 4176 | 5684 | BRITISH | 2869
+EC2A4NE | 5403 | 5521 | 5017 | 5237 | 5512 | BRITISH | 4135
+EC2A4NA | 199 | 5368 | 162 | 5136 | 5363 | BRITISH | 4047
+N17GU | 4318 | 5335 | 3371 | 3894 | 5313 | BRITISH | 3179
+IP287DE | 2793 | 3829 | 2100 | 2688 | 3823 | BRITISH | 1965
+E62JA | 1440 | 2910 | 518 | 640 | 2906 | PAKISTANI | 951
+M408WN | 943 | 2498 | 150 | 146 | 2493 | EGYPTIAN | 857
+HR53DJ | 2386 | 2208 | 636 | 1116 | 2203 | BRITISH | 784
+E10SG | 1037 | 1908 | 376 | 882 | 1907 | TURKISH | 617
+CF148LH | 5133 | 1868 | 1479 | 1232 | 1795 | PAKISTANI | 433
+WC1N3AX | 1555 | 1333 | 750 | 770 | 1332 | BRITISH | 582
+HA47AE | 1178 | 1291 | 683 | 687 | 1291 | BRITISH | 507
+E173NU | 512 | 1200 | 482 | 1157 | 1200 | BRITISH | 779
+W1T2EW | 524 | 821 | 396 | 408 | 819 | BRITISH | 276
+WV60SR | 133 | 642 | 25 | 96 | 641 | PAKISTANI | 555
+E15NF | 114 | 630 | 82 | 368 | 626 | PAKISTANI | 275
+EH24AN | 440 | 630 | 246 | 447 | 630 | BRITISH | 237
+RM66AX | 518 | 602 | 279 | 301 | 602 | BRITISH | 214
+G21BP | 524 | 571 | 478 | 526 | 571 | BRITISH | 332
+N17AA | 298 | 536 | 75 | 51 | 536 | EGYPTIAN | 395
+W60NB | 777 | 523 | 358 | 226 | 523 | BRITISH | 196
+DN68DA | 87 | 499 | 16 | 317 | 498 | BRITISH | 302
+SE83GG | 481 | 493 | 315 | 340 | 472 | BRITISH | 320
+CV24AQ | 518 | 448 | 5 | 3 | 447 | CHINESE | 404
+W1T6EB | 671 | 446 | 553 | 387 | 445 | BRITISH | 292
+M23WQ | 394 | 407 | 380 | 392 | 405 | BRITISH | 267
+BH166FA | 529 | 394 | 290 | 281 | 393 | BRITISH | 218
+HG11ND | 118 | 389 | 46 | 281 | 382 | BRITISH | 281
+N101AB | 139 | 385 | 110 | 340 | 385 | BRITISH | 336
+WA11RG | 334 | 357 | 332 | 356 | 357 | BRITISH | 319
+IG63SZ | 260 | 344 | 123 | 172 | 344 | BRITISH | 113
+M126AE | 497 | 341 | 259 | 166 | 340 | BRITISH | 125
+IP11RJ | 190 | 312 | 125 | 235 | 312 | BRITISH | 127
+CM201YS | 290 | 295 | 282 | 283 | 295 | NIGERIAN | 166
+M45JW | 258 | 287 | 232 | 262 | 286 | BRITISH | 188
+PO160EN | 203 | 278 | 197 | 260 | 278 | BRITISH | 210
+W1B3HH | 337 | 274 | 106 | 93 | 274 | BRITISH | 72
+E81LL | 184 | 274 | 23 | 18 | 274 | CHINESE | 200
+W1S4JL | 193 | 258 | 165 | 215 | 258 | BRITISH | 143
+E148PX | 260 | 250 | 175 | 195 | 250 | BRITISH | 153
+E181HB | 186 | 234 | 13 | 7 | 234 | TURKISH | 216
+EH39WJ | 257 | 229 | 7 | 11 | 229 | AMERICAN | 15
+CB12GE | 459 | 226 | 4 | 2 | 226 | CHINESE | 201
+WC1X0ND | 255 | 222 | 107 | 76 | 222 | BRITISH | 55
+B13NJ | 231 | 217 | 208 | 205 | 217 | BRITISH | 149
+ST180BF | 227 | 184 | 14 | 7 | 183 | CHINESE | 134
+BR34AB | 424 | 142 | 2 | 0 | 142 | CHINESE | 128
+N32JU | 532 | 95 | 9 | 4 | 95 | MOROCCAN | 15
+W1W7LT | 1859 | 66 | 1158 | 45 | 66 | BRITISH | 41
+FY43RL | 422 | 2 | 418 | 2 | 2 | BRITISH | 1
+(52 rows; csv has all)
+
+-- S18 UK PSC concentration: the controlling persons behind 2025-26 companies at M40 8WN, E6 2JA and BR3 4AB (current PSCs, name + birth year + nationality + residence)
+PC | NM | DOB_YEAR | NAT | RES | COS | POST_COS | D0 | D1 | NOT_ACTIVE | PC_COS | PC_POST_COS
+BR34AB | MR WEI HUANG | 1996 | CHINESE | CHINA | 3 | 0 | 2025-01-16 | 2025-01-16 | 0 | 614 | 142
+BR34AB | MS XINYI FAN | 1998 | CHINESE | CHINA | 3 | 0 | 2025-01-16 | 2025-01-17 | 0 | 614 | 142
+BR34AB | MR XIANYANG WANG | 1993 | CHINESE | CHINA | 2 | 0 | 2025-06-24 | 2025-06-24 | 0 | 614 | 142
+BR34AB | RISTECH LIFT CO., LTD |  |  |  | 2 | 2 | 2026-03-18 | 2026-05-12 | 0 | 614 | 142
+BR34AB | MR LING CONG | 1997 | CHINESE | CHINA | 2 | 0 | 2025-03-12 | 2025-03-12 | 0 | 614 | 142
+BR34AB | JINGZHI ZHAO | 1989 | CHINESE | CHINA | 2 | 0 | 2025-07-24 | 2025-07-25 | 0 | 614 | 142
+BR34AB | FENGGANG TIAN | 1982 | CHINESE | CHINA | 2 | 0 | 2025-07-31 | 2025-10-10 | 0 | 614 | 142
+BR34AB | PING WANG | 1983 | CHINESE | CHINA | 2 | 0 | 2025-03-24 | 2025-04-15 | 0 | 614 | 142
+BR34AB | KEHUI CAI | 1962 | CHINESE | CHINA | 2 | 0 | 2025-06-03 | 2025-06-04 | 0 | 614 | 142
+BR34AB | GUANGXIANG ZHOU | 1976 | CHINESE | CHINA | 1 | 0 | 2025-04-09 | 2025-04-09 | 0 | 614 | 142
+BR34AB | YOYA INTERNATIONAL LIMITED |  |  |  | 1 | 0 | 2025-04-10 | 2025-04-10 | 0 | 614 | 142
+BR34AB | JONA LOREN CAMILLE YUMUL GUTIERREZ | 1997 | FILIPINO | PHILIPPINES | 1 | 0 | 2025-04-15 | 2025-04-15 | 0 | 614 | 142
+BR34AB | MS HAIQIN JI | 1967 | CHINESE | CHINA | 1 | 0 | 2025-02-17 | 2025-02-17 | 0 | 614 | 142
+BR34AB | ZHONGMEI HOU | 1979 | CHINESE | CHINA | 1 | 0 | 2025-04-23 | 2025-04-23 | 0 | 614 | 142
+BR34AB | YUYANG XIA | 1987 | CHINESE | CHINA | 1 | 0 | 2025-06-24 | 2025-06-24 | 0 | 614 | 142
+E62JA |  |  |  |  | 64 | 9 | 2025-01-17 | 2026-06-22 | 0 | 5891 | 2910
+E62JA | MR RAFAEL CLOSZER ABRAHÃO | 2003 | BRAZILIAN | BRAZIL | 13 | 0 | 2025-08-08 | 2025-08-21 | 0 | 5891 | 2910
+E62JA | ANDREAS JOHANSSON | 1993 | SWEDISH | SWEDEN | 4 | 0 | 2025-02-13 | 2025-05-15 | 2 | 5891 | 2910
+E62JA | KARTICA RAHAYU ASHKIN BINTI ISMAIL HARRIS | 1989 | MALAYSIAN | MALAYSIA | 4 | 3 | 2025-08-22 | 2026-03-10 | 0 | 5891 | 2910
+E62JA | PROMISE NNAKA | 1987 | NIGERIAN | NIGERIA | 4 | 3 | 2025-08-22 | 2026-03-10 | 0 | 5891 | 2910
+E62JA | MUHAMMAD FARHAN TAHIR | 1996 | PAKISTANI | PAKISTAN | 4 | 0 | 2025-09-26 | 2025-10-15 | 0 | 5891 | 2910
+E62JA | MUHAMMAD AHMAD | 2003 | PAKISTANI | PAKISTAN | 3 | 2 | 2025-05-09 | 2026-02-27 | 0 | 5891 | 2910
+E62JA | MR GARV MITTAL | 2004 | INDIAN | SPAIN | 3 | 0 | 2025-01-07 | 2025-07-29 | 1 | 5891 | 2910
+E62JA | MOHAMMED BILAL ABDUL WAHAB CHUNAWALA | 2005 | INDIAN | INDIA | 3 | 1 | 2025-03-24 | 2026-02-26 | 0 | 5891 | 2910
+E62JA | AVA & TED LTD |  |  |  | 3 | 1 | 2025-08-20 | 2026-04-30 | 0 | 5891 | 2910
+E62JA | HALLRIDGE HOLDINGS LIMITED |  |  |  | 3 | 3 | 2026-05-26 | 2026-05-27 | 0 | 5891 | 2910
+E62JA | MR JAMES MAURICE WHITE | 1985 | BRITISH | ENGLAND | 3 | 0 | 2025-09-08 | 2025-09-14 | 0 | 5891 | 2910
+E62JA | ROSHAN MAHESH SINGH | 2000 | INDIAN | INDIA | 3 | 0 | 2025-05-21 | 2025-09-15 | 0 | 5891 | 2910
+E62JA | ABN VENTURES LTD |  |  |  | 3 | 1 | 2025-02-19 | 2026-05-01 | 0 | 5891 | 2910
+E62JA | SHICHENG CHEN | 2001 | CHINESE | CHINA | 3 | 2 | 2025-03-04 | 2026-04-21 | 1 | 5891 | 2910
+M408WN | MR SALAHELDIN SAMIR ISMAIL ABDELBAKY ELTANTAWY | 2001 | EGYPTIAN | TURKEY | 421 | 302 | 2025-01-16 | 2026-01-30 | 0 | 4565 | 2498
+M408WN | ABDELRAHMAN SAMIR ISMAIL ABDELBAKY ELTANTAWY | 1996 | EGYPTIAN | TURKEY | 296 | 296 | 2025-12-29 | 2026-01-30 | 0 | 4565 | 2498
+M408WN | MAIDE KILINC ELTANTAWY | 1992 | TURKISH | TURKEY | 263 | 262 | 2025-05-25 | 2026-01-30 | 0 | 4565 | 2498
+M408WN |  |  |  |  | 24 | 15 | 2025-10-03 | 2026-05-12 | 0 | 4565 | 2498
+M408WN | MR SALAHELDIN SAMIR ISMAIL ABDELBAKY ELTANTAWY | 2001 | TURKISH | TURKEY | 17 | 0 | 2025-10-22 | 2025-10-24 | 0 | 4565 | 2498
+M408WN | MOHAMED ELTANTAVY | 1998 | TURKISH | ENGLAND | 16 | 16 | 2025-12-29 | 2025-12-30 | 0 | 4565 | 2498
+M408WN | SALAHELDIN SAMIR ISMAIL ABDELBAKY ELTANTAWY | 2001 | TURKISH | TURKEY | 13 | 0 | 2025-10-24 | 2025-10-27 | 0 | 4565 | 2498
+M408WN | SALAHELDIN ELTANTAWY | 2001 | EGYPTIAN | UNITED KINGDOM | 6 | 6 | 2025-12-29 | 2025-12-30 | 0 | 4565 | 2498
+M408WN | MR BRYAN THORNTON | 1955 | BRITISH | UNITED KINGDOM | 6 | 0 | 2025-05-29 | 2025-09-25 | 0 | 4565 | 2498
+M408WN | ISHARJUNA FAHMI ADITYA | 1993 | INDONESIAN | INDONESIA | 3 | 0 | 2025-04-07 | 2025-07-18 | 0 | 4565 | 2498
+M408WN | CFS SECRETARIES LIMITED |  |  |  | 3 | 0 | 2025-05-29 | 2025-08-27 | 0 | 4565 | 2498
+M408WN | MR DANIEL RAFAEL FORSTMANN | 1979 | GERMAN | GERMANY | 3 | 3 | 2026-05-25 | 2026-05-28 | 0 | 4565 | 2498
+M408WN | MISS ZAKIYYAH MUZAMMIL AHMED | 1992 | BRITISH | ENGLAND | 3 | 3 | 2026-03-25 | 2026-06-01 | 0 | 4565 | 2498
+M408WN | JAAFAR AYAD TALIB | 1995 | NORWEGIAN | NORWAY | 3 | 0 | 2025-03-04 | 2025-04-23 | 1 | 4565 | 2498
+M408WN | MR RUEDIGER ASSMANN | 1957 | GERMAN | GERMANY | 2 | 0 | 2025-01-13 | 2025-02-17 | 1 | 4565 | 2498
+(45 rows; csv has all)
+
+-- S19 ICIJ Panama Papers: who drove the Apr-Jun 2005 formation spike? Entities formed Apr-Jun 2004 vs Apr-Jun 2005, by intermediary country and intermediary (via the relationships table), and by the entity's own linked countries
+K | V | Q2_2004 | Q2_2005 | LINKED_2004 | LINKED_2005
+entity_cc | CHE | 425 | 1492 |  | 
+entity_cc | LUX | 124 | 646 |  | 
+entity_cc | HKG | 473 | 435 |  | 
+entity_cc | MCO | 35 | 370 |  | 
+entity_cc | PAN | 185 | 300 |  | 
+entity_cc | ARE | 95 | 181 |  | 
+entity_cc | JEY | 104 | 139 |  | 
+entity_cc | BHS | 81 | 109 |  | 
+entity_cc | SGP | 53 | 92 |  | 
+entity_cc | GBR | 68 | 86 |  | 
+entity_cc | GGY | 67 | 79 |  | 
+entity_cc | MUS | 5 | 70 |  | 
+entity_cc | IMN | 34 | 60 |  | 
+entity_cc | GIB | 48 | 60 |  | 
+entity_cc | LIE | 31 | 55 |  | 
+entity_cc | CYP | 66 | 35 |  | 
+entity_cc | URY | 33 | 35 |  | 
+entity_cc | CHN | 22 | 33 |  | 
+entity_cc | WSM | 21 | 32 |  | 
+entity_cc | ECU | 34 | 30 |  | 
+entity_cc | USA | 29 | 29 |  | 
+entity_cc | JOR | 15 | 25 |  | 
+entity_cc | BRA | 19 | 24 |  | 
+entity_cc | (none) | 9 | 21 |  | 
+entity_cc | RUS | 21 | 21 |  | 
+entity_cc | COL | 3 | 20 |  | 
+entity_cc | VGB | 28 | 19 |  | 
+entity_cc | BLZ | 11 | 15 |  | 
+entity_cc | THA | 11 | 15 |  | 
+entity_cc | EST | 8 | 13 |  | 
+entity_cc | DOM | 17 | 13 |  | 
+entity_cc | LBN | 9 | 11 |  | 
+entity_cc | VEN | 14 | 11 |  | 
+entity_cc | TWN | 23 | 10 |  | 
+entity_cc | ISR | 3 | 10 |  | 
+entity_cc | ESP | 4 | 9 |  | 
+entity_cc | CRI | 3 | 9 |  | 
+entity_cc | SYC | 9 | 9 |  | 
+entity_cc | LVA | 17 | 9 |  | 
+entity_cc | CAN | 0 | 8 |  | 
+int_country | Switzerland | 334 | 1094 |  | 
+int_country | Luxembourg | 201 | 750 |  | 
+int_country | (no intermediary) | 227 | 562 |  | 
+int_country | Hong Kong | 465 | 429 |  | 
+int_country | Monaco | 28 | 364 |  | 
+int_country | Jersey;United Kingdom | 100 | 130 |  | 
+int_country | Panama | 68 | 121 |  | 
+int_country | United Kingdom | 91 | 109 |  | 
+int_country | Singapore | 53 | 91 |  | 
+int_country | Guernsey;United Kingdom | 65 | 76 |  | 
+int_country | United Arab Emirates | 18 | 75 |  | 
+int_country | Bahamas | 55 | 74 |  | 
+int_country | Mauritius | 5 | 70 |  | 
+int_country | United Arab Emirates;Cyprus | 47 | 64 |  | 
+int_country | Cyprus | 66 | 64 |  | 
+int_country | Isle of Man | 34 | 56 |  | 
+int_country | Liechtenstein | 30 | 56 |  | 
+int_country | Gibraltar | 31 | 41 |  | 
+int_country | Uruguay | 38 | 35 |  | 
+int_country | Czech Republic | 21 | 32 |  | 
+(121 rows; csv has all)
+

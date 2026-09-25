@@ -1,0 +1,8 @@
+-- S01 MO registry: profile, persons vs rows, compliance, tier, state, load runs, address notes
+N | PERSONS | NAMES | PERSON_OFFENSE | PERSON_ADDR | COMP_T | COMP_F | COMP_NULL | TIERS | STATES | NOT_MO | COUNTIES | ZIPS | RUNS | I0 | I1 | DOB_NULL | ADDR_UNKNOWN | ADDR_INCARC | ADDR_MOVED | ADDR_HOMELESS | ADDR_BLANK | OC_NULL | AGE90
+28167 | 21459 | 21255 | 28164 | 21135 | 21945 | 6222 | 0 | [
+  "3",
+  "2",
+  "1"
+] | 56 | 1156 | 115 | 1037 | 1 | 2026-08-22 21:55:09.370374 | 2026-08-22 21:55:09.370374 | 0 | 389 | 3652 | 828 | 11 | 417 | 0 | 52
+(1 rows; csv has all)

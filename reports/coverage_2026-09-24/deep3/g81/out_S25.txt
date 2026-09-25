@@ -1,0 +1,2 @@
+-- S25 Wayback: every page that ever answered 404 or ended on 403, excluding junk URL variants, with dates
+ERROR: 100048 (2201B): Invalid regular expression: '.*(utm_|fbclid|%0a|%e|%c2|u003c|&data=|[?&]ref=|gclid|[.]$|[)][.]?$|[\]).*', missing ]: [\]).*

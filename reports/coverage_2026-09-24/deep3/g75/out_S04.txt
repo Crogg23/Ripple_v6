@@ -1,0 +1,119 @@
+-- S04 ICIJ addresses: by leak, US share, blank names, duplicate address text, notes
+SOURCE_LEAK | N | NODES | ADDR_TEXT | USA | USA_ONLY | NAME_BLANK | ADDR_BLANK | CC_BLANK | NOTE | VALID_UNTIL
+ | 402246 | 402246 | 377617 | 24368 | 24367 | 178869 | 19976 | 125517 | 441 | [
+  "Aruba corporate registry data is current through 2016",
+  "Provider data is current through nan",
+  "Provider data is current through 2018",
+  "Provider data is current through 2016",
+  "The Pandora Papers - Asiaciti data is current through 2017",
+  "Malta corporate registry data is current through 2016",
+  "Provider data is current through 2019",
+  "The Pandora Papers - Asiaciti data is current through 2018",
+  "Provider data is current through 2012",
+  "Provider data is current through 2013",
+  "Barbados corporate registry data is current through 2016",
+  "Provider data is current through 2017",
+  "Appleby data is current through 2014",
+  "Samoa corporate registry data is current through 2016",
+  "Provider data is current through 2015",
+  "Provider data is current through 2010",
+  "Bahamas corporate registry data is current through 2016",
+  "Provider data is current through 2011",
+  "Provider data is current through 2020",
+  "Nevis corporate registry data is current through 2016",
+  "The Bahamas Leaks data is current through early 2016.",
+  "The Panama Papers  data is current through 2015",
+  "Provider data is current through 2014",
+  "Provider data is current through 2008",
+  "The Offshore Leaks data is current through 2010"
+]
+Paradise Papers - Malta corporate registry | 123269 | 123269 | 123232 | 0 | 0 | 3 | 17 | 123126 | 122 | [
+  "Malta corporate registry data is current through 2016"
+]
+Panama Papers | 93454 | 93454 | 93437 | 3096 | 3096 | 93440 | 12 | 868 | 90 | [
+  "The Panama Papers  data is current through 2015"
+]
+Paradise Papers - Appleby | 59200 | 59200 | 55022 | 16631 | 16631 | 2 | 5 | 627 | 46 | [
+  "Appleby data is current through 2014"
+]
+Offshore Leaks | 57600 | 57600 | 57452 | 3766 | 3766 | 57598 | 0 | 359 | 4 | [
+  "The Offshore Leaks data is current through 2010"
+]
+Paradise Papers - Barbados corporate registry | 20768 | 20768 | 20767 | 228 | 228 | 0 | 0 | 26 | 1 | [
+  "Barbados corporate registry data is current through 2016"
+]
+Paradise Papers - Aruba corporate registry | 17901 | 17901 | 0 | 25 | 25 | 0 | 17901 | 11 | 136 | [
+  "Aruba corporate registry data is current through 2016"
+]
+Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | 13100 | 13100 | 12946 | 197 | 196 | 13095 | 5 | 333 | 5 | [
+  "Provider data is current through 2018",
+  "Provider data is current through 2017"
+]
+Pandora Papers - Fidelity Corporate Services | 2940 | 2940 | 2938 | 233 | 233 | 2938 | 2 | 7 | 4 | [
+  "Provider data is current through 2018",
+  "Provider data is current through 2017"
+]
+Pandora Papers - Alpha Consulting | 2660 | 2660 | 2649 | 0 | 0 | 2658 | 2 | 19 | 4 | [
+  "Provider data is current through 2016",
+  "Provider data is current through 2018",
+  "Provider data is current through 2019",
+  "Provider data is current through 2020",
+  "Provider data is current through 2011",
+  "Provider data is current through 2017"
+]
+Pandora Papers - Trident Trust | 2395 | 2395 | 2394 | 27 | 27 | 2394 | 1 | 83 | 1 | [
+  "Provider data is current through 2017",
+  "Provider data is current through 2019",
+  "Provider data is current through 2018",
+  "Provider data is current through 2016"
+]
+Pandora Papers - SFM Corporate Services | 1883 | 1883 | 1874 | 16 | 16 | 1880 | 3 | 15 | 3 | [
+  "Provider data is current through 2014",
+  "Provider data is current through 2019",
+  "Provider data is current through 2008",
+  "Provider data is current through 2010",
+  "Provider data is current through 2018",
+  "Provider data is current through 2012",
+  "Provider data is current through 2015",
+  "Provider data is current through 2016",
+  "Provider data is current through 2017",
+  "Provider data is current through 2011",
+  "Provider data is current through 2013"
+]
+Pandora Papers - Commence Overseas | 1813 | 1813 | 1813 | 30 | 30 | 1813 | 0 | 11 | 0 | [
+  "Provider data is current through 2017"
+]
+Pandora Papers - CILTrust International | 1706 | 1706 | 1705 | 10 | 10 | 1706 | 0 | 3 | 0 | [
+  "Provider data is current through 2018",
+  "Provider data is current through 2017",
+  "Provider data is current through 2019"
+]
+Paradise Papers - Samoa corporate registry | 1695 | 1695 | 0 | 69 | 69 | 0 | 1695 | 2 | 2 | [
+  "Samoa corporate registry data is current through 2016"
+]
+Bahamas Leaks | 551 | 551 | 550 | 1 | 1 | 551 | 0 | 0 | 23 | [
+  "The Bahamas Leaks data is current through early 2016."
+]
+Pandora Papers - Il Shin Corporate Consulting Limited | 508 | 508 | 508 | 10 | 10 | 508 | 0 | 3 | 0 | [
+  "Provider data is current through 2019",
+  "Provider data is current through 2020",
+  "Provider data is current through 2018",
+  "Provider data is current through nan"
+]
+Paradise Papers - Bahamas corporate registry | 333 | 333 | 0 | 0 | 0 | 0 | 333 | 22 | 0 | [
+  "Bahamas corporate registry data is current through 2016"
+]
+Pandora Papers - Overseas Management Company (OMC) | 256 | 256 | 256 | 19 | 19 | 256 | 0 | 0 | 0 | [
+  "Provider data is current through 2017",
+  "Provider data is current through 2016",
+  "Provider data is current through nan",
+  "Provider data is current through 2018"
+]
+Paradise Papers - Nevis corporate registry | 187 | 187 | 187 | 5 | 5 | 0 | 0 | 1 | 0 | [
+  "Nevis corporate registry data is current through 2016"
+]
+Pandora Papers - Asiaciti Trust | 27 | 27 | 26 | 5 | 5 | 27 | 0 | 1 | 0 | [
+  "The Pandora Papers - Asiaciti data is current through 2017",
+  "The Pandora Papers - Asiaciti data is current through 2018"
+]
+(21 rows; csv has all)

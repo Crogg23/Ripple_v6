@@ -1,0 +1,83 @@
+-- S15 OSHA 300A hospital filings (NAICS 622): every VT, NM, HI, WY and TN row, plus rows whose names point at big VT, NM or HI hospitals filed anywhere
+YR | ST | CITY | ESTABLISHMENT_NAME | COMPANY_NAME | NAICS_CODE | ESTABLISHMENT_TYPE | EMP | HRS
+2024 | CA | Van Nuys | Valley Presbyterian Hospital | Valley Presbyterian Hospital | 622110 | 1 | 1600 | 2409291
+2024 | CA | Glendora | Foothill Presbyterian Hospital | Emanate Health | 622110 | 1 | 503 | 946385
+2023 | CA | Glendora | Foothill Presbyterian Hospital | Emanate Health | 622110 | 1 | 503 | 799998
+2023 | CA | Anaheim | Corporate | STRAUB DISTRIBUTING CO LTD | 424810 | 1 | 323 | 595588
+2023 | CA | Anaheim | Straub Distributing | Straub Distributing | 424810 | 1 | 323 | 595588
+2024 | CA | Anaheim | Corporate | STRAUB DISTRIBUTING CO LTD | 424810 | 1 | 314 | 576699
+2024 | CA | Anaheim | Straub Distributing Company LTD | Straub Distributing Company LTD | 424810 | 1 | 314 | 576699
+2024 | CA | Glendora | Foothill Presbyterian Hospital |  | 621999 | 1 | 107 | 22814
+2024 | CA | Canoga Park | Wilcox & Wilcox | Wilcox & Wilcox | 236220 | 1 | 33 | 65406
+2023 | CA | Canoga Park | Wilcox & Wilcox | Wilcox & Wilcox | 236220 | 1 | 30 | 62918
+2023 | CA | Escondido | Straub Construction Inc. | Straub Construction Inc. | 236220 | 1 | 11 | 21984
+2024 | CA | Van Nuys | SODEXO AT VALLEY PRESBYTERIAN HOSPITAL | Sodexo Inc | 722310 | 1 | 4 | 3932
+2023 | CA | Van Nuys | SODEXO AT VALLEY PRESBYTERIAN HOSPITAL | Sodexo Inc | 722310 | 1 | 4 | 15116
+2023 | CA | Los Angeles | Wilcox | The People Concern | 624221 | 1 | 4 | 1920
+2023 | CA | Dinuba | Lovelace Ranch | Pitman Family Farms | 112320 | 1 | 2 | 6120
+2024 | DE | New Castle | Wilcox Landscaping | Exterior Maintenance Resources, Inc | 561730 | 1 | 57 | 148165
+2024 | HI | HONOLULU | 12812007 MOANALUA MEDICAL OFFICES | Kaiser Foundation Health Plan | 622110 | 1 | 2414 | 3534728
+2023 | HI | HONOLULU | 12812007 MOANALUA MEDICAL OFFICES | Kaiser Foundation Health Plan MOANALUA MEDICAL OFFICES | 622110 | 1 | 2296 | 3373501
+2024 | HI | Hilo | Hilo Medical Center | Hawaii Health Systems Corporation | 622110 | 2 | 1594 | 2647597
+2024 | HI | WAILUKU | 36136050 MAUI MEMORIAL   COTTAGE BUILDINGS | Kaiser Foundation Health Plan | 622110 | 1 | 1389 | 2249857
+2023 | HI | Hilo | Hilo Medical Center | Hawaii Health Systems Corporation | 622110 | 2 | 1388 | 2506536
+2023 | HI | WAILUKU | 36136050 MAUI MEMORIAL   COTTAGE BUILDINGS | Kaiser Foundation Health Plan MAUI MEMORIAL COTTAGE BUILDINGS | 622110 | 1 | 1388 | 2245196
+2024 | HI | KAILUA | AHCS - 640 ULUKAHIKI STREET - DEPTS | Adventist Health System-West | 622110 | 1 | 1040 | 1529476
+2024 | HI | HONOLULU | KUAKINI MEDICAL CENTER |  | 622110 | 1 | 723 | 1166804
+2023 | HI | San Juan | Hospital Universitario de Adultos | Departamento de Salud | 622110 | 3 | 722 | 1305600
+2024 | HI | Honolulu | REHAB Hospital | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 367 | 549891
+2023 | HI | Honolulu | REHAB Hospital | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 339 | 717082
+2024 | HI | Pahala | Kau Hospital | Hawaii Health Systems Corporation | 622110 | 2 | 331 | 457139
+2024 | HI | HONOLULU | 12612007 MOANALUA MEDICAL CENTER | Kaiser Foundation Health Plan | 622110 | 1 | 327 | 465098
+2023 | HI | HONOLULU | 12612007 MOANALUA MEDICAL CENTER | Kaiser Foundation Health Plan MOANALUA MEDICAL CENTER | 622110 | 1 | 312 | 453739
+2023 | HI | Pahala | Kau Hospital | Hawaii Health Systems Corporation | 622110 | 2 | 228 | 409172
+2023 | HI | KULA | 36136052 KULA HOSPITAL | Kaiser Foundation Health Plan KULA HOSPITAL | 622110 | 1 | 180 | 298171
+2024 | HI | KULA | 36136052 KULA HOSPITAL | Kaiser Foundation Health Plan | 622110 | 1 | 179 | 305594
+2024 | HI | Honokaa | Hale Ho'ola Hamakua | Hawaii Health Systems Corporation | 622110 | 2 | 164 | 267485
+2023 | HI | Honokaa | Hale Ho'ola Hamakua | Hawaii Health Systems Corporation | 622110 | 2 | 138 | 251247
+2023 | HI | Honolulu | SODEXO AT STRAUB CLINIC AND HOSPITAL EVS | Sodexo Inc | 561720 | 1 | 106 | 299908
+2023 | HI | Honolulu | Queen Kapiolani Hotel | QK Management LLC | 721110 | 1 | 93 | 184528
+2023 | HI | Honolulu | SODEXO AT STRAUB CLINIC AND HOSPITAL FNS | Sodexo Inc | 722310 | 1 | 92 | 207407
+2024 | HI | Honolulu | Queen Kapiolani |  | 721110 | 1 | 90 | 170334
+2024 | HI | Honolulu | SODEXO AT STRAUB CLINIC AND HOSPITAL EVS | Sodexo  Inc. | 561720 | 1 | 88 | 90360
+2023 | HI | HONOLULU | 13364 QUEEN KAPIOLANI HOTEL | Altres Inc. QUEEN KAPIOLANI HOTEL | 721110 | 1 | 73 | 140972
+2024 | HI | Honolulu | SODEXO AT STRAUB CLINIC AND HOSPITAL FNS | Sodexo  Inc. | 722310 | 1 | 68 | 62267
+2024 | HI | Honolulu | The Queen's Health System | The Queen's Health System | 622110 | 1 | 56 | 93510
+2024 | HI | WAILUKU | 36636050 MAUI MEMORIAL   COTTAGE BUILDINGS | Kaiser Foundation Health Plan | 622110 | 1 | 47 | 77508
+2023 | HI | Honolulu | The Queen's Health System | The Queen's Health System | 622110 | 1 | 45 | 71683
+2023 | HI | WAILUKU | 12636050 HAWAII REGION | Kaiser Foundation Health Plan HAWAII REGION | 622110 | 1 | 42 | 72344
+2024 | HI | Kaunakakai | Na Pu'uwai | Na Pu'uwai | 622110 | 1 | 37 | 54881
+2024 | HI | LANAI CITY | 36136051 LANAI COMMUNITY HOSPITAL | Kaiser Foundation Health Plan | 622110 | 1 | 37 | 63443
+2023 | HI | LANAI CITY | 36136051 LANAI COMMUNITY HOSPITAL | Kaiser Foundation Health Plan LANAI COMMUNITY HOSPITAL | 622110 | 1 | 36 | 58545
+2024 | HI | Honolulu | Hawaii Pacific Health Straub Honolulu | CPS, LLC | 446110 | 1 | 35 | 38169
+2023 | HI | Honolulu | Hawaii Pacific Health Straub Honolulu | CPS, LLC | 446110 | 1 | 22 | 23891
+2023 | HI | Honolulu | SODEXO AT KAPIOLANI MEDICAL CENTER | Sodexo Inc | 722310 | 1 | 17 | 42920
+2024 | HI | Honolulu | REHAB at Nuuanu | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 14 | 8090
+2024 | HI | Honolulu | SODEXO AT KAPIOLANI MEDICAL CENTER | Sodexo Inc | 722310 | 1 | 13 | 12399
+2023 | HI | Honolulu | REHAB at Nuuanu | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 11 | 16902
+2024 | HI | Hilo | REHAB at Hilo | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 11 | 12891
+2024 | HI | Aiea | REHAB at Aiea | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 10 | 11543
+2023 | HI | Aiea | REHAB at Aiea | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 8 | 11863
+2023 | HI | Hilo | REHAB at Hilo | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 8 | 12676
+2024 | HI | Honolulu | REHAB Physician's Clinic | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 4 | 6477
+2023 | HI | Honolulu | REHAB Physician's Clinic | The Rehabilitation Hospital of the Pacific | 622310 | 1 | 3 | 6148
+2023 | HI | Honolulu | BK-Kapiolani #628 | Kazi Restaurants of HI, Inc. dba Burger King | 722513 | 1 | 2 | 1372
+2024 | HI | Honolulu | SODEXO AT STRAUB CLINIC  and  HOSP COFFEE | Sodexo  Inc. | 722310 | 1 | 2 | 2582
+2023 | HI | Honolulu | SODEXO AT STRAUB CLINIC and HOSP COFFEE | Sodexo Inc | 722310 | 1 | 2 | 9013
+2024 | ID | Rexburg | Floyd Wilcox & Sons | Floyd Wilcox & Sons | 424480 | 1 | 80 | 172414
+2023 | ID | Rexburg | Floyd Wilcox & Sons | Floyd Wilcox & Sons | 424480 | 1 | 59 | 114565
+2024 | ID | Heyburn | Southwind by Wilcox LLC | Southwind by Wilcox LLC | 424480 | 1 | 33 | 65718
+2024 | ID | Rexburg | Keith Wilcox & Sons | Keith Wilcox & Sons | 424480 | 1 | 32 | 77211
+2023 | ID | Heyburn | Southwind by Wilcox LLC | Southwind by Wilcox LLC | 424480 | 1 | 32 | 68222
+2023 | ID | Rexburg | Keith Wilcox & Sons | Keith Wilcox & Sons | 424480 | 1 | 29 | 68423
+2023 | IL | Normal | Wilcox Electric & Service inc. | Wilcox Electric & Service Inc. | 238210 | 1 | 25 | 45945
+2024 | KS | Chanute | Chanute Manufacturing Co | The Babcock & Wilcox Company | 332410 | 1 | 171 | 329083
+2023 | KS | Chanute | Chanute Manufacturing Co | The Babcock & Wilcox Company | 332410 | 1 | 158 | 302430
+2024 | KS | Shawnee | Straub Construction Co Inc | Straub Construction Co Inc | 236220 | 1 | 52 | 105956
+2023 | KS | Shawnee | Straub Construction Co Inc | Straub Construction Co Inc | 236220 | 1 | 51 | 102891
+2024 | LA | Alexandria | CHRISTUS St. Frances Cabrini Hospital | CHRISTUS Health | 622110 | 1 | 1766 | 245776938
+2024 | LA | Lake Charles | CHRISTUS St. Patrick's Hospital | CHRISTUS Health | 622110 | 1 | 844 | 120431119
+2023 | LA | Alexandria | Christus St. Frances Cabrini Hospital - EVS | Hospital Housekeeping Systems | 561720 | 1 | 103 | 172036
+2024 | LA | Alexandria | Christus St. Frances Cabrini Hospital - EVS | Hospital Housekeeping Systems | 561720 | 1 | 99 | 185554
+2024 | LA | ALEXANDRIA | CHRISTUS St Frances Cabrini | Compass Group | 722310 | 1 | 79 | 144192
+(664 rows; csv has all)

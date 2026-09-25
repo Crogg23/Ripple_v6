@@ -1,0 +1,7 @@
+-- S10 FracFocus: disclosures by form version, how many carry water rows, per-disclosure percent sums and duplicate rows
+FFV | DISCL | DUP_IN_LIST | WITH_WATER | P100 | P_OVER | P_UNDER | DUP_ROWS | DUP_WSID | HAS_JOB_DATE | VOL_POS | VOL_MED
+1 | 43834 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 13617 | 1571715.0000000
+2 | 74056 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 73862 | 2800520.5000000
+3 | 96150 | 0 | 37 | 37 | 0 | 0 | 0 | 0 | 0 | 95635 | 11941650.0000000
+4 | 34795 | 0 | 20265 | 19998 | 0 | 267 | 0 | 0 | 0 | 34794 | 19313826.0000000
+(4 rows; csv has all)

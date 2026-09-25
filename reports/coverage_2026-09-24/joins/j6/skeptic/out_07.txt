@@ -1,0 +1,15 @@
+with ie as (select *, try_to_date(EXP_DATE,'DD-MON-YY') d from LIBRARY_MARTS.FINANCE.FINANCE__FED_FEC_INDEPENDENT_EXPENDITURES where SPE_ID = 'C00796045')
+select upper(CAND_NAME) cand, CAN_OFFICE_STATE st, SUP_OPP, FEC_ELECTION_YR, IS_SUPERSEDED::string sup, AMNDT_IND,
+ count(*) n, count(distinct TRAN_ID) tran_ids, count(distinct FILE_NUM) files, sum(EXP_AMO) amt, min(d) d0, max(d) d1,
+ count(distinct TRAN_ID||'|'||EXP_AMO::string||'|'||EXP_DATE) distinct_lines
+from ie group by 1,2,3,4,5,6 order by 4,1,5
+
+[07] 7 rows
+CAND | ST | SUP_OPP | FEC_ELECTION_YR | SUP | AMNDT_IND | N | TRAN_IDS | FILES | AMT | D0 | D1 | DISTINCT_LINES
+LEAVITT, KAROLINE | NH | S | 2022 | False | N | 3 | 3 | 3 | 204116.0 | 2022-08-24 | 2022-08-29 | 3
+MILLS, CORY | FL | S | 2022 | False | N | 1 | 1 | 1 | 5000.0 | 2022-08-18 | 2022-08-18 | 1
+VEGA, YESLI | VA | S | 2022 | False | N | 4 | 4 | 2 | 106773.75 | 2022-06-15 | 2022-06-16 | 4
+WALKER, HERSCHEL | GA | S | 2022 | False | N | 1 | 1 | 1 | 80000.0 | 2022-12-01 | 2022-12-01 | 1
+ALLRED, COLIN | TX | O | 2024 | False | N | 44 | 44 | 36 | 21952920.490000002 | 2024-07-29 | 2024-11-04 | 44
+CRUZ, RAFAEL | TX | S | 2024 | False | N | 32 | 32 | 28 | 3864738.34 | 2024-01-05 | 2024-11-05 | 32
+TALARICO, JAMES | TX | O | 2026 | False | N | 2 | 2 | 1 | 1751968.0 | 2026-08-21 | 2026-08-24 | 2

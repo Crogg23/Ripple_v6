@@ -1,0 +1,9 @@
+-- S08 AQS: open vs closed by setting, date sanity, coordinate sanity, duplicate IDs
+LOCATION_SETTING | N | IDS | OPEN_NOW | OPENED_AFTER_EXTRACT | CLOSED_AFTER_EXTRACT | CLOSED_BEFORE_OPEN | NO_OPEN_DATE | JAN1_OPEN | NO_LAT | STATES | AGENCIES | EX0 | EX1
+ | 20994 | 20994 | 4744 | 2 | 0 | 0 | 0 | 13080 | 874 | 56 | 795 | 2026-06-26 | 2026-06-26
+SUBURBAN | 6817 | 6817 | 1620 | 1 | 0 | 0 | 0 | 4249 | 99 | 55 | 399 | 2026-06-26 | 2026-06-26
+URBAN AND CENTER CITY | 6195 | 6195 | 1246 | 1 | 0 | 0 | 0 | 3861 | 96 | 56 | 333 | 2026-06-26 | 2026-06-26
+RURAL | 6034 | 6034 | 1849 | 0 | 0 | 0 | 0 | 3065 | 75 | 56 | 601 | 2026-06-26 | 2026-06-26
+ | 1017 | 1017 | 16 | 0 | 0 | 0 | 0 | 994 | 2 | 43 | 90 | 2026-06-26 | 2026-06-26
+UNKNOWN | 931 | 931 | 13 | 0 | 0 | 0 | 0 | 911 | 602 | 45 | 86 | 2026-06-26 | 2026-06-26
+(6 rows; csv has all)

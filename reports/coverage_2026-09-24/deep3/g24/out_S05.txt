@@ -1,0 +1,7 @@
+-- S05 FDIC join test: do failed banks and enforcement-order banks land in the bank directory by CERT?
+SRC | N | WITH_CERT | LANDED
+failed_all | 3522 | 3037 | 3037
+failed_2000_on | 579 | 579 | 579
+orders_certs | 4241 | 4241 | 4224
+orders_certs_active | 4241 | 4241 | 1310
+(4 rows; csv has all)

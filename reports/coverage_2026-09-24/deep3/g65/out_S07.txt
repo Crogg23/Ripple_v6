@@ -1,0 +1,4 @@
+-- S07 Google geo spend: profile. Grain, full-row duplicates, spend as numbers, rounding, non-USD columns
+N | ADV_IDS | ADV_NAMES | ID_GEO_KEYS | DISTINCT_ROWS | SUBS | SUB_BLANK | USD_NOT_NUM | USD_SUM | USD_MAX | USD_0 | USD_NOT_X100 | EUR_NZ | GBP_NZ | INR_NZ | AUD_NZ | BRL_NZ | MXN_NZ
+614078 | 16102 | 15567 | 602777 | 614078 | 56 | 11301 | 0 | 2534617600 | 15595900 | 104801 | 0 | 0 | 1 | 0 | 0 | 0 | 0
+(1 rows; csv has all)

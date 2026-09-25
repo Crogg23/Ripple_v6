@@ -1,0 +1,4 @@
+-- S07 USAspending API sample: do its 300 award IDs already sit in the full contract and assistance tables?
+KIND | N | IN_CONTRACTS_R2 | IN_ASSISTANCE_FULL | MIN_AMT
+grant | 300 | 0 | 100 | 151333151.76
+(1 rows; csv has all)

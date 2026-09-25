@@ -1,0 +1,4 @@
+-- S15 Connecticut in the ZIP tables: CT ZIPs in the crosswalk vs CT rows in DIM_ZIP_POINT; which dot holds the most ZIPs
+CT_ZIPS_IN_XWALK | CT_ROWS_IN_POINT | BIGGEST_DOT
+288 | 0 | 06037 los angeles county 304
+(1 rows; csv has all)

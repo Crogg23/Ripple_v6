@@ -1,0 +1,1004 @@
+{
+"cols": [
+"SRC",
+"ID",
+"D",
+"AG",
+"WHAT",
+"AMT"
+],
+"rows": [
+[
+"FEC_CASE",
+"110000448043",
+"07-1995-0132",
+"45360",
+"MINNESOTA CORN PROCESSORS / COLUMBUS",
+"311221"
+],
+[
+"FEC_CASE",
+"110000448043",
+"07-2001-0108",
+"47261",
+"MINNESOTA CORN PROCESSORS / COLUMBUS",
+"311221"
+],
+[
+"FEC_CASE",
+"110000448043",
+"07-2001-0111",
+"47264",
+"MINNESOTA CORN PROCESSORS / COLUMBUS",
+"311221"
+],
+[
+"FEC_CASE",
+"110000448043",
+"07-2003-0349",
+"106755",
+"ARCHER DANIEL MIDLAND COMPANY / COLUMBUS",
+"311221"
+],
+[
+"FEC_CASE",
+"110000448043",
+"07-2013-0196",
+"3400151958",
+"ARCHER DANIEL MIDLAND COMPANY / COLUMBUS",
+"311221"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2001-0220",
+"47368",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"325193"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2001-0220",
+"47368",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"311224"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2001-0220",
+"47368",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"325193"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2001-0220",
+"47368",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"311224"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2004-0226",
+"122217",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"311224"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2004-0226",
+"122217",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"325193"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2004-0226",
+"122217",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"325193"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2004-0226",
+"122217",
+"AGP CORN PROCESSING INCORPORATED / HASTINGS",
+"311224"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2017-0403",
+"3600820468",
+"AGP CORN PROCESSING / HASTINGS",
+"311224"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2017-0403",
+"3600820468",
+"AGP CORN PROCESSING / HASTINGS",
+"325193"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2017-0403",
+"3600820468",
+"AGP CORN PROCESSING / HASTINGS",
+"325193"
+],
+[
+"FEC_CASE",
+"110000448472",
+"07-2017-0403",
+"3600820468",
+"AGP CORN PROCESSING / HASTINGS",
+"311224"
+],
+[
+"FEC_CASE",
+"110000596793",
+"07-1992-0401",
+"44551",
+"ASH GROVE CEMENT COMPANY / LOUISVILLE",
+"327310"
+],
+[
+"FEC_CASE",
+"110000596793",
+"07-1992-0401",
+"44551",
+"ASH GROVE CEMENT COMPANY / LOUISVILLE",
+"327310"
+],
+[
+"FEC_CASE",
+"110000596793",
+"07-2011-0294",
+"2600055720",
+"ASH GROVE CEMENT CO / LOUISVILLE",
+"327310"
+],
+[
+"FEC_CASE",
+"110000596793",
+"07-2011-0294",
+"2600055720",
+"ASH GROVE CEMENT CO / LOUISVILLE",
+"327310"
+],
+[
+"FEC_CASE",
+"110000596793",
+"07-2018-0237",
+"3601557174",
+"ASH GROVE CEMENT CO / LOUISVILLE",
+"327310"
+],
+[
+"FEC_CASE",
+"110000596793",
+"07-2018-0237",
+"3601557174",
+"ASH GROVE CEMENT CO / LOUISVILLE",
+"327310"
+],
+[
+"FEC_CASE",
+"110000615503",
+"07-2003-0171",
+"97797",
+"UNION PACIFIC RAILROAD / NORTH PLATTE",
+"482111"
+],
+[
+"FEC_CASE",
+"110017404548",
+"07-2011-0215",
+"2600040001",
+"GRAIN PROCESSING CORPORATION / MUSCATINE",
+"311221"
+],
+[
+"FEC_CASE",
+"110017404548",
+"07-2011-0314",
+"2600061121",
+"GRAIN PROCESSING CORP / MUSCATINE",
+"311221"
+],
+[
+"FEC_CASE",
+"110017404548",
+"07-2013-0083",
+"3400098443",
+"GRAIN PROCESSING CORPORATION / MUSCATINE",
+"311221"
+],
+[
+"FEC_CASE",
+"110029535171",
+"07-2011-0089",
+"2200037106",
+"SIOUXLAND ETHANOL, LLC / JACKSON",
+"325193"
+],
+[
+"FEC_CASE",
+"110030484107",
+"07-2013-0053",
+"3400080815",
+"E ENERGY ADAMS, LLC / ADAMS",
+"325193"
+],
+[
+"FEC_CASE",
+"110030484107",
+"07-2015-0078",
+"3600067379",
+"E ENERGY ADAMS / ADAMS",
+"325193"
+],
+[
+"FEC_CASE",
+"110031127126",
+"07-2009-0152",
+"1800001281",
+"ABENGOA BIOENERGY OF NEBRASKA / RAVENNA",
+"325193"
+],
+[
+"FEC_CASE",
+"110031127126",
+"07-2010-0021",
+"1800055599",
+"ABENGOA BIOENERGY OF NEBRASKA / RAVENNA",
+"325193"
+],
+[
+"FEC_CASE",
+"110031127126",
+"07-2011-0021",
+"2200024386",
+"ABENGOA BIOENERGY OF NEBRASKA / RAVENNA",
+"325193"
+],
+[
+"FEC_EPA_INF",
+"110000596793",
+"2007-07-09",
+"ICIS EPA",
+"Notice of Noncompliance Issued",
+"CWA"
+],
+[
+"FEC_EPA_INF",
+"110000596793",
+"2008-04-17",
+"ICIS EPA",
+"Notice of Noncompliance Issued",
+"CWA"
+],
+[
+"FEC_EPA_INF",
+"110000615503",
+"2009-05-19",
+"RCRAINFO EPA",
+"Notice of Violation",
+"RCRA"
+],
+[
+"FEC_EPA_INF",
+"110017404548",
+"2007-05-30",
+"RCRAINFO EPA",
+"Letter of Violation/ Warning Letter",
+"RCRA"
+],
+[
+"RCRA_ENF",
+"IAD005269923",
+"1999-09-29",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"IAD005269923",
+"2007-05-30",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1987-11-30",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1988-05-12",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1988-08-29",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1989-05-26",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1990-04-09",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1990-05-31",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1990-08-08",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1990-10-02",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1991-03-04",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1991-07-31",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1992-03-23",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1992-06-03",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1992-07-22",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1993-04-01",
+"S",
+"HQ110 VERBAL INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1993-04-08",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1993-07-08",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1993-09-27",
+"E",
+"HQ210 INITIAL 3008(A) COMPLIANCE",
+"1274900"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1994-08-23",
+"S",
+"HQ310 FINAL 3008(A) COMPLIANCE ORDER",
+"15000"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1995-03-20",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED007260672",
+"1996-09-26",
+"E",
+"HQ310 FINAL 3008(A) COMPLIANCE ORDER",
+"220000"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"1986-08-29",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"1994-12-06",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"1995-10-27",
+"S",
+"HQ610 FINAL CIVIL JUDICIAL ACTION FOR COMPLIANCE AND/OR MONETARY PENALTY",
+"8000"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"1998-09-14",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"2003-07-15",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"2009-05-19",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED047042270",
+"2014-07-23",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED986387942",
+"1997-12-12",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NED986387942",
+"2025-11-17",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NER000500207",
+"2002-08-30",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NER000504902",
+"2006-06-02",
+"S",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_ENF",
+"NER000505917",
+"2015-08-20",
+"E",
+"HQ120 WRITTEN INFORMAL",
+"0"
+],
+[
+"RCRA_VIOL",
+"IAD005269923",
+"1998-06-16",
+"E",
+"262.A Standards Applicable to Generators of HW: General",
+"1998-06-23"
+],
+[
+"RCRA_VIOL",
+"IAD005269923",
+"2007-03-28",
+"E",
+"273.B Standards for Universal Waste Management: Standards for Small Quantity Handlers",
+"2007-04-02"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1987-09-30",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1988-01-07"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1988-04-01",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1988-05-31"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1988-07-27",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1988-11-21"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1988-07-27",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1988-09-30"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1988-08-22",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1988-09-29"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1988-08-22",
+"S",
+"264.G Standards for Owners and Operators of HW TSDs: Closure and Post-Closure",
+"1988-09-29"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1989-05-26",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1989-06-28"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1989-09-19",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1990-10-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1989-09-19",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1990-10-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1990-04-09",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1990-05-01"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1990-08-08",
+"E",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1990-08-16"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1991-03-04",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1991-03-15"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1991-07-31",
+"E",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1991-08-10"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1991-07-31",
+"E",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1991-08-19"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1992-03-23",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1992-04-09"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1992-06-03",
+"S",
+"264.C Standards for Owners and Operators of HW TSDs: Preparedness and Prevention",
+"1992-07-01"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1992-06-03",
+"S",
+"264.D Standards for Owners and Operators of HW TSDs: Contingency Plan and Emergency Procedures",
+"1992-07-01"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1992-07-22",
+"E",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1992-08-01"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-04-01",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1993-04-12"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-07-08",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1993-08-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-07-08",
+"S",
+"264.A Standards for Owners and Operators of HW TSDs: General",
+"1993-08-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-07-08",
+"S",
+"264.J Standards for Owners and Operators of HW TSDs: Tank Systems",
+"1993-08-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-07-08",
+"S",
+"264.D Standards for Owners and Operators of HW TSDs: Contingency Plan and Emergency Procedures",
+"1993-08-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-07-08",
+"S",
+"264.D Standards for Owners and Operators of HW TSDs: Contingency Plan and Emergency Procedures",
+"1993-08-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1993-07-08",
+"S",
+"262.C Standards Applicable to Generators of HW: Pre-Transport Requirements Applicable to Small and Large Quantity Generators",
+"1993-08-23"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1995-03-17",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1995-04-20"
+],
+[
+"RCRA_VIOL",
+"NED007260672",
+"1995-03-20",
+"S",
+"264.H Standards for Owners and Operators of HW TSDs: Financial Requirements",
+"1995-04-20"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1986-08-15",
+"S",
+"262.A Standards Applicable to Generators of HW: General",
+"1986-10-03"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1994-12-06",
+"S",
+"262.C Standards Applicable to Generators of HW: Pre-Transport Requirements Applicable to Small and Large Quantity Generators",
+"1995-10-27"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1994-12-06",
+"S",
+"262.C Standards Applicable to Generators of HW: Pre-Transport Requirements Applicable to Small and Large Quantity Generators",
+"1995-10-27"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1994-12-06",
+"S",
+"262.D Standards Applicable to Recordkeeping and Reporting Applicable to Small and Large Quantity Generators",
+"1995-01-06"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1994-12-06",
+"S",
+"262.B Standards Applicable to Generators of HW: Manifest Requirements Applicable to Small and Large Quantity Generators",
+"1995-01-06"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1994-12-06",
+"S",
+"268.A Land Disposal Restrictions: General",
+"1995-01-06"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"1994-12-06",
+"S",
+"262.A Standards Applicable to Generators of HW: General",
+"1995-01-06"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2003-07-15",
+"E",
+"262.A Standards Applicable to Generators of HW: General",
+"2003-10-03"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2003-10-15",
+"E",
+"262.A Standards Applicable to Generators of HW: General",
+"2004-06-30"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2009-05-19",
+"E",
+"279.C Standards for Used Oil: Generators",
+"2009-05-26"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2009-05-19",
+"E",
+"273.B Standards for Universal Waste Management: Standards for Small Quantity Handlers",
+"2009-05-26"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2014-07-23",
+"S",
+"262.C Standards Applicable to Generators of HW: Pre-Transport Requirements Applicable to Small and Large Quantity Generators",
+"2014-06-27"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2014-07-23",
+"S",
+"262.D Standards Applicable to Recordkeeping and Reporting Applicable to Small and Large Quantity Generators",
+"2014-06-27"
+],
+[
+"RCRA_VIOL",
+"NED047042270",
+"2014-07-23",
+"S",
+"262.A Standards Applicable to Generators of HW: General",
+"2014-06-27"
+],
+[
+"RCRA_VIOL",
+"NED986387942",
+"1997-06-11",
+"E",
+"262.A Standards Applicable to Generators of HW: General",
+"1997-07-08"
+],
+[
+"RCRA_VIOL",
+"NED986387942",
+"2025-11-17",
+"S",
+"273.B Standards for Universal Waste Management: Standards for Small Quantity Handlers",
+"2025-11-17"
+],
+[
+"RCRA_VIOL",
+"NER000500207",
+"2002-08-30",
+"S",
+"262.D Standards Applicable to Recordkeeping and Reporting Applicable to Small and Large Quantity Generators",
+"2002-09-23"
+],
+[
+"RCRA_VIOL",
+"NER000500207",
+"2002-08-30",
+"S",
+"262.A Standards Applicable to Generators of HW: General",
+"2002-09-23"
+],
+[
+"RCRA_VIOL",
+"NER000500207",
+"2002-08-30",
+"S",
+"262.C Standards Applicable to Generators of HW: Pre-Transport Requirements Applicable to Small and Large Quantity Generators",
+"2002-09-23"
+],
+[
+"RCRA_VIOL",
+"NER000504902",
+"2006-06-02",
+"S",
+"262.C Standards Applicable to Generators of HW: Pre-Transport Requirements Applicable to Small and Large Quantity Generators",
+"2006-07-06"
+],
+[
+"RCRA_VIOL",
+"NER000504902",
+"2006-06-02",
+"S",
+"265.C Interim Status Standards for Owners and Operators of HW TSDs: Preparedness and Prevention",
+"2006-07-06"
+],
+[
+"RCRA_VIOL",
+"NER000504902",
+"2006-06-02",
+"S",
+"262.A Standards Applicable to Generators of HW: General",
+"2006-07-06"
+],
+[
+"RCRA_VIOL",
+"NER000505917",
+"2015-08-20",
+"E",
+"273.B Standards for Universal Waste Management: Standards for Small Quantity Handlers",
+"2015-09-01"
+],
+[
+"RCRA_VIOL",
+"NER000505917",
+"2015-08-20",
+"E",
+"262.A Standards Applicable to Generators of HW: General",
+"2015-09-01"
+]
+]
+}

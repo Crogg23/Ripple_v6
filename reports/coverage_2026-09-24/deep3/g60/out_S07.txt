@@ -1,0 +1,10 @@
+-- S07 WIND vs 3_1 GENERATOR: wind-turbine generators in the master list by status, and whether each lands in the wind sheet; plus wind-sheet rows missing from the master
+DIR | PM | ST | N | N_LAND | MW | MW_LAND | N_MW_DISAGREE
+master_to_wind | WS | OP | 3 | 3 | 172.0 | 172.0 | 0
+master_to_wind | WT | OA | 4 | 4 | 283.0 | 283.0 | 0
+master_to_wind | WT | OP | 1538 | 1538 | 152963.0 | 152963.0 | 0
+master_to_wind | WT | OS | 18 | 18 | 72.0 | 72.0 | 0
+wind_to_master |  | OA | 4 | 4 | 283.0 | 283.0 | 
+wind_to_master |  | OP | 1541 | 1541 | 153135.0 | 153135.0 | 
+wind_to_master |  | OS | 18 | 18 | 72.0 | 72.0 | 
+(7 rows; csv has all)

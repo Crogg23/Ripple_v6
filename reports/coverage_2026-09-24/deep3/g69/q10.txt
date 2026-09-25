@@ -1,0 +1,2 @@
+===== q10 (stmt 10) ERROR: 001104 (42601): SQL compilation error: error line 16 at position 83
+'M.DET' in select clause is neither an aggregate nor in the group by clause.

@@ -1,0 +1,51 @@
+-- S18 Peer test: same-PAC panel for leadership PACs (designation D) vs ordinary non-connected PACs (types N/Q, designation U), $250K+ spending in both cycles; plus partial-cycle rows
+WITH p AS (SELECT CMTE_ID, IFF(COMMITTEE_DESIGNATION = 'D', 'leadership', 'nonconnected') grp,
+                  YEAR(COVERAGE_END_DATE) + MOD(YEAR(COVERAGE_END_DATE), 2) cyc, COVERAGE_END_DATE ced, TOTAL_DISBURSEMENTS disb,
+                  (COALESCE(CONTRIBUTIONS_TO_OTHER_COMMITTEES,0) + COALESCE(INDEPENDENT_EXPENDITURES,0) + COALESCE(TRANSFERS_TO_AFFILIATES,0)) / NULLIF(TOTAL_DISBURSEMENTS,0) share
+           FROM LIBRARY_MARTS.POLITICS.POLITICS__FED_FEC_PAC_SUMMARY
+           WHERE COVERAGE_END_DATE IS NOT NULL AND CMTE_ID NOT IN ('C00828541','C00762591')
+             AND (COMMITTEE_DESIGNATION = 'D' OR (COMMITTEE_DESIGNATION = 'U' AND COMMITTEE_TYPE IN ('N','Q')))),
+pairs AS (SELECT a.grp, a.cyc c0, b.cyc c1, a.share s0, b.share s1, a.disb d0, b.disb d1, b.ced ced1
+          FROM p a JOIN p b ON a.CMTE_ID = b.CMTE_ID AND a.grp = b.grp AND b.cyc = a.cyc + 2
+          WHERE a.disb >= 250000 AND b.disb >= 250000)
+SELECT grp, c0, c1, COUNT(*) pacs, ROUND(MEDIAN(s0),3) med_s0, ROUND(MEDIAN(s1),3) med_s1, ROUND(MEDIAN(s1 - s0),3) med_change,
+       COUNT_IF(s1 < s0 - 0.25) fell_25pts, COUNT_IF(s1 > s0 + 0.25) rose_25pts, COUNT_IF(s1 < 0.10) under10_after, COUNT_IF(s0 < 0.10) under10_before,
+       ROUND(SUM(s0*d0)/SUM(d0),3) wshare0, ROUND(SUM(s1*d1)/SUM(d1),3) wshare1, COUNT_IF(MONTH(ced1) <> 12) partial_cycle_after
+FROM pairs GROUP BY 1,2,3 ORDER BY 1,2;
+
+-- S19 The leadership PACs whose share collapsed 2022 to 2024 (fell 25+ points, or under 10% in 2024), with money detail; plus the two Trump committees
+WITH p AS (SELECT *, YEAR(COVERAGE_END_DATE) + MOD(YEAR(COVERAGE_END_DATE), 2) cyc,
+                  (COALESCE(CONTRIBUTIONS_TO_OTHER_COMMITTEES,0) + COALESCE(INDEPENDENT_EXPENDITURES,0) + COALESCE(TRANSFERS_TO_AFFILIATES,0)) / NULLIF(TOTAL_DISBURSEMENTS,0) share
+           FROM LIBRARY_MARTS.POLITICS.POLITICS__FED_FEC_PAC_SUMMARY WHERE COMMITTEE_DESIGNATION = 'D' AND COVERAGE_END_DATE IS NOT NULL),
+a AS (SELECT * FROM p WHERE cyc = 2022), b AS (SELECT * FROM p WHERE cyc = 2024)
+SELECT b.CMTE_ID, b.COMMITTEE_NAME, b.COMMITTEE_TYPE, b.COVERAGE_END_DATE,
+       ROUND(a.TOTAL_DISBURSEMENTS/1e3) disb22_k, ROUND(a.share,3) share22, ROUND(b.TOTAL_DISBURSEMENTS/1e3) disb24_k, ROUND(b.share,3) share24,
+       ROUND(b.TOTAL_RECEIPTS/1e3) rcpt24_k, ROUND(b.INDIVIDUAL_CONTRIBUTIONS/1e3) indiv24_k, ROUND(b.PAC_CONTRIBUTIONS/1e3) pac24_k,
+       ROUND(b.TRANSFERS_FROM_AFFILIATES/1e3) tfr_in24_k, ROUND(b.CONTRIBUTIONS_TO_OTHER_COMMITTEES/1e3) contrib24_k, ROUND(b.TRANSFERS_TO_AFFILIATES/1e3) tfr_out24_k,
+       ROUND(b.CASH_BEGINNING_OF_PERIOD/1e3) cash_open24_k, ROUND(b.CASH_CLOSE_OF_PERIOD/1e3) cash_close24_k, ROUND(b.DEBTS_OWED_BY/1e3) debt24_k
+FROM b LEFT JOIN a ON a.CMTE_ID = b.CMTE_ID
+WHERE b.CMTE_ID IN ('C00828541','C00762591')
+   OR (a.TOTAL_DISBURSEMENTS >= 250000 AND b.TOTAL_DISBURSEMENTS >= 250000 AND (b.share < 0.10 OR b.share < a.share - 0.25))
+ORDER BY b.share;
+
+-- S20 DERA trap check: PERIOD vs the date in the XBRL file name (INSTANCE), all nine quarters; and big-filer late counts under each date
+WITH s AS (
+  SELECT '2024Q1' q, * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q1 UNION ALL
+  SELECT '2024Q2', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q2 UNION ALL
+  SELECT '2024Q3', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q3 UNION ALL
+  SELECT '2024Q4', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2024Q4 UNION ALL
+  SELECT '2025Q1', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q1 UNION ALL
+  SELECT '2025Q2', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q2 UNION ALL
+  SELECT '2025Q3', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q3 UNION ALL
+  SELECT '2025Q4', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2025Q4 UNION ALL
+  SELECT '2026Q1', * FROM LIBRARY_MARTS.FINANCE.FINANCE__FED_SEC_DERA_SUB_2026Q1),
+x AS (SELECT q, NAME, FORM, AFS, TRY_TO_DATE(PERIOD,'YYYYMMDD') pd, TRY_TO_DATE(REGEXP_SUBSTR(INSTANCE,'(19|20)[0-9]{6}'),'YYYYMMDD') idt, TRY_TO_DATE(FILED,'YYYYMMDD') fd,
+             IFF(FORM = '10-K', IFF(LEFT(AFS,1) = '1', 60, 75) + 15, 40 + 5) + 3 allowed
+      FROM s WHERE FORM IN ('10-K','10-Q')),
+y AS (SELECT *, DATEDIFF(day, pd, fd) > allowed AND LEFT(AFS,1) IN ('1','2') late_pd,
+             DATEDIFF(day, COALESCE(idt, pd), fd) > allowed AND LEFT(AFS,1) IN ('1','2') late_idt FROM x)
+SELECT q, COUNT(*) n, COUNT(idt) has_idt, COUNT_IF(idt <> pd) differ, COUNT_IF(ABS(DATEDIFF(day, idt, pd)) BETWEEN 1 AND 16) differ_le16d,
+       COUNT_IF(ABS(DATEDIFF(day, idt, pd)) > 16) differ_gt16d, COUNT_IF(late_pd) late_by_period, COUNT_IF(late_idt) late_by_filename,
+       ARRAY_AGG(IFF(late_pd AND NOT late_idt, NAME || ' ' || FORM || ' p=' || pd || ' file=' || idt, NULL)) late_only_by_period,
+       ARRAY_AGG(IFF(ABS(DATEDIFF(day, idt, pd)) > 60, NAME || ' ' || FORM || ' p=' || pd || ' file=' || idt, NULL)) big_mismatch
+FROM y GROUP BY 1 ORDER BY 1;

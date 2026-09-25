@@ -1,0 +1,9 @@
+-- S09 USGS minerals: by development status, fill of the columns said to be empty, ID uniqueness, coordinates, newest years (S06 rerun without the missing run-id column)
+DEV_STAT | N | DEP_IDS | MRDS_IDS | MRDS_FILLED | NOTES_FILLED | COMMODITY_FILLED | PROD_FILLED | STATE_FILLED | FIPS_FILLED | YEAR_FILLED | LAT_BAD | MAX_LAST_PROD | MAX_DISC | MAX_FIRST_PROD | LAST_PROD_2000PLUS | US_ROWS | COM_TYPE_EX
+Past Producer | 128823 | 128823 | 54078 | 63887 | 0 | 0 | 0 | 124079 | 0 | 0 | 7 | 2013 | 2002 | 1997 | 13 | 118564 | M
+Occurrence | 67526 | 67526 | 43571 | 47526 | 0 | 0 | 0 | 65149 | 0 | 0 | 4 | 1987 | 1995 | 1988 | 0 | 55790 | M
+Producer | 42879 | 42879 | 21978 | 22857 | 0 | 0 | 0 | 39970 | 0 | 0 | 3 | 2009 | 2001 | 2006 | 28 | 33597 | N
+Prospect | 35587 | 35587 | 11456 | 12083 | 0 | 0 | 0 | 34385 | 0 | 0 | 3 | 1997 | 2002 | 2007 | 0 | 32186 | M
+Unknown | 26809 | 26809 | 7007 | 7034 | 0 | 0 | 0 | 26260 | 0 | 0 | 2 | 1992 | 1995 | 1988 | 0 | 25258 | N
+Plant | 3008 | 3008 | 417 | 441 | 0 | 0 | 0 | 2305 | 0 | 0 | 0 | 2009 | 1996 | 1996 | 1 | 1204 | M
+(6 rows; csv has all)

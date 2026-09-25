@@ -1,0 +1,86 @@
+[
+ {
+  "table": "SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS",
+  "schema": "SCIENCE_RESEARCH",
+  "rows": "10",
+  "score": "1.5",
+  "tags": "TEXT",
+  "summary": "A 10-row sample, not the full set, of study plans researchers publicly registered on the Open Science Framework before running their studies.",
+  "look_for": "outliers: rows over 10x the median WITHDRAWAL_JUSTIFICATION_RAW of their peers :: dot strip | trend: spikes and step changes by year in DATE_CREATED :: line over time | rhythm: month of year and day of week in DATE_CREATED :: calendar heatmap | flag rates by group: IS_REGISTRATION; count its values first :: grouped bars | read the words: search DESCRIPTION for named products, firms or phrases :: word bars",
+  "where": "metrics: WITHDRAWAL_JUSTIFICATION_RAW; dates: DATE_CREATED, DATE_MODIFIED, DATE_REGISTERED, EMBARGO_END_DATE; flags: IS_REGISTRATION, IS_PUBLIC, IS_FORK, IS_WITHDRAWN +6; text: DESCRIPTION, REGISTRATION_RESPONSES_SUMMARY",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 10 rows | DATE_CREATED 2025-12-12 to 2026-08-08 // triage 1.0/10: None: a 10-row sample. TRAP: WITHDRAWAL_JUSTIFICATION_RAW is null on all 10 rows",
+  "battery_facts": "10 rows | DATE_CREATED 2025-12-12 to 2026-08-08",
+  "battery_traps": [
+   "WITHDRAWAL_JUSTIFICATION_RAW is null on all 10 rows"
+  ]
+ },
+ {
+  "table": "FCT_WAYBACK_PAGE_CHANGES",
+  "schema": "EPSTEIN",
+  "rows": "203305",
+  "score": "2.7",
+  "tags": "",
+  "summary": "A change log of web pages tracked for the Epstein investigation, built from Internet Archive snapshots, flagging when a page first appeared, changed, or started returning an error.",
+  "look_for": "outliers: rows over 10x the median HTTP_STATUS of their peers :: dot strip | trend: spikes and step changes by year in CAPTURED_AT :: line over time | rhythm: month of year and day of week in CAPTURED_AT :: calendar heatmap",
+  "where": "metrics: HTTP_STATUS, PREV_HTTP_STATUS, CONTENT_BYTES, HOURS_SINCE_PREV_CAPTURE; dates: CAPTURED_AT, PREV_CAPTURED_AT",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 203.3K rows | CAPTURED_AT 2025-12-19 to 2026-06-04 | HTTP_STATUS: sum 41.0M, median 200, max 503 | PREV_HTTP_STATUS: sum 35.3M, median 200, max 503, 86% filled | CONTENT_BYTES: sum 2.5B, median 12.6K, max 18.1K | top 1% of rows hold 1% of HTTP_STATUS; 0 rows over 10x median // triage 4.5/10: Which Epstein-related government pages were quietly edited or pulled (turned 404/403) and when, relative to news events?",
+  "battery_facts": "203.3K rows | CAPTURED_AT 2025-12-19 to 2026-06-04 | HTTP_STATUS: sum 41.0M, median 200, max 503 | PREV_HTTP_STATUS: sum 35.3M, median 200, max 503, 86% filled | CONTENT_BYTES: sum 2.5B, median 12.6K, max 18.1K | top 1% of rows hold 1% of HTTP_STATUS; 0 rows over 10x median",
+  "battery_traps": []
+ },
+ {
+  "table": "GOVERNANCE__FED_REVOLVINGDOOR_PROJECT",
+  "schema": "GOVERNANCE",
+  "rows": "405",
+  "score": "2.3",
+  "tags": "TEXT",
+  "summary": "405 federal appointee jobs, each tagged with the industries the person in it came from, a map of the revolving door between government and business.",
+  "look_for": "outliers: rows over 10x the median SECTOR_COUNT of their peers :: dot strip | flag rates by group: IS_SENATE_CONFIRMED; count its values first :: grouped bars | read the words: search POSITION_DESCRIPTION for named products, firms or phrases :: word bars",
+  "where": "metrics: SECTOR_COUNT; flags: IS_SENATE_CONFIRMED; text: POSITION_DESCRIPTION",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 405 rows | 362 distinct POSITION_NAME; top holds 2% of SECTOR_COUNT: Director 128; Commissioner 96; Chair 96 // triage 4.0/10: Appointees from an industry now regulating it: did their agency's enforcement against that industry drop? TRAP: SECTOR_COUNT holds one value, 16, on 405 rows",
+  "battery_facts": "405 rows | 362 distinct POSITION_NAME; top holds 2% of SECTOR_COUNT: Director 128; Commissioner 96; Chair 96",
+  "battery_traps": [
+   "SECTOR_COUNT holds one value, 16, on 405 rows"
+  ]
+ },
+ {
+  "table": "HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN",
+  "schema": "HISTORICAL_RECORDS",
+  "rows": "11521",
+  "score": "3.0",
+  "tags": "TEXT",
+  "summary": "Slave trade voyages within the Americas from the SlaveVoyages intra-American database: 11,521 voyages with ships, captains, ports, dates and the number of enslaved people carried.",
+  "look_for": "trend: spikes and step changes by year in DATE_BUY1 :: line over time | rhythm: month of year and day of week in DATE_BUY1 :: calendar heatmap | read the words: search COMMENTS for named products, firms or phrases :: word bars",
+  "where": "dates: DATE_BUY1, DATE_LEFTAFR, DATE_LAND1, DATE_LAND2; text: COMMENTS",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 11.5K rows | DATE_BUY1 1788-03-01 to 1788-03-01 | INTRAAMER top: 1 11.5K | VOYAGEID top: 113285 85, 113284 85, 113283 85 | YEARAM top: 1790 346, 1792 313, 1797 271 // triage 3.0/10: Domestic US slave shipping after 1808: which ports and captains moved the most people down the coast?",
+  "battery_facts": "11.5K rows | DATE_BUY1 1788-03-01 to 1788-03-01 | INTRAAMER top: 1 11.5K | VOYAGEID top: 113285 85, 113284 85, 113283 85 | YEARAM top: 1790 346, 1792 313, 1797 271",
+  "battery_traps": []
+ },
+ {
+  "table": "JUDICIARY__FED_OYEZ",
+  "schema": "JUDICIARY",
+  "rows": "25",
+  "score": "7.7",
+  "tags": "HARM PEOPLE OUTCOME TEXT",
+  "summary": "A 25-case sample of U.S. Supreme Court cases from Oyez, mostly from the 1971 term: the parties, the lawyers who argued, how each justice voted, and links to audio and transcripts.",
+  "look_for": "worst actors: who racks up the most CITATION :: ranked bar | outliers: rows over 10x the median TERM of their peers :: dot strip | outcomes: share of each DECISION value by entity, place or year; who loses most :: stacked bars | trend: spikes and step changes by year in DATE :: line over time | rhythm: month of year and day of week in DATE :: calendar heatmap | flag rates by group: HAS_AUDIO; count its values first :: grouped bars | read the words: search SUMMARY for named products, firms or phrases :: word bars",
+  "where": "harm: CITATION; metrics: TERM; dates: DATE, ARGUMENT_DATE, DECISION_DATE, SCRAPED_AT; flags: HAS_AUDIO, HAS_TRANSCRIPT; people: PERSON_NAME; outcomes: DECISION, DISPOSITION; text: SUMMARY",
+  "keys": "DOCKET",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 25 rows | DATE 1966-01-17 to 1973-01-22 | TERM: sum 49.3K, median 2.0K, max 2.0K | 25 distinct CASE_NAME; top holds 4% of TERM: Healy v. James 2.0K; Richardson v. Wright 2.0K; Carleson v. Remillard 2.0K // triage 1.0/10: A 25-case sample of Supreme Court cases from the 1970s.",
+  "battery_facts": "25 rows | DATE 1966-01-17 to 1973-01-22 | TERM: sum 49.3K, median 2.0K, max 2.0K | 25 distinct CASE_NAME; top holds 4% of TERM: Healy v. James 2.0K; Richardson v. Wright 2.0K; Carleson v. Remillard 2.0K",
+  "battery_traps": []
+ }
+]

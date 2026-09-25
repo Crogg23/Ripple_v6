@@ -1,0 +1,7 @@
+-- find every table that could carry hospice money, owners, officials, exclusions, Texas corporate records
+select 'MARTS' db, table_schema, table_name, row_count from LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES
+where table_schema <> 'TIMELINE' and (table_name ilike '%HOSPICE%' or table_name ilike '%LEIE%' or table_name ilike '%EXCLU%' or table_name ilike '%AFFILIAT%' or table_name ilike '%NPPES%' or table_name ilike '%POST_ACUTE%' or table_name ilike '%PAC%' or table_name ilike '%TX_SOS%' or table_name ilike '%TEXAS%' or table_name ilike '%OPENCORP%' or table_name ilike '%CORP%REG%' or table_name ilike '%GEOGRAPHIC_VAR%' or table_name ilike '%REVOC%' or table_name ilike '%CAHPS%' or table_name ilike '%OWNER%' or table_name ilike '%DOCKET%' or table_name ilike '%PART_A%' or table_name ilike '%UTILIZ%')
+union all
+select 'RAW', table_schema, table_name, row_count from LIBRARY_RAW.INFORMATION_SCHEMA.TABLES
+where table_schema='LANDING' and (table_name ilike '%HOSPICE%' or table_name ilike '%LEIE%' or table_name ilike '%EXCLU%' or table_name ilike '%AFFILIAT%' or table_name ilike '%NPPES%' or table_name ilike '%POST_ACUTE%' or table_name ilike '%PAC\\_%' or table_name ilike '%TX_SOS%' or table_name ilike '%TEXAS%' or table_name ilike '%OPENCORP%' or table_name ilike '%GEOGRAPHIC_VAR%' or table_name ilike '%REVOC%' or table_name ilike '%CAHPS%' or table_name ilike '%OWNER%' or table_name ilike '%PART_A%' or table_name ilike '%UTILIZ%' or table_name ilike '%TX\\_%')
+order by 1,2,3

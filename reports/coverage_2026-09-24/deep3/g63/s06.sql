@@ -1,0 +1,11 @@
+-- S06 denominator: all operating gas-fired generators by balancing authority and state (generator table), with row/plant counts to test completeness
+SELECT p.BALANCING_AUTHORITY_CODE ba, g.STATE,
+       COUNT(*) gens, COUNT(DISTINCT g.PLANT_CODE) plants,
+       SUM(g.WINTER_CAPACITY_MW) winter_mw, SUM(g.NAMEPLATE_CAPACITY_MW) nameplate_mw,
+       SUM(IFF(g.SWITCH_BETWEEN_OIL_AND_NATURAL_GAS = 'Y', g.WINTER_CAPACITY_MW, 0)) gen_tbl_switch_mw,
+       COUNT_IF(g.MULTIPLE_FUELS = 'Y') gen_tbl_multi
+FROM LIBRARY_MARTS.ENERGY.ENERGY__FED_EIA860_3_1_GENERATOR g
+LEFT JOIN (SELECT PLANT_CODE, MAX(BALANCING_AUTHORITY_CODE) BALANCING_AUTHORITY_CODE FROM LIBRARY_MARTS.ENERGY.ENERGY__FED_EIA860_2_PLANT GROUP BY 1) p
+       ON p.PLANT_CODE = g.PLANT_CODE
+WHERE g.STATUS = 'OP' AND g.ENERGY_SOURCE_1 = 'NG'
+GROUP BY ROLLUP(1, 2)

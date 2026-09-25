@@ -1,0 +1,286 @@
+===== ENERGY__FED_EIA861_DISTRIBUTION_SYSTEMS 10
+  DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+  UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, not a real utility.
+  UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some rows hold a filler like Adjustment 2024 instead of
+  STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and som
+  _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long number counting microseconds since 1970. Added by your 
+  _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run I
+  _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the source.
+  RECORD_ID :: A made-up ID for each row. Added by your pipeline, not the source.
+  DISTRIBUTION_CIRCUITS :: How many distribution circuits the utility runs in the state.
+  CIRCUITS_WITH_VOLTAGE_OPTIMIZATION :: How many of those circuits use voltage optimization. 0 on many rows, blank on some.
+===== ENERGY__FED_EIA861_UTILITY_DATA 36
+  DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+  UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, not a real utility.
+  UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some rows hold a filler like Adjustment 2024 instead of
+  STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and som
+  OWNERSHIP_TYPE :: Who owns it: for-profit, non-profit, government, cooperative and so on, with wording that differs by table. Some rows say Unavailable.
+  NERC_REGION :: The regional power-grid reliability area, as a short code like SERC or WECC.
+  _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long number counting microseconds since 1970. Added by your 
+  _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run I
+  _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the source.
+  RECORD_ID :: A made-up ID for the row, a long scrambled code ending in -1. Close to one per row. Added by your pipeline, not the source.
+  NERC_TRE :: Y if the utility works in the Texas grid reliability region, N if not. Blank for most utilities.
+  NERC_FRCC :: Y if the utility works in the Florida grid reliability region, N if not. Blank for almost all utilities.
+  NERC_MRO :: Y if the utility works in the Midwest grid reliability region, N if not. Blank for most utilities.
+  NERC_NPCC :: Y if the utility works in the Northeast grid reliability region, N if not. Blank for most utilities.
+  NERC_RFC :: Y if the utility works in the ReliabilityFirst grid region, N if not. Blank for most utilities.
+  NERC_SERC :: Y if the utility works in the Southeast grid reliability region, N if not. Blank for most utilities.
+  NERC_SPP :: Y if the utility works in the Southwest Power Pool reliability region, N if not. Blank for most utilities.
+  NERC_WECC :: Y if the utility works in the Western grid reliability region, N if not. Blank for most utilities.
+  RTO_CAISO :: Y if the utility takes part in California's power market, N if not. Blank for most utilities.
+  RTO_ERCOT :: Y if the utility takes part in the Texas power market, N if not. Blank for most utilities.
+  RTO_PJM :: Y if the utility takes part in the PJM power market in the mid-Atlantic and Midwest, N if not. Blank for most utilities.
+  RTO_NYISO :: Y if the utility takes part in New York's power market, N if not. Blank for most utilities.
+  RTO_SPP :: Y if the utility takes part in the Southwest Power Pool market, N if not. Blank for most utilities.
+  RTO_MISO :: Y if the utility takes part in the MISO power market in the Midwest and South, N if not. Blank for most utilities.
+  RTO_ISONE :: Y if the utility takes part in New England's power market, N if not. Blank for most utilities.
+  RTO_OTHER :: Y if the utility takes part in some other power market, N if not. Blank for most utilities.
+  ACTIVITY_GENERATION :: Y if the utility makes its own electricity, N if not. Blank for most utilities.
+  ACTIVITY_TRANSMISSION :: Y if the utility runs high-voltage power lines, N if not. Blank for most utilities.
+  ACTIVITY_BUYING_TRANSMISSION :: Y if the utility pays others to move its power over their lines, N if not. Blank for most utilities.
+  ACTIVITY_DISTRIBUTION :: Y if the utility delivers power to homes and businesses, N if not.
+  ACTIVITY_BUYING_DISTRIBUTION :: Y if the utility pays others to deliver its power, N if not. Blank for almost all utilities.
+  ACTIVITY_WHOLESALE_MARKETING :: Y if the utility sells power to other companies for resale, N if not. Blank for most utilities.
+  ACTIVITY_RETAIL_MARKETING :: Y if the utility sells power straight to customers, N if not. Blank for most utilities.
+  ACTIVITY_BUNDLED :: Y if the utility sells power and delivery together as one service, N if not. Blank for most utilities.
+  ALT_FUEL_VEHICLE :: Y or N for whether the utility runs alternative-fuel vehicles, split about evenly.
+  ALT_FUEL_VEHICLE_2 :: A second Y or N answer about alternative-fuel vehicles, mostly Y. Blank for most utilities.
+===== ENERGY__FED_EIA861_DYNAMIC_PRICING 35
+  DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+  UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, not a real utility.
+  UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some rows hold a filler like Adjustment 2024 instead of
+  SHORT_FORM :: Y if the utility filed the shorter version of the EIA survey, blank if not.
+  STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and som
+  BA_CODE :: The short code for the grid operator that balances power in the area, like MISO or PJM.
+  RESIDENTIAL_CUSTOMERS_ENROLLED :: How many home customers signed up for the utility's program. Often blank.
+  COMMERCIAL_CUSTOMERS_ENROLLED :: How many business customers signed up for the utility's program. Often blank.
+  INDUSTRIAL_CUSTOMERS_ENROLLED :: How many industrial customers signed up for the utility's program. Often blank.
+  TRANSPORTATION_CUSTOMERS_ENROLLED :: How many transportation customers, like transit systems, signed up for the utility's program. Mostly blank or 0.
+  TOTAL_CUSTOMERS_ENROLLED :: How many customers in all signed up for the utility's program.
+  _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long number counting microseconds since 1970. Added by your 
+  _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run I
+  _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the source.
+  RECORD_ID :: A row ID built from a fingerprint of the row's contents. Added by your pipeline, not the source.
+  RESIDENTIAL_TIME_OF_USE_PRICING :: Y when the utility offers homes time-of-use pricing, where the price depends on the time of day. Blank means no; Y is the only value.
+  COMMERCIAL_TIME_OF_USE_PRICING :: Y when the utility offers businesses time-of-use pricing, where the price depends on the time of day. Blank means no; Y is the only value.
+  INDUSTRIAL_TIME_OF_USE_PRICING :: Y when the utility offers industrial customers time-of-use pricing, where the price depends on the time of day. Blank means no; Y is the only value.
+  TRANSPORTATION_TIME_OF_USE_PRICING :: Y when the utility offers transportation customers time-of-use pricing, where the price depends on the time of day. Blank means no; Y is the only value.
+  RESIDENTIAL_REAL_TIME_PRICING :: Y when the utility offers homes real-time pricing, where the price follows the power market. Blank means no; Y is the only value.
+  COMMERCIAL_REAL_TIME_PRICING :: Y when the utility offers businesses real-time pricing, where the price follows the power market. Blank means no; Y is the only value.
+  INDUSTRIAL_REAL_TIME_PRICING :: Y when the utility offers industrial customers real-time pricing, where the price follows the power market. Blank means no; Y is the only value.
+  TRANSPORTATION_REAL_TIME_PRICING :: Y when the utility offers transportation customers real-time pricing, where the price follows the power market. Blank means no; Y is the only value.
+  RESIDENTIAL_VARIABLE_PEAK_PRICING :: Y when the utility offers homes variable peak pricing, where the peak price changes day to day. Blank means no; Y is the only value.
+  COMMERCIAL_VARIABLE_PEAK_PRICING :: Y when the utility offers businesses variable peak pricing, where the peak price changes day to day. Blank means no; Y is the only value.
+  INDUSTRIAL_VARIABLE_PEAK_PRICING :: Y when the utility offers industrial customers variable peak pricing, where the peak price changes day to day. Blank means no; Y is the only value.
+  TRANSPORTATION_VARIABLE_PEAK_PRICING :: Y would mean the utility offers transportation customers variable peak pricing. Empty in this table.
+  RESIDENTIAL_CRITICAL_PEAK_PRICING :: Y when the utility offers homes critical peak pricing, with extra-high prices on a few peak days. Blank means no; Y is the only value.
+  COMMERCIAL_CRITICAL_PEAK_PRICING :: Y when the utility offers businesses critical peak pricing, with extra-high prices on a few peak days. Blank means no; Y is the only value.
+  INDUSTRIAL_CRITICAL_PEAK_PRICING :: Y when the utility offers industrial customers critical peak pricing, with extra-high prices on a few peak days. Blank means no; Y is the only value.
+  TRANSPORTATION_CRITICAL_PEAK_PRICING :: Y when the utility offers transportation customers critical peak pricing, with extra-high prices on a few peak days. Blank means no; Y is the only value.
+  RESIDENTIAL_CRITICAL_PEAK_REBATE :: Y when the utility offers homes a critical peak rebate, paying customers to cut use on peak days. Blank means no; Y is the only value.
+  COMMERCIAL_CRITICAL_PEAK_REBATE :: Y when the utility offers businesses a critical peak rebate, paying customers to cut use on peak days. Blank means no; Y is the only value.
+  INDUSTRIAL_CRITICAL_PEAK_REBATE :: Y when the utility offers industrial customers a critical peak rebate, paying customers to cut use on peak days. Blank means no; Y is the only value.
+  TRANSPORTATION_CRITICAL_PEAK_REBATE :: Y when the utility offers transportation customers a critical peak rebate, paying customers to cut use on peak days. Blank means no; Y is the only value.
+===== ENERGY__FED_EIA861_NET_METERING 120
+  DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+  STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and som
+  UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, not a real utility.
+  UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some rows hold a filler like Adjustment 2024 instead of
+  BA_CODE :: The short code for the grid operator that balances power in the area, like MISO or PJM.
+  TECHNOLOGY_TYPE :: Whether the capacity is measured as AC or DC power. Sometimes blank.
+  TOTAL_CAPACITY_MW :: How much power the small generators can make, in megawatts.
+  _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long number counting microseconds since 1970. Added by your 
+  _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run I
+  _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the source.
+  RECORD_ID :: A made-up ID for the row. Added by your pipeline, not the source.
+  RESIDENTIAL_CAPACITY_MW :: Net-metered generating capacity for homes, in megawatts.
+  COMMERCIAL_CAPACITY_MW :: Net-metered generating capacity for businesses, in megawatts.
+  INDUSTRIAL_CAPACITY_MW :: Net-metered generating capacity for industrial customers, in megawatts. Mostly blank. A few values are negative.
+  TRANSPORTATION_CAPACITY_MW :: Net-metered generating capacity for transportation customers, in megawatts. Always 0 where filled.
+  RESIDENTIAL_INSTALLATIONS :: How many net-metered systems homes have.
+  COMMERCIAL_INSTALLATIONS :: How many net-metered systems businesses have.
+  INDUSTRIAL_INSTALLATIONS :: How many net-metered systems industrial customers have. Mostly blank.
+  TRANSPORTATION_INSTALLATIONS :: How many net-metered systems transportation customers have. Always 0 where filled.
+  TOTAL_INSTALLATIONS :: How many net-metered systems all customer types combined have.
+  RESIDENTIAL_ENERGY_SOLD_BACK_MWH :: Power homes sent back to the grid, in megawatt-hours. Mostly blank.
+  COMMERCIAL_ENERGY_SOLD_BACK_MWH :: Power businesses sent back to the grid, in megawatt-hours. Mostly blank.
+  INDUSTRIAL_ENERGY_SOLD_BACK_MWH :: Power industrial customers sent back to the grid, in megawatt-hours. Mostly blank.
+  TRANSPORTATION_ENERGY_SOLD_BACK_MWH :: Power transportation customers sent back to the grid, in megawatt-hours. Mostly blank.
+  TOTAL_ENERGY_SOLD_BACK_MWH :: Power all customer types combined sent back to the grid, in megawatt-hours. Mostly 0.
+  RESIDENTIAL_VIRTUAL_CAPACITY_1_MW_AND_OVER_MW :: Shared or community solar capacity for homes from projects of 1 megawatt or more, in megawatts. Mostly blank.
+  COMMERCIAL_VIRTUAL_CAPACITY_1_MW_AND_OVER_MW :: Shared or community solar capacity for businesses from projects of 1 megawatt or more, in megawatts. Mostly blank.
+  INDUSTRIAL_VIRTUAL_CAPACITY_1_MW_AND_OVER_MW :: Shared or community solar capacity for industrial customers from projects of 1 megawatt or more, in megawatts. Mostly blank.
+  TRANSPORTATION_VIRTUAL_CAPACITY_1_MW_AND_OVER_MW :: Shared or community solar capacity for transportation customers from projects of 1 megawatt or more, in megawatts. Always 0 where filled.
+  TOTAL_VIRTUAL_CAPACITY_1_MW_AND_OVER_MW :: Shared or community solar capacity for all customer types combined from projects of 1 megawatt or more, in megawatts. Mostly 0.
+  RESIDENTIAL_VIRTUAL_CUSTOMERS_1_MW_AND_OVER :: How many homes sign up for shared or community solar projects of 1 megawatt or more. Mostly blank.
+  COMMERCIAL_VIRTUAL_CUSTOMERS_1_MW_AND_OVER :: How many businesses sign up for shared or community solar projects of 1 megawatt or more. Mostly blank.
+  INDUSTRIAL_VIRTUAL_CUSTOMERS_1_MW_AND_OVER :: How many industrial customers sign up for shared or community solar projects of 1 megawatt or more. Mostly blank.
+  TRANSPORTATION_VIRTUAL_CUSTOMERS_1_MW_AND_OVER :: How many transportation customers sign up for shared or community solar projects of 1 megawatt or more. Always 0 where filled.
+  TOTAL_VIRTUAL_CUSTOMERS_1_MW_AND_OVER :: How many all customer types combined sign up for shared or community solar projects of 1 megawatt or more. Mostly 0.
+  RESIDENTIAL_VIRTUAL_CAPACITY_UNDER_1_MW_MW :: Shared or community solar capacity for homes from projects under 1 megawatt, in megawatts. Mostly blank. A few values are negative.
+  COMMERCIAL_VIRTUAL_CAPACITY_UNDER_1_MW_MW :: Shared or community solar capacity for businesses from projects under 1 megawatt, in megawatts. Mostly blank.
+  INDUSTRIAL_VIRTUAL_CAPACITY_UNDER_1_MW_MW :: Shared or community solar capacity for industrial customers from projects under 1 megawatt, in megawatts. Mostly blank. A few values are negative.
+  TRANSPORTATION_VIRTUAL_CAPACITY_UNDER_1_MW_MW :: Shared or community solar capacity for transportation customers from projects under 1 megawatt, in megawatts. Always 0 where filled.
+  TOTAL_VIRTUAL_CAPACITY_UNDER_1_MW_MW :: Shared or community solar capacity for all customer types combined from projects under 1 megawatt, in megawatts. Mostly 0. A few values are negative.
+  RESIDENTIAL_VIRTUAL_CUSTOMERS_UNDER_1_MW :: How many homes sign up for shared or community solar projects under 1 megawatt. Mostly blank.
+  COMMERCIAL_VIRTUAL_CUSTOMERS_UNDER_1_MW :: How many businesses sign up for shared or community solar projects under 1 megawatt. Mostly blank.
+  INDUSTRIAL_VIRTUAL_CUSTOMERS_UNDER_1_MW :: How many industrial customers sign up for shared or community solar projects under 1 megawatt. Mostly blank.
+  TRANSPORTATION_VIRTUAL_CUSTOMERS_UNDER_1_MW :: How many transportation customers sign up for shared or community solar projects under 1 megawatt. Always 0 where filled.
+  TOTAL_VIRTUAL_CUSTOMERS_UNDER_1_MW :: How many all customer types combined sign up for shared or community solar projects under 1 megawatt. Mostly 0.
+  RESIDENTIAL_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power paired with solar panels for homes, in megawatts. Mostly blank.
+  COMMERCIAL_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power paired with solar panels for businesses, in megawatts. Mostly blank. A few values are negative.
+  INDUSTRIAL_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power paired with solar panels for industrial customers, in megawatts. Mostly blank. A few values are negative.
+  TRANSPORTATION_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power paired with solar panels for transportation customers, in megawatts. Always 0 where filled.
+  TOTAL_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power paired with solar panels for all customer types combined, in megawatts. Mostly 0.
+  RESIDENTIAL_PV_PAIRED_INSTALLATIONS :: How many solar-plus-battery systems homes have. Mostly blank.
+  COMMERCIAL_PV_PAIRED_INSTALLATIONS :: How many solar-plus-battery systems businesses have. Mostly blank.
+  INDUSTRIAL_PV_PAIRED_INSTALLATIONS :: How many solar-plus-battery systems industrial customers have. Mostly blank.
+  TRANSPORTATION_PV_PAIRED_INSTALLATIONS :: How many solar-plus-battery systems transportation customers have. Always 0 where filled.
+  TOTAL_PV_PAIRED_INSTALLATIONS :: How many solar-plus-battery systems all customer types combined have. Mostly 0.
+  RESIDENTIAL_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the solar-paired batteries of homes can store, in megawatt-hours. Mostly blank.
+  COMMERCIAL_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the solar-paired batteries of businesses can store, in megawatt-hours. Mostly blank.
+  INDUSTRIAL_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the solar-paired batteries of industrial customers can store, in megawatt-hours. Mostly blank.
+  TRANSPORTATION_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the solar-paired batteries of transportation customers can store, in megawatt-hours. Always 0 where filled.
+  TOTAL_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the solar-paired batteries of all customer types combined can store, in megawatt-hours. Mostly 0.
+  RESIDENTIAL_NOT_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power not paired with solar for homes, in megawatts. Mostly blank.
+  COMMERCIAL_NOT_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power not paired with solar for businesses, in megawatts. Mostly blank. A few values are negative.
+  INDUSTRIAL_NOT_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power not paired with solar for industrial customers, in megawatts. Mostly blank.
+  TRANSPORTATION_NOT_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power not paired with solar for transportation customers, in megawatts. Always 0 where filled.
+  TOTAL_NOT_PV_PAIRED_BATTERY_CAPACITY_MW :: Battery power not paired with solar for all customer types combined, in megawatts. Mostly 0.
+  RESIDENTIAL_NOT_PV_PAIRED_INSTALLATIONS :: How many batteries without solar homes have. Mostly blank.
+  COMMERCIAL_NOT_PV_PAIRED_INSTALLATIONS :: How many batteries without solar businesses have. Mostly blank.
+  INDUSTRIAL_NOT_PV_PAIRED_INSTALLATIONS :: How many batteries without solar industrial customers have. Mostly blank.
+  TRANSPORTATION_NOT_PV_PAIRED_INSTALLATIONS :: How many batteries without solar transportation customers have. Always 0 where filled.
+  TOTAL_NOT_PV_PAIRED_INSTALLATIONS :: How many batteries without solar all customer types combined have. Mostly 0.
+  RESIDENTIAL_NOT_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the batteries without solar of homes can store, in megawatt-hours. Mostly blank.
+  COMMERCIAL_NOT_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the batteries without solar of businesses can store, in megawatt-hours. Mostly blank.
+  INDUSTRIAL_NOT_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the batteries without solar of industrial customers can store, in megawatt-hours. Mostly blank, and always 0 where filled.
+  TRANSPORTATION_NOT_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the batteries without solar of transportation customers can store, in megawatt-hours. Always 0 where filled.
+  TOTAL_NOT_PV_PAIRED_ENERGY_CAPACITY_MWH :: How much energy the batteries without solar of all customer types combined can store, in megawatt-hours. Mostly 0.
+  RESIDENTIAL_CAPACITY_MW_GRP2 :: Net-metered generating capacity for homes, in megawatts, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Mostly bl
+  COMMERCIAL_CAPACITY_MW_GRP2 :: Net-metered generating capacity for businesses, in megawatts, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Most
+  INDUSTRIAL_CAPACITY_MW_GRP2 :: Net-metered generating capacity for industrial customers, in megawatts, for extra technology block 2; its label was lost at load, so which technology needs a lo
+  TRANSPORTATION_CAPACITY_MW_GRP2 :: Net-metered generating capacity for transportation customers, in megawatts, for extra technology block 2; its label was lost at load, so which technology needs 
+  TOTAL_CAPACITY_MW_GRP2 :: Net-metered generating capacity for all customer types combined, in megawatts, for extra technology block 2; its label was lost at load, so which technology nee
+  RESIDENTIAL_INSTALLATIONS_GRP2 :: How many net-metered systems homes have, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Mostly blank.
+  COMMERCIAL_INSTALLATIONS_GRP2 :: How many net-metered systems businesses have, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Mostly blank.
+  INDUSTRIAL_INSTALLATIONS_GRP2 :: How many net-metered systems industrial customers have, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Mostly bla
+  TRANSPORTATION_INSTALLATIONS_GRP2 :: How many net-metered systems transportation customers have, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Always
+  TOTAL_INSTALLATIONS_GRP2 :: How many net-metered systems all customer types combined have, for extra technology block 2; its label was lost at load, so which technology needs a lookup.
+  RESIDENTIAL_ENERGY_SOLD_BACK_MWH_GRP2 :: Power homes sent back to the grid, in megawatt-hours, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Mostly blank
+  COMMERCIAL_ENERGY_SOLD_BACK_MWH_GRP2 :: Power businesses sent back to the grid, in megawatt-hours, for extra technology block 2; its label was lost at load, so which technology needs a lookup. Mostly 
+  INDUSTRIAL_ENERGY_SOLD_BACK_MWH_GRP2 :: Power industrial customers sent back to the grid, in megawatt-hours, for extra technology block 2; its label was lost at load, so which technology needs a looku
+  TRANSPORTATION_ENERGY_SOLD_BACK_MWH_GRP2 :: Power transportation customers sent back to the grid, in megawatt-hours, for extra technology block 2; its label was lost at load, so which technology needs a l
+  TOTAL_ENERGY_SOLD_BACK_MWH_GRP2 :: Power all customer types combined sent back to the grid, in megawatt-hours, for extra technology block 2; its label was lost at load, so which technology needs 
+  RESIDENTIAL_CAPACITY_MW_GRP3 :: Net-metered generating capacity for homes, in megawatts, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mostly bl
+  COMMERCIAL_CAPACITY_MW_GRP3 :: Net-metered generating capacity for businesses, in megawatts, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Most
+  INDUSTRIAL_CAPACITY_MW_GRP3 :: Net-metered generating capacity for industrial customers, in megawatts, for extra technology block 3; its label was lost at load, so which technology needs a lo
+  TRANSPORTATION_CAPACITY_MW_GRP3 :: Net-metered generating capacity for transportation customers, in megawatts, for extra technology block 3; its label was lost at load, so which technology needs 
+  TOTAL_CAPACITY_MW_GRP3 :: Net-metered generating capacity for all customer types combined, in megawatts, for extra technology block 3; its label was lost at load, so which technology nee
+  RESIDENTIAL_INSTALLATIONS_GRP3 :: How many net-metered systems homes have, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mostly blank.
+  COMMERCIAL_INSTALLATIONS_GRP3 :: How many net-metered systems businesses have, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mostly blank.
+  INDUSTRIAL_INSTALLATIONS_GRP3 :: How many net-metered systems industrial customers have, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mostly bla
+  TRANSPORTATION_INSTALLATIONS_GRP3 :: How many net-metered systems transportation customers have, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Always
+  TOTAL_INSTALLATIONS_GRP3 :: How many net-metered systems all customer types combined have, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mos
+  RESIDENTIAL_ENERGY_SOLD_BACK_MWH_GRP3 :: Power homes sent back to the grid, in megawatt-hours, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mostly blank
+  COMMERCIAL_ENERGY_SOLD_BACK_MWH_GRP3 :: Power businesses sent back to the grid, in megawatt-hours, for extra technology block 3; its label was lost at load, so which technology needs a lookup. Mostly 
+  INDUSTRIAL_ENERGY_SOLD_BACK_MWH_GRP3 :: Power industrial customers sent back to the grid, in megawatt-hours, for extra technology block 3; its label was lost at load, so which technology needs a looku
+  TRANSPORTATION_ENERGY_SOLD_BACK_MWH_GRP3 :: Power transportation customers sent back to the grid, in megawatt-hours, for extra technology block 3; its label was lost at load, so which technology needs a l
+  TOTAL_ENERGY_SOLD_BACK_MWH_GRP3 :: Power all customer types combined sent back to the grid, in megawatt-hours, for extra technology block 3; its label was lost at load, so which technology needs 
+  RESIDENTIAL_CAPACITY_MW_GRP4 :: Net-metered generating capacity for homes, in megawatts, for a fourth block whose label was lost at load; its values closely match the first block, so it looks 
+  COMMERCIAL_CAPACITY_MW_GRP4 :: Net-metered generating capacity for businesses, in megawatts, for a fourth block whose label was lost at load; its values closely match the first block, so it l
+  INDUSTRIAL_CAPACITY_MW_GRP4 :: Net-metered generating capacity for industrial customers, in megawatts, for a fourth block whose label was lost at load; its values closely match the first bloc
+  TRANSPORTATION_CAPACITY_MW_GRP4 :: Net-metered generating capacity for transportation customers, in megawatts, for a fourth block whose label was lost at load; its values closely match the first 
+  TOTAL_CAPACITY_MW_GRP4 :: Net-metered generating capacity for all customer types combined, in megawatts, for a fourth block whose label was lost at load; its values closely match the fir
+  RESIDENTIAL_INSTALLATIONS_GRP4 :: How many net-metered systems homes have, for a fourth block whose label was lost at load; its values closely match the first block, so it looks like the all-tec
+  COMMERCIAL_INSTALLATIONS_GRP4 :: How many net-metered systems businesses have, for a fourth block whose label was lost at load; its values closely match the first block, so it looks like the al
+  INDUSTRIAL_INSTALLATIONS_GRP4 :: How many net-metered systems industrial customers have, for a fourth block whose label was lost at load; its values closely match the first block, so it looks l
+  TRANSPORTATION_INSTALLATIONS_GRP4 :: How many net-metered systems transportation customers have, for a fourth block whose label was lost at load; its values closely match the first block, so it loo
+  TOTAL_INSTALLATIONS_GRP4 :: How many net-metered systems all customer types combined have, for a fourth block whose label was lost at load; its values closely match the first block, so it 
+  RESIDENTIAL_ENERGY_SOLD_BACK_MWH_GRP4 :: Power homes sent back to the grid, in megawatt-hours, for a fourth block whose label was lost at load; its values closely match the first block, so it looks lik
+  COMMERCIAL_ENERGY_SOLD_BACK_MWH_GRP4 :: Power businesses sent back to the grid, in megawatt-hours, for a fourth block whose label was lost at load; its values closely match the first block, so it look
+  INDUSTRIAL_ENERGY_SOLD_BACK_MWH_GRP4 :: Power industrial customers sent back to the grid, in megawatt-hours, for a fourth block whose label was lost at load; its values closely match the first block, 
+  TRANSPORTATION_ENERGY_SOLD_BACK_MWH_GRP4 :: Power transportation customers sent back to the grid, in megawatt-hours, for a fourth block whose label was lost at load; its values closely match the first blo
+  TOTAL_ENERGY_SOLD_BACK_MWH_GRP4 :: Power all customer types combined sent back to the grid, in megawatt-hours, for a fourth block whose label was lost at load; its values closely match the first 
+===== ENERGY__FED_EIA861_NON_NET_METERING_DISTRIBUTED 80
+  DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+  STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A few hold junk like active or a region name, and som
+  UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, not a real utility.
+  UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some rows hold a filler like Adjustment 2024 instead of
+  BA_CODE :: The short code for the grid operator that balances power in the area, like MISO or PJM.
+  NUMBER_OF_GENERATORS :: How many generators are counted on this row.
+  TOTAL_CAPACITY_MW :: How much power the small generators can make, in megawatts.
+  TECHNOLOGY_TYPE :: Whether the capacity is measured as AC or DC power. Sometimes blank.
+  _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long number counting microseconds since 1970. Added by your 
+  _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-1785965790 or a file name. One table can hold many run I
+  _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the source.
+  RECORD_ID :: A row ID built from a fingerprint of the row's contents. Added by your pipeline, not the source.
+  CAPACITY_BACK_UP_ONLY_MW :: Megawatts of generators used only as backup power. Often 0 or blank.
+  CAPACITY_UTILITY_OWNED_MW :: Megawatts of the small generators that the utility itself owns. Often 0 or blank.
+  RESIDENTIAL_CAPACITY_MW_TECH_01 :: Megawatts of small generators at homes, in technology group 01, whose name was lost when the file was loaded.
+  COMMERCIAL_CAPACITY_MW_TECH_01 :: Megawatts of small generators at businesses, in technology group 01, whose name was lost when the file was loaded.
+  INDUSTRIAL_CAPACITY_MW_TECH_01 :: Megawatts of small generators at industrial customers, in technology group 01, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_01 :: Megawatts of small generators at transportation customers, in technology group 01, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_01 :: Megawatts of small generators wired straight to the grid, in technology group 01, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_01 :: Megawatts of small generators for all customer types, in technology group 01, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_02 :: Megawatts of small generators at homes, in technology group 02, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_02 :: Megawatts of small generators at businesses, in technology group 02, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_02 :: Megawatts of small generators at industrial customers, in technology group 02, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_02 :: Megawatts of small generators at transportation customers, in technology group 02, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_02 :: Megawatts of small generators wired straight to the grid, in technology group 02, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_02 :: Megawatts of small generators for all customer types, in technology group 02, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_03 :: Megawatts of small generators at homes, in technology group 03, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_03 :: Megawatts of small generators at businesses, in technology group 03, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_03 :: Megawatts of small generators at industrial customers, in technology group 03, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_03 :: Megawatts of small generators at transportation customers, in technology group 03, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_03 :: Megawatts of small generators wired straight to the grid, in technology group 03, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_03 :: Megawatts of small generators for all customer types, in technology group 03, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_04 :: Megawatts of small generators at homes, in technology group 04, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_04 :: Megawatts of small generators at businesses, in technology group 04, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_04 :: Megawatts of small generators at industrial customers, in technology group 04, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_04 :: Megawatts of small generators at transportation customers, in technology group 04, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_04 :: Megawatts of small generators wired straight to the grid, in technology group 04, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_04 :: Megawatts of small generators for all customer types, in technology group 04, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_05 :: Megawatts of small generators at homes, in technology group 05, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_05 :: Megawatts of small generators at businesses, in technology group 05, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_05 :: Megawatts of small generators at industrial customers, in technology group 05, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_05 :: Megawatts of small generators at transportation customers, in technology group 05, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_05 :: Megawatts of small generators wired straight to the grid, in technology group 05, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_05 :: Megawatts of small generators for all customer types, in technology group 05, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_06 :: Megawatts of small generators at homes, in technology group 06, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_06 :: Megawatts of small generators at businesses, in technology group 06, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_06 :: Megawatts of small generators at industrial customers, in technology group 06, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_06 :: Megawatts of small generators at transportation customers, in technology group 06, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_06 :: Megawatts of small generators wired straight to the grid, in technology group 06, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_06 :: Megawatts of small generators for all customer types, in technology group 06, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_07 :: Megawatts of small generators at homes, in technology group 07, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_07 :: Megawatts of small generators at businesses, in technology group 07, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_07 :: Megawatts of small generators at industrial customers, in technology group 07, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_07 :: Megawatts of small generators at transportation customers, in technology group 07, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_07 :: Megawatts of small generators wired straight to the grid, in technology group 07, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_07 :: Megawatts of small generators for all customer types, in technology group 07, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_08 :: Megawatts of small generators at homes, in technology group 08, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_08 :: Megawatts of small generators at businesses, in technology group 08, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_08 :: Megawatts of small generators at industrial customers, in technology group 08, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_08 :: Megawatts of small generators at transportation customers, in technology group 08, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_08 :: Megawatts of small generators wired straight to the grid, in technology group 08, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_08 :: Megawatts of small generators for all customer types, in technology group 08, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_09 :: Megawatts of small generators at homes, in technology group 09, whose name was lost when the file was loaded. Every filled value is 0. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_09 :: Megawatts of small generators at businesses, in technology group 09, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_09 :: Megawatts of small generators at industrial customers, in technology group 09, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_09 :: Megawatts of small generators at transportation customers, in technology group 09, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_09 :: Megawatts of small generators wired straight to the grid, in technology group 09, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_09 :: Megawatts of small generators for all customer types, in technology group 09, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_TECH_10 :: Megawatts of small generators at homes, in technology group 10, whose name was lost when the file was loaded. Mostly blank.
+  COMMERCIAL_CAPACITY_MW_TECH_10 :: Megawatts of small generators at businesses, in technology group 10, whose name was lost when the file was loaded. Mostly blank.
+  INDUSTRIAL_CAPACITY_MW_TECH_10 :: Megawatts of small generators at industrial customers, in technology group 10, whose name was lost when the file was loaded. Mostly blank.
+  TRANSPORTATION_CAPACITY_MW_TECH_10 :: Megawatts of small generators at transportation customers, in technology group 10, whose name was lost when the file was loaded. Every filled value is 0. Mostly
+  DIRECT_CONNECTED_CAPACITY_MW_TECH_10 :: Megawatts of small generators wired straight to the grid, in technology group 10, whose name was lost when the file was loaded. Mostly blank.
+  TOTAL_CAPACITY_MW_TECH_10 :: Megawatts of small generators for all customer types, in technology group 10, whose name was lost when the file was loaded.
+  RESIDENTIAL_CAPACITY_MW_ALL_TECH :: Megawatts of small generators at homes, in all technologies together.
+  COMMERCIAL_CAPACITY_MW_ALL_TECH :: Megawatts of small generators at businesses, in all technologies together.
+  INDUSTRIAL_CAPACITY_MW_ALL_TECH :: Megawatts of small generators at industrial customers, in all technologies together.
+  TRANSPORTATION_CAPACITY_MW_ALL_TECH :: Megawatts of small generators at transportation customers, in all technologies together. Every filled value is 0.
+  DIRECT_CONNECTED_CAPACITY_MW_ALL_TECH :: Megawatts of small generators wired straight to the grid, in all technologies together.
+  TOTAL_CAPACITY_MW_ALL_TECH :: Megawatts of small generators for all customer types, in all technologies together.

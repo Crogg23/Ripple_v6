@@ -1,0 +1,86 @@
+[
+ {
+  "table": "HISTORY__FED_WPA_SLAVE_NARRATIVES",
+  "schema": "HISTORY",
+  "rows": "100",
+  "score": "3.0",
+  "tags": "PEOPLE",
+  "summary": "100 Library of Congress records tied to the WPA's 1936 to 1938 interviews with formerly enslaved Americans. They are photographs with short captions, not the interview texts.",
+  "look_for": "outliers: rows over 10x the median FULL_TEXT_CHAR_LENGTH of their peers :: dot strip | trend: spikes and step changes by year in INTERVIEW_DATE :: line over time | rhythm: month of year and day of week in INTERVIEW_DATE :: calendar heatmap",
+  "where": "metrics: FULL_TEXT_CHAR_LENGTH; dates: INTERVIEW_DATE; people: PERSON_NAME",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 100 rows | INTERVIEW_DATE 1937-01-01 to 1938-01-01 | FULL_TEXT_CHAR_LENGTH: sum 5.3K, median 53, max 57 | 1 distinct PERSON_NAME; top holds 100% of FULL_TEXT_CHAR_LENGTH:  5.3K // triage 0.5/10: No data story; 100 photo captions",
+  "battery_facts": "100 rows | INTERVIEW_DATE 1937-01-01 to 1938-01-01 | FULL_TEXT_CHAR_LENGTH: sum 5.3K, median 53, max 57 | 1 distinct PERSON_NAME; top holds 100% of FULL_TEXT_CHAR_LENGTH:  5.3K",
+  "battery_traps": []
+ },
+ {
+  "table": "HISTORY__FED_DENSHO_DDR",
+  "schema": "HISTORY",
+  "rows": "25",
+  "score": "1.7",
+  "tags": "TEXT",
+  "summary": "A small pull of just 25 items from Densho's digital archive on Japanese American incarceration: IDs, collections and titles, with most detail fields empty.",
+  "look_for": "read the words: search DESCRIPTION for named products, firms or phrases :: word bars",
+  "where": "text: DESCRIPTION",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 25 rows | 1 distinct FACILITY; top holds 100% of rows:  25 | OBJECT_TYPE top:  25 | NARRATOR top:  25 | TOPIC top:  25 // triage 1.0/10: None.",
+  "battery_facts": "25 rows | 1 distinct FACILITY; top holds 100% of rows:  25 | OBJECT_TYPE top:  25 | NARRATOR top:  25 | TOPIC top:  25",
+  "battery_traps": []
+ },
+ {
+  "table": "HISTORY__FED_DOCSOUTH",
+  "schema": "HISTORY",
+  "rows": "144",
+  "score": "1.1",
+  "tags": "",
+  "summary": "144 books and first-person accounts from the Documenting the American South digital library, with title and author. The date, link and collection columns are empty.",
+  "look_for": "read 20 rows and the plain summary; decide if it has a number worth ranking :: table",
+  "where": "",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 144 rows | AUTHOR top: W. E. B. Du Bois 5,   New Bern Eastern Missionary  4, Henry McNeal Turner 4 | PUBLICATION_DATE top:  144 | COLLECTION top:  144 // triage 1.0/10: None.",
+  "battery_facts": "144 rows | AUTHOR top: W. E. B. Du Bois 5,   New Bern Eastern Missionary  4, Henry McNeal Turner 4 | PUBLICATION_DATE top:  144 | COLLECTION top:  144",
+  "battery_traps": []
+ },
+ {
+  "table": "GOVERNMENT_RECORDS__FED_NARA_AAD",
+  "schema": "GOVERNMENT_RECORDS",
+  "rows": "554",
+  "score": "4.4",
+  "tags": "PEOPLE TEXT",
+  "summary": "A failed scrape of the National Archives' Access to Archival Databases site: 554 rows, mostly search-page text and error messages, with no real archival records.",
+  "look_for": "trend: spikes and step changes by year in RECORD_DATE :: line over time | rhythm: month of year and day of week in RECORD_DATE :: calendar heatmap | read the words: search DESCRIPTION_TEXT for named products, firms or phrases :: word bars",
+  "where": "dates: RECORD_DATE; people: PERSON_NAME; text: DESCRIPTION_TEXT",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 554 rows | 1 distinct PERSON_NAME; top holds 100% of rows: None 554 | ARCHIVAL_RECORD_SK top: fc8e50c360053c26a9717e1e4a5d26 164, 030113f0fc4450e14e7b6083704430 141, ee796bbbf2364416a307d96554a331 58 // triage 0.0/10: None. The scrape failed. TRAP: PERSON_NAME is null on all 554 rows",
+  "battery_facts": "554 rows | 1 distinct PERSON_NAME; top holds 100% of rows: None 554 | ARCHIVAL_RECORD_SK top: fc8e50c360053c26a9717e1e4a5d26 164, 030113f0fc4450e14e7b6083704430 141, ee796bbbf2364416a307d96554a331 58",
+  "battery_traps": [
+   "PERSON_NAME is null on all 554 rows"
+  ]
+ },
+ {
+  "table": "GOVERNMENT_RECORDS__FED_USASPENDING_TAS_FILTER_TREE",
+  "schema": "GOVERNMENT_RECORDS",
+  "rows": "92",
+  "score": "2.0",
+  "tags": "TEXT",
+  "summary": "The top level of USAspending's tree of federal accounts: 92 agencies, each with how many accounts it holds.",
+  "look_for": "outliers: rows over 10x the median ACCOUNT_COUNT of their peers :: dot strip | read the words: search DESCRIPTION for named products, firms or phrases :: word bars",
+  "where": "metrics: ACCOUNT_COUNT, CHILD_COUNT; text: DESCRIPTION",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 92 rows | ACCOUNT_COUNT: sum 12.1K, median 16, max 1.9K // triage 0.5/10: None. It is 92 agencies with account counts. TRAP: CHILD_COUNT is null on all 92 rows",
+  "battery_facts": "92 rows | ACCOUNT_COUNT: sum 12.1K, median 16, max 1.9K",
+  "battery_traps": [
+   "CHILD_COUNT is null on all 92 rows"
+  ]
+ }
+]

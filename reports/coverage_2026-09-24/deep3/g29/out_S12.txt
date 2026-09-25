@@ -1,0 +1,11 @@
+-- S12 Duplicate-table check: EDGAR_FINANCIALS 2024 quarters vs the four DERA_SUB_2024Qx tables, by accession number
+SOURCE_FILE | EDGAR_ROWS | IN_DERA | SAME_QUARTER
+2023q1 | 6754 | 0 | 0
+2023q2 | 8039 | 0 | 0
+2023q3 | 7067 | 0 | 0
+2023q4 | 6882 | 0 | 0
+2024q1 | 6028 | 6028 | 6028
+2024q2 | 7675 | 7675 | 7675
+2024q3 | 6699 | 6699 | 6699
+2024q4 | 6491 | 6491 | 6491
+(8 rows; 0.4s; qid 01c74ba5-040b-a79a-0026-eed301338cde)

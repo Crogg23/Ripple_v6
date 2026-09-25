@@ -1,0 +1,86 @@
+[
+ {
+  "table": "HEALTH__FED_CMS_HOME_HEALTH_AGENCY_ENROLLMENTS",
+  "schema": "HEALTH",
+  "rows": "11508",
+  "score": "5.0",
+  "tags": "PEOPLE MAP",
+  "summary": "Every home health agency enrolled in Medicare, with its IDs, legal name, ownership type and address.",
+  "look_for": "outliers: rows over 10x the median LOCATION_OTHER_TYPE_TEXT of their peers :: dot strip | trend: spikes and step changes by year in INCORPORATION_DATE :: line over time | rhythm: month of year and day of week in INCORPORATION_DATE :: calendar heatmap | newcomers and vanishers: PECOS_ENRLMT_ID values that appear from nowhere big, or drop out :: slope chart | concentration: does a handful of PECOS_ENRLMT_ID values hold most rows; name them :: share curve | flag rates by group: MULTIPLE_NPI_FLAG; count its values first :: grouped bars | where: rank by ZIP code :: choropleth map",
+  "where": "metrics: LOCATION_OTHER_TYPE_TEXT; dates: INCORPORATION_DATE; flags: MULTIPLE_NPI_FLAG",
+  "keys": "CCN, NPI, PECOS_ENRLMT_ID, PECOS_PAC_ID",
+  "traps": "no-org-to-person-enrollment-bridge reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 11.5K rows | INCORPORATION_DATE 1808-03-08 to 2024-08-09 | 11,508 distinct ENROLLMENT_ID; top holds 0% of rows: O20050128000465 1; O20111102000552 1; O20141222000657 1 // triage 4.5/10: Home health agencies bunched at one address or registered in waves (LA County fraud hotspots). TRAP: LOCATION_OTHER_TYPE_TEXT is null on all 11,508 rows",
+  "battery_facts": "11.5K rows | INCORPORATION_DATE 1808-03-08 to 2024-08-09 | 11,508 distinct ENROLLMENT_ID; top holds 0% of rows: O20050128000465 1; O20111102000552 1; O20141222000657 1",
+  "battery_traps": [
+   "LOCATION_OTHER_TYPE_TEXT is null on all 11,508 rows"
+  ]
+ },
+ {
+  "table": "HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS",
+  "schema": "HEALTH",
+  "rows": "9175",
+  "score": "5.0",
+  "tags": "PEOPLE MAP",
+  "summary": "Hospitals enrolled in Medicare, 9,175 enrollments, with the owning organization, address and the kinds of care each is enrolled for.",
+  "look_for": "trend: spikes and step changes by year in INCORPORATION_DATE :: line over time | rhythm: month of year and day of week in INCORPORATION_DATE :: calendar heatmap | newcomers and vanishers: PECOS_ENRLMT_ID values that appear from nowhere big, or drop out :: slope chart | concentration: does a handful of PECOS_ENRLMT_ID values hold most rows; name them :: share curve | flag rates by group: MULTIPLE_NPI_FLAG; count its values first :: grouped bars | where: rank by ZIP code :: choropleth map",
+  "where": "dates: INCORPORATION_DATE, REH_CONVERSION_DATE; flags: MULTIPLE_NPI_FLAG, REH_CONVERSION_FLAG",
+  "keys": "CCN, NPI, PECOS_ENRLMT_ID, PECOS_PAC_ID",
+  "traps": "no-org-to-person-enrollment-bridge reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 9.2K rows | INCORPORATION_DATE 1800-01-01 to 2024-10-01 | 9,175 distinct ENROLLMENT_ID; top holds 0% of rows: O20061104000335 1; O20220113000911 1; O20130718000350 1 | ENROLLMENT_STATE top: TX 815, CA 555, FL 369 | PROVIDER_TYPE_CODE top: 00-09 6.4K, 00-85 2.7K, 00-24 48 | NPI top: 1083668669 68, 16 // triage 2.5/10: Private-equity or holding-company owners of hospitals.",
+  "battery_facts": "9.2K rows | INCORPORATION_DATE 1800-01-01 to 2024-10-01 | 9,175 distinct ENROLLMENT_ID; top holds 0% of rows: O20061104000335 1; O20220113000911 1; O20130718000350 1 | ENROLLMENT_STATE top: TX 815, CA 555, FL 369 | PROVIDER_TYPE_CODE top: 00-09 6.4K, 00-85 2.7K, 00-24 48 | NPI top: 1083668669 68, 1609934843 68, 1225041809 68",
+  "battery_traps": []
+ },
+ {
+  "table": "HEALTH__FED_CMS_AMBULATORY_SPECIALTY_MODEL_PARTICIPANTS",
+  "schema": "HEALTH",
+  "rows": "6637",
+  "score": "4.9",
+  "tags": "PEOPLE MAP",
+  "summary": "Clinicians picked for Medicare's Ambulatory Specialty Model, a payment test for low back pain and heart failure care, with their practice and small-practice status for 2027.",
+  "look_for": "concentration: does a handful of NPI values hold most rows; name them :: share curve | where: rank by state :: choropleth map",
+  "where": "people: FIRST_NAME, LAST_NAME",
+  "keys": "NPI",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 6.6K rows | 6,510 distinct NPI; top holds 0% of rows: 1477740751 3; 1619974789 3; 1093745705 2 | STATE top: TX 1.1K, CA 644, FL 643 | ASM_COHORT top: Low Back Pain 4.0K, Heart Failure 2.6K | ASM_CY27_PARTICIPANT top: Yes 6.6K // triage 4.5/10: Do the clinicians Medicare forced into its back-pain payment model already bill heavily for spine injections and imaging?",
+  "battery_facts": "6.6K rows | 6,510 distinct NPI; top holds 0% of rows: 1477740751 3; 1619974789 3; 1093745705 2 | STATE top: TX 1.1K, CA 644, FL 643 | ASM_COHORT top: Low Back Pain 4.0K, Heart Failure 2.6K | ASM_CY27_PARTICIPANT top: Yes 6.6K",
+  "battery_traps": []
+ },
+ {
+  "table": "HEALTH__FED_CDC_DATA_PORTAL",
+  "schema": "HEALTH",
+  "rows": "1471",
+  "score": "4.6",
+  "tags": "PEOPLE TEXT",
+  "summary": "The catalog of everything published on the CDC's open data website, 1,471 entries pulled on August 11, 2026.",
+  "look_for": "outliers: rows over 10x the median PAGE_VIEWS of their peers :: dot strip | trend: spikes and step changes by year in CREATED_AT :: line over time | rhythm: month of year and day of week in CREATED_AT :: calendar heatmap | read the words: search DESCRIPTION for named products, firms or phrases :: word bars",
+  "where": "metrics: PAGE_VIEWS, DOWNLOAD_COUNT; dates: CREATED_AT, UPDATED_AT, DATA_UPDATED_AT, METADATA_UPDATED_AT +1; people: OWNER_DISPLAY_NAME; text: DESCRIPTION",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 1.5K rows | CREATED_AT 2013-06-10 to 2026-07-07 | DOWNLOAD_COUNT: sum 18.5M, median 2.7K, max 886.9K | 1,278 distinct DATASET_NAME; top holds 0% of rows: NNDSS - TABLE 1K. Ehrlichiosis and Anapl 5; NNDSS - TABLE 1Z. Pertussis to Poliomyel 5; NNDSS - Table I. infrequently reported n 5 // triage 1.0/10: Catalog of CDC datasets: metadata. TRAP: PAGE_VIEWS is null on all 1,471 rows",
+  "battery_facts": "1.5K rows | CREATED_AT 2013-06-10 to 2026-07-07 | DOWNLOAD_COUNT: sum 18.5M, median 2.7K, max 886.9K | 1,278 distinct DATASET_NAME; top holds 0% of rows: NNDSS - TABLE 1K. Ehrlichiosis and Anapl 5; NNDSS - TABLE 1Z. Pertussis to Poliomyel 5; NNDSS - Table I. infrequently reported n 5",
+  "battery_traps": [
+   "PAGE_VIEWS is null on all 1,471 rows"
+  ]
+ },
+ {
+  "table": "HEALTH__FED_CMS_OPIOID_TREATMENT_PROGRAM_PROVIDERS",
+  "schema": "HEALTH",
+  "rows": "1558",
+  "score": "4.6",
+  "tags": "PEOPLE MAP",
+  "summary": "Opioid treatment clinics enrolled with Medicare, with NPI, address and phone, from CMS.",
+  "look_for": "trend: spikes and step changes by year in MEDICARE_ID_EFFECTIVE_DATE :: line over time | rhythm: month of year and day of week in MEDICARE_ID_EFFECTIVE_DATE :: calendar heatmap | newcomers and vanishers: NPI values that appear from nowhere big, or drop out :: slope chart | concentration: does a handful of NPI values hold most rows; name them :: share curve | where: rank by ZIP code :: choropleth map",
+  "where": "dates: MEDICARE_ID_EFFECTIVE_DATE",
+  "keys": "NPI",
+  "traps": "reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 1.6K rows | MEDICARE_ID_EFFECTIVE_DATE 2014-10-25 to 2026-05-20 | 1,340 distinct NPI; top holds 3% of rows: 1659769446 49; 1023175072 14; 1487608485 14 | STATE top: CA 140, OH 104, NY 95 // triage 3.0/10: Methadone clinic deserts; one NPI with 49 sites.",
+  "battery_facts": "1.6K rows | MEDICARE_ID_EFFECTIVE_DATE 2014-10-25 to 2026-05-20 | 1,340 distinct NPI; top holds 3% of rows: 1659769446 49; 1023175072 14; 1487608485 14 | STATE top: CA 140, OH 104, NY 95",
+  "battery_traps": []
+ }
+]

@@ -1,0 +1,7 @@
+-- S20 USGS minerals: same site name at the same rounded point on more than one record (merged-source duplicates), by development status
+NB | GRPS | RECS | CONFLICTING_STATUS | MRDS | MAS | BIGGEST | MAX_N
+2 | 13900 | 27800 | 7313 | 24915 | 13767 | UNKNOWN SHALE PIT @ 36.404,-97.426 | 2
+3 | 215 | 645 | 106 | 535 | 283 | UNKNOWN @ 42.724,-94.216 | 3
+4 | 30 | 120 | 22 | 109 | 44 | BAUXITE - ITALY @ 42.795,12.074 | 4
+5 | 18 | 184 | 4 | 57 | 127 | UNKNOWN @ 33.799,-113.723 | 29
+(4 rows; csv has all)

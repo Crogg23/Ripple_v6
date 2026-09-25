@@ -1,0 +1,43 @@
+-- S03 Average interest rates: whole table (5K rows)
+RECORD_DATE | SECURITY_TYPE_DESC | SECURITY_DESC | AVG_INTEREST_RATE_AMT | SRC_LINE_NBR | AVG_INTEREST_RATE_KEY | _SOURCE_RUN_ID
+2001-01-31 | Marketable | Treasury Bills | 6.059 | 1 | f8ace704d48229259838855316ae2a7c | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Marketable | Treasury Notes | 6.096 | 2 | a9efe7c14c44660bab033bd09541d7e3 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Marketable | Treasury Bonds | 8.45 | 3 | 198e1067aeb41cfdbdc207fe47dad3d3 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Marketable | Treasury Inflation-Indexed Notes | 3.772 | 4 | 27288b8960d938a4e8b4b6def844c3ac | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Marketable | Treasury Inflation-Indexed Bonds | 3.866 | 5 | 728bbbc6b351ebfcade1ee5ed386b955 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Marketable | Federal Financing Bank | 8.917 | 6 | 6291014376e9e2f55b62bcc91761e28b | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Marketable | Total Marketable | 6.62 | 7 | 307df99cc0414c2351c45e2cb873fc20 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | Domestic Series | 7.934 | 8 | 8b4890f31810e577403ff8e3e6414a79 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | Foreign Series | 7.196 | 9 | 8d13ade39de627cd71e035e3eeb0bd90 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | R.E.A. Series | 5.0 | 10 | bdf547651149135ccbbe705c82851532 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | State and Local Government Series | 5.576 | 11 | 61988157d9be17027dd079aef13146ec | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | United States Savings Securities | 6.224 | 12 | 14d238f9dc07f9e2f97a94811696a2e1 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | Government Account Series | 6.65 | 13 | 6ec756454393b8a702368f6e46311f11 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Non-marketable | Total Non-marketable | 6.567 | 14 | ce2a2a863fb4cb88e5588edcfec7e135 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-01-31 | Interest-bearing Debt | Total Interest-bearing Debt | 6.594 | 15 | a934fc90b061dbae07b806410b4ab068 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Treasury Bills | 5.755 | 1 | 9feb7411119f6effffe8779d65ab75f3 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Treasury Notes | 6.076 | 2 | ddb2b39ea2ae2cfbd371cc91e9d0d4e7 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Treasury Bonds | 8.389 | 3 | caad9e1fe3c734deb2d04e05ade1153a | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Treasury Inflation-Indexed Notes | 3.772 | 4 | f78bd6e7d06ab8abee90dc7063e803ad | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Treasury Inflation-Indexed Bonds | 3.866 | 5 | 7382c0ad2dd80e644c7a125246eb4c62 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Federal Financing Bank | 8.917 | 6 | d7a831f6cb674cf1a7b1bef80045fca3 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Marketable | Total Marketable | 6.528 | 7 | 29158a21b6ea0c767b63dff737ef4a61 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | Domestic Series | 7.934 | 8 | 62de46c5a45032e4bc17b9029e8709b7 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | Foreign Series | 7.165 | 9 | 52fc8eedf6ed00530e87a0df2cae92b2 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | R.E.A. Series | 5.0 | 10 | 45752d2430702e782ecf976c68ffe20a | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | State and Local Government Series | 5.531 | 11 | 0fc1e015a399d77d86dac3bfe2eacda2 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | United States Savings Securities | 6.217 | 12 | bc2765c43370e6b8354b94853e61866d | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | Government Account Series | 6.572 | 13 | 9ec013b768a6e1578dc12a1daaee0f55 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Non-marketable | Total Non-marketable | 6.495 | 14 | ca77e6647ae9e031551ef7fc3e10925d | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-02-28 | Interest-bearing Debt | Total Interest-bearing Debt | 6.512 | 15 | 9e6cda9c026cef59fce2421ee78ccc69 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Treasury Bills | 5.369 | 1 | 917ea2cf6582601b93759f2bacd16832 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Treasury Notes | 6.088 | 2 | e8bf736b8c96ffa06d90e0f5abc7a5b8 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Treasury Bonds | 8.392 | 3 | 2f24577ec091f34e7965d5f54208b4ad | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Treasury Inflation-Indexed Notes | 3.772 | 4 | 4bf862e9b72215c0e0252e17260afe4c | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Treasury Inflation-Indexed Bonds | 3.866 | 5 | 049f95ce260b24f37f0ca57347cb1dc9 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Federal Financing Bank | 8.917 | 6 | a560b05fd0a105d5496fe9073f906e3e | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Marketable | Total Marketable | 6.435 | 7 | b330b22d0c6fd37006ab092da9486ec0 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Non-marketable | Domestic Series | 7.934 | 8 | 54abae161849fda73b5d0f66ba0c2b52 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Non-marketable | Foreign Series | 7.197 | 9 | 89f045eb9db005bf98a0b3f3c7364b49 | 4046bcc7-4501-46e9-878d-5593f7ec9348
+2001-03-31 | Non-marketable | R.E.A. Series | 5.0 | 10 | bac4d6ed022203d99b35d3d45f1a170b | 4046bcc7-4501-46e9-878d-5593f7ec9348
+(4961 rows; csv has all)

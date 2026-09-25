@@ -1,0 +1,4 @@
+-- S05 Frame: confirm it is the survey roster; ownership mix; which schedule flags carry X; land rate in the long-form and short-form data tables
+N | UTILS | N99999 | Y0 | Y1 | SHORT_Y | F01 | F02 | F03 | F04 | F05 | F06 | F07 | F08 | F09 | F10 | F11 | F12 | F13 | F14 | F15 | IN_LONG_FORM | IN_SHORT_FORM | IN_NEITHER | SHORT_FLAG_NOT_IN_SHORT
+3412 | 3412 | 0 | 2024 | 2024 | 1686 | 648 | 2382 | 7 | 307 | 1227 | 738 | 421 | 5 | 868 | 443 | 1713 | 911 | 1521 | 2911 | 1703 | 1698 | 1685 | 29 | 1
+(1 rows; csv has all)

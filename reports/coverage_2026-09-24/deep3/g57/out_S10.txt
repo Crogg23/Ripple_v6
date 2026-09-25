@@ -1,0 +1,7 @@
+-- S10 QCEW traps: YOY columns, pay consistency, county total vs ownership sum, hidden rows that still count workplaces
+K | N | V1 | V2 | V3 | V4 | V5
+yoy | 3619437 | 2549583 | 0 | 2012990 | 2469458 | 
+hidden_rows | 2012990 | 1980378 | 0 | 0 | 0 | 0
+pay_check | 1592220 | 1361151 | 64 | 7320000 | 140769 | 1857
+county_total_vs_owner_sum | 3274 | 0 | 1882 | 137 | 1255 | 1308298
+(4 rows; csv has all)

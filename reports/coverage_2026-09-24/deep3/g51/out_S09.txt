@@ -1,0 +1,63 @@
+-- S09 CourtListener schools: full extract (6,011 rows) to eyeball shared EINs and aliases
+ID | NAME | EIN | IS_ALIAS_OF_ID | DATE_CREATED | DATE_MODIFIED
+1 | Northern State University | 466000364 |  | 2010-06-08 | 2010-06-08
+2 | NSU |  | 1 | 2010-06-08 | 2010-06-08
+3 | Presentation College | 460280847 |  | 2010-06-08 | 2010-06-08
+4 | Abilene Christian University | 750851900 |  | 2010-06-08 | 2010-06-08
+5 | Hardin-Simmons University | 750808791 |  | 2010-06-08 | 2010-06-08
+6 | HSU |  | 5 | 2010-06-08 | 2010-06-08
+7 | Hardin-Simmons |  | 5 | 2010-06-08 | 2010-06-08
+8 | McMurry University | 750855633 |  | 2010-06-08 | 2010-06-08
+9 | McMurray University |  | 8 | 2010-06-08 | 2010-06-08
+10 | McMurry College |  | 8 | 2010-06-08 | 2010-06-08
+11 | McMurray College |  | 8 | 2010-06-08 | 2010-06-08
+12 | McM |  | 8 | 2010-06-08 | 2010-06-08
+13 | McM University |  | 8 | 2010-06-08 | 2010-06-08
+14 | McM College |  | 8 | 2010-06-08 | 2010-06-08
+15 | Mcmurry University |  | 8 | 2010-06-08 | 2010-06-08
+16 | Mcmurry College |  | 8 | 2010-06-08 | 2010-06-08
+17 | Mcmurray University |  | 8 | 2010-06-08 | 2010-06-08
+18 | Mcmurray College |  | 8 | 2010-06-08 | 2010-06-08
+19 | McMurry |  | 8 | 2010-06-08 | 2010-06-08
+20 | McMurray |  | 8 | 2010-06-08 | 2010-06-08
+21 | Mcmurry |  | 8 | 2010-06-08 | 2010-06-08
+22 | Mcmurray |  | 8 | 2010-06-08 | 2010-06-08
+23 | Pennsylvania State University-Penn State Abington | 246000376 |  | 2010-06-08 | 2010-06-08
+24 | Penn State |  | 23 | 2010-06-08 | 2010-06-08
+25 | Ohio Northern University | 344429091 |  | 2010-06-08 | 2010-06-08
+26 | Northern |  | 25 | 2010-06-08 | 2010-06-08
+27 | ONU |  | 25 | 2010-06-08 | 2010-06-08
+28 | East Central University | 736017987 |  | 2010-06-08 | 2010-06-08
+29 | ECU |  | 28 | 2010-06-08 | 2010-06-08
+30 | Chamberlain College of Nursing-Illinois | 202452410 |  | 2010-06-08 | 2010-06-08
+31 | Chamberlain College of NursingAddison |  | 30 | 2010-06-08 | 2010-06-08
+32 | Chamberlain College of Nursing-Chicago |  | 30 | 2010-06-08 | 2010-06-08
+33 | Chamberlain College of Nursing-Tinley Park |  | 30 | 2010-06-08 | 2010-06-08
+34 | University of Maryland-University College | 526002033 |  | 2010-06-08 | 2010-06-08
+35 | UMUC |  | 34 | 2010-06-08 | 2010-06-08
+36 | University System of Maryland | 526002033 |  | 2010-06-08 | 2010-06-08
+37 | USM |  | 36 | 2010-06-08 | 2010-06-08
+38 | University System of Maryland-Research Centers | 526002033 |  | 2010-06-08 | 2010-06-08
+40 | Talmudical Academy-New Jersey | 237125575 |  | 2010-06-08 | 2010-06-08
+41 | Adrian College | 381357980 |  | 2010-06-08 | 2010-06-08
+42 | Siena Heights University | 381366958 |  | 2010-06-08 | 2010-06-08
+43 | Inter American University of Puerto Rico-Aguadilla | 660177776 |  | 2010-06-08 | 2010-06-08
+44 | Universal Technology College of Puerto Rico | 660439432 |  | 2010-06-08 | 2010-06-08
+45 | Unitec of PR |  | 44 | 2010-06-08 | 2010-06-08
+46 | University of South Carolina-Aiken | 576001153 |  | 2010-06-08 | 2010-06-08
+47 | University of South Carolina Aiken |  | 46 | 2010-06-08 | 2010-06-08
+48 | USC Aiken |  | 46 | 2010-06-08 | 2010-06-08
+49 | USCA |  | 46 | 2010-06-08 | 2010-06-08
+50 | USCAiken |  | 46 | 2010-06-08 | 2010-06-08
+51 | University of South Carolina at Aiken |  | 46 | 2010-06-08 | 2010-06-08
+52 | Akron Institute of Herzing University | 391040865 |  | 2010-06-08 | 2010-06-08
+53 | University of Akron Main Campus | 346002924 |  | 2010-06-08 | 2010-06-08
+54 | Brown Mackie College-Akron | 232726160 |  | 2010-06-08 | 2010-06-08
+55 | ITT Technical Institute-Akron | 362061311 |  | 2010-06-08 | 2010-06-08
+56 | Argosy University-San Francisco Bay Area | 362855674 |  | 2010-06-08 | 2010-06-08
+57 | Adams State University | 846000542 |  | 2010-06-08 | 2010-06-08
+58 | Albany Technical College | 581788487 |  | 2010-06-08 | 2010-06-08
+59 | Albany State University | 586001996 |  | 2010-06-08 | 2010-06-08
+60 | Bryant & Stratton College-Albany | 160364420 |  | 2010-06-08 | 2010-06-08
+61 | Albany College of Pharmacy and Health Sciences | 141423161 |  | 2010-06-08 | 2010-06-08
+(6011 rows; csv has all)

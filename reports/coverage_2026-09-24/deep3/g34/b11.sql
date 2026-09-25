@@ -1,0 +1,9 @@
+-- S24 NPDES dull-explanation test: are the "missing" recent letters in MO, CA, IA, AR sitting in the table with blank or junk dates? Date bucket x state, with activity-ID ranges (IDs rise over time)
+SELECT LEFT(NPDES_ID,2) st, AGENCY,
+       CASE WHEN ACHIEVED_DATE IS NULL THEN 'null' WHEN ACHIEVED_DATE < '1990-01-01' THEN 'pre1990' WHEN ACHIEVED_DATE > CURRENT_DATE THEN 'future'
+            WHEN ACHIEVED_DATE < '2023-01-01' THEN '1990-2022' ELSE '2023+' END bucket,
+       COUNT(*) n, MIN(TRY_TO_NUMBER(ACTIVITY_ID)) id_min, MAX(TRY_TO_NUMBER(ACTIVITY_ID)) id_max,
+       COUNT_IF(TRY_TO_NUMBER(ACTIVITY_ID) >= 3604000000) id_ge_3604e6
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_NPDES_NPDES_INFORMAL_ENFORCEMENT_ACTIONS
+WHERE LEFT(NPDES_ID,2) IN ('MO','CA','IA','AR')
+GROUP BY 1,2,3 ORDER BY 1,2,3;

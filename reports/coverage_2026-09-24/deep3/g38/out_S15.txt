@@ -1,0 +1,83 @@
+-- S15 FracFocus: every version-4 disclosure with a has-water flag, for coverage by state and operator
+DISCLOSURE_ID | API_NUMBER | STATE_NAME | COUNTY_NAME | OPERATOR_NAME | TOTAL_BASE_WATER_VOLUME | FF_VERSION | HAS_WATER
+80878a8f-197d-4b38-b6fd-25d9e12f84d6 | 42329430010000 | Texas | Midland | Pioneer Natural Resources | 11797212.0000 | 3 | False
+80881dcf-d245-46b5-b6b9-11dd9e415528 | 42013354440000 | Texas | Atascosa | Marathon Oil | 7392661.0000 | 3 | False
+80883b44-e923-4d78-8a2a-1480daec10e1 | 42461423140000 | Texas | Upton | Pioneer Natural Resources | 31250856.0000 | 3 | False
+80894205-0e4a-45b5-9c9f-84e89b1bb1ff | 33025045960000 | North Dakota | Dunn | Marathon Oil | 6375067.0000 | 4 | False
+808b0cb7-df05-452f-8782-a00e07a437d7 | 42317450090000 | Texas | Martin | Diamondback E&P LLC | 21409219.0000 | 3 | False
+808b4fe5-daf9-4d4a-aac3-508ac610f6dc | 17031274170000 | Louisiana | De Soto | Expand Operating LLC | 31062805.0000 | 4 | False
+808b78c9-de2c-43b0-8e0b-f2cf6de9790c | 30025443170000 | New Mexico | Lea | EOG Resources, Inc. | 5926158.0000 | 3 | False
+808cac8d-5e74-4750-8f8f-eee50d8e3854 | 42227304880000 | Texas | Howard | Rover Petroleum Operating, LLC | 43686.0000 | 3 | False
+808d09c5-8859-4237-a886-7db52ee16fd0 | 42173373390000 | Texas | Glasscock | Pioneer Natural Resources | 15955002.0000 | 3 | False
+808d9d02-f88b-4896-8ae4-0e1c8ba34ccc | 35137277850000 | Oklahoma | Stephens | L.E. Jones Operating, Inc. | 9909.0000 | 4 | True
+808e233c-7b9c-4028-b4a8-bbe3db5da427 | 33025035780000 | North Dakota | Dunn | Enerplus Resources (USA) Corporation | 4244671.0000 | 4 | False
+808e9306-44c2-4b32-943e-c02d6d99bc85 | 42227422130000 | Texas | Howard | Bayswater Exploration & Production, LLC | 33383492.0000 | 4 | True
+808ecdc5-34da-4a9c-bbd0-8a9e078186ec | 42329414080000 | Texas | Midland | Permian Deep Rock Oil Co., LLC | 15162986.0000 | 3 | False
+808f77e8-fc3d-4a66-bf37-dedf5723fcfc | 05123364600000 | Colorado | Weld | Anadarko Petroleum Corporation | 3203718.0000 | 3 | False
+808f8bf0-cac4-461e-a214-e479bfa11837 | 33053101100000 | North Dakota | McKenzie | Kraken Operating LLC | 11141055.3660 | 4 | False
+809087ca-b28a-417d-9f8a-009d72475887 | 42505324990000 | Texas | Zapata | Hilcorp Energy Company | 72452.0000 | 3 | False
+8090c2f1-776e-40e8-9914-bd580ea1adcc | 42255367250000 | Texas | Karnes | Murphy Exploration and Production USA | 11258814.0000 | 3 | False
+8090e4b6-7cee-46a3-b65e-a299a96ba77c | 33053090420000 | North Dakota | McKenzie | Newfield Exploration | 9469266.8000 | 3 | False
+8092018f-eccb-4e85-93e9-7628dae4dcd1 | 47017067610000 | West Virginia | Doddridge | Antero Resources Corporation | 15580115.0000 | 3 | False
+809344b1-24dc-4511-9dda-4fdcc7f3fb72 | 43047527510000 | Utah | Uintah | Anadarko Petroleum Corporation | 5018143.0000 | 3 | False
+80935663-78be-41ee-97b3-23f141f12231 | 42479442880000 | Texas | Webb | Fasken Oil and Ranch, Ltd. | 422352.0000 | 3 | False
+8094745c-a0bd-4d8e-8cb1-c7244f82c0be | 42127374870000 | Texas | Dimmit | SN EF Maverick, LLC | 12366564.0000 | 3 | False
+8096c491-eb99-4d65-bc09-d2fba1d97a0b | 47051017800000 | West Virginia | Marshall | EQT Production | 10809414.0000 | 3 | False
+809827a1-d28c-4d5d-aced-407bcbd04d64 | 42033327450000 | Texas | Borden | HighPeak Energy Holdings, LLC. | 28430346.0000 | 4 | True
+8098d87a-b242-4f21-85a5-69e5135d11e9 | 43047557530000 | Utah | Uintah | Crescent Point Energy US Corp | 13080256.0000 | 3 | False
+80995d70-14a2-4443-bf97-9120a1d76858 | 35043235610000 | Oklahoma | Dewey | Tapstone Energy | 5255334.0000 | 3 | False
+80998750-3281-42f0-8ea6-c8c9890858c9 | 42173388130000 | Texas | Glasscock | Endeavor Energy Resources | 24805494.0000 | 3 | False
+80999091-48b8-4ef0-8ade-0f887ff446f1 | 49005632270000 | Wyoming | Campbell | EMEP II Operating, LLC | 11029247.0000 | 4 | True
+8099a62b-7567-433e-b087-490bcd98d91d | 30025510920000 | New Mexico | Lea | EOG Resources, Inc. | 14096124.0000 | 4 | False
+8099e987-9491-4691-a4d3-c7a4f18c37f9 | 49005780280100 | Wyoming | Campbell | EOG Resources, Inc. | 7765590.0000 | 3 | False
+8099f034-4226-4c93-b552-55067929e14a | 42163341010000 | Texas | Frio | U.S. Energy Development Corp. | 16225507.0000 | 3 | False
+809a2fc9-a30f-4a6d-949e-8319ba02665a | 35073267450000 | Oklahoma | Kingfisher | Ovintiv Mid-Continent Inc. | 471729.0000 | 3 | False
+809a4106-ebcb-4453-8ef0-4e1ba81d1fa1 | 42283370820000 | Texas | La Salle | EOG Resources, Inc. | 22289694.0000 | 3 | False
+809a47f5-0523-465f-9d52-a0b0e6a5db56 | 42033325740000 | Texas | Borden | Surge Operating, LLC | 23694838.0000 | 3 | False
+809b93a5-fd19-4432-9945-74f75eab534c | 34067215080000 | Ohio | Harrison | Chesapeake Operating, Inc. | 13169772.0000 | 3 | False
+809c551c-ada0-4998-9fb2-2162fd3cda3f | 05045177920000 | Colorado | Garfield | Caerus Oil and Gas LLC | 4412511.0000 | 3 | False
+809c6980-e8e2-491a-9b15-7eca4f1a4546 | 42285342780000 | Texas | Lavaca | Penn Virginia Corporation | 17485551.0000 | 4 | True
+809cc909-db48-42bf-91f5-284f5bcbb7b6 | 42203355680000 | Texas | Harrison | King Operating Corporation | 6669460.0000 | 4 | True
+809de99c-f3a7-44bc-9d65-9f2136f25a04 | 42227401920000 | Texas | Howard | Birch Operations, Inc. | 14839272.0000 | 3 | False
+809e01c2-5b20-43e8-bf1d-67659a985029 | 42255347940000 | Texas | Karnes | Marathon Oil | 4614315.0000 | 3 | False
+809f4284-62c6-4105-b65c-cce9e4a9f537 | 42003484200000 | Texas | Andrews | Lime Rock Resources, LP | 1641642.0000 | 3 | False
+80a05867-363f-48e0-a748-612e255b73b0 | 42405308540000 | Texas | San Augustine | Pine Wave Energy Partners | 24111864.0000 | 4 | True
+80a08c4b-66d5-4f14-89f1-25478008c61c | 35045237880000 | Oklahoma | Ellis | Peregrine Petroleum Partners, LTD | 5906250.0000 | 3 | False
+80a0c3e5-264a-4f5a-a0a1-c3bb590fc3d9 | 35059204720000 | Oklahoma | Harper | Latigo Oil & Gas, Inc. | 32382.0000 | 4 | False
+80a14097-3999-449d-b9f3-b2ce4b92d285 | 42255362800000 | Texas | Karnes | Magnolia Oil & Gas LLC | 6471990.0000 | 4 | True
+80a159e5-8cdb-4175-b9c4-c1bc6b6e1abb | 35051240850000 | Oklahoma | Grady | Marathon Oil | 8946735.0000 | 3 | False
+80a1ad5a-fbec-4eb6-8357-7f53128c2df9 | 42371403710000 | Texas | Pecos | Swordfish Energy Operating, LLC | 23485938.0000 | 4 | True
+80a2624f-ab3c-4612-90e9-185c171ae148 | 42507334500000 | Texas | Zavala | EXCO Resources, Inc. | 12709217.0000 | 3 | False
+80a2ef56-4c9a-485e-8e34-ca54164b1168 | 42211356730000 | Texas | Hemphill | MEWBOURNE OIL COMPANY | 7254240.0000 | 4 | True
+80a321ad-da6d-419e-9161-b0e6c297570c | 35093252550000 | Oklahoma | Major | Kirkpatrick Oil Company, Inc | 158533.0000 | 3 | False
+80a36924-a9e6-43b6-9882-4ff157c5df55 | 42283367750000 | Texas | La Salle | EP Energy | 12531022.0000 | 3 | False
+80a377c6-7669-4335-8238-7df56c3c0768 | 47051021830000 | West Virginia | Marshall | Southwestern Energy | 17953951.5000 | 3 | False
+80a380b6-663c-4d4c-a091-8bfc262db5ee | 43013511620002 | Utah | Duchesne | EP Energy | 346862.0000 | 3 | False
+80a3dfc9-065f-40a6-a04b-cbfacea339fb | 05123433960000 | Colorado | Weld | PDC Energy | 3619975.0000 | 3 | False
+80a4f6ec-83f2-48e2-ad8c-564d9e2024f7 | 15081222830000 | Kansas | Haskell | Merit Energy Company LLC | 22218.0000 | 4 | False
+80a57d25-3aec-41bc-a86b-71bc3bdd38ed | 17015252780000 | Louisiana | Bossier | Aethon Energy Operating LLC | 1004700.0000 | 3 | False
+80a661a5-75c2-45bd-b830-e4f93e2d3536 | 42389355410000 | Texas | Reeves | ExL Petroleum, LP | 12979403.0000 | 3 | False
+80a679be-8581-419f-89d1-c296034e647e | 30025494850000 | New Mexico | Lea | EOG Resources, Inc. | 11265198.0000 | 3 | False
+80a69258-0a0f-438e-9a24-980fadda38f9 | 33105053140000 | North Dakota | Williams | Continental Resources, Inc | 7529004.0000 | 3 | False
+80a6ac02-83b4-4c90-b2ae-637c68ad06b2 | 42227397840000 | Texas | Howard | Surge Operating, LLC | 11224752.0000 | 3 | False
+80a7061a-3a41-4b46-9507-17f01a49c6d9 | 42103376440000 | Texas | Crane | Blackbeard Operating | 32134326.0000 | 4 | True
+80a80b78-73c8-4974-9dbc-cb9a89da07aa | 42447368230000 | Texas | Throckmorton | Bennett Resources, Inc. | 97339.0000 | 3 | False
+80a891f2-d3f6-481d-b163-274f326fa0c4 | 30025491230000 | New Mexico | Lea | Cimarex Energy Co. | 24387213.9005 | 3 | False
+80a939ee-e941-4b82-9123-ab866085d350 | 42255377380000 | Texas | Karnes | Devon Energy Production Company L. P. | 14634144.0000 | 3 | False
+80aa123a-1f60-43ad-80a4-7a9a35a5f276 | 42127387450000 | Texas | Dimmit | Javelin Energy Partners Management LLC | 18683994.0000 | 3 | False
+80aac192-283a-4cd3-b928-02caaf8f10af | 42389392530000 | Texas | Reeves | Occidental Oil and Gas | 12246150.0000 | 3 | False
+80aaccdc-5dd2-4dc6-9af7-7ac541613973 | 42329464300000 | Texas | Midland | Pioneer Natural Resources | 18328170.0000 | 4 | False
+80ab37fc-742c-4f14-b074-4113b660303b | 42365387010000 | Texas | Panola | Rockcliff Energy Operating | 33849564.0000 | 3 | False
+80ab3bf5-c7dd-47fb-9fbd-43e1375ce64f | 33053084590000 | North Dakota | McKenzie | Oasis Petroleum | 14178864.0000 | 3 | False
+80ab512d-bb4a-4c15-9758-d94c4f481394 | 42227399730000 | Texas | Howard | Diamondback E&P LLC | 21107688.0000 | 3 | False
+80ab9f95-845b-4ae3-8ad7-315dd0bc5c5b | 45051027450000 | Virginia | Dickenson | EnerVest, Ltd. | 44285.0000 | 3 | False
+80aba054-2eac-47fd-a5c4-e72b131e21c0 | 42227408440000 | Texas | Howard | CrownQuest Operating, LLC | 19383066.0000 | 3 | False
+80abcc14-99b1-4cb2-a5de-1f581883ca76 | 42311368290000 | Texas | McMullen | EOG Resources, Inc. | 19687379.8800 | 3 | False
+80abe608-09fd-49a8-892c-73fb60c1de18 | 17061213100000 | Louisiana | Lincoln | MRD OPERATING LLC | 7603336.0000 | 3 | False
+80abf3e9-1dad-4c03-95e8-1a7ad893acb6 | 35017249470000 | Oklahoma | Canadian | Cimarex Energy Co. | 18781271.0000 | 3 | False
+80ac1de7-6e76-4d9d-b3dd-4ba62e443529 | 42323336130000 | Texas | Maverick | Endeavor Natural Gas, LP | 5581086.0000 | 3 | False
+80acd71d-83d4-4162-8948-093862706e2f | 42227397670000 | Texas | Howard | OGX Operating LLC | 2540020.0000 | 3 | False
+80ad725e-0457-4f91-85ff-df9fc338c14c | 42329417290000 | Texas | Midland | Chevron USA Inc. | 22090356.0000 | 3 | False
+80adbb9d-d24c-450c-a2e0-521882d1e5a7 | 17081218450000 | Louisiana | Red River | Southwestern Energy | 26975550.0000 | 4 | True
+80ae0988-74ff-4244-9936-e2619f6a4ed1 | 42149335520000 | Texas | Fayette | Penn Virginia Corporation | 13389044.0000 | 3 | False
+(130945 rows; csv has all)

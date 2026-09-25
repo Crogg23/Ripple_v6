@@ -1,0 +1,3 @@
+-- S13 FracFocus: frac jobs by year in the New Mexico and Texas parts of the Delaware Basin, next to the quake clusters (a box count, not a key join)
+YR | AREA | JOBS | WELLS | WATER_MGAL | LAST_JOB
+(0 rows; csv has all)

@@ -1,0 +1,9 @@
+-- S15 HPSA verify in SQL: active primary-care area HPSAs, CA and FL vs all other, designated vs proposed for withdrawal
+S2 | STATUS | N | POP | MED_SCORE | AVG_SCORE | SCORE18PLUS | FTE0 | UPD_SEP2025 | MED_DESIG_YEAR | MED_POV | RURAL_N
+ALL OTHER | Designated | 2686 | 63532159.0 | 15.000 | 14.816456 | 548 | 555 | 1302 | 2022.000 | 15.20000 | 1761
+ALL OTHER | Proposed For Withdrawal | 815 | 21862298.0 | 14.000 | 13.674847 | 92 | 143 | 629 | 2021.000 | 13.90000 | 378
+CA | Designated | 91 | 2914273.0 | 14.000 | 13.527473 | 5 | 15 | 22 | 2023.000 | 16.00000 | 27
+CA | Proposed For Withdrawal | 123 | 4616311.0 | 14.000 | 13.284553 | 7 | 17 | 121 | 2022.000 | 18.20000 | 26
+FL | Designated | 62 | 2252145.0 | 15.000 | 14.806452 | 10 | 5 | 32 | 2023.500 | 15.45000 | 27
+FL | Proposed For Withdrawal | 71 | 3714051.0 | 15.000 | 14.971831 | 14 | 9 | 70 | 2022.000 | 16.80000 | 2
+(6 rows; csv has all)

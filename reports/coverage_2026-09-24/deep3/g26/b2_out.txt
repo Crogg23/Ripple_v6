@@ -1,0 +1,580 @@
+== [10] icis_placeholder (0.2s) 30 rows -> r10_icis_placeholder.json
+REG | FACILITY_NAME | CITY | STATE_CODE | N | MN | MX
+110009327022 | WAUCONDA SAND & GRAVEL | WAUCONDA | IL | 7156 | 01-1997-0056 | HQ-1996-0101
+(null) | NAPOLEON WHOLESALE INC. | GRAVENHURST | XX | 6 | 02-2025-5121 | 02-2025-5126
+(null) | 1001226724 ONTARIO INC. | RICHMOND HILL | XX | 5 | 02-2025-5150 | 02-2025-5154
+(null) | 1001283724 ONTARIO INC. DBA KAROVA LOGISTICS | CONCORD | XX | 4 | 02-2025-5157 | 02-2025-5160
+(null) | TRI CLEAN JV INC. | MISSISSAUGA | XX | 3 | 02-2025-5052 | 02-2025-5149
+(null) | SS EXPRESS IMPORTS & EXPORTS INC. | MISSISSAUGA | XX | 3 | 02-2025-5061 | 02-2025-5063
+(null) | GNOME HOME DECOR SUPPLY | CITY OF INDUSTRY | CA | 3 | 09-2026-7020 | 09-2026-7024
+(null) | ROUSE'S SUPERMARKET #23 | YOUNGSVILLE | LA | 2 | 06-2008-2043 | 06-2009-1747
+(null) | PAUL OIL COMPANY | PATTERSON | CA | 2 | 09-2016-1002 | 09-2018-1005
+(null) | HIGH ROAD PLAZA, LLC |  |  | 2 | 07-2005-0182 | 07-2005-0280
+(null) | LEVITT HOMES BUILDERS CORPORAT |  | PR | 2 | 02-2005-3191 | 02-2006-3405
+(null) | EASTCHESTER HEIGHTS - 1410 HICKS ST | BRONX | NY | 2 | 02-2006-1011 | 02-2007-1007
+(null) | HENRY'S KNOB | CLOVER | SC | 2 | 04-2004-3793 | 04-2026-9000
+(null) | MUNICIPALITY OF SAN JUAN |  | PR | 2 | 02-2005-3185 | 02-2008-3123
+(null) | LONGBRACCH HS CAMPUS | UNION | KY | 2 | 04-2008-4771 | 04-2009-4500
+(null) | STUART UNIT - SOUTH TANK BATTERY | AVANT | OK | 2 | 06-2020-4304 | 06-2020-4308
+(null) | EASTCHESTER HEIGHTS - 3466 FISH AVE | BRONX | NY | 2 | 02-2006-1011 | 02-2007-1007
+(null) | MACO STEWART FACILITY | TEXAS CITY | TX | 2 | 06-2024-4806 | 06-2025-4312
+(null) | AIA TRADE LINK | MISSISSAUGA | XX | 2 | 02-2024-5076 | 02-2024-5077
+(null) | HONEYWELL ALARM DEVICE | SYOSSET | NY | 2 | 02-2007-4202 | HQ-2011-8004
+(null) | SEQUENTIAL- SALINAS | SALINAS | CA | 2 | 09-2017-1003 | 09-2018-1001
+(null) | EASTCHESTER HEIGHTS - 3467 FISH AVE | BRONX | NY | 2 | 02-2006-1011 | 02-2007-1007
+(null) | PEOPLES GAS HAWTHORNE AVENUE FORMER MGP | CHICAGO | IL | 2 | 05-2007-0824 | 05-2009-1001
+(null) | MURRAY LAUNDRY 4200 S. STATE PLUME | SALT LAKE CITY | UT | 2 | 08-2014-0096 | 08-2015-0029
+(null) | KZ KITCHEN CABINET AND STONE INC | SAN JOSE | CA | 2 | 09-2026-7019 | 09-2026-7029
+(null) | STEEPLECHASE SUBD PHASE 6 | RICHWOOD | KY | 2 | 04-2008-4761 | 04-2009-4505
+(null) | PCS CONSTRUCTION CO. | NIXA | MO | 2 | 07-2005-0175 | 07-2005-0273
+(null) | ASHUE ROAD ASBESTOS | WAPATO | WA | 2 | 10-2013-0167 | 10-2015-0134
+(null) | EASTCHESTER HEIGHTS - 3468 FENTON AVE | BRONX | NY | 2 | 02-2006-1011 | 02-2007-1007
+(null) | GRAND BAY FIELD | VENICE | LA | 2 | 06-2015-4819 | 06-2015-4821
+== [11] icis_years (0.9s) 651 rows -> r11_icis_years.json
+SRC | PFX | YR | N | REGS
+case | 01 | 1971 | 2 | 2
+case | 01 | 1972 | 1 | 1
+case | 01 | 1974 | 3 | 3
+case | 01 | 1975 | 5 | 5
+case | 01 | 1976 | 10 | 9
+case | 01 | 1977 | 9 | 8
+case | 01 | 1978 | 4 | 5
+case | 01 | 1979 | 4 | 4
+case | 01 | 1980 | 4 | 4
+case | 01 | 1981 | 1 | 1
+case | 01 | 1982 | 15 | 24
+case | 01 | 1983 | 9 | 8
+case | 01 | 1984 | 15 | 24
+case | 01 | 1985 | 14 | 14
+case | 01 | 1986 | 13 | 17
+case | 01 | 1987 | 18 | 19
+case | 01 | 1988 | 21 | 26
+case | 01 | 1989 | 27 | 38
+case | 01 | 1990 | 31 | 30
+case | 01 | 1991 | 20 | 20
+case | 01 | 1992 | 12 | 11
+case | 01 | 1993 | 21 | 22
+case | 01 | 1994 | 24 | 24
+case | 01 | 1995 | 127 | 134
+case | 01 | 1996 | 123 | 118
+case | 01 | 1997 | 246 | 254
+case | 01 | 1998 | 174 | 168
+case | 01 | 1999 | 194 | 172
+case | 01 | 2000 | 241 | 259
+case | 01 | 2001 | 157 | 163
+case | 01 | 2002 | 194 | 196
+case | 01 | 2003 | 365 | 424
+case | 01 | 2004 | 353 | 379
+case | 01 | 2005 | 178 | 192
+case | 01 | 2006 | 218 | 230
+case | 01 | 2007 | 275 | 289
+case | 01 | 2008 | 243 | 235
+case | 01 | 2009 | 254 | 442
+case | 01 | 2010 | 187 | 211
+case | 01 | 2011 | 219 | 223
+case | 01 | 2012 | 206 | 285
+case | 01 | 2013 | 94 | 97
+case | 01 | 2014 | 102 | 107
+case | 01 | 2015 | 103 | 109
+case | 01 | 2016 | 97 | 125
+case | 01 | 2017 | 88 | 86
+case | 01 | 2018 | 103 | 100
+case | 01 | 2019 | 129 | 123
+case | 01 | 2020 | 106 | 100
+case | 01 | 2021 | 107 | 107
+case | 01 | 2022 | 121 | 121
+case | 01 | 2023 | 137 | 133
+case | 01 | 2024 | 145 | 145
+case | 01 | 2025 | 152 | 206
+case | 01 | 2026 | 86 | 88
+case | 02 | 1975 | 3 | 4
+case | 02 | 1976 | 12 | 14
+case | 02 | 1977 | 14 | 14
+case | 02 | 1978 | 20 | 36
+case | 02 | 1979 | 21 | 21
+== [12] icis_fac_echo (2.9s) 113854 rows -> r12_icis_fac_echo.csv
+REGISTRY_ID | NM | CITY | ST | SIC | NAICS | CASES | CASES15 | Y0 | Y1 | HQ_CASES | EROWS | QNC | FAC | INSP | LPA | DLP | CS | ACT
+110070566655 | SITE DIRECTLY EAST OF COX 12-31-3-1E CRESCENT POINT | RANDLETT | UT |  | 211111 | 1 | 1 | 2021 | 2021 | 0 | 1 | 0 | 1 | 0 | 100000.0 | 2022-03-30 | No Violation Identified | 1
+110010668820 | JACKSON ELEMENTARY SCHOOL | RIVERTON | WY | 8211 |  | 1 | 0 | 1985 | 1985 | 0 | 1 |  | 0 | 0 | 29.41176470588235 | 1986-04-25 |  | 0
+110028150916 | JEROME SCHEWITERMAN FARM | PORTLAND | IN |  |  | 1 | 0 | 2006 | 2006 | 1 | 1 |  | 0 | 0 | 5.291005291005291 | 2006-07-19 |  | 0
+110018274311 | PIERCE CHEMICAL COMPANY | ROCKFORD | IL | 2869 | 325413 | 2 | 0 | 1987 | 1989 | 0 | 1 | 0 | 1 | 4 | 3000.0 | 1989-07-08 | No Violation Identified | 1
+110028123705 | TIMBERLINE FARMS, LLC | NEWELL | IA |  |  | 1 | 0 | 2006 | 2006 | 1 | 1 |  | 0 | 0 | 0.823045267489712 | 2006-04-17 |  | 0
+110010700606 | SHAWANO COUNTY | SHAWANO | WI | 1799 |  | 1 | 0 | 1995 | 1995 | 0 | 1 |  | 0 | 0 | 17678.0 | 1997-09-05 |  | 0
+110033198260 | TONY J. PAPADIMITRIOU | LANCASTER | PA |  |  | 1 | 0 | 2008 | 2008 | 0 | 1 |  | 0 | 0 | 1000.0 | 2009-06-24 |  | 0
+110000742616 | DYNATECT MANUFACTURING INC | NEW BERLIN | WI | 3069 | 326299 | 2 | 0 | 2008 | 2009 | 0 | 1 | 0 | 0 | 3 | 79429.0 | 2009-09-30 | No Violation Identified | 1
+110042337619 | NSTAR -617 | NEW BEDFORD | MA |  |  | 1 | 0 | 2009 | 2009 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110009300194 | EVOR PHILLIPS LEASING | OLD BRIDGE TOWNSHIP | NJ |  |  | 5 | 0 | 2000 | 2013 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110000386332 | FIRST ENERGY CORPORATION EASTLAKE POWER PLANT | WILLOUGHBY | OH | 4911 | 221112 | 4 | 0 | 1978 | 2008 | 0 | 1 | 1 | 0 | 0 | 25000.0 | 1978-11-17 | No Violation Identified | 1
+110028136416 | TOBIN HOG FARMS | AINSWORTH | IA |  |  | 1 | 0 | 2006 | 2006 | 1 | 1 |  | 0 | 0 | 0.823045267489712 | 2006-04-17 |  | 0
+110003408508 | TRINITY LIGHTING, INC. | JONESBORO | AR |  |  | 1 | 1 | 2024 | 2024 | 0 | 1 | 0 | 1 | 0 | 0.0 |  | No Violation Identified | 1
+110010687854 | PLYMOUTH-CANTON COMM SCHOOLS | PLYMOUTH | MI | 8211 |  | 2 | 0 | 1986 | 1986 | 0 | 1 |  | 0 | 0 | 520.0 | 1986-09-09 |  | 0
+110010782769 | BIG CHIEF TRADING CO | SAN YSIDRO | NM | 5411 |  | 3 | 0 | 1997 | 2007 | 0 | 1 |  | 0 | 0 | 1934.0 | 2008-05-22 |  | 0
+110066899921 | CANYON PLASTICS | VALENCIA | CA |  |  | 1 | 1 | 2017 | 2017 | 0 | 1 | 0 | 0 | 0 | 19000.0 | 2017-01-18 | No Violation Identified | 1
+110038393903 | RYAN'S JET GAS, INC. | WATERTOWN | NY | 5541 | 447110 | 1 | 0 | 2009 | 2009 | 0 | 1 |  | 0 | 0 | 300.0 | 2009-02-19 |  | 0
+110070063186 | RICKY POWER SPORTS LLC | CARROLLTON | TX |  | 441210 | 1 | 1 | 2023 | 2023 | 0 | 1 | 0 | 1 | 1 | 0.0 | 2023-02-21 | No Violation Identified | 1
+110035840285 | BROWN TRANSFER & STORAGE CO | ST JOSEPH | MO |  |  | 1 | 0 | 2010 | 2010 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110071253741 | TOWNHOMES AT MICHIGAN PARK | WASHINGTON | DC |  | 236116 | 1 | 1 | 2024 | 2024 | 0 | 1 | 0 | 3 | 1 | 40500.0 | 2024-02-16 | No Violation Identified | 1
+110018211282 | JOHNS-MANVILLE CORP. | WAUKEGAN | IL | 2952 |  | 3 | 0 | 1987 | 2007 | 0 | 1 | 0 | 0 | 0 | 145000.0 | 2005-01-06 |  | 0
+110007704378 | NEW ENTERPRISE STONE & LIME CO | KENVIL | NJ | 3272 |  | 1 | 0 | 1996 | 1996 | 0 | 1 | 0 | 0 | 0 | 1000.0 | 1996-06-28 | No Violation Identified | 0
+110037252157 | TAOTAO USA INC | DALLAS | TX |  |  | 1 | 0 | 2010 | 2010 | 0 | 1 |  | 0 | 0 | 260000.0 | 2010-06-28 |  | 0
+110009463981 | ROSENBLATT & THOMPSON INC | NEW YORK CITY | NY | 3479 | 236116 | 1 | 0 | 1990 | 1990 | 0 | 1 | 0 | 0 | 0 | 0.0 |  | No Violation Identified | 1
+110020503640 | MONTEFIORE BURKE AVENUE CLINIC | BRONX | NY |  |  | 1 | 0 | 2004 | 2004 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110039800828 | CITY OF DELTA | DELTA | CO | 4952 |  | 3 | 0 | 1989 | 2003 | 0 | 1 | 6 | 0 | 2 | 10000.0 | 1990-02-13 | Violation Identified | 1
+110012372887 | CLEAR CREEK BUS | IDAHO SPRINGS | CO |  |  | 1 | 0 | 1994 | 1994 | 0 | 1 |  | 0 | 0 | 300.0 | 1994-08-03 |  | 0
+110043258275 | BEAZER HOMES USA, INC. | ATLANTA | GA |  |  | 1 | 0 | 2004 | 2004 | 0 | 1 |  | 0 | 0 | 625418.0 | 2011-02-10 |  | 0
+110015307602 | RON'S AUTOMOTIVE | SUTHERLAND | NE | 7532 | 811121 | 1 | 0 | 2003 | 2003 | 0 | 1 | 0 | 0 | 0 | 0.0 |  | No Violation Identified | 1
+110022468943 | HANSON AGGREGATES CENTRAL | CHICO | TX | 1422 |  | 1 | 0 | 2005 | 2005 | 0 | 1 | 0 | 0 | 0 | 0.0 |  | No Violation Identified | 1
+110010669632 | BEREAN BAPTIST CHRISTIAN ACAD | OGDEN | UT | 8211 |  | 1 | 0 | 1987 | 1987 | 0 | 1 |  | 0 | 0 | 100.0 | 1987-12-10 |  | 0
+110012348003 | TRANSPORTATION MANAGEMENT SYSTEMS, INC. | HENDERSON | CO | 4789 | 999999 | 3 | 0 | 2002 | 2004 | 0 | 1 | 0 | 0 | 0 | 15000.0 | 2005-08-17 | No Violation Identified | 1
+110010723119 | HEAVY TRUCK SALES LTD | FREDERICKSBURG | VA | 5082 |  | 1 | 0 | 2000 | 2000 | 1 | 1 |  | 0 | 0 | 3000.0 | 2000-07-19 |  | 0
+110055107717 | CHOCOLATE MAVEN | SANTA FE | NM |  |  | 1 | 0 | 2013 | 2013 | 0 | 1 | 0 | 0 | 0 | 0.0 |  |  | 0
+110024529535 | EMPLOYEE HOUSING (SOLARIS HEALTH SYSTEM) | PLAINFIELD | NJ |  |  | 1 | 0 | 2006 | 2006 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110009007378 | PLANT CITY AUTO SALVAGE INC | PLANT CITY | FL | 9999 | 423140 | 1 | 0 | 2000 | 2000 | 0 | 1 | 0 | 0 | 0 | 0.0 |  | No Violation Identified | 1
+110024281588 | WOODLANDS SPECIALISTS, INC. | SELMA | AL |  |  | 2 | 0 | 2005 | 2007 | 0 | 1 |  | 0 | 0 | 10931.0 | 2007-08-01 |  | 0
+110070624430 | LUCKY YONG INTERNATIONAL TRADE, LTD. | LA PUENTE | CA |  |  | 1 | 1 | 2019 | 2019 | 0 | 1 |  | 0 | 0 | 4680.0 | 2019-08-15 |  | 0
+110005434556 | AG TECH PRODUCTS | WAUKESHA | WI |  |  | 1 | 0 | 2001 | 2001 | 0 | 1 | 0 | 0 | 0 | 0.0 |  | No Violation Identified | 1
+110038271385 | PINNACLE AGRICULTURE DISTRIBUTION, INC. | QULIN | MO | 5191 |  | 1 | 1 | 2018 | 2018 | 0 | 1 | 0 | 0 | 0 | 0.0 |  |  | 0
+110010644320 | WHISPERING PINES TRAILER PARK WATER SYS | SLIDELL | LA | 4941 |  | 1 | 0 | 2000 | 2000 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110071891835 | BURLINGTON BEEF |  |  |  |  | 1 | 1 | 2026 | 2026 | 0 | 1 | 7 | 1 | 0 | 0.0 |  | Violation Identified | 1
+110022551647 | MORGAN HEIGHTS WATER & SEWER INC | FORT MORGAN | CO |  |  | 1 | 0 | 1994 | 1994 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110011574313 | FOWLER-JONES CONSTRUCTION COMPANY | WINSTON-SALEM | NC | 5541 |  | 1 | 0 | 2011 | 2011 | 0 | 1 |  | 0 | 0 | 140.0 | 2010-10-05 |  | 0
+110010754335 | NICOLETTE IND INC MODERN | INDIANAPOLIS | IN | 2841 |  | 1 | 0 | 1985 | 1985 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110010611873 | SPLENDID CLEANERS/SPLENDID CLOTHING CARE CTR | NEW YORK | NY | 7216 |  | 2 | 0 | 2001 | 2003 | 0 | 1 | 0 | 0 | 0 | 34250.0 | 2004-10-01 | No Violation Identified | 0
+110010744178 | CASTLE HILLS FIRST BAPTIST SCH | SAN ANTONIO | TX | 1711 |  | 1 | 0 | 1987 | 1987 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110028169005 | HOWARD STUDY FARMS | CAMBRIDGE CITY | IN |  |  | 1 | 0 | 2006 | 2006 | 1 | 1 |  | 0 | 0 | 0.823045267489712 | 2006-04-17 |  | 0
+110001325637 | CUSTOM AUTO REBUILD | MARION | IA | 7532 | 811121 | 1 | 0 | 1994 | 1994 | 0 | 1 | 0 | 0 | 0 | 750.0 | 1995-09-05 | No Violation Identified | 0
+110000763497 | GLOSS FLO CORPORATION | BROOKLYN | NY |  |  | 2 | 0 | 1998 | 1998 | 0 | 1 | 0 | 0 | 0 | 500.0 | 1999-05-17 | No Violation Identified | 0
+110010727071 | HOPE MUNICIPAL WATER & LIGHT C | HOPE | AR |  |  | 1 | 0 | 1986 | 1986 | 0 | 1 |  | 0 | 0 | 1500.0 | 1986-09-26 |  | 0
+110018922424 | NEW MEXICO HIGHWAY 14 PROJECT (TPA-(TPM) | SANTA FE | NM |  |  | 2 | 0 | 2005 | 2005 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110010723921 | JETER FARM STORE INC | PADUCAH | TX |  |  | 1 | 0 | 1989 | 1989 | 0 | 1 |  | 0 | 0 | 0.0 |  |  | 0
+110000367031 | INDURON COATINGS INCORPORATED | BIRMINGHAM | AL | 2851 | 325510 | 1 | 0 | 2004 | 2004 | 0 | 1 | 0 | 0 | 5 | 8800.0 | 2004-02-27 | No Violation Identified | 1
+110020147161 | BLUEBIRD DAIRY | HOPKINS COUNTY | TX | 0241 |  | 1 | 0 | 2010 | 2010 | 0 | 1 | 0 | 0 | 0 | 0.0 |  |  | 0
+110028225613 | ADELPHIA COMMUNICATIONS CORPORATION | BOLIVAR | OH | 4841 |  | 1 | 0 | 2006 | 2006 | 1 | 1 |  | 0 | 0 | 1295.4545454545455 | 2006-07-24 |  | 0
+110071498030 | CANTER CONSTRUCTION, LLC (RESIDENTIAL RESIDENCE)  | CHARLESTON | SC |  |  | 1 | 1 | 2023 | 2023 | 0 | 1 |  | 1 | 0 | 0.0 | 2023-09-19 |  | 1
+110028224375 | FULTON FUEL COMPANY | SHELBY | MT |  |  | 1 | 0 | 2009 | 2009 | 0 | 1 |  | 0 | 0 | 32176.0 | 2010-09-09 |  | 0
+110000481345 | CHANNEL INDUSTRIES INCORPORATED | SANTA BARBARA | CA |  |  | 1 | 0 | 1994 | 1994 | 0 | 1 | 0 | 0 | 0 | 21000.0 | 1995-03-10 | No Violation Identified | 1
+110070205933 | PLASKOLITE TENNESSEE, LLC | MEMPHIS | TN | 3089 | 326199 | 1 | 1 | 2023 | 2023 | 0 | 1 | 0 | 2 | 6 | 48000.0 | 2023-03-21 | No Violation Identified | 1
+== [13] f13_files (0.7s) 93 rows -> r13_f13_files.json
+T | F | N | Q0 | Q1
+FILERS | 2020q3_form13f.zip | 7157 | 1900-01-01 | 2020-08-14
+FILERS | 2022q2_form13f.zip | 8906 | 1987-03-31 | 2022-03-31
+FILERS | 2013q3_form13f.zip | 5227 | 2002-03-31 | 2013-06-30
+FILERS | 2018q4_form13f.zip | 6659 | 2006-09-30 | 2018-09-30
+FILERS | 01mar2024-31may2024_form13f.zip | 9884 | 2006-12-31 | 2024-03-31
+FILERS | 01jan2024-29feb2024_form13f.zip | 9433 | 2006-12-31 | 2023-12-31
+FILERS | 2015q1_form13f.zip | 6045 | 2006-12-31 | 2014-12-31
+FILERS | 2014q3_form13f.zip | 5482 | 2006-12-31 | 2014-06-30
+FILERS | 2013q4_form13f.zip | 5043 | 2006-12-31 | 2013-09-30
+FILERS | 2015q3_form13f.zip | 6000 | 2006-12-31 | 2015-06-30
+FILERS | 01jun2025-31aug2025_form13f.zip | 10799 | 2006-12-31 | 2025-06-30
+FILERS | 01mar2026-31may2026_form13f.zip | 11761 | 2008-03-31 | 2026-03-31
+FILERS | 2014q1_form13f.zip | 5425 | 2008-12-31 | 2013-12-31
+FILERS | 2017q2_form13f.zip | 6218 | 2008-12-31 | 2017-06-30
+FILERS | 2015q4_form13f.zip | 5975 | 2009-06-30 | 2015-09-30
+FILERS | 2013q2_form13f.zip | 166 | 2009-09-30 | 2013-03-31
+FILERS | 2014q4_form13f.zip | 5465 | 2009-12-31 | 2014-09-30
+FILERS | 2014q2_form13f.zip | 5415 | 2009-12-31 | 2014-03-31
+FILERS | 2019q3_form13f.zip | 6932 | 2010-12-31 | 2019-06-30
+FILERS | 2016q2_form13f.zip | 6034 | 2010-12-31 | 2016-03-31
+FILERS | 2022q3_form13f.zip | 8948 | 2010-12-31 | 2022-06-30
+FILERS | 2016q4_form13f.zip | 5994 | 2011-09-30 | 2016-09-30
+FILERS | 2015q2_form13f.zip | 5914 | 2011-09-30 | 2015-03-31
+FILERS | 2018q3_form13f.zip | 6647 | 2011-12-31 | 2018-06-30
+FILERS | 2017q1_form13f.zip | 6210 | 2011-12-31 | 2017-03-31
+FILERS | 2016q1_form13f.zip | 6072 | 2011-12-31 | 2016-03-31
+FILERS | 2019q2_form13f.zip | 7144 | 2012-03-31 | 2019-03-31
+FILERS | 2021q2_form13f.zip | 7927 | 2012-03-31 | 2021-05-07
+FILERS | 2016q3_form13f.zip | 6007 | 2012-06-30 | 2016-09-30
+FILERS | 01mar2025-31may2025_form13f.zip | 10765 | 2012-12-31 | 2025-03-31
+FILERS | 2018q2_form13f.zip | 6622 | 2012-12-31 | 2018-03-31
+FILERS | 2017q3_form13f.zip | 6207 | 2013-03-31 | 2017-06-30
+FILERS | 01dec2024-28feb2025_form13f.zip | 10605 | 2013-12-31 | 2024-12-31
+FILERS | 01jun2024-31aug2024_form13f.zip | 10117 | 2013-12-31 | 2024-06-30
+FILERS | 2019q4_form13f.zip | 6981 | 2013-12-31 | 2019-09-30
+FILERS | 01dec2025-28feb2026_form13f.zip | 11372 | 2013-12-31 | 2025-12-31
+FILERS | 2020q4_form13f.zip | 7237 | 2013-12-31 | 2020-09-30
+FILERS | 2019q1_form13f.zip | 6887 | 2013-12-31 | 2018-12-31
+FILERS | 01sep2024-30nov2024_form13f.zip | 9891 | 2014-03-31 | 2024-09-30
+FILERS | 2020q1_form13f.zip | 7285 | 2014-03-31 | 2019-12-31
+FILERS | 2020q2_form13f.zip | 7296 | 2014-03-31 | 2020-06-30
+FILERS | 2017q4_form13f.zip | 6174 | 2014-09-30 | 2017-09-30
+FILERS | 2018q1_form13f.zip | 6570 | 2014-12-31 | 2017-12-31
+FILERS | 2022q1_form13f.zip | 8921 | 2014-12-31 | 2021-12-31
+FILERS | 2021q1_form13f.zip | 7883 | 2015-09-30 | 2020-12-31
+FILERS | 2021q4_form13f.zip | 7985 | 2017-09-30 | 2021-09-30
+FILERS | 01sep2025-30nov2025_form13f.zip | 10422 | 2018-09-30 | 2025-09-30
+SUBS | 2022q2_form13f.zip | 8906 | 1987-03-31 | 2022-03-31
+SUBS | 2013q3_form13f.zip | 5227 | 2002-03-31 | 2013-06-30
+SUBS | 2018q4_form13f.zip | 6659 | 2006-09-30 | 2018-09-30
+SUBS | 2014q3_form13f.zip | 5482 | 2006-12-31 | 2014-06-30
+SUBS | 01mar2024-31may2024_form13f.zip | 9884 | 2006-12-31 | 2024-03-31
+SUBS | 2015q1_form13f.zip | 6045 | 2006-12-31 | 2014-12-31
+SUBS | 01jan2024-29feb2024_form13f.zip | 9433 | 2006-12-31 | 2023-12-31
+SUBS | 2013q4_form13f.zip | 5043 | 2006-12-31 | 2013-09-30
+SUBS | 01jun2025-31aug2025_form13f.zip | 10799 | 2006-12-31 | 2025-06-30
+SUBS | 2015q3_form13f.zip | 6000 | 2006-12-31 | 2015-06-30
+SUBS | 01mar2026-31may2026_form13f.zip | 11761 | 2008-03-31 | 2026-03-31
+SUBS | 2014q1_form13f.zip | 5425 | 2008-12-31 | 2013-12-31
+SUBS | 2017q2_form13f.zip | 6218 | 2008-12-31 | 2017-06-30
+== [14] f13_mgr (1.5s) 16311 rows -> r14_f13_mgr.csv
+CIK | NM | N | LANDED | ORIG_HR | LATE_HR | VLATE_HR | MAX_DL | MED_DL | RESTATE | NEWH | DENIED | EXPIRED | NOTICES | Q0 | Q1 | NQ | MAX_SAME_DAY
+0001178579 | TANG KEVIN C | 45 | 45 | 12 | 0 | 0 | 47 | 45.0 | 0 | 0 | 0 | 0 | 33 | 2013-06-30 | 2026-03-31 | 45 | 1
+0001268580 | OTA LLC | 34 | 34 | 1 | 0 | 0 | 39 | 39.0 | 0 | 0 | 0 | 0 | 33 | 2013-06-30 | 2022-06-30 | 34 | 1
+0001349434 | LOCUST WOOD CAPITAL ADVISERS, LLC | 30 | 30 | 27 | 0 | 0 | 46 | 35.0 | 3 | 0 | 0 | 0 | 0 | 2013-06-30 | 2026-03-31 | 27 | 1
+0002109868 | EFG International AG | 2 | 2 | 2 | 0 | 0 | 48 | 46.5 | 0 | 0 | 0 | 0 | 0 | 2025-12-31 | 2026-03-31 | 2 | 1
+0001985284 | Aspect Partners, LLC | 10 | 10 | 10 | 0 | 0 | 47 | 29.0 | 0 | 0 | 0 | 0 | 0 | 2023-12-31 | 2026-03-31 | 10 | 1
+0001916366 | My Personal CFO, LLC | 14 | 14 | 13 | 1 | 1 | 119 | 23.0 | 1 | 0 | 0 | 0 | 0 | 2021-12-31 | 2026-03-31 | 13 | 1
+0001851184 | Curi Wealth Management, LLC | 7 | 7 | 7 | 1 | 0 | 78 | 39.0 | 0 | 0 | 0 | 0 | 0 | 2020-12-31 | 2024-03-31 | 7 | 1
+0002108355 | Fullerton Advisors, LLC | 2 | 2 | 2 | 0 | 0 | 33 | 27.0 | 0 | 0 | 0 | 0 | 0 | 2025-12-31 | 2026-03-31 | 2 | 1
+0000873303 | Sarepta Therapeutics, Inc. | 2 | 2 | 2 | 0 | 0 | 44 | 43.5 | 0 | 0 | 0 | 0 | 0 | 2025-12-31 | 2026-03-31 | 2 | 1
+0002010574 | Sachetta, LLC | 10 | 10 | 10 | 0 | 0 | 40 | 31.5 | 0 | 0 | 0 | 0 | 0 | 2023-12-31 | 2026-03-31 | 10 | 1
+0001483060 | Breithorn Capital Management | 17 | 17 | 17 | 0 | 0 | 47 | 45.0 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2017-06-30 | 17 | 1
+0000354201 | MH & ASSOCIATES SECURITIES MANAGEMENT CORP /ADV | 2 | 2 | 2 | 0 | 0 | 31 | 26.5 | 0 | 0 | 0 | 0 | 0 | 2025-12-31 | 2026-03-31 | 2 | 1
+0001599904 | Sullivan, Bruyette, Speros & Blaney, Inc. | 30 | 30 | 20 | 0 | 0 | 45 | 40.5 | 0 | 0 | 0 | 0 | 10 | 2013-12-31 | 2021-03-31 | 30 | 1
+0001143892 | NIEMANN CAPITAL MANAGEMENT INC | 33 | 33 | 31 | 0 | 0 | 44 | 37.0 | 2 | 0 | 0 | 0 | 0 | 2013-06-30 | 2020-12-31 | 31 | 1
+0001669336 | Kaizen Advisory, LLC | 5 | 5 | 5 | 0 | 0 | 46 | 44.0 | 0 | 0 | 0 | 0 | 0 | 2017-12-31 | 2018-12-31 | 5 | 1
+0001667232 | NN Investment Partners Holdings N.V. | 24 | 24 | 23 | 0 | 0 | 45 | 36.0 | 1 | 0 | 0 | 0 | 0 | 2016-03-31 | 2022-03-31 | 23 | 1
+0001730456 | CAPITAL WEALTH MANAGEMENT, LLC | 27 | 27 | 27 | 0 | 0 | 45 | 36.0 | 0 | 0 | 0 | 0 | 0 | 2017-12-31 | 2026-03-31 | 27 | 1
+0001034647 | FRANKLIN TEMPLETON PORTFOLIO ADVISORS, INC. | 13 | 13 | 0 | 0 | 0 |  |  | 1 | 0 | 0 | 0 | 13 | 2013-06-30 | 2016-03-31 | 12 | 
+0001518195 | American National Registered Investment Advisor, Inc. | 34 | 34 | 34 | 0 | 0 | 47 | 42.0 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2022-03-31 | 34 | 1
+0001961292 | WealthSpring Partners, LLC | 7 | 7 | 2 | 0 | 0 | 43 | 32.0 | 5 | 0 | 0 | 0 | 0 | 2022-09-30 | 2026-03-31 | 7 | 1
+0002034595 | Mattson Financial Services, LLC | 8 | 8 | 8 | 3 | 0 | 92 | 42.0 | 0 | 0 | 0 | 0 | 0 | 2024-06-30 | 2026-03-31 | 8 | 1
+0001569743 | Quentec Master Fund, Ltd. | 21 | 21 | 0 | 0 | 0 |  |  | 1 | 0 | 0 | 0 | 21 | 2013-06-30 | 2018-03-31 | 20 | 
+0001580212 | Strategic Global Advisors, LLC | 39 | 39 | 39 | 0 | 0 | 47 | 44.0 | 0 | 0 | 0 | 0 | 0 | 2014-12-31 | 2026-03-31 | 39 | 1
+0002026172 | DIADEMA PARTNERS LP | 6 | 6 | 6 | 0 | 0 | 48 | 45.0 | 0 | 0 | 0 | 0 | 0 | 2024-12-31 | 2026-03-31 | 6 | 1
+0002109944 | Oath Planning, LLC | 2 | 2 | 2 | 0 | 0 | 43 | 40.5 | 0 | 0 | 0 | 0 | 0 | 2025-12-31 | 2026-03-31 | 2 | 1
+0001657260 | Spectrum Equity Management, Inc. | 12 | 12 | 11 | 0 | 0 | 45 | 39.0 | 1 | 0 | 0 | 0 | 0 | 2018-12-31 | 2022-06-30 | 11 | 1
+0001620916 | Boulegeris Investments, Inc. | 22 | 22 | 21 | 0 | 0 | 44 | 27.0 | 1 | 0 | 0 | 0 | 0 | 2014-09-30 | 2019-09-30 | 21 | 1
+0002070929 | Kondo Wealth Advisors, Inc. | 6 | 6 | 6 | 2 | 1 | 162 | 38.5 | 0 | 0 | 0 | 0 | 0 | 2024-12-31 | 2026-03-31 | 6 | 2
+0001375345 | EnerVest, Ltd. | 22 | 22 | 21 | 0 | 0 | 47 | 45.0 | 1 | 0 | 0 | 0 | 0 | 2018-12-31 | 2025-09-30 | 21 | 1
+0001794354 | SoftBank Corp. | 1 | 1 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 1 | 2026-03-31 | 2026-03-31 | 1 | 
+0001731437 | Resource Management, LLC | 15 | 15 | 15 | 1 | 0 | 65 | 37.0 | 0 | 0 | 0 | 0 | 0 | 2017-12-31 | 2021-12-31 | 15 | 1
+0001904459 | Stone Asset Management Inc. | 3 | 3 | 3 | 0 | 0 | 31 | 11.0 | 0 | 0 | 0 | 0 | 0 | 2021-12-31 | 2022-06-30 | 3 | 1
+0001457320 | EXCHANGE TRADED CONCEPTS, LLC | 19 | 19 | 19 | 0 | 0 | 44 | 15.0 | 0 | 0 | 0 | 0 | 0 | 2019-12-31 | 2026-03-31 | 19 | 1
+0002065055 | Evelyn Partners Investment Management (Europe) Ltd  | 8 | 8 | 6 | 2 | 2 | 345 | 45.0 | 2 | 0 | 0 | 0 | 0 | 2024-12-31 | 2026-03-31 | 6 | 1
+0000860580 | STEWART & PATTEN CO LLC | 37 | 37 | 37 | 0 | 0 | 30 | 18.0 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2024-03-31 | 37 | 1
+0002052200 | ENTREWEALTH, LLC | 6 | 6 | 6 | 0 | 0 | 44 | 43.5 | 0 | 0 | 0 | 0 | 0 | 2024-12-31 | 2026-03-31 | 6 | 1
+0001364615 | Aperio Group, LLC | 68 | 68 | 31 | 0 | 0 | 45 | 30.0 | 12 | 12 | 0 | 0 | 13 | 2013-06-30 | 2026-03-31 | 44 | 1
+0001597036 | Schecter Capital LP | 5 | 5 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 5 | 2013-12-31 | 2014-12-31 | 5 | 
+0001742040 | Brown Advisory Ltd | 26 | 26 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 26 | 2018-03-31 | 2026-03-31 | 26 | 
+0001861705 | Flight Deck Capital, LP | 13 | 13 | 13 | 0 | 0 | 48 | 45.0 | 0 | 0 | 0 | 0 | 0 | 2021-12-31 | 2026-03-31 | 13 | 1
+0001793691 | Relyea Zuckerberg Hanson LLC | 24 | 24 | 19 | 0 | 0 | 35 | 18.0 | 5 | 0 | 0 | 0 | 0 | 2019-12-31 | 2026-03-31 | 20 | 1
+0001665097 | Index Fund Advisors, Inc. | 14 | 14 | 13 | 0 | 0 | 45 | 29.0 | 0 | 1 | 0 | 0 | 0 | 2021-12-31 | 2026-03-31 | 13 | 1
+0002011229 | Climber Capital SA | 5 | 5 | 5 | 0 | 0 | 43 | 34.0 | 0 | 0 | 0 | 0 | 0 | 2024-12-31 | 2026-03-31 | 5 | 1
+0001910395 | Deutsche Bank Luxembourg S.A. | 11 | 11 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 11 | 2021-12-31 | 2026-03-31 | 11 | 
+0001456098 | Winton Capital Management Ltd | 45 | 45 | 4 | 0 | 0 | 39 | 37.5 | 1 | 0 | 0 | 0 | 41 | 2013-06-30 | 2026-03-31 | 44 | 1
+0001297966 | Centaurus Capital LP | 6 | 6 | 6 | 0 | 0 | 45 | 44.5 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2014-09-30 | 6 | 1
+0001335407 | SunTrust Bank | 25 | 25 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 25 | 2013-06-30 | 2019-09-30 | 25 | 
+0001595961 | Adi Capital Management LLC | 24 | 24 | 21 | 0 | 0 | 48 | 45.0 | 3 | 0 | 0 | 0 | 0 | 2014-12-31 | 2019-12-31 | 21 | 1
+0001692227 | Norway Savings Bank | 31 | 31 | 31 | 0 | 0 | 25 | 14.0 | 0 | 0 | 0 | 0 | 0 | 2016-12-31 | 2026-03-31 | 31 | 1
+0002013339 | Abel Hall, LLC | 10 | 10 | 10 | 1 | 0 | 59 | 37.0 | 0 | 0 | 0 | 0 | 0 | 2023-12-31 | 2026-03-31 | 10 | 1
+0000065957 | MIDAS MANAGEMENT CORP | 25 | 25 | 25 | 0 | 0 | 45 | 28.0 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2019-06-30 | 25 | 1
+0002097698 | Liberty Mutual Foundation Inc. | 2 | 2 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 2 | 2025-12-31 | 2026-03-31 | 2 | 
+0001766328 | Signet Investment Advisory Group, Inc. | 20 | 20 | 20 | 0 | 0 | 44 | 34.5 | 0 | 0 | 0 | 0 | 0 | 2018-12-31 | 2026-03-31 | 20 | 1
+0000866780 | TOTH FINANCIAL ADVISORY CORP | 45 | 45 | 45 | 0 | 0 | 39 | 15.0 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2026-03-31 | 45 | 1
+0001650303 | Performa Ltd (US), LLC | 37 | 37 | 26 | 0 | 0 | 48 | 36.0 | 5 | 0 | 0 | 0 | 10 | 2016-06-30 | 2026-03-31 | 32 | 1
+0001822067 | Stonehage Fleming Investment Management (Suisse) AG | 6 | 6 | 0 | 0 | 0 |  |  | 0 | 0 | 0 | 0 | 6 | 2020-06-30 | 2022-03-31 | 6 | 
+0001977663 | Dai-ichi Life International Holdings LLC | 11 | 11 | 1 | 0 | 0 | 44 | 44.0 | 1 | 0 | 0 | 0 | 10 | 2023-12-31 | 2026-03-31 | 10 | 1
+0001588186 | Edge Advisors, LLC | 7 | 7 | 7 | 3 | 3 | 300 | 45.0 | 0 | 0 | 0 | 0 | 0 | 2016-12-31 | 2018-06-30 | 7 | 3
+0001471126 | SCGF GENPAR LTD | 4 | 4 | 4 | 0 | 0 | 44 | 39.0 | 0 | 0 | 0 | 0 | 0 | 2013-06-30 | 2014-03-31 | 4 | 1
+0001965150 | Core Wealth Management, Inc. | 10 | 10 | 10 | 0 | 0 | 33 | 28.0 | 0 | 0 | 0 | 0 | 0 | 2023-12-31 | 2026-03-31 | 10 | 1
+== [15] f13_denied (0.7s) 50 rows -> r15_f13_denied.json
+FILINGMANAGER_NAME | FILINGMANAGER_CITY | REPORTCALENDARORQUARTER | DATEDENIEDEXPIRED | DATEREPORTED | REASONFORNONCONFIDENTIALITY | REPORTTYPE | AMENDMENTNO | FILING_DATE | CIK | ACCESSION_NUMBER
+AKRE CAPITAL MANAGEMENT LLC | Middleburg | 31-MAR-2013 | 2013-07-23 | 31-MAR-2013 | Denied | 13F HOLDINGS REPORT | 1 | 29-JUL-2013 | 0001112520 | 0000919574-13-004202
+CAXTON CORP | Princeton | 31-DEC-2012 | 2013-09-05 | 14-FEB-2013 | Denied | 13F HOLDINGS REPORT | 1 | 04-OCT-2013 | 0001388551 | 0000919574-13-005734
+CAXTON CORP | Princeton | 31-MAR-2013 | 2013-09-05 | 15-MAY-2013 | Denied | 13F HOLDINGS REPORT | 1 | 04-OCT-2013 | 0001388551 | 0000919574-13-005736
+OXFORD ASSET MANAGEMENT | OXFORD | 30-SEP-2013 | 2014-01-31 | 29-OCT-2013 | Denied | 13F HOLDINGS REPORT | 1 | 04-FEB-2014 | 0001438284 | 0001085146-14-000240
+Engaged Capital LLC | Newport Beach | 31-DEC-2013 | 2014-04-10 | 14-FEB-2014 | Denied | 13F HOLDINGS REPORT | 1 | 18-APR-2014 | 0001559771 | 0000921895-14-000855
+G2 Investment Partners Management LLC | New York | 31-DEC-2013 | 2014-05-12 | 05-FEB-2014 | Denied | 13F HOLDINGS REPORT | 1 | 08-OCT-2014 | 0001593404 | 0001172661-14-001589
+Sachem Head Capital Management LP | New York | 31-MAR-2014 | 2014-08-07 | 31-MAR-2014 | Denied | 13F HOLDINGS REPORT | 1 | 15-AUG-2014 | 0001582090 | 0000902664-14-003594
+American Capital Mortgage Management, LLC | Bethesda | 31-MAR-2014 | 2014-11-10 | 13-MAY-2014 | Denied | 13F HOLDINGS REPORT | 1 | 20-NOV-2014 | 0001543454 | 0000950123-14-012452
+American Capital Mortgage Management, LLC | Bethesda | 30-JUN-2014 | 2014-11-10 | 18-JUL-2014 | Denied | 13F HOLDINGS REPORT | 1 | 20-NOV-2014 | 0001543454 | 0000950123-14-012453
+American Capital Mortgage Management, LLC | Bethesda | 31-DEC-2013 | 2014-11-10 | 14-FEB-2014 | Denied | 13F HOLDINGS REPORT | 1 | 20-NOV-2014 | 0001543454 | 0000950123-14-012454
+Simon Property Group Inc /DE/ | Indianapolis | 31-DEC-2014 | 2015-03-20 | 17-FEB-2015 | Denied | 13F HOLDINGS REPORT | 2 | 31-MAR-2015 | 0001063761 | 0001104659-15-024627
+Francisco Partners Management, LP | SAN FRANCISCO | 31-MAR-2015 | 2015-08-06 | 15-MAY-2015 | Denied | 13F HOLDINGS REPORT | 1 | 14-AUG-2015 | 0001197853 | 0001197853-15-000003
+Bulldog Investors, LLC | Saddle Brook | 30-SEP-2015 | 2015-12-31 | 12-NOV-2015 | Denied | 13F HOLDINGS REPORT | 2 | 12-JAN-2016 | 0001504304 | 0001398344-16-008966
+Bulldog Investors, LLC | Saddle Brook | 30-JUN-2015 | 2015-12-31 | 13-AUG-2015 | Denied | 13F HOLDINGS REPORT | 1 | 12-JAN-2016 | 0001504304 | 0001398344-16-008958
+Bulldog Investors, LLC | Saddle Brook | 31-DEC-2014 | 2015-12-31 | 12-FEB-2015 | Denied | 13F HOLDINGS REPORT | 1 | 11-JAN-2016 | 0001504304 | 0001398344-16-008925
+Bulldog Investors, LLC | Saddle Brook | 31-DEC-2013 | 2015-12-31 | 12-FEB-2014 | Denied | 13F HOLDINGS REPORT | 1 | 11-JAN-2016 | 0001504304 | 0001398344-16-008908
+Bulldog Investors, LLC | Saddle Brook | 31-MAR-2015 | 2015-12-31 | 12-MAY-2015 | Denied | 13F HOLDINGS REPORT | 1 | 11-JAN-2016 | 0001504304 | 0001398344-16-008931
+Bulldog Investors, LLC | Saddle Brook | 31-MAR-2014 | 2015-12-31 | 14-MAY-2014 | Denied | 13F HOLDINGS REPORT | 1 | 11-JAN-2016 | 0001504304 | 0001398344-16-008912
+Bulldog Investors, LLC | Saddle Brook | 30-JUN-2014 | 2015-12-31 | 12-AUG-2014 | Denied | 13F HOLDINGS REPORT | 2 | 11-JAN-2016 | 0001504304 | 0001398344-16-008918
+Ellis Lake Capital, LLC | New York | 30-JUN-2015 | 2016-03-28 | 14-AUG-2015 | Denied | 13F HOLDINGS REPORT | 1 | 25-APR-2016 | 0001536147 | 0000919574-16-012611
+Ellis Lake Capital, LLC | New York | 31-MAR-2015 | 2016-03-28 | 15-MAY-2015 | Denied | 13F HOLDINGS REPORT | 1 | 25-APR-2016 | 0001536147 | 0000919574-16-012609
+BIGLARI CAPITAL CORP. | San Antonio | 31-DEC-2015 | 2016-04-01 | 16-FEB-2016 | Denied | 13F HOLDINGS REPORT | 1 | 07-APR-2016 | 0001334429 | 0000921895-16-004043
+BIGLARI CAPITAL CORP. | San Antonio | 30-SEP-2015 | 2016-04-01 | 16-NOV-2015 | Denied | 13F HOLDINGS REPORT | 2 | 07-APR-2016 | 0001334429 | 0000921895-16-004042
+SPRINGOWL ASSOCIATES LLC | NEW YORK | 30-JUN-2016 | 2016-09-07 | 13-SEP-2016 | Denied | 13F HOLDINGS REPORT | 1 | 13-SEP-2016 | 0000351262 | 0000351262-16-000009
+Fore Research & Management, LP | NEW YORK | 30-SEP-2016 | 2017-02-13 | 14-NOV-2016 | Denied | 13F HOLDINGS REPORT | 1 | 23-FEB-2017 | 0001313597 | 0001313597-17-000005
+Fore Research & Management, LP | NEW YORK | 31-DEC-2016 | 2017-02-13 | 14-FEB-2017 | Denied | 13F HOLDINGS REPORT | 1 | 23-FEB-2017 | 0001313597 | 0001313597-17-000007
+BROOKFIELD ASSET MANAGEMENT INC. | TORONTO | 30-SEP-2016 | 2017-03-21 | 22-MAR-2017 | Denied | 13F HOLDINGS REPORT | 3 | 24-MAR-2017 | 0001001085 | 0000950123-17-003038
+BROOKFIELD ASSET MANAGEMENT INC. | TORONTO | 31-DEC-2016 | 2017-03-21 | 22-MAR-2017 | Denied | 13F HOLDINGS REPORT | 3 | 24-MAR-2017 | 0001001085 | 0000950123-17-003037
+Brookfield Asset Management Inc. | Toronto | 30-JUN-2016 | 2017-03-21 | 22-MAR-2017 | Denied | 13F HOLDINGS REPORT | 4 | 24-MAR-2017 | 0001001085 | 0000950123-17-003035
+Brookfield Asset Management Inc. | Toronto | 30-JUN-2017 | 2017-11-02 | 10-NOV-2017 | Denied | 13F HOLDINGS REPORT | 2 | 14-NOV-2017 | 0001001085 | 0000950123-17-010717
+BARINGTON CAPITAL GROUP, L.P. | New York | 31-DEC-2017 | 2018-03-23 | 14-FEB-2018 | Denied | 13F HOLDINGS REPORT | 1 | 02-APR-2018 | 0000887762 | 0001615774-18-002314
+Burford Capital Investment Management LLC | Chicago | 31-DEC-2017 | 2018-03-26 | 14-FEB-2018 | Denied | 13F HOLDINGS REPORT | 1 | 04-APR-2018 | 0001712024 | 0001172661-18-000836
+FIRST SABREPOINT CAPITAL MANAGEMENT LP | DALLAS | 30-JUN-2018 | 2018-11-06 | 15-AUG-2018 | Denied | 13F HOLDINGS REPORT | 1 | 15-NOV-2018 | 0001731530 | 0001679792-18-000009
+Avidity Partners Management LP | Dallas | 31-MAR-2020 | 2020-06-09 | 15-MAY-2020 | Denied | 13F HOLDINGS REPORT | 1 | 17-JUN-2020 | 0001791827 | 0000919574-20-004168
+Avidity Partners Management LP | Dallas | 31-DEC-2019 | 2020-06-09 | 14-FEB-2020 | Denied | 13F HOLDINGS REPORT | 1 | 17-JUN-2020 | 0001791827 | 0000919574-20-004167
+ECP ControlCo, LLC | Summit | 30-SEP-2020 | 2021-02-16 | 16-NOV-2020 | Denied | 13F HOLDINGS REPORT | 1 | 16-FEB-2021 | 0001707921 | 0001104659-21-022767
+MAPLELANE CAPITAL, LLC | New York | 31-DEC-2020 | 2021-04-17 | 16-FEB-2021 | Denied | 13F HOLDINGS REPORT | 1 | 20-APR-2021 | 0001512173 | 0000919574-21-003040
+UBS OCONNOR LLC | CHICAGO | 30-JUN-2021 | 2022-02-03 | 30-JUN-2021 | Denied | 13F HOLDINGS REPORT | 5 | 07-FEB-2022 | 0001132716 | 0001132716-22-000002
+UBS OCONNOR LLC | CHICAGO | 30-SEP-2021 | 2022-06-06 | 30-SEP-2021 | Denied | 13F HOLDINGS REPORT | 4 | 09-JUN-2022 | 0001132716 | 0001132716-22-000013
+QVIDTVM Management LLC | NEW YORK | 31-MAR-2022 | 2022-08-31 | 31-MAR-2022 | Denied | 13F HOLDINGS REPORT | 1 | 02-SEP-2022 | 0001912226 | 0001912226-22-000005
+QVIDTVM Management LLC | NEW YORK | 30-JUN-2022 | 2022-08-31 | 30-JUN-2022 | Denied | 13F HOLDINGS REPORT | 1 | 02-SEP-2022 | 0001912226 | 0001912226-22-000006
+QVIDTVM Management LLC | NEW YORK | 31-DEC-2021 | 2022-08-31 | 31-DEC-2021 | Denied | 13F HOLDINGS REPORT | 1 | 02-SEP-2022 | 0001912226 | 0001912226-22-000004
+Westwood Global Investments, LLC | BOSTON | 31-DEC-2024 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 2 | 18-DEC-2025 | 0001356513 | 0001356513-25-000014
+Westwood Global Investments, LLC | BOSTON | 30-SEP-2025 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0001356513 | 0001356513-25-000017
+WGI DM, LLC | BOSTON | 30-JUN-2025 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0002059126 | 0002059126-25-000011
+Westwood Global Investments, LLC | BOSTON | 31-MAR-2025 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0001356513 | 0001356513-25-000015
+Westwood Global Investments, LLC | BOSTON | 31-DEC-2024 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0001356513 | 0001356513-25-000013
+WGI DM, LLC | BOSTON | 31-MAR-2025 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0002059126 | 0002059126-25-000010
+Westwood Global Investments, LLC | BOSTON | 30-JUN-2025 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0001356513 | 0001356513-25-000016
+WGI DM, LLC | BOSTON | 30-SEP-2025 | 2025-12-12 | 18-DEC-2025 | Denied | 13F HOLDINGS REPORT | 1 | 18-DEC-2025 | 0002059126 | 0002059126-25-000012
+== [16] ofac_entities (0.9s) 10129 rows -> r16_ofac_entities.csv
+ENT_NUM | SDN_NAME | SDN_TYPE | ENTITY_KIND | PROGRAM | REMARKS
+10001 | INVERSIONES MACARNIC PATINO Y CIA S.C.S. |  | organization | SDNT | NIT # 816005011-4 (Colombia).
+10002 | COMERCIALIZADORA DE CAFE DEL OCCIDENTE CODECAFE LTDA. |  | organization | SDNT | NIT # 816004106-0 (Colombia).
+10003 | GOMEZ MARIN LTDA. |  | organization | SDNT | NIT # 800102465-1 (Colombia).
+10004 | GAVIOTAS LTDA. |  | organization | SDNT | NIT # 800032092-7 (Colombia); a.k.a. 'HOTEL SIN PK2'.
+10005 | CANO AGUDELO S EN C |  | organization | SDNT | NIT # 821002095-7 (Colombia).
+10012 | KOREA HYOKSIN TRADING CORPORATION |  | organization | NPWMD | Secondary sanctions risk: North Korea Sanctions Regulations, sections 510.201 and 510.210; Transactions Prohibited For Persons Owned or Controlled By U.S. Financial Institutions: North Korea Sanctions Regulations section 510.214.
+10046 | CASA HAMZE |  | organization | SDGT | Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Paraguayan tax identification number BAHA 6301000.
+10052 | GALERIA PAGE |  | organization | SDGT | Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10053 | JIHAD AL-BINA |  | organization | SDGT | Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10116 | CARGO FREIGHT INTERNATIONAL |  | organization | DRCONGO | 
+10117 | COMPAGNIE AERIENNE DES GRANDS LACS |  | organization | DRCONGO | 
+10118 | GREAT LAKES BUSINESS COMPANY |  | organization | DRCONGO | 
+10122 | KALAYE ELECTRIC COMPANY |  | organization | NPWMD] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions.
+10128 | HIGHER INSTITUTE OF APPLIED SCIENCE AND TECHNOLOGY |  | organization | NPWMD | 
+10129 | ELECTRONICS INSTITUTE |  | organization | NPWMD | 
+10130 | NATIONAL STANDARDS AND CALIBRATION LABORATORY |  | organization | NPWMD | 
+10133 | SNIPER AFRICA |  | organization | SDGT | Website www.sniperafrica.com; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Registration ID 200302847123; Tax ID No. 9113562152.
+10143 | BUTEMBO AIRLINES |  | organization | DRCONGO | 
+10144 | CONGOCOM TRADING HOUSE |  | organization | DRCONGO | 
+10145 | MACHANGA LTD. |  | organization | DRCONGO | 
+10146 | UGANDA COMMERCIAL IMPEX |  | organization | DRCONGO | 
+10153 | DEFENSE INDUSTRIES ORGANIZATION |  | organization | NPWMD] [IFSR] [IRAN-CON-ARMS-EO | Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. 'SASADJA'.
+10361 | ROSARIO NIEBLA CARDOZA A. EN P. |  | organization | SDNTK | R.F.C. NICR-461006-T36 (Mexico).
+10363 | ESTANCIA INFANTIL NINO FELIZ S.C. |  | organization | SDNTK | 
+10364 | ESTABLO PUERTO RICO S.A. DE C.V. |  | organization | SDNTK | R.F.C. EPR-000322-UM9 (Mexico).
+10365 | JAMARO CONSTRUCTORES S.A. DE C.V. |  | organization | SDNTK | 
+10366 | NUEVA INDUSTRIA DE GANADEROS DE CULIACAN S.A. DE C.V. |  | organization | SDNTK | R.F.C. NIG-8802029-Y7 (Mexico).
+10368 | BANK SADERAT IRAN |  | organization | IRAN] [SDGT] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; all offices worldwide.
+10369 | AZZA AIR TRANSPORT COMPANY LTD. |  | organization | DARFUR | 
+10371 | FARAYAND TECHNIQUE |  | organization | NPWMD] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions.
+10386 | GULF CARTEL |  | organization | SDNTK] [FTO] [SDGT] [ILLICIT-DRUGS-EO14059 | Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Organization Type: Transnational Terrorist Group; Target Type Criminal Organization; a.k.a. 'CDG'.
+10388 | FAJR INDUSTRIES GROUP |  | organization | NPWMD] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions.
+10389 | MIZAN MACHINE MANUFACTURING GROUP |  | organization | NPWMD] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. '3MG'.
+10391 | ISLAMIC REVOLUTIONARY GUARD CORPS |  | organization | FTO] [SDGT] [NPWMD] [IRGC] [IFSR] [IRAN-HR] [HRIT-IR] [ELECTION-EO13848 | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10392 | MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS |  | organization | SDGT] [NPWMD] [IFSR] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024 | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: See Section 11 of Executive Order 14024.; alt. Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ROSOBORONEKSPORT OAO.
+10408 | AL-SALAH SOCIETY |  | organization | SDGT | Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10410 | MARTYRS FOUNDATION |  | organization | SDGT] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; alt. Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10411 | MARTYRS FOUNDATION IN LEBANON |  | organization | SDGT | Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10412 | PALESTINIAN MARTYRS FOUNDATION |  | organization | SDGT | Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10413 | GOODWILL CHARITABLE ORGANIZATION, INC. |  | organization | SDGT | Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10416 | AL-QARD AL-HASSAN ASSOCIATION |  | organization | SDGT | Additional Sanctions Information - Subject to Secondary Sanctions Pursuant to the Hizballah Financial Sanctions Regulations; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+1042 | INSTITUTO NACIONAL DE TURISMO DE CUBA |  | organization | CUBA | 
+1043 | INTERCONSULT |  | organization | CUBA | 
+10463 | FATAH AL-ISLAM |  | organization | SDGT | Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10465 | ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE |  | organization | FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR] [ELECTION-EO13848 | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10473 | SOCIEDAD SUPERDEPORTES LTDA. |  | organization | SDNT | NIT # 8009712337 (Colombia).
+10486 | TAMILS REHABILITATION ORGANISATION |  | organization | SDGT | Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Registration ID 50706 (Sri Lanka); alt. Registration ID 6205 (Australia); alt. Registration ID 1107434 (United Kingdom); alt. Registration ID D4025482 (United States); alt. Registration ID 802401-0962 (Sweden); Tax ID No. 52-1943868 (United States); a.k.a. 'TRO'.
+10488 | KHATAM OL ANBIA GHARARGAH SAZANDEGI NOOH |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10489 | ORIENTAL OIL KISH |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10490 | GHORB KARBALA |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10491 | SEPASAD ENGINEERING COMPANY |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10492 | GHORB NOOH |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10493 | OMRAN SAHEL |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10494 | SAHEL CONSULTANT ENGINEERS |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10495 | HARA COMPANY |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10496 | GHARARGAHE SAZANDEGI GHAEM |  | organization | SDGT] [NPWMD] [IRGC] [IFSR | Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.
+10574 | BELNEFTEKHIM |  | organization | BELARUS | 
+10575 | BELNEFTEKHIM USA, INC. |  | organization | BELARUS | US FEIN 000920912 (United States).
+10596 | FMF GENERAL TRADING LLC |  | organization | SDNTK | C.R. No. 66488 (United Arab Emirates).
+10597 | AL AMLOOD TRADING LLC |  | organization | SDNTK | C.R. No. 79190 (United Arab Emirates).
+== [17] opensanctions_orgs (1.6s) 31331 rows -> r17_opensanctions_orgs.csv
+ID | SCHEMA | NAME | ALIASES | COUNTRIES | DATASET | PROGRAM_IDS | FIRST_SEEN | LAST_CHANGE
+NK-223CQDBzp8MRkdJMDiqXn3 | Organization | Myanmar Yatai International Holding Group Co., LTD. | Shwe Kokko Special Economic Zone;Yatai New City;Yatai Smart Industrial New City | mm | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-GLOMAG | 2025-09-08T14:10:01 | 2026-01-26T16:10:01
+NK-223yQP6hRaMuiALDCJ6xbY | Organization | Товариство з обмеженою відповідальністю "Зелінський Групп" | "Limited Liability Company ""Zelinsky Group""";"Tovarystvo z obmezhenoiu vidpovidalnistiu ""Zelinskyi Hrupp""";"Общество с ограниченной ответственностью ""Зелинский Групп""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-12-13T09:22:01 | 2026-01-06T08:22:01
+NK-226GXBdQ5p6NjgrTpTQNVW | Company | OJSC EHMZ named after N. D. Zelinsky | Fábrica de produtos químicos e mecânicos que recebeu o nome de N.D. Zelinsky;JSC “N.D. Zelinsky EHMZ”;Ny. D. Zelinszkij EHMZ Nyrt.;Open Joint Stock Company “Elektrostal Chemical and Mechanical Plant named after N.D. Zelinsky”;"Open Joint-Stock Company ""Elektrostal ChemicalMechanical Plant named after N.D.Zelinsky""";"Vidkryte aktsionerne tovarystvo ""Elektrostalskyi khimikomekhanichnyi zavod imeni M.D.Zelinskoho""";»Elektrosztali Ny. D. Zelinszkij Vegyi és Mechanikai Üzem« Nyilvánosan Működő Részvénytársaság;»Ny. D. Zelinszkij EHMZ« Rt.;"Відкрите акціонерне товариство ""Електростальський хімікомеханічний завод імені М.Д.Зелінського""";"ОАО ""ЭХМЗ им Н.Д. Зелинского”";"ОАО ""Электростальский Химико-Механический Завод Имени Н.Д. Зелинского""";ОАО “ЭХМЗ им Н.Д. Зелинского”;ОАО “Электростальский Химико-Механический Завод Имени Н.Д. Зелинского”;"Открытое акционерное общество ""Электростальский химикомеханический завод имени Н.Д.Зелинского""";"Открытое акционерное общество “Электростальский Химико-Механический Завод Имени Н.Д. Зелинского""";Открытое акционерное общество “Электростальский Химико-Механический Завод Имени Н.Д. Зелинского”;Электростальский Химико-Механический Завод Имени Н.Д. Зелинского | ru | Belgian Financial Sanctions;EU Council Official Journal Sanctioned Entities;EU Financial Sanctions Files (FSF);Monaco National Fund Freezing List;Swiss SECO Sanctions/Embargoes;Ukraine NSDC State Register of Sanctions | EU-UKR;SECO-UKRAINE;UA-SA1644 | 2023-12-13T09:22:01 | 2026-06-02T13:12:22
+NK-228ZdYZVXaZBSBgVwapnks | Organization | Приватне підприємство "Магістар-СГ" | "Private Enterprise ""Magistar-SG""";"Pryvatne pidpryiemstvo ""Mahistar-SH""" | ua | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-228jBYSTdUSvbZvsKsiHh6 | Organization | Акціонерне товариство "Електроагрегат" | "Aktsionerne tovarystvo ""Elektroahrehat""";Electroagregat JSC;"Joint-stock company ""Electroagregat""";"Акционерное общество ""Электроагрегат""" | ru | Canadian Consolidated Autonomous Sanctions List;Ukraine NSDC State Register of Sanctions | CA-SEMA;UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-229j9NEWBexje4PuNpeHxg | LegalEntity | MICHAEL DAVID MUMMERT |  | us | US BIS Denied Persons List;US Trade Consolidated Screening List (CSL) | US-BIS-DPL | 2024-03-27T15:53:01 | 2025-10-31T11:32:56
+NK-22BCZz68WYWRC74W9HxBSK | LegalEntity | SEVERTRUCKS LLC |  | ru | Canadian Consolidated Autonomous Sanctions List | CA-SEMA | 2024-08-06T09:43:02 | 2025-05-19T18:43:02
+NK-22MHXvQQufBgTjUWgUbWb8 | Organization | Limited Liability Company Specialized Developer Alabuga South Park | LLC Specialized Developer Alabuga South Park;"Limited Liability Company ""Specialized Developer ""Alabuga South Park""";OOO СПЕЦИАЛИЗИРОВАННЫЙ ЗАСТРОЙЩИК АЛАБУГА ЮЖНЫЙ ПАРК;"Tovarystvo z obmezhenoiu vidpovidalnistiu ""Spetsializovanyi zabudovnyk ""Alabuha Pivdennyi Park""";ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ СПЕЦИАЛИЗИРОВАННЫЙ ЗАСТРОЙЩИК АЛАБУГА ЮЖНЫЙ ПАРК;"Общество с ограниченной ответственностью ""Специализированный застройщик ""Алабуга Южный Парк""";"Товариство з обмеженою відповідальністю ""Спеціалізований забудовник ""Алабуга Південний Парк""" | ru | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL);Ukraine NSDC State Register of Sanctions | UA-SA1644;US-RUSHAR | 2024-02-23T14:10:55 | 2026-01-26T16:10:01
+NK-22T6dTsc6umYgEA33vME3t | Organization | Digital Marketing Awards FZ LLC | SD DIGITAL MARKETING AWARDS;SD Digital Marketing Awards;Swiss Dragons Management Digital Marketing Awards | ae | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-08-23T16:10:02 | 2026-01-26T16:10:01
+NK-22YnEcmYTBXeCBBeZU5wCN | Organization | Товариство з обмеженою відповідальністю «Сичовський виробничо-технологічний комбінат» | Sychovo PTK Ltd;Tovarystvo z obmezhenoiu vidpovidalnistiu «Sychovskyi vyrobnycho-tekhnolohichnyi kombinat»;Общество с ограниченной ответственностью «Сычевский производственно-технологический комбинат» | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-22cQD3a8GDRSuoW5mus3F3 | Organization | EKVIK LIMITED LIABILITY COMPANY |  | ru | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-10-30T14:10:02 | 2026-01-26T16:10:01
+NK-22xbFMnMDYA4FMDBQ5keE3 | Organization | Товариство з обмеженою відповідальністю «ДЖ.Т.І. Росія» | Limited Liability Company «J.T.I. Russia»;Tovarystvo z obmezhenoiu vidpovidalnistiu «DZh.T.I. Rosiia»;Общество с ограниченной ответственностью «ДЖ.Т.И. Россия» | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-235hApQ4jp8oMsJmToKGdJ | Organization | Федеральне казенне підприємство "Національне випробувальне об'єднання "Державні боєприпасні випробувальні полігони Росії" | "Federal state enterprise ""National testing association ""State ammunition testing ranges of Russia""";"Federalne kazenne pidpryiemstvo ""Natsionalne vyprobuvalne obiednannia ""Derzhavni boieprypasni vyprobuvalni polihony Rosiyi""";"Федеральное казенное предприятие ""Национальное испытательное объединение ""Государственные боеприпасные испытательные полигоны России""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-2369Vca9iPnQoaUJDAHTaB | Organization | Star Dragon Corporation Limited | 星龍興業有限公司 | cn;hk | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-DRC | 2025-08-12T20:10:01 | 2026-01-26T16:10:01
+NK-23RAhcNT2DHiw6naQfp9Aa | LegalEntity | Linkers Automation (Pvt) Ltd. |  | pk | Taiwan Strategic High-Tech Commodities Entity List;US Trade Consolidated Screening List (CSL) | US-BIS-EL | 2025-03-29T00:53:03 | 2025-09-17T00:48:27
+NK-23RXrhNJnWVyxTbRZqMZwJ | Organization | Товариство з обмеженою відповідальністю "МТС Авто" | "Limited Liability Company ""MTS Auto""";"Tovarystvo z obmezhenoiu vidpovidalnistiu ""MTS Avto""";"Общество с ограниченной ответственностью ""МТС Авто""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-06-01T10:58:17 | 2026-01-06T08:22:01
+NK-23YwNuFcT5T34b3j5vXD8c | Organization | ELECTRA PRO LLC | OOO ELECTRA PRO;"Tovarystvo z obmezhenoiu vidpovidalnistiu ""Elektra Pro""";ООО 'ЭЛЕКТРА ПРО';"Общество с ограниченной ответственностью ""Электра Про"", Limited Liability Company Electra Pro";"Товариство з обмеженою відповідальністю ""Електра Про""" | ru | UK FCDO Sanctions List;Ukraine NSDC State Register of Sanctions | GB-RUS;UA-SA1644 | 2025-10-15T12:40:02 | 2026-01-09T14:15:18
+NK-23ZhBn7gtgVpnL8oxvz7bF | LegalEntity | Taiyuan Jinke Semiconductor Technology Co., Ltd. |  | cn | Taiwan Strategic High-Tech Commodities Entity List;US Trade Consolidated Screening List (CSL) | US-BIS-EL | 2024-12-05T18:53:02 | 2025-09-01T12:53:02
+NK-23p2d4vMT5sJtQ845GyzJt | Company | Scientific and Production Association of Measuring Equipment JSC | AO NPO IT;AO Nauchno Proizvodstvennoe Obedinenie Izmeritelnoi Tekhniki;"Aktsionerne tovarystvo ""Naukovo-vyrobnyche obiednannia vymiriuvalnoyi tekhniky""";Aktsionernoe Obschestvo Nauchno Proizvodstvennoe Obedinenie Izmeritelnoy Tekhniki;JSC NPO IT;Joint Stock Company Research and Production Association of Measuring Equipment;Scientific and Production Association of Measuring Technology;АО «НПО ИТ»;Акционерное Общество «Научно-Производственное Объединение Измерительной Техники»;"Акционерное общество ""Научно-производственное объединение измерительной техники""";"Акціонерне товариство ""Науково-виробниче об'єднання вимірювальної техніки""";“AO NPO IT”;株式会社学術生産団体 IT;株式会社測量技術学術生産団体;株式会社測量機器学術生産団体;（別称、「株式会社学術生産公団IT」） | ru | EU Council Official Journal Sanctioned Entities;EU Sanctions Map;Japan Economic Sanctions and List of Eligible People;Japan METI Russian List;Swiss SECO Sanctions/Embargoes;Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL);Ukraine NSDC State Register of Sanctions | SECO-UKRAINE;UA-SA1644;US-BIS-EL;US-RUSHAR | 2023-04-20T10:27:20 | 2026-06-02T13:12:22
+NK-23wEenKCkJ2dbXMy4qdiE7 | Organization | GOLDEN LUXURY JEWELLERY TRADING L.L.C | جولدن لكسري لتجارة المجوهرات ش.ذ.م.م | ae | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-GLOMAG | 2024-12-09T15:53:02 | 2026-01-26T16:10:01
+NK-245arpDkLm74auKv2h9w3m | Organization | Japanese Red Army | Japanese Red Army (JRA) |  | US Department of State Foreign Terrorist Organizations;US Department of State Terrorist Exclusion | US-FTO219 | 2024-06-10T20:32:02 | 2026-06-08T19:08:44
+NK-24JQtEuqWJbXJo5Wp5L8K7 | Organization | Бейцзін Семікор Зет-Кей-Екс Електронік Еквіпмент Ко., Лтд | Beijing Semicore ZKX Electronic Equipment Co., Ltd;Beijing Shuoke Zhongkexin Electronic Equipment Co., Ltd.;Beitszin Semikor Zet-Kei-Eks Elektronik Ekvipment Ko., Ltd;SemiCore ZKX | cn | Taiwan Strategic High-Tech Commodities Entity List;US Trade Consolidated Screening List (CSL);Ukraine NSDC State Register of Sanctions | UA-SA1644;US-BIS-EL | 2024-12-05T18:53:02 | 2026-01-06T08:22:01
+NK-24UMVkuxF3svsAtg55i3Zi | Organization | ALBAHR ALAAHMAR ENERGY FZE | البحر الأحمر للطاقة م م ح | ae | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-24ZomtS59XsEEB94Qcqy7S | Organization | Sun Science International Co., Limited |  | cn;hk | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2025-03-13T14:22:34 | 2026-01-26T16:10:01
+NK-24cEBmXGjPPVJRwMPGx3Yj | Organization | LOLA LOLITA 1110, S. DE R.L. DE C.V. | LOLALOLITA 1110, S. DE R.L. DE C.V. | mx | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-NARCO | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-24cf2zYe7LEKhr2zFck73j | Vessel | Nurkez | NURKEZ | lr;pa;ru | Australian Sanctions Consolidated List;Canadian Consolidated Autonomous Sanctions List;EU Council Official Journal Sanctioned Entities;EU Sanctions Map;Swiss SECO Sanctions/Embargoes;UK FCDO Sanctions List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | AU-VESSELS;CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE;US-RUSHAR | 2024-12-17T12:06:54 | 2026-06-02T13:12:22
+NK-24kDoEn7nGXeuCyFCm2RDi | Organization | Desarrollos Cartok S.A. de C.V. |  | mx | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-NARCO | 2026-04-23T15:53:01 | 2026-04-23T16:10:01
+NK-24kqBFxEsFzjqBYhaNHkC9 | Organization | TAWU Mechanical Engineering and Trading Company | METAALKUNDE BV;Metaalkunde BV;TAWU;TAWU BVBA;TAWU BVBA Mechanical Engineering and Trading Company | be | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-24mFPrTQyTsaqNvHMFstSy | Organization | Акціонерне товариство "Сибнафтомаш" | "Aktsionerne tovarystvo ""Sybnaftomash""";"Joint-Stock Company ""Sibneftemash""";"Акционерное общество ""Сибнефтемаш""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-05-25T20:13:16 | 2026-01-06T08:22:01
+NK-255ZxugXEgPoy5E6MVvGAi | Organization | TARS GLOBAL GROUP FZE |  | ae | UK FCDO Sanctions List | GB-RUS | 2026-02-24T08:40:10 | 2026-02-24T08:40:10
+NK-258GJugiUef2BeQR2VXBTk | Organization | Акціонерне товариство "Торговельна компанія "Мегаполіс" | "Aktsionerne tovarystvo ""Torhovelna kompaniia ""Mehapolis""";"Joint-Stock Company «Trading Company ""Megapolis""";"Акционерное общество ""Торговая компания ""Мегаполис""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2024-06-25T09:22:06 | 2026-01-06T08:22:01
+NK-25AWXPXz9GXGvDkQJNDTQa | Company | Luoyang Institute of Science and Technology | Luoyang Institute of Technology | cn | Taiwan Strategic High-Tech Commodities Entity List;US Special Legislative Exclusions;US Trade Consolidated Screening List (CSL) | US-BIS-EL;US-MCCAIN-1286 | 2023-06-15T03:00:19 | 2025-09-01T12:53:02
+NK-25C73P67uMgzG82QwPnTqg | Organization | Sepehr Energy Jahan Nama Pars (SEJ) | Sepehr Energy;Sepehr Energy Hamta Pars;Sepehr Energy Jahan Nama Taban;Sepehr Energy Paya Gostar Jahan;sepehr energy paya gostar jahan;חברת ספר אנרג'י ג'האן נאמה פארס;سپهر انرژی پایا گستر جهان;شركة سپهر انرژی جهان نما پارس | ir | Israel Terrorists Organizations and Unauthorized Associations lists;Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-TERR | 2025-02-06T16:10:01 | 2026-01-26T16:10:01
+NK-25akUhFq4GChHko7h6FeNA | Organization | LIMITED LIABILITY COMPANY LITHIUMION | Limited Liability Company Lithiumion;Lithiumion LTD;Lithiumion Ltd;"Tovarystvo z obmezhenoiu vidpovidalnistiu ""Litiumion""";Общество С Ограниченной Ответственностью Литиумион;"Общество с ограниченной ответственностью ""Литиумион""";"Товариство з обмеженою відповідальністю ""Літіуміон""" | ru | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL);Ukraine NSDC State Register of Sanctions | UA-SA1644;US-RUSHAR | 2025-01-15T16:10:02 | 2026-01-26T16:10:01
+NK-25fK4oVYLqsU8QhqRiWYP9 | Organization | Міжнародна компанія публічне акціонерне товариство «Об'єднана компанія «РУСАЛ» | International Company Public Joint-Stock Company «United Company «RUSAL»;Mizhnarodna kompaniia publichne aktsionerne tovarystvo «Obiednana kompaniia «RUSAL»;Международная компания публичное акционерное общество «Объединённая компания «РУСАЛ» | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-25mjNP6hwtuYXhbqc8tE7a | Organization | PRINCE SEASHORE NO. 1 CO. LTD. |  | kh | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-TCO | 2025-10-14T14:18:49 | 2026-01-26T16:10:01
+NK-266LSve9VQomTUDwVfRNAY | Organization | MARSOLUT MANAGEMENT DMCC |  | ae | UK FCDO Sanctions List | GB-RUS | 2026-02-24T08:40:10 | 2026-02-24T08:40:10
+NK-269FgFWmRnEQYD79aLnKvZ | Organization | AURORATOOLS LIMITED LIABILITY COMPANY | OOO Avroratuls | ru | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-10-30T14:10:02 | 2026-01-26T16:10:01
+NK-26AoxGCbHCgUqfhejBQepF | Organization | Onsong County MSS Detention Centre | Centre de rétention MSS du comté d’Onsong;Centro de Detenção do MSS do distrito de Onsong;Centrul de detenție al Ministerului Securității Statului (MSS) din districtul Onsong;Detentiecentrum van het Ministerie van Staatsveiligheid in Onsong;Onsong County MSS Detention Centre (centre de rétention MSS du comté d’Onsong);Valtionturvallisuus-ministeriön Onseongin piirikunnan pidätyskeskus;Κέντρο κράτησης MSS του διοικητικού διαμερίσματος Onsong;Център за задържане към Министерството на държавната сигурност в окръг Onsong | kp | Belgian Financial Sanctions;EU Financial Sanctions Files (FSF);French National Asset Freezing System;Monaco National Fund Freezing List | EU-HR | 2024-07-22T15:58:01 | 2026-04-24T10:57:01
+NK-26Pa7cjkCUudCi7EQPrc4g | Organization | Limited Liability Company Osnova Lab | "Limited Liability Company ""Osnova Lab""";"Tovarystvo z obmezhenoiu vidpovidalnistiu ""Osnova Lab""";Общество С Ограниченной Ответственностью Основа Лаб;"Общество с ограниченной ответственностью ""Основа Лаб""";"Товариство з обмеженою відповідальністю ""Основа Лаб""" | ru | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL);Ukraine NSDC State Register of Sanctions | UA-SA1644;US-RUSHAR | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-26aLUdNdrvaLZphX6xQrr5 | Organization | South Wealth Resources Company | Manabea Tharwat Al-Janoob General Trading Company, LLC;Shirkat Manabi' Tharawat Al-Janub Liltijarah Al-'Ammah;South Wealth Resources Ltd. | iq | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-26gRUd585aTdEob58t2bBN | LegalEntity | Alexander Nikolic | Nikolic, Alexander | us | US Directorate of Defense Trade Controls AECA Debarments;US Trade Consolidated Screening List (CSL) | US-AECA-DEBARRED;US-DDTC-SD | 2025-08-26T21:53:01 | 2026-05-15T15:46:29
+NK-26hHRz3rYxj9aS3vwrP8kF | Company | Акціонерне товариство "Федеральна вантажна компанія" | "Aktsionerne tovarystvo ""Federalna vantazhna kompaniia""";"Joint-Stock Company ""Federal Cargo Company""";АО «Федеральная грузовая компания»;Акционерное общество «Федеральная грузовая компания»;Акціонерне товариство «Федеральна вантажна компанія»;"акционерное общество ""Федеральная грузовая компания""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-04-20T10:50:14 | 2026-01-06T08:22:01
+NK-26iSMJ3QThvQXWRtgVch6h | Organization | KIBER SERVIS, OOO | Kiber Service | ru | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-08-23T15:53:02 | 2026-01-26T16:10:01
+NK-26uCSxGMBbVTGPeT9iq45N | Organization | Товариство з обмеженою відповідальністю "ТД Ідєалпрод" | "Limited Liability Company ""TD Idealprod""";"Tovarystvo z obmezhenoiu vidpovidalnistiu ""TD Idiealprod""";"Общество с ограниченной ответственностью ""ТД Идеалпрод""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2025-08-04T08:22:01 | 2026-01-06T08:22:01
+NK-26vR5ddcEn7cQ7WaGBi3Po | Vessel | Fuga Bluemarine | FUGA BLUEMARINE | gm;ru | Australian Sanctions Consolidated List;Canadian Consolidated Autonomous Sanctions List;EU Council Official Journal Sanctioned Entities;EU Sanctions Map;Swiss SECO Sanctions/Embargoes;UK FCDO Sanctions List | AU-VESSELS;CA-SEMA;EU-MARE;GB-RUS;SECO-UKRAINE | 2025-05-09T06:40:35 | 2026-06-02T13:12:22
+NK-26xfRVn7tbtTbE4hQEQkYb | Organization | Bargawine Hong Kong Limited | КОМПАНИЯ С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ БАРГАВАЙН ГОН-КОНГ ЛИМИТЕД | cn;hk | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-06-12T14:16:40 | 2026-01-26T16:10:01
+NK-272297v9nPNkYoAsY4TiGG | LegalEntity | Abris | Abris-KEY | ru | US Trade Consolidated Screening List (CSL) | US-BIS-EL | 2023-05-27T00:38:20 | 2025-09-01T12:53:02
+NK-276gB7L8sFEhctkuEpZsus | Organization | BANK SADERAT PLC | IRAN OVERSEAS INVESTMENT BANK LIMITED;IRAN OVERSEAS INVESTMENT BANK PLC;IRAN OVERSEAS INVESTMENT CORPORATION LIMITED | gb;ir | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-27GNvfgnytTgq5jnijJPTE | Organization | NPO COMPUTER | NPO Kompyuter | ru | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-02-23T14:10:55 | 2026-01-26T16:10:01
+NK-27foGhde2c676yHk4Szsir | Airplane | EX-301 |  |  | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-TERR | 2023-04-20T10:27:20 | 2026-01-06T08:10:01
+NK-27kCkL6ZkA9sQHTR33Hdy7 | Organization | AUTO PARTS EAST FZCO |  | ae | Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-RUSHAR | 2024-10-30T14:10:02 | 2026-01-26T16:10:01
+NK-27vgWCH4uAFBmxLHgFFT5T | Organization | Benoil Shipping Inc |  | lr | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2026-01-23T16:10:01 | 2026-01-26T16:10:01
+NK-28CUUUd44UKCz82UZD5ovQ | Organization | RHINE SHIPPING DMCC | راين شيبينغ م.د.م.س | ae | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-IRAN | 2025-07-03T14:11:32 | 2026-01-26T16:10:01
+NK-28DYyZtuHyHDr3Gk7spEQM | Organization | Fars News Agency | Fars News Agency Cultural Institute;خبرگزاری فارس;مؤسسه فرهنگی خبرگزاری فارس | ir | Canadian Consolidated Autonomous Sanctions List;Taiwan Strategic High-Tech Commodities Entity List;US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | CA-SEMA;US-IRAN | 2023-09-15T14:35:01 | 2026-01-26T16:10:01
+NK-28X5jMopMz2jCXsUDUJczU | Company | Fajr Aviation Composite Industries | Družba Fajr Aviation Composite Industries;FACI;Fajr Aeration and Composites Industries;Fajr Aeronautics and Compound Material Industries;Fajr Aviation & Composites Industry;Fajr Aviation Ind;Spoločnosť Fajr Aviation Composite Industries | ir | Australian Sanctions Consolidated List;Belgian Financial Sanctions;Canadian Consolidated Autonomous Sanctions List;EU Financial Sanctions Files (FSF);French National Asset Freezing System;Japan METI End User List;Monaco National Fund Freezing List;Swiss SECO Sanctions/Embargoes;UK FCDO Sanctions List | AU-IRAN;CA-SEMA;EU-IRN;GB-IRAN-NW;SECO-IRAN | 2023-04-20T10:12:18 | 2026-04-24T10:57:01
+NK-28Xz7EAtUB2XcrkGWeyEzj | Organization | Акціонерне товариство "Об'єднані регіональні електричні мережі Владимирської області" | "Aktsionerne tovarystvo ""Obiednani rehionalni elektrychni merezhi Vladymyrskoyi oblasti""";"Joint-Stock Company ""United Regional Electric Grids of Vladimir Region""";ORES-Vladimirskoy Oblasti JSC;"АО ""ОРЭС-Владимирской области""";"Акционерное общество ""Объединенные региональные электрические сети Владимирской области""" | ru | Ukraine NSDC State Register of Sanctions | UA-SA1644 | 2023-12-05T15:22:01 | 2026-01-06T08:22:01
+NK-28ZcFDmHBF9L3WkDBBwH6H | Organization | GAZPROMBANK LEASING ZAO | "Aktsionerne tovarystvo ""Hazprombank Lizynh""";CLOSED JOINT-STOCK COMPANY GAZPROMBANK LIZING;"Joint-Stock Company ""Gazprombank Leasing""";"Акционерное общество ""Газпромбанк Лизинг""";"Акціонерне товариство ""Газпромбанк Лізинг""" | ru | US OFAC Consolidated (non-SDN) List;US Trade Consolidated Screening List (CSL);Ukraine NSDC State Register of Sanctions | UA-SA1644;US-SSI | 2023-04-20T10:56:14 | 2026-01-26T16:35:01
+NK-28atMHRF9nCCZCzMcArHsC | Organization | TRANSPORTES REFRIGERADOS PANDAS TRUCKING, SOCIEDAD ANONIMA DE CAPITAL VARIABLE | PANDAS FRIOS | mx | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-NARCO | 2023-04-20T10:27:20 | 2026-01-26T16:10:01
+NK-28jdB9hydzHBTUXwyE8Shm | Vessel | CONRAD |  | ck | US OFAC Specially Designated Nationals (SDN) List;US Trade Consolidated Screening List (CSL) | US-TERR | 2024-04-25T16:10:01 | 2026-01-06T08:10:01
+== [18] ficu_all (0.6s) 4250 rows -> r18_ficu_all.json
+CHARTER_NUMBER | YEAR_AND_QUARTER | CREDIT_UNION_NAME | STREET_MAILING_ADDRESS | CITY_MAILING_ADDRESS | STATE_MAILING_ADDRESS | ZIP_CODE_MAILING_ADDRESS | CREDIT_UNION_TYPE | NCUA_REGION | LOW_INCOME_DESIGNATION | MEMBERS | TOTAL_ASSETS | TOTAL_LOANS | TOTAL_DEPOSITS | RETURN_ON_AVERAGE_ASSETS | NET_WORTH_RATIO_EXCLUDES_CECL_TRANSITION_PROVISION | LOAN_TO_SHARE_RATIO | TOTAL_DEPOSITS_4_QUARTER_GROWTH | TOTAL_LOANS_4_QUARTER_GROWTH | TOTAL_ASSETS_4_QUARTER_GROWTH | MEMBERS_4_QUARTER_GROWTH | NET_WORTH_4_QUARTER_GROWTH_EXCLUDES_CECL_TRANSITION_PROVISION | NCUA_INTERNAL_ID_JOIN_NUMBER | _LOADED_AT | _SOURCE_RUN_ID | _SRC_SHA256
+1 | 2026.1 | MORRIS SHEPPARD TEXARKANA | 419 W 4TH ST | TEXARKANA | TX | 75501 | FCU | 2 | Yes | 1251 | 13376472 | 9132562 | 11875857 | 0.9520415298967478 | 11.209009371080805 | 76.90023549458368 | 6.312454059549122 | 0.04905739254810193 | 6.357067418666862 | -1.9592476489028177 | 7.025156482989048 | 2 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1000 | 2026.1 | SIERRA PACIFIC | PO BOX 10100 | RENO | NV | 89511 | FCU | 3 | No | 10886 | 187820733 | 93255430 | 161897286 | 1.0869188891103743 | 13.42955945124546 | 57.6016017958448 | 6.633026621134364 | -6.733684888363323 | 6.338472951404417 | 3.420102603078101 | 6.89206068220225 | 500 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10011 | 2026.1 | MUNICIPAL EMPLOYEES | 222 ARKANSAS AVE | BOGALUSA | LA | 70427 | FCU | 2 | Yes | 154 | 634755 | 53868 | 354727 | -1.0586196232982619 | 43.43297807815614 | 15.185762572344366 | 17.949033403603032 | -52.10924511695308 | 8.497895012127387 | 1.3157894736842035 | -0.7077051624660546 | 4824 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10015 | 2026.1 | ALLENTOWN | 1325 Oxford Dr | Allentown | PA | 18103 | FCU | 1 | No | 6963 | 126166773 | 71706222 | 105391953 | 1.3010392399567288 | 16.37010007381262 | 68.0376631790854 | 1.5599204858087967 | 0.3345004707336674 | 2.6695865709726263 | -3.6262975778546758 | 8.37834180241359 | 4826 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10023 | 2026.1 | ISLAND | 120 Motor Pkwy | Hauppauge | NY | 11788 | FCU | 1 | No | 50620 | 1350543498 | 948168743 | 1099300751 | 0.4976567100795184 | 10.109017162511266 | 86.25198719617721 | -6.042246599306655 | -8.112725941969757 | -8.485676808536457 | -1.9581259320950561 | 4.164841944560593 | 4831 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10047 | 2026.1 | WABELLCO | 1277 Park Ave | Washington | PA | 15301 | FCU | 1 | No | 1084 | 12445674 | 3270941 | 11296821 | 0.6143700611649947 | 9.229126522195584 | 28.954526233530654 | 1.7445453630068997 | -17.15113819824411 | 2.280867199451686 | -6.9527896995708165 | 7.919281356785768 | 4847 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10065 | 2026.1 | MYCOM | 101 Fenn St | Pittsfield | MA | 01201 | FCU | 1 | No | 2719 | 27413324 | 8500277 | 23931058 | 0.08494413475228649 | 12.544640700996348 | 35.51985457558959 | -2.791815067106229 | -13.799150249573755 | -1.6349652222550581 | -1.0913059294288874 | 6.513389194300578 | 4857 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10100 | 2026.1 | TRUCHOICE | PO BOX 10659 | PORTLAND | ME | 04104 | FCU | 1 | No | 12579 | 253581952 | 207279485 | 228089529 | 0.9963840642618025 | 10.927418840911834 | 90.87637030457458 | 0.41549710737482926 | 4.050247258246831 | 1.5751444594686026 | -0.9683514407179961 | 10.169282829586802 | 4874 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10141 | 2026.1 | DERTOWN SCHOOL | 5012 State Route 982 APT 3 | Latrobe | PA | 15650 | FCU | 1 | Yes | 706 | 12425846 | 8195654 | 8726645 | 0.3299365359126786 | 29.750553805350556 | 93.91529046959054 | 0.6152340912623178 | -4.979643266742073 | 1.3340938241706901 | 0.0 | 3.374010793881599 | 4894 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1015 | 2026.1 | NORTH JERSEY | 711 Union Blvd. | Totowa | NJ | 07512 | FCU | 1 | Yes | 27820 | 256718645 | 150857244 | 236015695 | 0.7872132994442486 | 10.275007099698582 | 63.91831017848199 | 9.002334083570517 | 2.210263130447654 | 9.654923037402718 | 13.657719491767772 | 9.639749738389458 | 509 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10158 | 2026.1 | OK | 3900 SE Adams Rd | Bartlesville | OK | 74006 | FCU | 2 | No | 3532 | 26918003 | 17003596 | 22694795 | 0.6181555926090556 | 15.125093046464109 | 74.92288870641924 | 2.537013168997926 | -5.647893477025989 | 3.3241325042223213 | 0.8566533409480215 | 7.5555970017166185 | 4906 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10164 | 2026.1 | HEART OF LOUISIANA | P O BOX 4030 | PINEVILLE | LA | 71360 | FCU | 2 | Yes | 16407 | 146423337 | 78770435 | 123289433 | 0.3892201729707135 | 16.206317576275428 | 63.89066206509361 | 4.499478886020092 | 10.258676877428808 | 4.87102715406551 | -0.7020516855292591 | 5.070062926036578 | 4909 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10170 | 2026.1 | CITIZENS | P.O. Box 425 | Big Spring | TX | 79721 | FCU | 2 | No | 10679 | 205013778 | 125263531 | 177383039 | 1.5530064710903924 | 13.955305481956437 | 70.61753576112764 | -4.5599416518168905 | -1.2068116133095996 | -2.1248218421481058 | 0.9452689290103011 | 12.889903585296159 | 4912 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10174 | 2026.1 | FIRSTLIGHT | 9983 Kenworthy St | El Paso | TX | 79924 | FCU | 2 | Yes | 98481 | 1628040073 | 1261474636 | 1445999488 | 0.7193721272607084 | 10.091018379987997 | 87.23894070977707 | 3.320289568489909 | -0.44820484585709197 | 3.443097276910523 | -1.3641417024728875 | 6.805624041262859 | 4916 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10177 | 2026.1 | TAYCO EMPLOYEES | P.O. Box 762 | South Shore | KY | 41175 | FCU | 2 | Yes | 383 | 2018233 | 495096 | 970018 | 0.7783869028806423 | 51.88528777400825 | 51.039877610518566 | -8.335719395329367 | -18.947935373921354 | -2.8851988241708093 | -3.7688442211055273 | 2.711869726674765 | 4917 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10180 | 2026.1 | FORT MORGAN SCHOOLS | PO Box 547 | Fort Morgan | CO | 80701 | FCU | 3 | No | 445 | 5357139 | 3469903 | 4545193 | -1.3356952979021688 | 15.062965512001835 | 76.34225873356752 | -2.2230458992215207 | -12.060158615468875 | -1.9876039582295446 | -13.759689922480622 | -0.7624725755831729 | 4920 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10181 | 2026.1 | OUACHITA VALLEY | P O Box 1477 | West Monroe | LA | 71294 | FCU | 2 | Yes | 36568 | 462028662 | 293229484 | 417917700 | 1.4317786711886449 | 12.84453171002625 | 70.1644089254894 | 11.44471583939728 | 6.951578128515146 | 11.217190108751662 | 1.738864312939925 | 13.480972227063837 | 4921 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10184 | 2026.1 | FRIENDLY | 2000 Main St | Aliquippa | PA | 15001 | FCU | 1 | No | 4472 | 68263038 | 26242689 | 56640353 | 0.7707395252625237 | 17.014834587350187 | 46.33214238618887 | 1.905331760239548 | 0.2549553880599964 | 2.06339191226228 | -3.3707865168539297 | 1.94631889818897 | 4923 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1021 | 2026.1 | FIRST FINANCIAL | 391 US Highway 9 | Freehold | NJ | 07728 | FCU | 1 | No | 14455 | 175837590 | 106308717 | 162556059 | 0.30302783271497885 | 8.164749073278358 | 65.39818795680819 | -6.349990415274465 | -2.222370424889164 | -4.648851895491191 | -4.334877564526806 | 10.331561115687116 | 512 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1022 | 2026.1 | SOUTH CAROLINA | PO BOX 190012 | NORTH CHARLESTO | SC | 29419 | FCU | 2 | Yes | 156633 | 2570596817 | 1926216876 | 2074408738 | 0.9992283038877142 | 13.180722187130911 | 92.85618792066619 | 3.477135663907416 | -0.031220741226833937 | 1.7890970158596975 | 2.343739790651167 | 7.086686539809506 | 513 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10221 | 2026.1 | GREAT FALLS REGIONAL | 34 Bates St | Lewiston | ME | 04240 | FCU | 1 | Yes | 4757 | 65786654 | 22888621 | 56986019 | 0.33282697703943376 | 13.16464886631869 | 40.16532721824277 | 3.399666158504999 | 5.694935970130621 | 3.97118863825221 | -2.079044874433922 | 9.639250340732342 | 4945 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10223 | 2026.1 | EVERENCE | 2160 Lincoln Hwy E Ste 20 | Lancaster | PA | 17602 | FCU | 1 | Yes | 24692 | 450075796 | 351410091 | 414755191 | 0.9496979408285912 | 8.387071096798104 | 84.72711098629746 | 6.07005754837906 | 7.27326564395383 | 1.4604011749904 | 1.7849045714992462 | 10.543947880477322 | 4946 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10225 | 2026.1 | BECCO BUFFALO | Evonik, 35 Sawyer Ave | Tonawanda | NY | 14150 | FCU | 1 | No | 144 | 990235 | 614625 | 744955 | -5.008853373123048 | 24.304129827768158 | 82.50498352249464 | -14.725066163609558 | -16.57142314186897 | -9.785084362814766 | -7.692307692307687 | 9.478146948578914 | 4947 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10241 | 2026.1 | MAPLE | P O Box 61001 | Lafayette | LA | 70596 | FCU | 2 | Yes | 9464 | 72523103 | 51175529 | 61570762 | 0.8499657217175114 | 15.019293920724822 | 83.11660817191121 | -0.5682734647734389 | 0.5252915188586949 | 0.3132746904779049 | 2.2140619937358164 | 6.2480223209008035 | 4958 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10243 | 2026.1 | OAHE | PO Box 818 | Pierre | SD | 57501 | FCU | 3 | No | 3565 | 45020374 | 22833537 | 37669472 | 1.4430233693043268 | 15.850241492884978 | 60.61549522117008 | 8.963361503471322 | 1.8309108793331363 | 9.377965003180599 | -0.4468025691147681 | 11.529202293340024 | 4959 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10253 | 2026.1 | AKRON | PO Box 456 | Akron | CO | 80720 | FCU | 3 | Yes | 234 | 473693 | 337601 | 406273 | -1.2320792143076005 | 14.488708931734267 | 83.09708004223761 | -13.660889800342147 | -20.54240942191008 | -12.927122030664373 | -0.8474576271186418 | -4.835064268777989 | 4965 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10257 | 2026.1 | SENTINEL | PO BOX 700 | BOX ELDER | SD | 57719 | FCU | 3 | Yes | 9857 | 197021224 | 126226123 | 174206020 | 0.5635504212258551 | 10.776641505384212 | 72.45795696382939 | 1.6303274766028997 | 16.952157260055255 | 2.330500074132269 | 3.085128634176959 | 7.643672962902959 | 4967 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10262 | 2026.1 | ALTAMAHA | PO Box 490 | Jesup | GA | 31598 | FCU | 2 | Yes | 10908 | 73779779 | 35415097 | 62106421 | 0.47032145493752675 | 14.004133842688793 | 57.023245631880805 | 2.162132570794606 | 1.573077721504279 | 2.8243958787334655 | 1.2061606977175732 | 2.8582171540614487 | 4970 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10269 | 2026.1 | CHEROKEE COUNTY TEACHERS | P O DRAWER A | RUSK | TX | 75785 | FCU | 2 | Yes | 1746 | 13694120 | 9644586 | 10917421 | 0.8077299773499724 | 20.62798485773456 | 88.34124835893019 | -7.204336043176152 | -6.73905715473162 | -5.315302327719995 | -1.5228426395939132 | 2.449848981166891 | 4975 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10274 | 2026.1 | W B H EMPLOYEES | 2501 Broadway St | Paducah | KY | 42001 | FCU | 2 | No | 2315 | 17038647 | 7356477 | 14630774 | -2.1509012406165606 | 13.7761994834449 | 50.28084638584398 | 1.6003323814795412 | -19.443726889891778 | -0.7315165059193496 | 2.8888888888888964 | -14.740856703873073 | 4977 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10283 | 2026.1 | THE FOCUS | 420 NE 10th St | Oklahoma City | OK | 73104 | FCU | 2 | Yes | 12341 | 162083663 | 123592229 | 146778297 | 0.06640110932148328 | 9.032741936489924 | 84.20334036168849 | -0.8856849373266251 | -0.018449212104332258 | -0.22430924978360522 | -0.8516108299188585 | 1.7772047714593953 | 4983 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10301 | 2026.1 | ROMNEY | 62 WEST MAIN STREET | ROMNEY | WV | 26757 | FCU | 1 | Yes | 1621 | 14016375 | 11054930 | 12672641 | 0.9135889153319208 | 9.57773318707583 | 87.23461826149735 | 5.25257887751045 | 0.9658441939659701 | 5.09578711834251 | 4.1773778920308535 | 3.979480633550536 | 4996 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10308 | 2026.1 | ALTON MUNICIPAL EMPLOYEES | 3212 COLLEGE AVE | ALTON | IL | 62002 | FCU | 3 | Yes | 266 | 458107 | 327835 | 287791 | -1.841021407785804 | 36.87806560476046 | 113.914264170874 | -4.456934558589188 | -6.499021738510413 | -3.373746577740655 | 6.400000000000006 | -1.5965564240863928 | 5000 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10319 | 2026.1 | FIRST POINT | 2430 HAMILTON AVE, SUITE 2 | HAMILTON | NJ | 08619 | FCU | 1 | No | 1186 | 25213038 | 6639332 | 24152802 | -0.47580344949230563 | 7.347408908041943 | 27.488868579306036 | -5.759009456756892 | -8.107314327995496 | -4.437836798506723 | -29.02453620586475 | 1.2731683956405337 | 5007 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10323 | 2026.1 | I B E W 26 | 4371 PARLIAMENT PL STE C | LANHAM | MD | 20706 | FCU | 1 | No | 2892 | 30206156 | 18178973 | 27399693 | 0.4062655957798671 | 7.344780977758308 | 66.34736016932744 | 4.02274904302744 | 22.938261961882244 | 4.668914279595815 | 3.991370010787487 | 5.7881315361331565 | 5010 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10324 | 2026.1 | JACKSON COUNTY | 309 N Allen St | Edna | TX | 77957 | FCU | 2 | No | 710 | 9214257 | 5890436 | 8337866 | 0.6657160363011323 | 9.28565374288996 | 70.64680578939503 | 7.342496686529243 | -3.6310412034332273 | 7.693588845433963 | -2.0689655172413834 | 10.68945130320824 | 5011 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10327 | 2026.1 | VICTORIA TEACHERS | 2207 Wildwood St | Victoria | TX | 77901 | FCU | 2 | Yes | 1391 | 18141883 | 5790877 | 12204179 | 0.30657712734774983 | 32.50038047318462 | 47.449951365020134 | -2.0309259523126233 | -5.04584410560911 | -0.5481726664137709 | 5.219364599092291 | 2.1837465934742006 | 5014 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10335 | 2026.1 | COCONINO | 2800 S Woodlands Village Blvd | Flagstaff | AZ | 86001 | FCU | 3 | Yes | 9639 | 126546327 | 58960371 | 111809009 | 0.8537491237699505 | 10.665095795312968 | 52.73311294620275 | 2.7767989132643 | -1.4963522136818064 | 3.8603241225579232 | -1.7631471667346132 | 12.812308584252353 | 5019 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1034 | 2026.1 | OLIVE VIEW EMPLOYEES | P O BOX 923071 | SYLMAR | CA | 91392 | FCU | 3 | Yes | 6213 | 75225960 | 34195003 | 60690113 | -2.240975050996206 | 19.244416422203187 | 56.34361399195286 | 16.56441162806299 | -3.7857186167935652 | 12.522013871390246 | 4.244966442953024 | -0.1225838788538991 | 521 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10351 | 2026.1 | LA LOMA | PO Box 906 | Loma Linda | CA | 92354 | FCU | 3 | No | 6971 | 114333182 | 73499188 | 108257380 | 0.4687236086437626 | 9.523454879441735 | 67.8930046154821 | -0.6998691437325788 | 2.544288635086267 | 0.22177911085972113 | -45.243892859948154 | 6.983864879146262 | 5032 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10353 | 2026.1 | ACCESS OF LOUISIANA | PO Box 1690 | Lake Charles | LA | 70602 | FCU | 2 | Yes | 3631 | 44701408 | 24998988 | 40186313 | 0.05611533907032855 | 9.681390796459924 | 62.20771733898553 | -7.011262850844579 | -9.764787343630932 | -6.356573258789366 | -3.6358811040339667 | -0.029960626147051972 | 5033 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10362 | 2026.1 | NORTHERN REDWOOD | 1270 Giuntoli Ln | Arcata | CA | 95521 | FCU | 3 | Yes | 3167 | 24491763 | 12250984 | 22576655 | -1.7994866804888816 | 7.732701806725796 | 54.26394654123917 | 1.217833638055521 | -16.446473635557744 | 0.40752929288465634 | -1.6764979819931747 | -6.016903186554867 | 5039 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10375 | 2026.1 | 1ST LIBERTY | P. O. Box 5002 | Great Falls | MT | 59403 | FCU | 3 | Yes | 14437 | 217527729 | 88043844 | 186170393 | 0.27752640366585546 | 14.040348391629648 | 47.29207613586549 | 2.191280078250779 | 4.127750609172187 | 2.9026343775173435 | -2.4131404623496056 | 0.9072305307231909 | 5047 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10381 | 2026.1 | FERKO MD | 502 W Patrick St | Frederick | MD | 21701 | FCU | 1 | No | 3035 | 29883556 | 10622875 | 24142516 | 2.1867339568689004 | 19.16026994913189 | 44.00069570213809 | -2.824794901787797 | -7.857554065040684 | -0.5731634383684403 | -2.0019373587342626 | 10.170644366380778 | 5051 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10393 | 2026.1 | ELECTRICAL WORKERS LOCAL 130 | 3200 RIDGELAKE DR STE 304 | METAIRIE | LA | 70002 | FCU | 2 | Yes | 1483 | 3335880 | 2276465 | 2841674 | -1.0780196336945165 | 14.598456779020827 | 80.10999854311225 | -16.42880060982801 | -4.963276811392725 | -14.56954151183546 | 0.4062288422477911 | -2.2650233907917983 | 5058 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10395 | 2026.1 | KINGS | 1415 W Lacey Blvd | Hanford | CA | 93230 | FCU | 3 | Yes | 9664 | 162875520 | 88722180 | 136535745 | 0.805760674445124 | 15.637709706160877 | 64.98091763442606 | 1.9226104240563702 | 0.8928548075821885 | 3.876258646192099 | 4.250269687162889 | 7.032879347811338 | 5060 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10399 | 2026.1 | KAHULUI | 25 WEST KAMEHAMEHA AVENUE | KAHULUI | HI | 96732 | FCU | 3 | No | 3981 | 79477772 | 27700696 | 68228454 | 0.30620053635488864 | 13.731558806152744 | 40.599917447931624 | 5.093802387320734 | -0.11883036536263214 | 4.799637531827616 | -2.6174168297456 | 3.1748066572033773 | 5063 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1040 | 2026.1 | CAPITAL EDUCATORS | P.O. BOX 570 | MERIDIAN | ID | 83680 | FCU | 3 | Yes | 100316 | 1403502472 | 1068149910 | 1033406977 | 0.29491739075033424 | 8.04750395908102 | 103.361979720793 | -13.404207619915887 | -12.932349153423717 | -10.681994211917045 | -3.8179063836315197 | -0.21389706289987043 | 524 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10433 | 2026.1 | BOPTI | 1451 S SEASIDE AVE | SAN PEDRO | CA | 90731 | FCU | 3 | Yes | 4274 | 64385017 | 20707825 | 48291158 | 0.807576972357244 | 24.193280868435586 | 42.88119369595569 | -16.527761925807873 | -17.395429720320855 | -12.410148834823342 | 0.18752930145335966 | 2.837469065768894 | 5083 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10442 | 2026.1 | UNITED TRADES | PO BOX 2293 | TUALATIN | OR | 97062 | FCU | 3 | Yes | 5943 | 54878461 | 35627821 | 47544096 | 0.238237688575297 | 13.292069178106141 | 74.93637275172927 | -4.136873492463433 | 0.10702806680467081 | -3.6119586137345894 | -5.381308708804333 | 0.7270536967791674 | 5088 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10461 | 2026.1 | MCLENNAN COUNTY EMPLOYEES | 215 N 5th St Ste 224 | Waco | TX | 76701 | FCU | 2 | No | 1340 | 20689541 | 6920518 | 15064449 | 0.12712668248266512 | 26.636642156536965 | 45.93940342590692 | -3.441616640672185 | 14.707709504910849 | -2.5660545224010733 | -0.07457121551081025 | 0.36079630870338164 | 5099 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10465 | 2026.1 | UNIVERSITY OF HAWAII | PO Box 22070 | Honolulu | HI | 96823 | FCU | 3 | No | 35354 | 956727565 | 365165635 | 877742447 | 1.0067654769247554 | 10.876660797371297 | 41.60282281528991 | 4.9995742740525095 | 13.273027471678823 | 6.450464973182735 | 2.6062224286045987 | 8.984595375884474 | 5101 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10481 | 2026.1 | MCMURREY | P.O. BOX 4575 | TYLER | TX | 75712 | FCU | 2 | No | 1726 | 22208023 | 12028622 | 19224571 | -0.35840885404576683 | 14.881410200268613 | 62.56900088953871 | -2.0641267333253333 | -16.066994445273252 | -1.7460063451804175 | -1.0888252148997135 | 0.16202351795913117 | 5112 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+1049 | 2026.1 | MEMBERSFIRST CT | 285 Broad Street | Meriden | CT | 06450 | FCU | 1 | No | 6096 | 107479139 | 41950453 | 94057343 | 0.6296308389391306 | 11.690080621133372 | 44.6009334964948 | 1.1875783241521054 | -0.7862703681872807 | 2.1605465279431746 | -0.5546492659053825 | 7.087467421562232 | 527 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10502 | 2026.1 | YANTIS | PO BOX 267 | YANTIS | TX | 75497 | FCU | 2 | No | 1856 | 28535942 | 15870474 | 24540627 | 0.31264448611746387 | 13.460126881390494 | 64.67020585904345 | -4.12157682923856 | 0.6151095670255957 | -3.811808648076198 | 2.0902090209020896 | 0.7241118792582268 | 5122 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10515 | 2026.1 | NEW ORLEANS CLERK & CHECKERS | 651 BONNABEL BLVD | METAIRIE | LA | 70005 | FCU | 2 | No | 1096 | 8242786 | 4447294 | 6536581 | 0.9729527634470029 | 20.512943075314585 | 68.03700589038826 | -2.319803078924143 | 1.5193569115685035 | -1.5182215136479549 | 1.0138248847926246 | 1.7144527767517737 | 5129 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10520 | 2026.1 | ALDERSON FCI | P. O. Box A | Alderson | WV | 24910 | FCU | 1 | Yes | 670 | 8595829 | 4831034 | 6430911 | 3.6814076067071158 | 24.63278410959548 | 75.12207834939716 | 4.8941608000317105 | -9.313040321342314 | 5.47637716530891 | -4.42225392296719 | 7.344078258965148 | 5132 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10551 | 2026.1 | SCURRY COUNTY SCHOOL | 1903 40TH ST | SNYDER | TX | 79549 | FCU | 2 | No | 1163 | 12398223 | 6993933 | 10289315 | -2.245732620722095 | 16.854867024088854 | 67.97277564152716 | 12.939961444186654 | 12.15864972136471 | 11.148401963413136 | 2.196836555360271 | -0.0012441798701301465 | 5147 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10572 | 2026.1 | FITZSIMONS | 2201 N FITZSIMONS PKWY | AURORA | CO | 80045 | FCU | 3 | Yes | 12964 | 214631436 | 149238453 | 172924270 | -0.34421349922910377 | 13.854443950139716 | 86.30278040208006 | 0.1168406239698161 | -7.651984865238537 | 0.5034475874866828 | -10.38916154005668 | -1.389246026137425 | 5158 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+10577 | 2026.1 | BIG SPRING EDUCATION EMPLOYEES | PO BOX 1110 | BIG SPRING | TX | 79721 | FCU | 2 | No | 4278 | 55824577 | 21561097 | 45685521 | 3.2527321549318136 | 17.846281217679447 | 47.194595854559694 | -6.301744443296375 | -0.4953014342854001 | -4.195409620199242 | 1.254437869822489 | 5.475306401689539 | 5162 | 1786129683120485 | 7818e4e3-3281-4b5f-b70e-b128779fec69 | 41f7d9655ef7d1d105c9718c2f307f30b8a94a37b2e11f953600ca09ab31a050
+== [19] pac_summary_all (1.1s) 45709 rows -> r19_pac_summary_all.csv
+CMTE_ID | COMMITTEE_NAME | COMMITTEE_TYPE | COMMITTEE_DESIGNATION | FILING_FREQUENCY | TOTAL_RECEIPTS | TOTAL_DISBURSEMENTS | INDIVIDUAL_CONTRIBUTIONS | PAC_CONTRIBUTIONS | TRANSFERS_FROM_AFFILIATES | TRANSFERS_TO_AFFILIATES | CONTRIBUTIONS_TO_OTHER_COMMITTEES | INDEPENDENT_EXPENDITURES | CASH_BEGINNING_OF_PERIOD | CASH_CLOSE_OF_PERIOD | DEBTS_OWED_BY | NONFEDERAL_TRANSFERS_RECEIVED | COVERAGE_END_DATE | PCT_FROM_INDIVIDUALS | PCT_DISBURSED_TO_OTHERS | _LOADED_AT | _SOURCE_RUN_ID
+C00000018 | IRONWORKERS LOCAL UNION NO. 25 POLITICAL EDUCATION COMMITTEE | Q | U | T |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000059 | HALLMARK CARDS PAC | Q | U | M | 129002.59 | 119500.0 | 126502.59 | 0.0 | 0.0 | 0.0 | 117500.0 | 0.0 | 139493.28 | 148995.87 | 0.0 | 0.0 | 2018-12-31 | 0.9806 | 0.9833 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000059 | HALLMARK CARDS PAC | Q | U | M | 112582.58 | 114004.97 | 112582.58 | 0.0 | 0.0 | 0.0 | 109000.0 | 0.0 | 148995.87 | 151358.23 | 0.0 | 0.0 | 2020-12-31 | 1.0 | 0.9561 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000059 | HALLMARK CARDS, INC. PAC (HALLPAC) | Q | B | M | 88197.26 | 75000.0 | 83692.43 | 1504.83 | 0.0 | 0.0 | 65000.0 | 0.0 | 147860.97 | 166058.23 | 0.0 | 0.0 | 2022-12-31 | 0.9489 | 0.8667 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000059 | HALLMARK CARDS, INC. PAC (HALLPAC) | Q | B | M | 95727.18 | 117500.0 | 91727.18 | 0.0 | 0.0 | 0.0 | 102500.0 | 0.0 | 166058.23 | 144285.41 | 0.0 | 0.0 | 2024-12-31 | 0.9582 | 0.8723 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000422 | AMERICAN MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 1962844.52 | 1439794.05 | 1930839.85 | 0.0 | 25.0 | 25.0 | 1379800.0 | 0.0 | 619102.75 | 1142153.22 | 0.0 | 0.0 | 2018-12-31 | 0.9837 | 0.9583 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000422 | AMERICAN MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 1617198.05 | 1722899.94 | 1572559.36 | 0.0 | 0.0 | 0.0 | 1293500.0 | 344800.0 | 1142153.22 | 1036451.33 | 0.0 | 0.0 | 2020-12-31 | 0.9724 | 0.7508 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000422 | AMERICAN MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 1780757.92 | 1803880.61 | 1562975.73 | 0.0 | 0.0 | 0.0 | 1377000.0 | 0.0 | 1036451.33 | 1013328.64 | 0.0 | 0.0 | 2022-12-31 | 0.8777 | 0.7634 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000422 | AMERICAN MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 2096337.89 | 2621577.12 | 1666298.01 | 0.0 | 0.0 | 0.0 | 1475650.0 | 835000.0 | 1013328.64 | 488089.41 | 0.0 | 0.0 | 2024-12-31 | 0.7949 | 0.5629 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000489 | D R I V E POLITICAL FUND CHAPTER 886 | N | U | Q | 60611.0 | 51890.23 | 0.0 | 0.0 | 60611.0 | 0.0 | 0.0 | 0.0 | 1974.0 | 13740.0 | 0.0 | 0.0 | 2018-12-31 | 0.0 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000489 | D R I V E POLITICAL FUND CHAPTER 886 | N | U | Q | 77582.87 | 83275.63 | 0.0 | 0.0 | 77582.87 | 0.0 | 0.0 | 0.0 | 13740.13 | 8047.37 | 0.0 | 0.0 | 2020-12-31 | 0.0 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000489 | D R I V E POLITICAL FUND CHAPTER 886 | N | U | Q | 77179.41 | 52568.57 | 0.0 | 0.0 | 77179.41 | 0.0 | 0.0 | 0.0 | 8047.37 | 35499.13 | 0.0 | 0.0 | 2022-12-31 | 0.0 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000489 | D R I V E POLITICAL FUND CHAPTER 886 | N | U | Q | 76595.8 | 27426.58 | 0.0 | 0.0 | 83956.55 | 0.0 | 0.0 | 0.0 | 35499.13 | 74807.1 | 0.0 | 0.0 | 2024-12-31 | 0.0 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000547 | KANSAS MEDICAL SOCIETY POLITICAL ACTION COMMITTEE | Q | U | Q | 11375.0 | 12650.0 | 11375.0 | 0.0 | 0.0 | 0.0 | 12500.0 | 0.0 | 6153.76 | 4878.76 | 0.0 | 0.0 | 2018-12-31 | 1.0 | 0.9881 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000547 | KANSAS MEDICAL SOCIETY POLITICAL ACTION COMMITTEE | Q | U | Q | 16400.0 | 17500.0 | 16400.0 | 0.0 | 0.0 | 0.0 | 17500.0 | 0.0 | 4878.76 | 3778.76 | 0.0 | 0.0 | 2020-12-31 | 1.0 | 1.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000547 | KANSAS MEDICAL SOCIETY POLITICAL ACTION COMMITTEE | Q | U | T | 9900.0 | 0.0 | 9900.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 3778.76 | 13678.76 | 0.0 | 0.0 | 2022-06-30 | 1.0 |  | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000638 | INDIANA STATE MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | U | Q | 88365.0 | 69809.43 | 88365.0 | 0.0 | 0.0 | 0.0 | 2000.0 | 0.0 | 92782.43 | 111338.0 | 0.0 | 0.0 | 2018-12-31 | 1.0 | 0.0286 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000638 | INDIANA STATE MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | U | T | 1600.0 | 112943.4 | 1000.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 111343.4 | 0.0 | 0.0 | 0.0 | 2019-05-16 | 0.625 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000729 | AMERICAN DENTAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 2491513.97 | 2494460.61 | 2351485.8 | 0.0 | 110349.55 | 72000.0 | 2354940.0 | 0.0 | 497868.43 | 494921.79 | 0.0 | 0.0 | 2018-12-31 | 0.9438 | 0.9441 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000729 | AMERICAN DENTAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 2381239.79 | 2500685.68 | 2242497.19 | 0.0 | 104716.74 | 301000.0 | 2107223.37 | 0.0 | 494921.79 | 375475.9 | 0.0 | 0.0 | 2020-12-31 | 0.9417 | 0.8427 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000729 | AMERICAN DENTAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 2143337.52 | 2011941.65 | 2133520.93 | 0.0 | 0.0 | 0.0 | 1902250.0 | 0.0 | 375475.9 | 506871.77 | 0.0 | 0.0 | 2022-12-31 | 0.9954 | 0.9455 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000729 | AMERICAN DENTAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | M | 2228046.98 | 2617456.75 | 2118774.56 | 0.0 | 22478.85 | 0.0 | 2544500.0 | 0.0 | 506871.77 | 117462.0 | 0.0 | 0.0 | 2024-12-31 | 0.951 | 0.9721 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000885 | INTERNATIONAL UNION OF PAINTERS AND ALLIED TRADES POLITICAL ACTION TOGETHER POLITICAL COMMITTEE | Q | B | M | 5751003.42 | 5907286.43 | 5691102.46 | 0.0 | 0.0 | 10954.39 | 2065100.0 | 0.0 | 727379.24 | 571096.23 | 0.0 | 0.0 | 2018-12-31 | 0.9896 | 0.3496 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000885 | INTERNATIONAL UNION OF PAINTERS AND ALLIED TRADES POLITICAL ACTION TOGETHER POLITICAL COMMITTEE | Q | B | M | 5685603.65 | 3429009.01 | 5640364.99 | 0.0 | 0.0 | 0.0 | 1966800.0 | 48266.66 | 571096.23 | 2827690.87 | 0.0 | 0.0 | 2020-12-31 | 0.992 | 0.5736 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000885 | INTERNATIONAL UNION OF PAINTERS AND ALLIED TRADES POLITICAL ACTION TOGETHER POLITICAL COMMITTEE | Q | B | M | 4809180.38 | 4302741.63 | 4773170.28 | 0.0 | 0.0 | 0.0 | 1724700.0 | 0.0 | 2827690.87 | 3334129.62 | 0.0 | 0.0 | 2022-12-31 | 0.9925 | 0.4008 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000885 | INTERNATIONAL UNION OF PAINTERS AND ALLIED TRADES POLITICAL ACTION TOGETHER POLITICAL COMMITTEE | Q | B | M | 5525285.55 | 3244535.22 | 5306388.9 | 0.0 | 0.0 | 0.0 | 1912443.65 | 0.0 | 3334129.62 | 5614879.95 | 0.0 | 0.0 | 2024-12-31 | 0.9604 | 0.5894 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000901 | BUILD POLITICAL ACTION COMMITTEE OF THE NATIONAL ASSOCIATION OF HOME BUILDERS (BUILDPAC) | Q | B | M | 3040617.37 | 3047667.86 | 2923877.76 | 19500.0 | 0.0 | 0.0 | 2894000.0 | 0.0 | 464142.63 | 457092.14 | 0.0 | 0.0 | 2018-12-31 | 0.9616 | 0.9496 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000901 | BUILD POLITICAL ACTION COMMITTEE OF THE NATIONAL ASSOCIATION OF HOME BUILDERS (BUILDPAC) | Q | B | M | 3100034.98 | 3022442.51 | 2982481.04 | 15000.0 | 0.0 | 0.0 | 2850000.0 | 0.0 | 457092.14 | 534684.61 | 0.0 | 0.0 | 2020-12-31 | 0.9621 | 0.9429 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000901 | BUILD POLITICAL ACTION COMMITTEE OF THE NATIONAL ASSOCIATION OF HOME BUILDERS (BUILDPAC) | Q | B | M | 2951378.09 | 2913363.05 | 2826926.12 | 12500.0 | 0.0 | 0.0 | 2752184.0 | 0.0 | 534684.61 | 572699.65 | 0.0 | 0.0 | 2022-12-31 | 0.9578 | 0.9447 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000901 | BUILD POLITICAL ACTION COMMITTEE OF THE NATIONAL ASSOCIATION OF HOME BUILDERS (BUILDPAC) | Q | B | M | 3501885.39 | 3259712.06 | 3367169.02 | 13000.0 | 0.0 | 0.0 | 3049500.0 | 0.0 | 572699.65 | 814872.98 | 0.0 | 0.0 | 2024-12-31 | 0.9615 | 0.9355 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000935 | DCCC | Y | U | M | 296422427.59 | 297489175.42 | 206633015.96 | 44079565.28 | 8455780.43 | 36210149.01 | 510608.3 | 84632372.87 | 6682243.72 | 5615495.89 | 18943553.22 | 0.0 | 2018-12-31 | 0.6971 | 0.0017 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000935 | DCCC | Y | U | M | 345784503.52 | 330435308.93 | 211618168.73 | 53181610.53 | 17316651.04 | 28587608.98 | 770425.6 | 90830223.42 | 5615495.89 | 20964690.48 | 14000000.0 | 0.0 | 2020-12-31 | 0.612 | 0.0023 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000935 | DCCC | Y | U | M | 362967111.14 | 367701788.05 | 207968269.95 | 55972679.53 | 27719936.11 | 26076579.07 | 640200.79 | 96432377.95 | 20964690.48 | 16230013.57 | 18000000.0 | 0.0 | 2022-12-31 | 0.573 | 0.0017 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000935 | DCCC | Y | U | M | 339935852.88 | 331933274.36 | 174592917.63 | 60327399.69 | 28229645.27 | 23919995.61 | 604424.67 | 74258192.57 | 16230013.57 | 24232592.09 | 20000000.0 | 0.0 | 2024-12-31 | 0.5136 | 0.0018 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000984 | UNITED STATES TELECOM ASSOCIATION POLITICAL ACTION COMMITTEE (TELECOMPAC) | Q | B | M | 148172.14 | 215294.5 | 113042.81 | 32500.0 | 0.0 | 0.0 | 209000.0 | 0.0 | 114099.01 | 46976.65 | 0.0 | 0.0 | 2018-12-31 | 0.7629 | 0.9708 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000984 | UNITED STATES TELECOM ASSOCIATION POLITICAL ACTION COMMITTEE (TELECOMPAC) | Q | B | M | 183955.25 | 170577.96 | 127820.23 | 55000.0 | 0.0 | 0.0 | 169500.0 | 0.0 | 46976.65 | 60353.94 | 0.0 | 0.0 | 2020-12-31 | 0.6948 | 0.9937 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000984 | UNITED STATES TELECOM ASSOCIATION POLITICAL ACTION COMMITTEE (TELECOMPAC) | Q | B | M | 163955.33 | 178976.0 | 128842.02 | 35000.0 | 0.0 | 0.0 | 178750.0 | 0.0 | 60353.94 | 45333.27 | 0.0 | 0.0 | 2022-12-31 | 0.7858 | 0.9987 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00000984 | UNITED STATES TELECOM ASSOCIATION POLITICAL ACTION COMMITTEE (TELECOMPAC) | Q | B | M | 180651.77 | 150000.0 | 128799.61 | 51500.0 | 0.0 | 0.0 | 150000.0 | 0.0 | 45333.27 | 75985.04 | 0.0 | 0.0 | 2024-12-31 | 0.713 | 1.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001016 | CARPENTERS LEGISLATIVE IMPROVEMENT COMMITTEE UNITED BROTHERHOOD OF CARPENTERS AND JOINERS | Q | B | M | 2506168.18 | 2821329.06 | 2478668.18 | 0.0 | 0.0 | 0.0 | 2556000.0 | 0.0 | 1978734.14 | 1663573.26 | 0.0 | 0.0 | 2018-12-31 | 0.989 | 0.906 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001016 | CARPENTERS LEGISLATIVE IMPROVEMENT COMMITTEE UNITED BROTHERHOOD OF CARPENTERS AND JOINERS | Q | B | M | 2967340.29 | 3642121.23 | 2717175.6 | 0.0 | 25576.46 | 0.0 | 2945800.0 | 0.0 | 1663573.26 | 988792.32 | 0.0 | 0.0 | 2020-12-31 | 0.9157 | 0.8088 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001016 | CARPENTERS LEGISLATIVE IMPROVEMENT COMMITTEE UNITED BROTHERHOOD OF CARPENTERS AND JOINERS | Q | B | M | 2798817.33 | 2460860.0 | 2751217.33 | 0.0 | 0.0 | 0.0 | 2378900.0 | 0.0 | 988792.32 | 1326749.65 | 0.0 | 0.0 | 2022-12-31 | 0.983 | 0.9667 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001016 | CARPENTERS LEGISLATIVE IMPROVEMENT COMMITTEE UNITED BROTHERHOOD OF CARPENTERS AND JOINERS | Q | B | M | 2786931.99 | 3780068.11 | 2768520.6 | 2411.39 | 0.0 | 0.0 | 3404500.0 | 2519.11 | 1326749.65 | 333613.53 | 0.0 | 0.0 | 2024-12-31 | 0.9934 | 0.9006 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001180 | MICHIGAN DOCTORS POLITICAL ACTION COMMITTEE - MICHIGAN STATE MEDICAL SOCIETY | Q | U | Q | 42620.8 | 36498.81 | 41090.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 2781.76 | 3603.75 | 0.0 | 0.0 | 2018-12-31 | 0.9641 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001180 | MICHIGAN DOCTORS POLITICAL ACTION COMMITTEE - MICHIGAN STATE MEDICAL SOCIETY | Q | U | Q | 46357.21 | 29349.46 | 45645.0 | 0.0 | 0.0 | 500.0 | 0.0 | 0.0 | 3603.75 | 20611.5 | 0.0 | 0.0 | 2020-12-31 | 0.9846 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001180 | MICHIGAN DOCTORS POLITICAL ACTION COMMITTEE - MICHIGAN STATE MEDICAL SOCIETY | Q | U | Q | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 20611.5 | 20611.5 | 0.0 | 0.0 | 2022-12-31 |  |  | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001180 | MICHIGAN DOCTORS POLITICAL ACTION COMMITTEE - MICHIGAN STATE MEDICAL SOCIETY | Q | U | Q | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 20611.5 | 20611.5 | 0.0 | 0.0 | 2024-12-31 |  |  | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001198 | AMERICAN HOTEL AND LODGING ASSOCIATION POLITICAL ACTION COMMITTEE ('HOTELPAC') | Q | B | M | 2055453.7 | 1590100.06 | 1987953.7 | 52500.0 | 0.0 | 0.0 | 1571900.0 | 0.0 | 355775.61 | 821129.25 | 0.0 | 0.0 | 2018-12-31 | 0.9672 | 0.9886 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001198 | AMERICAN HOTEL AND LODGING ASSOCIATION POLITICAL ACTION COMMITTEE ('HOTELPAC') | Q | B | M | 1731512.56 | 1922140.23 | 1666012.56 | 48000.0 | 0.0 | 0.0 | 1886000.0 | 0.0 | 821129.25 | 630501.58 | 0.0 | 0.0 | 2020-12-31 | 0.9622 | 0.9812 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001198 | AMERICAN HOTEL AND LODGING ASSOCIATION POLITICAL ACTION COMMITTEE ('HOTELPAC') | Q | B | M | 1552643.77 | 1528798.04 | 1531768.77 | 15875.0 | 0.0 | 0.0 | 1504700.0 | 0.0 | 630501.58 | 654347.31 | 0.0 | 0.0 | 2022-12-31 | 0.9866 | 0.9842 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001198 | AMERICAN HOTEL AND LODGING ASSOCIATION POLITICAL ACTION COMMITTEE ('HOTELPAC') | W | B | M | 2092482.08 | 1851756.82 | 2023398.09 | 35500.0 | 0.0 | 0.0 | 1733750.0 | 0.0 | 654347.31 | 895072.57 | 0.0 | 0.0 | 2024-12-31 | 0.967 | 0.9363 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001214 | TEXAS MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | Q | 250498.81 | 266923.04 | 250186.06 | 0.0 | 0.0 | 0.0 | 22034.61 | 0.0 | 37730.09 | 21327.9 | 0.0 | 0.0 | 2018-12-31 | 0.9988 | 0.0826 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001214 | TEXAS MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | Q | 159888.81 | 153003.62 | 159888.81 | 0.0 | 0.0 | 0.0 | 25500.0 | 0.0 | 21327.9 | 26963.09 | 0.0 | 0.0 | 2020-12-31 | 1.0 | 0.1667 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001214 | TEXAS MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | Q | 94690.72 | 89841.92 | 94690.72 | 0.0 | 0.0 | 0.0 | 21500.0 | 0.0 | 26963.09 | 31811.89 | 0.0 | 0.0 | 2022-12-31 | 1.0 | 0.2393 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001214 | TEXAS MEDICAL ASSOCIATION POLITICAL ACTION COMMITTEE | Q | B | Q | 61041.4 | 28370.42 | 61041.4 | 0.0 | 0.0 | 0.0 | 22000.0 | 0.0 | 31811.89 | 64482.87 | 0.0 | 0.0 | 2024-12-31 | 1.0 | 0.7755 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001305 | REPUBLICAN PARTY OF VIRGINIA INC | Y | U | M | 7062303.87 | 7082989.84 | 1000670.62 | 227082.75 | 5134966.6 | 602000.05 | 9500.0 | 0.0 | 78213.29 | 57527.32 | 0.0 | 682075.0 | 2018-12-31 | 0.1417 | 0.0013 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001305 | REPUBLICAN PARTY OF VIRGINIA INC | Y | U | M | 7991320.74 | 7847223.66 | 695383.41 | 1460835.07 | 5610560.08 | 1476876.83 | 0.0 | 0.0 | 57527.32 | 201624.4 | 0.0 | 131350.0 | 2020-12-31 | 0.087 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001305 | REPUBLICAN PARTY OF VIRGINIA INC | Y | U | M | 5784441.73 | 5974090.51 | 1189141.29 | 375164.35 | 4005754.45 | 155500.0 | 0.0 | 0.0 | 201624.4 | 11975.62 | 0.0 | 182000.0 | 2022-12-31 | 0.2056 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001305 | REPUBLICAN PARTY OF VIRGINIA INC | Y | U | M | 7000907.43 | 6870192.95 | 1344155.68 | 328797.07 | 4671758.78 | 1749138.86 | 0.0 | 0.0 | 11975.62 | 142690.1 | 0.0 | 590500.0 | 2024-12-31 | 0.192 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001313 | REPUBLICAN PARTY OF MINNESOTA - FEDERAL | Y | U | M | 5437531.0 | 5447204.21 | 2668978.61 | 268239.02 | 568580.19 | 0.0 | 0.0 | 0.0 | 12718.19 | 3074.98 | 456972.14 | 513974.32 | 2018-12-31 | 0.4908 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1
+C00001313 | REPUBLICAN PARTY OF MINNESOTA - FEDERAL | Y | U | M | 15542840.91 | 15498882.91 | 3155761.96 | 1089173.92 | 2407071.04 | 0.0 | 0.0 | 0.0 | 3074.98 | 47032.98 | 255030.67 | 470675.3 | 2020-12-31 | 0.203 | 0.0 | 2026-07-24T02:13:26 | 4f438639-c563-4da9-8974-c6ef5e995af1

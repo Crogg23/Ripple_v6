@@ -1,0 +1,69 @@
+-- S04 EMBER series list: every category/subcategory/variable/unit with rows, areas, year range, duplicate keys
+CATEGORY | SUBCATEGORY | VARIABLE | UNIT | N | N_AREAS | Y0 | Y1 | N_DUP | N_VAL_NULL | VMAX
+Capacity | Aggregate fuel | Clean | GW | 5622 | 227 | 2000 | 2024 | 0 | 161 | 4848.99
+Capacity | Aggregate fuel | Fossil | GW | 5622 | 227 | 2000 | 2024 | 0 | 73 | 4530.51
+Capacity | Aggregate fuel | Gas and Other Fossil | GW | 5622 | 227 | 2000 | 2024 | 0 | 218 | 2362.25
+Capacity | Aggregate fuel | Hydro, Bioenergy and Other Renewables | GW | 5622 | 227 | 2000 | 2024 | 0 | 161 | 1428.73
+Capacity | Aggregate fuel | Renewables | GW | 5622 | 227 | 2000 | 2024 | 0 | 161 | 4441.65
+Capacity | Aggregate fuel | Wind and Solar | GW | 5622 | 227 | 2000 | 2024 | 0 | 170 | 3012.92
+Capacity | Fuel | Bioenergy | GW | 5581 | 227 | 2000 | 2024 | 0 | 159 | 128.42
+Capacity | Fuel | Coal | GW | 5513 | 223 | 2000 | 2024 | 0 | 3033 | 2168.26
+Capacity | Fuel | Gas | GW | 5442 | 220 | 2000 | 2024 | 0 | 1994 | 2037.45
+Capacity | Fuel | Hydro | GW | 5528 | 224 | 2000 | 2024 | 0 | 159 | 1277.27
+Capacity | Fuel | Nuclear | GW | 5204 | 213 | 2000 | 2024 | 0 | 159 | 407.34
+Capacity | Fuel | Other Fossil | GW | 5621 | 227 | 2000 | 2024 | 0 | 915 | 328.29
+Capacity | Fuel | Other Renewables | GW | 4956 | 202 | 2000 | 2024 | 0 | 159 | 23.04
+Capacity | Fuel | Solar | GW | 5604 | 227 | 2000 | 2024 | 0 | 159 | 1880.37
+Capacity | Fuel | Wind | GW | 5406 | 224 | 2000 | 2024 | 0 | 147 | 1132.55
+Electricity demand | Demand | Demand | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 31737.75
+Electricity demand | Demand per capita | Demand per capita | MWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 56.05
+Electricity generation | Aggregate fuel | Clean | % | 5726 | 227 | 2000 | 2025 | 0 | 0 | 100.01
+Electricity generation | Aggregate fuel | Clean | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 13529.21
+Electricity generation | Aggregate fuel | Fossil | % | 5726 | 227 | 2000 | 2025 | 0 | 0 | 100.01
+Electricity generation | Aggregate fuel | Fossil | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 18256.41
+Electricity generation | Aggregate fuel | Gas and Other Fossil | % | 5726 | 227 | 2000 | 2025 | 0 | 0 | 100.01
+Electricity generation | Aggregate fuel | Gas and Other Fossil | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 7718.07
+Electricity generation | Aggregate fuel | Hydro, Bioenergy and Other Renewables | % | 5726 | 227 | 2000 | 2025 | 0 | 0 | 100.0
+Electricity generation | Aggregate fuel | Hydro, Bioenergy and Other Renewables | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 5226.56
+Electricity generation | Aggregate fuel | Renewables | % | 5726 | 227 | 2000 | 2025 | 0 | 0 | 100.01
+Electricity generation | Aggregate fuel | Renewables | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 10716.82
+Electricity generation | Aggregate fuel | Wind and Solar | % | 5726 | 227 | 2000 | 2025 | 0 | 0 | 72.08
+Electricity generation | Aggregate fuel | Wind and Solar | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 5490.26
+Electricity generation | Fuel | Bioenergy | % | 5685 | 227 | 2000 | 2025 | 0 | 26 | 77.59
+Electricity generation | Fuel | Bioenergy | TWh | 5685 | 227 | 2000 | 2025 | 0 | 0 | 704.94
+Electricity generation | Fuel | Coal | % | 5615 | 223 | 2000 | 2025 | 0 | 26 | 100.0
+Electricity generation | Fuel | Coal | TWh | 5615 | 223 | 2000 | 2025 | 0 | 0 | 10539.75
+Electricity generation | Fuel | Gas | % | 5543 | 220 | 2000 | 2025 | 0 | 26 | 100.0
+Electricity generation | Fuel | Gas | TWh | 5543 | 220 | 2000 | 2025 | 0 | 0 | 6898.18
+Electricity generation | Fuel | Hydro | % | 5631 | 224 | 2000 | 2025 | 0 | 26 | 100.0
+Electricity generation | Fuel | Hydro | TWh | 5631 | 224 | 2000 | 2025 | 0 | 0 | 4435.53
+Electricity generation | Fuel | Nuclear | % | 5299 | 213 | 2000 | 2025 | 0 | 26 | 82.25
+Electricity generation | Fuel | Nuclear | TWh | 5299 | 213 | 2000 | 2025 | 0 | 0 | 2812.39
+Electricity generation | Fuel | Other Fossil | % | 5725 | 227 | 2000 | 2025 | 0 | 26 | 100.0
+Electricity generation | Fuel | Other Fossil | TWh | 5725 | 227 | 2000 | 2025 | 0 | 0 | 1324.32
+Electricity generation | Fuel | Other Renewables | % | 5037 | 202 | 2000 | 2025 | 0 | 26 | 48.45
+Electricity generation | Fuel | Other Renewables | TWh | 5037 | 202 | 2000 | 2025 | 0 | 0 | 89.32
+Electricity generation | Fuel | Solar | % | 5708 | 227 | 2000 | 2025 | 0 | 26 | 50.0
+Electricity generation | Fuel | Solar | TWh | 5708 | 227 | 2000 | 2025 | 0 | 0 | 2778.36
+Electricity generation | Fuel | Wind | % | 5508 | 224 | 2000 | 2025 | 0 | 26 | 58.73
+Electricity generation | Fuel | Wind | TWh | 5508 | 224 | 2000 | 2025 | 0 | 0 | 2711.9
+Electricity generation | Total | Total Generation | TWh | 5726 | 227 | 2000 | 2025 | 0 | 0 | 31737.75
+Electricity imports | Electricity imports | Net Imports | TWh | 5726 | 227 | 2000 | 2025 | 0 | 312 | 66.67
+Power sector emissions | Aggregate fuel | Clean | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 2 | 440.83
+Power sector emissions | Aggregate fuel | Fossil | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 0 | 14166.89
+Power sector emissions | Aggregate fuel | Gas and Other Fossil | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 1 | 4633.81
+Power sector emissions | Aggregate fuel | Hydro, Bioenergy and Other Renewables | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 2 | 262.04
+Power sector emissions | Aggregate fuel | Renewables | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 2 | 426.05
+Power sector emissions | Aggregate fuel | Wind and Solar | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 11 | 164.01
+Power sector emissions | CO2 intensity | CO2 intensity | gCO2/kWh | 5726 | 227 | 2000 | 2025 | 0 | 26 | 1306.72
+Power sector emissions | Fuel | Bioenergy | mtCO2 | 5685 | 227 | 2000 | 2025 | 0 | 0 | 153.27
+Power sector emissions | Fuel | Coal | mtCO2 | 5615 | 223 | 2000 | 2025 | 0 | 0 | 9535.87
+Power sector emissions | Fuel | Gas | mtCO2 | 5543 | 220 | 2000 | 2025 | 0 | 0 | 4092.81
+Power sector emissions | Fuel | Hydro | mtCO2 | 5631 | 224 | 2000 | 2025 | 0 | 0 | 105.48
+Power sector emissions | Fuel | Nuclear | mtCO2 | 5299 | 213 | 2000 | 2025 | 0 | 0 | 14.78
+Power sector emissions | Fuel | Other Fossil | mtCO2 | 5725 | 227 | 2000 | 2025 | 0 | 0 | 877.81
+Power sector emissions | Fuel | Other Renewables | mtCO2 | 5037 | 202 | 2000 | 2025 | 0 | 0 | 3.37
+Power sector emissions | Fuel | Solar | mtCO2 | 5708 | 227 | 2000 | 2025 | 0 | 0 | 132.25
+Power sector emissions | Fuel | Wind | mtCO2 | 5508 | 224 | 2000 | 2025 | 0 | 0 | 31.76
+Power sector emissions | Total | Total emissions | mtCO2 | 5726 | 227 | 2000 | 2025 | 0 | 0 | 14574.19
+(66 rows; csv has all)

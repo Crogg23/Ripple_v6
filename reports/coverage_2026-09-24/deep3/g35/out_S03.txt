@@ -1,0 +1,27 @@
+-- S03 GHGRP facility: facility types and status over all years, with the codes that say why they stopped
+FACILITY_TYPES | REPORTING_STATUS | N | FAC | Y0 | Y1 | CEMS_Y | FAC_YEARS
+Direct Emitter |  | 89208 | 8496 | 2010 | 2023 | 4446 | 89208
+ | STOPPED_REPORTING_VALID_REASON | 20430 | 3297 | 2013 | 2023 | 0 | 20430
+Onshore Oil & Gas Production |  | 6380 | 963 | 2011 | 2023 | 2 | 6380
+Supplier |  | 6370 | 836 | 2010 | 2023 | 0 | 6370
+Supplier, Direct Emitter |  | 4728 | 462 | 2010 | 2023 | 247 | 4728
+Onshore Gathering & Boosting |  | 2786 | 476 | 2016 | 2023 | 0 | 2786
+Supplier, LDC - Direct Emissions |  | 2189 | 203 | 2011 | 2023 | 0 | 2189
+SF6 from Elec. Equip. |  | 1147 | 145 | 2011 | 2023 | 0 | 1147
+CO2 Injection |  | 894 | 94 | 2011 | 2023 | 0 | 894
+ | STOPPED_REPORTING_UNKNOWN_REASON | 757 | 278 | 2013 | 2023 | 0 | 757
+Transmission Pipelines |  | 321 | 56 | 2016 | 2023 | 0 | 321
+ |  | 215 | 149 | 2010 | 2023 | 0 | 215
+Supplier, Direct Emitter, CO2 Injection |  | 186 | 26 | 2011 | 2023 | 11 | 186
+SF6 from Elec. Equip., Direct Emitter |  | 123 | 16 | 2011 | 2023 | 20 | 123
+Direct Emitter, CO2 Injection |  | 94 | 16 | 2011 | 2023 | 0 | 94
+Onshore Oil & Gas Production, CO2 Injection |  | 73 | 13 | 2011 | 2023 | 0 | 73
+Supplier, CO2 Injection |  | 21 | 4 | 2011 | 2023 | 0 | 21
+LDC - Direct Emissions |  | 19 | 6 | 2011 | 2023 | 0 | 19
+Supplier, SF6 from Elec. Equip., Direct Emitter |  | 16 | 3 | 2012 | 2023 | 1 | 16
+Transmission Pipelines, Supplier |  | 13 | 2 | 2016 | 2023 | 0 | 13
+Supplier, LDC - Direct Emissions, Direct Emitter |  | 12 | 8 | 2011 | 2013 | 0 | 12
+Onshore Oil & Gas Production, Direct Emitter |  | 12 | 7 | 2011 | 2022 | 0 | 12
+Supplier, Onshore Oil & Gas Production |  | 9 | 2 | 2017 | 2023 | 0 | 9
+Supplier, SF6 from Elec. Equip., LDC - Direct Emissions |  | 2 | 2 | 2011 | 2011 | 0 | 2
+(24 rows; csv has all)

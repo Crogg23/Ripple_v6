@@ -1,0 +1,7 @@
+-- S05 OFAC SDN: full extract for local profile, IMO and MMSI parsing [pull]
+ENT_NUM | SDN_NAME | SDN_TYPE | ENTITY_KIND | PROGRAM | TITLE | CALL_SIGN | VESSEL_TYPE | TONNAGE | GROSS_REGISTERED_TONNAGE | VESSEL_FLAG | VESSEL_OWNER | IMO_NUMBER | REMARKS | IS_VESSEL | IS_INDIVIDUAL | _INGESTED_AT | _SOURCE_RUN_ID
+10000 | CANO CORREA, Jhon Eidelber | individual | individual | SDNT |  |  |  |  |  |  |  |  | DOB 13 Dec 1963; POB El Aguila, Valle, Colombia; nationality Colombia; citizen Colombia; Cedula No. 16217170 (Colombia); alt. Cedula No. 16455750 (Colombia); Passport AF133955 (Colombia); alt. Passport AC877214 (Colombia); a.k.a. 'FLECHAS'. | False | True | 2026-06-25 21:55:21.291621 | 25db23c4-0168-4a91-839b-0d821dfcc404
+10001 | INVERSIONES MACARNIC PATINO Y CIA S.C.S. |  | organization | SDNT |  |  |  |  |  |  |  |  | NIT # 816005011-4 (Colombia). | False | False | 2026-06-25 21:55:21.291621 | 25db23c4-0168-4a91-839b-0d821dfcc404
+10002 | COMERCIALIZADORA DE CAFE DEL OCCIDENTE CODECAFE LTDA. |  | organization | SDNT |  |  |  |  |  |  |  |  | NIT # 816004106-0 (Colombia). | False | False | 2026-06-25 21:55:21.291621 | 25db23c4-0168-4a91-839b-0d821dfcc404
+10003 | GOMEZ MARIN LTDA. |  | organization | SDNT |  |  |  |  |  |  |  |  | NIT # 800102465-1 (Colombia). | False | False | 2026-06-25 21:55:21.291621 | 25db23c4-0168-4a91-839b-0d821dfcc404
+(19114 rows; csv has all)

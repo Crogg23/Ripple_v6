@@ -1,0 +1,3 @@
+-- S10 NICS checks: every row whose month mentions 2024 or 2025, raw, for local parsing [pull]
+MONTH | STATE | HANDGUN | LONG_GUN | MULTIPLE | OTHER | PERMIT | PERMIT_RECHECK | PRIVATE_SALE_HANDGUN | PRIVATE_SALE_LONG_GUN | TOTALS
+(0 rows; csv has all)

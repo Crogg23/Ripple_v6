@@ -1,0 +1,28 @@
+-- S07 Denominator: 2020 population by state name, for per-resident private-sale checks
+STATE_NAME | POP_2020 | COUNTIES
+Alabama | 5024279 | 67
+Alaska | 733391 | 30
+Arizona | 7151502 | 15
+Arkansas | 3011524 | 75
+California | 39538223 | 58
+Colorado | 5773714 | 64
+Connecticut | 3605944 | 9
+Delaware | 989948 | 3
+District of Columbia | 689545 | 1
+Florida | 21538187 | 67
+Georgia | 10711908 | 159
+Hawaii | 1455271 | 5
+Idaho | 1839106 | 44
+Illinois | 12812508 | 102
+Indiana | 6785528 | 92
+Iowa | 3190369 | 99
+Kansas | 2937880 | 105
+Kentucky | 4505836 | 120
+Louisiana | 4657757 | 64
+Maine | 1362359 | 16
+Maryland | 6177224 | 24
+Massachusetts | 7029917 | 14
+Michigan | 10077331 | 83
+Minnesota | 5706494 | 87
+Mississippi | 2961279 | 82
+(52 rows; csv has all)

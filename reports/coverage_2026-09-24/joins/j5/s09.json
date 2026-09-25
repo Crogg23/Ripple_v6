@@ -1,0 +1,1054 @@
+{
+"cols": [
+"COURT_ID",
+"DATE_FILED",
+"DATE_TERMINATED",
+"DOCKET_NUMBER",
+"CASE_NAME",
+"NATURE_OF_SUIT",
+"CAUSE",
+"HIT"
+],
+"rows": [
+[
+"ncctapp",
+null,
+null,
+"COA01-1286",
+"Lee Ray Bergman Real Estate Rentals v. NCFHC",
+null,
+null,
+"cfhc"
+],
+[
+"cacb",
+"2003-02-05",
+"2003-06-06",
+"6:03-bk-11738",
+"Simiat Oshinuga",
+null,
+null,
+"oshinuga"
+],
+[
+"ilnd",
+null,
+null,
+"No. 86 CR 641",
+"United States v. Oshinuga",
+null,
+null,
+"oshinuga"
+],
+[
+"txed",
+"2015-08-13",
+"2016-02-09",
+"6:15-cv-00747",
+"Black v. Hospice of East Texas",
+"710 Labor: Fair Standards",
+"15:5(a) Fair Labor Standards Act",
+"tx hospice"
+],
+[
+"txsd",
+"2015-10-22",
+"2016-01-29",
+"4:15-cv-03120",
+"1st Choice Hospice LLC v. Burwell",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2016-04-13",
+"2017-01-13",
+"5:16-cv-00369",
+"Covarrubia v. New Century Hospice, Inc.",
+"710 Labor: Fair Standards",
+"29:201 Denial of Overtime Compensation",
+"tx hospice"
+],
+[
+"txnd",
+"2016-06-02",
+"2016-06-23",
+"4:16-mj-00337",
+"United States v. Heart to Heart Hospice of Fort Worth 5608 Malvey Suite 301 Fort Worth, Texas 76107",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2016-12-21",
+"2018-07-24",
+"4:16-cv-03704",
+"Jani Gwen Whitney, ex rel. v. Altus Hospice Management L.P.",
+"376 Qui Tam (31 U.S.C. \u0e22\u0e07 3729(a))",
+"31:3730 Qui Tam False Claims Act",
+"tx hospice"
+],
+[
+"txwb",
+"2016-12-30",
+"2017-08-07",
+"16-52996",
+"Benevolent Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2017-01-06",
+"2020-10-13",
+"3:17-cv-00050",
+"Doe A v. Rolling Meadows Hospice LLC",
+"152 Recovery of defaulted student loans",
+null,
+"tx hospice"
+],
+[
+"txeb",
+"2017-01-11",
+"2021-02-25",
+"17-40069",
+"Esteem Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txed",
+"2017-01-30",
+"2020-03-18",
+"2:17-cv-00098",
+"Wilson v. Grace Hospice of East Texas, LLC.",
+"442 Civil Rights: Jobs",
+"28:451 Employment Discrimination",
+"tx hospice"
+],
+[
+"txsb",
+"2017-03-17",
+"2018-06-15",
+"17-31653",
+"Gulf Coast Hospice of Houston, Ltd.",
+null,
+null,
+"tx hospice"
+],
+[
+"txed",
+"2017-05-04",
+"2018-11-15",
+"4:17-cv-00301",
+"Hollis v. Heart to Heart Hospice Management, LLC",
+"710 Labor: Fair Standards",
+"29:201 Denial of Overtime Compensation",
+"tx hospice"
+],
+[
+"txed",
+"2017-06-23",
+"2018-03-22",
+"2:17-cv-00519",
+"Pilkinton v. Heritage Hospice of Texarkana, LLC",
+"710 Labor: Fair Standards",
+"29:201 Fair Labor Standards Act",
+"tx hospice"
+],
+[
+"txsd",
+"2017-06-28",
+"2020-12-09",
+"4:17-cv-01976",
+"Milson v. Providence Health Home & Hospice",
+"376 Qui Tam (31 U.S.C. \u0e22\u0e07 3729(a))",
+"31:3730 Qui Tam False Claims Act",
+"tx hospice"
+],
+[
+"txnb",
+"2017-09-05",
+"2017-11-13",
+"17-43714",
+"Grace Hospice of East Texas, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2017-09-25",
+"2020-05-28",
+"3:17-cv-02616",
+"Foy v. Grace Hospice LLC",
+"710 Fair Labor Standards Act",
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2017-10-31",
+"2018-03-21",
+"17-52504",
+"Benevolent Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-01-24",
+"2020-12-01",
+"18-50121",
+"Benevolent Hospice of Houston, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2018-02-02",
+"2019-02-14",
+"4:18-cv-00073",
+"Harris v. Hospice Holdings DFW, LLC",
+"550 Prisoner - civil rights",
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-03-06",
+"2020-07-24",
+"18-30887",
+"Palladium Hospice and Palliative Care, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-03-16",
+"2019-06-06",
+"18-50602",
+"Superior Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-03-16",
+"2019-06-06",
+"18-50601",
+"Superior Hospice of Del Rio, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-03-16",
+"2019-07-08",
+"18-50600",
+"Superior Hospice of McAllen, LLC and Superior Home Health of San Antonio, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-03-28",
+"2018-05-10",
+"18-50685",
+"Bee Caring Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-03-28",
+"2018-05-10",
+"18-50688",
+"Bee Caring Hospice Healthcare, Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2018-03-28",
+"2018-05-10",
+"18-50694",
+"Professional Hospice Care, Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-09-17",
+"2018-12-11",
+"18-43663",
+"Grace Hospice LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-12-04",
+"2021-04-19",
+"18-34022",
+"Gamble Hospice Care Central, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-12-04",
+"2021-04-19",
+"18-34021",
+"SCC Hospice Holdco LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-12-04",
+"2021-04-19",
+"18-34025",
+"Gamble Hospice Care Northeast, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-12-04",
+"2021-04-19",
+"18-34027",
+"Gamble Hospice Care Northwest, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2018-12-04",
+"2021-04-19",
+"18-34029",
+"Gamble Hospice Care of Cenla, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2019-03-13",
+"2020-05-22",
+"4:19-cv-00903",
+"AG Hospice, L.L.C. v. Amazing Grace Hospice and Palliative Care, Inc.",
+"840 Trademark",
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2019-04-26",
+"2019-09-05",
+"1:19-cv-00066",
+"United States v. Eldercare Home Health & Hospice",
+"151 Overpayments under the medicare act",
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2019-07-16",
+"2022-06-30",
+"4:19-cv-02565",
+"Garcia v. AMED HOSPICE",
+"442 Civil Rights: Jobs",
+"28:1331 Fed. Question: Employment Discrimination",
+"tx hospice"
+],
+[
+"txwd",
+"2019-11-04",
+"2021-01-13",
+"3:19-cv-00319",
+"Paige v. AM Hospice, Inc.",
+"Other Statutes: False Claims Act",
+"31:3729 False Claims Act",
+"tx hospice"
+],
+[
+"txed",
+"2020-06-10",
+"2021-05-27",
+"5:20-cv-00103",
+"Martin v. Hospice Care of Texas, LLC d/b/a Dierkson Hospice",
+"442 Civil rights jobs",
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2020-06-26",
+"2020-12-09",
+"5:20-cv-00757",
+"American Medical Hospice Care, LLC, d/b/a American Medical Hospice & Palliative Care v. Alex M. Azar II, Secretary, United States Department of Health and Human",
+"151 Contract: Recovery Medicare",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2020-12-29",
+"2022-01-31",
+"3:20-cv-03735",
+"Tellez v. Texas Hospice Providers LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2021-04-13",
+"2021-12-10",
+"4:21-cv-01205",
+"Callas v. Heritage Health and Hospice Care, LLC",
+"442 Civil Rights: Jobs",
+"42:2000e Job Discrimination (Employment)",
+"tx hospice"
+],
+[
+"txnb",
+"2021-06-07",
+"2022-03-11",
+"21-41368",
+"Serene Meadows Hospice LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2021-06-25",
+"2021-09-29",
+"4:21-cv-02078",
+"Premier Care Group Inc. v. Trucare Palliative & Hospice Care, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2021-07-12",
+"2024-06-13",
+"21-31279",
+"Gardendale Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2022-02-17",
+"2022-07-13",
+"7:22-cv-00054",
+"Ruiz v. Regency IHSE Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2022-03-03",
+"2022-09-21",
+"7:22-cv-00048",
+"Ybarra v. Victory Hospice of Texas, LLC",
+"445 Civil Rights: Americans with Disabilities - Employment",
+"42:12101 Americans with Disabilities Act of 1990",
+"tx hospice"
+],
+[
+"txnb",
+"2022-03-25",
+"2022-06-07",
+"22-30518",
+"Saint Andrews Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txeb",
+"2022-07-06",
+"2024-10-07",
+"22-40856",
+"R2R Palliative and Hospice Care, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2022-09-20",
+"2023-12-22",
+"3:22-cv-02090",
+"Saturne v. Vitas Hospice Services LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2022-12-13",
+"2023-07-11",
+"5:22-cv-01329",
+"Gale v. Mission Hospice of San Antonio, LLC.",
+"375 Other Statutes: False Claims Act",
+"31:3730 Qui Tam False Claims Act",
+"tx hospice"
+],
+[
+"txsd",
+"2023-02-24",
+"2023-11-21",
+"5:23-cv-00023",
+"Vara Hospice, LLC v. Office Ally, Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2023-03-14",
+"2024-01-23",
+"1:23-cv-00281",
+"Hallidy v. Envoy Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2023-04-24",
+"2024-03-18",
+"3:23-mc-00027",
+"Choice Hospice Inc v. Axxess Technology Solutions Inc",
+null,
+"Civil Miscellaneous Case",
+"tx hospice"
+],
+[
+"txnd",
+"2023-04-24",
+"2023-04-24",
+"3:23-xc-00864",
+"Choice Hospice, Inc. v. Axxess Technology Solutions, Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2023-06-13",
+"2023-11-03",
+"5:23-cv-00751",
+"Henderson v. Reliant Hospice of Houston, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2023-07-07",
+"2024-05-29",
+"1:23-cv-00769",
+"Gaudette v. Angel Heart Hospice, LLC",
+"Civil Rights: Jobs",
+"42:2000e Job Discrimination (Employment)",
+"tx hospice"
+],
+[
+"txed",
+"2023-10-13",
+"2025-02-03",
+"9:23-cv-00182",
+"Credit v. Altus Hospice etal",
+"Civil Rights: Other",
+"42:1981 Civil Rights",
+"tx hospice"
+],
+[
+"txwd",
+"2023-10-18",
+"2024-08-14",
+"1:23-cv-01266",
+"Hallidy v. Envoy Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txed",
+"2023-11-22",
+"2025-03-31",
+"5:23-cv-00136",
+"Hospice of East Texas v. Secretary, US Department of Health of Human Services",
+"Contract: Recovery Medicare",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2023-12-08",
+"2024-04-30",
+"3:23-cv-02714",
+"Heart to Heart Hospice of Texas Ltd v. Becerra",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2023-12-08",
+null,
+"3:23-cv-02704",
+"Heart to Heart Hospice of Texas Ltd v. Xavier Becerra",
+"899 Other Statutes: Administrative Procedure Act/Review or Appeal of Agency Decision",
+"42:1395  HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2023-12-08",
+"2024-04-30",
+"3:23-cv-02707",
+"Heart to Heart Hospice of Texas, Ltd. v. Xavier Becerra",
+"899 Other Statutes: Administrative Procedure Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2023-12-08",
+"2024-04-30",
+"3:23-cv-02711",
+"Heart to Heart Hospice of Texas Ltd v. Becerra",
+"899 Other Statutes: Administrative Procedure Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2024-01-05",
+"2024-04-30",
+"3:24-cv-00034",
+"Heart to Heart Hospice of Fort Worth LLC v. Becerra",
+"899 Other Statutes: Administrative Procedure Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2024-01-05",
+"2024-04-30",
+"3:24-cv-00032",
+"Heart to Heart Hospice of Fort Worth LLC v. Becerra",
+"899 Other Statutes: Administrative Procedure Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2024-01-05",
+"2024-04-30",
+"3:24-cv-00035",
+"Heart to Heart Hospice of Fort Worth LLC v. Becerra",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2024-01-05",
+"2024-04-30",
+"3:24-cv-00036",
+"Heart to Heart Hospice of Fort Worth LLC v. Becerra",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2024-01-19",
+null,
+"4:24-cv-00204",
+"Heart to Heart Hospice of Greater Houston, LLC v. Becerra",
+"899 Other Statutes: Administrative Procedures Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txsd",
+"2024-01-19",
+"2024-09-20",
+"4:24-cv-00210",
+"Heart to Heart Hospice of Houston, LLC v. Becerra",
+"899 Other Statutes: Administrative Procedures Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txsd",
+"2024-01-19",
+null,
+"4:24-cv-00215",
+"Heart to Heart Hospice of Houston, LLC v. Becerra",
+"899 Other Statutes: Administrative Procedures Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txsd",
+"2024-01-19",
+"2024-09-20",
+"4:24-cv-00206",
+"Heart to Heart Hospice of Greater Houston, LLC v. Becerra",
+"899 Other Statutes: Administrative Procedures Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+],
+[
+"txnd",
+"2024-02-16",
+"2024-02-20",
+"3:24-cv-00385",
+"Choice Hospice Inc v. Axxess Technology Solutions Inc",
+"150 Contract: Recovery of Overpayment & Enforcement of Judgment",
+"28:1332 Diversity-Declaratory Judgment",
+"tx hospice"
+],
+[
+"txnd",
+"2024-02-16",
+"2024-02-16",
+"3:24-xc-00384",
+"Choice Hospice Inc",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2024-02-20",
+"2024-02-21",
+"3:24-cv-00397",
+"Choice Hospice Inc v. Axxess Technology Solutions Inc",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2024-05-30",
+"2024-08-20",
+"4:24-cv-00502",
+"Johnson v. St. Gabriel's Hospice & Palliative Care",
+"442 Civil Rights: Employment",
+"42:1983 Civil Rights (Employment Discrimination)",
+"tx hospice"
+],
+[
+"ca5",
+"2024-06-27",
+"2025-05-16",
+"24-50523",
+"Gaudette v. Angel Heart Hospice",
+"3442 Jobs (Civil Rights)",
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2024-07-03",
+"2024-10-09",
+"4:24-cv-02531",
+"Devotion Hospice, LLC v. QFS Capital, LLC",
+"470 Racketeer/Corrupt Organization",
+"28:1331 Fed. Question",
+"tx hospice"
+],
+[
+"txsb",
+"2024-11-09",
+null,
+"24-10195",
+"American Medical Hospice Care, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2025-01-11",
+null,
+"25-80011",
+"Prospect Home Health and Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2025-01-12",
+null,
+"25-80059",
+"Prospect RI Home Health and Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2025-01-12",
+null,
+"25-80023",
+"Prospect Nix Home Health and Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2025-01-12",
+null,
+"25-80061",
+"Prospect CharterCARE Home Health and Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2025-01-12",
+null,
+"25-80031",
+"Prospect Crozer Home Health and Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsb",
+"2025-01-15",
+"2025-02-27",
+"25-00460",
+"HOSPICE PLUS",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2025-01-16",
+null,
+"4:25-cv-00195",
+"Texas Association for Home Care & Hospice v. Becerra",
+"899 Other Statutes: Administrative Procedures Act/Review or Appeal of Agency Decision",
+"Civil Miscellaneous Case",
+"tx hospice"
+],
+[
+"txnd",
+"2025-02-14",
+"2025-02-20",
+"3:25-cv-00386",
+"Heart to Heart Hospice Holdings LLC v. Titus",
+null,
+null,
+"tx hospice"
+],
+[
+"txwb",
+"2025-04-03",
+"2026-01-15",
+"25-50735",
+"Sunrise Hospice, Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txeb",
+"2025-05-11",
+null,
+"25-41350",
+"All Care Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2025-06-30",
+null,
+"5:25-cv-00741",
+"West v. Transcend Hospice 15, LLC",
+"710 Labor: Fair Standards",
+"29:201 Fair Labor Standards Act",
+"tx hospice"
+],
+[
+"txsd",
+"2025-07-16",
+null,
+"2:25-cv-00195",
+"Garcia v. Harbor Hospice and Home Health, LP.",
+null,
+null,
+"tx hospice"
+],
+[
+"txed",
+"2025-08-18",
+null,
+"4:25-cv-00899",
+"McKesson Medical-Surgical Minnesota Supply Inc. v. Heart to Heart Hospice Holdings, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsb",
+"2025-08-20",
+null,
+"25-90351",
+"Helping Hand Hospice, Inc. <b><font color=\"red\">Jointly Administered under 25-90309.</font></b>",
+null,
+null,
+"tx hospice"
+],
+[
+"txsb",
+"2025-08-20",
+null,
+"25-90326",
+"ARU Hospice Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2025-10-06",
+null,
+"3:25-cv-02717",
+"Saint Catherine Hospice Inc v. Simpson Place ALF Realty LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2025-10-15",
+null,
+"3:25-cv-02807",
+"Mills v. Three Oaks Hospice Corporation",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2025-11-11",
+null,
+"3:25-cv-03080",
+"First Commonwealth Bank v. Compassion Hospice of Texas LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2026-01-29",
+null,
+"26-30386",
+"Comfort Care Hospice, LLC d/b/a SilverStone Hospic",
+null,
+null,
+"tx hospice"
+],
+[
+"txnb",
+"2026-01-29",
+null,
+"26-30392",
+"SilverStone Hospice, LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txsd",
+"2026-03-02",
+null,
+"4:26-cv-01684",
+"Gomez v. Bayou City Hospice LLC",
+null,
+null,
+"tx hospice"
+],
+[
+"txwd",
+"2026-03-04",
+null,
+"5:26-cv-01411",
+"RHI Magnolia of North Texas, LLC v. Magnolia Hospice Company, Inc.",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2026-03-13",
+null,
+"3:26-cv-00821",
+"Infinity Hospice Care of Reno LLC v. Kennedy",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2026-05-26",
+null,
+"3:26-cv-01704",
+"Best Care Hospice LLC v. Kennedy",
+null,
+null,
+"tx hospice"
+],
+[
+"txnd",
+"2026-06-02",
+null,
+"3:26-cv-01808",
+"Best Care Hospice LLC v. Kennedy",
+"899 Other Statutes: Administrative Procedure Act/Review or Appeal of Agency Decision",
+"42:1395 HHS: Adverse Reimbursement Review",
+"tx hospice"
+]
+]
+}

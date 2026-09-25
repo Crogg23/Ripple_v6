@@ -1,0 +1,63 @@
+-- S11 SCDB: every justice vote, slim columns
+CASE_ID | JUSTICE_CODE | JUSTICE_NAME | VOTE_CODE | OPINION_CODE | DIRECTION_CODE | MAJORITY_CODE | FIRST_AGREEMENT_CODE
+1966-071 | 92 | WJBrennan | 3 | 2 | 2 | 2 | 
+1950-038 | 81 | WODouglas | 2 | 3 | 1 | 1 | 
+1985-119 | 101 | LFPowell | 1 | 1 | 1 | 2 | 
+2002-077 | 104 | SDOConnor | 3 | 2 | 1 | 2 | 
+1969-065 | 99 | WEBurger | 2 | 1 | 1 | 1 | 78
+2013-036 | 113 | SSotomayor | 2 | 1 | 2 | 1 | 105
+1990-110 | 95 | BRWhite | 1 | 1 | 1 | 2 | 
+1960-125 | 90 | EWarren | 1 | 1 | 1 | 2 | 
+1962-046 | 78 | HLBlack | 1 | 1 | 2 | 2 | 
+1973-127 | 92 | WJBrennan | 1 | 1 | 1 | 2 | 
+1969-053 | 91 | JHarlan2 | 1 | 1 | 1 | 2 | 
+1982-021 | 102 | WHRehnquist | 1 | 1 | 2 | 2 | 
+1973-016 | 92 | WJBrennan | 1 | 1 | 2 | 2 | 
+2016-047 | 115 | NMGorsuch |  |  |  |  | 
+1970-029 | 99 | WEBurger | 4 | 1 | 2 | 2 | 100
+1970-144 | 94 | PStewart | 1 | 1 | 2 | 2 | 
+2000-008 | 102 | WHRehnquist | 1 | 2 | 2 | 2 | 
+1980-106 | 92 | WJBrennan | 1 | 1 | 2 | 2 | 
+1969-114 | 95 | BRWhite | 1 | 1 | 2 | 2 | 
+1982-094 | 95 | BRWhite | 1 | 1 | 2 | 2 | 
+2000-003 | 110 | SGBreyer | 1 | 1 | 1 | 2 | 
+1950-016 | 78 | HLBlack | 4 | 1 | 2 | 2 | 
+2009-060 | 111 | JGRoberts | 2 | 2 | 2 | 1 | 110
+1963-161 | 90 | EWarren | 3 | 1 | 2 | 2 | 96
+1952-037 | 81 | WODouglas | 1 | 1 | 2 | 2 | 
+1992-097 | 102 | WHRehnquist | 1 | 1 | 1 | 2 | 
+1997-067 | 104 | SDOConnor | 1 | 1 | 1 | 2 | 
+2005-028 | 109 | RBGinsburg | 1 | 1 | 1 | 2 | 
+1947-016 | 81 | WODouglas | 2 | 1 | 1 | 1 | 
+1975-069 | 101 | LFPowell | 1 | 1 | 2 | 2 | 
+1958-021 | 88 | TCClark | 2 | 2 | 1 | 1 | 
+2006-009 | 109 | RBGinsburg | 1 | 1 | 1 | 2 | 
+2004-015 | 109 | RBGinsburg | 2 | 1 | 2 | 1 | 107
+1986-056 | 92 | WJBrennan | 1 | 1 | 2 | 2 | 
+1951-023 | 89 | SMinton | 1 | 2 | 1 | 2 | 
+1985-091 | 100 | HABlackmun | 2 | 1 | 1 | 1 | 98
+1986-005 | 103 | JPStevens | 4 | 2 | 1 | 2 | 
+2023-032 | 117 | ACBarrett | 1 | 2 | 1 | 2 | 
+1961-092 | 80 | FFrankfurter |  |  |  |  | 
+1967-195 | 98 | TMarshall | 1 | 1 | 2 | 2 | 
+1968-140 | 91 | JHarlan2 | 2 | 3 | 2 | 1 | 
+1969-074 | 94 | PStewart | 2 | 1 | 1 | 1 | 92
+1962-141 | 78 | HLBlack | 1 | 1 | 2 | 2 | 
+1952-073 | 89 | SMinton | 1 | 1 | 2 | 2 | 
+1954-011 | 86 | HHBurton | 1 | 1 | 2 | 2 | 
+1961-109 | 95 | BRWhite |  |  |  |  | 
+1996-067 | 105 | AScalia | 1 | 1 | 1 | 2 | 
+1977-123 | 95 | BRWhite | 1 | 1 | 2 | 2 | 
+1982-109 | 101 | LFPowell | 1 | 1 | 1 | 2 | 
+1972-183 | 102 | WHRehnquist | 2 | 1 | 1 | 1 | 95
+1982-130 | 102 | WHRehnquist | 2 | 2 |  | 1 | 
+1998-058 | 110 | SGBreyer | 1 | 1 | 1 | 2 | 
+1950-053 | 81 | WODouglas | 1 | 1 | 1 | 2 | 
+1946-127 | 84 | RHJackson | 1 | 1 | 1 | 2 | 
+1982-070 | 101 | LFPowell | 1 | 1 | 2 | 2 | 
+2019-045 | 115 | NMGorsuch | 4 | 1 | 1 | 2 | 116
+1999-033 | 109 | RBGinsburg | 1 | 1 | 2 | 2 | 
+1982-048 | 104 | SDOConnor | 1 | 1 | 2 | 2 | 
+1993-072 | 105 | AScalia | 1 | 1 | 2 | 2 | 
+1973-114 | 81 | WODouglas | 1 | 1 | 2 | 2 | 
+(83644 rows; csv has all)

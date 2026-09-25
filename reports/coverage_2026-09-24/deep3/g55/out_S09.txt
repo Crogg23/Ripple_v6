@@ -1,0 +1,5 @@
+-- S09 USAspending API sample, redo of S07: CFDA_NUMBER is an empty string, not NULL, on the 200 contracts. Land rate of the contracts in CONTRACTS_FULL_R2
+KIND | N | IN_CONTRACTS_R2 | CFDA_BLANK_STRING
+contract | 200 | 100 | 200
+grant | 100 | 0 | 100
+(2 rows; csv has all)

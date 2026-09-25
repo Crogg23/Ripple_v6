@@ -1,0 +1,64 @@
+-- S02 OCC thrifts: junk rows, ID fill, load runs, and land rate on FDIC bank data by CERT
+N | CHARTER_BAD | NAME_BAD | NAMES | RSSD_D | RSSD_FILL | CERT_D | CERT_FILL | RUNS | SHAS | LAND_FDIC | FDIC_ACTIVE | BKCLASS | CHRT | FDIC_ASSET_SUM | FDIC_ASSET_MED | REPDTE | ODD_ROWS | STATES
+218 | 1 | 1 | 213 | 217 | 217 | 217 | 217 | 1 | 1 | 217 | 215 | [
+  "SB",
+  "SL"
+] | [
+  "OCC"
+] | 537113833.0000 | 298604.0000000 | 2026-03-31 | [
+  {
+    "ch": "=COUNT(A5:A222)",
+    "nm": "None",
+    "st": "None"
+  }
+] | [
+  "NV",
+  "ID",
+  "SC",
+  "GA",
+  "IA",
+  "PA",
+  "LA",
+  "IN",
+  "MA",
+  "FL",
+  "AL",
+  "MT",
+  "None",
+  "AR",
+  "NJ",
+  "OH",
+  "MD",
+  "WV",
+  "NY",
+  "WI",
+  "NC",
+  "CO",
+  "NH",
+  "RI",
+  "UT",
+  "KS",
+  "KY",
+  "MS",
+  "ND",
+  "WY",
+  "SD",
+  "NM",
+  "NE",
+  "TN",
+  "MI",
+  "MN",
+  "OR",
+  "AZ",
+  "VA",
+  "DE",
+  "VT",
+  "CT",
+  "IL",
+  "MO",
+  "ME",
+  "CA",
+  "TX",
+  "OK"
+]
+(1 rows; csv has all)

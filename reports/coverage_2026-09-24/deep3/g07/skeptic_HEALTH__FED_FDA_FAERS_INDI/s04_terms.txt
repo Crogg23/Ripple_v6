@@ -1,0 +1,215 @@
+CLS	NOT_DX	IP	CASES	ACTIQ	FENTORA	HP_PRE2012
+named_noncancer	0	BACK PAIN	232	123	116	75
+named_noncancer	0	MIGRAINE	96	42	55	27
+named_noncancer	0	NECK PAIN	48	25	24	14
+named_noncancer	0	FIBROMYALGIA	44	26	19	9
+named_noncancer	0	NEURALGIA	41	22	21	7
+named_noncancer	0	COMPLEX REGIONAL PAIN SYNDROME	36	11	28	5
+named_noncancer	0	HEADACHE	33	15	18	4
+named_noncancer	0	PAIN IN EXTREMITY	30	16	14	9
+named_noncancer	0	ARTHRALGIA	27	18	11	12
+named_noncancer	0	CROHN'S DISEASE	21	10	11	1
+named_noncancer	0	ABDOMINAL PAIN	21	16	5	3
+named_noncancer	0	SYSTEMIC LUPUS ERYTHEMATOSUS	16	6	11	1
+named_noncancer	0	NEUROPATHY PERIPHERAL	15	4	11	2
+named_noncancer	0	RHEUMATOID ARTHRITIS	15	6	10	6
+named_noncancer	0	TRIGEMINAL NEURALGIA	13	8	5	2
+named_noncancer	0	BONE PAIN	11	4	7	3
+named_noncancer	1	PROCEDURAL PAIN	11	6	5	4
+named_noncancer	0	ARTHRITIS	10	5	5	1
+named_noncancer	0	ABDOMINAL PAIN UPPER	10	5	5	2
+named_noncancer	0	MUSCULOSKELETAL PAIN	8	7	1	3
+named_noncancer	0	PANCREATITIS CHRONIC	8	2	6	2
+named_noncancer	0	INTERVERTEBRAL DISC DEGENERATION	7	2	5	4
+named_noncancer	0	PROCTALGIA	7	7	0	1
+named_noncancer	0	INTERVERTEBRAL DISC PROTRUSION	6	3	3	1
+named_noncancer	0	CLUSTER HEADACHE	6	3	3	0
+named_noncancer	0	OSTEOARTHRITIS	6	3	3	0
+named_noncancer	0	SCIATICA	6	5	1	3
+named_noncancer	0	NERVE INJURY	6	6	0	3
+named_noncancer	0	ARTHROPATHY	5	5	0	3
+named_noncancer	0	GASTROINTESTINAL PAIN	5	1	4	0
+named_noncancer	0	POST LAMINECTOMY SYNDROME	5	3	2	3
+named_noncancer	0	SPINAL CORD INJURY	5	4	1	3
+named_noncancer	0	INTERVERTEBRAL DISC DISORDER	4	1	3	2
+named_noncancer	0	PELVIC PAIN	4	3	1	2
+named_noncancer	0	MULTIPLE SCLEROSIS	4	1	3	0
+named_noncancer	0	GUILLAIN-BARRE SYNDROME	4	0	4	0
+named_noncancer	0	SURGERY	4	3	1	3
+named_noncancer	1	OFF LABEL USE	4	3	1	0
+named_noncancer	0	MUSCULAR DYSTROPHY	4	4	0	2
+named_noncancer	0	BACK DISORDER	4	3	1	0
+named_noncancer	0	MYALGIA	4	2	2	2
+named_noncancer	0	SPINAL COLUMN STENOSIS	4	1	3	2
+named_noncancer	0	MALABSORPTION	4	2	2	0
+named_noncancer	0	NEUROPATHY	3	3	0	1
+named_noncancer	0	NEPHROLITHIASIS	3	1	2	1
+named_noncancer	0	CHEST PAIN	3	2	1	0
+named_noncancer	0	MUSCLE SPASMS	3	1	2	1
+named_noncancer	0	BACK INJURY	3	2	1	0
+named_noncancer	0	PANCREATITIS	3	2	1	0
+named_noncancer	0	OSTEOPOROSIS	3	2	1	0
+named_noncancer	0	ANKYLOSING SPONDYLITIS	3	3	0	2
+named_noncancer	0	ADENOMYOSIS	3	2	3	0
+named_noncancer	0	SPINAL DISORDER	2	1	1	0
+named_noncancer	0	MUSCLE ATROPHY	2	2	0	0
+named_noncancer	0	STIFF-MAN SYNDROME	2	2	0	1
+named_noncancer	0	DENTAL DISCOMFORT	2	2	0	0
+named_noncancer	0	CYSTITIS INTERSTITIAL	2	0	2	1
+named_noncancer	0	SPINAL PAIN	2	2	0	0
+named_noncancer	0	SPINAL OSTEOARTHRITIS	2	0	2	1
+named_noncancer	0	FACIAL PAIN	2	2	0	1
+named_noncancer	0	HERNIA	2	1	1	0
+named_noncancer	0	THERAPEUTIC PROCEDURE	2	0	2	2
+named_noncancer	0	OSTEONECROSIS	2	1	1	0
+named_noncancer	0	MUSCULOSKELETAL CHEST PAIN	2	2	0	1
+named_noncancer	0	MUSCULOSKELETAL DISCOMFORT	2	0	2	0
+named_noncancer	0	TOOTH DISORDER	2	1	1	2
+named_noncancer	0	ROAD TRAFFIC ACCIDENT	2	1	1	1
+named_noncancer	0	HEMIPLEGIC MIGRAINE	2	1	1	0
+named_noncancer	0	VERTEBRAL INJURY	2	1	1	0
+named_noncancer	0	FACIAL NEURALGIA	2	2	0	2
+named_noncancer	0	SCOLIOSIS	2	0	2	1
+named_noncancer	0	RESTLESS LEGS SYNDROME	2	0	2	2
+named_noncancer	0	SURGICAL FAILURE	2	1	1	1
+named_noncancer	0	NECK INJURY	2	2	0	0
+named_noncancer	0	AUTOIMMUNE DISORDER	2	0	2	1
+named_noncancer	0	EHLERS-DANLOS SYNDROME	2	2	0	0
+named_noncancer	0	PORPHYRIA ACUTE	2	1	1	2
+named_noncancer	0	SPINAL FRACTURE	2	1	1	0
+named_noncancer	0	PORPHYRIA	2	1	1	1
+named_noncancer	0	NERVOUS SYSTEM DISORDER	2	0	2	0
+named_noncancer	0	BRACHIAL PLEXUS INJURY	2	2	0	0
+named_noncancer	0	GASTROINTESTINAL DISORDER	2	1	1	1
+named_noncancer	0	AUTONOMIC NERVOUS SYSTEM IMBALANCE	1	0	1	1
+named_noncancer	0	ANGIOPATHY	1	0	1	0
+named_noncancer	0	HODGKIN'S DISEASE	1	1	0	0
+named_noncancer	0	ABDOMINAL PAIN LOWER	1	1	0	1
+named_noncancer	0	PARAPLEGIA	1	1	0	1
+named_noncancer	0	HAEMANGIOMA	1	0	1	1
+named_noncancer	0	DENTAL CARE	1	0	1	1
+named_noncancer	0	ANKLE FRACTURE	1	1	0	0
+named_noncancer	0	DYSTONIA	1	0	1	0
+named_noncancer	0	OCULOPHARYNGEAL DYSTROPHY	1	1	0	1
+named_noncancer	0	ADDISON'S DISEASE	1	1	0	0
+named_noncancer	0	GAIT DISTURBANCE	1	0	1	0
+named_noncancer	0	SCAR PAIN	1	0	1	0
+named_noncancer	0	INTESTINAL ISCHAEMIA	1	1	0	0
+named_noncancer	0	JOINT INJURY	1	0	1	0
+named_noncancer	0	CENTRAL PAIN SYNDROME	1	0	1	0
+named_noncancer	0	HIP ARTHROPLASTY	1	1	0	0
+named_noncancer	0	LYMPHOEDEMA	1	1	0	0
+named_noncancer	0	RESPIRATORY SYNCYTIAL VIRUS INFECTION	1	0	1	0
+named_noncancer	0	LUNG DISORDER	1	1	0	0
+named_noncancer	0	SPONDYLITIS	1	1	0	1
+named_noncancer	0	CYSTITIS	1	0	1	0
+named_noncancer	0	CEREBROVASCULAR ACCIDENT	1	1	0	1
+named_noncancer	0	FAILED BACK SURGERY SYNDROME	1	1	0	1
+named_noncancer	0	PEMPHIGOID	1	1	0	0
+named_noncancer	0	COCCYDYNIA	1	1	0	0
+named_noncancer	0	HERNIA PAIN	1	1	0	1
+named_noncancer	0	BONE GRAFT	1	0	1	0
+named_noncancer	0	CONNECTIVE TISSUE DISORDER	1	1	0	0
+named_noncancer	0	BONE DISORDER	1	0	1	0
+named_noncancer	0	RENAL OSTEODYSTROPHY	1	1	0	0
+named_noncancer	0	GRAND MAL CONVULSION	1	0	1	0
+named_noncancer	0	HEPATITIS C	1	0	1	0
+named_noncancer	0	TEMPOROMANDIBULAR JOINT SYNDROME	1	0	1	0
+named_noncancer	0	MYELITIS TRANSVERSE	1	0	1	0
+named_noncancer	0	PANCREATITIS NECROTISING	1	0	1	0
+named_noncancer	0	ANORECTAL DISORDER	1	0	1	0
+named_noncancer	0	RED MAN SYNDROME	1	0	1	1
+named_noncancer	0	SPINAL MUSCULAR ATROPHY	1	1	0	0
+named_noncancer	0	GROIN PAIN	1	1	0	1
+named_noncancer	0	GLOSSOPHARYNGEAL NEURALGIA	1	1	0	1
+named_noncancer	0	BLADDER PAIN	1	0	1	0
+named_noncancer	0	PAIN PROPHYLAXIS	1	0	1	0
+named_noncancer	0	URETHRAL REPAIR	1	1	0	1
+named_noncancer	0	PERONEAL NERVE PALSY	1	0	1	0
+named_noncancer	0	PHYSIOTHERAPY	1	0	1	0
+named_noncancer	0	NERVE COMPRESSION	1	0	1	0
+named_noncancer	0	CRANIOCEREBRAL INJURY	1	1	0	0
+named_noncancer	0	DEAFNESS NEUROSENSORY	1	0	1	0
+named_noncancer	0	EXTRINSIC VASCULAR COMPRESSION	1	0	1	0
+named_noncancer	1	PREMEDICATION	1	1	0	1
+named_noncancer	0	INJURY	1	0	1	0
+named_noncancer	0	POST-TRAUMATIC HEADACHE	1	0	1	1
+named_noncancer	0	GUN SHOT WOUND	1	0	1	1
+named_noncancer	0	MYELOFIBROSIS	1	0	1	0
+named_noncancer	0	ENDOMETRIOSIS	1	0	1	0
+named_noncancer	0	HYPOAESTHESIA	1	1	0	0
+named_noncancer	0	NEUROMA	1	1	1	0
+named_noncancer	0	FALL	1	1	0	0
+named_noncancer	0	PARALYSIS	1	1	0	1
+named_noncancer	0	HEPATIC PAIN	1	1	0	0
+named_noncancer	0	BENIGN INTRACRANIAL HYPERTENSION	1	0	1	0
+named_noncancer	0	SEPTIC NECROSIS	1	0	1	0
+named_noncancer	0	LIMB DISCOMFORT	1	1	0	0
+named_noncancer	0	AICARDI'S SYNDROME	1	0	1	0
+named_noncancer	0	CAUDA EQUINA SYNDROME	1	1	0	1
+named_noncancer	0	DEMYELINATION	1	1	0	0
+named_noncancer	0	SARCOIDOSIS	1	1	0	0
+named_noncancer	0	PANCREATIC DISORDER	1	0	1	1
+named_noncancer	0	LUMBAR SPINAL STENOSIS	1	0	1	0
+named_noncancer	0	VOMITING	1	1	0	0
+named_noncancer	0	PELVIC FRACTURE	1	1	0	0
+named_noncancer	1	SEDATION	1	1	0	1
+named_noncancer	0	RENAL PAIN	1	1	0	1
+named_noncancer	0	JAW FRACTURE	1	1	0	0
+named_noncancer	0	SICKLE CELL ANAEMIA	1	1	0	0
+named_noncancer	0	RADICULOPATHY	1	0	1	1
+named_noncancer	0	POST-TRAUMATIC STRESS DISORDER	1	1	0	1
+named_noncancer	0	MYELOPATHY	1	0	1	1
+named_noncancer	0	SEPSIS	1	1	0	0
+named_noncancer	0	CYSTIC FIBROSIS	1	0	1	0
+named_noncancer	0	INTRACRANIAL PRESSURE INCREASED	1	0	1	1
+named_noncancer	0	INSOMNIA	1	0	1	0
+named_noncancer	0	FLANK PAIN	1	0	1	0
+named_noncancer	0	STAPHYLOCOCCAL INFECTION	1	1	1	0
+named_noncancer	0	BUDD-CHIARI SYNDROME	1	1	0	0
+named_noncancer	0	CHRONIC FATIGUE SYNDROME	1	0	1	0
+named_noncancer	0	ASTHENIA	1	0	1	0
+named_noncancer	0	MUSCLE SPASTICITY	1	0	1	0
+named_noncancer	0	SPINAL FUSION SURGERY	1	0	1	0
+named_noncancer	0	OSTEOMYELITIS	1	1	1	0
+named_noncancer	0	THERAPEUTIC SKIN CARE TOPICAL	1	1	0	1
+named_noncancer	0	HERPES ZOSTER	1	0	1	0
+named_noncancer	0	LACERATION	1	1	0	1
+named_noncancer	0	ARTERIOSCLEROSIS	1	1	0	0
+named_noncancer	0	COLONIC PSEUDO-OBSTRUCTION	1	0	1	0
+named_noncancer	0	SPINAL CORD DISORDER	1	1	0	1
+named_noncancer	0	POST-TRAUMATIC PAIN	1	1	0	1
+cancer	0	CANCER PAIN	141	79	65	75
+cancer	0	NEOPLASM MALIGNANT	12	8	4	2
+cancer	0	BREAST CANCER	4	3	1	0
+cancer	0	BRAIN NEOPLASM	3	0	3	0
+cancer	0	BREAST CANCER METASTATIC	2	2	0	0
+cancer	0	BONE CANCER	2	0	2	0
+cancer	0	COLON CANCER	2	1	1	1
+cancer	0	RECTAL CANCER	2	1	1	0
+cancer	0	LEUKAEMIA	2	0	2	0
+cancer	0	BRAIN NEOPLASM BENIGN	1	1	0	1
+cancer	0	MULTIPLE MYELOMA	1	1	0	1
+cancer	0	CHRONIC LYMPHOCYTIC LEUKAEMIA	1	1	0	0
+cancer	0	METASTASES TO BONE	1	1	0	1
+cancer	0	OCULAR NEOPLASM	1	0	1	0
+cancer	0	ANAL NEOPLASM	1	0	1	1
+cancer	0	TONGUE NEOPLASM MALIGNANT STAGE UNSPECIFIED	1	0	1	0
+cancer	0	PANCREATIC CARCINOMA METASTATIC	1	0	1	0
+cancer	0	METASTATIC PAIN	1	0	1	1
+cancer	0	PANCREATIC CARCINOMA	1	0	1	1
+cancer	0	TESTIS CANCER	1	0	1	0
+cancer	0	SQUAMOUS CELL CARCINOMA	1	0	1	0
+cancer	0	PROSTATE CANCER	1	0	1	0
+cancer	0	BENIGN NEOPLASM	1	1	0	0
+cancer	0	BONE CANCER METASTATIC	1	0	1	0
+cancer	0	BONE NEOPLASM MALIGNANT	1	0	1	0
+cancer	0	NEOPLASM	1	0	1	0
+cancer	0	PITUITARY TUMOUR BENIGN	1	0	1	0
+cancer	0	OVARIAN CANCER	1	0	1	0
+cancer	0	CHRONIC MYELOID LEUKAEMIA	1	1	1	0
+cancer	0	BRAIN NEOPLASM MALIGNANT	1	0	1	0
+cancer	0	OESOPHAGEAL CARCINOMA	1	0	1	0
+cancer	0	NODAL MARGINAL ZONE B-CELL LYMPHOMA	1	1	0	0
+cancer	0	OSTEOSARCOMA METASTATIC	1	0	1	0
+cancer	0	CERVIX CARCINOMA	1	0	1	0

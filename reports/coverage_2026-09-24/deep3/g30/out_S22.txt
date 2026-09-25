@@ -1,0 +1,6 @@
+-- S22 Same leadership PACs 2022 to 2024: did the ones that switched to individual-donor money drop their giving share more? Plus the insider-trade table's date coverage (for the S16 join)
+FUNDING_SHIFT | PACS | MED_S22 | MED_S24 | MED_CHANGE | MED_I22 | MED_I24 | INSIDER_DATES
+about the same | 129 | 0.517 | 0.451 | -0.03 | 0.19 | 0.183 | 2000-07-12 to 2026-02-25, rows since 2025-04-01: 10
+indiv share down 25+ pts | 10 | 0.279 | 0.306 | -0.057 | 0.497 | 0.169 | 2000-07-12 to 2026-02-25, rows since 2025-04-01: 10
+indiv share up 25+ pts | 9 | 0.612 | 0.26 | -0.08 | 0.137 | 0.757 | 2000-07-12 to 2026-02-25, rows since 2025-04-01: 10
+(3 rows; csv has all)

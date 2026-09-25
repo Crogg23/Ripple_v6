@@ -1,0 +1,53 @@
+-- S05 MDS frequency: the psych, PASRR, falls, ulcer, restraint items and how filled they are
+Q | R | N | CCNS | OV_FILLED | LS_FILLED | MED_OV | MED_LS | MAX_TOT
+I5700: Active Diagnoses - Psychiatric/Mood Disorder: Anxiety Disorder | No | 14695 | 14695 | 12394 | 10778 | 60.87 | 58.24 | 562
+I5700: Active Diagnoses - Psychiatric/Mood Disorder: Anxiety Disorder | Yes | 14695 | 14695 | 12357 | 9928 | 39.13 | 44.44 | 279
+I5800: Active Diagnoses - Psychiatric/Mood Disorder: Depression (other than bipolar) | No | 14695 | 14695 | 13228 | 10136 | 46.43 | 43.24 | 448
+I5800: Active Diagnoses - Psychiatric/Mood Disorder: Depression (other than bipolar) | Yes | 14695 | 14695 | 13195 | 11423 | 53.59 | 59.62 | 300
+I5900: Active Diagnoses - Psychiatric/Mood Disorder: Bipolar Disorder | No | 14695 | 14695 | 3538 | 2883 | 92.86 | 93.12 | 589
+I5900: Active Diagnoses - Psychiatric/Mood Disorder: Bipolar Disorder | Yes | 14695 | 14695 | 1867 | 896 | 13.66 | 18.08 | 185
+I5950: Active Diagnoses - Psychiatric/Mood Disorder: Psychotic Disorder (other than schizophrenia) | No | 14695 | 14695 | 4581 | 3909 | 100.0 | 100.0 | 584
+I5950: Active Diagnoses - Psychiatric/Mood Disorder: Psychotic Disorder (other than schizophrenia) | Yes | 14695 | 14695 | 1804 | 1134 | 15.0 | 20.0 | 180
+I6000: Active Diagnoses - Psychiatric/Mood Disorder: Schizophrenia (e.g., schizoaffective and schizophreniform disorders) | No | 14695 | 14695 | 5125 | 4383 | 100.0 | 100.0 | 606
+I6000: Active Diagnoses - Psychiatric/Mood Disorder: Schizophrenia (e.g., schizoaffective and schizophreniform disorders) | Yes | 14695 | 14695 | 2124 | 1353 | 17.58 | 23.81 | 200
+I6100: Active Diagnoses - Psychiatric/Mood Disorder: Post Traumatic Stress Disorder (PTSD) | No | 14695 | 14695 | 5980 | 5490 | 100.0 | 100.0 | 617
+I6100: Active Diagnoses - Psychiatric/Mood Disorder: Post Traumatic Stress Disorder (PTSD) | Yes | 14695 | 14695 | 228 | 112 | 12.945 | 17.78 | 58
+J1800: Health Conditions - Other Health Conditions - Any falls since Admission/Entry/Reentry or Prior Assessment | No | 14695 | 14695 | 7790 | 6796 | 80.55000000000001 | 78.05 | 604
+J1800: Health Conditions - Other Health Conditions - Any falls since Admission/Entry/Reentry or Prior Assessment | Yes | 14695 | 14695 | 7539 | 4418 | 19.75 | 24.44 | 150
+N0415A1: Medications: High-Risk Drug Classes: Use and Indication: Antipsychotic Is Taking | No | 14695 | 14695 | 7835 | 6677 | 78.72 | 77.78 | 595
+N0415A1: Medications: High-Risk Drug Classes: Use and Indication: Antipsychotic Is Taking | Yes | 14695 | 14695 | 7668 | 4199 | 21.59 | 26.56 | 299
+N0415A2: Medications: High-Risk Drug Classes: Use and Indication: Antipsychotic Indication Noted | No | 14695 | 14695 | 33 | 13 | 57.45 | 68.18 | 45
+N0415A2: Medications: High-Risk Drug Classes: Use and Indication: Antipsychotic Indication Noted | Yes | 14695 | 14695 | 6902 | 3745 | 100.0 | 100.0 | 299
+N0450A: Medications - Antipsychotic Medication Review - Did the resident receive antipsychotic medications since admission/entry or reentry or the prior OBRA assessment, whichever is more recent? | No - Antipsychotics not received | 14695 | 14695 | 8025 | 7061 | 79.26 | 78.57 | 547
+N0450A: Medications - Antipsychotic Medication Review - Did the resident receive antipsychotic medications since admission/entry or reentry or the prior OBRA assessment, whichever is more recent? | Yes - Antipsychotics were received on a PRN basis only | 14695 | 14695 | 1 | 0 | 10.4 |  | 13
+N0450A: Medications - Antipsychotic Medication Review - Did the resident receive antipsychotic medications since admission/entry or reentry or the prior OBRA assessment, whichever is more recent? | Yes - Antipsychotics were received on a routine and PRN basis | 14695 | 14695 | 9 | 4 | 20.69 | 25.91 | 26
+N0450A: Medications - Antipsychotic Medication Review - Did the resident receive antipsychotic medications since admission/entry or reentry or the prior OBRA assessment, whichever is more recent? | Yes - Antipsychotics were received on a routine basis only | 14695 | 14695 | 5899 | 3379 | 22.03 | 26.92 | 299
+N0450B: Medications - Antipsychotic Medication Review - Has a gradual dose reduction (GDR) been attempted? | No | 14695 | 14695 | 1834 | 904 | 100.0 | 100.0 | 179
+N0450B: Medications - Antipsychotic Medication Review - Has a gradual dose reduction (GDR) been attempted? | Yes | 14695 | 14695 | 588 | 411 | 41.765 | 50.0 | 108
+N0450D: Medications - Antipsychotic Medication Review - Physician documented GDR as clinically contraindicated | No | 14695 | 14695 | 1535 | 602 | 71.43 | 100.0 | 151
+N0450D: Medications - Antipsychotic Medication Review - Physician documented GDR as clinically contraindicated | Yes | 14695 | 14695 | 904 | 654 | 57.14 | 72.22 | 276
+P0100A: Restraints and Alarms - Physical Restraints - Used in Bed - Bed rails | Not used | 14695 | 14695 | 14055 | 13464 | 100.0 | 100.0 | 630
+P0100A: Restraints and Alarms - Physical Restraints - Used in Bed - Bed rails | Used daily | 14695 | 14695 | 50 | 33 | 37.33 | 46.81 | 70
+P0100A: Restraints and Alarms - Physical Restraints - Used in Bed - Bed rails | Used less than daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100B: Restraints and Alarms - Physical Restraints - Used in Bed - Trunk restraint | Not used | 14695 | 14695 | 14402 | 13809 | 100.0 | 100.0 | 630
+P0100B: Restraints and Alarms - Physical Restraints - Used in Bed - Trunk restraint | Used daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100B: Restraints and Alarms - Physical Restraints - Used in Bed - Trunk restraint | Used less than daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100C: Restraints and Alarms - Physical Restraints - Used in Bed - Limb restraint | Not used | 14695 | 14695 | 14298 | 13709 | 100.0 | 100.0 | 630
+P0100C: Restraints and Alarms - Physical Restraints - Used in Bed - Limb restraint | Used daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100C: Restraints and Alarms - Physical Restraints - Used in Bed - Limb restraint | Used less than daily | 14695 | 14695 | 1 | 0 | 8.51 |  | 12
+P0100D: Restraints and Alarms - Physical Restraints - Used in Bed - Other | Not used | 14695 | 14695 | 14331 | 13739 | 100.0 | 100.0 | 630
+P0100D: Restraints and Alarms - Physical Restraints - Used in Bed - Other | Used daily | 14695 | 14695 | 1 | 0 | 37.5 |  | 12
+P0100D: Restraints and Alarms - Physical Restraints - Used in Bed - Other | Used less than daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100E: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Trunk restraint - Days | Not used | 14695 | 14695 | 14213 | 13620 | 100.0 | 100.0 | 630
+P0100E: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Trunk restraint - Days | Used daily | 14695 | 14695 | 2 | 1 | 38.905 | 67.19 | 51
+P0100E: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Trunk restraint - Days | Used less than daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100F: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Limb restraint - Days | Not used | 14695 | 14695 | 14357 | 13764 | 100.0 | 100.0 | 630
+P0100F: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Limb restraint - Days | Used daily | 14695 | 14695 | 1 | 1 | 9.68 | 11.01 | 15
+P0100F: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Limb restraint - Days | Used less than daily | 14695 | 14695 | 1 | 0 | 7.8 |  | 11
+P0100G: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Chair prevents rising - Days | Not used | 14695 | 14695 | 14346 | 13752 | 100.0 | 100.0 | 630
+P0100G: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Chair prevents rising - Days | Used daily | 14695 | 14695 | 1 | 1 | 11.61 | 13.76 | 18
+P0100G: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Chair prevents rising - Days | Used less than daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100H: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Other - Days | Not used | 14695 | 14695 | 14267 | 13677 | 100.0 | 100.0 | 630
+P0100H: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Other - Days | Used daily | 14695 | 14695 | 0 | 0 |  |  | 
+P0100H: Restraints and Alarms - Physical Restraints - Used in Chair or Out of Bed - Other - Days | Used less than daily | 14695 | 14695 | 0 | 0 |  |  | 
+(50 rows)

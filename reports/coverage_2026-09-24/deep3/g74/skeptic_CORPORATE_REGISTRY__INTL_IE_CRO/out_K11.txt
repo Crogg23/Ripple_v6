@@ -1,0 +1,11 @@
+-- K11 control for dissolution timing: 1989-98 formations, ever filed an annual return / accounts, split by dissolution period, the 23 addresses vs everywhere else
+CLS | DP | N | EVER_AR | EVER_ACC
+a_mass23 | diss_1993_98 | 6704 | 283 | 3
+a_mass23 | diss_1999_00 | 23161 | 5450 | 4534
+a_mass23 | diss_2001_plus | 3884 | 2844 | 2634
+a_mass23 | not dissolved | 80 | 67 | 67
+c_rest | diss_1993_98 | 22120 | 1305 | 18
+c_rest | diss_1999_00 | 40770 | 5697 | 4575
+c_rest | diss_2001_plus | 43882 | 38899 | 38525
+c_rest | not dissolved | 21352 | 19655 | 19653
+(8 rows)

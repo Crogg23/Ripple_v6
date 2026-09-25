@@ -1,0 +1,7 @@
+-- S11 DIM_ZIP_POINT: which ZIPs are missing (by state), and is the "primary county" of a multi-county ZIP simply the most populous county it touches? with examples
+K | ZCTA | MULTI_COUNTY_ZIPS | PRIMARY_IS_MOST_POPULOUS | SPAN_WITH_20X_POP_GAP | DETAIL
+summary |  | 10174 | 10174 | 384 | {"AS":1,"CT":288,"GU":7,"MP":3,"VI":6}
+example | 93243 | 2 |  |  | 06037 <- los angeles county CA (10014009) + kern county CA (909235)
+example | 75009 | 2 |  |  | 48085 <- collin county TX (1064465) + denton county TX (906422)
+example | 93225 | 2 |  |  | 06029 <- kern county CA (909235) + ventura county CA (843843)
+(4 rows; csv has all)

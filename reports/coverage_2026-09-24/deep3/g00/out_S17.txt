@@ -1,0 +1,6 @@
+-- S17 Hospice: do the 126 officials or 179 NPIs behind LA-phone hospices outside California appear on the OIG or SAM exclusion lists?
+SRC | WHO | CITY | STATE | D | T | EXTRA
+SAM person | TERRI WARREN | PALESTINE | TX | 2007-04-19 | Prohibition/Restriction | HHS
+LEIE person | ALMA INIT | PHOENIX | AZ | 2023-06-20 | 1128a1 | IND- LIC HC SERV PRO / NURSE/NURSES AIDE
+LEIE person | TERRI WARREN | PALESTINE | TX | 2007-04-19 | 1128b4 | NURSING PROFESSION / NURSE/NURSES AIDE
+(3 rows; csv has all)

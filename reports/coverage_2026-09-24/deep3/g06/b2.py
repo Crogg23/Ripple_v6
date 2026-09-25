@@ -1,0 +1,58 @@
+M = "LIBRARY_MARTS.HEALTH."
+PEND = f"""SELECT NPI, 'NONPHYS' src FROM {M}HEALTH__FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS
+           UNION ALL SELECT NPI, 'PHYS' FROM {M}HEALTH__FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS"""
+QUERIES = [
+ ("q08_nppes", "NPPES record for every MDPP supplier NPI and every pending NPI (both pending lists): enumeration date, deactivation, taxonomy, practice state",
+  f"""WITH n AS (SELECT NPI, 'MDPP' src FROM {M}HEALTH__FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM
+               UNION SELECT NPI, 'NONPHYS' FROM {M}HEALTH__FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_NON_PHYSICIANS
+               UNION SELECT NPI, 'PHYS' FROM {M}HEALTH__FED_CMS_PENDING_INITIAL_LOGGING_AND_TRACKING_PHYSICIANS)
+  SELECT n.src, n.NPI, x.NPI AS nppes_npi, x.ENTITY_TYPE_CODE, x.PROVIDER_ENUMERATION_DATE, x.LAST_UPDATE_DATE,
+         x.NPI_DEACTIVATION_DATE, x.NPI_REACTIVATION_DATE, x.NPI_DEACTIVATION_REASON_CODE,
+         x.HEALTHCARE_PROVIDER_TAXONOMY_CODE_1 AS tax1, x.PROVIDER_CREDENTIAL_TEXT AS cred,
+         x.PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME AS st,
+         LEFT(x.PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE, 5) AS zip5,
+         x.PROVIDER_ORGANIZATION_NAME_LEGAL_BUSINESS_NAME AS org, x.PROVIDER_LAST_NAME_LEGAL_NAME AS ln, x.PROVIDER_FIRST_NAME AS fn
+  FROM n LEFT JOIN {M}HEALTH__FED_CMS_NPPES x ON x.NPI = n.NPI"""),
+ ("q09_pendflags", "Pending NPIs (both lists) against approved enrollment (PECOS), order/refer eligibility, OIG exclusions (LEIE), opt-out, Part B 2024 billing, Part D 2024 prescribing. Each side aggregated to NPI first",
+  f"""WITH p AS ({PEND}),
+  pec AS (SELECT NPI, COUNT(*) n_enr, LISTAGG(DISTINCT STATE_CD, ',') pec_st, LISTAGG(DISTINCT PROVIDER_TYPE_DESC, ' | ') pec_types
+          FROM {M}HEALTH__FED_CMS_PECOS_PROVIDER_ENROLLMENT WHERE NPI IN (SELECT NPI FROM p) GROUP BY 1),
+  orf AS (SELECT NPI, COUNT(*) n_orf, MAX(PARTB) orf_partb, MAX(DME) orf_dme, MAX(HHA) orf_hha, MAX(HOSPICE) orf_hospice
+          FROM {M}HEALTH__FED_CMS_ORDER_AND_REFERRING WHERE NPI IN (SELECT NPI FROM p) GROUP BY 1),
+  leie AS (SELECT NPI, MIN(EXCLUSION_DATE) excl_date, LISTAGG(DISTINCT EXCLUSION_TYPE, ',') excl_type, MAX(REINSTATEMENT_DATE) reinst,
+                  MAX(SPECIALTY) excl_spec, MAX(STATE) excl_st, MAX(LAST_NAME) excl_ln
+           FROM {M}HEALTH__FED_HHS_OIG_LEIE WHERE NPI IN (SELECT NPI FROM p) GROUP BY 1),
+  opt AS (SELECT NPI, MIN(OPTOUT_EFFECTIVE_DATE) opt_eff, MAX(OPTOUT_END_DATE) opt_end
+          FROM {M}HEALTH__FED_CMS_OPT_OUT_AFFIDAVITS WHERE NPI IN (SELECT NPI FROM p) GROUP BY 1),
+  pb AS (SELECT RNDRNG_NPI NPI, MAX(RNDRNG_PRVDR_TYPE) pb_type, MAX(RNDRNG_PRVDR_STATE_ABRVTN) pb_st,
+                SUM(TRY_TO_DOUBLE(TO_VARCHAR(TOT_BENES))) pb_benes, SUM(TOT_MDCR_PYMT_AMT) pb_pay
+         FROM {M}HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER WHERE RNDRNG_NPI IN (SELECT NPI FROM p) GROUP BY 1),
+  pd AS (SELECT NPI, MAX(PRSCRBR_TYPE) pd_type, MAX(PRSCRBR_STATE_ABRVTN) pd_st,
+                SUM(TRY_TO_DOUBLE(TO_VARCHAR(TOT_CLMS))) pd_clms, SUM(TRY_TO_DOUBLE(TO_VARCHAR(TOT_DRUG_CST))) pd_cost
+         FROM {M}HEALTH__FED_CMS_PART_D_PRESCRIBERS WHERE NPI IN (SELECT NPI FROM p) GROUP BY 1)
+  SELECT p.src, p.NPI, pec.n_enr, pec.pec_st, pec.pec_types, orf.n_orf, orf.orf_partb, orf.orf_dme, orf.orf_hha, orf.orf_hospice,
+         leie.excl_date, leie.excl_type, leie.reinst, leie.excl_spec, leie.excl_st, leie.excl_ln, opt.opt_eff, opt.opt_end,
+         pb.pb_type, pb.pb_st, pb.pb_benes, pb.pb_pay, pd.pd_type, pd.pd_st, pd.pd_clms, pd.pd_cost
+  FROM p LEFT JOIN pec ON pec.NPI=p.NPI LEFT JOIN orf ON orf.NPI=p.NPI LEFT JOIN leie ON leie.NPI=p.NPI
+         LEFT JOIN opt ON opt.NPI=p.NPI LEFT JOIN pb ON pb.NPI=p.NPI LEFT JOIN pd ON pd.NPI=p.NPI"""),
+ ("q10_mdpp_svc", "Every Part B 2024 service row on codes G9870-G9891 (the MDPP code block), any NPI: patients, sessions, estimated payment",
+  f"""SELECT RNDRNG_NPI, MAX(RNDRNG_PRVDR_LAST_ORG_NAME) nm, MAX(RNDRNG_PRVDR_TYPE) typ, MAX(RNDRNG_PRVDR_STATE_ABRVTN) st, HCPCS_CD,
+         MAX(HCPCS_DESC) descr, SUM(TRY_TO_DOUBLE(TO_VARCHAR(TOT_BENES))) benes, SUM(TRY_TO_DOUBLE(TO_VARCHAR(TOT_SRVCS))) srvcs,
+         SUM(EST_MDCR_PYMT_AMT) est_pay, AVG(AVG_MDCR_PYMT_AMT) avg_pay
+  FROM {M}HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI
+  WHERE HCPCS_CD BETWEEN 'G9870' AND 'G9891' GROUP BY RNDRNG_NPI, HCPCS_CD"""),
+ ("q11_mdpp_prov", "Part B 2024 provider totals for every MDPP-type provider or listed MDPP supplier NPI",
+  f"""SELECT RNDRNG_NPI, RNDRNG_PRVDR_LAST_ORG_NAME nm, RNDRNG_PRVDR_TYPE typ, RNDRNG_PRVDR_STATE_ABRVTN st, RNDRNG_PRVDR_ENT_CD ent,
+         TOT_HCPCS_CDS, TOT_BENES, TOT_SRVCS, TOT_MDCR_PYMT_AMT,
+         IFF(RNDRNG_NPI IN (SELECT NPI FROM {M}HEALTH__FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM), 1, 0) in_list
+  FROM {M}HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER
+  WHERE RNDRNG_PRVDR_TYPE ILIKE '%diabet%' OR RNDRNG_NPI IN (SELECT NPI FROM {M}HEALTH__FED_CMS_MEDICARE_DIABETES_PREVENTION_PROGRAM)"""),
+ ("q12_hospgen", "CMS Care Compare hospital list, whole table (5,432 rows), to match IHS/tribal hospitals by state+city+ZIP locally",
+  f"SELECT * FROM {M}HEALTH__FED_CMS_HOSPITAL_GENERAL"),
+ ("q13_hospenr", "Medicare hospital enrollments (9,175 rows), key columns, to test whether each IHS/tribal hospital bills Medicare",
+  f"""SELECT ENROLLMENT_ID, ENROLLMENT_STATE, PROVIDER_TYPE_TEXT, NPI, CCN, ORGANIZATION_NAME, DOING_BUSINESS_AS_NAME,
+         ORGANIZATION_TYPE_STRUCTURE, ORGANIZATION_OTHER_TYPE_TEXT, PROPRIETARY_NONPROFIT, ADDRESS_LINE_1, CITY, STATE, ZIP_CODE
+  FROM {M}HEALTH__FED_CMS_HOSPITAL_ENROLLMENTS"""),
+ ("q14_ihsscb", "IHS standard code book facility list (8,733 rows): second snapshot of the same facility codes, for status and bed changes",
+  f"SELECT * FROM {M}HEALTH__FED_IHS_SCB_FACILITY"),
+]

@@ -1,0 +1,13 @@
+-- S11 OCC thrifts: the ones FDIC marks closed, and the biggest by FDIC assets (thousands of dollars)
+NAME | CITY | STATE | CERT | FNAME | ACTIVE | ASSET | ENDED | SUCC
+Synchrony Bank | Draper | UT | 27314 | Synchrony Bank | 1 | 114855000.0000 |  | 0
+USAA Federal Savings Bank | Phoenix | AZ | 32188 | USAA Federal Savings Bank | 1 | 109670000.0000 |  | 0
+MidFirst Bank | Oklahoma City | OK | 4063 | MidFirst Bank | 1 | 42109827.0000 |  | 0
+Axos Bank | San Diego | CA | 35546 | Axos Bank | 1 | 28237712.0000 |  | 0
+Ameriprise Bank, FSB | Minneapolis | MN | 58303 | Ameriprise Bank, FSB | 1 | 25514060.0000 |  | 0
+Wilmington Savings Fund Society, Federal Savings Bank | Wilmington | DE | 17838 | Wilmington Savings Fund Society, FSB | 1 | 22016606.0000 |  | 0
+Third FS&LA of Cleveland | Cleveland | OH | 30012 | Third Federal Savings and Loan Association of Cleveland | 1 | 17468430.0000 |  | 0
+Dollar Bank, Federal Savings Bank | Pittsburgh | PA | 32245 | Dollar Bank, Federal Savings Bank | 1 | 12480067.0000 |  | 0
+First FS & LA | Centerburg | OH | 29005 | First Federal Savings and Loan Association | 0 | 22969.0000 | 2026-07-01 | 29488
+Kentland FS & LA | Kentland | IN | 28722 | Kentland Federal Savings and Loan Association | 0 | 3808.0000 | 2026-07-10 | 13843
+(10 rows; csv has all)

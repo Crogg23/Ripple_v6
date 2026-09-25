@@ -1,0 +1,4 @@
+-- any FEC disbursement / operating-expenditure / committee-to-committee table anywhere in the account (landing included)
+SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, ROW_COUNT FROM SNOWFLAKE.ACCOUNT_USAGE.TABLES
+WHERE DELETED IS NULL AND TABLE_NAME ILIKE '%FEC%' AND (TABLE_NAME ILIKE ANY ('%OPPEXP%','%OPEXP%','%OPER%','%DISB%','%EXPEND%','%TO_COMMITTEE%','%ITOTH%','%ITPAS%','%SCHED%'))
+ORDER BY ROW_COUNT DESC NULLS LAST

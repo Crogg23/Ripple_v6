@@ -1,6 +1,6 @@
 """Write battery A and stage B results into the ledger's singles layer, one locked write.
 
-Deep-pass tables get their verdict; a live row carries the skeptic's corrected headline.
+Deep-pass tables get their verdict; fix_live.py then swaps in the skeptic's corrected headline on live rows.
 Every other battery table becomes probed: its first check, the lead-number profile, is answered.
 Rows not untouched are left alone, so hand work is never overwritten.
 """

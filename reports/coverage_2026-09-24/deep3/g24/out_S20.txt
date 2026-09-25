@@ -1,0 +1,63 @@
+-- S20 SEC insiders: people filing as Director at 5+ non-fund issuers, by filing year 2016-2024, plus yearly totals
+Y | OWNER_CIK | NM | N_ISS | N_OP | ISS
+2020 | 0001398154 | Graziano Nick | 6 | 6 | Cloudera, Inc. | CONDUENT Inc | Xerox Holdings Corp | HERBALIFE NUTRITION LTD. | OCCIDENTAL PETROLEUM CORP /DE/ | HERC HOLDINGS INC
+2018 | 0001397266 | Fust Matthew K | 5 | 5 | Atara Biotherapeutics, Inc. | Dermira, Inc. | MACROGENICS INC | Ultragenyx Pharmaceutical Inc. | Crinetics Pharmaceuticals, Inc
+2021 | 0001599214 | Chen Bihua | 9 | 9 | Tyra Biosciences, Inc. | Monte Rosa Therapeutics, Inc. | Rain Therapeutics Inc. | Verve Therapeutics, Inc. | Biomea Fusion, Inc. | Pyxis Oncology, Inc. | Erasca, Inc. | Prometheus Biosciences, Inc. | Design Therapeutics, Inc.
+2024 | 0001478916 | Schmid John P. | 5 | 5 | Poseida Therapeutics, Inc. | Design Therapeutics, Inc. | ANAPTYSBIO, INC | Xeris Biopharma Holdings, Inc. | Helix Acquisition Corp. II
+2021 | 0001418226 | Silver Lake Group, L.L.C. | 16 | 16 | Endeavor Group Holdings, Inc. | Qualtrics International Inc. | TWITTER, INC. | AMC ENTERTAINMENT HOLDINGS, IN | EverCommerce Inc. | Dell Technologies Inc. | Cornerstone OnDemand Inc | GoodRx Holdings, Inc. | SPLUNK INC | SoFi Technologies, Inc. | Unity Software Inc. | SolarWinds Corp | Vacasa, Inc. | VMWARE, INC. | N-able, Inc. | FIRST ADVANTAGE CORP
+2020 | 0001351073 | ValueAct Capital Management, LLC | 9 | 9 | CBRE GROUP, INC. | AES CORP | TRINITY INDUSTRIES INC | Bausch Health Companies Inc. | Seagate Technology plc | Enviva Partners, LP | Nikola Corp | HAWAIIAN ELECTRIC INDUSTRIES I | LKQ CORP
+2021 | 0001389349 | Carmona Richard H | 5 | 5 | MCKESSON CORP | Better Therapeutics, Inc. | AXON ENTERPRISE, INC. | CLOROX CO /DE/ | HERBALIFE NUTRITION LTD.
+2019 | 0001239318 | KAYE CHARLES R | 7 | 7 | SemGroup Corp | ANTERO RESOURCES Corp | Kosmos Energy Ltd. | Brigham Minerals, Inc. | Antero Midstream Corp | CrowdStrike Holdings, Inc. | Triton International Ltd
+2021 | 0001425738 | Redmile Group, LLC | 6 | 6 | Absci Corp | Shattuck Labs, Inc. | IGM Biosciences, Inc. | FATE THERAPEUTICS INC | Augmedix, Inc. | Science 37 Holdings, Inc.
+2019 | 0001418812 | VA Partners I, LLC | 9 | 9 | ARMSTRONG WORLD INDUSTRIES INC | ALLIANCE DATA SYSTEMS CORP | Armstrong Flooring, Inc. | AES CORP | UNIFI INC | Seagate Technology plc | Bausch Health Companies Inc. | TRINITY INDUSTRIES INC | CBRE GROUP, INC.
+2020 | 0001219016 | BONNEY MICHAEL W | 5 | 5 | Kaleido Biosciences, Inc. | ALNYLAM PHARMACEUTICALS, INC. | BRISTOL MYERS SQUIBB CO | Magenta Therapeutics, Inc. | Sarepta Therapeutics, Inc.
+2022 | 0001808744 | OrbiMed Genesis GP LLC | 7 | 7 | Terns Pharmaceuticals, Inc. | Kinnate Biopharma Inc. | Edgewise Therapeutics, Inc. | Sierra Oncology, Inc. | Ikena Oncology, Inc. | Theseus Pharmaceuticals, Inc. | Compass Therapeutics, Inc.
+2019 | 0001207269 | RILEY BRYANT R | 5 | 5 | Liberty Tax, Inc. | B. Riley Financial, Inc. | Babcock & Wilcox Enterprises,  | Franchise Group, Inc. | Select Interior Concepts, Inc. | B. Riley Principal Merger Corp
+2019 | 0001216519 | SUGAR RONALD D | 5 | 5 | APPLE INC | Uber Technologies, Inc | AMGEN INC | AIR LEASE CORP | CHEVRON CORP
+2018 | 0001260943 | THOMAS H. LEE ADVISORS, LLC | 5 | 5 | Black Knight, Inc. | Fogo de Chao, Inc. | Ceridian HCM Holding Inc. | Party City Holdco Inc. | Syneos Health, Inc.
+2024 | 0001253170 | AKKARAJU SRINIVAS | 5 | 5 | Syros Pharmaceuticals, Inc. | vTv Therapeutics Inc. | Scholar Rock Holding Corp | Mineralys Therapeutics, Inc. | ALUMIS INC.
+2021 | 0001825376 | RA Capital Nexus Fund II, L.P. | 5 | 5 | Cytek Biosciences, Inc. | Acumen Pharmaceuticals, Inc. | Icosavax, Inc. | DICE Therapeutics, Inc. | Eliem Therapeutics, Inc. | Cytek BioSciences, Inc.
+2018 | 0001263508 | BAKER BROS. ADVISORS LP | 10 | 10 | BeiGene, Ltd. | Kiniksa Pharmaceuticals, Ltd. | ALEXION PHARMACEUTICALS INC | AQUINOX PHARMACEUTICALS, INC | GENOMIC HEALTH INC | SEATTLE GENETICS INC /WA | ACADIA PHARMACEUTICALS INC | IDERA PHARMACEUTICALS, INC. | INCYTE CORP | Kodiak Sciences Inc.
+2024 | 0001802528 | Fairmount Funds Management LLC | 7 | 7 | Cogent Biosciences, Inc. | Oruka Therapeutics, Inc. | Apogee Therapeutics, Inc. | Zenas BioPharma, Inc. | Spyre Therapeutics, Inc. | Viridian Therapeutics, Inc.\DE | Dianthus Therapeutics, Inc. /D
+2024 | 0001249675 | PERCEPTIVE LIFE SCIENCES MASTER FUND LTD | 6 | 6 | Astria Therapeutics, Inc. | Nautilus Biotechnology, Inc. | MeiraGTx Holdings plc | Solid Biosciences Inc. | Cerevel Therapeutics Holdings, | LianBio
+2017 | 0001239209 | GIBSON JOHN WILLIAM | 6 | 6 | MATRIX SERVICE CO | ONEOK Partners LP | ONE Gas, Inc. | BOK FINANCIAL CORP ET AL | ONEOK INC | ONEOK INC /NEW/
+2023 | 0001654430 | Morrison Briggs | 5 | 5 | Syndax Pharmaceuticals Inc | Werewolf Therapeutics, Inc. | ARVINAS, INC. | Carisma Therapeutics Inc. | Repare Therapeutics Inc.
+2024 | 0001533568 | Norwalk Leslie V | 5 | 5 | CVS HEALTH Corp | GLOBUS MEDICAL INC | ARVINAS, INC. | NEUROCRINE BIOSCIENCES INC | ModivCare Inc
+2018 | 0001580575 | Baker Bros. Advisors (GP) LLC | 10 | 10 | GENOMIC HEALTH INC | ALEXION PHARMACEUTICALS INC | AQUINOX PHARMACEUTICALS, INC | Kodiak Sciences Inc. | IDERA PHARMACEUTICALS, INC. | BeiGene, Ltd. | SEATTLE GENETICS INC /WA | INCYTE CORP | Kiniksa Pharmaceuticals, Ltd. | ACADIA PHARMACEUTICALS INC
+2019 | 0001580575 | Baker Bros. Advisors (GP) LLC | 11 | 11 | ALEXION PHARMACEUTICALS, INC. | ACADIA PHARMACEUTICALS INC | INCYTE CORP | BeiGene, Ltd. | SEATTLE GENETICS INC /WA | Kiniksa Pharmaceuticals, Ltd. | Kodiak Sciences Inc. | IGM Biosciences, Inc. | AQUINOX PHARMACEUTICALS, INC | IDERA PHARMACEUTICALS, INC. | Neoleukin Therapeutics, Inc. | GENOMIC HEALTH INC
+2020 | 0001247747 | DUTKOWSKY ROBERT M | 5 | 5 | TECH DATA CORP | PITNEY BOWES INC /DE/ | US Foods Holding Corp. | RAYMOND JAMES FINANCIAL INC | HERSHEY CO
+2022 | 0001087939 | BAKER JULIAN | 12 | 12 | BeiGene, Ltd. | ACADIA PHARMACEUTICALS INC | Kiniksa Pharmaceuticals, Ltd. | Prelude Therapeutics Inc | Kodiak Sciences Inc. | TScan Therapeutics, Inc. | Seagen Inc. | Talis Biomedical Corp | DBV Technologies S.A. | Neoleukin Therapeutics, Inc. | IGM Biosciences, Inc. | INCYTE CORP
+2020 | 0001418202 | Kim Soohyung | 5 | 5 | National CineMedia, Inc. | STANDARD DIVERSIFIED INC. | Turning Point Brands, Inc. | Twin River Worldwide Holdings, | Mediaco Holding Inc.
+2021 | 0001367451 | Loewy Caroline M | 6 | 6 | CymaBay Therapeutics, Inc. | Locust Walk Acquisition Corp. | PhaseBio Pharmaceuticals Inc | ZOGENIX, INC. | PHOENIX BIOTECH ACQUISITION CO | Aptose Biosciences Inc.
+2017 | 0001403525 | Oaktree Capital Group Holdings GP, LLC | 6 | 5 | Gener8 Maritime, Inc. | Vistra Energy Corp | FIRST BANCORP /PR/ | AdvancePierre Foods Holdings,  | TRIBUNE MEDIA CO
+2021 | 0001208575 | JARRETT VALERIE B | 5 | 5 | Walgreens Boots Alliance, Inc. | 2U, Inc. | Lyft, Inc. | RALPH LAUREN CORP | Sweetgreen, Inc.
+2019 | 0001363364 | Baker Brothers Life Sciences LP | 11 | 11 | SEATTLE GENETICS INC /WA | INCYTE CORP | ALEXION PHARMACEUTICALS, INC. | BeiGene, Ltd. | Neoleukin Therapeutics, Inc. | AQUINOX PHARMACEUTICALS, INC | Kodiak Sciences Inc. | ACADIA PHARMACEUTICALS INC | GENOMIC HEALTH INC | IGM Biosciences, Inc. | Kiniksa Pharmaceuticals, Ltd. | IDERA PHARMACEUTICALS, INC.
+2024 | 0001179631 | ATKINS BETSY S | 5 | 5 | SOLAREDGE TECHNOLOGIES, INC. | SL GREEN REALTY CORP | Rackspace Technology, Inc. | WYNN RESORTS LTD | Enovix Corp
+2020 | 0001181186 | YARNO WENDY L | 5 | 5 | INOVIO PHARMACEUTICALS, INC. | MyoKardia, Inc. | Global Blood Therapeutics, Inc | IDEAYA Biosciences, Inc. | Tarsus Pharmaceuticals, Inc.
+2020 | 0001218470 | GOLDMAN KENNETH A | 6 | 6 | ZUORA INC | Fortinet, Inc. | NXP Semiconductors N.V. | TRINET GROUP, INC. | GoPro, Inc. | RingCentral, Inc.
+2022 | 0001353128 | Duncan Barbara Gayle | 5 | 5 | Adaptimmune Therapeutics PLC | Fusion Pharmaceuticals Inc. | Ovid Therapeutics Inc. | Jounce Therapeutics, Inc. | Atea Pharmaceuticals, Inc.
+2023 | 0001552054 | Silver Lake Partners IV, L.P. | 6 | 6 | SolarWinds Corp | N-able, Inc. | VMWARE LLC | Unity Software Inc. | Dell Technologies Inc. | SoFi Technologies, Inc.
+2023 | 0001351069 | ValueAct Capital Management, L.P. | 6 | 6 | Salesforce, Inc. | CBRE GROUP, INC. | Altus Power, Inc. | INSIGHT ENTERPRISES INC | FISERV INC | LKQ CORP
+2022 | 0001357522 | Thompson Peter A. | 6 | 6 | Edgewise Therapeutics, Inc. | Corvus Pharmaceuticals, Inc. | Janux Therapeutics, Inc. | Silverback Therapeutics, Inc. | ALPINE IMMUNE SCIENCES, INC. | Decibel Therapeutics, Inc.
+2023 | 0001437909 | Lewis-Hall Freda C | 5 | 5 | EXACT SCIENCES CORP | 1Life Healthcare Inc | Pyxis Oncology, Inc. | SpringWorks Therapeutics, Inc. | CONDUIT PHARMACEUTICALS INC.
+2024 | 0001672568 | SLTA IV (GP), L.L.C. | 5 | 5 | N-able, Inc. | Dell Technologies Inc. | Unity Software Inc. | SolarWinds Corp | SoFi Technologies, Inc.
+2019 | 0001259062 | HEYER ANDREW R | 6 | 6 | Haymaker Acquisition Corp. | Lovesac Co | ONESPAWORLD HOLDINGS Ltd | XpresSpa Group, Inc. | Haymaker Acquisition Corp. II | HAIN CELESTIAL GROUP INC
+2020 | 0001261974 | GRAY MARY ANN | 5 | 5 | Seneca Biopharma, Inc. | Keros Therapeutics, Inc. | RAPT Therapeutics, Inc. | BioAtla, Inc. | Sarepta Therapeutics, Inc.
+2021 | 0001336504 | CLARK IAN T | 5 | 5 | Corvus Pharmaceuticals, Inc. | AVROBIO, Inc. | AGIOS PHARMACEUTICALS, INC. | Olema Pharmaceuticals, Inc. | Guardant Health, Inc.
+2022 | 0001425738 | Redmile Group, LLC | 6 | 6 | Shattuck Labs, Inc. | Absci Corp | Science 37 Holdings, Inc. | MedAvail Holdings, Inc. | FATE THERAPEUTICS INC | IGM Biosciences, Inc.
+2021 | 0001589706 | Chwick Jane | 5 | 5 | Essent Group Ltd. | Thoughtworks Holding, Inc. | People's United Financial, Inc | MARKETAXESS HOLDINGS INC | Voya Financial, Inc. | Turing Holding Corp.
+2017 | 0000898860 | FROST PHILLIP MD ET AL | 5 | 5 | Castle Brands Inc | Sevion Therapeutics, Inc. | LADENBURG THALMANN FINANCIAL S | Cogint, Inc. | Opko Health, Inc.
+2016 | 0001263606 | BIDERMAN MARK C | 5 | 5 | Atlas Resource Partners, L.P. | Full Circle Capital Corp | Apollo Residential Mortgage, I | Apollo Commercial Real Estate  | Great Elm Capital Corp.
+2017 | 0000924255 | STEINBERG JOSEPH S | 6 | 6 | HOMEFED CORP | HRG GROUP, INC. | NZCH Corp | Spectrum Brands Holdings, Inc. | LEUCADIA NATIONAL CORP | Crimson Wine Group, Ltd
+2020 | 0001619841 | Shah Rajeev M. | 7 | 7 | Satsuma Pharmaceuticals, Inc. | Ra Pharmaceuticals, Inc. | Black Diamond Therapeutics, In | Solid Biosciences Inc. | 89bio, Inc. | Kala Pharmaceuticals, Inc. | Eidos Therapeutics, Inc.
+2017 | 0001495741 | TPG Group Holdings (SBS) Advisors, Inc. | 5 | 5 | Quintiles IMS Holdings, Inc. | Playa Hotels & Resorts N.V. | TPG Pace Holdings Corp. | Pace Holdings Corp. | TPG Pace Energy Holdings Corp. | IQVIA HOLDINGS INC.
+2021 | 0001418813 | ValueAct Holdings GP, LLC | 6 | 6 | Altus Power, Inc. | TRINITY INDUSTRIES INC | LKQ CORP | Bausch Health Companies Inc. | Seagate Technology Holdings pl | CBRE GROUP, INC. | Seagate Technology plc
+2020 | 0001018394 | SPOON ALAN G | 6 | 6 | Match Group Holdings II, LLC | IAC/InterActiveCorp | Fortive Corp | Cable One, Inc. | Match Group, Inc. | IAC/INTERACTIVECORP | DANAHER CORP /DE/
+2020 | 0001058835 | HAGERTY THOMAS M | 5 | 5 | Foley Trasimene Acquisition Co | Black Knight, Inc. | Fidelity National Financial, I | Ceridian HCM Holding Inc. | Dun & Bradstreet Holdings, Inc
+2018 | 0001087940 | BAKER FELIX | 10 | 10 | INCYTE CORP | ALEXION PHARMACEUTICALS INC | Kodiak Sciences Inc. | Kiniksa Pharmaceuticals, Ltd. | SEATTLE GENETICS INC /WA | AQUINOX PHARMACEUTICALS, INC | IDERA PHARMACEUTICALS, INC. | BeiGene, Ltd. | GENOMIC HEALTH INC | ACADIA PHARMACEUTICALS INC
+2022 | 0001203226 | HEINRICH DANIEL J | 5 | 5 | LOWES COMPANIES INC | Aramark | BALL Corp | EDGEWELL PERSONAL CARE Co | DOLLAR TREE, INC.
+2017 | 0001182047 | BELL JAMES A | 5 | 5 | DowDuPont Inc. | JPMORGAN CHASE & CO | APPLE INC | CDW Corp | DOW CHEMICAL CO /DE/
+2020 | 0001264230 | SCHUMACHER ALAN H | 5 | 5 | BlueLinx Holdings Inc. | Blue Bird Corp | EVERTEC, Inc. | WARRIOR MET COAL, INC. | Albertsons Companies, Inc.
+2020 | 0001381874 | Rubin Steven D | 5 | 5 | ChromaDex Corp. | Red Violet, Inc. | Eloxx Pharmaceuticals, Inc. | Opko Health, Inc. | Cocrystal Pharma, Inc. | OPKO HEALTH, INC.
+2016 | 0001551138 | 14159, L.P. | 5 | 5 | INCYTE CORP | ACADIA PHARMACEUTICALS INC | IDERA PHARMACEUTICALS, INC. | GENOMIC HEALTH INC | BeiGene, Ltd.
+(1106 rows; csv has all)

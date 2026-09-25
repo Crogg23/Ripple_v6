@@ -1,0 +1,17 @@
+-- S10 Ticker table (retry of S06): copies per CIK-ticker pair, and whether copies differ
+COPIES | PAIRS | ROWS_ | MAX_RUNS | MAX_LOADS | MAX_EX | MAX_NAMES | EG
+1 | 10398 | 10398 | 1 | 1 | 1 | 1 | [
+  "1 800 FLOWERS COM INC [Nasdaq]",
+  "10x Genomics, Inc. [Nasdaq]",
+  "111, Inc. [Nasdaq]",
+  "1606 CORP. [OTC]",
+  "17 Education & Technology Group Inc. [Nasdaq]",
+  "1847 Holdings LLC [OTC]",
+  "1895 Bancorp of Wisconsin, Inc. /MD/ [OTC]",
+  "1RT Acquisition Corp. [Nasdaq]",
+  "1RT Acquisition Corp. [Nasdaq]",
+  "1RT Acquisition Corp. [Nasdaq]",
+  "1ST SOURCE CORP [Nasdaq]",
+  "1WS Credit Income Fund []"
+]
+(1 rows; csv has all)

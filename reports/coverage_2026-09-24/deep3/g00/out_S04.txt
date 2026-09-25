@@ -1,0 +1,4 @@
+-- S04 MDS frequency: report dates, facilities, questions, suppression placeholder
+REPORT_DATE | N | CCNS | QUESTIONS | Q_RESP | TOT_PLACEHOLDER | OVERALL_FILLED | LS_FILLED | KEYS
+Q2, 2026 | 31403215 | 14695 | 551 | 2132 | 27119334 | 4283881 | 3067067 | 31329740
+(1 rows)

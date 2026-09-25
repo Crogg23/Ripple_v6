@@ -1,0 +1,5 @@
+-- S05 Revolving door: jobs per industry (all 16 slots unpivoted), tie score mix, top departments
+ERROR: 001003 (42000): SQL compilation error:
+syntax error line 4 at position 25 unexpected '('.
+syntax error line 4 at position 44 unexpected 'FOR'.
+syntax error line 4 at position 48 unexpected 'slot'.

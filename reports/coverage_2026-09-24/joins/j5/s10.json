@@ -1,0 +1,84 @@
+{
+"cols": [
+"SRC",
+"NM",
+"CITY",
+"DT",
+"AMT",
+"JOBS"
+],
+"rows": [
+[
+"CONTROL ppp TX hospice-named rows",
+null,
+null,
+null,
+"308.0",
+null
+],
+[
+"CONTROL usaspending TX hospice-named recipients",
+null,
+null,
+null,
+"513.0",
+null
+],
+[
+"PPP",
+"TEXAS HEALTHCARE SOLUTIONS, INC.",
+"SAN ANTONIO",
+"2020-04-14",
+"284585.0",
+"23.00000"
+],
+[
+"PPP150K",
+"TEXAS HEALTHCARE SOLUTIONS, INC.",
+"SAN ANTONIO",
+"2020-04-14",
+"284585.0",
+"23.00000"
+],
+[
+"USASPENDING",
+"ABIB HOSPICE CARE INC",
+"HOUSTON",
+"2021-05-12",
+"0.0",
+"59.07300"
+],
+[
+"USASPENDING",
+"COMPASSION HOSPICE OF TEXAS LLC",
+"SAN ANTONIO",
+"2023-09-02",
+"0.0",
+"59.01200"
+],
+[
+"USASPENDING",
+"MIDTOWN HOSPICE INC.",
+"HOUSTON",
+"2020-04-15",
+"0.0",
+"59.07300"
+],
+[
+"USASPENDING",
+"MIDTOWN HOSPICE, INC",
+"HOUSTON",
+"2020-05-02",
+"10000.0",
+"59.07200"
+],
+[
+"USASPENDING",
+"TEXAS HEALTHCARE SOLUTIONS, INC.",
+"SAN ANTONIO",
+"2020-04-14",
+"0.0",
+"59.07300"
+]
+]
+}

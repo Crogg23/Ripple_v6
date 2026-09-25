@@ -1,0 +1,29 @@
+with c as (
+ select FILER_IDENT, FILER_NAME, REPORT_INFO_IDENT::string rid, PERIOD_START_DT::date ps, try_to_number(TOTAL_EXPEND_MEDIA,18,2) media
+ from LIBRARY_MARTS.POLITICS.POLITICS__TX_LOBBY_COVER
+ where PERIOD_START_DT >= '2021-01-01' and ltrim(FILER_IDENT,'0') <> '85404'
+ qualify row_number() over (partition by FILER_IDENT, PERIOD_START_DT, PERIOD_END_DT order by FILED_DT desc, REPORT_INFO_IDENT desc) = 1),
+ cl as (select REPORT_ID::string rid, listagg(distinct upper(ONBEHALFNAME), ' | ') clients from LIBRARY_MARTS.POLITICS.POLITICS__TX_LOBBY_INDIVIDUAL_REPORTING group by 1)
+select * from (
+ select c.FILER_NAME, sum(media) m, count_if(media>0) months, min(iff(media>0,ps,null)) first_ps, max(iff(media>0,ps,null)) last_ps,
+  left(listagg(distinct iff(media>0, cl.clients, null), ' || '), 300) clients_on_media_reports,
+  sum(sum(media)) over () all_other
+ from c left join cl on cl.rid = c.rid
+ where ps between '2021-05-01' and '2026-06-30'
+ group by 1)
+where m > 0 order by m desc limit 12
+
+[11] 12 rows
+FILER_NAME | M | MONTHS | FIRST_PS | LAST_PS | CLIENTS_ON_MEDIA_REPORTS | ALL_OTHER
+McAden, Katharine Priddy (Ms.) | 2119000.00 | 2 | 2023-05-01 | 2025-04-01 | GOOGLE LLC AND ITS AFFILIATES | 8259680.94
+Texas Trial Lawyers Association | 1229150.93 | 2 | 2025-03-01 | 2025-04-01 |  | 8259680.94
+Sheetz, Samuel (Mr.) | 751015.16 | 23 | 2023-01-01 | 2026-04-01 | AMERICANS FOR PROSPERITY - TX || AMERICANS FOR PROSPERITY || AMERICANS FOR PROSPERITY - TEXAS || SAMUEL SHEETZ || AMERICANS FOR PROSPERITY TEXAS | 8259680.94
+Walker, Sarah (Ms.) | 686381.71 | 4 | 2021-05-01 | 2021-08-01 |  | 8259680.94
+Sheer, Jim (Mr.) | 459835.80 | 4 | 2025-03-01 | 2025-06-01 | ALTRIA CLIENT SERVICES LLC AND ITS AFFILIATES | 8259680.94
+Colon, Jessica (Ms.) | 380919.57 | 7 | 2021-05-01 | 2023-11-01 | SUSAN B ANTHONY PRO-LIFE AMERICA | TEXANS FOR PARENTAL CHOICE IN EDUCATION || SUSAN B ANTHONY LIST | COLON GOVERNMENT AFFAIRS || TEXANS FOR PARENTAL CONTROL IN EDUCATION || COLON GOVERNMENT AFFAIRS | SUSAN B ANTHONY LIST || TEXANS FOR PARENTAL CHOICE IN EDUCATION | 8259680.94
+Martinez, Jorge (The Honorable) | 260819.69 | 18 | 2023-03-01 | 2026-05-01 | AMERICANS FOR PROSPERITY DBA THE LIBRE INITIATIVE | 8259680.94
+White, David M. (Mr.) | 249999.99 | 2 | 2023-04-01 | 2023-05-01 |  | 8259680.94
+Wendell, Ware Victor (Mr.) | 196223.21 | 4 | 2022-01-01 | 2025-01-01 |  | 8259680.94
+Martinez, Ana (Ms.) | 181769.32 | 1 | 2025-05-01 | 2025-05-01 | META PLATFORMS, INC. | 8259680.94
+Ward, Scott (Mr.) | 180852.90 | 4 | 2023-04-01 | 2024-01-01 | FBG ENTERPRISES OPCO, LLC || FANDUEL GROUP, INC. || FANDUEL GROUP, INC. | DRAFTKINGS INC. || DRAFTKINGS INC. | BETMGM, LLC | 8259680.94
+Kaericher, Clark | 149960.41 | 1 | 2025-08-01 | 2025-08-01 | DOORDASH, INC. | 8259680.94

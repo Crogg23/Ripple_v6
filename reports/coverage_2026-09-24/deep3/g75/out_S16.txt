@@ -1,0 +1,52 @@
+-- S16 ICIJ denominator: people at US addresses, by leak and by the kind of offshore vehicle they sit on (how many hold Cook Islands asset-protection trusts)
+SOURCE_LEAK | JUR | VEHICLE | PEOPLE | ENTITIES | PROVIDER_EG
+ |  |  | 29896 | 18587 | 
+Paradise Papers - Appleby |  |  | 21052 | 7242 | Appleby
+Paradise Papers - Appleby | Bermuda | other | 16217 | 4522 | Appleby
+Offshore Leaks |  |  | 4536 | 9014 | Commonwealth Trust Limited
+Paradise Papers - Appleby | Cayman Islands | other | 3983 | 2028 | Appleby
+Panama Papers |  |  | 3569 | 1769 | Mossack Fonseca
+Panama Papers | British Virgin Islands | other | 2972 | 1293 | Mossack Fonseca
+Offshore Leaks | Cook Islands | asset protection trust | 2321 | 892 | Portcullis Trustnet
+Offshore Leaks | Undetermined | other | 1201 | 3997 | Commonwealth Trust Limited
+Offshore Leaks | British Virgin Islands | other | 1119 | 2809 | Portcullis Trustnet
+Offshore Leaks | Cook Islands | other | 355 | 943 | Portcullis Trustnet
+Paradise Papers - Appleby | British Virgin Islands | other | 314 | 209 | Appleby
+Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) |  |  | 306 | 200 | 
+Paradise Papers - Appleby | Isle of Man | other | 247 | 98 | Appleby
+Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) | British Virgin Islands | other | 247 | 152 | 
+Paradise Papers - Appleby | Mauritius | other | 179 | 123 | Appleby
+Pandora Papers - Fidelity Corporate Services | British Virgin Islands | other | 178 | 145 | 
+Pandora Papers - Fidelity Corporate Services |  |  | 178 | 145 | 
+Panama Papers | Bahamas | other | 168 | 122 | Mossack Fonseca
+Panama Papers | Seychelles | other | 162 | 128 | Mossack Fonseca
+Offshore Leaks | Samoa | other | 155 | 160 | Portcullis Trustnet
+Offshore Leaks | Cayman | other | 137 | 67 | Portcullis Trustnet
+Paradise Papers - Appleby | Jersey | other | 133 | 131 | Appleby
+Panama Papers | Panama | other | 108 | 80 | Mossack Fonseca
+Paradise Papers - Samoa corporate registry | Samoa | other | 100 | 56 | 
+Paradise Papers - Samoa corporate registry |  |  | 100 | 56 | 
+Panama Papers | Samoa | other | 88 | 77 | Mossack Fonseca
+Paradise Papers - Appleby | United States of America | other | 61 | 23 | Appleby
+Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) |  | other | 59 | 48 | 
+Offshore Leaks | Labuan | other | 57 | 24 | Portcullis Trustnet
+Panama Papers | British Anguilla | other | 54 | 35 | Mossack Fonseca
+Pandora Papers - Commence Overseas | British Virgin Islands | other | 43 | 29 | 
+Pandora Papers - Commence Overseas |  |  | 43 | 29 | 
+Offshore Leaks | Singapore | other | 36 | 76 | Portcullis Trustnet
+Paradise Papers - Appleby | Seychelles | other | 35 | 17 | Appleby
+Paradise Papers - Appleby | State of Delaware | other | 26 | 22 | Appleby
+Pandora Papers - Overseas Management Company (OMC) |  |  | 25 | 17 | 
+Paradise Papers - Aruba corporate registry | Aruba | other | 25 | 65 | 
+Paradise Papers - Aruba corporate registry |  |  | 25 | 65 | 
+Pandora Papers - Trident Trust |  |  | 24 | 20 | 
+Pandora Papers - Trident Trust | British Virgin Islands | other | 24 | 20 | 
+Pandora Papers - Overseas Management Company (OMC) | British Virgin Islands | other | 24 | 16 | 
+Pandora Papers - Il Shin Corporate Consulting Limited |  |  | 12 | 8 | 
+Pandora Papers - CILTrust International |  | other | 11 | 10 | 
+Pandora Papers - CILTrust International |  |  | 11 | 10 | 
+Pandora Papers - SFM Corporate Services |  |  | 9 | 8 | 
+Pandora Papers - Asiaciti Trust |  |  | 5 | 3 | 
+Pandora Papers - SFM Corporate Services |  | other | 1 | 1 | 
+Bahamas Leaks |  |  | 1 | 1 | 
+(49 rows; csv has all)

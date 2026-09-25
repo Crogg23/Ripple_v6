@@ -1,0 +1,4 @@
+-- S06 Slave voyages: shape, duplicate voyage IDs, fill of the counting fields, load fingerprints
+N | IDS | DISTINCT_ROWS | ID_SHIP_YEAR_CAPT_N | Y0 | Y1 | YR_BAD | SLAXIMP_N | SLAXIMP_SUM | SLAMIMP_N | SLAMIMP_SUM | TSLAVESD_N | SLAARRIV_N | OWNER_N | CAPT_N | SRC_N | COMMENTS_N | BUY1_N | DEPYEAR_N | FILES | RUNS | INTRA_VALS | MORT_N
+11521 | 11521 | 11521 | 11521 | 1550 | 1841 | 0 | 11521 | 456132 | 11521 | 439295 | 4303 | 7110 | 5208 | 10512 | 11521 | 864 | 1 | 6 | 1 | 1 | 1 | 649
+(1 rows; csv has all)

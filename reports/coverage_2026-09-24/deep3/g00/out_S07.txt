@@ -1,0 +1,63 @@
+-- S07 CDC suicide: full extract (6,390 rows) for local growth math
+UNIT_NUM | STUB_NAME | STUB_LABEL | AGE | YEAR | ESTIMATE | FLAG
+1 | Total | All persons | All ages | 1950 | 13.2 | 
+1 | Total | All persons | All ages | 1960 | 12.5 | 
+1 | Total | All persons | All ages | 1970 | 13.1 | 
+1 | Total | All persons | All ages | 1980 | 12.2 | 
+1 | Total | All persons | All ages | 1981 | 12.3 | 
+1 | Total | All persons | All ages | 1982 | 12.5 | 
+1 | Total | All persons | All ages | 1983 | 12.4 | 
+1 | Total | All persons | All ages | 1984 | 12.6 | 
+1 | Total | All persons | All ages | 1985 | 12.5 | 
+1 | Total | All persons | All ages | 1986 | 13 | 
+1 | Total | All persons | All ages | 1987 | 12.8 | 
+1 | Total | All persons | All ages | 1988 | 12.5 | 
+1 | Total | All persons | All ages | 1989 | 12.3 | 
+1 | Total | All persons | All ages | 1990 | 12.5 | 
+1 | Total | All persons | All ages | 1991 | 12.3 | 
+1 | Total | All persons | All ages | 1992 | 12 | 
+1 | Total | All persons | All ages | 1993 | 12.1 | 
+1 | Total | All persons | All ages | 1994 | 11.9 | 
+1 | Total | All persons | All ages | 1995 | 11.8 | 
+1 | Total | All persons | All ages | 1996 | 11.5 | 
+1 | Total | All persons | All ages | 1997 | 11.2 | 
+1 | Total | All persons | All ages | 1998 | 11.1 | 
+1 | Total | All persons | All ages | 1999 | 10.5 | 
+1 | Total | All persons | All ages | 2000 | 10.4 | 
+1 | Total | All persons | All ages | 2001 | 10.7 | 
+1 | Total | All persons | All ages | 2002 | 10.9 | 
+1 | Total | All persons | All ages | 2003 | 10.8 | 
+1 | Total | All persons | All ages | 2004 | 11 | 
+1 | Total | All persons | All ages | 2005 | 10.9 | 
+1 | Total | All persons | All ages | 2006 | 11 | 
+1 | Total | All persons | All ages | 2007 | 11.3 | 
+1 | Total | All persons | All ages | 2008 | 11.6 | 
+1 | Total | All persons | All ages | 2009 | 11.8 | 
+1 | Total | All persons | All ages | 2010 | 12.1 | 
+1 | Total | All persons | All ages | 2011 | 12.3 | 
+1 | Total | All persons | All ages | 2012 | 12.6 | 
+1 | Total | All persons | All ages | 2013 | 12.6 | 
+1 | Total | All persons | All ages | 2014 | 13 | 
+1 | Total | All persons | All ages | 2015 | 13.3 | 
+1 | Total | All persons | All ages | 2016 | 13.5 | 
+1 | Total | All persons | All ages | 2017 | 14 | 
+1 | Total | All persons | All ages | 2018 | 14.2 | 
+1 | Sex | Male | All ages | 1950 | 21.2 | 
+1 | Sex | Male | All ages | 1960 | 20 | 
+1 | Sex | Male | All ages | 1970 | 19.8 | 
+1 | Sex | Male | All ages | 1980 | 19.9 | 
+1 | Sex | Male | All ages | 1981 | 19.8 | 
+1 | Sex | Male | All ages | 1982 | 20.4 | 
+1 | Sex | Male | All ages | 1983 | 20.4 | 
+1 | Sex | Male | All ages | 1984 | 20.9 | 
+1 | Sex | Male | All ages | 1985 | 21.1 | 
+1 | Sex | Male | All ages | 1986 | 21.9 | 
+1 | Sex | Male | All ages | 1987 | 21.7 | 
+1 | Sex | Male | All ages | 1988 | 21.2 | 
+1 | Sex | Male | All ages | 1989 | 21 | 
+1 | Sex | Male | All ages | 1990 | 21.5 | 
+1 | Sex | Male | All ages | 1991 | 21.2 | 
+1 | Sex | Male | All ages | 1992 | 20.5 | 
+1 | Sex | Male | All ages | 1993 | 20.7 | 
+1 | Sex | Male | All ages | 1994 | 20.5 | 
+(6390 rows; csv has all)

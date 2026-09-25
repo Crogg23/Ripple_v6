@@ -155,3 +155,10 @@ repomix-output.xml
 
 # catalog audit samples (scripts/audit_catalog.py) — machine-local, never commit
 outputs/_catalog_audit_cache/
+
+# deep-pass agent scratch: raw query pulls, local only. Most have a .sql/.py beside them;
+# five skeptic folders in g06, g08, g09, g24, g63 do not and cannot be re-pulled.
+reports/coverage_*/deep3/g*/**/*.pkl
+reports/coverage_*/deep3/g*/**/*.csv
+reports/coverage_*/deep3/g*/**/*.json
+reports/coverage_*/deep3/g*/pylib/

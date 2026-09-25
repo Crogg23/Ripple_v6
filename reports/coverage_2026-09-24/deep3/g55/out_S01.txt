@@ -1,0 +1,15 @@
+-- S01 PBGC data: whole table pull (134.5K rows), worked locally
+DATA_YEAR | PUBLICATION_DATE | PROGRAM_TYPE | TABLE_NAME | METRIC_NAME | METRIC_VALUE | UNIT | STATE | SOURCE_FILE | NOTES_FLAG
+2021.0 |  |  | S-52 | Iowa | 63.0 |  | Iowa | https://www.pbgc.gov/sites/default/files/documents/2021-pension-data-tables.xlsx | 
+2015.0 |  |  | M-13 | 50% - 59% | 2489323.0 |  |  | https://www.pbgc.gov/sites/default/files/2015-pension-data-tables.xlsx | 
+2022.0 |  |  | S-51 | TOTAL | 60239.52 |  | TOTAL | https://www.pbgc.gov/sites/default/files/documents/2022-pension-data-tables.xlsx | 
+2011.0 |  |  | S-38 |  | 0.025204054175262357 |  |  | https://www.pbgc.gov/sites/default/files/legacy/docs/pension-insurance-data-tables-2011.xls | 
+2022.0 |  |  | S-32 | 2014 | 0.353 |  |  | https://www.pbgc.gov/sites/default/files/documents/2022-pension-data-tables.xlsx | 
+2014.0 |  |  | S-1 | 2002 | 25430.0 |  |  | https://www.pbgc.gov/sites/default/files/legacy/docs/2014-data-tables-final.xlsx | 
+2016.0 |  |  | S-21 | 1998 | 4300.0 |  |  | https://www.pbgc.gov/sites/default/files/2016_pension_data_tables.xlsx | 
+2021.0 |  |  | M-7 | 2010 1 | 0.277 |  |  | https://www.pbgc.gov/sites/default/files/documents/2021-pension-data-tables.xlsx | 
+2016.0 |  |  | S-51(c) | Oregon | 105.4 |  | Oregon | https://www.pbgc.gov/sites/default/files/2016_pension_data_tables.xlsx | 
+2010.0 |  |  | S-25 |  | 13855.0 |  |  | https://www.pbgc.gov/sites/default/files/legacy/docs/open/Pension-Insurance-Data-Tables-2010.xlsx | 
+2016.0 |  |  | S-1 | 2015 | 85735.0 |  |  | https://www.pbgc.gov/sites/default/files/2016_pension_data_tables.xlsx | 
+2018.0 |  |  | S-51 | Vermont | 88.28 |  | Vermont | https://www.pbgc.gov/sites/default/files/2018_pension_data_tables.xlsx | 
+(134534 rows; csv has all)

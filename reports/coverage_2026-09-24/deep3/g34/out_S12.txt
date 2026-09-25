@@ -1,0 +1,14 @@
+-- S12 SDWA PN assoc joined to the deduped violations table on PWSID + ID, both sides: what the PN side is, what the related side is, whether the row's code/date belong to the related violation
+PN_CODE | REL_CAT | REL_HB | REL_TIER | CODE_EQ_REL | CODE_EQ_PN | N | PN_MISS | REL_MISS | DATE_EQ_REL | DATE_EQ_PN | CC_EQ_REL
+75 | MR | N | 3 | True | False | 275786 | 0 | 0 | 275786 | 10159 | 275786
+75 | MON | N | 3 | True | False | 29017 | 0 | 0 | 29017 | 874 | 29017
+75 | MCL | Y | 2 | True | False | 25688 | 0 | 0 | 25688 | 1130 | 25688
+75 |  |  |  |  | False | 25622 | 0 | 25622 | 0 | 1965 | 0
+75 | TT | Y | 2 | True | False | 23505 | 0 | 0 | 23505 | 1593 | 23505
+75 | MCL | Y | 1 | True | False | 4008 | 0 | 0 | 4008 | 203 | 4008
+75 | RPT | N | 3 | True | False | 2474 | 0 | 0 | 2474 | 145 | 2474
+75 | TT | Y | 1 | True | False | 901 | 0 | 0 | 901 | 66 | 901
+75 | Other | N | 3 | True | False | 525 | 0 | 0 | 525 | 10 | 500
+75 | MRDL | Y | 2 | True | False | 69 | 0 | 0 | 69 | 0 | 69
+75 | MRDL | Y | 1 | True | False | 32 | 0 | 0 | 32 | 24 | 32
+(11 rows; csv has all)

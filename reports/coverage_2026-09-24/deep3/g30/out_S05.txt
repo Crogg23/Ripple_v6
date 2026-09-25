@@ -1,0 +1,4 @@
+-- S05 Is it the FEC linkage file? LINKAGE_ID land rate on the linkage tables, and designation-D committees in the committee dim
+N | IN_FIN_LINKAGE | IN_POL_LINK | CMTE_IN_DIM | DIM_SAYS_LEADERSHIP | DIM_LEADERSHIP_TOTAL | FIN_LINKAGE_2024_ROWS
+8619 | 8619 | 8584 | 8463 | 23 | 1253 | 8619
+(1 rows; csv has all)

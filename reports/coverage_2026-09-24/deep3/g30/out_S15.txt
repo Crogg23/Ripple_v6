@@ -1,0 +1,6 @@
+-- S15 Leadership PACs, same-PAC panel: PACs with $250K+ spending in two back-to-back cycles, share going to others in each, excluding the two Trump committees
+C0 | C1 | PACS | MED_S0 | MED_S1 | MED_CHANGE | FELL_25PTS | ROSE_25PTS | UNDER10_AFTER | UNDER10_BEFORE | D0_M | D1_M | WSHARE0 | WSHARE1
+2018 | 2020 | 134 | 0.515 | 0.522 | 0.014 | 8 | 7 | 3 | 1 | 123.6 | 140.3 | 0.503 | 0.502
+2020 | 2022 | 138 | 0.525 | 0.469 | -0.059 | 10 | 7 | 6 | 5 | 142.4 | 156.8 | 0.497 | 0.439
+2022 | 2024 | 148 | 0.507 | 0.428 | -0.037 | 10 | 5 | 10 | 4 | 146.1 | 169.3 | 0.436 | 0.405
+(3 rows; csv has all)

@@ -1,0 +1,63 @@
+-- S14 BMF check, detail for the 470 hit EINs: current EO BMF status, latest return on file, books-close month, filing requirement, ruling month
+EIN | GRP | ORG_NAME | CITY | STATE | STATUS_CODE | TAX_PERIOD_YYYYMM | ACCOUNTING_PERIOD_MONTH | FILING_REQ_CODE | PF_FILING_REQ_CODE | RULING_YYYYMM | SUBSECTION_CODE | REVENUE_AMT | ASSET_AMT | ING
+043669343 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+043680704 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+133131470 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+133459199 | core | POSITIVE WORKFORCE COALITION INC | NEW YORK | NY | 01 | 202412 | 12 | 01 | 0 | 202412 | 03 | 1079107 | 1452745 | 2026-08-10 03:38:43.773
+133465221 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+201886455 | core | YUROK ALLIANCE FOR NORTHERN CALIFORNIA HOUSING | KLAMATH | CA | 01 | 202512 | 12 | 01 | 0 | 200606 | 03 | 277462 | 1138430 | 2026-08-10 03:38:43.773
+202079820 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+203693012 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+208683757 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+222458532 | core | LITTLE LEAGUE BASEBALL INC | HUDSON | FL | 01 | 202509 | 09 | 01 | 0 | 198105 | 03 | 48787 | 30430 | 2026-08-10 03:38:43.773
+223183851 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+232458755 | core | LANGHORNE ATHLETIC ASSOCIATION | LANGHORNE | PA | 01 | 202512 | 12 | 01 | 0 | 202301 | 03 | 583099 | 362082 | 2026-08-10 03:38:43.773
+232549367 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+237408472 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+263290073 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+270710950 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+271710966 | core | PANJAB DIGITAL LIBRAR | ASHBURN | VA | 01 | 202512 | 12 | 01 | 0 | 202512 | 03 | 150731 | 128260 | 2026-08-10 03:38:43.773
+272343783 | core | MCDONALDS PLAYWORLD COMMUNITY DEVELOPMENT INC | MIAMI | FL | 01 | 202412 | 12 | 01 | 0 | 202206 | 03 | 294182 | 414596 | 2026-08-10 03:38:43.773
+274029245 | core | EARTH DAY TEXAS INC | DALLAS | TX | 01 | 202406 | 06 | 00 | 1 | 201612 | 03 |  | 31666895 | 2026-08-10 03:38:43.773
+300162286 | core | FORT BENTON SCHOOL FOUNDATION | FORT BENTON | MT | 01 | 202412 | 12 | 02 | 0 | 201706 | 03 | 119 | 5404 | 2026-08-10 03:38:43.773
+301172130 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+306174993 | core | HERBERT C MIDKIFF CHARITABLE TRUST | ORLANDO | FL | 01 | 202512 | 12 | 00 | 1 | 202005 | 03 |  | 771612 | 2026-08-10 03:38:43.773
+310939288 | core | PORTSMOUTH INNER-CITY DEVELOPMENT CORPORATION | PORTSMOUTH | OH | 01 | 202309 | 09 | 01 | 0 | 197912 | 03 |  | 698902 | 2026-08-10 03:38:43.773
+311551316 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+320124748 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+330874959 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+341436436 | core | STRUTHERS BASEBALL LEAGUE | STRUTHERS | OH | 01 | 202512 | 12 | 01 | 0 | 196701 | 03 | 139049 | 144508 | 2026-08-10 03:38:43.773
+352581033 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+363707624 | core | ELMWOOD EDUCATIONAL FOUNDATION | ELMWOOD | IL | 01 | 202406 | 06 | 01 | 0 | 202603 | 03 | 81350 | 1412735 | 2026-08-10 03:38:43.773
+383327648 | core | U P CENTRAL TRAILS INC | MARQUETTE | MI | 01 | 202509 | 09 | 02 | 0 | 200707 | 03 | 0 | 0 | 2026-08-10 03:38:43.773
+420257915 | core | FORT DODGE COUNTRY CLUB | FORT DODGE | IA | 01 | 202410 | 04 | 01 | 0 | 202605 | 07 | 0 | 0 | 2026-08-10 03:38:43.773
+451482340 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+460956697 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+461218702 | core | SYMPHONIC LOVE FOUNDATION | ENCINO | CA | 01 | 202412 | 12 | 02 | 0 | 202411 | 03 | 0 | 0 | 2026-08-10 03:38:43.773
+461318831 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+461347832 | core | TRU FOUNDATION INC | ATLANTA | GA | 01 | 202012 | 12 | 00 | 1 | 202501 | 03 |  | 118327 | 2026-08-10 03:38:43.773
+463312196 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+465158124 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+465296804 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+470439999 | core | YOUNG MENS CHRISTIAN ASSOCIATION OF SCOTTSBLUFF NEBRASKA | SCOTTSBLUFF | NE | 01 | 202512 | 12 | 01 | 0 | 202505 | 03 | 3310379 | 7404535 | 2026-08-10 03:38:43.773
+470560720 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+472541624 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+472602205 | core | NORTH HIGH SCHOOL ATHLETIC HALL OF FAME | BAKERSFIELD | CA | 01 | 202512 | 12 | 02 | 0 | 202403 | 03 | 22390 | 1426 | 2026-08-10 03:38:43.773
+473081161 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+473819764 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+475089353 | core | FOUR FRESHMEN MUSIC FOUNDATION | NEW CANAAN | CT | 01 | 202512 | 12 | 02 | 0 | 202305 | 03 | 0 | 1 | 2026-08-10 03:38:43.773
+510668420 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+521273277 | core | FRANK J BATTAGLIA SIGNAL 13 FOUNDATION INC | BALTIMORE | MD | 01 | 202212 | 12 | 01 | 0 | 202602 | 03 | 757209 | 3743822 | 2026-08-10 03:38:43.773
+541061140 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+561550544 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+581923886 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+593543568 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+611533759 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+650798174 | core | MORRIE & SUSAN GOLICK FAMILY FOUNDATION INC | HOLMES | NY | 01 | 202509 | 09 | 00 | 1 | 202601 | 03 |  | 592236 | 2026-08-10 03:38:43.773
+746052266 | core | NATIONAL ASSOCIATION OF INSURANCE AND FINANCIAL ADVISORS HOUSTON INC | POWELL | OH | 01 | 202512 | 12 | 01 | 0 | 192706 | 06 | 62154 | 83306 | 2026-08-10 03:38:43.773
+753040686 | core | THE NATIONAL VOICE OF AMERICA MUSEUM OF BROADCASTING | WEST CHESTER | OH | 01 | 202512 | 12 | 01 | 0 | 200207 | 03 | 650306 | 1345275 | 2026-08-10 03:38:43.773
+760074326 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+770117649 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+770243483 | core | BONYAD E TOWHID | SARATOGA | CA | 01 | 202512 | 12 | 02 | 0 | 199502 | 03 | 19610 | 41369 | 2026-08-10 03:38:43.773
+770414181 | core |  |  |  |  |  |  |  |  |  |  |  |  | 
+(470 rows; csv has all)

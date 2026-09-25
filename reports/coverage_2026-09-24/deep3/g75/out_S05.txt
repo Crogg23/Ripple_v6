@@ -1,0 +1,30 @@
+-- S05 ICIJ relationships: edge types and what sits at each end (address, officer, entity, intermediary, other)
+REL_TYPE | START_KIND | END_KIND | N | END_NODES | ID_IN_TWO_TABLES
+officer_of | officer | entity | 1668142 | 417094 | 0
+intermediary_of | intermediary | entity | 598546 | 597544 | 8450
+registered_address | officer | address | 483764 | 320507 | 0
+registered_address | entity | address | 336951 | 77065 | 0
+same_name_as | officer | officer | 97770 | 95530 | 0
+officer_of | intermediary | entity | 50487 | 46822 | 43304
+similar | officer | officer | 46387 | 20471 | 0
+same_company_as | entity | entity | 15523 | 15489 | 0
+connected_to | other | entity | 10822 | 10822 | 0
+registered_address | intermediary | address | 10496 | 9943 | 1193
+same_name_as | entity | entity | 4121 | 4121 | 0
+same_as | entity | entity | 3146 | 3140 | 0
+same_id_as | officer | officer | 3120 | 3120 | 0
+officer_of | officer | other | 1718 | 880 | 0
+underlying | officer | officer | 1187 | 1119 | 0
+connected_to | officer | entity | 1099 | 1099 | 0
+same_as | address | address | 960 | 799 | 0
+registered_address | other | address | 888 | 756 | 0
+same_name_as | entity | officer | 631 | 631 | 0
+registered_address | entity | entity | 622 | 468 | 0
+same_name_as | entity | other | 552 | 552 | 0
+same_name_as | intermediary | officer | 494 | 494 | 0
+similar | officer | intermediary | 302 | 296 | 2
+same_name_as | officer | entity | 277 | 277 | 0
+connected_to | intermediary | entity | 224 | 224 | 0
+same_name_as | other | entity | 219 | 219 | 0
+similar_company_as | entity | entity | 203 | 203 | 0
+(27 rows; csv has all)

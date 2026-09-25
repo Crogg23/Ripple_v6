@@ -1,0 +1,4 @@
+-- S08 Join: bioRxiv/medRxiv DOIs (preprint and journal) against Retraction Watch original-paper DOIs, plus how fresh Retraction Watch is
+BIORXIV_DOIS | RW_ROWS | RW_MAX_DATE_ISO | RW_MAX_TEXT | RW_ROWS_2026 | HITS | HIT_LIST
+432 | 71591 | 2026-07-17 | 2026-07-17 | 1171 | 0 | []
+(1 rows; csv has all)

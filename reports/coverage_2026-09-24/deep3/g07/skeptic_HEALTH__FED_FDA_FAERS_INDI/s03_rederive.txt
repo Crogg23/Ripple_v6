@@ -1,0 +1,8 @@
+K	V	CASES	CA	NC	BOTH_	NC_PS	CROSS_FMT
+combined	A+F	2267	191	790	14	711	16
+both_brands	nb=2	42	5	24	0		
+nc_dx	named noncancer minus abuse/exposure/procedural etc	780	14				
+versions	cases with more than 1 report id	341					
+nullcase	ids with null case	0	2711				
+brand	FENTORA	963	95	390	9	381	4
+brand	ACTIQ	1346	100	420	5	329	12

@@ -1,0 +1,8 @@
+-- S14 trap sweep: filler rows per table (adjustment 99999, withheld 88888, all-null note rows) and the negative sums they carry
+T | ADJ_ROWS | WITHHELD | NULL_ROWS | ADJ_MW | NEG_REAL
+NET_METERING | 83 | 0 | 0 | -1827.4 | 0
+NON_NET | 43 | 0 | 1 | -15.0 | 0
+DYNAMIC_PRICING | 0 | 3 | 0 |  | 
+DISTRIBUTION_SYSTEMS | 0 | 0 | 0 |  | 
+UTILITY_DATA | 0 | 3 | 0 |  | 
+(5 rows; csv has all)

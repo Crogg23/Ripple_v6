@@ -1,0 +1,7 @@
+-- S02 Mergers: read all 4 rows
+RECORD_ID | DATA_YEAR | UTILITY_NUMBER | UTILITY_NAME | EFFECTIVE_DATE | NEW_PARENT | NEW_UTILITY_NAME | ADDRESS | CITY | STATE | ZIP_CODE | _LOADED_AT | _SOURCE_RUN_ID | _SRC_FILE
+33862db301e81fea8e6915d572b47937-1 | 2024 | 59062 | Horizon Power and Light, LLC | 2024-06-01 | Federal Power & Gas LLC | Federal Power & Gas LLC | 539 W. Commerce St #779 | Dallas | TX | 75208 | 2026-08-05 21:39:20.077590 | 61ffd0ce-3f01-4721-9f6f-b692f0c241a3 | Mergers_2024.xlsx
+f099c0b5cb00ec5006c2550fafdec317-1 | 2024 | 6458 | Energy Harbor Corp. | 2024-03-01 | Vistra Corp | Vistra Corp | 6555 Sierra Drive | Irving | TX | 75039 | 2026-08-05 21:39:20.077590 | 61ffd0ce-3f01-4721-9f6f-b692f0c241a3 | Mergers_2024.xlsx
+0b9e5668242e5380b29768ccd1c28038-1 | 2024 | 64929 | Good Charlie & Co., LLC | 2024-11-20 |  | Champion Energy Marketing, LLC | 1500 Rankin Road Suite 200 | Houston | TX | 77073 | 2026-08-05 21:39:20.077590 | 61ffd0ce-3f01-4721-9f6f-b692f0c241a3 | Mergers_2024.xlsx
+204e9f935e235172a77e3550c260db5f-1 | 2024 | 66101 | FirstEnergy Pennsylvania Electric Co | 2024-01-01 | see footnotes | see footnotes | 341 White Pond Dr. | Akron | OH | 44320 | 2026-08-05 21:39:20.077590 | 61ffd0ce-3f01-4721-9f6f-b692f0c241a3 | Mergers_2024.xlsx
+(4 rows; csv has all)

@@ -1,0 +1,63 @@
+-- S02 UK Companies House: profile by dimension (status x active flag, category, accounts, country, origin, number prefix, load runs, empty columns)
+D | V | N | K | A | B
+accounts | MICRO ENTITY | 1859894 | 1859894 | 1863-07-16 | 2026-04-28
+accounts | NO ACCOUNTS FILED | 1475903 | 1475903 | 1327-01-01 | 2026-06-30
+accounts | TOTAL EXEMPTION FULL | 1340432 | 1340432 | 1856-09-26 | 2026-03-25
+accounts | DORMANT | 654804 | 654804 | 1856-11-03 | 2026-05-28
+accounts | UNAUDITED ABRIDGED | 165932 | 165932 | 1875-01-22 | 2026-01-19
+accounts | FULL | 86861 | 86861 | 1832-05-23 | 2025-11-01
+accounts | SMALL | 68502 | 68502 | 1859-02-17 | 2025-11-17
+accounts | AUDIT EXEMPTION SUBSIDIARY | 33527 | 33527 | 1856-09-29 | 2025-08-21
+accounts | GROUP | 28119 | 28119 | 1857-05-14 | 2025-09-29
+accounts | TOTAL EXEMPTION SMALL | 9022 | 9022 | 1888-03-22 | 2015-12-29
+accounts | MEDIUM | 6363 | 6363 | 1891-03-26 | 2025-03-21
+accounts | ACCOUNTS TYPE NOT AVAILABLE | 3803 | 3803 | 1869-10-27 | 2001-07-12
+accounts | AUDITED ABRIDGED | 1176 | 1176 | 1878-05-11 | 2024-10-29
+accounts | FILING EXEMPTION SUBSIDIARY | 411 | 411 | 1876-02-26 | 2024-07-10
+accounts | PARTIAL EXEMPTION | 27 | 27 | 1975-04-28 | 2022-12-19
+accounts | INITIAL | 3 | 3 | 1982-11-25 | 1985-11-22
+accounts |  | 1 | 0 |  | 
+category | Private Limited Company | 5306464 | 5306464 | 1856-09-25 | 2026-06-30
+category | PRI/LTD BY GUAR/NSC (Private, limited by guarantee, no share capital) | 119909 | 119909 | 1869-02-13 | 2026-06-30
+category | Limited Partnership | 60832 | 60832 | 1900-01-01 | 2026-06-30
+category | Limited Liability Partnership | 51014 | 51014 | 2001-04-06 | 2026-06-30
+category | Community Interest Company | 44258 | 44258 | 1895-05-03 | 2026-06-30
+category | Charitable Incorporated Organisation | 39924 | 39924 | 1962-10-17 | 2026-06-29
+category | PRI/LBG/NSC (Private, Limited by guarantee, no share capital, use of 'Limited' exemption) | 36384 | 36384 | 1869-08-24 | 2026-06-30
+category | Overseas Entity | 30246 | 30246 | 1998-07-10 | 2026-06-30
+category | Other company type | 15487 | 15487 | 1832-05-23 | 2026-06-10
+category | Registered Society | 10765 | 10765 | 1898-04-07 | 2026-06-30
+category | Scottish Charitable Incorporated Organisation | 7809 | 7809 | 1899-07-14 | 2026-06-25
+category | Private Unlimited Company | 4686 | 4686 | 1885-11-02 | 2026-06-29
+category | Public Limited Company | 4571 | 4571 | 1865-04-20 | 2026-06-30
+category | Royal Charter Company | 908 | 908 | 1327-01-01 | 2026-04-27
+category | Investment Company with Variable Capital | 635 | 635 | 2001-12-03 | 2026-06-29
+category | United Kingdom Economic Interest Grouping | 263 | 263 | 1989-09-25 | 2020-01-07
+category | Scottish Partnership | 241 | 241 | 2017-08-10 | 2026-04-24
+category | Industrial and Provident Society | 159 | 159 | 1908-10-14 | 2019-08-05
+category | Private Unlimited | 90 | 90 | 1868-01-06 | 2026-03-25
+category | Investment Company with Variable Capital(Umbrella) | 67 | 67 | 1997-05-06 | 2001-10-29
+category | Old Public Company | 29 | 29 | 1880-12-22 | 1984-08-13
+category | PRIV LTD SECT. 30 (Private limited company, section 30 of the Companies Act) | 15 | 15 | 1872-06-26 | 2012-10-25
+category | Investment Company with Variable Capital (Securities) | 8 | 8 | 1999-12-23 | 2001-10-10
+category | United Kingdom Societas | 6 | 6 | 2008-10-08 | 2019-03-22
+category | Other Company Type | 3 | 3 | 1900-01-01 | 1900-01-01
+category | Protected Cell Company | 3 | 3 | 2019-01-16 | 2022-07-29
+category | Further Education and Sixth Form College Corps | 2 | 2 | 2019-10-02 | 2019-10-02
+category |  | 1 | 0 |  | 
+category | Converted/Closed | 1 | 1 | 1946-01-01 | 1946-01-01
+country | ENGLAND | 2911718 | 2911718 | 1857-05-14 | 2026-06-30
+country | UNITED KINGDOM | 1508751 | 1508751 | 1856-11-03 | 2026-06-30
+country |  | 921223 | 921223 | 1327-01-01 | 2026-06-30
+country | SCOTLAND | 203832 | 203832 | 1871-07-24 | 2026-06-30
+country | WALES | 88354 | 88354 | 1875-12-24 | 2026-06-30
+country | NORTHERN IRELAND | 58420 | 58420 | 1869-08-24 | 2026-06-30
+country | VIRGIN ISLANDS, BRITISH | 8562 | 8562 | 1990-05-03 | 2026-06-24
+country | JERSEY | 7427 | 7427 | 1974-03-12 | 2026-06-29
+country | ISLE OF MAN | 3510 | 3510 | 1900-01-01 | 2026-06-30
+country | UNITED STATES | 3086 | 3086 | 1900-01-01 | 2026-06-29
+country | GUERNSEY | 2955 | 2955 | 1993-01-01 | 2026-05-27
+country | IRELAND | 1245 | 1245 | 1924-01-30 | 2026-06-24
+country | LUXEMBOURG | 1036 | 1036 | 1979-07-01 | 2026-05-07
+country | HONG KONG | 812 | 812 | 1974-07-15 | 2026-05-21
+(219 rows; csv has all)

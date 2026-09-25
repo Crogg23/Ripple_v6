@@ -1,0 +1,339 @@
+-- deep3/g81: deep pass 3, 2026-09-24. Python door (connect/db.py), read-only SELECT/WITH only, QUERY_TAG 'deep3-2026-09-24'.
+-- Every connection first ran: ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = 300; ALTER SESSION SET QUERY_TAG = 'deep3-2026-09-24'.
+--   11 connections (one per batch b1..b11), so 22 session-setup lines. Not counted below, same convention as g00.
+-- Tables: SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS, FCT_WAYBACK_PAGE_CHANGES (EPSTEIN schema), GOVERNANCE__FED_REVOLVINGDOOR_PROJECT,
+--         HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN, JUDICIARY__FED_OYEZ. Side tables: JUSTICE__FED_SCDB, HISTORY__FED_SLAVEVOYAGES_TRANSATLANTIC.
+-- 32 SELECT/WITH statements (S01-S32), all below, in run order. 4 failed to compile and were rerun fixed:
+--   S05 (multi-column UNPIVOT) -> S10; S09 (regex escape) -> S11; S20 (regex escape) -> S22; S25 (regex escape) -> S28.
+-- Outputs: g81/out_Sxx.txt and g81/out_Sxx.csv. Runner: g81/run.py.
+
+-- S01 Locate the five tables and two siblings (SCDB, transatlantic voyages)
+SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, ROW_COUNT, TABLE_TYPE, LAST_ALTERED
+FROM LIBRARY_MARTS.INFORMATION_SCHEMA.TABLES
+WHERE TABLE_NAME IN ('SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS','FCT_WAYBACK_PAGE_CHANGES','GOVERNANCE__FED_REVOLVINGDOOR_PROJECT',
+  'HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN','JUDICIARY__FED_OYEZ','JUSTICE__FED_SCDB','HISTORY__FED_SLAVEVOYAGES_TRANSATLANTIC','HISTORY__FED_SLAVEVOYAGES_INTRAAMERICAN')
+ORDER BY TABLE_NAME, TABLE_SCHEMA;
+
+-- S02 OSF: all 10 rows, key fields, to confirm it is a sample
+SELECT OSF_ID, DATE_CREATED, DATE_REGISTERED, LEFT(TITLE, 70) title, REGISTRATION_SUPPLEMENT, IS_WITHDRAWN, IS_REGISTRATION,
+       WITHDRAWAL_JUSTIFICATION_RAW, _SOURCE_RUN_ID, _LOADED_AT
+FROM LIBRARY_MARTS.SCIENCE_RESEARCH.SCIENCE_RESEARCH__XC_OSF_REGISTRATIONS
+ORDER BY DATE_REGISTERED;
+
+-- S03 Oyez: 25 rows, which fields are filled, and whether each docket lands in the full Supreme Court Database (SCDB)
+WITH s AS (
+  SELECT DOCKET, TERM::STRING term, MIN(CASE_NAME) scdb_case, MIN(US_CITATION) us_cite, COUNT(*) votes
+  FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_SCDB GROUP BY 1, 2)
+SELECT o.DOCKET, o.TERM, o.CASE_NAME, o.DATE, o.DECISION_DATE, o.ARGUMENT_DATE,
+       NULLIF(TRIM(o.DECISION),'') decision, NULLIF(TRIM(o.CITATION),'') citation, NULLIF(TRIM(o.MAJORITY_AUTHOR),'') author,
+       LEFT(o.SUMMARY, 30) summary30, LENGTH(o.JUSTICE_VOTES) votes_len, o.HAS_AUDIO,
+       s.scdb_case, s.us_cite, s.votes scdb_votes
+FROM LIBRARY_MARTS.JUDICIARY.JUDICIARY__FED_OYEZ o
+LEFT JOIN s ON s.DOCKET = o.DOCKET AND s.term = o.TERM::STRING
+ORDER BY o.TERM, o.DOCKET;
+
+-- S04 Revolving door: row shape, real sector count vs SECTOR_COUNT, position type, duplicate jobs
+WITH r AS (
+  SELECT *, (IFF(NULLIF(LOWER(TRIM(SECTOR1)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR2)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR3)),'nan') IS NOT NULL,1,0)
+   +IFF(NULLIF(LOWER(TRIM(SECTOR4)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR5)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR6)),'nan') IS NOT NULL,1,0)
+   +IFF(NULLIF(LOWER(TRIM(SECTOR7)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR8)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR9)),'nan') IS NOT NULL,1,0)
+   +IFF(NULLIF(LOWER(TRIM(SECTOR10)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR11)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR12)),'nan') IS NOT NULL,1,0)
+   +IFF(NULLIF(LOWER(TRIM(SECTOR14)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR14_1)),'nan') IS NOT NULL,1,0)+IFF(NULLIF(LOWER(TRIM(SECTOR15)),'nan') IS NOT NULL,1,0)
+   +IFF(NULLIF(LOWER(TRIM(SECTOR16)),'nan') IS NOT NULL,1,0)) real_sectors
+  FROM LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT)
+SELECT POSITION_TYPE, IS_SENATE_CONFIRMED, COUNT(*) n, COUNT(DISTINCT POSITION_KEY) keys,
+       COUNT(DISTINCT POSITION_NAME, POSITION_DEPARTMENT) name_dept, COUNT(DISTINCT POSITION_DEPARTMENT) depts, COUNT(DISTINCT AGENCY) agencies,
+       MIN(SECTOR_COUNT) sc_min, MAX(SECTOR_COUNT) sc_max, MIN(real_sectors) rs_min, MEDIAN(real_sectors) rs_med, MAX(real_sectors) rs_max,
+       COUNT_IF(real_sectors = 0) no_sector, COUNT(DISTINCT INDUSTRY_SECTOR) industries, COUNT_IF(POSITION_DESCRIPTION IS NULL OR TRIM(POSITION_DESCRIPTION) IN ('','nan')) no_desc
+FROM r GROUP BY ROLLUP(1, 2) ORDER BY 1, 2;
+
+-- S05 Revolving door: jobs per industry (all 16 slots unpivoted), tie score mix, top departments
+-- FAILED: SQL compilation error (multi-column UNPIVOT syntax). Rerun as S10.
+WITH u AS (
+  SELECT POSITION_KEY, POSITION_DEPARTMENT, IS_SENATE_CONFIRMED, sector, interest
+  FROM LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT
+  UNPIVOT INCLUDE NULLS ((sector, interest) FOR slot IN ((SECTOR1, SECTOR1_INTEREST) AS s1, (SECTOR2, SECTOR2_INTEREST) AS s2, (SECTOR3, SECTOR3_INTEREST) AS s3,
+     (SECTOR4, SECTOR4_INTEREST) AS s4, (SECTOR5, SECTOR5_INTEREST) AS s5, (SECTOR6, SECTOR6_INTEREST) AS s6, (SECTOR7, SECTOR7_INTEREST) AS s7,
+     (SECTOR8, SECTOR8_INTEREST) AS s8, (SECTOR9, SECTOR9_INTEREST) AS s9, (SECTOR10, SECTOR10_INTEREST) AS s10, (SECTOR11, SECTOR11_INTEREST) AS s11,
+     (SECTOR12, SECTOR12_INTEREST) AS s12, (SECTOR14, SECTOR14_INTEREST) AS s14, (SECTOR14_1, SECTOR14_INTEREST_1) AS s14b,
+     (SECTOR15, SECTOR15_INTEREST) AS s15, (SECTOR16, SECTOR16_INTEREST) AS s16)))
+SELECT sector, COUNT(DISTINCT POSITION_KEY) jobs, COUNT_IF(interest IN ('1','1.0')) i1, COUNT_IF(interest IN ('2','2.0')) i2, COUNT_IF(interest IN ('3','3.0')) i3,
+       COUNT_IF(IS_SENATE_CONFIRMED) senate, COUNT(DISTINCT POSITION_DEPARTMENT) depts
+FROM u WHERE NULLIF(LOWER(TRIM(sector)),'nan') IS NOT NULL
+GROUP BY 1 ORDER BY jobs DESC;
+
+-- S06 Slave voyages: shape, duplicate voyage IDs, fill of the counting fields, load fingerprints
+SELECT COUNT(*) n, COUNT(DISTINCT VOYAGEID) ids, COUNT(DISTINCT HASH(*)) distinct_rows,
+       COUNT(DISTINCT VOYAGEID, SHIPNAME, YEARAM, CAPTAINA, SLAXIMP) id_ship_year_capt_n,
+       MIN(TRY_TO_NUMBER(YEARAM)) y0, MAX(TRY_TO_NUMBER(YEARAM)) y1, COUNT_IF(TRY_TO_NUMBER(YEARAM) IS NULL) yr_bad,
+       COUNT_IF(TRY_TO_NUMBER(SLAXIMP) IS NOT NULL) slaximp_n, SUM(TRY_TO_NUMBER(SLAXIMP)) slaximp_sum,
+       COUNT_IF(TRY_TO_NUMBER(SLAMIMP) IS NOT NULL) slamimp_n, SUM(TRY_TO_NUMBER(SLAMIMP)) slamimp_sum,
+       COUNT_IF(TRY_TO_NUMBER(TSLAVESD) IS NOT NULL) tslavesd_n, COUNT_IF(TRY_TO_NUMBER(SLAARRIV) IS NOT NULL) slaarriv_n,
+       COUNT_IF(NULLIF(TRIM(OWNERA),'') IS NOT NULL) owner_n, COUNT_IF(NULLIF(TRIM(CAPTAINA),'') IS NOT NULL) capt_n,
+       COUNT_IF(NULLIF(TRIM(SOURCEA),'') IS NOT NULL) src_n, COUNT_IF(NULLIF(TRIM(COMMENTS),'') IS NOT NULL) comments_n,
+       COUNT_IF(NULLIF(TRIM(DATE_BUY1),'') IS NOT NULL) buy1_n, COUNT_IF(NULLIF(TRIM(DATEDEPC),'') IS NOT NULL) depyear_n,
+       COUNT(DISTINCT SRC_SHA256) files, COUNT(DISTINCT SOURCE_RUN_ID) runs, COUNT(DISTINCT INTRAAMER) intra_vals,
+       COUNT_IF(TRY_TO_NUMBER(VYMRTRAT) IS NOT NULL) mort_n
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN;
+
+-- S07 Slave voyages: the most-repeated voyage IDs, what differs between the copies
+SELECT VOYAGEID, COUNT(*) n, COUNT(DISTINCT HASH(*)) distinct_rows, COUNT(DISTINCT SHIPNAME) ships, COUNT(DISTINCT YEARAM) years,
+       COUNT(DISTINCT CAPTAINA) capts, COUNT(DISTINCT SLAXIMP) slaximp_vals, MIN(SHIPNAME) ship_a, MAX(SHIPNAME) ship_b,
+       MIN(YEARAM) y_a, MAX(YEARAM) y_b, MIN(SLA1PORT) port_a, MAX(SLA1PORT) port_b, MIN(SOURCEA) src_a
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+GROUP BY 1 HAVING COUNT(*) > 1 ORDER BY n DESC LIMIT 25;
+
+-- S08 Wayback: change kind x status x previous status, pages, dates, mimetypes
+SELECT CHANGE_KIND, HTTP_STATUS, PREV_HTTP_STATUS, COUNT(*) n, COUNT(DISTINCT URLKEY) pages,
+       MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, COUNT(DISTINCT MIMETYPE) mimes, MIN(MIMETYPE) mime_a, MAX(MIMETYPE) mime_b,
+       MEDIAN(CONTENT_BYTES) med_bytes, MEDIAN(HOURS_SINCE_PREV_CAPTURE) med_gap_h
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES
+GROUP BY ROLLUP((1, 2, 3)) ORDER BY n DESC;
+
+-- S09 Wayback: page families (first two path segments), pages, rows, error rows, dates
+-- FAILED: invalid regular expression (backslash escape lost). Rerun as S11.
+SELECT REGEXP_SUBSTR(URLKEY, '^[^)]*\)/([^/?]*(/[^/?]*)?)', 1, 1, 'e', 1) fam, COUNT(DISTINCT URLKEY) pages, COUNT(*) n,
+       COUNT_IF(HTTP_STATUS >= 400) err_rows, COUNT(DISTINCT IFF(HTTP_STATUS IN (403,404,410), URLKEY, NULL)) pages_4xx,
+       MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, MIN(URLKEY) ex_a, MAX(URLKEY) ex_b
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES
+GROUP BY 1 ORDER BY n DESC LIMIT 40;
+
+-- S10 Revolving door: jobs per industry across all 16 slots (FLATTEN, since multi-column UNPIVOT failed in S05), tie-score mix
+WITH u AS (
+  SELECT r.POSITION_KEY, r.POSITION_DEPARTMENT, r.IS_SENATE_CONFIRMED, f.value:s::STRING sector, f.value:i::STRING interest
+  FROM LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT r,
+  LATERAL FLATTEN(ARRAY_CONSTRUCT(
+    OBJECT_CONSTRUCT('s',SECTOR1,'i',SECTOR1_INTEREST), OBJECT_CONSTRUCT('s',SECTOR2,'i',SECTOR2_INTEREST), OBJECT_CONSTRUCT('s',SECTOR3,'i',SECTOR3_INTEREST),
+    OBJECT_CONSTRUCT('s',SECTOR4,'i',SECTOR4_INTEREST), OBJECT_CONSTRUCT('s',SECTOR5,'i',SECTOR5_INTEREST), OBJECT_CONSTRUCT('s',SECTOR6,'i',SECTOR6_INTEREST),
+    OBJECT_CONSTRUCT('s',SECTOR7,'i',SECTOR7_INTEREST), OBJECT_CONSTRUCT('s',SECTOR8,'i',SECTOR8_INTEREST), OBJECT_CONSTRUCT('s',SECTOR9,'i',SECTOR9_INTEREST),
+    OBJECT_CONSTRUCT('s',SECTOR10,'i',SECTOR10_INTEREST), OBJECT_CONSTRUCT('s',SECTOR11,'i',SECTOR11_INTEREST), OBJECT_CONSTRUCT('s',SECTOR12,'i',SECTOR12_INTEREST),
+    OBJECT_CONSTRUCT('s',SECTOR14,'i',SECTOR14_INTEREST), OBJECT_CONSTRUCT('s',SECTOR14_1,'i',SECTOR14_INTEREST_1),
+    OBJECT_CONSTRUCT('s',SECTOR15,'i',SECTOR15_INTEREST), OBJECT_CONSTRUCT('s',SECTOR16,'i',SECTOR16_INTEREST))) f)
+SELECT sector, COUNT(DISTINCT POSITION_KEY) jobs, COUNT_IF(interest LIKE '1%') i1, COUNT_IF(interest LIKE '2%') i2, COUNT_IF(interest LIKE '3%') i3,
+       COUNT_IF(interest IS NULL OR LOWER(interest) = 'nan') i_blank, COUNT_IF(IS_SENATE_CONFIRMED) senate, COUNT(DISTINCT POSITION_DEPARTMENT) depts
+FROM u WHERE NULLIF(LOWER(TRIM(sector)),'nan') IS NOT NULL
+GROUP BY 1 ORDER BY jobs DESC;
+
+-- S11 Wayback: page families (first two path segments), pages, rows, error pages, dates
+SELECT REGEXP_SUBSTR(URLKEY, '^[^)]*[)]/([^/?]*(/[^/?]*)?)', 1, 1, 'e', 1) fam, COUNT(DISTINCT URLKEY) pages, COUNT(*) n,
+       COUNT_IF(HTTP_STATUS >= 400) err_rows, COUNT(DISTINCT IFF(HTTP_STATUS IN (403,404,410), URLKEY, NULL)) pages_4xx,
+       MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, MIN(URLKEY) ex_a, MAX(URLKEY) ex_b
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES
+GROUP BY 1 ORDER BY n DESC LIMIT 40;
+
+-- S12 Wayback: size of each content change (bytes vs the previous change row of the same page), bucketed
+WITH x AS (
+  SELECT URLKEY, CAPTURED_AT, CHANGE_KIND, HTTP_STATUS, PREV_HTTP_STATUS, CONTENT_BYTES,
+         LAG(CONTENT_BYTES) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) pb
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES)
+SELECT CHANGE_KIND, CASE WHEN pb IS NULL THEN 'no prev' WHEN ABS(CONTENT_BYTES-pb) <= 50 THEN 'a <=50B' WHEN ABS(CONTENT_BYTES-pb) <= 500 THEN 'b 51-500B'
+         WHEN ABS(CONTENT_BYTES-pb) <= 2000 THEN 'c 501-2000B' ELSE 'd >2000B' END bucket,
+       COUNT(*) n, COUNT(DISTINCT URLKEY) pages, COUNT(DISTINCT TO_DATE(CAPTURED_AT)) days, COUNT_IF(CONTENT_BYTES < pb) shrinks, COUNT_IF(CONTENT_BYTES > pb) grows
+FROM x WHERE HTTP_STATUS = 200 AND COALESCE(PREV_HTTP_STATUS, 200) = 200
+GROUP BY 1, 2 ORDER BY 1, 2;
+
+-- S13 Wayback: per page, did a 403/401/404 ever stick? Pages by worst status seen and status at their last change row
+WITH p AS (
+  SELECT URLKEY, MAX_BY(HTTP_STATUS, CAPTURED_AT) last_status, MAX(CAPTURED_AT) last_t,
+         MAX(IFF(HTTP_STATUS IN (401,403,404), 1, 0)) ever_err, MAX(IFF(HTTP_STATUS = 404, 1, 0)) ever_404,
+         MAX(IFF(HTTP_STATUS = 200, CAPTURED_AT, NULL)) last_200, MIN(IFF(HTTP_STATUS IN (401,403,404), CAPTURED_AT, NULL)) first_err
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES GROUP BY 1)
+SELECT ever_err, ever_404, last_status, COUNT(*) pages, COUNT_IF(last_200 > first_err) back_to_200_after_err,
+       MIN(last_t) last_t_min, MAX(last_t) last_t_max, MIN(URLKEY) ex_a, MAX(URLKEY) ex_b
+FROM p GROUP BY 1, 2, 3 ORDER BY pages DESC;
+
+-- S14 Slave voyages: routes, main buying region x main landing region, people, years, a sample source to label the codes
+SELECT MAJBYIMP buy_region, MJSELIMP land_region, COUNT(*) voyages, SUM(TRY_TO_NUMBER(SLAXIMP)) embarked, SUM(TRY_TO_NUMBER(SLAMIMP)) landed,
+       MIN(TRY_TO_NUMBER(YEARAM)) y0, MAX(TRY_TO_NUMBER(YEARAM)) y1, MEDIAN(TRY_TO_NUMBER(YEARAM)) ymed,
+       MODE(MJBYPTIMP) top_buy_port, MODE(MJSLPTIMP) top_land_port, MODE(LEFT(SOURCEA, 40)) top_source, MIN(LEFT(COMMENTS, 60)) a_comment
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+GROUP BY 1, 2 ORDER BY landed DESC NULLS LAST LIMIT 40;
+
+-- S15 Slave voyages: people landed by main landing region and period, intra-American (second voyage) vs transatlantic (first landing)
+WITH i AS (
+  SELECT TRY_TO_NUMBER(MJSELIMP) reg, CASE WHEN TRY_TO_NUMBER(YEARAM) < 1700 THEN 'a <1700' WHEN TRY_TO_NUMBER(YEARAM) < 1760 THEN 'b 1700-59'
+         WHEN TRY_TO_NUMBER(YEARAM) < 1808 THEN 'c 1760-1807' ELSE 'd 1808+' END per,
+         COUNT(*) v, SUM(TRY_TO_NUMBER(SLAMIMP)) landed, MODE(LEFT(SOURCEA, 30)) src
+  FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN GROUP BY 1, 2),
+t AS (
+  SELECT TRY_TO_NUMBER(MJSELIMP) reg, CASE WHEN TRY_TO_NUMBER(YEARAM) < 1700 THEN 'a <1700' WHEN TRY_TO_NUMBER(YEARAM) < 1760 THEN 'b 1700-59'
+         WHEN TRY_TO_NUMBER(YEARAM) < 1808 THEN 'c 1760-1807' ELSE 'd 1808+' END per,
+         COUNT(*) v, SUM(TRY_TO_NUMBER(SLAMIMP)) landed, MODE(LEFT(SOURCEA, 30)) src
+  FROM LIBRARY_MARTS.HISTORY.HISTORY__FED_SLAVEVOYAGES_TRANSATLANTIC GROUP BY 1, 2)
+SELECT COALESCE(i.reg, t.reg) reg, COALESCE(i.per, t.per) per, i.v intra_v, i.landed intra_landed, t.v ta_v, t.landed ta_landed,
+       ROUND(i.landed / NULLIF(COALESCE(i.landed,0) + COALESCE(t.landed,0), 0), 3) intra_share, i.src intra_src, t.src ta_src
+FROM i FULL OUTER JOIN t ON i.reg = t.reg AND i.per = t.per
+ORDER BY 1, 2;
+
+-- S16 Slave voyages: time, 1783-1815, voyages leaving the Carolinas region (21300) for Cuba (31300) and elsewhere, vs transatlantic landings in 21300
+WITH o AS (
+  SELECT TRY_TO_NUMBER(YEARAM) y, COUNT(*) out_v, SUM(TRY_TO_NUMBER(SLAMIMP)) out_landed,
+         COUNT_IF(TRY_TO_NUMBER(MJSELIMP) = 31300) cuba_v, SUM(IFF(TRY_TO_NUMBER(MJSELIMP) = 31300, TRY_TO_NUMBER(SLAMIMP), 0)) cuba_landed,
+         MODE(MJSLPTIMP) top_land_port, MODE(LEFT(SOURCEA, 30)) src
+  FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+  WHERE TRY_TO_NUMBER(MAJBYIMP) = 21300 GROUP BY 1),
+a AS (
+  SELECT TRY_TO_NUMBER(YEARAM) y, COUNT(*) ta_v, SUM(TRY_TO_NUMBER(SLAMIMP)) ta_landed, MODE(MJSLPTIMP) ta_top_port, MODE(LEFT(SOURCEA, 30)) ta_src
+  FROM LIBRARY_MARTS.HISTORY.HISTORY__FED_SLAVEVOYAGES_TRANSATLANTIC
+  WHERE TRY_TO_NUMBER(MJSELIMP) = 21300 GROUP BY 1)
+SELECT COALESCE(o.y, a.y) y, a.ta_v, a.ta_landed, a.ta_top_port, a.ta_src, o.out_v, o.out_landed, o.cuba_v, o.cuba_landed, o.top_land_port, o.src
+FROM o FULL OUTER JOIN a ON o.y = a.y
+WHERE COALESCE(o.y, a.y) BETWEEN 1783 AND 1815 ORDER BY 1;
+
+-- S17 Slave voyages: concentration, owners and captains on the 21300 -> 31300 route, 1800-1810 (data match, not verified)
+SELECT COALESCE(NULLIF(TRIM(OWNERA),''), '(no owner)') owner, COUNT(*) voyages, SUM(TRY_TO_NUMBER(SLAMIMP)) landed,
+       COUNT(DISTINCT SHIPNAME) ships, MIN(TRY_TO_NUMBER(YEARAM)) y0, MAX(TRY_TO_NUMBER(YEARAM)) y1, MODE(CAPTAINA) top_captain,
+       SUM(COUNT(*)) OVER () all_v, SUM(SUM(TRY_TO_NUMBER(SLAMIMP))) OVER () all_landed
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+WHERE TRY_TO_NUMBER(MAJBYIMP) = 21300 AND TRY_TO_NUMBER(MJSELIMP) = 31300 AND TRY_TO_NUMBER(YEARAM) BETWEEN 1800 AND 1810
+GROUP BY 1 ORDER BY landed DESC NULLS LAST LIMIT 20;
+
+-- S18 Slave voyages trap check: how much of the people count is the editors' estimate, not a recorded number
+SELECT IFF(TRY_TO_NUMBER(TSLAVESD) IS NOT NULL, 'rec_embark', 'no_rec_embark') re, IFF(TRY_TO_NUMBER(SLAARRIV) IS NOT NULL, 'rec_land', 'no_rec_land') rl,
+       COUNT(*) v, SUM(TRY_TO_NUMBER(SLAXIMP)) est_embark, SUM(TRY_TO_NUMBER(SLAMIMP)) est_landed,
+       MODE(ROUND(TRY_TO_NUMBER(SLAMIMP, 12, 2) / NULLIF(TRY_TO_NUMBER(SLAXIMP, 12, 2), 0), 3)) mode_ratio,
+       MEDIAN(TRY_TO_NUMBER(SLAMIMP, 12, 2) / NULLIF(TRY_TO_NUMBER(SLAXIMP, 12, 2), 0)) med_ratio,
+       COUNT_IF(TRY_TO_NUMBER(SLAMIMP) = TRY_TO_NUMBER(SLAXIMP)) same, COUNT_IF(TRY_TO_NUMBER(SLAXIMP) = 0) zero_embark,
+       MEDIAN(TRY_TO_NUMBER(SLAXIMP)) med_embark, MAX(TRY_TO_NUMBER(SLAXIMP)) max_embark, COUNT_IF(TRY_TO_NUMBER(VYMRTRAT, 12, 4) IS NOT NULL) mort_n,
+       MEDIAN(TRY_TO_NUMBER(VYMRTRAT, 12, 4)) med_mort
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+GROUP BY 1, 2 ORDER BY v DESC;
+
+-- S19 Wayback: every content change over 2,000 bytes on a 200 page (the only big edits), page and date
+WITH x AS (
+  SELECT URLKEY, CAPTURED_AT, HTTP_STATUS, PREV_HTTP_STATUS, CONTENT_BYTES, LAG(CONTENT_BYTES) OVER (PARTITION BY URLKEY ORDER BY CAPTURED_AT) pb
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES)
+SELECT TO_DATE(CAPTURED_AT) d, REGEXP_REPLACE(URLKEY, '^gov,justice[)]/epstein/doj-disclosures', '') path, pb bytes_before, CONTENT_BYTES bytes_after, CONTENT_BYTES - pb delta
+FROM x WHERE HTTP_STATUS = 200 AND PREV_HTTP_STATUS = 200 AND ABS(CONTENT_BYTES - pb) > 2000
+ORDER BY d, path;
+
+-- S20 Wayback: listing pages by data set: page variants, junk variants, highest page number, first/last capture
+-- FAILED: invalid regular expression (backslash-u escape). Rerun as S22.
+WITH p AS (
+  SELECT URLKEY, REGEXP_SUBSTR(URLKEY, 'doj-disclosures/([a-z0-9-]+)', 1, 1, 'e', 1) sect,
+         TRY_TO_NUMBER(REGEXP_SUBSTR(URLKEY, '[?&]page=([0-9]+)$', 1, 1, 'e', 1)) pg,
+         IFF(REGEXP_LIKE(URLKEY, '.*(utm_|fbclid|%0a|%e|\\u00|&data=).*'), 1, 0) junk,
+         MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, COUNT(*) n
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES GROUP BY 1)
+SELECT COALESCE(sect, '(root)') sect, COUNT(*) urlkeys, COUNT_IF(junk = 1) junk_variants, COUNT(DISTINCT pg) page_nums, MAX(pg) max_page,
+       SUM(n) change_rows, MIN(t0) first_seen, MAX(t1) last_seen, MEDIAN(n) med_rows_per_page
+FROM p GROUP BY 1 ORDER BY urlkeys DESC LIMIT 40;
+
+-- S21 Revolving door: what a row is, read the words. The 6 jobs with most industries and 4 with one
+(SELECT 'most' grp, POSITION_NAME, POSITION_DEPARTMENT, POSITION_TYPE, LEFT(POSITION_DESCRIPTION, 160) descr, INDUSTRY_SECTOR, SECTOR1_INTEREST, SECTOR2, SECTOR16, _SOURCE_ID
+ FROM LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT WHERE LOWER(SECTOR16) <> 'nan' LIMIT 6)
+UNION ALL
+(SELECT 'one', POSITION_NAME, POSITION_DEPARTMENT, POSITION_TYPE, LEFT(POSITION_DESCRIPTION, 160), INDUSTRY_SECTOR, SECTOR1_INTEREST, SECTOR2, SECTOR16, _SOURCE_ID
+ FROM LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT WHERE LOWER(SECTOR2) = 'nan' LIMIT 4);
+
+-- S22 Wayback (S20 rerun, regex fixed): listing pages by data set, junk URL variants, highest page number, first/last capture
+WITH p AS (
+  SELECT URLKEY, REGEXP_SUBSTR(URLKEY, 'doj-disclosures/([a-z0-9-]+)', 1, 1, 'e', 1) sect,
+         TRY_TO_NUMBER(REGEXP_SUBSTR(URLKEY, '[?&]page=([0-9]+)$', 1, 1, 'e', 1)) pg,
+         IFF(REGEXP_LIKE(URLKEY, '.*(utm_|fbclid|%0a|%e|u003c|&data=|[?&]ref=|gclid).*'), 1, 0) junk,
+         MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, COUNT(*) n
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES GROUP BY 1)
+SELECT COALESCE(sect, '(root)') sect, COUNT(*) urlkeys, COUNT_IF(junk = 1) junk_variants, COUNT(DISTINCT pg) page_nums, MAX(pg) max_page,
+       SUM(n) change_rows, MIN(t0) first_seen, MAX(t1) last_seen, MEDIAN(n) med_rows_per_page
+FROM p GROUP BY 1 ORDER BY urlkeys DESC LIMIT 40;
+
+-- S23 Slave voyages peer: second-voyage arrivals in Cuba (31300), 1800-1810, by main buying region
+SELECT TRY_TO_NUMBER(MAJBYIMP) buy_region, COUNT(*) voyages, SUM(TRY_TO_NUMBER(SLAMIMP)) landed,
+       SUM(IFF(TRY_TO_NUMBER(YEARAM) BETWEEN 1804 AND 1807, TRY_TO_NUMBER(SLAMIMP), 0)) landed_1804_07,
+       SUM(IFF(TRY_TO_NUMBER(YEARAM) BETWEEN 1800 AND 1803, TRY_TO_NUMBER(SLAMIMP), 0)) landed_1800_03,
+       SUM(IFF(TRY_TO_NUMBER(YEARAM) BETWEEN 1808 AND 1810, TRY_TO_NUMBER(SLAMIMP), 0)) landed_1808_10,
+       COUNT_IF(TRY_TO_NUMBER(SLAARRIV) IS NOT NULL) recorded_landed_rows, MODE(LEFT(SOURCEA, 25)) src
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+WHERE TRY_TO_NUMBER(MJSELIMP) = 31300 AND TRY_TO_NUMBER(YEARAM) BETWEEN 1800 AND 1810
+GROUP BY 1 ORDER BY landed DESC NULLS LAST;
+
+-- S24 Slave voyages peer: second-voyage arrivals in the Gulf coast region (21600), by buying region and period
+SELECT TRY_TO_NUMBER(MAJBYIMP) buy_region, CASE WHEN TRY_TO_NUMBER(YEARAM) < 1760 THEN 'a <1760' WHEN TRY_TO_NUMBER(YEARAM) < 1790 THEN 'b 1760-89'
+         WHEN TRY_TO_NUMBER(YEARAM) < 1808 THEN 'c 1790-1807' ELSE 'd 1808+' END per,
+       COUNT(*) voyages, SUM(TRY_TO_NUMBER(SLAMIMP)) landed, COUNT_IF(TRY_TO_NUMBER(SLAARRIV) IS NOT NULL) recorded_landed_rows,
+       MIN(TRY_TO_NUMBER(YEARAM)) y0, MAX(TRY_TO_NUMBER(YEARAM)) y1, MODE(MJSLPTIMP) top_land_port, MODE(LEFT(SOURCEA, 25)) src
+FROM LIBRARY_MARTS.HISTORICAL_RECORDS.HISTORICAL_RECORDS__FED_SLAVEVOYAGES_INTRAAMERICAN
+WHERE TRY_TO_NUMBER(MJSELIMP) = 21600
+GROUP BY 1, 2 ORDER BY 2, landed DESC NULLS LAST;
+
+-- S25 Wayback: every page that ever answered 404 or ended on 403, excluding junk URL variants, with dates
+-- FAILED: invalid regular expression (backslash character class). Rerun as S28.
+WITH p AS (
+  SELECT URLKEY, MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, MAX_BY(HTTP_STATUS, CAPTURED_AT) last_status,
+         MIN(IFF(HTTP_STATUS = 404, CAPTURED_AT, NULL)) first_404, MAX(IFF(HTTP_STATUS = 200, CAPTURED_AT, NULL)) last_200,
+         LISTAGG(DISTINCT HTTP_STATUS::STRING, ',') statuses
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES GROUP BY 1)
+SELECT REGEXP_REPLACE(URLKEY, '^gov,justice[)]/epstein/doj-disclosures', '') path, t0, t1, last_status, first_404, last_200, statuses
+FROM p
+WHERE (first_404 IS NOT NULL OR last_status IN (403, 401))
+  AND NOT REGEXP_LIKE(URLKEY, '.*(utm_|fbclid|%0a|%e|%c2|u003c|&data=|[?&]ref=|gclid|[.]$|[)][.]?$|[\\]).*')
+ORDER BY first_404 NULLS LAST, path;
+
+-- S26 Oyez: the 7 dockets that missed SCDB on docket+term, looked up by case name
+SELECT TERM, DOCKET, CASE_NAME, US_CITATION, DATE_DECISION, COUNT(*) votes
+FROM LIBRARY_MARTS.JUSTICE.JUSTICE__FED_SCDB
+WHERE (TERM BETWEEN 1965 AND 1972 AND (CASE_NAME ILIKE 'GILLS%' OR CASE_NAME ILIKE 'AMERICAN TRUCKING%' OR CASE_NAME ILIKE 'CENTRAL BANK%'
+       OR CASE_NAME ILIKE 'CALIFORNIA v. PHILLIPS%' OR CASE_NAME ILIKE 'CHICAGO v. UNITED%' OR CASE_NAME ILIKE 'BOSTON % MAINE%'
+       OR CASE_NAME ILIKE 'WASHINGTON v. GENERAL MOTORS%'))
+   OR CASE_NAME ILIKE 'ROE %v. WADE%'
+GROUP BY 1, 2, 3, 4, 5 ORDER BY 1, 3;
+
+-- S27 Revolving door trap: are the sector slots in alphabetical order (so SECTOR1 / INDUSTRY_SECTOR is list order, not the main tie)?
+SELECT COUNT_IF(LOWER(SECTOR2) <> 'nan') multi, COUNT_IF(LOWER(SECTOR2) <> 'nan' AND SECTOR1 < SECTOR2) s1_lt_s2,
+       COUNT_IF(LOWER(SECTOR3) <> 'nan' AND LOWER(SECTOR2) <> 'nan') multi3, COUNT_IF(LOWER(SECTOR3) <> 'nan' AND SECTOR2 < SECTOR3) s2_lt_s3,
+       COUNT_IF(INDUSTRY_SECTOR = SECTOR1) ind_eq_s1, COUNT_IF(LOWER(SECTOR2) <> 'nan' AND SECTOR1 = 'Agriculture/Big Food') ag_first_multi,
+       COUNT_IF(LOWER(SECTOR2) <> 'nan' AND SECTOR1_INTEREST LIKE '3%') multi_s1_i3, COUNT_IF(LOWER(SECTOR2) <> 'nan' AND SECTOR2_INTEREST > SECTOR1_INTEREST) s2_stronger
+FROM LIBRARY_MARTS.GOVERNANCE.GOVERNANCE__FED_REVOLVINGDOOR_PROJECT;
+
+-- S28 Wayback (S25 rerun, regex fixed): every page that ever answered 404 or ended on 403/401, junk URL variants excluded, with dates
+WITH p AS (
+  SELECT URLKEY, MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1, MAX_BY(HTTP_STATUS, CAPTURED_AT) last_status,
+         MIN(IFF(HTTP_STATUS = 404, CAPTURED_AT, NULL)) first_404, MAX(IFF(HTTP_STATUS = 200, CAPTURED_AT, NULL)) last_200,
+         LISTAGG(DISTINCT HTTP_STATUS::STRING, ',') statuses
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES GROUP BY 1)
+SELECT REGEXP_REPLACE(URLKEY, '^gov,justice[)]/epstein/doj-disclosures', '') path, t0, t1, last_status, first_404, last_200, statuses
+FROM p
+WHERE (first_404 IS NOT NULL OR last_status IN (403, 401))
+  AND NOT REGEXP_LIKE(URLKEY, '.*(utm_|fbclid|%0a|%e|%c2|u003c|&data=|[?&]ref=|gclid).*')
+  AND NOT (URLKEY LIKE '%.' OR URLKEY LIKE '%)' OR URLKEY LIKE '%).' OR CONTAINS(URLKEY, CHR(92)))
+ORDER BY first_404 NULLS LAST, path;
+
+-- S29 Wayback: the 2026-03-11 19:2x probe of data-set-13..40: status, bytes, digest, next to every other capture in that 20-minute window and the 403/404 byte norms
+SELECT 'window' grp, CAPTURED_AT, REGEXP_REPLACE(URLKEY, '^gov,justice[)]/epstein/doj-disclosures', '') path, HTTP_STATUS, CONTENT_BYTES, CONTENT_DIGEST, MIMETYPE, CHANGE_KIND
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES
+WHERE CAPTURED_AT BETWEEN '2026-03-11 19:15:00' AND '2026-03-11 19:35:00'
+UNION ALL
+SELECT 'norm ' || HTTP_STATUS, NULL, 'all rows: n=' || COUNT(*) || ' pages=' || COUNT(DISTINCT URLKEY) || ' digests=' || COUNT(DISTINCT CONTENT_DIGEST),
+       HTTP_STATUS, MEDIAN(CONTENT_BYTES), 'min ' || MIN(CONTENT_BYTES) || ' max ' || MAX(CONTENT_BYTES), NULL, NULL
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES WHERE HTTP_STATUS IN (401, 403, 404) GROUP BY HTTP_STATUS
+ORDER BY 1 DESC, 2;
+
+-- S30 Wayback: which pages ever got a full-size (themed, >5,000-byte) 403 instead of the ~937-byte edge block, plus the short-path 403s of 2026-02-19
+WITH p AS (
+  SELECT URLKEY, COUNT_IF(HTTP_STATUS = 403) n403, COUNT_IF(HTTP_STATUS = 403 AND CONTENT_BYTES > 5000) n403_big,
+         MIN(IFF(HTTP_STATUS = 403, CONTENT_BYTES, NULL)) b403_min, MAX(IFF(HTTP_STATUS = 403, CONTENT_BYTES, NULL)) b403_max,
+         MIN(IFF(HTTP_STATUS = 403 AND CONTENT_BYTES > 5000, CAPTURED_AT, NULL)) big_t0, MAX(IFF(HTTP_STATUS = 403 AND CONTENT_BYTES > 5000, CAPTURED_AT, NULL)) big_t1,
+         LISTAGG(DISTINCT HTTP_STATUS::STRING, ',') statuses, MAX(IFF(HTTP_STATUS = 200, CAPTURED_AT, NULL)) last_200, MIN(IFF(HTTP_STATUS = 200, CAPTURED_AT, NULL)) first_200
+  FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES GROUP BY 1)
+SELECT REGEXP_REPLACE(URLKEY, '^gov,justice[)]/epstein/doj-disclosures', '') path, n403, n403_big, b403_min, b403_max, big_t0, big_t1, statuses, first_200, last_200
+FROM p
+WHERE n403_big > 0 OR URLKEY IN ('gov,justice)/epstein/doj-disclosures/dat', 'gov,justice)/epstein/doj-disclosures/data-set', 'gov,justice)/epstein/doj-disclosures/data-set-1',
+      'gov,justice)/epstein/doj-disclosures/data-set-11', 'gov,justice)/epstein/doj-disclosures/data-set-1-files?page=63')
+ORDER BY big_t0 NULLS LAST, path;
+
+-- S31 Wayback: the control case, full capture timeline of the data-set-9..12 base pages up to 2026-02-05 (status, bytes)
+SELECT REGEXP_REPLACE(URLKEY, '^gov,justice[)]/epstein/doj-disclosures', '') path, CAPTURED_AT, CHANGE_KIND, PREV_HTTP_STATUS, HTTP_STATUS, CONTENT_BYTES, HOURS_SINCE_PREV_CAPTURE
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES
+WHERE URLKEY IN ('gov,justice)/epstein/doj-disclosures/data-set-9-files', 'gov,justice)/epstein/doj-disclosures/data-set-10-files',
+                 'gov,justice)/epstein/doj-disclosures/data-set-11-files', 'gov,justice)/epstein/doj-disclosures/data-set-12-files')
+  AND CAPTURED_AT < '2026-02-05'
+ORDER BY path, CAPTURED_AT;
+
+-- S32 Wayback completeness: any address at all for data sets 13-40 (base page, listing pages, variants), and any 200 among them
+SELECT TRY_TO_NUMBER(REGEXP_SUBSTR(URLKEY, 'data-set-([0-9]+)', 1, 1, 'e', 1)) ds, COUNT(DISTINCT URLKEY) urlkeys, COUNT(*) n,
+       COUNT_IF(HTTP_STATUS = 200) n200, LISTAGG(DISTINCT HTTP_STATUS::STRING, ',') statuses, MIN(CAPTURED_AT) t0, MAX(CAPTURED_AT) t1,
+       MIN(IFF(HTTP_STATUS = 200, CAPTURED_AT, NULL)) first_200
+FROM LIBRARY_MARTS.EPSTEIN.FCT_WAYBACK_PAGE_CHANGES
+WHERE REGEXP_LIKE(URLKEY, '.*data-set-[0-9]+.*')
+GROUP BY 1 ORDER BY 1;
+

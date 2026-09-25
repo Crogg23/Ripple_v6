@@ -1,0 +1,15 @@
+-- S18 Earthquakes: where the June-July 2018 spike sits - place suffix counts for those two months against the same months of 2017 and 2019
+REGION | Y2018 | Y2017 | Y2019 | MAX2018
+Hawaii | 10692 | 50 | 57 | 5.4
+Alaska | 937 | 716 | 710 | 5.8
+Indonesia | 280 | 233 | 448 | 6.4
+Puerto Rico | 184 | 166 | 145 | 3.66
+Papua New Guinea | 118 | 99 | 96 | 6.0
+U.S. Virgin Islands | 109 | 124 | 69 | 3.82
+CA | 105 | 39 | 2591 | 4.53
+Japan | 103 | 135 | 95 | 5.9
+Southwest Indian Ridge | 102 | 3 | 5 | 5.6
+Oklahoma | 98 | 139 | 40 | 4.4
+Chile | 96 | 92 | 75 | 5.7
+Dominican Republic | 89 | 53 | 100 | 4.7
+(12 rows; csv has all)

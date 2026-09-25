@@ -1,0 +1,20 @@
+-- S05 DIM_COUNTY: grain, code widths, population nulls and totals, territories, CT rows, smallest and largest
+N | FIPS | BAD_FIPS | PREFIX_MISMATCH | STATES | POP_NULL | POP_ZERO | POP_SUM | POP_SUM_NO_PR | PR_ROWS | OTHER_TERRITORY_ROWS | MED_POP | CT_ROWS | AK_VALDEZ | SMALLEST | LARGEST | PT_NULL | LON_POSITIVE | VINTAGES
+3222 | 3222 | 0 | 0 | 52 | 0 | 0 | 334735155 | 331449281 | 78 | 0 | 25838.500 | [
+  "09110 Capitol Planning Region 976248",
+  "09120 Greater Bridgeport Planning Region 325778",
+  "09130 Lower Connecticut River Valley Planning Region 174225",
+  "09140 Naugatuck Valley Planning Region 450376",
+  "09150 Northeastern Connecticut Planning Region 95348",
+  "09160 Northwest Hills Planning Region 112503",
+  "09170 South Central Connecticut Planning Region 570487",
+  "09180 Southeastern Connecticut Planning Region 280430",
+  "09190 Western Connecticut Planning Region 620549"
+] | [
+  "02063 Chugach",
+  "02066 Copper River"
+] | 48301 Loving 64 | 06037 Los Angeles 10014009 | 0 | 0 | [
+  "2022",
+  "2020"
+]
+(1 rows; csv has all)

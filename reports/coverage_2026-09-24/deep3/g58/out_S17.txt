@@ -1,0 +1,7 @@
+-- S17 990 index trap check: tax periods that cannot be right (return processed before its own tax year ended, far-future or very old periods)
+YEAR_ONLY | N | SUB_BEFORE_PERIOD_END | SUB_YEAR_BEFORE_PERIOD_YEAR | TP_UNPARSED | TP_FUTURE | TP_PRE2010 | FUTURE_EXAMPLES
+False | 2351692 | 58 | 0 | 30 | 1 | 3 | [
+  "210805"
+]
+True | 3192934 | 0 | 0 | 0 | 0 | 0 | []
+(2 rows; csv has all)

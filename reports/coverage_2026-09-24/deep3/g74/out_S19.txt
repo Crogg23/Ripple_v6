@@ -1,0 +1,63 @@
+-- S19 ICIJ Panama Papers: who drove the Apr-Jun 2005 formation spike? Entities formed Apr-Jun 2004 vs Apr-Jun 2005, by intermediary country and intermediary (via the relationships table), and by the entity's own linked countries
+K | V | Q2_2004 | Q2_2005 | LINKED_2004 | LINKED_2005
+entity_cc | CHE | 425 | 1492 |  | 
+entity_cc | LUX | 124 | 646 |  | 
+entity_cc | HKG | 473 | 435 |  | 
+entity_cc | MCO | 35 | 370 |  | 
+entity_cc | PAN | 185 | 300 |  | 
+entity_cc | ARE | 95 | 181 |  | 
+entity_cc | JEY | 104 | 139 |  | 
+entity_cc | BHS | 81 | 109 |  | 
+entity_cc | SGP | 53 | 92 |  | 
+entity_cc | GBR | 68 | 86 |  | 
+entity_cc | GGY | 67 | 79 |  | 
+entity_cc | MUS | 5 | 70 |  | 
+entity_cc | IMN | 34 | 60 |  | 
+entity_cc | GIB | 48 | 60 |  | 
+entity_cc | LIE | 31 | 55 |  | 
+entity_cc | CYP | 66 | 35 |  | 
+entity_cc | URY | 33 | 35 |  | 
+entity_cc | CHN | 22 | 33 |  | 
+entity_cc | WSM | 21 | 32 |  | 
+entity_cc | ECU | 34 | 30 |  | 
+entity_cc | USA | 29 | 29 |  | 
+entity_cc | JOR | 15 | 25 |  | 
+entity_cc | BRA | 19 | 24 |  | 
+entity_cc | (none) | 9 | 21 |  | 
+entity_cc | RUS | 21 | 21 |  | 
+entity_cc | COL | 3 | 20 |  | 
+entity_cc | VGB | 28 | 19 |  | 
+entity_cc | BLZ | 11 | 15 |  | 
+entity_cc | THA | 11 | 15 |  | 
+entity_cc | EST | 8 | 13 |  | 
+entity_cc | DOM | 17 | 13 |  | 
+entity_cc | LBN | 9 | 11 |  | 
+entity_cc | VEN | 14 | 11 |  | 
+entity_cc | TWN | 23 | 10 |  | 
+entity_cc | ISR | 3 | 10 |  | 
+entity_cc | ESP | 4 | 9 |  | 
+entity_cc | CRI | 3 | 9 |  | 
+entity_cc | SYC | 9 | 9 |  | 
+entity_cc | LVA | 17 | 9 |  | 
+entity_cc | CAN | 0 | 8 |  | 
+int_country | Switzerland | 334 | 1094 |  | 
+int_country | Luxembourg | 201 | 750 |  | 
+int_country | (no intermediary) | 227 | 562 |  | 
+int_country | Hong Kong | 465 | 429 |  | 
+int_country | Monaco | 28 | 364 |  | 
+int_country | Jersey;United Kingdom | 100 | 130 |  | 
+int_country | Panama | 68 | 121 |  | 
+int_country | United Kingdom | 91 | 109 |  | 
+int_country | Singapore | 53 | 91 |  | 
+int_country | Guernsey;United Kingdom | 65 | 76 |  | 
+int_country | United Arab Emirates | 18 | 75 |  | 
+int_country | Bahamas | 55 | 74 |  | 
+int_country | Mauritius | 5 | 70 |  | 
+int_country | United Arab Emirates;Cyprus | 47 | 64 |  | 
+int_country | Cyprus | 66 | 64 |  | 
+int_country | Isle of Man | 34 | 56 |  | 
+int_country | Liechtenstein | 30 | 56 |  | 
+int_country | Gibraltar | 31 | 41 |  | 
+int_country | Uruguay | 38 | 35 |  | 
+int_country | Czech Republic | 21 | 32 |  | 
+(121 rows; csv has all)

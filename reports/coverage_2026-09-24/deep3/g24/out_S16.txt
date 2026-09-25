@@ -1,0 +1,63 @@
+-- S16 SEC insiders 2024: every (owner, issuer) pair on 2024 filings, with fund flags and the issuer's SIC from DERA 2024 filings
+OWNER_CIK | OWNER_NAME | ICIK | ISSUER_NAME | TICKER | RELS | TITLE | OWNER_ST | FILINGS | D0 | D1 | IS_FUND | SIC | AFS | MAX_FILING_ALL
+0001518594 | Deno David J. | 1857154 | Krispy Kreme, Inc. | DNUT | Director |  | NC | 1 | 2024-04-12 | 2024-04-12 | 0 | 5400 | 1-LAF | 2025-03-31
+0001271265 | FAGELY TAMARA L | 2022290 | Diamond Hill Securitized Credit Fund | N/A | Director |  | OH | 1 | 2024-10-07 | 2024-10-07 | 1 |  |  | 2025-03-31
+0001647366 | ACM Value Opportunities Fund I, LP | 1128281 | Saker Aviation Services, Inc. | SKAS | TenPercentOwner,Other |  | NY | 2 | 2024-11-18 | 2024-12-02 | 0 | 4581 | 4-NON | 2025-03-31
+0001882650 | di Santo Beth A | 1001614 | Riley Exploration Permian, Inc. | REPX | Director |  | OK | 1 | 2024-04-25 | 2024-04-25 | 0 | 1311 | 2-ACC | 2025-03-31
+0001520346 | Porter Stuart D | 1738827 | KLX Energy Services Holdings, Inc. | KLXE | TenPercentOwner |  | MA | 1 | 2024-03-13 | 2024-03-13 | 0 | 1389 | 2-ACC | 2025-03-31
+0002014709 | Monaco Dominick | 1522222 | CLS Holdings USA, Inc. | CLSH | Officer | Chief Science Officer | NV | 1 | 2024-03-07 | 2024-03-07 | 0 | 5900 | 4-NON | 2025-03-31
+0001283890 | ARDISANA LIZABETH A | 1368265 | Clean Energy Fuels Corp. | CLNE | Director |  | CA | 1 | 2024-05-20 | 2024-05-20 | 0 | 4932 | 1-LAF | 2025-03-31
+0001936888 | Nieman Richard | 1327273 | Lyra Therapeutics, Inc. | LYRA | Officer | Chief Medical Officer | MA | 1 | 2024-02-01 | 2024-02-01 | 0 | 3841 | 4-NON | 2025-03-31
+0001867723 | Phillips Holly L. | 1010086 | SIGA TECHNOLOGIES INC | SIGA | Director |  | NY | 1 | 2024-06-13 | 2024-06-13 | 0 | 2834 | 2-ACC | 2025-03-31
+0001637080 | Earley Michelle A | 2178 | ADAMS RESOURCES & ENERGY, INC. | AE | Director |  | TX | 1 | 2024-03-04 | 2024-03-04 | 0 | 5172 | 2-ACC | 2025-03-31
+0002027873 | Scott Stephen Craig | 875729 | BION ENVIRONMENTAL TECHNOLOGIES INC | BNET | Director|Director,Officer |  | NY | 2 | 2024-06-26 | 2024-12-16 | 0 | 2870 | 4-NON | 2025-03-31
+0001559665 | AMON CRISTIANO R | 796343 | ADOBE INC. | ADBE | Director |  | CA | 1 | 2024-04-19 | 2024-04-19 | 0 | 7372 | 1-LAF | 2025-03-31
+0001709479 | Romaglino Christian | 1137393 | BLACKROCK MUNICIPAL INCOME TRUST | BFK | Other |  | NY | 1 | 2024-02-02 | 2024-02-02 | 1 |  |  | 2025-03-31
+0001475856 | Boyer K. David Jr. | 92230 | TRUIST FINANCIAL CORP | TFC | Director |  | NC | 3 | 2024-02-29 | 2024-12-06 | 0 | 6021 | 1-LAF | 2025-03-31
+0001323300 | Benito Javier | 906345 | CAMDEN PROPERTY TRUST | CPT | Director |  | TX | 1 | 2024-05-20 | 2024-05-20 | 0 | 6798 | 1-LAF | 2025-03-31
+0001066062 | KLEIN MICHAEL R | 77543 | TUTOR PERINI CORP | TPC | Director |  | CA | 1 | 2024-05-17 | 2024-05-17 | 0 | 1540 | 2-ACC | 2025-03-31
+0001669925 | Harmon Thomas Eugene | 832480 | UTG INC | utgn | Director |  | IL | 1 | 2024-12-30 | 2024-12-30 | 0 | 6311 | 4-NON | 2025-03-31
+0001403373 | DeFord John A | 72331 | NORDSON CORP | NDSN | Director |  | OH | 1 | 2024-11-04 | 2024-11-04 | 0 | 3569 | 1-LAF | 2025-03-31
+0001246215 | GARRETT MARK | 1609711 | GoDaddy Inc. | GDDY | Director |  | AZ | 1 | 2024-06-10 | 2024-06-10 | 0 | 7373 | 1-LAF | 2025-03-31
+0001384984 | Hynes Jean M. | 2026275 | Wellington Global Multi-Strategy Fund | NONE | Other |  | MA | 1 | 2024-12-18 | 2024-12-18 | 1 |  |  | 2025-03-31
+0001633632 | Perry James Richard | 1276187 | Energy Transfer LP | ET | Director |  | TX | 1 | 2024-01-02 | 2024-01-02 | 0 | 4922 | 1-LAF | 2025-03-31
+0001503319 | Murphy James P. | 1318008 | Zumiez Inc | ZUMZ | Director |  | WA | 1 | 2024-09-26 | 2024-09-26 | 0 | 5600 | 2-ACC | 2025-03-31
+0002003059 | Smith Robert Paul JR | 1728117 | Gossamer Bio, Inc. | GOSS | Officer | Chief Commercial Officer | CA | 1 | 2024-06-20 | 2024-06-20 | 0 | 2834 | 4-NON | 2025-03-31
+0001772766 | HERSETH MARY JO S. | 1702750 | BYLINE BANCORP, INC. | BY | Director |  | IL | 1 | 2024-02-09 | 2024-02-09 | 0 | 6022 | 2-ACC | 2025-03-31
+0001680004 | Murphy Timothy R. | 101382 | UMB FINANCIAL CORP | UMBF | Director |  | KS | 1 | 2024-02-05 | 2024-02-05 | 0 | 6021 | 1-LAF | 2025-03-31
+0001982447 | Putra Pandji Christiaan | 1131312 | ZION OIL & GAS INC | znog | Director |  | TX | 1 | 2024-04-29 | 2024-04-29 | 0 | 1382 | 4-NON | 2025-03-31
+0001409462 | Mistretta Nancy G. | 1968487 | Worthington Steel, Inc. | WS | Director |  | OH | 1 | 2024-10-01 | 2024-10-01 | 0 | 3310 | 4-NON | 2025-03-31
+0001314575 | Beer Marc D | 1819253 | biote Corp. | BTMD | Director |  | TX | 1 | 2024-04-03 | 2024-04-03 | 0 | 2833 | 2-ACC | 2025-03-31
+0001760241 | Thakker Ketan | 1760233 | RDE, Inc. | GIFT | Director,Officer,TenPercentOwner|Director,Officer | CEO | IL | 2 | 2024-10-10 | 2024-10-22 | 0 | 5961 | 4-NON | 2025-03-31
+0002010195 | Kersman Alejandro Eduardo | 1851077 | PIMCO Flexible Emerging Markets Income Fund | EMFLX | Other |  | CA | 1 | 2024-02-05 | 2024-02-05 | 1 |  |  | 2025-03-31
+0001896600 | Knight ORiordan Lydia D | 1145255 | HENNESSY ADVISORS INC | HNNA | Director |  | CA | 1 | 2024-09-19 | 2024-09-19 | 0 | 6282 | 4-NON | 2025-03-31
+0001670480 | Bussmann Martin | 1605607 | Paramount Group, Inc. | PGRE | Director |  | NY | 1 | 2024-05-20 | 2024-05-20 | 0 | 6798 | 1-LAF | 2025-03-31
+0001761840 | Peker Lev | 1698113 | PARTS iD, Inc. | ID | Director |  | NJ | 1 | 2024-02-22 | 2024-02-22 | 0 |  |  | 2025-03-31
+0001184244 | MILLER JON | 51644 | INTERPUBLIC GROUP OF COMPANIES, INC. | IPG | Director |  | NY | 1 | 2024-05-03 | 2024-05-03 | 0 | 7311 | 1-LAF | 2025-03-31
+0001364096 | Robinson Kristen | 1166388 | VERINT SYSTEMS INC | VRNT | Director |  | NY | 1 | 2024-04-24 | 2024-04-24 | 0 | 7373 | 1-LAF | 2025-03-31
+0001366074 | Lappe Mark | 1739614 | Inhibrx, Inc. | INBX | Director,Officer | Chief Executive Officer | CA | 1 | 2024-05-30 | 2024-05-30 | 0 | 2836 | 1-LAF | 2025-03-31
+0001570992 | ANADARKO HOLDING Co | 1423902 | Western Midstream Partners, LP | WES | TenPercentOwner |  | TX | 1 | 2024-08-16 | 2024-08-16 | 0 | 4922 | 1-LAF | 2025-03-31
+0001254850 | SOINSKI JEFFREY M | 1506928 | Avinger Inc | AVGR | Director,Officer | Chief Executive Officer | CA | 1 | 2024-01-22 | 2024-01-22 | 0 | 3841 | 4-NON | 2025-03-31
+0001237264 | MUNDKUR CHRISTINE | 721371 | CARDINAL HEALTH INC | CAH | Director |  | OH | 1 | 2024-11-07 | 2024-11-07 | 0 | 5122 | 1-LAF | 2025-03-31
+0002032793 | Bekkers Timothy Albert-Michel-Alain | 1190935 | PIMCO CORPORATE & INCOME OPPORTUNITY FUND | PTY | Officer | Assistant Secretary | CA | 1 | 2024-08-21 | 2024-08-21 | 1 |  |  | 2025-03-31
+0001236472 | DEANE JOHN D | 1692427 | NCS Multistage Holdings, Inc. | NCSM | Director |  | TX | 1 | 2024-03-08 | 2024-03-08 | 0 | 1389 | 4-NON | 2025-03-31
+0001192128 | BESHAR LUKE M | 1359931 | Protara Therapeutics, Inc. | TARA | Director |  | NY | 1 | 2024-06-10 | 2024-06-10 | 0 | 2836 | 4-NON | 2025-03-31
+0001654705 | Gerhardt Hans-Peter | 1363829 | Enstar Group LTD | ESGR | Director |  | D0 | 1 | 2024-04-03 | 2024-04-03 | 0 | 6331 | 1-LAF | 2025-03-31
+0002027344 | Koch, Inc. | 1227654 | COMPASS MINERALS INTERNATIONAL INC | CMP | Director,TenPercentOwner |  | KS | 1 | 2024-08-02 | 2024-08-02 | 0 | 1400 | 1-LAF | 2025-03-31
+0001999732 | Layman Sally-Anne | 1164727 | NEWMONT Corp /DE/ | NEM | Director |  | CO | 1 | 2024-04-30 | 2024-04-30 | 0 | 1040 | 1-LAF | 2025-03-31
+0001848475 | Dignam Denise | 1627223 | Chemours Co | CC | Officer|Director,Officer | President & CEO | DE | 4 | 2024-03-05 | 2024-08-05 | 0 | 2800 | 1-LAF | 2025-03-31
+0001839790 | Versant Vantage II GP, L.P. | 1544227 | Tempest Therapeutics, Inc. | TPST | TenPercentOwner |  | CA | 1 | 2024-08-12 | 2024-08-12 | 0 | 2834 | 4-NON | 2025-03-31
+0001383961 | Fawcett Amelia C. | 93751 | STATE STREET CORP | STT | Director |  | MA | 1 | 2024-05-17 | 2024-05-17 | 0 | 6022 | 1-LAF | 2025-03-31
+0001701072 | DePrey Mary P. | 1692063 | Schneider National, Inc. | SNDR | TenPercentOwner|Director,TenPercentOwner |  | WI | 3 | 2024-01-17 | 2024-05-01 | 0 | 4213 | 1-LAF | 2025-03-31
+0001616181 | Johnson Susan S | 1710155 | National Vision Holdings, Inc. | EYE | Director |  | GA | 1 | 2024-06-18 | 2024-06-18 | 0 | 3851 | 1-LAF | 2025-03-31
+0001782067 | Frazier William | 1729149 | VIEMED HEALTHCARE, INC. | VMD | Director,Officer | Chief Medical Officer | LA | 1 | 2024-08-26 | 2024-08-26 | 0 | 8090 | 2-ACC | 2025-03-31
+0001715332 | Kotzin Brian L. | 1034842 | RIGEL PHARMACEUTICALS INC | RIGL | Director |  | CA | 1 | 2024-05-29 | 2024-05-29 | 0 | 2834 | 2-ACC | 2025-03-31
+0001901344 | Carbonell Javier Gracia | 49826 | ILLINOIS TOOL WORKS INC | ITW | Officer | Executive Vice President | IL | 2 | 2024-02-13 | 2024-02-14 | 0 | 3560 | 1-LAF | 2025-03-31
+0001641733 | Villavarayan Chris | 1616862 | Axalta Coating Systems Ltd. | AXTA | Director,Officer | CEO & President | PA | 1 | 2024-03-01 | 2024-03-01 | 0 | 2851 | 1-LAF | 2025-03-31
+0001074773 | HOUGEN ELIZABETH L | 1817241 | Artiva Biotherapeutics, Inc. | ARTV | Director |  | CA | 1 | 2024-07-18 | 2024-07-18 | 0 | 2836 | 4-NON | 2025-03-31
+0000903291 | BERMAN LYLE | 1490161 | Sow Good Inc. | SOWG | Director,TenPercentOwner|Director |  | TX | 4 | 2024-02-01 | 2024-04-17 | 0 | 2000 | 4-NON | 2025-03-31
+0001932096 | Gundumogula Prasad | 1828852 | Mondee Holdings, Inc. | MOND | Director,Officer,TenPercentOwner | Chief Executive Officer | TX | 4 | 2024-01-03 | 2024-07-12 | 0 | 4700 | 2-ACC | 2025-03-31
+0001896248 | Netter Zvika | 1835378 | Innovid Corp. | CTV | Director,Officer | Chief Executive Officer | NY | 3 | 2024-02-29 | 2024-05-22 | 0 | 7372 | 2-ACC | 2025-03-31
+0001649101 | Advaithi Revathi | 866374 | FLEX LTD. | FLEX | Director,Officer | Chief Executive Officer | TX | 6 | 2024-05-09 | 2024-09-11 | 0 | 3672 | 1-LAF | 2025-03-31
+0001962329 | Wu Lei | 1857816 | GigaCloud Technology Inc | GCT | Director,Officer,TenPercentOwner | Chief Executive Officer | CA | 23 | 2024-01-02 | 2024-05-21 | 0 | 5961 | 2-ACC | 2025-03-31
+(71252 rows; csv has all)

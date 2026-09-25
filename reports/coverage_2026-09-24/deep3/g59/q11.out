@@ -1,0 +1,22 @@
+===== q11 (stmt 11) 20 rows
+K | A | B | C | D
+snapshot | 2026-07-23 18:14:37.000 Z | 1940941 | 3382301 | 
+os_by_lei | 724500IVNQ6LF8OFIO42 | LUKOIL Securities B.V. | EU Financial Instruments Reference Data System (FIRDS);Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+os_by_lei | 213800FXBZXOXNXKWP95 | LUKOIL SECURITIES LIMITED | Cyprus Companies and Corporate Officers;Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+os_by_lei | 72450024EGZK2K8NAG02 | LUKOIL Finance B.V. | Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+os_by_lei | 254900YJTZ2JT3ZSZS32 | SISTEMA ASIA FUND PTE. LTD. | Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+os_by_lei | 724500LG1GUKJ5TOIW61 | LUKOIL International Finance B.V. | EU Financial Instruments Reference Data System (FIRDS);Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data;UK Financial Instruments Reference Data System (FIRDS) | 
+os_by_lei | 724500UTYUSS56QEBB66 | LUKOIL International Upstream Holding B.V. | Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+os_by_lei | 5299007PQV6X4DPL9Y20 | Lukoil International Gmbh | Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data;UK Companies House People with Significant Control | 
+os_by_lei | 391200PKEUF3Y2NUMW25 | Rosneft Deutschland GmbH | Global Energy Ownership Tracker;Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+peer | other RU parent | 29 | 9 | 0.310
+os_by_lei | 253400QD4JHES5PGDR15 | Dega Retail Holding Limited | Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+ofac_name | LUKOIL OAO | UKRAINE-EO13662] [RUSSIA-EO14024 | Website www.lukoil.ru; Email Address info@lukoil.ru; Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 | 
+ofac_name | SISTEMA ASIA PTE LTD | RUSSIA-EO14024 | Secondary sanctions risk: See Section 11 of Executive Order 14024.; Organization Established Date 01 Aug 2012; Registration Number 201218988Z (Singapore); Linked To: SISTEMA PUBLIC JOINT STOCK FINANCI | 
+ofac_name | LIMITED LIABILITY COMPANY LUKOIL PERM | RUSSIA-EO14024 | Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 5902201970 (Russia); Registration Number 1035900103997 (Russia). | 
+ofac_name | LUKOIL AIK A LIMITED LIABILITY COMPANY | RUSSIA-EO14024 | Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 8608059605 (Russia); Registration Number 1178617009251 (Russia). | 
+ofac_name | LUKOIL KALININGRADMORNEFT | RUSSIA-EO14024 | Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 3900004998 (Russia); Registration Number 1023901643061 (Russia). | 
+ofac_name | LUKOIL WEST SIBERIA LIMITED | RUSSIA-EO14024 | Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 8608048498 (Russia); Registration Number 1028601441978 (Russia). | 
+os_by_lei | 7872006AZAFVTVIQ3G32 | PETROTEL-LUKOIL SA | Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+os_by_lei | K80PJMCDA9MAE5C8IO91 | LITASCO SA | Business Identifier Code (BIC) Reference Data;Graph-based entity tagging;Legal Entity Identifier (LEI) Reference Data | 
+peer | SDN parent | 55 | 11 | 0.200

@@ -1,0 +1,55 @@
+-- S14 State population, 2020 census, summed from the county master list
+STATE_NAME | POP | COUNTIES
+Alabama | 5024279 | 67
+Alaska | 733391 | 30
+Arizona | 7151502 | 15
+Arkansas | 3011524 | 75
+California | 39538223 | 58
+Colorado | 5773714 | 64
+Connecticut | 3605944 | 9
+Delaware | 989948 | 3
+District of Columbia | 689545 | 1
+Florida | 21538187 | 67
+Georgia | 10711908 | 159
+Hawaii | 1455271 | 5
+Idaho | 1839106 | 44
+Illinois | 12812508 | 102
+Indiana | 6785528 | 92
+Iowa | 3190369 | 99
+Kansas | 2937880 | 105
+Kentucky | 4505836 | 120
+Louisiana | 4657757 | 64
+Maine | 1362359 | 16
+Maryland | 6177224 | 24
+Massachusetts | 7029917 | 14
+Michigan | 10077331 | 83
+Minnesota | 5706494 | 87
+Mississippi | 2961279 | 82
+Missouri | 6154913 | 115
+Montana | 1084225 | 56
+Nebraska | 1961504 | 93
+Nevada | 3104614 | 17
+New Hampshire | 1377529 | 10
+New Jersey | 9288994 | 21
+New Mexico | 2117522 | 33
+New York | 20201249 | 62
+North Carolina | 10439388 | 100
+North Dakota | 779094 | 53
+Ohio | 11799448 | 88
+Oklahoma | 3959353 | 77
+Oregon | 4237256 | 36
+Pennsylvania | 13002700 | 67
+Puerto Rico | 3285874 | 78
+Rhode Island | 1097379 | 5
+South Carolina | 5118425 | 46
+South Dakota | 886667 | 66
+Tennessee | 6910840 | 95
+Texas | 29145505 | 254
+Utah | 3271616 | 29
+Vermont | 643077 | 14
+Virginia | 8631393 | 133
+Washington | 7705281 | 39
+West Virginia | 1793716 | 55
+Wisconsin | 5893718 | 72
+Wyoming | 576851 | 23
+(52 rows; csv has all)

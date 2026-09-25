@@ -1,0 +1,63 @@
+-- S17 Voteview House members, 115th-119th Congress: who held each district (to check the name on each official ad account against the district its ads aimed at)
+CONGRESS | STATE_ABBREV | DISTRICT_CODE | BIONAME | BIOGUIDE_ID | PARTY_CODE | OCCUPANCY
+115 | AL | 3.0 | ROGERS, Mike Dennis | R000575 | 200.0 | 
+115 | AL | 7.0 | SEWELL, Terri | S001185 | 100.0 | 
+115 | AL | 2.0 | ROBY, Martha | R000591 | 200.0 | 
+115 | AL | 5.0 | BROOKS, Mo | B001274 | 200.0 | 
+115 | AL | 1.0 | BYRNE, Bradley | B001289 | 200.0 | 
+115 | AL | 6.0 | PALMER, Gary James | P000609 | 200.0 | 
+115 | AL | 4.0 | ADERHOLT, Robert | A000055 | 200.0 | 
+115 | AK | 1.0 | YOUNG, Donald Edwin | Y000033 | 200.0 | 
+115 | AZ | 8.0 | FRANKS, Trent | F000448 | 200.0 | 
+115 | AZ | 3.0 | GRIJALVA, Raúl M. | G000551 | 100.0 | 
+115 | AZ | 4.0 | GOSAR, Paul | G000565 | 200.0 | 
+115 | AZ | 6.0 | SCHWEIKERT, David | S001183 | 200.0 | 
+115 | AZ | 9.0 | SINEMA, Kyrsten | S001191 | 100.0 | 
+115 | AZ | 2.0 | MCSALLY, Martha | M001197 | 200.0 | 
+115 | AZ | 7.0 | GALLEGO, Ruben | G000574 | 100.0 | 
+115 | AZ | 5.0 | BIGGS, Andrew S. | B001302 | 200.0 | 
+115 | AZ | 1.0 | O'HALLERAN, Thomas C. | O000171 | 100.0 | 
+115 | AZ | 8.0 | LESKO, Debbie | L000589 | 200.0 | 
+115 | AR | 1.0 | CRAWFORD, Rick | C001087 | 200.0 | 
+115 | AR | 3.0 | WOMACK, Steve | W000809 | 200.0 | 
+115 | AR | 2.0 | HILL, French | H001072 | 200.0 | 
+115 | AR | 4.0 | WESTERMAN, Bruce | W000821 | 200.0 | 
+115 | CA | 12.0 | PELOSI, Nancy | P000197 | 100.0 | 
+115 | CA | 48.0 | ROHRABACHER, Dana | R000409 | 200.0 | 
+115 | CA | 28.0 | SCHIFF, Adam | S001150 | 100.0 | 
+115 | CA | 49.0 | ISSA, Darrell | I000056 | 200.0 | 
+115 | CA | 53.0 | DAVIS, Susan A. | D000598 | 100.0 | 
+115 | CA | 22.0 | NUNES, Devin | N000181 | 200.0 | 
+115 | CA | 38.0 | SÁNCHEZ, Linda T. | S001156 | 100.0 | 
+115 | CA | 16.0 | COSTA, Jim | C001059 | 100.0 | 
+115 | CA | 6.0 | MATSUI, Doris | M001163 | 100.0 | 
+115 | CA | 9.0 | MCNERNEY, Jerry | M001166 | 100.0 | 
+115 | CA | 23.0 | MCCARTHY, Kevin | M001165 | 200.0 | 
+115 | CA | 14.0 | SPEIER, Karen Lorraine Jacqueline (Jackie) | S001175 | 100.0 | 
+115 | CA | 4.0 | McCLINTOCK, Tom | M001177 | 200.0 | 
+115 | CA | 27.0 | CHU, Judy | C001080 | 100.0 | 
+115 | CA | 3.0 | GARAMENDI, John | G000559 | 100.0 | 
+115 | CA | 50.0 | HUNTER, Duncan Duane | H001048 | 200.0 | 
+115 | CA | 10.0 | DENHAM, Jeff | D000612 | 200.0 | 
+115 | CA | 37.0 | BASS, Karen | B001270 | 100.0 | 
+115 | CA | 1.0 | LAMALFA, Doug | L000578 | 200.0 | 
+115 | CA | 2.0 | HUFFMAN, Jared | H001068 | 100.0 | 
+115 | CA | 7.0 | BERA, Ami | B001287 | 100.0 | 
+115 | CA | 8.0 | COOK, Paul | C001094 | 200.0 | 
+115 | CA | 15.0 | SWALWELL, Eric | S001193 | 100.0 | 
+115 | CA | 21.0 | VALADAO, David G. | V000129 | 200.0 | 
+115 | CA | 26.0 | BROWNLEY, Julia | B001285 | 100.0 | 
+115 | CA | 29.0 | CÁRDENAS, Tony | C001097 | 100.0 | 
+115 | CA | 36.0 | RUIZ, Raul | R000599 | 100.0 | 
+115 | CA | 41.0 | TAKANO, Mark | T000472 | 100.0 | 
+115 | CA | 47.0 | LOWENTHAL, Alan | L000579 | 100.0 | 
+115 | CA | 51.0 | VARGAS, Juan | V000130 | 100.0 | 
+115 | CA | 52.0 | PETERS, Scott | P000608 | 100.0 | 
+115 | CA | 11.0 | DESAULNIER, Mark James | D000623 | 100.0 | 
+115 | CA | 25.0 | KNIGHT, Steve | K000387 | 200.0 | 
+115 | CA | 31.0 | AGUILAR, Peter Rey | A000371 | 100.0 | 
+115 | CA | 33.0 | LIEU, Ted | L000582 | 100.0 | 
+115 | CA | 35.0 | TORRES, Norma Judith | T000474 | 100.0 | 
+115 | CA | 45.0 | WALTERS, Mimi | W000820 | 200.0 | 
+115 | CA | 44.0 | BARRAGÁN, Nanette Diaz | B001300 | 100.0 | 
+(2257 rows; csv has all)

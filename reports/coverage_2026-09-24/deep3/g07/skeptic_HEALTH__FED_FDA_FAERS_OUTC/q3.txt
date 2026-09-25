@@ -1,0 +1,52 @@
+K	V	N
+distinct	rows=13752 ids=13752 cases=13752 fda_days=91 mfr_days=2218 mfr_jan1=3	
+fda_dt	2012-11-21	4551
+fda_dt	2012-12-12	2175
+fda_dt	2012-09-21	789
+fda_dt	2012-11-26	475
+fda_dt	2012-09-17	436
+fda_dt	2012-09-24	430
+fda_dt	2012-09-18	415
+fda_dt	2012-09-14	343
+ifd_year	2012	13719
+ifd_year	2011	16
+ifd_year	2010	15
+ifd_year	2009	2
+mfr_dt	2012-01-12	3367
+mfr_dt	2010-06-25	217
+mfr_dt	2012-10-15	62
+mfr_dt	2012-09-25	60
+mfr_dt	2012-09-24	59
+mfr_dt	2012-10-01	56
+mfr_dt	2012-09-21	55
+mfr_dt	2012-10-02	51
+mfr_year	2012	5832
+mfr_year	2005	1934
+mfr_year	2010	1256
+mfr_year	2006	1142
+mfr_year	2011	1030
+mfr_year	2009	878
+mfr_year	2008	686
+mfr_year	2007	683
+mfr_year	2001	62
+mfr_year	2000	52
+mfr_year	2004	49
+mfr_year	1999	46
+mfr_year	2002	43
+mfr_year	1998	30
+mfr_year	2003	15
+mfr_year		12
+mfr_year	1997	1
+mfr_year	1996	1
+mfrnum_shape	ASTELLAS US-ASTELLAS-#######	6875
+mfrnum_shape	ROCHE US-ROCHE-#######	5165
+mfrnum_shape	ASTELLAS US-ASTELLAS-####US######	507
+mfrnum_shape	ASTELLAS US-ASTELLAS-CID###############	259
+mfrnum_shape	ASTELLAS CN-ASTELLAS-####US######	169
+mfrnum_shape	ROCHE BR-ROCHE-#######	166
+mfrnum_shape	ROCHE US-ROCHE-CID###############	85
+mfrnum_shape	ROCHE TR-ROCHE-#######	80
+rept|esub	EXP|Y	13707
+rept|esub	PER|Y	26
+rept|esub	DIR|N	12
+rept|esub	EXP|N	7

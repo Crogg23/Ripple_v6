@@ -1,0 +1,72 @@
+-- S15 Combined air emissions for the 17 landfills EPA flags "stopped reporting, unknown reason": every program-year, methane and CO2
+SELECT TO_VARCHAR(REGISTRY_ID) reg, PGM_SYS_ACRNM pgm, REPORTING_YEAR::INT yr, COUNT(*) n,
+       SUM(IFF(POLLUTANT_NAME ILIKE '%methane%', ANNUAL_EMISSION, NULL)) ch4, ANY_VALUE(IFF(POLLUTANT_NAME ILIKE '%methane%', UNIT_OF_MEASURE, NULL)) ch4_unit,
+       SUM(IFF(POLLUTANT_NAME ILIKE '%carbon dioxide%', ANNUAL_EMISSION, NULL)) co2, ANY_VALUE(IFF(POLLUTANT_NAME ILIKE '%carbon dioxide%', UNIT_OF_MEASURE, NULL)) co2_unit
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_AIR_EMISSIONS_POLL_RPT_COMBINED_EMISSIONS
+WHERE TO_VARCHAR(REGISTRY_ID) IN ('110012168652','110006297499','110012694012','110009076338','110043790412','110071161064','110031168983','110040514397','110002524803','110071160106','110071159935','110070931010','110043786105','110054620665','110060832407','110043972779','110071161639')
+GROUP BY 1,2,3 ORDER BY 1,2,3
+
+-- S16 Superfund boundaries: one row per site, area converted to acres (square miles x 640; "Miles" kept apart), features, federal flag, dates, region
+SELECT EPA_ID, ANY_VALUE(SITE_NAME) site, ANY_VALUE(STATE_CODE) st, ANY_VALUE(EPA_REGION_CODE) region, LISTAGG(DISTINCT NPL_STATUS_CODE, ',') npl,
+       MAX(IFF(FEDERAL_FACILITY_CODE IN ('Y','Yes'), 1, 0)) fed, COUNT(*) features, LISTAGG(DISTINCT EPA_PROGRAM, ',') programs,
+       LISTAGG(DISTINCT GIS_AREA_UNITS, ',') units, LISTAGG(DISTINCT SITE_FEATURE_TYPE, ' | ') ftypes,
+       SUM(CASE WHEN UPPER(GIS_AREA_UNITS) = 'ACRES' THEN GIS_AREA WHEN UPPER(GIS_AREA_UNITS) = 'SQUARE MILES' THEN GIS_AREA * 640 END) acres_sum,
+       MAX(CASE WHEN UPPER(GIS_AREA_UNITS) = 'ACRES' THEN GIS_AREA WHEN UPPER(GIS_AREA_UNITS) = 'SQUARE MILES' THEN GIS_AREA * 640 END) acres_max,
+       SUM(IFF(UPPER(GIS_AREA_UNITS) = 'MILES', GIS_AREA, NULL)) miles_sum, MIN(ORIGINALLY_CREATED_AT) created, MAX(LAST_CHANGE_AT) changed,
+       ANY_VALUE(SITE_FEATURE_SOURCE) src, ANY_VALUE(SITE_CONTACT_NAME) contact
+FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SUPERFUND_SITE_BOUNDARIES
+GROUP BY 1
+
+-- S17 Superfund EPA_ID -> FRS: do the site IDs land in the FRS program list (SEMS entries)? land rate plus the ID format on both sides
+WITH s AS (SELECT DISTINCT EPA_ID FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_SUPERFUND_SITE_BOUNDARIES),
+f AS (
+  SELECT TO_VARCHAR(REGISTRY_ID) reg, v.value::STRING sid
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES,
+       LATERAL FLATTEN(input => REGEXP_SUBSTR_ALL(PROGRAM_SYSTEM_ACRONYMS, 'SEMS:([A-Z0-9]+)', 1, 1, 'e')) v
+  WHERE PROGRAM_SYSTEM_ACRONYMS ILIKE '%SEMS:%'
+)
+SELECT (SELECT COUNT(*) FROM s) sites, (SELECT COUNT(DISTINCT sid) FROM f) frs_sems_ids, (SELECT COUNT(DISTINCT reg) FROM f) frs_regs,
+       COUNT(DISTINCT s.EPA_ID) landed, COUNT(DISTINCT f.reg) landed_regs,
+       (SELECT LISTAGG(sid, ',') FROM (SELECT sid FROM f LIMIT 5)) frs_sid_sample,
+       (SELECT LISTAGG(EPA_ID, ',') FROM (SELECT EPA_ID FROM s LIMIT 5)) sf_id_sample
+FROM s JOIN f ON f.sid = s.EPA_ID
+
+-- S18 FRS facilities: same cleaned name + address + 5-digit ZIP on more than one registry ID
+WITH k AS (
+  SELECT REGISTRY_ID, UPPER(REGEXP_REPLACE(FACILITY_NAME,'[^A-Za-z0-9]','')) nk, UPPER(REGEXP_REPLACE(ADDRESS,'[^A-Za-z0-9]','')) ak,
+         LEFT(TRIM(POSTAL_CODE),5) z, FACILITY_NAME, ADDRESS, CITY, STATE_CODE
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES
+  WHERE LENGTH(REGEXP_REPLACE(ADDRESS,'[^A-Za-z0-9]','')) > 5 AND UPPER(ADDRESS) NOT LIKE '%UNKNOWN%' AND LENGTH(TRIM(POSTAL_CODE)) >= 5 AND LEFT(TRIM(POSTAL_CODE),5) <> '00000'
+), g AS (
+  SELECT nk, ak, z, COUNT(*) n, ANY_VALUE(FACILITY_NAME || ' | ' || ADDRESS || ' | ' || CITY || ' ' || STATE_CODE) ex
+  FROM k GROUP BY 1,2,3 HAVING COUNT(*) > 1
+)
+SELECT LEAST(n,10) nb, COUNT(*) grps, SUM(n) ids, MAX_BY(ex, n) biggest, MAX(n) max_n, (SELECT COUNT(*) FROM k) eligible_rows
+FROM g GROUP BY 1 ORDER BY 1
+
+-- S19 Federal vs non-federal: FRS federal agency joined to ECHO active facilities, by department and program mix, chronic noncompliance and enforcement
+WITH f AS (
+  SELECT TO_VARCHAR(REGISTRY_ID) reg, MAX(NULLIF(TRIM(FEDERAL_AGENCY),'')) agency
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_FRS_FACILITIES GROUP BY 1
+), e AS (
+  SELECT TO_VARCHAR(FRS_ID) frs, IS_MAJOR_FACILITY maj, HAS_AIR_PROGRAM air, HAS_WATER_PROGRAM wat, HAS_HAZWASTE_PROGRAM rcra,
+         QUARTERS_WITH_NONCOMPLIANCE qnc, COMPLIANCE_STATUS cs, FORMAL_ACTION_COUNT fa, TOTAL_PENALTIES pen, TOTAL_INSPECTION_COUNT insp
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_EPA_ECHO WHERE IS_ACTIVE
+)
+SELECT COALESCE(TRIM(SPLIT_PART(f.agency, ':', 1)), IFF(f.reg IS NULL, '(no FRS row)', '(not federal)')) dept,
+       e.maj, e.air, e.wat, e.rcra, COUNT(*) n, COUNT_IF(e.qnc >= 8) chronic8, COUNT_IF(e.qnc >= 1) any_nc,
+       COUNT_IF(e.cs ILIKE '%significant%') snc_label, SUM(e.fa) formal, COUNT_IF(e.fa > 0) with_formal, SUM(e.pen) penalties, SUM(e.insp) insp
+FROM e LEFT JOIN f ON f.reg = e.frs
+GROUP BY 1,2,3,4,5
+
+-- S20 USGS minerals: same site name at the same rounded point on more than one record (merged-source duplicates), by development status
+WITH k AS (
+  SELECT DEP_ID, UPPER(TRIM(SITE_NAME)) nm, ROUND(TRY_TO_DOUBLE(LATITUDE::STRING),3) la, ROUND(TRY_TO_DOUBLE(LONGITUDE::STRING),3) lo, DEV_STAT, MRDS_ID, MAS_ID
+  FROM LIBRARY_MARTS.ENVIRONMENT.ENVIRONMENT__FED_USGS_MINERALS
+), g AS (
+  SELECT nm, la, lo, COUNT(*) n, COUNT(DISTINCT DEV_STAT) stats, COUNT_IF(MRDS_ID IS NOT NULL) with_mrds, COUNT_IF(MAS_ID IS NOT NULL) with_mas
+  FROM k WHERE la IS NOT NULL GROUP BY 1,2,3 HAVING COUNT(*) > 1
+)
+SELECT LEAST(n,5) nb, COUNT(*) grps, SUM(n) recs, COUNT_IF(stats > 1) conflicting_status, SUM(with_mrds) mrds, SUM(with_mas) mas,
+       MAX_BY(nm || ' @ ' || la || ',' || lo, n) biggest, MAX(n) max_n
+FROM g GROUP BY 1 ORDER BY 1

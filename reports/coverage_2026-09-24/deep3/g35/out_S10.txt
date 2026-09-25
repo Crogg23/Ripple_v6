@@ -1,0 +1,63 @@
+-- S10 GHGRP emission x facility type, 2022: which sector and gas ids belong to suppliers vs direct emitters
+SECTOR_ID | GAS_ID | CLS | N | FAC | SUBSECTORS | CO2E | TYPE_EX
+2 | 1 | no_supplier | 579 | 579 | 3 | 9976160 | Direct Emitter
+2 | 1 | supplier_mixed | 1 | 1 | 1 | 0 | Supplier, Direct Emitter
+2 | 2 | no_supplier | 1444 | 1438 | 4 | 89086412 | Direct Emitter
+2 | 2 | supplier_mixed | 16 | 16 | 2 | 279597 | Supplier, Direct Emitter, CO2 Injection
+2 | 3 | no_supplier | 322 | 322 | 2 | 318589 | Direct Emitter
+2 | 8 | no_supplier | 193 | 193 | 2 | 16280512 | Direct Emitter
+2 |  | no_facility_row | 249 | 249 | 4 |  | 
+3 | 1 | no_supplier | 1321 | 1321 | 1 | 1556820367 | Direct Emitter
+3 | 1 | supplier_mixed | 10 | 10 | 1 | 21448015 | Supplier, Direct Emitter
+3 | 2 | no_supplier | 1305 | 1305 | 1 | 2401201 | Direct Emitter
+3 | 2 | supplier_mixed | 10 | 10 | 1 | 41410 | Supplier, Direct Emitter
+3 | 3 | no_supplier | 1304 | 1304 | 1 | 4783686 | Direct Emitter
+3 | 3 | supplier_mixed | 10 | 10 | 1 | 70508 | Supplier, Direct Emitter
+3 | 8 | no_supplier | 43 | 43 | 1 | 7422208 | Direct Emitter
+3 | 8 | supplier_mixed | 2 | 2 | 1 | 44546 | Supplier, Direct Emitter
+3 |  | no_facility_row | 447 | 447 | 1 |  | 
+4 | 1 | no_supplier | 14 | 14 | 1 | 14911304 | Direct Emitter
+4 | 1 | supplier_mixed | 121 | 121 | 1 | 147524418 | Supplier, Direct Emitter
+4 | 2 | no_supplier | 13 | 13 | 1 | 82770 | Direct Emitter
+4 | 2 | supplier_mixed | 121 | 121 | 1 | 669542 | Supplier, Direct Emitter
+4 | 3 | no_supplier | 13 | 13 | 1 | 37268 | Direct Emitter
+4 | 3 | supplier_mixed | 119 | 119 | 1 | 412762 | Supplier, Direct Emitter
+4 | 8 | supplier_mixed | 4 | 4 | 1 | 108496 | Supplier, Direct Emitter
+4 |  | no_facility_row | 13 | 13 | 1 |  | 
+5 | 1 | no_supplier | 367 | 361 | 10 | 125281864 | Direct Emitter
+5 | 1 | supplier_mixed | 98 | 98 | 6 | 42525547 | Supplier, Direct Emitter
+5 | 2 | no_supplier | 306 | 306 | 10 | 308717 | Direct Emitter
+5 | 2 | supplier_mixed | 52 | 52 | 6 | 26782 | Supplier, Direct Emitter
+5 | 3 | no_supplier | 311 | 306 | 10 | 8031540 | Direct Emitter
+5 | 3 | supplier_mixed | 70 | 52 | 7 | 4250383 | Supplier, Direct Emitter
+5 | 6 | supplier_mixed | 1 | 1 | 1 | 1614 | Supplier, Direct Emitter
+5 | 8 | no_supplier | 15 | 15 | 3 | 609393 | Direct Emitter
+5 | 8 | supplier_mixed | 2 | 2 | 2 | 8197 | Supplier, Direct Emitter
+5 | 9 | supplier_mixed | 3 | 3 | 1 | 537550 | Supplier, Direct Emitter
+5 | 10 | no_supplier | 1 | 1 | 1 | 2179463 | Direct Emitter
+5 | 10 | supplier_mixed | 15 | 12 | 2 | 1545059 | Supplier, Direct Emitter
+5 | 11 | supplier_mixed | 6 | 6 | 1 | 1358596 | Supplier, Direct Emitter
+5 | 12 | supplier_mixed | 5 | 5 | 1 | 29521 | Supplier, Direct Emitter
+5 | 13 | supplier_mixed | 7 | 7 | 1 | 78167 | Supplier, Direct Emitter
+5 | 15 | supplier_mixed | 12 | 12 | 1 | 219 | Supplier, Direct Emitter
+5 | 16 | supplier_mixed | 7 | 7 | 1 | 88417 | Supplier, Direct Emitter
+5 |  | no_facility_row | 70 | 70 | 7 |  | 
+6 | 1 | no_supplier | 293 | 293 | 7 | 75165684 | Direct Emitter
+6 | 2 | no_supplier | 288 | 288 | 7 | 26309 | Direct Emitter
+6 | 3 | no_supplier | 288 | 288 | 7 | 23145 | Direct Emitter
+6 | 6 | no_supplier | 8 | 8 | 1 | 718314 | Direct Emitter
+6 | 8 | no_supplier | 3 | 3 | 1 | 742 | Direct Emitter
+6 | 10 | no_supplier | 2 | 2 | 1 | 31682 | Direct Emitter
+6 | 11 | no_supplier | 6 | 6 | 1 | 784471 | Direct Emitter
+6 |  | no_facility_row | 64 | 64 | 7 |  | 
+7 | 1 | no_supplier | 205 | 205 | 2 | 32108818 | Direct Emitter
+7 | 1 | supplier_mixed | 4 | 4 | 1 | 750882 | Supplier, Direct Emitter
+7 | 2 | no_supplier | 205 | 205 | 2 | 115070 | Direct Emitter
+7 | 2 | supplier_mixed | 4 | 4 | 1 | 3113 | Supplier, Direct Emitter
+7 | 3 | no_supplier | 205 | 205 | 2 | 421832 | Direct Emitter
+7 | 3 | supplier_mixed | 4 | 4 | 1 | 12018 | Supplier, Direct Emitter
+7 | 8 | no_supplier | 106 | 106 | 2 | 94044157 | Direct Emitter
+7 | 8 | supplier_mixed | 3 | 3 | 1 | 2351625 | Supplier, Direct Emitter
+7 |  | no_facility_row | 38 | 38 | 2 |  | 
+8 | 1 | no_supplier | 382 | 381 | 5 | 114389269 | Direct Emitter
+(115 rows; csv has all)

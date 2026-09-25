@@ -1,0 +1,207 @@
+-- j3: skin-substitute billers vs manufacturer payments. Read-only. Run via j3/run.py, which sets STATEMENT_TIMEOUT_IN_SECONDS=300 and QUERY_TAG='joins-2026-09-24' on each connection.
+-- Results for each statement: j3/out_NN_<label>.txt
+
+-- #1 kapadia_service
+select RNDRNG_NPI, RNDRNG_PRVDR_LAST_ORG_NAME, RNDRNG_PRVDR_FIRST_NAME, RNDRNG_PRVDR_CRDNTLS, RNDRNG_PRVDR_TYPE, RNDRNG_PRVDR_ST1, RNDRNG_PRVDR_CITY, RNDRNG_PRVDR_ZIP5, HCPCS_CD, left(HCPCS_DESC,50) d, PLACE_OF_SRVC, TOT_BENES, TOT_SRVCS, AVG_MDCR_ALOWD_AMT, AVG_MDCR_PYMT_AMT,
+ round(try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar)) allowed, PROVIDER_TOT_MDCR_PYMT_AMT, SERVICE_ROWS_COVER_PCT
+from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI
+where RNDRNG_PRVDR_LAST_ORG_NAME ilike 'KAPADIA' and RNDRNG_PRVDR_STATE_ABRVTN='CA'
+order by allowed desc nulls last;
+
+-- #2 top30_billers
+with b as (select RNDRNG_NPI n, HCPCS_CD h, left(HCPCS_DESC,40) hd, try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar) a, try_to_double(TOT_SRVCS::varchar) s, try_to_double(TOT_BENES::varchar) bn
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI where HCPCS_CD between 'Q4100' and 'Q4399'),
+p as (select n, sum(a) ss_allowed, sum(s) sqcm, max(bn) max_code_benes, count(*) codes,
+   max_by(h, a) top_code, max_by(hd, a) top_desc, max(a)/sum(a) top_share from b group by n),
+r as (select p.*, row_number() over (order by ss_allowed desc) rk from p)
+select r.rk, r.n npi, v.RNDRNG_PRVDR_LAST_ORG_NAME last, v.RNDRNG_PRVDR_FIRST_NAME first, v.RNDRNG_PRVDR_TYPE typ, v.RNDRNG_PRVDR_CITY city, v.RNDRNG_PRVDR_STATE_ABRVTN st,
+  round(r.ss_allowed) ss_allowed, r.sqcm, r.max_code_benes, r.codes, r.top_code, r.top_desc, round(r.top_share,3) top_share,
+  v.TOT_BENES prov_benes, v.TOT_MDCR_ALOWD_AMT prov_allowed, v.DRUG_MDCR_ALOWD_AMT drug_allowed, v.DRUG_TOT_BENES drug_benes, v.DRUG_SPRSN_IND,
+  (select count(*) from p) n_billers, (select round(sum(ss_allowed)) from p) nat_allowed
+from r left join LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER v on v.RNDRNG_NPI = r.n
+where r.rk <= 30 order by r.rk;
+
+-- #3 op_top30
+with op as (
+ select NPI, PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME m, NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE nat, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) amt, COVERED_RECIPIENT_LAST_NAME ln, RECIPIENT_CITY city from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS where NPI in ('1003053851','1881629079','1174092035','1669736427','1609051853','1831709740','1518111426','1215678495','1710519665','1700341427','1821442666','1629046669','1053996785','1679001564','1174182760','1659869881','1225633753','1740662147','1447323118','1255987475','1700848355','1427372333','1992821797','1851316434','1568791010','1558621003','1336209345','1942559703','1952575342','1902544240')
+ union all select NPI, PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar), COVERED_RECIPIENT_LAST_NAME, RECIPIENT_CITY from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2023 where NPI in ('1003053851','1881629079','1174092035','1669736427','1609051853','1831709740','1518111426','1215678495','1710519665','1700341427','1821442666','1629046669','1053996785','1679001564','1174182760','1659869881','1225633753','1740662147','1447323118','1255987475','1700848355','1427372333','1992821797','1851316434','1568791010','1558621003','1336209345','1942559703','1952575342','1902544240')
+ union all select NPI, PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar), COVERED_RECIPIENT_LAST_NAME, RECIPIENT_CITY from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2022 where NPI in ('1003053851','1881629079','1174092035','1669736427','1609051853','1831709740','1518111426','1215678495','1710519665','1700341427','1821442666','1629046669','1053996785','1679001564','1174182760','1659869881','1225633753','1740662147','1447323118','1255987475','1700848355','1427372333','1992821797','1851316434','1568791010','1558621003','1336209345','1942559703','1952575342','1902544240'))
+select NPI, max(ln) ln, max(city) city, PROGRAM_YEAR::varchar yr, m, count(*) n, round(sum(amt),2) amt, listagg(distinct nat, '; ') natures
+from op group by NPI, PROGRAM_YEAR, m order by NPI, yr, amt desc;
+
+-- #4 products
+with b as (select RNDRNG_NPI n, HCPCS_CD h, HCPCS_DESC hd, try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar) a, try_to_double(TOT_SRVCS::varchar) s, try_to_double(TOT_BENES::varchar) bn, try_to_double(AVG_MDCR_ALOWD_AMT::varchar) px
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI where HCPCS_CD between 'Q4100' and 'Q4399')
+select h, max(hd) hd, round(sum(a)) allowed, count(distinct n) billers, sum(s) sqcm, sum(bn) bene_rows, round(avg(px)) avg_px, round(sum(a)/(select sum(a) from b),4) share
+from b group by h order by allowed desc limit 30;
+
+-- #5 product_makers
+with pats as (select column1 p from values ('%MEMBRANE WRAP%'),('%COMPLETE FT%'),('%ESANO%'),('%RESTORIGIN%'),('%HELICOLL%'),('%IMPAX%'),('%ORION%'),('%AXOLOTL%'),('%AMNICORE%'),('%AMNIO-MAXX%'),('%AMNIO MAXX%'),('%WOUNDPLUS%'),('%E-GRAFT%'),('%DERM-MAXX%'),('%DERM MAXX%'),('%AMNIOAMP%'),('%TRI-CORE%'),('%AMNIOWRAP%'),('%CYGNUS%'),('%QUAD-CORE%'),('%CAREPATCH%'),('%NEOSTIM%'),('%XWRAP%'),('%BARRERA%'),('%NOVACHOR%'),('%COGENEX%'),('%SURGRAFT%'),('%REBOUND MATRIX%'),('%EPIEFFECT%'),('%AMCHOPLAST%'))
+select 'gudid' src, p, upper(BRAND_NAME) brand, COMPANY_NAME company, count(*) n, min(PUBLISH_DATE)::varchar first_pub
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_GUDID g join pats on upper(g.BRAND_NAME) like pats.p group by 1,2,3,4
+union all
+select '510k', p, upper(DEVICE_NAME), APPLICANT, count(*), min(DECISION_DATE)::varchar
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_DEVICE_510K k join pats on upper(k.DEVICE_NAME) like pats.p group by 1,2,3,4
+union all
+select 'estreg', p, upper(PROPRIETARY_NAME), OWNER_OPERATOR_FIRM_NAME, count(*), max(REG_EXPIRY_DATE_YEAR)::varchar
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_FDA_ESTABLISHMENT_REG e join pats on upper(e.PROPRIETARY_NAME::varchar) like pats.p group by 1,2,3,4
+order by p, src;
+
+-- #6 op2024_makers_to_billers
+with ss as (select RNDRNG_NPI n, sum(try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar)) a
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI where HCPCS_CD between 'Q4100' and 'Q4399' group by 1),
+op as (select NPI, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME m, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) amt
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS where NPI is not null and trim(NPI) <> ''),
+agg as (select op.m, round(sum(amt)) all_amt, count(distinct op.NPI) all_npis,
+  round(sum(iff(ss.n is not null, amt, 0))) biller_amt, count(distinct ss.n) biller_npis,
+  round(sum(iff(ss.n is not null, ss.a, 0))) dummy
+  from op left join ss on ss.n = op.NPI group by op.m)
+select m, all_amt, all_npis, biller_amt, biller_npis, round(biller_amt/nullif(all_amt,0),3) biller_share,
+  (select count(*) from ss) n_billers, (select count(distinct NPI) from op where NPI in (select n from ss)) billers_with_any_payment
+from agg where biller_npis > 0 order by biller_amt desc limit 60;
+
+-- #7 op_woundmakers
+with op as (
+ select PROGRAM_YEAR y, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME m, NPI, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) amt from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS
+ union all select PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, NPI, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2023
+ union all select PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, NPI, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2022)
+select m, count(*) n, round(sum(amt)) amt, count(distinct NPI) npis, listagg(distinct y::varchar, ',') within group (order by y::varchar) yrs
+from op
+where regexp_like(upper(m), '.*(ENCOLL|BIOLAB|LEGACY MEDICAL|TIDES|STIMLABS|STIM LABS|ESANO|LUCINA|AMNIO|BIOSTEM|STABILITY BIO|TIGER|APPLIED BIOLOGICS|ROYAL BIOLOGICS|EXTREMITY CARE|VIVEX|SANARA|SKYE|SURGENEX|MERAKRIS|SAMARITAN|NEXTGEN|ARCHITECT|OMNIGEN|BIOWOUND|NOVA|HEALTHTECH|PRECISION|TISSUE|WOUND|REGENERAT|GRAFT|MEMBRANE|HUMAN REGEN|BIOTISSUE|SEQUENCE|AZIYO|ELUTIA|PROTEAR|CELLRIGHT|NUTECH|BIO LAB).*')
+group by m order by amt desc limit 80;
+
+-- #8 nppes_top30
+select NPI, ENTITY_TYPE_CODE, PROVIDER_LAST_NAME_LEGAL_NAME ln, PROVIDER_FIRST_NAME fn, PROVIDER_CREDENTIAL_TEXT cred, PROVIDER_ENUMERATION_DATE::varchar enum_dt, LAST_UPDATE_DATE::varchar upd, NPI_DEACTIVATION_DATE::varchar deact,
+ PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS pa1, PROVIDER_SECOND_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS pa2, PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME pcity, PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME pst, left(PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE,5) pzip,
+ PROVIDER_FIRST_LINE_BUSINESS_MAILING_ADDRESS ma1, PROVIDER_BUSINESS_MAILING_ADDRESS_CITY_NAME mcity, HEALTHCARE_PROVIDER_TAXONOMY_CODE_1 tax1, PROVIDER_LICENSE_NUMBER_1 lic1, PROVIDER_LICENSE_NUMBER_STATE_CODE_1 licst1, HEALTHCARE_PROVIDER_TAXONOMY_CODE_2 tax2, PROVIDER_LICENSE_NUMBER_STATE_CODE_2 licst2
+from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES where NPI in ('1003053851','1881629079','1174092035','1669736427','1609051853','1831709740','1518111426','1215678495','1710519665','1700341427','1821442666','1629046669','1053996785','1679001564','1174182760','1659869881','1225633753','1740662147','1447323118','1255987475','1700848355','1427372333','1992821797','1851316434','1568791010','1558621003','1336209345','1942559703','1952575342','1902544240');
+
+-- #9 exclusions
+with t(npi, ln, fn, st) as (select * from values ('1003053851','JENG','AARON','CA'),('1881629079','DENMARK','THOMAS','OK'),('1174092035','REYES CHOUZA','CARLOS','FL'),('1669736427','KAPADIA','RAVI','CA'),('1609051853','PANDEY','RAHUL','TX'),('1831709740','YUKEE','MARIZEL','NV'),('1518111426','MYERS','PHILLIP','CA'),('1215678495','CHARLES','ALLISON','AZ'),('1710519665','CASTILLO MADRIGAL','MICHEL','FL'),('1700341427','VASQUEZ','ANDREA','CA'),('1821442666','POWELL','KELLY','CA'),('1629046669','JENSON','DAVID','TX'),('1053996785','PERRI','COLLIN','WA'),('1679001564','HASSAN','MOHAMMED','CA'),('1174182760','KINDS','JORGE','AZ'),('1659869881','BYERS','BRENT','OK'),('1225633753','GORTON','JAMI','CO'),('1740662147','BAHARLOO','BABAK','TX'),('1447323118','TULSYAN','NIRMAN','NJ'),('1255987475','DENNY','IRA','AZ'),('1700848355','PIASECKI','JUSTIN','WA'),('1427372333','LIMPEROS','RICHARD','OH'),('1992821797','LEE','CATHERINE','CA'),('1851316434','GUTSTEIN','DANIEL','IL'),('1568791010','YALAMURI','RAVI KANTH','TX'),('1558621003','HAJHOSSEINI','BABAK','CA'),('1336209345','ANGELES','ADAM','OR'),('1942559703','MILLS','JACQUELINE','TX'),('1952575342','KOHANZADEH','SOM','CA'),('1902544240','OKORO','CHIBUIKEM','CA'))
+select 'leie' src, t.npi, t.ln, t.fn, t.st, l.NPI hit_npi, l.LAST_NAME, l.FIRST_NAME, l.STATE, l.CITY, l.EXCLUSION_TYPE, l.EXCLUSION_DATE::varchar, iff(l.NPI=t.npi,'npi','name+state') how
+ from t join LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE l on l.NPI = t.npi or (upper(l.LAST_NAME)=t.ln and upper(l.FIRST_NAME)=t.fn)
+union all
+select 'sam', t.npi, t.ln, t.fn, t.st, s.NPI, s.LAST_NAME, s.FIRST_NAME, s.STATE, s.CITY, s.EXCLUSION_TYPE||' / '||s.EXCLUDING_AGENCY, s.ACTIVATION_DATE::varchar, iff(s.NPI=t.npi,'npi','name')
+ from t join LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS s on s.NPI = t.npi or (upper(s.LAST_NAME)=t.ln and upper(s.FIRST_NAME)=t.fn)
+union all
+select 'counts', null,null,null,null, (select count(*) from LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE)::varchar, (select max(EXCLUSION_DATE) from LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE)::varchar, (select count(*) from LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS)::varchar, (select max(ACTIVATION_DATE) from LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS)::varchar, null,null,null,null;
+
+-- #10 exclusions_all_billers
+with ss as (select RNDRNG_NPI n, max(upper(RNDRNG_PRVDR_LAST_ORG_NAME)) ln, max(upper(RNDRNG_PRVDR_FIRST_NAME)) fn, max(RNDRNG_PRVDR_STATE_ABRVTN) st, max(upper(RNDRNG_PRVDR_CITY)) city, max(RNDRNG_PRVDR_TYPE) typ,
+   sum(try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar)) a
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI where HCPCS_CD between 'Q4100' and 'Q4399' group by 1),
+r as (select ss.*, row_number() over (order by a desc) rk from ss)
+select 'leie' src, r.rk, r.n, r.ln, r.fn, r.typ, r.city, r.st, round(r.a) ss_allowed, l.EXCLUSION_TYPE x, l.EXCLUSION_DATE::varchar xd, upper(l.CITY) xcity, iff(l.NPI=r.n,'npi','name+state') how
+ from r join LIBRARY_MARTS.HEALTH.HEALTH__FED_HHS_OIG_LEIE l on l.NPI = r.n or (upper(l.LAST_NAME)=r.ln and upper(l.FIRST_NAME)=r.fn and l.STATE=r.st)
+union all
+select 'sam', r.rk, r.n, r.ln, r.fn, r.typ, r.city, r.st, round(r.a), s.EXCLUSION_TYPE||' / '||s.EXCLUDING_AGENCY||' / '||s.EXCLUSION_PROGRAM||' / term '||coalesce(s.TERMINATION_DATE_RAW,''), s.ACTIVATION_DATE::varchar, upper(s.CITY), iff(s.NPI=r.n,'npi','name+state')
+ from r join LIBRARY_MARTS.PROCUREMENT.PROCUREMENT__FED_SAM_EXCLUSIONS s on s.NPI = r.n or (upper(s.LAST_NAME)=r.ln and upper(s.FIRST_NAME)=r.fn and s.STATE=r.st)
+order by rk;
+
+-- #11 peers
+with b as (select RNDRNG_NPI n, max(RNDRNG_PRVDR_TYPE) typ, sum(try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar)) a, max(try_to_double(TOT_BENES::varchar)) mb, sum(try_to_double(TOT_SRVCS::varchar)) sq
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI where HCPCS_CD between 'Q4100' and 'Q4399' group by 1),
+p as (select b.*, a/mb per_pt, sq/mb sq_per_pt, v.DRUG_TOT_BENES::number db, a/nullif(v.DRUG_TOT_BENES::number,0) per_drug_pt from b left join LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER v on v.RNDRNG_NPI=b.n),
+g as (select 'all' grp, * from p union all select 'general_surgery', * from p where typ='General Surgery' union all select 'top20', * from p qualify row_number() over (order by a desc) <= 20)
+select grp, count(*) n, round(median(a)) med_allowed, round(median(per_pt)) med_per_pt, round(percentile_cont(0.9) within group (order by per_pt)) p90_per_pt, round(max(per_pt)) max_per_pt,
+  round(median(sq_per_pt)) med_sqcm_per_pt, round(max(sq_per_pt)) max_sqcm_per_pt,
+  count_if(per_pt >= 3280000) n_ge_kapadia, round(median(per_drug_pt)) med_per_drug_pt,
+  max(iff(n='1669736427', rank_pp, null)) kapadia_rank_per_pt
+from (select g.*, rank() over (partition by grp order by per_pt desc) rank_pp from g) group by grp;
+
+-- #12 kapadia_op
+with op as (
+ select PROGRAM_YEAR y, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME m, NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE nat, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) amt, RECIPIENT_CITY c, RECIPIENT_STATE s, COVERED_RECIPIENT_PROFILE_ID pid, COVERED_RECIPIENT_SPECIALTY_1 sp, DATE_OF_PAYMENT d from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS where NPI='1669736427'
+ union all select PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar), RECIPIENT_CITY, RECIPIENT_STATE, COVERED_RECIPIENT_PROFILE_ID, COVERED_RECIPIENT_SPECIALTY_1, DATE_OF_PAYMENT from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2023 where NPI='1669736427'
+ union all select PROGRAM_YEAR, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, NATURE_OF_PAYMENT_OR_TRANSFER_OF_VALUE, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar), RECIPIENT_CITY, RECIPIENT_STATE, COVERED_RECIPIENT_PROFILE_ID, COVERED_RECIPIENT_SPECIALTY_1, DATE_OF_PAYMENT from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2022 where NPI='1669736427')
+select y::varchar y, m, nat, c, s, pid, sp, count(*) n, round(sum(amt),2) amt, min(d) first_d, max(d) last_d from op group by all order by y, amt desc;
+
+-- #13 pecos_top30
+select 'pecos' src, NPI, PROVIDER_TYPE_DESC a, STATE_CD b, ENRLMT_ID c, PECOS_ASCT_CNTL_ID d, MULTIPLE_NPI_FLAG e, ORG_NAME f
+ from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_PECOS_PROVIDER_ENROLLMENT where NPI in ('1003053851','1881629079','1174092035','1669736427','1609051853','1831709740','1518111426','1215678495','1710519665','1700341427','1821442666','1629046669','1053996785','1679001564','1174182760','1659869881','1225633753','1740662147','1447323118','1255987475','1700848355','1427372333','1992821797','1851316434','1568791010','1558621003','1336209345','1942559703','1952575342','1902544240')
+union all
+select 'nppes_lic', NPI, concat_ws(' | ', PROVIDER_LICENSE_NUMBER_STATE_CODE_1, PROVIDER_LICENSE_NUMBER_STATE_CODE_2, PROVIDER_LICENSE_NUMBER_STATE_CODE_3, PROVIDER_LICENSE_NUMBER_STATE_CODE_4, PROVIDER_LICENSE_NUMBER_STATE_CODE_5, PROVIDER_LICENSE_NUMBER_STATE_CODE_6),
+  concat_ws(' | ', HEALTHCARE_PROVIDER_TAXONOMY_CODE_1, HEALTHCARE_PROVIDER_TAXONOMY_CODE_2, HEALTHCARE_PROVIDER_TAXONOMY_CODE_3, HEALTHCARE_PROVIDER_TAXONOMY_CODE_4), concat_ws(' | ', OTHER_PROVIDER_IDENTIFIER_ISSUER_1, OTHER_PROVIDER_IDENTIFIER_STATE_1, OTHER_PROVIDER_IDENTIFIER_ISSUER_2, OTHER_PROVIDER_IDENTIFIER_STATE_2), null, null, null
+ from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES where NPI='1669736427'
+order by src, NPI;
+
+-- #14 courtlistener
+select 'cl' src, COURT_ID, DATE_FILED::varchar df, DATE_TERMINATED::varchar dt, DOCKET_NUMBER, left(CASE_NAME,120) cn, NATURE_OF_SUIT, CAUSE
+from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_DOCKETS
+where DATE_FILED >= '2018-01-01'
+  and regexp_like(upper(CASE_NAME), '.*\b(KAPADIA|AARON JENG|JENG|REYES CHOUZA|YUKEE|CASTILLO MADRIGAL|TULSYAN|BAHARLOO|KOHANZADEH|HAJHOSSEINI|LIMPEROS|YALAMURI|IRA DENNY|GINA PALACIOS|JORGE KINDS|ALLISON CHARLES|GUTSTEIN|PIASECKI|RAHUL PANDEY|MARIZEL|PHILLIP MYERS|ANDREA VASQUEZ|KELLY POWELL|JAMI GORTON|BRENT BYERS|CHIBUIKEM|OKORO|THOMAS DENMARK|DENMARK, THOMAS|KAPADIA, RAVI)\b.*')
+order by df desc limit 200;
+
+-- #15 cl_coverage
+select year(DATE_FILED) y, count(*) n, count_if(upper(CASE_NAME) like '%KAPADIA%') kapadia, count_if(upper(CASE_NAME) like '%UNITED STATES%' and upper(CASE_NAME) like '%HEALTH%') us_health,
+  count_if(upper(CASE_NAME) like '%JENG%') jeng, count_if(upper(CASE_NAME) like '%DENNY%' and STATE_HINT) denny_az
+from (select DATE_FILED, CASE_NAME, COURT_ID in ('azd','azb') STATE_HINT from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_DOCKETS)
+where DATE_FILED >= '2015-01-01' group by 1 order by 1;
+
+-- #16 cl_names
+select COURT_ID, DATE_FILED::varchar df, DATE_TERMINATED::varchar dt, DOCKET_NUMBER, left(CASE_NAME,110) cn, NATURE_OF_SUIT, left(CAUSE,50) cause
+from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_COURTLISTENER_DOCKETS
+where DATE_FILED >= '2018-01-01' and (
+ upper(CASE_NAME) like '%KAPADIA%' or upper(CASE_NAME) like '%JENG%' or upper(CASE_NAME) like '%REYES CHOUZA%' or upper(CASE_NAME) like '%YUKEE%'
+ or upper(CASE_NAME) like '%CASTILLO MADRIGAL%' or upper(CASE_NAME) like '%TULSYAN%' or upper(CASE_NAME) like '%BAHARLOO%' or upper(CASE_NAME) like '%KOHANZADEH%'
+ or upper(CASE_NAME) like '%HAJHOSSEINI%' or upper(CASE_NAME) like '%LIMPEROS%' or upper(CASE_NAME) like '%YALAMURI%' or (upper(CASE_NAME) like '%DENNY%' and COURT_ID in ('azd','azb','ca9'))
+ or (upper(CASE_NAME) like '%PALACIOS%' and COURT_ID in ('azd','azb','ca9')) or (upper(CASE_NAME) like '%KINDS%' and COURT_ID in ('azd','azb','ca9'))
+ or upper(CASE_NAME) like '%GUTSTEIN%' or upper(CASE_NAME) like '%PIASECKI%' or upper(CASE_NAME) like '%OKORO%' or upper(CASE_NAME) like '%AMNIO%'
+ or upper(CASE_NAME) like '%SKIN SUBSTITUTE%' or upper(CASE_NAME) like '%ORGANOGENESIS%' or upper(CASE_NAME) like '%ENCOLL%' or upper(CASE_NAME) like '%BIOLAB%' or upper(CASE_NAME) like '%LEGACY MEDICAL%' or upper(CASE_NAME) like '%APEX MEDICAL%')
+order by df desc limit 200;
+
+-- #17 fjc_criminal
+select DISTRICT, OFFICE, DOCKET, DEFENDANT_NUMBER, DEFENDANT_NAME, FILE_DATE::varchar fd, FILING_TITLE_1, FILING_OFFENSE_CODE_1, D2_FILING_OFFENSE_CODE_1, FILING_TITLE_2, FILING_TITLE_3, CT_FIL, STATUS_CODE, TERM_DATE::varchar td, DISPOSITION_1, PRISON_TOTAL, FINE_TOTAL, TAPE_YEAR,
+ (select max(FILE_DATE)::varchar from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL) max_file_date
+from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL
+where FILE_DATE >= '2020-01-01' and (
+  upper(DEFENDANT_NAME) like '%DENNY%' or upper(DEFENDANT_NAME) like '%YUKEE%' or upper(DEFENDANT_NAME) like '%KAPADIA%'
+  or (upper(DEFENDANT_NAME) like '%PALACIOS%' and upper(DEFENDANT_NAME) like '%GINA%') or upper(DEFENDANT_NAME) like '%REYES CHOUZA%' or upper(DEFENDANT_NAME) like '%CASTILLO MADRIGAL%'
+  or (upper(DEFENDANT_NAME) like '%KINDS%' and upper(DEFENDANT_NAME) like '%JORGE%') or (upper(DEFENDANT_NAME) like '%CHARLES%' and upper(DEFENDANT_NAME) like '%ALLISON%'))
+order by fd desc;
+
+-- #18 fjc_profile
+select 'prof' k, max(FILE_DATE)::varchar a, count_if(FILE_DATE>='2025-01-01')::varchar b, count_if(nullif(trim(DEFENDANT_NAME),'') is not null)::varchar c, count(*)::varchar d, null e, null f
+from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL
+union all
+select * from (select 'sample', DISTRICT, OFFICE, DOCKET, DEFENDANT_NAME, FILE_DATE::varchar, FILING_TITLE_1 from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL where FILE_DATE >= '2025-06-20' and FILING_TITLE_1 ilike '%1347%' limit 8);
+
+-- #19 fjc_docket_join
+select DISTRICT, OFFICE, DOCKET, DEFENDANT_NUMBER, CT_DEFENDANTS, FILE_DATE::varchar fd, FILING_TITLE_1, FILING_TITLE_2, FILING_TITLE_3, FILING_TITLE_4, FILING_TITLE_5, CT_FIL, STATUS_CODE, FUGITIVE_STATUS, TERM_DATE::varchar td, DISPOSITION_1, PRISON_TOTAL, COUNTY
+from LIBRARY_MARTS.JUSTICE.JUSTICE__FED_FJC_IDB_CRIMINAL
+where (DISTRICT='70' and OFFICE='2' and DOCKET in ('2500944','2500947'))
+   or (OFFICE='4' and DOCKET='2600370')
+order by DISTRICT, DOCKET, DEFENDANT_NUMBER;
+
+-- #20 az_cluster
+with b as (select RNDRNG_NPI n, RNDRNG_PRVDR_LAST_ORG_NAME ln, RNDRNG_PRVDR_FIRST_NAME fn, RNDRNG_PRVDR_TYPE typ, RNDRNG_PRVDR_ST1 a1, RNDRNG_PRVDR_CITY city, RNDRNG_PRVDR_STATE_ABRVTN st, HCPCS_CD h, left(HCPCS_DESC,30) hd,
+   try_to_double(AVG_MDCR_ALOWD_AMT::varchar)*try_to_double(TOT_SRVCS::varchar) a, try_to_double(TOT_BENES::varchar) bn
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER_AND_SERVI where HCPCS_CD between 'Q4100' and 'Q4399'),
+p as (select n, ln, fn, typ, a1, city, st, round(sum(a)) ss, max(bn) mb, listagg(h||' '||hd||' $'||round(a/1e6,1)||'M', '; ') within group (order by a desc) codes from b group by 1,2,3,4,5,6,7)
+select 'state' k, st, count(*)::varchar n, round(sum(ss))::varchar ss, null c1, null c2, null c3, null c4, null c5 from p group by st qualify row_number() over (order by sum(ss) desc) <= 8
+union all
+select * from (select 'az', n, ln||' '||fn, typ, a1, city, ss::varchar, mb::varchar, codes from p where st='AZ' order by ss desc limit 12);
+
+-- #21 kapadia_address
+select 'nppes' src, NPI, ENTITY_TYPE_CODE, coalesce(PROVIDER_ORGANIZATION_NAME_LEGAL_BUSINESS_NAME, PROVIDER_LAST_NAME_LEGAL_NAME||' '||PROVIDER_FIRST_NAME) nm, PROVIDER_CREDENTIAL_TEXT cred, HEALTHCARE_PROVIDER_TAXONOMY_CODE_1 tax, PROVIDER_ENUMERATION_DATE::varchar enum_dt, AUTHORIZED_OFFICIAL_LAST_NAME||' '||coalesce(AUTHORIZED_OFFICIAL_FIRST_NAME,'') ao, PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS||' '||coalesce(PROVIDER_SECOND_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS,'') addr
+from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES
+where left(PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_POSTAL_CODE,5)='93309' and upper(PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS) like '5500 MING%' and (upper(PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS||' '||coalesce(PROVIDER_SECOND_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS,'')) like '%320%' or ENTITY_TYPE_CODE='2')
+union all
+select 'kapadia_ao', NPI, ENTITY_TYPE_CODE, PROVIDER_ORGANIZATION_NAME_LEGAL_BUSINESS_NAME, null, HEALTHCARE_PROVIDER_TAXONOMY_CODE_1, PROVIDER_ENUMERATION_DATE::varchar, AUTHORIZED_OFFICIAL_LAST_NAME||' '||coalesce(AUTHORIZED_OFFICIAL_FIRST_NAME,''), PROVIDER_FIRST_LINE_BUSINESS_PRACTICE_LOCATION_ADDRESS||' '||PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME||' '||PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_STATE_NAME
+from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES
+where ENTITY_TYPE_CODE='2' and upper(AUTHORIZED_OFFICIAL_LAST_NAME)='KAPADIA' and upper(AUTHORIZED_OFFICIAL_FIRST_NAME)='RAVI';
+
+-- #22 suite320
+select 'partb' src, RNDRNG_NPI, RNDRNG_PRVDR_LAST_ORG_NAME||' '||coalesce(RNDRNG_PRVDR_FIRST_NAME,'') nm, RNDRNG_PRVDR_TYPE, RNDRNG_PRVDR_CITY, TOT_BENES::varchar b, TOT_MDCR_ALOWD_AMT::varchar a, DRUG_MDCR_ALOWD_AMT::varchar d
+from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_MEDICARE_PHYSICIAN_OTHER_PRACTITIONERS_BY_PROVIDER where RNDRNG_NPI in ('1508551276','1235016452','1902217854')
+union all
+select 'nppes', NPI, PROVIDER_LAST_NAME_LEGAL_NAME||' '||PROVIDER_FIRST_NAME, HEALTHCARE_PROVIDER_TAXONOMY_CODE_1, PROVIDER_BUSINESS_PRACTICE_LOCATION_ADDRESS_CITY_NAME, PROVIDER_ENUMERATION_DATE::varchar, null, null
+from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NPPES where NPI='1902217854';
+
+-- #23 op_name_fallback
+with op as (
+ select PROGRAM_YEAR y, NPI, COVERED_RECIPIENT_FIRST_NAME fn, COVERED_RECIPIENT_LAST_NAME ln, RECIPIENT_STATE st, RECIPIENT_CITY c, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME m, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) amt from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS where upper(COVERED_RECIPIENT_LAST_NAME) in ('CASTILLO MADRIGAL','VASQUEZ','GORTON','DENNY','PALACIOS','KINDS','CHARLES','REYES CHOUZA','KAPADIA')
+ union all select PROGRAM_YEAR, NPI, COVERED_RECIPIENT_FIRST_NAME, COVERED_RECIPIENT_LAST_NAME, RECIPIENT_STATE, RECIPIENT_CITY, APPLICABLE_MANUFACTURER_OR_APPLICABLE_GPO_MAKING_PAYMENT_NAME, try_to_double(TOTAL_AMOUNT_OF_PAYMENT_USDOLLARS::varchar) from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_OPEN_PAYMENTS_2023 where upper(COVERED_RECIPIENT_LAST_NAME) in ('CASTILLO MADRIGAL','VASQUEZ','GORTON','DENNY','PALACIOS','KINDS','CHARLES','REYES CHOUZA','KAPADIA'))
+select y::varchar y, NPI, fn, ln, st, c, m, count(*) n, round(sum(amt)) amt from op
+where (upper(fn) in ('MICHEL','ANDREA','JAMI','IRA','GINA','JORGE','ALLISON','CARLOS','RAVI')) and st in ('FL','CA','CO','AZ','WV')
+group by all order by ln, fn, y;

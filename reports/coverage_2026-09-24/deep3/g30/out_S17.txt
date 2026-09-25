@@ -1,0 +1,7 @@
+-- S17 Ticker table check and join land rate: the battery's CPTKF count, and how many 2024Q1 10-K filers have a ticker, by filer size
+AFS1 | K10 | WITH_TICKER | ON_NASDAQ_NYSE | OTC_ONLY | CPTKF_ROWS | BLANK_EXCH | LOADED_MICROS
+1 | 1762 | 1572 | 1563 | 7 | 1 | 197 | 1786383840532081
+2 | 618 | 513 | 491 | 21 | 1 | 197 | 1786383840532081
+4 | 1593 | 1052 | 818 | 219 | 1 | 197 | 1786383840532081
+ | 1 | 1 | 1 | 0 | 1 | 197 | 1786383840532081
+(4 rows; csv has all)

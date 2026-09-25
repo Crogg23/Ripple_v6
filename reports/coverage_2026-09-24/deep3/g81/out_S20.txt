@@ -1,0 +1,2 @@
+-- S20 Wayback: listing pages by data set: page variants, junk variants, highest page number, first/last capture
+ERROR: 100048 (2201B): Invalid regular expression: '.*(utm_|fbclid|%0a|%e|\u00|&data=).*', invalid escape sequence: \u

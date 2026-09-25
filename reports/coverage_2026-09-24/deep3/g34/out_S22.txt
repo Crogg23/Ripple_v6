@@ -1,0 +1,35 @@
+-- S22 ICIS-Air eyeball: LANXESS Charleston SC (EtO-regulated major, 3 open HPVs since 2020, no formal action since 2020): its violations, informal and formal actions, and its pollutant rows
+PART | ID | D1 | D2 | DETAIL
+formal | 3400591561 | 2002-03-05 | 9500 | S | Administrative Order
+formal | 3603290302 |  | 0 | E | Civil Judicial Action
+informal | 3400591558 | 2001-08-03 |  | S | Notice of Violation
+informal | 3400591556 | 2004-03-18 |  | S | Notice of Violation
+informal | 3400591545 | 2008-01-23 |  | S | Notice of Violation
+informal | 3400591543 | 2010-02-03 |  | S | Notice of Violation
+informal | 3400591541 | 2010-05-19 |  | S | Notice of Violation
+informal | 3601612155 | 2018-10-17 |  | S | Notice of Violation
+informal | 3603094379 | 2022-04-21 |  | S | Notice of Violation
+informal | 3604104902 | 2024-09-18 |  | S | Notice of Violation
+informal | 3604510265 | 2025-08-27 |  | S | Notice of Violation
+pollutant | 300000105 | 107062 | MAJ | 1,2-Dichloroethane
+pollutant | 300000282 | 11104931 | MAJ | NITROGEN OXIDES
+pollutant | 300000076 | 124389 | MAJ | Carbon dioxide
+pollutant | 10193 | 630080 | MAJ | Carbon monoxide
+pollutant | 300000188 | 67561 | MAJ | Methanol
+pollutant | 300000038 | 7439921 | MAJ | Lead
+pollutant | 10461 | 7446095 | MAJ | Sulfur dioxide
+pollutant | 300000180 | 74828 | MAJ | Methane (Air)
+pollutant | 300000168 | 75218 | MAJ | Ethylene oxide
+pollutant | 300000159 | 75569 | MAJ | Propylene oxide
+pollutant | 300000018 | 7647010 | MAJ | Hydrochloric acid
+pollutant | 300000236 |  | MAJ | VISIBLE EMISSIONS
+pollutant | 300000243 |  | MAJ | VOLATILE ORGANIC COMPOUNDS (VOCS)
+pollutant | 300000322 |  | MAJ | TOTAL PARTICULATE MATTER
+pollutant | 300000242 |  | MAJ | TOTAL HAZARDOUS AIR POLLUTANTS (HAPS)
+violation | 3604177071 | 2024-11-20 |  | State | HPV | MACT Standards (40 CFR Part 63) | Ethylene oxide
+violation | 3604353623 | 2025-04-04 |  | State | HPV | MACT Standards (40 CFR Part 63) | Ethylene oxide TOTAL HAZARDOUS AIR POLLUTANTS (HAPS)
+violation | 3604652625 | 2025-12-02 |  | State | HPV | MACT Standards (40 CFR Part 63) | Ethylene oxide Propylene oxide TOTAL HAZARDOUS AIR POLLUTANTS (HAPS)
+violation | 3604067761 |  | 2024-10-11 | State | FRV | State Implementation Plan for National Primary and Secondary Ambient Air Quality Standards | 
+violation | 3601612157 |  | 2018-10-17 | State | FRV | MACT Standards (40 CFR Part 63) | TOTAL HAZARDOUS AIR POLLUTANTS (HAPS)
+violation | 3603094387 |  | 2022-04-21 | State | FRV | State Implementation Plan for National Primary and Secondary Ambient Air Quality Standards | FACIL
+(32 rows; csv has all)

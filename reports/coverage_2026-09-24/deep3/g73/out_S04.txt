@@ -1,0 +1,45 @@
+-- S04 Cross-check the three geography tables: county codes in the ZIP tables that DIM_COUNTY does not hold, and DIM_COUNTY counties no ZIP touches
+SRC | ST | COUNTIES | COUNTIES_MISSING | ROWS_ | ROWS_MISSING | MISSING_CODES
+DIM_COUNTY not in XWALK | 09 | 9 | 9 | 9 | 9 | [
+  "09110",
+  "09120",
+  "09130",
+  "09140",
+  "09150",
+  "09160",
+  "09170",
+  "09180",
+  "09190"
+]
+DIM_ZIP_POINT | ALL | 3066 | 0 | 33486 | 0 | 
+XWALK_ZCTA_COUNTY | ALL | 3232 | 19 | 46960 | 319 | 
+XWALK_ZCTA_COUNTY | AS | 4 | 4 | 4 | 4 | [
+  "60010",
+  "60020",
+  "60040",
+  "60050"
+]
+XWALK_ZCTA_COUNTY | CT | 8 | 8 | 299 | 299 | [
+  "09001",
+  "09003",
+  "09005",
+  "09007",
+  "09009",
+  "09011",
+  "09013",
+  "09015"
+]
+XWALK_ZCTA_COUNTY | GU | 1 | 1 | 7 | 7 | [
+  "66010"
+]
+XWALK_ZCTA_COUNTY | MP | 3 | 3 | 3 | 3 | [
+  "69100",
+  "69110",
+  "69120"
+]
+XWALK_ZCTA_COUNTY | VI | 3 | 3 | 6 | 6 | [
+  "78010",
+  "78020",
+  "78030"
+]
+(8 rows; csv has all)

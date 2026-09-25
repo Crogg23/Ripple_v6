@@ -1,0 +1,63 @@
+-- S14 SDWA: per water system, health-based violations begun 2015 on (deduped on PWSID + VIOLATION_ID), how many carry a failure-to-notify (PN code 75) link, acute tier-1 subset, open PN status; with name, type, population
+PWSID | HB_N | HB_PN | C5200 | C5200_PN | T1_N | T1_PN | T1_PN_UNADDR | T1_PN_CODES | T1_PN_FIRST | T1_PN_LAST | PWS_NAME | STATE_CODE | PRIMACY | PWS_TYPE | ACTIVITY | POP | CITY | OWNER | PROW
+NJ1904320 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |  |  |  | WILD WEST CITY | NJ | NJ | TNCWS | A | 306 | BYRAM | P | 1
+MS0600009 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | NORFLEET UTILITIES, INC | MS | MS | CWS | N | 71 | MARKS | M | 1
+MO4170524 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | STEPPING STONES PRESCHOOL & DAYCARE | MO | MO | NTNCWS | I | 94 | IRONDALE | P | 1
+FL6254811 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | GUTIERREZ HARVESTING LLC | FL | FL | NTNCWS | A | 99 | WAUCHULA | P | 1
+ID6210008 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |  |  |  | LDS CAMP HULL VALLEY | UT | ID | TNCWS | A | 200 | WELLSVILLE | P | 1
+MD0020059 | 5 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | TEBBSTON ON MAGOTHY | MD | MD | CWS | A | 52 | WESTMINSTER | P | 1
+WV3301516 | 2 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | TOMLINSON PSD-NEWELL |  | WV | CWS | A | 4963 |  | P | 1
+TX1840001 | 3 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | CITY OF ALEDO | TX | TX | CWS | A | 5521 | ALEDO | L | 1
+NH2317130 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | RIVERBEND CAMPGROUND | NH | NH | TNCWS | A | 108 | BEDFORD | P | 1
+LA1099023 | 59 | 21 | 0 | 0 | 1 | 0 | 0 |  |  |  | RIVER RIDGE ESTATES WATER SYSTEM | LA | LA | CWS | I | 75 | BREAUX BRIDGE | P | 1
+PA2400003 | 2 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | ECHO VALLEY ESTATES | PA | PA | CWS | A | 490 | SHAVERTOWN | P | 1
+CA4400604 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | BRACKEN BRAE COUNTRY CLUB | CA | CA | CWS | A | 52 | BOULDER CREEK | P | 1
+084690437 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | CROW CREEK TRIBAL SCHOOL | SD | 08 | CWS | A | 516 | STEPHAN | F | 1
+FL6511332 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |  |  |  | PALM TREE ACRES MHP | FL | FL | CWS | A | 500 | TAMPA | P | 1
+CT0090011 | 5 | 2 | 0 | 0 | 0 | 0 | 0 |  |  |  | BETHEL WATER DEPT | CT | CT | CWS | A | 9507 | BETHEL | L | 1
+IL3163428 | 2 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | KINNIKINNICK FARM | IL | IL | TNCWS | I | 25 | CALEDONIA | P | 1
+KS2001519 | 9 | 2 | 0 | 0 | 0 | 0 | 0 |  |  |  | SIMMONS SUBDIVISION SANITATION SYSTEM | KS | KS | CWS | A | 75 | ROSE HILL | P | 1
+IA2576036 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | WOODWARD WATER SUPPLY | IA | IA | CWS | A | 1346 | WOODWARD | L | 1
+LA1017028 | 4 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | VILLAGE OF RODESSA WATER SYSTEM | LA | LA | CWS | A | 312 | RODESSA | L | 1
+CO0349502 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | MAROON LAKE | CO | CO | TNCWS | A | 550 | GLENWOOD SPRINGS | F | 1
+WY5600370 | 4 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | DEVILS TOWER KOA-CAMPSTOOL | WY | WY | TNCWS | A | 516 | DEVILS TOWER | P | 1
+NY1500278 | 14 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | ESSEX WD | NY | NY | CWS | A | 350 | ESSEX | L | 1
+PA3060471 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | BERTIES INN | PA | PA | TNCWS | A | 80 | READING | P | 1
+PA2660365 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | KRISTIS KOUNTRY KITCHEN | PA | PA | TNCWS | A | 75 | TUNKHANNOCK | P | 1
+PA5260005 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | PA-AMERICAN WATER-BROWNSVILLE | PA | PA | CWS | A | 7844 | MCMURRY | P | 1
+PA5630300 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | FOUR SEASONS RESORT | PA | PA | TNCWS | A | 100 | WEST FINLEY | P | 1
+NH2303020 | 1 | 0 | 0 | 0 | 1 | 0 | 0 |  |  |  | VIEW POINT COOP | NH | NH | CWS | A | 248 | SWANZEY | P | 1
+PA5100879 | 2 | 2 | 0 | 0 | 0 | 0 | 0 |  |  |  | BROWNS COUNTRY KITCHEN | PA | PA | TNCWS | A | 75 | PORTERSVILLE | P | 1
+OK3006101 | 46 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | HARTSHORNE | OK | OK | CWS | A | 2300 | HARTSHORNE | L | 1
+NJ1436377 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | WOODYS EXXON | PA | NJ | TNCWS | I | 29 | ALLENTOWN | P | 1
+MD0190007 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | HILL WATERWORKS COOPERATIVE | MD | MD | CWS | A | 100 | TYLERTON | P | 1
+ID2250058 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | BLM SLATE CREEK REST AREA | ID | ID | TNCWS | A | 75 | COTTONWOOD | F | 1
+104101132 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | BIE CHEMAWA INDIAN SCHOOL | DC | 10 | CWS | A | 320 | WASHINGTON | F | 1
+WA5388126 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | THOUSAND TRAILS - LEAVENWORTH | WA | WA | TNCWS | A | 185 | Wenatchee | P | 1
+SD4600354 | 7 | 0 | 0 | 0 | 7 | 0 | 0 |  |  |  | PELICAN PLAZA | SD | SD | CWS | I | 120 | WATERTOWN | P | 1
+ME0194987 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | EAGLE HILL INSTITUTE-DORM | ME | ME | TNCWS | I | 26 | STEUBEN | P | 1
+NY1904237 | 4 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | CAMP GOVOAH | NJ | NY | TNCWS | A | 200 | LAKEWOOD | P | 1
+VI1000338 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | VI Port Authority (Red Hook Terminal) |  | VI | TNCWS | A | 25 |  | S | 1
+NJ1347001 | 4 | 2 | 0 | 0 | 0 | 0 | 0 |  |  |  | LAKE COMO WATER DEPT | NJ | NJ | CWS | A | 3000 | LAKE COMO | L | 1
+CA2400079 | 2 | 0 | 0 | 0 | 1 | 0 | 0 |  |  |  | MCSWAIN ELEMENTARY SCHOOL | CA | CA | NTNCWS | A | 1046 | MERCED | L | 1
+DE0020077 | 2 | 0 | 0 | 0 | 2 | 0 | 0 |  |  |  | SHAWNEE COUNTRY STORE | DE | DE | TNCWS | A | 60 | MILFORD | P | 1
+IN2450258 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | FINDLEYS SHELBY INN | IN | IN | TNCWS | A | 60 | SHELBY | P | 1
+KY0180549 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | CENTER RIDGE WATER SYSTEM | MO | KY | CWS | A | 273 | DES PERES | L | 1
+PA5040376 | 28 | 24 | 0 | 0 | 0 | 0 | 0 |  |  |  | RACCOON CREEK STATE PARK | PA | PA | TNCWS | A | 4000 | HOOKSTOWN | S | 1
+CO0143800 | 6 | 3 | 0 | 0 | 0 | 0 | 0 |  |  |  | CAMP V | CO | CO | TNCWS | A | 29 | TELLURIDE | P | 1
+PA2350835 | 1 | 1 | 0 | 0 | 1 | 1 | 0 | 1A:8000 | 2018-08-01 | 2018-08-01 | THE MESS HALL | PA | PA | TNCWS | I | 25 | COVINGTON TOWNSHIP | P | 1
+PA2080343 | 2 | 2 | 0 | 0 | 0 | 0 | 0 |  |  |  | BEACON LIGHT BEHAVIORAL HEALTH | PA | PA | NTNCWS | I | 30 | TOWANDA | L | 1
+PA2640341 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | ELK FOREST LLC | PA | PA | TNCWS | I | 25 | WAYMART | P | 1
+PR0521075 | 3 | 1 | 0 | 0 | 1 | 1 | 0 | 1A:8000 | 2017-08-01 | 2017-08-01 | ALMIRANTE JAGUAS CORP | PR | PR | CWS | A | 315 | CIDRA | P | 1
+VA5143821 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | TUNSTALL MIDDLE SCHOOL | VA | VA | NTNCWS | A | 710 | CHATHAM | L | 1
+PR0754127 | 2 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | ACUEDUCTO RURAL SAN JOSE | PR | PR | CWS | A | 70 | NARANJITO | L | 1
+PR0401074 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | COMUNIDAD JUAN HERNANDEZ | PR | PR | CWS | A | 300 | ADJUNTAS | P | 1
+NV0000321 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | BRANDOS BLUE DIAMOND RD | NV | NV | TNCWS | A | 105 | LAS VEGAS | P | 1
+WI6100331 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | PINE ISLAND ESTATES | WV | WI | CWS | A | 75 | CHARLES TOWN | P | 1
+MI2103279 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | MCDONALD CHEVROLET | MI | MI | NTNCWS | A | 50 | MILLINGTON | P | 1
+NC0241035 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | STOKESDALE, TOWN OF | NC | NC | CWS | A | 2252 | STOKESDALE | L | 1
+TX1011060 | 3 | 3 | 0 | 0 | 0 | 0 | 0 |  |  |  | MAGNOLIA GARDENS | TX | TX | TNCWS | A | 100 | HOUSTON | P | 1
+CT1270224 | 6 | 1 | 0 | 0 | 1 | 1 | 0 | 1A:8000 | 2023-08-01 | 2023-08-01 | SHERMAN PARK & BEACH PAVILION | CT | CT | TNCWS | A | 25 | SHERMAN | L | 1
+TX1013217 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  |  |  | TURK BROTHERS BUILDING | TX | TX | NTNCWS | A | 100 | HOUSTON | P | 1
+IL3140715 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |  |  |  | ST MARYS SCHOOL BORED WELL | IL | IL | NTNCWS | A | 140 | EDWARDS | P | 1
+(38410 rows; csv has all)

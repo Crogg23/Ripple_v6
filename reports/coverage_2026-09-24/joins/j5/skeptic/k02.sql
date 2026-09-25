@@ -1,0 +1,1 @@
+select table_name, listagg(column_name, ',') within group (order by ordinal_position) from LIBRARY_MARTS.INFORMATION_SCHEMA.COLUMNS where table_schema='ECONOMICS' and table_name in ('ECONOMICS__FED_SBA_PPP','ECONOMICS__FED_SBA_PPP_LOANS_150K_PLUS') group by 1

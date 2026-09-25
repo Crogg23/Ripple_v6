@@ -1,0 +1,2 @@
+-- SHORT_FORM whole table (1,724 rows), analyzed locally
+SELECT * FROM LIBRARY_MARTS.ENERGY.ENERGY__FED_EIA861_SHORT_FORM

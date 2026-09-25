@@ -1,0 +1,7 @@
+-- S05 WIND shape: status x technology, generators, MW, year range, source files, sentinels in hub height and design speed
+STATUS | TECHNOLOGY | N | N_GEN_KEYS | MW | Y0 | Y1 | N_FILES | A_FILE | N_HUB_NULL | N_HUB_LE0 | N_SPEED_NULL | N_TURB_BAD | N_MAKERS | N_WQC
+OA | Onshore Wind Turbine | 4 | 4 | 282.5 | 2001 | 2009 | 1 | 3_2_Wind_Y2024.xlsx | 0 | 0 | 0 | 0 | 4 | 2
+OP | Offshore Wind Turbine | 3 | 3 | 172.0 | 2016 | 2024 | 1 | 3_2_Wind_Y2024.xlsx | 0 | 0 | 0 | 0 | 2 | 1
+OP | Onshore Wind Turbine | 1538 | 1538 | 152962.5 | 1981 | 2024 | 1 | 3_2_Wind_Y2024.xlsx | 0 | 0 | 0 | 0 | 35 | 4
+OS | Onshore Wind Turbine | 18 | 18 | 72.1 | 1985 | 2020 | 1 | 3_2_Wind_Y2024.xlsx | 0 | 0 | 0 | 0 | 12 | 3
+(4 rows; csv has all)

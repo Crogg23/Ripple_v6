@@ -1,0 +1,83 @@
+-- S17 OSHA 300A: biggest filers of any industry in VT, NM and HI (catches big hospitals filed under odd names or codes)
+YR | ST | CITY | ESTABLISHMENT_NAME | COMPANY_NAME | NAICS_CODE | ESTABLISHMENT_TYPE | EMP
+2023 | HI | Kailua-Kona | Roberts Tours and Transportation Inc, Hilo and Kona | Roberts Hawaii | 487110 | 1 | 296950
+2023 | HI | HONOLULU | 9095-HNL |  | 481111 | 1 | 4690
+2023 | HI | HONOLULU | HNL HONOLULUL | Hawaiian Airlines, Inc. HONOLULUL | 481111 | 1 | 4690
+2023 | HI | HONOLULU | 12812007 MOANALUA MEDICAL OFFICES | Kaiser Foundation Health Plan MOANALUA MEDICAL OFFICES | 622110 | 1 | 2296
+2023 | HI | Honolulu | Hawaiian Electric Company | Hawaiian Electric Company | 551112 | 1 | 2048
+2023 | HI | Honolulu | Hawaiian Electric Company | Hawaiian Electric Company | 551112 | 1 | 2048
+2023 | HI | HONOLULU | HNLPW9743 HNL - RAMP SERVICES | Worldwide Flight Services HNL - RAMP SERVICES | 488119 | 1 | 2043
+2023 | HI | HONOLULU | 26357 HILTON HONOLULU HAWAIIAN VILLAGE, HI | Hilton Worldwide Holdings, Inc. HILTON HONOLULU HAWAIIAN VILLAGE, HI | 721110 | 1 | 1902
+2023 | HI | Kapolei | Disney Vacation Club Hawaii Management Company, LLC dba Aulani, A Disney Resort & Spa | The Walt Disney Company | 721110 | 1 | 1641
+2023 | HI | Hilo | Hilo Medical Center | Hawaii Health Systems Corporation | 622110 | 2 | 1388
+2023 | HI | WAILUKU | 36136050 MAUI MEMORIAL   COTTAGE BUILDINGS | Kaiser Foundation Health Plan MAUI MEMORIAL COTTAGE BUILDINGS | 622110 | 1 | 1388
+2023 | HI | Laie | Polynesian Cultural Center | The Church of Jesus Christ of Latter day Saints | 712110 | 1 | 1360
+2023 | HI | Kailua-Kona | Hualalai Investors LLC | Hualalai Investors, LLC | 721110 | 1 | 1336
+2023 | HI | Honolulu | Nan, Inc. | Nan, Inc. | 236220 | 1 | 1277
+2023 | HI | LIHUE | LIHCX0UPS LIH - UPS | Worldwide Flight Services LIH - UPS | 488119 | 1 | 1077
+2023 | HI | HONOLULU | HNL HNL | United Continental Holdings Inc HNL | 481111 | 1 | 1035
+2023 | HI | Honolulu | Sheraton Waikiki | Kyo-ya Ohana LLC | 721110 | 1 | 1025
+2023 | HI | Wailea | Four Seasons Resort Maui |  | 721110 | 1 | 1019
+2023 | HI | HONOLULU | 9095-HDQ |  | 488119 | 1 | 950
+2023 | HI | HONOLULU | HDQ HEADQUARTERS | Hawaiian Airlines, Inc. HEADQUARTERS | 488119 | 1 | 950
+2023 | HI | Kapolei | City and County of Honolulu - Department of Environmental Services | City and County of Honolulu | 221320 | 3 | 899
+2023 | HI | WAILEA | 41491 GRAND WAILEA, A WALDORF ASTORIA RESORT | Hilton Worldwide Holdings, Inc. GRAND WAILEA, A WALDORF ASTORIA RESORT | 721110 | 1 | 889
+2023 | HI | Honolulu | Hawaiian Dredging Construction Company, Inc. |  | 236116 | 1 | 876
+2023 | HI | Honolulu | Blaisdell Concert Hall | UTP Productions | 711510 | 1 | 858
+2023 | HI | HONOLULU | 14375 YMCA OF HONOLULU | Altres Inc. YMCA OF HONOLULU | 713990 | 1 | 843
+2023 | HI | Kapolei | Four Seasons Resort Ko Olina | FS Ko Olina LLC | 721110 | 1 | 805
+2023 | HI | Koloa | Grand Hyatt Kauai Resort and Spa | Hyatt Corporation | 721110 | 1 | 770
+2023 | HI | Honolulu | Honolulu Terminal | Matson Terminals, Inc. | 488320 | 1 | 762
+2023 | HI | San Juan | Hospital Universitario de Adultos | Departamento de Salud | 622110 | 3 | 722
+2023 | HI | Kamuela | DHL Mahi Staffing, LLC. | Mauna Lani, Auberge Resorts Collection | 721110 | 1 | 710
+2023 | HI | Honolulu | Halekulani Hotel | Hotels and Resorts of Halekulani | 721110 | 1 | 709
+2023 | HI | Kahului | Kahului Campus | Hale Makua Health Services | 623110 | 1 | 351
+2023 | HI | Lahaina | Westin Nanea Ocean Villas | FOH Hospitality | 721110 | 1 | 268
+2023 | HI | Honolulu | Mental Health Kokua | Mental Health Kokua | 623220 | 1 | 256
+2023 | HI | Honolulu | Hawaii Behavioral Health LLC | Hawaii Behavioral Health LLC | 624110 | 1 | 254
+2023 | HI | Honolulu | Tripler Army Medical Center |  | 561720 | 1 | 199
+2023 | HI | Wailuku | Community Clinic of Maui, Inc. dba Malama I Ke Ola Health Center | Community Clinic of Maui, Inc. dba Malama I Ke Ola Health Center | 621112 | 1 | 177
+2023 | HI | PEEARL CITY | 507 BENCHMARK BEHAVIORAL HEALTH SYSTEM, INC.-BENCHMARK HOSPITAL | Universal Health Services, Inc BENCHMARK BEHAVIORAL HEALTH SYSTEM, INC.-BENCHMARK HOSPITAL | 623220 | 1 | 175
+2023 | HI | Honolulu | Avalon Care Center Honolulu | Avalon Healthcare Management, Inc | 623110 | 1 | 138
+2023 | HI | Wailuku | Wailuku Campus | Hale Makua Health Services | 623110 | 1 | 120
+2023 | HI | Honolulu | SODEXO AT STRAUB CLINIC AND HOSPITAL EVS | Sodexo Inc | 561720 | 1 | 106
+2023 | HI | Honolulu | Kokua Hospitality, OR LLC | Hyatt Place Waikiki Beach | 721110 | 1 | 104
+2023 | HI | Waianae | Group Homes | Waianae Coast Community Mental Health Center, Inc. | 623220 | 1 | 102
+2023 | HI | Waianae | Waianae Coast Community Mental Health Center, Inc. | Waianae Coast Community Mental Health Center, Inc. | 621420 | 1 | 102
+2023 | HI | Honolulu | SODEXO AT STRAUB CLINIC AND HOSPITAL FNS | Sodexo Inc | 722310 | 1 | 92
+2023 | HI | Aiea | Down to Earth Pearlridge | Healthy's Inc. dba Down to Earth | 445110 | 1 | 52
+2023 | HI | Kapolei | Cardinal Health - Kapolei HI | Cardinal Health | 424210 | 1 | 45
+2023 | HI | Honolulu | Down to Earth Honolulu | Healthy's Inc. dba Down to Earth | 445110 | 1 | 45
+2023 | HI | Honolulu | SODEXO AT QUEENS MEDICAL CENTER FOOD | Sodexo Inc | 722310 | 1 | 41
+2023 | HI | Kahului | Down to Earth Kahului | Healthy's Inc. dba Down to Earth | 445110 | 1 | 40
+2023 | HI | Kailua | Down to Earth Kailua | Healthy's Inc. dba Down to Earth | 445110 | 1 | 40
+2023 | HI | Kahului | Aloha Surgical Center | Surgical Care Affiliates SCA Health | 621493 | 1 | 40
+2023 | HI | Honolulu | Down to Earth Kakaako | Healthy's Inc. dba Down to Earth | 445110 | 1 | 35
+2023 | HI | Kapolei | Down to Earth Kapolei | Healthy's Inc. dba Down to Earth | 445110 | 1 | 35
+2023 | HI | Honolulu | Hawaii Pacific Health Straub Honolulu | CPS, LLC | 446110 | 1 | 22
+2023 | HI | Honolulu | "UHM/Public Health" | Research Corporation of the University of Hawaii (RCUH) | 541712 | 2 | 21
+2023 | HI | HONOLULU | 13988 INTEGRATED HEALTH HAWAII, LLC | Altres Inc. INTEGRATED HEALTH HAWAII, LLC | 621999 | 1 | 19
+2023 | HI | PEARL CITY | 403 OHANA HEALTH PLAN | Transdev OHANA HEALTH PLAN | 488999 | 1 | 18
+2023 | HI | Honolulu | SODEXO AT KAPIOLANI MEDICAL CENTER | Sodexo Inc | 722310 | 1 | 17
+2023 | HI | Honolulu | "UHM/JABSOM/Native Hawn Health" | Research Corporation of the University of Hawaii (RCUH) | 541712 | 2 | 16
+2023 | HI | Honolulu | SODEXO AT QUEENS MEDICAL CENTER | Sodexo Inc | 722310 | 1 | 7
+2023 | HI | Honolulu | 0493 - PIK | BAYADA Home Health Care, Inc. | 621610 | 1 | 6
+2023 | HI | Kahului | 0604 - BHS | BAYADA Home Health Care, Inc. | 621610 | 1 | 5
+2023 | HI | Honolulu | "Department of Health/Genetics" | Research Corporation of the University of Hawaii (RCUH) | 541712 | 2 | 3
+2023 | HI | Honolulu | 6008 - OAL | BAYADA Home Health Care, Inc. | 621610 | 1 | 2
+2023 | HI | Honolulu | "Direct/Dept of Health/Envir Pl" | Research Corporation of the University of Hawaii (RCUH) | 541712 | 2 | 2
+2023 | HI | Honolulu | "UHM/Environment Health&Safety" | Research Corporation of the University of Hawaii (RCUH) | 541712 | 2 | 2
+2023 | HI | Ewa Beach | Sutter Health (30863) | Sutter Health | 551114 | 1 | 1
+2023 | HI | Honolulu | SODEXO AT QUEENS MEDICAL CENTER CTS | Sodexo Inc | 561720 | 1 | 1
+2023 | HI | Hilo | 6010 - HLL | BAYADA Home Health Care, Inc. | 621610 | 1 | 1
+2023 | HI | Wailuku | 6009 - MVL | BAYADA Home Health Care, Inc. | 621610 | 1 | 1
+2023 | HI | HONOLULU | HI002-0475C-HI - REMOTE | SOUTHWEST BEHAVIORAL HEALTH SV | 621420 | 1 | 1
+2023 | HI | Trippler AMC | Trippler Army Medical Center | DILLIGAS CORP | 561320 | 1 | 0
+2024 | HI | HONOLULU | HNL HONOLULUL | Hawaiian Airlines Inc. HONOLULUL | 481111 | 1 | 4487
+2024 | HI | HONOLULU | 12812007 MOANALUA MEDICAL OFFICES | Kaiser Foundation Health Plan | 622110 | 1 | 2414
+2024 | HI | HONOLULU | 26357 HILTON HONOLULU HAWAIIAN VILLAGE HI | Hilton Worldwide Holdings Inc. HILTON HONOLULU HAWAIIAN VILLAGE HI | 721110 | 1 | 2017
+2024 | HI | Honolulu | Hawaiian Electric Company | Hawaiian Electric Company | 551112 | 1 | 1961
+2024 | HI | Honolulu | State of Hawaii, The Judiciary |  | 922110 | 2 | 1710
+2024 | HI | Kapolei | Disney Vacation Club Hawaii Management Company, LLC, dba Aulani, A Disney Resort & Spa | The Walt Disney Company | 721110 | 1 | 1670
+2024 | HI | Hilo | Hilo Medical Center | Hawaii Health Systems Corporation | 622110 | 2 | 1594
+(451 rows; csv has all)

@@ -1,0 +1,63 @@
+-- S18 JOIN: Form 4s in the EDGAR table filed more than 21 business days after the trade date (period of report), matched on accession number
+ACC | ISSUER_TICKER | FILING_DATE | PERIOD_OF_REPORT | OWNER_NAME | RELATIONSHIP | TITLE | TRANSACTION_DATE | TRANSACTION_CODE | SHARES | PRICE_PER_SHARE | TRANSACTION_VALUE | ACQUIRED_DISPOSED
+0000320193-23-000081 | AAPL | 2023-09-19 | 2023-08-08 | Adams Katherine L. | Officer | SVP, GC and Secretary | 2023-08-08 | G | 5600.0 | 0.0 | 0.0 | D
+0001127602-18-000746 | AMAT | 2018-01-03 | 2017-11-21 | Iannotti Thomas J | Director |  | 2017-11-21 | G | 850.0 | 0.0 | 0.0 | D
+0001127602-19-027603 | AMAT | 2019-08-29 | 2019-07-03 | Iannotti Thomas J | Director |  | 2019-07-03 | G | 1000.0 | 0.0 | 0.0 | D
+0001127602-22-002096 | AMAT | 2022-01-25 | 2021-12-09 | Salehpour Ali | Officer | SVP, Srv., Dspl. & Flex. | 2021-12-09 | G | 250.0 | 0.0 | 0.0 | D
+0001127602-23-000726 | AMAT | 2023-01-04 | 2022-11-21 | Iannotti Thomas J | Director |  | 2022-11-21 | G | 1000.0 | 0.0 | 0.0 | D
+0001127602-23-002050 | AMAT | 2023-01-23 | 2022-07-15 | Nalamasu Omkaram | Officer | Senior Vice President, CTO | 2022-07-15 | S | 200.0 | 94.47 | 18894.0 | D
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-01-14 | P | 28.0 | 163.0 | 4564.0 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-01-14 | P | 28.0 | 159.89 | 4476.92 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2021-11-15 | P | 27.0 | 156.51 | 4225.7699999999995 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2021-11-15 | P | 28.0 | 156.51 | 4382.28 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-06-21 | P | 20.0 | 94.75 | 1895.0 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-03-08 | P | 37.0 | 123.26 | 4560.62 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-02-14 | P | 30.0 | 131.53 | 3945.9 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2023-01-20 | S | 178.0 | 107.8 | 19188.399999999998 | D
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2023-01-20 | S | 199.0 | 107.8 | 21452.2 | D
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2021-12-15 | P | 28.0 | 146.65 | 4106.2 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2021-10-11 | P | 29.0 | 128.26 | 3719.54 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-03-08 | P | 36.0 | 123.26 | 4437.360000000001 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2021-10-14 | P | 29.0 | 131.57 | 3815.5299999999997 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2022-02-14 | P | 30.0 | 131.53 | 3945.9 | A
+0001127602-23-002146 | AMAT | 2023-01-24 | 2021-10-11 | CHEN XUN | Director |  | 2021-12-15 | P | 27.0 | 146.65 | 3959.55 | A
+0000899243-23-020637 | BRK.A | 2023-12-14 | 2023-10-27 | GUYMAN CHARLOTTE | Director |  | 2023-12-12 | G | 148.0 | 0.0 | 0.0 | D
+0000899243-23-020637 | BRK.A | 2023-12-14 | 2023-10-27 | GUYMAN CHARLOTTE | Director |  | 2023-12-12 | G | 113.0 | 0.0 | 0.0 | D
+0000899243-23-020637 | BRK.A | 2023-12-14 | 2023-10-27 | GUYMAN CHARLOTTE | Director |  | 2023-10-27 | C | 1500.0 | 0.0 | 0.0 | A
+0000899243-23-020637 | BRK.A | 2023-12-14 | 2023-10-27 | GUYMAN CHARLOTTE | Director |  | 2023-12-12 | G | 16.0 | 0.0 | 0.0 | D
+0001209191-17-065069 | BRK.A | 2017-12-11 | 2017-11-03 | MUNGER CHARLES T | Director,Officer | Vice Chairman |  |  |  |  |  | 
+0001209191-22-037303 | BRK.A | 2022-06-16 | 2022-05-16 | MUNGER CHARLES T | Director,Officer | Vice Chairman |  |  |  |  |  | 
+0001209191-23-045935 | BRK.A | 2023-08-15 | 2023-03-09 | MUNGER CHARLES T | Director,Officer | Vice Chairman |  |  |  |  |  | 
+0001209191-23-053898 | BRK.A | 2023-10-30 | 2023-05-17 | OLSON RONALD L | Director |  | 2013-05-19 | J | 781.0 |  |  | D
+0001209191-23-053898 | BRK.A | 2023-10-30 | 2023-05-17 | OLSON RONALD L | Director |  | 2023-05-18 | J | 1562.0 |  |  | D
+0001209191-23-053898 | BRK.A | 2023-10-30 | 2023-05-17 | OLSON RONALD L | Director |  | 2023-05-17 | C | 1500.0 |  |  | A
+0001728451-18-000006 | BRK.A | 2018-06-28 | 2018-05-27 | Jain Ajit | Director,Officer | Vice Chairman | 2018-05-27 | G | 6.0 |  |  | D
+0000018230-20-000287 | CAT | 2020-10-30 | 2020-08-11 | Ainsworth William P | Officer | Group President | 2020-10-30 | S | 12000.0 | 154.78 | 1857360.0 | D
+0000018230-20-000287 | CAT | 2020-10-30 | 2020-08-11 | Ainsworth William P | Officer | Group President | 2020-08-11 | G | 5588.0 | 0.0 | 0.0 | D
+0000018230-21-000016 | CAT | 2021-01-25 | 2020-08-10 | OSBORN WILLIAM A | Director |  | 2020-08-10 | G | 1471.0 | 0.0 | 0.0 | D
+0000018230-21-000017 | CAT | 2021-01-25 | 2020-12-16 | Ainsworth William P | OfficerOther | Group Pres. thru 12/31/2020 | 2020-12-16 | G | 500.0 | 0.0 | 0.0 | D
+0000018230-21-000017 | CAT | 2021-01-25 | 2020-12-16 | Ainsworth William P | OfficerOther | Group Pres. thru 12/31/2020 | 2021-01-21 | G | 500.0 | 0.0 | 0.0 | D
+0000018230-21-000058 | CAT | 2021-02-11 | 2020-12-30 | Umpleby III Donald J | Director,Officer | Chairman & CEO | 2021-02-09 | F | 19766.0 | 196.78 | 3889553.48 | D
+0000018230-21-000058 | CAT | 2021-02-11 | 2020-12-30 | Umpleby III Donald J | Director,Officer | Chairman & CEO | 2021-02-09 | A | 46337.0 | 0.0 | 0.0 | A
+0000018230-21-000058 | CAT | 2021-02-11 | 2020-12-30 | Umpleby III Donald J | Director,Officer | Chairman & CEO | 2020-12-30 | G | 59000.0 | 0.0 | 0.0 | D
+0001104659-22-019407 | CAT | 2022-02-10 | 2021-07-06 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2021-07-06 | A | 42281.0 | 0.0 | 0.0 | A
+0001104659-22-019407 | CAT | 2022-02-10 | 2021-07-06 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2022-02-08 | F | 17984.0 | 200.77 | 3610647.68 | D
+0001104659-22-019407 | CAT | 2022-02-10 | 2021-07-06 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2021-12-01 | G | 1520.0 | 0.0 | 0.0 | D
+0001104659-22-116967 | CAT | 2022-11-10 | 2022-05-26 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2022-11-08 | M | 151402.0 | 127.6 | 19318895.2 | A
+0001104659-22-116967 | CAT | 2022-11-10 | 2022-05-26 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2022-11-08 | F | 113927.0 | 229.65 | 26163335.55 | D
+0001104659-22-116967 | CAT | 2022-11-10 | 2022-05-26 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2022-05-26 | G | 13835.0 | 0.0 | 0.0 | D
+0001104659-22-116967 | CAT | 2022-11-10 | 2022-05-26 | Umpleby III Donald J | Director,Officer | Chairman and CEO | 2022-08-18 | G | 7490.0 | 0.0 | 0.0 | D
+0001104659-23-011402 | CAT | 2023-02-06 | 2022-11-09 | Johnson Cheryl H | Officer | Chief Human Resources Officer | 2023-02-03 | G | 693.0 | 0.0 | 0.0 | D
+0001104659-23-011402 | CAT | 2023-02-06 | 2022-11-09 | Johnson Cheryl H | Officer | Chief Human Resources Officer | 2022-11-09 | G | 6607.0 | 0.0 | 0.0 | D
+0001104659-23-011402 | CAT | 2023-02-06 | 2022-11-09 | Johnson Cheryl H | Officer | Chief Human Resources Officer | 2023-02-03 | M | 14260.0 | 138.35 | 1972871.0 | A
+0001104659-23-011402 | CAT | 2023-02-06 | 2022-11-09 | Johnson Cheryl H | Officer | Chief Human Resources Officer | 2023-02-03 | M | 9623.0 | 127.6 | 1227894.8 | A
+0001104659-23-011402 | CAT | 2023-02-06 | 2022-11-09 | Johnson Cheryl H | Officer | Chief Human Resources Officer | 2023-02-03 | S | 14260.0 | 250.27 | 3568850.2 | D
+0001104659-23-011402 | CAT | 2023-02-06 | 2022-11-09 | Johnson Cheryl H | Officer | Chief Human Resources Officer | 2023-02-03 | S | 9623.0 | 250.68 | 2412293.64 | D
+0001104659-24-024295 | CAT | 2024-02-15 | 2023-02-13 | Johnson Denise C | Officer | Group President | 2024-02-13 | F | 4369.0 | 313.4 | 1369244.5999999999 | D
+0001104659-24-024295 | CAT | 2024-02-15 | 2023-02-13 | Johnson Denise C | Officer | Group President | 2024-02-13 | A | 12280.0 | 0.0 | 0.0 | A
+0001209191-23-012738 | CSCO | 2023-02-24 | 2022-12-13 | Murphy Sarah Rae | Director |  | 2022-12-13 | G | 5001.0 | 0.0 | 0.0 | A
+0001209191-23-012738 | CSCO | 2023-02-24 | 2022-12-13 | Murphy Sarah Rae | Director |  | 2022-12-13 | G | 5001.0 | 0.0 | 0.0 | D
+0001209191-23-050684 | GOOG | 2023-09-27 | 2022-05-09 | RAGHAVAN PRABHAKAR | Officer | Senior Vice President | 2023-09-25 | F | 8936.0 | 131.25 | 1172850.0 | D
+0001209191-23-050684 | GOOG | 2023-09-27 | 2022-05-09 | RAGHAVAN PRABHAKAR | Officer | Senior Vice President | 2023-09-25 | C | 6635.0 | 0.0 | 0.0 | D
+0001209191-23-050684 | GOOG | 2023-09-27 | 2022-05-09 | RAGHAVAN PRABHAKAR | Officer | Senior Vice President | 2023-09-25 | C | 25533.0 | 0.0 | 0.0 | D
+(197 rows; csv has all)

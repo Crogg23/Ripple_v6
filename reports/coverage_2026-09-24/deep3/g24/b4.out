@@ -1,0 +1,293 @@
+-- S17 NCUA raw call report (FS220) rows for the 4 negative-net-worth credit unions plus Navy Federal as a control
+CU_NUMBER | CYCLE_DATE | JOIN_NUMBER | UPDATE_DATE | ACCT_007 | ACCT_008 | ACCT_009 | ACCT_010 | ACCT_011C | ACCT_013 | ACCT_018 | ACCT_019 | ACCT_021B | ACCT_022B | ACCT_023B | ACCT_025A | ACCT_025B | ACCT_031A | ACCT_031B | ACCT_041B | ACCT_042 | ACCT_058C | ACCT_065 | ACCT_067 | ACCT_068 | ACCT_069 | ACCT_080 | ACCT_083 | ACCT_084 | ACCT_100 | ACCT_300 | ACCT_340 | ACCT_380 | ACCT_386 | ACCT_387 | ACCT_388 | ACCT_392 | ACCT_400 | ACCT_457 | ACCT_521 | ACCT_522 | ACCT_523 | ACCT_524 | ACCT_550 | ACCT_551 | ACCT_552 | ACCT_562 | ACCT_563 | ACCT_602 | ACCT_630 | ACCT_652A | ACCT_652B1 | ACCT_652B2 | ACCT_655A | ACCT_655B1 | ACCT_655B2 | ACCT_656C | ACCT_657 | ACCT_658 | ACCT_662 | ACCT_668 | ACCT_671 | ACCT_672A | ACCT_672B1 | ACCT_672B2 | ACCT_703 | ACCT_704 | ACCT_705 | ACCT_706 | ACCT_707 | ACCT_708 | ACCT_710 | ACCT_712 | ACCT_713 | ACCT_714 | ACCT_715 | ACCT_716 | ACCT_718 | ACCT_719 | ACCT_720 | ACCT_721 | ACCT_722 | ACCT_723 | ACCT_724 | ACCT_730 | ACCT_741A | ACCT_741B1 | ACCT_741B2 | ACCT_742A | ACCT_742B1 | ACCT_742B2 | ACCT_746A | ACCT_746B1 | ACCT_746B2 | ACCT_749 | ACCT_750A | ACCT_750B1 | ACCT_750B2 | ACCT_751 | ACCT_755 | ACCT_760C | ACCT_761C | ACCT_771 | ACCT_775 | ACCT_794 | ACCT_798 | ACCT_799A | ACCT_799B1 | ACCT_799B2 | ACCT_825 | ACCT_860C | ACCT_880 | ACCT_902 | ACCT_906A | ACCT_908A | ACCT_908C | ACCT_911 | ACCT_931 | ACCT_940 | ACCT_959 | ACCT_960 | ACCT_968 | ACCT_973 | ACCT_975 | ACCT_976 | ACCT_991 | ACCT_965A | ACCT_965B | ACCT_965C | ACCT_965D | ACCT_020A | ACCT_020B | ACCT_024A | ACCT_024B | ACCT_042A | ACCT_090A | ACCT_090B | ACCT_090C | ACCT_090D | ACCT_099A | ACCT_143A | ACCT_143B | ACCT_143C | ACCT_143D | ACCT_400A | ACCT_400B | ACCT_400C | ACCT_400D | ACCT_400F | ACCT_459A | ACCT_463A | ACCT_475A | ACCT_475B | ACCT_475C | ACCT_475D | ACCT_691B | ACCT_691C | ACCT_692 | ACCT_692A | ACCT_704A | ACCT_704B | ACCT_704C | ACCT_704D | ACCT_704E | ACCT_705A | ACCT_705B | ACCT_708B | ACCT_720A | ACCT_720B | ACCT_720C | ACCT_720D | ACCT_720E | ACCT_721A | ACCT_721B | ACCT_724B | ACCT_733A | ACCT_745C1 | ACCT_745C2 | ACCT_796C1 | ACCT_796C2 | ACCT_797C1 | ACCT_797C2 | ACCT_799C1 | ACCT_799C2 | ACCT_965C1 | ACCT_965C2 | ACCT_088 | ACCT_799A1 | ACCT_672B | ACCT_672C1 | ACCT_672C2 | ACCT_672D | ACCT_744B | ACCT_744C1 | ACCT_744C2 | ACCT_744D | ACCT_652B | ACCT_652C1 | ACCT_652C2 | ACCT_652D | ACCT_766A | ACCT_766B | ACCT_766C1 | ACCT_766C2 | ACCT_766D | ACCT_766E | ACCT_798A1 | ACCT_798A2 | ACCT_798A3 | ACCT_009A | ACCT_009B | ACCT_009C | ACCT_769A1 | ACCT_769B1 | ACCT_616 | ACCT_616A | ACCT_704A1 | ACCT_704C1 | ACCT_980 | ACCT_742C1 | ACCT_742C2 | ACCT_020J | ACCT_020K | ACCT_020L | ACCT_021J | ACCT_021K | ACCT_021L | ACCT_022J | ACCT_022K | ACCT_022L | ACCT_023J | ACCT_023K | ACCT_023L | ACCT_041J | ACCT_041K | ACCT_041L | ACCT_1019 | ACCT_1019A | ACCT_1019B | ACCT_1019C | ACCT_1019D | ACCT_1019E | ACCT_789A | ACCT_789A1 | ACCT_789B | ACCT_789B1 | _LOADED_AT | _SOURCE_RUN_ID | _SRC_SHA256
+24937 | 2026-03-31 | 26467 | 2026-04-30 23:20:30 | 0 | 374361 | 0 | 2625969 | 0 | 1285314 | 2813705 | 0 | 97567 | 32628 | 0 | 249 | 1339467 | 3 | 85782 | 204146 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 933 | 4000 | 0 | 179738 | 0 | 8392 | 0 | 0 | 0 | 0 | 0 | 3 | 0.0 | 1291.2 | 275.0 | 792.8 | 144060 | 43616 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 286436 | 0 | 0 | 0 | 135409 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 233792 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 19011 | 0 | 0 | 0 | 0 | 3775 | 0 | 1528391 | 237720 | 0 | 280781 | 751523 | 9636 | 0 | -191511 | 0 | 0 | 162 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 36898 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 35537 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1786463951872809 | 5e417725-4193-45d9-ac6a-6f39dcab158d | f4c6cdaf872cca6b313d6e96f6c5adacba6e0cdff74a59b0b1f24f7e1678b1f1
+24940 | 2026-03-31 | 26468 | 2026-04-15 22:06:42 | 0 | 154627 | 0 | 1454253 | 0 | 842778 | 2462137 | 0 | 65403 | 26506 | 0 | 77 | 819534 | 0 | 0 | 168914 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1830 | 500000 | 0 | 244485 | 984 | 18754 | 0 | 0 | 0 | 0 | 0 | 6 | 0.0 | 1561.0 | 800.0 | 1237.0 | 247419 | 17800 | 0 | 0 | 0 | -950156 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 133604 | 0 | 0 | 0 | 507564 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 118335 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 44099 | 0 | 0 | 0 | 0 | -52373 | 369312 | 1619359 | 625447 | 0 | 52031 | 67277 | 16450 | 0 | -374667 | 0 | 0 | 19 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 101566 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 15624 | 0 | 81465 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1786463951872809 | 5e417725-4193-45d9-ac6a-6f39dcab158d | f4c6cdaf872cca6b313d6e96f6c5adacba6e0cdff74a59b0b1f24f7e1678b1f1
+2796 | 2026-03-31 | 1298 | 2026-04-09 22:03:10 | 20197 | 9287 | 0 | 4660792 | 0 | 6376553 | 7220553 | 0 | 52926 | 88116 | 0 | 2025 | 3476329 | 17 | 165035 | 240901 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1225 | 2500 | 0 | 0 | 6975 | 10933 | 0 | 0 | 0 | 0 | 0 | 5 | 1100.0 | 1500.0 | 550.0 | 750.0 | 80069 | 150 | 0 | 0 | 0 | -68319 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4206761 | 0 | 0 | 0 | 121183 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 57342 | 0 | 0 | 0 | 0 | 3399 | 338245 | 844000 | 1569074 | 0 | 600718 | 600718 | 0 | 0 | -2833086 | 0 | 0 | 252 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 178373 | 0 | 31060 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 67353 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1786463951872809 | 5e417725-4193-45d9-ac6a-6f39dcab158d | f4c6cdaf872cca6b313d6e96f6c5adacba6e0cdff74a59b0b1f24f7e1678b1f1
+5536 | 2026-03-31 | 2399 | 2026-05-12 10:14:20 | 1778069826 | 1428326631 | 0 | 203558954708 | 0 | 173175282887 | 173175282887 | 0 | 1130921028 | 255882925 | 156737726 | 8875233 | 143350868345 | 873383 | 16120705154 | 2145485089 | 0 | 244325000 | 0 | 0 | 0 | 0 | 0 | 15350733 | 184000000 | 0 | 0 | 58120058 | 747701464 | 0 | 0 | 0 | 0 | 0 | 0 | 1800.0 | 1800.0 | 459.0 | 539.0 | 999082781 | 124013857 | 0 | 0 | 0 | 0 | 1219410229 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 39263997395 | 22724377289 | 0 | 0 | 1661827798 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1462924882 | 0 | 0 | 0 | 0 | 4402921453 | 6544325000 | 0 | 38068695871 | 7215884366 | 45473715230 | 57542109518 | 26673921042 | 0 | 399808576 | 0 | 0 | 1067160 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1674664433 | 0 | 322961151 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 303156966 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 488158580 | 227792815 | 8698044215 | 0 | 0 | 0 | 0 | 0 | 32413767 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1786463951872809 | 5e417725-4193-45d9-ac6a-6f39dcab158d | f4c6cdaf872cca6b313d6e96f6c5adacba6e0cdff74a59b0b1f24f7e1678b1f1
+8445 | 2026-03-31 | 3959 | 2026-05-15 12:43:45 | 1898120 | 123298 | 0 | 71355580 | 0 | 106378414 | 148178414 | 0 | 336012 | 110398 | 0 | 6516 | 43656213 | 332 | 3690306 | 520191 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 15704 | 50000 | 0 | 0 | 4250 | 418636 | 0 | 0 | 0 | 0 | 0 | 168 | 890.0 | 1600.0 | 700.0 | 1400.0 | 212458 | 60246 | 0 | 0 | 0 | -91737477 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 63117421 | 0 | 0 | 0 | 93242832 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1287549 | 0 | 0 | 0 | 0 | 201403 | 0 | 41800000 | 14757930 | 5059877 | 21317828 | 23189356 | 0 | 0 | 14713240 | 0 | 0 | 2035 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 537423 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 219929 | 18202 | 4121460 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1786463951872809 | 5e417725-4193-45d9-ac6a-6f39dcab158d | f4c6cdaf872cca6b313d6e96f6c5adacba6e0cdff74a59b0b1f24f7e1678b1f1
+(5 rows; csv has all)
+
+-- S18 FDIC enforcement orders since 2010, raw, for local classification (bank vs person, termination vs new)
+ORDER_ID | ORDER_DATE | ORDER_YEAR | ORDER_CATEGORY | ORDER_TYPE | ORDER_TITLE | RESPONDENTS | RESPONDENT_COUNT | CERT_NUMBER | BANK_COUNT | CMP_AMOUNT_TOTAL | BANK_NAME | INSTITUTION_NAME | BANK_STATE | BANK_ACTIVE
+a0Wt000000B05vJEAR | 2019-06-05 | 2019 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Angela L. Flippin | 1 | 15792 | 1 |  | Peoples Bank of Moniteau County | Peoples Bank of Moniteau County | MO | 1
+a0W3d000004NmVkEAK | 2024-06-27 | 2024 | Stipulated Orders and Written Agreements | Voluntary Termination of Deposit Insurance | Order of Termination of Insurance | OneSouth Bank | 1 | 15813 | 1 |  | OneSouth Bank | OneSouth Bank | GA | 0
+a0Wt00000053fdpEAA | 2016-04-22 | 2016 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition From Further Participation | Rachel J. Knasinski | 1 | 15916 | 1 | 0.00 | First State Bank of West Salem | THE FIRST STATE BANK OF WEST SALEM | IL | 0
+a0Wt00000053fQLEAY | 2017-05-11 | 2017 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Scott Jordan | 1 | 15969 | 1 | 0.00 | Rondout Savings Bank | Rondout Savings Bank | NY | 1
+a0Wt00000053fobEAA | 2018-04-03 | 2018 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Craig Murren | 1 | 16022 | 1 | 0.00 | New York Community Bank | New York Community Bank | NY | 0
+a0Wt000000CKqp9EAD | 2022-12-09 | 2022 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Emilio M. Arocho | 1 | 16022 | 1 |  | New York Community Bank | New York Community Bank | NY | 0
+a0Wt00000053fYZEAY | 2013-04-26 | 2013 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating the Cease and Desist Order | First State Bank | 1 | 15787 | 1 |  | First State Bank | First State Bank | SD | 0
+a0Wt00000053fH5EAI | 2012-07-10 | 2012 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating the Cease and Desist Order | The First State Bank of Burlingame | 1 | 15794 | 1 |  | The First State Bank of Burlingame | The First State Bank of Burlingame | KS | 0
+a0Wt00000053dIBEAY | 2013-10-10 | 2013 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Premier Community Bank | 1 | 15799 | 1 | 0.00 | Premier Community Bank | Premier Community Bank | WI | 1
+a0Wt00000053dHuEAI | 2014-12-24 | 2014 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Premier Community Bank | 1 | 15799 | 1 | 0.00 | Premier Community Bank | Premier Community Bank | WI | 1
+a0Wt00000053dJ1EAI | 2012-03-08 | 2012 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Community State Bank | 1 | 15868 | 1 | 0.00 | Community State Bank | Community State Bank | MI | 0
+a0Wt00000053fHTEAY | 2012-04-18 | 2012 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay | Community State Bank | 1 | 15868 | 1 | 11000.00 | Community State Bank | Community State Bank | MI | 0
+a0Wt00000053fKaEAI | 2012-04-18 | 2012 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay | Community State Bank | 1 | 15868 | 1 | 1925.00 | Community State Bank | Community State Bank | MI | 0
+a0Wt00000053fkwEAA | 2013-11-08 | 2013 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay | Community State Bank | 1 | 15868 | 1 | 4770.00 | Community State Bank | Community State Bank | MI | 0
+a0Wt00000053dHdEAI | 2014-12-19 | 2014 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Community State Bank | 1 | 15868 | 1 | 0.00 | Community State Bank | Community State Bank | MI | 0
+a0Wt00000053drCEAQ | 2010-02-12 | 2010 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | ORDER TO PAY | COMMUNITY STATE BANK | 1 | 15868 | 1 | 2050.00 | Community State Bank | COMMUNITY STATE BANK | MI | 0
+a0Wt000000BfgY4EAJ | 2020-12-07 | 2020 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Community First Bank | 1 | 15907 | 1 |  | Community First Bank | Community First Bank | NE | 0
+a0WSJ000001lbJh2AI | 2024-12-17 | 2024 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Community First Bank | 1 | 15907 | 1 |  | Community First Bank | Community First Bank | NE | 0
+a0W3d000003w07WEAQ | 2024-02-12 | 2024 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay Civil Money Penalty | Guaranty Bank and Trust Company | 1 | 15953 | 1 | 80500.00 | Guaranty Bank and Trust Company | Guaranty Bank and Trust Company | MS | 1
+a0Wt00000053dlMEAQ | 2011-01-06 | 2011 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | ORDER TO PAY | CENTRAL BANK & TRUST CO. | 1 | 15815 | 1 | 3150.00 | Central Bank & Trust Co. | CENTRAL BANK & TRUST CO. | KY | 1
+a0WSJ000003XonV2AS | 2025-05-07 | 2025 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Kacy A. Cary | 1 | 15830 | 1 |  | Northwest Bank & Trust Company | Northwest Bank & Trust Company | IA | 0
+a0Wt000000937i8EAA | 2019-01-24 | 2019 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition From Further Participation | Gerald Nesmith Arnette, Jr. | 1 | 15932 | 1 |  | The Citizens Bank | The Citizens Bank | SC | 1
+a0Wt00000053fIJEAY | 2012-05-11 | 2012 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition From Further Participation | George Todd Powers | 1 | 15947 | 1 |  | Iowa State Bank | Iowa State Bank | IA | 1
+a0Wt00000053dx8EAA | 2010-03-26 | 2010 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | ORDER TO PAY CIVIL MONEY PENALTY | IOWA STATE BANK | 1 | 15808 | 1 | 2270.00 | Iowa State Bank | IOWA STATE BANK | IA | 1
+a0Wt00000053fnUEAQ | 2018-04-04 | 2018 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Sunrise Bank Dakota | 1 | 15847 | 1 | 0.00 | Sunrise Bank Dakota | Sunrise Bank Dakota | SD | 1
+a0Wt000000AgfngEAB | 2019-12-18 | 2019 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating The Consent Order | Sunrise Bank Dakota | 1 | 15847 | 1 |  | Sunrise Bank Dakota | Sunrise Bank Dakota | SD | 1
+a0Wt000000B8UbLEAV | 2020-02-24 | 2020 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay | Michael B. Owens | 1 | 15847 | 1 | 15000.00 | Sunrise Bank Dakota | Sunrise Bank Dakota | SD | 1
+a0Wt00000053fcJEAQ | 2016-02-22 | 2016 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Jourdanton State Bank | 1 | 15879 | 1 | 0.00 | Jourdanton State Bank | Jourdanton State Bank | TX | 0
+a0Wt000000CZpjFEAT | 2023-01-27 | 2023 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Maxwell State Bank | 1 | 15930 | 1 |  | Maxwell State Bank | Maxwell State Bank | IA | 1
+a0Wt00000053dHjEAI | 2015-02-10 | 2015 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | The Citizens Bank | 1 | 15934 | 1 | 0.00 | The Citizens Bank | The Citizens Bank | GA | 0
+a0Wt000000BSUkxEAH | 2020-06-23 | 2020 | Stipulated Orders and Written Agreements | Voluntary Termination of Deposit Insurance | Order of Termination of Insurance | The Citizens Bank | 1 | 15934 | 1 |  | The Citizens Bank | The Citizens Bank | GA | 0
+a0Wt00000053dUVEAY | 2011-10-06 | 2011 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | ORDER TO PAY | THE CITIZENS BANK | 1 | 15934 | 1 | 7000.00 | The Citizens Bank | THE CITIZENS BANK | GA | 0
+a0Wt00000053dYsEAI | 2011-11-22 | 2011 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | CONSENT ORDER | THE CITIZENS BANK | 1 | 15934 | 1 |  | The Citizens Bank | THE CITIZENS BANK | GA | 0
+a0WSJ000005X79V2AS | 2026-03-23 | 2026 | Stipulated Orders and Written Agreements | Voluntary Termination of Deposit Insurance | Order of Termination of Insurance | Generations Bank | 1 | 16040 | 1 |  | Generations Bank | Generations Bank | NY | 0
+a0Wt00000053fhVEAQ | 2015-12-16 | 2015 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Apple Bank for Savings | 1 | 16068 | 1 | 0.00 | Apple Bank | Apple Bank for Savings | NY | 1
+a0Wt000000B27AVEAZ | 2019-05-01 | 2019 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition From Further Participation | Moshe Benenfeld | 1 | 16068 | 1 |  | Apple Bank | Apple Bank for Savings | NY | 1
+a0Wt000000BS88aEAD | 2020-05-29 | 2020 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Apple Bank for Savings | 1 | 16068 | 1 |  | Apple Bank | Apple Bank for Savings | NY | 1
+a0Wt000000BfgbcEAB | 2020-12-21 | 2020 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay | Apple Bank for Savings | 1 | 16068 | 1 | 12500000.00 | Apple Bank | Apple Bank for Savings | NY | 1
+a0Wt00000053fbDEAQ | 2012-12-20 | 2012 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition From Further Participation | Mark D. Freeman | 1 | 16126 | 1 |  | Citizens Bank of the Midwest | Citizens Bank of Newburg | MO | 1
+a0W3d000002NmeZEAS | 2023-03-07 | 2023 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay Civil Money Penalty | Citizens Bank of the Midwest | 1 | 16126 | 1 | 2750.00 | Citizens Bank of the Midwest | Citizens Bank of the Midwest | MO | 1
+a0Wt00000053fgZEAQ | 2015-10-07 | 2015 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay Civil Money Penalty | The Rockhold, Brown & Company Bank | 1 | 16193 | 1 | 4550.00 | Rockhold Bank | The Rockhold, Brown & Company Bank | OH | 0
+a0Wt00000053fOSEAY | 2012-11-14 | 2012 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty | Order to Pay | The State Bank of Pearl City | 1 | 16344 | 1 | 950.00 | The State Bank of Pearl City | The State Bank of Pearl City | IL | 1
+a0Wt00000053fkxEAA | 2013-06-21 | 2013 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | The Citizens Bank | 1 | 16369 | 1 |  | The Citizens Bank | The Citizens Bank | AL | 1
+a0Wt00000053dfOEAQ | 2011-04-26 | 2011 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | CONSENT ORDER | THE CITIZENS BANK | 1 | 16369 | 1 |  | The Citizens Bank | THE CITIZENS BANK | AL | 1
+a0Wt00000053d97EAA | 2014-10-10 | 2014 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Lafayette State Bank | 1 | 16396 | 1 | 0.00 | Lafayette State Bank | Lafayette State Bank | FL | 1
+a0Wt00000053dBZEAY | 2016-08-17 | 2016 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition From Further Participation | James A Roberts | 1 | 16396 | 1 | 0.00 | Lafayette State Bank | Lafayette State Bank | FL | 1
+a0Wt000000AgfnbEAB | 2019-12-26 | 2019 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Lafayette State Bank | 1 | 16396 | 1 |  | Lafayette State Bank | Lafayette State Bank | FL | 1
+a0Wt00000053dXnEAI | 2011-12-14 | 2011 | Termination of Action | Cease and Desist / Consent Orders | ORDER TERMINATING ORDER TO CEASE AND DESIST | CITIZENS BANK & TRUST COMPANY | 1 | 16417 | 1 |  | Citizens Bank & Trust Company | CITIZENS BANK & TRUST COMPANY | LA | 1
+a0Wt00000053fCSEAY | 2012-02-15 | 2012 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Frontier Bank | 1 | 16431 | 1 |  | Frontier Bank | Frontier Bank | GA | 0
+a0Wt00000053fZLEAY | 2013-03-25 | 2013 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | Frontier Bank | 1 | 16431 | 1 |  | Frontier Bank | Frontier Bank | GA | 0
+a0Wt00000053dCkEAI | 2016-12-13 | 2016 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | James M. Yates | 1 | 16431 | 1 | 0.00 | Frontier Bank | Frontier Bank | GA | 0
+a0WSJ00000401WT2AY | 2025-08-07 | 2025 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | Security State Bank | 1 | 16448 | 1 |  | Security State Bank | Security State Bank | SD | 1
+a0Wt00000053dsCEAQ | 2010-06-18 | 2010 | Termination of Action | Cease and Desist / Consent Orders | ORDER TERMINATING AN ORDER TO CEASE AND DESIST | ACCESS BANK | 1 | 16476 | 1 |  | Access Bank | ACCESS BANK | MN | 0
+a0Wt00000053fLCEAY | 2012-03-01 | 2012 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | First Guaranty Bank and Trust Company of Jacksonville | 1 | 16579 | 1 |  | First Guaranty Bank and Trust Company of Jacksonville | First Guaranty Bank and Trust Company of Jacksonville | FL | 0
+a0Wt00000053dvcEAA | 2010-08-11 | 2010 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | FIRST GUARANTY BANK AND TRUST COMPANY OF JACKSONVILLE | 1 | 16579 | 1 |  | First Guaranty Bank and Trust Company of Jacksonville | FIRST GUARANTY BANK AND TRUST COMPANY OF JACKSONVILLE | FL | 0
+a0Wt00000053dKXEAY | 2011-12-20 | 2011 | Stipulated Orders and Written Agreements | Assessment of Civil Money Penalty;Removal/Prohibition Order | ORDER OF PROHIBITION FROM FURTHER PARTICIPATION, ORDER TO PAY CIVIL MONEY PENALTY | CONNIE F. GREENE | 1 | 16591 | 1 | 10000.00 | Citizens Bank and Trust of West Georgia | CITIZENS BANK AND TRUST OF WEST GEORGIA | GA | 0
+a0Wt00000053fIsEAI | 2012-07-13 | 2012 | Stipulated Orders and Written Agreements | Cease and Desist / Consent Orders | Consent Order | The Peoples Bank | 1 | 16152 | 1 |  | The Peoples Bank | The Peoples Bank | GA | 1
+a0Wt00000092wW0EAI | 2018-12-06 | 2018 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Vicky Martin | 1 | 16152 | 1 |  | The Peoples Bank | The Peoples Bank | GA | 1
+a0Wt00000092wVvEAI | 2018-12-06 | 2018 | Stipulated Orders and Written Agreements | Removal/Prohibition Order | Order of Prohibition from Further Participation | Brandy Mize | 1 | 16152 | 1 |  | The Peoples Bank | The Peoples Bank | GA | 1
+a0Wt000000Ag5wwEAB | 2019-10-03 | 2019 | Termination of Action | Cease and Desist / Consent Orders | Order Terminating Consent Order | The Peoples Bank | 1 | 16152 | 1 |  | The Peoples Bank | The Peoples Bank | GA | 1
+(5002 rows; csv has all)
+
+-- S19 FDIC bank directory, every institution, minimal columns, to rebuild who was open when
+CERT | NAME | CITY | STALP | ACTIVE | BKCLASS | CHRTAGNT | SPECGRP | ESTYMD | ENDEFYMD | ASSET | REPDTE | NETINC | MDI_STATUS_CODE | MDI_STATUS_DESC | OFFICES_DOMESTIC | HOLDING_COMPANY_NAME | INSURANCE_DROPPED_DATE | SUCCESSOR_CERT
+28566 | Northwestern Savings Bank, F.S.B. | Fargo | ND | 0 | SB | OTS | 4.0 | 1893-01-01 | 1996-08-02 | 72240.0000 | 1996-06-30 | 555.0000 |  | NONE | 3 |  |  | 29140
+28567 | Roselle Bank | Roselle | NJ | 0 | SI | STATE | 8.0 | 1889-01-01 | 2020-04-01 | 421971.0000 | 2020-03-31 | -5821.0000 |  | NONE | 4 | RSB BCORP MHC |  | 28834
+28568 | Westwood Savings Bank | Westwood | NJ | 0 | SI | STATE | 7.0 | 1906-01-01 | 1998-02-28 | 110300.0000 | 1997-12-31 | 916.0000 |  | NONE | 2 | WESTWOOD FINANCIAL CORP |  | 28338
+28569 | Home Federal Savings and Loan Association | Baltimore | MD | 0 | SL | OTS |  | 1921-01-01 | 1983-07-31 |  |  |  |  | NONE |  |  |  | 29840
+28570 | American Savings and Loan Association | Goldsboro | NC | 0 | SL | STATE |  | 1906-01-01 | 1982-01-31 |  |  |  |  | NONE |  |  |  | 29595
+28571 | Home Savings and Loan Association | Henderson | NC | 0 | SL | STATE |  | 1912-01-01 | 1977-12-31 |  |  |  |  | NONE |  |  |  | 27835
+28572 | East Federal Savings and Loan Association of Kinston | Kinston | NC | 0 | SL | OTS |  | 1924-01-01 | 1982-07-31 |  |  |  |  | NONE |  |  |  | 29595
+28573 | Shelby Savings Bank | Shelby | NC | 0 | SB | OTS | 5.0 | 1905-01-01 | 1998-02-28 | 107978.0000 | 1997-12-31 | 720.0000 |  | NONE | 1 |  |  | 27677
+28574 | American Federal Bank, FSB | Greenville | SC | 0 | SB | OTS | 9.0 | 1921-01-01 | 2000-06-17 | 1279367.0000 | 2000-03-31 | 6131.0000 |  | NONE | 38 | CCB FINANCIAL CORP |  | 2033
+28575 | The American Federal Savings and Loan Association | Anadarko | OK | 0 | SL | OTS | 4.0 | 1922-01-01 | 1988-07-29 | 65139.0000 | 1988-06-30 | -10715.0000 |  | NONE | 6 |  |  | 0
+28576 | Hennepin Federal Savings and Loan Association of Minneapolis | Minneapolis | MN | 0 | SL | OTS |  | 1895-01-01 | 1982-01-31 |  |  |  |  | NONE |  |  |  | 28606
+28577 | Central Federal Savings and Loan Association | Terre Haute | IN | 0 | SL | OTS |  | 1895-01-01 | 1981-05-31 |  |  |  |  | NONE |  |  |  | 28528
+28578 | Columbia National Bank-Belmont | Chicago | IL | 0 | N | OCC | 5.0 | 1886-01-01 | 1991-10-25 | 64394.0000 | 1991-09-30 | -1579.0000 |  | NONE | 1 |  |  | 19031
+28579 | First Granite City Savings and Loan | Granite City | IL | 0 | SL | STATE | 5.0 | 1894-01-01 | 1992-11-09 | 49558.0000 | 1992-09-30 | 321.0000 |  | NONE | 2 |  |  | 28389
+28580 | Home Savings and Loan Company | Columbiana | OH | 0 | SL | STATE |  | 1919-01-01 | 1979-01-31 |  |  |  |  | NONE |  |  |  | 0
+28581 | Missouri Savings Association | Clayton | MO | 0 | SL | STATE | 5.0 | 1922-01-01 | 1989-06-29 | 661088.0000 | 1989-03-31 | -10348.0000 |  | NONE | 14 |  |  | 32667
+28582 | American Savings and Loan Association, A Federal Association | Salt Lake City | UT | 0 | SL | OTS | 5.0 | 1923-01-01 | 1989-09-07 | 2059301.0000 | 1989-06-30 | -15814.0000 |  | NONE | 63 |  |  | 32791
+28583 | United Savings and Loan Association, FSA | Wichita | KS | 0 | SL | OTS | 5.0 | 1929-01-01 | 1995-03-28 | 7155.0000 | 1994-12-31 | 136.0000 |  | NONE | 1 |  |  | 30898
+28584 | Princeton Savings and Loan Association | Princeton | NJ | 0 | SL | STATE |  | 1917-01-01 | 1982-07-31 |  |  |  |  | NONE |  |  |  | 30217
+28585 | Maple City Savings Bank, FSB | Hornell | NY | 1 | SB | OCC | 5.0 | 1905-01-01 |  | 123057.0000 | 2026-03-31 | 207.0000 |  | NONE | 3 | MAPLE CITY SAVINGS MHC |  | 0
+28586 | Mercer Savings Bank SLA | Trenton | NJ | 0 | SL | STATE | 5.0 | 1911-01-01 | 1990-09-21 | 92695.0000 | 1990-06-30 | -231.0000 |  | NONE | 1 |  |  | 33205
+28587 | Larchmont Federal Savings and Loan Association | Larchmont | NY | 0 | SL | OTS | 5.0 | 1924-01-01 | 1991-08-09 | 123777.0000 | 1991-06-30 | -2311.0000 |  | NONE | 2 |  |  | 16044
+28588 | Irvington Federal Savings and Loan Association | Baltimore | MD | 0 | SL | OTS | 4.0 | 1905-01-01 | 1992-02-28 | 43817.0000 | 1991-12-31 | -1283.0000 |  | NONE | 4 |  |  | 33561
+28589 | Hamilton Bank | Towson | MD | 0 | NM | STATE | 4.0 | 1915-01-01 | 2019-05-01 | 499076.0000 | 2019-03-31 | 139.0000 |  | NONE | 7 | HAMILTON BCORP INC |  | 713
+28590 | Allison Park Savings and Loan Association | Allison Park | PA | 0 | SL | STATE |  | 1911-01-01 | 1982-01-31 |  |  |  |  | NONE |  |  |  | 27956
+28591 | Capital Savings and Loan Association | Cranford | NJ | 0 | SL | STATE |  | 1887-01-01 | 1982-08-31 |  |  |  |  | NONE |  |  |  | 27739
+28592 | Elmira Savings and Loan FA | Elmira | NY | 0 | SL | OTS | 4.0 | 1888-01-01 | 2006-08-11 | 213618.0000 | 2006-06-30 | 1214.0000 |  | NONE | 2 |  |  | 6989
+28593 | Sturgis Bank & Trust Company | Sturgis | MI | 1 | NM | STATE | 4.0 | 1905-01-01 |  | 1014059.0000 | 2026-03-31 | 2268.0000 |  | NONE | 17 | STURGIS BCORP INC |  | 0
+28594 | Home Savings of America, FSB | Irwindale | CA | 0 | SB | OTS | 5.0 | 1889-01-01 | 1993-02-26 | 41183509.0000 | 1992-12-31 | 232736.0000 |  | NONE | 355 |  |  | 15919
+28595 | United Bank, S.B. | Springfield | IL | 0 | SI | STATE | 5.0 | 1874-01-01 | 1995-07-01 | 41630.0000 | 1995-06-30 | 151.0000 |  | NONE | 1 |  |  | 27723
+28596 | Cardinal Federal Savings Bank | Cleveland | OH | 0 | SB | OTS | 5.0 | 1886-01-01 | 1991-12-31 | 1631483.0000 | 1991-09-30 | 9769.0000 |  | NONE | 26 |  |  | 29640
+28597 | Western Savings and Loan Association | Phoenix | AZ | 0 | SL | STATE | 4.0 | 1929-01-01 | 1989-06-14 | 5654683.0000 | 1989-03-31 | -99757.0000 |  | NONE | 81 |  |  | 32658
+28598 | Heart Federal Savings and Loan Association | Auburn | CA | 0 | SL | OTS | 5.0 | 1926-01-01 | 1995-02-23 | 102827.0000 | 1994-12-31 | 1097.0000 |  | NONE | 1 | U S BCORP |  | 1304
+28599 | Olympia Federal Savings and Loan Association | Olympia | WA | 1 | SI | STATE | 5.0 | 1906-01-01 |  | 1008303.0000 | 2026-03-31 | 854.0000 |  | NONE | 9 |  |  | 0
+28600 | Waterville Savings and Loan Association | Waterville | ME | 0 | SL | STATE | 5.0 | 1887-01-01 | 1995-06-17 | 34441.0000 | 1995-03-31 | 68.0000 |  | NONE | 1 |  |  | 17897
+28601 | Family Savings and Loan Association | New Haven | CT | 0 | SL | STATE |  | 1893-01-01 | 1983-01-31 |  |  |  |  | NONE |  |  |  | 27921
+28602 | Milford Co-operative Bank | Milford | NH | 0 | SL | STATE | 8.0 | 1890-01-01 | 1996-07-02 | 164104.0000 | 1996-06-30 | 717.0000 |  | NONE | 6 |  |  | 17991
+28603 | North Land Bank of Wisconsin, SSB | Ashland | WI | 0 | SL | STATE | 5.0 | 1902-01-01 | 1994-02-27 | 127362.0000 | 1993-12-31 | 1075.0000 |  | NONE | 8 |  |  | 28939
+28604 | Lafayette Federal Savings and Loan Association of Greater St Louis | Warson Woods | MO | 0 | SL | OTS |  | 1873-01-01 | 1982-07-31 |  |  |  |  | NONE |  |  |  | 30811
+28605 | First Federal Savings and Loan Association of Chickasha | Chickasha | OK | 0 | SL | OTS | 5.0 | 1921-01-01 | 1991-03-22 | 161381.0000 | 1990-12-31 | -3108.0000 |  | NONE | 8 |  |  | 33357
+28606 | First Federal Savings and Loan Association of Minneapolis | Minneapolis | MN | 0 | SL | OTS | 5.0 | 1927-01-01 | 1986-03-31 | 2968675.0000 | 1985-12-31 | -16253.0000 |  | NONE | 31 |  |  | 32457
+28607 | United Savings Bank | Lebanon | MO | 0 | SL | STATE | 5.0 | 1924-01-01 | 1995-05-18 | 510653.0000 | 1995-03-31 | 327.0000 |  | NONE | 21 | MERCANTILE BCORP INC |  | 34024
+28608 | Florida Federal Savings Bank | St. Petersburg | FL | 0 | SB | OTS | 5.0 | 1933-10-01 | 1990-11-09 | 4115008.0000 | 1990-09-30 | -74081.0000 |  | NONE | 81 |  |  | 33255
+28609 | Pioneer Federal Savings and Loan Association | Plymouth | IN | 0 | SL | OTS | 5.0 | 1916-01-01 | 1989-07-13 | 81022.0000 | 1989-06-30 | -1193.0000 |  | NONE | 3 |  |  | 32696
+28610 | First Federal Savings Bank of Elizabethtown | Elizabethtown | KY | 0 | NM | STATE | 4.0 | 1923-01-01 | 2015-01-01 | 775115.0000 | 2014-12-31 | -849.0000 |  | NONE | 18 | FIRST FINANCIAL SERVICE CORP |  | 28915
+28611 | Pulaski Savings Bank | Chicago | IL | 0 | SI | STATE | 5.0 | 1890-01-01 | 2025-01-17 | 49466.0000 | 2024-09-30 | -218.0000 |  | NONE | 1 |  |  | 58348
+28612 | Maritime Savings Bank | West Allis | WI | 0 | SL | OTS | 4.0 | 1912-01-01 | 2010-09-17 | 350488.0000 | 2010-06-30 | -2898.0000 |  | NONE | 10 |  |  | 28679
+28613 | Homestead Savings and Loan Association | Waupaca | WI | 0 | SL | STATE |  | 1923-01-01 | 1982-04-30 |  |  |  |  | NONE |  |  |  | 28814
+28614 | The Equitable Bank, S.S.B. | Wauwatosa | WI | 1 | SI | STATE | 4.0 | 1927-01-01 |  | 326863.0000 | 2026-03-31 | 369.0000 |  | NONE | 6 | TEB MHC |  | 0
+28615 | Mid-State FSB | Ocala | FL | 0 | SB | OTS | 5.0 | 1924-01-01 | 1993-12-10 | 734520.0000 | 1993-09-30 | 7267.0000 |  | NONE | 26 |  |  | 27083
+28616 | First Federal Savings and Loan Association | Ambridge | PA | 0 | SL | OTS |  | 1925-01-01 | 1981-07-31 |  |  |  |  | NONE |  |  |  | 27941
+28617 | Lincoln Bank | Plainfield | IN | 0 | NM | STATE | 4.0 | 1884-01-01 | 2009-04-17 | 907144.0000 | 2009-03-31 | 1354.0000 |  | NONE | 16 | FIRST MERCHANTS CORP |  | 8047
+28618 | Citizens Savings and Loan Association, FA | Columbus | IN | 0 | SL | OTS | 5.0 | 1890-01-01 | 1986-08-31 | 69532.0000 | 1986-06-30 | -271.0000 |  | NONE | 2 |  |  | 27741
+28619 | First Northern Savings Bank | Green Bay | WI | 0 | SB | OTS | 6.0 | 1927-01-01 | 2003-03-16 | 984980.0000 | 2002-12-31 | 12222.0000 |  | NONE | 19 |  |  | 30125
+28621 | Southern California Savings and Loan Association, A Federal Savings and | Beverly Hills | CA | 0 | SL | OTS | 5.0 | 1928-01-01 | 1985-10-01 | 1452504.0000 | 1985-09-30 | -19408.0000 |  | NONE | 31 |  |  | 32433
+28622 | Oceanside Federal Savings and Loan Association | Oceanside | CA | 0 | SL | OTS |  | 1920-01-01 | 1981-10-31 |  |  |  |  | NONE |  |  |  | 28560
+28623 | The Findlay Savings Bank | Cincinnati | OH | 0 | SI | STATE | 5.0 | 1882-01-01 | 2002-09-19 | 9625.0000 | 2002-06-30 | -123.0000 |  | NONE | 1 |  |  | 28724
+28624 | Century National Bank | Zanesville | OH | 0 | N | OCC | 5.0 | 1887-01-01 | 2008-08-16 | 740083.0000 | 2008-06-30 | 6588.0000 |  | NONE | 16 | PARK NATIONAL CORP |  | 6653
+28625 | Civic Savings Bank | Portsmouth | OH | 0 | SL | STATE | 6.0 | 1891-01-01 | 1990-12-14 | 62178.0000 | 1990-09-30 | -1605.0000 |  | NONE | 6 |  |  | 33288
+28626 | Avondale Federal Savings Bank | Chicago | IL | 0 | SB | OTS | 8.0 | 1911-01-01 | 1999-02-26 | 498070.0000 | 1998-12-31 | -588.0000 |  | NONE | 5 |  |  | 16230
+(27836 rows; csv has all)
+
+-- S20 SEC insiders: people filing as Director at 5+ non-fund issuers, by filing year 2016-2024, plus yearly totals
+Y | OWNER_CIK | NM | N_ISS | N_OP | ISS
+2020 | 0001398154 | Graziano Nick | 6 | 6 | Cloudera, Inc. | CONDUENT Inc | Xerox Holdings Corp | HERBALIFE NUTRITION LTD. | OCCIDENTAL PETROLEUM CORP /DE/ | HERC HOLDINGS INC
+2018 | 0001397266 | Fust Matthew K | 5 | 5 | Atara Biotherapeutics, Inc. | Dermira, Inc. | MACROGENICS INC | Ultragenyx Pharmaceutical Inc. | Crinetics Pharmaceuticals, Inc
+2021 | 0001599214 | Chen Bihua | 9 | 9 | Tyra Biosciences, Inc. | Monte Rosa Therapeutics, Inc. | Rain Therapeutics Inc. | Verve Therapeutics, Inc. | Biomea Fusion, Inc. | Pyxis Oncology, Inc. | Erasca, Inc. | Prometheus Biosciences, Inc. | Design Therapeutics, Inc.
+2024 | 0001478916 | Schmid John P. | 5 | 5 | Poseida Therapeutics, Inc. | Design Therapeutics, Inc. | ANAPTYSBIO, INC | Xeris Biopharma Holdings, Inc. | Helix Acquisition Corp. II
+2021 | 0001418226 | Silver Lake Group, L.L.C. | 16 | 16 | Endeavor Group Holdings, Inc. | Qualtrics International Inc. | TWITTER, INC. | AMC ENTERTAINMENT HOLDINGS, IN | EverCommerce Inc. | Dell Technologies Inc. | Cornerstone OnDemand Inc | GoodRx Holdings, Inc. | SPLUNK INC | SoFi Technologies, Inc. | Unity Software Inc. | SolarWinds Corp | Vacasa, Inc. | VMWARE, INC. | N-able, Inc. | FIRST ADVANTAGE CORP
+2020 | 0001351073 | ValueAct Capital Management, LLC | 9 | 9 | CBRE GROUP, INC. | AES CORP | TRINITY INDUSTRIES INC | Bausch Health Companies Inc. | Seagate Technology plc | Enviva Partners, LP | Nikola Corp | HAWAIIAN ELECTRIC INDUSTRIES I | LKQ CORP
+2021 | 0001389349 | Carmona Richard H | 5 | 5 | MCKESSON CORP | Better Therapeutics, Inc. | AXON ENTERPRISE, INC. | CLOROX CO /DE/ | HERBALIFE NUTRITION LTD.
+2019 | 0001239318 | KAYE CHARLES R | 7 | 7 | SemGroup Corp | ANTERO RESOURCES Corp | Kosmos Energy Ltd. | Brigham Minerals, Inc. | Antero Midstream Corp | CrowdStrike Holdings, Inc. | Triton International Ltd
+2021 | 0001425738 | Redmile Group, LLC | 6 | 6 | Absci Corp | Shattuck Labs, Inc. | IGM Biosciences, Inc. | FATE THERAPEUTICS INC | Augmedix, Inc. | Science 37 Holdings, Inc.
+2019 | 0001418812 | VA Partners I, LLC | 9 | 9 | ARMSTRONG WORLD INDUSTRIES INC | ALLIANCE DATA SYSTEMS CORP | Armstrong Flooring, Inc. | AES CORP | UNIFI INC | Seagate Technology plc | Bausch Health Companies Inc. | TRINITY INDUSTRIES INC | CBRE GROUP, INC.
+2020 | 0001219016 | BONNEY MICHAEL W | 5 | 5 | Kaleido Biosciences, Inc. | ALNYLAM PHARMACEUTICALS, INC. | BRISTOL MYERS SQUIBB CO | Magenta Therapeutics, Inc. | Sarepta Therapeutics, Inc.
+2022 | 0001808744 | OrbiMed Genesis GP LLC | 7 | 7 | Terns Pharmaceuticals, Inc. | Kinnate Biopharma Inc. | Edgewise Therapeutics, Inc. | Sierra Oncology, Inc. | Ikena Oncology, Inc. | Theseus Pharmaceuticals, Inc. | Compass Therapeutics, Inc.
+2019 | 0001207269 | RILEY BRYANT R | 5 | 5 | Liberty Tax, Inc. | B. Riley Financial, Inc. | Babcock & Wilcox Enterprises,  | Franchise Group, Inc. | Select Interior Concepts, Inc. | B. Riley Principal Merger Corp
+2019 | 0001216519 | SUGAR RONALD D | 5 | 5 | APPLE INC | Uber Technologies, Inc | AMGEN INC | AIR LEASE CORP | CHEVRON CORP
+2018 | 0001260943 | THOMAS H. LEE ADVISORS, LLC | 5 | 5 | Black Knight, Inc. | Fogo de Chao, Inc. | Ceridian HCM Holding Inc. | Party City Holdco Inc. | Syneos Health, Inc.
+2024 | 0001253170 | AKKARAJU SRINIVAS | 5 | 5 | Syros Pharmaceuticals, Inc. | vTv Therapeutics Inc. | Scholar Rock Holding Corp | Mineralys Therapeutics, Inc. | ALUMIS INC.
+2021 | 0001825376 | RA Capital Nexus Fund II, L.P. | 5 | 5 | Cytek Biosciences, Inc. | Acumen Pharmaceuticals, Inc. | Icosavax, Inc. | DICE Therapeutics, Inc. | Eliem Therapeutics, Inc. | Cytek BioSciences, Inc.
+2018 | 0001263508 | BAKER BROS. ADVISORS LP | 10 | 10 | BeiGene, Ltd. | Kiniksa Pharmaceuticals, Ltd. | ALEXION PHARMACEUTICALS INC | AQUINOX PHARMACEUTICALS, INC | GENOMIC HEALTH INC | SEATTLE GENETICS INC /WA | ACADIA PHARMACEUTICALS INC | IDERA PHARMACEUTICALS, INC. | INCYTE CORP | Kodiak Sciences Inc.
+2024 | 0001802528 | Fairmount Funds Management LLC | 7 | 7 | Cogent Biosciences, Inc. | Oruka Therapeutics, Inc. | Apogee Therapeutics, Inc. | Zenas BioPharma, Inc. | Spyre Therapeutics, Inc. | Viridian Therapeutics, Inc.\DE | Dianthus Therapeutics, Inc. /D
+2024 | 0001249675 | PERCEPTIVE LIFE SCIENCES MASTER FUND LTD | 6 | 6 | Astria Therapeutics, Inc. | Nautilus Biotechnology, Inc. | MeiraGTx Holdings plc | Solid Biosciences Inc. | Cerevel Therapeutics Holdings, | LianBio
+2017 | 0001239209 | GIBSON JOHN WILLIAM | 6 | 6 | MATRIX SERVICE CO | ONEOK Partners LP | ONE Gas, Inc. | BOK FINANCIAL CORP ET AL | ONEOK INC | ONEOK INC /NEW/
+2023 | 0001654430 | Morrison Briggs | 5 | 5 | Syndax Pharmaceuticals Inc | Werewolf Therapeutics, Inc. | ARVINAS, INC. | Carisma Therapeutics Inc. | Repare Therapeutics Inc.
+2024 | 0001533568 | Norwalk Leslie V | 5 | 5 | CVS HEALTH Corp | GLOBUS MEDICAL INC | ARVINAS, INC. | NEUROCRINE BIOSCIENCES INC | ModivCare Inc
+2018 | 0001580575 | Baker Bros. Advisors (GP) LLC | 10 | 10 | GENOMIC HEALTH INC | ALEXION PHARMACEUTICALS INC | AQUINOX PHARMACEUTICALS, INC | Kodiak Sciences Inc. | IDERA PHARMACEUTICALS, INC. | BeiGene, Ltd. | SEATTLE GENETICS INC /WA | INCYTE CORP | Kiniksa Pharmaceuticals, Ltd. | ACADIA PHARMACEUTICALS INC
+2019 | 0001580575 | Baker Bros. Advisors (GP) LLC | 11 | 11 | ALEXION PHARMACEUTICALS, INC. | ACADIA PHARMACEUTICALS INC | INCYTE CORP | BeiGene, Ltd. | SEATTLE GENETICS INC /WA | Kiniksa Pharmaceuticals, Ltd. | Kodiak Sciences Inc. | IGM Biosciences, Inc. | AQUINOX PHARMACEUTICALS, INC | IDERA PHARMACEUTICALS, INC. | Neoleukin Therapeutics, Inc. | GENOMIC HEALTH INC
+2020 | 0001247747 | DUTKOWSKY ROBERT M | 5 | 5 | TECH DATA CORP | PITNEY BOWES INC /DE/ | US Foods Holding Corp. | RAYMOND JAMES FINANCIAL INC | HERSHEY CO
+2022 | 0001087939 | BAKER JULIAN | 12 | 12 | BeiGene, Ltd. | ACADIA PHARMACEUTICALS INC | Kiniksa Pharmaceuticals, Ltd. | Prelude Therapeutics Inc | Kodiak Sciences Inc. | TScan Therapeutics, Inc. | Seagen Inc. | Talis Biomedical Corp | DBV Technologies S.A. | Neoleukin Therapeutics, Inc. | IGM Biosciences, Inc. | INCYTE CORP
+2020 | 0001418202 | Kim Soohyung | 5 | 5 | National CineMedia, Inc. | STANDARD DIVERSIFIED INC. | Turning Point Brands, Inc. | Twin River Worldwide Holdings, | Mediaco Holding Inc.
+2021 | 0001367451 | Loewy Caroline M | 6 | 6 | CymaBay Therapeutics, Inc. | Locust Walk Acquisition Corp. | PhaseBio Pharmaceuticals Inc | ZOGENIX, INC. | PHOENIX BIOTECH ACQUISITION CO | Aptose Biosciences Inc.
+2017 | 0001403525 | Oaktree Capital Group Holdings GP, LLC | 6 | 5 | Gener8 Maritime, Inc. | Vistra Energy Corp | FIRST BANCORP /PR/ | AdvancePierre Foods Holdings,  | TRIBUNE MEDIA CO
+2021 | 0001208575 | JARRETT VALERIE B | 5 | 5 | Walgreens Boots Alliance, Inc. | 2U, Inc. | Lyft, Inc. | RALPH LAUREN CORP | Sweetgreen, Inc.
+2019 | 0001363364 | Baker Brothers Life Sciences LP | 11 | 11 | SEATTLE GENETICS INC /WA | INCYTE CORP | ALEXION PHARMACEUTICALS, INC. | BeiGene, Ltd. | Neoleukin Therapeutics, Inc. | AQUINOX PHARMACEUTICALS, INC | Kodiak Sciences Inc. | ACADIA PHARMACEUTICALS INC | GENOMIC HEALTH INC | IGM Biosciences, Inc. | Kiniksa Pharmaceuticals, Ltd. | IDERA PHARMACEUTICALS, INC.
+2024 | 0001179631 | ATKINS BETSY S | 5 | 5 | SOLAREDGE TECHNOLOGIES, INC. | SL GREEN REALTY CORP | Rackspace Technology, Inc. | WYNN RESORTS LTD | Enovix Corp
+2020 | 0001181186 | YARNO WENDY L | 5 | 5 | INOVIO PHARMACEUTICALS, INC. | MyoKardia, Inc. | Global Blood Therapeutics, Inc | IDEAYA Biosciences, Inc. | Tarsus Pharmaceuticals, Inc.
+2020 | 0001218470 | GOLDMAN KENNETH A | 6 | 6 | ZUORA INC | Fortinet, Inc. | NXP Semiconductors N.V. | TRINET GROUP, INC. | GoPro, Inc. | RingCentral, Inc.
+2022 | 0001353128 | Duncan Barbara Gayle | 5 | 5 | Adaptimmune Therapeutics PLC | Fusion Pharmaceuticals Inc. | Ovid Therapeutics Inc. | Jounce Therapeutics, Inc. | Atea Pharmaceuticals, Inc.
+2023 | 0001552054 | Silver Lake Partners IV, L.P. | 6 | 6 | SolarWinds Corp | N-able, Inc. | VMWARE LLC | Unity Software Inc. | Dell Technologies Inc. | SoFi Technologies, Inc.
+2023 | 0001351069 | ValueAct Capital Management, L.P. | 6 | 6 | Salesforce, Inc. | CBRE GROUP, INC. | Altus Power, Inc. | INSIGHT ENTERPRISES INC | FISERV INC | LKQ CORP
+2022 | 0001357522 | Thompson Peter A. | 6 | 6 | Edgewise Therapeutics, Inc. | Corvus Pharmaceuticals, Inc. | Janux Therapeutics, Inc. | Silverback Therapeutics, Inc. | ALPINE IMMUNE SCIENCES, INC. | Decibel Therapeutics, Inc.
+2023 | 0001437909 | Lewis-Hall Freda C | 5 | 5 | EXACT SCIENCES CORP | 1Life Healthcare Inc | Pyxis Oncology, Inc. | SpringWorks Therapeutics, Inc. | CONDUIT PHARMACEUTICALS INC.
+2024 | 0001672568 | SLTA IV (GP), L.L.C. | 5 | 5 | N-able, Inc. | Dell Technologies Inc. | Unity Software Inc. | SolarWinds Corp | SoFi Technologies, Inc.
+2019 | 0001259062 | HEYER ANDREW R | 6 | 6 | Haymaker Acquisition Corp. | Lovesac Co | ONESPAWORLD HOLDINGS Ltd | XpresSpa Group, Inc. | Haymaker Acquisition Corp. II | HAIN CELESTIAL GROUP INC
+2020 | 0001261974 | GRAY MARY ANN | 5 | 5 | Seneca Biopharma, Inc. | Keros Therapeutics, Inc. | RAPT Therapeutics, Inc. | BioAtla, Inc. | Sarepta Therapeutics, Inc.
+2021 | 0001336504 | CLARK IAN T | 5 | 5 | Corvus Pharmaceuticals, Inc. | AVROBIO, Inc. | AGIOS PHARMACEUTICALS, INC. | Olema Pharmaceuticals, Inc. | Guardant Health, Inc.
+2022 | 0001425738 | Redmile Group, LLC | 6 | 6 | Shattuck Labs, Inc. | Absci Corp | Science 37 Holdings, Inc. | MedAvail Holdings, Inc. | FATE THERAPEUTICS INC | IGM Biosciences, Inc.
+2021 | 0001589706 | Chwick Jane | 5 | 5 | Essent Group Ltd. | Thoughtworks Holding, Inc. | People's United Financial, Inc | MARKETAXESS HOLDINGS INC | Voya Financial, Inc. | Turing Holding Corp.
+2017 | 0000898860 | FROST PHILLIP MD ET AL | 5 | 5 | Castle Brands Inc | Sevion Therapeutics, Inc. | LADENBURG THALMANN FINANCIAL S | Cogint, Inc. | Opko Health, Inc.
+2016 | 0001263606 | BIDERMAN MARK C | 5 | 5 | Atlas Resource Partners, L.P. | Full Circle Capital Corp | Apollo Residential Mortgage, I | Apollo Commercial Real Estate  | Great Elm Capital Corp.
+2017 | 0000924255 | STEINBERG JOSEPH S | 6 | 6 | HOMEFED CORP | HRG GROUP, INC. | NZCH Corp | Spectrum Brands Holdings, Inc. | LEUCADIA NATIONAL CORP | Crimson Wine Group, Ltd
+2020 | 0001619841 | Shah Rajeev M. | 7 | 7 | Satsuma Pharmaceuticals, Inc. | Ra Pharmaceuticals, Inc. | Black Diamond Therapeutics, In | Solid Biosciences Inc. | 89bio, Inc. | Kala Pharmaceuticals, Inc. | Eidos Therapeutics, Inc.
+2017 | 0001495741 | TPG Group Holdings (SBS) Advisors, Inc. | 5 | 5 | Quintiles IMS Holdings, Inc. | Playa Hotels & Resorts N.V. | TPG Pace Holdings Corp. | Pace Holdings Corp. | TPG Pace Energy Holdings Corp. | IQVIA HOLDINGS INC.
+2021 | 0001418813 | ValueAct Holdings GP, LLC | 6 | 6 | Altus Power, Inc. | TRINITY INDUSTRIES INC | LKQ CORP | Bausch Health Companies Inc. | Seagate Technology Holdings pl | CBRE GROUP, INC. | Seagate Technology plc
+2020 | 0001018394 | SPOON ALAN G | 6 | 6 | Match Group Holdings II, LLC | IAC/InterActiveCorp | Fortive Corp | Cable One, Inc. | Match Group, Inc. | IAC/INTERACTIVECORP | DANAHER CORP /DE/
+2020 | 0001058835 | HAGERTY THOMAS M | 5 | 5 | Foley Trasimene Acquisition Co | Black Knight, Inc. | Fidelity National Financial, I | Ceridian HCM Holding Inc. | Dun & Bradstreet Holdings, Inc
+2018 | 0001087940 | BAKER FELIX | 10 | 10 | INCYTE CORP | ALEXION PHARMACEUTICALS INC | Kodiak Sciences Inc. | Kiniksa Pharmaceuticals, Ltd. | SEATTLE GENETICS INC /WA | AQUINOX PHARMACEUTICALS, INC | IDERA PHARMACEUTICALS, INC. | BeiGene, Ltd. | GENOMIC HEALTH INC | ACADIA PHARMACEUTICALS INC
+2022 | 0001203226 | HEINRICH DANIEL J | 5 | 5 | LOWES COMPANIES INC | Aramark | BALL Corp | EDGEWELL PERSONAL CARE Co | DOLLAR TREE, INC.
+2017 | 0001182047 | BELL JAMES A | 5 | 5 | DowDuPont Inc. | JPMORGAN CHASE & CO | APPLE INC | CDW Corp | DOW CHEMICAL CO /DE/
+2020 | 0001264230 | SCHUMACHER ALAN H | 5 | 5 | BlueLinx Holdings Inc. | Blue Bird Corp | EVERTEC, Inc. | WARRIOR MET COAL, INC. | Albertsons Companies, Inc.
+2020 | 0001381874 | Rubin Steven D | 5 | 5 | ChromaDex Corp. | Red Violet, Inc. | Eloxx Pharmaceuticals, Inc. | Opko Health, Inc. | Cocrystal Pharma, Inc. | OPKO HEALTH, INC.
+2016 | 0001551138 | 14159, L.P. | 5 | 5 | INCYTE CORP | ACADIA PHARMACEUTICALS INC | IDERA PHARMACEUTICALS, INC. | GENOMIC HEALTH INC | BeiGene, Ltd.
+(1106 rows; csv has all)
+
+-- S21 SEC insiders: filings whose remarks say "director by deputization", per year and owner, plus yearly issuer totals
+Y | OWNER_CIK | NM | ISSUERS | FILINGS | DIR_ROWS
+2022 | 0001282203 | GAP COINVESTMENTS III, LLC | 5 | 12 | 11
+2025 | 0001580575 | Baker Bros. Advisors (GP) LLC | 7 | 8 | 8
+2021 | 0000918923 | BIOTECHNOLOGY VALUE FUND L P | 5 | 17 | 0
+2018 | 0001087939 | BAKER JULIAN | 10 | 47 | 47
+2017 | 0001551139 | 667, L.P. | 8 | 33 | 33
+2019 | 0001567187 | Coliseum Capital Partners II, L.P. | 3 | 7 | 6
+2019 | 0001263508 | BAKER BROS. ADVISORS LP | 11 | 56 | 56
+2023 | 0001282203 | GAP COINVESTMENTS III, LLC | 4 | 6 | 5
+2021 | 0001087940 | BAKER FELIX | 13 | 36 | 36
+2020 | 0001409751 | Coliseum Capital Management, LLC | 4 | 16 | 16
+2024 | 0001282372 | GAP COINVESTMENTS IV, LLC | 5 | 13 | 13
+2022 | 0001233840 | LAMPERT MARK N | 6 | 16 | 12
+2018 | 0001263508 | BAKER BROS. ADVISORS LP | 10 | 47 | 47
+2023 | 0001087939 | BAKER JULIAN | 12 | 41 | 41
+2018 | 0001351069 | ValueAct Capital Management, L.P. | 10 | 47 | 46
+2023 | 0001409585 | Coliseum Capital, LLC | 5 | 26 | 26
+2023 | 0001464912 | ValueAct Capital Master Fund, L.P. | 6 | 24 | 24
+2020 | 0001551139 | 667, L.P. | 11 | 41 | 41
+2021 | 0001454123 | Gray Adam | 4 | 13 | 12
+2024 | 0001017645 | GENERAL ATLANTIC, L.P. | 5 | 13 | 13
+2021 | 0001704892 | General Atlantic Partners 100, L.P. | 6 | 11 | 7
+2022 | 0001660683 | Biotechnology Value Trading Fund OS LP | 6 | 16 | 12
+2025 | 0001363364 | Baker Brothers Life Sciences LP | 7 | 8 | 8
+2018 | 0001551138 | 14159, L.P. | 4 | 34 | 34
+2020 | 0001763309 | ValueAct Holdings II, L.P. | 9 | 26 | 18
+2017 | 0001551138 | 14159, L.P. | 5 | 27 | 27
+2023 | 0001663607 | Harwin Peter Evan | 3 | 10 | 10
+2019 | 0001551138 | 14159, L.P. | 3 | 33 | 33
+2016 | 0001580575 | Baker Bros. Advisors (GP) LLC | 6 | 15 | 15
+2021 | 0001176948 | Ares Management Corp | 4 | 13 | 11
+2016 | 0001471812 | NGP Energy Capital Management, L.L.C. | 3 | 7 | 0
+2021 | 0001464912 | ValueAct Capital Master Fund, L.P. | 6 | 17 | 17
+2019 | 0001418812 | VA Partners I, LLC | 9 | 28 | 26
+2024 | 0001282203 | GAP COINVESTMENTS III, LLC | 5 | 13 | 13
+2021 | 0001633584 | Armistice Capital Master Fund Ltd. | 4 | 10 | 9
+2024 | 0001831991 | Faulkner Robert C. | 3 | 5 | 4
+2020 | 0001454123 | Gray Adam | 4 | 16 | 16
+2021 | 0001409585 | Coliseum Capital, LLC | 4 | 13 | 12
+2018 | 0001087940 | BAKER FELIX | 10 | 47 | 47
+2024 | 0001467927 | GENERAL ATLANTIC GENPAR (BERMUDA), L.P. | 3 | 8 | 8
+2022 | 0001363364 | Baker Brothers Life Sciences LP | 12 | 28 | 28
+2023 | 0001409751 | Coliseum Capital Management, LLC | 5 | 26 | 26
+2022 | 0001418812 | VA Partners I, LLC | 7 | 29 | 29
+2016 | 0001263508 | BAKER BROS. ADVISORS LP | 6 | 15 | 15
+2020 | 0001055947 | BVF PARTNERS L P/IL | 3 | 9 | 9
+2021 | 0001430708 | Shackelton Christopher S | 4 | 13 | 12
+2022 | 0001351073 | ValueAct Capital Management, LLC | 7 | 29 | 29
+2022 | 0001087939 | BAKER JULIAN | 12 | 28 | 28
+2025 | 0001087939 | BAKER JULIAN | 7 | 8 | 8
+2023 | 0001803805 | BVF I GP LLC | 5 | 10 | 10
+2019 | 0001363364 | Baker Brothers Life Sciences LP | 11 | 56 | 56
+2019 | 0001464912 | ValueAct Capital Master Fund, L.P. | 7 | 20 | 19
+2019 | 0001551139 | 667, L.P. | 11 | 56 | 56
+2016 | 0001087939 | BAKER JULIAN | 6 | 15 | 15
+2020 | 0001669983 | Ares Holdco LLC | 3 | 6 | 3
+2023 | 0001418812 | VA Partners I, LLC | 6 | 24 | 24
+2022 | 0001803806 | BVF II GP LLC | 6 | 16 | 12
+2022 | 0001467926 | GENERAL ATLANTIC GENPAR, L.P. | 3 | 4 | 4
+2019 | 0001166564 | CYRUS CAPITAL PARTNERS, L.P. | 3 | 5 | 5
+2020 | 0001176948 | Ares Management Corp | 3 | 6 | 3
+(313 rows; csv has all)
+
+-- S22 EPA bridge: the placeholder facility ID and the blank-ID rows, by case-number prefix (region) and case year
+UIN | PRE | CASES | N | Y0 | Y1 | STATES | ANY_ST | NAMES
+110009327022 | 01 | 3 | 3 | 1997 | 1997 | 1 | IL | 1
+110009327022 | 02 | 99 | 99 | 1976 | 1988 | 1 | IL | 1
+110009327022 | 03 | 330 | 331 | 1981 | 1997 | 1 | IL | 1
+110009327022 | 04 | 417 | 417 | 1993 | 1997 | 1 | IL | 1
+110009327022 | 05 | 424 | 425 | 1974 | 2007 | 1 | IL | 1
+110009327022 | 06 | 25 | 25 | 1991 | 1995 | 1 | IL | 1
+110009327022 | 07 | 947 | 947 | 1985 | 1996 | 1 | IL | 1
+110009327022 | 08 | 272 | 272 | 1985 | 1996 | 1 | IL | 1
+110009327022 | 09 | 48 | 48 | 1992 | 1996 | 1 | IL | 1
+110009327022 | 10 | 187 | 187 | 1986 | 1994 | 1 | IL | 1
+110009327022 | HQ | 50 | 50 | 1973 | 1996 | 1 | IL | 1
+blank | 01 | 28 | 45 | 1984 | 2025 | 6 | RI | 23
+blank | 02 | 72 | 80 | 1986 | 2025 | 5 | XX | 46
+blank | 03 | 38 | 38 | 1985 | 2023 | 3 | MD | 5
+blank | 04 | 66 | 72 | 1986 | 2026 | 8 | FL | 49
+blank | 05 | 158 | 302 | 1984 | 2026 | 13 | IL | 213
+blank | 06 | 224 | 228 | 1984 | 2023 | 6 | MO | 47
+blank | 07 | 71 | 76 | 1984 | 2023 | 4 |  | 53
+blank | 08 | 122 | 123 | 1979 | 2025 | 8 | MO | 20
+blank | 09 | 34 | 35 | 2008 | 2026 | 7 | CA | 29
+blank | 10 | 27 | 30 | 1995 | 2025 | 6 | ID | 25
+blank | EF | 16 | 17 | 1985 | 2015 | 5 | MO | 5
+blank | HQ | 126 | 136 | 1979 | 2025 | 12 | MO | 22
+blank | WF | 2 | 2 | 1985 | 1985 | 1 | MO | 1
+(24 rows; csv has all)
+

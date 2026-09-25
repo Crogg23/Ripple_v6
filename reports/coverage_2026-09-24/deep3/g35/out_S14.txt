@@ -1,0 +1,63 @@
+-- S14 ECHO for every GHGRP registry ID: active flag, compliance, inspections, enforcement, penalties, program flags
+FRS | ECHO_ROWS | ECHO_NAME | IS_ACTIVE | COMPLIANCE | QNC | INSP | LAST_INSP | FORMAL | LAST_FORMAL | PENALTIES | AIR | GHG_PROG | TRI_PROG | MAJOR | PCT_MINORITY
+110043808635 | 1 | MEDICINE BOW TREATING FACILITY | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 4.286
+110070081906 | 1 | ATMOS ENERGY CORPORATION - COLORADO | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 43.724
+110001875686 | 1 | NORTH CROSS COMP STATION4 | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 26.923
+110000854246 | 1 | SHAW INDUSTRIES GROUP INC PLANT 8S | 1 | Violation Identified | 11 | 6 | 2024-09-19 | 0 | 2006-01-05 | 0.0 | 1 | 1 | 1 | 1 | 47.288
+110000335851 | 1 | JBS SOUDERTON INC/FRANCONIA TWP | 1 | Significant Violation | 11 | 10 | 2026-04-10 | 5 | 2026-06-11 | 113707.0 | 1 | 1 | 1 | 1 | 18.717
+110013996417 | 1 | CEREAL CITY LANDFILL | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 33.224
+110056953765 | 1 | BASF CORPORATION | 1 | No Violation Identified | 2 | 7 | 2025-09-11 | 0 | 2009-11-05 | 0.0 | 1 | 1 | 1 | 1 | 4.854
+110071161218 | 1 | U.S. AIR FORCE WRIGHT-PATTERSON AFB OH | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 20.335
+110000389721 | 1 | RMI TITANIUM COMPANY LLC | 1 | Violation Identified | 10 | 4 | 2024-09-18 | 0 | 2017-01-26 | 0.0 | 1 | 1 | 1 | 1 | 12.718
+110033594830 | 1 | VINELAND MUNICIPAL ELECTRIC UTILITY (VMEU) | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 68.673
+110055517276 | 1 | MAGNESIUM PRODUCTS OF AMERICA, INC | 1 | No Violation Identified | 0 | 0 | 2018-05-03 | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 6.969
+110071161214 | 1 | TRANSCO STATION 54 | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 13.521
+110033444850 | 1 | BEAUMONT TERMINAL | 1 | No Violation Identified | 2 | 5 | 2025-12-29 | 0 | 2020-08-04 | 0.0 | 1 | 1 | 1 | 1 | 17.115
+110067751702 | 1 | APPVION LLC | 1 | No Violation Identified | 0 | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 14.941
+110043678366 | 1 | TALISMAN ENERGY USA INC/PUTNAM COMP STA | 1 | No Violation Identified | 0 | 4 | 2026-04-15 | 0 |  | 0.0 | 1 | 0 | 0 | 0 | 2.417
+110000547668 | 1 | GOODRICH CORPORATION CARBON PRODUCTS | 1 | No Violation Identified | 4 | 6 | 2025-12-10 | 0 | 2015-07-01 | 0.0 | 1 | 1 | 1 | 1 | 10.634
+110055579217 | 1 | JACKSON GAS PLANT | 1 | Significant Violation | 12 | 2 | 2023-02-27 | 0 | 2019-09-16 | 0.0 | 1 | 1 | 1 | 1 | 0.0
+110034158685 | 1 | CNTY LDFL INC/CNTY ENVIRONMENTAL OF CLARION | 1 | No Violation Identified | 0 | 4 | 2025-04-03 | 0 | 2007-10-17 | 0.0 | 1 | 1 | 0 | 0 | 1.589
+110002003019 | 1 | LHOIST NORTH AMERICA OF ALABAMA-ALABASTER PLANT | 1 | No Violation Identified | 0 | 6 | 2025-09-30 | 0 | 2006-10-19 | 0.0 | 1 | 1 | 0 | 1 | 23.777
+110043969845 | 1 | RANDOLPH COUNTY SOLID WASTE FACILITY | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 37.527
+110071159352 | 1 | ROHM AND HAAS CHEMICALS LLC, LONE STAR PLANT | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 29.674
+110071161600 | 1 | W I TAYLOR COUNTY LANDFILL LLC | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 10.701
+110012445657 | 1 | CAPITOL DISPOSAL LANDFILL | 1 | Violation Identified | 4 | 1 | 2026-02-17 | 1 | 2021-08-19 | 14899.0 | 1 | 1 | 0 | 0 | 48.229
+110021016229 | 1 | ISP LIMA LLC | 1 | No Violation Identified | 0 | 2 | 2024-09-13 | 0 |  | 0.0 | 1 | 1 | 1 | 1 | 29.162
+110033626538 | 1 | VECTOR PIPELINE | 1 | No Violation Identified | 0 | 1 | 2023-11-22 | 0 |  | 0.0 | 1 | 0 | 0 | 0 | 12.887
+110061429342 | 1 | UNIVERSITY OF FLORIDA COGENERATION PLANT | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 37.674
+110001761479 | 1 | NORTHERN NATURAL GAS CO - VENTURA COMPRESSOR | 1 | No Violation Identified | 0 | 4 | 2025-08-22 | 0 |  | 0.0 | 1 | 1 | 0 | 1 | 3.12
+110071159521 | 1 | DELMONT | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 4.104
+110038128433 | 1 | POINT REMOVE COMPRESSOR STATION | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 2.305
+110071160426 | 1 | WOODCHOPPING RIDGE | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 0.0
+110071161699 | 1 | KERN RIVER GAS TRANSMISSION COMPANY: GOODSPRINGS COMPRESSOR STATION | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 19.657
+110000514676 | 1 | STANISLAUS COUNTY RESOURCE RECOVERY FACILTY | 1 | Significant Violation | 12 | 3 | 2024-09-10 | 13 | 2023-06-15 | 116665.0 | 1 | 1 | 0 | 1 | 72.917
+110071159952 | 1 | TEXAS INSTRUMENTS - LFAB | 0 | Violation Identified | 1 | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 8.415
+110071160247 | 1 | HOPEWELL POWER STATION | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 45.306
+110071161138 | 1 | J.M. SHAFER GENERATING STATION | 1 | No Violation Identified | 0 | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 57.1
+110010577768 | 1 | COTTONWOOD HILLS RECYCLING & DISPOSAL - LANDFILL | 1 | No Violation Identified | 0 | 2 | 2025-06-09 | 0 |  | 0.0 | 1 | 1 | 0 | 1 | 2.661
+110000600056 | 1 | SOUTHWESTERN PUBLIC SERVICE CO - TOLK STATION | 1 | No Violation Identified | 0 | 3 | 2026-01-28 | 0 |  | 0.0 | 1 | 0 | 1 | 1 | 60.0
+110024891027 | 1 | LINCOLNWAY ENERGY LLC | 1 | Violation Identified | 6 | 4 | 2025-12-17 | 0 | 2017-10-03 | 0.0 | 1 | 1 | 1 | 1 | 4.081
+110012154685 | 1 | SALINA WASTE CONNECTIONS - SALINA MUNICIPAL SOLID WASTE LANDFILL | 1 | No Violation Identified | 0 | 6 | 2026-01-08 | 0 | 2002-10-11 | 0.0 | 1 | 1 | 0 | 1 | 11.498
+110060767004 | 1 | MACON BIBB WALKER ROAD MSWL | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 76.339
+110070930976 | 1 | EPNG STATION 6503 AFTON, NM | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 0.0
+110007335605 | 1 | BLACK HILLS POWER AND LIGHT COMPANY - OSAGE POWER PLANT | 0 | No Violation Identified | 0 | 0 | 2013-10-02 | 0 |  | 0.0 | 1 | 1 | 0 | 0 | 3.376
+110001976782 | 1 | COLUMBIA GULF TRANSMISSION, BANNER COMPR | 1 | No Violation Identified | 0 | 2 | 2024-12-18 | 0 |  | 0.0 | 1 | 0 | 0 | 1 | 7.843
+110070665914 | 1 | BLUE WATER ENERGY | 1 | No Violation Identified | 0 | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 3.084
+110034154368 | 1 | MONROE COUNTY LANDFILL | 1 | Violation Identified | 1 | 2 | 2024-11-01 | 0 | 2009-07-23 | 0.0 | 0 | 1 | 0 | 0 | 4.058
+110013974896 | 1 | ROWAN COUNTY LANDFILL | 1 | No Violation Identified | 0 | 1 | 2024-10-15 | 0 |  | 0.0 | 0 | 0 | 0 | 0 | 19.038
+110001538881 | 1 | CAMDEN COUNTY RESOURCE RECOVERY ASSOC | 1 | No Violation Identified | 0 | 4 | 2023-05-18 | 2 | 2026-01-07 | 37420.0 | 1 | 1 | 0 | 1 | 47.626
+110000582012 | 1 | PARKWAY GENERATION OPERATING LLC - BURLINGTON GENERATING STATION | 1 | Violation Identified | 12 | 3 | 2024-12-09 | 0 | 2001-03-16 | 0.0 | 1 | 0 | 0 | 1 | 46.815
+110071162354 | 1 | COLT - FORT WORTH SYNCLINE 420 | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 53.856
+110007196676 | 1 | ELLWOOD TEXAS FORGE | 1 | No Violation Identified | 4 | 2 | 2022-05-31 | 1 | 2025-01-23 | 17875.0 | 1 | 0 | 1 | 0 | 66.71
+110071360145 | 1 | TRANSCO STATION 607 | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 5.251
+110070082519 | 1 | URBAN 200 BLACK WARRIOR BASIN GB | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 44.055
+110069998644 | 1 | BAYSIDE POWER STATION | 1 | Violation Identified | 7 | 4 | 2024-12-09 | 1 | 2022-05-04 | 17500.0 | 0 | 0 | 0 | 1 | 44.553
+110071161574 | 1 | SABINE | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 11.815
+110000587464 | 1 | MARLBORO PAPER MILL | 1 | Violation Identified | 12 | 7 | 2026-05-20 | 0 | 2014-01-08 | 0.0 | 1 | 1 | 1 | 1 | 65.952
+110034627367 | 1 | CITY OF EDINBURG LANDFILL | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 91.934
+110071160864 | 1 | ANTELOPE RIDGE GAS PLANT | 0 |  |  | 0 |  | 0 |  | 0.0 | 0 | 1 | 0 | 0 | 0.0
+110009396073 | 1 | MOBIL OIL CORP | 0 | No Violation Identified | 0 | 0 |  | 0 |  | 0.0 | 0 | 0 | 0 | 0 | 11.174
+110040567687 | 1 | HARGIS-HEBERT ELECTRIC GENERATING STATIO | 1 | No Violation Identified | 0 | 1 | 2024-03-13 | 0 |  | 0.0 | 1 | 1 | 0 | 1 | 19.707
+110000387402 | 1 | CHARTER MANUFACTURING COMPANY, INC. (1318171623) | 1 | No Violation Identified | 4 | 3 | 2025-04-23 | 0 | 2019-09-30 | 0.0 | 1 | 1 | 1 | 1 | 46.711
+(10481 rows; csv has all)

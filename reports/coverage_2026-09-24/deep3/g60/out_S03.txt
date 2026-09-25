@@ -1,0 +1,55 @@
+-- S03 EMBER shape by year and area type: rows, areas, series, runs, flag fill
+YR | AREA_TYPE | N | N_AREAS | N_SERIES | N_RUNS | N_IS_EU | N_IS_OECD | N_IS_G20 | N_DUP_KEYS
+2000 | Country or economy | 13566 | 211 | 66 | 1 | 0 | 0 | 0 | 0
+2000 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2001 | Country or economy | 13562 | 211 | 66 | 1 | 0 | 0 | 0 | 0
+2001 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2002 | Country or economy | 13570 | 211 | 66 | 1 | 0 | 0 | 0 | 0
+2002 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2003 | Country or economy | 13644 | 212 | 66 | 1 | 0 | 0 | 0 | 0
+2003 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2004 | Country or economy | 13676 | 212 | 66 | 1 | 0 | 0 | 0 | 0
+2004 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2005 | Country or economy | 13746 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2005 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2006 | Country or economy | 13754 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2006 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2007 | Country or economy | 13750 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2007 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2008 | Country or economy | 13746 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2008 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2009 | Country or economy | 13754 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2009 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2010 | Country or economy | 13700 | 212 | 66 | 1 | 0 | 0 | 0 | 0
+2010 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2011 | Country or economy | 13712 | 212 | 66 | 1 | 0 | 0 | 0 | 0
+2011 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2012 | Country or economy | 13782 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2012 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2013 | Country or economy | 13786 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2013 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2014 | Country or economy | 13810 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2014 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2015 | Country or economy | 13814 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2015 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2016 | Country or economy | 13814 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2016 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2017 | Country or economy | 13818 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2017 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2018 | Country or economy | 13818 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2018 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2019 | Country or economy | 13822 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2019 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2020 | Country or economy | 13826 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2020 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2021 | Country or economy | 13822 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2021 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2022 | Country or economy | 13822 | 213 | 66 | 1 | 0 | 0 | 0 | 0
+2022 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2023 | Country or economy | 13760 | 212 | 66 | 1 | 0 | 0 | 0 | 0
+2023 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2024 | Country or economy | 12756 | 196 | 66 | 1 | 0 | 0 | 0 | 0
+2024 | Region | 858 | 13 | 66 | 1 | 0 | 0 | 0 | 0
+2025 | Country or economy | 4521 | 91 | 51 | 1 | 0 | 0 | 0 | 0
+2025 | Region | 663 | 13 | 51 | 1 | 0 | 0 | 0 | 0
+(52 rows; csv has all)

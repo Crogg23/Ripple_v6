@@ -1,0 +1,83 @@
+-- S13 GENERATOR master rollup by state, technology, status: denominators and which EIA sheets were loaded
+STATE | TECHNOLOGY | PRIME_MOVER | STATUS | N | MW | SUMMER_MW | Y0 | Y1 | N_RET_PLANNED | N_FILES | A_FILE
+AK | All Other | IC | OP | 1 | 1.1 | 1.1 | 2008 | 2008 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Batteries | BA | OP | 6 | 131.7 | 131.7 | 2003 | 2024 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Conventional Hydroelectric | HY | OP | 64 | 481.0 | 476.2 | 1909 | 2023 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Conventional Hydroelectric | HY | OS | 1 | 0.8 | 0.1 | 1984 | 1984 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Conventional Steam Coal | ST | OP | 13 | 174.5 | 158.8 | 1952 | 2020 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Conventional Steam Coal | ST | OS | 3 | 13.0 | 9.1 | 1964 | 1981 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Flywheels | FW | OP | 1 | 2.0 | 2.0 | 2015 | 2015 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Landfill Gas | IC | OP | 5 | 11.5 | 7.0 | 2012 | 2013 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Fired Combined Cycle | CT | OP | 5 | 247.6 | 207.3 | 1986 | 2017 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Fired Combined Cycle | CA | OP | 3 | 128.4 | 117.3 | 2013 | 2017 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Fired Combined Cycle | CT | SB | 1 | 60.4 | 50.0 | 2017 | 2017 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Fired Combustion Turbine | GT | OP | 17 | 329.5 | 286.8 | 1971 | 2014 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Fired Combustion Turbine | GT | OS | 8 | 132.0 | 135.1 | 1968 | 1977 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Fired Combustion Turbine | GT | SB | 5 | 312.5 | 286.6 | 1968 | 1984 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Natural Gas Internal Combustion Engine | IC | OP | 18 | 181.0 | 174.4 | 1992 | 2015 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Onshore Wind Turbine | WT | OP | 20 | 58.6 | 58.6 | 1997 | 2013 | 9 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Onshore Wind Turbine | WT | OS | 2 | 1.0 | 0.4 | 2011 | 2011 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | IC | OA | 1 | 1.1 | 1.1 | 2000 | 2000 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | CT | OP | 1 | 47.0 | 41.0 | 2007 | 2007 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | GT | OP | 6 | 204.8 | 153.1 | 1971 | 2016 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | CA | OP | 1 | 13.0 | 10.0 | 2007 | 2007 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | IC | OP | 315 | 403.5 | 387.2 | 1965 | 2024 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | IC | OS | 3 | 2.1 | 2.1 | 1968 | 2010 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | GT | SB | 5 | 94.0 | 83.9 | 1976 | 1994 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Petroleum Liquids | IC | SB | 33 | 67.6 | 64.8 | 1952 | 2015 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AK | Solar Photovoltaic | PV | OP | 18 | 7.7 | 7.7 | 2020 | 2023 | 8 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Batteries | BA | OP | 1 | 1.0 | 1.0 | 2017 | 2017 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Conventional Hydroelectric | HY | OP | 101 | 3318.3 | 3290.6 | 1915 | 2005 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Conventional Steam Coal | ST | OP | 7 | 4966.5 | 4728.0 | 1969 | 1991 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Landfill Gas | IC | OP | 5 | 6.4 | 6.4 | 2010 | 2013 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Natural Gas Fired Combined Cycle | CA | OP | 24 | 4399.4 | 4399.4 | 1954 | 2023 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Natural Gas Fired Combined Cycle | CT | OP | 40 | 7469.4 | 6700.7 | 1993 | 2023 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Natural Gas Fired Combined Cycle | CT | SB | 1 | 38.2 | 38.2 | 1994 | 1994 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Natural Gas Fired Combustion Turbine | GT | OP | 35 | 3480.2 | 3284.8 | 1972 | 2023 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Natural Gas Steam Turbine | ST | OP | 12 | 2004.2 | 1751.5 | 1954 | 2023 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Natural Gas with Compressed Air Storage | CE | OP | 1 | 110.0 | 25.0 | 1991 | 1991 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Nuclear | ST | OP | 5 | 5630.4 | 5452.7 | 1974 | 1981 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Other Gases | ST | OP | 1 | 3.8 | 3.8 | 1997 | 1997 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Petroleum Liquids | IC | OP | 10 | 12.0 | 11.9 | 1995 | 2002 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Petroleum Liquids | GT | OP | 1 | 21.2 | 16.0 | 1970 | 1970 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Petroleum Liquids | IC | OS | 2 | 14.0 | 14.0 | 1998 | 1998 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Petroleum Liquids | IC | SB | 1 | 0.6 | 0.7 | 1997 | 1997 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Solar Photovoltaic | PV | OP | 11 | 666.3 | 663.5 | 2015 | 2024 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AL | Wood/Wood Waste Biomass | ST | OP | 16 | 668.5 | 607.5 | 1966 | 2019 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Batteries | BA | OP | 6 | 28.2 | 28.2 | 2019 | 2022 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Conventional Hydroelectric | HY | OA | 1 | 56.0 | 64.4 | 1965 | 1965 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Conventional Hydroelectric | HY | OP | 47 | 1263.6 | 1198.8 | 1925 | 2007 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Conventional Hydroelectric | HY | OS | 1 | 1.3 | 1.3 | 1992 | 1992 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Conventional Steam Coal | ST | OP | 7 | 5487.0 | 4729.6 | 1978 | 2012 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Hydroelectric Pumped Storage | PS | OP | 1 | 30.0 | 30.0 | 1972 | 1972 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Landfill Gas | IC | OP | 11 | 8.8 | 8.8 | 2006 | 2017 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Natural Gas Fired Combined Cycle | CT | OP | 23 | 3383.9 | 1321.2 | 2001 | 2007 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Natural Gas Fired Combined Cycle | CA | OP | 11 | 2198.9 | 3287.0 | 1963 | 2007 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Natural Gas Fired Combustion Turbine | GT | OP | 14 | 464.3 | 408.8 | 1990 | 2016 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Natural Gas Fired Combustion Turbine | GT | SB | 4 | 349.0 | 294.0 | 2007 | 2007 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Natural Gas Internal Combustion Engine | IC | OP | 4 | 20.5 | 19.3 | 2001 | 2009 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Natural Gas Steam Turbine | ST | OP | 3 | 713.5 | 684.0 | 1962 | 1972 | 1 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Nuclear | ST | OP | 2 | 1845.0 | 1821.0 | 1974 | 1980 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Petroleum Liquids | IC | OS | 5 | 7.2 | 7.2 | 1952 | 1976 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Petroleum Liquids | IC | SB | 2 | 1.9 | 1.8 | 1991 | 1992 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Solar Photovoltaic | PV | OP | 62 | 1793.7 | 1784.5 | 2015 | 2024 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AR | Wood/Wood Waste Biomass | ST | OP | 8 | 269.5 | 216.9 | 1958 | 1991 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Batteries | BA | OP | 32 | 2111.0 | 2111.0 | 2017 | 2024 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Batteries | BA | OS | 1 | 10.0 | 10.0 | 2019 | 2019 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Conventional Hydroelectric | HY | OP | 33 | 2716.8 | 2717.6 | 1926 | 1993 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Conventional Hydroelectric | HY | OS | 1 | 3.0 | 3.0 | 1939 | 1939 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Conventional Steam Coal | ST | OP | 9 | 3217.5 | 2936.0 | 1962 | 2009 | 6 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Hydroelectric Pumped Storage | PS | OP | 6 | 194.1 | 216.3 | 1927 | 1993 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Landfill Gas | IC | OP | 2 | 3.2 | 3.2 | 2012 | 2012 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Fired Combined Cycle | CS | OP | 10 | 833.7 | 645.5 | 1974 | 2006 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Fired Combined Cycle | CT | OP | 35 | 6428.0 | 5579.8 | 1994 | 2006 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Fired Combined Cycle | CA | OP | 21 | 4529.2 | 3913.3 | 1994 | 2006 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Fired Combustion Turbine | GT | OP | 62 | 3790.0 | 2962.0 | 1971 | 2024 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Fired Combustion Turbine | GT | SB | 7 | 225.1 | 167.0 | 1963 | 2002 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Internal Combustion Engine | IC | OP | 10 | 188.0 | 182.0 | 2019 | 2020 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Internal Combustion Engine | IC | SB | 1 | 1.6 | 1.6 | 2000 | 2000 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Steam Turbine | ST | OP | 7 | 968.0 | 917.0 | 1957 | 1979 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Steam Turbine | ST | OS | 2 | 108.0 | 106.0 | 1952 | 1954 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Natural Gas Steam Turbine | ST | SB | 1 | 81.6 | 72.0 | 1964 | 1964 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+AZ | Nuclear | ST | OP | 3 | 4209.6 | 3937.0 | 1986 | 1988 | 0 | 1 | 3_1_Generator_Y2024.xlsx
+(1214 rows; csv has all)

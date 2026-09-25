@@ -1,0 +1,274 @@
+-- S02 MO registry: addresses with the most distinct persons, with compliance and tier mix
+ADDR | CITY | ZIP | COUNTY | PERSONS | N_ROWS | NONCOMP_PERSONS | MED_AGE | TIERS
+INCARCERATED IN MO |  |  |  | 2555 | 3652 | 2555 | 50.000 | [
+  "3",
+  "2",
+  "1"
+]
+MOVED OUT OF STATE |  |  |  | 647 | 828 | 647 | 48.000 | [
+  "1",
+  "2",
+  "3"
+]
+1621 N 1ST ST | SAINT LOUIS | 63102 | ST LOUIS CITY | 100 | 139 | 17 | 46.000 | [
+  "3",
+  "2",
+  "1"
+]
+UNKNOWN | UNKNOWN | 00000 |  | 64 | 83 | 64 | 56.000 | [
+  "2",
+  "3",
+  "1"
+]
+651 MULBERRY ST | KANSAS CITY | 64101 | JACKSON | 57 | 75 | 5 | 48.000 | [
+  "3",
+  "2",
+  "1"
+]
+1520 CHERRY ST | KANSAS CITY | 64108 | JACKSON | 47 | 63 | 21 | 53.000 | [
+  "1",
+  "3",
+  "2"
+]
+850 PROGRESS DR | FARMINGTON | 63640 | ST FRANCOIS | 37 | 46 | 1 | 50.500 | [
+  "2",
+  "1",
+  "3"
+]
+303 MATC LN | CAPE GIRARDEAU | 63701 | CAPE GIRARDEAU | 36 | 42 | 2 | 41.500 | [
+  "2",
+  "3",
+  "1"
+]
+1108 E 10TH ST | KANSAS CITY | 64106 | JACKSON | 31 | 39 | 13 | 48.000 | [
+  "3",
+  "2",
+  "1"
+]
+4616 HIGHWAY D | FARMINGTON | 63640 | ST FRANCOIS | 27 | 38 | 2 | 57.000 | [
+  "2",
+  "3"
+]
+2041 SILVA LN | MOBERLY | 65270 | RANDOLPH | 23 | 31 | 0 | 63.000 | [
+  "3",
+  "2",
+  "1"
+]
+128 N HARDESTY AVE | KANSAS CITY | 64123 | JACKSON | 21 | 27 | 16 | 63.000 | [
+  "2",
+  "1",
+  "3"
+]
+ | SPRINGFIELD | 65803 | GREENE | 20 | 24 | 4 | 51.000 | [
+  "1",
+  "2",
+  "3"
+]
+ | ST JOSEPH | 64501 | BUCHANAN | 19 | 21 | 3 | 46.000 | [
+  "3",
+  "2"
+]
+2300 E DIVISION ST | SPRINGFIELD | 65803 | GREENE | 18 | 25 | 1 | 49.000 | [
+  "2",
+  "1",
+  "3"
+]
+11515 TROOST AVE | KANSAS CITY | 64131 | JACKSON | 17 | 23 | 4 | 61.000 | [
+  "2",
+  "3",
+  "1"
+]
+10 LAKE DR | BONNE TERRE | 63628 | ST FRANCOIS | 17 | 25 | 1 | 68.000 | [
+  "3",
+  "2"
+]
+3017 BROOKING PARK AVE | SEDALIA | 65301 | PETTIS | 17 | 21 | 0 | 54.000 | [
+  "1",
+  "2",
+  "3"
+]
+1081 HART ST | NEELYVILLE | 63954 | BUTLER | 17 | 25 | 7 | 52.000 | [
+  "3",
+  "1",
+  "2"
+]
+UNKNOWN | KANSAS CITY | 64108 | JACKSON | 16 | 22 | 16 | 49.000 | [
+  "3"
+]
+2800 HIGHWAY TT | SEDALIA | 65301 | PETTIS | 15 | 17 | 1 | 65.000 | [
+  "1",
+  "3",
+  "2"
+]
+1212 N 13TH ST | SAINT LOUIS | 63106 | ST LOUIS CITY | 14 | 18 | 7 | 53.000 | [
+  "3",
+  "2",
+  "1"
+]
+ | KANSAS CITY | 64106 | JACKSON | 14 | 19 | 4 | 49.000 | [
+  "2",
+  "3",
+  "1"
+]
+135 COMMUNICATION DR | HANNIBAL | 63401 | MARION | 13 | 16 | 0 | 58.000 | [
+  "3",
+  "1",
+  "2"
+]
+ | SPRINGFIELD | 65802 | GREENE | 13 | 15 | 1 | 46.000 | [
+  "3",
+  "1",
+  "2"
+]
+1514 CAMPBELL ST | KANSAS CITY | 64108 | JACKSON | 13 | 17 | 6 | 53.000 | [
+  "3",
+  "1"
+]
+528 INDIANA AVE | KANSAS CITY | 64124 | JACKSON | 13 | 19 | 1 | 44.000 | [
+  "2",
+  "1",
+  "3"
+]
+52435 INFIRMARY RD | MILAN | 63556 | SULLIVAN | 12 | 13 | 0 | 65.000 | [
+  "3",
+  "1",
+  "2"
+]
+23144 HIGHWAY 32 | BELLEVIEW | 63623 | IRON | 12 | 16 | 3 | 65.000 | [
+  "3"
+]
+4335 W PINE BLVD | SAINT LOUIS | 63108 | ST LOUIS CITY | 12 | 25 | 3 | 68.000 | [
+  "2",
+  "3"
+]
+UNKNOWN | KANSAS CITY | 64106 | JACKSON | 12 | 13 | 12 | 63.000 | [
+  "2",
+  "1",
+  "3"
+]
+3304 N FARM ROAD 137 | SPRINGFIELD | 65803 | GREENE | 12 | 16 | 0 | 54.000 | [
+  "3",
+  "2"
+]
+5300 ARSENAL ST | SAINT LOUIS | 63139 | ST LOUIS CITY | 11 | 16 | 0 | 61.000 | [
+  "2",
+  "3",
+  "1"
+]
+805 E DALE ST | SPRINGFIELD | 65803 | GREENE | 11 | 14 | 2 | 48.000 | [
+  "3",
+  "2"
+]
+ | ST LOUIS | 63106 | ST LOUIS CITY | 11 | 15 | 7 | 63.000 | [
+  "3",
+  "2"
+]
+1430 DOUBET RD | FARMINGTON | 63640 | ST FRANCOIS | 11 | 15 | 1 | 35.000 | [
+  "2",
+  "3",
+  "1"
+]
+3864 W GLENWOOD ST | SPRINGFIELD | 65807 | GREENE | 10 | 15 | 0 | 51.000 | [
+  "3",
+  "1",
+  "2"
+]
+3200 E 30TH ST | KANSAS CITY | 64128 | JACKSON | 10 | 17 | 3 | 70.000 | [
+  "2",
+  "1",
+  "3"
+]
+9001 E 68TH TER | RAYTOWN | 64133 | JACKSON | 10 | 13 | 4 | 41.000 | [
+  "3",
+  "2"
+]
+6410 E 12TH ST | KANSAS CITY | 64126 | JACKSON | 10 | 12 | 1 | 48.000 | [
+  "3",
+  "2"
+]
+5550 NOLAND RD | KANSAS CITY | 64133 | JACKSON | 9 | 15 | 1 | 58.000 | [
+  "3",
+  "2"
+]
+1111 E 10TH ST | KANSAS CITY | 64106 | JACKSON | 9 | 9 | 3 | 49.000 | [
+  "1",
+  "3",
+  "2"
+]
+381 ELM ST | SAINT MARY | 63673 | STE GENEVIEVE | 9 | 9 | 2 | 65.000 | [
+  "3",
+  "2"
+]
+12816 E 47TH ST S | INDEPENDENCE | 64055 | JACKSON | 8 | 12 | 2 | 54.000 | [
+  "2",
+  "1",
+  "3"
+]
+ | JEFFERSON CITY | 65101 | COLE | 8 | 13 | 0 | 41.000 | [
+  "3",
+  "2"
+]
+12820 E 47TH ST S | INDEPENDENCE | 64055 | JACKSON | 8 | 9 | 2 | 34.000 | [
+  "1",
+  "3",
+  "2"
+]
+210 FRANKS LN | CAPE GIRARDEAU | 63701 | CAPE GIRARDEAU | 8 | 11 | 0 | 62.000 | [
+  "1",
+  "3"
+]
+UNKNOWN | KANSAS CITY | 64124 | JACKSON | 7 | 8 | 7 | 61.000 | [
+  "1",
+  "3"
+]
+1010 W COLUMBIA ST | FARMINGTON | 63640 | ST FRANCOIS | 7 | 15 | 0 | 64.000 | [
+  "3"
+]
+UNKNOWN | KANSAS CITY | 64127 | JACKSON | 7 | 9 | 7 | 59.000 | [
+  "2",
+  "3"
+]
+ | SEDALIA | 65301 | PETTIS | 7 | 9 | 0 | 59.000 | [
+  "1",
+  "3"
+]
+UNKNOWN | KANSAS CITY | 64130 | JACKSON | 7 | 9 | 7 | 60.000 | [
+  "2",
+  "3",
+  "1"
+]
+1304 BOWLING ST | COLUMBIA | 65201 | BOONE | 6 | 9 | 0 | 58.000 | [
+  "3"
+]
+9801 E 18TH ST S | INDEPENDENCE | 64052 | JACKSON | 6 | 9 | 0 | 46.000 | [
+  "3"
+]
+3332 BELT AVE | SAINT LOUIS | 63120 | ST LOUIS CITY | 6 | 8 | 3 | 57.000 | [
+  "2",
+  "1",
+  "3"
+]
+5100 E 24TH ST | KANSAS CITY | 64127 | JACKSON | 6 | 10 | 0 | 51.000 | [
+  "1",
+  "3",
+  "2"
+]
+304 HOGAN DR | COLUMBIA | 65202 | BOONE | 6 | 6 | 0 | 47.000 | [
+  "2",
+  "1",
+  "3"
+]
+ | STRAFFORD | 65757 | GREENE | 6 | 6 | 0 | 47.500 | [
+  "3",
+  "1"
+]
+161 VONDERA | ROBERTSVILLE | 63072 | FRANKLIN | 6 | 6 | 0 | 75.500 | [
+  "2",
+  "1",
+  "3"
+]
+UNKNOWN | SAINT LOUIS | 63102 | ST LOUIS CITY | 6 | 9 | 6 | 63.000 | [
+  "3",
+  "1"
+]
+(60 rows; csv has all)

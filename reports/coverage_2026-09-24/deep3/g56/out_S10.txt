@@ -1,0 +1,43 @@
+-- S10 GLEIF second-field check for the 589 sanctioned (SDN/EU/UK) LEIs: other names, Latin spellings, cities, HQ, legal form
+LEI | ENTITY_LEGALNAME | OTHER1 | OTHER1_TYPE | OTHER2 | TRANSLIT1 | LEGAL_CITY | LEGAL_CTRY | HQ_CITY | HQ_CTRY | RA_ID | EV1_TYPE | EV1_DATE
+815600EFBF057879BD68 | IDRONAUT S.R.L. |  |  |  |  | BRUGHERIO | IT | BRUGHERIO | IT | 13292880153 |  | 
+8368002FTM3KU02LUJ65 | 中航光电科技股份有限公司 |  |  |  |  | 洛阳市 | CN | 洛阳市 | CN | 914100007457748527 | CHANGE_OTHER_NAMES | 2022-06-24T00:00:00.000+08:00
+836800ATJW0A2VFIQ168 | 福建省平潭县远洋渔业集团有限公司 |  |  |  |  | 福州市 | CN | 福州市 | CN | 913501057051504472 |  | 
+836800DOGOI85MLDK287 | 江西连胜科技股份有限公司 |  |  |  |  | 南昌市 | CN | 南昌市 | CN | 913601215761389180 |  | 
+836800GLPTYJVK4P3I39 | 福州宏龙海洋水产有限公司 |  |  |  |  | 福州市 | CN | 福州市 | CN | 91350100628538981P |  | 
+836800HI2SNFWVDAJK36 | ROCKOIL TRADING LIMITED |  |  |  |  | 香港 | HK | 香港 | HK | 76223042 |  | 
+836800XO6MXVGVUCOZ88 | EXOTRADE LIMITED |  |  |  |  | 香港 | HK | 香港 | HK | 77005697 | CHANGE_LEGAL_FORM | 2025-04-27T00:00:00.000+08:00
+836800Z7L44QM8SMET78 | 浙江南洋科技有限公司 |  |  |  |  | 台州市 | CN | 台州市 | CN | 91331000563304198L |  | 
+875500HOXPGEOJIZCR36 | LIEMETA AG in Liquidation | Liemeta AG | PREVIOUS_LEGAL_NAME |  |  | Triesen | LI | Triesen | LI | FL-0002.516.776-6 | CHANGE_LEGAL_ADDRESS | 2024-05-26T22:00:00Z
+875500UI0NE7JBJHD081 | SHANDONG INDEPENDENT ENERGY TRADING DMCC |  |  |  |  | Dubai | AE | Dubai | AE | DMCC197093 |  | 
+529900U2WUGZOETQOR30 | Nord Energy AG |  |  |  |  | Zug | CH | Zug | CH | CHE-156.840.745 |  | 
+529900XGGQVECOWYLC69 | ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "УЛЬЯНОВСКИЙ СТАНКОСТРОИТЕЛЬНЫЙ ЗАВОД" | OOO "Ulyanovsk Machine Tools" | PREVIOUS_LEGAL_NAME | OOO "Ulyanovsk Machine Tools" | OBSESTVO S OGRANICENNOJ OTVETSTVENNOSTU "ULANOVSKIJ STANKOSTROITELNYJ ZAVOD" | Ulyanovsk | RU | Ulyanovsk | RU | 1127325003706 | CHANGE_LEGAL_NAME | 2024-10-21T00:00:00+02:00
+5493000ZEZTJDIXEH628 | AGOR DMCC |  |  |  |  | DUBAI | AE | DUBAI | AE | DMCC0885 |  | 
+5493002RY8NSFA60MF48 | VH ANTIBES SAS |  |  |  |  | ANTIBES | FR | ANTIBES | FR | 504 317 025 |  | 
+529900U2JJ7GK68NI589 | China Mobile Limited | 中國移動有限公司 | ALTERNATIVE_LANGUAGE_LEGAL_NAME |  |  | HONG KONG | HK | HONG KONG | HK | 21330874 |  | 
+5493000CQSFTFE1GJU56 | ASIA FUEL PTE. LTD. |  |  |  |  | SINGAPORE | SG | SINGAPORE | SG | 202003540C | DISSOLUTION | 2023-12-31T16:00:00Z
+5493004165TIYDN15T27 | بانک سامان |  |  |  | SAMAN BANK | TEHRAN | IR | TEHRAN | IR | 154444 | CHANGE_LEGAL_ADDRESS | 2023-04-26T00:00:00Z
+2138004D6DKIFJN8OY10 | WANTA SHIPPING L.L.C-FZ |  |  |  |  | DUBAI | AE | DUBAI | AE | 2204176 |  | 
+2138004OMEVX71IU7E09 | GPB-DI HOLDINGS LIMITED | SIRITIA VENTURES LIMITED | PREVIOUS_LEGAL_NAME |  |  | NICOSIA | CY | NICOSIA | CY | ΗΕ 145737 |  | 
+21380059SYMJSEUGVP15 | P G R GOLD TRADING LLC |  |  |  |  | AL DHAGAYA | AE | AL DHAGAYA | AE | 689308 |  | 
+213800BC4TEGCCQH9V07 | MELLI BANK PLC | MELLI IRAN PLC | PREVIOUS_LEGAL_NAME | OPTIONINDIGO PUBLIC LIMITED COMPANY |  | London | GB | London | GB | 04152338 |  | 
+213800BOY1VGLF7KHZ95 | IMPERIAL YACHTS LIMITED |  |  |  |  | ST HELIER | JE | ST HELIER | JE | 95883 |  | 
+213800FWJ3YKY5R1VV14 | CRIOS SHIPPING L.L.C | كريوس للملاحة ش.ذ.م.م | TRADING_OR_OPERATING_NAME |  |  | DUBAI | AE | DUBAI | AE | 911030 |  | 
+213800XGY151JV5B1E88 | CEIBA INVESTMENTS LIMITED | CEIBA FINANCE LTD. | PREVIOUS_LEGAL_NAME |  |  | ST PETER PORT | GG | ST PETER PORT | GG | 30083 | CHANGE_LEGAL_ADDRESS | 2022-12-01T00:00:00Z
+253400009AA3PGAXJ027 | Акционерное общество "Российский Банк поддержки малого и среднего предпринимательства" | JSC Russian Bank for Small and Medium Enterprises Support | ALTERNATIVE_LANGUAGE_LEGAL_NAME | JSC SME Bank |  | Москва | RU | Москва | RU | 1027739108649 | CHANGE_LEGAL_FORM | 2023-03-30T00:00:00+03:00
+25340001RLM1RS3CX190 | Акционерное общество "Авто Финанс Банк" | Joint Stock Company "Auto Finance Bank" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | JSC "Auto Finance Bank" |  | Москва | RU | Москва | RU | 1025500003737 | CHANGE_LEGAL_ADDRESS | 2022-07-22T00:00:00+03:00
+2534000M10JE1UCFJ111 | Новосибирский социальный коммерческий банк "Левобережный" (публичное акционерное общество) | Novosibirsk Social Commercial Bank "Levoberezhny" (public joint-stock company) | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Банк "Левобережный" (ПАО) |  | Новосибирск | RU | Новосибирск | RU | 1025400000010 | CHANGE_HQ_ADDRESS | 2025-05-29T00:00:00+03:00
+2534000R9X3PNNE57C55 | "МОСКОВСКИЙ КРЕДИТНЫЙ БАНК" (публичное акционерное общество) | CREDIT BANK OF MOSCOW | ALTERNATIVE_LANGUAGE_LEGAL_NAME | CREDIT BANK OF MOSCOW (public joint-stock company) |  | Москва | RU | Москва | RU | 1027739555282 | ABSORPTION | 2022-01-01T00:00:00+03:00
+25340011K39ECHPV7N75 | Акционерное общество Банк "Объединенный капитал" | Bank "United capital" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Joint-Stock Company Bank "United capital" |  | Санкт-Петербург | RU | Санкт-Петербург | RU | 1027800003505 | CHANGE_HQ_ADDRESS | 2025-04-04T00:00:00+03:00
+253400158TN8TJ0YJK75 | АКЦИОНЕРНЫЙ ЧЕЛЯБИНСКИЙ ИНВЕСТИЦИОННЫЙ БАНК "ЧЕЛЯБИНВЕСТБАНК" (ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО) | "Chelyabinvestbank" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | ПАО "ЧЕЛЯБИНВЕСТБАНК" |  | Челябинск | RU | Челябинск | RU | 1027400001650 | CHANGE_LEGAL_ADDRESS | 2024-07-31T00:00:00+03:00
+2534001F52UDT7V2KR58 | Акционерное общество коммерческий банк "Ланта-Банк" | Joint stock Company commercial bank "Lanta-Bank" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | АКБ "Ланта-Банк" (АО) |  | Москва | RU | Москва | RU | 1037739042912 | CHANGE_LEGAL_ADDRESS | 2022-06-16T00:00:00+03:00
+253400397QM0B6AM0H48 | АКЦИОНЕРНОЕ ОБЩЕСТВО АКЦИОНЕРНЫЙ КОММЕРЧЕСКИЙ БАНК "МЕЖДУНАРОДНЫЙ ФИНАНСОВЫЙ КЛУБ" | JOINT STOCK COMPANY JOINT STOCK COMMERCIAL BANK "INTERNATIONAL FINANCIAL CLUB" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | JSC JSCB "INTERNATIONAL FINANCIAL CLUB" |  | Москва | RU | Москва | RU | 1027700056977 |  | 
+2534003K6H2HYV034349 | Акционерное общество коммерческий банк "Уральский финансовый дом" | Bank Ural FD | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Joint-Stock Company Commercial Bank "Ural FD" |  | Пермь | RU | Пермь | RU | 1025900000048 | ABSORPTION | 2005-02-22T00:00:00+03:00
+2534004L951WTUL81746 | Акционерное общество "Русский Уголь" | Joint-stock company "Russian Coal" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | JSC "Russian Coal" |  | Москва г | RU | Москва | RU | 1097746061390 |  | 
+2534006JE0HRJ1VBE173 | Общество с ограниченной ответственностью "Рыночный Спецдепозитарий" | "Market F.A." LLC | ALTERNATIVE_LANGUAGE_LEGAL_NAME | "Market Fund Administration" Limited Liability Company |  | Ангарск | RU | Ангарск | RU | 1107746400827 | CHANGE_LEGAL_ADDRESS | 2022-04-25T00:00:00+03:00
+2534006Q4Z9QEKQJ1P18 | Публичное акционерное общество Страховая Компания "Росгосстрах" | Rosgosstrakh Insurance Company | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Rosgosstrakh Insurance Company (Public Joint Stock Company) |  | Люберцы | RU | Москва | RU | 1027739049689 | ABSORPTION | 2018-10-01T00:00:00+03:00
+2534007XNRQ38CWWDP74 | Общество с ограниченной ответственностью "Хоум Кредит энд Финанс Банк" | HCF Bank | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Home Credit & Finance Bank Limited Liability Company |  | Москва | RU | Москва | RU | 1027700280937 | CHANGE_HQ_ADDRESS | 2022-08-22T00:00:00+03:00
+2534009M60TLJ672C190 | Общество с ограниченной ответственностью "Альфа-Форекс" | Limited Liability Company "Alfa-Forex" | ALTERNATIVE_LANGUAGE_LEGAL_NAME | LLC "Alfa-Forex" |  | Москва | RU | Москва | RU | 1167746614947 | CHANGE_LEGAL_ADDRESS | 2020-10-20T00:00:00+03:00
+253400A7961KNA5T7N44 | Публичное акционерное общество "ТрансКонтейнер" | PJSC TransContainer | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Public Joint Stock Company TransContainer |  | Химки | RU | Москва | RU | 1067746341024 | CHANGE_LEGAL_NAME | 2022-09-19T00:00:00+03:00
+253400AU1YFUM0C4QG84 | Акционерное общество "БКС Банк" | "BCS Bank" AO | ALTERNATIVE_LANGUAGE_LEGAL_NAME | Акционерное общество "БКС - Инвестиционный Банк" |  | Москва | RU | Москва | RU | 1055400000369 | MERGERS_AND_ACQUISITIONS | 2019-07-25T00:00:00+03:00
+(589 rows; csv has all)

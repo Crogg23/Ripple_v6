@@ -1,0 +1,185 @@
+-- S18 IRS revocation vs its near-twin ECONOMICS__FED_IRS_AUTO_REVOCATIONS: EIN overlap, date and reinstatement agreement
+EINS | ONLY_AUTO | ONLY_REV | BOTH_ | SAME_LAST_REV | SAME_REIN | REIN_ONLY_AUTO | REIN_ONLY_REV | ONLY_AUTO_RD_MIN | ONLY_AUTO_RD_MAX | ONLY_AUTO_AFTER_MAR15 | ONLY_REV_RD_MIN | ONLY_REV_RD_MAX | DIFF_ROWCOUNT | AUTO_REIN_MAX | REV_REIN_MAX
+1188025 | 659 | 49 | 1187317 | 1187258 | 1186306 | 943 | 0 | 2011-03-15 | 2026-05-15 | 315 | 2010-05-15 | 2025-09-15 | 58 | 2026-05-15 | 2026-04-15
+(1 rows; csv has all)
+
+-- S19 IRS revocation time series: by revocation month and by posting month, 501(c)(3) share, reinstated share, posting lag
+KIND | M | N | C3 | REIN | LAG_DAYS
+post_month | 2011-06-01 | 274917 | 175315 | 21897 | 390.000
+post_month | 2011-07-01 | 51284 | 31480 | 4128 | 240.000
+post_month | 2011-08-01 | 12012 | 8443 | 1028 | 238.000
+post_month | 2011-09-01 | 11295 | 7245 | 915 | 235.000
+post_month | 2011-10-01 | 30662 | 19869 | 1921 | 234.000
+post_month | 2011-11-01 | 6959 | 3855 | 647 | 239.000
+post_month | 2011-12-01 | 3806 | 2238 | 309 | 236.000
+post_month | 2012-02-01 | 33907 | 21036 | 7702 | 283.000
+post_month | 2012-03-01 | 2092 | 1566 | 438 | 303.000
+post_month | 2012-04-01 | 1523 | 1009 | 363 | 330.000
+post_month | 2012-05-01 | 1755 | 1044 | 417 | 365.000
+post_month | 2012-06-01 | 1706 | 993 | 571 | 393.000
+post_month | 2012-07-01 | 7949 | 4393 | 1722 | 237.000
+post_month | 2012-08-01 | 1857 | 1184 | 457 | 303.000
+post_month | 2012-09-01 | 2772 | 1314 | 889 | 332.000
+post_month | 2012-10-01 | 2470 | 1284 | 712 | 236.000
+post_month | 2012-11-01 | 1498 | 645 | 605 | 547.000
+post_month | 2012-12-01 | 878 | 433 | 381 | 391.000
+post_month | 2013-01-01 | 53 | 31 | 46 | 984.000
+post_month | 2013-02-01 | 18571 | 11469 | 4307 | 272.000
+post_month | 2013-03-01 | 22794 | 16133 | 5399 | 208.000
+post_month | 2013-04-01 | 2288 | 1063 | 935 | 83.000
+post_month | 2013-05-01 | 2554 | 1152 | 969 | 87.000
+post_month | 2013-06-01 | 1597 | 758 | 589 | 146.000
+post_month | 2013-07-01 | 1428 | 534 | 542 | 143.000
+post_month | 2013-08-01 | 30280 | 21231 | 6035 | 89.000
+post_month | 2013-09-01 | 1292 | 413 | 514 | 117.000
+post_month | 2013-10-01 | 3332 | 1207 | 1152 | 159.000
+post_month | 2013-11-01 | 1840 | 740 | 696 | 88.000
+post_month | 2013-12-01 | 1191 | 475 | 353 | 85.000
+post_month | 2014-01-01 | 99 | 56 | 58 | 1337.000
+post_month | 2014-02-01 | 2441 | 894 | 961 | 118.000
+post_month | 2014-03-01 | 6349 | 3645 | 1458 | 115.000
+post_month | 2014-04-01 | 1745 | 835 | 598 | 89.000
+post_month | 2014-05-01 | 2218 | 986 | 707 | 86.000
+post_month | 2014-06-01 | 1308 | 747 | 554 | 206.000
+post_month | 2014-07-01 | 2319 | 1191 | 1738 | 442.000
+post_month | 2014-08-01 | 20114 | 13865 | 4948 | 88.000
+post_month | 2014-09-01 | 2442 | 1127 | 1673 | 297.000
+post_month | 2014-10-01 | 2219 | 1525 | 1282 | 153.000
+post_month | 2014-11-01 | 1512 | 1098 | 868 | 194.000
+post_month | 2014-12-01 | 993 | 692 | 527 | 207.000
+post_month | 2015-01-01 | 439 | 376 | 382 | 1361.000
+post_month | 2015-02-01 | 2153 | 1369 | 1029 | 270.000
+post_month | 2015-03-01 | 6176 | 3882 | 1714 | 114.000
+post_month | 2015-04-01 | 2186 | 1619 | 993 | 88.000
+post_month | 2015-05-01 | 2865 | 1350 | 963 | 85.000
+post_month | 2015-06-01 | 895 | 627 | 502 | 210.000
+post_month | 2015-07-01 | 1122 | 770 | 737 | 424.000
+post_month | 2015-08-01 | 18975 | 14001 | 4224 | 87.000
+post_month | 2015-09-01 | 1770 | 1389 | 995 | 242.000
+post_month | 2015-10-01 | 1895 | 1397 | 849 | 150.000
+post_month | 2015-11-01 | 1139 | 784 | 610 | 179.000
+post_month | 2015-12-01 | 1219 | 767 | 677 | 206.000
+post_month | 2016-01-01 | 409 | 338 | 374 | 1416.000
+post_month | 2016-02-01 | 1682 | 1166 | 632 | 177.000
+post_month | 2016-03-01 | 943 | 743 | 725 | 1046.000
+post_month | 2016-04-01 | 6985 | 4809 | 1716 | 148.000
+post_month | 2016-05-01 | 1816 | 1142 | 714 | 84.000
+post_month | 2016-06-01 | 916 | 680 | 603 | 389.000
+post_month | 2016-07-01 | 1485 | 825 | 409 | 65.000
+post_month | 2016-08-01 | 19684 | 15059 | 4717 | 85.000
+post_month | 2016-09-01 | 2662 | 1528 | 619 | 117.000
+post_month | 2016-10-01 | 4033 | 1531 | 875 | 87.000
+post_month | 2016-11-01 | 5093 | 791 | 760 | 91.000
+post_month | 2016-12-01 | 1636 | 517 | 441 | 88.000
+post_month | 2017-01-01 | 720 | 595 | 600 | 1513.000
+post_month | 2017-02-01 | 1613 | 699 | 369 | 136.000
+post_month | 2017-03-01 | 6619 | 3964 | 1841 | 118.000
+post_month | 2017-04-01 | 2486 | 1751 | 932 | 101.000
+post_month | 2017-05-01 | 1978 | 1333 | 813 | 83.000
+post_month | 2017-06-01 | 1419 | 705 | 582 | 89.000
+post_month | 2017-07-01 | 4964 | 2911 | 1255 | 64.000
+post_month | 2017-08-01 | 63832 | 17222 | 5539 | 93.000
+post_month | 2017-09-01 | 1627 | 822 | 627 | 114.000
+post_month | 2017-10-01 | 1134 | 424 | 327 | 88.000
+post_month | 2017-11-01 | 2363 | 1015 | 832 | 90.000
+post_month | 2017-12-01 | 1465 | 681 | 458 | 87.000
+post_month | 2018-01-01 | 252 | 194 | 208 | 1704.000
+post_month | 2018-02-01 | 2817 | 1707 | 999 | 130.000
+(370 rows; csv has all)
+
+-- S20 Revoked, never reinstated, yet in today's IRS master file or Publication 78: split by ruling date vs revocation date and later filing
+REIN | IN_BMF | DED | RUL_VS | IN_P78 | TP_AFTER | N | REV_SUM | REV_MED | REV_1M
+False | False |  | no_ruling | False | no | 981235 |  |  | 0
+True | True | 1 | ruling_after | True | filed_after | 97515 | 23445719538 | 0.000 | 2483
+True | False |  | no_ruling | False | no | 45073 |  |  | 0
+True | True | 2 | ruling_after | False | filed_after | 16271 | 4983034765 | 0.000 | 267
+False | True | 1 | ruling_after | True | filed_after | 13672 | 3782239864 | 0.000 | 379
+True | True | 1 | ruling_after | True | no | 8731 | 312134165 | 0.000 | 63
+False | True | 2 | ruling_after | False | filed_after | 4411 | 3208074989 | 0.000 | 112
+True | True | 1 | ruling_before | False | filed_after | 3816 | 115098961 | 0.000 | 8
+False | True | 1 | ruling_after | True | no | 2828 | 191841197 | 0.000 | 30
+False | True | 1 | ruling_before | False | filed_after | 2736 | 172169653 | 0.000 | 6
+False | True | 2 | ruling_before | False | filed_after | 2723 | 1195903428 | 0.000 | 52
+True | True | 2 | ruling_before | False | filed_after | 2722 | 862871422 | 0.000 | 16
+False | True | 1 | ruling_before | True | filed_after | 2205 | 3019236300 | 3477.000 | 123
+False | True | 1 | ruling_before | False | no | 585 | 1107199 | 4.000 | 0
+False | True | 2 | ruling_after | False | no | 517 | 30676099 | 54346.000 | 6
+True | True | 2 | ruling_after | False | no | 478 | 16712625 | 46302.000 | 3
+True | True | 1 | ruling_before | True | filed_after | 361 | 120108151 | 2700.000 | 30
+False | True | 2 | ruling_before | False | no | 348 | 9087986 | 66000.000 | 1
+False | True | 1 | ruling_before | True | no | 316 | 30888113 | 0.000 | 8
+True | True | 0 | ruling_after | False | filed_after | 152 | 57752531 | 0.000 | 5
+False | True | 0 | ruling_after | False | filed_after | 151 | 16526945 | 0.000 | 2
+True | True | 1 | ruling_after | False | filed_after | 104 | 7354994 | 0.000 | 3
+True | True | 1 | ruling_before | False | no | 72 | 1172376 | 38164.500 | 0
+False | True | 0 | ruling_before | False | filed_after | 71 | 7327747 | 0.000 | 3
+False | True | 1 | ruling_after | False | filed_after | 66 | 2220122 | 0.000 | 0
+False | True | 0 | ruling_before | False | no | 50 | 0 | 0.000 | 0
+True | True | 1 | ruling_before | True | no | 30 | 466733 | 96924.000 | 0
+False | True | 1 | ruling_after | False | no | 27 |  |  | 0
+True | True | 2 | ruling_before | False | no | 24 | 11760 | 0.000 | 0
+False | False |  | no_ruling | True | no | 10 |  |  | 0
+True | True | 1 | ruling_after | False | no | 10 |  |  | 0
+False | True | 4 | ruling_after | True | filed_after | 9 | 2183146877 | 2187863.500 | 5
+True | True | 4 | ruling_after | True | filed_after | 9 | 148966643 | 0.000 | 4
+True | True | 0 | ruling_after | False | no | 7 | 104209 | 104209.000 | 0
+False | True | 0 | no_ruling | False | filed_after | 7 | 42332 | 21166.000 | 0
+False | True | 0 | ruling_after | False | no | 7 | 1968522 | 10017.500 | 1
+False | True | 0 | no_ruling | False | no | 4 |  |  | 0
+True | True | 0 | no_ruling | False | filed_after | 3 | 77803 | 77803.000 | 0
+True | True | 0 | ruling_before | False | filed_after | 3 | 10451 | 0.000 | 0
+False | True | 4 | ruling_before | True | filed_after | 2 | 0 | 0.000 | 0
+True | False |  | no_ruling | True | no | 2 |  |  | 0
+False | True | 4 | ruling_after | True | no | 1 |  |  | 0
+True | True | 0 | ruling_before | False | no | 1 |  |  | 0
+True | True | 4 | ruling_after | True | no | 1 |  |  | 0
+(44 rows; csv has all)
+
+-- S21 QCEW pay trap: does AVG_ANNUAL_PAY equal wages / jobs, by aggregation level
+AGG | N | OFF_BY_2 | MED_RATIO | MED_RATIO_WEEKLY | SAMPLE_ROW
+10 | 1 | 0 | 0.999996000 | 0.999914000 | US000 10 emp=150025655 wages=10499737035094 wk=1346 pay=69986
+11 | 4 | 0 | 0.999998500 | 0.999945000 | US000 10 emp=128718060 wages=9054842577232 wk=1353 pay=70346
+12 | 8 | 0 | 1.000000000 | 0.999885000 | US000 102 emp=4468410 wages=326224078351 wk=1404 pay=73007
+13 | 43 | 10 | 0.999999000 | 0.999955000 | US000 1025 emp=23350377 wages=1422871666179 wk=1172 pay=60936
+14 | 67 | 15 | 1.000001000 | 0.999932000 | US000 51 emp=6493 wages=579705566 wk=1717 pay=89288
+15 | 261 | 97 | 1.000000000 | 1.000000000 | 
+16 | 639 | 233 | 1.000001000 | 1.000000000 | US000 3351 emp=39775 wages=2977131680 wk=1439 pay=74849
+17 | 1191 | 406 | 1.000001000 | 0.999992000 | 
+18 | 1623 | 570 | 1.000001000 | 0.999992000 | US000 711190 emp=7637 wages=428499675 wk=1079 pay=56111
+30 | 169 | 0 | 1.000000000 | 1.000019000 | CS306 10 emp=70660 wages=3268971279 wk=890 pay=46263
+40 | 388 | 0 | 1.000001000 | 1.000017500 | C1118 10 emp=46766 wages=2814579279 wk=1157 pay=60185
+41 | 1502 | 611 | 1.000001000 | 1.000000000 | C3530 10 emp=5516 wages=537472583 wk=1874 pay=97440
+42 | 771 | 73 | 1.000001000 | 0.999980000 | C2518 102 emp=67850 wages=3149159478 wk=893 pay=46414
+43 | 3868 | 1791 | 1.000002000 | 1.000000000 | 
+44 | 6125 | 3573 | 1.000003000 | 0.999998000 | C3102 31-33 emp=6962 wages=558277153 wk=1542 pay=80195
+45 | 20453 | 16025 | 1.000008000 | 1.000000000 | 
+46 | 48638 | 41805 | 1.000009000 | 1.000000000 | 
+47 | 74623 | 65697 | 1.000010000 | 1.000000000 | C1446 53211 emp=1957 wages=127341703 wk=1252 pay=65086
+48 | 84840 | 75038 | 1.000009000 | 1.000000000 | 
+50 | 53 | 0 | 1.000000000 | 1.000087000 | 31000 10 emp=983968 wages=56358007154 wk=1101 pay=57276
+51 | 211 | 8 | 1.000000000 | 0.999987000 | 40000 10 emp=62352 wages=3554028802 wk=1096 pay=56999
+52 | 362 | 89 | 1.000001000 | 0.999967000 | 
+53 | 1802 | 879 | 1.000001000 | 0.999985500 | 
+54 | 2764 | 1391 | 1.000002000 | 0.999996500 | 38000 22 emp=3189 wages=391282134 wk=2360 pay=122713
+55 | 8082 | 4861 | 1.000003000 | 1.000000000 | 
+56 | 18904 | 13325 | 1.000005000 | 1.000000000 | 
+57 | 35318 | 27994 | 1.000006000 | 1.000000000 | 
+58 | 44831 | 36620 | 1.000007000 | 1.000000000 | 53000 456110 emp=11262 wages=596528919 wk=1019 pay=52970
+70 | 3274 | 1174 | 1.000002000 | 1.000000000 | 01115 10 emp=19970 wages=955538551 wk=920 pay=47848
+71 | 12727 | 9322 | 1.000005000 | 1.000000000 | 
+72 | 16754 | 12508 | 1.000006000 | 1.000000000 | 
+73 | 60027 | 49582 | 1.000007000 | 1.000000000 | 
+74 | 76609 | 63984 | 1.000007000 | 1.000000000 | 
+75 | 165556 | 142506 | 1.000008000 | 1.000000000 | 39061 459 emp=5499 wages=162656957 wk=569 pay=29578
+76 | 251660 | 221508 | 1.000010000 | 1.000000000 | 48303 4238 emp=1250 wages=100213624 wk=1541 pay=80150
+77 | 315678 | 277416 | 1.000009000 | 1.000000000 | 
+78 | 331795 | 291997 | 1.000009000 | 1.000000000 | 
+80 | 541 | 43 | 1.000002000 | 1.000018000 | C4122 10 emp=15205 wages=776893941 wk=983 pay=51095
+91 | 1 | 0 | 1.000001000 | 0.999720000 | USMSA 10 emp=128949382 wages=9197178679113 wk=1372 pay=71324
+92 | 1 | 0 | 0.999994000 | 0.999778000 | USCMS 10 emp=113839785 wages=8220651287946 wk=1389 pay=72212
+93 | 1 | 0 | 0.999998000 | 0.999579000 | USNMS 10 emp=21076273 wages=1302558355981 wk=1189 pay=61802
+94 | 1 | 0 | 1.000001000 | 1.000273000 | US000 10 emp=147162048 wages=10234078472403 wk=1337 pay=69543
+95 | 1 | 0 | 0.999996000 | 1.000044000 | US000 10 emp=21307595 wages=1444894457862 wk=1304 pay=67811
+96 | 53 | 0 | 1.000000000 | 1.000020000 | 35000 10 emp=172193 wages=10548661792 wk=1178 pay=61261
+(44 rows; csv has all)
+

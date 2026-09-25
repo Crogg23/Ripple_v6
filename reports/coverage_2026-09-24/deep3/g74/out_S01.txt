@@ -1,0 +1,6 @@
+-- S01 DIM_STATE: confirm it is a lookup (types, territory flag, key uniqueness)
+STATE_TYPE | IS_TERRITORY | N | FIPS | USPS | CODES
+district | False | 1 | 1 | 1 | DC
+state | False | 50 | 50 | 50 | AK,AL,AR,AZ,CA,CO,CT,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY
+territory | True | 5 | 5 | 5 | AS,GU,MP,PR,VI
+(3 rows; csv has all)

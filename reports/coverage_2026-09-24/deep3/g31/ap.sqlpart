@@ -1,0 +1,21 @@
+, ap as (
+  select try_to_number(ISSUER_CIK) cik, FISCAL_PERIOD_END_DATE fpe, FIRM_ID, FIRM_NAME, ENGAGEMENT_PARTNER_ID, AUDIT_REPORT_DATE
+  from LIBRARY_MARTS.FINANCE.FINANCE__FED_PCAOB_FORM_AP_FILINGS
+  where LATEST_FORM_AP_FILING='1' and try_to_number(ISSUER_CIK) is not null
+    and AUDIT_REPORT_TYPE='Issuer, other than Employee Benefit Plan or Investment Company'
+), pre as (select * from ap where AUDIT_REPORT_DATE between '2023-01-01' and '2024-05-02'),
+lastpre as (select cik, FIRM_ID, FIRM_NAME from pre qualify row_number() over (partition by cik order by AUDIT_REPORT_DATE desc, fpe desc)=1),
+fsize as (select FIRM_ID, count(distinct cik) firm_clients from pre group by 1),
+base as (
+  select cik, max(AFS) afs, max(SIC) sic, max(COUNTRYBA) ctry, max(NAME) name from f
+  where q in ('2024Q1','2024Q2') and FORM in ('10-K','10-Q') and fd < '2024-05-03' group by 1
+),
+after as (
+  select cik,
+    max(iff(q between '2025Q3' and '2026Q1' and FORM in ('10-K','10-Q'),1,0)) still_filing,
+    max(iff(q between '2024Q3' and '2026Q1' and FORM in ('10-K','10-Q'),1,0)) any_after_q2,
+    max(iff(q between '2025Q1' and '2026Q1' and FORM='10-K',1,0)) k_2025on,
+    count_if(q between '2024Q3' and '2025Q2' and FORM in ('10-K','10-Q')) per_n,
+    count_if(q between '2024Q3' and '2025Q2' and FORM in ('10-K','10-Q') and days > hard_deadline) per_late
+  from f group by 1
+)

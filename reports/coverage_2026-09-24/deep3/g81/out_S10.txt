@@ -1,0 +1,19 @@
+-- S10 Revolving door: jobs per industry across all 16 slots (FLATTEN, since multi-column UNPIVOT failed in S05), tie-score mix
+SECTOR | JOBS | I1 | I2 | I3 | I_BLANK | SENATE | DEPTS
+Finance-Private Equity | 177 | 54 | 30 | 82 | 14 | 101 | 38
+Real Estate | 148 | 53 | 46 | 44 | 5 | 93 | 37
+Finance-Banking | 143 | 11 | 49 | 74 | 9 | 68 | 30
+Agriculture/Big Food | 133 | 21 | 33 | 70 | 9 | 68 | 27
+Energy | 119 | 8 | 26 | 81 | 5 | 73 | 30
+Healthcare | 98 | 12 | 20 | 61 | 7 | 47 | 22
+Finance-Hedge Fund | 92 | 15 | 29 | 53 | 7 | 58 | 21
+Tech | 90 | 10 | 10 | 70 | 0 | 44 | 19
+Asset Management | 83 | 8 | 24 | 40 | 11 | 42 | 21
+Telecommunications | 79 | 12 | 28 | 36 | 3 | 44 | 21
+Defense | 74 | 6 | 21 | 46 | 2 | 44 | 19
+Pharmaceutical | 73 | 4 | 17 | 46 | 6 | 34 | 19
+Retail | 70 | 19 | 22 | 24 | 6 | 40 | 20
+Consulting | 48 | 8 | 31 | 9 | 0 | 24 | 15
+Law | 46 | 12 | 12 | 22 | 0 | 20 | 11
+Insurance | 42 | 6 | 15 | 16 | 5 | 21 | 15
+(16 rows; csv has all)

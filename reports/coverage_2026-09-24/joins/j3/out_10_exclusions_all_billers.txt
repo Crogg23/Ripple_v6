@@ -1,0 +1,16 @@
+SRC	RK	N	LN	FN	TYP	CITY	ST	SS_ALLOWED	X	XD	XCITY	HOW
+sam	20	1255987475	DENNY	IRA	Nurse Practitioner	SURPRISE	AZ	29984094.0	Ineligible (Proceedings Pending) / HHS / Reciprocal / term Indefinite	2026-07-06	SURPRISE	name+state
+sam	32	1275217952	PALACIOS	GINA	Nurse Practitioner	PHOENIX	AZ	23173355.0	Ineligible (Proceedings Pending) / HHS / Reciprocal / term Indefinite	2026-07-02	PHOENIX	name+state
+leie	160	1548808439	JOHNSON	ROBERT	Nurse Practitioner	MELBOURNE	FL	7141087.0	1128b4	2006-10-19	DELTONA	name+state
+sam	160	1548808439	JOHNSON	ROBERT	Nurse Practitioner	MELBOURNE	FL	7141087.0	Prohibition/Restriction / HHS / Reciprocal / term Indefinite	2006-10-19	DELTONA	name+state
+leie	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	1128a1	1994-10-06	MOOREHAVEN	name+state
+leie	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	1128a1	2012-01-19	COLEMAN	name+state
+sam	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	Prohibition/Restriction / HHS / NonProcurement / term Indefinite	1994-12-05	MOOREHAVEN	name+state
+leie	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	1128b4	2018-03-20	TAMPA	name+state
+sam	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	Ineligible (Proceedings Completed) / OPM / NonProcurement / term Indefinite	1994-12-05	MOOREHAVEN	name+state
+sam	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	Prohibition/Restriction / HHS / Reciprocal / term Indefinite	2018-03-20	TAMPA	name+state
+sam	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	Prohibition/Restriction / HHS / Reciprocal / term Indefinite	2012-01-19	COLEMAN	name+state
+sam	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	Prohibition/Restriction / OPM / Reciprocal / term Indefinite	2018-04-30	TAMPA	name+state
+sam	436	1528208691	PEREZ	JOSE	Family Practice	PEMBROKE PINES	FL	2063390.0	Prohibition/Restriction / OPM / Reciprocal / term Indefinite	2012-02-24	COLEMAN	name+state
+leie	470	1336824986	WHITE	AMY	Nurse Practitioner	TEMPE	AZ	1838149.0	1128b4	2005-09-20	TUCSON	name+state
+sam	470	1336824986	WHITE	AMY	Nurse Practitioner	TEMPE	AZ	1838149.0	Prohibition/Restriction / HHS / Reciprocal / term Indefinite	2005-09-20	TUCSON	name+state

@@ -1,0 +1,17 @@
+import pandas as pd, numpy as np, re
+pd.set_option('display.width',260); pd.set_option('display.max_columns',40); pd.set_option('display.max_colwidth',55)
+o=pd.read_pickle('out_S02.pkl'); s=pd.read_pickle('out_S08.pkl')
+o=o[pd.to_numeric(o.CHARTER_NO,errors='coerce').notna()].copy()
+o['ch']=o.CHARTER_NO.astype(int)
+s['cert']=s.FDIC_CERT.astype(float)
+o=o.merge(s,left_on='CERT',right_on='cert',how='left')
+print('rows', len(o), 'cert 0', (o.CERT==0).sum(), 'cert null', o.CERT.isna().sum(), 'landed in SOD', o.FIRST_YR.notna().sum(), 'SOD 2025 branches>0', (o.BRANCHES_2025>0).sum())
+nl=o[o.FIRST_YR.isna()]
+print('not landed in SOD:', len(nl)); print(nl.sort_values('ch')[['CHARTER_NO','NAME','CITY','STATE','CERT','RSSD']].to_string(index=False))
+o['trust_nm']=o.NAME.str.contains(r'\bTrust\b',case=False) & ~o.NAME.str.contains(r'Bank\s*(&|and)\s*Trust',case=False)
+o['crypto']=o.NAME.str.contains(r'Digital|Anchorage|BitGo|Paxos|Erebor|Crypto|Coinbase|Circle|Ripple|Protego|Zero Hash|Wise|Stripe',case=False)
+o['nodep']=o.FIRST_YR.isna() | (o.DEP_2025.fillna(0)==0)
+o['band']=pd.cut(o.ch,[0,20000,24000,25000,25200,25300,25400],labels=['<20000','20000-23999','24000-24999','25000-25199','25200-25299','25300-25398'])
+print(o.groupby('band',observed=True).agg(banks=('ch','size'),no_sod_or_0dep=('nodep','sum'),trust_named=('trust_nm','sum'),crypto_named=('crypto','sum'),newcert=('CERT',lambda x:(x>=58000).sum()), cert0=('CERT',lambda x:(x==0).sum())).to_string())
+print(o[o.ch>=25000].sort_values('ch')[['CHARTER_NO','NAME','CITY','STATE','CERT','RSSD','FIRST_YR','DEP_2025','BRANCHES_2025','SPEC_2025','HC_2025']].to_string(index=False))
+o.to_pickle('occ_join.pkl')

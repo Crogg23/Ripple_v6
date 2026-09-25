@@ -1,0 +1,2 @@
+-- OWID refugees: whole table (7,442 rows x 5 columns), analyzed locally in owid.py
+select ENTITY, CODE, YEAR, REFUGEES_BY_COUNTRY_OF_ORIGIN, WORLD_REGION_ACCORDING_TO_OWID from LIBRARY_MARTS.IMMIGRATION.IMMIGRATION__XC_OWID_REFUGEES

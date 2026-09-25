@@ -1,0 +1,86 @@
+[
+ {
+  "table": "IMMIGRATION__FED_DHS_YEARBOOK",
+  "schema": "IMMIGRATION",
+  "rows": "27",
+  "score": "4.7",
+  "tags": "HARM OUTCOME",
+  "summary": "Entries from the Homeland Security Yearbook of Immigration Statistics, one per yearbook edition, 27 in all, each with a link to its PDF. Every data column, COUNT included, is empty, so the table holds no statistics.",
+  "look_for": "worst actors: who racks up the most ENFORCEMENT_ACTION_TYPE :: ranked bar | outcomes: share of each ENFORCEMENT_ACTION_TYPE value by entity, place or year; who loses most :: stacked bars",
+  "where": "harm: ENFORCEMENT_ACTION_TYPE; outcomes: ENFORCEMENT_ACTION_TYPE",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 27 rows | FISCAL_YEAR top: 2012 1, 2011 1, 2022 1 // triage 1.0/10: None; empty data columns.",
+  "battery_facts": "27 rows | FISCAL_YEAR top: 2012 1, 2011 1, 2022 1",
+  "battery_traps": []
+ },
+ {
+  "table": "IMMIGRATION__FED_ICE_STATISTICS",
+  "schema": "IMMIGRATION",
+  "rows": "204",
+  "score": "4.2",
+  "tags": "MAP DEMOGRAPHIC",
+  "summary": "ICE removal counts from ICE's published statistics, mostly broken down by country of citizenship; only 204 rows.",
+  "look_for": "outliers: rows over 10x the median COUNT of their peers :: dot strip | disparity: row count by COUNTRY_OF_CITIZENSHIP; the raw gap first, then the boring reason :: dot plot by group | trend: spikes and step changes by year in SNAPSHOT_DATE :: line over time | rhythm: month of year and day of week in SNAPSHOT_DATE :: calendar heatmap | where: rank by country :: choropleth map",
+  "where": "metrics: COUNT; dates: SNAPSHOT_DATE; groups: COUNTRY_OF_CITIZENSHIP",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 204 rows | SNAPSHOT_DATE 2026-07-02 to 2026-07-02 // triage 2.0/10: ICE removals by citizenship country, as context for F-027's detainer findings. TRAP: COUNT holds one value, 240255, on 1 rows",
+  "battery_facts": "204 rows | SNAPSHOT_DATE 2026-07-02 to 2026-07-02",
+  "battery_traps": [
+   "COUNT holds one value, 240255, on 1 rows"
+  ]
+ },
+ {
+  "table": "IMMIGRATION__FED_USCIS_DATA",
+  "schema": "IMMIGRATION",
+  "rows": "177",
+  "score": "4.1",
+  "tags": "HARM",
+  "summary": "Rows scraped from USCIS immigration statistics spreadsheets. The load went wrong: the count columns are empty or hold note text, so this table has no usable numbers.",
+  "look_for": "worst actors: who racks up the most DENIALS :: ranked bar | outliers: rows over 10x the median RFE_COUNT of their peers :: dot strip | trend: spikes and step changes by year in PUBLICATION_DATE :: line over time | rhythm: month of year and day of week in PUBLICATION_DATE :: calendar heatmap",
+  "where": "harm: DENIALS; metrics: RFE_COUNT; dates: PUBLICATION_DATE",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 177 rows // triage 0.0/10: The load failed: there are no usable numbers. TRAP: RFE_COUNT is null on all 177 rows",
+  "battery_facts": "177 rows",
+  "battery_traps": [
+   "RFE_COUNT is null on all 177 rows"
+  ]
+ },
+ {
+  "table": "IMMIGRATION__FED_EOIR_CASE_DATA",
+  "schema": "IMMIGRATION",
+  "rows": "12631225",
+  "score": "3.6",
+  "tags": "",
+  "summary": "Immigration court case records from the Justice Department's court office, EOIR. Broken: only one column loaded, so every judge, court, hearing, charge and outcome field is missing. Do not build on it until it is reloaded.",
+  "look_for": "read 20 rows and the plain summary; decide if it has a number worth ranking :: table",
+  "where": "",
+  "keys": "",
+  "traps": "three-tables-not-what-they-look-like",
+  "hunt_trap": "",
+  "found": "battery A: 12.6M rows | CASE_TYPE top: 3325755 SAN FRANCISCO CA 94110 20.9K, 7771272 \u0000 VA 22041   GT SP N \u0000 20.9K, 7771262 CHARLOTTE NC 28215   G 20.9K // triage 1.0/10: None until reloaded; immigration judge outcome gaps would be a 9 if parsed",
+  "battery_facts": "12.6M rows | CASE_TYPE top: 3325755\tSAN FRANCISCO\tCA\t94110 20.9K, 7771272\t\u0000\tVA\t22041\t\t\tGT\tSP\tN\t\u0000 20.9K, 7771262\tCHARLOTTE\tNC\t28215\t\t\tG 20.9K",
+  "battery_traps": []
+ },
+ {
+  "table": "IMMIGRATION__XC_OWID_REFUGEES",
+  "schema": "IMMIGRATION",
+  "rows": "7442",
+  "score": "2.9",
+  "tags": "MAP",
+  "summary": "How many refugees fled from each country, year by year, from Our World in Data.",
+  "look_for": "where: rank by country :: choropleth map",
+  "where": "",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 7.4K rows | 215 distinct ENTITY; top holds 1% of rows: Unknown Origin 74; Angola 65; Rwanda 64 | CODE top: AGO 69, RWA 64, MOZ 64 | YEAR top: 2024 207, 2022 206, 2023 205 | REFUGEES_BY_COUNTRY_OF_ORIGIN top: 5 297, 0 195, 10 77 // triage 2.0/10: Which countries produced the most refugees over time?",
+  "battery_facts": "7.4K rows | 215 distinct ENTITY; top holds 1% of rows: Unknown Origin 74; Angola 65; Rwanda 64 | CODE top: AGO 69, RWA 64, MOZ 64 | YEAR top: 2024 207, 2022 206, 2023 205 | REFUGEES_BY_COUNTRY_OF_ORIGIN top: 5 297, 0 195, 10 77",
+  "battery_traps": []
+ }
+]

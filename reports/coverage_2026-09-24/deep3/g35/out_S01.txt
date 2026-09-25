@@ -1,0 +1,15 @@
+-- S01 GEM hazard: whole table, confirm it is a lookup
+MODEL_VERSION | COUNTRY | FIPS | LATITUDE | LONGITUDE | PGA_10PCT_50YR | VS30 | HAZARD_MODEL_ID | DOI
+2023.1 | Southeast Asia |  |  |  |  | 760 | SEA | 10.13117/SEASHA23
+2023.1 | Europe |  |  |  |  | 760 | EUR | 10.13117/EURSHA23
+2023.1 | Australia |  |  |  |  | 760 | AUS | 10.13117/AUSSHA23
+2023.1 | Middle East |  |  |  |  | 760 | MIE | 10.13117/MIESHA23
+2023.1 | China |  |  |  |  | 760 | CHN | 10.13117/CHNSHA23
+2023.1 | India |  |  |  |  | 760 | IND | 10.13117/INDSHA23
+2023.1 | Africa |  |  |  |  | 760 | AFR | 10.13117/AFRSHA23
+2023.1 | United States |  |  |  |  | 760 | USA | 10.13117/USASHA23
+2023.1 | Canada |  |  |  |  | 760 | CAN | 10.13117/CANSHA23
+2023.1 | Japan |  |  |  |  | 760 | JPN | 10.13117/JPNSHA23
+2023.1 | South America |  |  |  |  | 760 | SAM | 10.13117/SAMSHA23
+2023.1 | New Zealand |  |  |  |  | 760 | NZL | 10.13117/NZLSHA23
+(12 rows; csv has all)

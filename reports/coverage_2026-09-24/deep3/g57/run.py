@@ -1,0 +1,74 @@
+"""g57 runner: read-only statements, one connection per call.
+
+Usage: python run.py batch.sql
+Batch holds blocks headed '-- Sxx title'. Each block is one SELECT/WITH.
+Output: stdout (first 80 rows), g57/out_<Sxx>.txt and .csv. Every block run is appended to g57/ran.sql.
+"""
+import csv
+import re
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[3]
+sys.path.insert(0, str(REPO))
+from connect import db  # noqa: E402
+
+WRITE_WORDS = re.compile(r"\b(CREATE|INSERT|UPDATE|MERGE|TRUNCATE|ALTER|GRANT)\b", re.I)
+
+
+def blocks(text):
+    parts = re.split(r"^(-- S\d+[a-z]?\b.*)$", text, flags=re.M)
+    out = []
+    for i in range(1, len(parts), 2):
+        head = parts[i].strip()
+        body = parts[i + 1].strip().rstrip(";").strip()
+        out.append((head.split()[1], head, body))
+    return out
+
+
+def main():
+    todo = blocks(Path(sys.argv[1]).read_text(encoding="utf-8"))
+    for label, head, body in todo:
+        first = re.sub(r"^\s*(--[^\n]*\n\s*)*", "", body).lstrip("(").split(None, 1)[0].upper()
+        if first not in ("SELECT", "WITH"):
+            sys.exit(f"refusing {label}: starts with {first}")
+        if ";" in body:
+            sys.exit(f"refusing {label}: more than one statement")
+        bad = WRITE_WORDS.search(body)
+        if bad:
+            sys.exit(f"refusing {label}: contains {bad.group(1)}")
+    c = db.connect()
+    try:
+        cur = c.cursor()
+        cur.execute("ALTER SESSION SET STATEMENT_TIMEOUT_IN_SECONDS = 300")
+        cur.execute("ALTER SESSION SET QUERY_TAG = 'deep3-2026-09-24'")
+        for label, head, body in todo:
+            with open(HERE / "ran.sql", "a", encoding="utf-8") as fh:
+                fh.write(f"{head}\n{body};\n\n")
+            lines = [head]
+            try:
+                cur.execute(body)
+                cols = [d[0] for d in cur.description]
+                rows = cur.fetchall()
+                with open(HERE / f"out_{label}.csv", "w", newline="", encoding="utf-8") as fh:
+                    w = csv.writer(fh)
+                    w.writerow(cols)
+                    w.writerows(rows)
+                lines.append(" | ".join(cols))
+                for r in rows[:80]:
+                    lines.append(" | ".join("" if v is None else str(v) for v in r))
+                lines.append(f"({len(rows)} rows; csv has all)")
+            except Exception as e:
+                lines.append(f"ERROR: {e}")
+            txt = "\n".join(lines)
+            print(txt)
+            print()
+            (HERE / f"out_{label}.txt").write_text(txt, encoding="utf-8")
+        cur.close()
+    finally:
+        c.close()
+
+
+if __name__ == "__main__":
+    main()

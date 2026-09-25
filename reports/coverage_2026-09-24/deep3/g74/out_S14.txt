@@ -1,0 +1,63 @@
+-- S14 UK Companies House joined to the UK PSC register (current PSCs only): who controls companies formed 18 Nov 2024-30 Jun 2025 vs 18 Nov 2025-30 Jun 2026, by address group and main nationality
+GRP | W | NAT_G | N | WITH_PSC | WITH_IND | ANY_UK_RES | MAX_NOTIFIED
+BR34AB | post |  | 142 | 142 | 136 | 0 | 2026-06-30
+BR34AB | post | CHINESE | 128 | 128 | 128 | 0 | 2026-06-30
+BR34AB | post | (no nationality) | 6 | 6 | 0 | 0 | 2026-05-12
+BR34AB | post | BRITISH | 2 | 2 | 2 | 0 | 2026-03-02
+BR34AB | post | INDIAN | 1 | 1 | 1 | 0 | 2026-06-10
+BR34AB | post | AMERICAN | 1 | 1 | 1 | 0 | 2026-01-30
+BR34AB | post | TURKISH | 1 | 1 | 1 | 0 | 2026-05-18
+BR34AB | post | MALAYSIAN | 1 | 1 | 1 | 0 | 2026-05-22
+BR34AB | post | ARGENTINE | 1 | 1 | 1 | 0 | 2026-05-25
+BR34AB | post | SINGAPOREAN | 1 | 1 | 1 | 0 | 2026-04-10
+BR34AB | prior |  | 424 | 424 | 422 | 2 | 2026-07-06
+BR34AB | prior | CHINESE | 406 | 406 | 406 | 0 | 2026-07-06
+BR34AB | prior | FILIPINO | 3 | 3 | 3 | 0 | 2025-04-16
+BR34AB | prior | AUSTRALIAN | 2 | 2 | 2 | 0 | 2025-01-14
+BR34AB | prior | (no nationality) | 2 | 2 | 0 | 0 | 2025-08-26
+BR34AB | prior | BRITISH | 2 | 2 | 2 | 2 | 2025-05-20
+BR34AB | prior | AMERICAN | 2 | 2 | 2 | 0 | 2025-05-27
+BR34AB | prior | PANAMANIAN | 1 | 1 | 1 | 0 | 2025-03-26
+BR34AB | prior | ALGERIAN | 1 | 1 | 1 | 0 | 2024-11-18
+BR34AB | prior | LIBYAN | 1 | 1 | 1 | 0 | 2025-01-07
+BR34AB | prior | HUNGARIAN | 1 | 1 | 1 | 0 | 2025-03-06
+BR34AB | prior | TAIWANESE | 1 | 1 | 1 | 0 | 2025-03-17
+BR34AB | prior | BOLIVIAN | 1 | 1 | 1 | 0 | 2025-04-22
+CF148LH | post |  | 1868 | 1795 | 1774 | 1232 | 2026-07-29
+CF148LH | post | PAKISTANI | 433 | 433 | 433 | 270 | 2026-07-15
+CF148LH | post | BRITISH | 410 | 410 | 410 | 407 | 2026-07-29
+CF148LH | post | CHINESE | 147 | 147 | 147 | 48 | 2026-06-17
+CF148LH | post | UKRAINIAN | 95 | 95 | 95 | 54 | 2026-06-09
+CF148LH | post | INDIAN | 85 | 85 | 85 | 74 | 2026-06-18
+CF148LH | post | LATVIAN | 79 | 79 | 79 | 74 | 2026-06-08
+CF148LH | post | (no current psc) | 73 | 0 |  |  | 
+CF148LH | post | TURKISH | 53 | 53 | 53 | 2 | 2026-07-06
+CF148LH | post | ROMANIAN | 38 | 38 | 38 | 31 | 2026-05-23
+CF148LH | post | BANGLADESHI | 32 | 32 | 32 | 17 | 2026-06-08
+CF148LH | post | EGYPTIAN | 30 | 30 | 30 | 3 | 2026-05-25
+CF148LH | post | ENGLISH | 23 | 23 | 23 | 23 | 2026-06-02
+CF148LH | prior |  | 5133 | 5034 | 4963 | 1479 | 2026-07-08
+CF148LH | prior | BRITISH | 820 | 820 | 820 | 798 | 2026-04-05
+CF148LH | prior | CHINESE | 591 | 591 | 591 | 33 | 2026-05-13
+CF148LH | prior | TURKISH | 495 | 495 | 495 | 11 | 2026-02-05
+CF148LH | prior | PAKISTANI | 396 | 396 | 396 | 129 | 2026-04-25
+CF148LH | prior | MOROCCAN | 341 | 341 | 341 | 7 | 2025-06-09
+CF148LH | prior | INDIAN | 195 | 195 | 195 | 63 | 2026-07-01
+CF148LH | prior | FRENCH | 159 | 159 | 159 | 10 | 2025-10-18
+CF148LH | prior | EGYPTIAN | 155 | 155 | 155 | 4 | 2026-06-17
+CF148LH | prior | BANGLADESHI | 123 | 123 | 123 | 89 | 2025-05-08
+CF148LH | prior | VIETNAMESE | 109 | 109 | 109 | 0 | 2025-06-27
+CF148LH | prior | (no current psc) | 99 | 0 |  |  | 
+CF148LH | prior | (no nationality) | 71 | 71 | 0 | 0 | 2026-04-01
+E62JA | post |  | 2910 | 2906 | 2884 | 640 | 2026-07-04
+E62JA | post | PAKISTANI | 951 | 951 | 951 | 84 | 2026-06-30
+E62JA | post | TURKISH | 474 | 474 | 474 | 1 | 2026-06-30
+E62JA | post | BRITISH | 335 | 335 | 335 | 329 | 2026-06-30
+E62JA | post | INDIAN | 232 | 232 | 232 | 69 | 2026-06-30
+E62JA | post | BANGLADESHI | 87 | 87 | 87 | 5 | 2026-06-25
+E62JA | post | CHINESE | 66 | 66 | 66 | 8 | 2026-06-30
+E62JA | post | MOROCCAN | 66 | 66 | 66 | 0 | 2026-06-22
+E62JA | post | NIGERIAN | 62 | 62 | 62 | 43 | 2026-06-26
+E62JA | post | AFGHAN | 35 | 35 | 35 | 3 | 2026-06-24
+E62JA | post | EGYPTIAN | 33 | 33 | 33 | 0 | 2026-07-04
+(231 rows; csv has all)

@@ -1,0 +1,69 @@
+{
+"cols": [
+"POLLUTANT_CODE",
+"DESCR",
+"N"
+],
+"rows": [
+[
+"10461",
+"Sulfur dioxide",
+"53095"
+],
+[
+"300000007",
+"NITROGEN OXIDES N2O ETC",
+"832"
+],
+[
+"300000088",
+"Hexachlorobenzene",
+"50"
+],
+[
+"300000119",
+"Styrene",
+"1721"
+],
+[
+"300000243",
+"VOLATILE ORGANIC COMPOUNDS (VOCS)",
+"127447"
+],
+[
+"300000268",
+"2-Chloroacetophenone ",
+"46"
+],
+[
+"300000282",
+"NITROGEN OXIDES",
+"11632"
+],
+[
+"300000327",
+"Primary PM10 (filterables and condensibles)",
+"286"
+],
+[
+"300000329",
+"FACIL",
+"133679"
+],
+[
+"300000330",
+"OTHER",
+"13005"
+],
+[
+"300000331",
+"Chromium",
+"293"
+],
+[
+"300000377",
+"PM10 (Filterable portion only)",
+"2533"
+]
+]
+}

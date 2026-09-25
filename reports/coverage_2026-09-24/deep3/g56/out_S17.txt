@@ -1,0 +1,43 @@
+-- S17 Pub 78 vs the IRS master file: does the master file agree gifts are deductible? status x subsection x deductibility code
+ST | SUB | DC | SC | N | BMF_PF_CODES
+PC | 03 | 1 | 01 | 1255950 | 0
+PF | 03 | 1 | 01 | 123214 | 123214
+SOUNK | 03 | 1 | 01 | 14210 | 0
+POF | 03 | 1 | 01 | 9456 | 9456
+EO | 13 | 1 | 01 | 8590 | 0
+SO | 03 | 1 | 01 | 7208 | 0
+EO | 19 | 1 | 01 | 3632 | 0
+EO | 04 | 1 | 01 | 3268 | 0
+GROUP | 03 | 1 | 01 | 2468 | 0
+EO,LODGE | 08 | 1 | 01 | 1804 | 0
+EO,LODGE | 10 | 1 | 01 | 1286 | 0
+PC |  |  |  | 840 | 0
+PC | 03 | 1 | 25 | 836 | 762
+FORGN | 03 | 1 | 01 | 536 | 0
+UNKWN | 03 | 1 | 01 | 404 | 0
+PC | 03 | 1 | 02 | 335 | 0
+SONFI | 03 | 1 | 01 | 303 | 0
+EO,GROUP,LODGE | 08 | 1 | 01 | 228 | 0
+FORGN | 03 | 4 | 01 | 215 | 0
+EO,GROUP,LODGE | 10 | 1 | 01 | 116 | 0
+PC | 03 | 4 | 01 | 92 | 0
+EO,GROUP | 19 | 1 | 01 | 70 | 0
+PF |  |  |  | 68 | 0
+GROUP,SOUNK | 03 | 1 | 01 | 65 | 0
+FORGN,PF | 03 | 1 | 01 | 52 | 52
+SOUNK |  |  |  | 43 | 0
+EO |  |  |  | 33 | 0
+FORGN,PF | 03 | 4 | 01 | 31 | 31
+EO | 13 | 1 | 02 | 28 | 0
+EO,GROUP | 04 | 1 | 01 | 25 | 0
+EO | 01 | 1 | 01 | 17 | 0
+PF | 03 | 4 | 01 | 16 | 16
+FORGN,SOUNK | 03 | 4 | 01 | 12 | 0
+GROUP,SO | 03 | 1 | 01 | 10 | 0
+FORGN,POF | 03 | 1 | 01 | 9 | 9
+EO | 04 | 4 | 01 | 7 | 0
+SOUNK | 03 | 4 | 01 | 6 | 0
+UNKWN |  |  |  | 5 | 0
+GROUP | 03 | 1 | 02 | 4 | 0
+PF | 03 | 1 | 02 | 4 | 4
+(70 rows; csv has all)

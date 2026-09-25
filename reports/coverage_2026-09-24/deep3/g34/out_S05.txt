@@ -1,0 +1,40 @@
+-- S05 ICIS-Air pollutants vs facilities: coverage, FACIL-row class vs facility class, major-for-a-pollutant on a non-major facility
+FCLS | FACIL_CLS | NO_POLLUTANT_ROWS | NO_FACILITY_ROW | N | OPERATING | ANY_MAJ_POLLUTANT | ANY_SMI_POLLUTANT | MED_POLLUTANTS | DUP_FACILITY_ROWS
+MIN |  | False | False | 114126 | 80133 | 257 | 1916 | 1.000 | 0
+MIN | MIN | False | False | 37942 | 32574 | 152 | 159 | 2.000 | 0
+MIN | UNK | False | False | 26688 | 10341 | 176 | 358 | 1.000 | 0
+SMI |  | False | False | 19332 | 14037 | 521 | 19239 | 3.000 | 0
+ |  | True | False | 15489 | 3717 |  |  |  | 0
+SMI | SMI | False | False | 12732 | 10177 | 316 | 8975 | 4.000 | 0
+MIN | NAP | False | False | 9405 | 9071 | 34 | 21 | 1.000 | 0
+MAJ | MAJ | False | False | 9103 | 7335 | 7466 | 1327 | 7.000 | 0
+MAJ |  | False | False | 5112 | 3198 | 5025 | 863 | 5.000 | 0
+MIN |  | True | False | 4158 | 55 |  |  |  | 0
+UNK |  | False | False | 4123 | 1141 | 8 | 11 | 1.000 | 0
+MIN | SMI | False | False | 3686 | 3493 | 40 | 3228 | 9.000 | 0
+UNK | UNK | False | False | 2966 | 406 | 4 | 12 | 0.000 | 0
+SMI | UNK | False | False | 2439 | 1565 | 136 | 1714 | 2.000 | 0
+MAJ | UNK | False | False | 2380 | 1667 | 2073 | 400 | 7.000 | 0
+SMI |  | True | False | 1795 | 67 |  |  |  | 0
+NAP |  | False | False | 1430 | 1110 | 20 | 56 | 1.000 | 0
+SMI | MIN | False | False | 1149 | 1007 | 17 | 1135 | 5.000 | 0
+MAJ | MIN | False | False | 1026 | 872 | 533 | 95 | 7.000 | 0
+NAP |  | True | False | 993 | 34 |  |  |  | 0
+OTH | OTH | False | False | 977 | 977 | 0 | 0 | 0.000 | 0
+MAJ |  | True | False | 924 | 16 |  |  |  | 0
+MIN | OTH | False | False | 476 | 427 | 0 | 0 | 2.000 | 0
+MAJ | SMI | False | False | 306 | 265 | 277 | 165 | 8.000 | 0
+MAJ | NAP | False | False | 218 | 202 | 213 | 51 | 9.000 | 0
+UNK |  | True | False | 178 | 1 |  |  |  | 0
+NAP | OTH | False | False | 131 | 0 | 0 | 0 | 0.000 | 0
+NAP | NAP | False | False | 127 | 9 | 5 | 0 | 0.000 | 0
+OTH |  | True | False | 106 | 0 |  |  |  | 0
+SMI | NAP | False | False | 86 | 68 | 30 | 86 | 7.000 | 0
+OTH |  | False | False | 59 | 48 | 4 | 14 | 4.000 | 0
+OTH | SMI | False | False | 44 | 43 | 0 | 3 | 0.000 | 0
+NAP | SMI | False | False | 9 | 0 | 0 | 1 | 0.000 | 0
+MAJ | OTH | False | False | 6 | 4 | 4 | 0 | 5.000 | 0
+UNK | SMI | False | False | 3 | 2 | 0 | 0 | 1.000 | 0
+SMI | OTH | False | False | 2 | 2 | 1 | 2 | 57.500 | 0
+UNK | OTH | False | False | 2 | 2 | 1 | 0 | 3.000 | 0
+(37 rows; csv has all)

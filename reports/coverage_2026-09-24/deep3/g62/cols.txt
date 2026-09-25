@@ -1,0 +1,252 @@
+===== ENERGY__FED_EIA861_ENERGY_EFFICIENCY ['summary', 'row']
+   DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+   UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, n
+   UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some 
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A f
+   BA_CODE :: The short code for the grid operator that balances power in the area, like MISO or PJM.
+   WEBSITE :: The organization's website address, with or without www or https. A few rows in the energy-efficiency table ho
+   _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long numbe
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-178596
+   _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the
+   RECORD_ID :: A made-up ID for each row, built from a hash. Added by your pipeline, not the source.
+   RESIDENTIAL_INCREMENTAL_ENERGY_SAVINGS_MWH :: Electricity saved in 2024 by new efficiency measures for homes, in megawatt-hours.
+   COMMERCIAL_INCREMENTAL_ENERGY_SAVINGS_MWH :: Electricity saved in 2024 by new efficiency measures for businesses, in megawatt-hours.
+   INDUSTRIAL_INCREMENTAL_ENERGY_SAVINGS_MWH :: Electricity saved in 2024 by new efficiency measures for industry, in megawatt-hours.
+   TRANSPORTATION_INCREMENTAL_ENERGY_SAVINGS_MWH :: Electricity saved in 2024 by new efficiency measures for transportation, in megawatt-hours. Mostly blank, and 
+   TOTAL_INCREMENTAL_ENERGY_SAVINGS_MWH :: Electricity saved in 2024 by new efficiency measures for all sectors, in megawatt-hours.
+   RESIDENTIAL_INCREMENTAL_PEAK_DEMAND_SAVINGS_MW :: Cut in peak electricity demand from new 2024 efficiency measures for homes, in megawatts.
+   COMMERCIAL_INCREMENTAL_PEAK_DEMAND_SAVINGS_MW :: Cut in peak electricity demand from new 2024 efficiency measures for businesses, in megawatts.
+   INDUSTRIAL_INCREMENTAL_PEAK_DEMAND_SAVINGS_MW :: Cut in peak electricity demand from new 2024 efficiency measures for industry, in megawatts.
+   TRANSPORTATION_INCREMENTAL_PEAK_DEMAND_SAVINGS_MW :: Cut in peak electricity demand from new 2024 efficiency measures for transportation, in megawatts. Mostly blan
+   TOTAL_INCREMENTAL_PEAK_DEMAND_SAVINGS_MW :: Cut in peak electricity demand from new 2024 efficiency measures for all sectors, in megawatts.
+   RESIDENTIAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH :: Electricity the 2024 efficiency measures for homes will save over their whole life, in megawatt-hours.
+   COMMERCIAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH :: Electricity the 2024 efficiency measures for businesses will save over their whole life, in megawatt-hours.
+   INDUSTRIAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH :: Electricity the 2024 efficiency measures for industry will save over their whole life, in megawatt-hours.
+   TRANSPORTATION_LIFE_CYCLE_ENERGY_SAVINGS_MWH :: Electricity the 2024 efficiency measures for transportation will save over their whole life, in megawatt-hours
+   TOTAL_LIFE_CYCLE_ENERGY_SAVINGS_MWH :: Electricity the 2024 efficiency measures for all sectors will save over their whole life, in megawatt-hours.
+   RESIDENTIAL_LIFE_CYCLE_PEAK_DEMAND_SAVINGS_MW :: Cut in peak demand over the life of the 2024 efficiency measures for homes, in megawatts.
+   COMMERCIAL_LIFE_CYCLE_PEAK_DEMAND_SAVINGS_MW :: Cut in peak demand over the life of the 2024 efficiency measures for businesses, in megawatts.
+   INDUSTRIAL_LIFE_CYCLE_PEAK_DEMAND_SAVINGS_MW :: Cut in peak demand over the life of the 2024 efficiency measures for industry, in megawatts.
+   TRANSPORTATION_LIFE_CYCLE_PEAK_DEMAND_SAVINGS_MW :: Cut in peak demand over the life of the 2024 efficiency measures for transportation, in megawatts. Mostly blan
+   TOTAL_LIFE_CYCLE_PEAK_DEMAND_SAVINGS_MW :: Cut in peak demand over the life of the 2024 efficiency measures for all sectors, in megawatts.
+   RESIDENTIAL_INCREMENTAL_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money paid to home customers for efficiency in 2024, in thousands of dollars.
+   COMMERCIAL_INCREMENTAL_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money paid to business customers for efficiency in 2024, in thousands of dollars.
+   INDUSTRIAL_INCREMENTAL_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money paid to industrial customers for efficiency in 2024, in thousands of dollars.
+   TRANSPORTATION_INCREMENTAL_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money paid to transportation customers for efficiency in 2024, in thousands of dollars. Mostly blank
+   TOTAL_INCREMENTAL_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money paid to customers in all sectors for efficiency in 2024, in thousands of dollars.
+   RESIDENTIAL_INCREMENTAL_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: All other efficiency program costs for homes in 2024, in thousands of dollars.
+   COMMERCIAL_INCREMENTAL_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: All other efficiency program costs for businesses in 2024, in thousands of dollars.
+   INDUSTRIAL_INCREMENTAL_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: All other efficiency program costs for industry in 2024, in thousands of dollars.
+   TRANSPORTATION_INCREMENTAL_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: All other efficiency program costs for transportation in 2024, in thousands of dollars. Mostly blank, and near
+   TOTAL_INCREMENTAL_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: All other efficiency program costs for all sectors in 2024, in thousands of dollars.
+   RESIDENTIAL_LIFE_CYCLE_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money for home customers on the lifetime side, in thousands of dollars. Its top values match the 202
+   COMMERCIAL_LIFE_CYCLE_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money for business customers on the lifetime side, in thousands of dollars. Its top values match the
+   INDUSTRIAL_LIFE_CYCLE_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money for industrial customers on the lifetime side, in thousands of dollars. Its top values match t
+   TRANSPORTATION_LIFE_CYCLE_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money for transportation customers on the lifetime side, in thousands of dollars. Its top values mat
+   TOTAL_LIFE_CYCLE_CUSTOMER_INCENTIVES_THOUSAND_DOLLARS :: Incentive money for customers in all sectors on the lifetime side, in thousands of dollars. Its top values mat
+   RESIDENTIAL_LIFE_CYCLE_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: Other program costs for homes on the lifetime side, in thousands of dollars. Its top values match the 2024 col
+   COMMERCIAL_LIFE_CYCLE_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: Other program costs for businesses on the lifetime side, in thousands of dollars. Its top values match the 202
+   INDUSTRIAL_LIFE_CYCLE_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: Other program costs for industry on the lifetime side, in thousands of dollars. Its top values match the 2024 
+   TRANSPORTATION_LIFE_CYCLE_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: Other program costs for transportation on the lifetime side, in thousands of dollars. Its top values match the
+   TOTAL_LIFE_CYCLE_ALL_OTHER_COSTS_THOUSAND_DOLLARS :: Other program costs for all sectors on the lifetime side, in thousands of dollars. Its top values match the 20
+   RESIDENTIAL_WEIGHTED_AVERAGE_LIFE_YEARS :: How many years the efficiency measures for homes are expected to last, on average.
+   COMMERCIAL_WEIGHTED_AVERAGE_LIFE_YEARS :: How many years the efficiency measures for businesses are expected to last, on average.
+   INDUSTRIAL_WEIGHTED_AVERAGE_LIFE_YEARS :: How many years the efficiency measures for industry are expected to last, on average.
+   TRANSPORTATION_WEIGHTED_AVERAGE_LIFE_YEARS :: How many years the efficiency measures for transportation are expected to last, on average. Mostly blank, and 
+===== ENERGY__FED_EIA860_2_PLANT ['summary', 'row']
+   PLANT_CODE :: The Energy Department's ID number for the power plant. Use it to join the plant, generator, and owner tables.
+   UTILITY_ID :: The Energy Department's ID number for the utility.
+   UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some 
+   PLANT_NAME :: The name of the power plant.
+   STREET_ADDRESS :: The street address, like 4201 IVAR AVE. Some rows hold fillers or directions instead, like TBD, LAT/LONG_USED,
+   CITY :: The city or town name, in capitals or mixed case, with spellings not cleaned. Some rows hold fillers like UNKN
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A f
+   ZIP :: The ZIP code, stored as text, as 5 digits or 9 with or without a dash. Fillers like 00000, UNKNO or a lone das
+   COUNTY :: The county, usually as a name like Harris, though some tables add the word County and the federal court tables
+   LATITUDE :: How far north the place is, usually in decimal degrees. Some rows hold 0 or the word None instead of a real sp
+   LONGITUDE :: How far east or west the place is, usually in decimal degrees; U.S. places are negative. Some rows hold 0 or t
+   NERC_REGION :: The regional power-grid reliability area, as a short code like SERC or WECC.
+   BALANCING_AUTHORITY_CODE :: The grid operator that balances power where the plant sits, as a short code like MISO, PJM or TVA. At least on
+   BALANCING_AUTHORITY_NAME :: The grid operator that keeps power supply and demand matched in the area, like PJM Interconnection or Tennesse
+   SECTOR_NAME :: What kind of company runs the power plant, like Electric Utility, or IPP for an independent power producer. CH
+   _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long numbe
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-178596
+   _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the
+   NAME_OF_WATER_SOURCE :: Where the plant gets its cooling water, like Municipality, Wells or Mississippi River. Blank for most plants.
+   PRIMARY_PURPOSE_NAICS_CODE :: An industry code for the plant owner's main business. 22 means utilities, which is most plants; others need a 
+   REGULATORY_STATUS :: RE for a rate-regulated utility plant, NR for not regulated. Most are NR.
+   SECTOR :: A number code, 1 to 7, for the kind of owner, like utility or independent producer. The codes need a lookup.
+   FERC_COGENERATION_STATUS :: Y when the plant is federally certified as making both power and useful heat.
+   FERC_COGENERATION_DOCKET_NUMBER :: The federal energy regulator's docket number for that heat-and-power certification. Blank for most plants.
+   FERC_SMALL_POWER_PRODUCER_STATUS :: Y when the plant is federally certified as a small power producer.
+   FERC_SMALL_POWER_PRODUCER_DOCKET_NUMBER :: The federal energy regulator's docket number for the small-producer certification. Some say pending. Blank for
+   FERC_EXEMPT_WHOLESALE_GENERATOR_STATUS :: Y when the plant is a federally exempt wholesale power seller.
+   FERC_EXEMPT_WHOLESALE_GENERATOR_DOCKET_NUMBER :: The federal energy regulator's docket number for the exempt wholesale status. Blank for most plants.
+   ASH_IMPOUNDMENT :: Y when the plant has a pond for coal ash or other burn waste. Rare.
+   ASH_IMPOUNDMENT_LINED :: Whether the ash pond has a liner: Y, N, or X. X fills most rows; its meaning needs a lookup.
+   ASH_IMPOUNDMENT_STATUS :: A two-letter status for the ash pond, like OP or OS. Filled for only a few hundred plants. The codes need a lo
+   TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER :: The utility that owns the power lines the plant feeds into, like Southern California Edison.
+   TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_ID :: The federal ID number of the utility that owns those power lines.
+   TRANSMISSION_OR_DISTRIBUTION_SYSTEM_OWNER_STATE :: The state of the utility that owns those power lines, as two letters.
+   GRID_VOLTAGE_KV :: The voltage where the plant connects to the grid, in kilovolts.
+   GRID_VOLTAGE_2_KV :: A second grid connection voltage, in kilovolts. Blank for almost every plant.
+   GRID_VOLTAGE_3_KV :: A third grid connection voltage, in kilovolts. Blank for almost every plant.
+   ENERGY_STORAGE :: Y when the plant stores energy, like with batteries.
+   NATURAL_GAS_LDC_NAME :: The local gas utility that delivers gas to the plant. Blank for most plants.
+   NATURAL_GAS_PIPELINE_NAME_1 :: The main gas pipeline serving the plant. Blank for most plants.
+   NATURAL_GAS_PIPELINE_NAME_2 :: A second gas pipeline serving the plant. Blank for almost every plant.
+   NATURAL_GAS_PIPELINE_NAME_3 :: A third gas pipeline serving the plant. Blank for almost every plant.
+   PIPELINE_NOTES :: Free-text notes about the plant's gas supply. Blank for almost every plant.
+   NATURAL_GAS_STORAGE :: Whether the plant stores natural gas on site: Y, N or X. X means the question does not apply to it. Blank for 
+   LIQUEFIED_NATURAL_GAS_STORAGE :: Whether the plant stores liquefied natural gas on site: Y, N or X. Blank for about half.
+===== ENERGY__FED_EIA861_DELIVERY_COMPANIES ['summary', 'row']
+   DATA_YEAR :: The year the data covers, like 2024. One table runs into future years like 2032.
+   UTILITY_NUMBER :: The Energy Department's ID number for the utility. 99999 is a filler that lines up with the Adjustment rows, n
+   UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some 
+   PART :: Which part of the EIA sales form the row comes from, a letter A to D.
+   SERVICE_TYPE :: What the utility sold the customer: Bundled, Energy only, or Delivery only.
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A f
+   OWNERSHIP :: What kind of owner the utility is, like Cooperative, Municipal, or Investor Owned. The generator table uses on
+   BA_CODE :: The short code for the grid operator that balances power in the area, like MISO or PJM.
+   RESIDENTIAL_REVENUES_THOUSAND_DOLLARS :: Money the utility took in from home customers, in thousands of dollars, so 17929 means about $17.9 million. On
+   RESIDENTIAL_SALES_MWH :: Electricity sold to home customers, in megawatt-hours. One sales table holds only 0.
+   RESIDENTIAL_CUSTOMERS :: How many home customers the utility served. One sales table holds only 0.
+   COMMERCIAL_REVENUES_THOUSAND_DOLLARS :: Money the utility took in from business customers, in thousands of dollars.
+   COMMERCIAL_SALES_MWH :: Electricity sold to business customers, in megawatt-hours.
+   COMMERCIAL_CUSTOMERS :: How many business customers the utility served.
+   INDUSTRIAL_REVENUES_THOUSAND_DOLLARS :: Money the utility took in from industrial customers like factories, in thousands of dollars.
+   INDUSTRIAL_SALES_MWH :: Electricity sold to industrial customers, in megawatt-hours.
+   INDUSTRIAL_CUSTOMERS :: How many industrial customers the utility served.
+   TRANSPORTATION_REVENUES_THOUSAND_DOLLARS :: Money the utility took in from transportation customers like electric rail, in thousands of dollars. A few val
+   TRANSPORTATION_SALES_MWH :: Electricity sold to transportation customers, in megawatt-hours. A few values are negative.
+   TRANSPORTATION_CUSTOMERS :: How many transportation customers the utility served, usually 0 or a handful. A few values are negative.
+   TOTAL_REVENUES_THOUSAND_DOLLARS :: All money the utility took in from electricity sales, in thousands of dollars.
+   TOTAL_SALES_MWH :: All electricity the utility sold, in megawatt-hours.
+   TOTAL_CUSTOMERS :: How many customers of all kinds the utility served.
+   _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long numbe
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-178596
+   _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the
+   RECORD_ID :: A made-up ID for each row. Added by your pipeline, not the source.
+   DATA_TYPE :: Says O on every row; the code needs a lookup.
+===== ENERGY__FED_EIA860_3_1_GENERATOR ['summary', 'row']
+   PLANT_CODE :: The Energy Department's ID number for the power plant. Use it to join the plant, generator, and owner tables.
+   GENERATOR_ID :: The generator's short ID inside its power plant, like GT4 or 1. Only unique together with the plant code.
+   UTILITY_ID :: The Energy Department's ID number for the utility.
+   UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some 
+   PLANT_NAME :: The name of the power plant.
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A f
+   COUNTY :: The county, usually as a name like Harris, though some tables add the word County and the federal court tables
+   TECHNOLOGY :: The kind of power generator, in words, like Onshore Wind Turbine or Solar Photovoltaic.
+   PRIME_MOVER :: A two-letter code for the machine that turns the generator, like WT for wind turbine or PV for solar panels. N
+   OWNERSHIP :: What kind of owner the utility is, like Cooperative, Municipal, or Investor Owned. The generator table uses on
+   SECTOR_NAME :: What kind of company runs the power plant, like Electric Utility, or IPP for an independent power producer. CH
+   ENERGY_SOURCE_1 :: The main fuel the generator burns, as a short code like NG for natural gas, WND for wind or NUC for nuclear; n
+   ENERGY_SOURCE_2 :: The generator's second fuel, as a short code like DFO or NG; needs a lookup. Often blank in the generator tabl
+   MULTIPLE_FUELS :: Whether the generator can burn more than one fuel, as Y or N.
+   COFIRE_FUELS :: Whether the generator can burn two fuels at the same time. Y or N; often blank in the generator table.
+   SWITCH_BETWEEN_OIL_AND_NATURAL_GAS :: Whether the generator can switch between oil and natural gas. Y or N; often blank in the generator table.
+   NAMEPLATE_CAPACITY_MW :: The generator's rated maximum output, in megawatts.
+   SUMMER_CAPACITY_MW :: How much power the generator can actually deliver in summer, in megawatts.
+   WINTER_CAPACITY_MW :: How much power the generator can actually deliver in winter, in megawatts.
+   OPERATING_MONTH :: The month the generator started running, as a number 1 to 12.
+   OPERATING_YEAR :: The year the generator started running, like 2011.
+   _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long numbe
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-178596
+   _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the
+   UNIT_CODE :: A code tying together generators that run as one unit, like the parts of a combined-cycle plant. Mostly blank;
+   DUCT_BURNERS :: Whether the generator has duct burners that add heat to its exhaust: Y or N. X fills most rows and needs a loo
+   CAN_BYPASS_HEAT_RECOVERY_STEAM_GENERATOR :: Whether the unit can run while bypassing its heat recovery steam generator: Y or N. X fills most rows and need
+   RTO_ISO_LMP_NODE_DESIGNATION :: The price point name the regional grid operator uses for this generator. Mostly blank.
+   RTO_ISO_LOCATION_DESIGNATION_FOR_REPORTING_WHOLESALE_SALES_DATA_TO_FERC :: The location name the regional grid operator uses when reporting this generator's wholesale power sales to fed
+   STATUS :: The generator's operating status as a short code: OP on most rows, plus SB, OS and OA. The codes need a lookup
+   SYNCHRONIZED_TO_TRANSMISSION_GRID :: Whether the generator is tied into the power grid: Y or N. X fills most rows and needs a lookup.
+   ASSOCIATED_WITH_COMBINED_HEAT_AND_POWER_SYSTEM :: Whether the generator is part of a system that makes both power and useful heat: Y or N.
+   SECTOR :: A number from 1 to 7 for the kind of owner, like a utility or a factory. The numbers need a lookup.
+   TOPPING_OR_BOTTOMING :: For heat-and-power units, whether power is made first or from leftover heat: T or B. X fills most rows and nee
+   ENERGY_SOURCE_3 :: The generator's third fuel, as a short code like NG, DFO or WDS. Nearly always blank; the codes need a lookup.
+   ENERGY_SOURCE_4 :: The generator's fourth fuel, as a short code like NG, DFO or WDS. Nearly always blank; the codes need a lookup
+   ENERGY_SOURCE_5 :: The generator's fifth fuel, as a short code like NG, DFO or WDS. Nearly always blank; the codes need a lookup.
+   ENERGY_SOURCE_6 :: The generator's sixth fuel, as a short code like NG, DFO or WDS. Nearly always blank; the codes need a lookup.
+   STARTUP_SOURCE_1 :: The main fuel used to start the generator, as a short code like NG or DFO. Mostly blank; the codes need a look
+   STARTUP_SOURCE_2 :: The second fuel used to start the generator, as a short code. Nearly always blank; the codes need a lookup.
+   STARTUP_SOURCE_3 :: The third fuel used to start the generator, as a short code. Nearly always blank; the codes need a lookup.
+   STARTUP_SOURCE_4 :: The fourth fuel used to start the generator, as a short code. Nearly always blank; the codes need a lookup.
+   SOLID_FUEL_GASIFICATION_SYSTEM :: Whether the generator is part of a system that turns solid fuel into gas: Y or N. Almost all say N.
+   CARBON_CAPTURE_TECHNOLOGY :: Whether the generator captures carbon from its exhaust: Y or N. Very few say Y.
+   TIME_FROM_COLD_SHUTDOWN_TO_FULL_LOAD :: How long the generator takes to go from cold to full power, in bands: 10M, 1H, 12H or OVER.
+   FLUIDIZED_BED_TECHNOLOGY :: Whether the steam unit uses a fluidized bed boiler: Y or N. Blank for almost all generators.
+   PULVERIZED_COAL_TECHNOLOGY :: Whether the steam unit uses a pulverized coal boiler: Y or N. Blank for almost all generators.
+   STOKER_TECHNOLOGY :: Whether the steam unit uses a stoker boiler: Y or N. Blank for almost all generators.
+   OTHER_COMBUSTION_TECHNOLOGY :: Whether the steam unit uses some other kind of burner: Y or N. Blank for almost all generators.
+   SUBCRITICAL_TECHNOLOGY :: Whether the steam unit uses subcritical steam: Y or N. Blank for almost all generators.
+   SUPERCRITICAL_TECHNOLOGY :: Whether the steam unit uses supercritical steam: Y or N. Blank for almost all generators.
+   ULTRASUPERCRITICAL_TECHNOLOGY :: Whether the steam unit uses ultrasupercritical steam: Y or N. Blank for almost all generators.
+   PLANNED_NEW_PRIME_MOVER :: For generators due to be rebuilt, the new kind of machine, as a code like WT or ST. Nearly always blank; the c
+   PLANNED_ENERGY_SOURCE_1 :: For generators due to be rebuilt, the new main fuel, as a code like WND or NG. Nearly always blank; the codes 
+   OTHER_PLANNED_MODIFICATIONS :: Whether other changes are planned for the generator: Y or N. Mostly blank.
+   UPRATE_OR_DERATE_COMPLETED_DURING_YEAR :: Whether the generator's capacity was raised or cut during the year: Y or N. Almost all say N.
+   NAMEPLATE_POWER_FACTOR :: The generator's rated power factor, a number up to 1, like 0.8 or 0.9.
+   MINIMUM_LOAD_MW :: The lowest output the generator can hold steadily, in megawatts.
+   MONTH_UPRATE_OR_DERATE_COMPLETED :: The month a capacity change was finished during the year. Nearly always blank.
+   YEAR_UPRATE_OR_DERATE_COMPLETED :: The year a capacity change was finished; every filled row says 2024. Nearly always blank.
+   PLANNED_RETIREMENT_MONTH :: The month the generator is due to retire. Blank unless a retirement is planned.
+   PLANNED_RETIREMENT_YEAR :: The year the generator is due to retire, mostly 2025 onward. Blank unless a retirement is planned.
+   TURBINES_OR_HYDROKINETIC_BUOYS :: How many wind turbines or water-current buoys make up the generator. Mostly blank, and often 0.
+   PLANNED_NET_SUMMER_CAPACITY_UPRATE_MW :: Planned increase in summer output, in megawatts. Nearly always blank.
+   PLANNED_NET_WINTER_CAPACITY_UPRATE_MW :: Planned increase in winter output, in megawatts. Nearly always blank.
+   PLANNED_UPRATE_MONTH :: The month a planned output increase is due. Nearly always blank.
+   PLANNED_UPRATE_YEAR :: The year a planned output increase is due. Nearly always blank.
+   PLANNED_NET_SUMMER_CAPACITY_DERATE_MW :: Planned cut in summer output, in megawatts. Filled on only a handful of generators.
+   PLANNED_NET_WINTER_CAPACITY_DERATE_MW :: Planned cut in winter output, in megawatts. Filled on only a handful of generators.
+   PLANNED_DERATE_MONTH :: The month a planned output cut is due. Filled on only a handful of generators.
+   PLANNED_DERATE_YEAR :: The year a planned output cut is due. Filled on only a handful of generators.
+   PLANNED_NEW_NAMEPLATE_CAPACITY_MW :: The planned rated capacity after a rebuild, in megawatts. Nearly always blank.
+   PLANNED_REPOWER_MONTH :: The month a planned rebuild is due. Nearly always blank.
+   PLANNED_REPOWER_YEAR :: The year a planned rebuild is due. Nearly always blank.
+   OTHER_MODIFICATIONS_MONTH :: The month other planned changes are due. Nearly always blank.
+   OTHER_MODIFICATIONS_YEAR :: The year other planned changes are due. Nearly always blank.
+===== ENERGY__FED_EIA860_3_3_SOLAR ['summary', 'row']
+   PLANT_CODE :: The Energy Department's ID number for the power plant. Use it to join the plant, generator, and owner tables.
+   GENERATOR_ID :: The generator's short ID inside its power plant, like GT4 or 1. Only unique together with the plant code.
+   UTILITY_ID :: The Energy Department's ID number for the utility.
+   UTILITY_NAME :: The name of the power company, utility or other plant operator, like Georgia Power Co or Walmart Stores. Some 
+   PLANT_NAME :: The name of the power plant.
+   STATE :: The state, usually as two letters like TX, but some tables spell out the name like Texas or United States. A f
+   COUNTY :: The county, usually as a name like Harris, though some tables add the word County and the federal court tables
+   TECHNOLOGY :: The kind of power generator, in words, like Onshore Wind Turbine or Solar Photovoltaic.
+   PRIME_MOVER :: A two-letter code for the machine that turns the generator, like WT for wind turbine or PV for solar panels. N
+   SECTOR_NAME :: What kind of company runs the power plant, like Electric Utility, or IPP for an independent power producer. CH
+   NAMEPLATE_CAPACITY_MW :: The generator's rated maximum output, in megawatts.
+   SUMMER_CAPACITY_MW :: How much power the generator can actually deliver in summer, in megawatts.
+   WINTER_CAPACITY_MW :: How much power the generator can actually deliver in winter, in megawatts.
+   OPERATING_MONTH :: The month the generator started running, as a number 1 to 12.
+   OPERATING_YEAR :: The year the generator started running, like 2011.
+   _LOADED_AT :: When this row was loaded into the warehouse. Usually a date and time, but some tables store it as a long numbe
+   _SOURCE_RUN_ID :: A label for the load run that brought this row in, usually a random ID but sometimes a name like manual-178596
+   _SRC_FILE :: The name of the source file this row was read from, like 2___Plant_Y2024.xlsx. Added by your pipeline, not the
+   STATUS :: Whether the generator is running, as a code: OP, OA or OS. The codes need a lookup. Almost all are OP.
+   SECTOR :: Which kind of owner runs the plant, as a code 1 to 7 that needs a lookup.
+   LENSES_MIRRORS :: Whether the generator uses lenses or mirrors to focus sunlight. Y or N. Blank for most generators.
+   SINGLE_AXIS_TRACKING :: Whether the panels turn on one axis to follow the sun. Y or N; blank for about half of generators.
+   DUAL_AXIS_TRACKING :: Whether the panels turn on two axes to follow the sun. Y or N. Blank for most generators.
+   FIXED_TILT :: Whether the panels sit at a fixed angle. Y or N; blank for about 40% of generators.
+   BIFACIAL :: Whether the panels catch light on both sides. Y or N. Blank for most generators.
+   EAST_WEST_FIXED_TILT :: Whether the panels are fixed facing east and west. Y or N. Blank for most generators.
+   PARABOLIC_TROUGH :: Whether the plant uses curved mirror troughs to heat fluid. Y or N. Blank for most generators.
+   LINEAR_FRESNEL :: Whether the plant uses flat mirror strips to heat fluid. Only 4 rows are filled, all N.
+   POWER_TOWER :: Whether the plant uses mirrors aimed at a central tower. Y or N. Blank for most generators.
+   DISH_ENGINE :: Whether the plant uses mirror dishes driving an engine. Only 4 rows are filled, all N.
+   OTHER_SOLAR_TECHNOLOGY :: Whether the generator uses some other solar technology. Y or N. Blank for most generators.
+   CRYSTALLINE_SILICON :: Whether the panels are made of crystalline silicon, the most common kind. Y or N.
+   THIN_FILM_CDTE :: Whether the panels are cadmium telluride thin film. Y or N. Blank for most generators.
+   THIN_FILM_A_SI :: Whether the panels are amorphous silicon thin film. Y or N. Blank for most generators.
+   THIN_FILM_CIGS :: Whether the panels are copper indium gallium selenide thin film. Y or N. Blank for most generators.
+   THIN_FILM_OTHER :: Whether the panels are some other thin film. Y or N. Blank for most generators.
+   OTHER_MATERIALS :: Whether the panels are made of some other material. Y or N. Blank for most generators.
+   NET_METERING_AGREEMENT :: Whether the generator has a net-metering deal to sell extra power back to the grid: Y, N or X. X needs a looku
+   VIRTUAL_NET_METERING_AGREEMENT :: Whether the generator has a virtual net-metering deal that credits power to other customers: Y, N or X. X need
+   AZIMUTH_ANGLE :: The compass direction the panels face, in degrees. 180 means due south; 0 also shows up often.
+   TILT_ANGLE :: How steeply the panels tilt from flat, in degrees.
+   DC_NET_CAPACITY_MW :: How much direct-current power the panels can make, in megawatts.
+   NET_METERING_DC_CAPACITY_MW :: The part of the panels' capacity covered by a net-metering deal, in megawatts. Mostly blank.
+   VIRTUAL_NET_METERING_DC_CAPACITY_MW :: The part of the panels' capacity covered by a virtual net-metering deal, in megawatts. Mostly blank.

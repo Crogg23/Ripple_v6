@@ -1,0 +1,67 @@
+-- S03 XWALK_ZCTA_COUNTY: grain, duplicates, exact vs APPROX_TOP_K for the "347 rows" ZIPs, code widths, CT codes
+N | DISTINCT_PAIRS | ZCTAS | COUNTIES | EXACT_MAX_ROWS_PER_ZCTA | ZCTAS_MULTI_COUNTY | MAX_COUNTIES_PER_ZCTA | EXACT_BATTERY_ZIPS | APPROX_TOP5_ZCTA | EXACT_BATTERY_COUNTIES | EXACT_TOP5_COUNTY | BAD_ZCTA | BAD_COUNTY | STATE_PREFIX_MISMATCH | CT_CODES | VINTAGES | TYPES | STATES
+46960 | 46960 | 33791 | 3232 | 6 | 10186 | 6 | {
+  "99827": 2,
+  "99833": 2,
+  "99901": 2
+} | [
+  [
+    "99901",
+    347
+  ],
+  [
+    "99833",
+    347
+  ],
+  [
+    "99827",
+    347
+  ],
+  [
+    "99760",
+    347
+  ],
+  [
+    "99929",
+    346
+  ]
+] | {
+  "04013": 140,
+  "06037": 304,
+  "06073": 116
+} | [
+  {
+    "f": "06037",
+    "n": 304
+  },
+  {
+    "f": "17031",
+    "n": 178
+  },
+  {
+    "f": "48201",
+    "n": 143
+  },
+  {
+    "f": "04013",
+    "n": 140
+  },
+  {
+    "f": "42003",
+    "n": 119
+  }
+] | 0 | 0 | 0 | [
+  "09001",
+  "09003",
+  "09005",
+  "09007",
+  "09009",
+  "09011",
+  "09013",
+  "09015"
+] | [
+  "2020"
+] | [
+  "clean"
+] | 56
+(1 rows; csv has all)

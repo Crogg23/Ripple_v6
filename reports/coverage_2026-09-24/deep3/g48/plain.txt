@@ -1,0 +1,135 @@
+===== JUSTICE__FED_COURTLISTENER_OPINION_CLUSTERS
+DATE_CREATED: When the source created this record in its own database, not when the event happened.
+DATE_MODIFIED: When the source last changed this record in its own database.
+JUDGES: The judges who heard the case, as a comma-separated list of names, sometimes misspelled. Some rows hold non-names like Per Curiam or Certiorari.
+DATE_FILED: The date the case, opinion, or document was filed. One settlements table stores messy text like 7/26/2019 or N/A.
+SLUG: A short web-address name for the record, lowercase words joined by dashes, like king-v-phillips.
+CASE_NAME_SHORT: A short name for the case, often just one party's last name like King or Ayala. Often blank.
+CASE_NAME: The name of the court case, like Chong v. Holder. Some are just the party's name.
+CASE_NAME_FULL: The full case name with every party, like KING v. PHILLIPS. Mostly blank in dockets and filled in only one oral argument row.
+SUMMARY: A text summary of the investigation or court case. Court tables keep web tags like <p>; most CourtListener rows are blank, and the Oyez table mostly holds the word None.
+DISPOSITION: How the case ended. Federal court statistics tables use number codes, including -8, that need a lookup; the opinion table uses words like Affirmed but is mostly blank, and the Oyez table is empty.
+DATE_BLOCKED: The date CourtListener hid this item from search engines, usually for privacy. Blank if never hidden.
+BLOCKED: Whether CourtListener hides this item from search engines, usually for privacy: t true, f false.
+ID: CourtListener's ID for the opinion group. Each row has its own.
+DATE_FILED_IS_APPROXIMATE: t if the filing date is a guess, f if exact.
+SCDB_ID: The Supreme Court Database ID, like 1944-007. Only on Supreme Court cases, so blank on almost every row.
+SCDB_DECISION_DIRECTION: The Supreme Court Database code for the ruling's direction, 1, 2 or 3. Needs a lookup; blank on almost every row.
+SCDB_VOTES_MAJORITY: How many justices voted with the majority. Only on Supreme Court cases.
+SCDB_VOTES_MINORITY: How many justices dissented. Only on Supreme Court cases.
+SOURCE: Where CourtListener got the opinion, as letter codes like U, C or LU. Needs a lookup.
+PROCEDURAL_HISTORY: How the case got here, in words. Blank on almost every row.
+ATTORNEYS: The lawyers who argued, as written in the opinion. Blank on about half the rows.
+NATURE_OF_SUIT: What the case is about, like Civil or Direct Criminal, spelled many ways. Blank on almost every row.
+POSTURE: How the case reached this court, like Appeal from the Supreme Court. Blank on most rows.
+SYLLABUS: The summary printed above the opinion, in HTML. Blank on most rows.
+HEADNOTES: The editor's short legal points, in HTML. Blank on most rows.
+HISTORY: Later history of the case, in HTML. Blank on almost every row.
+OTHER_DATES: Other key dates as free text, like Argued May 18, 1970. Blank on most rows.
+CROSS_REFERENCE: Pointers to related opinions, as free text. Blank on almost every row.
+CORRECTION: Correction notes on the opinion. Blank on almost every row.
+CITATION_COUNT: How many other opinions cite this one. Zero on more than half the rows.
+PRECEDENTIAL_STATUS: Whether the opinion is Published, Unpublished or Unknown. A few rows hold odd values like 200.
+FILEPATH_JSON_HARVARD: The file name of Harvard's Caselaw Access Project copy. Blank on about a third of rows.
+FILEPATH_PDF_HARVARD: The file name of Harvard's PDF scan. Blank on about 45 percent of rows.
+DOCKET_ID: Links to the docket for the case in CourtListener's dockets table.
+ARGUMENTS: Lawyers' arguments, in tagged markup. Blank on almost every row.
+HEADMATTER: The text printed before the opinion, like parties and citation, in tagged markup. Blank on most rows.
+ROW: One court decision: the group of opinions issued together in one case, like the majority and a dissent.
+===== JUSTICE__FED_COURTLISTENER_FINANCIAL_DISCLOSURES
+DATE_CREATED: When the source created this record in its own database, not when the event happened.
+DATE_MODIFIED: When the source last changed this record in its own database.
+YEAR_COL: A year, like 2021. Blank in about half the court financial disclosure rows.
+SHA1: A 40-character fingerprint of a file's contents; the same fingerprint means the same file. A few rows in the financial disclosures table hold junk like t, f or 000 instead.
+PERSON_ID: The source's ID for the person, used to link that person across tables from the same source.
+ID: CourtListener's number for the report. Many rows hold scrambled text from other columns instead.
+DOWNLOAD_FILEPATH: The web link where the report PDF can be downloaded. Blank for about half of rows. Many rows hold scrambled text from other columns instead.
+FILEPATH: The storage path of the report PDF. Blank for about half of rows.
+THUMBNAIL: The storage path of a preview picture of the report's first page. Blank for about half of rows.
+THUMBNAIL_STATUS: A number code for whether the preview picture was made, mostly 1. The codes need a lookup. Many rows hold scrambled text from other columns instead.
+PAGE_COUNT: How many pages the report has. Blank for about half of rows.
+REPORT_TYPE: A number code for the kind of report, mostly 2 or -1. The codes need a lookup. Many rows hold scrambled text from other columns instead.
+IS_AMENDED: t when the report is a corrected version, f when not. Many rows hold scrambled text from other columns instead.
+ADDENDUM_CONTENT_RAW: Extra notes the judge added at the end of the report, in free text. Blank for most rows.
+ADDENDUM_REDACTED: t when parts of the added notes were blacked out, f when not. Many rows hold scrambled text from other columns instead.
+HAS_BEEN_EXTRACTED: t when CourtListener pulled the numbers out of the PDF, f when not. Many rows hold scrambled text from other columns instead.
+ROW: One disclosure report: one judge's financial report for one year, when the row loaded cleanly.
+===== JUSTICE__INTL_EU_SANCTIONS
+DATE_FILE: Date of the EU list file, 05/06/2026 on every row, stored as text.
+ENTITY_LOGICAL_ID: The EU's ID for the sanctioned person or company; it ties together all of its detail lines.
+SUBJECT_TYPE: P for a person or E for an entity such as a company.
+LEBA_NUMTITLE: The EU regulation that listed this person or company, by number and Official Journal reference.
+LEBA_PUBLICATION_DATE: Date that regulation was published, stored as text.
+LEBA_URL: Link to that regulation on EUR-Lex.
+PROGRAMME: Sanctions program, as a code like UKR, IRN or SYR that needs a lookup.
+ENTITY_REMARK: Free-text remarks, often the date the UN designated them.
+NAAL_LOGICAL_ID: ID of this name or alias entry. Filled only on name lines.
+ENTITY_LOGICAL_ID_1: The person or company ID again, filled only on name lines.
+NAAL_LEBA_NUMTITLE: The EU regulation that added this name, by number and Official Journal reference. Filled only on name lines.
+NAAL_LEBA_PUBLICATION_DATE: Date the regulation that added this name was published, stored as text.
+NAAL_LEBA_URL: Link to the regulation that added this name.
+NAAL_PROGRAMME: Sanctions program code for this name line, like UKR or IRN; codes need a lookup.
+NAAL_LASTNAME: Last name, in Latin or Cyrillic letters. Mostly blank; NAAL_WHOLENAME is fuller.
+NAAL_FIRSTNAME: First name, in Latin or Cyrillic letters. Mostly blank.
+NAAL_MIDDLENAME: Middle name or patronymic, like Vladimirovich. Mostly blank.
+NAAL_WHOLENAME: Full name or alias as listed, in many languages and scripts.
+NAAL_GENDER: M or F. Mostly blank.
+NAAL_TITLE: Title or rank, like Major General, or a company form like Joint Stock Company. Mostly blank.
+NAAL_FUNCTION: Job or role, like Member of the State Duma. Mostly blank.
+NAAL_LANGUAGE: Language of this spelling of the name, as a two-letter code like EN or RU.
+ADDR_LOGICAL_ID: ID of this address entry. Filled only on address lines.
+ENTITY_LOGICAL_ID_2: The person or company ID again, filled only on address lines.
+ADDR_LEBA_NUMTITLE: The EU regulation that added this address. Filled only on address lines.
+ADDR_LEBA_PUBLICATION_DATE: Date the regulation that added this address was published, stored as text. Mostly blank.
+ADDR_LEBA_URL: Link to the regulation that added this address. Mostly blank.
+ADDR_PROGRAMME: Sanctions program code for this address line; codes need a lookup. Mostly blank.
+ADDR_NUMBER: House number. Empty in this table: filled 0.
+ADDR_STREET: Street address, sometimes a P.O. box. Mostly blank.
+ADDR_ZIPCODE: Postal code of the address. Filled on few rows.
+ADDR_CITY: City of the address, like Tehran or Moscow. Mostly blank.
+ADDR_COUNTRY: Country of the address, as a three-letter code like RUS. Mostly blank.
+ADDR_OTHER: Notes on the address, like previous address or place of registration. Mostly blank.
+BIRT_LOGICAL_ID: ID of this birth entry. Filled only on birth lines.
+ENTITY_LOGICAL_ID_3: The person or company ID again, filled only on birth lines.
+BIRT_LEBA_NUMTITLE: The EU regulation that added this birth record. Filled only on birth lines.
+BIRT_LEBA_PUBLICATION_DATE: Date the regulation that added this birth record was published. Mostly blank.
+BIRT_LEBA_URL: Link to the regulation that added this birth record. Mostly blank.
+BIRT_PROGRAMME: Sanctions program code for this birth line; codes need a lookup. Mostly blank.
+BIRT_DATE: Date of birth. Mostly blank.
+BIRT_PLACE: Place of birth, like Moscow or Damascus. Mostly blank.
+BIRT_COUNTRY: Country of birth, as a three-letter code like RUS. Mostly blank.
+IDEN_LOGICAL_ID: ID of this identity document entry. Filled only on ID lines.
+ENTITY_LOGICAL_ID_4: The person or company ID again, filled only on ID lines.
+IDEN_LEBA_NUMTITLE: The EU regulation that added this ID document. Filled only on ID lines.
+IDEN_LEBA_PUBLICATION_DATE: Date the regulation that added this ID document was published. Mostly blank.
+IDEN_LEBA_URL: Link to the regulation that added this ID document. Mostly blank.
+IDEN_PROGRAMME: Sanctions program code for this ID line; codes need a lookup. Mostly blank.
+IDEN_NUMBER: ID document number with its type and notes in one string, like a passport or company registration number. Mostly blank.
+IDEN_COUNTRY: Country that issued the ID document, as a three-letter code. Blank on some ID lines.
+CITI_LOGICAL_ID: ID of this citizenship entry. Filled only on citizenship lines.
+ENTITY_LOGICAL_ID_5: The person or company ID again, filled only on citizenship lines.
+CITI_LEBA_NUMTITLE: The EU regulation that added this citizenship. Filled only on citizenship lines.
+CITI_LEBA_PUBLICATION_DATE: Date the regulation that added this citizenship was published. Mostly blank.
+CITI_LEBA_URL: Link to the regulation that added this citizenship. Mostly blank.
+CITI_PROGRAMME: Sanctions program code for this citizenship line; codes need a lookup. Mostly blank.
+CITI_COUNTRY: Country of citizenship, as a three-letter code like RUS. Mostly blank.
+EU_REF_NUM: EU reference number for the listed person or company, like EU.4051.68.
+ROW: One detail line: one name, address, birth record, ID document or citizenship for one sanctioned person or company.
+===== JUSTICE__FED_COURTLISTENER_ORIGINATING_COURT_INFO
+DATE_CREATED: When the source created this record in its own database, not when the event happened.
+DATE_MODIFIED: When the source last changed this record in its own database.
+DOCKET_NUMBER: The case or docket number, in whatever format the court or agency uses, like 16-CR-3441 or FDIC-82-5K. Mostly blank in the FDA device approval table, and fillers like N or No Docket Number show up.
+ASSIGNED_TO_STR: The name of the judge assigned to the case, as plain text, spelled inconsistently like M. Casey Rodgers and M CASEY RODGERS. The originating-court table adds Honorable, sometimes says Per Curiam, and is mostly blank.
+DATE_FILED: The date the case, opinion, or document was filed. One settlements table stores messy text like 7/26/2019 or N/A.
+ASSIGNED_TO_ID: CourtListener's number for the judge assigned to the case. Often blank.
+DOCKET_NUMBER_RAW: The court's case number exactly as written, like 6:05-bk-08813 or 16-CR-3441.
+ID: CourtListener's number for this record.
+ORDERING_JUDGE_STR: Name of the lower-court judge whose order is being appealed. Filled on under 1% of rows.
+COURT_REPORTER: The court reporter in the lower court. Mostly blank.
+DATE_DISPOSED: The day the lower court closed the case. Filled on under 1% of rows.
+DATE_JUDGMENT: The day the lower court entered judgment. Mostly blank.
+DATE_JUDGMENT_EOD: The day the judgment was put on the docket. Mostly blank.
+DATE_FILED_NOA: The day the notice of appeal was filed. Mostly blank.
+DATE_RECEIVED_COA: The day the appeals court received the case. Mostly blank.
+ORDERING_JUDGE_ID: CourtListener's ID for the ordering judge. Filled on under 1% of rows.
+ROW: One lower-court record: the trial-court details behind one appeal docket.

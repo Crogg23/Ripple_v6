@@ -1,0 +1,42 @@
+-- @lg_8871
+select EIN, FORM_ID_NUMBER, ORGANIZATION_NAME, INITIAL_REPORT_IND, AMENDED_REPORT_IND, FINAL_REPORT_IND, ESTABLISHED_DATE,
+  MAILING_ADDR1, MAILING_CITY, MAILING_STATE, EMAIL_ADDRESS, CUSTODIAN_NAME, CONTACT_NAME, INSERT_DATETIME, EXEMPT_8872_IND, EXEMPT_990_IND, left(PURPOSE, 300) purpose
+from LIBRARY_MARTS.POLITICS.POLITICS__IRS527_8871_ORGS
+where lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') in ('881699022','881721891','881744115','882179007','882818797','884133773','884139189','884145793','920471242','920494414','920514698','920525922')
+   or regexp_replace(upper(MAILING_ADDR1),'[^A-Z0-9]','') like '11403RDST%'
+order by EIN, FORM_ID_NUMBER
+-- @lg_8872
+select lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') ein, ORGANIZATION_NAME, FORM_TYPE, FORM_ID_NUMBER, AMENDED_REPORT_IND, FINAL_REPORT_IND,
+  PERIOD_BEGIN_DATE, PERIOD_END_DATE, TOTAL_SCHED_A, TOTAL_SCHED_B, CUSTODIAN_NAME, CONTACT_NAME, INSERT_DATETIME
+from LIBRARY_MARTS.POLITICS.POLITICS__IRS527_8872_REPORTS
+where lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') in ('881699022','881721891','881744115','882179007','882818797','884133773','884139189','884145793','920471242','920494414','920514698','920525922')
+order by 1, PERIOD_BEGIN_DATE, FORM_ID_NUMBER
+-- @lg_schedA
+select lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') ein, CONTRIBUTOR_NAME, CONTRIBUTOR_CITY, CONTRIBUTOR_STATE, CONTRIBUTOR_EMPLOYER,
+  count(*) n, count(distinct FORM_ID_NUMBER) forms, sum(CONTRIBUTION_AMOUNT) amt, min(CONTRIBUTION_DATE) d0, max(CONTRIBUTION_DATE) d1
+from LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_A_CONTRIBUTIONS
+where lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') in ('881699022','881721891','881744115','882179007','882818797','884133773','884139189','884145793','920471242','920494414','920514698','920525922')
+group by 1,2,3,4,5 order by amt desc
+-- @lg_schedB
+select lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') ein, RECIPIENT_NAME, RECIPIENT_CITY, RECIPIENT_STATE, left(EXPENDITURE_PURPOSE,120) purpose,
+  count(*) n, count(distinct FORM_ID_NUMBER) forms, sum(EXPENDITURE_AMOUNT) amt, min(EXPENDITURE_DATE) d0, max(EXPENDITURE_DATE) d1
+from LIBRARY_MARTS.FINANCE.FINANCE__FED_IRS527_SCHEDULE_B_EXPENDITURES
+where lpad(regexp_replace(EIN,'[^0-9]',''),9,'0') in ('881699022','881721891','881744115','882179007','882818797','884133773','884139189','884145793','920471242','920494414','920514698','920525922')
+group by 1,2,3,4,5 order by amt desc
+-- @senate_party_votes_118_119
+with mm as (
+  select CONGRESS, try_to_double(to_varchar(ICPSR))::number icpsr, PARTY_CODE
+  from LIBRARY_MARTS.POLITICS.POLITICS__FED_VOTEVIEW_MEMBERS where CONGRESS in (118,119) and CHAMBER = 'Senate')
+select v.CONGRESS, v.ROLLNUMBER, mm.PARTY_CODE,
+  sum(iff(v.CAST_CODE between 1 and 3,1,0)) yea, sum(iff(v.CAST_CODE between 4 and 6,1,0)) nay, count(*) n
+from LIBRARY_MARTS.POLITICS.POLITICS__VOTEVIEW_VOTES v
+left join mm on mm.CONGRESS = v.CONGRESS and mm.icpsr = try_to_double(to_varchar(v.ICPSR))::number
+where v.CHAMBER = 'Senate' and v.CONGRESS in (118,119)
+group by 1,2,3 order by 1,2,3
+-- @fjc_service_vs_appointment
+select count(*) n, count(distinct NID) nids, count(distinct NID || '-' || SEQUENCE) nid_seq,
+  max(try_to_date(CONFIRMATION_DATE)) max_conf, max(try_to_date(NOMINATION_DATE)) max_nom,
+  count_if(APPOINTING_PRESIDENT = 'Donald J. Trump' and try_to_date(NOMINATION_DATE) >= '2025-01-20') trump2,
+  count_if(AYES_NAYS is not null and trim(AYES_NAYS) <> '') recorded,
+  listagg(distinct SENATE_VOTE_TYPE, ' | ') vote_types
+from LIBRARY_MARTS.POLITICS.POLITICS__FED_FJC_SERVICE

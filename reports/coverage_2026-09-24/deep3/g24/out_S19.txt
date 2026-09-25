@@ -1,0 +1,63 @@
+-- S19 FDIC bank directory, every institution, minimal columns, to rebuild who was open when
+CERT | NAME | CITY | STALP | ACTIVE | BKCLASS | CHRTAGNT | SPECGRP | ESTYMD | ENDEFYMD | ASSET | REPDTE | NETINC | MDI_STATUS_CODE | MDI_STATUS_DESC | OFFICES_DOMESTIC | HOLDING_COMPANY_NAME | INSURANCE_DROPPED_DATE | SUCCESSOR_CERT
+28566 | Northwestern Savings Bank, F.S.B. | Fargo | ND | 0 | SB | OTS | 4.0 | 1893-01-01 | 1996-08-02 | 72240.0000 | 1996-06-30 | 555.0000 |  | NONE | 3 |  |  | 29140
+28567 | Roselle Bank | Roselle | NJ | 0 | SI | STATE | 8.0 | 1889-01-01 | 2020-04-01 | 421971.0000 | 2020-03-31 | -5821.0000 |  | NONE | 4 | RSB BCORP MHC |  | 28834
+28568 | Westwood Savings Bank | Westwood | NJ | 0 | SI | STATE | 7.0 | 1906-01-01 | 1998-02-28 | 110300.0000 | 1997-12-31 | 916.0000 |  | NONE | 2 | WESTWOOD FINANCIAL CORP |  | 28338
+28569 | Home Federal Savings and Loan Association | Baltimore | MD | 0 | SL | OTS |  | 1921-01-01 | 1983-07-31 |  |  |  |  | NONE |  |  |  | 29840
+28570 | American Savings and Loan Association | Goldsboro | NC | 0 | SL | STATE |  | 1906-01-01 | 1982-01-31 |  |  |  |  | NONE |  |  |  | 29595
+28571 | Home Savings and Loan Association | Henderson | NC | 0 | SL | STATE |  | 1912-01-01 | 1977-12-31 |  |  |  |  | NONE |  |  |  | 27835
+28572 | East Federal Savings and Loan Association of Kinston | Kinston | NC | 0 | SL | OTS |  | 1924-01-01 | 1982-07-31 |  |  |  |  | NONE |  |  |  | 29595
+28573 | Shelby Savings Bank | Shelby | NC | 0 | SB | OTS | 5.0 | 1905-01-01 | 1998-02-28 | 107978.0000 | 1997-12-31 | 720.0000 |  | NONE | 1 |  |  | 27677
+28574 | American Federal Bank, FSB | Greenville | SC | 0 | SB | OTS | 9.0 | 1921-01-01 | 2000-06-17 | 1279367.0000 | 2000-03-31 | 6131.0000 |  | NONE | 38 | CCB FINANCIAL CORP |  | 2033
+28575 | The American Federal Savings and Loan Association | Anadarko | OK | 0 | SL | OTS | 4.0 | 1922-01-01 | 1988-07-29 | 65139.0000 | 1988-06-30 | -10715.0000 |  | NONE | 6 |  |  | 0
+28576 | Hennepin Federal Savings and Loan Association of Minneapolis | Minneapolis | MN | 0 | SL | OTS |  | 1895-01-01 | 1982-01-31 |  |  |  |  | NONE |  |  |  | 28606
+28577 | Central Federal Savings and Loan Association | Terre Haute | IN | 0 | SL | OTS |  | 1895-01-01 | 1981-05-31 |  |  |  |  | NONE |  |  |  | 28528
+28578 | Columbia National Bank-Belmont | Chicago | IL | 0 | N | OCC | 5.0 | 1886-01-01 | 1991-10-25 | 64394.0000 | 1991-09-30 | -1579.0000 |  | NONE | 1 |  |  | 19031
+28579 | First Granite City Savings and Loan | Granite City | IL | 0 | SL | STATE | 5.0 | 1894-01-01 | 1992-11-09 | 49558.0000 | 1992-09-30 | 321.0000 |  | NONE | 2 |  |  | 28389
+28580 | Home Savings and Loan Company | Columbiana | OH | 0 | SL | STATE |  | 1919-01-01 | 1979-01-31 |  |  |  |  | NONE |  |  |  | 0
+28581 | Missouri Savings Association | Clayton | MO | 0 | SL | STATE | 5.0 | 1922-01-01 | 1989-06-29 | 661088.0000 | 1989-03-31 | -10348.0000 |  | NONE | 14 |  |  | 32667
+28582 | American Savings and Loan Association, A Federal Association | Salt Lake City | UT | 0 | SL | OTS | 5.0 | 1923-01-01 | 1989-09-07 | 2059301.0000 | 1989-06-30 | -15814.0000 |  | NONE | 63 |  |  | 32791
+28583 | United Savings and Loan Association, FSA | Wichita | KS | 0 | SL | OTS | 5.0 | 1929-01-01 | 1995-03-28 | 7155.0000 | 1994-12-31 | 136.0000 |  | NONE | 1 |  |  | 30898
+28584 | Princeton Savings and Loan Association | Princeton | NJ | 0 | SL | STATE |  | 1917-01-01 | 1982-07-31 |  |  |  |  | NONE |  |  |  | 30217
+28585 | Maple City Savings Bank, FSB | Hornell | NY | 1 | SB | OCC | 5.0 | 1905-01-01 |  | 123057.0000 | 2026-03-31 | 207.0000 |  | NONE | 3 | MAPLE CITY SAVINGS MHC |  | 0
+28586 | Mercer Savings Bank SLA | Trenton | NJ | 0 | SL | STATE | 5.0 | 1911-01-01 | 1990-09-21 | 92695.0000 | 1990-06-30 | -231.0000 |  | NONE | 1 |  |  | 33205
+28587 | Larchmont Federal Savings and Loan Association | Larchmont | NY | 0 | SL | OTS | 5.0 | 1924-01-01 | 1991-08-09 | 123777.0000 | 1991-06-30 | -2311.0000 |  | NONE | 2 |  |  | 16044
+28588 | Irvington Federal Savings and Loan Association | Baltimore | MD | 0 | SL | OTS | 4.0 | 1905-01-01 | 1992-02-28 | 43817.0000 | 1991-12-31 | -1283.0000 |  | NONE | 4 |  |  | 33561
+28589 | Hamilton Bank | Towson | MD | 0 | NM | STATE | 4.0 | 1915-01-01 | 2019-05-01 | 499076.0000 | 2019-03-31 | 139.0000 |  | NONE | 7 | HAMILTON BCORP INC |  | 713
+28590 | Allison Park Savings and Loan Association | Allison Park | PA | 0 | SL | STATE |  | 1911-01-01 | 1982-01-31 |  |  |  |  | NONE |  |  |  | 27956
+28591 | Capital Savings and Loan Association | Cranford | NJ | 0 | SL | STATE |  | 1887-01-01 | 1982-08-31 |  |  |  |  | NONE |  |  |  | 27739
+28592 | Elmira Savings and Loan FA | Elmira | NY | 0 | SL | OTS | 4.0 | 1888-01-01 | 2006-08-11 | 213618.0000 | 2006-06-30 | 1214.0000 |  | NONE | 2 |  |  | 6989
+28593 | Sturgis Bank & Trust Company | Sturgis | MI | 1 | NM | STATE | 4.0 | 1905-01-01 |  | 1014059.0000 | 2026-03-31 | 2268.0000 |  | NONE | 17 | STURGIS BCORP INC |  | 0
+28594 | Home Savings of America, FSB | Irwindale | CA | 0 | SB | OTS | 5.0 | 1889-01-01 | 1993-02-26 | 41183509.0000 | 1992-12-31 | 232736.0000 |  | NONE | 355 |  |  | 15919
+28595 | United Bank, S.B. | Springfield | IL | 0 | SI | STATE | 5.0 | 1874-01-01 | 1995-07-01 | 41630.0000 | 1995-06-30 | 151.0000 |  | NONE | 1 |  |  | 27723
+28596 | Cardinal Federal Savings Bank | Cleveland | OH | 0 | SB | OTS | 5.0 | 1886-01-01 | 1991-12-31 | 1631483.0000 | 1991-09-30 | 9769.0000 |  | NONE | 26 |  |  | 29640
+28597 | Western Savings and Loan Association | Phoenix | AZ | 0 | SL | STATE | 4.0 | 1929-01-01 | 1989-06-14 | 5654683.0000 | 1989-03-31 | -99757.0000 |  | NONE | 81 |  |  | 32658
+28598 | Heart Federal Savings and Loan Association | Auburn | CA | 0 | SL | OTS | 5.0 | 1926-01-01 | 1995-02-23 | 102827.0000 | 1994-12-31 | 1097.0000 |  | NONE | 1 | U S BCORP |  | 1304
+28599 | Olympia Federal Savings and Loan Association | Olympia | WA | 1 | SI | STATE | 5.0 | 1906-01-01 |  | 1008303.0000 | 2026-03-31 | 854.0000 |  | NONE | 9 |  |  | 0
+28600 | Waterville Savings and Loan Association | Waterville | ME | 0 | SL | STATE | 5.0 | 1887-01-01 | 1995-06-17 | 34441.0000 | 1995-03-31 | 68.0000 |  | NONE | 1 |  |  | 17897
+28601 | Family Savings and Loan Association | New Haven | CT | 0 | SL | STATE |  | 1893-01-01 | 1983-01-31 |  |  |  |  | NONE |  |  |  | 27921
+28602 | Milford Co-operative Bank | Milford | NH | 0 | SL | STATE | 8.0 | 1890-01-01 | 1996-07-02 | 164104.0000 | 1996-06-30 | 717.0000 |  | NONE | 6 |  |  | 17991
+28603 | North Land Bank of Wisconsin, SSB | Ashland | WI | 0 | SL | STATE | 5.0 | 1902-01-01 | 1994-02-27 | 127362.0000 | 1993-12-31 | 1075.0000 |  | NONE | 8 |  |  | 28939
+28604 | Lafayette Federal Savings and Loan Association of Greater St Louis | Warson Woods | MO | 0 | SL | OTS |  | 1873-01-01 | 1982-07-31 |  |  |  |  | NONE |  |  |  | 30811
+28605 | First Federal Savings and Loan Association of Chickasha | Chickasha | OK | 0 | SL | OTS | 5.0 | 1921-01-01 | 1991-03-22 | 161381.0000 | 1990-12-31 | -3108.0000 |  | NONE | 8 |  |  | 33357
+28606 | First Federal Savings and Loan Association of Minneapolis | Minneapolis | MN | 0 | SL | OTS | 5.0 | 1927-01-01 | 1986-03-31 | 2968675.0000 | 1985-12-31 | -16253.0000 |  | NONE | 31 |  |  | 32457
+28607 | United Savings Bank | Lebanon | MO | 0 | SL | STATE | 5.0 | 1924-01-01 | 1995-05-18 | 510653.0000 | 1995-03-31 | 327.0000 |  | NONE | 21 | MERCANTILE BCORP INC |  | 34024
+28608 | Florida Federal Savings Bank | St. Petersburg | FL | 0 | SB | OTS | 5.0 | 1933-10-01 | 1990-11-09 | 4115008.0000 | 1990-09-30 | -74081.0000 |  | NONE | 81 |  |  | 33255
+28609 | Pioneer Federal Savings and Loan Association | Plymouth | IN | 0 | SL | OTS | 5.0 | 1916-01-01 | 1989-07-13 | 81022.0000 | 1989-06-30 | -1193.0000 |  | NONE | 3 |  |  | 32696
+28610 | First Federal Savings Bank of Elizabethtown | Elizabethtown | KY | 0 | NM | STATE | 4.0 | 1923-01-01 | 2015-01-01 | 775115.0000 | 2014-12-31 | -849.0000 |  | NONE | 18 | FIRST FINANCIAL SERVICE CORP |  | 28915
+28611 | Pulaski Savings Bank | Chicago | IL | 0 | SI | STATE | 5.0 | 1890-01-01 | 2025-01-17 | 49466.0000 | 2024-09-30 | -218.0000 |  | NONE | 1 |  |  | 58348
+28612 | Maritime Savings Bank | West Allis | WI | 0 | SL | OTS | 4.0 | 1912-01-01 | 2010-09-17 | 350488.0000 | 2010-06-30 | -2898.0000 |  | NONE | 10 |  |  | 28679
+28613 | Homestead Savings and Loan Association | Waupaca | WI | 0 | SL | STATE |  | 1923-01-01 | 1982-04-30 |  |  |  |  | NONE |  |  |  | 28814
+28614 | The Equitable Bank, S.S.B. | Wauwatosa | WI | 1 | SI | STATE | 4.0 | 1927-01-01 |  | 326863.0000 | 2026-03-31 | 369.0000 |  | NONE | 6 | TEB MHC |  | 0
+28615 | Mid-State FSB | Ocala | FL | 0 | SB | OTS | 5.0 | 1924-01-01 | 1993-12-10 | 734520.0000 | 1993-09-30 | 7267.0000 |  | NONE | 26 |  |  | 27083
+28616 | First Federal Savings and Loan Association | Ambridge | PA | 0 | SL | OTS |  | 1925-01-01 | 1981-07-31 |  |  |  |  | NONE |  |  |  | 27941
+28617 | Lincoln Bank | Plainfield | IN | 0 | NM | STATE | 4.0 | 1884-01-01 | 2009-04-17 | 907144.0000 | 2009-03-31 | 1354.0000 |  | NONE | 16 | FIRST MERCHANTS CORP |  | 8047
+28618 | Citizens Savings and Loan Association, FA | Columbus | IN | 0 | SL | OTS | 5.0 | 1890-01-01 | 1986-08-31 | 69532.0000 | 1986-06-30 | -271.0000 |  | NONE | 2 |  |  | 27741
+28619 | First Northern Savings Bank | Green Bay | WI | 0 | SB | OTS | 6.0 | 1927-01-01 | 2003-03-16 | 984980.0000 | 2002-12-31 | 12222.0000 |  | NONE | 19 |  |  | 30125
+28621 | Southern California Savings and Loan Association, A Federal Savings and | Beverly Hills | CA | 0 | SL | OTS | 5.0 | 1928-01-01 | 1985-10-01 | 1452504.0000 | 1985-09-30 | -19408.0000 |  | NONE | 31 |  |  | 32433
+28622 | Oceanside Federal Savings and Loan Association | Oceanside | CA | 0 | SL | OTS |  | 1920-01-01 | 1981-10-31 |  |  |  |  | NONE |  |  |  | 28560
+28623 | The Findlay Savings Bank | Cincinnati | OH | 0 | SI | STATE | 5.0 | 1882-01-01 | 2002-09-19 | 9625.0000 | 2002-06-30 | -123.0000 |  | NONE | 1 |  |  | 28724
+28624 | Century National Bank | Zanesville | OH | 0 | N | OCC | 5.0 | 1887-01-01 | 2008-08-16 | 740083.0000 | 2008-06-30 | 6588.0000 |  | NONE | 16 | PARK NATIONAL CORP |  | 6653
+28625 | Civic Savings Bank | Portsmouth | OH | 0 | SL | STATE | 6.0 | 1891-01-01 | 1990-12-14 | 62178.0000 | 1990-09-30 | -1605.0000 |  | NONE | 6 |  |  | 33288
+28626 | Avondale Federal Savings Bank | Chicago | IL | 0 | SB | OTS | 8.0 | 1911-01-01 | 1999-02-26 | 498070.0000 | 1998-12-31 | -588.0000 |  | NONE | 5 |  |  | 16230
+(27836 rows; csv has all)

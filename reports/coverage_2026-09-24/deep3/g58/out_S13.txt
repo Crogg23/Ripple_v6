@@ -1,0 +1,24 @@
+-- S13 BMF check, summary: are revoked orgs on the IRS's current exempt master list (EO BMF)? core hits vs loose hits vs every other revoked org (2019 on), split by whether the revocation list shows a reinstatement
+GRP | REINSTATED | N | IN_BMF | BMF_RETURN_AFTER_REVOCATION | BMF_RULING_AFTER_REVOCATION | STATUSES
+core | False | 89 | 27 | 22 | 7 | [
+  "01"
+]
+core | True | 22 | 21 | 18 | 19 | [
+  "01"
+]
+loose | False | 297 | 58 | 43 | 19 | [
+  "01"
+]
+loose | True | 63 | 62 | 53 | 57 | [
+  "01"
+]
+other_revoked | False | 326808 | 11692 | 8605 | 8950 | [
+  "01",
+  "12",
+  "25"
+]
+other_revoked | True | 42327 | 39315 | 31872 | 38697 | [
+  "01",
+  "25"
+]
+(6 rows; csv has all)

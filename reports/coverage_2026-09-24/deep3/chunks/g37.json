@@ -1,0 +1,91 @@
+[
+ {
+  "table": "ENVIRONMENT__FED_EPA_NPDES_ICIS_FACILITIES",
+  "schema": "ENVIRONMENT",
+  "rows": "1213737",
+  "score": "4.0",
+  "tags": "MAP",
+  "summary": "Facilities in the EPA's water discharge permit system, from factories to sewage plants, with location and whether they discharge into waters listed as polluted.",
+  "look_for": "concentration: does a handful of NPDES_ID values hold most rows; name them :: share curve | where: rank by ZIP code :: choropleth map",
+  "where": "",
+  "keys": "NPDES_ID",
+  "traps": "reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 1.2M rows | 1,213,737 distinct NPDES_ID; top holds 0% of rows: LAR10F408 1; LAU003978 1; LAU000187 1 | FACILITY_UIN top: 110070617548 4.4K, 110070024565 3.2K, 110070877236 2.5K | FACILITY_TYPE_CODE top: POF 428.0K, COR 218.4K, MWD 36.0K | COUNTY_CODE top: TX201 8.8K, FL095 8.1K, TX029 6.0K // triage 4.0/10: A denominator: which permitted dischargers pour into waters already listed as polluted.",
+  "battery_facts": "1.2M rows | 1,213,737 distinct NPDES_ID; top holds 0% of rows: LAR10F408 1; LAU003978 1; LAU000187 1 | FACILITY_UIN top: 110070617548 4.4K, 110070024565 3.2K, 110070877236 2.5K | FACILITY_TYPE_CODE top: POF 428.0K, COR 218.4K, MWD 36.0K | COUNTY_CODE top: TX201 8.8K, FL095 8.1K, TX029 6.0K",
+  "battery_traps": []
+ },
+ {
+  "table": "ENVIRONMENT__FED_EPA_SDWA_SDWA_GEOGRAPHIC_AREAS",
+  "schema": "ENVIRONMENT",
+  "rows": "578198",
+  "score": "3.9",
+  "tags": "MAP",
+  "summary": "The places each US public water system serves, like counties, cities, ZIP codes and tribal areas, from EPA's drinking water records.",
+  "look_for": "trend: spikes and step changes by year in LAST_REPORTED_DATE :: line over time | rhythm: month of year and day of week in LAST_REPORTED_DATE :: calendar heatmap | newcomers and vanishers: PWSID values that appear from nowhere big, or drop out :: slope chart | concentration: does a handful of PWSID values hold most rows; name them :: share curve | where: rank by county :: choropleth map",
+  "where": "dates: LAST_REPORTED_DATE",
+  "keys": "PWSID",
+  "traps": "reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 578.2K rows | LAST_REPORTED_DATE 1995-07-22 to 2026-06-30 | 413,877 distinct PWSID; top holds 0% of rows: NJ0238001 58; NJ0327001 38; NJ0712001 36 | SUBMISSIONYEARQUARTER top: 2026Q2 578.2K | AREA_TYPE_CODE top: CN 411.7K, CT 158.0K, ZC 7.2K | TRIBAL_CODE top: 780 233, 610 49, 400 42 // triage 2.0/10: A bridge from water systems to counties and ZIPs, used to map water problems.",
+  "battery_facts": "578.2K rows | LAST_REPORTED_DATE 1995-07-22 to 2026-06-30 | 413,877 distinct PWSID; top holds 0% of rows: NJ0238001 58; NJ0327001 38; NJ0712001 36 | SUBMISSIONYEARQUARTER top: 2026Q2 578.2K | AREA_TYPE_CODE top: CN 411.7K, CT 158.0K, ZC 7.2K | TRIBAL_CODE top: 780 233, 610 49, 400 42",
+  "battery_traps": []
+ },
+ {
+  "table": "ENVIRONMENT__FED_EPA_ICIS_AIR_ICIS_AIR_PROGRAMS",
+  "schema": "ENVIRONMENT",
+  "rows": "457581",
+  "score": "3.8",
+  "tags": "OUTCOME",
+  "summary": "Which Clean Air Act programs each polluting facility falls under, like Title V permits or MACT standards, from EPA's air enforcement database, with the facility's operating status.",
+  "look_for": "outcomes: share of each AIR_OPERATING_STATUS_CODE value by entity, place or year; who loses most :: stacked bars",
+  "where": "outcomes: AIR_OPERATING_STATUS_CODE, AIR_OPERATING_STATUS_DESC",
+  "keys": "",
+  "traps": "",
+  "hunt_trap": "",
+  "found": "battery A: 457.6K rows | PROGRAM_CODE top: CAASIP 240.9K, CAAMACT 57.5K, CAANSPS 57.3K | PROGRAM_DESC top: State Implementation Plan for  240.9K, MACT Standards (40 CFR Part 63 57.5K, New Source Performance Standar 57.3K | AIR_OPERATING_STATUS_CODE top: OPR 318.2K, CLS 130.6K, TMP 5.1K // triage 2.0/10: None alone: which air programs cover each facility.",
+  "battery_facts": "457.6K rows | PROGRAM_CODE top: CAASIP 240.9K, CAAMACT 57.5K, CAANSPS 57.3K | PROGRAM_DESC top: State Implementation Plan for  240.9K, MACT Standards (40 CFR Part 63 57.5K, New Source Performance Standar 57.3K | AIR_OPERATING_STATUS_CODE top: OPR 318.2K, CLS 130.6K, TMP 5.1K",
+  "battery_traps": []
+ },
+ {
+  "table": "ENVIRONMENT__FED_USCG_NRC_INCIDENT_REPORTS",
+  "schema": "ENVIRONMENT",
+  "rows": "116662",
+  "score": "3.5",
+  "tags": "MAP",
+  "summary": "A secondary copy of Coast Guard National Response Center reports of spills and other incidents, 116,662 reports; the main copy of the same feed is a separate million-row table.",
+  "look_for": "outliers: rows over 10x the median EXTRA_COL_1 of their peers :: dot strip | trend: spikes and step changes by year in DATE_TIME_RECEIVED :: line over time | rhythm: month of year and day of week in DATE_TIME_RECEIVED :: calendar heatmap | where: rank by ZIP code :: choropleth map",
+  "where": "metrics: EXTRA_COL_1, EXTRA_COL_2, EXTRA_COL_3, EXTRA_COL_4 +1; dates: DATE_TIME_RECEIVED, DATE_TIME_COMPLETE",
+  "keys": "",
+  "traps": "reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 116.7K rows | DATE_TIME_RECEIVED 2020-01-01 to 2024-12-31 | 26,882 distinct RESPONSIBLE_COMPANY; top holds 49% of rows: None 56.8K; TARGA RESOURCES 456; CSX RAILROAD 441 // triage 2.5/10: Which companies report the most spills, 2020-24 (Targa, CSX)? Use the main million-row copy instead. TRAP: EXTRA_COL_1 is null on all 116,662 rows; EXTRA_COL_2 is null on all 116,662 rows; EXTRA_COL_3 is null on all 116,662 rows",
+  "battery_facts": "116.7K rows | DATE_TIME_RECEIVED 2020-01-01 to 2024-12-31 | 26,882 distinct RESPONSIBLE_COMPANY; top holds 49% of rows: None 56.8K; TARGA RESOURCES 456; CSX RAILROAD 441",
+  "battery_traps": [
+   "EXTRA_COL_1 is null on all 116,662 rows",
+   "EXTRA_COL_2 is null on all 116,662 rows",
+   "EXTRA_COL_3 is null on all 116,662 rows"
+  ]
+ },
+ {
+  "table": "ENVIRONMENT__FED_EPA_TRI_FACILITY",
+  "schema": "ENVIRONMENT",
+  "rows": "64990",
+  "score": "3.4",
+  "tags": "MAP",
+  "summary": "Every facility that reports toxic chemical releases to EPA's Toxics Release Inventory, with its address, contacts, parent companies and map coordinates.",
+  "look_for": "outliers: rows over 10x the median ASGN_TECHNICAL_CONTACT of their peers :: dot strip | concentration: does a handful of FRS_ID values hold most rows; name them :: share curve | where: rank by county :: choropleth map",
+  "where": "metrics: ASGN_TECHNICAL_CONTACT, MAIL, ASGN_TECHNICAL_CONTACT_EMAIL",
+  "keys": "FRS_ID",
+  "traps": "nursing-home-chow-flag-constant reach-is-not-a-usable-join",
+  "hunt_trap": "",
+  "found": "battery A: 65.0K rows | 1 distinct FRS_ID; top holds 100% of rows: None 65.0K // triage 1.5/10: Facility address list for TRI releases. TRAP: ASGN_TECHNICAL_CONTACT is null on all 64,990 rows; MAIL is null on all 64,990 rows; ASGN_TECHNICAL_CONTACT_EMAIL is null on all 64,990 rows; FRS_ID is null on all 64,990 rows",
+  "battery_facts": "65.0K rows | 1 distinct FRS_ID; top holds 100% of rows: None 65.0K",
+  "battery_traps": [
+   "ASGN_TECHNICAL_CONTACT is null on all 64,990 rows",
+   "MAIL is null on all 64,990 rows",
+   "ASGN_TECHNICAL_CONTACT_EMAIL is null on all 64,990 rows",
+   "FRS_ID is null on all 64,990 rows"
+  ]
+ }
+]

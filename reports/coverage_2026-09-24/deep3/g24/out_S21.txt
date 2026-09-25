@@ -1,0 +1,63 @@
+-- S21 SEC insiders: filings whose remarks say "director by deputization", per year and owner, plus yearly issuer totals
+Y | OWNER_CIK | NM | ISSUERS | FILINGS | DIR_ROWS
+2022 | 0001282203 | GAP COINVESTMENTS III, LLC | 5 | 12 | 11
+2025 | 0001580575 | Baker Bros. Advisors (GP) LLC | 7 | 8 | 8
+2021 | 0000918923 | BIOTECHNOLOGY VALUE FUND L P | 5 | 17 | 0
+2018 | 0001087939 | BAKER JULIAN | 10 | 47 | 47
+2017 | 0001551139 | 667, L.P. | 8 | 33 | 33
+2019 | 0001567187 | Coliseum Capital Partners II, L.P. | 3 | 7 | 6
+2019 | 0001263508 | BAKER BROS. ADVISORS LP | 11 | 56 | 56
+2023 | 0001282203 | GAP COINVESTMENTS III, LLC | 4 | 6 | 5
+2021 | 0001087940 | BAKER FELIX | 13 | 36 | 36
+2020 | 0001409751 | Coliseum Capital Management, LLC | 4 | 16 | 16
+2024 | 0001282372 | GAP COINVESTMENTS IV, LLC | 5 | 13 | 13
+2022 | 0001233840 | LAMPERT MARK N | 6 | 16 | 12
+2018 | 0001263508 | BAKER BROS. ADVISORS LP | 10 | 47 | 47
+2023 | 0001087939 | BAKER JULIAN | 12 | 41 | 41
+2018 | 0001351069 | ValueAct Capital Management, L.P. | 10 | 47 | 46
+2023 | 0001409585 | Coliseum Capital, LLC | 5 | 26 | 26
+2023 | 0001464912 | ValueAct Capital Master Fund, L.P. | 6 | 24 | 24
+2020 | 0001551139 | 667, L.P. | 11 | 41 | 41
+2021 | 0001454123 | Gray Adam | 4 | 13 | 12
+2024 | 0001017645 | GENERAL ATLANTIC, L.P. | 5 | 13 | 13
+2021 | 0001704892 | General Atlantic Partners 100, L.P. | 6 | 11 | 7
+2022 | 0001660683 | Biotechnology Value Trading Fund OS LP | 6 | 16 | 12
+2025 | 0001363364 | Baker Brothers Life Sciences LP | 7 | 8 | 8
+2018 | 0001551138 | 14159, L.P. | 4 | 34 | 34
+2020 | 0001763309 | ValueAct Holdings II, L.P. | 9 | 26 | 18
+2017 | 0001551138 | 14159, L.P. | 5 | 27 | 27
+2023 | 0001663607 | Harwin Peter Evan | 3 | 10 | 10
+2019 | 0001551138 | 14159, L.P. | 3 | 33 | 33
+2016 | 0001580575 | Baker Bros. Advisors (GP) LLC | 6 | 15 | 15
+2021 | 0001176948 | Ares Management Corp | 4 | 13 | 11
+2016 | 0001471812 | NGP Energy Capital Management, L.L.C. | 3 | 7 | 0
+2021 | 0001464912 | ValueAct Capital Master Fund, L.P. | 6 | 17 | 17
+2019 | 0001418812 | VA Partners I, LLC | 9 | 28 | 26
+2024 | 0001282203 | GAP COINVESTMENTS III, LLC | 5 | 13 | 13
+2021 | 0001633584 | Armistice Capital Master Fund Ltd. | 4 | 10 | 9
+2024 | 0001831991 | Faulkner Robert C. | 3 | 5 | 4
+2020 | 0001454123 | Gray Adam | 4 | 16 | 16
+2021 | 0001409585 | Coliseum Capital, LLC | 4 | 13 | 12
+2018 | 0001087940 | BAKER FELIX | 10 | 47 | 47
+2024 | 0001467927 | GENERAL ATLANTIC GENPAR (BERMUDA), L.P. | 3 | 8 | 8
+2022 | 0001363364 | Baker Brothers Life Sciences LP | 12 | 28 | 28
+2023 | 0001409751 | Coliseum Capital Management, LLC | 5 | 26 | 26
+2022 | 0001418812 | VA Partners I, LLC | 7 | 29 | 29
+2016 | 0001263508 | BAKER BROS. ADVISORS LP | 6 | 15 | 15
+2020 | 0001055947 | BVF PARTNERS L P/IL | 3 | 9 | 9
+2021 | 0001430708 | Shackelton Christopher S | 4 | 13 | 12
+2022 | 0001351073 | ValueAct Capital Management, LLC | 7 | 29 | 29
+2022 | 0001087939 | BAKER JULIAN | 12 | 28 | 28
+2025 | 0001087939 | BAKER JULIAN | 7 | 8 | 8
+2023 | 0001803805 | BVF I GP LLC | 5 | 10 | 10
+2019 | 0001363364 | Baker Brothers Life Sciences LP | 11 | 56 | 56
+2019 | 0001464912 | ValueAct Capital Master Fund, L.P. | 7 | 20 | 19
+2019 | 0001551139 | 667, L.P. | 11 | 56 | 56
+2016 | 0001087939 | BAKER JULIAN | 6 | 15 | 15
+2020 | 0001669983 | Ares Holdco LLC | 3 | 6 | 3
+2023 | 0001418812 | VA Partners I, LLC | 6 | 24 | 24
+2022 | 0001803806 | BVF II GP LLC | 6 | 16 | 12
+2022 | 0001467926 | GENERAL ATLANTIC GENPAR, L.P. | 3 | 4 | 4
+2019 | 0001166564 | CYRUS CAPITAL PARTNERS, L.P. | 3 | 5 | 5
+2020 | 0001176948 | Ares Management Corp | 3 | 6 | 3
+(313 rows; csv has all)

@@ -1,0 +1,83 @@
+-- S11 Toptier time check, rerun of S07 with casts that accept the real column types: contract obligations by agency and fiscal year, Oct-Jun window
+AGENCY | FY | OBLIG_OCT_JUN | OBLIG_FULL | N | BAD_DATE | BAD_AMT | LAST_ACTION
+Administrative Conference of the U.S. | 2019 | 120150.06 | 217547.36 | 9 | 0 | 0 | 2019-08-15
+Administrative Conference of the U.S. | 2020 | 143388.64 | 234001.44 | 10 | 0 | 0 | 2020-09-30
+Administrative Conference of the U.S. | 2021 | 126056.16 | 194608.16 | 6 | 0 | 0 | 2021-09-01
+Administrative Conference of the U.S. | 2022 | 119514.79000000001 | 154770.79 | 7 | 0 | 0 | 2022-08-02
+Administrative Conference of the U.S. | 2023 | 68328.0 | 93328.0 | 4 | 0 | 0 | 2023-07-12
+Administrative Conference of the U.S. | 2024 | 102420.0 | 102420.0 | 1 | 0 | 0 | 2023-12-21
+Administrative Conference of the U.S. | 2025 | 0.0 | 26500.0 | 1 | 0 | 0 | 2025-08-12
+Administrative Conference of the U.S. | 2026 | 0.0 | 27050.0 | 1 | 0 | 0 | 2026-08-12
+Agency for International Development | 2019 | 2963235252.95 | 5456560673.95 | 9080 | 0 | 0 | 2019-09-30
+Agency for International Development | 2020 | 3951704207.2499995 | 6012108521.93 | 8869 | 0 | 0 | 2020-09-30
+Agency for International Development | 2021 | 3232704071.7799997 | 5483556602.03 | 8334 | 0 | 0 | 2021-09-30
+Agency for International Development | 2022 | 3272999392.55 | 5909322961.87 | 9176 | 0 | 0 | 2022-09-30
+Agency for International Development | 2023 | 3844894450.8599997 | 6684456104.63 | 8705 | 0 | 0 | 2023-09-30
+Agency for International Development | 2024 | 4140947036.28 | 7444753388.62 | 9123 | 0 | 0 | 2024-09-30
+Agency for International Development | 2025 | 2633908683.4800005 | 4099062195.3400006 | 6077 | 0 | 0 | 2025-09-30
+Agency for International Development | 2026 | 664281301.22 | 726562771.3699999 | 546 | 0 | 0 | 2026-08-21
+American Battle Monuments Commission | 2025 | 278000.0 | 278000.0 | 2 | 0 | 0 | 2025-02-03
+American Battle Monuments Commission | 2026 | 861248.16 | 861248.16 | 2 | 0 | 0 | 2026-07-29
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2019 | 1660360.9299999997 | 2325391.2600000002 | 31 | 0 | 0 | 2019-09-30
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2020 | 2230254.11 | 2481994.4699999997 | 43 | 0 | 0 | 2020-09-30
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2021 | 2587325.5 | 3110600.9699999997 | 50 | 0 | 0 | 2021-09-23
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2022 | 1893613.73 | 2065656.5999999999 | 55 | 0 | 0 | 2022-09-30
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2023 | 1471880.0699999998 | 4079143.8400000003 | 48 | 0 | 0 | 2023-09-26
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2024 | 1271605.47 | 2221076.8000000003 | 45 | 0 | 0 | 2024-09-26
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2025 | 1733609.24 | 2064250.2899999998 | 46 | 0 | 0 | 2025-09-30
+Committee for Purchase from People Who Are Blind or Severely Disabled | 2026 | 1550397.7000000002 | 2288597.7 | 21 | 0 | 0 | 2026-08-10
+Commodity Futures Trading Commission | 2019 | 32634850.799999997 | 66342762.900000006 | 581 | 0 | 0 | 2019-09-26
+Commodity Futures Trading Commission | 2020 | 38325118.81 | 66165653.279999994 | 562 | 0 | 0 | 2020-09-28
+Commodity Futures Trading Commission | 2021 | 45351827.45 | 77535243.94999999 | 561 | 0 | 0 | 2021-09-30
+Commodity Futures Trading Commission | 2022 | 48027541.580000006 | 82606078.10000001 | 665 | 0 | 0 | 2022-09-30
+Commodity Futures Trading Commission | 2023 | 73986520.85 | 87486611.11 | 528 | 0 | 0 | 2023-09-29
+Commodity Futures Trading Commission | 2024 | 62477759.15 | 89630205.83999999 | 506 | 0 | 0 | 2024-09-30
+Commodity Futures Trading Commission | 2025 | 50983347.43 | 67873876.61 | 472 | 0 | 0 | 2025-09-30
+Commodity Futures Trading Commission | 2026 | 56896974.2 | 72395294.0 | 281 | 0 | 0 | 2026-08-21
+Consumer Financial Protection Bureau | 2019 | 38402163.79000001 | 61075558.029999994 | 604 | 0 | 0 | 2019-09-30
+Consumer Financial Protection Bureau | 2020 | 74636488.45 | 98555908.24000001 | 680 | 0 | 0 | 2020-09-30
+Consumer Financial Protection Bureau | 2021 | 90514986.72999999 | 118062293.09 | 770 | 0 | 0 | 2021-09-30
+Consumer Financial Protection Bureau | 2022 | 91399740.08999999 | 125045669.35000001 | 808 | 0 | 0 | 2022-09-30
+Consumer Financial Protection Bureau | 2023 | 126039817.96000001 | 148633405.36999997 | 715 | 0 | 0 | 2023-09-29
+Consumer Financial Protection Bureau | 2024 | 153385016.05 | 188349630.21 | 753 | 0 | 0 | 2024-09-30
+Consumer Financial Protection Bureau | 2025 | 119669478.50000001 | 116253350.41000003 | 710 | 0 | 0 | 2025-09-30
+Consumer Financial Protection Bureau | 2026 | 13033055.659999998 | 22908765.94 | 417 | 0 | 0 | 2026-08-22
+Consumer Product Safety Commission | 2019 | 10724957.49 | 30265327.330000002 | 723 | 0 | 0 | 2019-09-30
+Consumer Product Safety Commission | 2020 | 13191763.090000002 | 34205300.17 | 610 | 0 | 0 | 2020-09-30
+Consumer Product Safety Commission | 2021 | 14753004.850000001 | 41017848.16 | 737 | 0 | 0 | 2021-09-30
+Consumer Product Safety Commission | 2022 | 20655787.689999998 | 47842446.220000006 | 618 | 0 | 0 | 2022-09-29
+Consumer Product Safety Commission | 2023 | 24457338.06 | 52138540.150000006 | 789 | 0 | 0 | 2023-09-29
+Consumer Product Safety Commission | 2024 | 16701969.130000003 | 35300357.93 | 896 | 0 | 0 | 2024-09-30
+Consumer Product Safety Commission | 2025 | 16718364.030000001 | 32912664.459999997 | 925 | 0 | 0 | 2025-09-30
+Consumer Product Safety Commission | 2026 | 18155131.89 | 25341883.689999994 | 724 | 0 | 0 | 2026-08-20
+Corporation for National and Community Service | 2019 | 59186523.33 | 89970475.08000001 | 444 | 0 | 0 | 2019-09-30
+Corporation for National and Community Service | 2020 | 45999405.83 | 69627967.88999999 | 389 | 0 | 0 | 2020-09-30
+Corporation for National and Community Service | 2021 | 16045808.709999999 | 37964930.5 | 184 | 0 | 0 | 2021-09-30
+Corporation for National and Community Service | 2022 | 9576656.42 | 28355331.410000004 | 204 | 0 | 0 | 2022-09-30
+Corporation for National and Community Service | 2023 | 32589526.330000006 | 61915229.46 | 171 | 0 | 0 | 2023-09-29
+Corporation for National and Community Service | 2024 | 37941233.14 | 97557285.71000001 | 174 | 0 | 0 | 2024-09-30
+Corporation for National and Community Service | 2025 | 8948120.76 | 30258572.840000004 | 235 | 0 | 0 | 2025-09-30
+Corporation for National and Community Service | 2026 | 18922425.82 | 22938648.49 | 148 | 0 | 0 | 2026-08-18
+Council of the Inspectors General on Integrity and Efficiency | 2019 | 802566.0300000001 | 824966.0300000001 | 26 | 0 | 0 | 2019-09-09
+Council of the Inspectors General on Integrity and Efficiency | 2020 | 696235.63 | 7162960.090000001 | 23 | 0 | 0 | 2020-08-19
+Council of the Inspectors General on Integrity and Efficiency | 2021 | 1322448.88 | 1561106.0799999998 | 21 | 0 | 0 | 2021-09-15
+Council of the Inspectors General on Integrity and Efficiency | 2022 | 2710130.63 | 2962486.139999999 | 31 | 0 | 0 | 2022-09-08
+Council of the Inspectors General on Integrity and Efficiency | 2023 | 2451855.78 | 2820852.7800000003 | 45 | 0 | 0 | 2023-09-15
+Council of the Inspectors General on Integrity and Efficiency | 2024 | 1949290.31 | 2186660.27 | 64 | 0 | 0 | 2024-09-24
+Council of the Inspectors General on Integrity and Efficiency | 2025 | 2118510.87 | 4609437.29 | 55 | 0 | 0 | 2025-09-23
+Council of the Inspectors General on Integrity and Efficiency | 2026 | 4547893.97 | 10258824.82 | 34 | 0 | 0 | 2026-08-14
+Court Services and Offender Supervision Agency | 2019 | 16584236.450000001 | 44088045.65 | 475 | 0 | 0 | 2019-09-30
+Court Services and Offender Supervision Agency | 2020 | 14175290.580000002 | 41120129.05 | 474 | 0 | 0 | 2020-09-30
+Court Services and Offender Supervision Agency | 2021 | 10114427.15 | 37638930.00000001 | 359 | 0 | 0 | 2021-09-30
+Court Services and Offender Supervision Agency | 2022 | 11697249.28 | 47336503.54 | 420 | 0 | 0 | 2022-09-30
+Court Services and Offender Supervision Agency | 2023 | -6110397.48 | 29428732.949999996 | 506 | 0 | 0 | 2023-09-30
+Court Services and Offender Supervision Agency | 2024 | 5861046.8100000005 | 39008341.56 | 416 | 0 | 0 | 2024-09-30
+Court Services and Offender Supervision Agency | 2025 | 11810029.860000001 | 36968224.75 | 458 | 0 | 0 | 2025-09-30
+Court Services and Offender Supervision Agency | 2026 | 15267281.839999998 | 22550112.27 | 310 | 0 | 0 | 2026-08-21
+Defense Nuclear Facilities Safety Board | 2019 | 772668.24 | 6138138.14 | 43 | 0 | 0 | 2019-09-30
+Defense Nuclear Facilities Safety Board | 2020 | 633069.22 | 3520671.65 | 21 | 0 | 0 | 2020-09-22
+Defense Nuclear Facilities Safety Board | 2021 | 2833800.46 | 6503831.58 | 45 | 0 | 0 | 2021-09-29
+Defense Nuclear Facilities Safety Board | 2022 | 3480850.15 | 7481001.090000001 | 56 | 0 | 0 | 2022-09-24
+Defense Nuclear Facilities Safety Board | 2023 | 5857389.99 | 6718345.93 | 56 | 0 | 0 | 2023-09-26
+Defense Nuclear Facilities Safety Board | 2024 | 3720242.1399999997 | 7332175.48 | 63 | 0 | 0 | 2024-09-27
+(553 rows; csv has all)

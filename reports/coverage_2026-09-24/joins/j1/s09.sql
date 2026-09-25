@@ -1,0 +1,14 @@
+-- staffing (CMS provider info, PBJ-based): Reliant MO vs other MO for-profit vs other MO non-profit/gov; resident-weighted hours per resident per day, turnover, stars
+with nh as (select iff(CHAIN_ID='446','reliant', iff(OWNERSHIP_TYPE ilike 'For profit%','other_mo_forprofit','other_mo_nonprofit_gov')) grp, *
+  from LIBRARY_MARTS.HEALTH.HEALTH__FED_CMS_NURSING_HOME where STATE='MO')
+select grp, count(*) homes, count(REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY) homes_w_staffing,
+  round(sum(REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY*AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)/sum(iff(REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY is null,0,AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)),2) total_hprd,
+  round(sum(REPORTED_RN_STAFFING_HOURS_PER_RESIDENT_PER_DAY*AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)/sum(iff(REPORTED_RN_STAFFING_HOURS_PER_RESIDENT_PER_DAY is null,0,AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)),3) rn_hprd,
+  round(sum(REPORTED_NURSE_AIDE_STAFFING_HOURS_PER_RESIDENT_PER_DAY*AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)/sum(iff(REPORTED_NURSE_AIDE_STAFFING_HOURS_PER_RESIDENT_PER_DAY is null,0,AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)),2) aide_hprd,
+  round(sum(ADJUSTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY*AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)/sum(iff(ADJUSTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY is null,0,AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)),2) casemix_adj_total_hprd,
+  round(median(REPORTED_TOTAL_NURSE_STAFFING_HOURS_PER_RESIDENT_PER_DAY),2) med_total_hprd,
+  round(avg(TOTAL_NURSING_STAFF_TURNOVER),1) avg_turnover, count(TOTAL_NURSING_STAFF_TURNOVER) n_turn,
+  round(avg(NURSING_CASE_MIX_INDEX),3) avg_cmi, round(avg(OVERALL_RATING),2) avg_star, round(avg(STAFFING_RATING),2) avg_staff_star,
+  round(sum(AVERAGE_NUMBER_OF_RESIDENTS_PER_DAY)/sum(NUMBER_OF_CERTIFIED_BEDS),3) occupancy,
+  count_if(OVERALL_RATING=1) one_star
+from nh group by 1 order by 1
