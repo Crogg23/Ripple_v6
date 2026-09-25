@@ -1,0 +1,12 @@
+{
+  "story_id": "S195",
+  "bin": "Not comparable",
+  "entity": "US old (dormant) federal campaign committees' payouts, 2024 cycle",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "189 committees paid out $8,569,194.71 in the 2024 cycle (median $1,794.61); 19.4% to candidates, parties and PACs (23.5% with loan repayments)",
+  "why": "Tampa Bay Times/WTSP gives a number for the same place and measure, US zombie-campaign spending, but for about 100 campaigns since 1995 ($20M+), so window and definition can't line up with one cycle. Roll Call counts cash held, not paid out; CLC, NOTUS and the FEC notice are pattern or rule pieces; no source gives the share to candidates, parties and PACs. Rule edge: a stricter reading makes this Known pattern.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

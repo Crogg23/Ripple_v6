@@ -1,0 +1,84 @@
+{
+ "story_id": "S140",
+ "lead": {
+  "headline": "438 place names still say \"Negro\"; in 2020-23, 641 \"Squaw\" names changed vs at least 41 \"Negro\" or n-word ones",
+  "number": "438 official federal names in the English sense (426 current, 12 historical); 105 list the n-word as an older name in the same file",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Citation dates stop on 2023-03-17, so renamings after that can't be counted by year; 50 Spanish \"negro\" (black) names were removed by hand."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "hundreds of place names still contain \"Negro\" federal Board on Geographic Names",
+  "\"Negro\" place names USGS GNIS count remaining after squaw renaming 2022",
+  "Board on Geographic Names squaw names replaced 2022 number 650 Interior Department",
+  "after squaw names removed, \"Negro\" place names remain next Advisory Committee on Reconciliation in Place Names",
+  "\"Negro\" place names federal renaming 2025 2026 advisory committee terminated derogatory names",
+  "\"Negro\" names still on federal maps after Interior removed squaw names article 2023 OR 2024",
+  "\"438\" OR \"426\" place names \"Negro\" GNIS",
+  "\"Negro\" creek OR mountain renamed Board on Geographic Names 2026",
+  "squaw names renamed in months while \"Negro\" names renamed one at a time slow comparison racist place names Black"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://atmos.earth/political-landscapes/black-people-federal-lands-racist-history/",
+   "outlet": "Atmos",
+   "date": "2022-02-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Today, 469 pieces of geography still contain the replacement word in their name, according to the geographic names database managed by the U.S. Geological Survey.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "200 geographic formations carry the legacy of slavery . The names of valleys, creeks, and mountain peaks are riddled with offensive—and often blatantly racist—terms. In 1962, then Interior Sec. Stewart Udall moved to replace all federal land names featuring the N-word with the word “negro” instead. Today, 469 pieces of geography still contain the replacement word in their name, according to the geographic names database managed by the U.S. Geological Survey. How is this any better given the history? Welcome to The Frontline , where we’re honoring Black history. I’m Yessenia Funes, climate director of Atmos . In the last year, the U.S. Board on Geographic Names, the federal body that handles these name changes, has reviewed at least 47 place names with racially charged terms targeting Bla"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.yahoo.com/news/racial-slurs-are-woven-deep-into-the-american-landscape-160045373.html",
+   "outlet": "Vocativ (syndicated on Yahoo News)",
+   "date": "2015-10-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "At least 558 place names across the nation include derogatory words referring to African Americans, Vocativ's data analysis found.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "te, though the largest clusters are in the West and the South. California has at least 159 place names that are offensive to Native Americans, African Americans, Chinese people and Italians. The thickest and most diverse cluster of racist place names is in Arizona. Hatred Aimed At African Americans At least 558 place names across the nation include derogatory words referring to African Americans, Vocativ's data analysis found. The majority contain the word \"negro\" and many of those were originally known by an even more offensive name until former Secretary of the Interior Stewart Udall wiped the word \"n-----\" off the map in 1962. Advertisement Advertisement More from Vocativ: The Real Confederate Flag Looks Like This The despicable list also includes "
+  },
+  {
+   "idx": 2,
+   "url": "https://congress.gov/crs_external_products/IN/PDF/IN12000/IN12000.4.pdf",
+   "outlet": "Congressional Research Service (Insight IN12000)",
+   "date": "2024-02-26",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The BGN voted on the final replacement names for 650 names in September 2022 and for 7 additional names in January 2023.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "• Providing notice of tribal consultation sessions and comment periods. The task force received over 6,600 public comments by the comment deadline and approximately 300 comments through tribal consultation. After considering these comments, the task force made recommendations for replacement names. The BGN voted on the final replacement names for 650 names in September 2022 and for 7 additional names in January 2023. Although some have argued this accelerated process may have renamed features out of line with local interests, the BGN has noted that any interested party can propose a subsequent name change through the standard BGN process. Advisory Committee on Reconciliation in Place Names In January 2022, pursuant to SO 3405, NPS publi"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.doi.gov/pressreleases/interior-department-completes-removal-sq-federal-use",
+   "outlet": "U.S. Department of the Interior",
+   "date": "2022-09-08",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The Department of the Interior today announced the Board on Geographic Names (BGN) has voted on the final replacement names for nearly 650 geographic features featuring the word sq___.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "his webpage should be considered rescinded. For current information, visit https://www.doi.gov/news/newsroom Decisions of the U.S. Board on Geographic Names are effective immediately 09/08/2022 Last edited 06/03/2025 Date: Thursday, September 8, 2022 Contact: Interior_Press@ios.doi.gov WASHINGTON — The Department of the Interior today announced the Board on Geographic Names (BGN) has voted on the final replacement names for nearly 650 geographic features featuring the word sq___. The final vote completes the last step in the historic efforts to remove a term from federal use that has historically been used as an offensive ethnic, racial and sexist slur, particularly for Indigenous women. “I feel a deep obligation to use my platform to ensure that our public lands and waters are accessible and welcoming. That "
+  },
+  {
+   "idx": 4,
+   "url": "https://oregonblackpioneers.org/two-geographic-features-renamed-to-honor-black-oregonians/",
+   "outlet": "Oregon Black Pioneers",
+   "date": "2024-10-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "On September 18, 2024 the U.S. Board on Geographic Names approved proposals to change the name of Negro Jack Creek in Tillamook County to Jack Creek",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "onians Posted October 1, 2024 by OBP After a multi-year effort and several proposals by the Oregon Geographic Names Board , the U.S. Forest Service , and Oregon Black Pioneers , two geographic places in Oregon with a history of racially insensitive names have been renamed to honor Black Oregonians. On September 18, 2024 the U.S. Board on Geographic Names approved proposals to change the name of Negro Jack Creek in Tillamook County to Jack Creek , and the name of Negro Creek in Douglas County to Triple Nickles Creek . Both names have been changed in the Geographic Names Information System , and federal maps will be updated as their revision cycles come up. These two geographic features had both previously used the N word in their names. In 1964, the USBGN replaced t"
+  }
+ ]
+}

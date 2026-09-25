@@ -1,0 +1,84 @@
+{
+ "story_id": "S195",
+ "lead": {
+  "headline": "189 old campaign funds paid out $8.57M in the 2024 cycle; 19% went to candidates, parties and PACs, not 2.1%",
+  "number": "$8,569,194.71 out from 189 committees (median $1,794.61); the committee-to-committee file shows 19.4% to candidates, parties and PACs (23.5% with loan repayments), not the 2.1% seen in gifts to candidates alone.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The 2.1% came from checking only gifts to candidates; the committee-to-committee file shows 19.4%. The exact-name filter also let sitting politicians' committees (Ted Cruz, Tom Kean Jr) into the list."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "zombie campaign committees former members of Congress spending 2024 cycle analysis",
+  "Campaign Legal Center zombie campaigns report leftover campaign funds donations to candidates parties PACs",
+  "former lawmakers leftover campaign cash 2024 election cycle millions spent OpenSecrets zombie",
+  "\"zombie\" campaign accounts 2025 OR 2026 report former members of Congress still spending donations to other candidates",
+  "dormant campaign committees former candidates gave to super PACs parties 2024 cycle total FEC data analysis",
+  "ZOMBIE Act leftover campaign funds former lawmakers news 2026",
+  "former members of Congress leftover campaign accounts donated to candidates and parties share of spending study 2025",
+  "\"$8.57 million\" OR \"8.6 million\" former candidates campaign committees 2024 cycle leftover",
+  "retired lawmakers leftover campaign money mostly goes to charity refunds rather than candidates analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/",
+   "outlet": "Tampa Bay Times / 10News WTSP",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Times/WTSP reporters used the FEC’s own data to identify roughly 100 zombie campaigns that have spent more than $20 million since 1995.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rategies. (November 2014 to July 2017) Click to see more WTSP tracked him down in West Palm Beach to ask him why. He actually paid the firm 29 times over 33 months. One of LeMieux’s campaign’s payments to A. Milano Strategies. It would be easy for the FEC to find campaigns exploiting that loophole. Times/WTSP reporters used the FEC’s own data to identify roughly 100 zombie campaigns that have spent more than $20 million since 1995. The Times included campaigns that kept spending more than six months after the candidate died. For the other campaigns, the analysis didn’t consider spending in the first two years to give candidates time to get out of leases, cell phone contracts and other commitments. That’s far longer than candidates should need. A 2013"
+  },
+  {
+   "idx": 1,
+   "url": "https://rollcall.com/2023/02/06/not-couch-cushion-money-former-members-sitting-on-54-million/",
+   "outlet": "Roll Call",
+   "date": "2023-02-06",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Members of the 117th Congress who have since left Capitol Hill still hold nearly $54 million in leftover political money — cash they may tap to make contributions as lobbyists or bank for future runs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n. Richard C. Shelby, R-Ala., right, had $6.1 million left in campaign accounts he controls on Dec. 31, while former Sen. Patrick J. Leahy, D-Vt., had $1.3 million. ( Bill Clark/CQ Roll Call file photo ) By Kate Ackley and Herb Jackson Posted February 6, 2023 at 5:00am Facebook Twitter Email Reddit Members of the 117th Congress who have since left Capitol Hill still hold nearly $54 million in leftover political money — cash they may tap to make contributions as lobbyists or bank for future runs. The majority of the money, $49.3 million, came from their principal reelection committees, according to a CQ Roll Call analysis of federal campaign reports through Dec. 31. Those funds cannot be used for personal expenses, but ex-lawmakers may use that money to make political donations and charitable contributions. They are un"
+  },
+  {
+   "idx": 2,
+   "url": "https://campaignlegal.org/update/zombie-campaign-redux-former-members-congress-continue-use-leftover-campaign-cash-personal",
+   "outlet": "Campaign Legal Center",
+   "date": "2019-03-12",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Crenshaw and Linder represent a twist in the zombie campaign story: both converted their campaign committees to multicandidate PACs, rolled-over hundreds of thousands of dollars of leftover contributions, and then used the PACs as slush funds.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " funds are the latest examples of “zombie campaigns,” where former officeholders have continued using campaign funds for years after they’ve left office, stopped campaigning, or even died. A 2018 investigation by the Tampa Bay Times and WTSP documented the extent of the zombie campaigns phenomenon. Crenshaw and Linder represent a twist in the zombie campaign story: both converted their campaign committees to multicandidate PACs, rolled-over hundreds of thousands of dollars of leftover contributions, and then used the PACs as slush funds. Converting to a multicandidate PAC matters little: contributions received by Crenshaw and Linder when they were still candidates remain subject to federal law’s personal use ban. CLC filed a rulemaking petition asking the FEC to strengthen or clarify the application of the personal use ban to former lawmakers. The FEC then announced t"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.fec.gov/updates/commission-will-review-dormant-committees-use-campaign-funds/",
+   "outlet": "Federal Election Commission",
+   "date": "2018-04-26",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Starting in July 2018, the Commission will examine the use of campaign funds by dormant committees as part of its review of campaign finance disclosure reports, to ensure the activity meets the regulatory standards for permissible use.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "troduction to campaign finance and elections Federal Election Commission | United States of America Home › FEC Record: Compliance › Commission will review dormant committees' use of campaign funds FEC Record: Compliance Commission will review dormant committees' use of campaign funds April 26, 2018 Starting in July 2018, the Commission will examine the use of campaign funds by dormant committees as part of its review of campaign finance disclosure reports, to ensure the activity meets the regulatory standards for permissible use. This additional review will apply to committees of former candidates who did not campaign or hold office during the previous two years for U.S. House of Representatives candidates or four years for U.S. Senate and presidential candidates. In a case where the Commission would like to clarify a dormant committee’s use of campaign funds,"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.notus.org/2026-election/congress-surplus-campaign-money-fec",
+   "outlet": "NOTUS",
+   "date": "2026-02-01",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Campaigns may also financially support party committees and their colleagues who are seeking to remain in office.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rmer Sen. Kyrsten Sinema — appear to have spent their leftover funds on travel, fine dining, concert tickets and other questionable purchases. Exiting lawmakers may use leftover campaign money in a variety of other ways , including on charitable contributions and for so-called “winding down costs.” Campaigns may also financially support party committees and their colleagues who are seeking to remain in office. Of the nearly $600,000 Pelosi’s campaign spent in total during the fourth quarter, nearly half went out the door after she announced her plan to retire on Nov. 6. In addition to refunding more than $73,000 to donors, Pelosi’s campaign disclosed paying nearly $24,000 for fundraising consulting, more than $25,000 to the law firm Perkins Coie f"
+  }
+ ]
+}

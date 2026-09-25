@@ -1,0 +1,12 @@
+{
+  "story_id": "S192",
+  "bin": "Known pattern",
+  "entity": "Small, non-exempt US-listed foreign private issuers, late insider Form 3 filings after the March 18, 2026 deadline",
+  "deciding_sources": [1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "a third of small non-exempt foreign issuers filed 13+ days late; China/HK trail other small foreign issuers by 12 points; gap not significant against non-Israel peers (p = 0.08) or Asian/US/Australian peers (p = 0.53)",
+  "why": "A&O Shearman covers the SEC's relief for late insider filings caused by missing EDGAR access, with an April 1 backstop, so the late-filing pattern was anticipated. No usable source counts who actually filed late; the SEC FAQ was blocked and isn't paywalled, so it's ignored.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

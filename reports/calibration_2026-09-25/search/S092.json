@@ -1,0 +1,70 @@
+{
+  "story_id": "S092",
+  "entity": "US HOLC-graded (1930s redlining map) neighborhoods nationwide: EPA Toxics Release Inventory facilities per 100 km2 by grade A/B/C/D, TRI 2023",
+  "queries": [
+    {"q": "redlined neighborhoods HOLC grade D Toxic Release Inventory facilities density study", "found_useful": true},
+    {"q": "historical redlining industrial facilities pollution sources per square kilometer HOLC grades", "found_useful": true},
+    {"q": "redlining TRI facilities \"per square kilometer\" OR \"per km2\" Mapping Inequality EPA", "found_useful": false},
+    {"q": "\"Toxics Release Inventory\" redlining study formerly redlined neighborhoods more TRI facilities", "found_useful": true},
+    {"q": "Historical Redlining and Cumulative Environmental Impacts across the United States PMC toxic releases hazardous waste", "found_useful": true},
+    {"q": "\"average number of\" industrial sources nearby increases from A to D redlining", "found_useful": true},
+    {"q": "redlined neighborhoods closer to industrial facilities news study hazardous sites \"D\" grade 202 cities", "found_useful": true},
+    {"q": "\"Historical Neighborhood Redlining and Contemporary Environmental Racism\" hazardous waste sites 1.7 times", "found_useful": true},
+    {"q": "redlined neighborhoods toxic chemical plants news analysis \"Toxic Release Inventory\" redlining map", "found_useful": false},
+    {"q": "redlining pollution industrial facilities study 2026", "found_useful": false},
+    {"q": "\"13.35\" OR \"six times\" toxic release facilities redlined \"B\" neighborhoods density", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9009174/",
+      "outlet": "Environmental Science & Technology Letters (Lane et al., via PMC)",
+      "date": "2022-03-09",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "We find that, within HOLC-mapped areas, D-grade neighborhoods are more likely to be near industrial sources and that the average number of sources nearby increases from A to D (Figure S8).",
+      "paywalled": false,
+      "searcher_note": "National 202-city HOLC study (air pollution); side finding that industrial sources nearby rise stepwise A to D. Same direction, measure is proximity count not TRI density per km2. Also says C/D areas often hosted industry already."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10867848/",
+      "outlet": "Environmental Science & Technology Letters (Estien et al., via PMC)",
+      "date": "2024-01-19",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Redlined and nonredlined neighborhoods showed no significant differences in PM2.5 and toxic releases, but did show significant differences in lead risk, groundwater threats, hazardous waste facilities, cleanup sites, and diesel PM",
+      "paywalled": false,
+      "searcher_note": "Disagreement angle: eight California cities, CalEnviroScreen 'toxic releases from facilities' percentile showed no significant redlined vs nonredlined gap overall (differences in 3-4 cities). Different place subset and measure."
+    },
+    {
+      "url": "https://www.npr.org/2022/03/10/1085882933/redlining-pollution-racism",
+      "outlet": "NPR",
+      "date": "2022-03-10",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "For instance, a neighborhood would receive a lower grade if it already had industrial uses there.",
+      "paywalled": false,
+      "searcher_note": "News on the 202-city redlining/air-pollution study; notes industry often preceded the grade (the lead's own caveat). No TRI facility counts."
+    },
+    {
+      "url": "https://www.rand.org/pubs/articles/2022/environmental-racism-how-historic-redlining-continues.html",
+      "outlet": "RAND",
+      "date": "2022-06-27",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "When zoning officials needed somewhere to put a new factory or freeway, those redlined neighborhoods were like a bullseye that they hit again and again and again.",
+      "paywalled": false,
+      "searcher_note": "RAND tool mapping HOLC lines against a dozen-plus hazards incl. toxic waste sites; pattern of industrial siting in redlined areas, no TRI density figure."
+    },
+    {
+      "url": "https://grist.org/accountability/redlined-neighborhoods-pollution/",
+      "outlet": "Grist",
+      "date": "2022-04-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Neighborhoods that were redlined have nearly twice as many oil and gas wells as neighborhoods that were historically considered “desirable,” a new study has found.",
+      "paywalled": false,
+      "searcher_note": "Same density-by-HOLC-grade method applied to oil and gas wells (D 12.2 vs A 6.8 wells/km2), not TRI plants."
+    }
+  ],
+  "notes": "No source found reports TRI facility density per km2 by HOLC grade, or the 13.35 / 5.82 / 2.21 / 0.07 figures, or the 119-of-212-cities count. Closest: Lane et al. 2022 (industrial sources nearby rise A to D across 202 cities) and a 2023 national EJScreen study reported in search snippets (1.7x hazardous waste sites, 2x RMP sites near redlined areas; ACS page 403, PubMed returned captcha, not recorded). Estien et al. 2024 found no significant overall redlined gap for CalEnviroScreen toxic releases in 8 California cities. No July-Sept 2026 coverage found."
+}

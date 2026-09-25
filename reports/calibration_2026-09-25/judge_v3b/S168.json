@@ -1,0 +1,12 @@
+{
+  "story_id": "S168",
+  "bin": "Matched + more",
+  "entity": "Atlantic City Housing Authority",
+  "deciding_sources": [0],
+  "earliest_match_date": "2025-07-25",
+  "post_cutoff_match": false,
+  "what_we_add": "339 of 1,473 units as regular vacancies (23.0%); highest of 91 non-MTW authorities with 1,000-4,999 units, 5.9x their 3.9% median; almost half at Stanley Holmes Village, 50% occupied",
+  "why": "CBS Philadelphia reports HUD's July 2025 letter: only 71.4% of ACHA units occupied vs a 96% goal; same authority, same month, same direction (28.6% empty overall, our 23% regular vacancies is a subset, within 25%). No source gives the peer comparison or the Stanley Holmes share; NJ Globe is an op-ed, and the Press headlines on emptying Stanley Holmes don't contradict.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

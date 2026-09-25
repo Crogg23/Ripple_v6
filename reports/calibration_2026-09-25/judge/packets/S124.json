@@ -1,0 +1,95 @@
+{
+ "story_id": "S124",
+ "lead": {
+  "headline": "16 of 38 Supreme Court cases from the 5th Circuit in 2021-24 were federal-government appeals; in 2015-20, 1 of 26",
+  "number": "16 of 38 (17 counting the consumer finance bureau, CFPB); the other 11 regional circuits stayed at about 12% in both periods; Supreme Court cases per 1,000 5th Circuit appeals rose from 0.57 to 1.50",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The table this lead is filed under adds nothing; every count comes from the Supreme Court Database and the FJC appeals file."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Fifth Circuit Supreme Court docket Biden administration appeals share of cases 2023 term",
+  "Solicitor General Prelogar Fifth Circuit petitions Supreme Court reversed Fifth Circuit record number cases",
+  "\"Fifth Circuit\" Supreme Court \"federal government\" appeals increase statistics analysis",
+  "Empirical SCOTUS Fifth Circuit cases Supreme Court government petitioner Legal Calculus Feldman",
+  "Justice Department keeps going to Supreme Court over Fifth Circuit rulings Biden administration wins reversals Rahimi Jarkesy Cargill Vanderstok",
+  "Fifth Circuit Supreme Court cases per appeals rate compared other circuits 2015-2020 vs 2021-2024 study",
+  "Fifth Circuit Supreme Court cases federal government 2026 analysis term",
+  "Texas lawsuits Biden administration Fifth Circuit forum shopping Supreme Court solicitor general emergency applications count"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.scotusblog.com/2023/03/another-federal-agency-challenges-adverse-ruling-by-5th-circuit/",
+   "outlet": "SCOTUSblog",
+   "date": "2023-03-31",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "This week, we highlight cert petitions that ask the court to consider, among other things, whether to reverse a second 5th Circuit ruling that invalidated powers of the agency charged with regulating investments, the Securities and Exchange Commission.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ed in the Supreme Court. A list of all petitions we’re watching is available here . Next term the justices will hear the government’s appeal of a decision by the U.S. Court of Appeals for the 5th Circuit that found the funding mechanism for the Consumer Financial Protection Bureau unconstitutional. This week, we highlight cert petitions that ask the court to consider, among other things, whether to reverse a second 5th Circuit ruling that invalidated powers of the agency charged with regulating investments, the Securities and Exchange Commission. Congress passed legislation in the aftermath of the Great Depression to rein in the markets for trading securities and other financial vehicles. To enforce these laws, Congress created the SEC. It granted the agency the power to regulate investors through either lawsuits in federal court or internal hearings in front of an administrati"
+  },
+  {
+   "idx": 1,
+   "url": "https://news.bloomberglaw.com/us-law-week/conservative-fifth-circuit-is-an-outlier-for-supreme-court",
+   "outlet": "Bloomberg Law",
+   "date": "2025-01-20",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "which is scheduled for argument Tuesday at the high court, is one of 13 cases this term out of the US Court of Appeals for the Fifth Circuit. That’s more than 20% of the Supreme Court’s current workload.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "se about the proper place to sue the US government highlights how far right the nation’s most conservative appeals court has shifted, sending more and more cases to a conservative-led Supreme Court that often doesn’t see things the same way. Food and Drug Administration v. R.J. Reynolds Vapor Co ., which is scheduled for argument Tuesday at the high court, is one of 13 cases this term out of the US Court of Appeals for the Fifth Circuit. That’s more than 20% of the Supreme Court’s current workload. The next highest number—seven cases—comes from the Fourth Circuit. Tulane Law School professor Sally Brown Richardson said the New Orleans-based Fifth Circuit, which covers Texas, Mississippi, and Louisiana, has been in recent years the source of some of the most conservative judicial outcomes, particularly on controversial social issue"
+  },
+  {
+   "idx": 2,
+   "url": "https://edition.cnn.com/2024/04/07/politics/supreme-court-5th-circuit/index.html",
+   "outlet": "CNN",
+   "date": "2024-04-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Texas has become a breeding ground for some of the most high-profile, high-stakes legal cases, often brought against the Biden administration by Texas Attorney General Ken Paxton",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "stantive questions, and one about where the Supreme Court is on what the status quo ought to be while those substantive questions are litigated,” added Vladeck, who is a professor at University of Texas School of Law. A hot bed of ‘culture war’ legal rulings The trend has been driven in part by how Texas has become a breeding ground for some of the most high-profile, high-stakes legal cases, often brought against the Biden administration by Texas Attorney General Ken Paxton and other state attorneys general who are aligned with him. “It’s also a place where what I see is a lot of the culture war issues: Abortion, guns, redistricting, immigration and the border. A lot of those ended up in Texas and then on to the Fifth and then onto the Supreme Court,” said Carl Tobias, a professor at the University of"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.texastribune.org/2024/07/02/5th-circuit-appeals-supreme-court-texas/",
+   "outlet": "Texas Tribune",
+   "date": "2024-07-02",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The 5th Circuit, which hears appeals from Texas, Louisiana and Mississippi, had three rulings upheld by the U.S. Supreme Court, and eight overturned, more than any other court this term.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " up for The Brief</a>, The Texas Tribune’s daily newsletter that keeps readers up to speed on the most essential Texas news.</em></p> <hr class=\"wp-block-separator has-alpha-channel-opacity is-style-wide\" /> <p>If the 5th U.S. Circuit Court of Appeals was a boxer, you’d bet on the other guy.</p> <p>The 5th Circuit, which hears appeals from Texas, Louisiana and Mississippi, had three rulings upheld by the U.S. Supreme Court, and eight overturned, more than any other court this term. The conservative circuit court saw its rulings on abortion medication, gun control, administrative power and social media moderation all rejected by the Supreme Court.</p> <p>Justice Brett Kavanaugh cautioned that the 5th Circuit was taking the judiciary down “an uncharted path.” Chief Justice John Roberts said they were “sla"
+  },
+  {
+   "idx": 4,
+   "url": "https://fedsoc.org/commentary/fedsoc-blog/is-the-fifth-circuit-too-conservative",
+   "outlet": "Federalist Society Blog",
+   "date": "2024-08-19",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Once we control for that, its reversal rate was decidedly middling.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ir. But is there any truth to it? In a recent essay for the National Law Journal, I dig into the data and conclude there is not. In particular, I argue that, to assess a circuit’s reversal rate, we must control for the number of appeals a circuit decides. The Fifth Circuit decides a lot of appeals. Once we control for that, its reversal rate was decidedly middling. It was reversed 0.950 times for every 1000 appeals it terminated or 1.537 times for every 1000 appeals it terminated after oral argument or submissions on the briefs. In the essay, I included a comparison chart on the former metric; here is a chart on the latter metric. The real outlier last term was not the Fifth, but the Sec"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.nga.org/updates/2025-2026-u-s-supreme-court-term-summary-of-key-decisions-and-implications-for-states/",
+   "outlet": "National Governors Association",
+   "date": "2026-09-04",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The Fifth Circuit was the source of 11 cases decided by the Court—the most of any federal circuit—followed by nine from the Fourth Circuit.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cting state and territorial governments. The Court issued approximately 68 decisions, along with additional orders on its emergency docket, addressing questions involving presidential and executive authority, federalism, elections, immigration, law enforcement, and individual constitutional rights. The Fifth Circuit was the source of 11 cases decided by the Court—the most of any federal circuit—followed by nine from the Fourth Circuit. Nine cases reached the Court from state courts and federal district courts. Key decisions impacting state and territorial governments and other major topics from the term include the following. Executive Authority and Separation of Powers The Court addressed several significant questions involving presidential power, the limits o"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S139",
+  "bin": "Contradicted",
+  "entity": "Tesla's Fremont plant and its Bay Area Air District violation notices and enforcement since 2019",
+  "deciding_sources": [3, 4, 5, 0],
+  "earliest_match_date": "2026-01-28",
+  "post_cutoff_match": false,
+  "what_we_add": "second of 86 plants; notices on 133 days; peers' median 28 formal actions per 100 notices; Phillips 66 Rodeo 213 notices",
+  "why": "The notice count matched: SFGATE has 369 in five years and Richmondside 374 for 2015-25, both close to 356. The 'no district enforcement order' claim is contradicted: the district's own June 2024 release and KTVU report an abatement order against the Fremont paint shop from its enforcement arm, and KQED reports a $1M district settlement in 2021, both inside 'since 2019'.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

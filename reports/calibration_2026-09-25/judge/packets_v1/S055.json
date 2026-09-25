@@ -1,0 +1,92 @@
+{
+ "story_id": "S055",
+ "lead": {
+  "headline": "Black home buyers were denied about twice as often as white buyers at every big 2017 mortgage lender",
+  "number": "At every 2017 home-purchase lender with 500+ Black and 2,000+ white applications, the Black denial rate ran about 2x the white rate.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No income or credit columns, so the gap can't be adjusted, and it's a known shape."
+ },
+ "queries_logged": 11,
+ "queries": [
+  "2017 HMDA data Black applicants denied twice the rate white applicants home purchase loans",
+  "Reveal \"Kept Out\" mortgage lenders Black applicants denied more often analysis lenders",
+  "largest mortgage lenders denial rates Black vs white applicants 2017 HMDA lender-by-lender analysis",
+  "CFPB data point \"2017 mortgage market activity and trends\" denial rates black non-Hispanic white home purchase",
+  "Reveal Center for Investigative Reporting lenders deny Black applicants 2017 data individual banks named Wells Fargo JPMorgan denial",
+  "\"2017\" mortgage lenders \"Black applicants\" denied at higher rates than white applicants at nearly every lender analysis",
+  "Financial Times analysis 39.5 million mortgage applications Black applicants 2.1 times more likely denied lenders",
+  "mortgage denial racial gap Black white lenders HMDA analysis August 2026",
+  "NCRC 2017 HMDA top lenders African American denial rate home purchase report",
+  "revealnews.org \"shutting the door to homeownership\" 61 metro areas",
+  "racial mortgage denial gap explained by credit scores not discrimination lenders say HMDA 2017 2018"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination",
+   "outlet": "Urban Institute (Laurie Goodman, Bing Bai)",
+   "date": "2018-08-23",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The observed denial rate shows that the denial rate for black families was 2.0 times that of whites in 2017, which looks alarmingly high (figure 1).",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination",
+   "outlet": "Urban Institute (Laurie Goodman, Bing Bai)",
+   "date": "2018-08-23",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Using the real denial rate method, the denial rate for black families is 1.2 times that of whites, while the rates for Hispanics and Asians are 1.1 times and 1.4 times, respectively, that of whites.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.consumerfinance.gov/archive/newsroom/ffiec-announces-availability-2017-data-mortgage-lending/",
+   "outlet": "Consumer Financial Protection Bureau / FFIEC",
+   "date": "2018-05-07",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In 2017, black and Hispanic-white applicants experienced higher denial rates for conventional home purchase loans than non-Hispanic white applicants.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://mlk50.com/2018/02/20/for-people-of-color-banks-are-shutting-the-door-to-homeownership/",
+   "outlet": "Reveal (Center for Investigative Reporting), republished by MLK50",
+   "date": "2018-02-20",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Reveal's analysis of lending data shows that nationally, Santander turned away African-American homebuyers at nearly three times the rate of white ones.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://themarkup.org/denied/2021/08/25/the-secret-bias-hidden-in-mortgage-approval-algorithms",
+   "outlet": "The Markup",
+   "date": "2021-08-25",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Lenders were 80 percent more likely to reject Black applicants than similar White applicants.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.prnewswire.com/news-releases/mortgage-denial-rates-fall-but-racial-gap-persists-black-applicants-twice-as-likely-as-whites-to-be-denied-a-conventional-loan-300632674.html",
+   "outlet": "Zillow press release via PR Newswire",
+   "date": "2018-04-19",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "By comparison, 20.9 percent of black borrowers and 15.5 percent of Hispanic borrowers were turned down for a loan.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "story_id": "S092",
+ "lead": {
+  "headline": "Redlined 1930s neighborhoods hold 13.35 toxic-release plants per 100 square kilometers, six times the 2.21 in 'B' areas",
+  "number": "Toxic-release plants per 100 km²: D areas 13.35, C 5.82, B 2.21, A 0.07; D denser than B in 119 of 212 cities.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The plants likely came before the maps, and redlining-to-pollution research is already published."
+ },
+ "queries_logged": 11,
+ "queries": [
+  "redlined neighborhoods HOLC grade D Toxic Release Inventory facilities density study",
+  "historical redlining industrial facilities pollution sources per square kilometer HOLC grades",
+  "redlining TRI facilities \"per square kilometer\" OR \"per km2\" Mapping Inequality EPA",
+  "\"Toxics Release Inventory\" redlining study formerly redlined neighborhoods more TRI facilities",
+  "Historical Redlining and Cumulative Environmental Impacts across the United States PMC toxic releases hazardous waste",
+  "\"average number of\" industrial sources nearby increases from A to D redlining",
+  "redlined neighborhoods closer to industrial facilities news study hazardous sites \"D\" grade 202 cities",
+  "\"Historical Neighborhood Redlining and Contemporary Environmental Racism\" hazardous waste sites 1.7 times",
+  "redlined neighborhoods toxic chemical plants news analysis \"Toxic Release Inventory\" redlining map",
+  "redlining pollution industrial facilities study 2026",
+  "\"13.35\" OR \"six times\" toxic release facilities redlined \"B\" neighborhoods density"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9009174/",
+   "outlet": "Environmental Science & Technology Letters (Lane et al., via PMC)",
+   "date": "2022-03-09",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "We find that, within HOLC-mapped areas, D-grade neighborhoods are more likely to be near industrial sources and that the average number of sources nearby increases from A to D (Figure S8).",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10867848/",
+   "outlet": "Environmental Science & Technology Letters (Estien et al., via PMC)",
+   "date": "2024-01-19",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Redlined and nonredlined neighborhoods showed no significant differences in PM2.5 and toxic releases, but did show significant differences in lead risk, groundwater threats, hazardous waste facilities, cleanup sites, and diesel PM",
+   "paywalled": false,
+   "quote_check": "missing"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.npr.org/2022/03/10/1085882933/redlining-pollution-racism",
+   "outlet": "NPR",
+   "date": "2022-03-10",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "For instance, a neighborhood would receive a lower grade if it already had industrial uses there.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.rand.org/pubs/articles/2022/environmental-racism-how-historic-redlining-continues.html",
+   "outlet": "RAND",
+   "date": "2022-06-27",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "When zoning officials needed somewhere to put a new factory or freeway, those redlined neighborhoods were like a bullseye that they hit again and again and again.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://grist.org/accountability/redlined-neighborhoods-pollution/",
+   "outlet": "Grist",
+   "date": "2022-04-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Neighborhoods that were redlined have nearly twice as many oil and gas wells as neighborhoods that were historically considered “desirable,” a new study has found.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

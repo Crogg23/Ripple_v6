@@ -1,0 +1,68 @@
+{
+  "story_id": "S140",
+  "entity": "US official federal place names (USGS GNIS / Board on Geographic Names) that still contain \"Negro\", vs the 2020-23 renaming of \"Squaw\" names",
+  "queries": [
+    {"q": "hundreds of place names still contain \"Negro\" federal Board on Geographic Names", "found_useful": true},
+    {"q": "\"Negro\" place names USGS GNIS count remaining after squaw renaming 2022", "found_useful": true},
+    {"q": "Board on Geographic Names squaw names replaced 2022 number 650 Interior Department", "found_useful": true},
+    {"q": "after squaw names removed, \"Negro\" place names remain next Advisory Committee on Reconciliation in Place Names", "found_useful": true},
+    {"q": "\"Negro\" place names federal renaming 2025 2026 advisory committee terminated derogatory names", "found_useful": false},
+    {"q": "\"Negro\" names still on federal maps after Interior removed squaw names article 2023 OR 2024", "found_useful": true},
+    {"q": "\"438\" OR \"426\" place names \"Negro\" GNIS", "found_useful": false},
+    {"q": "\"Negro\" creek OR mountain renamed Board on Geographic Names 2026", "found_useful": true},
+    {"q": "squaw names renamed in months while \"Negro\" names renamed one at a time slow comparison racist place names Black", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://atmos.earth/political-landscapes/black-people-federal-lands-racist-history/",
+      "outlet": "Atmos",
+      "date": "2022-02-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Today, 469 pieces of geography still contain the replacement word in their name, according to the geographic names database managed by the U.S. Geological Survey.",
+      "paywalled": false,
+      "searcher_note": "Same measure, same GNIS database: 469 federal names still carry 'negro' (the 1962 Udall replacement word) as of early 2022. The lead has 438 after dropping 50 Spanish 'negro' names by hand. No squaw comparison."
+    },
+    {
+      "url": "https://www.yahoo.com/news/racial-slurs-are-woven-deep-into-the-american-landscape-160045373.html",
+      "outlet": "Vocativ (syndicated on Yahoo News)",
+      "date": "2015-10-30",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "At least 558 place names across the nation include derogatory words referring to African Americans, Vocativ's data analysis found.",
+      "paywalled": false,
+      "searcher_note": "Earliest found. A 2015 data analysis of federal place names: 558 anti-Black names, most containing 'negro'; 828 'squaw' names. Broader measure than the lead's (it includes other anti-Black terms)."
+    },
+    {
+      "url": "https://congress.gov/crs_external_products/IN/PDF/IN12000/IN12000.4.pdf",
+      "outlet": "Congressional Research Service (Insight IN12000)",
+      "date": "2024-02-26",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The BGN voted on the final replacement names for 650 names in September 2022 and for 7 additional names in January 2023.",
+      "paywalled": false,
+      "searcher_note": "Government count of the squaw renaming: 657 names, Sept 2022 + Jan 2023. The lead says 641 changed in 2020-23. Gives no count of remaining 'Negro' names."
+    },
+    {
+      "url": "https://www.doi.gov/pressreleases/interior-department-completes-removal-sq-federal-use",
+      "outlet": "U.S. Department of the Interior",
+      "date": "2022-09-08",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The Department of the Interior today announced the Board on Geographic Names (BGN) has voted on the final replacement names for nearly 650 geographic features featuring the word sq___.",
+      "paywalled": false,
+      "searcher_note": "Primary record of the bulk squaw renaming (the comparison half of the lead). Doesn't mention 'Negro' names."
+    },
+    {
+      "url": "https://oregonblackpioneers.org/two-geographic-features-renamed-to-honor-black-oregonians/",
+      "outlet": "Oregon Black Pioneers",
+      "date": "2024-10-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "On September 18, 2024 the U.S. Board on Geographic Names approved proposals to change the name of Negro Jack Creek in Tillamook County to Jack Creek",
+      "paywalled": false,
+      "searcher_note": "Shows one-at-a-time 'Negro' renamings continued after the lead's 2023-03-17 citation cutoff (two Oregon features, Sept 2024). Supports the lead's caveat; not a count. Nonprofit history group."
+    }
+  ],
+  "notes": "The 'Negro' names still on federal maps are covered, with counts: Vocativ 2015 (558 anti-Black names overall), Atmos 2022 (469 with 'negro'). The squaw renaming is fully covered by government sources: about 650 in Sept 2022 plus 7 in Jan 2023. No source found puts the two side by side as the lead does (641 squaw vs at least 41 Negro/n-word renamings in 2020-23), and none has 438, 426, the 105 n-word former names or the 41. The Atmos 469 is about 7% above the lead's 438; the lead removed 50 Spanish 'negro' (black) names that raw counts include. Other counts seen, not recorded: NBC News 2012 said 621 places (page wouldn't render); Axios 2021 was cited in a snippet for 469 (HTTP 403). The Washington Post, 2021-12-17, 'Offensive place names dot the American landscape. Efforts to change them are about to get a lot faster.', was 403 and timed out; not recorded. Eos (2021) repeats Vocativ's 558. No July-Sept 2026 coverage found."
+}

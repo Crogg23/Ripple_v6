@@ -1,0 +1,12 @@
+{
+  "story_id": "S024",
+  "bin": "Matched + more",
+  "entity": "BF Borgers' former public-company audit clients, where they went after the 2024 SEC bar",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2024-06-21",
+  "post_cutoff_match": false,
+  "what_we_add": "27 ex-clients at four Nigerian firms; 75 of 218 with no later audit; new-auditor split by firm size (54 one-partner, 72 at 2-5 partners, 17 bigger)",
+  "why": "Bloomberg Tax: nearly 40% of ~180 Borgers clients had no new auditor by mid-June 2024; ours 75 of 218 (34%), within 25%, same direction. Accounting Today: 125 Borgers clients landed at mostly smaller firms in Q2. No source names the Nigerian firms.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

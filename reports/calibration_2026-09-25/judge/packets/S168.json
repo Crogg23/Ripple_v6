@@ -1,0 +1,98 @@
+{
+ "story_id": "S168",
+ "lead": {
+  "headline": "339 of Atlantic City's 1,473 public housing units sit empty without an approved reason: 23%, 5.9 times similar authorities",
+  "number": "339 \"regular\" vacancies of 1,473 units (23.0%) in HUD's July 2025 file: highest of 91 non-\"Moving to Work\" authorities with 1,000-4,999 units, 5.9x their 3.9% median; almost half at Stanley Holmes Village, 50% occupied",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A $450K Choice Neighborhoods grant (FY2021) means units held empty for redevelopment aren't ruled out; setting Stanley Holmes aside, 12% of the rest are still regular vacancies (3.8x peers)"
+ },
+ "queries_logged": 11,
+ "queries": [
+  "Atlantic City Housing Authority vacant units Stanley Holmes Village",
+  "Atlantic City Housing Authority HUD vacancies empty apartments waiting list 2025",
+  "\"Atlantic City Housing Authority\" vacant units HUD troubled agency",
+  "Atlantic City Housing Authority 2026 news",
+  "\"has not actively leased available units since 2020\"",
+  "Atlantic City Housing Authority HUD receivership occupancy vacant apartments Stanley Holmes demolition August 2026",
+  "Atlantic City public housing hundreds of empty units while waiting list HUD letter occupancy 96% goal",
+  "pressofatlanticcity.com \"housing authority\" fails HUD rules residents get in pay and more",
+  "\"Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct'\"",
+  "\"Stanley Holmes\" demolition Section 18 application HUD approved vacant units 2026",
+  "Atlantic City Housing Authority HUD September 2026 OR August 2026 OR July 2026 Stanley Holmes residents"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.cbsnews.com/amp/philadelphia/news/atlantic-city-housing-authority-new-jersey",
+   "outlet": "CBS Philadelphia",
+   "date": "2025-07-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "That goal was not met, with HUD measuring that only 71.4% of the units were occcupied, according to the letter.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "45 out of 100 on a HUD assessment in 2023, a score that gave the authority a designation as \"troubled.\" The score lowered to 40 out of 100 in another assessment issued in March 2025. Goals were set including increasing the assessment score to at least 60 and boosting occupancy of ACHA units to 96%. That goal was not met, with HUD measuring that only 71.4% of the units were occcupied, according to the letter. HUD said ACHA failed to meet other goals in the category of \"improving physical conditions of dwelling units.\" Several forms detailing possible work that could improve those properties were still just drafts and not finalized, according to the letter. Here's a portion of Van Drew's statement issued Monday: \"Families were fre"
+  },
+  {
+   "idx": 1,
+   "url": "https://newjerseyglobe.com/local/doherty-huds-takeover-is-a-lifeline-for-atlantic-citys-most-vulnerable/",
+   "outlet": "New Jersey Globe (opinion)",
+   "date": "2025-08-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Occupancy had plummeted to 71.4%, far below the target of 96%.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "plumbing, and—most egregiously—no heat or hot water in the coldest months. These conditions were endured by the city’s most economically vulnerable residents: low-income seniors, families, and people with disabilities. HUD’s July 2025 finding of “substantial default” laid bare the years of neglect. Occupancy had plummeted to 71.4%, far below the target of 96%. Uninhabitable units worsened an already severe housing crisis, forcing more residents into unsafe or overcrowded housing. The responsibility lies squarely with the board’s leadership and its hand-picked consultants. Former board chair and current Councilwoman Stephanie Marshall, her successor Jeff Dorsey, and consultants Jerry V"
+  },
+  {
+   "idx": 2,
+   "url": "https://pressofatlanticcity.com/news/local/govt-and-politics/ac-housing-authority-fails-hud-rules-on-how-residents-get-in-pay-and-more/article_65d92228-11e3-11ee-9fb9-afb76e898d30.html",
+   "outlet": "Press of Atlantic City",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "AC Housing Authority fails HUD rules on how residents get in, pay, and more",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Today's E-edition Subscribe Log In Welcome, Guest My Subscription Help Center My Account Dashboard Profile Saved items Logout E-edition News Obituaries Opinion Sports Puzzmo Puzzles Jobs Entertainment Lifestyles Public Notices 62° Partly Cloudy Share This Facebook Twitter Bluesky WhatsApp SMS Email AC Housing Authority fails HUD rules on how residents get in, pay, and more Live chat 0 Comments Share this Facebook Twitter Bluesky WhatsApp SMS Email Print Copy article link Save A Lee Enterprises , Incorporated newspaper. Majority shareholder: David Hoffmann, Hoffmann Media Group. Breaking Editor's Pick AC Housing Authority fails HUD rules on how residents get in, pay, and more Michelle Brunetti Post Jun "
+  },
+  {
+   "idx": 3,
+   "url": "https://pressofatlanticcity.com/news/local/government-politics/atlantic-city-housing-authority-gas-leak-special-meeting/article_4a2d52fc-4bf3-11ee-8258-6fcbae5ed5d0.html",
+   "outlet": "Press of Atlantic City",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Atlantic City Housing Authority tells court it will empty, demolish one-third of Stanley Holmes Village",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Today's E-edition Subscribe Log In Welcome, Guest My Subscription Help Center My Account Dashboard Profile Saved items Logout E-edition News Obituaries Opinion Sports Puzzmo Puzzles Jobs Entertainment Lifestyles Public Notices 62° Partly Cloudy Share This Facebook Twitter Bluesky WhatsApp SMS Email Atlantic City Housing Authority tells court it will empty, demolish one-third of Stanley Holmes Village Live chat 0 Comments Share this Facebook Twitter Bluesky WhatsApp SMS Email Print Copy article link Save A Lee Enterprises , Incorporated newspaper. Majority shareholder: David Hoffmann, Hoffmann Media Group. Top Story Editor's Pick Atlantic City Housing Authority tells court it will empty, demolish one-third of Stanley Holmes Village Miche"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.atlanticcityfocus.com/atlantic-city-housing-authority-details-action-plan-enacted-for-fixing-issues-at-stanley-holmes-village/",
+   "outlet": "Atlantic City Focus (republishing City of Atlantic City release)",
+   "date": "2024-10-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The resident transfer strategy commenced in July, with Phase I allowing 72 residents from Village 3 to voluntarily relocate to improved accommodations, paving the way for redevelopment.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " gas lines in 19 buildings, and overhauling more than 60% of crawl space piping. Heating system repairs are anticipated to be completed by the end of November. Additionally, the ACHA is installing sensors in the piping to monitor potential leaks and assess temperature, pressure, and flow stability. The resident transfer strategy commenced in July, with Phase I allowing 72 residents from Village 3 to voluntarily relocate to improved accommodations, paving the way for redevelopment. This phase is set to conclude by November 1, with over $150,000 allocated for transfer assistance. The ACHA encourages residents to utilize available support services and resources. Phase II, affecting an additional 51 units in Village 3, is projected for completion in summer 2025, while transfers in Villages 1 and 2 are scheduled for summe"
+  },
+  {
+   "idx": 5,
+   "url": "https://pressofatlanticcity.com/news/local/government-politics/article_2feac2ed-414d-49b2-bdf7-d693522113ee.html",
+   "outlet": "Press of Atlantic City",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct'",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Today's E-edition Subscribe Log In Welcome, Guest My Subscription Help Center My Account Dashboard Profile Saved items Logout E-edition News Obituaries Opinion Sports Puzzmo Puzzles Jobs Entertainment Lifestyles Public Notices 60° Partly Cloudy Share This Facebook Twitter Bluesky WhatsApp SMS Email Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct' 0 Comments Share this Facebook Twitter Bluesky WhatsApp SMS Email Print Copy article link Save A Lee Enterprises , Incorporated newspaper. Majority shareholder: David Hoffmann, Hoffmann Media Group. Top Story Breaking Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct' John O'Connor Jul 24, 2025 "
+  }
+ ]
+}

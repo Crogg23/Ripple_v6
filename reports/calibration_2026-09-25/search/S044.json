@@ -1,0 +1,80 @@
+{
+  "story_id": "S044",
+  "entity": "FDA premarket approval (PMA) supplements for high-risk devices: share filed as 30-day manufacturing notices, 2000-04 vs 2010 on; Medtronic ICD line P980016 (928 supplements, 621 30-day notices)",
+  "queries": [
+    {"q": "PMA supplements 30-day notices share increased high-risk devices study FDA premarket approval changes", "found_useful": false},
+    {"q": "Rome Kesselheim cardiac implantable electronic devices PMA supplements 1979-2012 JAMA", "found_useful": true},
+    {"q": "\"P980016\" Medtronic PMA supplements", "found_useful": false},
+    {"q": "FDA \"30-day notice\" manufacturing changes high-risk devices without review loophole news investigation", "found_useful": false},
+    {"q": "study PMA supplement types over time \"30-day notices\" proportion increased premarket approval database analysis", "found_useful": true},
+    {"q": "JAMA Network Open 2023 risk of recall modifications high-risk devices PMA supplements 10,776 supplements", "found_useful": true},
+    {"q": "Implant Files ICIJ FDA supplements device changes without clinical testing Medtronic defibrillator", "found_useful": false},
+    {"q": "FDA PMA supplement modifications high-risk devices 2026 study OR report", "found_useful": true},
+    {"q": "\"supplement\" pathway \"99 percent\" cardiac devices pacemakers defibrillators approved Harvard 1979 to 2012", "found_useful": false},
+    {"q": "Medtronic ICD \"928\" OR \"621\" supplements \"30-day notice\" defibrillator PMA", "found_useful": false},
+    {"q": "FDA defends PMA supplement 30-day notice process manufacturing changes appropriate least burdensome industry AdvaMed response", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738",
+      "outlet": "JAMA Network Open (Dubin et al.)",
+      "date": "2023-04-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The most common supplement type was 30-day, at 7250 (67.3%), while PTS was least common, making up 132 (1.2%) of all supplements.",
+      "paywalled": false,
+      "searcher_note": "All PMA devices approved 2008-2019, supplements through 2021: 30-day notices are 67.3% of supplements, near the lead's 64% for 2010 on. No early-2000s comparison, no P980016."
+    },
+    {
+      "url": "https://jamanetwork.com/journals/jama/fullarticle/1817796",
+      "outlet": "JAMA (Rome, Kramer, Kesselheim)",
+      "date": "2014-01-22",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Excluding 30-day notice supplements, which have increased markedly since their introduction in 1997, there was still a 3-fold increase over the past decade, from 60 supplements to 194.",
+      "paywalled": false,
+      "searcher_note": "Cardiac implant devices only (pacemakers, ICDs), 1979-2012: says 30-day notices rose markedly since 1997. Subset of the lead's device universe; direction matches."
+    },
+    {
+      "url": "https://jamanetwork.com/journals/jama/fullarticle/1817796",
+      "outlet": "JAMA (Rome, Kramer, Kesselheim)",
+      "date": "2014-01-22",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "These PMAs were the subject of 5829 PMA supplement applications. Nearly half (2754, 47%) were approved as 30-day notice supplements for manufacturing changes.",
+      "paywalled": false,
+      "searcher_note": "Same study: 47% of cardiac-device supplements 1979-2012 were 30-day notices. Earliest source found on 30-day-notice share. Does not break out Medtronic P980016."
+    },
+    {
+      "url": "https://www.raps.org/resource/higher-recall-risk-for-pma-approved-devices-with-s.html",
+      "outlet": "RAPS Regulatory Focus",
+      "date": "2023-04-17",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The study found that the most-used supplement type is a 30-day notice, used when a company makes changes to a manufacturing procedure or the way it makes a device.",
+      "paywalled": false,
+      "searcher_note": "Trade-press write-up of the 2023 JAMA Network Open study; no share-over-time figure."
+    },
+    {
+      "url": "https://www.medtechdive.com/news/post-approval-modification-high-risk-devices-recalls/647898/",
+      "outlet": "MedTech Dive",
+      "date": "2023-04-18",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Almost all, 99%, of the supplements were filed without clinical data.",
+      "paywalled": false,
+      "searcher_note": "Trade press on the same 2023 study; frames supplements as changes made without clinical data, tied to ~30% higher recall risk."
+    },
+    {
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738",
+      "outlet": "JAMA Network Open (Dubin et al.)",
+      "date": "2023-04-12",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Two brands of cardiac defibrillator leads (Sprint Fidelis [Medtronic] and Riata [St Jude Medical]) were recalled after being approved by supplements due to high rates of lead failures.",
+      "paywalled": false,
+      "searcher_note": "Closest Medtronic-defibrillator mention found: the Sprint Fidelis lead, not the P980016 ICD line the lead names."
+    }
+  ],
+  "notes": "Academic literature covers the 30-day-notice share: Rome et al. JAMA 2014 (cardiac devices, 47%, 'increased markedly since 1997') and Dubin et al. JAMA Netw Open 2023 (all PMA devices 2008-2021, 67.3%). No source found giving the lead's specific 19% (2000-04) to 64% (2010 on) comparison across all PMA devices. No press or research source found naming Medtronic P980016 or its 928/621 counts; searches for P980016 returned only FDA approval letters (primary records, not coverage). ICIJ Implant Files covers the supplement pathway and Sprint Fidelis generally; the ICIJ pages fetched did not contain a quotable 30-day-notice sentence. No source found disputing the rise; FDA guidance describes the 30-day notice as the statutory route for manufacturing changes. PubMed and PMC pages returned reCAPTCHA; Harvard DASH thesis returned 405. No July-September 2026 coverage found."
+}

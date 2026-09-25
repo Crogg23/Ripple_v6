@@ -1,0 +1,68 @@
+{
+  "story_id": "S195",
+  "entity": "Old (dormant) federal campaign committees, 2024 cycle: total paid out ($8.57M from 189 committees) and share sent to candidates, parties and PACs (19.4%)",
+  "queries": [
+    {"q": "zombie campaign committees former members of Congress spending 2024 cycle analysis", "found_useful": true},
+    {"q": "Campaign Legal Center zombie campaigns report leftover campaign funds donations to candidates parties PACs", "found_useful": true},
+    {"q": "former lawmakers leftover campaign cash 2024 election cycle millions spent OpenSecrets zombie", "found_useful": true},
+    {"q": "\"zombie\" campaign accounts 2025 OR 2026 report former members of Congress still spending donations to other candidates", "found_useful": false},
+    {"q": "dormant campaign committees former candidates gave to super PACs parties 2024 cycle total FEC data analysis", "found_useful": true},
+    {"q": "ZOMBIE Act leftover campaign funds former lawmakers news 2026", "found_useful": false},
+    {"q": "former members of Congress leftover campaign accounts donated to candidates and parties share of spending study 2025", "found_useful": true},
+    {"q": "\"$8.57 million\" OR \"8.6 million\" former candidates campaign committees 2024 cycle leftover", "found_useful": false},
+    {"q": "retired lawmakers leftover campaign money mostly goes to charity refunds rather than candidates analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/",
+      "outlet": "Tampa Bay Times / 10News WTSP",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Times/WTSP reporters used the FEC’s own data to identify roughly 100 zombie campaigns that have spent more than $20 million since 1995.",
+      "paywalled": false,
+      "searcher_note": "The 2018 'zombie campaigns' investigation (year from URL); same pattern of dormant committees spending, but no 2024-cycle total or recipient-type share"
+    },
+    {
+      "url": "https://rollcall.com/2023/02/06/not-couch-cushion-money-former-members-sitting-on-54-million/",
+      "outlet": "Roll Call",
+      "date": "2023-02-06",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Members of the 117th Congress who have since left Capitol Hill still hold nearly $54 million in leftover political money — cash they may tap to make contributions as lobbyists or bank for future runs.",
+      "paywalled": false,
+      "searcher_note": "Stock of cash held by departed members, not 2024-cycle payouts"
+    },
+    {
+      "url": "https://campaignlegal.org/update/zombie-campaign-redux-former-members-congress-continue-use-leftover-campaign-cash-personal",
+      "outlet": "Campaign Legal Center",
+      "date": "2019-03-12",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Crenshaw and Linder represent a twist in the zombie campaign story: both converted their campaign committees to multicandidate PACs, rolled-over hundreds of thousands of dollars of leftover contributions, and then used the PACs as slush funds.",
+      "paywalled": false,
+      "searcher_note": "Pattern: dormant committees routing money through PACs; case-level, no aggregate"
+    },
+    {
+      "url": "https://www.fec.gov/updates/commission-will-review-dormant-committees-use-campaign-funds/",
+      "outlet": "Federal Election Commission",
+      "date": "2018-04-26",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Starting in July 2018, the Commission will examine the use of campaign funds by dormant committees as part of its review of campaign finance disclosure reports, to ensure the activity meets the regulatory standards for permissible use.",
+      "paywalled": false,
+      "searcher_note": "FEC definition of dormant committees (House: no campaign or office for two years; Senate/president: four); no totals"
+    },
+    {
+      "url": "https://www.notus.org/2026-election/congress-surplus-campaign-money-fec",
+      "outlet": "NOTUS",
+      "date": "2026-02-01",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Campaigns may also financially support party committees and their colleagues who are seeking to remain in office.",
+      "paywalled": false,
+      "searcher_note": "Retiring lawmakers' surplus campaign spending in late 2025; pattern only, no share figures"
+    }
+  ],
+  "notes": "Only pattern coverage found (zombie or dormant campaign committees). No source reports a 2024-cycle total for old committees, the 189-committee count, the $8.57M figure, or the share going to candidates, parties and PACs (19.4% vs 2.1%). No coverage of this national measure found dated after 2026-06-30. The Duffy-for-Wisconsin transfers (a single committee, 2025-26 cycle) are covered elsewhere but are not this entity. Bloomberg Government's 'Zombie Campaigns-to-Be Hold Millions in Cash' returned 403 and could not be read."
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S103",
+  "bin": "Known pattern",
+  "entity": "Generic makers Teva, Actavis and Mutual, as filers of lawyer-sourced metoclopramide reports",
+  "deciding_sources": [0, 2, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "the three makers as filers; about 15,500 lawyer-sourced reports, 91% of the generic's reports; 9,089 in Apr-Sep 2011 vs about 16 a quarter in 2004-09",
+  "why": "The headline's subject is the makers who filed. ISMP, AJG, RAPS, Drugwatch and Chen et al. all report lawyer reports flooding metoclopramide's FAERS count, but none names Teva, Actavis or Mutual: sources about the drug are Known pattern under v3.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

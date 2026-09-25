@@ -1,0 +1,76 @@
+{
+  "story_id": "S116",
+  "entity": "Duffy for Wisconsin (Sean Duffy's old House campaign committee), transfers to Northwoods Future PAC backing Michael Alfonso, WI-7, 2025-26",
+  "queries": [
+    {"q": "Sean Duffy campaign committee Northwoods Future PAC $1 million", "found_useful": true},
+    {"q": "Northwoods Future PAC Michael Alfonso Wisconsin 7th district", "found_useful": true},
+    {"q": "Duffy for Wisconsin \"$1.5 million\" Northwoods Future Alfonso", "found_useful": true},
+    {"q": "Alfonso \"Northwoods Future\" \"$3.125 million\" OR \"3.5 million\" Duffy transfers primary", "found_useful": true},
+    {"q": "Sean Duffy leftover campaign money super PAC son-in-law FEC complaint", "found_useful": false},
+    {"q": "\"Alfonso benefitted from some\" outside spending Northwoods Future PAC", "found_useful": false},
+    {"q": "Duffy defends campaign account transfer son-in-law super PAC legal \"zombie\" campaign fund", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wpr.org/news/attack-ad-calls-gop-house-candidate-michael-alfonso-nepo-baby",
+      "outlet": "WPR (Wisconsin Public Radio)",
+      "date": "2026-08-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The third-party group Northwoods Future PAC has spent more than $2 million backing Alfonso’s campaign. It has received $1.5 million from the campaign account Duffy used when he represented the 7th Congressional District before Tiffany.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff; reports the full $1.5M from Duffy's old House account and $2M+ PAC spending for Alfonso"
+    },
+    {
+      "url": "https://jameswigderson.substack.com/p/derrick-van-orden-ready-to-fight",
+      "outlet": "James Wigderson (Substack)",
+      "date": "2026-09-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Duffy for Wisconsin has transferred $1.5 million to Northwoods Future PAC, a super PAC supporting Alfonso. That’s more than Alfonso’s entire campaign has raised alone and roughly half of the $3.125 million that Northwoods Future has raised",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff; names the committee, $1.5M, and that it is roughly half of the PAC's receipts; calls it his dormant congressional committee"
+    },
+    {
+      "url": "https://thebadgerproject.org/2026/03/24/sean-duffy-funneled-1m-to-support-son-in-laws-bid-for-congress/",
+      "outlet": "The Badger Project",
+      "date": "2026-03-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Duffy for Wisconsin, a campaign committee originally created to help him win congressional elections, sent $1 million, or half of its holdings, to Northwoods Future PAC in 2025.",
+      "paywalled": false,
+      "searcher_note": "Earliest found; first $1M check, half the committee's holdings; reprinted by PBS Wisconsin, Wausau Pilot, Superior Telegram and others"
+    },
+    {
+      "url": "https://www.cbsnews.com/minnesota/news/sean-duffy-million-dollars-alfonso-wisconsin-house-race/",
+      "outlet": "CBS News Minnesota",
+      "date": "2026-07-06",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "A super political action committee backing Alfonso has received $1 million from Duffy's old congressional account and another $1 million from Republican megadonor Richard Uihlein, whose shipping and packaging business, Uline, is based in Wisconsin.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff national coverage; $1M figure only (before the second check was reported)"
+    },
+    {
+      "url": "https://www.apg-wi.com/sawyer_county_record/paywall/7-takeaways-about-money-behind-race-for-wisconsins-7th/article_637a3c45-b1a5-4d8d-8a34-94105fcc34d5.html",
+      "outlet": "Sawyer County Record (APG of Wisconsin)",
+      "date": "2026-08-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Northwoods Future PAC has reported roughly $2 million in independent expenditures in support of Alfonso.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff; PAC independent spending for Alfonso, for comparison with the lead's $2.2M-$3.2M"
+    },
+    {
+      "url": "https://crooksandliars.com/2026/08/not-because-me-sean-duffy-spasms-family",
+      "outlet": "Crooks and Liars",
+      "date": "2026-08-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Federal records tell a different story, the Badger Project reported. Duffy's old campaign committee sent $1 million — half its holdings — to the Northwoods Future PAC, which spent all of it supporting Alfonso.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff; Duffy on air says the win is 'not because of me'; no source disputes the transfer itself"
+    }
+  ],
+  "notes": "Widely covered, starting with The Badger Project on 2026-03-24 ($1M check). The $1.5M total appears post-cutoff in WPR (2026-08-07) and Wigderson (2026-09-18, 'roughly half' of the PAC's $3.125M). No source found stating the lead's comparison that the $1M check is the biggest from any dormant campaign committee in 2025-26 (next: $215K), or that the committee raised $0 from donors. A search snippet attributed to WisPolitics ('$3.5 million in outside spending... $1.5 million in transfers') could not be verified: the WisPolitics page (2026-08-11) is behind a login wall, so it is not recorded. Axios (2026-06-10) returned 403. No disagreeing coverage found."
+}

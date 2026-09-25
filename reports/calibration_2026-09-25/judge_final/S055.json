@@ -1,0 +1,12 @@
+{
+  "story_id": "S055",
+  "bin": "Matched",
+  "entity": "US 2017 home-purchase mortgage denial rate, Black vs white applicants",
+  "deciding_sources": [2, 0],
+  "earliest_match_date": "2018-05-07",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "CFPB/FFIEC: Black applicants were denied more often for 2017 conventional home purchase loans; Urban Institute: the Black denial rate was 2.0x white in 2017. 'At every big lender' has no count and no names, so it isn't more; Urban's 1.2x is a credit-adjusted rate (different definition) and Reveal's Santander ~3x was published before the 2017 data existed, so neither contradicts.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

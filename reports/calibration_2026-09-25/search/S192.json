@@ -1,0 +1,58 @@
+{
+  "story_id": "S192",
+  "entity": "Small non-exempt US-listed foreign private issuers: insider Form 3 filings under the Holding Foreign Insiders Accountable Act, March 18 2026 deadline, share filed 13+ days late (China/HK vs other issuers)",
+  "queries": [
+    {"q": "foreign private issuer insiders Section 16 Form 3 March 18 2026 deadline late filings compliance", "found_useful": false},
+    {"q": "Holding Foreign Insiders Accountable Act Form 3 filings missed deadline Chinese companies", "found_useful": false},
+    {"q": "foreign private issuer Form 3 filings late analysis April 2026 insiders missed March 18", "found_useful": true},
+    {"q": "Chinese Hong Kong small-cap Nasdaq insiders Form 3 late filings HFIAA study", "found_useful": false},
+    {"q": "foreign company executives disclose stock holdings first time SEC Form 3 flood March 2026", "found_useful": true},
+    {"q": "Chinese companies US-listed insiders stock ownership disclosures new law 2026 filings Reuters", "found_useful": true},
+    {"q": "FPI Section 16 filings first months data how many foreign private issuers filed Form 3 on time analysis", "found_useful": false},
+    {"q": "foreign private issuer Section 16 lessons learned late Form 4 delinquent filings SEC enforcement July 2026", "found_useful": false},
+    {"q": "\"Form 3\" foreign private issuers \"did not file\" OR \"failed to file\" OR \"missed\" March 18 2026 insiders China-based", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/about/divisions-offices/division-corporation-finance/holding-foreign-insiders-accountable-act-frequently-asked-questions",
+      "outlet": "U.S. Securities and Exchange Commission, Division of Corporation Finance",
+      "date": "2026-03-13",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "In light of the unusually large number of Form ID applications submitted as a result of the HFIA Act, the staff will not recommend enforcement action",
+      "paywalled": false,
+      "searcher_note": "SEC no-action FAQ: Form 3s late only because EDGAR codes were delayed are excused if filed by April 1, 2026 (14 days after the deadline); date is the page's last-updated date"
+    },
+    {
+      "url": "https://www.aoshearman.com/en/insights/sec-effectively-extends-deadline-for-late-section-16a-filings-caused-by-lack-of-edgar-access",
+      "outlet": "A&O Shearman (law firm client alert)",
+      "date": "2026-03-13",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "The effective extensions available require that the FPI director or officer without EDGAR access on March 18, 2026 file the required Section 16(a) report after receiving EDGAR access but in no event later than April 1, 2026.",
+      "paywalled": false,
+      "searcher_note": "Explains the April 1 grace window, which bears on how many days late counts as 'missed'; also notes SEC expected almost 9,000 Form IDs"
+    },
+    {
+      "url": "https://tax.thomsonreuters.com/news/sec-order-exempts-certain-foreign-jurisdictions-from-executive-stock-ownership-disclosure/",
+      "outlet": "Thomson Reuters Tax & Accounting News",
+      "date": "2026-03-11",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "The qualifying jurisdictions listed in the order are Canada, Chile, the European Economic Area (EEA), the Republic of Korea, Switzerland, and the United Kingdom.",
+      "paywalled": false,
+      "searcher_note": "Defines which foreign issuers are exempt (the lead's 'non-exempt' group is everyone else, including China/HK)"
+    },
+    {
+      "url": "https://www.troutman.com/insights/us-insider-reporting-requirements-coming-for-directors-and-officers-of-foreign-private-issuers/",
+      "outlet": "Troutman Pepper Locke (law firm client alert)",
+      "date": "2025-12-23",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "While statements from the legislation’s sponsors clearly show the legislative intention is directed primarily at Chinese companies, it will remain to be seen how the law will impact companies that operate in jurisdictions with similar reporting requirements.",
+      "paywalled": false,
+      "searcher_note": "Context: the law was aimed at Chinese issuers; no compliance data"
+    }
+  ],
+  "notes": "No source found that measures how many foreign private issuers (or their insiders) filed the March 18, 2026 Form 3 late, or compares China/HK issuers with others. Coverage is law-firm and trade previews of the rule, the March 5 exemptive order and the SEC's March 12 no-action FAQ. The FAQ excuses Form 3s delayed by EDGAR access if filed by April 1, 2026 (14 days after the deadline), so the lead's '13+ days late' cutoff sits just inside that grace window. No coverage found dated after 2026-06-30."
+}

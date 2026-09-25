@@ -1,0 +1,12 @@
+{
+  "story_id": "S044",
+  "bin": "Not comparable",
+  "entity": "FDA premarket approval (PMA) changes for high-risk devices: share filed as 30-day notices, 2000-04 vs 2010 on",
+  "deciding_sources": [3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "the 19% (2000-04) to 64% (2010 on) rise; Medtronic defibrillator line P980016 with 928 changes, 621 of them 30-day notices",
+  "why": "The only usable source (RAPS, 2023) says the 30-day notice is the most-used supplement type. That fits our 64% level, but it gives no window and no trend, so our rise can't be lined up.\nThe JAMA quotes (67.3% 30-day; 'increased markedly since 1997') would likely make this Matched, but they're blocked and not paywalled, so they're ignored. MedTech Dive is blocked too.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

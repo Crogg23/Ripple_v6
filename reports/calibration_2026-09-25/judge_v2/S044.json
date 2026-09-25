@@ -1,0 +1,12 @@
+{
+  "story_id": "S044",
+  "bin": "Not comparable",
+  "entity": "Share of FDA PMA supplements (high-risk device changes) filed as 30-day notices, 2000-04 vs 2010 on",
+  "deciding_sources": [0, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "the rise from 19% (2000-04) to 64% (2010 on); Medtronic defibrillator line P980016 with 928 changes, 621 of them 30-day notices",
+  "why": "Dubin (JAMA Netw Open) and RAPS give one pooled share, 30-day notices at 67.3%, window unstated, so our 19%-to-64% rise can't be lined up; the level doesn't disagree. The Rome 2014 trend quotes are blocked and not paywalled, so ignored; if they counted, this would be Matched + more.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

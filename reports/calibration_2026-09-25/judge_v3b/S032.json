@@ -1,0 +1,12 @@
+{
+  "story_id": "S032",
+  "bin": "Unreported",
+  "entity": "Kim Hinojosa, San Antonio nurse practitioner, Part D specialty-drug prescribing 2022",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "$24.9M of specialty Part D drugs in 2022, most of any NP; $1.37M in 2024",
+  "why": "The clinic bio names her and her hepatitis C work but says nothing about prescribing volume. OpenPrescriber's NP risk-flag share doesn't name her, and with no page context it's not the same finding (top specialty-drug dollars); 12 queries logged.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

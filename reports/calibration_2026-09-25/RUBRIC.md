@@ -1,4 +1,4 @@
-# Calibration rubric, v1, frozen 2026-09-25
+# Calibration rubric, v3, 2026-09-25 (v1 frozen before any search)
 
 The question: when the warehouse flags something, has the press already found it?
 A known-answer test. Point the instrument at stories other people already broke, and see if it reads true.
@@ -60,7 +60,7 @@ Tie-breaks:
 | url | the page itself, not a search result page |
 | outlet | who published it |
 | date | publication date, YYYY-MM-DD; "unknown" if the page has none |
-| source_type | news · trade press · government (audit, OIG, GAO, agency release, enforcement) · court · testimony · research (academic, NGO, think tank) · company |
+| source_type | news · trade press · opinion · government (audit, OIG, GAO, agency release, enforcement) · court · testimony · research (academic, NGO, think tank) · company |
 | quote | at most 40 words, copied exactly from the page, stating the fact that links to the lead |
 | entity_named | yes / no: does the page name our entity |
 
@@ -89,3 +89,22 @@ The **earliest matching date** is the oldest source that reaches Matched. Covera
 ## Change log
 
 - v1, 2026-09-25: first version, frozen before any search.
+- v2, 2026-09-25, after the pilot's first judging:
+  - **Fetch path.** The quote checker now tries python, then curl, then the Internet Archive's copy of the same URL. A quote found in the archived copy counts as verified.
+    - Why: v1 threw out JAMA, SEC and a law-firm page that sit behind bot walls, not paywalls. That flipped control S007 to Known pattern: its only San Antonio quote was on a blocked page. The archive recovered 5 of 8 blocked quotes.
+  - **Second judge.** Every pilot story is judged again by a fresh judge under v2, into `judge_v2/`. Where the evidence didn't change, agreement between the two judges is reported as the judge's reliability.
+  - **Search budget.** The session allows 200 web searches in total, shared by every agent; the pilot used all 200 on 19 stories, 10.5 each. The full run targets 8 queries a story: at least 5, at most 10. S174 wasn't searched and moves to the full run.
+  - No bin rule changed.
+- v3, 2026-09-25, after the pilot skeptic. The skeptic found the judges split on 5 of 16 stories where the evidence held still, all at rule edges. Every change below makes a line sharper; none was chosen to move a count.
+  - **The entity is the headline's subject**: who or what did the thing. When a lead names several things, a drug and its makers, sources about the others are Known pattern. For a national number, the entity is place + measure; the period is the window.
+  - **"More" means something countable**: a number, a named entity or a comparison in our headline or number line that no usable source states. "At every big lender," with no count and no names, isn't more.
+  - **Claims one by one.** If a usable same-entity source contradicts any claim in the lead, the bin is Contradicted, even when another claim matches. This rule was only in JUDGE.md; now it's the rubric's.
+  - **Matched vs Not comparable.** A source that names the entity and states the same finding in words is Matched, even with no number. Not comparable is only for a source with a number for the entity that differs from ours because its window or definition differs.
+  - **Known pattern needs a finding** about other entities or in general. An explainer on a rule, program or deadline isn't a pattern; with nothing else, that's Unreported.
+  - **Copies count once.** A rewrite of another outlet's story, a wire copy, or the same URL twice is one source. An op-ed is `opinion`, never news.
+  - **Judges see page context**: about 300 characters either side of each quote, from the saved page.
+  - **Quote check** splits letters from digits, so "PM2.5" and "PM 2.5" match. Before, it dropped S092's only disagreeing source.
+  - **Four rates, always**: any source, news only, blind (not pre_known, not a control), and post-cutoff. "News only" means a deciding source is news or trade press; opinion, government, court, research and company sources don't count toward it.
+  - **Novelty test** uses the headline lead's guess, not the lowest guess across folded leads. S103 was scored 1 from a folded lead; its own guess is 2.
+  - **Two judges per story in the full run**; a third settles any disagreement.
+  - On the record: the v2 fetch change came after control S007 failed. The archive copy is a real fetch of the same URL, but the fix was made after seeing the miss, and S007 counts only through a law-firm blog; The Texan's article on the same testimony was never found.

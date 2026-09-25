@@ -1,0 +1,12 @@
+{
+  "story_id": "S055",
+  "bin": "Matched",
+  "entity": "US home-purchase mortgage denial rate, Black vs white applicants, 2017",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "2018-05-07",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Urban Institute: Black denial rate 2.0x white in 2017, our number; CFPB/FFIEC says the same in words for 2017 purchase loans. 'At every big lender' has no count or names, so it isn't more; Urban's 1.2x is a credit-adjusted measure, and Reveal/Zillow predate 2017 data, so no contradiction.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

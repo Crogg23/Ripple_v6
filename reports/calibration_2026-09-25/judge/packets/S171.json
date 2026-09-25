@@ -1,0 +1,48 @@
+{
+ "story_id": "S171",
+ "lead": {
+  "headline": "In Ecuador's Los Ríos province, 29 of 66 town-hall public-works tenders drew one bidder; about 7-8 was expected",
+  "number": "29 of 66 (44%) one-bidder works tenders in Jan-Jun 2026 records, highest of 24 provinces (coastal town halls elsewhere 15%, Guayas 21%); $13.4M of $28.8M, $6.3M of it one Quevedo contract",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "RECORD_DATE is the release date, not the award date: about a third are late-2025 tenders and 2025 holds no tenders, so there's no year-over-year; one bidder is a screen, not proof"
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Los Ríos Ecuador municipio contratación obra pública un solo oferente SERCOP 2026",
+  "Quevedo municipio contrato obra 6,3 millones un oferente 2026",
+  "Ecuador procurement single bidder public works municipalities SERCOP analysis",
+  "\"un solo oferente\" obras municipios Ecuador procesos contratación pública competencia",
+  "Alcaldía de Quevedo contrato obra 2026 adjudicación Contraloría denuncia",
+  "Los Ríos municipios contratos obra pública irregularidades 2026 Babahoyo Quevedo Ventanas",
+  "Quevedo alcaldía adjudica contrato millones obra regeneración asfaltado 2026",
+  "SERCOP alerta \"oferente único\" procesos municipios provincia Los Ríos informe",
+  "Open Contracting Partnership Ecuador single bidding red flags municipalities province"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.connectas.org/contratos-publicos-ecuador/",
+   "outlet": "CONNECTAS",
+   "date": "2022-01-26",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Con la participación de un solo oferente se efectuaron 42,6 % de todos los procesos de contratación pública adjudicados bajo régimen común de los últimos seis años, en Ecuador.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rgentina Bolivia Brasil Chile Colombia Costa Rica Cuba Ecuador Caribe El Salvador Estados Unidos Guatemala Haití Honduras México Nicaragua Panamá Paraguay Perú República Dominicana Venezuela Eventos Diálogos CONNECTAS In English x Facebook Instagram YouTube Linkedin Compras públicas sin competencia Con la participación de un solo oferente se efectuaron 42,6 % de todos los procesos de contratación pública adjudicados bajo régimen común de los últimos seis años, en Ecuador. Esto representa 6.051 millones de dólares entregados en contratos. Por Patricia González Chacín* S in competencia ni comparación de ofertas. En los últimos seis años, se han registrado en el Sistema Nacional de Contratación Pública más de 70.000 procesos bajo régimen común –convocatorias abiertas, en su mayoría– en los que "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.open-contracting.org/2022/11/10/democratizing-public-procurement-in-ecuador/",
+   "outlet": "Open Contracting Partnership",
+   "date": "2022-11-10",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The proportion of single-bid tenders in open procedures is also trending downward since 2015, decreasing from 29% in 2015 to 20.5% in June 2022.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "that the average number of bidders in 52 different sectors shows an increase of competition in 42 markets of them or 80%. The increase is significant in 29 markets (56%). For example, the sector for cleaning and security services saw an average increase in bidders by more than 100% from 4.3 to 9.3. The proportion of single-bid tenders in open procedures is also trending downward since 2015, decreasing from 29% in 2015 to 20.5% in June 2022. Comparing the two periods, it changed from 26% between 2015 and 2018 to 20.6% between 2019 and 2022. From open to better to more sustainable SERCOP’s headquarters in Quito. Before and during the pandemic, SERCOP established international commitments that helped sustain the open contracting reforms during the presidential transition. "
+  }
+ ]
+}

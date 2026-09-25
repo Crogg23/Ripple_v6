@@ -1,0 +1,12 @@
+{
+  "story_id": "S139",
+  "bin": "Contradicted",
+  "entity": "Tesla Fremont plant, Bay Area Air District violation notices and enforcement since 2019",
+  "deciding_sources": [5, 3],
+  "earliest_match_date": "2026-06-10",
+  "post_cutoff_match": false,
+  "what_we_add": "rank: second of 86 Bay Area plants; notices written on 133 days; peers' median of 28 formal actions per 100 notices; Phillips 66 Rodeo 213 notices with no formal action",
+  "why": "The notice count matches: 369 notices in five years, all pending, no fines (sources 0, 2), close to our 356. But the no-enforcement half is contradicted: KQED says the district settled with Tesla for a $1M penalty in 2021, and the district itself asked for an abatement order in 2024. A contradiction outranks the match; the federal file most likely just doesn't hold the district's 2021 settlement.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

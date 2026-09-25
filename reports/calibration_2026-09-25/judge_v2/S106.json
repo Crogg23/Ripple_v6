@@ -1,0 +1,12 @@
+{
+  "story_id": "S106",
+  "bin": "Not comparable",
+  "entity": "US for-profit nursing homes whose operating companies formed 2022 to Sept 2024: star ratings vs same-state for-profit peers",
+  "deciding_sources": [3, 1, 0, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "ASPE, Skilled Nursing News and Ryskina/Penn LDI find homes that change hands rate lower (same direction), but they measure pre-sale ratings or a before/after dip of about 0.1, not a current peer gap for a 2022-2024 cohort. Different definition and window, so our 0.28 can't be lined up; the Boston Globe covers only specific RI homes.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

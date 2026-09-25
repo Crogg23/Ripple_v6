@@ -1,0 +1,12 @@
+{
+  "story_id": "S055",
+  "bin": "Matched + more",
+  "entity": "Black vs white home-purchase mortgage denial rates, US, 2017",
+  "deciding_sources": [2, 0],
+  "earliest_match_date": "2018-05-07",
+  "post_cutoff_match": false,
+  "what_we_add": "the lender-by-lender cut: about 2x at every 2017 home-purchase lender with 500+ Black and 2,000+ white applications",
+  "why": "CFPB/FFIEC (2017 home purchase: Black applicants denied more) and Urban (2017 Black denial rate 2.0x white) match our direction and ratio. Only national totals, no lender cut. Urban's 1.2x 'real denial rate' is a different definition; Reveal's Santander ~3x predates the 2017 data release. Neither is a contradiction.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

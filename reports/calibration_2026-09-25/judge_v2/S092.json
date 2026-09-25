@@ -1,0 +1,12 @@
+{
+  "story_id": "S092",
+  "bin": "Matched + more",
+  "entity": "Redlined 1930s (HOLC-graded) neighborhoods nationally: density of toxic-release plants by HOLC grade, A to D",
+  "deciding_sources": [0],
+  "earliest_match_date": "2022-03-09",
+  "post_cutoff_match": false,
+  "what_we_add": "TRI plants per 100 km2 by grade (D 13.35, C 5.82, B 2.21, A 0.07; D six times B) and D denser than B in 119 of 212 cities",
+  "why": "Lane et al. 2022 finds, across HOLC-mapped areas, the number of industrial sources nearby rises from A to D: same finding, same direction (Estien quote missing, ignored). Its measure is industrial sources nearby, not TRI density, and no quote carries our per-grade numbers or the 119-of-212 count.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

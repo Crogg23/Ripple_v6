@@ -1,0 +1,12 @@
+{
+  "story_id": "S105",
+  "bin": "Known pattern",
+  "entity": "CMS Order and Referring file (Medicare's ordering-eligibility list)",
+  "deciding_sources": [3, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The CMS methodology and Noridian pages are rule explainers (list = current PECOS enrollees; 13-month capped-rental grace), not measurements of the list, so they neither match nor contradict. The Senate PSI's 2008 finding that Medicare paid up to $92M for equipment 'prescribed' by dead doctors, and OIG's 2013 PECOS data-error finding, are the same kind of finding without our list.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

@@ -1,0 +1,68 @@
+{
+  "story_id": "S106",
+  "entity": "US for-profit nursing homes whose operating company was formed 2022 to Sept 2024 (stand-in for a recent sale): CMS star ratings vs same-state for-profit peers",
+  "queries": [
+    {"q": "nursing homes change of ownership 2022 2024 lower star ratings new owners CMS analysis", "found_useful": true},
+    {"q": "nursing homes recently sold one- or two-star ratings for-profit new operators study", "found_useful": true},
+    {"q": "nursing home change of ownership quality decline study Health Affairs star rating after sale", "found_useful": true},
+    {"q": "nursing homes that changed owners 2023 2024 more likely one-star analysis CMS change of ownership data", "found_useful": true},
+    {"q": "newly acquired nursing homes new LLC operator star ratings worse than peers 2025 analysis", "found_useful": true},
+    {"q": "nursing home ownership change quality improved after acquisition study no decline", "found_useful": true},
+    {"q": "nursing home change of ownership star ratings study 2026", "found_useful": false},
+    {"q": "\"944\" nursing homes new owners star ratings", "found_useful": false},
+    {"q": "LTCCC OR KFF nursing homes changed ownership since 2022 share one-star two-star compared other for-profit", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:39074916%20AND%20SRC:MED&resultType=core&format=json",
+      "outlet": "Journal of the American Geriatrics Society (Ryskina et al.), abstract via Europe PMC",
+      "date": "2024-07-29",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "There was a small statistically significant decrease in 5-star ratings after a change in ownership (-0.09 points on a 5-point scale",
+      "paywalled": false,
+      "searcher_note": "National study of ownership changes 2016-2022. Also finds homes already rated 1-star were more likely to change owners. Window ends before most of the lead's 2022-2024 cohort; before/after design, not a same-state peer gap. PubMed and PMC pages are behind a captcha, so the Europe PMC record is used."
+    },
+    {
+      "url": "https://skillednursingnews.com/2024/09/drop-in-cms-five-star-ratings-and-rn-numbers-linked-to-nursing-home-ownership-change/",
+      "outlet": "Skilled Nursing News",
+      "date": "2024-09-04",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Most acquired facilities showed indications of financial struggles, including lower star ratings and occupancy, plus a higher percentage of stays covered by Medicaid",
+      "paywalled": false,
+      "searcher_note": "Trade coverage of the Ryskina study: ratings fall about 0.1 star after a sale. Also carries an operator-side consultant saying ratings improve over time after the sale (partial disagreement)."
+    },
+    {
+      "url": "https://ldi.upenn.edu/our-work/research-updates/how-do-ownership-changes-affect-nursing-home-quality/",
+      "outlet": "Penn LDI (University of Pennsylvania)",
+      "date": "2024-09-03",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Overall quality ratings decreased slightly with ownership change, by about 0.1 points on the 5-star scale.",
+      "paywalled": false,
+      "searcher_note": "University write-up of the same study, 2016-2022 ownership changes."
+    },
+    {
+      "url": "https://aspe.hhs.gov/sites/default/files/documents/856467326d4196842e5b3ce74df8931d/ChanOwnVarRBJune2024.pdf",
+      "outlet": "HHS Office of the Assistant Secretary for Planning and Evaluation (ASPE)",
+      "date": "2024-06-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The ASPE analyses also found that SNFs with overall lower star quality ratings experience a change of ownership more often than SNFs with higher quality ratings.",
+      "paywalled": false,
+      "searcher_note": "HHS research brief on skilled nursing ownership changes 2016-2021: lower-rated homes change hands more often. Dated June 2024, no day given. Pattern only."
+    },
+    {
+      "url": "https://www.bostonglobe.com/2026/03/04/metro/commentary-ri-nursing-homes-quality-ratings/",
+      "outlet": "The Boston Globe",
+      "date": "2026-03-04",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "By early 2026, star ratings for five of the nursing homes declined, with two of them dropping from five to two stars.",
+      "paywalled": false,
+      "searcher_note": "Commentary piece: 10 Rhode Island homes bought by two private equity firms (Tryko, Kadima) in 2022; 5 declined in stars by early 2026. A state example inside the lead's sale window, not the national cohort."
+    }
+  ],
+  "notes": "Only pattern coverage found. Nothing names this cohort: for-profit homes with an operating company formed 2022 to Sept 2024. No source has the 944 homes, the 0.28-star gap vs same-state for-profit peers, or the 52% one- or two-star share. Closest is Ryskina et al. (JAGS 2024, 2016-2022): a -0.09 star before/after drop, and homes already rated 1-star were more likely to be sold. That selection point fits the lead's caveat that 'worse after the change' didn't survive matching. ASPE (June 2024, 2016-2021) says lower-rated homes change owners more often. Private-equity coverage (the AARP report via McKnight's, 3.4 to 2.9 stars) wasn't fetchable (HTTP 402), so it's not recorded. Health Affairs 2016, 'Low-Quality Nursing Homes Were More Likely Than Other Nursing Homes To Be Bought Or Sold By Chains In 1993-2010', returned 403. A Skilled Nursing News piece from July 2026 on the star-rating changes has nothing on sales. No July-Sept 2026 coverage of the pattern found."
+}

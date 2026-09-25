@@ -1,0 +1,12 @@
+{
+  "story_id": "S124",
+  "bin": "Matched + more",
+  "entity": "5th Circuit cases at the Supreme Court that were federal-government appeals, 2021-24 vs 2015-20",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2023-03-31",
+  "post_cutoff_match": false,
+  "what_we_add": "16 of 38 5th Circuit Supreme Court cases in 2021-24 were federal-government appeals vs 1 of 26 in 2015-20; other 11 circuits flat at about 12%; Supreme Court cases per 1,000 5th Circuit appeals 0.57 to 1.50",
+  "why": "SCOTUSblog 2023 reports federal agencies repeatedly asking the Court to reverse 5th Circuit rulings; Bloomberg Law calls the 5th Circuit a Supreme Court outlier. Same direction, but only in words or other measures; no source has the before/after count. Reversal-rate and case-count sources (3, 4, 5) measure other things and don't contradict it.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

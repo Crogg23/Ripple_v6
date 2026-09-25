@@ -1,0 +1,12 @@
+{
+  "story_id": "S192",
+  "bin": "Unreported",
+  "entity": "Insiders of small, non-exempt US-listed foreign companies missing the March 18, 2026 Form 3 deadline (China/HK vs other issuers)",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Usable sources explain the rule: the exempt countries, the China aim, and a grace period to April 1 for insiders without EDGAR access; none reports anyone actually missing the deadline. The SEC FAQ quote is blocked and not paywalled, so it's ignored; 9 queries logged.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

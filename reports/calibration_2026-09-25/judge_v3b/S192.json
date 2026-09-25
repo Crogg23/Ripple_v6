@@ -1,0 +1,12 @@
+{
+  "story_id": "S192",
+  "bin": "Unreported",
+  "entity": "Small, non-exempt US-listed foreign private issuers and the March 18, 2026 insider (Form 3) filing deadline",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "A third of small non-exempt foreign issuers filed 13+ days late; China/HK small issuers trail other small foreign issuers by 12 points (p = 0.08 vs non-Israel peers)",
+  "why": "The usable sources are law-firm and trade explainers on the deadline, the April 1 relief and the exempt countries; none reports how many insiders filed late, so none reaches Known pattern. The SEC FAQ was blocked and not paywalled, so ignored; 9 queries logged. Note: A&O's April 1 relief may excuse some of the '13+ days late' filers.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

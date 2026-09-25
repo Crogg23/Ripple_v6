@@ -1,0 +1,12 @@
+{
+  "story_id": "S055",
+  "bin": "Matched",
+  "entity": "US 2017 home-purchase mortgage denials, Black vs white applicants, at large lenders",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "2018-05-07",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Urban Institute puts the 2017 Black denial rate at 2.0x the white rate. CFPB/FFIEC says Black applicants were denied more often for 2017 conventional home-purchase loans. Same finding, same direction, same number.\nUrban's 1.2x uses a credit-adjusted definition, so it isn't a contradiction. The lead adds 'at every big lender', but gives no lender-level number the press lacks, so this is plain Matched.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

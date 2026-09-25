@@ -1,0 +1,12 @@
+{
+  "story_id": "S140",
+  "bin": "Matched + more",
+  "entity": "US federal place names (GNIS) that still contain 'Negro'",
+  "deciding_sources": [0, 2, 3],
+  "earliest_match_date": "2022-02-23",
+  "post_cutoff_match": false,
+  "what_we_add": "The 438 split (426 current, 12 historical); 105 listing the n-word as an older name; the side-by-side of 641 'Squaw' renamings vs at least 41 'Negro' or n-word ones in 2020-23",
+  "why": "Atmos (2022) counts 469 GNIS names still carrying 'Negro', 7% off our 438, same direction; CRS and Interior put the Squaw renamings at about 650-657, within 3% of 641. No source sets the two renaming counts side by side or counts the n-word older names; Vocativ's 558 (2015) is a broader definition and doesn't conflict.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

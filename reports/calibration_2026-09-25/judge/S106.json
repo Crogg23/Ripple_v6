@@ -1,0 +1,12 @@
+{
+  "story_id": "S106",
+  "bin": "Known pattern",
+  "entity": "US for-profit nursing homes whose operating company formed 2022 to Sept 2024 (a stand-in for a sale): star ratings vs same-state for-profit peers",
+  "deciding_sources": [0, 1, 2, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "944 homes; 0.28 stars below same-state for-profit peers; 52% one- or two-star, 8 points above peers; median home 0.42 stars below",
+  "why": "ASPE and Skilled Nursing News say homes that change owners rate lower; JAGS and Penn LDI find a ~0.1-star dip after a sale. Same direction, but on CMS ownership-change records in earlier years.\nNo source names this 2022-2024 new-operator cohort or a same-state peer gap; a looser read would call it Matched.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

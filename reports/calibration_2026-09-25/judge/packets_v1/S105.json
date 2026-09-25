@@ -1,0 +1,80 @@
+{
+ "story_id": "S105",
+ "lead": {
+  "headline": "Medicare's ordering list still clears 83% of recently deactivated clinicians to order equipment; for older deactivations it's 0.2%",
+  "number": "1,036 of 1,247 2024 Part B billers deactivated Sep 2025-Jun 2026 are still on the list with the equipment flag Y (power wheelchairs Y on 71%); 2 of 1,040 for Oct 2024-Jun 2025; the sister list carries 10 of the 1,247",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "One copy of the file can't tell a designed grace window from a hole, and no equipment claim paid after a deactivation is shown."
+ },
+ "queries_logged": 10,
+ "queries": [
+  "CMS Order and Referring file deactivated providers still eligible to order DME",
+  "OIG Medicare paid DMEPOS claims ordered by ineligible or deactivated providers ordering referring",
+  "Medicare durable medical equipment ordered by deceased or deactivated physicians NPI fraud report",
+  "OIG report Medicare ordering referring provider requirement PECOS claims paid without eligible ordering provider DME",
+  "\"Order and Referring\" CMS data file includes providers no longer enrolled accuracy",
+  "Medicare power wheelchair ordering physician deactivated billing privileges still ordering equipment news 2026",
+  "OIG audit Medicare payments DMEPOS ordered by physicians whose enrollment revoked or deactivated at time of order",
+  "HME News ordering physicians deactivated PECOS denials suppliers capped rental 13 months",
+  "CMS order and referring list lag deactivated NPIs remain eligible grace period data.cms.gov DME flag",
+  "CMS ordering referring eligibility deactivated clinicians DME orders loophole August 2026 OR September 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://data.cms.gov/sites/default/files/2020-09/Order_and_Referring_Methodology.pdf",
+   "outlet": "CMS (data.cms.gov), Order and Referring Methodology",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "who are of a type/specialty that is legally eligible to order and refer Part B (clinical laboratory and imaging), DME and HHA claims, in the Medicare program and who have current enrollment records in Medicare",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://med.noridianmedicare.com/web/jadme/claims-appeals/claim-submission/pecos-edits",
+   "outlet": "Noridian (DME MAC Jurisdiction A)",
+   "date": "2025-09-16",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "This only applies to items in capped rental category, all other items will be denied after the deactivation date and a new ordering physician would be required for all other items.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://oig.hhs.gov/reports/all/2013/improvements-are-needed-to-ensure-provider-enumeration-and-medicare-enrollment-data-are-accurate-complete-and-consistent/",
+   "outlet": "HHS Office of Inspector General (OEI-07-09-00440)",
+   "date": "2013-05-28",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Additionally, provider data were inconsistent between NPPES and PECOS for 97 percent of records.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.collins.senate.gov/newsroom/medicare-investigation-exposes-payments-deceased-doctors",
+   "outlet": "Office of Sen. Susan Collins (Senate Permanent Subcommittee on Investigations release)",
+   "date": "2008-07-18",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The Subcommittee’s investigation found that Medicare paid as much as $92 million over the past seven years for durable medical equipment such as wheelchairs, prosthetics, hospital beds, and other home medical equipment purportedly prescribed by physicians.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://chapinc.org/blog-news/the-compliance-monitor-9-1-26/",
+   "outlet": "CHAP (Community Health Accreditation Partner), The Compliance Monitor",
+   "date": "2026-09-01",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "The paper outlines strategic actions to address these vulnerabilities, including strengthening enrollment safeguards, leveraging modern data analytics to catch fake physician orders, and expanding protections for enrollee identification numbers.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

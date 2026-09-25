@@ -1,0 +1,12 @@
+{
+  "story_id": "S171",
+  "bin": "Known pattern",
+  "entity": "Town-hall public-works tenders in Los Ríos province, Ecuador, Jan-Jun 2026 records",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "CONNECTAS and Open Contracting report one-bidder tenders across all of Ecuador (42.6% over six years; 20.5% by June 2022). Neither names Los Ríos, Quevedo or any town hall, so the pattern is known and the entity isn't.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

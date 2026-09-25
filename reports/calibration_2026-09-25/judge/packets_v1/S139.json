@@ -1,0 +1,91 @@
+{
+ "story_id": "S139",
+ "lead": {
+  "headline": "Tesla's Fremont plant drew 356 Bay Area air violation notices since 2019, second of 86 plants; no district enforcement order",
+  "number": "356 notices written on 133 days since 2019; other heavily cited Bay Area plants got a median 28 formal actions per 100 notices; Tesla and Phillips 66 Rodeo (213 notices) got none",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The district may act outside the federal file (a 2024 abatement petition was reported); its last recorded action is a $1,000 order in 2014, and EPA's own $275,000 paint-shop penalty came in 2022."
+ },
+ "queries_logged": 10,
+ "queries": [
+  "Tesla Fremont air quality violation notices Bay Area Air Quality Management District",
+  "Tesla Fremont $1 million settlement Bay Area Air District 33 notices of violation 2021",
+  "Tesla Fremont paint shop air district violations 2026",
+  "Tesla Fremont air violations Mercury News notices of violation abatement order hearing board 2025",
+  "Tesla Fremont air district notices of violation August 2026",
+  "\"Tesla\" Bay Area Air District violations no penalty enforcement lax Phillips 66 Rodeo notices",
+  "Tesla Fremont air district civil penalty settlement inaccurate emissions reports",
+  "Tesla Fremont EPA ICIS-Air informal enforcement 356 notices since 2019",
+  "Tesla Fremont factory air pollution violations news September 2026",
+  "Berkeleyside Tesla most-fined air polluters 374 citations pending"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sfgate.com/tech/article/tesla-air-district-violations-22297849.php",
+   "outlet": "SFGATE",
+   "date": "2026-06-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Though all of the violations are still pending, meaning the agency has not resolved the issues, data from the past five years does not show any financial penalties associated with the alleged violations.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://richmondside.org/2026/01/28/the-bay-areas-most-fined-air-polluters-explore-10-years-of-environmental-violations/",
+   "outlet": "Richmondside (Cityside, also run in Berkeleyside)",
+   "date": "2026-01-28",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "For those, the company was slapped with $502,500 in fines, with 328 alleged violations still pending as of mid-December 2025.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://driveteslacanada.ca/news/tesla-fremont-factory-17-new-air-quality-violations-2026/",
+   "outlet": "Drive Tesla Canada",
+   "date": "2026-06-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Records from the Bay Area Air District show the agency has issued 369 notices of violation to Tesla over the last five years, the majority tied to operations at Fremont.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.baaqmd.gov/en/news-and-events/page-resources/2024-news/062524-tesla-aq-violations",
+   "outlet": "Bay Area Air Quality Management District",
+   "date": "2024-06-25",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Tesla has emitted harmful precursor organic compounds and toxic air contaminants directly into the atmosphere without proper abatement, resulting in over 112 Notices of Violation since 2019.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.ktvu.com/news/teslas-fremont-plant-hit-more-than-100-air-quality-violation-notices",
+   "outlet": "KTVU FOX 2",
+   "date": "2024-06-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Air District sought the order after sticking Tesla with more than 100 violation notices since 2019.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.kqed.org/news/11872863/tesla-settles-1-million-penalty-for-air-quality-violations-at-fremont-assembly-plant",
+   "outlet": "KQED",
+   "date": "2021-05-08",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Officials from the Bay Area Air Quality Management District said Friday that Tesla, Inc., has agreed to pay a $1 million penalty and install a solar roof project to settle air quality violations at its Fremont factory.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

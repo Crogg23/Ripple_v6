@@ -1,0 +1,12 @@
+{
+  "story_id": "S195",
+  "bin": "Not comparable",
+  "entity": "US federal old (zombie) campaign committees, money paid out; window: the 2024 cycle",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "$8.57M paid out in the 2024 cycle by 189 committees; 19.4% to candidates, parties and PACs (23.5% with loan repayments). No usable source has either number.",
+  "why": "Decided by JUDGE.md step 3: 'Not comparable. Only when a source gives a number for the entity that differs from ours because its window or definition differs, and nothing else matches.' The entity comes from step 0: 'For a national number, the entity is place + measure.' Tampa Bay Times gives a number for that same place + measure: roughly 100 zombie campaigns spent more than $20M since 1995. Its window (1995 to 2018) and its definition (first two years skipped) differ, and the windows don't overlap, so it can't contradict us. Nothing else matches: Roll Call counts cash held, not money paid out; CLC is about other named committees (pattern only); FEC and NOTUS explain the rules.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

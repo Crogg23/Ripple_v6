@@ -1,0 +1,94 @@
+{
+ "story_id": "S103",
+ "lead": {
+  "headline": "Generic makers Teva, Actavis and Mutual filed about 15,500 lawyer-sourced metoclopramide (Reglan) side-effect reports: 91% of the generic's reports",
+  "number": "9,089 arrived Apr-Sep 2011, when the FDA got about 16 a quarter in 2004-2009; the median drug has 0.05% lawyer-coded reports",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "These are lawsuit claims sent in through the drugmaker, not a new safety signal, and the file ends 2014q2."
+ },
+ "queries_logged": 13,
+ "queries": [
+  "metoclopramide FAERS reports lawyers litigation spike 2011 generic manufacturers",
+  "\"metoclopramide\" adverse event reports attorney FDA stimulated reporting tardive dyskinesia",
+  "Teva Actavis Mutual metoclopramide adverse event reports lawsuits FDA",
+  "\"Lawyer-initiated reports of tardive dyskinesia\" pharmacovigilance",
+  "FAERS reports submitted by lawyers litigation distort signal study metoclopramide 2011 surge",
+  "\"metoclopramide\" FAERS \"lawyer\" reports percentage 2011 quarter spike generic manufacturer submitted",
+  "ISMP QuarterWatch 2011 metoclopramide most litigated drug litigation reports 11,000",
+  "\"Effect of Lawyer-Submitted Reports on Signals of Disproportional Reporting\" FAERS metoclopramide",
+  "\"Bidirectionality of Lawyer Reporting Bias in Disproportionality Analysis\"",
+  "generic metoclopramide manufacturers adverse event reports lawsuits FDA filed \"legal departments\" Teva PLIVA 2011",
+  "Europe PMC API: metoclopramide AND (lawyer OR litigation) AND FAERS",
+  "metoclopramide lawyer reports FAERS 2026",
+  "\"metoclopramide\" \"litigation\" adverse event reports \"Mutual Pharmaceutical\" OR \"Actavis\" FAERS manufacturer reports share"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.ismp.org/system/files/resources/2019-02/2011Q2.pdf",
+   "outlet": "Institute for Safe Medication Practices, QuarterWatch (2011 Q2)",
+   "date": "2012-04-05",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "A total of 4,237 reports from lawsuits targeted metoclopramide, a drug for reflux and other gastrointestinal disorders that can cause an often irreversible form of neurological damage",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.ismp.org/system/files/resources/2019-02/2011Q4.pdf",
+   "outlet": "Institute for Safe Medication Practices, QuarterWatch annual report (2011 Q3-Q4)",
+   "date": "2012-05-31",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Table 2 (reprinted from the Executive Summary for reference) shows the drugs most frequently the target of personal injury lawsuits. Metoclopramide (REGLAN) led the 2011 rankings.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://augusta.elsevierpure.com/en/publications/the-metoclopramide-black-box-warning-for-tardive-dyskinesia-effec/",
+   "outlet": "American Journal of Gastroenterology (Ehrenpreis et al.), via Augusta University research profile",
+   "date": "2013-06-01",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Only 3.6% of all FAERS reports but 70% of TD reports were filed by lawyers, suggesting a distortion in signal.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.raps.org/resource/fda-officials-explain-when-litigation-can-impact-d.html",
+   "outlet": "RAPS Regulatory Focus",
+   "date": "2019-05-20",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "They also looked at the example of the gut motility stimulator metoclopramide, of which they found 65% of the 27,918 metoclopramide reports received through 2018 were classified as LARs.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.drugwatch.com/reglan/lawsuits/",
+   "outlet": "Drugwatch",
+   "date": "2026-05-08",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "A Pennsylvania-based watchdog group named Reglan and metoclopramide the most litigated drug in 2011, with over 11,000 litigation-related adverse event reports received by the FDA that year.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13083585/fullTextXML",
+   "outlet": "Health Science Reports (Chen et al.), full text via Europe PMC",
+   "date": "2026-04-15",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "This effect was particularly evident for metoclopramide, for which the number of dystonia reports declined markedly after exclusion, indicating that its reporting volume was largely driven by legal submissions",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

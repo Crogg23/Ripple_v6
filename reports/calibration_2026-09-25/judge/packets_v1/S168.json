@@ -1,0 +1,92 @@
+{
+ "story_id": "S168",
+ "lead": {
+  "headline": "339 of Atlantic City's 1,473 public housing units sit empty without an approved reason: 23%, 5.9 times similar authorities",
+  "number": "339 \"regular\" vacancies of 1,473 units (23.0%) in HUD's July 2025 file: highest of 91 non-\"Moving to Work\" authorities with 1,000-4,999 units, 5.9x their 3.9% median; almost half at Stanley Holmes Village, 50% occupied",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A $450K Choice Neighborhoods grant (FY2021) means units held empty for redevelopment aren't ruled out; setting Stanley Holmes aside, 12% of the rest are still regular vacancies (3.8x peers)"
+ },
+ "queries_logged": 11,
+ "queries": [
+  "Atlantic City Housing Authority vacant units Stanley Holmes Village",
+  "Atlantic City Housing Authority HUD vacancies empty apartments waiting list 2025",
+  "\"Atlantic City Housing Authority\" vacant units HUD troubled agency",
+  "Atlantic City Housing Authority 2026 news",
+  "\"has not actively leased available units since 2020\"",
+  "Atlantic City Housing Authority HUD receivership occupancy vacant apartments Stanley Holmes demolition August 2026",
+  "Atlantic City public housing hundreds of empty units while waiting list HUD letter occupancy 96% goal",
+  "pressofatlanticcity.com \"housing authority\" fails HUD rules residents get in pay and more",
+  "\"Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct'\"",
+  "\"Stanley Holmes\" demolition Section 18 application HUD approved vacant units 2026",
+  "Atlantic City Housing Authority HUD September 2026 OR August 2026 OR July 2026 Stanley Holmes residents"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.cbsnews.com/amp/philadelphia/news/atlantic-city-housing-authority-new-jersey",
+   "outlet": "CBS Philadelphia",
+   "date": "2025-07-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "That goal was not met, with HUD measuring that only 71.4% of the units were occcupied, according to the letter.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://newjerseyglobe.com/local/doherty-huds-takeover-is-a-lifeline-for-atlantic-citys-most-vulnerable/",
+   "outlet": "New Jersey Globe (opinion)",
+   "date": "2025-08-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Occupancy had plummeted to 71.4%, far below the target of 96%.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://pressofatlanticcity.com/news/local/govt-and-politics/ac-housing-authority-fails-hud-rules-on-how-residents-get-in-pay-and-more/article_65d92228-11e3-11ee-9fb9-afb76e898d30.html",
+   "outlet": "Press of Atlantic City",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "AC Housing Authority fails HUD rules on how residents get in, pay, and more",
+   "paywalled": true,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://pressofatlanticcity.com/news/local/government-politics/atlantic-city-housing-authority-gas-leak-special-meeting/article_4a2d52fc-4bf3-11ee-8258-6fcbae5ed5d0.html",
+   "outlet": "Press of Atlantic City",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Atlantic City Housing Authority tells court it will empty, demolish one-third of Stanley Holmes Village",
+   "paywalled": true,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.atlanticcityfocus.com/atlantic-city-housing-authority-details-action-plan-enacted-for-fixing-issues-at-stanley-holmes-village/",
+   "outlet": "Atlantic City Focus (republishing City of Atlantic City release)",
+   "date": "2024-10-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The resident transfer strategy commenced in July, with Phase I allowing 72 residents from Village 3 to voluntarily relocate to improved accommodations, paving the way for redevelopment.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 5,
+   "url": "https://pressofatlanticcity.com/news/local/government-politics/article_2feac2ed-414d-49b2-bdf7-d693522113ee.html",
+   "outlet": "Press of Atlantic City",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct'",
+   "paywalled": true,
+   "quote_check": "exact"
+  }
+ ]
+}

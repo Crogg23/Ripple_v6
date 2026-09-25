@@ -1,0 +1,80 @@
+{
+  "story_id": "S055",
+  "entity": "US home-purchase mortgage denials, Black vs white applicants, 2017 HMDA, lender by lender (lenders with 500+ Black and 2,000+ white applications)",
+  "queries": [
+    {"q": "2017 HMDA data Black applicants denied twice the rate white applicants home purchase loans", "found_useful": true},
+    {"q": "Reveal \"Kept Out\" mortgage lenders Black applicants denied more often analysis lenders", "found_useful": true},
+    {"q": "largest mortgage lenders denial rates Black vs white applicants 2017 HMDA lender-by-lender analysis", "found_useful": false},
+    {"q": "CFPB data point \"2017 mortgage market activity and trends\" denial rates black non-Hispanic white home purchase", "found_useful": true},
+    {"q": "Reveal Center for Investigative Reporting lenders deny Black applicants 2017 data individual banks named Wells Fargo JPMorgan denial", "found_useful": true},
+    {"q": "\"2017\" mortgage lenders \"Black applicants\" denied at higher rates than white applicants at nearly every lender analysis", "found_useful": true},
+    {"q": "Financial Times analysis 39.5 million mortgage applications Black applicants 2.1 times more likely denied lenders", "found_useful": false},
+    {"q": "mortgage denial racial gap Black white lenders HMDA analysis August 2026", "found_useful": false},
+    {"q": "NCRC 2017 HMDA top lenders African American denial rate home purchase report", "found_useful": false},
+    {"q": "revealnews.org \"shutting the door to homeownership\" 61 metro areas", "found_useful": true},
+    {"q": "racial mortgage denial gap explained by credit scores not discrimination lenders say HMDA 2017 2018", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination",
+      "outlet": "Urban Institute (Laurie Goodman, Bing Bai)",
+      "date": "2018-08-23",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The observed denial rate shows that the denial rate for black families was 2.0 times that of whites in 2017, which looks alarmingly high (figure 1).",
+      "paywalled": false,
+      "searcher_note": "Same measure and year, national level: 2017 Black denial rate 2.0x white (18% vs 9%). Not lender by lender."
+    },
+    {
+      "url": "https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination",
+      "outlet": "Urban Institute (Laurie Goodman, Bing Bai)",
+      "date": "2018-08-23",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Using the real denial rate method, the denial rate for black families is 1.2 times that of whites, while the rates for Hispanics and Asians are 1.1 times and 1.4 times, respectively, that of whites.",
+      "paywalled": false,
+      "searcher_note": "Same page, the counter-reading: after weighting by credit profile, the 2017 gap shrinks from 2.0x to 1.2x. Speaks to the lead's own 'can't be adjusted' caveat."
+    },
+    {
+      "url": "https://www.consumerfinance.gov/archive/newsroom/ffiec-announces-availability-2017-data-mortgage-lending/",
+      "outlet": "Consumer Financial Protection Bureau / FFIEC",
+      "date": "2018-05-07",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "In 2017, black and Hispanic-white applicants experienced higher denial rates for conventional home purchase loans than non-Hispanic white applicants.",
+      "paywalled": false,
+      "searcher_note": "Earliest source on the 2017 data: regulator's own release of the same file, direction matches, no ratio and no lender breakdown."
+    },
+    {
+      "url": "https://mlk50.com/2018/02/20/for-people-of-color-banks-are-shutting-the-door-to-homeownership/",
+      "outlet": "Reveal (Center for Investigative Reporting), republished by MLK50",
+      "date": "2018-02-20",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Reveal's analysis of lending data shows that nationally, Santander turned away African-American homebuyers at nearly three times the rate of white ones.",
+      "paywalled": false,
+      "searcher_note": "Lender-level pattern (Santander ~3x; TD Bank highest share of Black and Latino denials) but on 2015-2016 HMDA, not 2017; also says lenders don't dispute the gap."
+    },
+    {
+      "url": "https://themarkup.org/denied/2021/08/25/the-secret-bias-hidden-in-mortgage-approval-algorithms",
+      "outlet": "The Markup",
+      "date": "2021-08-25",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Lenders were 80 percent more likely to reject Black applicants than similar White applicants.",
+      "paywalled": false,
+      "searcher_note": "Lender-level pattern on 2019 HMDA with controls; several lenders 100%+ more likely to deny. Different year and adjusted measure."
+    },
+    {
+      "url": "https://www.prnewswire.com/news-releases/mortgage-denial-rates-fall-but-racial-gap-persists-black-applicants-twice-as-likely-as-whites-to-be-denied-a-conventional-loan-300632674.html",
+      "outlet": "Zillow press release via PR Newswire",
+      "date": "2018-04-19",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "By comparison, 20.9 percent of black borrowers and 15.5 percent of Hispanic borrowers were turned down for a loan.",
+      "paywalled": false,
+      "searcher_note": "National conventional-loan denials on 2016 HMDA (20.9% Black vs 8.1% white, ~2.6x); prior year, no lender breakdown."
+    }
+  ],
+  "notes": "The national 2017 Black/white denial ratio (about 2x) is widely published (Urban Institute 2018, CFPB 2018). No source found that runs the lead's specific test: the ratio at EVERY large 2017 home-purchase lender (500+ Black and 2,000+ white applications). Lender-level coverage found uses other years: Reveal 2018 (2015-16 data, TD Bank and Santander named), The Markup 2021 (2019 data), Bloomberg 2022 Wells Fargo (2020 refinancing; not fetched). A Financial Times study (2018-2023 HMDA, 'nearly every major lender', Black 2.1x after adjustment) appeared in search snippets but its pages (nationalmortgageprofessional.com, nakedcapitalism.com) returned 403, so it is not recorded. Zillow research page returned 403; the PR Newswire copy was used. CFPB 2017 Data Point PDF also states Black borrowers had notably higher 2017 denial rates. No July-September 2026 coverage found on the 2017 lender-level gap."
+}

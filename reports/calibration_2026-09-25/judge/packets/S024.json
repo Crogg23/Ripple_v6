@@ -1,0 +1,86 @@
+{
+ "story_id": "S024",
+ "lead": {
+  "headline": "Of auditor Ben Borgers' 218 public-company clients, 27 moved to four Nigerian firms and 75 show no later audit",
+  "number": "Of 218 clients audited in 2023-24, 143 found a new auditor (54 at one-partner firms, 72 at 2-5 partner firms, 17 at bigger firms), 27 of them at four Nigerian firms; 75 show no later audit.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Borgers himself is the SEC's famous 2024 case; a second skeptic (skeptic2 g4) kept \"135 of 218 filed no new audit,\" which misses the CIK matches."
+ },
+ "queries_logged": 11,
+ "queries": [
+  "BF Borgers clients new auditor Nigeria audit firms after SEC ban",
+  "Borgers former clients where did they go new auditors PCAOB Form AP",
+  "former Borgers clients hired audit firms based in Nigeria Olayinka Oyebola Bowmo",
+  "Nigerian audit firms PCAOB US-listed shell companies clients Olayinka Oyebola Boladale Lawal",
+  "\"former Borgers clients\" Nigeria",
+  "BF Borgers clients stopped filing deregistered went dark after auditor barred 2025",
+  "Nigerian accounting firms auditing US penny stock companies Borgers Bloomberg Tax",
+  "Borgers clients one-partner audit firms small auditors PCAOB inspection 2025 2026",
+  "Bowmo Lakshin \"four and a half times cheaper\" auditor",
+  "Borgers ex-clients auditor news 2026",
+  "most BF Borgers clients quickly found new auditors re-audit completed Form 8-K Item 4.01 analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://news.bloomberglaw.com/financial-accounting/trump-media-auditors-shutdown-strands-nearly-40-of-ex-clients",
+   "outlet": "Bloomberg Law / Bloomberg Tax",
+   "date": "2024-06-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Nearly 40% of BF Borgers CPA PC’s other clients haven’t been so lucky.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Jonathan Hurtarte/Bloomberg Tax; Photos: Getty Images Scores of ex-BF Borgers clients still need new auditor Audits needed for public companies to raise money, stay listed Donald Trump’s social media company secured a new auditor within days of the SEC shuttering the firm that had vetted its books. Nearly 40% of BF Borgers CPA PC’s other clients haven’t been so lucky. Scores of the approximately 180 companies audited by the Colorado firm the Securities and Exchange Commission called a massive fraud and “sham audit mill” in early May have yet to announce they’ve hired new auditors, a Bloomberg Tax analysis found. While there’s no set deadline to secure a new auditor, going without one for t"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.accountingtoday.com/news/collapse-of-bf-borgers-unleashes-flood-of-new-sec-audit-clients",
+   "outlet": "Accounting Today",
+   "date": "2024-09-20",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "A total of 125 new engagements in Q2 involved clients cast adrift in the wake of BF Borgers' collapse — entirely explaining the quarter's unusual spike in activity, with 330 clients onboarded, a major jump from the 209 in Q1.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rs, and that, in turn, meant big gains for a number of smaller auditors. Bush & Gillespie, for instance, led Q2 with 17 new client engagements, of which 14 came from BF Borgers, while all 14 of Michael Gillespie & Associates new clients came from the defunct firm. ( See \" Net engagement leaders. \") A total of 125 new engagements in Q2 involved clients cast adrift in the wake of BF Borgers' collapse — entirely explaining the quarter's unusual spike in activity, with 330 clients onboarded, a major jump from the 209 in Q1. Among larger firms, the BF Borgers mess had less of an impact; Forvis Mazars led the league tables with 12 new and 11 net, but those were paper gains brought over from Mazars in the two firms' combination. ( See \" Q2 2024 client gains & losses . \") Deloitte brought slightly more new clients, with 13, but only netted eight. Clie"
+  },
+  {
+   "idx": 2,
+   "url": "https://deepquarry.substack.com/p/turmoil-in-small-audit-firms-market",
+   "outlet": "Deep Quarry (Substack)",
+   "date": "2024-08-05",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "According to Bloomberg, dozens of Borgers clients were still struggling to hire a replacement audit firm as of mid-June.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "of audit deficiencies discovered during the inspections and busyness—should be considered by issuers when engaging an audit firm and by investors when gauging the accounting quality of the companies they invest in. Losing an auditor due to disciplinary action could be costly. How costly can it get? According to Bloomberg, dozens of Borgers clients were still struggling to hire a replacement audit firm as of mid-June. Bloomberg provided possible explanations: costs and the lack of motivation of the audit firms to start “financial checks from scratch.” The lack of motivation to accept Borger clients is hardly surprising given the diminishing supply of firms providing public audits. Stephen Foley of the Financial Times reported in December that mid-size "
+  },
+  {
+   "idx": 3,
+   "url": "https://thedig.substack.com/p/money-for-nothing-borgers-and-its",
+   "outlet": "The Dig (Francine McKenna, Substack)",
+   "date": "2024-12-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Many of banned auditor BF Borgers' former clients went from the frying pan into the fire after switching to a new firm.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": " Money for nothing: Borgers and its clients The Dig Subscribe Sign in Money for nothing: Borgers and its clients Many of banned auditor BF Borgers' former clients went from the frying pan into the fire after switching to a new firm. But the myriad issues highlighted by the fiasco are nothing new. Francine McKenna Dec 21, 2024 ∙ Paid 7 2 Share Some legislators only wish to vengeance against a particular enemy. Others only look out for themselves. They devote very little time on the consideration of any public issue. They think that no harm will come from their"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.sec.gov/newsroom/press-releases/2024-51",
+   "outlet": "U.S. Securities and Exchange Commission",
+   "date": "2024-05-03",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The Securities and Exchange Commission today charged audit firm BF Borgers CPA PC and its owner, Benjamin F. Borgers",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Press Releases SEC Charges Audit Firm BF Borgers and Its Owner with Massive Fraud Affecting More Than 1,500 SEC Filings Press Release SEC Charges Audit Firm BF Borgers and Its Owner with Massive Fraud Affecting More Than 1,500 SEC Filings For Immediate Release 2024-51 Washington D.C., May 3, 2024 — The Securities and Exchange Commission today charged audit firm BF Borgers CPA PC and its owner, Benjamin F. Borgers (together, “Respondents”), with deliberate and systemic failures to comply with Public Company Accounting Oversight Board (PCAOB) standards in its audits and reviews incorporated in more than 1,500 SEC filings from January 2021 through June 2023. The SEC also charged the Respondents with falsely representing to their clients that the firm’s "
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+{
+ "story_id": "S106",
+ "lead": {
+  "headline": "944 for-profit nursing homes with operating companies formed 2022 to Sept 2024 rate 0.28 stars below same-state for-profit peers",
+  "number": "52% are one- or two-star, 8 points above same-state for-profit homes; the median home sits 0.42 stars below",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The company formation date only stands in for a sale and goes blank after Sept 2024; \"worse after the change\" did not survive matching (+0.9 citations, t about 1.5)."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "nursing homes change of ownership 2022 2024 lower star ratings new owners CMS analysis",
+  "nursing homes recently sold one- or two-star ratings for-profit new operators study",
+  "nursing home change of ownership quality decline study Health Affairs star rating after sale",
+  "nursing homes that changed owners 2023 2024 more likely one-star analysis CMS change of ownership data",
+  "newly acquired nursing homes new LLC operator star ratings worse than peers 2025 analysis",
+  "nursing home ownership change quality improved after acquisition study no decline",
+  "nursing home change of ownership star ratings study 2026",
+  "\"944\" nursing homes new owners star ratings",
+  "LTCCC OR KFF nursing homes changed ownership since 2022 share one-star two-star compared other for-profit"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:39074916%20AND%20SRC:MED&resultType=core&format=json",
+   "outlet": "Journal of the American Geriatrics Society (Ryskina et al.), abstract via Europe PMC",
+   "date": "2024-07-29",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "There was a small statistically significant decrease in 5-star ratings after a change in ownership (-0.09 points on a 5-point scale",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "and 2022. Nursing homes that were urban, for-profit, part of a chain, located in the South, had >50 beds, lower occupancy, higher percentage of stays covered by Medicaid, higher percentage of residents with non-white race, or a 1-star (poor) rating were more likely to undergo a change in ownership. There was a small statistically significant decrease in 5-star ratings after a change in ownership (-0.09 points on a 5-point scale; 95% CI -0.13 to -0.04; p < 0.001), driven primarily by a decrease in staffing ratings (-0.19 points; 95% CI -0.24 to -0.14; p < 0.001), and health inspections ratings (-0.07 points; 95% CI -0.11 to -0.03; p = 0.001). This was mitigated by an increase in quality measure ratings (0.15 points; 95% CI 0.10-0.20; p < 0.001). Conclusion Nursing "
+  },
+  {
+   "idx": 1,
+   "url": "https://skillednursingnews.com/2024/09/drop-in-cms-five-star-ratings-and-rn-numbers-linked-to-nursing-home-ownership-change/",
+   "outlet": "Skilled Nursing News",
+   "date": "2024-09-04",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Most acquired facilities showed indications of financial struggles, including lower star ratings and occupancy, plus a higher percentage of stays covered by Medicaid",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "September 5, 2024 Share Facebook Twitter LinkedIn Send email As federal agencies push for ownership transparency, nursing home ownership changes have been linked to a decrease in staffing hours and in turn a drop in Five-Star rating scores, at least for a short period of time following acquisition. Most acquired facilities showed indications of financial struggles, including lower star ratings and occupancy, plus a higher percentage of stays covered by Medicaid, according to a study conducted by the University of Pennsylvania Leonard Davis Institute of Health Economics (Penn LDI). In contrast, quality measure scores were higher after a change in ownership, co-author and assistant professor of medicine Dr. Kira Ryskina told Skilled Nursing News. Researchers used newly released data from the Centers fo"
+  },
+  {
+   "idx": 2,
+   "url": "https://ldi.upenn.edu/our-work/research-updates/how-do-ownership-changes-affect-nursing-home-quality/",
+   "outlet": "Penn LDI (University of Pennsylvania)",
+   "date": "2024-09-03",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Overall quality ratings decreased slightly with ownership change, by about 0.1 points on the 5-star scale.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ies, most acquired facilities showed indications of financial struggles such as lower star ratings and occupancy, and a higher percentage of stays covered by Medicaid. “Change could theoretically be good for these nursing homes,” Ryskina said. “But we needed to see the impact of having new owners.” Overall quality ratings decreased slightly with ownership change, by about 0.1 points on the 5-star scale. The health inspection component showed a small decline and the composite of clinical measures increased—a result that requires more investigation, the authors said. It might be from efficiency gains or from changes in the way quality measures are reported by the new owners. The decrease in overall quality was driven by a reduction of about 0.2 "
+  },
+  {
+   "idx": 3,
+   "url": "https://aspe.hhs.gov/sites/default/files/documents/856467326d4196842e5b3ce74df8931d/ChanOwnVarRBJune2024.pdf",
+   "outlet": "HHS Office of the Assistant Secretary for Planning and Evaluation (ASPE)",
+   "date": "2024-06-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The ASPE analyses also found that SNFs with overall lower star quality ratings experience a change of ownership more often than SNFs with higher quality ratings.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "16. During the study period, the highest proportion of SNFs change of ownership occurred in 2019 (5%, or 779 out of 15,535 SNFs). Change of ownership transactions have decreased since 2019, but have remained slightly higher than in prior years, averaging about 3.9% of SNFs in 2020 and 3.6% in 2021. The ASPE analyses also found that SNFs with overall lower star quality ratings experience a change of ownership more often than SNFs with higher quality ratings. 4 This analysis expands ASPE’s previous work to examine what other types of facility-level characteristics may be associated with a change of ownership transactions among SNFs. Researchers, stakeholder groups, and policy makers have raised concerns about potential financial incentives associated with ownership changes that may pri"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.bostonglobe.com/2026/03/04/metro/commentary-ri-nursing-homes-quality-ratings/",
+   "outlet": "The Boston Globe",
+   "date": "2026-03-04",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "By early 2026, star ratings for five of the nursing homes declined, with two of them dropping from five to two stars.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o acquire, RIDOH said, they would have to hire an independent third-party monitor at the new owners’ expense, and submit to minimum weekly inspections. Get Rhode Island News Alerts Sign up to get breaking news and interesting stories from Rhode Island in your inbox each weekday. Enter Email Sign Up By early 2026, star ratings for five of the nursing homes declined, with two of them dropping from five to two stars. These findings align with national trends . Researchers have found that mortality in private equity-owned nursing homes is 11 percent higher than in non-private equity-owned facilities. Another study documented a 50 percent greater use of antipsychotic drugs in private equity-owned facilities, while spending per patient is 11 pe"
+  }
+ ]
+}

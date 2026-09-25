@@ -1,0 +1,12 @@
+{
+  "story_id": "S105",
+  "bin": "Known pattern",
+  "entity": "CMS Order and Referring file (Medicare's ordering eligibility list): recently deactivated clinicians still flagged Y to order DME",
+  "deciding_sources": [3, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Only CMS's own methodology names the file, and it states the design (current enrollment only), not a measurement, so it neither matches nor contradicts. Collins/PSI 2008 (DME paid under dead doctors' orders) and OIG 2013 (enrollment data inconsistent) cover the pattern, not this list.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

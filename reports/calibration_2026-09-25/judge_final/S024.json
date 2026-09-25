@@ -1,0 +1,12 @@
+{
+  "story_id": "S024",
+  "bin": "Matched + more",
+  "entity": "BF Borgers' (Ben Borgers') former public-company clients",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2024-06-21",
+  "post_cutoff_match": false,
+  "what_we_add": "27 ex-clients moved to four Nigerian audit firms; the 218 base split into 143 re-audited (54 one-partner, 72 two-to-five-partner, 17 bigger firms) and 75 with no later audit",
+  "why": "Bloomberg Tax: nearly 40% of ~180 Borgers clients had no new auditor by June 2024; Accounting Today: 125 ex-clients landed at new, mostly small firms in Q2 2024. Same finding, same direction, no claim more than 25% off (75/218 = 34% vs ~40%; 218 vs ~180 is 21% and a different client definition); nobody mentions the Nigerian firms or the partner-size split.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

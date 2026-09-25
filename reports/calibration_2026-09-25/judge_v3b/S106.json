@@ -1,0 +1,12 @@
+{
+  "story_id": "S106",
+  "bin": "Known pattern",
+  "entity": "944 US for-profit nursing homes whose operating companies formed 2022 to Sept 2024 (a stand-in for recent sales), star ratings vs same-state for-profit peers",
+  "deciding_sources": [0, 2, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "The 944-home cohort; 0.28 stars below same-state for-profit peers; 52% one- or two-star, 8 points above peers; median home 0.42 stars below",
+  "why": "Ryskina/Penn LDI and ASPE say sold homes were already lower-rated and slip about 0.1 star after sale, but for sales through 2022, not this 2022-24 cohort, and as a pre-sale level and a before/after change, not a gap vs peers. No source names these homes; SNN retells the Penn study; the Boston Globe piece is commentary on Rhode Island homes.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

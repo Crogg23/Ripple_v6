@@ -1,0 +1,79 @@
+{
+  "story_id": "S139",
+  "entity": "Tesla Fremont factory, Bay Area Air District notices of violation since 2019 and lack of district enforcement",
+  "queries": [
+    {"q": "Tesla Fremont air quality violation notices Bay Area Air Quality Management District", "found_useful": true},
+    {"q": "Tesla Fremont $1 million settlement Bay Area Air District 33 notices of violation 2021", "found_useful": true},
+    {"q": "Tesla Fremont paint shop air district violations 2026", "found_useful": true},
+    {"q": "Tesla Fremont air violations Mercury News notices of violation abatement order hearing board 2025", "found_useful": true},
+    {"q": "Tesla Fremont air district notices of violation August 2026", "found_useful": true},
+    {"q": "\"Tesla\" Bay Area Air District violations no penalty enforcement lax Phillips 66 Rodeo notices", "found_useful": true},
+    {"q": "Tesla Fremont air district civil penalty settlement inaccurate emissions reports", "found_useful": false},
+    {"q": "Tesla Fremont EPA ICIS-Air informal enforcement 356 notices since 2019", "found_useful": false},
+    {"q": "Tesla Fremont factory air pollution violations news September 2026", "found_useful": false},
+    {"q": "Berkeleyside Tesla most-fined air polluters 374 citations pending", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sfgate.com/tech/article/tesla-air-district-violations-22297849.php",
+      "outlet": "SFGATE",
+      "date": "2026-06-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Though all of the violations are still pending, meaning the agency has not resolved the issues, data from the past five years does not show any financial penalties associated with the alleged violations.",
+      "paywalled": false,
+      "searcher_note": "369 notices in five years, mostly Fremont, all pending, no penalties in five-year data; also notes 2021 $1M settlement and district probe of inaccurate emissions reports"
+    },
+    {
+      "url": "https://richmondside.org/2026/01/28/the-bay-areas-most-fined-air-polluters-explore-10-years-of-environmental-violations/",
+      "outlet": "Richmondside (Cityside, also run in Berkeleyside)",
+      "date": "2026-01-28",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "For those, the company was slapped with $502,500 in fines, with 328 alleged violations still pending as of mid-December 2025.",
+      "paywalled": false,
+      "searcher_note": "Tesla cited 374 times 2015-2025, $502,500 fines, 328 pending; same piece says Phillips 66 had 320 pending notices and paid $99,400 at Rodeo in a decade"
+    },
+    {
+      "url": "https://driveteslacanada.ca/news/tesla-fremont-factory-17-new-air-quality-violations-2026/",
+      "outlet": "Drive Tesla Canada",
+      "date": "2026-06-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Records from the Bay Area Air District show the agency has issued 369 notices of violation to Tesla over the last five years, the majority tied to operations at Fremont.",
+      "paywalled": false,
+      "searcher_note": "369 notices in five years; also says none of the 17 new notices have produced penalties yet and recaps the 2024 abatement order"
+    },
+    {
+      "url": "https://www.baaqmd.gov/en/news-and-events/page-resources/2024-news/062524-tesla-aq-violations",
+      "outlet": "Bay Area Air Quality Management District",
+      "date": "2024-06-25",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Tesla has emitted harmful precursor organic compounds and toxic air contaminants directly into the atmosphere without proper abatement, resulting in over 112 Notices of Violation since 2019.",
+      "paywalled": false,
+      "searcher_note": "District release: independent Hearing Board ordered Tesla to correct paint-shop violations (abatement order); disagrees with the lead's 'no district enforcement order'"
+    },
+    {
+      "url": "https://www.ktvu.com/news/teslas-fremont-plant-hit-more-than-100-air-quality-violation-notices",
+      "outlet": "KTVU FOX 2",
+      "date": "2024-06-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The Air District sought the order after sticking Tesla with more than 100 violation notices since 2019.",
+      "paywalled": false,
+      "searcher_note": "News account of the 2024 Hearing Board abatement order against Tesla Fremont"
+    },
+    {
+      "url": "https://www.kqed.org/news/11872863/tesla-settles-1-million-penalty-for-air-quality-violations-at-fremont-assembly-plant",
+      "outlet": "KQED",
+      "date": "2021-05-08",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Officials from the Bay Area Air Quality Management District said Friday that Tesla, Inc., has agreed to pay a $1 million penalty and install a solar roof project to settle air quality violations at its Fremont factory.",
+      "paywalled": false,
+      "searcher_note": "2021 district settlement covering 33 notices of violation; a district enforcement resolution the lead's federal file does not show"
+    }
+  ],
+  "notes": "Heavy coverage of Tesla Fremont's air-district notices. Counts in press: 112+ since 2019 (district, June 2024), 369 in five years (SFGATE and others, June 2026), 374 over 2015-2025 with 328 pending (Richmondside, Jan 2026); lead says 356 since 2019. Press agrees on many notices and few or no penalties recently, but disagrees with 'no district enforcement order': a 2024 Hearing Board abatement order and a 2021 $1M settlement over 33 notices exist. Phillips 66 Rodeo's 320 pending notices appear in the Richmondside piece. No coverage found dated after 2026-06-30; newest items are 2026-06-10 (SFGATE, Drive Tesla Canada, Patch)."
+}

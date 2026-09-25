@@ -1,0 +1,79 @@
+{
+ "story_id": "S140",
+ "lead": {
+  "headline": "438 place names still say \"Negro\"; in 2020-23, 641 \"Squaw\" names changed vs at least 41 \"Negro\" or n-word ones",
+  "number": "438 official federal names in the English sense (426 current, 12 historical); 105 list the n-word as an older name in the same file",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Citation dates stop on 2023-03-17, so renamings after that can't be counted by year; 50 Spanish \"negro\" (black) names were removed by hand."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "hundreds of place names still contain \"Negro\" federal Board on Geographic Names",
+  "\"Negro\" place names USGS GNIS count remaining after squaw renaming 2022",
+  "Board on Geographic Names squaw names replaced 2022 number 650 Interior Department",
+  "after squaw names removed, \"Negro\" place names remain next Advisory Committee on Reconciliation in Place Names",
+  "\"Negro\" place names federal renaming 2025 2026 advisory committee terminated derogatory names",
+  "\"Negro\" names still on federal maps after Interior removed squaw names article 2023 OR 2024",
+  "\"438\" OR \"426\" place names \"Negro\" GNIS",
+  "\"Negro\" creek OR mountain renamed Board on Geographic Names 2026",
+  "squaw names renamed in months while \"Negro\" names renamed one at a time slow comparison racist place names Black"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://atmos.earth/political-landscapes/black-people-federal-lands-racist-history/",
+   "outlet": "Atmos",
+   "date": "2022-02-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Today, 469 pieces of geography still contain the replacement word in their name, according to the geographic names database managed by the U.S. Geological Survey.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.yahoo.com/news/racial-slurs-are-woven-deep-into-the-american-landscape-160045373.html",
+   "outlet": "Vocativ (syndicated on Yahoo News)",
+   "date": "2015-10-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "At least 558 place names across the nation include derogatory words referring to African Americans, Vocativ's data analysis found.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://congress.gov/crs_external_products/IN/PDF/IN12000/IN12000.4.pdf",
+   "outlet": "Congressional Research Service (Insight IN12000)",
+   "date": "2024-02-26",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The BGN voted on the final replacement names for 650 names in September 2022 and for 7 additional names in January 2023.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.doi.gov/pressreleases/interior-department-completes-removal-sq-federal-use",
+   "outlet": "U.S. Department of the Interior",
+   "date": "2022-09-08",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The Department of the Interior today announced the Board on Geographic Names (BGN) has voted on the final replacement names for nearly 650 geographic features featuring the word sq___.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://oregonblackpioneers.org/two-geographic-features-renamed-to-honor-black-oregonians/",
+   "outlet": "Oregon Black Pioneers",
+   "date": "2024-10-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "On September 18, 2024 the U.S. Board on Geographic Names approved proposals to change the name of Negro Jack Creek in Tillamook County to Jack Creek",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

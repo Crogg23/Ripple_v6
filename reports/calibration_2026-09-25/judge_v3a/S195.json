@@ -1,0 +1,12 @@
+{
+  "story_id": "S195",
+  "bin": "Known pattern",
+  "entity": "the 189 old (dormant) federal campaign committees that paid out money in the 2024 cycle, and where it went",
+  "deciding_sources": [0, 2, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "$8.57M out from 189 committees in the 2024 cycle; 19.4% to candidates, parties and PACs (23.5% with loan repayments)",
+  "why": "Tampa Bay Times (about 100 zombie campaigns, $20M+ since 1995), CLC (zombie funds turned into PACs) and Roll Call ($54M held by departed members) are the same kind of finding about other committees and years. None covers the 2024 cycle or the share given to candidates, parties and PACs. FEC and NOTUS only explain the rules.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

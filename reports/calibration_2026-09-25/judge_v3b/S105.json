@@ -1,0 +1,12 @@
+{
+  "story_id": "S105",
+  "bin": "Known pattern",
+  "entity": "CMS Order and Referring file (Medicare's ordering list), DME flag for deactivated clinicians",
+  "deciding_sources": [3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "the list itself measured: 1,036 of 1,247 recent deactivations still flagged Y for equipment (83%) vs 2 of 1,040 older (0.2%); power wheelchairs Y on 71%",
+  "why": "CMS's methodology and Noridian's 13-month capped-rental rule are explainers, not findings; neither measures the list, so no match or contradiction. The 2008 Senate PSI finding, Medicare paying for DME ordered under dead doctors, is the same kind of finding about other clinicians.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

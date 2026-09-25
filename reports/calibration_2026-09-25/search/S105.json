@@ -1,0 +1,69 @@
+{
+  "story_id": "S105",
+  "entity": "CMS Medicare Order and Referring (O&R) eligibility file: recently deactivated clinicians (Sep 2025-Jun 2026) still listed with DME flag Y",
+  "queries": [
+    {"q": "CMS Order and Referring file deactivated providers still eligible to order DME", "found_useful": true},
+    {"q": "OIG Medicare paid DMEPOS claims ordered by ineligible or deactivated providers ordering referring", "found_useful": false},
+    {"q": "Medicare durable medical equipment ordered by deceased or deactivated physicians NPI fraud report", "found_useful": true},
+    {"q": "OIG report Medicare ordering referring provider requirement PECOS claims paid without eligible ordering provider DME", "found_useful": false},
+    {"q": "\"Order and Referring\" CMS data file includes providers no longer enrolled accuracy", "found_useful": true},
+    {"q": "Medicare power wheelchair ordering physician deactivated billing privileges still ordering equipment news 2026", "found_useful": false},
+    {"q": "OIG audit Medicare payments DMEPOS ordered by physicians whose enrollment revoked or deactivated at time of order", "found_useful": false},
+    {"q": "HME News ordering physicians deactivated PECOS denials suppliers capped rental 13 months", "found_useful": true},
+    {"q": "CMS order and referring list lag deactivated NPIs remain eligible grace period data.cms.gov DME flag", "found_useful": false},
+    {"q": "CMS ordering referring eligibility deactivated clinicians DME orders loophole August 2026 OR September 2026", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://data.cms.gov/sites/default/files/2020-09/Order_and_Referring_Methodology.pdf",
+      "outlet": "CMS (data.cms.gov), Order and Referring Methodology",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "who are of a type/specialty that is legally eligible to order and refer Part B (clinical laboratory and imaging), DME and HHA claims, in the Medicare program and who have current enrollment records in Medicare",
+      "paywalled": false,
+      "searcher_note": "The file's own documentation: it should list only clinicians with current Medicare enrollment, updated twice a week; also says deceased clinicians are excluded. States the rule the lead tests; does not report any gap."
+    },
+    {
+      "url": "https://med.noridianmedicare.com/web/jadme/claims-appeals/claim-submission/pecos-edits",
+      "outlet": "Noridian (DME MAC Jurisdiction A)",
+      "date": "2025-09-16",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "This only applies to items in capped rental category, all other items will be denied after the deactivation date and a new ordering physician would be required for all other items.",
+      "paywalled": false,
+      "searcher_note": "Contractor claim-edit rule: capped rental items keep paying up to 13 months after the ordering physician's PECOS deactivation; everything else denied. A designed grace window relevant to the lead's caveat. Names PECOS edits, not the O&R file."
+    },
+    {
+      "url": "https://oig.hhs.gov/reports/all/2013/improvements-are-needed-to-ensure-provider-enumeration-and-medicare-enrollment-data-are-accurate-complete-and-consistent/",
+      "outlet": "HHS Office of Inspector General (OEI-07-09-00440)",
+      "date": "2013-05-28",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Additionally, provider data were inconsistent between NPPES and PECOS for 97 percent of records.",
+      "paywalled": false,
+      "searcher_note": "Pattern: NPPES (where NPIs are deactivated) and PECOS (which feeds the ordering list) disagree for nearly all records. Not about the O&R file or DME flag specifically."
+    },
+    {
+      "url": "https://www.collins.senate.gov/newsroom/medicare-investigation-exposes-payments-deceased-doctors",
+      "outlet": "Office of Sen. Susan Collins (Senate Permanent Subcommittee on Investigations release)",
+      "date": "2008-07-18",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The Subcommittee’s investigation found that Medicare paid as much as $92 million over the past seven years for durable medical equipment such as wheelchairs, prosthetics, hospital beds, and other home medical equipment purportedly prescribed by physicians.",
+      "paywalled": false,
+      "searcher_note": "Pattern: DME (incl. wheelchairs) paid on orders under dead doctors' IDs, 2000-2007. Predates the ordering/referring edits and the O&R file."
+    },
+    {
+      "url": "https://chapinc.org/blog-news/the-compliance-monitor-9-1-26/",
+      "outlet": "CHAP (Community Health Accreditation Partner), The Compliance Monitor",
+      "date": "2026-09-01",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "The paper outlines strategic actions to address these vulnerabilities, including strengthening enrollment safeguards, leveraging modern data analytics to catch fake physician orders, and expanding protections for enrollee identification numbers.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff pattern coverage: summarizes an OIG white paper on DME fraud via enrolled suppliers, physician orders and beneficiary IDs. Does not mention deactivated clinicians or the ordering list."
+    }
+  ],
+  "notes": "No source found reports that the O&R file keeps recently deactivated clinicians eligible to order DME, or the 1,036 of 1,247 / 83% vs 2 of 1,040 / 0.2% contrast, or the power-wheelchair flag rate. The file's own methodology says it lists only current enrollees. The Noridian page documents a designed 13-month post-deactivation window for capped rentals only, relevant to the lead's 'grace window vs hole' caveat. Other material is pattern only (deceased-doctor DME orders 2008; NPPES/PECOS mismatch 2013; OIG DME-fraud white paper 2026). A search snippet quoted 42 CFR 424.540 as barring ordering while deactivated, but eCFR redirected to a block page and the Cornell copy did not show that sentence; not recorded. OIG A-02-20-01027 (Part C/D payments to deactivated providers) opened; off-measure, not recorded."
+}

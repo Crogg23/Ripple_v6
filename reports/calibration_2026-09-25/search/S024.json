@@ -1,0 +1,70 @@
+{
+  "story_id": "S024",
+  "entity": "BF Borgers CPA PC (Ben Borgers) former public-company audit clients: where they went after the 2024 SEC bar (new auditors, Nigerian firms, no later audit)",
+  "queries": [
+    {"q": "BF Borgers clients new auditor Nigeria audit firms after SEC ban", "found_useful": true},
+    {"q": "Borgers former clients where did they go new auditors PCAOB Form AP", "found_useful": false},
+    {"q": "former Borgers clients hired audit firms based in Nigeria Olayinka Oyebola Bowmo", "found_useful": true},
+    {"q": "Nigerian audit firms PCAOB US-listed shell companies clients Olayinka Oyebola Boladale Lawal", "found_useful": false},
+    {"q": "\"former Borgers clients\" Nigeria", "found_useful": true},
+    {"q": "BF Borgers clients stopped filing deregistered went dark after auditor barred 2025", "found_useful": false},
+    {"q": "Nigerian accounting firms auditing US penny stock companies Borgers Bloomberg Tax", "found_useful": true},
+    {"q": "Borgers clients one-partner audit firms small auditors PCAOB inspection 2025 2026", "found_useful": false},
+    {"q": "Bowmo Lakshin \"four and a half times cheaper\" auditor", "found_useful": false},
+    {"q": "Borgers ex-clients auditor news 2026", "found_useful": false},
+    {"q": "most BF Borgers clients quickly found new auditors re-audit completed Form 8-K Item 4.01 analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://news.bloomberglaw.com/financial-accounting/trump-media-auditors-shutdown-strands-nearly-40-of-ex-clients",
+      "outlet": "Bloomberg Law / Bloomberg Tax",
+      "date": "2024-06-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Nearly 40% of BF Borgers CPA PC’s other clients haven’t been so lucky.",
+      "paywalled": true,
+      "searcher_note": "Bloomberg Tax analysis: of ~180 Borgers companies, nearly 40% had not announced a new auditor by mid-June 2024; body past the lede is paywalled"
+    },
+    {
+      "url": "https://www.accountingtoday.com/news/collapse-of-bf-borgers-unleashes-flood-of-new-sec-audit-clients",
+      "outlet": "Accounting Today",
+      "date": "2024-09-20",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "A total of 125 new engagements in Q2 involved clients cast adrift in the wake of BF Borgers' collapse — entirely explaining the quarter's unusual spike in activity, with 330 clients onboarded, a major jump from the 209 in Q1.",
+      "paywalled": false,
+      "searcher_note": "Where Borgers clients went in Q2 2024: small firms Bush & Gillespie (14) and Michael Gillespie & Associates (14) led; no Nigeria mention"
+    },
+    {
+      "url": "https://deepquarry.substack.com/p/turmoil-in-small-audit-firms-market",
+      "outlet": "Deep Quarry (Substack)",
+      "date": "2024-08-05",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "According to Bloomberg, dozens of Borgers clients were still struggling to hire a replacement audit firm as of mid-June.",
+      "paywalled": false,
+      "searcher_note": "Also says Fruci & Associates picked up more than a dozen former Borgers clients; no Nigeria mention"
+    },
+    {
+      "url": "https://thedig.substack.com/p/money-for-nothing-borgers-and-its",
+      "outlet": "The Dig (Francine McKenna, Substack)",
+      "date": "2024-12-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Many of banned auditor BF Borgers' former clients went from the frying pan into the fire after switching to a new firm.",
+      "paywalled": true,
+      "searcher_note": "Author says she analyzed the firms that picked up Borgers clients and the clients still without an auditor; the analysis itself is behind the paywall"
+    },
+    {
+      "url": "https://www.sec.gov/newsroom/press-releases/2024-51",
+      "outlet": "U.S. Securities and Exchange Commission",
+      "date": "2024-05-03",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The Securities and Exchange Commission today charged audit firm BF Borgers CPA PC and its owner, Benjamin F. Borgers",
+      "paywalled": false,
+      "searcher_note": "The underlying case: permanent bar, 1,500+ filings, 369 clients whose filings used Borgers audits; not about where clients went"
+    }
+  ],
+  "notes": "Pre-known: lead cites press. Pattern of stranded Borgers clients is well covered in 2024 (Bloomberg Tax: nearly 40% of ~180 had no new auditor by mid-June 2024; lead: 75 of 218 show no later audit). A search snippet attributed to the Bloomberg Law piece says thirteen former Borgers clients hired one of two Nigeria-based firms (Olayinka Oyebola & Co., Boladale Lawal & Co.), but that text sits behind the paywall and could not be confirmed on the page, so it is not quoted. No source found for the lead's 27 clients at four Nigerian firms or the 54/72/17 split by firm size. No coverage found dated after 2026-06-30. SEC.gov blocks scripted fetches; the SEC quote came via WebFetch. Bowmo's own release on hiring a Lagos auditor returned 404."
+}

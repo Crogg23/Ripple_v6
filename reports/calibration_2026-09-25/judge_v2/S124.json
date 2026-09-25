@@ -1,0 +1,12 @@
+{
+  "story_id": "S124",
+  "bin": "Not comparable",
+  "entity": "The 5th Circuit's cases at the Supreme Court: share brought by the federal government, 2021-24 vs 2015-20",
+  "deciding_sources": [1, 3, 5],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Sources name the 5th Circuit but count all its Supreme Court cases one term at a time (11 in 2023-24, 13 in 2024-25, 11 in 2025-26) or show single agency appeals (SEC). None measures the federal-government share or the 2015-20 vs 2021-24 shift, so 16 of 38 vs 1 of 26 can't be lined up with anything.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

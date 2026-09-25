@@ -1,0 +1,12 @@
+{
+  "story_id": "S092",
+  "bin": "Matched + more",
+  "entity": "HOLC-graded (1930s redlining map) neighborhoods nationwide: density of toxic-release/industrial plants by grade A to D, present day",
+  "deciding_sources": [0],
+  "earliest_match_date": "2022-03-09",
+  "post_cutoff_match": false,
+  "what_we_add": "TRI plants per 100 km2 by grade: D 13.35, C 5.82, B 2.21, A 0.07; D denser than B in 119 of 212 cities",
+  "why": "Lane et al. 2022 finds D-grade areas nearer more industrial sources, rising A to D: same grades, same direction, no density numbers. NPR and RAND agree in direction.\nMeasure differs a bit (industrial sources nearby vs TRI plants per km2); Estien 2024, which would disagree on toxic releases, failed the quote check and is ignored.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

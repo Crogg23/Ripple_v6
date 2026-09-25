@@ -1,0 +1,68 @@
+{
+ "story_id": "S192",
+ "lead": {
+  "headline": "A third of small, non-exempt US-listed foreign companies missed a new March 2026 insider-stock deadline by 13+ days",
+  "number": "China/HK small issuers trail other small foreign issuers by 12 points, not 16, once blank-country firms are placed; vs non-Israel peers p = 0.08, vs Asian/US/Australian peers p = 0.53.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "DERA leaves the business-country field blank on ~40% of late-2025 rows, which misfiled 26 China/HK firms as \"other\"; what's left of the China gap depends on one peer country, Israel."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "foreign private issuer insiders Section 16 Form 3 March 18 2026 deadline late filings compliance",
+  "Holding Foreign Insiders Accountable Act Form 3 filings missed deadline Chinese companies",
+  "foreign private issuer Form 3 filings late analysis April 2026 insiders missed March 18",
+  "Chinese Hong Kong small-cap Nasdaq insiders Form 3 late filings HFIAA study",
+  "foreign company executives disclose stock holdings first time SEC Form 3 flood March 2026",
+  "Chinese companies US-listed insiders stock ownership disclosures new law 2026 filings Reuters",
+  "FPI Section 16 filings first months data how many foreign private issuers filed Form 3 on time analysis",
+  "foreign private issuer Section 16 lessons learned late Form 4 delinquent filings SEC enforcement July 2026",
+  "\"Form 3\" foreign private issuers \"did not file\" OR \"failed to file\" OR \"missed\" March 18 2026 insiders China-based"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sec.gov/about/divisions-offices/division-corporation-finance/holding-foreign-insiders-accountable-act-frequently-asked-questions",
+   "outlet": "U.S. Securities and Exchange Commission, Division of Corporation Finance",
+   "date": "2026-03-13",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "In light of the unusually large number of Form ID applications submitted as a result of the HFIA Act, the staff will not recommend enforcement action",
+   "paywalled": false,
+   "quote_check": "blocked"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.aoshearman.com/en/insights/sec-effectively-extends-deadline-for-late-section-16a-filings-caused-by-lack-of-edgar-access",
+   "outlet": "A&O Shearman (law firm client alert)",
+   "date": "2026-03-13",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "The effective extensions available require that the FPI director or officer without EDGAR access on March 18, 2026 file the required Section 16(a) report after receiving EDGAR access but in no event later than April 1, 2026.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://tax.thomsonreuters.com/news/sec-order-exempts-certain-foreign-jurisdictions-from-executive-stock-ownership-disclosure/",
+   "outlet": "Thomson Reuters Tax & Accounting News",
+   "date": "2026-03-11",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "The qualifying jurisdictions listed in the order are Canada, Chile, the European Economic Area (EEA), the Republic of Korea, Switzerland, and the United Kingdom.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.troutman.com/insights/us-insider-reporting-requirements-coming-for-directors-and-officers-of-foreign-private-issuers/",
+   "outlet": "Troutman Pepper Locke (law firm client alert)",
+   "date": "2025-12-23",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "While statements from the legislation’s sponsors clearly show the legislative intention is directed primarily at Chinese companies, it will remain to be seen how the law will impact companies that operate in jurisdictions with similar reporting requirements.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

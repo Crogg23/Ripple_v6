@@ -1,0 +1,98 @@
+{
+ "story_id": "S055",
+ "lead": {
+  "headline": "Black home buyers were denied about twice as often as white buyers at every big 2017 mortgage lender",
+  "number": "At every 2017 home-purchase lender with 500+ Black and 2,000+ white applications, the Black denial rate ran about 2x the white rate.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No income or credit columns, so the gap can't be adjusted, and it's a known shape."
+ },
+ "queries_logged": 11,
+ "queries": [
+  "2017 HMDA data Black applicants denied twice the rate white applicants home purchase loans",
+  "Reveal \"Kept Out\" mortgage lenders Black applicants denied more often analysis lenders",
+  "largest mortgage lenders denial rates Black vs white applicants 2017 HMDA lender-by-lender analysis",
+  "CFPB data point \"2017 mortgage market activity and trends\" denial rates black non-Hispanic white home purchase",
+  "Reveal Center for Investigative Reporting lenders deny Black applicants 2017 data individual banks named Wells Fargo JPMorgan denial",
+  "\"2017\" mortgage lenders \"Black applicants\" denied at higher rates than white applicants at nearly every lender analysis",
+  "Financial Times analysis 39.5 million mortgage applications Black applicants 2.1 times more likely denied lenders",
+  "mortgage denial racial gap Black white lenders HMDA analysis August 2026",
+  "NCRC 2017 HMDA top lenders African American denial rate home purchase report",
+  "revealnews.org \"shutting the door to homeownership\" 61 metro areas",
+  "racial mortgage denial gap explained by credit scores not discrimination lenders say HMDA 2017 2018"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination",
+   "outlet": "Urban Institute (Laurie Goodman, Bing Bai)",
+   "date": "2018-08-23",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The observed denial rate shows that the denial rate for black families was 2.0 times that of whites in 2017, which looks alarmingly high (figure 1).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s smaller than that of the traditional metric. A better way to look at mortgage denial rates and discrimination The traditional method of determining mortgage denial rates, called the “observed denial rate,” divides the total number of denied applicants by the total number of mortgage applications. The observed denial rate shows that the denial rate for black families was 2.0 times that of whites in 2017, which looks alarmingly high (figure 1). While the observed denial rate can be useful, it can’t provide evidence that equally qualified applicants are being treated differently because of race or ethnicity. To see disparate treatment by race or ethnicity, we must also consider applicants’ credit profiles. The real denial rate method divides owner-occupied purchase borrower"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination",
+   "outlet": "Urban Institute (Laurie Goodman, Bing Bai)",
+   "date": "2018-08-23",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Using the real denial rate method, the denial rate for black families is 1.2 times that of whites, while the rates for Hispanics and Asians are 1.1 times and 1.4 times, respectively, that of whites.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "we are looking at the same number of denied mortgages, but the denominator includes denied applicants plus lower-credit-profile borrowers only, rather than all borrowers. Thus, the real denial rate is 30 percent for whites, 37 percent for blacks, 33 percent for Hispanics, and 43 percent for Asians. Using the real denial rate method, the denial rate for black families is 1.2 times that of whites, while the rates for Hispanics and Asians are 1.1 times and 1.4 times, respectively, that of whites. It may seem surprising that Asian borrowers have the highest denial rate, but a closer look shows that this stems from the low number of lower-credit-profile applicants in this group. The lending channel also matters: government loans (FHA, VA, USDA’s rural housing) generally have lower real denial rates than conventional loans, a"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.consumerfinance.gov/archive/newsroom/ffiec-announces-availability-2017-data-mortgage-lending/",
+   "outlet": "Consumer Financial Protection Bureau / FFIEC",
+   "date": "2018-05-07",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In 2017, black and Hispanic-white applicants experienced higher denial rates for conventional home purchase loans than non-Hispanic white applicants.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ".5 percent to 5.8 percent. From 2016 to 2017, the share of refinance loans made to black borrowers increased from 5.0 percent to 6.0 percent, the share made to Hispanic-white borrowers increased from 6.2 percent to 6.8 percent, and those made to Asian borrowers fell from 5.5 percent to 4.0 percent. In 2017, black and Hispanic-white applicants experienced higher denial rates for conventional home purchase loans than non-Hispanic white applicants. The denial rate for Asian applicants is more comparable to the denial rate for non-Hispanic white applicants. These relationships are similar to those found in earlier years and, due to the limitations of the HMDA data discussed above, cannot take into account potential differences in risk characteristics across demographic groups"
+  },
+  {
+   "idx": 3,
+   "url": "https://mlk50.com/2018/02/20/for-people-of-color-banks-are-shutting-the-door-to-homeownership/",
+   "outlet": "Reveal (Center for Investigative Reporting), republished by MLK50",
+   "date": "2018-02-20",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Reveal's analysis of lending data shows that nationally, Santander turned away African-American homebuyers at nearly three times the rate of white ones.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 4,
+   "url": "https://themarkup.org/denied/2021/08/25/the-secret-bias-hidden-in-mortgage-approval-algorithms",
+   "outlet": "The Markup",
+   "date": "2021-08-25",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Lenders were 80 percent more likely to reject Black applicants than similar White applicants.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tional mortgage applications for home purchases, we found that lenders were 40 percent more likely to turn down Latino applicants for loans, 50 percent more likely to deny Asian/Pacific Islander applicants, and 70 percent more likely to deny Native American applicants than similar White applicants. Lenders were 80 percent more likely to reject Black applicants than similar White applicants. These are national rates. In every case, the prospective borrowers of color looked almost exactly the same on paper as the White applicants, except for their race. ↩︎ link Applicants of color denied at higher rates To illustrate the odds of denial that our analysis revealed, we calculated how many people of each race/ethnic group wo"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.prnewswire.com/news-releases/mortgage-denial-rates-fall-but-racial-gap-persists-black-applicants-twice-as-likely-as-whites-to-be-denied-a-conventional-loan-300632674.html",
+   "outlet": "Zillow press release via PR Newswire",
+   "date": "2018-04-19",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "By comparison, 20.9 percent of black borrowers and 15.5 percent of Hispanic borrowers were turned down for a loan.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n 2007. Even though a smaller share of loan applicants overall are denied, white or Asian borrowers are more likely to be approved for a mortgage than black or Hispanic borrowers. In 2016, 8.1 percent of white applicants were denied for a conventional loan, as were 10.4 percent of Asian applicants. By comparison, 20.9 percent of black borrowers and 15.5 percent of Hispanic borrowers were turned down for a loan. For all groups, denial rates are down sharply from 2007. In 2007, 34.3 percent of black applicants and 30 percent of Hispanic applicants were denied for mortgages. White and Asian borrowers were denied 12.7 percent and 16.2 percent of the time, respectively. The persistent disparity among races also is evident in homeownership."
+  }
+ ]
+}

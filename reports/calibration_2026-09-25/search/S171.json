@@ -1,0 +1,38 @@
+{
+  "story_id": "S171",
+  "entity": "Town halls (municipal GADs) of Los Ríos province, Ecuador: one-bidder public-works tenders in SERCOP records released Jan-Jun 2026, incl. a $6.3M Quevedo contract",
+  "queries": [
+    {"q": "Los Ríos Ecuador municipio contratación obra pública un solo oferente SERCOP 2026", "found_useful": false},
+    {"q": "Quevedo municipio contrato obra 6,3 millones un oferente 2026", "found_useful": false},
+    {"q": "Ecuador procurement single bidder public works municipalities SERCOP analysis", "found_useful": true},
+    {"q": "\"un solo oferente\" obras municipios Ecuador procesos contratación pública competencia", "found_useful": true},
+    {"q": "Alcaldía de Quevedo contrato obra 2026 adjudicación Contraloría denuncia", "found_useful": false},
+    {"q": "Los Ríos municipios contratos obra pública irregularidades 2026 Babahoyo Quevedo Ventanas", "found_useful": false},
+    {"q": "Quevedo alcaldía adjudica contrato millones obra regeneración asfaltado 2026", "found_useful": false},
+    {"q": "SERCOP alerta \"oferente único\" procesos municipios provincia Los Ríos informe", "found_useful": false},
+    {"q": "Open Contracting Partnership Ecuador single bidding red flags municipalities province", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.connectas.org/contratos-publicos-ecuador/",
+      "outlet": "CONNECTAS",
+      "date": "2022-01-26",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Con la participación de un solo oferente se efectuaron 42,6 % de todos los procesos de contratación pública adjudicados bajo régimen común de los últimos seis años, en Ecuador.",
+      "paywalled": false,
+      "searcher_note": "National data investigation of one-bidder procurement in Ecuador, 2016-2021: 42.6% of all ordinary-regime awards, $6.051B. No breakdown by province or for town-hall works; Los Ríos and Quevedo not named. Measure differs from the lead's."
+    },
+    {
+      "url": "https://www.open-contracting.org/2022/11/10/democratizing-public-procurement-in-ecuador/",
+      "outlet": "Open Contracting Partnership",
+      "date": "2022-11-10",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The proportion of single-bid tenders in open procedures is also trending downward since 2015, decreasing from 29% in 2015 to 20.5% in June 2022.",
+      "paywalled": false,
+      "searcher_note": "National trend: single-bid share falling, 2015 to mid-2022. Same measure family (one-bidder share) at a different level and window. No province or municipality detail."
+    }
+  ],
+  "notes": "Nothing found names Los Ríos town halls, the 29-of-66 one-bidder count or the Quevedo $6.3M contract. Only national pattern coverage of one-bidder procurement in Ecuador. The two national figures measure different things: CONNECTAS 42.6% covers all ordinary-regime processes 2016-2021; OCP 20.5% covers open procedures to June 2022. Neither can be lined up with the lead's 44% town-hall works share or its 15% coastal comparison. Also seen, not recorded: a 2022 La Barra Espaciadora investigation of $41M in unfinished Quevedo sewer works, 2011-2021 (no bidder counts); an El Universo piece on a Los Ríos provincial-government road dispute; a Contraloría audit of a Los Ríos bioinputs project (not town-hall works). Two more queries were planned but never ran, because the session's WebSearch budget ran out (200 of 200): 'Fundación Ciudadanía y Desarrollo contratación pública municipios Los Ríos único oferente' and a July-Sept 2026 Los Ríos procurement news query. So there's no dedicated recent-coverage query for this story. 9 queries were actually run."
+}

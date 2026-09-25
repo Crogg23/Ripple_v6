@@ -1,0 +1,79 @@
+{
+ "story_id": "S195",
+ "lead": {
+  "headline": "189 old campaign funds paid out $8.57M in the 2024 cycle; 19% went to candidates, parties and PACs, not 2.1%",
+  "number": "$8,569,194.71 out from 189 committees (median $1,794.61); the committee-to-committee file shows 19.4% to candidates, parties and PACs (23.5% with loan repayments), not the 2.1% seen in gifts to candidates alone.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The 2.1% came from checking only gifts to candidates; the committee-to-committee file shows 19.4%. The exact-name filter also let sitting politicians' committees (Ted Cruz, Tom Kean Jr) into the list."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "zombie campaign committees former members of Congress spending 2024 cycle analysis",
+  "Campaign Legal Center zombie campaigns report leftover campaign funds donations to candidates parties PACs",
+  "former lawmakers leftover campaign cash 2024 election cycle millions spent OpenSecrets zombie",
+  "\"zombie\" campaign accounts 2025 OR 2026 report former members of Congress still spending donations to other candidates",
+  "dormant campaign committees former candidates gave to super PACs parties 2024 cycle total FEC data analysis",
+  "ZOMBIE Act leftover campaign funds former lawmakers news 2026",
+  "former members of Congress leftover campaign accounts donated to candidates and parties share of spending study 2025",
+  "\"$8.57 million\" OR \"8.6 million\" former candidates campaign committees 2024 cycle leftover",
+  "retired lawmakers leftover campaign money mostly goes to charity refunds rather than candidates analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/",
+   "outlet": "Tampa Bay Times / 10News WTSP",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Times/WTSP reporters used the FEC’s own data to identify roughly 100 zombie campaigns that have spent more than $20 million since 1995.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 1,
+   "url": "https://rollcall.com/2023/02/06/not-couch-cushion-money-former-members-sitting-on-54-million/",
+   "outlet": "Roll Call",
+   "date": "2023-02-06",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Members of the 117th Congress who have since left Capitol Hill still hold nearly $54 million in leftover political money — cash they may tap to make contributions as lobbyists or bank for future runs.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 2,
+   "url": "https://campaignlegal.org/update/zombie-campaign-redux-former-members-congress-continue-use-leftover-campaign-cash-personal",
+   "outlet": "Campaign Legal Center",
+   "date": "2019-03-12",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Crenshaw and Linder represent a twist in the zombie campaign story: both converted their campaign committees to multicandidate PACs, rolled-over hundreds of thousands of dollars of leftover contributions, and then used the PACs as slush funds.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.fec.gov/updates/commission-will-review-dormant-committees-use-campaign-funds/",
+   "outlet": "Federal Election Commission",
+   "date": "2018-04-26",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Starting in July 2018, the Commission will examine the use of campaign funds by dormant committees as part of its review of campaign finance disclosure reports, to ensure the activity meets the regulatory standards for permissible use.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.notus.org/2026-election/congress-surplus-campaign-money-fec",
+   "outlet": "NOTUS",
+   "date": "2026-02-01",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Campaigns may also financially support party committees and their colleagues who are seeking to remain in office.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

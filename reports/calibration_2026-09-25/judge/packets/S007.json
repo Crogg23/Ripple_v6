@@ -1,0 +1,102 @@
+{
+ "story_id": "S007",
+ "lead": {
+  "headline": "11% of San Antonio hospice ID numbers sit in \"farms\": one signer, 4+ hospice names, one address. Elsewhere: 0.5%",
+  "number": "31 of 282 active San Antonio hospice IDs (11.0%) vs 0.53% outside California, Houston and San Antonio; Houston 4-7%, California 3.3%; Houston's Suite 610 five trace to two signers, in a building holding 14 hospice IDs since 2008",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "No hospice payment data exists in the warehouse, so nothing shows any of these IDs billed Medicare a dollar; and the signer isn't necessarily the owner."
+ },
+ "queries_logged": 15,
+ "queries": [
+  "San Antonio hospice fraud same address multiple hospices",
+  "San Antonio hospice boom Medicare fraud Express-News",
+  "Houston hospice \"Suite 610\" hospices one building",
+  "\"Houston\" \"12 hospices\" same location suite number",
+  "Texas hospices clustered same building suite numbers Medicare fraud 2026",
+  "\"Loop 410\" San Antonio hospices single building 15 hospice agencies",
+  "San Antonio hospices building Texas Senate Health and Human Services hearing hospice fraud April 2026",
+  "San Antonio hospice fraud KSAT OR \"Express-News\" OR \"San Antonio Report\" 2026",
+  "Lisa McNair testimony Texas Senate hospice co-located 308 presentation Non-Profit Hospice Alliance",
+  "hospice \"San Antonio\" CMS enhanced oversight Texas hospice moratorium 2026 new hospices",
+  "Texas hospice fraud San Antonio Houston clusters Texas Tribune OR \"Houston Chronicle\" 2026",
+  "Texas hospice fraud September 2026 San Antonio",
+  "\"hospice farms\" OR \"hospice mills\" Texas one owner multiple licenses same building",
+  "Texas hospice co-location not evidence of fraud shared office space industry response",
+  "\"7322 Southwest Freeway\" hospice fraud"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.hchlawyers.com/blog/2026/may/texas-hospice-agencies-qlarant-audits-and-medica/",
+   "outlet": "Hendershot Cowart (law firm blog)",
+   "date": "2026-05-27",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Of the newest entrants, 308 were co-located with at least one other hospice at the same address, and 15 separate hospice agencies were found operating out of a single building on Loop 410 in San Antonio.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " in April, the Texas Senate Committee on Health and Human Services heard testimony about a dramatic and troubling pattern in the state's hospice market. The number of licensed hospice providers in Texas increased nearly 100% between January 2020 and March 2026 – from roughly 688 providers to 1,366. Of the newest entrants, 308 were co-located with at least one other hospice at the same address, and 15 separate hospice agencies were found operating out of a single building on Loop 410 in San Antonio. The committee also heard that at least seven Texas hospices reported a 100% live discharge rate and another 25 had rates above 90%. For context, the national average live discharge rate for Medicare hospice patients is roughly 19%. These are the numbers that triggered federal attention. And from what we’ve seen, CMS is already ta"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.kbtx.com/2026/05/08/local-hospice-leader-exposes-fraud-draining-millions-taxpayer-dollars-across-texas/",
+   "outlet": "KBTX (Bryan-College Station TV)",
+   "date": "2026-05-08",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "McNair's research found as many as 15 hospices operating out of a single building, all under the same owner.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://www.breitbart.com/border/2026/05/09/report-medicare-scams-in-texas-15-hospices-in-one-building-patients-signed-up-without-knowing/",
+   "outlet": "Breitbart",
+   "date": "2026-05-09",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Take 10 patients, multiply that times 15 hospices working under one building, under one owner, and you can do the math.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e claims are draining taxpayer dollars and eroding trust in legitimate end-of–life care. McNair investigated the alleged fraud and found that one owner claimed to operate 15 hospices in a single building. She said that a single 10-patient hospice can generate $60,000 per month in Medicare billing. “Take 10 patients, multiply that times 15 hospices working under one building, under one owner, and you can do the math. That’s many millions of dollars that’s being frauded from the government,” McNair told reporter Nicole Marino. She added that some “patients” are not even aware they had been enrolled in hospice care services. The facility simply submits fraudulent bills under the patient’s name. In another odd statistic, McNair found that some hospic"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.propublica.org/article/hospices-arizona-california-nevada-texas-cms-medicaid-medicare",
+   "outlet": "ProPublica",
+   "date": "2023-07-21",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "In November, ProPublica and The New Yorker highlighted that the four states were overrun with for-profit hospices, many of them sharing the same addresses and owners.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "or new hospices in Arizona, California, Nevada and Texas. The Centers for Medicare and Medicaid Services, which pays for most of American hospice care, announced that this change was spurred by “numerous reports of hospice fraud, waste, and abuse” and “serious concerns about market oversaturation.” In November, ProPublica and The New Yorker highlighted that the four states were overrun with for-profit hospices, many of them sharing the same addresses and owners. Some of these hospices obtained licenses only to sell them to other entrepreneurs. Others appeared to be billing Medicare for “phantom” — that is, nonexistent — patients. Some did both. The government’s own data revealed a pattern of rapid hospice growth in the four states, far outstripping the demand for services. Rapid Rise in Hos"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.ksat.com/health/2026/08/27/california-and-the-federal-government-battle-over-hospice-fraud-as-victims-lose-coverage-and-care/",
+   "outlet": "KSAT (San Antonio TV)",
+   "date": "2026-08-27",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "It found dozens of hospice agencies were often clustered in the same building as well as a rapid increase in the number of hospices being established and abnormally high rates of patients being discharged.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "he state had about 2,100 hospice organizations, down from 2,800 four years prior. New York, which has far more stringent rules for registering a hospice, has just 39, according to its state health department. A 2022 state audit found rampant fraud and abuse in the system, particularly in LA County. It found dozens of hospice agencies were often clustered in the same building as well as a rapid increase in the number of hospices being established and abnormally high rates of patients being discharged. Hospice is often provided at patients’ homes, meaning one registered hospice can serve patients in numerous locations. In April, federal prosecutors made arrests in five cases involving hospice fraud in the LA area. A week later, California Attorney General Rob Bonta said 21 people were arrested for a multimillion scheme to use stol"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.baldwin.senate.gov/download/hospice-oversight-letter?download=1",
+   "outlet": "U.S. Sen. Tammy Baldwin, letter to HHS OIG and CMS (PDF)",
+   "date": "2022-12-16",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "For example, in Houston there are 12 hospices sharing the same location, with only a slight difference in the suite number.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Medicare data shows there are 22 hospices operating from the same location in Phoenix, along with another six at the same address in Mesa.8 In Las Vegas, Medicare claims there are 110 certified hospices, with multiple entities sharing the same address.9 Finally, in Texas the same pattern continues. For example, in Houston there are 12 hospices sharing the same location, with only a slight difference in the suite number.10 Most recently, The New Yorker and ProPublica highlighted this information in an exposé. In this piece, the reporter attempted to visit some of these hospices, only to find they were being monitored by a guard from a home laptop.11 Medicare fraud cannot be tolerated, especially when it is being perpetrated on our nation’s most vu"
+  }
+ ]
+}

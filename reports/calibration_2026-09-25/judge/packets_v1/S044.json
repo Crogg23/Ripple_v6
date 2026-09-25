@@ -1,0 +1,92 @@
+{
+ "story_id": "S044",
+ "lead": {
+  "headline": "Changes to high-risk medical devices filed as 30-day notices, skipping full FDA review, rose from 19% to 64%",
+  "number": "19% of approval changes in 2000-04 to 64% from 2010 on; one Medtronic defibrillator line (P980016) has 928 changes, 621 of them 30-day notices.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; long-lived pacemaker and defibrillator lines pile up manufacturing changes, and the device-problem reports here cover only 2020-01 to 2021-09."
+ },
+ "queries_logged": 11,
+ "queries": [
+  "PMA supplements 30-day notices share increased high-risk devices study FDA premarket approval changes",
+  "Rome Kesselheim cardiac implantable electronic devices PMA supplements 1979-2012 JAMA",
+  "\"P980016\" Medtronic PMA supplements",
+  "FDA \"30-day notice\" manufacturing changes high-risk devices without review loophole news investigation",
+  "study PMA supplement types over time \"30-day notices\" proportion increased premarket approval database analysis",
+  "JAMA Network Open 2023 risk of recall modifications high-risk devices PMA supplements 10,776 supplements",
+  "Implant Files ICIJ FDA supplements device changes without clinical testing Medtronic defibrillator",
+  "FDA PMA supplement modifications high-risk devices 2026 study OR report",
+  "\"supplement\" pathway \"99 percent\" cardiac devices pacemakers defibrillators approved Harvard 1979 to 2012",
+  "Medtronic ICD \"928\" OR \"621\" supplements \"30-day notice\" defibrillator PMA",
+  "FDA defends PMA supplement 30-day notice process manufacturing changes appropriate least burdensome industry AdvaMed response"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738",
+   "outlet": "JAMA Network Open (Dubin et al.)",
+   "date": "2023-04-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The most common supplement type was 30-day, at 7250 (67.3%), while PTS was least common, making up 132 (1.2%) of all supplements.",
+   "paywalled": false,
+   "quote_check": "blocked"
+  },
+  {
+   "idx": 1,
+   "url": "https://jamanetwork.com/journals/jama/fullarticle/1817796",
+   "outlet": "JAMA (Rome, Kramer, Kesselheim)",
+   "date": "2014-01-22",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Excluding 30-day notice supplements, which have increased markedly since their introduction in 1997, there was still a 3-fold increase over the past decade, from 60 supplements to 194.",
+   "paywalled": false,
+   "quote_check": "blocked"
+  },
+  {
+   "idx": 2,
+   "url": "https://jamanetwork.com/journals/jama/fullarticle/1817796",
+   "outlet": "JAMA (Rome, Kramer, Kesselheim)",
+   "date": "2014-01-22",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "These PMAs were the subject of 5829 PMA supplement applications. Nearly half (2754, 47%) were approved as 30-day notice supplements for manufacturing changes.",
+   "paywalled": false,
+   "quote_check": "blocked"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.raps.org/resource/higher-recall-risk-for-pma-approved-devices-with-s.html",
+   "outlet": "RAPS Regulatory Focus",
+   "date": "2023-04-17",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The study found that the most-used supplement type is a 30-day notice, used when a company makes changes to a manufacturing procedure or the way it makes a device.",
+   "paywalled": false,
+   "quote_check": "exact"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.medtechdive.com/news/post-approval-modification-high-risk-devices-recalls/647898/",
+   "outlet": "MedTech Dive",
+   "date": "2023-04-18",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Almost all, 99%, of the supplements were filed without clinical data.",
+   "paywalled": false,
+   "quote_check": "blocked"
+  },
+  {
+   "idx": 5,
+   "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738",
+   "outlet": "JAMA Network Open (Dubin et al.)",
+   "date": "2023-04-12",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Two brands of cardiac defibrillator leads (Sprint Fidelis [Medtronic] and Riata [St Jude Medical]) were recalled after being approved by supplements due to high rates of lead failures.",
+   "paywalled": false,
+   "quote_check": "blocked"
+  }
+ ]
+}

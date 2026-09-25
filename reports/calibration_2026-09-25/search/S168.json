@@ -1,0 +1,80 @@
+{
+  "story_id": "S168",
+  "entity": "Atlantic City Housing Authority (NJ014) public housing vacancies: 339 'regular' vacancies of 1,473 units (23%) in HUD's July 2025 file; Stanley Holmes Village about 50% occupied",
+  "queries": [
+    {"q": "Atlantic City Housing Authority vacant units Stanley Holmes Village", "found_useful": true},
+    {"q": "Atlantic City Housing Authority HUD vacancies empty apartments waiting list 2025", "found_useful": false},
+    {"q": "\"Atlantic City Housing Authority\" vacant units HUD troubled agency", "found_useful": true},
+    {"q": "Atlantic City Housing Authority 2026 news", "found_useful": false},
+    {"q": "\"has not actively leased available units since 2020\"", "found_useful": false},
+    {"q": "Atlantic City Housing Authority HUD receivership occupancy vacant apartments Stanley Holmes demolition August 2026", "found_useful": true},
+    {"q": "Atlantic City public housing hundreds of empty units while waiting list HUD letter occupancy 96% goal", "found_useful": true},
+    {"q": "pressofatlanticcity.com \"housing authority\" fails HUD rules residents get in pay and more", "found_useful": true},
+    {"q": "\"Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct'\"", "found_useful": true},
+    {"q": "\"Stanley Holmes\" demolition Section 18 application HUD approved vacant units 2026", "found_useful": false},
+    {"q": "Atlantic City Housing Authority HUD September 2026 OR August 2026 OR July 2026 Stanley Holmes residents", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.cbsnews.com/amp/philadelphia/news/atlantic-city-housing-authority-new-jersey",
+      "outlet": "CBS Philadelphia",
+      "date": "2025-07-25",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "That goal was not met, with HUD measuring that only 71.4% of the units were occcupied, according to the letter.",
+      "paywalled": false,
+      "searcher_note": "HUD takeover letter (July 2025) put ACHA occupancy at 71.4% vs a 96% goal. That is all vacancies, not the lead's 'regular' (no approved reason) subset. Typo 'occcupied' is on the page."
+    },
+    {
+      "url": "https://newjerseyglobe.com/local/doherty-huds-takeover-is-a-lifeline-for-atlantic-citys-most-vulnerable/",
+      "outlet": "New Jersey Globe (opinion)",
+      "date": "2025-08-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Occupancy had plummeted to 71.4%, far below the target of 96%.",
+      "paywalled": false,
+      "searcher_note": "Opinion piece backing the HUD takeover; repeats the 71.4% occupancy figure."
+    },
+    {
+      "url": "https://pressofatlanticcity.com/news/local/govt-and-politics/ac-housing-authority-fails-hud-rules-on-how-residents-get-in-pay-and-more/article_65d92228-11e3-11ee-9fb9-afb76e898d30.html",
+      "outlet": "Press of Atlantic City",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "AC Housing Authority fails HUD rules on how residents get in, pay, and more",
+      "paywalled": true,
+      "searcher_note": "Headline only (TollBit paywall). Search snippets say the HUD review found ACHA had not actively leased available units since 2020 and was only increasing vacant units; not verified on the page."
+    },
+    {
+      "url": "https://pressofatlanticcity.com/news/local/government-politics/atlantic-city-housing-authority-gas-leak-special-meeting/article_4a2d52fc-4bf3-11ee-8258-6fcbae5ed5d0.html",
+      "outlet": "Press of Atlantic City",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Atlantic City Housing Authority tells court it will empty, demolish one-third of Stanley Holmes Village",
+      "paywalled": true,
+      "searcher_note": "Headline only. Stanley Holmes Village 3 emptied for demolition: bears on the lead's caveat that some vacancies may be planned redevelopment."
+    },
+    {
+      "url": "https://www.atlanticcityfocus.com/atlantic-city-housing-authority-details-action-plan-enacted-for-fixing-issues-at-stanley-holmes-village/",
+      "outlet": "Atlantic City Focus (republishing City of Atlantic City release)",
+      "date": "2024-10-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The resident transfer strategy commenced in July, with Phase I allowing 72 residents from Village 3 to voluntarily relocate to improved accommodations, paving the way for redevelopment.",
+      "paywalled": false,
+      "searcher_note": "Stanley Holmes Village 3 being emptied on purpose for redevelopment: an approved-reason explanation for part of the vacancy."
+    },
+    {
+      "url": "https://pressofatlanticcity.com/news/local/government-politics/article_2feac2ed-414d-49b2-bdf7-d693522113ee.html",
+      "outlet": "Press of Atlantic City",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Atlantic City Housing Authority claims HUD's findings for takeover are 'not correct'",
+      "paywalled": true,
+      "searcher_note": "Headline only. ACHA disputed HUD's takeover findings in general (July 2025); no vacancy-specific rebuttal seen."
+    }
+  ],
+  "notes": "ACHA's empty units are covered, but as part of HUD's July 2025 substantial-default and takeover finding: 71.4% occupancy vs a 96% goal (CBS Philadelphia, NJ Globe). No source found with the lead's numbers: 339 regular vacancies of 1,473, 23%, highest of 91 peer authorities, 5.9x the peer median, or Stanley Holmes 50% occupied. The lead counts only 'regular' vacancies (no approved reason), while the press figure is total occupancy, so the two are different definitions. A 2023 HUD compliance review (Press of AC, paywalled) reportedly said ACHA had not actively leased units since 2020; that sentence came from search snippets only. HUD's own release (hud.gov/news/hud-no-25-110, 2025-07-25) was fetched: it covers heat, mold and pests, with no vacancy sentence. Breaking AC (2025-07-29) has ACHA's chair disputing HUD findings in general, with no vacancy detail. Press of AC dates are not visible behind the paywall; timestamps in the article IDs suggest June 2023 (fails HUD rules) and Sept 2023 (demolish one-third). Their pages redirect to tollbit.pressofatlanticcity.com, which refuses unauthenticated fetches. No July-September 2026 coverage found on vacancies."
+}

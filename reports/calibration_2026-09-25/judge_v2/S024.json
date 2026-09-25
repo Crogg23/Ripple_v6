@@ -1,0 +1,12 @@
+{
+  "story_id": "S024",
+  "bin": "Matched + more",
+  "entity": "BF Borgers' former public-company clients: where they went after the 2024 ban",
+  "deciding_sources": [0, 1, 3],
+  "earliest_match_date": "2024-06-21",
+  "post_cutoff_match": false,
+  "what_we_add": "27 ex-clients at four Nigerian audit firms; 75 of 218 show no later audit; the 143 that moved split 54 one-partner / 72 two-to-five-partner / 17 bigger firms",
+  "why": "Bloomberg Law (exact) says nearly 40% of Borgers' clients were stranded; our 75 of 218 is 34%, same direction, under 25% off, though its snapshot is June 2024. Accounting Today (125 moved in Q2) and The Dig (clients moved to worse firms) match the rest. No source names the Nigerian firms or the firm-size split.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S032",
+  "bin": "Unreported",
+  "entity": "Kim Hinojosa, San Antonio nurse practitioner, 2022 Part D specialty-drug prescribing",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The only page naming her is her employer's bio (hepatitis C background, no prescribing finding). OpenPrescriber's line that NPs are 49% of risk-flagged prescribers is topic, not the same kind of finding: no page context says what the flag measures. 12 queries logged.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

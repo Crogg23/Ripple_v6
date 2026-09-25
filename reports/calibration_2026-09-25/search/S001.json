@@ -1,0 +1,70 @@
+{
+  "story_id": "S001",
+  "entity": "Las Vegas Sands (lobbyist Andy Abboud), Texas lobby-report media spending, May 2021 - Jun 2026",
+  "queries": [
+    {"q": "Las Vegas Sands Texas lobby media spending Andy Abboud", "found_useful": true},
+    {"q": "Las Vegas Sands Texas Ethics Commission lobby reports advertising millions casino", "found_useful": true},
+    {"q": "Sands Texas casino ad campaign spending 2025 2026", "found_useful": true},
+    {"q": "Abboud lobby expenditure report \"media\" advertising Texas Ethics Commission Sands $20 million", "found_useful": false},
+    {"q": "Las Vegas Sands Texas ads millions lobby filings 2023 legislative session TV spending", "found_useful": true},
+    {"q": "Las Vegas Sands Texas casino September 2026", "found_useful": false},
+    {"q": "Texans for Public Justice Las Vegas Sands lobby advertising expenditures", "found_useful": false},
+    {"q": "\"Sands\" Texas lobbyist reported spending advertising \"lobby\" reports Abboud millions ads disclosed", "found_useful": true},
+    {"q": "Las Vegas Sands Texas lobbying media blitz overstated OR \"less than\" ad spending disputed", "found_useful": false},
+    {"q": "Las Vegas Sands Texas lobbyists spending report August 2026", "found_useful": false},
+    {"q": "\"Las Vegas Sands\" Texas \"TV ads\" \"$20 million\" OR \"$25 million\" OR \"$30 million\" casino campaign since 2021", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.texastribune.org/2021/06/16/las-vegas-sands-texas-casino-gambling/",
+      "outlet": "Texas Tribune",
+      "date": "2021-06-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Las Vegas Sands ended up spending as much as $6.3 million on lobbying at the Capitol, according to state records, plus what the company pegged as at least $2 million on a statewide ad campaign.",
+      "paywalled": false,
+      "searcher_note": "2021 session wrap: lobby contracts up to $6.3M plus company-stated $2M+ ad campaign; article adds total likely topped $10M given weeks on air. Quotes Abboud."
+    },
+    {
+      "url": "https://www.casino.org/news/las-vegas-sands-texas-casino-effort-fails-in-21-legislative-future-is-debatable/",
+      "outlet": "Casino.org",
+      "date": "2021-05-28",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Las Vegas Sands Corp. (LVS) spent between $10 milli0n and $20 million in recent months to promote gambling legislation in Texas.",
+      "paywalled": false,
+      "searcher_note": "Estimate of $10-20M combined lobby + ad spend for 2021 session; names Abboud as leading the effort. Page typo 'milli0n' copied as fetched."
+    },
+    {
+      "url": "https://www.texastribune.org/2021/04/14/las-vegas-sands-texas-gambling",
+      "outlet": "Texas Tribune",
+      "date": "2021-04-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The gaming empire Las Vegas Sands is launching a multimillion-dollar advertising blitz to build support for its campaign to bring casinos to Texas.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found of the Sands TV/radio ad campaign; no dollar figure for ads; Abboud testified at hearing."
+    },
+    {
+      "url": "https://www.casino.org/news/las-vegas-sands-hires-51-lobbyists-in-texas-as-casino-legalization-debate-continues/",
+      "outlet": "Casino.org",
+      "date": "2021-01-28",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The latest number works out to between $2.3 million to $4.5 million spent on lobbyists by the company, based on information from the Texas Ethics Commission.",
+      "paywalled": false,
+      "searcher_note": "Lobbyist-fee ranges from TEC records, not media spending; names Abboud as leading the lobbying effort."
+    },
+    {
+      "url": "https://texasstandard.org/stories/texas-casino-lobbying-las-vegas-sands-corporation/",
+      "outlet": "Texas Standard",
+      "date": "2025-06-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "They ran an expensive, nonstop TV advertising campaign that probably most of your listeners saw at some point.",
+      "paywalled": false,
+      "searcher_note": "2025 session wrap: nonstop TV ads, 100+ lobbyists, tens of millions in campaigns; no dollar figure for ads."
+    }
+  ],
+  "notes": "Every source names Sands and describes a multimillion-dollar ad campaign alongside lobbying, but none found reports the lobby-report 'media' line itself: no source has the $20.58M total, the 62 monthly reports filed under Abboud's name, the 70-71% share of all Texas lobby media, or the 4x-federal-lobby comparison. Only dollar figures for ads found: company-stated 'at least $2 million' (2021) and a $10-20M combined lobby+ads estimate (2021). Post-June-2026 coverage searched; none found on this measure. Texas Monthly bust piece returned 403; Dallas Morning News 2023-01-25 piece failed to load (not recorded). Most 2025-26 coverage is about Texas Sands PAC / Texas Defense PAC campaign money, a different measure."
+}

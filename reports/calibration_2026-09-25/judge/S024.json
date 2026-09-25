@@ -1,0 +1,12 @@
+{
+  "story_id": "S024",
+  "bin": "Matched + more",
+  "entity": "BF Borgers' former public-company clients: where they went after the 2024 SEC ban",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2024-06-21",
+  "post_cutoff_match": false,
+  "what_we_add": "27 ex-clients at four Nigerian audit firms; 54 at one-partner firms, 72 at 2-5 partner firms, 17 at bigger firms; 75 of 218 with no later audit",
+  "why": "Bloomberg (Jun 2024) says nearly 40% of Borgers clients were stranded without a new auditor; ours is 75 of 218 (34%), same direction and within 25%. Accounting Today counts 125 ex-clients onboarded in Q2 2024, consistent with our 143 who moved.\nNo usable quote mentions the Nigerian firms or the firm-size split. Bloomberg's 40% is a June 2024 snapshot, ours runs later.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

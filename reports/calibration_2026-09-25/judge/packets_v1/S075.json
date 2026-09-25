@@ -1,0 +1,40 @@
+{
+ "story_id": "S075",
+ "lead": {
+  "headline": "The federal housing agency pays $2,574 a unit a month for White Birch Apartments in Milwaukee: 223% of fair rent",
+  "number": "$2,574 a unit a month, 223% of fair rent for its bedroom mix; no other 100+ unit building in a cheap market outside Puerto Rico runs a higher ratio.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Two tax-credit deals in seven years (2017 FHA purchase, May 2024 new owner) fit a legal rent reset."
+ },
+ "queries_logged": 14,
+ "queries": [
+  "White Birch Apartments Milwaukee",
+  "White Birch Apartments Milwaukee HUD Section 8 rent sale 2024",
+  "\"White Birch\" Milwaukee apartments tax credit renovation new owner",
+  "Wallick acquires White Birch Apartments Milwaukee 339 units",
+  "\"White Birch\" apartments Milwaukee sold Journal Sentinel OR \"Urban Milwaukee\" OR \"Business Journal\"",
+  "HUD Section 8 contract rents above market Milwaukee overpaying landlords mark-up-to-market",
+  "\"White Birch Family Apartments\" OR \"White Birch Apartments\" Milwaukee loan FHA 2017 refinance HUD 223(f)",
+  "HUD OIG project-based Section 8 contract rents exceed comparable market rents rent comparability study overpaid",
+  "\"White Birch Apartments\" Milwaukee news 2026",
+  "project-based Section 8 landlords paid above market rents investigation news HUD contract rents twice fair market rent",
+  "\"9239 N. 75th\" OR \"9239 N 75th\" Milwaukee",
+  "preservation deal Section 8 mark-up-to-market rents resyndication tax credits rent increase HUD cost criticism",
+  "\"Aspen Crossing\" Milwaukee apartments renovation National Church Residences OR Evergreen OR Wallick",
+  "\"Aspen Crossing\" Milwaukee sold 2024 affordable housing Northridge news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://archives.hud.gov/offices/oig/reports/internal/ig810002.pdf",
+   "outlet": "HUD Office of Inspector General (New England District), audit 98-BO-111-0002",
+   "date": "1998-03-31",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Our initial analysis identified 1219 projects across the country which had rents in excess of 150 percent of FMRs.",
+   "paywalled": false,
+   "quote_check": "exact"
+  }
+ ]
+}

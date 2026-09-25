@@ -1,0 +1,12 @@
+{
+  "story_id": "S105",
+  "bin": "Known pattern",
+  "entity": "CMS Order and Referring file (Medicare's ordering-eligibility list): DME flag still Y for clinicians deactivated Sep 2025-Jun 2026",
+  "deciding_sources": [3, 4],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "1,036 of 1,247 recently deactivated 2024 Part B billers still flagged Y for equipment (power wheelchairs 71%) vs 2 of 1,040 older deactivations; sister list carries 10 of the 1,247",
+  "why": "CMS's own file spec names the list but only states the rule (current enrollees only); it measures nothing, so nothing to match or line up.\nThe Senate PSI 2008 release (DME paid on invalid prescribers) and CHAP 2026 (fake physician orders) cover the scheme, not this list's hole.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

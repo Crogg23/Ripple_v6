@@ -1,0 +1,12 @@
+{
+  "story_id": "S140",
+  "bin": "Matched + more",
+  "entity": "Federal (GNIS) place names still containing \"Negro\", and the pace of their renaming vs \"Squaw\" names",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "2022-02-23",
+  "post_cutoff_match": false,
+  "what_we_add": "438 names now (426 current, 12 historical); 105 list the n-word as an older name; 2020-23 renamings: 641 \"Squaw\" vs at least 41 \"Negro\" or n-word",
+  "why": "Atmos 2022: 469 GNIS names still carry the 'replacement word' (the lead's own n-word history shows that word is \"Negro\"); 469 vs 438 is within 25% and in the same direction. CRS/Interior put the Squaw renamings near 650-657, in line with 641; no source makes the Negro-vs-Squaw comparison.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

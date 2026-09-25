@@ -1,0 +1,51 @@
+{
+ "story_id": "S032",
+ "lead": {
+  "headline": "San Antonio nurse practitioner Kim Hinojosa prescribed $24.9M of specialty drugs to Medicare patients in 2022, most of any NP",
+  "number": "$24.9M of specialty Part D drugs in 2022 (hepatitis C, bowel disease and psoriasis drugs), then $1.37M in 2024; specialty peers run $12-19M.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The community-clinic (FQHC) tie is a current-address join, not proof she worked there in 2022."
+ },
+ "queries_logged": 12,
+ "queries": [
+  "Kim Hinojosa nurse practitioner San Antonio",
+  "nurse practitioner highest Medicare Part D prescriber hepatitis C specialty drugs San Antonio",
+  "\"Hinojosa\" nurse practitioner \"Texas Liver Institute\"",
+  "\"Kim Hinojosa\" Medicare OR prescriptions OR \"Open Payments\"",
+  "Hinojosa nurse practitioner San Antonio indicted OR settlement OR \"Office of Inspector General\" Medicare",
+  "nurse practitioners top Medicare Part D spending specialty drugs hepatitis C Humira analysis news",
+  "OIG report questionable Part D prescribing nurse practitioners extreme prescribing expensive drugs",
+  "San Antonio nurse practitioner Medicare prescriptions millions specialty pharmacy hepatitis C Express-News OR KSAT OR \"San Antonio Report\"",
+  "\"nurse practitioner\" \"$24.9 million\" Medicare Part D",
+  "nurse practitioners hepatitis C treatment outcomes equal to specialists liver clinics prescribe direct-acting antivirals study",
+  "openprescriber Hinojosa San Antonio nurse practitioner drug cost",
+  "nurse practitioner among top Medicare Part D prescribers by cost specialty drugs investigation 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://healthtexas.org/doctor/kim-hinojosa-fnp-c/",
+   "outlet": "HealthTexas Medical Group (provider bio)",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "She graduated with high honors and has been a contributor in many published articles for HCV and hepatic encephalopathy.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Monday 7 am - 5 pm Tuesday 7 am - 5 pm Thursday 7 am - 5 pm Friday 7 am - 5 pm Wednesday 10 am - 5 pm About Mrs. Kim Hinojosa was born in Presque Isle, Maine and raised in the Bangor area. Kim attended St. Joseph’s college in Standish, ME for her BSN and graduated from UTHSCSA with her MSN in 2010. She graduated with high honors and has been a contributor in many published articles for HCV and hepatic encephalopathy. Mrs. Kim Hinojosa decided to become an Advanced Practice Clinician when she was ready to be on the outpatient side of care after working in critical care for both adults and pediatrics for 12 years. It is rewarding for Kim to see her patients achieve their health goals and know she had a big part in helping them get there. When not"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.openprescriber.org/analysis/nurse-practitioners",
+   "outlet": "OpenPrescriber",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "They're also the most disproportionately flagged group in our risk analysis, accounting for 3254 of 6,706 flagged providers (49%).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

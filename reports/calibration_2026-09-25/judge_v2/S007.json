@@ -1,0 +1,12 @@
+{
+  "story_id": "S007",
+  "bin": "Matched + more",
+  "entity": "San Antonio hospice IDs clustered at one address ('hospice farms')",
+  "deciding_sources": [0],
+  "earliest_match_date": "2026-05-27",
+  "post_cutoff_match": false,
+  "what_we_add": "31 of 282 active San Antonio hospice IDs (11.0%) in farms vs 0.53% outside California, Houston and San Antonio; Houston 4-7%, California 3.3%; Houston Suite 610's five IDs trace to two signers, in a building holding 14 hospice IDs since 2008",
+  "why": "Law-firm blog (exact quote) names San Antonio: 15 hospice agencies in one building on Loop 410, 308 new entrants co-located. Same finding, same direction. Baldwin's 2022 letter separately backs the Houston part (12 hospices at one location, suite numbers). None has our 11% vs 0.5% rate or the signer tie. KBTX, Breitbart, ProPublica and KSAT cover the pattern without naming San Antonio.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

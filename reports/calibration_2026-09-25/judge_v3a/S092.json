@@ -1,0 +1,12 @@
+{
+  "story_id": "S092",
+  "bin": "Matched + more",
+  "entity": "US 1930s HOLC-graded neighborhoods: polluting-plant density by grade (D vs B)",
+  "deciding_sources": [0],
+  "earliest_match_date": "2022-03-09",
+  "post_cutoff_match": false,
+  "what_we_add": "toxic-release plants per 100 km2 by grade (D 13.35, C 5.82, B 2.21, A 0.07); D six times B; D denser than B in 119 of 212 cities",
+  "why": "Lane et al. (2022), across HOLC-mapped areas: D-grade neighborhoods sit near more industrial sources and the count rises from A to D, the same finding in words on a broader facility set. Estien et al. (2024) found no significant redlined/nonredlined gap in toxic releases, but in 8 cities, on a pollution-burden measure, and a null is not an opposite direction, so it doesn't contradict; a stricter measure reading makes this Known pattern.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

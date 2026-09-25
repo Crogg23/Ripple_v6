@@ -1,0 +1,12 @@
+{
+  "story_id": "S092",
+  "bin": "Matched + more",
+  "entity": "US HOLC-graded (redlined) neighborhoods, density of polluting industrial plants by grade",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "2022-03-09",
+  "post_cutoff_match": false,
+  "what_we_add": "TRI plant density by grade (D 13.35, C 5.82, B 2.21, A 0.07 per 100 km2), the 6x D-vs-B ratio, D denser than B in 119 of 212 cities",
+  "why": "Lane et al. (national HOLC areas) find industrial sources nearby rise from A to D; NPR says redlined areas drew more hazardous facilities: same finding in words. Estien et al. find no significant toxic-release gap, but in 8 cities on a different indicator and with no opposite direction, so no contradiction; our own 119 of 212 split fits it.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

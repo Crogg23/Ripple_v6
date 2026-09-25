@@ -1,0 +1,33 @@
+{
+  "story_id": "S075",
+  "entity": "White Birch Apartments, 9239 N 75th St, Milwaukee WI (HUD project-based Section 8): contract rent $2,574/unit/month, 223% of fair market rent",
+  "queries": [
+    {"q": "White Birch Apartments Milwaukee", "found_useful": false},
+    {"q": "White Birch Apartments Milwaukee HUD Section 8 rent sale 2024", "found_useful": false},
+    {"q": "\"White Birch\" Milwaukee apartments tax credit renovation new owner", "found_useful": false},
+    {"q": "Wallick acquires White Birch Apartments Milwaukee 339 units", "found_useful": false},
+    {"q": "\"White Birch\" apartments Milwaukee sold Journal Sentinel OR \"Urban Milwaukee\" OR \"Business Journal\"", "found_useful": false},
+    {"q": "HUD Section 8 contract rents above market Milwaukee overpaying landlords mark-up-to-market", "found_useful": false},
+    {"q": "\"White Birch Family Apartments\" OR \"White Birch Apartments\" Milwaukee loan FHA 2017 refinance HUD 223(f)", "found_useful": false},
+    {"q": "HUD OIG project-based Section 8 contract rents exceed comparable market rents rent comparability study overpaid", "found_useful": true},
+    {"q": "\"White Birch Apartments\" Milwaukee news 2026", "found_useful": false},
+    {"q": "project-based Section 8 landlords paid above market rents investigation news HUD contract rents twice fair market rent", "found_useful": false},
+    {"q": "\"9239 N. 75th\" OR \"9239 N 75th\" Milwaukee", "found_useful": false},
+    {"q": "preservation deal Section 8 mark-up-to-market rents resyndication tax credits rent increase HUD cost criticism", "found_useful": false},
+    {"q": "\"Aspen Crossing\" Milwaukee apartments renovation National Church Residences OR Evergreen OR Wallick", "found_useful": false},
+    {"q": "\"Aspen Crossing\" Milwaukee sold 2024 affordable housing Northridge news", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://archives.hud.gov/offices/oig/reports/internal/ig810002.pdf",
+      "outlet": "HUD Office of Inspector General (New England District), audit 98-BO-111-0002",
+      "date": "1998-03-31",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Our initial analysis identified 1219 projects across the country which had rents in excess of 150 percent of FMRs.",
+      "paywalled": false,
+      "searcher_note": "Pattern only: HUD OIG audit of Section 8 projects with rents far above fair market rent (54 budget-based projects averaged 168% of FMR; some over 500%). Does not name White Birch or Milwaukee."
+    }
+  ],
+  "notes": "No news, trade press, or government source found naming White Birch Apartments (Milwaukee) and its Section 8 contract rent, the $2,574 figure, or the 223%-of-FMR ratio. Results were all rental listings/directories (not recorded). Listings show the same address, 9239 N 75th St, now marketed as 'Aspen Crossing' (newly renovated LIHTC, managed by Evergreen Real Estate Group), consistent with the lead's 2024 ownership change, but no press on the sale or rename was found. A Wallick page lists 'Aspen Crossing, Milwaukee (356 units)' in a portfolio bought from National Church Residences (undated; unit count differs from the 339 HUD lists for White Birch; not recorded, since it says nothing about rents). Only pattern coverage found: a 1998 HUD OIG audit on Section 8 rents above FMR. No July-Sept 2026 coverage found."
+}

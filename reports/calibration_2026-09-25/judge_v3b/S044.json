@@ -1,0 +1,12 @@
+{
+  "story_id": "S044",
+  "bin": "Matched + more",
+  "entity": "US high-risk (PMA) device changes, share filed as 30-day notices; window 2000-04 vs 2010 on",
+  "deciding_sources": [0, 3],
+  "earliest_match_date": "2023-04-12",
+  "post_cutoff_match": false,
+  "what_we_add": "the 19% baseline in 2000-04 and the rise to 64%; Medtronic P980016 with 928 changes, 621 of them 30-day notices",
+  "why": "Matched claim: the recent level. JAMA Netw Open (RAPS relays it) has 30-day notices at 67.3% of PMA supplements, 2008-2021, vs our 64% from 2010 on. The rise from 19% is in no usable source: the 2014 JAMA quotes are blocked (not paywalled) or missing, so ignored.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

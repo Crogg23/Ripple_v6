@@ -1,0 +1,41 @@
+{
+  "story_id": "S032",
+  "entity": "Kim Hinojosa, nurse practitioner, San Antonio TX: $24.9M of specialty Medicare Part D drugs in 2022 (hepatitis C, bowel disease, psoriasis), most of any NP; $1.37M in 2024",
+  "queries": [
+    {"q": "Kim Hinojosa nurse practitioner San Antonio", "found_useful": true},
+    {"q": "nurse practitioner highest Medicare Part D prescriber hepatitis C specialty drugs San Antonio", "found_useful": false},
+    {"q": "\"Hinojosa\" nurse practitioner \"Texas Liver Institute\"", "found_useful": false},
+    {"q": "\"Kim Hinojosa\" Medicare OR prescriptions OR \"Open Payments\"", "found_useful": false},
+    {"q": "Hinojosa nurse practitioner San Antonio indicted OR settlement OR \"Office of Inspector General\" Medicare", "found_useful": false},
+    {"q": "nurse practitioners top Medicare Part D spending specialty drugs hepatitis C Humira analysis news", "found_useful": false},
+    {"q": "OIG report questionable Part D prescribing nurse practitioners extreme prescribing expensive drugs", "found_useful": false},
+    {"q": "San Antonio nurse practitioner Medicare prescriptions millions specialty pharmacy hepatitis C Express-News OR KSAT OR \"San Antonio Report\"", "found_useful": false},
+    {"q": "\"nurse practitioner\" \"$24.9 million\" Medicare Part D", "found_useful": true},
+    {"q": "nurse practitioners hepatitis C treatment outcomes equal to specialists liver clinics prescribe direct-acting antivirals study", "found_useful": false},
+    {"q": "openprescriber Hinojosa San Antonio nurse practitioner drug cost", "found_useful": false},
+    {"q": "nurse practitioner among top Medicare Part D prescribers by cost specialty drugs investigation 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://healthtexas.org/doctor/kim-hinojosa-fnp-c/",
+      "outlet": "HealthTexas Medical Group (provider bio)",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "She graduated with high honors and has been a contributor in many published articles for HCV and hepatic encephalopathy.",
+      "paywalled": false,
+      "searcher_note": "Her employer bio, not coverage. It shows a hepatitis C / liver background, a possible innocent reason for heavy hep C prescribing. It says nothing about her prescribing volume."
+    },
+    {
+      "url": "https://www.openprescriber.org/analysis/nurse-practitioners",
+      "outlet": "OpenPrescriber",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "They're also the most disproportionately flagged group in our risk analysis, accounting for 3254 of 6,706 flagged providers (49%).",
+      "paywalled": false,
+      "searcher_note": "Data-site analysis (page says February 2026) of NPs as Part D prescribers. Aggregate only; names no individual NP and says nothing about specialty drugs."
+    }
+  ],
+  "notes": "No news, government, court or research source found that names Kim Hinojosa over her Medicare prescribing, the $24.9M figure, or a ranking as the top NP prescriber. Searches for her name turned up only directory and employer profiles (WebMD, Doximity, US News, HealthTexas). WebMD lists her specialty as nurse practitioner and gastroenterology. No DOJ or OIG enforcement found under her name. The only San Antonio NP enforcement result was a different person in a lab-kickback case, not recorded. No pattern coverage found on NPs as top-dollar specialty-drug prescribers. A 2013 OIG report on questionable Part D prescribers counts NPs but is about controlled substances, so it wasn't recorded. Research found that NP-run hep C care matches specialist outcomes (PMC8171160, aidsmap 2016); that is general context, not about this entity. No July-September 2026 coverage found."
+}

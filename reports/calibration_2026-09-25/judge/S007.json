@@ -1,0 +1,12 @@
+{
+  "story_id": "S007",
+  "bin": "Known pattern",
+  "entity": "San Antonio hospice ID 'farms': 31 of 282 active IDs (11%) at shared signer/address clusters, plus Houston's Suite 610 building",
+  "deciding_sources": [1, 5, 3, 4],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Usable quotes cover the scheme (15 hospices in one building under one owner; 12 Houston hospices at one address with different suite numbers; four states overrun with shared-address hospices), but none names San Antonio or the Suite 610 building.\nThe only quote naming San Antonio (15 agencies on Loop 410, idx 0) is blocked and not paywalled, so it's ignored; if it loaded, this would likely read Matched.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

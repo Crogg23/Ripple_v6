@@ -1,0 +1,12 @@
+{
+  "story_id": "S116",
+  "bin": "Matched + more",
+  "entity": "Duffy for Wisconsin, Sean Duffy's old House campaign committee",
+  "deciding_sources": [0, 1, 2, 3],
+  "earliest_match_date": "2026-03-24",
+  "post_cutoff_match": true,
+  "what_we_add": "$0 raised from donors; the two check dates (2025-10-27, 2026-07-15); the $1M check is the biggest from any dormant campaign committee in 2025-26 (next: $215K)",
+  "why": "WPR (2026-08-07) states $1.5M from Duffy's old account to Northwoods Future PAC, which spent $2M+ for Alfonso; Badger Project (2026-03-24) and CBS (2026-07-06) had the first $1M, both before the 2026-07-15 check, so no conflict. Wigderson copies the Bulwark (half of the PAC's $3.125M) and Crooks and Liars copies Badger, each counted once.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

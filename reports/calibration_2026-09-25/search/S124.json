@@ -1,0 +1,77 @@
+{
+  "story_id": "S124",
+  "entity": "US Court of Appeals for the 5th Circuit: Supreme Court merits cases 2021-24 vs 2015-20, share that were federal-government appeals (16 of 38 vs 1 of 26)",
+  "queries": [
+    {"q": "Fifth Circuit Supreme Court docket Biden administration appeals share of cases 2023 term", "found_useful": true},
+    {"q": "Solicitor General Prelogar Fifth Circuit petitions Supreme Court reversed Fifth Circuit record number cases", "found_useful": false},
+    {"q": "\"Fifth Circuit\" Supreme Court \"federal government\" appeals increase statistics analysis", "found_useful": true},
+    {"q": "Empirical SCOTUS Fifth Circuit cases Supreme Court government petitioner Legal Calculus Feldman", "found_useful": false},
+    {"q": "Justice Department keeps going to Supreme Court over Fifth Circuit rulings Biden administration wins reversals Rahimi Jarkesy Cargill Vanderstok", "found_useful": true},
+    {"q": "Fifth Circuit Supreme Court cases per appeals rate compared other circuits 2015-2020 vs 2021-2024 study", "found_useful": true},
+    {"q": "Fifth Circuit Supreme Court cases federal government 2026 analysis term", "found_useful": true},
+    {"q": "Texas lawsuits Biden administration Fifth Circuit forum shopping Supreme Court solicitor general emergency applications count", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.scotusblog.com/2023/03/another-federal-agency-challenges-adverse-ruling-by-5th-circuit/",
+      "outlet": "SCOTUSblog",
+      "date": "2023-03-31",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "This week, we highlight cert petitions that ask the court to consider, among other things, whether to reverse a second 5th Circuit ruling that invalidated powers of the agency charged with regulating investments, the Securities and Exchange Commission.",
+      "paywalled": false,
+      "searcher_note": "Names the pattern directly: federal agencies (CFPB, then SEC in Jarkesy) petitioning the Supreme Court to reverse 5th Circuit rulings. No count or share."
+    },
+    {
+      "url": "https://news.bloomberglaw.com/us-law-week/conservative-fifth-circuit-is-an-outlier-for-supreme-court",
+      "outlet": "Bloomberg Law",
+      "date": "2025-01-20",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "which is scheduled for argument Tuesday at the high court, is one of 13 cases this term out of the US Court of Appeals for the Fifth Circuit. That’s more than 20% of the Supreme Court’s current workload.",
+      "paywalled": false,
+      "searcher_note": "OT2024: 13 Fifth Circuit cases, >20% of docket, next highest 4th Cir with 7; hook case is FDA v. R.J. Reynolds (a federal-government appeal); says circuit is go-to court to overturn Biden policies. No government-appellant share."
+    },
+    {
+      "url": "https://edition.cnn.com/2024/04/07/politics/supreme-court-5th-circuit/index.html",
+      "outlet": "CNN",
+      "date": "2024-04-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Texas has become a breeding ground for some of the most high-profile, high-stakes legal cases, often brought against the Biden administration by Texas Attorney General Ken Paxton",
+      "paywalled": false,
+      "searcher_note": "Explains the mechanism: suits against the Biden administration in Texas feed 5th Circuit rulings the government then takes to the Supreme Court (ghost guns, social media, immigration). No count."
+    },
+    {
+      "url": "https://www.texastribune.org/2024/07/02/5th-circuit-appeals-supreme-court-texas/",
+      "outlet": "Texas Tribune",
+      "date": "2024-07-02",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The 5th Circuit, which hears appeals from Texas, Louisiana and Mississippi, had three rulings upheld by the U.S. Supreme Court, and eight overturned, more than any other court this term.",
+      "paywalled": false,
+      "searcher_note": "OT2023 tally of 5th Circuit outcomes at the Supreme Court (3 upheld, 8 overturned); reversal-rate framing, not who appealed."
+    },
+    {
+      "url": "https://fedsoc.org/commentary/fedsoc-blog/is-the-fifth-circuit-too-conservative",
+      "outlet": "Federalist Society Blog",
+      "date": "2024-08-19",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Once we control for that, its reversal rate was decidedly middling.",
+      "paywalled": false,
+      "searcher_note": "Disagreement angle on 5th Circuit exceptionalism: once you control for the circuit's large appeal volume, its Supreme Court reversal rate is average. Different measure (reversal rate, not selection or who appealed)."
+    },
+    {
+      "url": "https://www.nga.org/updates/2025-2026-u-s-supreme-court-term-summary-of-key-decisions-and-implications-for-states/",
+      "outlet": "National Governors Association",
+      "date": "2026-09-04",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The Fifth Circuit was the source of 11 cases decided by the Court—the most of any federal circuit—followed by nine from the Fourth Circuit.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage (OT2025, outside the lead's 2021-24 window): 5th Circuit still the top source of Supreme Court cases. No federal-government share."
+    }
+  ],
+  "notes": "Many sources name the 5th Circuit, its outsized Supreme Court docket, and the flow of Biden-administration losses to the Court, but none found reports the lead's specific finding: the federal government as appellant in 16 of 38 5th Circuit Supreme Court cases 2021-24 vs 1 of 26 in 2015-20, the ~12% baseline in the other 11 regional circuits, or Supreme Court cases per 1,000 5th Circuit appeals (0.57 to 1.50). Also seen but not recorded: Bloomberg Law 2023-12-21 ('The Fifth Circuit has become a magnet for conservative challenges against Biden administration policies'); Bloomberg Law 2023-12-11 Empirical SCOTUS piece on 5th Circuit ideology; The Hill 2024 piece returned 403. Search snippets cite a 74% reversal rate and 'eight of the 11' OT2023 reversed/vacated; not verified on a fetched page."
+}

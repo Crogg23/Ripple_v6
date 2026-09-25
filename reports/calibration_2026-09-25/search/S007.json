@@ -1,0 +1,84 @@
+{
+  "story_id": "S007",
+  "entity": "San Antonio hospice 'farms' (one signer, 4+ hospice names, one address), active hospice IDs in NPPES/CMS; plus Houston 7322 Southwest Fwy Suite 610 cluster",
+  "queries": [
+    {"q": "San Antonio hospice fraud same address multiple hospices", "found_useful": true},
+    {"q": "San Antonio hospice boom Medicare fraud Express-News", "found_useful": true},
+    {"q": "Houston hospice \"Suite 610\" hospices one building", "found_useful": false},
+    {"q": "\"Houston\" \"12 hospices\" same location suite number", "found_useful": false},
+    {"q": "Texas hospices clustered same building suite numbers Medicare fraud 2026", "found_useful": true},
+    {"q": "\"Loop 410\" San Antonio hospices single building 15 hospice agencies", "found_useful": true},
+    {"q": "San Antonio hospices building Texas Senate Health and Human Services hearing hospice fraud April 2026", "found_useful": true},
+    {"q": "San Antonio hospice fraud KSAT OR \"Express-News\" OR \"San Antonio Report\" 2026", "found_useful": false},
+    {"q": "Lisa McNair testimony Texas Senate hospice co-located 308 presentation Non-Profit Hospice Alliance", "found_useful": true},
+    {"q": "hospice \"San Antonio\" CMS enhanced oversight Texas hospice moratorium 2026 new hospices", "found_useful": false},
+    {"q": "Texas hospice fraud San Antonio Houston clusters Texas Tribune OR \"Houston Chronicle\" 2026", "found_useful": false},
+    {"q": "Texas hospice fraud September 2026 San Antonio", "found_useful": false},
+    {"q": "\"hospice farms\" OR \"hospice mills\" Texas one owner multiple licenses same building", "found_useful": true},
+    {"q": "Texas hospice co-location not evidence of fraud shared office space industry response", "found_useful": false},
+    {"q": "\"7322 Southwest Freeway\" hospice fraud", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.hchlawyers.com/blog/2026/may/texas-hospice-agencies-qlarant-audits-and-medica/",
+      "outlet": "Hendershot Cowart (law firm blog)",
+      "date": "2026-05-27",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Of the newest entrants, 308 were co-located with at least one other hospice at the same address, and 15 separate hospice agencies were found operating out of a single building on Loop 410 in San Antonio.",
+      "paywalled": false,
+      "searcher_note": "Law-firm summary of April 2026 Texas Senate HHS testimony; the only page found that names a San Antonio building with stacked hospice agencies. No shares, no signer detail."
+    },
+    {
+      "url": "https://www.kbtx.com/2026/05/08/local-hospice-leader-exposes-fraud-draining-millions-taxpayer-dollars-across-texas/",
+      "outlet": "KBTX (Bryan-College Station TV)",
+      "date": "2026-05-08",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "McNair's research found as many as 15 hospices operating out of a single building, all under the same owner.",
+      "paywalled": false,
+      "searcher_note": "Local TV on Lisa McNair's Texas Senate testimony; same one-owner-many-hospices-one-building pattern, but the page does not name the city or building."
+    },
+    {
+      "url": "https://www.breitbart.com/border/2026/05/09/report-medicare-scams-in-texas-15-hospices-in-one-building-patients-signed-up-without-knowing/",
+      "outlet": "Breitbart",
+      "date": "2026-05-09",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Take 10 patients, multiply that times 15 hospices working under one building, under one owner, and you can do the math.",
+      "paywalled": false,
+      "searcher_note": "Re-reports the McNair testimony; Texas-wide, no San Antonio or Houston address named."
+    },
+    {
+      "url": "https://www.propublica.org/article/hospices-arizona-california-nevada-texas-cms-medicaid-medicare",
+      "outlet": "ProPublica",
+      "date": "2023-07-21",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "In November, ProPublica and The New Yorker highlighted that the four states were overrun with for-profit hospices, many of them sharing the same addresses and owners.",
+      "paywalled": false,
+      "searcher_note": "Earliest pattern coverage found: Texas among four states with hospices sharing addresses and owners; no San Antonio or Houston detail."
+    },
+    {
+      "url": "https://www.ksat.com/health/2026/08/27/california-and-the-federal-government-battle-over-hospice-fraud-as-victims-lose-coverage-and-care/",
+      "outlet": "KSAT (San Antonio TV)",
+      "date": "2026-08-27",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "It found dozens of hospice agencies were often clustered in the same building as well as a rapid increase in the number of hospices being established and abnormally high rates of patients being discharged.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff San Antonio outlet, but the clustering sentence is about California (a state audit), not Texas."
+    },
+    {
+      "url": "https://www.baldwin.senate.gov/download/hospice-oversight-letter?download=1",
+      "outlet": "U.S. Sen. Tammy Baldwin, letter to HHS OIG and CMS (PDF)",
+      "date": "2022-12-16",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "For example, in Houston there are 12 hospices sharing the same location, with only a slight difference in the suite number.",
+      "paywalled": false,
+      "searcher_note": "Senator's letter citing Medicare data: a Houston building with 12 hospices at near-identical suites. Address not given, so can't tie it to the lead's Suite 610 building. PDF; line break falls between 'Houston' and 'there'."
+    }
+  ],
+  "notes": "Closest hit is the April 8, 2026 Texas Senate HHS testimony (Lisa McNair, Hospice Brazos Valley), which named a San Antonio Loop 410 building with 15 hospice agencies and 308 co-located new entrants statewide; found only via a law-firm blog quoting it, not in a news story that names San Antonio. News4SanAntonio (2026-04-20) and WSBT copies of the same Waste Watch piece were fetched and do NOT contain the building/Loop 410 sentence. Hospice News 2026-06-03 fetched: no San Antonio/Houston/co-location content. No source found for the lead's 11% San Antonio share, the 0.53% elsewhere rate, or the Houston Suite 610 cluster; search for 7322 Southwest Fwy found only directory and HHSC closure listings. No coverage found using 'signer' (NPPES authorized official) as the link. Industry pushback found (TAHC&H via Hospice News) argues against blanket rules, not against the co-location fact. voz.us page returned 403. DOJ pages would not render in the fetcher. Post-cutoff San Antonio hospice coverage found but on a different finding: a June 2026 kickback indictment (Christina Charles) summarized in a hchlawyers.com blog dated 2026-07-25; not recorded as a source."
+}

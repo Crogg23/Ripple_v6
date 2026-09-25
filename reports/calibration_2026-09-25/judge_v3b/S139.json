@@ -1,0 +1,12 @@
+{
+  "story_id": "S139",
+  "bin": "Contradicted",
+  "entity": "Tesla's Fremont factory: Bay Area air district violation notices and enforcement",
+  "deciding_sources": [3, 4, 5, 0, 1],
+  "earliest_match_date": "2026-01-28",
+  "post_cutoff_match": false,
+  "what_we_add": "Second of 86 plants; notices written on 133 days; peers' median 28 formal actions per 100 notices; Phillips 66 Rodeo (213 notices) also none",
+  "why": "The notice-count claim matches (Richmondside 374 cited 2015-2025; SFGATE 369 in five years, all pending). The 'no district enforcement order' claim fails: the air district's own release (2024-06-25) and KTVU report an abatement order on the Fremont paint shop, and KQED reports a $1M district settlement over 33 notices in 2021.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

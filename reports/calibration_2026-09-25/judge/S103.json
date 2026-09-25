@@ -1,0 +1,12 @@
+{
+  "story_id": "S103",
+  "bin": "Matched + more",
+  "entity": "Lawyer-sourced metoclopramide (Reglan) side-effect reports in FDA's FAERS, the 2011 surge, filed through generic makers Teva, Actavis and Mutual",
+  "deciding_sources": [0, 1, 3, 4],
+  "earliest_match_date": "2012-04-05",
+  "post_cutoff_match": false,
+  "what_we_add": "The filers by name (Teva, Actavis, Mutual); about 15,500 lawyer-sourced reports = 91% of the generic's reports; 9,089 in Apr-Sep 2011 vs about 16 a quarter in 2004-2009",
+  "why": "ISMP names metoclopramide as the top lawsuit-report drug of 2011 (4,237 in Q2 alone); Drugwatch says 11,000+ that year; RAPS says 65% of reports through 2018 were lawyer-sourced. Windows differ, and none disagrees.\nNo quote names the three generic makers as the filers; read the entity as the companies and this drops to Known pattern.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S103",
+  "bin": "Known pattern",
+  "entity": "Generic makers Teva, Actavis and Mutual, as filers of lawyer-sourced metoclopramide reports",
+  "deciding_sources": [0, 1, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No usable source names Teva, Actavis or Mutual; all are about the drug: ISMP counts 4,237 lawsuit reports in 2011 Q2 and ranks metoclopramide 2011's most-litigated drug, RAPS says 65% of its reports through 2018 were lawyer-sourced. The headline's subject is the makers, so drug-level coverage is Known pattern under v3 (Drugwatch's 'entity yes' names the drug, not the makers).",
+  "confidence": "high",
+  "blocked_evidence": false
+}

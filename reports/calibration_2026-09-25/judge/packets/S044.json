@@ -1,0 +1,98 @@
+{
+ "story_id": "S044",
+ "lead": {
+  "headline": "Changes to high-risk medical devices filed as 30-day notices, skipping full FDA review, rose from 19% to 64%",
+  "number": "19% of approval changes in 2000-04 to 64% from 2010 on; one Medtronic defibrillator line (P980016) has 928 changes, 621 of them 30-day notices.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; long-lived pacemaker and defibrillator lines pile up manufacturing changes, and the device-problem reports here cover only 2020-01 to 2021-09."
+ },
+ "queries_logged": 11,
+ "queries": [
+  "PMA supplements 30-day notices share increased high-risk devices study FDA premarket approval changes",
+  "Rome Kesselheim cardiac implantable electronic devices PMA supplements 1979-2012 JAMA",
+  "\"P980016\" Medtronic PMA supplements",
+  "FDA \"30-day notice\" manufacturing changes high-risk devices without review loophole news investigation",
+  "study PMA supplement types over time \"30-day notices\" proportion increased premarket approval database analysis",
+  "JAMA Network Open 2023 risk of recall modifications high-risk devices PMA supplements 10,776 supplements",
+  "Implant Files ICIJ FDA supplements device changes without clinical testing Medtronic defibrillator",
+  "FDA PMA supplement modifications high-risk devices 2026 study OR report",
+  "\"supplement\" pathway \"99 percent\" cardiac devices pacemakers defibrillators approved Harvard 1979 to 2012",
+  "Medtronic ICD \"928\" OR \"621\" supplements \"30-day notice\" defibrillator PMA",
+  "FDA defends PMA supplement 30-day notice process manufacturing changes appropriate least burdensome industry AdvaMed response"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738",
+   "outlet": "JAMA Network Open (Dubin et al.)",
+   "date": "2023-04-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The most common supplement type was 30-day, at 7250 (67.3%), while PTS was least common, making up 132 (1.2%) of all supplements.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ") Radiology 12 (3.2) 1 (0.8) 25 (1.4) 14 (1.1) 3 (0.8) 2 (0.03) 45 (0.4) 3.5 (1-6) [10] 3.4 (2.9) Toxicology 1 (0.3) 0 1 (0.1) 0 0 0 1 (0.01) NA NA From 2008 to 2021, 10 776 supplements to these PMA devices were approved, with a median of 2.5 (IQR, 1.2-5.0) supplements per device approved annually. The most common supplement type was 30-day, at 7250 (67.3%), while PTS was least common, making up 132 (1.2%) of all supplements. Among the remaining supplement types, 1801 (16.7%) were 180-day, 1239 (11.5%) were real-time, and 354 (3.3%) were special. The most common reason for supplement submission was process changes, accounting for 7293 (67.7%) of all supplements. These are meant to address manufacturing procedures (eg, sterilization, automating, and joini"
+  },
+  {
+   "idx": 1,
+   "url": "https://jamanetwork.com/journals/jama/fullarticle/1817796",
+   "outlet": "JAMA (Rome, Kramer, Kesselheim)",
+   "date": "2014-01-22",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Excluding 30-day notice supplements, which have increased markedly since their introduction in 1997, there was still a 3-fold increase over the past decade, from 60 supplements to 194.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://jamanetwork.com/journals/jama/fullarticle/1817796",
+   "outlet": "JAMA (Rome, Kramer, Kesselheim)",
+   "date": "2014-01-22",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "These PMAs were the subject of 5829 PMA supplement applications. Nearly half (2754, 47%) were approved as 30-day notice supplements for manufacturing changes.",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://www.raps.org/resource/higher-recall-risk-for-pma-approved-devices-with-s.html",
+   "outlet": "RAPS Regulatory Focus",
+   "date": "2023-04-17",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The study found that the most-used supplement type is a 30-day notice, used when a company makes changes to a manufacturing procedure or the way it makes a device.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hould be reevaluated to optimize patient safety and public health.” The agency offers makers of Class III PMA devices six types of supplements to allow for product improvements, but only one—panel track supplements—requires clinical evidence. Panel track supplements are the least-used of the bunch. The study found that the most-used supplement type is a 30-day notice, used when a company makes changes to a manufacturing procedure or the way it makes a device. For their study, the authors looked at devices approved via the FDA’s PMA pathway from January 2008 through December 2021; a total of 373 PMA products with 10,776 supplements were reviewed. “Multivariable analysis demonstrated that each increase of one supplement per year was associated with increased risk of recall,” they wro"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.medtechdive.com/news/post-approval-modification-high-risk-devices-recalls/647898/",
+   "outlet": "MedTech Dive",
+   "date": "2023-04-18",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Almost all, 99%, of the supplements were filed without clinical data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "The researchers analyzed 373 devices that received PMAs between 2008 and 2019. Manufacturers filed 10,766 supplements in relation to the devices. The analysis showed that devices with more supplements were more likely to be recalled. Each increase of one supplement a year raised the risk of recall. Almost all, 99%, of the supplements were filed without clinical data. The study found no association between the 1% of data-backed, panel track supplements and the risk of recall, leading the researchers to conclude “the clinical data may provide some protective effect.” High-risk medical devices, or class III devices, such as defibrillators, pacemakers and implanted prosthetic devices, account for ab"
+  },
+  {
+   "idx": 5,
+   "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738",
+   "outlet": "JAMA Network Open (Dubin et al.)",
+   "date": "2023-04-12",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Two brands of cardiac defibrillator leads (Sprint Fidelis [Medtronic] and Riata [St Jude Medical]) were recalled after being approved by supplements due to high rates of lead failures.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nges [eg, sterilization, cleansing, or welding of parts]). 6 , 7 Estimates for the median number of supplements per original PMA range from 6.5 to over 50. 7 , 8 Previous investigators have expressed concerns that modified devices may bear little resemblance to the device originally approved. 7 - 9 Two brands of cardiac defibrillator leads (Sprint Fidelis [Medtronic] and Riata [St Jude Medical]) were recalled after being approved by supplements due to high rates of lead failures. 7 Similar regulatory failures have been reported in otolaryngology, with a cochlear implant (CII [Advanced Bionics]) being recalled due to otogenic meningitis linked to an electrode positioner approved via supplements, 9 along with additional examples in orthopedics. 8 To date, no prior studies have examined the association between PMA su"
+  }
+ ]
+}

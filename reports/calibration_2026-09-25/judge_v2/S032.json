@@ -1,0 +1,12 @@
+{
+  "story_id": "S032",
+  "bin": "Unreported",
+  "entity": "Kim Hinojosa, San Antonio nurse practitioner, $24.9M specialty Part D drugs in 2022",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The provider bio names her but reports no prescribing finding, only hepatitis C (HCV) work. OpenPrescriber (NPs 49% of flagged providers) doesn't name her and says nothing about specialty-drug dollars: topic only, not the pattern. 12 queries logged.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

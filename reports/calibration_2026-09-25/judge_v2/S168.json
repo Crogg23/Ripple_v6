@@ -1,0 +1,12 @@
+{
+  "story_id": "S168",
+  "bin": "Matched + more",
+  "entity": "Atlantic City Housing Authority: vacant public housing units (HUD, July 2025)",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2025-07-25",
+  "post_cutoff_match": false,
+  "what_we_add": "339 of 1,473 units vacant without an approved reason (23.0%); highest of 91 similar-size non-Moving-to-Work authorities, 5.9x their 3.9% median; almost half at Stanley Holmes Village, 50% occupied",
+  "why": "CBS Philadelphia quotes HUD's July 2025 letter: only 71.4% of units occupied against a 96% goal, same month as our file, same direction. Their 28.6% empty counts all vacancies and our 23% is the unexcused subset, so they fit; no source has the peer ranking or the Stanley Holmes share.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

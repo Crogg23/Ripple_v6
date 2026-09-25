@@ -1,0 +1,12 @@
+{
+  "story_id": "S001",
+  "bin": "Matched + more",
+  "entity": "Las Vegas Sands, Texas lobby/ad media spending 2021-26",
+  "deciding_sources": [2, 0, 4],
+  "earliest_match_date": "2021-04-14",
+  "post_cutoff_match": false,
+  "what_we_add": "$20.58M filed as lobby 'media' spending under one lobbyist (Abboud) across 62 monthly reports; 2.5x all other Texas lobbyists combined (70-71% share); about 4x Sands' ~$5.1M federal lobby fees in the same months",
+  "why": "Texas Tribune (2021) and Texas Standard (2025) name Sands and report a multimillion-dollar, nonstop Texas TV/radio ad campaign: same finding in words, same direction. No source has the lobby-report total, the share of all Texas lobby media or the federal comparison; the Tribune's company-pegged 'at least $2M' covers only the 2021 session, so it can't contradict a 2021-26 total.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

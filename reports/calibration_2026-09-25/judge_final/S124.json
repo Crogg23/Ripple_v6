@@ -1,0 +1,12 @@
+{
+  "story_id": "S124",
+  "bin": "Matched + more",
+  "entity": "the 5th Circuit's cases at the Supreme Court, and the federal government's share of them",
+  "deciding_sources": [2, 1, 0],
+  "earliest_match_date": "2024-04-07",
+  "post_cutoff_match": false,
+  "what_we_add": "16 of 38 federal-government appeals in 2021-24 vs 1 of 26 in 2015-20; other 11 regional circuits steady at about 12%; SCOTUS cases per 1,000 5th Circuit appeals 0.57 to 1.50",
+  "why": "CNN says in words the 5th Circuit-to-Supreme Court trend is driven by suits against the Biden administration; Bloomberg Law says the circuit sends 'more and more cases'; SCOTUSblog shows agencies appealing its rulings again and again. No source has the counts, the other-circuit comparison or the per-1,000 rate. No contradiction: FedSoc's 0.95 per 1,000 counts reversals only, and the Bloomberg and NGA terms fall outside 2021-24.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}
