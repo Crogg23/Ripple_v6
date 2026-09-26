@@ -4,43 +4,434 @@ S001	1	exact	1.0	cached	False	https://www.casino.org/news/las-vegas-sands-texas-
 S001	2	exact	1.0	cached	False	https://www.texastribune.org/2021/04/14/las-vegas-sands-texas-gambling
 S001	3	exact	1.0	cached	False	https://www.casino.org/news/las-vegas-sands-hires-51-lobbyists-in-texas-as-casino-legalization-debate-continues/
 S001	4	exact	1.0	cached	False	https://texasstandard.org/stories/texas-casino-lobbying-las-vegas-sands-corporation/
+S002	0	exact	1.0	http 200	False	https://www.kcur.org/health/2024-08-07/missouri-has-dramatically-reduced-its-backlog-of-nursing-home-inspections
+S002	1	exact	1.0	http 200	False	https://tallgrasseconomics.org/2024/11/reliant-health-care-management-llc-the-worst-nursing-home-chain-in-america/
+S002	2	exact	1.0	http 200	False	https://abc17news.com/news/special-report/2025/05/15/missouri-nursing-homes-among-worst-in-nation-for-quality-of-care/
+S002	3	exact	1.0	http 200	False	https://projects.propublica.org/nursing-homes/affiliate/a-446
+S003	0	exact	1.0	http 200	False	https://publicintegrity.org/environment/despite-lone-inspectors-efforts-persistent-haze-envelops-iowa-town/
+S003	1	exact	1.0	http 200	False	https://www.kwqc.com/content/news/Iowa-Supreme-Court-upholds-class-action-lawsuit-against-GPC-Muscatine-422153223.html
+S003	2	exact	1.0	http 200	False	https://www.iowadnr.gov/news-release/2026-02-19/air-quality-permits-review-published-02192026
+S004	0	exact	1.0	http 200	False	https://www.openmedicare.us/investigations/arizona-wound-care-ring
+S004	1	exact	1.0	http 200	False	https://www.justice.gov/criminal/criminal-fraud/health-care-fraud-unit/2025-national-hcf-case-summaries
+S004	2	exact	1.0	http 200	False	https://www.ktar.com/arizona-health-news/health-care-fraud-arizona-cases/5723782/
+S004	3	exact	1.0	http 200	False	https://carolinefifemd.com/2026/07/15/skin-substitute-fraud-indictments/
+S004	4	exact	1.0	http 200	False	https://www.cbsnews.com/news/arizona-wound-care-company-older-patients-skin-graft-scheme/
+S004	5	near	0.92	http 200	False	https://artdiamondblog.com/archives/2025/05/14663.html
+S005	0	exact	1.0	cached	False	https://www.propublica.org/article/political-nonprofits-fundraising-ftc-irs-527s-pacs
+S005	1	exact	1.0	cached	False	https://www.propublica.org/article/search-527s-finances-pacs-database-political-spending
+S005	2	exact	1.0	cached	False	https://give.org/news/police-firefighter-or-veterans-groups-that-are-527-political-organizations
+S005	3	exact	1.0	cached	False	https://www.thedailybeast.com/this-breast-cancer-charity-is-the-big-new-scam-in-politics/
+S005	4	exact	1.0	cached	False	https://www.thedailybeast.com/the-secret-website-behind-a-dollar140-million-scam-pac-network/
+S006	0	exact	1.0	cached	False	https://justice.gov/usao-sdfl/media/1449531/dl?inline=
+S006	1	exact	1.0	cached	False	https://www.justice.gov/criminal/criminal-fraud/health-care-fraud-unit/2026-national-hcf-case-summaries
+S006	2	exact	1.0	cached	False	https://abc13.com/post/would-know-had-catheter-man-surprised-medicare-charges/18209112/
+S006	3	exact	1.0	cached	False	https://www.cbsnews.com/newyork/news/queens-medical-supply-store-medicare-charges
+S006	4	exact	1.0	cached	False	http://www.ksl.com/article/ksl-investigates/get-gephardt/utah-woman-says-she-got-hit-with-medicare-fraud-after-a-supplier-charged-her-plan-for-unwanted-supplies/812399
+S006	5	exact	1.0	cached	False	https://www.bbb.org/article/warnings/32066-consumers-say-nyc-businesses-charge-medicare-for-medical-items-that-were-never-ordered
 S007	0	exact	1.0	cached	False	https://www.hchlawyers.com/blog/2026/may/texas-hospice-agencies-qlarant-audits-and-medica/
 S007	1	exact	1.0	cached	False	https://www.kbtx.com/2026/05/08/local-hospice-leader-exposes-fraud-draining-millions-taxpayer-dollars-across-texas/
 S007	2	exact	1.0	cached	False	https://www.breitbart.com/border/2026/05/09/report-medicare-scams-in-texas-15-hospices-in-one-building-patients-signed-up-without-knowing/
 S007	3	exact	1.0	cached	False	https://www.propublica.org/article/hospices-arizona-california-nevada-texas-cms-medicaid-medicare
 S007	4	exact	1.0	cached	False	https://www.ksat.com/health/2026/08/27/california-and-the-federal-government-battle-over-hospice-fraud-as-victims-lose-coverage-and-care/
 S007	5	exact	1.0	cached	False	https://www.baldwin.senate.gov/download/hospice-oversight-letter?download=1
+S008	0	exact	1.0	archive 20250724055142	True	https://www.washingtonpost.com/investigations/opioid-death-rates-soared-in-communities-where-pain-pills-flowed/2019/07/17/f3595da4-a8a4-11e9-a3a6-ab670962db05_story.html
+S008	1	exact	1.0	cached	False	https://www.porh.psu.edu/opioid-death-rates-soared-in-communities-where-pain-pills-flowed/
+S008	2	exact	1.0	cached	False	https://www.tn.gov/attorneygeneral/news/2021/2/4/pr21-06.html
+S008	3	exact	1.0	cached	False	https://foxchattanooga.com/news/local/tennessee-attorney-general-announces-opioid-lawsuit-settlement-with-food-city
+S008	4	near	0.96	cached	False	https://medicalxpress.com/news/2024-10-overdose-deaths-nationally-western-states.html
+S009	0	exact	1.0	http 200	False	https://text.npr.org/nx-s1-5724225
+S009	1	exact	1.0	http 200	False	https://text.npr.org/nx-s1-5724225
+S009	2	exact	1.0	http 200	False	https://upnorthlive.com/news/nation-world/2023-set-record-for-us-heat-deaths-killing-in-areas-that-used-to-handle-the-heat
+S010	0	exact	1.0	http 200	False	https://www.texasobserver.org/worker-death-starbase-spacex-osha-elon-musk/
+S010	1	exact	1.0	http 200	False	https://techcrunch.com/2025/07/18/spacex-worker-injury-rates-at-starbase-outpace-industry-rivals/
+S010	2	exact	1.0	http 200	False	https://www.engadget.com/spacex-workers-face-above-average-injury-rates-as-musk-prioritizes-mars-over-safety-report-finds-224235095.html
+S010	3	exact	1.0	http 200	False	https://spaceexplored.com/2024/05/02/spacex-injury-rates-continue-to-be-higher-than-the-industry-average/
+S011	0	exact	1.0	http 200	False	https://www.jucm.com/wp-content/uploads/2024/12/2024-19317-21-Practice-Management.pdf
+S011	1	exact	1.0	http 200	False	https://www.jucm.com/rural-and-tertiary-markets-the-next-urgent-care-frontier/
+S012	0	exact	1.0	http 200	False	https://deportationdata.org/analysis/immigration-arrests-in-2026.html
+S012	1	exact	1.0	http 200	False	https://tracreports.org/reports/758/
+S012	2	exact	1.0	http 200	False	https://tracreports.org/reports/748/
+S013	0	exact	1.0	http 200	False	https://www.consumerreports.org/cars/car-recalls-defects/nhtsa-investigates-honda-unexpected-braking-complaints-a9281526240/
+S013	1	exact	1.0	http 200	False	https://www.autosafety.org/nissan-admits-to-more-than-1400-reports-about-faulty-automatic-emergency-braking-but-continues-to-refuse-recall/
+S013	2	exact	1.0	http 200	False	https://abc3340.com/news/local/drivers-complain-of-phantom-braking-on-some-newer-model-vehicles-nissan-honda-emergency-braking-aeb-automatic-braking
+S013	3	exact	1.0	http 200	False	https://static.nhtsa.gov/odi/inv/2019/INOA-PE19010-2831.PDF
+S013	4	exact	1.0	http 200	False	https://www.ttnews.com/articles/nhtsa-opens-probe-nissan-rogue-automatic-emergency-braking
+S013	5	exact	1.0	http 200	False	https://www.vehicle-safety.org/stories/phantom-braking-safety-paradox
+S014	0	exact	1.0	http 200	False	https://247wallst.com/special-report/2023/12/14/states-where-the-most-murders-go-unsolved/
+S014	1	exact	1.0	http 200	False	https://www.nmlegis.gov/handouts/ALFC%20120825%20Item%2022%20Policy%20Spotlight%20Felony%20Arrests%20and%20Outcomes.pdf
+S014	2	exact	1.0	http 200	False	https://www.abqjournal.com/news/lfc-report-improving-new-mexicos-criminal-justice-system-could-lie-in-better-data-sharing/2945494
+S014	3	exact	1.0	http 200	False	https://www.kob.com/new-mexico/albuquerque-police-boast-126-homicide-clearance-rate/
+S014	4	exact	1.0	http 200	False	https://stateline.org/2025/11/24/why-clearance-rates-dont-tell-the-whole-story-about-solving-crimes/
+S014	5	exact	1.0	http 200	False	https://www.police1.com/crime/legislative-report-finds-n-m-s-sagging-crime-clearance-rate-holds-back-public-safety-initiatives
+S015	0	exact	1.0	http 200	False	https://tracreports.org/reports/722/
+S015	1	exact	1.0	http 200	False	https://thelensnola.org/2026/06/18/louisiana-immigration-detention-habeas-petitions-crisis/
+S015	2	exact	1.0	http 200	False	https://www.openimmigration.us/analysis/bond-system
+S016	0	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf
+S016	1	exact	1.0	http 200	False	https://dwee.nebraska.gov/news-events/enforcement-actions/archer-daniels-midland-company
+S016	2	exact	1.0	http 200	False	https://dwee.nebraska.gov/news-events/enforcement-actions/green-plains-wood-river-llc
+S016	3	exact	1.0	http 200	False	https://dwee.nebraska.gov/sites/default/files/publications/2022%20NDEE%20Annual%20Report%20to%20Legislature.pdf
+S016	4	exact	1.0	http 200	False	https://dwee.nebraska.gov/air/air-compliance-enforcement-program
+S016	5	exact	1.0	http 200	False	https://19january2021snapshot.epa.gov/sites/static/files/2013-09/documents/srf-rd2-rev-ne.pdf
+S017	0	exact	1.0	http 200	False	https://oig.hhs.gov/fraud/enforcement/sacramento-area-home-health-care-and-hospice-agencies-owner-sentenced-to-18-months-in-prison-for-conspiring-to-defraud-medicare/
+S017	1	exact	1.0	http 200	False	https://patch.com/california/los-angeles/northridge-hospice-facility-owner-arrested
+S018	0	exact	1.0	archive 20230925212507	True	https://www.wsj.com/articles/judge-rodney-gilstrap-sets-an-unwanted-record-most-cases-with-financial-conflicts-11632920541
+S018	1	exact	1.0	cached	False	https://www.abajournal.com/news/article/131-federal-judges-oversaw-cases-involving-companies-in-which-they-or-their-families-owned-stock
+S018	2	exact	1.0	cached	False	https://www.westernjournal.com/obama-appointed-federal-judge-caught-presiding-stunning-number-cases-financial-interests/
+S018	3	exact	1.0	cached	False	https://www.abajournal.com/news/article/federal-judge-acknowledges-he-may-have-violated-law-in-138-cases-by-failing-to-recuse
+S018	4	exact	1.0	cached	False	https://ipfray.com/judge-gilstrap-recuses-himself-from-supercomputer-firm-partecs-patent-lawsuit-against-microsoft-judge-schroeder-takes-over/
+S019	0	exact	1.0	cached	False	https://www.insurancejournal.com/news/southeast/2019/06/05/528413.htm
+S019	1	exact	1.0	cached	False	https://www.epa.gov/office-inspector-general/report-better-enforcement-oversight-needed-major-facilities-water
+S019	2	exact	1.0	cached	False	https://www.gao.gov/products/gao-21-290
+S020	0	exact	1.0	http 200	False	https://oli.org/track-statistics/trespassing-casualties-state
+S020	1	exact	1.0	http 200	False	https://www.wlrn.org/killer-train-brightline-death-toll-surpasses-180-but-safeguards-are-still-lacking
+S020	2	exact	1.0	http 200	False	https://www.everycrsreport.com/files/20170815_IN10753_7845b77908ff30b0ed1bc68967baae111fb5b5cb.html
+S020	3	exact	1.0	http 200	False	https://www.aar.org/news/fra-data-confirms-rail-safety-progress-with-record-low-injury-and-accident-rates/
+S020	4	exact	1.0	http 200	False	https://www.smart-union.org/rail-trespassing-and-suicide-fatalities-up-70/
+S021	0	exact	1.0	http 200	False	https://www.ethics.state.tx.us/resources/guides/Bcan-i-travel.php
+S022	0	exact	1.0	http 200	False	https://water.waterboards.ca.gov/board_info/agendas/2021/feb/021621_10_edrpt.pdf
+S022	1	exact	1.0	http 200	False	https://waterboards.ca.gov/drinking_water/safedrinkingwaterplan/docs/2025sdwp-board-workshop.pdf
+S023	0	exact	1.0	http 200	False	https://www.csb.gov/csb-issues-update-for-investigation-of-toxic-chemical-release-at-dow-facility-in-louisiana/
+S023	1	exact	1.0	http 200	False	https://www.theadvocate.com/baton_rouge/news/business/louisiana-dow-environment-emergency-fire-chemicals/article_9d789490-b88f-4035-89db-1b82944b0a63.html
+S023	2	exact	1.0	http 200	False	https://hntrbrk.com/indorama/
+S023	3	exact	1.0	http 200	False	https://www.csb.gov/us-chemical-safety-board-releases-investigation-report-on-the-2023-explosion-and-toxic-ethylene-oxide-release-at-dow-plant-in-plaquemine-louisiana/
+S023	4	exact	1.0	http 200	False	https://thelensnola.org/2026/01/15/epa-blind-spots-leave-workers-unprotected-from-ethylene-oxides-cancer-risks/
+S023	5	exact	1.0	http 200	False	https://lailluminator.com/2023/07/27/ldeq-records-show-frequent-emergencies-at-dow-plaquemine-facility/
 S024	0	exact	1.0	cached	True	https://news.bloomberglaw.com/financial-accounting/trump-media-auditors-shutdown-strands-nearly-40-of-ex-clients
 S024	1	exact	1.0	cached	False	https://www.accountingtoday.com/news/collapse-of-bf-borgers-unleashes-flood-of-new-sec-audit-clients
 S024	2	exact	1.0	cached	False	https://deepquarry.substack.com/p/turmoil-in-small-audit-firms-market
 S024	3	exact	1.0	cached	True	https://thedig.substack.com/p/money-for-nothing-borgers-and-its
 S024	4	exact	1.0	cached	False	https://www.sec.gov/newsroom/press-releases/2024-51
+S025	0	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf
+S025	1	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2023-03/srf-rd4-rev-il.pdf
+S025	2	exact	1.0	http 200	False	https://www.eenews.net/articles/watchdog-epa-states-behind-on-hazardous-waste-inspections/
+S025	3	exact	1.0	http 200	False	https://www.governing.com/resilience/illinois-seeks-to-rebuild-its-epa-after-years-of-neglect
+S025	4	exact	1.0	http 200	False	https://investigatemidwest.org/2018/04/11/illinois-environmental-agency-suffers-deep-staff-cuts/
+S026	0	exact	1.0	http 200	False	https://www.washingtonsun.com/oklahoma/markwayne-mullin-disclosures
+S026	1	exact	1.0	http 200	False	https://www.washingtonsun.com/oklahoma/markwayne-mullin-stock-act
+S026	2	missing	0.73	http 200	False	https://www.thecentersquare.com/national/article_4afc4a1c-f920-4794-ba07-c552d18ad126.html
+S026	3	exact	1.0	http 200	False	https://oklahomawatch.org/2026/07/27/sen-alan-armstrong-violated-stock-act-with-700-tardy-stock-disclosures/
+S026	4	exact	1.0	http 200	False	https://www.kgou.org/politics-and-government/2026-07-27/sen-alan-armstrong-violated-stock-act-with-700-tardy-stock-disclosures
+S027	0	exact	1.0	http 200	False	https://www.propublica.org/article/doctors-who-take-company-cash-tend-to-prescribe-more-brand-name-drugs
+S027	1	exact	1.0	http 200	False	https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155474
+S027	2	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC5880069/
+S027	3	near	0.95	http 200	False	https://oig.hhs.gov/fraud/docs/alertsandbulletins/2020/SpecialFraudAlertSpeakerPrograms.pdf
+S027	4	exact	1.0	http 200	False	https://www.nber.org/system/files/working_papers/w26751/w26751.pdf
+S028	0	exact	1.0	http 200	False	https://www.brookings.edu/articles/the-fading-efficacy-of-us-shadow-fleet-sanctions/
+S028	1	exact	1.0	http 200	False	https://www.brookings.edu/articles/the-fading-efficacy-of-us-shadow-fleet-sanctions/
+S028	2	exact	1.0	http 200	False	https://www.brookings.edu/articles/an-update-on-europes-russia-sanctions/
+S028	3	exact	1.0	http 200	False	https://robinjbrooks.substack.com/p/eu-and-uk-shadow-fleet-sanctions
+S028	4	exact	1.0	http 200	False	https://gcaptain.com/uk-and-eu-target-russias-shadow-fleet-as-sanctions-net-widens/
+S029	0	exact	1.0	http 200	False	https://www.nbclosangeles.com/news/national-international/ap-investigation-aging-us-dams/2112343/
+S029	1	exact	1.0	http 200	False	https://www.southcarolinapublicradio.org/news/2022-05-05/ap-analysis-finds-growing-number-of-poor-high-hazard-dams
+S029	2	exact	1.0	http 200	False	https://infrastructurereportcard.org/cat-item/dams-infrastructure/
+S029	3	exact	1.0	http 200	False	https://sao.texas.gov/SAOReports/ReportNumber?id=20-036
+S029	4	exact	1.0	http 200	False	https://www.asce.org/publications-and-news/civil-engineering-source/article/2026/03/12/aging-us-dams-pose-rising-safety-risks-how-can-civil-engineers-help
+S030	0	exact	1.0	http 200	False	https://www.abi.org/newsroom/press-releases/abi-mourns-the-passing-of-abi-immediate-past-president-hon-kevin-j-carey
+S030	1	exact	1.0	http 200	False	https://www.wfae.org/united-states-world/2024-05-01/when-judges-get-free-trips-to-luxury-resorts-disclosure-is-spotty
+S030	2	exact	1.0	http 200	False	https://fixthecourt.com/2026/04/federal-judges-accepted-far-too-many-freebies-in-2023-and-2024/
+S031	0	exact	1.0	http 200	False	https://www.nursinghomeabusecenter.com/nursing-home-abuse/best-and-worst-states-for-nursing-home-abuse/
+S031	1	exact	1.0	http 200	False	https://www.nursinghomeabusecenter.com/blog/new-nursing-home-ranking-tool/
+S031	2	exact	1.0	http 200	False	https://nursinghome411.org/ltccc-alert-problem-facilities/
+S031	3	exact	1.0	http 200	False	https://goodjobsfirst.org/care-at-risk-upheaval-in-the-nursing-home-industry/
 S032	0	exact	1.0	cached	False	https://healthtexas.org/doctor/kim-hinojosa-fnp-c/
 S032	1	exact	1.0	cached	False	https://www.openprescriber.org/analysis/nurse-practitioners
+S033	0	missing	0.5	http 200	False	https://ecf.ca8.uscourts.gov/opndir/26/07/252375P.pdf
+S033	1	exact	1.0	http 200	False	https://www.aol.com/articles/federal-panel-rejects-tribe-appeal-192712000.html
+S033	2	exact	1.0	http 200	False	https://www.doioig.gov/reports/audit/lower-brule-sioux-tribe-did-not-account-cares-act-funds-appropriately
+S033	3	exact	1.0	http 200	False	https://www.ojp.gov/ncjrs/virtual-library/abstracts/audit-office-justice-programs-multi-purpose-grants-awarded-lower
+S033	4	exact	1.0	http 200	False	https://www.hrw.org/report/2015/01/12/secret-and-unaccountable/tribal-council-lower-brule-and-its-impact-human-rights
+S033	5	exact	1.0	http 200	False	https://listen.sdpb.org/news/2016-05-02/lower-brule-sioux-tribe-financial-troubles-continue
+S035	0	exact	1.0	cached	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC10330579/
+S035	1	exact	1.0	cached	False	https://www.vera.org/publications/overdose-deaths-and-jail-incarceration
+S035	2	exact	1.0	cached	False	https://www.gao.gov/products/gao-25-106944
+S035	3	blocked	0.0	http 403 / curl 403 / archive none	True	https://www.healthaffairs.org/doi/10.1377/hlthaff.2020.01656
+S036	0	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC11371347/
+S036	1	exact	1.0	http 200	False	https://data.cms.gov/sites/default/files/2026-01/FY26%20DFR_Guide.pdf
+S037	0	exact	1.0	cached	False	https://www.kff.org/other/issue-brief/how-many-physicians-have-opted-out-of-the-medicare-program/
+S038	0	exact	1.0	http 200	True	https://www.inquirer.com/health/chop-nonprofit-ceo-pay-madeline-bell-steve-klasko-20230913.html
+S038	1	exact	1.0	http 200	False	https://www.massnurses.org/2011/03/28/high-ceo-salaries-at-nonprofit-hospitals-under-scrutinyonce-again/
+S038	2	exact	1.0	http 200	False	https://www.sanders.senate.gov/wp-content/uploads/Executive-Charity-HELP-Committee-Majority-Staff-Report-Final.pdf
+S038	3	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC11268666/
+S038	4	exact	1.0	http 200	False	https://www.aha.org/news/blog/2025-10-20-beyond-labels-schedule-h-reporting-and-benefits-hospitals-provide-communities
+S038	5	exact	1.0	http 200	False	https://waysandmeans.house.gov/2026/07/20/what-they-are-saying-ways-and-means-committee-bringing-transparency-to-americas-nonprofit-hospital-sector/
+S039	0	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC13099148/
+S039	1	exact	1.0	http 200	False	https://www.fox4news.com/news/north-texas-doctor-accused-of-bilking-medicare
+S040	0	exact	1.0	http 200	False	https://www.fanniemae.com/media/33316/display
+S040	1	exact	1.0	http 200	False	https://files.consumerfinance.gov/f/documents/bcfp_hmda_2017-mortgage-market-activity-trends_report.pdf
+S040	2	exact	1.0	http 200	False	https://wirly.com/lenders/loandepot
+S041	0	exact	1.0	http 200	False	https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/
+S041	1	exact	1.0	http 200	False	https://www.justice.gov/epstein/doj-disclosures/court-records-v-epstein-no-910-cv-80447-sd-fla-2010
+S041	2	exact	1.0	http 200	False	https://www.yahoo.com/news/articles/doj-admits-removing-nearly-48-185553534.html
+S042	0	exact	1.0	http 200	False	https://www.wvgazettemail.com/news/energy_and_environment/fatality-stricken-mines-had-long-safety-violation-histories-as-more-msha-cuts-eyed/article_fc5e2870-3915-4b12-91bf-241784979596.html
+S042	1	exact	1.0	http 200	False	https://www.ishn.com/articles/115287-two-coal-miners-die-in-west-virginia-within-24-hours
+S043	0	exact	1.0	http 200	False	https://www.noticel.com/economia/20160206/crisis-y-desconocimiento-inciden-en-alza-de-ejecuciones-hipotecarias/
+S043	1	exact	1.0	http 200	False	http://hedgeclippers.org/report-no-53-private-equity-and-puerto-rico/
+S043	2	exact	1.0	http 200	False	https://theintercept.com/2017/12/22/puerto-rico-foreclosures-hurricane-maria/
+S043	3	exact	1.0	http 200	False	https://hedgeclippers.org/pain-and-profit-after-maria/
+S043	4	exact	1.0	http 200	False	https://www.wral.com/story/after-storm-foreclosures-in-puerto-rico-stopped-they-re-starting-again-/17700370/
 S044	0	exact	1.0	cached	False	https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738
-S044	1	blocked	0.0	http 403 / curl 403 / archive none	False	https://jamanetwork.com/journals/jama/fullarticle/1817796
-S044	2	missing	0.0	archive 20241117032549	False	https://jamanetwork.com/journals/jama/fullarticle/1817796
+S044	1	missing	0.0	cached	False	https://jamanetwork.com/journals/jama/fullarticle/1817796
+S044	2	missing	0.0	cached	False	https://jamanetwork.com/journals/jama/fullarticle/1817796
 S044	3	exact	1.0	cached	False	https://www.raps.org/resource/higher-recall-risk-for-pma-approved-devices-with-s.html
 S044	4	exact	1.0	cached	False	https://www.medtechdive.com/news/post-approval-modification-high-risk-devices-recalls/647898/
 S044	5	exact	1.0	cached	False	https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2803738
+S045	0	exact	1.0	http 200	False	https://www.vera.org/publications/people-in-jail-in-2019
+S045	1	exact	1.0	http 200	False	https://nonprofitquarterly.org/geography-of-incarceration-shifts-from-urban-to-rural/
+S045	2	exact	1.0	http 200	False	https://www.vera.org/publications/people-in-jail-and-prison-in-2024
+S045	3	exact	1.0	http 200	False	https://www.vera.org/news/jail-and-prison-populations-have-decreased-since-2019-but-continued-progress-isnt-promised
+S045	4	near	0.96	http 200	False	https://www.vera.org/newsroom/vera-institute-of-justice-unveils-updated-incarceration-trends-website
+S045	5	exact	1.0	http 200	False	https://www.vera.org/newsroom/rural-america-has-highest-jail-incarceration-rates-in-the-u-s-despite-low-crime-rates-new-report-reveals
+S046	0	missing	0.54	http 200	False	https://app.lla.state.la.us/PublicReports.nsf/0/AAD8F8C757DC5D4686258D4D006B7A75/$FILE/0000922B.pdf
+S046	1	exact	1.0	http 200	False	https://app.lla.state.la.us/PublicReports.nsf/0/AAD8F8C757DC5D4686258D4D006B7A75/$FILE/0000922B.pdf
+S046	2	missing	0.77	http 200	False	https://app.lla.la.gov/publicreports.nsf/0/c70ac61c3341028a8625872d00703561/$file/000246de.pdf
+S046	3	exact	1.0	http 200	False	https://www.pbgc.gov/news/press/pr24-045
+S047	0	exact	1.0	http 200	False	https://data4democracy.substack.com/p/hook-and-squeeze
+S047	1	exact	1.0	http 200	False	https://www.thenation.com/article/politics/democrats-fundraising-scam-pac-report/
+S047	2	exact	1.0	http 200	False	https://data4democracy.substack.com/p/the-mothership-vortex-an-investigation
+S047	3	exact	1.0	http 200	False	https://campaignlegal.org/update/clc-uncovers-two-scam-pacs-defrauding-donors
+S047	4	exact	1.0	http 200	False	https://data4democracy.substack.com/p/hook-and-squeeze
+S048	0	exact	1.0	http 200	False	https://www.epa.gov/sites/default/files/oig/documents/full_report_-_24-p-0049.pdf
+S048	1	exact	1.0	http 200	False	https://www.epa.gov/office-inspector-general/notification-evaluation-trends-clean-air-act-state-level-enforcement-data
+S048	2	exact	1.0	http 200	False	https://www.ecos.org/wp-content/uploads/2022/12/ECOS-ACMS-Green-Report-1.pdf
+S048	3	exact	1.0	http 200	False	https://www.texasobserver.org/texas-relaxed-environmental-enforcement-during-the-pandemic-state-data-show/
+S048	4	exact	1.0	http 200	False	https://www.sunset.texas.gov/public/uploads/2022-05/Texas%20Commission%20on%20Environmental%20Quality%20Staff%20Report_5-25-22.pdf
+S048	5	exact	1.0	http 200	False	https://westernlaw.org/wp-content/uploads/2026/03/Fee-Rulemaking-Letter-from-Legislators.pdf
+S049	0	exact	1.0	cached	False	https://www.courthousenews.com/business-jet-exec-gets-16-years-for-smuggling-cocaine-on-jets-550-million-ponzi-scheme/
+S049	1	exact	1.0	cached	False	https://www.oig.dot.gov/library-item/46605
+S049	2	exact	1.0	cached	False	https://www.bjtonline.com/business-jet-news/a-federal-indictment-upends-the-preowned-market
+S049	3	exact	1.0	cached	False	https://bjtonline.com/business-jet-news/are-aircraft-hiding-on-us-registry
+S049	4	exact	1.0	archive 20230705023920	True	https://www.wfaa.com/article/news/crime/landmark-case-trust-company-owner-convicted-drug-trafficking-putting-us-registered-planes-in-hands-drug-cartels/287-7cb37c51-d7c3-468b-8e0b-c58fb9a4d5a9
+S049	5	exact	1.0	cached	False	https://www.mcafeetaft.com/faa-invalidates-aircraft-registrations-issued-to-one-owner-trustee-what-owners-need-to-know/
+S050	0	exact	1.0	cached	False	https://www.wvgazettemail.com/news/energy_and_environment/wv-has-worst-us-health-based-drinking-water-violation-rate-and-crisis-is-likely-worse/article_e3deaf8a-9e94-44d0-b8ea-f3cf619f14ad.html
+S050	1	exact	1.0	cached	False	https://www.wvgazettemail.com/news/legislative_session/wv-lawmakers-hear-about-dropping-federal-support-other-aid-limits-for-water-upgrades/article_6f5a7374-ac3c-4d0f-b50a-77e71f79cadc.html
+S050	2	exact	1.0	cached	False	https://www.wvgazettemail.com/news/energy_and_environment/wv-drinking-water-infrastructure-failing-as-state-woos-water-guzzling-data-centers/article_3042c4aa-4929-4839-9033-b3204a7e1895.html
+S050	3	exact	1.0	cached	False	https://app.lla.state.la.us/publicreports.nsf/0/9cefff945ff8c2c686258797006095b9/$file/000252e5b.pdf
+S050	4	exact	1.0	cached	False	https://www.epa.gov/sites/default/files/oig/documents/full_report_-_24-e-0055_errata.pdf
+S051	0	exact	1.0	http 200	False	https://careconsidered.com/research/nursing-home-accountability/
+S051	1	exact	1.0	http 200	False	https://careconsidered.com/research/nursing-home-accountability/
+S051	2	exact	1.0	http 200	False	https://projects.propublica.org/nursing-homes/affiliate/a-42
+S051	3	exact	1.0	http 200	False	https://theconversation.com/for-profit-nursing-homes-are-cutting-corners-on-safety-and-draining-resources-with-financial-shenanigans-especially-at-midsize-chains-that-dodge-public-scrutiny-225045
+S052	0	exact	1.0	http 200	False	https://ssti.org/blog/ssti-analysis-reveals-sbir-%E2%80%9Cmills%E2%80%9D-take-outsized-portion-program%E2%80%99s-awards
+S052	1	exact	1.0	http 200	False	https://www.sbir.gov/awards/206594
+S053	0	exact	1.0	archive 20260605102730	False	https://www.gao.gov/assets/a286497.html
+S054	0	exact	1.0	http 200	False	https://www.leiroc.org/publications/gls/roc_20220107.pdf
+S054	1	exact	1.0	http 200	False	https://www.gleif.org/en/lei-data/access-and-use-lei-data/level-2-data-reporting-exceptions-2-1-format
 S055	0	exact	1.0	cached	False	https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination
 S055	1	exact	1.0	cached	False	https://www.urban.org/urban-wire/traditional-mortgage-denial-metrics-may-misrepresent-racial-and-ethnic-discrimination
 S055	2	exact	1.0	cached	False	https://www.consumerfinance.gov/archive/newsroom/ffiec-announces-availability-2017-data-mortgage-lending/
 S055	3	exact	1.0	cached	False	https://mlk50.com/2018/02/20/for-people-of-color-banks-are-shutting-the-door-to-homeownership/
 S055	4	exact	1.0	cached	False	https://themarkup.org/denied/2021/08/25/the-secret-bias-hidden-in-mortgage-approval-algorithms
 S055	5	exact	1.0	cached	False	https://www.prnewswire.com/news-releases/mortgage-denial-rates-fall-but-racial-gap-persists-black-applicants-twice-as-likely-as-whites-to-be-denied-a-conventional-loan-300632674.html
+S056	0	exact	1.0	http 200	False	https://www.nyccfb.info/VSApps/IndependentSpenderSummary.aspx?spender_id=Z193&as_election_cycle=2025&cand_name=Fix+the+City%2C+Inc
+S056	1	exact	1.0	http 200	False	https://www.thecityreporter.nyc/2026/09/01/political-spending-record-outside-money-local-elections-cfb/
+S056	2	exact	1.0	http 200	False	https://www.chalkbeat.org/newyork/2025/12/03/breaking-down-who-doe-employees-donated-to-in-mayoral-races/
+S056	3	exact	1.0	http 200	False	https://nysfocus.com/2026/04/03/jordan-wright-super-pac-harlem-dsa
+S056	4	exact	1.0	http 200	False	https://citizensunion.org/wp-content/uploads/2025/12/CU-Report-Super-PACs-in-the-2025-New-York-City-General-Election-Seven-Takeaways.pdf
+S056	5	exact	1.0	http 200	False	https://theintercept.com/2026/09/23/doordash-delivery-nyc-mamdani-wage-theft-settlement/
+S057	0	exact	1.0	http 200	False	https://www.fda.gov/news-events/press-announcements/fda-reminds-more-2200-sponsors-and-researchers-disclose-trial-results
+S057	1	exact	1.0	http 200	False	https://www.fda.gov/news-events/press-announcements/fda-reminds-more-2200-sponsors-and-researchers-disclose-trial-results
+S057	2	exact	1.0	http 200	False	https://www.eurekalert.org/news-releases/645803
+S057	3	exact	1.0	http 200	True	https://www.statnews.com/2020/01/14/fda-nih-let-clinical-trial-sponsors-keep-results-secret/
+S057	4	near	0.92	http 200	False	https://natlawreview.com/article/clinical-trial-transparency-enforcement-practical-guide-sponsors-and-research-sites
+S058	0	missing	0.0	http 200	True	https://pubmed.ncbi.nlm.nih.gov/41579137/
+S058	1	exact	1.0	http 200	True	https://www.statnews.com/2023/07/05/ozempic-rybelsus-novo-nordisk-meals-for-doctors/
+S058	2	exact	1.0	http 200	False	https://www.center4research.org/novo-nordisk-gave-doctors-450000-meals-ozempic/
+S058	3	exact	1.0	http 200	False	https://www.medicaldaily.com/glp1-drugmaker-payments-prescribers-open-payments-analysis-478475
+S058	4	exact	1.0	http 200	False	https://bioethics.com/archives/73735
+S058	5	exact	1.0	http 200	False	https://www.nber.org/papers/w26751
+S059	0	exact	1.0	http 200	False	https://www.fox32chicago.com/news/elgin-lead-water
+S059	1	exact	1.0	http 200	False	https://www.thecooldown.com/green-home/elgin-drinking-water-lead-alerts-residents/
+S059	2	exact	1.0	http 200	False	https://elginil.gov/DocumentCenter/View/84515/Informational-Brochure-English---July-2026?bidId=
+S059	3	exact	1.0	http 200	False	https://epa.illinois.gov/topics/drinking-water/public-water-users/lead-service-line-community-updates.html
+S059	4	exact	1.0	http 200	False	https://cdn.prod.website-files.com/670e66c8e7afa4bf3638b217/68430b05cd83a264d510ea9f_PKFL%202025%20Illinois%20Report%20V6.1.pdf
+S059	5	exact	1.0	http 200	False	https://www.cbsnews.com/chicago/news/high-levels-lead-water-homes-elgin-illinois/
+S060	0	exact	1.0	archive 20260412055234	False	https://www.medtechdive.com/news/fda-flags-428-spinal-cord-stimulator-patient-deaths-urges-more-tests-befor/584714/
+S060	1	exact	1.0	cached	False	https://www.nbcnews.com/news/amp/ncna940131
+S061	0	exact	1.0	http 200	False	https://www.cura.umn.edu/research/usda-section-515-program-quantitative-analysis
+S061	1	exact	1.0	http 200	False	https://nlihc.org/resource/housing-assistance-council-research-finds-usda-rural-rental-housing-stock-lost-nearly
+S061	2	exact	1.0	archive 20260609094509	False	https://www.gao.gov/products/gao-18-285
+S061	3	exact	1.0	http 200	False	https://ruralhome.org/wp-content/uploads/storage/documents/rdpreservationguide.pdf
+S061	4	exact	1.0	http 200	False	https://news.gatech.edu/news/2026/03/12/successful-usda-program-has-supported-more-533000-affordable-rental-homes-rural
+S062	0	exact	1.0	http 200	False	https://www.wvgazettemail.com/news/energy_and_environment/fatality-stricken-mines-had-long-safety-violation-histories-as-more-msha-cuts-eyed/article_fc5e2870-3915-4b12-91bf-241784979596.html
+S062	1	exact	1.0	http 200	False	https://www.theintelligencer.net/news/top-headlines/2026/01/miner-injured-at-marshall-county-coal-mine/
+S062	2	exact	1.0	http 200	False	https://acnrinc.com/
+S063	0	exact	1.0	http 200	False	https://www.aol.com/prominent-ky-political-donors-kelly-185728921.html
+S063	1	exact	1.0	http 200	False	https://linknky.com/news/2023/10/26/kelly-and-joe-craft-give-the-max-to-trumps-rivals-in-gop-field-for-president/
+S063	2	exact	1.0	http 200	False	https://www.eenews.net/articles/coal-executive-tapped-to-lead-gop-fundraising-effort/
+S063	3	exact	1.0	http 200	False	https://publicintegrity.org/politics/donor-profile-joe-craft/
+S063	4	exact	1.0	http 200	False	https://www.nber.org/papers/w25815
+S063	5	exact	1.0	http 200	False	https://finance.yahoo.com/news/most-top-ceos-arent-giving-to-either-trump-or-biden-080016177.html
+S064	0	exact	1.0	http 200	False	https://www.fractracker.org/2025/04/pipeline-incidents-are-a-daily-occurrence
+S064	1	exact	1.0	http 200	False	https://www.insurancejournal.com/news/national/2024/03/13/764575.htm
+S065	0	exact	1.0	http 200	False	https://www.drugpatentwatch.com/p/drug-price/drugname/ACETAMINOPHEN-CODEINE
+S065	1	exact	1.0	http 200	False	https://www.drugpatentwatch.com/p/drug-price/drugname/SAXAGLIPTIN+HCL
+S065	2	exact	1.0	http 200	False	https://pharmacy.osu.edu/news/shedding-light-nadac-how-pricing-power-influences-pharmacy-reimbursement
+S066	0	exact	1.0	http 200	False	https://open-ff.org/2025/05/19/texas-fracfocus-trade-secrets/
+S066	1	exact	1.0	http 200	False	https://open-ff.org/2025/05/19/texas-fracfocus-trade-secrets/
+S066	2	exact	1.0	http 200	False	https://fractracker.org/2024/04/holes-in-fracfocus/
+S066	3	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC10872473/
+S067	0	exact	1.0	http 200	False	https://www.decaturish.com/news/dekalb/former-dekalb-ceo-told-epa-county-would-miss-deadline-to-upgrade-sewer-capacity/article_35cc2125-2145-5533-ab23-abecc5badd64.html
+S067	1	exact	1.0	http 200	False	https://thechampionnewspaper.com/srwa-most-dekalb-county-sewer-spill-areas-not-covered-under-consent-decree/
+S067	2	exact	1.0	http 200	False	https://www.epa.gov/newsreleases/dekalb-county-georgia-clean-water-act-settlement-modified-further-address-sanitary
+S067	3	exact	1.0	http 200	False	https://www.courthousenews.com/suit-over-georgia-countys-sewage-spillage-shot-down-by-federal-appeals-court/
+S067	4	missing	0.11	http 200	False	https://www.ajc.com/neighborhoods/dekalb/a-year-into-new-consent-decree-dekalb-making-progress-on-sewer-repairs/BGFGW4J6RNGITB3DXKHGE7R77E/
+S067	5	exact	1.0	http 200	False	https://www.decaturish.com/news/decatur/dekalb-county-will-pay-nearly-300-000-in-fines-for-sewage-spills/article_ddd8ab2b-d3a7-51ce-82d8-2acfa62c07ae.html
+S068	0	exact	1.0	http 200	False	https://responsiblestatecraft.org/revolving-door-congress/
+S068	1	exact	1.0	http 200	False	https://balkaninsight.com/2025/07/29/serbian-american-trumpocrat-boosts-bosnias-dodik-on-social-media/
+S068	2	exact	1.0	http 200	False	https://jewishinsider.com/2026/08/turkey-trump-tied-lobbying-group-washington-robert-wexler/
+S068	3	exact	1.0	http 200	False	https://responsiblestatecraft.org/2022/06/28/the-revolving-door-from-congress-to-foreign-interest-lobbyist-is-well-traveled/
+S068	4	exact	1.0	http 200	False	https://www.lx.com/politics/lx-investigates-congressmembers-turned-foreign-agents/14725/
+S069	0	exact	1.0	cached	False	https://www.wlbt.com/2021/03/04/appalachian-mississippi-delta-regions-medically-underserved-decades/
+S069	1	exact	1.0	cached	False	https://www.techtarget.com/revcyclemanagement/news/366600275/HPSA-Program-Did-Not-Affect-Physician-Shortages-or-Health-Outcomes
+S069	2	exact	1.0	cached	False	https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-07-84/html/GAOREPORTS-GAO-07-84.htm
+S069	3	exact	1.0	cached	False	https://paragoninstitute.org/private-health/where-are-provider-shortages-reassessing-outdated-methodologies/
+S069	4	exact	1.0	cached	False	https://kffhealthnews.org/health-industry/mississippi-doctor-shortage/
+S069	5	exact	1.0	archive 20260918064316	False	https://mississippitoday.org/2026/07/16/county-lost-hospital/
+S070	0	exact	1.0	cached	False	https://www.kuer.org/health/2025-05-20/how-a-rural-hospitals-medicaid-windfall-could-cost-utah-millions
+S070	1	exact	1.0	cached	False	https://www.deseret.com/utah/2026/04/03/audit-raises-issues-with-utahs-oversight-of-a-medicaid-nursing-home-program/
+S070	2	exact	1.0	cached	False	https://le.utah.gov/interim/2022/pdf/00000239.pdf
+S070	3	exact	1.0	cached	False	https://www.kff.org/covid-19/funding-for-health-care-providers-during-the-pandemic-an-update/
+S071	0	exact	1.0	cached	False	https://ymrp.substack.com/p/gop-groups-outspent-dem-groups-almost
+S071	1	exact	1.0	cached	False	https://www.brennancenter.org/our-work/research-reports/dark-money-hit-record-high-19-billion-2024-federal-races
+S071	2	blocked	0.0	http 403 / curl 403 / archive none	False	https://gvwire.com/2026/08/31/millions-of-dollars-in-secret-spending-could-upend-the-2026-midterms/
+S071	3	exact	1.0	cached	False	https://www.brennancenter.org/our-work/analysis-opinion/online-political-spending-2024
+S071	4	exact	1.0	cached	False	https://support.google.com/adspolicy/answer/9617730?hl=en
+S071	5	exact	1.0	cached	False	https://www.citizensforethics.org/reports-investigations/crew-investigations/qualcomm-gave-1-million-to-pro-trump-dark-money-group/
+S072	0	exact	1.0	http 200	False	https://projects.propublica.org/nursing-homes/affiliate/a-108
+S072	1	exact	1.0	http 200	False	https://oig.hhs.gov/reports-and-publications/all-reports-and-publications/ohio-could-better-ensure-that-nursing-homes-comply-with-federal-requirements-for-life-safety-emergency-preparedness-and-infection-control
+S072	2	exact	1.0	http 200	False	https://www.iadvanceseniorcare.com/the-top-10-cms-life-safety-code-citations/
+S073	0	exact	1.0	http 200	False	https://globalwitness.org/en/campaigns/corruption-and-money-laundering/the-companies-we-keep/
+S073	1	exact	1.0	http 200	False	https://taxpolicy.org.uk/2025/05/17/foreign-director-fraud/
+S073	2	exact	1.0	http 200	False	https://www.gov.uk/government/news/manchester-tech-companies-shut-down-for-suspected-monthly-direct-debit-scam
+S074	0	exact	1.0	http 200	False	https://www.abajournal.com/magazine/article/to-recuse-or-not-investigations-into-federal-judges-financial-interests-spark-debate
+S074	1	exact	1.0	http 200	False	https://www.uscourts.gov/sites/default/files/document/guide-vol02b-ch02_1.pdf
 S075	0	exact	1.0	cached	False	https://archives.hud.gov/offices/oig/reports/internal/ig810002.pdf
+S076	0	exact	1.0	http 200	False	https://oig.hhs.gov/reports/all/2016/medicare-vulnerabilities-related-to-provider-enrollment-and-ownership-disclosure
+S076	1	exact	1.0	http 200	False	https://voyagemia.com/interview/exploring-life-business-with-raul-rodriguez-of-crei-holdings-and-national-health-transport
+S077	0	exact	1.0	cached	False	https://databreaches.net/2025/10/10/watsonville-community-hospital-had-a-data-breach-or-two-it-would-be-helpful-to-know-which/
+S077	1	exact	1.0	cached	False	https://www.comparitech.com/news/ransomware-gang-claims-attack-on-california-hospital-that-forced-staff-to-use-pen-and-paper/
+S077	2	exact	1.0	cached	False	https://www.hipaajournal.com/data-breach-watsonville-community-hospital-palomar-health-medical-group/
+S077	3	exact	1.0	cached	False	https://www.comparitech.com/news/healthcare-ransomware-roundup-2025-stats-on-attacks-ransoms-and-data-breaches/
+S077	4	exact	1.0	cached	False	https://www.cybersecurity-insiders.com/healthcare-ransomware-attacks-h1-2026/
+S077	5	exact	1.0	archive 20260918125249	False	https://jamanetwork.com/journals/jama-health-forum/fullarticle/2799961
+S078	0	exact	1.0	http 200	False	https://www.texastribune.org/2025/05/09/texas-attorney-general-judgment-pollution-skull-creek/
+S078	1	exact	1.0	http 200	False	https://www.coloradocountycitizen.com/article/5669,colorado-county-to-sue-over-skull-creek-pollution
+S078	2	exact	1.0	http 200	True	https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-protects-texas-environment-and-secures-60-million-judgment-against
+S078	3	exact	1.0	http 200	False	https://districtattorney.traviscountytx.gov/travis-county-da-guilty-plea-environmental-pollution-case/
+S078	4	exact	1.0	http 200	False	https://www.kut.org/post/creek-flowing-colorado-river-turned-black-now-state-has-sued-alleged-polluter
+S079	0	exact	1.0	http 200	True	https://www.opendemocracy.net/en/revealed-sanctioned-russian-oligarch-still-controls-london-property-firm/
+S079	1	exact	1.0	http 200	False	https://ofac.treasury.gov/recent-actions/20260623
+S079	2	exact	1.0	http 200	False	https://www.lazlointelligence.com/blog/ofac-sanctions-data-june-2026
+S080	0	blocked	0.0	http 429 / curl 429 / archive none	False	https://www.pacermonitor.com/public/case/20510832/Liotti_v_Jet_Blue_Airways
+S080	1	exact	1.0	cached	False	https://caselaw.findlaw.com/us-7th-circuit/1537600.html
+S080	2	exact	1.0	cached	False	https://www.propublica.org/article/judges-ethics-codes-recusal-conflict-of-interest-families
+S081	0	exact	1.0	http 200	False	https://journalofethics.ama-assn.org/article/mixing-dinner-and-drugs-it-ethically-contraindicated/2015-08
+S081	1	exact	1.0	http 200	False	https://www.smartmeetings.com/magazine_article/medical-ground-shifts-yet-again
+S081	2	exact	1.0	http 200	False	https://www.qordata.com/blogs/hcp-meal-limits-survey-2026
+S081	3	exact	1.0	http 200	False	https://www.astrazeneca-us.com/sustainability/Corporate-transparency/physician-engagement.html
+S082	0	exact	1.0	cached	False	https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns_2017-2023.pdf
+S082	1	exact	1.0	cached	False	https://www.wrdw.com/2026/09/25/safety-alert-injuries-deaths-rising-e-bikes-scooters-cycles/
+S082	2	exact	1.0	cached	False	https://usafacts.org/articles/analyst-notes/just-how-dangerous-are-e-bikes-its-surprisingly-hard-to-know/
+S082	3	exact	1.0	cached	False	https://www.publichealth.columbia.edu/news/e-bike-powered-scooter-injuries-spike
+S082	4	exact	1.0	cached	False	https://www.cpsc.gov/Newsroom/News-Releases/2024/E-Scooter-and-E-Bike-Injuries-Soar-2022-Injuries-Increased-Nearly-21
+S082	5	blocked	0.0	http 403 / curl 403 / archive none	True	https://www.tandfonline.com/doi/full/10.1080/15389588.2025.2543497
+S083	0	exact	1.0	http 200	False	https://insidepoliticalmoney.com/news/ohios-senate-money-war-is-just-getting-started/
+S083	1	exact	1.0	http 200	False	https://ohiocapitaljournal.com/2026/07/29/sherrod-brown-comfortably-outraises-jon-husted-as-outside-groups-enter-ohios-u-s-senate-race/
+S083	2	exact	1.0	http 200	False	https://www.newsweek.com/ohio-senate-race-bernie-moreno-sherrod-brown-1959374
+S083	3	exact	1.0	http 200	False	https://wausaupilotandreview.com/2025/05/31/outside-spending-on-2024-elections-shatters-records-fueled-by-billion-dollar-dark-money-infusion/
+S084	0	exact	1.0	http 200	False	https://www.edf.org/sites/default/files/2021-10/Orphan%20Well%20FactSheet%20PA.pdf
+S084	1	exact	1.0	http 200	False	https://stateimpact.npr.org/pennsylvania/2021/10/18/orphaned-wells-are-a-problem-in-pennsylvania-and-there-are-more-of-them-than-we-thought/
+S084	2	exact	1.0	http 200	False	https://www.farmanddairy.com/news/pennsylvania-plugging-12-more-abandoned-oil-and-gas-wells/657884.html
+S084	3	exact	1.0	http 200	False	https://www.timesobserver.com/news/local-news/2026/06/well-plugging-begins-in-anf-as-state-hits-milestone/
+S084	4	exact	1.0	http 200	False	https://pubs.usgs.gov/publication/dr1167/full
+S085	0	exact	1.0	http 200	False	https://texaslawbook.net/texas-business-bankruptcies-skyrocket-in-dfw-decline-slightly-in-houston/
+S085	1	exact	1.0	http 200	False	https://www.cornerstone.com/insights/press-releases/mega-bankruptcies-surge-in-first-half-of-2025/
+S085	2	exact	1.0	http 200	False	https://news.bloomberglaw.com/bloomberg-law-analysis/analysis-big-bankruptcy-cases-on-a-roll-delaware-still-leads
+S085	3	missing	0.52	http 200	False	https://www.abi.org/abi-journal/venue-in-chapter-11-cases-what-then-what-now-and-what-next
+S086	0	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC13370526/
+S086	1	exact	1.0	http 200	False	https://www.the-scientist.com/us-researchers-found-guilty-of-misconduct-collectively-awarded-101-million-31967
+S086	2	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC4132287/
+S087	0	exact	1.0	http 200	False	https://files.gao.gov/reports/GAO-26-107466/index.html
+S087	1	exact	1.0	http 200	False	https://www.gsaig.gov/sites/default/files/audit-reports/A180104%20-%20Final%20Report%20-%20Suspension%20and%20Debarment%20%28for%20issuance%29.pdf
+S087	2	exact	1.0	archive 20260605102728	False	https://www.gao.gov/products/gao-09-174
+S088	0	exact	1.0	cached	False	https://www.texastribune.org/2013/03/07/ethics-loopholes-keeping-public-dark/
+S088	1	exact	1.0	http 200	False	https://www.kut.org/politics/2025-07-03/texas-elon-musk-tesla-spacex-lobbyist
+S088	2	exact	1.0	http 200	False	https://www.institutionalinvestor.com/article/2bsuidloorwq40ai36yo0/portfolio/the-2014-hedge-fund-rising-stars-brad-gilbert
+S089	0	exact	1.0	cached	False	https://home.treasury.gov/news/press-releases/jy1973
+S089	1	exact	1.0	cached	False	https://home.treasury.gov/news/press-releases/jy1973
+S089	2	exact	1.0	cached	False	https://www.govinfo.gov/content/pkg/USCOURTS-dcd-1_24-cv-00285/pdf/USCOURTS-dcd-1_24-cv-00285-0.pdf
+S089	3	exact	1.0	cached	False	https://kabulnow.com/2023/12/us-government-sanctions-afghan-political-family-over-corruption-in-fuel-contracts/
+S089	4	exact	1.0	cached	False	https://www.dropsitenews.com/p/rahmani-sanctions-journalist-silencing
+S090	0	exact	1.0	cached	False	https://www.kgou.org/politics-and-government/2026-09-25/lawmakers-consider-ways-to-reduce-oklahomas-high-veteran-suicide-rate
+S090	1	exact	1.0	cached	False	https://www.yahoo.com/news/us/articles/oklahoma-veteran-suicide-rates-among-225823473.html
+S090	2	exact	1.0	cached	False	https://tulsaflyer.org/2026/05/25/news/post/oklahoma-battles-high-veteran-suicide-rates/
+S090	3	exact	1.0	cached	False	https://www.mentalhealth.va.gov/docs/data-sheets/2025/State_Data_Sheets_2025_Oklahoma_508.pdf
+S090	4	exact	1.0	cached	False	https://www.mentalhealth.va.gov/docs/data-sheets/2022/2022_State_Data_Sheets_Oklahoma_508.pdf
+S090	5	exact	1.0	cached	False	https://news.va.gov/145131/va-veteran-suicide-prevention-report-2023-data/
+S091	0	exact	1.0	cached	False	https://www.forbes.com/sites/alanohnsman/2019/03/01/tesla-safety-violations-dwarf-big-us-auto-plants-in-aftermath-of-musks-model-3-push/
+S091	1	exact	1.0	cached	False	https://aflcio.org/sites/default/files/2025-04/Memo%20on%20Elon%20Musk%20OSHA%20cases_.pdf
+S091	2	exact	1.0	archive 20260605132650	False	https://www.forbes.com/sites/alanohnsman/2022/06/06/elon-musk-has-lots-to-say-about-workers-at-teslawhich-continues-to-lead-us-carmakers-in-safety-violations/
+S091	3	exact	1.0	cached	False	https://www.hrdive.com/news/california-regulators-open-2-new-investigations-of-previously-fined-tesla-p/532571/
+S091	4	exact	1.0	archive 20250316102340	False	https://tesla.com/blog/accelerating-teslas-safety-culture
 S092	0	exact	1.0	cached	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC9009174/
 S092	1	exact	1.0	cached	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC10867848/
 S092	2	exact	1.0	cached	False	https://www.npr.org/2022/03/10/1085882933/redlining-pollution-racism
 S092	3	exact	1.0	cached	False	https://www.rand.org/pubs/articles/2022/environmental-racism-how-historic-redlining-continues.html
 S092	4	exact	1.0	cached	False	https://grist.org/accountability/redlined-neighborhoods-pollution/
+S093	0	exact	1.0	http 200	False	https://www.pew.org/en/research-and-analysis/issue-briefs/2023/05/racial-disparities-persist-in-many-us-jails
+S093	1	exact	1.0	http 200	False	https://www.pew.org/en/research-and-analysis/issue-briefs/2023/05/racial-disparities-persist-in-many-us-jails
+S093	2	exact	1.0	http 200	False	https://bjs.ojp.gov/library/publications/jail-inmates-2023-statistical-tables/web-report
+S093	3	exact	1.0	http 200	False	https://static.prisonpolicy.org/scans/ccj/Trends_in_Correctional_Control_-_FINAL.pdf
+S093	4	exact	1.0	http 200	False	https://www.vera.org/newsroom/the-vera-institute-of-justice-launches-incarceration-and-inequality-project-data-explorer
+S093	5	exact	1.0	http 200	False	https://www.vera.org/publications/divided-justice-black-white-jail-incarceration
+S094	0	exact	1.0	http 200	False	https://investorplace.com/2022/02/daniel-loebs-been-selling-upst-stock-should-you/
+S094	1	exact	1.0	http 200	False	https://www.nbcnews.com/business/business-news/peloton-insiders-sold-nearly-500-million-stock-big-drop-rcna12741
+S094	2	exact	1.0	http 200	False	https://corpgov.law.harvard.edu/?p=71221
+S094	3	exact	1.0	http 200	False	https://www.financierworldwide.com/10b5-1-trading-plans-under-the-microscope
+S094	4	exact	1.0	http 200	False	https://www.evidenceinvestor.com/post/what-insider-trades-and-non-trades-tell-us-about-future-returns
+S095	0	exact	1.0	archive 20250808132846	False	https://www.fox23.com/news/fox23-investigates-flames-and-black-smoke-seen-coming-from-west-tulsa-refinery/article_f410e044-002f-11f0-a9ba-af1cc3887663.html
+S095	1	exact	1.0	cached	False	https://environmentalintegrity.org/news/texas-fails-to-penalize-97-percent-of-illegal-air-pollution-releases/
+S095	2	exact	1.0	cached	False	https://edgi-govdata-archiving.github.io/CD-report/OK_2020
+S095	3	exact	1.0	cached	False	https://www.okgazette.com/news/oklahoma-deq-has-issued-73-million-in-fines-since-2004-2967308/
+S096	0	exact	1.0	http 200	False	https://www.eenews.net/articles/norfolk-southerns-accident-rate-spiked-over-the-last-decade/
+S097	0	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf
+S097	1	exact	1.0	http 200	False	https://www.epa.gov/sites/default/files/2015-10/documents/20111209-12-p-0113.pdf
+S098	0	exact	1.0	http 200	False	https://elections.cdn.sos.ca.gov/vbm-rejection-reason/nov-general-2022(2).pdf
+S098	1	exact	1.0	http 200	False	https://www.pbs.org/wnet/preserving-democracy/2023/08/30/1-5-of-all-absentee-mail-in-ballots-were-rejected-in-2022
+S098	2	exact	1.0	http 200	False	https://www.kpbs.org/news/politics/2026/07/27/nearly-150-000-mail-ballots-rejected-in-californias-primary-despite-efforts-to-count-every-vote
+S099	0	exact	1.0	cached	False	https://apps.bostonglobe.com/spotlight/secrets-in-the-sky/series/part-one/
+S099	1	exact	1.0	cached	False	https://www.nbcnews.com/id/wbna40590745
+S099	2	exact	1.0	cached	False	https://www.aopa.org/news-and-media/all-news/2023/february/06/faa-extends-expiration-date-of-aircraft-registration-certificates
+S099	3	exact	1.0	archive 20260913060444	False	https://www.gao.gov/products/gao-20-164
+S099	4	exact	1.0	cached	False	https://www.law.cornell.edu/cfr/text/14/47.41
+S100	0	exact	1.0	http 200	False	https://www.salon.com/2020/11/27/perdue-traded-hundreds-of-thousands-worth-of-bank-stocks-while-on-senate-banking-committee/
+S100	1	exact	1.0	http 200	False	https://www.thedailybeast.com/sen-david-perdue-says-his-perfectly-timed-stock-trades-are-completely-innocent/
+S100	2	exact	1.0	http 200	False	https://www.nber.org/system/files/working_papers/w26975/w26975.pdf
+S100	3	exact	1.0	http 200	False	https://news.northwestern.edu/stories/2026/08-2/senators-who-sit-together-trade-together
+S100	4	exact	1.0	http 200	False	https://www.cnn.com/2026/02/09/politics/senator-stock-trading-congress
+S101	0	exact	1.0	http 200	False	https://hospicenews.com/2024/05/07/fraudulent-hospice-providers-may-be-moving-between-states/
+S101	1	exact	1.0	http 200	False	https://www.propublica.org/article/medicare-california-hospice-care-fraud-southwest
+S101	2	exact	1.0	http 200	False	https://hospicenews.com/2023/07/03/cms-proposes-36-month-rule-to-curb-hospice-license-flipping/
+S101	3	exact	1.0	http 200	False	https://hospicenews.com/2024/01/25/new-hospices-cropping-up-in-fraud-hotbeds-amid-ongoing-program-integrity-push/
+S101	4	exact	1.0	cached	False	https://www.propublica.org/article/hospices-arizona-california-nevada-texas-cms-medicaid-medicare
+S101	5	exact	1.0	http 200	False	https://www.news4jax.com/health/2026/08/27/california-and-the-federal-government-battle-over-hospice-fraud-as-victims-lose-coverage-and-care/
+S102	0	exact	1.0	http 200	False	https://azpha.org/2026/06/11/overdose-deaths-are-falling-nationwide-why-is-arizona-moving-in-the-wrong-direction/
+S102	1	exact	1.0	http 200	False	https://www.kjzz.org/science/2026-01-15/cdc-data-shows-20-decline-in-national-overdose-deaths-that-wasnt-the-case-in-arizona
+S102	2	exact	1.0	archive 20260921055138	False	https://www.cdc.gov/nchs/pressroom/releases/20260513.html
+S102	3	exact	1.0	http 200	False	https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:41931861&resultType=core&format=json
+S102	4	exact	1.0	http 200	False	https://filtermag.org/cdc-overdose-data-west-arizona/
+S102	5	exact	1.0	http 200	False	https://ktar.com/arizona-news/overdose-deaths-increase-naloxone
 S103	0	exact	1.0	cached	False	https://www.ismp.org/system/files/resources/2019-02/2011Q2.pdf
 S103	1	exact	1.0	cached	False	https://www.ismp.org/system/files/resources/2019-02/2011Q4.pdf
 S103	2	exact	1.0	cached	False	https://augusta.elsevierpure.com/en/publications/the-metoclopramide-black-box-warning-for-tardive-dyskinesia-effec/
 S103	3	exact	1.0	cached	False	https://www.raps.org/resource/fda-officials-explain-when-litigation-can-impact-d.html
 S103	4	exact	1.0	cached	False	https://www.drugwatch.com/reglan/lawsuits/
 S103	5	exact	1.0	cached	False	https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13083585/fullTextXML
+S104	0	missing	0.0	cached	False	https://www.justice.gov/opa/pr/california-hospital-pay-1025m-resolve-false-claims-allegations
+S104	1	exact	1.0	cached	False	https://www.justice.gov/opa/media/1380086/dl
+S104	2	exact	1.0	cached	False	https://krcrtv.com/news/local/oroville-hospital-to-pay-1025m-in-kickback-false-claim-settlement
+S104	3	exact	1.0	cached	False	https://www.prweb.com/releases/oroville-hospital-commits-to-enhanced-compliance-and-continues-its-mission-to-serve-the-local-community-302330675.html
+S104	4	exact	1.0	cached	False	https://www.arnoldporter.com/en/perspectives/blogs/fca-qui-notes/posts/2024/12/serial-whistleblower-strikes-again
 S105	0	exact	1.0	cached	False	https://data.cms.gov/sites/default/files/2020-09/Order_and_Referring_Methodology.pdf
 S105	1	exact	1.0	cached	False	https://med.noridianmedicare.com/web/jadme/claims-appeals/claim-submission/pecos-edits
 S105	2	exact	1.0	cached	False	https://oig.hhs.gov/reports/all/2013/improvements-are-needed-to-ensure-provider-enumeration-and-medicare-enrollment-data-are-accurate-complete-and-consistent/
@@ -51,18 +442,151 @@ S106	1	exact	1.0	cached	False	https://skillednursingnews.com/2024/09/drop-in-cms
 S106	2	exact	1.0	cached	False	https://ldi.upenn.edu/our-work/research-updates/how-do-ownership-changes-affect-nursing-home-quality/
 S106	3	exact	1.0	cached	False	https://aspe.hhs.gov/sites/default/files/documents/856467326d4196842e5b3ce74df8931d/ChanOwnVarRBJune2024.pdf
 S106	4	exact	1.0	cached	False	https://www.bostonglobe.com/2026/03/04/metro/commentary-ri-nursing-homes-quality-ratings/
+S107	0	exact	1.0	http 200	False	https://file.lacounty.gov/SDSInter/bos/supdocs/214558.pdf
+S107	1	exact	1.0	http 200	False	https://homehealthcarenews.com/2026/07/medpac-flags-california-los-angeles-as-primary-drivers-of-home-health-agency-growth/
+S107	2	exact	1.0	http 200	False	https://homehealthcarenews.com/2024/01/hospice-fraud-back-in-the-spotlight-with-new-data-also-raising-questions-about-home-health-care/
+S107	3	missing	0.0	http 200	False	https://www.mcdermottlaw.com/insights/new-hospice-home-health-agency-providers-subject-to-cms-enrollment-moratoria/
+S107	4	exact	1.0	http 200	False	https://www.nbclosangeles.com/news/local/van-nuys-address-hospice-fraud/3860321/
+S107	5	exact	1.0	http 200	False	https://www.smdp.com/l-a-county-supervisors-move-to-combat-home-health-hospice-fraud-amid-nationwide-crackdown/
+S108	0	exact	1.0	http 200	False	https://tribalhealthreform.nihb.org/wp-content/uploads/2022/12/TTAG-Medicare-Medicaid-and-Other-Priorities-Final-11.19.2020.pdf
+S108	1	exact	1.0	curl 200	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC13535269/
+S108	2	exact	1.0	http 200	False	https://tchealth.org/
+S109	0	exact	1.0	http 200	False	https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/harbin-jixianglong-biotech-co-ltd-723330-05012026
+S109	1	exact	1.0	http 200	False	https://www.biospace.com/fda/fda-sends-warning-letter-after-chinese-supplier-breaks-glp-1-import-restrictions
+S109	2	exact	1.0	http 200	False	https://www.alabamaag.gov/attorney-general-marshall-leads-coalition-alerts-national-security-council-to-exploitation-of-fda-approved-drugs-by-china-supply-chain/
+S109	3	exact	1.0	http 200	False	https://www.pharmadb.ai/suppliers/semaglutide/india
+S109	4	exact	1.0	http 200	False	https://www.pharmaceuticalonline.com/doc/fda-cracks-down-on-glp-imports-0001
+S110	0	exact	1.0	archive 20260916175809	False	https://www.cdc.gov/cyclosporiasis/cases/index.html
+S110	1	exact	1.0	http 200	False	https://www.cidrap.umn.edu/cyclospora/cdc-adds-more-3000-new-cyclospora-cases
+S110	2	exact	1.0	http 200	False	https://www.today.com/health/disease/cyclospora-map-states-parasite-outbreak-diarrhea-2026-rcna385837
+S110	3	exact	1.0	http 200	False	https://www.nbcnews.com/health/health-news/cyclosporiasis-7000-cases-us-cdc-parasite-explosive-diarrhea-rcna587445
+S110	4	exact	1.0	http 200	False	https://www.medicaldaily.com/michigan-cyclospora-outbreak-peak-passed-reporting-lag-august-2026-476985
+S110	5	exact	1.0	http 200	False	https://www.cleveland19.com/2026/07/14/cyclosporiasis-outbreak-ohio-cases-surge-cdc-works-identify-source/
+S111	0	exact	1.0	cached	False	https://www.mpbonline.org/blogs/news/mississippi-ranks-2nd-to-last-in-latest-medicare-scorecard-heres-why/
+S111	1	exact	1.0	cached	False	https://www.commonwealthfund.org/datacenter/mississippi
+S111	2	exact	1.0	cached	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC8796072/
+S111	3	exact	1.0	cached	False	https://www.webmd.com/a-to-z-guides/features/state-hospital-care-rated
+S112	0	exact	1.0	http 200	False	https://web.archive.org/web/20210518182225/https://www.modernhealthcare.com/construction-design/con-law-elimination-sets-inpatient-rehab-rush-florida
+S112	1	exact	1.0	http 200	False	https://web.archive.org/web/20210518182225/https://www.modernhealthcare.com/construction-design/con-law-elimination-sets-inpatient-rehab-rush-florida
+S112	2	exact	1.0	http 200	False	https://www.encompasshealth.com/press-releases/lake-worth-inpatient-rehab-hospital-now-open
+S112	3	exact	1.0	http 200	False	https://kffhealthnews.org/health-industry/florida-hospital-building-boom-2019-deregulation-law/
+S112	4	exact	1.0	http 200	False	https://www.medpac.gov/wp-content/uploads/2026/03/Mar26_Ch9_MedPAC_Report_To_Congress_SEC.pdf
+S113	0	exact	1.0	http 200	False	https://rollcall.com/2026/06/30/tom-kean-returns-after-months-away/
+S113	1	exact	1.0	http 200	False	https://www.govtrack.us/congress/members/missing
+S113	2	exact	1.0	http 200	False	https://newjerseyglobe.com/congress/kean-still-missing-votes-due-to-unspecified-medical-issue/
+S113	3	exact	1.0	http 200	False	https://www.pbs.org/newshour/show/republican-rep-tom-kean-jr-s-absence-raises-broader-questions-about-congress
+S113	4	exact	1.0	http 200	False	https://whyy.org/articles/tom-kean-new-jersey-congressman-disappeared-consequences/
+S113	5	exact	1.0	http 200	False	https://www.inquirer.com/news/tom-kean-congressman-spoke-at-golf-club-20260822.html
+S114	0	exact	1.0	http 200	False	https://www.deseret.com/politics/2026/09/23/retiring-members-of-congress-missed-most-votes/
+S114	1	exact	1.0	http 200	False	https://www.texastribune.org/2026/01/23/wesley-hunt-congress-missed-votes-senate-republican-primary/
+S114	2	exact	1.0	http 200	False	https://legis1.com/news/congressional-absenteeism-voting-records
+S114	3	exact	1.0	http 200	False	https://congressvotetracker.org/articles/most-absent-members-march-2026.html
+S115	0	exact	1.0	http 200	False	https://calmatters.org/politics/2026/03/meta-google-ai-regulation-elections/
+S115	1	exact	1.0	http 200	False	https://calmatters.org/economy/technology/2026/08/california-data-center-backlash-big-tech-lobbying/
+S115	2	exact	1.0	http 200	False	https://www.techpolicy.press/inside-the-lobbying-frenzy-over-californias-ai-companion-bills/
+S115	3	exact	1.0	http 200	False	https://calmatters.org/data/2025/04/california-lobbying-spending-2024/
+S115	4	exact	1.0	http 200	False	https://techcrunch.com/2025/01/24/ai-companies-upped-their-federal-lobbying-spend-in-2024-amid-regulatory-uncertainty/
 S116	0	exact	1.0	cached	False	https://www.wpr.org/news/attack-ad-calls-gop-house-candidate-michael-alfonso-nepo-baby
 S116	1	exact	1.0	cached	False	https://jameswigderson.substack.com/p/derrick-van-orden-ready-to-fight
 S116	2	exact	1.0	cached	False	https://thebadgerproject.org/2026/03/24/sean-duffy-funneled-1m-to-support-son-in-laws-bid-for-congress/
 S116	3	exact	1.0	cached	False	https://www.cbsnews.com/minnesota/news/sean-duffy-million-dollars-alfonso-wisconsin-house-race/
 S116	4	exact	1.0	cached	False	https://www.apg-wi.com/sawyer_county_record/paywall/7-takeaways-about-money-behind-race-for-wisconsins-7th/article_637a3c45-b1a5-4d8d-8a34-94105fcc34d5.html
 S116	5	exact	1.0	cached	False	https://crooksandliars.com/2026/08/not-because-me-sean-duffy-spasms-family
+S117	0	exact	1.0	cached	False	https://www.texastribune.org/2013/03/07/ethics-loopholes-keeping-public-dark/
+S117	1	exact	1.0	cached	False	https://www.texastribune.org/2015/02/16/watson-pushes-more-disclosure-wining-and-dining
+S117	2	exact	1.0	cached	False	https://www.governing.com/archive/texas-lobbying-disclosure-laws-are-meaningless.html
+S117	3	exact	1.0	cached	True	https://www.dallasnews.com/news/politics/2023/01/30/five-ways-texas-lobbying-laws-keep-the-public-in-the-dark/
+S117	4	exact	1.0	cached	False	https://texasscorecard.com/state/texas-ethics-commission-proposal-would-raise-cap-on-secret-lobbyist-meals/
+S118	0	near	0.95	archive 20251206054111	False	https://www.gao.gov/assets/a235164.html
+S119	0	exact	1.0	http 200	False	https://mikedavis.substack.com/p/confirmations-recap-a-successful
+S119	1	exact	1.0	http 200	False	https://ballsandstrikes.org/nominations/senate-democrats-trump-nominees-committee-votes/
+S119	2	exact	1.0	http 200	False	https://nominationnotes.substack.com/p/nineteen-senate-democrats-have-now
+S119	3	exact	1.0	http 200	False	https://nominationnotes.substack.com/p/two-months-into-2026-heres-where
+S119	4	exact	1.0	http 200	False	https://mainemorningstar.com/2023/12/05/sen-collins-continues-to-reject-more-judicial-nominees-under-biden-than-previous-administrations/
+S120	0	exact	1.0	cached	False	https://news.bgov.com/bloomberg-government-news/which-senators-missed-the-most-votes-in-exhausting-record-year
+S120	1	exact	1.0	cached	False	https://rollcall.com/2026/03/05/vote-studies-2025-sets-new-mark-for-partisanship-on-capitol-hill/
+S120	2	exact	1.0	cached	False	https://www.republicanleader.senate.gov/leader-board/research/the-senate-just-confirmed-a-batch-of-97-nominations-capping-off-a-historic-year/
+S120	3	exact	1.0	cached	False	https://www.thune.senate.gov/news/press-releases/thune-on-senate-republicans-record-breaking-year/
+S120	4	exact	1.0	cached	False	https://www.everycrsreport.com/reports/R48729.html
+S120	5	exact	1.0	cached	False	https://www.washingtonsun.com/congress/senate-nominations-bipartisan-legislation
+S121	0	exact	1.0	http 200	False	https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00118.htm
+S121	1	exact	1.0	http 200	False	https://wltreport.com/2026/06/16/one-democrat-sinks-party-iran-war-powers-push-president-trump/
+S121	2	exact	1.0	archive 20260312192222	False	https://breakingdefense.com/2026/03/iran-war-powers-resolution-fails-in-senate/
+S121	3	exact	1.0	http 200	False	https://www.cbsnews.com/news/senate-iran-war-powers-eighth-vote-trump/
+S121	4	exact	1.0	http 200	False	https://abcnews.com/Politics/senate-fails-adopt-iran-war-powers-resolution-despite/story?id=136722629
+S121	5	exact	1.0	http 200	False	https://www.democrats.senate.gov/newsroom/press-releases/after-democrats-force-14th-vote-to-stop-iran-war-schumer-slams-republicans-for-caving-to-trumps-recklessness
+S122	0	exact	1.0	http 200	False	https://www.state.gov/wp-content/uploads/2026/09/2026-Voting-Practices-Report_Accessible.pdf
+S122	1	exact	1.0	http 200	False	https://www.state.gov/wp-content/uploads/2026/09/2026-Voting-Practices-Report_Accessible.pdf
+S122	2	exact	1.0	http 200	False	https://www.state.gov/wp-content/uploads/2025/07/Voting-Practices-in-the-United-Nations-for-2024.pdf
+S122	3	exact	1.0	http 200	False	https://goodauthority.org/news/the-world-isnt-moving-away-from-the-u-s-the-u-s-is-moving-away-from-the-world/
+S122	4	exact	1.0	http 200	False	https://www.perfil.com/noticias/masperfil/rdi-los-votos-de-argentina-en-la-onu-sufrieron-un-abrupto-cambio-de-rumbo-tras-la-asuncion-de-javier-milei.phtml
+S122	5	exact	1.0	http 200	False	https://datadrivendecisionlab.com/2024-UNGA-report
+S123	0	exact	1.0	http 200	False	https://news.bgov.com/bloomberg-government-news/influence-shrinks-as-house-limits-members-power-to-change-bills
+S123	1	exact	1.0	http 200	False	https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy
+S123	2	exact	1.0	http 200	False	https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy
+S123	3	exact	1.0	http 200	False	https://democrats-rules.house.gov/media/press-releases/mcgovern-speaker-johnson-promised-he-would-run-place-differently-hes-broken
+S123	4	exact	1.0	http 200	False	https://democrats-rules.house.gov/sites/evo-subsites/democrats-rules.house.gov/files/documents/one-page-summary_house-rules-democratic-staff-report-2025.pdf
+S123	5	exact	1.0	http 200	False	https://rules.house.gov/media/press-releases/foxx-opening-remarks-hr-4593-hr-5184-and-hr-6938
 S124	0	exact	1.0	cached	False	https://www.scotusblog.com/2023/03/another-federal-agency-challenges-adverse-ruling-by-5th-circuit/
 S124	1	exact	1.0	cached	False	https://news.bloomberglaw.com/us-law-week/conservative-fifth-circuit-is-an-outlier-for-supreme-court
 S124	2	exact	1.0	cached	False	https://edition.cnn.com/2024/04/07/politics/supreme-court-5th-circuit/index.html
 S124	3	exact	1.0	cached	False	https://www.texastribune.org/2024/07/02/5th-circuit-appeals-supreme-court-texas/
 S124	4	exact	1.0	cached	False	https://fedsoc.org/commentary/fedsoc-blog/is-the-fifth-circuit-too-conservative
 S124	5	exact	1.0	cached	False	https://www.nga.org/updates/2025-2026-u-s-supreme-court-term-summary-of-key-decisions-and-implications-for-states/
+S125	0	exact	1.0	cached	False	https://www.marktreichel.com/post/when-the-balance-sheet-stops-making-sense
+S125	1	blocked	0.0	http 403 / curl 403 / archive none	True	https://www.cutimes.com/2026/06/04/conserved-jackson-area-fcus-917m-loss-lowers-industry-roa-in-first-quarter/
+S125	2	exact	1.0	cached	False	https://www.cutoday.info/Fresh-Today/NCUA-Call-Report-Reveals-Stunning-103-Million-Loss-at-Jackson-Area-FCU
+S125	3	exact	1.0	cached	False	https://ncua.gov/newsroom/press-release/2026/jackson-area-federal-credit-union-conserved
+S125	4	exact	1.0	cached	False	https://www.cutoday.info/Fresh-Today/NCUA-Conserves-Jackson-Area-FCU
+S125	5	exact	1.0	cached	False	https://ncuso.org/credit-union/8445/
+S126	0	exact	1.0	cached	False	https://www.gao.gov/assets/a252314.html
+S126	1	exact	1.0	cached	False	https://www.gao.gov/assets/a252314.html
+S127	0	exact	1.0	cached	False	https://www.sec.gov/Archives/edgar/data/1624512/000162828025019375/boxl-20241231x10xka.htm
+S127	1	exact	1.0	archive 20260108105430	False	https://www.sec.gov/Archives/edgar/data/1624512/000110465924054191/tm2412992d1_def14a.htm
+S127	2	exact	1.0	cached	False	https://dev.to/itsraxzey/how-late-is-form-4-real-time-data-measuring-filing-delay-on-11241-insider-filings-2e9j
+S127	3	exact	1.0	cached	False	https://www.sec.gov/newsroom/press-releases/2023-201
+S128	0	exact	1.0	cached	False	https://www.sec.gov/newsroom/press-releases/2024-135
+S128	1	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.sec.gov/enforcement-litigation/administrative-proceedings/34-106287-s
+S128	2	exact	1.0	cached	False	https://btlaw.com/en/insights/alerts/2024/sec-sanctions-investment-managers-for-failure-to-report-on-forms-13f-and-13h
+S128	3	exact	1.0	cached	False	https://www.nixonpeabody.com/insights/alerts/2024/10/29/faqs-sec-form-13f-enforcement-actions
+S129	0	exact	1.0	http 200	False	https://www.opensanctions.org/datasets/ext_us_irs_ffi/
+S129	1	exact	1.0	http 200	False	https://ofac.treasury.gov/faqs/1197
+S130	0	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.sec.gov/Archives/edgar/data/80255/000008025526000381/xslForm13F_X02/primary_doc.xml
+S130	1	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.sec.gov/Archives/edgar/data/312069/000031206926000081/xslForm13F_X02/primary_doc.xml
+S130	2	exact	1.0	cached	False	https://www.finrep.ai/blog/sec-13f-reporting-requirements-2026-compliance-guide
+S130	3	exact	1.0	cached	False	https://edgarscout.com/13f-filings/
+S130	4	exact	1.0	cached	False	https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f
+S131	0	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.sec.gov/Archives/edgar/data/1019034/000143774924012736/ex_657938.htm
+S131	1	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.stocktitan.net/news/BKYI/bio-key-receives-notice-of-non-compliance-from-nasdaq-related-to-zptqrvvtpmy5.html
+S131	2	exact	1.0	cached	False	https://laserphotonics.com/news/press-releases/laser-photonics-received-nasdaq-notice-of-delisting-for-failure-to-satisfy-a-continued-listing-rule-or-standard/
+S131	3	exact	1.0	cached	False	https://www.sec.gov/Archives/edgar/data/1807887/000149315226018345/ex99-1.htm
+S131	4	exact	1.0	cached	False	https://www.sec.gov/Archives/edgar/data/1911545/000149315226017155/ex99-1.htm
+S131	5	exact	1.0	cached	False	https://www.newswire.com/news/eon-resources-inc-announces-notice-of-failure-to-satisfy-a-continued-listing
+S132	0	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf
+S132	1	exact	1.0	http 200	False	https://www.deq.louisiana.gov/assets/docs/Surveillance/Inspections/LA_SOP_1839_R26.pdf
+S132	2	exact	1.0	http 200	False	https://www.epa.gov/sites/default/files/2018-05/documents/srf-rd3-rev-la.pdf
+S133	0	exact	1.0	http 200	False	https://19january2017snapshot.epa.gov/enforcement/cement-manufacturing-enforcement-initiative_.html
+S133	1	exact	1.0	http 200	False	https://www.epa.gov/archive/epa/newsreleases/cement-manufacturer-cemex-reduce-harmful-air-pollution-five-plants-under-settlement-epa.html
+S134	0	exact	1.0	cached	False	https://www.signalsaz.com/articles/drinking-water-in-yuma/
+S134	1	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.yumaaz.gov/Home/Components/News/News/785/
+S134	2	exact	1.0	cached	False	https://kyma.com/news/2022/03/18/yuma-drinking-water-affected-by-high-levels-of-chlorine-dioxide/
+S135	0	exact	1.0	http 200	False	https://industriouslabs.org/archive/epa-takes-steps-to-address-underreporting-of-landfill-methane-emissions
+S135	1	exact	1.0	http 200	False	https://www.epa.gov/ghgreporting/subpart-hh-municipal-solid-waste-landfills
+S135	2	exact	1.0	http 200	False	https://www.federalregister.gov/documents/2025/09/16/2025-17923/reconsideration-of-the-greenhouse-gas-reporting-program
+S136	0	exact	1.0	http 200	False	https://www.epa.gov/sites/default/files/2020-04/documents/srf-rd4-rev-or.pdf
+S136	1	exact	1.0	http 200	False	https://www.oregon.gov/deq/permits/pages/npdeswpcf-in-ydo.aspx
+S136	2	exact	1.0	http 200	False	https://www.oregon.gov/deq/wq/Documents/wqpAnnualReportNPDES.pdf
+S137	0	exact	1.0	cached	False	https://www.epa.gov/system/files/documents/2026-05/srf-rd5-rev-mo.pdf
+S137	1	exact	1.0	cached	False	https://www.epa.gov/system/files/documents/2025-02/srf-rd4-rev-oh.pdf
+S137	2	exact	1.0	cached	False	https://elpc.org/resources/region-7-clean-water-enforcement-report/
+S137	3	exact	1.0	archive 20260108210729	False	https://www.gao.gov/products/gao-21-290
+S137	4	exact	1.0	cached	False	https://www.epa.gov/enforcement/national-enforcement-and-compliance-initiative-reducing-significant-non-compliance
+S138	0	exact	1.0	http 200	False	https://environmentalintegrity.org/news/boosted-by-trump-administration-lng-industry-violates-pollution-limits/
+S138	1	exact	1.0	http 200	False	https://environmentalintegrity.org/news/boosted-by-trump-administration-lng-industry-violates-pollution-limits/
+S138	2	exact	1.0	http 200	False	https://grist.org/energy/louisiana-lng-project-pollution-woodside-gas/
+S138	3	exact	1.0	http 200	False	https://grist.org/energy/louisiana-lng-project-pollution-woodside-gas/
+S138	4	exact	1.0	http 200	False	https://thelensnola.org/2023/07/31/lng-export-terminals-belching-more-pollution-than-estimated/
+S138	5	exact	1.0	http 200	False	https://lngir.cheniere.com/news-events/press-releases/detail/221/cheniere-publishes-2020-corporate-responsibility-report
 S139	0	exact	1.0	cached	False	https://www.sfgate.com/tech/article/tesla-air-district-violations-22297849.php
 S139	1	exact	1.0	cached	False	https://richmondside.org/2026/01/28/the-bay-areas-most-fined-air-polluters-explore-10-years-of-environmental-violations/
 S139	2	exact	1.0	cached	False	https://driveteslacanada.ca/news/tesla-fremont-factory-17-new-air-quality-violations-2026/
@@ -74,20 +598,293 @@ S140	1	exact	1.0	cached	False	https://www.yahoo.com/news/racial-slurs-are-woven-
 S140	2	exact	1.0	cached	False	https://congress.gov/crs_external_products/IN/PDF/IN12000/IN12000.4.pdf
 S140	3	exact	1.0	cached	False	https://www.doi.gov/pressreleases/interior-department-completes-removal-sq-federal-use
 S140	4	exact	1.0	cached	False	https://oregonblackpioneers.org/two-geographic-features-renamed-to-honor-black-oregonians/
+S141	0	exact	1.0	http 200	False	https://www.uscourts.gov/sites/default/files/document/jb_b12_0930.2025.pdf
+S141	1	exact	1.0	http 200	False	https://www.uscourts.gov/sites/default/files/data_tables/jb_b12_0930.2019.pdf
+S141	2	exact	1.0	http 200	False	https://www.goodreads.com/author_blog_posts/1533954-rates-of-unpublished-opinions-in-the-different-circuits-and-especially?tab=author
+S142	0	exact	1.0	cached	False	https://tracreports.org/reports/773/
+S142	1	exact	1.0	cached	False	https://www.joemygod.com/2026/05/politico-judges-have-ruled-against-ice-10000-times/
+S142	2	exact	1.0	cached	False	https://www.workingimmigrants.com/2026/07/great-majority-of-court-decisions-rule-against-the-government/
+S142	3	exact	1.0	cached	False	https://projects.propublica.org/habeas-tracker/
+S142	4	exact	1.0	cached	True	https://www.washingtonexaminer.com/news/justice/4606511/immigrants-tens-thousands-lawsuits-trump-first-year/
+S143	0	exact	1.0	http 200	False	https://www.scotusblog.com/2025/07/by-the-numbers/
+S143	1	exact	1.0	http 200	False	https://www.bu.edu/bulawreview/files/2025/11/VLADECK.pdf
+S143	2	exact	1.0	http 200	False	https://statecourtreport.org/our-work/analysis-opinion/us-supreme-courts-declining-state-case-docket
+S143	3	exact	1.0	http 200	False	https://www.stevevladeck.com/p/73-the-supreme-court-and-state-courts
+S143	4	exact	1.0	http 200	False	https://empiricalscotus.com/2020/09/01/a-sometimes-forgotten-link/
+S144	0	exact	1.0	http 200	False	https://www.bostonglobe.com/2023/08/14/metro/after-uproar-littleton-gun-vendors-seek-new-home-nearby-towns-are-wary-them/
+S144	1	exact	1.0	http 200	False	https://www.bostonglobe.com/2022/09/10/metro/an-old-mill-littleton-gun-dealers-openly-defy-maura-healeys-assault-weapon-decrees/
+S144	2	exact	1.0	http 200	False	https://www.bostonglobe.com/2023/02/02/metro/dozens-atf-inspectors-descend-gun-vendors-littleton-mill-following-dealers-arrest/
+S144	3	exact	1.0	http 200	False	https://en.wikipedia.org/wiki/Littleton_mill
+S144	4	exact	1.0	http 200	False	https://www.cbsnews.com/boston/news/stow-gun-dealers-manufacturers-gleasondale-industrial-park-mill-littleton-massachusetts/
+S144	5	exact	1.0	http 200	False	https://littletonma.org/735/410-Great-Road
+S145	0	near	0.93	http 200	False	https://www.wcax.com/content/news/Report-looks-at-background-check-options-for-private-gun-sales-503731881.html
+S145	1	exact	1.0	http 200	False	https://vtdigger.org/2019/10/23/vermont-gun-sales-have-spiked-in-the-last-decade/
+S145	2	exact	1.0	http 200	False	https://www.fbi.gov/file-repository/cjis/nics-2022-operations-report.pdf
+S145	3	exact	1.0	http 200	False	https://pure.johnshopkins.edu/en/publications/comprehensive-background-check-policy-and-firearm-background-chec
+S146	0	exact	1.0	http 200	False	https://projects.propublica.org/nonprofits/organizations/980543843
+S146	1	exact	1.0	http 200	False	https://projects.propublica.org/nonprofits/organizations/980571483
+S146	2	exact	1.0	http 200	False	https://www.canadiancharitylaw.ca/blog/us-form-990-filed-by-groups-with-addresses-in-canada/
+S146	3	exact	1.0	http 200	False	https://www.thetaxadviser.com/issues/2008/may/uswithholdingtaximposedonforeigntaxexemptorganizations/
+S146	4	exact	1.0	http 200	False	https://www.taxexemptworld.com/non-profit-classification/501c4-social-welfare-organization.asp
+S147	0	exact	1.0	http 200	False	https://taxfoundation.org/blog/tariff-refunds-wiped-out-tariff-revenue-since-may/
+S147	1	exact	1.0	http 200	False	https://finance.yahoo.com/economy/article/tariff-refunds-accelerated-sharply-in-june-as-the-us-paid-out-almost-50-billion-to-businesses-185847171.html
+S147	2	exact	1.0	http 200	False	https://www.newsweek.com/trump-admin-issues-77bn-in-tariff-refunds-so-far-this-year-12195141
+S147	3	exact	1.0	http 200	False	https://abcnews.com/Business/trump-administration-pays-milestone-100-billion-tariff-refunds/story?id=135399276
+S147	4	exact	1.0	http 200	False	https://finance.yahoo.com/economy/article/new-data-shows-the-us-governments-166-billion-tariff-refund-process-is-quickly-tapering-off-201348435.html
+S147	5	exact	1.0	http 200	False	https://www.chrobinson.com/en-us/resources/insights-and-advisories/client-advisories/2026q3/09-17-26-cbp-cape-phase-3-ieepa-refunds/
+S148	0	exact	1.0	http 200	False	https://www.gleif.org/lei-solutions/featuring-the-lei/cross-border-payments/2023-06-5_gleif_lse_sanctions_screening_v1.0_approved_final.pdf
+S148	1	exact	1.0	http 200	False	https://finance.ec.europa.eu/system/files/2023-07/faqs-sanctions-russia-assets-freezes_en.pdf
+S149	0	exact	1.0	http 200	False	https://primerfp.com/intel/contract/70B01C23D00000010-70B03C24F00001029
+S149	1	exact	1.0	http 200	False	https://fed-spend.com/blog/what-taxpayers-got-federal-contracts-h1-2026-expose
+S149	2	exact	1.0	http 200	False	https://www.propublica.org/article/trump-border-wall-contracts-tommy-fisher
+S149	3	exact	1.0	http 200	False	https://hoodline.com/2026/03/trump-s-border-billions-turn-quiet-north-dakota-family-into-wall-building-tycoons/
+S149	4	exact	1.0	http 200	False	https://www.projectsaltbox.com/p/follow-the-money-march-2026-cbp-spends
+S149	5	exact	1.0	http 200	False	https://inewsource.org/2026/08/25/border-wall-construction-fisher-jacumba-wilderness/
+S150	0	exact	1.0	archive 20260108213141	False	https://www.gao.gov/assets/720/712214.pdf
+S150	1	exact	1.0	http 200	False	https://www.osha.gov/sites/default/files/2021-07/Vermont-FY-2020-Follow-up-FAME-Report.pdf
+S150	2	exact	1.0	http 200	False	https://labor.vermont.gov/sites/labor/files/doc_library/1904%20clean%20text.pdf
+S150	3	exact	1.0	http 200	False	https://www.osha.gov/injuryreporting/faqs
+S150	4	exact	1.0	http 200	False	https://vtdigger.org/2026/08/16/for-emergency-department-staff-violence-at-work-is-a-dangerous-and-demoralizing-reality/
+S151	0	blocked	0.0	pdf PdfStreamError	False	https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/Most-Serious-Problems-Tax-Exempt-Automatic-Revocation.pdf
+S151	1	exact	1.0	cached	False	https://www.irs.gov/charities-non-profits/automatic-revocation-of-exemption-for-nonfiling-frequently-asked-questions-you-think-your-organization-was-erroneously-listed-as-revoked
+S151	2	exact	1.0	cached	False	https://apify.com/aiqlabs/nonprofit-lookup
+S151	3	exact	1.0	cached	False	https://www.foxnews.com/politics/white-nationalists-nonprofit-loses-tax-exempt-status.amp
+S151	4	exact	1.0	cached	False	https://www.tigta.gov/sites/default/files/reports/2026-08/20261S0042fr.pdf
+S152	0	exact	1.0	http 200	False	https://janataweekly.org/articles/starved-of-data-indias-hungry-people-go-missing-from-fao-report-global-hunger-numbers-jump
+S152	1	missing	0.0	http 200	True	https://www.pressreader.com/india/frontline/20220812/284575951587217
+S152	2	exact	1.0	http 200	False	https://www.isas.nus.edu.sg/wp-content/uploads/2024/02/ISAS-WP-Food-Security-DC-PS-HK-DC-50_HK3-HS.pdf
+S152	3	exact	1.0	http 200	False	https://www.factchecker.in/fact-check/is-the-global-hunger-index-erroneous-as-the-indian-govt-claims-839228
+S152	4	exact	1.0	http 200	False	https://www.insightsonindia.com/2026/07/23/the-state-of-food-security-and-nutrition-in-the-world-sofi-2026-report/
+S153	0	exact	1.0	http 200	False	https://www.actionnews5.com/2026/09/09/could-change-be-coming-holly-springs-utility-collision-course-2027/
+S153	1	exact	1.0	http 200	False	https://magnoliatribune.com/2025/09/05/mississippi-psc-takes-action-against-holly-springs-public-utility/
+S153	2	exact	1.0	http 200	False	https://cdispatch.com/news/a-real-twisted-animal-in-holly-springs-whats-next-for-the-spiraling-power-provider/
+S153	3	near	0.95	http 200	False	https://www.supertalk.fm/years-of-mismanagement-led-to-unreliable-state-of-holly-springs-utility-department-report-finds/
+S154	0	exact	1.0	http 200	False	https://www.aceee.org/press-release/2023/08/utility-scorecard-energy-efficiency-efforts-stagnating-amid-climate-crisis
+S154	1	exact	1.0	http 200	False	https://database.aceee.org/state/ohio
+S154	2	exact	1.0	http 200	False	https://ohiocapitaljournal.com/2025/03/28/ohio-utility-retracts-energy-efficiency-plan-despite-potential-savings/
+S154	3	exact	1.0	http 200	False	https://elpc.org/blog/want-lower-energy-bills-efficiency-best-bet-ohio/
+S155	0	exact	1.0	cached	False	https://www.news5cleveland.com/news/local-news/investigations/dont-want-to-switch-to-a-smart-meter-it-will-cost-you
+S155	1	exact	1.0	cached	False	https://www.firstenergycorp.com/newsroom/featured_stories/smart-meter-installations-continue-in-ohio.html
+S155	2	exact	1.0	cached	False	https://www.firstenergycorp.com/newsroom/news_articles/2023-shareholder-address.html
+S155	3	near	0.96	cached	False	https://psc.maryland.gov/wp-content/uploads/2025/11/2013-MD-PSC-Annual-Report1.pdf
+S155	4	exact	1.0	cached	False	https://msa.maryland.gov/megafile/msa/speccol/sc5300/sc5339/000113/023800/023821/20190206e.pdf
+S155	5	exact	1.0	cached	False	https://callmepower.com/md/utility/potomac-edison
+S156	0	exact	1.0	http 200	True	https://www.stltoday.com/news/local/business/ameren-coal-plant-is-top-polluter-labadie-emits-more-so2-than-any-in-us/article_85c77c20-e211-11ee-b0ec-73282e33d4eb.html
+S156	1	exact	1.0	http 200	False	https://nebraskapublicmedia.org/en/news/news-articles/midwest-coal-fired-power-plants-are-among-the-countrys-worst-polluters-but-they-dont-break-epa-rules/
+S156	2	exact	1.0	http 200	False	https://www.japantimes.co.jp/environment/2026/04/10/energy/us-city-pollution-ai-boom/
+S156	3	exact	1.0	http 200	False	https://www.kcur.org/news/2024-10-15/ameren-missouri-rush-island-coal-plant-closure-epa-air-pollution
+S156	4	exact	1.0	http 200	False	https://www.eia.gov/todayinenergy/detail.php?id=4410
+S157	0	exact	1.0	cached	False	https://grist.org/energy/utility-monopolies-are-hurting-rooftop-solar-can-antitrust-lawsuits-rein-them-in/
+S157	1	exact	1.0	cached	False	https://votesolar.org/salt-river-projects-pricing-proceeding-halts-arizonas-progress-toward-clean-and-affordable-energy/
+S157	2	exact	1.0	cached	False	https://www.scientificamerican.com/article/new-fees-may-weaken-demand-for-rooftop-solar/
+S157	3	exact	1.0	cached	False	https://www.utilitydive.com/news/srp-salt-river-residential-rooftop-purpa-vote-solar-ferc/704576/
+S157	4	exact	1.0	cached	False	https://blog.srpnet.com/truth-about-srp/
+S158	0	exact	1.0	http 200	False	https://www.aol.com/evergy-time-based-rate-plan-190339734.html
+S158	1	exact	1.0	http 200	False	https://www.eenews.net/articles/missouri-overhauls-electric-rates-raising-rewards-and-risks-for-customers/
+S158	2	exact	1.0	http 200	False	https://www.kcur.org/news/2023-10-03/missouri-regulators-ok-evergy-changing-default-time-of-use-pricing-plan
+S158	3	exact	1.0	http 200	False	https://psc.mo.gov/CMSInternetData/ConsumerInformation/PSC%20staff's%20frequently%20asked%20questions.pdf
+S158	4	exact	1.0	http 200	False	https://smartenergycc.org/wp-content/uploads/2025/08/SECCs-2025-Evergy-Case-Study.pdf
+S159	0	exact	1.0	http 200	False	https://www.selc.org/press-release/court-allows-alabama-power-solar-fees-to-continue/
+S159	1	exact	1.0	http 200	False	https://insideclimatenews.org/news/31032026/alabama-power-solar-fee-ruling/
+S159	2	missing	0.55	http 200	False	https://www.selc.org/press-release/2021-trends-making-and-braking-rooftop-solar-in-the-south/
+S159	3	exact	1.0	http 200	False	https://cleanenergy.org/blog/solar-in-the-southeast-annual-report-part-1/
+S160	0	exact	1.0	http 200	False	https://services.google.com/fh/files/helpcenter/googlefrankingadsdeck2019.pdf
+S160	1	exact	1.0	http 200	False	https://www.spotlightpa.org/news/2026/08/rob-bresnahan-ethics-complaint-campaign-video-federal-government/
+S160	2	exact	1.0	archive 20260701104554	True	https://www.axios.com/2026/04/03/2026-midterm-election-house-franked-ads
+S160	3	exact	1.0	http 200	False	https://www.minnpost.com/dc-memo/2026/07/how-minnesota-members-of-congress-use-taxpayer-funded-franking/
+S160	4	exact	1.0	http 200	False	https://cha.house.gov/_cache/files/c/f/cf991e1f-943e-437a-b3fb-9b41fecec305/F93251682496493DCB39B45EFE0C76520D81ACBD728145C1B9A9CD20EE13E230.2025-communications-standards-manual-dec-1-2025-final-1-.pdf
+S160	5	exact	1.0	http 200	False	https://www.legistorm.com/pro_news/3178/ad-spending-in-house-concentrated-in-just-a-few-offices.html
+S161	0	exact	1.0	cached	False	https://washingtonsun.com/immigration/department-homeland-security-video-ads-self-deportation-facebook-instagram?redirected=notus_org
+S161	1	exact	1.0	cached	False	https://jayapal.house.gov/2026/01/22/reps-jayapal-and-balint-push-meta-and-google-to-end-ice-ad-partnerships-using-white-nationalist-propaganda/
+S161	2	exact	1.0	archive 20260807191101	True	https://www.axios.com/2025/10/15/trump-self-deportation-ads-noem
+S162	0	exact	1.0	curl 200	False	https://www.themarshallproject.org/2026/08/25/immigrant-detention-trump-ice-thousands-length
+S162	1	exact	1.0	http 200	False	https://deportationdata.org/analysis/immigration-enforcement-first-year.html
+S162	2	exact	1.0	http 200	False	https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/
+S162	3	exact	1.0	http 200	False	https://www.nyc.gov/assets/immigrants/downloads/pdf/2019_01_moia_ice_enforcement_nyc_aor.pdf
+S163	0	exact	1.0	archive 20250923141307	True	https://www.bloomberg.com/graphics/2025-h1b-visa-middlemen-cheap-labor-for-us-banks/
+S163	1	exact	1.0	cached	False	https://finance.yahoo.com/news/wall-streets-secret-weapon-citi-191644770.html
+S163	2	exact	1.0	cached	False	https://spectrum.ieee.org/amp/new-data-hammers-home-problems-with-h1bs-and-outsourcing-firms-2650275971
+S163	3	exact	1.0	cached	False	https://ifp.org/the-wage-level-mirage/
+S164	0	exact	1.0	cached	False	https://www.thebanner.com/politics-power/social-justice/ice-detention-holding-rooms-baltimore-I6KXL3ZI2ZDZNLDHPRY7WSVMRA/
+S164	1	exact	1.0	cached	False	https://thedailyrecord.com/2026/03/09/ice-hold-room-baltimore/
+S164	2	exact	1.0	cached	False	https://coloradotimesrecorder.com/2026/03/exclusive-ice-locks-thousands-including-kids-in-170-hold-rooms-nationwide-heres-where-they-are/77352/
+S164	3	exact	1.0	archive 20260722183842	True	https://www.washingtonpost.com/immigration/interactive/2026/07/22/ice-officials-warned-dangerous-crowding-see-how-they-kept-packing-people/
+S165	0	exact	1.0	http 200	False	https://www.cityam.com/new-companies-house-id-rule-triggers-30-per-cent-slump-in-registrations/
+S165	1	exact	1.0	http 200	False	https://bmmagazine.co.uk/news/anti-fraud-law-company-registrations-fall-companies-house/
+S165	2	exact	1.0	http 200	False	https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2025/incorporated-companies-in-the-uk-october-to-december-2025
+S165	3	exact	1.0	http 200	False	https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-january-to-march-2026/incorporated-companies-in-the-uk-january-to-march-2026
+S165	4	exact	1.0	http 200	False	https://www.smeweb.com/active-uk-companies-at-record-high-but-new-incorporations-slow-due-to-new-companies-house-rules-and-increased-fees/
+S165	5	exact	1.0	http 200	False	https://www.newsfilecorp.com/release/307094/UK-Company-Formations-Reach-Record-Levels-Despite-Digital-Registration-Fee-Rising-by-More-Than-700-New-Icon-Offices-Research-Finds
+S166	0	exact	1.0	http 200	False	https://www.irishtimes.com/news/ireland/irish-news/pandora-papers-empty-dublin-office-used-as-registered-address-for-800-limited-partnerships-1.4690024
+S166	1	exact	1.0	http 200	False	https://taxjustice.net/2015/11/11/how-ireland-became-an-offshore-financial-centre/
+S166	2	exact	1.0	http 200	False	https://www.irishtimes.com/business/two-irish-registered-companies-fined-1.373493
+S167	0	exact	1.0	http 200	False	https://www.anderson.ucla.edu/documents/areas/fac/accounting/working-papers/Omartian-Panama%20Papers.pdf
+S167	1	exact	1.0	http 200	False	https://extranet.greens-efa-service.eu/public/media/file/1/5183
+S167	2	exact	1.0	http 200	False	https://www.cambridge.org/core/journals/journal-of-public-policy/article/abs/offshore-financial-activity-and-tax-policy-evidence-from-a-leaked-data-set/A8C83C4F6A781B81CA317DAB78E25499
 S168	0	exact	1.0	cached	False	https://www.cbsnews.com/amp/philadelphia/news/atlantic-city-housing-authority-new-jersey
 S168	1	exact	1.0	cached	False	https://newjerseyglobe.com/local/doherty-huds-takeover-is-a-lifeline-for-atlantic-citys-most-vulnerable/
 S168	2	exact	1.0	cached	True	https://pressofatlanticcity.com/news/local/govt-and-politics/ac-housing-authority-fails-hud-rules-on-how-residents-get-in-pay-and-more/article_65d92228-11e3-11ee-9fb9-afb76e898d30.html
 S168	3	exact	1.0	cached	True	https://pressofatlanticcity.com/news/local/government-politics/atlantic-city-housing-authority-gas-leak-special-meeting/article_4a2d52fc-4bf3-11ee-8258-6fcbae5ed5d0.html
 S168	4	exact	1.0	cached	False	https://www.atlanticcityfocus.com/atlantic-city-housing-authority-details-action-plan-enacted-for-fixing-issues-at-stanley-holmes-village/
 S168	5	exact	1.0	cached	True	https://pressofatlanticcity.com/news/local/government-politics/article_2feac2ed-414d-49b2-bdf7-d693522113ee.html
+S169	0	exact	1.0	http 200	False	https://www.theadvocate.com/baton_rouge/news/environment/earthquakes-north-louisiana-oil-fracking-haynesville-shale/article_3297e504-50a8-5f5a-b098-d2c4acc5b7cc.html
+S169	1	exact	1.0	http 200	False	https://news.tulane.edu/pr/tulane-geoscientist-helping-researchers-understand-rare-north-louisiana-earthquakes
+S169	2	exact	1.0	http 200	False	https://www.dce.louisiana.gov/news/red-river-parish-tremors
+S169	3	exact	1.0	http 200	False	https://www.ktbs.com/news/earthquakes-in-red-river-parish-shaking-up-residents/article_45b57d80-bef3-11ee-8a5f-8705d44c3b95.html
+S169	4	exact	1.0	http 200	False	https://www.ktbs.com/community/earthquake-rattles-parts-of-red-river-parish/article_2448ae11-4637-4ebd-adc1-a4ee7f8d19c6.html
+S169	5	exact	1.0	http 200	False	https://www.yahoo.com/news/articles/earthquakes-becoming-more-frequent-east-120000632.html
+S170	0	exact	1.0	http 200	False	https://www.everycrsreport.com/reports/R47911.html
+S170	1	exact	1.0	http 200	False	https://hoodline.com/2026/09/train-kills-pedestrian-near-calvine-road-fourth-fatal-sacramento-strike-since-2025/
 S171	0	exact	1.0	cached	False	https://www.connectas.org/contratos-publicos-ecuador/
 S171	1	exact	1.0	cached	False	https://www.open-contracting.org/2022/11/10/democratizing-public-procurement-in-ecuador/
-S192	0	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.sec.gov/about/divisions-offices/division-corporation-finance/holding-foreign-insiders-accountable-act-frequently-asked-questions
+S172	0	exact	1.0	http 200	False	https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/
+S172	1	exact	1.0	http 200	False	https://github.com/rhowardstone/Epstein-research-data
+S172	2	exact	1.0	http 200	False	https://www.justice.gov/opa/media/1426091/dl
+S173	0	exact	1.0	http 200	False	https://www.govinfo.gov/content/pkg/FR-2025-08-19/html/2025-15716.htm
+S173	1	exact	1.0	http 200	False	https://www.govinfo.gov/content/pkg/FR-2025-08-19/html/2025-15717.htm
+S173	2	exact	1.0	http 200	False	https://www.govinfo.gov/content/pkg/FR-2026-05-06/html/2026-08895.htm
+S173	3	exact	1.0	http 200	False	https://www.govinfo.gov/content/pkg/FR-2025-01-17/html/2025-01066.htm
+S173	4	exact	1.0	http 200	False	https://www.politifact.com/factchecks/2026/jan/28/jared-moskowitz/FEMA-disaster-declaration-backlog-Trump/
+S174	0	exact	1.0	http 200	True	https://hospitalcouncil.org/hospital-action-needed-to-retain-hpsa-designation/
+S174	1	exact	1.0	http 200	True	https://calhospital.org/hospital-action-required-to-retain-hpsa-designation/
+S174	2	exact	1.0	http 200	False	https://www.govinfo.gov/content/pkg/FR-2026-07-01/html/2026-13309.htm
+S174	3	exact	1.0	http 200	True	https://calhospital.org/hrsa-delays-withdrawal-of-health-professional-shortage-area-designations/
+S175	0	exact	1.0	http 200	False	https://www.mentalhealth.va.gov/docs/data-sheets/2025/2025_Annual_Report_Part_2_508.pdf
+S175	1	exact	1.0	http 200	False	https://www.usmedicine.com/clinical-topics/suicide/percentage-rates-for-veteran-suicide-up/
+S175	2	exact	1.0	http 200	False	https://www.militarytimes.com/news/your-military/2026/02/06/veteran-suicide-rate-slightly-increased-latest-report-finds/
+S175	3	exact	1.0	http 200	False	https://taskandpurpose.com/military-life/veterans-suicide-report-2025/
+S175	4	exact	1.0	http 200	False	https://www.military.com/daily-news/2026/02/12/va-releases-newest-veteran-suicide-data-heres-what-they-found.html
+S175	5	exact	1.0	http 200	False	https://warriorwod.org/veteran-suicide-prevention-month-2026/
+S176	0	exact	1.0	http 200	False	https://hntrbrk.com/ethylene-oxide-virginia/
+S176	1	exact	1.0	http 200	False	https://www.vpm.org/news/2026-06-18/ethylene-oxide-leak-sterilization-services-henrico-industrial-chemicals-selc-epa
+S176	2	exact	1.0	http 200	False	https://www.ucs.org/resources/virginia
+S176	3	exact	1.0	http 200	False	https://www.ucs.org/resources/memphis-tennessee
+S176	4	exact	1.0	http 200	False	https://claiborneprogress.net/2023/06/02/epa-deroyal-one-of-23-at-highest-risk/
+S177	0	exact	1.0	http 200	False	https://oig.hhs.gov/reports/all/2022/vanderbilt-university-medical-center-audit-of-outpatient-outlier-payments/
+S177	1	exact	1.0	http 200	False	https://oig.hhs.gov/documents/evaluation/2959/OEI-06-10-00520-Complete%20Report.pdf
+S178	0	exact	1.0	http 200	False	https://asra.com/news-publications/asra-update-item/asra-updates/2026/02/12/cms-releases-preliminary-participant-list-for-ambulatory-specialty-model
+S178	1	exact	1.0	http 200	False	https://oig.hhs.gov/reports/all/2012/excluded-providers-in-medicaid-managed-care-plans
+S179	0	exact	1.0	cached	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC12614249/
+S179	1	exact	1.0	cached	False	https://www.cms.gov/priorities/innovation/data-and-reports/2025/mdpp-finalevalrpt-fg
+S179	2	exact	1.0	cached	False	https://www.rti.org/impact/evaluation-medicare-diabetes-prevention-program
+S179	3	exact	1.0	cached	True	https://www.medscape.com/viewarticle/medicare-a1c-coverage-boosts-diabetes-screening-prediabetes-2026a1000ww3
+S179	4	exact	1.0	archive 20251121214417	True	https://www.healthaffairs.org/doi/10.1377/hlthaff.2021.01292
+S180	0	exact	1.0	http 200	False	https://www.guttmacher.org/news-release/2026/guttmacher-releases-new-data-travel-abortion-care-2025
+S180	1	exact	1.0	http 200	False	https://www.guttmacher.org/report/patterns-travel-abortion-care-continued-shift-2025
+S180	2	exact	1.0	http 200	False	https://www.krwg.org/regional/2026-04-15/more-texans-using-telehealth-options-to-access-reproductive-care
+S180	3	exact	1.0	http 200	False	https://thefulcrum.us/governance-legislation/texas-abortion-ban-data
+S180	4	exact	1.0	http 200	False	https://www.guttmacher.org/report/full-year-estimates-show-overall-stability-abortion-incidence-decreased-travel-increased-telehealth-provision
+S181	0	missing	0.63	cached	False	https://pmc.ncbi.nlm.nih.gov/articles/PMC12401810/
+S181	1	exact	1.0	archive 20260406104942	False	https://www.citizen.org/news/analysis-shows-amgens-gaming-of-patent-system-cost-medicare-more-than-a-billion-in-savings-over-less-than-four-years/
+S181	2	exact	1.0	archive 20260815203602	False	https://www.biopharmadive.com/news/amgen-enbrel-patent-thicket-monopoly-biosimilar/609042/
+S181	3	exact	1.0	cached	False	https://www.insurancebusinessmag.com/us/news/benefits/amgen-results-show-biosimilars-and-ira-pricing-reshaping-drug-spend-584990.aspx
+S182	0	exact	1.0	http 200	False	https://www.medpac.gov/wp-content/uploads/2022/03/Mar22_MedPAC_ReportToCongress_Ch10_SEC.pdf
+S182	1	exact	1.0	http 200	False	https://ir.ventasreit.com/news/news-details/2024/Ventas-Reaches-Agreements-with-Kindred-and-ScionHealth/default.aspx
+S183	0	exact	1.0	http 200	False	https://www.epa.gov/trinationalanalysis/carcinogens
+S184	0	exact	1.0	http 200	False	https://legis1.com/news/editorial-standards-journalism-the-119th-congress
+S184	1	exact	1.0	http 200	False	https://www.politicsonline.co.uk/is-the-119th-congress-passing-more-laws-than-the-last-one/
+S184	2	exact	1.0	http 200	False	https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy
+S184	3	exact	1.0	http 200	False	https://dailycaller.com/2026/09/03/house-leadership-congress-was-most-productive/
+S184	4	exact	1.0	http 200	False	https://www.snopes.com/fact-check/mike-johnson-productive-congress/
+S184	5	exact	1.0	http 200	False	https://www.newsweek.com/donald-trump-least-productive-congress-laws-2102819
+S185	0	exact	1.0	cached	False	https://ballotpedia.org/U.S._House_elections_without_a_Democratic_or_Republican_candidate,_1920-2018
+S185	1	exact	1.0	cached	False	https://www.270towin.com/news/2020/10/30/uncontested-house-races-no-major-party-opposition_1119.html
+S186	0	exact	1.0	http 200	False	https://projects.propublica.org/itemizer/committee/C00075820/2024
+S186	1	exact	1.0	http 200	False	https://www.fec.gov/data/committee/C00075820/?cycle=2024
+S186	2	exact	1.0	http 200	False	https://www.fec.gov/campaign-finance-data/committee-report-summary-file-metadata/
+S186	3	exact	1.0	http 200	False	https://punchbowl.news/article/house/nrcc-gets-smashed-by-dccc-again/
+S187	0	exact	1.0	http 200	False	https://news.bloomberglaw.com/us-law-week/conservative-judges-shun-retirement-under-trumps-second-term
+S187	1	exact	1.0	http 200	False	https://www.brookings.edu/articles/trumps-judicial-appointment-pace-is-unlikely-to-match-his-first-term-record/
+S187	2	exact	1.0	http 200	False	https://reason.com/volokh/2025/08/25/who-are-the-republican-appointed-circuit-judges-who-are-not-taking-senior-status-because-of-emil-bove/
+S187	3	exact	1.0	http 200	False	https://news.bloomberglaw.com/us-law-week/trump-judicial-appointments-slow-as-vacancies-scarce-for-2026
+S187	4	exact	1.0	http 200	False	https://ballsandstrikes.org/nominations/trump-judges-confirmed-running-out-of-time/
+S187	5	exact	1.0	http 200	False	https://www.cbsnews.com/news/trump-judicial-confirmations-second-term/
+S188	0	exact	1.0	http 200	False	https://rollcall.com/2020/10/01/several-lawmakers-disclose-opaque-financial-records/
+S188	1	exact	1.0	http 200	False	https://www.commoncause.org/articles/congress-made-over-635-million-in-stock-trades-while-americans-struggled-see-who-traded-the-most/
+S188	2	exact	1.0	http 200	False	https://campaignlegal.org/update/how-congress-hides-stock-holdings-plain-sight
+S189	0	exact	1.0	http 200	False	https://scdailygazette.com/2025/04/28/32-years-after-leaving-office-a-former-sc-congressman-made-a-million-dollar-campaign-transfer/
+S189	1	exact	1.0	cached	False	https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/
+S189	2	exact	1.0	http 200	False	https://www.wmbfnews.com/story/38188981/wmbf-investigates-is-former-sc-representatives-campaign-account-informal-retirement-funds/
+S190	0	exact	1.0	archive 20220912192821	True	https://www.bloomberg.com/news/articles/2019-11-01/baker-brothers-turn-biotech-prowess-into-a-3-8-billion-fortune
+S190	1	exact	1.0	cached	False	https://en.wikipedia.org/wiki/Baker_Brothers_Advisors
+S190	2	exact	1.0	cached	False	https://www.racap.com/structured-capital
+S190	3	exact	1.0	cached	False	https://www.columbialawreview.org/content/anticompetitive-directors/
+S190	4	exact	1.0	cached	False	https://maandhunter.substack.com/p/board-pedigree-in-biotech-versus
+S191	0	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2025-09/r6ecdwe.sdwa_.uic_.4doilgas.os5571000.sdwa_06_2025_1110.mitfail.proposedao_wcs.508c.pdf
+S191	1	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2026-05/r6ecdwe.sdwa_.greathornedowlsllc.os3689000.sdwa_06_2026_1110.uic_mit-fail.proposed-ao_filed.pdf
+S191	2	exact	1.0	http 200	False	https://insideclimatenews.org/news/05022026/trump-epa-polluter-enforcement-collapses/
+S192	0	exact	1.0	archive 20260710235714	False	https://www.sec.gov/about/divisions-offices/division-corporation-finance/holding-foreign-insiders-accountable-act-frequently-asked-questions
 S192	1	exact	1.0	cached	False	https://www.aoshearman.com/en/insights/sec-effectively-extends-deadline-for-late-section-16a-filings-caused-by-lack-of-edgar-access
 S192	2	exact	1.0	cached	False	https://tax.thomsonreuters.com/news/sec-order-exempts-certain-foreign-jurisdictions-from-executive-stock-ownership-disclosure/
 S192	3	exact	1.0	cached	False	https://www.troutman.com/insights/us-insider-reporting-requirements-coming-for-directors-and-officers-of-foreign-private-issuers/
+S193	0	exact	1.0	http 200	False	https://policy.desa.un.org/sites/default/files/2026-04/cdp-pl-2026-sen.pdf
+S193	1	exact	1.0	http 200	False	https://documents1.worldbank.org/curated/en/099080323143026715/pdf/BOSIB0a9a3028e061094f100bb29f0f72c0.pdf
+S193	2	exact	1.0	http 200	False	https://debtjustice.org.uk/senegal
+S193	3	exact	1.0	http 200	False	https://www.polity.org.za/article/senegal-poised-to-make-key-debt-payments-but-more-pain-looms-2026-03-13
+S193	4	exact	1.0	http 200	False	https://www.ecofinagency.com/news/1712-51472-senegal-s-hidden-debt-accounting-crisis-not-vanished-capital
+S193	5	exact	1.0	http 200	False	https://senego.com/dette-barclays-chiffre-le-service-a-6-800-milliards-contre-5-80138-pour-letat_2005212.html
+S194	0	blocked	0.0	http 403 / curl 403 / archive none	False	https://www.sec.gov/file/34-98552
+S194	1	exact	1.0	cached	False	https://www.sec.gov/files/litigation/admin/2023/34-98546.pdf
+S194	2	exact	1.0	cached	False	https://www.davispolk.com/insights/client-update/sec-announces-new-sweep-enforcement-actions-aimed-failures-make-timely
+S194	3	exact	1.0	cached	False	https://cooleypubco.com/2023/09/28/sec-charges-sections-16-and-13d/
+S194	4	exact	1.0	cached	False	https://www.sec.gov/newsroom/press-releases/2023-201
 S195	0	exact	1.0	cached	False	https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/
 S195	1	exact	1.0	cached	False	https://rollcall.com/2023/02/06/not-couch-cushion-money-former-members-sitting-on-54-million/
 S195	2	exact	1.0	cached	False	https://campaignlegal.org/update/zombie-campaign-redux-former-members-congress-continue-use-leftover-campaign-cash-personal
 S195	3	exact	1.0	cached	False	https://www.fec.gov/updates/commission-will-review-dormant-committees-use-campaign-funds/
 S195	4	exact	1.0	cached	False	https://www.notus.org/2026-election/congress-surplus-campaign-money-fec
+S196	0	exact	1.0	cached	False	https://www.thedailybeast.com/the-secret-website-behind-a-dollar140-million-scam-pac-network/
+S196	1	exact	1.0	cached	False	https://www.opensecrets.org/news/2023/08/how-scam-pacs-line-their-pockets-by-deceiving-political-donors/
+S196	2	exact	1.0	cached	False	https://www.cnn.com/2020/10/16/us/police-super-pac-political-group-invs/index.html
+S196	3	exact	1.0	cached	False	https://www.thedailybeast.com/richard-zeitlin-and-robert-piaro-jailed-for-dollar28-million-pac-fraud-scheme/
+S196	4	exact	1.0	cached	False	https://www.blumenthal.senate.gov/imo/media/doc/09102023fecnonprofitpacscamsletter.pdf
+S196	5	exact	1.0	archive 20240718092729	True	https://www.forbes.com/sites/zacheverson/2021/07/29/scam-pacs-two-groups-claim-to-support-vets-and-cops-while-blowing-all-their-money-on-administrative-fees/
+S197	0	exact	1.0	http 200	False	https://www.creditandcollectionnews.com/civic-federal-credit-union-loss-widens-membership-falls/
+S197	1	exact	1.0	http 200	False	https://thecudaily.com/civic-fcu-posts-47m-loss-in-first-half-of-year-says-its-part-of-long-term-strategic-plan/
+S197	2	exact	1.0	http 200	False	https://www.kolotv.com/2026/05/13/usda-removes-greater-nevada-credit-union-rural-development-program/
+S197	3	exact	1.0	http 200	False	https://weissratings.com/en/credit-union/6128
+S197	4	exact	1.0	http 200	False	https://www.abqjournal.com/business/us-eagle-banned-from-federal-lending-program-over-delinquent-loans/3040726
+S197	5	exact	1.0	http 200	False	https://www.abqjournal.com/business/article_47071cc7-389b-4cd3-bcc8-569749898f7a.html
+S198	0	exact	1.0	http 200	False	https://water.epa.state.il.us/dww/JSP/Violations.jsp?tinwsys_is_number=717817&tinwsys_st_code=IL
+S198	1	exact	1.0	http 200	False	https://www.beg.utexas.edu/files/Articles/2022/Scanlon%20et%20al%20ES&T%20CWS%20SDWA%20Sep%202022(1).pdf
+S198	2	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2023-04/MDBP-Rule-Revisions-Working-Group-Meeting-Presentation-March-9-2023.pdf
+S199	0	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf
+S199	1	exact	1.0	http 200	False	https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf
+S199	2	exact	1.0	http 200	False	https://dee.nebraska.gov/air/air-compliance-enforcement-program
+S199	3	exact	1.0	http 200	False	https://www.epa.gov/sites/default/files/2015-11/documents/20091014-10-p-0007.pdf
+S199	4	exact	1.0	http 200	False	https://environmentalintegrity.org/news/biofuels-manufacturing-releases-large-amounts-of-hazardous-air-pollutants/
+S199	5	exact	1.0	curl 200	True	https://journalstar.com/news/state-regional/report-2-nebraska-biofuel-plants-among-biggest-emitters-of-toxic-pollutants/article_69cd12a0-28ca-11ef-8ee4-57006c4fb840.html
+S200	0	exact	1.0	http 200	False	https://www.asyousow.org/resolutions/2020/01/04/diamondback-energy-water-management-risks
+S200	1	exact	1.0	http 200	False	https://fracfocus.org/news/water-source-data
+S201	0	exact	1.0	http 200	False	https://orangeslices.ai/contract-award-7-5m-disa-mobileiron-secure-uem-premium-subscription-licenses/
+S201	1	exact	1.0	http 200	False	https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-213a
+S201	2	exact	1.0	http 200	False	https://www.helpnetsecurity.com/2026/05/08/ivanti-epmm-zero-day-cve-2026-6973/
+S202	0	exact	1.0	http 200	False	https://ember-energy.org/latest-insights/global-electricity-review-2026/major-countries-and-regions/
+S202	1	exact	1.0	http 200	False	https://electrek.co/2026/01/19/coal-use-dropped-in-china-and-india-in-2025-it-rose-in-usa-hiking-energy-costs/
+S202	2	exact	1.0	http 200	False	https://www.eia.gov/todayinenergy/detail.php?id=67106
+S202	3	exact	1.0	http 200	False	https://news.mongabay.com/2026/05/world-burned-less-coal-in-2025-but-built-more-plants-over-energy-uncertainty/
+S202	4	exact	1.0	http 200	False	https://www.visualcapitalist.com/ranked-where-coal-consumption-rose-the-most-in-2025/
+S202	5	exact	1.0	http 200	False	https://www.visualcapitalist.com/ranked-where-coal-consumption-rose-the-most-in-2025/
+S203	0	exact	1.0	cached	False	http://www.energychoicematters.com/stories/20220928c.html
+S203	1	exact	1.0	archive 20260510120933	False	https://www.utilitydive.com/news/texas-regulators-look-to-distributed-resources-additional-coal-reserves-t/622525/
+S203	2	exact	1.0	cached	False	https://www.eia.gov/todayinenergy/detail.php?id=52298
+S204	0	exact	1.0	http 200	False	https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2026/futures/electricity_lf031026.htm
+S204	1	exact	1.0	http 200	False	https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2024/futures/electricity_lf010924.htm
+S205	0	exact	1.0	http 200	False	https://www.osti.gov/servlets/purl/2482219
+S205	1	exact	1.0	http 200	False	https://invest.hawaii.gov/wp-content/uploads/2026/07/MauiWES_Evidence_Opportunity_Zone_Lahaina_Final.pdf
+S206	0	exact	1.0	http 200	False	https://www.icij.org/blog/2013/12/unlocking-secrets-cook-islands/
+S206	1	exact	1.0	http 200	False	https://www.icij.org/blog/2013/12/unlocking-secrets-cook-islands/
+S206	2	exact	1.0	http 200	False	https://www.icij.org/investigations/offshore/paradise-untouchable-assets/
+S207	0	exact	1.0	http 200	False	https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/
+S207	1	exact	1.0	http 200	False	https://www.yahoo.com/news/articles/doj-taking-down-epstein-files-170633191.html
+S207	2	exact	1.0	http 200	False	https://www.yahoo.com/news/articles/doj-admits-removing-nearly-48-185553534.html
+S207	3	exact	1.0	http 200	False	https://www.washingtonexaminer.com/news/justice/4483445/what-still-missing-epstein-files-doj-begins-restore-removed-documents/
+S207	4	exact	1.0	http 200	False	https://github.com/yung-megafone/Epstein-Files
+S208	0	exact	1.0	cached	False	https://www.oig.dol.gov/public/reports/oa/2019/23-19-002-06-001.pdf
+S208	1	exact	1.0	cached	False	https://cnsmaryland.org/2025/05/16/marylands-largest-underground-coal-mine-changes-hands/
+S208	2	exact	1.0	cached	False	https://www.npr.org/2019/08/22/752868484/no-link-between-fines-and-safety-in-mines-government-audit-says
+S208	3	exact	1.0	cached	False	https://www.npr.org/2014/11/12/363058646/coal-mines-keep-operating-despite-injuries-violations-and-millions-in-fines
+S208	4	exact	1.0	cached	False	https://wchstv.com/news/local/justice-says-msha-fines-should-go-to-bluestone-mines-previous-owner
+S209	0	exact	1.0	http 200	False	https://www.occrp.org/en/investigation/european-ships-keep-russias-shadow-fleet-afloat
+S209	1	exact	1.0	http 200	False	https://www.breakwaveadvisors.com/insights/2026/6/2/aging-sanctioned-and-stranded-the-new-structural-reality-in-the-market
+S209	2	exact	1.0	http 200	False	https://www.atlanticcouncil.org/dispatches/when-economic-warfare-meets-gunboat-diplomacy-what-to-know-about-the-us-seizures-of-shadow-fleet-tankers/
