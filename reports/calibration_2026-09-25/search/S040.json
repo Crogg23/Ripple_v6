@@ -1,0 +1,47 @@
+{
+  "story_id": "S040",
+  "entity": "loanDepot (loanDepot.com LLC), HMDA denial rate on refinance vs home-purchase applications, 2015-2017",
+  "queries": [
+    {"q": "loanDepot refinance denial rate HMDA", "found_useful": true},
+    {"q": "loanDepot high denial rate refinance applications 2016 2017", "found_useful": false},
+    {"q": "\"loanDepot\" denied applications percent HMDA data analysis news", "found_useful": false},
+    {"q": "online nonbank lenders refinance denial rates much higher than purchase HMDA 2017 Federal Reserve", "found_useful": true},
+    {"q": "lenders with highest refinance denial rates named loanDepot Quicken Wells Fargo 2017 HMDA analysis", "found_useful": true},
+    {"q": "\"loanDepot\" \"denial rate\" refinance percent", "found_useful": false},
+    {"q": "HousingWire OR \"National Mortgage News\" loanDepot denials refinance applications turned down", "found_useful": false},
+    {"q": "refinance denial rates lender comparison HMDA report September 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.fanniemae.com/media/33316/display",
+      "outlet": "Fannie Mae Economic and Strategic Research (Nuno Mota), 'An Analysis of Small Balance Loan Origination in Rural and High-Needs Rural Areas'",
+      "date": "2019-12-02",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Table A2B Top 10 Rural Lenders by Total Site-Built 1-4 Unit Properties Refinance Loan Originations",
+      "paywalled": false,
+      "searcher_note": "PDF table row reads '8 loanDepot.com, LLC Foothill Ranch, CA 1.4% [share] 76% [denial rate] 0.2%'; Quicken 30%, Wells Fargo 25%. Rural areas only, HMDA 2012-2017, site-built refinance. Quote is the table title because PDF text extraction splits the row across columns; the 76% sits in the Denial Rate column."
+    },
+    {
+      "url": "https://files.consumerfinance.gov/f/documents/bcfp_hmda_2017-mortgage-market-activity-trends_report.pdf",
+      "outlet": "CFPB (BCFP) Data Point: 2017 Mortgage Market Activity and Trends",
+      "date": "2018-05-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Overall, refinance applications were thus denied at about 2.5 times the rate of home-purchase loan applications.",
+      "paywalled": false,
+      "searcher_note": "Market-wide pattern: 2017 refinance denial rate 26.4% (29.9% in 2016) vs 10.8% for home purchase. No lender named. Cover says May 2018; day not given."
+    },
+    {
+      "url": "https://wirly.com/lenders/loandepot",
+      "outlet": "Wirly (lender review site)",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "loanDepot's national refinance denial rate is 0%, based on 2024 HMDA data.",
+      "paywalled": false,
+      "searcher_note": "Opposite direction but a different window (2024, not 2015-17); low-quality aggregator page with no stated method."
+    }
+  ],
+  "notes": "No news story found naming loanDepot's 2015-17 refinance denial rate or the 74% vs 8% purpose split. Closest: Fannie Mae 2019 research table gives loanDepot.com a 76% refinance denial rate in rural areas over 2012-2017, same direction, different geography and window. CFPB 2017 Data Point gives the market-wide pattern (refis denied ~2.5x purchase) with no lender named. Federal Reserve 2016 HMDA article (federalreserve.gov) and St. Louis Fed May 2026 'Determinants of Mortgage Denial' were opened: neither compares refinance vs purchase denial by lender nor names loanDepot. A National Mortgage News item on a Maryland couple's settled racial-bias suit over a denied loanDepot refinance exists but is a single-application appraisal case, not a rate finding; not recorded. Fannie Mae date is from the report cover."
+}

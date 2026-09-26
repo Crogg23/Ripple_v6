@@ -1,0 +1,15 @@
+{
+ "story_id": "S090",
+ "bin": "Matched + more",
+ "entity": "Oklahoma veteran suicide deaths in 2023 (161)",
+ "deciding_sources": [
+  3,
+  4
+ ],
+ "earliest_match_date": "2026-02-19",
+ "post_cutoff_match": false,
+ "what_we_add": "the 161-vs-98-134 prior-year spike framing and the z-score comparison",
+ "why": "The VA state data sheet states 161 for 2023 exactly, and the 2022 sheet shows 126 - a primary-record match. No source frames the 2023 count as a spike against the 2011-22 range.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

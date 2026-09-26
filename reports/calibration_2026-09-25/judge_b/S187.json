@@ -1,0 +1,12 @@
+{
+  "story_id": "S187",
+  "bin": "Matched + more",
+  "entity": "Retirement-eligible Republican-appointed federal judges declining senior status in Trump's second term",
+  "deciding_sources": [0, 1, 2, 3],
+  "earliest_match_date": "2025-06-26",
+  "post_cutoff_match": true,
+  "what_we_add": "16 of 83 (19.3%) in the first 517 days; 50 of 83 had already passed under Trump 1",
+  "why": "Bloomberg Law, Brookings, Volokh and CBS all name the entity and report the same finding, same direction: few eligible GOP appointees stepping back, most already eligible under Trump 1. No source has our 16-of-83 or 50-of-83 counts.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

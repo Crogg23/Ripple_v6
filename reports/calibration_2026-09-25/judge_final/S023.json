@@ -1,0 +1,12 @@
+{
+  "story_id": "S023",
+  "bin": "Matched + more",
+  "entity": "Dow's Plaquemine, Louisiana plant: ethylene oxide air release in 2023 and its share of the US total",
+  "deciding_sources": [0, 2, 3],
+  "earliest_match_date": "2024-06-18",
+  "post_cutoff_match": false,
+  "what_we_add": "the 21% national share (34,369 of 160,219 lb), the 8.7x jump over its 2015-22 high, and the fall back to 2,433 lb in 2024",
+  "why": "CSB puts the July 2023 incident's release at 31,525 lb of EtO - same entity, same year, within 25% of our 34,369 annual figure, same direction. Hunterbrook says no plant released more EtO in 2023, matching our #1 claim. Nobody states the 21% share or the year-over-year numbers.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

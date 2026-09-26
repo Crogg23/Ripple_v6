@@ -1,0 +1,12 @@
+{
+  "story_id": "S069",
+  "bin": "Known pattern",
+  "entity": "US count: 143 primary-care HPSAs first flagged 1978-89 still designated; 31 still severe",
+  "deciding_sources": [1, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The pattern is covered: 73% of HPSA counties still short ten years on, and Paragon says many designations were never reviewed since the 1970s-80s (that's the MUA list). No source gives our count of 1978-89 HPSAs still flagged or the severe list.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

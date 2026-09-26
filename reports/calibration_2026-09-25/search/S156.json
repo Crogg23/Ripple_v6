@@ -1,0 +1,67 @@
+{
+  "story_id": "S156",
+  "entity": "Labadie Energy Center (Ameren Missouri) and the ten biggest SO2-emitting monitored power plants, share of U.S. power-plant sulfur dioxide, 2025",
+  "queries": [
+    {"q": "Labadie power plant largest sulfur dioxide emitter 2025", "found_useful": true},
+    {"q": "top 10 coal plants sulfur dioxide emissions share national power sector SO2 2025 CAMPD", "found_useful": false},
+    {"q": "handful of coal plants account for large share of US power plant sulfur dioxide emissions no scrubbers analysis", "found_useful": true},
+    {"q": "Labadie Ameren sulfur dioxide 2026 scrubbers retirement date", "found_useful": true},
+    {"q": "EPA 2025 power plant emissions data released sulfur dioxide top emitting plants Martin Lake Labadie Kincaid", "found_useful": false},
+    {"q": "Labadie Energy Center sulfur dioxide Missouri Independent OR \"St. Louis Public Radio\" 2025 OR 2026", "found_useful": true},
+    {"q": "nation's largest sulfur dioxide emitting power plant 2024 OR 2025 EPA data Labadie OR \"Martin Lake\" OR Kincaid tons", "found_useful": false},
+    {"q": "2026 report dirtiest coal plants sulfur dioxide no retirement date Sierra Club OR \"Environmental Integrity Project\" top emitters", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.stltoday.com/news/local/business/ameren-coal-plant-is-top-polluter-labadie-emits-more-so2-than-any-in-us/article_85c77c20-e211-11ee-b0ec-73282e33d4eb.html",
+      "outlet": "St. Louis Post-Dispatch",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Ameren coal plant is top polluter. Labadie emits more SO2 than any in US.",
+      "paywalled": true,
+      "searcher_note": "Headline only; the page redirects to a paywall. Says Labadie emits more SO2 than any U.S. plant. The date is not on the page; the article ID's UUID timestamp decodes to 2024-03-14."
+    },
+    {
+      "url": "https://nebraskapublicmedia.org/en/news/news-articles/midwest-coal-fired-power-plants-are-among-the-countrys-worst-polluters-but-they-dont-break-epa-rules/",
+      "outlet": "Nebraska Public Media / Midwest Newsroom (Kavahn Mansouri)",
+      "date": "2022-01-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The plant produced nearly 40,000 tons of sulfur dioxide in 2020, the second-highest amount of the pollutant produced by any power plant in the country.",
+      "paywalled": false,
+      "searcher_note": "Labadie, 2020 data: about 40,000 tons of SO2, second to Martin Lake (about 44,000). Also says four of the top 10 SO2 coal plants are in the four-state region, and quotes EPA: 'None of the plants violate EPA standards.' Ameren plans to close Labadie by 2042. Earliest same-entity coverage found."
+    },
+    {
+      "url": "https://www.japantimes.co.jp/environment/2026/04/10/energy/us-city-pollution-ai-boom/",
+      "outlet": "The Japan Times (Reuters, Valerie Volcovici and Tim McLaughlin)",
+      "date": "2026-04-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Labadie’s owner, St. Louis-based utility Ameren, did not contest the analysis of the EPA data. Ameren said the plant operates within the existing federal pollution limits.",
+      "paywalled": false,
+      "searcher_note": "Reuters, 2026: Labadie 'produces the highest combined total of sulfur dioxide and nitrogen oxides among U.S. coal plants' (that sentence holds a hidden zero-width character, so it was not used as the quote). Ameren says the plant is within federal limits and will run for at least another decade. The Malay Mail version is a copy of the same story."
+    },
+    {
+      "url": "https://www.kcur.org/news/2024-10-15/ameren-missouri-rush-island-coal-plant-closure-epa-air-pollution",
+      "outlet": "KCUR (Kansas City public radio)",
+      "date": "2024-10-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The 8th Circuit U.S. Court of Appeals in 2021 upheld Sippel’s order requiring Ameren to install scrubbers, but struck down the requirement at Labadie.",
+      "paywalled": false,
+      "searcher_note": "Background on why Labadie has no SO2 scrubbers: a court order to scrub Labadie was struck down in 2021. Not about 2025 tonnage or share."
+    },
+    {
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=4410",
+      "outlet": "U.S. Energy Information Administration (Today in Energy)",
+      "date": "2011-12-21",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Plants with FGD equipment generated 58% of the total electricity generated from coal in 2010, while producing only 27% of total SO2 emissions.",
+      "paywalled": false,
+      "searcher_note": "Pattern: SO2 piles up at coal plants without scrubbers (2010 data). Does not name Labadie or give a top-10 share."
+    }
+  ],
+  "notes": "Several sources name Labadie as the top or second-highest U.S. SO2 emitter: Post-Dispatch 2024 headline (paywalled); Nebraska Public Media 2022 (2020 data, second behind Martin Lake); Reuters 2026 (highest combined SO2 plus NOx). No source found gives 2025 tonnage for Labadie (38,232 tons), Labadie's 5.3% share, the 30% top-ten share, or the 7-of-10 with no retirement year at EIA. Retirement: Nebraska Public Media says Ameren plans to close Labadie by 2042; Reuters 2026 says it will run at least another decade. Two sources back the lead's 'legal, not a violations story' caveat: EPA told the Midwest Newsroom none of the plants violate standards, and Ameren told Reuters it is within limits. KSDK pages returned 403 and were not recorded. One snippet (an alibaba.com 'insights' page) claimed Labadie has FGD scrubbers on all four units; it is not credible, conflicts with KCUR and Nebraska Public Media, and was not recorded. Query 5's search tool seemed to run several sub-searches internally; it is logged once."
+}

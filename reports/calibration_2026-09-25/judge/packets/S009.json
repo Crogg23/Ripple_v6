@@ -1,0 +1,60 @@
+{
+ "story_id": "S009",
+ "lead": {
+  "headline": "Phoenix's weather office logged 63% of the heat deaths in the federal storm file, then stopped filing heat after June 2024",
+  "number": "1,345 of 2,145 US direct heat deaths in 2018-23 came from the Phoenix office; national direct heat deaths went 557 (2023), 250 (2024), 99 (2025), and without Phoenix they still halved, 205 to 98.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The drop is paperwork, not fewer deaths: Phoenix copied Maricopa County's counts from 2018 on and then stopped, and Tucson and Las Vegas moved deaths from direct to indirect in 2025."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "NOAA Storm Events database heat deaths Phoenix Maricopa County National Weather Service",
+  "National Weather Service heat deaths undercount storm data Maricopa County share of national",
+  "NOAA \"Storm Events\" heat deaths decline 2024 2025 reporting change",
+  "National Weather Service Phoenix stopped counting heat deaths storm data",
+  "NWS weather fatality statistics heat deaths dominated by Arizona Maricopa County data",
+  "Pielke NOAA storm data heat deaths Maricopa County",
+  "\"Storm Data\" heat fatalities direct indirect Arizona proportion study National Weather Service offices inconsistent",
+  "NWS 2025 weather fatalities report heat deaths fell 99 national total",
+  "NOAA data heat deaths 2023 record high weather deaths Arizona accounted for most Axios"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://text.npr.org/nx-s1-5724225",
+   "outlet": "NPR",
+   "date": "2026-08-31",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "On average between 2018 and 2025, we estimate that some 9,000 deaths each year in the country are impacted by heat — a factor of five higher than the official average over that same period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t-related deaths compiled by the CDC was low: on average, around 700 a year . The number has crept up in recent years, averaging around 1,700 but sometimes topping 2,000, as heat risks grow and counting strategies evolve. But even that number is an underestimate, according to NPR and BU's analysis. On average between 2018 and 2025, we estimate that some 9,000 deaths each year in the country are impacted by heat — a factor of five higher than the official average over that same period. Some years, heat-related deaths can top 10,000. The true figure could be even higher, says Adams, because of some limitations in the data and the conservative nature of our analysis. The dangers from heat are growing every year because of human-caused climate change. The heat wave season has extended by a month and a half since t"
+  },
+  {
+   "idx": 1,
+   "url": "https://text.npr.org/nx-s1-5724225",
+   "outlet": "NPR",
+   "date": "2026-08-31",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "But Maricopa County is something of an outlier.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ces of heat on people's deaths. Maricopa County trains \"death investigators\" to look for signs of heat stress, such as asking about the state of the deceased's air conditioning system, their ability to pay electric bills to run ACs, their use of medications that increase heat sensitivity, and more. But Maricopa County is something of an outlier. In contrast, the counties home to Los Angeles and Houston report very few heat-related deaths. Yet our model finds hundreds of people likely die in each of those counties because of heat each year. Los Angeles recognizes the problem, says Nichole Quick, the chief science officer at the Los Angeles County Department of Public Health."
+  },
+  {
+   "idx": 2,
+   "url": "https://upnorthlive.com/news/nation-world/2023-set-record-for-us-heat-deaths-killing-in-areas-that-used-to-handle-the-heat",
+   "outlet": "Associated Press (via UpNorthLive)",
+   "date": "2024-06-02",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "The death certificates of more than 2,300 people who died in the United States last summer mention the effects of excessive heat, the highest number in 45 years of records, according to an Associated Press analysis of Centers for Disease Control and Prevention data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tes and felt nauseated before he went out to hang his laundry in 108-degree weather, another day in Arizona's record-smashing, unrelenting July heat wave. His family found the 73-year-old lying on the ground, his lower body burned. Hom died at the hospital, his core body temperature at 107 degrees. The death certificates of more than 2,300 people who died in the United States last summer mention the effects of excessive heat, the highest number in 45 years of records, according to an Associated Press analysis of Centers for Disease Control and Prevention data. With May already breaking heat records, 2024 could be even deadlier. And more than two dozen doctors, public health experts, and meteorologists told the AP that last year's figure was only a fraction of the real death toll. Coroner, hospital, ambulance and weather records show America's heat and health problem at an entirely new lev"
+  }
+ ]
+}

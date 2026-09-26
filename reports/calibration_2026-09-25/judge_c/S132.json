@@ -1,0 +1,12 @@
+{
+ "story_id": "S132",
+ "bin": "Contradicted",
+ "entity": "Louisiana's five-year re-inspection rate for large-quantity hazardous-waste generators, and its rank among states",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The EPA OIG table (Apr 2026, same entity, same LQG inspection measure, overlapping window) shows Louisiana at 59% with Texas 55, Illinois 48, New Hampshire 58 and Connecticut 36 below it, the opposite of our 'last of 28 states, next lowest Illinois 62.7, Texas 66.5'; Illinois 48 vs our 62.7 is also >25% off. The low-rate claim itself roughly matched (59 vs 49.5, within 25%), but one contradicted claim decides the bin.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

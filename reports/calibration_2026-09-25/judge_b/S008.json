@@ -1,0 +1,12 @@
+{
+ "story_id": "S008",
+ "bin": "Matched + more",
+ "entity": "US counties flooded with opioid pills 2006-12 vs later overdose death rates",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2019-07-17",
+ "post_cutoff_match": false,
+ "what_we_add": "The 2.0x gap persisting into 2019-24 (fentanyl era), Knox County #27 of 1,832, Food City #674's 31% share of Knox's 30mg+ oxycodone",
+ "why": "Washington Post 2019 states the same finding, same direction: death rates soared where pills flowed, top-pill counties 3x the national rate. Its window is the pill era; our 2019-24 persistence numbers and Knox specifics appear in no source.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

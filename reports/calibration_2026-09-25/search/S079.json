@@ -1,0 +1,45 @@
+{
+  "story_id": "S079",
+  "entity": "UK: sanctioned people (OpenSanctions, strict full-name + birth-date match) listed as open controlling persons of Active UK companies; 22 people on 46 companies, as of 2026",
+  "queries": [
+    {"q": "sanctioned individuals still listed persons with significant control UK companies Companies House analysis", "found_useful": false},
+    {"q": "OFAC June 23 2026 sanctions Kong United Kingdom companies designated", "found_useful": true},
+    {"q": "sanctioned people still control active UK companies Companies House register investigation", "found_useful": false},
+    {"q": "sanctioned Russian still listed as owner of UK company Companies House months after sanctions", "found_useful": true},
+    {"q": "matched UK sanctions list against Companies House directors date of birth sanctioned individuals running UK companies", "found_useful": false},
+    {"q": "Transparency International UK sanctioned individuals UK companies persons with significant control 2026 report", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.opendemocracy.net/en/revealed-sanctioned-russian-oligarch-still-controls-london-property-firm/",
+      "outlet": "openDemocracy",
+      "date": "2022-03-22",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Alisher Usmanov, the billionaire former Arsenal shareholder, still has 'significant control' over a company that owns a townhouse in Mayfair",
+      "paywalled": true,
+      "searcher_note": "One sanctioned person still listed as PSC of a live UK company. Same pattern, single case; body behind a paywall, quote is the dek."
+    },
+    {
+      "url": "https://ofac.treasury.gov/recent-actions/20260623",
+      "outlet": "US Treasury OFAC",
+      "date": "2026-06-23",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "CHASCA LONDON LIMITED, London, United Kingdom; Organization Established Date 23 Mar 2023; Organization Type: Real estate activities on a fee or contract basis; Company Number 14752579 (United Kingdom) [TCO] (Linked To: KONG, Ka On).",
+      "paywalled": false,
+      "searcher_note": "OFAC designation lists 11 UK companies by company number linked to KONG, Ka On. The lead's watch-out says Kong is in its match set and is not a find."
+    },
+    {
+      "url": "https://www.lazlointelligence.com/blog/ofac-sanctions-data-june-2026",
+      "outlet": "Lazlo Intelligence",
+      "date": "2026-07-01",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "11 out of 12 UK entities added this month belongs to a Transnational Criminal Organization (TCO) network",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff sanctions-data blog: nearly all June 2026 UK designations are Kong's network. About one sanctioned man's UK companies, not the 22-person aggregate."
+    }
+  ],
+  "notes": "No source found counts sanctioned people who control live UK companies across the register, or reports anything near 22 people on 46 companies. Found: single cases (Usmanov still a PSC, 2022) and the OFAC 2026-06-23 action naming Kong's UK companies by number, which the lead itself flags as not a find. Transparency International written evidence to Parliament on loose company formation undermining sanctions came up in search but the page returned 403, so it isn't recorded. Several WebSearch calls auto-expanded into sub-searches; stopped at 6 logged queries to protect the shared budget."
+}

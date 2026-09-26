@@ -1,0 +1,72 @@
+{
+ "story_id": "S081",
+ "lead": {
+  "headline": "Drug companies logged 47,607 doctor meals at exactly $125.00 in 2024, against 675 at $126.00",
+  "number": "2024 meals: 47,607 at $125.00 and 20,666 at $124.99 vs 675 at $126.00 and 192 at $123.99; AstraZeneca 11.1 per 1,000 meals just under $125, Pfizer 0.6.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "$125 is a company policy cap, not a law, so this is a fingerprint, not harm."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Open Payments meals $125 cap pharmaceutical company meal limit physicians",
+  "industry meal payments to physicians bunching just below threshold Open Payments study",
+  "AstraZeneca meal limit healthcare professionals $125 per person policy US",
+  "Open Payments meals clustered at $125 round number drug company dinners analysis",
+  "\"47,607\" OR \"$125.00\" meals Open Payments 2024 physicians food and beverage",
+  "Novartis speaker programs meal cap $125 exceeded DOJ settlement dinners per person limit",
+  "pharmaceutical sales reps meal cap $125 per person split bill sign-in sheets stay under limit",
+  "Open Payments data release June 2026 food and beverage meals doctors drug companies news",
+  "Pfizer AstraZeneca HCP meal spending cap comparison Open Payments meals near limit company differences"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://journalofethics.ama-assn.org/article/mixing-dinner-and-drugs-it-ethically-contraindicated/2015-08",
+   "outlet": "AMA Journal of Ethics",
+   "date": "2015-08",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Spending per health care provider (HCP), including tax and gratuity, cannot exceed $125.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cktail service wine and beer served only during dinner service; no after-dinner drinks no specialty coffees no “to go” orders, including desserts (though attendees may take leftover or uneaten portions of their meals with them) Wine may not exceed an average of $9.00 per glass or $36.00 per bottle. Spending per health care provider (HCP), including tax and gratuity, cannot exceed $125. The creation of highly specific dinner-related guidelines is driven by the desire to avoid the perception that HCPs are being treated extravagantly, as was the case in the recent past. Documentation Third-party compliance companies rely on the final itemized restaurant bill to document compliance with regulatory standards. The bill ind"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.smartmeetings.com/magazine_article/medical-ground-shifts-yet-again",
+   "outlet": "Smart Meetings",
+   "date": "2018-08-09",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "In 2017, Pharma Forum released data from 41 pharmaceutical companies that showed the average HCP meal cap was $61 for breakfast, $70 for lunch and $125 for dinner.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 2013. But with the overall economy and the travel industry, in particular, so strong the past few years, food and beverage costs have risen such that the companies’ meal caps are causing hardships for planners and their hotel partners, as well as for health-care providers (HCPs) who are attendees. In 2017, Pharma Forum released data from 41 pharmaceutical companies that showed the average HCP meal cap was $61 for breakfast, $70 for lunch and $125 for dinner. And while the PhRMA Code states that meal caps must be “modest by local standards,” most companies are not altering their caps regardless of where they meet, which diminishes the HCP experience in higher-priced cities. Schaumann has heard about one contingency from a few firms. “They say to HCPs attending an event, ‘We are spending "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.qordata.com/blogs/hcp-meal-limits-survey-2026",
+   "outlet": "qordata (compliance software vendor)",
+   "date": "2026-09-02",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "50% of organizations set out-of-office dinner limits between $130 and $150 per person.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " into an operational risk program See how qordata surfaces risk signals like this automatically, tied to your own compliance data. Request a Demo Frequently Asked Questions What are typical HCP meal limits for out-of-office dinners in life sciences? + Based on qordata's 2026 HCP Meal Limits Survey, 50% of organizations set out-of-office dinner limits between $130 and $150 per person. Limits vary by company size and whether the meal is classified as in-office or out-of-office. Why do most compliance teams use different limits for in-office and out-of-office meals? + 75% of survey respondents apply different limits based on meal setting. Restaurant meals carry higher costs than catered in-office meals, and app"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.astrazeneca-us.com/sustainability/Corporate-transparency/physician-engagement.html",
+   "outlet": "AstraZeneca US",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "The value of meals provided is determined by dividing the total cost of the meal by the total number of participants of the meal.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ded to healthcare professionals for the purposes of engaging in discussions to share product and disease related information with physicians and their staff. AstraZeneca will submit to CMS the per person value of any meal in which a physician or mid-level practitioner (beginning 2021) participates. The value of meals provided is determined by dividing the total cost of the meal by the total number of participants of the meal. Participants may include physicians, mid-level practitioners medical staff, and AstraZeneca representatives. Are there any tax implications related to these reporting requirements? Please consult with your tax advisor regarding any questions related to tax implications. I was a principal investigator for an AstraZeneca study an"
+  }
+ ]
+}

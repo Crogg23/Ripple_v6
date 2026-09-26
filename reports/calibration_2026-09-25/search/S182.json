@@ -1,0 +1,36 @@
+{
+  "story_id": "S182",
+  "entity": "Kindred Hospitals (ScionHealth/Apollo) 42 long-term care hospitals: booked expense exceeds Medicare cost-report cost line by ~$178M a year; Kindred-vs-peer margin gap 9.4 pts on booked expense, 0.8 pts on Medicare's cost line",
+  "queries": [
+    {"q": "Kindred long-term acute care hospitals Medicare cost reports margins losses ScionHealth", "found_useful": true},
+    {"q": "ScionHealth Kindred hospitals losing money closures 2025 2026 LTACH financial", "found_useful": true},
+    {"q": "\"Kindred\" long-term care hospitals Medicare cost report related-party rent Ventas expenses not allowable analysis", "found_useful": true},
+    {"q": "Kindred Hospital LTCH Medicare margin negative for-profit chain long-term care hospitals cost report news 2026", "found_useful": false},
+    {"q": "ScionHealth Apollo Kindred hospitals Medicare cost reports operating losses analysis rent sale-leaseback report", "found_useful": false},
+    {"q": "Kindred LTACH hospitals margins versus Select Medical peers cost report data Kindred hospitals lower margins", "found_useful": false},
+    {"q": "hospital chain cost reports total expenses exceed Medicare allowable costs related-party home office costs make margins look worse analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.medpac.gov/wp-content/uploads/2022/03/Mar22_MedPAC_ReportToCongress_Ch10_SEC.pdf",
+      "outlet": "MedPAC, March 2022 Report to the Congress, Ch. 10 Long-term care hospital services",
+      "date": "2022-03-15",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "we estimate total Medicare-allowable costs and assess the relationship between Medicare’s payments and those costs, which we express as a payment margin.",
+      "paywalled": false,
+      "searcher_note": "Method source: MedPAC's LTCH margins use Medicare-allowable cost, not booked expense. Names Kindred elsewhere in the chapter (one of two large LTCH chains; 61 Kindred LTCHs going into ScionHealth) but reports no Kindred-specific cost gap or margin. 'Medicare-allowable' breaks across a line in the PDF. Date is MedPAC's usual March 15 release, not printed on the page."
+    },
+    {
+      "url": "https://ir.ventasreit.com/news/news-details/2024/Ventas-Reaches-Agreements-with-Kindred-and-ScionHealth/default.aspx",
+      "outlet": "Ventas, Inc.",
+      "date": "2024-09-16",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "The initial annualized cash contractual base rent for the LTACs will be $80 million starting May 1, 2025, consistent with the Company’s previously announced expectations, and rent will escalate annually by 2.75%",
+      "paywalled": false,
+      "searcher_note": "Context only: Kindred's rent on 23 LTACs leased from Ventas (plus $16M/yr on five sold-and-leased-back LTACs). Does not discuss cost reports, allowable cost, or margins versus peers."
+    }
+  ],
+  "notes": "No source found reporting a gap between Kindred's booked expense and Medicare's cost-report cost line, the $178M figure, or the Kindred-vs-peer margin comparison (-6.7% vs +2.7%; 9.4 vs 0.8 points). Coverage of Kindred/ScionHealth finances is about debt, a distressed exchange (Moody's, via Private Equity Stakeholder Project), closures and Ventas sale-leasebacks, none of it cost-report margins. Modern Healthcare per-hospital cost-report margin pages for Kindred hospitals surfaced in search (e.g., Kindred Hospital South Florida) but returned 403, so not recorded. No disagreeing source found; no coverage dated after 2026-06-30 found. Several WebSearch calls ran extra internal searches beyond the logged query text."
+}

@@ -1,0 +1,55 @@
+{
+ "story_id": "S132",
+ "lead": {
+  "headline": "Louisiana re-inspected only 90 of 182 hazardous-waste manufacturing plants in five years, last of 28 states; median 91.8%",
+  "number": "90 of 182 (49.5%) got another full on-site inspection in the five years to July 2026; next lowest Illinois 62.7%, Texas 66.5%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "An approved alternative compliance-monitoring plan would make this legal; not checked. Louisiana's small-generator inspections more than doubled over the same years."
+ },
+ "queries_logged": 4,
+ "queries": [
+  "Louisiana DEQ hazardous waste inspections decline RCRA large quantity generators inspection rate",
+  "EPA OIG Louisiana hazardous waste RCRA inspections fell short oversight LDEQ report",
+  "inspector general April 2026 large quantity generators states alternative inspection plans Louisiana Texas Illinois hazardous waste",
+  "Louisiana Illuminator LDEQ inspections fewer industrial plants hazardous waste inspectors staffing"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf",
+   "outlet": "EPA Office of Inspector General, Report No. 26-E-0025",
+   "date": "2026-04-28",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Louisiana 165 59 92 87 50",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "(%) Calculated LQG inspection goal (%)* Nebraska 37 95 99 100 60 Michigan 298 89 95 100 50 Minnesota 152 86 99 80 50 Rhode Island 39 85 61 100 100 Kansas 111 82 8 88 90 Washington 135 77 90 39 80 Virginia 153 75 74 90 94 Oklahoma 89 66 87 71 50 Maryland 113 63 77 99 95 Massachusetts 206 62 74 51 52 Louisiana 165 59 92 87 50 New Hampshire 45 58 53 89 75 Texas 556 55 99 100 50 Illinois 394 48 80 99 50 Connecticut 146 36 57 32 50 Total 2,639 65 93 95 n/a Source: OIG analysis of EPA and state enforcement data. (EPA OIG table) Note: The percentages presented in this table are rounded to the nearest whole number. * We calculated the LQG inspection "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.deq.louisiana.gov/assets/docs/Surveillance/Inspections/LA_SOP_1839_R26.pdf",
+   "outlet": "Louisiana Department of Environmental Quality, Compliance Monitoring Strategy FY2025-2026",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Ten percent (10%) of Large Quantity Generator facilities will be inspected annually.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "estigation Quality Assurance Project Plan (QAPP 3009) within each region. RCRA: Fifty percent ( 50%) of Operating Hazardous Waste Treatment, Storage, and Disposal facilities (TSDs) and 100% of Fed eral Operating Hazardous Waste Treatment, Storage, and Disposal facilities will be inspected annually. Ten percent (10%) of Large Quantity Generator facilities will be inspected annually. Inspections of Small Quantity Generators and Very Small Quantity Ge nerators as an alternative plan to the reduction in the number of Large Quantity Generators, will be conducted as approved by EPA Region 6. O ther hazardous waste regulated facilities, which includes, but is not limited to, used oil and universal waste facilities ma"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.epa.gov/sites/default/files/2018-05/documents/srf-rd3-rev-la.pdf",
+   "outlet": "EPA Region 6, State Review Framework Louisiana Round 3 (FY2014)",
+   "date": "2018-05-09",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "State exceeded 20% coverage for its LQG universe each year over most recent five years resulting in 100% coverage.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ition o Labeled o Visible leaks State Review Framework Report | Louisiana | Page 34 Explanation Metric 5a – LDEQ does almost 100% of its TSDFs annually. The two (2) facilities not done in FY14 were done in FY13. State universe of 24 was covered 100% over the 2-year period FY13 and FY14. Metric 5c – State exceeded 20% coverage for its LQG universe each year over most recent five years resulting in 100% coverage. • FY10 = 25.6% • FY11 = 27.5% • FY12 = 22.9% • FY13 = 23.4% • FY14 = 20.2% Metric 6a – The one (1) CEI inspection report deemed not to have been a complete CEI is a Federal LQG and TSDF. This facility was typically inspected every year and by the same inspector(s). The FY14 inspection report (CEI 6/17/2014) included information that"
+  }
+ ]
+}

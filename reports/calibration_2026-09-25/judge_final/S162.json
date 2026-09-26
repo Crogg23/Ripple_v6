@@ -1,0 +1,12 @@
+{
+  "story_id": "S162",
+  "bin": "Matched + more",
+  "entity": "national ICE detentions of people who arrived by 2021 / long-settled residents, Jan-May 2026 vs prior years",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "2026-04-07",
+  "post_cutoff_match": true,
+  "what_we_add": "13,265 detentions Jan-May 2026 vs 3,490 in 2024 (3.8x), and the 10+ year resident split vs 2019",
+  "why": "Deportation Data Project and Marshall Project report the same finding in words: interior arrests of long-settled residents surged under the new administration, a reversal. Neither has our entry-date counts or the 3.8x multiple.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

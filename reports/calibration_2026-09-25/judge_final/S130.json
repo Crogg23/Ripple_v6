@@ -1,0 +1,12 @@
+{
+ "story_id": "S130",
+ "bin": "Known pattern",
+ "entity": "13F reports still filed in thousands after the Jan 2023 dollar rule, Q1 2026 (355 filers, T. Rowe Price a third)",
+ "deciding_sources": [2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The T. Rowe and Barclays filings are blocked and not paywalled, so they're ignored. What's left: a vendor blog stating legacy systems still round to thousands and produce non-compliant filings, the same kind of finding in general, with no filer named and no count.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S009",
+  "bin": "Known pattern",
+  "entity": "the NWS Phoenix weather office's share of heat deaths in the federal storm file, and its stopping filing after June 2024",
+  "deciding_sources": [1, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source names the Phoenix weather office or the storm-file reporting break. NPR/BU and AP report the same kind of finding in general: heat-death counting is inconsistent, Maricopa County is a counting outlier, official counts are artifacts. That's the pattern, not this entity.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

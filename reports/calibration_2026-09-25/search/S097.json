@@ -1,0 +1,37 @@
+{
+  "story_id": "S097",
+  "entity": "EPA Regions 6 and 9 vs Regions 7 and 8: share of RCRA hazardous-waste sites inspected on-site twice or more since 2015 with no EPA case or informal action on file",
+  "queries": [
+    {"q": "EPA RCRA hazardous waste inspections no enforcement action regional disparities", "found_useful": false},
+    {"q": "EPA Region 6 hazardous waste facilities repeated inspections violations no enforcement", "found_useful": false},
+    {"q": "EPA inspector general RCRA violations not addressed enforcement follow-up regions inconsistent", "found_useful": true},
+    {"q": "EPA Region 9 hazardous waste enforcement decline inspections analysis ECHO data", "found_useful": false},
+    {"q": "hazardous waste facilities inspected violations found but no enforcement Texas Louisiana investigation news", "found_useful": false},
+    {"q": "EPA RCRA enforcement inspections 2026 report regions hazardous waste generators enforcement actions", "found_useful": true},
+    {"q": "inspector general large quantity generators hazardous waste enforcement variability states regions April 2026", "found_useful": true},
+    {"q": "Environmental Integrity Project EPA hazardous waste inspections enforcement drop analysis regions", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf",
+      "outlet": "EPA Office of Inspector General",
+      "date": "2026-04-28",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "There was wide variability in enforcement activities depending on the state, the region, and the lead inspecting agency.",
+      "paywalled": false,
+      "searcher_note": "OIG report 26-E-0025 on RCRA large-quantity-generator enforcement 2020-2024, broken out by EPA region (Appendix B). Its table shows the share of violations with an enforcement action at Region 6 98%, Region 9 96%, Region 7 77%, Region 8 94%, i.e. Regions 6/9 do NOT look worse on this measure. Different measure (violations with any action, LQGs only, 2020-2024) from the lead (sites inspected twice with no case or informal action on file, all RCRA sites, since 2015). Report also says Region 9 data are incomplete because California data were missing, and that Region 6 was the only region where under half of formal actions carried a penalty."
+    },
+    {
+      "url": "https://www.epa.gov/sites/default/files/2015-10/documents/20111209-12-p-0113.pdf",
+      "outlet": "EPA Office of Inspector General",
+      "date": "2011-12-09",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "state enforcement programs frequently do not meet national goals and states do not always take necessary enforcement actions.",
+      "paywalled": false,
+      "searcher_note": "OIG report 12-P-0113, 'EPA Must Improve Oversight of State Enforcement'; covers RCRA among three statutes; general pattern that enforcement follow-up is weak and inconsistent across states and regions. No region-by-region inspected-but-no-action figure."
+    }
+  ],
+  "notes": "No news or trade-press coverage found of an inspected-twice-with-no-action gap between EPA Regions 6/9 and 7/8. The closest source is the April 2026 EPA OIG regional table, which measures something different (share of LQG violations that drew any enforcement action, 2020-2024) and on that measure Regions 6 and 9 are near the top (98%, 96%), not the bottom; Region 7 is lowest of the four (77%). The judge should decide whether that counts as disagreement or a different definition. The OIG also flags Region 9 as incomplete because California data were missing, which may bear on the lead's Region 9 figure."
+}

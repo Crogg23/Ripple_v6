@@ -1,0 +1,97 @@
+{
+ "story_id": "S004",
+ "lead": {
+  "headline": "In 2024, 20 clinicians billed Medicare $1.13B for skin-substitute wound patches; the makers reported paying them only $76,937",
+  "number": "$1,126,228,007 billed by the top 20 in 2024 vs $76,937 in maker payments 2022-24 ($63,088 of it Organogenesis to Ravi Kapadia); 6 Arizona nurse practitioners billed only Impax, $124.0M (68.6% of all Impax)",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Denny (#20) and Palacios (#32, not top 20) tie to those Phoenix cases by surname and filing date only, and the charge is general fraud conspiracy, not health fraud."
+ },
+ "queries_logged": 10,
+ "queries": [
+  "Arizona nurse practitioners skin substitute Medicare billing Impax",
+  "DOJ charges Arizona nurse practitioners amniotic wound allografts Ira Denny Gina Palacios",
+  "Ravi Kapadia Organogenesis skin substitute Medicare",
+  "top skin substitute billers Medicare 2024 Open Payments manufacturer payments little",
+  "\"Impax\" amniotic membrane Medicare billing fraud nurse practitioner",
+  "skin substitute kickbacks distributors Open Payments not reported sales representatives Medicare billers",
+  "Wall Street Journal skin substitutes nurse practitioners Arizona billed Medicare hundreds of millions 2024",
+  "Arizona nurse practitioner skin graft Medicare fraud pleads guilty sentenced August 2026",
+  "\"Legacy Medical Consultants\" Impax Medicare investigation",
+  "\"Medicare Bleeds Billions on Pricey Bandages, and Doctors Get a Cut\""
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.openmedicare.us/investigations/arizona-wound-care-ring",
+   "outlet": "OpenMedicare",
+   "date": "2026-02-21",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In the Phoenix metropolitan area, 23 nurse practitioners billed Medicare a combined $514.6M for skin substitute products.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tions The Arizona Wound Care Ring Investigation The Arizona Wound Care Ring $514.6M Billed by 23 Nurse Practitioners for 3.0K Patients February 21, 2026 18 min read By OpenMedicare Investigative Team $514.6M Total Billed 23 Nurse Practitioners 3.0K Total Patients $173.0K Avg Per Patient The Pattern In the Phoenix metropolitan area, 23 nurse practitioners billed Medicare a combined $514.6M for skin substitute products. They treated just 3.0K patients — an average of $173.0K per patient. The top biller, Ira Denny of Surprise, Arizona, billed $135.2M for 90 patients — that's $1.5M per patient. To put that in perspective, the median annual income in Surprise, AZ is about $68,000. Denny billed Medicare more per patient than 22 years of the typical resi"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.justice.gov/criminal/criminal-fraud/health-care-fraud-unit/2025-national-hcf-case-summaries",
+   "outlet": "U.S. Department of Justice, Health Care Fraud Unit",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Ira Denny, 56, of Surprise, Arizona, was charged by information with conspiracy to commit health care fraud in connection with a scheme to defraud Medicare by billing for medically unnecessary amniotic allografts",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "improper payments of approximately $1.58 million from AHCCCS to Tusa. The case is being prosecuted by Assistant Chief James Hayes and Trial Attorneys Sarah Edwards and Lauren Randell of the National Rapid Response Strike Force and Assistant U.S. Attorney Matthew Williams of the District of Arizona. Ira Denny , 56, of Surprise, Arizona, was charged by information with conspiracy to commit health care fraud in connection with a scheme to defraud Medicare by billing for medically unnecessary amniotic allografts that were procured through kickbacks and bribes. As alleged in the information, medically untrained sales representatives identified and referred elderly Medicare beneficiaries to Denny, a nurse practitioner, who applied amniotic allografts to the beneficiaries without exercising independent medical judgment and in the amount and fr"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.ktar.com/arizona-health-news/health-care-fraud-arizona-cases/5723782/",
+   "outlet": "KTAR News (Phoenix)",
+   "date": "2025-07-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Ira Denny, 56, of Surprise is a nurse practitioner who allegedly ordered and applied over $200 million in unnecessary amniotic allografts for elderly Medicare recipients.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " at the other Arizona cases involving Valley residents: Cle’Esther Davenport, 51, of Peoria is accused of receiving $739,000 in kickbacks to refer patients to an outpatient treatment center called Tusa Integrated Clinic. Tusa allegedly defrauded AHCCCS out of over $1.5 million in improper payments. Ira Denny, 56, of Surprise is a nurse practitioner who allegedly ordered and applied over $200 million in unnecessary amniotic allografts for elderly Medicare recipients. Gina Palacios, 40, of Phoenix faces similar accusations as Denny, with Medicare billing for unnecessary amniotic allografts totaling nearly $60 million. “Health care fraud doesn’t just steal money from taxpayers, it also degrades trust in the system Americans rely on to care for themselves and their loved ones” District of Ari"
+  },
+  {
+   "idx": 3,
+   "url": "https://carolinefifemd.com/2026/07/15/skin-substitute-fraud-indictments/",
+   "outlet": "Caroline Fife M.D. (wound-care physician blog)",
+   "date": "2026-07-15",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The largest and most consequential story in this space by far is a multi-defendant scheme centered in Arizona involving Apex/APX-related companies and amniotic wound allografts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "urn on a single day’s wound rounds could be enormous because reimbursement was tied to the amount of graft applied. The pace of enforcement has accelerated sharply since 2022: Year Actions Tracked 2022 1 2023 2 2024 3 2025 11 2026 12 (year to date) The Big One: The Arizona Amniotic Allograft Scheme The largest and most consequential story in this space by far is a multi-defendant scheme centered in Arizona involving Apex/APX-related companies and amniotic wound allografts. The pattern alleged across more than a dozen related charges is consistent focusing on elderly and hospice patients, medically unnecessary or oversized grafts, kickbacks to the nurse practitioners and sales representatives who ordered and applied them, and product selection driven by sales targets rather than clinical judgment. Alexandra"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.cbsnews.com/news/arizona-wound-care-company-older-patients-skin-graft-scheme/",
+   "outlet": "CBS News",
+   "date": "2024-06-27",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Federal prosecutors charged the owners of an Arizona wound care company and two nurse practitioners who worked with them for conspiring to defraud Medicare of over $900 million after they allegedly targeted elderly patients",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ews multiplatform reporter and producer covering the Justice Department, federal courts and investigations. He was previously an associate producer for the \"CBS Evening News with Norah O'Donnell.\" Read Full Bio Robert Legare June 27, 2024 / 4:34 PM EDT / CBS News Add CBS News on Google Washington — Federal prosecutors charged the owners of an Arizona wound care company and two nurse practitioners who worked with them for conspiring to defraud Medicare of over $900 million after they allegedly targeted elderly patients — many of them terminally ill — in a sprawling medical scheme, the Justice Department announced Thursday. According to prosecutors, the defendants carried out medically unnecessary or ill-advised skin graft treatments to older patients at a billing rate of approximately $1 million per patient. The alleged scheme also involved hundreds of "
+  },
+  {
+   "idx": 5,
+   "url": "https://artdiamondblog.com/archives/2025/05/14663.html",
+   "outlet": "artdiamondblog (quoting New York Times, Kliff and Thomas, April 2025)",
+   "date": "2025-05-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "In October 2023, Medicare began reimbursing $6,490 for a new Legacy product",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": ""
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S016",
+ "bin": "Contradicted",
+ "entity": "Nebraska air regulators: zero formal enforcement actions 2017-2025",
+ "deciding_sources": [1, 2],
+ "earliest_match_date": "2024-08-27",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The state's own enforcement pages show formal air consent orders inside our window: Green Plains Wood River 2022-02-16 and ADM 2025-10-22, both Clean Air Act. That contradicts the zero-actions claim, opposite direction, even though EPA's SRF (which matched) found no formal responses in its review period. The watch_out named this exact hole.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

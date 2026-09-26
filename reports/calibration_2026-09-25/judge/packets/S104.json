@@ -1,0 +1,82 @@
+{
+ "story_id": "S104",
+ "lead": {
+  "headline": "Oroville Hospital, California, had 1.78 stays per traditional-Medicare patient, tied for highest of 2,109 big hospitals; median 1.34",
+  "number": "3,938 stays for 2,213 patients; sepsis codes on 30% of stays (1,194) vs a 15% California median",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The file has no data year and only one vintage, so nobody has tested whether 1.78 holds year to year."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Oroville Hospital Medicare admissions sepsis False Claims Act",
+  "Oroville Hospital sepsis coding readmissions Medicare outlier investigation Enterprise-Record",
+  "Oroville Hospital whistleblower lawsuit inpatient admissions bonuses doctors Chico Enterprise-Record 2021 OR 2022 OR 2023",
+  "Oroville Hospital 2026 Medicare corporate integrity agreement news",
+  "\"Oroville Hospital\" admissions per Medicare patient highest California hospitals sepsis rate",
+  "Oroville Hospital Wentz statement settlement denies wrongdoing \"Oroville Hospital\" allegations disproved",
+  "Oroville Hospital billing Medicare inpatient stays 2026 audit OR lawsuit OR investigation"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.justice.gov/opa/pr/california-hospital-pay-1025m-resolve-false-claims-allegations",
+   "outlet": "U.S. Department of Justice, Office of Public Affairs",
+   "date": "2024-12-12",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "to resolve allegations that it knowingly submitted false claims to Medicare and Medicaid arising from medically unnecessary inpatient hospital admissions, a kickback and physician self-referral scheme and the use of erroneous diagnosis codes.",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.justice.gov/opa/media/1380086/dl",
+   "outlet": "U.S. Department of Justice, settlement agreement (U.S. ex rel. Guardiola and Fisher v. Oroville Hospital)",
+   "date": "2024-12-12",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Oroville Hospital knowingly submitted to Medicare and Medi-Cal claims that included false diagnosis codes for systemic inflammatory response syndrome",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ty One Thousand and Forty Five Dollars and Fifty Nine Cents ($731,045.59) to the State of California. G. The United States contends that it has certain civil claims against Oroville Hospital arising from the conduct described in the following paragraphs. i. Between January 1, 2013 and July 1, 2023, Oroville Hospital knowingly submitted to Medicare and Medi-Cal claims that included false diagnosis codes for systemic inflammatory response syndrome (“SIRS”) (ICD-10 R65.10, ICD-9 995.90) as a secondary diagnosis, thereby resulting in an excessive level of reimbursement from those government payors. ii. Between January 1, 2014 and July 1, 2023, Oroville Hospital knowingly (a) admitted certain patients for whom inpatient care was not medically reasonable or necessary, and (b) submitted to Medi"
+  },
+  {
+   "idx": 2,
+   "url": "https://krcrtv.com/news/local/oroville-hospital-to-pay-1025m-in-kickback-false-claim-settlement",
+   "outlet": "KRCR (Redding/Chico)",
+   "date": "2024-12-12",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The settlement additionally resolves allegations that Oroville Hospital admitted patients as inpatients when it knew inpatient care was not medically necessary.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "backs to physicians for the number of patients they admitted to the hospital, as well as knowingly submitted false claims to Medicare and Medi-Cal for systemic inflammatory response syndrome (SIRS), which resulted in excessive reimbursement to the hospital, according to the U.S. Attorney's Office . The settlement additionally resolves allegations that Oroville Hospital admitted patients as inpatients when it knew inpatient care was not medically necessary. “Physicians should make decisions based the best interests of their patients, not their own personal financial interests,” said U.S. Attorney Phillip Talbert. “Hospitals engaging in kickback schemes betray the trust placed in them by their communities and distort care decisions that should be untainted by illegal kickbacks. This settlement demonstrat"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.prweb.com/releases/oroville-hospital-commits-to-enhanced-compliance-and-continues-its-mission-to-serve-the-local-community-302330675.html",
+   "outlet": "Oroville Hospital press release (PRWeb)",
+   "date": "2024-12-12",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Oroville Hospital makes no admissions of wrongdoing, maintaining that it would have prevailed if the case was decided on a level playing field and categorically denying any violation of the law.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " physicians that allegedly violated the Anti-Kickback statute and Stark Law. The agreements announced today reflect the Hospital's commitment to bringing closure to long-running disputes that started in 2019 and avoiding the uncertainty and expense associated with protracted litigation. Critically, Oroville Hospital makes no admissions of wrongdoing, maintaining that it would have prevailed if the case was decided on a level playing field and categorically denying any violation of the law. \"The Hospital had successfully disproved related cases,\" noted Hospital CEO Robert Wentz . \"Had we chosen to contest the allegations, I am confident that, ultimately, the Hospital would have prevailed in a fair trial of the facts.\" \"The Hospital had successfully disproved related cases,\" noted Hospital CEO Robert Wentz. \"Had we chosen to"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.arnoldporter.com/en/perspectives/blogs/fca-qui-notes/posts/2024/12/serial-whistleblower-strikes-again",
+   "outlet": "Arnold & Porter, FCA Qui Notes blog (Meredith Osborn)",
+   "date": "2024-12-23",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Oroville Hospital allegedly submitted claims to Medicare and Medi-Cal knowing the claims included a fabricated secondary diagnosis code, allowing the hospital to claim excessive reimbursement for illusory",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "plaint, resulting in payments of $6 million in total to her personally. As part of the Oroville Hospital settlement, Guardiola will add approximately $1.7 million to her personal tally. In the settlement , DOJ contends Oroville Hospital’s actions between January 2013 and July 2023 violated the FCA. Oroville Hospital allegedly submitted claims to Medicare and Medi-Cal knowing the claims included a fabricated secondary diagnosis code, allowing the hospital to claim excessive reimbursement for illusory “treatment.” Oroville Hospital allegedly schemed to increase the number of individuals admitted for inpatient treatment when observation status or outpatient care was instead appropriate. The government alleged that this inpatient care was medically unnecessary and unreasonable. Oroville Hospital allegedly induced physicians to improperly admit"
+  }
+ ]
+}

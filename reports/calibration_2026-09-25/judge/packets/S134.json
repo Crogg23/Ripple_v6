@@ -1,0 +1,59 @@
+{
+ "story_id": "S134",
+ "lead": {
+  "headline": "Yuma, Arizona's water plant broke the acute chlorine-dioxide limit 21 months straight; none reached federal records until May 2022",
+  "number": "21 acute violations, one a month Jul 2020-Mar 2022, readings 0.9-2.0 mg/L vs a 0.8 limit; 21 of 54 such violations nationally since 2015 (next-worst: 6)",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Code 13 is read as the acute chlorine-dioxide limit from the data, not EPA's code list; the public-notice violations closed 2022-06-02, so a notice probably went out late, not never."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Yuma Arizona water chlorine dioxide violation",
+  "City of Yuma drinking water public notice chlorine dioxide maximum residual disinfectant level exceeded",
+  "Yuma Sun chlorine dioxide Agua Viva water plant 2022 ADEQ self-report generator",
+  "ADEQ Yuma Agua Viva chlorine dioxide consent order OR notice of violation OR enforcement 2022",
+  "chlorine dioxide MRDL acute violation drinking water systems nationwide rare EPA SDWIS public notice Tier 1",
+  "Yuma chlorine dioxide water notice 2025 2026 Agua Viva stopped using chlorine dioxide",
+  "yumasun.com chlorine dioxide levels city water 70 instances",
+  "Yuma residents not notified chlorine dioxide two years water violations criticism city council 2022"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.signalsaz.com/articles/drinking-water-in-yuma/",
+   "outlet": "Signals AZ",
+   "date": "2022-03-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "During this time period there were 70 instances when the City's chloride dioxide levels were higher than the standard set by the EPA, and ranged between 0.85 to 2.04 milligrams of chlorine dioxide per liter.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "types of parasites. In addition it removes unpleasant odor and taste. The City recently learned water samples taken July 24, 2020 through March 6, 2022 at its Aqua Viva Water Treatment System revealed levels of chlorine dioxide exceeding the maximum levels for drinking water established by the EPA. During this time period there were 70 instances when the City’s chloride dioxide levels were higher than the standard set by the EPA, and ranged between 0.85 to 2.04 milligrams of chlorine dioxide per liter. Because additional testing of the drinking water was not conducted, the City cannot be sure of the quality of the City’s drinking water during that time. Chlorine dioxide breaks down very quickly in the water system, dissipates within 48 hours, and can be removed through home reverse osmosis systems. However, according to the EPA, "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.yumaaz.gov/Home/Components/News/News/785/",
+   "outlet": "City of Yuma",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The City recently learned water samples taken July 24, 2020 through March 6, 2022 at its Aqua Viva Water Treatment System revealed levels of chlorine dioxide exceeding the maximum levels for drinking water established by the EPA.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://kyma.com/news/2022/03/18/yuma-drinking-water-affected-by-high-levels-of-chlorine-dioxide/",
+   "outlet": "KYMA News 11",
+   "date": "2022-03-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Yuma's drinking water was tested to have multiple instances of higher than regular chloride dioxide levels.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S127",
+ "bin": "Matched + more",
+ "entity": "Boxlight insiders filing stock-sale reports (Form 4) late",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2024-06-13",
+ "post_cutoff_match": false,
+ "what_we_add": "the counts: 30 of 76 sale reports late, and the market frame of 38 of 2,740 companies over 10% late with a median of zero",
+ "why": "Boxlight's own proxy and 10-K/A name the insiders and disclose the late Form 4 filings, the same finding in words. Only company filings say it; no source has our 30-of-76 count or the cross-company outlier comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

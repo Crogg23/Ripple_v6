@@ -1,0 +1,37 @@
+{
+  "story_id": "S170",
+  "entity": "Union Pacific Railroad, FRA-reported train-strike trespasser deaths per year, 2015-17 (79) vs 2023-25 (156)",
+  "queries": [
+    {"q": "Union Pacific trespasser deaths rising FRA data", "found_useful": false},
+    {"q": "Union Pacific trespasser fatalities increase 2024 2025 railroad deaths people struck by trains", "found_useful": false},
+    {"q": "Union Pacific trespasser deaths Los Angeles OR Houston OR Phoenix railroad tracks record rise investigation", "found_useful": false},
+    {"q": "\"Union Pacific\" trespasser fatalities doubled OR increased network annual report trespassing incidents", "found_useful": false},
+    {"q": "Union Pacific most trespasser deaths of any railroad Class I FRA analysis", "found_useful": false},
+    {"q": "railroad trespasser deaths 2025 2026 news rising pedestrians killed by trains homeless encampments tracks Union Pacific", "found_useful": false},
+    {"q": "FRA national trespass fatalities trend 2015 to 2025 record high or decline railroad deaths data", "found_useful": true},
+    {"q": "Union Pacific train deaths pedestrians Sacramento Fresno Bakersfield Tucson 2025 surge struck killed tracks rising number", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.everycrsreport.com/reports/R47911.html",
+      "outlet": "Congressional Research Service, R47911 (via EveryCRSReport)",
+      "date": "2026-07-24",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Trespassing deaths, in particular, have nearly doubled on a per-train-mile basis since 2015 after over a decade of stability.",
+      "paywalled": false,
+      "searcher_note": "National pattern: trespass deaths nearly doubled per train-mile since 2015. No per-railroad breakdown, so Union Pacific is not named. Date is as reported by the fetch tool for this version."
+    },
+    {
+      "url": "https://hoodline.com/2026/09/train-kills-pedestrian-near-calvine-road-fourth-fatal-sacramento-strike-since-2025/",
+      "outlet": "Hoodline (Sacramento)",
+      "date": "2026-09-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Union Pacific has reported a 24 percent decrease in personal injuries across its rail network in 2025",
+      "paywalled": false,
+      "searcher_note": "Local story on a fatal pedestrian strike by a UP train, 'at least the fourth' in the Sacramento area in about a year. The UP safety claim is about personal injuries (a different measure), not trespasser deaths."
+    }
+  ],
+  "notes": "No source found that reports Union Pacific's trespasser deaths rising (79 to 156 a year) or compares UP to other railroads in the same counties. Coverage found is national (CRS: trespass deaths nearly doubled per train-mile since 2015; FRA/Operation Lifesaver state tallies) or single-incident local news naming UP trains. The Leader-Telegram (Eau Claire, WI) piece on UP trespass counts in Wisconsin returned 429 and was not opened. The SF Chronicle 'fatalities rise in California' article would not load."
+}

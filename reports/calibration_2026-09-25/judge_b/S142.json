@@ -1,0 +1,15 @@
+{
+ "story_id": "S142",
+ "bin": "Matched + more",
+ "entity": "Detained immigrants' habeas filings nationally, surge to Mar 2026 and detainee win rate",
+ "deciding_sources": [
+  0,
+  3
+ ],
+ "earliest_match_date": "2026-02-10",
+ "post_cutoff_match": true,
+ "what_we_add": "About 8,820 Mar 2026 filings as 24% of all new federal civil cases; the 7,340 vs 831 Oct-Mar closure split",
+ "why": "TRAC's 85x rise off a 105 base lands at our ~8,820; ProPublica and the Politico reposts state the surge and the lopsided detainee wins. The 15,000 vs 2,200 figure is a longer window, not a contradiction; the 24%-of-civil-docket share appears nowhere.",
+ "confidence": "high",
+ "blocked_evidence": true
+}

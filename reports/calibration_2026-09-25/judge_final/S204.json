@@ -1,0 +1,12 @@
+{
+  "story_id": "S204",
+  "bin": "Matched + more",
+  "entity": "Top-4 traders' short share of PJM Western Hub day-ahead futures on ICE, 2026 Q1",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2026-03-10",
+  "post_cutoff_match": false,
+  "what_we_add": "the 69.7% quarterly average, the record framing, and the 47.4% 2024 baseline",
+  "why": "The CFTC's own COT file carries the 71.8 top-4 gross short figure for 2026-03-10, same entity and number. But the page context sits next to a DA PEAK header, so whether it's the off-peak contract is not certain from the packet; no press source exists.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

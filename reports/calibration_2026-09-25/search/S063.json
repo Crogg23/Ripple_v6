@@ -1,0 +1,77 @@
+{
+  "story_id": "S063",
+  "entity": "SEC-filing corporate officers and directors (2021-25) matched to $1,000+ individual FEC gifts, 2022-2026 cycles; named donor Joseph W. Craft III (Alliance Resource Partners CEO), $8.2M",
+  "queries": [
+    {"q": "Joseph Craft III political donations million 2024 election Alliance Resource Partners CEO", "found_useful": true},
+    {"q": "\"Joe Craft\" super PAC donation 2024 OR 2025 OR 2026 FEC million Kentucky", "found_useful": true},
+    {"q": "analysis corporate executives officers directors campaign contributions FEC matched SEC filings 2024 cycle CEOs gave million", "found_useful": false},
+    {"q": "study executives political donations FEC data S&P 1500 officers directors partisan 2024 CEOs donations analysis", "found_useful": true},
+    {"q": "\"The Politics of CEOs\" Cohen Hazan Tallarita Weiss FEC contributions S&P 1500 CEOs Republican", "found_useful": true},
+    {"q": "Joe Craft Kelly Craft donation 2026 Senate race Kentucky super PAC Barr Morris Cameron", "found_useful": false},
+    {"q": "Joe Craft Alliance Coal top donor 2024 cycle total contributions OpenSecrets Trump MAGA Inc Senate Leadership Fund", "found_useful": true},
+    {"q": "corporate executives personal political donations 2024 election analysis Fortune 500 CEOs gave millions Forbes OR Axios OR Bloomberg", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.aol.com/prominent-ky-political-donors-kelly-185728921.html",
+      "outlet": "Lexington Herald-Leader (syndicated on AOL)",
+      "date": "2024-01-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The couple is opening the trust with an $826,000 donation between the two, which is a maximum donation, according to Kristen Branscum, Kelly Craft's chief of staff.",
+      "paywalled": false,
+      "searcher_note": "Names Joe Craft as a major 2024-cycle federal donor: the Crafts co-chaired the RNC Presidential Trust and opened it with $826,000. Gives no cycle total and does not match the $8.2M figure."
+    },
+    {
+      "url": "https://linknky.com/news/2023/10/26/kelly-and-joe-craft-give-the-max-to-trumps-rivals-in-gop-field-for-president/",
+      "outlet": "Kentucky Lantern (republished by LINK nky), Tom Loftus",
+      "date": "2023-10-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "That adds up to $82,600 in contributions from the Crafts to alternatives to Trump in the large field of candidates seeking the 2024 Republican nomination for president.",
+      "paywalled": false,
+      "searcher_note": "FEC-based story on the Crafts' 2024-cycle max-outs to GOP presidential candidates. Names Craft but covers a small slice, not a cycle total."
+    },
+    {
+      "url": "https://www.eenews.net/articles/coal-executive-tapped-to-lead-gop-fundraising-effort/",
+      "outlet": "E&E News by POLITICO, Timothy Cama",
+      "date": "2024-01-23",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Alliance Resource Partners CEO Joe Craft and his wife, former United Nations Ambassador Kelly Craft, will co-chair the Republican National Committee's Presidential Trust.",
+      "paywalled": false,
+      "searcher_note": "Identifies Craft as a coal CEO and top GOP fundraiser for 2024. No dollar total."
+    },
+    {
+      "url": "https://publicintegrity.org/politics/donor-profile-joe-craft/",
+      "outlet": "Center for Public Integrity",
+      "date": "2012-12-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "$3.4 million to American Crossroads (pro-Republican), including $850,000 from his company, Alliance Management Holdings",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage of Craft as a megadonor, for the 2012 cycle. Outside the 2022-26 window."
+    },
+    {
+      "url": "https://www.nber.org/papers/w25815",
+      "outlet": "NBER (Cohen, Hazan, Tallarita, Weiss)",
+      "date": "2019-05-01",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "We use Federal Election Commission (FEC) records to put together a comprehensive database of the political contributions made by over 3,500 individuals who served as CEOs of S&P 1500 companies during the period 2000-2017.",
+      "paywalled": false,
+      "searcher_note": "Pattern: an academic match of public-company CEOs to FEC contributions. Earlier period (2000-2017), CEOs only, not SEC insider filers. Issue date is May 2019; the day is not given."
+    },
+    {
+      "url": "https://finance.yahoo.com/news/most-top-ceos-arent-giving-to-either-trump-or-biden-080016177.html",
+      "outlet": "Yahoo Finance, Ben Werschkul and Maya Benjamin",
+      "date": "2024-07-09",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The heads of 98 of America's 100 biggest companies have chosen not to financially support either of the major party's standard-bearers so far, according to a Yahoo Finance analysis of the latest federal campaign finance filings",
+      "paywalled": false,
+      "searcher_note": "Pattern: an FEC-based analysis of Fortune 100 CEO giving in 2024 (about $1.7M to congressional candidates). Much narrower than 5,362 insiders."
+    }
+  ],
+  "notes": "No source found that reports the aggregate match (5,362 SEC insiders, $555M, 2022-26), and no source gives Joe Craft's $8.2M 2022-26 federal total. Craft is widely covered as a GOP megadonor. Coverage found: 2012 super PAC gifts; 2023 max-outs to Trump rivals; January 2024 RNC Presidential Trust co-chair with an $826K opening gift. A search summary said Craft was among the top 2024 donors to America PAC, but no page with a verifiable quote was opened. A POLITICO Pro/E&E piece titled 'Coal titan Joe Craft spends big in final days of campaigns' (subscriber.politicopro.com/article/eenews/1060106425) turned up, but it was paywalled and returned no text, so it is not recorded. Kentucky Lantern pages returned 403. The Lantern reported a $1.5M gift from Joe Craft's trust to a super PAC in the 2023 Kentucky governor race; that is a state race, not FEC. No July-September 2026 coverage of Craft's giving was found."
+}

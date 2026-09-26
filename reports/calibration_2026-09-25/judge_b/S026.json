@@ -1,0 +1,12 @@
+{
+ "story_id": "S026",
+ "bin": "Matched + more",
+ "entity": "Sen. Markwayne Mullin's 2023-24 stock trades filed late in summer 2025",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-07-31",
+ "post_cutoff_match": true,
+ "what_we_add": "48 trade lines, 46 over a year late, 244-953 days late, at least $1.74M - NOTUS says 'months late' and 'nearly three dozen' without the line counts or day ranges",
+ "why": "NOTUS/Oklahoma Watch reported both summer 2025 filings as STOCK Act violations by Mullin, same entity, same finding, same direction. Their piece counts differ by definition, not direction; our precise late-day and dollar figures are stated nowhere.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

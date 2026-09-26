@@ -1,0 +1,77 @@
+{
+  "story_id": "S013",
+  "entity": "NHTSA preliminary evaluation PE19-010, false automatic emergency braking in 2017-2018 Nissan Rogue, opened 2019-09-09, still open with no recall",
+  "queries": [
+    {"q": "NHTSA Nissan Rogue automatic emergency braking investigation PE19-010 still open no recall", "found_useful": true},
+    {"q": "Nissan Rogue phantom braking probe open years NHTSA backlog", "found_useful": true},
+    {"q": "NHTSA investigations open for years without resolution Nissan Rogue emergency braking 2019", "found_useful": true},
+    {"q": "Center for Auto Safety Nissan Rogue automatic emergency braking investigation still open", "found_useful": true},
+    {"q": "NHTSA long-running defect investigations open years \"Nissan\" automatic emergency braking 2025 OR 2026", "found_useful": true},
+    {"q": "Nissan Rogue AEB false activation NHTSA probe upgrade engineering analysis recall decision", "found_useful": false},
+    {"q": "NHTSA closes Nissan Rogue automatic emergency braking preliminary evaluation", "found_useful": false},
+    {"q": "NHTSA open investigations backlog phantom braking Nissan 2026", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.consumerreports.org/cars/car-recalls-defects/nhtsa-investigates-honda-unexpected-braking-complaints-a9281526240/",
+      "outlet": "Consumer Reports",
+      "date": "2022-02-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The investigation into unintended braking in Nissan vehicles, for example, has been open since 2019.",
+      "paywalled": false,
+      "searcher_note": "Honda braking story that cites the Nissan probe as open since 2019, against NHTSA's statement that most defect investigations close within 12 months."
+    },
+    {
+      "url": "https://www.autosafety.org/nissan-admits-to-more-than-1400-reports-about-faulty-automatic-emergency-braking-but-continues-to-refuse-recall/",
+      "outlet": "Center for Auto Safety",
+      "date": "2020-08-06",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "NHTSA continues to allow Nissan to fail to recall the vehicles.",
+      "paywalled": false,
+      "searcher_note": "Petitioner's release: Nissan admits 1,400+ Rogue AEB reports, no recall, only a 2019 service campaign mailing."
+    },
+    {
+      "url": "https://abc3340.com/news/local/drivers-complain-of-phantom-braking-on-some-newer-model-vehicles-nissan-honda-emergency-braking-aeb-automatic-braking",
+      "outlet": "ABC 33/40 (Birmingham)",
+      "date": "2022-05-25",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "NHTSA also has an open investigation into Model Year 2017-2018 Nissan Rogue vehicles for unintended automatic emergency braking activation.",
+      "paywalled": false,
+      "searcher_note": "Local TV phantom-braking story noting the Rogue probe was still open in 2022."
+    },
+    {
+      "url": "https://static.nhtsa.gov/odi/inv/2019/INOA-PE19010-2831.PDF",
+      "outlet": "NHTSA Office of Defects Investigation",
+      "date": "2019-09-09",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Unintended braking due to the Automatic Emergency Braking (AEB) system engaging",
+      "paywalled": false,
+      "searcher_note": "ODI resume opening PE19-010; Date Opened 09/09/2019, population 553,860, 843 complaints, 14 crashes, 5 injuries. PDF; quote taken from extracted text."
+    },
+    {
+      "url": "https://www.ttnews.com/articles/nhtsa-opens-probe-nissan-rogue-automatic-emergency-braking",
+      "outlet": "Transport Topics (AP)",
+      "date": "2019-09-12",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The probe covers about 554,000 Rogue small SUVs from the 2017 and 2018 model years.",
+      "paywalled": false,
+      "searcher_note": "Earliest wire coverage of the PE19-010 opening; says Nissan could seek a recall."
+    },
+    {
+      "url": "https://www.vehicle-safety.org/stories/phantom-braking-safety-paradox",
+      "outlet": "The Crash Report (vehicle-safety.org)",
+      "date": "2026-05-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "NHTSA investigated 553,000 Rogues after 800-plus owner reports, 129 confirmed false activations, and 14 accidents that injured five people.",
+      "paywalled": false,
+      "searcher_note": "Most recent coverage found; names the Rogue probe but does not say it is still open or give its duration."
+    }
+  ],
+  "notes": "Several sources name the Rogue probe and say it was open with no recall (2020, 2022). No source found gives the 7-year / 2,572-day duration or the 234-day median; the closest is Consumer Reports 2022 contrasting 'open since 2019' with NHTSA's 12-month norm. No closure notice or coverage dated after 2026-06-30 found. Related pattern: NHTSA closed a four-year Tesla phantom-braking probe in 2026 (The BRAKE Report, not opened). Japan Times 2019-09-13 AP copy returned HTTP 402, not recorded."
+}

@@ -1,0 +1,57 @@
+{
+ "story_id": "S079",
+ "lead": {
+  "headline": "On a strict name and birth-date match, 22 sanctioned people control 46 live UK companies; about 3 are likely chance",
+  "number": "Strict full-name match, open control, Active company: 22 people on 46 companies (loose count was 45 on 83); a shifted-birth-month test finds about 3 by chance.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Kong isn't a find: OFAC's own 2026-06-23 action names 6 of his UK companies by number."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "sanctioned individuals still listed persons with significant control UK companies Companies House analysis",
+  "OFAC June 23 2026 sanctions Kong United Kingdom companies designated",
+  "sanctioned people still control active UK companies Companies House register investigation",
+  "sanctioned Russian still listed as owner of UK company Companies House months after sanctions",
+  "matched UK sanctions list against Companies House directors date of birth sanctioned individuals running UK companies",
+  "Transparency International UK sanctioned individuals UK companies persons with significant control 2026 report"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.opendemocracy.net/en/revealed-sanctioned-russian-oligarch-still-controls-london-property-firm/",
+   "outlet": "openDemocracy",
+   "date": "2022-03-22",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Alisher Usmanov, the billionaire former Arsenal shareholder, still has 'significant control' over a company that owns a townhouse in Mayfair",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": " Search Search Close Home UK Podcasts Media for movements Español Donate About Subscribe Follow us Facebook Linkedin Bluesky Threads Mastodon Tiktok Youtube Instagram Discord Github Pinterest Reddit Telegram Whatsapp RSS News Revealed: Sanctioned Russian oligarch still controls London property firm Alisher Usmanov, the billionaire former Arsenal shareholder, still has ‘significant control’ over a company that owns a townhouse in Mayfair By Martin Williams Sanctioned Russian oligarch Alisher Usmanov Published: March 22, 2022, 4:15 pm Share A Russian oligarch still controls a London property firm more than two weeks after the UK government sanctioned him, openDemocracy can reveal. The news has raised questions over the effectiveness of sanctions, with one MP saying there was “no"
+  },
+  {
+   "idx": 1,
+   "url": "https://ofac.treasury.gov/recent-actions/20260623",
+   "outlet": "US Treasury OFAC",
+   "date": "2026-06-23",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "CHASCA LONDON LIMITED, London, United Kingdom; Organization Established Date 23 Mar 2023; Organization Type: Real estate activities on a fee or contract basis; Company Number 14752579 (United Kingdom) [TCO] (Linked To: KONG, Ka On).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Cambodia) [TCO] (Linked To: CHEN, Bo). CHARCO CHARCO HOLBORN LIMITED, 83-93 Southampton Row, London, United Kingdom; Organization Established Date 03 Jul 2024; Organization Type: Restaurants and mobile food service activities; Company Number 15817972 (United Kingdom) [TCO] (Linked To: KONG, Ka On). CHASCA LONDON LIMITED, London, United Kingdom; Organization Established Date 23 Mar 2023; Organization Type: Real estate activities on a fee or contract basis; Company Number 14752579 (United Kingdom) [TCO] (Linked To: KONG, Ka On). CHINA RESERVE SECURITIES LIMITED (Chinese Traditional: 東儲證券有限公司), Units 2005-2006A, 20/F, K11 Atelier, No. 18 Salisbury Road, Tsim Sha Tsui, Hong Kong, China; SWIFT/BIC JAASHKH1XXX; Website crs.co ; Organization Established Date 11 Jan 1999; Organization Type: Financial and Insurance Activities; Registration Number 22200353 (Hong Kong) [TCO] "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.lazlointelligence.com/blog/ofac-sanctions-data-june-2026",
+   "outlet": "Lazlo Intelligence",
+   "date": "2026-07-01",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "11 out of 12 UK entities added this month belongs to a Transnational Criminal Organization (TCO) network",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cantly compared to last month . Instead, the enforcement spotlight shifted to Western Europe and the Caribbean, with the United Kingdom and Cuba surging to tie for the #2 spot with 11 entities each. A closer look at the UK data reveals that this is a highly targeted sniper shot at a single network. 11 out of 12 UK entities added this month belongs to a Transnational Criminal Organization (TCO) network explicitly flagged as \"Owned or Controlled By: KONG, Ka On.\" Analysis of Network Designations The 11 of 12 newly designated entities in the United Kingdom demonstrate a high concentration within a single corporate network under the Transnational Criminal Organizations (TCO) program. These 11 corporate structures are expli"
+  }
+ ]
+}

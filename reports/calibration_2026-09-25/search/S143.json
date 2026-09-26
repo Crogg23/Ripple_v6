@@ -1,0 +1,67 @@
+{
+  "story_id": "S143",
+  "entity": "US Supreme Court argued cases that came from state courts, share since the 2020 term (19 of 295, 6.4%) vs 2005-19 (14.1%), called lowest since 1946",
+  "queries": [
+    {"q": "Supreme Court fewer cases from state courts decline share docket", "found_useful": true},
+    {"q": "\"state courts\" share of Supreme Court merits docket lowest since 1946", "found_useful": true},
+    {"q": "Supreme Court state court cases percentage argued docket historical decline empirical study law review 2025", "found_useful": true},
+    {"q": "Empirical SCOTUS cases granted from state courts share by term Feldman", "found_useful": true},
+    {"q": "Supreme Court review of state supreme court decisions has dropped sharply since 2020 criminal cases", "found_useful": true},
+    {"q": "Chemerinsky \"state court\" Supreme Court 56 decisions only three reviewing state court rulings", "found_useful": true},
+    {"q": "Supreme Court 2025-26 term statistics cases from state courts end of term July 2026", "found_useful": false},
+    {"q": "cert petitions from state courts share of Supreme Court petitions grant rate state vs federal courts", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.scotusblog.com/2025/07/by-the-numbers/",
+      "outlet": "SCOTUSblog (Erwin Chemerinsky)",
+      "date": "2025-07-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Of the 56 decisions, only three were reviewing state court rulings. This is not a one-year phenomena. A year ago, only four decisions were reviewing state court decisions, and the year before that it was five.",
+      "paywalled": false,
+      "searcher_note": "Counts cases taken from state courts: OT2024 3 of 56, OT2023 4, OT2022 5. Says the low count is a multi-year trend. No share and no 1946 comparison."
+    },
+    {
+      "url": "https://www.bu.edu/bulawreview/files/2025/11/VLADECK.pdf",
+      "outlet": "Boston University Law Review, Vol. 105 (Stephen I. Vladeck, 'Fixing the Supreme Court Through Its Docket')",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "with regard to state criminal appeals, the fall-off has been to near zero (and, during OT2024, actually zero!)",
+      "paywalled": false,
+      "searcher_note": "2025 essay. Uses the Court's own case codes from OT2007 on and finds state criminal appeals (CSY) fell to near zero. Says the steepest drop is in the last few years. Covers criminal cases only, not the total state-court share. PDF; text pulled with pdftotext."
+    },
+    {
+      "url": "https://statecourtreport.org/our-work/analysis-opinion/us-supreme-courts-declining-state-case-docket",
+      "outlet": "State Court Report, Brennan Center (Alicia Bannon)",
+      "date": "2024-10-03",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Looking at the cases the Court agreed to hear as of Tuesday, only 2 out of 28 cases arise from state courts.",
+      "paywalled": false,
+      "searcher_note": "Headline: 'The U.S. Supreme Court's Declining State Case Docket'. Early OT2024 snapshot. Ties the drop to fewer criminal procedure cases. No 1946 comparison."
+    },
+    {
+      "url": "https://www.stevevladeck.com/p/73-the-supreme-court-and-state-courts",
+      "outlet": "One First newsletter (Steve Vladeck)",
+      "date": "2024-03-25",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "of the 58 cases the Supreme Court decided through signed opinions during the October 2022 Term, only one was a direct appeal from a state court",
+      "paywalled": false,
+      "searcher_note": "One state-court case in OT2022 by Vladeck's direct-appeal definition. Chemerinsky counts five for that term, so the definitions differ."
+    },
+    {
+      "url": "https://empiricalscotus.com/2020/09/01/a-sometimes-forgotten-link/",
+      "outlet": "Empirical SCOTUS (Adam Feldman)",
+      "date": "2020-09-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Since the beginning of the Roberts Court, the split of cases from lower state and federal courts has, for the most part, hovered around this 10-20% state court case margin.",
+      "paywalled": false,
+      "searcher_note": "Pre-2020 baseline: 10-20% of cases from state courts under the Roberts Court, and OT2019 hit about 17% (11 cases). Fits the lead's 14.1% for 2005-19."
+    }
+  ],
+  "notes": "Several legal commentators report the drop in Supreme Court cases from state courts, with per-term counts (Chemerinsky, Vladeck, Bannon). No source found gives the lead's aggregate (19 of 295, 6.4% since OT2020), the 14.1% 2005-19 comparison, a 'lowest since 1946' claim, or the ~27% state share of petitions. SCOTUSblog's July 1, 2026 recap of the 2025-26 term (Truscott and Feldman), https://www.scotusblog.com/2026/07/the-2025-26-term-by-the-numbers/, has no state-court count. The SCOTUSblog final stat pack PDF for 2025-26 has no state-court tally in its text. No source found disagrees with the direction. Chemerinsky and Vladeck give different OT2022 counts (5 vs 1) because they define 'from a state court' differently."
+}

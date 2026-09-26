@@ -1,0 +1,12 @@
+{
+  "story_id": "S064",
+  "bin": "Known pattern",
+  "entity": "Sea Robin pipeline's 2025 gas-loss reports reusing one volume number whole, halved and split",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source names Sea Robin. FracTracker shows PHMSA incident reports misrepresenting summary metrics and Reuters totals unintentional releases — the same kind of finding about other pipelines.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

@@ -1,0 +1,94 @@
+{
+ "story_id": "S120",
+ "lead": {
+  "headline": "The Senate held 659 recorded votes in 2025, second only to 1976; 356 were on nominations, a record since 1989",
+  "number": "659 Senate roll calls (1976: 700); after the Sept 2025 en bloc rule change, nomination votes fell from 37.3 a month to 12.6; 41.5% of 119th Senate votes had zero crossover vs 13.5% in the 118th",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Nominations are only tagged from 1989, so \"record\" can't reach further back, and the vote counts were covered in real time."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Senate 659 roll call votes 2025 record",
+  "Senate record number of votes 2025 most roll call votes since 1976 nominations",
+  "Senate 2025 votes on nominations record number cloture confirmation votes year-end tally",
+  "Senate 2025 party-line votes share record low bipartisan votes analysis 119th Congress",
+  "Senate en bloc nominations rule change September 2025 fewer roll call votes floor time since",
+  "Senate roll call votes 2026 pace down after en bloc confirmations nomination votes fewer",
+  "Thune Senate 2025 record year most roll call votes ever historic confirmation pace"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://news.bgov.com/bloomberg-government-news/which-senators-missed-the-most-votes-in-exhausting-record-year",
+   "outlet": "Bloomberg Government",
+   "date": "2025-12-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Of the upper chamber's 659 roll call votes in 2025 — the second most in history, topped only by the Senate's 1976 tally — less than 20% were fully attended.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ages Which Senators Missed the Most Votes in ‘Exhausting’ Record Year December 23, 2025, 10:00 AM By Lillianna Byington Listen Print Email Share To: Facebook LinkedIn The Senate just wrapped up its busiest year of votes since Gerald Ford was president, but just a few senators made it to every vote. Of the upper chamber’s 659 roll call votes in 2025 — the second most in history, topped only by the Senate’s 1976 tally — less than 20% were fully attended. Three senators showed up to every single vote, while half a dozen missed 50 or more, according to a Bloomberg Government analysis. For the three senators who ended the year without a missed vote, two of them — Ohio Republican Sens. Jon Husted and Bernie Moreno — were newcomers. The third, Sen. Susan Collins (R"
+  },
+  {
+   "idx": 1,
+   "url": "https://rollcall.com/2026/03/05/vote-studies-2025-sets-new-mark-for-partisanship-on-capitol-hill/",
+   "outlet": "Roll Call (CQ vote studies)",
+   "date": "2026-03-05",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Senate cast an abnormally high number of recorded votes overall, thanks not only to the record number of roll call votes on Trump's nominations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rties set a record for unanimous party unity votes. Republicans completely united on 429 (70 percent of the 616 unity votes), and Democrats on 416 (68 percent). Those counts bested their previous records of 160 and 364 unanimous votes cast, respectively, with the other party standing in opposition. The Senate cast an abnormally high number of recorded votes overall, thanks not only to the record number of roll call votes on Trump’s nominations, but also in large part to three official vote-a-ramas related to budget resolutions and the reconciliation bill. The vote-a-rama on the GOP’s signature reconciliation measure, dubbed the “One Big Beautiful Bill,” yielded 43 roll call votes, tied for the second-most of any such vote marathon, according to an accounting by the Senat"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.republicanleader.senate.gov/leader-board/research/the-senate-just-confirmed-a-batch-of-97-nominations-capping-off-a-historic-year/",
+   "outlet": "Senate Republican Leader (research page)",
+   "date": "2025-12-18",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Roughly 54% of the Senate's votes through the third en bloc batch have been related to nominations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "R HARDWORKING AMERICANS The Senate has taken 655 votes through the third en bloc batch, eclipsing the Senate vote totals of every year except one going back to 1947. ( U.S. Senate : Roll Call Votes 119th Congress – 1st Session (2025) – accessed 12/1 8/25) Because of Democrats’ historic obstruction, roughly 54% of the Senate’s votes through the third en bloc batch have been related to nominations. ( U.S. Senate : Roll Call Votes 119th Congress – 1st Session (2025) – accessed 12/1 8/25) (Click here to download) Through November 30, without even taking December 2025 into account, the 119th Senate was in session 1,180 hours – which is already above the average of the last 78 full years (1,076 hours). ( GovInfo "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.thune.senate.gov/news/press-releases/thune-on-senate-republicans-record-breaking-year/",
+   "outlet": "Office of Senate Majority Leader John Thune",
+   "date": "2025-12-18",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "653 votes cast so far this year. Which dwarfs any year going back to 1989",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "alf a century. “In fact, Mr. President, if you can see on this chart, the number of votes, you go back, the first date on there is [1983]. “Obviously, this is pretty small, difficult to see, perhaps, unless you’re standing right over it. “But if you look at the red line here, that’s this year – so, 653 votes cast so far this year. “Which dwarfs any year going back to 1989, which is what we had data going back to. “We have since researched farther back; turns out there was one year, 1976 – we went back eight decades – there was one year, 1976, where the Senate cast more votes than we did this year. “But if you go back to [1983], the closest one is right here, 1995, which for those of us who "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.everycrsreport.com/reports/R48729.html",
+   "outlet": "Congressional Research Service (via EveryCRSReport)",
+   "date": "2025-11-14",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In the 119th Congress (2025-2026), no nomination had been confirmed without a roll call vote through September of 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nate, the number of floor votes taken in relation to nominations increased significantly. 48 Prior to the 2013 change, the vast majority of nominations were confirmed without a roll call vote. 49 After the change, that proportion dropped, reaching a low of 37% in the 118 th Congress (2023-2024). 50 In the 119 th Congress (2025-2026), no nomination had been confirmed without a roll call vote through September of 2025 (when the Senate established the new process for considering nominations en bloc ). Compared to the first nine months of the 119 th Congress at least, one impact of the option to consider nominations en bloc will presumably be fewer roll call votes cast in relation to nominations. The number of roll call votes cast going forw"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.washingtonsun.com/congress/senate-nominations-bipartisan-legislation",
+   "outlet": "NOTUS / The Washington Sun",
+   "date": "2026-07-20",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Senate Democrats have forced more than 30% of the roll-call votes in 2026 – up from under 20% in 2025",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " certain issues that we can go bipartisan, but most recently, even those are getting shut down. Everything is about a political advantage,” Capito said. Senators are instead spending more time voting on partisan proposals offered by the minority party. The NOTUS review of roll-call votes found that Senate Democrats have forced more than 30% of the roll-call votes in 2026 –– up from under 20% in 2025, which was similar to the number of Republican-forced votes under Democratic control. “Your whole goal is to make them look bad,” Burgat said. “To not help, to obstruct, because that’s what your voters want. It helps you as a party maintain a better electoral strategy heading into campaign season, and it’s always campaign season.” Wor"
+  }
+ ]
+}

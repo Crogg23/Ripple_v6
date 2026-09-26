@@ -1,0 +1,66 @@
+{
+  "story_id": "S005",
+  "entity": "19 police-, fire-, veteran- and cancer-named 527 political groups (IRS filers), spending 2014 to mid-2026: $193.7M, mostly fundraising, $0.36M to contributions",
+  "queries": [
+    {"q": "police firefighter veterans cancer political groups 527 raised millions spent on fundraisers telemarketing little to candidates", "found_useful": true},
+    {"q": "\"scam PACs\" police veterans cancer telemarketing fundraising caging investigation", "found_useful": true},
+    {"q": "New York Times 527 groups robocalls \"1 percent\" candidates American Police Officers Alliance National Cancer Alliance", "found_useful": true},
+    {"q": "\"National Committee for Volunteer Firefighters\" OR \"American Police Officers Alliance\" OR \"National Coalition for Disabled Veterans\" 2026", "found_useful": true},
+    {"q": "attorney general OR FTC action 527 political organization police firefighters veterans telemarketing donors misled", "found_useful": false},
+    {"q": "527 groups police veterans cancer robocall fundraising 2026 investigation IRS Form 8872", "found_useful": true},
+    {"q": "scam PAC telemarketing police veterans cancer donors news July August 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.propublica.org/article/political-nonprofits-fundraising-ftc-irs-527s-pacs",
+      "outlet": "ProPublica (Ellis Simani)",
+      "date": "2024-06-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "connected Berkenbush to a network of at least 10 of these 527 groups that have raised more than $33 million on the promise of supporting admirable causes",
+      "paywalled": false,
+      "searcher_note": "Names 10 police/fire/veteran/cancer 527s (National Committee for Volunteer Firefighters, National Coalition for Disabled Veterans PAC, National Police & Sheriffs Coalition PAC, American Breast Cancer Coalition, National Cancer Alliance, etc.); about 90 cents of each dollar goes to fundraising; ABCC spent under half of 1% on 'voter advocacy.'"
+    },
+    {
+      "url": "https://www.propublica.org/article/search-527s-finances-pacs-database-political-spending",
+      "outlet": "ProPublica (Ruth Talbot, Brandon Roberts)",
+      "date": "2024-06-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "ProPublica found a network of 527s that purport to support police, veterans, cancer patients and firefighters, but appear to largely be spending their donation money on a small group of fundraisers and administrative companies that support more fundraising efforts.",
+      "paywalled": false,
+      "searcher_note": "Launch of ProPublica's 527 Explorer, built on IRS 8872 filings; same finding as the lead at category level."
+    },
+    {
+      "url": "https://give.org/news/police-firefighter-or-veterans-groups-that-are-527-political-organizations",
+      "outlet": "BBB Wise Giving Alliance (Give.org)",
+      "date": "2023-05-17",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "But just spent 1 percent of the money they raised to help candidates via donations, ads or targeted get out the votes messages",
+      "paywalled": false,
+      "searcher_note": "Quotes the New York Times front page of May 2023 ('Tugging Hearts to Raise $89 Million, but Sending A Scant 1% to the Causes') on police/veteran/firefighter 527s. Earliest same-finding coverage found at the 1%-to-candidates level; names no groups."
+    },
+    {
+      "url": "https://www.thedailybeast.com/this-breast-cancer-charity-is-the-big-new-scam-in-politics/",
+      "outlet": "The Daily Beast (Roger Sollenberger, Anna Massoglia; with OpenSecrets)",
+      "date": "2021-10-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In the space of two years, ABCC has brought in nearly $3.57 million, according to IRS filings",
+      "paywalled": false,
+      "searcher_note": "American Breast Cancer Coalition, a cancer-named 527, paid nearly every dollar raised to fundraising companies. Earliest 527-specific coverage found."
+    },
+    {
+      "url": "https://www.thedailybeast.com/the-secret-website-behind-a-dollar140-million-scam-pac-network/",
+      "outlet": "The Daily Beast (Roger Sollenberger)",
+      "date": "2023-03-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "have raised more than $140 million in the last two election cycles alone",
+      "paywalled": false,
+      "searcher_note": "Pattern for the lead's look-alike FEC PACs: 43 police/veteran/firefighter/cancer-named FEC PACs on one call center's client list; not the 527s."
+    }
+  ],
+  "notes": "The frozen lead doesn't list its 19 groups, so I can't confirm which groups the sources overlap with. Sources name police/fire/veteran/cancer 527s (ProPublica's 10 groups, the NYT's five linked groups via Give.org, ABCC) and report the same finding: most money goes to fundraisers, about 1% or less to candidates. No source found has the lead's $193.7M total, the 19-group count, the $0.36M in contributions, the 58% fundraising/caging share, or the donor overlap with 13 FEC PACs. The New York Times original (nytimes.com/interactive/2023/05/14/us/politics/scam-robocalls-donations-policing-veterans.html, May 14, 2023: five linked groups, $89M since 2014, 1% to candidates) couldn't be fetched, so it isn't recorded; the Seattle Times reprint returned 403, as did OpenSecrets' Oct 2021 piece. Nothing found dated after 2026-06-30. The FTC/AG query found only charity-fraud actions, none against these 527s."
+}

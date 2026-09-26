@@ -1,0 +1,12 @@
+{
+  "story_id": "S052",
+  "bin": "Known pattern",
+  "entity": "five firms at 549 Cedar St, Newington CT with $13.35M in SBIR awards, all barred by the Air Force 2026-07-17",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "SSTI documents the SBIR-mill scheme in general - clustered firms taking outsized award shares. The sbir.gov page names Skystocks at the address but is one award record, not a report of the cluster or the bar. Nobody reports the five-firm cluster or the Air Force action.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

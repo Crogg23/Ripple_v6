@@ -1,0 +1,45 @@
+{
+ "story_id": "S054",
+ "lead": {
+  "headline": "US companies registered through Bloomberg refuse to name their ultimate owner 5.7% of the time; other registrars, 2.3%",
+  "number": "Current US global company IDs (LEIs): 5.7% refuse to name the ultimate owner at Bloomberg vs 2.3% at every other registrar; 91% of US refusals sit at Bloomberg.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Bloomberg's client mix (swap counterparties, fund vehicles) isn't ruled out, and the harm is unclear."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Bloomberg LEI ultimate parent reporting exceptions GLEIF non-consolidating",
+  "LEI parent relationship data gaps reporting exceptions share by LOU study",
+  "GLEIF data quality report Level 2 reporting exceptions \"Bloomberg\"",
+  "LEI ultimate parent opt-out \"natural persons\" \"non consolidating\" percentage US entities research beneficial ownership",
+  "Bloomberg Finance LEI registrar parent information not reported criticism OFR",
+  "LEI \"who owns whom\" data missing parent opt-outs transparency Open Ownership analysis registrars differ"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.leiroc.org/publications/gls/roc_20220107.pdf",
+   "outlet": "LEI Regulatory Oversight Committee (ROC)",
+   "date": "2022-01-07",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "the parent relationship was non-public for roughly 7 percent of entities with LEIs",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "its “child entity” to obtain an LEI on its behalf. According to GLEIF’s statistics, an LEI -to-LEI parent relationship was reported for 5 to 6 percent of entities with LEIs . The accounting consolidation definition for parent relationship did not apply for roughly 83 percent of entities with LEIs ; the parent relationship was non- public for roughly 7 percent of entities with LEIs; and the parent did not have an LEI for roughly 4 percent of entities with LEIs. In light of that, the ROC agreed to - Consolidate the five allowed opt -outs for the “Non -Public” category (“Binding Legal Constraint”, “Legal Obstacles”, “Disclosure Detrimental”, “Detriment Not Excluded” and “Consent Not obtained”) into one allowed opt "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.gleif.org/en/lei-data/access-and-use-lei-data/level-2-data-reporting-exceptions-2-1-format",
+   "outlet": "GLEIF",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "An entity is not required to provide non-public relationship information in order to register or renew an LEI.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "he legal entity or a contract (“Legal Obstacles”); where disclosure of the information would be detrimental to the legal entity or the relevant parent (“Disclosure Detrimental” and “Detriment Not Excluded”); and where the consent to disclose the parent LEI was not obtained (“Consent Not Obtained”). An entity is not required to provide non-public relationship information in order to register or renew an LEI. No LEI, when the parent does not consent to obtain an LEI or to authorize its “child entity” to obtain an LEI on its behalf. The diagram below shows the structure of the Reporting Exceptions format 2.1, including definitions of the data content to be provided. ReportingExceptionData Header [1,1] ContentDate The date and time "
+  }
+ ]
+}

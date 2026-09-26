@@ -1,0 +1,12 @@
+{
+ "story_id": "S014",
+ "bin": "Matched + more",
+ "entity": "New Mexico homicide clearance rate, 2022-23, lowest in the nation",
+ "deciding_sources": [0, 4],
+ "earliest_match_date": "2023-12-14",
+ "post_cutoff_match": false,
+ "what_we_add": "Lowest of 51 both years at 22-23% vs 56% national, and the one-year 2018 cliff from 59% to 34%",
+ "why": "24/7 Wall St's unsolved-murders ranking carries NM's 2022 numbers (47 of 235 solved, about 20%, within 25% of our 22.3%); Stateline names NM among the lowest for violent-crime clearance in 2024. The 2018 cliff and both-years-lowest claim are ours alone.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

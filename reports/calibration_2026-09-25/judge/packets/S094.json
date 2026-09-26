@@ -1,0 +1,81 @@
+{
+ "story_id": "S094",
+ "lead": {
+  "headline": "987 of 22,770 months where an insider sold $5M+ of stock came 4-9 months before a 50%+ price drop",
+  "number": "987 of 22,770 owner-months with $5M+ sold (2015-25) preceded a price at least 50% lower; e.g. Daniel Loeb in Upstart, $712M at $225, later $51.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The top of the list is stock splits (Tesla, Walmart, Alphabet), and preset trading plans can't be checked."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Third Point Daniel Loeb sold Upstart shares 2021 before stock collapse",
+  "large insider stock sales before share price collapse analysis Form 4 insiders sold ahead of 50% drop",
+  "Wall Street Journal analysis executives well-timed stock sales before share price declines 10b5-1 plans",
+  "study insider sales do not predict future stock returns unlike insider purchases",
+  "insiders who sold millions before stocks lost half their value 2021 selloff tech insiders cashed out record",
+  "Third Point Upstart stake sale proceeds million Form 4 November 2021 price per share"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://investorplace.com/2022/02/daniel-loebs-been-selling-upst-stock-should-you/",
+   "outlet": "InvestorPlace",
+   "date": "2022-02-01",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Selling in early December at prices between $191 and $168, Loeb wanted to ensure that Third Point got some or all of its initial investment out before it fell any further.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "re the market correction we continue to face. While $1,000 is now likely off the table in 2022, I would not be surprised to see it close to its all-time high of $401.49. As for Third Point, Daniel Loeb is estimated to have paid an average price of $40.75 for his firm’s significant stake in Upstart. Selling in early December at prices between $191 and $168, Loeb wanted to ensure that Third Point got some or all of its initial investment out before it fell any further. The Bottom Line I will be watching closely to see if Third Point sells any more UPST stock. In the meantime, if you’ve yet to sell, I wouldn’t. Instead, I would consider adding more should you have the cash to do so. At $115, I would characterize Upstart as growth at a reasonable price. On the date of publication, Will Ashworth did "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.nbcnews.com/business/business-news/peloton-insiders-sold-nearly-500-million-stock-big-drop-rcna12741",
+   "outlet": "NBC News (CNBC story)",
+   "date": "2022-01-19",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "One of the most well-accepted facts from decades of research on insider trading is that corporate insiders buy near bottoms and sell near peaks.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " market. With large stock sales from prominent executives such as Jeff Bezos and Elon Musk, total selling reached a record $170 billion last year, up from $94 billion in 2020, according to SmartInsider. Historically, corporate executives and insiders sell during or near highs in their stock price. “One of the most well-accepted facts from decades of research on insider trading is that corporate insiders buy near bottoms and sell near peaks,” said Daniel Taylor, an associate professor at the Wharton School. At the moment, Peloton is flirting with new lows. The stock came very close to going below its $29 a share IPO price, after CNBC reported that the company had hired McKinsey as it reviews its cost structure , an effort that could result in job cuts and store cl"
+  },
+  {
+   "idx": 2,
+   "url": "https://corpgov.law.harvard.edu/?p=71221",
+   "outlet": "Harvard Law School Forum on Corporate Governance",
+   "date": "2015-07-29",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "sales that are not executed as part of 10b5-1 plans are preceded by an average 40 day cumulative abnormal return (CAR) of approximately 4 percent and followed by an average 40 day CAR of -8 percent",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ted because a large trade is unlikely to be casual and more likely to be strategically timed to result in considerable gains for the selling CEO if such timing is possible. This experimental design enables us to evaluate the effectiveness of Rule 105b-1 in limiting opportunistic sales. We find that sales that are not executed as part of 10b5-1 plans are preceded by an average 40 day cumulative abnormal return (CAR) of approximately 4 percent and followed by an average 40 day CAR of -8 percent. In contrast, large stock sales executed as part of 10b5-1 plans are preceded by an average 40-day CAR of 10 percent, but, on average, the CAR over the following 40 days is approximately 0 percent. Furthermore, the average monthly alpha of a firm following a sale under a 10b5-1 plan is 2.09 percent over the three years followin"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.financierworldwide.com/10b5-1-trading-plans-under-the-microscope",
+   "outlet": "Financier Worldwide",
+   "date": "unknown",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Early 10b5-1 plan terminations were not implemented randomly, but rather tend to precede declines in stock prices.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hile those who did not participate in such plans beat the market only by 1.9 percent. These statistically significant results were indeed surprising if 10b5-1 plans were being employed in a way that did not take advantage of material insider information. Notably, Jagolinzer’s research observed that early 10b5-1 plan terminations were not implemented randomly, but rather tend to precede declines in stock prices. Fast forwarding to November 2012, the Wall Street Journal reported that it has examined “thousands of instances since 2004” of corporate executive trades. Their conclusion? They found statistical evidence of abusive trading by insiders. Plan recommendations Press reports have made it abundantly clear that the regul"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.evidenceinvestor.com/post/what-insider-trades-and-non-trades-tell-us-about-future-returns",
+   "outlet": "Evidence Investor",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Consistent with prior literature findings that insider purchases are more informative than sales (sales can be made simply for diversification purposes), the return difference was more pronounced for insider purchases than for insider sales.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "iders are required to report their trades within two business days after the transaction date), outside investors can reap abnormal returns by piggybacking on insiders who make these buy-high, sell-low trades, as purchases (sales) made far above (below) the anchoring price provide abnormal returns. Consistent with prior literature findings that insider purchases are more informative than sales (sales can be made simply for diversification purposes), the return difference was more pronounced for insider purchases than for insider sales. Subsequent 30-day stock returns following high buys using decile sorting were at least 3.3 percentage points higher than low buys. In contrast, the subsequent 30-day stock returns following low sells were at least 1.0 percentage point lower than after high sells. A long-short trading strategy — buy high and sell low — based on these findings g"
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "story_id": "S096",
+ "lead": {
+  "headline": "CSX and Norfolk Southern made 8.2 times the spill-hotline calls of Union Pacific and BNSF in 2015-17",
+  "number": "CSX plus Norfolk Southern 511 calls a year vs 63 for Union Pacific plus BNSF, 2015-17 (8.2x); 140 vs 76.5 in 2024-25 (1.8x).",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Self-reported call headers only, with no material, amount or place, and habits differ by railroad."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "National Response Center reports railroads Norfolk Southern CSX Union Pacific BNSF number of hazardous spill reports comparison",
+  "\"National Response Center\" Norfolk Southern incidents reported analysis after East Palestine chemical releases railroad data",
+  "which railroad has the most hazardous materials releases CSX Norfolk Southern vs Union Pacific BNSF data analysis 2023",
+  "\"National Response Center\" railroad incident reports data CSX reports more spills than western railroads reporting practices",
+  "eastern railroads CSX Norfolk Southern accident rate higher than western railroads BNSF Union Pacific per million train miles analysis",
+  "Union Pacific Norfolk Southern merger 2026 safety record hazardous materials incidents comparison STB filing",
+  "railroads reported spills to Coast Guard National Response Center hotline analysis number of reports by railroad news investigation",
+  "study National Response Center rail incident reports by carrier Class I railroads reporting frequency research paper"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.eenews.net/articles/norfolk-southerns-accident-rate-spiked-over-the-last-decade/",
+   "outlet": "E&E News by POLITICO",
+   "date": "2023-03-06",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Norfolk Southern had one of the lowest accident rates in 2013 and now has the second highest behind Union Pacific, which averaged 4.359 collisions per million miles last year.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "data includes derailments, collisions between trains and other on-rail problems. The numbers cover only the first 11 months of 2022. Looking strictly at on-rail accidents, three of the freight railroads — Norfolk Southern, CSX Corp. and Union Pacific Corp. — had higher rates over the last 10 years. Norfolk Southern had one of the lowest accident rates in 2013 and now has the second highest behind Union Pacific, which averaged 4.359 collisions per million miles last year. The accident rate didn't appear correlated to the amount of freight on Norfolk Southern's system. The company's revenue ton mileage, a metric based on the revenue from one ton of freight shipped over one mile, rose from 2013 to 2018, before falling during the pandemic and bouncing back in the last two years, according to securit"
+  }
+ ]
+}

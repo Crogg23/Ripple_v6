@@ -1,0 +1,12 @@
+{
+ "story_id": "S113",
+ "bin": "Matched + more",
+ "entity": "Rep. Thomas Kean's run of missed House roll call votes, March-June 2026",
+ "deciding_sources": [0, 1, 3],
+ "earliest_match_date": "2026-04-15",
+ "post_cutoff_match": true,
+ "what_we_add": "the median member's longest run of 3 and the 33-voting-day framing; the streak itself is fully covered",
+ "why": "Roll Call has 140+ missed votes, GovTrack has 142 of 142 over the same dates, PBS calls Kean the longest absence. Our only additions are the median-run comparison and voting-day count.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

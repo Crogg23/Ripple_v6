@@ -1,0 +1,12 @@
+{
+  "story_id": "S172",
+  "bin": "Known pattern",
+  "entity": "DOJ Epstein site's data sets 13-23 (access denied) and 24-40 (not found), probed March 11, 2026",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Discrepancy Report and the GitHub audit cover the same scheme on the same site, listings changing and ~64,000 documents removed, but nobody reports the hidden data sets 13-40 or the 403/404 split. Same pattern, not this finding.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

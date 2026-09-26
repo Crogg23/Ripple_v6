@@ -1,0 +1,59 @@
+{
+ "story_id": "S188",
+ "lead": {
+  "headline": "Sen. Richard Blumenthal filed all 69 of his stock-trade reports on paper, 2021-2026; the warehouse holds none of his trades",
+  "number": "69 of 69 periodic transaction reports on paper, Feb 2021 to Aug 2026; since 2024, 43 of the Senate's 44 paper filings are his.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Legal and public: the scans sit on the Senate site, the habit goes back to 2012, and g12 plus deep-6 already found it; \"since 2024, 43 of 44\" is mostly other senators leaving or switching."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Blumenthal paper stock trade disclosures periodic transaction reports handwritten",
+  "senator files stock trades on paper instead of electronically Senate disclosure Blumenthal",
+  "Blumenthal stock trades disclosure scanned PDF not searchable wife Cynthia trades report",
+  "\"Blumenthal\" \"paper\" filings STOCK Act transaction reports senators image scans trackers can't read",
+  "Blumenthal nearly $80 million stock transactions 2025 disclosure",
+  "senators who still file periodic transaction reports on paper Senate eFD \"paper\" PTR analysis",
+  "Common Cause report Blumenthal 406 trades top trader 2025 Congress",
+  "Blumenthal stock trades 2026 disclosure report Connecticut senator trading"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://rollcall.com/2020/10/01/several-lawmakers-disclose-opaque-financial-records/",
+   "outlet": "Roll Call",
+   "date": "2020-10-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Senator Blumenthal files his annual disclosure by paper, as do a number of his colleagues.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "he chamber. However, they can still submit financial statements that are difficult to comprehend. Page 15 of Blumenthal’s financial disclosure. Sens. Richard Blumenthal, D-Conn., and James M. Inhofe, R-Okla., submitted their financial statements in a way that differs from some of their colleagues. “Senator Blumenthal files his annual disclosure by paper, as do a number of his colleagues. I don’t have any problem reading the text of the 2019 annual report available on the Senate Ethics Committee’s website, especially since you’re able to zoom in on the PDF,” said Maria McElwain, a spokesperson for Blumenthal. Page 5 of Inhofe’s filing. Inhofe files in a manner that forces one looking at the report to decipher codes and refer to"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.commoncause.org/articles/congress-made-over-635-million-in-stock-trades-while-americans-struggled-see-who-traded-the-most/",
+   "outlet": "Common Cause",
+   "date": "2025-12-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Total Trades: 406",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "es: 617 Total Volume: $30.9 million 4. Rep. Josh Gottheimer (D-NJ) Total Trades: 420 Total Volume: $44.25 million 3. Rep. Ro Khanna (D-CA) Total Trades: 3,923 Total Volume: $55.7 million 2. Rep. Michael McCaul (R-TX) Total Trades: 1,029 Total Volume: $75.52 million 1. Sen. Richard Blumenthal (D-CT) Total Trades: 406 Total Volume: $79.83 million If you’re fed up after reading this list, you’re not alone. 86% of Americans want Congress to prohibit its members from trading stocks, including 88% of Democrats and 87% of Republicans. Even 90 former House members support a congressional stock trading ban, saying they “strongly recomm"
+  },
+  {
+   "idx": 2,
+   "url": "https://campaignlegal.org/update/how-congress-hides-stock-holdings-plain-sight",
+   "outlet": "Campaign Legal Center",
+   "date": "2022-04-01",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The forms are not always text searchable, and some members file handwritten (and occasionally illegible) reports.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "l review of the documents. In addition to the formidable volume of reports (at least 535 members and dozens of candidates file reports annually, and hundreds of PTRs are also submitted each year), format issues can make comprehensive reviews of Congressional stock ownership particularly burdensome. The forms are not always text searchable, and some members file handwritten (and occasionally illegible) reports. Obtaining staffer disclosures is even more difficult, necessitating a visit to Capitol Hill. This creates logistical challenges (escalated by post-January 6 security measures), even for those that live or work in the District of Columbia. Alternatively, members of the public can make a request from the Senate Office of Public "
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S163",
+ "bin": "Matched + more",
+ "entity": "H-1B contractor filings at big client companies listing wages below the clients' own filings for the same job",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-06-27",
+ "post_cutoff_match": false,
+ "what_we_add": "median 20.6% gap across 45 named client companies, 6.6% at same skill level, 14.5% new-hire only",
+ "why": "Bloomberg's middlemen story and its Yahoo pickup state the same finding, same direction, with Citi numbers ($94K vs $142K). No source has the 45-company median or the skill-level decomposition.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

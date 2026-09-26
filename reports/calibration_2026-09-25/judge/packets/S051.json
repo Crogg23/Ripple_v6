@@ -1,0 +1,71 @@
+{
+ "story_id": "S051",
+ "lead": {
+  "headline": "For-profit nursing homes: 3.70 staff hours per resident a day vs 4.40 at nonprofits; fines $320 vs $205 a bed",
+  "number": "10,851 for-profit homes at 3.70 staff hours per resident per day vs 2,908 nonprofits at 4.40; fines $320 vs $205 per bed; Arcadia Care is the worst chain at $1,357 per bed.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; the penalty file is CMS's rolling 3-year window, not lifetime fines, and the story itself is well known."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "for-profit nursing homes fewer staff hours per resident day than nonprofit CMS data analysis",
+  "Arcadia Care nursing home chain fines penalties per bed",
+  "Arcadia Care Illinois nursing homes owner violations fines news investigation",
+  "for-profit nursing homes higher fines penalties than nonprofit analysis staffing hours 2025 2026",
+  "for-profit nursing homes total nurse staff hours per resident day 3.7 nonprofit 4.4 Payroll-Based Journal",
+  "nursing home chains ranked by fines per bed ownership for-profit chain penalties analysis",
+  "nonprofit nursing homes not better than for-profit staffing quality study finds little difference",
+  "\"Arcadia Care\" nursing home chain Illinois owner homes fined 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://careconsidered.com/research/nursing-home-accountability/",
+   "outlet": "Care Considered (Nursing Home Accountability Report, 2026 Edition)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "For-profit facilities average 2.8 stars vs 3.57 for non-profits (a 0.77-star gap), and staff 0.71 fewer nurse hours per resident per day.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rritories) Quality & staffing by ownership type The 20 largest nursing-home chains Key findings Nursing homes carry $456,752,787 in federal fines on the current CMS record — and 44.3% of all facilities (6,514) have at least one fine. Ownership predicts quality in nursing homes — unlike home health. For-profit facilities average 2.8 stars vs 3.57 for non-profits (a 0.77-star gap), and staff 0.71 fewer nurse hours per resident per day. Our home health report found no such gap — the two findings belong together. 1,719 facilities carry a CMS warning flag (abuse icon or Special Focus status); 1,426 carry the abuse icon specifically. 68.9% of nursing homes belong to a chain (610 distinct chains); the largest operate hundreds of facilities under a single owner. Quali"
+  },
+  {
+   "idx": 1,
+   "url": "https://careconsidered.com/research/nursing-home-accountability/",
+   "outlet": "Care Considered (Nursing Home Accountability Report, 2026 Edition)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Lowest-rated large chains (20+ facilities) Chain Facilities Avg CMS rating % fined Reliant Care Management 34 1.18 82.4 Arcadia Care 25 1.35 84",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "are Group 126 2.89 49.2 $3,042,312 Trilogy Health Services 123 4.2 15.4 $441,407 Avir Health Group 116 2.33 70.7 $6,811,835 Communicare Health 110 3.21 47.3 $3,897,007 Pruitthealth 95 2.91 43.2 $1,354,358 Good Samaritan Society 92 2.98 50 $2,150,138 American Senior Communities 90 3.89 11.1 $242,737 Lowest-rated large chains (20+ facilities) Chain Facilities Avg CMS rating % fined Reliant Care Management 34 1.18 82.4 Arcadia Care 25 1.35 84 Athena Healthcare Systems 22 1.55 68.2 Ephram Lahasky 22 1.75 68.2 Hill Valley Healthcare 43 1.77 55.8 Empire Care Centers 20 1.85 60 Focused Post Acute Care Partners 25 1.88 80 Harborview Health Systems 22 1.9 59.1 Aperion Care 33 1.94 60.6 Journey Healthcare 32 1.94 50 Methodology All figures computed from CMS Care Compare public data f"
+  },
+  {
+   "idx": 2,
+   "url": "https://projects.propublica.org/nursing-homes/affiliate/a-42",
+   "outlet": "ProPublica Nursing Home Inspect",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "$188,781 Average fines/home Average total fines against affiliated homes. National average: $31,092",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rage nurse hours/resident/day Average reported total nurse staffing hours per resident per day across all affiliated homes. National average: 3.9 46.5% Average nurse turnover Average percentage of nursing staff who stopped working at affiliated homes over a 12-month period. National average: 45.8% $188,781 Average fines/home Average total fines against affiliated homes. National average: $31,092 Most Recent Serious Deficiencies Serious deficiencies are those that caused immediate jeopardy to resident health or safety. See more > June 5 — Havana, IL K Arcadia Care Havana Failure to: Protect each resident from all types of abuse such as physical, mental, sexual abuse, physical punishment, and neglect by anybody. Explore the r"
+  },
+  {
+   "idx": 3,
+   "url": "https://theconversation.com/for-profit-nursing-homes-are-cutting-corners-on-safety-and-draining-resources-with-financial-shenanigans-especially-at-midsize-chains-that-dodge-public-scrutiny-225045",
+   "outlet": "The Conversation (Sean Campbell, Charlene Harrington)",
+   "date": "2024-03-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Multiple academic studies show the results, highlighting the lower staffing and quality in for-profit homes compared with nonprofits and government-run facilities.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ties. But the same poor-quality problems persisted. Research shows that after snagging a big chain, private investors tended to follow the same playbook: They rebrand the company, increase corporate control and dump unprofitable homes to other investment groups willing to take shortcuts for profit. Multiple academic studies show the results, highlighting the lower staffing and quality in for-profit homes compared with nonprofits and government-run facilities. Elderly residents staying long term in nursing homes owned by private investment groups experienced a significant uptick in trips to the emergency department and hospitalizations between 2013 and 2017, translating into higher costs for Medicare. Overall, private-equity investors wreak havoc on nursing homes, slashing registered nurse hours"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S005",
+ "bin": "Matched + more",
+ "entity": "Police/fire/veteran/cancer-named 527 political groups spending donations on fundraisers, not candidates",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2024-06-18",
+ "post_cutoff_match": false,
+ "what_we_add": "19 groups, $193.7M total 2014 to mid-2026, $0.36M to contributions, donor-overlap shares with 13 look-alike FEC PACs",
+ "why": "ProPublica names the same network kind - 527s purporting to back police, veterans, cancer patients and firefighters, money going to fundraisers - same finding, same direction. Its $33M/10-group count is far smaller; our 19-group $194M tally is stated nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

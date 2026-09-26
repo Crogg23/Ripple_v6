@@ -1,0 +1,12 @@
+{
+  "story_id": "S078",
+  "bin": "Matched + more",
+  "entity": "The 2025 Texas state water-pollution judgment against the recycling operation at Altair (Skull Creek / Inland Recycling / Polston)",
+  "deciding_sources": [0, 1, 2],
+  "earliest_match_date": "2025-03-26",
+  "post_cutoff_match": false,
+  "what_we_add": "The comparison: biggest state water penalty on file after BP's $3.35B lines. No source ranks it.",
+  "why": "Texas Tribune and the AG report the $60M judgment against Polston's Inland companies over Skull Creek at Altair; the county paper puts civil penalties at $46.5M. Same case, same direction, both within 25% of our $57.0M. The all-time-second ranking is ours alone.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

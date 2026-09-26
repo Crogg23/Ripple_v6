@@ -1,0 +1,94 @@
+{
+ "story_id": "S069",
+ "lead": {
+  "headline": "143 doctor-shortage areas first flagged in 1978-89 are still flagged; 31 still rank severe, mostly Mississippi Delta and South Texas",
+  "number": "143 of 999 still-designated primary-care areas date from 1978-89; 31 still score 18+ (Humphreys, Jefferson, Copiah MS 22; Jim Hogg TX 23).",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Designations double as funding applications, so they persist; chronic rural shortage is well known."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "health professional shortage areas designated since 1978 still designated decades",
+  "Humphreys County Mississippi primary care shortage area HPSA score doctor shortage",
+  "Mississippi Delta counties shortage designation for decades still no doctors Jefferson County Copiah County",
+  "Jim Hogg County Texas doctor shortage primary care Hebbronville",
+  "\"73 percent\" counties designated HPSA remained shortage areas ten years",
+  "Mississippi Today Delta primary care shortage Humphreys County clinic 2026",
+  "persistent primary care HPSA counties since 1978 study Mississippi Delta Texas border chronic shortage designation analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.wlbt.com/2021/03/04/appalachian-mississippi-delta-regions-medically-underserved-decades/",
+   "outlet": "WLBT (Jackson, MS)",
+   "date": "2021-03-04",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Many counties in the Delta and Appalachian regions have held this designation for years",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "he Health Resources and Services Administration classifies geographic areas as medically underserved based on them having too few primary care doctors, a high infant mortality rate, high poverty or a high elderly population. Areas shaded on this map are considered medically-underserved by the HRSA. Many counties in the Delta and Appalachian regions have held this designation for years – some of them for decades. Hover over any shaded county to see when it was designated a medically-underserved community. In addition to issues of access to care and resources, many areas in the regions have statistically high rates of babies born underweight -- 438 of the 662 counties in the regions have a higher-than-average "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.techtarget.com/revcyclemanagement/news/366600275/HPSA-Program-Did-Not-Affect-Physician-Shortages-or-Health-Outcomes",
+   "outlet": "TechTarget RevCycle Management",
+   "date": "2023-11-14",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "73 percent of HPSA-designated counties were still experiencing a physician shortage ten years after its designation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "difference-in-difference estimate was -5.92 deaths per 100,000 residents, which was statistically insignificant. HPSA did not impact physician density either. The adjusted difference-in-difference estimate was a statistically insignificant -1.93 physicians per 100,000 county residents. In addition, 73 percent of HPSA-designated counties were still experiencing a physician shortage ten years after its designation. Secondary analyses yielded similar results, finding no association between HPSA designation and changes in mortality rates or physician density. The findings suggest that HPSA designations do not improve access to primary care physicians at the county level. Given this, the overall approach of the HPSA program may need to be adjusted, "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-07-84/html/GAOREPORTS-GAO-07-84.htm",
+   "outlet": "US Government Accountability Office (GAO-07-84)",
+   "date": "2006-10-24",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Those HPSAs that were proposed for withdrawal because they no longer meet the HPSA criteria have retained their HPSA designation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "fficials told us in June 2006 that the department has not published a list of HPSAs in the Federal Register for more than 4 years because of difficulties with computer programming, but the agency hoped to resolve those issues and to forward an updated list for publication by fall 2006.59 Meanwhile, those HPSAs that were proposed for withdrawal because they no longer meet the HPSA criteria have retained their HPSA designation.60 As a result, federal programs that use the HPSA designation, such as the Medicare Incentive Payment program or HRSA's health professions education and training programs, may have been allocating resources or providing benefits to areas, population groups, or facilities that no longer meet the HPSA criteria. Many Health Centers an"
+  },
+  {
+   "idx": 3,
+   "url": "https://paragoninstitute.org/private-health/where-are-provider-shortages-reassessing-outdated-methodologies/",
+   "outlet": "Paragon Health Institute",
+   "date": "2024-04",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "many have not been reviewed since their creation in the 1970s and 1980s",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t were reviewed only within the past several decades. Based on the Health Resources and Services Administration (HRSA) MUA look-up tool, 4 the last significant updating of MUAs/MUPs appears to have occurred in the mid-1990s (Table 2). However, it is clear that this did not involve all MUAs/MUPs, as many have not been reviewed since their creation in the 1970s and 1980s. In a 1995 report, the Government Accountability Office cited this failure to regularly update the MUA/MUP list as a major deficiency. 5 The report states that HHS officials said that the department “no longer reviews the list of MUAs to decide whether any should be dedesignated.” Some states have voluntarily updated their MUA/MUP"
+  },
+  {
+   "idx": 4,
+   "url": "https://kffhealthnews.org/health-industry/mississippi-doctor-shortage/",
+   "outlet": "KFF Health News",
+   "date": "2012-04-26",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "The town of Belzoni, Miss., has just four doctors serving all of Humphreys County and surrounding areas.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ublic Broadcasting , Kaiser Health News and When Janie Guice looks at the Mississippi Delta she sees a vast, flat flood plain, home to cotton fields and catfish farms, but she also sees desperate rural health problems and a deep shortage of doctors to deliver primary care to the region’s residents. The town of Belzoni, Miss., has just four doctors serving all of Humphreys County and surrounding areas. (Photo by J. Stephen Conn via Flickr) Guice is the recruiter for the University of Mississippi’s Rural Physician Scholarship Program, headquartered at the state’s only academic medical center in the capital of Jackson. The state-funded program offers students a $30,000 scholarship that covers all the expenses of medical school, "
+  },
+  {
+   "idx": 5,
+   "url": "https://mississippitoday.org/2026/07/16/county-lost-hospital/",
+   "outlet": "Mississippi Today",
+   "date": "2026-07-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "This county lost its hospital. Bringing it back is easier said than done",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " This county lost its hospital. Bringing it back is easier said than done - Mississippi Today Close Search for: Search Donate Free Newsletters Health Environment Government Justice Education Ideas Sports Culture Jackson Join over 35,000 informed Mississippians by signing up for The Today , our free daily newsletter. Sign up About Us Support Our Work Who Funds Us? Ethics & Transparency Our Staff Careers Contac"
+  }
+ ]
+}

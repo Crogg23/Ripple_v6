@@ -1,0 +1,95 @@
+{
+ "story_id": "S013",
+ "lead": {
+  "headline": "Federal car-safety regulators' Nissan Rogue phantom-braking probe has sat open 7 years, no recall; the typical probe takes 234 days",
+  "number": "Probe PE19010, opened 2019-09-09, open 2,572 days with no recall; the median defect probe closes in 234 days.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Complaint counts swing with the matching method (component code: 75 before, 273 after; complaint text: 135 before, 224 after), and by text the yearly rate fell after the probe opened."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "NHTSA Nissan Rogue automatic emergency braking investigation PE19-010 still open no recall",
+  "Nissan Rogue phantom braking probe open years NHTSA backlog",
+  "NHTSA investigations open for years without resolution Nissan Rogue emergency braking 2019",
+  "Center for Auto Safety Nissan Rogue automatic emergency braking investigation still open",
+  "NHTSA long-running defect investigations open years \"Nissan\" automatic emergency braking 2025 OR 2026",
+  "Nissan Rogue AEB false activation NHTSA probe upgrade engineering analysis recall decision",
+  "NHTSA closes Nissan Rogue automatic emergency braking preliminary evaluation",
+  "NHTSA open investigations backlog phantom braking Nissan 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.consumerreports.org/cars/car-recalls-defects/nhtsa-investigates-honda-unexpected-braking-complaints-a9281526240/",
+   "outlet": "Consumer Reports",
+   "date": "2022-02-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The investigation into unintended braking in Nissan vehicles, for example, has been open since 2019.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "defect. NHTSA says that most defect investigations are closed within 12 months, either because the manufacturer decides to conduct a recall or because NHTSA decides that there is no safety-related defect. Sometimes they take longer, including when the defect investigation requires further analysis. The investigation into unintended braking in Nissan vehicles, for example, has been open since 2019. A recall happens when either an automaker or NHTSA discovers a safety defect that must be corrected or finds that a vehicle does not meet federal safety standards. These defects often come to light after consumer complaints. Learn how to report a safety complaint to NHTSA. According to NHTSA, most recalls are initiated by automakers without "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.autosafety.org/nissan-admits-to-more-than-1400-reports-about-faulty-automatic-emergency-braking-but-continues-to-refuse-recall/",
+   "outlet": "Center for Auto Safety",
+   "date": "2020-08-06",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "NHTSA continues to allow Nissan to fail to recall the vehicles.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "oncerns or minor bugs. To add insult to injury, Nissan has added the service campaign to the company’s “recall lookup tool” on its website, despite not providing consumers the benefit of a recall or actually recalling the vehicle. Amazingly, in keeping with its current hands-off enforcement stance, NHTSA continues to allow Nissan to fail to recall the vehicles as the company describes inadvertent braking on railroad tracks as presenting only a “significant customer dissatisfaction.” Nissan also apparently believes that railroad crossings and “low overhead structures” in the United States are somehow “unique roadway environments,” even though there are over 129,000 public rail crossings ac"
+  },
+  {
+   "idx": 2,
+   "url": "https://abc3340.com/news/local/drivers-complain-of-phantom-braking-on-some-newer-model-vehicles-nissan-honda-emergency-braking-aeb-automatic-braking",
+   "outlet": "ABC 33/40 (Birmingham)",
+   "date": "2022-05-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "NHTSA also has an open investigation into Model Year 2017-2018 Nissan Rogue vehicles for unintended automatic emergency braking activation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ther states over the braking issues. For guidance, NHTSA has an open investigation into Model Year 2018-2019 Honda Accords and Model Year 2017-2019 Honda CR-V vehicles for inadvertent activation of the automatic emergency braking system. You can view the opening resume for this investigation below: NHTSA also has an open investigation into Model Year 2017-2018 Nissan Rogue vehicles for unintended automatic emergency braking activation. You can view the opening resume for this investigation below: See also: Lawmakers to question leaders on baby formula shortage See also: UAB tries to fill 2000 job openings Trending Two people killed in explosion at Hazel Green home, sheriff says HAZEL GREEN, Ala. (WBMA) &mdash; Two people were killed after an explosion at a home in "
+  },
+  {
+   "idx": 3,
+   "url": "https://static.nhtsa.gov/odi/inv/2019/INOA-PE19010-2831.PDF",
+   "outlet": "NHTSA Office of Defects Investigation",
+   "date": "2019-09-09",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Unintended braking due to the Automatic Emergency Braking (AEB) system engaging",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e Opened: 09/09/2019 Investigator: Joseph Oxenham Reviewer: Scott Yon Approver: Stephen Ridella Subject: False Automatic Emergency Braking MANUFACTURER & PRODUCT INFORMATION Manufacturer: Nissan North America, Inc. Products: Model Year 2017-2018 Nissan Rogue Population: 553,860 Problem Description: Unintended braking due to the Automatic Emergency Braking (AEB) system engaging with no apparent obstruction in the path of the vehicle. FAILURE REPORT SUMMARY ODI Manufacturer Total Complaints: 129 750 843** Crashes/Fires: 3 12 14** Injury Incidents: 3 4 5** Number of Injuries: 3 4 5** Fatality Incidents: 0 0 0 ** Total eliminates duplicates received by ODI and manufacturer. ACTION / SUMMARY INFORMATION Action: Op"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.ttnews.com/articles/nhtsa-opens-probe-nissan-rogue-automatic-emergency-braking",
+   "outlet": "Transport Topics (AP)",
+   "date": "2019-09-12",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The probe covers about 554,000 Rogue small SUVs from the 2017 and 2018 model years.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "er 12, 2019 11:15 AM, EDT Nissan Rogues by David Zalubowski/AP [Stay on top of transportation news: Get TTNews in your inbox .] DETROIT — The U.S. government’s road safety agency is investigating complaints that the automatic emergency braking on the Nissan Rogue can turn on for no apparent reason. The probe covers about 554,000 Rogue small SUVs from the 2017 and 2018 model years. The National Highway Traffic Safety Administration says 843 owners have complained to the agency and to Nissan about the problem. Owners reported 14 crashes and five injuries. Nissan has issued a technical service bulletin and two customer service actions related to the problem, according to the agency. They company will try to"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.vehicle-safety.org/stories/phantom-braking-safety-paradox",
+   "outlet": "The Crash Report (vehicle-safety.org)",
+   "date": "2026-05-29",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "NHTSA investigated 553,000 Rogues after 800-plus owner reports, 129 confirmed false activations, and 14 accidents that injured five people.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "pter involves geography. The 2017-2018 Rogue's AEB system developed a specific, almost poetic failure mode: it was triggered by bridges and railroad tracks. [6] The radar read overhead structures as imminent frontal obstacles and executed full emergency stops on vehicles traveling at highway speed. NHTSA investigated 553,000 Rogues after 800-plus owner reports, 129 confirmed false activations, and 14 accidents that injured five people. Nissan issued a software update, but a separate class-action lawsuit expanded the complaint to the 2019-2021 Maxima and 2020-2021 Sentra, alleging the company knew about the defect and kept selling the cars. [7] Tesla's phantom braking complaints reached 750 and counting before NHTSA opened its investigation into Model 3 and Model Y veh"
+  }
+ ]
+}

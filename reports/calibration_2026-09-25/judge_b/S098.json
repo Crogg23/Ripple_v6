@@ -1,0 +1,12 @@
+{
+ "story_id": "S098",
+ "bin": "Contradicted",
+ "entity": "Kings County, California mail-ballot rejection rate, November 2022 general",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The California Secretary of State's official table for the same election has Kings at 24,850 returned, 24,580 counted — a 1.09% rejection rate, not 13.7%. Same entity, same measure, same window, off by 12x. The national 1.5% claim matched; the Kings number did not.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,35 @@
+{
+  "story_id": "S054",
+  "entity": "Bloomberg Finance L.P. as LEI issuer (LOU, LEI 5493001KJTIIGC8Y1R12): share of current US LEIs registered through Bloomberg that decline to name an ultimate parent (reporting exception), 5.7% vs 2.3% at all other US registrars; 91% of US refusals at Bloomberg",
+  "queries": [
+    {"q": "Bloomberg LEI ultimate parent reporting exceptions GLEIF non-consolidating", "found_useful": false},
+    {"q": "LEI parent relationship data gaps reporting exceptions share by LOU study", "found_useful": false},
+    {"q": "GLEIF data quality report Level 2 reporting exceptions \"Bloomberg\"", "found_useful": false},
+    {"q": "LEI ultimate parent opt-out \"natural persons\" \"non consolidating\" percentage US entities research beneficial ownership", "found_useful": true},
+    {"q": "Bloomberg Finance LEI registrar parent information not reported criticism OFR", "found_useful": false},
+    {"q": "LEI \"who owns whom\" data missing parent opt-outs transparency Open Ownership analysis registrars differ", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.leiroc.org/publications/gls/roc_20220107.pdf",
+      "outlet": "LEI Regulatory Oversight Committee (ROC)",
+      "date": "2022-01-07",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "the parent relationship was non-public for roughly 7 percent of entities with LEIs",
+      "paywalled": false,
+      "searcher_note": "Regulators' note on Level 2 opt-outs: global shares by opt-out type (LEI parent reported 5-6%, non-consolidating ~83%, non-public ~7%, no-LEI parent ~4%). No split by registrar, no Bloomberg, no US figure. PDF breaks the line at the hyphen in 'non-public'."
+    },
+    {
+      "url": "https://www.gleif.org/en/lei-data/access-and-use-lei-data/level-2-data-reporting-exceptions-2-1-format",
+      "outlet": "GLEIF",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "An entity is not required to provide non-public relationship information in order to register or renew an LEI.",
+      "paywalled": false,
+      "searcher_note": "GLEIF documentation of the reporting-exception mechanism the lead measures; describes the rule, no registrar comparison."
+    }
+  ],
+  "notes": "No source found that compares ultimate-parent refusal rates by LEI issuer, or that names Bloomberg as the registrar where most US refusals sit. GLEIF publishes per-LOU data quality reports, including Bloomberg's (e.g. 2022-07-07 and April 2018 PDFs surfaced in search), but the 2022 PDF returned 404 and those reports score field-level data quality checks, not refusal shares; not recorded. No news or trade-press coverage of the pattern surfaced. One logged query (the OFR one) was expanded by the search tool into several internal searches, so searching stopped at 6 logged queries to stay inside the per-story cap. No recent (Jul-Sep 2026) coverage query was run separately; none of the results were dated in that window."
+}

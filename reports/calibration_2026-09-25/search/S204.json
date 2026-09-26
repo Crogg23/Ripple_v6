@@ -1,0 +1,36 @@
+{
+  "story_id": "S204",
+  "entity": "PJM Western Hub day-ahead off-peak futures on ICE (CFTC code 0643DB), share of short open interest held by the four largest traders, 2026 Q1",
+  "queries": [
+    {"q": "\"PJM Western Hub\" off-peak futures concentration four largest traders short CFTC commitments of traders", "found_useful": true},
+    {"q": "PJM power futures market concentration few traders dominate 2026", "found_useful": false},
+    {"q": "Nodal Exchange ICE PJM Western Hub futures open interest market share 2026", "found_useful": false},
+    {"q": "CFTC electricity futures large trader concentration PJM short positions news 2026", "found_useful": true},
+    {"q": "PJM West Hub futures manipulation large short position CFTC OR FERC enforcement traders", "found_useful": false},
+    {"q": "PJM Western Hub forward power prices hedging generators selling futures July OR August OR September 2026", "found_useful": false},
+    {"q": "\"largest traders\" OR \"top four traders\" power futures concentration ICE electricity analysis Commitments of Traders", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2026/futures/electricity_lf031026.htm",
+      "outlet": "U.S. Commodity Futures Trading Commission (Disaggregated Commitments of Traders, Electricity, Futures Only, long format)",
+      "date": "2026-03-10",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "40.0 71.8 57.7 84.2 34.6 70.4 52.0 79.4",
+      "paywalled": false,
+      "searcher_note": "The raw record, not coverage. Concentration row under 'PJM WESTERN HUB DA OFF-PK - ICE FUTURES ENERGY DIV' for positions as of March 10, 2026. The four largest traders hold 71.8% of short open interest by gross position (40.0% of long); this matches the lead's peak week. On the same page, Nodal's 'PJM.WESTERN HUB_month_off_dap' shows 31.5% short for the top four, which matches the lead's caveat of about 32%."
+    },
+    {
+      "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2024/futures/electricity_lf010924.htm",
+      "outlet": "U.S. Commodity Futures Trading Commission (Disaggregated Commitments of Traders, Electricity, Futures Only, long format)",
+      "date": "2024-01-09",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "42.5 46.0 61.8 63.5 41.1 36.2 52.1 48.8",
+      "paywalled": false,
+      "searcher_note": "The raw record, not coverage. Concentration row for the same ICE contract, January 9, 2024: top-four short share 46.0% by gross position. Consistent with the lead's 47.4% average for 2024 Q1 (one week only, not the quarter)."
+    }
+  ],
+  "notes": "No news, trade press, research or enforcement source found on concentration of short positions in PJM Western Hub off-peak futures, in 2026 or any other year. The only sources are the CFTC's own Commitments of Traders pages: the raw data the lead was built from, not independent coverage. Recorded so the judge can see the primary numbers line up (71.8% on 2026-03-10; 46.0% on 2024-01-09; Nodal's equivalent 31.5% on 2026-03-10). The 69.7% quarterly average, the 'record' claim and the 2014-15 highs were not checked against archive pages. Nothing found names the traders (the CFTC does not publish names). Nodal Exchange press releases give its overall share of U.S. power futures open interest (about 55-56% in mid-2026), not concentration for this contract. Query 1's search tool seemed to run several sub-searches internally; it is logged once. Stopped at 7 queries to stay inside the shared session budget."
+}

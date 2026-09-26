@@ -1,0 +1,95 @@
+{
+ "story_id": "S101",
+ "lead": {
+  "headline": "83 new Arizona hospices (2020-23) listed Los Angeles phone numbers; only 12 ever got Medicare certification, 4 still enrolled",
+  "number": "12 of 83 ever certified and 4 still on Medicare's enrollment roll, vs about 120 certified and 81 enrolled among the other 246 new Arizona hospices; 43 of the 83 registered in 2022 Q1, the quarter new LA-area hospice registrations fell to 3",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A hospice that enrolled and was later revoked drops off the current enrollment file, so \"never enrolled\" may really mean \"revoked.\""
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Arizona new hospices Los Angeles phone numbers fraud",
+  "Arizona hospice surge California operators moved Arizona 2022 Medicare hospice fraud investigation",
+  "Arizona hospice licenses spike owners Los Angeles area Arizona Department of Health Services hospice fraud",
+  "Arizona Republic hospice fraud California moratorium hospices flooding Arizona",
+  "Arizona hospices never enrolled Medicare shell hospices California owners 818 area code phone",
+  "Arizona hospice fraud 2026 KJZZ OR azcentral hospices Phoenix California-based owners",
+  "justice.gov Arizona hospice owner Los Angeles charged Medicare hospice Phoenix Glendale California residents",
+  "after California hospice license moratorium 2022 new hospice NPI registrations shifted to Arizona Nevada analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://hospicenews.com/2024/05/07/fraudulent-hospice-providers-may-be-moving-between-states/",
+   "outlet": "Hospice News",
+   "date": "2024-05-07",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "We started to make the connection between the California moratorium on hospice business licenses and the influx of programs coming to Nevada, Arizona and Texas.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "evada, has emerged as an unfortunate case study in how these issues affect patients and families, as well as legitimate operators. The county has seen a significant influx of providers, some of which may have come to the state after California imposed its moratorium. “It really ramped up last year. We started to make the connection between the California moratorium on hospice business licenses and the influx of programs coming to Nevada, Arizona and Texas,” Karen Rubel, president and CEO of Nevada-based Nathan Adelson Hospice, told Hospice News. “What concerns me more is not the competition, it’s about poor patient care.” Advertisement We started to make the connection between when the California moratorium on hospice business licenses and the influx of programs coming to Nevada, Ar"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.propublica.org/article/medicare-california-hospice-care-fraud-southwest",
+   "outlet": "ProPublica",
+   "date": "2024-01-25",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "It also certified three new hospices last year at a Phoenix address that purportedly houses dozens of providers, all of which have materialized in the past two years.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ", the agency’s data shows that last year it continued to certify hospices located in buildings that have been flagged by auditors and journalists as potential fraud hot spots. In 2023, Medicare certified 15 more hospices at a two-story building in Los Angeles that is home to more than 100 hospices. It also certified three new hospices last year at a Phoenix address that purportedly houses dozens of providers, all of which have materialized in the past two years. CMS said that without “evidence of sanctions” that would authorize it to deny certification, the agency cannot prevent these hospices from entering the program. In a recent blog post it added that “we take our role as stewards of the Medicare Trust Funds seriously, and we work to ensure that taxpayer dollars are spent on high-quality"
+  },
+  {
+   "idx": 2,
+   "url": "https://hospicenews.com/2023/07/03/cms-proposes-36-month-rule-to-curb-hospice-license-flipping/",
+   "outlet": "Hospice News",
+   "date": "2023-07-03",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Arizona had 239 new Medicare-certified hospices appear between 2018 and 2022, representing 52% of all providers in the state.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "versight had “created the opportunity for large-scale fraud and abuse,” and that it had identified “numerous indicators of such fraud and abuse by hospice agencies” statewide. In January, hospice organizations began sounding the alarm on similar activity in other states — Arizona, Texas and Nevada. Arizona had 239 new Medicare-certified hospices appear between 2018 and 2022, representing 52% of all providers in the state. In that time frame, Nevada saw 56 newly certified hospices, and 369 emerged in Texas. In some instances, multiple hospices have been operating out of the same address without a corresponding increase in the population of eligible patients, according to the California DOJ. Some individuals also hold management positions at several of th"
+  },
+  {
+   "idx": 3,
+   "url": "https://hospicenews.com/2024/01/25/new-hospices-cropping-up-in-fraud-hotbeds-amid-ongoing-program-integrity-push/",
+   "outlet": "Hospice News",
+   "date": "2024-01-25",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "One location in Phoenix was approved for three new hospice licenses in 2023",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "gulatory scrutiny around program integrity. Other states with known hospice-fraud issues include Arizona, Nevada and Texas. Advertisement In one instance, 15 new hospices received Medicare certification, all operating from the same two-story building in Los Angeles, ProPublica reported. In another: One location in Phoenix was approved for three new hospice licenses in 2023, all at the same location as dozens of other new providers in the past two years, according to ProPublica. “The Department of Public Health is doing a fantastic job of trying to clean it up here in California, but they can’t clean it up fast enough if [the U.S. Centers for Medicare & Medicaid Services (CMS)] keeps allowing new hospic"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.propublica.org/article/hospices-arizona-california-nevada-texas-cms-medicaid-medicare",
+   "outlet": "ProPublica",
+   "date": "2023-07-21",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Last week, regulators rolled out enhanced oversight for new hospices in Arizona, California, Nevada and Texas.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Nevada and Texas, targeting providers highlighted by a ProPublica investigation. by Ava Kofman July 21, 2023, 5:00 am Contrast Change Appearance Auto Light Dark ProPublica is a nonprofit newsroom that investigates abuses of power. Sign up to receive our biggest stories as soon as they’re published. Last week, regulators rolled out enhanced oversight for new hospices in Arizona, California, Nevada and Texas. The Centers for Medicare and Medicaid Services, which pays for most of American hospice care, announced that this change was spurred by “numerous reports of hospice fraud, waste, and abuse” and “serious concerns about market oversaturation.” In November, ProPublica and The New Yorker highlighted that the four states were overrun with for-"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.news4jax.com/health/2026/08/27/california-and-the-federal-government-battle-over-hospice-fraud-as-victims-lose-coverage-and-care/",
+   "outlet": "Associated Press (via News4JAX)",
+   "date": "2026-08-27",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Some of the enhanced oversight began under the Biden administration, when the federal government said it would place newly Medicare-enrolled hospices in California, Arizona, Nevada and Texas under a period of enhanced oversight.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "his stuff because I knew that we were going to fight about this and it wasn’t going to get paid,” she said. Eight months later, Medicare recognized that she was a victim of fraud. One year after she lodged her complaint, she finally began seeing doctors again. Federal government increases oversight Some of the enhanced oversight began under the Biden administration, when the federal government said it would place newly Medicare-enrolled hospices in California, Arizona, Nevada and Texas under a period of enhanced oversight. The agency added Georgia and Ohio in December 2025, and CMS announced in May a nationwide six-month moratorium on all new Medicare enrollments by providers of hospice and home care. The Trump administration's fraud crackdown has invited criticism for its focus on providers with immigrant backgrounds. In January, Dr. Mehmet Oz of the "
+  }
+ ]
+}

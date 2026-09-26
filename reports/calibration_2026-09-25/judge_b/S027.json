@@ -1,0 +1,12 @@
+{
+ "story_id": "S027",
+ "bin": "Matched + more",
+ "entity": "US doctors paid $10K+ by drug companies vs prescribing cost per claim and brand-name share, 2024",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2016-03-17",
+ "post_cutoff_match": false,
+ "what_we_add": "The 2024 numbers: 1.2-5.6x cost per claim at $10K+, brand share rising in all 7 specialties, internal medicine $94 to $355",
+ "why": "ProPublica and PLOS One state the same finding, same direction: more industry money, more brand-name prescribing and higher cost per patient, dose-response across specialties. Their data is 2014-15; nobody states our 2024 multipliers. NBER's generic-transition result is a different measure, not a contradiction.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

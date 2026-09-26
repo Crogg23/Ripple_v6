@@ -1,0 +1,64 @@
+{
+  "story_id": "S100",
+  "entity": "U.S. Senate Banking Committee members' share of senators' bank-stock trades, 2012-2020 (Perdue the main driver)",
+  "queries": [
+    {"q": "Senate Banking Committee members traded bank stocks study committee oversight stock trades senators", "found_useful": true},
+    {"q": "senators stock trades in industries their committees oversee analysis Banking Committee financial stocks New York Times 2022", "found_useful": true},
+    {"q": "study senators trade stocks of firms under their committee jurisdiction STOCK Act 2012-2020 financial sector Banking Committee more likely", "found_useful": true},
+    {"q": "David Perdue most active stock trader Senate 2019 2020 trades Banking Committee bank stock New York Times", "found_useful": true},
+    {"q": "Banking Committee senators bank stock trades share analysis Capitol Trades 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.salon.com/2020/11/27/perdue-traded-hundreds-of-thousands-worth-of-bank-stocks-while-on-senate-banking-committee/",
+      "outlet": "Salon",
+      "date": "2020-11-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Between 2017 and 2020, while he sat on the Banking Committee, Perdue traded at a minimum hundreds of thousands of dollars, possibly millions.",
+      "paywalled": false,
+      "searcher_note": "Perdue's bank-stock trades while on Senate Banking (up to $910K held 2017-19; sold up to $1.11M, bought up to $480K in 2019-20). One senator, not the committee-wide share."
+    },
+    {
+      "url": "https://www.thedailybeast.com/sen-david-perdue-says-his-perfectly-timed-stock-trades-are-completely-innocent/",
+      "outlet": "The Daily Beast",
+      "date": "2020-09-12",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "But Perdue does serve as a member of the Senate Banking Committee with jurisdiction over the financial industry.",
+      "paywalled": false,
+      "searcher_note": "Earlier piece tying Perdue's heavy trading to his Banking Committee seat; also says he was among the most active traders in Congress."
+    },
+    {
+      "url": "https://www.nber.org/system/files/working_papers/w26975/w26975.pdf",
+      "outlet": "NBER Working Paper 26975 (Belmont, Sacerdote, Sehgal, Van Hoek)",
+      "date": "2020-04-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "We find no evidence that senators have industry specific stock picking ability related to their committee assignments.",
+      "paywalled": false,
+      "searcher_note": "Senators' trades 2012 to March 2020, same window as the lead; measures returns, not trade share. Names Banking, Housing, and Urban Affairs only in its committee-to-industry matching table. April 2020, day not printed."
+    },
+    {
+      "url": "https://news.northwestern.edu/stories/2026/08-2/senators-who-sit-together-trade-together",
+      "outlet": "Northwestern Now",
+      "date": "2026-08-05",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The effect is stronger when one senator has committee oversight responsibility for the affected industry and after committee hearings involving those industries.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff release on a study of 5,000+ senator trades 2012-2018; committee-oversight effect on industry trading, Banking Committee not named."
+    },
+    {
+      "url": "https://www.cnn.com/2026/02/09/politics/senator-stock-trading-congress",
+      "outlet": "CNN",
+      "date": "2026-02-09",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "At least 10 senators reported stock purchases or sales last year involving companies in industries overseen by the committees they serve on.",
+      "paywalled": false,
+      "searcher_note": "Pattern coverage: 2025 trades overlapping committee work (health, Commerce, Finance examples); no Banking-bank-stock share. WebFetch got HTTP 451; text read via direct download."
+    }
+  ],
+  "notes": "No source found giving the Banking Committee's share of senators' bank-stock trades (19% of trading senator-Congress pairs, 34% of bank-stock trades, 2012-20). Perdue's bank-stock trading on Banking is well covered (Salon, Daily Beast, Forbes 2020; Forbes returned 403). Search snippets (not evidence) say a 2022 NYT analysis found 97 members traded in areas their committees oversee, 2019-2021; not fetched. Pattern research exists both ways: Northwestern 2026 finds a committee-oversight effect; NBER 2020 finds no committee-linked stock-picking skill. Several WebSearch calls auto-expanded into multiple internal searches; logged as one each. Query 5 (recent coverage) found only tracker sites and the CNN piece already recorded."
+}

@@ -1,0 +1,67 @@
+{
+  "story_id": "S029",
+  "entity": "US high-hazard dams rated Poor or Unsatisfactory with no emergency action plan, National Inventory of Dams, current (2026) snapshot: 634 of 2,776 answer No; excess ~300 vs state baseline (NC, NM, GA, SC, TX, MO)",
+  "queries": [
+    {"q": "high-hazard dams poor condition no emergency action plan National Inventory of Dams analysis", "found_useful": true},
+    {"q": "AP investigation high hazard dams poor unsatisfactory condition lack emergency action plans", "found_useful": true},
+    {"q": "North Carolina high hazard dams poor condition without emergency action plan", "found_useful": true},
+    {"q": "2026 dams poor condition high hazard emergency action plan missing report", "found_useful": true},
+    {"q": "\"emergency action plan\" dams \"poor or unsatisfactory\" high-hazard don't have plans New Mexico Georgia", "found_useful": false},
+    {"q": "ASDSO state high-hazard dams percent with emergency action plans 2025 statistics", "found_useful": true},
+    {"q": "dams failure could kill people no emergency plan analysis news 2026 poor condition federal inventory", "found_useful": false},
+    {"q": "Texas high-hazard dams exempt emergency action plan poor condition news", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.nbclosangeles.com/news/national-international/ap-investigation-aging-us-dams/2112343/",
+      "outlet": "Associated Press via NBC Los Angeles",
+      "date": "2019-11-09",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "About 20% of state-regulated high-hazard dams nationwide still lack emergency plans, according to the U.S. Army Corps of Engineers, which maintains the national dam inventory.",
+      "paywalled": false,
+      "searcher_note": "AP two-year investigation: 1,688 high-hazard dams in poor/unsatisfactory condition (2018 data); reports the EAP gap for all high-hazard dams, not the poor-condition subset."
+    },
+    {
+      "url": "https://www.southcarolinapublicradio.org/news/2022-05-05/ap-analysis-finds-growing-number-of-poor-high-hazard-dams",
+      "outlet": "Associated Press via South Carolina Public Radio",
+      "date": "2022-05-05",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The AP tallied more than 2,200 dams in poor or unsatisfactory condition that are rated as high hazard",
+      "paywalled": false,
+      "searcher_note": "AP 2022 update on poor/high-hazard dam count; no EAP figures in this article."
+    },
+    {
+      "url": "https://infrastructurereportcard.org/cat-item/dams-infrastructure/",
+      "outlet": "American Society of Civil Engineers, 2025 Report Card",
+      "date": "2025",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "(nearly 82% of state-regulated high hazard dams, about equal to 2021) have an EAP.",
+      "paywalled": false,
+      "searcher_note": "National EAP coverage as of 2024 for all state-regulated high-hazard dams; also says ~15% (2,500+) of high-hazard dams are poor/unsatisfactory. No poor-and-no-EAP intersection."
+    },
+    {
+      "url": "https://sao.texas.gov/SAOReports/ReportNumber?id=20-036",
+      "outlet": "Texas State Auditor's Office",
+      "date": "2020-07",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The Commission did not have a complete and current emergency action plan for all dams that required them.",
+      "paywalled": false,
+      "searcher_note": "Audit of TCEQ dam safety program: missing/stale EAPs in Texas, one of the lead's excess states. State-level pattern, no national count."
+    },
+    {
+      "url": "https://www.asce.org/publications-and-news/civil-engineering-source/article/2026/03/12/aging-us-dams-pose-rising-safety-risks-how-can-civil-engineers-help",
+      "outlet": "ASCE Civil Engineering Source",
+      "date": "2026-03-12",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "State and U.S. federal regulations require that dams classified as high hazard or significant hazard have emergency action plans in place.",
+      "paywalled": false,
+      "searcher_note": "Most recent coverage found; cites 2,522 (about 15%) high-hazard dams in poor/unsatisfactory condition; no count of poor dams lacking EAPs."
+    }
+  ],
+  "notes": "No source found that counts poor/unsatisfactory high-hazard dams lacking an emergency action plan, nationally or by state, and none reports the ~300 excess or the 634 figure. Coverage found is the two halves separately: AP 2019/2022 counts of poor high-hazard dams, and national EAP coverage (~80-82% of state-regulated high-hazard dams have one). WUNC 2022 (wunc.org/news/2022-06-01/...) reports 194 NC poor/high-hazard dams, no EAP numbers; not recorded. WFMJ Youngstown 2025-06-10 Watchdog Report lists local poor/high-hazard dams with a Yes/No column (e.g. 'Pleasant Valley Lake Dam: Poor, High, No.') but the column legend is not in the page text, so not recorded as a source. No coverage dated after 2026-06-30 found. No disagreeing source found."
+}

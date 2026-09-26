@@ -1,0 +1,68 @@
+{
+  "story_id": "S047",
+  "entity": "US federal PACs (non-joint-fundraising), 2024 cycle: committees raising $1M+ from individuals while passing under 10% of spending to candidates, committees, outside ads or affiliates (92 PACs, $580M); concentration among busiest treasurers",
+  "queries": [
+    {"q": "scam PACs 2024 raised millions from small donors spent little on candidates analysis", "found_useful": true},
+    {"q": "PACs 2024 cycle less than 10 percent spent on candidates \"scam PAC\" OpenSecrets analysis treasurers", "found_useful": false},
+    {"q": "2024 election PACs raised $1 million from individuals spent less than 10% on candidates analysis FEC data count", "found_useful": false},
+    {"q": "OpenSecrets 2024 cycle scam PACs identified fundraising expenses report 2025", "found_useful": false},
+    {"q": "same treasurer dozens of PACs raised millions little to candidates 2024 investigation", "found_useful": false},
+    {"q": "justice.gov scam PAC treasurer sentenced defrauded donors 2025 OR 2026", "found_useful": false},
+    {"q": "scam PACs report 2026 donors money fundraising consultants FEC complaint August 2026", "found_useful": true},
+    {"q": "Adam Bonica \"Hook and Squeeze\" fundraising committees elderly donors", "found_useful": true},
+    {"q": "Progressive Turnout Project responds Bonica spam PAC criticism voter contact canvassing spending defense", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://data4democracy.substack.com/p/hook-and-squeeze",
+      "outlet": "On Data and Democracy (Adam Bonica, Substack)",
+      "date": "2026-08-16",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "I identified 145 Democratic-aligned spam PACs.",
+      "paywalled": false,
+      "searcher_note": "Closest aggregate: counts Democratic-aligned 'spam PACs' only, cumulative through 2025, not a 2024 all-PAC under-10% screen. Also says Harry Pascal's PAC network raised $390M+ from individuals with roughly $20M to candidates or IEs, and Pascal is treasurer of eight affiliated PACs (treasurer-concentration angle)."
+    },
+    {
+      "url": "https://www.thenation.com/article/politics/democrats-fundraising-scam-pac-report/",
+      "outlet": "The Nation (Chris Lehmann)",
+      "date": "2026-08-17",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "a fundraising efficiency rate of just 1.6 percent",
+      "paywalled": false,
+      "searcher_note": "Recent coverage of Bonica's work: $670M in donations, $11M reached campaigns, parties or candidates; $1.4B raised by spam PACs since 2017. Pattern, Democratic side only, multi-cycle."
+    },
+    {
+      "url": "https://data4democracy.substack.com/p/the-mothership-vortex-an-investigation",
+      "outlet": "On Data and Democracy (Adam Bonica, Substack)",
+      "date": "2025-08-03",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "How a single consulting firm extracted $282 million from a network of spam PACs while delivering just $11 million to actual campaigns.",
+      "paywalled": false,
+      "searcher_note": "Earlier coverage of the same low-pass-through pattern; one consulting firm's PAC network since 2018, $678M from individuals. Not cycle-specific."
+    },
+    {
+      "url": "https://campaignlegal.org/update/clc-uncovers-two-scam-pacs-defrauding-donors",
+      "outlet": "Campaign Legal Center",
+      "date": "2024-04-22",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Patriots for American Leadership has reported raising nearly $1.4 million. It reported donating just 3% of its money to federal candidates or committees.",
+      "paywalled": false,
+      "searcher_note": "2024-cycle example of a PAC over $1M passing under 10% to candidates (Republican-aligned); FEC complaints and DOJ referral filed. One PAC, not the aggregate."
+    },
+    {
+      "url": "https://data4democracy.substack.com/p/hook-and-squeeze",
+      "outlet": "On Data and Democracy (Adam Bonica, Substack)",
+      "date": "2026-08-16",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "its lawyers claimed the group spent $177 million on fundraising — $72 million less than my estimate — and directed more than half its budget to voter contact.",
+      "paywalled": false,
+      "searcher_note": "Disagreement angle: the largest spam-PAC operator says over half went to voter contact, which a candidates/ads/IE screen would count as a 'low share' (matches the lead's watch_out on canvassing and digital ads)."
+    }
+  ],
+  "notes": "The lead's entity is a national aggregate (92 non-JFC PACs, $580M from individuals, 2024, under 10% passed through; 12 busiest treasurers hold 29 of 96). No source found with that screen, that count or that treasurer-concentration statistic. Closest is Bonica (Aug 2025 and Aug 2026) plus The Nation (Aug 2026): same low-pass-through pattern, but Democratic-aligned only, multi-cycle, and 'spam PAC' defined by fundraising-cost share rather than an all-PAC under-10% cut. OpenSecrets 2023 piece identified 86 potential scam PACs in the 2022 cycle (per search snippet; opensecrets.org returned HTTP 403 so not quoted). justice.gov and fbi.gov pages on the Robert Piaro scam-PAC treasurer plea (SDNY) could not be fetched (empty/403), so not recorded; it covers 2017-2022 activity anyway. The Hill 'How to spot a scam PAC' (2024) returned 403. Bulwark and NYT reportedly declined to run Bonica's piece after consultant pushback (per search snippets, not opened)."
+}

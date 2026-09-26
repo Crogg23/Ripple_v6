@@ -1,0 +1,12 @@
+{
+ "story_id": "S047",
+ "bin": "Matched + more",
+ "entity": "US political committees raising $1M+ each from individuals in 2024 while passing under 10% to candidates or ads",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2025-08-03",
+ "post_cutoff_match": true,
+ "what_we_add": "the 92-committee count under the explicit under-10% test, $580M, and the treasurer concentration: 12 treasurers hold 29 of 96 such PACs (30%) vs 14.6% elsewhere",
+ "why": "Bonica and The Nation state the same finding same direction: 2024-cycle PACs raised hundreds of millions and passed a tiny share to campaigns ($670M in, $11M out). Nobody has our 92-PAC count or the treasurer stat.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

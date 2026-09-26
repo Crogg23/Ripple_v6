@@ -1,0 +1,80 @@
+{
+ "story_id": "S142",
+ "lead": {
+  "headline": "Detained immigrants' release petitions (habeas): 33 in Oct 2024, about 8,820 in Mar 2026, 24% of new federal civil cases",
+  "number": "About 8,820 new detention habeas cases in Mar 2026, 24% of 36,088 new federal civil cases; of 16,849 closed Oct 2025-Mar 2026, detainees won 7,340 and the government 831",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Winner and \"closed without a ruling\" codes are decoded from the data, not the codebook; half the closures have no winner coded, mostly dismissals."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "immigration detention habeas petitions surge federal courts March 2026 record",
+  "judges rule for detainees habeas petitions ICE mandatory detention government lost percent of cases analysis",
+  "Politico Kyle Cheney judges ruled against ICE detention 15,000 times 2,200 upheld",
+  "judges ruled against ICE detention database detainee lawsuits (allowed_domains politico.com; errored, domain not accessible)",
+  "immigration habeas petitions quarter of all new federal civil cases 2026 share of civil docket"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://tracreports.org/reports/773/",
+   "outlet": "TRAC (Syracuse University)",
+   "date": "2026-05-11",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Habeas lawsuits increased by over 85 times during the past year, while naturalization suits were 1.8 times higher than in March 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "m levels reported in March 2021. Figure 1. Total Number of Civil Immigration Lawsuits Filed in U.S. District Courts, March 2021 to March 2026 While many categories of immigration litigation were little changed over the past year, marked growth occurred for naturalization and habeas corpus lawsuits. Habeas lawsuits increased by over 85 times during the past year, while naturalization suits were 1.8 times higher than in March 2025. See Table 1. Table 1. Immigration Civil Lawsuits Filed in U.S. District Courts by Nature of Suit Month Immigration Civil Litigation Total Habeas Naturalization Other Mar 2025 945 105 33 807 Apr 2025 905 121 31 753 May 2025 965 167 28 770 Jun 2025 918 254 30 634 Jul 2025 958 280 45 633 Aug 2025 1,079 414 31 634 Sept 2025 1,447 733 36 "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.joemygod.com/2026/05/politico-judges-have-ruled-against-ice-10000-times/",
+   "outlet": "Joe.My.God. (blog excerpt of Politico, Kyle Cheney, 2026-05-13)",
+   "date": "2026-05-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "More than 10,000 times, judges have said those detentions, typically carried out with no opportunity for detainees to plead their case, were illegal. That's roughly 90 percent of all cases",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "dministration Politico reports : Ten thousand losses. That’s the Trump administration’s track record in court as federal judges grapple with the way ICE agents have swept through major U.S. cities and detained thousands of people in support of President Donald Trump’s aggressive deportation agenda. More than 10,000 times, judges have said those detentions, typically carried out with no opportunity for detainees to plead their case, were illegal. That’s roughly 90 percent of all cases — a staggering rejection of a core piece of Trump’s immigration agenda. Trump’s unprecedented detention policy, which is almost certainly headed to the Supreme Court, infuriated lower courts in ways no other modern issue has. It ruptured the relationship between the Justice Department and the judiciary; pitted the administratio"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.workingimmigrants.com/2026/07/great-majority-of-court-decisions-rule-against-the-government/",
+   "outlet": "Working Immigrants (repost of Politico, Kyle Cheney)",
+   "date": "2026-07-09",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The 15,000 rulings against the administration compare to about 2,200 instances in which judges upheld ICE detentions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "es.” Kyle Cheney writes that “Federal judges have spent a full year overwhelmingly rejecting ICE’s effort to lock up people the Trump administration is seeking to deport — finding a combination of illegality, unconstitutionality, incompetence and cruelty at a shocking scale. More than 15,000 times. The 15,000 rulings against the administration compare to about 2,200 instances in which judges upheld ICE detentions. Those 2,200 rulings have been concentrated in a handful of courts and driven by a small subset of judges. In a July 8, 2025, memo, the agency said agents would detain, without bond, tens of thousands of people with deep roots in the U.S. and overwhelmingly without criminal records. It’s a group that, until last year, would have"
+  },
+  {
+   "idx": 3,
+   "url": "https://projects.propublica.org/habeas-tracker/",
+   "outlet": "ProPublica",
+   "date": "2026-02-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Immigrants filed more habeas cases in the first 13 months of the second Trump administration than in the past three administrations combined, including his first.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "l immigration agents surge into communities and detain people, the number of cases filed by those claiming their detention is illegal has risen to historic highs. ProPublica is tracking the volume of these cases, known as habeas petitions, as they overwhelm legal advocates and government attorneys. Immigrants filed more habeas cases in the first 13 months of the second Trump administration than in the past three administrations combined, including his first. Starting April 2026, new cases have started to slow. While habeas cases are intended to be adjudicated quickly, federal judges in parts of Mississippi and Louisiana have usually taken three months or more to resolve them, a ProPublica analysis found. Do you work or have you worked at an immigration detention facility? Get in touch wit"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.washingtonexaminer.com/news/justice/4606511/immigrants-tens-thousands-lawsuits-trump-first-year/",
+   "outlet": "Washington Examiner",
+   "date": "2026-06-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The federal courts are dealing with a barrage of immigration-related lawsuits, with more filed over the past year than any period in history.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "arks Examining Tax Reform Fix TSCA Inside the Corn Belt Examining Transportation Newsletters More Immigration Immigrants filed tens of thousands of lawsuits in Trump’s first year By Anna Giaritelli Published June 15, 2026 6:00am ET | Updated June 15, 2026 9:39am ET Add Washington Examiner on Google The federal courts are dealing with a barrage of immigration-related lawsuits, with more filed over the past year than any period in history. The influx of tens of thousands of immigration cases just since last fall threatens to derail President Donald Trump’s illegal immigration crackdown and clog the courts . Stay informed. Stay ahead. Join Washington Examiner for unlimited access to the news, analysis, and commentary that matter most. See Options › Already a member? Lo"
+  }
+ ]
+}

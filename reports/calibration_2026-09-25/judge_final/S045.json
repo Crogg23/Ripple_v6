@@ -1,0 +1,12 @@
+{
+ "story_id": "S045",
+ "bin": "Matched + more",
+ "entity": "US rural vs urban jail incarceration rates (rural 2.5x urban in 2023)",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2017-06-13",
+ "post_cutoff_match": false,
+ "what_we_add": "the 2023 rates on a fixed-county, ages 15-64 basis: 563 vs 227 per 100K, and Butts GA / Yazoo MS growing ~4x on local holds",
+ "why": "Vera and the NYT-derived coverage state the same finding same direction: rural jail rates more than double urban, urban falling, and Vera 2024 confirms rural back at 2019 levels. Nobody has the 2023 563-vs-227 numbers or the two named counties.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

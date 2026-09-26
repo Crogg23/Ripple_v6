@@ -1,0 +1,12 @@
+{
+ "story_id": "S067",
+ "bin": "Matched + more",
+ "entity": "Snapfinger Creek wastewater plant (GA0024147), DeKalb County GA: overflow count vs penalties",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2020-05-08",
+ "post_cutoff_match": false,
+ "what_we_add": "1,394 overflows since Oct 2016, $52,344 in plant-level penalties (~$38 each), 202 overflows in 2025",
+ "why": "Sources 0 and 1 name the Snapfinger plant/basin and report heavy sanitary sewer overflows there, same direction. No source has our overflow count, the plant-level penalty total, or the $38-per-spill ratio; the fines sources cite ($294K, $859K, $1M) are county-wide under the consent decree, a different unit, so no contradiction.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

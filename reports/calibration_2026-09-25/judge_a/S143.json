@@ -1,0 +1,12 @@
+{
+ "story_id": "S143",
+ "bin": "Matched + more",
+ "entity": "Share of argued Supreme Court cases coming from state courts since 2020",
+ "deciding_sources": [0, 1, 2, 3],
+ "earliest_match_date": "2024-03-25",
+ "post_cutoff_match": false,
+ "what_we_add": "19 of 295 argued cases since 2020 (6.4%) and the lowest-since-1946 comparison",
+ "why": "Chemerinsky, Vladeck and Bannon all report the same decline in state-court cases on the merits docket, same direction. None has the full since-2020 count or the 1946 baseline.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

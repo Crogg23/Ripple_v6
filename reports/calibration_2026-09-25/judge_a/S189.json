@@ -1,0 +1,12 @@
+{
+  "story_id": "S189",
+  "bin": "Matched + more",
+  "entity": "Tallon for Congress (1992 committee) paying out $1.39M in the 2024 cycle; 139 pre-2016 zombie committees holding $7.98M",
+  "deciding_sources": [0],
+  "earliest_match_date": "2025-04-28",
+  "post_cutoff_match": false,
+  "what_we_add": "139 committees / $7.98M aggregate; $1,391,737 cycle total with $0 individual donors",
+  "why": "SC Daily Gazette reports Tallon moving $1.25M from his 1992 campaign reserves in Oct 2024, same entity, same direction, within 25% of our number. The 139-committee aggregate is ours alone.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

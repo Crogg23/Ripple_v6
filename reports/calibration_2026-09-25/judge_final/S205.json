@@ -1,0 +1,12 @@
+{
+  "story_id": "S205",
+  "bin": "Unreported",
+  "entity": "FEMA occupancy verification rate for fire-aid registrations in Lahaina census tract 314.04",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Neither source names the tract or touches occupancy verification; one is demographics, the other displacement. Nothing reaches Known pattern. 7 searches logged.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

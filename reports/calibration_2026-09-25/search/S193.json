@@ -1,0 +1,77 @@
+{
+  "story_id": "S193",
+  "entity": "Senegal government external debt service scheduled for 2026 as a share of 2024 export earnings (World Bank IDS), vs 108 low- and middle-income countries",
+  "queries": [
+    {"q": "Senegal external debt service 2026 percent of exports highest World Bank International Debt Statistics", "found_useful": true},
+    {"q": "Senegal debt service 2026 $4 billion Eurobond repayments due hidden debt IMF", "found_useful": true},
+    {"q": "countries highest debt service to exports ratio 2026 Senegal Bhutan ranking low- and middle-income", "found_useful": true},
+    {"q": "Debt Justice OR ONE Campaign debt service share of exports 2026 Senegal among worst affected countries", "found_useful": true},
+    {"q": "World Bank International Debt Report 2025 Senegal debt service exports Bhutan", "found_useful": false},
+    {"q": "Sénégal service de la dette extérieure 2026 exportations pourcentage milliards échéances", "found_useful": true},
+    {"q": "Senegal debt payments \"export earnings\" OR \"exports\" half 2026 Reuters Bloomberg Financial Times", "found_useful": true},
+    {"q": "IMF Senegal staff-level agreement September 2026 external debt service exports ratio debt sustainability", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://policy.desa.un.org/sites/default/files/2026-04/cdp-pl-2026-sen.pdf",
+      "outlet": "UN DESA, Committee for Development Policy, 2026 Monitoring Report: Senegal",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Total debt service reached 41.8 per cent of exports of goods, services and primary income in 2024",
+      "paywalled": false,
+      "searcher_note": "Same measure family (debt service / exports) for Senegal, but 2024 actual debt service, not 2026 scheduled. Report dated March 2026 on its cover; data current as of 5 Feb 2026. WebFetch got 403; curl fetched the PDF and the sentence is in it."
+    },
+    {
+      "url": "https://documents1.worldbank.org/curated/en/099080323143026715/pdf/BOSIB0a9a3028e061094f100bb29f0f72c0.pdf",
+      "outlet": "World Bank / IMF, Senegal Joint Bank-Fund Debt Sustainability Analysis",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The external debt service to exports ratio marginally breaches the risk threshold in 2026 with Eurobond amortizations coming due",
+      "paywalled": false,
+      "searcher_note": "Pre-hidden-debt DSA (circa 2023; refers to the June 2022 vintage as previous). Flags 2026 as the debt-service-to-exports spike from Eurobond amortization, matching the lead's caveat. Its projected 2026 total external debt service-to-exports is 27.2% (PPG 21.8%), far below the lead's 54%; different definition and a 2023 projection."
+    },
+    {
+      "url": "https://debtjustice.org.uk/senegal",
+      "outlet": "Debt Justice",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In 2026 they are due to go over 50% of government revenue.",
+      "paywalled": false,
+      "searcher_note": "Senegal government external debt payments due in 2026 over 50% of revenue. Revenue, not exports, as denominator. No country ranking."
+    },
+    {
+      "url": "https://www.polity.org.za/article/senegal-poised-to-make-key-debt-payments-but-more-pain-looms-2026-03-13",
+      "outlet": "Reuters (via Polity.org.za)",
+      "date": "2026-03-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "JPMorgan's calculation showed Senegal owes $9.7-billion in interest and amortisation this year, $7.8-billion in 2027 and $8.7-billion in 2028.",
+      "paywalled": false,
+      "searcher_note": "Total debt service (includes regional/domestic), 2026 higher than 2027 but not the 2026-28 peak by much. Different scope than the lead's $4.44B external figure; no exports ratio."
+    },
+    {
+      "url": "https://www.ecofinagency.com/news/1712-51472-senegal-s-hidden-debt-accounting-crisis-not-vanished-capital",
+      "outlet": "Ecofin Agency",
+      "date": "2025-12-17",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Senegal's debt service is expected to double in 2026, increasing from about $1.1 billion in 2025 to more than $2.2 billion.",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement on the 2026 amount ($2.2B vs lead's $4.44B), scope unstated (likely external commercial/Eurobond). Also says the pressure comes from a single ~$1.1B payment in May 2026 linked to eurobond maturities, matching the lead's ~$1.06B bond caveat."
+    },
+    {
+      "url": "https://senego.com/dette-barclays-chiffre-le-service-a-6-800-milliards-contre-5-80138-pour-letat_2005212.html",
+      "outlet": "Senego",
+      "date": "2026-09-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Sur les 5 801,38 milliards prévus, 4 516,21 milliards sont destinés au remboursement du principal, contre 1 285,17 milliards pour les intérêts et commissions.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff (French). Total public debt service for 2026 in the revised budget: 5,801.38 bn CFA francs (Barclays estimates 6,800 bn). Total, not external; no exports ratio."
+    }
+  ],
+  "notes": "No source found stating Senegal's 2026 scheduled external debt service as ~54% of exports, or ranking Senegal first (or Bhutan second) among 108 LMICs on that ratio. The lead notes the World Bank publishes the ratio itself; the IDS/IDR 2025 PDF and data portal were found but no page quoting the 2026 projection was opened. Same-entity sources use other measures: 41.8% of exports in 2024 (UN DESA, actual); 27.2% of exports in 2026 (2023 World Bank/IMF DSA projection, pre-hidden-debt); over 50% of revenue in 2026 (Debt Justice); $2.2B (Ecofin), $9.7B total incl. domestic (JPMorgan via Reuters), 5,801 bn CFA total (Senegal budget via Senego). Post-cutoff items: Senego 2026-09-23; Credendo 2026-09-11 (https://credendo.com/en/knowledge-hub/senegal-debt-restructuring-announced-after-hidden-debt-crisis) reports the 1 Sept 2026 IMF staff-level agreement and planned external debt restructuring, no debt-service ratio, not recorded. FinDevLab policy note (Jan 2026) opened; no exports ratio."
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S167",
+  "bin": "Matched + more",
+  "entity": "offshore company formations (Mossack Fonseca, Bahamas, Nevis) doubling in Apr-Jun 2005 before the EU savings tax",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "2017-05-30",
+  "post_cutoff_match": false,
+  "what_we_add": "the quarterly counts (MF 2,331 to 4,701, Bahamas and Nevis registries) and the 69% Swiss/Lux/Monaco middleman share",
+  "why": "Giegold's PANA testimony and the Omartian paper report the same pre-EUSD incorporation rush at Mossack Fonseca (73% increase, 2005 all-time high). Neither has our registry counts, the doubling, or the middleman split.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

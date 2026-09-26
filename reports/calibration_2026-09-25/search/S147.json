@@ -1,0 +1,77 @@
+{
+  "story_id": "S147",
+  "entity": "US customs duties: refunds vs collections, May and June 2026 (June: $49.18B refunded vs $23.63B collected); cumulative refunds through Aug 7 2026 ($113.5B)",
+  "queries": [
+    {"q": "Customs refunds exceed collections June 2026 IEEPA tariff refunds Treasury daily statement", "found_useful": true},
+    {"q": "tariff refunds single day June 29 2026 $35 billion Daily Treasury Statement customs", "found_useful": true},
+    {"q": "tariff refunds total paid August 2026 billion CBP IEEPA refunds so far", "found_useful": true},
+    {"q": "July 2026 Monthly Treasury Statement customs duties net refunds deficit", "found_useful": true},
+    {"q": "\"$113.5 billion\" OR \"$113 billion\" tariff refunds customs August 2026", "found_useful": true},
+    {"q": "customs duties fiscal 2026 still net positive despite refunds tariff revenue year to date Treasury September 2026", "found_useful": true},
+    {"q": "CBP press release IEEPA duty refunds issued billion importers CAPE Phase 1 Phase 2 status", "found_useful": true},
+    {"q": "Daily Treasury Statement tariff refunds one day record end of June 2026 customs outflow billion analysts", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://taxfoundation.org/blog/tariff-refunds-wiped-out-tariff-revenue-since-may/",
+      "outlet": "Tax Foundation",
+      "date": "2026-08-03",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "June shows $49.18 billion refunded, compared to $23.63 billion collected, taking net customs revenue to a negative $25.56 billion.",
+      "paywalled": false,
+      "searcher_note": "Same finding and same June numbers as the lead; also says May had $21.97B refunded vs $21.93B collected. Page updated 2026-09-01."
+    },
+    {
+      "url": "https://finance.yahoo.com/economy/article/tariff-refunds-accelerated-sharply-in-june-as-the-us-paid-out-almost-50-billion-to-businesses-185847171.html",
+      "outlet": "Yahoo Finance",
+      "date": "2026-07-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "That figure handily beat the $23.6 billion in tariff revenue collected over the same period",
+      "paywalled": false,
+      "searcher_note": "Earliest found: June 2026 refunds of $49.1B beat $23.6B collected, citing the Treasury monthly statement."
+    },
+    {
+      "url": "https://www.newsweek.com/trump-admin-issues-77bn-in-tariff-refunds-so-far-this-year-12195141",
+      "outlet": "Newsweek",
+      "date": "2026-07-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "the Treasury collected $23.6 billion in customs duties in June, meaning the refunds resulted in a net outflow of $25.6 billion.",
+      "paywalled": false,
+      "searcher_note": "June net customs outflow of $25.6B; $77.1B refunded in calendar 2026 to that point."
+    },
+    {
+      "url": "https://abcnews.com/Business/trump-administration-pays-milestone-100-billion-tariff-refunds/story?id=135399276",
+      "outlet": "ABC News",
+      "date": "2026-08-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The Trump administration paid out a milestone $100 billion in tariff refunds through the end of July, according to a new court filing.",
+      "paywalled": false,
+      "searcher_note": "Cumulative refunds $100B through July 31 (court filing); the lead's $113.5B is through Aug 7 from the daily statement."
+    },
+    {
+      "url": "https://finance.yahoo.com/economy/article/new-data-shows-the-us-governments-166-billion-tariff-refund-process-is-quickly-tapering-off-201348435.html",
+      "outlet": "Yahoo Finance",
+      "date": "2026-09-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The government has now paid out about $115 billion in total tariff refunds since May",
+      "paywalled": false,
+      "searcher_note": "Cumulative ~$115B through August; says August was the first month since April in which tariff revenue exceeded refunds ($23.3B vs $10.5B)."
+    },
+    {
+      "url": "https://www.chrobinson.com/en-us/resources/insights-and-advisories/client-advisories/2026q3/09-17-26-cbp-cape-phase-3-ieepa-refunds/",
+      "outlet": "C.H. Robinson client advisory",
+      "date": "2026-09-17",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "approximately $122 billion (including interest) has been certified and transmitted to the U.S. Treasury for payment.",
+      "paywalled": false,
+      "searcher_note": "Latest CBP status relayed: $122B certified and sent to Treasury (a different measure from refunds paid out)."
+    }
+  ],
+  "notes": "Several sources report the same May-June finding with the lead's June numbers ($49.18B / $23.63B / -$25.56B). Earliest found: Yahoo Finance 2026-07-13, after the 2026-06-30 cutoff. No source found for the Jun 29 single-day $35.49B figure or the FY2023-25 $40M-a-day baseline. Search snippets (CBO July Monthly Budget Review; Quartz) said July 2026 refunds also exceeded gross collections. Those pages were not opened or quoted: Quartz returned 403 and the CBO PDF was not fetched. The WWD/Sourcing Journal page redirected to a paywall host and was not opened."
+}

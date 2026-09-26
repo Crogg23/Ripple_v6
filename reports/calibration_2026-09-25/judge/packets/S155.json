@@ -1,0 +1,95 @@
+{
+ "story_id": "S155",
+ "lead": {
+  "headline": "FirstEnergy's seven utilities still send people to read 2.26 million meters, about 27% of all hand-read US meters",
+  "number": "2,260,839 hand-read meters in 2024: about 27% of the US total (30% if EIA's estimated small-utility meters are left out) on 3.8% of all meters; its Ohio, Maryland and West Virginia utilities hand-read 57-83%, every other investor-owned utility there under 5%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "2024 only and self-reported; if regulator-approved smart-meter rollouts are underway, this catches FirstEnergy mid-swap: \"late\", not \"refused\""
+ },
+ "queries_logged": 8,
+ "queries": [
+  "FirstEnergy smart meters behind manual meter readers Ohio Maryland West Virginia",
+  "FirstEnergy meter readers estimated bills smart meter rollout Potomac Edison Mon Power",
+  "Potomac Edison Maryland smart meter deployment Public Service Commission approval",
+  "West Virginia Mon Power Potomac Edison smart meters PSC case estimated bills complaints",
+  "Mon Power Potomac Edison advanced metering infrastructure plan West Virginia smart meters 2026",
+  "\"FirstEnergy\" utilities lag smart meter adoption manually read meters share EIA data",
+  "FirstEnergy smart meter deployment West Virginia Maryland New Jersey 2026 rate case AMI proposal",
+  "Potomac Edison smart meter installation Frederick Hagerstown Maryland customers"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.news5cleveland.com/news/local-news/investigations/dont-want-to-switch-to-a-smart-meter-it-will-cost-you",
+   "outlet": "News 5 Cleveland (WEWS)",
+   "date": "2026-01-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Our current deployment will include our remaining 1.4 million Ohio customers and is expected to wrap up in 2027.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r month and is one of the lowest in the state. We are currently in the second phase of rolling out smart meters across our Ohio service territory. Customers may or may not already have one. We previously installed smart meters on more than 715,000 homes and businesses in Ohio between 2020 and 2022. Our current deployment will include our remaining 1.4 million Ohio customers and is expected to wrap up in 2027. \" According to PUCO, FirstEnergy is supposed to pass any savings from smart meters onto customers, but there's no line item on consumers' bills that indicates how much smart meters are saving them. Instead of paying the fee, Schaffer said he will put aside his concerns and allow FirstEnergy to install a smart meter, but he's not optimis"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.firstenergycorp.com/newsroom/featured_stories/smart-meter-installations-continue-in-ohio.html",
+   "outlet": "FirstEnergy",
+   "date": "2025-04-16",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Grid Mod II will build on these efforts by deploying an additional 1.4 million smart meters",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ing Company – are kicking off the second phase of smart meter installations as part of an ongoing investment to modernize the electric distribution system. After installing smart meters on more than 715,000 homes and businesses in Ohio as part of the companies’ Grid Modernization (Grid Mod) I plan, Grid Mod II will build on these efforts by deploying an additional 1.4 million smart meters. Installations will begin in April 2025 and wrap up in 2027. View the smart meter deployment schedule . Smart Meter Benefits A smart meter is a digital electric meter that automatically collects electricity usage information at your home or business. It then securely shares the data with your local electric company to prov"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.firstenergycorp.com/newsroom/news_articles/2023-shareholder-address.html",
+   "outlet": "FirstEnergy",
+   "date": "2023-05-24",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "By 2026, we expect to have installed smart meters for nearly 80% of customers across our service territory.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "gy use. Building on successful programs in Pennsylvania and Ohio, we continue to expand smart meter implementation to help empower customers with the information they need to better manage their energy use. Smart meter deployment in New Jersey began earlier this year and will continue through 2025. By 2026, we expect to have installed smart meters for nearly 80% of customers across our service territory. We also help our customers better manage their energy use by linking them to a variety of energy efficiency programs and energy management tools. We intend to continue building on these offerings to give customers more power to achieve their energy goals. For example, our recent Ohio ESP filing proposes new energy efficienc"
+  },
+  {
+   "idx": 3,
+   "url": "https://psc.maryland.gov/wp-content/uploads/2025/11/2013-MD-PSC-Annual-Report1.pdf",
+   "outlet": "Maryland Public Service Commission (2013 Annual Report)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "the Commission initiated an investigation into PE's meter reading practices, estimations of bills, and its compliance with its tariffs based on the filing of several formal complaints",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": "ection program report and indicated that no hedging transactions were conducted during the 2013 summer storage injection season. 3. Commission’s Investigation in to the Potomac Edison Company’s Meter Reading Frequency, Estimation of Bills and Compliance with Tariff – Case No. 9329 On April 9, 2013, the Commission initiated an investigation into PE’s meter reading practices, estimations of bills, and its compliance with its tariffs based on the filing of several formal compl aints by certain of its customers . The Commission 43 WGL stated in the cover letter accompanying the report that it had inadvertently filed the Report out of time. 72 delegated the conduct of the proceedings to the Public Utility Law Judge Division, and directed the Public Utility Law Judge to determine the fu ll scope of the investigation and des"
+  },
+  {
+   "idx": 4,
+   "url": "https://msa.maryland.gov/megafile/msa/speccol/sc5300/sc5339/000113/023800/023821/20190206e.pdf",
+   "outlet": "Maryland Public Service Commission (2018 Annual Report)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Pepco and DPL have finished deploying smart meters with the final totals for each company being 560,851 and 211,115 smart meters, respectively.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t s initial deployment of smart meters. BGE continues to work to install meters in hard to access locations in an effort to reduce the current level of opt-out customers. In 2018, the percentage of opt-out customers dropped from 3.6% to 3.3% and the goal is to lower the opt -out percentage to 1.0%. Pepco and DPL have finished deploying smart meters with the final totals for each company being 560,851 and 211,115 smart meters , respectively. Pepco and DPL have less than 1.0% of its customers categorized as opt -out (0.3% and 0. 6%, respectively). SMECO completed the deployment of smart meters in the first quarter of 2018 and has installed 165,209 smart meters, with an opt-out percentage of 0.24%. 22 C. Electric Reliability-Related Cases 1. Review of Annual Performance Re"
+  },
+  {
+   "idx": 5,
+   "url": "https://callmepower.com/md/utility/potomac-edison",
+   "outlet": "CallMePower",
+   "date": "2026-05-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "now available because the smart meter rollout is complete",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "g, dishwasher, dryer, pool pump, water heater) to off-peak windows. If your usage is concentrated in the late afternoon when you get home and cook dinner, TOU can actually raise your bill. What that means for you: Before opting in, log into your Potomac Edison account and look at your hourly usage (now available because the smart meter rollout is complete). If at least 30 percent of your kWh land outside the on-peak window, TOU is worth it. If less, stay on the standard residential rate. Frequently asked questions Is Potomac Edison the same as Allegheny Power? Yes, in the sense that the operating company has been called both. The legal entity has always been \"The Potomac Edison Company"
+  }
+ ]
+}

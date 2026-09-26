@@ -1,0 +1,76 @@
+{
+  "story_id": "S121",
+  "entity": "Sen. John Fetterman (D-PA), Senate Iran war-powers votes Mar-Jun 2026: only Democrat voting with Republicans on all 12; S.J.Res.163 failed 49-50 (2026-05-13, Ricketts absent) and S.J.Res.172 failed 47-48 (2026-06-16, Sanders, Bennet, Booker absent)",
+  "queries": [
+    {"q": "Fetterman only Democrat Iran war powers resolution Senate vote", "found_useful": true},
+    {"q": "Senate Iran war powers resolution fails 49-50 May 13 2026 Ricketts absent", "found_useful": true},
+    {"q": "Senate Iran war powers vote May 2026 Fetterman 49-50 one vote short", "found_useful": true},
+    {"q": "\"S.J.Res. 163\" OR \"S.J.Res.163\" Iran war powers Senate vote", "found_useful": true},
+    {"q": "Senate Iran war powers 47-48 June 16 2026 Sanders Booker Bennet absent", "found_useful": true},
+    {"q": "Fetterman has voted against every Iran war powers resolution each time sided with Republicans record", "found_useful": true},
+    {"q": "Fetterman lone Democrat Kaine Iran war powers resolution March 2026 47-53", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00118.htm",
+      "outlet": "U.S. Senate roll call vote 118, 119th Congress 2nd session",
+      "date": "2026-05-13",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Motion to Discharge Rejected",
+      "paywalled": false,
+      "searcher_note": "Primary record: motion to discharge S.J.Res.163 (Iran war powers) rejected 49 yea, 50 nay, 1 not voting (Ricketts R-NE); Fetterman (D-PA) voted Nay."
+    },
+    {
+      "url": "https://wltreport.com/2026/06/16/one-democrat-sinks-party-iran-war-powers-push-president-trump/",
+      "outlet": "WLT Report",
+      "date": "2026-06-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Democrat John Fetterman of Pennsylvania voted no, lining up with most Republicans against his own party's effort.",
+      "paywalled": false,
+      "searcher_note": "June 16 vote on S.J.Res.172 (Warnock) 'went down 47-48'; five sat out: Bennet, Booker, Hawley, McConnell, Sanders. Matches the lead's second one-vote failure, and names Hawley and McConnell as absent too."
+    },
+    {
+      "url": "https://breakingdefense.com/2026/03/iran-war-powers-resolution-fails-in-senate/",
+      "outlet": "Breaking Defense",
+      "date": "2026-03-04",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Pennsylvania Sen. John Fetterman broke ranks with Democrats to oppose the resolution, while Republican Sen. Rand Paul of Kentucky voted in support of the measure.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: first Iran war-powers vote (Kaine), failed 47-53, Fetterman the Democratic defector."
+    },
+    {
+      "url": "https://www.cbsnews.com/news/senate-iran-war-powers-eighth-vote-trump/",
+      "outlet": "CBS News",
+      "date": "2026-05-19",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Sen. John Fetterman of Pennsylvania was the sole Democrat to oppose.",
+      "paywalled": false,
+      "searcher_note": "Eighth vote: Senate advanced a war-powers resolution 50-47 for the first time (Cornyn, Tuberville, Tillis absent); Fetterman again the only Democrat opposed."
+    },
+    {
+      "url": "https://abcnews.com/Politics/senate-fails-adopt-iran-war-powers-resolution-despite/story?id=136722629",
+      "outlet": "ABC News",
+      "date": "2026-09-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Republican Sens. Lisa Murkowski, Susan Collins, Rand Paul and Thom Tillis joined all but one Democrat, Sen. John Fetterman, in voting in favor of the resolution.",
+      "paywalled": false,
+      "searcher_note": "Recent (post-2026-06-30): 2026-09-24 vote failed 49-50 with Fetterman the lone Democrat against; says the Senate has voted on Iran war powers 14 times and passed it once (late June, McConnell and McCormick absent)."
+    },
+    {
+      "url": "https://www.democrats.senate.gov/newsroom/press-releases/after-democrats-force-14th-vote-to-stop-iran-war-schumer-slams-republicans-for-caving-to-trumps-recklessness",
+      "outlet": "Senate Democratic Leadership",
+      "date": "2026-09-24",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "On May 13th, Republicans blocked Senator Merkley's (D-OR) resolution 49-50.",
+      "paywalled": false,
+      "searcher_note": "Dated list of every blocked vote: Mar 4, 18, 24; Apr 15, 22, 30; May 13 (49-50); Jun 16 (47-48); Jun 24; Jul 23; Jul 30 (49-50); Sep 24 (49-50). Does not name Fetterman."
+    }
+  ],
+  "notes": "Fetterman being the only Democrat siding with Republicans is reported vote by vote (Mar 4, May 19, Jun 16, Sep 24, plus Democracy Now 2026-07-31 on a 50-49 vote). No source found that tallies his record as 'all 12' votes through 2026-06-24, or that pairs the May 13 and June 16 one-vote failures. Vote counts differ by source: ABC says 14 Senate votes by 2026-09-24 with one passage (late June); CBS 2026-05-19 says a discharge motion passed 50-47; the Democrats' list shows 9 blocked votes through June 24. Later one-vote failures on Jul 30 and Sep 24 (both 49-50) are covered widely, after the lead's table cutoff. NPR 2026-09-24 timed out; CNN 2026-06-24 ('Senate votes to walk back rebuke of Trump over Iran') returned 451; a Yahoo March article returned 404. No source disagreeing with the Fetterman finding found."
+}

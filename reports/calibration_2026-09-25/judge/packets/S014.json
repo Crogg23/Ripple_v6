@@ -1,0 +1,94 @@
+{
+ "story_id": "S014",
+ "lead": {
+  "headline": "New Mexico police cleared 22-23% of homicides in 2022-23, lowest in the nation, against 56% nationally",
+  "number": "22.3% (2022) and 23.2% (2023) by the FBI's state totals, lowest of 51 both years, vs 56% nationally; the fall was one year, 2018, from 59% to 34%.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "State totals can't tell police solving fewer killings from solved cases never reaching the FBI, and a one-year cliff looks like a reporting change."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "New Mexico homicide clearance rate lowest in nation FBI data",
+  "Albuquerque homicide clearance rate unsolved murders New Mexico Searchlight OR \"Source NM\" OR \"Albuquerque Journal\"",
+  "Murder Accountability Project New Mexico murders cleared percent state ranking",
+  "\"Legislative Finance Committee\" New Mexico homicide clearance rate report",
+  "New Mexico State Police inaccurately reported clearance rates to FBI homicide",
+  "\"New Mexico\" murder clearance rate 2022 OR 2023 state comparison lowest percent solved killings",
+  "New Mexico homicides unsolved clearance rate 2026 FBI report state police data"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://247wallst.com/special-report/2023/12/14/states-where-the-most-murders-go-unsolved/",
+   "outlet": "24/7 Wall St. (Sam Stebbins)",
+   "date": "2023-12-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Year with the most murders from 2013-2022: 2022 (235 murders; 47 cases solved)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "homicide investigations. (This is the city where police have killed the most people in the last decade .) Here are the states where the most murders go unsolved. 49. North Dakota DenisTangneyJr / iStock via Getty Images > Murder clearance rate from 2013-2022: 98.5% (198 murders; 195 cases solved) > Year with the most murders from 2013-2022: 2020 (32 murders; 27 cases solved) > County with the most murders from 2013-2022: Cass County (50 murders; 48 cases solved) 48. Maine SeanPavonePhoto / iStock via Getty Images > Murder clearance rate from 2013-2022: 82.7% (225 murders; 186 cases solved) > Year with the most murders from 2013-2022: 2022 (30 murders; 19 cases solved) > County with the most murders f"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.nmlegis.gov/handouts/ALFC%20120825%20Item%2022%20Policy%20Spotlight%20Felony%20Arrests%20and%20Outcomes.pdf",
+   "outlet": "New Mexico Legislative Finance Committee, Policy Spotlight: Felony Arrests and Outcomes",
+   "date": "2025-12-11",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "However, the State Police and several other large police agencies in New Mexico have recently flagged they have been inaccurately reporting clearance rates to the FBI for years, likely skewing statewide clearance rates.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "valuable proxy for understanding how frequently police are solving crimes. In New Mexico, reported clearance rates for all serious crimes have declined since 2010, with particularly notable declines in clearance rates for violent crimes, including homicide, aggravated assault, and rape (Chart 10 ). However, the State Police and several other large police agencies in New Mexico have recently flagged they have been inaccurately reporting clearance rates to the FBI for years, likely skewing statewide clearance rates. As of September 2025, 18 percent of law enforcement agencies in New Mexico had not reported crime and clearance data in more than a year and 51 percent were not current in their reporting , making it difficult to respond to trends. State law makes the Department of Public Safety (DPS) the central repository for incident and arrest dat"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.abqjournal.com/news/lfc-report-improving-new-mexicos-criminal-justice-system-could-lie-in-better-data-sharing/2945494",
+   "outlet": "Albuquerque Journal",
+   "date": "2025-12-20",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Court filings for felony crimes have not shifted substantially, suggesting arrest rates are probably roughly the same as in FY18.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "islature to improve staffing and information-sharing across the criminal justice system since fiscal year 2021, there were significant gaps in crime data gathering across the state. \"Several large agencies have recently cautioned they have been reporting inaccurately for years,\" the report states. \"Court filings for felony crimes have not shifted substantially, suggesting arrest rates are probably roughly the same as in FY18.\" The findings cast doubt on the state's current body of criminal justice data, which has noted precipitous declines in both violent and property crimes. The analysts recommended an incentive — tying grant funding for local law enforcement agencies to how well they report crimes. “The central theme is to get better information to peop"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.kob.com/new-mexico/albuquerque-police-boast-126-homicide-clearance-rate/",
+   "outlet": "KOB 4 (Albuquerque)",
+   "date": "2024-03-22",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "if you look at 2022, they ended at 92%, and in 2023 they were at 90%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e Department is boasting a 126% homicide clearance rate. That means they have solved most of the homicides from this year, and many from last year. This is a significant increase compared to the clearance rates from past years. “If you look at 2021, we were right at 55% clearance rate, 50%–55%, and if you look at 2022, they ended at 92%, and in 2023 they were at 90%, so right now they are off to a really good started with 126% clearance rate,” said George Vega, APD deputy chief. So what is APD doing differently in 2024? “There is not just one thing that I could put my finger on and say that did it, there are a lot of different things that have been done that play into where we are tod"
+  },
+  {
+   "idx": 4,
+   "url": "https://stateline.org/2025/11/24/why-clearance-rates-dont-tell-the-whole-story-about-solving-crimes/",
+   "outlet": "Stateline (Amanda Watford)",
+   "date": "2025-11-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Police departments in Vermont, Delaware and Idaho had the highest violent crime clearance rates in 2024, while New Mexico, Georgia and Mississippi had the lowest",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "spectively. Robbery clearance rates also shifted over time, rising from 24% in 1980 to 30% in 2024. But those figures reflect national averages. At the local level, clearance rates vary widely, with some departments solving a large share of cases while others struggle with consistently low numbers. Police departments in Vermont, Delaware and Idaho had the highest violent crime clearance rates in 2024, while New Mexico, Georgia and Mississippi had the lowest, according to a 50-state crime data analysis by the nonpartisan, nonprofit Council of State Governments Justice Center. Some experts say there are several reasons clearance rates can swing in either direction. Chronic staffing shortages, overwhelmed detective units, rising caseloads and strained community relationships can push rates down. "
+  },
+  {
+   "idx": 5,
+   "url": "https://www.police1.com/crime/legislative-report-finds-n-m-s-sagging-crime-clearance-rate-holds-back-public-safety-initiatives",
+   "outlet": "Police1 (reprinting Albuquerque Journal, Dan Boyd)",
+   "date": "2024-12-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Specifically, the clearance rate for solving violent crimes has gone from about 1 in 4 cases a decade ago to about 1 in 7 cases currently, according to the Legislative Finance Committee report.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o’s crime problem might also be, in large part, a crime-solving problem. A legislative report released Wednesday found that while the state’s violent crime rate has persisted well above the national average in recent years, the rate of clearing such crimes has steadily dropped over the last decade. Specifically, the clearance rate for solving violent crimes has gone from about 1 in 4 cases a decade ago to about 1 in 7 cases currently, according to the Legislative Finance Committee report. That could be due to a mix of low conviction rates, evidence collection issues and depleted law enforcement ranks — though the number of certified officers has increased over the last four years after lawmakers approved $150 million for recruitment and retention efforts. “The swiftness and certainty of justice is a really core piece” in the "
+  }
+ ]
+}

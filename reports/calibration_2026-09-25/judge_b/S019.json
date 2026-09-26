@@ -1,0 +1,12 @@
+{
+ "story_id": "S019",
+ "bin": "Known pattern",
+ "entity": "553 US water permits in significant noncompliance 36+ of 40 quarters, 2016-2025; 84 never formally enforced",
+ "deciding_sources": [1, 2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source states the chronic-permit counts. EPA OIG (2007) and GAO (2021) report the same kind of finding in general - long-term significant noncompliers with weak enforcement, 11,000 facilities over limits - and Reuters covers unpenalized WV mines without naming our entity.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,95 @@
+{
+ "story_id": "S016",
+ "lead": {
+  "headline": "Nebraska air regulators filed zero formal enforcement actions 2017-2025; none of 17 serious violations from 2017-21 is resolved",
+  "number": "0 state and local formal air actions every year 2017-2025 in EPA's air database; 0 of 17 high-priority violations found 2017-21 marked resolved, vs 94% at the median state; 15 of 120 operating majors currently \"Unaddressed\" (12.5% vs a 1.4% median).",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "\"State\" includes the Lincoln and Omaha local offices, and NDEE may settle by consent orders that never get typed into EPA's system."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Nebraska Department of Environment and Energy air quality enforcement actions few penalties",
+  "Nebraska attorney general air quality violation settlement penalty NDEE consent decree plant 2022 OR 2023 OR 2024",
+  "EPA State Review Framework Nebraska Clean Air Act high priority violations timely appropriate enforcement NDEE",
+  "Flatwater Free Press OR Nebraska Examiner NDEE enforcement lax penalties polluters air permits",
+  "Nebraska environmental regulators rarely penalize violators enforcement decline NDEE AltEn criticism voluntary compliance",
+  "Nebraska DWEE air pollution enforcement 2026 consent order penalty ethanol plant",
+  "\"high priority violations\" Clean Air Act states failed to address timely EPA OIG OR \"Environmental Integrity Project\" report Nebraska",
+  "\"NDEE\" \"formal enforcement\" air violations EPA review Nebraska news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf",
+   "outlet": "U.S. EPA Region 7, State Review Framework: Nebraska Clean Air Act Implementation in FFY2022 (Final Report)",
+   "date": "2024-08-27",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "NDEE did not conduct any formal enforcement responses during the review period and therefore no penalties were assessed, collected or documented in the data or files.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "S- Air).  Although the review showed that NDEE is overall reporting stack test and stack test results in a timely way, the review revealed inaccurate MDR data in ICIS-AIR, specifically around stack test dates and documents in the Nebraska electronic database that were not documented in ICIS-AIR.  NDEE did not conduct any formal enforcement responses during the review period and therefore no penalties were assessed, collected or documented in the data or files. Page 6 of 25 Clean Air Act Findings CAA Element 1 - Data Finding 1-1 Area for Improvement Recurring Issue: Recurring from Round 3 Summary: The review revealed untimely data reporting of HPV determinations and compliance monitoring MDRs into Integrated Compliance Information System for Air (ICIS-Air). The review revealed inaccura"
+  },
+  {
+   "idx": 1,
+   "url": "https://dwee.nebraska.gov/news-events/enforcement-actions/archer-daniels-midland-company",
+   "outlet": "Nebraska Department of Water, Energy, and Environment (DWEE), Enforcement Actions",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Archer Daniels Midland Company FID 9169 Programs (AIR) Clean Air Act",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r Wastewater Section Onsite Wastewater Program Wastewater Construction Permit Program Wastewater Treatment Facility Operator Certification Program Well and Septic Loan Evaluation Program Search Search Archer Daniels Midland Company Home News Events Enforcement Actions Archer Daniels Midland Company Archer Daniels Midland Company FID 9169 Programs (AIR) Clean Air Act Administrative Case Case Name Consent Order Case Number 3650 Document Type Consent Order Date 2025-10-22 PDF Archer Daniels - 9169 - Case No 3650 - Consent Order - Signed.pdf Judicial Case 245 Fallbrook Blvd. Suite 100 Lincoln, NE 68521 402.471.2186 To Report a Website Issue Information Footer Information ADA Compliance Statement DWEE N"
+  },
+  {
+   "idx": 2,
+   "url": "https://dwee.nebraska.gov/news-events/enforcement-actions/green-plains-wood-river-llc",
+   "outlet": "Nebraska Department of Water, Energy, and Environment (DWEE), Enforcement Actions",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Green Plains Wood River, LLC FID 86000 Programs (AIR) Clean Air Act",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "water Wastewater Section Onsite Wastewater Program Wastewater Construction Permit Program Wastewater Treatment Facility Operator Certification Program Well and Septic Loan Evaluation Program Search Search Green Plains Wood River, LLC Home News Events Enforcement Actions Green Plains Wood River, LLC Green Plains Wood River, LLC FID 86000 Programs (AIR) Clean Air Act Administrative Case Case Number 3581 Document Type Consent Order Date 2022-02-16 PDF Green Plains Wood River - 86000 - DEQ Pleading - CONSENT ORDER.pdf Administrative Case Case Number 3301 Document Type Administrative Order Date 2015-02-23 PDF Green Plains Wood River AO.pdf Judicial Case 245 Fallbrook Blvd. Suite 100 Lincoln, NE "
+  },
+  {
+   "idx": 3,
+   "url": "https://dwee.nebraska.gov/sites/default/files/publications/2022%20NDEE%20Annual%20Report%20to%20Legislature.pdf",
+   "outlet": "NDEE Annual Report to the Legislature, 2022",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The department has only needed to pursue formal enforcement 183 times since 2014; only 1 percent of all department inspections result in formal enforcement proceedings.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "y returned to compliance under NDEE’s guidance. The department prioritizes working alongside Nebraskans from a place of goodwill and trust to achieve compliance with rules and regulations that are protective of the environment, but NDEE does have the tools to pursue formal enforcement if necessary. The department has only needed to pursue formal enforcement 183 times since 2014; only 1 percent of all department inspections result in formal enforcement proceedings. The following graphs offer a depiction of the department’s inspections performed, letters of noncompliance issued, and formal enforcement proceedings pursued. 0 1000 2000 3000 4000 2014 2015 2016 2017 2018 2019 2020 2021 2022 NDEE inspection numbers Air RCRA IWM NPDES AG Onsite ESP CHAPTER 1 AGENCY OVERVIEW 2 This report focuses o"
+  },
+  {
+   "idx": 4,
+   "url": "https://dwee.nebraska.gov/air/air-compliance-enforcement-program",
+   "outlet": "Nebraska DWEE, Air Compliance & Enforcement Program page",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Through the Nebraska Environmental Protection Act, the Air Program attempts to obtain compliance with environmental regulations first through voluntary efforts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " access to DWEE, reduce response time to citizen complaints, and allow the agency to have a better understanding of local issues. Our field office staff conduct compliance inspections, complaint investigations, sampling, monitoring, and outreach activities for almost all of our regulatory programs. Through the Nebraska Environmental Protection Act, the Air Program attempts to obtain compliance with environmental regulations first through voluntary efforts. Voluntary compliance has helped bring about a better working relationship with the regulated community without sacrificing environmental quality. DWEE Compliance Assistance Program Enforcement Enforcement actions are pursued by the agency when compliance issues are serious, chronic, or cannot be otherwise resolved. DWEE’s maximum penalty is $10,0"
+  },
+  {
+   "idx": 5,
+   "url": "https://19january2021snapshot.epa.gov/sites/static/files/2013-09/documents/srf-rd2-rev-ne.pdf",
+   "outlet": "U.S. EPA Region 7, Nebraska SRF Round 2 (Final Report January 4, 2012)",
+   "date": "2012-01-04",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Lack of Administrative penalty authority delays bringing source back into compliance",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ified the following major issues: - Data entry of noncompliant status; - 2011 Work Plan requires inclusion of Minimum Data Requirements (MDRs) to include Title V deviations data; - High Priority Violations (HPV) discovery rate is low; - HPVs are not entered into AFS within 60 days of designation; - Lack of Administrative penalty authority delays bringing source back into compliance; - Documentation of Economic Benefit needs to be included in source files; and - Documentation of Final Penalty needs to be included in source files. Summary of Program Reviewed Clean Air Act Program Areas for State Improvement - The problems which necessitate state improvement and require recommendations and actions include the following: - Da"
+  }
+ ]
+}

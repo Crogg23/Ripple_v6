@@ -1,0 +1,66 @@
+{
+  "story_id": "S078",
+  "entity": "Altair Recycling (Inland Recycling LLC / Inland Environmental and Remediation / David Polston), Altair, Colorado County, Texas: state civil judgment 2025, Travis County case D-1-GN-19-002002",
+  "queries": [
+    {"q": "Altair Recycling Texas penalty attorney general judgment", "found_useful": true},
+    {"q": "\"Altair\" Skull Creek Inland Recycling Colorado County pollution", "found_useful": true},
+    {"q": "Inland Recycling Polston judgment \"$46.5 million\" civil penalties Skull Creek", "found_useful": true},
+    {"q": "\"Altair Recycling\" Texas", "found_useful": false},
+    {"q": "Colorado County Citizen Inland Recycling agreed final judgment civil penalties 2025", "found_useful": false},
+    {"q": "Skull Creek Inland Recycling Polston 2026 cleanup judgment collected", "found_useful": false},
+    {"q": "\"Skull Creek\" \"46.5 million\"", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.texastribune.org/2025/05/09/texas-attorney-general-judgment-pollution-skull-creek/",
+      "outlet": "Texas Tribune",
+      "date": "2025-05-09",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Attorney General Ken Paxton said his office secured a $60 million settlement against businessman David Polston and his companies, Inland Environmental and Remediation, Inland Recycling, and Boundary Ventures.",
+      "paywalled": false,
+      "searcher_note": "May 2025 AG judgment over Skull Creek dumping from the Inland Recycling site; $60M total, no civil-penalty breakdown in the article."
+    },
+    {
+      "url": "https://www.coloradocountycitizen.com/article/5669,colorado-county-to-sue-over-skull-creek-pollution",
+      "outlet": "Colorado County Citizen",
+      "date": "2025-03-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The upcoming court case has seen the state already enter a judgement against Polston and his companies, assessing civil penalties of $46.5 million dollars.",
+      "paywalled": false,
+      "searcher_note": "Local paper, March 2025: state judgment already entered with $46.5M civil penalties; differs from the lead's $57.0M and from the AG's $60M headline."
+    },
+    {
+      "url": "https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-protects-texas-environment-and-secures-60-million-judgment-against",
+      "outlet": "Office of the Texas Attorney General",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Attorney General Ken Paxton Protects Texas Environment and Secures $60 Million Judgment Against Recycling Company Dumping Chemicals into River",
+      "paywalled": true,
+      "searcher_note": "AG's own release; WebFetch got HTTP 402, so the quote is the headline only. Search snippet says it names Polston, Inland Environmental and Remediation, Inland Recycling, Boundary Ventures; dated May 2025 per the news pickups."
+    },
+    {
+      "url": "https://districtattorney.traviscountytx.gov/travis-county-da-guilty-plea-environmental-pollution-case/",
+      "outlet": "Travis County District Attorney",
+      "date": "2024-05-07",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "On February 8, 2019, the Texas Commission on Environmental Quality received two complaints of an oil-like sheen, hydrocarbon odor, and dead fish in Skull Creek near Altair in Colorado County, TX.",
+      "paywalled": false,
+      "searcher_note": "Criminal side: Inland Recycling L.L.C. pleaded guilty, $75,000 fine; ties the facility to Altair."
+    },
+    {
+      "url": "https://www.kut.org/post/creek-flowing-colorado-river-turned-black-now-state-has-sued-alleged-polluter",
+      "outlet": "KUT (Austin NPR)",
+      "date": "2019-04-17",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "On Tuesday, a state district court in Travis County granted a temporary restraining order against the company and its president, David Polston",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found: April 2019 state suit in Travis County district court (matches the 2019 cause number), sought up to $1M at filing."
+    }
+  ],
+  "notes": "No fetched page uses the exact string \"Altair Recycling\"; press names the operator Inland Recycling / Inland Environmental and Remediation, whose plant sits at Altair (Hwy 71) in Colorado County. A search-engine summary said \"The Altair Recycling facility is owned and operated by Inland Recycling, LLC\" but the page behind it was not identified or fetched, so it is not evidence. Amounts in coverage: $46.5M civil penalties (local paper, Mar 2025) and $60M total judgment (AG, May 2025); lead says $57.0M civil judicial penalty dated 2025-06-06. No coverage found ranking it second-largest after BP, and no coverage after 2026-06-30. The AG release pages return HTTP 402 to WebFetch."
+}

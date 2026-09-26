@@ -1,0 +1,77 @@
+{
+  "story_id": "S067",
+  "entity": "DeKalb County, GA, Snapfinger Creek sewer plant (NPDES GA0024147): 1,394 overflows since Oct 2016 vs $52,344 in penalties since 2015 (about $38 per overflow); 202 overflows in 2025",
+  "queries": [
+    {"q": "DeKalb County sewer spills consent decree Snapfinger Creek penalties", "found_useful": true},
+    {"q": "Snapfinger Creek wastewater treatment plant DeKalb violations Georgia EPD consent order fine", "found_useful": false},
+    {"q": "DeKalb County sewer spills 2025 increase South River Watershed Alliance Snapfinger basin", "found_useful": true},
+    {"q": "DeKalb sewage spills fines since 2011 total $924,000", "found_useful": true},
+    {"q": "DeKalb County watershed management sewer spills reduced progress consent decree 2026", "found_useful": true},
+    {"q": "DeKalb County sewage spill August 2026", "found_useful": false},
+    {"q": "\"GA0024147\" Snapfinger", "found_useful": false},
+    {"q": "Snapfinger basin repeat sewer spill sites DeKalb consent decree 47 sites south DeKalb", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.decaturish.com/news/dekalb/former-dekalb-ceo-told-epa-county-would-miss-deadline-to-upgrade-sewer-capacity/article_35cc2125-2145-5533-ab23-abecc5badd64.html",
+      "outlet": "Decaturish",
+      "date": "2025-01-19",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Sewer upgrades are needed to address sanitary sewer overflows in the Snapfinger Basin in South DeKalb County.",
+      "paywalled": false,
+      "searcher_note": "Names Snapfinger Basin overflows (the sewer area, not the plant or permit number); county told EPA it would miss the Dec 2027 consent-decree deadline there; mentions the $1M fine under the modified decree. No overflow count or per-overflow penalty math."
+    },
+    {
+      "url": "https://thechampionnewspaper.com/srwa-most-dekalb-county-sewer-spill-areas-not-covered-under-consent-decree/",
+      "outlet": "The Champion Newspaper (DeKalb)",
+      "date": "2020-05-08",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Earlier this year, the county saw one of its largest sewer spills near the Meadow Creek Path area of Lithonia and the area of the Snapfinger Wastewater Treatment Plant, which is currently undergoing an expansion.",
+      "paywalled": false,
+      "searcher_note": "Names the Snapfinger plant area (9.2M and 7M gallon spills in 2020). Also reports more than 1,000 spills since July 2014 and $738,000 in stipulated penalties 2012-2018, county-wide. Same pattern (many spills, modest penalties), county level."
+    },
+    {
+      "url": "https://www.epa.gov/newsreleases/dekalb-county-georgia-clean-water-act-settlement-modified-further-address-sanitary",
+      "outlet": "U.S. EPA",
+      "date": "2020-10-22",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The United States and the State of Georgia have demanded, and the County has paid, $859,000 in stipulated penalties under the Consent Decree for these SSOs.",
+      "paywalled": false,
+      "searcher_note": "Agency record of county-wide penalties under the 2011 consent decree plus a $1.047M added civil penalty in the modification. Snapfinger named only as a Snapfinger Creek cleanup segment, not the plant's penalties."
+    },
+    {
+      "url": "https://www.courthousenews.com/suit-over-georgia-countys-sewage-spillage-shot-down-by-federal-appeals-court/",
+      "outlet": "Courthouse News Service",
+      "date": "2023-05-31",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "the EPA and GDNR have done more than enough to meet the diligence threshold",
+      "paywalled": false,
+      "searcher_note": "Leans the other way on enforcement: 11th Circuit barred the South River Watershed Alliance citizen suit, holding EPA and Georgia regulators were diligently prosecuting. Reports over 800 spills since July 2014, county-wide."
+    },
+    {
+      "url": "https://www.ajc.com/neighborhoods/dekalb/a-year-into-new-consent-decree-dekalb-making-progress-on-sewer-repairs/BGFGW4J6RNGITB3DXKHGE7R77E/",
+      "outlet": "Atlanta Journal-Constitution",
+      "date": "2022-09-29",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "the county reported 11.7 million gallons worth of spills in the first eight months of this year.",
+      "paywalled": false,
+      "searcher_note": "Progress framing: 2022 spill volume about 5M gallons lower than same period 2021; mentions Snapfinger basin only for development connection requests. County-wide, volume not count."
+    },
+    {
+      "url": "https://www.decaturish.com/news/decatur/dekalb-county-will-pay-nearly-300-000-in-fines-for-sewage-spills/article_ddd8ab2b-d3a7-51ce-82d8-2acfa62c07ae.html",
+      "outlet": "Decaturish",
+      "date": "2017-06-23",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "DeKalb County will have to pay $294,000 in fines for multiple sewage spills",
+      "paywalled": false,
+      "searcher_note": "County-wide spill fines, including 48 unreported spills. Pattern of penalties for spills under the decree; no Snapfinger plant figures."
+    }
+  ],
+  "notes": "Well-covered consent-decree story at DeKalb County level (2011 decree, 2020-22 modification, Dec 2027 deadline, Snapfinger Basin the problem area). No source found tying overflow counts or penalties to the Snapfinger Creek plant's NPDES permit GA0024147, nor the 1,394 overflows / $52,344 / about $38 per overflow math, nor 202 overflows in 2025. County-wide penalty figures in press run far higher ($738K stipulated 2012-18; $859K stipulated; $924K fines since 2011 per a 2017 AJC report seen in search; $1.047M modification penalty), so they measure a different scope than the lead's permit-level total. July 2026 county spill notices seen on Nextdoor were small grease-blockage spills elsewhere, not recorded. WABE piece returned 403; Decaturish letter naming Snapfinger Basin returned 429; 2010 federal complaint PDF naming GA0024147 returned 404."
+}

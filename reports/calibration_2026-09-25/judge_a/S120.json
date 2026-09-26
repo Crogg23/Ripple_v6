@@ -1,0 +1,12 @@
+{
+ "story_id": "S120",
+ "bin": "Matched + more",
+ "entity": "Senate recorded votes in 2025 (count, nomination share)",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2025-12-18",
+ "post_cutoff_match": true,
+ "what_we_add": "the en bloc before/after rate, 37.3 to 12.6 nomination votes a month, and the 41.5% vs 13.5% zero-crossover share",
+ "why": "Bloomberg Government states 659 roll calls, second only to 1976; Thune and the Leader page state the nomination-heavy record back to 1989 with ~54% of 655 votes on nominations. No source has our monthly en bloc drop or the zero-crossover comparison.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

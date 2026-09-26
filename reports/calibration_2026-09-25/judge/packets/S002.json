@@ -1,0 +1,71 @@
+{
+ "story_id": "S002",
+ "lead": {
+  "headline": "Reliant Care's 30 Missouri nursing homes log 35% fewer nurse hours and 3.8x the harm citations per bed",
+  "number": "2.16 vs 3.35 nurse hours per resident per day against other Missouri for-profit homes; 4.67 vs 1.23 harm citations per 100 beds (3.8x); fines $117,358 vs $27,138 per 100 beds (4.3x)",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Those 4 worst-list homes hold 76 of 141 harm citations; without them harm and fines are 2.5x, not 3.8x/4.3x. And it's 30 homes, not 31."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Reliant Care Management Missouri nursing homes staffing citations",
+  "\"Reliant Care\" nursing home Missouri Independent OR KCUR OR Post-Dispatch",
+  "Reliant Care Management nursing home fines harm residents 2026",
+  "Missouri Independent Reliant Care nursing homes staffing owners (site: missouriindependent.com)",
+  "\"Reliant Care\" nursing home Missouri September 2026 OR August 2026 OR July 2026",
+  "Kansas City Star Reliant Care nursing home Gregory Ridge Bridgewood investigation",
+  "\"Reliant Care Management\" spokesperson OR statement nursing home staffing quality response",
+  "Reliant nursing homes Missouri \"special focus\" OR \"immediate jeopardy\" St. Louis Public Radio OR Post-Dispatch"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.kcur.org/health/2024-08-07/missouri-has-dramatically-reduced-its-backlog-of-nursing-home-inspections",
+   "outlet": "KCUR (republishing Missouri Independent, by Clara Bates)",
+   "date": "2024-08-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The for-profit Reliant Care owns several of the largest facilities in Missouri. Sixteen of the entities associated with Reliant Care offer less than 2 hours of daily individual nursing care, according to the latest data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " next few years — and even that was a level advocates fought for being too low. Missouri has consistently ranked among the worst states for nursing home staffing levels. Staffing varies widely by facility in the state. Two dozen facilities offer less than 2 hours of daily nursing care per resident. The for-profit Reliant Care owns several of the largest facilities in Missouri. Sixteen of the entities associated with Reliant Care offer less than 2 hours of daily individual nursing care, according to the latest data. One, North Village Park, offers just 37 minutes per day of care, the federal data shows. Marjorie Moore, executive director of VOYCE St. Louis, an advocacy group for long-term care residents, said Missouri’s nursing home staffing is one of the biggest challenges facing residents. “A lot of people are going to be laying in bed all"
+  },
+  {
+   "idx": 1,
+   "url": "https://tallgrasseconomics.org/2024/11/reliant-health-care-management-llc-the-worst-nursing-home-chain-in-america/",
+   "outlet": "Tallgrass Economics (Dave Kingsley)",
+   "date": "2024-11-10",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In our work across the United States in cities, counties, states, and regions, we have not encountered a chain with lower federal ratings on quality of care.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ed in this post is allowed to operate with impunity. RELIANT HEALTH CARE, LLC: AN EXTREMELY LOW PERFORMING MISSOURI NURSING HOME CHAIN Reliant Care Management, LLC owns 21 Medicare & Medicaid funded skilled nursing facilities in the State of Missouri – four are in the Kansas City Metropolitan Area. In our work across the United States in cities, counties, states, and regions, we have not encountered a chain with lower federal ratings on quality of care. In this alert, we will lay out the case for a high level of concern among families, ministers, social workers and others who might have an occasion to find a skilled nursing facility for a loved one or a client. LOOK FOR THE RED HAND The Center for Medicare & Medicaid Services as the federal regulatory agency for Medicare and "
+  },
+  {
+   "idx": 2,
+   "url": "https://abc17news.com/news/special-report/2025/05/15/missouri-nursing-homes-among-worst-in-nation-for-quality-of-care/",
+   "outlet": "ABC 17 News (KMIZ, Columbia MO)",
+   "date": "2025-05-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "As a result, the care hours for behavioral residents cannot be compared with care hours given to residents at a traditional nursing home.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ies of daily living (“ADL”). \"These ADLs include self-care tasks such as bathing, dressing, eating and using the restroom. Residents with behavioral issues are usually younger and do not need assistance in these routine daily tasks. Their care is focused on managing their mental disease or illness. As a result, the care hours for behavioral residents cannot be compared with care hours given to residents at a traditional nursing home. NVP and FSLC strive to provide excellent care to this underserved population and continues to implement new programs to improve the quality of care and the quality of these residents’ lives,\" The other \"troubled' skilled nursing facilities in Mid-Missouri in the report include: Eldon Nursing and Rehab in Miller County Aurora"
+  },
+  {
+   "idx": 3,
+   "url": "https://projects.propublica.org/nursing-homes/affiliate/a-446",
+   "outlet": "ProPublica Nursing Home Inspect (data page, not an article)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Reliant Care Management is affiliated with 34 facilities in Kansas and Missouri.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " All nursing homes affiliated with Reliant Care Management Nursing Home Inspect > All affiliated entities Data as of August 2026 Reliant Care Management According to CMS data , Reliant Care Management is affiliated with 34 facilities in Kansas and Missouri. Affiliation means this group of homes is linked to at least one individual or organizational owner, officer or entity with managerial control of these nursing homes. Some affiliated entities are not named directly in a home’s ownership information. In other cases, affiliated entities may not include every home a person or company has a con"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S208",
+  "bin": "Known pattern",
+  "entity": "Central Appalachian coal operators' unpaid-fine rate when a mine is handed off (16.6%) vs closed (13.0%)",
+  "deciding_sources": [0, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "DOL OIG and NPR report the same scheme in general - operators dodging MSHA fines by selling mines or going bankrupt - but no source names our cohort or states the handoff-vs-closure comparison. All five sources are entity_named no.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

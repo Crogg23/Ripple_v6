@@ -1,0 +1,14 @@
+{
+  "story_id": "S076",
+  "bin": "Known pattern",
+  "entity": "29 Medicare-enrolled businesses signed by someone sharing a banned person's name, city and state",
+  "deciding_sources": [
+    0
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source states the finding for these orgs; the Voyage MIA interview names Raul Rodriguez and NHT with no exclusion finding. OIG 2016 reports the same scheme in general: gaps that let excluded owners enroll.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

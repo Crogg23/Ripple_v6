@@ -1,0 +1,15 @@
+{
+ "story_id": "S149",
+ "bin": "Matched + more",
+ "entity": "DHS contract obligations Oct 2025-Jun 2026 and Fisher Sand & Gravel's share",
+ "deciding_sources": [
+  0,
+  2
+ ],
+ "earliest_match_date": "2026-05-21",
+ "post_cutoff_match": true,
+ "what_we_add": "The $50.97B nine-month total, 4.1x the $12.42B median, and $27.0B of it in CBP border-barrier work",
+ "why": "PrimeRFP has Fisher at $13.4B at DHS, matching our $13.35B; ProPublica and Bloomberg-via-Hoodline report the multibillion Fisher wall haul in words. Their $8-9.5B figures are earlier snapshots of a growing total, not contradictions. Nobody has the DHS-wide 4.1x figure.",
+ "confidence": "high",
+ "blocked_evidence": true
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S036",
+  "bin": "Not comparable",
+  "entity": "Dialyze Direct / Dialysis Direct / Concerto nursing-home dialysis clinics flagged worse on survival",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Kidney360 names the company's modality and reports 42-day outcomes with no worsened death vs conventional dialysis - a different measure and comparison than CMS SMR flags, so the numbers can't be lined up. Nothing else matches.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

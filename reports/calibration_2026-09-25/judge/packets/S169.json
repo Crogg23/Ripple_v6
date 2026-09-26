@@ -1,0 +1,95 @@
+{
+ "story_id": "S169",
+ "lead": {
+  "headline": "Around Red River Parish, Louisiana: zero magnitude-2.5+ quakes 2010-2023, then 29 since January 2024, topped by a magnitude 4.9",
+  "number": "28-by-78 km box: 0 events of M2.5+ in 2010-2023 (none within 50 km either); 16 from Jan 2024 to Mar 4, 2026 (biggest M3.6); M4.9 on 2026-03-05; 12 more by May 3, including M4.1 and M4.4 on Mar 9",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Natural quakes aren't ruled out, and 11 of the 12 post-M4.9 events came after a station went in within a few km, so later counts mix aftershocks with better detection"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Red River Parish Louisiana magnitude 4.9 earthquake March 2026",
+  "Red River Parish earthquakes swarm since 2024 Haynesville wastewater injection",
+  "Coushatta earthquakes USGS cause injection wells report 2026",
+  "Red River Parish earthquake 2024 first quake Coushatta magnitude",
+  "north Louisiana earthquakes Red River Parish August 2026",
+  "Red River Parish earthquakes \"2024\" no recorded earthquakes before increase Haynesville saltwater disposal",
+  "Louisiana Coushatta earthquakes natural tectonic not induced scientists say",
+  "3.6 magnitude earthquake Coushatta Red River Parish"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.theadvocate.com/baton_rouge/news/environment/earthquakes-north-louisiana-oil-fracking-haynesville-shale/article_3297e504-50a8-5f5a-b098-d2c4acc5b7cc.html",
+   "outlet": "The Advocate (Baton Rouge)",
+   "date": "2026-05-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The earthquakes ratcheted up in 2022, and since then, 35 earthquakes with a magnitude of 2.5 or more have struck northwestern Louisiana.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rinking water,” the EPA told Louisiana’s Department of Conservation and Energy. Now, researchers are installing seismometers and aftershock monitors across northwest Louisiana and the state’s Department of Conservation and Energy is investigating saltwater disposal wells in a bid to find the cause. The earthquakes ratcheted up in 2022, and since then, 35 earthquakes with a magnitude of 2.5 or more have struck northwestern Louisiana. A 4.9-magnitude earthquake on March 5 in Red River Parish tied for the largest in state history, causing people to scramble out of bed as the ground rattled under them. It was felt as far as 150 miles away. “Anybody living in a trailer home — and there are a lot up there — they bounce with everything bigger than about a 2.5,” said Cy"
+  },
+  {
+   "idx": 1,
+   "url": "https://news.tulane.edu/pr/tulane-geoscientist-helping-researchers-understand-rare-north-louisiana-earthquakes",
+   "outlet": "Tulane University News",
+   "date": "2026-03-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Since December, at least 14 earthquakes with a magnitude greater than 2.5 have been detected in north Louisiana, according to the U.S. Geological Survey. The most significant occurred on March 5 near Coushatta and measured magnitude 4.9.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "isiana. (Photo by Cynthia Ebinger) A Tulane University geoscientist has installed seismic monitoring equipment in northwest Louisiana following an unusual series of earthquakes in the Coushatta area of Red River and DeSoto parishes, including the largest inland earthquake recorded in state history. Since December, at least 14 earthquakes with a magnitude greater than 2.5 have been detected in north Louisiana, according to the U.S. Geological Survey. The most significant occurred on March 5 near Coushatta and measured magnitude 4.9. Several additional earthquakes, including one measuring magnitude 4.4, were recorded March 9 within minutes of one another. Smaller earthquakes were missed because of the distances between large detection instruments. Cynthia Ebinger , the Marshall-Heape Chair in Geology in Tulane University’s School of Science and Engineering , travele"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.dce.louisiana.gov/news/red-river-parish-tremors",
+   "outlet": "Louisiana Department of Conservation and Energy",
+   "date": "2026-03-12",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "USGS has previously reported a number of earthquakes in the area since December 2025, with an overnight series of four Sunday night ranging in magnitude from 3.1 to 4.4.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "N ROUGE – Louisiana Department of Conservation and Energy (C&E) announced Wednesday they are working closely with the U.S. Geological Survey (USGS) and universities throughout the state in the attempt to establish a definitive cause for the recent series of earthquakes in the Red River Parish area. USGS has previously reported a number of earthquakes in the area since December 2025, with an overnight series of four Sunday night ranging in magnitude from 3.1 to 4.4. C&E staff have engaged with the Red River Office of Emergency Preparedness and USGS in collaborating on investigations and the necessary response to the seismic activity. “Our scientific staff and field agents have been following up on these earthquakes with investigation and site visits to gather data such as injection volumes, nearb"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.ktbs.com/news/earthquakes-in-red-river-parish-shaking-up-residents/article_45b57d80-bef3-11ee-8a5f-8705d44c3b95.html",
+   "outlet": "KTBS 3 (Shreveport)",
+   "date": "2024-01-29",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "According to the U.S. Geological Survey, there was one in the morning that measured 2.5 and another one in the afternoon that shook the area at a 3.5 magnitude.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "L SUMMIT, La. - A jarring experience for hundreds, if not thousands of ArkLaTex residents over the weekend. Thomas Perrin Two substantial earthquakes hit Red River Parish on Saturday. And as you might expect, some people were pretty shook up, while others said they didn't even feel it. Scott Vetter According to the U.S. Geological Survey, there was one in the morning that measured 2.5 and another one in the afternoon that shook the area at a 3.5 magnitude. \"My wife was sitting at home and things started shaking at the house and she knew it was an earthquake. She called my daughter who works at the hospital in Coushatta and they felt it down there in Coushatta. So it was a pretty big one,\" said Thomas Perrin, a Hall Summit resident. \"In Red River Parish there is a fault underground,"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.ktbs.com/community/earthquake-rattles-parts-of-red-river-parish/article_2448ae11-4637-4ebd-adc1-a4ee7f8d19c6.html",
+   "outlet": "KTBS 3 (Shreveport)",
+   "date": "2026-08-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "There have been a series of small earthquakes reported in Red River and neighboring DeSoto Parish in recent months.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ological Survey shows the quake originating just over 4 miles north northwest of Edgefield, which is north of Coushatta. It was about 5 miles deep. The earthquake comes just five months after a 4.9 magnitude hit in about the same location. It was initially reported as a 4.4 magnitude then upgraded. There have been a series of small earthquakes reported in Red River and neighboring DeSoto Parish in recent months. KTBS 3 Weather Watcher Hannah Worsham told Meteorologist Joe Haynes that she felt today's earthquake, which was reported around 3 p.m. Worsham said the tremor caused her TV to shake and pictures to fall off the wall. \"So, I was sitting in my family living room, watching just watching TV ... and I felt it. And at first, I tho"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.yahoo.com/news/articles/earthquakes-becoming-more-frequent-east-120000632.html",
+   "outlet": "Houston Chronicle (via Yahoo News)",
+   "date": "2026-04-08",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "USGS researchers attributed a series of earlier near-border earthquakes in the area to fracking and associated wastewater disposal.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rmation - a natural gas-rich area that straddles East Texas and Louisiana - was triggered by oil and gas operations. The cause of the quake, believed to be the largest in Louisiana history, remains under investigation by the U.S. Geological Survey and the Department of Energy and Natural Resources. USGS researchers attributed a series of earlier near-border earthquakes in the area to fracking and associated wastewater disposal. LNG DOMINANCE: New East Texas LNG facility is launching at 'the right time' as Iran war reshapes global gas markets Advertisement Advertisement Advertisement Advertisement The earthquakes are a destabilizing force for the Haynesville shale area, where production has increased in recent years as liquefied natural gas export facilities pr"
+  }
+ ]
+}

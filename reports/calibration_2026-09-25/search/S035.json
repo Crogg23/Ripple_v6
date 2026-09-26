@@ -1,0 +1,57 @@
+{
+  "story_id": "S035",
+  "entity": "SAMHSA money per person, FY2019-25, in 54 U.S. counties flagged high-overdose and high-jail ($45) vs same-size, same-overdose-rank peer counties ($92); 22% vs 34% got any",
+  "queries": [
+    {"q": "SAMHSA grant funding per capita counties high overdose rates mismatch analysis", "found_useful": true},
+    {"q": "counties with high overdose deaths and high jail incarceration rates receive less federal treatment funding", "found_useful": true},
+    {"q": "rural counties receive less SAMHSA discretionary grant funding per capita despite higher overdose rates study", "found_useful": false},
+    {"q": "federal opioid grant money per overdose death varies widely states analysis Stateline NPR SAMHSA", "found_useful": true},
+    {"q": "rural counties highest jail incarceration and overdose rates lack federal addiction treatment grants investigation 2025", "found_useful": false},
+    {"q": "SAMHSA grant cuts 2026 which counties lose addiction funding overdose hot spots analysis", "found_useful": false},
+    {"q": "study SAMHSA opioid funding allocation aligned with overdose mortality states with more deaths received more funding", "found_useful": true},
+    {"q": "county-level analysis federal substance use grant dollars per capita versus overdose death rates counties received little or nothing", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10330579/",
+      "outlet": "Journal of Substance Abuse Treatment (Harris, Abraham, Lozano-Rojas, Negaro, Andrews, Grogan)",
+      "date": "2023-05-06",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "About half of states received less than $100.00 dollars per capita in the state corrections population.",
+      "paywalled": false,
+      "searcher_note": "Closest pattern: FY2019 federal opioid money for the criminal-legal system (10 agencies, 517 grants, $590M) was unevenly spread relative to need; says ~34.2% would need reallocating. State level, not county; not the same flagged-county set."
+    },
+    {
+      "url": "https://www.vera.org/publications/overdose-deaths-and-jail-incarceration",
+      "outlet": "Vera Institute of Justice",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "When counties spend money on jails, they have less money to spend on substance use treatment, harm reduction services, and other community-based resources that could prevent overdoses and improve community health and wellness.",
+      "paywalled": false,
+      "searcher_note": "Links county jail incarceration and overdose death rates (the 'double burden' idea); argues jail spending crowds out treatment. Does not measure SAMHSA dollars per person in those counties."
+    },
+    {
+      "url": "https://www.gao.gov/products/gao-25-106944",
+      "outlet": "U.S. Government Accountability Office (GAO-25-106944)",
+      "date": "2024-12-17",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "SAMHSA allocates funding based on factors such as overdose death rates, and recently revised its allocation to better ensure funding goes to recipients with the greatest need.",
+      "paywalled": false,
+      "searcher_note": "Leans the other way: GAO says State Opioid Response money is allocated on overdose death rates (state level, $8.1B since FY2018). Does not address county-level distribution or jail rates."
+    },
+    {
+      "url": "https://www.healthaffairs.org/doi/10.1377/hlthaff.2020.01656",
+      "outlet": "Health Affairs",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Federal Opioid Grant Funding Favors Least Populous States, Not States With Greatest Need",
+      "paywalled": true,
+      "searcher_note": "Headline only; page returned 403 to fetch. State-level pattern: federal opioid grants not tracking need. Not county level."
+    }
+  ],
+  "notes": "No source found that measures SAMHSA dollars per person in counties flagged for both high overdose and high jail incarceration, or any county-level comparison close to $45 vs $92. Coverage found is state-level (Harris 2023, Health Affairs, GAO) or conceptual (Vera on jail spending vs treatment). GAO leans the other way at state level: SOR allocation is based on overdose death rates. A Columbia Journal of Global Health piece on 2021 SAMHSA allocation (search snippet: states with more deaths got more, but high-rate states underfunded per population) was blocked on fetch, not recorded. Bipartisan Policy Center county-level funding maps (2015-17, five states) returned 403, not recorded. Jan 2026 SAMHSA grant cut-and-restore coverage (WaPo, NPR) is not about county allocation."
+}

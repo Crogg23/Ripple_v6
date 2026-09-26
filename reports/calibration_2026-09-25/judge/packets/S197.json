@@ -1,0 +1,94 @@
+{
+ "story_id": "S197",
+ "lead": {
+  "headline": "3 of 748 big credit unions lost 20%+ of net worth in a year: Civic, Greater Nevada, U.S. Eagle",
+  "number": "Net worth -39.5% (Civic FCU, $3.19B), -30.3% (Greater Nevada CU, ratio 3.33%), -20.6% (U.S. Eagle FCU); they rank #2, #4 and #1 of 758 on loans 60+ days late.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The late-loan rank isn't a second witness (same call report, same mechanism) and the ACCT_041B label is unconfirmed; Greater Nevada is profitable with low charge-offs yet lost $24.5M of net worth, unexplained."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Civic Federal Credit Union net worth loss 2025",
+  "Greater Nevada Credit Union net worth ratio decline loss",
+  "U.S. Eagle Federal Credit Union losses delinquencies net worth",
+  "Greater Nevada Credit Union 2025 loss capital subordinated debt NCUA news",
+  "\"Greater Nevada Credit Union\" Nevada Appeal OR \"Nevada Independent\" OR \"Reno Gazette\" 2026",
+  "Civic Federal Credit Union 2026 second quarter loss net worth NCUA",
+  "U.S. Eagle credit union Albuquerque 2025 loss capital net worth ratio Southwest Capital Bank deal collapsed"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.creditandcollectionnews.com/civic-federal-credit-union-loss-widens-membership-falls/",
+   "outlet": "Credit and Collection News (reprint of Business North Carolina)",
+   "date": "2026-02-10",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Raleigh-based Civic posted a net loss of $123.7 million in the 12 months ended Dec. 31, widening from a loss of $75 million in the first nine months of the year, according to recent federal regulatory filings.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Civic Federal Credit Union loss widens, membership falls February 10, 2026 12:05 am The exchange for the debt economy Source: site The financial performance and membership of Civic Federal Credit Union veered in the wrong direction last year after it emerged as an independent financial institution. Raleigh-based Civic posted a net loss of $123.7 million in the 12 months ended Dec. 31, widening from a loss of $75 million in the first nine months of the year, according to recent federal regulatory filings. Its assets declined to $3.3 billion from $4 billion at the end of 2024 while membership sank 12.8%, or 52,345, to 355,581. The faltering results defied the expectations of Civic’s leadership as they prepared for the early June merger of the institution with Local Government Federal Credit Union, also based in Raleigh. Civic’s mem"
+  },
+  {
+   "idx": 1,
+   "url": "https://thecudaily.com/civic-fcu-posts-47m-loss-in-first-half-of-year-says-its-part-of-long-term-strategic-plan/",
+   "outlet": "Credit Union Daily",
+   "date": "2026-08-10",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "A net loss of $47.2 million during the first six months of 2026, following losses of about $124 million in 2025 and $1.6 million in 2024.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t Union, according to a new analysis. The $3-billioncredit union, which serves employees of North Carolina city and county governments, recently completed its first year operating as an independent financial institution. According to its mid-year 5300 report, as cited by BusinessNC, Civic reported: A net loss of $47.2 million during the first six months of 2026, following losses of about $124 million in 2025 and $1.6 million in 2024. Assets of $3.07 billion as of June 30, down from $3.3 billion at year-end 2025. Membership of 336,107, a decline of about 19,500 members, or nearly 5.5%. Loans totaling $2.7 billion, including $171 million that were at least 60 days delinquent. A 60-day-or-more delinquency rate of 6.3%, an improvement from $225 milli"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.kolotv.com/2026/05/13/usda-removes-greater-nevada-credit-union-rural-development-program/",
+   "outlet": "KOLO 8 News Now (Reno)",
+   "date": "2026-05-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The USDA Lender Dashboard shows GNCU with $165.9 million in loans that have been delinquent for more than 90 days.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rust – West Georgia -Genisys Credit Union -Greater Nevada Credit Union -North Avenue Capital -Optus Bank -U.S. Eagle Federal Credit Union -ReadyCap Commercial That list includes Greater Nevada Credit Union, which is one of 7 lenders that are part of the program in Nevada, prior to the announcement. The USDA Lender Dashboard shows GNCU with $165.9 million in loans that have been delinquent for more than 90 days. That amount equates to a third of the credit union’s loans in the program and is the second highest. The USDA reports the average number for all 760 lenders in the program is $2 million in delinquent loans. Greater Nevada Credit Union sent the following response to KOLO 8 News Now regarding the USDA’s decision: “Greater Nevada Credit"
+  },
+  {
+   "idx": 3,
+   "url": "https://weissratings.com/en/credit-union/6128",
+   "outlet": "Weiss Ratings",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "based on a net capital to total assets of 2.6 and a net worth ratio of 3.5",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ital Ratio 2.57 Leverage Ratio 3.50 Return On Assets 0.74% Total Assets 1.68B Capital 43.23M Total Deposits 1.61B Net Income 6.21M Summary History Comparison Industry Comparison Glossary My Lists My Alerts Loading... Major Rating Factors: Very Weak current capitalization (0.0 on a scale of 0 to 10) based on a net capital to total assets of 2.6 and a net worth ratio of 3.5. A current level of 69.4 percent of nonperforming loans to core capital contributes to the Very Weak asset quality (0.3). Other Rating Factors: A five year analysis of stability tests including evaluations of capital adequacy, asset growth, and profitability lead to a Weak overall stability index (1.6 on a scale of 0 to 10"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.abqjournal.com/business/us-eagle-banned-from-federal-lending-program-over-delinquent-loans/3040726",
+   "outlet": "Albuquerque Journal",
+   "date": "2026-05-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The credit union posted a loss of $3.35 million in this year's first quarter, according to a National Credit Union Administration call report.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "program, in some of the national loans, and bring those earnings back to New Mexico and redeploy them locally to create this virtuous cycle,” Moore said. The removal comes as the credit union has faced financial challenges, which last year led to a collapsed deal to acquire Southwest Capital Bank . The credit union posted a loss of $3.35 million in this year’s first quarter, according to a National Credit Union Administration call report. In a statement, USDA Secretary Brooke Rollins said the Trump administration “has absolutely no tolerance for the irresponsible and noncompliant actions of these lenders and has banned them from participating in USDA guaranteed lending programs.” “I will continue to protect the American taxpayer and ensure their hard-earned doll"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.abqjournal.com/business/article_47071cc7-389b-4cd3-bcc8-569749898f7a.html",
+   "outlet": "Albuquerque Journal",
+   "date": "2025-07-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "U.S. Eagle reported a loss of $2.35 million for its 2025 first quarter",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "buquerque, Farmington, Bernalillo and Santa Fe, would have absorbed Southwest Capital Bank's six locations in northern New Mexico. The merger, announced in August, was expected to have already closed earlier this year. Officials from both companies declined to provide the cost of the proposed deal. U.S. Eagle reported a loss of $2.35 million for its 2025 first quarter, which a spokesperson for the credit union characterized as \"post-pandemic financial impact,\" adding that U.S. Eagle's \"core business remains strong and continues to be classified as 'well-capitalized' for fiscal soundness\" by the National Credit Union Administration. As of March, U.S. Eagle had $1.5 billion in assets, acco"
+  }
+ ]
+}

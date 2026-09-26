@@ -1,0 +1,12 @@
+{
+ "story_id": "S132",
+ "bin": "Not comparable",
+ "entity": "Louisiana's five-year re-inspection rate of hazardous-waste manufacturing plants (large quantity generators), vs other states",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The EPA OIG table gives Louisiana 59% LQG inspection coverage over a 165-facility universe, with Illinois 48% and Connecticut 36% below it, ranking Louisiana neither last nor at 49.5%. Its universe (all LQGs, not manufacturing-only) and coverage definition differ from ours, so the numbers and the ranking can't be lined up; nothing else matches.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

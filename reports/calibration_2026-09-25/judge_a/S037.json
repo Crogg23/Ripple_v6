@@ -1,0 +1,12 @@
+{
+ "story_id": "S037",
+ "bin": "Known pattern",
+ "entity": "California marriage and family therapists' Medicare opt-out rate since 2024",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "KFF reports the same kind of finding - Medicare opt-out rates by specialty, mental-health highest - but only for physicians, never for MFTs or California. One pattern source, eight queries logged.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

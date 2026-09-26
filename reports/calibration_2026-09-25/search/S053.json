@@ -1,0 +1,28 @@
+{
+  "story_id": "S053",
+  "entity": "Amerihost Services (LLC), EPA-excluded in SAM 2021-09-08 to 2026-09-07, receiving HUD Section 8 rent subsidy 2021-11 to 2026-03",
+  "queries": [
+    {"q": "\"Amerihost Services\" EPA", "found_useful": false},
+    {"q": "Amerihost Services debarred landlord lead paint", "found_useful": false},
+    {"q": "Amerihost Beckley West Virginia apartments owner", "found_useful": false},
+    {"q": "Amerihost Services LLC Pittsburgh debarment EPA suspension 2021", "found_useful": false},
+    {"q": "\"Beckley Townhomes\" OR \"Beckley Town Homes\" Hager Street HUD lead EPA violation", "found_useful": false},
+    {"q": "EPA debarment landlord Section 8 housing company still receiving HUD payments while excluded", "found_useful": false},
+    {"q": "Register-Herald Beckley Townhomes Hager Street HUD tenants", "found_useful": false},
+    {"q": "GAO OR \"inspector general\" excluded parties SAM debarred entities received federal assistance payments during exclusion report", "found_useful": true},
+    {"q": "Amerihost TSCA lead-based paint disclosure consent agreement EPA Region 3 West Virginia landlord 2021", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.gao.gov/assets/a286497.html",
+      "outlet": "U.S. Government Accountability Office (GAO-09-174)",
+      "date": "2009-02-25",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Businesses and individuals that have been excluded for egregious offenses ranging from national security violations to tax fraud are improperly receiving federal contracts and other funds.",
+      "paywalled": false,
+      "searcher_note": "Pattern only: excluded parties getting federal money during exclusion (25 case studies). Scope was procurement (FPDS-NG); the report says it did not examine grants, loans or subsidies. No HUD or rent-subsidy cases. gao.gov blocks curl; WebFetch read it."
+    }
+  ],
+  "notes": "No page found that names Amerihost Services in connection with an EPA exclusion, HUD Section 8 payments, lead paint, or any enforcement. An OpenSanctions entity page for AMERIHOST SERVICES, LLC appeared in search but returns 404. Business directories (Manta, Buzzfile; Manta blocked to fetch) place an Amerihost Services LLC, PA-incorporated 2009, at 123 Hager St, Beckley WV, the address of the HUD-subsidized Beckley Town Homes, and a Pittsburgh 412 phone; no fetched page ties that to the lead's HUD payments, so none recorded. No EPA docket, suspension-and-debarment notice, HUD OIG item, or Register-Herald story found. No coverage after 2026-06-30 found."
+}

@@ -1,0 +1,47 @@
+{
+ "story_id": "S148",
+ "lead": {
+  "headline": "EU registrars renewed 11 of 13 sanctioned firms' global company IDs after listing; 9 still current, including four Iran-linked banks",
+  "number": "11 of 13 renewed after the EU listing, like ordinary clients at the same offices (72-98%); London's registrar renewed 0 of its 4 UK-listed clients",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Renewal may be lawful: EU rules allow licensed fees for upkeep of frozen assets and prepaid multi-year plans are common; 6 of the 8 renewed links come via OpenSanctions, not an ID the EU printed."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Legal Entity Identifier LEI renewal sanctioned entities EU sanctions LEI issuers",
+  "GLEIF LEI issuers sanctioned Russian entities suspend services renewal 2022 statement",
+  "OpenSanctions sanctioned companies still hold active LEI codes",
+  "Bank Melli Bank Saderat Legal Entity Identifier LEI issued renewed sanctions",
+  "LEI issuer refuse renewal sanctioned company London Stock Exchange LEI sanctions policy",
+  "GLEIF statement Ukraine sanctions LEI",
+  "sanctioned entities keep renewing LEI codes investigation 2026",
+  "EU sanctions derogation fees routine holding or maintenance of frozen funds economic resources"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.gleif.org/lei-solutions/featuring-the-lei/cross-border-payments/2023-06-5_gleif_lse_sanctions_screening_v1.0_approved_final.pdf",
+   "outlet": "GLEIF / London Stock Exchange Group case study",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "As the LSE is an LEI issuer, in the event a sanctioned entity is encountered, we can issue that organization with an LEI, adding transparency to the market",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e, and instant digital format, all stakeholders will be able to transact with far greater confidence and faith. Most importantly, however, the opportunities for financial criminals to cheat the system will be dramatically reduced on a global scale. Future value at London Stock Exchange Group (LSEG) As the LSE is an LEI issuer, in the event a sanctioned entity is encountered, we can issue that organization with an LEI, adding transparency to the market (under these conditions an ISIN cannot be applied). As LSEG’s KYC team does not currently use ISIN to LEI mapping during the sanction screening process, there is an opportunity to streamline KYC processes and offer greater transparency through the LEI. This would mean using the LEI earlier in the process to support IS"
+  },
+  {
+   "idx": 1,
+   "url": "https://finance.ec.europa.eu/system/files/2023-07/faqs-sanctions-russia-assets-freezes_en.pdf",
+   "outlet": "European Commission (DG FISMA) sanctions FAQ",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "EU sanctions also prohibit making further funds or economic resources available to listed persons or to entities owned/controlled by them.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "an qualify as ‘economic resources’, they are also subject to this restriction. This means that pu blic institutions (e.g. a trademark register) must not enable the use of IPRs of a listed person, or of a person owned or controlled by a listed person (e.g. no property transfer should be registered). EU sanctions also prohibit making further funds or economic resources available to listed persons or to entities owned/controlled by them. This means that no further transactions with those persons are possible (e.g. license fees for an IPR paid by an EU person to a person under sanctions). For more information on the treatment of intellectual property rights, please consult the dedicated FAQs. 25. Does Council Regulation (EU) No 269/2014 allow secondary trading of securitie"
+  }
+ ]
+}

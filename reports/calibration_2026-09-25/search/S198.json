@@ -1,0 +1,47 @@
+{
+  "story_id": "S198",
+  "entity": "US consecutive (buyer) water systems that buy only from sellers with chemical MCL violations: 19 systems, 4,347 people, clean own records; example seller Saline Valley Conservancy District (IL) arsenic",
+  "queries": [
+    {"q": "Saline Valley Conservancy District arsenic violation water Harrisburg Illinois", "found_useful": true},
+    {"q": "consecutive water systems purchased water wholesaler violations not reported buyers SDWIS records look clean", "found_useful": false},
+    {"q": "\"Saline Valley\" \"Millstone\" water arsenic", "found_useful": false},
+    {"q": "towns that buy water from utility with arsenic nitrate violation customers not told consecutive system residents news", "found_useful": false},
+    {"q": "purchased water consecutive systems inherit wholesaler contaminant violations study SDWIS buyer seller relationships analysis", "found_useful": true},
+    {"q": "Illinois EPA Saline Valley Conservancy District arsenic maximum contaminant level violation notice", "found_useful": true},
+    {"q": "2026 water district that sells to other towns violation contaminant customers of buying systems not listed EPA records news", "found_useful": false},
+    {"q": "\"purchases water from\" arsenic OR nitrate violation wholesaler \"consecutive\" system residents notice town news", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://water.epa.state.il.us/dww/JSP/Violations.jsp?tinwsys_is_number=717817&tinwsys_st_code=IL",
+      "outlet": "Illinois EPA Drinking Water Watch (Saline Valley Conservancy District, IL1655300, violations list)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "MCL, AVERAGE 1005 ARSENIC CC02 CC02 - CNCTN TO MITCHELLSVILLE - BTFRD",
+      "paywalled": false,
+      "searcher_note": "Primary state record, not coverage. Names Saline Valley Conservancy District (the lead's flagship seller example, not the 19-system finding): arsenic MCL violation 2025-123 charged at facility CC02, a connection on its Battleford Road system. Quote is a table row; whitespace between cells needs normalizing."
+    },
+    {
+      "url": "https://www.beg.utexas.edu/files/Articles/2022/Scanlon%20et%20al%20ES&T%20CWS%20SDWA%20Sep%202022(1).pdf",
+      "outlet": "Environmental Science & Technology (Scanlon et al., UT Austin Bureau of Economic Geology copy)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "whereas compliance was associated with purchased water and private ownership",
+      "paywalled": false,
+      "searcher_note": "Pattern only: cites a national assessment where community systems buying water show better compliance records. Consistent with buyers' own records looking clean; does not tie it to sellers' violations. File name says Sep 2022."
+    },
+    {
+      "url": "https://www.epa.gov/system/files/documents/2023-04/MDBP-Rule-Revisions-Working-Group-Meeting-Presentation-March-9-2023.pdf",
+      "outlet": "US EPA, Microbial and Disinfection Byproducts Rule Revisions Working Group (Meeting 7)",
+      "date": "2023-03-09",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "little control over the quality of the water they receive",
+      "paywalled": false,
+      "searcher_note": "Pattern only: EPA working group says consecutive (buyer) systems have little control over the water they receive and coordination with wholesalers is weak. About disinfection byproducts and pathogens, not chemical MCLs like arsenic."
+    }
+  ],
+  "notes": "No source found that reports the lead's finding: buyer systems whose own records are clean while their only sellers hold chemical-limit violations (19 systems, 4,347 people; 8.4% vs 0.3%). Only pattern coverage on consecutive systems (EPA working group, ES&T paper). Saline Valley Conservancy District's arsenic MCL violation shows in the Illinois state record; no news story found on it, and no source found naming 'Millstone' with Saline Valley. The Southern Illinoisan (Harrisburg vs Saline Valley water dispute) and EWG's Saline Valley page were surfaced but blocked (HTTP 429 / 403), so not recorded. Oklahoma Watch 2022 on Moore, OK (buys from Oklahoma City, own-well arsenic violations) was surfaced but is not the same pattern, so not recorded. No coverage dated after 2026-06-30 found on this pattern; NYS Focus 2026-09-08 on NY systems with elevated toxins surfaced but not about buyer/seller systems. No source found that disagrees."
+}

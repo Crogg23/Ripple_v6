@@ -1,0 +1,14 @@
+{
+ "story_id": "S097",
+ "bin": "Matched + more",
+ "entity": "Regional variability in EPA enforcement after repeat RCRA inspections",
+ "deciding_sources": [
+  0
+ ],
+ "earliest_match_date": "2026-04-28",
+ "post_cutoff_match": false,
+ "what_we_add": "the 78% vs 33% no-action split for Regions 6/9 vs 7/8",
+ "why": "EPA OIG states wide enforcement variability by region and state on RCRA inspections - same entity, same direction. The specific region-pair percentages are ours alone.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

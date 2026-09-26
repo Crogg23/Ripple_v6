@@ -1,0 +1,77 @@
+{
+  "story_id": "S093",
+  "entity": "U.S. county jails: Black/white jail incarceration rate ratio, median of 356 fixed counties, 2010 (4.57), 2019 (3.41), 2023 (3.86); counties at 10x+ (30, 19, 24). Source data is Vera Incarceration Trends.",
+  "queries": [
+    {"q": "Vera Institute Black white jail incarceration rate disparity counties 2023 Incarceration Trends", "found_useful": true},
+    {"q": "BJS Jail Inmates in 2023 statistical tables Black white jail incarceration rate per 100,000", "found_useful": true},
+    {"q": "racial disparity in jails widened since 2020 Black jail incarceration rate rising again report", "found_useful": true},
+    {"q": "Council on Criminal Justice Black White jail incarceration disparity ratio 2000 2022 local jails", "found_useful": false},
+    {"q": "\"Trends in Correctional Control by Race and Sex\" jail Black White ratio declined", "found_useful": true},
+    {"q": "Vera Incarceration Trends 2026 update jail population Black people disparity counties rising", "found_useful": true},
+    {"q": "\"times the rate\" Black residents jailed white residents county jail Vera data 2023 news analysis", "found_useful": false},
+    {"q": "counties where Black people jailed at 10 times the rate of white people county-level jail disparity analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.pew.org/en/research-and-analysis/issue-briefs/2023/05/racial-disparities-persist-in-many-us-jails",
+      "outlet": "Pew Charitable Trusts",
+      "date": "2023-05-16",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Bureau of Justice Statistics (BJS) reports show that the gap in the rate of jail incarceration between Black and White people dropped by 22% between 2011 and 2021.",
+      "paywalled": false,
+      "searcher_note": "National Black/white jail-rate gap narrowed through the 2010s; same direction as the lead's 2010-2019 drop, but national aggregate, not median county."
+    },
+    {
+      "url": "https://www.pew.org/en/research-and-analysis/issue-briefs/2023/05/racial-disparities-persist-in-many-us-jails",
+      "outlet": "Pew Charitable Trusts",
+      "date": "2023-05-16",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "the previous 10-year trend of declining racial disparities in jails may have reversed as the pandemic progressed.",
+      "paywalled": false,
+      "searcher_note": "Same brief: disparity may have turned back up after 2020 (349-jail sample, 2020-2022); matches the lead's 2019-to-2023 rise."
+    },
+    {
+      "url": "https://bjs.ojp.gov/library/publications/jail-inmates-2023-statistical-tables/web-report",
+      "outlet": "Bureau of Justice Statistics",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The jail incarceration rate for black U.S. residents was 552 per 100,000, 3.6 times the rate for white U.S. residents (155 per 100,000) at midyear 2023",
+      "paywalled": false,
+      "searcher_note": "Official national 2023 ratio 3.6x; the lead's 3.86 is a median across 356 counties, a different statistic. Publication month April 2025, day not shown."
+    },
+    {
+      "url": "https://static.prisonpolicy.org/scans/ccj/Trends_in_Correctional_Control_-_FINAL.pdf",
+      "outlet": "Council on Criminal Justice (hosted by Prison Policy Initiative)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In jails, the black-white disparity ratio dropped by 42% over the study period, falling from 6.4 to 3.8.",
+      "paywalled": false,
+      "searcher_note": "National jail Black/white ratio 2000-2016 fell 6.4 to 3.8; most of the drop 2008-2016. Published December 2019, day not shown."
+    },
+    {
+      "url": "https://www.vera.org/newsroom/the-vera-institute-of-justice-launches-incarceration-and-inequality-project-data-explorer",
+      "outlet": "Vera Institute of Justice",
+      "date": "2026-04-02",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In more than half of all counties in 2019, Black people were more than twice as likely as white people to be incarcerated in jail.",
+      "paywalled": false,
+      "searcher_note": "Vera's own county-level Black/white jail disparity finding for 2019, from the same Incarceration Trends data the lead re-serves; no median ratio or trend."
+    },
+    {
+      "url": "https://www.vera.org/publications/divided-justice-black-white-jail-incarceration",
+      "outlet": "Vera Institute of Justice",
+      "date": "2018-02-25",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Black people are still 3.6x more likely to be incarcerated in local jails nationally than white people.",
+      "paywalled": false,
+      "searcher_note": "Vera 'Divided Justice' (1990-2013 trends): Black jail rates falling, white rising; national 3.6x. Earliest source found on the declining gap."
+    }
+  ],
+  "notes": "The Black/white jail disparity and its trend are widely documented: it narrowed through the 2010s (CCJ 2019, Pew 2023, Vera 2018) and may have widened after 2020 (Pew 2023). Every source gives a NATIONAL aggregate ratio (3.6x in 2023 per BJS) or a county share (Vera: over half of counties above 2x in 2019). None reports a median-county ratio over a fixed 356-county panel, the 4.57/3.41/3.86 values, or counts of counties at 10x+. A search-engine summary quoted the BJS 2023 PDF as '3.4 times ... (162 per 100,000)'; the BJS web report fetched says 3.6x (155 per 100,000), so BJS's own versions may differ. No news coverage dated after 2026-06-30 found; Vera's April 2026 release is the most recent. The Pew page returned 403 to WebFetch but loaded with curl; all quotes were checked against the raw page text."
+}

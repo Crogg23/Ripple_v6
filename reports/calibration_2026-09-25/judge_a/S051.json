@@ -1,0 +1,12 @@
+{
+ "story_id": "S051",
+ "bin": "Matched + more",
+ "entity": "US for-profit vs nonprofit nursing homes: staff hours and fines",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2024-03-14",
+ "post_cutoff_match": false,
+ "what_we_add": "the fines-per-bed cut: $320 vs $205, and Arcadia Care worst at $1,357 per bed",
+ "why": "Care Considered states the identical staffing gap (0.71 fewer nurse hours, ours is 0.70) and The Conversation states it in words. Fines per bed and Arcadia's per-bed rank appear nowhere; ProPublica's Arcadia figure is fines per home, a different cut.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

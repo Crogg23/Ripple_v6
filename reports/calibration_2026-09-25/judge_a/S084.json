@@ -1,0 +1,15 @@
+{
+ "story_id": "S084",
+ "bin": "Not comparable",
+ "entity": "Forest County PA orphan wells per 10,000 residents (1,685) and the county per-capita ranking",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "EDF gives Forest 317 wells and StateImpact gives Venango 2,022 vs our 4,786 - older documented-well snapshots on a different dataset and definition. Nobody computes per-capita county ranks.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

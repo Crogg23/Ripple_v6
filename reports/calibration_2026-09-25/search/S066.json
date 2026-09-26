@@ -1,0 +1,57 @@
+{
+  "story_id": "S066",
+  "entity": "Diamondback Energy (Diamondback E&P LLC), share of its Texas FracFocus chemical-ID records withheld as trade secrets vs the statewide rate",
+  "queries": [
+    {"q": "Diamondback Energy fracking chemicals trade secret FracFocus", "found_useful": true},
+    {"q": "Texas fracking trade secret chemicals withheld operators FracFocus analysis Permian", "found_useful": true},
+    {"q": "\"FracFocus Trade Secrets in Texas\" Open-FF", "found_useful": true},
+    {"q": "Diamondback Energy proprietary fracking fluid disclosure Permian Midland report", "found_useful": false},
+    {"q": "operators most trade secret claims fracking disclosures ranking companies Pioneer Diamondback ExxonMobil proprietary chemicals", "found_useful": true},
+    {"q": "fracking chemical trade secrets Texas 2026 disclosure", "found_useful": false},
+    {"q": "Diamondback Energy sustainability report hydraulic fracturing chemical disclosure FracFocus all wells", "found_useful": false},
+    {"q": "Texas Tribune OR Inside Climate News fracking \"trade secret\" chemicals Permian operators withheld", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://open-ff.org/2025/05/19/texas-fracfocus-trade-secrets/",
+      "outlet": "Open-FF",
+      "date": "2025-05-19",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Consider the well operated by Diamondback E&P LLC in Martin County. The disclosure for that well utilizes a systems approach format but still conceals the identity of 7 chemicals, which means 63% of ingredients are listed as trade secrets.",
+      "paywalled": false,
+      "searcher_note": "Open-FF Texas trade-secret post uses one Diamondback well as an example; no operator-level rate or ranking for Diamondback. Page metadata shows dateModified 2026-07-21."
+    },
+    {
+      "url": "https://open-ff.org/2025/05/19/texas-fracfocus-trade-secrets/",
+      "outlet": "Open-FF",
+      "date": "2025-05-19",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Across all valid Texas chemical records, 16.3% are marked as trade secrets. Trade secret claims appear in 86.1 % of all disclosures.",
+      "paywalled": false,
+      "searcher_note": "Same page as above, second quote: the statewide Texas rate (16.3% of records) that the lead's 16.2% compares against. Counts as one source."
+    },
+    {
+      "url": "https://fractracker.org/2024/04/holes-in-fracfocus/",
+      "outlet": "FracTracker Alliance",
+      "date": "2024-04-26",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Here is an example of trade secret records: the figure below is an excerpt of the disclosure for the Texas well 42-227-40269-00-00 by Diamondback E&P in August 2022 with the proprietary records marked with red.",
+      "paywalled": false,
+      "searcher_note": "Uses one Diamondback Texas well as an illustration of proprietary records; national figure is 15% of records proprietary. No Diamondback-wide rate."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10872473/",
+      "outlet": "Journal of Environmental Management (PMC)",
+      "date": "2023-12-05",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Chesapeake Operating Company reported the most proprietary claims: 31,239 total, representing 91.4% of their total disclosures.",
+      "paywalled": false,
+      "searcher_note": "Peer-reviewed study ranking top 10 operators by proprietary claims 2014-2022 (Chesapeake, Pioneer 96.7%, XTO 86.3%); Diamondback not found in the text (figure 6 is an image, not checked). Page sits behind a reCAPTCHA for some fetchers."
+    }
+  ],
+  "notes": "Two research sources (Open-FF 2025, FracTracker 2024) name Diamondback, but only as a single-well example of trade-secret records, not an operator-wide rate. Open-FF gives the statewide Texas rate as 16.3% of chemical records (lead: 16.2%). No news outlet found naming Diamondback for trade-secret share, and no source states Diamondback's 30.3% or 96.7%-of-jobs figures. No post-2026-06-30 coverage found naming Diamondback on this. No disagreeing source found."
+}

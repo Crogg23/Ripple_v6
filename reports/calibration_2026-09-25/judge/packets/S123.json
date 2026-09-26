@@ -1,0 +1,95 @@
+{
+ "story_id": "S123",
+ "lead": {
+  "headline": "Just 12% of House bills passed by roll call this Congress got an amendment roll call; the 1995-2024 median: 61%",
+  "number": "14 of 118 in the first 538 days (12.7% with data to 2026-08-08); same point 1995-2024: 39.2% to 74.1%, median 60.8%; the defense bills still drew 17 and 19 amendment votes",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "No amendment roll call doesn't mean no amendments: voice votes and en bloc packages don't show in this data."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "House 119th Congress closed rules record no amendments allowed",
+  "House floor amendment votes fewest in decades 2025 Johnson closed process",
+  "Rules Committee Democrats McGovern report closed rules record 119th Congress amendments blocked",
+  "House amendment roll call votes share of all roll calls decline 2026 analysis",
+  "\"closed rules\" House record August 2026",
+  "Foxx defends Rules Committee amendments made in order NDAA hundreds of amendments 2025",
+  "\"amendment votes\" House fewest Congress 2026 rank-and-file members lose ability to amend",
+  "Johnson House most closed Congress in history closed rules count summer 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://news.bgov.com/bloomberg-government-news/influence-shrinks-as-house-limits-members-power-to-change-bills",
+   "outlet": "Bloomberg Government",
+   "date": "2026-01-09",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In 2025, the House Rules Committee—controlled by the speaker—prohibited consideration of any amendments on about 84% of the measures it sent to the floor, the data shows.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "d the House on Thursday. The blowback comes as the number and scope of amendments that lawmakers can vote on to change legislation have been steadily constrained by the committee that decides how the 435-member body considers its most consequential bills, a Bloomberg Government data analysis found. In 2025, the House Rules Committee—controlled by the speaker—prohibited consideration of any amendments on about 84% of the measures it sent to the floor, the data shows. The committee issued 95 “closed” rules that barred floor amendments last year, during the first half of the 119th Congress. That followed 115 closed rules in the 118th Congress, from 2023-2025, a record the panel is on track to break, said House Rules Committee ranking member Jim McGovern (D-Mass.). “I think one of the reasons you "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy",
+   "outlet": "MS NOW",
+   "date": "2026-03-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "A report compiled by committee Democrats shows that the GOP made zero amendments in order for 95 separate pieces of legislation throughout the first year of the 119th Congress",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "l determine what amendments get — or don’t get — a vote, thereby shaping the contours of the debate on major pieces of legislation. Democrats on the Rules Committee, however, argue that Republicans have effectively stymied the opportunity for amendments — breaking yet another record in the process. A report compiled by committee Democrats shows that the GOP made zero amendments in order for 95 separate pieces of legislation throughout the first year of the 119th Congress — setting, they argue, a record for so-called closed rules in the first year of any Congress ever. The report also finds that roughly 80% of amendments offered have been blocked — “up from 61% in the 115th Congress and nearly 70% in the 118th Congress during the previous two Republican majorities.” McGovern, the top Democrat on the panel"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy",
+   "outlet": "MS NOW",
+   "date": "2026-03-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "For instance, the spokesperson said, of the 95 pieces of legislation the Democrats invoke, 25 were Congressional Review Act measures, which are not amendable.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " process and complex environment.” Republicans on the Rules Committee, for their part, say the Democratic data is at best lacking in nuance. A spokesperson for the Republicans on the panel noted that only a portion of the rules was reported out as “closed” at the discretion of the committee itself. For instance, the spokesperson said, of the 95 pieces of legislation the Democrats invoke, 25 were Congressional Review Act measures, which are not amendable. (The CRA allows Congress to overturn federal agency regulations.) Members also never offered amendments for 20 of the bills in question. “There’s a lot of nuance here,” Rules Committee Chairwoman Virginia Foxx, R-N.C., told MS NOW. As for McGovern’s accusation that Republicans are merely shutting down debate at the behest of the preside"
+  },
+  {
+   "idx": 3,
+   "url": "https://democrats-rules.house.gov/media/press-releases/mcgovern-speaker-johnson-promised-he-would-run-place-differently-hes-broken",
+   "outlet": "House Rules Committee Democrats (Ranking Member McGovern)",
+   "date": "2026-03-03",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Today, Republicans officially broke their own record for the most measures ever advanced to the floor with no amendments allowed.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "IN.” WASHINGTON — Tonight, Ranking Member Jim McGovern (D-MA) released the following statement upon House Republicans under Speaker Mike Johnson breaking the record for most closed Congress in American history, issuing 117 closed rules since January 2025 with ten months left of the 119th Congress: “Today, Republicans officially broke their own record for the most measures ever advanced to the floor with no amendments allowed. Speaker Johnson promised he would run this place differently, but he’s broken that promise time and again—and not just for Democrats, but for Republicans. He’s blocked almost every Democratic amendment and the majority of Republican amendments, too. “This is all about turning Congress into a rubber stamp for Donald Trump—more than eight in te"
+  },
+  {
+   "idx": 4,
+   "url": "https://democrats-rules.house.gov/sites/evo-subsites/democrats-rules.house.gov/files/documents/one-page-summary_house-rules-democratic-staff-report-2025.pdf",
+   "outlet": "House Rules Committee Democratic staff",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "More than 8 out of every 10 rules issued this Congress have locked down debate and allowed zero amendments on the floor.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "heir own record of the most closed rules in history. So far this Congress, 95 measures have been issued a closed rule—a new record for the most closed rules in a single-year session of Congress ever. They are on track to once again break their own record for shutting down debate on the House floor. More than 8 out of every 10 rules issued this Congress have locked down debate and allowed zero amendments on the floor. • During Speaker Johnson’s tenure, Rules Republicans have blocked from advancing to the floor over 6,000 amendments, including 89% of Democratic amendments, 54% of Republican amendments, and 64% of bipartisan amendments. • In the 119th Congress so far, nearly 8 out of every 10 amendments have been blocked—up from 61% in t"
+  },
+  {
+   "idx": 5,
+   "url": "https://rules.house.gov/media/press-releases/foxx-opening-remarks-hr-4593-hr-5184-and-hr-6938",
+   "outlet": "House Rules Committee (Chairwoman Foxx)",
+   "date": "2026-01-06",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "more than half of the closed measures were closed by definition—meaning there were no amendments that could even be made in order.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "is true the Rules Committee reported 95 closed rules in 2025 – only 33 percent of those rules were closed at the discretion of the Rules Committee. When accounting for rules in the rules package which were adopted before the Committee organized, and in the case of CRAs and bills without amendments, more than half of the closed measures were closed by definition—meaning there were no amendments that could even be made in order. Our Democrat colleagues also claim that no amendment deadline discourages the process and submission of amendments, but this argument is disingenuous and clearly doesn’t hold water when examined properly. Members know full well the Rules Committee will accept amendment submissions to any and all bills open for consideration. "
+  }
+ ]
+}

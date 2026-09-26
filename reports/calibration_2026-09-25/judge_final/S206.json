@@ -1,0 +1,12 @@
+{
+  "story_id": "S206",
+  "bin": "Matched + more",
+  "entity": "Medicare-excluded people appearing in the offshore leaks (Golden among the four) tied to Cook Islands trusts",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2013-12-16",
+  "post_cutoff_match": false,
+  "what_we_add": "4 confirmed of 1,611 name hits with matching street or ZIP; 3 tied to Cook Islands trusts",
+  "why": "ICIJ names James Golden - guilty in a Medicare fraud scheme, set up the Cook trust - and says Medicare fraudsters stand out in its database. Same finding for one of our four; the 4-of-1,611 systematic address match is ours. Golden's role differs between our data and the source, so confidence is low.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

@@ -1,0 +1,57 @@
+{
+  "story_id": "S002",
+  "entity": "Reliant Care Management (St. Louis), its ~30 Missouri nursing homes: nurse staffing hours, harm citations and fines vs other Missouri for-profit homes",
+  "queries": [
+    {"q": "Reliant Care Management Missouri nursing homes staffing citations", "found_useful": true},
+    {"q": "\"Reliant Care\" nursing home Missouri Independent OR KCUR OR Post-Dispatch", "found_useful": true},
+    {"q": "Reliant Care Management nursing home fines harm residents 2026", "found_useful": false},
+    {"q": "Missouri Independent Reliant Care nursing homes staffing owners (site: missouriindependent.com)", "found_useful": true},
+    {"q": "\"Reliant Care\" nursing home Missouri September 2026 OR August 2026 OR July 2026", "found_useful": false},
+    {"q": "Kansas City Star Reliant Care nursing home Gregory Ridge Bridgewood investigation", "found_useful": false},
+    {"q": "\"Reliant Care Management\" spokesperson OR statement nursing home staffing quality response", "found_useful": false},
+    {"q": "Reliant nursing homes Missouri \"special focus\" OR \"immediate jeopardy\" St. Louis Public Radio OR Post-Dispatch", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.kcur.org/health/2024-08-07/missouri-has-dramatically-reduced-its-backlog-of-nursing-home-inspections",
+      "outlet": "KCUR (republishing Missouri Independent, by Clara Bates)",
+      "date": "2024-08-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The for-profit Reliant Care owns several of the largest facilities in Missouri. Sixteen of the entities associated with Reliant Care offer less than 2 hours of daily individual nursing care, according to the latest data.",
+      "paywalled": false,
+      "searcher_note": "Names Reliant for low nurse staffing in Missouri; no harm-citation or fine comparison. Original ran in Missouri Independent 2024-08-05 (that URL 403s to bots); this is the same story, count once."
+    },
+    {
+      "url": "https://tallgrasseconomics.org/2024/11/reliant-health-care-management-llc-the-worst-nursing-home-chain-in-america/",
+      "outlet": "Tallgrass Economics (Dave Kingsley)",
+      "date": "2024-11-10",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In our work across the United States in cities, counties, states, and regions, we have not encountered a chain with lower federal ratings on quality of care.",
+      "paywalled": false,
+      "searcher_note": "Analyst blog headlined 'worst nursing home chain in America'; says Reliant owns 21 Missouri SNFs, 9 with CMS abuse red hand, HPRDs 'in the low 2s and 1s'. Site's Mod_Security rejects bare curl but serves the page with browser Accept headers (quote confirmed that way); no Wayback copy exists."
+    },
+    {
+      "url": "https://abc17news.com/news/special-report/2025/05/15/missouri-nursing-homes-among-worst-in-nation-for-quality-of-care/",
+      "outlet": "ABC 17 News (KMIZ, Columbia MO)",
+      "date": "2025-05-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "As a result, the care hours for behavioral residents cannot be compared with care hours given to residents at a traditional nursing home.",
+      "paywalled": false,
+      "searcher_note": "Company pushback: Reliant's statement on two of its homes (North Village Park 1h41m, Four Seasons 1h19m nurse care per resident day; $54,249 IJ fine) argues its behavioral-health residents make staffing hours non-comparable."
+    },
+    {
+      "url": "https://projects.propublica.org/nursing-homes/affiliate/a-446",
+      "outlet": "ProPublica Nursing Home Inspect (data page, not an article)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Reliant Care Management is affiliated with 34 facilities in Kansas and Missouri.",
+      "paywalled": false,
+      "searcher_note": "Page says 'Data as of August 2026': 2.3 avg nurse hours/resident/day vs 3.9 national; $150,153 avg fines/home vs $31,092; 2.4 serious deficiencies vs 0.6; 1 SFF and 7 SFF candidates. National comparison, not Missouri for-profit peers; KS+MO, 34 homes."
+    }
+  ],
+  "notes": "No source found reproducing the lead's specific Missouri-for-profit comparison (2.16 vs 3.35 HPRD, 3.8x harm citations per 100 beds, 4.3x fines per 100 beds). Named-entity coverage exists for low staffing (Missouri Independent/KCUR 2024, ABC17 2025, Tallgrass 2024) and ProPublica's database shows high fines and serious deficiencies vs national averages. Separate finding not recorded: DOJ/Post-Dispatch $8.3M False Claims Act settlement with Reliant Care Group over unnecessary therapy billing (different finding). No coverage dated July-Sept 2026 found other than the ProPublica data refresh (Aug 2026). Story is pre_known (press_checked_2026-09-24)."
+}

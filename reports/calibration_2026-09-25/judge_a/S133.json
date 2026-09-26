@@ -1,0 +1,12 @@
+{
+ "story_id": "S133",
+ "bin": "Known pattern",
+ "entity": "major US cement plants' serious Clean Air Act violation rate, 2020-25, worst of 63 industries",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source covers the 2020-25 window or the 40-of-102 top-of-industry rate. EPA's cement enforcement initiative and the Cemex settlement report the same kind of finding, widespread CAA violations across cement plants, but a decade earlier and with no rate.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,95 @@
+{
+ "story_id": "S038",
+ "lead": {
+  "headline": "27% of 919 nonprofit hospitals paid one officer more than their whole 2022 charity-care cost",
+  "number": "27% of 919 nonprofit hospitals had one officer's 2022 pay above the hospital's entire cost of charity care.",
+  "grade": "",
+  "verdict": "confirmed",
+  "watch_out": "The ledger says \"confirmed with caveats\" without listing them, and only crosswalk match tiers 1-2 are used, so hospitals outside the crosswalk are missing."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "nonprofit hospitals CEO pay exceeds charity care spending analysis",
+  "\"exceeded\" charity care CEO compensation hospitals number of nonprofit hospitals executive pay more than charity care",
+  "Lown Institute hospital executive compensation vs charity care 2022 Form 990 Schedule H officer pay",
+  "\"more than the hospital spent on charity care\" CEO salary",
+  "nonprofit hospital executive pay charity care report 2026",
+  "hospital CEO paid more than hospital's entire charity care budget tax filings analysis newspaper",
+  "American Hospital Association rebuts charity care comparison community benefit Medicaid shortfall Schedule H misleading executive pay criticism",
+  "percent of nonprofit hospitals where top executive compensation exceeds charity care costs study Form 990 2022"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.inquirer.com/health/chop-nonprofit-ceo-pay-madeline-bell-steve-klasko-20230913.html",
+   "outlet": "Philadelphia Inquirer",
+   "date": "2023-09-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "CHOP paid its CEO a record $7.7 million in 2021, more than the hospital spent on charity care in three years",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "re Close Share this article Link Icon Copy Link Email Email Facebook Logo Facebook X X Bluesky Bluesky Threads Threads What's App WhatsApp Share this article Link Icon Copy Link Email Email Facebook Logo Facebook X X Bluesky Bluesky Threads Threads What's App WhatsApp Close Link copied to clipboard CHOP paid its CEO a record $7.7 million in 2021, more than the hospital spent on charity care in three years With a $5.6 million bonus, Madeline Bell likely received the largest payday ever for a local health system CEO, an Inquirer analysis found. Children's Hospital of Philadelphia CEO Madeline Bell was paid $7.7 million in 2021, making her the top earner among CEOs of the Philadelphia region's nonprofit health systems. Read mor"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.massnurses.org/2011/03/28/high-ceo-salaries-at-nonprofit-hospitals-under-scrutinyonce-again/",
+   "outlet": "Massachusetts Nurses Association (citing Payers and Providers survey)",
+   "date": "2011-03-28",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "The survey also identified 17 hospitals in California where the total compensation to CEOs exceeded the cost of charity care.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ry, conducted a survey of 118 nonprofit hospitals and found that the base salary for CEOs averaged $514,000 (similar to the national average). But with bonuses, retirement money, reimbursement for education costs, and expense accounts, the average total compensation for those CEOs rose to $732,000. The survey also identified 17 hospitals in California where the total compensation to CEOs exceeded the cost of charity care. “It would be outrageous if hospitals are paying more to their (entire) executive teams than in indigent care in their community,” Anthony Wright of Health Access California told the Ventura County Star : “For some hospitals to provide more to one individual just seems wrong.” The Baltimore Sun’s Hancock agrees, “Hospitals aren’t Goldman"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.sanders.senate.gov/wp-content/uploads/Executive-Charity-HELP-Committee-Majority-Staff-Report-Final.pdf",
+   "outlet": "U.S. Senate HELP Committee Majority Staff (Sanders)",
+   "date": "2023-10-10",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "just over half of the hospitals reviewed by HELP Committee staff provided their CEO with a 2021 salary that was more than 6 percent of their total outlay for charity care.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "8.5 million in charity care—an amount that is just 0.7 percent of the hospital system’s nearly $10 billion in revenue. 27 New Jersey’s Robert Wood Johnson Barnabas Health system paid its CEO more than 18 percent of what it spent on charity care in 2021.28 While those three are especially appalling, just over half of the hospitals reviewed by HELP Committee staff provided their CEO with a 2021 salary that was more than 6 percent of their total outlay for charity care.29 Failing to Provide Charity Care Causes Serious Medical and Financial Harm The failure to provide sufficient charity care results in real harm for patients. Most egregiously, Allina is among those hospitals with a policy of denying medical care to patients who have unpaid medical bills. 30 Under its policy, Allina blocked emplo"
+  },
+  {
+   "idx": 3,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11268666/",
+   "outlet": "PLOS One (Jenkins, Short, Ho)",
+   "date": "2024-07-24",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "A one million dollar increase in charity care had no significant association with CEO compensation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ion, growing from $65.2 to $84.4 million, while the group containing the middle eight deciles of CEO compensation increased charity care from $10.7 to only $10.8 million. Charity care spending decreased from $0.53 to $0.39 million for the bottom decile. CEO compensation and hospital characteristics A one million dollar increase in hospital profits was associated with a 0.06 percent (95% CI: 0.03, 0.09) increase in CEO pay in 2012, and a 0.05 percent (95% CI: 0.03,0.06) increase in CEO pay in 2019. A one million dollar increase in charity care had no significant association with CEO compensation. Fig 2 presents the results from the regression analysis estimating the association between CEO compensation and profit, charity "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.aha.org/news/blog/2025-10-20-beyond-labels-schedule-h-reporting-and-benefits-hospitals-provide-communities",
+   "outlet": "American Hospital Association",
+   "date": "2025-10-19",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "This restrictive approach not only departs from the relevant regulatory framework but also overlooks the vital role",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e H. Too often, however, discussions of “community benefit” narrowly equate it with Part I financial assistance, which includes charity care, Medicaid shortfall, health professions education and more. Sometimes, observers further exclude certain components of Part I to focus solely on charity care. This restrictive approach not only departs from the relevant regulatory framework but also overlooks the vital role of community-building initiatives in Part II and Medicare shortfalls and bad debt reported in Part III. In reality, all components of the Schedule H are necessary for an accurate accounting of community benefit. In fact, every item reported in the Schedule H represents either a direct expenditure or an unreimbursed cost incurred in service"
+  },
+  {
+   "idx": 5,
+   "url": "https://waysandmeans.house.gov/2026/07/20/what-they-are-saying-ways-and-means-committee-bringing-transparency-to-americas-nonprofit-hospital-sector/",
+   "outlet": "House Ways and Means Committee",
+   "date": "2026-07-20",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "excessive executive compensation more befitting Fortune 500 companies",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tive hospital practices and consolidation on the affordability of health care.” – James P. Gelfand, President & CEO, ERIC Center for a Free Economy (CFE) “ Past hearings at the Ways and Means Committee have revealed disturbing trends in the tax exempt hospital sector , including but not limited to: excessive executive compensation more befitting Fortune 500 companies; board meetings and retreats held in exotic locations; patients overcharged for routine services without any price transparency; urban hospitals pretending to be rural ones for government benefits; acquisition of community and taxpaying hospitals by these large, tax-exempt hospitals leveraging their tax status ; abuse of federal programs; left wing and"
+  }
+ ]
+}

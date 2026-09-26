@@ -1,0 +1,77 @@
+{
+  "story_id": "S049",
+  "entity": "Aircraft Guaranty Corp (Trustee), Oklahoma City: 364 valid FAA registrations at one address; new certificates 6 (2024), 18 (2025), 14 (2026) vs 1 in 2021 and 1 in 2023, after owner Debra Mercer-Erwin's 2023 conviction",
+  "queries": [
+    {"q": "Aircraft Guaranty Corporation trustee aircraft registrations 2025 FAA", "found_useful": false},
+    {"q": "Debbie Mercer-Erwin Aircraft Guaranty Corp conviction owner trust registrations", "found_useful": true},
+    {"q": "\"Aircraft Guaranty\" still registering planes after Mercer-Erwin conviction new owner trustee", "found_useful": true},
+    {"q": "Aircraft Guaranty Owner Trustee Oklahoma City 2026 aircraft registrations FAA owner trust rule", "found_useful": true},
+    {"q": "Oklahoma City aircraft trust company registrations foreign owners Oklahoman Aircraft Guaranty 2024 2025", "found_useful": false},
+    {"q": "WFAA Aircraft Guaranty planes still registered FAA after conviction follow-up", "found_useful": false},
+    {"q": "\"Aircraft Guaranty Corp\" 2026", "found_useful": false},
+    {"q": "Aircraft Guaranty trust company sold continues operating after indictment registrations transferred trustee", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.courthousenews.com/business-jet-exec-gets-16-years-for-smuggling-cocaine-on-jets-550-million-ponzi-scheme/",
+      "outlet": "Courthouse News Service",
+      "date": "2024-11-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Prosecutors accuse Mercer-Erwin of providing U.S.-registered private planes to drug cartels and traffickers through her Oklahoma City-based trust company Aircraft Guaranty Corp.",
+      "paywalled": false,
+      "searcher_note": "Sentencing (16 years). Says WFAA found 1,000+ planes registered by AGC to two Onalaska P.O. boxes, and the company then moved to Oklahoma City. Nothing on post-conviction registrations."
+    },
+    {
+      "url": "https://www.oig.dot.gov/library-item/46605",
+      "outlet": "US DOT Office of Inspector General",
+      "date": "2024-11-20",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "They registered aircraft with FAA while concealing that foreign nationals owned the aircraft",
+      "paywalled": false,
+      "searcher_note": "Primary record of the sentencing; names Mercer-Erwin as owner of Wright Brothers Aircraft Title Company and Aircraft Guaranty Holdings Corporation."
+    },
+    {
+      "url": "https://www.bjtonline.com/business-jet-news/a-federal-indictment-upends-the-preowned-market",
+      "outlet": "Business Jet Traveler",
+      "date": "2021-04",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "WBAT and AGC immediately ceased responding to communications, and by the time authorities unsealed the indictment in late February, some 50 transactions were believed to be on hold.",
+      "paywalled": false,
+      "searcher_note": "AGC went quiet after the Dec 2020 arrest; DOJ-mandated suspension of title transfers. Relevant to the 2021-23 near-zero new registrations; no later status."
+    },
+    {
+      "url": "https://bjtonline.com/business-jet-news/are-aircraft-hiding-on-us-registry",
+      "outlet": "Business Jet Traveler",
+      "date": "2018-07",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "had registered over 1,000 aircraft through a",
+      "paywalled": false,
+      "searcher_note": "Earliest found: AGC in Onalaska registered over 1,000 aircraft via owner-trust rules. Pre-dates the lead's window."
+    },
+    {
+      "url": "https://www.wfaa.com/article/news/crime/landmark-case-trust-company-owner-convicted-drug-trafficking-putting-us-registered-planes-in-hands-drug-cartels/287-7cb37c51-d7c3-468b-8e0b-c58fb9a4d5a9",
+      "outlet": "WFAA",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In landmark case, trust company owner convicted of drug trafficking, putting U.S. registered planes in hands of cartels",
+      "paywalled": true,
+      "searcher_note": "WFAA returned HTTP 403 to fetch (bot block, not a paywall); headline used as quote. WFAA's 'Broken Trust' series is the original investigation of AGC."
+    },
+    {
+      "url": "https://www.mcafeetaft.com/faa-invalidates-aircraft-registrations-issued-to-one-owner-trustee-what-owners-need-to-know/",
+      "outlet": "McAfee & Taft",
+      "date": "2026-01-14",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "all aircraft registration certificates issued through the company are invalid",
+      "paywalled": false,
+      "searcher_note": "Law-firm alert: FAA invalidated all registrations issued through trustee Southern Aircraft Consultancy Inc. (Jan 2026). Same-pattern trustee enforcement, different company."
+    }
+  ],
+  "notes": "Many sources name Aircraft Guaranty and the Mercer-Erwin conviction (2023) and sentencing (2024). None found reports AGC's current count of live registrations (364) or the 2024-26 rise in new certificates. No source found on who owns or runs AGC now. WFAA, DOJ (justice.gov EDTX release), GlobalAir and Lexology/Vedder Price pages all blocked fetch (403/429/empty), so their contents were not checked. WFAA's 'Broken Trust: New law requires FAA to close loopholes' and 'Senator highlights WFAA investigation' appeared in search but could not be opened. No coverage dated after 2026-06-30 found. The agcorp.com company site says AGC offers owner-trustee registration; not recorded as it is the company's own marketing."
+}

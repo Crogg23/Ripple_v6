@@ -1,0 +1,12 @@
+{
+ "story_id": "S023",
+ "bin": "Matched + more",
+ "entity": "Dow's Plaquemine, Louisiana plant: its 2023 ethylene oxide air release and national share",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2024-06-18",
+ "post_cutoff_match": false,
+ "what_we_add": "34,369 lb full-year TRI figure, 21% of the 2023 national total, 8.7x its 2015-22 high, back to 2,433 lb in 2024",
+ "why": "CSB puts the July 2023 incident at 31,525 lb of EtO (within 25% of our annual figure, different definition), and Hunterbrook names Dow Plaquemine the biggest 2023 EtO releaser. Same entity, same finding, same direction; the national-share and multiple-of-baseline numbers are ours.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

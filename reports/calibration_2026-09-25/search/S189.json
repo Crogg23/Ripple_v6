@@ -1,0 +1,46 @@
+{
+  "story_id": "S189",
+  "entity": "Tallon for Congress Committee (Robin Tallon, SC-6, last ran 1992), $1.39M paid out in the 2024 cycle; plus the aggregate of 139 dormant committees for races run by 2016 holding $7.98M",
+  "queries": [
+    {"q": "\"Tallon for Congress\" committee still active disbursements", "found_useful": true},
+    {"q": "Robin Tallon campaign fund 2024 zombie committee", "found_useful": true},
+    {"q": "Robin Tallon campaign account closed donated charity 2023", "found_useful": true},
+    {"q": "FEC Tallon for Congress Committee audit OR \"matter under review\" Tallon", "found_useful": false},
+    {"q": "\"32 years after leaving office\" former SC congressman million-dollar campaign transfer Tallon", "found_useful": true},
+    {"q": "zombie campaign accounts former lawmakers leftover cash 2026", "found_useful": false},
+    {"q": "Robin Tallon 2026 Senate independent Lindsey Graham campaign account", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://scdailygazette.com/2025/04/28/32-years-after-leaving-office-a-former-sc-congressman-made-a-million-dollar-campaign-transfer/",
+      "outlet": "SC Daily Gazette",
+      "date": "2025-04-28",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "More than three decades after leaving elected office, a former South Carolina congressman transferred $1.25 million from his campaign reserves into a Morgan Stanley account for charitable giving.",
+      "paywalled": false,
+      "searcher_note": "Reports the Oct 2024 $1.25M 'donation of securities' to a Morgan Stanley donor-advised fund from Tallon's committee, $96,500 left, 2024 year-end report filed late; the core of the lead's 2024-cycle payout. Page returns 403 to WebFetch; text read via a direct browser-agent download."
+    },
+    {
+      "url": "https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/",
+      "outlet": "Tampa Bay Times / WTSP",
+      "date": "2018-01-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "But his decade in Congress left him with more than $400,000 in his campaign account. He kept it open, then invested the money, turning it into $1 million.",
+      "paywalled": false,
+      "searcher_note": "Earliest found coverage of Tallon's dormant committee; same piece is the pattern story: roughly 100 zombie campaigns that spent more than $20 million since 1995."
+    },
+    {
+      "url": "https://www.wmbfnews.com/story/38188981/wmbf-investigates-is-former-sc-representatives-campaign-account-informal-retirement-funds/",
+      "outlet": "WMBF News",
+      "date": "2018-05-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Robin Tallon is the poster child for the problems with zombie campaigns, former officeholders leaving their campaign accounts open for decades and using them as informal retirement funds",
+      "paywalled": false,
+      "searcher_note": "Local TV follow-up; account over $1M as of April 2018 FEC filing; Campaign Legal Center quote."
+    }
+  ],
+  "notes": "Tallon's committee and its 2024 payout (the $1.25M Morgan Stanley transfer) are covered by name in SC Daily Gazette, April 2025; the lead's exact $1,391,737 total and the $0-from-individuals detail were not found in any source. No source found for the aggregate (139 committees for races run by 2016 holding $7.98M, median $366, 3 hold 59%); closest pattern coverage is Tampa Bay Times 2018 (~100 zombie campaigns, $20M+ spent since 1995). A search snippet said Tallon is running for the 2026 SC Senate seat as an independent, citing Wikipedia, but the fetched Wikipedia pages did not contain that text, so it is not recorded. No coverage dated after 2026-06-30 found for Tallon. Bloomberg Government 'Attacking the Undead' page returned 403 and was not recorded."
+}

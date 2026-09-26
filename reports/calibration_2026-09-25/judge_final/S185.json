@@ -1,0 +1,12 @@
+{
+ "story_id": "S185",
+ "bin": "Not comparable",
+ "entity": "Georgia U.S. House races 2010-2018 where nobody ran against the winner (20 of 69, vs 4.8% nationally)",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Ballotpedia gives Georgia a number (10 of 14 districts, 71.4%) but for a different definition, only one major-party candidate, apparently one election year, versus our literally-no-opponent 2010-18 count. Numbers can't be lined up and nothing else matches; 270toWin never names Georgia.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

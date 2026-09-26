@@ -1,0 +1,14 @@
+{
+ "story_id": "S098",
+ "bin": "Contradicted",
+ "entity": "Kings County CA mail-ballot rejection rate, 2022 general election",
+ "deciding_sources": [
+  0
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The California SOS official table shows Kings counted 24,580 of 24,850 returned VBM ballots - a 1.09% rejection rate, not 13.7%. Same entity, measure and window, off by an order of magnitude.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

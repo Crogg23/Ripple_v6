@@ -1,0 +1,71 @@
+{
+ "story_id": "S186",
+ "lead": {
+  "headline": "Federal Election Commission totals for House Republicans' campaign arm skip its Sept 2024 report: $40.72M of spending",
+  "number": "The NRCC's (C00075820) 2024 line is $21.88M off its own cash math because its Sept 2024 monthly ($40.72M spent, $18.85M raised) is missing from FEC totals; its own filings balance to the cent.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The NRCC story is dead: its own filings reconcile to the cent. The error is the FEC's roll-up, and API /totals matches the bulk file, so it can't serve as the outside check. One committee, no story until the FEC comments."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "NRCC September 2024 monthly report FEC totals missing",
+  "FEC data error NRCC 2024 totals missing report campaign finance summary discrepancy",
+  "NRCC October 2024 monthly report spent $40.7 million raised $18.8 million September",
+  "OpenSecrets NRCC 2024 cycle total spending receipts",
+  "NRCC cash on hand end of September 2024 $48.9 million DCCC outraised September",
+  "FEC website candidate committee totals incorrect missing reports bulk data error journalists found",
+  "NRCC raised $18.8 million September 2024 fundraising DCCC September haul",
+  "FEC financial summary committee totals omitted amended report 2026 party committee data problem"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://projects.propublica.org/itemizer/committee/C00075820/2024",
+   "outlet": "ProPublica FEC Itemizer",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "$40,724,721.90",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "CE » Oct. 26, 2024 F24 $974,500.50 24 HOUR NOTICE » Oct. 25, 2024 F24 $1,471,511.58 PRE-GENERAL » Oct. 24, 2024 Oct. 16, 2024 F3 $26,168,370.54 $37,488,760.80 $37,554,881.54 $15,000,000.00 24 HOUR NOTICE » Oct. 23, 2024 F24 $7,342,328.10 OCT MONTHLY » Oct. 20, 2024 Sept. 30, 2024 F3 $18,848,596.96 $40,724,721.90 $48,875,271.80 24 HOUR NOTICE » Oct. 19, 2024 F24 $164,517.00 24 HOUR NOTICE » Oct. 19, 2024 F24 $37,432.28 24 HOUR NOTICE » Oct. 18, 2024 F24 $2,852,410.13 24 HOUR NOTICE » Oct. 16, 2024 F24 $5,127,407.55 24 HOUR NOTICE » Oct. 14, 2024 F24 $163,646.18 24 HOUR NOTICE » Oct. 13, 2024 F24 $1,904,179.05 24 HOUR NOT"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.fec.gov/data/committee/C00075820/?cycle=2024",
+   "outlet": "Federal Election Commission, committee overview",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "$219,752,099.68",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ds $0.00 Other Receipts $43,120,401.63 Total transfers $0.00 Nonfederal transfers $0.00 Levin funds $0.00 Total federal receipts $236,307,296.49 Newly filed summary data may not appear for up to 48 hours. Total spent Browse disbursements Coverage dates: 01/01/2023 to 12/31/2024 Total disbursements $219,752,099.68 Operating expenditures $122,622,002.18 Allocated operating expenditures - federal share $0.00 Allocated operating expenditures - nonfederal share $0.00 Other federal operating expenditures $122,622,002.18 Transfers to affiliated committees $16,773,235.43 Contributions to other committees $385,000.00 Independent e"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.fec.gov/campaign-finance-data/committee-report-summary-file-metadata/",
+   "outlet": "Federal Election Commission, bulk data documentation",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "These totals also incorporate any changes made by committees if any report covering the period is amended.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ection year through the most recent report submitted by these committees. The records (rows) for each committee contains information, updated nightly, based upon reports either received (for electronic filings) or computerized (for paper filings from small committees) through 7 pm the previous day. These totals also incorporate any changes made by committees if any report covering the period is amended. As part of each financial report, committees must provide a summary of their financial activity in each filing, and these summaries for each reporting period are included here. Generally, committees file reports on a quarterly or monthly basis, but some must also submit a report 12 days before primary elections. During the primary electio"
+  },
+  {
+   "idx": 3,
+   "url": "https://punchbowl.news/article/house/nrcc-gets-smashed-by-dccc-again/",
+   "outlet": "Punchbowl News",
+   "date": "2024-09-20",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The NRCC has $70.75 million on hand, $16 million less than the DCCC.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Please refresh and try again. Error: You have to enable cookies to submit this form. Additional Context Additional Field Subscribe September 20, 2024 The NRCC gets smashed by the DCCC – again The NRCC raised $9.7 million in August, $12.6 million less than the DCCC raised over the same time period. The NRCC has $70.75 million on hand, $16 million less than the DCCC. In August 2020, the NRCC raised $17 million. So they are running behind not only Democrats in this cycle but also in their own historical marker in the last presidential year. The anemic August haul comes as House Republicans grow more and more alarmed with their fundraising this cycle. They have been consistently trailing D"
+  }
+ ]
+}

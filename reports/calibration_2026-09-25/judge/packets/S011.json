@@ -1,0 +1,47 @@
+{
+ "story_id": "S011",
+ "lead": {
+  "headline": "One urgent-care chain, Fast Pace, holds 189 of 731 new for-profit rural health clinics opened after the 2021 pay law",
+  "number": "189 of the 731 new for-profit freestanding rural health clinics (26%), all enrolled from 2021-11-23 on; 192 counting 3 Louisiana clinics under the Fast Pace trade name.",
+  "grade": "",
+  "verdict": "confirmed",
+  "watch_out": "The enrollment date is read from inside ENROLLMENT_ID, and about 1 in 8 new enrollments reuse an older CCN, so some may be owner changes, not new clinics."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Fast Pace Health rural health clinics Medicare certification urgent care",
+  "for-profit urgent care chains rural health clinic designation growth after 2021 payment cap Fast Pace",
+  "\"Fast Pace\" private equity Revelstoke rural clinics expansion Tennessee news",
+  "number of new independent rural health clinics certified since 2021 for-profit chains study MedPAC OR NARHC OR \"Rural Health Research\"",
+  "\"Fast Pace\" \"rural health clinic\" OIG OR audit OR lawsuit OR Medicare billing",
+  "\"Fast Pace Health\" clinics 2026 Nashville Business Journal OR Tennessean OR Becker's",
+  "urgent care chains becoming rural health clinics higher Medicare Medicaid rates private equity investigation",
+  "Private Equity Stakeholder Project rural healthcare report \"Fast Pace\" rural health clinics"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.jucm.com/wp-content/uploads/2024/12/2024-19317-21-Practice-Management.pdf",
+   "outlet": "Journal of Urgent Care Medicine (Alan A. Ayers), 'Rural Urgent Care Growth Continues, But Challenges Remain'",
+   "date": "2024-12-01",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Fast Pace Health Revelstoke 269",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Adjacent 3 mile < 30,000 AND 10.5 mile > 60,000 Rural 3 mile < 30,000 AND 10.5 mile < 60,000 ■ ■ ■ ■ ■ ■ 13.5% 13.5% 17 .3% 22.9% 14.4% 18.5% Source: National Urgent Care Realty, July 2024 Figure 2. Largest Rural Urgent Care Operators, 2024 Operating Platform Private Equity Investor(s) Center Count Fast Pace Health Revelstoke 269 Community Care Partners Shore Capital Partners 99 Urgent Team Petra, Crestline 82 Access Medical (None) 62 Xpress Wellness Goldman Sachs 61 MainStreet Family Urgent Care Trinity Hunt Partners 58 ConvenientMD Bain Double Impact 42 Carolina QuickCare, Low Country UC Rock Oak Capital Partners 39 Emergence Health Holdings Iron P"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.jucm.com/rural-and-tertiary-markets-the-next-urgent-care-frontier/",
+   "outlet": "Journal of Urgent Care Medicine (Alan A. Ayers)",
+   "date": "2019-12-02",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Began as one clinic in the small town of Collinwood, TN (population 949) in the fall of 2009 and has since expanded to 95 locations in four states.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rgent Care – Tennessee, Kentucky, Louisiana, Mississippi A total of 95 clinics located throughout Tennessee, Kentucky, Louisiana, and Mississippi, in all rural areas. (Notable: There is not a single center in the more populous Tennessee cities such as Nashville, Memphis, Knoxville, or Chattanooga.) Began as one clinic in the small town of Collinwood, TN (population 949) in the fall of 2009 and has since expanded to 95 locations in four states. Vision/Mission Statement: “Change the delivery of healthcare in rural areas by integrating excellent patient care, education, accessibility, community service, in a way that puts the patient’s needs first and improves the health status of our communities.” In addition to urgent care services, Fast Pace offers occupational m"
+  }
+ ]
+}

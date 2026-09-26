@@ -1,0 +1,12 @@
+{
+  "story_id": "S198",
+  "bin": "Known pattern",
+  "entity": "19 consecutive water systems (4,347 people) buying only from sellers with a chemical violation",
+  "deciding_sources": [2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source names the 19 systems (all entity_named no). EPA's MDBP working group reports the same mechanism in general: consecutive systems inherit water quality problems from wholesalers and can receive water barely meeting limits.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

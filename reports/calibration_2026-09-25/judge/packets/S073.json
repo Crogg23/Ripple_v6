@@ -1,0 +1,57 @@
+{
+ "story_id": "S073",
+ "lead": {
+  "headline": "One Egyptian national born in 2001 controls 630 UK companies the register calls live; none file accounts",
+  "number": "630 companies where he's a not-ceased controlling person, notified 2022-26, none filing accounts, most at one Manchester business centre.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Not-ceased control is not a live company (Southern: 0 of 759 alive); likely a company-formation agent."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Egyptian national director hundreds of UK companies Companies House Manchester address",
+  "one person controls hundreds of shell companies Companies House fake directors Manchester business centre 2025",
+  "taxpolicy.org.uk Egyptian director companies Companies House hundreds of companies",
+  "young Egyptian man person with significant control 600 UK companies none filed accounts investigation",
+  "thousands of companies registered at one Manchester address Egyptian directors Companies House news",
+  "Companies House struck off companies formation agent single PSC hundreds of companies 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://globalwitness.org/en/campaigns/corruption-and-money-laundering/the-companies-we-keep/",
+   "outlet": "Global Witness",
+   "date": "2020-12-01",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Over 9,000 companies are controlled by individuals who control more than 100 companies.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " owners. As a result, thousands of UK companies still have their ownership obscured through companies in secrecy jurisdictions, which is exactly what the PSC register was meant to overcome. 3. Disclosing a person as the PSC who is also a PSC for hundreds of other companies – Our analysis shows that over 9,000 companies are controlled by individuals who control more than 100 companies. We have found one individual, Michael Gleissner, who controls more than 1,000 companies. While there may be legitimate explanations for why one person controls a very large number of companies, it suggests some individuals could be acting as \"nominee\" PSCs in place of real owners. The whole purpose of the PSC regime is to reveal the"
+  },
+  {
+   "idx": 1,
+   "url": "https://taxpolicy.org.uk/2025/05/17/foreign-director-fraud/",
+   "outlet": "Tax Policy Associates",
+   "date": "2025-05-17",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "these companies are seventeen times more likely to show signs of fraud than companies with at least one UK director.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "more likely to show signs of fraud Companies House Fraud 17 May 2025 · 5 Comments Download as PDF A new analysis by Tax Policy Associates shows that 900,000 UK companies have no UK directors – all their directors live abroad. This is permitted by current UK company law – but our analysis finds that these companies are seventeen times more likely to show signs of fraud than companies with at least one UK director. This isn’t a coincidence. UK directors face fines and (at least in theory) prosecution if they file false information with Companies House. Foreign directors are in practice untouchable. Companies House has now been given a much wider enforcement role. But if this is to mean anything, then all UK companies should have someone in the UK w"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.gov.uk/government/news/manchester-tech-companies-shut-down-for-suspected-monthly-direct-debit-scam",
+   "outlet": "GOV.UK (Insolvency Service)",
+   "date": "2025-03-20",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Both companies also failed to file accounts at Companies House as they were required to do.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "stered office for both companies was also the same address on Wilmslow Road in south Manchester. Investigators contacted the official directors of both Affinity and RSCR as well as the individual believed to be in actual control of the companies. All of them failed to comply with the investigation. Both companies also failed to file accounts at Companies House as they were required to do. The Official Receiver has been appointed as liquidator of Affinity Technology Solutions Limited and RCSR Tech Limited. All enquiries concerning the affairs of both companies should be made to the Official Receiver of the Public Interest Unit: 16th Floor, 1 Westfield Avenue, Stratford, London, E20 1HZ. Email: piu.or@insolvency.gov.u"
+  }
+ ]
+}

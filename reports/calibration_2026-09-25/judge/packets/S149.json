@@ -1,0 +1,95 @@
+{
+ "story_id": "S149",
+ "lead": {
+  "headline": "Homeland Security committed $50.97B in contracts Oct 2025-Jun 2026, 4.1x its usual; Fisher Sand & Gravel got $13.35B",
+  "number": "$50.97B vs a $12.42B median for the same nine months of FY2019-2025; border-barrier construction at CBP is $27.0B of it",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The agency table's \"32 cents paid per dollar committed\" leaves a $192B gap five times the contract jump; reconcile the $281.3B DHS figure before using it."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Fisher Sand & Gravel border wall contract billion 2026",
+  "Fisher Sand and Gravel $13 billion DHS contracts border barrier fiscal 2026",
+  "DHS contract obligations surge fiscal 2026 border wall CBP billions record USAspending analysis",
+  "Fisher Sand & Gravel border wall contracts Dickinson North Dakota Tommy Fisher billions 2026 news",
+  "Homeland Security contract spending fiscal 2026 quadrupled compared to prior years obligations immigration enforcement contractors",
+  "DHS slow to spend One Big Beautiful Bill border wall money obligated so far 2026 GAO OR CBO",
+  "Fisher Sand & Gravel border wall contract September 2026 OR August 2026 award CBP",
+  "Homeland Security contract awards first nine months fiscal 2026 record $50 billion border barrier CBP largest contractors"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://primerfp.com/intel/contract/70B01C23D00000010-70B03C24F00001029",
+   "outlet": "PrimeRFP SCOUT (federal contract data brief)",
+   "date": "2026-09-10",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Fisher Sand & Gravel Co holds $13.4B across 18 federal awards, concentrated at Department of Homeland Security (DHS).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tact Exposure Check → Get the FY27 Exposure Check → Home / Intel / 70B03C24F00001029 PrimeRFP SCOUT · Federal Contract Recompete Brief 70B03C24F00001029 BORDER infrastructure construction — Fisher Sand & Gravel Co Copy PIID 70B03C24F00001029 ⧉ Copy Parent-child 70B01C23D00000010-70B03C24F00001029 ⧉ Fisher Sand & Gravel Co holds $13.4B across 18 federal awards, concentrated at Department of Homeland Security (DHS). This PIID sits alongside 2 related awards under parent 70B01C23D00000010. Competition previously drew 3 offers. Recompete timing centers on the Sep 30, 2027 PoP end — agencies typically plan 12–18 months ahead. Border Enforcement Ctr Div Awarding office Department of Homeland Security (DHS) Agency Fisher Sand & Gravel Co Recipient"
+  },
+  {
+   "idx": 1,
+   "url": "https://fed-spend.com/blog/what-taxpayers-got-federal-contracts-h1-2026-expose",
+   "outlet": "Fed-Spend (blog)",
+   "date": "2026-08-18",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Fisher Sand & Gravel at $9.54B is the civilian shock: a construction firm sitting next to Electric Boat and Lockheed because of DHS border barrier tasking.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "UG CORP $3.21B THE BOEING COMPANY $3.00B RTX CORPORATION $2.89B THE BOEING COMPANY (2nd UEI) $2.70B GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC. $2.64B FLUOR MARINE PROPULSION, LLC $2.63B Roll-up notes for BD: Lockheed Martin across two rows is about $17.3B in H1 - the clearest prime on the board. Fisher Sand & Gravel at $9.54B is the civilian shock: a construction firm sitting next to Electric Boat and Lockheed because of DHS border barrier tasking. TriWest + Optum + Humana + McKesson + AmerisourceBergen show how much H1 money is VA/DoD health networks and pharma prime vendor , not \"defense tech.\" Triad (Los Alamos) + Sandia + Fluor Marine Propulsion are the DOE lab / nuclear industrial base. Open live files: Lockheed Martin , Huntington Ingalls , Boeing , Booz Allen . Fu"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.propublica.org/article/trump-border-wall-contracts-tommy-fisher",
+   "outlet": "ProPublica (co-published with Texas Tribune)",
+   "date": "2026-05-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "the federal government has awarded his company over $9 billion to build even more border wall",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "response to reporting by ProPublica and The Texas Tribune in 2020 detailing problems with the wall project. “It was only done to make me look bad,” the post continued. But none of this stopped Fisher’s company from getting subsequent border wall contracts, including from the state of Texas. And now the federal government has awarded his company over $9 billion to build even more border wall — including a $1.2 billion contract in the Big Bend region of Texas, where residents have continued to press for answers about the government’s plans in and around one of the country’s largest national parks. And, as during Trump’s first term, Fisher’s work is stirring up controversy again. A New York-based construction company has sue"
+  },
+  {
+   "idx": 3,
+   "url": "https://hoodline.com/2026/03/trump-s-border-billions-turn-quiet-north-dakota-family-into-wall-building-tycoons/",
+   "outlet": "Hoodline (summarizing Bloomberg)",
+   "date": "2026-03-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Out of that tidal wave of money, Fisher Sand & Gravel Co. has landed more than $8 billion in contracts from the Department of Homeland Security and related agencies.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "million and multibillion federal awards flowing to a single private firm has conservation groups and procurement watchdogs sounding alarms. Bloomberg analysis: scale of the awards According to Bloomberg , the Trump administration’s broader immigration spending blitz clocks in at about $171 billion. Out of that tidal wave of money, Fisher Sand & Gravel Co. has landed more than $8 billion in contracts from the Department of Homeland Security and related agencies. Bloomberg’s review of federal data finds that Fisher’s haul represents a striking slice of the administration’s total border-construction outlays. Big contracts and procurement records Federal procurement trackers show that Fisher now holds an array of large indefinite-delivery, indefinite-quantity vehicles and related del"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.projectsaltbox.com/p/follow-the-money-march-2026-cbp-spends",
+   "outlet": "Project Saltbox, Follow the Money",
+   "date": "2026-04-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "After spending roughly $2 billion a month on new border contracts in January and February, CBP more than doubled that pace in March alone.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "arch 2026: CBP Spends Over $7.5B on Border Wall Subscribe Sign in Follow the Money - March 2026: CBP Spends Over $7.5B on Border Wall Project Salt Box's monthly report on ICE and CBP procurement activities Em Chapin Apr 01, 2026 69 6 25 Share Bottom Line Up Front Border Wall Spending is Picking Up: After spending roughly $2 billion a month on new border contracts in January and February, CBP more than doubled that pace in March alone. To date, CBP has committed about 40% of the more than $40 billion it was allocated for border wall construction under the One Big Beautiful Bill Act, with nearly half of those obligations made this month. Warehouse Purchases Are on Pause : Of the purchased warehouses that Project Salt Box is tracking , only one was bought in March -"
+  },
+  {
+   "idx": 5,
+   "url": "https://inewsource.org/2026/08/25/border-wall-construction-fisher-jacumba-wilderness/",
+   "outlet": "inewsource",
+   "date": "2026-08-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The project falls under a larger contract given to Fisher that includes numerous projects for border construction with a potential spending cap of $4.1 billion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t on Government Oversight, said the contract is extensive and costly. “I’m worried about the amount that’s being spent on all this, and I’m very worried about the contracting process and whether this is a best practice when spending billions with little competition and a lot of changes,” Amey said. The project falls under a larger contract given to Fisher that includes numerous projects for border construction with a potential spending cap of $4.1 billion. It’s unclear whether that cap has increased as a result of the Fisher contracts in Jacumba going up. Customs and Border Protection did not respond to questions from inewsource about the Fisher contracts and border project in Jacumba. A view to the north from Valley of the Moon in August 2026. Zoë Meyers for inewsource The Trump a"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S186",
+  "bin": "Unreported",
+  "entity": "FEC roll-up totals for the NRCC (C00075820), 2024 cycle, missing the Sept 2024 monthly report",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source reports the finding: an FEC totals error skipping the NRCC's Sept 2024 report. Sources are raw filing pages and an unrelated fundraising story; 8 searches logged.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

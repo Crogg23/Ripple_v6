@@ -1,0 +1,47 @@
+{
+  "story_id": "S188",
+  "entity": "Sen. Richard Blumenthal (D-Conn.): all 69 periodic transaction reports (stock-trade reports) filed on paper, Feb 2021-Aug 2026",
+  "queries": [
+    {"q": "Blumenthal paper stock trade disclosures periodic transaction reports handwritten", "found_useful": false},
+    {"q": "senator files stock trades on paper instead of electronically Senate disclosure Blumenthal", "found_useful": true},
+    {"q": "Blumenthal stock trades disclosure scanned PDF not searchable wife Cynthia trades report", "found_useful": false},
+    {"q": "\"Blumenthal\" \"paper\" filings STOCK Act transaction reports senators image scans trackers can't read", "found_useful": false},
+    {"q": "Blumenthal nearly $80 million stock transactions 2025 disclosure", "found_useful": true},
+    {"q": "senators who still file periodic transaction reports on paper Senate eFD \"paper\" PTR analysis", "found_useful": false},
+    {"q": "Common Cause report Blumenthal 406 trades top trader 2025 Congress", "found_useful": true},
+    {"q": "Blumenthal stock trades 2026 disclosure report Connecticut senator trading", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://rollcall.com/2020/10/01/several-lawmakers-disclose-opaque-financial-records/",
+      "outlet": "Roll Call",
+      "date": "2020-10-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Senator Blumenthal files his annual disclosure by paper, as do a number of his colleagues.",
+      "paywalled": false,
+      "searcher_note": "Names Blumenthal as a paper filer, but of his ANNUAL disclosure, not his periodic transaction (stock-trade) reports; 2019 report, before the lead's window. Spokesperson says the PDF is readable when zoomed."
+    },
+    {
+      "url": "https://www.commoncause.org/articles/congress-made-over-635-million-in-stock-trades-while-americans-struggled-see-who-traded-the-most/",
+      "outlet": "Common Cause",
+      "date": "2025-12-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Total Trades: 406",
+      "paywalled": false,
+      "searcher_note": "Ranks Blumenthal #1 in Congress for 2025 trading: Total Trades 406, Total Volume $79.83 million (Capitol Trades data). Shows outside trackers do transcribe his paper PTRs; silent on paper filing."
+    },
+    {
+      "url": "https://campaignlegal.org/update/how-congress-hides-stock-holdings-plain-sight",
+      "outlet": "Campaign Legal Center",
+      "date": "2022-04-01",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The forms are not always text searchable, and some members file handwritten (and occasionally illegible) reports.",
+      "paywalled": false,
+      "searcher_note": "Pattern: members filing handwritten, non-searchable disclosure reports. No senator named."
+    }
+  ],
+  "notes": "No source found says Blumenthal files his stock-trade (PTR) reports on paper, or gives the 69-of-69 count or the 43-of-44 Senate paper filings since 2024. Closest: Roll Call 2020 on his paper ANNUAL disclosure. Common Cause (Dec 2025) and trackers (Capitol Trades, Quiver, Unusual Whales) list his trades, so his paper filings are transcribed elsewhere; the lead's claim is only that this warehouse holds none. A search snippet quoted Common Cause via X (Betsy McCaughey) that he made 406 trades worth nearly $80 million in 2025; not recorded separately. The Drill Down (2022-02-11) covers a late Blumenthal PTR (Robinhood sale disclosed after 56 days), a different finding, not recorded. Capitol Trades page returned 429; Quiver page renders no data. No coverage dated after 2026-06-30 found."
+}

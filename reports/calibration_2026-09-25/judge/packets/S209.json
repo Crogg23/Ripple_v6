@@ -1,0 +1,60 @@
+{
+ "story_id": "S209",
+ "lead": {
+  "headline": "13 tankers seen in U.S. waters one January 2024 week now sit on government sanctions lists, most renamed",
+  "number": "Older tankers (IMO below 9400000): 10 of 218 on government lists (4.6%, not 6.0%); newer: 3 of 732; 3 of the builder's 16 aren't sanctioned.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "No world base rate (the U.S.-feed rate may sit below it), and \"served U.S. refineries\" is backwards: hits are highest among ships that never stopped (5 of 50) vs 3 of 134 that tied up at a U.S. berth."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "sanctioned shadow fleet tankers in U.S. waters AIS 2024",
+  "tankers that called at U.S. ports later sanctioned OFAC renamed shadow fleet",
+  "tankers that once carried U.S. oil sold into shadow fleet older vessels renamed sanctioned investigation",
+  "sanctioned tanker Gulf of Mexico U.S. port visit shadow fleet Venezuela Coast Guard 2024 AIS",
+  "share of global tanker fleet now sanctioned percent 2026 older tankers aged over 15 years",
+  "shadow fleet tankers previously called at U.S. refineries Houston before joining dark fleet",
+  "report sanctioned tankers visited U.S. ports after designation analysis vessels OFAC SDN list U.S. waters",
+  "tankers sold into shadow fleet 2024 2025 renamed reflagged former Western-owned ships sanctioned Lloyd's List analysis",
+  "sanctioned shadow fleet tanker spotted off U.S. coast AIS August September 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.occrp.org/en/investigation/european-ships-keep-russias-shadow-fleet-afloat",
+   "outlet": "OCCRP / Follow the Money",
+   "date": "2025-02-04",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "At least 230 vessels from Europe and the U.S. now support the shadow fleet, which moves an estimated 70 percent of Russia's oil exports.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "g on a network of old tankers it sources from private sellers around the world. A new analysis by Follow the Money and OCCRP shows that Western shipowners have earned at least $6.3 billion selling hundreds of aging tankers on to shell companies, from where they make their way into the shadow fleet. At least 230 vessels from Europe and the U.S. now support the shadow fleet, which moves an estimated 70 percent of Russia’s oil exports. Banner: Yalcin Sonat/Alamy Stock Photo Banner: Yalcin Sonat/Alamy Stock Photo Reported by Follow the Money and OCCRP Also published by our partner Follow the Money (Netherlands, in English) February 4, 2025 From the Singapore Strait, the Greek oil tanker Aris transmitted its last signal in 2023, seemingly marking the end of nearl"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.breakwaveadvisors.com/insights/2026/6/2/aging-sanctioned-and-stranded-the-new-structural-reality-in-the-market",
+   "outlet": "Breakwave Advisors",
+   "date": "2026-06-02",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Currently, 927 tankers, approximately 11.6% of the total tanker fleet, are identified as sanctioned.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "d demolition activity. While both the tanker and dry bulk sectors face aging fleet profiles, sanctions are influencing these markets in fundamentally different ways, creating a distinct two-tier structure in global shipping. Sanctions remain overwhelmingly concentrated within energy-related trades. Currently, 927 tankers, approximately 11.6% of the total tanker fleet, are identified as sanctioned. Conversely, the dry bulk sector remains largely insulated, with only 65 sanctioned vessels, representing just 0.4% of the fleet. The age distribution of these vessels is telling. In the tanker segment, nearly 93% of sanctioned units are over 16 years old. Staggeringly, 441 vessels fall into the 21–25-year bracket. Under normal market condi"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.atlanticcouncil.org/dispatches/when-economic-warfare-meets-gunboat-diplomacy-what-to-know-about-the-us-seizures-of-shadow-fleet-tankers/",
+   "outlet": "Atlantic Council",
+   "date": "2026-02-05",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "a network of aging tankers transporting illicit oil between Iran, Russia, China, and Venezuela",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "the challenges and costs of holding and maintaining vessels after they have been seized. WASHINGTON—Since late last year, US authorities have seized at least seven vessels linked to the Venezuelan oil trade. This campaign is part of a larger effort to undercut the so-called “shadow” or “dark” fleet—a network of aging tankers transporting illicit oil between Iran, Russia, China, and Venezuela. Increasingly, the tactics used to seize these vessels blur the lines between economic warfare and old-fashioned gunboat diplomacy. Financial intelligence firm S&P Global estimates that one in five oil tankers worldwide are used to smuggle oil from sanctioned countries. Even before the Venezuelan oil blockade, the US Department of the T"
+  }
+ ]
+}

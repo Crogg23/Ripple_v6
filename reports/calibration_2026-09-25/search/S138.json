@@ -1,0 +1,77 @@
+{
+  "story_id": "S138",
+  "entity": "Cheniere's Sabine Pass LNG export terminal (Cameron Parish, LA): EPA GHGRP greenhouse gas emissions 2015-2023, 0.18 to 6.26 Mt CO2e, largest rise of any reporting facility",
+  "queries": [
+    {"q": "Sabine Pass LNG greenhouse gas emissions increase EPA reporting data", "found_useful": true},
+    {"q": "Cheniere Sabine Pass carbon emissions million tons rise since exports began 2016", "found_useful": false},
+    {"q": "Environmental Integrity Project LNG export terminals greenhouse gas emissions report Sabine Pass", "found_useful": true},
+    {"q": "largest increase greenhouse gas emissions any US facility EPA data LNG terminal Louisiana", "found_useful": false},
+    {"q": "Cheniere corporate responsibility report Scope 1 emissions Sabine Pass liquefaction intensity reduced", "found_useful": true},
+    {"q": "Sabine Pass Stage 5 expansion greenhouse gas emissions permit 2026", "found_useful": false},
+    {"q": "LNG export terminals greenhouse gas emissions grew since 2016 EPA greenhouse gas reporting program analysis", "found_useful": false},
+    {"q": "Sabine Pass Liquefaction CO2 emissions 2017 2023 EPA FLIGHT tonnes Cameron Parish", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://environmentalintegrity.org/news/boosted-by-trump-administration-lng-industry-violates-pollution-limits/",
+      "outlet": "Environmental Integrity Project",
+      "date": "2025-10-29",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The Sabine Pass LNG Terminal in southwest Louisiana, which emitted 6.9 million tons of greenhouse gases and 8,780 tons of health-damaging “criteria” air pollutants in 2023, the most of any U.S. LNG terminal.",
+      "paywalled": false,
+      "searcher_note": "Terminal Trouble report: Sabine Pass 6.9 Mt GHG in 2023 (lead says 6.26 Mt), largest US LNG terminal; no 2015 baseline or cross-facility rise ranking."
+    },
+    {
+      "url": "https://environmentalintegrity.org/news/boosted-by-trump-administration-lng-industry-violates-pollution-limits/",
+      "outlet": "Environmental Integrity Project",
+      "date": "2025-10-29",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The seven LNG terminals operating in 2023 reported releasing 18.2 million tons of greenhouse gases that year, which was as much as 3.9 million cars and trucks driven for a year",
+      "paywalled": false,
+      "searcher_note": "Seven-terminal 2023 total 18.2 Mt; lead's seven LNG facility IDs reach 16.48 Mt in 2023 (different facility set/accounting possible)."
+    },
+    {
+      "url": "https://grist.org/energy/louisiana-lng-project-pollution-woodside-gas/",
+      "outlet": "Grist (republishing Verite News, originally 2026-04-07)",
+      "date": "2026-04-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "But the state’s first LNG terminal, Sabine Pass LNG, quickly became one of Louisiana’s largest sources of climate-warming pollution, releasing more greenhouse gases than the state’s biggest oil refineries.",
+      "paywalled": false,
+      "searcher_note": "Verite News analysis of EPA/state records on Woodside Louisiana LNG; says Sabine Pass went from new to a top Louisiana GHG source; cites nearly 7 million tons per EPA."
+    },
+    {
+      "url": "https://grist.org/energy/louisiana-lng-project-pollution-woodside-gas/",
+      "outlet": "Grist (republishing Verite News, originally 2026-04-07)",
+      "date": "2026-04-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The terminal’s emissions from the liquefaction process and other energy-intensive operations would be much higher than the nearly 7 million tons of greenhouse gases the U.S. Environmental Protection Agency says are emitted by the Sabine Pass terminal.",
+      "paywalled": false,
+      "searcher_note": "Same article: EPA figure for Sabine Pass, current level only. Original Verite and Louisiana Illuminator URLs returned 403/blank to the fetcher."
+    },
+    {
+      "url": "https://thelensnola.org/2023/07/31/lng-export-terminals-belching-more-pollution-than-estimated/",
+      "outlet": "The Lens",
+      "date": "2023-07-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In 2016, the U.S. exported its first tanker of liquified natural gas, or LNG, from Cheniere’s Energy’s Sabine Pass terminal in Cameron Parish.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: LNG terminals emitting more than estimated; Sabine Pass methane plumes stood out in optical-gas imaging. No GHGRP tonnage trend."
+    },
+    {
+      "url": "https://lngir.cheniere.com/news-events/press-releases/detail/221/cheniere-publishes-2020-corporate-responsibility-report",
+      "outlet": "Cheniere Energy",
+      "date": "2021-06-29",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Over 33% reduction of scope 1 greenhouse gas (GHG) emissions intensity since startup of commercial LNG export operations in 2016.",
+      "paywalled": false,
+      "searcher_note": "Company counter-framing: intensity per unit LNG fell even as absolute emissions grew; fits the lead's caveat that emissions track LNG shipped."
+    }
+  ],
+  "notes": "Sources name Sabine Pass and put its current emissions near 7 Mt (EIP says 6.9 Mt in 2023 vs the lead's 6.26 Mt, about 10% apart), and say it quickly became a top Louisiana emitter. None found gives the 2015 baseline (0.18 Mt), the +6.08 Mt rise, or a rank-1-of-6,021 comparison across all GHGRP facilities. No Sabine Pass emissions-trend coverage dated after 2026-06-30 found (Grist 2026-08-27 and Chattanooga Times Free Press 2026-09-08 Plaquemines pieces only list Sabine Pass as an operating terminal). Inside Climate News (2025-04-16) covers LNG tanker shipping emissions quadrupling, a different measure."
+}

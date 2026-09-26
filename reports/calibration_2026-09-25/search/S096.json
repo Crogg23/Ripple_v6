@@ -1,0 +1,27 @@
+{
+  "story_id": "S096",
+  "entity": "CSX + Norfolk Southern vs Union Pacific + BNSF: self-reported calls to the Coast Guard National Response Center (spill hotline), 511 vs 63 a year in 2015-17 (8.2x), 140 vs 76.5 in 2024-25 (1.8x)",
+  "queries": [
+    {"q": "National Response Center reports railroads Norfolk Southern CSX Union Pacific BNSF number of hazardous spill reports comparison", "found_useful": false},
+    {"q": "\"National Response Center\" Norfolk Southern incidents reported analysis after East Palestine chemical releases railroad data", "found_useful": false},
+    {"q": "which railroad has the most hazardous materials releases CSX Norfolk Southern vs Union Pacific BNSF data analysis 2023", "found_useful": false},
+    {"q": "\"National Response Center\" railroad incident reports data CSX reports more spills than western railroads reporting practices", "found_useful": false},
+    {"q": "eastern railroads CSX Norfolk Southern accident rate higher than western railroads BNSF Union Pacific per million train miles analysis", "found_useful": true},
+    {"q": "Union Pacific Norfolk Southern merger 2026 safety record hazardous materials incidents comparison STB filing", "found_useful": false},
+    {"q": "railroads reported spills to Coast Guard National Response Center hotline analysis number of reports by railroad news investigation", "found_useful": false},
+    {"q": "study National Response Center rail incident reports by carrier Class I railroads reporting frequency research paper", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.eenews.net/articles/norfolk-southerns-accident-rate-spiked-over-the-last-decade/",
+      "outlet": "E&E News by POLITICO",
+      "date": "2023-03-06",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Norfolk Southern had one of the lowest accident rates in 2013 and now has the second highest behind Union Pacific, which averaged 4.359 collisions per million miles last year.",
+      "paywalled": false,
+      "searcher_note": "Compares Class I railroads on FRA accident rates, not NRC hotline calls; here Union Pacific ranks worst, the opposite ordering from the lead's call counts."
+    }
+  ],
+  "notes": "No source found that counts National Response Center reports by railroad or compares CSX/Norfolk Southern call volumes with Union Pacific/BNSF. Press comparisons of the big four use FRA accident rates (E&E News 2023: UP highest, NS second, BNSF falling) or FRA enforcement counts (search results only, not opened: a People's World piece titled 'Two freight railroads account for half of industry safety problems'), which are different measures. The FRA eLibrary page 'National Response Center (NRC) Railroad Report' exists but returned 403 to WebFetch and curl, so its contents are unknown. No coverage dated after 2026-06-30 on this measure; UP-NS merger coverage from 2026 discusses FRA violations, not NRC calls."
+}

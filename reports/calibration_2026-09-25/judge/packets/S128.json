@@ -1,0 +1,71 @@
+{
+ "story_id": "S128",
+ "lead": {
+  "headline": "Since 2024, 31 per 1,000 money-manager stock reports ran a year-plus late, vs 9.5 before; Malaysia's pension fund back-filed 68",
+  "number": "31 of every 1,000 original 13F holdings reports (Jan 2024-May 2026) filed 1+ year late vs 9.5 per 1,000 (mid-2013 to Sep 2022); 105 managers back-filed 8+ reports",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Filings from Oct 2022 to Dec 2023 aren't loaded, so 2024 is when the wave shows up in the data, not proof it started then."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Employees Provident Fund Malaysia 13F filings late SEC",
+  "SEC charges institutional investment managers failing to file Form 13F September 2024 press release",
+  "wave of late 13F filings delinquent managers back-file years of reports after SEC sweep",
+  "Kumpulan Wang Persaraan KWAP 13F filings SEC U.S. holdings disclosed",
+  "EPF KWSP Form 13F US stocks disclosure The Edge Malaysia 2025",
+  "late Form 13F filings 2026 SEC enforcement delinquent institutional managers",
+  "investment manager \"failed to file\" Forms 13F from 2016 through 2022 SEC order settled",
+  "study late 13F filings increase share of 13F reports filed after deadline research"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sec.gov/newsroom/press-releases/2024-135",
+   "outlet": "U.S. Securities and Exchange Commission",
+   "date": "2024-09-17",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The Securities and Exchange Commission today announced charges against 11 institutional investment managers for failing to file reports, known as Forms 13F, that they were required to file because they have discretion over more than $100 million in certain securities.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ing to Report Certain Securities Holdings Press Release SEC Charges 11 Institutional Investment Managers with Failing to Report Certain Securities Holdings Two of the firms also charged with failing to report large trader transactions For Immediate Release 2024-135 Washington D.C., Sept. 17, 2024 — The Securities and Exchange Commission today announced charges against 11 institutional investment managers for failing to file reports, known as Forms 13F, that they were required to file because they have discretion over more than $100 million in certain securities. Two of the entities, Nationale-Nederlanden Powszechne Towarzystwo Emerytalne S.A. (Nationale-Nederlanden) and NEPC, LLC, were also charged with failing to file Forms 13H as required for large traders who trade a significant amount of exchange-listed securities. All 11 firms agreed to settle the SEC’s charges. Nine of the firms will pay more "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.sec.gov/enforcement-litigation/administrative-proceedings/34-106287-s",
+   "outlet": "U.S. Securities and Exchange Commission",
+   "date": "2026-09-08",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Chief Compliance Officers recommended that the company file Forms 13F, however, no Forms 13F were filed until May 2026.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://btlaw.com/en/insights/alerts/2024/sec-sanctions-investment-managers-for-failure-to-report-on-forms-13f-and-13h",
+   "outlet": "Barnes & Thornburg (law firm alert)",
+   "date": "2024-09-24",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "Each of the firms made several remedial filings covering the time period during which it had failed to report as required.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ith individual fines ranging from $175,000 to $725,000. Two of the firms avoided fines on the basis that they had self-reported their violations and otherwise cooperated with the SEC’s investigation. For the same reason, another firm paid no fine in respect of the Form 13H aspect of its settlement. Each of the firms made several remedial filings covering the time period during which it had failed to report as required. Form 13F Form 13F is a quarterly filing required under Section 13(f) of the Securities Exchange Act of 1934 on the part of any “institutional investment manager” that exercises investment discretion over at least $100 million of so-called Section 13(f) securities. That term primarily refers to U.S. exchange-traded stocks, share"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.nixonpeabody.com/insights/alerts/2024/10/29/faqs-sec-form-13f-enforcement-actions",
+   "outlet": "Nixon Peabody (law firm alert)",
+   "date": "2024-10-29",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "the SEC is trying to reward delinquent filers for self-reporting their failure to make required Form 13F submissions, while punishing those that attempt to catch up on delinquent filings without proactively flagging the issue for the SEC",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "(2) have engaged legal counsel to assist with self-correcting measures; (3) intend to make all late filings immediately as part of those self-correcting measures; and (4) have implemented an internal Form 13F policy with a description of the policy. The recent enforcement actions make it clear that the SEC is trying to reward delinquent filers for self-reporting their failure to make required Form 13F submissions, while punishing those that attempt to catch up on delinquent filings without proactively flagging the issue for the SEC. What are some additional SEC resources I can consult about Form 13F Filing? SEC Form 13F FAQ SEC Form 13F Filing Instructions (exp. September 30, 2025) SEC Enforcement Action Against an Investment Manager that Failed to Filed Forms 13F from 2016 Through 2022 (order issued September 2023) SEC Charges 11 Institutional Investm"
+  }
+ ]
+}

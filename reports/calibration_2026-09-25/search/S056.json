@@ -1,0 +1,77 @@
+{
+  "story_id": "S056",
+  "entity": "NYC 2025 mayoral race: Fix the City, Inc. (pro-Cuomo independent expenditure committee) total raised and number of gifts vs Zohran Mamdani campaign private contributions and number of gifts",
+  "queries": [
+    {"q": "Fix the City super PAC Cuomo raised million donors Mamdani small donors", "found_useful": true},
+    {"q": "\"Fix the City\" $35 million Cuomo super PAC total raised", "found_useful": true},
+    {"q": "Mamdani campaign number of individual donors contributions Campaign Finance Board 2025 general election private funds", "found_useful": true},
+    {"q": "\"Fix the City\" number of donors contributions final filing Cuomo PAC $35.6 million", "found_useful": false},
+    {"q": "THE CITY Fix the City Cuomo super PAC after election final tally spent raised Bloomberg donors November 2025", "found_useful": true},
+    {"q": "\"Fix the City\" PAC 2026 Mamdani donors raised news", "found_useful": true},
+    {"q": "Mamdani record number of donors mayoral campaign 2025 total contributors more than any candidate CFB", "found_useful": true},
+    {"q": "\"Fix the City\" super PAC how many donors average contribution billionaires few hundred donors", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.nyccfb.info/VSApps/IndependentSpenderSummary.aspx?spender_id=Z193&as_election_cycle=2025&cand_name=Fix+the+City%2C+Inc",
+      "outlet": "NYC Campaign Finance Board, Fix the City, Inc. (2025) Independent Spender Profile",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "has reported 35,555,626.00 in contributions",
+      "paywalled": false,
+      "searcher_note": "Primary record: Fix the City reported $35,555,626 in contributions (= the lead's $35.6M); expenditures $30.8M. No gift count shown. The page splits the digits with invisible left-to-right marks, so a strict string match may need them stripped."
+    },
+    {
+      "url": "https://www.thecityreporter.nyc/2026/09/01/political-spending-record-outside-money-local-elections-cfb/",
+      "outlet": "THE CITY (The City Reporter), Katie Honan",
+      "date": "2026-09-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "more than 54,000 people who gave an average of $75 each",
+      "paywalled": false,
+      "searcher_note": "Recent coverage of the CFB's 2025 post-election report: Mamdani's campaign had a record 54,000+ small-dollar donors averaging $75 (implies ~$4.05M), matching the lead's 54,103 gifts / $4.03M. Also says Cuomo benefited from $31M in independent support. Does not give Fix the City's gift count."
+    },
+    {
+      "url": "https://www.chalkbeat.org/newyork/2025/12/03/breaking-down-who-doe-employees-donated-to-in-mayoral-races/",
+      "outlet": "Chalkbeat New York, Ananya Chetia",
+      "date": "2025-12-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "galvanized New Yorkers across the city, attracting about 53,890 donations",
+      "paywalled": false,
+      "searcher_note": "Mamdani: about 53,890 donations; same article says his 'roughly $4 million' was the least raised by any winning mayor since mayoral control of schools began. Within 0.4% of the lead's 54,103 gifts."
+    },
+    {
+      "url": "https://nysfocus.com/2026/04/03/jordan-wright-super-pac-harlem-dsa",
+      "outlet": "New York Focus",
+      "date": "2026-04-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "a pro-Cuomo PAC that raised $35 million for his mayoral campaign",
+      "paywalled": false,
+      "searcher_note": "Fix the City total, rounded; no gift count."
+    },
+    {
+      "url": "https://citizensunion.org/wp-content/uploads/2025/12/CU-Report-Super-PACs-in-the-2025-New-York-City-General-Election-Seven-Takeaways.pdf",
+      "outlet": "Citizens Union, 'Super PACs in the 2025 New York City General Election: Seven Takeaways'",
+      "date": "2025-12-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "15,490 in the general election and 40,824 across the full cycle",
+      "paywalled": false,
+      "searcher_note": "Different definition: counts Mamdani's unique contributors (40,824 full cycle), not gifts; general-election table shows Mamdani 26,098 donations. Cuomo-aligned super PACs (all, general election only) had 338 donations from 299 donors, average $78,096. Cover says December 2025; day not given."
+    },
+    {
+      "url": "https://theintercept.com/2026/09/23/doordash-delivery-nyc-mamdani-wage-theft-settlement/",
+      "outlet": "The Intercept",
+      "date": "2026-09-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "DoorDash contributed $1 million to Fix the City, a super PAC that spent $31 million in the mayoral election, accounting for close to half of the total outside spending in the race, largely funded by big corporations and billionaires.",
+      "paywalled": false,
+      "searcher_note": "Most recent coverage naming Fix the City; gives spending ($31M), not receipts or gift count."
+    }
+  ],
+  "notes": "Both halves of the lead are widely reported. Fix the City's ~$35-35.6M total appears in the CFB's own profile and in press; Mamdani's ~54,000 donors / ~$4M appears in THE CITY (Sept 2026, citing CFB) and Chalkbeat (53,890 donations). No source found giving Fix the City's gift count (the lead's 381); Citizens Union gives 338 donations for all Cuomo-aligned super PACs in the general election only, a narrower window. OpenSecrets (Oct 2025), CNBC (Oct 2025) and Crain's returned HTTP 403 and were not quoted. Drop Site News (Nov 2025) was opened but gives only partial Fix the City figures. Bloomberg's donor feature not opened (likely paywalled)."
+}

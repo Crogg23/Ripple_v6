@@ -1,0 +1,45 @@
+{
+  "story_id": "S088",
+  "entity": "Hedge funds and banks as payers of itemized Texas lobby meals (Texas Ethics Commission lobby food-and-beverage reports, 2011-26); top recipient Brad Gilbert (Teacher Retirement System of Texas hedge-fund staff), 70 meals from 11 funds",
+  "queries": [
+    {"q": "\"Brad Gilbert\" Texas lobbyists meals hedge funds", "found_useful": true},
+    {"q": "Teacher Retirement System of Texas staff meals paid by hedge funds registered lobbyists ethics commission", "found_useful": true},
+    {"q": "Wall Street hedge fund firms registered as lobbyists Texas pension officials TRS ERS wined and dined", "found_useful": false},
+    {"q": "Teacher Retirement System investment staff lobbyists meals gifts hedge funds private equity (texastribune.org, houstonchronicle.com, dallasnews.com, statesman.com)", "found_useful": false},
+    {"q": "why hedge fund managers register as lobbyists in Texas to pitch state pension funds", "found_useful": false},
+    {"q": "lobbyists food and beverage spending who paid itemized recipients analysis (texastribune.org, kut.org, texasscorecard.com, propublica.org)", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.texastribune.org/2013/03/07/ethics-loopholes-keeping-public-dark/",
+      "outlet": "Texas Tribune",
+      "date": "2013-03-07",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "only 3.6 percent of the lobbyist disclosures for categories that can be itemized if thresholds are met",
+      "paywalled": false,
+      "searcher_note": "Tribune analysis: almost no Texas lobby food/gift spending is itemized (2011). Backs the lead's caveat that itemized meals are a small slice; says nothing about hedge funds or banks as payers."
+    },
+    {
+      "url": "https://www.kut.org/politics/2025-07-03/texas-elon-musk-tesla-spacex-lobbyist",
+      "outlet": "KUT (Austin NPR)",
+      "date": "2025-07-03",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "State rules don't require them to disclose who was on the receiving end unless the lobbyist shelled out more than $132.60 on one person in a single day.",
+      "paywalled": false,
+      "searcher_note": "Explains the itemization threshold via Musk's lobbyists' unitemized meals. Pattern on disclosure gaps, not on financial-firm payers."
+    },
+    {
+      "url": "https://www.institutionalinvestor.com/article/2bsuidloorwq40ai36yo0/portfolio/the-2014-hedge-fund-rising-stars-brad-gilbert",
+      "outlet": "Institutional Investor",
+      "date": "2014-06-10",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "As a member of the public markets team, Gilbert, 38, helps manage the $124 billion, Austin-based pension plan's $11 billion in hedge fund investments.",
+      "paywalled": false,
+      "searcher_note": "Identifies the lead's top meal recipient as a TRS hedge-fund allocator. Context only: no mention of lobby meals."
+    }
+  ],
+  "notes": "No source found reports hedge funds or banks as a share of itemized Texas lobby meals, or names Brad Gilbert (or any TRS staffer) as a recipient of fund-paid meals. Coverage found is about the itemization gap in Texas lobby reports (Texas Tribune 2013, KUT/ProPublica 2025). Houston Chronicle's 2019 Permanent School Fund series and a Dallas Morning News 2023 piece on lobby disclosure came up but both pages failed to load, so they aren't recorded. Several WebSearch calls auto-expanded into sub-searches; stopped at 6 logged queries to protect the shared budget."
+}

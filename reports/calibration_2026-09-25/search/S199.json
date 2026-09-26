@@ -1,0 +1,77 @@
+{
+  "story_id": "S199",
+  "entity": "Nebraska (NDEE / Nebraska Department of Environment and Energy): air facilities with a pre-July-2024 high-priority Clean Air Act violation, unresolved and never given formal enforcement, per EPA ICIS-Air (24 of 66 nationwide)",
+  "queries": [
+    {"q": "Nebraska air quality violations unresolved no enforcement NDEE high priority violation ethanol plants", "found_useful": true},
+    {"q": "Flatwater Free Press Nebraska Department of Environment and Energy air permit violations enforcement lax", "found_useful": false},
+    {"q": "EPA State Review Framework Nebraska Clean Air Act high priority violations timely addressed findings", "found_useful": true},
+    {"q": "EPA OIG high priority violations Clean Air Act states not addressed timely unaddressed HPV report", "found_useful": true},
+    {"q": "Nebraska no Clean Air Act penalties five years EPA review NDEE voluntary compliance Nebraska Examiner", "found_useful": true},
+    {"q": "Nebraska ethanol plant air permit violation high priority violator ECHO no formal enforcement", "found_useful": false},
+    {"q": "Environmental Integrity Project 2024 ethanol biofuel plants air permit violations Nebraska enforcement report", "found_useful": true},
+    {"q": "Nebraska air pollution enforcement 2026 NDEE ethanol plant violations penalty attorney general", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf",
+      "outlet": "U.S. EPA Region 7, State Review Framework (Nebraska CAA, FY2022, final report)",
+      "date": "2024-08-27",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "NDEE is not responding to facilities with formal enforcement to address and resolve HPVs.",
+      "paywalled": false,
+      "searcher_note": "EPA's own audit of Nebraska's air enforcement, Finding 4-3 (Area for Improvement): NDEE doesn't use formal enforcement on HPVs. Same finding in plain words, FY2022 review, no facility counts. Same report: NDEE took no formal enforcement in the review period, and no penalties went into ICIS-Air in five years."
+    },
+    {
+      "url": "https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf",
+      "outlet": "U.S. EPA Region 7, State Review Framework (Nebraska CAA, FY2022, final report)",
+      "date": "2024-08-27",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The other two HPVs were still showing up in ICIS-AIR as active, even though they had been resolved and documented with NDEE’s database.",
+      "paywalled": false,
+      "searcher_note": "Same report, logged again for the records-gap caveat. EPA found HPVs listed as active in ICIS-Air that NDEE had already resolved (2 of 9 in the file review). Recurring data-timeliness findings (1-1, 3-1). This cuts against reading ICIS-Air 'unresolved' at face value."
+    },
+    {
+      "url": "https://dee.nebraska.gov/air/air-compliance-enforcement-program",
+      "outlet": "Nebraska Department of Water, Energy, and Environment (formerly NDEE)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Through the Nebraska Environmental Protection Act, the Air Program attempts to obtain compliance with environmental regulations first through voluntary efforts.",
+      "paywalled": false,
+      "searcher_note": "The state's own framing: voluntary compliance comes first, and formal enforcement is kept for serious or chronic cases. It explains the mechanism behind 'no formal action'."
+    },
+    {
+      "url": "https://www.epa.gov/sites/default/files/2015-11/documents/20091014-10-p-0007.pdf",
+      "outlet": "EPA Office of Inspector General (Report 10-P-0007)",
+      "date": "2009-10-14",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "According to EPA data, about 30 percent of State-led HPVs and about 46 percent of EPA-led HPVs were unaddressed after 270 days.",
+      "paywalled": false,
+      "searcher_note": "National pattern: high-priority Clean Air Act violations left unaddressed past policy deadlines. Doesn't single out Nebraska."
+    },
+    {
+      "url": "https://environmentalintegrity.org/news/biofuels-manufacturing-releases-large-amounts-of-hazardous-air-pollutants/",
+      "outlet": "Environmental Integrity Project",
+      "date": "2024-06-12",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "More than 41 percent of biofuels plants (98 of 240) violated their air pollution control permits at least once between July 2021 and May 2024, according to a review of EPA’s Enforcement and Compliance History Online database.",
+      "paywalled": false,
+      "searcher_note": "Pattern for the ethanol-plant angle: frequent permit violations at biofuel plants, calls for stronger enforcement. Names Cargill Blair, NE, as the top acrolein emitter, and a Nebraska Sierra Club quote on 'regulatory failure'. No Nebraska HPV counts."
+    },
+    {
+      "url": "https://journalstar.com/news/state-regional/report-2-nebraska-biofuel-plants-among-biggest-emitters-of-toxic-pollutants/article_69cd12a0-28ca-11ef-8ee4-57006c4fb840.html",
+      "outlet": "Lincoln Journal Star",
+      "date": "2024-06-14",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Report: 2 Nebraska biofuel plants among biggest emitters of toxic pollutants",
+      "paywalled": true,
+      "searcher_note": "Paywalled (tollbit redirect). Headline only. Per the search snippet, it says ADM Columbus got a noncompliance letter in Feb 2023 and returned to compliance Apr 2024 per NDEE. ADM Columbus is not in the lead's 24."
+    }
+  ],
+  "notes": "The strongest source is EPA's own State Review Framework report on Nebraska (CAA, FY2022, final 2024-08-27). It finds NDEE doesn't take formal enforcement on HPVs and assessed no penalties in the period, the same direction as the lead. It has no facility counts and no national comparison (24 of 66). The same report documents ICIS-Air data lags and HPVs shown active after they were resolved, which supports the lead's own records-gap caveat. No news story found reporting Nebraska's share of unaddressed HPVs, and nothing after 2026-06-30. The Nebraska Examiner 2026-07-02 opinion piece turned up in results but is about nitrate in water, not air, so it wasn't logged. SRF Rounds 1-3 exist at epa.gov/compliance/state-review-framework-srf-nebraska-final-reports and weren't opened."
+}

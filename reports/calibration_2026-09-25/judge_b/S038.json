@@ -1,0 +1,12 @@
+{
+  "story_id": "S038",
+  "bin": "Known pattern",
+  "entity": "share of 919 US nonprofit hospitals where one officer's 2022 pay exceeded total charity-care cost (27%)",
+  "deciding_sources": [0, 1, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The exact comparison exists in the press for other entities: CHOP's CEO paid more than 3 years of charity care, 17 California hospitals in 2011, Senate HELP's 6%-of-charity-care stat. No source states the national 27%-of-919 figure.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

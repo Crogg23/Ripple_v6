@@ -1,0 +1,12 @@
+{
+ "story_id": "S018",
+ "bin": "Matched + more",
+ "entity": "Judge Rodney Gilstrap: cases assigned while he or his wife held the litigants' stock",
+ "deciding_sources": [0, 1, 3],
+ "earliest_match_date": "2021-09-29",
+ "post_cutoff_match": false,
+ "what_we_add": "183 cases naming Apple, Microsoft, AT&T or Walmart specifically (WSJ's 138 counts all conflict cases 2010-2018; the four-company 2010-20 count is stated nowhere)",
+ "why": "WSJ named Gilstrap the record-holder for cases with financial conflicts; ABA Journal gives 138 cases. Same entity, same finding, same direction. Our 183 is a different definition (four named companies, disclosure years 2010-20), so no contradiction.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

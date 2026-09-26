@@ -1,0 +1,12 @@
+{
+ "story_id": "S050",
+ "bin": "Matched + more",
+ "entity": "West Virginia water systems' unresolved serious defects vs the rest of the country",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-11-26",
+ "post_cutoff_match": true,
+ "what_we_add": "the defect-case metric: 19% of pre-2022 cases still open vs 3% elsewhere, plus the Louisiana and EPA Region 9 comparisons and 2+ year counts",
+ "why": "The Gazette-Mail names WV and states the same finding same direction: worst-in-US violation rate and 50.7% of systems on the unresolved-serious-violations priority list. Our unfixed-inspection-defect share and the LA/Region 9 numbers appear nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

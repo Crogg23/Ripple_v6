@@ -1,0 +1,12 @@
+{
+ "story_id": "S135",
+ "bin": "Known pattern",
+ "entity": "The 17 landfills on EPA's stopped-reporting-unknown-reason GHGRP list",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names any of the 17 or the stopped-reporting list. Industrious Labs (0) reports the same kind of finding about other landfills: operators' federal emissions reports don't reflect reality (711 exceedances where operators reported few or none). The EPA page and the repeal proposal are rule explainers, not findings.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

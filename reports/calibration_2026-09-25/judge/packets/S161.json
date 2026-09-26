@@ -1,0 +1,59 @@
+{
+ "story_id": "S161",
+ "lead": {
+  "headline": "Homeland Security spent $5.29 million on Google ads that Google filed as political, the only federal agency in 2018-2026",
+  "number": "$5,285,100, Mar 2025-Feb 2026 ($4,294,000 in 2025, $991,100 in 2026): #3 account of calendar 2025 and #13 of the 2026 cycle through Aug 2, out of 4,892",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Why Google filed the ads as political is untested, and DHS's 2025 ad campaign was already news; the new part is Google's political filing and the week-by-week curve"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Department of Homeland Security Google political ads transparency report",
+  "DHS Noem ad campaign Google political ads spending million",
+  "\"Homeland Security\" top political advertiser Google ads 2025 self-deportation Transparency Center",
+  "Google labeled DHS ads \"election ads\" OR \"political ads\" government agency verified advertiser",
+  "DHS YouTube Google ad spending 2026 Mullin ad campaign halted",
+  "\"Google\" political ad library \"Department of Homeland Security\" spent YouTube ads Noem \"transparency\"",
+  "DHS advertising campaign political ads inspector general report August 2026",
+  "DHS \"Google\" ads \"$4.3 million\" OR \"$5.3 million\" OR \"$4.29 million\" political self-deportation"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://washingtonsun.com/immigration/department-homeland-security-video-ads-self-deportation-facebook-instagram?redirected=notus_org",
+   "outlet": "NOTUS (now redirects to washingtonsun.com)",
+   "date": "2025-10-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "DHS spent $297,100 — and counting — on YouTube ads in the U.S. so far in October, according to Google's ad transparency center.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " cuisine with one such video. “If you’re an illegal alien, this runway is your future because you’re headed home,” Noem says in the ad. “If you don’t, you will be caught, fined, detained and forcefully removed. Under President Trump’s strong leadership, we follow the law, and our border is secure.” DHS spent $ 297,100 — and counting — on YouTube ads in the U.S. so far in October, according to Google’s ad transparency center. And on TV, the agency’s self-deportation ads have been played at least 80 times since Oct. 6, including during international soccer games and on Univision programs in targeted U.S. cities — as well as ads that played Monday during “Good Morning America” in New York City and an Oct. 7 national ad placement during “Fox & Friends.” T"
+  },
+  {
+   "idx": 1,
+   "url": "https://jayapal.house.gov/2026/01/22/reps-jayapal-and-balint-push-meta-and-google-to-end-ice-ad-partnerships-using-white-nationalist-propaganda/",
+   "outlet": "Office of Rep. Pramila Jayapal",
+   "date": "2026-01-22",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The letter to Google also calls out a reported $3 million in ICE advertisements on Google and YouTube that promoted 'self-deportation.'",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "d to white nationalist themes, using images and slogans historically used by neo-Nazi groups. In one recent example, “DHS posted a recruitment ad on Instagram proclaiming ‘we’ll have our home again’, which is a song popularized in neo-Nazi spaces and used in white nationalist calls for a race war.” The letter to Google also calls out a reported $3 million in ICE advertisements on Google and YouTube that promoted ‘self-deportation,’ a strategy being used by the Trump administration to intimidate immigrants into leaving the country. In total, ICE placed $5.8 million in ads with Meta and Google last year. Reps. Balint and Jayapal underscored the real-world consequences of expanded and insufficiently vetted immigration enforcement, citing deaths, warrantless a"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.axios.com/2025/10/15/trump-self-deportation-ads-noem",
+   "outlet": "Axios",
+   "date": "2025-10-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "2025's big ad spender: The U.S. taxpayer",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "U.S. government pays for 2025's most expensive political ad campaign Skip to main content Newsletters Axios Local Show Axios Pro Axios Live The Axios Show Login Axios All topics Axios Search Oct 15, 2025 - Politics & Policy 2025's big ad spender: The U.S. taxpayer Brittany Gibson email (opens in new window) sms (opens in new window) facebook (opens in new window) twitter (opens in new window) linkedin (opens in new window) bluesky (opens in new window) Add Axios on Google Add Axios as your preferred source to see more of our stories on Google. Add Axios on Google Screenshot: U.S. Dep"
+  }
+ ]
+}

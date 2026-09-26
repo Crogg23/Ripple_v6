@@ -1,0 +1,15 @@
+{
+ "story_id": "S152",
+ "bin": "Matched + more",
+ "entity": "India's severe food insecurity count derived from FAO's regional rows",
+ "deciding_sources": [
+  0,
+  2
+ ],
+ "earliest_match_date": "2022-08-27",
+ "post_cutoff_match": false,
+ "what_we_add": "The 2022-24 figure of 296.5M, 35% of FAO's world total, and the rise from 205.6M in 2014-16",
+ "why": "Frontline ran the same subtraction on the same FAO rows and got 307.7M severe for 2019-21; the ISAS paper spells out the method. Same entity, same finding, earlier window; our 2022-24 number and world-share are new. The 2026 undernourishment-decline note is a different measure.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

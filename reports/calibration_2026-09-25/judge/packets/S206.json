@@ -1,0 +1,59 @@
+{
+ "story_id": "S206",
+ "lead": {
+  "headline": "Four people barred from Medicare show up in the offshore leaks at matching US addresses, out of 1,611 name hits",
+  "number": "1,611 name-only matches to the federal health-care exclusion list, 4 left with street or ZIP agreeing; 3 tied to Cook Islands asset-protection trusts.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Golden held no trust (his nodes are middleman, protector and \"nominated person\"); the leak-vs-others comparison measures ZIP completeness, not behavior; Bressi and Roix match only at ZIP level through SAM."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "ICIJ Offshore Leaks doctors Medicare fraud Cook Islands asset protection trust",
+  "Pandora Papers Cook Islands trusts health care fraud excluded Medicare physicians",
+  "ICIJ 2013 Cook Islands asset protection trusts American doctors fraud judgments creditors",
+  "Roix Cook Islands trust Medicare exclusion",
+  "Bressi health care fraud excluded OIG offshore",
+  "Golden Cook Islands trust protector health care fraud Medicare excluded",
+  "Medicare fraud defendant Cook Islands trust restitution DOJ 2026",
+  "\"Offshore Leaks\" LEIE OR \"exclusion list\" health care providers match analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.icij.org/blog/2013/12/unlocking-secrets-cook-islands/",
+   "outlet": "ICIJ (Leslie Wayne)",
+   "date": "2013-12-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "His attorney, James Golden, set up the Cook trust, and later also pleaded guilty in 2006 to his role in the scheme. He was disbarred in 2008.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s employees’ pension fund and committing Medicare fraud at a chain of health care facilities he owned in Oklahoma and elsewhere. The scheme involved shell corporations in the British Virgins, and Mr. Seibert even invented an alias “Martin Mesquite’’ to hide his identity, according to court filings. His attorney, James Golden, set up the Cook trust, and later also pleaded guilty in 2006 to his role in the scheme. He was disbarred in 2008. In an interview, Mr. Golden said he couldn’t comment on his client, Mr. Seibert, who was sent to federal prison in 2007. In the meantime, Federal marshals also seized Mr. Seibert’s 695-acre Texas ranch, which contained exotic animals used for hunting. Trusts are big business for the Cooks Located somewhere east of Tahiti and south "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.icij.org/blog/2013/12/unlocking-secrets-cook-islands/",
+   "outlet": "ICIJ (Leslie Wayne)",
+   "date": "2013-12-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "One group that stood out in the ICIJ database are Medicare fraudsters.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "umerous postings including Afghanistan. In an interview, Dr. Dwan said he was not concerned about malpractice, and had never paid a malpractice claim in his career. He said he set up the trust for estate planning purposes for his family and the next generation. Many shady operators have Cook trusts One group that stood out in the ICIJ database are Medicare fraudsters. One is Floyd Seibert, who set up the “Blue Clear Sky Trust” at the same time that, according to the government, he was stealing nearly $4 million from his employees’ pension fund and committing Medicare fraud at a chain of health care facilities he owned in Oklahoma and elsewhere. The scheme involved shell corporations in th"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.icij.org/investigations/offshore/paradise-untouchable-assets/",
+   "outlet": "ICIJ / The New York Times",
+   "date": "2013-12-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Lawyers often aim their Cook trust pitches at doctors, many of whom say they fear frivolous malpractice claims. But the trusts can also protect those who have committed serious transgressions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "om he had two children and who was the trust’s beneficiary. “Baby Mama” contained proceeds from the sale of a $2.5 million Ö m Florida home — proceeds that were held in Swiss and Isle of Man accounts and are now among 30 offshore accounts subject to a forfeiture order to pay Mr. Stanford’s victims. Lawyers often aim their Cook trust pitches at doctors, many of whom say they fear frivolous malpractice claims. But the trusts can also protect those who have committed serious transgressions. Dr. Michael M. Kamrava, cq who lost his medical license after implanting embryos allowing Nadya Suleman, Ö the so-called Octomom, to give birth to octuplets, placed his interest in a Beverly Hills surgery center and a Swiss bank account in his “Athena Trust.” There is also Dr. James Naples, cq a Texas podiatrist who pleaded guilty "
+  }
+ ]
+}

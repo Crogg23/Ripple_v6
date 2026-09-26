@@ -1,0 +1,66 @@
+{
+  "story_id": "S028",
+  "entity": "UK Russia sanctions list vs US OFAC SDN list: shadow-fleet ships the UK sanctions that the US does not (358 of 620; 309 designated 2024-25)",
+  "queries": [
+    {"q": "UK sanctioned shadow fleet tankers not sanctioned by US OFAC gap analysis", "found_useful": true},
+    {"q": "shadow fleet vessels sanctioned by UK EU but not United States number 2025", "found_useful": true},
+    {"q": "Britain sanctions more Russian shadow fleet tankers than US Treasury OFAC hasn't designated Reuters", "found_useful": false},
+    {"q": "Trump administration no new Russian shadow fleet vessel designations since January 2025 while UK EU add hundreds", "found_useful": true},
+    {"q": "Kpler Windward S&P Global tankers UK-only sanctions not on OFAC SDN list divergence 2026", "found_useful": false},
+    {"q": "Lloyd's List TradeWinds tankers sanctioned by UK and EU but not US OFAC count Russia 2026", "found_useful": false},
+    {"q": "OFAC sanctions more tankers than UK and EU shadow fleet Iran Russia US leads vessel designations", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.brookings.edu/articles/the-fading-efficacy-of-us-shadow-fleet-sanctions/",
+      "outlet": "Brookings Institution (Robin Brooks and Ben Harris)",
+      "date": "2026-09-03",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Specifically, this means that the U.S. should designate the 524 tankers sanctioned by the EU and UK, but not yet sanctioned by the U.S.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Counts US 216, EU 671, UK 627 sanctioned ships; US count unchanged since January 2025; tracks UK-only vessels. Gap is stated for EU+UK combined (524), not UK alone."
+    },
+    {
+      "url": "https://www.brookings.edu/articles/the-fading-efficacy-of-us-shadow-fleet-sanctions/",
+      "outlet": "Brookings Institution (Robin Brooks and Ben Harris)",
+      "date": "2026-09-03",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Our updated count for ships sanctioned by the U.S. is 216 (black line), a number that has been unchanged since the final days of the Biden administration in January 2025.",
+      "paywalled": false,
+      "searcher_note": "Same page, second quote: the US stopped adding ships in January 2025, the policy slowdown the lead's caveat mentions. Page also says the UK count stands at 627."
+    },
+    {
+      "url": "https://www.brookings.edu/articles/an-update-on-europes-russia-sanctions/",
+      "outlet": "Brookings Institution",
+      "date": "2026-08-06",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "To achieve comprehensive coverage across these jurisdictions, the U.S. would need to sanction an additional 518 tankers currently sanctioned by the EU and UK.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Says the UK now sanctions 621 ships vs 17 in July 2024 (so nearly all UK listings are 2024-26); US hasn't sanctioned any Russian shadow fleet vessels since Biden."
+    },
+    {
+      "url": "https://robinjbrooks.substack.com/p/eu-and-uk-shadow-fleet-sanctions",
+      "outlet": "Robin Brooks (Substack)",
+      "date": "2025-05-27",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Only 43 vessels are sanctioned jointly by the US, UK and EU, a number that should be far higher.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: US 169, EU 235, UK 174 shadow fleet ships; small overlap between lists. Early version of the same UK/EU vs US gap tracking."
+    },
+    {
+      "url": "https://gcaptain.com/uk-and-eu-target-russias-shadow-fleet-as-sanctions-net-widens/",
+      "outlet": "gCaptain",
+      "date": "2025-02-24",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "However, President Donald Trump has not imposed new sanctions on Russia in response to its ongoing war in Ukraine.",
+      "paywalled": false,
+      "searcher_note": "UK adds 40 shadow fleet vessels (133 total tankers) while the US adds none; early trade-press note of the divergence, no count of the gap."
+    }
+  ],
+  "notes": "Brookings (Aug and Sep 2026) tracks the same UK/EU-vs-US sanctioned-ship gap with counts: UK 621-627, US 216, EU+UK-not-US 518-524. No source found that states a UK-only-vs-OFAC gap of 358 or 58%, or that 309 were designated in 2024-25 (Brookings Aug 2026 says UK had 17 ships as of July 2024). Lloyd's List (2025-05-20, paywalled) notes European sanctions in 'stark contrast' to absent US sanctions but was not recorded because only the teaser was reachable. Search snippets suggested a Robin Brooks post saying the US should designate 524 tankers; that figure is on the Brookings Sept 2026 page."
+}

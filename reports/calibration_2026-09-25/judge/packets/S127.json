@@ -1,0 +1,70 @@
+{
+ "story_id": "S127",
+ "lead": {
+  "headline": "Boxlight insiders filed 30 of 76 stock-sale reports late; 38 of 2,740 companies ran 10%+ late; median zero",
+  "number": "38 of 2,740 companies with 30+ sale reports had 10%+ filed 11-365 days late (22 under the strict rule); 90th percentile 2.9%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A late sale report is a paperwork failure, not proof of insider trading; co-owners filing the same trade twice can fake lateness (55 such mirrors were dropped)."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Boxlight insiders late Form 4 filings",
+  "Boxlight Corporation delinquent Section 16(a) reports proxy",
+  "Boxlight BOXL insider selling news executives sold shares",
+  "SEC charges insiders companies failing to timely report Form 4 Section 16(a) sweep",
+  "study share of Form 4 filings filed late after two-day deadline insiders analysis",
+  "\"Boxlight\" Form 4 filed late tax withholding RSU Nance Marklew Wiggins",
+  "Boxlight 2026 SEC Nasdaq compliance news August September 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sec.gov/Archives/edgar/data/1624512/000162828025019375/boxl-20241231x10xka.htm",
+   "outlet": "Boxlight Corp, Form 10-K/A for FY2024 (SEC EDGAR)",
+   "date": "2025-04-23",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "all directors, executive officers, and 10% shareholders complied with all applicable Section 16(a) filing requirements during the year ended December 31, 2024, except for the late Form 4 filings by each of Mr. Nance, Mr. Marklew, and Mr. Wiggins",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "and executive officers and persons who own beneficially more than 10% of our Common Stock to file reports of initial statements of ownership and statements of changes in ownership of our Common Stock with the SEC. To the Company’s knowledge, based solely on the information furnished to the Company, all directors, executive officers, and 10% shareholders complied with all applicable Section 16(a) filing requirements during the year ended December 31, 2024, except for the late Form 4 filings by each of Mr. Nance, Mr. Marklew, and Mr. Wiggins for exempt transactions with respect to shares of stock withheld to pay the employee’s tax obligations upon the vesting of restricted stock units on May 30, 2024. 8 Table of Contents ITEM 11 EXECUTIVE COMPENSATION 2024 Summary Compensation Table The following table sets forth information regarding the compensation of our named executive o"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.sec.gov/Archives/edgar/data/1624512/000110465924054191/tm2412992d1_def14a.htm",
+   "outlet": "Boxlight Corp, DEF 14A proxy statement (SEC EDGAR)",
+   "date": "2024-06-13",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "we believe that all Section 16(a) filing requirements for our executive officers, directors and 10% shareholders were met during the year ended December 31, 2023, except for the following:",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "es with the SEC and to provide us with copies of those filings. Based solely on our review of the copies of such forms furnished to us and written representations by our officers and directors regarding their compliance with applicable reporting requirements under Section 16(a) of the Exchange Act, we believe that all Section 16(a) filing requirements for our executive officers, directors and 10% shareholders were met during the year ended December 31, 2023, except for the following: Name Late Reports Transactions Covered Number of Shares Michael Ross Pope Form 4 CLASS A COMMON STOCK 578,778 STOCK OPTIONS 2,041,098 Form 4 CLASS A COMMON STOCK 1,609 CLASS A COMMON STOCK 5,691 CLASS A COMMON STOCK 1,609 Form 4 CLASS A COMMON STOCK 5,691 Form 4 CLASS A COMMON STOCK 4,839 CLASS A COMMON STOCK 1,368 Form 4 CLASS"
+  },
+  {
+   "idx": 2,
+   "url": "https://dev.to/itsraxzey/how-late-is-form-4-real-time-data-measuring-filing-delay-on-11241-insider-filings-2e9j",
+   "outlet": "DEV Community (independent analysis)",
+   "date": "2026-08-24",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Sales are filed on time almost universally",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "did Breaking the same numbers out by transaction code: Code Meaning Legs Within 2 bus. days S Open-market sale 6,694 98.2% D Disposition to issuer 1,163 98.8% M Option exercise 4,552 95.4% A Grant/award 6,897 92.8% F Tax withholding 1,850 93.8% P Open-market purchase 1,198 80.9% J \"Other\" 822 79.2% Sales are filed on time almost universally — they're usually broker-assisted and the paperwork pipeline is well-oiled. Open-market purchases — the transaction type most insider-trading research cares about most — are the least punctual common code: 1 in 5 arrives after the deadline window. If your strategy keys on insider buys specifically, your look-ahead bias is conce"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.sec.gov/newsroom/press-releases/2023-201",
+   "outlet": "SEC",
+   "date": "2023-09-27",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "SEC enforcement staff used data analytics to identify the charged insiders as repeatedly filing these reports late.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "any’s stock must use to report their holdings and intentions with respect to the company. These ownership reports give investors and other market participants the opportunity to evaluate whether the holdings and transactions of company insiders could be indicative of the company’s future prospects. SEC enforcement staff used data analytics to identify the charged insiders as repeatedly filing these reports late. Some filings were delayed by weeks, months, or even years. The reporting requirements apply irrespective of whether the trades were profitable and regardless of a person’s reasons for the transactions. “Timely disclosure of insider transactions is critically important to both investors and the fair, orderly and efficient operation of our "
+  }
+ ]
+}

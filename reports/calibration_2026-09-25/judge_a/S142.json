@@ -1,0 +1,12 @@
+{
+ "story_id": "S142",
+ "bin": "Matched + more",
+ "entity": "US detained-immigrant habeas filings and outcomes, Oct 2024-Mar 2026",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2026-02-10",
+ "post_cutoff_match": true,
+ "what_we_add": "24% of all new federal civil cases in Mar 2026, and the Oct 2025-Mar 2026 win split 7,340 to 831",
+ "why": "TRAC has the 85x filing surge to Mar 2026; ProPublica tracks the historic volume; Politico's 15,000-to-2,200 rulings match our ~90% detainee win rate in direction. Nobody states the civil-docket share.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

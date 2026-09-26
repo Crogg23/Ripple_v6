@@ -1,0 +1,38 @@
+{
+  "story_id": "S074",
+  "entity": "Federal district judges who owed a bank (loans, guaranties, $250K+) and were assigned cases naming that bank, 2003-2021 (68 judges, 424 cases; broad cut 379 judges, 3,650 cases)",
+  "queries": [
+    {"q": "federal judges loans from bank presided over cases involving that bank", "found_useful": false},
+    {"q": "judges mortgage loan bank party case recusal financial disclosure analysis", "found_useful": false},
+    {"q": "\"judges\" owed money to banks that appeared before them disclosure reports investigation", "found_useful": false},
+    {"q": "federal judge liabilities bank loan heard case against same bank conflict of interest news", "found_useful": false},
+    {"q": "Committee on Codes of Conduct advisory opinion judge loan from bank party recusal \"financial interest\" deposit mortgage", "found_useful": true},
+    {"q": "judges debts disclosure CourtListener analysis bank creditor cases 2026", "found_useful": false},
+    {"q": "judge had a loan from the bank while presiding over lawsuit against the bank, failed to recuse", "found_useful": false},
+    {"q": "federal judges financial conflicts recusal investigation September 2026", "found_useful": true},
+    {"q": "\"Hidden Interests\" Wall Street Journal judges loans banks disclosure", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.abajournal.com/magazine/article/to-recuse-or-not-investigations-into-federal-judges-financial-interests-spark-debate",
+      "outlet": "ABA Journal",
+      "date": "2022-02-01",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "reported that between 2010 and 2018, more than 130 federal judges failed to recuse themselves from 685 cases in which they or family members owned stock.",
+      "paywalled": false,
+      "searcher_note": "Summarizes the 2021 WSJ judge-conflict investigation; the mechanism is stock ownership, not loans owed to a bank party."
+    },
+    {
+      "url": "https://www.uscourts.gov/sites/default/files/document/guide-vol02b-ch02_1.pdf",
+      "outlet": "Judicial Conference Committee on Codes of Conduct (Guide to Judiciary Policy, Vol. 2B, Ch. 2)",
+      "date": "2025-03-06",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Maintaining a bank account does not require a judge to recuse from cases in which the bank is a party, nor does owing money to a bank require recusal, absent special circumstances such as unusually favorable terms or a default.",
+      "paywalled": false,
+      "searcher_note": "Federal ethics guidance (inside Advisory Opinion No. 94): an ordinary loan from a bank party does not require recusal; bears on the lead's own caveat."
+    }
+  ],
+  "notes": "No source found that analyzes federal judges' loans or debts owed to banks that appeared as parties before them, or that reports the 68-judge / 424-case or 379-judge / 3,650-case figures. All press coverage found (WSJ 2021 'Hidden Interests' via ABA Journal, The Hill, Brennan Center; CNN 2024 on Judge Liman) is about stock ownership, a different mechanism. The Hill page returned 403 to WebFetch, so it is not recorded. Federal ethics guidance says ordinary bank loans do not require recusal absent unusual terms or default, which matches the lead's caveat. The same ABA Journal article also reports the 5th Circuit (In re Cameron) holding that a judge's debentures in a party were not a disqualifying financial interest: another debt-is-not-ownership data point."
+}

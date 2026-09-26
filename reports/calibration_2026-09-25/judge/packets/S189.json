@@ -1,0 +1,58 @@
+{
+ "story_id": "S189",
+ "lead": {
+  "headline": "139 campaign funds for races run by 2016 still hold $7.98M; Robin Tallon's 1992 committee paid out $1.39M in 2023-24",
+  "number": "$7.98M cash across 139 committees (median $366; 3 hold 59%; 32 terminated); Tallon for Congress paid out $1,391,737 in the 2024 cycle with $0 from individual donors.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "TTL_DISB is all money out, not spending: it includes Byrne's $300K payback to himself and likely investment purchases. This also repeats g28's Tallon lead."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "\"Tallon for Congress\" committee still active disbursements",
+  "Robin Tallon campaign fund 2024 zombie committee",
+  "Robin Tallon campaign account closed donated charity 2023",
+  "FEC Tallon for Congress Committee audit OR \"matter under review\" Tallon",
+  "\"32 years after leaving office\" former SC congressman million-dollar campaign transfer Tallon",
+  "zombie campaign accounts former lawmakers leftover cash 2026",
+  "Robin Tallon 2026 Senate independent Lindsey Graham campaign account"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://scdailygazette.com/2025/04/28/32-years-after-leaving-office-a-former-sc-congressman-made-a-million-dollar-campaign-transfer/",
+   "outlet": "SC Daily Gazette",
+   "date": "2025-04-28",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "More than three decades after leaving elected office, a former South Carolina congressman transferred $1.25 million from his campaign reserves into a Morgan Stanley account for charitable giving.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "may still make another run for office By Shaun Chornobroff - April 28, 2025 9:22 am Robin Tallon Jr., who represented South Carolina’s 6th District from 1983 to 1993, stands in Maryland home of former U.S. Rep Bill Sarpalius, a Texas Democrat, several years ago. (Photo courtesy of Robin Tallon Jr.) More than three decades after leaving elected office, a former South Carolina congressman transferred $1.25 million from his campaign reserves into a Morgan Stanley account for charitable giving. Robin Tallon Jr ., who represented the 6th Congressional District for 10 years before not seeking re-election in 1992, moved the money last October as a “donation of securities,” according to the description on his last federal campaign filing. That’s not for personal investments, he told the SC Daily Gazette, but to a donor-advised f"
+  },
+  {
+   "idx": 1,
+   "url": "https://projects.tampabay.com/projects/2018/investigations/zombie-campaigns/spending-millions-after-office/",
+   "outlet": "Tampa Bay Times / WTSP",
+   "date": "2018-01-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "But his decade in Congress left him with more than $400,000 in his campaign account. He kept it open, then invested the money, turning it into $1 million.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ", to set himself up as a D.C. lobbyist. University of South Carolina Robin Tallon Jr. left the House of Representatives in 1993. Tallon was hardly an influential lawmaker. He was primary sponsor of only two bills that became law, according to govtrack.us. One was to designate National Tourism Week. But his decade in Congress left him with more than $400,000 in his campaign account. He kept it open, then invested the money, turning it into $1 million. In 2005, Tallon embarked on a spending spree that is still ongoing. It included more than $31,000 in “reimbursements” paid to himself without any explanation, federal records show. Another $20,000 was paid to his son, Robert Tallon III, who was listed as campaign treasurer. Tallon’s campaign bought a $4,000 computer in 2007, a $"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.wmbfnews.com/story/38188981/wmbf-investigates-is-former-sc-representatives-campaign-account-informal-retirement-funds/",
+   "outlet": "WMBF News",
+   "date": "2018-05-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Robin Tallon is the poster child for the problems with zombie campaigns, former officeholders leaving their campaign accounts open for decades and using them as informal retirement funds",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "candidate. However, the money can only be for bona fide campaign-related expenses. In Tallon's case, he doesn't give a clear reason for how dollars paid to himself were used. Brendan Fischer, with the Campaign Legal Center, a federal watchdog group, called these reimbursements problematic. \"I think Robin Tallon is the poster child for the problems with zombie campaigns, former officeholders leaving their campaign accounts open for decades and using them as informal retirement funds,\" Fischer said. Tallon's FEC filings also detailed a pattern of payments totaling thousands of dollars for his son, Robert Tallon III, who is listed as the committee's treasurer. FEC officials say family members are permitted to work as paid campaign staff. The problem with Tallon's campaign is that there isn't one. \"The challeng"
+  }
+ ]
+}

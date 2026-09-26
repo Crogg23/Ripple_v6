@@ -1,0 +1,12 @@
+{
+ "story_id": "S157",
+ "bin": "Matched + more",
+ "entity": "SRP's rooftop-solar adoption vs Arizona Public Service and Tucson Electric",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2022-02-18",
+ "post_cutoff_match": false,
+ "what_we_add": "the per-1,000-home rates (56.7 vs 145.4 vs 124.3) and the 2014-19 additions gap",
+ "why": "Grist has the same comparison, 15% vs under 5%, and Vote Solar says adoption is three times higher next door; both match our ~2.6x gap in direction and rough size. SRP's own similar-pace claim is about growth, a different measure.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

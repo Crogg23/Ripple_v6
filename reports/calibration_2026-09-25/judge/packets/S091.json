@@ -1,0 +1,82 @@
+{
+ "story_id": "S091",
+ "lead": {
+  "headline": "Tesla has 43 California accident inspections by job-safety regulators; 18 are still open, with a median 486 days to close",
+  "number": "Tesla: 44 accident or fatality inspections since 2015, 43 in California; 18 still open; median 486 days to close vs 139-251 for most top employers.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "California files serious-injury inspections as type A where other states use M, and there's no headcount."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Tesla Cal/OSHA accident inspections open cases Fremont factory",
+  "Tesla OSHA inspections serious injuries Fremont investigation years to close",
+  "Tesla Cal/OSHA 2026 citation Fremont worker injured",
+  "Tesla contests Cal/OSHA citations appeals board cases unresolved years",
+  "Tesla says Fremont injury rate below industry average safety improved response Cal/OSHA",
+  "Tesla OSHA inspection records analysis number of inspections compared other automakers open inspections 2025",
+  "Tesla factory worker safety investigation August 2026 OR September 2026 OSHA"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.forbes.com/sites/alanohnsman/2019/03/01/tesla-safety-violations-dwarf-big-us-auto-plants-in-aftermath-of-musks-model-3-push/",
+   "outlet": "Forbes",
+   "date": "2019-03-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "A review by Forbes found 24 investigations by California Occupational Safety and Health Administration inspectors from 2014 to 2018, resulting in fines for 54 violations.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " it hopes its newly announced $35,000 version of the Model 3 will boost demand, the factory is grappling with a more dubious claim to fame: It has been the target of more investigations into workplace safety and has incurred more fines than its rivals' main U.S. auto plants in the past half decade. A review by Forbes found 24 investigations by California Occupational Safety and Health Administration inspectors from 2014 to 2018, resulting in fines for 54 violations. These include new penalties that haven't yet hit the national online OSHA database, and they nearly double Tesla's fines over the last five years, to $236,730. They include one of the automaker's biggest fines, assessed after a worker's glove was caught in a torque gun, severing a finger tip, according to the state safety re"
+  },
+  {
+   "idx": 1,
+   "url": "https://aflcio.org/sites/default/files/2025-04/Memo%20on%20Elon%20Musk%20OSHA%20cases_.pdf",
+   "outlet": "AFL-CIO",
+   "date": "2025-04-09",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "There are 27 open cases with violations, 17 of which are included here, and two active investigations with no violations issued yet.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "companies for violating the law. The investigations listed are sourced from OSHA records, news reports, lawsuits and whistleblower testimonies. This list will be updated periodically. OSHA Violations by Company I. Tesla Inc. II. SpaceX III. The Boring Company IV. SolarCity Corporation I. Tesla Inc. There are 27 open cases with violations, 17 of which are included here, and two active investigations with no violations issued yet. 17 included here. In many cases, Tesla refuses to pay small fines and prolongs the process by contesting the citations. In most cases, the hazards do not have to be fixed while the citation is under contest, leaving workers in danger. Cases: ● OSHA Opened an Inspection Emphasizing Potential Lapses in Fall Protections at a Tes"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.forbes.com/sites/alanohnsman/2022/06/06/elon-musk-has-lots-to-say-about-workers-at-teslawhich-continues-to-lead-us-carmakers-in-safety-violations/",
+   "outlet": "Forbes",
+   "date": "2022-06-06",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "At the same time, Tesla continues to lead all carmakers in workplace safety violations, racking up more infractions and fines in the past three years than all other automakers in the U.S. combined.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ays about employees at Tesla, his electric-vehicle company. He’s expressed hostility to remote work, demanded that executives spend at least 40 hours a week at the office and floated the idea of firing 10% of Tesla’s workforce because he has a “super bad feeling” about the direction of the economy. At the same time, Tesla continues to lead all carmakers in workplace safety violations, racking up more infractions and fines in the past three years than all other automakers in the U.S. combined. Since March 1, 2019, when Forbes reported that Musk’s company had been slapped with more violations and fines under Occupational Safety and Health Administration rules than any other auto company in the U.S., Tesla has been cited 29 more times for infractions at its U.S. facilities, including 22 at manufacturing operations in Cali"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.hrdive.com/news/california-regulators-open-2-new-investigations-of-previously-fined-tesla-p/532571/",
+   "outlet": "HR Dive",
+   "date": "2018-09-19",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "bringing the total number of open investigations at the factory to six.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Copy link Email LinkedIn X/Twitter Facebook Print License Add us on Google Dive Brief: The California Division of Occupational Safety and Health (Cal/OSHA) has opened two new investigations of alleged safety violations at the Fremont, California factory of automaker Tesla, Business Insider reports, bringing the total number of open investigations at the factory to six. Previously, Cal/OSHA handed Tesla a $1,000 fine in August: $400 for failure to report a worker's injury and $600 for failure to remove an extension chord from the factory floor, according to the report. The most recent investigations involve two complaints to Cal/OSHA, the first after a forklift allegedly pushed two garbage bins t"
+  },
+  {
+   "idx": 4,
+   "url": "https://tesla.com/blog/accelerating-teslas-safety-culture",
+   "outlet": "Tesla",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "A review from the California Division of Occupational Safety and Health (Cal/OSHA) of the last five years of Tesla’s injury and illness records illustrated a 99% accuracy in our safety record keeping",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " better than the industry average for large manufacturers according the Bureau of Labor Statistics. Associates spent less time away from work due to injury or illness. Our Days Away and Restricted Time (DART) rate improved 12% compared to 2018 and is at the industry average for large manufacturers. A review from the California Division of Occupational Safety and Health (Cal/OSHA) of the last five years of Tesla’s injury and illness records illustrated a 99% accuracy in our safety record keeping, critical data that helps us identify risk and continuously improve. Cal/OSHA’s findings, along with our external audits of our process and our certified OSHA record keeping incident management team, illustrated the ongoing rigor of Tesla’s injury reporting. Growing Safety Globally In 2019, we added hundreds of sales, service, and del"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+  "story_id": "S141",
+  "entity": "U.S. Court of Appeals for the Fourth Circuit, number and share of published decisions, FY2025 vs FY2019",
+  "queries": [
+    {"q": "Fourth Circuit published opinions increase 2025 publication rate", "found_useful": false},
+    {"q": "Judicial Business 2025 courts of appeals opinions filed published unpublished percentage by circuit table B-12", "found_useful": true},
+    {"q": "\"Fourth Circuit\" publishing more opinions unpublished decline Wilkinson Diaz court", "found_useful": false},
+    {"q": "federal courts of appeals publishing fewer precedential opinions decline 2025 analysis", "found_useful": false},
+    {"q": "\"4th Circuit\" 2025 year in review number of published opinions argued cases statistics", "found_useful": false},
+    {"q": "Fourth Circuit unpublished opinion rate highest among circuits 2026", "found_useful": true},
+    {"q": "Fourth Circuit judges publishing more precedential decisions trend Richmond appeals court news", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.uscourts.gov/sites/default/files/document/jb_b12_0930.2025.pdf",
+      "outlet": "Administrative Office of the U.S. Courts, Judicial Business Table B-12",
+      "date": "2025-09-30",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "4th 2,520 124 2,396 - 316 282 4 1,794 - - 86.6",
+      "paywalled": false,
+      "searcher_note": "FY2025 (12 months to Sep 30, 2025) Fourth Circuit row: 316 signed published + 4 reasoned-unsigned published = 320 published; 86.6% unpublished. Numbers only in the PDF/XLSX, not on the HTML table page. Date is the period end, not publication date."
+    },
+    {
+      "url": "https://www.uscourts.gov/sites/default/files/data_tables/jb_b12_0930.2019.pdf",
+      "outlet": "Administrative Office of the U.S. Courts, Judicial Business Table B-12",
+      "date": "2019-09-30",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "4th 3,101 204 2,897 - 232 409 6 2,250 - - 91.8",
+      "paywalled": false,
+      "searcher_note": "FY2019 Fourth Circuit row: 232 signed published + 6 reasoned-unsigned published = 238 published; 91.8% unpublished. Same table as above, baseline year of the lead. Date is the period end."
+    },
+    {
+      "url": "https://www.goodreads.com/author_blog_posts/1533954-rates-of-unpublished-opinions-in-the-different-circuits-and-especially?tab=author",
+      "outlet": "Orin Kerr blog post (Volokh Conspiracy mirror on Goodreads)",
+      "date": "2011-09-08",
+      "source_type": "opinion",
+      "entity_named": "yes",
+      "quote": "According to the chart, the Fourth Circuit is the least likely to issue published opinions. Last year, only 7% of 4th Circuit opinions were published.",
+      "paywalled": false,
+      "searcher_note": "Background only: 2009-2010 data, Fourth Circuit historically the lowest-publishing circuit; different window from the lead"
+    }
+  ],
+  "notes": "No news, trade-press or blog coverage found reporting a rise in Fourth Circuit published decisions in FY2025, the 375 count, the +25% figure, or the median circuit falling 17%. The only same-entity, same-window numbers are the courts' own Table B-12 (FY2025 and FY2019), which use a different definition (last opinion in cases terminated on the merits) from the lead's FJC/CourtListener counts. Quotes for B-12 are the Fourth Circuit table row as extracted from the PDF text; column order: total, by consolidation, last opinion total, oral, signed published, signed unpublished, reasoned unsigned published, reasoned unsigned unpublished, unsigned-without-comment published, unsigned-without-comment unpublished, percent unpublished. A CRS report (R48846, 2026-02-06) gives only all-circuit precedential totals (3,369 in FY2024), no per-circuit counts, so not recorded."
+}

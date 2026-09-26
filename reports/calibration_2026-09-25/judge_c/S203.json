@@ -1,0 +1,12 @@
+{
+ "story_id": "S203",
+ "bin": "Not comparable",
+ "entity": "Share of Texas (ERCOT) gas capacity able to switch to oil, before vs after the 2021 freeze",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Same entity numbers exist but under different definitions: ERCOT's FFSS procurement (2,940.5 MW of contracted fuel-oil reserve) is not the total dual-fuel share, and EIA's 19% of NGCC is national, not Texas. No source states the 4.9%-to-6.0% rise, and nothing else matches.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

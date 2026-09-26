@@ -1,0 +1,12 @@
+{
+ "story_id": "S111",
+ "bin": "Matched + more",
+ "entity": "Mississippi hospitals' CMS death rates vs the national rate",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-10-16",
+ "post_cutoff_match": false,
+ "what_we_add": "the hospital-level count (24 of 72 worse, 1 better) and the four-state 43-vs-4 comparison against look-alike expectations",
+ "why": "MPB and Commonwealth Fund report Mississippi's Medicare hospital mortality highest / 16.5% vs 14.4% national, same entity and direction in numbers. No source counts hospitals against the national rate.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

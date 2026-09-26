@@ -1,0 +1,67 @@
+{
+  "story_id": "S157",
+  "entity": "Salt River Project (SRP, Phoenix area), rooftop/net-metered home solar per 1,000 homes vs Arizona Public Service and Tucson Electric Power, 2014-2024",
+  "queries": [
+    {"q": "Salt River Project rooftop solar installations dropped demand charge 2015 solar customers", "found_useful": true},
+    {"q": "SRP rooftop solar lags APS Tucson Electric Power per customer adoption", "found_useful": true},
+    {"q": "\"SRP\" rooftop solar adoption \"three times\" neighboring utilities families discouraged", "found_useful": true},
+    {"q": "Salt River Project solar customers percentage compared APS rooftop solar Arizona Republic", "found_useful": false},
+    {"q": "KJZZ SRP rooftop solar customers growth slower than APS territory", "found_useful": false},
+    {"q": "FERC ruling Salt River Project solar customers PURPA 2024 decision rooftop", "found_useful": true},
+    {"q": "SRP says rooftop solar growing record number solar customers 2024 2025 Salt River Project", "found_useful": true},
+    {"q": "Salt River Project solar rates board 2026 rooftop solar customers export credit news", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://grist.org/energy/utility-monopolies-are-hurting-rooftop-solar-can-antitrust-lawsuits-rein-them-in/",
+      "outlet": "Grist",
+      "date": "2022-02-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Yet while one utility has 15 percent of its customers with rooftop solar, the other has less than 5 percent.",
+      "paywalled": false,
+      "searcher_note": "Arizona energy attorney Court Rich compares APS (15%) with SRP (<5%); same article says SRP's solar rates led installations 'to drop by up to 95 percent between 2014 and 2015'. No TEP figure."
+    },
+    {
+      "url": "https://votesolar.org/salt-river-projects-pricing-proceeding-halts-arizonas-progress-toward-clean-and-affordable-energy/",
+      "outlet": "Vote Solar",
+      "date": "2025-02-28",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Rooftop solar adoption is three times higher in neighboring utility territories.",
+      "paywalled": false,
+      "searcher_note": "Advocacy NGO post on SRP's 2025 pricing case; states adoption gap vs neighboring utilities without naming them or giving per-1,000 figures."
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/new-fees-may-weaken-demand-for-rooftop-solar/",
+      "outlet": "Scientific American (ClimateWire)",
+      "date": "2015-11-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In the year immediately prior to implementing the fees, SRP received an average of 600 new rooftop solar applications per month. Today, it receives 25 applications per month",
+      "paywalled": false,
+      "searcher_note": "Earliest found: SRP's own spokesman on the post-2015 collapse in rooftop solar applications; speaks to the lead's slow 2014-19 SRP growth."
+    },
+    {
+      "url": "https://www.utilitydive.com/news/srp-salt-river-residential-rooftop-purpa-vote-solar-ferc/704576/",
+      "outlet": "Utility Dive",
+      "date": "2024-01-16",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "have decimated what was previously a robust market for solar",
+      "paywalled": false,
+      "searcher_note": "Vote Solar's FERC PURPA petition against SRP, as quoted by Utility Dive; SRP says it had more than 54,000 residential rooftop solar customers as of Sept. 30, 2023. Page blocks curl; WebFetch read it."
+    },
+    {
+      "url": "https://blog.srpnet.com/truth-about-srp/",
+      "outlet": "Salt River Project (company blog)",
+      "date": "2024-03-29",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "that number continues to grow at a similar pace to other local utilities.",
+      "paywalled": false,
+      "searcher_note": "Disagreement: SRP says its 55,000+ residential solar customers (as of Jan 2023) grow at a similar pace to other local utilities. Opposite direction to the lead's 2014-19 growth comparison."
+    }
+  ],
+  "notes": "Several sources name SRP and say its rooftop solar adoption is well below APS / neighboring utilities (Grist 15% vs under 5%; Vote Solar 'three times higher'). None found gives per-1,000-home rates (56.7 / 145.4 / 124.3) or the 2014-19 added-per-1,000 figures, and none names Tucson Electric Power in an adoption comparison. SRP's own blog disputes the direction for recent growth. Also checked, not recorded: Solar United Neighbors AZ net-metering page (no adoption comparison), srpexperience.com campaign site (buyback rates only), KJZZ 2025-07-30 (APS numbers only), Utility Dive 2024-03-25 FERC no-action piece (no adoption numbers)."
+}

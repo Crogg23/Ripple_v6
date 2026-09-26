@@ -1,0 +1,91 @@
+{
+  "story_id": "S099",
+  "entity": "FAA aircraft registry: US aircraft NTSB rated destroyed whose registration stays valid (420), incl. 37 whose registration term began after the crash, all touched in 2023",
+  "queries": [
+    {
+      "q": "FAA aircraft registry destroyed aircraft still registered valid registration after crash inaccurate records",
+      "found_useful": true
+    },
+    {
+      "q": "DOT Inspector General audit FAA aircraft registry inaccurate records registrations aircraft destroyed or deregistered",
+      "found_useful": true
+    },
+    {
+      "q": "FAA 2023 rule aircraft registration duration seven years existing registrations automatically extended expiration dates",
+      "found_useful": true
+    },
+    {
+      "q": "crashed destroyed plane still listed as registered FAA registry N-number news investigation ghost aircraft registrations",
+      "found_useful": true
+    },
+    {
+      "q": "aircraft rebuilt after NTSB destroyed rating re-registered same N-number warbird helicopter rebuild data plate FAA policy",
+      "found_useful": false
+    },
+    {
+      "q": "FAA aircraft registry accuracy 2026 audit OR report OR investigation registrations outdated owners destroyed aircraft",
+      "found_useful": false
+    },
+    {
+      "q": "DOT OIG report FAA Civil Aviation Registry modernization 2019 findings aircraft records inaccurate registrations",
+      "found_useful": false
+    },
+    {
+      "q": "FAA sent new registration certificate for plane that crashed years ago 2023 extension destroyed aircraft owner surprised",
+      "found_useful": true
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://apps.bostonglobe.com/spotlight/secrets-in-the-sky/series/part-one/",
+      "outlet": "Boston Globe Spotlight, Kelly Carr and Jaimi Dowdell",
+      "date": "2017-09-22",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "cancel the registration for one TWA cargo plane until 2016, 57 years after it crashed in Chicago, killing the crew and eight people on the ground",
+      "paywalled": false,
+      "searcher_note": "Same pattern: the FAA registry kept destroyed aircraft listed (two 9/11 airliners stayed 'active' four years after; a TWA plane stayed registered 57 years after a crash). Anecdotes, no count, no post-crash renewals."
+    },
+    {
+      "url": "https://www.nbcnews.com/id/wbna40590745",
+      "outlet": "NBC News (AP), Chris Hawley",
+      "date": "2010-12-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Other registrations are outdated because the owners have died or the planes were totaled in crashes.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found of the pattern: about 119,000 questionable registrations, including crash-totaled planes. It led to the 2010-2013 re-registration purge. Different era, no post-crash renewal count."
+    },
+    {
+      "url": "https://www.aopa.org/news-and-media/all-news/2023/february/06/faa-extends-expiration-date-of-aircraft-registration-certificates",
+      "outlet": "AOPA",
+      "date": "2023-02-06",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The FAA has already updated all current registrations in the electronic database, so if you look up your registration number you should see the new date lengthening your expiration date to seven years.",
+      "paywalled": false,
+      "searcher_note": "Bears on the lead's caveat: in early 2023 the FAA batch-extended every valid registration from 3 to 7 years. That could explain why all 37 records were 'touched in 2023' without any owner action."
+    },
+    {
+      "url": "https://www.gao.gov/products/gao-20-164",
+      "outlet": "U.S. GAO",
+      "date": "2020-03-25",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "FAA generally relies on self-certification of registrants' eligibility and does not verify key information.",
+      "paywalled": false,
+      "searcher_note": "Pattern context: the FAA registry does not independently verify registrations. Nothing on destroyed aircraft."
+    },
+    {
+      "url": "https://www.law.cornell.edu/cfr/text/14/47.41",
+      "outlet": "Cornell LII (14 CFR 47.41)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The aircraft is totally destroyed or scrapped.",
+      "paywalled": false,
+      "searcher_note": "The rule the lead tests: a Certificate of Aircraft Registration stops being effective when the aircraft is totally destroyed or scrapped (listed condition (2) in 47.41)."
+    }
+  ],
+  "notes": "entity_named=yes means the page names the FAA aircraft registry. None of those pages reports the destroyed-but-renewed finding. No source cross-checks NTSB 'destroyed' ratings against valid FAA registrations. No source reports the 420 / 383 / 37 counts or renewals after a crash. Pattern coverage exists for destroyed planes staying on the registry (NBC 2010, Boston Globe 2017). The AOPA source documents the 2023 mass extension, which supports the batch-processing explanation. FAA's own pages (Order 8100.19 on destroyed and scrapped aircraft; its registry cancellation page) returned 403 and are not recorded. Search summaries say the Registry flags destroyed serial numbers as ineligible for registration, and that owners can dispute a destroyed finding with a repair scheme; both bear on the rebuild explanation. No July-September 2026 coverage found."
+}

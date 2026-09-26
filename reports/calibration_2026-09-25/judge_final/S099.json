@@ -1,0 +1,15 @@
+{
+ "story_id": "S099",
+ "bin": "Matched + more",
+ "entity": "Destroyed US planes keeping valid federal registration after the crash",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2010-12-10",
+ "post_cutoff_match": false,
+ "what_we_add": "the 37-of-420 renewed-after-crash count and the 2023 batch-extension link",
+ "why": "AP and the Boston Globe report destroyed planes staying registered (9/11 jets active four years on; a TWA crash uncanceled for 57 years) - same finding, same direction. The 37 post-crash renewals count is stated nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

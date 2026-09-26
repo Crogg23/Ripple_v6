@@ -1,0 +1,12 @@
+{
+ "story_id": "S108",
+ "bin": "Matched + more",
+ "entity": "Indian Health Service and tribal hospitals lacking a CMS overall star rating",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2020-11-19",
+ "post_cutoff_match": true,
+ "what_we_add": "the 7-of-26 count, the ~13 expected from look-alike hospitals, and naming Fort Defiance, Tuba City and Chinle as half the gap",
+ "why": "The TTAG paper says many IHS hospitals have no rating at all, same finding in words; the 2026 rural-health study counts 22 IHS hospitals missing HCAHPS data. No source has our 7-of-26 or the expected-13 comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

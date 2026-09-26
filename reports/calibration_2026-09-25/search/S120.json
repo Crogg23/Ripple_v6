@@ -1,0 +1,76 @@
+{
+  "story_id": "S120",
+  "entity": "U.S. Senate recorded (roll call) votes in calendar 2025: 659 total, second to 1976; 356 on nominations",
+  "queries": [
+    {"q": "Senate 659 roll call votes 2025 record", "found_useful": false},
+    {"q": "Senate record number of votes 2025 most roll call votes since 1976 nominations", "found_useful": true},
+    {"q": "Senate 2025 votes on nominations record number cloture confirmation votes year-end tally", "found_useful": true},
+    {"q": "Senate 2025 party-line votes share record low bipartisan votes analysis 119th Congress", "found_useful": true},
+    {"q": "Senate en bloc nominations rule change September 2025 fewer roll call votes floor time since", "found_useful": true},
+    {"q": "Senate roll call votes 2026 pace down after en bloc confirmations nomination votes fewer", "found_useful": true},
+    {"q": "Thune Senate 2025 record year most roll call votes ever historic confirmation pace", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://news.bgov.com/bloomberg-government-news/which-senators-missed-the-most-votes-in-exhausting-record-year",
+      "outlet": "Bloomberg Government",
+      "date": "2025-12-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Of the upper chamber's 659 roll call votes in 2025 — the second most in history, topped only by the Senate's 1976 tally — less than 20% were fully attended.",
+      "paywalled": false,
+      "searcher_note": "Same number (659) and same ranking (second only to 1976); no nomination vote count"
+    },
+    {
+      "url": "https://rollcall.com/2026/03/05/vote-studies-2025-sets-new-mark-for-partisanship-on-capitol-hill/",
+      "outlet": "Roll Call (CQ vote studies)",
+      "date": "2026-03-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The Senate cast an abnormally high number of recorded votes overall, thanks not only to the record number of roll call votes on Trump's nominations",
+      "paywalled": false,
+      "searcher_note": "Says record number of roll calls on nominations; also 338 of 577 GOP party-unity wins came on nominations; its 85.3% party-unity figure covers both chambers, not a crossover measure like ours"
+    },
+    {
+      "url": "https://www.republicanleader.senate.gov/leader-board/research/the-senate-just-confirmed-a-batch-of-97-nominations-capping-off-a-historic-year/",
+      "outlet": "Senate Republican Leader (research page)",
+      "date": "2025-12-18",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Roughly 54% of the Senate's votes through the third en bloc batch have been related to nominations",
+      "paywalled": false,
+      "searcher_note": "Partisan office. Also says 655 votes through Dec 18, eclipsing every year but one since 1947; 54% of 655 is about 354, near our 356; describes the September en bloc rules change"
+    },
+    {
+      "url": "https://www.thune.senate.gov/news/press-releases/thune-on-senate-republicans-record-breaking-year/",
+      "outlet": "Office of Senate Majority Leader John Thune",
+      "date": "2025-12-18",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "653 votes cast so far this year. Which dwarfs any year going back to 1989",
+      "paywalled": false,
+      "searcher_note": "Floor remarks: 653 votes as of Dec 18; same page says only 1976 had more votes in eight decades checked"
+    },
+    {
+      "url": "https://www.everycrsreport.com/reports/R48729.html",
+      "outlet": "Congressional Research Service (via EveryCRSReport)",
+      "date": "2025-11-14",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "In the 119th Congress (2025-2026), no nomination had been confirmed without a roll call vote through September of 2025.",
+      "paywalled": false,
+      "searcher_note": "CRS on the September 2025 en bloc reinterpretation; predicts fewer nomination roll calls after it, gives no monthly counts (our 37.3 to 12.6 a month is not stated). congress.gov copy returned 403"
+    },
+    {
+      "url": "https://www.washingtonsun.com/congress/senate-nominations-bipartisan-legislation",
+      "outlet": "NOTUS / The Washington Sun",
+      "date": "2026-07-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Senate Democrats have forced more than 30% of the roll-call votes in 2026 – up from under 20% in 2025",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Senate votes more on nominations than legislation, largely party-line; nominations topped 60% of roll calls by end of 2024. notus.org URL redirects here"
+    }
+  ],
+  "notes": "Headline numbers (659 votes, second only to 1976) are reported by Bloomberg Government and echoed by Thune/GOP leader pages (653-655 as of Dec 18). Record nomination roll calls stated by Roll Call. Not found in any source: the 356 nomination-vote count, the 37.3 to 12.6 per month drop after the en bloc change, and the 41.5% vs 13.5% zero-crossover comparison. No source disagreeing with the 659 / 1976 ranking was found."
+}

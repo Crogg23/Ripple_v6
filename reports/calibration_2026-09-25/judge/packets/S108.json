@@ -1,0 +1,59 @@
+{
+ "story_id": "S108",
+ "lead": {
+  "headline": "Only 7 of 26 Indian Health Service and tribal hospitals have a Medicare star rating; similar hospitals predict about 13",
+  "number": "7 rated vs about 13 expected from same-state hospitals with as many Medicare stays; Fort Defiance, Tuba City and Chinle (Navajo area) are nearly half the gap",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A missing star can mean too few cases rather than a refusal to report; the footnotes that tell them apart aren't landed."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Indian Health Service hospitals Medicare star rating not rated",
+  "Chinle Tuba City Fort Defiance hospital Care Compare star rating quality measures reporting",
+  "GAO Indian Health Service hospitals quality data public reporting Hospital Compare tribal hospitals",
+  "\"Indian Health Service\" hospitals \"star ratings\" CMS Care Compare Navajo hospitals lack ratings",
+  "OIG Indian Health Service hospitals quality care Hospital Compare measures not reported OEI-06-14-00011",
+  "Navajo Times hospital quality ratings Tuba City Regional Health Care Chinle Tsehootsooi Medical Center CMS",
+  "tribal hospitals IHS quality ratings missing 2026 Medicare overall star rating rural hospitals too few cases",
+  "\"IHS hospitals\" \"star rating\" news Hospital Compare exempt tribal"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://tribalhealthreform.nihb.org/wp-content/uploads/2022/12/TTAG-Medicare-Medicaid-and-Other-Priorities-Final-11.19.2020.pdf",
+   "outlet": "CMS Tribal Technical Advisory Group (via National Indian Health Board)",
+   "date": "2020-11-19",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "A review of the Hospital Compare system reports that several IHS hospitals have a low star rating, with many IHS hospitals having no rating at all.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "an get a rating between 1 and 5 stars, with a 5-star rating considered excellent. These ratings are meant to help consumers compare hospitals based on quality and performance measures. Star ratings are not calculated for Veterans Health Administration (VHA) or Department of Defense (DoD) hospitals. A review of the Hospital Compare system reports that several IHS hospitals have a low star rating, with many IHS hospitals having no rating at all. The TTAG is concerned that the rating system does not adequately or fairly consider other federal reporting requirements that IHS facilities may have to comply with or population served. For example, our patient population includes higher proportions of patients with multiple complex chronic health conditions and lower socio-econ"
+  },
+  {
+   "idx": 1,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13535269/",
+   "outlet": "The Journal of Rural Health (Kliewe et al.), via PubMed Central",
+   "date": "2026-09-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Among the 22 additional IHS hospitals identified in CMS cost reports that lacked HCAHPS data during the study period, 10 participated in HCAHPS but had fewer than 25 responses per year, while 12 did not participate.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "is study did not constitute human subjects research. We followed the Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) guidelines for cross‐sectional studies. 3. Results We analyzed 9642 individual HCAHPS patient survey responses across 22 IHS hospitals with HCAHPS data. Among the 22 additional IHS hospitals identified in CMS cost reports that lacked HCAHPS data during the study period, 10 participated in HCAHPS but had fewer than 25 responses per year, while 12 did not participate. Hospital‐level top box score averages were lower for IHS hospitals than the national HCAHPS average (Table 1 ). Standard deviations were higher for IHS hospitals, indicating higher variability in top box scores across IHS hospitals than across the United States. TABLE 1. Hospital‐level mean inpatient satisfaction survey (HCAHPS) top b"
+  },
+  {
+   "idx": 2,
+   "url": "https://tchealth.org/",
+   "outlet": "Tuba City Regional Health Care Corporation",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Gold Seal of Approval and accreditation for Acute Hospital, Home Care, Laboratory, and Primary Care Medical Home certification, including a 2-Star rating (3-Star in 2021) by CMS",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ally sensitive healthcare. ” LEARN MORE With Us, It's Always Personal Our providers and professional staff take pride and honor the dignity in all individuals. Our mission is to provide safe, accessible, quality, and culturally sensitive healthcare. The Highest Quality Healthcare Joint Commission’s Gold Seal of Approval and accreditation for Acute Hospital, Home Care, Laboratory, and Primary Care Medical Home certification, including a 2-Star rating (3-Star in 2021) by CMS Improving The Quality of Your Life We make it easier to access medical care at the community level through our three satellite facilities (Flagstaff, Page, Bodaway) and a mobile medical van that drives out to remote communities. Leading The Way In Medical Excellence As a Level 3 (of 5) Trauma Center — the only one outside of Flagstaff i"
+  }
+ ]
+}

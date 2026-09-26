@@ -1,0 +1,47 @@
+{
+  "story_id": "S191",
+  "entity": "EPA Region 6 Underground Injection Control enforcement on Osage County, Oklahoma Class II oil-field injection wells: informal violation notices 2022 to 2026 vs formal orders",
+  "queries": [
+    {"q": "EPA Osage County injection wells enforcement notices of violation", "found_useful": true},
+    {"q": "EPA Region 6 Osage Nation underground injection control enforcement decline", "found_useful": false},
+    {"q": "Osage County oil wells EPA oversight saltwater injection news 2025", "found_useful": true},
+    {"q": "Osage Nation abandoned leaking oil wells EPA enforcement investigation", "found_useful": false},
+    {"q": "EPA enforcement drop 2025 Safe Drinking Water Act injection wells Oklahoma informal actions", "found_useful": true},
+    {"q": "Osage News EPA underground injection control inspections mechanical integrity 2026", "found_useful": true},
+    {"q": "EPA enforcement actions plunge 2025 analysis notices of violation decline Trump administration", "found_useful": true},
+    {"q": "\"Osage County\" EPA \"notice of violation\" Class II well 2023 2024", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2025-09/r6ecdwe.sdwa_.uic_.4doilgas.os5571000.sdwa_06_2025_1110.mitfail.proposedao_wcs.508c.pdf",
+      "outlet": "U.S. EPA Region 6, Proposed Administrative Order SDWA-06-2025-1110 (4D Oil & Gas, LLC)",
+      "date": "2025-09-24",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "On March 24, 2025, EPA emailed a letter to Respondent notifying Respondent that EPA determined that the injection well did not have mechanical integrity.",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement: EPA's own order on an Osage County Class II well records a written notice of potential violation sent March 2025, after the lead's April 2023 cutoff. Same order says an EPA inspection on April 11, 2024 found the well still injecting. Whether this letter is logged as an informal action in ICIS is not stated."
+    },
+    {
+      "url": "https://www.epa.gov/system/files/documents/2026-05/r6ecdwe.sdwa_.greathornedowlsllc.os3689000.sdwa_06_2026_1110.uic_mit-fail.proposed-ao_filed.pdf",
+      "outlet": "U.S. EPA Region 6, Proposed Administrative Order SDWA-06-2026-1110 (great horned owls, LLC)",
+      "date": "2026-05-08",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "to ensure that owners or operators of Class II injection wells within Osage County, Oklahoma, comply with the requirements of the Act.",
+      "paywalled": false,
+      "searcher_note": "One of a steady run of formal Osage County UIC orders (others found dated Nov 2023, Mar 2024, Aug 2024, Mar/May/Aug/Sep/Oct 2025, Apr/Jun 2026), consistent with the lead's claim that formal cases continued. No penalty assessed; it cites an MIT failure on Oct 9, 2024. It does not discuss informal notice counts."
+    },
+    {
+      "url": "https://insideclimatenews.org/news/05022026/trump-epa-polluter-enforcement-collapses/",
+      "outlet": "Inside Climate News",
+      "date": "2026-02-05",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Top agency officials are also directing staff to issue fewer violation notices and reduce other enforcement actions.",
+      "paywalled": false,
+      "searcher_note": "National pattern: an Environmental Integrity Project report on EPA enforcement collapsing in Trump's first year back, plus a new 'compliance first' policy. Osage County and injection wells are not named. Note the timing: this is 2025 policy, while the lead's drop starts April 2023."
+    }
+  ],
+  "notes": "No news story, OIG report or watchdog piece was found on EPA violation notices to Osage County injection wells dropping to zero after April 2023. What was found is EPA's own Proposed Administrative Orders on Osage County Class II wells, 2023 to 2026. They show formal orders continuing, and one (4D Oil & Gas, Sep 2025) records an EPA letter notifying the operator of potential violations in March 2025, which cuts against 'zero notices since April 2023' if such letters count as notices. The pypdf text of both EPA PDFs was checked locally for the quoted sentences, because WebFetch could not parse the PDFs. 8 searches run, all logged above. Grist (2023-11-03) and the KOSU/Osage News pieces on orphaned wells cover the BIA and cleanup, not EPA UIC notices."
+}

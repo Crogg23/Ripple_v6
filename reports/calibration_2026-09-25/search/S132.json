@@ -1,0 +1,43 @@
+{
+  "story_id": "S132",
+  "entity": "Louisiana (LDEQ): five-year repeat full inspection coverage of hazardous-waste (RCRA) manufacturing plants, five years to July 2026, ranked against 28 states",
+  "queries": [
+    {"q": "Louisiana DEQ hazardous waste inspections decline RCRA large quantity generators inspection rate", "found_useful": true},
+    {"q": "EPA OIG Louisiana hazardous waste RCRA inspections fell short oversight LDEQ report", "found_useful": true},
+    {"q": "inspector general April 2026 large quantity generators states alternative inspection plans Louisiana Texas Illinois hazardous waste", "found_useful": true},
+    {"q": "Louisiana Illuminator LDEQ inspections fewer industrial plants hazardous waste inspectors staffing", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf",
+      "outlet": "EPA Office of Inspector General, Report No. 26-E-0025",
+      "date": "2026-04-28",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Louisiana 165 59 92 87 50",
+      "paywalled": false,
+      "searcher_note": "Table 2 row, 'LQG inspection rates in states with alternative inspection plans, 2020-2024'. Columns: LQG universe 165; inspected 59% by count; 92% of non-acute and 87% of acute waste; the state's own plan goal 50%. In the same table Illinois 48%, Texas 55% and Connecticut 36% sit below Louisiana, where the lead has Louisiana last and Illinois next at 62.7%. Different universe (all LQGs, not manufacturing plants), window 2020-2024, measure any inspection. The report says the alternative-plan states 'chose to redirect resources from LQG inspections and target compliance monitoring at other types of facilities, such as small or very small quantity generators'."
+    },
+    {
+      "url": "https://www.deq.louisiana.gov/assets/docs/Surveillance/Inspections/LA_SOP_1839_R26.pdf",
+      "outlet": "Louisiana Department of Environmental Quality, Compliance Monitoring Strategy FY2025-2026",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Ten percent (10%) of Large Quantity Generator facilities will be inspected annually.",
+      "paywalled": false,
+      "searcher_note": "LDEQ's own plan targets 10% of LQGs a year, about 50% in five years, close to the lead's 49.5%. The plan continues: SQG/VSQG inspections are run 'as an alternative plan to the reduction in the number of Large Quantity Generators' as approved by EPA Region 6. That's the legal cover the lead's caveat flags. Page is labeled FY2025-2026; no day-level date."
+    },
+    {
+      "url": "https://www.epa.gov/sites/default/files/2018-05/documents/srf-rd3-rev-la.pdf",
+      "outlet": "EPA Region 6, State Review Framework Louisiana Round 3 (FY2014)",
+      "date": "2018-05-09",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "State exceeded 20% coverage for its LQG universe each year over most recent five years resulting in 100% coverage.",
+      "paywalled": false,
+      "searcher_note": "Older baseline: under the standard 20%-a-year plan, Louisiana's five-year LQG coverage metric was 81.5% (282 of 346) for FY2010-14. Old window; shows the goal later fell from 20% to 10% a year."
+    }
+  ],
+  "notes": "No news story found on Louisiana's low repeat RCRA inspection rate. The key record is EPA OIG's April 2026 state-by-state LQG table: it names Louisiana at 59% for 2020-2024 on an EPA-approved alternative plan with a 50% goal, and ranks it above Illinois, Texas and Connecticut. That may disagree with 'last of 28 states', but the universe and measure differ: all LQGs and any inspection, versus manufacturing plants and a repeat full on-site inspection. Only 4 queries were typed, but queries 3 and 4 each set off 3-4 searches inside the tool, so about 10 searches ran. The per-story cap was reached, which is why fewer than 5 queries are logged."
+}

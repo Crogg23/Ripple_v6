@@ -1,0 +1,12 @@
+{
+  "story_id": "S043",
+  "bin": "Matched + more",
+  "entity": "Roosevelt Cayman Asset Company's share of Puerto Rico federal foreclosures and its default-judgment outcomes",
+  "deciding_sources": [0, 1, 2],
+  "earliest_match_date": "2016-02-06",
+  "post_cutoff_match": false,
+  "what_we_add": "the counts: about 1,130 cases over 2015-25 and 52% ending in default judgment vs 37% for other filers",
+  "why": "NotiCel, Hedge Clippers and The Intercept all name Roosevelt Cayman as the dominant federal-court foreclosure filer and note its default-judgment motions - same finding, same direction. No source has the 10-year case count or the default-rate comparison.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

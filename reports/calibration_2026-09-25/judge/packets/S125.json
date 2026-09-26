@@ -1,0 +1,94 @@
+{
+ "story_id": "S125",
+ "lead": {
+  "headline": "Jackson Area credit union (Mississippi) holds $148.2M in deposits on $71.4M in assets: a $77M hole",
+  "number": "Deposits are 2.08x assets, the only one of 4,250 credit unions over 2x (median 0.86x); a $91.7M loss in Q1 2026 leaves net worth about -$77M (-107.9%)",
+  "grade": "B",
+  "verdict": "confirmed",
+  "watch_out": "Only one quarter (Q1 2026) is loaded, and the account codes behind the $91.7M loss are labeled by matching the data, not NCUA's dictionary."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Jackson Area Federal Credit Union Mississippi loss 2026",
+  "Jackson Area FCU first quarter call report negative net worth shares exceed assets",
+  "\"Jackson Area\" credit union \"$91.7 million\" OR \"$91.7M\" first quarter loss net worth ratio",
+  "Jackson Area Federal Credit Union conservatorship members Mississippi Today OR Clarion Ledger OR WLBT",
+  "NCUA lawsuit former Jackson Area FCU CEO $95 million diverted phantom cash",
+  "Jackson Area FCU shares deposits $148 million assets $71 million restated March 31 call report",
+  "Jackson Area Federal Credit Union September 2026 charges plea liquidation merger share insurance fund"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.marktreichel.com/post/when-the-balance-sheet-stops-making-sense",
+   "outlet": "Mark Treichel (former NCUA executive director), blog",
+   "date": "2026-06-16",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The restatement recognized a $91.7 million loss, cut cash by $93.6 million, and swung the net-worth ratio from positive 9% to negative 107%.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "on reporting 9.2% net worth, the first thing you conclude is that the 9.2% may not actually be there. From inference to sworn complaint Two things happened since. First, NCUA filed a restated call report — the regulator’s own numbers, produced after it stepped in as conservator, insurer, and board. The restatement recognized a $91.7 million loss, cut cash by $93.6 million, and swung the net-worth ratio from positive 9% to negative 107%. That is not a number an institution survives; it is materially insolvent by a wide margin. Second, on June 11th, NCUA filed a federal lawsuit (hat tip to Frank Diekmann at CUToday for surfacing it). The complaint alleges the former CEO diverted at least $95 million for personal use. Everything here remains an allegation — though th"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.cutimes.com/2026/06/04/conserved-jackson-area-fcus-917m-loss-lowers-industry-roa-in-first-quarter/",
+   "outlet": "CU Times",
+   "date": "2026-06-04",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Conserved Jackson Area FCU's $91.7M Loss Lowers Industry ROA in First Quarter",
+   "paywalled": true,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://www.cutoday.info/Fresh-Today/NCUA-Call-Report-Reveals-Stunning-103-Million-Loss-at-Jackson-Area-FCU",
+   "outlet": "CU Today",
+   "date": "2026-08-03",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The credit union also posted a year-to-date net loss of $103 million, compared with $1.23 million in net income for all of 2025",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "on and a negative net worth ratio of 145.4% as of June 30. The revised financials show total assets plunged 62.5% in the first six months of 2026, falling from $162.4 million at year-end 2025 to $60.9 million, driven largely by a collapse in cash and deposits from $111.8 million to just $9 million. The credit union also posted a year-to-date net loss of $103 million, compared with $1.23 million in net income for all of 2025, while borrowings climbed from zero at year-end to nearly $13 million, underscoring the magnitude of the balance-sheet restructuring under NCUA conservatorship. Asset quality also continued to weaken. Delinquent loans represented 1.49% of total loans, while annualized net charge-offs increased to 1.47% of average loans from 1.2"
+  },
+  {
+   "idx": 3,
+   "url": "https://ncua.gov/newsroom/press-release/2026/jackson-area-federal-credit-union-conserved",
+   "outlet": "NCUA",
+   "date": "2026-05-06",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "NCUA placed Jackson Area Federal Credit Union into conservatorship because of unsafe and unsound practices at the credit union.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ervices Uninterrupted Alexandria, VA (May 6, 2026) ― The National Credit Union Administration (NCUA) today placed Jackson Area Federal Credit Union in Jackson, Mississippi into conservatorship. Member services will continue while NCUA works to resolve issues affecting the credit union’s operations. NCUA placed Jackson Area Federal Credit Union into conservatorship because of unsafe and unsound practices at the credit union. Member deposits at Jackson Area Federal Credit Union remain protected by the National Credit Union Share Insurance Fund (Share Insurance Fund), which has the backing of the full faith and credit of the United States. Administered by NCUA, the Share Insurance Fund insures individual accounts at Jackson Area Federal Credit Union up to $25"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.cutoday.info/Fresh-Today/NCUA-Conserves-Jackson-Area-FCU",
+   "outlet": "CU Today",
+   "date": "2026-05-06",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Jackson Area FCU made $1.2-million in net income in 2025 and $135,527 through March, according to Call Report data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "lion Jackson Area FCU here into conservatorship. The agency said it made the move because of unsafe and unsound practices at the credit union. The CU has 15,561 members and serves employees of the City of Jackson, as well as employees and elected or appointed officials of Hinds County, Mississippi. Jackson Area FCU made $1.2-million in net income in 2025 and $135,527 through March, according to Call Report data. Net worth strands at 9.51%. Section: Standard Word Count: 151 Copyright Holder: CUToday.info Copyright Year: 2026 Is Based On: URL: https://www.cutoday.info/Fresh-Today/NCUA-Conserves-Jackson-Area-FCU ©2014 CUtoday. All Rights Reserved | Unauthorized Accesses are Prohibited ©2014 CUtoday. All Rights Reserved | Unauthorized "
+  },
+  {
+   "idx": 5,
+   "url": "https://ncuso.org/credit-union/8445/",
+   "outlet": "NCUSO.org (call report data mirror)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "$148,178,414",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ABILITIES & CAPITAL: Dividends Payable 0 Notes & Interest Payable 0 Accounts Payable & Other Liabilities 201,403 Uninsured Secondary Capital and Subordinated Debt Included in Net Worth 0 Share Drafts 14,757,930 Regular shares 63,117,421 All Other Shares & Deposits 70,303,063 TOTAL SHARES & DEPOSITS 148,178,414 TOTAL LIABILITIES 148,379,817 Regular Reserve 0 Other Reserves 0 Undivided Earnings -77,024,237 TOTAL EQUITY -77,024,237 TOTAL LIABILITIES, SHARES, & EQUITY 71,355,580 INCOME & EXPENSE Loan Income 937,508 Investment Income 104,560 Other Income 548,954 Total Employee Compensation & Benefits 628,765 NCUSIF (Nati"
+  }
+ ]
+}

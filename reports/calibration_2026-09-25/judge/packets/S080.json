@@ -1,0 +1,60 @@
+{
+ "story_id": "S080",
+ "lead": {
+  "headline": "Two cases went to judges whose spouses drew director fees from the defendant: McMahon–JetBlue, Leinenweber–Procter & Gamble",
+  "number": "Liotti v. Jet Blue (SDNY 1:17-cv-00838, closed in 5 days; spouse's JetBlue fees 2014-18) and Gardner v. Procter & Gamble (NDIL 1:09-cv-06690; spouse's P&G fees 2004-09).",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "CourtListener holds only dockets someone pulled, so hits are floors, and recusal isn't ruled out."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Judge Colleen McMahon husband JetBlue director Frank Sica conflict",
+  "Judge Leinenweber wife Lynn Martin Procter & Gamble director case conflict",
+  "Liotti v. JetBlue Southern District of New York 2017",
+  "Gardner v. Procter & Gamble Northern District of Illinois 1:09-cv-06690",
+  "\"Specht\" Leinenweber AT&T wife director recusal Seventh Circuit mandamus",
+  "federal judges spouse corporate board director fees presided over cases involving spouse's company investigation",
+  "Frank Sica JetBlue board of directors wife Judge McMahon recusal JetBlue cases",
+  "\"Gardner\" \"Procter & Gamble\" Leinenweber 2009 Illinois",
+  "judge failed to recuse spouse on defendant's board 2026 financial disclosure conflict federal judge"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.pacermonitor.com/public/case/20510832/Liotti_v_Jet_Blue_Airways",
+   "outlet": "PacerMonitor (SDNY docket)",
+   "date": "2017-02-07",
+   "source_type": "court",
+   "entity_named": "yes",
+   "quote": "The Clerk of Court is further directed to transfer this action to the United States District Court for the Eastern District of New York.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://caselaw.findlaw.com/us-7th-circuit/1537600.html",
+   "outlet": "FindLaw (7th Cir. opinion, Specht v. Leinenweber, No. 10-2823)",
+   "date": "2010-09-08",
+   "source_type": "court",
+   "entity_named": "no",
+   "quote": "Had he done so, the case would not have been assigned to Judge Leinenweber, whose wife (Lynn Martin) is a member of AT & T's board of directors.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "llinois Secretary of State, and filed suit against Google and 47 other defendants for trademark infringement. AT & T Mobility offers mobile phone service. Some devices with the Android operating system are sold by AT & T or used on its network. Specht did not include AT & T among the 48 defendants. Had he done so, the case would not have been assigned to Judge Leinenweber, whose wife (Lynn Martin) is a member of AT & T's board of directors. The court's automated conflict-checking system prevents any assignment of litigation by or against AT & T to Judge Leinenweber in light of 28 U.S.C. § 455(b)(5)(i), which disqualifies any judge whose spouse (or other relative within the third degree) is “a party to the proceeding, or an officer, director, or trustee of a "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.propublica.org/article/judges-ethics-codes-recusal-conflict-of-interest-families",
+   "outlet": "ProPublica",
+   "date": "2024-07-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "In an examination of more than 1,200 federal judges and state supreme court justices, ProPublica, in partnership with student journalists at Boston University, found dozens of judges",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " remained on the bench. A ProPublica analysis found a lack of transparency regarding conflicts plagues federal and state courts where loose rules, inconsistent enforcement and creative interpretations of guidelines routinely allow judges to withhold potential conflicts from the parties before them. In an examination of more than 1,200 federal judges and state supreme court justices, ProPublica, in partnership with student journalists at Boston University, found dozens of judges, including both Republican and Democratic appointees, who chose not to recuse when facing potential appearances of impropriety involving familial financial connections. Ethics experts say that the judges’ interpretation of the rules may often lie within the letter of the law, but at the expense of its spirit. In Florida, a stat"
+  }
+ ]
+}

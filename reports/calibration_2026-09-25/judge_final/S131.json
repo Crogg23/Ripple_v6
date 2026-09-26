@@ -1,0 +1,12 @@
+{
+ "story_id": "S131",
+ "bin": "Matched + more",
+ "entity": "small public companies chronically late on annual reports; the four named listed ones",
+ "deciding_sources": [2, 3, 4, 5],
+ "earliest_match_date": "2025-05-29",
+ "post_cutoff_match": false,
+ "what_we_add": "the 18-company count past the extension three years running, and the three-year streak itself; sources only show single-year lateness",
+ "why": "Company press releases name Laser Photonics, Global Interactive and EON Resources and confirm the late 10-K finding for FY2024-25; BIO-key's are blocked and ignored. No source has the 18 count or the three-consecutive-years pattern, and only company sources say any of it.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

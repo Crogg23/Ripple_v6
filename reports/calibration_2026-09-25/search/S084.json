@@ -1,0 +1,65 @@
+{
+  "story_id": "S084",
+  "entity": "Forest County, Pennsylvania: documented orphaned oil and gas wells per 10,000 residents (USGS DOW dataset, 2019-22 snapshot)",
+  "queries": [
+    {"q": "Forest County Pennsylvania orphaned oil gas wells per capita", "found_useful": true},
+    {"q": "counties most orphaned wells per resident Pennsylvania Ohio Oklahoma Venango Forest analysis", "found_useful": true},
+    {"q": "\"Forest County\" orphan wells Allegheny National Forest plugging", "found_useful": true},
+    {"q": "orphaned wells per capita county ranking \"Monroe County\" Ohio \"Nowata\"", "found_useful": false},
+    {"q": "Venango County orphan wells share of Pennsylvania most in state 2026", "found_useful": true},
+    {"q": "\"orphan wells\" \"per 10,000 residents\" OR \"per capita\" county highest rural Pennsylvania Oklahoma", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.edf.org/sites/default/files/2021-10/Orphan%20Well%20FactSheet%20PA.pdf",
+      "outlet": "Environmental Defense Fund",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Forest 317",
+      "paywalled": false,
+      "searcher_note": "Chart label in 'Top Ten Orphan Well Count, by County' bar chart; Forest County ranked 5th in PA by raw count (317) of EDF/McGill's 8,840 documented PA orphan wells. Raw count only, no per-resident rate. Page shows no date; the URL path says 2021-10."
+    },
+    {
+      "url": "https://stateimpact.npr.org/pennsylvania/2021/10/18/orphaned-wells-are-a-problem-in-pennsylvania-and-there-are-more-of-them-than-we-thought/",
+      "outlet": "StateImpact Pennsylvania / WESA",
+      "date": "2021-10-18",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The highest concentrations are in McKean (2,385), Venango (2,022) and Warren (1,561) counties.",
+      "paywalled": false,
+      "searcher_note": "County raw counts from EDF's 8,840-well PA dataset; McKean ranks above Venango here, while the lead (USGS dataset, 19,160 PA wells) has Venango at 4,786. Different dataset. Forest County not named; no per-capita figure."
+    },
+    {
+      "url": "https://www.farmanddairy.com/news/pennsylvania-plugging-12-more-abandoned-oil-and-gas-wells/657884.html",
+      "outlet": "Farm and Dairy",
+      "date": "2021-04-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The Pennsylvania departments of Conservation and Natural Resources and Environmental Protection announced April 7 that work is beginning to plug 12 abandoned oil and gas wells in the Cornplanter State Forest, in Forest County.",
+      "paywalled": false,
+      "searcher_note": "Names Forest County for a 12-well plugging job; says nothing about per-resident concentration."
+    },
+    {
+      "url": "https://www.timesobserver.com/news/local-news/2026/06/well-plugging-begins-in-anf-as-state-hits-milestone/",
+      "outlet": "Warren Times Observer",
+      "date": "2026-06-12",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "DEP has identified more than 27,000 orphaned and abandoned wells statewide and continues prioritizing those posing the greatest risks to public health, safety, and the environment.",
+      "paywalled": false,
+      "searcher_note": "Most recent coverage found: plugging along the Minister Creek trail (in Forest County, per other sources) and a statewide count; no county rate."
+    },
+    {
+      "url": "https://pubs.usgs.gov/publication/dr1167/full",
+      "outlet": "U.S. Geological Survey",
+      "date": "2023-02-17",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "There are 117,672 wells in the DOW dataset (Grove and Merrill, 2022); the well counts by state are provided in table 1 and illustrated in figure 1.",
+      "paywalled": false,
+      "searcher_note": "USGS analysis of the same dataset the lead uses; gives state totals only (table lists Pennsylvania 19,160, Ohio 20,557, Oklahoma 15,971), no county or per-capita figures."
+    }
+  ],
+  "notes": "No source found giving orphaned wells per resident for Forest County, or for Monroe OH or Nowata OK. The only per-county figures found are raw counts from the EDF/McGill 2021 dataset (8,840 PA wells). That's a different, smaller dataset than the USGS DOW one the lead uses (19,160 PA wells), so its county ranks don't line up with the lead's Venango 4,786. Query 6 set off extra searches inside the tool, about 3 searches in total; budget counted accordingly. The alliednews.com page ('Venango County is home to 2,250 abandoned or orphaned wells, with only McKean County having more', going by the search snippet) returned HTTP 429 and wasn't recorded."
+}

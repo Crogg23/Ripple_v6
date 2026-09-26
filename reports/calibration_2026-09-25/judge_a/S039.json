@@ -1,0 +1,12 @@
+{
+ "story_id": "S039",
+ "bin": "Matched + more",
+ "entity": "Providers on the OIG exclusion list receiving Open Payments money from drug companies",
+ "deciding_sources": [0],
+ "earliest_match_date": "2026-02-02",
+ "post_cutoff_match": false,
+ "what_we_add": "the 2024-specific slice: 193 banned NPIs, about $166K, and the Hector Molina $114K Skye Orthobiologics row",
+ "why": "JGIM states the same finding in words and numbers: excluded clinicians receive industry payments (605 of 3,725). Its totals differ because its window and cohort differ, which doesn't contradict. Our 2024 count and the named $114K row appear nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

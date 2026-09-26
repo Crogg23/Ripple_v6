@@ -1,0 +1,93 @@
+{
+ "story_id": "S113",
+ "lead": {
+  "headline": "Rep. Thomas Kean (R-NJ) missed 140 recorded House votes in a row, 33 voting days, the longest run this Congress",
+  "number": "140 straight, 2026-03-17 to 2026-06-25, where the member-vote file ends; the median member's longest run is 3",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The member-vote file ends 2026-06-25, so the streak may be longer, and it is very likely already reported."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Tom Kean Jr. missed votes absence 2026",
+  "Kean longest absence House this Congress missed consecutive votes compared other members",
+  "New Jersey Globe Kean missed votes health absence April 2026",
+  "Kean missed votes campaign ad Malinowski September 2026",
+  "\"Kean\" \"140 votes\" OR \"142 votes\" House absence depression record streak",
+  "Kean absence Congressional Record statements while absent disputes missing"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://rollcall.com/2026/06/30/tom-kean-returns-after-months-away/",
+   "outlet": "Roll Call",
+   "date": "2026-06-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "During his absence, he missed more than 140 roll call votes on the House floor.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "gton, pointing to an unspecified health issue. Even as he remained out of public view for months, he introduced multiple pieces of legislation, submitted speeches to the Congressional Record and won a primary election in which he ran unopposed, trying to keep up the appearance of business as usual. During his absence, he missed more than 140 roll call votes on the House floor. “If sharing my story encourages even one person to seek help … then this moment will have been worthwhile,” Kean said in his speech. As questions about his whereabouts grew louder this spring, Kean’s team had offered just a handful of clues. A spokesperson told the New Jersey Globe in March that the congressman was addressing a “pe"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.govtrack.us/congress/members/missing",
+   "outlet": "GovTrack.us",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Between March 17, 2026 and June 29, 2026, Kean missed 142 of 142 roll call votes (100%).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "4% 19 th 2024 Jul-Sep 120 1 0.8% 23 rd 2024 Nov-Dec 62 2 3.2% 62 nd 2025 Jan-Mar 85 2 2.4% 52 nd 2025 Apr-Jun 100 1 1.0% 35 th 2025 Jul-Sep 97 5 5.2% 83 rd 2025 Nov-Dec 80 0 0.0% 0 th 2026 Jan-Mar 108 5 4.6% 76 th 2026 Apr-Jun 125 5 4.0% 74 th 2026 Jul-Sep 81 25 30.9% 98 th Rep. Thomas Kean [R-NJ7] Between March 17, 2026 and June 29, 2026, Kean missed 142 of 142 roll call votes (100%). Since June 30, 2026 he has missed 0 of 85 roll call votes (0%). Show the numbers... Time Period Votes Eligible Missed Votes Percent Percentile 2023 Jan-Mar 182 0 0.0% 0 th 2023 Apr-Jun 107 3 2.8% 66 th 2023 Jul-Sep 224 0 0.0% 0 th 2023 Oct-Dec 211 1 0.5% 23 rd 2024 Jan-Mar 104 0 0.0% 0 th 2024 Apr-Jun 231 2 0.9% 35 th 2024 Jul-S"
+  },
+  {
+   "idx": 2,
+   "url": "https://newjerseyglobe.com/congress/kean-still-missing-votes-due-to-unspecified-medical-issue/",
+   "outlet": "New Jersey Globe",
+   "date": "2026-04-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Kean has been absent for a total of 23 roll-call votes since March 17, with more likely to come today.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rly said that he was addressing a “personal health matter” and would be returning to a regular schedule “soon.” The congressman proceeded to miss two weeks of votes, after which Congress began a two-week recess; when the House returned for its first vote of April last night, Kean was still missing. Kean has been absent for a total of 23 roll-call votes since March 17, with more likely to come today. The Globe has asked for further information on the nature of the medical issue, but Kean’s office has declined to provide it. Kean’s congressional work has not halted in the month he’s been absent; he’s introduced bills on Russian sanctions and rare genetic disorders, announced which community projects he’ll be fighting for"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.pbs.org/newshour/show/republican-rep-tom-kean-jr-s-absence-raises-broader-questions-about-congress",
+   "outlet": "PBS NewsHour",
+   "date": "2026-06-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Kean has been the longest, but not the only absence this year.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " recovery very soon.\" I asked House Speaker Mike Johnson about this today. Rep. Mike Johnson (R-LA): As soon as he's ready to talk about that, you're all going to breathe a sigh of relief and say that makes sense. What he's dealing with is something very common and not a big thing. Lisa Desjardins: Kean has been the longest, but not the only absence this year. Democrat Frederica Wilson, who's retiring, has missed a month of votes, eventually saying she had eye surgery. Republican Julia Letlow missed two weeks of votes as she campaigned for U.S. Senate. Man: The yeas are 212. The nays are 212. The concurrent resolution is not adopted. Lisa Desjardins: This all led to a tie, a near-win"
+  },
+  {
+   "idx": 4,
+   "url": "https://whyy.org/articles/tom-kean-new-jersey-congressman-disappeared-consequences/",
+   "outlet": "WHYY",
+   "date": "2026-07-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Kean missed 140 votes before his return to Congress on June 30, when he announced during a short speech on the House floor that he was being treated for depression.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "h 5, but disappeared thereafter for almost four months. During his absence, a spokesman said more than once that the Congressman was looking forward to getting back to work, but never offered an explanation for his absence or specified a return date. WHYY thanks our sponsors — become a WHYY sponsor Kean missed 140 votes before his return to Congress on June 30, when he announced during a short speech on the House floor that he was being treated for depression. After the speech , he declined to answer questions about why he vanished quietly, but said he is a private person. He also declined to discuss details about his treatment and hospital stay or why his expected return date kept changing. Are elected officials required to work? Legislative presence is recorded, but the U.S. Constitu"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.inquirer.com/news/tom-kean-congressman-spoke-at-golf-club-20260822.html",
+   "outlet": "Philadelphia Inquirer",
+   "date": "2026-08-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Kean’s reelection bid got a late start: Beginning in March, he was absent from Congress for 116 days and missed about 140 votes.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

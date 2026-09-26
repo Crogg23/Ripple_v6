@@ -1,0 +1,12 @@
+{
+ "story_id": "S096",
+ "bin": "Unreported",
+ "entity": "NRC spill-hotline call counts, eastern vs western Class I railroads, 2015-17",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The one source compares FRA accident rates per million miles - a different measure entirely - and nobody analyzes hotline calls by railroad. 8 queries logged.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

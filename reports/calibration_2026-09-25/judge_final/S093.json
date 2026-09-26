@@ -1,0 +1,15 @@
+{
+ "story_id": "S093",
+ "bin": "Matched + more",
+ "entity": "Median-county Black/white jail-rate ratio: decline through 2019, partial rebound after 2020",
+ "deciding_sources": [
+  1,
+  2
+ ],
+ "earliest_match_date": "2023-05-16",
+ "post_cutoff_match": false,
+ "what_we_add": "the median-county series 4.57/3.41/3.86 and the 10x+ county counts",
+ "why": "Pew reports the decade-long disparity decline reversing during the pandemic; BJS has the national ratio at 3.6x in 2023 - same direction, close level. The fixed-county median series and the 10x tail are ours.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S205",
+  "bin": "Unreported",
+  "entity": "FEMA occupancy verification rate on downtown Lahaina (tract 314.04) fire-aid registrations",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Neither source touches occupancy verification of FEMA registrations: Argonne covers demographics, MauiWES covers displacement. Nothing reaches Known pattern. 7 queries logged.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

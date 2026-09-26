@@ -1,0 +1,67 @@
+{
+  "story_id": "S173",
+  "entity": "FEMA: days from disaster declaration to first Federal Register notice, Jan-Jun 2025 declarations (median 110 days vs 41-48 in 2023-24); California Jan 2025 fires (FEMA-4856-DR) 223 days",
+  "queries": [
+    {"q": "FEMA delays publishing disaster declarations Federal Register 2025", "found_useful": true},
+    {"q": "FEMA Federal Register notice disaster declaration months late omnibus notice 2025 Los Angeles fires", "found_useful": true},
+    {"q": "FEMA stopped publishing disaster declaration notices Federal Register backlog SBA disaster loans notices", "found_useful": false},
+    {"q": "\"Federal Register\" FEMA disaster declarations not published for months 2025 notice lag", "found_useful": true},
+    {"q": "FEMA declaration notices Federal Register January 2025 fires 223 days", "found_useful": true},
+    {"q": "FEMA disaster declaration delays analysis days 2025 compared previous administrations news", "found_useful": true},
+    {"q": "FEMA Federal Register notices delayed transparency disaster declarations amendments batch published 2026", "found_useful": true},
+    {"q": "FEMA \"Federal Register\" disaster notices late \"Small Business Administration\" declaration publication gap reporters", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-2025-08-19/html/2025-15716.htm",
+      "outlet": "Federal Register (FEMA notice, FR Doc 2025-15716)",
+      "date": "2025-08-19",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "This is a notice of the Presidential declaration of a major disaster for the State of California (FEMA-4856-DR), dated January 8, 2025, and related determinations. The declaration was issued January 8, 2025.",
+      "paywalled": false,
+      "searcher_note": "Primary record: FEMA's batch notice printed Aug 19, 2025 carries the initial notice for the Jan 8, 2025 California fire declaration; summary says it covers declarations from October 2024 to January 2025."
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-2025-08-19/html/2025-15717.htm",
+      "outlet": "Federal Register (FEMA notice, FR Doc 2025-15717)",
+      "date": "2025-08-19",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, declared under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from January to May, 2025.",
+      "paywalled": false,
+      "searcher_note": "Primary record: second FEMA batch notice the same day, bundling January-May 2025 declarations into one printing."
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-06/html/2026-08895.htm",
+      "outlet": "Federal Register (FEMA notice, FR Doc 2026-08895)",
+      "date": "2026-05-06",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, issued under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from April through October 2025.",
+      "paywalled": false,
+      "searcher_note": "Primary record: FEMA batch notice printed May 2026 covering declarations issued April-October 2025."
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-17/html/2025-01066.htm",
+      "outlet": "Federal Register (SBA notice, FR Doc 2025-01066)",
+      "date": "2025-01-17",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "This is a Notice of the Presidential declaration of a major disaster for the State of California (FEMA-4856-DR), dated January 8, 2025.",
+      "paywalled": false,
+      "searcher_note": "Primary record: SBA printed its notice for the same California declaration nine days after it was issued; names the disaster, not FEMA as publisher."
+    },
+    {
+      "url": "https://www.politifact.com/factchecks/2026/jan/28/jared-moskowitz/FEMA-disaster-declaration-backlog-Trump/",
+      "outlet": "PolitiFact",
+      "date": "2026-01-28",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "approvals are taking more than a month, on average.",
+      "paywalled": false,
+      "searcher_note": "Adjacent measure only: covers slower request-to-approval times for disaster declarations in 2025-26, citing an AP analysis; says nothing about Federal Register notice lag."
+    }
+  ],
+  "notes": "No news, trade press, watchdog or agency source found that reports FEMA's lag between declaration and Federal Register notice, the 110-day median, or the 223-day wait for the California fires. The evidence found is the Federal Register itself: FEMA batch notices printed 2025-08-19 (two, covering Oct 2024-Jan 2025 and Jan-May 2025) and 2026-05-06 (Apr-Oct 2025), and a prompt SBA notice (2025-01-17) for FEMA-4856-DR. These are primary records, not coverage of the finding. Much coverage exists on a different step, slower presidential approval of declaration requests (AP analysis, PolitiFact, Brennan Center, Carnegie); that measures request-to-decision, not declaration-to-notice. federalregister.gov pages sit behind a bot wall, so govinfo.gov copies of the same FR documents were used; quotes checked against downloaded govinfo text (line breaks in the source)."
+}

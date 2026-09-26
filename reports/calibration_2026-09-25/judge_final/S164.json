@@ -1,0 +1,12 @@
+{
+  "story_id": "S164",
+  "bin": "Matched + more",
+  "entity": "national ICE field-office hold-room stays over a day, Oct 2025-Feb 2026 vs two years earlier",
+  "deciding_sources": [2, 0],
+  "earliest_match_date": "2026-03-18",
+  "post_cutoff_match": true,
+  "what_we_add": "16,919 stays over a day (14.8%) vs 212 (0.8%), and Baltimore's 3,041 of 3,168 with median 87 hours",
+  "why": "Colorado Times Recorder reports the same national finding in numbers: 72-hour-plus hold-room detentions up from 281 to 5,011; the Banner matches the Baltimore piece. Nobody has our over-a-day counts or the Baltimore median.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

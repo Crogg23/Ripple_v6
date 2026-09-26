@@ -1,0 +1,77 @@
+{
+  "story_id": "S123",
+  "entity": "US House of Representatives, 119th Congress (2025-2026): share of bills passed by roll call that got any amendment roll call, vs 1995-2024",
+  "queries": [
+    {"q": "House 119th Congress closed rules record no amendments allowed", "found_useful": false},
+    {"q": "House floor amendment votes fewest in decades 2025 Johnson closed process", "found_useful": true},
+    {"q": "Rules Committee Democrats McGovern report closed rules record 119th Congress amendments blocked", "found_useful": true},
+    {"q": "House amendment roll call votes share of all roll calls decline 2026 analysis", "found_useful": false},
+    {"q": "\"closed rules\" House record August 2026", "found_useful": false},
+    {"q": "Foxx defends Rules Committee amendments made in order NDAA hundreds of amendments 2025", "found_useful": true},
+    {"q": "\"amendment votes\" House fewest Congress 2026 rank-and-file members lose ability to amend", "found_useful": false},
+    {"q": "Johnson House most closed Congress in history closed rules count summer 2026", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://news.bgov.com/bloomberg-government-news/influence-shrinks-as-house-limits-members-power-to-change-bills",
+      "outlet": "Bloomberg Government",
+      "date": "2026-01-09",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In 2025, the House Rules Committee—controlled by the speaker—prohibited consideration of any amendments on about 84% of the measures it sent to the floor, the data shows.",
+      "paywalled": false,
+      "searcher_note": "BGov data analysis of House rules: 95 closed rules in 2025, ~80% of submitted amendments blocked vs 54-68% in prior Congresses; measures closed rules, not amendment roll calls per bill passed."
+    },
+    {
+      "url": "https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy",
+      "outlet": "MS NOW",
+      "date": "2026-03-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "A report compiled by committee Democrats shows that the GOP made zero amendments in order for 95 separate pieces of legislation throughout the first year of the 119th Congress",
+      "paywalled": false,
+      "searcher_note": "Record-setting Congress piece; also carries GOP pushback: 25 of the 95 were Congressional Review Act measures, not amendable, and members offered no amendments for 20."
+    },
+    {
+      "url": "https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy",
+      "outlet": "MS NOW",
+      "date": "2026-03-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "For instance, the spokesperson said, of the 95 pieces of legislation the Democrats invoke, 25 were Congressional Review Act measures, which are not amendable.",
+      "paywalled": false,
+      "searcher_note": "Disagreement/nuance on the same page: Rules Republicans say many closed measures could not be amended anyway."
+    },
+    {
+      "url": "https://democrats-rules.house.gov/media/press-releases/mcgovern-speaker-johnson-promised-he-would-run-place-differently-hes-broken",
+      "outlet": "House Rules Committee Democrats (Ranking Member McGovern)",
+      "date": "2026-03-03",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Today, Republicans officially broke their own record for the most measures ever advanced to the floor with no amendments allowed.",
+      "paywalled": false,
+      "searcher_note": "Minority release: 117 closed rules since January 2025, called the most closed Congress in history (partisan source)."
+    },
+    {
+      "url": "https://democrats-rules.house.gov/sites/evo-subsites/democrats-rules.house.gov/files/documents/one-page-summary_house-rules-democratic-staff-report-2025.pdf",
+      "outlet": "House Rules Committee Democratic staff",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "More than 8 out of every 10 rules issued this Congress have locked down debate and allowed zero amendments on the floor.",
+      "paywalled": false,
+      "searcher_note": "One-page summary of the December 2025 Democratic staff report; closed-rule share and amendments blocked, first year of 119th Congress."
+    },
+    {
+      "url": "https://rules.house.gov/media/press-releases/foxx-opening-remarks-hr-4593-hr-5184-and-hr-6938",
+      "outlet": "House Rules Committee (Chairwoman Foxx)",
+      "date": "2026-01-06",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "more than half of the closed measures were closed by definition—meaning there were no amendments that could even be made in order.",
+      "paywalled": false,
+      "searcher_note": "Majority rebuttal: of 95 closed rules in 2025 only 33 percent were closed at the committee's discretion (CRAs, rules-package bills, bills with no amendments filed)."
+    }
+  ],
+  "notes": "Every source found measures the same House/119th Congress but with a different yardstick: closed rules and share of submitted amendments blocked. None counts amendment roll call votes, none gives the share of roll-call-passed bills that drew an amendment roll call, and none uses a 1995-2024 baseline or the 12%/61% figures. Rules Republicans dispute the closed-rule framing (CRAs not amendable, no amendments filed). No coverage dated after 2026-06-30 on this measure was found (an MS NOW opinion of 2026-09-18 on the House recess did not mention amendments). Two queries (#4, #7) triggered the search tool's own internal follow-up searches, so actual web search consumption was higher than 8."
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S153",
+ "bin": "Matched + more",
+ "entity": "Holly Springs, MS city utility's unbilled power",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2025-01-07",
+ "post_cutoff_match": true,
+ "what_we_add": "42.6% of purchased power never billed in 2024, worst of 425 city utilities, and the MWh trend",
+ "why": "Mississippi Today, Magnolia Tribune and Action News 5 all report the same entity and finding: broken meters, months without bills, revenue left unbilled. Nobody has the 42.6% share or the national rank.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

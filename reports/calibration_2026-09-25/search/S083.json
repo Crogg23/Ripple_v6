@@ -1,0 +1,58 @@
+{
+  "story_id": "S083",
+  "entity": "Bernie Moreno, 2024 Ohio U.S. Senate race: outside spending ($152M) vs his own campaign spending ($26M), 5.8x; plus national count, 104 of 637 matched 2024 House and Senate candidates with outside spending above their own",
+  "queries": [
+    {"q": "Bernie Moreno outside spending 2024 Ohio Senate race super PACs outspent campaign", "found_useful": true},
+    {"q": "2024 congressional races where outside spending exceeded candidate spending OpenSecrets", "found_useful": false},
+    {"q": "\"outside groups outspent the candidates\" 2024 races number OpenSecrets House Senate", "found_useful": false},
+    {"q": "Moreno campaign spent far less than outside groups on his behalf Ohio Senate $300 million most expensive", "found_useful": true},
+    {"q": "Moreno \"outside spending\" Ohio Senate 2024 final tally candidate spending post-election analysis", "found_useful": true},
+    {"q": "2024 House Senate candidates outside groups spent more than the candidate's own campaign how many races analysis", "found_useful": false},
+    {"q": "OpenSecrets Ohio Senate 2024 race Moreno outside spending candidate spending totals (allowed_domains opensecrets.org)", "found_useful": false},
+    {"q": "super PACs outspent the candidates themselves in dozens of 2024 congressional races report", "found_useful": false},
+    {"q": "Moreno \"for every dollar\" his campaign spent outside groups spent Ohio Senate 2024", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://insidepoliticalmoney.com/news/ohios-senate-money-war-is-just-getting-started/",
+      "outlet": "Inside Political Money",
+      "date": "2026-08-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "This was far more than the $14.8 million raised by Moreno, who instead relied heavily on $186.1 million in outside spending.",
+      "paywalled": false,
+      "searcher_note": "Names Moreno; outside spending dwarfs his campaign money. Compares $186.1M outside to $14.8M RAISED (not spent); the lead has $152M outside vs $26M own spending."
+    },
+    {
+      "url": "https://ohiocapitaljournal.com/2026/07/29/sherrod-brown-comfortably-outraises-jon-husted-as-outside-groups-enter-ohios-u-s-senate-race/",
+      "outlet": "Ohio Capital Journal",
+      "date": "2026-07-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The 2024 race became the most expensive non-presidential election in American history, and while Brown more than tripled Moreno’s campaign spending, Republican groups still outspent Democratic groups by over $75 million.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff recap of 2024: Moreno's campaign spent little; Republican outside groups carried the race. No Moreno outside-vs-own ratio."
+    },
+    {
+      "url": "https://www.newsweek.com/ohio-senate-race-bernie-moreno-sherrod-brown-1959374",
+      "outlet": "Newsweek",
+      "date": "2024-09-25",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Despite trailing in money in the bank, outside PACs have spent nearly $90 million in efforts to support Moreno throughout the campaign thus far",
+      "paywalled": false,
+      "searcher_note": "Earliest found coverage of outside money outrunning Moreno's own campaign; same article says Moreno had raised $15M vs Brown's $53M."
+    },
+    {
+      "url": "https://wausaupilotandreview.com/2025/05/31/outside-spending-on-2024-elections-shatters-records-fueled-by-billion-dollar-dark-money-infusion/",
+      "outlet": "Wausau Pilot & Review (OpenSecrets, Anna Massoglia)",
+      "date": "2025-05-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Outside groups have poured more than $308 million into Ohio’s 2024 Senate election, making it the most expensive congressional race of the cycle and in the top 10 races in U.S. history.",
+      "paywalled": false,
+      "searcher_note": "OpenSecrets republish: Ohio race tops 2024 congressional races on outside spending; Senate Leadership Fund about $71M for Moreno."
+    }
+  ],
+  "notes": "Moreno's outside-money edge over his own campaign is widely reported (Newsweek 2024, Ohio Capital Journal and Inside Political Money in Jul/Aug 2026). No source found gives the lead's exact $152M outside vs $26M own-spending (5.8x) pair; Inside Political Money's $186.1M outside vs $14.8M raised is a different measure (raised, not spent) and gives ~12.6x. No source found for the national count (104 of 637 candidates, 82 over $1M) of 2024 congressional candidates whose outside spending exceeded their own. Search snippets attributed to Axios (2024-11-01) a figure of about $26M spent on ads by the Moreno campaign, but Axios returned 403 to both WebFetch and curl, so it is not recorded. ProPublica Itemizer's Ohio Senate race page showed incomplete candidate totals and was not used. The OpenSecrets site itself returned no search results."
+}

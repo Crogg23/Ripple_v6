@@ -1,0 +1,12 @@
+{
+  "story_id": "S196",
+  "bin": "Known pattern",
+  "entity": "41 sympathy-named super PACs, $181.5M raised, ~4% reaching political spending",
+  "deciding_sources": [0, 4],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Every source has entity_named no. Daily Beast (43 PACs, $140M) and the NYT-via-Blumenthal figure ($89M, 1% to politics) report the same scheme on other or unnamed PAC sets, not our 41.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

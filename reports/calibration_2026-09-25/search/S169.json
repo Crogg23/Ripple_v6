@@ -1,0 +1,77 @@
+{
+  "story_id": "S169",
+  "entity": "Red River Parish, Louisiana (Coushatta/Edgefield area): M2.5+ earthquake count, none 2010-2023 then 29 since Jan 2024, topped by M4.9 on 2026-03-05",
+  "queries": [
+    {"q": "Red River Parish Louisiana magnitude 4.9 earthquake March 2026", "found_useful": true},
+    {"q": "Red River Parish earthquakes swarm since 2024 Haynesville wastewater injection", "found_useful": true},
+    {"q": "Coushatta earthquakes USGS cause injection wells report 2026", "found_useful": false},
+    {"q": "Red River Parish earthquake 2024 first quake Coushatta magnitude", "found_useful": true},
+    {"q": "north Louisiana earthquakes Red River Parish August 2026", "found_useful": true},
+    {"q": "Red River Parish earthquakes \"2024\" no recorded earthquakes before increase Haynesville saltwater disposal", "found_useful": true},
+    {"q": "Louisiana Coushatta earthquakes natural tectonic not induced scientists say", "found_useful": true},
+    {"q": "3.6 magnitude earthquake Coushatta Red River Parish", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.theadvocate.com/baton_rouge/news/environment/earthquakes-north-louisiana-oil-fracking-haynesville-shale/article_3297e504-50a8-5f5a-b098-d2c4acc5b7cc.html",
+      "outlet": "The Advocate (Baton Rouge)",
+      "date": "2026-05-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The earthquakes ratcheted up in 2022, and since then, 35 earthquakes with a magnitude of 2.5 or more have struck northwestern Louisiana.",
+      "paywalled": false,
+      "searcher_note": "Names Red River Parish M4.9 and ties the rise to saltwater disposal; dates the rise to 2022 across all of northwestern Louisiana, not the lead's box or 2024 start."
+    },
+    {
+      "url": "https://news.tulane.edu/pr/tulane-geoscientist-helping-researchers-understand-rare-north-louisiana-earthquakes",
+      "outlet": "Tulane University News",
+      "date": "2026-03-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Since December, at least 14 earthquakes with a magnitude greater than 2.5 have been detected in north Louisiana, according to the U.S. Geological Survey. The most significant occurred on March 5 near Coushatta and measured magnitude 4.9.",
+      "paywalled": false,
+      "searcher_note": "University release: count since December 2025, M4.9 near Coushatta, M4.4 on March 9; also says a Tulane array was installed in October."
+    },
+    {
+      "url": "https://www.dce.louisiana.gov/news/red-river-parish-tremors",
+      "outlet": "Louisiana Department of Conservation and Energy",
+      "date": "2026-03-12",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "USGS has previously reported a number of earthquakes in the area since December 2025, with an overnight series of four Sunday night ranging in magnitude from 3.1 to 4.4.",
+      "paywalled": false,
+      "searcher_note": "State regulator release on the Red River Parish series; says no clear-cut connection to injection found so far."
+    },
+    {
+      "url": "https://www.ktbs.com/news/earthquakes-in-red-river-parish-shaking-up-residents/article_45b57d80-bef3-11ee-8a5f-8705d44c3b95.html",
+      "outlet": "KTBS 3 (Shreveport)",
+      "date": "2024-01-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "According to the U.S. Geological Survey, there was one in the morning that measured 2.5 and another one in the afternoon that shook the area at a 3.5 magnitude.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found: January 2024 Red River Parish quakes (M2.5, M3.5, another on Jan. 11); a geologist attributes them to the Red River fault, fracking link unknown."
+    },
+    {
+      "url": "https://www.ktbs.com/community/earthquake-rattles-parts-of-red-river-parish/article_2448ae11-4637-4ebd-adc1-a4ee7f8d19c6.html",
+      "outlet": "KTBS 3 (Shreveport)",
+      "date": "2026-08-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "There have been a series of small earthquakes reported in Red River and neighboring DeSoto Parish in recent months.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff: M3.4 near Edgefield in August 2026, five months after the M4.9 in about the same location."
+    },
+    {
+      "url": "https://www.yahoo.com/news/articles/earthquakes-becoming-more-frequent-east-120000632.html",
+      "outlet": "Houston Chronicle (via Yahoo News)",
+      "date": "2026-04-08",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "USGS researchers attributed a series of earlier near-border earthquakes in the area to fracking and associated wastewater disposal.",
+      "paywalled": false,
+      "searcher_note": "Covers the March 5 Coushatta M4.9 as a record quake under USGS investigation, with earlier Texas-Louisiana border quakes tied to fracking and disposal."
+    }
+  ],
+  "notes": "Many outlets covered the M4.9 (2026-03-05) and the March 9 follow-on quakes, naming Red River Parish/Coushatta. No source found stating the lead's specific claim of zero M2.5+ quakes 2010-2023 in the box or the count of 29 since Jan 2024. The Advocate dates the rise to 2022 across northwestern Louisiana (35 M2.5+); Tulane and the state regulator count from December 2025. KTBS Jan 2024 shows M2.5 and M3.5 quakes in Red River Parish in Jan 2024, consistent with a 2024 start. Cause is unsettled in all sources: the state regulator found no clear-cut injection link; a 2024 geologist quote points to the Red River fault. Houston Chronicle original URL failed to load (bot wall); Yahoo syndicated copy used. The Advocate quote sentence verified by direct download."
+}

@@ -1,0 +1,83 @@
+{
+ "story_id": "S207",
+ "lead": {
+  "headline": "Justice Department's Epstein file list for Data Set 10 shrank from 10,071 to 5,569 pages, March to late May 2026",
+  "number": "Data Set 10: 10,071 to 5,569 pages (about 225,000 file links out of the listing) by Mar 8; Data Set 9: 10,675 to 770 for about 4 weeks; both back May 22-23.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Both \"joins\" are one Wayback crawl read twice, and the pager is flaky (Data Set 9 showed no pager for 16 days, Data Set 10 read 102 on Feb 1); a missing tail fits a search index refilling in file-number order."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "DOJ Epstein files \"Data Set 10\" pages removed",
+  "Justice Department Epstein library files disappeared from website Data Set 9",
+  "Epstein files 47,635 removed Justice Department database restored",
+  "Epstein library Data Set 9 Data Set 10 files restored May 2026",
+  "Epstein files DOJ listing page count dropped Wayback Machine analysis thousands of files missing Data Set",
+  "Epstein library Justice Department files missing August 2026",
+  "\"Data Set 9\" Epstein DOJ website files missing weeks listing",
+  "Epstein files DOJ re-uploaded restored removed files NPR analysis pages still offline May June 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/",
+   "outlet": "Discrepancy Report (Joe Douglass)",
+   "date": "2026-02-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "page displayed fewer file listings than an earlier Wayback Machine capture of the same page from Jan. 30.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ve never been retrievable through Wayback. Graham also said the Internet Archive has so far archived 1,366,140 PDF files from the DOJ Epstein collection. The Justice Department’s online listings for at least one dataset also appear to have changed over time. On Feb. 10 , the DOJ “Data Set 10 Files” page displayed fewer file listings than an earlier Wayback Machine capture of the same page from Jan. 30 . Several pages of entries visible in the archived version did not appear on the live page when I checked again Feb. 11. The changes have practical consequences for verification. Bulk downloads, complete file lists and a way to confirm copies match the government’s posted versions make it easier for independent reviewers to test whether "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.yahoo.com/news/articles/doj-taking-down-epstein-files-170633191.html",
+   "outlet": "CBS News (via Yahoo News), Elliott Ramos",
+   "date": "2026-03-03",
+   "source_type": "news",
+   "entity_named": "partial",
+   "quote": "As of late February, the Justice Department has taken down more than 47,000 files comprising about 65,500 pages.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Department put the total at 3.5 million pages. And now, in part in response to widespread criticism and concern from survivors and their attorneys that the files contain nearly 100 survivors' personal information and photos, the DOJ has scrambled to remove documents. A CBS News analysis found that as of late February, the Justice Department has taken down more than 47,000 files comprising about 65,500 pages. Links to those files now return a \"page not found\" error on the department's website. Advertisement Advertisement Advertisement Advertisement Some of those removed documents contained explicit images or survivor information — including one document with unredacted photos of 21 survivors along with most of their birthdates. But th"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.yahoo.com/news/articles/doj-admits-removing-nearly-48-185553534.html",
+   "outlet": "Salon (via Yahoo News), Jelinda Montes",
+   "date": "2026-03-04",
+   "source_type": "news",
+   "entity_named": "partial",
+   "quote": "The Department of Justice removed 47,635 files from the publicly available database of Jeffrey Epstein case files, including various claims against President Donald Trump.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ograph of Donald Trump and Jeffrey Epstein Democrats on the House Oversight Committee Key takeaways Powered by Yahoo Scout. Yahoo is using AI to generate key points from this article. This means the info may not always match what’s in the article. Reporting mistakes helps us improve the experience. The Department of Justice removed 47,635 files from the publicly available database of Jeffrey Epstein case files, including various claims against President Donald Trump. DOJ spokesperson Natalie Baldassarre stated that the removed files will be reuploaded after redactions are made to address victim concerns and protect personally identifiable information. Lawmakers reviewing the unredacted files found that names of six wealthy men, including retail billionaire Les Wexner, were initially not in the pu"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.washingtonexaminer.com/news/justice/4483445/what-still-missing-epstein-files-doj-begins-restore-removed-documents/",
+   "outlet": "Washington Examiner, Kaelan Deese",
+   "date": "2026-03-07",
+   "source_type": "news",
+   "entity_named": "partial",
+   "quote": "47,635 files were taken offline for review from a larger batch of roughly 60,000 pages",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cess of restoring tens of thousands of records tied to the federal investigation into disgraced financier Jeffrey Epstein after officials acknowledged errors in their review and explained why a large batch of documents had been temporarily removed from the public archive. A senior DOJ official said 47,635 files were taken offline for review from a larger batch of roughly 60,000 pages that the department pulled due to sensitive content that needed redactions. Stay informed. Stay ahead. Join Washington Examiner for unlimited access to the news, analysis, and commentary that matter most. See Options › Already a member? Log in The official said the batch was taken down after researchers and members of the public"
+  },
+  {
+   "idx": 4,
+   "url": "https://github.com/yung-megafone/Epstein-Files",
+   "outlet": "GitHub, yung-megafone/Epstein-Files (community archive index)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Data Set 9 is the only dataset known to be incomplete at the source.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Torrents (Huge Help) If you download any dataset via BitTorrent: Leave your client open Seed as long as you reasonably can Even low upload speeds help stabilize the swarm Preservation only works if files stay available after the initial hype fades. Help Recover Missing Files (Especially Data Set 9) Data Set 9 is the only dataset known to be incomplete at the source. If you have: Missing PDFs Missing NATIVEs (images, audio, video, etc.) Partial archives or fragments Older copies pulled before DOJ throttling/cutoffs Please open an issue and include: File names Hashes (if available) Original source URL(s) How / when you obtained them Even partial information helps — filenames alone ca"
+  }
+ ]
+}

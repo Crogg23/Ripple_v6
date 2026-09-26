@@ -1,0 +1,58 @@
+{
+ "story_id": "S141",
+ "lead": {
+  "headline": "The 4th Circuit appeals court published 375 decisions in fiscal 2025, up 25% from 2019; the median circuit fell 17%",
+  "number": "375 published decisions FY2025 vs 299 FY2019 (+25%); published share 8.8% to 13.7%; 363 of the 375 were argued",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The FJC code meanings (published, argued) are read from the data; confirm them in the FJC codebook. The older +74% figure starts from a 2020 COVID low."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Fourth Circuit published opinions increase 2025 publication rate",
+  "Judicial Business 2025 courts of appeals opinions filed published unpublished percentage by circuit table B-12",
+  "\"Fourth Circuit\" publishing more opinions unpublished decline Wilkinson Diaz court",
+  "federal courts of appeals publishing fewer precedential opinions decline 2025 analysis",
+  "\"4th Circuit\" 2025 year in review number of published opinions argued cases statistics",
+  "Fourth Circuit unpublished opinion rate highest among circuits 2026",
+  "Fourth Circuit judges publishing more precedential decisions trend Richmond appeals court news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.uscourts.gov/sites/default/files/document/jb_b12_0930.2025.pdf",
+   "outlet": "Administrative Office of the U.S. Courts, Judicial Business Table B-12",
+   "date": "2025-09-30",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "4th 2,520 124 2,396 - 316 282 4 1,794 - - 86.6",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "—Type of Opinion or Order Filed in Cases Terminated on the Merits, by Circuit, During the 12-Month Period Ending September 30, 2025 DC 702 118 584 - 165 - 4 415 - - 71.1 1st 617 45 572 - 212 5 4 334 2 15 61.9 2nd 2,564 178 2,386 - 224 2,136 26 - - - 89.5 3rd 1,617 85 1,532 - 147 909 4 382 3 87 89.9 4th 2,520 124 2,396 - 316 282 4 1,794 - - 86.6 5th 3,546 443 3,103 - 358 60 42 2,636 1 6 87.1 6th 2,345 153 2,192 1 290 785 15 1,101 - - 86.1 7th 1,177 70 1,107 - 327 10 11 759 - - 69.5 8th 1,984 99 1,885 - 378 3 24 484 1 995 78.6 9th 5,378 178 5,200 - 390 1 15 4,794 - - 92.2 10th 1,052 6 1,046 - 239 615 4 188 - - 76.8 11th 2,467 152 2,315 - 207 19 14 2,016 5"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.uscourts.gov/sites/default/files/data_tables/jb_b12_0930.2019.pdf",
+   "outlet": "Administrative Office of the U.S. Courts, Judicial Business Table B-12",
+   "date": "2019-09-30",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "4th 3,101 204 2,897 - 232 409 6 2,250 - - 91.8",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "of Opinion or Order Filed in Cases Terminated on the Merits, by Circuit, During the 12-Month Period Ending September 30, 2019 DC 667 199 468 - 153 - 14 301 - - 64.3 1st 986 56 930 - 271 10 3 626 12 8 69.2 2nd 2,467 290 2,177 - 207 1,940 30 - - - 89.1 3rd 2,187 123 2,064 - 197 1,362 - 392 - 113 90.5 4th 3,101 204 2,897 - 232 409 6 2,250 - - 91.8 5th 4,435 563 3,872 - 421 51 55 3,333 - 12 87.7 6th 2,843 183 2,660 - 299 582 9 1,759 10 1 88.0 7th 1,632 115 1,517 - 506 14 27 965 2 3 64.7 8th 2,236 103 2,133 - 501 6 43 567 - 1,016 74.5 9th 6,968 364 6,604 - 399 3 45 6,155 2 - 93.2 10th 1,159 19 1,140 - 213 736 1 190 - - 81.2 11th 3,405 129 3,276 - 184 60 27 2"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.goodreads.com/author_blog_posts/1533954-rates-of-unpublished-opinions-in-the-different-circuits-and-especially?tab=author",
+   "outlet": "Orin Kerr blog post (Volokh Conspiracy mirror on Goodreads)",
+   "date": "2011-09-08",
+   "source_type": "opinion",
+   "entity_named": "yes",
+   "quote": "According to the chart, the Fourth Circuit is the least likely to issue published opinions. Last year, only 7% of 4th Circuit opinions were published.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ons to the lowest: Circuit/Percentage of Opinions that are Unpublished 4th Circuit/ 93.0% 3rd Circuit/ 89.8% 11th Circuit/ 89.6% 2nd Circuit/ 88.3% 5th Circuit/ 87.4% 9th Circuit/ 86.9% 6th Circuit/ 83.6% 10th Circuit/ 77.5% 8th Circuit/ 71.8% 1st Circuit/ 65.1% DC Circuit/ 62.3% 7th Circuit/ 59.8% According to the chart, the Fourth Circuit is the least likely to issue published opinions. Last year, only 7% of 4th Circuit opinions were published. The obvious question is, why do different circuits issue published opinions at such different rates? I gather that much of the reason is docket size. Published opinions take more time, so courts with smaller dockets should have more time to publish. Indeed, the DC Circuit and 1st Circuits have among the high publication rates but a"
+  }
+ ]
+}

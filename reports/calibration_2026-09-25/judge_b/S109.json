@@ -1,0 +1,12 @@
+{
+ "story_id": "S109",
+ "bin": "Known pattern",
+ "entity": "Semaglutide drug master files filed with FDA, Jan 2023-Jun 2026 (83, biggest four-year rush since 1980)",
+ "deciding_sources": [4, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source states the DMF count or a filing surge; FDA and trade press report the flood of GLP-1 API suppliers and the Harbin recall, the same kind of finding in general. PharmaDB's 61 worldwide filings is a directory row, not a finding of a rush.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

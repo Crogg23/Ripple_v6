@@ -1,0 +1,12 @@
+{
+  "story_id": "S079",
+  "bin": "Known pattern",
+  "entity": "UK count: 22 sanctioned people with open control of 46 Active UK companies on a strict name and birth-date match",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "openDemocracy reports the same finding about one person (Usmanov still a PSC after sanctioning) and OFAC's Kong action lists UK companies of a sanctioned man — the scheme, not our register-wide count. Nobody reports the 22-on-46 match or the chance baseline.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

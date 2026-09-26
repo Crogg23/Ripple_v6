@@ -1,0 +1,12 @@
+{
+  "story_id": "S028",
+  "bin": "Matched + more",
+  "entity": "Russia shadow-fleet ships sanctioned by the UK but not by US OFAC",
+  "deciding_sources": [0, 1, 3],
+  "earliest_match_date": "2025-05-27",
+  "post_cutoff_match": true,
+  "what_we_add": "the UK-only cut: 358 UK-sanctioned ships not on OFAC, 309 designated in 2024-25; Brookings counts the EU+UK gap (524) and totals, not UK-alone",
+  "why": "Brookings names the same gap, same direction: US frozen at 216 since Jan 2025 while UK sanctions hundreds more. Their 524 is EU+UK combined, a different cut, so no contradiction with our 358 UK-only.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

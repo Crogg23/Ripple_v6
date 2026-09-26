@@ -1,0 +1,67 @@
+{
+  "story_id": "S146",
+  "entity": "Foreign-based groups filing as US 501(c)(4) social welfare organizations, led by Mastercard Foundation (Toronto, $50.3B) and Novo Holdings (Denmark, $36.2B): ~40% of all 501(c)(4) assets",
+  "queries": [
+    {"q": "Mastercard Foundation 501(c)(4) social welfare organization IRS Form 990", "found_useful": false},
+    {"q": "canadiancharitylaw Mastercard Foundation US Form 990 501(c)(4) Blumberg", "found_useful": true},
+    {"q": "Novo Holdings A/S US tax-exempt 501(c)(4) Form 990 Novo Nordisk Foundation", "found_useful": false},
+    {"q": "foreign foundations claim 501(c)(4) status avoid US withholding tax on dividends social welfare", "found_useful": true},
+    {"q": "Mastercard Foundation Toronto US tax exemption social welfare status investment income news", "found_useful": true},
+    {"q": "largest 501(c)(4) organizations by assets Mastercard Foundation Novo Holdings", "found_useful": false},
+    {"q": "foreign-based nonprofits registered as US 501(c)(4) social welfare groups billions in assets 2026", "found_useful": true},
+    {"q": "Mastercard Foundation \"social welfare\" 501(c)(4) foreign foundation US filing report", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://projects.propublica.org/nonprofits/organizations/980543843",
+      "outlet": "ProPublica Nonprofit Explorer",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Designated as a 501(c)(4)",
+      "paywalled": false,
+      "searcher_note": "Database profile, not a story: The Mastercard Foundation, Toronto ON, 501(c)(4), total assets $50,320,893,084 on latest filing. Confirms the classification and number; no reporting on it."
+    },
+    {
+      "url": "https://projects.propublica.org/nonprofits/organizations/980571483",
+      "outlet": "ProPublica Nonprofit Explorer",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Designated as a 501(c)(4)",
+      "paywalled": false,
+      "searcher_note": "Database profile, not a story: Novo Holdings A-s, Hellerup, Denmark, 501(c)(4), total assets $36,173,313,408, fiscal year ending Dec. 2024."
+    },
+    {
+      "url": "https://www.canadiancharitylaw.ca/blog/us-form-990-filed-by-groups-with-addresses-in-canada/",
+      "outlet": "CanadianCharityLaw.ca (Mark Blumberg)",
+      "date": "2024-10-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The US Form 990 is filed by some organizations that have addresses in Canada.",
+      "paywalled": false,
+      "searcher_note": "Lists Canadian-address US Form 990 filers and links the Mastercard Foundation 2023 990; no analysis of 501(c)(4) status or asset share."
+    },
+    {
+      "url": "https://www.thetaxadviser.com/issues/2008/may/uswithholdingtaximposedonforeigntaxexemptorganizations/",
+      "outlet": "The Tax Adviser (AICPA)",
+      "date": "2008-05-01",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "The exemption from withholding on FDAP income paid to a foreign tax-exempt organization requires that the foreign organization qualify under Sec. 501(c) and that the income not constitute unrelated business taxable income.",
+      "paywalled": false,
+      "searcher_note": "Mechanism only: foreign organizations claim US 501(c) status to escape 30% withholding on US portfolio income; explains why foreign groups file at all."
+    },
+    {
+      "url": "https://www.taxexemptworld.com/non-profit-classification/501c4-social-welfare-organization.asp",
+      "outlet": "TaxExemptWorld",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "501C4 Social Welfare Organization - 85,287 Nonprofits - $232,349,794,768 in Assets",
+      "paywalled": false,
+      "searcher_note": "Denominator check: a database total of $232.3B for 501(c)(4) assets vs the lead's $335.2B; vintage and coverage differ, not a disagreement about the entities."
+    }
+  ],
+  "notes": "No news, research or government report found that names Mastercard Foundation or Novo Holdings as 501(c)(4) filers, or that measures foreign groups' share of 501(c)(4) assets. The only hits naming the entities are database profiles (ProPublica, Charity Navigator) that confirm the 501(c)(4) designation and asset figures matching the lead ($50.32B, $36.17B). Pattern coverage found is only tax-practitioner explanation of why foreign orgs claim 501(c) status (withholding exemption). Coverage of foreign money in 501(c)(4)s (e.g., Wyss/Berger Action Fund) is about political donations, a different scheme, and was not recorded. No coverage dated after 2026-06-30 found. The Mastercard Foundation's US Form 990 filings go back at least to 2011 (Foundation Center 990 archive), so the status itself is long-standing and public."
+}

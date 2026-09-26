@@ -1,0 +1,47 @@
+{
+ "story_id": "S170",
+ "lead": {
+  "headline": "Union Pacific trains killed 156 trespassers a year in 2023-25, nearly double 2015-17's 79; other railroads, same counties: up 30%",
+  "number": "UP-reported train-strike trespasser deaths: 79 a year (2015-17) → 156 (2023-25); UP's full count, including non-train deaths on its property, 97 → 200; other railroads in the same counties rose about 30%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A third of UP's recent reports use a stand-in age of 40 (4% in 2015-17), so part of the jump may be a change in how UP files; there's no suicide field"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Union Pacific trespasser deaths rising FRA data",
+  "Union Pacific trespasser fatalities increase 2024 2025 railroad deaths people struck by trains",
+  "Union Pacific trespasser deaths Los Angeles OR Houston OR Phoenix railroad tracks record rise investigation",
+  "\"Union Pacific\" trespasser fatalities doubled OR increased network annual report trespassing incidents",
+  "Union Pacific most trespasser deaths of any railroad Class I FRA analysis",
+  "railroad trespasser deaths 2025 2026 news rising pedestrians killed by trains homeless encampments tracks Union Pacific",
+  "FRA national trespass fatalities trend 2015 to 2025 record high or decline railroad deaths data",
+  "Union Pacific train deaths pedestrians Sacramento Fresno Bakersfield Tucson 2025 surge struck killed tracks rising number"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.everycrsreport.com/reports/R47911.html",
+   "outlet": "Congressional Research Service, R47911 (via EveryCRSReport)",
+   "date": "2026-07-24",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Trespassing deaths, in particular, have nearly doubled on a per-train-mile basis since 2015 after over a decade of stability.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rity of rail fatalities in 2024, and on-duty employees accounted for roughly half of all injuries. Per-train-mile rates of train incidents have remained comparatively low, and rates of injuries or fatalities have held steady; grade crossing incident rates have risen and erased earlier safety gains. Trespassing deaths, in particular, have nearly doubled on a per-train-mile basis since 2015 after over a decade of stability (see Figure 1 ). The number of railroad hazmat spills has remained low, both in comparison with railroad performance in past years and with other modes; no hazmat-by-rail spill has resulted in a fatality in over a decade. However, hazmat-by-rail releases tend to result in more damage (as measured in dollars) per incident than highway or pipelin"
+  },
+  {
+   "idx": 1,
+   "url": "https://hoodline.com/2026/09/train-kills-pedestrian-near-calvine-road-fourth-fatal-sacramento-strike-since-2025/",
+   "outlet": "Hoodline (Sacramento)",
+   "date": "2026-09-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Union Pacific has reported a 24 percent decrease in personal injuries across its rail network in 2025",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Roseville and Walerga corridor in April, and in South Sacramento in March. In November 2024, a pedestrian was also fatally struck by a Union Pacific freight train on Florin Road in South Sacramento, an incident that caused major traffic delays while Union Pacific and local authorities investigated. Union Pacific has reported a 24 percent decrease in personal injuries across its rail network in 2025, even as national safety analysis found that trespassers accounted for 97 percent of all U.S. rail-related deaths that year, according to the company's own rail safety data . Class I freight railroads reduced overall train accident rates by 15 percent industry-wide in 2025, but Monday's fatality shows the persistent gap between "
+  }
+ ]
+}

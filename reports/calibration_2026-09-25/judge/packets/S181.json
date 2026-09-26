@@ -1,0 +1,70 @@
+{
+ "story_id": "S181",
+ "lead": {
+  "headline": "Enbrel's two FDA-approved copies never went on sale; Medicare drug plans ran up $2.27B gross on brand Enbrel in 2022",
+  "number": "$2,269.6M Part D gross drug cost for Enbrel in 2022 vs $0 for its copies (Erelzi 2016, Eticovo 2019, both listed discontinued).",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Circular: Enbrel was picked because its copies read 'Disc', and a copy never sold has $0 sales by construction; pooled across all 11 molecules, copies took 0.89%, not the 16.6% median."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Enbrel biosimilars Erelzi Eticovo never launched patents 2029 Medicare spending",
+  "Enbrel Medicare Part D spending 2022 billion",
+  "CMS negotiation fact sheet Enbrel total Part D gross covered prescription drug costs enrollees",
+  "Enbrel biosimilar 2026 news Amgen etanercept negotiated price Medicare",
+  "Erelzi Eticovo approved but not marketed United States Sandoz Samsung Bioepis etanercept biosimilar blocked",
+  "\"Enbrel\" Medicare Part D 2022 total spending \"2.2 billion\" OR \"2.3 billion\" OR \"2.8 billion\" OR \"2.9 billion\"",
+  "Sandoz Amgen Enbrel antitrust lawsuit Erelzi 2026 ruling"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12401810/",
+   "outlet": "Arthritis & Rheumatology (via PubMed Central)",
+   "date": "2025-05-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "During 2022, 47,000 Medicare Part D enrollees received etanercept primarily for rheumatoid arthritis, psoriasis, or psoriatic arthritis. Total gross Medicare Part D spending on etanercept was $2.7 billion",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.citizen.org/news/analysis-shows-amgens-gaming-of-patent-system-cost-medicare-more-than-a-billion-in-savings-over-less-than-four-years/",
+   "outlet": "Public Citizen",
+   "date": "2023-10-31",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In doing so, Amgen successfully thwarted competition from two potential biosimilar competitors, Erelzi and Eticovo, which received FDA approval in 2016 and 2019, respectively.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "han a billion dollars due to Amgen’s monopoly abuse.” The analysis describes how, after acquiring Immunex, the original manufacturer of etanercept, Amgen built a “wall of patents,” including by reworking older patents, to gain nearly three decades of exclusivity after the drug was approved in 1998. In doing so, Amgen successfully thwarted competition from two potential biosimilar competitors, Erelzi and Eticovo, which received FDA approval in 2016 and 2019, respectively. While Americans will be deprived of more affordable biosimilars until 2029, European peers have had access to them since 2016. The analysis concludes that in cases where a manufacturer has gamed the patent system to unfairly extend exclusive control of a selected drug, Medicare price negotiators should consider the prices that would be i"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.biopharmadive.com/news/amgen-enbrel-patent-thicket-monopoly-biosimilar/609042/",
+   "outlet": "BioPharma Dive",
+   "date": "2021-11-01",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "But five years later, Erelzi still hasn't launched, even as 30 other biosimilars have won U.S. approval and 21 of them have reached market.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " of patent thickets. Enbrel, then earning Amgen more than $3 billion per year, was a top target for would-be biosimilar competitors. Novartis’ Sandoz division began developing an Enbrel copy in 2012 and four years later, won FDA approval for Erelzi, the third biosimilar to be cleared by the agency. But five years later, Erelzi still hasn’t launched, even as 30 other biosimilars have won U.S. approval and 21 of them have reached market. Standing in the way of Erelzi, and Samsung Bioepis' subsequently approved Eticovo biosimilar, is Amgen’s patent thicket. Enbrel's path to $74 billion in revenue Amgen acquired Enbrel when it bought Immunex in 2002. Over nearly two decades it has earned more than $70 billion in cumulative revenue and could be on track to exceed $100"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.insurancebusinessmag.com/us/news/benefits/amgen-results-show-biosimilars-and-ira-pricing-reshaping-drug-spend-584990.aspx",
+   "outlet": "Insurance Business",
+   "date": "2026-08-05",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Enbrel, a mainstay biologic in the inflammation category, fell 4% overall, with net selling price down 22%.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "milars arrive at scale The numbers show what biosimilar entry looks like at scale. Prolia posted a 32% year-over-year sales decline and XGEVA fell 34%, with both attributed to lower volume and lower net selling prices as multiple biosimilars launched globally. Amgen said more entrants are expected. Enbrel, a mainstay biologic in the inflammation category, fell 4% overall, with net selling price down 22%. Amgen attributed that decline to the Inflation Reduction Act's Medicare Part D price-setting mechanism, effective January 1, and an increased 340B Program mix. That mechanism is now operational for the first time. The IRA's Medicare Drug Price Negotiation Program set Maximum Fair Prices for ten high-expenditure Part D drugs in 2026"
+  }
+ ]
+}

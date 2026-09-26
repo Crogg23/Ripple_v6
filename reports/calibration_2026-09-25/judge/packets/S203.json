@@ -1,0 +1,59 @@
+{
+ "story_id": "S203",
+ "lead": {
+  "headline": "Texas gas plants able to switch to oil rose from 4.9% to 6.0% of capacity after the 2021 freeze",
+  "number": "ERCOT 3,508 MW of 63,770 MW gas winter capacity (5.5%; 6.0% on the generator flag), up from 4.9% before Uri; SPP fell 17.2% to 13.6%, MISO 18.5% to 17.8%.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "\"Less than half of SPP and MISO\" is north vs south: SPP's southern states sit at 4.7% (Oklahoma 1.0%) and MISO's at 6.7%; the switch flags are self-reported by operators."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "ERCOT gas plants dual fuel oil backup capability after Winter Storm Uri share of capacity EIA",
+  "Texas natural gas generators able to switch to fuel oil percent capacity EIA-860 Today in Energy",
+  "ERCOT Firm Fuel Supply Service dual-fuel gas plants fuel oil backup megawatts after Uri",
+  "Texas gas power plants backup fuel oil dual-fuel few Uri lesson news Texas Tribune Houston Chronicle",
+  "percent of ERCOT natural gas generation capacity dual fuel capable oil compared PJM SPP MISO",
+  "FERC NERC February 2021 cold weather report ERCOT generating units dual fuel capability fuel switching percentage",
+  "ERCOT firm fuel supply service 2025-2026 procurement fuel oil megawatts awarded dual fuel generators",
+  "Texas gas plants added dual-fuel oil capability since Uri increase 2026 winter readiness ERCOT backup fuel"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "http://www.energychoicematters.com/stories/20220928c.html",
+   "outlet": "EnergyChoiceMatters.com",
+   "date": "2022-09-28",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "18 of the 19 Generation Resources offered fuel oil as the reserve fuel type",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "eneration Resources could be procured within the budget cap established by the Commission. The following are the FFSS procurement results for the November 15, 2022 through March 15, 2023 obligation period: • All 19 Generation Resources were awarded at a clearing price of $6.19/MW/hr ($18,000/MW); • 18 of the 19 Generation Resources offered fuel oil as the reserve fuel type; • 1 Generation Resource offered natural gas storage; • A total of 2940.5 MW of FFSS capacity was procured; and • The total cost of procurement was $52,857,722.28. ADVERTISEMENT ADVERTISEMENT NEW Jobs on RetailEnergyJobs.com: • NEW! -- Operations Manager - Retail Supplier • NEW! -- Marketing Associate - Retail Supplier • NEW! -- S"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.utilitydive.com/news/texas-regulators-look-to-distributed-resources-additional-coal-reserves-t/622525/",
+   "outlet": "Utility Dive",
+   "date": "2022-04-22",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "dual-fuel capable generation units with on-site alternative fuel storage, and generators that own and control the pipeline to a storage facility",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " will inform an Aug. 1 FFSS request for proposals to be issued by the state's grid operator. An April 20 memo by Commissioner Lori Cobos sketched out what resources could be eligible in the Electric Reliability Council of Texas' first FFSS procurement. Commissioners agreed those would be limited to dual-fuel capable generation units with on-site alternative fuel storage, and generators that own and control the pipeline to a storage facility. That limits the first tranche of FFSS resources to certain gas units, but commissioners discussed expanding the product for the 2023-24 winter and beyond. \"Coal piles provide firm fuel,\" Commissioner Jimmy Glotfelty said. \"I would be interested in looking, in perhaps a second phase, if additional coal stocks beyond what is normally con"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=52298",
+   "outlet": "US EIA, Today in Energy",
+   "date": "2022-05-04",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The most common mode of fuel switching in the United States is from natural gas to petroleum liquids, at almost 132 GW of capacity.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "oelectric dams, and nuclear reactors. The option to switch to other energy sources when one source becomes limited or expensive can improve the reliability and resilience of the electric power supply. In some cases, that fuel-switching ability may be limited by regulations on fuel use or emissions. The most common mode of fuel switching in the United States is from natural gas to petroleum liquids, at almost 132 GW of capacity. The second-most common mode of fuel switching is from coal to natural gas, at almost 21 GW of capacity. Natural gas-fired combined-cycle (NGCC) applications provided 34% of total U.S. utility-scale power generation in 2021, the largest share of any generating technology. Nationally, 19% of NGCC generating capacity can switch "
+  }
+ ]
+}

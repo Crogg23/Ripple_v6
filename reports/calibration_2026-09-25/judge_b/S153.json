@@ -1,0 +1,15 @@
+{
+ "story_id": "S153",
+ "bin": "Matched + more",
+ "entity": "Holly Springs, Mississippi city utility's unbilled power",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2025-01-07",
+ "post_cutoff_match": true,
+ "what_we_add": "42.6% of purchased power never billed in 2024, 240,422 MWh bought vs 137,809 billed, worst of 425 city utilities",
+ "why": "The press names the utility and states the finding in words: revenue left unbilled by failed meters, billing in chaos, customers unbilled for months, a metering death spiral. Nobody has the MWh gap, the 42.6%, or the worst-of-425 rank.",
+ "confidence": "high",
+ "blocked_evidence": true
+}

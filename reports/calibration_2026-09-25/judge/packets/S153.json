@@ -1,0 +1,70 @@
+{
+ "story_id": "S153",
+ "lead": {
+  "headline": "Holly Springs, Mississippi's city utility never billed 42.6% of the power it bought in 2024, worst of 425 city utilities",
+  "number": "Bought 240,422 MWh (megawatt-hours) in 2024, billed 137,809; billed fell 224,000 (2022) → 178,000 (2023) → 138,000 (2024) while purchases held at 232,000-251,000; the median city utility loses 3.4%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Only 2024 is in the warehouse (the 2019-23 trend came from EIA files pulled outside), and every check is the city's own filing, so a bad EIA filing is not ruled out"
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Holly Springs Utility Department customers not billed meters electricity TVA",
+  "Holly Springs Mississippi utility unbilled power losses millions audit",
+  "Silverpoint Consulting Holly Springs audit metering \"death spiral\" unbilled electricity line loss",
+  "Holly Springs utility receiver 2026 billing meters revenue TVA debt update",
+  "Holly Springs electric \"wholesale power\" more than collected revenue losses meters estimated bills percent",
+  "Holly Springs Utility Department electricity losses EIA purchased sold 2024 megawatt-hours",
+  "Holly Springs Mississippi customers not billed for months meters unread 2024"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.actionnews5.com/2026/09/09/could-change-be-coming-holly-springs-utility-collision-course-2027/",
+   "outlet": "Action News 5 (WMC, Memphis)",
+   "date": "2026-09-08",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "replacing failed and unreadable meters, correcting the instrument-rated metering that has left revenue unbilled",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ring the debt to TVA. HSUD recently started a new communications Facebook page, where Watson posted a long explainer on the receivership and what it means for the near future. That explainer read, in part, “I will continue the work already in motion: right-of-way clearing and vegetation management, replacing failed and unreadable meters, correcting the instrument-rated metering that has left revenue unbilled, upgrading substation and sectionalizing equipment, completing the engineering model and the map of every pole and meter on the system, making a public outage map part of the website, fixing the phone and outage-reporting problem that so many of you have complained about, and hiring a permanent General Manager to lead this utility for the long ter"
+  },
+  {
+   "idx": 1,
+   "url": "https://magnoliatribune.com/2025/09/05/mississippi-psc-takes-action-against-holly-springs-public-utility/",
+   "outlet": "Magnolia Tribune",
+   "date": "2025-09-05",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "customers told of $600 to $800 monthly bills and not receiving a bill for months at a time.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ial shortfalls. The report stated that the system suffers from “decades of neglect.” The report did not sugarcoat the issues at hand for the utility, saying the billing system is in “chaos” and describing the metering system as being in a “death spiral.” During the meeting’s public comment portion, customers told of $600 to $800 monthly bills and not receiving a bill for months at a time. The PSC report also detailed how the electric division of the utility does not adhere to basic safety functions, such as trimming trees and general maintenance, including no lockout/tag out procedure when equipment is broken. A customer who said he is a retired electrical engineer called the utility’s safety practices “gross ne"
+  },
+  {
+   "idx": 2,
+   "url": "https://cdispatch.com/news/a-real-twisted-animal-in-holly-springs-whats-next-for-the-spiraling-power-provider/",
+   "outlet": "Mississippi Today (republished by The Commercial Dispatch)",
+   "date": "2025-01-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "the department can make up for lost revenue once it corrects its issues reading meters.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " keep up with inflation and to make necessary improvements. While TVA has raised its wholesale rate twice in the last two years, Holly Springs hasn’t raised its rates since 2009. Gipson, who campaigned on lowering rates, said in one of her Facebook posts that raising rates isn’t necessary, and that the department can make up for lost revenue once it corrects its issues reading meters. But TVA disputed that notion in a presentation to Holly Springs officials in October, saying a rate increase would be necessary regardless. Bill Stone, a former state representative and the utility’s general manager from 2017 to 2021, admitted that politics got in the way of raising rates while he was with the city. “Because of"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.supertalk.fm/years-of-mismanagement-led-to-unreliable-state-of-holly-springs-utility-department-report-finds/",
+   "outlet": "SuperTalk Mississippi",
+   "date": "2025-07-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "AMI metering system, for example, was brought on by a combination of poor decision-making, negligent maintenance, and management",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": "or technical/engineering expertise, reactive versus proactive maintenance practices, insufficient planning and analysis, and questionable choices that appear to have been influenced by the City’s lack of financial resources,” a portion of the report reads. “The current death spiral of the utility’s AMI metering system, for example, was brought on by a combination of poor decision-making, negligent maintenance, and management’s inability to respond to operational challenges.” Northern District Public Service Commissioner Chris Brown, after receiving numerous complaints, sought answers for the perpetual power outages residents faced and the apparent unwillingness by HSUD to properly serve its customers. After running into numerous roadblocks in receiving in"
+  }
+ ]
+}

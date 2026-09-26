@@ -1,0 +1,83 @@
+{
+ "story_id": "S109",
+ "lead": {
+  "headline": "Ingredient makers filed 83 semaglutide (Ozempic) files with the drug regulator since 2023, the biggest four-year rush since 1980",
+  "number": "83 files Jan 2023-Jun 2026 (65 for the ingredient itself, from 54 companies); next real wave tirzepatide 40, then esomeprazole 36; Harbin Jixianglong Biotech recalled semaglutide ingredient on 2026-02-13",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A master file is not an approval, and the 1990s antibiotic \"waves\" include a one-day paperwork batch (56 files dated 1998-09-01)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "semaglutide drug master files DMF surge API manufacturers FDA",
+  "Harbin Jixianglong Biotech semaglutide recall",
+  "number of semaglutide drug master files filed FDA Chinese API makers compounding 2024",
+  "\"drug master files\" semaglutide tirzepatide filings rise generic API suppliers",
+  "semaglutide generics patent expiry 2026 API suppliers DMFs dozens Chinese Indian companies filed",
+  "FDA green list GLP-1 API import alert 66-80 semaglutide suppliers number of firms",
+  "semaglutide API DMF filings record 2025 2026 news",
+  "FDA \"48 GLP-1 API\" sites inspections remote regulatory assessments green list"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/harbin-jixianglong-biotech-co-ltd-723330-05012026",
+   "outlet": "FDA (warning letter 723330)",
+   "date": "2026-05-01",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "On February 19, 2026, you initiated a voluntary recall of the two semaglutide API batches distributed in the United States.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "mending you consider removing the two relabeled batches of semaglutide API drugs currently in distribution from the U.S. market. At the teleconference meeting, you agreed to voluntarily recall the two batches of semaglutide API drugs in current distribution in the United States. We acknowledge that on February 19, 2026, you initiated a voluntary recall of the two semaglutide API batches distributed in the United States. Additionally, during the inspection, our investigators discussed with your firm your decision to release and distribute at least (b)(4) batches of tirzepatide API to the U.S. market prior to the completion of stability studies to support the (b)(4) retest date. Your firm did not have an adequate written scientific justification to s"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.biospace.com/fda/fda-sends-warning-letter-after-chinese-supplier-breaks-glp-1-import-restrictions",
+   "outlet": "BioSpace",
+   "date": "2026-05-20",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "FDA recommended that Jixianglong recall the batches, leading the company to pull the API from the U.S. market in February.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "propriate procedures for releasing externally purchased products and batch records for repackaging and labeling, FDA said. While the company committed to prohibiting the sale of externally procured products, it initially failed to address FDA’s concerns about the batches already on the U.S. market. FDA recommended that Jixianglong recall the batches, leading the company to pull the API from the U.S. market in February. FDA’s March 11 enforcement report listed Jixianglong recalls of “semaglutide, for Rx compounding use only.” The report attributed the recalls to “failing to complete process validation and bacterial endotoxin method validation before distribution.” Twitter LinkedIn Facebook Email Print Manufacturing GLP-1 Nick Paul Taylor Nick is a freelanc"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.alabamaag.gov/attorney-general-marshall-leads-coalition-alerts-national-security-council-to-exploitation-of-fda-approved-drugs-by-china-supply-chain/",
+   "outlet": "Alabama Attorney General's Office",
+   "date": "2026-09-18",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Specifically, Chinese company Harbin Jixianglong Biotech Co., Ltd (Harbin) was found to have purchased knock-off semaglutide from a non-Green List facility that was not registered with the FDA.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the ability “to ship unapproved, knock-off products to the United States without detention or inspection.” As the letter states, despite efforts to verify the “true source, chain of command, and downstream use of the ingredients in real time,” the Green List has become a proven laundering channel. Specifically, Chinese company Harbin Jixianglong Biotech Co., Ltd (Harbin) was found to have purchased knock-off semaglutide from a non-Green List facility that was not registered with the FDA. Since Harbin was on the Green List, it was only after an on-site inspection that it was discovered that Harbin had repackaged and relabeled the non-Green List products under Harbin’s name, changed the manufacturing and retest dates, and distributed to the United States. The letter follows the Attorney General’s settlement with a business selling researc"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.pharmadb.ai/suppliers/semaglutide/india",
+   "outlet": "PharmaDB",
+   "date": "2026-07-09",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "8 India-based manufacturers with an active filing of 61 worldwide",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Semaglutide API manufacturers in India · PharmaDB PharmaDB Molecules Suppliers Pricing Sign in Start for free Molecules / Semaglutide / India Semaglutide API manufacturers in India CAS 910463-68-2 ATC A10BJ06 Updated 9 July 2026 8 India-based manufacturers with an active filing of 61 worldwide Showing 8 of 8 India-based manufacturers This list is ranked on evidence. Placement cannot be purchased. Ranked India-based API manufacturers 01 Dr. Reddy's Laboratories India Makes the API Finished dose Credentials confirmed against the regulator files on 25 July 2026 Holds one active US DMF for semaglutide, filing since 2021. Its "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.pharmaceuticalonline.com/doc/fda-cracks-down-on-glp-imports-0001",
+   "outlet": "Pharmaceutical Online",
+   "date": "2025-09-11",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "The FDA either physically inspected or conducted remote regulatory assessments of 48 GLP-1 API sites and found that nearly one-fifth were not compliant under section 501 of the FD&C Act.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "detained without physical examination (DWPE) unless they are on a list (Green List) of approved foreign GLP-1 manufacturers. The “Green List” was developed after evidence was provided to the FDA from manufacturers demonstrating that they meet current good manufacturing practice (CGMP) requirements. The FDA either physically inspected or conducted remote regulatory assessments of 48 GLP-1 API sites and found that nearly one-fifth were not compliant under section 501 of the FD&C Act. These sites either did not provide the records required to prove that they met CGMP requirements or did not meet those CGMP requirements. The FDA issued the alert in response to the continual influx of questionable GLP-1 API from overseas sources. Many of these GLP-1 APIs surfaced during the GLP-1 drug shortage, at which time more API "
+  }
+ ]
+}

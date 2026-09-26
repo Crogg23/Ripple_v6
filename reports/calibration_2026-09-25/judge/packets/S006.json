@@ -1,0 +1,96 @@
+{
+ "story_id": "S006",
+ "lead": {
+  "headline": "Two mail-order suppliers took $593.6M of the $649.2M Medicare paid for one kind of wound dressing (alginate) in 2024",
+  "number": "$593,632,181 of $649,233,082 (91.4%); one claim per patient a year, carrying 494 dressings (Sunshine Senior Solutions) and 359 (Almaz Med Supply) vs 55 per claim elsewhere; 5-11x peers per patient",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Almaz is on no ban list, and its absence from Medicare's enrollment file (PECOS) is normal for new big billers, so it proves nothing; drop \"1.35 a day.\""
+ },
+ "queries_logged": 9,
+ "queries": [
+  "\"Sunshine Senior Solutions\" Medicare alginate dressings",
+  "\"Almaz Med Supply\" Medicare",
+  "Sunshine Senior Solutions Delray Beach Medicare fraud indictment Justice Department",
+  "Medicare alginate wound dressing billing surge 2024 fraud suppliers",
+  "\"Sunshine Senior Solutions\" wound dressings Medicare billed seniors",
+  "Machutadze indictment Sunshine Senior Solutions \"wound dressings\" justice.gov",
+  "Almaz Med Supply Woodside Queens charged fraud wound dressings 2026",
+  "Medicare \"alginate\" dressings spending 2024 two suppliers share OIG data brief",
+  "Hilmi \"Sunshine Senior\" Medicare fraud case update August September 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://justice.gov/usao-sdfl/media/1449531/dl?inline=",
+   "outlet": "U.S. District Court, Southern District of Florida (indictment, U.S. v. Ibrahim Khaldoon Hilmi, 26-CR-20238, posted by USAO-SDFL)",
+   "date": "2026-06-11",
+   "source_type": "court",
+   "entity_named": "yes",
+   "quote": "Sunshine Senior submitted at least $3.34 billion in false and fraudulent claims to Medicare, the FEHBP, Medicaid, and Commercial Insurers for DME and wound dressings that were medically unnecessary and not provided.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ited States to facilitate the scheme abroad, including by continuing to transact in Sunshine Senior bank accounts , enabling other co-conspirators to transact in Sunshine Senior bank accounts , and paying AB RH's office lease. 14. From in or around November 2024 through in or around September 2025, Sunshine Senior submitted at least $3.34 billion in false and fraudulent claims to Medicare, the FEHBP, Medicaid, and Commercial Insurers for DME and wound dressings that were medically unnecessary and not provided. Of this, at least $1. 78 billion was processed as paid by these insurers, with nearly the entirety of that amount held in suspension by Medicare Part B. Despite this suspension, Sunshine Senior continued to bill and collect payments from Medicare Supplemental Insurers, which were contractually obligated to pay a portion of the crossov"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.justice.gov/criminal/criminal-fraud/health-care-fraud-unit/2026-national-hcf-case-summaries",
+   "outlet": "U.S. Department of Justice, Criminal Division, Health Care Fraud Unit",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In total, ABRH and Sunshine Senior Solutions submitted at least $3.76 billion in fraudulent claims to Medicare, Medicaid, and other insurers, but only approximately $5.7 million was deposited into ABRH and Sunshine Senior Solutions bank accounts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hat the companies never provided. Hilmi used his control of Sunshine Senior Solutions’ corporate bank accounts to deposit the proceeds of these fraudulent claims into those accounts, and to wire millions of dollars of fraud proceeds out of the United States to a foreign entity located in Hong Kong. In total, ABRH and Sunshine Senior Solutions submitted at least $3.76 billion in fraudulent claims to Medicare, Medicaid, and other insurers, but only approximately $5.7 million was deposited into ABRH and Sunshine Senior Solutions bank accounts. The case is being prosecuted by Trial Attorney Claire Horrell of the Florida Strike Force. Giorgi Kimeridze , 43, a national of the country of Georgia, was charged by complaint with conspiracy to commit money laundering in connection with his role in a multi-billion-dollar health care fraud and money laundering scheme to target, ex"
+  },
+  {
+   "idx": 2,
+   "url": "https://abc13.com/post/would-know-had-catheter-man-surprised-medicare-charges/18209112/",
+   "outlet": "ABC13 Houston (KTRK)",
+   "date": "2025-11-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Barlow was charged for 'wound covers' and hundreds of catheters between September 2024 and February of this year, according to Medicare documents he received.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rter, a Houston-area Medicare recipient. Medicare recipient Ron Barlow also said he saw that same company pop up on his account. Records for Barlow and Carter show both of their Medicare accounts were billed several times by Sunshine Senior Solutions in Florida for a few thousand dollars at a time. Barlow was charged for \"wound covers\" and hundreds of catheters between September 2024 and February of this year, according to Medicare documents he received. 13 Investigates asked Barlow if he uses or has those products. \"No, not at all,\" Barlow said. \"I would know if I had a catheter.\" In total, Barlow's Medicare Summary Notice shows that Medicare paid Sunshine Senior Solutions about $25,700 for those supplies. Carter said he was just curious about his healthcare cost, so he reviewed his"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.cbsnews.com/newyork/news/queens-medical-supply-store-medicare-charges",
+   "outlet": "CBS New York",
+   "date": "2025-06-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The payments were all for wound dressings, glucose monitors for diabetes and catheters that they say they never received or needed.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e their surprise when they discovered Medicare claims in their names for thousands of dollars worth of orders from the store. The women shared account records showing Medicare paid the store $13,000 between March and June, $6,300 between December and April, and a separate $6,300 payment in January. The payments were all for wound dressings, glucose monitors for diabetes and catheters that they say they never received or needed. \"If there was a way to notify me and say, 'Hey Mrs. Keefer, sorry to hear about your diabetes,' I would have said, 'What are you talking about?'\" Keefer said. \"The question that comes into my mind is how did they get my Medicare number and how did this get through?\" Hensley said. Claire Rosenzweig, of the Better Business Bureau,"
+  },
+  {
+   "idx": 4,
+   "url": "http://www.ksl.com/article/ksl-investigates/get-gephardt/utah-woman-says-she-got-hit-with-medicare-fraud-after-a-supplier-charged-her-plan-for-unwanted-supplies/812399",
+   "outlet": "KSL (Salt Lake City)",
+   "date": "2025-08-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Months later, the same company charged Medicare over $8,200 worth of \"wound dressings\" for her.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ny keeps trying to bill Medicare for supplies she didn't order. It started with over $2,600 in charges for ten glucose monitors for Karlinsey. She doesn’t even need one glucose monitor. “That caught my attention because I’m not diabetic,” she said. Medicare caught the fraud and rejected that claim. Months later, the same company charged Medicare over $8,200 worth of “wound dressings” for her. Again, supplies that she says she didn’t order and didn’t receive.“I thought because I'd reported the first time, that would be taken care of,” Karlinsey said. “But no.” Medicare did not catch the fraud this time and paid $6,300 of your tax dollars to the company. Karlinsey said she reached out to Medicare and said she didn't hear back"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.bbb.org/article/warnings/32066-consumers-say-nyc-businesses-charge-medicare-for-medical-items-that-were-never-ordered",
+   "outlet": "Better Business Bureau Serving Metropolitan New York",
+   "date": "2025-07-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "As of this date, there are 103 Scam Tracker reports on Almaz Med Supply Inc., as well as 11 complaints with BBB.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r of 2024 when several consumers filed reports on BBB Scam Tracker SM . Almaz Med Supply Inc. claims to be located in Woodside, Queens. The business was evidently registered as a legal entity in March of 2023. They first came to BBB’s attention in September of 2024 when consumer complaints emerged. As of this date, there are 103 Scam Tracker reports on Almaz Med Supply Inc., as well as 11 complaints with BBB. As for Gazar Recovery Inc., there are 12 Scam Tracker reports as well as 12 complaints with BBB. Complainants for both companies have alleged that these companies have charged their Medicare or insurance account for medical supplies they never ordered and do not need. Neither company has responded to BBB’s attempts to reach"
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "story_id": "S138",
+ "bin": "Matched + more",
+ "entity": "Sabine Pass LNG terminal's greenhouse-gas rise, 2015-23",
+ "deciding_sources": [
+  0,
+  2
+ ],
+ "earliest_match_date": "2025-10-29",
+ "post_cutoff_match": false,
+ "what_we_add": "Rank 1 rise of 6,021 facilities (+6.08 Mt, next +2.90); seven LNG IDs 0.38 to 16.48 Mt while all direct emissions fell",
+ "why": "EIP has Sabine Pass at 6.9M tons in 2023 (within 10% of our 6.26) and Verite/Grist says it quickly became one of Louisiana's largest sources. Nobody states the biggest-rise-in-the-registry rank.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

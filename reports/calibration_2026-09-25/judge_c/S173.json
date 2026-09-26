@@ -1,0 +1,12 @@
+{
+ "story_id": "S173",
+ "bin": "Not comparable",
+ "entity": "FEMA's lag from disaster declaration to first Federal Register notice, Jan-Jun 2025",
+ "deciding_sources": [4, 0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "PolitiFact gives a number for FEMA delay, over a month on average, but it measures request-to-approval time, not declaration-to-publication, a different definition, so it can't be lined up with our 110-day median. The FR notices (0-2) are the raw late records themselves; they carry the dates but state no finding about lateness.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

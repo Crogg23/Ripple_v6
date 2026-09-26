@@ -1,0 +1,95 @@
+{
+ "story_id": "S184",
+ "lead": {
+  "headline": "This Congress passed 63 regular laws in its first 539 days, second-fewest since 2013; only the last Congress passed fewer",
+  "number": "63 laws that aren't rule repeals, renamings or spending bills by day 539 of the 119th (builder said 67); the 113th-117th had 93-145 at the same point, the 118th 43.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "\"Regular law\" is a title-keyword cut, not a classifier (it misses CRA votes titled \"Disapproving the rule\"); the fall 2025 shutdown (68 days with no laws) is an untested dull explanation."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "119th Congress fewest laws passed least productive 2026",
+  "Pew Research 119th Congress laws enacted substantive ceremonial renaming post offices 2026",
+  "GovTrack 119th Congress enacted laws compared same point previous Congresses 2026 midterm",
+  "\"119th Congress\" on pace to pass more laws than 118th Congress comparison same point",
+  "Congress 2025 fewest laws first year new presidency record shutdown Washington Post Paul Kane",
+  "Congress laws enacted so far 2026 shutdown no laws signed for weeks legislative output July 2026",
+  "\"119th Congress\" share of new laws Congressional Review Act resolutions post office renamings substantive laws count",
+  "Roll Call OR Axios OR Punchbowl Congress laws enacted 2026 productivity compared prior Congresses 18 months"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://legis1.com/news/editorial-standards-journalism-the-119th-congress",
+   "outlet": "Legis1 (legislative tracking service, editorial)",
+   "date": "2026-08-10",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Within its first 534 days, the current Congress has enacted 101 bills into law.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "119th Congress: Hard at Work | Legis1 News Rankings Platform Pricing Sign In Sign Up Free ← Back to News News The 119th Congress: Hard at Work By Legis1 Editorial · Edited by Joanne Levine Monday, August 10, 2026 The 119th Congress is on track to potentially pass more bills than its predecessor. ** Within its first 534 days, the current Congress has enacted 101 bills into law. As seen in the graph above, previous Congresses dating back to 2003 nearly doubled their figures at this time by the end of their two-year sessions. Over the past two decades, the 108th, 109th, and 110th Congresses were the most productive, passing 504, 483, and 460 bills into law, respectively. Since 2009, however, Congress ha"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.politicsonline.co.uk/is-the-119th-congress-passing-more-laws-than-the-last-one/",
+   "outlet": "Politics Online (UK politics education site)",
+   "date": "2026-05-18",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The 118th Congress, which sat through divided government from 2023 to 2025, had managed just 60 by the same point",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "laws than the last one? By Christopher Sheils 18 May 2026 No Comments 3.2.2.2 – Legislative Function 3.2.3 – Interpretations and Debates Just over halfway through its term, the 119th Congress has signed 85 bills into law. That sounds reasonable until you put it next to the two Congresses before it. The 118th Congress, which sat through divided government from 2023 to 2025, had managed just 60 by the same point and ended up being called the least productive since the 1950s. The 117th Congress, with Joe Biden in the White House and Democrats running both chambers, had passed 123 by the equivalent date. So, the current Congress is doing better than the last one, but only about two-thirds as well as the one before, even though Republica"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy",
+   "outlet": "MS NOW",
+   "date": "2026-03-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "in the first year of the 119th Congress, the second-fewest number of bills became law since at least the 1970s: 45.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "of Homeland Security surpassing the 35-day shutdown of President Donald Trump’s first term, lawmakers in this Congress can claim another distinction: the second -longest funding lapse in modern history. By multiple measures, this Congress is breaking records — largely for dysfunction. For instance, in the first year of the 119th Congress, the House held the fewest number of roll-call votes in the first session in decades — 362, according to congressional records . The next two lowest on the list? The first year of the 102nd Congress, which held 439 roll-call votes throughout 1991, and the 117th Congress, which held 449 throughout 2021 . (Democrats controlled the chamber both of those years.) Play Democratic senator slams war cost"
+  },
+  {
+   "idx": 3,
+   "url": "https://dailycaller.com/2026/09/03/house-leadership-congress-was-most-productive/",
+   "outlet": "The Daily Caller",
+   "date": "2026-09-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "President Donald Trump signed 102 bills into law this Congress, possibly putting Congress on track to enact the fewest number of bills in a two-year period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the current Congress. The 89th Congress passed Medicare and Medicaid and created the Department of Housing and Urban Development and the Department of Transportation in the mid-1960s, while the 88th Congress passed the Civil Rights Act and the Economic Opportunity Act, according to Punchbowl News. President Donald Trump signed 102 bills into law this Congress, possibly putting Congress on track to enact the fewest number of bills in a two-year period. Among completed two-year Congresses, the 118th Congress enacted 274 laws, the fewest since the Civil War era. Congress passed several bills in massive packages rather than as standalone items. The national debt surpassed $40 trillion in August and Congress hadnot addressed spending. The House passed a $95 billion reconciliation package "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.snopes.com/fact-check/mike-johnson-productive-congress/",
+   "outlet": "Snopes",
+   "date": "2026-09-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The 119th Congress has produced 110 new laws, whereas the 118th Congress made 274 and the 117th made 365.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ers of Congress and then be signed by the president to become law. Both chambers of the 119th Congress have passed or agreed upon 139 pieces of legislation as of this writing. That's compared to 315 pieces of legislation from the 118th Congress and 397 pieces of legislation from the 117th Congress. The 119th Congress has produced 110 new laws , whereas the 118th Congress made 274 and the 117th made 365 . GovTrack, which compiles statistics on legislative action in Congress, also measures total enacted legislation when including bills that ultimately passed by being included in another bill (via incorporation). This might include acts that were ultimately passed as part of an annual budget bill, for example. Even when including"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.newsweek.com/donald-trump-least-productive-congress-laws-2102819",
+   "outlet": "Newsweek",
+   "date": "2025-07-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Since then, the least productive Congress in terms of laws passed was the 118th Congress, which had passed just 13 bills by a comparable stage of its session.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "umber of laws to pass with the GOP also controlling the White House. According to the legislative tracking website GovTrack, the 119th Congress has passed just 27 bills, far fewer than many previous sessions since the 103rd Congress, which convened in 1993 when President Bill Clinton was in office. Since then, the least productive Congress in terms of laws passed was the 118th Congress, which had passed just 13 bills by a comparable stage of its session. This was largely due to Republicans controlling the House while Democrats controlled the Senate and the White House. There was also infighting in the Republican Party at the time which resulted in Kevin McCarthy losing his speakership, affecting Congress' ability to move legislation. Meanwhile, during the first eight months of the 104th C"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S117",
+ "bin": "Matched + more",
+ "entity": "Texas lobby reports naming the recipient of gifts/spending, rate over time",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2013-03-07",
+ "post_cutoff_match": true,
+ "what_we_add": "the $1,000+ gift-report cut (61 of 228 vs 9 of 243), the 2012 break point, and the same-15-filers before/after comparison",
+ "why": "Texas Tribune found detailed disclosures fell from 5.18% (2005) to 3.6% (2011); Governing says 95%+ of spending named no recipient. Same entity and direction; their measure is all itemizable spending, ours is $1,000+ gift reports, so our counts are new.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

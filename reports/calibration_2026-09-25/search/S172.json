@@ -1,0 +1,47 @@
+{
+  "story_id": "S172",
+  "entity": "Justice Department's Epstein Library website (justice.gov/epstein), data sets 13-23 returning 403 'access denied' and 24-40 returning 404, March 11, 2026",
+  "queries": [
+    {"q": "Justice Department Epstein files website data set 13 \"access denied\"", "found_useful": false},
+    {"q": "DOJ Epstein library data sets 24 through 40 unreleased pages found website March 2026", "found_useful": true},
+    {"q": "\"Data Set 13\" Epstein Justice Department", "found_useful": false},
+    {"q": "Epstein files DOJ website 403 forbidden hidden data sets placeholder pages unreleased discovered", "found_useful": false},
+    {"q": "\"Data Set 9\" Epstein DOJ website December 2025 appeared before release", "found_useful": false},
+    {"q": "Justice Department Epstein files withheld remaining documents new data sets release 2026 August September", "found_useful": true},
+    {"q": "Epstein Library justice.gov more data sets exist than released researchers found URLs Wayback Machine", "found_useful": true},
+    {"q": "DOJ posts new Epstein data sets July 2026 unredacted names court order release", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/",
+      "outlet": "Discrepancy Report",
+      "date": "2026-02-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Several pages of entries visible in the archived version did not appear on the live page when I checked again Feb. 11.",
+      "paywalled": false,
+      "searcher_note": "Same method (Wayback captures of the DOJ Epstein Library vs the live page) but a different finding: Data Set 10 listings and bulk ZIP links changed. No mention of data sets 13-40, 403 or 404."
+    },
+    {
+      "url": "https://github.com/rhowardstone/Epstein-research-data",
+      "outlet": "GitHub (rhowardstone, Epstein-research-data)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The audit identified ~64,000 documents that were temporarily removed from the DOJ website after the initial public release, as well as ~24,000 documents with post-release size changes suggesting modification.",
+      "paywalled": false,
+      "searcher_note": "Independent audit of the DOJ Epstein Library (Feb-Mar 2026) on removed/changed documents inside data sets 1-12. No mention of data sets 13+ or 403/404 pages."
+    },
+    {
+      "url": "https://www.justice.gov/opa/media/1426091/dl",
+      "outlet": "U.S. Department of Justice, Office of the Deputy Attorney General",
+      "date": "2026-01-30",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Today's production marks the Department's compliance with its production obligations under the Act.",
+      "paywalled": false,
+      "searcher_note": "DOJ letter accompanying data sets 9-12: says production under the Epstein Files Transparency Act is complete (over 3 million pages; 6 million identified; ~200,000 withheld or redacted for privilege). Sits against any reading that further data sets were built for release. PDF."
+    }
+  ],
+  "notes": "No source found that mentions data sets 13-40, 403/'access denied' or 404/'not found' responses on the DOJ Epstein site, a March 11 2026 probe, or data set 9 being visible before its Jan 30 release. Search summaries' 'Access Denied' hits refer to the site's 18+ age gate, not data-set pages. Live DOJ Disclosures page (justice.gov/epstein/doj-disclosures), fetched 2026-09-25, lists only Data Set 1 through Data Set 12 and letters dated Dec 19 2025, Jan 30 2026 and Feb 14 2026; Wikipedia's Epstein files article ends its chronology with the March 5 2026 re-release of ~50,000 previously removed files. Post-cutoff coverage found (Courthouse News 2026-08-13, Axios/CBS June-July 2026) is about redaction fights in the Phang lawsuit before Judge Sullivan, not about new data sets. Medium technical guide (erenozkaradeniz) returned 403; Harvard tagteam repost 'The Epstein Files Trump's DOJ Didn't Mean to Show You' returned 503."
+}

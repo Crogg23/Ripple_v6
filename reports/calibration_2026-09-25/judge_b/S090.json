@@ -1,0 +1,12 @@
+{
+ "story_id": "S090",
+ "bin": "Matched + more",
+ "entity": "Oklahoma veteran suicide deaths, 2023",
+ "deciding_sources": [3, 0, 1],
+ "earliest_match_date": "2026-05-25",
+ "post_cutoff_match": true,
+ "what_we_add": "The year-over-year spike framing: 161 against a 98-134 band every year 2011-22, and the z=3.3 against the national trend",
+ "why": "The VA state sheet states 161 deaths in 2023 — our exact number — and news coverage (KGOU, KFOR, Tulsa Flyer) reports Oklahoma's veteran suicides high and rising, same direction. Nobody states the 2011-22 band or the spike-vs-trend comparison.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

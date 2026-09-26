@@ -1,0 +1,47 @@
+{
+ "story_id": "S200",
+ "lead": {
+  "headline": "Diamondback's Permian Basin frack jobs drew 1.6-2.3 times the fresh-groundwater share of other reporting drillers in 2025",
+  "number": "Gap 1.6-2.3x in 2025 against operators that report water, 1.2x across all years; the builder's 40.5% vs 10.4% (about 4x) didn't hold, and \"22% of wells\" is really 9.3%.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The 4x was basin mix (Diamondback's Midland Basin wells vs a peer group 71% in the Delaware Basin) plus a groundwater-only count; the biggest home-county peers file no water rows at all."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Diamondback Energy fresh groundwater fracking water use Permian FracFocus",
+  "Diamondback Energy freshwater fracking Midland Basin aquifer 2025",
+  "Diamondback Energy sustainability report recycled produced water percentage completions brackish fresh water",
+  "Permian operators fresh water share fracking by company analysis FracFocus water source disclosure",
+  "Diamondback Energy water Midland Reporter-Telegram OR Texas Tribune groundwater frac",
+  "Permian fracking freshwater groundwater use oil companies 2026 report aquifer Diamondback",
+  "Diamondback \"fresh water\" OR \"freshwater\" reduction completions recycled water 2025 Permian operator",
+  "FracFocus water source groundwater surface water percent operators Midland Delaware Basin study"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.asyousow.org/resolutions/2020/01/04/diamondback-energy-water-management-risks",
+   "outlet": "As You Sow",
+   "date": "2020-01-04",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Yet, the Company offers no substantive reporting on its own water practices or water risk management strategy, nor does it disclose policies related to water efficiency or targets related to water use reduction.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rlier . Diamondback’s business may be disrupted if climate change further reduces water availability in areas where it operates. In its 2019 Corporate Responsibility Report, Diamondback Energy, Inc. states, “Diamondback considers water to be an essential resource and strives to use it responsibly.” Yet, the Company offers no substantive reporting on its own water practices or water risk management strategy, nor does it disclose policies related to water efficiency or targets related to water use reduction. To reduce water risk and reduce costs, most large companies have developed water planning measures, water conservation programs, and recycling activities, and regularly identify water stress in areas of operations, among other practices. Companies like Anadarko Petroleum, ARC Resources, Devon Energy, Occidental, Total, and Enbridge, pr"
+  },
+  {
+   "idx": 1,
+   "url": "https://fracfocus.org/news/water-source-data",
+   "outlet": "FracFocus (Ground Water Protection Council / IOGCC)",
+   "date": "2023-12-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The Water Source data is strictly a voluntary submission.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r Source Data On December 1 of 2023 FracFocus updated to FracFocus version 4.0. This new version of FracFocus includes an option to voluntarily submit additional detail information on the water used on the job and categorize where it was sourced for the individual hydraulic fracturing job reported. The Water Source data is strictly a voluntary submission. It was added after observing the efforts of operators attempting to show similar water source data by breaking out the carrier fluid into multiple ingredient records representing different sources of water being used on a job (e.g., produced, brackish, etc.). Entering the data into the disclosure in this manner added complexity in"
+  }
+ ]
+}

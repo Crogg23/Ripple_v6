@@ -1,0 +1,12 @@
+{
+  "story_id": "S181",
+  "bin": "Matched + more",
+  "entity": "Enbrel: FDA-approved biosimilars Erelzi and Eticovo never sold, while Medicare Part D paid billions for the brand",
+  "deciding_sources": [2, 1],
+  "earliest_match_date": "2021-11-01",
+  "post_cutoff_match": false,
+  "what_we_add": "the $2,269.6M Part D gross cost for 2022 against $0 for the copies",
+  "why": "BioPharma Dive and Public Citizen state the same finding: Amgen's patent thicket kept both approved biosimilars off the market at Medicare's cost. The PMC source with a $2.7B figure is quote_check missing, so ignored; no usable source has our 2022 dollar figure.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

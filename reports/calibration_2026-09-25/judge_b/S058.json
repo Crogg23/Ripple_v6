@@ -1,0 +1,12 @@
+{
+  "story_id": "S058",
+  "bin": "Known pattern",
+  "entity": "Doctors paid only by Novo Nordisk choosing Ozempic 54% vs 41% for unpaid doctors",
+  "deciding_sources": [5, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The one paper on payments and GLP-1 prescribing has a missing quote, so it's out. NBER shows payments raise prescribing in general; STAT/Reuters show Novo paying doctors but never the prescribing gap. Pattern covered, this finding not.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

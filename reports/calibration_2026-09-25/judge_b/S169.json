@@ -1,0 +1,12 @@
+{
+ "story_id": "S169",
+ "bin": "Matched",
+ "entity": "earthquake swarm around Red River Parish, Louisiana: none before 2024, then dozens topped by the March 2026 M4.9",
+ "deciding_sources": [1, 0],
+ "earliest_match_date": "2026-03-12",
+ "post_cutoff_match": true,
+ "what_we_add": "",
+ "why": "Tulane, the state agency and The Advocate report the same finding: an unusual swarm in a previously quiet area, the record M4.9, injection wells under investigation, with their own M2.5+ counts. Our box counts (0 then 29) are the same measure re-sliced, not added value.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

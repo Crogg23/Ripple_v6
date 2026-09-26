@@ -1,0 +1,94 @@
+{
+ "story_id": "S187",
+ "lead": {
+  "headline": "Only 16 of 83 retirement-eligible Republican-appointed judges stepped back in Trump's second term; 50 had already stayed through his first",
+  "number": "16 of 83 (19.3%) took senior status in the first 517 days; 50 of the 83 (60%) had already passed on it under Trump 1, vs 20% of Trump 1's own pool.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Within each group (fresh vs already-passed) Trump 2 is ordinary (z about 0.5); the \"record low\" is Trump 1's leftover stayers, and the yearly series has lower same-party years (12.2% in 2020)."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Republican-appointed judges eligible senior status not retiring Trump second term few vacancies",
+  "GOP-appointed judges senior status 2026 record low vacancies Trump judicial nominations stalled eligible judges staying",
+  "\"senior status\" Republican appointees eligible \"83\" OR \"16 of\" judges Trump second term took senior status",
+  "wave of Republican-appointed judges announce senior status 2026 before midterms giving Trump vacancies",
+  "judges senior status Trump vacancies September 2026 OR August 2026 fewer judges stepping down Republican appointees",
+  "Fragoso National Review eligible Republican appellate judges were eligible in 2020 senior status",
+  "share of eligible judges taking senior status under same-party president historical rate Trump second term lowest study"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://news.bloomberglaw.com/us-law-week/conservative-judges-shun-retirement-under-trumps-second-term",
+   "outlet": "Bloomberg Law (Tiana Headley)",
+   "date": "2025-06-26",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Few of the roughly 70 Republican-appointed judges eligible to take a form of partial retirement or completely step down from the bench as of June 1 have done so, denying Trump the chance to pick their replacement.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Bloomberg Over 100 GOP-appointed judges eligible to retire but haven’t Trump actions, recent nominations are influences Federal judges are retiring at a historically slow pace at the onset of President Donald Trump’s second term, most strikingly among those appointed by his Republican predecessors. Few of the roughly 70 Republican-appointed judges eligible to take a form of partial retirement or completely step down from the bench as of June 1 have done so, denying Trump the chance to pick their replacement. The lack of new vacancies is thwarting Trump’s plans to continue replacing an older and more moderate generation of Republican-appointees with younger and even more conservative jurists. Judges don’t typically say why they opt to serve ... Learn more about Bloomberg Law or Log In to keep reading: See Breaking News in Context Bloo"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.brookings.edu/articles/trumps-judicial-appointment-pace-is-unlikely-to-match-his-first-term-record/",
+   "outlet": "Brookings Institution (Russell Wheeler)",
+   "date": "2026-08-05",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Forty-six Republican appointees are now eligible (22 appellate, 24 district), but 37 of them have been eligible since Biden was inaugurated.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ve most recent administrations. (Vacancy archives before then do not allow the calculation.) Figure 3 Bluesky Streamline Icon: https://streamlinehq.com Bluesky Plenty of judges are now eligible to retire on salary (which is how almost all vacancies get created), but few of them are likely to do so. Forty-six Republican appointees are now eligible (22 appellate, 24 district), but 37 of them have been eligible since Biden was inaugurated. They are unlikely to retire in droves over the next six months or beyond. (One-hundred and two Democratic appointees are eligible; they are even less likely to provide Trump with appointment opportunities, especially as he approaches lame-duck status.) Retirement-eligible judges no doubt leave—or decline to leave—active status for any n"
+  },
+  {
+   "idx": 2,
+   "url": "https://reason.com/volokh/2025/08/25/who-are-the-republican-appointed-circuit-judges-who-are-not-taking-senior-status-because-of-emil-bove/",
+   "outlet": "Reason / Volokh Conspiracy (Josh Blackman)",
+   "date": "2025-08-25",
+   "source_type": "opinion",
+   "entity_named": "yes",
+   "quote": "Almost all of the judges eligible for senior status now were also eligible in 2020, long before Emil Bove.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s | Sometimes contrarian | Often libertarian | Always independent About The Volokh Conspiracy Editorial Independence Who we are Books Volokh Daily Email Archives Search DMCA RSS Politics Who are the Republican Appointed Circuit Judges Who Are Not Taking Senior Status Because Of Emil Bove? (Updated) Almost all of the judges eligible for senior status now were also eligible in 2020, long before Emil Bove. Josh Blackman | 8.25.2025 8:01 AM We have seen a steady trickle of stories about unnamed Republican-appointed Circuit Judges who are declining to take senior status because of the Emil Bove nomination. I remain skeptical of this account, and think it is more of a narrative than reality. If anything, some of these judges would not "
+  },
+  {
+   "idx": 3,
+   "url": "https://news.bloomberglaw.com/us-law-week/trump-judicial-appointments-slow-as-vacancies-scarce-for-2026",
+   "outlet": "Bloomberg Law (Tiana Headley)",
+   "date": "2025-12-23",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Only three of the almost two dozen Republican-appointed appeals judges eligible for partial retirement did so this year, the third doing so in October.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ashington law professor John P. Collins. Roughly half of the 33 nominees who had confirmation hearings this year were 44 or younger. Slow Pipeline Trump has had fewer opportunities so far in his second term, in part because of the slow pace of retirements among appointees of Republicans presidents. Only three of the almost two dozen Republican-appointed appeals judges eligible for partial retirement did so this year, the third doing so in October. Trump started the year with at least 39 judgeships and six future seats to fill, according to US courts data. By Dec. 12, that was 40 current vacancies and nine future vacancies (with 26 confirmations in between). Nine vacancies are in states with two Democratic senators. It’s unclear whether Trump will name any nominees to t"
+  },
+  {
+   "idx": 4,
+   "url": "https://ballsandstrikes.org/nominations/trump-judges-confirmed-running-out-of-time/",
+   "outlet": "Balls and Strikes (JP Collins)",
+   "date": "2026-02-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "it's notable that most of the more than 20 other retirement-eligible Republican-appointed appeals court judges—including two appointed by Trump in his first term, Ralph Erickson and Kurt Engelhardt—have so far decided to stay put.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 5,
+   "url": "https://www.cbsnews.com/news/trump-judicial-confirmations-second-term/",
+   "outlet": "CBS News (Melissa Quinn)",
+   "date": "2026-03-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In Mr. Trump's first term, 15 Republican appointees to the appeals courts and four Democratic appointees left their seats within that same time frame.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

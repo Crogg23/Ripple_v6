@@ -1,0 +1,16 @@
+{
+ "story_id": "S101",
+ "bin": "Known pattern",
+ "entity": "83 new Arizona hospices with LA phone numbers and their Medicare certification/enrollment rates",
+ "deciding_sources": [
+  0,
+  2,
+  4
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "ProPublica and Hospice News cover the California-moratorium-to-Arizona hospice migration and fraud hotbeds, with statewide Arizona counts, but no source has the LA-phone cohort or its 12-certified/4-enrolled finding.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

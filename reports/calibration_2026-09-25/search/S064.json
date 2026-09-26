@@ -1,0 +1,36 @@
+{
+  "story_id": "S064",
+  "entity": "Sea Robin Pipeline Company (Energy Transfer), offshore Gulf gas pipeline: 2025 PHMSA gas-loss incident reports reusing 1,587,069 (whole May 17; two 793,534 halves Jan 13; three 527,853 blowdowns); 2025 record year ~3.5M vs 2.98M in 2022",
+  "queries": [
+    {"q": "Sea Robin pipeline gas release PHMSA 2025", "found_useful": false},
+    {"q": "\"Sea Robin\" pipeline \"1,587,069\" OR \"793,534\" OR \"527,853\"", "found_useful": false},
+    {"q": "\"Sea Robin\" Energy Transfer pipeline incident blowdown methane release 2025 Louisiana", "found_useful": false},
+    {"q": "PHMSA gas pipeline incident reports methane releases record 2025 analysis unintentional release volume", "found_useful": false},
+    {"q": "pipeline operators report gas loss volumes PHMSA incident data errors units thousand cubic feet methane underreported analysis", "found_useful": true},
+    {"q": "\"Sea Robin Pipeline\" 2026 news leak OR rupture OR release OR PHMSA", "found_useful": false},
+    {"q": "offshore Gulf gas pipeline 2025 largest methane releases PHMSA reports Energy Transfer subsidiaries blowdowns analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.fractracker.org/2025/04/pipeline-incidents-are-a-daily-occurrence",
+      "outlet": "FracTracker Alliance",
+      "date": "2025-04-07",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "three of the four incidents that we took a deeper look at significantly misrepresented one or more of the summary metrics",
+      "paywalled": false,
+      "searcher_note": "Pattern: PHMSA incident reports carry wrong summary numbers. Names Energy Transfer only for the Justice Pipeline (La Porte TX, 2024), not Sea Robin."
+    },
+    {
+      "url": "https://www.insurancejournal.com/news/national/2024/03/13/764575.htm",
+      "outlet": "Insurance Journal (Reuters)",
+      "date": "2024-03-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Pipeline mishaps unintentionally released nearly 9.7 billion cubic feet of gas into the atmosphere between 2019 and late 2023, according to a Reuters examination of incident report data maintained by the U.S. Pipeline and Hazardous Materials Safety Administration (PHMSA).",
+      "paywalled": false,
+      "searcher_note": "Pattern: Reuters totals gas lost in PHMSA incident reports; no Sea Robin, no 2025 data. Quote runs 38 words."
+    }
+  ],
+  "notes": "Nothing found naming Sea Robin for any 2025 gas-loss report, the repeated 1,587,069 figure, or a 2025 record year. Sea Robin appears only in reference pages (Wikipedia, Global Energy Monitor wiki, Energy Transfer's own site). A 2022 Bloomberg story on an Energy Transfer gathering-line methane cloud in Louisiana surfaced (8.2 million cubic feet, July 22), but the BNN copy did not load and the search snippet did not tie it to Sea Robin; not recorded. PHMSA's Jan 2026 notice on OMB changes to gas incident report instructions (intentional vs unintentional releases, relief valves / emergency shutdowns count as intentional) bears on whether blowdowns belong in these reports, but phmsa.dot.gov returned 403, so no quote. No coverage of the unit ambiguity (cubic feet vs thousand cubic feet) for this operator found."
+}

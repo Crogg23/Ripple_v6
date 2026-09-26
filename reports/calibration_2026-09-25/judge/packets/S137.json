@@ -1,0 +1,83 @@
+{
+ "story_id": "S137",
+ "lead": {
+  "headline": "433 wastewater permits broke discharge limits in most quarters for six years with no formal enforcement; Missouri 97, Ohio 68",
+  "number": "433 individual permits over limits in 8+ of 12 quarters in both 2020-23 and 2023-26, none with a formal action; Missouri 97 and Ohio 68, about half of each state's chronic violators vs 18% elsewhere",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "State orders that never reach EPA's system look exactly like no enforcement; the data can't yet tell them apart."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "wastewater permits violating discharge limits years no enforcement Missouri analysis",
+  "Clean Water Act chronic violators significant noncompliance no formal enforcement EPA ECHO report",
+  "Missouri DNR sewage plants repeat violations little enforcement Missouri Independent",
+  "Ohio EPA wastewater plants repeatedly exceed permit limits no enforcement investigation",
+  "EPA State Review Framework Missouri Clean Water Act significant noncompliance enforcement not timely appropriate",
+  "Environmental Integrity Project Clean Water Act permit violations facilities no penalties report",
+  "EPA \"Top 200\" facilities effluent significant noncompliance Region 5 chronic wastewater violators",
+  "sewage treatment plants violating Clean Water Act for years without penalties 2026 investigation"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2026-05/srf-rd5-rev-mo.pdf",
+   "outlet": "US EPA Region 7, State Review Framework Round 5 report, Missouri",
+   "date": "2026-05-05",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Facilities with a pattern of repeated noncompliance were continually issued LOWs and NOVs, remaining out of compliance with no referral for formal enforcement.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "OW would have been more appropriate. • Section 2 of the PACE manual specifies that facilities will receive a NOV for not completing required actions contained in a LOW. Those who receive a NOV and do not achieve compliance within 180 days will be issued a referral NOV (RNOV) to program enforcement. Facilities with a pattern of repeated noncompliance were continually issued LOWs and NOVs, remaining out of compliance with no referral for formal enforcement. • MDNR did not meet the 180-day time frame for informal or 270-day time frame for formal enforcement actions. For example, a faility was referred to enforcement in 2017; however, MDNR did not achieve a signed formal enforcement order until 2024. MDNR allows for the use of flexibility and enforcement discretion; however, appropriate en"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/system/files/documents/2025-02/srf-rd4-rev-oh.pdf",
+   "outlet": "US EPA Region 5, State Review Framework Round 4 report, Ohio",
+   "date": "2025-01-15",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Ohio EPA will reduce by 30% the number of facilities in effluent SNC for 4 or more quarters.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 3 07/15/2025 Region 5 will select 5 files with expedited orders to determine whether the procedures for developing and issuing such orders were met. EPA will close the recommendation when 4 of 5 files reviewed have met the guidance established in the state's expedited orders guidance. 4 06/30/2026 Ohio EPA will reduce by 30% the number of facilities in effluent SNC for 4 or more quarters. The baseline for this action item is the Region 5 Top 200 facility list for the 4th Quarter of FY 2023. Addressing actions include: DFFOs – traditional or expedited orders that result in facility being in “resolve pending” status NOVs that return facilities to compliance without formal enforcement (Resolution of Violations)"
+  },
+  {
+   "idx": 2,
+   "url": "https://elpc.org/resources/region-7-clean-water-enforcement-report/",
+   "outlet": "Environmental Law & Policy Center",
+   "date": "2020-10-14",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "shrinking funds, plummeting staff levels, declining enforcement metrics, and a corresponding rise in significant noncompliance with the Clean Water Act",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ck from its responsibility to protect Midwestern water under the Clean Water Act. The Environmental Law & Policy Center (ELPC) reviewed and analyzed publicly available enforcement data for EPA’s Region 7 office, which covers four Great Plains states: Iowa, Kansas, Missouri, and Nebraska. ELPC found shrinking funds, plummeting staff levels, declining enforcement metrics, and a corresponding rise in significant noncompliance with the Clean Water Act. Despite decades of bipartisan agreement on the value of environmental protection, the Republican-led Congress has consistently cut EPA’s budget over the past few years, and President Trump has proposed further budget cuts each year he’s been in office. Under his leadership, EPA began spending even less than appropriated, leaving a shrinking staff "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.gao.gov/products/gao-21-290",
+   "outlet": "US GAO",
+   "date": "2021-07-12",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "nearly 11,000 facilities significantly exceeded their permit limits and illegally discharged pollutants into nearby waters in 2018.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hnology Assessments Science & Tech Spotlights Artificial Intelligence (AI)-Related Reports Performance Audits Multimedia Testimonies Presentations Forums & Roundtables Fast Facts The EPA uses National Pollutant Discharge Elimination System (NPDES) permits to regulate wastewater discharges. However, nearly 11,000 facilities significantly exceeded their permit limits and illegally discharged pollutants into nearby waters in 2018. EPA has a goal to reduce by half significant noncompliance with individual NPDES permits by the end of FY 2022. But the data that states and facilities report to EPA to help track compliance is incomplete and has errors. We recommended (among other things) assessing the quality of the NPDES data that states and facilities are reporting so EPA c"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.epa.gov/enforcement/national-enforcement-and-compliance-initiative-reducing-significant-non-compliance",
+   "outlet": "US EPA",
+   "date": "2025-12-15",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Coordinated with NPDES authorized states to achieve an FY 2023 SNC rate of 9.3% from an FY 2018 baseline of 20.3%.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " EPA made significant progress in reducing significant violations of NPDES permits. The following examples describe some of the Agency’s efforts and successes in FY 2023 to improve compliance and water quality through this initiative: Reduced the rate of significant noncompliance with NPDES permits Coordinated with NPDES authorized states to achieve an FY 2023 SNC rate of 9.3% from an FY 2018 baseline of 20.3%, demonstrating that a SNC rate that is half the baseline rate is sustainable. Utilized EPA targeting tools to highlight SNC-level violators that may be in or near overburdened communities to increase EPA regional and state attention to these violators. Successfully Resolved Enforcement Cases EPA has addressed serious violations through enfor"
+  }
+ ]
+}

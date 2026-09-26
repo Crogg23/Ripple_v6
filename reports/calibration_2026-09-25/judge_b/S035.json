@@ -1,0 +1,12 @@
+{
+  "story_id": "S035",
+  "bin": "Known pattern",
+  "entity": "54 high-overdose, high-jail US counties' SAMHSA dollars per person FY2019-25 vs peers",
+  "deciding_sources": [0, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Research finds federal addiction money mismatched to need at the state level (Health Affairs headline, JSAT dissimilarity index). Nobody has the county-level flagged-54 finding or the $45 vs $92 numbers.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

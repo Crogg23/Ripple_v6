@@ -1,0 +1,94 @@
+{
+ "story_id": "S059",
+ "lead": {
+  "headline": "Elgin, Illinois, tests at 53 parts per billion of lead; about 17 big water systems are over the limit now",
+  "number": "About 17 systems serving 10K+ people are over the 15 ppb lead line on their newest test (19 before the skeptic); Elgin reads 53 ppb, over in 7 of 13 tests.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The other Illinois towns jumped only after the state's 2025 testing change; Elgin was over before it."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Elgin Illinois lead action level exceedance water",
+  "Elgin water lead 53 ppb 90th percentile",
+  "Daily Herald Elgin lead water testing 2026",
+  "Elgin lead 90th percentile 2025 fifth liter sampling exceedance ppb",
+  "Illinois water systems exceed lead action level new sampling rule 2025 Elgin Chicago suburbs",
+  "Elgin lead water 70% of homes tested high levels filters Tribune",
+  "\"Elgin\" lead \"53 parts per billion\" OR \"53 ppb\" water"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.fox32chicago.com/news/elgin-lead-water",
+   "outlet": "FOX 32 Chicago",
+   "date": "2025-07-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The 90th percentile value of the samples reached 43 parts per billion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " public to elevated levels amid ramped-up testing measures. By the numbers: Routine monitoring earlier this year showed that 48 out of 100 tested homes and buildings — primarily those built before 1988 with lead service lines — had lead levels above the federal action level of 15 parts per billion. The 90th percentile value of the samples reached 43 parts per billion. City officials stressed that lead is not found in Elgin’s source water or in treated water from the city's plants; rather, it comes from corrosion in lead service lines or plumbing fixtures connecting homes to the water system. The city now uses a more stringent \"fifth liter\" sampling method to better measure lead in those se"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.thecooldown.com/green-home/elgin-drinking-water-lead-alerts-residents/",
+   "outlet": "The Cool Down (citing Daily Herald)",
+   "date": "2026-07-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In the first testing cycle of the year, the system's 90th-percentile lead reading was 0.0185 milligrams per liter, compared with the federal action level of 0.015.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "trigger for action, officials said the newest data improved from the prior monitoring period following adjustments to treatment. What happened? According to the Daily Herald , Elgin's regular drinking-water monitoring found lead results above the federal action level in the latest batch of samples. In the first testing cycle of the year, the system's 90th-percentile lead reading was 0.0185 milligrams per liter, compared with the federal action level of 0.015. Twice a year, the city gathers 100 randomly selected samples from homes and buildings considered more likely to have lead-related plumbing because they are served by lead service lines. Residents must be notified when more than 10% of the samples exceed 15 parts per billion. Officials said the problem is not coming from either"
+  },
+  {
+   "idx": 2,
+   "url": "https://elginil.gov/DocumentCenter/View/84515/Informational-Brochure-English---July-2026?bidId=",
+   "outlet": "City of Elgin",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The first set of results from this year indicates a 90th percentile value of 0.0185 mg/L, which exceeds the lead action level of 0.015 mg/L.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ons are issued if over 10% of the sites exceed a lead concentration of 15 parts per billion (ppb). The city conducted routine water quality sampling during January through June 2026. When results are above regulation limits, the city is required to notify the public and implement corrective action. The first set of results from this year indicates a 90th percentile value of 0.0185 mg/L, which exceeds the lead action level of 0.015 mg/L. This monitoring period's results are much lower than previous monitoring periods for the city. This is due to changes in the treatment process. The city performed a corrosion control study and the results of this study suggested that the addition of orthophosphate would be beneficial. The city began adding orthophosphate to it"
+  },
+  {
+   "idx": 3,
+   "url": "https://epa.illinois.gov/topics/drinking-water/public-water-users/lead-service-line-community-updates.html",
+   "outlet": "Illinois EPA",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In January 2022, Illinois EPA issued a Lead ALE to the City based on its 90th percentile lead level of 22.5 ppb for the July – December 2021 monitoring period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ing water. Illinois EPA has calculated a Lead Action Level Exceedance (ALE) of 21 parts per billion (ppb) for the July – December 2022 monitoring period. The federal Lead Action Level is 15 ppb. Illinois EPA has been working proactively with the City of Elgin to address lead issues in recent years. In January 2022, Illinois EPA issued a Lead ALE to the City based on its 90th percentile lead level of 22.5 ppb for the July – December 2021 monitoring period. The City subsequently met the lead action level during January – June 2022. As a result of the December 2022 ALE, and in close consultation with the United States Environmental Protection Agency (U.S. EPA), Illinois EPA has requested the City implement several short term measures to protect public health in addition to implementing a"
+  },
+  {
+   "idx": 4,
+   "url": "https://cdn.prod.website-files.com/670e66c8e7afa4bf3638b217/68430b05cd83a264d510ea9f_PKFL%202025%20Illinois%20Report%20V6.1.pdf",
+   "outlet": "Protect Kids From Lead (report: 91 Lead exceedences in five years)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Elgin PWS, serving the City of Elgin located in Kane County, has experienced five exceedances.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tion served: 3,800 Total lead service lines: 32 Total service lines of unknown material: 122 People of color population: 220 (5.8%) Low-income population: 935 (24.6%) IDPH-identified pediatric lead poisoning high-risk ZIP code: 61752 protectkidsfromlead.com 2. Elgin Public Water System, Kane County Elgin PWS, serving the City of Elgin located in Kane County, has experienced five exceedances. Three of Elgin’s four ZIP codes are identified by IDPH as high-risk for pediatric lead poisoning. With a large and diverse population, nearly 63% of whom are people of color, the city reflects how infrastructure and equity challenges intersect. Elgin is currently in the process of replacing LSLs. Since 2018, the city has replac"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.cbsnews.com/chicago/news/high-levels-lead-water-homes-elgin-illinois/",
+   "outlet": "CBS News Chicago",
+   "date": "2024-01-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "During the first half of 2023, eight homes had lead in the water at such level. In the most recent round of testing, 19 did.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "that are expected to have lead in their plumbing due to the presence of lead service lines or solder. The Environmental Protection Agency danger level for lead is exceeded when more than 10 percent of the homes have lead-in-water levels of up to 15 parts per billion, according to the City of Elgin. During the first half of 2023, eight homes had lead in the water at such level. In the most recent round of testing, 19 did. The City of Elgin has been replacing the publicly-owned portion of a lead water service line over the past 10 years. The city has also been assisting residents in replacing their private portions of lead water service lines when disturbed by city activity. Lead can cause serious health problems if too much enters the body from"
+  }
+ ]
+}

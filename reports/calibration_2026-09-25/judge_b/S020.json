@@ -1,0 +1,12 @@
+{
+ "story_id": "S020",
+ "bin": "Matched + more",
+ "entity": "US rail trespasser deaths: rising 2017-2025 while other rail casualties fell",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2017-08-15",
+ "post_cutoff_match": true,
+ "what_we_add": "The 26% rise 2017-2025 and the all-41-Brightline-2024-deaths-were-trespassers count",
+ "why": "CRS states the finding in words: other rail deaths fell, trespasser deaths did not, leading cause since 1997. Operation Lifesaver's 793 fatalities for 2025 is within 25% of our 838 (preliminary vs final counting). The 26% rise appears nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

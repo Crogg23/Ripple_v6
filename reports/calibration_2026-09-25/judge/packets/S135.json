@@ -1,0 +1,59 @@
+{
+ "story_id": "S135",
+ "lead": {
+  "headline": "17 landfills stopped filing federal climate reports with no legal way out; at least five hold operating air permits",
+  "number": "17 landfills on EPA's own \"stopped reporting, unknown reason\" list; median last report 85,741 t CO2e, 16 of 17 over 25,000 t; 11 flagged 5+ years",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Reporting year 2024 isn't loaded, and the Sept-2025 repeal proposal and rule changes aren't checked; an unprocessed exit notice would make it paperwork lag."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "landfills stopped reporting greenhouse gas reporting program EPA unknown reason methane",
+  "landfills quit reporting GHGRP without off-ramp 98.2(i) analysis Environmental Integrity Project OR Industrious Labs",
+  "EPA GHGRP list of facilities that stopped reporting reasons \"not a valid\" OR \"unknown\" off-ramp status data",
+  "\"landfill\" \"stopped reporting\" emissions to EPA greenhouse gas news investigation",
+  "EPA finalizes greenhouse gas reporting program repeal 2026 landfills subpart HH final rule",
+  "EPA consent agreement landfill failure to submit greenhouse gas report 40 CFR part 98 penalty",
+  "landfills missing from EPA greenhouse gas data unreported methane 2026 analysis",
+  "facilities dropped out of Greenhouse Gas Reporting Program without valid reason study exit notices compliance gap"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://industriouslabs.org/archive/epa-takes-steps-to-address-underreporting-of-landfill-methane-emissions",
+   "outlet": "Industrious Labs",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Inspection reports from 29 landfills across the country found more than 711 methane exceedances — often when landfill operators themselves reported few or none.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " for how landfill operators monitor for methane are allowing huge amounts of the super-polluting greenhouse gas to go undetected. A new r eport by Industrious Labs reveals that lax regulations are perpetuating a cycle of inefficient landfill management practices and exacerbating the methane crisis. Inspection reports from 29 landfills across the country found more than 711 methane exceedances — often when landfill operators themselves reported few or none. These discrepancies underscore that we need common-sense improvements to how methane emissions are found, quantified, and reported. Fortunately, the EPA is required by the Clean Air Act to revisit its landfill standards this summer, and it is critical that they take this opportunity to strengthen existing standards for landfill methane emis"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/ghgreporting/subpart-hh-municipal-solid-waste-landfills",
+   "outlet": "U.S. EPA, GHGRP Subpart HH page",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "A landfill cannot stop reporting under the rule simply because it ceases operations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "An MSW landfill that is required to report to the GHGRP must report CH 4 generation and emissions to subpart HH. A landfill can stop reporting under the rule if it emits less than 25,000 metric tons of CO 2 e for 5 consecutive years or less than 15,000 metric tons of CO 2 e for 3 consecutive years. A landfill cannot stop reporting under the rule simply because it ceases operations (i.e., no longer accepts waste) since methane will continue to generate due to the waste in place even though new waste is not being added. See 40 CFR 98.2(i) for more information on when a facility can stop reporting. How are MSW facilities with a gas collection and control system (GCCS) required to calculate annual methane emissions?"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.federalregister.gov/documents/2025/09/16/2025-17923/reconsideration-of-the-greenhouse-gas-reporting-program",
+   "outlet": "Federal Register (EPA proposed rule)",
+   "date": "2025-09-16",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The EPA is proposing to remove the reporting requirements of subpart HH for the reasons explained in section II.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ribution, starting in 2034). In addition, the EPA has determined that the program imposes significant cost on the regulated community and eliminating the collection of these data would minimize the burdens of reporting and recordkeeping, consistent with the Paperwork Reduction Act. [ 3 ] Therefore, the EPA is proposing to remove all GHG reporting requirements for non-subpart W sectors and the Natural Gas Distribution industry segment of subpart W and to suspend all GHG reporting requirements until reporting year (RY) 2034 for the remaining subpart W segments. Thus, most companies would not need to submit reports in the future, and subpart W facilities would not need to submit reports for reporting years again until RY2034. This prop"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+  "story_id": "S080",
+  "entity": "Federal judges whose spouses drew director fees from the defendant: Judge Colleen McMahon (SDNY) in Liotti v. Jet Blue, 1:17-cv-00838 (spouse Frank Sica, JetBlue director); Judge Harry Leinenweber (NDIL) in Gardner v. Procter & Gamble, 1:09-cv-06690 (spouse Lynn Martin, P&G director)",
+  "queries": [
+    {"q": "Judge Colleen McMahon husband JetBlue director Frank Sica conflict", "found_useful": false},
+    {"q": "Judge Leinenweber wife Lynn Martin Procter & Gamble director case conflict", "found_useful": true},
+    {"q": "Liotti v. JetBlue Southern District of New York 2017", "found_useful": true},
+    {"q": "Gardner v. Procter & Gamble Northern District of Illinois 1:09-cv-06690", "found_useful": false},
+    {"q": "\"Specht\" Leinenweber AT&T wife director recusal Seventh Circuit mandamus", "found_useful": true},
+    {"q": "federal judges spouse corporate board director fees presided over cases involving spouse's company investigation", "found_useful": true},
+    {"q": "Frank Sica JetBlue board of directors wife Judge McMahon recusal JetBlue cases", "found_useful": false},
+    {"q": "\"Gardner\" \"Procter & Gamble\" Leinenweber 2009 Illinois", "found_useful": false},
+    {"q": "judge failed to recuse spouse on defendant's board 2026 financial disclosure conflict federal judge", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.pacermonitor.com/public/case/20510832/Liotti_v_Jet_Blue_Airways",
+      "outlet": "PacerMonitor (SDNY docket)",
+      "date": "2017-02-07",
+      "source_type": "court",
+      "entity_named": "yes",
+      "quote": "The Clerk of Court is further directed to transfer this action to the United States District Court for the Eastern District of New York.",
+      "paywalled": false,
+      "searcher_note": "Docket for Liotti v. Jet Blue Airways, 1:17-cv-00838: transfer order signed by Judge Colleen McMahon 2017-02-07, five days after filing. Case went to EDNY as 2:17-cv-00836 (Judge Vitaliano; judgment for JetBlue 2018). No mention of spouse, fees, or recusal."
+    },
+    {
+      "url": "https://caselaw.findlaw.com/us-7th-circuit/1537600.html",
+      "outlet": "FindLaw (7th Cir. opinion, Specht v. Leinenweber, No. 10-2823)",
+      "date": "2010-09-08",
+      "source_type": "court",
+      "entity_named": "no",
+      "quote": "Had he done so, the case would not have been assigned to Judge Leinenweber, whose wife (Lynn Martin) is a member of AT & T's board of directors.",
+      "paywalled": false,
+      "searcher_note": "Same judge and same spouse-director mechanism, but the company is AT&T, not P&G; opinion says the court's automated conflict system blocks AT&T cases from his docket under 28 U.S.C. 455(b)(5)(i). Does not mention Gardner v. P&G."
+    },
+    {
+      "url": "https://www.propublica.org/article/judges-ethics-codes-recusal-conflict-of-interest-families",
+      "outlet": "ProPublica",
+      "date": "2024-07-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "In an examination of more than 1,200 federal judges and state supreme court justices, ProPublica, in partnership with student journalists at Boston University, found dozens of judges",
+      "paywalled": false,
+      "searcher_note": "Pattern: judges not recusing when family members have financial ties to parties (Vitter, Canady, Tunheim). No spouse-corporate-director example; does not name McMahon, Leinenweber, JetBlue or P&G. ABA Journal rewrite (2024-07-19) not recorded."
+    }
+  ],
+  "notes": "No source found that reports either judge presiding over a case against their spouse's company. No docket or page found for Gardner v. Procter & Gamble, 1:09-cv-06690 (govinfo and search returned other Gardner cases). Search results note Lynn Martin sat on P&G's board 1994-2010 (Wikipedia) and JetBlue's 2008 release names Frank Sica vice-chairman; neither mentions the cases. McMahon-Sica conflict claims found only on self-published Medium/Scribd/X pages by a litigant (not recorded, not news). CourtListener and Justia copies of the Specht opinion blocked fetch; FindLaw copy works. Other pattern coverage exists (Floodlight/Type Investigations/WWNO 2026-04-13 on Louisiana oil-case judges' financial ties) but it covers stock and law-firm ties, not spouse board seats. No coverage after 2026-06-30 found."
+}

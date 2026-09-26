@@ -1,0 +1,78 @@
+{
+  "story_id": "S196",
+  "entity": "41 sympathy-named super PACs (police, veterans, sick kids), 2017-2024: $181.5M raised, roughly 4% to real political spending, a six-vendor phone and caging block",
+  "queries": [
+    {"q": "scam PACs police veterans children super PACs raised millions little went to candidates telemarketing", "found_useful": true},
+    {"q": "super PACs sympathetic names police veterans sick children telemarketing caging vendors fundraising analysis FEC", "found_useful": true},
+    {"q": "Zeitlin Piaro indicted Southern District of New York PAC telemarketing fraud press release", "found_useful": true},
+    {"q": "AP \"scam PACs\" veterans police telemarketing 2024 raised $89 million spent 1% campaign", "found_useful": true},
+    {"q": "scam PACs 2026 FEC super PAC police veterans fundraising vendors investigation", "found_useful": false},
+    {"q": "New York Times telemarketers raised $89 million law enforcement firefighters veterans PACs spent 1 percent campaign activities", "found_useful": true},
+    {"q": "PAC defends fundraising costs telemarketing \"not a scam\" veterans police PAC responds spending on candidates", "found_useful": true},
+    {"q": "Forbes Zach Everson scam PACs vets cops administrative fees FEC analysis percent to candidates", "found_useful": true},
+    {"q": "\"scam PAC\" news August 2026 OR September 2026 donors police veterans", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.thedailybeast.com/the-secret-website-behind-a-dollar140-million-scam-pac-network/",
+      "outlet": "The Daily Beast",
+      "date": "2023-03-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "According to The Daily Beast’s analysis of Federal Election Commission filings, the 43 client PACs on the call center website have raised more than $140 million in the last two election cycles alone.",
+      "paywalled": false,
+      "searcher_note": "Closest analog: a network of 43 cause-named PACs, all clients of one call center, $140M over two cycles, most of it spent on fundraising. Not the same 41-PAC set, and no share-to-politics figure."
+    },
+    {
+      "url": "https://www.opensecrets.org/news/2023/08/how-scam-pacs-line-their-pockets-by-deceiving-political-donors/",
+      "outlet": "OpenSecrets",
+      "date": "2023-08-18",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The Law Enforcement for a Safer America PAC also reported nearly $1.6 million in payments to Public Support Services, all for “fundraising” services.",
+      "paywalled": false,
+      "searcher_note": "Names sympathy-named PACs and a shared fundraising vendor (Public Support Services). Also flags 86 possible scam PACs in the 2022 cycle and covers the Piaro/Zeitlin indictments. Pattern coverage with a vendor angle."
+    },
+    {
+      "url": "https://www.cnn.com/2020/10/16/us/police-super-pac-political-group-invs/index.html",
+      "outlet": "CNN",
+      "date": "2020-10-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Instead, their contributions end up with a super PAC, Law Enforcement for a Safer America, which has ties to a controversial union and spends the majority of its money on its own operating costs.",
+      "paywalled": false,
+      "searcher_note": "A police-named super PAC that spends mostly on its own operating costs. May be one of the 41, but the lead's list wasn't available to check. The article adds that small-donor super PACs cost more to run, though this much is still unusual."
+    },
+    {
+      "url": "https://www.thedailybeast.com/richard-zeitlin-and-robert-piaro-jailed-for-dollar28-million-pac-fraud-scheme/",
+      "outlet": "The Daily Beast",
+      "date": "2023-08-17",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Zeitlin’s call center profited big from the donations, raking in about 90 percent of each dollar raised, while the rest was given to the respective PAC.",
+      "paywalled": false,
+      "searcher_note": "Covers the Piaro PACs ($28M). The lead dropped two Piaro PACs from its count, so this is overlapping pattern coverage of the telemarketing-vendor scheme."
+    },
+    {
+      "url": "https://www.blumenthal.senate.gov/imo/media/doc/09102023fecnonprofitpacscamsletter.pdf",
+      "outlet": "Office of Sen. Richard Blumenthal (letter to FEC)",
+      "date": "2023-09-10",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "A recent New York Times investigation found one network of telemarketers had raised $89 million in political donations on behalf of law enforcement, firefighters, and veterans, but had only spent 1% on actual campaign activities and contributions.",
+      "paywalled": false,
+      "searcher_note": "Senator's letter citing the NYT (the $89M network was nonprofits, not super PACs) and the $140M scam-PAC network. Pattern-level."
+    },
+    {
+      "url": "https://www.forbes.com/sites/zacheverson/2021/07/29/scam-pacs-two-groups-claim-to-support-vets-and-cops-while-blowing-all-their-money-on-administrative-fees/",
+      "outlet": "Forbes",
+      "date": "2021-07-29",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Scam PACs? Two Groups Claim To Support Vets And Cops While Blowing All Their Money On Administrative Fees.",
+      "paywalled": true,
+      "searcher_note": "Blocked (403). Headline only. Per the search snippet, three UPS-Store-mailbox vendors took 89% of American Veterans Initiative money, a vendor-block pattern; not verified from the page."
+    }
+  ],
+  "notes": "Heavy pattern coverage of scam PACs, 2020-2024: the Daily Beast 43-PAC/$140M network, OpenSecrets, CNN, Forbes, SDNY's Piaro/Zeitlin case, the Blumenthal letter, the Colorado SOS warning page. No source found builds the same set of 41 sympathy-named super PACs, the $181.5M total, the 4% or 12.5% share to politics, or the claim that a six-vendor phone/caging block is paid only by sympathy-named committees. Some named PACs (e.g. Law Enforcement for a Safer America) may overlap the 41; checking that needs the lead's list. The AP/Bangor Daily News story of 2024-07-02 ('Scam PACs' invoke veterans, police and politicians) redirected to a consent wall and couldn't be quoted. The DOJ SDNY release on Piaro/Zeitlin returned an empty page. The Colorado SOS page says 'most of your donation will support the PAC’s organizers and vendors'. Nothing after 2026-06-30 found."
+}

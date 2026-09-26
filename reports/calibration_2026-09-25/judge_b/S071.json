@@ -1,0 +1,12 @@
+{
+  "story_id": "S071",
+  "bin": "Known pattern",
+  "entity": "US Google political ad buyers verified with an EIN only (no FEC ID): $861.4M of spend",
+  "deciding_sources": [1, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Brennan reports the same kind of finding — hundreds of millions in online political ads from groups outside FEC disclosure — but its cut is dark-money groups, not EIN-only Google verification, and no source gives our pile. SAG's men-targeting appears (YMRP) but never as 84% of its spend.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

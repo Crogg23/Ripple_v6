@@ -1,0 +1,12 @@
+{
+ "story_id": "S121",
+ "bin": "Matched + more",
+ "entity": "Sen. John Fetterman, lone Democrat siding with Republicans on Senate Iran war-powers votes",
+ "deciding_sources": [1, 2, 3, 4],
+ "earliest_match_date": "2026-03-04",
+ "post_cutoff_match": true,
+ "what_we_add": "the all-12-votes count and the named absentees behind the one-vote failures (Ricketts on 5/13; Sanders, Bennet, Booker on 6/16)",
+ "why": "Breaking Defense, CBS, WLT and ABC each report Fetterman as the sole Democrat opposing the Iran resolutions, and the Schumer release lists the 49-50 and 47-48 tallies. No source states the full 12-vote streak or which absent senators made the losses one-vote.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

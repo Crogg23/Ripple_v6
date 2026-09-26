@@ -1,0 +1,12 @@
+{
+  "story_id": "S020",
+  "bin": "Matched + more",
+  "entity": "US rail trespasser deaths, 2017 to 2025: rising while other rail casualties fell",
+  "deciding_sources": [2, 0],
+  "earliest_match_date": "2017-08-15",
+  "post_cutoff_match": false,
+  "what_we_add": "the 26% rise 2017-2025 and the all-41-Brightline-2024-deaths-were-trespassers cut - no source states the trend number",
+  "why": "CRS states the same finding in words: trespasser deaths not falling while other rail deaths dropped. Operation Lifesaver's preliminary 2025 count (793) sits within 25% of our 838, same direction. WLRN's 49 Brightline deaths counts all deaths, not trespassers-only, so no contradiction with our 41.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

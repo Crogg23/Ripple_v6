@@ -1,0 +1,67 @@
+{
+  "story_id": "S119",
+  "entity": "Trump second-term Article III judges: share confirmed with zero Democratic (or independent) votes (lead: 34 of 45, incl. all 7 appeals judges), vs Biden 2023-24 judges with zero Republican votes",
+  "queries": [
+    {"q": "Trump second term judges confirmed no Democratic votes party-line", "found_useful": true},
+    {"q": "Trump judicial nominees zero Democratic votes Senate confirmations 2025 appeals court Bove Hermandorfer", "found_useful": true},
+    {"q": "Trump judges confirmed without a single Democratic vote percentage compared Biden Republican votes analysis", "found_useful": false},
+    {"q": "\"party-line\" judicial confirmations record Trump 2026 Senate Democrats oppose every appeals court nominee", "found_useful": true},
+    {"q": "\"Democratic votes\" Trump judges confirmed second term \"party-line\" majority of judicial nominees analysis 2026", "found_useful": true},
+    {"q": "Biden judges confirmed Republican votes Collins Murkowski Graham share of judges no Republican support", "found_useful": true},
+    {"q": "Trump appeals court judges second term all confirmed without Democratic support Taibleson Tung Dunlap Bove circuit votes", "found_useful": true},
+    {"q": "Senate confirms Trump judge September 2026 vote Democrats", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://mikedavis.substack.com/p/confirmations-recap-a-successful",
+      "outlet": "Mike Davis (Substack)",
+      "date": "2025-12-22",
+      "source_type": "opinion",
+      "entity_named": "yes",
+      "quote": "Not one Senate Democrat voted for even one circuit court nominee, so Senate Republicans have had to go it alone in confirming President Trump’s judges.",
+      "paywalled": false,
+      "searcher_note": "Conservative advocate's year-end recap: zero Democratic votes for any Trump second-term circuit nominee (as of Dec 2025). Matches the lead's 'all 7 appeals judges' claim in words; no overall share."
+    },
+    {
+      "url": "https://ballsandstrikes.org/nominations/senate-democrats-trump-nominees-committee-votes/",
+      "outlet": "Balls and Strikes",
+      "date": "2026-02-12",
+      "source_type": "opinion",
+      "entity_named": "yes",
+      "quote": "During Trump’s second term, 19 Democrats have voted to confirm at least one of Trump’s nominees",
+      "paywalled": false,
+      "searcher_note": "Progressive legal commentary criticizing Democrats who vote for Trump judges; shows some district nominees drew Democratic votes (e.g. one got 14). No count of zero-Democratic-vote confirmations."
+    },
+    {
+      "url": "https://nominationnotes.substack.com/p/nineteen-senate-democrats-have-now",
+      "outlet": "Nomination Notes (Substack)",
+      "date": "2026-02-04",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Nineteen Senate Democrats have now voted to confirm at least one Trump judicial nominee this term",
+      "paywalled": false,
+      "searcher_note": "Newsletter tracking each Trump confirmation; logs which were party-line and which drew Democratic votes. No aggregate share stated."
+    },
+    {
+      "url": "https://nominationnotes.substack.com/p/two-months-into-2026-heres-where",
+      "outlet": "Nomination Notes (Substack)",
+      "date": "2026-02-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "On February 3, the Senate confirmed Nick Ganjei to the Southern District of Texas (party-line vote).",
+      "paywalled": false,
+      "searcher_note": "Per-judge log: four February 2026 district confirmations were party-line; others drew 5-7 Democratic votes. Evidence that most, not all, Trump judges get zero Democratic votes; no total."
+    },
+    {
+      "url": "https://mainemorningstar.com/2023/12/05/sen-collins-continues-to-reject-more-judicial-nominees-under-biden-than-previous-administrations/",
+      "outlet": "Maine Morning Star",
+      "date": "2023-12-05",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "puts her at the top of the list of Republicans who have most frequently supported the president’s judicial nominees, along with Sens. Lisa Murkowski of Alaska and Lindsey Graham of South Carolina.",
+      "paywalled": false,
+      "searcher_note": "Biden side of the comparison: Collins voted for Biden judges about 85% of the time; Collins, Murkowski and Graham were the top GOP supporters. Matches the lead's point that three Republicans drive Biden's bipartisan count; gives no 25% or 58% figure."
+    }
+  ],
+  "notes": "Partisan confirmations are widely covered one judge at a time: Hermandorfer 46-42 on party lines, Bove 50-49, and many 'party-line' entries in Nomination Notes. The one aggregate claim found in words is Mike Davis's (opinion): zero Democratic votes for any circuit nominee. No source states 34 of 45 (76%), Biden's 32 of 130 (25%), or the 58% without Collins, Murkowski and Graham. Detroit News, 2026-09-16, 'Trump faces tight timeline to appoint judges as midterms loom', surfaced but returned HTTP 402 on fetch; its content is unknown and it is not recorded. The Senate Democrats' floor wrap-up for 2026-09-15 shows one district judge (Byrne) confirmed 52-45, a single roll call and not recorded. Demand Justice's Senate Vote Tracker returned 403."
+}

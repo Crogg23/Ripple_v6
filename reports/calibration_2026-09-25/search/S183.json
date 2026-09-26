@@ -1,0 +1,27 @@
+{
+  "story_id": "S183",
+  "entity": "California TRI 2023: six fiberglass/composite shops' styrene as a share of the state's Prop 65 cancer-listed air pounds",
+  "queries": [
+    {"q": "California fiberglass boat manufacturers styrene emissions largest carcinogen air releases TRI", "found_useful": false},
+    {"q": "styrene California Toxics Release Inventory 2023 top cancer-causing air emissions", "found_useful": true},
+    {"q": "California spa fiberglass manufacturer styrene emissions neighbors cancer risk air district", "found_useful": false},
+    {"q": "\"styrene\" California TRI facilities composite fiberglass \"air releases\" 2023 report state", "found_useful": false},
+    {"q": "fiberglass plant styrene odor residents complain California news South Coast AQMD", "found_useful": false},
+    {"q": "California carcinogen air emissions TRI 2026 styrene sulfuric acid mist largest source analysis", "found_useful": false},
+    {"q": "EPA TRI factsheet California 2023 top chemicals released air styrene", "found_useful": false},
+    {"q": "styrene emissions California 2026 fiberglass composites Proposition 65 air pollution report", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/trinationalanalysis/carcinogens",
+      "outlet": "US EPA, TRI National Analysis",
+      "date": "2026-07-31",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Each year, the OSHA carcinogens released into air in the highest quantities were styrene, acetaldehyde, and formaldehyde.",
+      "paywalled": false,
+      "searcher_note": "National pattern only: styrene is the top carcinogen released to air; same page says 2023 styrene air releases came mainly from plastics product manufacturing and boat building. No California or facility breakdown. Date is the page's last-updated date as reported by the fetch; analysis covers 2023 data."
+    }
+  ],
+  "notes": "No source found that names California's fiberglass/composite shops as a share of the state's cancer-listed air pounds, or the 40% / 55% figures. Only national pattern coverage (EPA TRI National Analysis: styrene top air carcinogen, from plastics and boat building). A 2018 Prop 65 settlement PDF on oag.ca.gov (2018-00607S9056) was surfaced by search as covering styrene from LA-area fiberglass facilities, but the PDF is scanned and could not be read, so it is not recorded. No coverage dated after 2026-06-30 found beyond the EPA page's update date. No source found that disagrees."
+}

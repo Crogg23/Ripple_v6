@@ -1,0 +1,14 @@
+{
+ "story_id": "S087",
+ "bin": "Matched + more",
+ "entity": "Firms under government-wide exclusions receiving new federal awards after the ban",
+ "deciding_sources": [
+  0
+ ],
+ "earliest_match_date": "2026-06-16",
+ "post_cutoff_match": false,
+ "what_we_add": "the 23-firm, roughly $800K, mostly-DoD slice of positive new actions",
+ "why": "GAO found 2,074 awards to 137 excluded entities ($626M) while listed in SAM - same finding, same direction, a different cut of the data. Our 23-firm/$800K new-order count is stated nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

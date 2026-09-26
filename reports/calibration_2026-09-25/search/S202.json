@@ -1,0 +1,77 @@
+{
+  "story_id": "S202",
+  "entity": "United States coal-fired power generation, 2025 vs 2024 (+85 TWh, +13%, per Ember), and its size against every other country's coal rise combined",
+  "queries": [
+    {"q": "US coal power generation rose 13% in 2025 Ember", "found_useful": true},
+    {"q": "EIA coal-fired generation 2025 increase terawatt-hours natural gas prices United States", "found_useful": true},
+    {"q": "2025 global coal generation US largest increase in coal power of any country Ember Global Electricity Review 2026", "found_useful": false},
+    {"q": "US coal generation 2025 rise offset declines China India coal power rose most in United States analysis", "found_useful": true},
+    {"q": "\"coal\" 2025 United States accounted for most of global increase in coal-fired generation countries where coal power rose", "found_useful": true},
+    {"q": "Global Energy Monitor Boom and Bust Coal 2026 United States coal generation rose 13% only major economy", "found_useful": true},
+    {"q": "US coal generation 2026 first half falls OR rises EIA August 2026 coal power after 2025 rebound", "found_useful": true},
+    {"q": "US coal power increase 2025 bigger than rest of world combined coal growth countries Indonesia Russia Vietnam coal generation rose", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://ember-energy.org/latest-insights/global-electricity-review-2026/major-countries-and-regions/",
+      "outlet": "Ember (Global Electricity Review 2026)",
+      "date": "2026-04-21",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "US coal generation increased by 85 TWh (+13%) in 2025, while gas generation declined by 63 TWh (-3.4%), driven by a substantial rise in gas prices over record low prices in 2024.",
+      "paywalled": false,
+      "searcher_note": "Same entity, same number, same dataset family as the lead (Ember). Does not state the '1.8x every other country combined' comparison."
+    },
+    {
+      "url": "https://electrek.co/2026/01/19/coal-use-dropped-in-china-and-india-in-2025-it-rose-in-usa-hiking-energy-costs/",
+      "outlet": "Electrek",
+      "date": "2026-01-19",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In 2025, US coal power generation went up by 13%, quite a big chunk for a power generation method that has otherwise been declining rapidly.",
+      "paywalled": false,
+      "searcher_note": "Earliest found stating the +13%. Contrasts with coal falling in China and India; no TWh figure, no all-other-countries comparison."
+    },
+    {
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=67106",
+      "outlet": "U.S. Energy Information Administration (Today in Energy)",
+      "date": "2026-02-02",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The decrease was more than offset by an 11% (76 BkWh) increase in less expensive coal-fired generation and a 32% (66 BkWh) increase in solar generation.",
+      "paywalled": false,
+      "searcher_note": "Primary US record, Lower 48 hourly balancing-authority data: +76 TWh, +11%. Same direction as the lead. 76 vs 85 is about 11% lower, a different data scope."
+    },
+    {
+      "url": "https://news.mongabay.com/2026/05/world-burned-less-coal-in-2025-but-built-more-plants-over-energy-uncertainty/",
+      "outlet": "Mongabay (on Global Energy Monitor, Boom and Bust Coal 2026)",
+      "date": "2026-05-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "While coal usage dropped at the global scale, a major outlier was the United States, which saw coal electricity generation rise by 13%.",
+      "paywalled": false,
+      "searcher_note": "US as the global outlier. The page says the US was 'the only major economy' to raise coal use and credits Trump policy, where Ember and EIA credit gas prices. A different cause, not a different number."
+    },
+    {
+      "url": "https://www.visualcapitalist.com/ranked-where-coal-consumption-rose-the-most-in-2025/",
+      "outlet": "Visual Capitalist (Energy Institute Statistical Review 2026 data)",
+      "date": "2026-08-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "U.S. coal-fired generation consequently increased by 93.2 TWh, while gas-fired generation declined by 61.8 TWh.",
+      "paywalled": false,
+      "searcher_note": "After the cutoff. A different dataset (Energy Institute) puts the US rise at 93.2 TWh, about 10% above the lead's 85. Same direction."
+    },
+    {
+      "url": "https://www.visualcapitalist.com/ranked-where-coal-consumption-rose-the-most-in-2025/",
+      "outlet": "Visual Capitalist (Energy Institute Statistical Review 2026 data)",
+      "date": "2026-08-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The U.S. (+0.80 EJ) led the world in coal consumption changes between 2024 to 2025, followed by Indonesia (+0.43 EJ).",
+      "paywalled": false,
+      "searcher_note": "Same page, logged again for the comparison claim. On total coal consumption (not generation), Indonesia's rise is over half the US rise. Indonesia has no 2025 data in the lead's Ember table, so this bears on the '1.8x every other country combined' ratio."
+    }
+  ],
+  "notes": "The US +85 TWh / +13% figure is widely reported: Ember GER 2026 has the exact number, Electrek the 13% from Jan 2026, and EIA 76 BkWh / 11% on Lower 48 hourly data. Several sources call the US the only major economy, or the major outlier, raising coal in 2025 (Mongabay/GEM). No source found says the US rise was about 1.8x (or 2.3x) every other country's coal-generation rise combined. The Energy Institute data via Visual Capitalist has Indonesia as the second-largest coal consumption riser, a country the lead notes is missing 2025 data in Ember. On rebound framing: EIA's Sept 2026 STEO (https://www.eia.gov/outlooks/steo/report/elec_coal_renew.php, 2026-09-09) forecasts 'coal generation falls by 8% in 2026 and 6% in 2027'. It wasn't logged as a source, to stay within 6. Forbes (Rapier, 2026-07-26, 'Global Coal Use Hit A Record In 2025, Even As Coal Power Declined') returned 403 and wasn't quoted."
+}

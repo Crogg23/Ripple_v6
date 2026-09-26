@@ -1,0 +1,68 @@
+{
+  "story_id": "S208",
+  "entity": "Coal mine operators who hand a mine to a new operator (vs. those who close it), share of MSHA safety fines left unpaid, Central Appalachia; named in lead: Blackjewel/Revelation Energy (mine 0100767), Brody Mining (0070543)",
+  "queries": [
+    {"q": "coal operators unpaid mine safety fines delinquent penalties MSHA new operators transfer mines", "found_useful": true},
+    {"q": "Blackjewel Revelation Energy unpaid MSHA civil penalties mine safety fines", "found_useful": true},
+    {"q": "Revelation Energy Blackjewel delinquent mine safety debt MSHA owed millions bankruptcy Kentucky", "found_useful": false},
+    {"q": "Office of Inspector General audit MSHA delinquent penalties mine operators open new mines outstanding penalties", "found_useful": true},
+    {"q": "NPR investigation delinquent mine operators close mine reopen new company name avoid paying safety fines 2014", "found_useful": true},
+    {"q": "Brody Mining LLC Brody Mine No. 1 unpaid MSHA penalties delinquent fines Boone County", "found_useful": false},
+    {"q": "Mountain State Spotlight unpaid mine safety fines coal companies bankrupt Blackjewel MSHA debt", "found_useful": false},
+    {"q": "MSHA delinquent mine safety debt 2026 coal operators unpaid penalties report", "found_useful": false},
+    {"q": "Ohio Valley ReSource investigation delinquent mine safety debt top companies Justice Revelation Energy Blackjewel", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.oig.dol.gov/public/reports/oa/2019/23-19-002-06-001.pdf",
+      "outlet": "U.S. Department of Labor Office of Inspector General",
+      "date": "2019-08-16",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "These mine operators could avoid the financial responsibility for the violation penalties by selling the mine or possibly declaring bankruptcy.",
+      "paywalled": false,
+      "searcher_note": "PDF. OIG audit of MSHA civil penalties: mines that changed ownership had worse safety records (46% vs 26% with violations), 'by changing ownership, mine operators could also escape financial responsibility for past violation penalties'; ~30% of mines changed operators 2000-2017; 25% of operators did not pay in full. National, no unpaid-share split by handoff vs closure, no Blackjewel/Brody."
+    },
+    {
+      "url": "https://cnsmaryland.org/2025/05/16/marylands-largest-underground-coal-mine-changes-hands/",
+      "outlet": "Capital News Service (Maryland)",
+      "date": "2025-05-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "will not inherit the dozens of delinquent fines levied by the federal Mine Safety and Health Administration (MSHA) for safety violations at the Casselman mine",
+      "paywalled": false,
+      "searcher_note": "One handoff case: bankrupt Corsa Coal's Casselman mine (Garrett County, MD) goes to Rosebud Mining without its delinquent MSHA fines (just under $25,000). Maryland, not Central Appalachia; no share or comparison."
+    },
+    {
+      "url": "https://www.npr.org/2019/08/22/752868484/no-link-between-fines-and-safety-in-mines-government-audit-says",
+      "outlet": "NPR",
+      "date": "2019-08-22",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "MSHA says it does not have the legal authority to deny mine operators the ability to open new mines due to unpaid fines.",
+      "paywalled": false,
+      "searcher_note": "NPR on the 2019 OIG audit: auditors recommended barring operators with outstanding penalties from new mines; MSHA says it lacks authority."
+    },
+    {
+      "url": "https://www.npr.org/2014/11/12/363058646/coal-mines-keep-operating-despite-injuries-violations-and-millions-in-fines",
+      "outlet": "NPR (with Mine Safety and Health News)",
+      "date": "2014-11-12",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "An NPR investigation found thousands of American mine owners fail to pay penalties for safety violations",
+      "paywalled": false,
+      "searcher_note": "Earliest found: NPR/MSHN 'Delinquent Mines' series, nearly $70M in delinquent MSHA penalties; about unpaid fines generally, not handoffs vs closures."
+    },
+    {
+      "url": "https://wchstv.com/news/local/justice-says-msha-fines-should-go-to-bluestone-mines-previous-owner",
+      "outlet": "WCHS-TV (Charleston, WV)",
+      "date": "2019-09-25",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Justice said some of those fines should go to the mine's previous owner and that he shouldn't be required to pay them.",
+      "paywalled": false,
+      "searcher_note": "Handoff dispute in Central Appalachia: Justice family re-bought Bluestone from Mechel in 2015 and argues MSHA fines belong to the prior operator. Pattern example; not the lead's operators."
+    }
+  ],
+  "notes": "No source found naming Blackjewel/Revelation Energy or Brody Mining with unpaid MSHA civil penalties, and none reporting unpaid-share rates for handoff vs closed mines (16.6% vs 13.0%, or the builder's 28.7% vs 3.7%). The pattern itself - operators shedding MSHA penalty debt by selling or transferring a mine - is stated by the DOL OIG 2019 audit and illustrated by one Maryland case (CNS 2025) and the Justice/Bluestone dispute (WCHS 2019). Checked, not recorded: ProPublica/Mountain State Spotlight 2023-04-26 on Blackjewel bankruptcy (its '$600,000 in unpaid fines' at Foresters mine are Kentucky state environmental fines, not MSHA); WV Gazette-Mail 2024-10-19 on $17.3M total MSHA delinquent debt (Justice and Lexington Coal named, not Blackjewel with a figure); WVPB 2013 Brody Mine story on pattern-of-violations status (no unpaid-fine figure). No coverage dated after 2026-06-30 found. Search stopped at 9 per the coordinator's budget note."
+}

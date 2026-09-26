@@ -1,0 +1,12 @@
+{
+  "story_id": "S184",
+  "bin": "Matched + more",
+  "entity": "119th Congress law output at day 539: second-fewest since 2013, only the 118th lower",
+  "deciding_sources": [2, 5],
+  "earliest_match_date": "2025-07-24",
+  "post_cutoff_match": true,
+  "what_we_add": "the 63 regular-law count that strips renamings, rule repeals and spending bills, at a fixed day-539 mark",
+  "why": "MS NOW states the second-fewest-since-the-1970s finding for the first year, and Newsweek's same-point comparison shows only the 118th lower, same entity, same direction. Sources count all laws (85-110); nobody has our regular-law cut.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

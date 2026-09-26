@@ -1,0 +1,37 @@
+{
+  "story_id": "S148",
+  "entity": "EU-based LEI issuers (GLEIF-accredited Local Operating Units) renewing Legal Entity Identifiers for 11 of 13 EU-sanctioned firms after listing, incl. four Iran-linked banks; vs London Stock Exchange LEI (0 of 4 UK-listed clients renewed)",
+  "queries": [
+    {"q": "Legal Entity Identifier LEI renewal sanctioned entities EU sanctions LEI issuers", "found_useful": false},
+    {"q": "GLEIF LEI issuers sanctioned Russian entities suspend services renewal 2022 statement", "found_useful": false},
+    {"q": "OpenSanctions sanctioned companies still hold active LEI codes", "found_useful": false},
+    {"q": "Bank Melli Bank Saderat Legal Entity Identifier LEI issued renewed sanctions", "found_useful": false},
+    {"q": "LEI issuer refuse renewal sanctioned company London Stock Exchange LEI sanctions policy", "found_useful": true},
+    {"q": "GLEIF statement Ukraine sanctions LEI", "found_useful": false},
+    {"q": "sanctioned entities keep renewing LEI codes investigation 2026", "found_useful": false},
+    {"q": "EU sanctions derogation fees routine holding or maintenance of frozen funds economic resources", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.gleif.org/lei-solutions/featuring-the-lei/cross-border-payments/2023-06-5_gleif_lse_sanctions_screening_v1.0_approved_final.pdf",
+      "outlet": "GLEIF / London Stock Exchange Group case study",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "As the LSE is an LEI issuer, in the event a sanctioned entity is encountered, we can issue that organization with an LEI, adding transparency to the market",
+      "paywalled": false,
+      "searcher_note": "Counter-view from London's registrar (the lead's comparison arm): LSEG frames issuing an LEI to a sanctioned entity as transparency, not a breach. File name suggests June 2023. Does not discuss renewals or EU issuers."
+    },
+    {
+      "url": "https://finance.ec.europa.eu/system/files/2023-07/faqs-sanctions-russia-assets-freezes_en.pdf",
+      "outlet": "European Commission (DG FISMA) sanctions FAQ",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "EU sanctions also prohibit making further funds or economic resources available to listed persons or to entities owned/controlled by them.",
+      "paywalled": false,
+      "searcher_note": "Legal backdrop only (Russia regime FAQ, updated to July 2023): services to listed entities count as economic resources; derogations exist by national authorisation. Says nothing about LEIs."
+    }
+  ],
+  "notes": "No source found that names any EU LEI issuer, any of the 13 sanctioned firms, or the Iran-linked banks in connection with LEI renewals, and no coverage of the broader pattern (sanctioned entities keeping active LEIs) was found either. Search results for LEI + sanctions are dominated by LEI vendors' marketing on using LEIs for sanctions screening. OpenSanctions entity pages (e.g. Melli Bank plc, LEI 213800BC4TEGCCQH9V07) list LEIs as data fields but are not reporting. No coverage dated after 2026-06-30 found. Two queries (#2, #6) triggered the search tool's own follow-up searches, so actual web search use was above 8."
+}

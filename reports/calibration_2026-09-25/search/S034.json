@@ -1,0 +1,16 @@
+{
+  "story_id": "S034",
+  "entity": "25 HUD-funded senior and disabled housing nonprofits (Section 202/811-type sponsors) that kept filing federal single audits to the Federal Audit Clearinghouse years after IRS automatic revocation of their exemption; lead names no individual group",
+  "queries": [
+    {"q": "HUD Section 202 senior housing nonprofit tax-exempt status revoked by IRS still receiving HUD funds", "found_useful": false},
+    {"q": "nonprofits lost tax exemption automatic revocation still receiving federal grants single audit", "found_useful": false},
+    {"q": "HUD OIG audit Section 202 Section 811 owner nonprofit status revoked IRS", "found_useful": false},
+    {"q": "GAO federal awards to nonprofits whose tax-exempt status was revoked Federal Audit Clearinghouse", "found_useful": false},
+    {"q": "senior apartments nonprofit owner lost 501(c)(3) status failed to file 990 HUD subsidized housing news", "found_useful": false},
+    {"q": "TIGTA revoked tax-exempt organizations continue to operate receive government funding report", "found_useful": false},
+    {"q": "\"automatically revoked\" organizations still receiving federal awards \"Federal Audit Clearinghouse\" OR \"single audit\" nonprofit housing", "found_useful": false},
+    {"q": "HUD senior housing nonprofit revoked tax exemption 2026 investigation elderly disabled housing sponsor", "found_useful": false}
+  ],
+  "sources": [],
+  "notes": "No source found reporting HUD-funded senior or disabled housing nonprofits that kept receiving HUD money or filing single audits after IRS automatic revocation, either for these groups or as a general pattern. Results were only explainers: HUD rules that Section 202/811 sponsors must hold IRS 501(c)(3) exemption, IRS automatic-revocation rules, single-audit rules. A 2013 TIGTA report on 25 exempt organizations that got $148M in government payments while not paying payroll taxes surfaced in snippets; it is a different scheme (those groups were still exempt), so it was not recorded. The lead names no individual nonprofit, so no entity-name search was possible."
+}

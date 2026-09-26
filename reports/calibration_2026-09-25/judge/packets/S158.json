@@ -1,0 +1,81 @@
+{
+ "story_id": "S158",
+ "lead": {
+  "headline": "89.7% of Evergy's Kansas City homes in Missouri are on time-of-day rates; across the state line, 1.6%",
+  "number": "Evergy Metro homes on time-varying rates, 2019 to 2024: Missouri 0.1% → 89.7% (245,547 homes), Kansas 0.1% → 1.6% (3,904); all four Missouri investor-owned utilities went from near zero to 76-99%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Enrollment counts are each utility's own filing, and utilities choose whether to count homes moved by default (SCE 57.8% vs SDG&E 0.6% under one regulator)"
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Evergy Missouri customers moved to time-of-use default rate Kansas side not",
+  "Evergy default time-based plan Missouri percent of customers time of use KCUR",
+  "Kansas City Star Evergy time-based rates Missouri only Kansas customers not required",
+  "Ameren Missouri Liberty Evergy time-of-use default rate all Missouri utilities residential customers shifted 2025",
+  "Evergy time-of-use Missouri customers 2026 opt out legislation switched back percent enrolled",
+  "time-of-use rate enrollment by utility EIA data Missouri Evergy highest share residential customers analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.aol.com/evergy-time-based-rate-plan-190339734.html",
+   "outlet": "Kansas City Star (syndicated on AOL)",
+   "date": "2023-12-05",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Evergy also offers one time-based rate plan to its Kansas customers, but is not switching them to this plan automatically.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ters whose landlords or property management companies control their homes' Evergy accounts. But these customers can still change their rate plan. To do so, they will need to call Evergy directly. You can reach Evergy by calling 888-471-5275 between 7 a.m. and 5 p.m. on weekdays, excluding holidays. Evergy also offers one time-based rate plan to its Kansas customers, but is not switching them to this plan automatically. Customers can learn more and choose whether to opt in to the plan through their Evergy account online. Do you have more questions about Evergy's time-based rates or other utility company policies in Kansas City? Ask the Service Journalism team at kcq@kcstar.com . Show comments 0 Advertisement From Our Partners Advertisement Don't "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.eenews.net/articles/missouri-overhauls-electric-rates-raising-rewards-and-risks-for-customers/",
+   "outlet": "E&E News (POLITICO)",
+   "date": "2023-07-12",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "all 550,000 Evergy residential customers in the state will be moved to an aggressive time-of-use rate this fall",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s know about this and letting them know that we have the tools and tips for how they can be successful,” said Steve Wills, director of regulatory affairs at Ameren Missouri. It’s a different story on the other side of Missouri. While Ameren Missouri is staggering implementation of time-based rates, all 550,000 Evergy residential customers in the state will be moved to an aggressive time-of-use rate this fall — less than a year after the PSC issued its order. Like Ameren Missouri, it’s not a change Evergy sought. Evergy said it’s racing against time working to inform and educate customers through a five-phase campaign that began last month and will run through September 2024. “We’re trying to lead a customer from general awareness to enrollme"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.kcur.org/news/2023-10-03/missouri-regulators-ok-evergy-changing-default-time-of-use-pricing-plan",
+   "outlet": "KCUR (Kansas City public radio)",
+   "date": "2023-10-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The commission, which regulates Missouri utilities, ordered Evergy to implement time-of-use pricing, which places a premium on electricity used during periods of high demand.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "fault plan days before its mandatory time-of-use pricing goes into effect. The Missouri Public Service Commission last week approved the Kansas City-based electric utility’s request to change the default selection for customers who fail to select one of the company’s four time-of-use pricing plans. The commission, which regulates Missouri utilities, ordered Evergy to implement time-of-use pricing , which places a premium on electricity used during periods of high demand. The new pricing takes effect this month. Initially, Evergy would have enrolled customers in the Standard Peak Saver if they didn’t pick another plan. Under that plan, electricity on summer afternoons will be four times the price that it is the rest of the day. But now, the default plan will be closer to Evergy’s traditional pricing with smaller d"
+  },
+  {
+   "idx": 3,
+   "url": "https://psc.mo.gov/CMSInternetData/ConsumerInformation/PSC%20staff's%20frequently%20asked%20questions.pdf",
+   "outlet": "Missouri Public Service Commission (staff FAQ)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The Missouri Public Service Commission has entered orders and approved tariffs to transition almost all residential electric customers of regulated utilities",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ". Are time-based rates going to be in place for all of Missouri? A. No. The Missouri Public S ervice Commission only regulates Investor -Owned Utilities in Missouri. Those utilities are Evergy Missouri West, Evergy Missouri Metro, Ameren Missouri, and Liberty (The Empire District Electric Company). The Missouri Public Service Commission has entered orders and approved tariffs to transition almost all residential electric customers of regulated utilities to Time- Based rates. Ameren and Liberty transitions are occurring on their own timelines and their own processes are governed by different orders and tariffs than the Evergy Missouri Metro and Evergy Missouri West processes. Other utilities in the state such as municipal utilities and cooperatives are not regulated by the MPSC. Some have "
+  },
+  {
+   "idx": 4,
+   "url": "https://smartenergycc.org/wp-content/uploads/2025/08/SECCs-2025-Evergy-Case-Study.pdf",
+   "outlet": "Smart Energy Consumer Collaborative",
+   "date": "2025-08",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "standard opt-in enrollments in time-based plans see about one-percent conversion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ime-of-use transition was an overwhelming success. In about three months’ time, Evergy motivated about 30 percent (roughly 160,000) of residential Missouri customers to pre-enroll in a time-based plan before they would be automatically converted to the Default Time Based Plan. As a reference point, standard opt-in enrollments in time-based plans see about one-percent conversion. In addition, Evergy’s education initiative resulted in 98 percent customer awareness of new rate options, 90 percent awareness of the required change to time-based plans and 87 percent recall communications from Evergy about the new plans. As noted, there were nearly 300,000 Opower Rate Comparison sessions recorded in August 2023, w"
+  }
+ ]
+}

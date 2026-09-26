@@ -1,0 +1,84 @@
+{
+ "story_id": "S208",
+ "lead": {
+  "headline": "Coal operators who hand off a mine leave 16.6% of safety fines unpaid, vs 13.0% for those who close it",
+  "number": "Builder: 28.7% unpaid at mines with 3+ operators vs 3.7% at one-operator mines; fair comparison, without Blackjewel/Revelation and Brody: 16.6% vs 13.0%, about 3.6 points.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "A one-operator mine can't carry departed-operator debt, so the builder's peer couldn't fail; Blackjewel/Revelation (0100767) and Brody (0070543) carry the dollars, and it's Central Appalachia only."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "coal operators unpaid mine safety fines delinquent penalties MSHA new operators transfer mines",
+  "Blackjewel Revelation Energy unpaid MSHA civil penalties mine safety fines",
+  "Revelation Energy Blackjewel delinquent mine safety debt MSHA owed millions bankruptcy Kentucky",
+  "Office of Inspector General audit MSHA delinquent penalties mine operators open new mines outstanding penalties",
+  "NPR investigation delinquent mine operators close mine reopen new company name avoid paying safety fines 2014",
+  "Brody Mining LLC Brody Mine No. 1 unpaid MSHA penalties delinquent fines Boone County",
+  "Mountain State Spotlight unpaid mine safety fines coal companies bankrupt Blackjewel MSHA debt",
+  "MSHA delinquent mine safety debt 2026 coal operators unpaid penalties report",
+  "Ohio Valley ReSource investigation delinquent mine safety debt top companies Justice Revelation Energy Blackjewel"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.oig.dol.gov/public/reports/oa/2019/23-19-002-06-001.pdf",
+   "outlet": "U.S. Department of Labor Office of Inspector General",
+   "date": "2019-08-16",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "These mine operators could avoid the financial responsibility for the violation penalties by selling the mine or possibly declaring bankruptcy.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e. Approximately 4,000 mine operators who were cited for safety violations and were delinquent in paying the associated penalties could commence operations at a new mine. According to MSHA’s data, 25 percent of mine operators during the period reviewed did not pay their violation penalties in full. These mine operators could avoid the financial responsibility for the violation penalties by selling the mine or possibly declaring bankruptcy. When an operator sold a mine and owed a delinquent debt, it became difficult for MSHA to enforce payment of penalties incurred under CMP. MSHA followed its usual procedures to collect the debt, which remained the responsibility of the selling operator, unless it was a condition of the sale to transfer the debt as well. Ultimately, MS"
+  },
+  {
+   "idx": 1,
+   "url": "https://cnsmaryland.org/2025/05/16/marylands-largest-underground-coal-mine-changes-hands/",
+   "outlet": "Capital News Service (Maryland)",
+   "date": "2025-05-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "will not inherit the dozens of delinquent fines levied by the federal Mine Safety and Health Administration (MSHA) for safety violations at the Casselman mine",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ministration) By Paul Kiefer - May 16, 2025 Maryland’s largest active underground coal mine changed hands last month after the mine’s previous operator, Canadian firm Corsa Coal, filed for bankruptcy and auctioned assets to pay creditors. The new operator, Pennsylvania-based Rosebud Mining Company, will not inherit the dozens of delinquent fines levied by the federal Mine Safety and Health Administration (MSHA) for safety violations at the Casselman mine in Garrett County, Maryland. A Western District of Pennsylvania Bankruptcy Court judge approved a $15 million bid from Rosebud to acquire two underground mines in March, though Corsa’s creditors delayed finalizing the sale in hopes of attracting a higher bid. In a declaration filed with the court in January , Corsa President Ke"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.npr.org/2019/08/22/752868484/no-link-between-fines-and-safety-in-mines-government-audit-says",
+   "outlet": "NPR",
+   "date": "2019-08-22",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "MSHA says it does not have the legal authority to deny mine operators the ability to open new mines due to unpaid fines.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "te new mines if they have outstanding penalties at existing operations. \"Without holding mine operators accountable for their safety record or delinquency status prior to commencing operations at a new mine, mine operators have less of an incentive to prevent future safety hazards,\" the audit says. MSHA says it does not have the legal authority to deny mine operators the ability to open new mines due to unpaid fines. The NPR investigation found that mining companies continued to operate multiple mines, and continued to put thousands of miners at risk, even after persistent failure to pay mine safety fines. In one case, the operators of the Kentucky Darby mine amassed nearly $3 million in safety fines after a deadly accident that killed "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.npr.org/2014/11/12/363058646/coal-mines-keep-operating-despite-injuries-violations-and-millions-in-fines",
+   "outlet": "NPR (with Mine Safety and Health News)",
+   "date": "2014-11-12",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "An NPR investigation found thousands of American mine owners fail to pay penalties for safety violations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " It's Been a Minute Embedded Get NPR+ More Podcasts & Shows Search Newsletters NPR Shop Get NPR+ Tiny Desk New Music Friday All Songs Considered Music Features Live Sessions About NPR Diversity Support Careers Press Ethics Coal Mines Keep Operating Despite Injuries, Violations And Millions In Fines An NPR investigation found thousands of American mine owners fail to pay penalties for safety violations, even as they continue to manage dangerous — and sometimes deadly — operations. Special Series Delinquent Mines Coal Mines Keep Operating Despite Injuries, Violations And Millions In Fines November 12, 2014 3:35 PM ET Heard on All Things Considered By Howard Berkes , Anna Boiko-Weyrauch , Robert Benincasa Listen to Part 1 Listen · 12:05"
+  },
+  {
+   "idx": 4,
+   "url": "https://wchstv.com/news/local/justice-says-msha-fines-should-go-to-bluestone-mines-previous-owner",
+   "outlet": "WCHS-TV (Charleston, WV)",
+   "date": "2019-09-25",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Justice said some of those fines should go to the mine's previous owner and that he shouldn't be required to pay them.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "7 million for punitive damages, nearly $17 million in lost tonnage royalties, and about $1 million for retainer fees and interest. The governor's coal businesses have other court battles they are fighting. One federal lawsuit involves millions in unpaid Mine, Safety and Health Administration fines. Justice said some of those fines should go to the mine's previous owner and that he shouldn't be required to pay them. Justice has had a long relationship with the Bluestone Coal business. A decade ago, he sold the operation to a Russian company for $436 million. In 2015, he bought it back for $5 million and another $140 million in liabilities. Those liabilities include Mine, Safety and Health Administration fines, which are bundled into a $4.7 m"
+  }
+ ]
+}

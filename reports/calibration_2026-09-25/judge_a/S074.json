@@ -1,0 +1,14 @@
+{
+  "story_id": "S074",
+  "bin": "Known pattern",
+  "entity": "68 federal district judges with unusual bank loans assigned 424 cases naming that bank",
+  "deciding_sources": [
+    0
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source covers judges' loans versus their bank cases. The WSJ/ABA finding is the same kind of thing on a different measure: 130+ judges heard cases where they owned the party's stock. The Codes of Conduct guide is a rule explainer.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

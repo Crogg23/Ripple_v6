@@ -1,0 +1,16 @@
+{
+ "story_id": "S082",
+ "bin": "Matched + more",
+ "entity": "US e-bike/moped ER visits, 2019-2023, quadrupled while all injuries stayed flat",
+ "deciding_sources": [
+  0,
+  1,
+  4
+ ],
+ "earliest_match_date": "2023-10-17",
+ "post_cutoff_match": false,
+ "what_we_add": "the combined-code series 21,800 to 87,600 and the flat all-injury baseline",
+ "why": "CPSC and news report the same e-bike ED-visit surge, same direction (near 10x 2017-23, 34,200 in 2023). Nobody states the combined moped+e-bike numbers or the flat-baseline comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

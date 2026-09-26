@@ -1,0 +1,76 @@
+{
+  "story_id": "S110",
+  "entity": "US cyclospora (cyclosporiasis) infections, 2026 year-to-date by late July (CDC NNDSS weekly table), vs 2022-25; Michigan and Ohio leading",
+  "queries": [
+    {"q": "cyclospora 2026 outbreak Michigan cases", "found_useful": true},
+    {"q": "cyclosporiasis Ohio 2026 cases surge", "found_useful": true},
+    {"q": "CDC cyclosporiasis cases nationwide record highest ever 2026 compared previous years", "found_useful": true},
+    {"q": "cyclospora Michigan Ohio \"late July\" 2026 national total states Midwest share", "found_useful": true},
+    {"q": "Michigan cyclosporiasis cases backlog reporting delay count revised 2026", "found_useful": true},
+    {"q": "cyclosporiasis 2026 \"times more\" cases than any previous year national record CDC surveillance", "found_useful": true},
+    {"q": "Ohio Department of Health cyclosporiasis cases July 30 2026 total typical year 70", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.cdc.gov/cyclosporiasis/cases/index.html",
+      "outlet": "CDC",
+      "date": "2026-09-15",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Since May 1, 2026, CDC has received reports of 19,883 laboratory-confirmed cases of cyclosporiasis acquired in the United States",
+      "paywalled": false,
+      "searcher_note": "CDC case page; same page also says 1,180 cases May 1-Aug 31 2025. Window is May 1-Aug 31 season and lab-confirmed only, not NNDSS week 30 YTD."
+    },
+    {
+      "url": "https://www.cidrap.umn.edu/cyclospora/cdc-adds-more-3000-new-cyclospora-cases",
+      "outlet": "CIDRAP",
+      "date": "unknown",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The Centers for Disease Control and Prevention (CDC) yesterday added 3,285 infections to its 2026 Cyclospora total, which includes all outbreaks, raising the tally to 17,180 cases, compared with 1,180 cases through August last year.",
+      "paywalled": false,
+      "searcher_note": "National tally 17,180 vs 1,180 prior year; no date on page, context (through August last year, Michigan at 14,277) suggests late Aug or early Sep 2026"
+    },
+    {
+      "url": "https://www.today.com/health/disease/cyclospora-map-states-parasite-outbreak-diarrhea-2026-rcna385837",
+      "outlet": "TODAY (NBC)",
+      "date": "2026-07-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "As of July 14, nearly 7,000 cases of cyclosporiasis have been reported by at least 34 states, according to the U.S. Centers for Disease Control and Prevention.",
+      "paywalled": false,
+      "searcher_note": "Mid-July state map: Michigan 4,312 and Ohio 1,274 as of July 16; also says far above the 249 cases nationally by same time last year (quoting CDC HAN)"
+    },
+    {
+      "url": "https://www.nbcnews.com/health/health-news/cyclosporiasis-7000-cases-us-cdc-parasite-explosive-diarrhea-rcna587445",
+      "outlet": "NBC News",
+      "date": "2026-07-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "There are usually about 2,700 cases each year, mostly during the summer months.",
+      "paywalled": false,
+      "searcher_note": "Earliest national-surge story found; gives a prior-year baseline (about 2,700 a year) and Michigan 3,309 confirmed"
+    },
+    {
+      "url": "https://www.medicaldaily.com/michigan-cyclospora-outbreak-peak-passed-reporting-lag-august-2026-476985",
+      "outlet": "Medical Daily",
+      "date": "2026-08-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The reason for that apparent contradiction is a reporting backlog: most illnesses being added to the dashboard began weeks ago.",
+      "paywalled": false,
+      "searcher_note": "Michigan's rising count is mostly back-filled lab results (12,485 cases as of Aug 6); bears on the lead's back-fill caveat"
+    },
+    {
+      "url": "https://www.cleveland19.com/2026/07/14/cyclosporiasis-outbreak-ohio-cases-surge-cdc-works-identify-source/",
+      "outlet": "Cleveland 19 News",
+      "date": "2026-07-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Ohio's nearly 400 cases far exceed the state's typical annual total of around 70.",
+      "paywalled": false,
+      "searcher_note": "Ohio surge vs typical year, mid-July"
+    }
+  ],
+  "notes": "Heavy coverage of the 2026 national cyclospora surge from July on; all of it is dated after 2026-06-30. No source found that uses the NNDSS weekly table, the 17,197 figure, the week-30 cutoff or the 3,451 (2023) prior-year best; sources compare against 249 cases same time 2025, 1,180 cases May-Aug 2025, or about 2,700 a year. Counts at nearby dates: Michigan 6,571 (July 20), 9,253 (July 27, Detroit News, paywalled 402), Ohio 4,013 (July 30, per Becker's snippet, page blocked 403). CNN 2026-07-21 'Tracking the largest cyclosporiasis outbreak in the US' returned 451, not recorded. CDC outbreak page (Sept 11) ties 12,883 illnesses in 21 states to Taylor Farms de Mexico iceberg lettuce. Medical Daily, and MDHHS per a search snippet (not fetched), describe back-filled lab reports, in line with the lead's caveat."
+}

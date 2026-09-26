@@ -1,0 +1,47 @@
+{
+  "story_id": "S062",
+  "entity": "American Consolidated Natural Resources (ACNR, formerly Murray Energy), underground coal mines: recordable injuries per 100 workers a year, 2018-24, vs other big coal owners (Foresight 12.33)",
+  "queries": [
+    {"q": "American Consolidated Natural Resources ACNR coal mine injury rate MSHA", "found_useful": false},
+    {"q": "Murray Energy ACNR mines injuries safety record Marshall County Harrison County coal miners hurt", "found_useful": false},
+    {"q": "\"American Consolidated Natural Resources\" injuries safety miners Mountain State Spotlight OR \"Ohio Valley ReSource\" OR \"WV MetroNews\"", "found_useful": true},
+    {"q": "coal companies highest injury rates underground mines analysis Foresight Energy Murray ACNR per 100 workers", "found_useful": false},
+    {"q": "Murray Energy mines injury rate above national average days lost MSHA data analysis", "found_useful": false},
+    {"q": "ACNR coal mine MSHA injury accident August 2026 OR September 2026 OR July 2026", "found_useful": false},
+    {"q": "\"Marshall County Mine\" OR \"Harrison County Mine\" OR \"Monongalia County Mine\" OR \"Ohio County Mine\" injury rate national average lost-time injuries", "found_useful": false},
+    {"q": "coal operators ranked by injury rate MSHA data investigation company-level underground coal 2024", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wvgazettemail.com/news/energy_and_environment/fatality-stricken-mines-had-long-safety-violation-histories-as-more-msha-cuts-eyed/article_fc5e2870-3915-4b12-91bf-241784979596.html",
+      "outlet": "Charleston Gazette-Mail",
+      "date": "2026-04-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Of the more than 1,800 penalties assessed to Ohio County Coal Resources, Inc. for the Ohio County Mine since the start of 2019, 312 were designated Significant and Substantial by MSHA.",
+      "paywalled": false,
+      "searcher_note": "ACNR's Ohio County Mine: violation and penalty history after an April 2026 death. Different measure (citations, not injury rates); page shows an update dated 2026-07-30."
+    },
+    {
+      "url": "https://www.theintelligencer.net/news/top-headlines/2026/01/miner-injured-at-marshall-county-coal-mine/",
+      "outlet": "The Intelligencer (Wheeling)",
+      "date": "2026-01-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "A coal miner was flown from American Consolidated Natural Resources' Marshall County Coal Mine to WVU Medicine Ruby Hospital in Morgantown on Tuesday after being pinned against a piece of equipment in the mine, said Marshall County EMA Director Tom Hart.",
+      "paywalled": false,
+      "searcher_note": "Single injury event at an ACNR mine; no rate or comparison."
+    },
+    {
+      "url": "https://acnrinc.com/",
+      "outlet": "American Consolidated Natural Resources",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "American Consolidated Natural Resources operates among the safest underground coal mines in the world.",
+      "paywalled": false,
+      "searcher_note": "Company's own claim; runs against the lead's direction but gives no injury rate or comparison."
+    }
+  ],
+  "notes": "No source found reports ACNR's injury rate (11.10 per 100 workers a year, 2018-24) or ranks coal owners by injury rate; searches for company-level rankings returned only MSHA/NIOSH aggregate tables. ACNR coverage found is about single deaths and injuries (April 2026 Ohio County Mine death, January 2026 Marshall County injury) and citation counts. Foresight Energy's own site calls its mines among the safest; not recorded since Foresight isn't the headline entity. An NBC 2007 story on Murray Energy mine injury rates predates the window and the ACNR name, not opened."
+}

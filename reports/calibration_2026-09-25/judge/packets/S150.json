@@ -1,0 +1,83 @@
+{
+ "story_id": "S150",
+ "lead": {
+  "headline": "Federal injury filings (OSHA) cover 18-24% of Vermont's private hospital jobs, vs 88-94% typically; University of Vermont Medical Center absent",
+  "number": "OSHA 300A summaries for 2023-2025 cover 18-24% of Vermont's 13,453 private general-hospital jobs; median state 88-94%; Hawaii 33-48%, New Mexico 24-38%",
+  "grade": "B",
+  "verdict": "confirmed",
+  "watch_out": "Vermont, New Mexico and Hawaii run their own state OSHA plans; if those never adopted the electronic filing rule (1904.41), it's a rule gap, not missing filings."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Vermont hospitals OSHA 300A electronic injury reporting not filed",
+  "University of Vermont Medical Center OSHA injury illness data workplace injuries nurses",
+  "VOSHA electronic submission injury illness records 1904.41 Vermont adopted state plan",
+  "state plan states OSHA injury tracking application data missing Vermont Hawaii New Mexico hospitals",
+  "\"UVM Medical Center\" OSHA OR VOSHA injuries 2025 OR 2026",
+  "OSHA injury tracking data gaps hospitals not reporting 300A analysis state plans underreporting",
+  "VTDigger hospital workers injuries workplace violence UVM Medical Center nurses union safety data",
+  "OSHA injury tracking application hospitals missing filings 2026 analysis employers failed to submit 300A"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.gao.gov/assets/720/712214.pdf",
+   "outlet": "U.S. Government Accountability Office (GAO-21-122)",
+   "date": "2021-01-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "We estimated that employers did not report any 300A injury and illness data on more than one-half of their establishments for which they were required to do so for calendar years 2016 through 2018.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n injury or illness on an OSHA form or neglects to sign the form.39 Many Employers Do Not Report Required Summary Injury and Illness Data and OSHA Has Taken Limited Steps to Ensure Compliance Employers Did Not Report Required Summary Injury and Illness Data on More than 50 Percent of Establishments We estimated that employers did not report any 300A injury and illness data on more than one-half of their establishments for which they were required to do so for calendar years 2016 through 2018. As a result, OSHA may not know which establishments have the highest injury and illness rates. OSHA uses the reported summaries to identify establishments for SST inspection. However, partial reporting does not provide a complete picture of where injuries and illnesses are occurring and, by extension, may not be an effective tool fo"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.osha.gov/sites/default/files/2021-07/Vermont-FY-2020-Follow-up-FAME-Report.pdf",
+   "outlet": "U.S. Department of Labor, OSHA (FY 2020 Follow-up FAME report on Vermont State Plan)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "one of the rules (29 CFR 1904.41 Electronic Submission of Injury and Illness Records to OSHA) temporarily stalled. VOSHA expects to complete action on that rule in early 2021.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ing respirators. In addition, health sampling equipment, most notably noise dosimetry equipment, was upgraded. Rulemaking In FY 2020, VOSHA initiated rulemaking for two rules. However, because of the pandemic, legislative rulemaking committee meetings were suspended for several months. As a result, one of the rules (29 CFR 1904.41 Electronic Submission of Injury and Illness Records to OSHA) temporarily stalled. VOSHA expects to complete action on that rule in early 2021. VOSHA plans to complete adoption of the following three rules in FY 2021. 1. Revising the Beryllium Standard for General Industry, Construction and Shipyard Employment 2. Cranes and Derricks in Construction: Railroad Roadway Work 3. Standards Improvement Project – Phase IV (SIP-IV): The deadline for completing adoption of"
+  },
+  {
+   "idx": 2,
+   "url": "https://labor.vermont.gov/sites/labor/files/doc_library/1904%20clean%20text.pdf",
+   "outlet": "Vermont Department of Labor (VOSHA document library)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "If your establishment had 250 or more employees at any time during the previous calendar year, and this part requires your establishment to keep records, then you must electronically submit information from OSHA Form 300A",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "§ 1904.41 Electronic submission of injury and illness records to OSHA. 1904.41(a) Basic requirements 1904.41(a)(1) Annual electronic submission of OSHA Form 300A Summary of Work-Related Injuries and Illnesses by establishments with 250 or more employees. If your establishment had 250 or more employees at any time during the previous calendar year, and this part requires your establishment to keep records, then you must electronically submit information from OSHA Form 300A Summary of Work-Related Injuries and Illnesses to OSHA or OSHA’s designee. You must submit the information once a year, no later than the date listed in paragraph (c) of this section of the year after the calendar year covered by the form (for example, 2019 for the 2018 form). 1904.41(a)(2) Annual electronic submission of OSHA Fo"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.osha.gov/injuryreporting/faqs",
+   "outlet": "U.S. Department of Labor, OSHA (Injury Tracking Application FAQ)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Establishments that meet the submission requirements and are located in states with their own occupational safety and health programs (i.e., State Plans) are also required to submit data under this rule.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nd your establishment is classified in an industry listed in Appendix B to Subpart E of 29 CFR Part 1904 . Appendix B includes a list of industries with elevated injury and illness rates. Check OSHA's ITA Coverage Application to help determine whether you have to comply with these new requirements. Establishments that meet the submission requirements and are located in states with their own occupational safety and health programs (i.e., State Plans) are also required to submit data under this rule. All establishments required to submit information from their OSHA Form 300 Log and OSHA Form 301 Incident Report to OSHA are also required to submit information from their OSHA Form 300A Annual Summary. What steps does OSHA take to protect worker privacy with data submitted through the ITA? OSHA will protect worker privacy by taking the following st"
+  },
+  {
+   "idx": 4,
+   "url": "https://vtdigger.org/2026/08/16/for-emergency-department-staff-violence-at-work-is-a-dangerous-and-demoralizing-reality/",
+   "outlet": "VTDigger",
+   "date": "2026-08-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "At UVM Medical Center in Burlington, violence in the emergency department has fallen 64% between 2022 and 2026, according to Demers.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "als to develop a reporting system to track workplace violence, including data on the number of incidents reported to law enforcement. It also requires that hospitals use that data to create security plans aimed at reducing violence. Already, some hospitals have seen decreases in workplace violence. At UVM Medical Center in Burlington, violence in the emergency department has fallen 64% between 2022 and 2026, according to Demers. The department now has around-the-clock security staff, metal detectors, and screening policies for patients and visitors. Still, it’s a decrease in a much larger, national increase: the last 15 years have yielded unprecedented heights of violence in healthcare settings . To Couto, having healthcare workers involved in the legislati"
+  }
+ ]
+}

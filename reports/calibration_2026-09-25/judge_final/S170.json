@@ -1,0 +1,12 @@
+{
+  "story_id": "S170",
+  "bin": "Known pattern",
+  "entity": "Union Pacific trespasser deaths, 2023-25 vs 2015-17 (nearly doubled)",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "CRS reports the same kind of finding nationally, trespassing deaths nearly doubled per train-mile since 2015, but never names Union Pacific. Hoodline names UP only on a different measure (personal injuries).",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

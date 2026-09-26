@@ -1,0 +1,67 @@
+{
+  "story_id": "S207",
+  "entity": "U.S. Justice Department Epstein Library, 'Data Set 10 Files' and 'Data Set 9 Files' listing pages on justice.gov: page counts shrinking March to May 2026",
+  "queries": [
+    {"q": "DOJ Epstein files \"Data Set 10\" pages removed", "found_useful": true},
+    {"q": "Justice Department Epstein library files disappeared from website Data Set 9", "found_useful": true},
+    {"q": "Epstein files 47,635 removed Justice Department database restored", "found_useful": true},
+    {"q": "Epstein library Data Set 9 Data Set 10 files restored May 2026", "found_useful": false},
+    {"q": "Epstein files DOJ listing page count dropped Wayback Machine analysis thousands of files missing Data Set", "found_useful": true},
+    {"q": "Epstein library Justice Department files missing August 2026", "found_useful": false},
+    {"q": "\"Data Set 9\" Epstein DOJ website files missing weeks listing", "found_useful": false},
+    {"q": "Epstein files DOJ re-uploaded restored removed files NPR analysis pages still offline May June 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/",
+      "outlet": "Discrepancy Report (Joe Douglass)",
+      "date": "2026-02-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "page displayed fewer file listings than an earlier Wayback Machine capture of the same page from Jan. 30.",
+      "paywalled": false,
+      "searcher_note": "Names the DOJ 'Data Set 10 Files' page and finds it showing fewer listings than a Jan 30 Wayback capture, the same method as the lead. The window is earlier (Feb 10-11 vs the lead's Mar 8 to May), and no page counts are given. Also: 'Several pages of entries visible in the archived version did not appear on the live page when I checked again Feb. 11.'"
+    },
+    {
+      "url": "https://www.yahoo.com/news/articles/doj-taking-down-epstein-files-170633191.html",
+      "outlet": "CBS News (via Yahoo News), Elliott Ramos",
+      "date": "2026-03-03",
+      "source_type": "news",
+      "entity_named": "partial",
+      "quote": "As of late February, the Justice Department has taken down more than 47,000 files comprising about 65,500 pages.",
+      "paywalled": false,
+      "searcher_note": "CBS News analysis of the whole Epstein Library: about 2.7M pages public, a total that 'continues to fluctuate'. It does not break the removals out by data set, so Data Set 9 and 10 are not named. DOJ says it has 'not deleted any files from the library'."
+    },
+    {
+      "url": "https://www.yahoo.com/news/articles/doj-admits-removing-nearly-48-185553534.html",
+      "outlet": "Salon (via Yahoo News), Jelinda Montes",
+      "date": "2026-03-04",
+      "source_type": "news",
+      "entity_named": "partial",
+      "quote": "The Department of Justice removed 47,635 files from the publicly available database of Jeffrey Epstein case files, including various claims against President Donald Trump.",
+      "paywalled": false,
+      "searcher_note": "DOJ acknowledged 47,635 files were taken offline for review and said they would be reuploaded 'by the end of the week'. No data set is named."
+    },
+    {
+      "url": "https://www.washingtonexaminer.com/news/justice/4483445/what-still-missing-epstein-files-doj-begins-restore-removed-documents/",
+      "outlet": "Washington Examiner, Kaelan Deese",
+      "date": "2026-03-07",
+      "source_type": "news",
+      "entity_named": "partial",
+      "quote": "47,635 files were taken offline for review from a larger batch of roughly 60,000 pages",
+      "paywalled": false,
+      "searcher_note": "Says DOJ began restoring the records around Mar 5-7. That timing cuts against the lead, which has Data Set 10's listing at its low by Mar 8 and not back until May 22-23. No data set is named."
+    },
+    {
+      "url": "https://github.com/yung-megafone/Epstein-Files",
+      "outlet": "GitHub, yung-megafone/Epstein-Files (community archive index)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Data Set 9 is the only dataset known to be incomplete at the source.",
+      "paywalled": false,
+      "searcher_note": "Names Data Set 9 as incomplete at the DOJ source, with 10.1GB of video removed and 23 files never uploaded. It does not describe the listing shrinking to 770 pages or coming back. It says nothing of Data Set 10 being incomplete."
+    }
+  ],
+  "notes": "Press covers the pattern of files pulled from the DOJ Epstein Library: 16 files in Dec 2025, and 47,635 files / about 65,500 pages in late Feb to early Mar 2026, with DOJ saying they would be restored and Wikipedia saying about 50,000 came back after the Mar 5 release. Only Discrepancy Report names the Data Set 10 listing page shrinking against Wayback, and that was Feb 10-11 with no counts. No source found gives the lead's page counts (10,071 to 5,569 for Data Set 10; 10,675 to 770 for Data Set 9), a roughly four-week Data Set 9 collapse, or a May 22-23 return. Nothing turned up in the July to September 2026 window. DOJ's line across sources is that it 'not deleted any files', only took them offline for redaction, which cuts against a reading of the shrink as deletion, though not against the listing counts. 8 searches."
+}

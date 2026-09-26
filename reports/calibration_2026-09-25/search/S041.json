@@ -1,0 +1,47 @@
+{
+  "story_id": "S041",
+  "entity": "Justice Department Epstein Library (justice.gov/epstein) data-set pages: 'Download all files (zip)' links removed between 2026-01-30 and 2026-02-09, never restored through early June; 12 court-case links renamed '[redacted] v. ...' on 2026-02-21 and 2026-02-24",
+  "queries": [
+    {"q": "Justice Department Epstein files data set zip download removed", "found_useful": true},
+    {"q": "DOJ Epstein library \"download all files\" link removed February 2026", "found_useful": true},
+    {"q": "DOJ Epstein library court records victim names redacted case titles \"v.\" changed website", "found_useful": false},
+    {"q": "Justice Department Epstein website victim names exposed court case links renamed redacted February 2026", "found_useful": true},
+    {"q": "\"Redacted v. Epstein\" OR \"[Redacted] v.\" DOJ Epstein court records page", "found_useful": true},
+    {"q": "DOJ explains removal Epstein zip files bulk download victim privacy redactions restored", "found_useful": true},
+    {"q": "Epstein Library DOJ website changes Wayback Machine archive journalists bulk download zip SPJ", "found_useful": true},
+    {"q": "Epstein files DOJ library download zip restored OR removed 2026 August OR September", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/",
+      "outlet": "Discrepancy Report (Joe Douglass)",
+      "date": "2026-02-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "page no longer displays ZIP files, which previously allowed users to download large batches of compressed documents at once.",
+      "paywalled": false,
+      "searcher_note": "Same finding: zip links on the DOJ Disclosures page gone as of Feb. 6, per a Jan. 30 Wayback capture. Says Jan. 30 capture had zip links for Data Sets 1-8 and 11, while 9 and 10 showed 'View files'. DOJ did not respond; SPJ quoted."
+    },
+    {
+      "url": "https://www.justice.gov/epstein/doj-disclosures/court-records-v-epstein-no-910-cv-80447-sd-fla-2010",
+      "outlet": "U.S. Department of Justice, Epstein Library",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Court Records: [redacted] v. Epstein, No. 9:10-cv-80447 (S.D. Fla. 2010)",
+      "paywalled": false,
+      "searcher_note": "Primary record: a court-case page now titled '[redacted] v. Epstein'. Confirms the renamed titles exist but shows no change date. Sibling pages for 9:10-cv-81111 and 9:09-cv-81092 carry the same form."
+    },
+    {
+      "url": "https://www.yahoo.com/news/articles/doj-admits-removing-nearly-48-185553534.html",
+      "outlet": "Salon (via Yahoo News)",
+      "date": "2026-03-04",
+      "source_type": "news",
+      "entity_named": "partial",
+      "quote": "The Department of Justice removed 47,635 files from the publicly available database of Jeffrey Epstein case files, including various claims against President Donald Trump.",
+      "paywalled": false,
+      "searcher_note": "Related Epstein Library removals; DOJ says files come back after redactions for victim concerns. Bears on the privacy-cleanup explanation; no mention of zip links or case-title renames."
+    }
+  ],
+  "notes": "Zip-link removal is reported by Discrepancy Report (2026-02-11), which names the Epstein Library and dates it from the same Jan. 30 Wayback capture. It counts 9 data sets with zip links on Jan. 30 (1-8 and 11), not 11 of 11 as the lead says. No source found reporting the 2026-02-21/24 renaming of court-case links to '[redacted] v. ...'; DOJ's own pages show the renamed titles with no date. The DOJ Disclosures page fetched 2026-09-25 shows Data Sets 1-12 and no 'Download all files (zip)' links, but its text gave no quotable sentence, so it is not recorded. No coverage dated after 2026-06-30 on the zip links found. justice.gov/epstein/court-records returned HTTP 403."
+}

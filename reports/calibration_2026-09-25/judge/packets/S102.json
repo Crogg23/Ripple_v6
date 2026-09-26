@@ -1,0 +1,93 @@
+{
+ "story_id": "S102",
+ "lead": {
+  "headline": "Arizona overdose deaths rose 11.5% in a year as the median state fell 14%, hitting 2,980, its most since 2015",
+  "number": "2,980 deaths in the 12 months to Oct 2025 (old high 2,829, Aug 2023); cocaine-involved deaths 261 to 443 while the US figure fell 12%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "One dull explanation is untested: a change in how Maricopa's medical examiner certifies deaths."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Arizona overdose deaths rising 2025 while national overdose deaths fall",
+  "Arizona cocaine overdose deaths increase 2025 CDC provisional data",
+  "Maricopa County medical examiner overdose deaths 2025 backlog certification change toxicology",
+  "Arizona overdose deaths record high 2,980 OR 2,988 Arizona Department of Health Services opioid report",
+  "Arizona overdose deaths CDC data September 2026 OR August 2026 decline slowing",
+  "why Arizona overdose deaths increased 2025 cocaine fentanyl mix explanation experts Phoenix Tucson"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://azpha.org/2026/06/11/overdose-deaths-are-falling-nationwide-why-is-arizona-moving-in-the-wrong-direction/",
+   "outlet": "Arizona Public Health Association",
+   "date": "2026-06-11",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Estimated overdose deaths increased by 18%, rising from 2,531 in 2024 to 2,988 in 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rt by Allan Williams, PhD, MPH, we took a closer look at the numbers. Nationwide, estimated overdose deaths dropped by nearly 14% last year, falling from about 81,300 deaths in 2024 to just under 70,000 in 2025. That’s the lowest national total since 2018. Arizona’s numbers are much more troubling. Estimated overdose deaths increased by 18%, rising from 2,531 in 2024 to 2,988 in 2025. The increases weren’t limited to one type of drug. Deaths involving synthetic opioids — mostly fentanyl — increased by nearly 33%. Deaths involving methamphetamine and other stimulants rose by more than 15%. Cocaine-related deaths jumped by almost 70%. The national decline shows that progress is possible. Wider access to naloxone, fentany"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.kjzz.org/science/2026-01-15/cdc-data-shows-20-decline-in-national-overdose-deaths-that-wasnt-the-case-in-arizona",
+   "outlet": "KJZZ",
+   "date": "2026-01-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Fatal overdoses in Arizona jumped nearly 18% between August 2024 and August 2025, the most of any state.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e deaths. That wasn't the case in Arizona KJZZ | By Greg Hahne Published January 15, 2026 at 3:01 PM MST Facebook Threads LinkedIn Bluesky Email Sky Schaudt/KJZZ A new CDC report shows a drop in overdose deaths nationwide through most of 2025. Arizona was one of four states with the opposite trend. Fatal overdoses in Arizona jumped nearly 18% between August 2024 and August 2025, the most of any state. The preliminary data showed, on average, a 20% decline nationwide. On Wednesday, a state House committee passed a bill that would make it easier to trigger harsher penalties for selling fentanyl. Current law sets a minimum five-year prison sentence for selling 200 grams. The new bill would change that to 100 grams. Kara Janssen with We S"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.cdc.gov/nchs/pressroom/releases/20260513.html",
+   "outlet": "CDC National Center for Health Statistics",
+   "date": "2026-05-13",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "New Mexico, Arizona and Colorado had increases of 10% or more compared to the same period in 2024.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " estimated 69,973 drug overdose deaths in the United States during 2025—a decrease of almost 14% from the 81,313 deaths estimated in 2024. Almost all states across the nation saw decreases; Rhode Island, New York, North Carolina, Alabama and Vermont experienced declines of 25% or more. In contrast, New Mexico, Arizona and Colorado had increases of 10% or more compared to the same period in 2024. The new data show that overdose deaths involving opioids decreased from an estimated 55,296 in 2024 to 44,564 in 2025. Overdose deaths involving cocaine and psychostimulants (like methamphetamine) decreased as well. The data will be featured in an interactive web data visualization that will be updated Wednesday, May 13 . The 2025 da"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:41931861&resultType=core&format=json",
+   "outlet": "International Journal on Drug Policy (Cano and Zhu), via Europe PMC",
+   "date": "2026-06",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "cocaine (increasing 66% from 177 to 294)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "(increasing 25% from 154 to 193) populations. Increases between January-August 2024 and January-August 2025 were observed across deaths involving synthetic opioids such as fentanyl (increasing 40% from 996 to 1,396), psychostimulants such as methamphetamine (increasing 23% from 1,005 to 1,233), and cocaine (increasing 66% from 177 to 294). Conclusions Nationwide declines in overdose deaths are encouraging but may obscure potential rebounds at the state/local level, and sustained investment is warranted in evidence-based harm reduction and overdose prevention programs.\",\"affiliation\":\"Arizona State University, School of Social Work, Phoenix, AZ, USA. Electronic addres"
+  },
+  {
+   "idx": 4,
+   "url": "https://filtermag.org/cdc-overdose-data-west-arizona/",
+   "outlet": "Filter",
+   "date": "2026-07-20",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The latest number of predicted deaths for Arizona is 2,914, up from 2,695.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "2 percent) at 324 predicted deaths and New Hampshire (-0.8 percent) at 258 predicted deaths. Though Arizona had previously experienced a surge comparable to New Mexico’s, the past several monthly reports have showed that surge slowing to half-speed, which is not the case in New Mexico and Colorado. The latest number of predicted deaths for Arizona is 2,914, up from 2,695. Between the provisional death count published in April and the most recent one in July, New Mexico’s rate of change increased from about 16 percent to over 27 percent. Colorado’s increased from 10.3 percent to 14.2 percent. But Arizona’s rate of increase fell, from 21 percent to 8.2 percent in the most recent report. Outside of the We"
+  },
+  {
+   "idx": 5,
+   "url": "https://ktar.com/arizona-news/overdose-deaths-increase-naloxone",
+   "outlet": "KTAR",
+   "date": "2026-05-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "While overdose deaths dropped by about 15% nationally last year, Arizona's jumped by more than 17%, according to preliminary Centers for Disease Control and Prevention data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " PM Updated: May 15, 2026, 12:31 pm 7 Follow on Google News Arizona overdose deaths rose despite a national decline, while naloxone overdose reversals increased as fentanyl, meth and other adulterated drugs fueled risk. (Photo by Justin Sullivan/Getty Images) (Photo by Justin Sullivan/Getty Images) While overdose deaths dropped by about 15% nationally last year, Arizona’s jumped by more than 17%, according to preliminary Centers for Disease Control and Prevention data. Arizona’s overdose reversals, instances in which naloxone is used to restore breathing after an opioid overdose, nearly tripled in 2025 . The CDC noted data in some states are underreported and is subject to change, including in Arizona. Arizona overdose deaths increase despite national trend Law enforcement partners have told the Ariz"
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+  "story_id": "S095",
+  "entity": "Oklahoma refineries, Clean Air Act penalty per logged violation 2015-2025 ($3.3K), against Texas refineries ($142K)",
+  "queries": [
+    {"q": "Oklahoma refineries air pollution violations penalties DEQ small fines", "found_useful": false},
+    {"q": "Texas refineries air pollution penalties TCEQ fines per violation Environmental Integrity Project refineries", "found_useful": true},
+    {"q": "Oklahoma refinery fined DEQ consent order Tulsa Ponca City Wynnewood Ardmore air violations penalty", "found_useful": false},
+    {"q": "Oklahoma refinery Clean Air Act settlement civil penalty EPA HollyFrontier Tulsa OR Wynnewood OR Valero Ardmore OR Phillips 66 Ponca City", "found_useful": false},
+    {"q": "Oklahoma DEQ air enforcement penalties lax low fines analysis Oklahoma Watch industrial polluters", "found_useful": true},
+    {"q": "refinery Clean Air Act penalties by state comparison EPA ECHO enforcement Texas Oklahoma refineries report", "found_useful": true},
+    {"q": "Oklahoma refinery emissions violations 2026 news penalty Tulsa refinery flaring", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.fox23.com/news/fox23-investigates-flames-and-black-smoke-seen-coming-from-west-tulsa-refinery/article_f410e044-002f-11f0-a9ba-af1cc3887663.html",
+      "outlet": "FOX23 Tulsa (Janna Clark)",
+      "date": "2025-03-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "I asked DEQ when was the last time they fined the refinery for excessive air emissions. DEQ said it was back in 2023. The consent order shows the amount of the penalty as $23,776.",
+      "paywalled": false,
+      "searcher_note": "One Oklahoma refinery (H.F. Sinclair, west Tulsa): last DEQ air-emissions fine $23,776 in 2023, resident says DEQ takes little action. No statewide per-violation figure, no Texas comparison. Live URL now redirects/404s; quote is on the Wayback copy (2025-08-08)."
+    },
+    {
+      "url": "https://environmentalintegrity.org/news/texas-fails-to-penalize-97-percent-of-illegal-air-pollution-releases/",
+      "outlet": "Environmental Integrity Project",
+      "date": "2017-07-07",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Texas imposed penalties on less than 3 percent of illegal air pollution releases during industrial malfunctions and maintenance from 2011 through 2016",
+      "paywalled": false,
+      "searcher_note": "Disagreement angle on the Texas side: EIP/Environment Texas say Texas fines refineries and chemical plants rarely and small (three pennies per pound). Different measure (malfunction events, state records, 2011-2016), not per ICIS-Air violation."
+    },
+    {
+      "url": "https://edgi-govdata-archiving.github.io/CD-report/OK_2020",
+      "outlet": "Environmental Data & Governance Initiative, Environmental Enforcement Watch",
+      "date": "2020-10-02",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "These figures show the ten facilities in this state with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years",
+      "paywalled": false,
+      "searcher_note": "Oklahoma ECHO report card; the ten-worst list that follows names Wynnewood Refining and HollyFrontier Tulsa Refining. About noncompliance, not penalties."
+    },
+    {
+      "url": "https://www.okgazette.com/news/oklahoma-deq-has-issued-73-million-in-fines-since-2004-2967308/",
+      "outlet": "Oklahoma Gazette (Scott Cooper)",
+      "date": "2009-04-23",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Several violations resulted in thousands of dollars in fines, but many were not fined at all.",
+      "paywalled": false,
+      "searcher_note": "Old, general pattern: Oklahoma DEQ issued 3,700+ violations since 2004 across all programs, many unfined. Not refinery-specific, outside window."
+    }
+  ],
+  "notes": "No source found that compares Oklahoma and Texas refinery air penalties, or states Oklahoma refinery penalties per violation. Federal refinery settlements found for Oklahoma are outside the 2015-2025 window (Sinclair Tulsa 2008 consent decree, $2.45M shared across three refineries; Wynnewood 2011 consent order, $950,000) and were not recorded. Ponca City coverage in 2026 (Oklahoma Energy Today, DEQ NOV) is about Continental Carbon, a carbon-black plant, not a refinery; not recorded. Budget note: query 3 triggered the search tool to run two extra follow-up searches on its own (Ponca City NOV; Continental Carbon), so real searches for this story are about 9."
+}

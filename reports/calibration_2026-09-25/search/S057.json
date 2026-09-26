@@ -1,0 +1,67 @@
+{
+  "story_id": "S057",
+  "entity": "US FDA-regulated phase 2-4 trials (FDAAA applicable clinical trials) completed 2017-01-18 to 2022-06-30 with no results on ClinicalTrials.gov as of 2026-09 (706 of 8,234, 8.6%, 152,850 enrolled patients)",
+  "queries": [
+    {"q": "FDAAA TrialsTracker applicable clinical trials results overdue percentage sponsors", "found_useful": true},
+    {"q": "study applicable clinical trials not reporting results ClinicalTrials.gov FDAAA compliance JAMA 2017 final rule completed trials", "found_useful": true},
+    {"q": "FDA March 2026 reminder letters 2,200 sponsors 3,000 clinical trials results ClinicalTrials.gov nearly 30 percent", "found_useful": true},
+    {"q": "patients enrolled in trials whose results were never posted ClinicalTrials.gov FDA-regulated trials study 2025 2026", "found_useful": false},
+    {"q": "clinical trial results missing ClinicalTrials.gov FDA notices of noncompliance news July August September 2026", "found_useful": false},
+    {"q": "ClinicalTrials.gov results reporting compliance improved most industry trials now report results analysis 2024 2025", "found_useful": false},
+    {"q": "Science Piller FDA NIH let clinical trial sponsors keep results secret break the law", "found_useful": true},
+    {"q": "FDAAA TrialsTracker 2026 overdue trials number sponsors ranked Bennett Institute results not reported", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-reminds-more-2200-sponsors-and-researchers-disclose-trial-results",
+      "outlet": "US Food and Drug Administration press announcement",
+      "date": "2026-04-13",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "29.6% of studies that are highly likely to fall under mandatory reporting requirements have no results information submitted",
+      "paywalled": false,
+      "searcher_note": "Same measure (FDA-regulated US trials with no results), FDA internal analysis, but 29.6% vs the lead's 8.6%. FDA letters went to 2,200+ sponsors covering 3,000+ trials on 2026-03-30. Window of completion dates not stated."
+    },
+    {
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-reminds-more-2200-sponsors-and-researchers-disclose-trial-results",
+      "outlet": "US Food and Drug Administration press announcement",
+      "date": "2026-04-13",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "interventional studies with a U.S. nexus and an FDA-regulated product that are past the deadline to report; it excludes Phase 1 and device feasibility studies",
+      "paywalled": false,
+      "searcher_note": "FDA's definition of the 29.6% denominator: close to the lead's phase 2-4 FDA-regulated US cut, but no completion-date window (lead uses 2017-01-18 to 2022-06-30), so counts may not line up."
+    },
+    {
+      "url": "https://www.eurekalert.org/news-releases/645803",
+      "outlet": "EurekAlert! (The Lancet press release, DeVito/Bacon/Goldacre)",
+      "date": "2020-01-17",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "36% (1,523/4,209) still had not been reported by September 16, 2019",
+      "paywalled": false,
+      "searcher_note": "Earliest full post-final-rule compliance study (FDAAA TrialsTracker data): of 4,209 applicable trials due March 2018-Sept 2019, 36% unreported; only 41% on time; industry 50% vs non-industry 34% vs US govt 31% on time. Earlier snapshot, different window."
+    },
+    {
+      "url": "https://www.statnews.com/2020/01/14/fda-nih-let-clinical-trial-sponsors-keep-results-secret/",
+      "outlet": "STAT (republishing Science, Charles Piller)",
+      "date": "2020-01-14",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "But a Science investigation shows that many still ignore the requirement, while federal officials do little or nothing to enforce the law.",
+      "paywalled": true,
+      "searcher_note": "Science investigation of 4,700+ trials due under the 2017 final rule; per search snippet, sponsors violated the law 55% of the time and 30 of 184 sponsors never met a deadline (numbers not visible on the fetched page; science.org returned 403)."
+    },
+    {
+      "url": "https://natlawreview.com/article/clinical-trial-transparency-enforcement-practical-guide-sponsors-and-research-sites",
+      "outlet": "National Law Review (Foley & Lardner)",
+      "date": "2026-06-01",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "the FDA had sent targeted reminder messages on March 30, 2026, to more than 2,200 sponsors and researchers concerning over 3,000 registered clinical trials",
+      "paywalled": false,
+      "searcher_note": "Law-firm follow-up on the 2026 FDA enforcement push; repeats the ~30% missing-results figure."
+    }
+  ],
+  "notes": "Entity is a national number. No source found with the lead's exact cut (phase 2-4, completed 2017-01-18 to 2022-06-30, 706 of 8,234 = 8.6%, 152,850 enrolled patients). The closest same-measure source is FDA's own April 2026 release: 29.6% of 'highly likely' applicable trials past deadline have no results, about 3.4x the lead's share; FDA gives no completion window and says the excluded set is Phase 1 and device feasibility studies. Lancet 2020 (36% unreported of 4,209 due 2018-2019) and Science 2020 cover earlier windows. No source reports the number of enrolled patients in unreported trials. FDAAA TrialsTracker (fdaaa.trialstracker.net) is live (updated 24 Sept 2026 per page) and ranks sponsors, but its figures render via JavaScript and could not be quoted. science.org, ashpublications.org returned HTTP 403."
+}

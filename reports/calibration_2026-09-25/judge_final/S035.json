@@ -1,0 +1,12 @@
+{
+ "story_id": "S035",
+ "bin": "Known pattern",
+ "entity": "SAMHSA money per person in 54 high-overdose high-jail US counties vs peers, FY2019-25",
+ "deciding_sources": [0, 3],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Research shows the same kind of finding - federal addiction money not tracking need, at the state level. Nobody has the county-level 54-county measure. Health Affairs is blocked but paywalled and the quote is its headline, so it counts, and it too is pattern-level.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

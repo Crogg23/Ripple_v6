@@ -1,0 +1,58 @@
+{
+  "story_id": "S081",
+  "entity": "US drug/device company meal payments to clinicians in CMS Open Payments, 2024: bunching at exactly $125.00 (47,607 meals) vs $126.00 (675); AstraZeneca vs Pfizer rate just under $125",
+  "queries": [
+    {"q": "Open Payments meals $125 cap pharmaceutical company meal limit physicians", "found_useful": true},
+    {"q": "industry meal payments to physicians bunching just below threshold Open Payments study", "found_useful": false},
+    {"q": "AstraZeneca meal limit healthcare professionals $125 per person policy US", "found_useful": false},
+    {"q": "Open Payments meals clustered at $125 round number drug company dinners analysis", "found_useful": false},
+    {"q": "\"47,607\" OR \"$125.00\" meals Open Payments 2024 physicians food and beverage", "found_useful": false},
+    {"q": "Novartis speaker programs meal cap $125 exceeded DOJ settlement dinners per person limit", "found_useful": false},
+    {"q": "pharmaceutical sales reps meal cap $125 per person split bill sign-in sheets stay under limit", "found_useful": true},
+    {"q": "Open Payments data release June 2026 food and beverage meals doctors drug companies news", "found_useful": false},
+    {"q": "Pfizer AstraZeneca HCP meal spending cap comparison Open Payments meals near limit company differences", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://journalofethics.ama-assn.org/article/mixing-dinner-and-drugs-it-ethically-contraindicated/2015-08",
+      "outlet": "AMA Journal of Ethics",
+      "date": "2015-08",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Spending per health care provider (HCP), including tax and gratuity, cannot exceed $125.",
+      "paywalled": false,
+      "searcher_note": "Describes company dinner guidelines with a $125 per-HCP ceiling; explains the cap but reports no count of Open Payments meals at or just under $125. Page gives month only (August 2015)."
+    },
+    {
+      "url": "https://www.smartmeetings.com/magazine_article/medical-ground-shifts-yet-again",
+      "outlet": "Smart Meetings",
+      "date": "2018-08-09",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "In 2017, Pharma Forum released data from 41 pharmaceutical companies that showed the average HCP meal cap was $61 for breakfast, $70 for lunch and $125 for dinner.",
+      "paywalled": false,
+      "searcher_note": "Industry survey: $125 is the average company dinner cap; policy, not Open Payments record counts. Page shows modified 2019-10-21."
+    },
+    {
+      "url": "https://www.qordata.com/blogs/hcp-meal-limits-survey-2026",
+      "outlet": "qordata (compliance software vendor)",
+      "date": "2026-09-02",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "50% of organizations set out-of-office dinner limits between $130 and $150 per person.",
+      "paywalled": false,
+      "searcher_note": "2026 compliance survey: half of companies now cap dinners at $130-$150, i.e. above $125; date is the page's dateModified (no publish date shown). Vendor survey, respondent count not given. Different window from the lead's 2024."
+    },
+    {
+      "url": "https://www.astrazeneca-us.com/sustainability/Corporate-transparency/physician-engagement.html",
+      "outlet": "AstraZeneca US",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "The value of meals provided is determined by dividing the total cost of the meal by the total number of participants of the meal.",
+      "paywalled": false,
+      "searcher_note": "AstraZeneca's own method for the per-person meal value it reports to CMS; names AstraZeneca but gives no cap and says nothing about $125 bunching."
+    }
+  ],
+  "notes": "No source found reporting that Open Payments meal records bunch at exactly $125.00 (or $124.99), and none giving the 47,607 / 675 counts or the AstraZeneca vs Pfizer per-1,000 rates. Sources only establish that $125 is a common self-imposed company dinner cap (not a law), matching the lead's own caveat. A JAMA Health Forum 2024 event-level Open Payments study (Grundy et al., PMC11214116) was checked: it bins dinners at $30 to under $150 per person and does not mention $125, so not recorded. Novartis sham-speaker coverage cites far larger per-person dinners but no $125 cap was found on the pages checked. No coverage after 2026-06-30 beyond the vendor survey."
+}

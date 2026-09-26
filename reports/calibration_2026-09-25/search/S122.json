@@ -1,0 +1,78 @@
+{
+  "story_id": "S122",
+  "entity": "Argentina, UN General Assembly voting agreement with the United States, Sept 2024-Sept 2025 session (lead: 59% to 78%, biggest rise of 178 countries)",
+  "queries": [
+    {"q": "Argentina UN General Assembly votes aligned with United States Milei 2025", "found_useful": true},
+    {"q": "Argentina voting coincidence with US UN General Assembly percentage Milei Israel votes against", "found_useful": false},
+    {"q": "coincidencia votos Argentina Estados Unidos ONU Asamblea General porcentaje Milei", "found_useful": true},
+    {"q": "State Department \"Voting Practices in the United Nations\" 2024 Argentina coincidence", "found_useful": true},
+    {"q": "\"Voting Practices in the United Nations\" 2025 report Argentina coincidence percent", "found_useful": true},
+    {"q": "Argentina votó con Estados Unidos en la ONU 78% de las votaciones", "found_useful": false},
+    {"q": "Argentina \"voting coincidence\" OR \"voted with the United States\" UN General Assembly 2025 percent Israel most aligned", "found_useful": true},
+    {"q": "UN General Assembly 2024-25 session voting analysis countries moved closer to United States biggest shift Argentina Trump votes changed", "found_useful": true},
+    {"q": "Guardian analysis UN votes US allies voting with United States less often 2025 Trump agreement rate", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.state.gov/wp-content/uploads/2026/09/2026-Voting-Practices-Report_Accessible.pdf",
+      "outlet": "US Department of State, Voting Practices in the United Nations, 2025",
+      "date": "2026-09-24",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The 10 countries with the highest voting coincidence with the United States were (in descending order, excluding countries that were not allowed to vote during all or most of 2025 due to being in arrears): Israel, Argentina",
+      "paywalled": false,
+      "searcher_note": "Calendar year 2025, contested UNGA votes: Argentina second only to Israel (76%); average for all countries 17%, down from 46% in 2024. Same report: Argentina voted against 83 resolutions (43%), third after the US and Israel."
+    },
+    {
+      "url": "https://www.state.gov/wp-content/uploads/2026/09/2026-Voting-Practices-Report_Accessible.pdf",
+      "outlet": "US Department of State, Voting Practices in the United Nations, 2025",
+      "date": "2026-09-24",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Argentina ARG 96 27 31 37 68%",
+      "paywalled": false,
+      "searcher_note": "Same report, second quote (counts as one source): table row for 191 contested votes in calendar 2025. Columns: Same 96, Oppose 27, Partial 31, Absent 37, Voting Coincidence 68%. Uses State's own method, not raw agreement."
+    },
+    {
+      "url": "https://www.state.gov/wp-content/uploads/2025/07/Voting-Practices-in-the-United-Nations-for-2024.pdf",
+      "outlet": "US Department of State, Voting Practices in the United Nations, 2024",
+      "date": "2025-07-11",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Argentina ARG 69 9 17 0 82%",
+      "paywalled": false,
+      "searcher_note": "Calendar 2024, 95 contested votes. Columns: Same 69, Oppose 9, Partial 17, Absent 0, Voting Coincidence 82%. Argentina second only to Israel (89%); average 46%. On State's calendar-year measure Argentina went from 82% (2024) to 68% (2025) while the average fell from 46% to 17%. Different window and method from the lead's session figures (59% to 78%)."
+    },
+    {
+      "url": "https://goodauthority.org/news/the-world-isnt-moving-away-from-the-u-s-the-u-s-is-moving-away-from-the-world/",
+      "outlet": "Good Authority (Erik Voeten)",
+      "date": "2026-02-17",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The U.S. voting record in the United Nations is so anomalous that the model wants to push the U.S. ideal points all the way into outer space. Israel and Argentina are the closest followers.",
+      "paywalled": false,
+      "searcher_note": "Written by the maintainer of the UN voting dataset the lead uses. Says 'Two countries stand out for vote switching in 2025: Argentina under President Javier Milei and the United States under President Donald Trump.' The US switched 12 votes; most countries barely moved. Bears on the lead's caveat that part of the rise may be the US changing its own votes."
+    },
+    {
+      "url": "https://www.perfil.com/noticias/masperfil/rdi-los-votos-de-argentina-en-la-onu-sufrieron-un-abrupto-cambio-de-rumbo-tras-la-asuncion-de-javier-milei.phtml",
+      "outlet": "Perfil",
+      "date": "2026-09-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Y ahora en 2025 o 2026, que son los últimos dos puntos que tenemos abajo, estamos solos",
+      "paywalled": false,
+      "searcher_note": "Spanish. Data analyst Andrés Snitcofsky on UNGA vote similarity: Argentina voted much like other countries until 2024 and is now isolated. No US-agreement percentage. Post-cutoff."
+    },
+    {
+      "url": "https://datadrivendecisionlab.com/2024-UNGA-report",
+      "outlet": "Data Driven Decision Lab (3DL)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Under its new president, Javier Milei, Argentina executed the most dramatic policy reversal of any UN member, plummeting 170 ranks in internal consistency.",
+      "paywalled": false,
+      "searcher_note": "Calendar 2024 report: Argentina's largest single-year alignment drop in UNGA history, breaking from regional and global majorities; 38 'No' votes in 2024 after none since 2013; 'likely Argentina will continue aligning more closely with the US.' Earlier window than the lead's."
+    }
+  ],
+  "notes": "Argentina's swing toward the US at the UN under Milei is widely reported. No source found gives the lead's session figures: 59% to 78% for Sept 2024 to Sept 2025, +19 points, biggest rise of 178 countries, typical country down 13. The State Department's calendar-year reports put Argentina at 82% in 2024 and 68% in 2025, second only to Israel both years, while the all-country average fell from 46% to 17%. That is a different window and a different coincidence method, and the judge should weigh it. Also found: Buenos Aires Herald, 2025-03-06, Argentina, the US and Israel were the only three votes against an International Day of Peaceful Coexistence. Not recorded; one vote only. The Guardian/Focaldata allies analysis cited by Voeten was not located."
+}

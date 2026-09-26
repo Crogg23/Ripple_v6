@@ -1,0 +1,12 @@
+{
+  "story_id": "S010",
+  "bin": "Matched + more",
+  "entity": "SpaceX sites' injury rate vs their industry, 2025 and prior years",
+  "deciding_sources": [0, 1, 2],
+  "earliest_match_date": "2023-11-11",
+  "post_cutoff_match": false,
+  "what_we_add": "the company-wide 3.2x for 2025 (third straight year) and the Ford 11.4 vs GM/Honda/Tesla/Toyota comparison, about 1.9x - no source has the Ford leg at all",
+  "why": "Texas Observer (2025 data), TechCrunch (2024) and Reuters via Engadget (2022) all name SpaceX and report the same finding, same direction: injury rates several times the industry average, persisting for years. Their 5-6x figures are Starbase-only, a different scope than our all-sites 3.2x, so no contradiction.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

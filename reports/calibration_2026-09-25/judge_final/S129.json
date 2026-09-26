@@ -1,0 +1,12 @@
+{
+ "story_id": "S129",
+ "bin": "Unreported",
+ "entity": "OFAC-sanctioned banks holding live IRS FATCA registrations (36, incl. Russia's National Settlement Depository)",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Six searches logged. The two sources are a dataset description of the FFI list and an OFAC FAQ explaining the NSD designation; neither reports sanctioned banks staying on the IRS list, and an explainer isn't a pattern.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

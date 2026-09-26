@@ -1,0 +1,12 @@
+{
+ "story_id": "S164",
+ "bin": "Matched + more",
+ "entity": "US ICE field-office hold-room stays lasting over a day, Oct 2025-Feb 2026",
+ "deciding_sources": [2, 0, 1],
+ "earliest_match_date": "2025-08-07",
+ "post_cutoff_match": true,
+ "what_we_add": "16,919 stays over 24 hours (14.8%) vs 212 (0.8%) two years earlier; Baltimore median 87 hours",
+ "why": "Colorado Times Recorder reports the nationwide hold-room surge (281 to 5,011 over 72 hours); the Banner and Daily Record report Baltimore's over-limit holds. Same finding, same direction; the 24-hour national count and Baltimore median are ours.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

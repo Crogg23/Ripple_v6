@@ -1,0 +1,15 @@
+{
+ "story_id": "S157",
+ "bin": "Matched + more",
+ "entity": "Salt River Project's rooftop-solar adoption vs Arizona Public Service and Tucson Electric",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2022-02-18",
+ "post_cutoff_match": false,
+ "what_we_add": "56.7 vs 145.4 vs 124.3 per 1,000 homes in 2024, and the 2014-19 added-rate gap",
+ "why": "Grist (15% vs under 5%) and Vote Solar (adoption three times higher next door) state the same gap in the same direction; our 2.6x is within 25% of their 3x. SRP's own similar-pace blog is the weaker source against news and the numbers. Our per-1,000 figures are new.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,71 @@
+{
+ "story_id": "S164",
+ "lead": {
+  "headline": "16,919 immigration detention stays began with over a day in an ICE hold room, Oct 2025-Feb 2026, up from 212",
+  "number": "16,919 stays (14.8% of stays that started in a field-office hold room) vs 212 (0.8%) in the same months two years earlier; Baltimore: 3,041 of 3,168 stints over a day, median 87 hours",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Facility type is one snapshot label and it's wrong both ways: Mesa's \"Hold\" site works as removal-flight staging (a fifth of the count), and Chicago's Broadview is typed Staging, leaving out 1,968"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "ICE hold rooms detainees held more than 24 hours field office data Deportation Data Project",
+  "Baltimore ICE holding room detainees held days median hours",
+  "ICE holding rooms nationwide thousands held more than 24 hours analysis 2026",
+  "\"hold rooms\" ICE 72 hours waiver data shows detainees held longer than a day 2026",
+  "Broadview ICE facility detainees held days data length of stay Chicago",
+  "\"hold room\" ICE detainees \"more than 24 hours\" 2026 data analysis field office",
+  "Baltimore ICE hold room 2026 detainees held longer than 24 hours Banner analysis federal data",
+  "ICE statement hold room stays average under 12 hours disputes data overcrowding 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.thebanner.com/politics-power/social-justice/ice-detention-holding-rooms-baltimore-I6KXL3ZI2ZDZNLDHPRY7WSVMRA/",
+   "outlet": "The Baltimore Banner",
+   "date": "2025-08-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "ICE has detained immigrants in Baltimore holding rooms for an average of 51 hours, four times longer than the maximum time limit under its longstanding policy",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ished cells are intended, by ICE’s own guidelines, to hold men and women arrested on immigration charges for no more than 12 hours, as the detainees are processed and then sent to detention facilities as far-flung as Washington state and Louisiana. But under President Donald Trump’s administration, ICE has detained immigrants in Baltimore holding rooms for an average of 51 hours, four times longer than the maximum time limit under its longstanding policy, according to a Baltimore Banner analysis of federal data. One man was confined for more than 191 hours, or about eight days. Nearly 2,000 people have been held at the facility so far this year, triple the number in all of 2024, the data analysis showed. As many as 100 people were detained at the same time in May and June in cells withou"
+  },
+  {
+   "idx": 1,
+   "url": "https://thedailyrecord.com/2026/03/09/ice-hold-room-baltimore/",
+   "outlet": "The Daily Record (Maryland)",
+   "date": "2026-03-09",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "From Feb. 1 to mid-October of last year, almost all detainees — 95% — were held longer than 12 hours, typically the maximum, Rubin wrote. A nationwide waiver allowed detentions up to 72 hours, but 27% of detainees were still held beyond that.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e everyone deserves.” ICE did not deny the plaintiffs’ key allegations but said their rights weren’t violated. It argued the hold rooms were overcrowded because of a lack of long-term detention capacity in Maryland; the state banned local governments from renting out detention space to ICE in 2022. From Feb. 1 to mid-October of last year, almost all detainees — 95% — were held longer than 12 hours, typically the maximum, Rubin wrote. A nationwide waiver allowed detentions up to 72 hours, but 27% of detainees were still held beyond that. More than half of detainees were held while the facility was already over capacity, Rubin wrote. She noted that the hold rooms’ daily population exceeded 100 people on seven days during the seven-and-a-half months of discovery. The peak population was 123. When the hold rooms are at the 56-person capacity, each person has a"
+  },
+  {
+   "idx": 2,
+   "url": "https://coloradotimesrecorder.com/2026/03/exclusive-ice-locks-thousands-including-kids-in-170-hold-rooms-nationwide-heres-where-they-are/77352/",
+   "outlet": "Colorado Times Recorder",
+   "date": "2026-03-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "During Donald Trump's first nine and a half months back in office, the number of detentions exceeding 72 hours increased from 281 to 5,011.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://www.washingtonpost.com/immigration/interactive/2026/07/22/ice-officials-warned-dangerous-crowding-see-how-they-kept-packing-people/",
+   "outlet": "Washington Post",
+   "date": "2026-07-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "ICE officials warned of dangerous crowding. See how they kept packing people in.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "ICE officials warned of dangerous crowding. See how they kept packing people in. - Washington Post Accessibility statement Skip to main content Democracy Dies in Darkness ICE officials warned of dangerous crowding. See how they kept packing people in. Scroll to continue This room on the 10th floor of a Manhattan office building was built to hold a handful of immigrant detainees for a few hours at a time. For several we"
+  }
+ ]
+}

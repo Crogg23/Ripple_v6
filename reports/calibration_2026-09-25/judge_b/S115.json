@@ -1,0 +1,12 @@
+{
+ "story_id": "S115",
+ "bin": "Matched + more",
+ "entity": "California lobbying-report employers naming artificial intelligence, 2022 vs 2024-25",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2025-04-21",
+ "post_cutoff_match": true,
+ "what_we_add": "the employer counts (1 in 2022, 58 in 2024, 59 in 2025, 45 in H1 2026) and the 1.8% vs 0.03% share",
+ "why": "CalMatters and Tech Policy Press report the AI lobbying surge in Sacramento in words and spend figures, same place and direction. No source counts employers naming AI on their reports; TechCrunch's 648-company count is federal, not California.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

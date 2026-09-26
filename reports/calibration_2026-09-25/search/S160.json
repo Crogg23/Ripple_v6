@@ -1,0 +1,77 @@
+{
+  "story_id": "S160",
+  "entity": "Google political-ads advertiser account named only \"US House of Representatives\": 58% of House members' official-office (franked) Google ad spend, Jan 4-Aug 2, 2026 ($811,700 of $1,391,800)",
+  "queries": [
+    {"q": "\"US House of Representatives\" Google ads transparency account members official office ads", "found_useful": true},
+    {"q": "House members taxpayer-funded digital ads official funds election year 2026", "found_useful": true},
+    {"q": "House members spent nearly $1.4 million official congressional funds running ads 2026 cycle AdImpact", "found_useful": true},
+    {"q": "franked ads \"paid for by US House of Representatives\" disclosure which member hidden Google", "found_useful": true},
+    {"q": "Google political ads report \"US House of Representatives\" advertiser spending franking Legistorm", "found_useful": true},
+    {"q": "\"Boosted and Branded\" Congressional Advertising With Constituents Davis Legislative Studies Quarterly", "found_useful": false},
+    {"q": "franked ads surge 2026 midterms House offices official funds advertising record AdImpact summer", "found_useful": false},
+    {"q": "congressional office YouTube Google ads franking district targeting member name not shown transparency", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://services.google.com/fh/files/helpcenter/googlefrankingadsdeck2019.pdf",
+      "outlet": "Google Civics Outreach (franking deck for House offices)",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "In your case, you will verify as the U.S. House of Representatives and the disclosure will simply state U.S. House of Representatives.",
+      "paywalled": false,
+      "searcher_note": "Explains the mechanism: Google told every House office to verify as 'US House of Representatives' (House EIN 53-6002523) since the House pays, so franked ads land under that name. File name says 2019. No spending figures."
+    },
+    {
+      "url": "https://www.spotlightpa.org/news/2026/08/rob-bresnahan-ethics-complaint-campaign-video-federal-government/",
+      "outlet": "Spotlight PA (republishing NOTUS)",
+      "date": "2026-08-21",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The Bresnahan campaign said an error was made when the congressman’s campaign and congressional offices were verifying their respective Google ad accounts after prolonged inactivity.",
+      "paywalled": false,
+      "searcher_note": "Recent: one member's official Google ads showed under his campaign account; page notes his official ads now sit on accounts carrying his name ('U.S. House of Representatives Congressman Rob Bresnahan'), unlike the nameless pooled account."
+    },
+    {
+      "url": "https://www.axios.com/2026/04/03/2026-midterm-election-house-franked-ads",
+      "outlet": "Axios",
+      "date": "2026-04-03",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Your tax dollars are helping House members get reelected",
+      "paywalled": true,
+      "searcher_note": "Headline only: page returns 403 to fetchers. Search snippet (not verified on page) says House members spent nearly $1.4M in official funds on ads since the start of the 2026 cycle per AdImpact, all platforms, not the Google account."
+    },
+    {
+      "url": "https://www.minnpost.com/dc-memo/2026/07/how-minnesota-members-of-congress-use-taxpayer-funded-franking/",
+      "outlet": "MinnPost",
+      "date": "2026-07-17",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Now it includes text messaging, Facebook and Google ads, robocalls and radio spots, as well as traditional mailers and other forms of communication.",
+      "paywalled": false,
+      "searcher_note": "Recent pattern coverage of franked communications by Minnesota members (named per member); no Google advertiser-account analysis."
+    },
+    {
+      "url": "https://cha.house.gov/_cache/files/c/f/cf991e1f-943e-437a-b3fb-9b41fecec305/F93251682496493DCB39B45EFE0C76520D81ACBD728145C1B9A9CD20EE13E230.2025-communications-standards-manual-dec-1-2025-final-1-.pdf",
+      "outlet": "Committee on House Administration, Communications Standards Manual",
+      "date": "2025-12-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Paid for by official funds authorized by the House of Representatives.",
+      "paywalled": false,
+      "searcher_note": "House rule: one of three allowed disclaimers names no member at all, which is how an ad can run with no member identified. Date from file name."
+    },
+    {
+      "url": "https://www.legistorm.com/pro_news/3178/ad-spending-in-house-concentrated-in-just-a-few-offices.html",
+      "outlet": "LegiStorm",
+      "date": "2024-06-11",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "An average House of Representatives office spent less than $4,000 for advertising in the first quarter of 2024, but six offices spent at least $76,000 apiece for advertising.",
+      "paywalled": false,
+      "searcher_note": "Pattern: official-office ad spending from House disbursement reports is concentrated in a few offices; per-office, not per-Google-account."
+    }
+  ],
+  "notes": "No source found that analyzes Google's 'US House of Representatives' advertiser account or its share of official-office Google ad money, the 58%, or the 88 members whose districts it targeted. The Google deck shows the account name is the setup Google prescribed for all franked House ads, which bears on whether the pooled account is a finding or a default. Other pattern coverage on franked ads, all naming individual members, not the account: Punchbowl News 2025-06-09 (https://punchbowl.news/article/house/house-franked-ads/), The Hill via Yahoo 2025-08-22 (Rep. Zach Nunn $12,000 digital buy), Bleeding Heartland 2026-02-15 (Feenstra radio ads), Davis and Russell, Legislative Studies Quarterly 2025-12-12 (digital ads became a primary franking tool, 2018-2024). The Axios $1.4M AdImpact figure is close to the lead's $1,391,800 total but is a different measure (all platforms, cycle to early April) and was only seen in a search snippet."
+}

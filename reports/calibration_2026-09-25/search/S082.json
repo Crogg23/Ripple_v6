@@ -1,0 +1,75 @@
+{
+  "story_id": "S082",
+  "entity": "United States, e-bike plus moped emergency-room visits (NEISS code 3215), 2019 to 2023",
+  "queries": [
+    {"q": "e-bike injuries emergency room visits NEISS 2019 2023 increase", "found_useful": true},
+    {"q": "\"mopeds\" \"power-assisted\" e-bike emergency department injuries NEISS 2023 estimate", "found_useful": true},
+    {"q": "e-bike moped injuries quadrupled emergency rooms 2019 to 2023 national data", "found_useful": true},
+    {"q": "NEISS product code 3215 mopeds power-assisted cycles injuries trend e-bike reclassified 2024 5045 5046", "found_useful": true},
+    {"q": "\"mopeds\" e-bikes emergency department visits \"87,000\" OR \"87,600\" OR \"21,800\" 2023", "found_useful": false},
+    {"q": "e-bike injury statistics misleading mopeds electric motorcycles counted NEISS critique", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns_2017-2023.pdf",
+      "outlet": "U.S. Consumer Product Safety Commission",
+      "date": "2024-09-01",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The number of ED visits for e-bikes has increased nearly 10-fold from 2017 to 2023",
+      "paywalled": false,
+      "searcher_note": "CPSC staff report (Sept 2024, day not printed). E-bikes only: narrative subset of code 3215 with mopeds excluded; 34,200 ED visits in 2023; 2018-2021 e-bike years below reporting threshold."
+    },
+    {
+      "url": "https://www.wrdw.com/2026/09/25/safety-alert-injuries-deaths-rising-e-bikes-scooters-cycles/",
+      "outlet": "WRDW (Augusta, GA)",
+      "date": "2026-09-25",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The U.S. Consumer Product Safety Commission says e-bike emergency department visits nationwide increased nearly tenfold over five years, climbing to an estimated 34,200 in 2023.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff local TV coverage repeating the CPSC e-bike-only figure; also cites JAMA Surgery 751 (2017) to 23,493 (2022)."
+    },
+    {
+      "url": "https://usafacts.org/articles/analyst-notes/just-how-dangerous-are-e-bikes-its-surprisingly-hard-to-know/",
+      "outlet": "USAFacts",
+      "date": "2026-08-20",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "But prior to 2024, e-bike injuries were mixed together with moped injuries.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff analyst note on NEISS; says e-bike and e-scooter ER visits are rising, 855,000 micromobility ER visits 2020-2025; flags the pre-2024 moped mixing that the lead's code 3215 series carries."
+    },
+    {
+      "url": "https://www.publichealth.columbia.edu/news/e-bike-powered-scooter-injuries-spike",
+      "outlet": "Columbia University Mailman School of Public Health",
+      "date": "2024-09-25",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The rate of e-bike and powered scooter injuries surged between 2019 and 2022—by 293 percent and 88 percent, respectively",
+      "paywalled": false,
+      "searcher_note": "NEISS 2019-2022 study release; e-bike injury rate (per total ED injuries) up 293%, window ends a year before the lead's."
+    },
+    {
+      "url": "https://www.cpsc.gov/Newsroom/News-Releases/2024/E-Scooter-and-E-Bike-Injuries-Soar-2022-Injuries-Increased-Nearly-21",
+      "outlet": "U.S. Consumer Product Safety Commission",
+      "date": "2023-10-17",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Nearly half (46%) of all estimated e-bike injuries from 2017 to 2022 occurred in 2022 alone.",
+      "paywalled": false,
+      "searcher_note": "Earliest CPSC release found on the e-bike surge; date as read by WebFetch though the URL path says 2024."
+    },
+    {
+      "url": "https://www.tandfonline.com/doi/full/10.1080/15389588.2025.2543497",
+      "outlet": "Traffic Injury Prevention",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Injury patterns and safety implications for electric bikes compared to mopeds in the United States",
+      "paywalled": true,
+      "searcher_note": "HTTP 403 on both tandfonline and sciencedirect; title only. Search snippet (not evidence) says it used NEISS 2019-2023 code 3215, 268,828 weighted cases, e-bikes 28.2% and mopeds 53.3%, e-bikes rising faster."
+    }
+  ],
+  "notes": "No source found reporting the combined e-bike-plus-moped code 3215 series (21.8K to 87.6K, 4.0x) or the all-injuries-flat comparison. Published figures split e-bikes out of 3215 by narrative and drop mopeds (CPSC: 34,200 e-bike ED visits in 2023, ~10x since 2017). The e-bike-vs-moped paper covers the same code and window but could not be fetched. Post-cutoff coverage exists (USAFacts 2026-08-20, WRDW 2026-09-25) but cites e-bike-only numbers."
+}

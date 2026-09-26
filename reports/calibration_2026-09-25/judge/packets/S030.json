@@ -1,0 +1,59 @@
+{
+ "story_id": "S030",
+ "lead": {
+  "headline": "Bankruptcy lawyers' groups paid for 41% of bankruptcy judges' trips in 2011-19, against 0.7% for other federal judges",
+  "number": "2,525 of 6,166 bankruptcy-judge trips (41.0%) paid by bankruptcy practitioner groups vs 0.7% for district and appeals judges; Delaware's Kevin Carey reported 200 trips, 25 paid by the Turnaround Management Association.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; speaking and teaching trips for these groups are permitted and routine, and the disclosures carry no dollar amounts."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "bankruptcy judges trips paid by bankruptcy lawyers groups American Bankruptcy Institute disclosure reimbursements",
+  "Judge Kevin Carey Turnaround Management Association trips reimbursement",
+  "bankruptcy judges junkets conferences sponsored by restructuring professionals ethics",
+  "\"bankruptcy judges\" trips reimbursed financial disclosure analysis Fix the Court",
+  "federal judges privately funded trips disclosures analysis bankruptcy bar groups paid travel news",
+  "bankruptcy judges cozy relationship bankruptcy bar conferences paid travel Delaware judges professionals LoPucki",
+  "\"bankruptcy judges\" reimbursements \"American Bankruptcy Institute\" OR \"National Conference of Bankruptcy Judges\" paid travel disclosures report 2026",
+  "\"Kevin Carey\" bankruptcy judge financial disclosure reimbursements travel"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.abi.org/newsroom/press-releases/abi-mourns-the-passing-of-abi-immediate-past-president-hon-kevin-j-carey",
+   "outlet": "American Bankruptcy Institute",
+   "date": "2024-04-12",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "He was a Fellow of the American College of Bankruptcy and a member of the International Insolvency Institute, and he was the first judge to serve as global chair of the Turnaround Management Association.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ch, Judge Carey earned a reputation for being one of the leading bankruptcy judges in the U.S. Judge Carey was widely known throughout the bankruptcy bar. He was the Immediate Past President of the American Bankruptcy Institute (ABI) and sat on the Executive Committee of the ABI Board of Directors. He was a Fellow of the American College of Bankruptcy and a member of the International Insolvency Institute, and he was the first judge to serve as global chair of the Turnaround Management Association. He lectured worldwide on bankruptcy and cross-border issues, and he taught several bankruptcy-related university programs, including at St. John’s University School of Law, Temple University and Villanova. He also was a contributing author to Collier on Bankruptcy , the leading treatise on U.S. bankruptcy law. Judge Car"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.wfae.org/united-states-world/2024-05-01/when-judges-get-free-trips-to-luxury-resorts-disclosure-is-spotty",
+   "outlet": "NPR (via WFAE)",
+   "date": "2024-05-01",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Dozens of federal judges failed to fully disclose free luxury travel to judicial conferences around the world, as required by internal judiciary rules and federal ethics law, an NPR investigation has found.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "h , Carrie Johnson Published May 1, 2024 at 5:08 AM EDT Facebook Twitter LinkedIn Email Listen • 7:03 Chelsea Beck for NPR Many federal judges receive free rooms and subsidized travel to luxury resorts for legal conferences. NPR found that dozens of judges did not fully disclose the perks they got. Dozens of federal judges failed to fully disclose free luxury travel to judicial conferences around the world, as required by internal judiciary rules and federal ethics law , an NPR investigation has found. As a result, the public remained in the dark about potential conflicts of interest for some of the United States' top legal officials. Federal judges — occasionally with family members or even their dog in tow — traveled to luxury resorts in locations as far-flung as London; Palm Beach, Fla.; Bar Harbor, Maine; and the outskirts o"
+  },
+  {
+   "idx": 2,
+   "url": "https://fixthecourt.com/2026/04/federal-judges-accepted-far-too-many-freebies-in-2023-and-2024/",
+   "outlet": "Fix the Court",
+   "date": "2026-04-16",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "In addition, 26 acceptors are magistrate judges and 18 are bankruptcy judges.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s, we’ll aim to update our list as more are posted. A final note on partisanship : Gift acceptance knows no partisan bounds. Of the 107 judges who accepted gifts and were presidentially appointed, 63 (59%) were appointed by Democratic presidents and 44 (41%) were appointed by Republican presidents. In addition, 26 acceptors are magistrate judges and 18 are bankruptcy judges. We did not account for active or senior status in our tally and included judges who have since retired. Related News Reports The Justices' Latest Financial Disclosure Reports (2021), Plus Links to Earlier Ones February 2, 2023 Fix the Court expects the justices' 2022 reports to be released the week of June 12, 2023. Press Release Judicia"
+  }
+ ]
+}

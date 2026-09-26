@@ -1,0 +1,71 @@
+{
+ "story_id": "S159",
+ "lead": {
+  "headline": "Alabama Power reports 1.6 watts of rooftop solar per home, last of 173 big utilities; sister Georgia Power: 30.1",
+  "number": "2.1 MW of home solar across 1.33M homes (2024); median of the 173 utilities with 100K+ homes about 120 W; Southern Co. sisters Georgia Power 30.1 W and Mississippi Power 31.5 W; Alabama Power has no net-metering row",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "These are the utilities' own reports and EIA allows best estimates; if an outside count is far higher, the story becomes \"Alabama Power under-reports\", not \"Alabama homes don't go solar\""
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Alabama Power rooftop solar lowest in the nation residential customers",
+  "Alabama Power solar fee capacity reserve charge rooftop solar adoption Alabama last",
+  "Alabama Power net metering customers number rooftop solar 2024 EIA Georgia Power comparison per customer",
+  "\"Alabama\" \"last in the nation\" residential solar \"per customer\" kilowatts",
+  "Alabama Power rooftop solar customers 2026 Public Service Commission solar",
+  "Alabama rooftop solar growing installations Alabama Power 2026 September",
+  "Southern Company Alabama Power Georgia Power Mississippi Power rooftop solar comparison distributed generation customers",
+  "how many Alabama homes have rooftop solar panels Alabama Power customers with solar count"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.selc.org/press-release/court-allows-alabama-power-solar-fees-to-continue/",
+   "outlet": "Southern Environmental Law Center",
+   "date": "2026-03-27",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Alabama is last in the nation in terms of residential solar kilowatts per customer, and Alabama Power's charges are hindering its growth.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " subject to the charges for his 6-kilowatt solar system. “This charge discourages additional residential solar systems in the state, a source of clean, renewable power that decreases the use of fossil fuels. I want lower electricity bills and a better environment for my children and grandchildren.” Alabama is last in the nation in terms of residential solar kilowatts per customer, and Alabama Power’s charges are hindering its growth. Alabama Power, with approval from the Alabama PSC, charges residential solar customers a monthly fee of $5.41 per kilowatt based on the size of their solar system, which equates to nearly $30 a month for an average system. The monthly fee reduces solar savings and makes installing solar panels impractical. “This is a disappoin"
+  },
+  {
+   "idx": 1,
+   "url": "https://insideclimatenews.org/news/31032026/alabama-power-solar-fee-ruling/",
+   "outlet": "Inside Climate News",
+   "date": "2026-03-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Alabama ranks 51st in residential solar capacity among U.S. states plus Puerto Rico and the District of Columbia, trailing only North Dakota, according to the Solar Energy Industries Association, a solar industry trade group.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nside look at top climate news, delivered every two weeks. Get Inside Climate Podcast Justice & Health A digest of stories on the inequalities that worsen the impacts of climate change on vulnerable communities. Get Justice & Health Email Address I agree to the terms of service and privacy policy . Alabama ranks 51st in residential solar capacity among U.S. states plus Puerto Rico and the District of Columbia, trailing only North Dakota, according to the Solar Energy Industries Association , a solar industry trade group. Per capita, Alabama ranks last. Alabama Power, which provides power to roughly two thirds of the state, charges its customers that generate their own electricity a monthly fee of $5.41 per kilowatt of capacity installed. The average size of a U.S. residential solar array in 2024 was 7.2 kilowatts , according to the Lawrence Berke"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.selc.org/press-release/2021-trends-making-and-braking-rooftop-solar-in-the-south/",
+   "outlet": "Southern Environmental Law Center",
+   "date": "2021-11-17",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Alabama ranks 49th nationally for residential solar — nearly dead last — with only about 500 rooftop solar customers in the entire state.",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://cleanenergy.org/blog/solar-in-the-southeast-annual-report-part-1/",
+   "outlet": "Southern Alliance for Clean Energy",
+   "date": "2021-06-22",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Alabama Power joins the North Carolina Electric Cooperatives in meeting the categorical definition as SunBlockers.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "locker Alabama Power is no longer expected to commission the full capacity of solar approved by the Public Service Commission in 2015. The SACE forecast for Alabama Power in 2024 has dropped to 327 watts per customer. Since the Southeast region average was already above that level last year (2020), Alabama Power joins the North Carolina Electric Cooperatives in meeting the categorical definition as SunBlockers. WHAT’S NEXT? Accountability/transparency for contract claims One of the things that became obvious in assembling this year’s dataset is that more projects are being commissioned across state lines from the customers they will serve. This isn’t entirely new. We have had the following example in our Methods since we began this annual rep"
+  }
+ ]
+}

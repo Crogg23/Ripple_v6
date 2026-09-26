@@ -1,0 +1,12 @@
+{
+ "story_id": "S084",
+ "bin": "Not comparable",
+ "entity": "Forest County, Pennsylvania orphaned wells per 10,000 residents",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "EDF names Forest County with 317 documented orphan wells and StateImpact gives Venango 2,022 vs our 4,786 — earlier snapshots and raw counts, not our 2019-22 per-capita measure. No source states the per-capita finding, and nothing else matches.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

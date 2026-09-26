@@ -1,0 +1,12 @@
+{
+ "story_id": "S119",
+ "bin": "Matched + more",
+ "entity": "Trump second-term judicial confirmations with zero Democratic votes",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2025-12-22",
+ "post_cutoff_match": true,
+ "what_we_add": "the shares: 34 of 45 (76%) zero-Dem judges vs Biden's 25%, and the 58% figure once Collins, Murkowski and Graham are removed",
+ "why": "Mike Davis states no Senate Democrat voted for any circuit nominee and Republicans confirmed Trump's judges alone; Nomination Notes logs the party-line confirmations one by one. No source computes the 76% share or the Biden comparison. Deciding circuit-claim source is opinion.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

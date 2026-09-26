@@ -1,0 +1,83 @@
+{
+ "story_id": "S151",
+ "lead": {
+  "headline": "The tax agency revoked 108 nonprofits for not filing, yet its own e-file index holds a return from those years",
+  "number": "108 auto-revoked 2019-2026 with a return received for one of the three missed years; 59 still unreinstated and off the exempt list; 27 quietly put back without a recorded reinstatement",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "A late or wrong-form return received before the revocation date may not legally stop auto-revocation; get the IRS rule in writing. The claimed 6x time trend is an e-file-mandate artifact; drop it."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "IRS automatically revoked tax-exempt status nonprofit that filed Form 990 error",
+  "TIGTA audit automatic revocation exempt organizations erroneously revoked returns filed",
+  "National Taxpayer Advocate most serious problem automatic revocation erroneous revocations organizations that filed",
+  "TIGTA report automatic revocation group return subordinates erroneously revoked programming",
+  "nonprofit lost tax-exempt status IRS mistake despite filing returns revoked in error news",
+  "analysis IRS auto-revocation list includes charities that had filed Form 990 returns data mismatch",
+  "TIGTA automatic revocation of tax-exempt status controls errors report exempt organizations (allowed_domains tigta.gov, treasury.gov, oversight.gov)",
+  "\"erroneously listed\" automatic revocation 2,270 organizations Taxpayer Advocate"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/Most-Serious-Problems-Tax-Exempt-Automatic-Revocation.pdf",
+   "outlet": "National Taxpayer Advocate (2012 Annual Report to Congress, Most Serious Problem)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "identified more than 2,270 cases in which an organization was erroneously listed as having had its exempt status revoked",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.irs.gov/charities-non-profits/automatic-revocation-of-exemption-for-nonfiling-frequently-asked-questions-you-think-your-organization-was-erroneously-listed-as-revoked",
+   "outlet": "Internal Revenue Service",
+   "date": "2026-06-28",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "If an organization on the Auto-Revocation List has documentation that it met its filing requirement for one or more years during the three year period, what should it do?",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "on sessions Stay Exempt International taxpayers Governmental liaisons Federal, state and local governments Indian tribal governments Tax exempt bonds Taxpayer identification numbers (TIN) Can the IRS “undo” my organization’s automatic revocation? May my organization appeal its automatic revocation? If an organization on the Auto-Revocation List has documentation that it met its filing requirement for one or more years during the three year period, what should it do? If an organization on the Auto-Revocation List has a letter from the IRS stating that it does not have an annual filing requirement, what should it do? Why does a federal credit union appear on the Auto-Revocation List, even though it is not required to file an annual return? If an organization on the Auto-Revocation List has b"
+  },
+  {
+   "idx": 2,
+   "url": "https://apify.com/aiqlabs/nonprofit-lookup",
+   "outlet": "Apify (AIQ Labs product page)",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "In a random sample of 40 recently revoked 501(c)(3)s, 19 still had a full Form 990 filing history on the public record.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ata. It is in a separate file — the Automatic Revocation of Exemption List — that the Form 990 record does not link to and does not reflect. The organisation is also absent from Publication 78, the IRS list of organisations eligible to receive deductible contributions. This is not a rare edge case. In a random sample of 40 recently revoked 501(c)(3)s, 19 still had a full Form 990 filing history on the public record. What this Actor does For each organisation you give it, it reconciles three official sources and reports where they disagree: Source What it answers ProPublica Nonprofit Explorer (IRS Form 990 extract) What the organisation filed, and what the Business Master File says about it IRS Automatic Revocation of Exemption List W"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.foxnews.com/politics/white-nationalists-nonprofit-loses-tax-exempt-status.amp",
+   "outlet": "Fox News",
+   "date": "2017-03-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Spencer told the Los Angeles Times on Monday that an IRS error was to blame for the National Policy Institute's failure to file federal tax returns.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "White nationalist's nonprofit loses tax-exempt status By Caitlin Yilek Washington Examiner Published March 13, 2017 7:20pm EDT | Updated March 14, 2017 8:13am EDT The IRS has stripped white nationalist Richard Spencer's nonprofit of its tax-exempt status over failure to file tax returns after 2012. Spencer told the Los Angeles Times on Monday that an IRS error was to blame for the National Policy Institute's failure to file federal tax returns. The IRS had reportedly misclassified Spencer's group, but fixed the error in February. On Monday the IRS' updated records said the group's tax-exempt status was stripped retroactively to May 2016. Nonprofits are generally required to file tax returns each year. The IRS automatically revokes tax-exempt status for failing to file the"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.tigta.gov/sites/default/files/reports/2026-08/20261S0042fr.pdf",
+   "outlet": "Treasury Inspector General for Tax Administration (Report 2026-1S0-042)",
+   "date": "2026-08-19",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The automatic revocations increased by approximately 59 percent from FY 2021 through FY 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "atus occurs when an exempt organization fails to file required annual returns or notices for three consecutive years.16 Revocations can also occur because of an examination. An I.R.C. § 501(c)(3) charity that loses its tax-exempt status is no longer eligible to receive tax-deductible contributions. The automatic revocations increased by approximately 59 percent from FY 2021 through FY 2025. The Office of Chief Counsel stated that some of the increase in automatic revocations may be due to the impact of the pandemic on exempt organization operations and return filing. As previously mentioned, EO examinations decreased from FY 2021 through FY 2025. As a result, there was a corresponding decrease in compliance related revocations during t"
+  }
+ ]
+}

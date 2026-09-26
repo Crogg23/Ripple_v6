@@ -1,0 +1,48 @@
+{
+ "story_id": "S074",
+ "lead": {
+  "headline": "68 federal district judges with unusual loans from a bank were assigned 424 cases naming that bank",
+  "number": "379 judges got 3,650 cases naming a bank they owed that year (2003-21); the narrow cut is 68 district judges with investment, guaranty or $250K+ loans on 424 cases.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Under recusal law an ordinary loan isn't ownership, so most hits are routine."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "federal judges loans from bank presided over cases involving that bank",
+  "judges mortgage loan bank party case recusal financial disclosure analysis",
+  "\"judges\" owed money to banks that appeared before them disclosure reports investigation",
+  "federal judge liabilities bank loan heard case against same bank conflict of interest news",
+  "Committee on Codes of Conduct advisory opinion judge loan from bank party recusal \"financial interest\" deposit mortgage",
+  "judges debts disclosure CourtListener analysis bank creditor cases 2026",
+  "judge had a loan from the bank while presiding over lawsuit against the bank, failed to recuse",
+  "federal judges financial conflicts recusal investigation September 2026",
+  "\"Hidden Interests\" Wall Street Journal judges loans banks disclosure"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.abajournal.com/magazine/article/to-recuse-or-not-investigations-into-federal-judges-financial-interests-spark-debate",
+   "outlet": "ABA Journal",
+   "date": "2022-02-01",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "reported that between 2010 and 2018, more than 130 federal judges failed to recuse themselves from 685 cases in which they or family members owned stock.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " a bright line based on one of the “financial interest”definitions: “ownership of a legal or equitable interest, however small.” There are some exceptions, including ownership of shares in a mutual fund. Despite the clarity of the rule, in September, the Wall Street Journal , in a front-page story, reported that between 2010 and 2018, more than 130 federal judges failed to recuse themselves from 685 cases in which they or family members owned stock. When brought to their attention, the judges offered all manner of reasons for the statutory violations, including flawed internal procedures, lack of awareness that their spouse’s holdings mandated recusal and the mistaken belief that shares in an account run by a money manager were an exception. Congress noted the Wall Street Journ"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.uscourts.gov/sites/default/files/document/guide-vol02b-ch02_1.pdf",
+   "outlet": "Judicial Conference Committee on Codes of Conduct (Guide to Judiciary Policy, Vol. 2B, Ch. 2)",
+   "date": "2025-03-06",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Maintaining a bank account does not require a judge to recuse from cases in which the bank is a party, nor does owing money to a bank require recusal, absent special circumstances such as unusually favorable terms or a default.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e is a policy holder, so long as the case will not substantially affect the judge’s interest in the policy. A judge who is a bondholder and periodically receives interest payments on the bonds may hear cases involving the bond issuer so long as the case does not involve the bonds held by the judge. Maintaining a bank account does not require a judge to recuse from cases in which the bank is a party, nor does owing money to a bank require recusal, absent special circumstances such as unusually favorable terms or a default. A judge who is a utility customer may hear cases involving the utility. A judge who receives a military pension may sit on cases in which the military is a party. Advisory Opinion No. 75. Consideration of several factors can help to reconcile these opinions and assist in identifying when recusal is necessary: (1) When a transaction "
+  }
+ ]
+}

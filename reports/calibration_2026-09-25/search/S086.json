@@ -1,0 +1,46 @@
+{
+  "story_id": "S086",
+  "entity": "US co-authors of papers retracted in ORI misconduct cases (2010-25): NIH awards received after the retraction (76 people, $187M)",
+  "queries": [
+    {"q": "co-authors of retracted papers research misconduct ORI continue receiving NIH grants analysis", "found_useful": true},
+    {"q": "collaborators coauthors of scientists found guilty of misconduct ORI citations funding penalty Azoulay study", "found_useful": false},
+    {"q": "Retraction Watch co-authors misconduct finding still received NIH funding after retraction", "found_useful": false},
+    {"q": "\"$187 million\" NIH grants retracted papers misconduct co-authors", "found_useful": true},
+    {"q": "researchers found guilty of misconduct by ORI later received more than $100 million NIH grants study", "found_useful": true},
+    {"q": "retracted papers NIH funding researchers keep grants after retraction news 2026 Ioannidis living analysis", "found_useful": true},
+    {"q": "lab head co-author escapes blame misconduct finding postdoc ORI senior author keeps NIH grants", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13370526/",
+      "outlet": "Sandoval-Lentisco and Ioannidis, 'Cost of Retracted Articles to the NIH: a Living Analysis' (medRxiv preprint, on PMC)",
+      "date": "2026-07-07",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The per-author cohort-wide median annual NIH funding fell from $133,293 in the 3 years pre-retraction to $55,973 in the 3 years post-retraction, a −58.0% change.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. NIH funding of all US authors with retractions, before and after retraction; not limited to ORI misconduct cases or to co-authors. Also: 26.7% of previously funded authors lost all NIH funding in the 3 years after first retraction."
+    },
+    {
+      "url": "https://www.the-scientist.com/us-researchers-found-guilty-of-misconduct-collectively-awarded-101-million-31967",
+      "outlet": "The Scientist",
+      "date": "unknown",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Seventeen scientists found to have committed research misconduct during the last 25 years have since collectively received more than $101 million in NIH funding.",
+      "paywalled": false,
+      "searcher_note": "Pattern: the ORI-sanctioned researchers themselves (not their co-authors) winning NIH money afterward; covers a study published 2017-02-01 in the Journal of Empirical Research on Human Research Ethics. Page shows no date."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4132287/",
+      "outlet": "eLife (Stern, Casadevall, Steen, Fang)",
+      "date": "2014-08-14",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Researchers experienced a median 91.8% decrease in publication output and large declines in funding after censure by the ORI.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: NIH money behind misconduct retractions ($58M, 1992-2012) and funding drop for ORI-censured researchers; the abstract does not cover co-authors."
+    }
+  ],
+  "notes": "No source found counts co-authors of ORI-case retractions or the NIH money they won afterward; no hit on $187M. Closest pattern: sanctioned researchers themselves later won $101M (2017 study), and a July 2026 preprint on NIH funding of all retracted US authors. Science's news story on the $101M study ('U.S. researchers guilty of misconduct later won more than $100 million in NIH grants, study finds') returned 403, so the The Scientist copy is recorded instead. A 2019 Research Policy paper ('Guilt by association: How scientific misconduct harms prior collaborators') on citation penalties for collaborators of ORI-found scientists returned 403; its snippet says citations, not funding. A 2022 bioRxiv preprint (Ribeiro, Kalichman, Vasconcelos) on retractions and grant review had no counts in its abstract."
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S190",
+ "bin": "Matched + more",
+ "entity": "RA Capital, OrbiMed and Baker Bros filing as directors at biotechs; a few firms drive biotech's investor-director lead over software",
+ "deciding_sources": [1, 2, 3],
+ "earliest_match_date": "2025-11-13",
+ "post_cutoff_match": false,
+ "what_we_add": "The 2024 per-firm counts (RA 21, OrbiMed 16, Baker Bros 13), 91 of 708 biotechs vs 24 of 372 software, and the eight-firm decomposition",
+ "why": "RA Capital's own page (100+ board seats), Wikipedia on Baker Bros (board members at 8 of top 20 holdings) and Columbia Law Review (investor interlocks at 30.1% of biotech vs 16.9% of IT) name the entities and state the same finding, same direction. No source has the 2024 director-filing counts or the eight-firms-carry-the-gap decomposition.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

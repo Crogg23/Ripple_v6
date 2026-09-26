@@ -1,0 +1,77 @@
+{
+  "story_id": "S101",
+  "entity": "83 new Arizona hospices registered 2020-23 listing Los Angeles phone numbers; Medicare certification and enrollment status of those hospices",
+  "queries": [
+    {"q": "Arizona new hospices Los Angeles phone numbers fraud", "found_useful": false},
+    {"q": "Arizona hospice surge California operators moved Arizona 2022 Medicare hospice fraud investigation", "found_useful": true},
+    {"q": "Arizona hospice licenses spike owners Los Angeles area Arizona Department of Health Services hospice fraud", "found_useful": true},
+    {"q": "Arizona Republic hospice fraud California moratorium hospices flooding Arizona", "found_useful": true},
+    {"q": "Arizona hospices never enrolled Medicare shell hospices California owners 818 area code phone", "found_useful": false},
+    {"q": "Arizona hospice fraud 2026 KJZZ OR azcentral hospices Phoenix California-based owners", "found_useful": false},
+    {"q": "justice.gov Arizona hospice owner Los Angeles charged Medicare hospice Phoenix Glendale California residents", "found_useful": false},
+    {"q": "after California hospice license moratorium 2022 new hospice NPI registrations shifted to Arizona Nevada analysis", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://hospicenews.com/2024/05/07/fraudulent-hospice-providers-may-be-moving-between-states/",
+      "outlet": "Hospice News",
+      "date": "2024-05-07",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "We started to make the connection between the California moratorium on hospice business licenses and the influx of programs coming to Nevada, Arizona and Texas.",
+      "paywalled": false,
+      "searcher_note": "Pattern: Nevada hospice CEO ties California's license moratorium to an influx of new hospices in Arizona, Nevada, Texas; no Arizona hospice named, no phone-number angle."
+    },
+    {
+      "url": "https://www.propublica.org/article/medicare-california-hospice-care-fraud-southwest",
+      "outlet": "ProPublica",
+      "date": "2024-01-25",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "It also certified three new hospices last year at a Phoenix address that purportedly houses dozens of providers, all of which have materialized in the past two years.",
+      "paywalled": false,
+      "searcher_note": "Pattern: Medicare kept certifying new hospices at a Phoenix address packed with recently formed providers; no LA phone-number link or certification rates."
+    },
+    {
+      "url": "https://hospicenews.com/2023/07/03/cms-proposes-36-month-rule-to-curb-hospice-license-flipping/",
+      "outlet": "Hospice News",
+      "date": "2023-07-03",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Arizona had 239 new Medicare-certified hospices appear between 2018 and 2022, representing 52% of all providers in the state.",
+      "paywalled": false,
+      "searcher_note": "Arizona new-hospice count on a different window (2018-22) and definition (Medicare-certified), not comparable to the lead's 2020-23 registrations."
+    },
+    {
+      "url": "https://hospicenews.com/2024/01/25/new-hospices-cropping-up-in-fraud-hotbeds-amid-ongoing-program-integrity-push/",
+      "outlet": "Hospice News",
+      "date": "2024-01-25",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "One location in Phoenix was approved for three new hospice licenses in 2023",
+      "paywalled": false,
+      "searcher_note": "Pattern: new hospices clustering in Arizona fraud hotbed; repeats ProPublica Phoenix-address finding."
+    },
+    {
+      "url": "https://www.propublica.org/article/hospices-arizona-california-nevada-texas-cms-medicaid-medicare",
+      "outlet": "ProPublica",
+      "date": "2023-07-21",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Last week, regulators rolled out enhanced oversight for new hospices in Arizona, California, Nevada and Texas.",
+      "paywalled": false,
+      "searcher_note": "CMS enhanced oversight of new hospices in four states including Arizona; no Arizona-specific data."
+    },
+    {
+      "url": "https://www.news4jax.com/health/2026/08/27/california-and-the-federal-government-battle-over-hospice-fraud-as-victims-lose-coverage-and-care/",
+      "outlet": "Associated Press (via News4JAX)",
+      "date": "2026-08-27",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Some of the enhanced oversight began under the Biden administration, when the federal government said it would place newly Medicare-enrolled hospices in California, Arizona, Nevada and Texas under a period of enhanced oversight.",
+      "paywalled": false,
+      "searcher_note": "Recent (post-2026-06-30) coverage; LA hospice fraud focus, Arizona mentioned only as an oversight state; no operators-moving-to-Arizona detail."
+    }
+  ],
+  "notes": "No source found that identifies Arizona hospices by Los Angeles phone numbers, or reports how many such hospices got Medicare certification or stayed enrolled. Coverage found is pattern-level: California's 2022 license moratorium pushing operators into Arizona/Nevada/Texas, and new-hospice clustering at a Phoenix address. Las Vegas Weekly 2026-07-16 ('How a surge of fraudulent hospice providers led Nevada officials to pump the brakes on licenses') returned HTTP 402 and is Nevada-focused; not recorded. KFF Health News 2026-03-19 and DOJ CDCA April 2026 takedown releases checked; they do not mention Arizona operators. No disagreeing coverage found."
+}

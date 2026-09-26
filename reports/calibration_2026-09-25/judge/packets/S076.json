@@ -1,0 +1,49 @@
+{
+ "story_id": "S076",
+ "lead": {
+  "headline": "29 Medicare-enrolled businesses are signed for by someone sharing a banned person's name, city and state; two drew $4.91M",
+  "number": "29 enrolled orgs, org NPI created after the ban; 2 drew 2024 Part B money: National Health Transport (Miami ambulance) $4.25M, ASAP EMS (Laurel MS) $662K.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Raul Rodriguez and Kevin Smith are common names, so namesakes aren't ruled out."
+ },
+ "queries_logged": 10,
+ "queries": [
+  "\"National Health Transport\" Miami ambulance Medicare fraud",
+  "\"ASAP EMS\" Laurel Mississippi",
+  "\"Raul Rodriguez\" ambulance Miami Medicare excluded",
+  "\"Kevin Smith\" ambulance Mississippi Medicare fraud excluded",
+  "\"National Health Transport\" Miami",
+  "excluded individuals owning Medicare-enrolled providers OIG report ownership exclusion list PECOS",
+  "OIG \"Vulnerabilities Related to Provider Enrollment and Ownership Disclosure\" Medicare excluded owners",
+  "\"Raul Rodriguez\" health care fraud sentenced Miami",
+  "excluded person secretly runs ambulance company Medicare billing nominee owner indicted 2026",
+  "\"ASAP EMS\" \"Kevin Smith\" OR \"National Health Transport\" \"Raul Rodriguez\""
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://oig.hhs.gov/reports/all/2016/medicare-vulnerabilities-related-to-provider-enrollment-and-ownership-disclosure",
+   "outlet": "HHS Office of Inspector General",
+   "date": "2016-05-20",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "2 of the 11 CMS contractors did not check all required exclusions databases, which could allow providers with excluded owners to enroll in the Medicare program.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "h State Medicaid programs. The prevalence of nonmatching owner names raises concern about the completeness and accuracy of information about Medicare providers' ownership. It also demonstrates that providers may not be complying with the requirement to report ownership changes to CMS. Additionally, 2 of the 11 CMS contractors did not check all required exclusions databases, which could allow providers with excluded owners to enroll in the Medicare program. The two contractors reported that they checked only one of two exclusions databases, and this database does not always have the most current information on excluded individuals and entities. Taken together, these findings reveal vulnerabilities that could allow potentially fraudulent providers to enroll in the Medicare progr"
+  },
+  {
+   "idx": 1,
+   "url": "https://voyagemia.com/interview/exploring-life-business-with-raul-rodriguez-of-crei-holdings-and-national-health-transport",
+   "outlet": "Voyage MIA",
+   "date": "2026-04-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "National Health Transport (NHT) is also a major pillar of my work, and – just like CREI Holdings – it is deeply connected to the mission of the Li'l Abner Foundation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "investing in the places where we build. That’s why my work with the Li’l Abner Foundation aligns so naturally with CREI Holdings. The housing we build and the programs we support both aim to improve the lives of local families. It’s about creating stability, opportunity, and pride in the community. National Health Transport (NHT) is also a major pillar of my work, and – just like CREI Holdings – it is deeply connected to the mission of the Li’l Abner Foundation. NHT is a medical transportation company built on a simple but powerful belief: every patient deserves compassion, safety, dignity, and dependable care at every step of their medical journey. My journey began for one purpose only and it was to transport my father in his medically fragile state. He was my hero and still is to this day. In"
+  }
+ ]
+}

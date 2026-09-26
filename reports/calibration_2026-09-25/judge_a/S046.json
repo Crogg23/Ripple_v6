@@ -1,0 +1,12 @@
+{
+ "story_id": "S046",
+ "bin": "Not comparable",
+ "entity": "Pension plan EIN 822871833's funding and unpaid contributions, plus TMSEL's unpaid contributions",
+ "deciding_sources": [1, 3],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "PBGC gives numbers for the St. Joseph RI plan (35% funded, $88M underfunded) that differ from ours (25.8%, $95.4M unpaid minimums) because the measure and date differ, and the RTA audit's usable quote disputes whether TMSEL owes ERISA minimums at all rather than stating our number. The two 'did not make contributions' quotes are missing and ignored.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

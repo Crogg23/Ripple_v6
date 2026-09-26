@@ -1,0 +1,82 @@
+{
+ "story_id": "S061",
+ "lead": {
+  "headline": "56,159 rural apartments in federal farm-agency housing opened by 1980 have no live low-rent clause; 35,324 get rent help",
+  "number": "56,159 units (13.5%) sit in projects opened by 1980 with no live restrictive clause; 35,324 get rental help; Iowa 36%, Missouri 32%.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The clause dates follow a formula and the table has no loan due date; the outstanding loan can still bind the project."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "USDA Section 515 rural rental housing restrictive use provisions expire pre-1979 loans prepayment units at risk",
+  "Section 515 maturing mortgages rural apartments losing affordability rental assistance tenants 2025",
+  "Iowa USDA rural rental housing Section 515 apartments leaving program affordability expiring",
+  "Missouri USDA rural apartments Section 515 mortgages paid off tenants lose rental assistance",
+  "GAO USDA multifamily housing maturing mortgages Section 521 rental assistance tenants at risk report",
+  "GAO 2018 Rural Housing Service maturing mortgages 60 percent properties exited program tenants",
+  "Section 515 properties without restrictive use provisions number of units expired use restrictions data analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.cura.umn.edu/research/usda-section-515-program-quantitative-analysis",
+   "outlet": "University of Minnesota Center for Urban & Regional Affairs (CURA)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Due to the older properties in Minnesota and Iowa, over half of properties in both states may never have had a restrictive use clause or these clauses have expired as of June 30, 2020.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e oldest Section 515 properties, with nearly 95 percent of the properties older than 30 years. In Iowa, 72 percent of Section 515 properties are older than 40 years, while more than 45 percent are older than 50 years. Wisconsin has the youngest properties, with about two-thirds older than 30 years. Due to the older properties in Minnesota and Iowa, over half of properties in both states may never have had a restrictive use clause or these clauses have expired as of June 30, 2020. Again, as described above, this implies that the mortgage could be prepaid, removing the Section 515 affordable housing status. Wisconsin, with younger Section 515 properties, has a restrictive use clause on about 40 percent of its properties. On average, two percent of the units in the Section 515 housing stock lose the protec"
+  },
+  {
+   "idx": 1,
+   "url": "https://nlihc.org/resource/housing-assistance-council-research-finds-usda-rural-rental-housing-stock-lost-nearly",
+   "outlet": "National Low Income Housing Coalition",
+   "date": "2026-07-06",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Several Midwestern states lost over 10% of their USDA Section 515 housing, including Nebraska, North Dakota, Michigan, South Dakota, Wisconsin, Indiana, and Iowa.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cipated and different properties left the portfolio than expected. From June 2021 to March 2025, nearly 15,000 rural housing units lost federal oversight and regulations, including affordability and minimum eviction notice requirements. Tenants in these properties may face higher rents or eviction. Several Midwestern states lost over 10% of their USDA Section 515 housing, including Nebraska, North Dakota, Michigan, South Dakota, Wisconsin, Indiana, and Iowa. Four states lost more than 10% of their total units through Section 515 property loss: Nebraska, North Dakota, Michigan, and South Dakota. Notably, the Section 515 program had early success in these states and faced mortgage maturity the earliest. As Section 515 properties continue to leave the USDA portfolio, and mortgages across the "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.gao.gov/products/gao-18-285",
+   "outlet": "US Government Accountability Office",
+   "date": "2018-05-17",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "about 60 percent of properties with maturing mortgages exited the program between 2014 through 2017.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hallenges. Without these controls, RHS may lack assurance that is has reliable data for calculating exit dates and initiating preservation efforts. While RHS has taken actions to address properties with maturing mortgages, such as offering property owners options designed to prevent property exits, about 60 percent of properties with maturing mortgages exited the program between 2014 through 2017. The agency's planning efforts lacked key steps such as (1) establishing preservation goals, (2) developing metrics for evaluating preservation efforts, and (3) analyzing and responding to risks facing its portfolio such as resource limits and growing capital rehabilitation needs. Without taking these actions, RHS is not well positio"
+  },
+  {
+   "idx": 3,
+   "url": "https://ruralhome.org/wp-content/uploads/storage/documents/rdpreservationguide.pdf",
+   "outlet": "Housing Assistance Council",
+   "date": "2008",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Mortgages financed before December 21, 1979 can be prepaid only after the owner requests RD permission, rejects incentives to stay in the program, and sometimes offers the property to nonprofit or public entities.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " state offices as well. Preserving Rural Rental Housing 4 PURCHASING IN THE RD PREPAYMENT PROCESS3 The ability to prepay a Section 515 mortgage, and the process for doing so, are governed by statutes and RD’s regulations and handbooks. Mortgages made on or after December 15, 1989 cannot be prepaid. Mortgages financed before December 21, 1979 can be prepaid only after the owner requests RD permission, rejects incentives to stay in the program, and sometimes offers the property to nonprofit or public entities. Projects with Interest Credit subsidy approved between December 21, 1979 and December 15, 1989 are subject to twenty-year use restrictions and those without Interest Credit subsidy to fifteen-year restrictions. Legislation in 1992 attempted to impose the pre-1979 requirements on mortgages generated during that 1979 to 1989 period, but a Nat"
+  },
+  {
+   "idx": 4,
+   "url": "https://news.gatech.edu/news/2026/03/12/successful-usda-program-has-supported-more-533000-affordable-rental-homes-rural",
+   "outlet": "Georgia Tech News Center (republished from The Conversation)",
+   "date": "2026-03-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The owners of these rental properties no longer have to keep rents affordable once they have paid off their loans.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e disabilities, or fall into both of those categories. Market-Rate Options After Maturity The vast majority of these affordable rental homes were built in the 1970s through the 1990s and financed with USDA loans that last between 30 and 50 years . By 2050, there will be no Section 515 housing left. The owners of these rental properties no longer have to keep rents affordable once they have paid off their loans. And their owners and tenants may also lose access to a USDA rental assistance program, which helps keep tenants’ housing costs low. They can refinance the homes or sell the properties. They also can continue to charge affordable rents to occupants or convert those units to market rate. Because of this flexibility, a large share of rur"
+  }
+ ]
+}

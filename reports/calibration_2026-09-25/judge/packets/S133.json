@@ -1,0 +1,46 @@
+{
+ "story_id": "S133",
+ "lead": {
+  "headline": "40 of 102 working major cement plants drew a serious Clean Air Act violation in 2020-25, top of 63 industries",
+  "number": "39% of operating major cement plants got a new high-priority violation vs a 9.8% median industry; 3.7x other major plants in the same states",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Cement kilns run continuous monitors, so more breaches get caught; and the plant list may be padded with grinding terminals or bagging plants (Quikrete Calera, Systech Paulding)."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "cement plants high priority violations Clean Air Act EPA ECHO share of cement kilns",
+  "cement kilns Clean Air Act violations investigation many plants out of compliance",
+  "\"high priority violation\" cement plant Clean Air Act 2024 2025",
+  "Environmental Integrity Project cement plants pollution violations report",
+  "cement plant Clean Air Act settlement EPA 2026",
+  "cement industry worst Clean Air Act violation rate compared other industries analysis EPA data news",
+  "Portland Cement Association Clean Air Act compliance record continuous emissions monitoring NESHAP kiln violations"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://19january2017snapshot.epa.gov/enforcement/cement-manufacturing-enforcement-initiative_.html",
+   "outlet": "US EPA (Jan 2017 archive snapshot, Cement Manufacturing Enforcement Initiative)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The cement sector is the third largest industrial source of pollution, emitting more than 500,000 tons per year of sulfur dioxide, nitrogen oxide, and carbon monoxide.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e cement manufacturing industry was an EPA New Source Review/Prevention of Significant Deterioration (NSR/PSD) national enforcement initiative in fiscal years 2008-2010 and was continued as a Reducing Air Pollution from the Largest Sources national enforcement initiative for fiscal years 2011-2013. The cement sector is the third largest industrial source of pollution, emitting more than 500,000 tons per year of sulfur dioxide, nitrogen oxide, and carbon monoxide. Beginning in 2008, EPA has pursued a coordinated, integrated compliance and enforcement strategy to address Clean Air Act New Source Review compliance issues at the nation's cement manufacturing facilities. On this page: Health and Environmental Effects of Cement Plant Emissions Cement Plant Settlements Cement Plant Lawsuit Top"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/archive/epa/newsreleases/cement-manufacturer-cemex-reduce-harmful-air-pollution-five-plants-under-settlement-epa.html",
+   "outlet": "US EPA (news release archive)",
+   "date": "2016-07-27",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The cement sector is a significant source of air pollution posing real health risks to the communities where they reside",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "erable communities across the South and Southeast,” said Cynthia Giles, Assistant Administrator for EPA’s Office of Enforcement and Compliance Assurance. “EPA is committed to tackling clean air violations at the largest sources, cutting the pollutants that cause respiratory illnesses like asthma.” “The cement sector is a significant source of air pollution posing real health risks to the communities where they reside, including vulnerable communities across the U.S. who deserve better air quality than they have gotten over the years,” said Assistant Attorney General John C. Cruden for the Justice Department’s Environment and Natural Resources Division. “This agreement will require Cemex to pay a penalty and install important pollution controls "
+  }
+ ]
+}

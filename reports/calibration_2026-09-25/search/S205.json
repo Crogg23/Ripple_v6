@@ -1,0 +1,36 @@
+{
+  "story_id": "S205",
+  "entity": "FEMA Individual Assistance registrations for the August 2023 Maui fire, downtown Lahaina census tract 314.04: occupancy verified on 71.4% (28.6% unverified) vs 86.3% and 88.1% in the other two burn tracts",
+  "queries": [
+    {"q": "FEMA Lahaina fire registrations occupancy could not be verified denied assistance", "found_useful": false},
+    {"q": "Lahaina FEMA registrations exceed population fraud duplicate applications Maui wildfire", "found_useful": false},
+    {"q": "Maui wildfire FEMA individual assistance ineligible \"primary residence\" OR \"occupancy\" Civil Beat denial rate Lahaina", "found_useful": false},
+    {"q": "DHS OIG OR GAO audit FEMA Maui wildfire individual assistance occupancy verification", "found_useful": false},
+    {"q": "Civil Beat FEMA Lahaina applications data analysis ineligible registrations wildfire survivors", "found_useful": true},
+    {"q": "Lahaina FEMA aid \"not primary residence\" second homes vacation rentals applicants ineligible Star-Advertiser", "found_useful": false},
+    {"q": "OpenFEMA Maui wildfire registrations census tract verified occupancy analysis Lahaina", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.osti.gov/servlets/purl/2482219",
+      "outlet": "Argonne National Laboratory (Lahaina Wildfire Study, ANL-24/65, prepared at FEMA's request)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Within the affected area, 25% of the households were multi-generational households, compared to 9% statewide and 5.5% nationally.",
+      "paywalled": false,
+      "searcher_note": "Report dated July 2024, revised October 2024. Covers the three burn tracts incl. 314.04; says doubling up and mixed owner/renter households make pre-fire occupancy hard to pin down, and many foreign-born residents were not eligible for FEMA aid. Context for registrations-per-resident, not the verification rate. PDF text read via local extraction."
+    },
+    {
+      "url": "https://invest.hawaii.gov/wp-content/uploads/2026/07/MauiWES_Evidence_Opportunity_Zone_Lahaina_Final.pdf",
+      "outlet": "Maui Wildfire Exposure Study (MauiWES), posted by Hawaii DBEDT invest.hawaii.gov",
+      "date": "2026-07-27",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "More than 78 percent of Lahaina Front Street participants and 60 percent of Lahainaluna participants reported living in temporary housing.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff report on tracts 314.04 (Lahaina Front Street) and 314.05; names the same tract but measures displacement and hardship in a study cohort, not FEMA occupancy verification. PDF text read via local extraction."
+    }
+  ],
+  "notes": "No source found that reports FEMA's occupancy-verification rate for Lahaina registrations, by tract or overall, or the 3,261 registrations vs 3,223 residents in tract 314.04. Coverage found is FEMA process guidance (automated public-records occupancy check, documents to prove occupancy, second homes and vacation rentals ineligible) and housing-program stories, none with verification counts. GAO-25-106862 (Dec 2024, wildfires and FEMA assistance) fetched; its HTML index contained no occupancy-verification sentences. FEMA DR-4724 rumor-response page and the July 2026 monthly fact sheet had no registration or verification figures. Only pattern-adjacent context is recorded."
+}

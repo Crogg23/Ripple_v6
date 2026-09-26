@@ -1,0 +1,77 @@
+{
+  "story_id": "S144",
+  "entity": "The Littleton mill, 410 Great Road, Littleton, Massachusetts: 49 separate federal gun-maker licensees (ATF type 07), 16% of the state's 303",
+  "queries": [
+    {"q": "\"410 Great Road\" Littleton firearms manufacturer", "found_useful": true},
+    {"q": "Littleton Massachusetts building dozens of federal firearms licensees manufacturers one address", "found_useful": true},
+    {"q": "Littleton mill gun makers ATF Boston Globe Ryley 2023 assault weapons licenses", "found_useful": true},
+    {"q": "Bloomberg graphics Littleton mill gun manufacturers Massachusetts", "found_useful": true},
+    {"q": "Littleton mill gun vendors 2026 Lupoli apartments gun businesses remain", "found_useful": false},
+    {"q": "Stow Gleasondale mill gun manufacturers licenses number Massachusetts", "found_useful": true},
+    {"q": "Littleton mill 410 Great Road redevelopment gun tenants 2025", "found_useful": true},
+    {"q": "most federal firearms licensees at a single address in the country ATF data building", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.bostonglobe.com/2023/08/14/metro/after-uproar-littleton-gun-vendors-seek-new-home-nearby-towns-are-wary-them/",
+      "outlet": "Boston Globe",
+      "date": "2023-08-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "For now, the Littleton mill still houses the nation’s largest group of gun businesses at a single address, with roughly 50.",
+      "paywalled": false,
+      "searcher_note": "The mill lost about 30 gun vendors after ATF inspections in Feb 2023 but was still the largest US single-address cluster, at roughly 50. Counts all gun businesses, not only type 07 makers."
+    },
+    {
+      "url": "https://www.bostonglobe.com/2022/09/10/metro/an-old-mill-littleton-gun-dealers-openly-defy-maura-healeys-assault-weapon-decrees/",
+      "outlet": "Boston Globe (Sarah Ryley, Andrew Brinker)",
+      "date": "2022-09-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The number of gun vendors in the Mill has soared from three to at least 80 in just the last eight years, becoming the single largest collection of federally licensed gun manufacturers and dealers in the country.",
+      "paywalled": false,
+      "searcher_note": "Earliest investigation found. Using ATF data, 80 licensed tenants by August 2022. Next-highest ZIPs were Kalispell MT (57) and Queen Creek AZ (52), which are spread out, not in one building."
+    },
+    {
+      "url": "https://www.bostonglobe.com/2023/02/02/metro/dozens-atf-inspectors-descend-gun-vendors-littleton-mill-following-dealers-arrest/",
+      "outlet": "Boston Globe",
+      "date": "2023-02-02",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The Bureau of Alcohol, Tobacco, Firearms and Explosives this week deployed 29 inspectors to the mill, which is home to the largest cluster of federally licensed gun vendors at a single address in the nation.",
+      "paywalled": false,
+      "searcher_note": "Regulator response: ATF sent 29 inspectors after a dealer's arrest. The same article says the mill's gun businesses grew from 5 in 2014 to 83."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Littleton_mill",
+      "outlet": "Wikipedia",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "It is notable as having the highest concentration of federally-licensed firearms manufacturers (Type 07 FFLs)",
+      "paywalled": false,
+      "searcher_note": "Ties the 410 Great Road address to the type 07 concentration and gives 75 to 83 vendors. Cites Globe, CBS and Bloomberg Graphics (2022)."
+    },
+    {
+      "url": "https://www.cbsnews.com/boston/news/stow-gun-dealers-manufacturers-gleasondale-industrial-park-mill-littleton-massachusetts/",
+      "outlet": "CBS Boston",
+      "date": "2023-08-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Roughly half are slated to be occupied by artists and woodworkers while 10 are seeking approval to house so-called",
+      "paywalled": false,
+      "searcher_note": "Littleton gun makers planned to move to Gleasondale mill in Stow, MA, with 10 gun-manufacturer spaces. It may be the lead's second Massachusetts building with 10+ makers; not confirmed."
+    },
+    {
+      "url": "https://littletonma.org/735/410-Great-Road",
+      "outlet": "Town of Littleton, MA (Planning Board project page)",
+      "date": "2026-08-06",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The Planning Board will meet with Lupoli Development team and Hebrew SeniorLife",
+      "paywalled": false,
+      "searcher_note": "2026 activity at 410 Great Road: affordable senior housing plan, hearings July-August 2026. Nothing about gun tenants. Date is the latest item listed on the page."
+    }
+  ],
+  "notes": "The Boston Globe covered this building at length in 2022-2023 (Sarah Ryley's investigation plus follow-ups). The Globe called it the largest US single-address cluster of licensed gun businesses: 80+ in 2022, 83 in early 2023, roughly 50 by August 2023. The Globe counts all gun businesses; the lead counts only type 07 maker licenses (49), so the definitions differ. No source found gives the lead's 49 type-07 count, the 16%-of-Massachusetts share, or the 'only two US buildings with 10+ maker licensees, both in Massachusetts' claim. No coverage of the gun tenants dated after 2026-06-30 was found. The only 2026 item is the town's senior-housing redevelopment page. The building sold to Lupoli Companies in Jan 2023 with plans for apartments (Wikipedia and search snippets). A Globe 2023-10-15 story on ATF and the parts loophole appeared in results but was not opened. Bloomberg Graphics 2022 (https://www.bloomberg.com/graphics/2022-gun-manufacturing/) is cited by Wikipedia but was not opened."
+}

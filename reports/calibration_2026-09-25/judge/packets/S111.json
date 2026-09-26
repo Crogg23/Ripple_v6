@@ -1,0 +1,68 @@
+{
+ "story_id": "S111",
+ "lead": {
+  "headline": "24 of 72 Mississippi hospitals are worse than the national death rate on some measure; only 1 is better",
+  "number": "Big hospitals in Mississippi, Arkansas, Alabama and Tennessee: 43 worse and 4 better, where look-alike hospitals predict about 20 and 25",
+  "grade": "B",
+  "verdict": "confirmed",
+  "watch_out": "The table carries no release date, and CMS death models adjust for clinical risk, not income."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "Mississippi hospitals death rates worse than national CMS mortality Care Compare",
+  "Mississippi Today hospitals mortality rates Medicare patients die worse than national average",
+  "Mississippi hospitals CMS star ratings 2026 one-star worse mortality Clarion Ledger",
+  "Southern hospitals higher 30-day mortality Mississippi Alabama Arkansas study risk adjustment social risk rural safety-net",
+  "\"Mississippi\" hospitals \"worse than the national rate\" death heart failure pneumonia"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.mpbonline.org/blogs/news/mississippi-ranks-2nd-to-last-in-latest-medicare-scorecard-heres-why/",
+   "outlet": "Mississippi Public Broadcasting",
+   "date": "2025-10-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The state had the highest rate of short-stay nursing home readmissions (29.4%) and the highest mortality rate (16.5%) among hospitalized Medicare beneficiaries for major conditions like heart attack and stroke.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r older adults in the country — $44,031, less than half the median income for seniors in Hawaii, the top-ranking state. Mississippi also ranked last in population health, with 44.1% of older adults reporting difficulty with basic activities and 39% reporting loneliness or lack of emotional support. The state had the highest rate of short-stay nursing home readmissions (29.4%) and the highest mortality rate (16.5%) among hospitalized Medicare beneficiaries for major conditions like heart attack and stroke. Radley said those outcomes reflect long-standing health and economic inequities. “If you’re uninsured before you turn 65 and you didn’t treat your medical problems when they arose, you come into Medicare with more chronic illness and poorly managed disease,” he said. “That’s going to affect your experience as a beneficiary.” Al"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.commonwealthfund.org/datacenter/mississippi",
+   "outlet": "Commonwealth Fund, State Health Data Center",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Hospital 30-day mortality CMS Hospital Compare 16.5% 07/2020 - 06/2023 14.4%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "100,000 population CDC National Vital Statistics System (NVSS): WONDER 18.1 2023 13 Drug overdose deaths per 100,000 population CDC National Vital Statistics System (NVSS): WONDER 25.3 2023 31.3 Firearm deaths per 100,000 population CDC National Vital Statistics System (NVSS): WONDER 29.4 2023 13.7 Hospital 30-day mortality CMS Hospital Compare 16.5% 07/2020 - 06/2023 14.4% Infant mortality per 1,000 live births CDC National Vital Statistics System (NVSS): WONDER 9.1 2022 5.6 Maternal mortality per 100,000 live births CDC National Vital Statistics System (NVSS): WONDER 44.6 2020-2022 26.3 Mortality amenable to health care, deaths per 100,000 population CDC National Vital Statistics System (NVSS): Restrict"
+  },
+  {
+   "idx": 2,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8796072/",
+   "outlet": "Risk-standardized sepsis mortality map of the United States (PMC)",
+   "date": "2022-01-20",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The highest risk-standardized mortality rates were found in Wyoming, North Dakota, and Mississippi, while the lowest were found in Arizona, Colorado, and Michigan.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ge was 71 years (interquartile range: 58–81). The national median risk-standardized mortality rate for sepsis was 18.4% (interquartile range: 17.0, 21.0) by the boosted tree model, which had better discrimination than the Sepsis Risk Prediction Score model (C-statistic 0.87 and 0.78, respectively). The highest risk-standardized mortality rates were found in Wyoming, North Dakota, and Mississippi, while the lowest were found in Arizona, Colorado, and Michigan. Conclusions Wide variation exists in sepsis risk-standardized mortality rates across states, representing opportunities for improvement in sepsis care. This represents the first map of state-level variation of risk-standardized mortality rates in sepsis. Keywords: sepsis, risk standardized mortality rate, machine learning, mortality, healthca"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.webmd.com/a-to-z-guides/features/state-hospital-care-rated",
+   "outlet": "WebMD (HealthGrades state study)",
+   "date": "2003-09-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In Mississippi, your chance of dying from a heart attack is 49% higher, on average, than if you were treated in Colorado",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "g states, researchers say that, on average, patients get better quality healthcare in the higher-ranking states. For example, the report shows that a person has a 55% increased chance of dying if he or she had a balloon angioplasty or other similar heart procedure in Texas rather than in New York. \"In Mississippi, your chance of dying from a heart attack is 49% higher, on average, than if you were treated in Colorado,\" says Collier. Researchers say that the greatest differences at the state level were among certain heart procedures, such as balloon angioplasty , stenting, and others. For these procedures, New York was the best performing state and Alaska was the worst. The report shows states such as Texas and Tennessee also had above-average dea"
+  }
+ ]
+}

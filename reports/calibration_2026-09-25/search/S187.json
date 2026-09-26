@@ -1,0 +1,76 @@
+{
+  "story_id": "S187",
+  "entity": "Retirement-eligible Republican-appointed federal judges taking senior status in Trump's second term (first 517 days, from 2025-01-20)",
+  "queries": [
+    {"q": "Republican-appointed judges eligible senior status not retiring Trump second term few vacancies", "found_useful": true},
+    {"q": "GOP-appointed judges senior status 2026 record low vacancies Trump judicial nominations stalled eligible judges staying", "found_useful": true},
+    {"q": "\"senior status\" Republican appointees eligible \"83\" OR \"16 of\" judges Trump second term took senior status", "found_useful": true},
+    {"q": "wave of Republican-appointed judges announce senior status 2026 before midterms giving Trump vacancies", "found_useful": true},
+    {"q": "judges senior status Trump vacancies September 2026 OR August 2026 fewer judges stepping down Republican appointees", "found_useful": true},
+    {"q": "Fragoso National Review eligible Republican appellate judges were eligible in 2020 senior status", "found_useful": false},
+    {"q": "share of eligible judges taking senior status under same-party president historical rate Trump second term lowest study", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://news.bloomberglaw.com/us-law-week/conservative-judges-shun-retirement-under-trumps-second-term",
+      "outlet": "Bloomberg Law (Tiana Headley)",
+      "date": "2025-06-26",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Few of the roughly 70 Republican-appointed judges eligible to take a form of partial retirement or completely step down from the bench as of June 1 have done so, denying Trump the chance to pick their replacement.",
+      "paywalled": false,
+      "searcher_note": "Earliest same-finding coverage found: GOP-appointed eligible judges not stepping back under Trump 2. Headline 'Conservative Judges Shun Retirement Under Trump Second Term'; dek says over 100 GOP-appointed judges eligible to retire but haven't. No 16-of-83 count."
+    },
+    {
+      "url": "https://www.brookings.edu/articles/trumps-judicial-appointment-pace-is-unlikely-to-match-his-first-term-record/",
+      "outlet": "Brookings Institution (Russell Wheeler)",
+      "date": "2026-08-05",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Forty-six Republican appointees are now eligible (22 appellate, 24 district), but 37 of them have been eligible since Biden was inaugurated.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Says most currently eligible GOP appointees are long-time stayers, and that Trump 2 has the lowest vacancy creation of the last five administrations over ~20 months from Election Day (42 vs 97 in Trump 1). Different eligible-pool count (46 now eligible, not 83) and different window."
+    },
+    {
+      "url": "https://reason.com/volokh/2025/08/25/who-are-the-republican-appointed-circuit-judges-who-are-not-taking-senior-status-because-of-emil-bove/",
+      "outlet": "Reason / Volokh Conspiracy (Josh Blackman)",
+      "date": "2025-08-25",
+      "source_type": "opinion",
+      "entity_named": "yes",
+      "quote": "Almost all of the judges eligible for senior status now were also eligible in 2020, long before Emil Bove.",
+      "paywalled": false,
+      "searcher_note": "Circuit judges only. Makes the lead's 'already passed under Trump 1' point in words: lists 20 GOP circuit judges eligible by Nov 2020. Also quotes Mike Fragoso (National Review) saying the same. Skeptical of the 'judges refusing because of Trump/Bove' narrative."
+    },
+    {
+      "url": "https://news.bloomberglaw.com/us-law-week/trump-judicial-appointments-slow-as-vacancies-scarce-for-2026",
+      "outlet": "Bloomberg Law (Tiana Headley)",
+      "date": "2025-12-23",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Only three of the almost two dozen Republican-appointed appeals judges eligible for partial retirement did so this year, the third doing so in October.",
+      "paywalled": false,
+      "searcher_note": "Appeals judges only, calendar 2025: 3 of ~24 eligible GOP appointees took senior status."
+    },
+    {
+      "url": "https://ballsandstrikes.org/nominations/trump-judges-confirmed-running-out-of-time/",
+      "outlet": "Balls and Strikes (JP Collins)",
+      "date": "2026-02-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "it's notable that most of the more than 20 other retirement-eligible Republican-appointed appeals court judges—including two appointed by Trump in his first term, Ralph Erickson and Kurt Engelhardt—have so far decided to stay put.",
+      "paywalled": false,
+      "searcher_note": "Progressive legal-commentary outlet. Also: since Trump's re-election only 34 judges created vacancies, 27 of them Republican appointees."
+    },
+    {
+      "url": "https://www.cbsnews.com/news/trump-judicial-confirmations-second-term/",
+      "outlet": "CBS News (Melissa Quinn)",
+      "date": "2026-03-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In Mr. Trump's first term, 15 Republican appointees to the appeals courts and four Democratic appointees left their seats within that same time frame.",
+      "paywalled": false,
+      "searcher_note": "Compares Trump 1 vs Trump 2 appeals vacancies (15 GOP appointees then vs 3 in Trump 2 through his first year back). Appeals only."
+    }
+  ],
+  "notes": "Several outlets report the same finding in words: GOP-appointed eligible judges mostly not taking senior status under Trump 2 (Bloomberg Law June 2025 earliest). Brookings (Wheeler, Aug 2026, post-cutoff) and Blackman/Fragoso make the lead's leftover-stayer point (most eligible GOP appointees have been eligible since 2020/2021). No source found with the lead's 16-of-83 (19.3%) count, the 517-day window, the 50-of-83 already-passed-under-Trump-1 figure, or the 20% Trump 1 comparison. Pool sizes in the press differ (roughly 70 as of June 2025; 46 now eligible per Brookings Aug 2026; ~22-24 appeals judges) because windows and eligibility definitions differ. No source found saying Trump 2 senior-status rates are ordinary or higher. Bloomberg Law 2026-05-26 'Timeline Narrows for Trump to Fill Judge Seats Before Midterms' and EPPC (Fragoso, 2026-03-04) were opened but had no counts; not recorded. National Review 'Senior-Eligible Judges' page returned no body text."
+}

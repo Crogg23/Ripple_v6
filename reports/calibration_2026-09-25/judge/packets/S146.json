@@ -1,0 +1,83 @@
+{
+ "story_id": "S146",
+ "lead": {
+  "headline": "10 foreign groups hold 40% of US \"social welfare\" nonprofit assets, $133.4B; Mastercard Foundation and Novo Holdings lead",
+  "number": "$133.4B of $335.2B in 501(c)(4) assets; Mastercard Foundation (Toronto) $50.3B, Novo Holdings (Denmark) $36.2B; without those two, 20%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The share runs 39-41% depending on double counting (Novo Nordisk Fonden may own Novo Holdings) and on foreign groups at US addresses; the status is legal and may be tax-neutral."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Mastercard Foundation 501(c)(4) social welfare organization IRS Form 990",
+  "canadiancharitylaw Mastercard Foundation US Form 990 501(c)(4) Blumberg",
+  "Novo Holdings A/S US tax-exempt 501(c)(4) Form 990 Novo Nordisk Foundation",
+  "foreign foundations claim 501(c)(4) status avoid US withholding tax on dividends social welfare",
+  "Mastercard Foundation Toronto US tax exemption social welfare status investment income news",
+  "largest 501(c)(4) organizations by assets Mastercard Foundation Novo Holdings",
+  "foreign-based nonprofits registered as US 501(c)(4) social welfare groups billions in assets 2026",
+  "Mastercard Foundation \"social welfare\" 501(c)(4) foreign foundation US filing report"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://projects.propublica.org/nonprofits/organizations/980543843",
+   "outlet": "ProPublica Nonprofit Explorer",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Designated as a 501(c)(4)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " The Mastercard Foundation - Nonprofit Explorer - ProPublica Nonprofit Explorer Unknown state or territory The Mastercard Foundation Canada, Outside U.S. Tax exemption issued: April 2010 EIN: 98-0543843 Organization summary Type of Nonprofit Designated as a 501(c)(4) Civic leagues, social welfare organizations and local associations of employees, created to promote community welfare for charitable, educational or recreational purposes. Category : International, Foreign Affairs and National Security / International Economic Development (NTEE) Donations to this organization are not tax "
+  },
+  {
+   "idx": 1,
+   "url": "https://projects.propublica.org/nonprofits/organizations/980571483",
+   "outlet": "ProPublica Nonprofit Explorer",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Designated as a 501(c)(4)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Novo Holdings A-s - Nonprofit Explorer - ProPublica Nonprofit Explorer Unknown state or territory Novo Holdings A-s Denmark, Outside U.S. Tax exemption issued: May 2025 EIN: 98-0571483 Organization summary Type of Nonprofit Designated as a 501(c)(4) Civic leagues, social welfare organizations and local associations of employees, created to promote community welfare for charitable, educational or recreational purposes. Category : Philanthropy, Voluntarism, and Grantmaking Foundations N.E.C. (NTEE) Donations to this organization are not tax deductible. Tax Filings by Y"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.canadiancharitylaw.ca/blog/us-form-990-filed-by-groups-with-addresses-in-canada/",
+   "outlet": "CanadianCharityLaw.ca (Mark Blumberg)",
+   "date": "2024-10-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The US Form 990 is filed by some organizations that have addresses in Canada.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ". Name Email * I agree to be emailed * Subscribe Subscribe About Us Blog Events & Webinars Online Courses FAQs Contact Us Search Menu Home / Blog / US Form 990 filed by groups with addresses in Canada US Form 990 filed by groups with addresses in Canada Published September 30, 2024 By Mark Blumberg The US Form 990 is filed by some organizations that have addresses in Canada. Sometimes, it is a Canadian charity or non-profit in Canada that has applied for 501(c)(3) status, but sometimes, it is a US 501(c)(3) that has an address in Canada. The Form 990 is interesting because it provides a lot more information on a group’s operations than the T3010, or in the case of non-profits, there may be al"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.thetaxadviser.com/issues/2008/may/uswithholdingtaximposedonforeigntaxexemptorganizations/",
+   "outlet": "The Tax Adviser (AICPA)",
+   "date": "2008-05-01",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "The exemption from withholding on FDAP income paid to a foreign tax-exempt organization requires that the foreign organization qualify under Sec. 501(c) and that the income not constitute unrelated business taxable income.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "income of a foreign corporation. The tax is withheld at source in connection with Secs. 1441 and 1442 and the regulations thereunder. Naturally, no such tax is imposed on the FDAP income derived by a foreign organization that enjoys tax-exempt status in the United States. Claiming Tax-Exempt Status The exemption from withholding on FDAP income paid to a foreign tax-exempt organization requires that the foreign organization qualify under Sec. 501(c) and that the income not constitute unrelated business taxable income. Specifically, Regs. Sec. 1.1441-9(b)(2) requires that the foreign tax-exempt organization provide the U.S. withholding agent with a withholding certificate (Form W-8EXP, Certificate of Foreign Government or Other Foreign Organization for United States Tax Withholding) along with a favorable IRS determination letter confirming its tax-e"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.taxexemptworld.com/non-profit-classification/501c4-social-welfare-organization.asp",
+   "outlet": "TaxExemptWorld",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "501C4 Social Welfare Organization - 85,287 Nonprofits - $232,349,794,768 in Assets",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 501C4 Social Welfare Organization - 85,287 Nonprofits - $232,349,794,768 in Assets TaxExemptWorld Updated on October 5, 2025 Search Nonprofit Lookup by Name Tax ID(EIN) 501C Classification State Metro Area County City Zip Code Advanced Search Products Blog About Contact Get Unlimited Access Sign In Nonprofit Lookup by Name Tax ID(EIN) 501C Classification Zip Code City County Metro Area State Advanced Search 501C"
+  }
+ ]
+}

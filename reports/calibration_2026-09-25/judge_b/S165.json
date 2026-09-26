@@ -1,0 +1,12 @@
+{
+ "story_id": "S165",
+ "bin": "Matched + more",
+ "entity": "England and Wales company formations after compulsory identity checks began 18 Nov 2025",
+ "deciding_sources": [1, 0],
+ "earliest_match_date": "2025-12-28",
+ "post_cutoff_match": true,
+ "what_we_add": "the 73% one-day drop (847 vs 3,156 on the prior Tuesday) and the 10,338 company numbers matching no company",
+ "why": "Business Matters and City AM (via The Times) report the same ~30% weekly fall after the 18 Nov rules; Companies House stats confirm the quarterly dip. No source has the day-one 73% collapse or the orphan-number count.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

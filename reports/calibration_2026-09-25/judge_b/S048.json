@@ -1,0 +1,12 @@
+{
+  "story_id": "S048",
+  "bin": "Known pattern",
+  "entity": "active Texas major air-pollution sources with no full compliance evaluation in 5+ years (about 89), and New Mexico's rate",
+  "deciding_sources": [0, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "EPA OIG found Texas skipping five-year inspections, but for SM-80 synthetic minors (11 of 18), not Title V majors; the Texas Observer shows the general inspection decline. Nobody counts uninspected majors or names New Mexico's 14.4 per 100.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

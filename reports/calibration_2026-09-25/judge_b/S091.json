@@ -1,0 +1,12 @@
+{
+ "story_id": "S091",
+ "bin": "Matched + more",
+ "entity": "Tesla's California Cal/OSHA accident inspections: count, open share, time to close",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2019-03-01",
+ "post_cutoff_match": false,
+ "what_we_add": "43 accident inspections since 2015, 18 still open, and the median 486 days to close vs 139-251 for peer employers",
+ "why": "Forbes twice reports Tesla leading automakers in Cal/OSHA investigations and violations, and the AFL-CIO memo reports 27 open cases with Tesla contesting to prolong them — same entity, same direction. Their counts cover different inspection types and windows; our accident-only counts and the closure-time comparison are ours.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

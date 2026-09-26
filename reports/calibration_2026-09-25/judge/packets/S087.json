@@ -1,0 +1,58 @@
+{
+ "story_id": "S087",
+ "lead": {
+  "headline": "23 firms under a government-wide ban got $800K in new federal orders after the ban, mostly from Defense",
+  "number": "23 firms under Reciprocal or Procurement exclusions got about $800K of positive new actions after the ban, mostly DoD.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "A real join but small money."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "GAO contracts awarded to debarred suspended excluded contractors SAM exclusions after exclusion date",
+  "DoD Inspector General audit contracts awarded to debarred suspended contractors SAM excluded Defense Logistics Agency",
+  "debarred companies still won federal contracts after debarment investigation Pentagon",
+  "GAO report excluded entities received new federal awards while active exclusion SAM 2023 OR 2024 OR 2025",
+  "GAO-26-107466 excluded contractors 2,074 awards $626 million news",
+  "debarred contractor awarded Defense Department order despite SAM exclusion 2026",
+  "suspended debarred firms kept getting federal contract money analysis USAspending exclusions list reporters"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://files.gao.gov/reports/GAO-26-107466/index.html",
+   "outlet": "U.S. Government Accountability Office (GAO-26-107466)",
+   "date": "2026-06-16",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "We identified 2,074 awards with transactions involving 137 entities (based on the UEI) that were listed in the SAM Exclusion records at the time of the transaction.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " a nongeneralizable selection of data sources, our findings may not be used to make inferences about other data sources nor the full population of awards. For details on our methodology, see app. I. a Counts represent number of records, unless otherwise noted. Dollar value is presented in millions. We identified 2,074 awards with transactions involving 137 entities (based on the UEI) that were listed in the SAM Exclusion records at the time of the transaction. [61] As of February 2025, total obligations for these 2,074 awards were $626.2 million. However, these matches by themselves do not indicate that the awards were improper or involved fraud, waste, or abuse. Making this determination would require specific evaluation of eligibility of the entities for each of these awards to asse"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.gsaig.gov/sites/default/files/audit-reports/A180104%20-%20Final%20Report%20-%20Suspension%20and%20Debarment%20%28for%20issuance%29.pdf",
+   "outlet": "GSA Office of Inspector General (A180104/Q/2/P20004)",
+   "date": "2020-06-19",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "As a result, federal agencies can unknowingly execute contract actions, including awarding a new contract, to contractors that have been suspended or debarred.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "eting an exclusion entry for suspended and debarred contractors without entering a unique entity identifier.1 What We Found GSA does not update the exclusion status for suspended and debarred contractors in its eTools, which consist of GSA Advantage!, GSA eLibrary, and GSA eBuy, in a timely manner. As a result, federal agencies can unknowingly execute contract actions, including awarding a new contract, to contractors that have been suspended or debarred. We found several instances where excluded contractors were incorrectly listed on GSA’s eTools and one instance where an agency purchased services off a GSA Multiple Award Schedule contract from an excluded contractor. In addition, exclusion information for suspended and debarred contractors was not entered into SAM in accordance w"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.gao.gov/products/gao-09-174",
+   "outlet": "U.S. Government Accountability Office (GAO-09-174)",
+   "date": "2009-02-25",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Excluded Parties List System: Suspended and Debarred Businesses and Individuals Improperly Receive Federal Funds",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Excluded Parties List System: Suspended and Debarred Businesses and Individuals Improperly Receive Federal Funds | U.S. GAO Skip to main content U.S. Government Accountability Office Menu Reports & Testimonies Reports & Testimonies Recommendations Database Month in Review Order Copies Restricted Reports View Topics View Agencies Bid Protests & Appropriations Law Bid Protests & Appropriations Law Bid Protests Appropriations Law Federal Vacancies Reform"
+  }
+ ]
+}

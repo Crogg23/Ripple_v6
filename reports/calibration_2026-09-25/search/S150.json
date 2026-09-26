@@ -1,0 +1,67 @@
+{
+  "story_id": "S150",
+  "entity": "Vermont private general hospitals' OSHA 300A (Injury Tracking Application) filing coverage 2023-2025, including University of Vermont Medical Center's absence",
+  "queries": [
+    {"q": "Vermont hospitals OSHA 300A electronic injury reporting not filed", "found_useful": true},
+    {"q": "University of Vermont Medical Center OSHA injury illness data workplace injuries nurses", "found_useful": false},
+    {"q": "VOSHA electronic submission injury illness records 1904.41 Vermont adopted state plan", "found_useful": true},
+    {"q": "state plan states OSHA injury tracking application data missing Vermont Hawaii New Mexico hospitals", "found_useful": true},
+    {"q": "\"UVM Medical Center\" OSHA OR VOSHA injuries 2025 OR 2026", "found_useful": false},
+    {"q": "OSHA injury tracking data gaps hospitals not reporting 300A analysis state plans underreporting", "found_useful": true},
+    {"q": "VTDigger hospital workers injuries workplace violence UVM Medical Center nurses union safety data", "found_useful": true},
+    {"q": "OSHA injury tracking application hospitals missing filings 2026 analysis employers failed to submit 300A", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.gao.gov/assets/720/712214.pdf",
+      "outlet": "U.S. Government Accountability Office (GAO-21-122)",
+      "date": "2021-01-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "We estimated that employers did not report any 300A injury and illness data on more than one-half of their establishments for which they were required to do so for calendar years 2016 through 2018.",
+      "paywalled": false,
+      "searcher_note": "National pattern: over half of establishments required to file 300A summaries did not, 2016-2018. No Vermont or hospital breakdown. Report dated January 2021 (day not printed; 01 is a placeholder)."
+    },
+    {
+      "url": "https://www.osha.gov/sites/default/files/2021-07/Vermont-FY-2020-Follow-up-FAME-Report.pdf",
+      "outlet": "U.S. Department of Labor, OSHA (FY 2020 Follow-up FAME report on Vermont State Plan)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "one of the rules (29 CFR 1904.41 Electronic Submission of Injury and Illness Records to OSHA) temporarily stalled. VOSHA expects to complete action on that rule in early 2021.",
+      "paywalled": false,
+      "searcher_note": "Bears on the lead's watch-out: Vermont's state plan had not yet adopted the federal e-filing rule as of FY2020. Upload path says July 2021. Does not say whether adoption was completed."
+    },
+    {
+      "url": "https://labor.vermont.gov/sites/labor/files/doc_library/1904%20clean%20text.pdf",
+      "outlet": "Vermont Department of Labor (VOSHA document library)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "If your establishment had 250 or more employees at any time during the previous calendar year, and this part requires your establishment to keep records, then you must electronically submit information from OSHA Form 300A",
+      "paywalled": false,
+      "searcher_note": "Vermont's labor department hosts the 1904.41 e-filing rule text, which suggests the state adopted it; undated, so it does not show when. Relevant to whether the gap is a rule gap or missing filings."
+    },
+    {
+      "url": "https://www.osha.gov/injuryreporting/faqs",
+      "outlet": "U.S. Department of Labor, OSHA (Injury Tracking Application FAQ)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Establishments that meet the submission requirements and are located in states with their own occupational safety and health programs (i.e., State Plans) are also required to submit data under this rule.",
+      "paywalled": false,
+      "searcher_note": "Federal OSHA says state-plan establishments (Vermont is one) must also file through the ITA. An explainer, not a finding."
+    },
+    {
+      "url": "https://vtdigger.org/2026/08/16/for-emergency-department-staff-violence-at-work-is-a-dangerous-and-demoralizing-reality/",
+      "outlet": "VTDigger",
+      "date": "2026-08-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "At UVM Medical Center in Burlington, violence in the emergency department has fallen 64% between 2022 and 2026, according to Demers.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage that names UVM Medical Center and worker injuries from violence, but says nothing about OSHA filings or federal injury data. A different finding."
+    }
+  ],
+  "notes": "No source found reports that Vermont hospitals, or UVM Medical Center, are missing from OSHA's 300A / Injury Tracking Application data. No source gives the 18-24% coverage figure or compares it with other states. The GAO report is the only finding on the non-filing pattern, and it is national and not about hospitals. Two government documents bear on the lead's watch-out: OSHA's FY2020 FAME report says Vermont's adoption of 1904.41 had stalled, with completion expected in early 2021, and Vermont's labor department hosts the rule text (undated). Neither shows adoption status for 2023-2025. VTDigger (2026-08-16) names UVM Medical Center on workplace violence only."
+}

@@ -1,0 +1,59 @@
+{
+ "story_id": "S191",
+ "lead": {
+  "headline": "EPA sent Osage County, Oklahoma oil-field wells zero violation notices after April 2023, while still inspecting about 225 a year",
+  "number": "Osage injection-well notices: 88 in 2022, 2 in 2023, 0 since April 2023; formal cases on the same wells held at 14-18 a year.",
+  "grade": "D",
+  "verdict": "broken",
+  "watch_out": "The builder's headline is broken: the 54 Jan-Sep 2024 notices went to small drinking-water systems, not wells, and the Oct 2024 \"stop\" is those notices moving to another EPA system (SFDW went 12 to 172)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "EPA Osage County injection wells enforcement notices of violation",
+  "EPA Region 6 Osage Nation underground injection control enforcement decline",
+  "Osage County oil wells EPA oversight saltwater injection news 2025",
+  "Osage Nation abandoned leaking oil wells EPA enforcement investigation",
+  "EPA enforcement drop 2025 Safe Drinking Water Act injection wells Oklahoma informal actions",
+  "Osage News EPA underground injection control inspections mechanical integrity 2026",
+  "EPA enforcement actions plunge 2025 analysis notices of violation decline Trump administration",
+  "\"Osage County\" EPA \"notice of violation\" Class II well 2023 2024"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2025-09/r6ecdwe.sdwa_.uic_.4doilgas.os5571000.sdwa_06_2025_1110.mitfail.proposedao_wcs.508c.pdf",
+   "outlet": "U.S. EPA Region 6, Proposed Administrative Order SDWA-06-2025-1110 (4D Oil & Gas, LLC)",
+   "date": "2025-09-24",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "On March 24, 2025, EPA emailed a letter to Respondent notifying Respondent that EPA determined that the injection well did not have mechanical integrity.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ity every five (5) years. 10. On April 19, 2021, the Respondent failed to conduct the mechanical integr ity test. To date, the injection well has not successfully demonstrated mechanical integrity. 11. On April 11, 2024, an EPA inspection confirmed that the well was still active and injecting . 12. On March 24, 2025, EPA emailed a letter to Respondent notifying Respondent that EPA determined that the injection well did not have mechanical integrity. The letter informed Respondent of the potential violations of the Act and the UIC program and that EPA can pursue enforcement actions in response to these violations. The letter also provided the Respondent an opportun ity to confer with EPA regarding the matter. No response was received by the Respondent. 13. Therefore, Respon"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/system/files/documents/2026-05/r6ecdwe.sdwa_.greathornedowlsllc.os3689000.sdwa_06_2026_1110.uic_mit-fail.proposed-ao_filed.pdf",
+   "outlet": "U.S. EPA Region 6, Proposed Administrative Order SDWA-06-2026-1110 (great horned owls, LLC)",
+   "date": "2026-05-08",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "to ensure that owners or operators of Class II injection wells within Osage County, Oklahoma, comply with the requirements of the Act.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r to the Regional Administrator of EPA Region 6 who further delegated such autho rity to the Director of the Enforcement and Compliance Assurance Division. EPA has primary enforcement responsibil ity for underground injection within the meaning of Section 1422(c) of the Act, 42 U.S.C. § 300h-1(c) , to ensure that owners or operators of Class II injection wells within Osage County, Oklahoma, comply with the requirements of the Act. FINDINGS 1. great horned owls, LLC (Respondent) is a limited liability company doing business in the State of Oklahoma and, therefore, is a \"person,\" within the meaning of Section 1401(12) of the Act, 42 U.S.C. § 300f(12). SDWA-06-2026-1110 Page 2 2. At all times relevant to the violations alleged herein, Respondent owned or operat"
+  },
+  {
+   "idx": 2,
+   "url": "https://insideclimatenews.org/news/05022026/trump-epa-polluter-enforcement-collapses/",
+   "outlet": "Inside Climate News",
+   "date": "2026-02-05",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Top agency officials are also directing staff to issue fewer violation notices and reduce other enforcement actions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " of staff to carry them out, experts say. According to an analysis from E&E News , at least a third of lawyers in the Justice Department’s environment division have left in the past year. Meanwhile, the EPA in 2025 laid off hundreds of employees who monitored pollution that could hurt human health. Top agency officials are also directing staff to issue fewer violation notices and reduce other enforcement actions. In December, the EPA formalized a new “compliance first” enforcement policy that stresses working with suspected violators to correct problems before launching any formal action that could lead to fines or mandatory correction measures. “Firm, consistent, and swift enforcement is an essential cornerstone of [the EPA Office of Enforcemen"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S136",
+ "bin": "Unreported",
+ "entity": "Oregon state NPDES inspections in the federal file, zero after Sep 2024 for 22 months",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Sources name Oregon DEQ but none states the finding: no zero-inspection gap, no comparable number. The 2020 SRF data-quality note and the 2025 system-migration page are context, not the finding; 8 queries logged.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

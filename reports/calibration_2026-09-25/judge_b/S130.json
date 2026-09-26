@@ -1,0 +1,12 @@
+{
+ "story_id": "S130",
+ "bin": "Matched + more",
+ "entity": "13F reports still filed in thousands instead of dollars after the Jan 2023 rule change",
+ "deciding_sources": [2],
+ "earliest_match_date": "2026-06-17",
+ "post_cutoff_match": true,
+ "what_we_add": "the 355-of-8,631 count, the ~$2.6T understatement, and T. Rowe Price as a third of it",
+ "why": "Finrep states filers with legacy systems are still rounding to thousands and producing non-compliant filings: the same finding in words, same direction. The T. Rowe and Barclays primary documents are blocked on non-paywalled pages, so only the vendor blog carries it, with no counts.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

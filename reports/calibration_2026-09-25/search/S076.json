@@ -1,0 +1,39 @@
+{
+  "story_id": "S076",
+  "entity": "Medicare-enrolled orgs signed for by a namesake of an OIG-excluded person; named: National Health Transport (Miami ambulance) and ASAP EMS (Laurel, MS)",
+  "queries": [
+    {"q": "\"National Health Transport\" Miami ambulance Medicare fraud", "found_useful": false},
+    {"q": "\"ASAP EMS\" Laurel Mississippi", "found_useful": false},
+    {"q": "\"Raul Rodriguez\" ambulance Miami Medicare excluded", "found_useful": false},
+    {"q": "\"Kevin Smith\" ambulance Mississippi Medicare fraud excluded", "found_useful": false},
+    {"q": "\"National Health Transport\" Miami", "found_useful": false},
+    {"q": "excluded individuals owning Medicare-enrolled providers OIG report ownership exclusion list PECOS", "found_useful": true},
+    {"q": "OIG \"Vulnerabilities Related to Provider Enrollment and Ownership Disclosure\" Medicare excluded owners", "found_useful": true},
+    {"q": "\"Raul Rodriguez\" health care fraud sentenced Miami", "found_useful": false},
+    {"q": "excluded person secretly runs ambulance company Medicare billing nominee owner indicted 2026", "found_useful": false},
+    {"q": "\"ASAP EMS\" \"Kevin Smith\" OR \"National Health Transport\" \"Raul Rodriguez\"", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://oig.hhs.gov/reports/all/2016/medicare-vulnerabilities-related-to-provider-enrollment-and-ownership-disclosure",
+      "outlet": "HHS Office of Inspector General",
+      "date": "2016-05-20",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "2 of the 11 CMS contractors did not check all required exclusions databases, which could allow providers with excluded owners to enroll in the Medicare program.",
+      "paywalled": false,
+      "searcher_note": "OIG report OEI-04-11-00591: pattern coverage, excluded owners able to enroll in Medicare; names no provider"
+    },
+    {
+      "url": "https://voyagemia.com/interview/exploring-life-business-with-raul-rodriguez-of-crei-holdings-and-national-health-transport",
+      "outlet": "Voyage MIA",
+      "date": "2026-04-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "National Health Transport (NHT) is also a major pillar of my work, and – just like CREI Holdings – it is deeply connected to the mission of the Li'l Abner Foundation.",
+      "paywalled": false,
+      "searcher_note": "Profile interview of NHT's CEO Raul Rodriguez; names the entity but says nothing about any exclusion or ban. Context only, not the finding."
+    }
+  ],
+  "notes": "No source found that ties either company, or anyone at them, to an OIG exclusion. Profile pages (theorg.com, LinkedIn, Voyage MIA) show Raul Rodriguez as CEO of National Health Transport and a Kevin Smith as owner of ASAP EMS, which only confirms who signs; none mention a ban, so the namesake question stays open. The OIG hit on ASAP's city (Laurel, MS, 2015) was South Central Regional Medical Center, not ASAP EMS. Only pattern coverage (OIG 2016) found."
+}

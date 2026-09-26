@@ -1,0 +1,75 @@
+{
+  "story_id": "S102",
+  "entity": "Arizona drug overdose deaths, 12 months to Oct 2025 (2,980, +11.5% year over year) vs other states; cocaine-involved deaths",
+  "queries": [
+    {"q": "Arizona overdose deaths rising 2025 while national overdose deaths fall", "found_useful": true},
+    {"q": "Arizona cocaine overdose deaths increase 2025 CDC provisional data", "found_useful": true},
+    {"q": "Maricopa County medical examiner overdose deaths 2025 backlog certification change toxicology", "found_useful": false},
+    {"q": "Arizona overdose deaths record high 2,980 OR 2,988 Arizona Department of Health Services opioid report", "found_useful": false},
+    {"q": "Arizona overdose deaths CDC data September 2026 OR August 2026 decline slowing", "found_useful": true},
+    {"q": "why Arizona overdose deaths increased 2025 cocaine fentanyl mix explanation experts Phoenix Tucson", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://azpha.org/2026/06/11/overdose-deaths-are-falling-nationwide-why-is-arizona-moving-in-the-wrong-direction/",
+      "outlet": "Arizona Public Health Association",
+      "date": "2026-06-11",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Estimated overdose deaths increased by 18%, rising from 2,531 in 2024 to 2,988 in 2025.",
+      "paywalled": false,
+      "searcher_note": "Arizona up 18% in calendar 2025 vs national drop of nearly 14%; also says cocaine-related deaths jumped almost 70%. Window is calendar 2025, not 12 months to Oct 2025."
+    },
+    {
+      "url": "https://www.kjzz.org/science/2026-01-15/cdc-data-shows-20-decline-in-national-overdose-deaths-that-wasnt-the-case-in-arizona",
+      "outlet": "KJZZ",
+      "date": "2026-01-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Fatal overdoses in Arizona jumped nearly 18% between August 2024 and August 2025, the most of any state.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: Arizona rose ~18% in 12 months to Aug 2025 while national deaths fell 20%; no death count or cocaine figure."
+    },
+    {
+      "url": "https://www.cdc.gov/nchs/pressroom/releases/20260513.html",
+      "outlet": "CDC National Center for Health Statistics",
+      "date": "2026-05-13",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "New Mexico, Arizona and Colorado had increases of 10% or more compared to the same period in 2024.",
+      "paywalled": false,
+      "searcher_note": "Primary record: calendar-2025 provisional data, national deaths down almost 14% to 69,973; Arizona among three states up 10%+."
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:41931861&resultType=core&format=json",
+      "outlet": "International Journal on Drug Policy (Cano and Zhu), via Europe PMC",
+      "date": "2026-06",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "cocaine (increasing 66% from 177 to 294)",
+      "paywalled": false,
+      "searcher_note": "Peer-reviewed: Arizona Jan-Aug 2025 deaths 2,034, 20% above Jan-Aug 2024; cocaine-involved deaths up 66% (177 to 294); Jan-Apr 2025 monthly records. PubMed/ScienceDirect pages blocked fetch (captcha/403), abstract read from Europe PMC API."
+    },
+    {
+      "url": "https://filtermag.org/cdc-overdose-data-west-arizona/",
+      "outlet": "Filter",
+      "date": "2026-07-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The latest number of predicted deaths for Arizona is 2,914, up from 2,695.",
+      "paywalled": false,
+      "searcher_note": "Recent (post-2026-06-30): 12 months Feb 2025 to Feb 2026, Arizona 2,914 predicted deaths, increase slowed from 21% to 8.2%."
+    },
+    {
+      "url": "https://ktar.com/arizona-news/overdose-deaths-increase-naloxone",
+      "outlet": "KTAR",
+      "date": "2026-05-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "While overdose deaths dropped by about 15% nationally last year, Arizona's jumped by more than 17%, according to preliminary Centers for Disease Control and Prevention data.",
+      "paywalled": false,
+      "searcher_note": "Arizona up 17%+ in calendar 2025 vs ~15% national drop; no count, no cocaine figure."
+    }
+  ],
+  "notes": "Wide coverage of Arizona overdose deaths rising while the US fell, on windows ending Aug 2025, Dec 2025 and Feb 2026. None found on the lead's exact window (12 months to Oct 2025) or with 2,980, the 2,829 Aug-2023 prior high, 'most since 2015', the median-state -14% comparison, or cocaine 261 to 443. Closest: calendar 2025 2,531 to 2,988 (+18%) and cocaine +66% Jan-Aug (177 to 294). No source found on a Maricopa medical examiner certification change (one search, nothing). KJZZ 2026-05-14 story URL from search returned 404. ABC15/AP reprint says Arizona among states with 'jumps of 10% or more'. Arizona Daily Independent 2026-09-20 checked: county rates 2019-2024 only, not relevant. No coverage found disagreeing on direction."
+}

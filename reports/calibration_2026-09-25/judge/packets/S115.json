@@ -1,0 +1,83 @@
+{
+ "story_id": "S115",
+ "lead": {
+  "headline": "California employers naming artificial intelligence on lobbying reports: 1 in 2022, 58 in 2024, 59 in 2025",
+  "number": "1.8% of employers writing real activity text in 2024 and 2025, vs 0.03% in 2022; 45 in the first half of 2026",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Bill numbers repeat across sessions, so the 175-229 floor that counts AI bills by number holds only after that session check."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "California AI lobbying surge Sacramento lobbyists artificial intelligence bills disclosure reports",
+  "number of companies lobbying on artificial intelligence California legislature 2024 2025 analysis",
+  "\"artificial intelligence\" lobbying California employers filed reports mentioning AI number grew Cal-Access",
+  "OpenSecrets number of organizations lobbying on artificial intelligence surged 2023 2024 states",
+  "CalMatters Digital Democracy how many groups lobbied AI bills California 2025 session",
+  "California lobbying first half 2026 artificial intelligence lobbyist employers new registrations Anthropic OpenAI",
+  "CalMatters California lobbying spending 2025 record AI mentioned in lobbying disclosures",
+  "\"lobbying\" \"artificial intelligence\" California Secretary of State filings analysis employers count 2022 versus 2024 jump"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://calmatters.org/politics/2026/03/meta-google-ai-regulation-elections/",
+   "outlet": "CalMatters",
+   "date": "2026-03-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Anthropic, maker of the popular large language model Claude, spent more than $200,000 to lobby state representatives last year, the first year it reported such expenses.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nes without feeling overwhelmed. Email address By clicking subscribe, you agree to the terms . Sign up for free Δ OpenAI, the creator of ChatGPT, started lobbying California officials for the first time in 2024 when it spent nearly $140,000. In 2025, the company spent more than $155,000. Meanwhile, Anthropic, maker of the popular large language model Claude, spent more than $200,000 to lobby state representatives last year, the first year it reported such expenses. Meta and Google also contributed to nonprofits directly at the request of California officials in what are called behested payments. Meta made 34 payments totalling $1,245,000 at the request of California officials, including Gov. Gavin Newsom and a bipartisan group of legislators in both chambers. “These transparent and public contri"
+  },
+  {
+   "idx": 1,
+   "url": "https://calmatters.org/economy/technology/2026/08/california-data-center-backlash-big-tech-lobbying/",
+   "outlet": "CalMatters",
+   "date": "2026-08-28",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "AI company Anthropic, which sent its first lobbyists to Sacramento last year, has spent nearly $90,000 to influence decisions made by the California Legislature so far this year",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ta centers During the first half of 2026, Amazon paid more than $500,000 to lobby lawmakers on 33 pieces of legislation, including several data center bills and matters related to antitrust and artificial intelligence. Amazon spent more than $1.7 million lobbying in California last year. Meanwhile, AI company Anthropic, which sent its first lobbyists to Sacramento last year, has spent nearly $90,000 to influence decisions made by the California Legislature so far this year and, according to the Financial Times , nearly tripled its federal lobbying spend in the same time period. Last year, Anthropic spent over $200,000 lobbying in the state. Just the right amount of news Just the right amount of news Get California’s most essential headlines without feeling overwhelmed. Get California’s most essential h"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.techpolicy.press/inside-the-lobbying-frenzy-over-californias-ai-companion-bills/",
+   "outlet": "Tech Policy Press",
+   "date": "2025-09-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Chamber of Progress and TechNet each registered nearly $200,000 in lobbying the California legislature the first half of this year",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "another one of Bauer-Kahan’s AI bills . TechNet has spent roughly $10,000 on over a dozen digital ads in California expressly opposing AB1064, with messages warning that it would “slam the brakes” on innovation and that if passed, “our teachers won’t be equipped to prepare students for the future.” The Chamber of Progress and TechNet each registered nearly $200,000 in lobbying the California legislature the first half of this year, while CCIA spent $60,000 and the American Innovators Network doled out $40,000, according to a review of state disclosure filings. Each group was active on both SB243 and AB1064, among numerous other tech and AI bills. Bauer-Kahan said the lobbying pressure from industry has been intense. “I've never had an entity hire new lobbyist"
+  },
+  {
+   "idx": 3,
+   "url": "https://calmatters.org/data/2025/04/california-lobbying-spending-2024/",
+   "outlet": "CalMatters",
+   "date": "2025-04-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The company reported one of the largest totals for state advocacy last year, driven primarily by a spending spree in the third quarter of the year when the tech giant was fighting a media bill and AI regulations.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ion on lobbying last year. Over the two-year legislative session, the company took a public position on 45 bills and also got its way on roughly two-thirds of them, or 31 bills. Google doesn’t usually spend much on state-level lobbying efforts but spent more in 2024 than the last 20 years combined. The company reported one of the largest totals for state advocacy last year, driven primarily by a spending spree in the third quarter of the year when the tech giant was fighting a media bill and AI regulations . The company got its way in both cases. Much of its advocacy went through the Computer & Communications Industry Association, which reported spending nearly $7.4 million, $7 million of which came from the Mountain View behemoth. Only two labor groups spent more than $1 million on lobbying last year: the Service Employees Interna"
+  },
+  {
+   "idx": 4,
+   "url": "https://techcrunch.com/2025/01/24/ai-companies-upped-their-federal-lobbying-spend-in-2024-amid-regulatory-uncertainty/",
+   "outlet": "TechCrunch",
+   "date": "2025-01-24",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "According to data compiled by OpenSecrets, 648 companies spent on AI lobbying in 2024 versus 458 in 2023, representing a 141% year-over-year increase.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " / Getty Images Government & Policy AI companies upped their federal lobbying spend in 2024 amid regulatory uncertainty Kyle Wiggers 1:03 PM PST · January 24, 2025 Companies spent significantly more lobbying AI issues at the U.S. federal level last year compared to 2023 amid regulatory uncertainty. According to data compiled by OpenSecrets, 648 companies spent on AI lobbying in 2024 versus 458 in 2023, representing a 141% year-over-year increase. Companies like Microsoft supported legislation such as the CREATE AI Act, which would support the benchmarking of AI systems developed in the U.S. Others, including OpenAI, put their weight behind the Advancement and Reliability Act, which would set up a dedicated government center for AI research. Most AI labs — that is, companies dedica"
+  }
+ ]
+}

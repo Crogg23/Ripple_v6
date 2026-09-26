@@ -1,0 +1,77 @@
+{
+  "story_id": "S165",
+  "entity": "Companies House new company incorporations (England and Wales) around 18 Nov 2025, the day director/PSC identity verification became compulsory: 847 on the day vs 3,156 a week earlier; five weeks from 17 Nov 29% below the prior six",
+  "queries": [
+    {"q": "Companies House identity verification 18 November 2025 drop in new company incorporations", "found_useful": false},
+    {"q": "company formations fell identity checks compulsory Companies House incorporations down November 2025", "found_useful": false},
+    {"q": "Companies House incorporation statistics November 2025 new companies fell identity verification impact", "found_useful": true},
+    {"q": "\"identity verification\" UK new company registrations slump December 2025 formation agents data", "found_useful": true},
+    {"q": "The Times company registrations fall 30 per cent identity checks Companies House 18,199", "found_useful": true},
+    {"q": "Companies House blog incorporations since identity verification figures first months 2026", "found_useful": false},
+    {"q": "Incorporated companies in the UK January to March 2026 official statistics incorporations increase", "found_useful": true},
+    {"q": "first day of Companies House identity verification incorporations collapsed daily new companies 18 November", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.cityam.com/new-companies-house-id-rule-triggers-30-per-cent-slump-in-registrations/",
+      "outlet": "City AM (Maria Ward-Brennan), citing The Times",
+      "date": "2025-12-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The weekly figures for incorporations dropped from 18,199 in the week before the rules came into effect to fewer than 13,000 in each of the five weeks leading up to Christmas.",
+      "paywalled": false,
+      "searcher_note": "Same finding at weekly grain: registrations fell about 30% after ID checks began. Numbers look UK-wide, not England and Wales. No single-day 18 Nov figure."
+    },
+    {
+      "url": "https://bmmagazine.co.uk/news/anti-fraud-law-company-registrations-fall-companies-house/",
+      "outlet": "Business Matters (Jamie Young)",
+      "date": "2025-12-28",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Weekly incorporations have fallen by around 30 per cent since November, when legislation came into force requiring all new company directors and people with significant control to verify their identity.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found. Same weekly drop and same 18,199 to under-13,000 figures; source not named on the page (City AM credits The Times)."
+    },
+    {
+      "url": "https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2025/incorporated-companies-in-the-uk-october-to-december-2025",
+      "outlet": "Companies House official statistics (GOV.UK)",
+      "date": "2026-01-29",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "There were 184,888 incorporations in the UK during October to December 2025. This is a decrease of 31,094 (14.40%) compared with July to September 2025",
+      "paywalled": false,
+      "searcher_note": "Quarterly UK figure, down 14.4% on the quarter but up 2.0% on a year earlier. Notes ID verification began 18 Nov 2025 but does not blame the drop on it. No daily or weekly numbers."
+    },
+    {
+      "url": "https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-january-to-march-2026/incorporated-companies-in-the-uk-january-to-march-2026",
+      "outlet": "Companies House official statistics (GOV.UK)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "There were 204,612 incorporations in the UK during January to March 2026. This is an increase of 19,724 (10.67%) compared with October to December 2025, and a decrease of 6,500 (3.08%) compared with the same period in 2025.",
+      "paywalled": false,
+      "searcher_note": "Q1 2026 rebounded on the quarter but ran 3.1% BELOW Q1 2025. The lead says January 2026 ran 4-7% above January 2025. That is a different window (one month vs a quarter), and the national figures are UK-wide."
+    },
+    {
+      "url": "https://www.smeweb.com/active-uk-companies-at-record-high-but-new-incorporations-slow-due-to-new-companies-house-rules-and-increased-fees/",
+      "outlet": "SME Magazine (Dan Martin), reporting NatWest and Beauhurst",
+      "date": "2026-08-20",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "However, the 402,000 companies incorporated during that period was a 5.7% decrease on the first half of 2025 and a second consecutive half-year decline.",
+      "paywalled": false,
+      "searcher_note": "Recent: H1 2026 incorporations down 5.7% year on year; the report blames identity verification more than fees. Cuts against the lead's caveat that the dip did not last."
+    },
+    {
+      "url": "https://www.newsfilecorp.com/release/307094/UK-Company-Formations-Reach-Record-Levels-Despite-Digital-Registration-Fee-Rising-by-More-Than-700-New-Icon-Offices-Research-Finds",
+      "outlet": "Newsfile (Icon Offices research press release)",
+      "date": "2026-08-05",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "461,765 new companies were incorporated between January and July 2026.",
+      "paywalled": false,
+      "searcher_note": "Recent and opposite to NatWest/Beauhurst: says Jan-Jul 2026 formations were up 6.9% on the same period of 2025. Does not mention the late-2025 dip."
+    }
+  ],
+  "notes": "The weekly drop after 18 Nov 2025 (about 30%, 18,199 to under 13,000 a week, UK-wide) was reported in late December 2025 by City AM, Business Matters and The Times (the Times original was not found). That matches the lead's 29% five-week drop in direction and roughly in size, but the lead uses England and Wales figures (15,790 vs 11,158 a week). No source found gives the single-day figure (847 on Tue 18 Nov vs 3,156 the Tuesday before, -73%), the 16,000-fewer estimate, or the 10,338 of 64,456 company numbers (16%) that match no company. Companies House's own quarterly releases note the ID verification date but do not tie the Q4 2025 fall to it. Its 'Companies register activities 2025-26' release (2026-06-25) says nothing about an ID-verification effect. 2026 sources disagree on whether the dip lasted. NatWest/Beauhurst: H1 2026 -5.7% year on year. Official Q1 2026: -3.1% year on year. Icon Offices: Jan-Jul 2026 +6.9%. House of Commons Library briefing CBP-10015 returned 403 and was not read."
+}

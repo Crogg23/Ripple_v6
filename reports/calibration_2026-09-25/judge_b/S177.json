@@ -1,0 +1,12 @@
+{
+ "story_id": "S177",
+ "bin": "Known pattern",
+ "entity": "Penn State Health's Hershey hospital collecting Medicare outpatient outlier payments on 185 of 192 top-level joint procedures",
+ "deciding_sources": [1, 0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "OIG has the pattern cold: 158 high-charge hospitals pulled outsize outlier payments, and a Vanderbilt audit found improper outlier billing. Nobody names Penn State or Hershey.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,48 @@
+{
+ "story_id": "S052",
+ "lead": {
+  "headline": "Five firms at one Newington, Connecticut, address won $13.35M in 41 small-business research awards; the Air Force barred all five",
+  "number": "$13.35M in 41 SBIR awards, 2021-25, to five firms at 549 Cedar St, Newington CT; the Air Force barred all five on 2026-07-17.",
+  "grade": "",
+  "verdict": "confirmed",
+  "watch_out": "The ban says \"proceedings pending,\" not a finding of fault, and it is already public."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "\"549 Cedar\" Newington SBIR",
+  "Newington Connecticut small business research firms Air Force suspended debarred 2026",
+  "Air Force suspends SBIR contractors Connecticut July 2026",
+  "Syrnatec Skystocks Air Force",
+  "Syrnatec OR Skystocks OR \"Bryka\" suspension fraud SBIR",
+  "Skystocks Bryka Newington Connecticut company news investigation",
+  "SBIR mills affiliated companies same address multiple awards fraud Air Force suspension 2026",
+  "Connecticut SBIR fraud charged OR indicted OR settlement 2026 Air Force research contracts",
+  "Newington company Air Force SAM exclusion \"proceedings pending\" small business innovation research"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://ssti.org/blog/ssti-analysis-reveals-sbir-%E2%80%9Cmills%E2%80%9D-take-outsized-portion-program%E2%80%99s-awards",
+   "outlet": "SSTI (State Science and Technology Institute)",
+   "date": "2020-09-24",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "awards made to potential mills account for more than 21 percent of all awards made during the period from 2009 to 2019.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "that the federal agencies could be doing much more to curtail the mills and redirect awards into companies more consistently focused on turning innovation into products, profits and jobs. The data reveals the extent of abuse by the small number of SBIR mills among all awardees is not insignificant: awards made to potential mills account for more than 21 percent of all awards made during the period from 2009 to 2019. Using SBA data, SSTI identified 13,046 different companies from among the more than 63,000 awards made from 2009 to 2019. Of these companies, 0.7 percent (95 companies) won 40 or more Phase I awards and/or 30 or more Phase II awards — qualifying these companies as possible SBIR mills based on the federal program’s stated performance be"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.sbir.gov/awards/206594",
+   "outlet": "SBIR.gov (SBA award database)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Planar Antenna array for L-Band and S-Band",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ntly Asked Questions (FAQ) Lab to Market Hub Program Tutorials Community Stay connected with our innovation ecosystem Community Event Spotlight News and Events Newsletter Sign-up Federal and State Technology (FAST) Growth Accelerator Fund Competition (GAFC) Award Portfolio Data Back to Award Search Planar Antenna array for L-Band and S-Band ‘PALS’ Awardee Skystocks Inc 549 Cedar St. Newington, CT, 06111-1814 USA Award Year: 2023 UEI: RB4XFCMC9KZ7 HUBZone Owned: No Woman Owned: Yes Socially and Economically Disadvantaged: No Congressional District: 1 Tagged as: SBIR Phase I Awarding Agency DOW Branch: USAF Total Award Amount: $149,921 Contract Number: FA9451-23-P-A0"
+  }
+ ]
+}

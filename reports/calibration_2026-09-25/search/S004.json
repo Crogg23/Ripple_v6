@@ -1,0 +1,79 @@
+{
+  "story_id": "S004",
+  "entity": "Top 20 Medicare skin-substitute billers 2024 ($1.13B) vs $76,937 in maker Open Payments 2022-24; incl. Organogenesis to Ravi Kapadia, Ira Denny, Gina Palacios, and 6 Arizona nurse practitioners billing only Impax ($124.0M)",
+  "queries": [
+    {"q": "Arizona nurse practitioners skin substitute Medicare billing Impax", "found_useful": true},
+    {"q": "DOJ charges Arizona nurse practitioners amniotic wound allografts Ira Denny Gina Palacios", "found_useful": true},
+    {"q": "Ravi Kapadia Organogenesis skin substitute Medicare", "found_useful": false},
+    {"q": "top skin substitute billers Medicare 2024 Open Payments manufacturer payments little", "found_useful": false},
+    {"q": "\"Impax\" amniotic membrane Medicare billing fraud nurse practitioner", "found_useful": true},
+    {"q": "skin substitute kickbacks distributors Open Payments not reported sales representatives Medicare billers", "found_useful": false},
+    {"q": "Wall Street Journal skin substitutes nurse practitioners Arizona billed Medicare hundreds of millions 2024", "found_useful": true},
+    {"q": "Arizona nurse practitioner skin graft Medicare fraud pleads guilty sentenced August 2026", "found_useful": false},
+    {"q": "\"Legacy Medical Consultants\" Impax Medicare investigation", "found_useful": true},
+    {"q": "\"Medicare Bleeds Billions on Pricey Bandages, and Doctors Get a Cut\"", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.openmedicare.us/investigations/arizona-wound-care-ring",
+      "outlet": "OpenMedicare",
+      "date": "2026-02-21",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In the Phoenix metropolitan area, 23 nurse practitioners billed Medicare a combined $514.6M for skin substitute products.",
+      "paywalled": false,
+      "searcher_note": "Names Ira Denny ($135.2M, top biller) and Gina Palacios ($27.0M) in a Phoenix NP skin-substitute cluster; uses 2023 CMS data, not 2024; no mention of Impax, Organogenesis, Kapadia or Open Payments. Update line says Denny, Jorge Kinds and Palacios were later charged by DOJ."
+    },
+    {
+      "url": "https://www.justice.gov/criminal/criminal-fraud/health-care-fraud-unit/2025-national-hcf-case-summaries",
+      "outlet": "U.S. Department of Justice, Health Care Fraud Unit",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Ira Denny, 56, of Surprise, Arizona, was charged by information with conspiracy to commit health care fraud in connection with a scheme to defraud Medicare by billing for medically unnecessary amniotic allografts",
+      "paywalled": false,
+      "searcher_note": "2025 national takedown summaries. Denny: ~$209.4M billed, ~$138.6M paid. Palacios charged with the same count. Charge is conspiracy to commit HEALTH CARE fraud, which conflicts with the lead's caveat calling it general fraud conspiracy. No product brand named."
+    },
+    {
+      "url": "https://www.ktar.com/arizona-health-news/health-care-fraud-arizona-cases/5723782/",
+      "outlet": "KTAR News (Phoenix)",
+      "date": "2025-07-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Ira Denny, 56, of Surprise is a nurse practitioner who allegedly ordered and applied over $200 million in unnecessary amniotic allografts for elderly Medicare recipients.",
+      "paywalled": false,
+      "searcher_note": "Local coverage of the June 2025 takedown; also says Palacios faces similar accusations, nearly $60M billed. No Impax mention."
+    },
+    {
+      "url": "https://carolinefifemd.com/2026/07/15/skin-substitute-fraud-indictments/",
+      "outlet": "Caroline Fife M.D. (wound-care physician blog)",
+      "date": "2026-07-15",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The largest and most consequential story in this space by far is a multi-defendant scheme centered in Arizona involving Apex/APX-related companies and amniotic wound allografts.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff roundup of skin-substitute indictments; lists Denny ($209.4M billed) and Palacios ($59.5M billed). No Impax, Organogenesis or Open Payments mention."
+    },
+    {
+      "url": "https://www.cbsnews.com/news/arizona-wound-care-company-older-patients-skin-graft-scheme/",
+      "outlet": "CBS News",
+      "date": "2024-06-27",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Federal prosecutors charged the owners of an Arizona wound care company and two nurse practitioners who worked with them for conspiring to defraud Medicare of over $900 million after they allegedly targeted elderly patients",
+      "paywalled": false,
+      "searcher_note": "Earliest found: Gehrke/King (Apex) Arizona amniotic-graft case with NPs applying grafts; kickbacks from a graft distributor. Same pattern, different named people."
+    },
+    {
+      "url": "https://artdiamondblog.com/archives/2025/05/14663.html",
+      "outlet": "artdiamondblog (quoting New York Times, Kliff and Thomas, April 2025)",
+      "date": "2025-05-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "In October 2023, Medicare began reimbursing $6,490 for a new Legacy product",
+      "paywalled": false,
+      "searcher_note": "Blog excerpt of NYT 'Medicare Bleeds Billions on Pricey Bandages, and Doctors Get a Cut'; names Impax as a Legacy Medical Consultants product; pattern: doctors keep discounts/rebates from sellers, a payment channel Open Payments would not show."
+    }
+  ],
+  "notes": "Found coverage naming Ira Denny and Gina Palacios (DOJ charges June 2025; OpenMedicare Phoenix NP cluster on 2023 data). Found nothing on the lead's core finding: top-20 2024 billers vs $76,937 in maker Open Payments, Organogenesis-to-Ravi Kapadia $63,088, or 6 Arizona NPs billing only Impax (68.6% of Impax). Ravi Kapadia search returned nothing. DOJ lists Denny's count as conspiracy to commit health care fraud, which disagrees with the lead's caveat ('general fraud conspiracy, not health fraud'). Fierce Healthcare piece on Legacy/Impax rebates returned 403; NYT original is paywalled and syndicated copies (myheraldreview, dnyuz) blocked fetch. CareJourney page (search snippet said Q4262 Dual Layer Impax had over $1.1B paid) could not be fetched, so it is not recorded."
+}

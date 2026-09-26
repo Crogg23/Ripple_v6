@@ -1,0 +1,54 @@
+{
+  "story_id": "S085",
+  "entity": "U.S. Bankruptcy Court for the District of Delaware, share of Chapter 11 filings by companies with $1B+ assets, 2015 onward (affiliated cases counted as one)",
+  "queries": [
+    {"q": "Delaware bankruptcy court share of billion-dollar Chapter 11 cases since 2015 Houston venue shopping", "found_useful": true},
+    {"q": "billion-dollar bankruptcies filed in Delaware versus Houston percentage since 2015 LoPucki data", "found_useful": true},
+    {"q": "Delaware reclaims top spot large corporate bankruptcies 2025 billion-dollar cases share Southern District of Texas New Jersey", "found_useful": true},
+    {"q": "Delaware bankruptcy court megacases 2026 venue share Houston decline first half 2026", "found_useful": false},
+    {"q": "\"Delaware\" \"more than half\" billion-dollar bankruptcies decade court filings analysis", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://texaslawbook.net/texas-business-bankruptcies-skyrocket-in-dfw-decline-slightly-in-houston/",
+      "outlet": "The Texas Lawbook",
+      "date": "2025-01-07",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "According to Debtwire, 54 of the 115 companies with liabilities of $1 billion or more were litigated in the Southern District. By contrast, only 27 such businesses filed their Chapter 11s in Delaware during that period.",
+      "paywalled": false,
+      "searcher_note": "Disagrees with the lead: Debtwire counts Houston (SDTX) ahead of Delaware on $1B+ cases. Threshold is liabilities, not assets; the period is the Houston boom before the Oct 2023 Jones scandal, not stated as exact years. Same article says Delaware led 8 to 7 in the year after Jones resigned."
+    },
+    {
+      "url": "https://www.cornerstone.com/insights/press-releases/mega-bankruptcies-surge-in-first-half-of-2025/",
+      "outlet": "Cornerstone Research",
+      "date": "2025-09-24",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The most common venues for bankruptcies continued to be Delaware and the Southern District of Texas, accounting for 40% and 24%, respectively, over the past 12 months.",
+      "paywalled": false,
+      "searcher_note": "Public-company Chapter 11 venue shares for a 12-month window ending mid-2025; all public-company filings, not only the $1B+ mega cases (32 mega cases in that window)."
+    },
+    {
+      "url": "https://news.bloomberglaw.com/bloomberg-law-analysis/analysis-big-bankruptcy-cases-on-a-roll-delaware-still-leads",
+      "outlet": "Bloomberg Law",
+      "date": "2023-09-07",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Its 47 cases account for approximately 39% of the 120 megacase total through August of this year.",
+      "paywalled": false,
+      "searcher_note": "Delaware leads megacases Jan-Aug 2023, but megacase here means $50M+ assets, not $1B+."
+    },
+    {
+      "url": "https://www.abi.org/abi-journal/venue-in-chapter-11-cases-what-then-what-now-and-what-next",
+      "outlet": "ABI Journal (American Bankruptcy Institute)",
+      "date": "2026-07-01",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "In the last 20 years, more than 70 percent of public companies with at least $100 million in assets filed for bankruptcy in a district outside of the one closest to their headquarters",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff venue-shopping piece naming Delaware, SDTX and SDNY as the usual venues; no Delaware-specific counts. Date is the July 2026 issue as read by WebFetch (day not given). Quote sits in a footnote citing a Senate press release."
+    }
+  ],
+  "notes": "No source found giving Delaware 46 of 80 $1B+ asset Chapter 11 families since 2015. The closest $1B+ comparison (Debtwire via Texas Lawbook) goes the other way for the Houston-boom years: SDTX 54 of 115 vs Delaware 27, by liabilities. Other coverage uses different thresholds ($50M+ megacases, all public companies) or short windows. Venue shopping itself is widely covered. Nothing found on Houston's 20+-affiliate families showing under $1M assets. Search 1 ran four internal searches in the tool; logged as one query. Snippets (not fetched) say Bloomberg Law and Thomas H. Curran Associates reported Texas large filings rising from 18 in 2024 to 33 in 2025."
+}

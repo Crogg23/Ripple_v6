@@ -1,0 +1,59 @@
+{
+ "story_id": "S166",
+ "lead": {
+  "headline": "28% of new Irish companies in 1992 sat at addresses holding 1,000+ companies; by 2001, just 1.2%",
+  "number": "4,136 of 14,669 in 1992 (28.2%); 23 addresses took 33,458 companies in the 1990s and 1,870 since; 68% of those 1990s companies were struck off in 1999-2000 vs 32% elsewhere; 41 Central Chambers, Dame Court, Dublin 2 holds 8,826",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "History piece, and the register keeps each company's last address, not its first; consecutive company numbers at one address (45% vs about 5% by chance) are the evidence of formation there"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "\"Central Chambers\" \"Dame Court\" Dublin companies registered address",
+  "Irish non-resident companies 1990s shell companies registered Dublin address formation agents 1999 Finance Act",
+  "Irish Times non-resident companies thousands registered one Dublin address formation agent money laundering 1990s",
+  "\"non-resident companies\" Ireland 1990s thousands registered same address Dublin fraud Eastern Europe investigation",
+  "Companies Registration Office strike off 1999 2000 tens of thousands companies struck off annual returns Ireland",
+  "Dáil debate 1998 non-resident companies brass plate company formation agents Dublin addresses abuse",
+  "Irish Times 2013 Dublin company formation agent 2,000 shell companies criminal activity",
+  "\"Dame Court\" Dublin shell companies non-resident 1990s registered office thousands"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.irishtimes.com/news/ireland/irish-news/pandora-papers-empty-dublin-office-used-as-registered-address-for-800-limited-partnerships-1.4690024",
+   "outlet": "The Irish Times",
+   "date": "2021-10-04",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "an empty office which is the registered address of more than 800 Irish limited partnerships, most of which are controlled by people from former soviet republics such as Russia, Ukraine and Uzbekistan.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " on Lower Fitzwilliam Street, Dublin 2: Office 29 is linked to a controversial London-based company services business that operates under names including Las International. Photograph: Dara Mac Dónaill Colm Keena Mon Oct 04 2021 - 05:00 Just a short walk across Merrion Square from Leinster House is an empty office which is the registered address of more than 800 Irish limited partnerships, most of which are controlled by people from former soviet republics such as Russia, Ukraine and Uzbekistan. Leaked documents show that Office 29, Clifton House, on Lower Fitzwilliam Street, Dublin 2, is linked to a controversial London-based company services business that operates under a number of names including Las International. “They rent an office here, but there is nobody here at the moment,” the receptionist in the lobby sa"
+  },
+  {
+   "idx": 1,
+   "url": "https://taxjustice.net/2015/11/11/how-ireland-became-an-offshore-financial-centre/",
+   "outlet": "Tax Justice Network",
+   "date": "2015-11-11",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "As the Irish Times reported in June 2013, one Dublin-based company incorporation business alone had set up some 2,000 shell companies, some of which have been found to have been involved in large-scale criminal activities around the world.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "low illustrates, led to extremely low effective tax rates in Ireland for US multinationals [9] . Shady shell companies Beyond these tax-structuring activities, Ireland – like many offshore jurisdictions – has also been happy to serve as an ask-no-questions incorporation centre for shady businesses. As the Irish Times reported in June 2013, one Dublin-based company incorporation business alone had set up some 2,000 shell companies, some of which have been found to have been involved in large-scale criminal activities around the world. The man behind the agency, Phil Burwell, said he had “no responsibility for the nominee directors or activities of the firms after they are incorporated.” The Irish Financial Services Centre (IFSC) The second main leg in Ireland’s ‘offshore’ offer came with the birth of the Irish Financial Services Centre. In the late 1970s a g"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.irishtimes.com/business/two-irish-registered-companies-fined-1.373493",
+   "outlet": "The Irish Times",
+   "date": "2003-09-05",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Rake Street Ltd, a London-based commercial property rental company, with a registered address at Central Chambers, Dame Street, Dublin, was fined €1,500 after pleading guilty to failing to keep proper records for 2000, 2001 and 2002.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r in the company, which was registered here for tax purposes. There were no employees and no day-to-day expenditure, which resulted in them failing to realise that they needed to keep books of account. After early success, its market became saturated and the intention was to wind it up voluntarily. Rake Street Ltd, a London-based commercial property rental company, with a registered address at Central Chambers, Dame Street, Dublin, was fined €1,500 after pleading guilty to failing to keep proper records for 2000, 2001 and 2002. Defence counsel said its only business was the rental of two commercial properties and it carried out 100 transactions a year. As soon as the owners became aware of the situation they took steps to rectify it and now keep full and proper books. — From maternity leave to remote working: Submit your work-related questions here Lis"
+  }
+ ]
+}

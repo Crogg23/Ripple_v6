@@ -1,0 +1,12 @@
+{
+  "story_id": "S163",
+  "bin": "Known pattern",
+  "entity": "45 big client companies where contractors' H-1B filings ran a median 20.6% below the company's own, FY2019",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Bloomberg and the Yahoo rewrite report the same scheme, contractors' H-1B workers paid well below clients' direct hires, but for banks/Citi, not our 45-company set (every source entity_named no). Same pattern, not this entity.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

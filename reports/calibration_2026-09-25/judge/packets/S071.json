@@ -1,0 +1,95 @@
+{
+ "story_id": "S071",
+ "lead": {
+  "headline": "Political ad buyers who gave Google only a tax ID, no federal election ID, spent $861.4M on Google ads",
+  "number": "8,368 EIN-only US buyers spent $861.4M (FEC-ID buyers $1,389.1M); Securing American Greatness Inc put 84% of its 2024 spend on one-gender ads.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "State candidates and ballot committees have no federal election ID by law, so most of the pile is legal."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "\"Securing American Greatness\" Google ads 2024 spending",
+  "Securing American Greatness ads targeted men OR women digital YouTube 2024 Trump nonprofit gender",
+  "Google political ads transparency report nonprofits dark money groups spending Google ads no FEC registration EIN verification loophole",
+  "Google political ads 2024 targeted only men or only women gender targeting analysis advertisers YouTube election ads study",
+  "\"Securing American Greatness\" young men ads Google YouTube targeting",
+  "Google election ads verification United States advertisers FEC ID or EIN state candidates ballot measure committees requirements",
+  "Securing American Greatness midterm ad spending 2026 dark money Budowich nonprofit August September 2026",
+  "Google political ad library spending by advertisers not registered with FEC state local candidates ballot measures share of total Google political ad spend analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://ymrp.substack.com/p/gop-groups-outspent-dem-groups-almost",
+   "outlet": "Young Men Research Project (Substack)",
+   "date": "2024-10-11",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The GOP-aligned groups (America PAC, Donald J. Trump For President 2024, Inc., Duty To America, Make America Great Again Inc., Right For America And Securing American Greatness Inc) spent about $700-$850k targeting young men last week",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ms were outspent 3.7 to 1 with their young male targeting, although that is an improvement. Overall in the campaign, Dems have been outspent 14 to 1 in ads targeting young men. These numbers reflect spending on Google and Youtube ads only (where we have full data). You can find the full list here . The GOP-aligned groups (America PAC, Donald J. Trump For President 2024, Inc., Duty To America, Make America Great Again Inc., Right For America And Securing American Greatness Inc) spent about $700-$850k targeting young men last week (notably the Trump campaign itself spent 0), for a total of $2.8-$3.6 million in the campaign so far. Share The Dem aligned groups (Harris for President, The Wisco Project PAC) spent between $185-226k targeting young men last week, for a total of $202-254k. The top ad the Harris campaign is spending on is a 15 second version of “ Wa"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.brennancenter.org/our-work/research-reports/dark-money-hit-record-high-19-billion-2024-federal-races",
+   "outlet": "Brennan Center for Justice, Anna Massoglia",
+   "date": "2025-05-07",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "About 320 groups that do not disclose their donors collectively spent more than $281 million on online ads during the 2024 election cycle without disclosing any spending to the FEC.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ion or defeat of a particular candidate. Unlike TV and radio ads, online ads that mention candidates are not subject to FEC reporting regardless of proximity to Election Day. Nevertheless, some major online platforms voluntarily maintain databases of political ad sales. These datasets indicate that about 320 groups that do not disclose their donors collectively spent more than $281 million on online ads during the 2024 election cycle without disclosing any spending to the FEC. Another 38 nonprofits that do not disclose their donors but reported at least some spending to the FEC spent an additional $34 million on online ads. (As with TV spending, this analysis does not double count spending that appears in both data from online platforms and FEC data.) Without standardized disclosure regulations for"
+  },
+  {
+   "idx": 2,
+   "url": "https://gvwire.com/2026/08/31/millions-of-dollars-in-secret-spending-could-upend-the-2026-midterms/",
+   "outlet": "The New York Times (syndicated on GV Wire), Shane Goldmacher and Theodore Schleifer",
+   "date": "2026-08-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The group has spent at least $44 million since early last year, sending nearly $25 million to super PACs and airing about $19 million of ads boosting Trump and Republicans.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://www.brennancenter.org/our-work/analysis-opinion/online-political-spending-2024",
+   "outlet": "Brennan Center / OpenSecrets / Wesleyan Media Project",
+   "date": "2024-10-16",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Of the $619 million in spending in our sample, 45 percent came from spenders that may conceal some or all of their donors.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ins of much of the money funding online political advertising are not publicly known. As with other forms of electioneering, spenders can use “dark money” nonprofit organizations to keep their donors hidden. But there is even less transparency online than in other media due to a lack of regulation. Of the $619 million in spending in our sample, 45 percent came from spenders that may conceal some or all of their donors. Nonprofits that typically don’t disclose any of their donors spent $106 million, while $65 million is “gray money” from political committees that can partially conceal their donors. An example of “gray money” spending is Americans for Prosperity Action, one of the top online spenders with more than $7 million in ad buys. As a su"
+  },
+  {
+   "idx": 4,
+   "url": "https://support.google.com/adspolicy/answer/9617730?hl=en",
+   "outlet": "Google Advertising Policies Help",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "Advertisers wishing to apply for verification before this date may do so using our existing political verification form and a FEC ID or EIN.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "elves for the Political advertising on Google transparency report and in-ad disclosures. Starting November 18, 2019, all advertisers will be able to apply for verification with state board of elections registration information and California committees can complete the express notification process. Advertisers wishing to apply for verification before this date may do so using our existing political verification form and a FEC ID or EIN. Enforcement of the policy will begin on December 3, 2019. Google restricts advertising for state and local election ads in Washington, Maryland, New Jersey, Nevada, and New York. On November 18, 2019, we will also update some of these restrictions. (Posted November 2019) Was this helpful? How can we improve it? Submit false Past changes 1 of "
+  },
+  {
+   "idx": 5,
+   "url": "https://www.citizensforethics.org/reports-investigations/crew-investigations/qualcomm-gave-1-million-to-pro-trump-dark-money-group/",
+   "outlet": "CREW",
+   "date": "2025-07-30",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Securing American Greatness spent $81 million in the election, including $67 million in contributions to Trump-supporting super PACs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nto the support behind a powerful and rising part of Trump’s political operation. Securing American Greatness was launched in March 2024 and run by Taylor Budowich, who also ran the pro-Trump super PAC Make America Great Again, Inc. Budowich now serves in the White House as a deputy chief of staff. Securing American Greatness spent $81 million in the election, including $67 million in contributions to Trump-supporting super PACs. Since Trump’s election, Securing American Greatness has pivoted its spending to supporting Trump’s agenda. In May, the group launched a seven-figure ad campaign across targeted congressional districts praising Trump’s economic agenda. In June, it launched a second ad thanking Republican members of Congress for supporting Trump’s signature tax"
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+  "story_id": "S026",
+  "entity": "Sen. Markwayne Mullin (R-Okla.), 2023-24 stock trades disclosed in summer 2025, most more than a year past the STOCK Act deadline; secondary: Sen. Alan Armstrong's ~700 late trade lines",
+  "queries": [
+    {"q": "Markwayne Mullin late stock trade disclosures STOCK Act 2025", "found_useful": true},
+    {"q": "Mullin stock trades late disclosure 2026", "found_useful": true},
+    {"q": "Mullin STOCK Act Senate Ethics Committee complaint late filings fine", "found_useful": true},
+    {"q": "Alan Armstrong 700 late stock trades STOCK Act NOTUS third party advisor direct indexing", "found_useful": true},
+    {"q": "Mullin periodic transaction report 2023 2024 trades filed a year late Tulsa World OR \"The Frontier\" OR \"Public Radio Tulsa\"", "found_useful": true},
+    {"q": "\"Mullin\" late stock disclosures \"days late\" 2023 trades Senate eFD analysis Unusual Whales OR Quiver OR \"Capitol Trades\"", "found_useful": true},
+    {"q": "Mullin office disputes STOCK Act violation amended disclosures independent firm manages portfolio", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.washingtonsun.com/oklahoma/markwayne-mullin-disclosures",
+      "outlet": "NOTUS (now published as The Washington Sun; notus.org URL redirects here), co-published by Oklahoma Watch",
+      "date": "2025-08-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "A NOTUS analysis of a financial document Mullin filed Tuesday with the U.S. Senate revealed the Oklahoma lawmaker was months late disclosing nearly three dozen stock and bond transactions by himself and his wife.",
+      "paywalled": false,
+      "searcher_note": "Second late filing (Aug 12, 2025): ~three dozen trades, $1.4M-$3.5M, mostly sales; says 'months late', not years. Mullin office: amended filing, third-party firm runs portfolio."
+    },
+    {
+      "url": "https://www.washingtonsun.com/oklahoma/markwayne-mullin-stock-act",
+      "outlet": "NOTUS (now published as The Washington Sun; notus.org URL redirects here), co-published by Oklahoma Watch",
+      "date": "2025-07-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The Oklahoma senator was two-and-a-half years late reporting seven stock purchases by his wife and about one-and-a-half years late disclosing three Oklahoma-connected municipal security purchases for himself",
+      "paywalled": false,
+      "searcher_note": "Earliest found. First late filing (July 30, 2025): 10 trades, 2023 purchases, up to 2.5 years late. Oklahoma Watch republished 2025-08-05."
+    },
+    {
+      "url": "https://www.thecentersquare.com/national/article_4afc4a1c-f920-4794-ba07-c552d18ad126.html",
+      "outlet": "The Center Square",
+      "date": "2025-10-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "On Aug. 13, Mullin reported the sale or purchase of more than 70 stocks and bonds worth tens of millions of dollars in 2023 and 2024.",
+      "paywalled": false,
+      "searcher_note": "Says Mullin blew past more deadlines than any lawmaker since Dec. 31, 2024; three late reports (Dec 31, July 30, Aug 13); July 30 filing was ten 2023 trades worth up to $735,000. Count (70+) differs from the lead's 48."
+    },
+    {
+      "url": "https://oklahomawatch.org/2026/07/27/sen-alan-armstrong-violated-stock-act-with-700-tardy-stock-disclosures/",
+      "outlet": "Oklahoma Watch (NOTUS partnership)",
+      "date": "2026-07-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Others include Sens. Katie Britt (R-Alabama), Susan Collins (R-Maine), John Hickenlooper (D-Colorado), Mike Rounds (R-South Dakota), John Fetterman (D-Pennsylvania) and Mullin, whom Armstrong replaced.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Main subject is Armstrong (700 trades months late, $3.24M-$16.05M, third-party advisor direct indexing); lists Mullin among past-year STOCK Act violators."
+    },
+    {
+      "url": "https://www.kgou.org/politics-and-government/2026-07-27/sen-alan-armstrong-violated-stock-act-with-700-tardy-stock-disclosures",
+      "outlet": "KGOU (Oklahoma public radio), republishing NOTUS",
+      "date": "2026-07-27",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "One of the Senate’s newest members was months late disclosing 700 personal stock trades that together are worth millions of dollars, according to a NOTUS review of new congressional financial records.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff copy of the NOTUS Armstrong story (same story as the Oklahoma Watch row); recorded for the Armstrong quote. Page also quotes the filing note: trades 'initiated by a third party advisor to implement a direct indexing strategy.'"
+    }
+  ],
+  "notes": "Mullin's late 2023-24 trade filings in summer 2025 were widely covered (NOTUS/Oklahoma Watch July 31 and Aug 13 2025, Benzinga Aug 1 2025 via Webull, Center Square Oct 7 2025, OU Daily, News9, OK Gazette). Press counts: 10 trades in the July 30 filing plus ~three dozen in the Aug 12 filing (NOTUS), or 70+ in the Aug 13 report (Center Square); NOTUS calls the second batch 'months late'. No source found stating 48 lines, 46 over a year late, 244-953 days, or a $1.74M floor. Newsweek (2026-03-16) on Mullin's DHS-era portfolio has no late-filing claims; NOTUS 2026-03-18 recaps the 2025 violations in one line. Mullin's office did not dispute lateness; it said filings were amended and a third-party firm runs the portfolio."
+}

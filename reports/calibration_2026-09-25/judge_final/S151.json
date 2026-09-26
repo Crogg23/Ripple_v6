@@ -1,0 +1,12 @@
+{
+ "story_id": "S151",
+ "bin": "Known pattern",
+ "entity": "108 auto-revoked nonprofits with a return on the IRS e-file index for a missed year",
+ "deciding_sources": [2, 3],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Nobody names our 108. The Apify write-up reports the same kind of finding on other organizations, 19 of 40 revoked groups with full 990 histories, and Fox has one erroneous-revocation case. The Taxpayer Advocate 2,270 quote is blocked and not paywalled, so it's out.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S131",
+ "bin": "Matched + more",
+ "entity": "Small public companies filing annual reports past the 15-day extension three years running; the 4 still exchange-listed",
+ "deciding_sources": [2, 3, 4, 5],
+ "earliest_match_date": "2025-05-29",
+ "post_cutoff_match": true,
+ "what_we_add": "the 18-company cohort, the three-consecutive-years pattern, and the four-still-listed count as one finding",
+ "why": "Company press releases confirm late 10-Ks at Laser Photonics (FY2024 and FY2025), Global Interactive and EON Resources, three of our four named entities, same direction. Nobody assembles the 18-firm three-year repeat-offender list. BIO-key's two sources are blocked and unusable.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

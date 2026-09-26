@@ -1,0 +1,16 @@
+{
+ "story_id": "S104",
+ "bin": "Matched + more",
+ "entity": "Oroville Hospital's excess Medicare inpatient stays and sepsis coding",
+ "deciding_sources": [
+  1,
+  2,
+  4
+ ],
+ "earliest_match_date": "2024-12-12",
+ "post_cutoff_match": false,
+ "what_we_add": "the 1.78 stays-per-patient ranking against 2,109 hospitals and the 30%-vs-15% sepsis share",
+ "why": "The DOJ settlement states Oroville admitted patients unnecessarily and used false SIRS/sepsis codes, 2013-2023 - same entity, same finding. Nobody computes the 1.78 ratio or the sepsis-share comparison. The DOJ press-release quote is missing, but the settlement PDF quote is exact.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

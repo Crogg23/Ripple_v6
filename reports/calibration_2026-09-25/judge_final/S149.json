@@ -1,0 +1,12 @@
+{
+ "story_id": "S149",
+ "bin": "Matched + more",
+ "entity": "DHS contract commitments Oct 2025-Jun 2026 and Fisher Sand & Gravel's share",
+ "deciding_sources": [0, 2, 4],
+ "earliest_match_date": "2026-05-21",
+ "post_cutoff_match": true,
+ "what_we_add": "the DHS-wide total: $50.97B, 4.1x the $12.42B nine-month median of FY2019-25",
+ "why": "PrimeRFP has Fisher at $13.4B concentrated at DHS, matching our $13.35B; ProPublica ($9B+) and Saltbox (CBP surge) track the same direction at earlier dates. Nobody states the agency-wide 4.1x jump.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

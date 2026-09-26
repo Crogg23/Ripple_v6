@@ -1,0 +1,12 @@
+{
+ "story_id": "S123",
+ "bin": "Matched + more",
+ "entity": "House 119th Congress floor amendment opportunity on bills passed by roll call",
+ "deciding_sources": [0, 3, 1],
+ "earliest_match_date": "2026-01-09",
+ "post_cutoff_match": true,
+ "what_we_add": "the amendment-roll-call measure itself: 14 of 118 bills (12.7%) vs the 1995-2024 median of 60.8%",
+ "why": "Bloomberg Gov has 84% of measures barred from any amendment in 2025 and McGovern has the most-closed-Congress record: same entity, same direction. Their measure is closed rules; nobody computes our roll-call-share against a 30-year median.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

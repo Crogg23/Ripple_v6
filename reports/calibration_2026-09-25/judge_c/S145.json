@@ -1,0 +1,12 @@
+{
+ "story_id": "S145",
+ "bin": "Matched + more",
+ "entity": "Vermont private-sale gun background checks under its universal-check law",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2018-12-31",
+ "post_cutoff_match": false,
+ "what_we_add": "77 checks in 2022, 0.17 per 100 dealer checks, last of the 10 law states (median 2.2), and the no-law median 0.10",
+ "why": "WCAX and VTDigger name Vermont and report the same finding in words: strikingly few private-sale checks despite the law (48 in 2017, 90 in 2018, flat into 2019). No source has the 2022 count, the per-100-dealer-checks rate, or the last-of-10-states ranking.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,76 @@
+{
+  "story_id": "S014",
+  "entity": "New Mexico homicide clearance rate (FBI state totals), 2022-2023, vs national; lowest of 51",
+  "queries": [
+    {"q": "New Mexico homicide clearance rate lowest in nation FBI data", "found_useful": true},
+    {"q": "Albuquerque homicide clearance rate unsolved murders New Mexico Searchlight OR \"Source NM\" OR \"Albuquerque Journal\"", "found_useful": true},
+    {"q": "Murder Accountability Project New Mexico murders cleared percent state ranking", "found_useful": true},
+    {"q": "\"Legislative Finance Committee\" New Mexico homicide clearance rate report", "found_useful": true},
+    {"q": "New Mexico State Police inaccurately reported clearance rates to FBI homicide", "found_useful": true},
+    {"q": "\"New Mexico\" murder clearance rate 2022 OR 2023 state comparison lowest percent solved killings", "found_useful": true},
+    {"q": "New Mexico homicides unsolved clearance rate 2026 FBI report state police data", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://247wallst.com/special-report/2023/12/14/states-where-the-most-murders-go-unsolved/",
+      "outlet": "24/7 Wall St. (Sam Stebbins)",
+      "date": "2023-12-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Year with the most murders from 2013-2022: 2022 (235 murders; 47 cases solved)",
+      "paywalled": false,
+      "searcher_note": "Ranks New Mexico #2 worst state for murders solved, 41.6% over 2013-2022, from Murder Accountability Project data (Illinois excluded). 47 of 235 in 2022 is ~20%. Ten-year window and MAP counts, not FBI state totals for 2022-23."
+    },
+    {
+      "url": "https://www.nmlegis.gov/handouts/ALFC%20120825%20Item%2022%20Policy%20Spotlight%20Felony%20Arrests%20and%20Outcomes.pdf",
+      "outlet": "New Mexico Legislative Finance Committee, Policy Spotlight: Felony Arrests and Outcomes",
+      "date": "2025-12-11",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "However, the State Police and several other large police agencies in New Mexico have recently flagged they have been inaccurately reporting clearance rates to the FBI for years, likely skewing statewide clearance rates.",
+      "paywalled": false,
+      "searcher_note": "Says NM reported clearance rates for violent crimes including homicide declined since 2010 (FBI data, Chart 9/10) but flags misreporting by State Police and large agencies; 18% of agencies hadn't reported in over a year as of Sept 2025. Backs the lead's caveat."
+    },
+    {
+      "url": "https://www.abqjournal.com/news/lfc-report-improving-new-mexicos-criminal-justice-system-could-lie-in-better-data-sharing/2945494",
+      "outlet": "Albuquerque Journal",
+      "date": "2025-12-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Court filings for felony crimes have not shifted substantially, suggesting arrest rates are probably roughly the same as in FY18.",
+      "paywalled": false,
+      "searcher_note": "News write-up of the LFC report: ties NM data gaps to the FBI's 2018 SRS-to-NIBRS switch and quotes the report that large agencies 'have been reporting inaccurately for years'. Disagrees with a real drop in solving since 2018."
+    },
+    {
+      "url": "https://www.kob.com/new-mexico/albuquerque-police-boast-126-homicide-clearance-rate/",
+      "outlet": "KOB 4 (Albuquerque)",
+      "date": "2024-03-22",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "if you look at 2022, they ended at 92%, and in 2023 they were at 90%",
+      "paywalled": false,
+      "searcher_note": "Albuquerque PD deputy chief says APD's homicide clearance was 92% (2022) and 90% (2023). City, not state, and APD's own count (includes prior-year cases), but APD is NM's largest agency, so it sits against a 22-23% state figure."
+    },
+    {
+      "url": "https://stateline.org/2025/11/24/why-clearance-rates-dont-tell-the-whole-story-about-solving-crimes/",
+      "outlet": "Stateline (Amanda Watford)",
+      "date": "2025-11-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Police departments in Vermont, Delaware and Idaho had the highest violent crime clearance rates in 2024, while New Mexico, Georgia and Mississippi had the lowest",
+      "paywalled": false,
+      "searcher_note": "NM among lowest for all violent crime clearance in 2024, per CSG Justice Center. Different measure (violent crime, not homicide) and year. Live page 403s to bots; text confirmed in the Internet Archive copy."
+    },
+    {
+      "url": "https://www.police1.com/crime/legislative-report-finds-n-m-s-sagging-crime-clearance-rate-holds-back-public-safety-initiatives",
+      "outlet": "Police1 (reprinting Albuquerque Journal, Dan Boyd)",
+      "date": "2024-12-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Specifically, the clearance rate for solving violent crimes has gone from about 1 in 4 cases a decade ago to about 1 in 7 cases currently, according to the Legislative Finance Committee report.",
+      "paywalled": false,
+      "searcher_note": "NM statewide violent-crime clearance falling over a decade (LFC). Violent crime overall, not homicide specifically."
+    }
+  ],
+  "notes": "No source found stating New Mexico's FBI state-total homicide clearance of 22-23% in 2022-23 or ranking it lowest of 51 for those years. Closest: 24/7 Wall St (MAP data) ranks NM second-worst over 2013-2022 and shows 47 of 235 murders solved in 2022. Disagreement: APD reports 92%/90% city homicide clearance for 2022/2023, and the LFC (Dec 2025) says State Police and other large agencies misreported clearance to the FBI for years, which fits the lead's warning that the 2018 cliff may be a reporting change. Also seen, not recorded: NM Sun opinion (2022-07-22, Pete Dinelli) disputing APD's 97% 2022 claim and computing ~18% by FBI method; NMSP Investigations Bureau press release claiming 100% clearance of its 20 homicides in 2023. No coverage dated July-Sept 2026 found."
+}

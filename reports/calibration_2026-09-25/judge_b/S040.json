@@ -1,0 +1,12 @@
+{
+  "story_id": "S040",
+  "bin": "Not comparable",
+  "entity": "loanDepot's refinance vs purchase denial rates, 2015-17",
+  "deciding_sources": [2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The only source with a loanDepot refi denial number says 0%, from 2024 HMDA - a different window than our 2015-17, so the numbers can't be lined up. CFPB's refi-denied-2.5x-purchase is industry-wide and never names loanDepot.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

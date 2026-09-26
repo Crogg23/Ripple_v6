@@ -1,0 +1,12 @@
+{
+ "story_id": "S099",
+ "bin": "Matched + more",
+ "entity": "Destroyed US planes kept valid or renewed in the FAA registry after their crash",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2010-12-10",
+ "post_cutoff_match": false,
+ "what_we_add": "The counts: 420 destroyed planes still marked valid, 37 with registration terms that started after the crash, all touched in 2023",
+ "why": "The Boston Globe (9/11 planes active four years on; a TWA plane uncanceled for 57 years) and AP report crashed and totaled planes staying registered — same finding, same direction. Our affirmative renewal-after-crash counts appear nowhere; AOPA's 2023 blanket extension only explains the mechanism.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

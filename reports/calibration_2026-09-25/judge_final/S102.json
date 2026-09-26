@@ -1,0 +1,17 @@
+{
+ "story_id": "S102",
+ "bin": "Matched + more",
+ "entity": "Arizona overdose deaths, 12 months to Oct 2025, rising while the nation fell",
+ "deciding_sources": [
+  0,
+  1,
+  2,
+  4
+ ],
+ "earliest_match_date": "2026-01-15",
+ "post_cutoff_match": true,
+ "what_we_add": "the 2,980-vs-2,829 record-since-2015 comparison and the cocaine 261-to-443 counts",
+ "why": "AZPHA (2,988, +18%), KJZZ, CDC and Filter all report Arizona rising while the US fell about 14% - same entity, direction and near-identical level; window differences explain 11.5% vs 18%. The since-2015 record framing is ours.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

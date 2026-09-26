@@ -1,0 +1,14 @@
+{
+ "story_id": "S151",
+ "bin": "Known pattern",
+ "entity": "The 108 auto-revoked nonprofits with a return in the IRS e-file index",
+ "deciding_sources": [
+  2
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source covers our 108. The Apify page reports the same kind of finding generically: 19 of 40 recently revoked orgs still had full 990 histories on record; Fox News has one org revoked by IRS error. The NTA report is blocked and not paywalled, so it's out.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

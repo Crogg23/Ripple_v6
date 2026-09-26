@@ -1,0 +1,12 @@
+{
+  "story_id": "S198",
+  "bin": "Known pattern",
+  "entity": "19 consecutive water systems (4,347 people) buying only from sellers with chemical-limit violations while their own records look clean",
+  "deciding_sources": [2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "EPA's MDBP working group states the same kind of finding in general: consecutive systems can receive water barely meeting limits and carry higher violations. No source names our 19 systems or states the buyer-looks-clean finding; the IL EPA page is a raw violations list.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

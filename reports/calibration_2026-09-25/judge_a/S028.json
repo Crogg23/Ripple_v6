@@ -1,0 +1,12 @@
+{
+ "story_id": "S028",
+ "bin": "Matched + more",
+ "entity": "UK-sanctioned Russia shadow-fleet ships not on the US OFAC list",
+ "deciding_sources": [0, 1, 3],
+ "earliest_match_date": "2025-05-27",
+ "post_cutoff_match": true,
+ "what_we_add": "the UK-only count: 358 of 620 UK-sanctioned ships not on OFAC, and 309 designated in 2024-25; Brookings only gives the combined EU+UK gap (524)",
+ "why": "Brookings names the UK and states the same finding: hundreds of allied-sanctioned tankers the US hasn't designated, US count frozen since Jan 2025. Nobody states the UK-only 358 or the 309 in 2024-25.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

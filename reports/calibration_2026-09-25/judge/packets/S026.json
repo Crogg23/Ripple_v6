@@ -1,0 +1,82 @@
+{
+ "story_id": "S026",
+ "lead": {
+  "headline": "Sen. Markwayne Mullin filed 48 stock trades from 2023-24 in summer 2025; 46 were over a year late",
+  "number": "48 trade lines, 46 more than a year late, 244-953 days, at least $1.74M; Alan Armstrong's 701 late lines are one advisor-run account filed about 4 months late.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Late filing is a steady trickle (11-59 late lines a year without Armstrong), so this is a named case, not a trend."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Markwayne Mullin late stock trade disclosures STOCK Act 2025",
+  "Mullin stock trades late disclosure 2026",
+  "Mullin STOCK Act Senate Ethics Committee complaint late filings fine",
+  "Alan Armstrong 700 late stock trades STOCK Act NOTUS third party advisor direct indexing",
+  "Mullin periodic transaction report 2023 2024 trades filed a year late Tulsa World OR \"The Frontier\" OR \"Public Radio Tulsa\"",
+  "\"Mullin\" late stock disclosures \"days late\" 2023 trades Senate eFD analysis Unusual Whales OR Quiver OR \"Capitol Trades\"",
+  "Mullin office disputes STOCK Act violation amended disclosures independent firm manages portfolio"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.washingtonsun.com/oklahoma/markwayne-mullin-disclosures",
+   "outlet": "NOTUS (now published as The Washington Sun; notus.org URL redirects here), co-published by Oklahoma Watch",
+   "date": "2025-08-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "A NOTUS analysis of a financial document Mullin filed Tuesday with the U.S. Senate revealed the Oklahoma lawmaker was months late disclosing nearly three dozen stock and bond transactions by himself and his wife.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ct. Angelina Katsanis/POLITICO via AP By Dave Levinthal August 13, 2025 03:06 p.m. Email LinkedIn Twitter Copy Link copied For the second time in two weeks, Republican Sen. Markwayne Mullin has disclosed trades showing that he violated a federal conflicts of interest and financial transparency law. A NOTUS analysis of a financial document Mullin filed Tuesday with the U.S. Senate revealed the Oklahoma lawmaker was months late disclosing nearly three dozen stock and bond transactions by himself and his wife. Taken together, the transactions — mostly sales — are worth between $1.4 million and $3.5 million. (Lawmakers are only required to disclose the value of their trades in broad ranges.) The late disclosures follow an earlier slate of hundreds of thousands of dollars’ worth of tardy stock and municipal security filings — some up to"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.washingtonsun.com/oklahoma/markwayne-mullin-stock-act",
+   "outlet": "NOTUS (now published as The Washington Sun; notus.org URL redirects here), co-published by Oklahoma Watch",
+   "date": "2025-07-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Oklahoma senator was two-and-a-half years late reporting seven stock purchases by his wife and about one-and-a-half years late disclosing three Oklahoma-connected municipal security purchases for himself",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "5 03:17 p.m. Email LinkedIn Twitter Copy Link copied Republican Sen. Markwayne Mullin violated a federal financial conflicts of interest and disclosure law by failing to properly disclose hundreds of thousands of dollars in stock and bond trades, a NOTUS review of new congressional documents found. The Oklahoma senator was two-and-a-half years late reporting seven stock purchases by his wife and about one-and-a-half years late disclosing three Oklahoma-connected municipal security purchases for himself, according to a disclosure Mullin filed Wednesday with the U.S. Senate. The Stop Trading on Congressional Knowledge Act, or STOCK Act, requires a member of Congress to disclose any stock, bond or cryptocurrency trade done by themselves, spouse or dependent child within 45 days. Mullin’s Senate office acknowledged the senator’s ta"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.thecentersquare.com/national/article_4afc4a1c-f920-4794-ba07-c552d18ad126.html",
+   "outlet": "The Center Square",
+   "date": "2025-10-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "On Aug. 13, Mullin reported the sale or purchase of more than 70 stocks and bonds worth tens of millions of dollars in 2023 and 2024.",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://oklahomawatch.org/2026/07/27/sen-alan-armstrong-violated-stock-act-with-700-tardy-stock-disclosures/",
+   "outlet": "Oklahoma Watch (NOTUS partnership)",
+   "date": "2026-07-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Others include Sens. Katie Britt (R-Alabama), Susan Collins (R-Maine), John Hickenlooper (D-Colorado), Mike Rounds (R-South Dakota), John Fetterman (D-Pennsylvania) and Mullin, whom Armstrong replaced.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " a new Congress is seated. He nevertheless joins an ever-growing roster of federal lawmakers who have violated the STOCK Act’s disclosure provisions during the past year, with Reps. Dan Crenshaw (R-Texas) and Laurel Lee (R-Florida) also improperly disclosing stock and stock-option trades this week. Others include Sens. Katie Britt (R-Alabama), Susan Collins (R-Maine), John Hickenlooper (D-Colorado), Mike Rounds (R-South Dakota), John Fetterman (D-Pennsylvania) and Mullin , whom Armstrong replaced. In the House, STOCK Act violators include Reps. Linda Sánchez (D-California), Julia Letlow (R-Louisiana), Jim Jordan (R-Ohio), Lisa McClain (R-Michigan), Pat Ryan (D-New York), Sheri Biggs (R-South Carolina), Donald Norcross (D-New Jersey), Tim Walberg (R-Michigan), Rich McCormick (R-Georgia), Ritchie Torres (D-New York), Troy Nehl"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.kgou.org/politics-and-government/2026-07-27/sen-alan-armstrong-violated-stock-act-with-700-tardy-stock-disclosures",
+   "outlet": "KGOU (Oklahoma public radio), republishing NOTUS",
+   "date": "2026-07-27",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "One of the Senate’s newest members was months late disclosing 700 personal stock trades that together are worth millions of dollars, according to a NOTUS review of new congressional financial records.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "lan Armstrong speaks to state leaders, reporters, and friends after he was announced by Oklahoma Governor Kevin Stitt's as his choice to temporarily fill Senator Markwayne Mullin's seat during a press conference at the Oklahoma State Capitol in Oklahoma City, Tuesday, March 24, 2026, Oklahoma City. One of the Senate’s newest members was months late disclosing 700 personal stock trades that together are worth millions of dollars, according to a NOTUS review of new congressional financial records . Sen. Alan Armstrong (R-Oklahoma), who entered the Senate on March 24 after Markwayne Mullin vacated his seat to become homeland security secretary, made a flurry of stock purchases and sales in the several days after his swearing in. But the senator, a wealthy businessman who served as CEO of the oil and ga"
+  }
+ ]
+}

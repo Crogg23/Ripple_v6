@@ -1,0 +1,71 @@
+{
+ "story_id": "S070",
+ "lead": {
+  "headline": "Beaver Valley Hospital, 25 beds in Utah, took $22.3M in COVID relief: 2.45 times its 2019 patient revenue",
+  "number": "$22.3M relief vs $9.1M 2019 net patient revenue (2.45x); 40 Utah nursing-home enrollments carry the hospital's name.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The rural tranche paid critical-access hospitals more by design (median 19.8% of revenue)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Beaver Valley Hospital Utah COVID relief funds Provider Relief Fund million",
+  "\"Beaver Valley Hospital\" CARES Act $22 million",
+  "\"Beaver Valley Hospital\" pandemic federal relief nursing homes Utah Investigative Journalism Project",
+  "\"Beaver Valley Hospital\" Salt Lake Tribune nursing homes upper payment limit 2026",
+  "Beaver Utah hospital COVID-19 Provider Relief Fund payments exceeded revenue rural critical access hospital",
+  "\"Beaver Valley Hospital\" COVID money federal grants 2020 2021 St George News OR Deseret OR KSL",
+  "Provider Relief Fund rural tranche critical access hospitals received more than lost revenue analysis",
+  "\"Beaver Valley Hospital\" news 2026 audit legislature nursing homes Medicaid"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.kuer.org/health/2025-05-20/how-a-rural-hospitals-medicaid-windfall-could-cost-utah-millions",
+   "outlet": "KUER / Utah Investigative Journalism Project",
+   "date": "2025-05-20",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Beaver Valley Hospital, a city-owned facility in rural southern Utah quietly took ownership of 44 nursing homes across the state starting in 2014.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ll could cost Utah millions KUER 90.1 | By Taylor Hartman | Utah Investigative Journalism Project Published May 20, 2025 at 2:00 AM MDT Facebook Bluesky Threads Twitter LinkedIn Email Listen • 5:14 Elaine Clark / KUER The city offices of Beaver, Utah, looking north along Main Street, Aug. 14, 2022. Beaver Valley Hospital, a city-owned facility in rural southern Utah quietly took ownership of 44 nursing homes across the state starting in 2014. The following story was reported by The Utah Investigative Journalism Project in partnership with KUER. Utah could be on the hook for hundreds of millions of dollars in federal paybacks tied to a rural hospital’s use of Medicaid funds. That’s despite years of warnings and a 2017 state audit that flagged the risk. The issue centers on"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.deseret.com/utah/2026/04/03/audit-raises-issues-with-utahs-oversight-of-a-medicaid-nursing-home-program/",
+   "outlet": "Deseret News (KSL byline)",
+   "date": "2026-04-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "According to the audit, the majority of the 75 Upper Payment Limit licenses issued by the state are held by three entities: Beaver Valley Hospital holds 44, Gunnison Valley Hospital holds 15 and Kane County Hospital holds five.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ount paid by Medicare for the same services,” according to the report, which referred to the federal health insurance program for older adults. Under Utah’s plan, only non-state government entities can qualify for subsidies, meaning state hospitals and private nursing facilities cannot participate. According to the audit, the majority of the 75 Upper Payment Limit licenses issued by the state are held by three entities: Beaver Valley Hospital holds 44, Gunnison Valley Hospital holds 15 and Kane County Hospital holds five. Those entities administered $922 million during the nine years the audit covered, and the report said only $450 million of that was used by nursing facilities, with the rest going to cover a “combination of owner compensation, administrative costs and hospital operating expenses.” “We found that the funds were generally under the con"
+  },
+  {
+   "idx": 2,
+   "url": "https://le.utah.gov/interim/2022/pdf/00000239.pdf",
+   "outlet": "Utah State Legislature (FY 2021 vendor payments table)",
+   "date": "2021-12-16",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "BEAVER VALLEY HOSPITAL $6,284,290 Bed Reserve Agreement City Creek Post Acute - COVID-19",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 2 Vendor Name FY 2021 Total Funds Brief Explanation of Purpose Provided by the Department % of Total* MyLabs, LLC $7,257,000 COVID-19 Antigen Test 96% JORDAN SCHOOL DISTRICT $7,154,150 Baby Watch Early Intervention Sub Recipient 96% ScriptGuideRX $6,345,459 Ryan White pharmacy benefits manager 97% BEAVER VALLEY HOSPITAL $6,284,290 Bed Reserve Agreement City Creek Post Acute - COVID-19 97% Utah Association of Counties $6,000,000 Rural EMS funding pass thru from Department of Administrative Services to the Bureau of Emergency Medical Services and Preparedness to distribute to rural Emergency Medical Service agencies 97% PENNA POWERS CUTTING & HAYNES $5,560,478 Media campaign for COVID-19, Be Wise program, traumat"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.kff.org/covid-19/funding-for-health-care-providers-during-the-pandemic-an-update/",
+   "outlet": "KFF",
+   "date": "2022-01-27",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "critical access hospitals and other rural hospitals appear to have received more Provider Relief Funds as a share of their operating expenses than other types of hospitals",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "es). In particular, many rural hospitals were struggling before and during the pandemic, with 18 rural hospitals closing in 2019 and 19 closing in 2020, while there were just 2 rural hospital closures reported in 2021. According to a Medicaid and CHIP Payment and Access Commission (MACPAC) report , critical access hospitals and other rural hospitals appear to have received more Provider Relief Funds as a share of their operating expenses than other types of hospitals, although it is not clear if the assistance they have received will be sufficient to prevent additional closures that would further impact access. The various funding and other policy actions taken to support providers include: Provider Relief Fund: The Provider Relief Fund was initially established under the CARES Act in response to conc"
+  }
+ ]
+}

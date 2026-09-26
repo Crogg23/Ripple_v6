@@ -1,0 +1,27 @@
+{
+  "story_id": "S037",
+  "entity": "California marriage and family therapists, Medicare opt-out rate (decisions since 2024): 37.3% vs 10.7% for California social workers",
+  "queries": [
+    {"q": "California marriage and family therapists opt out of Medicare rate", "found_useful": false},
+    {"q": "MFTs Medicare opt-out affidavits 2024 how many therapists opted out data", "found_useful": false},
+    {"q": "how many marriage and family therapists enrolled in Medicare 2024 counselors enrollment numbers opted out", "found_useful": false},
+    {"q": "CAMFT Medicare opt out California LMFTs survey percent", "found_useful": false},
+    {"q": "study psychiatrists opt out of Medicare rate by state JAMA opt-out affidavits", "found_useful": true},
+    {"q": "therapists opting out of Medicare low pay news 2025 2026 counselors family therapists seniors access", "found_useful": false},
+    {"q": "study Medicare enrollment marriage and family therapists mental health counselors first year 2024 Health Affairs OR JAMA OR Psychiatric Services", "found_useful": false},
+    {"q": "California therapists refuse Medicare opt out seniors mental health access CalMatters OR \"Los Angeles Times\" OR KQED", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.kff.org/other/issue-brief/how-many-physicians-have-opted-out-of-the-medicare-program/",
+      "outlet": "KFF",
+      "date": "2025-01-17",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "8.1% of psychiatrists have opted out of Medicare, followed by 4.5% of physicians specializing in plastic and reconstructive surgery and 3.2% of physicians specializing in neurology.",
+      "paywalled": false,
+      "searcher_note": "Opt-out rates by specialty and state, from the same CMS opt-out affidavit file, but physicians only. Says nothing about family therapists, social workers or psychologists; top states named are DC, Alaska, Colorado, Idaho, not California."
+    }
+  ],
+  "notes": "No source found gives a Medicare opt-out rate for family therapists (MFTs), in California or anywhere, or compares MFTs with social workers or psychologists. What turned up is explainers and how-to pages (CAMFT newsletters, practice blogs, CMS FAQ, Axios Dec 2023) saying MFTs became Medicare-eligible Jan 1, 2024, get paid 75% of the psychologist rate, and must either enroll or opt out. Those are explainers, not findings, so they aren't recorded. The only finding-level pattern source is KFF on physician opt-out (psychiatrists 8.1%). A JGIM study on psychiatrist opt-out by state (Springer, 2019) redirected to a login wall and wasn't recorded. Nothing found dated after 2026-06-30."
+}

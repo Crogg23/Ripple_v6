@@ -1,0 +1,37 @@
+{
+ "story_id": "S021",
+ "lead": {
+  "headline": "$79,647 of lobbyist-paid private air and hotel: a New York trip with Sen. Angela Paxton and three Texas House members",
+  "number": "$79,647.58 on one corrected March 2026 report by lobbyist Julie Linn Minnehan: private air to New York March 30-31 and one night at the Hilton Midtown; 3rd-biggest of 3,448 reports since 1992 (median $188); clients listed as Success Academy and Kleinheinz Capital Partners.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Seven people flew up and Rep. Jeff Leach rode only the home leg; the data can't show who owned the plane or whether it was one plane."
+ },
+ "queries_logged": 10,
+ "queries": [
+  "Angela Paxton New York trip Success Academy lobbyist private plane 2026",
+  "Julie Minnehan lobbyist Kleinheinz Success Academy Texas legislators New York trip",
+  "Texas lawmakers visit Success Academy New York charter schools Jeff Leach March 2026",
+  "Texas lobbyist report private flight Hilton Midtown legislators $79,647",
+  "Success Academy Eva Moskowitz Texas expansion lawmakers trip New York 2026",
+  "Texas legislators lobbyist-paid trips 2026 private jet ethics report Texas Tribune",
+  "\"Success Academy\" Texas legislators Paxton Leach New York school visit lobbyist",
+  "Kleinheinz Capital Partners lobbyist Texas charter school Success Academy lawmakers flight",
+  "Angela Paxton lobbyist paid travel disclosure New York charter school tour senators representatives",
+  "Texas lawmakers flew to New York lobbyist paid trip school choice charter 2026 news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.ethics.state.tx.us/resources/guides/Bcan-i-travel.php",
+   "outlet": "Texas Ethics Commission",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "an officer or employee in the legislative or executive branch of state government is subject to a general prohibition on the acceptance of transportation and lodging from a registered lobbyist.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "half of a governmental body; only the governing board may make such decisions. An individual government officer or employee who intends to accept a trip for himself or herself should first review the restrictions and reporting requirements in the laws discussed below. Lobby Law Under the lobby law, an officer or employee in the legislative or executive branch of state government is subject to a general prohibition on the acceptance of transportation and lodging from a registered lobbyist. There are exceptions to this rule: one for transportation and lodging in connection with afact-finding trip, one for transportation and lodging in connection with a conference or similar event, and one for incidental transportation. Fact-finding trips. There is an exception to the prohibition on lobbyist-paid trips for \"necess"
+  }
+ ]
+}

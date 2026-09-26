@@ -1,0 +1,82 @@
+{
+ "story_id": "S117",
+ "lead": {
+  "headline": "Texas lobby reports with $1,000+ in gifts named a recipient 1 time in 4 in 2005-11; since 2019, 3.7%",
+  "number": "61 of 228 reports in 2005-11 vs 9 of 243 since 2019; the drop hit in 2012, and the same 15 filers went from 22 of 63 to 1 of 47",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "If the itemization threshold jumped in 2012, it's a rule change, not lobbyists hiding names; that hasn't been checked."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Texas lobbyists gifts lawmakers recipients not named disclosure reports",
+  "Texas lobbyists gifts reported without naming recipient Texas Ethics Commission analysis",
+  "Texas lobby report gift itemization threshold change 2012 per diem Ethics Commission",
+  "Texas Tribune 2013 lobbyist disclosures 3.6 percent identifying details 5.18 percent 2005",
+  "Texas lobbyists gifts lawmakers 2026 disclosure unnamed recipients report",
+  "Dallas Morning News lobbyists meals reported who was across the table less than 2% Texas analysis",
+  "Texas lobbyists gift spending recipients identified fell since 2012 Texans for Public Justice lobby report"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.texastribune.org/2013/03/07/ethics-loopholes-keeping-public-dark/",
+   "outlet": "The Texas Tribune",
+   "date": "2013-03-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "According to a Texas Tribune analysis, only 3.6 percent of the lobbyist disclosures for categories that can be itemized if thresholds are met — including food, booze, gifts and entertainment — had any detailed disclosures in 2011.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "id. &ldquo;Support for lawsuit reform in Texas is broad and bipartisan, and we hold many events to which all legislators are invited, including a reception on the opening day of session and our annual legislative day luncheon and dinner.&rdquo;</p> <p><span style=\"line-height: 1.35;font-size: 15px\">According to a Texas Tribune analysis, only 3.6 percent of the lobbyist disclosures&nbsp;</span>for categories that can be itemized if thresholds are met<span style=\"line-height: 1.35;font-size: 15px\"> &mdash; including food, booze, gifts and entertainment &mdash; had any detailed disclosures in 2011.</span><strong style=\"line-height: 1.35;font-size: 15px\">&nbsp;</strong><span style=\"line-height: 1.35;font-size: 15px\">That was down from 5.18 percent in 2005.&nbsp;</span></p> <p>That&rsquo;s what makes Camacho&rsquo;s disclosure about his dinner with Deuell and "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.texastribune.org/2015/02/16/watson-pushes-more-disclosure-wining-and-dining",
+   "outlet": "The Texas Tribune",
+   "date": "2015-02-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "So when the Texas Ethics Commission increased the per diem, it had the effect of raising the amount lobbyists can spend without providing any details, from $90 to $114, or 60 percent of $190.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s, but it was <a href=\"http://www.texastribune.org/2015/02/13/ethics-commission-approves-higher-diems-lawmakers/\">raised</a> to $190 last week.&nbsp;</p> <p>Under current law, lobbyists can spend up to 60 percent of the per diem amount on state officials without triggering the detailed disclosures. So when the Texas Ethics Commission increased the per diem, it had the effect of raising the amount lobbyists can spend without providing any details, from $90 to $114, or 60 percent of $190.</p> <p>Another Watson bill, <a href=\"http://www.legis.state.tx.us/BillLookup/Text.aspx?LegSess=84R&amp;Bill=SB586\">SB 586</a>, would ensure detailed disclosure even if multiple lobbyists banded together to get around the new $50 limit. If more than $50 is spent on a state official, all the lobbyists who paid for it would have to pro"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.governing.com/archive/texas-lobbying-disclosure-laws-are-meaningless.html",
+   "outlet": "Governing (republished from The Texas Tribune, Ross Ramsey)",
+   "date": "2015-03-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "More than 95 percent of the money spent by lobbyists during the last decade on food and beverages for state officials and their employees was reported — legally — without naming the recipients of those repasts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e reports. Clancy cites an analysis prepared for commissioners that shows how often the lobby’s food and beverage reports named the legislators and employees being entertained. Over the last decade, the detailed reports never accounted for even 5 percent of total spending. Once again, for emphasis: More than 95 percent of the money spent by lobbyists during the last decade on food and beverages for state officials and their employees was reported — legally — without naming the recipients of those repasts. And the amounts spent are significant, according to the commission’s online database of lobby reports. Over the last two years, lobbyists reporting spending $4.7 million on food and beverage for state officials and employees and their relatives and another $846,000 on entertainment such as concerts and games. Interestingly, "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.dallasnews.com/news/politics/2023/01/30/five-ways-texas-lobbying-laws-keep-the-public-in-the-dark/",
+   "outlet": "The Dallas Morning News",
+   "date": "2023-01-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Five ways Texas lobbying laws keep the public in the dark",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "ice Classifieds Dallas News Logo Subscribe News Business Sports HS Sports State Fair Politics A&E Food Things to Do Opinion e-Edition Trending: Dwight Powell | Hilary Duff tickets | Cowboys-Ravens | Bun B coming to Dallas | Rangers playoff push | Wings playoff series | H-E-B recall News // Politics Five ways Texas lobbying laws keep the public in the dark Texas law allows unlimited spending on food and drinks, and requires few other disclosures by lobbyists hired to advance the interests of big companies. By Lauren McGaughy Jan 30, 2023 Texas lawmakers haven't enacted major new lobbying restrictions in years. This allows millions of dollars to flow into and out of the state Capitol "
+  },
+  {
+   "idx": 4,
+   "url": "https://texasscorecard.com/state/texas-ethics-commission-proposal-would-raise-cap-on-secret-lobbyist-meals/",
+   "outlet": "Texas Scorecard",
+   "date": "2026-09-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The per diem amount is also linked to the amount lobbyists are permitted to spend on gifts to lawmakers without being required to identify the recipient lawmaker by name.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "fore triggering detailed disclosure requirements. The Texas Ethics Commission is scheduled to meet Wednesday to consider raising the legislative per diem from $221 to $290.40. Legislators receive the per diem for each day of a 140-day regular legislative session in addition to their regular salary. The per diem amount is also linked to the amount lobbyists are permitted to spend on gifts to lawmakers without being required to identify the recipient lawmaker by name. Under current law, registered lobbyists must disclose the names of recipients when they spend more than 60 percent of the legislative per diem in a single day on food and beverages, transportation, lodging, or entertainment for a state official or employee. That detailed reporting includes the name of the official who benefi"
+  }
+ ]
+}

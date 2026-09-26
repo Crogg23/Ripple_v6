@@ -1,0 +1,57 @@
+{
+  "story_id": "S186",
+  "entity": "NRCC (C00075820), FEC 2023-24 cycle totals vs its monthly report covering Sept 2024 ($40.72M spent, $18.85M raised)",
+  "queries": [
+    {"q": "NRCC September 2024 monthly report FEC totals missing", "found_useful": true},
+    {"q": "FEC data error NRCC 2024 totals missing report campaign finance summary discrepancy", "found_useful": false},
+    {"q": "NRCC October 2024 monthly report spent $40.7 million raised $18.8 million September", "found_useful": true},
+    {"q": "OpenSecrets NRCC 2024 cycle total spending receipts", "found_useful": true},
+    {"q": "NRCC cash on hand end of September 2024 $48.9 million DCCC outraised September", "found_useful": true},
+    {"q": "FEC website candidate committee totals incorrect missing reports bulk data error journalists found", "found_useful": false},
+    {"q": "NRCC raised $18.8 million September 2024 fundraising DCCC September haul", "found_useful": false},
+    {"q": "FEC financial summary committee totals omitted amended report 2026 party committee data problem", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://projects.propublica.org/itemizer/committee/C00075820/2024",
+      "outlet": "ProPublica FEC Itemizer",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "$40,724,721.90",
+      "paywalled": false,
+      "searcher_note": "Lists the NRCC report the lead calls the Sept 2024 monthly, labeled OCT MONTHLY: filed Oct 20 2024, end date Sept 30 2024, receipts $18,848,596.96, spending $40,724,721.90, cash $48,875,271.80. Does not say FEC totals omit it."
+    },
+    {
+      "url": "https://www.fec.gov/data/committee/C00075820/?cycle=2024",
+      "outlet": "Federal Election Commission, committee overview",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "$219,752,099.68",
+      "paywalled": false,
+      "searcher_note": "FEC's own 2023-24 totals for the NRCC (coverage 01/01/2023-12/31/2024): receipts $236,307,296.49, disbursements $219,752,099.68, ending cash $11,084,115.74. The page has no note about a missing report."
+    },
+    {
+      "url": "https://www.fec.gov/campaign-finance-data/committee-report-summary-file-metadata/",
+      "outlet": "Federal Election Commission, bulk data documentation",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "These totals also incorporate any changes made by committees if any report covering the period is amended.",
+      "paywalled": false,
+      "searcher_note": "FEC's description of how summary totals handle amended reports; background on the mechanism, not about NRCC."
+    },
+    {
+      "url": "https://punchbowl.news/article/house/nrcc-gets-smashed-by-dccc-again/",
+      "outlet": "Punchbowl News",
+      "date": "2024-09-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The NRCC has $70.75 million on hand, $16 million less than the DCCC.",
+      "paywalled": false,
+      "searcher_note": "Covers the NRCC's August 2024 report (the one before the report in question): raised $9.7M, $70.75M cash. Not about FEC totals."
+    }
+  ],
+  "notes": "No source found that reports FEC totals leaving out the NRCC's report for Sept 2024, or any FEC roll-up error for this committee. ProPublica Itemizer confirms the report exists with the lead's figures; the FEC labels it OCT MONTHLY (coverage through Sept 30 2024). The Itemizer's SEP MONTHLY row (end date Aug 31 2024) shows a filed date of Nov 7 2024, which may be an amendment. The Itemizer page header shows 2024 totals of $163,825,376 receipts and $195,276,343 spending through Dec 31 2024, apparently calendar 2024 only. No news coverage found of the NRCC's September 2024 monthly figures themselves. A Boston University piece on an old FEC computer error (Collins-Allen race) returned an image instead of text, and a POGO report on FEC data not adding up (2001) returned 403. Neither is recorded."
+}

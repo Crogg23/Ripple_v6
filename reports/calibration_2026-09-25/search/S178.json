@@ -1,0 +1,36 @@
+{
+  "story_id": "S178",
+  "entity": "CMS Ambulatory Specialty Model (ASM) participant roster, low back pain cohort: 3 OIG-excluded doctors and 13 Medicare opt-outs among 6,510 participants",
+  "queries": [
+    {"q": "CMS Ambulatory Specialty Model participant list low back pain excluded physicians", "found_useful": true},
+    {"q": "Ambulatory Specialty Model participants list released 2026 back pain heart failure clinicians", "found_useful": true},
+    {"q": "\"Ambulatory Specialty Model\" excluded providers OIG exclusion list opt out Medicare participants errors", "found_useful": false},
+    {"q": "Ambulatory Specialty Model final participant list summer 2026 pain physicians opt out Medicare", "found_useful": false},
+    {"q": "CMS Innovation Center model participants program integrity screening excluded opted-out clinicians included model list news", "found_useful": false},
+    {"q": "Ambulatory Specialty Model final list CMS August 2026 Becker's STAT Modern Healthcare clinicians", "found_useful": false},
+    {"q": "OIG report CMS failed to screen excluded providers still enrolled Medicare exclusion list physicians found", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://asra.com/news-publications/asra-update-item/asra-updates/2026/02/12/cms-releases-preliminary-participant-list-for-ambulatory-specialty-model",
+      "outlet": "American Society of Regional Anesthesia and Pain Medicine (ASRA)",
+      "date": "2026-02-12",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "CMS plans to release the final participant list in summer 2026.",
+      "paywalled": false,
+      "searcher_note": "Names the ASM participant list (preliminary, Feb 2026) but reports only its release; nothing on excluded or opted-out clinicians on it. Not the finding."
+    },
+    {
+      "url": "https://oig.hhs.gov/reports/all/2012/excluded-providers-in-medicaid-managed-care-plans",
+      "outlet": "HHS Office of Inspector General",
+      "date": "2012-02-24",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Four of the twelve MCEs reviewed had 11 excluded providers enrolled in their provider networks in 2009.",
+      "paywalled": false,
+      "searcher_note": "Pattern: OIG-excluded providers turning up on a federal program's provider roster (Medicaid managed care networks, OEI-07-09-00630). Not the ASM, not Medicare opt-outs."
+    }
+  ],
+  "notes": "No source found reporting OIG-excluded or Medicare opt-out clinicians on the ASM participant list, or any program-integrity problem with the ASM roster. Coverage found is explainers from law firms, consultants and specialty societies (Benesch, Epstein Becker Green, Forvis Mazars, VBCA, ASA, ACS) on who must participate; per the 'Known pattern needs a finding' rule these are not recorded. A search summary gave the preliminary list as 6,637 clinicians (2,610 heart failure, 4,027 low back pain) but the page carrying that number was not identified, so it is not recorded; the lead's 6,510 may be the final list. Search summaries said the final list was expected summer/July 2026 and that ASM updates were proposed in the CY2027 Physician Fee Schedule on 2026-07-14; no post-cutoff article on the final roster was found. CMS ASM FAQ and data.cms.gov methodology page were fetched and say nothing about screening against the OIG exclusion list or the opt-out list. Seven queries run (not eight) to save shared budget."
+}

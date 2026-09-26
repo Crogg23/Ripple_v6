@@ -1,0 +1,12 @@
+{
+  "story_id": "S175",
+  "bin": "Matched + more",
+  "entity": "male veteran suicide rates 2018-23, VA users and non-users both rising about 10%",
+  "deciding_sources": [0, 4],
+  "earliest_match_date": "2026-02-05",
+  "post_cutoff_match": true,
+  "what_we_add": "the 2018-23 window figures (48.5 to 53.4, +10.1%; non-users 36.21 to 39.71) and the under-55 attribution",
+  "why": "The VA report itself states rates rose for both male VHA users and non-users, and Military.com notes the rate is the highest since 2018. No source states the 2018-23 ~10% change or that under-55s carry it.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

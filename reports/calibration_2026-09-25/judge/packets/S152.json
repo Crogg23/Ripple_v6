@@ -1,0 +1,83 @@
+{
+ "story_id": "S152",
+ "lead": {
+  "headline": "296.5 million Indians face severe hunger, by the UN food agency's own math, though it leaves India's line blank",
+  "number": "296.5M in 2022-24 = Southern Asia (363.4M) minus FAO's \"Southern Asia (excluding India)\" row (66.9M); 35% of FAO's 836.5M world total, up from 205.6M in 2014-16",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "FAO never prints 296.5M; it's a subtraction of two FAO regional rows, so confirm how FAO builds regional totals (its SOFI technical annex) before print"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "FAO severe food insecurity India number not published Southern Asia excluding India",
+  "\"severe food insecurity\" India million SOFI 2025 FIES India data withheld",
+  "India \"severe food insecurity\" 2022-24 million subtraction South Asia SOFI 2025 India estimate",
+  "\"296.5 million\" OR \"296 million\" India food insecurity FAO",
+  "India government objects FAO Food Insecurity Experience Scale Gallup poll methodology data not released India hunger",
+  "Down To Earth OR Scroll OR The Wire India severe food insecurity FAO \"excluding India\" estimate 2023 OR 2024",
+  "SOFI 2026 India food insecurity severe July 2026 report India data missing",
+  "Frontline OR \"The Hindu\" India food insecurity data missing FAO SOFI 2024 OR 2025 \"South Asia excluding India\" severe"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://janataweekly.org/articles/starved-of-data-indias-hungry-people-go-missing-from-fao-report-global-hunger-numbers-jump",
+   "outlet": "Janata Weekly (republishing Frontline, T.K. Rajalakshmi)",
+   "date": "2022-08-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "shows that an estimated 563.6 million people or 41 per cent in India suffered moderate to severe food insecurity in 2019-21. The corresponding India-specific figure for severe food insecurity is 307.7 million people, or 22.4 per cent.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " who is familiar with the data compilation process in the country. Even though India does not share the required data with FAO, a simple subtraction of the moderate to severe food insecurity figure for “South Asia excluding India” (200.7 million) from the total figure for South Asia (764.3 million) shows that an estimated 563.6 million people or 41 per cent in India suffered moderate to severe food insecurity in 2019-21. The corresponding India-specific figure for severe food insecurity is 307.7 million people, or 22.4 per cent. In 2018-20 it was 278.3 million people, or 20.3 per cent, of 324 million in all of South Asia. In 2020, India accounted for 973.3 million out of the 1,331.5 million people who could not afford a healthy diet in South Asia. In entire Asia, 1,891.4 million people could not afford a healthy diet, and almost half that number was i"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.pressreader.com/india/frontline/20220812/284575951587217",
+   "outlet": "Frontline (via PressReader)",
+   "date": "2022-08-12",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The food gap",
+   "paywalled": true,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://www.isas.nus.edu.sg/wp-content/uploads/2024/02/ISAS-WP-Food-Security-DC-PS-HK-DC-50_HK3-HS.pdf",
+   "outlet": "Institute of South Asian Studies, National University of Singapore (Working Paper No. 371, Puspa Sharma)",
+   "date": "2024-02-28",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "they are not provided for India. However, the report provides data for Southern Asia and South Asia (excluding India). Thus, the difference in the number between these two provides the number for India.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ple in each country where the survey is administered. But in India and China it is administered in 3,000 and 3,500 people, respectively, due to their huge population size. In the Annex to the FAO Report on the State of Food Security and Nutrition 2023, the FIES data are not available for Bhutan and they are not provided for India. However, the report provides data for Southern Asia and South Asia (excluding India). Thus, the difference in the number between these two provides the number for India. 6 latest country data on the same are unavailable. FIES survey data are used to estimate the severity of food insecurity, that is, to measure the prevalence of moderate and severe food insecurity in the population. Unlike the GHI, which combines data on caloric intake, child stunting and wasting, and child mortality to calculate"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.factchecker.in/fact-check/is-the-global-hunger-index-erroneous-as-the-indian-govt-claims-839228",
+   "outlet": "FactChecker.in",
+   "date": "2022-10-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "the government said that the \"FAO estimate is based on the \"Food Insecurity Experience Scale (FIES)\" Survey Module conducted through the Gallop World Poll, which is an \"opinion poll\" based on \"8 questions\" with a sample size of \"3000 respondents\"",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "021 (the latest such survey, and child mortality rates were sourced from 2021 UN estimates . Now, let us look at the claims. Claim #1: The data used to compute undernourishment values for India had been collected only from a minuscule sample through an opinion poll Alleging the survey to be biased, the government said that the \"FAO estimate is based on the \"Food Insecurity Experience Scale (FIES)\" Survey Module conducted through the Gallop World Poll, which is an \"opinion poll\" based on \"8 questions\" with a sample size of \"3000 respondents\".\" The undernourishment indicator used by GHI, however, is only partly based on an opinion poll. It is also partly based on data officially reported by FAO member countries themselves, including India, experts said and a detailed FAO methodology shows. Though FAO produces a suite of multiple food security indicators, two are recogn"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.insightsonindia.com/2026/07/23/the-state-of-food-security-and-nutrition-in-the-world-sofi-2026-report/",
+   "outlet": "Insights on India (exam-prep current affairs)",
+   "date": "2026-07-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Southern Asia’s substantial decline in undernourishment (from 13.9% in 2021 down to 9.3% in 2025) and food insecurity was largely propelled by improvements in India.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

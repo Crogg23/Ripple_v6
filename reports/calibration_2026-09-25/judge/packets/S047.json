@@ -1,0 +1,84 @@
+{
+ "story_id": "S047",
+ "lead": {
+  "headline": "92 political committees each raised $1M+ from individuals in 2024 ($580M total) but passed under 10% to candidates or ads",
+  "number": "92 non-joint-fundraising PACs, $580M from individuals, each sending under 10% of spending to candidates, committees, outside ads or affiliates; the 12 busiest treasurers have 29 of 96 such PACs (30%) vs 14.6% for everyone else.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; canvassing, digital ads not reported as outside spending, conduits and legal bills all look like a \"low share.\""
+ },
+ "queries_logged": 9,
+ "queries": [
+  "scam PACs 2024 raised millions from small donors spent little on candidates analysis",
+  "PACs 2024 cycle less than 10 percent spent on candidates \"scam PAC\" OpenSecrets analysis treasurers",
+  "2024 election PACs raised $1 million from individuals spent less than 10% on candidates analysis FEC data count",
+  "OpenSecrets 2024 cycle scam PACs identified fundraising expenses report 2025",
+  "same treasurer dozens of PACs raised millions little to candidates 2024 investigation",
+  "justice.gov scam PAC treasurer sentenced defrauded donors 2025 OR 2026",
+  "scam PACs report 2026 donors money fundraising consultants FEC complaint August 2026",
+  "Adam Bonica \"Hook and Squeeze\" fundraising committees elderly donors",
+  "Progressive Turnout Project responds Bonica spam PAC criticism voter contact canvassing spending defense"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://data4democracy.substack.com/p/hook-and-squeeze",
+   "outlet": "On Data and Democracy (Adam Bonica, Substack)",
+   "date": "2026-08-16",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "I identified 145 Democratic-aligned spam PACs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " payments went directly to firms specializing in high-volume donor solicitation. Even by PTP’s own accounting, fundraising consumed roughly 45 cents of every dollar raised. Harry Pascal did not respond to a request for comment. The Pascal network is just one large piece of a much larger phenomenon. I identified 145 Democratic-aligned spam PACs. Based on my analysis, these PACs share a common profile: heavy reliance on high-volume digital fundraising vendors, fundraising costs that consume a disproportionate share of what they raise, and a donor pool that skews overwhelmingly elderly, even compared to other PACs. More than that, they draw on the same concentrated, overlapping po"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.thenation.com/article/politics/democrats-fundraising-scam-pac-report/",
+   "outlet": "The Nation (Chris Lehmann)",
+   "date": "2026-08-17",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "a fundraising efficiency rate of just 1.6 percent",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " of spam fundraising appeals, Bonica found that out of some $670 million in donations, just $11 million wound up in the coffers of campaigns, national party committees, and individual candidates. The other $659 million stayed with the fundraising groups themselves. That works out, Bonica wrote, to “a fundraising efficiency rate of just 1.6 percent.” His latest work detects an additional layer of cynical exploitation to this already skeevy shakedown operation that Bonica calls “heartbreaking.” In one instance, he writes, an 85-year-old Ohio retiree made 7,800 donations to Democratic-aligned fundraising shops, totaling more than $648,000—more than double the appraised value of hi"
+  },
+  {
+   "idx": 2,
+   "url": "https://data4democracy.substack.com/p/the-mothership-vortex-an-investigation",
+   "outlet": "On Data and Democracy (Adam Bonica, Substack)",
+   "date": "2025-08-03",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "How a single consulting firm extracted $282 million from a network of spam PACs while delivering just $11 million to actual campaigns.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " The Mothership Vortex: An Investigation Into the Firm at the Heart of the Democratic Spam Machine Subscribe Sign in The Mothership Vortex: An Investigation Into the Firm at the Heart of the Democratic Spam Machine How a single consulting firm extracted $282 million from a network of spam PACs while delivering just $11 million to actual campaigns. Adam Bonica Aug 03, 2025 937 210 338 Share The digital deluge is a familiar annoyance for anyone on a Democratic fundraising list. It's a relentless cacophony of bizarre texts and emails, each one more urgent than the last, promising that your immediate $15 donation is the only thing standing between democracy and the abyss. The main r"
+  },
+  {
+   "idx": 3,
+   "url": "https://campaignlegal.org/update/clc-uncovers-two-scam-pacs-defrauding-donors",
+   "outlet": "Campaign Legal Center",
+   "date": "2024-04-22",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Patriots for American Leadership has reported raising nearly $1.4 million. It reported donating just 3% of its money to federal candidates or committees.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "gfully support Trump or other Republican candidates. Instead, almost all of the funds were diverted to the scam PAC operators or spent on even more fundraising, sometimes through payments to companies owned by the operators — which may have been little more than shells used to cover up their theft. Patriots for American Leadership has reported raising nearly $1.4 million. It reported donating just 3% of its money to federal candidates or committees. But even this tiny amount of political activity appears to be falsified: no federal committee has ever reported receiving funds from PAL. Instead, PAL diverted $730,000 to its treasurer, Eddie Shivers, either through direct payments for Shivers’s “salary” or through payments to a purported vendor, “ANTT Promotions,” that Shivers set up just b"
+  },
+  {
+   "idx": 4,
+   "url": "https://data4democracy.substack.com/p/hook-and-squeeze",
+   "outlet": "On Data and Democracy (Adam Bonica, Substack)",
+   "date": "2026-08-16",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "its lawyers claimed the group spent $177 million on fundraising — $72 million less than my estimate — and directed more than half its budget to voter contact.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ressive Takeover, Stop Republicans, Stop Trump, Turnout the Vote, and Dem Turnout 2026). The values do not add up exactly to $390 million because of rounding. Donor refund costs are included in fundraising expenses. The Progressive Turnout Project declined to comment on the record, but in a letter, its lawyers claimed the group spent $177 million on fundraising — $72 million less than my estimate — and directed more than half its budget to voter contact. That discrepancy comes down to labeling: roughly $48 million of the difference was spent on Facebook ads that PTP categorized as “digital organizing,” but which function almost uniformly as fundraising solicitations. Other payments went directly to firms specializing in high-volume donor solicitation. Even by PTP’s own accounting, f"
+  }
+ ]
+}

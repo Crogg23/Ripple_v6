@@ -1,0 +1,46 @@
+{
+ "story_id": "S064",
+ "lead": {
+  "headline": "Sea Robin pipeline's 2025 gas-loss reports reuse one number, 1,587,069, whole, halved and split three ways",
+  "number": "1,587,069 filed whole (May 17), as two 793,534 halves (Jan 13) and, minus 3,508, as three 527,853 blowdowns; counted once, 2025 is still the record at about 3.5M vs 2.98M in 2022.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "No unit column: if Sea Robin typed cubic feet instead of thousand cubic feet, 2025 falls to about 1.94M, an ordinary year."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Sea Robin pipeline gas release PHMSA 2025",
+  "\"Sea Robin\" pipeline \"1,587,069\" OR \"793,534\" OR \"527,853\"",
+  "\"Sea Robin\" Energy Transfer pipeline incident blowdown methane release 2025 Louisiana",
+  "PHMSA gas pipeline incident reports methane releases record 2025 analysis unintentional release volume",
+  "pipeline operators report gas loss volumes PHMSA incident data errors units thousand cubic feet methane underreported analysis",
+  "\"Sea Robin Pipeline\" 2026 news leak OR rupture OR release OR PHMSA",
+  "offshore Gulf gas pipeline 2025 largest methane releases PHMSA reports Energy Transfer subsidiaries blowdowns analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.fractracker.org/2025/04/pipeline-incidents-are-a-daily-occurrence",
+   "outlet": "FracTracker Alliance",
+   "date": "2025-04-07",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "three of the four incidents that we took a deeper look at significantly misrepresented one or more of the summary metrics",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "eline explosion failed to mention four injuries associated with the incident. And finally, the Crescent Midstream oil spill in Louisiana failed to update the estimated volume of the leak, leading us to question whether the damages and cleanup costs from the incident are accurately reported. In all, three of the four incidents that we took a deeper look at significantly misrepresented one or more of the summary metrics that we have available to understand the cumulative impact of these incidents. It is possible that some of these were entered in good faith but the companies failed to update the reports as new information became available. It also must be noted that all of the misrepresentations that we encountered were in the same direction—ser"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.insurancejournal.com/news/national/2024/03/13/764575.htm",
+   "outlet": "Insurance Journal (Reuters)",
+   "date": "2024-03-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Pipeline mishaps unintentionally released nearly 9.7 billion cubic feet of gas into the atmosphere between 2019 and late 2023, according to a Reuters examination of incident report data maintained by the U.S. Pipeline and Hazardous Materials Safety Administration (PHMSA).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "eline leaks – caused by things like punctures, corrosion, severe weather and faulty equipment – happen routinely and are a climate menace that is not currently counted in the official U.S. tally of greenhouse gas emissions, according to a Reuters examination of public data and regulatory documents. Pipeline mishaps unintentionally released nearly 9.7 billion cubic feet of gas into the atmosphere between 2019 and late 2023, according to a Reuters examination of incident report data maintained by the U.S. Pipeline and Hazardous Materials Safety Administration (PHMSA). That is the climate equivalent of running four average-sized coal-fired power plants for a year, according to an Environmental Defense Fund (EDF) online calculator. Those emissions are currently not included in the nation’s official greenhouse gas count because federal rules exempt large, unexpected leaks, and mainly only capture emissions from re"
+  }
+ ]
+}

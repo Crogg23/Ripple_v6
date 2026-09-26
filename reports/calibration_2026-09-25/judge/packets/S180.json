@@ -1,0 +1,82 @@
+{
+ "story_id": "S180",
+ "lead": {
+  "headline": "Guttmacher puts Texas, a total-ban state, at 3,530 abortions a month in early 2026: up 26%, one December 2024 jump",
+  "number": "Texas averaged 3,530 a month in Jan-Mar 2026 (range 3,017-4,147) vs 2,797 in Jan-Mar 2024 (+26%); flat since the Dec 2024 jump.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The jump sits right on a method seam: ban-state months before Jan 2025 carry no low-high range, every month after does. Guttmacher also publishes this trend itself."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Guttmacher Texas abortions per month 2026 shield law telehealth total ban",
+  "Guttmacher monthly abortion provision study 2026 data release ban states Texas",
+  "Guttmacher first half 2026 abortion data telehealth ban states release",
+  "Texas abortions rising despite ban 2026 shield law pills monthly numbers",
+  "\"3,400 Texans\" telehealth abortions each month",
+  "Texas abortions decline 2026 after HB 7 lawsuits shield providers telehealth drop",
+  "#WeCount report 2026 Texas telehealth abortions monthly first quarter 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.guttmacher.org/news-release/2026/guttmacher-releases-new-data-travel-abortion-care-2025",
+   "outlet": "Guttmacher Institute",
+   "date": "2026-07-22",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In 2025, over 42,000 Texans accessed abortion via telehealth from shield law providers, a substantial increase from the 12,400 who did so in 2023.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cision continue to reshape abortion access in the South and Southeast. Key Findings In states with total, six-, or twelve-week bans, 98,000 people traveled out of state for an abortion in 2025. In states with total, six-, or twelve-week bans, 142,000 people accessed abortion via telehealth in 2025. In 2025, over 42,000 Texans accessed abortion via telehealth from shield law providers, a substantial increase from the 12,400 who did so in 2023. Meanwhile, the number of Texans traveling out of state for care decreased from nearly 34,000 in 2023 to approximately 23,000 in 2025. Out-of-state travel for abortion nearly tripled in Florida after a six-week ban on provision was implemented, with 8,200 leaving the state in 2025 compared to 2,800 in 2023. “The Monthly Abort"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.guttmacher.org/report/patterns-travel-abortion-care-continued-shift-2025",
+   "outlet": "Guttmacher Institute",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In 2025, approximately 42,000 Texans accessed telehealth abortion care under the protection of shield laws, a substantial increase from the 12,400 who did so in 2023.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " or severe restrictions, Texas has seen a major increase in abortion care accessed via telehealth from shield law providers. ( Shield laws offer legal protections for clinicians to prescribe and mail abortion pills directly to patients in states with total abortion bans or telehealth restrictions.) In 2025, approximately 42,000 Texans accessed telehealth abortion care under the protection of shield laws, a substantial increase from the 12,400 who did so in 2023. Telehealth plays a particularly critical role in Texas because accessing in-person care can be exceptionally difficult for Texas residents: the provision of abortion care is completely banned in the state , with limited exceptions, and three of the four states bordering Texas (Arkansas, Louisiana and Oklahoma) also have total abortio"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.krwg.org/regional/2026-04-15/more-texans-using-telehealth-options-to-access-reproductive-care",
+   "outlet": "KRWG Public Media (Texas News Service)",
+   "date": "2026-04-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Despite Texas having one of the most restrictive abortion bans in the country, more than 41,000 residents had clinician-provided abortions in 2025, an over 20% jump from 2024.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r LinkedIn Email In 2025, 1,125,930 abortions were provided by clinicians practicing in the United States. The Guttmacher Report says the increased availability of medication abortion has made abortion easier to access for those living in states that restrict the procedure. (New Africa/Adobe Stock) Despite Texas having one of the most restrictive abortion bans in the country, more than 41,000 residents had clinician-provided abortions in 2025, an over 20% jump from 2024. Isaac Maddow-Zimet, data scientist for the Guttmacher Institute and co-author of a new study, said more pregnant people are using telehealth services to access the procedure. \"It’s very possible that as more people know about telehealth as an option, they are increasingly opting for care via telehealth in their own homes,\" Maddo"
+  },
+  {
+   "idx": 3,
+   "url": "https://thefulcrum.us/governance-legislation/texas-abortion-ban-data",
+   "outlet": "The Fulcrum",
+   "date": "2026-09-17",
+   "source_type": "opinion",
+   "entity_named": "yes",
+   "quote": "The estimated total number of abortions obtained by Texas residents went from 52,495 in 2021 to 56,350 in 2023 and 64,060 in 2024.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Texas banned abortion. The effect on abortions performed inside Texas was immediate and dramatic. The number fell from 50,783 in 2021 to 17,212 in 2022 and essentially zero thereafter. But that is not the same thing as reducing abortions among Texas residents. As the orange line in the graph shows, the estimated total number of abortions obtained by Texas residents went from 52,495 in 2021 to 56,350 in 2023 and 64,060 in 2024. In other words, despite the ban, the estimated number of abortions obtained by Texas residents increased by approximately 22% between 2021 and 2024. The abortions did not simply disappear. They moved—to other states and increasingly to medication abortion and telehealth. Guttmacher has documented the enormous increase in interstate trav"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.guttmacher.org/report/full-year-estimates-show-overall-stability-abortion-incidence-decreased-travel-increased-telehealth-provision",
+   "outlet": "Guttmacher Institute",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "while in 2024, 74,000 people living in states with total bans traveled out of their state to access care, this dropped to 62,000 in 2025",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ss state lines to obtain an abortion in 2025, a decline from the 154,000 people who traveled across state lines for abortion care in 2024, and down from a peak of approximately 170,000 in 2023. This decline was almost entirely driven by a decline in travel among residents of states with total bans: while in 2024, 74,000 people living in states with total bans † traveled out of their state to access care, this dropped to 62,000 in 2025. This decline in travel out of state for care coincided with a large increase in telehealth provision in these same states (from approximately 72,000 to 91,000), provided by clinicians residing in states with telehealth shield laws . Taken together, these estimates suggest a substantial shift in the way people in states wit"
+  }
+ ]
+}

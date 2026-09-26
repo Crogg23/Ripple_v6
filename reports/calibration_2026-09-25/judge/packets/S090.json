@@ -1,0 +1,94 @@
+{
+ "story_id": "S090",
+ "lead": {
+  "headline": "Oklahoma lost 161 veterans to suicide in 2023, against 98 to 134 every year from 2011 to 2022",
+  "number": "161 in 2023 vs 98-134 a year in 2011-22; about z=3.3 for 2023 alone against the national trend, the top state but not unique (Indiana 2022, z=3.64).",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "One bad year, not a trend; the \"4.9 SD\" and Kansas claims broke under the skeptic."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Oklahoma veteran suicides 2023 VA state data sheet",
+  "Oklahoma veteran suicide deaths rose 2023 highest in years 161",
+  "Oklahoma Watch OR Oklahoman veteran suicide rate Oklahoma increase VA annual report 2025",
+  "Healthy Minds Policy Initiative Oklahoma veteran suicide report 2026",
+  "Oklahoma veteran suicides decreased OR declined OR dropped VA data",
+  "states highest veteran suicide rate 2023 VA report Montana Oklahoma Wyoming Alaska ranking",
+  "Oklahoma veteran suicides jumped 2023 from 2022 state data VA new numbers Oklahoma news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.kgou.org/politics-and-government/2026-09-25/lawmakers-consider-ways-to-reduce-oklahomas-high-veteran-suicide-rate",
+   "outlet": "KGOU / Oklahoma Public Media Exchange (Sierra Pfeifer, KOSU)",
+   "date": "2026-09-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Oklahoma had the nation's third highest rate of veteran suicide deaths in 2023.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " KOSU Lawmakers listen to a presentation from Healthy Minds Policy Group about vereran suicide rates at the State Capitol on Sept. 22, 2026. Wait times for mental healthcare, access to firearms and gaps in veteran services in rural Oklahoma could contribute to the state's high veteran suicide rate. Oklahoma had the nation's third highest rate of veteran suicide deaths in 2023. The statistic was among several concerning trends raised during an interim study at the State Capitol this week. The meeting focused on whether legislative action is needed to improve access to care for Oklahoma's more than 270,000 veterans. Presenters pointed to long wait times for physical and mental healthcare,"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.yahoo.com/news/us/articles/oklahoma-veteran-suicide-rates-among-225823473.html",
+   "outlet": "KFOR (via Yahoo News)",
+   "date": "2026-09-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Statewide, veteran suicides are 61% higher than the national average, and sadly those numbers are continuing to rise.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "2026 at 10:58 PM UTC 2 min read Add Yahoo as a preferred source to see more of our stories on Google. OKLAHOMA CITY ( KFOR ) — Oklahoma has the third-highest suicide rate in the nation among veterans. As of 2023, Oklahoma is home to almost 277,000 veterans, making them nearly 10% of our population. Statewide, veteran suicides are 61% higher than the national average, and sadly those numbers are continuing to rise. Today at the state capitol, mental health advocates spoke to lawmakers in an interim study in hopes of identifying the gaps in mental health care and devising a plan to improve services. Advertisement Advertisement Advertisement Advertisement One problem pointed out by Juli Leber with Healthy Minds Policy Initiative : extensive wait times "
+  },
+  {
+   "idx": 2,
+   "url": "https://tulsaflyer.org/2026/05/25/news/post/oklahoma-battles-high-veteran-suicide-rates/",
+   "outlet": "Tulsa Flyer (Ginnie Graham)",
+   "date": "2026-05-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The veteran suicide rate in the state is 56.9 veterans per 100,000.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "em remains critical for mental health. Veterans are best at breaking down stigmas and stereotypes for other veterans. “The more we connect people to people, the better outcomes we have,” the Tulsa-based case manager said. But Oklahoma is struggling. The numbers are as breathtaking as they are grim. The veteran suicide rate in the state is 56.9 veterans per 100,000. That number stands out no matter the category of comparison: National veteran suicide rate: 35.2 Southern region (17 states) veteran suicide rate: 36 Southern region general population suicide rate: 29.2 Oklahoma general population suicide rate: 27.8 National general population suicide rate: 18 Oklahoma ranks third nationally in"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.mentalhealth.va.gov/docs/data-sheets/2025/State_Data_Sheets_2025_Oklahoma_508.pdf",
+   "outlet": "U.S. Department of Veterans Affairs, Oklahoma Veteran Suicide Data Sheet 2023",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Oklahoma Veteran Suicide Deaths, 2023 Sex Veteran Suicides Male 150-159 Female <10 All 161",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "age, sex, and suicide method and compares this with regional and national data. After accounting for age differences,b the Veteran suicide rate in Oklahoma: • was significantly higher than the national Veteran suicide rate • was significantly higher than the national general population suicide rate Oklahoma Veteran Suicide Deaths, 2023 Sex Veteran Suicides Male 150-159 Female <10 All 161 To protect confidentiality, suicide death counts are presented in ranges when the number of deaths in any one category was lower than 10. Oklahoma, Southern Region, and National Veteran Suicide Deaths and Rates by Age Group, 2023c Age Group Oklahoma Veteran Suicides Southern Region Veteran Suicides National Veteran Suicides Oklahoma Veter"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.mentalhealth.va.gov/docs/data-sheets/2022/2022_State_Data_Sheets_Oklahoma_508.pdf",
+   "outlet": "U.S. Department of Veterans Affairs, Oklahoma Veteran Suicide Data Sheet 2022",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Was not significantly different from the national Veteran suicide rate",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "up-to-date state-level suicide information for the United States.a This data sheet includes information about Oklahoma V eter an suicides by age, sex, and suicide method and compares this with regional and national data. After accounting for age differences,b the Veteran suicide rate in Oklahoma: • Was not significantly different from the national Veteran suicide rate • Was significantly higher than the national general population suicide rate Oklahoma Veteran Suicide Deaths, 2022 Sex Veteran Suicides Male 120–130 Female <10 All 126 To protect confidentiality, suicide death counts are presented in ranges when the number of deaths in any one category was lower than 10. Oklahoma, Southern Region, and Na"
+  },
+  {
+   "idx": 5,
+   "url": "https://news.va.gov/145131/va-veteran-suicide-prevention-report-2023-data/",
+   "outlet": "VA News",
+   "date": "2026-02-19",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The report shows there were 6,398 suicides among Veterans in 2023, down from 6,442 in 2022.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ice of Media Relations Share this story Facebook Twitter LinkedIn Reddit Telegram Tumblr WhatsApp Email Appears In General VA recently released the National Veteran Suicide Prevention Annual Report , which analyzes Veteran suicide from 2001 to 2023, the most recent year for which data is available. The report shows there were 6,398 suicides among Veterans in 2023, down from 6,442 in 2022. The average number of Veteran suicides per day fell slightly, to 17.5 in 2023 from 17.6 in 2022. Other key findings from the report include: 61% of Veterans who died by suicide in 2023 were not receiving VA health care in the last year of their life. The suicide rate per 100,000 Veterans rose for both male and female Veterans "
+  }
+ ]
+}

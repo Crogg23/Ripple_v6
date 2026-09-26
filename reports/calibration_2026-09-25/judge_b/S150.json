@@ -1,0 +1,14 @@
+{
+ "story_id": "S150",
+ "bin": "Known pattern",
+ "entity": "Vermont private hospitals' OSHA 300A filing coverage; UVM Medical Center absent",
+ "deciding_sources": [
+  0
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names Vermont hospitals or UVMMC as missing from the injury file. GAO found employers nationally skipped 300A filings on over half of covered establishments, the same kind of finding in general; the VOSHA rule-stall documents are explainers.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

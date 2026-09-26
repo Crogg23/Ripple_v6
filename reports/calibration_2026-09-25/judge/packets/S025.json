@@ -1,0 +1,83 @@
+{
+ "story_id": "S025",
+ "lead": {
+  "headline": "Where EPA found hazardous-waste violations, Illinois state inspectors of the same site wrote one up 15.5% of the time",
+  "number": "Same site within 2 years, 2015-25: Illinois 15.5% (41 EPA inspections), New Jersey 28.5%, Pennsylvania 34.5%, nation 49.1% (1,202), Wisconsin 80.8%.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "This counts what states log, not what they miss, and Illinois and New Jersey rates about doubled after 2020, so the gap is shrinking."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Illinois EPA hazardous waste inspections violations RCRA state enforcement lax federal EPA",
+  "State Review Framework Illinois RCRA Round 4 report violation identification",
+  "EPA inspectors found hazardous waste violations state inspectors missed same facility RCRA study",
+  "Illinois EPA enforcement plummeted referrals attorney general violations Tribune analysis",
+  "study state inspectors find fewer violations than federal EPA inspectors hazardous waste RCRA comparison states",
+  "EPA Office of Inspector General report states hazardous waste RCRA inspections violations not identified oversight Region 5",
+  "EPA inspector general report state hazardous waste enforcement variability EPA-led inspections 76 percent violations 2026",
+  "Illinois EPA inspector shortage hazardous waste inspections fewer violations cited Capitol News Illinois WBEZ"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf",
+   "outlet": "EPA Office of Inspector General (Report No. 26-E-0025)",
+   "date": "2026-04-28",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The EPA identified violations in 76 percent of inspections that it led, states identified violations in 52 percent of their inspections, and joint inspections identified violations 85 percent of the time.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "from the national average, Regions 8 and 10 have relatively low numbers of LQGs. See Appendix B for our complete analysis. As shown in Table 4, there are also variations in compliance monitoring and enforcement outcomes based on who the lead inspecting agency was: the EPA, a state, or both jointly. The EPA identified violations in 76 percent of inspections that it led, states identified violations in 52 percent of their inspections, and joint inspections identified violations 85 percent of the time. EPA-led inspections also tended to result in formal enforcement actions and penalties more often than state-led inspections. Although the EPA led 8 percent of inspections, those inspections resulted in 23 percent of formal enforcement actions and 28 percent of penalties nationally. Additionally, EPA-led inspections resulted in highe"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/system/files/documents/2023-03/srf-rd4-rev-il.pdf",
+   "outlet": "U.S. EPA Region 5, State Review Framework Round 4, Illinois",
+   "date": "2023-02-08",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In 34 of 34 files reviewed (100%), the inspection reports/files led to accurate compliance determinations.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ". Relevant metrics: State Response: No response provided RCRA Element 2 - Inspections Metric ID Number and Description Natl Goal Natl Avg State N State D State Total 2b Accurate entry of mandatory data [GOAL] 100% 29 34 85.3% 31 Finding 2-1 Meets or Exceeds Expectations Recurring Issue: No Summary: In 34 of 34 files reviewed (100%), Illinois EPA is continuing to demonstrate that their inspection reports are complete and provide sufficient information to make accurate compliance determinations. Explanation: The files reviewed were determined to have complete and sufficient information in the inspection reports to determine compliance. Illinois EPA submitted, and EPA approved, a RCRA C flexibility Plan for 2017 which substit"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.eenews.net/articles/watchdog-epa-states-behind-on-hazardous-waste-inspections/",
+   "outlet": "E&E News by POLITICO",
+   "date": "2026-04-29",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "EPA penalties were, on average, priced thousands of dollars higher than state penalties.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " enforcement behaviors can help the EPA identify areas of concern and determine the effectiveness of its enforcement strategies,” the report says. Advertisement The OIG report also identified “wide variability” between enforcement actions taken by federal, state or regional inspecting agencies, and EPA penalties were, on average, priced thousands of dollars higher than state penalties. Related Articles ‘Holding our breath’: Hurricane season is here, and FEMA is shorthanded by Thomas Frank | 05/29/2026 06:13 AM EDT The ‘time-consuming’ permits dozens of data centers are skipping by Miranda Willson | 07/08/2026 10:59 AM EDT Wildfire scorched 900 buildings. A state calls the fire risk ‘moderate.’ by Chelsea Harvey , Saq"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.governing.com/resilience/illinois-seeks-to-rebuild-its-epa-after-years-of-neglect",
+   "outlet": "Governing (Chicago Tribune via TNS)",
+   "date": "2025-01-06",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "has asked Raoul to step in 120 times a year, compared with 80 on average during each of",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cut back on referring cases to the attorney general’s office for prosecution. Jennings, an attorney who has worked at the agency for 13 years and most recently served as deputy director, said 100 cases had been sent to Attorney General Kwame Raoul in 2024. On average the Illinois EPA under Pritzker has asked Raoul to step in 120 times a year, compared with 80 on average during each of Rauner’s four years in office, according to state records. In future enforcement cases, Jennings said, fines will be directed to projects in affected communities rather than being funneled to a general pot of money in state coffers. By contrast, during Trump’s first term the Justice Department stopped pushing for community-"
+  },
+  {
+   "idx": 4,
+   "url": "https://investigatemidwest.org/2018/04/11/illinois-environmental-agency-suffers-deep-staff-cuts/",
+   "outlet": "Investigate Midwest (Midwest Center for Investigative Reporting)",
+   "date": "2018-04-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Violation notices from those inspections dropped from 802 to 479, or 40 percent.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "comparison of agency records between Fiscal Year 2014 – the last full year before Rauner took office – and Fiscal Year 2017. The state’s fiscal year runs from July 1 to June 30 of the following year. Consider: Air, water and land inspections of facilities dropped from 7,042 to 6,251, or 11 percent. Violation notices from those inspections dropped from 802 to 479, or 40 percent. Cases referred to the attorney general’s office dropped from 212 to 116, or 45 percent. Messina said the downturn in inspections can be traced to fewer pollution sources. He said that past administrations have focused on smaller cases, such as littering, so one reason for fewer violations may be because the state is letting local governments han"
+  }
+ ]
+}

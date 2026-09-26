@@ -1,0 +1,12 @@
+{
+  "story_id": "S012",
+  "bin": "Matched + more",
+  "entity": "US ICE detainers: share issued on people with a criminal conviction, FY23 vs FY26 (Oct-Mar both years)",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2025-04-14",
+  "post_cutoff_match": true,
+  "what_we_add": "the exact fall 43% to 16% on matching months, with FY25 at 33% - no source states the FY23-to-FY26 trend numbers",
+  "why": "Deportation Data Project (2026-09-08) states the same finding in words: detainers rose in 2026 by increasingly targeting people without convictions - conviction share falling, same direction. TRAC's 28% point figure (Jan-Feb 2025) fits our 33% FY25 line. TRAC's 97% Biden-era number counts charged OR convicted, a different measure, so no contradiction.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

@@ -1,0 +1,59 @@
+{
+ "story_id": "S136",
+ "lead": {
+  "headline": "Oregon logged zero state water-permit inspections in the federal file for 22 months; its warning letters kept arriving",
+  "number": "0 Oregon state inspections after 2024-09-30 through July 2026, after 161 in 2023 and 169 in Jan-Sep 2024; its letters kept coming (110 in 2025, 74 in 2026)",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The warehouse can't tell stopped inspections from a broken state data feed; one call to Oregon DEQ decides it."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Oregon DEQ water quality permit inspections 2025 stopped OR decline OR fewer NPDES inspections",
+  "\"Your DEQ Online\" Oregon ICIS-NPDES data transfer EPA inspections reporting",
+  "Oregon DEQ water quality inspections staffing shortage wastewater permits compliance OPB OR \"Oregon Capital Chronicle\" OR Oregonian 2025",
+  "Oregon Secretary of State audit DEQ water quality permit program inspections compliance 2024 OR 2025 findings",
+  "EPA State Review Framework Oregon DEQ Clean Water Act round 5 report inspections data completeness ICIS",
+  "Oregon DEQ 2025 annual enforcement report water quality inspections conducted warning letters pre-enforcement notices",
+  "Oregon DEQ wastewater facility inspections 2026 news inspectors water pollution oversight gap",
+  "Oregon DEQ ACES compliance and enforcement database replaced Your DEQ Online inspection records EPA ECHO Oregon inspections missing"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/sites/default/files/2020-04/documents/srf-rd4-rev-or.pdf",
+   "outlet": "EPA Region 10, State Review Framework Round 4 (Oregon)",
+   "date": "2020-03-06",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "There were many inspection reports that had the wrong dates in ICIS, and there were a couple of enforcement actions dates that were inconsistent with the dates in the enforcement action in the files.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "etric ID Number and Description Natl Goal Natl Avg State N State D State % 12b Penalties collected [GOAL] 100% 7 7 100% No state response. Clean Water Act Findings CWA Element 1 - Data Finding 1-1 Area for Improvement Summary: Not all data in ICIS reflects the files that were reviewed. Explanation: There were many inspection reports that had the wrong dates in ICIS, and there were a couple of enforcement actions dates that were inconsistent with the dates in the enforcement action in the files. Some facilities had multiple inspections entered into IC IS, and the number in ICIS did not match the inspection reports in the files. The Rainier STP (OR0020389) enforcement action dates in ICIS did not match with the date in the file. The Tillamook County Creamery (OR0000141) did not have all of the enforcement actions entered into IC"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.oregon.gov/deq/permits/pages/npdeswpcf-in-ydo.aspx",
+   "outlet": "Oregon DEQ",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Starting May 14, 2025, NPDES individual permit holders, WPCF individual permit holders, General permit registrants, and WPCF Onsite permit holders can start using Your DEQ Online as a one-stop place for paying invoices, submitting reports, and managing water quality permits.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ground Storage Tanks in Your DEQ Online Wastewater Operator Certification in Your DEQ Online Water Pollution Control Facilities Onsite in Your DEQ Online Your DEQ Online Payments Your DEQ Online Public Records Your DEQ Online Public Involvement About Your DEQ Online Land Use Compatibility Statement Starting May 14, 2025, NPDES individual permit holders, WPCF individual permit holders, General permit registrants, and WPCF Onsite permit holders can start using Your DEQ Online as a one-stop place for paying invoices, submitting reports, and managing water quality permits. Getting Started Getting started ​ Establish or update your public user account. For detailed instructions, see Your DEQ Online Account Registration . It's time to establish a Responsible Official user account. If you already have an account, login to update your account settings for the submittal group selections associated with your pe"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.oregon.gov/deq/wq/Documents/wqpAnnualReportNPDES.pdf",
+   "outlet": "Oregon DEQ, 2025 NPDES Permit Program Annual Report",
+   "date": "2025-12-01",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Delay is caused be higher than expected time spent on compliance activities, including DMR review, compliance inspections, and compliance reporting issues.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "asks Technical assistance Staff resources have been identified and assigned to permit issuance. Delay is caused by higher-than-expected time spent providing external technical assistance, including TA inspections. Compliance work Staff resources have been identified and assigned to permit issuance. Delay is caused be higher than expected time spent on compliance activities, including DMR review, compliance inspections, and compliance reporting issues. Compliance work does not include follow up activities such as enforcement action or technical assistance. 2025 Annual Report: Oregon’s Water Quality National Pollutant Discharge Elimination System Permit Program 24 Enforcement Staff resources have been identified and assigned to permit issuance. Delay is caused by higher than e"
+  }
+ ]
+}

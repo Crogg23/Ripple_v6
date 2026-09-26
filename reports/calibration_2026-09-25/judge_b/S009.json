@@ -1,0 +1,12 @@
+{
+ "story_id": "S009",
+ "bin": "Known pattern",
+ "entity": "Phoenix NWS office's share of heat deaths in the federal storm file, and its stopping filing after June 2024",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names the Phoenix weather office or the Storm Events counts. NPR/BU reports the same kind of finding - heat-death counts are reporting artifacts, Maricopa an outlier, other counties undercount - about other entities and in general.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

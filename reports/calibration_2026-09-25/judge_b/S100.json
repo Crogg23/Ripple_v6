@@ -1,0 +1,12 @@
+{
+ "story_id": "S100",
+ "bin": "Matched + more",
+ "entity": "Senate Banking Committee members' disproportionate share of bank-stock trades, 2012-20",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2020-09-12",
+ "post_cutoff_match": false,
+ "what_we_add": "The committee-wide numbers: 19% of trading senators, 34% of bank-stock trades",
+ "why": "Salon and Daily Beast report heavy bank-stock trading by a Banking Committee member (Perdue) while on the committee — and the lead says Perdue alone drives the statistic, so the press has the substance. NBER's null result is about returns, a different measure, not a contradiction. The 19%/34% aggregate is ours.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

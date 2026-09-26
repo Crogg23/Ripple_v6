@@ -1,0 +1,78 @@
+{
+  "story_id": "S045",
+  "entity": "US rural vs urban county jail incarceration rate per 100,000 residents aged 15-64, 2023 (563 rural vs 227 urban), with 2010-19 trend; Butts County GA and Yazoo County MS",
+  "queries": [
+    {"q": "rural jail incarceration rate higher than urban 2023 Vera Institute", "found_useful": true},
+    {"q": "rural jails incarceration rate per 100,000 ages 15-64 urban decline 2023 data", "found_useful": false},
+    {"q": "Butts County Georgia jail population growth holds for other agencies", "found_useful": false},
+    {"q": "Butts County jail U.S. Marshals ICE detainees contract expansion news", "found_useful": false},
+    {"q": "Yazoo County jail regional correctional facility state inmates holds population", "found_useful": false},
+    {"q": "rural jail populations 2026 report rural counties incarceration rate cities falling", "found_useful": true},
+    {"q": "rural jail boom 2023 incarceration rate \"rural\" \"urban\" per 100,000 Vera Incarceration Trends 2025 update", "found_useful": true},
+    {"q": "New York Times December 2019 rural counties jail twice as likely urban Upshot", "found_useful": true},
+    {"q": "urban jail populations rising again 2025 2026 rural jails decline contrary", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.vera.org/publications/people-in-jail-in-2019",
+      "outlet": "Vera Institute of Justice",
+      "date": "2019-12-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Since 2013, jail incarceration rates have increased by 26 percent in rural jurisdictions.",
+      "paywalled": false,
+      "searcher_note": "Same measure (rural vs urban jail incarceration rate), window 2013-2019; page also says urban rates fell 22 percent since 2013 and rural rates were more than double urban in 2019. No 2023 figure."
+    },
+    {
+      "url": "https://nonprofitquarterly.org/geography-of-incarceration-shifts-from-urban-to-rural/",
+      "outlet": "Nonprofit Quarterly",
+      "date": "2020-01-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "And today, people in rural counties are more than twice as likely to go to jail as people in urban areas.",
+      "paywalled": false,
+      "searcher_note": "Rewrite of a New York Times piece dated 2019-12-13 (NYT page itself not found); also says urban jail populations fell 18 percent and rural rose 27 percent since 2013."
+    },
+    {
+      "url": "https://www.vera.org/publications/people-in-jail-and-prison-in-2024",
+      "outlet": "Vera Institute of Justice",
+      "date": "2024-10-31",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "By spring 2024, incarceration had returned to 2019 levels in many states and in rural counties across the board.",
+      "paywalled": false,
+      "searcher_note": "Post-pandemic window: rural jail population up 2.2 percent 2022-2024; no per-100K rural vs urban numbers on the web page."
+    },
+    {
+      "url": "https://www.vera.org/news/jail-and-prison-populations-have-decreased-since-2019-but-continued-progress-isnt-promised",
+      "outlet": "Vera Institute of Justice",
+      "date": "2024-11-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Rural counties have seen the closest return to 2019 population tallies, while urban county jails have done the best job of maintaining declines.",
+      "paywalled": false,
+      "searcher_note": "Same direction for the post-2019 window (rural rebound, urban declines held); population counts, not rates."
+    },
+    {
+      "url": "https://www.vera.org/newsroom/vera-institute-of-justice-unveils-updated-incarceration-trends-website",
+      "outlet": "Vera Institute of Justice",
+      "date": "2021-12-16",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Rural areas still have the highest jail incarceration rates by far, with more than half the people incarcerated in local jails being held outside of the nation",
+      "paywalled": false,
+      "searcher_note": "Incarceration Trends data release; states rural rates highest, no specific rural/urban rate figures."
+    },
+    {
+      "url": "https://www.vera.org/newsroom/rural-america-has-highest-jail-incarceration-rates-in-the-u-s-despite-low-crime-rates-new-report-reveals",
+      "outlet": "Vera Institute of Justice",
+      "date": "2017-06-13",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "While the rate at which legally presumed innocent people are held in jail pretrial has grown 223% nationwide since 1970, it has risen 436% in rural counties",
+      "paywalled": false,
+      "searcher_note": "Earliest found: Out of Sight report release; rural counties have the highest jail rates and increasingly rent beds to other agencies (the held-for-others driver)."
+    }
+  ],
+  "notes": "All sources are Vera (the dataset's own publisher) or a rewrite of a 2019 NYT story; the rural jail boom is widely published by Vera itself, as the lead's watch_out says. No source found gives the 2023 per-100K rural (563) vs urban (227) rates or the 2.5x ratio; the closest is 'more than double' for 2019. Nothing found on Butts County GA or Yazoo County MS jail growth or local holds (searches returned roster/aggregator pages only). No disagreeing source found. No coverage dated after 2026-06-30 found."
+}

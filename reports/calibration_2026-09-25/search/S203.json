@@ -1,0 +1,47 @@
+{
+  "story_id": "S203",
+  "entity": "ERCOT gas-fired winter capacity able to switch to oil (EIA-860), before vs after the Feb 2021 freeze: 4.9% to 5.5-6.0%; SPP and MISO comparison",
+  "queries": [
+    {"q": "ERCOT gas plants dual fuel oil backup capability after Winter Storm Uri share of capacity EIA", "found_useful": false},
+    {"q": "Texas natural gas generators able to switch to fuel oil percent capacity EIA-860 Today in Energy", "found_useful": true},
+    {"q": "ERCOT Firm Fuel Supply Service dual-fuel gas plants fuel oil backup megawatts after Uri", "found_useful": true},
+    {"q": "Texas gas power plants backup fuel oil dual-fuel few Uri lesson news Texas Tribune Houston Chronicle", "found_useful": false},
+    {"q": "percent of ERCOT natural gas generation capacity dual fuel capable oil compared PJM SPP MISO", "found_useful": false},
+    {"q": "FERC NERC February 2021 cold weather report ERCOT generating units dual fuel capability fuel switching percentage", "found_useful": false},
+    {"q": "ERCOT firm fuel supply service 2025-2026 procurement fuel oil megawatts awarded dual fuel generators", "found_useful": true},
+    {"q": "Texas gas plants added dual-fuel oil capability since Uri increase 2026 winter readiness ERCOT backup fuel", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "http://www.energychoicematters.com/stories/20220928c.html",
+      "outlet": "EnergyChoiceMatters.com",
+      "date": "2022-09-28",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "18 of the 19 Generation Resources offered fuel oil as the reserve fuel type",
+      "paywalled": false,
+      "searcher_note": "ERCOT's first Firm Fuel Supply Service award after Uri: 2,940.5 MW procured, 18 of 19 units on fuel oil. Different measure from the lead: MW paid to hold backup fuel, not total gas capacity able to switch to oil; no share or before/after comparison."
+    },
+    {
+      "url": "https://www.utilitydive.com/news/texas-regulators-look-to-distributed-resources-additional-coal-reserves-t/622525/",
+      "outlet": "Utility Dive",
+      "date": "2022-04-22",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "dual-fuel capable generation units with on-site alternative fuel storage, and generators that own and control the pipeline to a storage facility",
+      "paywalled": false,
+      "searcher_note": "Texas PUC limited the first phase of the post-Uri firm-fuel product to dual-fuel units with on-site fuel storage. Policy context; no count or share of dual-fuel gas capacity."
+    },
+    {
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=52298",
+      "outlet": "US EIA, Today in Energy",
+      "date": "2022-05-04",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The most common mode of fuel switching in the United States is from natural gas to petroleum liquids, at almost 132 GW of capacity.",
+      "paywalled": false,
+      "searcher_note": "National EIA-860 fuel-switching pattern; regional detail for Florida, New England, New York only. Nothing on Texas, ERCOT, SPP or MISO."
+    }
+  ],
+  "notes": "No source found reporting the share of ERCOT gas capacity able to switch to oil, before or after Uri (4.9% to 5.5-6.0%), or the SPP (17.2% to 13.6%) and MISO (18.5% to 17.8%) figures. Closest coverage is ERCOT's Firm Fuel Supply Service: about 2,940 MW procured for winter 2022-23, nearly all fuel-oil backup. That is a different measure (paid backup-fuel MW, not EIA-860 switch-capable capacity). The ERCOT FFSS program page lists offer data for 2024-25 through 2026-27 in spreadsheets not read. The FERC/NERC Uri report came up in search, but no dual-fuel share was found in the summaries fetched. No coverage dated after 2026-06-30 on this measure found. No source found that disagrees."
+}

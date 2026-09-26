@@ -1,0 +1,95 @@
+{
+ "story_id": "S093",
+ "lead": {
+  "headline": "Black residents' jail rate ran 4.57x the white rate in 2010, 3.41x in 2019 and 3.86x in 2023, median county",
+  "number": "Median Black/white jail-rate ratio in 356 fixed counties: 4.57 (2010), 3.41 (2019), 3.86 (2023); counties at 10x+: 30, 19, 24.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "This table is Vera's data re-served (0 differences), and the post-2020 rise crosses a race-coding break."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Vera Institute Black white jail incarceration rate disparity counties 2023 Incarceration Trends",
+  "BJS Jail Inmates in 2023 statistical tables Black white jail incarceration rate per 100,000",
+  "racial disparity in jails widened since 2020 Black jail incarceration rate rising again report",
+  "Council on Criminal Justice Black White jail incarceration disparity ratio 2000 2022 local jails",
+  "\"Trends in Correctional Control by Race and Sex\" jail Black White ratio declined",
+  "Vera Incarceration Trends 2026 update jail population Black people disparity counties rising",
+  "\"times the rate\" Black residents jailed white residents county jail Vera data 2023 news analysis",
+  "counties where Black people jailed at 10 times the rate of white people county-level jail disparity analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.pew.org/en/research-and-analysis/issue-briefs/2023/05/racial-disparities-persist-in-many-us-jails",
+   "outlet": "Pew Charitable Trusts",
+   "date": "2023-05-16",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Bureau of Justice Statistics (BJS) reports show that the gap in the rate of jail incarceration between Black and White people dropped by 22% between 2011 and 2021.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ns policies over the past two decades has helped lessen disparities in federal and state prisons, Black adults still were imprisoned in 2020 at five times the rate for White adults. 3 Far less is known, however, about racial and ethnic disparities in the country’s approximately 3,000 local jails. 4 Bureau of Justice Statistics (BJS) reports show that the gap in the rate of jail incarceration between Black and White people dropped by 22% between 2011 and 2021. 5 However, these reports contain no race or ethnicity data on critical topics such as admissions or lengths of stay and little or no information about the severity or types of criminal charges for people in jail either in the aggregate or broken down by race, age, or other demographics. The lack of detailed and timely data on who is in jai"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.pew.org/en/research-and-analysis/issue-briefs/2023/05/racial-disparities-persist-in-many-us-jails",
+   "outlet": "Pew Charitable Trusts",
+   "date": "2023-05-16",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "the previous 10-year trend of declining racial disparities in jails may have reversed as the pandemic progressed.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t, 595 jails had data for 2022, and within those facilities, Black people made up, on average, 12% of the local community populations but more than double that, 26%, of the jail populations. Additionally, although the jail population decreased nationally during the early months of COVID-19 in 2020, the previous 10-year trend of declining racial disparities in jails may have reversed as the pandemic progressed. Between March 2020 and December 2022, the average number of White people in jail increased by less than 1% compared with an increase of 8% for Black people in 349 jails from the JDI database that had complete data for that period. Two factors, how many people go to jail and how long they stay, determine jail populations. 8 As "
+  },
+  {
+   "idx": 2,
+   "url": "https://bjs.ojp.gov/library/publications/jail-inmates-2023-statistical-tables/web-report",
+   "outlet": "Bureau of Justice Statistics",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The jail incarceration rate for black U.S. residents was 552 per 100,000, 3.6 times the rate for white U.S. residents (155 per 100,000) at midyear 2023",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ". In 2023, individuals ages 25–34 were incarcerated in jail at a rate of 480 inmates per 100,000 residents, approximately 22 times the rate for those age 65 or older (22 per 100,000) ( display 7 ). Between 2020 and 2023, the jail incarceration rate for individuals aged 45 or older increased by 34%. The jail incarceration rate for black U.S. residents was 552 per 100,000, 3.6 times the rate for white U.S. residents (155 per 100,000) at midyear 2023 ( display 8 ). American Indian and Alaskan Native persons had the second highest rate at 425 per 100,000. Hispanic persons (143 per 100,000) were incarcerated at a rate comparable to white persons (155 per 100,000) . Conviction status and offense characteristics At midyear 2023, 70% (467,600) of the jail population was unconvicted, ei"
+  },
+  {
+   "idx": 3,
+   "url": "https://static.prisonpolicy.org/scans/ccj/Trends_in_Correctional_Control_-_FINAL.pdf",
+   "outlet": "Council on Criminal Justice (hosted by Prison Policy Initiative)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In jails, the black-white disparity ratio dropped by 42% over the study period, falling from 6.4 to 3.8.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "or state prison populations occurred between 2000 and 2008, as the disparity fell from 8.3-to-1 to 6.3; by 2016, the black-white disparity ratio for people in state prison stood at 5.1.iii The black-white disparity among people on probation was lowest throughout the period and fell from 3.7 to 2.8. In jails, the black-white disparity ratio dropped by 42% over the study period, falling from 6.4 to 3.8. Nearly three-quarters of the decrease in the black-white jail disparity ratio decline occurred in the latter half of the timeframe, between 2008 and 2016. The disparities for Hispanics and whites fell over time across all four populations. The largest decrease occurred among people on parole; the disparity in that population decline"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.vera.org/newsroom/the-vera-institute-of-justice-launches-incarceration-and-inequality-project-data-explorer",
+   "outlet": "Vera Institute of Justice",
+   "date": "2026-04-02",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In more than half of all counties in 2019, Black people were more than twice as likely as white people to be incarcerated in jail.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " counties with high incarceration rates. These same low-incarceration counties are also about seven times as likely to have high median household incomes as high-incarceration counties. Systemic racism and bias have led to entrenched racial disparities in both incarceration and economic well-being. In more than half of all counties in 2019, Black people were more than twice as likely as white people to be incarcerated in jail. In these high-disparity counties, Black households earned on average $22,552 less than white households and were more than twice as likely to be in poverty. The higher a county’s jail incarceration rate in 2009, the more likely that the county’s median household income decreased over the next 10 years. Specifically, 42 pe"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.vera.org/publications/divided-justice-black-white-jail-incarceration",
+   "outlet": "Vera Institute of Justice",
+   "date": "2018-02-25",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Black people are still 3.6x more likely to be incarcerated in local jails nationally than white people.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ich is the biggest measure of the vast reach of jails. Directly wrestling with the issue of race and incarceration remains uncomfortable ground because it forces people to confront a deep legacy of racism and its connection to our system of incarceration in this country, past and present. Key Facts Black people are still 3.6x more likely to be incarcerated in local jails nationally than white people. Between 2005 and 2013, the black jail incarceration rate declined by 20% nationally. Since 2005, black incarceration rates have dropped 30% in urban areas and 22% in suburban areas. Since 2008, black incarceration rates have dropped 14% in small/ medium metros and 2% in rural areas. Between 1990 and 2013, the white jail pop"
+  }
+ ]
+}

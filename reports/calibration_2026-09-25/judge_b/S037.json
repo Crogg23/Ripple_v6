@@ -1,0 +1,12 @@
+{
+  "story_id": "S037",
+  "bin": "Known pattern",
+  "entity": "California marriage and family therapists' Medicare opt-out rate vs CA social workers",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "KFF reports the same kind of finding - opt-out rates vary sharply by specialty, psychiatry highest - but only for physicians. No source touches family therapists, California, or the 37% vs 10.7% split.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

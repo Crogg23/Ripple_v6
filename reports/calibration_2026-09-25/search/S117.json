@@ -1,0 +1,66 @@
+{
+  "story_id": "S117",
+  "entity": "Texas lobby activity reports (Texas Ethics Commission): share of reports with $1,000+ in gifts that name a recipient, 2005-11 vs since 2019",
+  "queries": [
+    {"q": "Texas lobbyists gifts lawmakers recipients not named disclosure reports", "found_useful": true},
+    {"q": "Texas lobbyists gifts reported without naming recipient Texas Ethics Commission analysis", "found_useful": true},
+    {"q": "Texas lobby report gift itemization threshold change 2012 per diem Ethics Commission", "found_useful": true},
+    {"q": "Texas Tribune 2013 lobbyist disclosures 3.6 percent identifying details 5.18 percent 2005", "found_useful": true},
+    {"q": "Texas lobbyists gifts lawmakers 2026 disclosure unnamed recipients report", "found_useful": true},
+    {"q": "Dallas Morning News lobbyists meals reported who was across the table less than 2% Texas analysis", "found_useful": true},
+    {"q": "Texas lobbyists gift spending recipients identified fell since 2012 Texans for Public Justice lobby report", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.texastribune.org/2013/03/07/ethics-loopholes-keeping-public-dark/",
+      "outlet": "The Texas Tribune",
+      "date": "2013-03-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "According to a Texas Tribune analysis, only 3.6 percent of the lobbyist disclosures for categories that can be itemized if thresholds are met — including food, booze, gifts and entertainment — had any detailed disclosures in 2011.",
+      "paywalled": false,
+      "searcher_note": "Tribune's own analysis of Texas lobby reports: itemized (named) share fell from 5.18% in 2005 to 3.6% in 2011; pools gifts with food, drink and entertainment, not gifts alone, and no $1,000+ cut"
+    },
+    {
+      "url": "https://www.texastribune.org/2015/02/16/watson-pushes-more-disclosure-wining-and-dining",
+      "outlet": "The Texas Tribune",
+      "date": "2015-02-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "So when the Texas Ethics Commission increased the per diem, it had the effect of raising the amount lobbyists can spend without providing any details, from $90 to $114, or 60 percent of $190.",
+      "paywalled": false,
+      "searcher_note": "Shows the itemization threshold is tied to the per diem and rose in Feb 2015 ($90 to $114); bears on the lead's own caveat that a threshold change, not hiding, could explain a drop; also repeats the 3.6% vs 5.18% figure"
+    },
+    {
+      "url": "https://www.governing.com/archive/texas-lobbying-disclosure-laws-are-meaningless.html",
+      "outlet": "Governing (republished from The Texas Tribune, Ross Ramsey)",
+      "date": "2015-03-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "More than 95 percent of the money spent by lobbyists during the last decade on food and beverages for state officials and their employees was reported — legally — without naming the recipients of those repasts.",
+      "paywalled": false,
+      "searcher_note": "Texas Ethics Commission staff analysis over 2005-2014: named-recipient reports never reached 5% of food and beverage spending; food/drink measure, not gifts"
+    },
+    {
+      "url": "https://www.dallasnews.com/news/politics/2023/01/30/five-ways-texas-lobbying-laws-keep-the-public-in-the-dark/",
+      "outlet": "The Dallas Morning News",
+      "date": "2023-01-30",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Five ways Texas lobbying laws keep the public in the dark",
+      "paywalled": true,
+      "searcher_note": "Page would not load for WebFetch (site error, likely bot wall); search snippet said lobbyists spent nearly $2M on meals in 2021 and named who was at the table less than 2% of the time. Quote is the headline only"
+    },
+    {
+      "url": "https://texasscorecard.com/state/texas-ethics-commission-proposal-would-raise-cap-on-secret-lobbyist-meals/",
+      "outlet": "Texas Scorecard",
+      "date": "2026-09-22",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The per diem amount is also linked to the amount lobbyists are permitted to spend on gifts to lawmakers without being required to identify the recipient lawmaker by name.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. TEC proposal to raise per diem $221 to $290.40, lifting the no-name threshold from $132.60 to $174.24 a day; explains the rule, gives no named-share statistics"
+    }
+  ],
+  "notes": "No source found with the lead's exact measure (reports with $1,000+ in gifts naming a recipient, 61/228 in 2005-11 vs 9/243 since 2019) or the 2012 drop or the 15-filer panel. Closest: Texas Tribune 2013 analysis of the same Texas lobby reports showing named-detail share falling 5.18% (2005) to 3.6% (2011) across food, drink, gifts and entertainment combined. Other sources measure food/beverage only. The Tribune 2015 piece documents a threshold rise in 2015 (tied to per diem), not 2012; no source found on a 2012 threshold change. Some WebSearch calls appeared to run extra internal searches (the TPJ query returned four result sets); logged here as issued."
+}

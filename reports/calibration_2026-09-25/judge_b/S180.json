@@ -1,0 +1,12 @@
+{
+ "story_id": "S180",
+ "bin": "Matched + more",
+ "entity": "Texas abortions per Guttmacher despite the total ban, early 2026 vs 2024",
+ "deciding_sources": [2, 0],
+ "earliest_match_date": "2026-04-15",
+ "post_cutoff_match": true,
+ "what_we_add": "the monthly shape: 3,530/month Jan-Mar 2026, +26% over Jan-Mar 2024, flat since a single December 2024 jump",
+ "why": "KRWG reports 41,000+ Texan abortions in 2025, up over 20% from 2024, and Guttmacher reports 42,000 Texans via telehealth shield providers. Same finding, same direction; the monthly averages and the Dec 2024 step are stated nowhere.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

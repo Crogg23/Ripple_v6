@@ -1,0 +1,59 @@
+{
+ "story_id": "S003",
+ "lead": {
+  "headline": "Grain Processing's Iowa corn mill failed smokestack tests 49 days in 2015-25, no state order; Indiana twin: 7 orders",
+  "number": "Muscatine IA 49 failed-test days (#1 of 29 big US wet corn mills), 36 violations, 0 orders; Washington IN 20 days, 7 Indiana orders, $687,030. Statewide 2015-25: Iowa 19 state air orders, Indiana 572",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The gap mirrors the two states, not this plant: Iowa barely files air orders at all. Split the Indiana mills' own 22 orders ($898,842) from EPA's 3 ($1.8M)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Grain Processing Corporation Muscatine stack test failed emissions",
+  "GPC Muscatine air pollution Iowa DNR enforcement consent order",
+  "Grain Processing Corporation Washington Indiana IDEM agreed order air violation",
+  "Muscatine Journal GPC emissions violations 2025",
+  "\"Grain Processing\" Muscatine emissions exceedance stack test Iowa Capital Dispatch OR \"Quad-City Times\" 2026",
+  "Iowa DNR air quality enforcement orders decline few penalties analysis",
+  "Grain Processing Corporation Washington Indiana Daviess County pollution fine Times Herald",
+  "GPC Muscatine notice of violation Iowa DNR air 2019 OR 2021 OR 2023 OR 2024"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://publicintegrity.org/environment/despite-lone-inspectors-efforts-persistent-haze-envelops-iowa-town/",
+   "outlet": "Center for Public Integrity",
+   "date": "2011-11-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "During the past decade, the state has issued GPC 38 notices of violation related to air pollution",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t run to show compliance, and locked-out union officials made similar allegations in interviews with iWatch News . If true, this would have allowed the company to report less pollution than it was actually releasing. GPC’s Sichterman said the company has never altered its operations during testing. During the past decade, the state has issued GPC 38 notices of violation related to air pollution, many of them scolding the company for failing to keep monitors in operation at all times or for failing to seek approval for modifications of the factory — types of violations that can make it difficult for regulators to keep tabs on pollution from the plant. Violations resulted in penalties on two occasions, and the company paid"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.kwqc.com/content/news/Iowa-Supreme-Court-upholds-class-action-lawsuit-against-GPC-Muscatine-422153223.html",
+   "outlet": "KWQC-TV6",
+   "date": "2017-05-12",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "People living near the plant filed the lawsuit in 2012 saying GPC failed to control emissions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ts in effect Iowa Supreme Court upholds class-action lawsuit against GPC Muscatine (KWQC) Published : May 12, 2017 at 10:08 PM CDT Share Add Us On Google Add as a preferred source on Google The Iowa Supreme Court upheld a class-action lawsuit against Grain Processing Corporation in Muscatine, Iowa. People living near the plant filed the lawsuit in 2012 saying GPC failed to control emissions. They are seeking compensation for damage to their properties. GPC argued the residents claims should be ruled on individually, but the Iowa Supreme Court unanimously disagreed. People living within 1.5 miles between 2007 and 2012 are eligible as part of this lawsuit. Mishelle Honts can see the plants entrance from her backyard. She"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.iowadnr.gov/news-release/2026-02-19/air-quality-permits-review-published-02192026",
+   "outlet": "Iowa Department of Natural Resources",
+   "date": "2026-02-19",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Based on data from recent stack tests, the exhaust air flow rate is modified for both stacks, the emission limit for PM and PM10 is increased for EP135.0",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "earch or through the EASY Air Public Inquiry Portal and then click the Public Notice tab. Muscatine County Grain Processing Corporation, 1600 Oregon Street, Muscatine Project 25-329 Emission Points 135.0 and 136.0: The purpose of this project is to modify the permits for the #4 Maltrin Spray Dryer. Based on data from recent stack tests, the exhaust air flow rate is modified for both stacks, the emission limit for PM and PM10 is increased for EP135.0, and the operating limits for the wet scrubber and fabric filter baghouse on EP136.0 are modified to better match current conditions. The public comment period ends March 22. Secondary Navigation Menu Home (parent section) Programs & Services Aquatic Invasive Species Beach Monitoring Beginning Farming & Habitat Leases Business R"
+  }
+ ]
+}

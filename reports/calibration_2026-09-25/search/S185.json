@@ -1,0 +1,38 @@
+{
+  "story_id": "S185",
+  "entity": "Georgia, U.S. House general elections with no opponent against the winner, 2010-2018 (20 of 69 races; nation 4.8%)",
+  "queries": [
+    {"q": "Georgia uncontested U.S. House races no general election opponent 2010 2012 2014 2016 2018", "found_useful": false},
+    {"q": "Ballotpedia uncontested congressional general elections by state 2018 Georgia Massachusetts", "found_useful": true},
+    {"q": "FairVote uncontested U.S. House seats by state Georgia most unopposed congressional races", "found_useful": false},
+    {"q": "AJC Georgia congressmen run unopposed November no challenger U.S. House", "found_useful": false},
+    {"q": "Georgia congressional seats unopposed 2016 Democrats failed to field candidates Tom Graves Jody Hice Buddy Carter", "found_useful": false},
+    {"q": "number of uncontested U.S. House races 2014 2016 2018 no major party opponent by state analysis", "found_useful": true},
+    {"q": "Georgia leads nation uncontested congressional elections one-party districts GPB Georgia Recorder", "found_useful": false},
+    {"q": "Georgia 2026 U.S. House general election unopposed candidates uncontested districts", "found_useful": false},
+    {"q": "\"Democracy with no choices\" candidates run unopposed AP Georgia 14 U.S. House districts", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://ballotpedia.org/U.S._House_elections_without_a_Democratic_or_Republican_candidate,_1920-2018",
+      "outlet": "Ballotpedia",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Georgia 10 14 71.4%",
+      "paywalled": false,
+      "searcher_note": "Table row under 'The following table lists the percentage of districts in each state that had only one major party candidate in at least one general election between 2014 and 2018': Georgia 10 of 14 districts. Different measure (no major-party opponent, districts not races, 2014-18). Same table: Vermont 100%, Arkansas 75%, Georgia 71.4%, Massachusetts and Louisiana 66.7%, Alabama 57.1%. Page also gives national counts: 76 seats in 2014, 61 in 2016, 41 in 2018 with only one major party candidate."
+    },
+    {
+      "url": "https://www.270towin.com/news/2020/10/30/uncontested-house-races-no-major-party-opposition_1119.html",
+      "outlet": "270toWin",
+      "date": "2020-10-30",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "This year, 27 seats fall into that category, down from 42 in 2018.",
+      "paywalled": false,
+      "searcher_note": "National count of House seats with no major-party opposition, 2018 and 2020; no Georgia breakdown for 2010-18. Pattern/national comparator only, and a different definition from the lead's 'nobody running'."
+    }
+  ],
+  "notes": "No news story found that reports Georgia's share of U.S. House races with no opponent at all in 2010-2018, or ranks Georgia against other states on that measure. Closest is Ballotpedia's 2014-2018 table, which counts districts with only one major-party candidate (write-ins and third parties can still be present) - a looser definition than the lead's 'nobody running against the winner'; e.g. Ballotpedia shows GA-10 2016 Jody Hice faced only a write-in. Coverage found on Georgia uncontested races is about the state legislature (FairVote, AP 2017 via PressReader - 403, AJC 2024), not U.S. House. AJC 2024-03-08 says every Georgia U.S. House race drew both parties in 2024 (outside the lead's window). Washington Post 2018 uncontested-races graphic returned 403. Ballotpedia 2018 page lists Georgia's 5th (no Republican) and Georgia's 8th (no Democrat) among 2018 one-major-party races."
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S057",
+  "bin": "Matched + more",
+  "entity": "US FDA-covered trials that never posted results (share of covered trials, phase 2-4, finished 2017-01 to 2022-06)",
+  "deciding_sources": [0, 4],
+  "earliest_match_date": "2026-04-13",
+  "post_cutoff_match": false,
+  "what_we_add": "The 706 trials, 8.6% of a defined 2017-2022 completion cohort, and 152,850 enrolled patients. No source states any of those counts.",
+  "why": "FDA and the law-review piece name the entity and state the finding in words: covered US trials failing to post results, FDA reminding 2,200 sponsors. FDA's 29.6% covers all past-deadline studies, a different denominator and window, so it can't be lined up against 8.6% and isn't a contradiction.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

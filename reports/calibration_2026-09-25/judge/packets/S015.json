@@ -1,0 +1,59 @@
+{
+ "story_id": "S015",
+ "lead": {
+  "headline": "People arrested 2+ years after arriving had ICE bond posted 7% of the time in Louisiana, 29% in Pennsylvania",
+  "number": "7% in Louisiana, 12% in Texas, 29% in Pennsylvania, 2023-25, for people arrested 2+ years after entry.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The bond field fills when bond is posted, not when a judge sets it, and border states hold recent arrivals who can't get bond at all."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "ICE detainees bond posted rate by state Louisiana Pennsylvania analysis",
+  "immigration judges Louisiana bond grant rate lowest in country detention",
+  "Deportation Data Project released on bond ICE detention stints by state long-term residents",
+  "Louisiana ICE detention long-time residents denied bond transferred Jena Basile Verite Illuminator",
+  "Pennsylvania immigration detainees bond granted rate Moshannon Valley York immigration court bond",
+  "\"bonded out\" ICE detention release on bond share by state data analysis 2025",
+  "Oakdale Jena immigration court bond grant rate percent Louisiana judges rarely grant bond",
+  "Third Circuit bond hearing ruling Pennsylvania ICE detainees released on bond August 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://tracreports.org/reports/722/",
+   "outlet": "TRAC (Syracuse University)",
+   "date": "2023-07-19",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The latest case-by-case Immigration Court records show that detained immigrants seeking release on bond have widely differing outcomes depending upon where they are being held.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Detained Immigrants Seeking Release on Bond Have Widely Different Outcomes – Overall Bond Grant Rates Have Dropped TRAC Immigration Home > Immigration > Reports Detained Immigrants Seeking Release on Bond Have Widely Different Outcomes – Overall Bond Grant Rates Have Dropped Published Jul 19, 2023 The latest case-by-case Immigration Court records show that detained immigrants seeking release on bond have widely differing outcomes depending upon where they are being held. The odds that Immigration Judges granted bond motions varied from a low of just three percent at the Northwest Detention Center in the state of Washington to 45 percent at the Krome North Special Processing Center in Florida. [1] The Aurora Immigration Court in Colorado and the Conroe Immigration Court in Texas had almost as high gr"
+  },
+  {
+   "idx": 1,
+   "url": "https://thelensnola.org/2026/06/18/louisiana-immigration-detention-habeas-petitions-crisis/",
+   "outlet": "The Lens (co-published by Louisiana Illuminator, Bolts)",
+   "date": "2026-06-18",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "DHS instituted a policy of mandatory detention, declaring that any immigrant who’d entered the U.S. “illegally” was ineligible for bond",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "y person from Uganda. Typically, immigration judges would order such people released via an order of supervision, which stipulates conditions including regular check-ins with ICE. Then in June, the Supreme Court made a ruling that allowed ICE to send such people to a “third country.” A month later, DHS instituted a policy of mandatory detention, declaring that any immigrant who’d entered the U.S. “illegally” was ineligible for bond — even people who’ve been living in the country for decades. Around the same time, as immigrants who had been free for years went to routine ICE check-ins, ICE began arresting them, bringing them in “illegally, for the most part,” said Nora Ahmed, legal director of ACLU Louisiana. And once detained, they couldn’t bond out. Most court"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.openimmigration.us/analysis/bond-system",
+   "outlet": "OpenImmigration",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The grant rate varies dramatically by court. Judges in some courts grant bond at 10-15x the rate of others",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ender — People argue for their own bond in a language most don't speak The 4.3% Grant Rate Of NaN million bond hearings, only 4.3 % result in bond being granted. The rest? Continued, denied, or administratively closed. This means the overwhelming majority of people who request bond remain detained. The grant rate varies dramatically by court. Judges in some courts grant bond at 10-15x the rate of others — for the same types of cases. This mirrors the \"judge roulette\" pattern we see in asylum cases: your outcome depends heavily on your judge, not your case. Who Can Afford Freedom? A $ 11,412 bond might not sound outrageous by American standards. But for someone recently arrested by ICE — often separated from family, with frozen bank a"
+  }
+ ]
+}

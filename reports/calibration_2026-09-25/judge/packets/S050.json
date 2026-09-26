@@ -1,0 +1,83 @@
+{
+ "story_id": "S050",
+ "lead": {
+  "headline": "Serious water-system defects found before 2022 are still unfixed in 19% of West Virginia cases, against 3% elsewhere",
+  "number": "Pre-2022 unfixed inspection-defect cases still open: West Virginia 19.0%, EPA-run tribal land in Region 9 11.3%, Louisiana 8.8%, other states 3.0%; open 2+ years: WV 218, LA 337, Region 9 48.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The physical thing is an unfixed inspection defect, not contaminated water, and Region 9 logs close-outs a median 478 days late."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "West Virginia water systems significant deficiencies unresolved sanitary survey EPA",
+  "West Virginia public water systems unfixed violations years Mountain State Spotlight",
+  "\"significant deficiencies\" West Virginia drinking water systems not corrected Bureau for Public Health",
+  "EPA Inspector General report significant deficiencies sanitary surveys not corrected timely states drinking water",
+  "Louisiana water systems deficiencies unresolved years Louisiana Illuminator sanitary survey",
+  "EPA Region 9 tribal public water systems significant deficiencies unresolved Navajo drinking water oversight",
+  "West Virginia drinking water systems violations September 2026",
+  "West Virginia Department of Health water systems compliance improving fewer violations resolved 2025 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.wvgazettemail.com/news/energy_and_environment/wv-has-worst-us-health-based-drinking-water-violation-rate-and-crisis-is-likely-worse/article_e3deaf8a-9e94-44d0-b8ea-f3cf619f14ad.html",
+   "outlet": "Charleston Gazette-Mail (Mike Tony; also run by Pulitzer Center)",
+   "date": "2025-11-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "West Virginia's 2024 percentage of public water systems identified as 'priority systems' — systems on an EPA enforcement priority list due to having unresolved serious, multiple or continuing violations — was 50.7%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.wvgazettemail.com/news/legislative_session/wv-lawmakers-hear-about-dropping-federal-support-other-aid-limits-for-water-upgrades/article_6f5a7374-ac3c-4d0f-b50a-77e71f79cadc.html",
+   "outlet": "Charleston Gazette-Mail (Mike Tony)",
+   "date": "2026-09-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "West Virginia's percentage of public water systems with any kind of violations has climbed sharply from 32.1% in 2015 to 79.1% in 2024.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://www.wvgazettemail.com/news/energy_and_environment/wv-drinking-water-infrastructure-failing-as-state-woos-water-guzzling-data-centers/article_3042c4aa-4929-4839-9033-b3204a7e1895.html",
+   "outlet": "Charleston Gazette-Mail (Mike Tony; also run by Pulitzer Center)",
+   "date": "2025-12-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "citing state health department violations issued for failures to submit complete and accurate monthly operational reports, comply with primary drinking water regulations and provide customers with boil water notices, address major violations outlined in sanitary surveys",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t could maintain adequate facilities “to provide reasonable, safe, and sufficient service to the public” and whether its management was “grossly and willfully inefficient and unresponsive to the needs of its customers.” PSC staff prompted the unresolved case by requesting the general investigation, citing state health department violations issued for failures to submit complete and accurate monthly operational reports, comply with primary drinking water regulations and provide customers with boil water notices, address major violations outlined in sanitary surveys, as well as having what staff said in a filing was a “grossly unacceptable” amount of unaccounted-for water loss. Roughly 600 district customers experienced a prolonged water outage in January 2025, according to the PSC staff, which identified failure to properly maintain sediment basins at the water treatment plant for years as the root of the "
+  },
+  {
+   "idx": 3,
+   "url": "https://app.lla.state.la.us/publicreports.nsf/0/9cefff945ff8c2c686258797006095b9/$file/000252e5b.pdf",
+   "outlet": "Louisiana Legislative Auditor (Progress Report: Safe Drinking Water Program)",
+   "date": "2021-11-24",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "As of June 2021, OPH has not issued violations for 10 (8.5%) of 118 unresolved significant deficiencies identified during fiscal years 2016 through 2021.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "is an improvement from our August 2016 audit that found OPH only conducted 1,075 (89.0%) of 1,208 required sanitary surveys during fiscal years 2009 through 2014. However, OPH did not always issue violations when water systems did not resolve significant deficiencies identified on sanitary surveys. As of June 2021, OPH has not issued violations for 10 (8.5%) of 118 unresolved significant deficiencies identified during fiscal years 2016 through 2021.  OPH escalated enforcement actions in accordance with policy when water systems did not correct violations for nine (90.0%) of 10 Administrative Orders (AOs) we reviewed. This is an improvement from our 2016 audit, where we found that OPH did not follow its enforcement process in five (33.3%) of the 15 AOs we reviewed. H"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.epa.gov/sites/default/files/oig/documents/full_report_-_24-e-0055_errata.pdf",
+   "outlet": "EPA Office of Inspector General (Report No. 24-E-0055)",
+   "date": "2024-08-12",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The MSDH Inconsistently Communicated Significant Deficiencies to Jackson",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e MSDH Did Not Consistently Identify Significant Deficiencies ........................................... 13 Water Line Breaks Resulting in Frequent Boil Water Notices Did Not Rise to Significant Deficiencies by the MSDH ........................................................................... 15 The MSDH Inconsistently Communicated Significant Deficiencies to Jackson ....................... 16 Conclusions .............................................................................................................................. 17 Recommendations ................................................................................................................... 17 Agency Response and OIG Assessment ....................."
+  }
+ ]
+}

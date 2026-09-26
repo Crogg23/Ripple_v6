@@ -1,0 +1,12 @@
+{
+ "story_id": "S114",
+ "bin": "Known pattern",
+ "entity": "the 16 House members running for Senate this cycle, missed-vote rate in campaign season",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source reports the cohort-of-16 finding or the doubling with the 2023-24 placebo. Deseret, Legis1 and Congress Vote Tracker report the same kind of finding in general and about individuals: members running for higher office miss more votes.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

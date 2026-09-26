@@ -1,0 +1,58 @@
+{
+ "story_id": "S167",
+ "lead": {
+  "headline": "Offshore formations doubled in Apr-Jun 2005, just before Europe's savings tax; Panama firm Mossack Fonseca: 2,331 to 4,701",
+  "number": "Apr-Jun 2004 → 2005: Mossack Fonseca 2,331 → 4,701, Bahamas registry 1,656 → 3,108, Nevis registry 684 → 1,353; middlemen with Swiss, Luxembourg or Monaco addresses carry 69% of Mossack Fonseca's jump; Asia-facing providers rose 12-13%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "History piece, probably covered in outline by 2016 Panama Papers reporting (not checked); the middleman on file is the firm's client of record, not proven to have ordered each formation"
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Mossack Fonseca EU savings tax directive 2005 surge companies Panama Papers",
+  "Caruana-Galizia offshore financial activity tax policy leaked data EU Savings Directive 2005 incorporations spike",
+  "Omartian Panama Papers tax information exchange offshore entities incorporations European Union Savings Directive evidence",
+  "Panama Papers Mossack Fonseca \"savings directive\" clients shell companies 2005 Süddeutsche ICIJ bank Switzerland",
+  "\"Mossack Fonseca\" \"savings tax\" European loophole offshore companies Luxembourg Swiss intermediaries 2005 rush",
+  "Bahamas international business companies incorporations 2005 increase EU savings directive Nevis offshore registrations rose",
+  "offshore company formations spiked before July 2005 EU savings directive shell companies loophole study Panama Papers data"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.anderson.ucla.edu/documents/areas/fac/accounting/working-papers/Omartian-Panama%20Papers.pdf",
+   "outlet": "Jim Omartian, UNC Kenan-Flagler working paper 'Do Banks Aid and Abet Asset Concealment: Evidence from the Panama Papers' (hosted by UCLA Anderson)",
+   "date": "2017-10-23",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Once the EUSD comes into force, the incorporation activity indeed subsides relative to the pre-July 1 rush, but remains higher than the early period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "m EUSD investor countries. I observe an increase of 20 percentage points in the probability of there being oﬀshore incorporation activity from an EUSD country in the months prior to the EUSD taking eﬀect. Similarly, I observe a roughly 73% increase in the quantity of incorporations (e0.551 = 1.73). Once the EUSD comes into force, the incorporation activity indeed subsides relative to the pre-July 1 rush, but remains higher than the early period. [Place Table 3 about here] Given the EUSD aﬀected individual accounts, I should only detect an eﬀect when the shareholder is a person. In Columns (3) and (4) I split the dependent variable into incorpo- 15Consistent with Johannesen (2014), I consider treated only those countries that were EU members prior to the 2004 EU enlarge"
+  },
+  {
+   "idx": 1,
+   "url": "https://extranet.greens-efa-service.eu/public/media/file/1/5183",
+   "outlet": "Sven Giegold MEP, Greens/EFA, for European Parliament PANA committee hearing of Jean-Claude Juncker",
+   "date": "2017-05-30",
+   "source_type": "testimony",
+   "entity_named": "yes",
+   "quote": "Figure 3 shows that the creation of offshore companies via Mossack-Fonseca by Luxembourg reached an all-time high of almost 1300 in 2005, the year when the EUSTD entered into force.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " it only applied to tax income of natural persons. Even worse, the EUSTD did not require to look through a legal entity or arrangement to identify the real beneficial owner behind. To escape the with holding tax in Luxembourg, it was sufficient to put the money in to a company being a legal person. Figure 3 shows that the creation of offshore companies via Mossack-Fonseca by Luxembourg reached an all -time high of almost 1300 in 2005, the year when the EUSTD entered into force. Given the enormous and sudden increase in company creations, one can conclude that a real tax avoidance and tax evasion industry has emerged in Luxembourg. The data of Mossack-Fonseca is only one, and not even the largest interme diary, in the global tax evasion sector. But it is the only one whose data is publically accessible "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.cambridge.org/core/journals/journal-of-public-policy/article/abs/offshore-financial-activity-and-tax-policy-evidence-from-a-leaked-data-set/A8C83C4F6A781B81CA317DAB78E25499",
+   "outlet": "Journal of Public Policy (Paul and Matthew Caruana-Galizia)",
+   "date": "2016-03-07",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "We show that the growth of EU-owned entities declined immediately after the Directive’s implementation, whereas that of non-EU-owned entities remained stable.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nted by transferring ownership to a non-EU resident or company or by transferring the entity to a non-cooperative jurisdiction. Using a database on individual offshore entities leaked from two firms in 2013, we compare the response of EU-owned entities with a control group of non-EU-owned entities. We show that the growth of EU-owned entities declined immediately after the Directive’s implementation, whereas that of non-EU-owned entities remained stable. We observe the substitution of EU ownership for non-EU ownership, as well as the substitution of cooperative for non-cooperative offshore jurisdictions. This calls for anti-evasion policies that are broader in scope and scale. Keywords offshore centres offshore leaks Savings Directive tax evasion tax havens Information Type"
+  }
+ ]
+}

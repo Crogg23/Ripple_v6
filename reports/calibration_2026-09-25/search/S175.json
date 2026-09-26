@@ -1,0 +1,77 @@
+{
+  "story_id": "S175",
+  "entity": "U.S. male veteran suicide rate, VA health care users vs veterans outside VA care (and non-veteran men), 2018-2023",
+  "queries": [
+    {"q": "VA National Veteran Suicide Prevention Annual Report 2025 data through 2023 male veterans suicide rate VHA users", "found_useful": true},
+    {"q": "veteran suicide report 2023 data male veterans VA health care users rate rose news Military Times OR Stars and Stripes 2026", "found_useful": true},
+    {"q": "veteran suicides fell 2023 fewer deaths but rate rose shrinking veteran population denominator", "found_useful": true},
+    {"q": "veteran suicide rate rising both VA users and non-users since 2018 younger veterans under 55 driving increase", "found_useful": false},
+    {"q": "veteran suicide VA report 2026 new data 2024 released September 2026", "found_useful": false},
+    {"q": "\"53.0 per 100,000\" OR \"39.4 per 100,000\" veterans VHA users suicide 2023", "found_useful": true},
+    {"q": "Operation Deep Dive veteran suicide undercount VA report 2026 disputes rate", "found_useful": false},
+    {"q": "suicide rate veterans not in VA care rising men 2018 to 2023 analysis appendix VHA users 48.5", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.mentalhealth.va.gov/docs/data-sheets/2025/2025_Annual_Report_Part_2_508.pdf",
+      "outlet": "U.S. Department of Veterans Affairs, 2025 National Veteran Suicide Prevention Annual Report, Part 2",
+      "date": "2026-02-05",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Concurrently, rates rose for both male Recent Veteran VHA Users (+3.0%) and male Veterans who were not Recent Veteran VHA users (+2.7%).",
+      "paywalled": false,
+      "searcher_note": "VA's own report, 2022-23 only. Table 6: male VHA users age-adjusted 51.5 (2022) to 53.0 (2023), 43.1 in 2001; male other veterans 38.4 to 39.4, 23.0 in 2001. Also: 2022-23 age-adjusted rate fell 2.3% for male non-veterans. No 2018 baseline by VHA use in the text. Date is approximate: news coverage says released Thursday before 2026-02-06."
+    },
+    {
+      "url": "https://www.usmedicine.com/clinical-topics/suicide/percentage-rates-for-veteran-suicide-up/",
+      "outlet": "U.S. Medicine",
+      "date": "2026-03-15",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "From 2001 to 2023, the age-adjusted suicide rates for male veterans without recent VHA use rose by 71.1%, while it only rose 23% for those who had been recently seen by VA.",
+      "paywalled": false,
+      "searcher_note": "Reports the VHA-use split for male veterans, but over 2001-2023, not 2018-2023; says both rose, non-users faster. Also gives 2023 age rates: 47.9 for 18-34, 37.3 for 35-54."
+    },
+    {
+      "url": "https://www.militarytimes.com/news/your-military/2026/02/06/veteran-suicide-rate-slightly-increased-latest-report-finds/",
+      "outlet": "Military Times (Patricia Kime)",
+      "date": "2026-02-06",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "the rate among those enrolled in VA health care is less than half the rate of those who aren't in VA care.",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement: says VA-enrolled veterans have less than half the suicide rate of those outside VA care. VA's Table 6 shows the opposite for recent VHA users (male 53.0 vs 39.4, age-adjusted). 'Enrolled' vs 'recent user' definitions may differ. Not sex-specific."
+    },
+    {
+      "url": "https://taskandpurpose.com/military-life/veterans-suicide-report-2025/",
+      "outlet": "Task & Purpose (Nicholas Slayton)",
+      "date": "2026-02-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "It found that the suicide rate increased for both men and women, from 37.3 to to 37.8 for the former and from 13.7 to 13.9 for the latter.",
+      "paywalled": false,
+      "searcher_note": "Male veteran crude rate 2022 to 2023 rose while total suicide count fell (6,442 to 6,398). No VHA-use split. The doubled 'to to' is on the page."
+    },
+    {
+      "url": "https://www.military.com/daily-news/2026/02/12/va-releases-newest-veteran-suicide-data-heres-what-they-found.html",
+      "outlet": "Military.com (Nick Mordowanec)",
+      "date": "2026-02-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The suicide rate per 100,000 veterans was 35.2, marking the report's highest level dating back to 2018 (33).",
+      "paywalled": false,
+      "searcher_note": "All-veteran rate 2018-2023 rise; says men rose 37.3 to 37.8; 61% of 2023 decedents not in VA care. No VHA-use rate split, no male 2018-23 comparison."
+    },
+    {
+      "url": "https://warriorwod.org/veteran-suicide-prevention-month-2026/",
+      "outlet": "WarriorWOD Foundation",
+      "date": "2026-09-02",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Veterans ages 18 to 34 die by suicide at a rate of 49.6 per 100,000, the highest of any age group.",
+      "paywalled": false,
+      "searcher_note": "Only post-2026-06-30 item found; NGO blog restating VA report numbers. Does not report the male VHA-user vs non-user 2018-23 trend. Weak."
+    }
+  ],
+  "notes": "The lead's own caveat says it is VA's published appendix; the VA report itself (and trade/news write-ups of it) reports male VHA-user and non-user age-adjusted rates both rising, but for 2001-23 (+23.0% vs +71.1%) and 2022-23 (+3.0% vs +2.7%), never 2018-23. VA's 2023 figures (53.0 VHA users, 39.4 others) differ slightly from the lead's 53.4 and 39.71 (lead likely uses the data appendix). No source found stating the ~10% 2018-23 rise for both groups, that non-veteran men were flat 2018-23, or that under-55s carry the rise. Military Times says VA-enrolled veterans' rate is less than half of non-enrolled, which runs opposite to VA's own recent-user table. Part 1 of the report (https://www.mentalhealth.va.gov/docs/data-sheets/2025/2025_National_Veteran_Suicide_Prevention_Annual_Report_PART_1_FINAL.pdf) has a 2018-2023 table: male veteran crude rate 35.0 to 37.8, no VHA split. RAND perspective 'The Rising Rate of Suicide Among Veterans' was 403 to fetch; not recorded. No new VA data (2024) found as of search."
+}

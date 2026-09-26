@@ -1,0 +1,35 @@
+{
+ "story_id": "S037",
+ "lead": {
+  "headline": "California family therapists opted out of Medicare at 37%, 3.5 times the rate of California social workers",
+  "number": "CA marriage and family therapists 37.3% opt-out (decisions since 2024) vs social workers 10.7%; psychologists 31.6%; CA holds 70% of US family-therapist opt-outs.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Psychologists run close to family therapists (1.2x), California runs high for every profession, and opting out can just mean a big cash-pay senior market."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "California marriage and family therapists opt out of Medicare rate",
+  "MFTs Medicare opt-out affidavits 2024 how many therapists opted out data",
+  "how many marriage and family therapists enrolled in Medicare 2024 counselors enrollment numbers opted out",
+  "CAMFT Medicare opt out California LMFTs survey percent",
+  "study psychiatrists opt out of Medicare rate by state JAMA opt-out affidavits",
+  "therapists opting out of Medicare low pay news 2025 2026 counselors family therapists seniors access",
+  "study Medicare enrollment marriage and family therapists mental health counselors first year 2024 Health Affairs OR JAMA OR Psychiatric Services",
+  "California therapists refuse Medicare opt out seniors mental health access CalMatters OR \"Los Angeles Times\" OR KQED"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.kff.org/other/issue-brief/how-many-physicians-have-opted-out-of-the-medicare-program/",
+   "outlet": "KFF",
+   "date": "2025-01-17",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "8.1% of psychiatrists have opted out of Medicare, followed by 4.5% of physicians specializing in plastic and reconstructive surgery and 3.2% of physicians specializing in neurology.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "American Medical Association (AMA) Physician Masterfile; Centers for Medicare & Medicaid Services Opt-Out Affidavits (November 2024). While the overall opt-out rate is low, opt-out rates are somewhat higher for certain specialties, such as psychiatry and plastic and reconstructive surgery. In 2024, 8.1% of psychiatrists have opted out of Medicare, followed by 4.5% of physicians specializing in plastic and reconstructive surgery and 3.2% of physicians specializing in neurology (Figure 2). Top 10 Specialties with the Highest Share of Physicians Opting Out in Specialty, 2024 Analysis excludes pediatricians. Physician counts include active allopathic and osteopathic medicine physicians. KFF analysis of: Physician counts from Redi-Data, Inc. (May 2024), using American Medical Association (AMA) Physician Mas"
+  }
+ ]
+}

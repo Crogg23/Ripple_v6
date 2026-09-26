@@ -1,0 +1,12 @@
+{
+ "story_id": "S004",
+ "bin": "Matched + more",
+ "entity": "Top Medicare skin-substitute billers 2024: huge billing by a few clinicians vs tiny reported maker payments",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2025-07-01",
+ "post_cutoff_match": false,
+ "what_we_add": "$1.13B by the top 20 in 2024 and the $76,937 Open Payments total - the billing-vs-payments contrast appears in no source",
+ "why": "KTAR and DOJ name Denny (our #20) with $200M in allografts; OpenMedicare names the Phoenix NP ring at $514.6M. Same finding, same direction. No source has the top-20 total or the maker-payment number.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

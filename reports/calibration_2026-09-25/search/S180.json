@@ -1,0 +1,66 @@
+{
+  "story_id": "S180",
+  "entity": "Texas abortions per month (Guttmacher Monthly Abortion Provision Study), Jan-Mar 2026 vs Jan-Mar 2024",
+  "queries": [
+    {"q": "Guttmacher Texas abortions per month 2026 shield law telehealth total ban", "found_useful": true},
+    {"q": "Guttmacher monthly abortion provision study 2026 data release ban states Texas", "found_useful": true},
+    {"q": "Guttmacher first half 2026 abortion data telehealth ban states release", "found_useful": false},
+    {"q": "Texas abortions rising despite ban 2026 shield law pills monthly numbers", "found_useful": true},
+    {"q": "\"3,400 Texans\" telehealth abortions each month", "found_useful": true},
+    {"q": "Texas abortions decline 2026 after HB 7 lawsuits shield providers telehealth drop", "found_useful": false},
+    {"q": "#WeCount report 2026 Texas telehealth abortions monthly first quarter 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.guttmacher.org/news-release/2026/guttmacher-releases-new-data-travel-abortion-care-2025",
+      "outlet": "Guttmacher Institute",
+      "date": "2026-07-22",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In 2025, over 42,000 Texans accessed abortion via telehealth from shield law providers, a substantial increase from the 12,400 who did so in 2023.",
+      "paywalled": false,
+      "searcher_note": "Guttmacher's own release on the same study; annual 2025 vs 2023, not Jan-Mar 2026 vs Jan-Mar 2024. Post-cutoff date."
+    },
+    {
+      "url": "https://www.guttmacher.org/report/patterns-travel-abortion-care-continued-shift-2025",
+      "outlet": "Guttmacher Institute",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In 2025, approximately 42,000 Texans accessed telehealth abortion care under the protection of shield laws, a substantial increase from the 12,400 who did so in 2023.",
+      "paywalled": false,
+      "searcher_note": "Full report behind the release above; page shows 'July 2026' with no day. Also says Texans travelling out of state dropped by more than 10,000."
+    },
+    {
+      "url": "https://www.krwg.org/regional/2026-04-15/more-texans-using-telehealth-options-to-access-reproductive-care",
+      "outlet": "KRWG Public Media (Texas News Service)",
+      "date": "2026-04-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Despite Texas having one of the most restrictive abortion bans in the country, more than 41,000 residents had clinician-provided abortions in 2025, an over 20% jump from 2024.",
+      "paywalled": false,
+      "searcher_note": "News story on Guttmacher monthly study data, quotes Guttmacher's Isaac Maddow-Zimet; year 2025 vs 2024, rising direction."
+    },
+    {
+      "url": "https://thefulcrum.us/governance-legislation/texas-abortion-ban-data",
+      "outlet": "The Fulcrum",
+      "date": "2026-09-17",
+      "source_type": "opinion",
+      "entity_named": "yes",
+      "quote": "The estimated total number of abortions obtained by Texas residents went from 52,495 in 2021 to 56,350 in 2023 and 64,060 in 2024.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff piece citing Guttmacher; counts Texas residents anywhere (travel + telehealth), annual through 2024, a different definition from the lead's monthly in-state count. Type may be commentary; judge should check."
+    },
+    {
+      "url": "https://www.guttmacher.org/report/full-year-estimates-show-overall-stability-abortion-incidence-decreased-travel-increased-telehealth-provision",
+      "outlet": "Guttmacher Institute",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "while in 2024, 74,000 people living in states with total bans traveled out of their state to access care, this dropped to 62,000 in 2025",
+      "paywalled": false,
+      "searcher_note": "Full-year 2025 estimates (page shows March 2026); ban states overall, telehealth up 74,000 to 91,000. Pattern, no Texas line quoted."
+    }
+  ],
+  "notes": "Every Texas source found reports rising telehealth abortions, but on annual windows (2025 vs 2024 or 2023). None found gives the Jan-Mar 2026 3,530/month figure, the +26% vs Jan-Mar 2024, or the December 2024 jump / range method seam. A search snippet cited #WeCount (Society of Family Planning, not Guttmacher) at an average 3,427 telehealth abortions a month in Texas in Q4 2024, via Axios Houston 2025-08-08 (https://www.axios.com/local/houston/2025/08/08/post-dobbs-abortions-rise-in-texas), but that page returned 403, so no quote. The Live Action #WeCount piece returned 429. No source found says Texas numbers fell in 2026."
+}

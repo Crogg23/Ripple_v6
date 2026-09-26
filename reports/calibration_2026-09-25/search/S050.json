@@ -1,0 +1,67 @@
+{
+  "story_id": "S050",
+  "entity": "West Virginia public water systems: share of pre-2022 unfixed inspection (sanitary survey significant-deficiency) cases still open, 19.0% vs 3.0% in other states",
+  "queries": [
+    {"q": "West Virginia water systems significant deficiencies unresolved sanitary survey EPA", "found_useful": true},
+    {"q": "West Virginia public water systems unfixed violations years Mountain State Spotlight", "found_useful": false},
+    {"q": "\"significant deficiencies\" West Virginia drinking water systems not corrected Bureau for Public Health", "found_useful": true},
+    {"q": "EPA Inspector General report significant deficiencies sanitary surveys not corrected timely states drinking water", "found_useful": true},
+    {"q": "Louisiana water systems deficiencies unresolved years Louisiana Illuminator sanitary survey", "found_useful": true},
+    {"q": "EPA Region 9 tribal public water systems significant deficiencies unresolved Navajo drinking water oversight", "found_useful": false},
+    {"q": "West Virginia drinking water systems violations September 2026", "found_useful": true},
+    {"q": "West Virginia Department of Health water systems compliance improving fewer violations resolved 2025 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wvgazettemail.com/news/energy_and_environment/wv-has-worst-us-health-based-drinking-water-violation-rate-and-crisis-is-likely-worse/article_e3deaf8a-9e94-44d0-b8ea-f3cf619f14ad.html",
+      "outlet": "Charleston Gazette-Mail (Mike Tony; also run by Pulitzer Center)",
+      "date": "2025-11-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "West Virginia's 2024 percentage of public water systems identified as 'priority systems' — systems on an EPA enforcement priority list due to having unresolved serious, multiple or continuing violations — was 50.7%",
+      "paywalled": false,
+      "searcher_note": "Closest measure found: WV water systems with unresolved violations (EPA priority list) 50.7% vs 3.8% nationally; only 11.6% returned to compliance in 2024 vs 26.4% US. Different measure from the lead's unfixed significant deficiencies. Page shows 'Updated Aug 20, 2026'."
+    },
+    {
+      "url": "https://www.wvgazettemail.com/news/legislative_session/wv-lawmakers-hear-about-dropping-federal-support-other-aid-limits-for-water-upgrades/article_6f5a7374-ac3c-4d0f-b50a-77e71f79cadc.html",
+      "outlet": "Charleston Gazette-Mail (Mike Tony)",
+      "date": "2026-09-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "West Virginia's percentage of public water systems with any kind of violations has climbed sharply from 32.1% in 2015 to 79.1% in 2024.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage of WV water-system violations and upgrade funding; any-violation rate, not unfixed inspection defects."
+    },
+    {
+      "url": "https://www.wvgazettemail.com/news/energy_and_environment/wv-drinking-water-infrastructure-failing-as-state-woos-water-guzzling-data-centers/article_3042c4aa-4929-4839-9033-b3204a7e1895.html",
+      "outlet": "Charleston Gazette-Mail (Mike Tony; also run by Pulitzer Center)",
+      "date": "2025-12-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "citing state health department violations issued for failures to submit complete and accurate monthly operational reports, comply with primary drinking water regulations and provide customers with boil water notices, address major violations outlined in sanitary surveys",
+      "paywalled": false,
+      "searcher_note": "One WV system (Mingo County PSD) cited for not fixing major sanitary-survey violations; sediment basins unmaintained 'for years'. A single-system example, not a statewide rate. Updated 2026-04-14."
+    },
+    {
+      "url": "https://app.lla.state.la.us/publicreports.nsf/0/9cefff945ff8c2c686258797006095b9/$file/000252e5b.pdf",
+      "outlet": "Louisiana Legislative Auditor (Progress Report: Safe Drinking Water Program)",
+      "date": "2021-11-24",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "As of June 2021, OPH has not issued violations for 10 (8.5%) of 118 unresolved significant deficiencies identified during fiscal years 2016 through 2021.",
+      "paywalled": false,
+      "searcher_note": "Pattern: unresolved sanitary-survey significant deficiencies in Louisiana (a secondary place in the lead), with enforcement gaps. Doesn't name West Virginia."
+    },
+    {
+      "url": "https://www.epa.gov/sites/default/files/oig/documents/full_report_-_24-e-0055_errata.pdf",
+      "outlet": "EPA Office of Inspector General (Report No. 24-E-0055)",
+      "date": "2024-08-12",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The MSDH Inconsistently Communicated Significant Deficiencies to Jackson",
+      "paywalled": false,
+      "searcher_note": "Pattern: OIG found Mississippi's health department didn't consistently identify or communicate sanitary-survey significant deficiencies to Jackson. Quote is a section heading. Doesn't name West Virginia."
+    }
+  ],
+  "notes": "Nothing found reports West Virginia's share of pre-2022 significant-deficiency cases still unfixed (19.0% vs 3.0%) or the 218 open 2+ years. WV press (Gazette-Mail, Mike Tony) covers the same state and a neighboring measure: unresolved serious violations (EPA priority list 50.7%), low return-to-compliance (11.6%), any-violation rate 79.1%. Those are different definitions from the lead's inspection-defect close-out rate. One WV system (Mingo PSD) is reported failing to fix sanitary-survey violations; WSAZ (2026-04-27) reported state-found significant deficiencies at Lincoln County PSD, but no exact sentence was captured, so it isn't recorded. Pattern sources on unresolved significant deficiencies exist for Louisiana (2021 audit) and Mississippi (2024 OIG). Nothing found on Region 9 tribal close-outs. Pulitzer Center copies of the Gazette-Mail stories returned 403. Post-cutoff: Gazette-Mail 2026-09-15 (different measure)."
+}

@@ -1,0 +1,15 @@
+{
+ "story_id": "S144",
+ "bin": "Matched + more",
+ "entity": "The building at 410 Great Rd, Littleton MA and its federal gun-maker licensees",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2022-09-10",
+ "post_cutoff_match": false,
+ "what_we_add": "49 type-07 maker licenses, 16% of Massachusetts' 303; only two US buildings hold 10+ maker licensees",
+ "why": "The Globe names the mill as the nation's largest single-address cluster with roughly 50 gun businesses, matching our 49. The 80-vendor figures count dealers too, a different measure. Nobody has the type-07 split or the 16%-of-state share.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

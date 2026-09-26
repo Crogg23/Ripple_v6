@@ -1,0 +1,12 @@
+{
+  "story_id": "S208",
+  "bin": "Known pattern",
+  "entity": "Unpaid MSHA fines at coal mines handed to a new operator vs mines closed (16.6% vs 13.0%, Central Appalachia)",
+  "deciding_sources": [0, 2, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "DOL OIG and NPR report the same scheme in general - operators dodge fines by selling the mine or going bankrupt - but no source states our hand-off vs closure comparison or names the mines behind it. All sources entity_named no.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

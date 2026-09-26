@@ -1,0 +1,12 @@
+{
+  "story_id": "S161",
+  "bin": "Matched + more",
+  "entity": "DHS spending on Google ads filed as political, Mar 2025-Feb 2026",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "2025-10-15",
+  "post_cutoff_match": false,
+  "what_we_add": "$5,285,100 total, #3 account of 2025 and #13 of the 2026 cycle out of 4,892, and the only-federal-agency 2018-2026 claim",
+  "why": "Axios names the US government as payer of 2025's most expensive political ad campaign and NOTUS reports DHS's Google transparency-center spend, same entity, same direction. No source has our totals, ranks, or the only-federal-agency claim.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

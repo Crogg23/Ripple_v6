@@ -1,0 +1,47 @@
+{
+ "story_id": "S022",
+ "lead": {
+  "headline": "40 big California water systems serving 4.2M people have no full sanitary inspection on EPA's file in 5 years",
+  "number": "40 California systems, 4.22M people, mostly in LA, San Bernardino, Riverside and San Diego counties; 35 of the original 41 show no visit of any kind since mid-2021. Nationally 94 systems, 7.66M people, counted from each state's real data end.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "All of this is absence in EPA's federal copy; New Jersey's gaps look like visits logged under another code, not missed surveys."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "California water systems overdue sanitary surveys State Water Board Division of Drinking Water inspections backlog",
+  "EPA inspector general sanitary surveys states overdue drinking water systems report",
+  "California large water utilities not inspected years state regulators sanitary survey Los Angeles San Bernardino news",
+  "EPA Region 9 review California drinking water program sanitary surveys not completed community water systems every three years",
+  "SDWIS site visit data sanitary survey missing federal database states not reporting inspections water systems analysis",
+  "Division of Drinking Water sanitary survey completion rate 2024 2025 percent community water systems California annual compliance report",
+  "large drinking water systems no sanitary survey in years EPA data millions of people analysis 2026",
+  "California drinking water inspections lapse state regulators staffing sanitary surveys CalMatters OR \"Los Angeles Times\" 2025 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://water.waterboards.ca.gov/board_info/agendas/2021/feb/021621_10_edrpt.pdf",
+   "outlet": "California State Water Resources Control Board (Executive Director's report, Feb 16 2021 board meeting)",
+   "date": "2021-02-16",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "completion rate stands at 78% through the first three quarters of 2020 and is expected to drop for the first time 5 years.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " completion rate in 2019. However, during 2020, the Covid19 shelter-in-place restrictions and social distancing requirements, contract tracer assignments, along with fire response and recovery efforts, have significantly reduced staffs’ ability to complete sanitary surveys. DDW’s state-wide average completion rate stands at 78% through the first three quarters of 2020 and is expected to drop for the first time 5 years. In response to COVID social changes, staff have been developing innovative measures to incorporate virtual water system inspections alongside the on-site sanitary surveys to attempt to complete as many as possible and fulfill our primary mission of monitoring water systems to protect public health. Community Water System Sanitary Surv"
+  },
+  {
+   "idx": 1,
+   "url": "https://waterboards.ca.gov/drinking_water/safedrinkingwaterplan/docs/2025sdwp-board-workshop.pdf",
+   "outlet": "California State Water Resources Control Board, Division of Drinking Water (2025 Safe Drinking Water Plan workshop slides)",
+   "date": "2025-07-15",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Sanitary surveys completed: 7,270 (5/day)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "• On average, 94% of PWSs complied with water quality standards annually over the last 5 years • 79% of water systems have maintained continual compliance with drinking water standards since 2017 Program Actions completed • 9 DDW actions / day • Permits and permit amendments issued: 1,701 (1/day) • Sanitary surveys completed: 7,270 (5/day) • Enforcement actions issued: 4,740 (8,950 violations) (3/day) • 11 ELAP laboratory actions / week • Application accreditations: 2,287 (1.5/day) • Assessments: 816 (4/week) • Enforcement actions: 308 (1.5/week) • Analytical water quality samples: ~2 million/year (3-4 samples/minute) 11 Executive Summary 12 What is a Public Water Syst"
+  }
+ ]
+}

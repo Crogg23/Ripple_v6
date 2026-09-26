@@ -1,0 +1,38 @@
+{
+  "story_id": "S052",
+  "entity": "Five firms at 549 Cedar St, Newington, Connecticut (found by search: Skystocks Inc, Bryka Skystocks LLC, Syrnatec Inc; other two not identified), $13.35M in 41 SBIR awards 2021-25, all five excluded by the Air Force on 2026-07-17",
+  "queries": [
+    {"q": "\"549 Cedar\" Newington SBIR", "found_useful": true},
+    {"q": "Newington Connecticut small business research firms Air Force suspended debarred 2026", "found_useful": false},
+    {"q": "Air Force suspends SBIR contractors Connecticut July 2026", "found_useful": false},
+    {"q": "Syrnatec Skystocks Air Force", "found_useful": false},
+    {"q": "Syrnatec OR Skystocks OR \"Bryka\" suspension fraud SBIR", "found_useful": false},
+    {"q": "Skystocks Bryka Newington Connecticut company news investigation", "found_useful": false},
+    {"q": "SBIR mills affiliated companies same address multiple awards fraud Air Force suspension 2026", "found_useful": true},
+    {"q": "Connecticut SBIR fraud charged OR indicted OR settlement 2026 Air Force research contracts", "found_useful": false},
+    {"q": "Newington company Air Force SAM exclusion \"proceedings pending\" small business innovation research", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://ssti.org/blog/ssti-analysis-reveals-sbir-%E2%80%9Cmills%E2%80%9D-take-outsized-portion-program%E2%80%99s-awards",
+      "outlet": "SSTI (State Science and Technology Institute)",
+      "date": "2020-09-24",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "awards made to potential mills account for more than 21 percent of all awards made during the period from 2009 to 2019.",
+      "paywalled": false,
+      "searcher_note": "Nearest pattern: 'SBIR mills', high-volume award winners. About award volume, not firm clusters at one address or exclusions; does not name any Newington firm."
+    },
+    {
+      "url": "https://www.sbir.gov/awards/206594",
+      "outlet": "SBIR.gov (SBA award database)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Planar Antenna array for L-Band and S-Band",
+      "paywalled": false,
+      "searcher_note": "Award record only: Skystocks Inc, 549 Cedar St., Newington, 2023 USAF SBIR Phase I, $149,921. Confirms one firm at the address; reports no problem or exclusion."
+    }
+  ],
+  "notes": "No news, agency release or court record found about the Air Force exclusion of these firms, the $13.35M or 41-award total, or the shared address. Search found three firms at 549 Cedar St (Skystocks Inc, Bryka Skystocks LLC, Syrnatec Inc; Syrnatec also lists Middletown CT) in directories and award databases. Nothing negative except a 2011 Florida civil case, Bryka Skystocks LLC v. Skystocks Inc (Law360/PacerMonitor docket pages, not opened). Nothing dated after 2026-06-30 names them. The lead's caveat says the ban is already public on SAM.gov; SAM.gov records were not searched as press."
+}

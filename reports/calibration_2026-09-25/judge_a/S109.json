@@ -1,0 +1,12 @@
+{
+ "story_id": "S109",
+ "bin": "Not comparable",
+ "entity": "semaglutide drug master file filings with FDA, Jan 2023-Jun 2026",
+ "deciding_sources": [3],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source states the headline finding, an 83-file rush since 2023 or any DMF surge. PharmaDB gives 61 active worldwide filings, a different definition and window than our 65 filed-since-2023, so the numbers can't line up. The Harbin recall sub-claim matches but isn't the finding.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

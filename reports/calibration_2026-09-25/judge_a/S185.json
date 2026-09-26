@@ -1,0 +1,12 @@
+{
+  "story_id": "S185",
+  "bin": "Matched + more",
+  "entity": "Georgia U.S. House races 2010-18 with nobody running against the winner (20 of 69) vs 4.8% nationally",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "the 20-of-69 no-runner-up count across 2010-18 and the 4.8% national rate",
+  "why": "Ballotpedia names Georgia among the most uncontested (10 of 14 districts with only one major-party candidate), same direction under a different definition, so it matches in words. No source has our 2010-18 no-opponent count or national rate; Ballotpedia's page date is unknown.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S038",
+ "bin": "Known pattern",
+ "entity": "Share of US nonprofit hospitals (27% of 919) where one officer's 2022 pay exceeded total charity-care cost",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The Inquirer, a 2011 California survey and the Senate HELP report all make the same kind of CEO-pay-vs-charity-care comparison, but for single hospitals or other windows. No source states the national 2022 share.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

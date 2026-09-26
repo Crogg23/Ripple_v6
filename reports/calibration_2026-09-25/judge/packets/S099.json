@@ -1,0 +1,83 @@
+{
+ "story_id": "S099",
+ "lead": {
+  "headline": "37 planes that crash investigators rated destroyed got their federal registration renewed or extended after the crash",
+  "number": "Of 420 destroyed US planes still marked valid, 383 sit inside a term that began before the crash; 37 had terms start after it, all touched in 2023.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The 37 could be rebuilds (mostly warbirds, helicopters, homebuilts) or FAA batch processing."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "FAA aircraft registry destroyed aircraft still registered valid registration after crash inaccurate records",
+  "DOT Inspector General audit FAA aircraft registry inaccurate records registrations aircraft destroyed or deregistered",
+  "FAA 2023 rule aircraft registration duration seven years existing registrations automatically extended expiration dates",
+  "crashed destroyed plane still listed as registered FAA registry N-number news investigation ghost aircraft registrations",
+  "aircraft rebuilt after NTSB destroyed rating re-registered same N-number warbird helicopter rebuild data plate FAA policy",
+  "FAA aircraft registry accuracy 2026 audit OR report OR investigation registrations outdated owners destroyed aircraft",
+  "DOT OIG report FAA Civil Aviation Registry modernization 2019 findings aircraft records inaccurate registrations",
+  "FAA sent new registration certificate for plane that crashed years ago 2023 extension destroyed aircraft owner surprised"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://apps.bostonglobe.com/spotlight/secrets-in-the-sky/series/part-one/",
+   "outlet": "Boston Globe Spotlight, Kelly Carr and Jaimi Dowdell",
+   "date": "2017-09-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "cancel the registration for one TWA cargo plane until 2016, 57 years after it crashed in Chicago, killing the crew and eight people on the ground",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e that could be used to expand oversight. And the FAA does so little vetting of the ownership and use of planes listed in its aircraft registry that two of the airliners hijacked and destroyed on 9/11 were still listed as “active” four years after. And that’s prompt compared to this: The FAA didn’t cancel the registration for one TWA cargo plane until 2016, 57 years after it crashed in Chicago, killing the crew and eight people on the ground. Today, thousands of planes are registered using practices that can allow for anonymity of ownership. A Spotlight review shows that one out of every six aircraft is registered through trusts, Delaware corporations, or using post office box addresses, techniques commonly used to make it hard to discern the true owner. The number is l"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.nbcnews.com/id/wbna40590745",
+   "outlet": "NBC News (AP), Chris Hawley",
+   "date": "2010-12-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Other registrations are outdated because the owners have died or the planes were totaled in crashes.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "but there was no punishment for not doing so. The U.S. registry includes 16,000 aircraft that were sold but never updated with the names of the new owners, and more than 14,000 planes that have had their registrations revoked but may still be flying because the FAA has not canceled their N-numbers. Other registrations are outdated because the owners have died or the planes were totaled in crashes. Some planes are simply derelicts corroding in barns or junkyards. As a result, there is a \"large pool\" of N-numbers \"that can facilitate drug, terrorist or other illegal activities,\" the FAA warned in a 2007 report. The problem became more acute after the government launched a new computer system for tracking flights called the Automatic Det"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.aopa.org/news-and-media/all-news/2023/february/06/faa-extends-expiration-date-of-aircraft-registration-certificates",
+   "outlet": "AOPA",
+   "date": "2023-02-06",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The FAA has already updated all current registrations in the electronic database, so if you look up your registration number you should see the new date lengthening your expiration date to seven years.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "d registration, new registration certificates are being sent in early February in bulk, covering those expiring in the next few months, with additional bulk mailings to follow each month thereafter until all have been issued. The new certificates will add four years to the original expiration date. The FAA has already updated all current registrations in the electronic database, so if you look up your registration number you should see the new date lengthening your expiration date to seven years. Also, the FAA registry is implementing a long overdue IT system called the Civil Aviation Registry Electronic Services, or CARES. Phase 1 was implemented in December and allows aircraft owners to submit aircraft registration applications, upload documents, request aircraft registration N numbers, make payments, and more online ."
+  },
+  {
+   "idx": 3,
+   "url": "https://www.gao.gov/products/gao-20-164",
+   "outlet": "U.S. GAO",
+   "date": "2020-03-25",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "FAA generally relies on self-certification of registrants' eligibility and does not verify key information.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "l Aviation Administration manages the U.S. aircraft registry, which maintains information on about 300,000 civil aircraft. Accurate registry information can help investigators combat illegal activities such as drug trafficking or purchasing an aircraft as part of a money laundering scheme. We found FAA generally relies on self-certification and doesn’t verify key information such as applicant identity or aircraft ownership. Shell company or limited liability company ownership can also make it difficult to determine who ultimately owns an aircraft. We made 15 recommendations , including that FAA verify key owner information. Aircraft Registrations by Registration Type, 2018 Pie Chart: Individual-47%; Corporation-22%; LLC-19%; Co-owned-9%; G"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.law.cornell.edu/cfr/text/14/47.41",
+   "outlet": "Cornell LII (14 CFR 47.41)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The aircraft is totally destroyed or scrapped.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "g been revoked, canceled, expired, or the ownership is transferred, until the date upon which one of the following events occurs: (1) Subject to the Convention on the International Recognition of Rights in Aircraft when applicable, the aircraft is registered under the laws of a foreign country. (2) The aircraft is totally destroyed or scrapped. (3) The holder of the certificate loses his U.S. citizenship. (4) 30 days have elapsed since the death of the holder of the certificate. (5) The owner, if an individual who is not a citizen of the United States , loses status as a resident alien , unless that person becomes a citizen of the United States at the same time. (6) If the "
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "story_id": "S147",
+ "bin": "Matched + more",
+ "entity": "US customs refunds vs collections, May-Jun 2026 and total out by early August",
+ "deciding_sources": [
+  0,
+  1,
+  2
+ ],
+ "earliest_match_date": "2026-07-13",
+ "post_cutoff_match": true,
+ "what_we_add": "The single-day Jun 29 outflow of $35.49B and the FY2023-25 $40M-a-day baseline",
+ "why": "Tax Foundation and the news match our June numbers to the digit: $49.18B refunded vs $23.63B collected, net -$25.56B, May wiped out too; ABC has $100B through July. Nobody prints the one-day $35B spike.",
+ "confidence": "high",
+ "blocked_evidence": true
+}

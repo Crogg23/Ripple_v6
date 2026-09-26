@@ -1,0 +1,57 @@
+{
+  "story_id": "S164",
+  "entity": "ICE field-office hold rooms: immigration detention stays that began with over a day in a hold room, Oct 2025-Feb 2026 (Baltimore hold room as the lead's named case)",
+  "queries": [
+    {"q": "ICE hold rooms detainees held more than 24 hours field office data Deportation Data Project", "found_useful": true},
+    {"q": "Baltimore ICE holding room detainees held days median hours", "found_useful": true},
+    {"q": "ICE holding rooms nationwide thousands held more than 24 hours analysis 2026", "found_useful": true},
+    {"q": "\"hold rooms\" ICE 72 hours waiver data shows detainees held longer than a day 2026", "found_useful": true},
+    {"q": "Broadview ICE facility detainees held days data length of stay Chicago", "found_useful": false},
+    {"q": "\"hold room\" ICE detainees \"more than 24 hours\" 2026 data analysis field office", "found_useful": false},
+    {"q": "Baltimore ICE hold room 2026 detainees held longer than 24 hours Banner analysis federal data", "found_useful": true},
+    {"q": "ICE statement hold room stays average under 12 hours disputes data overcrowding 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.thebanner.com/politics-power/social-justice/ice-detention-holding-rooms-baltimore-I6KXL3ZI2ZDZNLDHPRY7WSVMRA/",
+      "outlet": "The Baltimore Banner",
+      "date": "2025-08-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "ICE has detained immigrants in Baltimore holding rooms for an average of 51 hours, four times longer than the maximum time limit under its longstanding policy",
+      "paywalled": false,
+      "searcher_note": "Banner analysis of federal data on Baltimore hold rooms, Jan-mid 2025; also says about 93% of 2025 detentions exceeded 12 hours vs under 4% in 2024. Earlier window than the lead."
+    },
+    {
+      "url": "https://thedailyrecord.com/2026/03/09/ice-hold-room-baltimore/",
+      "outlet": "The Daily Record (Maryland)",
+      "date": "2026-03-09",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "From Feb. 1 to mid-October of last year, almost all detainees — 95% — were held longer than 12 hours, typically the maximum, Rubin wrote. A nationwide waiver allowed detentions up to 72 hours, but 27% of detainees were still held beyond that.",
+      "paywalled": false,
+      "searcher_note": "Federal judge's March 2026 ruling on Baltimore hold-room overcrowding; Feb-Oct 2025 window, 12h and 72h thresholds, not the lead's 24h or Oct 2025-Feb 2026."
+    },
+    {
+      "url": "https://coloradotimesrecorder.com/2026/03/exclusive-ice-locks-thousands-including-kids-in-170-hold-rooms-nationwide-heres-where-they-are/77352/",
+      "outlet": "Colorado Times Recorder",
+      "date": "2026-03-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "During Donald Trump's first nine and a half months back in office, the number of detentions exceeding 72 hours increased from 281 to 5,011.",
+      "paywalled": false,
+      "searcher_note": "National hold-room data (FOIA) through Oct 2025: 72-hour threshold, Biden 16 months vs Trump 9.5 months; also 140,000+ hold-room detentions Jan-Oct 2025. Different threshold and window from the lead."
+    },
+    {
+      "url": "https://www.washingtonpost.com/immigration/interactive/2026/07/22/ice-officials-warned-dangerous-crowding-see-how-they-kept-packing-people/",
+      "outlet": "Washington Post",
+      "date": "2026-07-22",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "ICE officials warned of dangerous crowding. See how they kept packing people in.",
+      "paywalled": true,
+      "searcher_note": "Headline only (fetch returned 403). Post-cutoff national investigation of hold-room crowding; search snippet said ICE kept people in overcrowded holding rooms for days nationwide per agency data. Body not verified."
+    }
+  ],
+  "notes": "Hold-room length-of-stay coverage is heavy, but every source found uses the 12h or 72h thresholds and windows ending by Oct 2025 (Banner: Baltimore Jan-Jul 2025; court: Feb-Oct 2025; Colorado Times Recorder: national through Oct 2025). None found states the lead's 24-hour cut, the 16,919 vs 212 count, or the Oct 2025-Feb 2026 Baltimore 3,041 of 3,168 / 87-hour median. CNN 2025-09-08 'Immigrants spend days in ICE hold rooms' (https://www.cnn.com/2025/09/08/us/detainees-ice-immigrants-hold-rooms) returned HTTP 451 and AZ Mirror 2026-09-02 Phoenix long-holds piece returned 403, so neither is recorded with a quote. Post-cutoff: Washington Post 2026-07-22 (paywalled, headline only)."
+}

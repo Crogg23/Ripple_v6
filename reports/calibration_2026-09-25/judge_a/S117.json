@@ -1,0 +1,12 @@
+{
+ "story_id": "S117",
+ "bin": "Matched + more",
+ "entity": "Texas lobby gift reports naming the recipient, collapse after 2012",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2013-03-07",
+ "post_cutoff_match": false,
+ "what_we_add": "the gift-report counts: 61 of 228 (2005-11) vs 9 of 243 since 2019, the 2012 break point, and the same-15-filers 22-of-63 to 1-of-47",
+ "why": "The Texas Tribune and Governing state the same finding in words: Texas lobbyists legally report almost all spending without naming recipients, and detailed disclosure fell (5.18% in 2005 to 3.6% in 2011). No source has our $1,000+ gift-report counts, the 2012 timing, or the same-filer comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

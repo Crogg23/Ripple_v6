@@ -1,0 +1,12 @@
+{
+ "story_id": "S170",
+ "bin": "Known pattern",
+ "entity": "Union Pacific trespasser deaths, 2023-25 vs 2015-17",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "CRS reports trespassing deaths nearly doubled nationally since 2015, the same finding but not this railroad. The only UP-named source cites a 24% injury decrease, a different measure, so no match and no clean contradiction.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S101",
+ "bin": "Known pattern",
+ "entity": "83 new Arizona hospices (2020-23) with Los Angeles phone numbers and their Medicare certification rate",
+ "deciding_sources": [2, 1, 0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Hospice News and ProPublica cover the California-to-Arizona hospice migration and fraud hotspots (239 new AZ hospices 2018-22, a Phoenix address housing dozens) — the same scheme. No source has our LA-phone-number cohort or its certification numbers.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

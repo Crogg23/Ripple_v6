@@ -1,0 +1,71 @@
+{
+ "story_id": "S035",
+ "lead": {
+  "headline": "54 high-overdose, high-jail counties got $45 per person of federal addiction-agency money in 2019-25, half their peers' $92",
+  "number": "$45 per person of SAMHSA (federal substance-abuse agency) money, FY2019-25, in the 54 flagged counties vs $92 in same-size counties with the same overdose ranking; 22% of flagged counties got any vs 34%.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; most of this money is block grants booked where the state agency sits, and the median county in every group got $0."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "SAMHSA grant funding per capita counties high overdose rates mismatch analysis",
+  "counties with high overdose deaths and high jail incarceration rates receive less federal treatment funding",
+  "rural counties receive less SAMHSA discretionary grant funding per capita despite higher overdose rates study",
+  "federal opioid grant money per overdose death varies widely states analysis Stateline NPR SAMHSA",
+  "rural counties highest jail incarceration and overdose rates lack federal addiction treatment grants investigation 2025",
+  "SAMHSA grant cuts 2026 which counties lose addiction funding overdose hot spots analysis",
+  "study SAMHSA opioid funding allocation aligned with overdose mortality states with more deaths received more funding",
+  "county-level analysis federal substance use grant dollars per capita versus overdose death rates counties received little or nothing"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10330579/",
+   "outlet": "Journal of Substance Abuse Treatment (Harris, Abraham, Lozano-Rojas, Negaro, Andrews, Grogan)",
+   "date": "2023-05-06",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "About half of states received less than $100.00 dollars per capita in the state corrections population.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "d by a composite measure of opioid mortality and drug-related arrests. We created a generosity measure and dissimilarity index to assess the degree to which funding matched need across states. Results. More than 590 million dollars were allocated across 517 grants by 10 federal agencies in FY 2019. About half of states received less than $100.00 dollars per capita in the state corrections population. Funding generosity ranged from 0% to 504.2%, with more than half of states (52.9%, n=27) receiving fewer dollars per opioid problem than the US average. Further, a dissimilarity index indicated that about 34.2% of funding (~$202.3 million) would have to be reallocated to distribute funding more evenly across states. Conclusions. Re"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.vera.org/publications/overdose-deaths-and-jail-incarceration",
+   "outlet": "Vera Institute of Justice",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "When counties spend money on jails, they have less money to spend on substance use treatment, harm reduction services, and other community-based resources that could prevent overdoses and improve community health and wellness.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "sibility for responding to drug use must be moved away from the criminal legal system and into non-punitive, health-oriented services located in, and led by, communities. Until then, local jurisdictions must take steps to minimize the harms of criminal legal system contact for people who use drugs. When counties spend money on jails, they have less money to spend on substance use treatment, harm reduction services, and other community-based resources that could prevent overdoses and improve community health and wellness. Incarceration can increase the risk of overdose for people returning to their communities. Improving access to substance use treatment and harm reduction supports in jails can address incarcerated people’s immediate needs, but cannot replace community-based responses. Explore Local Data To understand trends in overdose death, jail "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.gao.gov/products/gao-25-106944",
+   "outlet": "U.S. Government Accountability Office (GAO-25-106944)",
+   "date": "2024-12-17",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "SAMHSA allocates funding based on factors such as overdose death rates, and recently revised its allocation to better ensure funding goes to recipients with the greatest need.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tes, D.C., and U.S. territories; TOR grants are available to federally recognized Tribes and tribal organizations. Since fiscal year 2018, the Substance Abuse and Mental Health Services Administration (SAMHSA) has awarded about $8.1 billion in SOR grants and $307.5 million in TOR grants nationwide. SAMHSA allocates funding based on factors such as overdose death rates, and recently revised its allocation to better ensure funding goes to recipients with the greatest need. State and Tribal Opioid Response Grant Funding, Fiscal Years 2018-2023 Selected SOR recipients reported using grant funding for a variety of services, adapted to support their specific needs. States generally supported treatment for opioid use disorders, and most provided services not covered by other payers, such as transportation. Selec"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.healthaffairs.org/doi/10.1377/hlthaff.2020.01656",
+   "outlet": "Health Affairs",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Federal Opioid Grant Funding Favors Least Populous States, Not States With Greatest Need",
+   "paywalled": true,
+   "quote_check": "blocked",
+   "page_context": ""
+  }
+ ]
+}

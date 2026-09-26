@@ -1,0 +1,75 @@
+{
+  "story_id": "S113",
+  "entity": "Rep. Thomas Kean Jr. (R-NJ7): run of missed House roll-call votes, March-June 2026",
+  "queries": [
+    {"q": "Tom Kean Jr. missed votes absence 2026", "found_useful": true},
+    {"q": "Kean longest absence House this Congress missed consecutive votes compared other members", "found_useful": true},
+    {"q": "New Jersey Globe Kean missed votes health absence April 2026", "found_useful": true},
+    {"q": "Kean missed votes campaign ad Malinowski September 2026", "found_useful": true},
+    {"q": "\"Kean\" \"140 votes\" OR \"142 votes\" House absence depression record streak", "found_useful": true},
+    {"q": "Kean absence Congressional Record statements while absent disputes missing", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://rollcall.com/2026/06/30/tom-kean-returns-after-months-away/",
+      "outlet": "Roll Call",
+      "date": "2026-06-30",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "During his absence, he missed more than 140 roll call votes on the House floor.",
+      "paywalled": false,
+      "searcher_note": "Headline: 'Tom Kean returns to DC after months away and 140 missed votes'. Says he last voted March 5 and came back June 30, treated for depression."
+    },
+    {
+      "url": "https://www.govtrack.us/congress/members/missing",
+      "outlet": "GovTrack.us",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Between March 17, 2026 and June 29, 2026, Kean missed 142 of 142 roll call votes (100%).",
+      "paywalled": false,
+      "searcher_note": "Live missed-votes tracker: same start date as the lead (March 17), window runs to June 29, count 142 vs the lead's 140 to June 25. Member page thomas_kean/456917 says the same."
+    },
+    {
+      "url": "https://newjerseyglobe.com/congress/kean-still-missing-votes-due-to-unspecified-medical-issue/",
+      "outlet": "New Jersey Globe",
+      "date": "2026-04-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Kean has been absent for a total of 23 roll-call votes since March 17, with more likely to come today.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found with a count; the streak starts March 17, as in the lead."
+    },
+    {
+      "url": "https://www.pbs.org/newshour/show/republican-rep-tom-kean-jr-s-absence-raises-broader-questions-about-congress",
+      "outlet": "PBS NewsHour",
+      "date": "2026-06-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Kean has been the longest, but not the only absence this year.",
+      "paywalled": false,
+      "searcher_note": "Backs the 'longest run this Congress' part in words; gives no median-member comparison."
+    },
+    {
+      "url": "https://whyy.org/articles/tom-kean-new-jersey-congressman-disappeared-consequences/",
+      "outlet": "WHYY",
+      "date": "2026-07-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Kean missed 140 votes before his return to Congress on June 30, when he announced during a short speech on the House floor that he was being treated for depression.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage with the same 140 figure."
+    },
+    {
+      "url": "https://www.inquirer.com/news/tom-kean-congressman-spoke-at-golf-club-20260822.html",
+      "outlet": "Philadelphia Inquirer",
+      "date": "2026-08-22",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Kean’s reelection bid got a late start: Beginning in March, he was absent from Congress for 116 days and missed about 140 votes.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage, same figure. The quote uses a curly apostrophe."
+    }
+  ],
+  "notes": "Wide national and local coverage (CNBC 2026-06-30, NBC 2026-05-12 at 68 votes, Time, Fox, Democracy Now 2026-07-07, Inquirer 2026-04-29 at 52 votes). No source found giving the lead's '33 voting days' or the 'median member's longest run is 3'. No source disputes the count. GovTrack's 142 runs to June 29, while the lead's file ends June 25."
+}

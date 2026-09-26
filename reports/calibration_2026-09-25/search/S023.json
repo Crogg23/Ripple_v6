@@ -1,0 +1,77 @@
+{
+  "story_id": "S023",
+  "entity": "Dow Louisiana Operations, Plaquemine LA: 2023 ethylene oxide air release (34,369 lb reported; spike vs its own history and share of US total)",
+  "queries": [
+    {"q": "Dow Plaquemine ethylene oxide emissions 2023 leak release", "found_useful": true},
+    {"q": "Dow Plaquemine explosion July 2023 ethylene oxide pounds released LDEQ report Advocate OR Illuminator OR Verite", "found_useful": true},
+    {"q": "Dow Plaquemine \"pounds of ethylene oxide\" explosion 2023 released estimate", "found_useful": true},
+    {"q": "Toxics Release Inventory 2023 ethylene oxide largest emitter Dow Plaquemine national total", "found_useful": true},
+    {"q": "LDEQ Dow Plaquemine Glycol II compliance order penalty ethylene oxide 2023 explosion enforcement", "found_useful": false},
+    {"q": "Dow Plaquemine July 14 2023 unauthorized release report ethylene oxide amount theadvocate.com OR nola.com OR veritenews.org", "found_useful": false},
+    {"q": "\"31,000 pounds\" ethylene oxide Dow Plaquemine", "found_useful": true},
+    {"q": "Dow Plaquemine ethylene oxide 2026 emissions lawsuit OR penalty OR EPA rule news", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.csb.gov/csb-issues-update-for-investigation-of-toxic-chemical-release-at-dow-facility-in-louisiana/",
+      "outlet": "U.S. Chemical Safety and Hazard Investigation Board (news release, investigation update)",
+      "date": "2024-06-18",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "and multiple explosions and fires, and ultimately the release of 31,525 pounds of EtO, a cancer-causing substance.",
+      "paywalled": false,
+      "searcher_note": "Earliest source found with a pound figure: the July 14, 2023 Glycol II explosion released 31,525 lb EtO (lead: 32,106 lb 'leaks', 34,369 lb total for 2023). Confirms the spike is one upset event."
+    },
+    {
+      "url": "https://www.theadvocate.com/baton_rouge/news/business/louisiana-dow-environment-emergency-fire-chemicals/article_9d789490-b88f-4035-89db-1b82944b0a63.html",
+      "outlet": "The Advocate (Baton Rouge), David J. Mitchell",
+      "date": "2026-03-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "released nearly a decade’s worth of typical emissions of the flammable and potent carcinogen ethylene oxide",
+      "paywalled": false,
+      "searcher_note": "Same sentence continues '– more than 31,000 pounds -- along with 16 other chemicals in 12 hours.' Frames the 2023 release as ~10 years of normal emissions (lead: 8.7x its 2015-22 high)."
+    },
+    {
+      "url": "https://hntrbrk.com/indorama/",
+      "outlet": "Hunterbrook",
+      "date": "2026-06-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The only plant that released more ethylene oxide than Indorama’s Port Neches facility in 2023 was Dow Chemical’s ethane cracker in Plaquemine, Louisiana.",
+      "paywalled": false,
+      "searcher_note": "Ranks Dow Plaquemine #1 US ethylene oxide emitter in 2023 (EPA TRI review). No pound figure or national share for Dow."
+    },
+    {
+      "url": "https://www.csb.gov/us-chemical-safety-board-releases-investigation-report-on-the-2023-explosion-and-toxic-ethylene-oxide-release-at-dow-plant-in-plaquemine-louisiana/",
+      "outlet": "U.S. Chemical Safety and Hazard Investigation Board (news release, final report)",
+      "date": "2026-02-26",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "resulting in the release of more than 31,000 pounds of toxic EtO, which is produced at the facility.",
+      "paywalled": false,
+      "searcher_note": "Final CSB report: cause was work lights left in a reflux drum; shelter-in-place for hundreds of residents."
+    },
+    {
+      "url": "https://thelensnola.org/2026/01/15/epa-blind-spots-leave-workers-unprotected-from-ethylene-oxides-cancer-risks/",
+      "outlet": "The Lens (New Orleans), Opinion section",
+      "date": "2026-01-15",
+      "source_type": "opinion",
+      "entity_named": "yes",
+      "quote": "by Dow Chemical in the town of Plaquemine, in Iberville Parish, the nation’s top ethylene oxide emitter",
+      "paywalled": false,
+      "searcher_note": "Op-ed calls Dow Plaquemine the nation's top EtO emitter; no year or pounds given in the quoted line."
+    },
+    {
+      "url": "https://lailluminator.com/2023/07/27/ldeq-records-show-frequent-emergencies-at-dow-plaquemine-facility/",
+      "outlet": "Louisiana Illuminator",
+      "date": "2023-07-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "On Nov. 6, 2022, the facility accidentally released 10,302 pounds of ethylene, 765 pounds of ethylene oxide and 11,774 pounds of methane into the atmosphere when the Glycol 2 unit lost power after a circuit breaker tripped.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found, two weeks after the explosion: LDEQ records of prior Glycol 2 EtO releases (765 lb 2022, ~29 lb 2019, 26 lb 2020); no pound figure yet for the July 2023 event. Live page 403s to bots; text confirmed in the Internet Archive copy."
+    }
+  ],
+  "notes": "The 2023 spike is the July 14, 2023 Glycol II explosion, widely covered and quantified by CSB (31,525 lb, June 2024) and press (The Advocate 2026: 'more than 31,000 pounds', 'nearly a decade's worth'). No source found stating the lead's 34,369 lb annual total, the 21% share of the 2023 national total (160,219 lb), or the 2024 drop to 2,433 lb. Hunterbrook (2026-06-26) and a Lens op-ed call Dow Plaquemine the top US EtO emitter. Also seen, not recorded: Louisiana Illuminator 2023-08-23 on LDEQ's $120,000 settlement signed July 6, 2023 for pre-explosion violations; Dow SEC 10-Q/10-K note EPA RMP notice letter (Jan 3, 2025) alleging 21 violations tied to the incident. Coverage dated after 2026-06-30: none found."
+}

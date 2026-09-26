@@ -1,0 +1,14 @@
+{
+  "story_id": "S062",
+  "bin": "Known pattern",
+  "entity": "ACNR underground coal mines' injury rate vs other big owners (11.1 per 100 workers)",
+  "deciding_sources": [
+    0
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Sources name ACNR mines but only for violation histories and one injury event, never an injury rate or an owner comparison. Violations are not our measure, so the entity is covered without our finding.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

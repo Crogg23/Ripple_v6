@@ -1,0 +1,58 @@
+{
+ "story_id": "S086",
+ "lead": {
+  "headline": "76 co-authors of papers retracted in federal misconduct cases got $187M in federal health-research grants afterward",
+  "number": "76 US co-authors of ORI-investigated retractions (2010-25) got $187M in NIH awards noticed after the retraction.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Can't tell the person who faked data from the lab head; the closing skeptic reads it as C."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "co-authors of retracted papers research misconduct ORI continue receiving NIH grants analysis",
+  "collaborators coauthors of scientists found guilty of misconduct ORI citations funding penalty Azoulay study",
+  "Retraction Watch co-authors misconduct finding still received NIH funding after retraction",
+  "\"$187 million\" NIH grants retracted papers misconduct co-authors",
+  "researchers found guilty of misconduct by ORI later received more than $100 million NIH grants study",
+  "retracted papers NIH funding researchers keep grants after retraction news 2026 Ioannidis living analysis",
+  "lab head co-author escapes blame misconduct finding postdoc ORI senior author keeps NIH grants"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13370526/",
+   "outlet": "Sandoval-Lentisco and Ioannidis, 'Cost of Retracted Articles to the NIH: a Living Analysis' (medRxiv preprint, on PMC)",
+   "date": "2026-07-07",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The per-author cohort-wide median annual NIH funding fell from $133,293 in the 3 years pre-retraction to $55,973 in the 3 years post-retraction, a −58.0% change.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "eral different NIH investigators, for the 440 authors whose name maps to more than one investigator we kept only the grants of the one whose institution matches their retracted paper (see Supplementary materials for details). We observed some potential decrease in NIH funding for retracted authors. The per-author cohort-wide median annual NIH funding fell from $133,293 in the 3 years pre-retraction to $55,973 in the 3 years post-retraction, a −58.0% change (paired Wilcoxon V = 280,530, p = 0.021). This decrease in the median is due to a higher proportion of authors receiving no funding after retraction; the average annual fraction of the cohort holding an active NIH grant fell from 46.7% to 42.3% (McNemar’s test χ 2 (1) = 16.3, p < 0.001). However, the mean remained very similar ($74"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.the-scientist.com/us-researchers-found-guilty-of-misconduct-collectively-awarded-101-million-31967",
+   "outlet": "The Scientist",
+   "date": "unknown",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Seventeen scientists found to have committed research misconduct during the last 25 years have since collectively received more than $101 million in NIH funding.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "sword Puzzles eBooks Infographics Innovation Spotlight Podcasts Product Coverage Research Product Blog Industry Articles Videos Words for Nerds Webinars Register Home / Categories / Health & Medicine / Public Health Article US Researchers Found Guilty of Misconduct Collectively Awarded $101 Million Seventeen scientists found to have committed research misconduct during the last 25 years have since collectively received more than $101 million in NIH funding. Written by Joshua A. Krisch | 1 min read Save for Later PDF version Register for free to listen to this article Listen with Speechify 0:00 1:00 FLICKR, ERVINS STRAUHMANIS Researchers found guilty of scientific misconduct by the US Department of Health and Human Services (HHS) went on to collectively receive $101 million from the National Ins"
+  },
+  {
+   "idx": 2,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4132287/",
+   "outlet": "eLife (Stern, Casadevall, Steen, Fang)",
+   "date": "2014-08-14",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Researchers experienced a median 91.8% decrease in publication output and large declines in funding after censure by the ORI.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nduct were determined. We found that papers retracted due to misconduct accounted for approximately $58 million in direct funding by the NIH between 1992 and 2012, less than 1% of the NIH budget over this period. Each of these articles accounted for a mean of $392,582 in direct costs (SD $423,256). Researchers experienced a median 91.8% decrease in publication output and large declines in funding after censure by the ORI. DOI: http://dx.doi.org/10.7554/eLife.02956.001 Research organism: none Introduction The retraction of a research article can result from honest or dishonest behavior. Honest retractions resulting from scientific error represent a mechanism for correction of the literature ( Casadevall et al., 2014 ). Dishonest retractions are triggere"
+  }
+ ]
+}

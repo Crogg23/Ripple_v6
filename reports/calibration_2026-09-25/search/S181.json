@@ -1,0 +1,56 @@
+{
+  "story_id": "S181",
+  "entity": "Enbrel (etanercept, Amgen): FDA-approved copies Erelzi and Eticovo never sold; Medicare Part D gross cost of brand Enbrel in 2022",
+  "queries": [
+    {"q": "Enbrel biosimilars Erelzi Eticovo never launched patents 2029 Medicare spending", "found_useful": true},
+    {"q": "Enbrel Medicare Part D spending 2022 billion", "found_useful": true},
+    {"q": "CMS negotiation fact sheet Enbrel total Part D gross covered prescription drug costs enrollees", "found_useful": false},
+    {"q": "Enbrel biosimilar 2026 news Amgen etanercept negotiated price Medicare", "found_useful": true},
+    {"q": "Erelzi Eticovo approved but not marketed United States Sandoz Samsung Bioepis etanercept biosimilar blocked", "found_useful": true},
+    {"q": "\"Enbrel\" Medicare Part D 2022 total spending \"2.2 billion\" OR \"2.3 billion\" OR \"2.8 billion\" OR \"2.9 billion\"", "found_useful": false},
+    {"q": "Sandoz Amgen Enbrel antitrust lawsuit Erelzi 2026 ruling", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12401810/",
+      "outlet": "Arthritis & Rheumatology (via PubMed Central)",
+      "date": "2025-05-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "During 2022, 47,000 Medicare Part D enrollees received etanercept primarily for rheumatoid arthritis, psoriasis, or psoriatic arthritis. Total gross Medicare Part D spending on etanercept was $2.7 billion",
+      "paywalled": false,
+      "searcher_note": "Same drug, same year, same measure (Part D gross spending 2022): $2.7B vs the lead's $2.27B. Also says two FDA-approved etanercept biosimilars are legally blocked until 2028 and 2029."
+    },
+    {
+      "url": "https://www.citizen.org/news/analysis-shows-amgens-gaming-of-patent-system-cost-medicare-more-than-a-billion-in-savings-over-less-than-four-years/",
+      "outlet": "Public Citizen",
+      "date": "2023-10-31",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In doing so, Amgen successfully thwarted competition from two potential biosimilar competitors, Erelzi and Eticovo, which received FDA approval in 2016 and 2019, respectively.",
+      "paywalled": false,
+      "searcher_note": "Names Enbrel, Erelzi and Eticovo; also estimates Medicare could have saved $1,053,023,122 in under four years without the patent extension."
+    },
+    {
+      "url": "https://www.biopharmadive.com/news/amgen-enbrel-patent-thicket-monopoly-biosimilar/609042/",
+      "outlet": "BioPharma Dive",
+      "date": "2021-11-01",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "But five years later, Erelzi still hasn't launched, even as 30 other biosimilars have won U.S. approval and 21 of them have reached market.",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found of the approved-but-never-sold Enbrel copy; patent thicket story. No Medicare dollar figure."
+    },
+    {
+      "url": "https://www.insurancebusinessmag.com/us/news/benefits/amgen-results-show-biosimilars-and-ira-pricing-reshaping-drug-spend-584990.aspx",
+      "outlet": "Insurance Business",
+      "date": "2026-08-05",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Enbrel, a mainstay biologic in the inflammation category, fell 4% overall, with net selling price down 22%.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff Enbrel coverage (Amgen Q2 2026 results, IRA Medicare price). Different finding; does not discuss the unsold copies or 2022 Part D cost."
+    }
+  ],
+  "notes": "The never-launched Erelzi/Eticovo story is widely covered since 2021 (patent injunctions to April 2029). On the dollar figure: the only 2022 Part D gross spending number found is $2.7B (Arthritis & Rheumatology 2025), about 19% above the lead's $2.27B (the lead's sum comes from the per-prescriber file). CMS negotiation fact sheets report Enbrel for June 2022-May 2023, not calendar 2022; the CMS PDF could not be parsed by the fetch tool, so no quote. A search snippet cited a CMS figure of about $2.8B for Enbrel June 2022-May 2023; not recorded without a verified quote. Sandoz antitrust suit to launch Erelzi was dismissed Feb 2026 and is on appeal (IPWatchdog 2026-07-09, no quotable sentence on launch status)."
+}

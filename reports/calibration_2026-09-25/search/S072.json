@@ -1,0 +1,47 @@
+{
+  "story_id": "S072",
+  "entity": "CareCore Health, its 12 Ohio nursing homes, fire-safety (Life Safety Code) citations per home vs the Ohio rate, and repeat tags across three inspection cycles",
+  "queries": [
+    {"q": "CareCore Health Ohio nursing homes", "found_useful": false},
+    {"q": "CareCore Health nursing home fire safety citations sprinkler inspection", "found_useful": false},
+    {"q": "\"CareCore\" nursing home Ohio violations news", "found_useful": true},
+    {"q": "\"CareCore Health\" owner acquisition Ohio skilled nursing", "found_useful": false},
+    {"q": "nursing home chains repeat fire safety deficiencies sprinkler alarm testing analysis CMS life safety code", "found_useful": false},
+    {"q": "CareCore Lima OR Dayton OR Chillicothe OR Mentor nursing home inspection fire 2026", "found_useful": false},
+    {"q": "Ohio nursing homes fire safety violations sprinkler testing citations investigation", "found_useful": true},
+    {"q": "nursing homes fire safety citations analysis news repeat violations sprinklers alarms not tested chain-owned", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://projects.propublica.org/nursing-homes/affiliate/a-108",
+      "outlet": "ProPublica Nursing Home Inspect",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "According to CMS data, Carecore Health is affiliated with 10 facilities in Ohio.",
+      "paywalled": false,
+      "searcher_note": "Database page, not an article; lists CareCore homes with health-inspection counts and fines (data updated August 2026). No fire-safety or Life Safety Code figures on the page."
+    },
+    {
+      "url": "https://oig.hhs.gov/reports-and-publications/all-reports-and-publications/ohio-could-better-ensure-that-nursing-homes-comply-with-federal-requirements-for-life-safety-emergency-preparedness-and-infection-control",
+      "outlet": "HHS Office of Inspector General",
+      "date": "2023-12-20",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "During our onsite inspections, we identified deficiencies related to life safety, emergency preparedness, or infection control at 18 of the 20 nursing homes that we audited, totaling 160 deficiencies.",
+      "paywalled": false,
+      "searcher_note": "OIG audit A-05-22-00019 of 20 Ohio nursing homes: 47 life-safety deficiencies; homes not named."
+    },
+    {
+      "url": "https://www.iadvanceseniorcare.com/the-top-10-cms-life-safety-code-citations/",
+      "outlet": "I Advance Senior Care",
+      "date": "2016-07-29",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Sprinkler system maintenance (prevalence: 21% of all facilities cited)",
+      "paywalled": false,
+      "searcher_note": "Vendor-written trade piece: sprinkler maintenance is the most common Life Safety Code citation nationally; fire alarm testing is #9. General, no chain named."
+    }
+  ],
+  "notes": "Nothing found naming CareCore Health for fire-safety citations, repeat tags, or a comparison with the Ohio rate. The only source naming the entity is ProPublica's affiliate database page (10 homes, not 12), which carries no fire-safety data. Local searches (Lima, Dayton, Chillicothe, Mentor) turned up only directory and rating pages. An Ohio Department of Health 2021 survey-and-enforcement PDF surfaced in search with K353/K345 citation counts, but the URL returned 404 on fetch, so it is not recorded. No disagreeing or post-2026-06-30 coverage found."
+}

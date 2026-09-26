@@ -1,0 +1,12 @@
+{
+ "story_id": "S114",
+ "bin": "Matched + more",
+ "entity": "House members running for Senate in 2026, missed-vote rate during campaign season",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2026-01-23",
+ "post_cutoff_match": true,
+ "what_we_add": "the median rates (1.8% to 3.5%), the 16-member cohort, and the 2023-24 placebo showing the same rise",
+ "why": "Deseret and Legis1 report Senate-running House members missing votes in numbers and words, same class, same direction. No source has the cohort medians or the two-years-earlier control that kills the causal read.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

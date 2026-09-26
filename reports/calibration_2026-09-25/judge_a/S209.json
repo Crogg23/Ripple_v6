@@ -1,0 +1,12 @@
+{
+  "story_id": "S209",
+  "bin": "Known pattern",
+  "entity": "13 tankers seen in U.S. waters in one January 2024 week, now on government sanctions lists",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source names the tankers or the U.S.-waters cohort (all entity_named no). OCCRP and Breakwave report the same pattern - old Western tankers sold into the shadow fleet, 11.6% of tankers now sanctioned.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

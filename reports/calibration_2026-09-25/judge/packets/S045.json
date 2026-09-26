@@ -1,0 +1,96 @@
+{
+ "story_id": "S045",
+ "lead": {
+  "headline": "Rural jails now lock up 2.5 times the urban rate: 563 vs 227 per 100,000 working-age residents in 2023",
+  "number": "In 1,906 fixed counties, rural jails went 531 to 624 per 100K residents aged 15-64 (2010-19), then 563 in 2023, while urban fell 335 to 227; Butts GA and Yazoo MS grew about 4x on local holds.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; Vera published the rural jail boom itself, and the held-for-others columns go blank after 2020."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "rural jail incarceration rate higher than urban 2023 Vera Institute",
+  "rural jails incarceration rate per 100,000 ages 15-64 urban decline 2023 data",
+  "Butts County Georgia jail population growth holds for other agencies",
+  "Butts County jail U.S. Marshals ICE detainees contract expansion news",
+  "Yazoo County jail regional correctional facility state inmates holds population",
+  "rural jail populations 2026 report rural counties incarceration rate cities falling",
+  "rural jail boom 2023 incarceration rate \"rural\" \"urban\" per 100,000 Vera Incarceration Trends 2025 update",
+  "New York Times December 2019 rural counties jail twice as likely urban Upshot",
+  "urban jail populations rising again 2025 2026 rural jails decline contrary"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.vera.org/publications/people-in-jail-in-2019",
+   "outlet": "Vera Institute of Justice",
+   "date": "2019-12-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Since 2013, jail incarceration rates have increased by 26 percent in rural jurisdictions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "U.S. jail population. While jail incarceration rates have been increasing in rural jurisdictions, however, jail incarceration rates in urban areas has been declining. Publication Highlights In June 2019, there were 31,000 more people in jail than in the recent trough of 2015—a 4.3 percent increase. Since 2013, jail incarceration rates have decreased by 22 percent in urban areas. Since 2013, jail incarceration rates have increased by 26 percent in rural jurisdictions. Key Facts Chicago’s jail population has decreased 42% since 2013. The national jail population increased an estimated 1.8% since 2017. In 2019, rural counties’ jail incarceration rates were more than double those of urban counties. Related PUBLICATION The Ne"
+  },
+  {
+   "idx": 1,
+   "url": "https://nonprofitquarterly.org/geography-of-incarceration-shifts-from-urban-to-rural/",
+   "outlet": "Nonprofit Quarterly",
+   "date": "2020-01-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "And today, people in rural counties are more than twice as likely to go to jail as people in urban areas.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "3.0 Unported License December 13, 2019; New York Times You’re more likely to go to jail if you live in a rural community. For decades , your odds of getting locked in jail in cities greatly exceeded your odds of getting jailed in rural areas. About fifteen years ago, however, those rates equalized. And today, people in rural counties are more than twice as likely to go to jail as people in urban areas. And the gap continues to grow. Jail populations have dropped 18 percent in urban areas since 2013 but have climbed 27 percent in rural areas , with suburban jail populations remaining about the same. What’s this about? One factor is the shift in the location of crime. While crime rates overall have declined in the United States, esp"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.vera.org/publications/people-in-jail-and-prison-in-2024",
+   "outlet": "Vera Institute of Justice",
+   "date": "2024-10-31",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "By spring 2024, incarceration had returned to 2019 levels in many states and in rural counties across the board.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "u to create a comprehensive picture of how jurisdictions across the country are using incarceration. Key Takeaway The report reveals that the unprecedented decrease in incarceration witnessed from 2019 to 2020 has been sustained into 2024, but only in some places and only for some groups of people. By spring 2024, incarceration had returned to 2019 levels in many states and in rural counties across the board. Publication Highlights Jails in rural counties are the closest to pre-pandemic levels of incarceration, with the number of people in these jails increasing 2.2 percent between 2022 and 2024. Rapid increases in the detention of immigrants by federal agencies between 2023 and 2024 were met and exceeded by a growing number of states attemptin"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.vera.org/news/jail-and-prison-populations-have-decreased-since-2019-but-continued-progress-isnt-promised",
+   "outlet": "Vera Institute of Justice",
+   "date": "2024-11-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Rural counties have seen the closest return to 2019 population tallies, while urban county jails have done the best job of maintaining declines.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "w York: Vera Institute of Justice, 2024. As of spring 2024, approximately 660,000 people were held in jails nationwide, a 10 percent decrease from mid-2019 but an increase of more than 100,000 people since 2020, a year that registered a significant population low due to pandemic emergency policies. Rural counties have seen the closest return to 2019 population tallies, while urban county jails have done the best job of maintaining declines. Older people’s incarceration rates rise Even if prison populations have declined since mass incarceration’s peak, report findings show how policies from decades ago still have damaging effects. Case in point: older people represent an accelerating segment of the United States incarcerated population. In 2022, 254,900 people ages 55 o"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.vera.org/newsroom/vera-institute-of-justice-unveils-updated-incarceration-trends-website",
+   "outlet": "Vera Institute of Justice",
+   "date": "2021-12-16",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Rural areas still have the highest jail incarceration rates by far, with more than half the people incarcerated in local jails being held outside of the nation",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": " However, jail incarceration had rebounded sharply by spring 2021. Given the dramatic shift in the geography of incarceration over the past several decades, it is no surprise that recent changes in incarceration looked very different across rural, suburban, small city, and major metropolitan areas. Rural areas still have the highest jail incarceration rates by far, with more than half the people incarcerated in local jails being held outside of the nation’s biggest cities. By late March 2021, the outlines of the emerging “new normal” included an overall reduction in prison and jail incarceration. However, in many ways, jail and prison population changes reflected a deepening of preexisting political, economic, and social orientations toward punishment and detention. Most states that"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.vera.org/newsroom/rural-america-has-highest-jail-incarceration-rates-in-the-u-s-despite-low-crime-rates-new-report-reveals",
+   "outlet": "Vera Institute of Justice",
+   "date": "2017-06-13",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "While the rate at which legally presumed innocent people are held in jail pretrial has grown 223% nationwide since 1970, it has risen 436% in rural counties",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "that the trends that are driving jail use nationwide—increasing use of pretrial detention and an expanding jail-bed market—are especially pronounced in rural counties, which also have fewer resources to help keep people out of jail than their urban counterparts. Specifically, the report found that: While the rate at which legally presumed innocent people are held in jail pretrial has grown 223% nationwide since 1970, it has risen 436% in rural counties, driven in large part by rural areas in the South and West. Despite their higher jail incarceration rates, rural counties have lower crime rates: their property crime rate is three-quarters, and violent crime rate is two-thirds, those of cities. While the opioid crisis that is unfolding in predominately rural areas is currently "
+  }
+ ]
+}

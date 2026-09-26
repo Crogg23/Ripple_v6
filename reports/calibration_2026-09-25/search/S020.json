@@ -1,0 +1,67 @@
+{
+  "story_id": "S020",
+  "entity": "US rail trespasser deaths (FRA casualty data), 2017 vs 2025; plus Brightline deaths in 2024",
+  "queries": [
+    {"q": "railroad trespasser deaths 2025 record FRA data rising", "found_useful": true},
+    {"q": "Brightline 41 deaths 2024 trespassers", "found_useful": true},
+    {"q": "rail trespassing deaths increase since 2017 while employee and crossing deaths fall FRA national strategy trespass", "found_useful": true},
+    {"q": "Brightline 2024 deaths FRA data trespassers suicides Miami Herald \"2024\"", "found_useful": true},
+    {"q": "\"838\" trespasser deaths railroad 2025", "found_useful": false},
+    {"q": "railroad trespassing deaths hit record high 2026 news pedestrians killed by trains", "found_useful": false},
+    {"q": "FRA trespass fatalities rose percent since 2017 grants press release trespassing deaths leading cause 2025", "found_useful": true},
+    {"q": "rail trespasser fatalities decreased 2024 2025 decline fewer deaths FRA preliminary", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://oli.org/track-statistics/trespassing-casualties-state",
+      "outlet": "Operation Lifesaver",
+      "date": "2026-08-31",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "There were 793 trespass-related fatalities and 524 trespass injuries across the U.S. in 2025.",
+      "paywalled": false,
+      "searcher_note": "Preliminary 2025 FRA figures, page 'UPDATED 8/31/26'. 793 vs lead's 838 (about 5% lower). No 2017 comparison, no 26% figure. Nonprofit funded by FRA grants."
+    },
+    {
+      "url": "https://www.wlrn.org/killer-train-brightline-death-toll-surpasses-180-but-safeguards-are-still-lacking",
+      "outlet": "WLRN / Miami Herald",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Last year, after Brightline extended service through the Treasure Coast to Orlando, 49 people died by the train, the highest number yet.",
+      "paywalled": false,
+      "searcher_note": "Disagrees on count: 49 Brightline deaths in 2024 vs lead's 41. Same piece says 'only 24 people — or 13% — were in cars' across all years (2017-2025), so not every death was a trespasser; no 2024-only breakdown. Published about July 2025 (toll 'as of July 14, 2025')."
+    },
+    {
+      "url": "https://www.everycrsreport.com/files/20170815_IN10753_7845b77908ff30b0ed1bc68967baae111fb5b5cb.html",
+      "outlet": "Congressional Research Service (via EveryCRSReport)",
+      "date": "2017-08-15",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "In contrast, there has been no progress in reducing the number of deaths from trespassing, which has been the leading cause of rail-related fatalities since 1997 (see Figure 2).",
+      "paywalled": false,
+      "searcher_note": "Earliest same-shape finding: trespass deaths flat/not falling while grade-crossing deaths fell (698 in 1990 to under 300 in 2016). Counts 2016: 485 trespasser deaths plus 229 suicides. Pre-dates the lead's 2017-2025 window."
+    },
+    {
+      "url": "https://www.aar.org/news/fra-data-confirms-rail-safety-progress-with-record-low-injury-and-accident-rates/",
+      "outlet": "Association of American Railroads",
+      "date": "2025-03-05",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Despite these gains, grade crossing and trespassing accidents remain the leading causes of rail-related injuries and fatalities, accounting for over 95% of all incidents.",
+      "paywalled": false,
+      "searcher_note": "Industry group on 2024 FRA data: employee injury rates at record lows, on-duty fatalities down 64% since 2005, while trespass and crossings dominate deaths. Supports 'other casualties fell' half; no trespass count."
+    },
+    {
+      "url": "https://www.smart-union.org/rail-trespassing-and-suicide-fatalities-up-70/",
+      "outlet": "SMART Union",
+      "date": "2025-11-24",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Rail Trespassing and Suicide Fatalities Up 70%",
+      "paywalled": false,
+      "searcher_note": "Headline. Transit (FTA) data 2016-2024, not FRA railroad data: trespass and suicide fatalities up 70%. Same pattern, different system."
+    }
+  ],
+  "notes": "No source found stating 838 trespasser deaths in 2025 or a 26% rise from 2017. Definitions vary widely across sources: CRS IN10753 (newer version, congress.gov, 403) per search snippet said trespass pedestrian fatalities rose 24% from 467 (2016) to 577 (2019); FRA's 2018 trespass-prevention report to Congress (403, not recorded) per search snippet said 725 in 2012 to 855 in 2017, which if on the same definition as the lead would put 2017 above 2025 and contradict the rise; NSC Injury Facts (403) per snippet said 959 total railroad deaths in 2025, 651 trespassers outside crossings. None of these snippets were verified on the page. Brightline: WLRN/Miami Herald 2025 investigation counts 49 deaths in 2024 (includes vehicle occupants and suicides); no source found saying all 2024 Brightline deaths were trespassers."
+}

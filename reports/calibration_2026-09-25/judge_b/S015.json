@@ -1,0 +1,12 @@
+{
+ "story_id": "S015",
+ "bin": "Known pattern",
+ "entity": "ICE bond-posted rates by state for people arrested 2+ years after entry (LA 7%, TX 12%, PA 29%), 2023-25",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source states state-level bond-posted rates for long-term residents. TRAC reports the same kind of finding - bond outcomes vary wildly by detention location - and The Lens reports Louisiana detainees unable to bond out, but neither reaches our measure.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

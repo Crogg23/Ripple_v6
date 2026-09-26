@@ -1,0 +1,12 @@
+{
+  "story_id": "S068",
+  "bin": "Matched + more",
+  "entity": "Count of ex-members of Congress who later filed as foreign agents; 2025 filers incl. Blagojevich (Bosnia) and Fattah (Liberia)",
+  "deciding_sources": [3, 0, 1],
+  "earliest_match_date": "2022-06-28",
+  "post_cutoff_match": false,
+  "what_we_add": "The 5 named 2025 filers including Fattah for Liberia, and 26 first filing 2017+. Quincy's counts stop at the aggregate; nobody reports Fattah-Liberia.",
+  "why": "Quincy found at least 90 (2022) and exactly 100 (2026) ex-members working as foreign agents — same entity, same finding, numbers within 25% of our 94. Balkan Insight matches Blagojevich's Republika Srpska FARA filing by name.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

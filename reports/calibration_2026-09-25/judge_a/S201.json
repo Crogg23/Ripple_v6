@@ -1,0 +1,12 @@
+{
+  "story_id": "S201",
+  "bin": "Matched + more",
+  "entity": "DISA's recurring purchases of Ivanti EPMM (MobileIron) licenses despite exploited holes",
+  "deciding_sources": [0, 1, 2],
+  "earliest_match_date": "2024-08-20",
+  "post_cutoff_match": false,
+  "what_we_add": "$21.8M across the awards, the fixed spring calendar, 7 exploited EPMM CVEs in the window",
+  "why": "OrangeSlices names DISA awarding Ivanti EPMM subscription licenses ($7.5M, 2024), same entity and direction; CISA and Help Net document the exploited holes without naming DISA. The renewal total, calendar pattern and juxtaposition are ours.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

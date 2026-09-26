@@ -1,0 +1,84 @@
+{
+ "story_id": "S194",
+ "lead": {
+  "headline": "Companies late on stock-option award reports in 2017-20 stayed late in 2021-24: roughly 13% vs 1.5% for peers",
+  "number": "Builder: 20.3% of 2021-24 awards 30+ days late at the 23 repeat companies vs 1.5% at 1,248 peers; skeptic's rough cut without Security National is about 13% (not re-run). AgEagle: 85 of 117 awards 30+ days late.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The #1 contributor, Security National, is a stock-dividend re-report artifact; AgEagle's 2021-24 lates sit on catch-up filing days; \"option awards\" also counts warrants, convertible preferred and RSUs."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "AgEagle Aerial Systems late Form 4 filings delinquent Section 16(a) reports",
+  "SEC charges late Form 4 filings sweep companies insiders stock option awards repeat late filers",
+  "SEC order AgEagle Aerial Systems Section 16(a) \"Forms 4\" untimely cease-and-desist 2023 sec.gov litigation admin",
+  "Security National Financial Corporation late Form 4 stock dividend insiders Section 16 delinquent",
+  "\"AgEagle\" sec.gov files litigation admin 2023 34-98 Section 16(a) order pdf",
+  "study late Form 4 filers persistent repeat delinquent insider filings research companies stay late",
+  "AgEagle proxy \"Delinquent Section 16(a) Reports\" 2024 late Forms 4 insiders",
+  "SEC late Section 16 insider filings enforcement 2026 Form 4 delinquent companies charged",
+  "AgEagle $190,000 SEC penalty late insider reports news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sec.gov/file/34-98552",
+   "outlet": "US SEC (administrative order, In the Matter of AgEagle Aerial Systems Inc., Release No. 98552)",
+   "date": "2023-09-27",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "officers and directors in the aggregate filed more than 125 untimely Forms 4 to report transactions related to, among other things, stock and option awards, options exercises, and open-market sales.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.sec.gov/files/litigation/admin/2023/34-98546.pdf",
+   "outlet": "US SEC (administrative order, In the Matter of Nicole M. Fernandez-McGovern, AgEagle CFO, Release No. 98546)",
+   "date": "2023-09-27",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "reportable transactions between June 2018 and March 2022 were reported late and primarily involved stock and options award grants and exercises",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "6/2021 10/1/2021 4 5/17/2021 5/19/2021 10/1/2021 4 6/17/2021 6/22/2021 10/1/2021 4 6/30/2021 7/2/2021 10/1/2021 4 11/01/2021 11/03/2021 6/10/2022 4 12/31/2021 1/4/2022 6/10/2022 4 1/1/2022 1/4/2022 6/10/2022 4 3/1/2022 3/3/2022 6/10/2022 4 3/31/2022 4/4/2022 6/10/2022 12. Nearly all of Respondent’s reportable transactions between June 2018 and March 2022 were reported late and primarily involved stock and options award grants and exercises, and open-market sales of AgEagle’s common stock reported as pursuant to a 10b5-1 plan. Among 6 Respondent’s late-reported stock sales were sales on seven dates between January 2021 and June 2021 with an aggregate market value of approximately $1.38 million, none of which were reported until October 1, 2021. Respondent also failed to file req"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.davispolk.com/insights/client-update/sec-announces-new-sweep-enforcement-actions-aimed-failures-make-timely",
+   "outlet": "Davis Polk & Wardwell (client update)",
+   "date": "2023-10-12",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "the order against Nicole M. Fernandez-McGovern, an officer of AgEagle Aerial Systems (AgEagle), noted that the insider filed Forms 4 on an untimely basis for nearly all her reportable transactions between June 2018 and March 2022",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " transactions involved open market and private purchases and sales (including pursuant to 10b5-1 trading plans), equity award grants, stock option exercises and other derivatives transactions that were delinquent by periods ranging from less than one week to four years and four months. For example, the order against Nicole M. Fernandez-McGovern , an officer of AgEagle Aerial Systems (AgEagle), noted that the insider filed Forms 4 on an untimely basis for nearly all her reportable transactions between June 2018 and March 2022, in some cases delayed over a year. Similarly, the order against Joseph Theodore Lukens, Jr. , noted that the insider failed to file Forms 4 on a timely basis for nearly all his reportable transactions from July 2019 to July 2020. In addition, three of the insiders (all of whom were major shareholders in public companies) failed repe"
+  },
+  {
+   "idx": 3,
+   "url": "https://cooleypubco.com/2023/09/28/sec-charges-sections-16-and-13d/",
+   "outlet": "Cooley PubCo (law-firm blog)",
+   "date": "2023-09-28",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "between March 2018 and June 2022, there were more than 125 untimely insiders",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "at SolarEdge was a cause of violations of Section 16(a) of the Exchange Act and Rule 16a-3 and imposed a civil penalty of $125,000. Similarly, in the SEC’s Order regarding AgEagle Aerial Systems, Inc. , the SEC charged that the company was a “cause” of many of its insiders’ Section 16(a) violations—between March 2018 and June 2022, there were more than 125 untimely insiders’ Forms 4—as a result of its negligence in failing to prepare and file Section 16(a) reports, a task that it had voluntarily agreed to undertake. In addition, the SEC charged that, for multiple years, the company “failed to comply with its disclosure obligations to report these delinquencies” by its insiders as required under Reg "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.sec.gov/newsroom/press-releases/2023-201",
+   "outlet": "US SEC (press release 2023-201)",
+   "date": "2023-09-27",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "AgEagle Aerial Systems Inc., $190,000",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " More, a director of SolarEdge Technologies, Inc., $66,000; Lawrence I. Rosen, a beneficial owner of JAKKS Pacific, Inc., Meet Group Inc., FTE Networks, Inc., FuelCell Energy Inc., and Remark Holdings Inc., $150,000; and Peixin Xu, a director and beneficial owner of Cineverse Corporation, $150,000. AgEagle Aerial Systems Inc., $190,000; Cumberland Pharmaceuticals Inc., $200,000; eXp World Holdings, Inc., $115,000; Lattice Semiconductor Corporation, $185,000; and SolarEdge Technologies, Inc., $125,000. The SEC’s ongoing investigation of potential beneficial ownership violations is being conducted by Eric C. Kirsch, Bari R. Nadworny, and Wendy B. Tepperman of the New "
+  }
+ ]
+}

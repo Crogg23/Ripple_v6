@@ -1,0 +1,12 @@
+{
+  "story_id": "S006",
+  "bin": "Matched + more",
+  "entity": "Sunshine Senior Solutions and Almaz Med Supply: two mail-order suppliers taking most of Medicare's 2024 alginate wound-dressing spend",
+  "deciding_sources": [0, 5, 3],
+  "earliest_match_date": "2025-06-26",
+  "post_cutoff_match": false,
+  "what_we_add": "the alginate-specific share: $593,632,181 of $649,233,082 (91.4%), 494/359 dressings per claim vs 55 elsewhere",
+  "why": "The Hilmi indictment names Sunshine Senior with $3.34B in false wound-dressing claims; CBS New York and BBB name Almaz billing for dressings never received. Both entities matched, same direction. No source has the 91.4% alginate concentration or the per-claim dressing counts.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

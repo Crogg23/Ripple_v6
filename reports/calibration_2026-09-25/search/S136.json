@@ -1,0 +1,47 @@
+{
+  "story_id": "S136",
+  "entity": "Oregon DEQ state NPDES (water-permit) inspections in EPA's federal ICIS-NPDES file: zero after 2024-09-30 through July 2026, while informal enforcement letters kept flowing",
+  "queries": [
+    {"q": "Oregon DEQ water quality permit inspections 2025 stopped OR decline OR fewer NPDES inspections", "found_useful": false},
+    {"q": "\"Your DEQ Online\" Oregon ICIS-NPDES data transfer EPA inspections reporting", "found_useful": true},
+    {"q": "Oregon DEQ water quality inspections staffing shortage wastewater permits compliance OPB OR \"Oregon Capital Chronicle\" OR Oregonian 2025", "found_useful": false},
+    {"q": "Oregon Secretary of State audit DEQ water quality permit program inspections compliance 2024 OR 2025 findings", "found_useful": false},
+    {"q": "EPA State Review Framework Oregon DEQ Clean Water Act round 5 report inspections data completeness ICIS", "found_useful": true},
+    {"q": "Oregon DEQ 2025 annual enforcement report water quality inspections conducted warning letters pre-enforcement notices", "found_useful": true},
+    {"q": "Oregon DEQ wastewater facility inspections 2026 news inspectors water pollution oversight gap", "found_useful": false},
+    {"q": "Oregon DEQ ACES compliance and enforcement database replaced Your DEQ Online inspection records EPA ECHO Oregon inspections missing", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/sites/default/files/2020-04/documents/srf-rd4-rev-or.pdf",
+      "outlet": "EPA Region 10, State Review Framework Round 4 (Oregon)",
+      "date": "2020-03-06",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "There were many inspection reports that had the wrong dates in ICIS, and there were a couple of enforcement actions dates that were inconsistent with the dates in the enforcement action in the files.",
+      "paywalled": false,
+      "searcher_note": "EPA's last published review of Oregon's CWA program (FY2018 data) found Oregon's NPDES inspection and enforcement data in ICIS unreliable (11 of 30 files accurate, 36.7%). The same review says 'Oregon is not flowing all DMR data to ICIS from their database.' Earlier window; shows the feed has broken before."
+    },
+    {
+      "url": "https://www.oregon.gov/deq/permits/pages/npdeswpcf-in-ydo.aspx",
+      "outlet": "Oregon DEQ",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Starting May 14, 2025, NPDES individual permit holders, WPCF individual permit holders, General permit registrants, and WPCF Onsite permit holders can start using Your DEQ Online as a one-stop place for paying invoices, submitting reports, and managing water quality permits.",
+      "paywalled": false,
+      "searcher_note": "Oregon moved its water-permit program onto a new data system (Your DEQ Online) in 2025, with reporting rolling out October 2025 to November 2026. Fits the lead's broken-feed explanation but does not say inspection data stopped flowing to EPA."
+    },
+    {
+      "url": "https://www.oregon.gov/deq/wq/Documents/wqpAnnualReportNPDES.pdf",
+      "outlet": "Oregon DEQ, 2025 NPDES Permit Program Annual Report",
+      "date": "2025-12-01",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Delay is caused be higher than expected time spent on compliance activities, including DMR review, compliance inspections, and compliance reporting issues.",
+      "paywalled": false,
+      "searcher_note": "DEQ's December 2025 report lists 'compliance inspections' among staff work that delays permit writing. That implies inspection work continued. It is a category definition, not an inspection count. The report says 54% of NPDES permits are administratively continued. The quote keeps the source's typo 'caused be'. Only the month is given; the day is a placeholder."
+    }
+  ],
+  "notes": "No source reports that Oregon's state NPDES inspections vanished from the federal file after September 2024, and none says Oregon DEQ stopped inspecting. Evidence found bears only on the lead's own open question (stopped vs broken feed). EPA's 2020 SRF review documented Oregon ICIS data-flow and date problems. DEQ moved water permits onto Your DEQ Online in 2025. DEQ's 2025 annual report still lists compliance inspections as ongoing work. EPA lists no SRF Round 5 report for Oregon; Round 4 (March 2020) is the latest. The Oregon Capital Chronicle 2024 audit story returned 403. The Secretary of State's April 2024 DEQ audit covered strategic planning, not inspections. No July-September 2026 coverage found."
+}

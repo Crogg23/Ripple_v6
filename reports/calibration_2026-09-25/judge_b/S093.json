@@ -1,0 +1,12 @@
+{
+ "story_id": "S093",
+ "bin": "Matched + more",
+ "entity": "US Black/white jail incarceration disparity: fell through 2019, rose after 2020",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2023-05-16",
+ "post_cutoff_match": false,
+ "what_we_add": "The median-county ratios (4.57 in 2010, 3.41 in 2019, 3.86 in 2023) and the count of counties at 10x+ (30, 19, 24)",
+ "why": "Pew states both legs: the gap dropped 22% 2011-21 and may have reversed as the pandemic progressed; BJS puts the 2023 national ratio at 3.6x. Same measure, same direction; the county-median cut and the 10x+ county counts are ours alone.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

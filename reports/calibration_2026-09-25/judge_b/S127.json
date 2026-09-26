@@ -1,0 +1,12 @@
+{
+ "story_id": "S127",
+ "bin": "Matched + more",
+ "entity": "Boxlight insiders' late Section 16(a) stock-sale reports",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2024-06-13",
+ "post_cutoff_match": false,
+ "what_we_add": "the 30-of-76 late share and the 38-of-2,740-companies market-wide comparison (90th percentile 2.9%)",
+ "why": "Boxlight's own proxy and 10-K/A disclose late Form 4 filings by named insiders in 2023 and 2024, same entity and direction. No source counts the reports or benchmarks Boxlight against other companies.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

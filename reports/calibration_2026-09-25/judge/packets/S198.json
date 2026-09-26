@@ -1,0 +1,59 @@
+{
+ "story_id": "S198",
+ "lead": {
+  "headline": "19 water systems serving 4,347 people buy only from sellers that broke a chemical limit; their own records look clean",
+  "number": "19 systems and 4,347 people after cleanup (builder said 99 and 45,518); a buyer carries a chemical violation 8.4% of the time when its seller violated, 0.3% when the seller is clean.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The flagship was misread: Saline Valley's arsenic violation sits where it buys Millstone's water, and Harrisburg plus nine towns drink its clean well water. The rule charges the seller by design."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Saline Valley Conservancy District arsenic violation water Harrisburg Illinois",
+  "consecutive water systems purchased water wholesaler violations not reported buyers SDWIS records look clean",
+  "\"Saline Valley\" \"Millstone\" water arsenic",
+  "towns that buy water from utility with arsenic nitrate violation customers not told consecutive system residents news",
+  "purchased water consecutive systems inherit wholesaler contaminant violations study SDWIS buyer seller relationships analysis",
+  "Illinois EPA Saline Valley Conservancy District arsenic maximum contaminant level violation notice",
+  "2026 water district that sells to other towns violation contaminant customers of buying systems not listed EPA records news",
+  "\"purchases water from\" arsenic OR nitrate violation wholesaler \"consecutive\" system residents notice town news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://water.epa.state.il.us/dww/JSP/Violations.jsp?tinwsys_is_number=717817&tinwsys_st_code=IL",
+   "outlet": "Illinois EPA Drinking Water Watch (Saline Valley Conservancy District, IL1655300, violations list)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "MCL, AVERAGE 1005 ARSENIC CC02 CC02 - CNCTN TO MITCHELLSVILLE - BTFRD",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "THM DS2 DS2 - BATTLEFORD ROAD SYSTEM 2026-130 V 02 MCL, LRAA 2950 TTHM DS2 DS2 - BATTLEFORD ROAD SYSTEM 2026-127 V 02 MCL, LRAA 2950 TTHM DS2 DS2 - BATTLEFORD ROAD SYSTEM 2025-125 V 27 MONITORING, ROUTINE (DBP), MAJOR 2456 TOTAL HALOACETIC ACIDS (HAA5) DS2 DS2 - BATTLEFORD ROAD SYSTEM 2025-123 V 02 MCL, AVERAGE 1005 ARSENIC CC02 CC02 - CNCTN TO MITCHELLSVILLE - BTFRD 2023-118 V 66 LEAD CONSUMER NOTICE (LCR) 5000 LEAD & COPPER RULE null null 2018-111 V 71 CCR REPORT 7000 CONSUMER CONFIDENCE RULE null null 2006-106 V 72 CCR ADEQUACY/AVAILABILITY/CONTENT 7000 CONSUMER CONFIDENCE RULE null null Total Number of Records Fetched = 8 "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.beg.utexas.edu/files/Articles/2022/Scanlon%20et%20al%20ES&T%20CWS%20SDWA%20Sep%202022(1).pdf",
+   "outlet": "Environmental Science & Technology (Scanlon et al., UT Austin Bureau of Economic Geology copy)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "whereas compliance was associated with purchased water and private ownership",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ed HB violations from 32% (TCR in 2015) to 11% (RTCR violations in 2017) with most violations (ca. 83− 93%) in very small systems (≤500 people). 19 A national assessment of all CWS SDWA violations shows that total CWS violations were linked to increased rurality and low-income minority populations, whereas compliance was associated with purchased water and private ownership. 20 These studies provide an indication of the wide variety of controls that can impair drinking water quality, including environmental, operational, and sociodemographic attributes. The objective of this study was to assess the spatiotemporal variability in CWS violations and evaluate drivers of these violations considering all SDWA HB violatio"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.epa.gov/system/files/documents/2023-04/MDBP-Rule-Revisions-Working-Group-Meeting-Presentation-March-9-2023.pdf",
+   "outlet": "US EPA, Microbial and Disinfection Byproducts Rule Revisions Working Group (Meeting 7)",
+   "date": "2023-03-09",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "little control over the quality of the water they receive",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Difficulties with coordination and communication between wholesale and consecutive syst ems, as well as a lack of water quality data at interconnections, can hinder provision of high-quality water. • Many consecutive systems are faced with, with technical, managerial, and financial chall enges, and little control over the quality of the water they receive. • In some cases, consecutive systems may receive water barely meeting regulatory levels, leaving them vulnerable to exceedances. • Health-based DBP violations in consecutive systems are higher than in wholesale systems. 24 Topic 8: Consecutive systems –evidence and root causes related to negative water quality impacts related to t"
+  }
+ ]
+}

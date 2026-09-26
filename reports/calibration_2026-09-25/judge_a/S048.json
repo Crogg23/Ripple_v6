@@ -1,0 +1,12 @@
+{
+ "story_id": "S048",
+ "bin": "Known pattern",
+ "entity": "Active Texas major air-pollution sources with no full compliance evaluation in 5+ years (~89), New Mexico worse",
+ "deciding_sources": [0, 3, 5],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "EPA OIG's uninspected-facility finding is about SM-80s, not majors; the Texas Observer and NM legislators describe falling inspections in general. No source gives the majors-without-FCE count for Texas or New Mexico.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

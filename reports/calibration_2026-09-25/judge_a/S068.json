@@ -1,0 +1,16 @@
+{
+  "story_id": "S068",
+  "bin": "Matched + more",
+  "entity": "Count of ex-members of Congress who filed as foreign agents, and the 2025 filers",
+  "deciding_sources": [
+    0,
+    3,
+    1
+  ],
+  "earliest_match_date": "2020-06-30",
+  "post_cutoff_match": true,
+  "what_we_add": "Fattah filing for Liberia, the 5-in-2025 count, and the since-1970 window",
+  "why": "Quincy counts 100 ex-members working for foreign governments since 2000 (we say 94 since 1970 - same finding, close number), and Balkan Insight confirms Blagojevich's Republika Srpska FARA contract. Fattah-for-Liberia appears nowhere.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

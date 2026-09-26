@@ -1,0 +1,12 @@
+{
+ "story_id": "S107",
+ "bin": "Matched + more",
+ "entity": "Los Angeles-area (ZIP 912-916) concentration of newly enrolled home health agencies; 14545 Friar St clustering",
+ "deciding_sources": [2, 1, 0, 4],
+ "earliest_match_date": "2024-01-30",
+ "post_cutoff_match": false,
+ "what_we_add": "The enrollment-vintage split: 35% of post-2019 enrollees in five LA ZIPs vs 3% of pre-2013 enrollees; and the Medicare-enrollment count at Friar St (49 agencies, 9 hospices)",
+ "why": "Home Health Care News has LA County agencies up 46% 2019-2023 while the nation shrank, MedPAC and the county board flag the same concentration, and NBC LA names 14545 Friar St as a mass-registration address — same finding, same direction. Nobody states the ZIP-level vintage shares; NBC's 197 is state hospice licenses, a different file, so no contradiction.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

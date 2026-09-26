@@ -1,0 +1,12 @@
+{
+ "story_id": "S125",
+ "bin": "Matched + more",
+ "entity": "Jackson Area Federal Credit Union (Mississippi), deposits far above assets after the Q1 2026 restatement",
+ "deciding_sources": [0, 2, 5],
+ "earliest_match_date": "2026-06-04",
+ "post_cutoff_match": true,
+ "what_we_add": "the cross-industry frame: deposits 2.08x assets, the only one of 4,250 credit unions over 2x, median 0.86x",
+ "why": "Treichel and the NCUSO call-report mirror carry our exact numbers: $91.7M loss, -107% net worth, $148.2M shares on $71.4M assets, -$77M equity; CU Today follows the collapse into Q2. No source states the deposits-to-assets ratio or the one-of-4,250 comparison.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,71 @@
+{
+ "story_id": "S031",
+ "lead": {
+  "headline": "Illinois flags 30% of its nursing homes for abuse, three times the 9% rate everywhere else",
+  "number": "30% of Illinois homes carry the abuse flag vs 9% elsewhere; the Bria, Evercare and Infinity chains sit near 73%.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The state explains most of it, and Bria alone is not unusual inside Illinois."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Illinois nursing homes abuse icon CMS share highest in nation",
+  "Bria Health Services nursing homes abuse citations Illinois",
+  "Illinois nursing homes red hand abuse icon percent Capitol News Illinois OR Tribune OR WBEZ",
+  "Infinity Healthcare Management Illinois nursing homes abuse icon Evercare",
+  "LTCCC nursing homes abuse icon by state Illinois percent facilities",
+  "Illinois nursing home abuse citations 2026 IDPH report state inspectors cite abuse more often",
+  "\"Illinois\" nursing homes \"abuse icon\" chain Bria OR Evercare OR \"Infinity\" percent of homes flagged",
+  "Illinois nursing homes flagged abuse neglect federal data analysis 2026 news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.nursinghomeabusecenter.com/nursing-home-abuse/best-and-worst-states-for-nursing-home-abuse/",
+   "outlet": "Nursing Home Abuse Center",
+   "date": "2026-07-28",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Illinois has the highest Abuse Icon rate of any state: nearly 30% of facilities were flagged, compared to the national average of 10.1%.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "just 0.31 RN hours per resident per day, 44% below the national average, and 88% of facilities fall below the standard. Nationwide, 10.1% of all nursing home facilities carry a CMS Abuse Icon flag. This means federal regulators have documented confirmed patterns of abuse or neglect at the facility. Illinois has the highest Abuse Icon rate of any state: nearly 30% of facilities were flagged, compared to the national average of 10.1%. 528 facilities are currently designated as SFFs or SFF candidates. This means they make CMS’s list of the most chronically underperforming nursing homes in the country. The national average annual staff turnover rate is 46.2%. At some individual facilities, turnover exceeds 90% per year. Washington, D.C. averages more than 31 abuse "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.nursinghomeabusecenter.com/blog/new-nursing-home-ranking-tool/",
+   "outlet": "Nursing Home Abuse Center",
+   "date": "2026-08-06",
+   "source_type": "research",
+   "entity_named": "partial",
+   "quote": "At the other end of the rankings, Louisiana ranked last, followed by Texas, Missouri, Oklahoma, and Illinois.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ationwide ranking with every state receiving a grade from A through F. What the 2026 Nursing Home Rankings Found Our analysis revealed major differences in nursing home staffing and safety indicators across the country. The 5 highest-ranking states were: New Hampshire Alaska Alabama Minnesota Maine At the other end of the rankings, Louisiana ranked last , followed by Texas , Missouri , Oklahoma , and Illinois . Our analysis also found that 11 states earned an A grade , while 19 states and Washington, D.C. received a D or F. The differences went beyond rankings. Some lower-scoring states had widespread RN staffing shortages, high staff turnover, or large percentages of facilities carrying the CMS Abuse Icon. These are red f"
+  },
+  {
+   "idx": 2,
+   "url": "https://nursinghome411.org/ltccc-alert-problem-facilities/",
+   "outlet": "Long Term Care Community Coalition (NursingHome411)",
+   "date": "2024-06-21",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Nearly 9% of facilities have an abuse icon, indicating a history of abuse or neglect.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "re much more likely to be poor performers. For-profit companies own 72% of all U.S. nursing homes and 86.5% of those identified as Problem Facilities. Nursing homes that are part of a chain have lower staffing and ratings . Chain owned facilities also have higher turnover and more fines on average. Nearly 9% of facilities have an abuse icon, indicating a history of abuse or neglect. Note: the absence of an abuse icon does not necessarily mean the absence of abuse at any given facility. Five-star facilities are relatively rare, with only 18.1% achieving the highest rating. Hawaii, Alaska, and Delaware have the highest percentage of five-star nursing homes while Guam, Louisiana, and Mississippi have the lowes"
+  },
+  {
+   "idx": 3,
+   "url": "https://goodjobsfirst.org/care-at-risk-upheaval-in-the-nursing-home-industry/",
+   "outlet": "Good Jobs First",
+   "date": "2023-12",
+   "source_type": "research",
+   "entity_named": "partial",
+   "quote": "A facility operated by Infinity Healthcare Management received a $320,000 fine in 2021 for failing to protect residents from physical and sexual abuse.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ll into this category: Arcadia Care ranks first with an average of $258,181—seven times the national level. It is followed by Aperion Care ($236,944), Infinity Healthcare Management ($218,269), and Bria Health Services ($207,405). Many of the penalties paid by these chains stem from serious abuses. A facility operated by Infinity Healthcare Management received a $320,000 fine in 2021 for failing to protect residents from physical and sexual abuse. Multiple instances of altercations between residents were described in the statement of deficiency prepared by the regulatory agency to outline the facts supporting the citation. [6] Facility surveys by the agency also revealed that this was due to an absence of an effective governing body because the facility was structured as a limited l"
+  }
+ ]
+}

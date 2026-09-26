@@ -1,0 +1,35 @@
+{
+ "story_id": "S183",
+ "lead": {
+  "headline": "In 2023, six California fiberglass shops put out about 40% of the state's reported cancer-list air pounds, mostly styrene",
+  "number": "Styrene is about 55% of California's cancer-listed air pounds once sulfuric-acid mist (319,746 lbs) is counted, not 74.5%; the six shops about 40%, not half.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The CAS join can't see group listings like sulfuric-acid mist (CAS '---'), which drops styrene to about 55%; and California is 7th of 44 states on styrene share, a pattern already found in deep-2 and g38."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "California fiberglass boat manufacturers styrene emissions largest carcinogen air releases TRI",
+  "styrene California Toxics Release Inventory 2023 top cancer-causing air emissions",
+  "California spa fiberglass manufacturer styrene emissions neighbors cancer risk air district",
+  "\"styrene\" California TRI facilities composite fiberglass \"air releases\" 2023 report state",
+  "fiberglass plant styrene odor residents complain California news South Coast AQMD",
+  "California carcinogen air emissions TRI 2026 styrene sulfuric acid mist largest source analysis",
+  "EPA TRI factsheet California 2023 top chemicals released air styrene",
+  "styrene emissions California 2026 fiberglass composites Proposition 65 air pollution report"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/trinationalanalysis/carcinogens",
+   "outlet": "US EPA, TRI National Analysis",
+   "date": "2026-07-31",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Each year, the OSHA carcinogens released into air in the highest quantities were styrene, acetaldehyde, and formaldehyde.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "acility for more details on its reporting. &nbsp; Click on any one of the locations on the map to see detailed information. View Larger Map This graph shows the 10-year trend in air releases of OSHA carcinogens. From 2014 to 2023: Air releases of OSHA carcinogens: 6.9 million pound decrease (-10%). Each year, the OSHA carcinogens released into air in the highest quantities were styrene, acetaldehyde, and formaldehyde. Releases to air of these chemicals for 2023 were primarily from: Styrene: Plastics product manufacturing and boat building. Acetaldehyde: Paper manufacturing and ethyl alcohol manufacturing. Formaldehyde: Paper manufacturing and wood products manufacturing. Industry sectors that reported the largest decreases in OSHA carcinogen releases "
+  }
+ ]
+}

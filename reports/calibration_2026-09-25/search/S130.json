@@ -1,0 +1,66 @@
+{
+  "story_id": "S130",
+  "entity": "Q1 2026 Form 13F filers still reporting values in thousands after the Jan 2023 nearest-dollar rule (355 of 8,631 reports, ~$2.6T understated), a third of it T. Rowe Price Associates",
+  "queries": [
+    {"q": "13F filings still reported in thousands instead of dollars error value misreported", "found_useful": false},
+    {"q": "T. Rowe Price 13F value reported in thousands 2026 total $864 billion", "found_useful": false},
+    {"q": "13F data quality filers \"thousands\" after January 2023 rule change nearest dollar mixed units analysis", "found_useful": true},
+    {"q": "WRDS OR researchers 13F \"value\" units change 2023 some managers continue reporting in thousands correction", "found_useful": false},
+    {"q": "13F filing error units thousand-fold fund holdings overstated understated news 2025 2026", "found_useful": false},
+    {"q": "\"13F-HR/A\" amendment values \"in thousands\" restate to dollars \"nearest dollar\" 2026", "found_useful": true},
+    {"q": "\"T. Rowe Price\" 13F amendment values thousands dollars correction 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/80255/000008025526000381/xslForm13F_X02/primary_doc.xml",
+      "outlet": "T. Rowe Price Associates, Form 13F-HR via SEC EDGAR",
+      "date": "2026-05-15",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Form 13F Information Table Value Total: 864,926,710 (round to nearest dollar)",
+      "paywalled": false,
+      "searcher_note": "The primary filing the lead cites (Q1 2026, 4,549 entries): cover total $864,926,710 under a 'nearest dollar' label. The filing itself; not coverage and not a finding. T. Rowe's Q2 2026 13F-HR (filed 2026-08-14) shows 999,124,702, the same scale. EDGAR lists no 13F-HR/A from T. Rowe for 2026."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/312069/000031206926000081/xslForm13F_X02/primary_doc.xml",
+      "outlet": "Barclays PLC, Form 13F-HR/A via SEC EDGAR",
+      "date": "2026-03-19",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "All values were previously reported in denominations of thousands and have been updated in this amendment to reflect exact dollar values in accordance with Form 13F requirements.",
+      "paywalled": false,
+      "searcher_note": "Same error, different filer: in Feb-Mar 2026 Barclays refiled every quarter from 2022-12-31 to 2025-09-30 (13 amendments per EDGAR) to convert thousands to dollars. StockTitan summarized these amendments, but its pages block scripted fetch."
+    },
+    {
+      "url": "https://www.finrep.ai/blog/sec-13f-reporting-requirements-2026-compliance-guide",
+      "outlet": "Finrep (13F filing vendor blog)",
+      "date": "2026-06-17",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "Legacy systems that still round to thousands are producing non-compliant filings.",
+      "paywalled": false,
+      "searcher_note": "A vendor's general claim that thousands-unit filings keep happening; no counts, no filer names."
+    },
+    {
+      "url": "https://edgarscout.com/13f-filings/",
+      "outlet": "EdgarScout",
+      "date": "2026-05-28",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "The failure is silent: nothing in the XML flags the unit.",
+      "paywalled": false,
+      "searcher_note": "Data-user guide. It treats the filing date as the only reliable signal ('On or after January 3, 2023 Whole dollars Use the value as filed'), which assumes post-2023 filings are clean, the opposite of the lead's finding. Offers an implied-price check that would catch it. Modified 2026-07-31."
+    },
+    {
+      "url": "https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f",
+      "outlet": "SEC Division of Investment Management",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The requirement starting January 3, 2023 to round to the nearest dollar represents a change from the prior requirement to round such values to the nearest thousand dollars.",
+      "paywalled": false,
+      "searcher_note": "Explainer on the rule; not a finding."
+    }
+  ],
+  "notes": "No news or research found reporting that hundreds of post-2023 13F reports still use thousands, or naming T. Rowe Price for it. The closest known-pattern evidence is Barclays' own 2026 amendments. Two sources are EDGAR filings, read on the SEC site as primary records rather than found through a web search. Memory: none relevant."
+}

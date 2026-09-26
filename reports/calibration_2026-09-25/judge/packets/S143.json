@@ -1,0 +1,83 @@
+{
+ "story_id": "S143",
+ "lead": {
+  "headline": "Since 2020 only 19 of 295 argued Supreme Court cases came from state courts, the lowest share since 1946",
+  "number": "6.4% since the 2020 term vs 14.1% (146 of 1,034) in 2005-19; state courts' share of petitions held at about 27%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The petition side leans on CourtListener's appeal-from field, which misses many state appeals courts; the finding may already be known in legal scholarship."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Supreme Court fewer cases from state courts decline share docket",
+  "\"state courts\" share of Supreme Court merits docket lowest since 1946",
+  "Supreme Court state court cases percentage argued docket historical decline empirical study law review 2025",
+  "Empirical SCOTUS cases granted from state courts share by term Feldman",
+  "Supreme Court review of state supreme court decisions has dropped sharply since 2020 criminal cases",
+  "Chemerinsky \"state court\" Supreme Court 56 decisions only three reviewing state court rulings",
+  "Supreme Court 2025-26 term statistics cases from state courts end of term July 2026",
+  "cert petitions from state courts share of Supreme Court petitions grant rate state vs federal courts"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.scotusblog.com/2025/07/by-the-numbers/",
+   "outlet": "SCOTUSblog (Erwin Chemerinsky)",
+   "date": "2025-07-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Of the 56 decisions, only three were reviewing state court rulings. This is not a one-year phenomena. A year ago, only four decisions were reviewing state court decisions, and the year before that it was five.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " One interesting consequence of the smaller docket is that the justices generally write one majority opinion for each month the court hears oral arguments. This year, each justice wrote no fewer than five opinions and no more than seven opinions. Lack of interest in reviewing state court decisions. Of the 56 decisions, only three were reviewing state court rulings. This is not a one-year phenomena. A year ago, only four decisions were reviewing state court decisions, and the year before that it was five. It certainly means that state court judges can rule knowing that the odds of the Supreme Court granting review in one of their cases is very tiny. It is not clear why the court has little interest in reviewing the state courts. It may be that the justices care much more about splits among the federal circuits than they do about "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.bu.edu/bulawreview/files/2025/11/VLADECK.pdf",
+   "outlet": "Boston University Law Review, Vol. 105 (Stephen I. Vladeck, 'Fixing the Supreme Court Through Its Docket')",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "with regard to state criminal appeals, the fall-off has been to near zero (and, during OT2024, actually zero!)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nd, the categories with visible fall-offs include federal criminal appeals (“CFY”); state criminal appeals (“CSY”); and federal habeas petitions (“CFH”), although the Court’s data does not distinguish between federal habeas petitions from state prisoners and those from federal prisoners. And third, with regard to state criminal appeals, the fall-off has been to near zero (and, during OT2024, actually zero!). 115All of the data in the following paragraphs was generated using the Court’s Granted/Noted Cases Lists, which are posted to the Supreme Court’s website for every term going back to OT2007. See Granted/Noted Cases List, SUP. CT. OF THE U.S., https://www.su-premecourt.gov/orders/grantednotedlists.aspx [https://perma.cc/FH6V-D92X] (la"
+  },
+  {
+   "idx": 2,
+   "url": "https://statecourtreport.org/our-work/analysis-opinion/us-supreme-courts-declining-state-case-docket",
+   "outlet": "State Court Report, Brennan Center (Alicia Bannon)",
+   "date": "2024-10-03",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Looking at the cases the Court agreed to hear as of Tuesday, only 2 out of 28 cases arise from state courts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "people, and much more. But one category of cases that’s likely to be underrepresented on the Court’s docket is appeals from state courts. As Georgetown professor Steve Vladeck has observed , the number of appeals that the Supreme Court has taken from state courts in recent years has been declining. Looking at the cases the Court agreed to hear as of Tuesday, only 2 out of 28 cases arise from state courts. This is surprising — state courts regularly hear cases implicating federal constitutional rights and federal statutes that could lend themselves to Supreme Court review. For example, state courts hear twice as many Second Amendment claims as the federal courts. At least part of the story about the lack of appeals from state cou"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.stevevladeck.com/p/73-the-supreme-court-and-state-courts",
+   "outlet": "One First newsletter (Steve Vladeck)",
+   "date": "2024-03-25",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "of the 58 cases the Supreme Court decided through signed opinions during the October 2022 Term, only one was a direct appeal from a state court",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r served on the state’s highest court. In other words, since Justice Brennan’s appointment in 1956, only one of the 26 justices to be appointed to the Court had prior state supreme court experience; and only two had state court experience of any kind. Maybe that’s an additional explanation for why, of the 58 cases the Supreme Court decided through signed opinions during the October 2022 Term, only one was a direct appeal from a state court… I hope that you’ve enjoyed this installment of “One First.” If you have feedback about today’s issue, or thoughts about future topics, please feel free to e-mail me . And if you liked it, please help spread the word!: Share One First If you’re not already a paid subscriber and are interested in receiving regular bonus conte"
+  },
+  {
+   "idx": 4,
+   "url": "https://empiricalscotus.com/2020/09/01/a-sometimes-forgotten-link/",
+   "outlet": "Empirical SCOTUS (Adam Feldman)",
+   "date": "2020-09-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Since the beginning of the Roberts Court, the split of cases from lower state and federal courts has, for the most part, hovered around this 10-20% state court case margin.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ree cases. The first argument in Jones v. Mississippi looks at Eighth Amendment limits on life sentences for juveniles. The second argument, in Ford Motor Company v. Montana Eighth Judicial District Court , will focus on issues of civil procedure relating to necessary forum contacts for defendants. Since the beginning of the Roberts Court, the split of cases from lower state and federal courts has, for the most part, hovered around this 10-20% state court case margin. In OT 2019 almost 73% of the Court’s cases reviewing state court decisions were criminal rather than civil. Over the last five terms though, there has been considerable fluctuation in this balance between criminal and civil cases coming from lower state courts. Oftentimes criminal cases coming from states are readily identifiable. "
+  }
+ ]
+}

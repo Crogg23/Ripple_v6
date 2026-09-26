@@ -1,0 +1,59 @@
+{
+ "story_id": "S062",
+ "lead": {
+  "headline": "ACNR's underground coal mines logged 11.1 injuries per 100 workers a year, 2018-24; other big owners ran 2.2 to 8.8",
+  "number": "ACNR 11.10 recordable injuries per 100 current workers a year, 2018-24; other big coal owners 2.24-8.81; Foresight 12.33.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The denominator is today's headcount, and ACNR's lead is sprains booked as days away; on fractures it's mid-pack."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "American Consolidated Natural Resources ACNR coal mine injury rate MSHA",
+  "Murray Energy ACNR mines injuries safety record Marshall County Harrison County coal miners hurt",
+  "\"American Consolidated Natural Resources\" injuries safety miners Mountain State Spotlight OR \"Ohio Valley ReSource\" OR \"WV MetroNews\"",
+  "coal companies highest injury rates underground mines analysis Foresight Energy Murray ACNR per 100 workers",
+  "Murray Energy mines injury rate above national average days lost MSHA data analysis",
+  "ACNR coal mine MSHA injury accident August 2026 OR September 2026 OR July 2026",
+  "\"Marshall County Mine\" OR \"Harrison County Mine\" OR \"Monongalia County Mine\" OR \"Ohio County Mine\" injury rate national average lost-time injuries",
+  "coal operators ranked by injury rate MSHA data investigation company-level underground coal 2024"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.wvgazettemail.com/news/energy_and_environment/fatality-stricken-mines-had-long-safety-violation-histories-as-more-msha-cuts-eyed/article_fc5e2870-3915-4b12-91bf-241784979596.html",
+   "outlet": "Charleston Gazette-Mail",
+   "date": "2026-04-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Of the more than 1,800 penalties assessed to Ohio County Coal Resources, Inc. for the Ohio County Mine since the start of 2019, 312 were designated Significant and Substantial by MSHA.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nearby abandoned and water-inundated Mountain State Mine. An August MSHA final report found that Marfork safety failures caused the Feb. 28, 2025, death of Billy Shawn Stalker, 46, of Elkhorn City, Kentucky, at Marfork’s Black Eagle Mine in Raleigh County. Violation-riddled Ohio County Mine history Of the more than 1,800 penalties assessed to Ohio County Coal Resources, Inc. for the Ohio County Mine since the start of 2019, 312 were designated Significant and Substantial by MSHA, including recurring violations of federal statutes requiring: Development of and compliance with a MSHA-approved roof control plan Keeping track haulage road clearance space free of loose rock, supplies and other materials Guarding gears, chains, shafts and other exposed machine parts that could be contacted by people N"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.theintelligencer.net/news/top-headlines/2026/01/miner-injured-at-marshall-county-coal-mine/",
+   "outlet": "The Intelligencer (Wheeling)",
+   "date": "2026-01-20",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "A coal miner was flown from American Consolidated Natural Resources' Marshall County Coal Mine to WVU Medicine Ruby Hospital in Morgantown on Tuesday after being pinned against a piece of equipment in the mine, said Marshall County EMA Director Tom Hart.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ted Natural Resources’ Marshall County Coal Mine After Underground Injury By DEREK REDD January 20, 2026 1 min read Photo provided Emergency crews transport a miner injured after he was pinned against a piece of equipment in the Marshall County Coal Mine near Cameron on Tuesday. Trending CAMERON -- A coal miner was flown from American Consolidated Natural Resources' Marshall County Coal Mine to WVU Medicine Ruby Hospital in Morgantown on Tuesday after being pinned against a piece of equipment in the mine, said Marshall County EMA Director Tom Hart. Hart said a 911 call came in at 3:43 p.m. from the mine's Cameron Portal located on Goshorn Woods Road outside of Cameron. EMS arrived on the scene at 3:53 p.m. and EMS, air medical and fire fighters were waiting for the miner to be brought to the surface. The Cameron Volunteer Fire Department, Marshall County Sheriff's Depa"
+  },
+  {
+   "idx": 2,
+   "url": "https://acnrinc.com/",
+   "outlet": "American Consolidated Natural Resources",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "American Consolidated Natural Resources operates among the safest underground coal mines in the world.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "erground longwall mining systems and 10 continuous mining units. American Consolidated Natural Resources will manage the production of approximately 30 million tons of coal per year. American Consolidated Natural Resources manages and controls over 2 billion tons of coal reserves. Most importantly, American Consolidated Natural Resources operates among the safest underground coal mines in the world. This production and reserve base allows American Consolidated Natural Resources to provide electric utility customers with low cost, reliable, and high quality coal supplies. Improving the Quality of Life Safety is Our Foremost Concern Providing High Paying Jobs Low cost electricity is a staple of life. American Consolidated Natural Resources utilizes"
+  }
+ ]
+}

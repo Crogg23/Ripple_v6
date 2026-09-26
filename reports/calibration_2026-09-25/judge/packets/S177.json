@@ -1,0 +1,47 @@
+{
+ "story_id": "S177",
+ "lead": {
+  "headline": "Penn State's Hershey hospital got Medicare's extra \"outlier\" payment on 185 of 192 top-level joint procedures; nationally, 3.5%",
+  "number": "Penn State Health's 5 hospitals: $12.35M in outlier add-ons vs $0.76M expected (16.3x, the top of an 8-16x range); Hershey and Lancaster carry 93% of it.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Medicare's own published formula explains it (Hershey ranks #3 of 1,726 on charges x cost-to-charge ratio); \"57% of big hospitals get $0\" is wrong (a blank means 1-10 cases, real figure 84 of 1,212), and \"half to 50 hospitals\" skips 16,053 hidden cells."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Penn State Hershey Medical Center Medicare outlier payments",
+  "hospital outpatient outlier payments Medicare OIG audit high charges joint replacement comprehensive APC",
+  "\"Penn State Health\" hospital charges markup Medicare highest prices Hershey Lancaster Medical Center",
+  "PennLive Penn State Health Hershey Medical Center prices percent of Medicare RAND high cost hospital",
+  "OIG audit outpatient outlier payments hospital 2024 2025 report overpayments \"outpatient outlier\"",
+  "Penn State Health Medicare billing investigation settlement 2026",
+  "Medicare hospital outpatient outlier payments concentrated few hospitals high charges knee hip arthroplasty analysis",
+  "\"Hershey Medical Center\" outlier payments OR \"outlier payment\" Medicare cost-to-charge ratio"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://oig.hhs.gov/reports/all/2022/vanderbilt-university-medical-center-audit-of-outpatient-outlier-payments/",
+   "outlet": "HHS Office of Inspector General",
+   "date": "2022-05-25",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "VUMC properly billed the claims for 34 of the 117 sampled outlier payments totaling $102,551.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " We submitted the claims related to the 117 outlier payments to VUMC for it to review. We requested that VUMC verify that charges and codes on the claim were correct. Additionally, OIG reviewed outlier claims data for inconsistences and claim support documentation for billing errors. What OIG Found VUMC properly billed the claims for 34 of the 117 sampled outlier payments totaling $102,551. However, VUMC did not properly bill the claims related to 81 outlier payments, resulting in improper outlier payments during our audit period. These 81 claims, which had outlier payments totaling $427,644, contained 110 billing errors. The billing errors primarily occurred because VUMC did not have adequately designed controls or bi"
+  },
+  {
+   "idx": 1,
+   "url": "https://oig.hhs.gov/documents/evaluation/2959/OEI-06-10-00520-Complete%20Report.pdf",
+   "outlet": "HHS Office of Inspector General",
+   "date": "2013-11-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Specifically, outlier payments to 158 hospitals averaged 12.8 percent of their Medicare IPPS reimbursements, compared to an average of only 2.2 percent for all other hospitals.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "fied hospitals that received a substantially higher percentage of Medicare IPPS reimbursements in outlier payments than all other hospitals. WHAT WE FOUND Nearly all hospitals received outlier payments and some received a much higher proportion of Medicare IPPS reimbursements from outlier payments. Specifically, outlier payments to 158 hospitals averaged 12.8 percent of their Medicare IPPS reimbursements, compared to an average of only 2.2 percent for all other hospitals. These high-outlier hospitals charged Medicare substantially more for the same Medical Severity Diagnostic Related Groups (MS-DRG), even though their patients had similar lengths of stay as those in all other hospitals. Some MS-DRGs triggered outlier payments frequently, and 16 MS-DRGs accounted for over 41 percent of such payments. WHAT WE RECO"
+  }
+ ]
+}

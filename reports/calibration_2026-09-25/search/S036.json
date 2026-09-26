@@ -1,0 +1,37 @@
+{
+  "story_id": "S036",
+  "entity": "Dialyze Direct, Dialysis Direct and Concerto nursing-home dialysis units: 18 of 26 rated flagged Worse on CMS survival (SMR), 1.61x expected vs 1.48x at other nursing-home-heavy units",
+  "queries": [
+    {"q": "Dialyze Direct nursing home dialysis patient deaths mortality worse than expected", "found_useful": false},
+    {"q": "home dialysis in nursing homes Dialyze Direct investigation ProPublica OR KFF Health News", "found_useful": false},
+    {"q": "Concerto Renal Services nursing home dialysis Dialyze Direct star ratings survival", "found_useful": false},
+    {"q": "Dialyze Direct PTAC proposal standardized mortality ratio CMS quality measures nursing home residents risk adjustment", "found_useful": true},
+    {"q": "\"Dialyze Direct\" news patient death lawsuit OR citation OR inspection", "found_useful": false},
+    {"q": "nursing home dialysis providers higher mortality \"worse than expected\" Dialysis Facility Care Compare nursing home units", "found_useful": true},
+    {"q": "nursing home dialysis company Dialyze Direct Concerto quality outcomes Skilled Nursing News OR McKnight's 2026", "found_useful": false},
+    {"q": "on-site nursing home dialysis mortality concerns Medicare \"Dialysis Direct\" OR \"Dialyze Direct\" 2025", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11371347/",
+      "outlet": "Kidney360 (via PubMed Central)",
+      "date": "2024-06-07",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "At 42 days, discharge to home was 25% greater in the MFD than CONVENTIONAL dialysis group (17.5% versus 14%) without worsened hospitalization or death.",
+      "paywalled": false,
+      "searcher_note": "Dialyze Direct-authored study (authors list Dialyze Direct affiliation); reports its on-site model shows no worsened death vs conventional dialysis. Company-affiliated; leans against the lead."
+    },
+    {
+      "url": "https://data.cms.gov/sites/default/files/2026-01/FY26%20DFR_Guide.pdf",
+      "outlet": "CMS / University of Michigan Kidney Epidemiology and Cost Center",
+      "date": "2025-07",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "We adjusted the SMR for age, race, ethnicity, sex, diabetes, nursing home status,",
+      "paywalled": false,
+      "searcher_note": "Guide to the Dialysis Facility Reports FY2026: the SMR already adjusts for nursing home status; bears on the lead's caveat that the model under-predicts nursing-home deaths. PDF; quote from extracted text."
+    }
+  ],
+  "notes": "No news, government or independent research source found naming Dialyze Direct, Dialysis Direct or Concerto with worse-than-expected survival ratings. Coverage found is company websites and Dialyze Direct-affiliated studies (Kidney360 2024, Hemodialysis International 2021), which report favorable or not-worse outcomes. Pattern coverage exists that nursing-home dialysis patients die at higher rates, but the most relevant paper (Kidney Medicine 2022, 'Nursing Home Status Adjustment for Standardized Mortality and Hospitalization in Dialysis Facility Reports') returned HTTP 403 on ScienceDirect and the journal site, so not recorded. PubMed returned a captcha; BMC Geriatrics 2026 paper redirected to a login. ASPE PTAC environmental scan on Dialyze Direct opened, no mortality finding."
+}

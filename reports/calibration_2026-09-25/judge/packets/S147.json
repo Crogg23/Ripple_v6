@@ -1,0 +1,95 @@
+{
+ "story_id": "S147",
+ "lead": {
+  "headline": "Customs refunds beat collections in May and June 2026; $113.5B left via the customs agency by Aug 7",
+  "number": "June 2026: $49.18B refunded vs $23.63B collected (net -$25.56B); Jun 29 alone $35.49B; the FY2023-25 pace was $40M a day",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The likely cause (court-ordered refunds of the emergency IEEPA tariffs) comes from a Federal Register notice, not the money tables; the warehouse copies stop Jun 30 (monthly) and Aug 7 (daily)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Customs refunds exceed collections June 2026 IEEPA tariff refunds Treasury daily statement",
+  "tariff refunds single day June 29 2026 $35 billion Daily Treasury Statement customs",
+  "tariff refunds total paid August 2026 billion CBP IEEPA refunds so far",
+  "July 2026 Monthly Treasury Statement customs duties net refunds deficit",
+  "\"$113.5 billion\" OR \"$113 billion\" tariff refunds customs August 2026",
+  "customs duties fiscal 2026 still net positive despite refunds tariff revenue year to date Treasury September 2026",
+  "CBP press release IEEPA duty refunds issued billion importers CAPE Phase 1 Phase 2 status",
+  "Daily Treasury Statement tariff refunds one day record end of June 2026 customs outflow billion analysts"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://taxfoundation.org/blog/tariff-refunds-wiped-out-tariff-revenue-since-may/",
+   "outlet": "Tax Foundation",
+   "date": "2026-08-03",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "June shows $49.18 billion refunded, compared to $23.63 billion collected, taking net customs revenue to a negative $25.56 billion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "lections. But in February 2026, the Supreme Court struck down the IEEPA tariffs, and subsequent court orders instructed the federal government to refund the illegal duties. May’s Monthly Treasury Statement shows $21.97 billion refunded that month, completely wiping out the $21.93 billion collected. June shows $49.18 billion refunded, compared to $23.63 billion collected, taking net customs revenue to a negative $25.56 billion. Throughout 2025, refunds of monthly customs duties never exceeded $2 billion. In May 2026, after the Court of International Trade ordered Customs and Border Protection to refund the illegally collected IEEPA duties, refunds spiked to nearly $22 billion, then to nearly $50 billion in June. Approximately $165 billion of IEEPA tariffs"
+  },
+  {
+   "idx": 1,
+   "url": "https://finance.yahoo.com/economy/article/tariff-refunds-accelerated-sharply-in-june-as-the-us-paid-out-almost-50-billion-to-businesses-185847171.html",
+   "outlet": "Yahoo Finance",
+   "date": "2026-07-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "That figure handily beat the $23.6 billion in tariff revenue collected over the same period",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t $50 billion to businesses Ben Werschkul · Washington Correspondent July 13, 2026 2 min read The US sent out $49.1 billion in tariff refunds in June as the checks to businesses accelerated in the second full month of payouts after the US Supreme Court invalidated President Trump's blanket tariffs. That figure handily beat the $23.6 billion in tariff revenue collected over the same period, according to the US Treasury Department's monthly statement . Monday's newly released figures marked a sharp escalation from May's results , which saw the tariff refund process get underway in earnest but with similar refund and revenue figures of around $21.9 billion seen on both sides of the ledger. May's net negative reading "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.newsweek.com/trump-admin-issues-77bn-in-tariff-refunds-so-far-this-year-12195141",
+   "outlet": "Newsweek",
+   "date": "2026-07-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "the Treasury collected $23.6 billion in customs duties in June, meaning the refunds resulted in a net outflow of $25.6 billion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "$100.7 billion to those who originally paid the tariffs. Tariff Refunds Raise Deficit Concerns The $49.2 billion rebates paid in June helped push the Treasury into the red last month, with the federal budget deficit reaching $120 billion compared with a surplus of $27 billion a year prior. However, the Treasury collected $23.6 billion in customs duties in June, meaning the refunds resulted in a net outflow of $25.6 billion. The figures have nevertheless raised concerns among fiscal hawks, with Maya MacGuineas, president of the Committee for a Responsible Federal Budget (CRFB) calling the monthly statement \"alarming.\" \"At $1.4 trillion in the first nine months of FY 2026—including $120 billion in the month of June alone—we are on track to borrow $2 trill"
+  },
+  {
+   "idx": 3,
+   "url": "https://abcnews.com/Business/trump-administration-pays-milestone-100-billion-tariff-refunds/story?id=135399276",
+   "outlet": "ABC News",
+   "date": "2026-08-05",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Trump administration paid out a milestone $100 billion in tariff refunds through the end of July, according to a new court filing.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ds That’s more than half of the $166 billion owed to thousands of U.S. businesses. 1:28 President Donald Trump holds a chart as he delivers remarks on tariffs in the Rose Garden at the White House in Washington, April 2, 2025. Carlos Barria/Reuters By Elizabeth Schulze August 5, 2026, 4:16 PM Share The Trump administration paid out a milestone $100 billion in tariff refunds through the end of July, according to a new court filing . That's more than half of the $166 billion owed to thousands of American businesses who paid the tariffs that were struck down by the Supreme Court. Several companies from Amazon to small businesses are now reporting that the payments from the federal government have landed in their accounts. What businesses are doing with the money"
+  },
+  {
+   "idx": 4,
+   "url": "https://finance.yahoo.com/economy/article/new-data-shows-the-us-governments-166-billion-tariff-refund-process-is-quickly-tapering-off-201348435.html",
+   "outlet": "Yahoo Finance",
+   "date": "2026-09-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The government has now paid out about $115 billion in total tariff refunds since May",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "terest, were ordered refunded by courts earlier this year following the Supreme Court's Feb. 20 decision striking down the wide-ranging tariffs President Trump imposed under the 1977 International Emergency Economic Powers Act (IEEPA). A government-run tariff refund portal opened in late April, and the government has now paid out about $115 billion in total tariff refunds since May, with the lion's share going to repay unlawful IEEPA duties. Friday's release also gave a glimpse into the government's overall books 11 months into the current fiscal year, showing a deficit of $1.966 trillion with one month to go before the government's fiscal year ends on Sept. 30. That was a jump of over $160 billion from $1"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.chrobinson.com/en-us/resources/insights-and-advisories/client-advisories/2026q3/09-17-26-cbp-cape-phase-3-ieepa-refunds/",
+   "outlet": "C.H. Robinson client advisory",
+   "date": "2026-09-17",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "approximately $122 billion (including interest) has been certified and transmitted to the U.S. Treasury for payment.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n that date. Key highlights More than 286,000 CAPE declarations have been submitted, with over 201,000 accepted for processing, covering approximately 27.2 million entries. CBP reports that approximately $134.7 billion in potential and certified refunds have been accepted into CAPE. Of that amount, approximately $122 billion (including interest) has been certified and transmitted to the U.S. Treasury for payment. Approximately 20,184 refunds totaling $1.3 billion remain on hold because the importer of record has not provided ACH banking information. Since June 29, 2026, CAPE has supported certain reconciliation-flagged entries that are unliquidated or recently liquidated and do not yet have a filed reconciliation entry. CBP is expected to provide further gu"
+  }
+ ]
+}

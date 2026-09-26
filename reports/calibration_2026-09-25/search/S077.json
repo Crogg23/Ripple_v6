@@ -1,0 +1,77 @@
+{
+  "story_id": "S077",
+  "entity": "US healthcare victims on ransomware leak sites matched to Medicare hospitals (33 posts, 32 hospitals); Watsonville Community Hospital (CA) posted by Termite (2024-12) and Sinobi (2025-10)",
+  "queries": [
+    {"q": "Watsonville Community Hospital ransomware Termite leak site", "found_useful": true},
+    {"q": "Watsonville Community Hospital data breach 2025 Sinobi ransomware", "found_useful": true},
+    {"q": "Watsonville Community Hospital cyberattack Santa Cruz Sentinel Lookout patients notified breach", "found_useful": true},
+    {"q": "how many US hospitals listed on ransomware leak sites 2025 healthcare victims count analysis ransomware.live Comparitech", "found_useful": true},
+    {"q": "ransomware leak site claims healthcare unverified not confirmed breach hospitals deny false claims", "found_useful": true},
+    {"q": "Watsonville Community Hospital breach HHS OCR individuals affected California attorney general notice 2025 2026", "found_useful": false},
+    {"q": "study ransomware attacks US hospitals matched Medicare hospital list leak sites JAMA Neprash count hospitals", "found_useful": true},
+    {"q": "Watsonville Community Hospital 2026 data breach lawsuit settlement second breach ransomware", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://databreaches.net/2025/10/10/watsonville-community-hospital-had-a-data-breach-or-two-it-would-be-helpful-to-know-which/",
+      "outlet": "DataBreaches.net",
+      "date": "2025-10-10",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Then on October 1, 2025, the “Sinobi” group added the hospital to their leak site, with a breach date of August 9, 2025.",
+      "paywalled": false,
+      "searcher_note": "Names Watsonville and both gangs. Same page: 'threat actors known as Termite had added the hospital to its dark web leak site on December 11, 2024.' Compared the two leaks and found Sinobi files not in the Termite tranche, suggesting a second breach."
+    },
+    {
+      "url": "https://www.comparitech.com/news/ransomware-gang-claims-attack-on-california-hospital-that-forced-staff-to-use-pen-and-paper/",
+      "outlet": "Comparitech",
+      "date": "2024-12-12",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Ransomware gang Termite today claimed responsibility for a cyber attack on Watsonville Community Hospital in California.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: Termite's claim on Watsonville, Dec 2024."
+    },
+    {
+      "url": "https://www.hipaajournal.com/data-breach-watsonville-community-hospital-palomar-health-medical-group/",
+      "outlet": "HIPAA Journal",
+      "date": "2025-10-20",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "the investigation confirmed that there had been unauthorized access to its network from November 25, 2024, to November 30, 2024, when the hackers were ejected from its network.",
+      "paywalled": false,
+      "searcher_note": "Confirms the Nov 2024 breach was real (hospital notice). Does not name Termite or Sinobi; says the incident was not yet on the HHS OCR portal."
+    },
+    {
+      "url": "https://www.comparitech.com/news/healthcare-ransomware-roundup-2025-stats-on-attacks-ransoms-and-data-breaches/",
+      "outlet": "Comparitech",
+      "date": "2026-01-27",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Throughout 2025, we recorded 445 ransomware attacks on hospitals, clinics, and other direct care providers.",
+      "paywalled": false,
+      "searcher_note": "Pattern: leak-site claims plus confirmed attacks on providers, 2025 only; 155 confirmed vs 290 unconfirmed; US had the most (292). No Medicare-hospital match or 33/1,146 figure. Page shows 'updated' date."
+    },
+    {
+      "url": "https://www.cybersecurity-insiders.com/healthcare-ransomware-attacks-h1-2026/",
+      "outlet": "Cybersecurity Insiders",
+      "date": "2026-07-11",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "With 333 of 410 attacks unconfirmed and quarter-old incidents still surfacing, formal notification will reach you months after the criminals did.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Pattern and the lead's caveat: most healthcare leak-site claims are unconfirmed. H1 2026 data; no Watsonville."
+    },
+    {
+      "url": "https://jamanetwork.com/journals/jama-health-forum/fullarticle/2799961",
+      "outlet": "JAMA Health Forum (Neprash, McGlave, Nikpay et al.)",
+      "date": "2022-12-29",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "From January 2016 to December 2021, 374 ransomware attacks on US health care delivery organizations exposed the PHI of nearly 42 million patients.",
+      "paywalled": false,
+      "searcher_note": "Pattern: built an attack database partly by scraping dark-web forums and leak sites; hospitals were 21.9% of victims. Different window (2016-21), no Medicare-hospital name match. Page blocks curl; quote from WebFetch."
+    }
+  ],
+  "notes": "Watsonville's double posting (Termite Dec 2024, Sinobi Oct 2025) is reported by DataBreaches.net (Oct 2025), which also raised the one-breach-or-two question. Comparitech covered the Termite claim in Dec 2024. No source found counting US healthcare leak-site posts that match Medicare hospitals (the lead's 33 posts / 32 hospitals of 1,146). Aggregate trackers (Comparitech, Cybersecurity Insiders) count leak-site claims against providers by year, not a Medicare-hospital match. Lookout Santa Cruz covered the Nov 2024 outage and a March 2025 hospital statement that employee tax fraud was 'not confirmed to be linked' to the attack; neither Lookout piece fetched mentions Termite or Sinobi."
+}

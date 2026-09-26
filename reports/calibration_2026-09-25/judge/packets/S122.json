@@ -1,0 +1,96 @@
+{
+ "story_id": "S122",
+ "lead": {
+  "headline": "Argentina sided with the US on 78% of UN votes in 2024-25, up 19 points, biggest rise of 178 countries",
+  "number": "59% to 78% in the Sept 2024-Sept 2025 session; the typical country fell 13 points; Argentina ended third most out of step, behind only Israel and the US and level with Russia",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The session straddles Biden and Trump, so part of the rise may be the US changing its own votes; that split isn't done."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Argentina UN General Assembly votes aligned with United States Milei 2025",
+  "Argentina voting coincidence with US UN General Assembly percentage Milei Israel votes against",
+  "coincidencia votos Argentina Estados Unidos ONU Asamblea General porcentaje Milei",
+  "State Department \"Voting Practices in the United Nations\" 2024 Argentina coincidence",
+  "\"Voting Practices in the United Nations\" 2025 report Argentina coincidence percent",
+  "Argentina votó con Estados Unidos en la ONU 78% de las votaciones",
+  "Argentina \"voting coincidence\" OR \"voted with the United States\" UN General Assembly 2025 percent Israel most aligned",
+  "UN General Assembly 2024-25 session voting analysis countries moved closer to United States biggest shift Argentina Trump votes changed",
+  "Guardian analysis UN votes US allies voting with United States less often 2025 Trump agreement rate"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.state.gov/wp-content/uploads/2026/09/2026-Voting-Practices-Report_Accessible.pdf",
+   "outlet": "US Department of State, Voting Practices in the United Nations, 2025",
+   "date": "2026-09-24",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The 10 countries with the highest voting coincidence with the United States were (in descending order, excluding countries that were not allowed to vote during all or most of 2025 due to being in arrears): Israel, Argentina",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "adopted by consensus without a vote) between the United States and the other 192 countries in the UNGA was 17 percent for 2025, lower than the average of 46 percent in 2024 and the 20-year average of 35 percent. In 2025, Israel had the highest voting coincidence with the United States (76 percent). The 10 countries with the highest voting coincidence with the United States were (in descending order, excluding countries that were not allowed to vote during all or most of 2025 due to being in arrears): Israel, Argentina, Madagascar, Sao Tome and Principe, Nauru, and St. Vincent and the Grenadines, South Sudan, Dominica, Kiribati, and Paraguay. The seven countries with the lowest voting coincidence with the United States were (in ascending order): Lebanon, Tunisia, Thailand, Mongolia, Brunei, Vietnam, and Cambodia. Seven countries tied for the eig"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.state.gov/wp-content/uploads/2026/09/2026-Voting-Practices-Report_Accessible.pdf",
+   "outlet": "US Department of State, Voting Practices in the United Nations, 2025",
+   "date": "2026-09-24",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Argentina ARG 96 27 31 37 68%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "artial Absent Voting Coincidence Afghanistan AFG 0 0 0 191 50% Albania ALB 32 120 36 3 27% Algeria DZA 7 168 16 0 8% Page 32 of 105 UNCLASSIFIED Country ISO Code Same Oppose Partial Absent Voting Coincidence Andorra AND 23 140 26 2 19% Angola AGO 6 165 17 3 8% Antigua and Barbuda ATG 8 158 9 16 11% Argentina ARG 96 27 31 37 68% Armenia ARM 8 145 26 12 14% Australia AUS 31 134 26 0 23% Austria AUT 27 140 24 0 20% Azerbaijan AZE 4 149 4 34 12% Bahamas BHS 10 164 10 7 10% Bahrain BHR 6 168 17 0 8% Bangladesh BGD 6 169 15 1 7% Barbados BRB 6 135 3 47 16% Belarus BLR 11 153 26 1 13% Belgium BEL 31 134 26 0 23% Belize BLZ 7 160 10 14 10% Benin BEN 4 69"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.state.gov/wp-content/uploads/2025/07/Voting-Practices-in-the-United-Nations-for-2024.pdf",
+   "outlet": "US Department of State, Voting Practices in the United Nations, 2024",
+   "date": "2025-07-11",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Argentina ARG 69 9 17 0 82%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "und in Section I of this report. ALL COUNTRIES (ALPHABETICAL) Country ISO Code Same Oppose Partial Absent Voting Coincidence Afghanistan AFG 1 0 0 95 51% Albania ALB 57 15 23 0 72% Algeria DZA 17 53 25 0 31% Andorra AND 46 27 20 2 60% Angola AGO 21 51 20 3 34% Antigua and Barbuda ATG 27 48 12 8 39% Argentina ARG 69 9 17 0 82% Armenia ARM 24 34 32 5 45% Australia AUS 58 16 21 0 72% Austria AUT 50 23 22 0 64% UNCLASSIFIED Country ISO Code Same Oppose Partial Absent Voting Coincidence Azerbaijan AZE 14 47 11 23 33% Bahamas BHS 30 47 15 3 41% Bahrain BHR 25 50 20 0 37% Bangladesh BGD 25 50 19 1 37% Barbados BRB 29 49 13 4 39% Belarus BLR 13 56 25"
+  },
+  {
+   "idx": 3,
+   "url": "https://goodauthority.org/news/the-world-isnt-moving-away-from-the-u-s-the-u-s-is-moving-away-from-the-world/",
+   "outlet": "Good Authority (Erik Voeten)",
+   "date": "2026-02-17",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The U.S. voting record in the United Nations is so anomalous that the model wants to push the U.S. ideal points all the way into outer space. Israel and Argentina are the closest followers.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the information about identical resolutions as a kind of glue to identify changes in positions, known as “ideal points,” over time. Think of this as analogous to estimates of how liberal or conservative members of Congress are. The change in 2025 is quite dramatic, as my latest figure below shows. The U.S. voting record in the United Nations is so anomalous that the model wants to push the U.S. ideal points all the way into outer space. Israel and Argentina are the closest followers. Some other countries, like Board of Peace members Hungary and Paraguay, have also shifted towards the U.S. However, most other countries have pretty much stayed where they were. The implication is straightforward. What looks like a global drift away from the United States is, in large part, the consequence of the United St"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.perfil.com/noticias/masperfil/rdi-los-votos-de-argentina-en-la-onu-sufrieron-un-abrupto-cambio-de-rumbo-tras-la-asuncion-de-javier-milei.phtml",
+   "outlet": "Perfil",
+   "date": "2026-09-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Y ahora en 2025 o 2026, que son los últimos dos puntos que tenemos abajo, estamos solos",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o fue, según su explicación, un cambio a partir de 2024. “La línea azul es Argentina, que veníamos votando bastante parecido a todos los demás países hasta 2024”, resaltó en +Perfil , el nuevo medio de Editorial Perfil. El punto central de su exposición aparece al observar los datos más recientes: “Y ahora en 2025 o 2026, que son los últimos dos puntos que tenemos abajo, estamos solos ”. Snitcofsky enfatizó la distancia visual respecto del conjunto de países: “Vos imaginate, un montón de gente allá y nosotros allá ”. Y resumió la observación con otra frase: “Realmente estamos lejos de todo el montón”. El voto argentino y la política exterior El análisis presentado también puso el foco en la continuid"
+  },
+  {
+   "idx": 5,
+   "url": "https://datadrivendecisionlab.com/2024-UNGA-report",
+   "outlet": "Data Driven Decision Lab (3DL)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Under its new president, Javier Milei, Argentina executed the most dramatic policy reversal of any UN member, plummeting 170 ranks in internal consistency.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ons A large drop in votes in support. Thematic alignment on arms limitations saw a significant decline in 2024. This concerning trend reflects growing disagreements among member states regarding disarmament initiatives and arms control measures. -170 Argentina A 170-rank drop in internal alignment. Under its new president, Javier Milei, Argentina executed the most dramatic policy reversal of any UN member, plummeting 170 ranks in internal consistency. After not casting a single \"No\" vote for over a decade, the country voted against 38 resolutions in 2024, signaling a radical foreign policy shift. Executive Summary Executive Summary The 2024 UNGA Country Alignment Index reveals a world splintering under renewed geopolitical pressure. Regions across the Global South strengthened thei"
+  }
+ ]
+}

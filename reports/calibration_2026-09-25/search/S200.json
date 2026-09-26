@@ -1,0 +1,37 @@
+{
+  "story_id": "S200",
+  "entity": "Diamondback Energy, Permian Basin frack jobs, fresh-groundwater share of water used vs other FracFocus-reporting operators, 2025",
+  "queries": [
+    {"q": "Diamondback Energy fresh groundwater fracking water use Permian FracFocus", "found_useful": true},
+    {"q": "Diamondback Energy freshwater fracking Midland Basin aquifer 2025", "found_useful": false},
+    {"q": "Diamondback Energy sustainability report recycled produced water percentage completions brackish fresh water", "found_useful": false},
+    {"q": "Permian operators fresh water share fracking by company analysis FracFocus water source disclosure", "found_useful": false},
+    {"q": "Diamondback Energy water Midland Reporter-Telegram OR Texas Tribune groundwater frac", "found_useful": false},
+    {"q": "Permian fracking freshwater groundwater use oil companies 2026 report aquifer Diamondback", "found_useful": false},
+    {"q": "Diamondback \"fresh water\" OR \"freshwater\" reduction completions recycled water 2025 Permian operator", "found_useful": false},
+    {"q": "FracFocus water source groundwater surface water percent operators Midland Delaware Basin study", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.asyousow.org/resolutions/2020/01/04/diamondback-energy-water-management-risks",
+      "outlet": "As You Sow",
+      "date": "2020-01-04",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Yet, the Company offers no substantive reporting on its own water practices or water risk management strategy, nor does it disclose policies related to water efficiency or targets related to water use reduction.",
+      "paywalled": false,
+      "searcher_note": "Shareholder resolution on Diamondback water risk; names the company and its water disclosure gap, but reports no fresh-groundwater share and no peer comparison."
+    },
+    {
+      "url": "https://fracfocus.org/news/water-source-data",
+      "outlet": "FracFocus (Ground Water Protection Council / IOGCC)",
+      "date": "2023-12-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The Water Source data is strictly a voluntary submission.",
+      "paywalled": false,
+      "searcher_note": "Registry's own notice on the water-source fields the lead is built from: voluntary, seven categories split by groundwater/surface/produced and 1000 TDS. Context for the lead's caveat that big peers file no water rows."
+    }
+  ],
+  "notes": "No source found that names Diamondback and reports its fresh-groundwater share of frac water, or compares it with other operators. Search snippets (not verified on the page) say Diamondback's own sustainability page reports about 69.5% recycled water in 2024 and a goal of over 65% recycled by 2025; the company site timed out or returned 403 to every fetch, so it is not recorded. That company claim concerns recycled share of all water, not fresh groundwater vs peers, so it may or may not bear on direction. Texas Monthly 'Why Are Permian Basin Frackers Using as Much Fresh Water as Dallas?' (pattern: about half of Permian frac water drawn from aquifers, per snippet) returned 403 and is not recorded. EWG 'Monster Wells' returned 403. Diamondback FY2024 10-K has no water-source percentages. No coverage dated after 2026-06-30 found."
+}

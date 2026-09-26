@@ -1,0 +1,57 @@
+{
+  "story_id": "S070",
+  "entity": "Beaver Valley Hospital (Beaver, Utah, 25-bed critical-access hospital), $22.3M federal COVID Provider Relief Fund payments vs $9.1M 2019 net patient revenue",
+  "queries": [
+    {"q": "Beaver Valley Hospital Utah COVID relief funds Provider Relief Fund million", "found_useful": true},
+    {"q": "\"Beaver Valley Hospital\" CARES Act $22 million", "found_useful": true},
+    {"q": "\"Beaver Valley Hospital\" pandemic federal relief nursing homes Utah Investigative Journalism Project", "found_useful": true},
+    {"q": "\"Beaver Valley Hospital\" Salt Lake Tribune nursing homes upper payment limit 2026", "found_useful": true},
+    {"q": "Beaver Utah hospital COVID-19 Provider Relief Fund payments exceeded revenue rural critical access hospital", "found_useful": false},
+    {"q": "\"Beaver Valley Hospital\" COVID money federal grants 2020 2021 St George News OR Deseret OR KSL", "found_useful": false},
+    {"q": "Provider Relief Fund rural tranche critical access hospitals received more than lost revenue analysis", "found_useful": true},
+    {"q": "\"Beaver Valley Hospital\" news 2026 audit legislature nursing homes Medicaid", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.kuer.org/health/2025-05-20/how-a-rural-hospitals-medicaid-windfall-could-cost-utah-millions",
+      "outlet": "KUER / Utah Investigative Journalism Project",
+      "date": "2025-05-20",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Beaver Valley Hospital, a city-owned facility in rural southern Utah quietly took ownership of 44 nursing homes across the state starting in 2014.",
+      "paywalled": false,
+      "searcher_note": "Covers the lead's secondary claim (nursing homes under the hospital's name, via Medicaid UPL program, $700M+ revenue). Says nothing about COVID relief."
+    },
+    {
+      "url": "https://www.deseret.com/utah/2026/04/03/audit-raises-issues-with-utahs-oversight-of-a-medicaid-nursing-home-program/",
+      "outlet": "Deseret News (KSL byline)",
+      "date": "2026-04-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "According to the audit, the majority of the 75 Upper Payment Limit licenses issued by the state are held by three entities: Beaver Valley Hospital holds 44, Gunnison Valley Hospital holds 15 and Kane County Hospital holds five.",
+      "paywalled": false,
+      "searcher_note": "State audit story: Beaver Valley Hospital holds 44 nursing-home UPL licenses (lead says 40 enrollments). No COVID relief mention."
+    },
+    {
+      "url": "https://le.utah.gov/interim/2022/pdf/00000239.pdf",
+      "outlet": "Utah State Legislature (FY 2021 vendor payments table)",
+      "date": "2021-12-16",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "BEAVER VALLEY HOSPITAL $6,284,290 Bed Reserve Agreement City Creek Post Acute - COVID-19",
+      "paywalled": false,
+      "searcher_note": "State (not federal PRF) FY2021 COVID-19 payment to Beaver Valley Hospital for a nursing-home bed-reserve deal. A table row, not reporting; date is PDF creation date. Different money from the lead's $22.3M."
+    },
+    {
+      "url": "https://www.kff.org/covid-19/funding-for-health-care-providers-during-the-pandemic-an-update/",
+      "outlet": "KFF",
+      "date": "2022-01-27",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "critical access hospitals and other rural hospitals appear to have received more Provider Relief Funds as a share of their operating expenses than other types of hospitals",
+      "paywalled": false,
+      "searcher_note": "General finding: rural and critical-access hospitals got more relief money relative to their size than other hospitals. Does not name Beaver Valley."
+    }
+  ],
+  "notes": "No source found reports Beaver Valley Hospital's federal Provider Relief Fund total ($22.3M) or compares it to its 2019 patient revenue. Press coverage of the hospital is about its Medicaid nursing-home (UPL) program, not COVID relief; those sources give 44 nursing homes/licenses vs the lead's 40 enrollments. One Utah legislative table shows a separate $6.28M state COVID-19 payment to the hospital (FY2021). KFF gives the rural/CAH pattern only. A Health Affairs study on PRF targeting (doi 10.1377/hlthaff.2022.01411) returned 403 and wasn't recorded. A FOX 13 page listing UPL totals through Q2 2026 had no page date and no COVID content. Query 5's tool call ran several sub-searches internally; logged as one query. Nothing found dated after 2026-06-30."
+}

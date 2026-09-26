@@ -1,0 +1,38 @@
+{
+  "story_id": "S017",
+  "entity": "Liana Karapetyan, Kristine Arutyunyan, Arman Danielian: people on the HHS-OIG exclusion list (LEIE) listed as owners of six LA-area home health agencies (Direct Care HH; Holy Light and May Light HH; Vita, Valeo and Arva HH)",
+  "queries": [
+    {"q": "Arman Danielian home health fraud", "found_useful": false},
+    {"q": "Kristine Arutyunyan home health Holy Light", "found_useful": true},
+    {"q": "Liana Karapetyan Direct Care home health", "found_useful": true},
+    {"q": "\"Direct Care\" home health Los Angeles excluded owner Karapetyan", "found_useful": false},
+    {"q": "excluded individuals owners home health agencies Los Angeles CMS ownership data OIG exclusion list", "found_useful": false},
+    {"q": "Danielian \"Valeo\" OR \"Vita\" OR \"Arva\" home health Los Angeles", "found_useful": false},
+    {"q": "Danielian sentenced health care fraud Simi Valley home health 2025", "found_useful": false},
+    {"q": "Los Angeles home health agencies owners convicted still listed Medicare 2026", "found_useful": false},
+    {"q": "\"Holy Light Home Health\" OR \"May Light Home Health\" California", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://oig.hhs.gov/fraud/enforcement/sacramento-area-home-health-care-and-hospice-agencies-owner-sentenced-to-18-months-in-prison-for-conspiring-to-defraud-medicare/",
+      "outlet": "HHS Office of Inspector General (reposting U.S. Attorney, E.D. Cal.)",
+      "date": "2022-07-21",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "U.S. District Judge Troy L. Nunley sentenced Liana Karapetyan, 42, of El Dorado Hills, today to 18 months in prison for one count of conspiracy to commit health care fraud",
+      "paywalled": false,
+      "searcher_note": "Conviction of a Liana Karapetyan who owned Sacramento-area home health and hospice agencies; explains a ban, says nothing about an LA agency called Direct Care or current ownership. Same name, not confirmed same person."
+    },
+    {
+      "url": "https://patch.com/california/los-angeles/northridge-hospice-facility-owner-arrested",
+      "outlet": "Patch (Los Angeles)",
+      "date": "2021-12-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Oganes Doganyan, 49, of Northridge, and Kristine Arutyunyan, 38, of Glendale, allegedly paid illegal kickbacks for the referral of beneficiary information that could be used to bill for supposed hospice services, according to the DOJ.",
+      "paywalled": false,
+      "searcher_note": "2021 hospice-fraud arrest of a Kristine Arutyunyan of Glendale; the likely root of a later ban. Does not mention Holy Light or May Light home health or her ownership of them."
+    }
+  ],
+  "notes": "No source found reports the lead's finding: that these banned people are listed owners of currently operating LA home health agencies. The two sources only cover the underlying criminal cases for two of the three names (name matches, not confirmed same people). Nothing found for Arman Danielian beyond an ENT doctor of the same name and a 2015 N.D. Cal. judgment (govinfo, not opened). Agency names (Vita, Valeo, Arva in Simi Valley; Holy Light, May Light in Van Nuys) turned up only in provider directories. HHCN 2026-04-15 reported 23 LA-area home health agencies suspended but names none of these. justice.gov and KTLA pages refused the fetch."
+}

@@ -1,0 +1,44 @@
+{
+ "story_id": "S126",
+ "lead": {
+  "headline": "Since 2020 the bank regulator (FDIC) put 11 of 107 minority-owned banks under cleanup orders: about 2.7x similar banks",
+  "number": "2020-26: 11 of 107 (10.3%) got a new bank-level consent order vs 86 of 3,167 peers (2.7%); matched on size and region you'd expect about 4",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Minority status is today's value and the order texts are unread; money-laundering orders on remittance-heavy banks could carry the whole gap."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "FDIC consent orders minority-owned banks disproportionate enforcement actions minority depository institutions",
+  "minority banks examiners harsher treatment enforcement orders American Banker",
+  "Black-owned bank FDIC consent order capital unsafe practices 2023",
+  "minority depository institutions more likely enforcement action CAMELS ratings study compared to non-minority banks",
+  "minority depository institution Bank Secrecy Act consent order FDIC 2025"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.gao.gov/assets/a252314.html",
+   "outlet": "U.S. Government Accountability Office (GAO-07-6)",
+   "date": "2006-10-04",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Bank officials said that examiners sometimes commented negatively on the practice of customers doing business in cash or placed the bank under increased scrutiny with respect to the Bank Secrecy Act's requirements for cash transactions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "sons were not appropriate. For example, some bank officials whose institutions serve immigrant communities said that their customers tended to do business in cash and carried a significant amount of cash because banking services were not widely available or trusted in the customers' home countries. Bank officials said that examiners sometimes commented negatively on the practice of customers doing business in cash or placed the bank under increased scrutiny with respect to the Bank Secrecy Act's requirements for cash transactions.[Footnote 35] While the bank officials said that they did not expect preferential treatment in the examination process, several suggested that examiners undergo additional training so that they could better understand minority banks and the communities that these institutions served. FDIC has conducted such training for its examiners. In 2004"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.gao.gov/assets/a252314.html",
+   "outlet": "U.S. Government Accountability Office (GAO-07-6)",
+   "date": "2006-10-04",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Over 80 percent of the minority banks we surveyed responded that their regulators did a very good or good job of administering examinations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "that limit their operational and financial performance. Figure 9: Minority Banks' Use of Technical Assistance, by Regulator: [See PDF for image] Source: GAO: [End of figure] Survey Respondents Expressed Concerns about the Examination Process and a Provision of CRA Designed to Assist Minority Banks: Over 80 percent of the minority banks we surveyed responded that their regulators did a very good or good job of administering examinations, and almost 90 percent felt that they had very good or good relationships with their regulator. However, as in our 1993 report, some minority bank officials said in both survey responses and interviews that examiners did not always understand the challenges the banks faced in providing services in their particular communities. T"
+  }
+ ]
+}

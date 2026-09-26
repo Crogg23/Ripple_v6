@@ -1,0 +1,15 @@
+{
+ "story_id": "S134",
+ "bin": "Matched + more",
+ "entity": "Yuma Agua Viva water plant, acute chlorine-dioxide limit violations Jul 2020-Mar 2022",
+ "deciding_sources": [
+  0,
+  2
+ ],
+ "earliest_match_date": "2022-03-18",
+ "post_cutoff_match": false,
+ "what_we_add": "21 monthly acute violations; 21 of 54 such violations nationally since 2015, next-worst 6",
+ "why": "Signals AZ and KYMA name the plant and the same exceedance window and levels (0.85-2.04 vs our 0.9-2.0). No source has the national count or the 21-of-54 rank; their 70 instances is readings, not monthly violations, so no contradiction.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

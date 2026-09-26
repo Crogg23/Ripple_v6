@@ -1,0 +1,95 @@
+{
+ "story_id": "S063",
+ "lead": {
+  "headline": "5,362 company officers and directors match $555M of federal campaign gifts by name, state and employer",
+  "number": "5,362 SEC insiders (officer or director filings 2021-25) matched to $555M of $1,000+ individual FEC gifts, 2022-26 cycles; coal CEO Joseph Craft III gave $8.2M.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "A name-and-employer match never skeptic-checked; the bridge is worth more than the story."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Joseph Craft III political donations million 2024 election Alliance Resource Partners CEO",
+  "\"Joe Craft\" super PAC donation 2024 OR 2025 OR 2026 FEC million Kentucky",
+  "analysis corporate executives officers directors campaign contributions FEC matched SEC filings 2024 cycle CEOs gave million",
+  "study executives political donations FEC data S&P 1500 officers directors partisan 2024 CEOs donations analysis",
+  "\"The Politics of CEOs\" Cohen Hazan Tallarita Weiss FEC contributions S&P 1500 CEOs Republican",
+  "Joe Craft Kelly Craft donation 2026 Senate race Kentucky super PAC Barr Morris Cameron",
+  "Joe Craft Alliance Coal top donor 2024 cycle total contributions OpenSecrets Trump MAGA Inc Senate Leadership Fund",
+  "corporate executives personal political donations 2024 election analysis Fortune 500 CEOs gave millions Forbes OR Axios OR Bloomberg"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.aol.com/prominent-ky-political-donors-kelly-185728921.html",
+   "outlet": "Lexington Herald-Leader (syndicated on AOL)",
+   "date": "2024-01-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The couple is opening the trust with an $826,000 donation between the two, which is a maximum donation, according to Kristen Branscum, Kelly Craft's chief of staff.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "4. RNC Chairwoman Ronna McDaniel announced the move in a statement released Tuesday. Politico described the group the Crafts are chairing , the RNC's Presidential Trust, as \"a project the RNC organizes each election year in an effort to raise money to support the eventual GOP presidential nominee.\" The couple is opening the trust with an $826,000 donation between the two, which is a maximum donation, according to Kristen Branscum, Kelly Craft's chief of staff. Joe Craft, a native of Hazard, is a longtime coal magnate, local philanthropist and GOP megadonor in national circles. He leads Alliance Resource Partners, a natural resource company that touts itself as the \"largest coal producer in the Eastern U.S.\" He's married to Kelly Craft, a Kentuckian who finished in third place behind f"
+  },
+  {
+   "idx": 1,
+   "url": "https://linknky.com/news/2023/10/26/kelly-and-joe-craft-give-the-max-to-trumps-rivals-in-gop-field-for-president/",
+   "outlet": "Kentucky Lantern (republished by LINK nky), Tom Loftus",
+   "date": "2023-10-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "That adds up to $82,600 in contributions from the Crafts to alternatives to Trump in the large field of candidates seeking the 2024 Republican nomination for president.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " of NKY will be talking about, delivered to your inbox each weekday morning. Sign up In addition, FEC records show that Kelly and Joe Craft each contributed $5,000 to another DeSantis-related political committee called Team Desantis. DeSantis endorsed Craft in the May primary campaign for governor. That adds up to $82,600 in contributions from the Crafts to alternatives to Trump in the large field of candidates seeking the 2024 Republican nomination for president. Kelly Craft did not reply to text messages sent to her by Kentucky Lantern seeking comment on why she and her husband contributed to campaigns of these alternatives to Trump, who polls show is running far ahead of all of his rivals for the GOP nomination for president next year. For many years Joe Craft has been a major "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.eenews.net/articles/coal-executive-tapped-to-lead-gop-fundraising-effort/",
+   "outlet": "E&E News by POLITICO, Timothy Cama",
+   "date": "2024-01-23",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Alliance Resource Partners CEO Joe Craft and his wife, former United Nations Ambassador Kelly Craft, will co-chair the Republican National Committee's Presidential Trust.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "aft speaks to reporters before the start of the Kentucky Farm Bureau Ham Breakfast at the Kentucky State Fair in Louisville on Aug. 25, 2022. Timothy Easley/AP The Republican Party has tapped a coal executive to lead its efforts to raise a pot of money for the party’s eventual presidential nominee. Alliance Resource Partners CEO Joe Craft and his wife, former United Nations Ambassador Kelly Craft, will co-chair the Republican National Committee’s Presidential Trust, the committee announced Tuesday. “With their leadership both in public service and the private sector, we are confident the Crafts will help us continue to grow our Party and raise the necessary funds to deliver Republican victories up and down the ballot in just 10 short months,” RNC Chair Ronna McDaniel said in a statement. Advertiseme"
+  },
+  {
+   "idx": 3,
+   "url": "https://publicintegrity.org/politics/donor-profile-joe-craft/",
+   "outlet": "Center for Public Integrity",
+   "date": "2012-12-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "$3.4 million to American Crossroads (pro-Republican), including $850,000 from his company, Alliance Management Holdings",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s support of Democratic PAC By John Dunbar September 28, 2012 Donor profile: Joe Ricketts By Reity O’Brien October 23, 2012 Donor profile: United Auto Workers By Alexandra Duszak October 23, 2012 Click here for more stories in this topic Ranking: 21 Total contributions to super PACs: $4.4 million* $3.4 million to American Crossroads (pro-Republican), including $850,000 from his company, Alliance Management Holdings $1 million to Restore Our Future (pro-Mitt Romney) Federal hard money contributions: Not including his super PAC contributions, Craft, along with his ex-wife, Kathy, has donated more than $800,000 to federal candidates, party committees, business PACs and other political committees since the 1998 election cycle, according to the Cen"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.nber.org/papers/w25815",
+   "outlet": "NBER (Cohen, Hazan, Tallarita, Weiss)",
+   "date": "2019-05-01",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "We use Federal Election Commission (FEC) records to put together a comprehensive database of the political contributions made by over 3,500 individuals who served as CEOs of S&P 1500 companies during the period 2000-2017.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "antial consideration from policymakers and the public. The political preferences of CEOs, we argue, are therefore important for a full understanding of U.S. policymaking and politics. To contribute to this understanding, we provide empirical evidence on the partisan leanings of public-company CEOs. We use Federal Election Commission (FEC) records to put together a comprehensive database of the political contributions made by over 3,500 individuals who served as CEOs of S&P 1500 companies during the period 2000-2017. We find that these political contributions display substantial partisan preferences in support of Republican candidates. We identify how this pattern is related to the company’s industry, geographical region, and CEO gender. To highlight the significance of CEO’s partisan preferences for some corporate decisions, we show that public com"
+  },
+  {
+   "idx": 5,
+   "url": "https://finance.yahoo.com/news/most-top-ceos-arent-giving-to-either-trump-or-biden-080016177.html",
+   "outlet": "Yahoo Finance, Ben Werschkul and Maya Benjamin",
+   "date": "2024-07-09",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "The heads of 98 of America's 100 biggest companies have chosen not to financially support either of the major party's standard-bearers so far, according to a Yahoo Finance analysis of the latest federal campaign finance filings",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ler or investment adviser and does not offer securities or cryptocurrencies for sale or facilitate trading. Coinbase pays us for certain activity generated through this link. Prices displayed are informational. Learn more CEOs are largely keeping their money away from presidential politics in 2024. The heads of 98 of America's 100 biggest companies have chosen not to financially support either of the major party's standard-bearers so far, according to a Yahoo Finance analysis of the latest federal campaign finance filings tracking donations through early June. These top bosses have personally given only about $88,000 to presidential candidates, and most of that money went to Donald Trump's primary rivals who are no longer in the race. Not a single one of these executives has given a disclosed donation to Trump — confirming a simil"
+  }
+ ]
+}

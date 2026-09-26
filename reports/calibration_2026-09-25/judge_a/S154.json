@@ -1,0 +1,12 @@
+{
+ "story_id": "S154",
+ "bin": "Matched + more",
+ "entity": "Ohio utilities' energy-efficiency spending vs Michigan's",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2023-08-24",
+ "post_cutoff_match": false,
+ "what_we_add": "$3.22 per customer in 2024 vs Michigan's $81.98, rank 48 of 51, and the first-year-savings gap",
+ "why": "ACEEE reports the same finding in words: Ohio utilities at the bottom after HB 6 killed the programs, driving nearly all the national savings drop. The per-customer dollars and the Michigan comparison are ours.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

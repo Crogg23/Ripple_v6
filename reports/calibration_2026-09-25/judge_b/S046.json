@@ -1,0 +1,12 @@
+{
+  "story_id": "S046",
+  "bin": "Not comparable",
+  "entity": "pension plan EIN 822871833's funded level and unpaid contributions; TMSEL plan's unpaid contributions",
+  "deciding_sources": [1, 3],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "PBGC (not naming the EIN) puts the St. Joseph plan at 35% funded and $88M underfunded - a different valuation basis and measure than our 25.8% and $95.4M unpaid minimums, so the numbers can't be lined up. The usable RTA quote covers the ERISA-status dispute, not the $79.5M; the two quotes stating nonpayment came back missing.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

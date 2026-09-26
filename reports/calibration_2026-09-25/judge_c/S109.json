@@ -1,0 +1,12 @@
+{
+ "story_id": "S109",
+ "bin": "Not comparable",
+ "entity": "Semaglutide ingredient (API) master files filed with FDA since 2023: the 83-file rush",
+ "deciding_sources": [3],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "PharmaDB gives a number for semaglutide API filings, 61 active worldwide, but that's active filings worldwide, not US DMFs filed Jan 2023-Jun 2026, so the numbers can't be lined up; no source states the filing-rush finding or the since-1980 comparison. The Harbin recall sub-claim is covered (0-2), but the headline finding is the DMF surge, which nothing matches.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

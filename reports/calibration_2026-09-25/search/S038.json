@@ -1,0 +1,77 @@
+{
+  "story_id": "S038",
+  "entity": "U.S. nonprofit hospitals (919 matched), 2022: share where one officer's pay exceeded the hospital's entire cost of charity care (27%)",
+  "queries": [
+    {"q": "nonprofit hospitals CEO pay exceeds charity care spending analysis", "found_useful": true},
+    {"q": "\"exceeded\" charity care CEO compensation hospitals number of nonprofit hospitals executive pay more than charity care", "found_useful": true},
+    {"q": "Lown Institute hospital executive compensation vs charity care 2022 Form 990 Schedule H officer pay", "found_useful": false},
+    {"q": "\"more than the hospital spent on charity care\" CEO salary", "found_useful": true},
+    {"q": "nonprofit hospital executive pay charity care report 2026", "found_useful": true},
+    {"q": "hospital CEO paid more than hospital's entire charity care budget tax filings analysis newspaper", "found_useful": true},
+    {"q": "American Hospital Association rebuts charity care comparison community benefit Medicaid shortfall Schedule H misleading executive pay criticism", "found_useful": true},
+    {"q": "percent of nonprofit hospitals where top executive compensation exceeds charity care costs study Form 990 2022", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.inquirer.com/health/chop-nonprofit-ceo-pay-madeline-bell-steve-klasko-20230913.html",
+      "outlet": "Philadelphia Inquirer",
+      "date": "2023-09-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "CHOP paid its CEO a record $7.7 million in 2021, more than the hospital spent on charity care in three years",
+      "paywalled": true,
+      "searcher_note": "Same comparison (one executive's pay vs the hospital's charity care) for a single hospital, CHOP, 2021 pay. Not the national 919-hospital count."
+    },
+    {
+      "url": "https://www.massnurses.org/2011/03/28/high-ceo-salaries-at-nonprofit-hospitals-under-scrutinyonce-again/",
+      "outlet": "Massachusetts Nurses Association (citing Payers and Providers survey)",
+      "date": "2011-03-28",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The survey also identified 17 hospitals in California where the total compensation to CEOs exceeded the cost of charity care.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: same measure (CEO pay above charity-care cost), California only, 17 of 118 nonprofit hospitals, 2009 pay data. Different place and window."
+    },
+    {
+      "url": "https://www.sanders.senate.gov/wp-content/uploads/Executive-Charity-HELP-Committee-Majority-Staff-Report-Final.pdf",
+      "outlet": "U.S. Senate HELP Committee Majority Staff (Sanders)",
+      "date": "2023-10-10",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "just over half of the hospitals reviewed by HELP Committee staff provided their CEO with a 2021 salary that was more than 6 percent of their total outlay for charity care.",
+      "paywalled": false,
+      "searcher_note": "16 largest nonprofit systems, 2021: CEO pay as a share of charity care (highest Allina at 21%). System level, not hospital level; none reported above 100%."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11268666/",
+      "outlet": "PLOS One (Jenkins, Short, Ho)",
+      "date": "2024-07-24",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "A one million dollar increase in charity care had no significant association with CEO compensation.",
+      "paywalled": false,
+      "searcher_note": "Form 990 study of nonprofit hospital CEO pay 2012 and 2019: pay tracks profits, not charity care. Pattern, no count of hospitals where pay exceeds charity care."
+    },
+    {
+      "url": "https://www.aha.org/news/blog/2025-10-20-beyond-labels-schedule-h-reporting-and-benefits-hospitals-provide-communities",
+      "outlet": "American Hospital Association",
+      "date": "2025-10-19",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "This restrictive approach not only departs from the relevant regulatory framework but also overlooks the vital role",
+      "paywalled": false,
+      "searcher_note": "Disagreement on framing: AHA argues judging hospitals on charity care alone is too narrow (excludes Medicaid shortfall, other community benefit). Does not address officer pay."
+    },
+    {
+      "url": "https://waysandmeans.house.gov/2026/07/20/what-they-are-saying-ways-and-means-committee-bringing-transparency-to-americas-nonprofit-hospital-sector/",
+      "outlet": "House Ways and Means Committee",
+      "date": "2026-07-20",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "excessive executive compensation more befitting Fortune 500 companies",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff: roundup of support for nonprofit hospital transparency push; mentions executive pay criticism but no direct pay-vs-charity-care comparison or count."
+    }
+  ],
+  "notes": "No source found giving a national count or share of nonprofit hospitals where one officer's 2022 pay exceeded the hospital's charity-care cost. Same measure appears for single hospitals (CHOP 2021, Philadelphia Inquirer) and for California 2009 (17 of 118 hospitals, about 14%). Senate HELP 2023 covers 16 big systems at system level. Also found: Save Our States report covered by yournews.com 2026-06-29 (NewYork-Presbyterian CEO pay vs under 1% of revenue to charity care), not recorded to stay within 6. NPR 2024-08-19 piece on CEO pay vs community benefit timed out on fetch twice, not recorded. Axios Cleveland 2023 (Cleveland Clinic 1.5% charity care, CEO $6.6M) seen in search results, not fetched."
+}

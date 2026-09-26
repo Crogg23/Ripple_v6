@@ -1,0 +1,12 @@
+{
+ "story_id": "S114",
+ "bin": "Matched + more",
+ "entity": "House members running for Senate in the 2026 cycle: missed-vote rates during campaign season",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2026-07-08",
+ "post_cutoff_match": true,
+ "what_we_add": "Median rates 1.8% to 3.5% for the 16, and the placebo: the same 16 rose 0.3% to 2.4% in the same months of 2023-24",
+ "why": "Legis1 and Deseret name the class, House members seeking higher office, and report the same finding in the same direction: they miss far more votes while campaigning. No source has the group medians or the two-years-earlier placebo comparison that undercuts the campaign explanation.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

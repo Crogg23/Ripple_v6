@@ -1,0 +1,46 @@
+{
+  "story_id": "S167",
+  "entity": "Mossack Fonseca (Panama) offshore company formations, Apr-Jun 2005 vs Apr-Jun 2004, ahead of the EU Savings Tax Directive (effective 2005-07-01); also Bahamas and Nevis registries in ICIJ Offshore Leaks",
+  "queries": [
+    {"q": "Mossack Fonseca EU savings tax directive 2005 surge companies Panama Papers", "found_useful": false},
+    {"q": "Caruana-Galizia offshore financial activity tax policy leaked data EU Savings Directive 2005 incorporations spike", "found_useful": true},
+    {"q": "Omartian Panama Papers tax information exchange offshore entities incorporations European Union Savings Directive evidence", "found_useful": true},
+    {"q": "Panama Papers Mossack Fonseca \"savings directive\" clients shell companies 2005 Süddeutsche ICIJ bank Switzerland", "found_useful": false},
+    {"q": "\"Mossack Fonseca\" \"savings tax\" European loophole offshore companies Luxembourg Swiss intermediaries 2005 rush", "found_useful": true},
+    {"q": "Bahamas international business companies incorporations 2005 increase EU savings directive Nevis offshore registrations rose", "found_useful": false},
+    {"q": "offshore company formations spiked before July 2005 EU savings directive shell companies loophole study Panama Papers data", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.anderson.ucla.edu/documents/areas/fac/accounting/working-papers/Omartian-Panama%20Papers.pdf",
+      "outlet": "Jim Omartian, UNC Kenan-Flagler working paper 'Do Banks Aid and Abet Asset Concealment: Evidence from the Panama Papers' (hosted by UCLA Anderson)",
+      "date": "2017-10-23",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Once the EUSD comes into force, the incorporation activity indeed subsides relative to the pre-July 1 rush, but remains higher than the early period.",
+      "paywalled": false,
+      "searcher_note": "Uses Mossack Fonseca (Panama Papers) incorporations 2002-2007; finds a pre-July 2005 rush from EUSD-country investors (+20 pp probability of any incorporation, ~73% more incorporations) and that Swiss-intermediary entities are the proxy for Swiss banks. Same finding, same firm; no 2,331-to-4,701 count. First draft dated 2016-09-02; current draft 2017-10-23. Other sentences in the PDF carry 'ff' ligatures, so a ligature-free sentence was chosen."
+    },
+    {
+      "url": "https://extranet.greens-efa-service.eu/public/media/file/1/5183",
+      "outlet": "Sven Giegold MEP, Greens/EFA, for European Parliament PANA committee hearing of Jean-Claude Juncker",
+      "date": "2017-05-30",
+      "source_type": "testimony",
+      "entity_named": "yes",
+      "quote": "Figure 3 shows that the creation of offshore companies via Mossack-Fonseca by Luxembourg reached an all-time high of almost 1300 in 2005, the year when the EUSTD entered into force.",
+      "paywalled": false,
+      "searcher_note": "Names Mossack Fonseca and ties its 2005 formation peak to the EU Savings Tax Directive, for Luxembourg-linked formations (the lead says Swiss/Luxembourg/Monaco middlemen carry 69% of the jump). Annual count, not Apr-Jun quarter. PDF text extraction renders 'all-time' as 'all -time'."
+    },
+    {
+      "url": "https://www.cambridge.org/core/journals/journal-of-public-policy/article/abs/offshore-financial-activity-and-tax-policy-evidence-from-a-leaked-data-set/A8C83C4F6A781B81CA317DAB78E25499",
+      "outlet": "Journal of Public Policy (Paul and Matthew Caruana-Galizia)",
+      "date": "2016-03-07",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "We show that the growth of EU-owned entities declined immediately after the Directive’s implementation, whereas that of non-EU-owned entities remained stable.",
+      "paywalled": false,
+      "searcher_note": "Uses the 2013 Offshore Leaks data from two other firms (not Mossack Fonseca); EUSD response seen as a post-July 2005 decline in EU-owned entities and substitution to non-cooperative jurisdictions. Pattern source; no pre-deadline doubling reported in the abstract."
+    }
+  ],
+  "notes": "Two sources name Mossack Fonseca and tie a 2005 formation spike to the EU Savings Directive: Omartian's Panama Papers working paper (pre-July 1, 2005 rush) and a 2017 Greens/EFA PANA-committee paper (Luxembourg-sourced Mossack Fonseca formations peaked near 1,300 in 2005). A search snippet attributed 'affected investors roughly doubled offshore entity incorporations' to the ResearchGate/SSRN abstract of Omartian's 'Tax Information Exchange and Offshore Entities: Evidence from the Panama Papers', but both pages returned 403/bot checks, so it is not recorded as evidence. No source found with the Bahamas registry (1,656 to 3,108) or Nevis registry (684 to 1,353) figures, or the Asia-facing providers comparison. ICIJ's 2016 Mossack Fonseca gatekeeper story mentions the 2005 BVI bearer-share crackdown, not the savings directive. No disagreeing source found; no coverage dated after 2026-06-30 found."
+}

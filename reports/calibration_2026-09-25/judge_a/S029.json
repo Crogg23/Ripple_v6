@@ -1,0 +1,12 @@
+{
+ "story_id": "S029",
+ "bin": "Known pattern",
+ "entity": "US high-hazard dams rated Poor/Unsatisfactory with no emergency action plan, current inventory",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "AP and ASCE report the same kind of finding - high-hazard dams lacking EAPs, and poor-condition high-hazard counts - but no source gives the combined measure: poor-condition dams with no plan (634) or the state excess.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

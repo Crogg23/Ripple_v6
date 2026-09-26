@@ -1,0 +1,16 @@
+{
+ "story_id": "S143",
+ "bin": "Matched + more",
+ "entity": "Supreme Court argued cases arising from state courts, share since 2020",
+ "deciding_sources": [
+  0,
+  1,
+  3
+ ],
+ "earliest_match_date": "2024-03-25",
+ "post_cutoff_match": false,
+ "what_we_add": "19 of 295 since 2020, 6.4% vs 14.1% in 2005-19, lowest since 1946; petitions share held ~27%",
+ "why": "Chemerinsky, Vladeck and Bannon all name the Court and state the same collapse in state-court cases with per-term counts. No source has the since-1946 claim, the pooled 19-of-295, or the petition-side share.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S002",
+  "bin": "Matched + more",
+  "entity": "Reliant Care Management's Missouri nursing homes: staffing hours and harm citations vs other Missouri for-profit homes",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2024-08-07",
+  "post_cutoff_match": false,
+  "what_we_add": "the chain-level numbers: 2.16 vs 3.35 nurse hours, 4.67 vs 1.23 harm citations per 100 beds (3.8x), fines 4.3x; no source has the citation or fine comparison",
+  "why": "KCUR/Missouri Independent names Reliant Care and reports the low-staffing finding in the same direction (16 homes under 2 hours daily). Tallgrass calls it the lowest-rated chain it has seen. Nobody has our harm-citation or fine ratios. ProPublica's 34 facilities covers Kansas too, so no contradiction with our 30 Missouri homes.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

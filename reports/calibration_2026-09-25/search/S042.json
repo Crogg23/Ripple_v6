@@ -1,0 +1,37 @@
+{
+  "story_id": "S042",
+  "entity": "Eight coal-mine controllers with 900-1,960 significant-and-substantial (S&S) MSHA violations per 1,000 current miners, 2018-24 (controllers not named in stories.tsv)",
+  "queries": [
+    {"q": "coal mine operators most significant and substantial violations per miner MSHA analysis", "found_useful": false},
+    {"q": "coal companies worst safety records MSHA S&S violations 2018-2024 investigation", "found_useful": false},
+    {"q": "\"violations per miner\" coal mine controller OR operator analysis news", "found_useful": true},
+    {"q": "Mountain State Spotlight OR Kentucky Lantern OR Ohio Valley ReSource coal operators serious safety violations analysis MSHA data", "found_useful": true},
+    {"q": "MSHA pattern of violations notice coal mine 2019 2020 2021 2022 2023 potential POV operators named", "found_useful": false},
+    {"q": "coal mine safety violations decline record low MSHA citations fewer 2024 2025", "found_useful": false},
+    {"q": "coal mine operator repeated serious safety violations 2026 news MSHA citations company", "found_useful": true},
+    {"q": "coal company controller ranking safety violations per employee Appalachian analysis federal mine data 2024", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wvgazettemail.com/news/energy_and_environment/fatality-stricken-mines-had-long-safety-violation-histories-as-more-msha-cuts-eyed/article_fc5e2870-3915-4b12-91bf-241784979596.html",
+      "outlet": "Charleston Gazette-Mail (Mike Tony)",
+      "date": "2026-04-07",
+      "source_type": "news",
+      "entity_named": "unknown",
+      "quote": "controlled by St. Clairsville, Ohio-based American Consolidated Natural Resources, has had more than 1,800 penalties assessed to operator Ohio County Coal Resources, Inc. by MSHA since the start of 2019.",
+      "paywalled": false,
+      "searcher_note": "Pattern: violation counts since 2019 at two fatal mines (Marfork's Panther Eagle ~1,100 violations, 139 S&S; ACNR's Ohio County Mine 1,800+ penalties, 312 S&S). Raw counts, not per miner. Updated 2026-07-30. Page shows a subscription prompt but the text was retrieved."
+    },
+    {
+      "url": "https://www.ishn.com/articles/115287-two-coal-miners-die-in-west-virginia-within-24-hours",
+      "outlet": "ISHN",
+      "date": "2026-04-24",
+      "source_type": "trade press",
+      "entity_named": "unknown",
+      "quote": "The Panther Eagle Horse Creek Mine reportedly received 50 citations for Mine Safety and Health Administration (MSHA) health and safety standard violations in early 2026 alone.",
+      "paywalled": false,
+      "searcher_note": "Trade-press follow-up on the same two fatal mines' citation histories; mine-level counts, no per-miner rate."
+    }
+  ],
+  "notes": "The eight controllers are not named in stories.tsv, so no source can be matched to them by name; entity_named is 'unknown' for that reason. The Gazette-Mail names Marfork Coal and American Consolidated Natural Resources (Ohio County Coal Resources); the judge can check whether either is among the eight. No source found ranking coal controllers by S&S violations per miner or per 1,000 miners for 2018-24. Coverage found is mine-level counts at fatal mines and MSHA's own Pattern of Violations screenings, which named no mines in the recent screenings seen. DOL release msha20240201 ('identifies chronic violator') returned HTTP 403."
+}

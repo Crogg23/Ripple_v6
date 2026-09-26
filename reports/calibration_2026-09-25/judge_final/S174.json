@@ -1,0 +1,12 @@
+{
+  "story_id": "S174",
+  "bin": "Matched + more",
+  "entity": "California health professional shortage areas proposed for withdrawal in 2026",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2026-03-11",
+  "post_cutoff_match": true,
+  "what_we_add": "the 2.7-3.5M people affected, the 74-90 net-of-redesignation count, and the 3x national rate",
+  "why": "Hospital Council and CHA report ~100 of California's HPSAs proposed for withdrawal, same entity, same direction, within 25% of our gross figure. No source has population counts or the national comparison. The July delay to 2027 does not reverse the direction.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

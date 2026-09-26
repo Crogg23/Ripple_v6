@@ -1,0 +1,37 @@
+{
+  "story_id": "S022",
+  "entity": "California large community water systems (40 systems, 4.22M people, mostly LA, San Bernardino, Riverside, San Diego counties) with no full sanitary survey in EPA's federal SDWIS file in 5 years; national 94 systems, 7.66M people",
+  "queries": [
+    {"q": "California water systems overdue sanitary surveys State Water Board Division of Drinking Water inspections backlog", "found_useful": true},
+    {"q": "EPA inspector general sanitary surveys states overdue drinking water systems report", "found_useful": false},
+    {"q": "California large water utilities not inspected years state regulators sanitary survey Los Angeles San Bernardino news", "found_useful": false},
+    {"q": "EPA Region 9 review California drinking water program sanitary surveys not completed community water systems every three years", "found_useful": false},
+    {"q": "SDWIS site visit data sanitary survey missing federal database states not reporting inspections water systems analysis", "found_useful": false},
+    {"q": "Division of Drinking Water sanitary survey completion rate 2024 2025 percent community water systems California annual compliance report", "found_useful": true},
+    {"q": "large drinking water systems no sanitary survey in years EPA data millions of people analysis 2026", "found_useful": false},
+    {"q": "California drinking water inspections lapse state regulators staffing sanitary surveys CalMatters OR \"Los Angeles Times\" 2025 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://water.waterboards.ca.gov/board_info/agendas/2021/feb/021621_10_edrpt.pdf",
+      "outlet": "California State Water Resources Control Board (Executive Director's report, Feb 16 2021 board meeting)",
+      "date": "2021-02-16",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "completion rate stands at 78% through the first three quarters of 2020 and is expected to drop for the first time 5 years.",
+      "paywalled": false,
+      "searcher_note": "State admits sanitary survey completion fell in 2020 (COVID, fires); table shows 617 of 2,867 community water systems without a survey, by district. Statewide, all CWS, 2020 window; does not name the 40 systems."
+    },
+    {
+      "url": "https://waterboards.ca.gov/drinking_water/safedrinkingwaterplan/docs/2025sdwp-board-workshop.pdf",
+      "outlet": "California State Water Resources Control Board, Division of Drinking Water (2025 Safe Drinking Water Plan workshop slides)",
+      "date": "2025-07-15",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Sanitary surveys completed: 7,270 (5/day)",
+      "paywalled": false,
+      "searcher_note": "State's own count of sanitary surveys completed since the 2020 plan, all public water systems; no per-system detail. Possible tension with a gap in EPA's federal copy, but not the same measure."
+    }
+  ],
+  "notes": "No news, audit or research source found that names the 40 California systems, the 4.22M people, the 94 systems nationally, or says large California systems lack sanitary surveys in EPA's federal file. The only related finding is the State Water Board's own 2021 report of a COVID-era drop in survey completion (78% in 2020). California State Auditor report 2021-118 (2022) on failing water systems was fetched; no sentences about inspections. EPA OIG report link redirected to the OIG home page (dead). Water Board performance-report pages load their inspection numbers via charts; no text figures to quote. UCLA Luskin page on EPA inspections of LADWP returned 403."
+}

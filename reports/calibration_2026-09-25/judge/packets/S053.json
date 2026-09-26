@@ -1,0 +1,36 @@
+{
+ "story_id": "S053",
+ "lead": {
+  "headline": "Barred landlord Amerihost Services drew $1.54M in federal Section 8 rent subsidy in 27 payments during its 2021-26 ban",
+  "number": "$1.54M in 27 HUD Section 8 payments, 2021-11 to 2026-03, inside an EPA ban running 2021-09-08 to 2026-09-07.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "It's one rent contract renewed every year since 2007, not new grants, and rent aid follows the tenants."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "\"Amerihost Services\" EPA",
+  "Amerihost Services debarred landlord lead paint",
+  "Amerihost Beckley West Virginia apartments owner",
+  "Amerihost Services LLC Pittsburgh debarment EPA suspension 2021",
+  "\"Beckley Townhomes\" OR \"Beckley Town Homes\" Hager Street HUD lead EPA violation",
+  "EPA debarment landlord Section 8 housing company still receiving HUD payments while excluded",
+  "Register-Herald Beckley Townhomes Hager Street HUD tenants",
+  "GAO OR \"inspector general\" excluded parties SAM debarred entities received federal assistance payments during exclusion report",
+  "Amerihost TSCA lead-based paint disclosure consent agreement EPA Region 3 West Virginia landlord 2021"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.gao.gov/assets/a286497.html",
+   "outlet": "U.S. Government Accountability Office (GAO-09-174)",
+   "date": "2009-02-25",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Businesses and individuals that have been excluded for egregious offenses ranging from national security violations to tax fraud are improperly receiving federal contracts and other funds.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " these allegations could be substantiated and (2) to identify the key causes of any improper awards and other payments detected. GAO investigated parties that were excluded for offenses such as fraud, theft, and violations of federal statutes and received awards in excess of $1,000. What GAO Found: Businesses and individuals that have been excluded for egregious offenses ranging from national security violations to tax fraud are improperly receiving federal contracts and other funds. GAO developed cases on a number of these parties and found that they received funding for a number of reasons, including because agency officials failed to search EPLS or because their searches did not reveal the exclusions. GAO also identified businesses and individuals that were able to circumvent the terms of their exclusions by operat"
+  }
+ ]
+}

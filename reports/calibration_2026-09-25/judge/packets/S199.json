@@ -1,0 +1,95 @@
+{
+ "story_id": "S199",
+ "lead": {
+  "headline": "EPA's database shows Nebraska with 24 of 66 plants nationwide holding an old, serious air violation never acted on",
+  "number": "24 of 66 facilities (36%, 17-36% depending on the cutoff) with a high-priority violation from before July 2024, unresolved, no formal action ever; on Title V major sources alone, 5 of 40.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "ADM Columbus isn't in the 24 and only 4 of the 7 named ethanol plants are; 19 of the 24 aren't Title V sources, and a records gap is likely (Nebraska's formal actions in the database fell 89% at the 2014 system switch)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Nebraska air quality violations unresolved no enforcement NDEE high priority violation ethanol plants",
+  "Flatwater Free Press Nebraska Department of Environment and Energy air permit violations enforcement lax",
+  "EPA State Review Framework Nebraska Clean Air Act high priority violations timely addressed findings",
+  "EPA OIG high priority violations Clean Air Act states not addressed timely unaddressed HPV report",
+  "Nebraska no Clean Air Act penalties five years EPA review NDEE voluntary compliance Nebraska Examiner",
+  "Nebraska ethanol plant air permit violation high priority violator ECHO no formal enforcement",
+  "Environmental Integrity Project 2024 ethanol biofuel plants air permit violations Nebraska enforcement report",
+  "Nebraska air pollution enforcement 2026 NDEE ethanol plant violations penalty attorney general"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf",
+   "outlet": "U.S. EPA Region 7, State Review Framework (Nebraska CAA, FY2022, final report)",
+   "date": "2024-08-27",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "NDEE is not responding to facilities with formal enforcement to address and resolve HPVs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hly on the EPA and NDEE air coordination meetings. NDEE's position is that the data is in the IIS system and being batched to ICIS-AIR. As recommended by EPA, attached is the NDEE IIS batching SOP to ICIS-AIR. CAA Element 4 - Enforcement Finding 4-3 Area for Improvement Recurring Issue: No Summary: NDEE is not responding to facilities with formal enforcement to address and resolve HPVs. Explanation: Although NDEE’s is accurately identifying federally reportable violations as HPVs, and NDEE’s enforcement responses include required corrective actions that will return the facility to compliance in a specified time frame, NDEE is not engaging in formal enforcement to address and resolve HPVs (metric 9a) per the EPA’s En"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf",
+   "outlet": "U.S. EPA Region 7, State Review Framework (Nebraska CAA, FY2022, final report)",
+   "date": "2024-08-27",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The other two HPVs were still showing up in ICIS-AIR as active, even though they had been resolved and documented with NDEE’s database.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nt 4 - Enforcement Finding 4-2 Area for Attention Recurring Issue: No Page 17 of 25 Summary: NDEE did not consistently document addressed or removed HPVs in ICIS-Air. Explanation: In the file review, EPA found that 7 of 9 HPVs that had been addressed or removed consistent with the HPV policy (10b). The other two HPVs were still showing up in ICIS-AIR as active, even though they had been resolved and documented with NDEE’s database. In accordance with SRF protocol, supporting metrics 10a1 (Rate of Addressing HPVs within 180 days) and 10b1 (Rate of Managing HPVs to Comp letion without a Formal Enforcement Action) were assessed during the DMA review period. Si nce there is no information entered for this supporting metric, 10a1 and 10b1 do not support or in"
+  },
+  {
+   "idx": 2,
+   "url": "https://dee.nebraska.gov/air/air-compliance-enforcement-program",
+   "outlet": "Nebraska Department of Water, Energy, and Environment (formerly NDEE)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Through the Nebraska Environmental Protection Act, the Air Program attempts to obtain compliance with environmental regulations first through voluntary efforts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " access to DWEE, reduce response time to citizen complaints, and allow the agency to have a better understanding of local issues. Our field office staff conduct compliance inspections, complaint investigations, sampling, monitoring, and outreach activities for almost all of our regulatory programs. Through the Nebraska Environmental Protection Act, the Air Program attempts to obtain compliance with environmental regulations first through voluntary efforts. Voluntary compliance has helped bring about a better working relationship with the regulated community without sacrificing environmental quality. DWEE Compliance Assistance Program Enforcement Enforcement actions are pursued by the agency when compliance issues are serious, chronic, or cannot be otherwise resolved. DWEE’s maximum penalty is $10,0"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.epa.gov/sites/default/files/2015-11/documents/20091014-10-p-0007.pdf",
+   "outlet": "EPA Office of Inspector General (Report 10-P-0007)",
+   "date": "2009-10-14",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "According to EPA data, about 30 percent of State-led HPVs and about 46 percent of EPA-led HPVs were unaddressed after 270 days.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "High Priority Violations of Clean Air Act Need Improvement What We Found HPVs were not being addressed in a timely manner because regions and States did not follow the HPV policy, EPA Headquarters did not oversee regional and State HPV performance, and regions did not oversee State HPV performance. According to EPA data, about 30 percent of State-led HPVs and about 46 percent of EPA-led HPVs were unaddressed after 270 days. This can result in significant environmental and public health impacts. Regions are not ensuring that sources receive notices of violation within 60 days. None of the regions reviewed held meetings with their States after HPVs had been unaddressed for 150 days to discuss case strategy. Several States addressed HPVs with informal"
+  },
+  {
+   "idx": 4,
+   "url": "https://environmentalintegrity.org/news/biofuels-manufacturing-releases-large-amounts-of-hazardous-air-pollutants/",
+   "outlet": "Environmental Integrity Project",
+   "date": "2024-06-12",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "More than 41 percent of biofuels plants (98 of 240) violated their air pollution control permits at least once between July 2021 and May 2024, according to a review of EPA’s Enforcement and Compliance History Online database.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "essing plant in Decatur, Illinois – one of the largest ethanol factories in the country – was the single largest emitter of hexane in the U.S. in 2022, regardless of industry, releasing 2.2 million pounds of a pollutant that can damage the nerves and cause dizziness and nausea. FREQUENT VIOLATIONS: More than 41 percent of biofuels plants (98 of 240) violated their air pollution control permits at least once between July 2021 and May 2024, according to a review of EPA’s Enforcement and Compliance History Online database. FAILED SMOKESTACK TESTS: Sixty-five out of 182 biofuel plants with available data (36 percent) failed “stack tests,” over the last five years, which measure the amount of a pollutant to determine if emissions are in compliance with the Clean Air Act. CLIMATE IMPACT: In terms of climate-warming pollution, biofuel plants in the U.S"
+  },
+  {
+   "idx": 5,
+   "url": "https://journalstar.com/news/state-regional/report-2-nebraska-biofuel-plants-among-biggest-emitters-of-toxic-pollutants/article_69cd12a0-28ca-11ef-8ee4-57006c4fb840.html",
+   "outlet": "Lincoln Journal Star",
+   "date": "2024-06-14",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Report: 2 Nebraska biofuel plants among biggest emitters of toxic pollutants",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": " Report: 2 Nebraska biofuel plants among biggest emitters of toxic pollutants Skip to main content Skip to main content You are the owner of this article. Edit Article Add New Article Close You have permission to edit this article. Edit Close 63° Log In Subscribe Guest Logout Read Today's E-edition Site Search AI Answers Site Search News Local Crime Nebraska News Politics Records Business Nation & World Last 24 h"
+  }
+ ]
+}

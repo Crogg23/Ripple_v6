@@ -1,0 +1,12 @@
+{
+ "story_id": "S022",
+ "bin": "Known pattern",
+ "entity": "40 big California water systems (4.2M people) with no full sanitary survey on EPA's file in 5 years",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names the 40 systems or the 5-year gap. The state board's own 2021 report shows survey completion falling to 78% statewide - the same kind of finding, in general, not about our entity.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

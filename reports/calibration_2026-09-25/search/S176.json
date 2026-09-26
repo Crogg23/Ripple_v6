@@ -1,0 +1,64 @@
+{
+  "story_id": "S176",
+  "entity": "Ethylene-oxide air releases at contract sterilizers, 2024: Sterilization Services of Virginia (5674 Eastport Blvd, Henrico VA) 8,995 lbs vs DeRoyal Industries (1135 Hwy 33 S, New Tazewell TN) 1,205 lbs",
+  "queries": [
+    {"q": "DeRoyal ethylene oxide sterilizer New Tazewell Tennessee emissions", "found_useful": true},
+    {"q": "Sterilization Services of Virginia Henrico ethylene oxide emissions Richmond", "found_useful": true},
+    {"q": "\"DeRoyal\" ethylene oxide pounds per year emitted largest sterilizer Claiborne County TRI", "found_useful": true},
+    {"q": "largest ethylene oxide emitting medical sterilizers 2024 EPA data ranking top emitters commercial sterilizer", "found_useful": true},
+    {"q": "DeRoyal New Tazewell ethylene oxide 2025 2026 cancer cluster investigation emissions reduced", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://hntrbrk.com/ethylene-oxide-virginia/",
+      "outlet": "Hunterbrook Media (Till Daldrup, Evan Comen)",
+      "date": "2026-05-17",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "According to the EPA data, SSV’s facility has the highest ethylene oxide emissions of all medical sterilizers in the country.",
+      "paywalled": false,
+      "searcher_note": "Names Sterilization Services of Virginia as the top medical-sterilizer EtO emitter and fifth-largest EtO emitter in the U.S. on 2024 EPA data; says 2024 total emissions exceeded 2020, with fugitive releases rising. No pound figure in text; does not mention DeRoyal. Also at https://hntrbrk.com/breaking-news/ethylene-oxide-virginia"
+    },
+    {
+      "url": "https://www.vpm.org/news/2026-06-18/ethylene-oxide-leak-sterilization-services-henrico-industrial-chemicals-selc-epa",
+      "outlet": "VPM News (Patrick Larsen)",
+      "date": "2026-06-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "This exceeded the plant’s EtO emissions permit, which allows for 400 pounds emitted per year, and only 0.8 pounds per hour.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. April 9, 2026 valve leak of 580 lbs; DEQ consent order, ~$53.6K penalty. The 400 lbs/yr permit figure sits in tension with the lead's 8,995 lbs reported for 2024; the judge should weigh whether these measure the same thing."
+    },
+    {
+      "url": "https://www.ucs.org/resources/virginia",
+      "outlet": "Union of Concerned Scientists",
+      "date": "2023-02-07",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In 2021, the facility reported 5,025 pounds of EtO emissions.",
+      "paywalled": false,
+      "searcher_note": "Refers to Sterilization Services of Virginia, Henrico (named in the preceding sentences); EPA max cancer risk 1,000 in a million. 2021 figure, not 2024."
+    },
+    {
+      "url": "https://www.ucs.org/resources/memphis-tennessee",
+      "outlet": "Union of Concerned Scientists",
+      "date": "2023-02-07",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "3,000 cases per 1 million people for DeRoyal (EPA 2022m; EPA 2022n). In 2021, the facilities reported 1,490 and 1,650 pounds of EtO releases and transfers, respectively.",
+      "paywalled": false,
+      "searcher_note": "DeRoyal New Tazewell: 1,650 lbs EtO releases and transfers in 2021 (Sterilization Services of Tennessee, Memphis: 1,490). Different year and measure (releases plus transfers) from the lead's 1,205 lbs 2024 air figure."
+    },
+    {
+      "url": "https://claiborneprogress.net/2023/06/02/epa-deroyal-one-of-23-at-highest-risk/",
+      "outlet": "Claiborne Progress (Jan Runions)",
+      "date": "2023-06-02",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "One of the major takeaways is that the factory is one of 23 “at highest risk” among a total of 86 commercial sterilizers spread across the country.",
+      "paywalled": false,
+      "searcher_note": "EPA 2023 public hearing on DeRoyal New Tazewell; risk ranking (one of 23 high-risk), not an emissions-volume ranking. Does not say DeRoyal is #1 by pounds."
+    }
+  ],
+  "notes": "The lead's corrected finding (a Virginia sterilizer out-emits DeRoyal) is matched in direction by Hunterbrook (May 2026): Sterilization Services of Virginia is the top EtO emitter among medical sterilizers on 2024 EPA data. No source gives the 8,995 lbs (2024) or 1,205 lbs (DeRoyal 2024) figures. UCS gives 2021 figures: SSV 5,025 lbs; DeRoyal 1,650 lbs releases and transfers. No source found claiming DeRoyal is tied #1 for EtO air releases. Possible tension: VPM reports SSV's permit allows 400 lbs/yr, far below the lead's 8,995 lbs. EPA's Henrico facility page returned 404; WRIC and WATE pages returned 403 and were not recorded."
+}

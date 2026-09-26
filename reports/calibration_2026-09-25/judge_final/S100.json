@@ -1,0 +1,16 @@
+{
+ "story_id": "S100",
+ "bin": "Known pattern",
+ "entity": "Banking Committee senators' share of bank-stock trades, 2012-20 (19% of traders, 34% of trades)",
+ "deciding_sources": [
+  0,
+  3,
+  4
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Salon names Perdue trading bank stocks on the committee, and CNN and Northwestern cover senators trading overseen industries - the scheme, not our aggregate share. NBER's null result is on returns, a different measure.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

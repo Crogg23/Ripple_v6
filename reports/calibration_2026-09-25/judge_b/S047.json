@@ -1,0 +1,12 @@
+{
+  "story_id": "S047",
+  "bin": "Matched + more",
+  "entity": "US political committees raising $1M+ from individuals in 2024 while passing under 10% to candidates or ads (the class)",
+  "deciding_sources": [0, 1, 2],
+  "earliest_match_date": "2025-08-03",
+  "post_cutoff_match": true,
+  "what_we_add": "our cut of the class: 92 PACs, $580M from individuals, under-10% passthrough, and the treasurer concentration (12 treasurers hold 29 of 96, 30% vs 14.6%)",
+  "why": "Bonica and The Nation report the same finding, same direction, overlapping window: spam PACs raising hundreds of millions and delivering about 1.6% to campaigns. His 145-PAC set is a different definition, not a contradiction; our 92/$580M/treasurer stats are stated nowhere.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

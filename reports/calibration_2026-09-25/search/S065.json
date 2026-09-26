@@ -1,0 +1,47 @@
+{
+  "story_id": "S065",
+  "entity": "CMS NADAC generic acquisition cost, 2024: acetaminophen-codeine 120-12 mg/5 mL oral solution ($0.0145 to $0.434 per mL, ~30x) and saxagliptin 5 mg tablets ($1.35 to $6.67); plus 20 of 308,054 same-unit generic price steps up 3x+ in 2024",
+  "queries": [
+    {"q": "acetaminophen codeine oral solution price increase 2024 generic", "found_useful": false},
+    {"q": "saxagliptin generic price increase 2024 NADAC", "found_useful": true},
+    {"q": "ASHP drug shortage acetaminophen and codeine oral solution discontinued 2024", "found_useful": false},
+    {"q": "saxagliptin tablets shortage OR discontinuation 2024 generic manufacturers Onglyza", "found_useful": false},
+    {"q": "46brooklyn NADAC 2024 biggest generic price increases acetaminophen codeine solution saxagliptin", "found_useful": false},
+    {"q": "\"acetaminophen and codeine\" oral solution price spike pharmacy acquisition cost 2024 manufacturer exit", "found_useful": true},
+    {"q": "generic drug prices spiked 2024 some rose 30-fold NADAC analysis shortages manufacturers leave", "found_useful": true},
+    {"q": "saxagliptin 5 mg generic cost jumped pharmacists 2024 price hike DPP-4 generic", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.drugpatentwatch.com/p/drug-price/drugname/ACETAMINOPHEN-CODEINE",
+      "outlet": "DrugPatentWatch (NADAC price table)",
+      "date": "2026-07-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47351 ML 2026-07-22",
+      "paywalled": false,
+      "searcher_note": "NADAC table row: the solution sits at $0.4735/mL in July 2026 (also $0.4741 June, $0.4741 May), close to the lead's 2024 end price of $0.434/mL, so the high level persisted. Shows only 2026 rows (older history paywalled); does not report the 2024 jump itself. Date is the NADAC row date."
+    },
+    {
+      "url": "https://www.drugpatentwatch.com/p/drug-price/drugname/SAXAGLIPTIN+HCL",
+      "outlet": "DrugPatentWatch (NADAC price table)",
+      "date": "2026-07-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "SAXAGLIPTIN HCL 2.5 MG TABLET 00378-4705-77 1.12670 EACH 2026-07-22",
+      "paywalled": false,
+      "searcher_note": "Saxagliptin 2.5 mg NADAC $1.127 per tablet in July 2026, back near the lead's pre-jump $1.35 (lead is 5 mg, 2024). Different strength and window; suggests the 2024 rise did not last. No 5 mg rows or 2024 history visible."
+    },
+    {
+      "url": "https://pharmacy.osu.edu/news/shedding-light-nadac-how-pricing-power-influences-pharmacy-reimbursement",
+      "outlet": "The Ohio State University College of Pharmacy",
+      "date": "2025-06-26",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "For the first time, a large chain pharmacy participated in the NADAC survey and reported invoice prices across all locations selected.",
+      "paywalled": false,
+      "searcher_note": "Caveat for any 2024 NADAC step: rates swung in 2024 because chain pharmacies entered and left the survey (again in November 2024), so some big week-to-week moves are survey-mix artifacts, not real market prices. No drugs named."
+    }
+  ],
+  "notes": "No news, trade press or government source found naming a 2024 price jump for acetaminophen-codeine oral solution or saxagliptin, or counting 3x+ NADAC steps in 2024. 46brooklyn's 2024 monthly and year-in-review reports were scanned (page text) and mention neither drug. No 2024 shortage or discontinuation notice found for acetaminophen-codeine oral solution (ASHP results were for promethazine-codeine and hydrocodone-APAP) or for saxagliptin (generics approved 2023; brand Onglyza discontinued per GoodRx snippet). Current price-guide pages (Drugs.com: oral liquid from $10.35 per 473 mL with coupon; rxfinder: saxagliptin average NADAC $1.09, page dated 2026-09-25) are cash/coupon or later-window figures, not recorded as sources. CMS changed generic NADAC to a three-month moving average from December 2024 (per medicaid.gov snippet), which also affects week-level comparisons."
+}

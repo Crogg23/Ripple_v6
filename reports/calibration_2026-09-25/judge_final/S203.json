@@ -1,0 +1,12 @@
+{
+  "story_id": "S203",
+  "bin": "Not comparable",
+  "entity": "Share of ERCOT gas capacity able to switch to oil, before vs after the 2021 freeze (4.9% to 6.0%)",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The FFSS procurement gives a number for the entity - 2,940 MW of dual-fuel firm-fuel capacity in ERCOT post-Uri - but under a different definition (procured service, not switch-capable capacity), and no source states the share or its rise. EIA's fuel-switching stat is national, not Texas.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

@@ -1,0 +1,47 @@
+{
+ "story_id": "S060",
+ "lead": {
+  "headline": "Nevro's spinal-cord stimulator has 168 death reports out of 737 (22.8%); similar devices run 0.18%",
+  "number": "Nevro Senza: 168 death reports of 737 (22.8%); the rest of its product code: 76 of about 42,200 (0.18%); 0 of the 168 flag a device problem.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Zero device-problem flags points at how Nevro reports, not harm; only 21 months (2020-01 to 2021-09) are loaded."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Nevro Senza spinal cord stimulator death reports MAUDE",
+  "Nevro spinal cord stimulator patient deaths reported to FDA investigation",
+  "spinal cord stimulator MAUDE death reports analysis by manufacturer Nevro Neuromodulation study",
+  "\"Nevro\" MAUDE \"death\" \"no information\" device not returned patient passed away report",
+  "Nevro FDA warning letter OR 483 medical device reporting complaint handling",
+  "Implant Files spinal cord stimulators deaths injuries AP ICIJ Nevro",
+  "FDA letter to health care providers spinal cord stimulators trial stimulation 428 deaths medical device reports (fda.gov only)",
+  "Nevro HFX Senza deaths adverse event reports 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.medtechdive.com/news/fda-flags-428-spinal-cord-stimulator-patient-deaths-urges-more-tests-befor/584714/",
+   "outlet": "MedTech Dive",
+   "date": "2020-09-04",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The 107,728 MDRs received by FDA in the four-year period following July 27, 2016, include reports of 428 individual deaths of patients implanted with SCSs between 2005 and 2020.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ently reported Device Problem Codes but appeared less concerned by the findings. “Charging problems” was the most commonly reported code, leading FDA to state the reports “are consistent with those expected with battery-powered stimulation devices intended for longer-term implantation and therapy.” The 107,728 MDRs received by FDA in the four-year period following July 27, 2016, include reports of 428 individual deaths of patients implanted with SCSs between 2005 and 2020. Almost one-third of cases where times to event were available happened in the 30 days after implantation. Many of the patients had comorbidities and the average age was 69 years. FDA said MDRs often lack \"enough information to establish a causal relationship between the device and the reported event.\" For now, FDA has limited"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.nbcnews.com/news/amp/ncna940131",
+   "outlet": "NBC News (Implant Files, with AP and ICIJ)",
+   "date": "2018-11-28",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The four biggest makers of stimulators are Boston Scientific Corp., based in Massachusetts; Medtronic, with headquarters in Ireland and the U.S.; Nevro, in Redwood California; and Illinois-based Abbott, which entered the market after its $23.6 billion purchase of St Jude Medical Inc.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "spinal-cord stimulators to reach the market without new clinical studies, approving them largely based on results from studies of earlier stimulators. Spinal stimulators are complex devices that send electrical currents through wires placed along the spine, using a battery implanted under the skin. The four biggest makers of stimulators are Boston Scientific Corp., based in Massachusetts; Medtronic, with headquarters in Ireland and the U.S.; Nevro, in Redwood California; and Illinois-based Abbott, which entered the market after its $23.6 billion purchase of St Jude Medical Inc. St. Jude's application to go to market with its first stimulator contained no original patient data and was based on clinical results from other studies, while Boston Scientific's application for its Precision stimulator was based largely on older data, though it did include a small, original study of 26 patients who were tracked for a"
+  }
+ ]
+}

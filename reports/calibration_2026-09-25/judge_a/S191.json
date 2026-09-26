@@ -1,0 +1,12 @@
+{
+  "story_id": "S191",
+  "bin": "Contradicted",
+  "entity": "EPA violation notices to Osage County, Oklahoma Class II injection wells after April 2023",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Lead claims zero violation notices since April 2023. EPA's own order shows a March 24, 2025 letter notifying an Osage injection-well operator of potential violations - same entity, same measure, opposite direction. The inspections-continued claim matched; the zero-notices claim did not.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

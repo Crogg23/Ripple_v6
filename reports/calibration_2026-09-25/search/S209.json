@@ -1,0 +1,48 @@
+{
+  "story_id": "S209",
+  "entity": "Tankers broadcasting AIS in U.S. waters (NOAA feed) in one January 2024 week that are now on OFAC SDN or other government sanctions lists, most renamed: 13 of about 950; older hulls (IMO below 9400000) 10 of 218",
+  "queries": [
+    {"q": "sanctioned shadow fleet tankers in U.S. waters AIS 2024", "found_useful": false},
+    {"q": "tankers that called at U.S. ports later sanctioned OFAC renamed shadow fleet", "found_useful": false},
+    {"q": "tankers that once carried U.S. oil sold into shadow fleet older vessels renamed sanctioned investigation", "found_useful": true},
+    {"q": "sanctioned tanker Gulf of Mexico U.S. port visit shadow fleet Venezuela Coast Guard 2024 AIS", "found_useful": false},
+    {"q": "share of global tanker fleet now sanctioned percent 2026 older tankers aged over 15 years", "found_useful": true},
+    {"q": "shadow fleet tankers previously called at U.S. refineries Houston before joining dark fleet", "found_useful": false},
+    {"q": "report sanctioned tankers visited U.S. ports after designation analysis vessels OFAC SDN list U.S. waters", "found_useful": false},
+    {"q": "tankers sold into shadow fleet 2024 2025 renamed reflagged former Western-owned ships sanctioned Lloyd's List analysis", "found_useful": true},
+    {"q": "sanctioned shadow fleet tanker spotted off U.S. coast AIS August September 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.occrp.org/en/investigation/european-ships-keep-russias-shadow-fleet-afloat",
+      "outlet": "OCCRP / Follow the Money",
+      "date": "2025-02-04",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "At least 230 vessels from Europe and the U.S. now support the shadow fleet, which moves an estimated 70 percent of Russia's oil exports.",
+      "paywalled": false,
+      "searcher_note": "Pattern: aging Western-owned tankers sold into the shadow fleet, then renamed and reflagged. Ships leaving mainstream trade (U.S. and European owners) for sanctioned trades, with name changes. It does not use U.S.-waters AIS and does not name the lead's ships."
+    },
+    {
+      "url": "https://www.breakwaveadvisors.com/insights/2026/6/2/aging-sanctioned-and-stranded-the-new-structural-reality-in-the-market",
+      "outlet": "Breakwave Advisors",
+      "date": "2026-06-02",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Currently, 927 tankers, approximately 11.6% of the total tanker fleet, are identified as sanctioned.",
+      "paywalled": false,
+      "searcher_note": "A world base rate the lead lacks: about 11.6% of all tankers sanctioned, and 'nearly 93% of sanctioned units are over 16 years old'. The lead's U.S.-feed rates (4.6% of older hulls, 3 of 732 newer) sit well below this, which fits the lead's caveat that the U.S. rate may be under the world rate."
+    },
+    {
+      "url": "https://www.atlanticcouncil.org/dispatches/when-economic-warfare-meets-gunboat-diplomacy-what-to-know-about-the-us-seizures-of-shadow-fleet-tankers/",
+      "outlet": "Atlantic Council",
+      "date": "2026-02-05",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "a network of aging tankers transporting illicit oil between Iran, Russia, China, and Venezuela",
+      "paywalled": false,
+      "searcher_note": "Pattern: an explainer on U.S. seizures of shadow fleet tankers (Skipper ex-Adisa, Bella 1 now Marinera, Olina ex-Minerva M). Renamed, aging, sanctioned tankers, some caught in waters near the U.S. No January 2024 U.S.-waters cohort."
+    }
+  ],
+  "notes": "The lead names no individual ships, only counts, so no source can name the entity. No source found tracks the tankers seen in U.S. waters or at U.S. berths in a 2024 window and checks them later against sanctions lists. Coverage found is pattern only: aging Western-owned tankers sold into the shadow fleet and renamed (OCCRP/FTM), world sanctioned-tanker share and age (Breakwave), and U.S. seizures of renamed sanctioned tankers near Venezuela (Atlantic Council, CNN, Lloyd's List on Bella 1 / Marinera, which OFAC sanctioned in June 2024). Nothing in July to September 2026 touched the U.S.-waters angle. 9 searches."
+}

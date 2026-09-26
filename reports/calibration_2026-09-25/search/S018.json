@@ -1,0 +1,66 @@
+{
+  "story_id": "S018",
+  "entity": "Judge J. Rodney Gilstrap (E.D. Texas), cases naming Apple, Microsoft, AT&T or Walmart assigned while he held their stock, disclosure years 2010-20",
+  "queries": [
+    {"q": "Judge Gilstrap stock Apple Microsoft cases conflict of interest", "found_useful": true},
+    {"q": "Wall Street Journal \"Hidden Interests\" judges stock Gilstrap", "found_useful": true},
+    {"q": "Rodney Gilstrap financial disclosure stock holdings recusal", "found_useful": true},
+    {"q": "\"Gilstrap\" \"Sets an Unwanted Record\" wsj.com financial conflicts", "found_useful": true},
+    {"q": "Gilstrap AT&T stock patent cases Marshall Texas judge held shares", "found_useful": false},
+    {"q": "Gilstrap \"Microsoft Corp. (53 cases)\"", "found_useful": true},
+    {"q": "Judge Gilstrap recusal stock conflicts 2026", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wsj.com/articles/judge-rodney-gilstrap-sets-an-unwanted-record-most-cases-with-financial-conflicts-11632920541",
+      "outlet": "The Wall Street Journal",
+      "date": "2021-09-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Judge Rodney Gilstrap Sets an Unwanted Record: Most Cases With Financial Conflicts",
+      "paywalled": true,
+      "searcher_note": "Original WSJ story in its 'Hidden Interests' series; fetch blocked, headline only. URL slug rebuilt from a truncated link on a Temple Law repost; ID 11632920541 is from that link."
+    },
+    {
+      "url": "https://www.abajournal.com/news/article/131-federal-judges-oversaw-cases-involving-companies-in-which-they-or-their-families-owned-stock",
+      "outlet": "ABA Journal",
+      "date": "2021-09-29",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The Wall Street Journal found 138 cases assigned to him involving companies in which he or his wife held an interest.",
+      "paywalled": false,
+      "searcher_note": "Summary of the WSJ finding: Gilstrap had the most conflicted cases of any federal judge, 138. Counts cover him or his wife, not a company list matching ours."
+    },
+    {
+      "url": "https://www.westernjournal.com/obama-appointed-federal-judge-caught-presiding-stunning-number-cases-financial-interests/",
+      "outlet": "The Western Journal",
+      "date": "2021-09-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Some corporate giants were in the judge’s docket and in his portfolio, the Journal found, including Microsoft Corp., in which he made 53 rulings",
+      "paywalled": false,
+      "searcher_note": "Rewrite of the WSJ story giving the per-company split: Microsoft 53, Walmart 36, Target 25. No Apple or AT&T numbers found in any source. Copy of WSJ, counts once."
+    },
+    {
+      "url": "https://www.abajournal.com/news/article/federal-judge-acknowledges-he-may-have-violated-law-in-138-cases-by-failing-to-recuse",
+      "outlet": "ABA Journal",
+      "date": "2021-11-03",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Gilstrap had stock that would have required recusal in four cases, while his wife had an interest in a trust that would have required Gilstrap’s recusal in 134 other cases, the notices said.",
+      "paywalled": false,
+      "searcher_note": "Gilstrap's own court notices: only 4 of the 138 cases were his own stock; 134 were via his wife's trust. Also carries his view that little-action and trust cases didn't need recusal."
+    },
+    {
+      "url": "https://ipfray.com/judge-gilstrap-recuses-himself-from-supercomputer-firm-partecs-patent-lawsuit-against-microsoft-judge-schroeder-takes-over/",
+      "outlet": "ip fray",
+      "date": "2024-11-13",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "the most common reason for such recusals from such cases is that a judge or their spouse hold shares in a publicly-traded company that is party to the case.",
+      "paywalled": false,
+      "searcher_note": "Later coverage: Gilstrap recused from ParTec v. Microsoft with no stated reason; author guesses Microsoft shares. Speculation, not a finding."
+    }
+  ],
+  "notes": "WSJ 2021 is the main coverage: 138 conflicted cases since 2011 (disclosures through about 2018), Gilstrap first among 131 judges. Our lead says 183 cases for Apple, Microsoft, AT&T, Walmart over 2010-20; the company set differs from WSJ's (Microsoft, Walmart, Target, IBM, Disney) and no source found mentions Apple or AT&T holdings for him. Gilstrap's notices split the 138 into 4 own-stock and 134 wife's-trust cases, which bears on 'while holding their stock'. Nothing found dated after 2026-06-30. WSJ page could not be fetched."
+}

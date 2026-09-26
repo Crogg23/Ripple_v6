@@ -1,0 +1,71 @@
+{
+ "story_id": "S066",
+ "lead": {
+  "headline": "Diamondback hides 30.3% of its Texas fracking chemicals as trade secrets, nearly double the 16.2% state rate",
+  "number": "Diamondback withholds 30.3% of its Texas chemical-ID rows vs 16.2% statewide, with secrets in 96.7% of its 3,164 jobs.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No job dates on any row, and trade-secret claims are legal and industry-wide."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Diamondback Energy fracking chemicals trade secret FracFocus",
+  "Texas fracking trade secret chemicals withheld operators FracFocus analysis Permian",
+  "\"FracFocus Trade Secrets in Texas\" Open-FF",
+  "Diamondback Energy proprietary fracking fluid disclosure Permian Midland report",
+  "operators most trade secret claims fracking disclosures ranking companies Pioneer Diamondback ExxonMobil proprietary chemicals",
+  "fracking chemical trade secrets Texas 2026 disclosure",
+  "Diamondback Energy sustainability report hydraulic fracturing chemical disclosure FracFocus all wells",
+  "Texas Tribune OR Inside Climate News fracking \"trade secret\" chemicals Permian operators withheld"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://open-ff.org/2025/05/19/texas-fracfocus-trade-secrets/",
+   "outlet": "Open-FF",
+   "date": "2025-05-19",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Consider the well operated by Diamondback E&P LLC in Martin County. The disclosure for that well utilizes a systems approach format but still conceals the identity of 7 chemicals, which means 63% of ingredients are listed as trade secrets.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "proving public transparency.” Analyses by Trickey et al. and Underhill et al. disprove that claim across the FracFocus data. Instead, we often find system approach disclosures with multiple trade secret claims – because there is nothing to compel companies to include the chemical identity. Example: Consider the well operated by Diamondback E&P LLC in Martin County. The disclosure for that well utilizes a systems approach format but still conceals the identity of 7 chemicals, which means 63% of ingredients are listed as trade secrets. The table below lists those records with their quantity. IngredientName CASNumber mass (pounds) proprietary2 Proprietary 118,000 proprietary1 Proprietary 59,200 mineral oil Trade Secret 57,500 ethoxylated alcohols Proprietary 14,200 sodium chloride Trade Secret 9,580 polymer salt Proprietary 7,970 fatty amine salt Proprietary 2,370 Trade "
+  },
+  {
+   "idx": 1,
+   "url": "https://open-ff.org/2025/05/19/texas-fracfocus-trade-secrets/",
+   "outlet": "Open-FF",
+   "date": "2025-05-19",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Across all valid Texas chemical records, 16.3% are marked as trade secrets. Trade secret claims appear in 86.1 % of all disclosures.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ts is not standardized in the FracFocus data. Open-FF curates the data to make examining all trade secrets possible. See the documentation . Broad Patterns in Texas Quantity of chemicals masked as trade secrets: 10,300,000,000 pounds Frequency of Claims: How common are trade secret claims in Texas? Across all valid Texas chemical records, 16.3% are marked as trade secrets. Trade secret claims appear in 86.1 % of all disclosures. And the breakdown of the frequency of trade secrets within Texas disclosures is: Compared to Other States: How does the trade secret use in Texas compare to other fracking states? Texas accounts for roughly one half of FracFocus records. The number of total trade secrets claimed is by far the highest across Texas. In terms of percentage"
+  },
+  {
+   "idx": 2,
+   "url": "https://fractracker.org/2024/04/holes-in-fracfocus/",
+   "outlet": "FracTracker Alliance",
+   "date": "2024-04-26",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Here is an example of trade secret records: the figure below is an excerpt of the disclosure for the Texas well 42-227-40269-00-00 by Diamondback E&P in August 2022 with the proprietary records marked with red.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "These designations are allowed by many state and federal regulators. These masked chemicals are widespread: most disclosures report at least one record that is a proprietary designation, as illustrated in the figure. Between 2014 and 2022, over 10 billion pounds of these masked chemicals were used. Here is an example of trade secret records: the figure below is an excerpt of the disclosure for the Texas well 42-227-40269-00-00 by Diamondback E&P in August 2022 with the proprietary records marked with red. The FracFocus website asserts that proprietary records include the functional class of the chemical as shown in most records in the example above. In a recent analysis, we found that along with proprietary chemicals identified by a given functional group, other chemicals in that group were often dominated by materials on Cle"
+  },
+  {
+   "idx": 3,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10872473/",
+   "outlet": "Journal of Environmental Management (PMC)",
+   "date": "2023-12-05",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Chesapeake Operating Company reported the most proprietary claims: 31,239 total, representing 91.4% of their total disclosures.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ructurally disconnect the link between the company and any proprietary chemicals used. Chemplex (18,878 or 9.9% of whose total supplied chemicals are designated proprietary) and FTSI (18,486 records or 13.9%) follow. Figure 6 shows the top 10 operators claiming proprietary chemicals from 2014–2022. Chesapeake Operating Company reported the most proprietary claims: 31,239 total, representing 91.4% of their total disclosures. Chesapeake is headquartered in Oklahoma City and works in the Eagle Ford, Haynesville, and Marcellus Shales. Chesapeake is followed by Pioneer Natural Resources (reporting 23,853 proprietary designations, or 96.7% of their total records), which works primarily in the Permian Basin, and XTO/ExxonMobil, with 20,686 proprietary records, or 86.3%."
+  }
+ ]
+}

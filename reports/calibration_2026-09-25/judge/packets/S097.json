@@ -1,0 +1,47 @@
+{
+ "story_id": "S097",
+ "lead": {
+  "headline": "In two environmental-agency regions, 78% of hazardous-waste sites inspected twice have no action on file, versus 33% in two others",
+  "number": "RCRA sites inspected on-site twice or more since 2015: no EPA case or informal action on file at 78% in Regions 6 and 9 vs 33% in Regions 7 and 8.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The case tables carry no dates, so \"no action\" means none ever, not none after the inspection."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "EPA RCRA hazardous waste inspections no enforcement action regional disparities",
+  "EPA Region 6 hazardous waste facilities repeated inspections violations no enforcement",
+  "EPA inspector general RCRA violations not addressed enforcement follow-up regions inconsistent",
+  "EPA Region 9 hazardous waste enforcement decline inspections analysis ECHO data",
+  "hazardous waste facilities inspected violations found but no enforcement Texas Louisiana investigation news",
+  "EPA RCRA enforcement inspections 2026 report regions hazardous waste generators enforcement actions",
+  "inspector general large quantity generators hazardous waste enforcement variability states regions April 2026",
+  "Environmental Integrity Project EPA hazardous waste inspections enforcement drop analysis regions"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf",
+   "outlet": "EPA Office of Inspector General",
+   "date": "2026-04-28",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "There was wide variability in enforcement activities depending on the state, the region, and the lead inspecting agency.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ions, 4,661 resulted in at least one identified violation. In total, the inspecting agencies identified 23,404 violations and took 5,156 enforcement actions. Of those enforcement actions, 861, or about 17 percent, were formal actions, with 535 of those formal actions including at least one penalty. There was wide variability in enforcement activities depending on the state, the region, and the lead inspecting agency. For example, although the EPA led just 8 percent of inspections, those inspections resulted in 23 percent of formal enforcement actions and 28 percent of penalties nationally. EPA-led inspections also resulted in higher penalties, with a median value of $18,750 compared to $11,999 for state-led inspections. Our goal for this report is to "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/sites/default/files/2015-10/documents/20111209-12-p-0113.pdf",
+   "outlet": "EPA Office of Inspector General",
+   "date": "2011-12-09",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "state enforcement programs frequently do not meet national goals and states do not always take necessary enforcement actions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ts/2012/ 20111209-12-P-0113.pdf EPA Must Improve Oversight of State Enforcement What We Found EPA does not administer a consistent national enforcement program. Despite efforts by the Office of Enforcement and Compliance Assurance (OECA) and the EPA regions to improve state enforcement performance, state enforcement programs frequently do not meet national goals and states do not always take necessary enforcement actions. State enforcement programs are underperforming: EPA data indicate that noncompliance is high and the level of enforcement is low. EPA does not consistently hold states accountable for meeting enforcement standards, has not set clear and consistent national benchmarks, and does not act effectively to curtail weak and inconsistent enforcement "
+  }
+ ]
+}

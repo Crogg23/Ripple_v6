@@ -1,0 +1,12 @@
+{
+  "story_id": "S019",
+  "bin": "Known pattern",
+  "entity": "the 553 US water permits in significant noncompliance 36+ of 40 quarters, 84 with no formal action ever",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source states our chronic-permit counts or the 36-of-40-quarters measure. Reuters (WV mines polluting for years unpenalized) and EPA OIG (weak oversight of long-term significant noncompliers) report the same kind of finding about other entities and in general. GAO's 11,000 is one year's SNC, a different measure, and names no entity.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

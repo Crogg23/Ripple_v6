@@ -1,0 +1,12 @@
+{
+ "story_id": "S102",
+ "bin": "Matched + more",
+ "entity": "Arizona overdose deaths, 12 months to Oct 2025, vs the national trend",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2026-01-15",
+ "post_cutoff_match": true,
+ "what_we_add": "\"its most since 2015\" record comparison and the 12-months-to-Oct-2025 count of 2,980; the median-state -14% framing",
+ "why": "Same entity, same finding, same direction, widely: AZ up ~18% while the nation fell ~14% (KJZZ, CDC, AZPHA), AZPHA even has 2,988 for CY2025 and cocaine up ~70%, all within 25% of ours. No usable source states the most-since-2015 record; that countable comparison is the add.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

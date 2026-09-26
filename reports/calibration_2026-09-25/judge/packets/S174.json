@@ -1,0 +1,71 @@
+{
+ "story_id": "S174",
+ "lead": {
+  "headline": "74-90 California doctor-shortage areas holding 2.7-3.5M people are up for removal with no replacement, about 3x the national rate",
+  "number": "Builder: 123 of 214 active California shortage areas (57%) proposed for withdrawal, 4.62M people; after removing areas already re-designated under new IDs, 74-90 areas and 2.7-3.5M people remain.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "4.62M counts people already re-designated under new IDs (1.06M of the 2.91M \"still designated\" sit on the same tracts); 85% of the July 2026 withdrawals are old IDs retired after re-designation."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "California health professional shortage areas proposed for withdrawal HRSA 2026",
+  "HPSA withdrawal California primary care shortage designations lose clinics loan repayment 2026",
+  "California shortage area designations withdrawn doctors rural clinics CalMatters HPSA",
+  "\"proposed for withdrawal\" HPSA California HCAI primary care office counties news",
+  "National Shortage Designation Update 2025 HPSAs proposed for withdrawal nationwide number states",
+  "HPSA designations withdrawn July 2026 redesignated new IDs state primary care office communities lose shortage status",
+  "thousands of health professional shortage areas could lose designation HRSA update rural health news 2026",
+  "California counties could lose federal doctor shortage designation 2026 clinics worry"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://hospitalcouncil.org/hospital-action-needed-to-retain-hpsa-designation/",
+   "outlet": "Hospital Council of Northern and Central California",
+   "date": "2026-03-11",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Approximately 100 of California’s roughly 374 Primary Care Health Professional Shortage Area (HPSA) designations are currently",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "o / Marin South Bay Influence Policy Hospital Business Partners Newsroom About Us Who We Are Hospital Business Partners2 Member Hospitals Job Opportunities Member Login Member Login Search Search for: Submit Home Council Connect Articles 11 Mar 2026 Hospital Action Needed to Retain HPSA Designation Approximately 100 of California’s roughly 374 Primary Care Health Professional Shortage Area (HPSA) designations are currently \"Proposed for Withdrawal\" on July 1. This is largely due to a federal policy shift that requires all recertifications to be conducted simultaneously, as well as resource shortages within the Department of Health Care Access and Information (HCAI). A list of impacted designations, along with other facilities... This co"
+  },
+  {
+   "idx": 1,
+   "url": "https://calhospital.org/hospital-action-required-to-retain-hpsa-designation/",
+   "outlet": "California Hospital Association",
+   "date": "2026-03-12",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "This is largely due to a federal policy shift that requires all recertifications to be conducted simultaneously, as well as resource shortages within the Department of Health Care Access and Information (HCAI).",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "chelle Millerick Vice President, Policy This post has been archived and contains information that may be out of date. What’s happening: Approximately 100 of California’s roughly 374 Primary Care Health Professional Shortage Area (HPSA) designations are currently \"Proposed for Withdrawal\" on July 1. This is largely due to a federal policy shift that requires all recertifications to be conducted simultaneously, as well as resource shortages within the Department of Health Care Access and Information (HCAI). This content is restricted to members. Log in Register an Account Contact Michelle Millerick Job title: Vice President, Policy Email: Contact Michelle Millerick This item appears in CHA News Workforce Related Summary Analysis of Comprehensive Care for Joint Replacement Expanded Model Available CHA News Details Hospitals I"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-01/html/2026-13309.htm",
+   "outlet": "Federal Register (HRSA notice, FR Doc 2026-13309)",
+   "date": "2026-07-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "HPSAs that did not pass the National Shortage Designation Update conducted in September 2025 will be maintained in a proposed for withdrawal status after the publication of this FRN, and the state PCOs will be allowed additional time",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "al Federal Register notice (FRN) not later than July 1 of each year listing designated HPSAs. This FRN serves as notice that HPSAs that were placed in a proposed for withdrawal status due to state primary care office (PCO) actions between October 16, 2024, and September 21, 2025, will be withdrawn. HPSAs that did not pass the National Shortage Designation Update conducted in September 2025 will be maintained in a proposed for withdrawal status after the publication of this FRN, and the state PCOs will be allowed additional time to review and update designations. HRSA intends to address those HPSAs with the publication of the FRN on or before July 1, 2027. ADDRESSES: Complete lists of HPSAs designated as of April 30, 2026, are available on the website at https://data.hrsa.gov/topics/health- workforce/shortage-areas/frn. Frequently updated informatio"
+  },
+  {
+   "idx": 3,
+   "url": "https://calhospital.org/hrsa-delays-withdrawal-of-health-professional-shortage-area-designations/",
+   "outlet": "California Hospital Association",
+   "date": "2026-07-09",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "status will maintain their current HPSA status through approximately July 1, 2027.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "09 Jul 2026 HRSA Delays Withdrawal of Health Professional Shortage Area Designations Erika Frank Vice President, Legal Counsel What’s happening: The Health Resources and Services Administration (HRSA) has announced that health professional storage areas (HPSAs) placed in a “proposed for withdrawal” status will maintain their current HPSA status through approximately July 1, 2027. This content is restricted to members. Log in Register an Account This item appears in CHA News Rural Health Care Workforce Related Summary Analysis of Comprehensive Care for Joint Replacement Expanded Model Available CHA News Details Hospitals Invited to Apply for AHA’s Dick Davidson NOVA Award CHA News Details Impact Analyses Availabl"
+  }
+ ]
+}

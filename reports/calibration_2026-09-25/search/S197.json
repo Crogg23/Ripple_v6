@@ -1,0 +1,76 @@
+{
+  "story_id": "S197",
+  "entity": "Civic Federal Credit Union (Raleigh NC), Greater Nevada Credit Union (Carson City NV), U.S. Eagle Federal Credit Union (Albuquerque NM): one-year net worth drops of 20%+ and 60-day late loans, NCUA call reports",
+  "queries": [
+    {"q": "Civic Federal Credit Union net worth loss 2025", "found_useful": true},
+    {"q": "Greater Nevada Credit Union net worth ratio decline loss", "found_useful": true},
+    {"q": "U.S. Eagle Federal Credit Union losses delinquencies net worth", "found_useful": true},
+    {"q": "Greater Nevada Credit Union 2025 loss capital subordinated debt NCUA news", "found_useful": false},
+    {"q": "\"Greater Nevada Credit Union\" Nevada Appeal OR \"Nevada Independent\" OR \"Reno Gazette\" 2026", "found_useful": true},
+    {"q": "Civic Federal Credit Union 2026 second quarter loss net worth NCUA", "found_useful": true},
+    {"q": "U.S. Eagle credit union Albuquerque 2025 loss capital net worth ratio Southwest Capital Bank deal collapsed", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.creditandcollectionnews.com/civic-federal-credit-union-loss-widens-membership-falls/",
+      "outlet": "Credit and Collection News (reprint of Business North Carolina)",
+      "date": "2026-02-10",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Raleigh-based Civic posted a net loss of $123.7 million in the 12 months ended Dec. 31, widening from a loss of $75 million in the first nine months of the year, according to recent federal regulatory filings.",
+      "paywalled": false,
+      "searcher_note": "Civic's 2025 loss, from call reports. The page also says: 'Its net worth ratio was 7.07% of assets.' and '$225 million of loans were at least 60 days delinquent'. It does not state a percent drop in net worth. The Business NC original (businessnc.com) returned HTTP 403."
+    },
+    {
+      "url": "https://thecudaily.com/civic-fcu-posts-47m-loss-in-first-half-of-year-says-its-part-of-long-term-strategic-plan/",
+      "outlet": "Credit Union Daily",
+      "date": "2026-08-10",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "A net loss of $47.2 million during the first six months of 2026, following losses of about $124 million in 2025 and $1.6 million in 2024.",
+      "paywalled": false,
+      "searcher_note": "Recent coverage of Civic's continuing losses. Civic calls them 'planned losses', part of a five-year transition. 60-day delinquencies were $171 million (6.3%) at June 30, down from $225 million."
+    },
+    {
+      "url": "https://www.kolotv.com/2026/05/13/usda-removes-greater-nevada-credit-union-rural-development-program/",
+      "outlet": "KOLO 8 News Now (Reno)",
+      "date": "2026-05-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The USDA Lender Dashboard shows GNCU with $165.9 million in loans that have been delinquent for more than 90 days.",
+      "paywalled": false,
+      "searcher_note": "Greater Nevada was pulled from the USDA guaranteed lending program over late loans. This is a late-loan finding, not a net worth drop. GNCU disputes the USDA characterization and plans an appeal."
+    },
+    {
+      "url": "https://weissratings.com/en/credit-union/6128",
+      "outlet": "Weiss Ratings",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "based on a net capital to total assets of 2.6 and a net worth ratio of 3.5",
+      "paywalled": false,
+      "searcher_note": "A rating page (data shown as of about Aug 2026) that puts Greater Nevada's net worth ratio at 3.5, near the lead's 3.33%. It is a live page, so the figures may change. It also shows ROE of 30.56%, so the credit union reads as profitable, which fits the lead's caveat. An earlier search snippet showed 3.3."
+    },
+    {
+      "url": "https://www.abqjournal.com/business/us-eagle-banned-from-federal-lending-program-over-delinquent-loans/3040726",
+      "outlet": "Albuquerque Journal",
+      "date": "2026-05-13",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The credit union posted a loss of $3.35 million in this year's first quarter, according to a National Credit Union Administration call report.",
+      "paywalled": false,
+      "searcher_note": "U.S. Eagle was removed from the USDA OneRD guaranteed program, with $122.5M 90 days delinquent with USDA, and lost money in Q1 2026. No net worth percent drop is stated."
+    },
+    {
+      "url": "https://www.abqjournal.com/business/article_47071cc7-389b-4cd3-bcc8-569749898f7a.html",
+      "outlet": "Albuquerque Journal",
+      "date": "2025-07-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "U.S. Eagle reported a loss of $2.35 million for its 2025 first quarter",
+      "paywalled": false,
+      "searcher_note": "Earliest coverage found of U.S. Eagle's losses, tied to the collapsed Southwest Capital Bank deal. A spokesperson said the credit union 'continues to be classified as well-capitalized', which leans against the lead's picture for that earlier window."
+    }
+  ],
+  "notes": "All three credit unions are named in press on losses or late loans. Civic got the fullest coverage: a $123.7M 2025 loss, a 7.07% net worth ratio and $225M of loans 60+ days late. No source found states the lead's exact net worth drops (-39.5%, -30.3%, -20.6%), groups the three together, or ranks them among 748 big credit unions. Greater Nevada's USDA removal and delinquency are covered; its net worth drop appears only as a ratio on a Weiss rating page (3.5), with no news story on it. Greater Nevada and U.S. Eagle were both among the 10 lenders USDA removed in May 2026, so they share the mechanism of delinquent USDA-guaranteed commercial loans. Also found: chipfilson.com (2025-10-03) on Civic's early loss of $24.8M and $52M of subordinated debt, not recorded. A search snippet said Civic's 2025 loss was 'more than half of its remaining $235.497 million net worth', but it traces to a Business NC page that returned 403, so that line is unverified."
+}

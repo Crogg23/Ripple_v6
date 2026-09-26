@@ -1,0 +1,96 @@
+{
+ "story_id": "S048",
+ "lead": {
+  "headline": "About 89 active Texas major air polluters have had no full compliance inspection in 5+ years; New Mexico is worse",
+  "number": "About 89 of 2,481 Texas majors (3.6 per 100) with activity on their own permit since mid-2021 but no full evaluation in 5+ years, vs a 0.2 state median; New Mexico 23 of 160 (14.4 per 100).",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "All four plants first named had a twin record at the same site that did get evaluated; a second skeptic (skeptic2) got Texas at 3.0 per 100 and New Mexico at 12.5."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Texas major air pollution sources no full compliance evaluation in five years TCEQ inspections",
+  "New Mexico Environment Department air quality major sources overdue inspections compliance evaluations",
+  "EPA State Review Framework Texas TCEQ Clean Air Act FCE coverage major sources round 4 report",
+  "TCEQ air inspections decline industrial plants years without inspection Houston Chronicle OR Texas Tribune OR Inside Climate News",
+  "Sunset Commission TCEQ staff report 2022 facilities not inspected in five years air",
+  "New Mexico air quality bureau inspections backlog Title V major sources not inspected Searchlight New Mexico OR Source NM",
+  "Environmental Integrity Project report Clean Air Act major sources inspections overdue ECHO data states 2025 2026",
+  "Texas air pollution inspections 2026 TCEQ fewer investigations major facilities report August September 2026",
+  "TCEQ Title V major sources investigated every two years compliance monitoring strategy commitment met EPA Region 6"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.epa.gov/sites/default/files/oig/documents/full_report_-_24-p-0049.pdf",
+   "outlet": "EPA Office of Inspector General",
+   "date": "2024-07-24",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Of those potential SM-80s in Texas, the TCEQ had not visited 11 of the 18, from 2017 through 2022",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "“conditionally exempt” sources should be characterized as SM-80s. We asked the EPA to verify that the sources we identified were SM-80s and, after numerous attempts, the EPA has not done so. We identified 18 sources in Texas and 109 in California that appeared to meet the EPA’s definition of SM-80. Of those potential SM-80s in Texas, the TCEQ had not visited 11 of the 18, from 2017 through 2022, and South Coast had not visited 27 of the 109 from 2016 through 2021, which does not meet the EPA’s expectation that SM-80s are inspected every five years, pursuant to the EPA’s Clean Air Act Stationary Source Compliance Monitoring Strategy, known as CAA CMS. In 2013, EPA Region 6 recommended that the TCEQ identify SM-80s"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/office-inspector-general/notification-evaluation-trends-clean-air-act-state-level-enforcement-data",
+   "outlet": "EPA Office of Inspector General",
+   "date": "2026-05-07",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "identify state-level trends in Clean Air Act enforcement data for Title V major source facilities from 2020 through 2025",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ffice of Inspector General Notification: Evaluation of Trends in Clean Air Act State-Level Enforcement Data Project No. OSRE-26-0063 The U.S. Environmental Protection Agency Office of Inspector General plans to begin an evaluation of Clean Air Act state-level enforcement trends. Our objective is to identify state-level trends in Clean Air Act enforcement data for Title V major source facilities from 2020 through 2025. We will conduct the evaluation using Quality Standards for Inspection and Evaluation , issued by the Council of the Inspectors General on Integrity and Efficiency. Project Notification (pdf) (374.66 KB) OIG Independence of EPA The EPA's Office of Inspector General is a part of the EPA, although Congress provides our funding separate"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.ecos.org/wp-content/uploads/2022/12/ECOS-ACMS-Green-Report-1.pdf",
+   "outlet": "Environmental Council of the States (ECOS)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In 2012, TCEQ submitted and gained EPA approval for a plan for reduced inspection frequencies for sites in three coastal regions, with major sources receiving FCEs every three years and mega sites every five years.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "andfills. This group also included sources that had not had complaints and had not had any compliance issues during the previous two inspections. Texas: Geographic Variations The Texas Commission on Environmental Quality (TCEQ) air ACMS has two main components: Alternative Frequency of Onsite FCEs: In 2012, TCEQ submitted and gained EPA approval for a plan for reduced inspection frequencies for sites in three coastal regions, with major sources receiving FCEs every three years and mega sites every five years. Off-site qualifying inspections were annual for facilities in both coastal and inland regions. Common mega Title V facilities in Texas include petroleum refineries, chemical plants with more than 100 emissions points, and any Title V source with more than 200 emissions points. Coastal facilities are within the TCEQ Beaumont (R10), "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.texasobserver.org/texas-relaxed-environmental-enforcement-during-the-pandemic-state-data-show/",
+   "outlet": "Texas Observer (Grist reporting)",
+   "date": "2020-06-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "At the beginning of the decade, the agency was conducting more than 7,500 inspections per year of federally-permitted facilities with limits on air emissions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "en we should really be doing everything that we can to protect our health and our environment,” said Fraser, the advocate with Environment Texas. A downward trend A further look back at TCEQ’s oversight of large polluting facilities also shows a downward trend in inspections over the past 10 years. At the beginning of the decade, the agency was conducting more than 7,500 inspections per year of federally-permitted facilities with limits on air emissions. Those figures have now dwindled to a little over 2,000—despite the number of facilities the agency is overseeing remaining steady. Similarly, penalties, violations cited, and formal enforcement actions taken against these facilities have also declined significantly. After the EPA announced its temporary relaxation of monitoring"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.sunset.texas.gov/public/uploads/2022-05/Texas%20Commission%20on%20Environmental%20Quality%20Staff%20Report_5-25-22.pdf",
+   "outlet": "Texas Sunset Advisory Commission",
+   "date": "2022-05-25",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "potentially lead to compliance histories for some of the nearly 400,000 unclassified entities for which TCEQ currently has no compliance information",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "CEQ misses an opportunity to further incentivize full compliance. Compliance history ratings are meant to be a complete evaluation of a facility’s compliance with regulations, not simply a reflection of formal enforcement history. Additional data could better inform existing compliance ratings, and potentially lead to compliance histories for some of the nearly 400,000 unclassified entities for which TCEQ currently has no compliance information. Any data showing noncompliance would not only better inform TCEQ’s operations by enabling the agency to detect a regulated entity’s pattern of behavior, but also increase transparency for the public and other regulated entities. • Compliance history ratings are only updated annually. A regulated entity’s compliance history rating may not in"
+  },
+  {
+   "idx": 5,
+   "url": "https://westernlaw.org/wp-content/uploads/2026/03/Fee-Rulemaking-Letter-from-Legislators.pdf",
+   "outlet": "New Mexico legislators' letter to the Environmental Improvement Board (hosted by Western Environmental Law Center)",
+   "date": "2026-03-20",
+   "source_type": "testimony",
+   "entity_named": "yes",
+   "quote": "Without action, the state faces position freezes, delayed permit processing, reduced inspections, diminished monitoring, and weakened enforcement capacity.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " increased by roughly 2,100 percent, Notice of Intent facilities have grown by nearly 250 percent, and minor source permitting has increased by more than 200 percent. The Title V Special Revenue Fund is projected to be exhausted by FY 2028, with the Construction Permit Fund following shortly after. Without action, the state faces position freezes, delayed permit processing, reduced inspections, diminished monitoring, and weakened enforcement capacity. New Mexico’s monitoring infrastructure is inadequate for the scale of industrial activity it must oversee. The entire state operates approximately 20 permanent air monitoring stations. Lea and Eddy counties—home to thousands of active wells, compressor stations, and processing facilities—each have a single ozone monitor. Several major pr"
+  }
+ ]
+}

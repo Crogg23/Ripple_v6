@@ -1,0 +1,66 @@
+{
+  "story_id": "S061",
+  "entity": "USDA Rural Development Section 515 rural rental housing (active multifamily projects), US, current snapshot: 56,159 units (13.5%) in projects opened by 1980 with no live restrictive-use clause; 35,324 with rental assistance; Iowa 36%, Missouri 32%",
+  "queries": [
+    {"q": "USDA Section 515 rural rental housing restrictive use provisions expire pre-1979 loans prepayment units at risk", "found_useful": true},
+    {"q": "Section 515 maturing mortgages rural apartments losing affordability rental assistance tenants 2025", "found_useful": true},
+    {"q": "Iowa USDA rural rental housing Section 515 apartments leaving program affordability expiring", "found_useful": true},
+    {"q": "Missouri USDA rural apartments Section 515 mortgages paid off tenants lose rental assistance", "found_useful": false},
+    {"q": "GAO USDA multifamily housing maturing mortgages Section 521 rental assistance tenants at risk report", "found_useful": true},
+    {"q": "GAO 2018 Rural Housing Service maturing mortgages 60 percent properties exited program tenants", "found_useful": true},
+    {"q": "Section 515 properties without restrictive use provisions number of units expired use restrictions data analysis", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.cura.umn.edu/research/usda-section-515-program-quantitative-analysis",
+      "outlet": "University of Minnesota Center for Urban & Regional Affairs (CURA)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Due to the older properties in Minnesota and Iowa, over half of properties in both states may never have had a restrictive use clause or these clauses have expired as of June 30, 2020.",
+      "paywalled": false,
+      "searcher_note": "Same measure (no live restrictive-use clause), same USDA RD Active Projects dataset (2020-07-17 pull), Iowa named; window is June 2020 and counts properties, not pre-1981 units. Also: 44% of units in MN/IA/WI had lost or never had the clause. Page tagged FIRP 2020-2021; no date printed. No Missouri."
+    },
+    {
+      "url": "https://nlihc.org/resource/housing-assistance-council-research-finds-usda-rural-rental-housing-stock-lost-nearly",
+      "outlet": "National Low Income Housing Coalition",
+      "date": "2026-07-06",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Several Midwestern states lost over 10% of their USDA Section 515 housing, including Nebraska, North Dakota, Michigan, South Dakota, Wisconsin, Indiana, and Iowa.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Summarizes HAC brief: 621 properties / 14,928 units left Section 515 (June 2021 to March 2025/2026; page gives both). Measures units already lost, not units without a live clause."
+    },
+    {
+      "url": "https://www.gao.gov/products/gao-18-285",
+      "outlet": "US Government Accountability Office",
+      "date": "2018-05-17",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "about 60 percent of properties with maturing mortgages exited the program between 2014 through 2017.",
+      "paywalled": false,
+      "searcher_note": "GAO-18-285: over 90% of RHS properties/units (407,000 units) could exit 2028-2050; tenants may lose rental assistance when mortgages mature. National pattern, no restrictive-clause count."
+    },
+    {
+      "url": "https://ruralhome.org/wp-content/uploads/storage/documents/rdpreservationguide.pdf",
+      "outlet": "Housing Assistance Council",
+      "date": "2008",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Mortgages financed before December 21, 1979 can be prepaid only after the owner requests RD permission, rejects incentives to stay in the program, and sometimes offers the property to nonprofit or public entities.",
+      "paywalled": false,
+      "searcher_note": "Mechanism: pre-1979 loans still face prepayment restrictions while the loan is outstanding; 1979-89 loans had 15- or 20-year use restrictions. Bears on the lead's caveat that the loan can still bind the project."
+    },
+    {
+      "url": "https://news.gatech.edu/news/2026/03/12/successful-usda-program-has-supported-more-533000-affordable-rental-homes-rural",
+      "outlet": "Georgia Tech News Center (republished from The Conversation)",
+      "date": "2026-03-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The owners of these rental properties no longer have to keep rents affordable once they have paid off their loans.",
+      "paywalled": false,
+      "searcher_note": "Recent explainer by Brian Y. An: 90% of remaining Section 515 homes mature by 2045; rental assistance can be lost at payoff. No state figures."
+    }
+  ],
+  "notes": "Section 515 is widely covered as a pattern (maturing mortgages, expired use restrictions, lost rental assistance). The closest match is CURA's Minnesota/Iowa/Wisconsin analysis, which measures the same thing (properties with no live restrictive-use clause) from the same USDA dataset but as of June 2020, by property, not limited to projects opened by 1980. No source found gives the 56,159-unit or 35,324-rental-assistance figures, or Missouri 32%. No Missouri-specific coverage found. No source disagreeing on direction found."
+}

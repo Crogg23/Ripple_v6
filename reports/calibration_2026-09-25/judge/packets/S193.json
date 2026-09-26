@@ -1,0 +1,95 @@
+{
+ "story_id": "S193",
+ "lead": {
+  "headline": "Senegal's government foreign-debt payments due in 2026 equal 54% of its 2024 export earnings, top of 108 poorer countries",
+  "number": "$4.44B scheduled for 2026 = 54.0% of 2024 exports; Bhutan 50.2%; median of 108 low- and middle-income countries 8.4%.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "One ~$1.06B bond payment due in 2026 is what puts Senegal ahead of Bhutan; on 2027 or the 2026-28 average it drops to #2. The World Bank publishes this ratio itself."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Senegal external debt service 2026 percent of exports highest World Bank International Debt Statistics",
+  "Senegal debt service 2026 $4 billion Eurobond repayments due hidden debt IMF",
+  "countries highest debt service to exports ratio 2026 Senegal Bhutan ranking low- and middle-income",
+  "Debt Justice OR ONE Campaign debt service share of exports 2026 Senegal among worst affected countries",
+  "World Bank International Debt Report 2025 Senegal debt service exports Bhutan",
+  "Sénégal service de la dette extérieure 2026 exportations pourcentage milliards échéances",
+  "Senegal debt payments \"export earnings\" OR \"exports\" half 2026 Reuters Bloomberg Financial Times",
+  "IMF Senegal staff-level agreement September 2026 external debt service exports ratio debt sustainability"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://policy.desa.un.org/sites/default/files/2026-04/cdp-pl-2026-sen.pdf",
+   "outlet": "UN DESA, Committee for Development Policy, 2026 Monitoring Report: Senegal",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Total debt service reached 41.8 per cent of exports of goods, services and primary income in 2024",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "AO 3 Fiscal deficit and debt are a critical challenge, including for the implementation of Senegal’s development strategy, and are high on the policy agenda. 5 Public debt has exceeded 100 per cent of GDP since 2022 , reaching 128 per cent in 2024. External debt reached 134 per cent of GNI in 2023. Total debt service reached 41.8 per cent of exports of goods, services and primary income in 2024().6 Senegal’s fiscal deficit was 13 per cent of GDP in 2024. For 2025, it is estimated 7.9 per cent, which assumes a number of reforms in both revenue mobilization and reduction in expenditures. 7 Government revenue as a percentage of GDP has converged towards the LDC average but remains lo w compared to ODCs. In July 2025, the "
+  },
+  {
+   "idx": 1,
+   "url": "https://documents1.worldbank.org/curated/en/099080323143026715/pdf/BOSIB0a9a3028e061094f100bb29f0f72c0.pdf",
+   "outlet": "World Bank / IMF, Senegal Joint Bank-Fund Debt Sustainability Analysis",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The external debt service to exports ratio marginally breaches the risk threshold in 2026 with Eurobond amortizations coming due",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "the International Monetary Fund (IMF) Senegal is assessed to be at moderate risk of external and overall public debt distress, with limited space to absorb shocks. However, while debt indicators generally remain below their risk thresholds under the baseline scenario, two marginal one-off breaches (the external debt service to exports ratio in 2026 and the present value of total public debt to GDP ratio in 2023) highlight the urgent need for Senegal to implement critical measures to bring external and total public debt onto a downward trajector y, as currently projected. All risk indicators breach their threshold under the sensitivity analysis. The key assumptions underpinning this assessment are (i) a boost to growth, exports, and fiscal revenues from t"
+  },
+  {
+   "idx": 2,
+   "url": "https://debtjustice.org.uk/senegal",
+   "outlet": "Debt Justice",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In 2026 they are due to go over 50% of government revenue.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "oxic combination of the pandemic, soaring energy prices and spiralling interest rates. Now, Senegal spends more on debt to external lenders than it does on healthcare [1] between 2019 and 2025, the government’s external debt payments increased from just under 15% of government spending to over 40%. In 2026 they are due to go over 50% of government revenue.[2] Souleymane Gueye, from the Senegalese campaign group FRAPP, describes how: “The debt levels are so high in Senegal that the government doesn’t have the means to invest properly in education, health or social security.” The Senegalese government has seen the devastating impacts of austerity conditions that African neig"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.polity.org.za/article/senegal-poised-to-make-key-debt-payments-but-more-pain-looms-2026-03-13",
+   "outlet": "Reuters (via Polity.org.za)",
+   "date": "2026-03-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "JPMorgan's calculation showed Senegal owes $9.7-billion in interest and amortisation this year, $7.8-billion in 2027 and $8.7-billion in 2028.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 4,
+   "url": "https://www.ecofinagency.com/news/1712-51472-senegal-s-hidden-debt-accounting-crisis-not-vanished-capital",
+   "outlet": "Ecofin Agency",
+   "date": "2025-12-17",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Senegal's debt service is expected to double in 2026, increasing from about $1.1 billion in 2025 to more than $2.2 billion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 5,
+   "url": "https://senego.com/dette-barclays-chiffre-le-service-a-6-800-milliards-contre-5-80138-pour-letat_2005212.html",
+   "outlet": "Senego",
+   "date": "2026-09-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Sur les 5 801,38 milliards prévus, 4 516,21 milliards sont destinés au remboursement du principal, contre 1 285,17 milliards pour les intérêts et commissions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "% du produit intérieur brut, tandis que la banque britannique avance 9,2 %. Pour l’économiste-statisticien Babacar Gaye, cette différence traduit notamment les doutes du marché sur les recettes que l’État pourra réellement mobiliser. Le service de la dette ne correspond pas uniquement aux intérêts. Sur les 5 801,38 milliards prévus, 4 516,21 milliards sont destinés au remboursement du principal, contre 1 285,17 milliards pour les intérêts et commissions. Le principal représente ainsi environ 77 % des recettes budgétaires annuelles. Le cadrage économique a également été revu. La croissance attendue passe de 5 % à 2,7 %. Le déficit progresse de 1 245,1 milliards à 1 735,2 milliards de FCFA, tandis que l’investissement public recule de 555 milliards. Babacar Gaye juge ces ajus"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "story_id": "S042",
+ "lead": {
+  "headline": "Eight coal-mine owners logged 900-1,960 serious safety violations per 1,000 miners in 2018-24",
+  "number": "900-1,960 significant-and-substantial violations per 1,000 current miners, 2018-24, for eight mine controllers.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; the denominator is today's headcount, not 2018-24 staffing, and it's per miner, not per inspection day."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "coal mine operators most significant and substantial violations per miner MSHA analysis",
+  "coal companies worst safety records MSHA S&S violations 2018-2024 investigation",
+  "\"violations per miner\" coal mine controller OR operator analysis news",
+  "Mountain State Spotlight OR Kentucky Lantern OR Ohio Valley ReSource coal operators serious safety violations analysis MSHA data",
+  "MSHA pattern of violations notice coal mine 2019 2020 2021 2022 2023 potential POV operators named",
+  "coal mine safety violations decline record low MSHA citations fewer 2024 2025",
+  "coal mine operator repeated serious safety violations 2026 news MSHA citations company",
+  "coal company controller ranking safety violations per employee Appalachian analysis federal mine data 2024"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.wvgazettemail.com/news/energy_and_environment/fatality-stricken-mines-had-long-safety-violation-histories-as-more-msha-cuts-eyed/article_fc5e2870-3915-4b12-91bf-241784979596.html",
+   "outlet": "Charleston Gazette-Mail (Mike Tony)",
+   "date": "2026-04-07",
+   "source_type": "news",
+   "entity_named": "unknown",
+   "quote": "controlled by St. Clairsville, Ohio-based American Consolidated Natural Resources, has had more than 1,800 penalties assessed to operator Ohio County Coal Resources, Inc. by MSHA since the start of 2019.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " him. The Panther Eagle Mine in the Whitesville area of Raleigh County has had just shy of 1,100 safety and health violations assessed to its operator, Marfork Coal Company LLC, by MSHA since the start of 2019, according to agency records. The Ohio County Mine in the Dallas area of Marshall County, controlled by St. Clairsville, Ohio-based American Consolidated Natural Resources, has had more than 1,800 penalties assessed to operator Ohio County Coal Resources, Inc. by MSHA since the start of 2019, according to agency records. String of Panther Eagle Mine safety violations Of the nearly 1,100 violations assessed by MSHA to Marfork for the Panther Eagle Mine, 139 were deemed “Significant and Substantial” by MSHA. Significant and Substantial is a designation MSHA assigns to hazards it deems reasonably likely to result in serious injur"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.ishn.com/articles/115287-two-coal-miners-die-in-west-virginia-within-24-hours",
+   "outlet": "ISHN",
+   "date": "2026-04-24",
+   "source_type": "trade press",
+   "entity_named": "unknown",
+   "quote": "The Panther Eagle Horse Creek Mine reportedly received 50 citations for Mine Safety and Health Administration (MSHA) health and safety standard violations in early 2026 alone.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "urred within 24 hours of each other at facilities that have reported dozens of safety violations, according to reporting from West Virginia Watch and other news outlets. The Incidents Raleigh County: On Thursday, April 2, 2026, Aaron Warrix, 53, a shuttle car operator, died following an accident at the Panther Eagle Horse Creek Mine. Officials reported that Warrix was killed by a \"fall of roof\" (falling rock). Marshall County: On Friday, April 3, 2026, Darin Reece, a Continuous Miner Section Supervisor, was killed at the Ohio County Mine near Dallas. Officials believe Reece was crushed between two pieces of underground mining equipment. Safety Concerns Reports highlight that both mines involved in these fatalities have documented histories of numerous health and safety violations: The Panther Eagle"
+  }
+ ]
+}

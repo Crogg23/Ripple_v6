@@ -1,0 +1,95 @@
+{
+ "story_id": "S175",
+ "lead": {
+  "headline": "Male veterans' suicide rate rose about 10% in 2018-23 whether or not they used VA care; under-55s carry it",
+  "number": "Men using VA health care: 48.5 to 53.4 per 100,000 (+10.1%), rising every year; veteran men outside VA care: 36.21 to 39.71 (+9.7%); non-veteran men flat, 29.3 to 29.0.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "No join, and it's VA's own published appendix; the age-adjusted rate puts 71% of its weight on under-55s, who carry the whole rise, and the widening gap comes from VA's modeled headcount while veteran male suicides fell."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "VA National Veteran Suicide Prevention Annual Report 2025 data through 2023 male veterans suicide rate VHA users",
+  "veteran suicide report 2023 data male veterans VA health care users rate rose news Military Times OR Stars and Stripes 2026",
+  "veteran suicides fell 2023 fewer deaths but rate rose shrinking veteran population denominator",
+  "veteran suicide rate rising both VA users and non-users since 2018 younger veterans under 55 driving increase",
+  "veteran suicide VA report 2026 new data 2024 released September 2026",
+  "\"53.0 per 100,000\" OR \"39.4 per 100,000\" veterans VHA users suicide 2023",
+  "Operation Deep Dive veteran suicide undercount VA report 2026 disputes rate",
+  "suicide rate veterans not in VA care rising men 2018 to 2023 analysis appendix VHA users 48.5"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.mentalhealth.va.gov/docs/data-sheets/2025/2025_Annual_Report_Part_2_508.pdf",
+   "outlet": "U.S. Department of Veterans Affairs, 2025 National Veteran Suicide Prevention Annual Report, Part 2",
+   "date": "2026-02-05",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Concurrently, rates rose for both male Recent Veteran VHA Users (+3.0%) and male Veterans who were not Recent Veteran VHA users (+2.7%).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "he direct method, and the 2000 U.S. population as the standard. 33 Table 6, below, presents comparisons, by sex, of age-adjusted suicide rates. • From 2022-23, age-adjusted rates increased for female Veterans in VHA care (+5.1%) and for female Veterans who were not Recent Veteran VHA Users (+1.6%). Concurrently, rates rose for both male Recent Veteran VHA Users (+3.0%) and male Veterans who were not Recent Veteran VHA users (+2.7%). • From 2001-23, age-adjusted suicide rates rose for all groups. Table 6: Age-Adjusted Suicide Rate per 100,000, Change from 2001-23 and from 2022-23, Veteran VHA Users and Other Veterans, by Sex 2001 2023 Change 2022 2023 Change Recent Veteran VHA Users Female 13.4 17.4 +29.6% 16.6 17.4 +5.1% Male 43.1 53.0 +23.0% 51.5 53.0 +3.0% Other"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.usmedicine.com/clinical-topics/suicide/percentage-rates-for-veteran-suicide-up/",
+   "outlet": "U.S. Medicine",
+   "date": "2026-03-15",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "From 2001 to 2023, the age-adjusted suicide rates for male veterans without recent VHA use rose by 71.1%, while it only rose 23% for those who had been recently seen by VA.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 16.9 per 100,000. Adjusted for age and sex, the suicide rate for female veterans was 103.1% higher than female nonveterans, and 49.7% higher than for male nonveterans. Click to Enlarge The reports also illustrate the benefits for veterans receiving VA care and how that care has improved over time. From 2001 to 2023, the age-adjusted suicide rates for male veterans without recent VHA use rose by 71.1%, while it only rose 23% for those who had been recently seen by VA. For women, that difference was 64.6% compared to 29.6%. Among veterans in VHA care who had a mental health or substance abuse disorder diagnosis, the suicide rate fell by 34.7% between 2001 to 2023, suggesting VA screening and treatment has improved during that period. A list of mental health diagnoses of veterans who died "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.militarytimes.com/news/your-military/2026/02/06/veteran-suicide-rate-slightly-increased-latest-report-finds/",
+   "outlet": "Military Times (Patricia Kime)",
+   "date": "2026-02-06",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "the rate among those enrolled in VA health care is less than half the rate of those who aren't in VA care.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o better support at-risk veterans and launched initiatives to encourage safe storage of firearms. VA officials said that initiatives appear to be having an effect. According to the report, the number of suicides among veterans enrolled in the VA health care system dropped by a percentage point, and the rate among those enrolled in VA health care is less than half the rate of those who aren’t in VA care. The suicide rate among veterans who contacted the Veterans Crisis Line also was down by more than 16% in 2022, and the VA’s community partners provided counseling services and referrals for at least 27,000 veterans, according to the report. VA Secretary Doug Collins said the department is revamping suicide prevention under the Tr"
+  },
+  {
+   "idx": 3,
+   "url": "https://taskandpurpose.com/military-life/veterans-suicide-report-2025/",
+   "outlet": "Task & Purpose (Nicholas Slayton)",
+   "date": "2026-02-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "It found that the suicide rate increased for both men and women, from 37.3 to to 37.8 for the former and from 13.7 to 13.9 for the latter.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "per 100,000, according to the VA. That is more than double the rate of suicides among non-veteran adults. As in the report in 2022 numbers , suicide remained the second leading cause of death for veterans age 45 and younger. Overall, suicide was the 12th leading cause of death for veterans in 2023. It found that the suicide rate increased for both men and women, from 37.3 to to 37.8 for the former and from 13.7 to 13.9 for the latter. Top Stories This Week News Top enlisted leader in the Air Force explains why he wears his father’s service pin By Jeff Schogol News Soldiers with the 10th Mountain Division are headed back to the Middle East By Patty Nieberg News Army recruiting waivers for mental health will be approved at lower levels By Patty Nieberg As with"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.military.com/daily-news/2026/02/12/va-releases-newest-veteran-suicide-data-heres-what-they-found.html",
+   "outlet": "Military.com (Nick Mordowanec)",
+   "date": "2026-02-13",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The suicide rate per 100,000 veterans was 35.2, marking the report's highest level dating back to 2018 (33).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " slight decrease from the 6,442 suicides in 2022. The average number of daily veteran suicides fell from 17.6 in 2022 to 17.5 in 2023. The VA highlighted the report’s key findings: Roughly 61% of veterans who died by suicide in 2023 were not receiving VA health care in the last year of their lives. The suicide rate per 100,000 veterans was 35.2, marking the report’s highest level dating back to 2018 (33). The suicide rate per 100,000 veterans rose for both male and female veterans in 2023. That rate for women increased from 13.7 to 13.9, while for men it increased from 37.3 to 37.8. Suicide rates are elevated for veterans aged 18-34 years, leading to certain risk characteristics including health problems, homelessness and pain"
+  },
+  {
+   "idx": 5,
+   "url": "https://warriorwod.org/veteran-suicide-prevention-month-2026/",
+   "outlet": "WarriorWOD Foundation",
+   "date": "2026-09-02",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Veterans ages 18 to 34 die by suicide at a rate of 49.6 per 100,000, the highest of any age group.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " mental health care. The last point of contact, when one existed, was often a community organization rather than a clinical facility. The finding matters because it tells you where interventions have to reach if they are going to work. Post-9/11 combat veterans are at elevated risk within this gap. Veterans ages 18 to 34 die by suicide at a rate of 49.6 per 100,000, the highest of any age group. They are also the group least likely to be in VA care. Most of them are not going to find help inside a clinical system they either distrust or cannot access. The research on closing the gap points consistently in one direction: peer-based community programs that reach veterans where clinical systems do not. Which PTSD Symp"
+  }
+ ]
+}

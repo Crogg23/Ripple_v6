@@ -1,0 +1,46 @@
+{
+ "story_id": "S204",
+ "lead": {
+  "headline": "Four unnamed traders held 69.7% of sell positions in one mid-Atlantic power futures contract in early 2026, a record",
+  "number": "Top-4 share of the short side, PJM Western Hub off-peak day-ahead futures on ICE: 69.7% in 2026 Q1 (peak week 71.8% on 2026-03-10) vs 47.4% in 2024 Q1, but only about 5 points over the 2014-15 highs.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "One exchange only: the same product on Nodal Exchange sits near its low (~32%), 2024 is the series' lowest point, and the CFTC never names the traders."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "\"PJM Western Hub\" off-peak futures concentration four largest traders short CFTC commitments of traders",
+  "PJM power futures market concentration few traders dominate 2026",
+  "Nodal Exchange ICE PJM Western Hub futures open interest market share 2026",
+  "CFTC electricity futures large trader concentration PJM short positions news 2026",
+  "PJM West Hub futures manipulation large short position CFTC OR FERC enforcement traders",
+  "PJM Western Hub forward power prices hedging generators selling futures July OR August OR September 2026",
+  "\"largest traders\" OR \"top four traders\" power futures concentration ICE electricity analysis Commitments of Traders"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2026/futures/electricity_lf031026.htm",
+   "outlet": "U.S. Commodity Futures Trading Commission (Disaggregated Commitments of Traders, Electricity, Futures Only, long format)",
+   "date": "2026-03-10",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "40.0 71.8 57.7 84.2 34.6 70.4 52.0 79.4",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ted Number of the Largest Traders : By Gross Position By Net Position : 4 or Less Traders 8 or Less Traders 4 or Less Traders 8 or Less Traders : Long: Short Long Short: Long Short Long Short :---------------------------------------------------------------------------------------------------- All : 40.0 71.8 57.7 84.2 34.6 70.4 52.0 79.4 Old : 40.0 71.8 57.7 84.2 34.6 70.4 52.0 79.4 Other: 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 PJM WESTERN HUB DA PEAK - ICE FUTURES ENERGY DIV Code-0643DC Disaggregated Commitments of Traders - Futures Only, March 10, 2026 ---------------------------------------------------------------------------------------------------"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2024/futures/electricity_lf010924.htm",
+   "outlet": "U.S. Commodity Futures Trading Commission (Disaggregated Commitments of Traders, Electricity, Futures Only, long format)",
+   "date": "2024-01-09",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "42.5 46.0 61.8 63.5 41.1 36.2 52.1 48.8",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ted Number of the Largest Traders : By Gross Position By Net Position : 4 or Less Traders 8 or Less Traders 4 or Less Traders 8 or Less Traders : Long: Short Long Short: Long Short Long Short :---------------------------------------------------------------------------------------------------- All : 42.5 46.0 61.8 63.5 41.1 36.2 52.1 48.8 Old : 42.5 46.0 61.8 63.5 41.1 36.2 52.1 48.8 Other: 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 PJM WESTERN HUB DA PEAK - ICE FUTURES ENERGY DIV Code-0643DC Disaggregated Commitments of Traders - Futures Only, January 09, 2024 -------------------------------------------------------------------------------------------------"
+  }
+ ]
+}

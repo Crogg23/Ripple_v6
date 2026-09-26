@@ -1,0 +1,66 @@
+{
+  "story_id": "S104",
+  "entity": "Oroville Hospital (Oroville, California, CCN 050030): high inpatient stays per traditional-Medicare patient and heavy sepsis coding",
+  "queries": [
+    {"q": "Oroville Hospital Medicare admissions sepsis False Claims Act", "found_useful": true},
+    {"q": "Oroville Hospital sepsis coding readmissions Medicare outlier investigation Enterprise-Record", "found_useful": false},
+    {"q": "Oroville Hospital whistleblower lawsuit inpatient admissions bonuses doctors Chico Enterprise-Record 2021 OR 2022 OR 2023", "found_useful": true},
+    {"q": "Oroville Hospital 2026 Medicare corporate integrity agreement news", "found_useful": true},
+    {"q": "\"Oroville Hospital\" admissions per Medicare patient highest California hospitals sepsis rate", "found_useful": false},
+    {"q": "Oroville Hospital Wentz statement settlement denies wrongdoing \"Oroville Hospital\" allegations disproved", "found_useful": true},
+    {"q": "Oroville Hospital billing Medicare inpatient stays 2026 audit OR lawsuit OR investigation", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.justice.gov/opa/pr/california-hospital-pay-1025m-resolve-false-claims-allegations",
+      "outlet": "U.S. Department of Justice, Office of Public Affairs",
+      "date": "2024-12-12",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "to resolve allegations that it knowingly submitted false claims to Medicare and Medicaid arising from medically unnecessary inpatient hospital admissions, a kickback and physician self-referral scheme and the use of erroneous diagnosis codes.",
+      "paywalled": false,
+      "searcher_note": "$10.25M False Claims Act settlement: unnecessary inpatient admissions, admission-volume bonuses to doctors, false SIRS diagnosis codes. Live page bot-walled; Wayback copy 2025-02-04 has the quote. Also at justice.gov/archives/opa/pr/..."
+    },
+    {
+      "url": "https://www.justice.gov/opa/media/1380086/dl",
+      "outlet": "U.S. Department of Justice, settlement agreement (U.S. ex rel. Guardiola and Fisher v. Oroville Hospital)",
+      "date": "2024-12-12",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Oroville Hospital knowingly submitted to Medicare and Medi-Cal claims that included false diagnosis codes for systemic inflammatory response syndrome",
+      "paywalled": false,
+      "searcher_note": "Covered conduct: false SIRS secondary codes (ICD-10 R65.10) Jan 2013-Jul 2023, and medically unnecessary inpatient admissions Jan 2014-Jul 2023. Note SIRS R65.10 is non-infectious SIRS, not a sepsis code as such. Date is the announcement date; the PDF itself was not dated in the extracted text."
+    },
+    {
+      "url": "https://krcrtv.com/news/local/oroville-hospital-to-pay-1025m-in-kickback-false-claim-settlement",
+      "outlet": "KRCR (Redding/Chico)",
+      "date": "2024-12-12",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The settlement additionally resolves allegations that Oroville Hospital admitted patients as inpatients when it knew inpatient care was not medically necessary.",
+      "paywalled": false,
+      "searcher_note": "Local news on the settlement: kickbacks tied to admissions, false SIRS claims, unnecessary inpatient admissions; also carries the hospital's denial. Same-day rewrites by Action News Now, Becker's, KQMS count as copies."
+    },
+    {
+      "url": "https://www.prweb.com/releases/oroville-hospital-commits-to-enhanced-compliance-and-continues-its-mission-to-serve-the-local-community-302330675.html",
+      "outlet": "Oroville Hospital press release (PRWeb)",
+      "date": "2024-12-12",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Oroville Hospital makes no admissions of wrongdoing, maintaining that it would have prevailed if the case was decided on a level playing field and categorically denying any violation of the law.",
+      "paywalled": false,
+      "searcher_note": "Disagreement: the hospital denies the admissions and coding allegations; says disputes began in 2019 and CEO says related cases were disproved."
+    },
+    {
+      "url": "https://www.arnoldporter.com/en/perspectives/blogs/fca-qui-notes/posts/2024/12/serial-whistleblower-strikes-again",
+      "outlet": "Arnold & Porter, FCA Qui Notes blog (Meredith Osborn)",
+      "date": "2024-12-23",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Oroville Hospital allegedly submitted claims to Medicare and Medi-Cal knowing the claims included a fabricated secondary diagnosis code, allowing the hospital to claim excessive reimbursement for illusory",
+      "paywalled": false,
+      "searcher_note": "Law-firm analysis: DOJ contends the conduct ran January 2013 to July 2023; relator Cecilia Guardiola filed in 2020 (Case No. 2:20-CV-1558, E.D. Cal.)."
+    }
+  ],
+  "notes": "Same entity and same direction found (unnecessary inpatient admissions, diagnosis-code upcoding), but no source states 1.78 stays per patient, the 2,109-hospital ranking, the 3,938 stays / 2,213 patients, or a sepsis share (30% vs 15% CA median). The coding allegation is about SIRS (R65.10) secondary codes, not sepsis DRGs; the judge should weigh whether that is the same finding. Post-cutoff coverage found (Press Democrat 2026-08-10, Action News Now: hospital sues ex-CEO Robert Wentz over a property self-dealing scheme) is unrelated to admissions or coding; not recorded. The search tool's summary of query 7 attributed a 2026 OIG audit ($12.1M overpayments, 26 of 100 claims) to Oroville; checking the OIG page shows that audit is Sarasota Memorial Hospital, not Oroville. Not recorded."
+}

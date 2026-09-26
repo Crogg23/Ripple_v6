@@ -1,0 +1,65 @@
+{
+  "story_id": "S158",
+  "entity": "Evergy Metro residential customers on time-varying rates, Missouri vs Kansas, 2019-2024 (Missouri 89.7%, Kansas 1.6% in 2024); all four Missouri investor-owned utilities 76-99%",
+  "queries": [
+    {"q": "Evergy Missouri customers moved to time-of-use default rate Kansas side not", "found_useful": true},
+    {"q": "Evergy default time-based plan Missouri percent of customers time of use KCUR", "found_useful": true},
+    {"q": "Kansas City Star Evergy time-based rates Missouri only Kansas customers not required", "found_useful": true},
+    {"q": "Ameren Missouri Liberty Evergy time-of-use default rate all Missouri utilities residential customers shifted 2025", "found_useful": true},
+    {"q": "Evergy time-of-use Missouri customers 2026 opt out legislation switched back percent enrolled", "found_useful": false},
+    {"q": "time-of-use rate enrollment by utility EIA data Missouri Evergy highest share residential customers analysis", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.aol.com/evergy-time-based-rate-plan-190339734.html",
+      "outlet": "Kansas City Star (syndicated on AOL)",
+      "date": "2023-12-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Evergy also offers one time-based rate plan to its Kansas customers, but is not switching them to this plan automatically.",
+      "paywalled": false,
+      "searcher_note": "Same page, two paragraphs earlier: 'More than 99% of the company's Missouri customers are now on a time-based plan', per an Evergy spokesperson. Covers Missouri Metro + West together, Dec 2023; lead has Evergy Metro Missouri at 89.7% for 2024 (EIA filing). Kansas: opt-in only, no Kansas count given."
+    },
+    {
+      "url": "https://www.eenews.net/articles/missouri-overhauls-electric-rates-raising-rewards-and-risks-for-customers/",
+      "outlet": "E&E News (POLITICO)",
+      "date": "2023-07-12",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "all 550,000 Evergy residential customers in the state will be moved to an aggressive time-of-use rate this fall",
+      "paywalled": false,
+      "searcher_note": "Earliest found. Missouri PSC-ordered switch of all Evergy Missouri residential customers to time-of-use in fall 2023; contrasts Ameren Missouri's more gradual rollout. Forward-looking, no enrollment percentages."
+    },
+    {
+      "url": "https://www.kcur.org/news/2023-10-03/missouri-regulators-ok-evergy-changing-default-time-of-use-pricing-plan",
+      "outlet": "KCUR (Kansas City public radio)",
+      "date": "2023-10-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The commission, which regulates Missouri utilities, ordered Evergy to implement time-of-use pricing, which places a premium on electricity used during periods of high demand.",
+      "paywalled": false,
+      "searcher_note": "Missouri PSC approved a milder default time-of-use plan for Evergy Missouri customers who did not pick a plan. No Kansas mention, no enrollment counts."
+    },
+    {
+      "url": "https://psc.mo.gov/CMSInternetData/ConsumerInformation/PSC%20staff's%20frequently%20asked%20questions.pdf",
+      "outlet": "Missouri Public Service Commission (staff FAQ)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The Missouri Public Service Commission has entered orders and approved tariffs to transition almost all residential electric customers of regulated utilities",
+      "paywalled": false,
+      "searcher_note": "Sentence continues 'to Time-Based rates'. Names all four Missouri investor-owned utilities (Evergy Missouri West, Evergy Missouri Metro, Ameren Missouri, Liberty) and says Ameren and Liberty transitions run on their own timelines. Supports the lead's all-four-Missouri-IOUs claim in words; no percentages."
+    },
+    {
+      "url": "https://smartenergycc.org/wp-content/uploads/2025/08/SECCs-2025-Evergy-Case-Study.pdf",
+      "outlet": "Smart Energy Consumer Collaborative",
+      "date": "2025-08",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "standard opt-in enrollments in time-based plans see about one-percent conversion.",
+      "paywalled": false,
+      "searcher_note": "Case study of Evergy's Missouri time-of-use transition: about 30 percent (roughly 160,000) of residential Missouri customers pre-enrolled before automatic conversion to the Default Time Based Plan; contrasts with ~1% for opt-in programs (the Kansas-style setup). Date from upload path only."
+    }
+  ],
+  "notes": "The Missouri-mandatory vs Kansas-opt-in split for Evergy is widely reported (KC Star, KCUR, E&E News, Missouri Independent, Fox4). No source found states the Kansas share (1.6%, 3,904 homes) or the Evergy Metro Missouri figure (89.7%, 245,547 homes) or runs the 2019-2024 EIA comparison. The only Missouri percentage found is the KC Star's 'more than 99%' of Evergy's Missouri customers on a time-based plan as of Dec 2023 (spokesperson figure, Metro + West combined); the lead's 89.7% is Evergy Metro only, for 2024, from EIA-861. One logged query (the 2026 opt-out one) was expanded by the search tool into several follow-up searches on its own; none found 2026 enrollment figures."
+}

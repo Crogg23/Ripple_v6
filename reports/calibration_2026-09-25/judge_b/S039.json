@@ -1,0 +1,12 @@
+{
+  "story_id": "S039",
+  "bin": "Matched + more",
+  "entity": "US excluded (banned) providers receiving drug-company Open Payments money",
+  "deciding_sources": [0],
+  "earliest_match_date": "2026-02-02",
+  "post_cutoff_match": false,
+  "what_we_add": "the 2024-only cut: 193 banned NPIs, about $166K, and the Hector Molina $114K debt-forgiveness row from Skye Orthobiologics",
+  "why": "JGIM states the same finding in words and numbers: 605 of 3,725 excluded clinicians got industry payments. Its multi-year count differs from our 2024-only 193 by window, so no contradiction; our year-specific total and the Molina row are new.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

@@ -1,0 +1,57 @@
+{
+  "story_id": "S031",
+  "entity": "Illinois nursing homes carrying the CMS abuse icon (30% vs 9% elsewhere), with Bria, Evercare and Infinity chains near 73%",
+  "queries": [
+    {"q": "Illinois nursing homes abuse icon CMS share highest in nation", "found_useful": true},
+    {"q": "Bria Health Services nursing homes abuse citations Illinois", "found_useful": false},
+    {"q": "Illinois nursing homes red hand abuse icon percent Capitol News Illinois OR Tribune OR WBEZ", "found_useful": false},
+    {"q": "Infinity Healthcare Management Illinois nursing homes abuse icon Evercare", "found_useful": true},
+    {"q": "LTCCC nursing homes abuse icon by state Illinois percent facilities", "found_useful": true},
+    {"q": "Illinois nursing home abuse citations 2026 IDPH report state inspectors cite abuse more often", "found_useful": false},
+    {"q": "\"Illinois\" nursing homes \"abuse icon\" chain Bria OR Evercare OR \"Infinity\" percent of homes flagged", "found_useful": false},
+    {"q": "Illinois nursing homes flagged abuse neglect federal data analysis 2026 news", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.nursinghomeabusecenter.com/nursing-home-abuse/best-and-worst-states-for-nursing-home-abuse/",
+      "outlet": "Nursing Home Abuse Center",
+      "date": "2026-07-28",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Illinois has the highest Abuse Icon rate of any state: nearly 30% of facilities were flagged, compared to the national average of 10.1%.",
+      "paywalled": false,
+      "searcher_note": "Law-firm-backed state ranking page; same state-level finding (Illinois ~30% vs ~10% national); no chain breakdown."
+    },
+    {
+      "url": "https://www.nursinghomeabusecenter.com/blog/new-nursing-home-ranking-tool/",
+      "outlet": "Nursing Home Abuse Center",
+      "date": "2026-08-06",
+      "source_type": "research",
+      "entity_named": "partial",
+      "quote": "At the other end of the rankings, Louisiana ranked last, followed by Texas, Missouri, Oklahoma, and Illinois.",
+      "paywalled": false,
+      "searcher_note": "Recent follow-up on the same ranking tool; names Illinois among worst states and cites abuse-icon share as a factor, no Illinois percentage in text."
+    },
+    {
+      "url": "https://nursinghome411.org/ltccc-alert-problem-facilities/",
+      "outlet": "Long Term Care Community Coalition (NursingHome411)",
+      "date": "2024-06-21",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Nearly 9% of facilities have an abuse icon, indicating a history of abuse or neglect.",
+      "paywalled": false,
+      "searcher_note": "National abuse-icon rate (~9%), matching the lead's comparison figure; no Illinois rate."
+    },
+    {
+      "url": "https://goodjobsfirst.org/care-at-risk-upheaval-in-the-nursing-home-industry/",
+      "outlet": "Good Jobs First",
+      "date": "2023-12",
+      "source_type": "research",
+      "entity_named": "partial",
+      "quote": "A facility operated by Infinity Healthcare Management received a $320,000 fine in 2021 for failing to protect residents from physical and sexual abuse.",
+      "paywalled": false,
+      "searcher_note": "Chain penalty report naming Infinity and Bria Health Services among highest average penalties per facility; not abuse-icon rates."
+    }
+  ],
+  "notes": "The state-level finding (Illinois ~30% abuse icon vs ~10% national) is reported by the Nursing Home Abuse Center, a law-firm-backed site, dated 2026-07-28. No mainstream news source found with the Illinois rate. No source found giving an abuse-icon rate for Bria, Evercare or Infinity (the ~73% chain figure); Good Jobs First names Bria and Infinity only for penalties. nursinghomedatabase.com Illinois analysis page returned HTTP 429, not recorded. Illinois Times 2010 piece opened, no abuse-icon content."
+}

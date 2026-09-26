@@ -1,0 +1,12 @@
+{
+  "story_id": "S060",
+  "bin": "Known pattern",
+  "entity": "Nevro's Senza stimulator: 22.8% of its adverse-event reports are deaths vs 0.18% for the rest of the product code",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "MedTech Dive reports 428 deaths across all spinal-cord stimulators, and NBC's Implant Files covers the class; Nevro is named only as one of four makers. Nobody reports Nevro's death-report share or the gap to peers.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

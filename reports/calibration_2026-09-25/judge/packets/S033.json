@@ -1,0 +1,95 @@
+{
+ "story_id": "S033",
+ "lead": {
+  "headline": "Only 1 of 67,777 federal-grant auditees had survival doubts and rule-breaking flagged 10 years straight: Lower Brule Sioux Tribe",
+  "number": "Going-concern doubt and material noncompliance in all 10 audit years, 2016-2025 (EIN 460222351); no other auditee has even 7 years of both. Federal spending $16.7M to $35.7M, $246.2M in all.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The money doubling is normal for tribes (median 1.77x, mostly 2021 COVID money), so the story is the flag streak, not the dollars."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Lower Brule Sioux Tribe single audit going concern",
+  "Lower Brule Sioux Tribe financial audit findings noncompliance federal funds",
+  "Lower Brule Sioux Tribe financial crisis debt insolvency tribe council",
+  "Lower Brule Sioux Tribe Eighth Circuit 2026 Bureau of Indian Affairs school funds audit",
+  "\"Lower Brule\" tribe \"going concern\" auditor",
+  "Lower Brule Sioux Tribe finances 2025 audit chairman news",
+  "tribes single audit going concern material noncompliance repeat findings Federal Audit Clearinghouse analysis",
+  "\"Lower Brule Sioux Tribe\" federal grants audit findings every year material weakness"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://ecf.ca8.uscourts.gov/opndir/26/07/252375P.pdf",
+   "outlet": "U.S. Court of Appeals for the Eighth Circuit",
+   "date": "2026-07-09",
+   "source_type": "court",
+   "entity_named": "yes",
+   "quote": "From 2012 to 2019, the Tribe used some of the TCSA money to fund tribal operations that were unrelated to tribal schools.",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.aol.com/articles/federal-panel-rejects-tribe-appeal-192712000.html",
+   "outlet": "KELOLAND News (via AOL)",
+   "date": "2026-07-09",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "On June 10, 2020, the BIA issued a bill of collection to the Lower Brule Sioux Tribe for $3,679,223 of school funds that an audit determined had been misdirected.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t Judge Roberto Lange ruled for the bureau in 2025. The Lower Brule Sioux Tribe appealed his decision. On Thursday, a three-judge panel for the U.S. Eighth Circuit Court of Appeals unanimously upheld Judge Lange’s decision. Senior Judge Duane Benton wrote the appeals panel’s opinion . Advertisement On June 10, 2020, the BIA issued a bill of collection to the Lower Brule Sioux Tribe for $3,679,223 of school funds that an audit determined had been misdirected. The U.S. Department of Treasury conducted about 47 offsets against monies owed to the tribe, collecting $3,107,643.70 against the 2017 report. The unpaid 2017 balance is $1,013,873.36, according to Judge Benton. The appeals court panel agreed with Judge Lange that the Lower Brule Sioux Tribe missed the deadline to appeal t"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.doioig.gov/reports/audit/lower-brule-sioux-tribe-did-not-account-cares-act-funds-appropriately",
+   "outlet": "U.S. Department of the Interior Office of Inspector General",
+   "date": "2022-09-19",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The Lower Brule Sioux Tribe did not follow applicable requirements in its agreements with the BIA.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " The Lower Brule Sioux Tribe Did Not Account for CARES Act Funds Appropriately | Office of Inspector General, U.S. Department of the Interior Skip to main content An official website of the United States government Here’s how you know Here’s how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock A locked padlock ) "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.ojp.gov/ncjrs/virtual-library/abstracts/audit-office-justice-programs-multi-purpose-grants-awarded-lower",
+   "outlet": "Office of Justice Programs (abstract of DOJ OIG audit)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "did not comply with essential award conditions related to grant expenditures, award special conditions, budget management, and program performance",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "mance in the following areas of grant management: financial management, expenditures, budget management and control, drawdowns, Federal financial reports, and program performance. As of June 2, 2015, LBST had drawn down $2,327,991 of the total grant funds awarded. The audit determined that the LSBT did not comply with essential award conditions related to grant expenditures, award special conditions, budget management, and program performance. This consisted of expending funds without prior approval; paying for unbudgeted positions with Federal funds; failure to maintain adequate documentation related to performance; exceeding the allowable indirect cost rates; exceeding the 10-percent rule for movement of funds between approved budget categories without required approva"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.hrw.org/report/2015/01/12/secret-and-unaccountable/tribal-council-lower-brule-and-its-impact-human-rights",
+   "outlet": "Human Rights Watch",
+   "date": "2015-01-12",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The tribe has accumulated long-term debt of almost $33 million, most of it (about $26 million) for long term bond issuances to finance the government's operations.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "he Tribal Government’s recurring revenue is about $29.9 million. Of that, about $21.6 million comes from US taxpayer funds as grants or other programs. Federal funds comprise about 72 percent of the Tribal Government’s recurring revenues and some 64 percent of the tribe’s overall expenditures. [93] The tribe has accumulated long-term debt of almost $33 million, most of it (about $26 million) for long term bond issuances to finance the government’s operations. [94] Several tribally-owned businesses are disclosed in the single audit, but a complete picture of their finances is difficult to discern because key financial information is not fully included and the Tribal Government does not disclose many details about their operations. Information that is disclosed in the federal audits includ"
+  },
+  {
+   "idx": 5,
+   "url": "https://listen.sdpb.org/news/2016-05-02/lower-brule-sioux-tribe-financial-troubles-continue",
+   "outlet": "South Dakota Public Broadcasting",
+   "date": "2016-05-02",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Officials found the tribe had over $900,000 in unallowable, unsupported or unreasonable expenses during this four-year period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ade to get the tribe on track. Meanwhile, the tribe has been the focus of a new round of negative press over misspent federal funds that came to light during a recent federal audit. The Justice Department’s Office of the Inspector General conducted an audit of tribal spending between 2009 and 2012. Officials found the tribe had over $900,000 in unallowable, unsupported or unreasonable expenses during this four-year period. “Lakota George” Estes is spokesperson for grass roots elders of the Lower Brule Sioux Tribe. He says many tribal members are still in the dark on the $900,000 in misspent federal funds. “We have yet to see any finances,” Estes advises. “There’s 25 bank accounts our tribe has. We wanna’ know what’s in it. What’s going on.” Estes say"
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "story_id": "S057",
+ "lead": {
+  "headline": "706 finished US drug and device trials, 8.6% of those the law covers, never posted results: 152,850 patients",
+  "number": "706 of 8,234 FDA-regulated US phase 2-4 trials that finished 2017-01-18 to 2022-06-30 have no results as of 2026-09-04, covering 152,850 enrolled patients.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "A long tail: 435 of 537 sponsors miss exactly one, and TrialsTracker already ranks sponsors."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "FDAAA TrialsTracker applicable clinical trials results overdue percentage sponsors",
+  "study applicable clinical trials not reporting results ClinicalTrials.gov FDAAA compliance JAMA 2017 final rule completed trials",
+  "FDA March 2026 reminder letters 2,200 sponsors 3,000 clinical trials results ClinicalTrials.gov nearly 30 percent",
+  "patients enrolled in trials whose results were never posted ClinicalTrials.gov FDA-regulated trials study 2025 2026",
+  "clinical trial results missing ClinicalTrials.gov FDA notices of noncompliance news July August September 2026",
+  "ClinicalTrials.gov results reporting compliance improved most industry trials now report results analysis 2024 2025",
+  "Science Piller FDA NIH let clinical trial sponsors keep results secret break the law",
+  "FDAAA TrialsTracker 2026 overdue trials number sponsors ranked Bennett Institute results not reported"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.fda.gov/news-events/press-announcements/fda-reminds-more-2200-sponsors-and-researchers-disclose-trial-results",
+   "outlet": "US Food and Drug Administration press announcement",
+   "date": "2026-04-13",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "29.6% of studies that are highly likely to fall under mandatory reporting requirements have no results information submitted",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "aps in the public record and a publication bias that obscures the true landscape of drug development outcomes—overrepresenting successes and underrepresenting failures. This gap can also create a distorted perception of the safety and efficacy of medical products. According to an internal analysis, 29.6% of studies that are highly likely to fall under mandatory reporting requirements have no results information submitted to ClinicalTrials.gov. Studies subject to the mandatory reporting requirements include interventional studies with a U.S. nexus and an FDA-regulated product that are past the deadline to report; it excludes Phase 1 and device feasibility studies. \"Far too often, companies are suppressing unfavorable clinical trial results "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.fda.gov/news-events/press-announcements/fda-reminds-more-2200-sponsors-and-researchers-disclose-trial-results",
+   "outlet": "US Food and Drug Administration press announcement",
+   "date": "2026-04-13",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "interventional studies with a U.S. nexus and an FDA-regulated product that are past the deadline to report; it excludes Phase 1 and device feasibility studies",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tion of the safety and efficacy of medical products. According to an internal analysis, 29.6% of studies that are highly likely to fall under mandatory reporting requirements have no results information submitted to ClinicalTrials.gov. Studies subject to the mandatory reporting requirements include interventional studies with a U.S. nexus and an FDA-regulated product that are past the deadline to report; it excludes Phase 1 and device feasibility studies. \"Far too often, companies are suppressing unfavorable clinical trial results and keeping them secret from patients and the scientific community. Those sponsoring clinical trials have an ethical obligation to make results public regardless of the data’s influence on the company’s share price,\" said FDA Commissioner Marty Makary, M"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.eurekalert.org/news-releases/645803",
+   "outlet": "EurekAlert! (The Lancet press release, DeVito/Bacon/Goldacre)",
+   "date": "2020-01-17",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "36% (1,523/4,209) still had not been reported by September 16, 2019",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the study, around half (52%; 2,178) had non-industry sponsors, most involved a drug intervention (71%; 2,968), and most were solely conducted in the USA (71%; 3,000). Analyses found that only 41% (1,722/4,209) of completed clinical trials reported results within the one year legal deadline, whilst 36% (1,523/4,209) still had not been reported by September 16, 2019. Moreover, progress has stalled--the proportion of compliant trials has remained stable since July 2018. The median delay from completion to submitting results was 424 days--59 days higher than the legal reporting requirement of one year (figure 1). Trials with an industry sponsor were much more likely to comply with the"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.statnews.com/2020/01/14/fda-nih-let-clinical-trial-sponsors-keep-results-secret/",
+   "outlet": "STAT (republishing Science, Charles Piller)",
+   "date": "2020-01-14",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "But a Science investigation shows that many still ignore the requirement, while federal officials do little or nothing to enforce the law.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "f Health and the Food and Drug Administration tried again, enacting a long-awaited “final rule” to clarify the law’s expectations and penalties for failing to disclose trial results. Advertisement The rule took full effect two years ago, on Jan. 18, 2018, giving trial sponsors ample time to comply. But a Science investigation shows that many still ignore the requirement, while federal officials do little or nothing to enforce the law. STAT+ Exclusive Story Already have an account? Log in This article is exclusive to STAT+ subscribers Unlock this article — plus daily intelligence on Capitol Hill and the life sciences industry — by subscribing to STAT+. Already have an account? Log in Individual plans Group plans Monthly $39 Totals $468 per year $39/month Get Started "
+  },
+  {
+   "idx": 4,
+   "url": "https://natlawreview.com/article/clinical-trial-transparency-enforcement-practical-guide-sponsors-and-research-sites",
+   "outlet": "National Law Review (Foley & Lardner)",
+   "date": "2026-06-01",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "the FDA had sent targeted reminder messages on March 30, 2026, to more than 2,200 sponsors and researchers concerning over 3,000 registered clinical trials",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": ""
+  }
+ ]
+}

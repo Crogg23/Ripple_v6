@@ -1,0 +1,12 @@
+{
+ "story_id": "S175",
+ "bin": "Matched + more",
+ "entity": "male veteran suicide rates, in and out of VA care, 2018-2023",
+ "deciding_sources": [0, 4],
+ "earliest_match_date": "2026-02-05",
+ "post_cutoff_match": false,
+ "what_we_add": "the 2018-23 window (+10.1% VHA users, +9.7% non-users), the flat non-veteran comparison, and the under-55 attribution",
+ "why": "VA's own report states rates rose for male veterans both in and out of VHA care, and Military.com notes 2023 was the highest rate since 2018. Same finding, same direction; the 2018-23 ~10% framing and under-55 decomposition appear nowhere.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,83 @@
+{
+ "story_id": "S157",
+ "lead": {
+  "headline": "Phoenix-area Salt River Project has 56.7 rooftop-solar homes per 1,000; Arizona Public Service has 145.4, Tucson Electric 124.3",
+  "number": "56.7 net-metered home solar systems per 1,000 homes in 2024; in 2014-19 SRP added 9.7 per 1,000 while Arizona Public Service added 61.7 and Tucson Electric 47.4",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The 2014 and 2019 numbers come from EIA files downloaded outside the warehouse, and nationally SRP is not low: 20th of 102 big utilities, 3.4x the median"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Salt River Project rooftop solar installations dropped demand charge 2015 solar customers",
+  "SRP rooftop solar lags APS Tucson Electric Power per customer adoption",
+  "\"SRP\" rooftop solar adoption \"three times\" neighboring utilities families discouraged",
+  "Salt River Project solar customers percentage compared APS rooftop solar Arizona Republic",
+  "KJZZ SRP rooftop solar customers growth slower than APS territory",
+  "FERC ruling Salt River Project solar customers PURPA 2024 decision rooftop",
+  "SRP says rooftop solar growing record number solar customers 2024 2025 Salt River Project",
+  "Salt River Project solar rates board 2026 rooftop solar customers export credit news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://grist.org/energy/utility-monopolies-are-hurting-rooftop-solar-can-antitrust-lawsuits-rein-them-in/",
+   "outlet": "Grist",
+   "date": "2022-02-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Yet while one utility has 15 percent of its customers with rooftop solar, the other has less than 5 percent.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o look at rooftop solar applications in the jurisdiction of a neighboring utility called Arizona Public Service. “These utilities are right across the street from each other with the same types of customers living in the same climate with the same values and the same weather,” he said in an email. “Yet while one utility has 15 percent of its customers with rooftop solar, the other has less than 5 percent. Don’t get me wrong, Arizona Public Service wishes its regulators would have let it get away with what SRP has done and killed the industry, but SRP is the one that got to do it, and the results are obvious and effective.” The climate news you need, right in your inbox. Always free. Saturdays The Weekly A weekend roundup of Gr"
+  },
+  {
+   "idx": 1,
+   "url": "https://votesolar.org/salt-river-projects-pricing-proceeding-halts-arizonas-progress-toward-clean-and-affordable-energy/",
+   "outlet": "Vote Solar",
+   "date": "2025-02-28",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Rooftop solar adoption is three times higher in neighboring utility territories.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "in participating in the proceeding and advocating for improvements to SRP’s solar rates. “SRP claims to be a clean energy champion, but as we have seen in the past and in today’s pricing proceeding final vote, that is not the case,” said Kate Bowman, Vote Solar’s Interior West Regulatory Director. “Rooftop solar adoption is three times higher in neighboring utility territories. This shows that SRP’s policies are discouraging families from installing solar, holding communities back from benefiting from clean, local energy.” The SRP Board approved a new monthly service charge of $30 for a typical residential customer, a 50% increase for most homes and more than twice the average monthly fixed fee for comparabl"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.scientificamerican.com/article/new-fees-may-weaken-demand-for-rooftop-solar/",
+   "outlet": "Scientific American (ClimateWire)",
+   "date": "2015-11-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In the year immediately prior to implementing the fees, SRP received an average of 600 new rooftop solar applications per month. Today, it receives 25 applications per month",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s applying to install solar panels, especially in Oklahoma and parts of Arizona. The Salt River Project, a regional utility in Arizona, imposed a new rate structure on “self generation” customers earlier this year as a way to recoup some of the costs generated when customers sell power back to SRP. In the year immediately prior to implementing the fees, SRP received an average of 600 new rooftop solar applications per month. Today, it receives 25 applications per month, SRP spokesman Scott Harelson said. The utility’s decision to implement demand and power distribution charges spurred one of the country’s largest rooftop solar panel installers, Solar City , to relocate 85 of its 800 Arizona workers out of state. The company also filed suit , calling SRP’s charges “anti-competitive.” “New roofto"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.utilitydive.com/news/srp-salt-river-residential-rooftop-purpa-vote-solar-ferc/704576/",
+   "outlet": "Utility Dive",
+   "date": "2024-01-16",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "have decimated what was previously a robust market for solar",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ricity to, and purchase from, residential customers with rooftop solar,” Vote Solar and two SRP customers said in the request for an enforcement action against the public power utility based in Tempe, Arizona. “SRP’s current policies for residential customer solar violate the Commission’s rules and have decimated what was previously a robust market for solar.” In violation of PURPA, SRP’s residential solar customers must pay higher fixed charges than non-solar customers; must choose between a hard-to-manage demand charge or a 2.8 cents/kWh export credit that is below SRP’s avoided costs for electricity; and, cannot use a more beneficial and easier to manage time-of-use rate that is avail"
+  },
+  {
+   "idx": 4,
+   "url": "https://blog.srpnet.com/truth-about-srp/",
+   "outlet": "Salt River Project (company blog)",
+   "date": "2024-03-29",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "that number continues to grow at a similar pace to other local utilities.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r recently approved Integrated System Plan , we also plan to add 7,000 MW of renewables while retiring 2,600 MW of coal capacity by 2035. Fact: We provide multiple ways for customers to have rooftop solar. As of January 2023, there are more than 55,000 SRP residential customers who have solar – and that number continues to grow at a similar pace to other local utilities. We provide four separate and distinct price plans specifically for those customers who wish to add rooftop solar to their home as well as innovative green plan options, such as access to utility-scale solar. In addition, we offer any customer a list of vetted solar installers, information on what questions to ask any potential so"
+  }
+ ]
+}

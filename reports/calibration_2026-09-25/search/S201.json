@@ -1,0 +1,47 @@
+{
+  "story_id": "S201",
+  "entity": "Defense Information Systems Agency (DISA): yearly spring renewals of Ivanti Endpoint Manager Mobile (EPMM, formerly MobileIron) licenses, $21.8M+ on 6 awards May 2023-Apr 2026, while 7 EPMM holes were listed as exploited",
+  "queries": [
+    {"q": "DISA Ivanti Endpoint Manager Mobile contract renewal Defense Information Systems Agency MobileIron", "found_useful": true},
+    {"q": "Pentagon Ivanti EPMM vulnerabilities exploited federal agencies still paying Ivanti contracts", "found_useful": true},
+    {"q": "DISA MobileIron subscription licenses award $8,043,000", "found_useful": false},
+    {"q": "Defense Department relies on Ivanti EPMM mobile device management hacks DISA DoD mobility", "found_useful": false},
+    {"q": "federal spending Ivanti contracts despite repeated hacks agencies keep buying Ivanti analysis", "found_useful": false},
+    {"q": "DISA DoD Mobility Unclassified Capability Ivanti MobileIron mobile device management platform", "found_useful": false},
+    {"q": "Ivanti EPMM exploited 2026 government agencies breached Pentagon August 2026", "found_useful": true},
+    {"q": "Contract Award DISA Ivanti EPMM licenses 2025 OR 2026 renewal August Schell", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://orangeslices.ai/contract-award-7-5m-disa-mobileiron-secure-uem-premium-subscription-licenses/",
+      "outlet": "OrangeSlices AI",
+      "date": "2024-08-20",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "mobileiron secure uem premium subscription licenses for ivanti (formerly mobileiron), an endpoint management software that grants authorized users the ability to access applications and business resources on the unclassified dod information network.",
+      "paywalled": false,
+      "searcher_note": "Contract listing: DISA award of $7,515,500 to August Schell Enterprises for MobileIron (Ivanti) licenses, signed 2024-05-16. One award only; no mention of other years, a renewal pattern, or exploited flaws."
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-213a",
+      "outlet": "CISA and Norwegian NCSC joint advisory",
+      "date": "2023-08-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "CVE-2023-35078 is a critical vulnerability affecting Ivanti Endpoint Manager Mobile (EPMM) (formerly known as MobileIron Core).",
+      "paywalled": false,
+      "searcher_note": "Pattern: EPMM zero-day used from April-July 2023 to breach a Norwegian government agency; CISA warns of wider government exploitation. Does not name DISA or its spending."
+    },
+    {
+      "url": "https://www.helpnetsecurity.com/2026/05/08/ivanti-epmm-zero-day-cve-2026-6973/",
+      "outlet": "Help Net Security",
+      "date": "2026-05-08",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "The US Cybersecurity and Infrastructure Security Agency has added the vulnerability to its Known Exploited Vulnerabilities catalog, and ordered US federal civilian agencies to remediate it within three days.",
+      "paywalled": false,
+      "searcher_note": "Pattern: May 2026 EPMM zero-day (CVE-2026-6973) added to CISA's exploited list; one of the EPMM holes in the lead's window. No DISA or contract mention."
+    }
+  ],
+  "notes": "No source found that ties DISA's (or the Pentagon's) Ivanti EPMM license spending to the exploited EPMM flaws, reports the $21.8M total, the six (or nine) DISA awards, the March-May renewal calendar, or the ~$43.8M federal EPMM total. The only DISA-named source is a single contract listing (OrangeSlices, $7.5M, May 2024). Heavy trade press exists on EPMM exploitation (2023 Norway, Jan 2026 CVE-2026-1281/1340 hitting Dutch and EU bodies, May 2026 CVE-2026-6973); none names DISA. Cybersecurity Dive's Feb 2026 article on governments targeted via EPMM loaded through WebFetch but sits behind a Cloudflare check for direct download, so it is left out. A search on the $8,043,000 figure from the watch-out found nothing."
+}

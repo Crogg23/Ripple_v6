@@ -1,0 +1,83 @@
+{
+ "story_id": "S029",
+ "lead": {
+  "headline": "634 poor-condition dams whose failure could kill people have no emergency plan, about 300 more than expected",
+  "number": "634 of 2,776 high-hazard dams rated Poor or Unsatisfactory answer a flat \"No\" (119 more say \"Not Required\"); against each state's good dams, the excess is about 300 (NC +45, NM +33, GA +32, SC +30, TX +29, MO +19).",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The warehouse's plan flag merges \"No\" and \"Not Required,\" and Kentucky's big number is a state-wide \"Not Required\" code, not missing plans."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "high-hazard dams poor condition no emergency action plan National Inventory of Dams analysis",
+  "AP investigation high hazard dams poor unsatisfactory condition lack emergency action plans",
+  "North Carolina high hazard dams poor condition without emergency action plan",
+  "2026 dams poor condition high hazard emergency action plan missing report",
+  "\"emergency action plan\" dams \"poor or unsatisfactory\" high-hazard don't have plans New Mexico Georgia",
+  "ASDSO state high-hazard dams percent with emergency action plans 2025 statistics",
+  "dams failure could kill people no emergency plan analysis news 2026 poor condition federal inventory",
+  "Texas high-hazard dams exempt emergency action plan poor condition news"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.nbclosangeles.com/news/national-international/ap-investigation-aging-us-dams/2112343/",
+   "outlet": "Associated Press via NBC Los Angeles",
+   "date": "2019-11-09",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "About 20% of state-regulated high-hazard dams nationwide still lack emergency plans, according to the U.S. Army Corps of Engineers, which maintains the national dam inventory.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o properly maintain the dam, train its employees or inform the Angels of dangerous conditions. Even though the Angels' home was squarely in its path, the dam was rated as a \"significant\" rather than \"high\" hazard, meaning it wasn't required under Nebraska law to have a formal emergency action plan. About 20% of state-regulated high-hazard dams nationwide still lack emergency plans, according to the U.S. Army Corps of Engineers, which maintains the national dam inventory. When last inspected in April 2018 , Spencer Dam's \"fair\" rating was accompanied by an ominous notation: \"Deficiencies exist which could lead to dam failure during rare, extreme storm events.\" Tim Gokie, chief engineer of Nebraska's dam safety program, said the warning was due to past water seepage the power utility addressed by in"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.southcarolinapublicradio.org/news/2022-05-05/ap-analysis-finds-growing-number-of-poor-high-hazard-dams",
+   "outlet": "Associated Press via South Carolina Public Radio",
+   "date": "2022-05-05",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "The AP tallied more than 2,200 dams in poor or unsatisfactory condition that are rated as high hazard",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "p://schema.org\",\"@type\":\"ListItem\",\"item\":\"https://www.southcarolinapublicradio.org/news\",\"name\":\"News\",\"position\":\"1\"}]} {\"@context\":\"http://schema.org\",\"@type\":\"ListenAction\",\"description\":\"An Associated Press analysis has found a growing number of hazardous dams in poor condition across the U.S. The AP tallied more than 2,200 dams in poor or unsatisfactory condition that are rated as high hazard, meaning their failure likely would kill someone. That figure is up substantially from a similar AP review three years ago. Experts say the increase is a result partly of deferred maintenance and new development downstream from old dams that weren't necessarily designed to today's standards. The federal government's Nationa"
+  },
+  {
+   "idx": 2,
+   "url": "https://infrastructurereportcard.org/cat-item/dams-infrastructure/",
+   "outlet": "American Society of Civil Engineers, 2025 Report Card",
+   "date": "2025",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "(nearly 82% of state-regulated high hazard dams, about equal to 2021) have an EAP.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "termined that an exercise as part of the dam’s EAP was critical to informing evacuation plans, which led to “well-organized and orderly” evacuations of downstream communities. 15 As a result, there were no reported casualties. As of 2024, more than 11,000 state-regulated high hazard–potential dams (nearly 82% of state-regulated high hazard dams, about equal to 2021) have an EAP. Public Safety Dam failures can pose significant challenges to impacted communities. In addition to causing billions of dollars in economic losses and the potential loss of life, dam failures can result in damage to interconnected infrastructure systems. Flooding from dam failures can impact bridges and roadways, threaten drinking wa"
+  },
+  {
+   "idx": 3,
+   "url": "https://sao.texas.gov/SAOReports/ReportNumber?id=20-036",
+   "outlet": "Texas State Auditor's Office",
+   "date": "2020-07",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The Commission did not have a complete and current emergency action plan for all dams that required them.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cted by dam owners. However, in responding to dam deficiencies, it did not consistently communicate with dam owners through dam inspection exit interviews and requests for corrective action plans, and it had not updated its enforcement policy to include current enforcement procedures. Additionally, the Commission did not have a complete and current emergency action plan for all dams required to have one. Jump to Overall Conclusion LOW The Commission Implemented an Inspection Function That Aligns With Applicable Requirements and Best Practices The Commission implemented processes that align with key requirements to identify the condition of dams it regulates through inspections. Jump to Chapter 1-A MEDIUM The Commission Shoul"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.asce.org/publications-and-news/civil-engineering-source/article/2026/03/12/aging-us-dams-pose-rising-safety-risks-how-can-civil-engineers-help",
+   "outlet": "ASCE Civil Engineering Source",
+   "date": "2026-03-12",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "State and U.S. federal regulations require that dams classified as high hazard or significant hazard have emergency action plans in place.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " “What was once a rural area below a dam may now include residential development and community facilities like schools and day cares, increasing the potential consequences of a failure. As a result, the dam is reclassified as high hazard – the design of the dam no longer matches the level of risk.” State and U.S. federal regulations require that dams classified as high hazard or significant hazard have emergency action plans in place. EAPs identify potential emergency conditions and specify actions to take should an emergency occur. Dam owners are responsible for EAPs, which should be developed in cooperation with emergency response managers, dam safety engineers, and state dam safety officials. “Accurate inundation maps are critical with EAPs,” Moyle said. “In "
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+  "story_id": "S091",
+  "entity": "Tesla, job-safety (Cal/OSHA and federal OSHA) accident and fatality inspections, mostly California: count, share still open, time to close",
+  "queries": [
+    {"q": "Tesla Cal/OSHA accident inspections open cases Fremont factory", "found_useful": true},
+    {"q": "Tesla OSHA inspections serious injuries Fremont investigation years to close", "found_useful": true},
+    {"q": "Tesla Cal/OSHA 2026 citation Fremont worker injured", "found_useful": true},
+    {"q": "Tesla contests Cal/OSHA citations appeals board cases unresolved years", "found_useful": false},
+    {"q": "Tesla says Fremont injury rate below industry average safety improved response Cal/OSHA", "found_useful": true},
+    {"q": "Tesla OSHA inspection records analysis number of inspections compared other automakers open inspections 2025", "found_useful": true},
+    {"q": "Tesla factory worker safety investigation August 2026 OR September 2026 OSHA", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.forbes.com/sites/alanohnsman/2019/03/01/tesla-safety-violations-dwarf-big-us-auto-plants-in-aftermath-of-musks-model-3-push/",
+      "outlet": "Forbes",
+      "date": "2019-03-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "A review by Forbes found 24 investigations by California Occupational Safety and Health Administration inspectors from 2014 to 2018, resulting in fines for 54 violations.",
+      "paywalled": false,
+      "searcher_note": "Counts Cal/OSHA investigations at Fremont and compares with Nissan Smyrna (8) and Toyota Georgetown (13); says Tesla contested most Cal/OSHA fines. Live URL returns 403 to bots; quote verified on the Internet Archive copy."
+    },
+    {
+      "url": "https://aflcio.org/sites/default/files/2025-04/Memo%20on%20Elon%20Musk%20OSHA%20cases_.pdf",
+      "outlet": "AFL-CIO",
+      "date": "2025-04-09",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "There are 27 open cases with violations, 17 of which are included here, and two active investigations with no violations issued yet.",
+      "paywalled": false,
+      "searcher_note": "Union memo listing Tesla OSHA/Cal-OSHA cases; also says Tesla 'prolongs the process by contesting the citations.' Counts open cases with violations, not accident inspections or days to close. Advocacy source."
+    },
+    {
+      "url": "https://www.forbes.com/sites/alanohnsman/2022/06/06/elon-musk-has-lots-to-say-about-workers-at-teslawhich-continues-to-lead-us-carmakers-in-safety-violations/",
+      "outlet": "Forbes",
+      "date": "2022-06-06",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "At the same time, Tesla continues to lead all carmakers in workplace safety violations, racking up more infractions and fines in the past three years than all other automakers in the U.S. combined.",
+      "paywalled": false,
+      "searcher_note": "Compares Tesla's OSHA violations with 14 other automakers; about violations and fines, not inspection closure times. Quote found on the Internet Archive copy (live URL bot-blocked)."
+    },
+    {
+      "url": "https://www.hrdive.com/news/california-regulators-open-2-new-investigations-of-previously-fined-tesla-p/532571/",
+      "outlet": "HR Dive",
+      "date": "2018-09-19",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "bringing the total number of open investigations at the factory to six.",
+      "paywalled": false,
+      "searcher_note": "2018 snapshot: Cal/OSHA opened two new Fremont investigations, six open at once. Page sits behind a Cloudflare check for curl."
+    },
+    {
+      "url": "https://tesla.com/blog/accelerating-teslas-safety-culture",
+      "outlet": "Tesla",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "A review from the California Division of Occupational Safety and Health (Cal/OSHA) of the last five years of Tesla’s injury and illness records illustrated a 99% accuracy in our safety record keeping",
+      "paywalled": false,
+      "searcher_note": "Company pushback (early 2020, per Electrek coverage dated 2020-02-05): says Fremont injury rate is 5% better than the industry average. Different measure from the lead (injury rate, not inspection counts or closure time). Live URL 403; text found on the Internet Archive copy."
+    }
+  ],
+  "notes": "Tesla's Cal/OSHA inspection load is well covered: Forbes 2019 and 2022, HR Dive 2018, and an AFL-CIO 2025 memo on open cases. No source found states the lead's specific figures: 44 accident or fatality inspections since 2015, 43 in California, 18 still open, median 486 days to close, or a closure-time comparison with other top employers. Tesla's own blog disputes the safety picture on injury rates, not on inspection counts. Nothing found dated after 2026-06-30. Seven queries run, not eight: the last two came back dry."
+}

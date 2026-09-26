@@ -1,0 +1,44 @@
+{
+  "story_id": "S098",
+  "entity": "Kings County, California: share of returned mail ballots rejected, November 2022 general election (EAVS), vs national rate",
+  "queries": [
+    {"q": "Kings County California mail ballots rejected 2022 election rejection rate", "found_useful": true},
+    {"q": "Kings County Hanford election 2022 ballots rejected registrar of voters mail ballots problem", "found_useful": true},
+    {"q": "EAVS 2022 highest mail ballot rejection rates counties California outlier \"Kings County\"", "found_useful": false},
+    {"q": "\"Kings County\" California 2022 general election vote-by-mail ballots not counted canvass report rejected", "found_useful": false},
+    {"q": "\"13.7%\" mail ballots rejected county 2022 Election Administration and Voting Survey", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://elections.cdn.sos.ca.gov/vbm-rejection-reason/nov-general-2022(2).pdf",
+      "outlet": "California Secretary of State",
+      "date": "2023-02-13",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Kings 62,059 24,850 24,580 98.91%",
+      "paywalled": false,
+      "searcher_note": "Official Nov 8, 2022 VBM rejection-by-reason table (as of 2/13/2023). Kings row: 62,059 issued, 24,850 returned, 24,580 accepted (98.91%), 270 rejected = 1.09%. Disagrees with the lead's 13.7% / 3,628. PDF table: columns separated by runs of spaces in the extracted text."
+    },
+    {
+      "url": "https://www.pbs.org/wnet/preserving-democracy/2023/08/30/1-5-of-all-absentee-mail-in-ballots-were-rejected-in-2022",
+      "outlet": "PBS (WNET Preserving Democracy)",
+      "date": "2023-08-30",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Of that total 549,824—or 1.5%—were rejected, roughly equal to the 1.4% rejection rate in 2018, the most recent midterm election,",
+      "paywalled": false,
+      "searcher_note": "National 2022 mail-ballot rejection rate from EAVS (1.5%), the lead's comparison figure. No California county named."
+    },
+    {
+      "url": "https://www.kpbs.org/news/politics/2026/07/27/nearly-150-000-mail-ballots-rejected-in-californias-primary-despite-efforts-to-count-every-vote",
+      "outlet": "KPBS (AP)",
+      "date": "2026-07-27",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "According to state data, 148,241 mail ballots were rejected in the June election, or a rate of 1.73% of all mail ballots.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage of California mail-ballot rejections, June 2026 primary; names Tulare (3.52%) and Alpine as highest, not Kings; different election."
+    }
+  ],
+  "notes": "No news source names Kings County's 2022 mail-ballot rejection rate. The state's own 2022 general-election rejection report puts Kings at 270 rejected of 24,850 returned (1.09%), far below the lead's 13.7% (3,628 under EAVS reason C9P); that points to the EAVS 'other' reason holding something the state does not count as a rejection. A search snippet mentioned a 2023 memo by a Republican challenger alleging Kings County recount/VBM review problems (Bakersfield Californian via PressReader), not fetched and not about rejection rates. Several WebSearch calls auto-expanded into multiple internal searches; logged as one query each. Ballotpedia's 2022 rejected-ballot analysis page could not be fetched."
+}

@@ -1,0 +1,76 @@
+{
+  "story_id": "S125",
+  "entity": "Jackson Area Federal Credit Union (Jackson, Mississippi), Q1 2026 call report: $148.2M shares/deposits on $71.4M assets, $91.7M quarterly loss, net worth about -$77M (-107.9%)",
+  "queries": [
+    {"q": "Jackson Area Federal Credit Union Mississippi loss 2026", "found_useful": true},
+    {"q": "Jackson Area FCU first quarter call report negative net worth shares exceed assets", "found_useful": true},
+    {"q": "\"Jackson Area\" credit union \"$91.7 million\" OR \"$91.7M\" first quarter loss net worth ratio", "found_useful": true},
+    {"q": "Jackson Area Federal Credit Union conservatorship members Mississippi Today OR Clarion Ledger OR WLBT", "found_useful": true},
+    {"q": "NCUA lawsuit former Jackson Area FCU CEO $95 million diverted phantom cash", "found_useful": true},
+    {"q": "Jackson Area FCU shares deposits $148 million assets $71 million restated March 31 call report", "found_useful": true},
+    {"q": "Jackson Area Federal Credit Union September 2026 charges plea liquidation merger share insurance fund", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.marktreichel.com/post/when-the-balance-sheet-stops-making-sense",
+      "outlet": "Mark Treichel (former NCUA executive director), blog",
+      "date": "2026-06-16",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The restatement recognized a $91.7 million loss, cut cash by $93.6 million, and swung the net-worth ratio from positive 9% to negative 107%.",
+      "paywalled": false,
+      "searcher_note": "Same entity, same Q1 restatement: $91.7M loss, net worth ratio to -107%; also says the share insurance fund 'will likely absorb $77 million or more'. Page shows 'June 16' without a year; context is 2026. Does not state the deposits-to-assets ratio."
+    },
+    {
+      "url": "https://www.cutimes.com/2026/06/04/conserved-jackson-area-fcus-917m-loss-lowers-industry-roa-in-first-quarter/",
+      "outlet": "CU Times",
+      "date": "2026-06-04",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Conserved Jackson Area FCU's $91.7M Loss Lowers Industry ROA in First Quarter",
+      "paywalled": true,
+      "searcher_note": "Earliest found on the Q1 2026 $91.7M loss (headline only; page returned 403). Search summary said the loss moved industry ROA by over one basis point."
+    },
+    {
+      "url": "https://www.cutoday.info/Fresh-Today/NCUA-Call-Report-Reveals-Stunning-103-Million-Loss-at-Jackson-Area-FCU",
+      "outlet": "CU Today",
+      "date": "2026-08-03",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The credit union also posted a year-to-date net loss of $103 million, compared with $1.23 million in net income for all of 2025",
+      "paywalled": false,
+      "searcher_note": "Recent (post-2026-06-30), later window: June 30 call report, net worth -$88.5M, ratio -145.4%, assets down from $162.4M to $60.9M, YTD loss $103M. No Q1 or deposits-vs-assets figures."
+    },
+    {
+      "url": "https://ncua.gov/newsroom/press-release/2026/jackson-area-federal-credit-union-conserved",
+      "outlet": "NCUA",
+      "date": "2026-05-06",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "NCUA placed Jackson Area Federal Credit Union into conservatorship because of unsafe and unsound practices at the credit union.",
+      "paywalled": false,
+      "searcher_note": "Primary record: conservatorship on 2026-05-06; release cites $162,360,956 assets (pre-restatement) and 15,561 members."
+    },
+    {
+      "url": "https://www.cutoday.info/Fresh-Today/NCUA-Conserves-Jackson-Area-FCU",
+      "outlet": "CU Today",
+      "date": "2026-05-06",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Jackson Area FCU made $1.2-million in net income in 2025 and $135,527 through March, according to Call Report data.",
+      "paywalled": false,
+      "searcher_note": "Disagrees on Q1 as first filed: original March 2026 call report showed a profit and 9.51% net worth, before the restatement that recorded the $91.7M loss."
+    },
+    {
+      "url": "https://ncuso.org/credit-union/8445/",
+      "outlet": "NCUSO.org (call report data mirror)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "$148,178,414",
+      "paywalled": false,
+      "searcher_note": "Not a story: a page re-publishing the March 31, 2026 call report. Shares & deposits $148,178,414; total assets $71,355,580; undivided earnings -$77,024,237; net income -$91,737,477; 15,704 members."
+    }
+  ],
+  "notes": "Heavily covered in credit-union trade press and by NCUA. The $91.7M Q1 loss and the net worth ratio going to about -107% are published (CU Times headline 2026-06-04; Treichel 2026-06-16). No story found stating that deposits are 2.08x assets, or that Jackson Area is the only one of ~4,250 credit unions over 2x (median 0.86x); those numbers appear only as raw call report fields on a data-mirror page. Related: NCUA alleges about $95M diverted (civil suit filed ~2026-05-15; CU Times 2026-06-10, CU Today 2026-06-11); criminal bill of information expected (CU Today 2026-08-12; WLBT 2026-09-17, recent local coverage, not recorded because its entity-naming sentence names private individuals not in the lead). Treichel 2026-05 'Five Lessons' post: year-end 2025 net worth 9.2%, ~66% of assets as cash at other institutions. CU Times 2026-06-10 and 2026-07-31 returned 403. Visbanking page showed no data."
+}

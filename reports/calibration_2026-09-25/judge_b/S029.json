@@ -1,0 +1,12 @@
+{
+  "story_id": "S029",
+  "bin": "Known pattern",
+  "entity": "US poor/unsatisfactory-condition high-hazard dams with no emergency action plan (634, current inventory)",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "AP counted poor high-hazard dams (2,200) and, separately, high-hazard dams lacking EAPs (20%), but no source gives the intersection - poor-condition killers with no plan - or the state excess. Same kind of finding, not this measure.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

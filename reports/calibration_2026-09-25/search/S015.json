@@ -1,0 +1,47 @@
+{
+  "story_id": "S015",
+  "entity": "ICE bond-posted rate for people arrested 2+ years after entry, by state (Louisiana 7%, Texas 12%, Pennsylvania 29%), 2023-25",
+  "queries": [
+    {"q": "ICE detainees bond posted rate by state Louisiana Pennsylvania analysis", "found_useful": false},
+    {"q": "immigration judges Louisiana bond grant rate lowest in country detention", "found_useful": true},
+    {"q": "Deportation Data Project released on bond ICE detention stints by state long-term residents", "found_useful": false},
+    {"q": "Louisiana ICE detention long-time residents denied bond transferred Jena Basile Verite Illuminator", "found_useful": true},
+    {"q": "Pennsylvania immigration detainees bond granted rate Moshannon Valley York immigration court bond", "found_useful": false},
+    {"q": "\"bonded out\" ICE detention release on bond share by state data analysis 2025", "found_useful": false},
+    {"q": "Oakdale Jena immigration court bond grant rate percent Louisiana judges rarely grant bond", "found_useful": false},
+    {"q": "Third Circuit bond hearing ruling Pennsylvania ICE detainees released on bond August 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://tracreports.org/reports/722/",
+      "outlet": "TRAC (Syracuse University)",
+      "date": "2023-07-19",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The latest case-by-case Immigration Court records show that detained immigrants seeking release on bond have widely differing outcomes depending upon where they are being held.",
+      "paywalled": false,
+      "searcher_note": "Pattern: immigration-judge bond grant rates vary by detention location (3% to 45%); names Washington, Florida, Colorado, Texas (Conroe), Arizona sites, not Louisiana or Pennsylvania; bond granted, not posted."
+    },
+    {
+      "url": "https://thelensnola.org/2026/06/18/louisiana-immigration-detention-habeas-petitions-crisis/",
+      "outlet": "The Lens (co-published by Louisiana Illuminator, Bolts)",
+      "date": "2026-06-18",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "DHS instituted a policy of mandatory detention, declaring that any immigrant who’d entered the U.S. “illegally” was ineligible for bond",
+      "paywalled": false,
+      "searcher_note": "Louisiana detainees, including long-time residents, held without bond under the 2025 no-bond policy and Fifth Circuit law; no bond-posted rate, no comparison with Pennsylvania. Page says updated 2026-07-17."
+    },
+    {
+      "url": "https://www.openimmigration.us/analysis/bond-system",
+      "outlet": "OpenImmigration",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The grant rate varies dramatically by court. Judges in some courts grant bond at 10-15x the rate of others",
+      "paywalled": false,
+      "searcher_note": "National bond grant rate 4.3% (data through Feb 2026); court variation in general, no state breakdown."
+    }
+  ],
+  "notes": "No source found giving ICE bond-posted rates by state, or for people arrested 2+ years after entry, or the Louisiana 7% / Texas 12% / Pennsylvania 29% split. Coverage found is about immigration-judge bond grant rates (a different measure from bond posted) and about the 2025 no-bond policy and the Fifth vs Third Circuit split. bklg.org blog (2026-05-12) fetched: Fifth Circuit decided the most bond requests, no state rates; not recorded. New Jersey Monitor 2026-07-14 piece on detainees increasingly denied bond returned 403, not recorded. Post-cutoff legal coverage exists of the circuit split (Third Circuit, covering Pennsylvania, ruled 2026-08-28 in Buele Morocho that long-time residents get bond hearings; Fifth Circuit, covering Louisiana and Texas, upheld no-bond detention), but those are rulings and explainers with no bond-posted numbers; not recorded."
+}

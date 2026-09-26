@@ -1,0 +1,57 @@
+{
+ "story_id": "S088",
+ "lead": {
+  "headline": "Hedge funds and banks paid for 14.6% of itemized Texas lobby meals; the top recipient got $10-14K over 15 years",
+  "number": "Firm-named filers paid 2,114 of 14,448 itemized meals (14.6%, about 22% of range-high dollars); Brad Gilbert got 70 meals worth $10.2K-$14.4K from 11 funds, 2011-26.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Itemized meals are only 3.5% of reported food money, so this ranks what got itemized."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "\"Brad Gilbert\" Texas lobbyists meals hedge funds",
+  "Teacher Retirement System of Texas staff meals paid by hedge funds registered lobbyists ethics commission",
+  "Wall Street hedge fund firms registered as lobbyists Texas pension officials TRS ERS wined and dined",
+  "Teacher Retirement System investment staff lobbyists meals gifts hedge funds private equity (texastribune.org, houstonchronicle.com, dallasnews.com, statesman.com)",
+  "why hedge fund managers register as lobbyists in Texas to pitch state pension funds",
+  "lobbyists food and beverage spending who paid itemized recipients analysis (texastribune.org, kut.org, texasscorecard.com, propublica.org)"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.texastribune.org/2013/03/07/ethics-loopholes-keeping-public-dark/",
+   "outlet": "Texas Tribune",
+   "date": "2013-03-07",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "only 3.6 percent of the lobbyist disclosures for categories that can be itemized if thresholds are met",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n Texas is broad and bipartisan, and we hold many events to which all legislators are invited, including a reception on the opening day of session and our annual legislative day luncheon and dinner.&rdquo;</p> <p><span style=\"line-height: 1.35;font-size: 15px\">According to a Texas Tribune analysis, only 3.6 percent of the lobbyist disclosures&nbsp;</span>for categories that can be itemized if thresholds are met<span style=\"line-height: 1.35;font-size: 15px\"> &mdash; including food, booze, gifts and entertainment &mdash; had any detailed disclosures in 2011.</span><strong style=\"line-height: 1.35;font-size: 15px\">&nbsp;</strong><span style=\"line-height: 1.35;font-size: 15px\">That was down from 5.18 percent in 2005.&n"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.kut.org/politics/2025-07-03/texas-elon-musk-tesla-spacex-lobbyist",
+   "outlet": "KUT (Austin NPR)",
+   "date": "2025-07-03",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "State rules don't require them to disclose who was on the receiving end unless the lobbyist shelled out more than $132.60 on one person in a single day.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://www.institutionalinvestor.com/article/2bsuidloorwq40ai36yo0/portfolio/the-2014-hedge-fund-rising-stars-brad-gilbert",
+   "outlet": "Institutional Investor",
+   "date": "2014-06-10",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "As a member of the public markets team, Gilbert, 38, helps manage the $124 billion, Austin-based pension plan's $11 billion in hedge fund investments.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tem of Texas in 2006 and helps manage its $11 billion in hedge fund investments. June 10, 2014 Brad Gilbert A desire to return to his Lone Star State roots brought Brad Gilbert to the Teacher Retirement System of Texas in 2006, the same year as its well-known CIO, Thomas Britton (Britt) Harris IV . As a member of the public markets team, Gilbert, 38, helps manage the $124 billion, Austin-based pension plan’s $11 billion in hedge fund investments. In late 2011, TRS increased its capacity to invest in hedge funds to 10 percent from 5 percent of the overall portfolio, giving Gilbert and his colleagues plenty to do. Among their more recent hedge fund investments is a $200 million commitment to both Chicago–based Peak6 Investments and London–based Thélème Partners. Afte"
+  }
+ ]
+}

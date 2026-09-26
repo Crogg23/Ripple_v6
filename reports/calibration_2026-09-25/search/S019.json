@@ -1,0 +1,47 @@
+{
+  "story_id": "S019",
+  "entity": "US Clean Water Act (NPDES) permits in violation 36+ of 40 quarters, 2016-2025, with no formal enforcement in EPA's system; West Virginia chronic mines vs chronic sewer plants",
+  "queries": [
+    {"q": "Clean Water Act permits chronic violations years no enforcement EPA ECHO analysis", "found_useful": true},
+    {"q": "West Virginia coal mines Clean Water Act violations no enforcement DEP selenium", "found_useful": true},
+    {"q": "facilities in significant noncompliance every quarter Clean Water Act never penalized report", "found_useful": false},
+    {"q": "Environmental Integrity Project Clean Water Act chronic violators significant noncompliance report", "found_useful": false},
+    {"q": "Mountain State Spotlight coal mines water pollution violations DEP enforcement", "found_useful": false},
+    {"q": "EPA OIG \"long-term significant noncompliance\" major facilities water discharge permits enforcement oversight", "found_useful": true},
+    {"q": "Clean Water Act repeat violators years without penalty analysis 2026", "found_useful": false},
+    {"q": "West Virginia DEP mining NPDES enforcement actions not reported to EPA ICIS ECHO data gap", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.insurancejournal.com/news/southeast/2019/06/05/528413.htm",
+      "outlet": "Insurance Journal (Reuters copy, Valerie Volcovici)",
+      "date": "2019-06-05",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Several West Virginia coal mines, including some owned by the governor’s family, have released many times the allowable amounts of pollutants into nearby waterways in recent years without being penalized by regulators, according to environmental groups citing state data.",
+      "paywalled": false,
+      "searcher_note": "Pattern: WV coal mines over their water permit limits with no penalty; based on a citizen-suit notice about 15 facilities, not a national count or a mines-vs-sewer comparison."
+    },
+    {
+      "url": "https://www.epa.gov/office-inspector-general/report-better-enforcement-oversight-needed-major-facilities-water",
+      "outlet": "EPA Office of Inspector General",
+      "date": "2007-05-14",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "EPA did not provide effective enforcement oversight of major facilities with National Pollutant Discharge Elimination System permits in long-term significant noncompliance.",
+      "paywalled": false,
+      "searcher_note": "Pattern, earlier window: OIG report 2007-P-00023. The PDF says for 21 of 56 long-term violators reviewed, EPA and states took no suitable formal action. Not 2016-2025."
+    },
+    {
+      "url": "https://www.gao.gov/products/gao-21-290",
+      "outlet": "U.S. Government Accountability Office",
+      "date": "2021-07-12",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "nearly 11,000 facilities significantly exceeded their permit limits and illegally discharged pollutants into nearby waters in 2018.",
+      "paywalled": false,
+      "searcher_note": "Pattern plus caveat: GAO also says state-reported compliance data are incomplete and have errors, which matches the lead's 'absence may mean not reported' warning. No quarter-count analysis."
+    }
+  ],
+  "notes": "Nothing found that counts permits in violation 36+ of 40 quarters, names 553 or 84, or compares West Virginia mine vs sewer-plant formal-action rates. Coverage found is pattern only: WV mine violations without penalties (Reuters 2019, citizen suits), long-term significant noncompliance without timely enforcement (EPA OIG 2007), and national noncompliance plus data gaps (GAO 2021). Nothing dated after 2026-06-30 on this pattern. EIP's 'Clean Water Act at 50' (2022) only cites the OIG finding with an ellipsis; not recorded. GAO page blocks curl; quote came from WebFetch."
+}

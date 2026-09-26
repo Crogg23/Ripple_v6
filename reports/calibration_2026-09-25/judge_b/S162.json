@@ -1,0 +1,12 @@
+{
+ "story_id": "S162",
+ "bin": "Matched + more",
+ "entity": "US detentions of immigrants who arrived by 2021 (long-settled residents), Jan-May 2026 vs prior years",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2026-04-17",
+ "post_cutoff_match": true,
+ "what_we_add": "13,265 detentions Jan-May 2026 vs 3,490 in 2024 (3.8x), and the 1.9x figure for 10+ year residents vs 2019",
+ "why": "Marshall Project and AIC state the same finding in words: detention of long-settled interior residents surged to record levels under Trump. Nobody has the entry-date counts or the 3.8x ratio.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S110",
+ "bin": "Matched + more",
+ "entity": "US cyclosporiasis cases, 2026 season, vs prior years",
+ "deciding_sources": [1, 0, 3],
+ "earliest_match_date": "2026-07-14",
+ "post_cutoff_match": true,
+ "what_we_add": "state-level split (Michigan 7,395, Ohio 4,408, six states hold 78%) and the week-30 prior-year best of 3,451",
+ "why": "CIDRAP has 17,180 cases vs 1,180 last year; CDC has 19,883; NBC has the record framing. Same entity, same direction, near-identical number. No source has the state shares or the week-30 comparison.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

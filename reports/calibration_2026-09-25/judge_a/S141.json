@@ -1,0 +1,12 @@
+{
+ "story_id": "S141",
+ "bin": "Contradicted",
+ "entity": "4th Circuit published decisions, FY2025 vs FY2019",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The courts' own B-12 tables, same entity and same 12-month windows, put the 4th Circuit's published column at 204 (2019) and 124 (2025): a fall, against our +25% rise, and both numbers more than 25% off ours. Unless the FJC count and B-12 define published differently, the direction flips.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

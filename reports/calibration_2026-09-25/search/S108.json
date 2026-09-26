@@ -1,0 +1,47 @@
+{
+  "story_id": "S108",
+  "entity": "Indian Health Service and tribal hospitals (26), Medicare overall hospital star rating: 7 rated vs ~13 expected; Navajo-area Fort Defiance (Tsehootsooi), Tuba City Regional, Chinle",
+  "queries": [
+    {"q": "Indian Health Service hospitals Medicare star rating not rated", "found_useful": false},
+    {"q": "Chinle Tuba City Fort Defiance hospital Care Compare star rating quality measures reporting", "found_useful": false},
+    {"q": "GAO Indian Health Service hospitals quality data public reporting Hospital Compare tribal hospitals", "found_useful": true},
+    {"q": "\"Indian Health Service\" hospitals \"star ratings\" CMS Care Compare Navajo hospitals lack ratings", "found_useful": false},
+    {"q": "OIG Indian Health Service hospitals quality care Hospital Compare measures not reported OEI-06-14-00011", "found_useful": false},
+    {"q": "Navajo Times hospital quality ratings Tuba City Regional Health Care Chinle Tsehootsooi Medical Center CMS", "found_useful": true},
+    {"q": "tribal hospitals IHS quality ratings missing 2026 Medicare overall star rating rural hospitals too few cases", "found_useful": true},
+    {"q": "\"IHS hospitals\" \"star rating\" news Hospital Compare exempt tribal", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://tribalhealthreform.nihb.org/wp-content/uploads/2022/12/TTAG-Medicare-Medicaid-and-Other-Priorities-Final-11.19.2020.pdf",
+      "outlet": "CMS Tribal Technical Advisory Group (via National Indian Health Board)",
+      "date": "2020-11-19",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "A review of the Hospital Compare system reports that several IHS hospitals have a low star rating, with many IHS hospitals having no rating at all.",
+      "paywalled": false,
+      "searcher_note": "TTAG priority list asks CMS to exempt IHS hospitals from the star rating system; says many IHS hospitals have no rating. No count, no expected-vs-actual comparison, no named hospitals. Date from file name; PDF metadata says created 2020-12-07."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13535269/",
+      "outlet": "The Journal of Rural Health (Kliewe et al.), via PubMed Central",
+      "date": "2026-09-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Among the 22 additional IHS hospitals identified in CMS cost reports that lacked HCAHPS data during the study period, 10 participated in HCAHPS but had fewer than 25 responses per year, while 12 did not participate.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. IHS hospitals missing patient-survey (HCAHPS) data, split into too-few-responses vs non-participation. Different measure (HCAHPS, not overall star rating); does not name Fort Defiance, Tuba City or Chinle."
+    },
+    {
+      "url": "https://tchealth.org/",
+      "outlet": "Tuba City Regional Health Care Corporation",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Gold Seal of Approval and accreditation for Acute Hospital, Home Care, Laboratory, and Primary Care Medical Home certification, including a 2-Star rating (3-Star in 2021) by CMS",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement: Tuba City's own homepage claims a CMS 2-star rating (3-star in 2021), while the lead counts Tuba City among the unrated gap. Undated; which CMS rating release it refers to is not stated."
+    }
+  ],
+  "notes": "No news coverage found naming the 7-of-26 count or the expected-about-13 comparison. TTAG 2020 names IHS hospitals as a group and says many have no rating (same direction, no number). The 2026 J Rural Health paper covers missing HCAHPS data at IHS hospitals, not the overall star rating. Tuba City's homepage claims a CMS 2-star rating, which may contradict the lead's inclusion of Tuba City in the gap, or may refer to an older release; the judge should weigh the undated page. OIG 2016 IHS hospital reports (OEI-06-14-00010/00011) were checked; summary page does not mention Hospital Compare or star ratings. Data-aggregator pages (Healthgrades, US News, hospitalcompare.io) surfaced but were not recorded."
+}

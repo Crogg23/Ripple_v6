@@ -1,0 +1,68 @@
+{
+  "story_id": "S089",
+  "entity": "NAI Logistics B.V. (Amsterdam), Defense Department fuel payments on or just after its 2023-12-11 Global Magnitsky designation (Rahmani network)",
+  "queries": [
+    {"q": "\"NAI Logistics\" sanctions", "found_useful": true},
+    {"q": "Rahmani sanctioned company Pentagon contracts continued payments NAI Logistics fuel", "found_useful": false},
+    {"q": "\"Ajmal Rahmani\" NAI Defense Logistics Agency fuel contracts Europe", "found_useful": true},
+    {"q": "\"NAI Energy\" Rahmani Pentagon contractor sanctioned paid after", "found_useful": true},
+    {"q": "Rahmani sanctions Global Magnitsky \"Defense Logistics Agency\" contracts NATO fuel supplier Netherlands", "found_useful": false},
+    {"q": "\"NAI Logistics B.V.\" OR \"NAI Logistics BV\" Rahmani Nederland sancties", "found_useful": false},
+    {"q": "Rahmani sanctions Afghan fuel contractor 2026 appeal OFAC ruling", "found_useful": true},
+    {"q": "Pentagon paid sanctioned companies after OFAC designation SAM exclusion inspector general report contractors", "found_useful": false},
+    {"q": "\"NAI Logistics\" \"DLA\" OR \"Defense Logistics\" OR \"Pentagon\" OR \"U.S. military\" fuel", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://home.treasury.gov/news/press-releases/jy1973",
+      "outlet": "U.S. Department of the Treasury",
+      "date": "2023-12-11",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "One Dutch company: NAI Logistics B.V.; One Bulgarian company: Lego Investments EOOD",
+      "paywalled": false,
+      "searcher_note": "The designation itself: NAI Logistics B.V. listed as owned/controlled by Ajmal Rahmani. Says nothing about any DoD contracts or payments to NAI Logistics B.V."
+    },
+    {
+      "url": "https://home.treasury.gov/news/press-releases/jy1973",
+      "outlet": "U.S. Department of the Treasury",
+      "date": "2023-12-11",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "rigging bids, and eliminating competition on U.S.-funded contracts",
+      "paywalled": false,
+      "searcher_note": "Same page, second quote: the scheme the Rahmanis were sanctioned for is fuel-contract fraud on U.S.-funded Afghan contracts, not the Dutch company's DoD payments."
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/USCOURTS-dcd-1_24-cv-00285/pdf/USCOURTS-dcd-1_24-cv-00285-0.pdf",
+      "outlet": "U.S. District Court for the District of Columbia (Rahmani v. Yellen, No. 24-0285)",
+      "date": "2024-04-19",
+      "source_type": "court",
+      "entity_named": "no",
+      "quote": "Plaintiffs say that A. Rahmani's companies did not participate in fuel contracts after 2017.",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement: the Rahmanis' own claim, as recounted by the court, that their companies left fuel contracting after 2017. Names NAI Energy Europe and NAI Management among plaintiffs, not NAI Logistics B.V."
+    },
+    {
+      "url": "https://kabulnow.com/2023/12/us-government-sanctions-afghan-political-family-over-corruption-in-fuel-contracts/",
+      "outlet": "KabulNow",
+      "date": "2023-12-11",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "In 2014, the Rahmanis and other companies involved in fuel business colluded to drive up prices in the US-funded contracts for as much as $200 million.",
+      "paywalled": false,
+      "searcher_note": "News coverage of the sanctions and the fuel-contract scheme; does not name NAI Logistics B.V. or any post-sanction DoD payment."
+    },
+    {
+      "url": "https://www.dropsitenews.com/p/rahmani-sanctions-journalist-silencing",
+      "outlet": "Drop Site News",
+      "date": "2024-12-31",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "During the war in Afghanistan, Rahmani and his father worked as major contractors supplying fuel and other services to NATO forces.",
+      "paywalled": false,
+      "searcher_note": "Rahmani family as NATO fuel contractors and their fight against the sanctions; no mention of NAI Logistics B.V. or DoD payments after designation."
+    }
+  ],
+  "notes": "No source found that reports DoD/DLA payments to NAI Logistics B.V., before or after the 2023-12-11 designation. The only source naming NAI Logistics B.V. is the Treasury designation list. GovTribe vendor page for NAI Logistics B.V. (https://govtribe.com/vendors/nai-logistics-b-dot-v-dot-h2g78) returned 403 and is a data mirror, not coverage; not recorded. OCCRP's 'Pentagon Fuel Subcontractor Owned by Alleged Front for U.S.-Blacklisted Brothers' is about the Lebanese Rahme brothers, a different network, not recorded. The Treasury page is recorded twice for two distinct quotes; it is one source."
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S041",
+  "bin": "Matched + more",
+  "entity": "DOJ Epstein Library data-set pages losing the bulk 'Download all files' zip links, early Feb 2026",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2026-02-11",
+  "post_cutoff_match": true,
+  "what_we_add": "the full count and window: 11 of 11 data-set pages, Jan 30-Feb 9, never restored through early June; plus 12 court-case links renamed '[redacted] v.' on Feb 21 and 24",
+  "why": "Discrepancy Report names it and states the same finding: DOJ removed bulk ZIP downloads as of Feb 6. The DOJ's own page confirms the [redacted] renames. Nobody has the 11-of-11 census or the rename count and dates.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

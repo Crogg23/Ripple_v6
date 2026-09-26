@@ -1,0 +1,12 @@
+{
+ "story_id": "S137",
+ "bin": "Matched + more",
+ "entity": "Chronic wastewater permit violators with no formal enforcement, led by Missouri and Ohio",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-01-15",
+ "post_cutoff_match": false,
+ "what_we_add": "433 permits over limits in 8+ of 12 quarters in both windows, Missouri 97 and Ohio 68, half each state's chronic violators vs 18% elsewhere",
+ "why": "EPA's Missouri SRF states the finding in words: repeat violators kept getting letters, never referred for formal enforcement. The Ohio SRF orders a 30% cut in 4+-quarter SNC facilities. Nobody has the 433 count or the state shares.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

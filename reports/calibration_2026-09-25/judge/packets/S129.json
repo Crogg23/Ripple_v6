@@ -1,0 +1,45 @@
+{
+ "story_id": "S129",
+ "lead": {
+  "headline": "At least 36 US-sanctioned banks still hold numbers on the tax agency's (IRS) foreign-bank list, including Russia's central depository",
+  "number": "36 OFAC-blocked institutions with a live FATCA registration (31 Russian, 3 Belarusian, 1 Armenian, 1 London); 5 match on the GIIN that OFAC's own record prints",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Only 5 match on an ID; the rest are name plus country. A blocked bank on the list is two Treasury arms disagreeing, not proof money moved."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "sanctioned Russian banks still on IRS FATCA FFI list GIIN",
+  "National Settlement Depository FATCA GIIN IRS registration sanctions OFAC",
+  "IRS FATCA Russia Belarus intergovernmental agreement terminated treated as in effect list removed 2022 Russian financial institutions GIIN",
+  "OFAC SDN list \"Global Intermediary Identification Number\" Russian bank designation",
+  "sanctioned banks FATCA registration IRS Treasury inconsistency Russia Belarus blocked institutions still registered news",
+  "Russian banks FATCA GIIN sanctions 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.opensanctions.org/datasets/ext_us_irs_ffi/",
+   "outlet": "OpenSanctions",
+   "date": "2026-09-25",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "All foreign financial institutions and branches with approved FATCA registration.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Newsletter Product updates in your inbox Forum Ask questions and get help Get in touch Contact us General enquiries Talk to sales Licensing & commercial use Get support Help with data & the API Legal Terms & conditions Privacy Policy Impressum US FATCA Foreign Financial Institution (FFI) List JSON All foreign financial institutions and branches with approved FATCA registration. The FFI list is issued by the IRS and includes all financial institutions, branches, direct reporting non-financial foreign entities, sponsored entities, and sponsored subsidiary branches that have submitted a registration and have been assigned a Global Intermediary Identification Number (GIIN) at the time the list was compiled. On the first d"
+  },
+  {
+   "idx": 1,
+   "url": "https://ofac.treasury.gov/faqs/1197",
+   "outlet": "U.S. Treasury, Office of Foreign Assets Control",
+   "date": "2024-11-21",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "On June 12, 2024, OFAC designated the National Settlement Depository (NSD), along with the Moscow Exchange (MOEX) and the National Clearing Center (NCC) pursuant to Executive Order (E.O.) 14024",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Issued by OFAC Contact OFAC Russian Harmful Foreign Activities Sanctions 1197. I'm a U.S. person with securities held at the National Settlement Depository (NSD), which were transferred pursuant to Russian Decree 840 to another Russian registrar. Am I required to block these securities? Answer Yes. On June 12, 2024, OFAC designated the National Settlement Depository (NSD), along with the Moscow Exchange (MOEX) and the National Clearing Center (NCC) pursuant to Executive Order (E.O.) 14024 for operating or having operated in the financial services sector of the Russian Federation economy. As noted in the accompanying press release , Russia has reoriented the architecture of its financial system to facilitate investment into its defense industry and acquisition of goods needed to further its aggression against Ukrain"
+  }
+ ]
+}

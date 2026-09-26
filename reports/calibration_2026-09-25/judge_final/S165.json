@@ -1,0 +1,12 @@
+{
+  "story_id": "S165",
+  "bin": "Matched + more",
+  "entity": "England and Wales company formations, drop after compulsory identity checks began 18 Nov 2025",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "2025-12-28",
+  "post_cutoff_match": true,
+  "what_we_add": "the 73% single-day drop (847 vs 3,156 Tuesdays) and 10,338 of 64,456 company numbers matching no company",
+  "why": "City AM and Business Matters report the same ~30% weekly fall after the 18 Nov ID rules, same entity, same direction; official Q4 stats show the decrease too. No source has the day-one 73% figure or the missing-number count.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

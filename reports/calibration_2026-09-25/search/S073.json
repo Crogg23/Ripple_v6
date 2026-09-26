@@ -1,0 +1,45 @@
+{
+  "story_id": "S073",
+  "entity": "An unnamed Egyptian national born 2001, listed as not-ceased person with significant control of 630 UK companies (notified 2022-26), none filing accounts, most at one Manchester business centre",
+  "queries": [
+    {"q": "Egyptian national director hundreds of UK companies Companies House Manchester address", "found_useful": false},
+    {"q": "one person controls hundreds of shell companies Companies House fake directors Manchester business centre 2025", "found_useful": true},
+    {"q": "taxpolicy.org.uk Egyptian director companies Companies House hundreds of companies", "found_useful": true},
+    {"q": "young Egyptian man person with significant control 600 UK companies none filed accounts investigation", "found_useful": true},
+    {"q": "thousands of companies registered at one Manchester address Egyptian directors Companies House news", "found_useful": false},
+    {"q": "Companies House struck off companies formation agent single PSC hundreds of companies 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://globalwitness.org/en/campaigns/corruption-and-money-laundering/the-companies-we-keep/",
+      "outlet": "Global Witness",
+      "date": "2020-12-01",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Over 9,000 companies are controlled by individuals who control more than 100 companies.",
+      "paywalled": false,
+      "searcher_note": "PSC-register analysis of single people controlling hundreds of companies (Gleissner 1,193, Valaitis 997, Waris Khan 639; the last two are formation-agent figures). Same pattern, not this person. Date is what the fetched page showed."
+    },
+    {
+      "url": "https://taxpolicy.org.uk/2025/05/17/foreign-director-fraud/",
+      "outlet": "Tax Policy Associates",
+      "date": "2025-05-17",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "these companies are seventeen times more likely to show signs of fraud than companies with at least one UK director.",
+      "paywalled": false,
+      "searcher_note": "900,000 UK companies with only overseas directors show far more fraud signs. General pattern; no Egyptian national, no Manchester business centre."
+    },
+    {
+      "url": "https://www.gov.uk/government/news/manchester-tech-companies-shut-down-for-suspected-monthly-direct-debit-scam",
+      "outlet": "GOV.UK (Insolvency Service)",
+      "date": "2025-03-20",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Both companies also failed to file accounts at Companies House as they were required to do.",
+      "paywalled": false,
+      "searcher_note": "Two Manchester companies wound up for a direct-debit scam and non-filing. Weak: two companies, no nationality, no link to the 630-company controller."
+    }
+  ],
+  "notes": "The lead does not name the person, so searches used the description (Egyptian, born 2001, 630 companies, Manchester business centre). Nothing found names or describes this person or this block of 630 companies. Only pattern coverage: single PSCs controlling hundreds of companies (Global Witness), foreign-director fraud risk (Tax Policy Associates). Several WebSearch calls auto-expanded into multiple sub-searches, so S073 stopped at 6 logged queries to protect the shared budget. The ICAEW page on 150,000 companies returned only navigation text."
+}

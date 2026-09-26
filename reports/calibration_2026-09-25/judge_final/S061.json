@@ -1,0 +1,15 @@
+{
+  "story_id": "S061",
+  "bin": "Known pattern",
+  "entity": "US Section 515 units in pre-1980 projects with no live restrictive clause (56,159 units)",
+  "deciding_sources": [
+    0,
+    2
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Nobody counts the national units without a live clause. CURA finds the same kind of thing for MN and Iowa properties, GAO for maturing mortgages; different measures on different slices.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

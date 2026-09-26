@@ -1,0 +1,12 @@
+{
+ "story_id": "S036",
+ "bin": "Not comparable",
+ "entity": "Nursing-home dialysis brands (Dialyze Direct, Dialysis Direct, Concerto) flagged worse on survival",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The Kidney360 study covers the same nursing-home dialysis model and gives numbers (no worsened death at 42 days) under a wholly different definition than CMS's SMR flags, so the numbers can't be lined up. The CMS guide is methodology, not a finding. Entity naming in the quote itself is thin.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

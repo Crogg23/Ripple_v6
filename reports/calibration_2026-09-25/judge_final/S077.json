@@ -1,0 +1,15 @@
+{
+  "story_id": "S077",
+  "bin": "Matched + more",
+  "entity": "US ransomware leak-site posts matching Medicare hospitals; Watsonville posted by two gangs",
+  "deciding_sources": [
+    0,
+    1
+  ],
+  "earliest_match_date": "2024-12-12",
+  "post_cutoff_match": false,
+  "what_we_add": "The 33-of-1,146 Medicare-hospital match count; no source sizes the hospital slice that way",
+  "why": "DataBreaches and Comparitech name Watsonville on both Termite (Dec 2024) and Sinobi (Oct 2025) leak sites - our double-post claim exactly. Comparitech's 445 attacks is a different definition, not a contradiction of our 33 name-matches.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

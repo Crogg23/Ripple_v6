@@ -1,0 +1,95 @@
+{
+ "story_id": "S144",
+ "lead": {
+  "headline": "One building at 410 Great Rd, Littleton, Massachusetts holds 49 separate federal gun-maker licensees, 16% of the state's",
+  "number": "49 of Massachusetts' 303 maker licenses (type 07) at one address; only two US buildings hold 10+ separate maker licensees, both in Massachusetts",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Renting suites to licensees is legal: this is a feature, not proof of wrongdoing, and the building key is a hand-cleaned address."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "\"410 Great Road\" Littleton firearms manufacturer",
+  "Littleton Massachusetts building dozens of federal firearms licensees manufacturers one address",
+  "Littleton mill gun makers ATF Boston Globe Ryley 2023 assault weapons licenses",
+  "Bloomberg graphics Littleton mill gun manufacturers Massachusetts",
+  "Littleton mill gun vendors 2026 Lupoli apartments gun businesses remain",
+  "Stow Gleasondale mill gun manufacturers licenses number Massachusetts",
+  "Littleton mill 410 Great Road redevelopment gun tenants 2025",
+  "most federal firearms licensees at a single address in the country ATF data building"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.bostonglobe.com/2023/08/14/metro/after-uproar-littleton-gun-vendors-seek-new-home-nearby-towns-are-wary-them/",
+   "outlet": "Boston Globe",
+   "date": "2023-08-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "For now, the Littleton mill still houses the nation’s largest group of gun businesses at a single address, with roughly 50.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " in Lynn, where he, too, faced local opposition. Daigle eventually withdrew his application and the ATF revoked his license to manufacture guns. The ATF said it found 95 guns in former Littleton vendor Cory Daigle’s apartment during a January search. District of Massachusetts U.S. Attorney’s Office For now, the Littleton mill still houses the nation’s largest group of gun businesses at a single address, with roughly 50. Massachusetts also claims the second- and fourth-largest hubs — a shopping center in Bridgewater, with 15 vendors, and another old mill building in Rockland, with nine — according to an analysis of ATF data. If plans by Franklin, the Stow mill landlord, come to fruition, his building would be tied with a shooting complex in San An"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.bostonglobe.com/2022/09/10/metro/an-old-mill-littleton-gun-dealers-openly-defy-maura-healeys-assault-weapon-decrees/",
+   "outlet": "Boston Globe (Sarah Ryley, Andrew Brinker)",
+   "date": "2022-09-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The number of gun vendors in the Mill has soared from three to at least 80 in just the last eight years, becoming the single largest collection of federally licensed gun manufacturers and dealers in the country.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ecades-old military-style rifles and large-capacity magazines that were grandfathered in by the ban, while others offer newer assault weapons, which they say are modified to make them legal. It’s also easy to buy all the parts to assemble an AR-15 at home. And the place is growing like gangbusters. The number of gun vendors in the Mill has soared from three to at least 80 in just the last eight years, becoming the single largest collection of federally licensed gun manufacturers and dealers in the country. Gun industry experts point to the Mill as proof that despite the state’s gun laws, with so many loopholes and so little enforcement just about anyone can get their hands on an assault weapon. “How easy is it to buy an assault weapon in Massachusetts? The answer is pretty easy. You can literally do it right now,” said Jason Gu"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.bostonglobe.com/2023/02/02/metro/dozens-atf-inspectors-descend-gun-vendors-littleton-mill-following-dealers-arrest/",
+   "outlet": "Boston Globe",
+   "date": "2023-02-02",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Bureau of Alcohol, Tobacco, Firearms and Explosives this week deployed 29 inspectors to the mill, which is home to the largest cluster of federally licensed gun vendors at a single address in the nation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ohn Tlumacki/Globe Staff LITTLETON — Federal authorities have launched a sweeping review of more than 80 gun vendors operating at an old mill building in Littleton, just two weeks after one was charged with illegally selling handguns to a man police believe is connected to gang shootings in Boston. The Bureau of Alcohol, Tobacco, Firearms and Explosives this week deployed 29 inspectors to the mill, which is home to the largest cluster of federally licensed gun vendors at a single address in the nation. Ten of the inspectors came from ATF’s “Major Inspection Team,” a group of senior agents from across the country. The ATF sweep came months after residents and local politicians first demanded greater scrutiny of the burgeoning gun hub in light of a Globe investigation that found many dealers there were openly exploiting loopholes in stat"
+  },
+  {
+   "idx": 3,
+   "url": "https://en.wikipedia.org/wiki/Littleton_mill",
+   "outlet": "Wikipedia",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "It is notable as having the highest concentration of federally-licensed firearms manufacturers (Type 07 FFLs)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " ﻿ / ﻿ 42.5468°N 71.47449°W ﻿ / 42.5468; -71.47449 From Wikipedia, the free encyclopedia Building in Littleton, Massachusetts, USA The Littleton mill in 2022 The Littleton mill in 2023 The Littleton mill is a building located at 410 Great Road and 450 King street in Littleton, Massachusetts . [ 1 ] It is notable as having the highest concentration of federally-licensed firearms manufacturers (Type 07 FFLs) [ 2 ] [ 3 ] (between seventy-five [ 4 ] or eighty-three vendors [ 5 ] ) in one building in the entire United States. History [ edit ] Sign on the building 'An historical sketch of the town of Littleton' published in 1890 references \"At the Common Village are located the factory for manufacturing elastic webs and suspenders a"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.cbsnews.com/boston/news/stow-gun-dealers-manufacturers-gleasondale-industrial-park-mill-littleton-massachusetts/",
+   "outlet": "CBS Boston",
+   "date": "2023-08-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Roughly half are slated to be occupied by artists and woodworkers while 10 are seeking approval to house so-called",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ll up to the almost 100-year-old mill, and you will smell the effects of carpenters at work. There are several small businesses working in spaces here already, but it's Franklin's latest special permit request that has the town talking. Franklin wants to add nearly two dozen spaces for new vendors. Roughly half are slated to be occupied by artists and woodworkers while 10 are seeking approval to house so-called \"gun manufacturers.\" That term is defined by the state as any business that repairs, assembles or disassembles a firearm and sells parts or all of the gun. \"We have, like, three people that are committed, and the others, if they come in that's great; and if they don't, that's fine, too,\" said Franklin. \"We will find someone el"
+  },
+  {
+   "idx": 5,
+   "url": "https://littletonma.org/735/410-Great-Road",
+   "outlet": "Town of Littleton, MA (Planning Board project page)",
+   "date": "2026-08-06",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The Planning Board will meet with Lupoli Development team and Hebrew SeniorLife",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ruck Materials Fire Truck Turning Plan - July 22, 2026 Overall Fire Truck Turning Exhibit - June 29, 2026 Locations 1 and 2 Fire Truck Turning Exhibits - June 29, 2026 Location 3 Fire Truck Turning Exhibit - June 29, 2026 Fire Truck Staging Exhibit - June 29, 2026 Informal Discussion - June 4, 2026 The Planning Board will meet with Lupoli Development team and Hebrew SeniorLife for an \"Informal Discussion\" regarding affordable senior housing at 410 Great Road at the June 4, 2026 Planning Board Meeting. Informal Discussion Presentation 410 Great Road & King Street Common Update Presentation - June 25, 2026 410 Great Road & King Street Common Update Presentation - June 4, 2026 Decisions - 2022 Master Plann"
+  }
+ ]
+}

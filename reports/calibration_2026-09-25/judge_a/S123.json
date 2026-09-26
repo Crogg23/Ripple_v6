@@ -1,0 +1,12 @@
+{
+ "story_id": "S123",
+ "bin": "Matched + more",
+ "entity": "House 119th Congress, floor amendment votes on bills shut down to a record low",
+ "deciding_sources": [0, 3, 4],
+ "earliest_match_date": "2026-01-09",
+ "post_cutoff_match": true,
+ "what_we_add": "our measure: 14 of 118 roll-call-passed bills (12.7%) got an amendment roll call vs a 1995-2024 median of 60.8%",
+ "why": "Bloomberg Government and the Rules Democrats report the same finding in the same direction: record closed rules, 84% of measures with no amendments allowed. No source measures it as amendment roll calls per passed bill against the 30-year median.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S087",
+ "bin": "Matched + more",
+ "entity": "Firms under government-wide exclusions receiving new federal awards after the ban",
+ "deciding_sources": [0],
+ "earliest_match_date": "2026-06-16",
+ "post_cutoff_match": false,
+ "what_we_add": "Our specific cut: 23 firms under Reciprocal/Procurement exclusions, about $800K of positive new actions, mostly DoD; GAO's numbers (137 entities, $626M) come from a different, nongeneralizable selection",
+ "why": "GAO-26-107466 states the same finding in the same direction: entities on the SAM exclusion list got award transactions while excluded. Its much larger totals use a different selection and window, so no contradiction; our 23-firm, DoD-heavy count isn't in any source.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

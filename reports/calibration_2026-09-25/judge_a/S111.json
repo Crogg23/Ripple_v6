@@ -1,0 +1,12 @@
+{
+ "story_id": "S111",
+ "bin": "Matched + more",
+ "entity": "Mississippi hospitals' death rates versus the national rate",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2003-09-23",
+ "post_cutoff_match": false,
+ "what_we_add": "the hospital-level count: 24 of 72 worse, 1 better, and the four-state 43-worse-vs-4-better with look-alike expectations of 20 and 25",
+ "why": "MPB and Commonwealth Fund name Mississippi and state the same finding in words: worst hospital Medicare mortality in the nation, 16.5% vs 14.4%. No source counts hospitals flagged worse, which is our headline number.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

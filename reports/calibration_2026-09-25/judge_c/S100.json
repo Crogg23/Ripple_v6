@@ -1,0 +1,12 @@
+{
+ "story_id": "S100",
+ "bin": "Known pattern",
+ "entity": "Senate Banking Committee members as a group: their share of bank-stock trades vs their share of trading senators, 2012-20",
+ "deciding_sources": [0, 3, 4],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The headline's subject is the committee membership as a group, 19% of traders vs 34% of bank trades. Sources cover one member (Perdue's bank trades while on the committee) and the general committee-overlap trading pattern, but none states the group-level share finding; the NBER paper measures returns, a different measure, so it doesn't contradict a volume-share claim.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

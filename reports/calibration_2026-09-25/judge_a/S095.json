@@ -1,0 +1,16 @@
+{
+ "story_id": "S095",
+ "bin": "Known pattern",
+ "entity": "Oklahoma vs Texas refinery air penalties per logged violation ($3.3K vs $142K)",
+ "deciding_sources": [
+  0,
+  1,
+  3
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "EIP (Texas skips 97% of penalties), FOX23 (a $23,776 Oklahoma refinery fine) and the Gazette cover small-or-absent air penalties - the same kind of finding. No source makes the OK-TX per-violation comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

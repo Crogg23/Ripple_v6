@@ -1,0 +1,67 @@
+{
+  "story_id": "S151",
+  "entity": "IRS automatic revocations of tax-exempt status for non-filing (2019-2026) where the IRS's own e-file index holds a return for one of the three missed years: 108 organizations",
+  "queries": [
+    {"q": "IRS automatically revoked tax-exempt status nonprofit that filed Form 990 error", "found_useful": false},
+    {"q": "TIGTA audit automatic revocation exempt organizations erroneously revoked returns filed", "found_useful": true},
+    {"q": "National Taxpayer Advocate most serious problem automatic revocation erroneous revocations organizations that filed", "found_useful": true},
+    {"q": "TIGTA report automatic revocation group return subordinates erroneously revoked programming", "found_useful": false},
+    {"q": "nonprofit lost tax-exempt status IRS mistake despite filing returns revoked in error news", "found_useful": true},
+    {"q": "analysis IRS auto-revocation list includes charities that had filed Form 990 returns data mismatch", "found_useful": true},
+    {"q": "TIGTA automatic revocation of tax-exempt status controls errors report exempt organizations (allowed_domains tigta.gov, treasury.gov, oversight.gov)", "found_useful": false},
+    {"q": "\"erroneously listed\" automatic revocation 2,270 organizations Taxpayer Advocate", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/Most-Serious-Problems-Tax-Exempt-Automatic-Revocation.pdf",
+      "outlet": "National Taxpayer Advocate (2012 Annual Report to Congress, Most Serious Problem)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "identified more than 2,270 cases in which an organization was erroneously listed as having had its exempt status revoked",
+      "paywalled": false,
+      "searcher_note": "COULD NOT OPEN: site redirects every fetch (WebFetch and curl) to a blank CloudFront page. Quote comes from the search tool's extract, not a page read; the checker must verify it. Extract says TIGTA found a programming problem and the most common cause was group-return subordinates not recognized; about 2011-12 wave"
+    },
+    {
+      "url": "https://www.irs.gov/charities-non-profits/automatic-revocation-of-exemption-for-nonfiling-frequently-asked-questions-you-think-your-organization-was-erroneously-listed-as-revoked",
+      "outlet": "Internal Revenue Service",
+      "date": "2026-06-28",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "If an organization on the Auto-Revocation List has documentation that it met its filing requirement for one or more years during the three year period, what should it do?",
+      "paywalled": false,
+      "searcher_note": "IRS FAQ acknowledging listed organizations may have filed in the three-year window; explainer, no counts. Date is page last-reviewed"
+    },
+    {
+      "url": "https://apify.com/aiqlabs/nonprofit-lookup",
+      "outlet": "Apify (AIQ Labs product page)",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "In a random sample of 40 recently revoked 501(c)(3)s, 19 still had a full Form 990 filing history on the public record.",
+      "paywalled": false,
+      "searcher_note": "Vendor marketing for a lookup tool; says revoked charities often show 990 filings (Truechild Inc revoked 2025-11-15 with 12 years of 990s). Does not say the returns fell in the missed years; the org may simply have stopped filing"
+    },
+    {
+      "url": "https://www.foxnews.com/politics/white-nationalists-nonprofit-loses-tax-exempt-status.amp",
+      "outlet": "Fox News",
+      "date": "2017-03-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Spencer told the Los Angeles Times on Monday that an IRS error was to blame for the National Policy Institute's failure to file federal tax returns.",
+      "paywalled": false,
+      "searcher_note": "Single case where a revoked group blamed an IRS error; claim by the organization, not a finding"
+    },
+    {
+      "url": "https://www.tigta.gov/sites/default/files/reports/2026-08/20261S0042fr.pdf",
+      "outlet": "Treasury Inspector General for Tax Administration (Report 2026-1S0-042)",
+      "date": "2026-08-19",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The automatic revocations increased by approximately 59 percent from FY 2021 through FY 2025.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Volume context only (35,868 in FY2021 to 56,932 in FY2025); says nothing about revocations of organizations that had filed. Quote read from the PDF's extracted text"
+    }
+  ],
+  "notes": "No source found that names the 108 organizations, or any count of auto-revocations where a return from the missed years sits in the IRS e-file index, for 2019-2026. The closest pattern finding is the Taxpayer Advocate's 2012 report of 2,270+ erroneous listings from a programming problem (2011-12 wave), which could not be opened. Nothing found on revoked organizations 'quietly put back' without a recorded reinstatement. No coverage dated after 2026-06-30 on this error pattern."
+}

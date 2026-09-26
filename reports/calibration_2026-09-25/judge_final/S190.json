@@ -1,0 +1,12 @@
+{
+  "story_id": "S190",
+  "bin": "Matched + more",
+  "entity": "RA Capital, OrbiMed and Baker Bros filing as directors at biotechs; biotech vs software investor-director gap",
+  "deciding_sources": [2, 1, 3],
+  "earliest_match_date": "2019-11-01",
+  "post_cutoff_match": false,
+  "what_we_add": "21/16/13 director filings in 2024; 12.9% of 708 biotechs vs 6.5% of 372 software companies; eight firms carry the gap",
+  "why": "RA Capital's own page states 100+ board seats and Wikipedia puts Baker Bros employees on 8 of its top 20 boards; Columbia Law Review reports the biotech-over-software interlock gap in general. Nobody has our 2024 counts or the eight-firm concentration.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

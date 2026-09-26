@@ -1,0 +1,76 @@
+{
+  "story_id": "S069",
+  "entity": "US primary-care Health Professional Shortage Areas (HRSA HPSAs) first designated 1978-89 and still designated; severe-score ones in the Mississippi Delta (Humphreys, Jefferson, Copiah MS) and South Texas (Jim Hogg TX)",
+  "queries": [
+    {"q": "health professional shortage areas designated since 1978 still designated decades", "found_useful": true},
+    {"q": "Humphreys County Mississippi primary care shortage area HPSA score doctor shortage", "found_useful": false},
+    {"q": "Mississippi Delta counties shortage designation for decades still no doctors Jefferson County Copiah County", "found_useful": true},
+    {"q": "Jim Hogg County Texas doctor shortage primary care Hebbronville", "found_useful": false},
+    {"q": "\"73 percent\" counties designated HPSA remained shortage areas ten years", "found_useful": true},
+    {"q": "Mississippi Today Delta primary care shortage Humphreys County clinic 2026", "found_useful": true},
+    {"q": "persistent primary care HPSA counties since 1978 study Mississippi Delta Texas border chronic shortage designation analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wlbt.com/2021/03/04/appalachian-mississippi-delta-regions-medically-underserved-decades/",
+      "outlet": "WLBT (Jackson, MS)",
+      "date": "2021-03-04",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Many counties in the Delta and Appalachian regions have held this designation for years",
+      "paywalled": false,
+      "searcher_note": "Headline: Delta and Appalachian regions 'medically underserved' for decades. Names the Delta region, not specific counties or the 1978-89 cohort count; body text is thin."
+    },
+    {
+      "url": "https://www.techtarget.com/revcyclemanagement/news/366600275/HPSA-Program-Did-Not-Affect-Physician-Shortages-or-Health-Outcomes",
+      "outlet": "TechTarget RevCycle Management",
+      "date": "2023-11-14",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "73 percent of HPSA-designated counties were still experiencing a physician shortage ten years after its designation.",
+      "paywalled": false,
+      "searcher_note": "Reports the Health Affairs study (Nov 2023) that most HPSA counties stay shortage areas 10+ years. National pattern, no named counties or 1978-89 cohort."
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-07-84/html/GAOREPORTS-GAO-07-84.htm",
+      "outlet": "US Government Accountability Office (GAO-07-84)",
+      "date": "2006-10-24",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Those HPSAs that were proposed for withdrawal because they no longer meet the HPSA criteria have retained their HPSA designation.",
+      "paywalled": false,
+      "searcher_note": "GAO: HRSA did not remove HPSAs that no longer met criteria. Cuts against reading long-lived designations as proof of ongoing shortage (matches the lead's own watch-out)."
+    },
+    {
+      "url": "https://paragoninstitute.org/private-health/where-are-provider-shortages-reassessing-outdated-methodologies/",
+      "outlet": "Paragon Health Institute",
+      "date": "2024-04",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "many have not been reviewed since their creation in the 1970s and 1980s",
+      "paywalled": false,
+      "searcher_note": "Think tank on stale shortage designations; this passage is about MUA/MUP designations, not primary-care HPSAs. Pattern only."
+    },
+    {
+      "url": "https://kffhealthnews.org/health-industry/mississippi-doctor-shortage/",
+      "outlet": "KFF Health News",
+      "date": "2012-04-26",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The town of Belzoni, Miss., has just four doctors serving all of Humphreys County and surrounding areas.",
+      "paywalled": false,
+      "searcher_note": "Names Humphreys County's doctor shortage (one of the lead's severe examples), but says nothing about shortage-area designation age."
+    },
+    {
+      "url": "https://mississippitoday.org/2026/07/16/county-lost-hospital/",
+      "outlet": "Mississippi Today",
+      "date": "2026-07-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "This county lost its hospital. Bringing it back is easier said than done",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff piece on Humphreys County having no hospital. WebFetch got HTTP 403 (bot wall), so quote is the headline only; body not read. About hospital loss, not designation age."
+    }
+  ],
+  "notes": "No source found names the 143 still-designated 1978-89 primary-care HPSAs, or the 31 severe ones, or Jefferson/Copiah MS or Jim Hogg TX as long-running HPSAs. Coverage found is pattern: HPSA counties stay designated 10+ years (Health Affairs 2023 via TechTarget; the Health Affairs and PubMed pages themselves returned 403/captcha), GAO 2006 saying HRSA failed to drop outdated HPSAs, and Paragon 2024 on MUAs not reviewed since the 1970s-80s. WLBT 2021 says Delta counties have held the designation for decades but names no county. Mississippi Today 2026-07-16 page was blocked (403); only the headline is recorded. Only 7 queries run; stopped there to stay under the shared budget, since the entity-specific searches came back empty."
+}

@@ -1,0 +1,15 @@
+{
+  "story_id": "S072",
+  "bin": "Known pattern",
+  "entity": "CareCore Health's 12 Ohio nursing homes' fire-safety citation rate (1.95x the state)",
+  "deciding_sources": [
+    1,
+    2
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The only CareCore source is a directory page with no finding. OIG's Ohio life-safety audit and the top-10 LSC citation list report the same kind of finding about other homes; nobody rates chains or names CareCore's repeats.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

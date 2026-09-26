@@ -1,0 +1,57 @@
+{
+  "story_id": "S010",
+  "entity": "SpaceX (all its own OSHA 300A sites), injury rate vs its industry, 2025 (and 2023-2024); secondary: Ford vs big automakers, Bath Iron Works",
+  "queries": [
+    {"q": "SpaceX injury rate OSHA industry average workers", "found_useful": true},
+    {"q": "SpaceX injury rate 2025 data third year 2026", "found_useful": true},
+    {"q": "Reveal SpaceX injury rates Brownsville McGregor Hawthorne analysis", "found_useful": true},
+    {"q": "SpaceX Starbase injuries OSHA August 2026", "found_useful": false},
+    {"q": "Ford plants injury rate higher than GM Toyota Honda OSHA 300A data", "found_useful": false},
+    {"q": "SpaceX injury rate declined improved safety record defends", "found_useful": false},
+    {"q": "SpaceX worker injury rate 2025 OSHA data analysis Hawthorne McGregor Starbase times industry", "found_useful": true},
+    {"q": "\"SpaceX\" injury rate \"third year\" OR \"third straight year\" industry average", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.texasobserver.org/worker-death-starbase-spacex-osha-elon-musk/",
+      "outlet": "Texas Observer",
+      "date": "2026-06-25",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "An Observer analysis of injuries at SpaceX’s Starbase in 2025, using OSHA’s publicly available injury data, shows that the company had an injury rate that’s more than five times the national average for comparable space vehicle manufacturing facilities",
+      "paywalled": false,
+      "searcher_note": "2025 OSHA data, Starbase only (not all SpaceX sites); says Hawthorne has less than half Starbase's rate; OSHA confirmed the math."
+    },
+    {
+      "url": "https://techcrunch.com/2025/07/18/spacex-worker-injury-rates-at-starbase-outpace-industry-rivals/",
+      "outlet": "TechCrunch",
+      "date": "2025-07-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "logged injury rates that were almost 6x higher than the average for comparable space vehicle-manufacturing outfits and nearly 3x higher than aerospace manufacturing as a whole in 2024",
+      "paywalled": false,
+      "searcher_note": "2024 OSHA data; Starbase TRIR 4.27; also lists McGregor 2.48, Bastrop 3.49, Hawthorne 1.43, Redmond 2.89 vs aerospace 1.6."
+    },
+    {
+      "url": "https://www.engadget.com/spacex-workers-face-above-average-injury-rates-as-musk-prioritizes-mars-over-safety-report-finds-224235095.html",
+      "outlet": "Engadget (reporting Reuters)",
+      "date": "2023-11-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Injury rates at some SpaceX facilities are much higher than the industry average of .8 injuries or illnesses per 100 workers, Reuters found.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: Reuters Nov 2023 investigation, 2022 rates (Brownsville 4.8, Hawthorne 1.8, McGregor 2.7). Reuters original not fetched."
+    },
+    {
+      "url": "https://spaceexplored.com/2024/05/02/spacex-injury-rates-continue-to-be-higher-than-the-industry-average/",
+      "outlet": "Space Explored",
+      "date": "2024-05-02",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "For some locations, SpaceX is over nine times higher than the industry average.",
+      "paywalled": false,
+      "searcher_note": "2023 OSHA data, second year above average (Reuters follow-up); West Coast recovery team 7.6 per 100."
+    }
+  ],
+  "notes": "SpaceX above-industry injury rates are widely covered for 2022, 2023 and 2024 data (Reuters, TechCrunch, many rewrites), and Texas Observer (2026-06-25) covered 2025 Starbase data. No source found stating a company-wide 3.2x (2025) or 3.6x (2024) figure; press figures are per-site (mostly Starbase). No coverage found dated after 2026-06-30 on the injury-rate finding (May 2026 coverage is of a worker death). Ford vs GM/Honda/Tesla/Toyota comparison and Bath Iron Works: nothing found in one Ford query; Bath Iron Works not searched separately."
+}

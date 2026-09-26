@@ -1,0 +1,12 @@
+{
+ "story_id": "S069",
+ "bin": "Matched + more",
+ "entity": "US primary-care shortage-area (HPSA) designations from 1978-89 still designated today (national measure)",
+ "deciding_sources": [2, 3],
+ "earliest_match_date": "2006-10-24",
+ "post_cutoff_match": false,
+ "what_we_add": "143 of 999 date from 1978-89; 31 still score 18+; named worst counties (Humphreys, Jefferson, Copiah MS at 22; Jim Hogg TX at 23)",
+ "why": "GAO (2) states in words that HPSAs which no longer meet criteria keep their designation, and Paragon (3) that many designations sit unreviewed since the 1970s-80s: the same persistence finding, same direction, for the national measure. No source has our 143 count, the 31 severe, or the named counties still flagged.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

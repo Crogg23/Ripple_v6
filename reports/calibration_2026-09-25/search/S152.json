@@ -1,0 +1,67 @@
+{
+  "story_id": "S152",
+  "entity": "India, number of people facing severe food insecurity (FAO FIES), 2022-24, derived as Southern Asia minus Southern Asia (excluding India)",
+  "queries": [
+    {"q": "FAO severe food insecurity India number not published Southern Asia excluding India", "found_useful": true},
+    {"q": "\"severe food insecurity\" India million SOFI 2025 FIES India data withheld", "found_useful": true},
+    {"q": "India \"severe food insecurity\" 2022-24 million subtraction South Asia SOFI 2025 India estimate", "found_useful": false},
+    {"q": "\"296.5 million\" OR \"296 million\" India food insecurity FAO", "found_useful": false},
+    {"q": "India government objects FAO Food Insecurity Experience Scale Gallup poll methodology data not released India hunger", "found_useful": true},
+    {"q": "Down To Earth OR Scroll OR The Wire India severe food insecurity FAO \"excluding India\" estimate 2023 OR 2024", "found_useful": false},
+    {"q": "SOFI 2026 India food insecurity severe July 2026 report India data missing", "found_useful": true},
+    {"q": "Frontline OR \"The Hindu\" India food insecurity data missing FAO SOFI 2024 OR 2025 \"South Asia excluding India\" severe", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://janataweekly.org/articles/starved-of-data-indias-hungry-people-go-missing-from-fao-report-global-hunger-numbers-jump",
+      "outlet": "Janata Weekly (republishing Frontline, T.K. Rajalakshmi)",
+      "date": "2022-08-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "shows that an estimated 563.6 million people or 41 per cent in India suffered moderate to severe food insecurity in 2019-21. The corresponding India-specific figure for severe food insecurity is 307.7 million people, or 22.4 per cent.",
+      "paywalled": false,
+      "searcher_note": "Same method as the lead (South Asia minus 'South Asia excluding India') and the same measure (severe food insecurity), for 2019-21 rather than 2022-24: 307.7M. Also says India has not allowed FAO to publish the data. A Frontline article republished with credit."
+    },
+    {
+      "url": "https://www.pressreader.com/india/frontline/20220812/284575951587217",
+      "outlet": "Frontline (via PressReader)",
+      "date": "2022-08-12",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The food gap",
+      "paywalled": true,
+      "searcher_note": "The original Frontline piece that Janata Weekly republished (a copy, so it counts once). Headline used as the quote. Earliest coverage found."
+    },
+    {
+      "url": "https://www.isas.nus.edu.sg/wp-content/uploads/2024/02/ISAS-WP-Food-Security-DC-PS-HK-DC-50_HK3-HS.pdf",
+      "outlet": "Institute of South Asian Studies, National University of Singapore (Working Paper No. 371, Puspa Sharma)",
+      "date": "2024-02-28",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "they are not provided for India. However, the report provides data for Southern Asia and South Asia (excluding India). Thus, the difference in the number between these two provides the number for India.",
+      "paywalled": false,
+      "searcher_note": "Describes the same subtraction for SOFI 2023's FIES annex. Gives no India number in the passages found. Also records the Indian government's objection to the FIES poll."
+    },
+    {
+      "url": "https://www.factchecker.in/fact-check/is-the-global-hunger-index-erroneous-as-the-indian-govt-claims-839228",
+      "outlet": "FactChecker.in",
+      "date": "2022-10-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "the government said that the \"FAO estimate is based on the \"Food Insecurity Experience Scale (FIES)\" Survey Module conducted through the Gallop World Poll, which is an \"opinion poll\" based on \"8 questions\" with a sample size of \"3000 respondents\"",
+      "paywalled": false,
+      "searcher_note": "Disagreement angle: the Indian government calls FAO's FIES-based estimate an opinion poll on a small sample. Raised in the Global Hunger Index row; FactChecker goes on to push back on it."
+    },
+    {
+      "url": "https://www.insightsonindia.com/2026/07/23/the-state-of-food-security-and-nutrition-in-the-world-sofi-2026-report/",
+      "outlet": "Insights on India (exam-prep current affairs)",
+      "date": "2026-07-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Southern Asia’s substantial decline in undernourishment (from 13.9% in 2021 down to 9.3% in 2025) and food insecurity was largely propelled by improvements in India.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff summary of SOFI 2026 (released July 2026). Gives no India FIES number, and nothing found says whether SOFI 2026 still leaves India's line blank. Says food insecurity in the region is falling, with India the driver."
+    }
+  ],
+  "notes": "No source found gives 296.5M or any India severe-food-insecurity number for 2022-24. The same subtraction on the same measure was published for 2019-21 (Frontline, republished by Janata Weekly: 307.7M, 22.4%), and ISAS (2024) explains the method for SOFI 2023. The lead's 'up from 205.6M in 2014-16' was not found in any source. Deccan Herald ('Food insecurity and hunger continue to plague India'): the search snippet said the Government of India forbids FAO from publishing PMSFI estimates and that they can be deduced by subtraction, but the page returned 403 on both URLs, so it is not recorded. FAO's own SOFI 2025 and statistics pages also returned 403. The SOFI 2026 summaries found (insightsonindia, drishtiias) do not show whether India's FIES line is still blank."
+}

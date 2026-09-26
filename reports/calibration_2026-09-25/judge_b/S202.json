@@ -1,0 +1,12 @@
+{
+  "story_id": "S202",
+  "bin": "Matched + more",
+  "entity": "US coal-fired generation change in 2025 vs the rest of the world's coal risers",
+  "deciding_sources": [0, 5],
+  "earliest_match_date": "2026-01-19",
+  "post_cutoff_match": true,
+  "what_we_add": "The 1.8x comparison: US +85 TWh vs 36.26 TWh from the 23 other risers",
+  "why": "Ember states the identical number, US coal up 85 TWh (+13%) in 2025; Visual Capitalist says the US led the world's coal rise. EIA's 11%/76 BkWh and VC's 93.2 TWh sit within 25%. No source states the 1.8x-all-other-risers-combined comparison.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

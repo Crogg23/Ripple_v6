@@ -1,0 +1,12 @@
+{
+  "story_id": "S193",
+  "bin": "Matched + more",
+  "entity": "Senegal's 2026 external debt service as a share of exports",
+  "deciding_sources": [1],
+  "earliest_match_date": "unknown",
+  "post_cutoff_match": true,
+  "what_we_add": "54.0% of 2024 exports, $4.44B, top of 108 countries, Bhutan 50.2%, median 8.4%",
+  "why": "World Bank/IMF DSA, the primary record, states the external debt-service-to-exports ratio breaches its threshold in 2026 on Eurobond amortizations - same entity, measure and direction. News numbers ($2.2B, $9.7B) scatter on definition; our 54% and the 108-country ranking are stated nowhere.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

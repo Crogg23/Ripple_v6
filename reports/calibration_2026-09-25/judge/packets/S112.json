@@ -1,0 +1,83 @@
+{
+ "story_id": "S112",
+ "lead": {
+  "headline": "Florida went from 17 freestanding rehab hospitals in mid-2019 to 40 now, +135%, with zero closures; rest of US +31%",
+  "number": "23 new hospitals and 1,144 beds, 0 closures; Florida's net +24 is the most of any state (Texas +26%)",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Hospital rehab-unit \"openings\" are mostly old units with reset dates, so only freestanding hospitals count."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Florida certificate of need repeal inpatient rehabilitation hospitals growth new rehab hospitals since 2019",
+  "Florida rehab hospital building boom Encompass Health new inpatient rehabilitation hospitals Florida after certificate of need",
+  "Florida number of inpatient rehabilitation facilities doubled since 2019 CON repeal analysis news Tampa Bay Times Health News Florida",
+  "Florida CON repeal effects study rehabilitation hospitals opened 2019-2025 James Madison Institute Mercatus AHCA data",
+  "Florida inpatient rehab hospitals oversupply too many rehab beds 2026",
+  "MedPAC March 2026 report inpatient rehabilitation facilities number of freestanding IRFs increased hospital-based decreased",
+  "Florida rehabilitation hospital closes closing inpatient rehab hospital closure 2024 2025",
+  "Florida certificate of need repeal five years later new hospitals rehab hospitals count 2026 analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://web.archive.org/web/20210518182225/https://www.modernhealthcare.com/construction-design/con-law-elimination-sets-inpatient-rehab-rush-florida",
+   "outlet": "Modern Healthcare (Wayback Machine copy)",
+   "date": "2021-05-18",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "When the deregulation takes effect for inpatient rehabilitation in July, construction or planning will already be underway on over a dozen such facilities. By the end of 2023, the state will have well over 800 new inpatient rehabilitation beds.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "y or fully repealed their CON laws. Nursing homes and hospice providers in the state still need CON approval before adding facilities. As of late 2019, 35 states and Washington, D.C., still had some form of a CON program, according to the National Conference of State Legislatures . Pre-construction When the deregulation takes effect for inpatient rehabilitation in July, construction or planning will already be underway on over a dozen such facilities. By the end of 2023, the state will have well over 800 new inpatient rehabilitation beds. \"They're trying to align construction so they can open quickly after CON goes away,\" said Tom Mullin, executive vice president of hospital operations for Select Medical Corp., a rehab provider that's taking a measured approach to expansion in Florida. The state's hospital operators are split on the polarizing topic of the partial CON r"
+  },
+  {
+   "idx": 1,
+   "url": "https://web.archive.org/web/20210518182225/https://www.modernhealthcare.com/construction-design/con-law-elimination-sets-inpatient-rehab-rush-florida",
+   "outlet": "Modern Healthcare (Wayback Machine copy)",
+   "date": "2021-05-18",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Encompass Health is building more than anyone, with eight inpatient rehab hospitals announced plus expansion of an existing facility.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "p., a rehab provider that's taking a measured approach to expansion in Florida. The state's hospital operators are split on the polarizing topic of the partial CON repeal. While providers share the stated goal of lowering healthcare costs, they have dramatically different views on how to get there. Encompass Health is building more than anyone, with eight inpatient rehab hospitals announced plus expansion of an existing facility. HCA Healthcare is spending up to $300 million on inpatient rehab in Florida, with at least three new facilities and an expansion underway. Officials from both for-profit chains declined to discuss their plans. Select Medical, also a for-profit provider, is adding 30 beds to its inpatient rehab facility in Miami that are expected to ope"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.encompasshealth.com/press-releases/lake-worth-inpatient-rehab-hospital-now-open",
+   "outlet": "Encompass Health",
+   "date": "2025-12-02",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Encompass Health Rehabilitation Hospital of Lake Worth is Encompass Health's 26th location in the state of Florida (inclusive of a satellite location in The Villages).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "adership Investors Strategic partnerships Future hospitals Awards & recognition Newsroom Contact us Work with us Careers Physician careers Resident resources Internship program Find us Find a location near you Partner with us Learn about strategic partnerships with Encompass Health. Find a location Encompass Health Rehabilitation Hospital of Lake Worth now open in Florida Share On Share Using Email Share On Facebook Share On LinkedIn Share On X (Formerly Known As Twitter) BIRMINGHAM, Ala. and LAKE WORTH, Fla., Dec. 2, 2025 - Today, Encompass Health, the nation's largest owner and operator of inpatient rehabilitation hospitals, announced the opening of Encompass Health Rehabilitation Hospital of Lake Worth. The 50-bed inpatient rehabilitation hospital is now accepting patients. The more than 55,000-square"
+  },
+  {
+   "idx": 3,
+   "url": "https://kffhealthnews.org/health-industry/florida-hospital-building-boom-2019-deregulation-law/",
+   "outlet": "KFF Health News",
+   "date": "2023-04-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "From 2020 through 2022, companies announced plans to build at least 65 hospitals in Florida, according to state data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " or urban communities. While dozens of new hospitals are planned for Florida, none are going up between Jacksonville and Pensacola, a more than 300-mile swath of largely rural counties spanning two time zones. Republican Gov. Ron DeSantis signed a law eliminating Florida’s approval process in 2019. From 2020 through 2022, companies announced plans to build at least 65 hospitals in Florida, according to state data. Many are in South Florida, the Tampa area, and the Orlando area. In contrast, from 2016 to 2018, the state approved just 20 new hospitals. Florida has about 320 hospitals in all. Email Sign-Up Subscribe to KFF Health News' free Morning Briefing. Your Email Address Sign Up Those tallies include not just general “acute care” hospitals but als"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.medpac.gov/wp-content/uploads/2026/03/Mar26_Ch9_MedPAC_Report_To_Congress_SEC.pdf",
+   "outlet": "MedPAC (March 2026 Report to the Congress, Ch. 9)",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The growth in the number of IRFs in FY 2024 was driven by a 4.3 percent increase in both freestanding and for-profit IRFs (Table 9-1).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "compared with 90 percent of IRFs in rural areas (data not shown). Freestanding IRFs tended to be larger facilities compared with hospital-based IRFs: In FY 2024, 95 percent of freestanding IRFs had 25 or more beds, while most hospital-based IRFs (67 percent) had fewer than 25 beds (data not shown). The growth in the number of IRFs in FY 2024 was driven by a 4.3 percent increase in both freestanding and for-profit IRFs (Table 9-1). In contrast, the number of hospital-based and nonprofit IRFs continued to decline, falling by 0.9 percent and 2.8 percent, respectively. The majority of new IRFs were freestanding for-profit facilities and opened in markets in which another IRF was already serving beneficiaries (data not shown). Half of the closures were non"
+  }
+ ]
+}

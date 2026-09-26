@@ -1,0 +1,77 @@
+{
+  "story_id": "S016",
+  "entity": "Nebraska state air regulator (NDEE, now DWEE; plus Lincoln and Omaha local offices): formal Clean Air Act enforcement actions 2017-2025 and resolution of high-priority violations",
+  "queries": [
+    {"q": "Nebraska Department of Environment and Energy air quality enforcement actions few penalties", "found_useful": true},
+    {"q": "Nebraska attorney general air quality violation settlement penalty NDEE consent decree plant 2022 OR 2023 OR 2024", "found_useful": true},
+    {"q": "EPA State Review Framework Nebraska Clean Air Act high priority violations timely appropriate enforcement NDEE", "found_useful": true},
+    {"q": "Flatwater Free Press OR Nebraska Examiner NDEE enforcement lax penalties polluters air permits", "found_useful": false},
+    {"q": "Nebraska environmental regulators rarely penalize violators enforcement decline NDEE AltEn criticism voluntary compliance", "found_useful": false},
+    {"q": "Nebraska DWEE air pollution enforcement 2026 consent order penalty ethanol plant", "found_useful": false},
+    {"q": "\"high priority violations\" Clean Air Act states failed to address timely EPA OIG OR \"Environmental Integrity Project\" report Nebraska", "found_useful": true},
+    {"q": "\"NDEE\" \"formal enforcement\" air violations EPA review Nebraska news", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2022-02/srf-rd4-rev-ne.pdf",
+      "outlet": "U.S. EPA Region 7, State Review Framework: Nebraska Clean Air Act Implementation in FFY2022 (Final Report)",
+      "date": "2024-08-27",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "NDEE did not conduct any formal enforcement responses during the review period and therefore no penalties were assessed, collected or documented in the data or files.",
+      "paywalled": false,
+      "searcher_note": "EPA's own review, FFY2022 only: NDEE 'is not engaging in formal enforcement to address and resolve HPVs' per EPA policy. Same report also finds 2 of 9 HPVs 'still showing up in ICIS-AIR as active, even though they had been resolved and documented with NDEE's database' (backs the lead's caveat)."
+    },
+    {
+      "url": "https://dwee.nebraska.gov/news-events/enforcement-actions/archer-daniels-midland-company",
+      "outlet": "Nebraska Department of Water, Energy, and Environment (DWEE), Enforcement Actions",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Archer Daniels Midland Company FID 9169 Programs (AIR) Clean Air Act",
+      "paywalled": false,
+      "searcher_note": "State's own enforcement list shows a Clean Air Act consent order, Case No 3650, dated 2025-10-22. The list (dwee.nebraska.gov/news-events/enforcement-actions) shows other state air-program orders in the window: Western Sugar 2017-19, Gothenburg Feed 2017, Greencycle 2018, AltEn 2018-22, Frenchman Valley 2019, Green Disposal Mead 2020, Vontz Paving 2020, Tecumseh Poultry 2023, POET Fairmont 2024. Disagrees with 'zero formal actions', unless those never reached EPA's air database."
+    },
+    {
+      "url": "https://dwee.nebraska.gov/news-events/enforcement-actions/green-plains-wood-river-llc",
+      "outlet": "Nebraska Department of Water, Energy, and Environment (DWEE), Enforcement Actions",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Green Plains Wood River, LLC FID 86000 Programs (AIR) Clean Air Act",
+      "paywalled": false,
+      "searcher_note": "Second example of a state air-program consent order in the window: Case Number 3581, Consent Order dated 2022-02-16. The linked PDFs are scanned images with no text layer."
+    },
+    {
+      "url": "https://dwee.nebraska.gov/sites/default/files/publications/2022%20NDEE%20Annual%20Report%20to%20Legislature.pdf",
+      "outlet": "NDEE Annual Report to the Legislature, 2022",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The department has only needed to pursue formal enforcement 183 times since 2014; only 1 percent of all department inspections result in formal enforcement proceedings.",
+      "paywalled": false,
+      "searcher_note": "Agency describes its low formal-enforcement rate as a goodwill approach. All programs combined, not air alone."
+    },
+    {
+      "url": "https://dwee.nebraska.gov/air/air-compliance-enforcement-program",
+      "outlet": "Nebraska DWEE, Air Compliance & Enforcement Program page",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Through the Nebraska Environmental Protection Act, the Air Program attempts to obtain compliance with environmental regulations first through voluntary efforts.",
+      "paywalled": false,
+      "searcher_note": "Agency policy: voluntary compliance first; enforcement 'when compliance issues are serious, chronic, or cannot be otherwise resolved'; works through the Attorney General."
+    },
+    {
+      "url": "https://19january2021snapshot.epa.gov/sites/static/files/2013-09/documents/srf-rd2-rev-ne.pdf",
+      "outlet": "U.S. EPA Region 7, Nebraska SRF Round 2 (Final Report January 4, 2012)",
+      "date": "2012-01-04",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Lack of Administrative penalty authority delays bringing source back into compliance",
+      "paywalled": false,
+      "searcher_note": "Earliest EPA finding on the same pattern for Nebraska's CAA program: low HPV discovery rate, HPVs entered late into AFS, no administrative penalty authority. Old window (pre-2017)."
+    }
+  ],
+  "notes": "No news story found reporting Nebraska's zero formal air actions in EPA's database 2017-2025, the 0 of 17 HPVs resolved, or the 15 of 120 majors 'Unaddressed'. The primary-record match is EPA's own SRF report (FFY2022): NDEE took no formal enforcement and isn't using formal enforcement to resolve HPVs. Disagreement: DWEE's own enforcement-actions list shows state Clean Air Act consent orders in most years 2017-2025 (e.g., ADM 2025, POET 2024, Tecumseh Poultry 2023, Green Plains 2022), and the SRF says some HPVs resolved in NDEE's database still show active in ICIS-Air, so the lead's zero count may be a data-entry gap. Seen, not recorded: Nebraska Examiner 2022-09-30 (NDEE says it relies on 'voluntary' compliance, CAFO/water context), AltEn coverage (Grist, Nebraska Public Media) on slow enforcement, mostly water and waste. The WebSearch tool appeared to run several sub-searches on query 5. No coverage dated July-Sept 2026 found."
+}

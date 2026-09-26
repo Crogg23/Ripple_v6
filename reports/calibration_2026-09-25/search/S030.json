@@ -1,0 +1,47 @@
+{
+  "story_id": "S030",
+  "entity": "US bankruptcy judges, share of disclosed reimbursed trips paid by bankruptcy practitioner groups, 2011-19 (41% vs 0.7% for district and appeals judges); Delaware Judge Kevin Carey's 200 trips, 25 paid by the Turnaround Management Association",
+  "queries": [
+    {"q": "bankruptcy judges trips paid by bankruptcy lawyers groups American Bankruptcy Institute disclosure reimbursements", "found_useful": false},
+    {"q": "Judge Kevin Carey Turnaround Management Association trips reimbursement", "found_useful": true},
+    {"q": "bankruptcy judges junkets conferences sponsored by restructuring professionals ethics", "found_useful": false},
+    {"q": "\"bankruptcy judges\" trips reimbursed financial disclosure analysis Fix the Court", "found_useful": true},
+    {"q": "federal judges privately funded trips disclosures analysis bankruptcy bar groups paid travel news", "found_useful": true},
+    {"q": "bankruptcy judges cozy relationship bankruptcy bar conferences paid travel Delaware judges professionals LoPucki", "found_useful": false},
+    {"q": "\"bankruptcy judges\" reimbursements \"American Bankruptcy Institute\" OR \"National Conference of Bankruptcy Judges\" paid travel disclosures report 2026", "found_useful": false},
+    {"q": "\"Kevin Carey\" bankruptcy judge financial disclosure reimbursements travel", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.abi.org/newsroom/press-releases/abi-mourns-the-passing-of-abi-immediate-past-president-hon-kevin-j-carey",
+      "outlet": "American Bankruptcy Institute",
+      "date": "2024-04-12",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "He was a Fellow of the American College of Bankruptcy and a member of the International Insolvency Institute, and he was the first judge to serve as global chair of the Turnaround Management Association.",
+      "paywalled": false,
+      "searcher_note": "Obituary from a practitioner group: confirms Carey's leadership ties to TMA and ABI. Says nothing about trips or who paid for them."
+    },
+    {
+      "url": "https://www.wfae.org/united-states-world/2024-05-01/when-judges-get-free-trips-to-luxury-resorts-disclosure-is-spotty",
+      "outlet": "NPR (via WFAE)",
+      "date": "2024-05-01",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Dozens of federal judges failed to fully disclose free luxury travel to judicial conferences around the world, as required by internal judiciary rules and federal ethics law, an NPR investigation has found.",
+      "paywalled": false,
+      "searcher_note": "Nearest pattern: privately paid judicial travel, but about disclosure lapses by district judges, not bankruptcy judges or bankruptcy-bar sponsors."
+    },
+    {
+      "url": "https://fixthecourt.com/2026/04/federal-judges-accepted-far-too-many-freebies-in-2023-and-2024/",
+      "outlet": "Fix the Court",
+      "date": "2026-04-16",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "In addition, 26 acceptors are magistrate judges and 18 are bankruptcy judges.",
+      "paywalled": false,
+      "searcher_note": "Gifts to judges in 2023-24, including a bankruptcy judge paid $3,000 by the National Conference of Bankruptcy Judges. Gifts, not reimbursed trips; different window."
+    }
+  ],
+  "notes": "No source found that counts bankruptcy judges' reimbursed trips by sponsor, gives the 41% vs 0.7% split, or reports Carey's 200 trips or 25 TMA-paid trips. Carey's TMA and ABI leadership is public (ABI obituary; he died in 2024). Nearest coverage is judges' free travel in general (NPR 2024, CPI 2013, which has no bankruptcy content) and judicial gifts (Fix the Court 2026). LoPucki's 'Courting Failure' (2005) criticizes Delaware bankruptcy judges' ties to professionals but turned up no page on paid travel. Nothing dated after 2026-06-30."
+}

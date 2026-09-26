@@ -1,0 +1,83 @@
+{
+ "story_id": "S020",
+ "lead": {
+  "headline": "US rail trespasser deaths rose 26% to 838 from 2017 to 2025 while other rail casualties fell",
+  "number": "838 trespasser deaths in 2025, up 26% from 2017; all 41 Brightline deaths in 2024 were trespassers.",
+  "grade": "",
+  "verdict": "confirmed",
+  "watch_out": "The ledger calls it a known story shape, so check prior coverage before pitching it as new."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "railroad trespasser deaths 2025 record FRA data rising",
+  "Brightline 41 deaths 2024 trespassers",
+  "rail trespassing deaths increase since 2017 while employee and crossing deaths fall FRA national strategy trespass",
+  "Brightline 2024 deaths FRA data trespassers suicides Miami Herald \"2024\"",
+  "\"838\" trespasser deaths railroad 2025",
+  "railroad trespassing deaths hit record high 2026 news pedestrians killed by trains",
+  "FRA trespass fatalities rose percent since 2017 grants press release trespassing deaths leading cause 2025",
+  "rail trespasser fatalities decreased 2024 2025 decline fewer deaths FRA preliminary"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://oli.org/track-statistics/trespassing-casualties-state",
+   "outlet": "Operation Lifesaver",
+   "date": "2026-08-31",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "There were 793 trespass-related fatalities and 524 trespass injuries across the U.S. in 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ualties by State Trespassing Casualties by State Top 25 States Ranked by Total Trespass Casualties (Based on Preliminary 2025 Federal Railroad Administration Statistics) UPDATED 8/31/26 According to FRA statistics, 1,317 pedestrian rail trespass casualties (fatalities + injuries) occurred in 2025 . There were 793 trespass-related fatalities and 524 trespass injuries across the U.S. in 2025. Approximately 86% of all 2025 trespass casualties occurred in these states. RANK STATE TOTAL CASUALTIES DEATHS INJURIES 1. California 234 153 81 2. Texas 135 65 70 3. Florida 86 65 21 4. Illinois 76 47 29 5. New York 71 32 39 6. Pennsylvania 49 34 15 7. New Jersey 39 23 16 8. Arizona 38 25 13 9. Tennessee 38 27 11 10. North Carolina 37 26 "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.wlrn.org/killer-train-brightline-death-toll-surpasses-180-but-safeguards-are-still-lacking",
+   "outlet": "WLRN / Miami Herald",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Last year, after Brightline extended service through the Treasure Coast to Orlando, 49 people died by the train, the highest number yet.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "lic about the dangers of the train and has pushed for stricter enforcement against trespassers and motorists who maneuver around gates. The company has been “a leader in the industry on safety initiatives related to education, enforcement and engineering,” Lefevre said. The initiatives didn’t work. Last year, after Brightline extended service through the Treasure Coast to Orlando, 49 people died by the train, the highest number yet. Most of the deaths — 34 of the 49 — occurred in Palm Beach, Broward and Miami-Dade counties. READ MORE: Killer Train: Should tax dollars pay for a private train? Contrary to the company’s messaging, the majority of deaths were not ruled suicides. Brightline reviews crash footage and adds “suspected” suicides to its statistics, based in part "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.everycrsreport.com/files/20170815_IN10753_7845b77908ff30b0ed1bc68967baae111fb5b5cb.html",
+   "outlet": "Congressional Research Service (via EveryCRSReport)",
+   "date": "2017-08-15",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "In contrast, there has been no progress in reducing the number of deaths from trespassing, which has been the leading cause of rail-related fatalities since 1997 (see Figure 2).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ays and light rail systems. No Downward Trend in Trespasser Deaths Efforts by railroads and government agencies have steadily reduced most types of rail-related fatalities in recent years. For example, the number of deaths in grade-crossing incidents fell from 698 in 1990 to fewer than 300 in 2016. In contrast, there has been no progress in reducing the number of deaths from trespassing, which has been the leading cause of rail-related fatalities since 1997 (see Figure 2 ). Figure 2. Trespassing and Grade-Crossing Fatalities Trespassing does not include suicides Source: CRS presentation of Federal Railroad Administration Safety Data (as of August 11, 2017); http://safetydata.fra.dot.gov/ OfficeofSafety/ Default.aspx . Efforts to reduce grade-crossing deaths focus on education of an identifiable p"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.aar.org/news/fra-data-confirms-rail-safety-progress-with-record-low-injury-and-accident-rates/",
+   "outlet": "Association of American Railroads",
+   "date": "2025-03-05",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Despite these gains, grade crossing and trespassing accidents remain the leading causes of rail-related injuries and fatalities, accounting for over 95% of all incidents.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ulted in a 32% decline in yard accidents since 2005 and a 25% year-over-year improvement. Per carload, the hazardous materials accident rate has declined 80% since 2005 and more than 99.99% of all hazardous materials shipments arrive without incident. Addressing Grade Crossing and Trespassing Risks Despite these gains, grade crossing and trespassing accidents remain the leading causes of rail-related injuries and fatalities, accounting for over 95% of all incidents. While the total number of public crossings has declined by 12% since 2005 and the percentage of crossings equipped with gates increased from 26% to 45%, the grade crossing accident rate improved just 4% over the period, underscoring the critical need for further action. Investments in infrastructure, public safety campaigns and collabor"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.smart-union.org/rail-trespassing-and-suicide-fatalities-up-70/",
+   "outlet": "SMART Union",
+   "date": "2025-11-24",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Rail Trespassing and Suicide Fatalities Up 70%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Rail Trespassing and Suicide Fatalities Up 70% - SMART Union Skip to the content Sheet Metal View Transportation View View All SMART Union search Search Who We Are Priorities Retirement Security Legislative Issues Wages and Working Conditions Dignity, Respect and a Voice at Work Training TD Regional Training Seminars Health and Safety Diversity, Equity and Inclusion Members Assistance "
+  }
+ ]
+}

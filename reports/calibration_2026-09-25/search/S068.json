@@ -1,0 +1,69 @@
+{
+  "story_id": "S068",
+  "entity": "Former members of Congress who later filed FARA foreign-agent forms (94 since leaving office 1970+); 2025 filers named: Blagojevich (Bosnia / Republika Srpska), Fattah (Liberia), Wexler, Stewart, Seymour",
+  "queries": [
+    {"q": "Blagojevich registers foreign agent FARA Bosnia Republika Srpska 2025", "found_useful": true},
+    {"q": "Chaka Fattah foreign agent registration Liberia FARA", "found_useful": false},
+    {"q": "former congressman Chaka Fattah Liberia lobbying contract 2025", "found_useful": false},
+    {"q": "former members of Congress registered as foreign agents FARA analysis revolving door count", "found_useful": true},
+    {"q": "former Rep. Chris Stewart registers foreign agent FARA 2025 lobbying foreign government", "found_useful": false},
+    {"q": "Robert Wexler foreign agent registration 2025 FARA former congressman", "found_useful": false},
+    {"q": "Fattah Liberia Boakai government adviser 2025 Philadelphia former congressman released prison", "found_useful": false},
+    {"q": "ex-lawmakers foreign agents 2026 former members of Congress lobbying for foreign governments report", "found_useful": true},
+    {"q": "Robert Wexler Ballard Partners FARA short form foreign principal 2025", "found_useful": true},
+    {"q": "\"Kyle House Group\" foreign agent FARA former Utah congressman Stewart client", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://responsiblestatecraft.org/revolving-door-congress/",
+      "outlet": "Responsible Statecraft (Quincy Institute)",
+      "date": "2026-04-17",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Since 2000, exactly 100 members of Congress have worked for foreign governments after leaving public office, according to a new Quincy Institute analysis.",
+      "paywalled": false,
+      "searcher_note": "Same finding, different window (since 2000, vs lead's left office 1970+; 100 vs 94). Same page also says: 'Now, Blagojevich is lobbying for the government of Republika Srpska, a Serb-controlled part of Bosnia and Herzogvina.' Does not name Fattah, Wexler, Stewart, Seymour or Liberia."
+    },
+    {
+      "url": "https://balkaninsight.com/2025/07/29/serbian-american-trumpocrat-boosts-bosnias-dodik-on-social-media/",
+      "outlet": "Balkan Insight (BIRN)",
+      "date": "2025-07-29",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "RRB Strategies signed a lobbying contract with the government of Republika Srpska in March this year to “provide communications and public affairs support” according to its statement provided under the US Foreign Agents Registration Act.",
+      "paywalled": false,
+      "searcher_note": "Blagojevich's firm RRB Strategies filed under FARA for Republika Srpska (Bosnia) in March 2025. Matches the Blagojevich-for-Bosnia claim."
+    },
+    {
+      "url": "https://jewishinsider.com/2026/08/turkey-trump-tied-lobbying-group-washington-robert-wexler/",
+      "outlet": "Jewish Insider",
+      "date": "2026-08-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "former Rep. Robert Wexler (D-FL), a pro-Turkey and pro-Israel voice on Capitol Hill who co-founded the Congressional Caucus on U.S.-Turkey Relations in 2001.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Wexler is on Ballard Partners' team for Turkey's Ministry of National Defense under an Aug 2026 FARA filing ($2.4M/yr). A 2026 contract, not the 2025 filing the lead cites."
+    },
+    {
+      "url": "https://responsiblestatecraft.org/2022/06/28/the-revolving-door-from-congress-to-foreign-interest-lobbyist-is-well-traveled/",
+      "outlet": "Responsible Statecraft (Quincy Institute)",
+      "date": "2022-06-28",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "We analyzed Foreign Agents Registration Act (FARA) filings since 2000 and found that at least 90 former members of Congress have registered as foreign agents",
+      "paywalled": false,
+      "searcher_note": "Earlier version of the Quincy count: at least 90 since 2000."
+    },
+    {
+      "url": "https://www.lx.com/politics/lx-investigates-congressmembers-turned-foreign-agents/14725/",
+      "outlet": "NBC LX",
+      "date": "2020-06-30",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "A nine-month NBCLX investigation, which included the review of thousands of Foreign Agents Registration Act (FARA) filings, revealed more than 50 former members of the House and Senate who have worked for foreign interests in just the last five years.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: 50+ ex-members as foreign agents in 2015-2020."
+    }
+  ],
+  "notes": "The count finding (ex-members turned FARA registrants) is well covered by Quincy Institute (90 in 2022, 100 in April 2026, both since 2000) and NBC LX (2020). Blagojevich for Republika Srpska is covered (Balkan Insight 2025, Quincy 2026). No source found for Fattah registering for Liberia; searches turned up only his conviction and release. No source found for Chris Stewart's FARA filing (LegiStorm bio says 'registered as a lobbyist or foreign agent' but details are paywalled; not recorded). Wexler found only for a 2026 Turkey contract, not a 2025 filing. Seymour (flagged weak match) was not searched separately. No source gives the lead's 26-first-filed-2017+ figure or the 1970+ window."
+}

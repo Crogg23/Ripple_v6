@@ -1,0 +1,58 @@
+{
+  "story_id": "S162",
+  "entity": "U.S. immigration detentions of people who arrived by 2021 (long-term residents), Jan-May 2026 vs Jan-May 2024; 10+ year residents vs Jan-May 2019",
+  "queries": [
+    {"q": "ICE detentions long-term residents in US more than 10 years surge 2026 data analysis", "found_useful": false},
+    {"q": "Deportation Data Project ICE arrests people who entered the U.S. years ago long-time residents share rising", "found_useful": true},
+    {"q": "analysis ICE data detained immigrants who had lived in U.S. more than a decade tripled compared to 2024", "found_useful": false},
+    {"q": "TRAC immigration court records detained immigrants entered before 2021 long-time residents 2026", "found_useful": false},
+    {"q": "\"in the country for more than 10 years\" ICE arrests detentions data 2026 analysis long-settled immigrants", "found_useful": false},
+    {"q": "most immigrants arrested by ICE had lived in the U.S. for years, data shows entry date analysis newspaper", "found_useful": true},
+    {"q": "ICE arrests share who entered before Biden took office long-time residents not recent arrivals data 2026", "found_useful": false},
+    {"q": "immigration court data detained people who lived in U.S. 10 years or more 2026 rise New York Times OR \"Marshall Project\" OR ProPublica", "found_useful": true},
+    {"q": "DHS says most ICE detainees are recent border crossers not long-term residents 2026 fact check", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.themarshallproject.org/2026/08/25/immigrant-detention-trump-ice-thousands-length",
+      "outlet": "The Marshall Project",
+      "date": "2026-08-25",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "About 80% of people detained since Trump retook office have come from the interior of the country, where they are much more likely to have community ties",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff: interior detentions ~80% under Trump II vs 30% in Biden's last two years; 610,000+ detained. Measures interior origin, not arrival year. Live page is behind a Cloudflare bot wall; quote verified on the Internet Archive copy (20260915184905)."
+    },
+    {
+      "url": "https://deportationdata.org/analysis/immigration-enforcement-first-year.html",
+      "outlet": "Deportation Data Project (UC Berkeley / UCLA)",
+      "date": "2026-04-07",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The number of daily detention beds holding people arrested in the interior of the United States quadrupled over the course of 2025, increasing from a daily average of around 14,000 in the second half of 2024",
+      "paywalled": false,
+      "searcher_note": "Interior-arrest detentions roughly 4x from late 2024 to Jan 2026; also notes July 2025 bond policy applied regardless of years lived in the U.S. No entry-year breakdown."
+    },
+    {
+      "url": "https://www.americanimmigrationcouncil.org/blog/ice-arrest-statistics-americans-noncriminals/",
+      "outlet": "American Immigration Council",
+      "date": "2026-04-17",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "every week thousands of long-time residents continue to be arrested and thrown into detention centers despite lengthy ties to American communities and no criminal records",
+      "paywalled": false,
+      "searcher_note": "Advocacy group reading of Deportation Data Project release: long-time residents detained weekly; no count, no entry-year definition, no comparison year"
+    },
+    {
+      "url": "https://www.nyc.gov/assets/immigrants/downloads/pdf/2019_01_moia_ice_enforcement_nyc_aor.pdf",
+      "outlet": "NYC Mayor's Office of Immigrant Affairs",
+      "date": "2019-01-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "There has been a 334% spike in ICE arrests of long-term U.S. residents with no criminal convictions in NYC.",
+      "paywalled": false,
+      "searcher_note": "Earlier pattern, same measure family: ICE arrests of 10+ year non-criminal residents in the NYC area rose 334% Feb 2017-Jan 2018 vs prior year. Different place and window. Date is 'Updated January 2019' (day unknown)."
+    }
+  ],
+  "notes": "No source found that counts detentions by arrival year (arrived by 2021, or 10+ years in the U.S.) for 2026, or states the 13,265 / 3,490 / 3.8x figures, the ICE stay 3,083 to 11,567 Jan-Feb figures, or the 5,760 vs 3,076 10+ year comparison. Coverage found is on the adjacent pattern: detentions from the interior (Marshall Project, Deportation Data Project) and advocacy statements that long-time residents are being detained. No source disagreeing with the direction was found. Stateline (2025-12-12) blocked the fetch and showed no years-in-US sentence in the curl copy, so not recorded. TRAC (2026-06-26) and Vera (2026-04-10) pages checked, no entry-date findings."
+}

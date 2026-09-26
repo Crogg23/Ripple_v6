@@ -1,0 +1,71 @@
+{
+ "story_id": "S145",
+ "lead": {
+  "headline": "Vermont logged 77 private-sale gun background checks in 2022: 0.17 per 100 dealer checks, last of 10 states requiring them",
+  "number": "0.17 private-sale checks per 100 dealer checks; median of the 10 law states 2.2; median of states with no law 0.10",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The dealer picks the \"private sale\" code, so this may show how Vermont sales get logged, not that sellers skip the check; the table stops at Sep 2023."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Vermont universal background check law private sale NICS checks few compliance",
+  "Vermont background checks private sales 2022 NICS data FBI few checks",
+  "\"private sale\" NICS checks by state universal background check states compliance data analysis",
+  "VTDigger private gun sales background checks law compliance numbers dealers Vermont",
+  "Vermont gun shops submitted 48 private sales background checks 2017 FBI doubled 2018",
+  "The Trace FBI \"private sale\" background checks data states with universal background check laws low numbers",
+  "Vermont gun sales private transfers background check law not enforced skipped checks survey 2023 2024",
+  "study comprehensive background check laws did not increase background checks Washington Delaware Colorado Castillo-Carniglia"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.wcax.com/content/news/Report-looks-at-background-check-options-for-private-gun-sales-503731881.html",
+   "outlet": "WCAX (Burlington, VT)",
+   "date": "2018-12-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In 2017, Vermont-based gun shops submitted 48 private sales background checks to the FBI",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": "te. There's no way to track these sales. But do we know that some private sellers were already going to licensed dealers even before the law was passed because they wanted to know they were selling their guns to someone legally allowed to have one. The report shows a spike after the law was passed. In 2017, Vermont-based gun shops submitted 48 private sales background checks to the FBI's database. As of Oct. 31, 2018, they had submitted 90. That's about double the previous year. Other than firearms dealers, there isn't another option for people who want to do private sales to get the background checks required by law. Senate Judiciary Chair Dick Sears told WCAX News he isn't aware of any other options on the ta"
+  },
+  {
+   "idx": 1,
+   "url": "https://vtdigger.org/2019/10/23/vermont-gun-sales-have-spiked-in-the-last-decade/",
+   "outlet": "VTDigger",
+   "date": "2019-10-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "the number of checks so far in 2019 has remained roughly level with 2018, making it unclear how many private sales are occurring in Vermont.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "amount of checks done every month for eight years as far as anything I’ve ever seen,” Covey said Although it is now a requirement for gun buyers in private sales to go through the federal background check system — which means going to a federally licensed firearms dealer who can conduct the check — the number of checks so far in 2019 has remained roughly level with 2018, making it unclear how many private sales are occurring in Vermont. Covey and Parro said they haven’t seen a large increase in the number of people coming into their shop to request background checks. Parro said that typically he’ll see a few customers come in to do so each week. Sen. Phil Baruth, D/P-Chittenden, who pushed for Vermont’s gun control legislation in 2018 and plans to introduce"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.fbi.gov/file-repository/cjis/nics-2022-operations-report.pdf",
+   "outlet": "FBI CJIS, NICS 2022 Operational Report",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "In 2022, there were 206,499 transactions related to private sales initiated through",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rm retrieval.  Processed 257 U.S. Nuclear Regulatory Commission (NRC) background checks in 2022.  Processed 126,014 background checks for the disposition of firearms (DOF). Approximately 5,782 DOF denials were issued by the NICS Section during this period, equating to a 4.5 percent denial rate.  In 2022, there were 206,499 transactions related to private sales involving an FFL- initiated transaction through NICS. NICS Operational Program to Date in Review  From its first check (November 30, 1998), through December 31, 2022, a total of 443,172,700 background checks have been conducted through NICS. Of those, 170,964,473 were processed by the NICS Section, and 272,208,227 were processed by state use"
+  },
+  {
+   "idx": 3,
+   "url": "https://pure.johnshopkins.edu/en/publications/comprehensive-background-check-policy-and-firearm-background-chec",
+   "outlet": "Injury Prevention (Castillo-Carniglia et al.), via Johns Hopkins research portal",
+   "date": "2018",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Non-compliance may explain the lack of an overall increase in background checks in Washington and Colorado.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "d with an overall increase in firearm background checks only in Delaware. Data external to the study suggest that Washington experienced a modest, but consistent, increase in background checks for private party sales, and Colorado experienced a similar increase in checks for sales not at gun shows. Non-compliance may explain the lack of an overall increase in background checks in Washington and Colorado. Original language English (US) Pages (from-to) 454-459 Number of pages 6 Journal Injury Prevention Volume 24 Issue number 6 DOIs https://doi.org/10.1136/injuryprev-2017-042475 State Published - 2018 ASJC Scopus subject areas Public Health, Environmental and Occupational Health Access to Document 10.1136/injuryprev-2017-042475 Other "
+  }
+ ]
+}

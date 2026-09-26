@@ -1,0 +1,57 @@
+{
+  "story_id": "S051",
+  "entity": "US for-profit vs nonprofit nursing homes: total staff hours per resident per day (3.70 vs 4.40) and CMS fines per bed ($320 vs $205), current CMS 3-year penalty window; Arcadia Care named as worst chain at $1,357 per bed",
+  "queries": [
+    {"q": "for-profit nursing homes fewer staff hours per resident day than nonprofit CMS data analysis", "found_useful": false},
+    {"q": "Arcadia Care nursing home chain fines penalties per bed", "found_useful": true},
+    {"q": "Arcadia Care Illinois nursing homes owner violations fines news investigation", "found_useful": false},
+    {"q": "for-profit nursing homes higher fines penalties than nonprofit analysis staffing hours 2025 2026", "found_useful": true},
+    {"q": "for-profit nursing homes total nurse staff hours per resident day 3.7 nonprofit 4.4 Payroll-Based Journal", "found_useful": false},
+    {"q": "nursing home chains ranked by fines per bed ownership for-profit chain penalties analysis", "found_useful": true},
+    {"q": "nonprofit nursing homes not better than for-profit staffing quality study finds little difference", "found_useful": false},
+    {"q": "\"Arcadia Care\" nursing home chain Illinois owner homes fined 2026", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://careconsidered.com/research/nursing-home-accountability/",
+      "outlet": "Care Considered (Nursing Home Accountability Report, 2026 Edition)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "For-profit facilities average 2.8 stars vs 3.57 for non-profits (a 0.77-star gap), and staff 0.71 fewer nurse hours per resident per day.",
+      "paywalled": false,
+      "searcher_note": "Page says 'CMS data vintage Aug2026', no publication date. Its ownership table: Non-profit 2,868 homes at 4.4 nurse hrs/resident/day, 35.4% fined; For-profit 10,877 at 3.69, 47% fined. Same staffing finding and near-identical numbers; gives % fined, not fines per bed."
+    },
+    {
+      "url": "https://careconsidered.com/research/nursing-home-accountability/",
+      "outlet": "Care Considered (Nursing Home Accountability Report, 2026 Edition)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Lowest-rated large chains (20+ facilities) Chain Facilities Avg CMS rating % fined Reliant Care Management 34 1.18 82.4 Arcadia Care 25 1.35 84",
+      "paywalled": false,
+      "searcher_note": "Table text: Arcadia Care is the second-lowest-rated large chain (25 homes, 1.35 stars, 84% fined), behind Reliant Care Management. Ranked by star rating, not fines per bed."
+    },
+    {
+      "url": "https://projects.propublica.org/nursing-homes/affiliate/a-42",
+      "outlet": "ProPublica Nursing Home Inspect",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "$188,781 Average fines/home Average total fines against affiliated homes. National average: $31,092",
+      "paywalled": false,
+      "searcher_note": "Data as of August 2026. Arcadia Care affiliated with 25 facilities in Illinois and Ohio; fines per home about 6x national average; 3.2 nurse hrs/resident/day vs 3.9 national. Per home, not per bed; database page, not a story."
+    },
+    {
+      "url": "https://theconversation.com/for-profit-nursing-homes-are-cutting-corners-on-safety-and-draining-resources-with-financial-shenanigans-especially-at-midsize-chains-that-dodge-public-scrutiny-225045",
+      "outlet": "The Conversation (Sean Campbell, Charlene Harrington)",
+      "date": "2024-03-14",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Multiple academic studies show the results, highlighting the lower staffing and quality in for-profit homes compared with nonprofits and government-run facilities.",
+      "paywalled": false,
+      "searcher_note": "Investigation of for-profit chains: lower staffing than nonprofits; midsize chains (11-100 homes) have higher average fines per home. No hours or per-bed numbers; Arcadia Care not named. Republished by Kentucky Lantern, SC Daily Gazette, Civil Beat, GovExec (copies)."
+    }
+  ],
+  "notes": "Well-known story (novelty guess 1). Care Considered's 2026 report (CMS data Aug 2026, likely post-cutoff but page carries no date) has the same for-profit vs nonprofit staffing gap with nearly the same numbers (3.69 vs 4.4). It reports share of homes fined, not fines per bed. No source found with $320 vs $205 fines per bed or Arcadia at $1,357 per bed. ProPublica shows Arcadia Care at $188,781 average fines per home (national $31,092), August 2026 data. Local coverage of individual Arcadia Care homes exists (WCIA: Arcadia Care Danville fined over $100K by Illinois DPH) but WCIA returned 403 and could not be quoted. Consumer Voice staffing page (snippet: non-profits staff about 23% higher than for-profits) returned 403."
+}

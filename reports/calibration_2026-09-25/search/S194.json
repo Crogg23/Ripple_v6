@@ -1,0 +1,68 @@
+{
+  "story_id": "S194",
+  "entity": "Repeat late Form 4 (stock-option award) filers 2017-20 vs 2021-24; named: AgEagle Aerial Systems (85 of 117 awards 30+ days late 2021-24), Security National Financial",
+  "queries": [
+    {"q": "AgEagle Aerial Systems late Form 4 filings delinquent Section 16(a) reports", "found_useful": true},
+    {"q": "SEC charges late Form 4 filings sweep companies insiders stock option awards repeat late filers", "found_useful": true},
+    {"q": "SEC order AgEagle Aerial Systems Section 16(a) \"Forms 4\" untimely cease-and-desist 2023 sec.gov litigation admin", "found_useful": false},
+    {"q": "Security National Financial Corporation late Form 4 stock dividend insiders Section 16 delinquent", "found_useful": false},
+    {"q": "\"AgEagle\" sec.gov files litigation admin 2023 34-98 Section 16(a) order pdf", "found_useful": true},
+    {"q": "study late Form 4 filers persistent repeat delinquent insider filings research companies stay late", "found_useful": false},
+    {"q": "AgEagle proxy \"Delinquent Section 16(a) Reports\" 2024 late Forms 4 insiders", "found_useful": false},
+    {"q": "SEC late Section 16 insider filings enforcement 2026 Form 4 delinquent companies charged", "found_useful": false},
+    {"q": "AgEagle $190,000 SEC penalty late insider reports news", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/file/34-98552",
+      "outlet": "US SEC (administrative order, In the Matter of AgEagle Aerial Systems Inc., Release No. 98552)",
+      "date": "2023-09-27",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "officers and directors in the aggregate filed more than 125 untimely Forms 4 to report transactions related to, among other things, stock and option awards, options exercises, and open-market sales.",
+      "paywalled": false,
+      "searcher_note": "SEC order against AgEagle: insiders' late Forms 4 March 2018 to June 2022, many for stock option awards; company negligent as filing agent; $190,000 penalty. PDF. Same order says 2021 transactions were not filed until June 2022. Window overlaps the lead's 2017-20 and early 2021-24; no 85-of-117 figure."
+    },
+    {
+      "url": "https://www.sec.gov/files/litigation/admin/2023/34-98546.pdf",
+      "outlet": "US SEC (administrative order, In the Matter of Nicole M. Fernandez-McGovern, AgEagle CFO, Release No. 98546)",
+      "date": "2023-09-27",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "reportable transactions between June 2018 and March 2022 were reported late and primarily involved stock and options award grants and exercises",
+      "paywalled": false,
+      "searcher_note": "SEC order against AgEagle's CFO; table lists late Forms 4 for transactions through March 2022, many filed months late (e.g. 2021 transactions filed 10/1/2021 and 6/10/2022). $125,000 penalty. PDF."
+    },
+    {
+      "url": "https://www.davispolk.com/insights/client-update/sec-announces-new-sweep-enforcement-actions-aimed-failures-make-timely",
+      "outlet": "Davis Polk & Wardwell (client update)",
+      "date": "2023-10-12",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "the order against Nicole M. Fernandez-McGovern, an officer of AgEagle Aerial Systems (AgEagle), noted that the insider filed Forms 4 on an untimely basis for nearly all her reportable transactions between June 2018 and March 2022",
+      "paywalled": false,
+      "searcher_note": "Law-firm summary of the 2023 SEC Section 16 sweep; says AgEagle insiders filed more than 125 Forms 4 late between March 2018 and June 2022."
+    },
+    {
+      "url": "https://cooleypubco.com/2023/09/28/sec-charges-sections-16-and-13d/",
+      "outlet": "Cooley PubCo (law-firm blog)",
+      "date": "2023-09-28",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "between March 2018 and June 2022, there were more than 125 untimely insiders",
+      "paywalled": false,
+      "searcher_note": "Earliest non-SEC write-up found; describes the AgEagle order, its 125+ late Forms 4 and 2018 option award grants reported late."
+    },
+    {
+      "url": "https://www.sec.gov/newsroom/press-releases/2023-201",
+      "outlet": "US SEC (press release 2023-201)",
+      "date": "2023-09-27",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "AgEagle Aerial Systems Inc., $190,000",
+      "paywalled": false,
+      "searcher_note": "Sweep press release listing AgEagle among five companies charged; says some filings were delayed by weeks, months, or even years."
+    }
+  ],
+  "notes": "AgEagle is named in SEC enforcement (Sept 2023) for repeat late Forms 4, including stock option awards, March 2018 to June 2022. That window covers the lead's 2017-20 period and only the start of 2021-24; no source found reporting AgEagle lateness in 2023-24 or the 85-of-117 figure. No source found on Security National Financial late filings, and none on the cross-company persistence finding (13% or 20.3% vs 1.5%). The SEC's 2023 and 2024 sweeps describe using data analytics to find repeated late filers (pattern). Quotes from the two SEC order PDFs were taken from extracted PDF text; line breaks in the PDF may need whitespace normalization in the quote check. No coverage dated after 2026-06-30 found. No source found that disagrees."
+}

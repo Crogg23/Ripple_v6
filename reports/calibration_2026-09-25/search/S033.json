@@ -1,0 +1,77 @@
+{
+  "story_id": "S033",
+  "entity": "Lower Brule Sioux Tribe (EIN 460222351), South Dakota: single audits flag going-concern doubt and material noncompliance every year 2016-2025; federal spending $16.7M to $35.7M, $246.2M total",
+  "queries": [
+    {"q": "Lower Brule Sioux Tribe single audit going concern", "found_useful": true},
+    {"q": "Lower Brule Sioux Tribe financial audit findings noncompliance federal funds", "found_useful": true},
+    {"q": "Lower Brule Sioux Tribe financial crisis debt insolvency tribe council", "found_useful": true},
+    {"q": "Lower Brule Sioux Tribe Eighth Circuit 2026 Bureau of Indian Affairs school funds audit", "found_useful": true},
+    {"q": "\"Lower Brule\" tribe \"going concern\" auditor", "found_useful": false},
+    {"q": "Lower Brule Sioux Tribe finances 2025 audit chairman news", "found_useful": false},
+    {"q": "tribes single audit going concern material noncompliance repeat findings Federal Audit Clearinghouse analysis", "found_useful": false},
+    {"q": "\"Lower Brule Sioux Tribe\" federal grants audit findings every year material weakness", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://ecf.ca8.uscourts.gov/opndir/26/07/252375P.pdf",
+      "outlet": "U.S. Court of Appeals for the Eighth Circuit",
+      "date": "2026-07-09",
+      "source_type": "court",
+      "entity_named": "yes",
+      "quote": "From 2012 to 2019, the Tribe used some of the TCSA money to fund tribal operations that were unrelated to tribal schools.",
+      "paywalled": false,
+      "searcher_note": "Lower Brule Sioux Tribe v. Dept. of Interior, No. 25-2375. Year-after-year school-fund diversion found in BIA reviews of the tribe's annual audits (FY2016 $6.1M, FY2017 $3.68M, FY2019 $4.8M deficit). Post-cutoff. Says nothing about going-concern opinions or a 10-year streak."
+    },
+    {
+      "url": "https://www.aol.com/articles/federal-panel-rejects-tribe-appeal-192712000.html",
+      "outlet": "KELOLAND News (via AOL)",
+      "date": "2026-07-09",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "On June 10, 2020, the BIA issued a bill of collection to the Lower Brule Sioux Tribe for $3,679,223 of school funds that an audit determined had been misdirected.",
+      "paywalled": false,
+      "searcher_note": "News story on the 8th Circuit ruling; audit-based misuse of federal school funds. Post-cutoff. Original keloland.com URL returned 403."
+    },
+    {
+      "url": "https://www.doioig.gov/reports/audit/lower-brule-sioux-tribe-did-not-account-cares-act-funds-appropriately",
+      "outlet": "U.S. Department of the Interior Office of Inspector General",
+      "date": "2022-09-19",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The Lower Brule Sioux Tribe did not follow applicable requirements in its agreements with the BIA.",
+      "paywalled": false,
+      "searcher_note": "OIG audit: tribe did not account for CARES Act funds appropriately. Same entity, noncompliance with federal award terms, one program and period."
+    },
+    {
+      "url": "https://www.ojp.gov/ncjrs/virtual-library/abstracts/audit-office-justice-programs-multi-purpose-grants-awarded-lower",
+      "outlet": "Office of Justice Programs (abstract of DOJ OIG audit)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "did not comply with essential award conditions related to grant expenditures, award special conditions, budget management, and program performance",
+      "paywalled": false,
+      "searcher_note": "DOJ OIG audit of Lower Brule's OJP grants (fetch reported publication March 2016); covers 2009-2012 spending, before the lead's 2016-2025 window."
+    },
+    {
+      "url": "https://www.hrw.org/report/2015/01/12/secret-and-unaccountable/tribal-council-lower-brule-and-its-impact-human-rights",
+      "outlet": "Human Rights Watch",
+      "date": "2015-01-12",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The tribe has accumulated long-term debt of almost $33 million, most of it (about $26 million) for long term bond issuances to finance the government's operations.",
+      "paywalled": false,
+      "searcher_note": "Pre-window report on Lower Brule finances, debt and prior audit findings (2008 Eide Bailly audit: $780,000 federal water funds misdirected)."
+    },
+    {
+      "url": "https://listen.sdpb.org/news/2016-05-02/lower-brule-sioux-tribe-financial-troubles-continue",
+      "outlet": "South Dakota Public Broadcasting",
+      "date": "2016-05-02",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Officials found the tribe had over $900,000 in unallowable, unsupported or unreasonable expenses during this four-year period.",
+      "paywalled": false,
+      "searcher_note": "Local coverage of the tribe's financial troubles and the DOJ audit; start of the lead's window, no going-concern or single-audit streak."
+    }
+  ],
+  "notes": "No source found that reports going-concern doubt in Lower Brule's single audits, a 10-year streak of going concern plus material noncompliance, the 1-of-67,777 ranking, or the $16.7M to $35.7M / $246.2M federal spending figures. Search snippets pointed to singleaudit.org (SARC) recipient profile 460222351 showing a going-concern paragraph from auditor REDW LLC, but the page returned HTTP 403, so no verified quote; it is a data aggregator, not press. Dakota Scout ran 'South Dakota tribe loses bid to stop government from collecting millions in misspent education funds' on 2026-07-09 (thedakotascout.com/p/south-dakota-tribe-loses-bid-to-stop), body paywalled. South Dakota Searchlight 2024-03-28 on tribal audits under Noem returned 403. GAO-25-106741 (2024-11-07) covers tribal single-audit oversight gaps but does not name Lower Brule. Other same-entity audits found but not recorded: EPA OIG grant audit (97% of costs questioned, older), DOI OIG BIA contract audit ($385,127 questioned)."
+}

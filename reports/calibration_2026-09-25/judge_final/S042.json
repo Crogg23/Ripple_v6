@@ -1,0 +1,12 @@
+{
+ "story_id": "S042",
+ "bin": "Known pattern",
+ "entity": "Eight coal-mine controllers with 900-1,960 S&S violations per 1,000 miners, 2018-24",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The Gazette-Mail and ISHN report the same kind of finding - coal operators with long serious-violation histories - about specific mines, not our eight controllers or the per-miner rate. Entity naming is 'unknown' on both.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

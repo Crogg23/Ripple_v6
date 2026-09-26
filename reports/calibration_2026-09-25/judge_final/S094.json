@@ -1,0 +1,15 @@
+{
+ "story_id": "S094",
+ "bin": "Known pattern",
+ "entity": "$5M+ insider-sale months preceding 50%+ price drops, 2015-25 (987 of 22,770)",
+ "deciding_sources": [
+  1,
+  3
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "NBC/CNBC (Peloton insiders sold $500M before the drop) and WSJ-cited research cover insiders selling ahead of declines - the same scheme, other entities. Nobody has our systematic count or frames the Loeb/Upstart sale as timed.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

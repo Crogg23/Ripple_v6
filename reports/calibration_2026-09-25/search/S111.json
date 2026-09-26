@@ -1,0 +1,54 @@
+{
+  "story_id": "S111",
+  "entity": "Mississippi hospitals, CMS 30-day death-rate measures worse than national (24 of 72 worse on some measure, 1 better)",
+  "queries": [
+    {"q": "Mississippi hospitals death rates worse than national CMS mortality Care Compare", "found_useful": true},
+    {"q": "Mississippi Today hospitals mortality rates Medicare patients die worse than national average", "found_useful": true},
+    {"q": "Mississippi hospitals CMS star ratings 2026 one-star worse mortality Clarion Ledger", "found_useful": false},
+    {"q": "Southern hospitals higher 30-day mortality Mississippi Alabama Arkansas study risk adjustment social risk rural safety-net", "found_useful": true},
+    {"q": "\"Mississippi\" hospitals \"worse than the national rate\" death heart failure pneumonia", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.mpbonline.org/blogs/news/mississippi-ranks-2nd-to-last-in-latest-medicare-scorecard-heres-why/",
+      "outlet": "Mississippi Public Broadcasting",
+      "date": "2025-10-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The state had the highest rate of short-stay nursing home readmissions (29.4%) and the highest mortality rate (16.5%) among hospitalized Medicare beneficiaries for major conditions like heart attack and stroke.",
+      "paywalled": false,
+      "searcher_note": "Mississippi (named in the prior sentence) has the highest hospital 30-day mortality among Medicare patients, per the Commonwealth Fund scorecard. A statewide rate, not a count of hospitals worse than national."
+    },
+    {
+      "url": "https://www.commonwealthfund.org/datacenter/mississippi",
+      "outlet": "Commonwealth Fund, State Health Data Center",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Hospital 30-day mortality CMS Hospital Compare 16.5% 07/2020 - 06/2023 14.4%",
+      "paywalled": false,
+      "searcher_note": "Table row: Mississippi hospital 30-day mortality 16.5% vs 14.4% U.S., CMS Hospital Compare, July 2020-June 2023. Same direction, different definition (state rate vs hospital count)."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8796072/",
+      "outlet": "Risk-standardized sepsis mortality map of the United States (PMC)",
+      "date": "2022-01-20",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The highest risk-standardized mortality rates were found in Wyoming, North Dakota, and Mississippi, while the lowest were found in Arizona, Colorado, and Michigan.",
+      "paywalled": false,
+      "searcher_note": "Pattern: sepsis-only state mortality map; Mississippi in the top group, Southeast cluster (Arkansas, Mississippi). Not the CMS hospital measures."
+    },
+    {
+      "url": "https://www.webmd.com/a-to-z-guides/features/state-hospital-care-rated",
+      "outlet": "WebMD (HealthGrades state study)",
+      "date": "2003-09-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In Mississippi, your chance of dying from a heart attack is 49% higher, on average, than if you were treated in Colorado",
+      "paywalled": false,
+      "searcher_note": "Earliest pattern found: HealthGrades ranked Mississippi last (51st) on hospital quality, with Arkansas and Alabama just above. Old, different measure and window."
+    }
+  ],
+  "notes": "Sources name Mississippi and report hospital death rates worse than national, but as a statewide rate (16.5% vs 14.4%), not as a count of hospitals (24 of 72 worse, 1 better). No source found for the four-state figure (43 worse, 4 better vs about 20 and 25 predicted by look-alike hospitals), and no source found arguing Mississippi hospital mortality is at or below national. Aggregator sites (hospitalranked.com, safehospitalsusa.com, hospitallookup.com, curarank.com) surfaced but their pages rendered no matching text; not recorded. Mississippi Free Press 2021 story on in-hospital COVID-19 death rates is a different measure; not recorded. Kept to 5 queries per the coordinator's budget note; query 4 fanned out into a second search on its own."
+}

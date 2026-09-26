@@ -1,0 +1,77 @@
+{
+  "story_id": "S184",
+  "entity": "119th U.S. Congress, number of laws enacted by day 539 (to about late June 2026), compared with the 113th-118th Congresses at the same point",
+  "queries": [
+    {"q": "119th Congress fewest laws passed least productive 2026", "found_useful": true},
+    {"q": "Pew Research 119th Congress laws enacted substantive ceremonial renaming post offices 2026", "found_useful": false},
+    {"q": "GovTrack 119th Congress enacted laws compared same point previous Congresses 2026 midterm", "found_useful": true},
+    {"q": "\"119th Congress\" on pace to pass more laws than 118th Congress comparison same point", "found_useful": true},
+    {"q": "Congress 2025 fewest laws first year new presidency record shutdown Washington Post Paul Kane", "found_useful": true},
+    {"q": "Congress laws enacted so far 2026 shutdown no laws signed for weeks legislative output July 2026", "found_useful": false},
+    {"q": "\"119th Congress\" share of new laws Congressional Review Act resolutions post office renamings substantive laws count", "found_useful": false},
+    {"q": "Roll Call OR Axios OR Punchbowl Congress laws enacted 2026 productivity compared prior Congresses 18 months", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://legis1.com/news/editorial-standards-journalism-the-119th-congress",
+      "outlet": "Legis1 (legislative tracking service, editorial)",
+      "date": "2026-08-10",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Within its first 534 days, the current Congress has enacted 101 bills into law.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff; closest window to the lead (534 days). Counts all laws (101), not the lead's 'regular law' cut. Same page says the 119th 'is on track to potentially pass more bills than its predecessor' and calls the 118th the least productive in modern history."
+    },
+    {
+      "url": "https://www.politicsonline.co.uk/is-the-119th-congress-passing-more-laws-than-the-last-one/",
+      "outlet": "Politics Online (UK politics education site)",
+      "date": "2026-05-18",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The 118th Congress, which sat through divided government from 2023 to 2025, had managed just 60 by the same point",
+      "paywalled": false,
+      "searcher_note": "Just over halfway: 119th signed 85 laws vs 118th 60 and 117th 123 at the same point; notes a big chunk of the 85 are CRA resolutions. All laws, not the lead's regular-law cut. Education/analysis site, not a news outlet."
+    },
+    {
+      "url": "https://www.ms.now/news/dhs-shutdown-republicans-mike-johnson-chip-roy",
+      "outlet": "MS NOW",
+      "date": "2026-03-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "in the first year of the 119th Congress, the second-fewest number of bills became law since at least the 1970s: 45.",
+      "paywalled": false,
+      "searcher_note": "First-year window only (45 bills), second-fewest behind the 118th's 29; same ranking shape as the lead but a shorter window and bills-only definition"
+    },
+    {
+      "url": "https://dailycaller.com/2026/09/03/house-leadership-congress-was-most-productive/",
+      "outlet": "The Daily Caller",
+      "date": "2026-09-03",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "President Donald Trump signed 102 bills into law this Congress, possibly putting Congress on track to enact the fewest number of bills in a two-year period.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff; possible disagreement: frames the 119th as on track for the fewest laws of any two-year Congress (vs the 118th's full-term 274), not same-point comparison"
+    },
+    {
+      "url": "https://www.snopes.com/fact-check/mike-johnson-productive-congress/",
+      "outlet": "Snopes",
+      "date": "2026-09-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The 119th Congress has produced 110 new laws, whereas the 118th Congress made 274 and the 117th made 365.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff fact check rating Speaker Johnson's 'most productive in 80 years' claim False; compares the 119th partway (as of Sept 14, 2026) with full-term totals of earlier Congresses, not same point. WebFetch returned 402 but curl loads it."
+    },
+    {
+      "url": "https://www.newsweek.com/donald-trump-least-productive-congress-laws-2102819",
+      "outlet": "Newsweek",
+      "date": "2025-07-24",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Since then, the least productive Congress in terms of laws passed was the 118th Congress, which had passed just 13 bills by a comparable stage of its session.",
+      "paywalled": false,
+      "searcher_note": "Earliest same-point comparison found: GovTrack, 119th had 27 bills in its first ~7 months vs 118th 13 at a comparable stage; 115th/116th had 55/56. Earlier window than the lead."
+    }
+  ],
+  "notes": "No source uses the lead's 'regular law' definition (excluding CRA repeals, renamings, spending bills) or states 63 laws at day 539, or the 113th-117th range of 93-145. Sources with same-point comparisons (Newsweek Jul 2025, Politics Online May 2026, Legis1 Aug 2026) all put the 119th above the 118th and below earlier Congresses, on total laws. Daily Caller (Sep 2026) and Snopes (Sep 2026) compare against completed Congresses' full totals, a different window. Also found but not recorded (six-source cap): Washington Post, Paul Kane, 2025-12-24, 'Congress set records in 2025, some more dubious than others' (paywalled; per Yahoo rewrite, 38 bills in 2025, a modern record low for a new presidency's first year; the shutdown was 43 days). Lead says 68 days with no laws during the fall 2025 shutdown; no source checked that figure."
+}

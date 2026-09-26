@@ -1,0 +1,12 @@
+{
+ "story_id": "S108",
+ "bin": "Matched + more",
+ "entity": "Indian Health Service / tribal hospitals lacking a CMS Medicare star rating",
+ "deciding_sources": [0],
+ "earliest_match_date": "2020-11-19",
+ "post_cutoff_match": false,
+ "what_we_add": "the count: 7 of 26 rated vs about 13 expected, and the three named Navajo-area hospitals driving half the gap",
+ "why": "The TTAG letter names IHS hospitals and states the same finding in words: many have no rating at all, low stars where rated. No source has our 7-of-26 count, expected-13 comparison, or the named hospitals.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

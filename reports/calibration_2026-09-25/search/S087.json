@@ -1,0 +1,46 @@
+{
+  "story_id": "S087",
+  "entity": "United States: firms under active SAM Reciprocal or Procurement exclusions (government-wide bans) receiving new federal contract actions after the ban date, mostly Defense (23 firms, about $800K)",
+  "queries": [
+    {"q": "GAO contracts awarded to debarred suspended excluded contractors SAM exclusions after exclusion date", "found_useful": true},
+    {"q": "DoD Inspector General audit contracts awarded to debarred suspended contractors SAM excluded Defense Logistics Agency", "found_useful": true},
+    {"q": "debarred companies still won federal contracts after debarment investigation Pentagon", "found_useful": false},
+    {"q": "GAO report excluded entities received new federal awards while active exclusion SAM 2023 OR 2024 OR 2025", "found_useful": true},
+    {"q": "GAO-26-107466 excluded contractors 2,074 awards $626 million news", "found_useful": false},
+    {"q": "debarred contractor awarded Defense Department order despite SAM exclusion 2026", "found_useful": false},
+    {"q": "suspended debarred firms kept getting federal contract money analysis USAspending exclusions list reporters", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://files.gao.gov/reports/GAO-26-107466/index.html",
+      "outlet": "U.S. Government Accountability Office (GAO-26-107466)",
+      "date": "2026-06-16",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "We identified 2,074 awards with transactions involving 137 entities (based on the UEI) that were listed in the SAM Exclusion records at the time of the transaction.",
+      "paywalled": false,
+      "searcher_note": "Same national measure, wider definition: USAspending x SAM Exclusions by UEI, FY2023-24, contracts and assistance, all exclusion types; next sentence says obligations were $626.2 million as of February 2025, and GAO says matches do not by themselves show improper awards. No DoD split given."
+    },
+    {
+      "url": "https://www.gsaig.gov/sites/default/files/audit-reports/A180104%20-%20Final%20Report%20-%20Suspension%20and%20Debarment%20%28for%20issuance%29.pdf",
+      "outlet": "GSA Office of Inspector General (A180104/Q/2/P20004)",
+      "date": "2020-06-19",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "As a result, federal agencies can unknowingly execute contract actions, including awarding a new contract, to contractors that have been suspended or debarred.",
+      "paywalled": false,
+      "searcher_note": "Pattern: GSA's eTools lagged SAM exclusion updates; found one agency bought off a GSA schedule from an excluded contractor. PDF text."
+    },
+    {
+      "url": "https://www.gao.gov/products/gao-09-174",
+      "outlet": "U.S. Government Accountability Office (GAO-09-174)",
+      "date": "2009-02-25",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Excluded Parties List System: Suspended and Debarred Businesses and Individuals Improperly Receive Federal Funds",
+      "paywalled": false,
+      "searcher_note": "Earliest found: GAO investigation of excluded parties receiving awards over $1,000. Quote is the report title; the product page gave no finding sentence with counts. Page blocks plain curl (Akamai), fetch tool reads it."
+    }
+  ],
+  "notes": "No news story found on excluded firms getting new federal orders after the ban; all hits are GAO and IG audits. The closest is GAO-26-107466 (June 16, 2026, just before the cutoff): 137 excluded entities, 2,074 awards, $626.2M in FY2023-24, which is far bigger than the lead's 23 firms and about $800K because GAO counts all exclusion types, assistance too, and total obligations on the matched awards. DoD IG report D-2011-083 ('Additional Actions Can Further Improve the DoD Suspension and Debarment Process', July 14 2011; search snippet says it found contracting officers awarded contracts to suspended or debarred contractors) returned 403, not recorded. Context for the judge, not a source: FAR 9.405-1 lets agencies keep existing contracts with debarred firms, but bars orders over an IDIQ's guaranteed minimum, new schedule/BPA orders, and option exercises without a compelling-reason determination. Several queries set off extra searches on their own (the DoD IG query ran 4, the last query ran 4); each is logged once here."
+}

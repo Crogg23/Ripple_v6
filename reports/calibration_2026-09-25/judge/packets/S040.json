@@ -1,0 +1,59 @@
+{
+ "story_id": "S040",
+ "lead": {
+  "headline": "loanDepot denied 74% of refinance applications in 2015-17 but only 8% of home-purchase ones",
+  "number": "74% of refinance applications denied vs 8% of purchase applications, below Wells Fargo's 15%; the first pass said 56% on all rows.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The story flipped once loan purpose was split: loanDepot is a low-denial purchase lender, so always split by purpose before ranking lenders."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "loanDepot refinance denial rate HMDA",
+  "loanDepot high denial rate refinance applications 2016 2017",
+  "\"loanDepot\" denied applications percent HMDA data analysis news",
+  "online nonbank lenders refinance denial rates much higher than purchase HMDA 2017 Federal Reserve",
+  "lenders with highest refinance denial rates named loanDepot Quicken Wells Fargo 2017 HMDA analysis",
+  "\"loanDepot\" \"denial rate\" refinance percent",
+  "HousingWire OR \"National Mortgage News\" loanDepot denials refinance applications turned down",
+  "refinance denial rates lender comparison HMDA report September 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.fanniemae.com/media/33316/display",
+   "outlet": "Fannie Mae Economic and Strategic Research (Nuno Mota), 'An Analysis of Small Balance Loan Origination in Rural and High-Needs Rural Areas'",
+   "date": "2019-12-02",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Table A2B Top 10 Rural Lenders by Total Site-Built 1-4 Unit Properties Refinance Loan Originations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " AmeriFirst Financial Corporation Portage, MI 0.7% 1,055 9% 10.1% 46.5% 10 State Employees' Credit Union Raleigh, NC 0.7% 1,053 18% 9.9% 32.0% Top 50 30% 922 21% 5.6% 22.2% Top 20 20% 1,533 24% 6.0% 22.9% Top 10 14% 2,159 24% 6.7% 24.5% Top 5 10% 3,124 25% 6.6% 23.7% © 2019 Fannie Mae Page 26 of 40 Table A2B Top 10 Rural Lenders by Total Site-Built 1-4 Unit Properties Refinance Loan Originations Rank Institution Name City, St Share of All Yearly Originations Denial Rate Lender [0,60k) % Lender [0,100k) % 1 Quicken Loans Inc. Detroit, MI 8.6% 57,645 30% 5.0% 26.2% 2 Wells Fargo Bank, National Association Sioux Falls, SD 7.4% 49,144 25% 7.6% 25.4% 3 JPMorgan Chase Bank, National Association Columbus, OH 3.7"
+  },
+  {
+   "idx": 1,
+   "url": "https://files.consumerfinance.gov/f/documents/bcfp_hmda_2017-mortgage-market-activity-trends_report.pdf",
+   "outlet": "CFPB (BCFP) Data Point: 2017 Mortgage Market Activity and Trends",
+   "date": "2018-05-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Overall, refinance applications were thus denied at about 2.5 times the rate of home-purchase loan applications.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "centage points lower than in 2016 (Table 5A). The decline in 2017 continues a general trend of declining denial rates for home-purchase mortgages in the recent years.30 The overall denial rate on applications for refinance loans (Table 5B) declined from 29.9 percent in 2016 to 26.4 percent in 2017. Overall, refinance applications were thus denied at about 2.5 times the rate of home-purchase loan applications. Although denial rates have generally declined, the declines were not equally steep across all types of loans. For example, for conventional home-purchase loan applications, the denial rate of 9.6 percent in 2017 was about half the rate of 2007, while the denial rate for nonconventional home-purchase loan applications of 12.8 percent in 2017 was "
+  },
+  {
+   "idx": 2,
+   "url": "https://wirly.com/lenders/loandepot",
+   "outlet": "Wirly (lender review site)",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "loanDepot's national refinance denial rate is 0%, based on 2024 HMDA data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+  "story_id": "S012",
+  "entity": "ICE detainers (jail-hold requests), national: share lodged on people with a criminal conviction, Oct-Mar FY23 vs Oct-Mar FY26",
+  "queries": [
+    {"q": "ICE detainers share criminal conviction fell 2026 TRAC", "found_useful": false},
+    {"q": "ICE detainers issued people with criminal convictions share Deportation Data Project", "found_useful": false},
+    {"q": "\"detainers\" ICE 2026 percent no criminal conviction jail requests analysis", "found_useful": true},
+    {"q": "tracreports detainers ICE fiscal 2026 convicted criminal percentage detainer", "found_useful": true},
+    {"q": "ICE detainers \"16%\" OR \"16 percent\" criminal conviction 2026", "found_useful": false},
+    {"q": "ICE detainer requests jails surge people without criminal records news 2026", "found_useful": true},
+    {"q": "DHS says ICE detainers are for criminal illegal aliens convictions share detainers 2026 statement", "found_useful": false},
+    {"q": "Austin Kocher ICE detainers convictions share fiscal year 2026 detainer data", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://deportationdata.org/analysis/immigration-arrests-in-2026.html",
+      "outlet": "Deportation Data Project (UC Berkeley / UCLA law)",
+      "date": "2026-09-08",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "First, detainer requests from ICE to local jails and state prisons rose sharply in 2026. ICE increased the number of such requests by increasingly targeting noncitizens without criminal convictions.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Same direction (detainers shifting toward no-conviction people), counts by month in a chart; no share percentage stated in text."
+    },
+    {
+      "url": "https://tracreports.org/reports/758/",
+      "outlet": "TRAC (Syracuse University)",
+      "date": "2025-04-14",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Out of 17,972 detainers issued between January 20 and February 17, just 28 percent had any prior conviction.",
+      "paywalled": false,
+      "searcher_note": "Early-2025 window only; same page adds Feb 18-Mar 18 2025 at 25.6 percent. Our lead has Oct-Mar FY25 at 33%, a different window."
+    },
+    {
+      "url": "https://tracreports.org/reports/748/",
+      "outlet": "TRAC (Syracuse University)",
+      "date": "2024-09-13",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "ICE records indicated that 97 percent of all detainers issued during the Biden years were for immigrants who had been charged or convicted of a crime.",
+      "paywalled": false,
+      "searcher_note": "Different definition: charged OR convicted, not convicted only; Biden-years window. Not a conviction-only share."
+    }
+  ],
+  "notes": "No source found stating the conviction-only share of detainers for FY23 (43%) or FY26 (16%), or the FY23-to-FY26 drop. Most 2026 coverage (TRAC quick facts, Cato, Poynter, FactCheck, Stateline) is about the detention population or arrests, not detainers; those were not recorded. Deportation Data Project (post-cutoff) states the direction for detainers in words. TRAC gives early-2025 detainer conviction shares (28%, 25.6%) for windows that do not line up with the lead's Oct-Mar comparison. DHS press releases describe individual detainers only; no aggregate share that disagrees."
+}

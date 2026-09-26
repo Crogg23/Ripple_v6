@@ -1,0 +1,12 @@
+{
+ "story_id": "S166",
+ "bin": "Known pattern",
+ "entity": "Irish 1990s company formations concentrated at mass-registration addresses (28% of 1992 formations at 1,000+ company addresses)",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Irish Times and Tax Justice Network report the same scheme, hundreds or thousands of shells at single Dublin addresses, but different addresses and eras. The 2003 piece names Central Chambers but only as one company's address, no concentration finding.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

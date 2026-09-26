@@ -1,0 +1,71 @@
+{
+ "story_id": "S114",
+ "lead": {
+  "headline": "16 House members running for Senate doubled their missed votes in campaign season, but did the same two years earlier",
+  "number": "Median missed rate 1.8% (Jan-Nov 2025) to 3.5% (Dec 2025-Jun 2026), other members flat; the same 16 rose 0.3% to 2.4% in the same months of 2023-24",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The placebo kills the cause: net of the same 16's rise two years earlier, the gap is not significant, and the menu says drop it."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "House members running for Senate 2026 missed votes campaign",
+  "Senate candidates in the House missed votes analysis 2026 Roll Call OR Axios OR Punchbowl",
+  "Krishnamoorthi OR \"Robin Kelly\" OR \"Haley Stevens\" missed votes Senate campaign House",
+  "\"Buddy Carter\" OR \"Mike Collins\" OR \"Andy Barr\" missed votes Senate race 2026",
+  "study members of Congress running for higher office miss more votes absenteeism progressive ambition",
+  "House members running for Senate 2024 missed votes Schiff Gallego Porter Allred Trone Slotkin",
+  "Senate hopefuls skipping House votes campaign trail absences 2026 congressmen",
+  "Nancy Mace missed votes Senate campaign South Carolina House attendance"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.deseret.com/politics/2026/09/23/retiring-members-of-congress-missed-most-votes/",
+   "outlet": "Deseret News",
+   "date": "2026-09-23",
+   "source_type": "news",
+   "entity_named": "partial",
+   "quote": "Lawmakers who are either retiring or are running for another office have missed hundreds of combined votes over the last two years, even as the voting calendar has shrunk in some cases to provide fewer voting opportunities.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "y audio Skip forward 15 seconds 00:00 00:00 Decrease playback rate 1.0 x Increase playback rate 00:00 / 00:00 Skip back 15 seconds Play audio Skip forward 15 seconds - 0.5x 0.6x 0.7x 0.8x 0.9x 1.0x 1.1x 1.2x 1.3x 1.4x 1.5x 1.6x 1.7x 1.8x 1.9x 2.0x 2.1x 2.2x 2.3x 2.4x 2.5x 2.6x 2.7x 2.8x 2.9x 3.0x + Lawmakers who are either retiring or are running for another office have missed hundreds of combined votes over the last two years, even as the voting calendar has shrunk in some cases to provide fewer voting opportunities. House members who are leaving the lower chamber after this year have missed a combined total of 2,807 absences so far this year for an average of 40 missed votes per retiring lawmaker, according to voting data collected by C-SPAN. Retiring senators have missed a combined total of 555 absences for an average of 43 missed votes per ret"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.texastribune.org/2026/01/23/wesley-hunt-congress-missed-votes-senate-republican-primary/",
+   "outlet": "Texas Tribune",
+   "date": "2026-01-23",
+   "source_type": "news",
+   "entity_named": "partial",
+   "quote": "The median percentage of missed votes among current representatives is 2%, according to GovTrack, a nonprofit website that monitors congressional voting records.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "unt's arrival, prompting shouts from Democrats on the House floor urging Johnson to close the vote. </p> <p>Hunt’s 92% rate of missed votes this year has elevated his career mark to 20%, or missing one in five votes since he took office in 2023. Thursday’s vote was Hunt’s first since Jan. 7.</p> <p>The median percentage of missed votes among current representatives is 2%, according to <a href=\"https://www.govtrack.us/congress/members/wesley_hunt/456946\">GovTrack</a>, a nonprofit website that monitors congressional voting records. Rep. Chip Roy, an Austin Republican who is also running for statewide office in a four-way primary for attorney general, has not missed any votes this month. U.S. Rep. Jasmine Crockett, D-Dallas, has missed two as she runs opposite Hunt in the Democratic Senate "
+  },
+  {
+   "idx": 2,
+   "url": "https://legis1.com/news/congressional-absenteeism-voting-records",
+   "outlet": "Legis1",
+   "date": "2026-07-08",
+   "source_type": "trade press",
+   "entity_named": "partial",
+   "quote": "Anytime you run for higher office, you miss votes. Period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "king the absences at the top of the list stand out considerably. Rep. Wesley Hunt (R-TX-38) recorded the highest absentee rate among all House members, missing 26.3 percent of votes. Hunt has been open about the reason. Running for a U.S. Senate seat in Texas, he posted to social media in January: \"Anytime you run for higher office, you miss votes. Period.\" Among Democrats, Rep. Frederica Wilson (D-FL-24) missed the most votes at 26.1 percent. She told Florida news outlet Local 10 that many of her recent absences were due to eye surgery. Last month, Wilson announced she will not seek reelection this fall. Reasons behind absences vary widely. Illness, family emergencies, campaign obl"
+  },
+  {
+   "idx": 3,
+   "url": "https://congressvotetracker.org/articles/most-absent-members-march-2026.html",
+   "outlet": "Congress Vote Tracker",
+   "date": "2026-03-08",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The top absentees in 2024 were largely explained by campaigns and confirmations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hich GovTrack notes is \"much worse than the median of 2.8%\" among currently serving senators. For context, the 2024 Senate report card from GovTrack (covering the 118th Congress) showed that Sen. Paul's 118th Congress absence rate was 4.1%, ranking him #43 among the most absent senators that year . The top absentees in 2024 were largely explained by campaigns and confirmations: Sen. Adam Schiff ( D-CA ) was absent 47.8% of the time while running for Senate, and JD Vance missed 22.1% while serving as vice-presidential candidate. Senator Party/State 2024 (118th) Missed Rate Known Reason Sen. Adam Schiff D-CA 47.8% Running for Senate Sen. JD Vance R-OH 22.1% Vice-presidential campaign Sen. Tim Scott R-S"
+  }
+ ]
+}

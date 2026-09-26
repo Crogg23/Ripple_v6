@@ -1,0 +1,12 @@
+{
+ "story_id": "S155",
+ "bin": "Matched + more",
+ "entity": "FirstEnergy's hand-read meters across its seven utilities",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-04-16",
+ "post_cutoff_match": true,
+ "what_we_add": "2.26M hand-read meters in 2024, about 27% of all hand-read US meters, and the 57-83% state shares",
+ "why": "News 5 and FirstEnergy itself put 1.4 million Ohio customers still without smart meters into 2027: same entity, same direction, far behind. The national-share math and the OH/MD/WV outlier rates appear nowhere. The 2026 Potomac Edison rollout-complete line is a later window, not a contradiction.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

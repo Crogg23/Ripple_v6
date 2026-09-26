@@ -1,0 +1,68 @@
+{
+ "story_id": "S085",
+ "lead": {
+  "headline": "Delaware's court got 46 of the 80 billion-dollar business bankruptcies filed since 2015, counting affiliated cases as one",
+  "number": "Delaware 46 of 80 Chapter 11 families with $1B+ assets (57.5%) vs 3.2% of all families; Houston has 58 families of 20+ affiliates, 52 showing under $1M assets.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "The dollar columns failed (Houston's assets are blank, \"debt discharged\" isn't), and venue shopping is well covered."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "Delaware bankruptcy court share of billion-dollar Chapter 11 cases since 2015 Houston venue shopping",
+  "billion-dollar bankruptcies filed in Delaware versus Houston percentage since 2015 LoPucki data",
+  "Delaware reclaims top spot large corporate bankruptcies 2025 billion-dollar cases share Southern District of Texas New Jersey",
+  "Delaware bankruptcy court megacases 2026 venue share Houston decline first half 2026",
+  "\"Delaware\" \"more than half\" billion-dollar bankruptcies decade court filings analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://texaslawbook.net/texas-business-bankruptcies-skyrocket-in-dfw-decline-slightly-in-houston/",
+   "outlet": "The Texas Lawbook",
+   "date": "2025-01-07",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "According to Debtwire, 54 of the 115 companies with liabilities of $1 billion or more were litigated in the Southern District. By contrast, only 27 such businesses filed their Chapter 11s in Delaware during that period.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "kruptcy law firms, including Kirkland, Sidley and Weil, Gotshal and Manges, advised business clients that the Houston judges had the most experience to handle their restructurings and thus were more predictable. The ability to predict how judges will rule is all-important in corporate bankruptcies. According to Debtwire, 54 of the 115 companies with liabilities of $1 billion or more were litigated in the Southern District. By contrast, only 27 such businesses filed their Chapter 11s in Delaware during that period. Then came Oct. 13, 2023. The U.S. Court of Appeals for the Fifth Circuit announced an investigation into possible ethics violations against Judge Jones for a near-decadelong secret romantic relationship with Freeman, who was involved in dozens of bankruptcy cases in which Jones was the judge or a mediator. Jones resigned two days"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.cornerstone.com/insights/press-releases/mega-bankruptcies-surge-in-first-half-of-2025/",
+   "outlet": "Cornerstone Research",
+   "date": "2025-09-24",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The most common venues for bankruptcies continued to be Delaware and the Southern District of Texas, accounting for 40% and 24%, respectively, over the past 12 months.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " with multiple deals in 2025 incorporating two or more common elements, such as uptiering, drop-down, or “double-dip.” In 1H 2025, at least 22 LMTs that launched or closed involved elements of uptiering, four involved drop-down LMTs, and at least five transactions utilized the “double-dip” feature. The most common venues for bankruptcies continued to be Delaware and the Southern District of Texas, accounting for 40% and 24%, respectively, over the past 12 months. The Northern District of Texas topped the District of New Jersey and the Southern District of New York for the first time during 2005–1H 2025 and became the third most common venue for the first time since 2012. Related Publications FEATURED Interactive: Trends in Large Corporate Bankruptcy and Financial Distress—Midyear 2025 Update The"
+  },
+  {
+   "idx": 2,
+   "url": "https://news.bloomberglaw.com/bloomberg-law-analysis/analysis-big-bankruptcy-cases-on-a-roll-delaware-still-leads",
+   "outlet": "Bloomberg Law",
+   "date": "2023-09-07",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Its 47 cases account for approximately 39% of the 120 megacase total through August of this year.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "as a factor precipitating their bankruptcy filings. Fallout from the SPAC bubble burst, as well as distress in the healthcare and retail sectors have also contributed to these totals. The Bankruptcy Court for the District of Delaware maintains a commanding lead as the venue of choice for megacases. Its 47 cases account for approximately 39% of the 120 megacase total through August of this year. The Bankruptcy Court for the Southern District of Texas is a distant but still strong second with 27 cases, followed by the Bankruptcy Court for the Southern District of New York with 10 cases. The Bankruptcy Court for the District of New Jersey has recently gained notice as an emerging megacase magnet with several high profile cases l"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.abi.org/abi-journal/venue-in-chapter-11-cases-what-then-what-now-and-what-next",
+   "outlet": "ABI Journal (American Bankruptcy Institute)",
+   "date": "2026-07-01",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "In the last 20 years, more than 70 percent of public companies with at least $100 million in assets filed for bankruptcy in a district outside of the one closest to their headquarters",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  }
+ ]
+}

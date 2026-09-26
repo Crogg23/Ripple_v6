@@ -1,0 +1,12 @@
+{
+ "story_id": "S010",
+ "bin": "Matched + more",
+ "entity": "SpaceX sites' injury rate vs their industry, 2025, third straight year",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2023-11-11",
+ "post_cutoff_match": false,
+ "what_we_add": "Company-wide 3.2x for 2025, Bath Iron Works 2.7x, and the Ford 11.4-vs-peers comparison - none stated by any source",
+ "why": "Texas Observer puts Starbase's 2025 rate at 5x+ its industry from the same OSHA data; TechCrunch and Reuters show the same finding in earlier years. Their 5x is Starbase-only, ours 3.2x all sites - a different definition, not a contradiction.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

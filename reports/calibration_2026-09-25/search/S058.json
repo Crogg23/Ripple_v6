@@ -1,0 +1,76 @@
+{
+  "story_id": "S058",
+  "entity": "Novo Nordisk (Ozempic/Rybelsus maker): Medicare Part D prescribers with 50+ Ozempic/Rybelsus plus Trulicity claims in 2022; paid only by Novo (Open Payments 2022) chose Ozempic 54% vs 41% for doctors paid by neither",
+  "queries": [
+    {"q": "Novo Nordisk payments doctors Ozempic prescribing Open Payments", "found_useful": true},
+    {"q": "industry payments associated with semaglutide prescribing Medicare Part D study JAMA", "found_useful": false},
+    {"q": "manufacturer payments GLP-1 receptor agonist prescribing Open Payments Part D association dulaglutide semaglutide study", "found_useful": false},
+    {"q": "doctors paid by Novo Nordisk more likely to prescribe Ozempic analysis ProPublica OR STAT OR KFF", "found_useful": true},
+    {"q": "\"Open Payments\" GLP-1 physicians receiving payments prescribed more semaglutide cross-sectional 2024 OR 2025", "found_useful": true},
+    {"q": "Novo spent $25.8 million U.S. medical professionals promote Wegovy Saxenda Reuters", "found_useful": true},
+    {"q": "drug company payments target doctors already high prescribers reverse causality Open Payments study prior prescribing", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41579137/",
+      "outlet": "Mayo Clinic Proceedings (research letter, indexed in PubMed)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Association Between Pharmaceutical Manufacturer Payments and GLP-1RA Prescribing in the United States",
+      "paywalled": true,
+      "searcher_note": "Closest match found: national cross-sectional study linking Open Payments 2021-2022 to Part D GLP-1RA prescribing 2022-2023 (per search snippet). Issue dated March 2026, vol 101(3):518-520. PubMed returned a captcha, ScienceDirect and journal site 403; body not seen, so unknown whether it names Novo or reports brand-choice shares. Title only."
+    },
+    {
+      "url": "https://www.statnews.com/2023/07/05/ozempic-rybelsus-novo-nordisk-meals-for-doctors/",
+      "outlet": "STAT",
+      "date": "2023-07-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Novo Nordisk bought prescribers over 450,000 meals and snacks to promote drugs like Ozempic",
+      "paywalled": true,
+      "searcher_note": "STAT+ story on Novo's 2022 Open Payments meals and travel ($11M) for Ozempic/Rybelsus promotion. Same company and payment year; reports payments, not a paid-vs-unpaid prescribing split."
+    },
+    {
+      "url": "https://www.center4research.org/novo-nordisk-gave-doctors-450000-meals-ozempic/",
+      "outlet": "National Center for Health Research (republishing STAT)",
+      "date": "2023-07-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Novo Nordisk spent $11 million on meals and travel for thousands of doctors last year, federal records show, as part of its push to promote Ozempic and other weight loss-inducing diabetes drugs.",
+      "paywalled": false,
+      "searcher_note": "Open copy of the STAT piece; cites Yale's Joseph Ross that gifts of any value are associated with more prescribing, but gives no Ozempic-specific prescribing comparison."
+    },
+    {
+      "url": "https://www.medicaldaily.com/glp1-drugmaker-payments-prescribers-open-payments-analysis-478475",
+      "outlet": "Medical Daily",
+      "date": "2026-09-10",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Eli Lilly and Novo Nordisk have made at least one payment to more than 250,000 individual US doctors and other prescribers",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff Open Payments analysis of GLP-1 maker payments to prescribers; no link from payments to brand choice."
+    },
+    {
+      "url": "https://bioethics.com/archives/73735",
+      "outlet": "bioethics.com (summarizing Reuters investigation)",
+      "date": "2023-12-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Drugmaker Novo Nordisk paid U.S. medical professionals at least $25.8 million over a decade in fees and expenses related to its weight-loss drugs",
+      "paywalled": false,
+      "searcher_note": "Reuters investigation (reuters.com/investigates/special-report/health-obesity-novonordisk-doctors/, not fetchable) on Novo paying obesity specialists for Wegovy/Saxenda; different drugs, no prescribing-share comparison."
+    },
+    {
+      "url": "https://www.nber.org/papers/w26751",
+      "outlet": "National Bureau of Economic Research (Carey, Lieber, Miller)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "In an event study, we show that physicians increase prescribing of drugs for which they receive payments in the months just after payment receipt, with no evidence of differential trends between paid and unpaid physicians prior to the payment.",
+      "paywalled": false,
+      "searcher_note": "Pattern source (Part D 2013-2015, payments-to-prescribing), dated Feb 2020, revised Mar 2021. Relevant to the lead's caveat: it addresses targeting of high prescribers and finds no pre-trend. Quote is 39 words."
+    }
+  ],
+  "notes": "No source found that reports the lead's comparison: prescribers paid only by Novo choosing Ozempic 54% vs 41% for unpaid prescribers, among Ozempic/Rybelsus plus Trulicity prescribers in 2022. Novo's Ozempic-related payments are widely covered (STAT 2023, Reuters 2023, Medical Daily 2026), but only as payment totals. The Mayo Clinic Proceedings 2026 research letter is the only found study linking manufacturer payments to GLP-1RA prescribing; its text could not be reached, so whether it names Novo or splits by brand is unknown. A blog post (thelejer.wordpress.com, 2026-05-03) argues Novo pays doctors to prescribe Ozempic but gives no Ozempic prescribing data; not recorded. Pattern literature (NBER w26751; PMC5880069 on payments and costly brand prescribing) exists."
+}

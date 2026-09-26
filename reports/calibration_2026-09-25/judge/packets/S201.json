@@ -1,0 +1,59 @@
+{
+ "story_id": "S201",
+ "lead": {
+  "headline": "The Pentagon's tech agency renewed Ivanti's often-hacked phone-management software each spring: $21.8M+ since 2023, on a fixed calendar",
+  "number": "$21,771,170 on 6 DISA awards, May 2023 to Apr 2026 (skeptic: really 9 DISA awards; federal EPMM spending at least ~$43.8M); 7 exploited EPMM holes listed in that window.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The \"$8,043,000 four days after the listing\" is the yearly license renewal for a June 1 start (DISA has ordered in Mar-May every year since 2017); \"paid\" should read \"obligated\"."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "DISA Ivanti Endpoint Manager Mobile contract renewal Defense Information Systems Agency MobileIron",
+  "Pentagon Ivanti EPMM vulnerabilities exploited federal agencies still paying Ivanti contracts",
+  "DISA MobileIron subscription licenses award $8,043,000",
+  "Defense Department relies on Ivanti EPMM mobile device management hacks DISA DoD mobility",
+  "federal spending Ivanti contracts despite repeated hacks agencies keep buying Ivanti analysis",
+  "DISA DoD Mobility Unclassified Capability Ivanti MobileIron mobile device management platform",
+  "Ivanti EPMM exploited 2026 government agencies breached Pentagon August 2026",
+  "Contract Award DISA Ivanti EPMM licenses 2025 OR 2026 renewal August Schell"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://orangeslices.ai/contract-award-7-5m-disa-mobileiron-secure-uem-premium-subscription-licenses/",
+   "outlet": "OrangeSlices AI",
+   "date": "2024-08-20",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "mobileiron secure uem premium subscription licenses for ivanti (formerly mobileiron), an endpoint management software that grants authorized users the ability to access applications and business resources on the unclassified dod information network.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Contract Award: $7.5M DISA MobileIron Secure UEM Premium Subscription Licenses | OrangeSlices AI Login / Create Account Find Partners Opportunities FY2028 Expiring Tasks FY2027 Expiring Tasks Historical Reports & Archives FY2026 Expiring Tasks Expiring Tasks in 2026 Contract Termination Reports 🍊OS PBC Insider: Forecasts 🍊OS PBC Insider: Solicitations Agency Intel Department of Defense Defense Health Agency US Air Force US Army US Navy Federal Citizen Services Department of Commerce Department of Education Department of the Interior Department of Labor Housing and Urban Development Small Business Administration Federal "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-213a",
+   "outlet": "CISA and Norwegian NCSC joint advisory",
+   "date": "2023-08-01",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "CVE-2023-35078 is a critical vulnerability affecting Ivanti Endpoint Manager Mobile (EPMM) (formerly known as MobileIron Core).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "VE-2023-35078 on July 23, 2023. Ivanti later determined actors could use CVE-2023-35078 in conjunction with another vulnerability CVE-2023-35081 and released a patch for the second vulnerability on July 28, 2023. NCSC-NO observed possible vulnerability chaining of CVE-2023-35081 and CVE-2023-35078. CVE-2023-35078 is a critical vulnerability affecting Ivanti Endpoint Manager Mobile (EPMM) (formerly known as MobileIron Core). The vulnerability allows threat actors to access personally identifiable information (PII) and gain the ability to make configuration changes on compromised systems. CVE-2023-35081 enables actors with EPMM administrator privileges to write arbitrary files with the operating system privileges of the EPMM web application server"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.helpnetsecurity.com/2026/05/08/ivanti-epmm-zero-day-cve-2026-6973/",
+   "outlet": "Help Net Security",
+   "date": "2026-05-08",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "The US Cybersecurity and Infrastructure Security Agency has added the vulnerability to its Known Exploited Vulnerabilities catalog, and ordered US federal civilian agencies to remediate it within three days.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ustomers should also “review the security of the Sentry appliance at the same time as EPMM due to the dependency it has on the EPMM appliance and configuration.” Unfortunately, there are currently no reliable atomic indicators of compromise that could be used to detect compromise via CVE-2026-6973. The US Cybersecurity and Infrastructure Security Agency has added the vulnerability to its Known Exploited Vulnerabilities catalog, and ordered US federal civilian agencies to remediate it within three days. Subscribe to our breaking news e-mail alert to never miss out on the latest breaches, vulnerabilities and cybersecurity threats. Subscribe here! More about 0-day endpoint management Ivanti vulnerability Share Featured news Fake payroll desktop apps hand attackers a route to company paychecks Stop watching what AI agents say and start watching wh"
+  }
+ ]
+}

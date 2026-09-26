@@ -1,0 +1,12 @@
+{
+  "story_id": "S015",
+  "bin": "Known pattern",
+  "entity": "state-level ICE bond-posted rates for people arrested 2+ years after entry: Louisiana 7% vs Pennsylvania 29%",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source states the bond-posted share for Louisiana or Pennsylvania, or the 2+ years-after-entry cut. TRAC and OpenImmigration report the same kind of finding in general: bond outcomes swing wildly by detention location (3% to 45%). That's the pattern without our entities or measure.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

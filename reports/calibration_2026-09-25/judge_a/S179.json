@@ -1,0 +1,12 @@
+{
+  "story_id": "S179",
+  "bin": "Matched + more",
+  "entity": "Medicare Diabetes Prevention Program usage in 2024 (37 suppliers billing 11+ patients, 1,267 patients, $347,437)",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "2025-03-01",
+  "post_cutoff_match": false,
+  "what_we_add": "the 2024 claims cut: 37 suppliers, 1,267 patients, $347,437, against 1,037 listed sites",
+  "why": "CMS's own evaluation states the finding in words and numbers, fewer than 10,000 beneficiaries ever and limited supplier participation, and AJMC notes only a third of suppliers ever billed. Nobody has the 2024 supplier-level dollars.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

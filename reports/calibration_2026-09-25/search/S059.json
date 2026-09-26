@@ -1,0 +1,76 @@
+{
+  "story_id": "S059",
+  "entity": "City of Elgin, Illinois public water system (IL0894380), lead 90th-percentile tap results over the 15 ppb action level; plus count of 10K+ systems over the lead line on newest test",
+  "queries": [
+    {"q": "Elgin Illinois lead action level exceedance water", "found_useful": true},
+    {"q": "Elgin water lead 53 ppb 90th percentile", "found_useful": true},
+    {"q": "Daily Herald Elgin lead water testing 2026", "found_useful": true},
+    {"q": "Elgin lead 90th percentile 2025 fifth liter sampling exceedance ppb", "found_useful": true},
+    {"q": "Illinois water systems exceed lead action level new sampling rule 2025 Elgin Chicago suburbs", "found_useful": true},
+    {"q": "Elgin lead water 70% of homes tested high levels filters Tribune", "found_useful": true},
+    {"q": "\"Elgin\" lead \"53 parts per billion\" OR \"53 ppb\" water", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.fox32chicago.com/news/elgin-lead-water",
+      "outlet": "FOX 32 Chicago",
+      "date": "2025-07-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The 90th percentile value of the samples reached 43 parts per billion.",
+      "paywalled": false,
+      "searcher_note": "Elgin Jan-Jun 2025 round: 48 of 100 high-risk homes over 15 ppb, 90th percentile 43 ppb; attributes rise to new fifth-liter sampling; also mentions Aurora."
+    },
+    {
+      "url": "https://www.thecooldown.com/green-home/elgin-drinking-water-lead-alerts-residents/",
+      "outlet": "The Cool Down (citing Daily Herald)",
+      "date": "2026-07-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In the first testing cycle of the year, the system's 90th-percentile lead reading was 0.0185 milligrams per liter, compared with the federal action level of 0.015.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Elgin over the lead action level again in first-half 2026 at 18.5 ppb; says it improved from the prior period after treatment changes. Rewrite of a Daily Herald story."
+    },
+    {
+      "url": "https://elginil.gov/DocumentCenter/View/84515/Informational-Brochure-English---July-2026?bidId=",
+      "outlet": "City of Elgin",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The first set of results from this year indicates a 90th percentile value of 0.0185 mg/L, which exceeds the lead action level of 0.015 mg/L.",
+      "paywalled": false,
+      "searcher_note": "City's own July 2026 notice; also says this period is much lower than previous periods, crediting orthophosphate added November 2025. Page gives no exact day."
+    },
+    {
+      "url": "https://epa.illinois.gov/topics/drinking-water/public-water-users/lead-service-line-community-updates.html",
+      "outlet": "Illinois EPA",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "In January 2022, Illinois EPA issued a Lead ALE to the City based on its 90th percentile lead level of 22.5 ppb for the July – December 2021 monitoring period.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: state regulator records Elgin exceedances at 22.5 ppb (Jul-Dec 2021) and 21 ppb (Jul-Dec 2022); supports Elgin being over before the 2025 testing change."
+    },
+    {
+      "url": "https://cdn.prod.website-files.com/670e66c8e7afa4bf3638b217/68430b05cd83a264d510ea9f_PKFL%202025%20Illinois%20Report%20V6.1.pdf",
+      "outlet": "Protect Kids From Lead (report: 91 Lead exceedences in five years)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Elgin PWS, serving the City of Elgin located in Kane County, has experienced five exceedances.",
+      "paywalled": false,
+      "searcher_note": "2025 NGO report: 91 lead exceedances at 72 Illinois systems, Jan 2020 to May 13 2025; Elgin ranked among three with repeated exceedances; its table lists an Elgin reading of 50 on October 18, 2024. PDF text; page has no exact date."
+    },
+    {
+      "url": "https://www.cbsnews.com/chicago/news/high-levels-lead-water-homes-elgin-illinois/",
+      "outlet": "CBS News Chicago",
+      "date": "2024-01-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "During the first half of 2023, eight homes had lead in the water at such level. In the most recent round of testing, 19 did.",
+      "paywalled": false,
+      "searcher_note": "Elgin second-half 2023 round: 19 of 100 homes over the action level (Kane County Reporter gives 22.9 ppb 90th percentile for the same round)."
+    }
+  ],
+  "notes": "Many sources name Elgin exceeding the 15 ppb lead action level repeatedly (2021, 2022, 2023, 2025, 2026). No source found states 53 ppb; the highest found are 43 ppb (FOX 32, Jan-Jun 2025) and a 50 in the PKFL table (Oct 2024). A search for 53 ppb only hit an unrelated EWG monochloroacetic-acid guideline. Daily Herald stories (2025-01-16 'Elgin officials say new testing protocols cause more homes to test positive for elevated lead levels'; 2025-07-15 'Elgin again alerting residents of elevated lead levels in drinking water') returned empty pages to fetch (bot wall), so not recorded as sources. Axios Chicago 2026-01-30 ('Chicago tests just 0.01% of homes for lead in water', search snippet says Elgin found high lead in 70% of homes tested) returned 403. No source found for the 'about 17 systems serving 10K+ over the line' count. 7 queries run."
+}

@@ -1,0 +1,47 @@
+{
+  "story_id": "S003",
+  "entity": "Grain Processing Corporation (GPC) corn wet mill, 1600 Oregon St, Muscatine, Iowa: failed stack tests and violations 2015-2025 with no Iowa DNR order; twin plant in Washington, Daviess County, Indiana with IDEM agreed orders",
+  "queries": [
+    {"q": "Grain Processing Corporation Muscatine stack test failed emissions", "found_useful": true},
+    {"q": "GPC Muscatine air pollution Iowa DNR enforcement consent order", "found_useful": true},
+    {"q": "Grain Processing Corporation Washington Indiana IDEM agreed order air violation", "found_useful": true},
+    {"q": "Muscatine Journal GPC emissions violations 2025", "found_useful": true},
+    {"q": "\"Grain Processing\" Muscatine emissions exceedance stack test Iowa Capital Dispatch OR \"Quad-City Times\" 2026", "found_useful": false},
+    {"q": "Iowa DNR air quality enforcement orders decline few penalties analysis", "found_useful": false},
+    {"q": "Grain Processing Corporation Washington Indiana Daviess County pollution fine Times Herald", "found_useful": false},
+    {"q": "GPC Muscatine notice of violation Iowa DNR air 2019 OR 2021 OR 2023 OR 2024", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://publicintegrity.org/environment/despite-lone-inspectors-efforts-persistent-haze-envelops-iowa-town/",
+      "outlet": "Center for Public Integrity",
+      "date": "2011-11-30",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "During the past decade, the state has issued GPC 38 notices of violation related to air pollution",
+      "paywalled": false,
+      "searcher_note": "Same Muscatine plant, same theme (many violations, weak Iowa DNR follow-through: penalties on two occasions, $548,000), but window is 2001-2011, before the lead's 2015-25 window."
+    },
+    {
+      "url": "https://www.kwqc.com/content/news/Iowa-Supreme-Court-upholds-class-action-lawsuit-against-GPC-Muscatine-422153223.html",
+      "outlet": "KWQC-TV6",
+      "date": "2017-05-12",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "People living near the plant filed the lawsuit in 2012 saying GPC failed to control emissions.",
+      "paywalled": false,
+      "searcher_note": "Neighbors' class action over GPC Muscatine emissions; same plant, different finding (nuisance suit, not stack tests or state orders)."
+    },
+    {
+      "url": "https://www.iowadnr.gov/news-release/2026-02-19/air-quality-permits-review-published-02192026",
+      "outlet": "Iowa Department of Natural Resources",
+      "date": "2026-02-19",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Based on data from recent stack tests, the exhaust air flow rate is modified for both stacks, the emission limit for PM and PM10 is increased for EP135.0",
+      "paywalled": false,
+      "searcher_note": "DNR permit notice (Project 25-329): GPC Muscatine's #4 Maltrin Spray Dryer PM limit raised after stack tests. Names the entity and stack tests; does not report failures or orders."
+    }
+  ],
+  "notes": "No source found that reports GPC Muscatine's 49 failed stack-test days in 2015-25, its rank among wet corn mills, the 36 violations with 0 state orders, or the Iowa (19) vs Indiana (572) statewide order gap. Older coverage of the same plant is plentiful but pre-window: Iowa AG sued GPC in Dec 2011; 2014 consent decree with $1.5M penalty and coal-to-gas conversion (search snippets, Iowa Environmental Focus / Federal Register 2018 ACO amendment, not fetched). EPA Region 7 NOV on Clean Air Act issues dated 2012-03-27 (archive.epa.gov PDF, scanned, not quotable). Indiana twin: IDEM agreed orders 2017-24358-A, 2019-26677-A, 2020-27370-A for GPC Washington IN surfaced in search, but every in.gov/idem/oe/cause page returned HTTP 404 on fetch, so no quote; no news coverage of the Indiana orders or the $687,030 found. A search snippet said GPC failed to keep a scrubber Air:Water ratio for 34 days in 2025, but the PDFs it could come from (EPA permit 15-A-480, IDEM 2025 compliance certification) did not parse, so it is not recorded. Muscatine Journal pages redirect to a bot paywall (tollbit)."
+}

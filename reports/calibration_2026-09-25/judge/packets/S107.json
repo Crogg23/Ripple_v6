@@ -1,0 +1,96 @@
+{
+ "story_id": "S107",
+ "lead": {
+  "headline": "Five Los Angeles-area postal zones (ZIP 912-916) hold 35% of home health agencies enrolled since 2019; before 2013, 3%",
+  "number": "1,259 of 3,597 still-enrolled agencies that enrolled 2019 or later, vs 190 of 6,145 that enrolled before 2013; one Van Nuys building, 14545 Friar St, holds 49 agencies and 9 hospices",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The enrollment file lists only agencies still enrolled, so closed agencies are invisible (survivorship)."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "\"14545 Friar\" Van Nuys hospice home health",
+  "Van Nuys building dozens of hospices home health agencies same address fraud",
+  "Los Angeles home health agencies surge new enrollments Medicare fraud Glendale Burbank San Fernando Valley",
+  "CMS Los Angeles County home health agencies enhanced oversight moratorium new enrollments 2026",
+  "Los Angeles home health agency fraud Van Nuys Glendale investigation August 2026",
+  "\"Los Angeles County\" \"home health agency enrollment\" 40% increase 2019 2023 moratorium Federal Register",
+  "FinCEN health care fraud home health Los Angeles County Glendale Van Nuys Burbank North Hollywood suspicious activity",
+  "federalregister.gov 2026 moratoria home health agencies hospices Medicare enrollment Los Angeles County increase",
+  "MedPAC July 2026 data book home health agencies supply California Los Angeles County"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://file.lacounty.gov/SDSInter/bos/supdocs/214558.pdf",
+   "outlet": "Los Angeles County Board of Supervisors (motion by Supervisor Horvath)",
+   "date": "2026-04-07",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Historically these businesses have been concentrated in Glendale and Burbank, but of late there has been a significant increase in the number of operations located in the Van Nuys area of Los Angeles County (County).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "under stolen identities. These crimes are putting the most vulnerable in our community in jeopardy and undermining public confidence in services that are an important and necessary part of the healthcare industry. There are 3,170 home health and 1,623 hospice agencies located in Los Angeles County. Historically these businesses have been concentrated in Glendale and Burbank, but of late there has been a significant increase in the number of operations located in the Van Nuys area of Los Angeles County (County). All home health and hospice providers must be licensed to provide care by the State of California. The Department of Public Health’s Health Facilities Inspection Division (HFID) is contracted by the California Department of Public Health (CDPH) to conduct licensing and certification work in the County on behalf of the State. This includes conducting"
+  },
+  {
+   "idx": 1,
+   "url": "https://homehealthcarenews.com/2026/07/medpac-flags-california-los-angeles-as-primary-drivers-of-home-health-agency-growth/",
+   "outlet": "Home Health Care News",
+   "date": "2026-07-20",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Medicare-certified home health agency supply continued to grow in 2024, but much of that expansion was concentrated in California",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "S Service Types Home Health Care Hospice Palliative Care Personal Home Care Reports Jobs Podcast Awards Subscribe Home Health Care MedPAC Flags California, Los Angeles As Drivers Of Home Health Agency Growth By Morgan Gonzales | July 20, 2026 July 20, 2026 Share Facebook Twitter LinkedIn Send email Medicare-certified home health agency supply continued to grow in 2024, but much of that expansion was concentrated in California — particularly Los Angeles County, an area previously identified by the California state auditor as a major hotspot for hospice fraud, waste and abuse — according to the Medicare Payment Advisory Commission (MedPAC). California, and Los Angeles County in particular, has also become the poster child for home health care fraud. “Excluding Cali"
+  },
+  {
+   "idx": 2,
+   "url": "https://homehealthcarenews.com/2024/01/hospice-fraud-back-in-the-spotlight-with-new-data-also-raising-questions-about-home-health-care/",
+   "outlet": "Home Health Care News",
+   "date": "2024-01-30",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "number of home health agencies delivering services increased from 896 to 1,309",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " in the home health industry, largely in LA County. And if that is indeed the case, it casts doubt on how CMS and the Medicare Payment Advisory Commission (MedPAC) gauge the overall home health market, in terms of size and beneficiaries’ access to care. From the start of 2019 through June 2023, the number of home health agencies delivering services decreased from 8,838 to 8,280 – a market contraction of about 6%. During this same time, however, Los Angeles County’s number of home health agencies delivering services increased from 896 to 1,309 – a jump of about 46%. With just LA County’s growth removed, the number of home health agencies delivering services in the U.S. fell 12% over that nearly five-year window"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.mcdermottlaw.com/insights/new-hospice-home-health-agency-providers-subject-to-cms-enrollment-moratoria/",
+   "outlet": "McDermott Will & Schulte (law firm insight)",
+   "date": "2026-05-15",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "Los Angeles County currently has approximately 12% to 15% of all HHA enrollments nationwide, despite being the place of residence of approximately 3% of the US",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 4,
+   "url": "https://www.nbclosangeles.com/news/local/van-nuys-address-hospice-fraud/3860321/",
+   "outlet": "NBC Los Angeles",
+   "date": "2026-03-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Assemblywoman Alexandra Macedo, R-Tulare, said the agencies are registered at 14545 Friar St., where she said she visited the property after reviewing licensing records.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Van Nuys was listed as the registered address for nearly 200 hospice agencies. A Van Nuys building is listed as the registered address for 197 hospice agencies, according to a state lawmaker who said Wednesday the discovery raises questions about oversight of California's hospice licensing system. Assemblywoman Alexandra Macedo, R-Tulare, said the agencies are registered at 14545 Friar St., where she said she visited the property after reviewing licensing records. Stream Los Angeles News for free, 24/7, wherever you are. WATCH HERE Macedo said the building appeared dilapidated and lacked basic accessibility features such as a wheelchair ramp and accessible parking. The lawmaker said the situation highlights potential gaps in the state's oversight of hospice providers under Gov. Gavin Newsom's administra"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.smdp.com/l-a-county-supervisors-move-to-combat-home-health-hospice-fraud-amid-nationwide-crackdown/",
+   "outlet": "Santa Monica Daily Press",
+   "date": "2026-04-08",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "89 hospice companies registered at a single Van Nuys office plaza and 210 agencies concentrated within one square mile of the San Fernando Valley",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ice provider count surged roughly 1,500% from 2010 to 2022 — six times the national growth rate. Average Medicare billing per hospice patient in L.A. County runs about $29,000, more than double the national average of $13,200. Investigators have documented extreme clustering of providers, including 89 hospice companies registered at a single Van Nuys office plaza and 210 agencies concentrated within one square mile of the San Fernando Valley. A CBS News analysis found more than 700 L.A. County hospice agencies triggered multiple fraud red flags. Common fraud patterns include paying recruiters $1,000 to $3,000 per Medicare beneficiary number, offering patients cash and gifts to enroll, billing for services never delivered and cycling patients between affiliated hospices t"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+  "story_id": "S206",
+  "entity": "People on the HHS-OIG exclusion list (LEIE/SAM) who appear in ICIJ Offshore Leaks at matching US addresses: 4 of 1,611 name hits, 3 tied to Cook Islands asset-protection trusts (lead names Golden, Bressi, Roix)",
+  "queries": [
+    {"q": "ICIJ Offshore Leaks doctors Medicare fraud Cook Islands asset protection trust", "found_useful": false},
+    {"q": "Pandora Papers Cook Islands trusts health care fraud excluded Medicare physicians", "found_useful": false},
+    {"q": "ICIJ 2013 Cook Islands asset protection trusts American doctors fraud judgments creditors", "found_useful": true},
+    {"q": "Roix Cook Islands trust Medicare exclusion", "found_useful": false},
+    {"q": "Bressi health care fraud excluded OIG offshore", "found_useful": false},
+    {"q": "Golden Cook Islands trust protector health care fraud Medicare excluded", "found_useful": true},
+    {"q": "Medicare fraud defendant Cook Islands trust restitution DOJ 2026", "found_useful": false},
+    {"q": "\"Offshore Leaks\" LEIE OR \"exclusion list\" health care providers match analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.icij.org/blog/2013/12/unlocking-secrets-cook-islands/",
+      "outlet": "ICIJ (Leslie Wayne)",
+      "date": "2013-12-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "His attorney, James Golden, set up the Cook trust, and later also pleaded guilty in 2006 to his role in the scheme. He was disbarred in 2008.",
+      "paywalled": false,
+      "searcher_note": "Names James Golden as the lawyer who set up Floyd Seibert's Cook Islands 'Blue Clear Sky Trust' in a Medicare fraud and pension theft scheme. Match to the lead's 'Golden' is by surname and role (lead says his nodes are middleman/protector, no trust of his own); not confirmed as the same person."
+    },
+    {
+      "url": "https://www.icij.org/blog/2013/12/unlocking-secrets-cook-islands/",
+      "outlet": "ICIJ (Leslie Wayne)",
+      "date": "2013-12-16",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "One group that stood out in the ICIJ database are Medicare fraudsters.",
+      "paywalled": false,
+      "searcher_note": "Same page, second quote: ICIJ itself flagged Medicare fraudsters as a group among Cook Islands trust holders in its leak data. Pattern, not the exclusion-list cross-match."
+    },
+    {
+      "url": "https://www.icij.org/investigations/offshore/paradise-untouchable-assets/",
+      "outlet": "ICIJ / The New York Times",
+      "date": "2013-12-13",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Lawyers often aim their Cook trust pitches at doctors, many of whom say they fear frivolous malpractice claims. But the trusts can also protect those who have committed serious transgressions.",
+      "paywalled": false,
+      "searcher_note": "Pattern story on Cook Islands asset-protection trusts; names doctors Kamrava, Edison and podiatrist James Naples (pleaded guilty 2004, billed Medicare) as Cook trust holders. None is Golden, Bressi or Roix; the lead's fourth person is unnamed, so overlap is unknown."
+    }
+  ],
+  "notes": "No source found that cross-matches the HHS-OIG exclusion list (or SAM exclusions) against ICIJ Offshore Leaks, and none with the 1,611 name hits or the 4 address-confirmed matches. Golden is named by ICIJ in 2013 in a Medicare-fraud Cook trust scheme (as the lawyer who set up the trust, consistent with the lead's caveat that he held no trust himself); no page found naming Bressi or Roix with offshore entities or exclusions (searched surname only, as the lead gives no first names). HHS DAB ALJ decision CR1229 (2004) surfaced in results but returned 403, so its subject is unknown and it is not recorded. No coverage dated after 2026-06-30 found."
+}

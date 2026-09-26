@@ -1,0 +1,12 @@
+{
+  "story_id": "S188",
+  "bin": "Matched + more",
+  "entity": "Sen. Richard Blumenthal filing his stock-trade disclosures on paper, 2021-2026",
+  "deciding_sources": [0],
+  "earliest_match_date": "2020-10-01",
+  "post_cutoff_match": false,
+  "what_we_add": "69 of 69 PTRs on paper Feb 2021-Aug 2026; since 2024, 43 of the Senate's 44 paper filings are his",
+  "why": "Roll Call names Blumenthal and reports the paper-filing habit, same direction, though for annual disclosures, not PTRs. No source has the 69-of-69 or 43-of-44 counts.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

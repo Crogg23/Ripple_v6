@@ -1,0 +1,78 @@
+{
+  "story_id": "S006",
+  "entity": "Sunshine Senior Solutions (Delray Beach FL) and Almaz Med Supply (Woodside NY), Medicare alginate wound-dressing payments, 2024",
+  "queries": [
+    {"q": "\"Sunshine Senior Solutions\" Medicare alginate dressings", "found_useful": true},
+    {"q": "\"Almaz Med Supply\" Medicare", "found_useful": true},
+    {"q": "Sunshine Senior Solutions Delray Beach Medicare fraud indictment Justice Department", "found_useful": true},
+    {"q": "Medicare alginate wound dressing billing surge 2024 fraud suppliers", "found_useful": false},
+    {"q": "\"Sunshine Senior Solutions\" wound dressings Medicare billed seniors", "found_useful": true},
+    {"q": "Machutadze indictment Sunshine Senior Solutions \"wound dressings\" justice.gov", "found_useful": true},
+    {"q": "Almaz Med Supply Woodside Queens charged fraud wound dressings 2026", "found_useful": true},
+    {"q": "Medicare \"alginate\" dressings spending 2024 two suppliers share OIG data brief", "found_useful": false},
+    {"q": "Hilmi \"Sunshine Senior\" Medicare fraud case update August September 2026", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://justice.gov/usao-sdfl/media/1449531/dl?inline=",
+      "outlet": "U.S. District Court, Southern District of Florida (indictment, U.S. v. Ibrahim Khaldoon Hilmi, 26-CR-20238, posted by USAO-SDFL)",
+      "date": "2026-06-11",
+      "source_type": "court",
+      "entity_named": "yes",
+      "quote": "Sunshine Senior submitted at least $3.34 billion in false and fraudulent claims to Medicare, the FEHBP, Medicaid, and Commercial Insurers for DME and wound dressings that were medically unnecessary and not provided.",
+      "paywalled": false,
+      "searcher_note": "Indictment (PDF) defines Sunshine Senior Solutions LLC as a shell DME supplier billing wound dressings; window Nov 2024 to Sep 2025; says $1.78B processed as paid but nearly all held in suspension by Medicare Part B, about $3.5M deposited. Does not say alginate."
+    },
+    {
+      "url": "https://www.justice.gov/criminal/criminal-fraud/health-care-fraud-unit/2026-national-hcf-case-summaries",
+      "outlet": "U.S. Department of Justice, Criminal Division, Health Care Fraud Unit",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "In total, ABRH and Sunshine Senior Solutions submitted at least $3.76 billion in fraudulent claims to Medicare, Medicaid, and other insurers, but only approximately $5.7 million was deposited into ABRH and Sunshine Senior Solutions bank accounts.",
+      "paywalled": false,
+      "searcher_note": "2026 takedown case summary: Sunshine Senior Solutions and ABRH billed 'medical equipment and wound dressings' never provided. Its deposited-money figure is far below the lead's $593.6M paid; relevant to the paid-vs-claimed question."
+    },
+    {
+      "url": "https://abc13.com/post/would-know-had-catheter-man-surprised-medicare-charges/18209112/",
+      "outlet": "ABC13 Houston (KTRK)",
+      "date": "2025-11-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Barlow was charged for 'wound covers' and hundreds of catheters between September 2024 and February of this year, according to Medicare documents he received.",
+      "paywalled": false,
+      "searcher_note": "Houston seniors billed by Sunshine Senior Solutions for wound covers and catheters starting Sept 2024; Medicare paid Sunshine about $25,700 for one man; Sunshine no longer enrolled in Medicare as of June 2025."
+    },
+    {
+      "url": "https://www.cbsnews.com/newyork/news/queens-medical-supply-store-medicare-charges",
+      "outlet": "CBS New York",
+      "date": "2025-06-26",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The payments were all for wound dressings, glucose monitors for diabetes and catheters that they say they never received or needed.",
+      "paywalled": false,
+      "searcher_note": "Earliest Almaz coverage found: three women say Medicare paid Almaz Med Supply (Queens) thousands for wound dressings and other supplies they never got. Almaz is named in the surrounding sentences, not in the quote."
+    },
+    {
+      "url": "http://www.ksl.com/article/ksl-investigates/get-gephardt/utah-woman-says-she-got-hit-with-medicare-fraud-after-a-supplier-charged-her-plan-for-unwanted-supplies/812399",
+      "outlet": "KSL (Salt Lake City)",
+      "date": "2025-08-27",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Months later, the same company charged Medicare over $8,200 worth of \"wound dressings\" for her.",
+      "paywalled": false,
+      "searcher_note": "Utah woman billed by Almaz Med Supply (named in the preceding lines) for wound dressings; Medicare paid $6,300. Original URL at ksltv.com redirects here."
+    },
+    {
+      "url": "https://www.bbb.org/article/warnings/32066-consumers-say-nyc-businesses-charge-medicare-for-medical-items-that-were-never-ordered",
+      "outlet": "Better Business Bureau Serving Metropolitan New York",
+      "date": "2025-07-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "As of this date, there are 103 Scam Tracker reports on Almaz Med Supply Inc., as well as 11 complaints with BBB.",
+      "paywalled": false,
+      "searcher_note": "BBB warning: consumers say Almaz charged Medicare for supplies never ordered; no dressing type or dollar totals on this page."
+    }
+  ],
+  "notes": "Both suppliers are named in press and court records for billing Medicare for wound dressings nobody ordered. No source found names alginate specifically, and none gives the $593.6M / $649.2M / 91.4% share or the 494-vs-55 dressings-per-claim numbers. A search snippet said a BBB complaint listed Almaz claims for '120 Alginate or other fiber gelling dressing' at $2,760, but the BBB complaints page fetched without complaint text, so that isn't recorded. Possible tension: DOJ says Sunshine's $1.78B processed-as-paid was nearly all held in suspension by Medicare Part B, with about $3.5M deposited, and dates Sunshine's billing from Nov 2024 (ABC13 says Sept 2024). So whether the lead's 2024 'took $593.6M' means money actually paid out is a question for the judge. KXAN article (Feb 2026, Machutadze) returned 403 and wasn't used. Nothing found dated after 2026-06-30."
+}

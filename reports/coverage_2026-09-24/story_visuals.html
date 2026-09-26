@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lead Visuals</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --accent: #2a78d6;
+  --accent-soft: #86b6ef;
+  --s2: #eb6834;
+  --ctx: #a8a69e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255,255,255,0.10);
+    --accent: #3987e5;
+    --accent-soft: #1c5cab;
+    --s2: #d95926;
+    --ctx: #5f5e59;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255,255,255,0.10);
+  --accent: #3987e5;
+  --accent-soft: #1c5cab;
+  --s2: #d95926;
+  --ctx: #5f5e59;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding: 28px 16px 48px; }
+header h1 { font-size: 24px; line-height: 1.25; margin: 0 0 6px; font-weight: 650; }
+header p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 0;
+}
+.card.span { grid-column: 1 / -1; }
+.kicker { font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
+.kicker b { color: var(--ink-2); font-weight: 600; }
+.grade {
+  display: inline-block; min-width: 22px; text-align: center;
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 0 5px; margin-right: 6px; color: var(--ink); font-weight: 650;
+}
+.card h2 { font-size: 18.5px; line-height: 1.3; margin: 0 0 4px; font-weight: 620; }
+.sub { color: var(--ink-2); font-size: 14px; margin: 0 0 14px; }
+.hero { font-size: 52px; line-height: 1; font-weight: 650; letter-spacing: -0.01em; margin: 6px 0 2px; }
+.hero-sub { color: var(--ink-2); font-size: 14px; margin-bottom: 14px; }
+.chart { width: 100%; min-height: 20px; }
+.chart svg { display: block; overflow: visible; }
+.chart text { font: 12px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--ink-2); }
+.chart .v { fill: var(--ink); font-weight: 600; font-size: 12.5px; }
+.chart .mu { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.chart .ti { fill: var(--ink); font-weight: 600; font-size: 12.5px; }
+.f-acc { fill: var(--accent); }
+.f-soft { fill: var(--accent-soft); }
+.f-s2 { fill: var(--s2); }
+.f-ctx { fill: var(--ctx); }
+.f-area { fill: var(--accent); opacity: 0.12; }
+.l-acc { stroke: var(--accent); stroke-width: 2; fill: none; }
+.l-ctx { stroke: var(--ctx); stroke-width: 2; fill: none; }
+.l-grid { stroke: var(--grid); stroke-width: 1; }
+.l-base { stroke: var(--axis); stroke-width: 1; }
+.ring { stroke: var(--surface); stroke-width: 2; }
+.hit { fill: transparent; }
+[data-tip] { cursor: default; }
+path[data-tip]:hover, rect[data-tip]:hover { opacity: 0.82; }
+.hops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; }
+.hop { position: relative; min-width: 0; }
+.hop:not(:last-child)::after {
+  content: "\2192"; position: absolute; right: -27px; top: 2px;
+  color: var(--muted); font-size: 20px;
+}
+.hop .step { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.hop .big { font-size: 26px; font-weight: 650; line-height: 1.15; margin: 2px 0 2px; }
+.hop .what { font-size: 13px; color: var(--ink-2); margin-bottom: 10px; min-height: 38px; }
+.keys { margin-top: 16px; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--border); padding-top: 12px; }
+.keys b { color: var(--ink); }
+@media (max-width: 760px) {
+  .hops { grid-template-columns: 1fr; gap: 30px; }
+  .hop:not(:last-child)::after { content: "\2193"; right: auto; left: 0; top: auto; bottom: -27px; }
+}
+.fix { margin-top: 14px; font-size: 13px; color: var(--ink-2); }
+.fix b { color: var(--ink); }
+details { margin-top: 10px; font-size: 13px; }
+summary { cursor: pointer; color: var(--muted); }
+table { border-collapse: collapse; margin-top: 8px; width: 100%; font-variant-numeric: tabular-nums; }
+td { padding: 4px 8px 4px 0; border-bottom: 1px solid var(--border); color: var(--ink-2); vertical-align: top; }
+td:last-child { text-align: right; color: var(--ink); white-space: nowrap; }
+.tip {
+  position: fixed; z-index: 10; pointer-events: none; max-width: 280px;
+  background: var(--ink); color: var(--surface);
+  font-size: 12.5px; line-height: 1.4; padding: 7px 10px; border-radius: 8px;
+  white-space: pre-line; box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="page-headline"></h1>
+    <p>Mock-ups. Every number comes from the skeptic-graded write-ups and none is checked against primary records yet. Names are data matches. Local file, not published.</p>
+  </header>
+  <main class="grid" id="grid"></main>
+</div>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script>
+// ---------- helpers ----------
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const r1 = n => Math.round(n * 10) / 10;
+const int = n => Math.round(n).toLocaleString('en-US');
+const pct = (a, b, d = 0) => (100 * a / b).toFixed(d) + '%';
+const times = (a, b, d = 1) => (a / b).toFixed(d).replace(/\.0$/, '') + 'x';
+
+// rounded rect with per-corner radii, so only data ends get rounded
+function rr(x, y, w, h, c = {}) {
+  if (w < 0.5 || h < 0.5) return '';
+  const m = Math.min(w / 2, h / 2);
+  const tl = Math.min(c.tl || 0, m), tr = Math.min(c.tr || 0, m);
+  const br = Math.min(c.br || 0, m), bl = Math.min(c.bl || 0, m);
+  const X = r1(x), Y = r1(y), W = r1(w), H = r1(h);
+  return `M${X + tl},${Y}H${X + W - tr}` + (tr ? `Q${X + W},${Y} ${X + W},${Y + tr}` : '') +
+    `V${Y + H - br}` + (br ? `Q${X + W},${Y + H} ${X + W - br},${Y + H}` : '') +
+    `H${X + bl}` + (bl ? `Q${X},${Y + H} ${X},${Y + H - bl}` : '') +
+    `V${Y + tl}` + (tl ? `Q${X},${Y} ${X + tl},${Y}` : '') + 'Z';
+}
+const hbar = (x, y, w, h) => rr(x, y, w, h, { tr: 4, br: 4 });
+const vbar = (x, base, w, h) => rr(x, base - h, w, h, { tl: 4, tr: 4 });
+const pill = (x, y, w, h) => rr(x, y, w, h, { tl: 4, tr: 4, br: 4, bl: 4 });
+
+function wrap(s, maxChars) {
+  if (s.length <= maxChars) return [s];
+  const words = s.split(' '), lines = [];
+  let cur = '';
+  for (const w of words) {
+    if ((cur + ' ' + w).trim().length > maxChars && cur) { lines.push(cur); cur = w; }
+    else cur = (cur + ' ' + w).trim();
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
+// text that wraps to width; returns [svg, heightUsed]
+function textBlock(x, y, s, width, cls = '', lh = 15, anchor = 'start') {
+  const lines = wrap(s, Math.max(12, Math.floor(width / 6.6)));
+  const t = lines.map((l, i) => `<tspan x="${x}" dy="${i ? lh : 0}">${esc(l)}</tspan>`).join('');
+  return [`<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${t}</text>`, lines.length * lh];
+}
+const txt = (x, y, s, cls = '', anchor = 'start') =>
+  `<text x="${r1(x)}" y="${r1(y)}" class="${cls}" text-anchor="${anchor}">${esc(s)}</text>`;
+const svg = (w, h, inner) =>
+  `<svg width="${w}" height="${Math.ceil(h)}" viewBox="0 0 ${w} ${Math.ceil(h)}" aria-hidden="true">${inner}</svg>`;
+
+// a block of labelled horizontal bars on one scale: rows [{label, value, cls, text, tip, from}]
+function barBlock(w, y0, title, rows, max, opts = {}) {
+  let out = '', y = y0;
+  if (title) { const [t, h] = textBlock(0, y + 12, title, w, 'ti'); out += t; y += h + 8; }
+  const valW = opts.valW ?? 96;
+  const plotW = Math.max(40, w - valW);
+  for (const r of rows) {
+    const [lab, lh] = textBlock(0, y + 11, r.label, w, '');
+    out += lab; y += lh;
+    const from = r.from ?? 0;
+    const x0 = plotW * from / max, x1 = plotW * r.value / max;
+    const bw = x1 - x0, bh = 16;
+    if (r.value === 0) {
+      out += `<rect x="0" y="${y}" width="2" height="${bh}" class="${r.cls}"/>`;
+    } else if (r.floating) {
+      out += `<path class="${r.cls}" d="${pill(x0, y, bw, bh)}" data-tip="${esc(r.tip)}"/>`;
+    } else if (r.split) {
+      const xs = plotW * r.split / max;
+      out += `<path class="${r.cls}" d="${rr(0, y, xs, bh, {})}" data-tip="${esc(r.tip)}"/>`;
+      out += `<path class="${r.splitCls}" d="${hbar(xs + 2, y, x1 - xs - 2, bh)}" data-tip="${esc(r.tip)}"/>`;
+    } else {
+      out += `<path class="${r.cls}" d="${hbar(x0, y, bw, bh)}" data-tip="${esc(r.tip)}"/>`;
+    }
+    out += txt(Math.max(x1, 2) + 8, y + 12.5, r.text, 'v');
+    out += `<rect class="hit" x="0" y="${y - 2}" width="${w}" height="${bh + 4}" data-tip="${esc(r.tip)}"/>`;
+    y += bh + 12;
+  }
+  return [out, y];
+}
+
+// a 100% stacked bar with labels under it: segs [{value, cls, label, text, tip}]
+function stack(w, y0, segs, h = 26) {
+  const total = segs.reduce((a, s) => a + s.value, 0);
+  const avail = w - 2 * (segs.length - 1);
+  let x = 0, out = '';
+  segs.forEach((s, i) => {
+    const sw = avail * s.value / total;
+    const c = { tl: i === 0 ? 4 : 0, bl: i === 0 ? 4 : 0, tr: i === segs.length - 1 ? 4 : 0, br: i === segs.length - 1 ? 4 : 0 };
+    out += `<path class="${s.cls}" d="${rr(x, y0, sw, h, c)}" data-tip="${esc(s.tip)}"/>`;
+    x += sw + 2;
+  });
+  return [out, y0 + h];
+}
+
+function legendRows(w, y0, items) {
+  let out = '', y = y0;
+  for (const it of items) {
+    out += `<path class="${it.cls}" d="${pill(0, y - 9, 10, 10)}"/>`;
+    out += txt(16, y, it.label, '');
+    out += txt(w, y, it.text, 'v', 'end');
+    out += `<rect class="hit" x="0" y="${y - 13}" width="${w}" height="18" data-tip="${esc(it.tip)}"/>`;
+    y += 22;
+  }
+  return [out, y];
+}
+
+// ---------- the data, straight from the graded write-ups ----------
+const D = {
+  dhs: {
+    total: 50.97, vsMedian: 4.1, window: 'Oct to Jun, FY2026', iceBefore: 1.95,
+    parts: [['Customs and Border Protection', 31.95], ['Coast Guard', 7.69], ['ICE', 4.97], ['FEMA', 0.34]]
+  },
+  detained: { y2019: 2691, y2026: 16972, rate: [['2019', 1.36], ['2024', 0.50], ['2026', 4.32]] },
+  habeas: [
+    ['Oct 2024', 0, 33, 0.1], ['Mar 2025', 5, 99, 0.4], ['Jun 2025', 8, 242, 0.8],
+    ['Sep 2025', 11, 707, 2.7], ['Oct 2025', 12, 1328, 5.0], ['Dec 2025', 14, 3475, 12.9],
+    ['Jan 2026', 15, 6555, 22.7], ['Feb 2026', 16, 8015, 25.9], ['Mar 2026', 17, 8821, 24.4]
+  ],
+  alginate: { two: 593.6, total: 649.2, bigLo: 359, bigHi: 494, typical: 55 },
+  customs: [['Apr 2026', 23.88, 1.75, 22.12], ['May 2026', 21.93, 21.97, -0.04], ['Jun 2026', 23.63, 49.18, -25.56]],
+  sands: { dollars: 20.58, rest: 8.26, window: 'May 2021 to June 2026' },
+  reliant: { homes: 30, hoursR: 2.16, hoursO: 3.35, harmR: 4.67, harmO: 1.23 },
+  gpc: { failIA: 49, failIN: 20, ordersIA: 0, ordersIN: 7, penaltyIN: '$687K', stateIA: 19, stateIN: 572 },
+  hospice: [
+    { place: 'San Antonio', what: 'hospice IDs in clusters where one official signs 4 or more', here: 11.0, else: 0.53 },
+    { place: 'Houston, Harris County', what: 'hospices sharing a phone with a differently named hospice', here: 13.1, else: 1.2 }
+  ],
+  rail: { upBefore: 79, upAfter: 156, othersPct: 30 },
+  foodcity: { store: 64, lo: 40, hi: 68, median: 3.5 },
+  heat: { phx: 1345, us: 2145, before: 20, after: 1 }
+};
+
+const sandsShare = () => Math.round(100 * D.sands.dollars / (D.sands.dollars + D.sands.rest));
+
+// ---------- the cards ----------
+const CARDS = [
+  {
+    id: 'd1', span: true, grade: 'B', tag: 'Dossier pick D1', src: 'three leads, each graded B',
+    headline: () => {
+      const ice = D.dhs.parts.find(p => p[0] === 'ICE')[1], rt = D.detained.rate;
+      return `Contract to cell to courtroom: ICE contracts ${times(ice, D.dhs.iceBefore)}, old-case detentions ${times(rt[2][1], rt[0][1])} per case, habeas cases ${int(D.habeas[0][2])} to ${int(D.habeas[8][2])} a month`;
+    },
+    hops: [
+      {
+        step: '1 · Contract', big: `$${D.dhs.parts[2][1]}B to ICE`,
+        what: `${D.dhs.window}, was about $${D.dhs.iceBefore}B. All of DHS: $${D.dhs.total}B, ${D.dhs.vsMedian}x its median.`,
+        draw: w => {
+          const named = D.dhs.parts.reduce((a, p) => a + p[1], 0);
+          const rows = D.dhs.parts.map(([name, v]) => ({
+            label: name, value: v, cls: name === 'ICE' ? 'f-acc' : 'f-ctx',
+            text: `$${v}B`, tip: `${name}\n$${v}B, ${D.dhs.window}` + (name === 'ICE' ? `\nwas about $${D.dhs.iceBefore}B` : '')
+          }));
+          const rest = +(D.dhs.total - named).toFixed(2);
+          rows.push({ label: 'Rest of DHS', value: rest, cls: 'f-ctx', text: `$${rest}B`, tip: `Rest of DHS\n$${rest}B` });
+          const [b, y] = barBlock(w, 0, '', rows, D.dhs.parts[0][1], { valW: 64 });
+          return svg(w, y, b);
+        }
+      },
+      {
+        step: '2 · Cell', big: `${times(D.detained.rate[2][1], D.detained.rate[0][1])} per case`,
+        what: `Detained Jan to May per 1,000 court cases 2 to 4 years old. Raw count ${int(D.detained.y2019)} to ${int(D.detained.y2026)}.`,
+        draw: w => {
+          const H = 170, base = 140, top = 26, max = D.detained.rate[2][1];
+          const bw = Math.min(56, w / 5);
+          let o = `<line class="l-base" x1="0" x2="${w}" y1="${base + 0.5}" y2="${base + 0.5}"/>`;
+          D.detained.rate.forEach(([yr, v], i) => {
+            const x = w * (0.2 + 0.3 * i) - bw / 2;
+            const h = (base - top) * v / max;
+            const tip = `Jan to May ${yr}\n${v.toFixed(2)} detained per 1,000 cases 2 to 4 years old`;
+            o += `<path class="${yr === '2026' ? 'f-acc' : 'f-ctx'}" d="${vbar(x, base, bw, h)}" data-tip="${esc(tip)}"/>`;
+            o += txt(x + bw / 2, base - h - 7, v.toFixed(2), 'v', 'middle');
+            o += txt(x + bw / 2, base + 18, 'Jan to May ' + yr, 'mu', 'middle');
+          });
+          return svg(w, H, o);
+        }
+      },
+      {
+        step: '3 · Courtroom', big: `${int(D.habeas[0][2])} to ${int(D.habeas[8][2])}`,
+        what: `Immigration habeas cases a month. ${D.habeas[8][3]}% of new federal civil cases by Mar 2026.`,
+        draw: w => {
+          const H = 170, pl = 40, pr = 44, pt = 10, pb = 26;
+          const pw = w - pl - pr, ph = H - pt - pb, ymax = 9000;
+          const X = m => pl + pw * m / 17, Y = v => pt + ph * (1 - v / ymax);
+          let o = '';
+          for (const t of [0, 3000, 6000, 9000]) {
+            o += `<line class="${t ? 'l-grid' : 'l-base'}" x1="${pl}" x2="${w - pr}" y1="${r1(Y(t)) + 0.5}" y2="${r1(Y(t)) + 0.5}"/>`;
+            o += txt(pl - 6, Y(t) + 4, t ? (t / 1000) + 'k' : '0', 'mu', 'end');
+          }
+          const pts = D.habeas.map(d => [X(d[1]), Y(d[2])]);
+          const line = pts.map((p, i) => (i ? 'L' : 'M') + r1(p[0]) + ',' + r1(p[1])).join('');
+          o += `<path class="f-area" d="${line}L${r1(pts[pts.length - 1][0])},${r1(Y(0))}L${r1(pts[0][0])},${r1(Y(0))}Z"/>`;
+          o += `<path class="l-acc" d="${line}" stroke-linejoin="round"/>`;
+          D.habeas.forEach((d, i) => {
+            const [x, y] = pts[i];
+            const tip = `${d[0]}\n${int(d[2])} habeas cases\n${d[3]}% of new federal civil cases`;
+            o += `<circle class="f-acc ring" cx="${r1(x)}" cy="${r1(y)}" r="4"/>`;
+            o += `<circle class="hit" cx="${r1(x)}" cy="${r1(y)}" r="12" data-tip="${esc(tip)}"/>`;
+          });
+          const last = pts[pts.length - 1];
+          o += txt(last[0] + 8, last[1] + 4, int(D.habeas[8][2]), 'v');
+          o += txt(X(0), H - 6, 'Oct 2024', 'mu', 'start');
+          o += txt(X(12), H - 6, 'Oct 2025', 'mu', 'middle');
+          o += txt(X(17), H - 6, 'Mar 2026', 'mu', 'end');
+          return svg(w, H, o);
+        }
+      }
+    ],
+    keys: 'Proposed chain, not built. Each hop is its own graded lead. Keys on file: <b>EOIR case ID</b> · <b>ICE stay ID</b> · <b>detention ZIP to ICE facility code</b>, 92% matched. <b>The gap:</b> no record key yet ties a contract to a cell.',
+    table: () => [
+      ['DHS committed, ' + D.dhs.window, '$' + D.dhs.total + 'B'],
+      ...D.dhs.parts.map(p => [p[0], '$' + p[1] + 'B']),
+      ['ICE, same window, prior years', 'about $' + D.dhs.iceBefore + 'B'],
+      ...D.detained.rate.map(r => ['Detained per 1,000 old cases, Jan to May ' + r[0], r[1].toFixed(2)]),
+      ['Old-case detentions, Jan to May 2019', int(D.detained.y2019)],
+      ['Old-case detentions, Jan to May 2026', int(D.detained.y2026)],
+      ...D.habeas.map(d => ['Habeas cases, ' + d[0], int(d[2]) + ' · ' + d[3] + '%'])
+    ],
+    fix: ['Could kill it:', 'the Deportation Data Project and TRAC publish from the same ICE release. Check what they have first.']
+  },
+  {
+    id: 'j2', grade: 'B', tag: 'Dossier j2', src: 'CMS supplier billing, 2024',
+    headline: () => `Two suppliers took ${pct(D.alginate.two, D.alginate.total, 1)} of Medicare's $${D.alginate.total}M for alginate dressings`,
+    hero: () => pct(D.alginate.two, D.alginate.total, 1),
+    heroSub: () => `$${D.alginate.two}M of $${D.alginate.total}M, 2024. Each ran 5 to 11x a normal supplier per patient.`,
+    draw: w => {
+      const a = D.alginate, rest = r1(a.total - a.two);
+      let [o, y] = stack(w, 0, [
+        { value: a.two, cls: 'f-acc', tip: `Two suppliers\n$${a.two}M` },
+        { value: rest, cls: 'f-ctx', tip: `Every other supplier\n$${rest}M` }
+      ]);
+      o += txt(0, y + 18, `Two suppliers $${a.two}M`, 'v');
+      o += txt(w, y + 18, `Everyone else $${rest}M`, '', 'end');
+      const [b, y2] = barBlock(w, y + 38, 'Dressings on one patient claim', [
+        { label: 'The two suppliers', value: a.bigHi, split: a.bigLo, cls: 'f-acc', splitCls: 'f-soft', text: `${a.bigLo} to ${a.bigHi}`, tip: `The two suppliers\n${a.bigLo} to ${a.bigHi} dressings per claim` },
+        { label: 'Typical supplier', value: a.typical, cls: 'f-ctx', text: String(a.typical), tip: `Typical supplier\n${a.typical} dressings per claim` }
+      ], 500, { valW: 84 });
+      return svg(w, y2, o + b);
+    },
+    table: () => [['Two suppliers', '$' + D.alginate.two + 'M'], ['All suppliers', '$' + D.alginate.total + 'M'], ['Dressings per claim, the two', D.alginate.bigLo + ' to ' + D.alginate.bigHi], ['Dressings per claim, typical', D.alginate.typical]],
+    fix: ['Before use:', 'drop the "1.35 a day" line, and drop PECOS as evidence on Almaz.']
+  },
+  {
+    id: 'j6', grade: 'A', tag: 'Dossier j6', src: 'Texas Ethics Commission lobby reports',
+    headline: () => `Las Vegas Sands paid about $${sandsShare()} of every $100 of Texas lobby media spending`,
+    sub: () => `$${D.sands.dollars}M against $${D.sands.rest}M from every other filer combined, ${D.sands.window}. About ${(D.sands.dollars / D.sands.rest).toFixed(1)} to 1.`,
+    draw: w => {
+      const share = sandsShare();
+      const side = Math.min(220, w >= 440 ? w - 210 : w);
+      const cell = side / 10;
+      let o = '';
+      for (let i = 0; i < 100; i++) {
+        const cx = (i % 10) * cell, cy = Math.floor(i / 10) * cell;
+        const isS = i < share;
+        const tip = isS ? `Las Vegas Sands\n$${share} of every $100` : `Every other filer combined\n$${100 - share} of every $100`;
+        o += `<path class="${isS ? 'f-acc' : 'f-ctx'}" d="${pill(cx, cy, cell - 2, cell - 2)}" data-tip="${esc(tip)}"/>`;
+      }
+      const lx = w >= 440 ? side + 24 : 0, ly = w >= 440 ? 14 : side + 24;
+      const lw = w >= 440 ? w - lx : w;
+      const [l, ly2] = legendRows(lw, 0, [
+        { cls: 'f-acc', label: 'Las Vegas Sands', text: `${share}%`, tip: `Las Vegas Sands\n$${D.sands.dollars}M` },
+        { cls: 'f-ctx', label: 'Everyone else', text: `${100 - share}%`, tip: `Every other filer combined\n$${D.sands.rest}M` }
+      ]);
+      o += `<g transform="translate(${lx},${ly})">${l}${txt(0, ly2 + 4, 'One square = 1% of all', 'mu')}${txt(0, ly2 + 19, 'Texas lobby media spending', 'mu')}</g>`;
+      return svg(w, w >= 440 ? side : side + 24 + ly2 + 24, o);
+    },
+    table: () => [['Sands media spending', '$' + D.sands.dollars + 'M'], ['Every other filer combined', '$' + D.sands.rest + 'M'], ['Sands share', sandsShare() + '%, say 70 to 71%']],
+    fix: ['Before use:', 'check what TEC counts as "media", and look for prior coverage. Round 2 used a wider pool and got 69%.']
+  },
+  {
+    id: 'c55', grade: 'B', tag: 'Deep pass 3, #55', src: 'Treasury monthly statement',
+    headline: () => { const j = D.customs[2]; return `In June 2026 customs refunded ${times(j[2], j[1])} what it collected`; },
+    sub: () => `Money out beat money in two months running. One agency's own books.`,
+    draw: w => {
+      const H = 232, pl = 34, top = 40, base = 172, max = 50;
+      const gw = (w - pl) / 3, bw = Math.min(40, gw * 0.3);
+      let o = '';
+      o += `<path class="f-acc" d="${pill(pl, 4, 10, 10)}"/>` + txt(pl + 16, 13, 'Collected', '');
+      o += `<path class="f-s2" d="${pill(pl + 100, 4, 10, 10)}"/>` + txt(pl + 116, 13, 'Refunded', '');
+      for (const t of [0, 25, 50]) {
+        const y = base - (base - top) * t / max;
+        o += `<line class="${t ? 'l-grid' : 'l-base'}" x1="${pl}" x2="${w}" y1="${r1(y) + 0.5}" y2="${r1(y) + 0.5}"/>`;
+        o += txt(pl - 6, y + 4, '$' + t + 'B', 'mu', 'end');
+      }
+      D.customs.forEach((m, i) => {
+        const cx = pl + gw * i + gw / 2;
+        [[m[1], 'f-acc', 'Collected', -1], [m[2], 'f-s2', 'Refunded', 1]].forEach(([v, cls, lab, side]) => {
+          const x = side < 0 ? cx - bw - 1 : cx + 1;
+          const h = (base - top) * v / max;
+          o += `<path class="${cls}" d="${vbar(x, base, bw, h)}" data-tip="${esc(`${m[0]}\n${lab} $${v}B`)}"/>`;
+          o += txt(x + bw / 2, base - h - 6, '$' + v.toFixed(1), 'v', 'middle');
+        });
+        const net = m[3];
+        o += txt(cx, base + 18, m[0], '', 'middle');
+        o += txt(cx, base + 36, `net ${net >= 0 ? '+' : '−'}$${Math.abs(net).toFixed(2)}B`, net < 0 ? 'v' : 'mu', 'middle');
+      });
+      return svg(w, H, o);
+    },
+    table: () => D.customs.map(m => [m[0], `in $${m[1]}B · out $${m[2]}B`]),
+    fix: ['Weak spot:', 'one publisher, no join. Leads #55 and #57 are the same story, counted once.']
+  },
+  {
+    id: 'j1', grade: 'B', tag: 'Dossier j1', src: 'CMS staffing and inspection files, Missouri',
+    headline: () => `Reliant's ${D.reliant.homes} Missouri homes: ${D.reliant.hoursR} nurse hours a resident against ${D.reliant.hoursO} at for-profit peers, and ${times(D.reliant.harmR, D.reliant.harmO)} the harm citations`,
+    draw: w => {
+      const r = D.reliant;
+      let [a, y] = barBlock(w, 0, 'Nurse hours per resident per day', [
+        { label: 'Reliant Care homes', value: r.hoursR, cls: 'f-acc', text: String(r.hoursR), tip: `Reliant Care homes\n${r.hoursR} nurse hours per resident day` },
+        { label: 'Other Missouri for-profit homes', value: r.hoursO, cls: 'f-ctx', text: String(r.hoursO), tip: `Other Missouri for-profit homes\n${r.hoursO} nurse hours per resident day` }
+      ], r.hoursO, { valW: 56 });
+      let [b, y2] = barBlock(w, y + 10, 'Harm citations per 100 beds', [
+        { label: 'Reliant Care homes', value: r.harmR, cls: 'f-acc', text: String(r.harmR), tip: `Reliant Care homes\n${r.harmR} harm citations per 100 beds` },
+        { label: 'Other Missouri homes', value: r.harmO, cls: 'f-ctx', text: String(r.harmO), tip: `Other Missouri homes\n${r.harmO} harm citations per 100 beds` }
+      ], r.harmR, { valW: 56 });
+      return svg(w, y2, a + b);
+    },
+    table: () => [['Nurse hours, Reliant', D.reliant.hoursR], ['Nurse hours, other MO for-profit', D.reliant.hoursO], ['Harm per 100 beds, Reliant', D.reliant.harmR], ['Harm per 100 beds, other MO', D.reliant.harmO]],
+    fix: ['Before use:', '4 homes carry half the harm; without them it is 2.5x. Check news, IJ citation texts and MO Case.net.']
+  },
+  {
+    id: 'heat', grade: 'B', tag: 'Round 2, #11', src: 'NOAA storm events file',
+    headline: () => `One weather office logged ${pct(D.heat.phx, D.heat.us)} of the heat deaths in the federal storm file, then stopped filing heat`,
+    sub: () => `Phoenix's office copied Maricopa County's count. It kept filing other storm types. A late-filing lag is not ruled out.`,
+    draw: w => {
+      const h = D.heat;
+      let o = txt(0, 12, `Heat deaths in the federal storm file, 2018 to 2023: ${int(h.us)}`, 'ti');
+      let [s, y] = stack(w, 22, [
+        { value: h.phx, cls: 'f-acc', tip: `Phoenix office\n${int(h.phx)} deaths` },
+        { value: h.us - h.phx, cls: 'f-ctx', tip: `Every other office\n${int(h.us - h.phx)} deaths` }
+      ]);
+      o += s + txt(0, y + 18, `Phoenix office ${int(h.phx)}`, 'v') + txt(w, y + 18, `All other offices ${int(h.us - h.phx)}`, '', 'end');
+      const [b, y2] = barBlock(w, y + 40, "The Phoenix office's heat deaths, by stretch", [
+        { label: 'The 8 years before 2018', value: h.before, cls: 'f-acc', text: String(h.before), tip: `8 years before 2018\n${h.before} heat deaths` },
+        { label: '2018 to 2023, 6 years', value: h.phx, cls: 'f-acc', text: int(h.phx), tip: `2018 to 2023\n${int(h.phx)} heat deaths` },
+        { label: 'July 2024 on', value: h.after, cls: 'f-acc', text: `${h.after}, a May 2025 hiker`, tip: `July 2024 on\n${h.after} heat row: a hiker, May 2025` }
+      ], h.phx, { valW: 130 });
+      return svg(w, y2, o + b);
+    },
+    table: () => [['Storm-file heat deaths 2018 to 2023', int(D.heat.us)], ['Phoenix office', int(D.heat.phx)], ['Phoenix, 8 years before', D.heat.before], ['Phoenix, July 2024 on', D.heat.after]],
+    fix: ['Next check:', "one call to Maricopa's medical examiner. The same office sits under the Arizona overdose lead."]
+  },
+  {
+    id: 'j7', grade: 'B', tag: 'Dossier j7', src: 'EPA ECHO, Iowa DNR, Indiana IDEM',
+    headline: () => `GPC's Iowa mill failed stack tests on ${D.gpc.failIA} days and drew ${D.gpc.ordersIA} Iowa orders`,
+    sub: () => `Same company, same product, two state regulators.`,
+    draw: w => {
+      const g = D.gpc;
+      const blocks = [
+        ['Failed stack-test days, 2015 to 2025', g.failIA, g.failIN, String(g.failIA), String(g.failIN), 'failed test days'],
+        ['State formal orders at the plant', g.ordersIA, g.ordersIN, '0 since 2007', `${g.ordersIN}, ${g.penaltyIN}`, 'formal orders'],
+        ['Statewide air orders, 11 years', g.stateIA, g.stateIN, String(g.stateIA), String(g.stateIN), 'statewide air orders']
+      ];
+      let o = '', y = 0;
+      o += `<path class="f-acc" d="${pill(0, 4, 10, 10)}"/>` + txt(16, 13, 'Iowa', '');
+      o += `<path class="f-ctx" d="${pill(70, 4, 10, 10)}"/>` + txt(86, 13, 'Indiana', '');
+      y = 26;
+      for (const [title, ia, inn, tIA, tIN, unit] of blocks) {
+        const [b, y2] = barBlock(w, y, title, [
+          { label: y < 40 ? 'GPC Muscatine, Iowa' : 'Iowa', value: ia, cls: 'f-acc', text: tIA, tip: `Iowa\n${tIA} ${unit}` },
+          { label: y < 40 ? 'GPC Washington, Indiana' : 'Indiana', value: inn, cls: 'f-ctx', text: tIN, tip: `Indiana\n${tIN} ${unit}` }
+        ], Math.max(ia, inn), { valW: 92 });
+        o += b; y = y2 + 8;
+      }
+      return svg(w, y, o);
+    },
+    table: () => [['Fail days, Muscatine IA', D.gpc.failIA], ['Fail days, Washington IN', D.gpc.failIN], ['Plant orders, IA', D.gpc.ordersIA], ['Plant orders, IN', D.gpc.ordersIN + ', ' + D.gpc.penaltyIN], ['Statewide air orders, IA', D.gpc.stateIA], ['Statewide air orders, IN', D.gpc.stateIN]],
+    fix: ['Next check:', 'the Iowa DNR docket and the IDEM file cabinet. The real mechanism is the statewide gap.']
+  },
+  {
+    id: 'j5', grade: 'B', tag: 'Dossier j5 and round 2, #2', src: 'CMS hospice enrollments, NPPES phones',
+    headline: () => `San Antonio hospices cluster under one official at ${times(D.hospice[0].here, D.hospice[0].else, 0)} the rate elsewhere; Houston hospices share phones at ${times(D.hospice[1].here, D.hospice[1].else, 0)}`,
+    draw: w => {
+      const pl = 6, pr = 20, pw = w - pl - pr, max = 15;
+      const X = v => pl + pw * v / max;
+      let o = '', y = 0, gl = '';
+      const leg = `<circle class="f-acc" cx="5" cy="9" r="5"/>` + txt(16, 13, 'The city', '') +
+        `<circle class="f-ctx" cx="92" cy="9" r="5"/>` + txt(103, 13, 'Elsewhere', '');
+      y = 36;
+      const rows = [];
+      for (const d of D.hospice) {
+        const [t, th] = textBlock(0, y, `${d.place}: ${d.what}`, w, '');
+        o += t; y += th + 12;
+        rows.push(y);
+        o += `<line class="l-base" x1="${r1(X(d.else))}" x2="${r1(X(d.here))}" y1="${y}" y2="${y}" stroke-width="2"/>`;
+        o += `<circle class="f-ctx ring" cx="${r1(X(d.else))}" cy="${y}" r="6"/>`;
+        o += `<circle class="f-acc ring" cx="${r1(X(d.here))}" cy="${y}" r="6"/>`;
+        o += txt(X(d.else), y + 22, d.else + '%', 'mu', 'start');
+        o += txt(X(d.here), y + 22, d.here.toFixed(1) + '%', 'v', 'middle');
+        o += `<rect class="hit" x="0" y="${y - 12}" width="${w}" height="24" data-tip="${esc(`${d.place}\n${d.here}% vs ${d.else}% elsewhere`)}"/>`;
+        y += 44;
+      }
+      for (const t of [0, 5, 10, 15]) {
+        gl += `<line class="l-grid" x1="${r1(X(t)) + 0.5}" x2="${r1(X(t)) + 0.5}" y1="${rows[0] - 10}" y2="${y - 16}"/>`;
+        gl += txt(X(t), y, t + '%', 'mu', t === 15 ? 'end' : 'start');
+      }
+      return svg(w, y + 6, leg + gl + o);
+    },
+    table: () => D.hospice.map(d => [`${d.place}: ${d.what}`, `${d.here}% vs ${d.else}%`]),
+    fix: ['Before use:', 'frame by address and ownership, never ethnicity. Check TX HHSC license search and SOS officers.']
+  },
+  {
+    id: 'fc', grade: 'B', tag: 'Round 2, #16, feeds dossier j4', src: 'DEA ARCOS pill shipments, 2006 to 2012',
+    headline: () => `Food City #674: ${D.foodcity.store}% of its opioid pills were 30mg+ oxycodone, ${times(D.foodcity.store, D.foodcity.median, 0)} the Tennessee median`,
+    sub: () => `A Knoxville cluster, not one store: a sister store hit ${D.foodcity.hi}%. #674 led the US on volume, 13.8M pills.`,
+    draw: w => {
+      const f = D.foodcity;
+      let [b, y] = barBlock(w, 0, '', [
+        { label: 'Food City #674, Knoxville', value: f.store, cls: 'f-acc', text: f.store + '%', tip: `Food City #674\n${f.store}% of its opioid pills were 30mg+ oxycodone` },
+        { label: 'Five other Knoxville Food City stores', value: f.hi, from: f.lo, floating: true, cls: 'f-soft', text: `${f.lo} to ${f.hi}%`, tip: `Five other Knoxville Food City stores\n${f.lo}% to ${f.hi}%` },
+        { label: 'Median Tennessee pharmacy', value: f.median, cls: 'f-ctx', text: f.median + '%', tip: `Median Tennessee pharmacy\n${f.median}%` }
+      ], 70, { valW: 72 });
+      return svg(w, y, b);
+    },
+    table: () => [['Food City #674', D.foodcity.store + '%'], ['Five other Knoxville Food City', D.foodcity.lo + ' to ' + D.foodcity.hi + '%'], ['Median TN pharmacy', D.foodcity.median + '%']],
+    fix: ['Before use:', 'split 30mg IR from ER, and drop the AmerisourceBergen hook.']
+  },
+  {
+    id: 'up', grade: 'B', tag: 'Deep pass 3, #81, dossier pick D5', src: 'FRA rail casualty file',
+    headline: () => `Union Pacific trains killed ${D.rail.upAfter} trespassers a year, up from ${D.rail.upBefore}`,
+    sub: () => `Other railroads in the same counties rose ${D.rail.othersPct}%. Indexed, first stretch = 100.`,
+    draw: w => {
+      const H = 200, pt = 14, pb = 26, pr = Math.min(170, Math.max(120, w * 0.42)), pl = 50;
+      const x0 = pl, x1 = w - pr, max = 220;
+      const Y = v => pt + (H - pt - pb) * (1 - v / max);
+      const up = 100 * D.rail.upAfter / D.rail.upBefore, ot = 100 + D.rail.othersPct;
+      let o = '';
+      for (const t of [0, 100, 200]) {
+        o += `<line class="${t ? 'l-grid' : 'l-base'}" x1="${x0}" x2="${x1}" y1="${r1(Y(t)) + 0.5}" y2="${r1(Y(t)) + 0.5}"/>`;
+        o += txt(x0 - 8, Y(t) + 4, String(t), 'mu', 'end');
+      }
+      o += `<line class="l-ctx" x1="${x0}" x2="${x1}" y1="${r1(Y(100))}" y2="${r1(Y(ot))}"/>`;
+      o += `<line class="l-acc" x1="${x0}" x2="${x1}" y1="${r1(Y(100))}" y2="${r1(Y(up))}"/>`;
+      o += `<circle class="f-ctx ring" cx="${x1}" cy="${r1(Y(ot))}" r="4"/>`;
+      o += `<circle class="f-acc ring" cx="${x1}" cy="${r1(Y(up))}" r="4"/>`;
+      o += `<circle class="f-acc ring" cx="${x0}" cy="${r1(Y(100))}" r="4"/>`;
+      o += txt(x0, H - 6, '2015 to 2017', 'mu', 'start') + txt(x1, H - 6, '2023 to 2025', 'mu', 'end');
+      const [a] = textBlock(x1 + 10, Y(up) - 2, 'Union Pacific', pr - 10, 'v');
+      const [a2] = textBlock(x1 + 10, Y(up) + 13, `${D.rail.upBefore} to ${D.rail.upAfter} a year`, pr - 10, '');
+      const [b] = textBlock(x1 + 10, Y(ot) + 4, `Other railroads, same counties +${D.rail.othersPct}%`, pr - 10, '');
+      o += a + a2 + b;
+      o += `<rect class="hit" x="${x0}" y="${r1(Y(up)) - 12}" width="${w - x0}" height="24" data-tip="${esc(`Union Pacific\n${D.rail.upBefore} a year, 2015 to 2017\n${D.rail.upAfter} a year, 2023 to 2025`)}"/>`;
+      o += `<rect class="hit" x="${x0}" y="${r1(Y(ot)) - 10}" width="${w - x0}" height="20" data-tip="${esc(`Other railroads, same counties\n+${D.rail.othersPct}%`)}"/>`;
+      return svg(w, H, o);
+    },
+    table: () => [['Union Pacific, 2015 to 2017', D.rail.upBefore + ' a year'], ['Union Pacific, 2023 to 2025', D.rail.upAfter + ' a year'], ['Other railroads, same counties', '+' + D.rail.othersPct + '%']],
+    fix: ['Could kill it:', "UP's stand-in age of 40 went from 4% to 32% of its reports. Rerun on real ages; if the doubling goes, stop."]
+  }
+];
+
+// ---------- render ----------
+const grid = document.getElementById('grid');
+const draws = new Map();
+const nA = CARDS.filter(c => c.grade === 'A').length, nB = CARDS.filter(c => c.grade === 'B').length;
+document.getElementById('page-headline').textContent =
+  `${CARDS.length} leads drawn: ${nA} graded A, ${nB} graded B, none checked against primary records yet`;
+
+function chartDiv(draw) {
+  const el = document.createElement('div');
+  el.className = 'chart';
+  draws.set(el, draw);
+  return el;
+}
+
+for (const c of CARDS) {
+  const card = document.createElement('article');
+  card.className = 'card' + (c.span ? ' span' : '');
+  card.innerHTML =
+    `<div class="kicker"><span class="grade">${c.grade}</span><b>${esc(c.tag)}</b> · ${esc(c.src)}</div>` +
+    `<h2>${esc(c.headline())}</h2>` +
+    (c.sub ? `<p class="sub">${esc(c.sub())}</p>` : '<div style="height:10px"></div>') +
+    (c.hero ? `<div class="hero">${esc(c.hero())}</div><div class="hero-sub">${esc(c.heroSub())}</div>` : '');
+  if (c.hops) {
+    const hops = document.createElement('div');
+    hops.className = 'hops';
+    for (const h of c.hops) {
+      const hop = document.createElement('div');
+      hop.className = 'hop';
+      hop.innerHTML = `<div class="step">${esc(h.step)}</div><div class="big">${esc(h.big)}</div><div class="what">${esc(h.what)}</div>`;
+      hop.appendChild(chartDiv(h.draw));
+      hops.appendChild(hop);
+    }
+    card.appendChild(hops);
+    const keys = document.createElement('div');
+    keys.className = 'keys';
+    keys.innerHTML = c.keys;
+    card.appendChild(keys);
+  } else {
+    card.appendChild(chartDiv(c.draw));
+  }
+  const fix = document.createElement('div');
+  fix.className = 'fix';
+  fix.innerHTML = `<b>${esc(c.fix[0])}</b> ${esc(c.fix[1])}`;
+  card.appendChild(fix);
+  const det = document.createElement('details');
+  det.innerHTML = `<summary>Numbers</summary><table>${c.table().map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table>`;
+  card.appendChild(det);
+  grid.appendChild(card);
+}
+
+const ro = new ResizeObserver(entries => {
+  for (const e of entries) {
+    const w = Math.floor(e.contentRect.width);
+    if (w > 0 && e.target._w !== w) { e.target._w = w; e.target.innerHTML = draws.get(e.target)(w); }
+  }
+});
+draws.forEach((_, el) => ro.observe(el));
+
+// ---------- tooltip ----------
+const tip = document.getElementById('tip');
+document.addEventListener('pointermove', e => {
+  const t = e.target.closest && e.target.closest('[data-tip]');
+  if (!t) { tip.hidden = true; return; }
+  tip.textContent = t.getAttribute('data-tip');
+  tip.hidden = false;
+  const b = tip.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + b.width > innerWidth - 8) x = e.clientX - b.width - 14;
+  if (y + b.height > innerHeight - 8) y = e.clientY - b.height - 14;
+  tip.style.left = Math.max(8, x) + 'px';
+  tip.style.top = Math.max(8, y) + 'px';
+});
+document.documentElement.addEventListener('mouseleave', () => { tip.hidden = true; });
+addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "story_id": "S196",
+  "bin": "Known pattern",
+  "entity": "41 super PACs named for police, veterans and sick kids: $181.5M raised, ~4% to real political spending",
+  "deciding_sources": [0, 4],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Daily Beast (43 call-center client PACs, $140M+) and the NYT-via-Blumenthal figure ($89M, 1% to campaigns) report the same scheme, but every source's cohort is defined differently and none names our 41-PAC set - the checker marked entity_named no on all six. Same pattern, not this entity.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

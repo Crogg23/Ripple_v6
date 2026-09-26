@@ -1,0 +1,83 @@
+{
+ "story_id": "S156",
+ "lead": {
+  "headline": "Ten coal plants made 30% of all monitored power-plant sulfur dioxide in 2025; Labadie, Missouri, alone made 5.3%",
+  "number": "217,766 of 715,725 tons of SO2 (sulfur dioxide) from the 1,179 smokestack-monitored plants that emitted any in 2025; Labadie 38,232 tons; 7 of the 10 have no retirement or fuel-switch year on file with EIA",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Legal, not a violations story: the plants sit under loose limits in a federal allowance market, and EIA's retirement field misses coal-to-gas conversions"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Labadie power plant largest sulfur dioxide emitter 2025",
+  "top 10 coal plants sulfur dioxide emissions share national power sector SO2 2025 CAMPD",
+  "handful of coal plants account for large share of US power plant sulfur dioxide emissions no scrubbers analysis",
+  "Labadie Ameren sulfur dioxide 2026 scrubbers retirement date",
+  "EPA 2025 power plant emissions data released sulfur dioxide top emitting plants Martin Lake Labadie Kincaid",
+  "Labadie Energy Center sulfur dioxide Missouri Independent OR \"St. Louis Public Radio\" 2025 OR 2026",
+  "nation's largest sulfur dioxide emitting power plant 2024 OR 2025 EPA data Labadie OR \"Martin Lake\" OR Kincaid tons",
+  "2026 report dirtiest coal plants sulfur dioxide no retirement date Sierra Club OR \"Environmental Integrity Project\" top emitters"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.stltoday.com/news/local/business/ameren-coal-plant-is-top-polluter-labadie-emits-more-so2-than-any-in-us/article_85c77c20-e211-11ee-b0ec-73282e33d4eb.html",
+   "outlet": "St. Louis Post-Dispatch",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Ameren coal plant is top polluter. Labadie emits more SO2 than any in US.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": " Ameren coal plant is top polluter. Labadie emits more SO2 than any in US. Skip to main content Skip to main content You are the owner of this article. Edit Article Add New Article Close You have permission to edit this article. Edit Close 73° Log In Subscribe Guest Logout Read Today's E-edition Site Search AI Answers Site Search News Metro St. Charles Illinois Nation & World Send a news tip Explore Emai"
+  },
+  {
+   "idx": 1,
+   "url": "https://nebraskapublicmedia.org/en/news/news-articles/midwest-coal-fired-power-plants-are-among-the-countrys-worst-polluters-but-they-dont-break-epa-rules/",
+   "outlet": "Nebraska Public Media / Midwest Newsroom (Kavahn Mansouri)",
+   "date": "2022-01-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The plant produced nearly 40,000 tons of sulfur dioxide in 2020, the second-highest amount of the pollutant produced by any power plant in the country.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r plants burn coal and the lack of pollution control on many of the region's biggest power plants. Ameren's Labadie plant Labadie was the largest producer of sulfur dioxide and carbon dioxide in the region in 2020 and produced the second-highest amount in the country of the pollutant the same year. The plant produced nearly 40,000 tons of sulfur dioxide in 2020, the second-highest amount of the pollutant produced by any power plant in the country. The highest producer of sulfur dioxide in the U.S. was the Texas-based Martin Lake Power Plant, which produced about 44,000 tons of sulfur dioxide in 2020. The Labadie plant also emitted the second highest amount of carbon dioxide in 2020, producing more than 17 million short tons of carbon dioxide. (Short tons are a unit used to"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.japantimes.co.jp/environment/2026/04/10/energy/us-city-pollution-ai-boom/",
+   "outlet": "The Japan Times (Reuters, Valerie Volcovici and Tim McLaughlin)",
+   "date": "2026-04-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Labadie’s owner, St. Louis-based utility Ameren, did not contest the analysis of the EPA data. Ameren said the plant operates within the existing federal pollution limits.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://www.kcur.org/news/2024-10-15/ameren-missouri-rush-island-coal-plant-closure-epa-air-pollution",
+   "outlet": "KCUR (Kansas City public radio)",
+   "date": "2024-10-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The 8th Circuit U.S. Court of Appeals in 2021 upheld Sippel’s order requiring Ameren to install scrubbers, but struck down the requirement at Labadie.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ippel ordered Ameren to obtain a permit, install scrubbers and lower its sulfur dioxide emissions. Sippel also ordered Ameren to install scrubbers to temporarily lower sulfur dioxide emissions at its larger Labadie Energy Center in Franklin County to make up for the excess emissions at Rush Island. The 8th Circuit U.S. Court of Appeals in 2021 upheld Sippel’s order requiring Ameren to install scrubbers, but struck down the requirement at Labadie. Later in 2021, Ameren announced it would retire Rush Island. It argued the retirement should mark the resolution of the lawsuit. But Sippel ordered Ameren and prosecutors to negotiate potential mitigation measures to make up for the sulfur dioxide emissions, which he said “harm public health and the environment, cont"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=4410",
+   "outlet": "U.S. Energy Information Administration (Today in Energy)",
+   "date": "2011-12-21",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Plants with FGD equipment generated 58% of the total electricity generated from coal in 2010, while producing only 27% of total SO2 emissions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "electric power sector by 2014. To meet this goal, plant owners can implement one of or a combination of three main strategies: use lower sulfur coal in their boilers, retire plants without emissions controls, or install emissions control equipment—primarily flue gas desulfurization (FGD) scrubbers. Plants with FGD equipment generated 58% of the total electricity generated from coal in 2010, while producing only 27% of total SO 2 emissions. SO 2 is formed during the combustion of coal. The amount of SO 2 produced depends on the sulfur content of the coal burned in a boiler. FGD scrubbers remove the SO 2 from a boiler's post-combustion exhaust (flue gas) by passing it through an alkaline solution. This process is also effective in removing acid gases, such as hydrochloric"
+  }
+ ]
+}

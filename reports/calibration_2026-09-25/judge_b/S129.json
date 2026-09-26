@@ -1,0 +1,12 @@
+{
+ "story_id": "S129",
+ "bin": "Unreported",
+ "entity": "US-sanctioned banks holding live GIINs on the IRS FATCA FFI list (36, incl. Russia's National Settlement Depository)",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "OpenSanctions is a dataset description and the OFAC FAQ only records NSD's designation; neither states that sanctioned banks remain FATCA-registered. Six queries logged, nothing reaches Known pattern.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

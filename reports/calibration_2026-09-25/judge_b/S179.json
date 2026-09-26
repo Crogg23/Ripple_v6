@@ -1,0 +1,12 @@
+{
+ "story_id": "S179",
+ "bin": "Matched + more",
+ "entity": "Medicare Diabetes Prevention Program uptake among suppliers and patients, 2024",
+ "deciding_sources": [1, 2, 0],
+ "earliest_match_date": "2025-03-01",
+ "post_cutoff_match": false,
+ "what_we_add": "37 suppliers billing 11+ patients in 2024, 1,267 patients, $347,437 total, ~3,800 patient ceiling",
+ "why": "CMS's own evaluation states limited participation (under 10,000 beneficiaries ever, RTI: 9,015 through March 2024) and AJMC notes only a third of suppliers ever billed. Same finding, same direction; the 2024 supplier/dollar counts are ours alone.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

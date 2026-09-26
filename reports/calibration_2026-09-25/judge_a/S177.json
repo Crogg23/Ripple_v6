@@ -1,0 +1,12 @@
+{
+  "story_id": "S177",
+  "bin": "Known pattern",
+  "entity": "Penn State Hershey hospital's Medicare outpatient outlier payments (185 of 192 top-level joint procedures vs 3.5% nationally)",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "OIG reports the same scheme, high-charge hospitals harvesting disproportionate outlier payments (158 hospitals at 12.8% vs 2.2%), and audited another hospital's outpatient outliers. Neither names Penn State.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

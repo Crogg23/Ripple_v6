@@ -1,0 +1,94 @@
+{
+ "story_id": "S110",
+ "lead": {
+  "headline": "The CDC's weekly disease table shows 17,197 cyclospora parasite infections by late July 2026, at least 5x any 2022-25 year",
+  "number": "Michigan 7,395 and Ohio 4,408; six Midwest and Plains states hold 78%; best prior year at week 30 was 3,451 (2023, late reports included)",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Provisional data: Michigan's year-to-date is 5.3x the sum of its weekly counts, so about 6,000 cases arrived as back-filled totals."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "cyclospora 2026 outbreak Michigan cases",
+  "cyclosporiasis Ohio 2026 cases surge",
+  "CDC cyclosporiasis cases nationwide record highest ever 2026 compared previous years",
+  "cyclospora Michigan Ohio \"late July\" 2026 national total states Midwest share",
+  "Michigan cyclosporiasis cases backlog reporting delay count revised 2026",
+  "cyclosporiasis 2026 \"times more\" cases than any previous year national record CDC surveillance",
+  "Ohio Department of Health cyclosporiasis cases July 30 2026 total typical year 70"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.cdc.gov/cyclosporiasis/cases/index.html",
+   "outlet": "CDC",
+   "date": "2026-09-15",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Since May 1, 2026, CDC has received reports of 19,883 laboratory-confirmed cases of cyclosporiasis acquired in the United States",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " May 1 through August 31. Since it takes about six weeks to receive reports of new cases, CDC continues to investigate additional cases beyond this date. Due to the unprecedented number of cases that occurred this season, cases that occurred earlier in the season may continue to be reported to CDC. Since May 1, 2026, CDC has received reports of 19,883 laboratory-confirmed cases of cyclosporiasis acquired in the United States with symptom onset dates during the 2026 cyclosporiasis season (May 1–August 31, 2026). For comparison, 1,180 cases were reported in the United States between May 1 and August 31, 2025. These data include the cases reported in the multistate outbreak linked to iceberg lettuce that recently ended. The data also include cases"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.cidrap.umn.edu/cyclospora/cdc-adds-more-3000-new-cyclospora-cases",
+   "outlet": "CIDRAP",
+   "date": "unknown",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The Centers for Disease Control and Prevention (CDC) yesterday added 3,285 infections to its 2026 Cyclospora total, which includes all outbreaks, raising the tally to 17,180 cases, compared with 1,180 cases through August last year.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "AP CIDRAP in the News Our Staff Our Director Osterholm in the Press Shop Merchandise Contact Us About Search CLOSE Search Support Menu CDC adds more than 3,000 new Cyclospora cases News brief Stephanie Soucheray, MA Topics Cyclospora Foodborne Disease Share Copied to clipboard agreentravel / iStock The Centers for Disease Control and Prevention (CDC) yesterday added 3,285 infections to its 2026 Cyclospora total, which includes all outbreaks, raising the tally to 17,180 cases, compared with 1,180 cases through August last year. The CDC also said it is investigating an additional 11,844 cases that are not yet lab-confirmed. “Recent illnesses may not yet be reported due to the time it takes to identify and report Cyclospora cases. It can take about six weeks from the start of symptoms to when CDC receives the case information,” the CDC said. Historically the"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.today.com/health/disease/cyclospora-map-states-parasite-outbreak-diarrhea-2026-rcna385837",
+   "outlet": "TODAY (NBC)",
+   "date": "2026-07-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "As of July 14, nearly 7,000 cases of cyclosporiasis have been reported by at least 34 states, according to the U.S. Centers for Disease Control and Prevention.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s of watery, “explosive” diarrhea is sweeping the United States. In addition to a huge outbreak hitting the Midwest, multiple states are seeing cyclosporiasis rates that are unusually high for this time of year. Meanwhile, health officials are scrambling to identify the potential source or sources. As of July 14, nearly 7,000 cases of cyclosporiasis have been reported by at least 34 states, according to the U.S. Centers for Disease Control and Prevention . The CDC suspects 400 of these cases in four states — Michigan, Ohio, West Virginia and Kentucky — are connected as part of a large, multistate outbreak, it said in a July 14 health alert . Cyclosporasis cases normally increase in the U.S. during the warmer months, according to the the CDC. But the recent surge has spark"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.nbcnews.com/health/health-news/cyclosporiasis-7000-cases-us-cdc-parasite-explosive-diarrhea-rcna587445",
+   "outlet": "NBC News",
+   "date": "2026-07-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "There are usually about 2,700 cases each year, mostly during the summer months.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rrhea, bloating and nausea. An additional 5,100 cases are under investigation. “We’re seeing an unusually high number of cyclosporiasis cases this season,” Gwen Biggerstaff, deputy director of the CDC’s Division of Foodborne, Waterborne, and Environmental Diseases, said during a media call Tuesday. There are usually about 2,700 cases each year, mostly during the summer months. According to the CDC, 141 people have been hospitalized since illnesses were first reported in May. No deaths have been reported. The number of cases has spiked in the last two weeks and at least 30 states other than Michigan are reporting clusters of illnesses. The national tally lags behind what states are reporting as the a"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.medicaldaily.com/michigan-cyclospora-outbreak-peak-passed-reporting-lag-august-2026-476985",
+   "outlet": "Medical Daily",
+   "date": "2026-08-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The reason for that apparent contradiction is a reporting backlog: most illnesses being added to the dashboard began weeks ago.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Dorothy Brooks TOLGA AKMEN | AFP via Getty Images Share on Twitter Share on Facebook Share on Pocket Michigan's chief medical executive says the state has moved past the worst of the largest cyclosporiasis outbreak it has ever recorded, even as the official case total keeps climbing every weekday. The reason for that apparent contradiction is a reporting backlog: most illnesses being added to the dashboard began weeks ago. Dr. Natasha Bagdasarian told CIDRAP News that the worst is behind the state , saying \"The worst is behind us\" based on the data available today. She said the vast majority of recently reported cases involve people whose symptoms began before July 16, and she stressed that the assessment applies to Michigan alone. For Michigan households, t"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.cleveland19.com/2026/07/14/cyclosporiasis-outbreak-ohio-cases-surge-cdc-works-identify-source/",
+   "outlet": "Cleveland 19 News",
+   "date": "2026-07-14",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Ohio's nearly 400 cases far exceed the state's typical annual total of around 70.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

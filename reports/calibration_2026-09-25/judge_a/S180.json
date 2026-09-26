@@ -1,0 +1,12 @@
+{
+  "story_id": "S180",
+  "bin": "Matched + more",
+  "entity": "Texas resident abortions per month in early 2026 under the total ban (3,530/month, +26% vs early 2024)",
+  "deciding_sources": [2, 0],
+  "earliest_match_date": "2026-04-15",
+  "post_cutoff_match": true,
+  "what_we_add": "the Jan-Mar 2026 monthly average (3,530) and the single December 2024 jump",
+  "why": "KRWG (Guttmacher study) reports 41,000+ Texans got clinician abortions in 2025, up over 20% from 2024, same entity, same direction; Guttmacher's own releases match. No source has the monthly 2026 figures or the Dec 2024 step. The Fulcrum is opinion, ignored.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

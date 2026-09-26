@@ -1,0 +1,12 @@
+{
+ "story_id": "S141",
+ "bin": "Matched + more",
+ "entity": "4th Circuit published decisions, FY2025 vs FY2019",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-09-30",
+ "post_cutoff_match": false,
+ "what_we_add": "Published share 8.8% to 13.7%, 363 of 375 argued, and the median-circuit -17% comparison",
+ "why": "The two B-12 tables name the 4th Circuit and give published-opinion counts both years, up 232 to 316, same direction as our +25%; both levels sit within 25% of our 375 and 299, so no contradiction. No source states the published-share shift, the argued split, or the median-circuit comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

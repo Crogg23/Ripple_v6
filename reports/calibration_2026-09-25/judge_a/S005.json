@@ -1,0 +1,12 @@
+{
+  "story_id": "S005",
+  "bin": "Matched + more",
+  "entity": "the network of police / fire / veteran / cancer-named 527 political groups spending donations on fundraisers, not candidates",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "2021-10-15",
+  "post_cutoff_match": false,
+  "what_we_add": "$193.7M across 19 groups 2014 to mid-2026, $0.36M to contributions, 58% labelled fundraising/caging, donor-overlap 15-74% with 13 look-alike FEC PACs",
+  "why": "ProPublica names the same network in the same words - 527s purporting to support police, veterans, cancer patients and firefighters, spending on fundraisers - same finding, same direction; Daily Beast named a member group in 2021. Their $33M is a smaller slice, not a contradiction; our $194M / 19-group totals and donor-overlap numbers are nowhere in the sources.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

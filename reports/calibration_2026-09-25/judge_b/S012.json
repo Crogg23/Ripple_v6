@@ -1,0 +1,12 @@
+{
+ "story_id": "S012",
+ "bin": "Matched + more",
+ "entity": "Share of ICE detainers on people with a criminal conviction, national, FY23 to FY26",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2025-04-14",
+ "post_cutoff_match": true,
+ "what_we_add": "The 43% to 16% same-months comparison, FY23 vs FY26, with FY25 at 33%",
+ "why": "Deportation Data Project (2026-09-08) states the finding in words: detainers rose by increasingly targeting people without convictions. TRAC's 28% for early 2025 sits between our endpoints. Nobody has the FY23-FY26 matched-months numbers.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,70 @@
+{
+ "story_id": "S095",
+ "lead": {
+  "headline": "Oklahoma refineries pay $3,300 in air penalties per logged violation; Texas refineries pay $142,000",
+  "number": "Refinery-coded sites 2015-25: Oklahoma 9 sites, 148 violations, $0.48M penalties ($3.3K each); Texas 58 sites, 203 violations, $28.8M ($142K each).",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Only 9 facilities, and states differ in what they report into this federal file."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Oklahoma refineries air pollution violations penalties DEQ small fines",
+  "Texas refineries air pollution penalties TCEQ fines per violation Environmental Integrity Project refineries",
+  "Oklahoma refinery fined DEQ consent order Tulsa Ponca City Wynnewood Ardmore air violations penalty",
+  "Oklahoma refinery Clean Air Act settlement civil penalty EPA HollyFrontier Tulsa OR Wynnewood OR Valero Ardmore OR Phillips 66 Ponca City",
+  "Oklahoma DEQ air enforcement penalties lax low fines analysis Oklahoma Watch industrial polluters",
+  "refinery Clean Air Act penalties by state comparison EPA ECHO enforcement Texas Oklahoma refineries report",
+  "Oklahoma refinery emissions violations 2026 news penalty Tulsa refinery flaring"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.fox23.com/news/fox23-investigates-flames-and-black-smoke-seen-coming-from-west-tulsa-refinery/article_f410e044-002f-11f0-a9ba-af1cc3887663.html",
+   "outlet": "FOX23 Tulsa (Janna Clark)",
+   "date": "2025-03-13",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "I asked DEQ when was the last time they fined the refinery for excessive air emissions. DEQ said it was back in 2023. The consent order shows the amount of the penalty as $23,776.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hat’s okay. It’s just steam. The expert told me if you see dark gray or black smoke, that’s not okay. That means pollutants are going into the air. Beer said she’s disappointed DEQ isn’t doing more. “Who has time to babysit? That's their job. I would be expecting fines for this company,” said Beer. I asked DEQ when was the last time they fined the refinery for excessive air emissions. DEQ said it was back in 2023. The consent order shows the amount of the penalty as $23,776. “I've all but given up on Oklahoma Department of Environmental Quality protecting its citizens because there's little to no action occurring. What is the value of the air that we breathe? What is that value?” said Beer. DEQ said a more complete investigation will take place and the full report is not due for 30 days. Face"
+  },
+  {
+   "idx": 1,
+   "url": "https://environmentalintegrity.org/news/texas-fails-to-penalize-97-percent-of-illegal-air-pollution-releases/",
+   "outlet": "Environmental Integrity Project",
+   "date": "2017-07-07",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Texas imposed penalties on less than 3 percent of illegal air pollution releases during industrial malfunctions and maintenance from 2011 through 2016",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "mental Integrity Podcast EIP In The News Contact Newsletter Donate Now News Texas Fails to Penalize 97 Percent of Illegal Air Pollution Releases State Records from 2011 through 2016 Reveal Lax Enforcement During Industrial Malfunctions and Maintenance July 7, 2017 Washington, D.C., and Austin, TX – Texas imposed penalties on less than 3 percent of illegal air pollution releases during industrial malfunctions and maintenance from 2011 through 2016, even though these incidents emitted more than 500 million pounds of pollutants, according to an analysis of state records by the Environmental Integrity Project and Environment Texas. A new report, “ Breakdowns in Enforcement ,” ranks the worst illegal air pollution events from oil refineries, chemical plants and other industrial fa"
+  },
+  {
+   "idx": 2,
+   "url": "https://edgi-govdata-archiving.github.io/CD-report/OK_2020",
+   "outlet": "Environmental Data & Governance Initiative, Environmental Enforcement Watch",
+   "date": "2020-10-02",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "These figures show the ten facilities in this state with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "the figure subtitle and degree of transparency. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. See the data limitations page (Page 10) to view the transparency-coding table Report Generated on 10.2.2020 Page 5 Recent Non-Compliance in this State These figures show the ten facilities in this state with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive). ECHO reports for facilities: WYNNEWOOD REFINING COMPANY, LL HOLLYFRONTIER TULSA REFINING L OG AND E/MUSKOGEE GNRTNG STA OG AND E/SOONER GNRTNG STA TULSA EAST AND WEST REFINERIES PRYOR CHEM CO XTO ENERGY INC / ELK CITY FACI COVANTA WBH LLC/WALTER B HALL WESTERN FARMERS ELECTRIC COOP JUPITER SULPHUR LLC EC"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.okgazette.com/news/oklahoma-deq-has-issued-73-million-in-fines-since-2004-2967308/",
+   "outlet": "Oklahoma Gazette (Scott Cooper)",
+   "date": "2009-04-23",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Several violations resulted in thousands of dollars in fines, but many were not fined at all.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " to mention the cost ” for Oklahoma City officials, it was just a normal routine for DEQ. FINES Since 2004, the department in charge of regulating the state’s environmental responsibilities has handed down more than 3,700 violations to various companies, government entities and individual citizens. Several violations resulted in thousands of dollars in fines, but many were not fined at all. “We have a similar number each year as far as enforcement action that we open,” said Martha Peniston, DEQ general counsel. “We have many more Notice of Violation issues, but the majority usually comes back into compliance after we issue an NOV.” The violations cover nearly every aspect of environmental polluting, from emitting massive amoun"
+  }
+ ]
+}

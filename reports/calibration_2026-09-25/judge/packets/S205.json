@@ -1,0 +1,46 @@
+{
+ "story_id": "S205",
+ "lead": {
+  "headline": "FEMA couldn't confirm occupancy on 28.6% of downtown Lahaina's fire-aid registrations; adjusted, the gap to neighbors is 7.5-9 points",
+  "number": "Tract 314.04: 3,261 registrations for 3,223 residents (1.01, 38 over the line); 71.4% verified vs 86.3% and 88.1% in the other two burn tracts.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "About 40% of the unverified said it wasn't their primary home; the rest rests on one field (VERIFIED_OCCUPANCY) whose reason codes can't be read, and unburned neighbor 315.03 verifies lower still."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "FEMA Lahaina fire registrations occupancy could not be verified denied assistance",
+  "Lahaina FEMA registrations exceed population fraud duplicate applications Maui wildfire",
+  "Maui wildfire FEMA individual assistance ineligible \"primary residence\" OR \"occupancy\" Civil Beat denial rate Lahaina",
+  "DHS OIG OR GAO audit FEMA Maui wildfire individual assistance occupancy verification",
+  "Civil Beat FEMA Lahaina applications data analysis ineligible registrations wildfire survivors",
+  "Lahaina FEMA aid \"not primary residence\" second homes vacation rentals applicants ineligible Star-Advertiser",
+  "OpenFEMA Maui wildfire registrations census tract verified occupancy analysis Lahaina"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.osti.gov/servlets/purl/2482219",
+   "outlet": "Argonne National Laboratory (Lahaina Wildfire Study, ANL-24/65, prepared at FEMA's request)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Within the affected area, 25% of the households were multi-generational households, compared to 9% statewide and 5.5% nationally.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ble 1 presents key demographics of these three tracts compared to the county and nation.  Income: The per capita income in these tracts is 13% to 24% lower than the county and national per capita incomes indicating this was an area where residents may have struggled economically.  Household Size: Within the affected area, 25% of the households were multi-generational households, compared to 9% statewide and 5.5% nationally.3 Larger households were also common. ○ Interviewees spoke of overcrowding and/or doubling up both because of lack of affordable housing options and because of the cultural preferences of Native Hawaiians and of Southeast Asian and Central American immigrants.  Citizenship: Many of the people living in the affected area were fore"
+  },
+  {
+   "idx": 1,
+   "url": "https://invest.hawaii.gov/wp-content/uploads/2026/07/MauiWES_Evidence_Opportunity_Zone_Lahaina_Final.pdf",
+   "outlet": "Maui Wildfire Exposure Study (MauiWES), posted by Hawaii DBEDT invest.hawaii.gov",
+   "date": "2026-07-27",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "More than 78 percent of Lahaina Front Street participants and 60 percent of Lahainaluna participants reported living in temporary housing.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tion, inability to return to work, work-seeking caused by wildfire-related employment changes, and lack of health insurance. The displacement findings imply that post-wildfire ACS estimates, typically used for evaluating Opportunity Zone eligibility, may not fairly represent the pre-fire community. More than 78 percent of Lahaina Front Street participants and 60 percent of Lahainaluna participants reported living in temporary housing. These findings demonstrate that many people associated with the two tracts by pre-fire residence were no longer living in their original homes or neighborhoods during the post-fire recovery period. Because the wildfire occurred during the 2020–2024 American Community Survey measurement period, this displacement may have changed "
+  }
+ ]
+}

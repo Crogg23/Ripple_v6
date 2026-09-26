@@ -1,0 +1,12 @@
+{
+  "story_id": "S070",
+  "bin": "Known pattern",
+  "entity": "Beaver Valley Hospital's $22.3M COVID relief, 2.45x its 2019 patient revenue",
+  "deciding_sources": [3, 0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Beaver Valley is well covered, but for the Medicaid nursing-home UPL scheme, not COVID relief; the one COVID line is a $6.28M bed-reserve payment, a different pot. KFF covers the pattern: rural and critical-access hospitals got outsized relief.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

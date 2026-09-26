@@ -1,0 +1,47 @@
+{
+ "story_id": "S036",
+ "lead": {
+  "headline": "Nursing-home dialysis brands run 18 of 26 rated clinics flagged worse on survival, but only 9% worse than peers",
+  "number": "Dialyze Direct, Dialysis Direct and Concerto: 31 clinics, 18 of 26 rated flagged Worse on survival; their nursing-home residents die at 1.61x expected vs 1.48x at other nursing-home-heavy units, about 9% worse.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "CMS's model under-predicts nursing-home deaths everywhere (1.18x expected), so these units start about 25% \"worse\" by construction; it's a class effect more than a brand effect."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Dialyze Direct nursing home dialysis patient deaths mortality worse than expected",
+  "home dialysis in nursing homes Dialyze Direct investigation ProPublica OR KFF Health News",
+  "Concerto Renal Services nursing home dialysis Dialyze Direct star ratings survival",
+  "Dialyze Direct PTAC proposal standardized mortality ratio CMS quality measures nursing home residents risk adjustment",
+  "\"Dialyze Direct\" news patient death lawsuit OR citation OR inspection",
+  "nursing home dialysis providers higher mortality \"worse than expected\" Dialysis Facility Care Compare nursing home units",
+  "nursing home dialysis company Dialyze Direct Concerto quality outcomes Skilled Nursing News OR McKnight's 2026",
+  "on-site nursing home dialysis mortality concerns Medicare \"Dialysis Direct\" OR \"Dialyze Direct\" 2025"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11371347/",
+   "outlet": "Kidney360 (via PubMed Central)",
+   "date": "2024-06-07",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "At 42 days, discharge to home was 25% greater in the MFD than CONVENTIONAL dialysis group (17.5% versus 14%) without worsened hospitalization or death.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n saturation (25.7% versus 26.6%; P = 0.02), higher Charlson score (3.5 versus 3.0; P < 0.001), higher mean age (67.6 versus 66.7; P < 0.001), more complicated diabetes (31% versus 24%; P < 0.001), cerebrovascular disease (12.6% versus 6.8%; P <0.001), and congestive heart failure (24% versus 18%). At 42 days, discharge to home was 25% greater in the MFD than CONVENTIONAL dialysis group (17.5% versus 14%) without worsened hospitalization or death. Conclusions Despite a handicap of sicker patients at baseline, real-world application of MFD appears to hasten return to home from SNFs compared with CONVENTIONAL dialysis. The findings suggest that MFD allows for SNF acceptance of sicker patients, presumably permitting earlier discharge from hospital, without safety compromis"
+  },
+  {
+   "idx": 1,
+   "url": "https://data.cms.gov/sites/default/files/2026-01/FY26%20DFR_Guide.pdf",
+   "outlet": "CMS / University of Michigan Kidney Epidemiology and Cost Center",
+   "date": "2025-07",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "We adjusted the SMR for age, race, ethnicity, sex, diabetes, nursing home status,",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ents with the same characteristics as those in the facility. Similarly, the degree to which the facility’s yearly SMR varies from 1.00 is the degree to which it differs from the national death rates that year for patients with the same characteristics as those in the facility. As stated previously, we adjusted the SMR for age, race, ethnicity, sex, diabetes, duration of ESRD, nursing home status, comorbidities at incidence, BMI at incidence, and state and population death rates. Additionally, each year's estimate is compared to the US mortality rates for the same year. The SMR indicates whether patients treated in the facility had higher or lower mortality given the characteristics of patients treat"
+  }
+ ]
+}

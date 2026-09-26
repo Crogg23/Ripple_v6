@@ -1,0 +1,12 @@
+{
+ "story_id": "S126",
+ "bin": "Known pattern",
+ "entity": "minority-owned banks' FDIC consent-order rate vs peers, 2020-26",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source states an enforcement-rate gap for minority banks. GAO 2006 reports the same kind of finding in general: examiners placed immigrant-serving minority banks under increased BSA scrutiny. Weak fit, and GAO also found most minority banks rated their regulators well.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

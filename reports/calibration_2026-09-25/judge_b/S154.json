@@ -1,0 +1,15 @@
+{
+ "story_id": "S154",
+ "bin": "Matched + more",
+ "entity": "Ohio utilities' electricity-efficiency spending per customer, vs Michigan",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2023-08-24",
+ "post_cutoff_match": false,
+ "what_we_add": "$3.22 per customer 2024 vs Michigan's $81.98, 48th of 51; savings 0.063% of sales vs 1.692%",
+ "why": "ACEEE names Ohio utilities as the nation's lowest performers and pins it on the 2019 law that killed the programs, the same finding in words. The dollar-per-customer figures and the Michigan pairing are ours alone.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

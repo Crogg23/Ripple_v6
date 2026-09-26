@@ -1,0 +1,47 @@
+{
+  "story_id": "S166",
+  "entity": "Ireland, share of new companies registered at mass-registration addresses (1,000+ companies each), 1992 (28%) vs 2001 (1.2%); incl. 41 Central Chambers, Dame Court, Dublin 2",
+  "queries": [
+    {"q": "\"Central Chambers\" \"Dame Court\" Dublin companies registered address", "found_useful": false},
+    {"q": "Irish non-resident companies 1990s shell companies registered Dublin address formation agents 1999 Finance Act", "found_useful": true},
+    {"q": "Irish Times non-resident companies thousands registered one Dublin address formation agent money laundering 1990s", "found_useful": false},
+    {"q": "\"non-resident companies\" Ireland 1990s thousands registered same address Dublin fraud Eastern Europe investigation", "found_useful": true},
+    {"q": "Companies Registration Office strike off 1999 2000 tens of thousands companies struck off annual returns Ireland", "found_useful": false},
+    {"q": "Dáil debate 1998 non-resident companies brass plate company formation agents Dublin addresses abuse", "found_useful": false},
+    {"q": "Irish Times 2013 Dublin company formation agent 2,000 shell companies criminal activity", "found_useful": true},
+    {"q": "\"Dame Court\" Dublin shell companies non-resident 1990s registered office thousands", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.irishtimes.com/news/ireland/irish-news/pandora-papers-empty-dublin-office-used-as-registered-address-for-800-limited-partnerships-1.4690024",
+      "outlet": "The Irish Times",
+      "date": "2021-10-04",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "an empty office which is the registered address of more than 800 Irish limited partnerships, most of which are controlled by people from former soviet republics such as Russia, Ukraine and Uzbekistan.",
+      "paywalled": false,
+      "searcher_note": "Pattern: one Dublin address holding hundreds of registered entities (limited partnerships, 2021, Fitzwilliam St), not the 1990s company-formation addresses in the lead."
+    },
+    {
+      "url": "https://taxjustice.net/2015/11/11/how-ireland-became-an-offshore-financial-centre/",
+      "outlet": "Tax Justice Network",
+      "date": "2015-11-11",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "As the Irish Times reported in June 2013, one Dublin-based company incorporation business alone had set up some 2,000 shell companies, some of which have been found to have been involved in large-scale criminal activities around the world.",
+      "paywalled": false,
+      "searcher_note": "Pattern: a single Dublin formation business mass-producing shell companies; no 1990s address counts, no Dame Court."
+    },
+    {
+      "url": "https://www.irishtimes.com/business/two-irish-registered-companies-fined-1.373493",
+      "outlet": "The Irish Times",
+      "date": "2003-09-05",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Rake Street Ltd, a London-based commercial property rental company, with a registered address at Central Chambers, Dame Street, Dublin, was fined €1,500 after pleading guilty to failing to keep proper records for 2000, 2001 and 2002.",
+      "paywalled": false,
+      "searcher_note": "Only press hit naming Central Chambers as a registered address for a foreign-run company; says nothing about mass formation there or the 1990s share. Page says 'Dame Street', lead says 'Dame Court'."
+    }
+  ],
+  "notes": "No source found that measures the share of new Irish companies formed at mass-registration addresses, the 1992 vs 2001 drop, the 23 addresses, the 1999-2000 strike-off rate at those addresses, or the 8,826 companies at 41 Central Chambers. Search summaries repeatedly cited the Irish Registered Non-Resident (IRNR) company regime (estimated 40,000 IRNRs, closed by the 1999 Finance Act) as the likely context, attributed to a US State Dept investment climate page (2009-2017.state.gov/e/eb/rls/othr/ics/2009/117444.htm), but that page came back garbled and no exact quote could be taken, so it is not recorded. Oireachtas 1998 Dail debates titled 'Non-resident Companies' (oireachtas.ie/en/debates/debate/dail/1998-03-10/23/ and 1998-05-27/29/) returned 403. Irish Times 2026-06-29 EU prosecutor piece on Irish shell companies was fetched but is general (no address, no 1990s), not recorded. Memory suggests 1990s press coverage of IRNRs and Dublin formation agents exists, but no live URL found."
+}

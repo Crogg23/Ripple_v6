@@ -1,0 +1,68 @@
+{
+  "story_id": "S043",
+  "entity": "Roosevelt Cayman Asset Company (incl. II and III), foreclosure filer in US District Court for Puerto Rico 2015-25: about a third of federal foreclosures, ~1,130 cases, 52% default judgments vs 37% for other filers",
+  "queries": [
+    {"q": "Roosevelt Cayman Asset Company Puerto Rico foreclosures", "found_useful": true},
+    {"q": "\"Roosevelt Cayman\" foreclosure default judgment federal court Puerto Rico", "found_useful": false},
+    {"q": "Roosevelt Cayman ejecuciones de hipoteca tribunal federal Puerto Rico Doral", "found_useful": true},
+    {"q": "Hedge Clippers private equity Puerto Rico Roosevelt Cayman TPG foreclosures federal court", "found_useful": true},
+    {"q": "El Nuevo Día Roosevelt Cayman Asset Company demandas ejecución hipoteca tribunal federal", "found_useful": false},
+    {"q": "Puerto Rico federal court foreclosure default judgments homeowners no lawyer Roosevelt Cayman Rushmore", "found_useful": true},
+    {"q": "Roosevelt Cayman Asset Company 2026", "found_useful": false},
+    {"q": "Puerto Rico federal district court foreclosure filings 2015 2016 surge Doral Bank loans FDIC Roosevelt share of cases", "found_useful": true},
+    {"q": "TPG Roosevelt Cayman foreclosure moratorium Puerto Rico stayed suits 2018", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.noticel.com/economia/20160206/crisis-y-desconocimiento-inciden-en-alza-de-ejecuciones-hipotecarias/",
+      "outlet": "NotiCel",
+      "date": "2016-02-06",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "la mayoría de casos para ejecución de hipotecas fueron radicados por la compañía neoyorquina Roosevelt Cayman Asset Company",
+      "paywalled": false,
+      "searcher_note": "Earliest found. Court data: most federal foreclosure filings in PR were by Roosevelt Cayman and FDIC-as-Doral-receiver; real-estate share of federal civil cases went 8% (Jun 2014) to 59% (Feb 2016). No default-judgment rate."
+    },
+    {
+      "url": "http://hedgeclippers.org/report-no-53-private-equity-and-puerto-rico/",
+      "outlet": "Hedge Clippers",
+      "date": "2017-12-19",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "investigation, most of the claims have been filed by Roosevelt Cayman Asset Company, a Rushmore affiliate.",
+      "paywalled": false,
+      "searcher_note": "Cites El Nuevo Día: federal PR foreclosures jumped from 52 (2014) to 1,148 (2015) and 1,081 (2016), most filed by Roosevelt Cayman. Mentions its default-judgment motions after Maria, no rate."
+    },
+    {
+      "url": "https://theintercept.com/2017/12/22/puerto-rico-foreclosures-hurricane-maria/",
+      "outlet": "The Intercept",
+      "date": "2017-12-22",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Even after the hurricane, Roosevelt has filed motions for default judgment or eviction in the cases.",
+      "paywalled": false,
+      "searcher_note": "Roosevelt had 289 active federal and 56 local foreclosure cases; PESP's Jim Baker says they serve by publication then ask for default judgment and mostly get it. No default rate or peer comparison."
+    },
+    {
+      "url": "https://hedgeclippers.org/pain-and-profit-after-maria/",
+      "outlet": "Hedge Clippers",
+      "date": "2018-05-22",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "while TPG affiliates Roosevelt Cayman and Bautista Cayman have pursued over 300 actions.",
+      "paywalled": false,
+      "searcher_note": "Post-Maria actions incl. service by publication and default-judgment motions; also says Roosevelt stayed hundreds of suits Dec 2017-Mar 2018 after protests."
+    },
+    {
+      "url": "https://www.wral.com/story/after-storm-foreclosures-in-puerto-rico-stopped-they-re-starting-again-/17700370/",
+      "outlet": "New York Times via WRAL",
+      "date": "2018-07-16",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Roosevelt Cayman owns about 7,000 mortgages.",
+      "paywalled": false,
+      "searcher_note": "NYT: Roosevelt Cayman restarting and reopening foreclosure cases after the Fannie/Freddie moratorium ended May 31, 2018."
+    }
+  ],
+  "notes": "Several sources name Roosevelt Cayman as the dominant federal-court foreclosure filer in Puerto Rico 2015-17 and describe it seeking default judgments. None found gives a share of 2015-25 federal foreclosures, a case count near 1,130, or a default-judgment rate vs other filers (52% vs 37%). Hedge Clippers cites an El Nuevo Día investigation that most federal claims were Roosevelt's; the El Nuevo Día article itself was not found. PESP (pestakeholder.org, 2018-01-26) repeats the Intercept 289/56 figures; not recorded separately. US District Court PR general order '20190516-ADC-Default-Judgment-Foreclosure-Cases.pdf' (prd.uscourts.gov) is a scanned PDF with no extractable text; could not quote. No coverage dated after 2026-06-30 found. No source disagreeing on default rates found."
+}

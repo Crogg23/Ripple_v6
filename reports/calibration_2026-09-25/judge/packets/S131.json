@@ -1,0 +1,94 @@
+{
+ "story_id": "S131",
+ "lead": {
+  "headline": "18 small public companies filed annual reports past the legal extension three years running; 4 still list on major exchanges",
+  "number": "18 past the 15-day extension FY2023-FY2025; 4 still list a Nasdaq/NYSE ticker: Laser Photonics, Global Interactive Technologies, BIO-key, EON Resources",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "FY2025 lateness comes from audit-report dates, not actual 10-K filing dates; about half of the 439 FY2025 misses dated their audits inside the extension."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "BIO-key late 10-K filing Nasdaq deficiency notice",
+  "Laser Photonics Nasdaq notice delinquent annual report 10-K",
+  "Global Interactive Technologies Nasdaq notice late Form 10-K",
+  "EON Resources NYSE American notice late annual report 10-K",
+  "companies repeatedly late filing 10-K NT 10-K three consecutive years analysis small caps",
+  "Laser Photonics regains compliance Nasdaq April 2026 Form 10-K fiscal 2025",
+  "NT 10-K filings 2026 trends repeat late filers micro caps"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sec.gov/Archives/edgar/data/1019034/000143774924012736/ex_657938.htm",
+   "outlet": "BIO-key International press release (SEC EDGAR exhibit 99.1)",
+   "date": "2024-04-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "failure to timely file its Annual Report on Form 10-K for the fiscal year ended December 31, 2023",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.stocktitan.net/news/BKYI/bio-key-receives-notice-of-non-compliance-from-nasdaq-related-to-zptqrvvtpmy5.html",
+   "outlet": "Stock Titan (reprints BIO-key press release)",
+   "date": "2026-04-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "failure to timely file its Annual Report on Form 10-K for the year ended December 31, 2025",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://laserphotonics.com/news/press-releases/laser-photonics-received-nasdaq-notice-of-delisting-for-failure-to-satisfy-a-continued-listing-rule-or-standard/",
+   "outlet": "Laser Photonics press release",
+   "date": "2025-05-29",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "the Company remains delinquent in filing its Form 10-K for the period ended December 31, 2024",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "leaning and other applications, today announced that on May 22, 2025, it received a notice from Nasdaq Listing Qualifications department of the Nasdaq Stock Market LLC (“Nasdaq”) stating that since it had not received the Company’s Form 10-Q for the period ended March 31, 2025 (“1Q25”), and because the Company remains delinquent in filing its Form 10-K for the period ended December 31, 2024 (the “Initial Delinquent Filing”), the Company does not comply with Nasdaq’s Listing Rules for continued listing. Nasdaq stated that in accordance with its letter dated April 16, 2025, the Company has until June 16, 2025, to submit a plan to regain compliance with respect to these delinquent reports. Nasdaq can grant an exception to allo"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.sec.gov/Archives/edgar/data/1807887/000149315226018345/ex99-1.htm",
+   "outlet": "Laser Photonics press release (SEC EDGAR exhibit 99.1)",
+   "date": "2026-04-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "On April 20, 2026, the Company filed the 2025 Form 10-K with the SEC, and on April 21, 2026, Nasdaq confirmed that the Company had regained compliance with the rule.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ngly, Nasdaq has determined that the matter is now closed. On April 20, 2026, Nasdaq notified the Company that it was not in compliance with Nasdaq Listing Rule 5250(c)(1) due to the delayed filing of its Annual Report on Form 10-K for the fiscal year ended December 31, 2025 (the “2025 Form 10-K”). On April 20, 2026, the Company filed the 2025 Form 10-K with the SEC, and on April 21, 2026, Nasdaq confirmed that the Company had regained compliance with the rule. “We are pleased to have promptly regained compliance with Nasdaq’s periodic filing requirement following the filing of our fiscal 2025 Annual Report,” said Wayne Tupuola, Chief Executive Officer of Laser Photonics. “Our focus remains on executing our growth strategy across our industrial and defense end markets and on deliverin"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.sec.gov/Archives/edgar/data/1911545/000149315226017155/ex99-1.htm",
+   "outlet": "Global Interactive Technologies press release (SEC EDGAR exhibit 99.1)",
+   "date": "2026-04-17",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "the Company did not timely file its Annual Report on Form 10-K for the year ended December 31, 2025 with the Securities and Exchange Commission",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ", 2026 (ACCESS NEWSWIRE) — Global Interactive Technologies, Inc. (NASDAQ: GITS) (the “Company”) announced that on April 16, 2026, it received a delinquency compliance alert letter from the Listing Qualifications Department of The Nasdaq Stock Market LLC (“Nasdaq”) advising the Company that, because the Company did not timely file its Annual Report on Form 10-K for the year ended December 31, 2025 with the Securities and Exchange Commission (the “SEC”), the Company is not in compliance with Nasdaq’s continued listing requirements under Nasdaq Listing Rule 5250(c)(1), which requires the timely filing of all required periodic reports with the SEC. Under Nasdaq rules, the Company has 60 calendar days from the date of the Nasdaq notification letter to submit to Nasdaq "
+  },
+  {
+   "idx": 5,
+   "url": "https://www.newswire.com/news/eon-resources-inc-announces-notice-of-failure-to-satisfy-a-continued-listing",
+   "outlet": "Newswire (EON Resources press release)",
+   "date": "2026-04-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "as a result of its failure to timely file its Annual Report on Form 10-K for the fiscal year ended December 31, 2025",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "oducing and injection wells producing over 1,000 barrels of oil per day. Today, the Company announced that on April 16, 2026, the Company received a notice (the \"NYSE Notice\") from the NYSE American LLC (the \"NYSE American\") that the Company is not in compliance with NYSE American listing standards as a result of its failure to timely file its Annual Report on Form 10-K for the fiscal year ended December 31, 2025 (the \"Form 10-K\") with the Securities and Exchange Commission (the \"SEC\"). The NYSE Notice has no immediate effect on the listing of the Company's Class A Common Stock (NYSE American: EONR) or the Company's public warrants (NYSE American: EONR WS) on the NYSE American. The NYSE Notice informed the Company that, under NYSE A"
+  }
+ ]
+}

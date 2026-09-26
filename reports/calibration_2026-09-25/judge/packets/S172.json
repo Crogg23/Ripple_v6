@@ -1,0 +1,59 @@
+{
+ "story_id": "S172",
+ "lead": {
+  "headline": "The Justice Department's Epstein site said \"access denied\" for data sets 13-23 and \"not found\" for 24-40, March 11, 2026",
+  "number": "A 19:26 probe, one address a second: 13-23 got DOJ's full-size 403 page (about 10.46 KB), 24-40 its 404; the switch came inside one second; the only other full-page 403 in 1.54M captures was data set 9, five weeks before its Jan 30 release",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Each of data sets 13-40 has exactly one capture, so \"never live\" rests on a single look, and reading 403 as \"built but unpublished\" isn't confirmed against DOJ's site software"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Justice Department Epstein files website data set 13 \"access denied\"",
+  "DOJ Epstein library data sets 24 through 40 unreleased pages found website March 2026",
+  "\"Data Set 13\" Epstein Justice Department",
+  "Epstein files DOJ website 403 forbidden hidden data sets placeholder pages unreleased discovered",
+  "\"Data Set 9\" Epstein DOJ website December 2025 appeared before release",
+  "Justice Department Epstein files withheld remaining documents new data sets release 2026 August September",
+  "Epstein Library justice.gov more data sets exist than released researchers found URLs Wayback Machine",
+  "DOJ posts new Epstein data sets July 2026 unredacted names court order release"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/",
+   "outlet": "Discrepancy Report",
+   "date": "2026-02-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Several pages of entries visible in the archived version did not appear on the live page when I checked again Feb. 11.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "140 PDF files from the DOJ Epstein collection. The Justice Department’s online listings for at least one dataset also appear to have changed over time. On Feb. 10 , the DOJ “Data Set 10 Files” page displayed fewer file listings than an earlier Wayback Machine capture of the same page from Jan. 30 . Several pages of entries visible in the archived version did not appear on the live page when I checked again Feb. 11. The changes have practical consequences for verification. Bulk downloads, complete file lists and a way to confirm copies match the government’s posted versions make it easier for independent reviewers to test whether a release is complete and unchanged over time. When access is limited to one file at a time and dataset listings app"
+  },
+  {
+   "idx": 1,
+   "url": "https://github.com/rhowardstone/Epstein-research-data",
+   "outlet": "GitHub (rhowardstone, Epstein-research-data)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The audit identified ~64,000 documents that were temporarily removed from the DOJ website after the initial public release, as well as ~24,000 documents with post-release size changes suggesting modification.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cument. Reconstructed Pages File Records Description reconstructed_pages_high_interest.json.gz 39,588 Pages where hidden text was recovered from under redactions. DOJ Document Audit The doj_audit/ directory documents a comprehensive audit of the DOJ Epstein Library conducted in February-March 2026. The audit identified ~64,000 documents that were temporarily removed from the DOJ website after the initial public release, as well as ~24,000 documents with post-release size changes suggesting modification. As of March 2026, previously removed documents have been restored to justice.gov. The audit data is preserved for the historical record. File Records Description doj_audit/CONFIRMED_REMOVED.csv 67,784 Documents confirmed removed at time of audit (since restored). doj_audit/FLAGGED_documents.csv 96,112 All flagged documents with DOJ URL"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.justice.gov/opa/media/1426091/dl",
+   "outlet": "U.S. Department of Justice, Office of the Deputy Attorney General",
+   "date": "2026-01-30",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Today's production marks the Department's compliance with its production obligations under the Act.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  }
+ ]
+}

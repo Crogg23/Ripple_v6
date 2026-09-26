@@ -1,0 +1,15 @@
+{
+  "story_id": "S066",
+  "bin": "Matched + more",
+  "entity": "Diamondback's trade-secret rate in Texas FracFocus disclosures vs the state rate",
+  "deciding_sources": [
+    0,
+    2
+  ],
+  "earliest_match_date": "2024-04-26",
+  "post_cutoff_match": false,
+  "what_we_add": "Diamondback's company-wide 30.3% rate, secrets in 96.7% of 3,164 jobs, the near-double gap over 16.2%",
+  "why": "Open-FF names Diamondback concealing chemicals (a 63% trade-secret well) and gives the 16.3% statewide rate matching ours; FracTracker also uses a Diamondback well as its trade-secret example. Nobody computes the company-wide rate or the comparison.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

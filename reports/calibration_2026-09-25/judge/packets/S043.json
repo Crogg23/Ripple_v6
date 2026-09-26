@@ -1,0 +1,84 @@
+{
+ "story_id": "S043",
+ "lead": {
+  "headline": "Roosevelt Cayman Asset Company filed a third of Puerto Rico's federal foreclosures in 2015-25; 52% ended in default judgment",
+  "number": "About 1,130 separate foreclosure cases; 52% of first filings ended in default vs 37% for other Puerto Rico filers; about 11 points once years are matched, all of it from 2015-16.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The whole gap comes from the 2015-16 wave (in 2017-18 Roosevelt was level with or below peers), and a second skeptic (skeptic2) put the year-matched gap at only about 6 points."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Roosevelt Cayman Asset Company Puerto Rico foreclosures",
+  "\"Roosevelt Cayman\" foreclosure default judgment federal court Puerto Rico",
+  "Roosevelt Cayman ejecuciones de hipoteca tribunal federal Puerto Rico Doral",
+  "Hedge Clippers private equity Puerto Rico Roosevelt Cayman TPG foreclosures federal court",
+  "El Nuevo Día Roosevelt Cayman Asset Company demandas ejecución hipoteca tribunal federal",
+  "Puerto Rico federal court foreclosure default judgments homeowners no lawyer Roosevelt Cayman Rushmore",
+  "Roosevelt Cayman Asset Company 2026",
+  "Puerto Rico federal district court foreclosure filings 2015 2016 surge Doral Bank loans FDIC Roosevelt share of cases",
+  "TPG Roosevelt Cayman foreclosure moratorium Puerto Rico stayed suits 2018"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.noticel.com/economia/20160206/crisis-y-desconocimiento-inciden-en-alza-de-ejecuciones-hipotecarias/",
+   "outlet": "NotiCel",
+   "date": "2016-02-06",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "la mayoría de casos para ejecución de hipotecas fueron radicados por la compañía neoyorquina Roosevelt Cayman Asset Company",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tras que para junio del 2014, solo un 8% de la totalidad de casos estaban vinculados a bienes inmuebles, para junio del 2015, ya constituían un 31%, y para febrero del 2016, ya representan un 59% de los casos civiles, que suman hasta el momento 1454. De los datos provistos, también se desprende que la mayoría de casos para ejecución de hipotecas fueron radicados por la compañía neoyorquina Roosevelt Cayman Asset Company y la agencia independiente Federal Deposit Insurance Company como aseguradora de Doral Bank, lo cual explica la razón por las cuales estos casos llegan a la corte federal, que se destaca por llevar a cabo procesos más rápidos. Sin embargo, incluso cuando la crisis económica repercute en los atrasos de pago, o la imposibil"
+  },
+  {
+   "idx": 1,
+   "url": "http://hedgeclippers.org/report-no-53-private-equity-and-puerto-rico/",
+   "outlet": "Hedge Clippers",
+   "date": "2017-12-19",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "investigation, most of the claims have been filed by Roosevelt Cayman Asset Company, a Rushmore affiliate.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "h Federal Court in Puerto Rico. Over the past several years, that number has increased exponentially. In 2013, 43 foreclosure proceedings were filed in Federal Court in Puerto Rico. In 2014, there were 52. In 2015 and 2016, there were 1,148 and 1,081, respectively. [13] According to an El Nuevo Día investigation, most of the claims have been filed by Roosevelt Cayman Asset Company, a Rushmore affiliate. [14] Roosevelt Cayman has advanced multiple foreclosure suits in federal court since Puerto Rico was devastated by Hurricane Maria, despite calls from advocates to halt foreclosures on the island. ( Roosevelt Cayman Asset Company II V. Gonzalez-Rivero Et Al, 3:17cv1764, Nov 21, 2017 Motion for Default Judgement; Roosevelt Cayman Asset "
+  },
+  {
+   "idx": 2,
+   "url": "https://theintercept.com/2017/12/22/puerto-rico-foreclosures-hurricane-maria/",
+   "outlet": "The Intercept",
+   "date": "2017-12-22",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Even after the hurricane, Roosevelt has filed motions for default judgment or eviction in the cases.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " that one company, Roosevelt Cayman Asset Co., has 289 active foreclosure cases in federal court and another 56 in local Puerto Rican courts. Federal courts, typically not a venue for foreclosure cases, are seen as faster than local courts, so offshore companies like Roosevelt lean heavily on them. Even after the hurricane, Roosevelt has filed motions for default judgment or eviction in the cases. The Intercept has reviewed lists of dozens of these motions. For example, Roosevelt filed a motion for eviction of Ernesto Santiago-Guzman and his family on October 11, three weeks after Maria hit, and a motion for default judgment against Elias Rivera-Rivera on October 12. U.S. District Judge Gustavo Gelpí denied that request because t"
+  },
+  {
+   "idx": 3,
+   "url": "https://hedgeclippers.org/pain-and-profit-after-maria/",
+   "outlet": "Hedge Clippers",
+   "date": "2018-05-22",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "while TPG affiliates Roosevelt Cayman and Bautista Cayman have pursued over 300 actions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "vance foreclosure suits in court, including service by publication (i.e., publishing a foreclosure notice in the newspaper because a homeowner cannot be found to accept delivery of legal documents), seeking default judgments, and filing for eviction. Finance of America has pursued about 40 actions, while TPG affiliates Roosevelt Cayman and Bautista Cayman have pursued over 300 actions. [68] In December 2017, following public pressure and protests at its offices, TPG affiliate Roosevelt Cayman stayed hundreds of foreclosure suits through March 2018 and implemented a foreclosure moratorium (the terms of which have not been made public). In February 2018, TPG affiliate Bautista Cayman stayed dozens of commercial foreclosur"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.wral.com/story/after-storm-foreclosures-in-puerto-rico-stopped-they-re-starting-again-/17700370/",
+   "outlet": "New York Times via WRAL",
+   "date": "2018-07-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Roosevelt Cayman owns about 7,000 mortgages.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "okeswoman for Banco Santander Puerto Rico, said the bank “fully complies with federal and local laws applicable to foreclosures” and works with borrowers “to help them avoid foreclosure proceedings.” A spokesman for the firm that manages mortgages for Roosevelt Cayman Asset Co. declined to comment. Roosevelt Cayman owns about 7,000 mortgages. The investment firm, in which TPG is one of several Wall Street investors, was one of the larger buyers of distressed home loans in Puerto Rico before the hurricane hit. During the past decade, a number of Wall Street banks, hedge funds and private equity firms had swooped in to buy real estate assets in and around San Juan, banki"
+  }
+ ]
+}

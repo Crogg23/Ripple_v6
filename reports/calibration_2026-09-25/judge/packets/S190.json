@@ -1,0 +1,83 @@
+{
+ "story_id": "S190",
+ "lead": {
+  "headline": "RA Capital filed as director at 21 companies in 2024, OrbiMed 16, Baker Bros 13; eight firms drive biotech's lead",
+  "number": "Investment firms filed as director at 91 of 708 biotechs (12.9%) vs 24 of 372 software companies (6.5%) in 2024; without eight firms, biotech is below software in 2022, 2023 and 2024.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Eight firms carry the whole biotech-vs-software gap, so the \"sector\" test is really a test of RA, OrbiMed and Baker Bros; a 4-year window cuts the gap to 1.4x and counting 10% owners to 1.25x."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "RA Capital OrbiMed Baker Bros board seats biotech companies director",
+  "\"director by deputization\" biotech venture funds Section 16 RA Capital",
+  "RA Capital board seats dozens of biotech companies influence STAT News",
+  "Baker Brothers directors Section 16 insider filings biotech portfolio companies board control",
+  "investor-dominated boards biotech venture capitalists hold board seats study interlocking directors life sciences",
+  "biotech boards stacked with investors vs software companies independent directors 2024 analysis",
+  "Bloomberg Foxman 2019 Baker brothers biotech billionaires board seats portfolio companies",
+  "biotech investors board directors conflicts crossover funds RA Capital OrbiMed 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.bloomberg.com/news/articles/2019-11-01/baker-brothers-turn-biotech-prowess-into-a-3-8-billion-fortune",
+   "outlet": "Bloomberg",
+   "date": "2019-11-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Baker Brothers Make $1.4 Billion in Two Weeks on Biotech",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "echnology Crypto Crypto Traders Hedge Against Ether Disappointment Ahead of Merge Crypto Crypto Trade Group for Circle, Kraken Seeks Clout With PAC to Spread Cash Haul Crypto Novogratz Says Fidelity to Shift Retail to Crypto Soon Follow Bloomberg Crypto View More Crypto More Subscriber Only Markets Baker Brothers Make $1.4 Billion in Two Weeks on Biotech Bakers have built one of the largest biotech investment firms Industry stocks have struggled since March on Warren prospects Felix Baker Photographer: Patrick McMullan via Getty Images By Simone Foxman +Follow November 1, 2019, 12:22 PM UTC Updated on November 1, 2019, 2:03 PM UTC Listen to this article 7:44 Share this article Co"
+  },
+  {
+   "idx": 1,
+   "url": "https://en.wikipedia.org/wiki/Baker_Brothers_Advisors",
+   "outlet": "Wikipedia",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "As of 2019, BBA's top 20 disclosed public company investments eight have at least one board member who are BBA employees.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hnology stocks and a period of dealmaking as large biopharmaceutical companies acquire up smaller innovators. BBA relies on talented executives and scientists which are often discovered at companies it invests in and frequently end up on the board of directors in other companies in BBA's portfolio. As of 2019, BBA's top 20 disclosed public company investments eight have at least one board member who are BBA employees. Chief executives for 7 of those 20 companies also serve as board members for other companies that are BBA investments. Some welcome BBA's influence such as Eve Slater who has stated the representatives are \"very scientifically driven\" and \"active\". Others are more critical of BBA's influence such as RA Capit"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.racap.com/structured-capital",
+   "outlet": "RA Capital Management",
+   "date": "unknown",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Our network of 200+ portfolio companies and 100+ board seats creates access no one else has.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ", not just the financials. Creative Structuring We're instrument-agnostic: loans, convertibles, synthetic royalties, structured preferreds, and equity—whatever best fits the opportunity and the company. Proprietary Deal Flow A majority of our deals come directly from companies—not investment banks. Our network of 200+ portfolio companies and 100+ board seats creates access no one else has. 2 Who we work with Built to serve commercial-stage innovators. We focus on healthcare and life sciences companies generating $ 15 M — $ 500 M in revenue — over 10 , 000 businesses across pharma, biotech, MedTech, diagnostics, pharma services, healthcare services, and HCIT — that are too innovative for bank debt, and too growth-focused t"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.columbialawreview.org/content/anticompetitive-directors/",
+   "outlet": "Columbia Law Review",
+   "date": "2025-11-13",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Once combined, individual and investor-level interlocks reach 13.4% of all companies—including 30.1% of pharmaceuticals and biotechnology companies and 16.9% of all IT and software companies.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "% of the companies with at least five board members in our dataset. 17 17 Infra Tables 2, 10. ... Close Again, most of these board members are senior-level employees sharing in the investor’s profits, who therefore have the opportunity and motivation to collude. 18 18 Infra section III.B. ... Close Once combined, individual and investor-level interlocks reach 13.4% of all companies—including 30.1% of pharmaceuticals and biotechnology companies and 16.9% of all IT and software companies. 19 19 Infra Table 4 and Appendix A. ... Close Beyond these direct empirical contributions, we also bring into the legal literature a synthesis of important, recent research from other fields. The totality of our data and that other research suggests that interlocks raise significant anticompetitive concerns. Common directors offer boards exp"
+  },
+  {
+   "idx": 4,
+   "url": "https://maandhunter.substack.com/p/board-pedigree-in-biotech-versus",
+   "outlet": "Substack (maandhunter)",
+   "date": "2026-09-18",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Add Jake Simson and Robert More, both career biotech investors from RA Capital and Alta Partners respectively",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "lopment group and before that Loxo Oncology, where he worked on the drug that became Retevmo. None of these are ceremonial names. This is a board built out of people who have actually launched drugs, actually run regulatory submissions, and in two cases already sat inside a company that got bought. Add Jake Simson and Robert More, both career biotech investors from RA Capital and Alta Partners respectively, and TYRA’s board reads like a company assembled specifically to execute a clinical program the way a big pharma company would, and to be a credible partner or acquisition target if that is how it plays out. TTRX built something closer to deal infrastructure Turn Therapeutics is different. The commercial and clinical pedigree is"
+  }
+ ]
+}

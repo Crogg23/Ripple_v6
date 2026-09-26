@@ -1,0 +1,12 @@
+{
+  "story_id": "S160",
+  "bin": "Known pattern",
+  "entity": "the pooled 'US House of Representatives' Google ad account carrying 58% of members' official-office Google ad money in 2026",
+  "deciding_sources": [2, 5],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source states the pooled-account concentration finding; the Google deck only explains the disclosure mechanism. Axios and LegiStorm cover taxpayer-funded House ads and spend concentration in general, so the pattern is covered, the entity is not.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

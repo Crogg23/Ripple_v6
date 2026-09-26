@@ -1,0 +1,15 @@
+{
+  "story_id": "S071",
+  "bin": "Known pattern",
+  "entity": "EIN-only Google political ad buyers and their $861.4M spend",
+  "deciding_sources": [
+    1,
+    3
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source measures the EIN-only buyer pile. Brennan reports the same kind of finding: hundreds of non-disclosing groups spent $281M+ on online ads. SAG sources cover the group but not our 84% one-gender cut, and SAG is a secondary named thing anyway.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

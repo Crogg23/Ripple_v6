@@ -1,0 +1,56 @@
+{
+  "story_id": "S153",
+  "entity": "Holly Springs (Mississippi) Utility Department electric system: power bought vs billed, 2024 (42.6% unbilled; billed MWh falling 2022-2024)",
+  "queries": [
+    {"q": "Holly Springs Utility Department customers not billed meters electricity TVA", "found_useful": true},
+    {"q": "Holly Springs Mississippi utility unbilled power losses millions audit", "found_useful": true},
+    {"q": "Silverpoint Consulting Holly Springs audit metering \"death spiral\" unbilled electricity line loss", "found_useful": true},
+    {"q": "Holly Springs utility receiver 2026 billing meters revenue TVA debt update", "found_useful": true},
+    {"q": "Holly Springs electric \"wholesale power\" more than collected revenue losses meters estimated bills percent", "found_useful": true},
+    {"q": "Holly Springs Utility Department electricity losses EIA purchased sold 2024 megawatt-hours", "found_useful": false},
+    {"q": "Holly Springs Mississippi customers not billed for months meters unread 2024", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.actionnews5.com/2026/09/09/could-change-be-coming-holly-springs-utility-collision-course-2027/",
+      "outlet": "Action News 5 (WMC, Memphis)",
+      "date": "2026-09-08",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "replacing failed and unreadable meters, correcting the instrument-rated metering that has left revenue unbilled",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Quotes the court-appointed receiver (Michael Watson) listing work including metering that 'has left revenue unbilled'; HSUD owes TVA more than $18 million. No MWh or percentage of power unbilled."
+    },
+    {
+      "url": "https://magnoliatribune.com/2025/09/05/mississippi-psc-takes-action-against-holly-springs-public-utility/",
+      "outlet": "Magnolia Tribune",
+      "date": "2025-09-05",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "customers told of $600 to $800 monthly bills and not receiving a bill for months at a time.",
+      "paywalled": false,
+      "searcher_note": "PSC action after the Silverpoint report, which called the billing system 'chaos' and the metering system a 'death spiral'. Customers going months without bills. No volume or percentage figure."
+    },
+    {
+      "url": "https://cdispatch.com/news/a-real-twisted-animal-in-holly-springs-whats-next-for-the-spiraling-power-provider/",
+      "outlet": "Mississippi Today (republished by The Commercial Dispatch)",
+      "date": "2025-01-07",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "the department can make up for lost revenue once it corrects its issues reading meters.",
+      "paywalled": false,
+      "searcher_note": "Earliest found tying lost revenue to meter-reading failures. Mayor's claim; TVA disputed that fixing meters alone would suffice and said a rate increase was needed. Original Mississippi Today URL (2025-01-03) returned 403 to the fetcher."
+    },
+    {
+      "url": "https://www.supertalk.fm/years-of-mismanagement-led-to-unreliable-state-of-holly-springs-utility-department-report-finds/",
+      "outlet": "SuperTalk Mississippi",
+      "date": "2025-07-30",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "AMI metering system, for example, was brought on by a combination of poor decision-making, negligent maintenance, and management",
+      "paywalled": false,
+      "searcher_note": "Covers the Silverpoint Consulting report for the Mississippi PSC: the utility's AMI metering system is in a 'death spiral'. No unbilled-volume figure."
+    }
+  ],
+  "notes": "Holly Springs Utility Department's meter and billing collapse is widely covered (Mississippi Today, Magnolia Tribune, SuperTalk, MPB, WREG, Action News 5, TVA lawsuit, PSC receivership fight). Coverage names the mechanism (unreadable meters, revenue left unbilled, customers unbilled for months) but no source found states how much of the power bought goes unbilled, the 42.6% figure, the 240,422 vs 137,809 MWh numbers, or the rank among 425 city utilities. FindEnergy's provider page (search snippet only; the page returned 403, so not recorded) says the utility 'reported a yearly loss of about 23.13% of the electricity', apparently from an earlier EIA year; not verifiable here. Could not fetch: Mississippi Today 2025-07-29 and 2026-08-13 (403), Fox13 2023 TVA-report story (429)."
+}

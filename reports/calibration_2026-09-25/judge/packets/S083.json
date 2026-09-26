@@ -1,0 +1,72 @@
+{
+ "story_id": "S083",
+ "lead": {
+  "headline": "Outside money beat the candidate's own spending in 104 of 637 congressional campaigns in 2024; Moreno tops at 5.8x",
+  "number": "104 of 637 matched 2024 House and Senate candidates saw more outside spending than their own (82 over $1M); Moreno $152M outside vs $26M own.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "29 crank rows hold $115B and must be filtered; the famous Senate races top every list."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Bernie Moreno outside spending 2024 Ohio Senate race super PACs outspent campaign",
+  "2024 congressional races where outside spending exceeded candidate spending OpenSecrets",
+  "\"outside groups outspent the candidates\" 2024 races number OpenSecrets House Senate",
+  "Moreno campaign spent far less than outside groups on his behalf Ohio Senate $300 million most expensive",
+  "Moreno \"outside spending\" Ohio Senate 2024 final tally candidate spending post-election analysis",
+  "2024 House Senate candidates outside groups spent more than the candidate's own campaign how many races analysis",
+  "OpenSecrets Ohio Senate 2024 race Moreno outside spending candidate spending totals (allowed_domains opensecrets.org)",
+  "super PACs outspent the candidates themselves in dozens of 2024 congressional races report",
+  "Moreno \"for every dollar\" his campaign spent outside groups spent Ohio Senate 2024"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://insidepoliticalmoney.com/news/ohios-senate-money-war-is-just-getting-started/",
+   "outlet": "Inside Political Money",
+   "date": "2026-08-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "This was far more than the $14.8 million raised by Moreno, who instead relied heavily on $186.1 million in outside spending.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the Senate. But it was going to cost a lot of money.” Niven additionally pointed to the genuine uncertainty of that race. “Nobody was quite sure who would win, so why not spend another 10 or 50 million trying to tip the balance?” Brown raised $96.5 million for that campaign, according to FEC data. This was far more than the $14.8 million raised by Moreno, who instead relied heavily on $186.1 million in outside spending. Of that outside spending, $40.1 million, was spent by a super PAC called Defend American Jobs, which is part of the crypto-industry super PAC network, Fairshake, whose backers include Silicon Valley venture capitalists Mark Andreessen and Ben Horowitz. Brown was a prominent critic of the cryptocurrency industry during the J"
+  },
+  {
+   "idx": 1,
+   "url": "https://ohiocapitaljournal.com/2026/07/29/sherrod-brown-comfortably-outraises-jon-husted-as-outside-groups-enter-ohios-u-s-senate-race/",
+   "outlet": "Ohio Capital Journal",
+   "date": "2026-07-29",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The 2024 race became the most expensive non-presidential election in American history, and while Brown more than tripled Moreno’s campaign spending, Republican groups still outspent Democratic groups by over $75 million.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ly larger than his Republican opponent. Former Ohio U.S. Rep. Tim Ryan outraised now-Vice President J.D. Vance by $6.8 million from April to June 2022, and Brown outraised now-U.S. Sen. Bernie Moreno by $6 million from April to June 2024. Both elections ended in Democratic losses at the ballot box. The 2024 race became the most expensive non-presidential election in American history, and while Brown more than tripled Moreno’s campaign spending, Republican groups still outspent Democratic groups by over $75 million. A recent U.S. Supreme Court decision will also strengthen the role of political parties to help campaigns this election cycle. Ruling on a case out of Ohio brought by Vance , in a 6-3 decision the court struck down limits on how much political parties could spend in coordination with specific candidates . Spending This time ar"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.newsweek.com/ohio-senate-race-bernie-moreno-sherrod-brown-1959374",
+   "outlet": "Newsweek",
+   "date": "2024-09-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Despite trailing in money in the bank, outside PACs have spent nearly $90 million in efforts to support Moreno throughout the campaign thus far",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nt Donald Trump is expected to top Vice President Kamala Harris. Brown, first elected to the Senate in 2006, currently has more money in the bank than Moreno, who won the GOP primary with Trump's endorsement despite concerns that other, more moderate, Republicans may have made a stronger candidate. Despite trailing in money in the bank, outside PACs have spent nearly $90 million in efforts to support Moreno throughout the campaign thus far, according to independent expenditure data posted to X (formerly Twitter) by Rob Pyers, the research director for nonpartisan group California Target Book. Meanwhile, pro-Brown PACs have spent $22.5 million on the race, according to the data. According to the nonprofit OpenSecrets, Moreno has received more than $50 million suppor"
+  },
+  {
+   "idx": 3,
+   "url": "https://wausaupilotandreview.com/2025/05/31/outside-spending-on-2024-elections-shatters-records-fueled-by-billion-dollar-dark-money-infusion/",
+   "outlet": "Wausau Pilot & Review (OpenSecrets, Anna Massoglia)",
+   "date": "2025-05-31",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Outside groups have poured more than $308 million into Ohio’s 2024 Senate election, making it the most expensive congressional race of the cycle and in the top 10 races in U.S. history.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e Senate races in U.S. history When it comes to outside spending, the top six most expensive races in U.S. history are presidential races dating back to 2004. Pennsylvania’s 2022 Senate race and Georgia’s 2022 Senate race are also in the top 10 most expensive races, as measured by outside spending. Outside groups have poured more than $308 million into Ohio’s 2024 Senate election , making it the most expensive congressional race of the cycle and in the top 10 races in U.S. history. In Ohio, incumbent Sen. Sherrod Brown (D-Ohio) faces off with Republican challenger Bernie Moreno. The main super PAC supporting Brown is WinSenate PAC , which has spent over $79 million on the race. The super PAC was created in January and is funded entirely by Senate Majority PAC , the main outside group aligned with Senate Democr"
+  }
+ ]
+}

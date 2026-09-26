@@ -1,0 +1,48 @@
+{
+  "story_id": "S009",
+  "entity": "NWS Phoenix forecast office heat deaths in the NOAA Storm Events file: 1,345 of 2,145 US direct heat deaths 2018-23, then no heat filings after June 2024; national direct heat deaths 557 (2023), 250 (2024), 99 (2025)",
+  "queries": [
+    {"q": "NOAA Storm Events database heat deaths Phoenix Maricopa County National Weather Service", "found_useful": false},
+    {"q": "National Weather Service heat deaths undercount storm data Maricopa County share of national", "found_useful": true},
+    {"q": "NOAA \"Storm Events\" heat deaths decline 2024 2025 reporting change", "found_useful": false},
+    {"q": "National Weather Service Phoenix stopped counting heat deaths storm data", "found_useful": false},
+    {"q": "NWS weather fatality statistics heat deaths dominated by Arizona Maricopa County data", "found_useful": false},
+    {"q": "Pielke NOAA storm data heat deaths Maricopa County", "found_useful": false},
+    {"q": "\"Storm Data\" heat fatalities direct indirect Arizona proportion study National Weather Service offices inconsistent", "found_useful": false},
+    {"q": "NWS 2025 weather fatalities report heat deaths fell 99 national total", "found_useful": false},
+    {"q": "NOAA data heat deaths 2023 record high weather deaths Arizona accounted for most Axios", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://text.npr.org/nx-s1-5724225",
+      "outlet": "NPR",
+      "date": "2026-08-31",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "On average between 2018 and 2025, we estimate that some 9,000 deaths each year in the country are impacted by heat — a factor of five higher than the official average over that same period.",
+      "paywalled": false,
+      "searcher_note": "NPR heat death tracker: official US heat death counts are a vast undercount; Maricopa County called an outlier in how carefully it counts. Does not mention NWS/NOAA Storm Events. Same article at npr.org/2026/08/31/nx-s1-5724225/heat-wave-death-toll-tracker (timed out on fetch)."
+    },
+    {
+      "url": "https://text.npr.org/nx-s1-5724225",
+      "outlet": "NPR",
+      "date": "2026-08-31",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "But Maricopa County is something of an outlier.",
+      "paywalled": false,
+      "searcher_note": "Same NPR article: Maricopa (Phoenix) counts heat deaths far more thoroughly than other counties, which is the mechanism behind Phoenix dominating any national count. No mention of the NWS Phoenix office or Storm Data."
+    },
+    {
+      "url": "https://upnorthlive.com/news/nation-world/2023-set-record-for-us-heat-deaths-killing-in-areas-that-used-to-handle-the-heat",
+      "outlet": "Associated Press (via UpNorthLive)",
+      "date": "2024-06-02",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "The death certificates of more than 2,300 people who died in the United States last summer mention the effects of excessive heat, the highest number in 45 years of records, according to an Associated Press analysis of Centers for Disease Control and Prevention data.",
+      "paywalled": false,
+      "searcher_note": "AP wire: 2023 record US heat deaths from CDC death certificates, Arizona led with 874; uses CDC data, not NOAA Storm Events."
+    }
+  ],
+  "notes": "No source found that analyzes the NOAA/NWS Storm Events file's heat deaths, the Phoenix office's share of them, or the Phoenix office ceasing heat filings after June 2024. Coverage found is about Maricopa County's own medical-examiner counts (645 in 2023, 608/602 in 2024, 430 in 2025) and national undercounting in general. Maricopa County Public Health reports and KJZZ (2026-09-24) cover county counts only, not the federal storm file. The NSC Injury Facts weather-deaths page (uses NOAA data) returned 403 and could not be quoted."
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S128",
+ "bin": "Known pattern",
+ "entity": "money managers' 13F reports filed a year or more late, 2024-26 wave; Malaysia's EPF back-filing",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names EPF Malaysia's back-filing or states the late-rate jump. The SEC's 2024 sweep of 11 managers for failing to file 13Fs, with remedial back-filings, is the same kind of finding about other entities.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

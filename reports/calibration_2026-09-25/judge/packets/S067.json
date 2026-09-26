@@ -1,0 +1,95 @@
+{
+ "story_id": "S067",
+ "lead": {
+  "headline": "DeKalb County's Snapfinger Creek sewer plant logged 1,394 overflows since 2016 against $52,344 in penalties: about $38 each",
+  "number": "Snapfinger Creek (GA0024147): 1,394 overflows since Oct 2016, 4 formal actions, $52,344 in penalties since 2015; 202 overflows in 2025, its high.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "A known consent-decree story, and overflow counts map which states report (only 21-36 do)."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "DeKalb County sewer spills consent decree Snapfinger Creek penalties",
+  "Snapfinger Creek wastewater treatment plant DeKalb violations Georgia EPD consent order fine",
+  "DeKalb County sewer spills 2025 increase South River Watershed Alliance Snapfinger basin",
+  "DeKalb sewage spills fines since 2011 total $924,000",
+  "DeKalb County watershed management sewer spills reduced progress consent decree 2026",
+  "DeKalb County sewage spill August 2026",
+  "\"GA0024147\" Snapfinger",
+  "Snapfinger basin repeat sewer spill sites DeKalb consent decree 47 sites south DeKalb"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.decaturish.com/news/dekalb/former-dekalb-ceo-told-epa-county-would-miss-deadline-to-upgrade-sewer-capacity/article_35cc2125-2145-5533-ab23-abecc5badd64.html",
+   "outlet": "Decaturish",
+   "date": "2025-01-19",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Sewer upgrades are needed to address sanitary sewer overflows in the Snapfinger Basin in South DeKalb County.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "roblems with its sewer system. After what the DOJ called “contentious negotiations,” the county, the federal government and the state hammered out a Modified Consent Decree with a new deadline of December 2027. The county was required to pay a $1 million fine as part of the Modified Consent Decree. Sewer upgrades are needed to address sanitary sewer overflows in the Snapfinger Basin in South DeKalb County. “Based on currently available information, none of the solutions being contemplated for the Snapfinger Basin can be completed within the timeline contemplated by the [Modified Consent Decree],” Thurmond wrote in his Dec. 31 letter. “However, at this juncture, the previously identified in-basin storage tank locations would not be comp"
+  },
+  {
+   "idx": 1,
+   "url": "https://thechampionnewspaper.com/srwa-most-dekalb-county-sewer-spill-areas-not-covered-under-consent-decree/",
+   "outlet": "The Champion Newspaper (DeKalb)",
+   "date": "2020-05-08",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Earlier this year, the county saw one of its largest sewer spills near the Meadow Creek Path area of Lithonia and the area of the Snapfinger Wastewater Treatment Plant, which is currently undergoing an expansion.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ", the environment, and public health throughout the county and downstream,” said Echols. “Streams in the county have been impacted by sanitary sewage spills dating back to before the 1972 Clean Water Act. Unsuccessful consent orders by Georgia EPD to address the problem date back to the late ‘90s.” Earlier this year, the county saw one of its largest sewer spills near the Meadow Creek Path area of Lithonia and the area of the Snapfinger Wastewater Treatment Plant, which is currently undergoing an expansion. A 9.2-million-gallon sewer spill was reported in February near the plant and a 7-million-gallon spill was reported three weeks later. With the consent decree set to expire June 20, DeKalb County CEO Michael Thurmond and other county officials have stated over the years that the deadline would not be met. County spokespersons did n"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.epa.gov/newsreleases/dekalb-county-georgia-clean-water-act-settlement-modified-further-address-sanitary",
+   "outlet": "U.S. EPA",
+   "date": "2020-10-22",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The United States and the State of Georgia have demanded, and the County has paid, $859,000 in stipulated penalties under the Consent Decree for these SSOs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "pleased that the parties were able to agree to a proposal that gives DeKalb County the time it needs to complete sewer system repairs while protecting residents and our state waters in the process.” The original 2011 Consent Decree resolved claims, through the December 13, 2010, date of lodging, by the United States and the State of Georgia that the County violated the Clean Water Act and the Georgia Water Quality Control Act. The violations involved Sanitary Sewer Overflows (SSOs) from the County’s WCTS, particularly those reaching waters of the United States or Georgia, and failures to comply with certain operation and maintenance conditions of the County’s National Pollution Discharge Elimination System (NPDES) permits. Under the 2011 Consent Decree, the County was required"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.courthousenews.com/suit-over-georgia-countys-sewage-spillage-shot-down-by-federal-appeals-court/",
+   "outlet": "Courthouse News Service",
+   "date": "2023-05-31",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "the EPA and GDNR have done more than enough to meet the diligence threshold",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "som and Andrew Brasher — were left to contemplate the ambiguity of the decree’s use of the phrase “diligently prosecuting” to decide if the SRWA’s citizen suit is barred by the government prosecution. Ultimately they agreed with the district court’s finding that the suit is barred, concluding that “the EPA and GDNR have done more than enough to meet the diligence threshold” as “evidenced by their continued penalization” for noncompliance. “The EPA and GDNR have been diligent in monitoring DeKalb County’s progress and assessing sizeable fines to compel DeKalb County to comply with the consent decree,” wrote Branch in Wednesday’s ruling. She added that the assessed penalties totaling nearly one"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.ajc.com/neighborhoods/dekalb/a-year-into-new-consent-decree-dekalb-making-progress-on-sewer-repairs/BGFGW4J6RNGITB3DXKHGE7R77E/",
+   "outlet": "Atlanta Journal-Constitution",
+   "date": "2022-09-29",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "the county reported 11.7 million gallons worth of spills in the first eight months of this year.",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 5,
+   "url": "https://www.decaturish.com/news/decatur/dekalb-county-will-pay-nearly-300-000-in-fines-for-sewage-spills/article_ddd8ab2b-d3a7-51ce-82d8-2acfa62c07ae.html",
+   "outlet": "Decaturish",
+   "date": "2017-06-23",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "DeKalb County will have to pay $294,000 in fines for multiple sewage spills",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ecatur DeKalb County will pay nearly $300,000 in fines for sewage spills By Dan Whisenhunt Jun 23, 2017 Jun 23, 2017 Comments Facebook Twitter WhatsApp SMS Email Facebook Twitter WhatsApp SMS Email Print Copy article link Save [+] Add Decaturish on Google DeKalb County Georgia. Source: Google Maps. DeKalb County will have to pay $294,000 in fines for multiple sewage spills, including 48 spills that were not reported. The fines were issued by the U.S. Environmental Protection Agency and the Georgia Environmental Protection Division. DeKalb County is under a consent decree and is required to make improvements to its sewer systems as part of the agreement. CEO Michael Thurmond called it an “amicable"
+  }
+ ]
+}

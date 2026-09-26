@@ -1,0 +1,83 @@
+{
+ "story_id": "S027",
+ "lead": {
+  "headline": "Doctors paid $10K+ by drug companies wrote prescriptions costing 1.2-5.6x more per claim, more brand-name in all 7 specialties",
+  "number": "In 2024, brand-name share rises with drug-company money in all 7 specialties, and $10K+ doctors cost 1.2-5.6x more per claim (internal medicine $94 to $355).",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Correlation only, and suppressed counts drop about 606K of 1.42M prescribers, so the sample leans to big prescribers."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "ProPublica doctors who get drug company payments prescribe more brand-name drugs every specialty",
+  "Open Payments Medicare Part D physicians industry payments higher cost per claim brand-name prescribing study",
+  "industry payments physicians prescribing 2024 Open Payments data analysis 2025 2026 brand-name drugs doctors paid",
+  "pharmaceutical payments to doctors not associated with prescribing no effect study reverse causation critique",
+  "doctors paid more than $10,000 by drugmakers prescribe costlier drugs cost per claim Medicare Part D analysis",
+  "drug company payments doctors prescribing brand-name news July August September 2026",
+  "HHS OIG Special Fraud Alert speaker programs drug company payments influence prescribing Medicare costs",
+  "2025 study Open Payments 2023 2024 Part D prescribers brand-name share rises with payment amount across specialties dose-response"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.propublica.org/article/doctors-who-take-company-cash-tend-to-prescribe-more-brand-name-drugs",
+   "outlet": "ProPublica",
+   "date": "2016-03-17",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Among internists who received no payments, for example, the average brand-name prescribing rate was about 20 percent, compared to about 30 percent for those who received more than $5,000.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "showed. Indeed, doctors who received industry payments were two to three times as likely to prescribe brand-name drugs at exceptionally high rates as others in their specialty. Doctors who received more than $5,000 from companies in 2014 typically had the highest brand-name prescribing percentages. Among internists who received no payments, for example, the average brand-name prescribing rate was about 20 percent, compared to about 30 percent for those who received more than $5,000. ProPublica’s analysis doesn’t prove industry payments sway doctors to prescribe particular drugs, or even a particular company’s drugs. Rather, it shows that payments are associated with an approach to prescribing that, writ large, benefits drug companies’ bottom line. Dollars for Docs See how industry dollars reach your doctors. Explore "
+  },
+  {
+   "idx": 1,
+   "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155474",
+   "outlet": "PLOS One",
+   "date": "2016-05-16",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Across the 12 specialties examined, a dose-response relationship was observed in which greater payments were associated with greater prescribing costs per patient.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ounding features, including sex, geographic region, and practice size. Results Among 725,169 individuals with Medicare prescribing data, 341,644 had documented payments in the OPP data (47.1%). Among all physicians receiving funds, mean payment was $1750 (SD $28336); median was $138 (IQR $48-$394). Across the 12 specialties examined, a dose-response relationship was observed in which greater payments were associated with greater prescribing costs per patient. In adjusted regression models, being in the top quintile of payment receipt was associated with incremental prescribing cost per patient ranging from $27 (general surgery) to $2931 (neurology). Similar associations were observed with proportion of branded prescriptions written. Conclusions While distribution and amount of payments dif"
+  },
+  {
+   "idx": 2,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5880069/",
+   "outlet": "BMC Health Services Research",
+   "date": "2018-04-02",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "A physician-industry financial relationship was associated with increased odds of prescribing costly brand-name drugs of uncertain medical benefit.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rer, was associated with increased odds of prescribing 4 of the 6 drugs: amlodipine+olmesartan, aOR 2.40, (95% CI 2.29–2.52), ibuprofen+famotidine, aOR 8.06, (95% CI 5.42–12.00), saxagliptin+metformin, aOR 2.21, (95% CI 2.10–2.34) and naproxen+esomeprazole, aOR 5.96, (95% CI 5.08–7.00). Conclusions A physician-industry financial relationship was associated with increased odds of prescribing costly brand-name drugs of uncertain medical benefit. Patients, as healthcare consumers, should demand transparency from their physicians about payment from the pharmaceutical industry to increase shared decision-making. Physician and policy makers need increased awareness and reflection on how industry payment influences their prescribing practices. Keywords: Open Payments, Sunshine Act, physicia"
+  },
+  {
+   "idx": 3,
+   "url": "https://oig.hhs.gov/fraud/docs/alertsandbulletins/2020/SpecialFraudAlertSpeakerPrograms.pdf",
+   "outlet": "HHS Office of Inspector General",
+   "date": "2020-11-16",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Furthermore, studies have shown that HCPs who receive remuneration from a company are more likely to prescribe or order that company",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": "mpensation to speak at programs offered under circumstances that are not conducive to learning or to speak to audience members who have no legitimate reason to attend. Such cases strongly suggest that one purpose of the remuneration to the HCP speaker and attendees is to induce or reward referrals. Furthermore, studies have shown that HCPs who receive remuneration from a company are more likely to prescribe or order that company’s products. 7 This remuneration to 4 See 42 U.S.C. § 1320a-7(a). 5 See 42 U.S.C. § 1320a-7(b)(7); § 1320a-7a(a)(7). 6 Code on Interactions with Health Care Professionals, PhRMA, 7 (June 2020), available at https://phrma.org/Codes-and-guidelines/Code-on-Interactions-with-Health-Care-Professionals. A device industry trade group also address"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.nber.org/system/files/working_papers/w26751/w26751.pdf",
+   "outlet": "National Bureau of Economic Research (Carey, Lieber, Miller)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Physicians receiving payments from the firms experiencing the patent expiry transition their patients just as quickly to generics as physicians who do not receive such payments.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "study, we show that physicians increase prescribing of drugs for which they receive payments in the months just after payment receipt, with no evidence of differential trends between paid and unpaid physicians prior to the payment. Next, we examine five case studies of major drugs going off patent. Physicians receiving payments from the firms experiencing the patent expiry transition their patients just as quickly to generics as physicians who do not receive such payments. In addition, using hand-collected efficacy data on three major therapeutic classes, we show that drug quality is largely unaffected by the receipt of payments. Colleen Carey Department of Policy Analysis and Management Cornell University MVR Hall, Room 298 Ithaca, NY 14853 and NBER colleenmariecarey@gmail.com Ethan M.J. Lieber Department of "
+  }
+ ]
+}

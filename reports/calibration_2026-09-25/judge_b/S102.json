@@ -1,0 +1,12 @@
+{
+ "story_id": "S102",
+ "bin": "Matched",
+ "entity": "Arizona overdose deaths, 12 months to Oct 2025, vs the national decline",
+ "deciding_sources": [0, 1, 2, 3],
+ "earliest_match_date": "2026-01-15",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "KJZZ, KTAR, CDC and AZPHA all report Arizona overdose deaths rising sharply (2,988 for 2025, up ~18%) while the nation fell ~14% — same entity, direction and near-identical count to our 2,980. The cocaine surge is also covered (AZPHA +70%, journal 177 to 294), so nothing countable is ours alone.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

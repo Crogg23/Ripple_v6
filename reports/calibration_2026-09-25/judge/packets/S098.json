@@ -1,0 +1,56 @@
+{
+ "story_id": "S098",
+ "lead": {
+  "headline": "Kings County, California, rejected 13.7% of returned mail ballots in 2022, against 1.52% nationally",
+  "number": "Kings County CA rejected 13.7% of returned mail ballots in 2022 (3,628 under unlabeled reason C9P) vs 1.52% nationally.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Some counties book undeliverable mail as rejections (Orange, Los Angeles, Hernando); read the \"other\" labels first."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "Kings County California mail ballots rejected 2022 election rejection rate",
+  "Kings County Hanford election 2022 ballots rejected registrar of voters mail ballots problem",
+  "EAVS 2022 highest mail ballot rejection rates counties California outlier \"Kings County\"",
+  "\"Kings County\" California 2022 general election vote-by-mail ballots not counted canvass report rejected",
+  "\"13.7%\" mail ballots rejected county 2022 Election Administration and Voting Survey"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://elections.cdn.sos.ca.gov/vbm-rejection-reason/nov-general-2022(2).pdf",
+   "outlet": "California Secretary of State",
+   "date": "2023-02-13",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Kings 62,059 24,850 24,580 98.91%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 0 1 0 32 0 6 49 4 0 92 1.20% Humboldt 85,655 43,305 42,810 98.86% 1 0 2 202 1 89 200 0 0 495 1.14% Imperial 87,793 21,221 20,693 97.51% 7 0 0 0 1 88 430 0 2 528 2.49% Inyo 10,871 6,728 6,696 99.52% 0 0 0 17 0 6 9 0 0 32 0.48% Kern 438,219 158,538 157,092 99.09% 46 0 0 0 0 336 1,064 0 0 1,446 0.91% Kings 62,059 24,850 24,580 98.91% 0 0 0 109 0 14 147 0 0 270 1.09% Lake 37,598 18,144 17,946 98.91% 1 1 0 49 0 8 138 0 1 198 1.09% Lassen 14,873 8,985 8,943 99.53% 0 0 0 15 0 3 24 0 0 42 0.47% Los Angeles 5,678,407 1,995,661 1,969,333 98.68% 488 191 36 14,993 539 3,269 6,625 187 0 26,328 1.32% Madera 73,505 34,290 34,012 99.19% 0 0 2 133 0 29 114 0 0 27"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.pbs.org/wnet/preserving-democracy/2023/08/30/1-5-of-all-absentee-mail-in-ballots-were-rejected-in-2022",
+   "outlet": "PBS (WNET Preserving Democracy)",
+   "date": "2023-08-30",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Of that total 549,824—or 1.5%—were rejected, roughly equal to the 1.4% rejection rate in 2018, the most recent midterm election,",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tiative from The WNET Group About Films Series News Resources All Stories Ballotpedia 1.5% of all absentee/mail-in ballots were rejected in 2022 August 30, 2023 | Ballotpedia News Staff Photo by Tiffany Tertipes/Unsplash. Voters cast 36,683,450 absentee/mail-in ballots in the 2022 general election. Of that total 549,824—or 1.5%—were rejected , roughly equal to the 1.4% rejection rate in 2018, the most recent midterm election, and up from the 1.0% and 0.8% rejection rates in the 2016 and 2020 presidential election cycles, respectively. Between the midterm election cycles in 2018 and 2022, the absentee/mail-in ballot rejection rate increased in 17 states. It decreased in 31, and Washington, D.C. Comparative data was unavailable for Alabama and "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.kpbs.org/news/politics/2026/07/27/nearly-150-000-mail-ballots-rejected-in-californias-primary-despite-efforts-to-count-every-vote",
+   "outlet": "KPBS (AP)",
+   "date": "2026-07-27",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "According to state data, 148,241 mail ballots were rejected in the June election, or a rate of 1.73% of all mail ballots.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ct the main problem is postmarks on ballots that came after Election Day, making them ineligible to be counted. The culprit could be U.S. Postal Service changes that might affect the timing of when postmarks are applied. Advertisement Become a KPBS sponsor Late-arriving ballots drove the rejections According to state data, 148,241 mail ballots were rejected in the June election, or a rate of 1.73% of all mail ballots. In raw numbers, that's up from the 2024 primary, when 108,982 mail ballots were rejected, or a 1.56% rate. In 2022, 105,818 mail ballots were voided during the primary, or a rate similar to 2024. Lateness accounted for 93,479 rejected ballots in June, by far the largest category for disqualifying a ballot. That was up from about "
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+  "story_id": "S058",
+  "bin": "Known pattern",
+  "entity": "Novo-paid prescribers choosing Ozempic more than unpaid ones (54% vs 41%)",
+  "deciding_sources": [
+    5
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The one study on our exact finding (source 0) is quote_check missing, so it is out. NBER shows payments raise prescribing in general without naming Novo or Ozempic; the Novo sources only show the payments, not the prescribing gap.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

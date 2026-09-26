@@ -1,0 +1,96 @@
+{
+ "story_id": "S196",
+ "lead": {
+  "headline": "41 super PACs named for police, veterans and sick kids raised $181.5M; roughly 4% reached real political spending",
+  "number": "Builder: at most $22.5M (12.5%) to politics, 2017-24; 73% of the itemized ad money paid a phone and caging vendor block, so real political spending is closer to 4%. That six-vendor block is paid only by sympathy-named committees, 24 of 24.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The 66.5% peer is big-donor super PACs; small-dollar peers send only 6.5-8.7%. 46% of the dollars are j8's FEC twins, so it isn't a new lead, and the count is a floor (2 Piaro PACs, $18.75M, were dropped)."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "scam PACs police veterans children super PACs raised millions little went to candidates telemarketing",
+  "super PACs sympathetic names police veterans sick children telemarketing caging vendors fundraising analysis FEC",
+  "Zeitlin Piaro indicted Southern District of New York PAC telemarketing fraud press release",
+  "AP \"scam PACs\" veterans police telemarketing 2024 raised $89 million spent 1% campaign",
+  "scam PACs 2026 FEC super PAC police veterans fundraising vendors investigation",
+  "New York Times telemarketers raised $89 million law enforcement firefighters veterans PACs spent 1 percent campaign activities",
+  "PAC defends fundraising costs telemarketing \"not a scam\" veterans police PAC responds spending on candidates",
+  "Forbes Zach Everson scam PACs vets cops administrative fees FEC analysis percent to candidates",
+  "\"scam PAC\" news August 2026 OR September 2026 donors police veterans"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.thedailybeast.com/the-secret-website-behind-a-dollar140-million-scam-pac-network/",
+   "outlet": "The Daily Beast",
+   "date": "2023-03-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "According to The Daily Beast’s analysis of Federal Election Commission filings, the 43 client PACs on the call center website have raised more than $140 million in the last two election cycles alone.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "federal law to fit a business model that has so far eluded much enforcement. (The website is archived here .) What makes this secret call site so unique is, in fact, its website, which offers a rare glimpse into the workings of a shadowy, largely unregulated—and extraordinarily lucrative—operation. According to The Daily Beast’s analysis of Federal Election Commission filings, the 43 client PACs on the call center website have raised more than $140 million in the last two election cycles alone. That’s a staggering amount of money—more than former President Donald Trump has raised in total for his flagship Save America PAC . The call center has so many PAC clients that it maintains two lists . And they feature some of the most notorious groups in the country, including Law Enforcement for a Safer America, a sor"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.opensecrets.org/news/2023/08/how-scam-pacs-line-their-pockets-by-deceiving-political-donors/",
+   "outlet": "OpenSecrets",
+   "date": "2023-08-18",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The Law Enforcement for a Safer America PAC also reported nearly $1.6 million in payments to Public Support Services, all for “fundraising” services.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " convinced voters to donate with heart-grabbing <a href=\"https://leoforasaferamerica.org/our-mission/\">statements</a> like, “[Law enforcement officers] kiss their children and spouses goodbye and go to work, not knowing if they will return home after their shift.” </p> <p class=\"wp-block-paragraph\">The Law Enforcement for a Safer America PAC reported paying roughly $950,000 to a vendor called “Action Committee Marketing LLC,” all for the reported purpose of “fundraising, payment, technical & compliance services.” </p> <p class=\"wp-block-paragraph\">The same scam PAC reported 124 payments totaling over $244,000 to a vendor called “LAV Services LLC.” LAV Services LLC was incorporated in 2022, along with <a href=\"https://twitter.com/rpyers/status/1413202692088811520?lang=en"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.cnn.com/2020/10/16/us/police-super-pac-political-group-invs/index.html",
+   "outlet": "CNN",
+   "date": "2020-10-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Instead, their contributions end up with a super PAC, Law Enforcement for a Safer America, which has ties to a controversial union and spends the majority of its money on its own operating costs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Association, the National Emergency Responders Coalition and the National Coalition for Police & Troopers. Many donors say they believed they were supporting a charity that helps local officers. But none of the money being raised actually goes to police departments, according to government records. Instead, their contributions end up with a super PAC, Law Enforcement for a Safer America, which has ties to a controversial union and spends the majority of its money on its own operating costs. At least seven local police departments from around the country and a state attorney general have issued “scam alerts” and other notices about these fundraising efforts, warning residents in their communities as recently as this summer that they have no affiliation with this group. Around 200 consumer complaints have also been made to st"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.thedailybeast.com/richard-zeitlin-and-robert-piaro-jailed-for-dollar28-million-pac-fraud-scheme/",
+   "outlet": "The Daily Beast",
+   "date": "2023-08-17",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Zeitlin’s call center profited big from the donations, raking in about 90 percent of each dollar raised, while the rest was given to the respective PAC.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 4,
+   "url": "https://www.blumenthal.senate.gov/imo/media/doc/09102023fecnonprofitpacscamsletter.pdf",
+   "outlet": "Office of Sen. Richard Blumenthal (letter to FEC)",
+   "date": "2023-09-10",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "A recent New York Times investigation found one network of telemarketers had raised $89 million in political donations on behalf of law enforcement, firefighters, and veterans, but had only spent 1% on actual campaign activities and contributions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "l For example, when the Federal Trade Commission shut down the Civic Development Group (CDG) for deceptively fundraising for law enforcement organizations, it disclosed that “charities received only 10 to 15 percent of the donations\" and the CDG used its role as a consult to evade FTC enforcement.5 A recent New York Times investigation found one network of telemarketers had raised $89 million in political donations on behalf of law enforcement, firefighters, and veterans, but had only spent 1% on actual campaign activities and contributions. As the Times notes, the group of operatives behind the robocalls used PACs to evade federal and state scrutiny — including FEC oversight — as they directed the majority of funds raised to their own consulting companies and private expenditures. In order to ensure our laws are robust and vigorously enforced, I am engaged in an oversigh"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.forbes.com/sites/zacheverson/2021/07/29/scam-pacs-two-groups-claim-to-support-vets-and-cops-while-blowing-all-their-money-on-administrative-fees/",
+   "outlet": "Forbes",
+   "date": "2021-07-29",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Scam PACs? Two Groups Claim To Support Vets And Cops While Blowing All Their Money On Administrative Fees.",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Scam PACs? Two Groups Claim To Support Vets And Cops While Blowing All Their Money On Administrative Fees. Subscribe To Newsletters BETA This is a BETA experience. You may opt-out by clicking here Edit Story Forbes Billionaires Editors' Pick Scam PACs? Two Groups Claim To Support Vets And Cops While Blowing All Their Money On Administrative Fees. Zach Everson Forbes Staff Zach Everson is a staff writer at Forbes covering money in po"
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+  "story_id": "S128",
+  "entity": "Late Form 13F holdings reports by US money managers, Jan 2024-May 2026 vs mid-2013 to Sep 2022 (national rate); named back-filer: Malaysia's pension fund (EPF/KWSP or KWAP), 68 back-filed reports",
+  "queries": [
+    {"q": "Employees Provident Fund Malaysia 13F filings late SEC", "found_useful": true},
+    {"q": "SEC charges institutional investment managers failing to file Form 13F September 2024 press release", "found_useful": true},
+    {"q": "wave of late 13F filings delinquent managers back-file years of reports after SEC sweep", "found_useful": true},
+    {"q": "Kumpulan Wang Persaraan KWAP 13F filings SEC U.S. holdings disclosed", "found_useful": false},
+    {"q": "EPF KWSP Form 13F US stocks disclosure The Edge Malaysia 2025", "found_useful": false},
+    {"q": "late Form 13F filings 2026 SEC enforcement delinquent institutional managers", "found_useful": true},
+    {"q": "investment manager \"failed to file\" Forms 13F from 2016 through 2022 SEC order settled", "found_useful": true},
+    {"q": "study late 13F filings increase share of 13F reports filed after deadline research", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/newsroom/press-releases/2024-135",
+      "outlet": "U.S. Securities and Exchange Commission",
+      "date": "2024-09-17",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The Securities and Exchange Commission today announced charges against 11 institutional investment managers for failing to file reports, known as Forms 13F, that they were required to file because they have discretion over more than $100 million in certain securities.",
+      "paywalled": false,
+      "searcher_note": "SEC 13F non-filer sweep, 11 managers incl. a Polish pension fund manager; no Malaysian entity named; no rate of late filings"
+    },
+    {
+      "url": "https://www.sec.gov/enforcement-litigation/administrative-proceedings/34-106287-s",
+      "outlet": "U.S. Securities and Exchange Commission",
+      "date": "2026-09-08",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Chief Compliance Officers recommended that the company file Forms 13F, however, no Forms 13F were filed until May 2026.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff SEC order: Independent Financial Group owed 13Fs from Feb 2022, filed none until May 2026, $500,000 penalty; one late filer, not the national rate or Malaysia"
+    },
+    {
+      "url": "https://btlaw.com/en/insights/alerts/2024/sec-sanctions-investment-managers-for-failure-to-report-on-forms-13f-and-13h",
+      "outlet": "Barnes & Thornburg (law firm alert)",
+      "date": "2024-09-24",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "Each of the firms made several remedial filings covering the time period during which it had failed to report as required.",
+      "paywalled": false,
+      "searcher_note": "Law-firm alert on the Sept 2024 sweep: charged managers back-filed missed 13Fs; pattern of catch-up filing, no count or rate"
+    },
+    {
+      "url": "https://www.nixonpeabody.com/insights/alerts/2024/10/29/faqs-sec-form-13f-enforcement-actions",
+      "outlet": "Nixon Peabody (law firm alert)",
+      "date": "2024-10-29",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "the SEC is trying to reward delinquent filers for self-reporting their failure to make required Form 13F submissions, while punishing those that attempt to catch up on delinquent filings without proactively flagging the issue for the SEC",
+      "paywalled": false,
+      "searcher_note": "Law-firm FAQ: late 13F catch-up filings are what triggered the 2024 enforcement; pattern only"
+    }
+  ],
+  "notes": "No source found naming Malaysia's Employees Provident Fund (or KWAP) as a late or back-filing 13F filer; EPF coverage found (moomoo 2026-04-01, WeirdKaya 2026-06-04) only describes its Q1 2026 13F holdings and says nothing about lateness, so not recorded. No source states a national rate of year-plus-late 13F reports (31 vs 9.5 per 1,000) or a count of 105 back-filers. Coverage found is the SEC's Sept 2024 13F non-filer sweep (11 managers; Gibson Dunn says 34 persons across 13F/13H in Sept 2024) and one Sept 2026 SEC order; these cover the pattern of late/back-filed 13Fs. SEC pages block generic bots but load with a declared user agent."
+}

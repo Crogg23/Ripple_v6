@@ -1,0 +1,12 @@
+{
+  "story_id": "S194",
+  "bin": "Matched + more",
+  "entity": "Companies late on stock-option award Form 4s in 2017-20 staying late in 2021-24; AgEagle as the exemplar",
+  "deciding_sources": [1, 2, 4],
+  "earliest_match_date": "2023-09-27",
+  "post_cutoff_match": false,
+  "what_we_add": "Cohort rates (roughly 13-20% vs 1.5% at 1,248 peers) and AgEagle's 85 of 117 awards 30+ days late",
+  "why": "SEC orders and the sweep coverage name AgEagle and report persistent late option-award Forms 4 spanning 2018-2022, same direction. No source has our cohort persistence percentages or the 85-of-117 count. Source 0 is blocked and not needed; source 1 carries the same facts.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

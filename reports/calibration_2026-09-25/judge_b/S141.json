@@ -1,0 +1,15 @@
+{
+ "story_id": "S141",
+ "bin": "Matched + more",
+ "entity": "4th Circuit published decisions, FY2025 vs FY2019",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2025-09-30",
+ "post_cutoff_match": false,
+ "what_we_add": "375 published FY2025 (+25%), median circuit fell 17%, 363 of 375 argued",
+ "why": "The B-12 tables name the circuit and show unpublished share falling 91.8% to 86.6%, i.e. published share rising 8.2 to 13.4, matching our 8.8 to 13.7 direction. But the tables' column meanings aren't stated on the page, so the 375 count can't be checked against them.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

@@ -1,0 +1,37 @@
+{
+  "story_id": "S011",
+  "entity": "Fast Pace Health (Brentwood TN urgent-care chain, Revelstoke-owned): share of new for-profit freestanding Medicare rural health clinics enrolled after the 2021 RHC payment law (189 of 731)",
+  "queries": [
+    {"q": "Fast Pace Health rural health clinics Medicare certification urgent care", "found_useful": false},
+    {"q": "for-profit urgent care chains rural health clinic designation growth after 2021 payment cap Fast Pace", "found_useful": true},
+    {"q": "\"Fast Pace\" private equity Revelstoke rural clinics expansion Tennessee news", "found_useful": false},
+    {"q": "number of new independent rural health clinics certified since 2021 for-profit chains study MedPAC OR NARHC OR \"Rural Health Research\"", "found_useful": false},
+    {"q": "\"Fast Pace\" \"rural health clinic\" OIG OR audit OR lawsuit OR Medicare billing", "found_useful": false},
+    {"q": "\"Fast Pace Health\" clinics 2026 Nashville Business Journal OR Tennessean OR Becker's", "found_useful": false},
+    {"q": "urgent care chains becoming rural health clinics higher Medicare Medicaid rates private equity investigation", "found_useful": false},
+    {"q": "Private Equity Stakeholder Project rural healthcare report \"Fast Pace\" rural health clinics", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.jucm.com/wp-content/uploads/2024/12/2024-19317-21-Practice-Management.pdf",
+      "outlet": "Journal of Urgent Care Medicine (Alan A. Ayers), 'Rural Urgent Care Growth Continues, But Challenges Remain'",
+      "date": "2024-12-01",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Fast Pace Health Revelstoke 269",
+      "paywalled": false,
+      "searcher_note": "Quote is a row of Figure 2 'Largest Rural Urgent Care Operators, 2024' (Fast Pace first, 269 centers). Same article discusses the 2021 CMS RHC rate change and says 'the RHC model presents a paradox' for urgent care. Does not count Fast Pace RHC enrollments or its share of new RHCs. HTML version (jucm.com/rural-urgent-care-growth-continues-but-challenges-remain/) shows the figure only as an image."
+    },
+    {
+      "url": "https://www.jucm.com/rural-and-tertiary-markets-the-next-urgent-care-frontier/",
+      "outlet": "Journal of Urgent Care Medicine (Alan A. Ayers)",
+      "date": "2019-12-02",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Began as one clinic in the small town of Collinwood, TN (population 949) in the fall of 2009 and has since expanded to 95 locations in four states.",
+      "paywalled": false,
+      "searcher_note": "Pre-2021 profile of Fast Pace as an all-rural urgent-care chain (95 clinics); no RHC mention. Useful only as baseline for growth. Site blocks curl; quote via WebFetch."
+    }
+  ],
+  "notes": "No source found that counts Fast Pace's rural health clinic enrollments or its share of new for-profit RHCs after the Consolidated Appropriations Act 2021 RHC payment change. Coverage found: trade press on rural urgent-care growth naming Fast Pace as the largest rural urgent-care operator; company and PE (Revelstoke, Shore Capital) press releases on clinic counts (company pages now say 280+ centers); PESP Jan 2023 report lists Fast Pace in a table of PE-owned rural providers (200 locations) with no RHC finding. No OIG, DOJ or CMS action found. No coverage dated July-Sept 2026 found. A Fast Pace careers page says a partner clinic group's 'clinics are certified as Rural Health Clinics' but that text is about a partner, not Fast Pace's own count."
+}

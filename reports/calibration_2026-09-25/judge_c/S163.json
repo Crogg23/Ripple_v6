@@ -1,0 +1,12 @@
+{
+ "story_id": "S163",
+ "bin": "Known pattern",
+ "entity": "The 45 big client companies where contractors' H-1B filings list wages a median 20.6% below the company's own, FY2019",
+ "deciding_sources": [1, 0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names the 45-company set or the FY2019 median-gap measure. Bloomberg/Yahoo report the same scheme at specific banks (Citi contractors $94K vs $142K direct hires) and IEEE at outsourcing firms generally: same pattern, other entities. Sources about parts of a multi-entity lead's universe are pattern, not match.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

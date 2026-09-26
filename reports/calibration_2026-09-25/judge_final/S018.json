@@ -1,0 +1,12 @@
+{
+  "story_id": "S018",
+  "bin": "Matched + more",
+  "entity": "Judge Rodney Gilstrap: cases assigned to him while he or his wife held a litigant's stock",
+  "deciding_sources": [1, 0, 3],
+  "earliest_match_date": "2021-09-29",
+  "post_cutoff_match": false,
+  "what_we_add": "the 183-case count for Apple, Microsoft, AT&T and Walmart specifically, over disclosure years 2010-20",
+  "why": "WSJ and ABA Journal name Gilstrap as the judge with the most stock conflicts - 138 cases while he or his wife held an interest - same finding, same direction. Their 138 counts law-violating cases across all holdings 2010-18; our 183 counts four named companies 2010-20, a different cut, so no contradiction, and nobody states our four-company number.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

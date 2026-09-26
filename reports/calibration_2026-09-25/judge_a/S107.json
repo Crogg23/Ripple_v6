@@ -1,0 +1,16 @@
+{
+ "story_id": "S107",
+ "bin": "Matched + more",
+ "entity": "LA-area (ZIP 912-916) concentration of newly enrolled Medicare home health agencies",
+ "deciding_sources": [
+  2,
+  0,
+  4
+ ],
+ "earliest_match_date": "2024-01-30",
+ "post_cutoff_match": true,
+ "what_we_add": "the 35%-vs-3% enrollment-era split and the Friar St Medicare-enrollment counts",
+ "why": "HHCN documents LA County HHAs jumping 46% in 2019-23 while the nation shrank, and the county motion and NBC LA name the Van Nuys/Friar St clustering - same finding, same direction. The 197-vs-9 Friar hospice gap is state licensing vs Medicare enrollment, a definition split, not a contradiction; the McDermott quote is missing and ignored.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

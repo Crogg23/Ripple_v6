@@ -1,0 +1,12 @@
+{
+  "story_id": "S076",
+  "bin": "Known pattern",
+  "entity": "29 Medicare-enrolled orgs signed for by someone sharing a banned person's name, city and state; National Health Transport and ASAP EMS drew money",
+  "deciding_sources": [0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "OIG reports the vulnerability in general: contractors missing exclusion checks could let excluded owners enroll. The Voyage MIA interview names National Health Transport and a Raul Rodriguez but reports no exclusion finding.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

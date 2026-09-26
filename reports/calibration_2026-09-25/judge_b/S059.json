@@ -1,0 +1,12 @@
+{
+  "story_id": "S059",
+  "bin": "Contradicted",
+  "entity": "Elgin, Illinois water system's newest 90th-percentile lead test",
+  "deciding_sources": [1, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Our lead says Elgin's newest test reads 53 ppb. The city's own July 2026 brochure and the Daily Herald put the newest 90th percentile at 18.5 ppb, 'much lower than previous periods' — same entity, same measure, more than 25% off. The over-the-limit claim itself matches, but one contradicted claim decides the bin.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

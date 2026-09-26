@@ -1,0 +1,47 @@
+{
+  "story_id": "S135",
+  "entity": "17 landfills on EPA GHGRP's 'stopped reporting, unknown reason' list that quit filing federal greenhouse-gas reports without a valid off-ramp (at least five hold operating air permits)",
+  "queries": [
+    {"q": "landfills stopped reporting greenhouse gas reporting program EPA unknown reason methane", "found_useful": false},
+    {"q": "landfills quit reporting GHGRP without off-ramp 98.2(i) analysis Environmental Integrity Project OR Industrious Labs", "found_useful": true},
+    {"q": "EPA GHGRP list of facilities that stopped reporting reasons \"not a valid\" OR \"unknown\" off-ramp status data", "found_useful": false},
+    {"q": "\"landfill\" \"stopped reporting\" emissions to EPA greenhouse gas news investigation", "found_useful": false},
+    {"q": "EPA finalizes greenhouse gas reporting program repeal 2026 landfills subpart HH final rule", "found_useful": true},
+    {"q": "EPA consent agreement landfill failure to submit greenhouse gas report 40 CFR part 98 penalty", "found_useful": false},
+    {"q": "landfills missing from EPA greenhouse gas data unreported methane 2026 analysis", "found_useful": true},
+    {"q": "facilities dropped out of Greenhouse Gas Reporting Program without valid reason study exit notices compliance gap", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://industriouslabs.org/archive/epa-takes-steps-to-address-underreporting-of-landfill-methane-emissions",
+      "outlet": "Industrious Labs",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Inspection reports from 29 landfills across the country found more than 711 methane exceedances — often when landfill operators themselves reported few or none.",
+      "paywalled": false,
+      "searcher_note": "Pattern of landfill methane under-reporting in general. Nothing about landfills dropping out of GHGRP. The page shows several dates (2021-2026) and none is clearly the publication date."
+    },
+    {
+      "url": "https://www.epa.gov/ghgreporting/subpart-hh-municipal-solid-waste-landfills",
+      "outlet": "U.S. EPA, GHGRP Subpart HH page",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "A landfill cannot stop reporting under the rule simply because it ceases operations",
+      "paywalled": false,
+      "searcher_note": "Explains the legal off-ramps: under 25,000 t CO2e for 5 years or under 15,000 t for 3 years; closing is not an exit. A rule explainer, not a finding. Page last updated 2026-09-21."
+    },
+    {
+      "url": "https://www.federalregister.gov/documents/2025/09/16/2025-17923/reconsideration-of-the-greenhouse-gas-reporting-program",
+      "outlet": "Federal Register (EPA proposed rule)",
+      "date": "2025-09-16",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The EPA is proposing to remove the reporting requirements of subpart HH for the reasons explained in section II.",
+      "paywalled": false,
+      "searcher_note": "The Sept-2025 repeal proposal the lead's caveat names. No final rule found in these searches; EPA pushed the RY2025 deadline to 2026-10-30."
+    }
+  ],
+  "notes": "No source found reporting that particular landfills stopped filing GHGRP reports without a valid exit, or naming EPA's 'stopped reporting, unknown reason' list. Found only general landfill under-reporting coverage (Industrious Labs), the off-ramp rule, and the repeal proposal. Query 8 set off 3 searches inside the tool, so about 10 searches ran and the per-story cap was reached."
+}

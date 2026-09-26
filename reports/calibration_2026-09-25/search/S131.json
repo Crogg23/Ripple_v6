@@ -1,0 +1,76 @@
+{
+  "story_id": "S131",
+  "entity": "Chronic late 10-K filers FY2023-FY2025 still exchange-listed: Laser Photonics, Global Interactive Technologies, BIO-key International, EON Resources (18-company cohort)",
+  "queries": [
+    {"q": "BIO-key late 10-K filing Nasdaq deficiency notice", "found_useful": true},
+    {"q": "Laser Photonics Nasdaq notice delinquent annual report 10-K", "found_useful": true},
+    {"q": "Global Interactive Technologies Nasdaq notice late Form 10-K", "found_useful": true},
+    {"q": "EON Resources NYSE American notice late annual report 10-K", "found_useful": true},
+    {"q": "companies repeatedly late filing 10-K NT 10-K three consecutive years analysis small caps", "found_useful": true},
+    {"q": "Laser Photonics regains compliance Nasdaq April 2026 Form 10-K fiscal 2025", "found_useful": true},
+    {"q": "NT 10-K filings 2026 trends repeat late filers micro caps", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1019034/000143774924012736/ex_657938.htm",
+      "outlet": "BIO-key International press release (SEC EDGAR exhibit 99.1)",
+      "date": "2024-04-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "failure to timely file its Annual Report on Form 10-K for the fiscal year ended December 31, 2023",
+      "paywalled": false,
+      "searcher_note": "BIO-key got a Nasdaq Rule 5250(c)(1) notice on April 17, 2024 for the late FY2023 10-K."
+    },
+    {
+      "url": "https://www.stocktitan.net/news/BKYI/bio-key-receives-notice-of-non-compliance-from-nasdaq-related-to-zptqrvvtpmy5.html",
+      "outlet": "Stock Titan (reprints BIO-key press release)",
+      "date": "2026-04-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "failure to timely file its Annual Report on Form 10-K for the year ended December 31, 2025",
+      "paywalled": false,
+      "searcher_note": "BIO-key late again for FY2025; Nasdaq notice, stock still listed. A June 10, 2026 follow-up says a late 10-Q sent it to a Nasdaq Hearing Panel."
+    },
+    {
+      "url": "https://laserphotonics.com/news/press-releases/laser-photonics-received-nasdaq-notice-of-delisting-for-failure-to-satisfy-a-continued-listing-rule-or-standard/",
+      "outlet": "Laser Photonics press release",
+      "date": "2025-05-29",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "the Company remains delinquent in filing its Form 10-K for the period ended December 31, 2024",
+      "paywalled": false,
+      "searcher_note": "Laser Photonics' FY2024 10-K was still unfiled in late May 2025; Nasdaq delisting notice, exception window to Oct 13, 2025."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1807887/000149315226018345/ex99-1.htm",
+      "outlet": "Laser Photonics press release (SEC EDGAR exhibit 99.1)",
+      "date": "2026-04-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "On April 20, 2026, the Company filed the 2025 Form 10-K with the SEC, and on April 21, 2026, Nasdaq confirmed that the Company had regained compliance with the rule.",
+      "paywalled": false,
+      "searcher_note": "Laser Photonics' FY2025 10-K was filed April 20, 2026, five days after the extended April 15 deadline; compliance regained the next day."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1911545/000149315226017155/ex99-1.htm",
+      "outlet": "Global Interactive Technologies press release (SEC EDGAR exhibit 99.1)",
+      "date": "2026-04-17",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "the Company did not timely file its Annual Report on Form 10-K for the year ended December 31, 2025 with the Securities and Exchange Commission",
+      "paywalled": false,
+      "searcher_note": "GIT got a Nasdaq delinquency letter April 16, 2026 over its FY2025 10-K; a search snippet says the 10-K was filed May 26, 2026."
+    },
+    {
+      "url": "https://www.newswire.com/news/eon-resources-inc-announces-notice-of-failure-to-satisfy-a-continued-listing",
+      "outlet": "Newswire (EON Resources press release)",
+      "date": "2026-04-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "as a result of its failure to timely file its Annual Report on Form 10-K for the fiscal year ended December 31, 2025",
+      "paywalled": false,
+      "searcher_note": "EON Resources got an NYSE American notice over its FY2025 10-K; it has until Oct 15, 2026 to file."
+    }
+  ],
+  "notes": "Every source is a company's own disclosure of one year's late 10-K. None is press analysis, and no source lists these four, or the 18-company cohort, as late three years running. Multi-year lateness is shown only for BIO-key (FY2022, FY2023, FY2025 notices) and Laser Photonics (FY2024, FY2025). For GIT and EON only FY2025 was fetched. Extra sources not in the list: BIO-key FY2022 delinquency, SEC exhibit dated 2023-05-30, https://www.sec.gov/Archives/edgar/data/1019034/000143774923016136/ex_527536.htm ('the Company remains delinquent in filing its Form 10-K for the period ended December 31, 2022'). GIT's late Q2 2026 10-Q got a Nasdaq notice Aug 20, 2026, per GlobeNewswire 2026-08-21: https://www.globenewswire.com/news-release/2026/08/21/3349306/0/en/global-interactive-technologies-inc-announces-receipt-of-a-compliance-delinquency-notice-from-nasdaq.html. Pattern source: Hudson Labs, 2025-04-04, https://hudson-labs.com/post/nt-10-k-filings-trends-2025 ('22 companies, primarily micro caps, have filed their seventh consecutive NT 10-K (since our tracking began in 2019).'). It names none of the four. The 2026 NT 10-K trend query found no new 2026 aggregate coverage."
+}

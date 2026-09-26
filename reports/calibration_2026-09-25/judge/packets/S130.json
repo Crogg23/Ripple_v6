@@ -1,0 +1,82 @@
+{
+ "story_id": "S130",
+ "lead": {
+  "headline": "355 fund holdings reports still count in thousands, not dollars: about $2.6 trillion missing, a third from T. Rowe Price",
+  "number": "355 of 8,631 original Q1 2026 13F reports in thousands (the rule has said dollars since Jan 2023); x1,000 that's about $2.6T; T. Rowe's own cover page totals $864,926,710",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "13F_SUBMISSION is an exact copy of the Mar-May 2026 window inside 13F_HOLDINGS; union the two and you double-count."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "13F filings still reported in thousands instead of dollars error value misreported",
+  "T. Rowe Price 13F value reported in thousands 2026 total $864 billion",
+  "13F data quality filers \"thousands\" after January 2023 rule change nearest dollar mixed units analysis",
+  "WRDS OR researchers 13F \"value\" units change 2023 some managers continue reporting in thousands correction",
+  "13F filing error units thousand-fold fund holdings overstated understated news 2025 2026",
+  "\"13F-HR/A\" amendment values \"in thousands\" restate to dollars \"nearest dollar\" 2026",
+  "\"T. Rowe Price\" 13F amendment values thousands dollars correction 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.sec.gov/Archives/edgar/data/80255/000008025526000381/xslForm13F_X02/primary_doc.xml",
+   "outlet": "T. Rowe Price Associates, Form 13F-HR via SEC EDGAR",
+   "date": "2026-05-15",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "Form 13F Information Table Value Total: 864,926,710 (round to nearest dollar)",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.sec.gov/Archives/edgar/data/312069/000031206926000081/xslForm13F_X02/primary_doc.xml",
+   "outlet": "Barclays PLC, Form 13F-HR/A via SEC EDGAR",
+   "date": "2026-03-19",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "All values were previously reported in denominations of thousands and have been updated in this amendment to reflect exact dollar values in accordance with Form 13F requirements.",
+   "paywalled": false,
+   "quote_check": "blocked",
+   "page_context": ""
+  },
+  {
+   "idx": 2,
+   "url": "https://www.finrep.ai/blog/sec-13f-reporting-requirements-2026-compliance-guide",
+   "outlet": "Finrep (13F filing vendor blog)",
+   "date": "2026-06-17",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "Legacy systems that still round to thousands are producing non-compliant filings.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "5148 in June 2022. The amended form became required starting January 3, 2023. If your systems or templates predate that change, you may still be filing incorrectly. The five key changes: Rounding to the nearest dollar. Dollar values must now be rounded to the nearest dollar, not the nearest $1,000. Legacy systems that still round to thousands are producing non-compliant filings. CRD and SEC file numbers required. Managers must now report their Central Registration Depository (CRD) number and SEC file number, if any. FIGI as a supplemental identifier. The Financial Instrument Global Identifier (FIGI) may now be used in addition to, but not instead of, the CUSIP number. Summary Page checkbox for confidential"
+  },
+  {
+   "idx": 3,
+   "url": "https://edgarscout.com/13f-filings/",
+   "outlet": "EdgarScout",
+   "date": "2026-05-28",
+   "source_type": "company",
+   "entity_named": "no",
+   "quote": "The failure is silent: nothing in the XML flags the unit.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "March 12, 2024 so that older data sets share the file format of the 2023 data sets. Why this creates 1,000x errors in historical analysis If you build a time series that spans the change without handling it, every pre-2023 quarter is understated by a factor of 1,000 relative to every later quarter. The failure is silent: nothing in the XML flags the unit. The only reliable signal is the filing date. Filing date Unit in the value field Normalisation to dollars Before January 3, 2023 Thousands of dollars Multiply the value by 1,000 On or after January 3, 2023 Whole dollars Use the value as filed Amendment filed on or after January 3, 2023 for an older quarter Whole dollars Use as fil"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f",
+   "outlet": "SEC Division of Investment Management",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "The requirement starting January 3, 2023 to round to the nearest dollar represents a change from the prior requirement to round such values to the nearest thousand dollars.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nt. For example, an entry of \"$150,000,000\" represents $150,000,000. This approach is consistent with the Form 13F Information Table's method of reporting individual security positions. See Special Instruction 8 of Form 13F . Accordingly, you must round the \"value total\" to the nearest U.S. dollar. The requirement starting January 3, 2023 to round to the nearest dollar represents a change from the prior requirement to round such values to the nearest thousand dollars. See SEC Release No. 34- 95148 (June 23, 2022). Question 37 (Updated: January 3, 2023) Q: What is the \"List of Other Included Managers\" A: You complete this item only if you are reporting holdings for other managers, who also meet the $100 million filing threshold, because you share investment discretion with them. This is one of the plac"
+  }
+ ]
+}

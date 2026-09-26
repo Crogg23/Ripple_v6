@@ -1,0 +1,67 @@
+{
+  "story_id": "S190",
+  "entity": "RA Capital, OrbiMed and Baker Bros filing as director (SEC insider filings) at biotech companies in 2024; investment-firm directors at biotechs vs software companies",
+  "queries": [
+    {"q": "RA Capital OrbiMed Baker Bros board seats biotech companies director", "found_useful": true},
+    {"q": "\"director by deputization\" biotech venture funds Section 16 RA Capital", "found_useful": false},
+    {"q": "RA Capital board seats dozens of biotech companies influence STAT News", "found_useful": true},
+    {"q": "Baker Brothers directors Section 16 insider filings biotech portfolio companies board control", "found_useful": true},
+    {"q": "investor-dominated boards biotech venture capitalists hold board seats study interlocking directors life sciences", "found_useful": true},
+    {"q": "biotech boards stacked with investors vs software companies independent directors 2024 analysis", "found_useful": false},
+    {"q": "Bloomberg Foxman 2019 Baker brothers biotech billionaires board seats portfolio companies", "found_useful": true},
+    {"q": "biotech investors board directors conflicts crossover funds RA Capital OrbiMed 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.bloomberg.com/news/articles/2019-11-01/baker-brothers-turn-biotech-prowess-into-a-3-8-billion-fortune",
+      "outlet": "Bloomberg",
+      "date": "2019-11-01",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Baker Brothers Make $1.4 Billion in Two Weeks on Biotech",
+      "paywalled": true,
+      "searcher_note": "Paywalled (403). Headline only. Per Wikipedia, which cites it, this is the source for Baker Bros employees sitting on boards of 8 of its top 20 public holdings; not verified from the page itself."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Baker_Brothers_Advisors",
+      "outlet": "Wikipedia",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "As of 2019, BBA's top 20 disclosed public company investments eight have at least one board member who are BBA employees.",
+      "paywalled": false,
+      "searcher_note": "Encyclopedia entry citing Bloomberg (Foxman, 2019-11-01). Names Baker Bros putting its employees on portfolio-company boards; 2019 window, no count of 2024 director filings, no software comparison."
+    },
+    {
+      "url": "https://www.racap.com/structured-capital",
+      "outlet": "RA Capital Management",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Our network of 200+ portfolio companies and 100+ board seats creates access no one else has.",
+      "paywalled": false,
+      "searcher_note": "RA Capital's own site claims 100+ board seats across its portfolio. Undated, no year window, not a count of SEC director filings."
+    },
+    {
+      "url": "https://www.columbialawreview.org/content/anticompetitive-directors/",
+      "outlet": "Columbia Law Review",
+      "date": "2025-11-13",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Once combined, individual and investor-level interlocks reach 13.4% of all companies—including 30.1% of pharmaceuticals and biotechnology companies and 16.9% of all IT and software companies.",
+      "paywalled": false,
+      "searcher_note": "Pattern: investment-fund employees on competing boards, far more common in pharma/biotech than IT/software. Measures interlocks, not director filings; names no firm. Page also says about 65% of interlocking directors lead PE/VC/investment funds."
+    },
+    {
+      "url": "https://maandhunter.substack.com/p/board-pedigree-in-biotech-versus",
+      "outlet": "Substack (maandhunter)",
+      "date": "2026-09-18",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Add Jake Simson and Robert More, both career biotech investors from RA Capital and Alta Partners respectively",
+      "paywalled": false,
+      "searcher_note": "After the cutoff. Names an RA Capital investor on one biotech board (TYRA). Does not report the finding: no count and no sector comparison."
+    }
+  ],
+  "notes": "No source found counting SEC director filings by investment firms in 2024, or comparing biotech with software on that measure. No source names OrbiMed's or RA Capital's 2024 director-filing counts (16, 21). Named-entity coverage is general: Baker Bros employees on portfolio boards (Bloomberg 2019 via Wikipedia) and RA Capital's claim of 100+ board seats. The closest pattern source is the Columbia Law Review interlocks paper (biotech 30.1% vs IT/software 16.9%), which measures a different thing. The Bloomberg page was paywalled; its content is taken only from the Wikipedia citation."
+}

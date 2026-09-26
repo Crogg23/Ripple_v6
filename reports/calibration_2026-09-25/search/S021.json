@@ -1,0 +1,29 @@
+{
+  "story_id": "S021",
+  "entity": "Julie Linn Minnehan, Texas lobbyist; corrected March 2026 lobby report, $79,647.58 private air and Hilton Midtown for a March 30-31 2026 New York trip with Sen. Angela Paxton and three Texas House members (clients Success Academy, Kleinheinz Capital Partners)",
+  "queries": [
+    {"q": "Angela Paxton New York trip Success Academy lobbyist private plane 2026", "found_useful": false},
+    {"q": "Julie Minnehan lobbyist Kleinheinz Success Academy Texas legislators New York trip", "found_useful": false},
+    {"q": "Texas lawmakers visit Success Academy New York charter schools Jeff Leach March 2026", "found_useful": false},
+    {"q": "Texas lobbyist report private flight Hilton Midtown legislators $79,647", "found_useful": false},
+    {"q": "Success Academy Eva Moskowitz Texas expansion lawmakers trip New York 2026", "found_useful": false},
+    {"q": "Texas legislators lobbyist-paid trips 2026 private jet ethics report Texas Tribune", "found_useful": true},
+    {"q": "\"Success Academy\" Texas legislators Paxton Leach New York school visit lobbyist", "found_useful": false},
+    {"q": "Kleinheinz Capital Partners lobbyist Texas charter school Success Academy lawmakers flight", "found_useful": false},
+    {"q": "Angela Paxton lobbyist paid travel disclosure New York charter school tour senators representatives", "found_useful": false},
+    {"q": "Texas lawmakers flew to New York lobbyist paid trip school choice charter 2026 news", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.ethics.state.tx.us/resources/guides/Bcan-i-travel.php",
+      "outlet": "Texas Ethics Commission",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "an officer or employee in the legislative or executive branch of state government is subject to a general prohibition on the acceptance of transportation and lodging from a registered lobbyist.",
+      "paywalled": false,
+      "searcher_note": "The rule itself (fact-finding trip exception; lobbyist must be present). Not coverage of any trip; context only."
+    }
+  ],
+  "notes": "No page found naming Minnehan, the March 2026 New York trip, or the $79,647 report. No press found on Texas lawmakers visiting Success Academy. The only source recorded is the TEC rule page, which is not pattern coverage. Houston Chronicle 'Records: lobbyists spent $1.1 million catering to Texas lawmakers since 2005 for conference travel' (houstonchronicle.com/.../7955756.php) came up in search but would not load via fetch; no quote taken. The Transparency USA page for Julie Linn Minnehan returned 403. Texas Observer 'A Jet-Setting Lobbyist-Turned-CEO, the Paxtons, and an Alleged Massive Fraud' is about a different lobbyist; not recorded."
+}

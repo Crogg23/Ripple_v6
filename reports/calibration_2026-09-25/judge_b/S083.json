@@ -1,0 +1,12 @@
+{
+ "story_id": "S083",
+ "bin": "Matched + more",
+ "entity": "2024 congressional races where outside spending beat the candidate's own; Moreno as the extreme case",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2024-09-25",
+ "post_cutoff_match": true,
+ "what_we_add": "The count: 104 of 637 races, 82 over $1M; and the 5.8x ratio ($152M vs $26M)",
+ "why": "Inside Political Money and Newsweek both report Moreno relying on outside money that dwarfed his own ($186.1M vs $14.8M raised), same direction, within 25% of our outside figure. No source counts how many races flipped that way; 104 of 637 is ours alone.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

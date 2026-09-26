@@ -1,0 +1,12 @@
+{
+ "story_id": "S082",
+ "bin": "Matched + more",
+ "entity": "National e-bike plus moped ER visits (NEISS code 3215), 2019-2023",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2023-10-17",
+ "post_cutoff_match": true,
+ "what_we_add": "The combined 3215 series 21,800 to 87,600 (4.0x), and the comparison that all injuries stayed flat (0.95x); sources report e-bikes alone (34,200 in 2023, near-10x from 2017)",
+ "why": "CPSC, WRDW and USAFacts all report the same surge in the same NEISS data, same direction. Their 2023 number (34,200) is e-bikes only, ours folds in mopeds, so no contradiction; nobody states our combined figures or the flat-baseline comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

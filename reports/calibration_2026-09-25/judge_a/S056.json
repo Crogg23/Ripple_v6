@@ -1,0 +1,16 @@
+{
+  "story_id": "S056",
+  "bin": "Matched + more",
+  "entity": "NYC 2025 mayor race money: Fix the City $35.6M vs Mamdani $4.03M from 54,103 gifts",
+  "deciding_sources": [
+    0,
+    1,
+    2
+  ],
+  "earliest_match_date": "2025-12-03",
+  "post_cutoff_match": true,
+  "what_we_add": "Fix the City's donor count, 381 gifts; no usable source states how few gifts made the $35.6M",
+  "why": "CFB shows $35,555,626 for Fix the City; THE CITY says 54,000+ Mamdani donors, Chalkbeat ~53,890 and ~$4M. Citizens Union's 40,824 is contributors on a different definition, not a contradiction.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

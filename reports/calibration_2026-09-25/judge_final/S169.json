@@ -1,0 +1,12 @@
+{
+  "story_id": "S169",
+  "bin": "Matched + more",
+  "entity": "earthquake swarm around Red River Parish, Louisiana: none before 2024, 29 M2.5+ since, topped by M4.9",
+  "deciding_sources": [1, 0],
+  "earliest_match_date": "2026-03-12",
+  "post_cutoff_match": true,
+  "what_we_add": "the zero M2.5+ in 2010-2023 baseline and the 29-event count in the defined box",
+  "why": "Tulane and the Advocate report the same swarm and the March 5 M4.9 near Coushatta, same entity, same direction. The Advocate's 35-since-2022 figure covers northwestern Louisiana broadly, not our box, so it is not a clean contradiction of zero-before-2024.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

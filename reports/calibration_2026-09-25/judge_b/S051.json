@@ -1,0 +1,12 @@
+{
+  "story_id": "S051",
+  "bin": "Matched + more",
+  "entity": "US for-profit vs nonprofit nursing homes on staffing hours and fines",
+  "deciding_sources": [0, 3],
+  "earliest_match_date": "2024-03-14",
+  "post_cutoff_match": true,
+  "what_we_add": "fines per bed by ownership ($320 vs $205) and Arcadia Care as worst chain at $1,357 per bed",
+  "why": "Care Considered states the staffing gap in numbers - for-profits 0.71 fewer nurse hours per resident-day, matching our 3.70 vs 4.40 - and The Conversation states it in words. No source gives fines per bed by ownership or Arcadia's per-bed figure.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

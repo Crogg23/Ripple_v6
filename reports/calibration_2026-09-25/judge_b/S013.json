@@ -1,0 +1,12 @@
+{
+ "story_id": "S013",
+ "bin": "Matched + more",
+ "entity": "NHTSA probe PE19010 into Nissan Rogue phantom braking: open for years, no recall",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2020-08-06",
+ "post_cutoff_match": false,
+ "what_we_add": "2,572 days open vs the 234-day median defect probe - no source has the duration or the median",
+ "why": "Consumer Reports notes the Nissan probe open since 2019 while most close within 12 months; Center for Auto Safety says NHTSA lets Nissan avoid a recall. Same entity, same finding, same direction.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

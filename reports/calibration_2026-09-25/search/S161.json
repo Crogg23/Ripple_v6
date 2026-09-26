@@ -1,0 +1,47 @@
+{
+  "story_id": "S161",
+  "entity": "U.S. Department of Homeland Security, Google ads filed as political (Google political ads transparency data), Mar 2025-Feb 2026, $5.29M",
+  "queries": [
+    {"q": "Department of Homeland Security Google political ads transparency report", "found_useful": false},
+    {"q": "DHS Noem ad campaign Google political ads spending million", "found_useful": true},
+    {"q": "\"Homeland Security\" top political advertiser Google ads 2025 self-deportation Transparency Center", "found_useful": true},
+    {"q": "Google labeled DHS ads \"election ads\" OR \"political ads\" government agency verified advertiser", "found_useful": false},
+    {"q": "DHS YouTube Google ad spending 2026 Mullin ad campaign halted", "found_useful": false},
+    {"q": "\"Google\" political ad library \"Department of Homeland Security\" spent YouTube ads Noem \"transparency\"", "found_useful": false},
+    {"q": "DHS advertising campaign political ads inspector general report August 2026", "found_useful": false},
+    {"q": "DHS \"Google\" ads \"$4.3 million\" OR \"$5.3 million\" OR \"$4.29 million\" political self-deportation", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://washingtonsun.com/immigration/department-homeland-security-video-ads-self-deportation-facebook-instagram?redirected=notus_org",
+      "outlet": "NOTUS (now redirects to washingtonsun.com)",
+      "date": "2025-10-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "DHS spent $297,100 — and counting — on YouTube ads in the U.S. so far in October, according to Google's ad transparency center.",
+      "paywalled": false,
+      "searcher_note": "Names DHS and cites Google's ad transparency center for DHS YouTube spend; also quotes Sen. Peters calling the videos political ads. Original URL notus.org/immigration/department-homeland-security-video-ads-self-deportation-facebook-instagram 301-redirects here."
+    },
+    {
+      "url": "https://jayapal.house.gov/2026/01/22/reps-jayapal-and-balint-push-meta-and-google-to-end-ice-ad-partnerships-using-white-nationalist-propaganda/",
+      "outlet": "Office of Rep. Pramila Jayapal",
+      "date": "2026-01-22",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "The letter to Google also calls out a reported $3 million in ICE advertisements on Google and YouTube that promoted 'self-deportation.'",
+      "paywalled": false,
+      "searcher_note": "Congressional letter citing DHS/ICE Google and YouTube ad spend; also says ICE placed $5.8 million in ads with Meta and Google last year. Does not mention Google's political-ad classification."
+    },
+    {
+      "url": "https://www.axios.com/2025/10/15/trump-self-deportation-ads-noem",
+      "outlet": "Axios",
+      "date": "2025-10-15",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "2025's big ad spender: The U.S. taxpayer",
+      "paywalled": true,
+      "searcher_note": "Bot-blocked (HTTP 403 to WebFetch and curl), not a true paywall; headline used as quote. Search snippet said DHS ran the most expensive political ad campaign of 2025, at least $51M per AdImpact, and that DHS disputes its ads are political. Snippet text not verified on page."
+    }
+  ],
+  "notes": "Lead is pre_known (lead_cites_press). Plenty of coverage names DHS's 2025-26 ad campaign ($200M-$240M contracts, Noem, Strategy Group, Safe America Media: ProPublica, Bloomberg, The Hill, NewsNation, Senate Welch letters) but those are TV/contract stories, not Google. The only Google-specific coverage found: NOTUS citing Google's ad transparency center ($297,100 YouTube in Oct 2025) and Jayapal/Balint letter ($3M Google/YouTube). No source found stating that Google filed DHS as a political/election advertiser, that DHS is the only federal agency in Google's political ad data, the $5.29M total, or the #3-of-2025 rank. Axios (AdImpact, all platforms) calls it the year's most expensive political ad campaign and says DHS disputes the ads are political: that is the closest disagreement found. Daily Beast 2019 story on Facebook/Instagram labeling DHS recruitment ads political exists but is Meta, not Google, so not recorded. No coverage dated after 2026-06-30 found. Axios fetch via web.archive.org and curl both failed from here."
+}

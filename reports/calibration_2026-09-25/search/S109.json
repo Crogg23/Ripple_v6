@@ -1,0 +1,67 @@
+{
+  "story_id": "S109",
+  "entity": "Semaglutide ingredient drug master files filed with FDA, Jan 2023-Jun 2026 (83 files, 54 companies); plus Harbin Jixianglong Biotech semaglutide API recall, Feb 2026",
+  "queries": [
+    {"q": "semaglutide drug master files DMF surge API manufacturers FDA", "found_useful": false},
+    {"q": "Harbin Jixianglong Biotech semaglutide recall", "found_useful": true},
+    {"q": "number of semaglutide drug master files filed FDA Chinese API makers compounding 2024", "found_useful": false},
+    {"q": "\"drug master files\" semaglutide tirzepatide filings rise generic API suppliers", "found_useful": false},
+    {"q": "semaglutide generics patent expiry 2026 API suppliers DMFs dozens Chinese Indian companies filed", "found_useful": false},
+    {"q": "FDA green list GLP-1 API import alert 66-80 semaglutide suppliers number of firms", "found_useful": true},
+    {"q": "semaglutide API DMF filings record 2025 2026 news", "found_useful": true},
+    {"q": "FDA \"48 GLP-1 API\" sites inspections remote regulatory assessments green list", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/harbin-jixianglong-biotech-co-ltd-723330-05012026",
+      "outlet": "FDA (warning letter 723330)",
+      "date": "2026-05-01",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "On February 19, 2026, you initiated a voluntary recall of the two semaglutide API batches distributed in the United States.",
+      "paywalled": false,
+      "searcher_note": "Primary record for the Harbin recall detail only; letter says recall initiated Feb 19, 2026 (lead says 2026-02-13). Nothing on DMF counts."
+    },
+    {
+      "url": "https://www.biospace.com/fda/fda-sends-warning-letter-after-chinese-supplier-breaks-glp-1-import-restrictions",
+      "outlet": "BioSpace",
+      "date": "2026-05-20",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "FDA recommended that Jixianglong recall the batches, leading the company to pull the API from the U.S. market in February.",
+      "paywalled": false,
+      "searcher_note": "Trade press on the Harbin warning letter and recall; no mention of drug master file counts or a filing rush."
+    },
+    {
+      "url": "https://www.alabamaag.gov/attorney-general-marshall-leads-coalition-alerts-national-security-council-to-exploitation-of-fda-approved-drugs-by-china-supply-chain/",
+      "outlet": "Alabama Attorney General's Office",
+      "date": "2026-09-18",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Specifically, Chinese company Harbin Jixianglong Biotech Co., Ltd (Harbin) was found to have purchased knock-off semaglutide from a non-Green List facility that was not registered with the FDA.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff (Sept 2026) 20-state AG coalition release naming Harbin; nothing on DMF counts."
+    },
+    {
+      "url": "https://www.pharmadb.ai/suppliers/semaglutide/india",
+      "outlet": "PharmaDB",
+      "date": "2026-07-09",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "8 India-based manufacturers with an active filing of 61 worldwide",
+      "paywalled": false,
+      "searcher_note": "Supplier directory counting 61 manufacturers worldwide with an active semaglutide filing; a directory count, not a DMF-by-year rush, different definition."
+    },
+    {
+      "url": "https://www.pharmaceuticalonline.com/doc/fda-cracks-down-on-glp-imports-0001",
+      "outlet": "Pharmaceutical Online",
+      "date": "2025-09-11",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "The FDA either physically inspected or conducted remote regulatory assessments of 48 GLP-1 API sites and found that nearly one-fifth were not compliant under section 501 of the FD&C Act.",
+      "paywalled": false,
+      "searcher_note": "Pattern/context: crowd of GLP-1 API sites FDA had to vet for the green list; not a DMF filing count."
+    }
+  ],
+  "notes": "No source found reports the core finding: a count of semaglutide drug master files by filing year, 83 since 2023, or a comparison to past waves since 1980 (tirzepatide 40, esomeprazole 36). PharmaCompass DMF listing pages returned 403 and could not be quoted; C&EN 'Looming GLP-1 drug patent expirations draw generics firms' (Dec 2025) returned 406 and could not be checked. The Harbin recall is covered widely, but the FDA letter dates the recall start Feb 19, 2026, not Feb 13 (the enforcement-report date may differ). Washington Examiner piece on Harbin is paywalled and not recorded. Tennessee AG release (2026-09-23) failed to load."
+}

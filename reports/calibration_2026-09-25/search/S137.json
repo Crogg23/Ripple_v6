@@ -1,0 +1,67 @@
+{
+  "story_id": "S137",
+  "entity": "US individual wastewater (NPDES) permits over discharge limits in 8+ of 12 quarters in both 2020-23 and 2023-26 with no formal enforcement: 433 nationally; Missouri 97, Ohio 68",
+  "queries": [
+    {"q": "wastewater permits violating discharge limits years no enforcement Missouri analysis", "found_useful": false},
+    {"q": "Clean Water Act chronic violators significant noncompliance no formal enforcement EPA ECHO report", "found_useful": true},
+    {"q": "Missouri DNR sewage plants repeat violations little enforcement Missouri Independent", "found_useful": false},
+    {"q": "Ohio EPA wastewater plants repeatedly exceed permit limits no enforcement investigation", "found_useful": false},
+    {"q": "EPA State Review Framework Missouri Clean Water Act significant noncompliance enforcement not timely appropriate", "found_useful": true},
+    {"q": "Environmental Integrity Project Clean Water Act permit violations facilities no penalties report", "found_useful": false},
+    {"q": "EPA \"Top 200\" facilities effluent significant noncompliance Region 5 chronic wastewater violators", "found_useful": true},
+    {"q": "sewage treatment plants violating Clean Water Act for years without penalties 2026 investigation", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2026-05/srf-rd5-rev-mo.pdf",
+      "outlet": "US EPA Region 7, State Review Framework Round 5 report, Missouri",
+      "date": "2026-05-05",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Facilities with a pattern of repeated noncompliance were continually issued LOWs and NOVs, remaining out of compliance with no referral for formal enforcement.",
+      "paywalled": false,
+      "searcher_note": "EPA audit of Missouri's Clean Water Act program (FY2024 review year) finds repeat violators left without formal enforcement; also says Missouri under-flags SNC in the national database. Names Missouri, not the 97 or 433 counts."
+    },
+    {
+      "url": "https://www.epa.gov/system/files/documents/2025-02/srf-rd4-rev-oh.pdf",
+      "outlet": "US EPA Region 5, State Review Framework Round 4 report, Ohio",
+      "date": "2025-01-15",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Ohio EPA will reduce by 30% the number of facilities in effluent SNC for 4 or more quarters.",
+      "paywalled": false,
+      "searcher_note": "EPA audit of Ohio's Clean Water Act program (FY2022 review year): 0 of 18 majors got timely formal action for SNC; only 13 of 26 files had appropriate enforcement; Ohio commits to cut long-running effluent SNC facilities (baseline: Region 5 Top 200 list). Names Ohio, not the 68 or 433 counts."
+    },
+    {
+      "url": "https://elpc.org/resources/region-7-clean-water-enforcement-report/",
+      "outlet": "Environmental Law & Policy Center",
+      "date": "2020-10-14",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "shrinking funds, plummeting staff levels, declining enforcement metrics, and a corresponding rise in significant noncompliance with the Clean Water Act",
+      "paywalled": false,
+      "searcher_note": "Pattern: EPA Region 7 (Iowa, Kansas, Missouri, Nebraska) Clean Water Act enforcement decline and rising SNC. Missouri named only as a Region 7 state."
+    },
+    {
+      "url": "https://www.gao.gov/products/gao-21-290",
+      "outlet": "US GAO",
+      "date": "2021-07-12",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "nearly 11,000 facilities significantly exceeded their permit limits and illegally discharged pollutants into nearby waters in 2018.",
+      "paywalled": false,
+      "searcher_note": "Pattern: national significant noncompliance under NPDES; GAO also flags that only about 70% of facilities have complete enough data to track compliance."
+    },
+    {
+      "url": "https://www.epa.gov/enforcement/national-enforcement-and-compliance-initiative-reducing-significant-non-compliance",
+      "outlet": "US EPA",
+      "date": "2025-12-15",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Coordinated with NPDES authorized states to achieve an FY 2023 SNC rate of 9.3% from an FY 2018 baseline of 20.3%.",
+      "paywalled": false,
+      "searcher_note": "Counterpoint: EPA reports the national NPDES SNC rate fell by more than half, 2018 to 2023. Different measure (one-year SNC rate), not chronic multi-year violators without formal action."
+    }
+  ],
+  "notes": "No news or report found that counts permits in chronic violation over 2020-2026 without formal enforcement, or the 433 / Missouri 97 / Ohio 68 figures. Closest are EPA's own State Review Framework audits of Missouri (May 2026) and Ohio (Jan 2025), which find repeat violators left without formal enforcement in each state; the Missouri audit also says Missouri does not consistently flag SNC in the national database, which bears on the lead's watch-out (state actions that never reach EPA's system). Page quotes from the two SRF PDFs were copied from the PDF text layer. No local news coverage found for either state."
+}

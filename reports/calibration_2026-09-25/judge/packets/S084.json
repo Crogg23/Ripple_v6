@@ -1,0 +1,81 @@
+{
+ "story_id": "S084",
+ "lead": {
+  "headline": "Forest County, Pennsylvania, has 1,685 orphaned oil and gas wells for every 10,000 residents",
+  "number": "Forest PA 1,685 per 10K people; Monroe OH 1,491; Nowata OK 1,441; Venango PA holds 4,786 wells, 25% of Pennsylvania's.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "One 2019-22 snapshot with no operator column, and counts track how hard each state looked."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Forest County Pennsylvania orphaned oil gas wells per capita",
+  "counties most orphaned wells per resident Pennsylvania Ohio Oklahoma Venango Forest analysis",
+  "\"Forest County\" orphan wells Allegheny National Forest plugging",
+  "orphaned wells per capita county ranking \"Monroe County\" Ohio \"Nowata\"",
+  "Venango County orphan wells share of Pennsylvania most in state 2026",
+  "\"orphan wells\" \"per 10,000 residents\" OR \"per capita\" county highest rural Pennsylvania Oklahoma"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.edf.org/sites/default/files/2021-10/Orphan%20Well%20FactSheet%20PA.pdf",
+   "outlet": "Environmental Defense Fund",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Forest 317",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://stateimpact.npr.org/pennsylvania/2021/10/18/orphaned-wells-are-a-problem-in-pennsylvania-and-there-are-more-of-them-than-we-thought/",
+   "outlet": "StateImpact Pennsylvania / WESA",
+   "date": "2021-10-18",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "The highest concentrations are in McKean (2,385), Venango (2,022) and Warren (1,561) counties.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "mented wells the map shows. “Now is the time for all of us to be thinking about how to reduce future orphan well burden.” Pennsylvania could be home to most of the country’s orphan wells Most of the 8,840 documented orphan wells the report found in Pennsylvania are in the western part of the state. The highest concentrations are in McKean (2,385), Venango (2,022) and Warren (1,561) counties. Butler County has 547 documented orphan wells. But Pennsylvania likely has the biggest gap between documented orphan wells and undocumented orphan wells, according to Peltz. That’s because of Pennsylvania’s long history with oil production; the state is the birthplace of the industry in the United States in 1859. For much of that history"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.farmanddairy.com/news/pennsylvania-plugging-12-more-abandoned-oil-and-gas-wells/657884.html",
+   "outlet": "Farm and Dairy",
+   "date": "2021-04-07",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The Pennsylvania departments of Conservation and Natural Resources and Environmental Protection announced April 7 that work is beginning to plug 12 abandoned oil and gas wells in the Cornplanter State Forest, in Forest County.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nia plugging 12 more abandoned oil and gas wells News Pennsylvania plugging 12 more abandoned oil and gas wells By Farm and Dairy Staff - April 7, 2021 0 1838 Share on Facebook Tweet on Twitter An oil well sits in the Allegheny National Forest, in Warren County, Pennsylvania. (Rachel Wagoner photo) The Pennsylvania departments of Conservation and Natural Resources and Environmental Protection announced April 7 that work is beginning to plug 12 abandoned oil and gas wells in the Cornplanter State Forest, in Forest County. “Proper plugging of these legacy wells will provide immediate benefits to the air, land and water in the Cornplanter State Forest as well as eliminating potential safety issues for state forest visitors,” DCNR Secretary Cindy Adams Dunn said, in a statement. Pennsylvania has been home to oil and gas wells for more than 150 years. “Now many of th"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.timesobserver.com/news/local-news/2026/06/well-plugging-begins-in-anf-as-state-hits-milestone/",
+   "outlet": "Warren Times Observer",
+   "date": "2026-06-12",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "DEP has identified more than 27,000 orphaned and abandoned wells statewide and continues prioritizing those posing the greatest risks to public health, safety, and the environment.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "er 2024, DEP received an additional $76.4 million from DOI through a Phase 1 Formula Grant award to continue plugging orphaned and abandoned wells. In March 2026, DEP received $114.6 million through a Phase 2 Formula Grant and remains eligible for additional funding through a Phase 3 Formula Grant. DEP has identified more than 27,000 orphaned and abandoned wells statewide and continues prioritizing those posing the greatest risks to public health, safety, and the environment. New plugging contracts will focus on these high-priority wells, along with nearby wells, to maximize efficiency and preempt environmental threats. \"Under Governor Shapiro's leadership, Pennsylvania is making historic progress plugging orphaned and abandoned wells that threaten public health, communities, and the environment,\" Sh"
+  },
+  {
+   "idx": 4,
+   "url": "https://pubs.usgs.gov/publication/dr1167/full",
+   "outlet": "U.S. Geological Survey",
+   "date": "2023-02-17",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "There are 117,672 wells in the DOW dataset (Grove and Merrill, 2022); the well counts by state are provided in table 1 and illustrated in figure 1.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rovided location information in the public land survey system format and this information was converted into latitude and longitude coordinates. Full citations of sources and process steps for the DOW dataset are provided in the metadata of the USGS data release ( Grove and Merrill, 2022 ). Results There are 117,672 wells in the DOW dataset ( Grove and Merrill, 2022 ); the well counts by state are provided in table 1 and illustrated in figure 1 . The national orphaned well count is constantly evolving owing to efforts by the states to update their databases, and as new orphaned wells are identified and plugged. Furthermore, the number of documented unplugged orphaned oil and gas wells is likely to increase as states use funding from the BIL to identify more wells"
+  }
+ ]
+}

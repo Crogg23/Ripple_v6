@@ -1,0 +1,59 @@
+{
+ "story_id": "S012",
+ "lead": {
+  "headline": "Share of ICE jail-hold requests (detainers) on people with a criminal conviction fell from 43% to 16%, FY23 to FY26",
+  "number": "43% (October-March FY23) to 16% (October-March FY26), same months both years; FY25 was 33% on matching months.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "The drop lands exactly where one yearly file ends and the next begins, and the FY26 file was cut on 2026-03-11."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "ICE detainers share criminal conviction fell 2026 TRAC",
+  "ICE detainers issued people with criminal convictions share Deportation Data Project",
+  "\"detainers\" ICE 2026 percent no criminal conviction jail requests analysis",
+  "tracreports detainers ICE fiscal 2026 convicted criminal percentage detainer",
+  "ICE detainers \"16%\" OR \"16 percent\" criminal conviction 2026",
+  "ICE detainer requests jails surge people without criminal records news 2026",
+  "DHS says ICE detainers are for criminal illegal aliens convictions share detainers 2026 statement",
+  "Austin Kocher ICE detainers convictions share fiscal year 2026 detainer data"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://deportationdata.org/analysis/immigration-arrests-in-2026.html",
+   "outlet": "Deportation Data Project (UC Berkeley / UCLA law)",
+   "date": "2026-09-08",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "First, detainer requests from ICE to local jails and state prisons rose sharply in 2026. ICE increased the number of such requests by increasingly targeting noncitizens without criminal convictions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "easingly important role While at-large street arrests dipped in the first half of 2026, before the summer surge, arrests that involved cooperation with local law enforcement continued to rise (see Figure 4 ). This cooperation took at least two forms. Detainer Requests for People with No Convictions First, detainer requests from ICE to local jails and state prisons rose sharply in 2026. ICE increased the number of such requests by increasingly targeting noncitizens without criminal convictions. Figure 3 shows the number of detainers issued, broken out by ICE’s criminality categorization; the green line shows those with no convictions or pending criminal charges. People without convictions can be in local jails because people are often arrested, booked in, and then never convicted of a crime (often because charges are dismis"
+  },
+  {
+   "idx": 1,
+   "url": "https://tracreports.org/reports/758/",
+   "outlet": "TRAC (Syracuse University)",
+   "date": "2025-04-14",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Out of 17,972 detainers issued between January 20 and February 17, just 28 percent had any prior conviction.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "iduals locked up because it had received ICE detainers when the local authority itself had no reason to hold the individuals. Most Targets of Detainers Had No Criminal Convictions In general, individuals with a criminal conviction made up a surprisingly small number of those targeted by a detainer. Out of 17,972 detainers issued between January 20 and February 17, just 28 percent had any prior conviction. Of these, despite this administration’s rhetoric, only 30 detainers were targeted at convicted rapists and just 65 at murderers. [6] Figure 2. Individuals targeted by ICE Detainers In general, where a conviction was recorded, it tended to be for a less serious offense. The most frequent conviction was for drunk driving, followe"
+  },
+  {
+   "idx": 2,
+   "url": "https://tracreports.org/reports/748/",
+   "outlet": "TRAC (Syracuse University)",
+   "date": "2024-09-13",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "ICE records indicated that 97 percent of all detainers issued during the Biden years were for immigrants who had been charged or convicted of a crime.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rs than were previously issued during the Trump presidency. Figure 3. Top 25 Cities Receiving More Detainers During Biden vs Trump Administrations Characteristics of Noncitizens Targeted by ICE Detainers Detainers are supposed to be targeted at noncitizens who have committed crimes here in the U.S. ICE records indicated that 97 percent of all detainers issued during the Biden years were for immigrants who had been charged or convicted of a crime. For Trump, the figure was more or less the same with 96 percent of all detainers issued to a noncitizen who had been charged or convicted of a crime. Detailed criminal histories, however, continue to be unlawfully withheld so only the most serious criminal conviction was provided. The announced priorities of the Biden administration a"
+  }
+ ]
+}

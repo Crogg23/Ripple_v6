@@ -1,0 +1,12 @@
+{
+  "story_id": "S178",
+  "bin": "Known pattern",
+  "entity": "CMS Ambulatory Specialty Model participant roster containing 3 excluded and 13 opted-out doctors",
+  "deciding_sources": [1],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "OIG's 2012 report covers the same kind of finding, excluded providers turning up on program rosters, for Medicaid managed care, not this model. ASRA names the model but only its timeline, not the finding.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

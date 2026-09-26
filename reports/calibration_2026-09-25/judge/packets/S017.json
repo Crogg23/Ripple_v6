@@ -1,0 +1,48 @@
+{
+ "story_id": "S017",
+ "lead": {
+  "headline": "Three people on the federal health-fraud ban list are listed owners of six LA home health agencies",
+  "number": "Liana Karapetyan (barred 2023, owns Direct Care HH), Kristine Arutyunyan (barred 2024, owns Holy Light and May Light HH), Arman Danielian (barred 2026-01-20, still listed at Vita, Valeo and Arva HH).",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "These are name matches; the \"2.6x more than chance\" headline broke once surname geography was counted, and only these three, whose ban record is in the same line of work, survive."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "Arman Danielian home health fraud",
+  "Kristine Arutyunyan home health Holy Light",
+  "Liana Karapetyan Direct Care home health",
+  "\"Direct Care\" home health Los Angeles excluded owner Karapetyan",
+  "excluded individuals owners home health agencies Los Angeles CMS ownership data OIG exclusion list",
+  "Danielian \"Valeo\" OR \"Vita\" OR \"Arva\" home health Los Angeles",
+  "Danielian sentenced health care fraud Simi Valley home health 2025",
+  "Los Angeles home health agencies owners convicted still listed Medicare 2026",
+  "\"Holy Light Home Health\" OR \"May Light Home Health\" California"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://oig.hhs.gov/fraud/enforcement/sacramento-area-home-health-care-and-hospice-agencies-owner-sentenced-to-18-months-in-prison-for-conspiring-to-defraud-medicare/",
+   "outlet": "HHS Office of Inspector General (reposting U.S. Attorney, E.D. Cal.)",
+   "date": "2022-07-21",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "U.S. District Judge Troy L. Nunley sentenced Liana Karapetyan, 42, of El Dorado Hills, today to 18 months in prison for one count of conspiracy to commit health care fraud",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ud Enforcement Actions Sacramento Area Home Health Care and Hospice Agencies Owner Sentenced to 18 Months in Prison for Conspiring to Defraud Medicare Sacramento Area Home Health Care and Hospice Agencies Owner Sentenced to 18 Months in Prison for Conspiring to Defraud Medicare SACRAMENTO, Calif. — U.S. District Judge Troy L. Nunley sentenced Liana Karapetyan, 42, of El Dorado Hills, today to 18 months in prison for one count of conspiracy to commit health care fraud and one count of conspiracy to pay and receive health care kickbacks, U.S. Attorney Phillip A. Talbert announced. Read more on www.justice.gov Action Details Date: July 21, 2022, midnight Agency: U.S. Attorney’s Office, Eastern District of California Enforcement Types: Criminal and Civil Actions Return to top Related Inform"
+  },
+  {
+   "idx": 1,
+   "url": "https://patch.com/california/los-angeles/northridge-hospice-facility-owner-arrested",
+   "outlet": "Patch (Los Angeles)",
+   "date": "2021-12-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Oganes Doganyan, 49, of Northridge, and Kristine Arutyunyan, 38, of Glendale, allegedly paid illegal kickbacks for the referral of beneficiary information that could be used to bill for supposed hospice services, according to the DOJ.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " am PT NORTHRIDGE, CA — Two hospice facility owners were arrested Thursday in Los Angeles on criminal charges related to an alleged health care fraud scheme that involved billing for services purportedly provided to Medicare beneficiaries who did not exist, the U.S. Department of Justice announced. Oganes Doganyan, 49, of Northridge, and Kristine Arutyunyan, 38, of Glendale, allegedly paid illegal kickbacks for the referral of beneficiary information that could be used to bill for supposed hospice services, according to the DOJ. Prosecutors also allege that Doganyan and Arutyunyan caused bogus claims to be billed to Medicare for hospice services that were medically unnecessary, not eligible for reimbursement, and not provided. Find out what's happening in Los Angeles for free with the latest updates from Patch. Subscribe By subscribing, you agree to Patch's Pri"
+  }
+ ]
+}

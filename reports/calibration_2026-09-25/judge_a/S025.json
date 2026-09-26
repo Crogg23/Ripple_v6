@@ -1,0 +1,12 @@
+{
+  "story_id": "S025",
+  "bin": "Known pattern",
+  "entity": "Illinois state hazardous-waste inspectors' 15.5% write-up rate at sites where EPA found violations, vs other states",
+  "deciding_sources": [0, 4],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "EPA OIG (2026) reports the same kind of finding in general - EPA finds violations in 76% of its inspections vs states' 52% - but names no state and uses per-inspection rates, not our same-site paired measure. Investigate Midwest names Illinois EPA but for a different finding (notices falling over time). Nothing states Illinois's paired rate.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

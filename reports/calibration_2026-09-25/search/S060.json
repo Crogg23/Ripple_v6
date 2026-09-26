@@ -1,0 +1,37 @@
+{
+  "story_id": "S060",
+  "entity": "Nevro Corp, Senza spinal-cord stimulator: share of FDA MAUDE reports that are death reports (168 of 737, Jan 2020 to Sep 2021) vs the rest of product code LGW",
+  "queries": [
+    {"q": "Nevro Senza spinal cord stimulator death reports MAUDE", "found_useful": false},
+    {"q": "Nevro spinal cord stimulator patient deaths reported to FDA investigation", "found_useful": true},
+    {"q": "spinal cord stimulator MAUDE death reports analysis by manufacturer Nevro Neuromodulation study", "found_useful": false},
+    {"q": "\"Nevro\" MAUDE \"death\" \"no information\" device not returned patient passed away report", "found_useful": false},
+    {"q": "Nevro FDA warning letter OR 483 medical device reporting complaint handling", "found_useful": false},
+    {"q": "Implant Files spinal cord stimulators deaths injuries AP ICIJ Nevro", "found_useful": true},
+    {"q": "FDA letter to health care providers spinal cord stimulators trial stimulation 428 deaths medical device reports (fda.gov only)", "found_useful": false},
+    {"q": "Nevro HFX Senza deaths adverse event reports 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.medtechdive.com/news/fda-flags-428-spinal-cord-stimulator-patient-deaths-urges-more-tests-befor/584714/",
+      "outlet": "MedTech Dive",
+      "date": "2020-09-04",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "The 107,728 MDRs received by FDA in the four-year period following July 27, 2016, include reports of 428 individual deaths of patients implanted with SCSs between 2005 and 2020.",
+      "paywalled": false,
+      "searcher_note": "Pattern: FDA's 2020 letter counted death reports across all spinal-cord stimulators; Nevro is named only as one of the device makers, not as the source of the deaths or of an outsized death share."
+    },
+    {
+      "url": "https://www.nbcnews.com/news/amp/ncna940131",
+      "outlet": "NBC News (Implant Files, with AP and ICIJ)",
+      "date": "2018-11-28",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The four biggest makers of stimulators are Boston Scientific Corp., based in Massachusetts; Medtronic, with headquarters in Ireland and the U.S.; Nevro, in Redwood California; and Illinois-based Abbott, which entered the market after its $23.6 billion purchase of St Jude Medical Inc.",
+      "paywalled": false,
+      "searcher_note": "Pattern: Implant Files story on spinal-cord stimulator injuries; names Nevro as a maker only, no Nevro-specific death-report finding."
+    }
+  ],
+  "notes": "No source found reports Nevro's death-report share (168 of 737, 22.8%) or compares it with the rest of product code LGW. Only pattern coverage: FDA's September 2020 letter counting deaths among all spinal-cord stimulator reports, and the 2018 Implant Files. The FDA letter page itself returned 404 on both URL forms tried (search snippet gives 497 death-associated MDRs, July 2016 to July 2020). Individual Nevro MAUDE records fetched (mdrfoi 9818010, 18003033, 6852142) were injury reports, not deaths, so none recorded. No FDA warning letter or 483 to Nevro on complaint handling or MDR reporting turned up. Query 5 ran a second internal search on its own (SEC 10-K hits); logged as one."
+}

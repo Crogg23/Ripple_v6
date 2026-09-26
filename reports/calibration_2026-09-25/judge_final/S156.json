@@ -1,0 +1,12 @@
+{
+ "story_id": "S156",
+ "bin": "Matched + more",
+ "entity": "Top coal plants' share of monitored power-plant SO2, Labadie first",
+ "deciding_sources": [0, 1, 2],
+ "earliest_match_date": "2022-01-11",
+ "post_cutoff_match": true,
+ "what_we_add": "ten plants = 30% of 2025 SO2, Labadie 5.3% / 38,232 tons, 7 of 10 with no retirement year on file",
+ "why": "The Post-Dispatch headline has Labadie as the top US SO2 emitter; Reuters says Ameren didn't contest it; Midwest Newsroom had it second in 2020. Same entity, same direction; the ten-plant concentration and retirement gap are ours.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,46 @@
+{
+ "story_id": "S182",
+ "lead": {
+  "headline": "Kindred's 42 long-term hospitals book $178M a year more expense than Medicare's cost line; the peer gap is accounting",
+  "number": "A fast-growing $178M-a-year gap between booked expense and Medicare's cost figure; on Medicare's cost line the Kindred-vs-peer margin gap shrinks from 9.4 points to 0.8.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "Kindred's -6.7% vs +2.7% margin is on booked expense; on Medicare's cost line the gap is 0.8 points and the same-state test falls from 11 of 13 states to 7 of 13."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Kindred long-term acute care hospitals Medicare cost reports margins losses ScionHealth",
+  "ScionHealth Kindred hospitals losing money closures 2025 2026 LTACH financial",
+  "\"Kindred\" long-term care hospitals Medicare cost report related-party rent Ventas expenses not allowable analysis",
+  "Kindred Hospital LTCH Medicare margin negative for-profit chain long-term care hospitals cost report news 2026",
+  "ScionHealth Apollo Kindred hospitals Medicare cost reports operating losses analysis rent sale-leaseback report",
+  "Kindred LTACH hospitals margins versus Select Medical peers cost report data Kindred hospitals lower margins",
+  "hospital chain cost reports total expenses exceed Medicare allowable costs related-party home office costs make margins look worse analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.medpac.gov/wp-content/uploads/2022/03/Mar22_MedPAC_ReportToCongress_Ch10_SEC.pdf",
+   "outlet": "MedPAC, March 2022 Report to the Congress, Ch. 10 Long-term care hospital services",
+   "date": "2022-03-15",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "we estimate total Medicare-allowable costs and assess the relationship between Medicare’s payments and those costs, which we express as a payment margin.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "gh January received site-neutral rates for nonqualifying cases before the waiver. The suspension of the sequester, which is set to expire under current law in June 2022, was in effect starting in May 2020. 9 Cost report data from 2020 For providers, including LTCHs, that submit cost reports to CMS, we estimate total Medicare- allowable costs and assess the relationship between Medicare’s payments and those costs, which we express as a payment margin. Within each sector, 2020 cost reports included in this year’s analysis of Medicare margins reflect varying numbers of months overlapping the PHE because providers’ cost reports can start on different months of the (continued next page) Fiscal year 2020 time line Note: FY (fiscal ye ar), LTCH (long-term care hospital), PHE (public health em"
+  },
+  {
+   "idx": 1,
+   "url": "https://ir.ventasreit.com/news/news-details/2024/Ventas-Reaches-Agreements-with-Kindred-and-ScionHealth/default.aspx",
+   "outlet": "Ventas, Inc.",
+   "date": "2024-09-16",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "The initial annualized cash contractual base rent for the LTACs will be $80 million starting May 1, 2025, consistent with the Company’s previously announced expectations, and rent will escalate annually by 2.75%",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Lease”). The transactions under the 2024 Kindred Agreements are intended to enhance the facility environment for patient care, strengthen the Kindred Master Lease, provide upside to Ventas and enable Kindred to improve its credit profile. Key terms of the 2024 Kindred Agreements are as follows: 1. The initial annualized cash contractual base rent for the LTACs will be $80 million starting May 1, 2025, consistent with the Company’s previously announced expectations, and rent will escalate annually by 2.75% through the extended lease maturity date of April 30, 2030. Ventas also has the right to receive additional revenue-sharing rent annually if revenue at these assets exceeds certain thresholds, and ScionHealth has granted Ventas warrants for 9.9% of its common equity exercisable at the pre-transaction value of the common equity. Kindred has a"
+  }
+ ]
+}

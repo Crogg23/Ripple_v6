@@ -1,0 +1,59 @@
+{
+ "story_id": "S041",
+ "lead": {
+  "headline": "All 11 Justice Department Epstein data-set pages lost their 'Download all files' link between Jan 30 and Feb 9, 2026",
+  "number": "11 of 11 data-set pages lost the .zip link between Jan 30 and Feb 9, 2026, and none got it back through early June; 12 court-case links were renamed to \"[redacted] v. ...\" on Feb 21 and 24.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; both changes fit a victim-privacy cleanup after the Jan 30 release, and the plaintiff names are already in public court records."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Justice Department Epstein files data set zip download removed",
+  "DOJ Epstein library \"download all files\" link removed February 2026",
+  "DOJ Epstein library court records victim names redacted case titles \"v.\" changed website",
+  "Justice Department Epstein website victim names exposed court case links renamed redacted February 2026",
+  "\"Redacted v. Epstein\" OR \"[Redacted] v.\" DOJ Epstein court records page",
+  "DOJ explains removal Epstein zip files bulk download victim privacy redactions restored",
+  "Epstein Library DOJ website changes Wayback Machine archive journalists bulk download zip SPJ",
+  "Epstein files DOJ library download zip restored OR removed 2026 August OR September"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://discrepancyreport.com/doj-drops-bulk-downloads-from-epstein-library/",
+   "outlet": "Discrepancy Report (Joe Douglass)",
+   "date": "2026-02-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "page no longer displays ZIP files, which previously allowed users to download large batches of compressed documents at once.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cess rather than bulk downloads. The Justice Department has removed bulk ZIP downloads from its online Epstein Library , forcing users to access documents one PDF at a time and making large-scale independent review of the records far more difficult. As of Feb. 6 , the department’s “DOJ Disclosures” page no longer displays ZIP files, which previously allowed users to download large batches of compressed documents at once. The site still allows users to search the database, but results are viewable only by opening individual PDFs. With millions of pages in the collection, the change makes comprehensive review a slow, manual process. Archived captures show bulk downloads were available immediately after the latest release, but not uniformly. A Waybac"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.justice.gov/epstein/doj-disclosures/court-records-v-epstein-no-910-cv-80447-sd-fla-2010",
+   "outlet": "U.S. Department of Justice, Epstein Library",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Court Records: [redacted] v. Epstein, No. 9:10-cv-80447 (S.D. Fla. 2010)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Department of Justice | Court Records: [redacted] v. Epstein, No. 9:10-cv-80447 (S.D. Fla. 2010) | United States Department of Justice Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock ) or https:// mea"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.yahoo.com/news/articles/doj-admits-removing-nearly-48-185553534.html",
+   "outlet": "Salon (via Yahoo News)",
+   "date": "2026-03-04",
+   "source_type": "news",
+   "entity_named": "partial",
+   "quote": "The Department of Justice removed 47,635 files from the publicly available database of Jeffrey Epstein case files, including various claims against President Donald Trump.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ograph of Donald Trump and Jeffrey Epstein Democrats on the House Oversight Committee Key takeaways Powered by Yahoo Scout. Yahoo is using AI to generate key points from this article. This means the info may not always match what’s in the article. Reporting mistakes helps us improve the experience. The Department of Justice removed 47,635 files from the publicly available database of Jeffrey Epstein case files, including various claims against President Donald Trump. DOJ spokesperson Natalie Baldassarre stated that the removed files will be reuploaded after redactions are made to address victim concerns and protect personally identifiable information. Lawmakers reviewing the unredacted files found that names of six wealthy men, including retail billionaire Les Wexner, were initially not in the pu"
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+  "story_id": "S149",
+  "entity": "Department of Homeland Security contract commitments Oct 2025-Jun 2026 ($50.97B, 4.1x the FY2019-25 median); Fisher Sand & Gravel Co. ($13.35B)",
+  "queries": [
+    {"q": "Fisher Sand & Gravel border wall contract billion 2026", "found_useful": true},
+    {"q": "Fisher Sand and Gravel $13 billion DHS contracts border barrier fiscal 2026", "found_useful": true},
+    {"q": "DHS contract obligations surge fiscal 2026 border wall CBP billions record USAspending analysis", "found_useful": true},
+    {"q": "Fisher Sand & Gravel border wall contracts Dickinson North Dakota Tommy Fisher billions 2026 news", "found_useful": true},
+    {"q": "Homeland Security contract spending fiscal 2026 quadrupled compared to prior years obligations immigration enforcement contractors", "found_useful": false},
+    {"q": "DHS slow to spend One Big Beautiful Bill border wall money obligated so far 2026 GAO OR CBO", "found_useful": false},
+    {"q": "Fisher Sand & Gravel border wall contract September 2026 OR August 2026 award CBP", "found_useful": false},
+    {"q": "Homeland Security contract awards first nine months fiscal 2026 record $50 billion border barrier CBP largest contractors", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://primerfp.com/intel/contract/70B01C23D00000010-70B03C24F00001029",
+      "outlet": "PrimeRFP SCOUT (federal contract data brief)",
+      "date": "2026-09-10",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Fisher Sand & Gravel Co holds $13.4B across 18 federal awards, concentrated at Department of Homeland Security (DHS).",
+      "paywalled": false,
+      "searcher_note": "Commercial procurement-data page, not journalism. Fisher total ($13.4B) is close to the lead's $13.35B. Date is the page's 'data as of' date."
+    },
+    {
+      "url": "https://fed-spend.com/blog/what-taxpayers-got-federal-contracts-h1-2026-expose",
+      "outlet": "Fed-Spend (blog)",
+      "date": "2026-08-18",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Fisher Sand & Gravel at $9.54B is the civilian shock: a construction firm sitting next to Electric Boat and Lockheed because of DHS border barrier tasking.",
+      "paywalled": false,
+      "searcher_note": "USAspending-based analysis of Jan-Jun 2026 contracts: DHS $40.5B (No. 2 agency), CBP $26.4B, Fisher $9.54B. Calendar H1, not FY Oct-Jun; no multi-year baseline."
+    },
+    {
+      "url": "https://www.propublica.org/article/trump-border-wall-contracts-tommy-fisher",
+      "outlet": "ProPublica (co-published with Texas Tribune)",
+      "date": "2026-05-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "the federal government has awarded his company over $9 billion to build even more border wall",
+      "paywalled": false,
+      "searcher_note": "Fisher's firm got over $9B in wall awards; CBP gave nearly $14B (about 73% of contract value) to Fisher and Barnard; lawsuit over the awards."
+    },
+    {
+      "url": "https://hoodline.com/2026/03/trump-s-border-billions-turn-quiet-north-dakota-family-into-wall-building-tycoons/",
+      "outlet": "Hoodline (summarizing Bloomberg)",
+      "date": "2026-03-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Out of that tidal wave of money, Fisher Sand & Gravel Co. has landed more than $8 billion in contracts from the Department of Homeland Security and related agencies.",
+      "paywalled": false,
+      "searcher_note": "Earliest found coverage of Fisher's DHS contract total (>$8B), relaying the Bloomberg feature of the same day."
+    },
+    {
+      "url": "https://www.projectsaltbox.com/p/follow-the-money-march-2026-cbp-spends",
+      "outlet": "Project Saltbox, Follow the Money",
+      "date": "2026-04-01",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "After spending roughly $2 billion a month on new border contracts in January and February, CBP more than doubled that pace in March alone.",
+      "paywalled": false,
+      "searcher_note": "Monthly tracker of the CBP/DHS contract surge (over $7.5B on wall in March 2026). No comparison to a FY2019-25 median."
+    },
+    {
+      "url": "https://inewsource.org/2026/08/25/border-wall-construction-fisher-jacumba-wilderness/",
+      "outlet": "inewsource",
+      "date": "2026-08-25",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The project falls under a larger contract given to Fisher that includes numerous projects for border construction with a potential spending cap of $4.1 billion.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff local coverage of a Fisher wall contract that grew from $574M to $1.2B."
+    }
+  ],
+  "notes": "Fisher's DHS contract haul is widely covered. Totals by source: >$8B (Bloomberg via Hoodline, Mar 2026), >$9B (ProPublica, May 2026), $9.54B for Jan-Jun 2026 (Fed-Spend), $13.4B across 18 awards (PrimeRFP, data as of Sep 2026). No source found that gives DHS's $50.97B Oct 2025-Jun 2026 total, the 4.1x-versus-FY2019-25-median comparison, or the $27.0B border-barrier figure. Nearest: Fed-Spend's DHS $40.5B / CBP $26.4B for calendar H1 2026. Bloomberg feature 2026-03-18 ('Trump Immigration Spending Creates First Border Wall Billionaire') returned 403 and was not opened."
+}

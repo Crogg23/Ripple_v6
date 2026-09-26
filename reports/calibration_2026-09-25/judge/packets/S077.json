@@ -1,0 +1,95 @@
+{
+ "story_id": "S077",
+ "lead": {
+  "headline": "33 US healthcare posts on ransomware leak sites match a Medicare hospital by name; Watsonville's was posted by two gangs",
+  "number": "1,146 US healthcare posts; 33 match a Medicare hospital (32 hospitals); Watsonville Community Hospital posted by termite (2024-12) and sinobi (2025-10).",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "A leak-site post is not a confirmed breach."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Watsonville Community Hospital ransomware Termite leak site",
+  "Watsonville Community Hospital data breach 2025 Sinobi ransomware",
+  "Watsonville Community Hospital cyberattack Santa Cruz Sentinel Lookout patients notified breach",
+  "how many US hospitals listed on ransomware leak sites 2025 healthcare victims count analysis ransomware.live Comparitech",
+  "ransomware leak site claims healthcare unverified not confirmed breach hospitals deny false claims",
+  "Watsonville Community Hospital breach HHS OCR individuals affected California attorney general notice 2025 2026",
+  "study ransomware attacks US hospitals matched Medicare hospital list leak sites JAMA Neprash count hospitals",
+  "Watsonville Community Hospital 2026 data breach lawsuit settlement second breach ransomware"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://databreaches.net/2025/10/10/watsonville-community-hospital-had-a-data-breach-or-two-it-would-be-helpful-to-know-which/",
+   "outlet": "DataBreaches.net",
+   "date": "2025-10-10",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Then on October 1, 2025, the “Sinobi” group added the hospital to their leak site, with a breach date of August 9, 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "HS, and employees were reporting becoming victims of tax refund fraud . Email inquiries DataBreaches submitted to the hospital in March went unanwered, and the hospital did not issue any update to its substitute notice, even after Termite leaked what it claimed was the hospital’s data in July 2025. Then on October 1, 2025, the “Sinobi” group added the hospital to their leak site, with a breach date of August 9, 2025. They claimed that they had encrypted files and had 13 GB of data. Sinobi subsequently leaked the data. The data do not match the description of data in the Termite incident, and many of the files leaked by Sinobi are from March 2025, which was after the November 2024 incident. Did Termite still have access to the hospital’s s"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.comparitech.com/news/ransomware-gang-claims-attack-on-california-hospital-that-forced-staff-to-use-pen-and-paper/",
+   "outlet": "Comparitech",
+   "date": "2024-12-12",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Ransomware gang Termite today claimed responsibility for a cyber attack on Watsonville Community Hospital in California.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ontact Advertise We are funded by our readers and may receive a commission when you buy using links on our site. Ransomware gang claims attack on California hospital that forced staff to use pen and paper Writer : Paul Bischoff Tech Writer, Privacy Advocate and VPN Expert Updated: December 12, 2024 Ransomware gang Termite today claimed responsibility for a cyber attack on Watsonville Community Hospital in California. The hospital reported an IT disruption on November 29, 2024 that forced it to shut down access to the internet, electronic health records, and prescription notifications. Staff reverted to pen-and-paper records, and the hospital’s homepage still displays a message about the disruption as of time of writing. Termite posts Watsonville Community Hospit"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.hipaajournal.com/data-breach-watsonville-community-hospital-palomar-health-medical-group/",
+   "outlet": "HIPAA Journal",
+   "date": "2025-10-20",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "the investigation confirmed that there had been unauthorized access to its network from November 25, 2024, to November 30, 2024, when the hackers were ejected from its network.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ical Group in California, and the Phia Group in Massachusetts. Watsonville Community Hospital Watsonville Community Hospital in California is notifying individuals affected by a November 2024 security incident. Suspicious activity was identified within its computer systems on November 29, 2024, and the investigation confirmed that there had been unauthorized access to its network from November 25, 2024, to November 30, 2024, when the hackers were ejected from its network. The investigation confirmed that files containing patient information were either accessed or downloaded during those five days. The file review confirmed that the data compromised in the incident included names, addresses, and driver’s license numbers or government ID numbers, with the exposed data varying from individual to individual. N"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.comparitech.com/news/healthcare-ransomware-roundup-2025-stats-on-attacks-ransoms-and-data-breaches/",
+   "outlet": "Comparitech",
+   "date": "2026-01-27",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Throughout 2025, we recorded 445 ransomware attacks on hospitals, clinics, and other direct care providers.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "al Process Careers at Comparitech Contact Advertise We are funded by our readers and may receive a commission when you buy using links on our site. Healthcare Ransomware Roundup: 2025 stats on attacks, ransoms, and data breaches Writer : Rebecca Moody Head of Data Research Updated: January 27, 2026 Throughout 2025, we recorded 445 ransomware attacks on hospitals, clinics, and other direct care providers. A further 191 attacks hit businesses operating within the healthcare sector (e.g. pharmaceutical/medical manufacturers, medical billing providers, and healthcare tech companies). When comparing these figures from 2025 to those noted in 2024, attacks on healthcare providers remained the same (437 in 2024), while attacks on healthcare busines"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.cybersecurity-insiders.com/healthcare-ransomware-attacks-h1-2026/",
+   "outlet": "Cybersecurity Insiders",
+   "date": "2026-07-11",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "With 333 of 410 attacks unconfirmed and quarter-old incidents still surfacing, formal notification will reach you months after the criminals did.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "out a single system getting encrypted, so a good backup story proves nothing about whether the data got out. Ask billing and supply partners what watches their outbound traffic, and treat an answer built entirely on backups as a red flag. Build a detection trigger that does not wait for the letter. With 333 of 410 attacks unconfirmed and quarter-old incidents still surfacing, formal notification will reach you months after the criminals did. Monitor leak-site claims for the names of your suppliers, or buy intelligence that does, and rehearse the day one of those names appears. Nothing in the H1 healthcare ransomware data lets hospitals relax. The sharper reading is that attackers found equal money and less resistance one step upstream, in companies that rarely make brea"
+  },
+  {
+   "idx": 5,
+   "url": "https://jamanetwork.com/journals/jama-health-forum/fullarticle/2799961",
+   "outlet": "JAMA Health Forum (Neprash, McGlave, Nikpay et al.)",
+   "date": "2022-12-29",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "From January 2016 to December 2021, 374 ransomware attacks on US health care delivery organizations exposed the PHI of nearly 42 million patients.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "omes and Measures Date of ransomware attack, public reporting of ransomware attacks, personal health information (PHI) exposure, status of encrypted/stolen data following the attack, type of health care delivery organization affected, and operational disruption during the ransomware attack. Results From January 2016 to December 2021, 374 ransomware attacks on US health care delivery organizations exposed the PHI of nearly 42 million patients. From 2016 to 2021, the annual number of ransomware attacks more than doubled from 43 to 91. Almost half (166 [44.4%]) of ransomware attacks disrupted the delivery of health care, with common disruptions including electronic system downtime (156 [41.7%]), cancellations of scheduled care (38 [10.2%]), and ambulance diversion (16 [4.3"
+  }
+ ]
+}

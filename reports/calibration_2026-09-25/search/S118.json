@@ -1,0 +1,27 @@
+{
+  "story_id": "S118",
+  "entity": "IRS Form 8871 (Section 527 political organization) new notices filed by businesses, Dec 2022-Dec 2025, incl. 141 look-alike companies and a batch of 8 filed within 31 minutes on July 8, 2025",
+  "queries": [
+    {"q": "IRS Form 8871 businesses filing political organization notices by mistake 527", "found_useful": false},
+    {"q": "companies mistakenly registered as 527 political organizations IRS Form 8871 surge LLC scam", "found_useful": false},
+    {"q": "IRS political organization database 527 filings junk non-political businesses LLCs erroneous notices 2024 2025", "found_useful": false},
+    {"q": "\"8871\" filings businesses confused beneficial ownership OR \"employer identification number\" political organization section 527 wrongly", "found_useful": false},
+    {"q": "fake 527 political organizations registered with IRS using business names identity theft batch filings 2025", "found_useful": false},
+    {"q": "TIGTA OR GAO IRS does not review Form 8871 political organization notices oversight 527 compliance report", "found_useful": true},
+    {"q": "new 527 political organizations registered IRS 2026 wave of filings businesses nonprofits notice section 527 status news", "found_useful": false},
+    {"q": "\"Form 8871\" OR \"section 527\" notices filed by LLCs corporations small businesses 2023 2024 2025 reporter analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.gao.gov/assets/a235164.html",
+      "outlet": "U.S. Government Accountability Office (GAO-02-444)",
+      "date": "2002-07-17",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "IRS has provided little assurance that the data it disclosed on the Section 527 Web site are timely, complete and correct.",
+      "paywalled": false,
+      "searcher_note": "Old general finding that IRS doesn't vet the 527 notice data it publishes; says nothing about businesses filing notices or the 2022-2025 window"
+    }
+  ],
+  "notes": "Nothing found on businesses filing Form 8871 political-organization notices, a jump after Dec 2022, look-alike companies, or the July 8, 2025 batch. Searches turned up only IRS instructions, scam-PAC coverage (political groups, not businesses), ProPublica's 527 Explorer launch (2024-06-18, fetched; no data-quality finding) and old GAO/TIGTA oversight reports. The GAO 2002 line is the only general data-quality finding recorded; it may not count as a pattern."
+}

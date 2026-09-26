@@ -1,0 +1,15 @@
+{
+  "story_id": "S057",
+  "bin": "Matched + more",
+  "entity": "US FDA-regulated finished trials that never posted results (national measure)",
+  "deciding_sources": [
+    0,
+    3
+  ],
+  "earliest_match_date": "2020-01-14",
+  "post_cutoff_match": false,
+  "what_we_add": "706 trials, the 8.6% rate on a fixed 2017-2022 completion cohort, and 152,850 enrolled patients",
+  "why": "FDA and Science/STAT state the finding in words: many covered trials never report. FDA's 29.6% is a different denominator (all currently overdue), so no same-window contradiction; our cohort count and patient total are new.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

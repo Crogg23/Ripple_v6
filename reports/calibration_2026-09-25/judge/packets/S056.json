@@ -1,0 +1,95 @@
+{
+ "story_id": "S056",
+ "lead": {
+  "headline": "NYC's 2025 mayor race: one committee, Fix the City, took $35.6M from 381 gifts; Mamdani raised $4.03M from 54,103",
+  "number": "Fix the City $35.6M from 381 gifts; Mamdani $4.03M from 54,103 gifts, after 302 refund rows were removed.",
+  "grade": "",
+  "verdict": "confirmed",
+  "watch_out": "Confirmed, but it's a known story from the 2025 race."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Fix the City super PAC Cuomo raised million donors Mamdani small donors",
+  "\"Fix the City\" $35 million Cuomo super PAC total raised",
+  "Mamdani campaign number of individual donors contributions Campaign Finance Board 2025 general election private funds",
+  "\"Fix the City\" number of donors contributions final filing Cuomo PAC $35.6 million",
+  "THE CITY Fix the City Cuomo super PAC after election final tally spent raised Bloomberg donors November 2025",
+  "\"Fix the City\" PAC 2026 Mamdani donors raised news",
+  "Mamdani record number of donors mayoral campaign 2025 total contributors more than any candidate CFB",
+  "\"Fix the City\" super PAC how many donors average contribution billionaires few hundred donors"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.nyccfb.info/VSApps/IndependentSpenderSummary.aspx?spender_id=Z193&as_election_cycle=2025&cand_name=Fix+the+City%2C+Inc",
+   "outlet": "NYC Campaign Finance Board, Fix the City, Inc. (2025) Independent Spender Profile",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "has reported 35,555,626.00 in contributions",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ill (Mitra Hormozi) Executive Vice President‎ , ‎ Suffolk Construction‎ , ‎ New ‎ York‎ , ‎ NY‎ Nick Dhimitri Senior Vice President, Montefiore/Einstein, Bronx, NY Ruben Diaz Partner‎ , ‎ Blue Raven LLP and Kaplan Mart‎ , ‎ New York‎ , ‎ NY‎ Steven M. Cohen Contributions‎ Fix the City‎ , ‎ Inc‎ . ‎ has reported ‎ 35‎ ,‎ 555‎ ,‎ 626‎ .‎ 00‎ ‎ in contributions‎ .‎ Expenditures‎ support‎ not determined‎ oppose‎ total spending‎ office‎ Candidate/Proposal Cuomo, Andrew M 19,302,958 Mayor 19,302,958 - - Mamdani, Zohran K - Mayor 10,633,899 10,633,899 - Sliwa, Curtis - Mayor 890,800 890,800 - - total‎ :‎ 11,524,699 30,827,657 19,302,958 "
+  },
+  {
+   "idx": 1,
+   "url": "https://www.thecityreporter.nyc/2026/09/01/political-spending-record-outside-money-local-elections-cfb/",
+   "outlet": "THE CITY (The City Reporter), Katie Honan",
+   "date": "2026-09-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "more than 54,000 people who gave an average of $75 each",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " and Cuomo, who boasted major institutional support and lots of donations but lost. Mamdani received the most public matching funds, at $13.1 million, with Cuomo receiving $8 million, according to the data. Board figures show Mamdani’s campaign was powered by a record number of small-dollar donors: more than 54,000 people who gave an average of $75 each. He also spent the most in the overall mayoral race, at around $16.5 million, while Cuomo was next at $14.2 million. For the general election, where Cuomo ran as an independent, both he and Mamdani each spent more than $10 million, the data shows. Mamdani Declines City Funds in Re-election Campaign Thousands of Zohran Mamdan"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.chalkbeat.org/newyork/2025/12/03/breaking-down-who-doe-employees-donated-to-in-mayoral-races/",
+   "outlet": "Chalkbeat New York, Ananya Chetia",
+   "date": "2025-12-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "galvanized New Yorkers across the city, attracting about 53,890 donations",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Mamdani won just over half of the city’s vote in November. Among his few K-12 ideas, Mamdani’s push for ending mayoral control and removing the gifted and talented program for kindergartens sparked controversy, yet teachers Chalkbeat spoke to were drawn to his affordability plan. Mamdani’s campaign galvanized New Yorkers across the city, attracting about 53,890 donations. That’s more than twice as many donors as Mayor Eric Adams had when he won four years ago and former chief Bill de Blasio for his 2013 and 2017 victories. In terms of total amount raised, Mamdani’s roughly $4 million was the least among the winning candidates since mayoral control of the city’s Education Department began. After Mayor M"
+  },
+  {
+   "idx": 3,
+   "url": "https://nysfocus.com/2026/04/03/jordan-wright-super-pac-harlem-dsa",
+   "outlet": "New York Focus",
+   "date": "2026-04-03",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "a pro-Cuomo PAC that raised $35 million for his mayoral campaign",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " efforts comes as other Cuomo alumni plot their next moves. The ex-governor’s former campaign manager registered a super PAC last month and may tap into the political operations of both Cuomo and former City Comptroller Scott Stringer, Jewish Insider reported . And the people who ran Fix the City — a pro-Cuomo PAC that raised $35 million for his mayoral campaign — have discussed ways to limit the influence of the progressive left, according to The New York Times. At New York Focus, our central mission is to help readers better understand how New York really works. If you think this article succeeded, please consider supporting our mission and making more stories like this one possib"
+  },
+  {
+   "idx": 4,
+   "url": "https://citizensunion.org/wp-content/uploads/2025/12/CU-Report-Super-PACs-in-the-2025-New-York-City-General-Election-Seven-Takeaways.pdf",
+   "outlet": "Citizens Union, 'Super PACs in the 2025 New York City General Election: Seven Takeaways'",
+   "date": "2025-12-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "15,490 in the general election and 40,824 across the full cycle",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ing funds program to reach more voters. 2 Protect the Protectors is on the Cuomo-support list despite reporting it did not spend money on supporting Cuomo, because its disclosed fundraising materials say “we’re backing Andrew Cuomo.” 4 Zohran Mamdani had more contributors than any other candidate – 15,490 in the general election and 40,824 across the full cycle – and the smallest average donation, just $90. The candidate with the second-highest number of contributors, Curtis Sliwa, had one-third as many donors. Mamdani’s campaign also hit the program’s fundraising cap for private donations two months before Election Day, allowing him to spend more time door-knocking, activating volunt"
+  },
+  {
+   "idx": 5,
+   "url": "https://theintercept.com/2026/09/23/doordash-delivery-nyc-mamdani-wage-theft-settlement/",
+   "outlet": "The Intercept",
+   "date": "2026-09-23",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "DoorDash contributed $1 million to Fix the City, a super PAC that spent $31 million in the mayoral election, accounting for close to half of the total outside spending in the race, largely funded by big corporations and billionaires.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "p of Its Surveillance Cameras Taken Offline Nikita Mazurov Robert Kraft Claims His Donations Help Palestinians. Turns Out He’s Funding Friends of the IDF. Jonah Valdez Pink Supported Macklemore’s Firing. Now Activists Want UNICEF to Cut Ties With Her. Jonah Valdez The Smear Campaign Against Mamdani DoorDash contributed $1 million to Fix the City, a super PAC that spent $31 million in the mayoral election, accounting for close to half of the total outside spending in the race, largely funded by big corporations and billionaires. DoorDash made the payment in May 2025, at a time Mamdani’s campaign was gaining significant momentum ahead of the mayoral primaries in June. Fix the City ran a barrage of ads, phone calls, text messages, and other forms of political communication seeking to prevent a Mamdani victory and portraying him as a politician with “ radically d"
+  }
+ ]
+}

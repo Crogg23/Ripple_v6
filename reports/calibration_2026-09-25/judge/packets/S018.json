@@ -1,0 +1,82 @@
+{
+ "story_id": "S018",
+ "lead": {
+  "headline": "Judge Gilstrap was assigned 183 cases naming Apple, Microsoft, AT&T or Walmart while holding their stock",
+  "number": "183 cases assigned while he held the company's stock (disclosure years 2010-20); the wider 240-judge, 1,157-case total is not re-checked.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "It rests on Gilstrap alone, and holdings are matched by company-name text, not by a stock ID."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Judge Gilstrap stock Apple Microsoft cases conflict of interest",
+  "Wall Street Journal \"Hidden Interests\" judges stock Gilstrap",
+  "Rodney Gilstrap financial disclosure stock holdings recusal",
+  "\"Gilstrap\" \"Sets an Unwanted Record\" wsj.com financial conflicts",
+  "Gilstrap AT&T stock patent cases Marshall Texas judge held shares",
+  "Gilstrap \"Microsoft Corp. (53 cases)\"",
+  "Judge Gilstrap recusal stock conflicts 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.wsj.com/articles/judge-rodney-gilstrap-sets-an-unwanted-record-most-cases-with-financial-conflicts-11632920541",
+   "outlet": "The Wall Street Journal",
+   "date": "2021-09-29",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Judge Rodney Gilstrap Sets an Unwanted Record: Most Cases With Financial Conflicts",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Judge Rodney Gilstrap Sets an Unwanted Record: Most Cases With Financial Conflicts - WSJ Skip to Main Content Subscribe Sign In Subscribe Sign In This copy is for your personal, non-commercial use only. Distribution and use of this material are governed by our Subscriber Agreement and by copyright law. For non-personal use or to order multiple copies, please contact Dow Jones Reprints at 1-800-843-0008 or visit www.d"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.abajournal.com/news/article/131-federal-judges-oversaw-cases-involving-companies-in-which-they-or-their-families-owned-stock",
+   "outlet": "ABA Journal",
+   "date": "2021-09-29",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "The Wall Street Journal found 138 cases assigned to him involving companies in which he or his wife held an interest.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "her husband does not plan to buy individual stocks in the future. “I regret my misunderstanding, but I assure you it was an honest one,” she told the Wall Street Journal. The judge with the most conflicts was Judge Rodney Gilstrap, chief of the U.S. District Court for the Eastern District of Texas. The Wall Street Journal found 138 cases assigned to him involving companies in which he or his wife held an interest. Gilstrap told the newspaper that he didn’t think he had to recuse himself in cases requiring that he take little or no action or when stocks were held in a trust created for his wife. “Legal ethics experts disagreed on both counts,” the Wall Street Journal reported. Updated Sept. 30 at 8:29 a.m. to include the statement from the A"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.westernjournal.com/obama-appointed-federal-judge-caught-presiding-stunning-number-cases-financial-interests/",
+   "outlet": "The Western Journal",
+   "date": "2021-09-29",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Some corporate giants were in the judge’s docket and in his portfolio, the Journal found, including Microsoft Corp., in which he made 53 rulings",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "f 131 judges the Journal said broke the rules, his 138 cases make up about 20 percent of the 685 cases between 2010 and 2018 in which the Journal found the law was violated. Gilstrap told the Journal via email he did nothing wrong, but would not be interviewed. Advertisement - story continues below Some corporate giants were in the judge’s docket and in his portfolio, the Journal found, including Microsoft Corp., in which he made 53 rulings; Walmart, with 36 cases and Target Corp. with 25 cases. The Journal noted that he ruled in favor of Disney in a patent-infringement case, despite having between $100,001 and $250,000 of Disney stock held by either him or his wife. The Journal noted that in patent infringement cases, judges have a lot of power. Is it no surprise an"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.abajournal.com/news/article/federal-judge-acknowledges-he-may-have-violated-law-in-138-cases-by-failing-to-recuse",
+   "outlet": "ABA Journal",
+   "date": "2021-11-03",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Gilstrap had stock that would have required recusal in four cases, while his wife had an interest in a trust that would have required Gilstrap’s recusal in 134 other cases, the notices said.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "strap of the Eastern District of Texas has acknowledged in court notices that he may have violated the law by failing to recuse himself in 138 cases. The cases were on Gilstrap’s docket, even though he or his wife had a financial interest in the corporate litigants, the Wall Street Journal reports. Gilstrap had stock that would have required recusal in four cases, while his wife had an interest in a trust that would have required Gilstrap’s recusal in 134 other cases, the notices said. The notices said the stock ownership “neither affected nor impacted Chief Judge Gilstrap’s decisions, if he in fact made any decisions, in this case.” Even so, parties receiving the notices can seek to reopen their cases and have then heard by new judges, the newspaper reports. Gilstrap was one of 131 federal judges who failed to r"
+  },
+  {
+   "idx": 4,
+   "url": "https://ipfray.com/judge-gilstrap-recuses-himself-from-supercomputer-firm-partecs-patent-lawsuit-against-microsoft-judge-schroeder-takes-over/",
+   "outlet": "ip fray",
+   "date": "2024-11-13",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "the most common reason for such recusals from such cases is that a judge or their spouse hold shares in a publicly-traded company that is party to the case.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " U.S. federal judges prefer to err on the side of caution when recusing themselves from cases. The following screenshot from the electronic docket already reflects the reassignment: Here’s the notice of recusal, which does not state any particular reason: While there could be any number of reasons, the most common reason for such recusals from such cases is that a judge or their spouse hold shares in a publicly-traded company that is party to the case. Here, both parties are publicly-traded, but the likelihood of Judge Gilstrap or his spouse owning shares in ParTec is next to nil, while Microsoft is obviously part of the portfolios of many (especially U.S.) investors. Also, at this stage Microsoft isn’t among the companies most frequently sued in that district (as opposed to, "
+  }
+ ]
+}

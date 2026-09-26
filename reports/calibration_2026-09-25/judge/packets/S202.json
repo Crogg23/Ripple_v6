@@ -1,0 +1,95 @@
+{
+ "story_id": "S202",
+ "lead": {
+  "headline": "US coal power rose 85 terawatt-hours (13%) in 2025, about 1.8 times every other country's coal rise combined",
+  "number": "+84.99 TWh (+13.03%); the 23 other risers among 89 countries with 2025 data added 36.26 TWh (2.3x), about 1.8x once Ember's Asia residual for missing countries is added.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "It is a rebound: 2023-24 lost 179 TWh when gas was cheap, and 2025 wins back 85 while staying 94 TWh below 2022. 105 countries, Indonesia included, have no 2025 data."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "US coal power generation rose 13% in 2025 Ember",
+  "EIA coal-fired generation 2025 increase terawatt-hours natural gas prices United States",
+  "2025 global coal generation US largest increase in coal power of any country Ember Global Electricity Review 2026",
+  "US coal generation 2025 rise offset declines China India coal power rose most in United States analysis",
+  "\"coal\" 2025 United States accounted for most of global increase in coal-fired generation countries where coal power rose",
+  "Global Energy Monitor Boom and Bust Coal 2026 United States coal generation rose 13% only major economy",
+  "US coal generation 2026 first half falls OR rises EIA August 2026 coal power after 2025 rebound",
+  "US coal power increase 2025 bigger than rest of world combined coal growth countries Indonesia Russia Vietnam coal generation rose"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://ember-energy.org/latest-insights/global-electricity-review-2026/major-countries-and-regions/",
+   "outlet": "Ember (Global Electricity Review 2026)",
+   "date": "2026-04-21",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "US coal generation increased by 85 TWh (+13%) in 2025, while gas generation declined by 63 TWh (-3.4%), driven by a substantial rise in gas prices over record low prices in 2024.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "%) of the rise in electricity demand in the US in 2025 was met by solar growth (+85 TWh, +28%). This was the second-largest increase in solar generation globally in 2025. Wind generation rose by 12.5 TWh (+2.8%), meaning that wind and solar together met 74% of the increase in US electricity demand. US coal generation increased by 85 TWh (+13%) in 2025, while gas generation declined by 63 TWh (-3.4%), driven by a substantial rise in gas prices over record low prices in 2024. This marked a departure from the long-term pattern in the US of declining coal generation and growing gas generation. Loading data… In the four years since 2021, clean power met 88% of demand growth in the US. During this period, combined wind and solar generation increased by 57%, rising from 543 TWh to 853 TWh. This sustained gro"
+  },
+  {
+   "idx": 1,
+   "url": "https://electrek.co/2026/01/19/coal-use-dropped-in-china-and-india-in-2025-it-rose-in-usa-hiking-energy-costs/",
+   "outlet": "Electrek",
+   "date": "2026-01-19",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In 2025, US coal power generation went up by 13%, quite a big chunk for a power generation method that has otherwise been declining rapidly.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rking the first time in 52 years that both countries have seen a decline in coal generation at the same time. Meanwhile, the world’s largest historical polluter, the US, ticked up its use of the worst method of power generation, which coincided with higher energy costs amid an affordability crisis. In 2025, US coal power generation went up by 13%, quite a big chunk for a power generation method that has otherwise been declining rapidly. This worked to fuel a 2.4% increase in US carbon emissions, which have also otherwise been gradually falling for around two decades now. The US remains the largest all-time contributor to climate change , and it’s not even close. Advertisement - scroll for more content But… let’s not declare it a victory for coal (which would be a"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=67106",
+   "outlet": "U.S. Energy Information Administration (Today in Energy)",
+   "date": "2026-02-02",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The decrease was more than offset by an 11% (76 BkWh) increase in less expensive coal-fired generation and a 32% (66 BkWh) increase in solar generation.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "r 48 states increased by 2% in 2025, or 93 billion kilowatthours (BkWh), even though the year was one day shorter because of the leap year in 2024. Despite the increase in total electricity generation, natural gas-fired generation decreased 3% (53 BkWh) in 2025 because of higher natural gas prices. The decrease was more than offset by an 11% (76 BkWh) increase in less expensive coal-fired generation and a 32% (66 BkWh) increase in solar generation. Data source: U.S. Energy Information Administration, Hourly and Daily Balancing Authority Operations Report Although natural gas-fired generation decreased in most regions across the country in 2025 compared with 2024, the generation source that displaced it varied by region: In the Mid-Atlantic ( PJM ) and Midwest ( MISO ) region"
+  },
+  {
+   "idx": 3,
+   "url": "https://news.mongabay.com/2026/05/world-burned-less-coal-in-2025-but-built-more-plants-over-energy-uncertainty/",
+   "outlet": "Mongabay (on Global Energy Monitor, Boom and Bust Coal 2026)",
+   "date": "2026-05-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "While coal usage dropped at the global scale, a major outlier was the United States, which saw coal electricity generation rise by 13%.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "war in Iran will be to spur greater adoption of renewables. “The crisis is reinforcing the underlying lesson that dependence on internationally traded fossil fuels creates economic and geopolitical vulnerability. That is likely to accelerate investment in renewables over the longer term,” she said. While coal usage dropped at the global scale, a major outlier was the United States, which saw coal electricity generation rise by 13%. The U.S. was the only major economy to post an increase in coal usage — a direct result of policy intervention by the Trump administration and part of its larger rollback of clean energy incentives. In 2025, the U.S. federal government ordered five coal plants in four states to continue operating despite plans to retire them. Mo"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.visualcapitalist.com/ranked-where-coal-consumption-rose-the-most-in-2025/",
+   "outlet": "Visual Capitalist (Energy Institute Statistical Review 2026 data)",
+   "date": "2026-08-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "U.S. coal-fired generation consequently increased by 93.2 TWh, while gas-fired generation declined by 61.8 TWh.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "2 5.15 0.43 🇨🇳 China 92.24 92.24 0.00 Europe 7.58 7.33 -0.25 🌐 Rest of World 52.98 52.58 -0.40 The increase marked a sharp reversal from 2024, when U.S. coal consumption fell 3.4%. Colder winter weather increased natural gas demand and prices, improving the economics of coal-fired power generation. U.S. coal-fired generation consequently increased by 93.2 TWh, while gas-fired generation declined by 61.8 TWh. A Different Story Across the Atlantic Unlike the U.S., Europe saw both its supply (-6.3%) and demand (-3.1%) continue to decline year-over-year with retiring coal plants and expanding renewable energy capacity. Europe reduced its total imports by over 50% between 2015-2025, yet still relies on imports to meet 41% of its coal consumption"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.visualcapitalist.com/ranked-where-coal-consumption-rose-the-most-in-2025/",
+   "outlet": "Visual Capitalist (Energy Institute Statistical Review 2026 data)",
+   "date": "2026-08-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The U.S. (+0.80 EJ) led the world in coal consumption changes between 2024 to 2025, followed by Indonesia (+0.43 EJ).",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Bluesky Reddit Telegram Use This Visualization Add as preferred on Google Save to Inbox × Save to Inbox Sign me up for the free Visual Capitalist daily newsletter. Send Sign up for our free daily newsletter * Website / URL Subscribe Ranked: Where Coal Consumption Rose the Most in 2025 Key Takeaways The U.S. (+0.80 EJ) led the world in coal consumption changes between 2024 to 2025, followed by Indonesia (+0.43 EJ). The vast majority of countries either reduced coal consumption or, like China, held consumption flat. Just five countries—China, India, the U.S., Indonesia, and Japan—accounted for 80% of the world’s growing coal consumption in 2025. The biggest driver of rising demand was the United States, with a year-over-year in"
+  }
+ ]
+}

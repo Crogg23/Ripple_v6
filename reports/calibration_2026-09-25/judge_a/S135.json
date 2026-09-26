@@ -1,0 +1,12 @@
+{
+ "story_id": "S135",
+ "bin": "Known pattern",
+ "entity": "17 landfills on EPA's stopped-reporting-unknown-reason list",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source names the 17 landfills or the stopped-reporting list. Industrious Labs reports the same kind of finding, landfill methane escaping federal reporting, about other landfills; the EPA page and Federal Register rule are explainers.",
+ "confidence": "low",
+ "blocked_evidence": false
+}

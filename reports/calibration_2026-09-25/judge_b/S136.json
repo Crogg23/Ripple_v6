@@ -1,0 +1,12 @@
+{
+ "story_id": "S136",
+ "bin": "Unreported",
+ "entity": "Oregon DEQ state water-permit inspections missing from the federal file, Oct 2024-Jul 2026",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source reports Oregon inspections stopping or vanishing from ICIS in this window. The 2020 SRF is old data-quality notes, the DEQ pages are system and workload explainers, not the finding.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

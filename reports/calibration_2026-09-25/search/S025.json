@@ -1,0 +1,67 @@
+{
+  "story_id": "S025",
+  "entity": "Illinois state hazardous-waste (RCRA) inspectors: share of sites where EPA found violations that the state also wrote up within 2 years, 2015-25 (15.5%, vs NJ 28.5%, PA 34.5%, nation 49.1%, WI 80.8%)",
+  "queries": [
+    {"q": "Illinois EPA hazardous waste inspections violations RCRA state enforcement lax federal EPA", "found_useful": false},
+    {"q": "State Review Framework Illinois RCRA Round 4 report violation identification", "found_useful": true},
+    {"q": "EPA inspectors found hazardous waste violations state inspectors missed same facility RCRA study", "found_useful": false},
+    {"q": "Illinois EPA enforcement plummeted referrals attorney general violations Tribune analysis", "found_useful": true},
+    {"q": "study state inspectors find fewer violations than federal EPA inspectors hazardous waste RCRA comparison states", "found_useful": false},
+    {"q": "EPA Office of Inspector General report states hazardous waste RCRA inspections violations not identified oversight Region 5", "found_useful": true},
+    {"q": "EPA inspector general report state hazardous waste enforcement variability EPA-led inspections 76 percent violations 2026", "found_useful": true},
+    {"q": "Illinois EPA inspector shortage hazardous waste inspections fewer violations cited Capitol News Illinois WBEZ", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/system/files/documents/2026-04/_epaoig_20260428-26-e-0025_cert.pdf",
+      "outlet": "EPA Office of Inspector General (Report No. 26-E-0025)",
+      "date": "2026-04-28",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "The EPA identified violations in 76 percent of inspections that it led, states identified violations in 52 percent of their inspections, and joint inspections identified violations 85 percent of the time.",
+      "paywalled": false,
+      "searcher_note": "Closest pattern source: federal vs state violation-finding rates at hazardous-waste large quantity generators, 2020-2024, national. Illinois appears only as a table row on inspection coverage, not on this measure; no state-follows-EPA concordance measure."
+    },
+    {
+      "url": "https://www.epa.gov/system/files/documents/2023-03/srf-rd4-rev-il.pdf",
+      "outlet": "U.S. EPA Region 5, State Review Framework Round 4, Illinois",
+      "date": "2023-02-08",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "In 34 of 34 files reviewed (100%), the inspection reports/files led to accurate compliance determinations.",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement: EPA's own oversight review rated Illinois EPA's RCRA violation identification 'Meets or Exceeds Expectations' and found no priority RCRA issues. Review covers FY2017 only and uses a file review, not the same-site EPA-then-state measure."
+    },
+    {
+      "url": "https://www.eenews.net/articles/watchdog-epa-states-behind-on-hazardous-waste-inspections/",
+      "outlet": "E&E News by POLITICO",
+      "date": "2026-04-29",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "EPA penalties were, on average, priced thousands of dollars higher than state penalties.",
+      "paywalled": false,
+      "searcher_note": "News coverage of the April 2026 OIG report; federal vs state variability in hazardous-waste enforcement. Does not mention Illinois. Page shows a banner that E&E coverage moved to POLITICO Pro, but text was retrievable."
+    },
+    {
+      "url": "https://www.governing.com/resilience/illinois-seeks-to-rebuild-its-epa-after-years-of-neglect",
+      "outlet": "Governing (Chicago Tribune via TNS)",
+      "date": "2025-01-06",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "has asked Raoul to step in 120 times a year, compared with 80 on average during each of",
+      "paywalled": false,
+      "searcher_note": "Illinois EPA enforcement weakened under Rauner and is being rebuilt under Pritzker (referrals to AG). Names Illinois EPA but covers enforcement referrals generally, not hazardous-waste violation write-ups after EPA inspections."
+    },
+    {
+      "url": "https://investigatemidwest.org/2018/04/11/illinois-environmental-agency-suffers-deep-staff-cuts/",
+      "outlet": "Investigate Midwest (Midwest Center for Investigative Reporting)",
+      "date": "2018-04-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Violation notices from those inspections dropped from 802 to 479, or 40 percent.",
+      "paywalled": false,
+      "searcher_note": "Illinois EPA air, water and land inspections and violation notices fell under staff cuts. Same agency, general enforcement decline; no RCRA-specific or EPA-vs-state comparison."
+    }
+  ],
+  "notes": "No source found that measures how often Illinois (or NJ, PA, WI) inspectors cite hazardous-waste violations at sites where EPA found violations. Closest pattern: EPA OIG April 2026 says EPA-led LQG inspections find violations 76% of the time vs 52% for state-led, 2020-24. EPA's own FY2017 SRF review rated Illinois RCRA violation identification as meeting expectations (a possible disagreement, different measure and year). Illinois coverage found is about general enforcement decline under Rauner (2018 Investigate Midwest, 2025 Tribune), not RCRA. EHS Leaders Sept 2026 piece 'State RCRA Authorization Doesn't Eliminate EPA Enforcement Authority' returned 403, not recorded."
+}

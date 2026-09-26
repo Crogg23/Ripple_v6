@@ -1,0 +1,59 @@
+{
+ "story_id": "S065",
+ "lead": {
+  "headline": "Acetaminophen-codeine liquid's generic price jumped 30-fold in 2024; saxagliptin tablets rose 4.2x, then 4.9x",
+  "number": "Of 308,054 same-unit generic price steps in 2024, 20 were 3x+ up; acetaminophen-codeine solution $0.0145 to $0.434 per mL; saxagliptin 5 mg $1.35 to $6.67.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Only 2024's weekly files are loaded, and shortages and makers leaving explain most jumps."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "acetaminophen codeine oral solution price increase 2024 generic",
+  "saxagliptin generic price increase 2024 NADAC",
+  "ASHP drug shortage acetaminophen and codeine oral solution discontinued 2024",
+  "saxagliptin tablets shortage OR discontinuation 2024 generic manufacturers Onglyza",
+  "46brooklyn NADAC 2024 biggest generic price increases acetaminophen codeine solution saxagliptin",
+  "\"acetaminophen and codeine\" oral solution price spike pharmacy acquisition cost 2024 manufacturer exit",
+  "generic drug prices spiked 2024 some rose 30-fold NADAC analysis shortages manufacturers leave",
+  "saxagliptin 5 mg generic cost jumped pharmacists 2024 price hike DPP-4 generic"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.drugpatentwatch.com/p/drug-price/drugname/ACETAMINOPHEN-CODEINE",
+   "outlet": "DrugPatentWatch (NADAC price table)",
+   "date": "2026-07-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47351 ML 2026-07-22",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e Trends for ACETAMINOPHEN-CODEINE ⮫ Send this page by email ✉ Email this page to a colleague « Back to Dashboard Average Pharmacy Cost for ACETAMINOPHEN-CODEINE These are average pharmacy acquisition costs (net of discounts) from a US national survey Glossary Drug Name NDC Price/Unit ($) Unit Date ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47351 ML 2026-07-22 ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47410 ML 2026-06-17 ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47409 ML 2026-05-20 ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47577 ML 2026-04-22 ACETAMINOPHEN-CODEINE 120 MG-12 MG/5 ML SOLUTION 64950-0374-16 0.47696 ML 2026"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.drugpatentwatch.com/p/drug-price/drugname/SAXAGLIPTIN+HCL",
+   "outlet": "DrugPatentWatch (NADAC price table)",
+   "date": "2026-07-22",
+   "source_type": "company",
+   "entity_named": "yes",
+   "quote": "SAXAGLIPTIN HCL 2.5 MG TABLET 00378-4705-77 1.12670 EACH 2026-07-22",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "se Drug Price Trends for SAXAGLIPTIN HCL ⮫ Send this page by email ✉ Email this page to a colleague « Back to Dashboard Average Pharmacy Cost for SAXAGLIPTIN HCL These are average pharmacy acquisition costs (net of discounts) from a US national survey Glossary Drug Name NDC Price/Unit ($) Unit Date SAXAGLIPTIN HCL 2.5 MG TABLET 00378-4705-77 1.12670 EACH 2026-07-22 SAXAGLIPTIN HCL 2.5 MG TABLET 00378-4705-93 1.12670 EACH 2026-07-22 SAXAGLIPTIN HCL 2.5 MG TABLET 65862-0825-30 1.12670 EACH 2026-07-22 >Drug Name >NDC >Price/Unit ($) >Unit >Date Subscribe to access the full database , or Start Trial Last updated: February 14, 2026 What is SAXAGLIPTIN HCL and its market status? Saxagliptin HC"
+  },
+  {
+   "idx": 2,
+   "url": "https://pharmacy.osu.edu/news/shedding-light-nadac-how-pricing-power-influences-pharmacy-reimbursement",
+   "outlet": "The Ohio State University College of Pharmacy",
+   "date": "2025-06-26",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "For the first time, a large chain pharmacy participated in the NADAC survey and reported invoice prices across all locations selected.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Pharmacies across the country started experiencing severe month-to-month reimbursement shifts. Here is a rough graph Michael pulled together of the monthly percent change in NADAC based on information available publicly on the CMS website : These shifts were later traced back to a new development: For the first time, a large chain pharmacy participated in the NADAC survey and reported invoice prices across all locations selected. Their acquisition costs were significantly lower than those of other respondents, which lowered the average. However, because their data stayed within two standard deviations, it remained part of the final benchmark. (For those desiring a deeper dive, check out this analysis conducted by 46 Brooklyn .) In August 2024, rates "
+  }
+ ]
+}

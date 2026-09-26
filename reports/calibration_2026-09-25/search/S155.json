@@ -1,0 +1,77 @@
+{
+  "story_id": "S155",
+  "entity": "FirstEnergy's utilities (Ohio Edison, Illuminating Co., Toledo Edison, Potomac Edison MD/WV, Mon Power), hand-read / non-smart meters, 2024",
+  "queries": [
+    {"q": "FirstEnergy smart meters behind manual meter readers Ohio Maryland West Virginia", "found_useful": true},
+    {"q": "FirstEnergy meter readers estimated bills smart meter rollout Potomac Edison Mon Power", "found_useful": false},
+    {"q": "Potomac Edison Maryland smart meter deployment Public Service Commission approval", "found_useful": true},
+    {"q": "West Virginia Mon Power Potomac Edison smart meters PSC case estimated bills complaints", "found_useful": true},
+    {"q": "Mon Power Potomac Edison advanced metering infrastructure plan West Virginia smart meters 2026", "found_useful": false},
+    {"q": "\"FirstEnergy\" utilities lag smart meter adoption manually read meters share EIA data", "found_useful": true},
+    {"q": "FirstEnergy smart meter deployment West Virginia Maryland New Jersey 2026 rate case AMI proposal", "found_useful": true},
+    {"q": "Potomac Edison smart meter installation Frederick Hagerstown Maryland customers", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.news5cleveland.com/news/local-news/investigations/dont-want-to-switch-to-a-smart-meter-it-will-cost-you",
+      "outlet": "News 5 Cleveland (WEWS)",
+      "date": "2026-01-22",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Our current deployment will include our remaining 1.4 million Ohio customers and is expected to wrap up in 2027.",
+      "paywalled": false,
+      "searcher_note": "FirstEnergy statement quoted by local TV: 1.4M Ohio customers still awaiting smart meters, rollout ends 2027; story is about the $28.29 manual-read opt-out fee. Date from page metadata."
+    },
+    {
+      "url": "https://www.firstenergycorp.com/newsroom/featured_stories/smart-meter-installations-continue-in-ohio.html",
+      "outlet": "FirstEnergy",
+      "date": "2025-04-16",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "Grid Mod II will build on these efforts by deploying an additional 1.4 million smart meters",
+      "paywalled": false,
+      "searcher_note": "Company release: 715,000+ Ohio smart meters under Grid Mod I (2020-22); phase II of 1.4M begins April 2025, ends 2027. Supports the lead's 'late, not refused' caveat for Ohio."
+    },
+    {
+      "url": "https://www.firstenergycorp.com/newsroom/news_articles/2023-shareholder-address.html",
+      "outlet": "FirstEnergy",
+      "date": "2023-05-24",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "By 2026, we expect to have installed smart meters for nearly 80% of customers across our service territory.",
+      "paywalled": false,
+      "searcher_note": "Company-wide smart meter target; implies roughly 20% of FirstEnergy customers still without smart meters in 2026."
+    },
+    {
+      "url": "https://psc.maryland.gov/wp-content/uploads/2025/11/2013-MD-PSC-Annual-Report1.pdf",
+      "outlet": "Maryland Public Service Commission (2013 Annual Report)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "the Commission initiated an investigation into PE's meter reading practices, estimations of bills, and its compliance with its tariffs based on the filing of several formal complaints",
+      "paywalled": false,
+      "searcher_note": "PDF. Case No. 9329 (April 2013): MD PSC probe of Potomac Edison's hand meter-reading frequency and estimated bills; PE tariff is bi-monthly reading. Background, not a 2024 count."
+    },
+    {
+      "url": "https://msa.maryland.gov/megafile/msa/speccol/sc5300/sc5339/000113/023800/023821/20190206e.pdf",
+      "outlet": "Maryland Public Service Commission (2018 Annual Report)",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Pepco and DPL have finished deploying smart meters with the final totals for each company being 560,851 and 211,115 smart meters, respectively.",
+      "paywalled": false,
+      "searcher_note": "PDF. Lists smart-grid approvals for BGE, Pepco, DPL and SMECO only, all finished by 2018; Potomac Edison is absent from the list. Supports the in-state comparison, does not name PE."
+    },
+    {
+      "url": "https://callmepower.com/md/utility/potomac-edison",
+      "outlet": "CallMePower",
+      "date": "2026-05-22",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "now available because the smart meter rollout is complete",
+      "paywalled": false,
+      "searcher_note": "Possible disagreement: energy-shopping site says Potomac Edison's (Maryland) smart meter rollout is complete; same page also says 'Potomac Edison installs a new advanced meter for free as part of enrollment' in a 2026 TOU pilot. Date is dateModified; datePublished 2014-11-13."
+    }
+  ],
+  "notes": "No source found that reports FirstEnergy's hand-read share, the 2.26M count, or the ~27% of US hand-read meters. What exists: FirstEnergy's own statements that Ohio's 1.4M remaining meters get smart meters 2025-2027 and a company-wide 80%-by-2026 target; MD PSC reports showing every other Maryland IOU finished AMI by 2018 while Potomac Edison had no approved smart-grid case; MD PSC 2013 probe of PE hand meter reading. No West Virginia AMI plan for Mon Power/Potomac Edison found in 2026 rate-case coverage (Dominion Post 2026-03-09, Utility Dive 2026-05-19 checked; neither mentions meters). Also seen: StopPATH WV advocacy blog (2013-12-29, https://stoppathwv.com/stoppath-wv-blog/potomac-edisonmon-power-billing-meter-reading-investigation-evidentiary-hearing) on the WV PSC general investigation of Mon Power/Potomac Edison meter reading, quote verified: \"AEP didn't have the same problems because their meter reading is automated and is a different process.\" CallMePower's 'rollout is complete' line is unsourced and conflicts with its own 'installs a new advanced meter' line."
+}

@@ -1,0 +1,78 @@
+{
+  "story_id": "S107",
+  "entity": "Los Angeles-area ZIP 912-916 (Glendale, Burbank, San Fernando Valley incl. Van Nuys): share of home health agencies enrolled in Medicare since 2019 (35%) vs before 2013 (3%); 14545 Friar St, Van Nuys building",
+  "queries": [
+    {"q": "\"14545 Friar\" Van Nuys hospice home health", "found_useful": false},
+    {"q": "Van Nuys building dozens of hospices home health agencies same address fraud", "found_useful": true},
+    {"q": "Los Angeles home health agencies surge new enrollments Medicare fraud Glendale Burbank San Fernando Valley", "found_useful": true},
+    {"q": "CMS Los Angeles County home health agencies enhanced oversight moratorium new enrollments 2026", "found_useful": true},
+    {"q": "Los Angeles home health agency fraud Van Nuys Glendale investigation August 2026", "found_useful": true},
+    {"q": "\"Los Angeles County\" \"home health agency enrollment\" 40% increase 2019 2023 moratorium Federal Register", "found_useful": true},
+    {"q": "FinCEN health care fraud home health Los Angeles County Glendale Van Nuys Burbank North Hollywood suspicious activity", "found_useful": false},
+    {"q": "federalregister.gov 2026 moratoria home health agencies hospices Medicare enrollment Los Angeles County increase", "found_useful": true},
+    {"q": "MedPAC July 2026 data book home health agencies supply California Los Angeles County", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://file.lacounty.gov/SDSInter/bos/supdocs/214558.pdf",
+      "outlet": "Los Angeles County Board of Supervisors (motion by Supervisor Horvath)",
+      "date": "2026-04-07",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Historically these businesses have been concentrated in Glendale and Burbank, but of late there has been a significant increase in the number of operations located in the Van Nuys area of Los Angeles County (County).",
+      "paywalled": false,
+      "searcher_note": "County motion: 3,170 home health and 1,623 hospice agencies in LA County; names Glendale, Burbank and Van Nuys (the ZIP 912-916 area) as the concentration. No enrollment-year split, no 35%/3% figures."
+    },
+    {
+      "url": "https://homehealthcarenews.com/2026/07/medpac-flags-california-los-angeles-as-primary-drivers-of-home-health-agency-growth/",
+      "outlet": "Home Health Care News",
+      "date": "2026-07-20",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Medicare-certified home health agency supply continued to grow in 2024, but much of that expansion was concentrated in California",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff. Reports MedPAC July 2026 Data Book: HHA growth concentrated in California, 'particularly Los Angeles County'; excluding California, HHA supply fell ~1% 2019-2024. County level, not ZIP 912-916."
+    },
+    {
+      "url": "https://homehealthcarenews.com/2024/01/hospice-fraud-back-in-the-spotlight-with-new-data-also-raising-questions-about-home-health-care/",
+      "outlet": "Home Health Care News",
+      "date": "2024-01-30",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "number of home health agencies delivering services increased from 896 to 1,309",
+      "paywalled": false,
+      "searcher_note": "Earliest found. Los Angeles County HHAs delivering services rose 896 to 1,309 (about 46%) from start of 2019 to June 2023, while the national count fell 8,838 to 8,280 (about 6%). Data from an unnamed industry source on Medicare claims. County level, not ZIP 912-916."
+    },
+    {
+      "url": "https://www.mcdermottlaw.com/insights/new-hospice-home-health-agency-providers-subject-to-cms-enrollment-moratoria/",
+      "outlet": "McDermott Will & Schulte (law firm insight)",
+      "date": "2026-05-15",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "Los Angeles County currently has approximately 12% to 15% of all HHA enrollments nationwide, despite being the place of residence of approximately 3% of the US",
+      "paywalled": false,
+      "searcher_note": "Summarises CMS's May 2026 nationwide HHA enrollment moratorium notice (Federal Register 2026-09717), which cited LA County's 40%+ rise in HHA enrollment 2019-2023. Federal Register page itself blocked by a bot wall; Greenberg Traurig and Benesch pages carry the same 40% figure."
+    },
+    {
+      "url": "https://www.nbclosangeles.com/news/local/van-nuys-address-hospice-fraud/3860321/",
+      "outlet": "NBC Los Angeles",
+      "date": "2026-03-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Assemblywoman Alexandra Macedo, R-Tulare, said the agencies are registered at 14545 Friar St., where she said she visited the property after reviewing licensing records.",
+      "paywalled": false,
+      "searcher_note": "Names 14545 Friar St. as the registered address for 197 hospice agencies (state licensing records, per the lawmaker). Lead counts 49 home health agencies and 9 hospices there from the CMS still-enrolled file; different source and definition. Article is about hospices only, no home health."
+    },
+    {
+      "url": "https://www.smdp.com/l-a-county-supervisors-move-to-combat-home-health-hospice-fraud-amid-nationwide-crackdown/",
+      "outlet": "Santa Monica Daily Press",
+      "date": "2026-04-08",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "89 hospice companies registered at a single Van Nuys office plaza and 210 agencies concentrated within one square mile of the San Fernando Valley",
+      "paywalled": false,
+      "searcher_note": "Covers the county motion; San Fernando Valley clustering of agencies; more than 4,700 home health and hospice agencies operate in the county. No enrollment-year split."
+    }
+  ],
+  "notes": "Coverage of the LA home health surge is broad at county level: CMS's May 2026 moratorium notice (via law-firm summaries), MedPAC's July 2026 Data Book (via HHCN, post-cutoff), and HHCN's Jan 2024 claims-data story. The LA County motion is the only source found that names the Glendale/Burbank/Van Nuys area specifically. No source found gives the ZIP 912-916 split, the 35% (enrolled 2019+) vs 3% (before 2013) comparison, or the 49 home health agencies at 14545 Friar St. The Friar St building is covered for hospices (NBC LA: 197 hospice registrations; CBS News, 2026-03-19, reported 89 licensed hospices at the Merabi Professional Medical Plaza in Van Nuys but did not print a street address, so it is not recorded as naming this building). FinCEN's Sept 2026 health-care-fraud trend analysis lists Glendale, Van Nuys, Burbank and North Hollywood among top cities in suspicious-activity reports, a different measure."
+}

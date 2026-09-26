@@ -1,0 +1,57 @@
+{
+  "story_id": "S174",
+  "entity": "California primary care Health Professional Shortage Areas (HRSA HPSAs) proposed for withdrawal, 2025-2026: 74-90 areas, 2.7-3.5M people, about 3x the national rate",
+  "queries": [
+    {"q": "California health professional shortage areas proposed for withdrawal HRSA 2026", "found_useful": true},
+    {"q": "HPSA withdrawal California primary care shortage designations lose clinics loan repayment 2026", "found_useful": true},
+    {"q": "California shortage area designations withdrawn doctors rural clinics CalMatters HPSA", "found_useful": false},
+    {"q": "\"proposed for withdrawal\" HPSA California HCAI primary care office counties news", "found_useful": true},
+    {"q": "National Shortage Designation Update 2025 HPSAs proposed for withdrawal nationwide number states", "found_useful": false},
+    {"q": "HPSA designations withdrawn July 2026 redesignated new IDs state primary care office communities lose shortage status", "found_useful": true},
+    {"q": "thousands of health professional shortage areas could lose designation HRSA update rural health news 2026", "found_useful": false},
+    {"q": "California counties could lose federal doctor shortage designation 2026 clinics worry", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://hospitalcouncil.org/hospital-action-needed-to-retain-hpsa-designation/",
+      "outlet": "Hospital Council of Northern and Central California",
+      "date": "2026-03-11",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "Approximately 100 of California’s roughly 374 Primary Care Health Professional Shortage Area (HPSA) designations are currently",
+      "paywalled": true,
+      "searcher_note": "Earliest found: about 100 of about 374 California primary care HPSAs proposed for withdrawal on July 1; blames simultaneous recertification and HCAI staff shortages. Teaser public, rest members-only."
+    },
+    {
+      "url": "https://calhospital.org/hospital-action-required-to-retain-hpsa-designation/",
+      "outlet": "California Hospital Association",
+      "date": "2026-03-12",
+      "source_type": "trade press",
+      "entity_named": "yes",
+      "quote": "This is largely due to a federal policy shift that requires all recertifications to be conducted simultaneously, as well as resource shortages within the Department of Health Care Access and Information (HCAI).",
+      "paywalled": true,
+      "searcher_note": "Same text as the Hospital Council item one day later (count once): about 100 of about 374 California primary care HPSAs proposed for withdrawal."
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-01/html/2026-13309.htm",
+      "outlet": "Federal Register (HRSA notice, FR Doc 2026-13309)",
+      "date": "2026-07-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "HPSAs that did not pass the National Shortage Designation Update conducted in September 2025 will be maintained in a proposed for withdrawal status after the publication of this FRN, and the state PCOs will be allowed additional time",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff primary record: HRSA withdraws HPSAs placed in proposed-for-withdrawal by state PCO actions (Oct 2024-Sep 2025), holds the September 2025 update's failures until July 1, 2027. National; no California count."
+    },
+    {
+      "url": "https://calhospital.org/hrsa-delays-withdrawal-of-health-professional-shortage-area-designations/",
+      "outlet": "California Hospital Association",
+      "date": "2026-07-09",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "status will maintain their current HPSA status through approximately July 1, 2027.",
+      "paywalled": true,
+      "searcher_note": "Post-cutoff: HRSA delayed withdrawal of proposed-for-withdrawal HPSAs to about July 1, 2027; no California counts in the public teaser."
+    }
+  ],
+  "notes": "Trade press (CHA, and the same text from Hospital Council) names California primary care HPSAs proposed for withdrawal, but with a different count: about 100 of about 374 designations, against the lead's 123 of 214 active (74-90 after removing re-designated areas). No source found giving the population (2.7-3.5M or 4.62M), the 3x national comparison, or the finding that most July 2026 withdrawals were old IDs retired after re-designation. No general news coverage (CalMatters, LA Times, KFF Health News) found. HRSA's press release on the extended timeline (hrsa.gov) returned 403 to both fetch tools, so it is not recorded. The CHA pages show a public teaser and then 'This content is restricted to members'; marked paywalled. A 2022 CARHC slide deck on an earlier withdrawal cycle was checked and left out as a different window."
+}

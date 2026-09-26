@@ -1,0 +1,77 @@
+{
+  "story_id": "S071",
+  "entity": "Google political-ad buyers verified by tax ID (EIN) only, no FEC ID, 2018-2026 ($861.4M); named buyer Securing American Greatness Inc, 84% of its 2024 Google spend on one-gender ads",
+  "queries": [
+    {"q": "\"Securing American Greatness\" Google ads 2024 spending", "found_useful": true},
+    {"q": "Securing American Greatness ads targeted men OR women digital YouTube 2024 Trump nonprofit gender", "found_useful": true},
+    {"q": "Google political ads transparency report nonprofits dark money groups spending Google ads no FEC registration EIN verification loophole", "found_useful": true},
+    {"q": "Google political ads 2024 targeted only men or only women gender targeting analysis advertisers YouTube election ads study", "found_useful": true},
+    {"q": "\"Securing American Greatness\" young men ads Google YouTube targeting", "found_useful": true},
+    {"q": "Google election ads verification United States advertisers FEC ID or EIN state candidates ballot measure committees requirements", "found_useful": true},
+    {"q": "Securing American Greatness midterm ad spending 2026 dark money Budowich nonprofit August September 2026", "found_useful": true},
+    {"q": "Google political ad library spending by advertisers not registered with FEC state local candidates ballot measures share of total Google political ad spend analysis", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://ymrp.substack.com/p/gop-groups-outspent-dem-groups-almost",
+      "outlet": "Young Men Research Project (Substack)",
+      "date": "2024-10-11",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "The GOP-aligned groups (America PAC, Donald J. Trump For President 2024, Inc., Duty To America, Make America Great Again Inc., Right For America And Securing American Greatness Inc) spent about $700-$850k targeting young men last week",
+      "paywalled": false,
+      "searcher_note": "Google/YouTube ad-library analysis naming Securing American Greatness Inc among GOP groups gender- and age-targeting young men in October 2024. No share-of-spend figure for SAG. Original URL youngmenresearchinitiative.substack.com redirects here."
+    },
+    {
+      "url": "https://www.brennancenter.org/our-work/research-reports/dark-money-hit-record-high-19-billion-2024-federal-races",
+      "outlet": "Brennan Center for Justice, Anna Massoglia",
+      "date": "2025-05-07",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "About 320 groups that do not disclose their donors collectively spent more than $281 million on online ads during the 2024 election cycle without disclosing any spending to the FEC.",
+      "paywalled": false,
+      "searcher_note": "Pattern: online ads by groups with no FEC disclosure. Separately names SAG: 'Securing American Greatness, after its incorporation in March 2024, spent more than $81 million, about $67 million of which went to super PACs.' No EIN-only Google total."
+    },
+    {
+      "url": "https://gvwire.com/2026/08/31/millions-of-dollars-in-secret-spending-could-upend-the-2026-midterms/",
+      "outlet": "The New York Times (syndicated on GV Wire), Shane Goldmacher and Theodore Schleifer",
+      "date": "2026-08-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The group has spent at least $44 million since early last year, sending nearly $25 million to super PACs and airing about $19 million of ads boosting Trump and Republicans.",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff coverage naming SAG as Trump's dark-money nonprofit in the 2026 midterms. Nothing on Google, EIN verification or gender targeting."
+    },
+    {
+      "url": "https://www.brennancenter.org/our-work/analysis-opinion/online-political-spending-2024",
+      "outlet": "Brennan Center / OpenSecrets / Wesleyan Media Project",
+      "date": "2024-10-16",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Of the $619 million in spending in our sample, 45 percent came from spenders that may conceal some or all of their donors.",
+      "paywalled": false,
+      "searcher_note": "Pattern: Google plus Meta political spending by donor-concealing spenders in 2024. Does not split out EIN-only vs FEC-ID Google buyers; does not name SAG."
+    },
+    {
+      "url": "https://support.google.com/adspolicy/answer/9617730?hl=en",
+      "outlet": "Google Advertising Policies Help",
+      "date": "unknown",
+      "source_type": "company",
+      "entity_named": "no",
+      "quote": "Advertisers wishing to apply for verification before this date may do so using our existing political verification form and a FEC ID or EIN.",
+      "paywalled": false,
+      "searcher_note": "Supports the lead's caveat: in November 2019 Google widened election ads to state-level candidates and ballot measures, so EIN or state-registration verification is a normal, legal route for non-federal buyers."
+    },
+    {
+      "url": "https://www.citizensforethics.org/reports-investigations/crew-investigations/qualcomm-gave-1-million-to-pro-trump-dark-money-group/",
+      "outlet": "CREW",
+      "date": "2025-07-30",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Securing American Greatness spent $81 million in the election, including $67 million in contributions to Trump-supporting super PACs.",
+      "paywalled": false,
+      "searcher_note": "Names SAG as a pro-Trump nonprofit that does not disclose donors, with 2024 totals. Nothing on Google or gender targeting."
+    }
+  ],
+  "notes": "No source reports the aggregate finding: 8,368 EIN-only US Google buyers spending $861.4M vs $1,389.1M for FEC-ID buyers. No source gives SAG's one-gender share (84%) of its 2024 Google spend. The closest match is the Young Men Research Project post (Oct 2024), which names SAG among GOP groups targeting young men on Google/YouTube. Also seen but not recorded because X pages cannot be verified: an Andrew Arenge X post (x.com/MrArenge/status/1800335677151949191) saying SAG began Google-targeting an ad at Pennsylvania towns on June 6, 2024, $80K for 5M+ impressions. InfluenceWatch (page dated 2026-05-29) says SAG spent $55M on issue advocacy advertising and $25M on direct mail in 2024. The Hill's 2026 midterm-ad piece returned 403."
+}

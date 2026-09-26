@@ -1,0 +1,12 @@
+{
+ "story_id": "S115",
+ "bin": "Matched + more",
+ "entity": "California lobbying-report employers naming AI, 2022 through 2025",
+ "deciding_sources": [0, 2],
+ "earliest_match_date": "2025-09-23",
+ "post_cutoff_match": true,
+ "what_we_add": "the employer counts from the filings themselves: 1 in 2022, 58 in 2024, 59 in 2025, 45 in H1 2026, and the 1.8% vs 0.03% share",
+ "why": "CalMatters and Tech Policy Press name California AI lobbying and state the same finding in words: a surge, with OpenAI and Anthropic filing for the first time in 2024-25. No source counts employers naming AI on the disclosures, which is our headline number.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

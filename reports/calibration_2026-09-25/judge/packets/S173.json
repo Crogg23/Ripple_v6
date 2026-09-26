@@ -1,0 +1,83 @@
+{
+ "story_id": "S173",
+ "lead": {
+  "headline": "FEMA, the disaster agency, took a median 110 days to publish Jan-Jun 2025 disaster declarations, versus 41-48 days before",
+  "number": "Median 110 days from declaration to FEMA's first Federal Register notice for Jan-Jun 2025 disasters vs 41-48 in 2023-24; California's January 2025 fires waited 223 days; FEMA printed declaration notices on 3 days in Jan 2025-Aug 2026, while SBA printed the same disasters in 1-3 weeks",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "FEMA's batch \"omnibus\" notices carry no DR number in the docket, so a DR-number join misses them; check the notice text before calling anything a first notice"
+ },
+ "queries_logged": 8,
+ "queries": [
+  "FEMA delays publishing disaster declarations Federal Register 2025",
+  "FEMA Federal Register notice disaster declaration months late omnibus notice 2025 Los Angeles fires",
+  "FEMA stopped publishing disaster declaration notices Federal Register backlog SBA disaster loans notices",
+  "\"Federal Register\" FEMA disaster declarations not published for months 2025 notice lag",
+  "FEMA declaration notices Federal Register January 2025 fires 223 days",
+  "FEMA disaster declaration delays analysis days 2025 compared previous administrations news",
+  "FEMA Federal Register notices delayed transparency disaster declarations amendments batch published 2026",
+  "FEMA \"Federal Register\" disaster notices late \"Small Business Administration\" declaration publication gap reporters"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.govinfo.gov/content/pkg/FR-2025-08-19/html/2025-15716.htm",
+   "outlet": "Federal Register (FEMA notice, FR Doc 2025-15716)",
+   "date": "2025-08-19",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "This is a notice of the Presidential declaration of a major disaster for the State of California (FEMA-4856-DR), dated January 8, 2025, and related determinations. The declaration was issued January 8, 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "LAND SECURITY Federal Emergency Management Agency [Docket ID FEMA-2025-0001] Notices of Emergency and Major Disaster Declarations and Related Amendments AGENCY: Federal Emergency Management Agency, DHS. ACTION: Notice. ----------------------------------------------------------------------- SUMMARY: This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, declared under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from October, 2024, to January, 2025. DATES: These declarations and amendments were issued between October, 2024, and January, 2025. FOR FURTHER INFORMATION CONTACT: Dean Webster, Office of Response and Recovery, Federal Emergency Management Agency, 500 C Street SW, Washington, DC 20472, (202) 646-2833. SUPPLEMENTA"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.govinfo.gov/content/pkg/FR-2025-08-19/html/2025-15717.htm",
+   "outlet": "Federal Register (FEMA notice, FR Doc 2025-15717)",
+   "date": "2025-08-19",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, declared under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from January to May, 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "LAND SECURITY Federal Emergency Management Agency [Docket ID FEMA-2025-0001] Notices of Emergency and Major Disaster Declarations and Related Amendments AGENCY: Federal Emergency Management Agency, DHS. ACTION: Notice. ----------------------------------------------------------------------- SUMMARY: This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, declared under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from January to May, 2025. DATES: These declarations and amendments were issued between January and May, 2025. FOR FURTHER INFORMATION CONTACT: Dean Webster, Office of Response and Recovery, Federal Emergency Management Agency, 500 C Street SW, Washington, DC 20472, (202) 646-2833. SUPPLEMENTARY INFORMATION: The Robert T. Stafford Disaster Relief "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-06/html/2026-08895.htm",
+   "outlet": "Federal Register (FEMA notice, FR Doc 2026-08895)",
+   "date": "2026-05-06",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, issued under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from April through October 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "LAND SECURITY Federal Emergency Management Agency [Docket ID FEMA-2025-0001] Notices of Emergency and Major Disaster Declarations and Related Amendments AGENCY: Federal Emergency Management Agency, DHS. ACTION: Notice. ----------------------------------------------------------------------- SUMMARY: This is a notice of the Presidential declarations of emergencies and major disasters, and related determinations, issued under the authority of the Robert T. Stafford Disaster Relief and Emergency Assistance Act from April through October 2025. DATES: These declarations and amendments were issued between April through October 2025. FOR FURTHER INFORMATION CONTACT: Dean Webster, Office of Response and Recovery, Federal Emergency Management Agency, 500 C Street SW, Washington, DC 20472, (202) 646-2833. SUPPLEMENTARY INFORMATION: The Robert T. Stafford Disaster Re"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-17/html/2025-01066.htm",
+   "outlet": "Federal Register (SBA notice, FR Doc 2025-01066)",
+   "date": "2025-01-17",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "This is a Notice of the Presidential declaration of a major disaster for the State of California (FEMA-4856-DR), dated January 8, 2025.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ATION [Disaster Declaration # 20953 and # 20954; CALIFORNIA Disaster Number CA-20030] Presidential Declaration of a Major Disaster for the State of California AGENCY: U.S. Small Business Administration. ACTION: Notice. ----------------------------------------------------------------------- SUMMARY: This is a Notice of the Presidential declaration of a major disaster for the State of California (FEMA-4856-DR), dated January 8, 2025. Incident: Wildfires and Straight-line Winds. DATES: Issued on January 8, 2025. Incident Period: January 7, 2025 and continuing. Physical Loan Application Deadline Date: March 10, 2025. Economic Injury (EIDL) Loan Application Deadline Date: October 8, 2025. ADDRESSES: Visit the MySBA Loan Portal at https://lending.sba.gov"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.politifact.com/factchecks/2026/jan/28/jared-moskowitz/FEMA-disaster-declaration-backlog-Trump/",
+   "outlet": "PolitiFact",
+   "date": "2026-01-28",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "approvals are taking more than a month, on average.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e AP’s analysis found that, on average, it took less than two weeks for a major disaster declaration to be granted by presidents throughout the 1990s and early 2000s. During the last decade, under presidents from both political parties, that rose to about three weeks. In Trump’s second term so far, approvals are taking more than a month, on average. White House spokesperson Abigail Jackson told the AP Trump was making sure federal dollars were “spent wisely to supplement state actions, not replace them,” during disasters. “President Trump provides a more thorough review of disaster declaration requests than any Administration has before him. Gone are the days of rubber stamp"
+  }
+ ]
+}

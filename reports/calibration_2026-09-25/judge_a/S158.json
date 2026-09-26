@@ -1,0 +1,12 @@
+{
+ "story_id": "S158",
+ "bin": "Matched + more",
+ "entity": "Evergy Metro homes on time-varying rates, Missouri vs Kansas",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "2023-07-12",
+ "post_cutoff_match": false,
+ "what_we_add": "the enrollment shares 89.7% vs 1.6% and the 2019-2024 progression across all four Missouri IOUs",
+ "why": "E&E reported all 550,000 Evergy Missouri homes being moved to time-of-use while the KC Star noted Kansas customers are not switched automatically: the same split, same direction. The measured percentages either side of the line are ours.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

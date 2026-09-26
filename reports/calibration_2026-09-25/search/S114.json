@@ -1,0 +1,57 @@
+{
+  "story_id": "S114",
+  "entity": "16 U.S. House members running for Senate in 2026: median missed-vote rate Jan-Nov 2025 vs Dec 2025-Jun 2026, and the same members in the same months of 2023-24",
+  "queries": [
+    {"q": "House members running for Senate 2026 missed votes campaign", "found_useful": true},
+    {"q": "Senate candidates in the House missed votes analysis 2026 Roll Call OR Axios OR Punchbowl", "found_useful": true},
+    {"q": "Krishnamoorthi OR \"Robin Kelly\" OR \"Haley Stevens\" missed votes Senate campaign House", "found_useful": false},
+    {"q": "\"Buddy Carter\" OR \"Mike Collins\" OR \"Andy Barr\" missed votes Senate race 2026", "found_useful": false},
+    {"q": "study members of Congress running for higher office miss more votes absenteeism progressive ambition", "found_useful": true},
+    {"q": "House members running for Senate 2024 missed votes Schiff Gallego Porter Allred Trone Slotkin", "found_useful": false},
+    {"q": "Senate hopefuls skipping House votes campaign trail absences 2026 congressmen", "found_useful": true},
+    {"q": "Nancy Mace missed votes Senate campaign South Carolina House attendance", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.deseret.com/politics/2026/09/23/retiring-members-of-congress-missed-most-votes/",
+      "outlet": "Deseret News",
+      "date": "2026-09-23",
+      "source_type": "news",
+      "entity_named": "partial",
+      "quote": "Lawmakers who are either retiring or are running for another office have missed hundreds of combined votes over the last two years, even as the voting calendar has shrunk in some cases to provide fewer voting opportunities.",
+      "paywalled": false,
+      "searcher_note": "Recent (post-2026-06-30), C-SPAN data: departing House members (retirees plus those running for other office, a wider group than the 16) average 40 missed votes; names Senate candidates Hunt (160 missed), Mace (120) and Pappas (zero missed). No median rates, no before/after or prior-cycle comparison."
+    },
+    {
+      "url": "https://www.texastribune.org/2026/01/23/wesley-hunt-congress-missed-votes-senate-republican-primary/",
+      "outlet": "Texas Tribune",
+      "date": "2026-01-23",
+      "source_type": "news",
+      "entity_named": "partial",
+      "quote": "The median percentage of missed votes among current representatives is 2%, according to GovTrack, a nonprofit website that monitors congressional voting records.",
+      "paywalled": false,
+      "searcher_note": "Earliest found: one Senate candidate (Hunt) missed 44 of 48 January 2026 votes; Hunt says 'Anytime you run for higher office, you miss votes. Period.'; Crockett missed two. Individual members, not the group of 16."
+    },
+    {
+      "url": "https://legis1.com/news/congressional-absenteeism-voting-records",
+      "outlet": "Legis1",
+      "date": "2026-07-08",
+      "source_type": "trade press",
+      "entity_named": "partial",
+      "quote": "Anytime you run for higher office, you miss votes. Period.",
+      "paywalled": false,
+      "searcher_note": "Recent: 119th Congress absenteeism roundup; Hunt, running for Senate, has the highest House absentee rate at 26.3%. One member only."
+    },
+    {
+      "url": "https://congressvotetracker.org/articles/most-absent-members-march-2026.html",
+      "outlet": "Congress Vote Tracker",
+      "date": "2026-03-08",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "The top absentees in 2024 were largely explained by campaigns and confirmations",
+      "paywalled": false,
+      "searcher_note": "Pattern: campaigns drive absentee spikes, prior cycle included; cites 2.1% median for serving representatives. No group-of-16 analysis."
+    }
+  ],
+  "notes": "No source found that analyzes House members running for Senate as a group, gives their median missed-vote rate before vs during the campaign, or checks the same members two years earlier (the placebo). Coverage is member-level (Hunt most, also Mace, Pappas, Crockett) plus Deseret's wider retirees-and-office-seekers tally. Pappas (running for Senate, zero missed votes) cuts against the group finding at the member level. Data conflict for the judge: Deseret says Mace 'ran unsuccessfully for the Senate'; a search summary said she ran for governor (GovTrack/Daily Beast results, not fetched). Axios 2026-01-23 ('The midterms are cracking Mike Johnson's grip on House votes') returned 403, not recorded. Searches on Illinois, Georgia, Kentucky candidates found no missed-vote coverage."
+}

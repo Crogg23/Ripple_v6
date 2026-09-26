@@ -1,0 +1,12 @@
+{
+ "story_id": "S033",
+ "bin": "Matched + more",
+ "entity": "Lower Brule Sioux Tribe's chronic audit failures on federal grant money",
+ "deciding_sources": [1, 2, 4, 5],
+ "earliest_match_date": "2015-01-12",
+ "post_cutoff_match": true,
+ "what_we_add": "the streak stat: only auditee of 67,777 with going-concern doubt plus material noncompliance all 10 years 2016-2025, and $246.2M total federal spending",
+ "why": "HRW, SDPB, DOI OIG and the Eighth Circuit coverage all name the tribe and state the same finding in words: persistent financial distress and misspent federal funds across years. The 10-year uniqueness stat appears nowhere. The court PDF quote is missing, so that source is ignored.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

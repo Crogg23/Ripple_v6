@@ -1,0 +1,38 @@
+{
+  "story_id": "S039",
+  "entity": "Providers on the HHS-OIG exclusion list (LEIE) receiving drug/device company payments (CMS Open Payments), US, 2024; largest row Hector Molina (TX) debt forgiveness from Skye Orthobiologics",
+  "queries": [
+    {"q": "excluded providers OIG exclusion list received Open Payments from drug companies", "found_useful": false},
+    {"q": "Hector Molina Skye Orthobiologics", "found_useful": false},
+    {"q": "Hector Molina Texas excluded doctor OIG fraud", "found_useful": true},
+    {"q": "\"Open Payments\" excluded physicians LEIE payments analysis study", "found_useful": true},
+    {"q": "Bachhuber Piper excluded clinicians industry payments drug device companies news", "found_useful": false},
+    {"q": "Skye Biologics amniotic allograft kickback DOJ OIG settlement", "found_useful": false},
+    {"q": "\"Hector Molina\" Irving physician sentenced Medicare fraud house calls", "found_useful": true},
+    {"q": "excluded doctors still paid by pharmaceutical companies Open Payments 2026", "found_useful": false},
+    {"q": "excluded providers \"Open Payments\" 2024 \"debt forgiveness\" OR \"$166\" LEIE banned doctors paid", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13099148/",
+      "outlet": "Journal of General Internal Medicine (PMC copy)",
+      "date": "2026-02-02",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Of 3,725 excluded clinicians identified, 16.2% (n=605) received one or more payments.",
+      "paywalled": false,
+      "searcher_note": "Bachhuber, Piper, Dobbins, King: LEIE linked to Open Payments by NPI, payments during exclusion only, 2013-2024 pooled; 7,061 payments totaling $2,286,339; no 2024-only figure, no named clinicians or companies. Table 2 lists debt forgiveness at $128,438 across 5 clinicians (2013-2024)."
+    },
+    {
+      "url": "https://www.fox4news.com/news/north-texas-doctor-accused-of-bilking-medicare",
+      "outlet": "FOX 4 Dallas-Fort Worth",
+      "date": "2015-05-11",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Hector Molina has been the focus of numerous FOX 4 investigative reports.",
+      "paywalled": false,
+      "searcher_note": "2015 federal indictment of a North Texas doctor Hector Molina for $5M+ Medicare house-call fraud; explains a likely exclusion but says nothing about Skye Orthobiologics or industry payments. Same-person match not verified."
+    }
+  ],
+  "notes": "Only research coverage of the pattern found: the JGIM 2026 study is the same measure (LEIE clinicians paid by industry during exclusion) but pooled 2013-2024, with no 2024-only count and no names. No news story found reporting it. No source links Hector Molina to Skye Orthobiologics or debt forgiveness. DOJ (justice.gov) and FBI pages on the 2015 Hector Molina indictment were found in search but blocked to fetch; Dallas Morning News 2015 page blocked by a client challenge. A bioengineer.org rewrite of the study exists but carries no numbers and was not recorded."
+}

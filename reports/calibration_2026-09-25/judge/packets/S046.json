@@ -1,0 +1,70 @@
+{
+ "story_id": "S046",
+ "lead": {
+  "headline": "One pension plan (EIN 822871833) is 25.8% funded with $95.4M unpaid; Transit Management of Southeast Louisiana shows $79.5M unpaid",
+  "number": "631 single-employer plans report $426.7M in unpaid minimum contributions for 2024; EIN 822871833 is 25.8% funded with $95.4M unpaid; Transit Management of Southeast Louisiana shows $79.5M unpaid.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "No skeptic has checked it; for 201 plans the \"unpaid\" amount equals exactly this year's minimum, which points to filing before the payment deadline, not arrears."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "\"82-2871833\" pension plan",
+  "Transit Management of Southeast Louisiana pension plan underfunded unpaid contributions RTA",
+  "New Orleans RTA TMSEL retirement plan unfunded liability contributions lawsuit news",
+  "\"822871833\"",
+  "St. Joseph Health Services of Rhode Island Retirement Plan EIN 82-2871833 Form 5500 funded percentage",
+  "\"St. Joseph Health Services of Rhode Island\" retirement plan \"822871833\" OR \"82-2871833\"",
+  "TMSEL retirement plan RTA New Orleans retirees pension ERISA governmental plan Department of Labor ruling 2025 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://app.lla.state.la.us/PublicReports.nsf/0/AAD8F8C757DC5D4686258D4D006B7A75/$FILE/0000922B.pdf",
+   "outlet": "Regional Transit Authority audited financial statements FY2024 (Carr, Riggs & Ingram, filed with Louisiana Legislative Auditor)",
+   "date": "2025-09-29",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "the Plan did not make the ERISA minimum required funding contributions for the quarters ended September 30, 2013 through December 31, 2024 due to its assertion that the TMSEL Retirement Plan is a governmental plan",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://app.lla.state.la.us/PublicReports.nsf/0/AAD8F8C757DC5D4686258D4D006B7A75/$FILE/0000922B.pdf",
+   "outlet": "Regional Transit Authority audited financial statements FY2024 (Carr, Riggs & Ingram, filed with Louisiana Legislative Auditor)",
+   "date": "2025-09-29",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "the PBGC has not asserted any actions against the RTA or required the RTA to make any minimum quarterly pension funding contributions that would be required by an ERISA-governed plan",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Retirement Income Plan. The RTA contends that the TMSEL Retirement Plan is a governmental plan not subject to the provisions of ERISA. Although an official ruling is still pending from the Department of Labor as to whether the TMSEL Retirement Plan is an ERISA-governed plan or a governmental plan; the PBGC has not asserted any actions against the RTA or required the RTA to make any minimum quarterly pension funding contributions that would be required by an ERISA- governed plan. In 2014, the RTA entered into a settlement agreement which provid ed payments to the TMSEL Retirement plan totaling $18 million (see contributions section below and Note 9 for additional information). This agreement does not render a position on the TMSEL plan’s status as a governmental plan. Regional Transit Authority Notes"
+  },
+  {
+   "idx": 2,
+   "url": "https://app.lla.la.gov/publicreports.nsf/0/c70ac61c3341028a8625872d00703561/$file/000246de.pdf",
+   "outlet": "Regional Transit Authority audited financial statements FY2020, reissued (Carr, Riggs & Ingram, filed with Louisiana Legislative Auditor)",
+   "date": "2021-08-03",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "the Plan did not make the ERISA minimum required funding contributions for the quarters ended September 30, 2013 through December 31, 2020 due to its assertion that the TMSEL Retirement Plan is a governmental plan",
+   "paywalled": false,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 3,
+   "url": "https://www.pbgc.gov/news/press/pr24-045",
+   "outlet": "Pension Benefit Guaranty Corporation",
+   "date": "2024-12-03",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "PBGC estimates that the St. Joseph Pension Plan is 35% funded with approximately $47 million in assets and about $135 million in benefit liabilities.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "taking steps to assume responsibility for the St. Joseph Health Services of Rhode Island Retirement Plan (St. Joseph Pension Plan), which covers about 2,500 current and future retirees. St. Joseph Health Services was a not-for-profit corporation that operated a hospital in Providence, Rhode Island. PBGC estimates that the St. Joseph Pension Plan is 35% funded with approximately $47 million in assets and about $135 million in benefit liabilities. The plan is underfunded by $88 million. The sponsor of the plan, St. Joseph Health Services of Rhode Island, Inc., sold substantially all its operating assets in 2014, and in 2017, the St. Joseph Pension Plan was placed into state court receivership. The St. Joseph Pension Plan was originally established as a church pension plan an"
+  }
+ ]
+}

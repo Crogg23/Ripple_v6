@@ -1,0 +1,105 @@
+{
+  "story_id": "S048",
+  "entity": "Texas (TCEQ) and New Mexico (NMED) Clean Air Act major sources with no full compliance evaluation in 5+ years, mid-2021 to 2026",
+  "queries": [
+    {
+      "q": "Texas major air pollution sources no full compliance evaluation in five years TCEQ inspections",
+      "found_useful": true
+    },
+    {
+      "q": "New Mexico Environment Department air quality major sources overdue inspections compliance evaluations",
+      "found_useful": false
+    },
+    {
+      "q": "EPA State Review Framework Texas TCEQ Clean Air Act FCE coverage major sources round 4 report",
+      "found_useful": false
+    },
+    {
+      "q": "TCEQ air inspections decline industrial plants years without inspection Houston Chronicle OR Texas Tribune OR Inside Climate News",
+      "found_useful": true
+    },
+    {
+      "q": "Sunset Commission TCEQ staff report 2022 facilities not inspected in five years air",
+      "found_useful": true
+    },
+    {
+      "q": "New Mexico air quality bureau inspections backlog Title V major sources not inspected Searchlight New Mexico OR Source NM",
+      "found_useful": true
+    },
+    {
+      "q": "Environmental Integrity Project report Clean Air Act major sources inspections overdue ECHO data states 2025 2026",
+      "found_useful": true
+    },
+    {
+      "q": "Texas air pollution inspections 2026 TCEQ fewer investigations major facilities report August September 2026",
+      "found_useful": false
+    },
+    {
+      "q": "TCEQ Title V major sources investigated every two years compliance monitoring strategy commitment met EPA Region 6",
+      "found_useful": true
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.epa.gov/sites/default/files/oig/documents/full_report_-_24-p-0049.pdf",
+      "outlet": "EPA Office of Inspector General",
+      "date": "2024-07-24",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Of those potential SM-80s in Texas, the TCEQ had not visited 11 of the 18, from 2017 through 2022",
+      "paywalled": false,
+      "searcher_note": "OIG report 24-P-0049: TCEQ and South Coast AQMD failed to identify and inspect high-emitting synthetic-minor (SM-80) sources on the 5-year schedule. Names TCEQ, but covers synthetic minors, not Title V majors."
+    },
+    {
+      "url": "https://www.epa.gov/office-inspector-general/notification-evaluation-trends-clean-air-act-state-level-enforcement-data",
+      "outlet": "EPA Office of Inspector General",
+      "date": "2026-05-07",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "identify state-level trends in Clean Air Act enforcement data for Title V major source facilities from 2020 through 2025",
+      "paywalled": false,
+      "searcher_note": "OIG project OSRE-26-0063 announced May 2026: an evaluation of state-level enforcement trends at Title V majors, 2020-2025. No findings published yet; no state named on the page."
+    },
+    {
+      "url": "https://www.ecos.org/wp-content/uploads/2022/12/ECOS-ACMS-Green-Report-1.pdf",
+      "outlet": "Environmental Council of the States (ECOS)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "In 2012, TCEQ submitted and gained EPA approval for a plan for reduced inspection frequencies for sites in three coastal regions, with major sources receiving FCEs every three years and mega sites every five years.",
+      "paywalled": false,
+      "searcher_note": "Context that cuts against the lead: under an EPA-approved alternative plan, Texas coastal mega sites are only due an on-site FCE every five years. Upload path suggests Dec 2022."
+    },
+    {
+      "url": "https://www.texasobserver.org/texas-relaxed-environmental-enforcement-during-the-pandemic-state-data-show/",
+      "outlet": "Texas Observer (Grist reporting)",
+      "date": "2020-06-18",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "At the beginning of the decade, the agency was conducting more than 7,500 inspections per year of federally-permitted facilities with limits on air emissions.",
+      "paywalled": false,
+      "searcher_note": "Pattern only: TCEQ air inspections of federally permitted facilities fell from 7,500+ a year to about 2,000 over the 2010s. Earlier window; no 5-year-gap count."
+    },
+    {
+      "url": "https://www.sunset.texas.gov/public/uploads/2022-05/Texas%20Commission%20on%20Environmental%20Quality%20Staff%20Report_5-25-22.pdf",
+      "outlet": "Texas Sunset Advisory Commission",
+      "date": "2022-05-25",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "potentially lead to compliance histories for some of the nearly 400,000 unclassified entities for which TCEQ currently has no compliance information",
+      "paywalled": false,
+      "searcher_note": "Pattern only: the Sunset staff report says entities TCEQ has not inspected in the last five-year period are rated unclassified. Covers all media, not air majors."
+    },
+    {
+      "url": "https://westernlaw.org/wp-content/uploads/2026/03/Fee-Rulemaking-Letter-from-Legislators.pdf",
+      "outlet": "New Mexico legislators' letter to the Environmental Improvement Board (hosted by Western Environmental Law Center)",
+      "date": "2026-03-20",
+      "source_type": "testimony",
+      "entity_named": "yes",
+      "quote": "Without action, the state faces position freezes, delayed permit processing, reduced inspections, diminished monitoring, and weakened enforcement capacity.",
+      "paywalled": false,
+      "searcher_note": "New Mexico context only: legislators say the Air Quality Bureau faces a funding crisis that threatens inspections. No count of overdue major-source evaluations."
+    }
+  ],
+  "notes": "entity_named=yes means the page names the agency (TCEQ, or New Mexico's Air Quality Bureau). None of those pages reports the lead's finding. No source found reporting a count of Texas or New Mexico major (Title V) sources with no full compliance evaluation in 5+ years, or any per-100 rate by state. Nearest coverage is the EPA OIG SM-80 audit (TCEQ, synthetic minors, 2017-2022) and TCEQ's long inspection decline (2010s). The ECOS source shows TCEQ has EPA approval to inspect coastal mega sites only every five years, which bears on the 5-year threshold. The OIG announced a Title V state-trends evaluation in May 2026; no report found. Several PDF quotes span line breaks in the source text. The query 'Texas air pollution inspections 2026...' returned nothing dated July-September 2026."
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S072",
+  "bin": "Known pattern",
+  "entity": "CareCore Health's Ohio nursing homes: 1.95x the state fire-safety citation rate, 11 of 12 repeating a tag",
+  "deciding_sources": [1, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source reports CareCore's citation rate or repeats; ProPublica's page is a bare affiliation listing. OIG (Ohio life-safety deficiencies at 18 of 20 homes) and the trade press (sprinkler upkeep the top citation) cover the pattern.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

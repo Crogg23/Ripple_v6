@@ -1,0 +1,15 @@
+{
+  "story_id": "S069",
+  "bin": "Matched + more",
+  "entity": "US primary-care shortage areas flagged in 1978-89 and still flagged (national measure)",
+  "deciding_sources": [
+    3,
+    1
+  ],
+  "earliest_match_date": "2021-03-04",
+  "post_cutoff_match": false,
+  "what_we_add": "The 143-of-999 count, the 31 still-severe list and county scores (Humphreys 22, Jim Hogg 23)",
+  "why": "Paragon says many shortage designations have not been reviewed since their 1970s-80s creation, and 73% of HPSA counties stay short a decade on - the persistence finding in words. Shaky: Paragon is about MUAs, a sister designation.",
+  "confidence": "low",
+  "blocked_evidence": false
+}

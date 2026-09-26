@@ -1,0 +1,35 @@
+{
+ "story_id": "S118",
+ "lead": {
+  "headline": "1 in 4 new IRS political-group notices, Dec 2022-Dec 2025, came from businesses, including 141 look-alike companies",
+  "number": "2,596 of 10,464 new notices tagged business or charity (24.8%), vs 6.8% in 2019-Nov 2022 and 4.6% since Jan 2026; 8 of the look-alikes, in 7 states, filed within 31 minutes on July 8, 2025",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The business tag is a keyword rule (hand checks about 95% right), the batch rule isn't saved in analyze.py, and custodian names shouldn't be printed."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "IRS Form 8871 businesses filing political organization notices by mistake 527",
+  "companies mistakenly registered as 527 political organizations IRS Form 8871 surge LLC scam",
+  "IRS political organization database 527 filings junk non-political businesses LLCs erroneous notices 2024 2025",
+  "\"8871\" filings businesses confused beneficial ownership OR \"employer identification number\" political organization section 527 wrongly",
+  "fake 527 political organizations registered with IRS using business names identity theft batch filings 2025",
+  "TIGTA OR GAO IRS does not review Form 8871 political organization notices oversight 527 compliance report",
+  "new 527 political organizations registered IRS 2026 wave of filings businesses nonprofits notice section 527 status news",
+  "\"Form 8871\" OR \"section 527\" notices filed by LLCs corporations small businesses 2023 2024 2025 reporter analysis"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.gao.gov/assets/a235164.html",
+   "outlet": "U.S. Government Accountability Office (GAO-02-444)",
+   "date": "2002-07-17",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "IRS has provided little assurance that the data it disclosed on the Section 527 Web site are timely, complete and correct.",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": "ations’ compliance with the law’s filing and reporting requirements has been very limited and has included checks on whether some of the reported data is correct and little proactive effort to determine whether all filings are timely and all organizations that should file have done so. Accordingly, IRS has provided little assurance to the public that data disclosed on the Section 527 Web site are timely, complete, and correct. In part, due to these limited oversight efforts, IRS has not imposed any penalties that P.L. 106-230 created for failing to meet the filing and reporting requirements. IRS officials say that the lack of available resources and other higher priorities, have affected the oversight they have given to Section 527 org"
+  }
+ ]
+}

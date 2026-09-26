@@ -1,0 +1,65 @@
+{
+  "story_id": "S094",
+  "entity": "US insider sales on SEC Form 4: owner-months with $5M+ sold, 2015-25, followed within 4-9 months by a 50%+ lower price (987 of 22,770); example Daniel Loeb / Third Point selling Upstart",
+  "queries": [
+    {"q": "Third Point Daniel Loeb sold Upstart shares 2021 before stock collapse", "found_useful": true},
+    {"q": "large insider stock sales before share price collapse analysis Form 4 insiders sold ahead of 50% drop", "found_useful": false},
+    {"q": "Wall Street Journal analysis executives well-timed stock sales before share price declines 10b5-1 plans", "found_useful": true},
+    {"q": "study insider sales do not predict future stock returns unlike insider purchases", "found_useful": true},
+    {"q": "insiders who sold millions before stocks lost half their value 2021 selloff tech insiders cashed out record", "found_useful": true},
+    {"q": "Third Point Upstart stake sale proceeds million Form 4 November 2021 price per share", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://investorplace.com/2022/02/daniel-loebs-been-selling-upst-stock-should-you/",
+      "outlet": "InvestorPlace",
+      "date": "2022-02-01",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Selling in early December at prices between $191 and $168, Loeb wanted to ensure that Third Point got some or all of its initial investment out before it fell any further.",
+      "paywalled": false,
+      "searcher_note": "Names the lead's example (Loeb/Third Point selling Upstart in late 2021 before the stock fell ~75% from its peak). Prices quoted differ from the lead's $225 figure. Also syndicated on Yahoo Finance and Nasdaq.com (same story, counted once)."
+    },
+    {
+      "url": "https://www.nbcnews.com/business/business-news/peloton-insiders-sold-nearly-500-million-stock-big-drop-rcna12741",
+      "outlet": "NBC News (CNBC story)",
+      "date": "2022-01-19",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "One of the most well-accepted facts from decades of research on insider trading is that corporate insiders buy near bottoms and sell near peaks.",
+      "paywalled": false,
+      "searcher_note": "Peloton insiders sold $496M in 2021 before an 80%+ drop; quotes Wharton's Daniel Taylor on insiders selling near peaks. Same pattern, other company. CNBC original returned 403."
+    },
+    {
+      "url": "https://corpgov.law.harvard.edu/?p=71221",
+      "outlet": "Harvard Law School Forum on Corporate Governance",
+      "date": "2015-07-29",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "sales that are not executed as part of 10b5-1 plans are preceded by an average 40 day cumulative abnormal return (CAR) of approximately 4 percent and followed by an average 40 day CAR of -8 percent",
+      "paywalled": false,
+      "searcher_note": "Fich, Parrino, Tran: 610 large CEO sales 2003-09; non-plan sales are followed by abnormal drops, 10b5-1 plan sales are not. Pattern with a shorter window and a different definition."
+    },
+    {
+      "url": "https://www.financierworldwide.com/10b5-1-trading-plans-under-the-microscope",
+      "outlet": "Financier Worldwide",
+      "date": "unknown",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "Early 10b5-1 plan terminations were not implemented randomly, but rather tend to precede declines in stock prices.",
+      "paywalled": false,
+      "searcher_note": "Summarizes the WSJ's 2012 analysis of well-timed executive trades. Pattern only."
+    },
+    {
+      "url": "https://www.evidenceinvestor.com/post/what-insider-trades-and-non-trades-tell-us-about-future-returns",
+      "outlet": "Evidence Investor",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Consistent with prior literature findings that insider purchases are more informative than sales (sales can be made simply for diversification purposes), the return difference was more pronounced for insider purchases than for insider sales.",
+      "paywalled": false,
+      "searcher_note": "The other side: research summary saying insider sales predict returns less well than purchases, since sales are often for diversification."
+    }
+  ],
+  "notes": "No source found reports the 987-of-22,770 count, or any count of $5M+ insider-sale months followed by 50%+ drops. The Upstart example is covered (InvestorPlace 2022, Loeb selling before the fall), but at $191-$168 in early December 2021, not the lead's $225 average or $712M total; no source found states $712M. Pattern coverage: Peloton insiders (NBC/CNBC 2022), CEO sales followed by abnormal drops (Harvard forum 2015), WSJ 2012 via Financier Worldwide. A Daily Kos community post (2026-07-17) on heavy 2026 insider selling came up; it is opinion and about total selling, not selling before drops, so it isn't recorded. Seeking Alpha and CNBC pages returned 403. Stopped at 6 logged queries because WebSearch auto-expanded several calls into sub-searches, which eats the shared budget."
+}

@@ -1,0 +1,15 @@
+{
+  "story_id": "S059",
+  "bin": "Contradicted",
+  "entity": "Elgin, Illinois water system's newest 90th-percentile lead test",
+  "deciding_sources": [
+    1,
+    2
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Our lead says Elgin tests at 53 ppb now. The city's own newest result (Jan-Jun 2026) is 18.5 ppb after treatment changes; same entity and measure, more than 25% off. The over-the-limit direction matched; the number did not.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

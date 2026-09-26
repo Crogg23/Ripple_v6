@@ -1,0 +1,12 @@
+{
+  "story_id": "S061",
+  "bin": "Known pattern",
+  "entity": "US count: 56,159 Section 515 units in pre-1980 projects with no live restrictive clause",
+  "deciding_sources": [0, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "CURA reports the same finding for Minnesota and Iowa properties (over half without live clauses) and GAO reports maturing-mortgage exits — the pattern, in states and program-wide. No source gives a national unit count without a live clause.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

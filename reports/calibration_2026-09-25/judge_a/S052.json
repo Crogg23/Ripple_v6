@@ -1,0 +1,12 @@
+{
+ "story_id": "S052",
+ "bin": "Known pattern",
+ "entity": "Five firms at 549 Cedar St, Newington CT, with $13.35M in SBIR awards, all barred by the Air Force",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "SSTI documents the SBIR-mill pattern in general; the SBIR.gov page is one award record at the address, not a report of the cluster or the bar. No source states the five-firm cluster or the Air Force action.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

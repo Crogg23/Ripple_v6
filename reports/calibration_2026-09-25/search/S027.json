@@ -1,0 +1,67 @@
+{
+  "story_id": "S027",
+  "entity": "US doctors paid $10K+ by drug companies (Open Payments) vs Medicare Part D brand-name share and cost per claim, 2024, across 7 specialties",
+  "queries": [
+    {"q": "ProPublica doctors who get drug company payments prescribe more brand-name drugs every specialty", "found_useful": true},
+    {"q": "Open Payments Medicare Part D physicians industry payments higher cost per claim brand-name prescribing study", "found_useful": true},
+    {"q": "industry payments physicians prescribing 2024 Open Payments data analysis 2025 2026 brand-name drugs doctors paid", "found_useful": false},
+    {"q": "pharmaceutical payments to doctors not associated with prescribing no effect study reverse causation critique", "found_useful": true},
+    {"q": "doctors paid more than $10,000 by drugmakers prescribe costlier drugs cost per claim Medicare Part D analysis", "found_useful": false},
+    {"q": "drug company payments doctors prescribing brand-name news July August September 2026", "found_useful": false},
+    {"q": "HHS OIG Special Fraud Alert speaker programs drug company payments influence prescribing Medicare costs", "found_useful": true},
+    {"q": "2025 study Open Payments 2023 2024 Part D prescribers brand-name share rises with payment amount across specialties dose-response", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.propublica.org/article/doctors-who-take-company-cash-tend-to-prescribe-more-brand-name-drugs",
+      "outlet": "ProPublica",
+      "date": "2016-03-17",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Among internists who received no payments, for example, the average brand-name prescribing rate was about 20 percent, compared to about 30 percent for those who received more than $5,000.",
+      "paywalled": false,
+      "searcher_note": "Same finding, same direction (brand-name share rises with payments, highest above $5,000) in five specialties, but 2014 data, not 2024; no cost-per-claim multiple. NPR ran the same story the same day (copy, not recorded)."
+    },
+    {
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155474",
+      "outlet": "PLOS One",
+      "date": "2016-05-16",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Across the 12 specialties examined, a dose-response relationship was observed in which greater payments were associated with greater prescribing costs per patient.",
+      "paywalled": false,
+      "searcher_note": "2013 Open Payments + Part D: cost per patient rises with payments in every one of 12 specialties; also 'Similar associations were observed with proportion of branded prescriptions written.' Cost per patient, not per claim."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5880069/",
+      "outlet": "BMC Health Services Research",
+      "date": "2018-04-02",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "A physician-industry financial relationship was associated with increased odds of prescribing costly brand-name drugs of uncertain medical benefit.",
+      "paywalled": false,
+      "searcher_note": "2014 data, six specific costly brand drugs; same direction."
+    },
+    {
+      "url": "https://oig.hhs.gov/fraud/docs/alertsandbulletins/2020/SpecialFraudAlertSpeakerPrograms.pdf",
+      "outlet": "HHS Office of Inspector General",
+      "date": "2020-11-16",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Furthermore, studies have shown that HCPs who receive remuneration from a company are more likely to prescribe or order that company",
+      "paywalled": false,
+      "searcher_note": "Special Fraud Alert on speaker programs; general statement of the pattern, no numbers."
+    },
+    {
+      "url": "https://www.nber.org/system/files/working_papers/w26751/w26751.pdf",
+      "outlet": "National Bureau of Economic Research (Carey, Lieber, Miller)",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Physicians receiving payments from the firms experiencing the patent expiry transition their patients just as quickly to generics as physicians who do not receive such payments.",
+      "paywalled": false,
+      "searcher_note": "Partial disagreement: on 2013-15 data, paid doctors switch to generics at patent expiry as fast as unpaid ones, and drug quality largely unaffected; but same paper finds prescribing of paid-for drugs rises after payment. Working paper Feb 2020, revised Mar 2021 (day not given)."
+    }
+  ],
+  "notes": "Well-worn pattern since ProPublica 2016 (brand share vs payments) and PLOS One 2016 (cost per patient vs payments, all 12 specialties). No source found using 2024 data, a $10K+ threshold, 7 specialties, or a cost-per-claim multiple (1.2-5.6x; internal medicine $94 to $355). Recent 2026 items found were payment-total roundups (Medscape 2026, 402 paywall; AHIP analysis of 2024 brand-maker payments, 403) and were not recorded. Annals of Internal Medicine 2021 systematic review (30 of 36 studies positive) returned 403/captcha on both publisher and PubMed; not recorded."
+}

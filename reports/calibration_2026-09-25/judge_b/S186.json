@@ -1,0 +1,12 @@
+{
+  "story_id": "S186",
+  "bin": "Unreported",
+  "entity": "FEC totals for the NRCC (C00075820) omitting its Sept 2024 monthly report ($40.72M spent)",
+  "deciding_sources": [],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source states the finding: that FEC roll-up totals skip the NRCC's Sept 2024 monthly. Sources 0-1 are raw data pages confirming the filing and a total, not a report of the discrepancy; nothing reaches Known pattern. 8 queries logged.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

@@ -1,0 +1,71 @@
+{
+ "story_id": "S010",
+ "lead": {
+  "headline": "SpaceX sites ran 3.2x their industry's injury rate in 2025, a third straight year; Ford about 1.9x big automakers",
+  "number": "SpaceX's own sites 3.2x their industry (3.6x in 2024); Bath Iron Works 2.7x (3.0x); Ford 11.4 cases per 100 workers vs GM 6.5, Honda 6.8, Tesla 5.9, Toyota 5.2, about 1.9x.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Name tags catch contractors (SpaceX janitors and valet crews), \"Ingalls\" was really Newport News, and this updates F-035 to F-037 rather than finding something new."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "SpaceX injury rate OSHA industry average workers",
+  "SpaceX injury rate 2025 data third year 2026",
+  "Reveal SpaceX injury rates Brownsville McGregor Hawthorne analysis",
+  "SpaceX Starbase injuries OSHA August 2026",
+  "Ford plants injury rate higher than GM Toyota Honda OSHA 300A data",
+  "SpaceX injury rate declined improved safety record defends",
+  "SpaceX worker injury rate 2025 OSHA data analysis Hawthorne McGregor Starbase times industry",
+  "\"SpaceX\" injury rate \"third year\" OR \"third straight year\" industry average"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.texasobserver.org/worker-death-starbase-spacex-osha-elon-musk/",
+   "outlet": "Texas Observer",
+   "date": "2026-06-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "An Observer analysis of injuries at SpaceX’s Starbase in 2025, using OSHA’s publicly available injury data, shows that the company had an injury rate that’s more than five times the national average for comparable space vehicle manufacturing facilities",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rist and receiving a minor head injury. OSHA cited SpaceX eight times for the incident, including a violation for a worker operating a separate crane with an expired license and another for the tipped-over crane not having been inspected in the last year . SpaceX is contesting all of the citations. An Observer analysis of injuries at SpaceX’s Starbase in 2025, using OSHA’s publicly available injury data , shows that the company had an injury rate that’s more than five times the national average for comparable space vehicle manufacturing facilities in the United States. The company’s facility in Hawthorne, California, which has more than twice the employees of Starbase, has less than half the injury rate of the South Texas site. OSHA confirmed these calculations as accurate when asked by the Observer . Some employees who suffered such injuries have filed lawsuits against Spac"
+  },
+  {
+   "idx": 1,
+   "url": "https://techcrunch.com/2025/07/18/spacex-worker-injury-rates-at-starbase-outpace-industry-rivals/",
+   "outlet": "TechCrunch",
+   "date": "2025-07-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "logged injury rates that were almost 6x higher than the average for comparable space vehicle-manufacturing outfits and nearly 3x higher than aerospace manufacturing as a whole in 2024",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " 18, 2025 SpaceX employees are more likely to be injured while working at Starbase than any of its other manufacturing facilities, according to company worker safety records reviewed by TechCrunch. Starbase, a sprawling launch-and-manufacturing site that recently incorporated as its own Texas city, logged injury rates that were almost 6x higher than the average for comparable space vehicle-manufacturing outfits and nearly 3x higher than aerospace manufacturing as a whole in 2024, according to Occupational Safety and Health Administration (OSHA) data released in May. That outsized injury rate has persisted since 2019, when SpaceX began sharing Starbase injury data with the federal regulator. Starbase is home to SpaceX’s most ambitious program: a fully reusable, ultra-heavy-lift rocket called Starship. The com"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.engadget.com/spacex-workers-face-above-average-injury-rates-as-musk-prioritizes-mars-over-safety-report-finds-224235095.html",
+   "outlet": "Engadget (reporting Reuters)",
+   "date": "2023-11-11",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Injury rates at some SpaceX facilities are much higher than the industry average of .8 injuries or illnesses per 100 workers, Reuters found.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "14 that have not been publicly reported until now. Current and former employees cited in the report blame CEO Elon Musk's aggressive deadlines and hatred of bureaucracy, alleging his goal of getting humans to Mars \"as fast as possible\" has led the company to cut corners and eschew proper protocols. Injury rates at some SpaceX facilities are much higher than the industry average of .8 injuries or illnesses per 100 workers, Reuters found. At its Brownsville, Texas location, the 2022 injury rate was 4.8 per 100 workers. At the Hawthorne, California manufacturing facility, it was 1.8. In McGregor, Texas, where the company conducts rocket tests, the injury rate was 2.7. Employees have suffered broken bones, lacerations, crushed fingers, burns, electric shocks and serious h"
+  },
+  {
+   "idx": 3,
+   "url": "https://spaceexplored.com/2024/05/02/spacex-injury-rates-continue-to-be-higher-than-the-industry-average/",
+   "outlet": "Space Explored",
+   "date": "2024-05-02",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "For some locations, SpaceX is over nine times higher than the industry average.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ight SpaceX SpaceX injury rates continue to be higher than the industry average Seth Kurkowski | May 2 2024 - 8:38 pm PT 5 Comments Image: Seth Kurkowski / Space Explored In a report by Reuters , the publication uncovered SpaceX ‘s continued high injury rates have yet to come down from years prior. For some locations, SpaceX is over nine times higher than the industry average. SpaceX still has high injury rates SpaceX submitted its most complete injury report to OSHA in 2023, compassing eight of its sites around the country. These include both physical buildings like its headquarters in Hawthorne, Starbase, and Cape Canaveral but also non-physical locations like recovery operations on both coasts. The in"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S202",
+  "bin": "Matched + more",
+  "entity": "US coal-fired generation, 2025 vs 2024",
+  "deciding_sources": [0, 1, 5],
+  "earliest_match_date": "2026-01-19",
+  "post_cutoff_match": true,
+  "what_we_add": "the 1.8x multiple against all other risers combined",
+  "why": "Ember states the exact finding: US coal up 85 TWh, +13% in 2025; Visual Capitalist says the US led the world's coal rise. No source states our combined-risers 1.8x comparison. VC's 93.2 TWh is within 25%.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

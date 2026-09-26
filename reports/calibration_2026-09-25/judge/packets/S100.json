@@ -1,0 +1,80 @@
+{
+ "story_id": "S100",
+ "lead": {
+  "headline": "Senators on the Banking Committee were 19% of trading senators but made 34% of bank-stock trades, 2012-20",
+  "number": "Banking Committee members were 19% of trading senator-Congress pairs but made 34% of bank-stock trades, 2012-20.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Perdue alone drives it; the closing skeptic reads it as C."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "Senate Banking Committee members traded bank stocks study committee oversight stock trades senators",
+  "senators stock trades in industries their committees oversee analysis Banking Committee financial stocks New York Times 2022",
+  "study senators trade stocks of firms under their committee jurisdiction STOCK Act 2012-2020 financial sector Banking Committee more likely",
+  "David Perdue most active stock trader Senate 2019 2020 trades Banking Committee bank stock New York Times",
+  "Banking Committee senators bank stock trades share analysis Capitol Trades 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.salon.com/2020/11/27/perdue-traded-hundreds-of-thousands-worth-of-bank-stocks-while-on-senate-banking-committee/",
+   "outlet": "Salon",
+   "date": "2020-11-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Between 2017 and 2020, while he sat on the Banking Committee, Perdue traded at a minimum hundreds of thousands of dollars, possibly millions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ion, according to 2018 Senate financial disclosures . His Wells Fargo account lists 60 assets valued at up to $1.2 million. Disclosures only provide ranges of value, so we cannot know precisely how much money Perdue has moved in stock trades, or the extent of his profits. But the forms do show that between 2017 and 2020, while he sat on the Banking Committee, Perdue traded at a minimum hundreds of thousands of dollars, possibly millions. According to the disclosures, Perdue held up to $910,000 in bank stocks alone from 2017 to 2019, through DBP and Wells Fargo. The shares earned him up to $204,000 in capital gains and dividends payouts. But Perdue does not let his stocks sit idle. Between 2017 and 2018, disclosures show, the senator not only sold as much as $135"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.thedailybeast.com/sen-david-perdue-says-his-perfectly-timed-stock-trades-are-completely-innocent/",
+   "outlet": "The Daily Beast",
+   "date": "2020-09-12",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "But Perdue does serve as a member of the Senate Banking Committee with jurisdiction over the financial industry.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ly false and nothing more than lies by liberal groups hoping to win an election.” Senator Takes Student’s Phone After Being Asked a Question CANDID CAMERA Gideon Resnick , Pervaiz Shallwani There is no available evidence that Perdue traded on nonpublic information, a practice barred by federal law. But Perdue does serve as a member of the Senate Banking Committee with jurisdiction over the financial industry. And he has eschewed measures taken by some other lawmakers to more concretely insulate himself from his financial positions. The Senator has not placed his assets in a blind trust, meaning there is no formalized mechanism for ensuring he is not involved in such investment decisions—and that the public must simply take his w"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.nber.org/system/files/working_papers/w26975/w26975.pdf",
+   "outlet": "NBER Working Paper 26975 (Belmont, Sacerdote, Sehgal, Van Hoek)",
+   "date": "2020-04-01",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "We find no evidence that senators have industry specific stock picking ability related to their committee assignments.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nd size (market cap) categories by 11 basis points, 28 basis points and 17 basis points at the 1, 3, and 6-month time horizons. Stocks sold by senators underperform slightly for the first three months and then outperform slightly (a statistically insignificant 14 basis points) at the one year mark. We find no evidence that senators have industry specific stock picking ability related to their committee assignments. Neither Republican nor Democratic senators are skilled at picking stocks to buy, while stocks sold by Republican senators underperform by 50 basis points over three months. Stocks sold following the January 24th COVID-19 briefing do underperform the market by a statistically significant 9 percent while stocks purchased during this"
+  },
+  {
+   "idx": 3,
+   "url": "https://news.northwestern.edu/stories/2026/08-2/senators-who-sit-together-trade-together",
+   "outlet": "Northwestern Now",
+   "date": "2026-08-05",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "The effect is stronger when one senator has committee oversight responsibility for the affected industry and after committee hearings involving those industries.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the same political party and largely absent among senators from opposing parties. The association weakened when senators spend less time in Washington D.C. because they are away campaigning for reelection and disappears when Congress is not in session, Walther said. The researchers also found that the effect is stronger when one senator has committee oversight responsibility for the affected industry and after committee hearings involving those industries. While the researchers cannot determine whether any particular trade violated securities laws, they conclude that the patterns they document are difficult to reconcile with the sharing of purely public information. Although the co-trading was not pervasive, the study provides new evidence about how information may travel through "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.cnn.com/2026/02/09/politics/senator-stock-trading-congress",
+   "outlet": "CNN",
+   "date": "2026-02-09",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "At least 10 senators reported stock purchases or sales last year involving companies in industries overseen by the committees they serve on.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ie Grayer , Marshall Cohen Updated Feb 9, 2026, 12:28 PM ET PUBLISHED Feb 9, 2026, 6:00 AM ET The US Capitol is reflected in a puddle on January 27. Heather Diehl/Getty Images Investing Stocks Congressional news Prescription drugs See all topics Facebook Tweet Email Link Threads Link Copied! Follow At least 10 senators reported stock purchases or sales last year involving companies in industries overseen by the committees they serve on. These transactions worry government watchdog groups, as a bipartisan effort to ban the practice has faltered on Capitol Hill. Most of those senators who invested in stocks that overlap with their committee assignments over the last year have comprehensive financial portfolios, not all of which raise potential conflict-of-interest is"
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "story_id": "S005",
+ "lead": {
+  "headline": "19 police, fire, veteran and cancer-named political groups spent about $194M, mostly on fundraisers; $0.36M went to contributions",
+  "number": "$193.7M by the groups' own IRS totals, 2014 to mid-2026 (itemized rows say $198.6M); 58% labelled fundraising or caging, 74% with telemarketing and mail; their donors are 15-74% of 13 look-alike FEC PACs' donor lists vs 6-9% for peer PACs",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The PACs' \"7% to politics\" is partly outside-spending paid to lead-list, caging and payment-processing vendors, so it overstates real support for candidates."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "police firefighter veterans cancer political groups 527 raised millions spent on fundraisers telemarketing little to candidates",
+  "\"scam PACs\" police veterans cancer telemarketing fundraising caging investigation",
+  "New York Times 527 groups robocalls \"1 percent\" candidates American Police Officers Alliance National Cancer Alliance",
+  "\"National Committee for Volunteer Firefighters\" OR \"American Police Officers Alliance\" OR \"National Coalition for Disabled Veterans\" 2026",
+  "attorney general OR FTC action 527 political organization police firefighters veterans telemarketing donors misled",
+  "527 groups police veterans cancer robocall fundraising 2026 investigation IRS Form 8872",
+  "scam PAC telemarketing police veterans cancer donors news July August 2026"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.propublica.org/article/political-nonprofits-fundraising-ftc-irs-527s-pacs",
+   "outlet": "ProPublica (Ellis Simani)",
+   "date": "2024-06-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "connected Berkenbush to a network of at least 10 of these 527 groups that have raised more than $33 million on the promise of supporting admirable causes",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "t their direct support to political candidates, removing them from the jurisdiction of the FEC or similar state agencies and leaving their regulation to the IRS. They do not have restrictions on how much donors can contribute, but the donations are not tax deductible. A ProPublica investigation has connected Berkenbush to a network of at least 10 of these 527 groups that have raised more than $33 million on the promise of supporting admirable causes, but that have spent little on activities that could be construed as having a political purpose. Most of the money goes to fundraisers who have only been paid by 527s in the group ProPublica identified. Experts say that it’s hard for the public to follow the business practices of 527 groups because of how difficult it is to access th"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.propublica.org/article/search-527s-finances-pacs-database-political-spending",
+   "outlet": "ProPublica (Ruth Talbot, Brandon Roberts)",
+   "date": "2024-06-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "ProPublica found a network of 527s that purport to support police, veterans, cancer patients and firefighters, but appear to largely be spending their donation money on a small group of fundraisers and administrative companies that support more fundraising efforts.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "“FEC filings are a lot more searchable and therefore a lot more visible, and therefore it’s easier for reporters to make stories based on those and even for opponents or law enforcement investigators to discover stuff,” Mayer told us. In this environment, questionable spending often goes unnoticed. ProPublica found a network of 527s that purport to support police, veterans, cancer patients and firefighters, but appear to largely be spending their donation money on a small group of fundraisers and administrative companies that support more fundraising efforts. They’ve raked in millions of dollars from Americans but appear to use little of it for their stated causes. Last year, The New York Times found a group of 527s that similarly appeared to be putting almost all the money they raised into fundraising and organizations affiliated with the founders. ProPublica identified the network we"
+  },
+  {
+   "idx": 2,
+   "url": "https://give.org/news/police-firefighter-or-veterans-groups-that-are-527-political-organizations",
+   "outlet": "BBB Wise Giving Alliance (Give.org)",
+   "date": "2023-05-17",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "But just spent 1 percent of the money they raised to help candidates via donations, ads or targeted get out the votes messages",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "e $89 Million, but Sending A Scant 1% to the Causes ”) that identified several political organizations tax exempt under section 527 of the Internal Revenue Code that reportedly raised millions of dollars using robocalls for “ building political support for police officers, veterans and firefighters…But just spent 1 percent of the money they raised to help candidates via donations, ads or targeted get out the votes messages….” As in every category in the fundraising marketplace, there are well managed and sincere efforts as well as those that unfortunately take advantage of generosity for popular causes. While many donors may be familiar with police, firefighter and veterans groups that have raised charitable funds over the phone, they may not "
+  },
+  {
+   "idx": 3,
+   "url": "https://www.thedailybeast.com/this-breast-cancer-charity-is-the-big-new-scam-in-politics/",
+   "outlet": "The Daily Beast (Roger Sollenberger, Anna Massoglia; with OpenSecrets)",
+   "date": "2021-10-15",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "In the space of two years, ABCC has brought in nearly $3.57 million, according to IRS filings",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Internal Revenue Service tell a different story, reviewed in a joint investigation between The Daily Beast and OpenSecrets, revealing payments to firms with ties to a multimillion-dollar “scam PAC” network. In May 2019, Bill Davis created the nonprofit, and the group quickly started raising money. In the space of two years, ABCC has brought in nearly $3.57 million, according to IRS filings. But the nonprofit has so far paid nearly every dollar it has raised to fundraising companies. Some of those companies even have ties to a telemarketing kingpin who was fined $56 million last year for bilking donors out of tens of millions of dollars in fake charity contributions. What’s more, it’s not alone. The ABCC is j"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.thedailybeast.com/the-secret-website-behind-a-dollar140-million-scam-pac-network/",
+   "outlet": "The Daily Beast (Roger Sollenberger)",
+   "date": "2023-03-16",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "have raised more than $140 million in the last two election cycles alone",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "secret call site so unique is, in fact, its website, which offers a rare glimpse into the workings of a shadowy, largely unregulated—and extraordinarily lucrative—operation. According to The Daily Beast’s analysis of Federal Election Commission filings, the 43 client PACs on the call center website have raised more than $140 million in the last two election cycles alone. That’s a staggering amount of money—more than former President Donald Trump has raised in total for his flagship Save America PAC . The call center has so many PAC clients that it maintains two lists . And they feature some of the most notorious groups in the country, including Law Enforcement for a Safer America, a sort of scam P"
+  }
+ ]
+}

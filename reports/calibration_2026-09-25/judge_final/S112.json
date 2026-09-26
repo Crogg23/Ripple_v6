@@ -1,0 +1,12 @@
+{
+ "story_id": "S112",
+ "bin": "Matched + more",
+ "entity": "Florida freestanding inpatient rehab hospitals, growth since the mid-2019 CON repeal",
+ "deciding_sources": [0, 3],
+ "earliest_match_date": "2021-05-18",
+ "post_cutoff_match": false,
+ "what_we_add": "the counts: 17 to 40 (+135%), 23 new hospitals and 1,144 beds with zero closures, net +24 most of any state, rest of US +31%",
+ "why": "Modern Healthcare and KFF name Florida and report the same finding in words: a rehab-hospital building rush after the CON repeal, over a dozen facilities and 800+ beds. No source has the 17-to-40 count, the zero-closures fact, or the rest-of-US comparison.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

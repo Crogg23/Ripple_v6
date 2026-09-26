@@ -1,0 +1,83 @@
+{
+ "story_id": "S008",
+ "lead": {
+  "headline": "Counties flooded with opioid pills in 2006-12 had 2x the overdose death rate in 2019-24, and were already dying faster",
+  "number": "40.8 vs 20.2 overdose deaths per 100k, 2019-24, across 1,832 counties of 20K+ people (2.0x; holds at 1.9-2.1x); Knox County TN #27 of 1,832 at 74.5; Food City #674 took 31% of Knox's 30mg+ oxycodone",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "Drop the AmerisourceBergen hook: it was the chain's normal wholesaler, and every distributor shipped these stores a strong mix. Split 30mg immediate-release from extended-release."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "counties flooded with opioid pills 2006-2012 higher overdose death rates years later fentanyl era study ARCOS",
+  "Knox County Tennessee Food City pharmacy oxycodone pills ARCOS",
+  "study counties higher prescription opioid supply 2006-2012 predicts later fentanyl overdose deaths county-level ARCOS analysis",
+  "Knox County overdose death rate among highest Tennessee pill shipments Knoxville News Sentinel opioid data",
+  "\"pain pills\" counties saturated 2006-2012 now fentanyl deaths highest same counties Appalachia analysis",
+  "fentanyl overdose deaths no longer tied to prescription pill history counties West Coast shift study",
+  "opioid pill shipments counties overdose deaths 2026 analysis ARCOS legacy",
+  "Food City Bearden store 674 oxycodone 30 settlement Knoxville opioid lawsuit"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.washingtonpost.com/investigations/opioid-death-rates-soared-in-communities-where-pain-pills-flowed/2019/07/17/f3595da4-a8a4-11e9-a3a6-ab670962db05_story.html",
+   "outlet": "The Washington Post",
+   "date": "2019-07-17",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Opioid death rates soared in communities where pain pills flowed",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "Opioid death rates soared in communities where pain pills flowed - The Washington Post Accessibility statement Skip to main content Democracy Dies in Darkness Democracy Dies in Darkness Investigations Opioid death rates soared in communities where pain pills flowed July 17, 2019 More than 6 years ago Communities in West Virginia were flooded with a disproportionate share of oxycodone and hydrocodone p"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.porh.psu.edu/opioid-death-rates-soared-in-communities-where-pain-pills-flowed/",
+   "outlet": "Penn State Office of Rural Health (repost of Washington Post)",
+   "date": "2019-07-19",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The counties that had the most pills distributed per person experienced more than three times that rate on average.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "rs, those communities also were flooded with a disproportionate share of the 76 billion oxycodone and hydrocodone pain pills from some of the country’s largest drug companies, an analysis by The Washington Post reveals . The national death rate from opioids was 4.6 deaths per 100,000 residents. But the counties that had the most pills distributed per person experienced more than three times that rate on average. Thirteen of those counties had an opioid death rate more than eight times the national rate, according to the government data. Seven of them were in West Virginia. Access the entire article, including graphs and maps, here . Continue Reading Previous Next Recent Posts Pennsylvania’s Ambulatory Surgery Center Finances are Examin"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.tn.gov/attorneygeneral/news/2021/2/4/pr21-06.html",
+   "outlet": "Tennessee Attorney General",
+   "date": "2021-02-04",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Sold more than 42.5 million Oxy 30 pills—44% of which were sold at Food City # 674 in Bearden;",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "allegations in the State’s 208-page Complaint provide stark detail about Food City’s opioid sales and conduct. Among other things, the State alleges that for more than a decade the Company: Sold more than 206 million prescription opioids, almost 25% of which were sold by Food City # 674 in Bearden; Sold more than 42.5 million Oxy 30 pills—44% of which were sold at Food City # 674 in Bearden; Ignored or watered-down reports of suspicious prescribers, allowing its pharmacies to continue selling opioids even after these doctors, nurses, and physician assistants were raided, disciplined, arrested, or indicted; Routinely sold huge quantities of dangerous “high risk” prescription combinations, in particular the “Holy "
+  },
+  {
+   "idx": 3,
+   "url": "https://foxchattanooga.com/news/local/tennessee-attorney-general-announces-opioid-lawsuit-settlement-with-food-city",
+   "outlet": "WTVC Fox Chattanooga",
+   "date": "2023-09-21",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "K-VA-T Food Stores will pay $44.5 million to the Volunteer State over the grocery store chain's opioid-related misconduct.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ics: Opioid Food City Settlement Tennessee Lawsuit Prescription Pharmacies Misconduct NASHVILLE, Tenn. — Tennessee's attorney general says the state has reached a settlement with the company that owns Food City grocery stores in a lawsuit that claimed the company profited from the opioid epidemic . K-VA-T Food Stores will pay $44.5 million to the Volunteer State over the grocery store chain's opioid-related misconduct, a release says. The lawsuit had claimed that violated the Tennessee Consumer Protection Act, violated the Tennessee’s public nuisance statute at three Knoxville-area stores, and created a common law public nuisance by endangering the health of Tennesseans and interfering with the commercial marketplace. It also claimed t"
+  },
+  {
+   "idx": 4,
+   "url": "https://medicalxpress.com/news/2024-10-overdose-deaths-nationally-western-states.html",
+   "outlet": "Medical Xpress (Stateline via Tribune Content Agency)",
+   "date": "2024-10-22",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Despite an encouraging national dip in the past year, overdose deaths are still on the rise in many Western states as the epicenter of the nation",
+   "paywalled": false,
+   "quote_check": "near",
+   "page_context": "cess and policies . Editors have highlighted the following attributes while ensuring the content's credibility: fact-checked reputable news agency proofread Data show overdose deaths are down nationally, but up in many Western states by Tim Henderson, Stateline.org Credit: Pixabay/CC0 Public Domain Despite an encouraging national dip in the past year, overdose deaths are still on the rise in many Western states as the epicenter of the nation's continuing crisis shifts toward the Pacific Coast, where deadly fentanyl and also methamphetamine are finding more victims. Overdose deaths remain sharply higher since 2019. Many states are working on \"harm reduction\" strategies that stress cooperation with people who use drugs; in some cases, states are getting tougher on prosecutio"
+  }
+ ]
+}

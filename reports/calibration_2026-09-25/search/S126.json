@@ -1,0 +1,34 @@
+{
+  "story_id": "S126",
+  "entity": "FDIC enforcement against minority depository institutions (minority-owned banks): new bank-level consent orders 2020-26, 11 of 107 vs 2.7% of peers",
+  "queries": [
+    {"q": "FDIC consent orders minority-owned banks disproportionate enforcement actions minority depository institutions", "found_useful": false},
+    {"q": "minority banks examiners harsher treatment enforcement orders American Banker", "found_useful": false},
+    {"q": "Black-owned bank FDIC consent order capital unsafe practices 2023", "found_useful": false},
+    {"q": "minority depository institutions more likely enforcement action CAMELS ratings study compared to non-minority banks", "found_useful": false},
+    {"q": "minority depository institution Bank Secrecy Act consent order FDIC 2025", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.gao.gov/assets/a252314.html",
+      "outlet": "U.S. Government Accountability Office (GAO-07-6)",
+      "date": "2006-10-04",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Bank officials said that examiners sometimes commented negatively on the practice of customers doing business in cash or placed the bank under increased scrutiny with respect to the Bank Secrecy Act's requirements for cash transactions.",
+      "paywalled": false,
+      "searcher_note": "Minority bank officials serving immigrant communities report extra BSA scrutiny from examiners; anecdotal, pre-2020, no enforcement-rate comparison; bears on the lead's caveat about money-laundering orders"
+    },
+    {
+      "url": "https://www.gao.gov/assets/a252314.html",
+      "outlet": "U.S. Government Accountability Office (GAO-07-6)",
+      "date": "2006-10-04",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Over 80 percent of the minority banks we surveyed responded that their regulators did a very good or good job of administering examinations",
+      "paywalled": false,
+      "searcher_note": "Same report as above (counts once); cuts the other way: most minority banks surveyed rated examinations well. Pre-2020"
+    }
+  ],
+  "notes": "No source found that compares FDIC consent-order rates for minority depository institutions with other banks, for 2020-26 or any period. Searches surfaced FDIC MDI policy pages, the FDIC OIG 2019 MDI program summary (no enforcement data), and academic work on how enforcement actions change banks' lending to minority borrowers (a different question). Several WebSearch calls auto-expanded into multiple internal searches (queries 1 and 4 each returned five result sets), so real search use for this story is higher than the five logged queries; stopped at five for that reason."
+}

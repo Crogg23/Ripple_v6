@@ -1,0 +1,12 @@
+{
+  "story_id": "S203",
+  "bin": "Known pattern",
+  "entity": "Share of ERCOT gas capacity able to switch to fuel oil, before vs after the 2021 freeze",
+  "deciding_sources": [2, 0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "EIA reports gas-to-oil switching capacity nationally, and Texas FFSS stories name ERCOT's dual-fuel procurement, but no source states ERCOT's dual-fuel share or its rise from 4.9% to 6.0%. Topic without the finding.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

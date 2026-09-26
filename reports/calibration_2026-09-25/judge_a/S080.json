@@ -1,0 +1,15 @@
+{
+ "story_id": "S080",
+ "bin": "Known pattern",
+ "entity": "Judges McMahon (JetBlue) and Leinenweber (P&G) presiding over cases while a spouse drew director fees",
+ "deciding_sources": [
+  1,
+  2
+ ],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Source 1 names Leinenweber's AT&T conflict, not the P&G case; ProPublica found dozens of judges with family financial conflicts, none ours. Same scheme, other entities; the court docket source is blocked and unusable.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

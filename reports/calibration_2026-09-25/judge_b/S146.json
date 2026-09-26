@@ -1,0 +1,12 @@
+{
+ "story_id": "S146",
+ "bin": "Unreported",
+ "entity": "Foreign groups' share of US 501(c)(4) assets ($133.4B, 40%)",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source reports foreign organizations holding a large share of c4 assets. The ProPublica pages confirm Mastercard Foundation and Novo Holdings are 501(c)(4)s but state no asset share or finding; the Tax Adviser piece is a withholding-rule explainer.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

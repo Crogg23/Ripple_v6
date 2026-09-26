@@ -1,0 +1,12 @@
+{
+  "story_id": "S016",
+  "bin": "Contradicted",
+  "entity": "Nebraska's air regulators: formal air enforcement actions filed 2017-2025",
+  "deciding_sources": [2, 1, 0],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "The headline claims zero formal air actions 2017-2025, but Nebraska DWEE's own enforcement pages show Clean Air Act consent orders inside that window: Green Plains Wood River 2022-02-16 and ADM 2025-10-22. Zero vs at least two is opposite direction on that claim, so Contradicted rules even though EPA's SRF matched the ICIS-Air side (no formal responses in EPA's database, FFY2022). The lead's own watch_out saw this hole.",
+  "confidence": "high",
+  "blocked_evidence": false
+}

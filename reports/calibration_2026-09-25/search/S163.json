@@ -1,0 +1,56 @@
+{
+  "story_id": "S163",
+  "entity": "H-1B wages that contractors/outsourcers wrote on DOL labor condition applications for work at 45 big client companies vs the client's own H-1B filings, same job code and state, FY2019 (median 20.6% lower)",
+  "queries": [
+    {"q": "H-1B outsourcing contractors wages lower than client company own H-1B workers same job analysis", "found_useful": true},
+    {"q": "EPI H-1B outsourcing firms Level 1 wages third-party placement clients Apple Google analysis", "found_useful": true},
+    {"q": "Bloomberg 2025 H-1B middlemen banks TCS contractors paid less than direct hires $48,000", "found_useful": true},
+    {"q": "\"contractor was paid about $48,000 less\" H-1B", "found_useful": false},
+    {"q": "H-1B staffing firm LCA wages compared end client same occupation same state study lower wages third-party worksite", "found_useful": true},
+    {"q": "Citigroup 3,000 H-1B two-thirds placed by Indian outsourcing companies paid significantly less than Citigroup's own employees", "found_useful": true},
+    {"q": "H-1B outsourcing contractors paid less than client companies' direct hires 2026 report", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.bloomberg.com/graphics/2025-h1b-visa-middlemen-cheap-labor-for-us-banks/",
+      "outlet": "Bloomberg",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Major US Banks Use TCS, Other Middlemen To Hire Lower Paid H-1B Visa Workers",
+      "paywalled": true,
+      "searcher_note": "Headline only; WebFetch got HTTP 403. Bloomberg's Facebook post and syndications date it about 2025-06-27. Compares contractor pay with the client's own H-1B hires (Citigroup, Capital One), the same comparison as the lead."
+    },
+    {
+      "url": "https://finance.yahoo.com/news/wall-streets-secret-weapon-citi-191644770.html",
+      "outlet": "Yahoo Finance (GuruFocus, citing Bloomberg)",
+      "date": "2025-06-27",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Median salary for one of these H-1B developers? $94,000. Compare that to $142,000 for a direct hire doing similar work.",
+      "paywalled": false,
+      "searcher_note": "Retells Bloomberg's Citigroup numbers: contractor H-1B developers $94K median vs $142K for direct hires, May 2020-May 2024. Same measure as the lead, other window, one named client. Whether Citi is among the lead's 45 is unknown."
+    },
+    {
+      "url": "https://spectrum.ieee.org/amp/new-data-hammers-home-problems-with-h1bs-and-outsourcing-firms-2650275971",
+      "outlet": "IEEE Spectrum (Prachi Patel)",
+      "date": "2017-08-08",
+      "source_type": "trade press",
+      "entity_named": "no",
+      "quote": "But top outsourcing firms paid well below this number, with TCS paying as little as $72,000 on average.",
+      "paywalled": false,
+      "searcher_note": "Early pattern coverage: outsourcers pay H-1Bs less than Apple, Cisco, Microsoft and Google (over $120K). Credits part of the gap to degree mix: direct employers hire more Master's holders."
+    },
+    {
+      "url": "https://ifp.org/the-wage-level-mirage/",
+      "outlet": "Institute for Progress (Jeremy Neufeld)",
+      "date": "2025-09-24",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Their business model relies on flooding the lottery with registrations for mid-career staff in routine roles, who often qualify for higher wage levels despite the relatively low actual pay.",
+      "paywalled": false,
+      "searcher_note": "Possible tension with the lead's caveat: IFP says outsourcers' workers often get HIGHER DOL wage levels despite low pay. The lead says most of the gap is the lower skill level contractors write down."
+    }
+  ],
+  "notes": "Pattern coverage is strong and old. EPI (Costa and Hira, 'H-1B visas and prevailing wage levels', uses FY2019 LCA data) and EPI's 'outsourcing visa' blog were found, but WebFetch and curl got HTTP 403, so no quotes were taken. Bloomberg's 2024 piece 'Thousands of H-1B Visas Are Going to Middlemen Gaming the System' (https://www.bloomberg.com/graphics/2024-staffing-firms-game-h1b-visa-lottery-system/) also returned 403. A search summary tied it to 'a typical contractor was paid about $48,000 less than a worker employed directly by the company that sponsored her visa' and top-10 medians of $120K in-house vs $72K contractor. Neither sentence was verified on a live page, so neither is recorded. No source found gives the lead's specific test: contractor LCA wages vs the client's own LCA wages, same SOC code and state, 45 clients, FY2019, median 20.6% (6.6% at the same wage level, 14.5% for new hires). The Durbin-Grassley press release of 2025-09-25 (https://www.durbin.senate.gov/newsroom/press-releases/durbin-grassley-take-aim-at-labor-exploitation-in-tech-finance-retail-sectors) sent letters to TCS, Cognizant, Deloitte and big tech clients but gives no contractor-vs-client wage figure. Recent coverage (Sept 2026) is about the $100K H-1B fee and a Trump order investigating H-1B hiring, not this wage gap. 7 searches were run."
+}

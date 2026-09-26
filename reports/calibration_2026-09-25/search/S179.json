@@ -1,0 +1,68 @@
+{
+  "story_id": "S179",
+  "entity": "Medicare Diabetes Prevention Program (MDPP), 2024 fee-for-service billing: 37 suppliers with 11+ patients, 1,267 patients, $347,437, against 1,037 listed sites",
+  "queries": [
+    {"q": "Medicare Diabetes Prevention Program low enrollment suppliers beneficiaries 2024", "found_useful": true},
+    {"q": "MDPP evaluation report number of beneficiaries enrolled suppliers CMS", "found_useful": true},
+    {"q": "Medicare diabetes prevention program few seniors enrolled news KFF Health News STAT", "found_useful": true},
+    {"q": "\"Diabetes Prevention Program\" Medicare suppliers paid claims fee-for-service 2024 total payments", "found_useful": false},
+    {"q": "GAO OR OIG Medicare Diabetes Prevention Program participation suppliers report", "found_useful": false},
+    {"q": "Medicare Diabetes Prevention Program 2026 changes enrollment news physician fee schedule MDPP uptake", "found_useful": false},
+    {"q": "Medicare diabetes prevention program suppliers dropping out few billing Medicare claims analysis 2025 2026", "found_useful": true},
+    {"q": "MDPP enrollment increased record growth suppliers 2024 2025 virtual CDC National DPP Medicare", "found_useful": false},
+    {"q": "\"Medicare Diabetes Prevention Program\" underused 2026 article", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12614249/",
+      "outlet": "American Journal of Managed Care (PMC copy), 'Opportunities and Obstacles Associated with the Medicare Diabetes Prevention Program'",
+      "date": "2025-10",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "CMS recently reported that only one third of MDPP suppliers have submitted claims since 2018.",
+      "paywalled": false,
+      "searcher_note": "Names MDPP; reports few suppliers billing and low participation (the same paper says only 4,848 beneficiaries had participated per CMS in 2022, of about 5.2 million eligible). No 2024 claims or dollar figures."
+    },
+    {
+      "url": "https://www.cms.gov/priorities/innovation/data-and-reports/2025/mdpp-finalevalrpt-fg",
+      "outlet": "CMS Innovation Center, MDPP Final Evaluation 'Findings at a Glance'",
+      "date": "2025-03",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Limited participation among suppliers and beneficiaries has kept MDPP from having an overall impact on population health.",
+      "paywalled": false,
+      "searcher_note": "CMS's own evaluation, April 2018-March 2024: 414 suppliers (357 enrolled at least one person), 9,015 beneficiaries total, about half Medicare Advantage. Cumulative window and supplier definition differ from the lead's 2024 FFS billing count."
+    },
+    {
+      "url": "https://www.rti.org/impact/evaluation-medicare-diabetes-prevention-program",
+      "outlet": "RTI International",
+      "date": "2025-03-31",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Between April 2018 and March 2024, 9,015 Medicare beneficiaries have participated in the program.",
+      "paywalled": false,
+      "searcher_note": "Evaluator's summary of the CMS MDPP evaluation; says enrollment lower than anticipated. Cumulative six-year count, not 2024 alone."
+    },
+    {
+      "url": "https://www.medscape.com/viewarticle/medicare-a1c-coverage-boosts-diabetes-screening-prediabetes-2026a1000ww3",
+      "outlet": "Medscape",
+      "date": "unknown",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Medicare A1c Coverage Boosts Diabetes Screening, Prediabetes Detection",
+      "paywalled": true,
+      "searcher_note": "Post-cutoff candidate: search snippet dated it September 2026 and said MDPP remained underused partly because of reimbursement issues. Page returned 402; headline only, body not verified."
+    },
+    {
+      "url": "https://www.healthaffairs.org/doi/10.1377/hlthaff.2021.01292",
+      "outlet": "Health Affairs",
+      "date": "unknown",
+      "source_type": "research",
+      "entity_named": "yes",
+      "quote": "Medicare Diabetes Prevention: Enrollment Short Of Projections",
+      "paywalled": true,
+      "searcher_note": "Likely earliest coverage of MDPP low enrollment (DOI suggests 2021-2022). Page returned 403; headline only, date and body not verified."
+    }
+  ],
+  "notes": "Low MDPP use is widely reported (CMS evaluation, RTI, AJMC, Health Affairs), matching the lead's own watch-out. No source found gives 2024 fee-for-service billing counts: the 37 suppliers with 11+ patients, 1,267 patients, $347,437, or the 1,037 listed sites. Closest to the supplier-billing angle is AJMC's line that only one third of MDPP suppliers had submitted claims since 2018. Search results also cited 331 approved suppliers as of March 2025 (coveragetoolkit.org), but the fetched page did not show that sentence, so it is not recorded. AJMC's own page and Health Affairs returned 403; Medscape returned 402."
+}

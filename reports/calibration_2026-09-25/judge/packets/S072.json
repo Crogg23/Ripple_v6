@@ -1,0 +1,59 @@
+{
+ "story_id": "S072",
+ "lead": {
+  "headline": "CareCore Health's 12 Ohio nursing homes draw 1.95x their state's fire-safety citations; 11 repeat a citation across three inspections",
+  "number": "CareCore (OH, 12 homes) 1.95x its state's fire citations per home; 11 of 12 repeat a tag in all 3 cycles (2.54x the state rate); median chain 1.00x.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Almost all sprinkler and alarm-testing upkeep (K0353, K0345), with 0-1 serious citations per chain."
+ },
+ "queries_logged": 8,
+ "queries": [
+  "CareCore Health Ohio nursing homes",
+  "CareCore Health nursing home fire safety citations sprinkler inspection",
+  "\"CareCore\" nursing home Ohio violations news",
+  "\"CareCore Health\" owner acquisition Ohio skilled nursing",
+  "nursing home chains repeat fire safety deficiencies sprinkler alarm testing analysis CMS life safety code",
+  "CareCore Lima OR Dayton OR Chillicothe OR Mentor nursing home inspection fire 2026",
+  "Ohio nursing homes fire safety violations sprinkler testing citations investigation",
+  "nursing homes fire safety citations analysis news repeat violations sprinklers alarms not tested chain-owned"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://projects.propublica.org/nursing-homes/affiliate/a-108",
+   "outlet": "ProPublica Nursing Home Inspect",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "According to CMS data, Carecore Health is affiliated with 10 facilities in Ohio.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " All nursing homes affiliated with Carecore Health Nursing Home Inspect > All affiliated entities Data as of August 2026 Carecore Health According to CMS data , Carecore Health is affiliated with 10 facilities in Ohio. Affiliation means this group of homes is linked to at least one individual or organizational owner, officer or entity with managerial control of these nursing homes. Some affiliated entities are not named directly in a home’s ownership information. In other cases, affiliated entities may not include every home a person or company has a"
+  },
+  {
+   "idx": 1,
+   "url": "https://oig.hhs.gov/reports-and-publications/all-reports-and-publications/ohio-could-better-ensure-that-nursing-homes-comply-with-federal-requirements-for-life-safety-emergency-preparedness-and-infection-control",
+   "outlet": "HHS Office of Inspector General",
+   "date": "2023-12-20",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "During our onsite inspections, we identified deficiencies related to life safety, emergency preparedness, or infection control at 18 of the 20 nursing homes that we audited, totaling 160 deficiencies.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "dness, and infection control deficiencies. What OIG Found Ohio could better ensure that nursing homes in Ohio that participate in the Medicare or Medicaid programs comply with Federal requirements for life safety, emergency preparedness, and infection control if additional resources were available. During our onsite inspections, we identified deficiencies related to life safety, emergency preparedness, or infection control at 18 of the 20 nursing homes that we audited, totaling 160 deficiencies. Specifically, we found 47 deficiencies related to life safety, 47 deficiencies related to emergency preparedness, and 66 deficiencies related to infection control. As a result, the health and safety of residents, staff, and visitors at the 18 nursing homes are at an increased risk during a fire or other emergency, or in the event of an infec"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.iadvanceseniorcare.com/the-top-10-cms-life-safety-code-citations/",
+   "outlet": "I Advance Senior Care",
+   "date": "2016-07-29",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "Sprinkler system maintenance (prevalence: 21% of all facilities cited)",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "to audit-preparation as a standard maintenance best practice and stay on top of these common infractions. The top four violations remain fairly consistent, presenting a clear opportunity to prevent major citations and to protect the reputation of the long-term care facility. The top 10 citations 1. Sprinkler system maintenance (prevalence: 21% of all facilities cited) The testing and maintenance of the fire alarm system has to be conducted at the proper frequency in accordance with National Fire Protection Agency (NFPA) 25. Most often, sprinkler violations are due to improper testing and maintenance. Testing problems generally stem from a lack of documentation, lack of qualified individuals doing the calibrat"
+  }
+ ]
+}

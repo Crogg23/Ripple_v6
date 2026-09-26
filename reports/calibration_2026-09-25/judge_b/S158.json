@@ -1,0 +1,15 @@
+{
+ "story_id": "S158",
+ "bin": "Matched + more",
+ "entity": "Evergy Metro homes on time-of-day rates, Missouri side vs Kansas side",
+ "deciding_sources": [
+  0,
+  1
+ ],
+ "earliest_match_date": "2023-07-12",
+ "post_cutoff_match": false,
+ "what_we_add": "89.7% vs 1.6% in 2024 (245,547 vs 3,904 homes), and all four Missouri IOUs at 76-99%",
+ "why": "E&E and the KC Star state the split in words: all 550,000 Missouri Evergy homes moved by default, Kansas kept opt-in only. SECC's ~1% opt-in conversion sits right on our Kansas 1.6%. The exact 2024 enrollment shares are ours.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

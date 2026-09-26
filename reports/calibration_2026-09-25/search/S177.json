@@ -1,0 +1,37 @@
+{
+  "story_id": "S177",
+  "entity": "Penn State Health Milton S. Hershey Medical Center (and Penn State Health's 5 hospitals), Medicare outpatient outlier payments on top-level joint procedures",
+  "queries": [
+    {"q": "Penn State Hershey Medical Center Medicare outlier payments", "found_useful": false},
+    {"q": "hospital outpatient outlier payments Medicare OIG audit high charges joint replacement comprehensive APC", "found_useful": true},
+    {"q": "\"Penn State Health\" hospital charges markup Medicare highest prices Hershey Lancaster Medical Center", "found_useful": false},
+    {"q": "PennLive Penn State Health Hershey Medical Center prices percent of Medicare RAND high cost hospital", "found_useful": false},
+    {"q": "OIG audit outpatient outlier payments hospital 2024 2025 report overpayments \"outpatient outlier\"", "found_useful": false},
+    {"q": "Penn State Health Medicare billing investigation settlement 2026", "found_useful": false},
+    {"q": "Medicare hospital outpatient outlier payments concentrated few hospitals high charges knee hip arthroplasty analysis", "found_useful": false},
+    {"q": "\"Hershey Medical Center\" outlier payments OR \"outlier payment\" Medicare cost-to-charge ratio", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://oig.hhs.gov/reports/all/2022/vanderbilt-university-medical-center-audit-of-outpatient-outlier-payments/",
+      "outlet": "HHS Office of Inspector General",
+      "date": "2022-05-25",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "VUMC properly billed the claims for 34 of the 117 sampled outlier payments totaling $102,551.",
+      "paywalled": false,
+      "searcher_note": "Pattern: OIG audit (A-06-20-04003) of one academic medical center's Medicare OUTPATIENT outlier payments; found 81 of 117 improperly billed. Different hospital, not joint-specific."
+    },
+    {
+      "url": "https://oig.hhs.gov/documents/evaluation/2959/OEI-06-10-00520-Complete%20Report.pdf",
+      "outlet": "HHS Office of Inspector General",
+      "date": "2013-11-01",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "Specifically, outlier payments to 158 hospitals averaged 12.8 percent of their Medicare IPPS reimbursements, compared to an average of only 2.2 percent for all other hospitals.",
+      "paywalled": false,
+      "searcher_note": "Pattern: outlier payments concentrate at high-charging hospitals. INPATIENT (IPPS, 2008-2011), not outpatient; report dated November 2013 (day not given, set to 01). Does not name Penn State Hershey in the text read."
+    }
+  ],
+  "notes": "No source found naming Hershey Medical Center, Lancaster Medical Center or Penn State Health with Medicare outlier payments of any kind, outpatient or inpatient. Press hits on Penn State Health and Medicare are unrelated voluntary-disclosure settlements (US Attorney MDPA: $11.7M for Annual Wellness Visit claims Dec 2015-Nov 2022; $1.25M in March 2023 for E&M claims at Hershey and St. Joseph) and a 2008 OIG review of Pennsylvania DSH payments to Hershey; none concern outliers, so not recorded. No news or trade-press source found on outpatient outlier payments for joint procedures at any hospital. No post-2026-06-30 coverage found."
+}

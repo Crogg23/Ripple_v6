@@ -1,0 +1,12 @@
+{
+ "story_id": "S120",
+ "bin": "Matched + more",
+ "entity": "Senate recorded votes in 2025 (659, second only to 1976) and the nomination-vote record",
+ "deciding_sources": [0, 1, 3],
+ "earliest_match_date": "2025-12-18",
+ "post_cutoff_match": true,
+ "what_we_add": "the 356 nomination-vote count, the 37.3-to-12.6 per-month drop after the en bloc rule, and the 41.5% vs 13.5% zero-crossover share",
+ "why": "Bloomberg Gov states 659 roll calls, second only to 1976, exactly our headline; Thune and Roll Call confirm the record nomination votes. Our per-month en-bloc split and zero-crossover shares appear in no source.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+ "story_id": "S040",
+ "bin": "Not comparable",
+ "entity": "loanDepot's refinance denial rate, 2015-17",
+ "deciding_sources": [2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "The only source with a loanDepot refi denial number (Wirly, 0%) is for 2024, a different window, so it can't be lined up with our 74% for 2015-17. CFPB's 2.5x refi-vs-purchase is a pattern, but Not comparable comes first in the order.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

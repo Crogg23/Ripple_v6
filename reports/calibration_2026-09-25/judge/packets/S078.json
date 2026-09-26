@@ -1,0 +1,82 @@
+{
+ "story_id": "S078",
+ "lead": {
+  "headline": "Altair Recycling in Texas got a $57.0M state water-pollution penalty in June 2025, the biggest on file after BP's",
+  "number": "$57.0M state civil judicial penalty on 2025-06-06 (case TX-D-1-GN-19-002002), biggest after BP's two $3.35B lines; hazardous-waste violations open since 2019.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "One site; the water fine and the waste violations are tied by name, not by an ID."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Altair Recycling Texas penalty attorney general judgment",
+  "\"Altair\" Skull Creek Inland Recycling Colorado County pollution",
+  "Inland Recycling Polston judgment \"$46.5 million\" civil penalties Skull Creek",
+  "\"Altair Recycling\" Texas",
+  "Colorado County Citizen Inland Recycling agreed final judgment civil penalties 2025",
+  "Skull Creek Inland Recycling Polston 2026 cleanup judgment collected",
+  "\"Skull Creek\" \"46.5 million\""
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.texastribune.org/2025/05/09/texas-attorney-general-judgment-pollution-skull-creek/",
+   "outlet": "Texas Tribune",
+   "date": "2025-05-09",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Attorney General Ken Paxton said his office secured a $60 million settlement against businessman David Polston and his companies, Inland Environmental and Remediation, Inland Recycling, and Boundary Ventures.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ps://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-protects-texas-environment-and-secures-60-million-judgment-against\">announced </a>Friday that it has won a judgment against a company accused of illegally dumping industrial waste into Skull Creek in Colorado County.</p> <p>Attorney General Ken Paxton said his office secured a $60 million settlement against businessman David Polston and his companies, Inland Environmental and Remediation, Inland Recycling, and Boundary Ventures.</p> <p>“I will not allow rogue corporations to pollute Texas’s land and rivers by illegally dumping dangerous chemicals that kill our wildlife and hurt the environment,” Paxton said in a statement. “Companies that do business in Texas have a duty to take care of the land and follow the law. If you mess with Texas, you will face the c"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.coloradocountycitizen.com/article/5669,colorado-county-to-sue-over-skull-creek-pollution",
+   "outlet": "Colorado County Citizen",
+   "date": "2025-03-26",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The upcoming court case has seen the state already enter a judgement against Polston and his companies, assessing civil penalties of $46.5 million dollars.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "it against David Polston and Kenneth Owens directly, which is set to go to trial on April 7, county commissioners are looking to get all responsible parties held accountable with the decision to pursue litigation against any additional responsible parties that may have worked with Inland Recycling. The upcoming court case has seen the state already enter a judgement against Polston and his companies, assessing civil penalties of $46.5 million dollars. Commissioners additionally approved a sole bid of $591,757 for a Texas General Land Office Community Development and Revitalization Contract for water improvement that would see a water system component and included water lines. The lone bid, awarded to Beyond Site Services, was accepted after recommendation from James Weishuhn o"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-protects-texas-environment-and-secures-60-million-judgment-against",
+   "outlet": "Office of the Texas Attorney General",
+   "date": "unknown",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Attorney General Ken Paxton Protects Texas Environment and Secures $60 Million Judgment Against Recycling Company Dumping Chemicals into River",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": " Attorney General Ken Paxton Protects Texas Environment and Secures $60 Million Judgment Against Recycling Company Dumping Chemicals into River | Office of the Attorney General Skip to main content Español About News Opinions Careers Contact Us Search Menu Keywords Search × Child Support Your Online Account Back to top of menu Your Online Account Paying and Receiving Child Support About Your Online Account Agency Partners Child Support Enforcement Pro­grams and Initiatives Child S"
+  },
+  {
+   "idx": 3,
+   "url": "https://districtattorney.traviscountytx.gov/travis-county-da-guilty-plea-environmental-pollution-case/",
+   "outlet": "Travis County District Attorney",
+   "date": "2024-05-07",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "On February 8, 2019, the Texas Commission on Environmental Quality received two complaints of an oil-like sheen, hydrocarbon odor, and dead fish in Skull Creek near Altair in Colorado County, TX.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "nnes. “Our office is grateful for the hard work and dedication of our staff and partners who worked together to hold the defendant accountable,” said Travis County District Attorney José Garza. “In this case, various levels of government agencies collaborated to protect the environment.” Background On February 8, 2019, the Texas Commission on Environmental Quality received two complaints of an oil-like sheen, hydrocarbon odor, and dead fish in Skull Creek near Altair in Colorado County, TX. TCEQ and Texas Parks and Wildlife Department’s KAST (Kills and Spills Team) responded and observed several dead fish in Skull Creek, which feeds into the Colorado River. The light sheen and gasoline odors were noted, and a chemical recycling facility located upstream of the kill area was a possible source: the Inland Recycling "
+  },
+  {
+   "idx": 4,
+   "url": "https://www.kut.org/post/creek-flowing-colorado-river-turned-black-now-state-has-sued-alleged-polluter",
+   "outlet": "KUT (Austin NPR)",
+   "date": "2019-04-17",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "On Tuesday, a state district court in Travis County granted a temporary restraining order against the company and its president, David Polston",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ased Inland Environmental and Remediation. Though Inland has denied wrongdoing, the Texas Attorney General sued the company on Friday — 10 weeks after citizens first began complaining — alleging the company illegally discharged industrial waste into the creek and stored that waste without a permit. On Tuesday, a state district court in Travis County granted a temporary restraining order against the company and its president, David Polston, saying he must “cease and prevent all discharges of waste” from the site into state waters. The state’s lawsuit seeks monetary damages of up to $1 million. The Texas Railroad Commission ordered the facility to stop storing oil and gas waste in 2017 as a result of a bankruptcy court reorganization (the permit was held by Boundary V"
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+{
+  "story_id": "S008",
+  "entity": "US counties flooded with opioid pills 2006-12 (ARCOS) vs overdose death rate 2019-24; named in number line: Knox County TN and Food City #674 (Bearden)",
+  "queries": [
+    {"q": "counties flooded with opioid pills 2006-2012 higher overdose death rates years later fentanyl era study ARCOS", "found_useful": true},
+    {"q": "Knox County Tennessee Food City pharmacy oxycodone pills ARCOS", "found_useful": true},
+    {"q": "study counties higher prescription opioid supply 2006-2012 predicts later fentanyl overdose deaths county-level ARCOS analysis", "found_useful": false},
+    {"q": "Knox County overdose death rate among highest Tennessee pill shipments Knoxville News Sentinel opioid data", "found_useful": false},
+    {"q": "\"pain pills\" counties saturated 2006-2012 now fentanyl deaths highest same counties Appalachia analysis", "found_useful": true},
+    {"q": "fentanyl overdose deaths no longer tied to prescription pill history counties West Coast shift study", "found_useful": true},
+    {"q": "opioid pill shipments counties overdose deaths 2026 analysis ARCOS legacy", "found_useful": false},
+    {"q": "Food City Bearden store 674 oxycodone 30 settlement Knoxville opioid lawsuit", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.washingtonpost.com/investigations/opioid-death-rates-soared-in-communities-where-pain-pills-flowed/2019/07/17/f3595da4-a8a4-11e9-a3a6-ab670962db05_story.html",
+      "outlet": "The Washington Post",
+      "date": "2019-07-17",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "Opioid death rates soared in communities where pain pills flowed",
+      "paywalled": true,
+      "searcher_note": "Headline only (403 on fetch). Pill-saturated counties vs opioid death rates, but deaths in the same 2006-12 window, not 2019-24."
+    },
+    {
+      "url": "https://www.porh.psu.edu/opioid-death-rates-soared-in-communities-where-pain-pills-flowed/",
+      "outlet": "Penn State Office of Rural Health (repost of Washington Post)",
+      "date": "2019-07-19",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "The counties that had the most pills distributed per person experienced more than three times that rate on average.",
+      "paywalled": false,
+      "searcher_note": "Copy of the WaPo 2019 story above; counts once. Same pattern (top-pill counties die faster), window is 2006-12 deaths, not 2019-24; no 2x or 40.8 vs 20.2 figure."
+    },
+    {
+      "url": "https://www.tn.gov/attorneygeneral/news/2021/2/4/pr21-06.html",
+      "outlet": "Tennessee Attorney General",
+      "date": "2021-02-04",
+      "source_type": "government",
+      "entity_named": "yes",
+      "quote": "Sold more than 42.5 million Oxy 30 pills—44% of which were sold at Food City # 674 in Bearden;",
+      "paywalled": false,
+      "searcher_note": "Names Food City #674 in Knox County; 44% is share of Food City's own Tennessee Oxy 30 sales, not share of Knox County's 30mg+ oxycodone (lead says 31%)."
+    },
+    {
+      "url": "https://foxchattanooga.com/news/local/tennessee-attorney-general-announces-opioid-lawsuit-settlement-with-food-city",
+      "outlet": "WTVC Fox Chattanooga",
+      "date": "2023-09-21",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "K-VA-T Food Stores will pay $44.5 million to the Volunteer State over the grocery store chain's opioid-related misconduct.",
+      "paywalled": false,
+      "searcher_note": "Settlement of the AG suit over three Knoxville-area Food City stores including #674; no county death-rate comparison."
+    },
+    {
+      "url": "https://medicalxpress.com/news/2024-10-overdose-deaths-nationally-western-states.html",
+      "outlet": "Medical Xpress (Stateline via Tribune Content Agency)",
+      "date": "2024-10-22",
+      "source_type": "news",
+      "entity_named": "no",
+      "quote": "Despite an encouraging national dip in the past year, overdose deaths are still on the rise in many Western states as the epicenter of the nation",
+      "paywalled": false,
+      "searcher_note": "Disagreement-leaning: says the overdose epicenter is moving West, away from the old pill belt. No county pill-history comparison."
+    }
+  ],
+  "notes": "No source found comparing 2006-12 pill volume to 2019-24 overdose death rates by county (the lead's 40.8 vs 20.2, 2.0x). WaPo 2019 covered the same pattern with deaths in the pill window itself (3x national rate). WaPo 2023 interactive (washingtonpost.com/investigations/interactive/2023/opioid-epidemic-pain-pills-sold-oxycodone-hydrocodone/) returned 403, not recorded. Food City #674 is widely covered via the 2021 Tennessee AG suit and 2023 $44.5M settlement, but no source states the lead's 31%-of-Knox share. No source found on Knox County's #27 national rank at 74.5. Academic county-level studies (PMC10175115, Addiction 2023) examined supply vs later deaths but abstract gave no quotable direction on fentanyl deaths."
+}

@@ -1,0 +1,69 @@
+{
+ "story_id": "S154",
+ "lead": {
+  "headline": "Ohio utilities spent $3.22 per customer on saving electricity in 2024; Michigan, next door, spent $81.98",
+  "number": "$3.22 per customer ($8.38 with utility-run demand response), 48th of 51 states; national median $31.09 ($39.50 with demand response); first-year savings 0.063% of Ohio's sales vs 1.692% in Michigan",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "One year only (2024), and \"no row\" for Duke Energy Ohio and Dayton P&L may not mean no program: demand response sold through the PJM grid market never shows up here"
+ },
+ "queries_logged": 6,
+ "queries": [
+  "Ohio utilities energy efficiency spending per customer Michigan comparison HB 6 ended programs",
+  "ACEEE state scorecard Ohio ranking energy efficiency 2025 utility spending fell after HB 6",
+  "Ohio lags Michigan utility energy efficiency programs savings 2024 EIA data Ohio near bottom",
+  "ACEEE \"Ohio\" elimination efficiency programs drop in national energy savings utility scorecard",
+  "Ohio energy efficiency utility programs 2026 PUCO AEP Ohio FirstEnergy efficiency bill news",
+  "PUCO approves AEP Ohio energy efficiency programs 2024 low-income ratepayer-funded efficiency returns"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.aceee.org/press-release/2023/08/utility-scorecard-energy-efficiency-efforts-stagnating-amid-climate-crisis",
+   "outlet": "ACEEE",
+   "date": "2023-08-24",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Ohio utilities score poorly because of a 2019 law that eliminated utility efficiency programs in the state. Nearly all of the 5% drop in energy savings nationally in recent years can be attributed to the elimination of Ohio’s efficiency programs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s. Almost 80% of utilities scored receive no credit for language access. Lowest-performing utilities have little to no energy savings The five lowest-scoring utilities are Ohio Edison (#53), Florida Power and Light (#52), Alabama Power (#51), Duke Ohio (#50), and American Electric Power Ohio (#49). Ohio utilities score poorly because of a 2019 law that eliminated utility efficiency programs in the state. Nearly all of the 5% drop in energy savings nationally in recent years can be attributed to the elimination of Ohio’s efficiency programs. The 2023 Utility Scorecard evaluates the 50 largest electric utilities in the country by retail sales volume as well as three other utilities that were assessed in previous editions of the Scorecard . The 53 utilities in this year’s Scorecard serve around 79 million residential customers, or about 60% of all U.S. households. ACEEE prev"
+  },
+  {
+   "idx": 1,
+   "url": "https://database.aceee.org/state/ohio",
+   "outlet": "ACEEE State and Local Policy Database",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Most recently, HB 6, a nuclear subsidy bill passed in 2019, dealt a disastrous and lethal blow to energy efficiency in the state, effectively eliminating most all programs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " energy efficiency efforts in Ohio have faced repeated legislative attacks that have weakened and jeopardized programs. These have included SB 310, passed in 2014, that temporarily froze the EERS for two years in 2015 and 2016, and included an industrial opt-out for large electric energy customers. Most recently, HB 6, a nuclear subsidy bill passed in 2019, dealt a disastrous and lethal blow to energy efficiency in the state, effectively eliminating most all programs. The most recent budgets for energy efficiency programs and electricity and natural gas savings can be found in the State Spending and Savings Tables. Customer Energy Efficiency Programs List All With passage of SB 221 in 2008, Ohio established the foundation for the full range of customer energy efficiency programs offered by u"
+  },
+  {
+   "idx": 2,
+   "url": "https://ohiocapitaljournal.com/2025/03/28/ohio-utility-retracts-energy-efficiency-plan-despite-potential-savings/",
+   "outlet": "Ohio Capital Journal (reprint of Canary Media, Kathiann M. Kowalski)",
+   "date": "2025-03-28",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Duke Energy Ohio quietly dropped plans late last year to roll out a broad portfolio of programs that would have boosted energy efficiency and encouraged customers to use less electricity during times of peak demand.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n energy-saving programs that were eliminated by a 2019 law. By Kathiann M. Kowalski, Canary Media - March 28, 2025 4:35 am Smart energy meter. (File photo via Getty Images) This story was originally published by Canary Media. Another proposed energy-saving program is on the chopping block in Ohio. Duke Energy Ohio quietly dropped plans late last year to roll out a broad portfolio of programs that would have boosted energy efficiency and encouraged customers to use less electricity during times of peak demand. The plans, which would have saved ratepayers nearly $ 126 million over three years after deductions for costs, were part of a regulatory filing last April that sought to increase charges on customers’ electric bills. The move came after settlement talks with other stakeholders, including the state’s consumer advocate, which opposes col"
+  },
+  {
+   "idx": 3,
+   "url": "https://elpc.org/blog/want-lower-energy-bills-efficiency-best-bet-ohio/",
+   "outlet": "Environmental Law & Policy Center",
+   "date": "2019-07-03",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "for every $1 Ohio utilities have spent on the programs, customers have saved $2.65",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "cost less than the electricity it replaces. If not, then the Commission will waive the requirement and the utility will only produce the efficiency that costs customers less than generation. So far, it’s worked out great for customers. Analysis from the Midwest Energy Efficiency Alliance shows that for every $1 Ohio utilities have spent on the programs, customers have saved $2.65 . Efficiency measures produce savings for years to come Every dollar spent on energy efficiency is an investment that will continue to mean energy savings into the future. For example, a utility might discount an efficient furnace, but that furnace might last for 20 years and continue to provide customer savings that can really a"
+  }
+ ]
+}

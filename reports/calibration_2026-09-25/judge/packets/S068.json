@@ -1,0 +1,85 @@
+{
+ "story_id": "S068",
+ "lead": {
+  "headline": "94 ex-members of Congress later filed foreign-agent forms; five filed in 2025, including Blagojevich for Bosnia and Fattah for Liberia",
+  "number": "94 ex-members (left office 1970 or later) filed FARA short forms after leaving; 26 first filed 2017+; 5 in 2025: Wexler, Blagojevich, Stewart, Fattah, Seymour (weak match).",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Name-only match with at least one sure miss (\"Stephanie Jones\" filed in 2019; Stephanie Tubbs Jones died in 2008), and no dollars."
+ },
+ "queries_logged": 10,
+ "queries": [
+  "Blagojevich registers foreign agent FARA Bosnia Republika Srpska 2025",
+  "Chaka Fattah foreign agent registration Liberia FARA",
+  "former congressman Chaka Fattah Liberia lobbying contract 2025",
+  "former members of Congress registered as foreign agents FARA analysis revolving door count",
+  "former Rep. Chris Stewart registers foreign agent FARA 2025 lobbying foreign government",
+  "Robert Wexler foreign agent registration 2025 FARA former congressman",
+  "Fattah Liberia Boakai government adviser 2025 Philadelphia former congressman released prison",
+  "ex-lawmakers foreign agents 2026 former members of Congress lobbying for foreign governments report",
+  "Robert Wexler Ballard Partners FARA short form foreign principal 2025",
+  "\"Kyle House Group\" foreign agent FARA former Utah congressman Stewart client"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://responsiblestatecraft.org/revolving-door-congress/",
+   "outlet": "Responsible Statecraft (Quincy Institute)",
+   "date": "2026-04-17",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Since 2000, exactly 100 members of Congress have worked for foreign governments after leaving public office, according to a new Quincy Institute analysis.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " door at its most acute: a former senator, paid by a foreign government with heavy defense interests, testifying at a confirmation hearing for the man who would soon have his hand on the levers of the most powerful military in the world. Coleman’s path from Congress to foreign agent is not unusual. Since 2000, exactly 100 members of Congress have worked for foreign governments after leaving public office, according to a new Quincy Institute analysis . And as the map below shows, the most common employers of these former lawmakers are authoritarian governments. The top destinations include Turkey, Saudi Arabia , Kazakhstan, Libya, Qatar, Russia , and China . Eighty-five percent of the members of Congress who have registered as foreign agents have worked for governments rated “no"
+  },
+  {
+   "idx": 1,
+   "url": "https://balkaninsight.com/2025/07/29/serbian-american-trumpocrat-boosts-bosnias-dodik-on-social-media/",
+   "outlet": "Balkan Insight (BIRN)",
+   "date": "2025-07-29",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "RRB Strategies signed a lobbying contract with the government of Republika Srpska in March this year to “provide communications and public affairs support” according to its statement provided under the US Foreign Agents Registration Act.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " defying the decisions of High Representative Schmidt, the international official overseeing the continuing implementation of Bosnia’s 1995 peace agreement. At the end of Blagojevich’s post, it stated that it was distributed by RRB Strategies LLC, a company he owns, “on behalf of Republika Srpska”. RRB Strategies signed a lobbying contract with the government of Republika Srpska in March this year to “provide communications and public affairs support” according to its statement provided under the US Foreign Agents Registration Act. There is no legislation in Bosnia and Herzegovina to prevent money from the Republika Srpska entity budget being spent on a public relations campaign for an individual, experts say. “Funds are not being used to promote Republika Srpska but to whitewash the reputation of Milorad Dodik,” Ivana Korajlic, executive director of Transparency In"
+  },
+  {
+   "idx": 2,
+   "url": "https://jewishinsider.com/2026/08/turkey-trump-tied-lobbying-group-washington-robert-wexler/",
+   "outlet": "Jewish Insider",
+   "date": "2026-08-27",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "former Rep. Robert Wexler (D-FL), a pro-Turkey and pro-Israel voice on Capitol Hill who co-founded the Congressional Caucus on U.S.-Turkey Relations in 2001.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Department. The contract runs through August 2027, with Ankara paying the firm $200,000 per month. Under the terms of the deal, Ballard Partners will provide government relations, strategic consulting and advocacy services with federal agencies and Congress. The firm’s team on the contract includes former Rep. Robert Wexler (D-FL), a pro-Turkey and pro-Israel voice on Capitol Hill who co-founded the Congressional Caucus on U.S.-Turkey Relations in 2001. Speaking with Jewish Insider , Wexler framed the partnership as aiming to strengthen U.S.-Turkish ties while also attempting to mend severely strained relations between Ankara and Jerusalem. “Turkey is an important ally of the United States, and the primary purpose is to take advantage of the trusted relationship that President "
+  },
+  {
+   "idx": 3,
+   "url": "https://responsiblestatecraft.org/2022/06/28/the-revolving-door-from-congress-to-foreign-interest-lobbyist-is-well-traveled/",
+   "outlet": "Responsible Statecraft (Quincy Institute)",
+   "date": "2022-06-28",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "We analyzed Foreign Agents Registration Act (FARA) filings since 2000 and found that at least 90 former members of Congress have registered as foreign agents",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s happen (or not happen) in Washington to high-paying special interests. While this lobbying is often done on behalf of American interests — like big pharmaceutical , banking , or weapons firms — former lawmakers have been lobbying on behalf of foreign interests more and more often in recent years. We analyzed Foreign Agents Registration Act (FARA) filings since 2000 and found that at least 90 former members of Congress have registered as foreign agents, representing nearly half (87) of all countries in the world, and the trend has only become more pronounced in recent years. This raises critically important questions for U.S. national interests and highlights the importance of legislation to combat the potential risks of former members of Congress working for foreign interests. The heat-m"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.lx.com/politics/lx-investigates-congressmembers-turned-foreign-agents/14725/",
+   "outlet": "NBC LX",
+   "date": "2020-06-30",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "A nine-month NBCLX investigation, which included the review of thousands of Foreign Agents Registration Act (FARA) filings, revealed more than 50 former members of the House and Senate who have worked for foreign interests in just the last five years.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "s in the communities that once elected them, the practice rarely raises eyebrows in Washington. That’s because it’s become common to see former lawmakers jump at the chance to sign lucrative lobbying deals for foreign nations, even in an era of growing tensions overseas, and exploding debt at home. A nine-month NBCLX investigation, which included the review of thousands of Foreign Agents Registration Act (FARA) filings, revealed more than 50 former members of the House and Senate who have worked for foreign interests in just the last five years. That includes more than a dozen who leveraged their elected positions into jobs lobbying for controversial countries, such as Russia, Saudi Arabia, and China. Some of the former congressmembers even advocated positions that seemed to contradict public stances they took while representing the American public. Their lobbying work is felt "
+  }
+ ]
+}

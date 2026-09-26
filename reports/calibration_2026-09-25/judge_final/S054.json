@@ -1,0 +1,14 @@
+{
+  "story_id": "S054",
+  "bin": "Known pattern",
+  "entity": "Bloomberg as LEI registrar: 5.7% of its US LEIs refuse to name the ultimate owner vs 2.3% elsewhere",
+  "deciding_sources": [
+    0
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source names Bloomberg. The ROC reports the same kind of finding in general: parent info non-public for ~7% of LEIs. The GLEIF page is an explainer, not a pattern.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

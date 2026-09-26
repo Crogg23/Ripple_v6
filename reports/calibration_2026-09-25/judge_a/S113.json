@@ -1,0 +1,12 @@
+{
+ "story_id": "S113",
+ "bin": "Matched + more",
+ "entity": "Rep. Thomas Kean (R-NJ), consecutive missed House votes March-June 2026",
+ "deciding_sources": [0, 1, 3],
+ "earliest_match_date": "2026-04-15",
+ "post_cutoff_match": true,
+ "what_we_add": "the median member's longest run is 3, and the 33-voting-days count",
+ "why": "Roll Call, GovTrack and WHYY all state Kean missed 140-142 votes March 17 to June 29, and PBS calls his the longest absence. No source has our median-run-of-3 comparison or the voting-days count.",
+ "confidence": "high",
+ "blocked_evidence": false
+}

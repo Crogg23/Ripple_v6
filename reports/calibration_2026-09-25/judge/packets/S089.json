@@ -1,0 +1,84 @@
+{
+ "story_id": "S089",
+ "lead": {
+  "headline": "NAI Logistics got 13 Defense fuel payments worth a net $20,647 within 3 days of its sanctions listing",
+  "number": "NAI Logistics B.V.: $3.28M over 436 DoD actions; 13 actions, net $20,647, dated on or up to 3 days after its 2023-12-11 Global Magnitsky listing.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "FIRST_SEEN is when OpenSanctions picked the entry up, not the designation date."
+ },
+ "queries_logged": 9,
+ "queries": [
+  "\"NAI Logistics\" sanctions",
+  "Rahmani sanctioned company Pentagon contracts continued payments NAI Logistics fuel",
+  "\"Ajmal Rahmani\" NAI Defense Logistics Agency fuel contracts Europe",
+  "\"NAI Energy\" Rahmani Pentagon contractor sanctioned paid after",
+  "Rahmani sanctions Global Magnitsky \"Defense Logistics Agency\" contracts NATO fuel supplier Netherlands",
+  "\"NAI Logistics B.V.\" OR \"NAI Logistics BV\" Rahmani Nederland sancties",
+  "Rahmani sanctions Afghan fuel contractor 2026 appeal OFAC ruling",
+  "Pentagon paid sanctioned companies after OFAC designation SAM exclusion inspector general report contractors",
+  "\"NAI Logistics\" \"DLA\" OR \"Defense Logistics\" OR \"Pentagon\" OR \"U.S. military\" fuel"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://home.treasury.gov/news/press-releases/jy1973",
+   "outlet": "U.S. Department of the Treasury",
+   "date": "2023-12-11",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "One Dutch company: NAI Logistics B.V.; One Bulgarian company: Lego Investments EOOD",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " The Fern Limited, Ascent Holdings LTD, Orbit International FZE, Ocean Estate Company Limited, and Rahmani Group International JLT; Two Afghan companies: Fidelis Logistic and Supply Services and Secure Movement Logistics Services; Two Austrian companies: Ocean Estate GmbH and Ocean Properties GmbH; One Dutch company: NAI Logistics B.V.; One Bulgarian company: Lego Investments EOOD Additionally, the following two German companies are being designated pursuant to E.O. 13818 for being owned or controlled by, or for having acted or purported to act for or on behalf of, directly or indirectly, Ocean Properties GmbH : Ozean Development Real Estate GmbH & Co. KG and Ozean Real Estate GmbH & Co. KG . Lastly, the fol"
+  },
+  {
+   "idx": 1,
+   "url": "https://home.treasury.gov/news/press-releases/jy1973",
+   "outlet": "U.S. Department of the Treasury",
+   "date": "2023-12-11",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "rigging bids, and eliminating competition on U.S.-funded contracts",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ed their official positions to perpetuate their corrupt system. Contract Inflation A. Rahmani and M. Rahmani used their hidden control of numerous companies to artificially inflate fuel contract prices by fraudulently submitting contract bids from multiple companies that obscured their involvement, rigging bids, and eliminating competition on U.S.-funded contracts. For example, in 2014, several families involved in the fuel business, including the Rahmanis, colluded to drive up the price of fuel on U.S.-funded contracts by more than $200 million and eliminate competitor bids. Import Tax Fraud The Afghanistan Customs Department was responsible for regulating the importation of dry goods and fuel for No"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.govinfo.gov/content/pkg/USCOURTS-dcd-1_24-cv-00285/pdf/USCOURTS-dcd-1_24-cv-00285-0.pdf",
+   "outlet": "U.S. District Court for the District of Columbia (Rahmani v. Yellen, No. 24-0285)",
+   "date": "2024-04-19",
+   "source_type": "court",
+   "entity_named": "no",
+   "quote": "Plaintiffs say that A. Rahmani's companies did not participate in fuel contracts after 2017.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "through other contracts until February 10, 2017. Id. ¶¶ 16–20. Plaintiffs allege the U.S. commended the company for its performance, id. ¶ 19, and that at one point the company paid more in custom tax than necessary because the Afghan government did not process its tax exemptions in time, id. ¶ 20. Plaintiffs say that A. Rahmani’s companies did not participate in fuel contracts after 2017. Id. ¶ 21. They assert that “[a]t no point were the Rahmanis involved in the alleged inflation of fuel contract prices, fraudulent importation of fuel, fraudulent use of Maffinama certificates, or fuel contract bid- rigging.” Pls.’ PI Mot. at 37; see M. Rahmani Decl. ¶¶ 27, 44–47; A. Rahmani Decl. ¶¶ 49(b)-(g). Furtherm"
+  },
+  {
+   "idx": 3,
+   "url": "https://kabulnow.com/2023/12/us-government-sanctions-afghan-political-family-over-corruption-in-fuel-contracts/",
+   "outlet": "KabulNow",
+   "date": "2023-12-11",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "In 2014, the Rahmanis and other companies involved in fuel business colluded to drive up prices in the US-funded contracts for as much as $200 million.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "lvement in Afghanistan, the Rahmanis were awarded contracts to procure fuel for the Afghanistan Security and Defense Forces (ANDSF), the funding for which came directly from the US Government. The US Government says the Rahmanis engaged in tactics to rig the bidding process and inflate fuel prices. In 2014, the Rahmanis and other companies involved in fuel business colluded to drive up prices in the US-funded contracts for as much as $200 million. That, however, was not all of it. Despite securing over-priced contracts through corruption that benefited them handsomely, the Rahmanis also under-deliver on those contracts. At least in one year, their companies under-delivered at least 11 million litres of fuel to the Afghanistan government. They also imported tax-free fuel m"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.dropsitenews.com/p/rahmani-sanctions-journalist-silencing",
+   "outlet": "Drop Site News",
+   "date": "2024-12-31",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "During the war in Afghanistan, Rahmani and his father worked as major contractors supplying fuel and other services to NATO forces.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "aden-Württemberg. Also in attendance was a man named Ajmal Rahmani, an Afghan-origin businessman reported to have made hundreds of millions of Euros worth of real estate investments in Germany, and who was a major investor in Quantum Gardens. Few people at the event would have known about his past. During the war in Afghanistan, Rahmani and his father worked as major contractors supplying fuel and other services to NATO forces. Starting from the early days of the war, the Rahmani family built close ties with Western forces, using their connections to earn tremendous sums of money and build a base for political careers inside Afghanistan. Yet their family’s work in Afghanistan would quickly come to haunt Quantum Gardens. In December 2023, the U.S. Department o"
+  }
+ ]
+}

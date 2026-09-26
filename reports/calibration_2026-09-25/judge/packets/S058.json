@@ -1,0 +1,94 @@
+{
+ "story_id": "S058",
+ "lead": {
+  "headline": "Among diabetes shots, doctors paid only by Novo (Ozempic's maker) chose Ozempic 54% of the time; unpaid doctors 41%",
+  "number": "Prescribers with 50+ Ozempic/Rybelsus plus Trulicity claims in 2022: paid only by Novo 54% Ozempic, paid by neither 41%.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Correlation only: half the gap was there before the money arrived."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Novo Nordisk payments doctors Ozempic prescribing Open Payments",
+  "industry payments associated with semaglutide prescribing Medicare Part D study JAMA",
+  "manufacturer payments GLP-1 receptor agonist prescribing Open Payments Part D association dulaglutide semaglutide study",
+  "doctors paid by Novo Nordisk more likely to prescribe Ozempic analysis ProPublica OR STAT OR KFF",
+  "\"Open Payments\" GLP-1 physicians receiving payments prescribed more semaglutide cross-sectional 2024 OR 2025",
+  "Novo spent $25.8 million U.S. medical professionals promote Wegovy Saxenda Reuters",
+  "drug company payments target doctors already high prescribers reverse causality Open Payments study prior prescribing"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://pubmed.ncbi.nlm.nih.gov/41579137/",
+   "outlet": "Mayo Clinic Proceedings (research letter, indexed in PubMed)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Association Between Pharmaceutical Manufacturer Payments and GLP-1RA Prescribing in the United States",
+   "paywalled": true,
+   "quote_check": "missing",
+   "page_context": ""
+  },
+  {
+   "idx": 1,
+   "url": "https://www.statnews.com/2023/07/05/ozempic-rybelsus-novo-nordisk-meals-for-doctors/",
+   "outlet": "STAT",
+   "date": "2023-07-05",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Novo Nordisk bought prescribers over 450,000 meals and snacks to promote drugs like Ozempic",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": "ts Tools & Trackers CRISPR Tracker Breakthrough Device Tracker Generative AI Tracker Obesity Drug Tracker Events Upcoming Events Summits Community STAT Wunderkinds 2026 Video Advertise STAT Brand Studio What's the word? Test your knowledge with our new weekday mini crossword Start solving Exclusive Novo Nordisk bought prescribers over 450,000 meals and snacks to promote drugs like Ozempic By Nicholas Florko July 5, 2023 Mike Reddy for STAT Reprints W ASHINGTON – Novo Nordisk spent $11 million on meals and travel for thousands of doctors last year, federal records show, as part of its push to promote Ozempic and other weight loss-inducing diabetes drugs. The pharmaceutical company bought more than 457,000 meals to educate "
+  },
+  {
+   "idx": 2,
+   "url": "https://www.center4research.org/novo-nordisk-gave-doctors-450000-meals-ozempic/",
+   "outlet": "National Center for Health Research (republishing STAT)",
+   "date": "2023-07-05",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Novo Nordisk spent $11 million on meals and travel for thousands of doctors last year, federal records show, as part of its push to promote Ozempic and other weight loss-inducing diabetes drugs.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ifference For The Press Get Involved Events Contribute Let Your Voice Be Heard Search for: Health Research 4 U Safe To Play Post navigation « Previous Next » Novo Nordisk bought prescribers over 450,000 meals and snacks to promote drugs like Ozempic Nicolas Florko. STAT . July 5, 2023. WASHINGTON – Novo Nordisk spent $11 million on meals and travel for thousands of doctors last year, federal records show, as part of its push to promote Ozempic and other weight loss-inducing diabetes drugs. The pharmaceutical company bought more than 457,000 meals to educate doctors and other prescribers about its portfolio of drugs known as GLP-1agonists, according to the newly released data from the Centers for Medicare and Medicaid Services. Nearly 12,000 prescribers had food paid for by the company more than a dozen times last ye"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.medicaldaily.com/glp1-drugmaker-payments-prescribers-open-payments-analysis-478475",
+   "outlet": "Medical Daily",
+   "date": "2026-09-10",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Eli Lilly and Novo Nordisk have made at least one payment to more than 250,000 individual US doctors and other prescribers",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "metabolic markers. Most of the evidence was low certainty. Conditions Two Drugmakers Paid More Than a Quarter Million American Prescribers as Weight Loss Drug Sales Climbed Published Sep 10, 2026 7:46 AM EDT By Dorothy Brooks Lacheev | Stock Photos Share on Twitter Share on Facebook Share on Pocket Eli Lilly and Novo Nordisk have made at least one payment to more than a quarter of a million individual doctors and other prescribers in the United States, according to an analysis of federal disclosure data published this week by The Washington Post. The payments run through meals, travel, speaking fees, consulting arrangements, and similar services. None of this is illegal, and all of it is publicly disclosed. That is the point worth holding onto"
+  },
+  {
+   "idx": 4,
+   "url": "https://bioethics.com/archives/73735",
+   "outlet": "bioethics.com (summarizing Reuters investigation)",
+   "date": "2023-12-01",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Drugmaker Novo Nordisk paid U.S. medical professionals at least $25.8 million over a decade in fees and expenses related to its weight-loss drugs",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "otechnology Neuroethics Nursing Organ Donation / Transplantation Pediatric Pharma Public Health Public Policy Reproductive Ethics Research Ethics Reviews Stem Cell Research Synthetic Biology Women's Health Maker of Wegovy, Ozempic Showers Money on U.S. Obesity Doctors December 1, 2023 ( Reuters ) – Drugmaker Novo Nordisk paid U.S. medical professionals at least $25.8 million over a decade in fees and expenses related to its weight-loss drugs, a Reuters analysis found. It concentrated that money on an elite group of obesity specialists who advocate giving its powerful and expensive drugs to tens of millions of Americans. ( Read More ) Posted by Bioethics Pundit Posted in Clinical / Medical , highlights , Informed Consent , News , Pharma Recent News Trending 09/25/202"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.nber.org/papers/w26751",
+   "outlet": "National Bureau of Economic Research (Carey, Lieber, Miller)",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "In an event study, we show that physicians increase prescribing of drugs for which they receive payments in the months just after payment receipt, with no evidence of differential trends between paid and unpaid physicians prior to the payment.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " payments to physicians in the course of promoting prescription drugs. We use a federal database on the universe of such payments between 2013 and 2015 linked to prescribing behavior in Medicare Part D. We account for the targeting of payments with fixed effects for each physician-drug combination. In an event study, we show that physicians increase prescribing of drugs for which they receive payments in the months just after payment receipt, with no evidence of differential trends between paid and unpaid physicians prior to the payment. Next, we examine five case studies of major drugs going off patent. Physicians receiving payments from the firms experiencing the patent expiry transition their patients just as quickly to generics as physicians who do not receive such payments. In addition, using hand-collected efficacy data on three major therapeutic clas"
+  }
+ ]
+}

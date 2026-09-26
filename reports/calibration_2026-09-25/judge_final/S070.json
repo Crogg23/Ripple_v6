@@ -1,0 +1,14 @@
+{
+  "story_id": "S070",
+  "bin": "Known pattern",
+  "entity": "Beaver Valley Hospital's $22.3M COVID relief at 2.45x its 2019 patient revenue",
+  "deciding_sources": [
+    3
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "Sources name the hospital for its Medicaid nursing-home play, never its COVID relief total or the ratio. KFF states the same kind of finding in general: rural and critical-access hospitals got outsized relief.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

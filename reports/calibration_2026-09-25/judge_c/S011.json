@@ -1,0 +1,12 @@
+{
+ "story_id": "S011",
+ "bin": "Not comparable",
+ "entity": "Fast Pace Health's share of new for-profit rural health clinics enrolled after the 2021 pay law",
+ "deciding_sources": [0],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Source 0 names Fast Pace with a number, 269 rural urgent care centers, but that counts urgent care sites, not RHC enrollments since 2021-11-23, so the numbers can't be lined up. No source states the RHC-rush finding or the 189-of-731 share.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

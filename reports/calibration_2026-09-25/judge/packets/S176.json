@@ -1,0 +1,80 @@
+{
+ "story_id": "S176",
+ "lead": {
+  "headline": "Claimed: DeRoyal's Tennessee sterilizer tied #1 for ethylene-oxide air releases; broken, a Virginia sterilizer reported 5.3 times more",
+  "number": "Sterilization Services of Virginia (Henrico), an FDA-registered contract sterilizer, reported 8,995 lbs in 2024; DeRoyal's matched site (1135 Hwy 33 S) filed 1,205 lbs, #3 among contract sterilizers and down 8% since 2018.",
+  "grade": "D",
+  "verdict": "broken",
+  "watch_out": "The \"1,705 lbs at the site\" adds two separate FDA sterilizer registrations, and the peer median swings from -45% to -11% depending on the match rules. Drop the DeRoyal story."
+ },
+ "queries_logged": 5,
+ "queries": [
+  "DeRoyal ethylene oxide sterilizer New Tazewell Tennessee emissions",
+  "Sterilization Services of Virginia Henrico ethylene oxide emissions Richmond",
+  "\"DeRoyal\" ethylene oxide pounds per year emitted largest sterilizer Claiborne County TRI",
+  "largest ethylene oxide emitting medical sterilizers 2024 EPA data ranking top emitters commercial sterilizer",
+  "DeRoyal New Tazewell ethylene oxide 2025 2026 cancer cluster investigation emissions reduced"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://hntrbrk.com/ethylene-oxide-virginia/",
+   "outlet": "Hunterbrook Media (Till Daldrup, Evan Comen)",
+   "date": "2026-05-17",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "According to the EPA data, SSV’s facility has the highest ethylene oxide emissions of all medical sterilizers in the country.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " ethylene oxide emissions from 2020–2024. Source: EPA The latest emissions data for 2024 also shows that SSV was the fifth-largest ethylene oxide emitter in the entire U.S., ahead of large industrial facilities like BASF’s plant in Geismar, Louisiana, and Eastman Chemical’s site in Longview, Texas. According to the EPA data, SSV’s facility has the highest ethylene oxide emissions of all medical sterilizers in the country. A list of facilities with the highest ethylene oxide emissions in 2024. Source: EPA The EPA had flagged SSV in 2022 as one of 23 medical sterilizers nationally that emitted potentially dangerous levels of ethylene oxide. At the time, the agency estimated that the lifetime cancer risk in residential areas near the faci"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.vpm.org/news/2026-06-18/ethylene-oxide-leak-sterilization-services-henrico-industrial-chemicals-selc-epa",
+   "outlet": "VPM News (Patrick Larsen)",
+   "date": "2026-06-18",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "This exceeded the plant’s EtO emissions permit, which allows for 400 pounds emitted per year, and only 0.8 pounds per hour.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "that use it. According to the state Department of Environmental Quality’s proposed consent order — the legally binding document detailing Sterilization Services’ permit violations and DEQ’s enforcement actions — on April 9, 2026, a faulty check valve on the facility’s roof leaked 580 pounds of EtO. This exceeded the plant’s EtO emissions permit, which allows for 400 pounds emitted per year, and only 0.8 pounds per hour. “Within the span of two hours, they released over a year’s worth of ethylene oxide,” said Connor Eppley with Virginia Interfaith Power and Light, a nonprofit environmental justice group that advocates for reducing energy costs and adverse environmental impacts in disadvantaged communities. Eppley said the company a"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.ucs.org/resources/virginia",
+   "outlet": "Union of Concerned Scientists",
+   "date": "2023-02-07",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "In 2021, the facility reported 5,025 pounds of EtO emissions.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "er risks , with a maximum excess cancer risk level of 1,000 additional cases per 1 million people (EPA 2022o). Indeed, the air toxics cancer risk is 90 cases per 1 million in the census tract where the facility is located; EtO emissions contribute 70 percent of the overall risk (AirToxScreen 2022). In 2021, the facility reported 5,025 pounds of EtO emissions. Approximately 109,000 people and nearly 100 schools and childcare centers are within five miles of the Sterilization Services facility. People of color make up three-quarters of the population within five miles—25 percent greater than the county overall. The proportion of people with low income is also 10 percent greater around t"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.ucs.org/resources/memphis-tennessee",
+   "outlet": "Union of Concerned Scientists",
+   "date": "2023-02-07",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "3,000 cases per 1 million people for DeRoyal (EPA 2022m; EPA 2022n). In 2021, the facilities reported 1,490 and 1,650 pounds of EtO releases and transfers, respectively.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ureau 2020). Both sterilize medical equipment. The EPA has identified both as contributing to elevated cancer risks (see Sterilization Services of Tennessee and DeRoyal Industries ), with maximum excess cancer risk levels of 2,000 additional cases per 1 million people for Sterilization Services and 3,000 cases per 1 million people for DeRoyal (EPA 2022m; EPA 2022n). In 2021, the facilities reported 1,490 and 1,650 pounds of EtO releases and transfers, respectively. The Sterilization Services facility, located in South Memphis, is within five miles of more than 130,000 people and approximately 180 schools and childcare centers. This is a predominantly Black community, where the proportion of people of color and people with low income within five miles of the facility are 87 percent an"
+  },
+  {
+   "idx": 4,
+   "url": "https://claiborneprogress.net/2023/06/02/epa-deroyal-one-of-23-at-highest-risk/",
+   "outlet": "Claiborne Progress (Jan Runions)",
+   "date": "2023-06-02",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "One of the major takeaways is that the factory is one of 23 “at highest risk” among a total of 86 commercial sterilizers spread across the country.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ghest risk’ Published 1:38 pm Friday, June 2, 2023 By Jan Runions Getting your Trinity Audio player ready... The U.S. Environmental Protection Agency held its public hearing last evening to discuss the ramifications of toxic ethylene oxide emissions originating at the DeRoyal plant in New Tazewell. One of the major takeaways is that the factory is one of 23 “at highest risk” among a total of 86 commercial sterilizers spread across the country. The EPA says those at highest risk in Claiborne County are living, working or attending school nearby DeRoyal. The risk model used in the study considered those within a one-half mile radius of the plant who breathed the air 24/7 during a 70-year lifespan. Meteorological studies including air currents were also considered alon"
+  }
+ ]
+}

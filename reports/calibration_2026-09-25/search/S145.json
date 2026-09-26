@@ -1,0 +1,57 @@
+{
+  "story_id": "S145",
+  "entity": "Vermont, FBI NICS private-sale background checks in 2022 (77 checks; 0.17 per 100 dealer checks; lowest of the 10 states requiring private-sale checks)",
+  "queries": [
+    {"q": "Vermont universal background check law private sale NICS checks few compliance", "found_useful": false},
+    {"q": "Vermont background checks private sales 2022 NICS data FBI few checks", "found_useful": true},
+    {"q": "\"private sale\" NICS checks by state universal background check states compliance data analysis", "found_useful": false},
+    {"q": "VTDigger private gun sales background checks law compliance numbers dealers Vermont", "found_useful": true},
+    {"q": "Vermont gun shops submitted 48 private sales background checks 2017 FBI doubled 2018", "found_useful": true},
+    {"q": "The Trace FBI \"private sale\" background checks data states with universal background check laws low numbers", "found_useful": false},
+    {"q": "Vermont gun sales private transfers background check law not enforced skipped checks survey 2023 2024", "found_useful": false},
+    {"q": "study comprehensive background check laws did not increase background checks Washington Delaware Colorado Castillo-Carniglia", "found_useful": true}
+  ],
+  "sources": [
+    {
+      "url": "https://www.wcax.com/content/news/Report-looks-at-background-check-options-for-private-gun-sales-503731881.html",
+      "outlet": "WCAX (Burlington, VT)",
+      "date": "2018-12-31",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "In 2017, Vermont-based gun shops submitted 48 private sales background checks to the FBI",
+      "paywalled": false,
+      "searcher_note": "Earliest found count of Vermont private-sale NICS checks: 48 in 2017, 90 through Oct 31 2018 (first year of the 2018 law). Different window from the lead (2022)."
+    },
+    {
+      "url": "https://vtdigger.org/2019/10/23/vermont-gun-sales-have-spiked-in-the-last-decade/",
+      "outlet": "VTDigger",
+      "date": "2019-10-23",
+      "source_type": "news",
+      "entity_named": "yes",
+      "quote": "the number of checks so far in 2019 has remained roughly level with 2018, making it unclear how many private sales are occurring in Vermont.",
+      "paywalled": false,
+      "searcher_note": "Vermont private-sale checks under the 2018 law; dealers report few private-sale check requests. No 2022 figure, no per-100 ratio, no state ranking."
+    },
+    {
+      "url": "https://www.fbi.gov/file-repository/cjis/nics-2022-operations-report.pdf",
+      "outlet": "FBI CJIS, NICS 2022 Operational Report",
+      "date": "unknown",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "In 2022, there were 206,499 transactions related to private sales initiated through",
+      "paywalled": false,
+      "searcher_note": "National 2022 private-sale NICS count; the report has no per-state private-sale figure, so Vermont's 77 is not in it. Quote taken from PDF text; sentence continues 'NICS.' after a line break."
+    },
+    {
+      "url": "https://pure.johnshopkins.edu/en/publications/comprehensive-background-check-policy-and-firearm-background-chec",
+      "outlet": "Injury Prevention (Castillo-Carniglia et al.), via Johns Hopkins research portal",
+      "date": "2018",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Non-compliance may explain the lack of an overall increase in background checks in Washington and Colorado.",
+      "paywalled": false,
+      "searcher_note": "Same pattern (universal-check laws producing few extra checks, possibly non-compliance) in other states; does not cover Vermont."
+    }
+  ],
+  "notes": "No source found that reports Vermont's 2022 private-sale NICS count (77), the 0.17-per-100-dealer-checks ratio, or a ranking of the 10 law states. Only earlier Vermont counts (48 in 2017, 90 through Oct 2018; WCAX) and a 2019 VTDigger line that checks stayed level. Pattern coverage (non-compliance with universal-check laws) exists for WA/CO. A search snippet cited a Vermont senator saying the law is hard to enforce in private sales; the page was not opened, so it is not recorded. Query 7's search tool ran internal follow-up searches on its own."
+}

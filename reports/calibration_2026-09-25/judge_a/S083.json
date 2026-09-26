@@ -1,0 +1,15 @@
+{
+ "story_id": "S083",
+ "bin": "Matched + more",
+ "entity": "2024 congressional races where outside spending beat the candidate's own; Moreno the extreme",
+ "deciding_sources": [
+  0,
+  2
+ ],
+ "earliest_match_date": "2024-09-25",
+ "post_cutoff_match": true,
+ "what_we_add": "the 104-of-637 race count and the 5.8x Moreno ratio",
+ "why": "Sources say outside money dwarfed Moreno's own spending ($186M outside vs $14.8M raised), same direction; his outside figure sits within 25% of ours. The systematic 104/637 count is ours alone.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

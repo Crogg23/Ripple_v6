@@ -1,0 +1,12 @@
+{
+ "story_id": "S172",
+ "bin": "Known pattern",
+ "entity": "DOJ Epstein site's unpublished data sets 13-40 (403 for 13-23, 404 for 24-40, March 11 2026)",
+ "deciding_sources": [0, 1],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Discrepancy Report and the GitHub audit document the same scheme, the DOJ Epstein site quietly removing and altering content, but neither reports the hidden data sets 13-40 or the 403/404 split. Same site, different finding.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

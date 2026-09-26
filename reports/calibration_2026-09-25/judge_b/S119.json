@@ -1,0 +1,12 @@
+{
+ "story_id": "S119",
+ "bin": "Matched + more",
+ "entity": "Trump second-term judicial confirmations winning zero Democratic votes, vs Biden's judges and Republican votes",
+ "deciding_sources": [0, 2, 3],
+ "earliest_match_date": "2025-12-22",
+ "post_cutoff_match": false,
+ "what_we_add": "the 34-of-45 (76%) share, the Biden 25% comparison, and the Collins/Murkowski/Graham 58% counterfactual",
+ "why": "An opinion source states no Senate Democrat backed any circuit nominee, matching our all-7-appeals claim; Nomination Notes tracks party-line district confirmations. No usable source computes the 76% share or the Biden-side comparison. The 19-Dems-voted-for-one figure is compatible, not contradicting.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

@@ -1,0 +1,12 @@
+{
+  "story_id": "S003",
+  "bin": "Matched + more",
+  "entity": "Grain Processing Corporation's Muscatine, Iowa corn mill: failed stack tests with no state enforcement orders, 2015-25",
+  "deciding_sources": [0],
+  "earliest_match_date": "2011-11-30",
+  "post_cutoff_match": false,
+  "what_we_add": "49 failed-test days 2015-25, #1 of 29 big wet corn mills, 0 Iowa orders vs 7 Indiana orders at the twin plant, Iowa 19 vs Indiana 572 statewide",
+  "why": "Center for Public Integrity names GPC and states the same finding in words: 38 air violations in a decade, penalties only twice - persistent violations, weak Iowa enforcement. Its window is 2001-2011, ours 2015-25, but the finding matches in direction; our whole number line and the Indiana comparison are ours alone.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

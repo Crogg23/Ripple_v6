@@ -1,0 +1,56 @@
+{
+  "story_id": "S127",
+  "entity": "Boxlight Corp (BOXL) insiders' stock-sale reports (Form 4) filed late: 30 of 76; plus the cross-company rate (38 of 2,740 companies at 10%+ late)",
+  "queries": [
+    {"q": "Boxlight insiders late Form 4 filings", "found_useful": true},
+    {"q": "Boxlight Corporation delinquent Section 16(a) reports proxy", "found_useful": true},
+    {"q": "Boxlight BOXL insider selling news executives sold shares", "found_useful": false},
+    {"q": "SEC charges insiders companies failing to timely report Form 4 Section 16(a) sweep", "found_useful": true},
+    {"q": "study share of Form 4 filings filed late after two-day deadline insiders analysis", "found_useful": true},
+    {"q": "\"Boxlight\" Form 4 filed late tax withholding RSU Nance Marklew Wiggins", "found_useful": false},
+    {"q": "Boxlight 2026 SEC Nasdaq compliance news August September 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1624512/000162828025019375/boxl-20241231x10xka.htm",
+      "outlet": "Boxlight Corp, Form 10-K/A for FY2024 (SEC EDGAR)",
+      "date": "2025-04-23",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "all directors, executive officers, and 10% shareholders complied with all applicable Section 16(a) filing requirements during the year ended December 31, 2024, except for the late Form 4 filings by each of Mr. Nance, Mr. Marklew, and Mr. Wiggins",
+      "paywalled": false,
+      "searcher_note": "Boxlight's own delinquent-filer disclosure for 2024: late Form 4s by three officers, for shares withheld to pay tax on RSU vesting (May 30, 2024). No count of late reports."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1624512/000110465924054191/tm2412992d1_def14a.htm",
+      "outlet": "Boxlight Corp, DEF 14A proxy statement (SEC EDGAR)",
+      "date": "2024-06-13",
+      "source_type": "company",
+      "entity_named": "yes",
+      "quote": "we believe that all Section 16(a) filing requirements for our executive officers, directors and 10% shareholders were met during the year ended December 31, 2023, except for the following:",
+      "paywalled": false,
+      "searcher_note": "Boxlight's 2023 disclosure lists late filings by about ten officers and directors (Pope, Jackson, Amos, Starkey, Crew, Strang, Kuo, Nance, Elliott, Marklew). Company self-disclosure, not press."
+    },
+    {
+      "url": "https://dev.to/itsraxzey/how-late-is-form-4-real-time-data-measuring-filing-delay-on-11241-insider-filings-2e9j",
+      "outlet": "DEV Community (independent analysis)",
+      "date": "2026-08-24",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "Sales are filed on time almost universally",
+      "paywalled": false,
+      "searcher_note": "Post-cutoff pattern study of 11,241 Form 4s filed July 2026: 92.9% on time overall, sales (code S) 98.2% on time. Supports a low baseline; different window (one month) and definition."
+    },
+    {
+      "url": "https://www.sec.gov/newsroom/press-releases/2023-201",
+      "outlet": "SEC",
+      "date": "2023-09-27",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "SEC enforcement staff used data analytics to identify the charged insiders as repeatedly filing these reports late.",
+      "paywalled": false,
+      "searcher_note": "Pattern: SEC sweep charging insiders and companies for repeated late Section 16 reports. Boxlight not among those named."
+    }
+  ],
+  "notes": "No news story found that reports Boxlight insiders' late sale reports or any 30-of-76 count. The only entity-named sources are Boxlight's own Section 16(a) delinquency disclosures (2023 and 2024 years), which confirm late Form 4s but give no count. The 2024 disclosure says the late reports were shares withheld for tax on RSU vesting; investing.com items describe Boxlight officer sales as routine tax-cover sales. No coverage found of the cross-company figure (38 of 2,740 companies at 10%+ late). Earliest entity-named date found: 2024-06-13."
+}

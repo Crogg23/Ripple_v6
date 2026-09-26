@@ -1,0 +1,93 @@
+{
+ "story_id": "S082",
+ "lead": {
+  "headline": "E-bike and moped emergency-room visits quadrupled, 21,800 to 87,600 a year from 2019 to 2023, while all injuries stayed flat",
+  "number": "E-bikes plus mopeds (code 3215, split into 5045 and 5046 in 2024): 21.8K to 87.6K weighted ER visits, 2019 to 2023 (4.0x); all injuries 0.95x.",
+  "grade": "",
+  "verdict": "unchecked",
+  "watch_out": "Weights reset in 2024 and floor injuries jumped in 2025, so don't read trends past 2023."
+ },
+ "queries_logged": 6,
+ "queries": [
+  "e-bike injuries emergency room visits NEISS 2019 2023 increase",
+  "\"mopeds\" \"power-assisted\" e-bike emergency department injuries NEISS 2023 estimate",
+  "e-bike moped injuries quadrupled emergency rooms 2019 to 2023 national data",
+  "NEISS product code 3215 mopeds power-assisted cycles injuries trend e-bike reclassified 2024 5045 5046",
+  "\"mopeds\" e-bikes emergency department visits \"87,000\" OR \"87,600\" OR \"21,800\" 2023",
+  "e-bike injury statistics misleading mopeds electric motorcycles counted NEISS critique"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns_2017-2023.pdf",
+   "outlet": "U.S. Consumer Product Safety Commission",
+   "date": "2024-09-01",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "The number of ED visits for e-bikes has increased nearly 10-fold from 2017 to 2023",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "gov 6 • E- Bikes • Estimated total of 87,400 ED visits from 2017 through 2023, accounting for 19 percent of the overall micromobility injury estimate in the same timeframe; • The annual estimated ED visits for e-bikes did not meet the reporting criteria for each individual year from 2018 to 2021. 5 The number of ED visits for e-bikes has increased nearly 10-fold from 2017 to 2023. Special Study on E-Scooters • CPSC staff successfully followed up 411 e-scooter NEISS injury cases that occurred in 2023 through investigations. • Rental e-scooters accounted for 40 percent of the e-scooter-related ED visits in the special study. • Sixty percent of the injuries occurred on paved roads. • Twenty-five percent"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.wrdw.com/2026/09/25/safety-alert-injuries-deaths-rising-e-bikes-scooters-cycles/",
+   "outlet": "WRDW (Augusta, GA)",
+   "date": "2026-09-25",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "The U.S. Consumer Product Safety Commission says e-bike emergency department visits nationwide increased nearly tenfold over five years, climbing to an estimated 34,200 in 2023.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "tric motorized bikes − internal organ damage, complex fractures and severe concussions − mirror low-speed motorcycle and moped accidents rather than typical childhood bicycle falls. They blame the higher momentum and 20–28 mph speeds of electric bikes. Other organizations are tracking the increase. The U.S. Consumer Product Safety Commission says e-bike emergency department visits nationwide increased nearly tenfold over five years, climbing to an estimated 34,200 in 2023. The agency identified more than 193 confirmed e-bike fatalities between 2017 and 2023, and more than 300 across all so-called micromobility devices. Collisions with motor vehicles accounted for over 58% of tracked e-bike fatalities. The JAMA Surgery/National Electronic Injury Surveillance System found exponential growth in severe"
+  },
+  {
+   "idx": 2,
+   "url": "https://usafacts.org/articles/analyst-notes/just-how-dangerous-are-e-bikes-its-surprisingly-hard-to-know/",
+   "outlet": "USAFacts",
+   "date": "2026-08-20",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "But prior to 2024, e-bike injuries were mixed together with moped injuries.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " often than they did injuries from e-bikes and hoverboards (motorized skateboards). However, there were around 19 e-scooter injuries for every one unpowered scooter injury in 2025. One quick note about the data: e-scooters and hoverboards have been tracked separately from other products since 2020. But prior to 2024, e-bike injuries were mixed together with moped injuries. Keep that in mind, because this happens again later. ER visits associated with e-bikes and e-scooters are increasing. Weighted national estimate, 2020–2025 Prior to 2024, e-bike injuries were consolidated with mopeds (shown here as “unknown”). Source: Consumer Product Safety Commission Injuries involving an e-bike or an e-"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.publichealth.columbia.edu/news/e-bike-powered-scooter-injuries-spike",
+   "outlet": "Columbia University Mailman School of Public Health",
+   "date": "2024-09-25",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "The rate of e-bike and powered scooter injuries surged between 2019 and 2022—by 293 percent and 88 percent, respectively",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "Faculty & Staff Alumni Employers E-Bike, Powered Scooter Injuries Spike September 25, 2024 Share this page Share on Facebook Share on X (formerly Twitter) Share on LinkedIn Share by email In this Article Our Experts Andrew G Rundle, DrPH Topics Epidemiological Studies Healthcare Policy Urban Health The rate of e-bike and powered scooter injuries surged between 2019 and 2022—by 293 percent and 88 percent, respectively, according to a new study by researchers at Columbia University Mailman School of Public Health. The research adds to the existing information and gap in knowledge on the sociodemographic and risk factor variables that might be contributing to micromobility vehicle-related injuries. The findings are published in the Ame"
+  },
+  {
+   "idx": 4,
+   "url": "https://www.cpsc.gov/Newsroom/News-Releases/2024/E-Scooter-and-E-Bike-Injuries-Soar-2022-Injuries-Increased-Nearly-21",
+   "outlet": "U.S. Consumer Product Safety Commission",
+   "date": "2023-10-17",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Nearly half (46%) of all estimated e-bike injuries from 2017 to 2022 occurred in 2022 alone.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ard since 2017, increasing an estimated average 23% annually. The report estimates the number of injuries based on data collected from a nationally representative sample of U.S. hospitals. It shows that e-scooters continue to show increases in injuries, year-over-year, rising 22% in 2022 from 2021. Nearly half (46%) of all estimated e-bike injuries from 2017 to 2022 occurred in 2022 alone. Hoverboard injuries defied the upward trend, and decreased 26% from 2021 to 2022. CPSC is also aware of 233 deaths associated with micromobility devices from 2017 through 2022, although reporting is ongoing and incomplete. Children 14 years and younger accounted for about 36% of micromobility injuries from 2017 to 2022, double thei"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.tandfonline.com/doi/full/10.1080/15389588.2025.2543497",
+   "outlet": "Traffic Injury Prevention",
+   "date": "unknown",
+   "source_type": "research",
+   "entity_named": "yes",
+   "quote": "Injury patterns and safety implications for electric bikes compared to mopeds in the United States",
+   "paywalled": true,
+   "quote_check": "blocked",
+   "page_context": ""
+  }
+ ]
+}

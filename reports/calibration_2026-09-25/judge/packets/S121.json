@@ -1,0 +1,94 @@
+{
+ "story_id": "S121",
+ "lead": {
+  "headline": "Fetterman was the only Democrat voting with Republicans on all 12 Senate Iran war-powers votes; two failed by one vote",
+  "number": "S.J.Res.163 failed 49-50 on 2026-05-13 with Ricketts absent; S.J.Res.172 failed 47-48 on 2026-06-16 with Sanders, Bennet and Booker absent",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "The member-by-member table ends 2026-06-24, so two later Iran votes, one a 49-50 failure, are unseen."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "Fetterman only Democrat Iran war powers resolution Senate vote",
+  "Senate Iran war powers resolution fails 49-50 May 13 2026 Ricketts absent",
+  "Senate Iran war powers vote May 2026 Fetterman 49-50 one vote short",
+  "\"S.J.Res. 163\" OR \"S.J.Res.163\" Iran war powers Senate vote",
+  "Senate Iran war powers 47-48 June 16 2026 Sanders Booker Bennet absent",
+  "Fetterman has voted against every Iran war powers resolution each time sided with Republicans record",
+  "Fetterman lone Democrat Kaine Iran war powers resolution March 2026 47-53"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00118.htm",
+   "outlet": "U.S. Senate roll call vote 118, 119th Congress 2nd session",
+   "date": "2026-05-13",
+   "source_type": "government",
+   "entity_named": "yes",
+   "quote": "Motion to Discharge Rejected",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "West Virginia Wisconsin Wyoming Home Â» Legislation & Records Â» Votes Roll Call Vote 119 th Congress - 2 nd Session XML Vote Summary Question: On the Motion to Discharge (Motion to Discharge S. J. Res. 163 ) Vote Number: 118 Vote Date: May 13, 2026, 11:29 AM Required For Majority: 1/2 Vote Result: Motion to Discharge Rejected Measure Number: S.J.Res. 163 Measure Title: A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress. Vote Counts: YEAs 49 NAYs 50 Not Voting 1 *Information compiled through Senate LIS by the Senate bill cle"
+  },
+  {
+   "idx": 1,
+   "url": "https://wltreport.com/2026/06/16/one-democrat-sinks-party-iran-war-powers-push-president-trump/",
+   "outlet": "WLT Report",
+   "date": "2026-06-16",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Democrat John Fetterman of Pennsylvania voted no, lining up with most Republicans against his own party's effort.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " the resolution from committee went down 47-48. The headline of the afternoon was who helped kill it. ADVERTISEMENT 🚨🚨 @SenFettermanPA just voted \"no\" with the Republicans on advancing the war powers resolution. @DailyCaller https://t.co/DrBvdlZrWH — Nicole Silverio (@NicoleMSilverio) June 16, 2026 Democrat John Fetterman of Pennsylvania voted no, lining up with most Republicans against his own party’s effort. The resolution, S.J.Res.172, was the Warnock War Powers Resolution. The Daily Caller reported that it would have directed President Trump to pull U.S. forces out of hostilities in Iran. Four Republicans broke the other way and voted in favor: Bill Cassidy, Susan Collins, Lisa Murkowski, and Rand Paul. The Daily Caller also noted that the Hous"
+  },
+  {
+   "idx": 2,
+   "url": "https://breakingdefense.com/2026/03/iran-war-powers-resolution-fails-in-senate/",
+   "outlet": "Breaking Defense",
+   "date": "2026-03-04",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "Pennsylvania Sen. John Fetterman broke ranks with Democrats to oppose the resolution, while Republican Sen. Rand Paul of Kentucky voted in support of the measure.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "es) WASHINGTON — Senate Republicans successfully blocked a war powers resolution seeking to stop the use of US military force in Iran without congressional authorization, as airstrikes in the region continue for the fifth day. Senators voted 47-53 on the measure put forward by Sen. Tim Kaine, D-Va. Pennsylvania Sen. John Fetterman broke ranks with Democrats to oppose the resolution, while Republican Sen. Rand Paul of Kentucky voted in support of the measure. Kaine’s war powers resolution provided Congress with its first opportunity to weigh in on the ongoing conflict in Iran, known within the Defense Department as Operation Epic Fury. A similar resolution in the House, sponsored by Rep. Ro Khanna, D-Calif., and Thomas Massie, R-Ky., is set for a vote on Thursday. The measure — which calls for Pr"
+  },
+  {
+   "idx": 3,
+   "url": "https://www.cbsnews.com/news/senate-iran-war-powers-eighth-vote-trump/",
+   "outlet": "CBS News",
+   "date": "2026-05-19",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Sen. John Fetterman of Pennsylvania was the sole Democrat to oppose.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "led attempts. Senators approved a motion to discharge the resolution from committee in a 50 to 47 vote. Four Republicans — Sens. Susan Collins of Maine, Lisa Murkowski of Alaska, Rand Paul of Kentucky and Bill Cassidy of Louisiana — joined the bulk of Democrats in favor of advancing the resolution. Sen. John Fetterman of Pennsylvania was the sole Democrat to oppose. The vote marked the first time Cassidy supported advancing a war powers resolution. It came days after he failed to win enough support to advance to a runoff in the Louisiana GOP Senate primary, where Mr. Trump endorsed one of his opponents. And three Republicans — Sens. John Cornyn of Texas, Tommy Tuberville of Alabama and Thom Tillis "
+  },
+  {
+   "idx": 4,
+   "url": "https://abcnews.com/Politics/senate-fails-adopt-iran-war-powers-resolution-despite/story?id=136722629",
+   "outlet": "ABC News",
+   "date": "2026-09-24",
+   "source_type": "news",
+   "entity_named": "yes",
+   "quote": "Republican Sens. Lisa Murkowski, Susan Collins, Rand Paul and Thom Tillis joined all but one Democrat, Sen. John Fetterman, in voting in favor of the resolution.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "in Washington, D.C. STOCK PHOTO/Adobe Stock By Lalee Ibssa and Allison Pecorin September 24, 2026, 6:00 PM Share After a week in which more Republicans have emerged to call for an end to the war in Iran, the Senate failed to adopt a House-passed war powers resolution on Thursday by a vote of 49-50. Republican Sens. Lisa Murkowski, Susan Collins, Rand Paul and Thom Tillis joined all but one Democrat, Sen. John Fetterman, in voting in favor of the resolution. Democratic Sen. Angela Alsobrooks did not vote. Democrats would've needed full attendance and five Republicans to vote with them in order for the resolution to pass. The US Capitol Building in Washington, D.C. STOCK PHOTO/Adobe Stock The vote underscores the political tightrope vulnerable Republicans are attempting to walk with a little over a"
+  },
+  {
+   "idx": 5,
+   "url": "https://www.democrats.senate.gov/newsroom/press-releases/after-democrats-force-14th-vote-to-stop-iran-war-schumer-slams-republicans-for-caving-to-trumps-recklessness",
+   "outlet": "Senate Democratic Leadership",
+   "date": "2026-09-24",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "On May 13th, Republicans blocked Senator Merkley's (D-OR) resolution 49-50.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ublicans blocked Senator Murphy’s (D-CT) resolution 47-53. On April 15 th , Republicans blocked Senator Duckworth’s (D-IL) resolution 47-52. On April 22 nd , Republicans blocked Senator Baldwin’s (D-WI) resolution 46-51. On April 30 th , Republicans blocked Senator Schiff’s (D-CA) resolution 47-50. On May 13 th , Republicans blocked Senator Merkley’s (D-OR) resolution 49-50. On June 16 th , Republicans blocked Senator Warnock’s (D-GA) resolution 47 – 48. On June 24 th , Republicans blocked Senator Kaine (D-VA) resolution 47 – 50. On July 23 rd , Republicans blocked Senator Van Hollen’s (D-MD) resolution 47 – 49. On July 30 th , Republicans blocked Senator Gillibrand’s (D-NY) resolution 49 – 50. Today"
+  }
+ ]
+}

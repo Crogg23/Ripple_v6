@@ -1,0 +1,12 @@
+{
+  "story_id": "S030",
+  "bin": "Known pattern",
+  "entity": "US bankruptcy judges' trips paid by bankruptcy practitioner groups, 2011-19 (41% of trips)",
+  "deciding_sources": [1, 2],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "NPR and Fix the Court report federal judges taking privately funded travel and gifts, and Fix the Court counts 18 bankruptcy judges among acceptors. Nobody states the bankruptcy-bar-pays-bankruptcy-judges share or the 41% vs 0.7% gap.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

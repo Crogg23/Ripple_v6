@@ -1,0 +1,12 @@
+{
+  "story_id": "S204",
+  "bin": "Matched + more",
+  "entity": "Top-4 traders' share of the short side in PJM Western Hub day-ahead off-peak futures on ICE, early 2026",
+  "deciding_sources": [0, 1],
+  "earliest_match_date": "2026-03-10",
+  "post_cutoff_match": false,
+  "what_we_add": "The record framing: 69.7% Q1 average vs 47.4% in 2024 Q1, only ~5 points over 2014-15 highs",
+  "why": "The CFTC COT record for 2026-03-10 states 71.8% for 4-or-less traders short, our exact peak-week number, and the 2024 report shows the low-40s base. No source states the quarterly aggregate or the record claim; it is primary data, not press. Table labeling (peak vs off-peak) leaves some doubt.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

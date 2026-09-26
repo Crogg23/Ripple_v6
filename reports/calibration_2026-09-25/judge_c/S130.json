@@ -1,0 +1,12 @@
+{
+ "story_id": "S130",
+ "bin": "Known pattern",
+ "entity": "The 355 Q1 2026 13F filers still reporting values in thousands, T. Rowe Price the largest",
+ "deciding_sources": [2],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "Sources 0 and 1 are blocked and not paywalled, so they're ignored; nothing usable names T. Rowe or the 355. Finrep (2) reports the same pattern in general: legacy systems still rounding to thousands are producing non-compliant filings. The SEC FAQ and EdgarScout are rule explainers, not findings.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

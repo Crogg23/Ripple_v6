@@ -1,0 +1,46 @@
+{
+ "story_id": "S178",
+ "lead": {
+  "headline": "Medicare's new back-pain program roster names 3 doctors barred from federal health programs and 13 who opted out",
+  "number": "3 of 6,510 participants on the OIG exclusion list (all pain doctors), 13 on the Medicare opt-out list; other pain doctors are excluded at 0.16% vs 0.26% inside the model, 3 people vs 5.",
+  "grade": "C",
+  "verdict": "narrowed",
+  "watch_out": "The \"same-state\" base rate covers all states and most of the ~4x gap is specialty mix; 11 of 13 opt-outs took effect after the model was proposed, so they may be a reaction to it, not a missed screen. The whole effect is 3 people."
+ },
+ "queries_logged": 7,
+ "queries": [
+  "CMS Ambulatory Specialty Model participant list low back pain excluded physicians",
+  "Ambulatory Specialty Model participants list released 2026 back pain heart failure clinicians",
+  "\"Ambulatory Specialty Model\" excluded providers OIG exclusion list opt out Medicare participants errors",
+  "Ambulatory Specialty Model final participant list summer 2026 pain physicians opt out Medicare",
+  "CMS Innovation Center model participants program integrity screening excluded opted-out clinicians included model list news",
+  "Ambulatory Specialty Model final list CMS August 2026 Becker's STAT Modern Healthcare clinicians",
+  "OIG report CMS failed to screen excluded providers still enrolled Medicare exclusion list physicians found"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://asra.com/news-publications/asra-update-item/asra-updates/2026/02/12/cms-releases-preliminary-participant-list-for-ambulatory-specialty-model",
+   "outlet": "American Society of Regional Anesthesia and Pain Medicine (ASRA)",
+   "date": "2026-02-12",
+   "source_type": "trade press",
+   "entity_named": "yes",
+   "quote": "CMS plans to release the final participant list in summer 2026.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "anuary 1, 2027. ASM is designed to hold participating physicians financially accountable for managing chronic conditions among patients with Original Medicare. ASM will run over five performance years through December 31, 2031, with payment years spanning January 1, 2029, through December 31, 2033. CMS plans to release the final participant list in summer 2026. ASM participation is mandatory for physicians in selected regions who historically treat enough low back pain episodes to meet CMS’s participation thresholds. For the low back pain cohort, CMS has identified specialties that commonly manage this condition in outpatient settings, including: anesthesiology (including intervention"
+  },
+  {
+   "idx": 1,
+   "url": "https://oig.hhs.gov/reports/all/2012/excluded-providers-in-medicaid-managed-care-plans",
+   "outlet": "HHS Office of Inspector General",
+   "date": "2012-02-24",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "Four of the twelve MCEs reviewed had 11 excluded providers enrolled in their provider networks in 2009.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "o interviewed MCE and State Medicaid staff, and we reviewed contracts between MCEs and States to identify their safeguards to prevent excluded providers from enrolling in Medicaid. Finally, we asked each MCE to provide information on payments made to each excluded provider identified. WHAT WE FOUND Four of the twelve MCEs reviewed had 11 excluded providers enrolled in their provider networks in 2009. Four of these providers were paid a total of $40,306 in 2009; the remaining seven providers received no payments during our review. In 2009, approximately 46,000 individuals and entities were listed on OIG's exclusion list. All 12 MCEs and all 10 States reviewed had safeguards to identify excluded providers. Eleven of the twelve "
+  }
+ ]
+}

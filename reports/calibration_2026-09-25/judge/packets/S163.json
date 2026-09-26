@@ -1,0 +1,70 @@
+{
+ "story_id": "S163",
+ "lead": {
+  "headline": "At 45 big companies, contractors' H-1B work-visa filings listed wages a median 20.6% below the company's own, same job",
+  "number": "Median 20.6% lower at 45 client companies (39 more than 1% lower), same job code and state, FY2019; at the same skill level the gap is 6.6%; new-hire filings only, 14.5%",
+  "grade": "B",
+  "verdict": "narrowed",
+  "watch_out": "One year (FY2019), name-only client matching, and most of the gap is the skill level the contractor writes down, so the claim is \"filed lower\", not \"paid less for the same work\""
+ },
+ "queries_logged": 7,
+ "queries": [
+  "H-1B outsourcing contractors wages lower than client company own H-1B workers same job analysis",
+  "EPI H-1B outsourcing firms Level 1 wages third-party placement clients Apple Google analysis",
+  "Bloomberg 2025 H-1B middlemen banks TCS contractors paid less than direct hires $48,000",
+  "\"contractor was paid about $48,000 less\" H-1B",
+  "H-1B staffing firm LCA wages compared end client same occupation same state study lower wages third-party worksite",
+  "Citigroup 3,000 H-1B two-thirds placed by Indian outsourcing companies paid significantly less than Citigroup's own employees",
+  "H-1B outsourcing contractors paid less than client companies' direct hires 2026 report"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.bloomberg.com/graphics/2025-h1b-visa-middlemen-cheap-labor-for-us-banks/",
+   "outlet": "Bloomberg",
+   "date": "unknown",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Major US Banks Use TCS, Other Middlemen To Hire Lower Paid H-1B Visa Workers",
+   "paywalled": true,
+   "quote_check": "exact",
+   "page_context": " Major US Banks Use TCS, Other Middlemen To Hire Lower Paid H-1B Visa Workers Skip to content Bloomberg the Company & Its Products The Company & its Products Bloomberg Terminal Demo Request Bloomberg Anywhere Remote Login Bloomberg Anywhere Login Bloomberg Customer Support Customer Support Bloomberg Connecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and a"
+  },
+  {
+   "idx": 1,
+   "url": "https://finance.yahoo.com/news/wall-streets-secret-weapon-citi-191644770.html",
+   "outlet": "Yahoo Finance (GuruFocus, citing Bloomberg)",
+   "date": "2025-06-27",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Median salary for one of these H-1B developers? $94,000. Compare that to $142,000 for a direct hire doing similar work.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ven Citi employees. They were contractorslower-paid, outsourced, and funneled in through firms like Tata Consultancy Services, which is now under federal investigation. These middlemen operate a parallel system: they recruit, place, and often underpay talent while clipping a cut from each paycheck. Median salary for one of these H-1B developers? $94,000. Compare that to $142,000 for a direct hire doing similar work. Warning! GuruFocus has detected 7 Warning Sign with C. Capital One might just be the poster child for how deep this goes. More than half of its 905 H-1B contract hires came from staffing firms flagged for using multiple registrationsa strategy the government deemed fraudulent just last year. The company worked with 429 separate"
+  },
+  {
+   "idx": 2,
+   "url": "https://spectrum.ieee.org/amp/new-data-hammers-home-problems-with-h1bs-and-outsourcing-firms-2650275971",
+   "outlet": "IEEE Spectrum (Prachi Patel)",
+   "date": "2017-08-08",
+   "source_type": "trade press",
+   "entity_named": "no",
+   "quote": "But top outsourcing firms paid well below this number, with TCS paying as little as $72,000 on average.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "n India . The top 20 employers took 37 percent of the approved visas. The top five were all IT outsourcing firms: Cognizant Tech Solutions, Infosys, Tata Consultancy Services, Accenture, and Wipro. All together, these companies took 60,000 visas. The average salary of H-1B visa holders was $91,000. But top outsourcing firms paid well below this number, with TCS paying as little as $72,000 on average. Non-outsourcing tech companies seem to be more fair. Apple, Cisco, Microsoft , and Google , for instance, pay their H-1B workers average wages of over $120,000. These higher-paying companies generally hire more workers with Master’s degrees, while most outsourcing firms hire mainly Bachelor’s degree holders. But even major tech firm"
+  },
+  {
+   "idx": 3,
+   "url": "https://ifp.org/the-wage-level-mirage/",
+   "outlet": "Institute for Progress (Jeremy Neufeld)",
+   "date": "2025-09-24",
+   "source_type": "research",
+   "entity_named": "no",
+   "quote": "Their business model relies on flooding the lottery with registrations for mid-career staff in routine roles, who often qualify for higher wage levels despite the relatively low actual pay.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "luding student retention and visas awarded to outsourcers. A boon to the large outsourcing companies Large IT outsourcing companies, like the so-called WITCH companies (Wipro, Infosys, TCS, Cognizant, and HCL) are particularly well positioned to benefit from any prioritization based on Wage Levels. Their business model relies on flooding the lottery with registrations for mid-career staff in routine roles, who often qualify for higher wage levels despite the relatively low actual pay. To identify large outsourcers, I focus on firms that register for more than 2,000 H-1Bs in any year with a clear outsourcing model. The most prominent include Wipro Limited, Infosys, Tech Mahindra Americas, Tata Consultancy Services, Capgemini, Cognizant Technology, and HCL America. The results are striking. Across FY2021–2024, the prop"
+  }
+ ]
+}

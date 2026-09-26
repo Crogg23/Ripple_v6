@@ -1,0 +1,35 @@
+{
+  "story_id": "S129",
+  "entity": "OFAC-blocked banks (36; 31 Russian incl. National Settlement Depository, 3 Belarusian, 1 Armenian, 1 London) still holding live GIINs on the IRS FATCA Foreign Financial Institution list",
+  "queries": [
+    {"q": "sanctioned Russian banks still on IRS FATCA FFI list GIIN", "found_useful": false},
+    {"q": "National Settlement Depository FATCA GIIN IRS registration sanctions OFAC", "found_useful": false},
+    {"q": "IRS FATCA Russia Belarus intergovernmental agreement terminated treated as in effect list removed 2022 Russian financial institutions GIIN", "found_useful": false},
+    {"q": "OFAC SDN list \"Global Intermediary Identification Number\" Russian bank designation", "found_useful": false},
+    {"q": "sanctioned banks FATCA registration IRS Treasury inconsistency Russia Belarus blocked institutions still registered news", "found_useful": false},
+    {"q": "Russian banks FATCA GIIN sanctions 2026", "found_useful": false}
+  ],
+  "sources": [
+    {
+      "url": "https://www.opensanctions.org/datasets/ext_us_irs_ffi/",
+      "outlet": "OpenSanctions",
+      "date": "2026-09-25",
+      "source_type": "research",
+      "entity_named": "no",
+      "quote": "All foreign financial institutions and branches with approved FATCA registration.",
+      "paywalled": false,
+      "searcher_note": "OpenSanctions carries the IRS FFI list as an enrichment dataset (3,087 entries across 189 countries) kept only where an entry connects to a sanctions target or politician. Shows the linkage exists as data; it is not reporting and states no count of blocked banks with live GIINs. Its National Settlement Depository entity page lists no GIIN or FATCA source. Date is the dataset's last-updated stamp."
+    },
+    {
+      "url": "https://ofac.treasury.gov/faqs/1197",
+      "outlet": "U.S. Treasury, Office of Foreign Assets Control",
+      "date": "2024-11-21",
+      "source_type": "government",
+      "entity_named": "no",
+      "quote": "On June 12, 2024, OFAC designated the National Settlement Depository (NSD), along with the Moscow Exchange (MOEX) and the National Clearing Center (NCC) pursuant to Executive Order (E.O.) 14024",
+      "paywalled": false,
+      "searcher_note": "Context only: confirms NSD is OFAC-blocked (designated 2024-06-12). Says nothing about FATCA or the IRS FFI list."
+    }
+  ],
+  "notes": "No news, trade press, government or research source found reporting that OFAC-blocked banks (or NSD specifically) still hold GIINs on the IRS FATCA FFI list. Searches turned up only IRS explainer pages on the FFI list, OFAC designation notices, and the OpenSanctions dataset that joins the two lists. Two of the logged queries (the IGA-status one and the 'inconsistency' one) were expanded by the search tool into several follow-up searches on its own; all returned nothing on this finding."
+}

@@ -1,0 +1,14 @@
+{
+  "story_id": "S060",
+  "bin": "Known pattern",
+  "entity": "Nevro Senza stimulator's death-report share in MAUDE (22.8% vs 0.18% for peers)",
+  "deciding_sources": [
+    0
+  ],
+  "earliest_match_date": "",
+  "post_cutoff_match": false,
+  "what_we_add": "",
+  "why": "No source gives Nevro-specific death numbers. FDA/MedTech Dive report the same kind of finding for the device class: 428 SCS deaths in MDRs. NBC only names Nevro as a maker.",
+  "confidence": "medium",
+  "blocked_evidence": false
+}

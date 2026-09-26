@@ -1,0 +1,12 @@
+{
+ "story_id": "S148",
+ "bin": "Unreported",
+ "entity": "EU LEI registrars renewing sanctioned firms' company IDs after listing",
+ "deciding_sources": [],
+ "earliest_match_date": "",
+ "post_cutoff_match": false,
+ "what_we_add": "",
+ "why": "No source reports registrars renewing sanctioned entities' LEIs. The LSE case study says it can issue an LEI to a sanctioned entity as policy, and the Commission FAQ is a rules explainer; neither is a finding, so no pattern either.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

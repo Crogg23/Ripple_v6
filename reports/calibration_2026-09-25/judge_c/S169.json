@@ -1,0 +1,12 @@
+{
+ "story_id": "S169",
+ "bin": "Matched + more",
+ "entity": "Red River Parish LA area earthquakes: none M2.5+ 2010-2023, 29 since Jan 2024, topped by the M4.9",
+ "deciding_sources": [1, 0],
+ "earliest_match_date": "2026-03-12",
+ "post_cutoff_match": true,
+ "what_we_add": "The zero-quake 2010-2023 baseline for the box and the 29-event count since Jan 2024",
+ "why": "Tulane, the Advocate, the state agency and KTBS all name Red River Parish and report the same finding: an unusual new quake series capped by the March 5 M4.9, cause under investigation. No source states our box's zero 2010-2023 baseline or the 29 count; the Advocate's 35-since-2022 covers all of northwestern Louisiana, a wider area, so it doesn't contradict the box numbers.",
+ "confidence": "medium",
+ "blocked_evidence": false
+}

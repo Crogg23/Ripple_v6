@@ -1,0 +1,59 @@
+{
+ "story_id": "S019",
+ "lead": {
+  "headline": "553 water permits broke pollution limits in 36+ of 40 quarters; 84 never had a formal enforcement action",
+  "number": "553 permits in 36+ of 40 quarters, 2016-2025; 152 with no formal action since 2016 and 84 with none ever, in EPA's system; in West Virginia, chronic mines got formal action 26% of the time vs 58% for chronic sewer plants.",
+  "grade": "",
+  "verdict": "narrowed",
+  "watch_out": "Every count is an absence in EPA's system, and West Virginia's mine enforcement barely flows into it, so \"no action\" may just mean \"not reported.\""
+ },
+ "queries_logged": 8,
+ "queries": [
+  "Clean Water Act permits chronic violations years no enforcement EPA ECHO analysis",
+  "West Virginia coal mines Clean Water Act violations no enforcement DEP selenium",
+  "facilities in significant noncompliance every quarter Clean Water Act never penalized report",
+  "Environmental Integrity Project Clean Water Act chronic violators significant noncompliance report",
+  "Mountain State Spotlight coal mines water pollution violations DEP enforcement",
+  "EPA OIG \"long-term significant noncompliance\" major facilities water discharge permits enforcement oversight",
+  "Clean Water Act repeat violators years without penalty analysis 2026",
+  "West Virginia DEP mining NPDES enforcement actions not reported to EPA ICIS ECHO data gap"
+ ],
+ "sources": [
+  {
+   "idx": 0,
+   "url": "https://www.insurancejournal.com/news/southeast/2019/06/05/528413.htm",
+   "outlet": "Insurance Journal (Reuters copy, Valerie Volcovici)",
+   "date": "2019-06-05",
+   "source_type": "news",
+   "entity_named": "no",
+   "quote": "Several West Virginia coal mines, including some owned by the governor’s family, have released many times the allowable amounts of pollutants into nearby waterways in recent years without being penalized by regulators, according to environmental groups citing state data.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "ines Research Directories Jobs Features Events Forums Market Directories Quotes Polls Rankings & Awards Insurance Giving Back Subscribe West Virginia Coal Industry Data Shows Mines Releasing Excessive Pollution By Valerie Volcovici | June 5, 2019 Email This Subscribe to Newsletter Article 1 Comment Several West Virginia coal mines, including some owned by the governor’s family, have released many times the allowable amounts of pollutants into nearby waterways in recent years without being penalized by regulators, according to environmental groups citing state data. The Ohio Valley Environmental Coalition, Sierra Club and others on Tuesday sent “notice of intent to sue” letters to nine companies operating about 15 coal facilities in the state, including Bluestone Resources, owned by the family of Governor Jim Justice, and coal magnate Robert Murray’s Murray Energy, for what they said were “egregious vi"
+  },
+  {
+   "idx": 1,
+   "url": "https://www.epa.gov/office-inspector-general/report-better-enforcement-oversight-needed-major-facilities-water",
+   "outlet": "EPA Office of Inspector General",
+   "date": "2007-05-14",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "EPA did not provide effective enforcement oversight of major facilities with National Pollutant Discharge Elimination System permits in long-term significant noncompliance.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": " Newsroom Planning, Budget, and Results Organization Chart EPA History Breadcrumb Home Office of Inspector General Report: Better Enforcement Oversight Needed for Major Facilities with Water Discharge Permits in Long-Term Significant Noncompliance Report # 2007-P-00023 , May 14, 2007 What Was Found EPA did not provide effective enforcement oversight of major facilities with National Pollutant Discharge Elimination System permits in long-term significant noncompliance. Report Materials Report At A Glance (pdf) (43.31 KB) Full Report (pdf) (495.12 KB) Office of Inspector General Open Sidenav Menu Close Sidenav Menu EPA OIG Hotline EPA OIG Hotline Information Contact the Office of Inspector General Contact the Office of Inspector General to ask a question, provide feedback, or report a problem. Last updat"
+  },
+  {
+   "idx": 2,
+   "url": "https://www.gao.gov/products/gao-21-290",
+   "outlet": "U.S. Government Accountability Office",
+   "date": "2021-07-12",
+   "source_type": "government",
+   "entity_named": "no",
+   "quote": "nearly 11,000 facilities significantly exceeded their permit limits and illegally discharged pollutants into nearby waters in 2018.",
+   "paywalled": false,
+   "quote_check": "exact",
+   "page_context": "hnology Assessments Science & Tech Spotlights Artificial Intelligence (AI)-Related Reports Performance Audits Multimedia Testimonies Presentations Forums & Roundtables Fast Facts The EPA uses National Pollutant Discharge Elimination System (NPDES) permits to regulate wastewater discharges. However, nearly 11,000 facilities significantly exceeded their permit limits and illegally discharged pollutants into nearby waters in 2018. EPA has a goal to reduce by half significant noncompliance with individual NPDES permits by the end of FY 2022. But the data that states and facilities report to EPA to help track compliance is incomplete and has errors. We recommended (among other things) assessing the quality of the NPDES data that states and facilities are reporting so EPA c"
+  }
+ ]
+}
